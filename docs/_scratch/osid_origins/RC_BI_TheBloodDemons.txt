@@ -1,0 +1,89 @@
+Version 1
+SubGoalCombiner SGC_AND
+
+INITSECTION
+DB_Ghosts(CHARACTERGUID_RC_BI_DemonSpot2_Blackring_001_fed4f963-35e5-4cfe-b4cc-6957f676fa93, S_RC_BI_DemonSpot2_Blackring_Ghost_186be0c6-ba4b-4e2b-8389-af93d2cc248c, "RC_BI_DemonSpot2_Blackring_Ghost");
+DB_Ghosts(CHARACTERGUID_RC_BI_DemonSpot1_Blackring_003_933aca49-a57c-40d5-a9f2-69eee635e769, RC_BI_DemonSpot1_Blackring_Ghost_d76c3858-ebad-45ed-ab23-b1585e88fe4b, "RC_BI_DemonSpot1_Blackring_Ghost");
+DB_BI_BloodDemons(S_RC_BI_DemonSpot1_Demon_001_839d90c0-9457-4d9d-a263-dd1c0cd71c8a);
+DB_BI_BloodDemons(S_RC_BI_DemonSpot1_Demon_002_615510ae-efbf-4e09-94f5-83791d4767d2);
+DB_BI_BloodDemons(S_RC_BI_DemonSpot1_Demon_003_0d40d6c6-09f6-44af-aba1-195bae750ff6);
+DB_BI_BloodDemons(S_RC_BI_DemonSpot2_Demon_001_fb670465-9ad0-4e1a-971a-e148b19f65c7);
+DB_BI_BloodDemons(S_RC_BI_DemonSpot2_Demon_002_1998386f-d638-4d4b-96dc-7bc6e9aff661);
+DB_BI_BloodDemons(S_RC_BI_DemonSpot2_Demon_003_3cd0e05a-5ea2-48e2-af4e-fc73d2b125cc);
+DB_BI_BloodDemons(S_RC_BI_DemonSpot2_Demon_004_9a7649b7-227f-4fab-8d8c-7424aad21a22);
+DB_BI_BloodDemons(S_RC_BI_DemonSpot3_Demon_001_34b5e232-1ee6-4437-bfff-a876572cc4c6);
+DB_BI_BloodDemons(S_RC_BI_DemonSpot3_Demon_002_2bb910f4-5145-4762-88fd-fe5c94de7fc9);
+DB_BI_BloodDemons(S_RC_BI_DemonSpot3_Demon_003_2284443e-914d-4563-b0c3-cdc99c920909);
+ProcTriggerRegisterForPlayers(TRIGGERGUID_S_RC_BI_DemonSpot1_Docks_Area_417e6123-6240-4b2e-b20f-080dd03e4eeb);
+DB_BI_BloodDemonEncounter2(CHARACTERGUID_S_RC_BI_DemonSpot2_Demon_1_9a9e4795-2612-4190-8976-478c6a80240f);
+SetOnStage(CHARACTERGUID_S_RC_BI_DemonSpot2_Demon_1_9a9e4795-2612-4190-8976-478c6a80240f, 0);
+DB_BI_BloodDemonEncounter2(CHARACTERGUID_S_RC_BI_DemonSpot2_Demon_2_80b8fc46-b0a3-44a2-8519-2371ea962b2b);
+SetOnStage(CHARACTERGUID_S_RC_BI_DemonSpot2_Demon_2_80b8fc46-b0a3-44a2-8519-2371ea962b2b, 0);
+DB_BI_BloodDemonEncounter2(CHARACTERGUID_S_RC_BI_DemonSpot2_Demon_3_f759d7b1-2e66-4bab-8842-91cdba94ee7b);
+DB_BI_BloodDemonEncounter2(CHARACTERGUID_S_RC_BI_DemonSpot2_Demon_4_fb670465-9ad0-4e1a-971a-e148b19f65c7);
+DB_BI_BloodDemonEncounter2(CHARACTERGUID_S_RC_BI_DemonSpot2_Demon_5_1998386f-d638-4d4b-96dc-7bc6e9aff661);
+DB_BI_BloodDemonEncounter2(CHARACTERGUID_S_RC_BI_DemonSpot2_Demon_6_3bfacaa9-c9a8-4e5e-868c-d1115c0b47e7);
+SetOnStage(CHARACTERGUID_S_RC_BI_DemonSpot2_Demon_6_3bfacaa9-c9a8-4e5e-868c-d1115c0b47e7, 0);
+DB_BI_BloodDemonEncounter2_Egg(ITEMGUID_S_RC_BI_BloodDemonsSpot_2_Egg1_fc4cd0fa-cd26-4e31-b85c-8e27c560bd69);
+DB_BI_BloodDemonEncounter2_Egg(ITEMGUID_S_RC_BI_BloodDemonsSpot_2_Egg2_112bccf0-e212-4844-974c-644f7cdeda04);
+DB_BI_BloodDemonEncounter2_Egg(ITEMGUID_S_RC_BI_BloodDemonsSpot_2_Egg3_87a19c68-7445-470c-808c-06b6aba621fe);
+DB_BI_BloodDemonEncounter2_Egg(ITEMGUID_S_RC_BI_BloodDemonsSpot_2_Egg4_81bc4e91-ca50-49f4-9326-1e4a90344619);
+DB_BI_BloodDemonEncounter2_Egg(ITEMGUID_S_RC_BI_BloodDemonsSpot_2_Egg5_1d565f48-80d6-43cc-afe7-9bf9185d1b76);
+
+KBSECTION
+IF
+ObjectEnteredCombat((CHARACTERGUID)_Var1, (INTEGER)_Var2)
+AND
+DB_BI_BloodDemons(_Var1)
+AND
+CombatGetInvolvedPlayer(_Var2, 1, _Var3)
+AND
+UserGetFlag(_Var3, "RC_BI_BloodDemons", 0)
+THEN
+UserSetFlag(_Var3, "RC_BI_BloodDemons");
+StartVoiceBark("RC_BI_VB_BloodDemons", _Var3);
+
+IF
+CharacterEnteredTrigger((CHARACTERGUID)_Var1, TRIGGERGUID_S_RC_BI_DemonSpot1_Docks_Area_417e6123-6240-4b2e-b20f-080dd03e4eeb)
+AND
+UserGetFlag(_Var1, "RC_BI_DemonSpot1_BlackRing", 0)
+THEN
+UserSetFlag(_Var1, "RC_BI_DemonSpot1_BlackRing");
+StartVoiceBark("RC_BI_VB_DemonSpot1_BlackRing", _Var1);
+
+IF
+GameBookInterfaceClosed(ITEMGUID_S_RC_BI_DemonSpot1_Letter_5db8db85-5dab-4663-8875-1b925e7d4e3a, (CHARACTERGUID)_Var1)
+THEN
+ObjectSetFlag(_Var1, "QuestUpdate_RC_BI_TheTruth_ReadBlackRingOrders");
+
+IF
+ObjectEnteredCombat((CHARACTERGUID)_Var1, (INTEGER)_Var2)
+AND
+DB_BI_BloodDemonEncounter2(_Var1)
+AND
+QueryOnlyOnce("RC_BI_BloodDemonsEncounter2")
+AND
+DB_BI_BloodDemonEncounter2(_Var3)
+AND
+ObjectIsOnStage(_Var3, 0)
+AND
+GetPosition(_Var3, _Var4, _Var5, _Var6)
+THEN
+PlayEffectAtPosition("RS3_FX_GP_ScriptedEvent_RC_BI_BloodDemonsEncounter_Spawn_01", _Var4, _Var5, _Var6);
+CharacterAppear(_Var3, 1, "");
+
+IF
+DB_OnlyOnce("RC_BI_BloodDemonsEncounter2")
+AND
+DB_BI_BloodDemonEncounter2_Egg(_Var1)
+AND
+GetPosition(_Var1, _Var2, _Var3, _Var4)
+THEN
+PlayScaledEffectAtPosition("RS3_FX_GP_Combat_CorpseExplosion_Blood_01_Medium", 2, _Var2, _Var3, _Var4);
+ItemDestroy(_Var1);
+
+
+EXITSECTION
+ENDEXITSECTION
+
+ParentTargetEdge "ReapersCoast"

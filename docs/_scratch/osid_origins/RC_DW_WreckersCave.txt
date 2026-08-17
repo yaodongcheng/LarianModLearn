@@ -1,0 +1,640 @@
+Version 1
+SubGoalCombiner SGC_AND
+
+INITSECTION
+DB_Dialogs(CHARACTERGUID_S_RC_DW_WC_TraumatizedDwarf_e293e0a9-fe49-4dd7-8370-11a1832c3cc7, "RC_DW_WC_TraumatizedDwarf");
+DB_Dialogs(CHARACTERGUID_S_RC_DW_WC_BarrelChamber_PossessedDwarf_000_f40e9760-f9aa-43bc-8f3a-e8106599a9e5, "RC_DW_WC_BarrelChamber_PossessedDwarf_000");
+DB_DoNotFace(CHARACTERGUID_S_RC_DW_WC_BarrelChamber_PossessedDwarf_000_f40e9760-f9aa-43bc-8f3a-e8106599a9e5);
+DB_Dialogs(CHARACTERGUID_S_RC_WC_PossessedDwarf_01_a6ebba9d-2b70-4f04-b0d0-56d7581548d6, "RC_DW_WC_PossessedDwarf_01");
+DB_Dialogs(CHARACTERGUID_S_RC_WC_PossessedDwarf_02_3b1417dc-b796-4b38-975e-4c3f33baf5c6, "RC_DW_WC_PossessedDwarf_02");
+DB_RC_WC_PossessedDwarves(S_RC_DW_WC_BarrelChamber_PossessedDwarf_000_f40e9760-f9aa-43bc-8f3a-e8106599a9e5);
+DB_RC_WC_PossessedDwarves(CHARACTERGUID_S_RC_DW_WC_BarrelChamber_PossessedDwarf_001_579d36bf-8118-4548-bdc7-687f5aa3e3f1);
+DB_RC_WC_PossessedDwarves(CHARACTERGUID_S_RC_WC_PossessedDwarf_01_a6ebba9d-2b70-4f04-b0d0-56d7581548d6);
+DB_RC_WC_PossessedDwarves(CHARACTERGUID_S_RC_WC_PossessedDwarf_02_3b1417dc-b796-4b38-975e-4c3f33baf5c6);
+ApplyStatus(S_RC_WC_PossessedDwarf_01_a6ebba9d-2b70-4f04-b0d0-56d7581548d6, "POSSESSED", -1);
+ApplyStatus(S_RC_WC_PossessedDwarf_02_3b1417dc-b796-4b38-975e-4c3f33baf5c6, "POSSESSED", -1);
+DB_OneShotPlayerTrigger(TRIGGERGUID_S_RC_DW_WC_EntranceVB_Box_579ad1fa-ebfb-4e24-ba12-158fc860db73);
+ProcTriggerRegisterForPlayers(TRIGGERGUID_S_RC_DW_WC_FoundTerrifiedDwarf_Box_c8cfce90-a56d-4af7-b396-f72d7e7293fa);
+ProcTriggerRegisterForPlayers(TRIGGERGUID_S_RC_DW_WC_Entrance_Box_1cf4ecef-a6a4-4471-9a3e-aad9367e1326);
+CharacterSetAnimationOverride(CHARACTERGUID_S_RC_DW_WC_TraumatizedDwarf_e293e0a9-fe49-4dd7-8370-11a1832c3cc7, "cower");
+DB_IgnoreAssault(CHARACTERGUID_S_RC_DW_WC_TraumatizedDwarf_e293e0a9-fe49-4dd7-8370-11a1832c3cc7);
+ProcCharacterDisableAllCrimes(CHARACTERGUID_S_RC_DW_WC_TraumatizedDwarf_e293e0a9-fe49-4dd7-8370-11a1832c3cc7);
+DB_Dialogs(CHARACTERGUID_S_RC_DW_WC_DwarfBase_Rat_3d147173-a520-431c-bf3e-6d5ce7dcfd51, "RC_DW_WC_AmbushRat");
+DB_Ghosts(CHARACTERGUID_S_RC_DW_WC_DwarfCorpse_01_d4d33255-81d9-4be4-bd48-88b8a99d6aa9, CHARACTERGUID_S_RC_DW_WC_DwarfGhost_01_4f6e6b8d-2b69-4032-8c5c-e737d38c7474, "RC_DW_WC_DwarfGhost_01");
+DB_Ghosts(CHARACTERGUID_S_RC_WC_DwarfCorpse_02_e5b03109-346c-4a12-8454-b8061257ac17, CHARACTERGUID_S_RC_DW_WC_DwarfGhost_02_d3033da6-baed-43e1-8d75-90633d902628, "RC_DW_WC_DwarfGhost_02");
+DB_Ghosts(CHARACTERGUID_S_RC_DW_WC_DwarfCorpse_03_dc7b75f4-e6ce-45b5-9c34-dba9fc1bd353, CHARACTERGUID_S_RC_DW_WC_DwarfGhost_03_55b48f76-a3d7-4dd9-80cd-68c639b3bfe5, "RC_DW_WC_DwarfGhost_03");
+DB_Ghosts(CHARACTERGUID_S_RC_DW_WC_DwarfCorpse_07_16d8e7b8-96b8-418d-93d4-e75e87ad70fb, CHARACTERGUID_S_RC_DW_WC_DwarfGhost_07_68334b40-3e7c-4084-941f-35f3c1622de6, "RC_DW_WC_DwarfGhost_07");
+CharacterSetAnimationOverride(CHARACTERGUID_S_RC_DW_WC_DwarfGhost_01_4f6e6b8d-2b69-4032-8c5c-e737d38c7474, "cower");
+CharacterSetAnimationOverride(CHARACTERGUID_S_RC_DW_WC_DwarfGhost_03_55b48f76-a3d7-4dd9-80cd-68c639b3bfe5, "cower");
+DB_BidirShovelPileTunnel("RC_WC_TunnelFallback", TRIGGERGUID_S_RC_WC_Tunnel_Dig_Box_c0eb36c8-f133-4281-b3bf-7040571710f8, ITEMGUID_S_RC_WC_PUZ_SandWhitepile_Tunnel_9b191cb5-53cb-4a40-bc54-b5789ca21710, ITEMGUID_S_RC_WC_TunnelFallback_f300b6a2-68c2-456d-a6eb-57c0d5f198ac, TRIGGERGUID_S_RC_WC_TunnelDest_Dig_Box_e955eeba-2543-4424-b743-2ef72e491cde, ITEMGUID_S_RC_WC_PUZ_DirstWhitepile_TunnelDest_ad6f6d4e-dd3e-41e3-a838-81fcfd5aed21, ITEMGUID_S_RC_WC_TunnelFallback_Destination_c4f3d32d-88ca-4605-b03b-24078d4d71cf);
+SetOnStage(ITEMGUID_S_RC_WC_PUZ_SandWhitepile_Tunnel_9b191cb5-53cb-4a40-bc54-b5789ca21710, 0);
+DB_Dialogs(CHARACTERGUID_S_RC_DW_WC_WeaponsChamberRat_4a92ad6a-4427-4034-957b-cbc7c2364de6, "RC_DW_WC_WeaponsChamberRat");
+DB_ShovelArea(TRIGGERGUID_S_WeaponChamber_BoxTrigger_A_IN_a9a6b9e4-1f52-4409-bda0-6286110c14ab, "RC_DW_WC_WeaponChamber_A_IN", ITEMGUID_S_WeaponChamber_PUZ_Dirtpile_A_IN_298465bb-81de-4a66-aa91-e991f67fb00c);
+DB_ShovelRewardItemSpawn("RC_DW_WC_WeaponChamber_A_IN", ITEMGUID_S_WeaponChamber_Hole_A_IN_ebd86627-edae-42fe-88f2-10fd3a814a7c);
+DB_ShovelArea(TRIGGERGUID_S_WeaponChamber_BoxTrigger_A_OUT_a350415e-c07b-4f72-86d6-acaf3f121763, "RC_DW_WC_WeaponChamber_A_OUT", ITEMGUID_S_WeaponChamber_PUZ_Dirtpile_A_OUT_68c873d1-ef4a-404b-a3e5-505fe3a85293);
+DB_ShovelRewardItemSpawn("RC_DW_WC_WeaponChamber_A_OUT", ITEMGUID_S_WeaponChamber_Hole_A_OUT_73392949-a759-4443-a3d1-832a11a7e66b);
+DB_ShovelArea(TRIGGERGUID_S_RC_DW_WC_BoxTrigger_A_IN_000_9fc749d3-6fd8-4412-95a9-0851d9812f81, "RC_DW_WC_A_IN_000", ITEMGUID_S_RC_DW_WC_PUZ_Dirtpile_A_IN_000_73369595-4758-433a-97ae-64e785395e36);
+DB_ShovelRewardItemSpawn("RC_DW_WC_A_IN_000", ITEMGUID_S_RC_DW_WC_Hole_A_IN_000_7a2f5f99-8754-4cc5-8ba8-c966ff164938);
+DB_ShovelArea(TRIGGERGUID_S_RC_DW_WC_BoxTrigger_A_OUT_000_6daff452-cccd-432a-84a7-eb3ba24a490e, "RC_DW_WC_A_OUT_000", ITEMGUID_S_RC_DW_WC_PUZ_Dirtpile_A_OUT_000_21f2aa00-c380-4044-b5dd-ead45f6c761f);
+DB_ShovelRewardItemSpawn("RC_DW_WC_A_OUT_000", ITEMGUID_S_RC_DW_WC_Hole_A_OUT_000_e22dfc76-dd69-46f4-b42a-e769a1f0e0fc);
+DB_RC_DW_WC_TeleportTunnels(ITEMGUID_S_WeaponChamber_Hole_A_IN_ebd86627-edae-42fe-88f2-10fd3a814a7c, "RC_DW_WC_WeaponChamber_A_OUT");
+DB_RC_DW_WC_TeleportTunnels(ITEMGUID_S_WeaponChamber_Hole_A_OUT_73392949-a759-4443-a3d1-832a11a7e66b, "RC_DW_WC_WeaponChamber_A_IN");
+DB_RC_DW_WC_TeleportTunnels(ITEMGUID_S_RC_DW_WC_Hole_A_IN_000_7a2f5f99-8754-4cc5-8ba8-c966ff164938, "RC_DW_WC_A_OUT_000");
+DB_RC_DW_WC_TeleportTunnels(ITEMGUID_S_RC_DW_WC_Hole_A_OUT_000_e22dfc76-dd69-46f4-b42a-e769a1f0e0fc, "RC_DW_WC_A_IN_000");
+SetOnStage(ITEMGUID_S_RC_DW_WC_Prison_Hole_A_OUT_1f42fa72-7c1e-45c1-b886-f4b528313bbb, 0);
+DB_RC_DW_VoidwokenIndivFight(TRIGGERGUID_S_RC_DW_WC_VoidwokenIndivFight_Box_001_8f4a2f81-1674-4119-8415-33db215099de, S_RC_DW_WC_VoidwokenIndivFight_SpawnPoint_001_ea8f427e-f25c-403b-b1b0-e8a4160f8157, CHARACTERGUID_S_RC_DW_WC_IndivFight_Voidwoken_001_8dd20fd8-f410-4791-8805-f2a4ef1fae8c);
+DB_RC_DW_VoidwokenIndivFight(TRIGGERGUID_S_RC_DW_WC_VoidwokenIndivFight_Box_002_41e0087a-0a86-462f-b372-75ebdfa9b763, TRIGGERGUID_S_RC_DW_WC_VoidwokenIndivFight_SpawnPoint_002_c07037c4-356f-46ee-bc93-3cdbf6f396d3, CHARACTERGUID_S_RC_DW_WC_IndivFight_Voidwoken_002_a67141bb-8f48-4b41-99ea-67af7627d123);
+DB_RC_DW_VoidwokenIndivFight(TRIGGERGUID_S_RC_DW_WC_VoidwokenIndivFight_Box_003_0dbc0304-e6bb-462c-a279-1d25a78b0a4c, TRIGGERGUID_S_RC_DW_WC_VoidwokenIndivFight_SpawnPoint_003_3742de2f-de18-4506-bdb6-e040693bee85, CHARACTERGUID_S_RC_DW_WC_IndivFight_Voidwoken_003_1fa986d6-0e4e-41a9-b34b-b007d70fea72);
+DB_RC_DW_VoidwokenIndivFight(TRIGGERGUID_S_RC_DW_WC_VoidwokenIndivFight_Box_004_7cc4a550-fd19-497c-9039-c008806647f0, TRIGGERGUID_S_RC_DW_WC_VoidwokenIndivFight_SpawnPoint_004_dfdb6eb3-e319-400b-8e45-404934572491, CHARACTERGUID_S_RC_DW_WC_IndivFight_Voidwoken_004_46bab1fd-001d-411e-a2c3-677051da2dc1);
+DB_RC_DW_VoidwokenIndivUnburrowHelper(CHARACTERGUID_S_RC_DW_WC_IndivFight_Voidwoken_001_8dd20fd8-f410-4791-8805-f2a4ef1fae8c, S_RC_DW_WC_IndivFight_Voidwoken_001_Helper_Invisible_A_ee0966d0-51de-4a7f-9a20-580889709533);
+DB_RC_DW_VoidwokenIndivUnburrowHelper(CHARACTERGUID_S_RC_DW_WC_IndivFight_Voidwoken_002_a67141bb-8f48-4b41-99ea-67af7627d123, S_RC_DW_WC_IndivFight_Voidwoken_002_Helper_Invisible_A_802eef16-bcaf-410d-bab7-f6db4ab8f795);
+DB_RC_DW_VoidwokenIndivUnburrowHelper(CHARACTERGUID_S_RC_DW_WC_IndivFight_Voidwoken_003_1fa986d6-0e4e-41a9-b34b-b007d70fea72, S_RC_DW_WC_IndivFight_Voidwoken_003_Helper_Invisible_A_85f88143-f678-40a7-aec5-5eee4883093d);
+DB_RC_DW_VoidwokenIndivUnburrowHelper(CHARACTERGUID_S_RC_DW_WC_IndivFight_Voidwoken_004_46bab1fd-001d-411e-a2c3-677051da2dc1, S_RC_DW_WC_IndivFight_Voidwoken_004_Helper_Invisible_A_b1d5bf8e-c4b2-4488-ac59-fba6b66bb1e6);
+DB_Ghosts(CHARACTERGUID_S_RC_DW_WC_CollaredCorpse_000_5d03746a-8db4-4577-890d-cecbf35d4e4a, CHARACTERGUID_S_RC_DW_WC_SilentSpirit_000_8d9beb1a-2882-4071-9794-03512a111bf6, "RC_DW_WC_SilentSpirit_01");
+DB_Ghosts(CHARACTERGUID_S_RC_DW_WC_CollaredCorpse_001_62bab670-d1f3-4c9c-8314-107befbdd2bb, CHARACTERGUID_S_RC_DW_WC_SilentSpirit_001_ecfaab90-3f7c-4a13-ba23-6f3a39047dd4, "RC_DW_WC_EggChamber_SilentSpirit");
+DB_Ghosts(CHARACTERGUID_S_RC_DW_WC_CollaredCorpse_002_820b64db-48fa-4cf5-98f3-6040e2f5ac54, CHARACTERGUID_S_RC_DW_WC_SilentSpirit_002_9ea0e896-4ae6-4df9-8c5a-4abff482733f, "RC_DW_WC_SilentSpirit_02");
+DB_Ghosts(CHARACTERGUID_S_RC_DW_WC_CollaredCorpse_004_3bbbcb33-d156-4721-b985-6f731488d187, CHARACTERGUID_S_RC_DW_WC_SilentSpirit_004_f3773d44-4a20-4910-a81b-a99e5eca1a4a, "RC_DW_WC_SilentSpirit_04");
+DB_Ghosts(S_RC_WC_PossessedDwarf_01_a6ebba9d-2b70-4f04-b0d0-56d7581548d6, S_RC_WC_PossessedDwarf_01_Ghost_ea1223d8-c8ba-42dd-bf3f-d84c458a8aad, "RC_DW_WC_PossessedDwarf_01_Ghost");
+DB_Ghosts(S_RC_WC_PossessedDwarf_02_3b1417dc-b796-4b38-975e-4c3f33baf5c6, S_RC_WC_PossessedDwarf_02_Ghost_13c694e7-b4d4-4aa9-82a0-4134e53fb96a, "RC_DW_WC_PossessedDwarf_02_Ghost");
+DB_Ghosts(CHARACTERGUID_S_RC_DW_WC_DwarfCorpse_09_31b989a9-37f0-4fb5-97b2-b1bb603056d8, CHARACTERGUID_S_RC_DW_WC_DwarfCorpse_09_Spirit_5dc5afb6-af3b-417f-887a-a48152622789, "RC_DW_WC_DwarfCorpse_09_Spirit");
+DB_RC_DW_WC_CollaredCorpse(S_RC_DW_WC_CollaredCorpse_000_5d03746a-8db4-4577-890d-cecbf35d4e4a);
+DB_RC_DW_WC_CollaredCorpse(CHARACTERGUID_S_RC_DW_WC_CollaredCorpse_001_62bab670-d1f3-4c9c-8314-107befbdd2bb);
+DB_RC_DW_WC_CollaredCorpse(CHARACTERGUID_S_RC_DW_WC_CollaredCorpse_002_820b64db-48fa-4cf5-98f3-6040e2f5ac54);
+DB_RC_DW_WC_CollaredCorpse(CHARACTERGUID_S_RC_DW_WC_CollaredCorpse_004_3bbbcb33-d156-4721-b985-6f731488d187);
+DB_Ghosts(S_RC_DW_WC_DwarfGuardMordusOffice_Male_3b775d62-54ad-46c6-af8b-349e5008fe2f, S_RC_DW_WC_DwarfGuardMordusOffice_Male_Spirit_84ea3db4-4ef4-474a-b02d-e4648488d58d, "RC_DW_WC_CapturedDwarf");
+DB_Ghosts(CHARACTERGUID_S_RC_DW_WC_CapturedPaladin_d5c111ca-2128-4851-ab9d-6c40b53527f2, CHARACTERGUID_S_RC_DW_WC_DwarfGuardMordusOffice_Female_77483d81-da1b-454c-aeee-ba3550785342, "RC_DW_WC_CapturedPaladin");
+CreateSurface(S_RC_DW_WC_DwarfGuardMordusOffice_Male_3b775d62-54ad-46c6-af8b-349e5008fe2f, "SurfaceBlood", 1, -1);
+CreateSurface(S_RC_DW_WC_CapturedPaladin_d5c111ca-2128-4851-ab9d-6c40b53527f2, "SurfaceBlood", 1.5, -1);
+DB_RC_DW_WC_SourceWeaponChest(ITEMGUID_S_RC_DW_WC_SourceWeapon_Chest_000_92652cb7-4220-444d-a5b1-1a8b3d20f13c);
+DB_RC_DW_WC_SourceWeaponChest(ITEMGUID_S_RC_DW_WC_SourceWeapon_Chest_001_6b3e8044-0fdc-4f70-b853-f224640e2e55);
+DB_RC_DW_WC_SourceWeaponChest(ITEMGUID_S_RC_DW_WC_SourceWeapon_Chest_002_6f6f4553-1a5d-49bc-9b20-644cbacf9d1a);
+SetOnStage(CHARACTERGUID_S_RC_DW_WC_BarrelChamber_PossessedDwarf_001_579d36bf-8118-4548-bdc7-687f5aa3e3f1, 0);
+DB_Ghosts(CHARACTERGUID_S_RC_DW_WC_BarrelChamber_PossessedDwarf_000_f40e9760-f9aa-43bc-8f3a-e8106599a9e5, CHARACTERGUID_S_RC_DW_WC_BarrelChamber_PossessedDwarf_000_Spirit_854bb17c-eaa5-4628-aa8a-8352c97395a2, "RC_DW_WC_BarrelChamber_PossessedDwarf_000_Spirit");
+DB_Ghosts(CHARACTERGUID_S_RC_DW_WC_BarrelChamber_PossessedDwarf_001_579d36bf-8118-4548-bdc7-687f5aa3e3f1, CHARACTERGUID_S_RC_DW_WC_BarrelChamber_PossessedDwarf_001_Spirit_e91faec7-1f0b-4a2e-9525-b8db0096eb4d, "RC_DW_WC_BarrelChamber_PossessedDwarf_001_Spirit");
+DB_Ghosts(CHARACTERGUID_S_RC_DW_WC_DwarfCorpse_08_1e5a4595-631c-4e30-86c0-5fe1793c0a33, CHARACTERGUID_S_RC_DW_WC_DwarfCorpse_08_Spirit_2e371a28-3e8b-41c6-bd08-283f5146db43, "RC_DW_WC_Drunk_DwarfCorpse_08_Spirit");
+CharacterSetAnimationOverride(CHARACTERGUID_S_RC_DW_WC_DwarfCorpse_08_Spirit_2e371a28-3e8b-41c6-bd08-283f5146db43, "stilldrunk");
+DB_RC_DW_WC_Achievement_EggItem(ITEMGUID_S_RC_WC_Voideggs_Eggcluster_A_001_03da83eb-4c23-406b-86b7-4bf1630b9468);
+DB_RC_DW_WC_Achievement_EggItem(ITEMGUID_S_RC_WC_Voideggs_Eggcluster_A_002_458cb74b-0185-4a25-b47c-dd4495c2ae7c);
+DB_RC_DW_WC_Achievement_EggItem(ITEMGUID_S_RC_WC_Voideggs_Eggcluster_A_003_d70a21a7-2189-43fb-be75-f987632ceeff);
+DB_RC_DW_WC_Achievement_EggItem(ITEMGUID_S_RC_WC_Voideggs_Eggcluster_A_004_93b47252-bcb7-4e13-8387-6b1b6870f17e);
+DB_RC_DW_WC_Achievement_EggItem(ITEMGUID_S_RC_WC_Voideggs_Eggcluster_A_005_e47273b9-a7fd-43fc-98df-8b9548632355);
+DB_RC_DW_WC_Achievement_EggItem(ITEMGUID_S_RC_WC_Voideggs_Eggcluster_A_006_0a7f1483-d359-433d-ac2b-ab5e3c25b4ed);
+DB_RC_DW_WC_Achievement_EggItem(ITEMGUID_S_RC_WC_Voideggs_Eggcluster_A_007_4f304fc9-73b1-4495-ba8c-2215d7fab800);
+DB_RC_DW_WC_Achievement_EggItem(ITEMGUID_S_RC_WC_Voideggs_Eggcluster_A_008_7689b821-51d4-4ec0-b2eb-bc1cc1bd2509);
+DB_RC_DW_WC_Achievement_EggItem(ITEMGUID_S_RC_WC_Voideggs_Eggcluster_A_009_67d1cdbb-0b04-4560-93a4-8ff5b354f61a);
+DB_RC_DW_WC_Achievement_EggItem(ITEMGUID_S_RC_WC_Voideggs_Eggcluster_A_010_931a0b3e-7aef-4ab2-9e27-f9b0e1232d36);
+DB_RC_DW_WC_Achievement_EggItem(ITEMGUID_S_RC_WC_Voideggs_Eggcluster_A_011_8df8a53b-624a-40be-82a5-b194931e9ea6);
+DB_RC_DW_WC_Achievement_EggItem(ITEMGUID_S_RC_WC_Voideggs_Eggcluster_A_012_16de0d53-90cf-486a-91eb-3188a40f28ef);
+DB_RC_DW_WC_Achievement_EggItem(ITEMGUID_S_RC_WC_Voideggs_Eggcluster_A_013_1b543cca-13ae-4409-bd65-f2248ea3b03b);
+DB_RC_DW_WC_Achievement_EggItem(ITEMGUID_S_RC_WC_Voideggs_Eggcluster_B_000_ad12ac93-3d23-4028-b82c-3d7a17d16e11);
+DB_RC_DW_WC_Achievement_EggItem(ITEMGUID_S_RC_WC_Voideggs_Eggcluster_B_001_09337ff9-9fb4-4d05-b6b5-b04c131d6ed3);
+DB_RC_DW_WC_Achievement_EggItem(ITEMGUID_S_RC_WC_Voideggs_Eggcluster_B_003_a244d016-9db7-43de-86ef-272a08877d3b);
+DB_RC_DW_WC_Achievement_EggItem(ITEMGUID_S_RC_WC_Voideggs_Eggcluster_B_004_fc6a13b8-1bea-47a4-89f8-3fa3f9e20bd7);
+DB_RC_DW_WC_Achievement_EggItem(ITEMGUID_S_RC_WC_Voideggs_Eggcluster_B_008_05f307e3-ee95-411b-992c-0f0c235b9f94);
+DB_RC_DW_WC_Achievement_EggItem(ITEMGUID_S_RC_WC_Voideggs_Eggcluster_B_010_ab664410-e2cf-4756-a2cf-58fec0d8e794);
+DB_RC_DW_WC_Achievement_EggItem(ITEMGUID_S_RC_WC_Voideggs_Eggcluster_B_013_13e6965f-3a9a-4271-af66-29407e8632f5);
+DB_RC_DW_WC_Achievement_EggItem(ITEMGUID_S_RC_WC_Voideggs_Eggcluster_B_014_288f6676-b1a0-4266-b64e-ed04de201e11);
+DB_RC_DW_WC_Achievement_EggItem(ITEMGUID_S_RC_WC_Voideggs_Eggcluster_Big_A_000_502fb76f-b51b-47a0-98a6-ca1cb9ab14c6);
+DB_RC_DW_WC_Achievement_EggItem(ITEMGUID_S_RC_WC_Voideggs_Eggcluster_Big_A_001_71f0735d-1d2a-4f4e-b782-f8c11dcdcd92);
+DB_RC_DW_WC_Achievement_EggItem(ITEMGUID_S_RC_WC_Voideggs_Eggcluster_Big_A_002_f2b884e4-2ef8-4db2-a0e8-bd4421228d5f);
+DB_RC_DW_WC_Achievement_EggItem(ITEMGUID_S_RC_WC_Voideggs_Eggcluster_Big_A_003_887da3a7-1c91-47da-9f40-31d8a7d979bf);
+DB_RC_DW_WC_Achievement_EggItem(ITEMGUID_S_RC_WC_Voideggs_Eggcluster_Big_A_004_540df471-acac-49d9-8112-0ed1355b28c0);
+DB_RC_DW_WC_Achievement_EggItem(ITEMGUID_S_RC_WC_Voideggs_Eggcluster_Big_A_005_061e4575-71d2-479c-9e73-b18e52162fbb);
+DB_RC_DW_WC_Achievement_EggItem(ITEMGUID_S_RC_WC_Voideggs_Eggcluster_Big_A_006_700f080f-a5ab-494f-bccd-d25a2f8b907e);
+DB_RC_DW_WC_Achievement_EggItem(ITEMGUID_S_RC_WC_Voideggs_Eggcluster_Big_A_007_0a67e55e-b146-499f-bb31-d56275749a95);
+DB_RC_DW_WC_Achievement_EggItem(ITEMGUID_S_RC_WC_Voideggs_Eggcluster_Big_A_008_cca599ec-3b68-46ba-b3f2-867af57c4e20);
+DB_RC_DW_WC_Achievement_EggItem(ITEMGUID_S_RC_WC_Voideggs_Eggcluster_Big_A_009_c45acfc4-4dde-49bb-8a79-8804ef212fce);
+DB_RC_DW_WC_Achievement_EggItem(ITEMGUID_S_RC_WC_Voideggs_Eggcluster_Big_A_010_dbcb984b-9896-49b0-92fe-537df06c7fb3);
+DB_RC_DW_WC_Achievement_EggItem(ITEMGUID_S_RC_WC_Voideggs_Eggcluster_Big_A_011_43407a3d-76ec-4a7f-8bc9-cbcca57cab6f);
+DB_RC_DW_WC_Achievement_EggItem(ITEMGUID_S_RC_WC_Voideggs_Eggcluster_Big_A_012_b37630ee-60a4-4561-8726-5e223bf5701e);
+DB_RC_DW_WC_Achievement_EggItem(ITEMGUID_S_RC_WC_Voideggs_Eggcluster_Big_A_013_530cd3a2-3a06-42c5-a7d8-b44e74c4f4e2);
+DB_RC_DW_WC_Achievement_EggItem(ITEMGUID_S_RC_WC_Voideggs_Eggcluster_Big_A_014_8c81459a-9fd4-4eff-ac4e-c72e90426f32);
+DB_RC_DW_WC_Achievement_EggItem(ITEMGUID_S_RC_WC_Voideggs_Eggcluster_Big_A_015_2922276f-fade-4bc6-bb80-2da0f0ab23db);
+DB_RC_DW_WC_Achievement_EggItem(ITEMGUID_S_RC_WC_Voideggs_Eggcluster_Big_A_016_b124efc5-2ec5-49cb-9c0c-d5e6f493751a);
+DB_RC_DW_WC_Achievement_EggItem(ITEMGUID_S_RC_WC_Voideggs_Eggcluster_Big_A_018_d1df93f9-fd14-4142-bc68-c44083c6ca1d);
+DB_RC_DW_WC_Achievement_EggItem(ITEMGUID_S_RC_WC_Voideggs_Eggcluster_Big_A_021_8fe12eed-6fc9-4097-9448-84814c56a16c);
+DB_RC_DW_WC_Achievement_EggItem(ITEMGUID_S_RC_WC_Voideggs_Eggcluster_Big_A_022_5629992a-6067-419b-ad29-87ec54944ef2);
+DB_RC_DW_WC_Achievement_EggItem(ITEMGUID_S_RC_WC_Voideggs_Eggcluster_Big_A_026_fcbf893b-dce3-4c4c-9e47-15b501dd1757);
+DB_RC_DW_WC_Achievement_EggItem(ITEMGUID_S_RC_WC_Voideggs_Eggcluster_Big_A_027_3104f11a-521e-42f2-bf1a-fd451cf3cc9a);
+DB_RC_DW_WC_Achievement_EggItem(ITEMGUID_S_RC_WC_Voideggs_Eggcluster_Big_A_028_2cf66b44-d6cd-4484-920e-b199bd0db908);
+DB_RC_DW_WC_Achievement_EggItem(ITEMGUID_S_RC_WC_Voideggs_Eggcluster_Big_A_029_05a13720-75b3-4537-bfb7-ab1d2642daa3);
+DB_RC_DW_WC_Achievement_EggItem(ITEMGUID_S_RC_WC_Voideggs_Eggcluster_Big_A_030_8f6afc01-99ce-4719-b0d8-b0e5d4bb4698);
+DB_RC_DW_WC_Achievement_EggItem(ITEMGUID_S_RC_WC_Voideggs_Eggcluster_Big_A_032_30280d15-7918-40a4-a0ce-24735ba41b99);
+DB_RC_DW_WC_Achievement_EggItem(ITEMGUID_S_RC_WC_Voideggs_Eggcluster_Big_A_034_9adc4c19-fd24-44b3-be95-205b9d7f93c5);
+DB_RC_DW_WC_Achievement_EggItem(ITEMGUID_S_RC_WC_Voideggs_Eggcluster_Big_A_035_4efc38e6-d3ad-4d22-939f-4d64ddfb6d02);
+DB_RC_DW_WC_Achievement_EggItem(ITEMGUID_S_RC_WC_Voideggs_Eggcluster_Big_A_037_56958562-e43e-48fd-9a88-84a92893f08e);
+DB_RC_DW_WC_Achievement_EggItem(ITEMGUID_S_RC_WC_Voideggs_Eggcluster_Big_A_038_395b6f87-f84a-4e58-82c1-c7e0ca250f49);
+DB_RC_DW_WC_Achievement_EggItem(ITEMGUID_S_RC_WC_Voideggs_Eggcluster_Big_A_039_16953f03-eb21-4430-a0d7-9f7332acfad3);
+DB_RC_DW_WC_Achievement_EggItem(ITEMGUID_S_RC_WC_Voideggs_Eggcluster_Big_B_000_4952faf6-68d1-4713-afdc-ea4ced737fb7);
+DB_RC_DW_WC_Achievement_EggItem(ITEMGUID_S_RC_WC_Voideggs_Eggcluster_Big_B_003_c36c9eab-dc09-46fb-b4b4-38c21e56cc5f);
+DB_RC_DW_WC_Achievement_EggItem(ITEMGUID_S_RC_WC_Voideggs_Eggcluster_Big_B_004_6a440e7d-694c-49b1-b5c7-edb2f781205c);
+DB_RC_DW_WC_Achievement_EggItem(ITEMGUID_S_RC_WC_Voideggs_Eggcluster_Big_B_005_85f16a7f-87e8-42eb-9d5f-e0a2741bff5f);
+DB_RC_DW_WC_Achievement_EggItem(ITEMGUID_S_RC_WC_Voideggs_Eggcluster_Big_B_006_a52483bb-2674-4a19-9d08-f10f98551141);
+DB_RC_DW_WC_Achievement_EggItem(ITEMGUID_S_RC_WC_Voideggs_Eggcluster_Big_B_007_e8516c93-d14e-4041-ba26-770d135f29ab);
+DB_RC_DW_WC_Achievement_EggItem(ITEMGUID_S_RC_WC_Voideggs_Eggcluster_Big_B_008_cdcd3225-741e-4799-a3c1-3f4bb1401afa);
+DB_RC_DW_WC_Achievement_EggItem(ITEMGUID_S_RC_WC_Voideggs_Eggcluster_Big_B_009_e919092f-0a1e-4757-ae67-049d8613bb8f);
+DB_RC_DW_WC_Achievement_EggItem(ITEMGUID_S_RC_WC_Voideggs_Eggcluster_Big_C_000_e8a399f9-b519-4d10-8696-3b5a5ff38cdf);
+DB_RC_DW_WC_Achievement_EggItem(ITEMGUID_S_RC_WC_Voideggs_Eggcluster_Big_C_001_cc06a5fd-c672-4471-bc3b-67efd5928185);
+DB_RC_DW_WC_Achievement_EggItem(ITEMGUID_S_RC_WC_Voideggs_Eggcluster_Big_C_002_b6751b33-efda-44d8-8bab-9804e147f931);
+DB_RC_DW_WC_Achievement_EggItem(ITEMGUID_S_RC_WC_Voideggs_Eggcluster_Big_C_003_26209629-ccd9-4094-a94f-bded74ee6cdb);
+DB_RC_DW_WC_Achievement_EggItem(ITEMGUID_S_RC_WC_Voideggs_Eggcluster_Big_C_004_e5988574-c691-4ced-8f18-8689007d5d9d);
+DB_RC_DW_WC_Achievement_EggChar(CHARACTERGUID_S_RC_WC_Voideggs_Big_A_000_6d8dbcff-c2b6-4cbd-92b7-348fd147dd33);
+DB_RC_DW_WC_Achievement_EggChar(CHARACTERGUID_S_RC_WC_Voideggs_Big_A_001_f5811106-6bc6-43ff-a4cb-03010394917c);
+DB_RC_DW_WC_Achievement_EggChar(CHARACTERGUID_S_RC_WC_Voideggs_Big_A_002_96ae9871-4405-4f8f-bcab-59427804f254);
+DB_RC_DW_WC_Achievement_EggChar(CHARACTERGUID_S_RC_WC_Voideggs_Big_A_003_6c2540f5-a42a-4355-876f-7600b88efd15);
+DB_RC_DW_WC_Achievement_EggChar(CHARACTERGUID_S_RC_WC_Voideggs_Big_A_004_080cdbe8-8f46-4dc1-881f-05fa04de672d);
+DB_RC_DW_WC_Achievement_EggChar(CHARACTERGUID_S_RC_WC_Voideggs_Big_A_005_a7eb058f-590c-4327-8e37-5714dfbdb914);
+DB_RC_DW_WC_Achievement_EggChar(CHARACTERGUID_S_RC_WC_Voideggs_Big_A_006_0ec0bf24-7d71-417c-8434-4cdf1d1ecd90);
+DB_RC_DW_WC_Achievement_EggChar(CHARACTERGUID_S_RC_WC_Voideggs_Big_A_007_7c8aa22b-baa6-4f73-9561-24ec1e001a92);
+DB_RC_DW_WC_Achievement_EggChar(CHARACTERGUID_S_RC_WC_Voideggs_Big_A_008_aa123b86-1b92-4ac9-a8b3-a77a96a57be1);
+DB_RC_DW_WC_Achievement_EggChar(CHARACTERGUID_S_RC_WC_Voideggs_Big_A_009_10e369b2-1c9f-4d97-8e8a-5cbefb2d18bc);
+DB_RC_DW_WC_Achievement_EggChar(CHARACTERGUID_S_RC_WC_Voideggs_Big_A_010_29ec45b6-5d02-428d-b4cc-bd572faa094b);
+DB_RC_DW_WC_Achievement_EggChar(CHARACTERGUID_S_RC_WC_Voideggs_Big_A_011_69597683-7484-43f3-92e2-a89eddbc1fde);
+DB_RC_DW_WC_Achievement_EggChar(CHARACTERGUID_S_RC_WC_Voideggs_Big_A_012_dfa34f71-0bca-47af-ac62-c50c3711b85d);
+DB_RC_DW_WC_Achievement_EggChar(CHARACTERGUID_S_RC_WC_Voideggs_Big_A_013_51badf36-da46-4d7d-8b1c-8eabbbec8c0e);
+DB_RC_DW_WC_Achievement_EggChar(CHARACTERGUID_S_RC_WC_Voideggs_Big_A_014_696f6010-bbdf-429c-a3b4-57bd76dc8df4);
+DB_RC_DW_WC_Achievement_EggChar(CHARACTERGUID_S_RC_WC_Voideggs_Big_A_015_7786fee9-c989-4520-8650-a9ee81a7ed10);
+DB_RC_DW_WC_Achievement_EggChar(CHARACTERGUID_S_RC_WC_Voideggs_Big_A_016_28523381-3a65-47ac-98b0-ec960f9c4144);
+DB_RC_DW_WC_Achievement_EggChar(CHARACTERGUID_S_RC_WC_Voideggs_Big_A_017_860ba686-9083-44d4-875a-9d863c4fc7a3);
+DB_RC_DW_WC_Achievement_EggChar(CHARACTERGUID_S_RC_WC_Voideggs_Big_A_018_93f74569-ec35-4453-bd19-4eb9ba5e9903);
+DB_RC_DW_WC_Achievement_EggChar(CHARACTERGUID_S_RC_WC_Voideggs_Big_A_019_5a14aa35-f277-40fa-aa0c-13ddf6808570);
+DB_RC_DW_WC_Achievement_EggChar(CHARACTERGUID_S_RC_WC_Voideggs_Big_B_Explo_000_b29e52fc-028f-4b56-85d2-ca5cdc7703cb);
+DB_RC_DW_WC_Achievement_EggChar(CHARACTERGUID_S_RC_WC_Voideggs_Big_B_Explo_001_cb5876ee-65b5-4e58-aae8-888d8738087a);
+DB_RC_DW_WC_Achievement_EggChar(CHARACTERGUID_S_RC_WC_Voideggs_Big_B_Explo_002_ae1dad86-9320-4458-b72c-7fe1ade39abc);
+DB_RC_DW_WC_Achievement_EggChar(CHARACTERGUID_S_RC_WC_Voideggs_Big_B_Explo_003_23a5ba3c-de3a-4f0e-b662-763447a2489a);
+DB_RC_DW_WC_Achievement_EggChar(CHARACTERGUID_S_RC_WC_Voideggs_Big_B_Explo_004_95bc2935-e3b0-4075-9a16-ed72211a6f9f);
+DB_RC_DW_WC_Achievement_EggChar(CHARACTERGUID_S_RC_WC_Voideggs_Big_B_Explo_005_193aa3b5-1581-4f2f-852f-edab16e0c2d4);
+DB_RC_DW_WC_Achievement_EggChar(CHARACTERGUID_S_RC_WC_Voideggs_Big_B_Explo_006_e59504be-6629-474c-8b3a-a332d9c4f611);
+DB_RC_DW_WC_Achievement_EggChar(CHARACTERGUID_S_RC_WC_Voideggs_Big_B_Explo_007_2285b0a4-2a6d-423f-bb51-f5a10318ef0d);
+DB_RC_DW_WC_Achievement_EggChar(CHARACTERGUID_S_RC_WC_Voideggs_Big_B_Explo_008_4f899baa-0241-4faa-bdf7-f280454ed1e8);
+DB_RC_DW_WC_Achievement_EggChar(CHARACTERGUID_S_RC_WC_Voideggs_Big_B_Explo_009_5cbaa6cb-d976-4a49-8388-4589e8a53f2a);
+DB_RC_DW_WC_Achievement_EggChar(CHARACTERGUID_S_RC_WC_Voideggs_Big_B_Explo_010_15b33102-e339-49c9-a21c-c5d806db59e7);
+DB_RC_DW_WC_Achievement_EggChar(CHARACTERGUID_S_RC_WC_Voideggs_Big_B_Explo_011_24cf97da-b697-4598-9fb3-fa3f26eca10e);
+DB_RC_DW_WC_Achievement_EggChar(CHARACTERGUID_S_RC_WC_Voideggs_Big_B_Explo_012_8feb6084-6c31-4317-8002-b254fc0d3055);
+DB_RC_DW_WC_Achievement_EggChar(CHARACTERGUID_S_RC_WC_Voideggs_Big_B_Explo_013_1e1db26e-16da-478f-9f69-3df11cb91e62);
+
+KBSECTION
+IF
+TextEventSet("rc_dw_wc_teleport1")
+THEN
+TeleportTo(S_RC_DW_WC_AmbushInsect_01_2a1d57f6-22e7-4f2c-86f2-108f7cec8c55, ITEMGUID_S_RC_DW_WC_AmbushInsect_Helper_01_43c2ffd3-96fb-4bd4-9435-33cf12e44b16, "rc_dw_teleportevent", 0);
+
+IF
+StoryEvent(S_RC_DW_WC_AmbushInsect_01_2a1d57f6-22e7-4f2c-86f2-108f7cec8c55, "rc_dw_teleportevent")
+THEN
+DebugBreak("Got off-stage character teleport event");
+
+IF
+TextEventSet("rc_dw_wc_unburrow1")
+AND
+DB_RC_DW_WC_AmbushUnburrowingHelper(S_RC_DW_WC_AmbushInsect_01_2a1d57f6-22e7-4f2c-86f2-108f7cec8c55, _Var1)
+THEN
+SetCanJoinCombat(S_RC_DW_WC_AmbushInsect_01_2a1d57f6-22e7-4f2c-86f2-108f7cec8c55, 0);
+PROC_RC_DW_WC_BurrowGiantInsect(S_RC_DW_WC_AmbushInsect_01_2a1d57f6-22e7-4f2c-86f2-108f7cec8c55, _Var1, "rc_dw_wc_debugunburrow1finished", "Unburrow");
+
+IF
+StoryEvent((GUIDSTRING)_Var1, "rc_dw_wc_debugunburrow1finished")
+THEN
+DebugText(_Var1, "Finished unburrowing");
+
+IF
+TextEventSet("rc_dw_wc_burrow1")
+AND
+DB_RC_DW_WC_AmbushBurrowingHelper(S_RC_DW_WC_AmbushInsect_01_2a1d57f6-22e7-4f2c-86f2-108f7cec8c55, _Var1)
+THEN
+PROC_RC_DW_WC_BurrowGiantInsect(S_RC_DW_WC_AmbushInsect_01_2a1d57f6-22e7-4f2c-86f2-108f7cec8c55, _Var1, "rc_dw_wc_debugburrow1finished", "Burrow");
+
+IF
+StoryEvent((GUIDSTRING)_Var1, "rc_dw_wc_debugunburrow1finished")
+AND
+DB_RC_DW_WC_AmbushBurrowingHelper(S_RC_DW_WC_AmbushInsect_01_2a1d57f6-22e7-4f2c-86f2-108f7cec8c55, _Var2)
+THEN
+DebugText(_Var2, "Finished burrowing");
+
+IF
+DB_RC_DW_VoidwokenIndivFight(_Var1, _, _Var3)
+THEN
+DB_OneShotPlayerTrigger(_Var1);
+SetOnStage(_Var3, 0);
+
+IF
+DB_RC_DW_WC_CollaredCorpse(_Var1)
+AND NOT
+DB_RC_DW_WC_CollaredCorpse_OncePerCorpse(_Var1)
+THEN
+DB_RC_DW_WC_CollaredCorpse_OncePerCorpse(_Var1);
+PROC_LoopEffect("RS3_FX_GP_Status_HoECollar_01", _Var1, "RC_DW_WC_SourceCollar", "RC_Main", "Dummy_NeckFX");
+
+PROC
+PROC_RC_DW_WC_BurrowGiantInsect((CHARACTERGUID)_Var1, (ITEMGUID)_Var2, (STRING)_Var3, (STRING)_Var4)
+AND
+StringConcatenate(_Var3, "__TeleportFinished", _Var5)
+THEN
+DB_RC_DW_WC_BurrowGiantInsect(_Var1, _Var2, _Var3, _Var5, _Var4);
+TeleportTo(_Var2, _Var1, _Var5, 0);
+
+IF
+StoryEvent((ITEMGUID)_Var1, (STRING)_Var2)
+AND
+DB_RC_DW_WC_BurrowGiantInsect(_Var3, _Var1, _Var4, _Var2, _)
+THEN
+PROC_LoopEffect("RS3_FX_Char_Creatures_VoidWoken_Drillworm_A_Hole_Root_01", _Var1, _Var4, "RC_Main", "Dummy_FX");
+
+IF
+StoryEvent((ITEMGUID)_Var1, (STRING)_Var2)
+AND
+DB_RC_DW_WC_BurrowGiantInsect(_Var3, _Var1, _Var4, _Var2, "Unburrow")
+THEN
+CharacterAppear(_Var3, 1, _Var4);
+
+IF
+StoryEvent((ITEMGUID)_Var1, (STRING)_Var2)
+AND
+DB_RC_DW_WC_BurrowGiantInsect(_Var3, _Var1, _Var4, _Var2, "Burrow")
+THEN
+SetScriptframe(_Var3, "DigIn");
+
+IF
+StoryEvent((CHARACTERGUID)_Var1, "RC_DW_WC_FinishedDiggingIn")
+AND
+DB_RC_DW_WC_BurrowGiantInsect(_Var1, _Var2, _Var3, _Var4, "Burrow")
+THEN
+ClearScriptframe(_Var1);
+SetStoryEvent(_Var1, _Var3);
+
+IF
+StoryEvent((CHARACTERGUID)_Var1, (STRING)_Var2)
+AND
+DB_RC_DW_WC_BurrowGiantInsect(_Var1, _Var3, _Var2, _Var4, "Burrow")
+THEN
+SetOnStage(_Var1, 0);
+SetCanJoinCombat(_Var1, 1);
+
+IF
+StoryEvent((CHARACTERGUID)_Var1, (STRING)_Var2)
+AND
+DB_RC_DW_WC_BurrowGiantInsect(_Var1, _Var3, _Var2, _Var4, _Var5)
+THEN
+NOT DB_RC_DW_WC_BurrowGiantInsect(_Var1, _Var3, _Var2, _Var4, _Var5);
+PROC_StopLoopEffect(_Var3, _Var2);
+
+IF
+DB_InRegion(_Var1, TRIGGERGUID_S_RC_DW_WreckersCave_Box_759f16fa-f59d-4686-b052-b598f2f2410a)
+AND
+GlobalGetFlag("RC_DW_WC_BossElderIsDead", 0)
+AND
+GlobalGetFlag("RC_DW_WC_BossFight_BossFlee", 0)
+THEN
+ObjectSetFlag(_Var1, "QuestUpdate_RC_DW_WC_AtaraxianLair_EnteredWreckersCave");
+
+PROC
+ProcOneShotTriggerEntered((CHARACTERGUID)_Var1, TRIGGERGUID_S_RC_DW_WC_EntranceVB_Box_579ad1fa-ebfb-4e24-ba12-158fc860db73)
+THEN
+StartVoiceBark("RC_DW_WC_VB_EnteredWreckersCave", _Var1);
+
+IF
+CharacterEnteredTrigger((CHARACTERGUID)_Var1, TRIGGERGUID_S_RC_DW_WC_FoundTerrifiedDwarf_Box_c8cfce90-a56d-4af7-b396-f72d7e7293fa)
+AND
+QueryOnlyOnce("RC_DW_WC_VB_FoundDwarfBase")
+THEN
+StartVoiceBark("RC_DW_WC_VB_FoundDwarfBase", _Var1);
+
+IF
+CharacterReceivedDamage(CHARACTERGUID_S_RC_DW_WC_TraumatizedDwarf_e293e0a9-fe49-4dd7-8370-11a1832c3cc7, _, _)
+THEN
+ProcRCCoweringDwarfRunAway();
+
+IF
+CharacterPickpocketFailed(_, CHARACTERGUID_S_RC_DW_WC_TraumatizedDwarf_e293e0a9-fe49-4dd7-8370-11a1832c3cc7)
+THEN
+ProcRCCoweringDwarfRunAway();
+
+PROC
+ProcRCCoweringDwarfRunAway()
+THEN
+CharacterSetAnimationOverride(CHARACTERGUID_S_RC_DW_WC_TraumatizedDwarf_e293e0a9-fe49-4dd7-8370-11a1832c3cc7, "");
+CharacterDisappearOutOfSight(CHARACTERGUID_S_RC_DW_WC_TraumatizedDwarf_e293e0a9-fe49-4dd7-8370-11a1832c3cc7, 75, 1, "", 0);
+
+IF
+CharacterLootedCharacterCorpse((CHARACTERGUID)_Var1, CHARACTERGUID_S_RC_DW_WC_CollaredCorpse_004_3bbbcb33-d156-4721-b985-6f731488d187)
+AND
+QueryOnlyOnce("RC_DW_WC_VB_FoundCollaredCorpse")
+THEN
+StartVoiceBark("RC_DW_WC_VB_FoundCollaredCorpse", _Var1);
+
+IF
+CharacterReceivedDamage(CHARACTERGUID_S_RC_DW_WC_Entrance_GiantInsect_000_a11bf16f-ae85-40ab-9b19-c5ecedf342e5, _, _)
+AND
+QueryOnlyOnce("RC_DW_WC_EntranceVoidwokenLeave")
+AND
+GetClosestAlivePlayer(CHARACTERGUID_S_RC_DW_WC_Entrance_GiantInsect_000_a11bf16f-ae85-40ab-9b19-c5ecedf342e5, _Var3, _)
+THEN
+CharacterMoveTo(CHARACTERGUID_S_RC_DW_WC_Entrance_GiantInsect_000_a11bf16f-ae85-40ab-9b19-c5ecedf342e5, TRIGGERGUID_S_RC_DW_WC_Entrance_GiantInsect_Point_000_27ff0f5f-6820-496f-8d6a-004563855f03, 0, "RC_DW_WC_EntranceVW_MovedToPoint_000", 0);
+StartVoiceBark("RC_DW_WC_VB_EntranceVoidwokenLeaving", _Var3);
+
+IF
+CharacterLeftTrigger((CHARACTERGUID)_Var1, TRIGGERGUID_S_RC_DW_WC_Entrance_Box_1cf4ecef-a6a4-4471-9a3e-aad9367e1326)
+AND
+QRY_AnyRegionActive()
+AND
+DB_InRegion(_Var1, TRIGGERGUID_S_RC_DW_WreckersCave_Box_759f16fa-f59d-4686-b052-b598f2f2410a)
+AND
+QueryOnlyOnce("RC_DW_WC_EntranceVoidwokenLeave")
+THEN
+ProcTriggerUnregisterForPlayers(TRIGGERGUID_S_RC_DW_WC_Entrance_Box_1cf4ecef-a6a4-4471-9a3e-aad9367e1326);
+CharacterLookAt(CHARACTERGUID_S_RC_DW_WC_Entrance_GiantInsect_000_a11bf16f-ae85-40ab-9b19-c5ecedf342e5, _Var1);
+CharacterMoveTo(CHARACTERGUID_S_RC_DW_WC_Entrance_GiantInsect_000_a11bf16f-ae85-40ab-9b19-c5ecedf342e5, TRIGGERGUID_S_RC_DW_WC_Entrance_GiantInsect_Point_000_27ff0f5f-6820-496f-8d6a-004563855f03, 0, "RC_DW_WC_EntranceVW_MovedToPoint_000", 0);
+StartVoiceBark("RC_DW_WC_VB_EntranceVoidwokenLeaving", _Var1);
+
+IF
+StoryEvent(CHARACTERGUID_S_RC_DW_WC_Entrance_GiantInsect_000_a11bf16f-ae85-40ab-9b19-c5ecedf342e5, "RC_DW_WC_EntranceVW_MovedToPoint_000")
+AND
+GetClosestAlivePlayer(CHARACTERGUID_S_RC_DW_WC_Entrance_GiantInsect_000_a11bf16f-ae85-40ab-9b19-c5ecedf342e5, _Var1, _)
+THEN
+CharacterMoveTo(CHARACTERGUID_S_RC_DW_WC_Entrance_GiantInsect_000_a11bf16f-ae85-40ab-9b19-c5ecedf342e5, TRIGGERGUID_S_RC_DW_WC_Entrance_GiantInsect_Point_001_f554ae35-6d75-4da2-befb-29f5ce4d8285, 0, "RC_DW_WC_EntranceVW_MovedToPoint_001", 0);
+
+IF
+StoryEvent(CHARACTERGUID_S_RC_DW_WC_Entrance_GiantInsect_000_a11bf16f-ae85-40ab-9b19-c5ecedf342e5, "RC_DW_WC_EntranceVW_MovedToPoint_001")
+THEN
+PROC_RC_DW_WC_BurrowGiantInsect(CHARACTERGUID_S_RC_DW_WC_Entrance_GiantInsect_000_a11bf16f-ae85-40ab-9b19-c5ecedf342e5, S_RC_DW_WC_EntranceInsect_BurrowingHelper_d6d08324-021f-45d4-ac40-bf7ee6f65197, "DB_RC_DW_WC_EntranceVW_Burrowed", "Burrow");
+
+IF
+DialogEnded("RC_DW_WC_TraumatizedDwarf", (INTEGER)_Var1)
+AND
+DB_InRegion(_Var2, TRIGGERGUID_S_RC_DW_WC_VB_FoundTerrifiedDwarf_Box_c8cfce90-a56d-4af7-b396-f72d7e7293fa)
+AND
+CharacterIsDead(CHARACTERGUID_S_RC_DW_WC_BossFight_GiantInsect_Boss_5362d05e-1cb2-451f-9f5a-69078100a01b, 0)
+THEN
+ObjectSetFlag(_Var2, "QuestUpdate_RC_DW_WC_AtaraxianLair_FoundTerrifiedDwarf");
+
+PROC
+ProcBidirShovelTunnelOpenedOnSide((CHARACTERGUID)_Var1, "RC_WC_TunnelFallback", 1)
+AND
+DB_IsPlayer(_Var2)
+AND
+ObjectGetFlag(_Var2, "RC_DW_WC_SawInsectSpawn", 1)
+AND
+QRY_SpeakerIsAvailableAndInDialogRange(_Var1, _Var2)
+AND
+QueryOnlyOnce("RC_DW_WC_CommentHiddenTunnel")
+THEN
+StartVoiceBark("RC_DW_WC_VB_FoundTunnelFallback", _Var2);
+
+PROC
+ProcOneShotTriggerEntered((CHARACTERGUID)_Var1, (TRIGGERGUID)_Var2)
+AND
+DB_RC_DW_VoidwokenIndivFight(_Var2, _Var3, _Var4)
+AND
+DB_RC_DW_VoidwokenIndivUnburrowHelper(_Var4, _Var5)
+THEN
+TeleportTo(_Var5, _Var3);
+PROC_RC_DW_WC_BurrowGiantInsect(_Var4, _Var5, "RC_DW_WC_InsectIndividualFight", "Unburrow");
+
+PROC
+ProcOneShotTriggerEntered((CHARACTERGUID)_Var1, (TRIGGERGUID)_Var2)
+AND
+DB_RC_DW_VoidwokenIndivFight(TRIGGERGUID_S_RC_DW_WC_VoidwokenIndivFight_Box_004_7cc4a550-fd19-497c-9039-c008806647f0, _, _)
+AND
+ObjectGetFlag(_Var1, "RC_DW_WC_HaveBeenAbductedBefore", 1)
+THEN
+StartVoiceBark("RC_DW_WC_VB_SeeVoidwokenSpawnOutsideWeaponsChamber", _Var1);
+
+IF
+CharacterUsedItem((CHARACTERGUID)_Var1, (ITEMGUID)_Var2)
+AND
+DB_RC_DW_WC_SourceWeaponChest(_Var2)
+AND
+QueryOnlyOnce("RC_DW_WC_AD_WeaponChamber_SourceWeaponChest")
+THEN
+Proc_StartDialog(1, "RC_DW_WC_AD_WeaponChamber_SourceWeaponChest", _Var1);
+
+PROC
+PROC_RC_DW_WC_BarrelChamber_SetAlignment()
+AND
+GlobalGetFlag("RC_DW_WC_BossElderIsDead", 0)
+AND
+QueryOnlyOnce("RC_DW_WC_BarrelChamberFightStart")
+THEN
+RemoveStatus(CHARACTERGUID_S_RC_DW_WC_BarrelChamber_PossessedDwarf_000_f40e9760-f9aa-43bc-8f3a-e8106599a9e5, "CURSED");
+ApplyStatus(CHARACTERGUID_S_RC_DW_WC_BarrelChamber_PossessedDwarf_000_f40e9760-f9aa-43bc-8f3a-e8106599a9e5, "POSSESSED", -1);
+SetFaction(CHARACTERGUID_S_RC_DW_WC_BarrelChamber_PossessedDwarf_000_f40e9760-f9aa-43bc-8f3a-e8106599a9e5, "Evil NPC");
+CharacterAppear(CHARACTERGUID_S_RC_DW_WC_BarrelChamber_PossessedDwarf_001_579d36bf-8118-4548-bdc7-687f5aa3e3f1, 1, "");
+ApplyStatus(CHARACTERGUID_S_RC_DW_WC_BarrelChamber_PossessedDwarf_001_579d36bf-8118-4548-bdc7-687f5aa3e3f1, "POSSESSED", -1);
+
+IF
+DialogEnded("RC_DW_WC_BarrelChamber_PossessedDwarf_000", _)
+THEN
+PROC_RC_DW_WC_BarrelChamber_SetAlignment();
+
+IF
+ObjectEnteredCombat(CHARACTERGUID_S_RC_DW_WC_BarrelChamber_PossessedDwarf_000_f40e9760-f9aa-43bc-8f3a-e8106599a9e5, _)
+THEN
+PROC_RC_DW_WC_BarrelChamber_SetAlignment();
+
+IF
+GlobalFlagSet("RC_DW_WC_BossElderIsDead")
+AND
+DB_RC_WC_PossessedDwarves(_Var1)
+AND NOT
+DB_Dead(_Var1)
+THEN
+NOT DB_DoNotFace(_Var1);
+RemoveStatus(_Var1, "CURSED");
+RemoveStatus(_Var1, "POSSESSED");
+SetFaction(_Var1, "Good");
+
+IF
+ObjectFlagSet("RC_DW_WC_PossessedDwarf_000_LookAtShadow", (CHARACTERGUID)_Var1, _)
+THEN
+CharacterLookAt(_Var1, TRIGGERGUID_S_RC_DW_WC_BarrelChamber_PossessedDwarf_000_LookAtPoint_3c4d7028-400e-47f3-a2d6-5296f8569599);
+
+IF
+GlobalFlagSet("RC_DW_WC_BossElderIsDead")
+AND
+DB_RC_WC_PossessedDwarves(_Var1)
+AND
+CharacterIsInCombat(_Var1, 1)
+THEN
+LeaveCombat(_Var1);
+
+IF
+GlobalFlagSet("RC_DW_WC_BossElderIsDead")
+AND
+DB_IsPlayer(_Var1)
+AND
+DB_RC_WC_PossessedDwarves(_Var2)
+AND NOT
+DB_Dead(_Var2)
+THEN
+ChangeAttitude(_Var2, _Var1, 0);
+
+IF
+GlobalFlagSet("RC_DW_WC_BossElderIsDead")
+AND
+ObjectIsOnStage(CHARACTERGUID_S_RC_DW_WC_BarrelChamber_PossessedDwarf_001_579d36bf-8118-4548-bdc7-687f5aa3e3f1, 1)
+AND NOT
+DB_Dead(CHARACTERGUID_S_RC_DW_WC_BarrelChamber_PossessedDwarf_001_579d36bf-8118-4548-bdc7-687f5aa3e3f1)
+THEN
+NOT DB_RC_WC_PossessedDwarves(CHARACTERGUID_S_RC_DW_WC_BarrelChamber_PossessedDwarf_001_579d36bf-8118-4548-bdc7-687f5aa3e3f1);
+CharacterDisappearOutOfSight(CHARACTERGUID_S_RC_DW_WC_BarrelChamber_PossessedDwarf_001_579d36bf-8118-4548-bdc7-687f5aa3e3f1, 90, 0, "", 0);
+
+IF
+CharacterLeftTrigger((CHARACTERGUID)_Var1, TRIGGERGUID_S_RC_DW_WreckersCave_Box_759f16fa-f59d-4686-b052-b598f2f2410a)
+AND
+QRY_AnyRegionActive()
+AND NOT
+DB_InRegion(_, TRIGGERGUID_S_RC_DW_WreckersCave_Box_759f16fa-f59d-4686-b052-b598f2f2410a)
+AND
+DB_RC_WC_PossessedDwarves(_Var3)
+AND
+GlobalGetFlag("RC_DW_WC_BossElderIsDead", 1)
+AND NOT
+DB_Dead(_Var3)
+AND
+ObjectIsOnStage(_Var3, 1)
+THEN
+NOT DB_RC_WC_PossessedDwarves(_Var3);
+CharacterDisappearOutOfSight(_Var3, 90, 0, "", 0);
+
+IF
+DB_Dead(_Var1)
+AND
+DB_RC_WC_PossessedDwarves(_Var1)
+AND
+GlobalGetFlag("RC_DW_WC_BossElderIsDead", 1)
+THEN
+ObjectSetFlag(_Var1, "RC_WC_DiedWhileNoLongerPossessed");
+
+IF
+GlobalFlagSet("RC_WC_RevealVault")
+THEN
+SetStoryEvent(ITEMGUID_S_RC_WC_SecretVault_b08917da-fad5-4e2b-a1c8-4ff39ad05259, "StoryReveal");
+
+IF
+DialogEnded("RC_DW_DwarvenScholar1", _)
+AND
+GlobalGetFlag("RC_WC_ScholarsFlee", 1)
+THEN
+DialogRequestStop(CHARACTERGUID_S_RC_DW_DwarvenScholar_01_2555841d-a987-4c92-b87e-93c829e8fed0);
+DialogRequestStop(CHARACTERGUID_S_RC_DW_DwarvenScholar_02_f2bd4946-8aba-42be-b70a-b8a6d48fce47);
+ProcCharacterDisappearOutOfSight(CHARACTERGUID_S_RC_DW_DwarvenScholar_01_2555841d-a987-4c92-b87e-93c829e8fed0, 0, 1, "", 0);
+ProcCharacterDisappearOutOfSight(CHARACTERGUID_S_RC_DW_DwarvenScholar_02_f2bd4946-8aba-42be-b70a-b8a6d48fce47, 0, 1, "", 0);
+
+IF
+DialogEnded("RC_DW_DwarvenScholar2", _)
+AND
+GlobalGetFlag("RC_WC_ScholarsFlee", 1)
+THEN
+DialogRequestStop(CHARACTERGUID_S_RC_DW_DwarvenScholar_01_2555841d-a987-4c92-b87e-93c829e8fed0);
+DialogRequestStop(CHARACTERGUID_S_RC_DW_DwarvenScholar_02_f2bd4946-8aba-42be-b70a-b8a6d48fce47);
+ProcCharacterDisappearOutOfSight(CHARACTERGUID_S_RC_DW_DwarvenScholar_01_2555841d-a987-4c92-b87e-93c829e8fed0, 0, 1, "", 0);
+ProcCharacterDisappearOutOfSight(CHARACTERGUID_S_RC_DW_DwarvenScholar_02_f2bd4946-8aba-42be-b70a-b8a6d48fce47, 0, 1, "", 0);
+
+IF
+ObjectFlagSet("RC_WC_ShowSecretVault", (CHARACTERGUID)_Var1, _)
+THEN
+ProcShowMarker(_Var1, "RC_WC_SecretVault");
+
+IF
+CharacterUsedItem((CHARACTERGUID)_Var1, (ITEMGUID)_Var2)
+AND
+DB_RC_DW_WC_TeleportTunnels(_Var2, _Var3)
+AND
+DB_ShovelArea(_Var4, _Var3, _Var5)
+THEN
+NOT DB_ShovelArea(_Var4, _Var3, _Var5);
+SetOnStage(_Var5, 0);
+PlayEffect(_Var5, "RS3_FX_GP_ScriptedEvent_Teleport_GenericSmoke_01");
+ProcShovelRewards(_Var1, _Var3);
+
+IF
+CharacterUsedItem((CHARACTERGUID)_Var1, ITEMGUID_S_RC_DW_WC_Prison_Hole_A_IN_13acb4b7-d86c-4f94-9dc5-dfa8aec87bba)
+AND
+QueryOnlyOnce("RC_DW_WC_Prison_Hole_A_OUT_SetOnStage")
+THEN
+SetOnStage(ITEMGUID_S_RC_DW_WC_Prison_Hole_A_OUT_1f42fa72-7c1e-45c1-b886-f4b528313bbb, 1);
+PlayEffect(ITEMGUID_S_RC_DW_WC_Prison_Hole_A_OUT_1f42fa72-7c1e-45c1-b886-f4b528313bbb, "RS3_FX_GP_ScriptedEvent_Teleport_GenericSmoke_01");
+
+IF
+CharacterUsedItem((CHARACTERGUID)_Var1, ITEMGUID_S_RC_DW_WreckersCave_EggChamberOut_7ad8fec5-f79b-4be8-91b7-36d604d6d507)
+AND
+QueryOnlyOnce("RC_DW_WC_EggChamber_RevealFissure")
+THEN
+SetStoryEvent(ITEMGUID_S_RC_DW_WreckersCave_EggChamberIn_cec93e05-de99-46a3-9315-fc5032d1f213, "StoryReveal");
+
+IF
+ObjectFlagSet("RC_DW_WC_WeaponsChamberRatExit", (CHARACTERGUID)_Var1, _)
+THEN
+ProcShowMarker(_Var1, "RC_DW_WC_WeaponsChamberRatExit");
+
+PROC
+ProcBlockUseOfItem((CHARACTERGUID)_Var1, S_RC_DW_WC_HatchFromMordusCaveToOffice_e52b704f-554b-4726-86f3-0cd4dd63e117)
+AND NOT
+DB_RC_DW_WC_HatchToMordusCave_Unlocked(1)
+THEN
+DB_CustomUseItemResponse(_Var1, S_RC_DW_WC_HatchFromMordusCaveToOffice_e52b704f-554b-4726-86f3-0cd4dd63e117, 0);
+PROC_RC_DW_WC_HatchToMordusCave_TryUnlock(_Var1);
+
+PROC
+PROC_RC_DW_WC_HatchToMordusCave_TryUnlock((CHARACTERGUID)_Var1)
+AND
+QryTakeItemFromMagicPockets(_Var1, QUEST_RC_Amulet_Mordus_000_49de20a2-8ab8-4424-b77e-d871884faaa9, _Var1)
+THEN
+DB_RC_DW_WC_HatchToMordusCave_Unlocked(1);
+ItemUnLock(S_RC_DW_WC_HatchFromMordusCaveToOffice_e52b704f-554b-4726-86f3-0cd4dd63e117);
+Proc_StartDialog(1, "RC_DW_WC_AD_HatchToMordusCaveUnlocked", _Var1);
+
+PROC
+PROC_RC_DW_WC_HatchToMordusCave_TryUnlock((CHARACTERGUID)_Var1)
+AND NOT
+DB_RC_DW_WC_HatchToMordusCave_Unlocked(1)
+THEN
+Proc_StartDialog(1, "RC_DW_WC_AD_HatchToMordusCaveLocked", _Var1);
+
+IF
+ObjectFlagSet("RC_DW_WC_AskedMordusAboutDeathFogWeapons", (CHARACTERGUID)_Var1, _)
+THEN
+ProcDefineReflectionDialog("RC_DW_WC_RD_LucianDeathfog", _Var1);
+PartySetFlag(_Var1, "QuestUpdate_RC_DW_ShadowOverDriftwood_MordusToldAboutDeathFog");
+
+IF
+GameBookInterfaceClosed(ITEMGUID_S_RC_WH_Peacemaker_Note_288d664c-efa7-463b-8d0b-dc99be3c37b1, (CHARACTERGUID)_Var1)
+THEN
+ProcDefineReflectionDialog("RC_DW_WC_RD_LucianDeathfog", _Var1);
+
+IF
+GameBookInterfaceClosed(ITEMGUID_S_RC_DW_WC_PeacekeeperManifesto_1d25feb1-d456-4609-a263-9be77b5dd0f2, (CHARACTERGUID)_Var1)
+THEN
+PartySetFlag(_Var1, "QuestUpdate_RC_DW_WC_AtaraxianLair_KnowAboutDeathFogInCave");
+ProcDefineReflectionDialog("RC_DW_WC_RD_LucianDeathfog", _Var1);
+
+IF
+GameBookInterfaceClosed(ITEMGUID_S_RC_DW_WC_PeacekeeperManifesto_1d25feb1-d456-4609-a263-9be77b5dd0f2, (CHARACTERGUID)_Var1)
+AND
+QueryOnlyOnce("RC_WC_BST_VB_MissingDeathFog")
+AND
+ObjectIsInTrigger(_Var1, TRIGGERGUID_S_RC_WC_BST_MissingDeathFog_1d83272f-98d1-46be-a1ac-55cc82f957b9, 1)
+THEN
+StartVoiceBark("RC_WC_BST_VB_MissingDeathFog", _Var1);
+
+IF
+ItemDestroyed((ITEMGUID)_Var1)
+AND
+DB_RC_DW_WC_Achievement_EggItem(_Var1)
+THEN
+NOT DB_RC_DW_WC_Achievement_EggItem(_Var1);
+Proc_ProgressAchievement(NULL_00000000-0000-0000-0000-000000000000, "DOS2_Quest40");
+
+IF
+CharacterDied((CHARACTERGUID)_Var1)
+AND
+DB_RC_DW_WC_Achievement_EggChar(_Var1)
+THEN
+NOT DB_RC_DW_WC_Achievement_EggChar(_Var1);
+Proc_ProgressAchievement(NULL_00000000-0000-0000-0000-000000000000, "DOS2_Quest40");
+
+
+EXITSECTION
+ENDEXITSECTION
+
+ParentTargetEdge "RC_DW_WreckersCaveBase"

@@ -1,0 +1,43 @@
+Version 1
+SubGoalCombiner SGC_AND
+
+INITSECTION
+TriggerRegisterForCharacter(TRIGGERGUID_BoxTrigger_001_e79d0fd3-6bd6-46d2-a267-ed4278268e63, CHARACTERGUID_S_Player_Fane_02a77f1f-872b-49ca-91ab-32098c443beb);
+
+KBSECTION
+IF
+CharacterEnteredTrigger(CHARACTERGUID_S_Player_Fane_02a77f1f-872b-49ca-91ab-32098c443beb, TRIGGERGUID_S_RC_OIL_SUB_RaanaarTemple_2cfa254a-7f85-4cb7-94d0-ff3ced73ab8a)
+AND
+QueryOnlyOnce("GLO_Origins_Fane_RanaarTemple")
+THEN
+Proc_StartDialog(1, "RC_OIL_AD_Cave_FaneTemple", CHARACTERGUID_S_Player_Fane_02a77f1f-872b-49ca-91ab-32098c443beb);
+
+IF
+CharacterEnteredTrigger(CHARACTERGUID_S_Player_Fane_02a77f1f-872b-49ca-91ab-32098c443beb, TRIGGERGUID_S_RC_Oil_OriginsFaneArtefactsRoom_e79d0fd3-6bd6-46d2-a267-ed4278268e63)
+THEN
+TriggerUnregisterForCharacter(TRIGGERGUID_S_RC_Oil_OriginsFaneArtefactsRoom_e79d0fd3-6bd6-46d2-a267-ed4278268e63, CHARACTERGUID_S_Player_Fane_02a77f1f-872b-49ca-91ab-32098c443beb);
+Proc_StartDialog(1, "RC_OIL_AD_Cave_FaneArtefactsRoom", CHARACTERGUID_S_Player_Fane_02a77f1f-872b-49ca-91ab-32098c443beb);
+
+IF
+DialogEnded("RC_OIL_Cave_EternalsBook1", (INTEGER)_Var1)
+AND
+DB_DialogPlayers(_Var1, CHARACTERGUID_S_Player_Fane_02a77f1f-872b-49ca-91ab-32098c443beb, _)
+AND
+QueryOnlyOnce("RC_OIL_Cave_EternalsBook1_OriginsFane_Skill")
+THEN
+CharacterAddSkill(CHARACTERGUID_S_Player_Fane_02a77f1f-872b-49ca-91ab-32098c443beb, "Target_DeathsDoor");
+
+IF
+DialogEnded("RC_OIL_Cave_EternalsBook2", (INTEGER)_Var1)
+AND
+DB_DialogPlayers(_Var1, CHARACTERGUID_S_Player_Fane_02a77f1f-872b-49ca-91ab-32098c443beb, _)
+AND
+QueryOnlyOnce("RC_OIL_Cave_EternalsBook2_OriginsFane_Skill")
+THEN
+CharacterAddSkill(CHARACTERGUID_S_Player_Fane_02a77f1f-872b-49ca-91ab-32098c443beb, "Target_Charm");
+
+
+EXITSECTION
+ENDEXITSECTION
+
+ParentTargetEdge "ReapersCoast"

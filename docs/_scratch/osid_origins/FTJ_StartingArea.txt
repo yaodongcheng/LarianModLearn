@@ -1,0 +1,287 @@
+Version 1
+SubGoalCombiner SGC_AND
+
+INITSECTION
+ProcTriggerRegisterForPlayers(RC_FTJ_DrownedCorpseReaction_Box_0110bfbc-c045-48c6-a4d9-68faad0553da);
+ProcTriggerRegisterForPlayers(TRIGGERGUID_S_FTJ_TUT_SaveLoad_df13b935-3930-43a5-8739-2ba60a4060be);
+DB_Dialogs(RC_FTJ_BeachCrab_ba6d2b58-c978-4ce9-a99b-3aef542dd2e7, "FTJ_BeachCrab");
+DB_DeadEvent(CHARACTERGUID_S_FTJ_BeachCrab_ba6d2b58-c978-4ce9-a99b-3aef542dd2e7, "FTJ_SeptaIsDead");
+DB_Dialogs(CHARACTERGUID_S_FTJ_StartingAreaChild_39cbb883-7e80-445c-b5f8-0e42d2283d73, "FTJ_StartingAreaChild_001");
+DB_FTJ_SA_Voidlings(CHARACTERGUID_S_FTJ_BeachVw_001_08348b3a-bded-4811-92ce-f127aa4310e0);
+DB_FTJ_SA_Voidlings(CHARACTERGUID_S_FTJ_BeachVw_002_1832a661-0e21-421f-acaa-a7e66e813b14);
+DB_KillCounter_Internal(CHARACTERGUID_S_FTJ_BeachVw_001_08348b3a-bded-4811-92ce-f127aa4310e0, "FTJ_BeachVw");
+DB_KillCounter_Internal(CHARACTERGUID_S_FTJ_BeachVw_002_1832a661-0e21-421f-acaa-a7e66e813b14, "FTJ_BeachVw");
+DB_KillCounter("FTJ_BeachVw", 2);
+DB_ShovelArea(RC_FTJ_DirtMound_004_Box_e3d16b82-c559-45c7-8e19-26126fe13032, "FTJ_DirtPileCombat", RC_FTJ_DirtPile_004_69f1cc0b-61ef-4ea4-9f21-ff5d86ea1f1d);
+DB_ShovelRewardCharacterAppear("FTJ_DirtPileCombat", CHARACTERGUID_S_FTJ_DirtMoundZombie_eb499ae9-21df-41e9-9d89-968a88ceb3ad);
+DB_IsSign(ITEMGUID_S_FTJ_WoodenCross_001_7e039004-997c-4946-be37-70f3586fd270, "FTJ_Signs", "FTJ_WoodenCross_001");
+ProcTriggerRegisterForPlayers(TRIGGERGUID_S_FTJ_TUT_SecretPassages_6c725690-fb06-43e6-a27b-c64d08fbd78c);
+Proc_FTJ_StartingAreaStart();
+
+KBSECTION
+IF
+ObjectEnteredCombat((CHARACTERGUID)_Var1, _)
+AND
+DB_FTJ_SA_Voidlings(_Var1)
+AND
+QueryOnlyOnce("FTJ_CombatSave_Voidlings")
+THEN
+AutoSave();
+
+PROC
+Proc_FTJ_StartingAreaStart()
+AND
+DB_IsPlayer(_Var1)
+THEN
+ObjectSetFlag(_Var1, "QuestAdd_FTJ_Escape");
+ObjectSetFlag(_Var1, "QuestUpdate_FTJ_Escape_StartEscape");
+ObjectSetFlag(_Var1, "QuestUpdate_RC_FTJ_SourceCollar_CloseEscapeShip");
+
+PROC
+PROC_GLO_PartyMembers_Add((CHARACTERGUID)_Var1, _)
+AND
+GetRegion(_Var1, _Var3)
+AND
+_Var3 == "FJ_FortJoy_Main"
+THEN
+ObjectSetFlag(_Var1, "QuestAdd_FTJ_Escape");
+
+IF
+CharacterSawCharacter((CHARACTERGUID)_Var1, (CHARACTERGUID)_Var2)
+AND
+DB_IsPlayer(_Var1)
+AND
+DB_FTJ_SA_Voidlings(_Var2)
+AND
+GlobalGetFlag("FTJ_BeachVoidlingsDefeated", 0)
+AND
+QRY_SpeakerIsAvailable(_Var1)
+AND
+QueryOnlyOnce("FTJ_SA_VoidlingVB_Once")
+THEN
+StartVoiceBark("FTJ_VB_SawBeachVoidling", _Var1);
+
+PROC
+ReactOnKillCounter("FTJ_BeachVw")
+THEN
+GlobalSetFlag("FTJ_BeachVoidlingsDefeated");
+
+IF
+TextEventSet("xpadd")
+AND
+CharacterGetHostCharacter(_Var1)
+THEN
+PartyAddExperience(_Var1, 1, 1, 100);
+
+PROC
+ReactOnKillCounter("FTJ_BeachVw")
+AND
+GetClosestAlivePlayer(CHARACTERGUID_S_FTJ_BeachVw_001_08348b3a-bded-4811-92ce-f127aa4310e0, _Var1, _)
+AND
+QRY_SpeakerIsAvailable(_Var1)
+AND
+GetClosestAlivePlayer(_Var1, _Var3, _Var4)
+AND
+_Var3 != _Var1
+AND
+_Var4 <= 15
+AND
+QueryOnlyOnce("FTJ_BeachVwDeathReaction")
+THEN
+ProcDefineReflectionDialog("FTJ_RD_DefeatedBeachVoidlings", _Var1);
+
+PROC
+ReactOnKillCounter("FTJ_BeachVw")
+AND
+GetClosestAlivePlayer(CHARACTERGUID_S_FTJ_BeachVw_001_08348b3a-bded-4811-92ce-f127aa4310e0, _Var1, _)
+AND
+QRY_SpeakerIsAvailable(_Var1)
+AND
+QueryOnlyOnce("FTJ_BeachVwDeathReaction")
+THEN
+StartVoiceBark("FTJ_VB_DefeatedBeachVw", _Var1);
+
+PROC
+ReactOnKillCounter("FTJ_BeachVw")
+AND
+DB_IsPlayer(_Var1)
+THEN
+ObjectSetFlag(_Var1, "QuestUpdate_FTJ_Escape_BeachVoidlings");
+
+IF
+CharacterLootedCharacterCorpse((CHARACTERGUID)_Var1, CHARACTERGUID_S_FTJ_DeadVwNPC_ccce2ec7-04da-4e22-8bdd-5b3c058fbba9)
+AND
+QRY_SpeakerIsAvailable(_Var1)
+AND
+QueryOnlyOnce("FTJ_VB_DeadBeachMagister_Once")
+THEN
+StartVoiceBark("FTJ_VB_DeadBeachMagister", _Var1);
+
+IF
+ObjectTurnStarted((CHARACTERGUID)_Var1)
+AND
+DB_FTJ_SA_Voidlings(_Var1)
+AND
+GetClosestAlivePlayer(_Var1, _Var2, _)
+AND
+CharacterIsPolymorphInteractionDisabled(_Var2, 0)
+AND
+CharacterCanSee(_Var1, _Var2, 1)
+AND
+DB_CombatCharacters(_Var1, _Var4)
+AND
+DB_CombatCharacters(_Var2, _Var4)
+AND
+QueryOnlyOnce("FTJ_SA_VoidlingsNamePlayer")
+THEN
+Proc_StartDialog(1, "FTJ_AD_VoidlingNamesPlayer", _Var1, _Var2);
+PlayAnimation(_Var1, "idle1");
+
+IF
+GameStarted("FJ_FortJoy_Main", 0)
+AND
+QueryOnlyOnce("FTJ_Game_Intro")
+THEN
+Proc_FTJ_StartGame();
+ProcDeclareCounter("FTJ_PlayersWokenUp");
+
+PROC
+Proc_FTJ_StartGame()
+AND
+DB_IsPlayer(_Var1)
+THEN
+FadeToBlack(_Var1, 0, 0, "Placeholder");
+CharacterSetAnimationOverride(_Var1, "knockdown_loop");
+CharacterFreeze(_Var1);
+ProcObjectTimer(_Var1, "FTJ_GameStart_FadeIn", 1000);
+ApplyStatus(_Var1, "WET", 12);
+
+PROC
+ProcObjectTimerFinished((CHARACTERGUID)_Var1, "FTJ_GameStart_FadeIn")
+THEN
+FadeToBlack(_Var1, 4.5, 1, "Placeholder");
+
+PROC
+ProcObjectTimerFinished((CHARACTERGUID)_Var1, "FTJ_GameStart_FadeIn")
+AND
+Random(3000, _Var2)
+AND
+IntegerSum(6000, _Var2, _Var3)
+THEN
+ProcObjectTimer(_Var1, "FTJ_WakeUpTimer", _Var3);
+
+PROC
+ProcObjectTimerFinished((CHARACTERGUID)_Var1, "FTJ_WakeUpTimer")
+THEN
+PROC_UnlockWaypoint("WAYP_FTJ_BeachStatue", _Var1);
+
+PROC
+ProcObjectTimerFinished((CHARACTERGUID)_Var1, "FTJ_WakeUpTimer")
+THEN
+CharacterSetAnimationOverride(_Var1, "");
+PlayAnimation(_Var1, "knockdown_getup", "");
+ProcIncreaseCounter("FTJ_PlayersWokenUp");
+Proc_FTJ_CheckPlayersWokenUp(_Var1);
+
+PROC
+Proc_FTJ_CheckPlayersWokenUp((CHARACTERGUID)_Var1)
+AND
+SysCount("DB_IsPlayer", 1, _Var2)
+AND
+DB_GlobalCounter("FTJ_PlayersWokenUp", _Var3)
+AND
+_Var3 == _Var2
+THEN
+PROC_FTJ_StartWakeUpVoicebark(_Var1);
+Proc_FTJ_UnfreezePlayers();
+UserSetFlag(_Var1, "QuestUpdate_FTJ_Voice_TUT_Voice");
+
+PROC
+PROC_FTJ_StartWakeUpVoicebark((CHARACTERGUID)_Var1)
+AND
+DB_GlobalFlag("FTJ_BST_BeastEndedTutWithHat")
+THEN
+StartVoiceBark("FTJ_VB_WakeUpOnBeach", _Var1);
+
+PROC
+PROC_FTJ_StartWakeUpVoicebark((CHARACTERGUID)_Var1)
+AND NOT
+DB_GlobalFlag("FTJ_BST_BeastEndedTutWithHat")
+THEN
+StartVoiceBark("FTJ_VB_WakeUpOnBeachNoHat", _Var1);
+
+IF
+VoiceBarkStarted("FTJ_VB_WakeUpOnBeach", _)
+THEN
+DB_GLO_Tutorial_StartMovementTutorial(1);
+
+PROC
+Proc_FTJ_UnfreezePlayers()
+AND
+DB_IsPlayer(_Var1)
+THEN
+CharacterUnfreeze(_Var1);
+
+IF
+ObjectFlagSet("FTJ_BeachPrisoner_001_ShowInquire_04", (CHARACTERGUID)_Var1, _)
+THEN
+ObjectSetFlag(_Var1, "QuestUpdate_FTJ_Escape_ChapelInfo1");
+
+IF
+CharacterEnteredTrigger((CHARACTERGUID)_Var1, TRIGGERGUID_S_FTJ_XP_MountainTop_c10e42e6-e49a-44dc-aa9b-83c24a879510)
+AND
+QRY_SpeakerIsAvailable(_Var1)
+AND
+QueryOnlyOnce("FTJ_MountainTopVB")
+THEN
+StartVoiceBark("FTJ_VB_MountainTopWarriors", _Var1);
+
+PROC
+PROC_WaypointUnlocked_Event((CHARACTERGUID)_Var1)
+AND NOT
+DB_FTJ_NumUnlockedWaypoints(_Var1, _)
+THEN
+DB_FTJ_NumUnlockedWaypoints(_Var1, 0);
+
+PROC
+PROC_WaypointUnlocked_Event((CHARACTERGUID)_Var1)
+AND
+DB_FTJ_NumUnlockedWaypoints(_Var1, _Var2)
+AND
+IntegerSum(_Var2, 1, _Var3)
+THEN
+NOT DB_FTJ_NumUnlockedWaypoints(_Var1, _Var2);
+DB_FTJ_NumUnlockedWaypoints(_Var1, _Var3);
+
+IF
+CharacterUsedItem((CHARACTERGUID)_Var1, ITEMGUID_S_FTJ_BeachStatue_465c7929-cc0f-4f58-8c2c-24d3e65e2fb0)
+AND
+QRY_SpeakerIsAvailable(_Var1)
+AND
+DB_FTJ_NumUnlockedWaypoints(_Var1, _Var2)
+AND
+_Var2 <= 1
+THEN
+StartVoiceBark("FTJ_VB_BeachStatue", _Var1);
+
+IF
+CharacterUsedItem((CHARACTERGUID)_Var1, ITEMGUID_S_FTJ_BeachStatue_465c7929-cc0f-4f58-8c2c-24d3e65e2fb0)
+AND
+QRY_SpeakerIsAvailable(_Var1)
+AND
+DB_FTJ_NumUnlockedWaypoints(_Var1, _Var2)
+AND
+_Var2 > 1
+THEN
+Proc_StartDialog(0, "FTJ_BeachStatue", ITEMGUID_S_FTJ_BeachStatue_465c7929-cc0f-4f58-8c2c-24d3e65e2fb0, _Var1);
+
+PROC
+ProcRegionEnded("FJ_FortJoy_Main")
+THEN
+GoalCompleted;
+
+
+EXITSECTION
+ENDEXITSECTION
+
+ParentTargetEdge "FortJoy"

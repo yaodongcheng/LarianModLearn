@@ -1,0 +1,419 @@
+Version 1
+SubGoalCombiner SGC_AND
+
+INITSECTION
+DB_EG_RaceTag("HUMAN", "human");
+DB_EG_RaceTag("DWARF", "dwarf");
+DB_EG_RaceTag("ELF", "elf");
+DB_EG_RaceTag("LIZARD", "lizard");
+DB_EG_RaceTag("UNDEAD", "undead_dwarf");
+DB_EG_RaceTag("UNDEAD", "undead_lizard");
+DB_EG_RaceTag("UNDEAD", "undead_human");
+DB_EG_RaceTag("UNDEAD", "undead_elf");
+DB_DeadEvent(CHARACTERGUID_S_RC_MIL_Tovah_69c31947-b004-44aa-b856-2a9a96ff218a, "RC_MIL_Tovah_IsDead");
+DB_DeadEvent(CHARACTERGUID_S_GLO_Saheila_fcacdf08-b05f-4333-b0e0-ddf29c13d8e0, "GLO_Saheila_IsDead");
+DB_DeadEvent(CHARACTERGUID_S_GLO_River_f4931ebe-10b0-43c4-9182-640cf052717e, "GLO_River_IsDead");
+DB_DeadEvent(CHARACTERGUID_S_GLO_Tarquin_a3d0cdcc-d0b0-464d-9ad7-43b38baed620, "GLO_Tarquin_IsDead");
+DB_DeadEvent(CHARACTERGUID_S_FTJ_SW_Warrior_SeekerCaptain_1329f018-23e4-4717-9bc8-074b28d04c54, "GLO_Gareth_IsDead");
+DB_DeadEvent(CHARACTERGUID_S_GLO_Almira_49b466a9-e67f-4e3c-8f66-3636ba7dd54f, "GLO_Almira_IsDead");
+DB_DeadEvent(CHARACTERGUID_S_GLO_Mihaly_3355517b-0a92-426b-9160-54fa8507adf2, "GLO_Mihaly_IsDead");
+DB_DeadEvent(CHARACTERGUID_S_RC_DW_WC_BossFight_Skeleton_Mordus_d46ade3f-f786-4fcc-975c-361a106f2853, "GLO_Mordus_IsDead");
+DB_DeadEvent(CHARACTERGUID_S_FTJ_SW_ShelterUndead_f0602373-d2cb-4658-a91b-9d111c928152, "GLO_Gratiana_IsDead");
+DB_DeadEvent(CHARACTERGUID_S_RC_DW_WhiteMagister_b1bdd004-a286-4ad5-9826-a763d672b2a7, "GLO_Reimond_IsDead");
+DB_EG_WindegoHelper(ITEMGUID_S_EG_InvisHelper_WindegoDialog_003_f9e839e4-e529-4e6f-850f-4a50b240f356);
+DB_EG_WindegoHelper(ITEMGUID_S_EG_InvisHelper_WindegoDialog_000_26618032-960f-4e47-92a4-0fe1fb057561);
+DB_EG_WindegoHelper(ITEMGUID_S_EG_InvisHelper_WindegoDialog_001_9246c77a-0fc1-4f64-b4f0-67c8297ae7d0);
+DB_EG_WindegoHelper(ITEMGUID_S_EG_InvisHelper_WindegoDialog_002_77e7e8ba-1077-4dc5-bf2f-7ef3f85ae01b);
+
+KBSECTION
+IF
+ObjectFlagSet("EG_Ending1_NewDivine_ObjFlag", (CHARACTERGUID)_Var1, _)
+THEN
+Proc_EG_NewDivine(_Var1);
+
+IF
+ObjectFlagSet("EG_Ending_5_Demon_ObjFlag", (CHARACTERGUID)_Var1, _)
+THEN
+Proc_EG_NewDivine(_Var1);
+
+PROC
+Proc_EG_NewDivine((CHARACTERGUID)_Var1)
+AND
+DB_Origins_OriginTag(_Var1, _Var2)
+AND
+StringConcatenate("EG_NewDivine_", _Var2, _Var3)
+THEN
+GlobalSetFlag(_Var3);
+
+PROC
+Proc_EG_NewDivine((CHARACTERGUID)_Var1)
+AND
+DB_Origins_OriginTag(_Var1, _Var2)
+AND
+IsTagged(_Var1, "AVATAR", 1)
+AND
+StringConcatenate("EG_NewDivine_AVATAR_", _Var2, _Var3)
+THEN
+GlobalSetFlag(_Var3);
+
+PROC
+Proc_EG_NewDivine((CHARACTERGUID)_Var1)
+AND
+IsTagged(_Var1, "GENERIC", 0)
+AND
+IsTagged(_Var1, "AVATAR", 1)
+THEN
+GlobalSetFlag("EG_NewDivine_AVATAR_ORIGIN");
+
+PROC
+Proc_EG_NewDivine((CHARACTERGUID)_Var1)
+AND
+DB_Origins_OriginTag(_Var1, _Var2)
+AND
+IsTagged(_Var1, "AVATAR", 0)
+AND
+StringConcatenate("EG_NewDivine_COM_", _Var2, _Var3)
+THEN
+GlobalSetFlag(_Var3);
+
+PROC
+Proc_EG_NewDivine((CHARACTERGUID)_Var1)
+AND
+IsTagged(_Var1, "GENERIC", 1)
+AND
+CharacterGetRace(_Var1, 0, "undead")
+THEN
+GlobalSetFlag("EG_NewDivine_GENERIC_UNDEAD");
+
+PROC
+Proc_EG_NewDivine((CHARACTERGUID)_Var1)
+AND
+IsTagged(_Var1, "GENERIC", 1)
+AND
+CharacterGetRace(_Var1, 0, "dwarf")
+THEN
+GlobalSetFlag("EG_NewDivine_GENERIC_DWARF");
+
+PROC
+Proc_EG_NewDivine((CHARACTERGUID)_Var1)
+AND
+IsTagged(_Var1, "GENERIC", 1)
+AND
+CharacterGetRace(_Var1, 0, "undead")
+AND
+IsTagged(_Var1, "PROMISED", 1)
+THEN
+GlobalSetFlag("EG_NewDivine_GENERIC_UNDEAD_PROMISED");
+
+PROC
+Proc_EG_NewDivine((CHARACTERGUID)_Var1)
+AND
+CharacterGetRace(_Var1, 0, _Var2)
+AND
+DB_EG_RaceTag(_Var3, _Var2)
+AND
+IsTagged(_Var1, "AVATAR", 1)
+AND
+StringConcatenate("EG_NewDivine_AVATAR_", _Var3, _Var4)
+THEN
+GlobalSetFlag(_Var4);
+
+PROC
+Proc_EG_NewDivine((CHARACTERGUID)_Var1)
+AND
+CharacterGetRace(_Var1, 0, _Var2)
+AND
+DB_EG_RaceTag(_Var3, _Var2)
+AND
+IsTagged(_Var1, "AVATAR", 0)
+AND
+StringConcatenate("EG_NewDivine_COM_", _Var3, _Var4)
+THEN
+GlobalSetFlag(_Var4);
+
+PROC
+Proc_EG_NewDivine((CHARACTERGUID)_Var1)
+AND
+IsTagged(_Var1, "MALE", 1)
+THEN
+GlobalSetFlag("EG_NewDivine_MALE");
+
+PROC
+Proc_EG_NewDivine((CHARACTERGUID)_Var1)
+AND
+IsTagged(_Var1, "FEMALE", 1)
+THEN
+GlobalSetFlag("EG_NewDivine_FEMALE");
+
+IF
+ObjectFlagSet("EG_Ending4_GodKing_ObjFlag", (GUIDSTRING)_Var1, _)
+AND
+IsTagged(_Var1, "FANE", 1)
+THEN
+GlobalSetFlag("EG_Ending4_GodKing_FANE");
+
+IF
+ObjectFlagSet("EG_Ending4_GodKing_ObjFlag", (GUIDSTRING)_Var1, _)
+AND
+IsTagged(_Var1, "SHAPESHIFT_FANE", 1)
+THEN
+GlobalSetFlag("EG_Ending4_GodKing_FANE");
+
+IF
+StoryEvent((CHARACTERGUID)_Var1, "EG_EpilogueArrived")
+THEN
+Proc_EndGameResolution_SetAvailableChar(_Var1);
+
+PROC
+Proc_EndGameResolution_SetAvailableChar((CHARACTERGUID)_Var1)
+AND NOT
+DB_Dead(_Var1)
+AND
+DB_Origins_OriginTag(_Var1, _Var2)
+AND
+StringConcatenate("EG_ReachedEndGame_", _Var2, _Var3)
+THEN
+GlobalSetFlag(_Var3);
+
+PROC
+Proc_EndGameResolution_SetAvailableChar((CHARACTERGUID)_Var1)
+AND NOT
+DB_Dead(_Var1)
+AND
+CharacterGetRace(_Var1, 0, _Var2)
+AND
+DB_EG_RaceTag(_Var3, _Var2)
+AND
+StringConcatenate("EG_ReachedEndGame_", _Var3, _Var4)
+THEN
+GlobalSetFlag(_Var4);
+
+PROC
+Proc_EndGameResolution_SetAvailableChar((CHARACTERGUID)_Var1)
+AND NOT
+DB_Dead(_Var1)
+AND
+CharacterGetRace(_Var1, 0, "dwarf")
+AND
+IsTagged(_Var1, "FEMALE", 1)
+THEN
+GlobalSetFlag("EG_ReachedEndGame_DWARF_FEMALE");
+
+PROC
+Proc_EndGameResolution_SetAvailableChar((CHARACTERGUID)_Var1)
+AND NOT
+DB_Dead(_Var1)
+AND
+CharacterGetRace(_Var1, 0, "dwarf")
+AND
+IsTagged(_Var1, "MALE", 1)
+THEN
+GlobalSetFlag("EG_ReachedEndGame_DWARF_MALE");
+
+PROC
+Proc_EndGameResolution_SetAvailableChar((CHARACTERGUID)_Var1)
+AND NOT
+DB_Dead(_Var1)
+AND
+CharacterGetRace(_Var1, 0, "dwarf")
+AND
+IsTagged(_Var1, "GENERIC", 1)
+THEN
+GlobalSetFlag("EG_ReachedEndGame_GENERIC_DWARF");
+
+IF
+TextEventSet("endgame1")
+AND
+DB_IsPlayer(_Var1)
+AND
+CharacterIsControlled(_Var1, 1)
+THEN
+Proc_EndGameResolution_SetAvailableChar(_Var1);
+ObjectSetFlag(_Var1, "EG_Ending1_NewDivine_ObjFlag");
+GlobalSetFlag("EG_Ending1_NewDivine");
+GameEndWithMovieRequestCallback("EG_Epilogue");
+
+IF
+TextEventSet("endgame2")
+AND
+DB_IsPlayer(_Var1)
+AND
+CharacterIsControlled(_Var1, 1)
+THEN
+Proc_EndGameResolution_SetAvailableChar(_Var1);
+GlobalSetFlag("EG_Ending2_SourceForAll");
+GameEndWithMovieRequestCallback("EG_Epilogue");
+
+IF
+TextEventSet("endgame3")
+AND
+DB_IsPlayer(_Var1)
+AND
+CharacterIsControlled(_Var1, 1)
+THEN
+Proc_EndGameResolution_SetAvailableChar(_Var1);
+GlobalSetFlag("EG_Ending2_Purge");
+GameEndWithMovieRequestCallback("EG_Epilogue");
+
+IF
+TextEventSet("endgame4")
+AND
+DB_IsPlayer(_Var1)
+AND
+CharacterIsControlled(_Var1, 1)
+THEN
+Proc_EndGameResolution_SetAvailableChar(_Var1);
+GlobalSetFlag("EG_Ending2_GodKing");
+GameEndWithMovieRequestCallback("EG_Epilogue");
+
+IF
+TextEventSet("endgame5")
+AND
+DB_IsPlayer(_Var1)
+AND
+CharacterIsControlled(_Var1, 1)
+THEN
+Proc_EndGameResolution_SetAvailableChar(_Var1);
+ObjectSetFlag(_Var1, "EG_Ending_5_Demon_ObjFlag");
+GlobalSetFlag("EG_Ending_5_Demon");
+GameEndWithMovieRequestCallback("EG_Epilogue");
+
+IF
+ObjectFlagSet("GLO_GivePromiseBreaker", CHARACTERGUID_S_GLO_Windego_d783285f-d3be-4cba-8333-db8976cef182, _)
+THEN
+GlobalSetFlag("GLO_Windego_GivenPromiseBreaker");
+
+IF
+DialogEnded("EG_Epilogue_Shiphead", (INTEGER)_Var1)
+AND
+GlobalGetFlag("EG_ToCredits", 1)
+AND
+DB_DialogPlayers(_Var1, _Var2, _)
+THEN
+GlobalClearFlag("EG_ToCredits");
+ReadyCheckStart(_Var2, "EG_ToCredits");
+
+IF
+ReadyCheckPassed("EG_ToCredits")
+THEN
+Proc_EG_ToEndGameDialog();
+
+PROC
+Proc_EG_ToEndGameDialog()
+AND
+DB_Avatars(_Var1)
+AND
+ObjectGetFlag(_Var1, "EG_Ending1_NewDivine_ObjFlag", 1)
+AND
+CharacterGetReservedUserID(_Var1, _Var2)
+AND NOT
+DB_EG_ToEndGameDialog_Speakers(_, _Var2)
+THEN
+DB_EG_ToEndGameDialog_Speakers(_Var1, _Var2);
+
+PROC
+Proc_EG_ToEndGameDialog()
+AND
+DB_Avatars(_Var1)
+AND
+ObjectGetFlag(_Var1, "EG_Ending_5_Demon_ObjFlag", 1)
+AND
+CharacterGetReservedUserID(_Var1, _Var2)
+AND NOT
+DB_EG_ToEndGameDialog_Speakers(_, _Var2)
+THEN
+DB_EG_ToEndGameDialog_Speakers(_Var1, _Var2);
+
+PROC
+Proc_EG_ToEndGameDialog()
+AND
+DB_Avatars(_Var1)
+AND
+CharacterGetReservedUserID(_Var1, _Var2)
+AND NOT
+DB_EG_ToEndGameDialog_Speakers(_, _Var2)
+THEN
+DB_EG_ToEndGameDialog_Speakers(_Var1, _Var2);
+
+PROC
+Proc_EG_ToEndGameDialog()
+AND
+DB_IsPlayer(_Var1)
+AND NOT
+DB_Avatars(_Var1)
+AND
+CharacterGetReservedUserID(_Var1, _Var2)
+AND
+ObjectGetFlag(_Var1, "EG_Ending1_NewDivine_ObjFlag", 1)
+AND NOT
+DB_EG_ToEndGameDialog_Speakers(_, _Var2)
+THEN
+DB_EG_ToEndGameDialog_Speakers(_Var1, _Var2);
+
+PROC
+Proc_EG_ToEndGameDialog()
+AND
+DB_IsPlayer(_Var1)
+AND
+CharacterGetReservedUserID(_Var1, _Var2)
+AND
+ObjectGetFlag(_Var1, "EG_Ending_5_Demon_ObjFlag", 1)
+AND NOT
+DB_EG_ToEndGameDialog_Speakers(_, _Var2)
+THEN
+DB_EG_ToEndGameDialog_Speakers(_Var1, _Var2);
+
+PROC
+Proc_EG_ToEndGameDialog()
+AND
+DB_IsPlayer(_Var1)
+AND
+CharacterGetReservedUserID(_Var1, _Var2)
+AND NOT
+DB_EG_ToEndGameDialog_Speakers(_, _Var2)
+THEN
+DB_EG_ToEndGameDialog_Speakers(_Var1, _Var2);
+
+PROC
+Proc_EG_ToEndGameDialog()
+AND
+DB_EG_ToEndGameDialog_Speakers(_Var1, _)
+THEN
+ProcRemovePolymorphs(_Var1);
+ProcForceStopDialog(_Var1);
+
+PROC
+Proc_EG_ToEndGameDialog()
+THEN
+GameEndWithMovieRequestCallback("EG_Epilogue");
+
+IF
+EndGameRequestMovie((INTEGER)_Var1, "EG_Epilogue")
+AND
+GetCurrentCharacter(_Var1, _Var2)
+THEN
+EnqueueGameEndDialogMovie(_Var2, "EG_Epilogue_NarratorEndScroll", "CS_Epilogue", "Epilogue");
+EnqueueGameEndMovie(_Var1, "Credits", "Credits");
+FinalizeGameEndMovieQueue(_Var1);
+
+IF
+DialogStarted("RC_BF_DemonHunter", _)
+AND
+GlobalGetFlag("GLO_Jahan_HasMet", 0)
+THEN
+GlobalSetFlag("GLO_Jahan_HasMet");
+
+IF
+DB_DialogPlayers(_Var1, _Var2, _)
+AND
+DB_IsPlayer(_Var2)
+AND
+DB_DialogNPCs(_Var1, CHARACTERGUID_S_GLO_Saheila_fcacdf08-b05f-4333-b0e0-ddf29c13d8e0, _)
+THEN
+GlobalSetFlag("GLO_Saheila_HasMet");
+
+
+EXITSECTION
+ENDEXITSECTION
+
+ParentTargetEdge "Start"

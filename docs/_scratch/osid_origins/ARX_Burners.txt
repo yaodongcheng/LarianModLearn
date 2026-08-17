@@ -1,0 +1,118 @@
+Version 1
+SubGoalCombiner SGC_AND
+
+INITSECTION
+DB_RC_ARX_PyreSmoke(ITEMGUID_S_RC_ARX_PyreSmoke1_f37fc72a-856e-4692-a113-971f59521b16);
+DB_RC_ARX_PyreSmoke(ITEMGUID_S_RC_ARX_PyreSmoke2_2b14c970-65cd-4bbc-9c28-5f75e50bdfde);
+DB_RC_ARX_PyreSmoke(ITEMGUID_S_RC_ARX_PyreSmoke3_414b4934-078a-41a6-8cb8-de4d60a561ec);
+ProcTriggerRegisterForPlayers(TRIGGERGUID_S_RC_ARX_BurnerBox_019b69ad-e57c-464f-9311-10be5a0358d0);
+SetVisible(ITEMGUID_S_RC_ARX_Pyre_BurnedOut_ba868e8c-3ee2-4034-bea9-6961d2b139d9, 0);
+DB_Dialogs(CHARACTERGUID_S_RC_ARX_BurnerPaladinWife_c01494b5-cf4d-4393-b907-21c55694e546, "RC_ARX_BurnerPaladinWife");
+DB_Ghosts(S_RC_ARX_BurnerPaladinCorpse_43161d59-4b9d-4f0c-87dc-7c1848750b18, S_RC_ARX_BurnerPaladinGhost_88600386-a435-4628-93e9-c68d15464dae, "RC_ARX_BurnerPaladinGhost");
+DB_Dialogs(CHARACTERGUID_S_RC_ARX_Burner1_d082bad8-df6a-4dde-bf7d-6c15485c57b4, "ARX_Burner1");
+DB_Dialogs(CHARACTERGUID_S_RC_ARX_Burner2_0e98c20f-eb9a-4fa3-97af-ed403476821b, "ARX_Burner2");
+DB_Dialogs(CHARACTERGUID_S_RC_ARX_Burner3_6c8032f7-5e0b-4af9-b4ba-5242fc2457f2, "ARX_Burner3");
+DB_RC_ARX_Burners(CHARACTERGUID_S_RC_ARX_Burner1_d082bad8-df6a-4dde-bf7d-6c15485c57b4);
+DB_RC_ARX_Burners(CHARACTERGUID_S_RC_ARX_Burner2_0e98c20f-eb9a-4fa3-97af-ed403476821b);
+DB_RC_ARX_Burners(CHARACTERGUID_S_RC_ARX_Burner3_6c8032f7-5e0b-4af9-b4ba-5242fc2457f2);
+ApplyStatus(ITEMGUID_S_RC_ARX_DeadMonkPile_6404485f-d9cf-4025-bdd2-1b466ddd3e10, "BURNING", -1, 1);
+
+KBSECTION
+IF
+DB_RC_ARX_PyreSmoke(_Var1)
+THEN
+SetOnStage(_Var1, 0);
+
+IF
+CharacterLeftTrigger((CHARACTERGUID)_Var1, TRIGGERGUID_S_RC_ARX_BurnerBox_019b69ad-e57c-464f-9311-10be5a0358d0)
+AND
+QRY_AnyRegionActive()
+AND NOT
+DB_InRegion(_, TRIGGERGUID_S_RC_ARX_BurnerBox_019b69ad-e57c-464f-9311-10be5a0358d0)
+THEN
+SetVisible(ITEMGUID_S_RC_ARX_Pyre_BurnedOut_ba868e8c-3ee2-4034-bea9-6961d2b139d9, 1);
+SetVisible(ITEMGUID_S_RC_ARX_Pyre_b54316ee-c35d-441f-9385-cb45263e01a7, 0);
+SetOnStage(S_RC_ARX_DeadMonkPile_6404485f-d9cf-4025-bdd2-1b466ddd3e10, 0);
+ProcForceStopDialog(CHARACTERGUID_S_RC_ARX_BurnerPaladinGhost_88600386-a435-4628-93e9-c68d15464dae);
+Proc_GhostHacks_GhostPoof(CHARACTERGUID_S_RC_ARX_BurnerPaladinGhost_88600386-a435-4628-93e9-c68d15464dae);
+
+IF
+CharacterLeftTrigger((CHARACTERGUID)_Var1, TRIGGERGUID_S_RC_ARX_BurnerBox_019b69ad-e57c-464f-9311-10be5a0358d0)
+AND
+QRY_AnyRegionActive()
+AND NOT
+DB_InRegion(_, TRIGGERGUID_S_RC_ARX_BurnerBox_019b69ad-e57c-464f-9311-10be5a0358d0)
+AND
+DB_RC_ARX_PyreSmoke(_Var3)
+THEN
+SetOnStage(_Var3, 1);
+
+IF
+CharacterLeftTrigger((CHARACTERGUID)_Var1, TRIGGERGUID_S_RC_ARX_BurnerBox_019b69ad-e57c-464f-9311-10be5a0358d0)
+AND NOT
+DB_InRegion(_, TRIGGERGUID_S_RC_ARX_BurnerBox_019b69ad-e57c-464f-9311-10be5a0358d0)
+THEN
+ProcTriggerUnregisterForPlayers(TRIGGERGUID_S_RC_ARX_BurnerBox_019b69ad-e57c-464f-9311-10be5a0358d0);
+
+IF
+CharacterLeftTrigger((CHARACTERGUID)_Var1, TRIGGERGUID_S_RC_ARX_BurnerBox_019b69ad-e57c-464f-9311-10be5a0358d0)
+AND NOT
+DB_InRegion(_, TRIGGERGUID_S_RC_ARX_BurnerBox_019b69ad-e57c-464f-9311-10be5a0358d0)
+THEN
+GlobalSetFlag("RC_ARX_BurnersDone");
+
+IF
+CharacterUsedSkillOnTarget((CHARACTERGUID)_Var1, ITEMGUID_S_RC_ARX_DeadMonkPile_6404485f-d9cf-4025-bdd2-1b466ddd3e10, _, (STRING)_Var3, (STRING)_Var4)
+AND
+_Var4 != "Fire"
+AND
+CrimeGetNewID(_Var5)
+THEN
+CharacterRegisterCrime(_Var1, "RC_ARX_TouchMonkCorpse", ITEMGUID_S_RC_ARX_DeadMonkPile_6404485f-d9cf-4025-bdd2-1b466ddd3e10, NULL_00000000-0000-0000-0000-000000000000, _Var5);
+
+IF
+ItemStatusAttempt(ITEMGUID_S_RC_ARX_DeadMonkPile_6404485f-d9cf-4025-bdd2-1b466ddd3e10, (STRING)_Var1, (CHARACTERGUID)_Var2)
+AND
+DB_IsPlayer(_Var2)
+AND
+_Var1 != "BURNING"
+AND
+_Var1 != "NECROFIRE"
+AND
+_Var1 != "HOLY_FIRE"
+AND
+_Var1 != "INSURFACE"
+AND
+_Var1 != "WARM"
+AND
+_Var1 != "HIT"
+AND
+DB_ARX_PyreLit(1)
+AND
+CrimeGetNewID(_Var3)
+THEN
+CharacterRegisterCrime(_Var2, "RC_ARX_TouchMonkCorpse", ITEMGUID_S_RC_ARX_DeadMonkPile_6404485f-d9cf-4025-bdd2-1b466ddd3e10, NULL_00000000-0000-0000-0000-000000000000, _Var3);
+
+IF
+ItemStatusRemoved(ITEMGUID_S_RC_ARX_DeadMonkPile_6404485f-d9cf-4025-bdd2-1b466ddd3e10, "BURNING", (GUIDSTRING)_Var1)
+THEN
+NOT DB_ARX_PyreLit(1);
+
+IF
+ItemStatusChange(ITEMGUID_S_RC_ARX_DeadMonkPile_6404485f-d9cf-4025-bdd2-1b466ddd3e10, "BURNING", (GUIDSTRING)_Var1)
+THEN
+DB_ARX_PyreLit(1);
+
+IF
+GlobalFlagSet("RC_ARX_BurnersDone")
+AND
+QRY_AnyRegionActive()
+THEN
+ProcCharacterDisappearOutOfSightToObject(CHARACTERGUID_S_ARX_CitySquare_Pleb_Burners_01_836d1977-8ccb-4af7-9786-4bb398fe568f, TRIGGERGUID_S_ARX_CS_Trader_Generalist_01_LookAt_d2ba4d56-1207-4ad1-be08-d4640423f38a, 90, "", 0);
+ProcCharacterDisappearOutOfSightToObject(CHARACTERGUID_S_ARX_CitySquare_Pleb_Burners_02_3f002b5e-a7cb-4696-bad2-aa827f8d3d87, TRIGGERGUID_S_ARX_Neighborhood_Street_TraderBaker_LookAt_d33918a1-9368-4e0f-9a43-af17b28b0449, 90, "", 0);
+
+
+EXITSECTION
+ENDEXITSECTION
+
+ParentTargetEdge "ARX"

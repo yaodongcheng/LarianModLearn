@@ -1,0 +1,1663 @@
+Version 1
+SubGoalCombiner SGC_AND
+
+INITSECTION
+TeleportTo(CHARACTERGUID_S_GLO_Dallis_69b951dc-55a4-44b8-a2d5-5efedbd7d572, TRIGGERGUID_S_ARX_EG_DallisPoint_dedc9a78-24d8-4152-87be-8c50a31c91ac);
+TeleportTo(CHARACTERGUID_S_GLO_Braccus_358ba541-0710-43be-8263-87afe1a8d9b5, TRIGGERGUID_S_ARX_EG_BraccusPoint_925389bf-0711-4dab-aa66-bdac4408a47f);
+SetOnStage(CHARACTERGUID_S_GLO_Dallis_69b951dc-55a4-44b8-a2d5-5efedbd7d572, 1);
+SetOnStage(CHARACTERGUID_S_GLO_Braccus_358ba541-0710-43be-8263-87afe1a8d9b5, 1);
+CharacterLevelUpTo(CHARACTERGUID_S_GLO_Dallis_69b951dc-55a4-44b8-a2d5-5efedbd7d572, 20);
+CharacterLevelUpTo(CHARACTERGUID_S_GLO_Braccus_358ba541-0710-43be-8263-87afe1a8d9b5, 20);
+SetFaction(CHARACTERGUID_S_GLO_Dallis_69b951dc-55a4-44b8-a2d5-5efedbd7d572, "ARX_EG_Lucian");
+SetFaction(CHARACTERGUID_S_GLO_Braccus_358ba541-0710-43be-8263-87afe1a8d9b5, "ARX_EG_Lucian");
+CharacterSetReactionPriority(CHARACTERGUID_S_GLO_Dallis_69b951dc-55a4-44b8-a2d5-5efedbd7d572, "FortJoyWaitingForPlayer", 0);
+DB_OneShotPlayerTrigger(TRIGGERGUID_S_ARX_EG_FinalFightStartSituation_a63ec3e2-6026-4802-8e65-3da6256066ec);
+CharacterUseItem(CHARACTERGUID_S_ARX_EG_Lucian_62d0ca66-b6db-4a10-a457-effe0b64aca0, ITEMGUID_S_ARX_EG_LucianChair_a807a420-ccf9-4aa6-aa54-bb691229be55, "");
+SetOnStage(ITEMGUID_S_ARX_EG_PurgingDevice_a49e9701-ad5b-4b27-98ca-4ad843a50b05, 0);
+ItemToInventory(ITEMGUID_S_ARX_EG_PurgingDevice_a49e9701-ad5b-4b27-98ca-4ad843a50b05, CHARACTERGUID_S_GLO_Braccus_358ba541-0710-43be-8263-87afe1a8d9b5);
+Proc_RegisterPartyDecisionDialogOutcomes_Fixed("ARX_PDD_EndGame_SideLucian", "ARX_PDD_EndGame_SideLucian_No", "ARX_PDD_EndGame_SideLucian_Yes", "", "", "");
+SetOnStage(CHARACTERGUID_S_EndGame_Kraken_ae15de17-4238-4ae0-af43-48cd0f72f8f5, 0);
+PROC_LoopEffect("RS3_FX_GP_ScriptedEvent_GodsAura_01_Fading", CHARACTERGUID_S_ARX_EG_Lucian_62d0ca66-b6db-4a10-a457-effe0b64aca0, "LuciansAura", "ARX_Endgame", "Dummy_StatusFX");
+DB_EG_FirstFightParticipants(CHARACTERGUID_S_EG_Gheist1_a5759511-eadb-4479-9ed9-65f4d6eb9f60);
+DB_EG_FirstFightParticipants(CHARACTERGUID_S_EG_WhiteRanger1_974e87cd-1ab0-48f0-a399-96b41c6cb264);
+DB_EG_FirstFightParticipants(CHARACTERGUID_S_EG_WhiteMage1_c7b397d0-4415-468e-b050-8a5e18e9ee18);
+DB_EG_FirstFightParticipants(CHARACTERGUID_S_GLO_Dallis_69b951dc-55a4-44b8-a2d5-5efedbd7d572);
+DB_EG_FirstFightParticipants(CHARACTERGUID_S_GLO_Braccus_358ba541-0710-43be-8263-87afe1a8d9b5);
+DB_EG_FirstFightParticipants(CHARACTERGUID_S_EG_PurgedGareth_b9aedbdc-bd03-42ce-b97d-24d790d4f6e2);
+DB_EG_FirstFightParticipants(CHARACTERGUID_S_ARX_EG_Lucian_62d0ca66-b6db-4a10-a457-effe0b64aca0);
+DB_EG_GlobalDialogs("EG_BraccusBetrayal");
+DB_EG_GlobalDialogs("EG_BraccusSummon");
+DB_EG_ImmortalCharacters(CHARACTERGUID_S_GLO_Dallis_69b951dc-55a4-44b8-a2d5-5efedbd7d572);
+DB_EG_ImmortalCharacters(CHARACTERGUID_S_ARX_EG_Lucian_62d0ca66-b6db-4a10-a457-effe0b64aca0);
+CharacterSetImmortal(CHARACTERGUID_S_GLO_Braccus_358ba541-0710-43be-8263-87afe1a8d9b5, 1);
+TeleportTo(ITEMGUID_S_GLO_EighthPromiseHelper_000_9c8c6eb9-84bb-47a6-91cb-4ef33442df06, CHARACTERGUID_S_ARX_EG_Lucian_62d0ca66-b6db-4a10-a457-effe0b64aca0);
+DB_EG_BraccusImpacts("EG_BraccusTransformationEffect_1", "RS3_FX_GP_Combat_CameraShake_A");
+DB_EG_BraccusImpacts("EG_BraccusTransformationEffect_2", "RS3_FX_GP_Combat_CameraShake_A");
+DB_EG_BraccusImpacts("EG_BraccusTransformationEffect_3", "RS3_FX_GP_Combat_CameraShake_B");
+DB_EG_BraccusImpacts("EG_BraccusTransformationEffect_4", "RS3_FX_GP_ScriptedEvent_CameraShake_Intense_01");
+GlobalClearFlag("LV_HoE_LvAssaultActive");
+DB_EG_EndgameTalkSpot(TRIGGERGUID_S_EG_PlayerTalkSpot_3ddfdee7-5b9a-405b-bef5-558d9939c4c6);
+DB_EG_EndgameTalkSpot(TRIGGERGUID_S_EG_PlayerTalkSpot_000_e3973564-798e-45a4-a3cc-e8188ad85251);
+DB_EG_EndgameTalkSpot(TRIGGERGUID_S_EG_PlayerTalkSpot_001_e3a9c0ca-d809-4498-98a3-f364a87c3905);
+DB_EG_EndgameTalkSpot(TRIGGERGUID_S_EG_PlayerTalkSpot_002_f7b056d3-a5e9-4d26-a32a-dddb590c4179);
+CharacterAddSkill(CHARACTERGUID_S_GLO_Braccus_358ba541-0710-43be-8263-87afe1a8d9b5, "Jump_EnemyCurseDive_Braccus");
+CharacterAddSkill(CHARACTERGUID_S_GLO_Braccus_358ba541-0710-43be-8263-87afe1a8d9b5, "Projectile_EnemyFlamingDaggers");
+CharacterAddSkill(CHARACTERGUID_S_GLO_Braccus_358ba541-0710-43be-8263-87afe1a8d9b5, "Projectile_EnemyFireball");
+CharacterAddSkill(CHARACTERGUID_S_GLO_Braccus_358ba541-0710-43be-8263-87afe1a8d9b5, "Target_EnemyFireWhip");
+CharacterAddSkill(CHARACTERGUID_S_GLO_Braccus_358ba541-0710-43be-8263-87afe1a8d9b5, "Target_EnemySpontCombustion");
+DB_EG_TransitionTrigger(TRIGGERGUID_S_EG_DestroyedCryptPart_939ddc2e-88a5-4666-a820-7b7a809bf6ac, 5, "EG_TeleportToHallOfEchoesCrypt");
+DB_EG_TransitionTrigger(TRIGGERGUID_S_EG_DestroyedCryptPart_2_bca99233-e763-49ff-94bd-9a1dd65e9d27, 2, "EG_TeleportToHallOfEchoesCrypt_2");
+DB_EG_TransitionTrigger(TRIGGERGUID_S_EG_DestroyedCryptPart_3_1cdbad44-9253-4ca7-9ab4-675e8eceb3d7, 2, "EG_TeleportToHallOfEchoesCrypt_3");
+DB_EG_TransitionTrigger(TRIGGERGUID_S_EG_DestroyedCryptPart_4_f26a87d2-b560-461a-944c-d733e1eb1965, 2, "EG_TeleportToHallOfEchoesCrypt_4");
+DB_EG_TransitionTrigger(TRIGGERGUID_S_EG_DestroyedCryptPart_5_409253cd-d93a-46f8-9bf0-ae61fbc9679d, 2, "EG_TeleportToHallOfEchoesCrypt_5");
+DB_EG_HoETransferDestinations(TRIGGERGUID_S_EG_DestroyedCryptPart_939ddc2e-88a5-4666-a820-7b7a809bf6ac, TRIGGERGUID_S_EG_KnockDownDestination_1_7e5f5bd7-8c69-4015-967d-d7e21c311df7, 1);
+DB_EG_HoETransferDestinations(TRIGGERGUID_S_EG_DestroyedCryptPart_939ddc2e-88a5-4666-a820-7b7a809bf6ac, TRIGGERGUID_S_EG_KnockDownDestination_2_687a901b-959f-4642-928b-5358552647d0, 2);
+DB_EG_HoETransferDestinations(TRIGGERGUID_S_EG_DestroyedCryptPart_939ddc2e-88a5-4666-a820-7b7a809bf6ac, TRIGGERGUID_S_EG_KnockDownDestination_3_9913ffe8-bed9-42ab-b971-990ff30cd580, 3);
+DB_EG_HoETransferDestinations(TRIGGERGUID_S_EG_DestroyedCryptPart_939ddc2e-88a5-4666-a820-7b7a809bf6ac, TRIGGERGUID_S_EG_KnockDownDestination_4_dc05e013-3b89-46c5-aeb2-d9df885ea36b, 4);
+DB_EG_HoETransferDestinations(TRIGGERGUID_S_EG_DestroyedCryptPart_939ddc2e-88a5-4666-a820-7b7a809bf6ac, TRIGGERGUID_S_EG_KnockDownDestination_5_bb32c115-43ce-4b2f-aa26-9110848925e6, 5);
+DB_EG_HoETransferDestinations(TRIGGERGUID_S_EG_DestroyedCryptPart_2_bca99233-e763-49ff-94bd-9a1dd65e9d27, TRIGGERGUID_S_EG_KnockDownDestination_2_1_ac088075-ffb9-478a-afc5-dd41d32209a4, 1);
+DB_EG_HoETransferDestinations(TRIGGERGUID_S_EG_DestroyedCryptPart_2_bca99233-e763-49ff-94bd-9a1dd65e9d27, TRIGGERGUID_S_EG_KnockDownDestination_2_2_8b1e4486-c14e-4274-8e4e-189524178c69, 2);
+DB_EG_HoETransferDestinations(TRIGGERGUID_S_EG_DestroyedCryptPart_3_1cdbad44-9253-4ca7-9ab4-675e8eceb3d7, TRIGGERGUID_S_EG_KnockDownDestination_3_1_98c288fc-b28d-439b-a508-e5e51adbca1a, 1);
+DB_EG_HoETransferDestinations(TRIGGERGUID_S_EG_DestroyedCryptPart_3_1cdbad44-9253-4ca7-9ab4-675e8eceb3d7, TRIGGERGUID_S_EG_KnockDownDestination_3_2_65d1bc01-ed4d-4341-9cbb-336cddd10a5f, 2);
+DB_EG_HoETransferDestinations(TRIGGERGUID_S_EG_DestroyedCryptPart_4_f26a87d2-b560-461a-944c-d733e1eb1965, TRIGGERGUID_S_EG_KnockDownDestination_4_1_1fd1d2ff-a755-42be-beec-7ba8c2df388c, 1);
+DB_EG_HoETransferDestinations(TRIGGERGUID_S_EG_DestroyedCryptPart_4_f26a87d2-b560-461a-944c-d733e1eb1965, TRIGGERGUID_S_EG_KnockDownDestination_4_2_f40258a7-b435-45d5-8a77-e41032bfe28c, 2);
+DB_EG_HoETransferDestinations(TRIGGERGUID_S_EG_DestroyedCryptPart_5_409253cd-d93a-46f8-9bf0-ae61fbc9679d, TRIGGERGUID_S_EG_KnockDownDestination_5_1_1f92c0c0-cc99-4a93-bed2-bf9359ff9307, 1);
+DB_EG_HoETransferDestinations(TRIGGERGUID_S_EG_DestroyedCryptPart_5_409253cd-d93a-46f8-9bf0-ae61fbc9679d, TRIGGERGUID_S_EG_KnockDownDestination_5_2_56778ed3-406b-4792-9a8c-fb4308f0bbda, 2);
+GlobalSetFlag("EG_RemoveHoe");
+SetOnStage(ITEMGUID_S_EG_KrakenDeathStaller_18aa72dc-c718-48ca-b8ef-e3017cd923cd, 0);
+DB_GLO_CheckSpeakerNumber(CHARACTERGUID_S_ARX_EG_Lucian_62d0ca66-b6db-4a10-a457-effe0b64aca0, -1);
+
+KBSECTION
+PROC
+ProcOneShotTriggerEntered((CHARACTERGUID)_Var1, STRIGGERGUID_S_ARX_EG_FinalFightStartSituation_a63ec3e2-6026-4802-8e65-3da6256066ec)
+AND NOT
+DB_OnlyOnce("EG_StartFirstFightDialog")
+THEN
+PROC_EG_FindAvatarForFirstFightDialog(_Var1);
+
+IF
+AttackedByObject((CHARACTERGUID)_Var1, (CHARACTERGUID)_Var2, _, _, _)
+AND
+DB_EG_FirstFightParticipants(_Var1)
+AND
+DB_IsPlayer(_Var2)
+AND NOT
+DB_OnlyOnce("EG_StartFirstFightDialog")
+THEN
+PROC_EG_FindAvatarForFirstFightDialog(_Var2);
+
+PROC
+PROC_EG_FindAvatarForFirstFightDialog((CHARACTERGUID)_Var1)
+AND
+DB_Avatars(_Var1)
+AND NOT
+DB_Dead(_Var1)
+AND
+CharacterIsPolymorphInteractionDisabled(_Var1, 0)
+AND
+QueryOnlyOnce("EG_StartFirstFightDialog")
+THEN
+PROC_EG_StartFirstFightDialog(_Var1);
+
+PROC
+PROC_EG_FindAvatarForFirstFightDialog((CHARACTERGUID)_Var1)
+AND NOT
+DB_Avatars(_Var1)
+AND
+DB_GLO_PartyMembers_RecruiteeAvatarBond(_Var1, _Var2)
+AND NOT
+DB_Dead(_Var2)
+AND
+CharacterIsPolymorphInteractionDisabled(_Var2, 0)
+AND
+QueryOnlyOnce("EG_StartFirstFightDialog")
+THEN
+PROC_EG_StartFirstFightDialog(_Var2);
+
+PROC
+PROC_EG_FindAvatarForFirstFightDialog((CHARACTERGUID)_Var1)
+AND
+DB_IsPlayer(_Var1)
+AND NOT
+DB_Dead(_Var1)
+AND
+CharacterIsPolymorphInteractionDisabled(_Var1, 0)
+AND
+QueryOnlyOnce("EG_StartFirstFightDialog")
+THEN
+PROC_EG_StartFirstFightDialog(_Var1);
+
+PROC
+PROC_EG_StartFirstFightDialog((CHARACTERGUID)_Var1)
+AND
+DB_IsPlayer(_Var1)
+AND
+DB_DialogPlayers(_Var2, _Var1, _)
+AND
+DB_DialogName(_Var4, _Var2)
+AND NOT
+DB_EG_GlobalDialogs(_Var4)
+THEN
+DialogRequestStop(_Var1);
+
+PROC
+PROC_EG_StartFirstFightDialog((CHARACTERGUID)_Var1)
+AND
+DB_EG_FirstFightDialogBraccusSpeaker(_Var2)
+THEN
+NOT DB_EG_FirstFightDialogBraccusSpeaker(_Var2);
+
+PROC
+PROC_EG_StartFirstFightDialog((CHARACTERGUID)_Var1)
+AND
+DB_EG_LucianDallisBraccusGarethSpeaker(_Var2)
+THEN
+NOT DB_EG_LucianDallisBraccusGarethSpeaker(_Var2);
+
+PROC
+PROC_EG_StartFirstFightDialog((CHARACTERGUID)_Var1)
+AND
+DB_Dead(CHARACTERGUID_S_GLO_Braccus_358ba541-0710-43be-8263-87afe1a8d9b5)
+THEN
+DB_EG_FirstFightDialogBraccusSpeaker(NULL_00000000-0000-0000-0000-000000000000);
+
+PROC
+PROC_EG_StartFirstFightDialog((CHARACTERGUID)_Var1)
+AND NOT
+DB_Dead(CHARACTERGUID_S_GLO_Braccus_358ba541-0710-43be-8263-87afe1a8d9b5)
+THEN
+DB_EG_FirstFightDialogBraccusSpeaker(CHARACTERGUID_S_GLO_Braccus_358ba541-0710-43be-8263-87afe1a8d9b5);
+
+PROC
+PROC_EG_StartFirstFightDialog((CHARACTERGUID)_Var1)
+THEN
+DB_EG_LucianDallisBraccusGarethSpeaker(NULL_00000000-0000-0000-0000-000000000000);
+
+PROC
+PROC_EG_StartFirstFightDialog((CHARACTERGUID)_Var1)
+AND
+DB_EG_FirstFightParticipants(CHARACTERGUID_S_EG_PurgedGareth_b9aedbdc-bd03-42ce-b97d-24d790d4f6e2)
+AND NOT
+DB_Dead(CHARACTERGUID_S_EG_PurgedGareth_b9aedbdc-bd03-42ce-b97d-24d790d4f6e2)
+THEN
+NOT DB_EG_LucianDallisBraccusGarethSpeaker(NULL_00000000-0000-0000-0000-000000000000);
+DB_EG_LucianDallisBraccusGarethSpeaker(CHARACTERGUID_S_EG_PurgedGareth_b9aedbdc-bd03-42ce-b97d-24d790d4f6e2);
+
+PROC
+PROC_EG_StartFirstFightDialog((CHARACTERGUID)_Var1)
+AND
+DB_EG_LucianDallisBraccusGarethSpeaker(CHARACTERGUID_S_EG_PurgedGareth_b9aedbdc-bd03-42ce-b97d-24d790d4f6e2)
+AND
+DB_IsPlayer(_Var1)
+THEN
+PartySetFlag(_Var1, "QuestUpdate_CORE_Chapter7_CRYPT_End_PurgedGareth");
+
+PROC
+PROC_EG_StartFirstFightDialog((CHARACTERGUID)_Var1)
+THEN
+RemoveStatus(CHARACTERGUID_S_GLO_Dallis_69b951dc-55a4-44b8-a2d5-5efedbd7d572, "COW");
+RemoveStatus(CHARACTERGUID_S_GLO_Dallis_69b951dc-55a4-44b8-a2d5-5efedbd7d572, "CHICKEN");
+RemoveStatus(CHARACTERGUID_S_GLO_Braccus_358ba541-0710-43be-8263-87afe1a8d9b5, "COW");
+RemoveStatus(CHARACTERGUID_S_GLO_Braccus_358ba541-0710-43be-8263-87afe1a8d9b5, "CHICKEN");
+RemoveStatus(CHARACTERGUID_S_ARX_EG_Lucian_62d0ca66-b6db-4a10-a457-effe0b64aca0, "COW");
+RemoveStatus(CHARACTERGUID_S_ARX_EG_Lucian_62d0ca66-b6db-4a10-a457-effe0b64aca0, "CHICKEN");
+RemoveStatus(CHARACTERGUID_S_EG_PurgedGareth_b9aedbdc-bd03-42ce-b97d-24d790d4f6e2, "COW");
+RemoveStatus(CHARACTERGUID_S_EG_PurgedGareth_b9aedbdc-bd03-42ce-b97d-24d790d4f6e2, "CHICKEN");
+
+PROC
+PROC_EG_StartFirstFightDialog((CHARACTERGUID)_Var1)
+AND
+DB_Avatars(CHARACTERGUID_S_Player_Ifan_ad9a3327-4456-42a7-9bf4-7ad60cc9e54f)
+AND NOT
+DB_Dead(CHARACTERGUID_S_Player_Ifan_ad9a3327-4456-42a7-9bf4-7ad60cc9e54f)
+AND
+IsSpeakerReserved(CHARACTERGUID_S_Player_Ifan_ad9a3327-4456-42a7-9bf4-7ad60cc9e54f, 0)
+AND
+CharacterIsPolymorphInteractionDisabled(CHARACTERGUID_S_Player_Ifan_ad9a3327-4456-42a7-9bf4-7ad60cc9e54f, 0)
+AND
+DB_EG_FirstFightDialogBraccusSpeaker(_Var2)
+AND
+DB_EG_LucianDallisBraccusGarethSpeaker(_Var3)
+THEN
+Proc_StartDialog(0, "EG_LucianDallisBraccus", CHARACTERGUID_S_GLO_Dallis_69b951dc-55a4-44b8-a2d5-5efedbd7d572, _Var2, CHARACTERGUID_S_ARX_EG_Lucian_62d0ca66-b6db-4a10-a457-effe0b64aca0, ITEMGUID_S_GLO_EighthPromiseHelper_000_9c8c6eb9-84bb-47a6-91cb-4ef33442df06, _Var3, CHARACTERGUID_S_Player_Ifan_ad9a3327-4456-42a7-9bf4-7ad60cc9e54f);
+Proc_EG_PlayerMoveToEndgameTalkspot(CHARACTERGUID_S_Player_Ifan_ad9a3327-4456-42a7-9bf4-7ad60cc9e54f);
+
+PROC
+PROC_EG_StartFirstFightDialog(CHARACTERGUID_S_Player_Ifan_ad9a3327-4456-42a7-9bf4-7ad60cc9e54f)
+AND
+DB_CompanionAvatarBond(CHARACTERGUID_S_Player_Ifan_ad9a3327-4456-42a7-9bf4-7ad60cc9e54f, _Var1)
+AND NOT
+DB_EG_FirstFightKilledPromised(_Var1)
+AND NOT
+DB_Dead(_Var1)
+AND
+IsSpeakerReserved(_Var1, 0)
+AND
+CharacterIsPolymorphInteractionDisabled(_Var1, 0)
+AND
+DB_EG_FirstFightDialogBraccusSpeaker(_Var2)
+AND
+DB_EG_LucianDallisBraccusGarethSpeaker(_Var3)
+THEN
+Proc_StartDialog(0, "EG_LucianDallisBraccus", CHARACTERGUID_S_GLO_Dallis_69b951dc-55a4-44b8-a2d5-5efedbd7d572, _Var2, CHARACTERGUID_S_ARX_EG_Lucian_62d0ca66-b6db-4a10-a457-effe0b64aca0, ITEMGUID_S_GLO_EighthPromiseHelper_000_9c8c6eb9-84bb-47a6-91cb-4ef33442df06, _Var3, _Var1);
+Proc_EG_PlayerMoveToEndgameTalkspot(_Var1);
+
+PROC
+PROC_EG_StartFirstFightDialog(CHARACTERGUID_S_Player_Fane_02a77f1f-872b-49ca-91ab-32098c443beb)
+AND
+DB_CompanionAvatarBond(CHARACTERGUID_S_Player_Fane_02a77f1f-872b-49ca-91ab-32098c443beb, _Var1)
+AND NOT
+DB_EG_FirstFightKilledPromised(_Var1)
+AND NOT
+DB_Dead(_Var1)
+AND
+IsSpeakerReserved(_Var1, 0)
+AND
+CharacterIsPolymorphInteractionDisabled(_Var1, 0)
+AND
+DB_EG_FirstFightDialogBraccusSpeaker(_Var2)
+AND
+DB_EG_LucianDallisBraccusGarethSpeaker(_Var3)
+THEN
+Proc_StartDialog(0, "EG_LucianDallisBraccus", CHARACTERGUID_S_GLO_Dallis_69b951dc-55a4-44b8-a2d5-5efedbd7d572, _Var2, CHARACTERGUID_S_ARX_EG_Lucian_62d0ca66-b6db-4a10-a457-effe0b64aca0, ITEMGUID_S_GLO_EighthPromiseHelper_000_9c8c6eb9-84bb-47a6-91cb-4ef33442df06, _Var3, _Var1);
+Proc_EG_PlayerMoveToEndgameTalkspot(_Var1);
+
+PROC
+PROC_EG_StartFirstFightDialog((CHARACTERGUID)_Var1)
+AND NOT
+DB_EG_FirstFightKilledPromised(_Var1)
+AND
+DB_EG_FirstFightDialogBraccusSpeaker(_Var2)
+AND
+DB_EG_LucianDallisBraccusGarethSpeaker(_Var3)
+THEN
+Proc_StartDialog(0, "EG_LucianDallisBraccus", CHARACTERGUID_S_GLO_Dallis_69b951dc-55a4-44b8-a2d5-5efedbd7d572, _Var2, CHARACTERGUID_S_ARX_EG_Lucian_62d0ca66-b6db-4a10-a457-effe0b64aca0, ITEMGUID_S_GLO_EighthPromiseHelper_000_9c8c6eb9-84bb-47a6-91cb-4ef33442df06, _Var3, _Var1);
+Proc_EG_PlayerMoveToEndgameTalkspot(_Var1);
+
+IF
+DialogStarted("EG_LucianDallisBraccus", (INTEGER)_Var1)
+AND
+DB_CompanionAvatarBond(CHARACTERGUID_S_Player_Ifan_ad9a3327-4456-42a7-9bf4-7ad60cc9e54f, _)
+AND
+CharacterIsControlled(CHARACTERGUID_S_Player_Ifan_ad9a3327-4456-42a7-9bf4-7ad60cc9e54f, _Var3)
+THEN
+Proc_SetConditionalObjectFlag(CHARACTERGUID_S_Player_Ifan_ad9a3327-4456-42a7-9bf4-7ad60cc9e54f, "EG_Skip_Ifan_COM", _Var3);
+
+IF
+DialogStarted("EG_LucianDallisBraccus", (INTEGER)_Var1)
+AND
+DB_CompanionAvatarBond(CHARACTERGUID_S_Player_Fane_02a77f1f-872b-49ca-91ab-32098c443beb, _)
+AND
+CharacterIsControlled(CHARACTERGUID_S_Player_Fane_02a77f1f-872b-49ca-91ab-32098c443beb, _Var3)
+THEN
+Proc_SetConditionalObjectFlag(CHARACTERGUID_S_Player_Ifan_ad9a3327-4456-42a7-9bf4-7ad60cc9e54f, "EG_Skip_Fane_COM", _Var3);
+
+IF
+DialogStarted("EG_LucianDallisBraccus", (INTEGER)_Var1)
+AND
+DB_DialogPlayers(_Var1, _Var2, 1)
+AND
+DB_IsPlayer(_Var3)
+AND NOT
+DB_Dead(_Var3)
+AND NOT
+DB_EG_FirstFightKilledPromised(_Var3)
+AND
+IsSpeakerReserved(_Var3, 0)
+THEN
+DialogAddActor(_Var1, _Var3);
+Proc_EG_PlayerMoveToEndgameTalkspot(_Var3);
+
+PROC
+Proc_EG_PlayerMoveToEndgameTalkspot((CHARACTERGUID)_Var1)
+AND
+DB_EG_EndgameTalkSpot(_Var2)
+AND NOT
+DB_EG_EndGameTalkSpotFound(_Var1)
+THEN
+NOT DB_EG_EndgameTalkSpot(_Var2);
+DB_EG_EndGameTalkSpotFound(_Var1);
+CharacterMoveTo(_Var1, _Var2, 1, "", 0);
+
+IF
+DialogStarted("EG_LucianDallisBraccus", (INTEGER)_Var1)
+AND
+DB_CompanionAvatarBond(CHARACTERGUID_S_Player_Ifan_ad9a3327-4456-42a7-9bf4-7ad60cc9e54f, _Var2)
+THEN
+ObjectSetFlag(_Var2, "GLO_IfansAvatar");
+
+IF
+GlobalFlagSet("EG_TeleportGodKingHelper")
+AND
+DB_IsPlayer(_Var1)
+AND
+IsTagged(_Var1, "PROMISED", 1)
+THEN
+TeleportTo(ITEMGUID_S_GLO_EighthPromiseHelper_000_9c8c6eb9-84bb-47a6-91cb-4ef33442df06, _Var1);
+
+IF
+DialogStarted("EG_LucianDallisBraccus", _)
+THEN
+CharacterSetImmortal(CHARACTERGUID_S_GLO_Braccus_358ba541-0710-43be-8263-87afe1a8d9b5, 0);
+
+IF
+DialogEnded("EG_LucianDallisBraccus", _)
+AND
+DB_GlobalFlag("EG_PromisedFight")
+AND
+DB_IsPlayer(_Var2)
+AND
+IsTagged(_Var2, "PROMISED", 1)
+AND
+CharacterGetReservedUserID(_Var2, _Var3)
+THEN
+SetTag(_Var2, "BLOCK_RESURRECTION");
+DB_EG_FirstFightKickedPromisePlayer(_Var2);
+PROC_GLO_PartyMembers_Kick(_Var2, "Hero KickedAvatarCompanions");
+CharacterSetRelationFactionToIndivFaction("ARX_EG_Lucian", _Var2, 0);
+CharacterSetRelationIndivFactionToFaction(_Var2, "ARX_EG_Lucian", 0);
+PROC_EG_LucianBecameHostile();
+PROC_EG_SetFightParticipantsArena(1);
+
+IF
+DialogEnded("EG_LucianDallisBraccus", _)
+AND
+DB_GlobalFlag("EG_KillThePromised")
+AND
+DB_IsPlayer(_Var2)
+AND NOT
+DB_EG_FirstFightKilledPromised(_Var2)
+AND
+IsTagged(_Var2, "PROMISED", 1)
+THEN
+SetTag(_Var2, "BLOCK_RESURRECTION");
+DB_EG_FirstFightKilledPromised(_Var2);
+CharacterDie(_Var2, 1, "Explode");
+Proc_EG_KickPlayerIfUserHasOtherChars(_Var2);
+Proc_EG_TryRestartAfterPromisedExplosion();
+
+PROC
+Proc_EG_KickPlayerIfUserHasOtherChars((CHARACTERGUID)_Var1)
+AND
+CharacterGetReservedUserID(_Var1, _Var2)
+AND
+DB_IsPlayer(_Var3)
+AND
+DB_IsPlayer(_Var1)
+AND
+CharacterGetReservedUserID(_Var3, _Var2)
+AND
+_Var1 != _Var3
+THEN
+NOT DB_IsPlayer(_Var1);
+DB_EG_MakeNPCAferDying(_Var1);
+
+IF
+DB_Dead(_Var1)
+AND
+DB_EG_MakeNPCAferDying(_Var1)
+AND
+GetPosition(_Var1, _Var2, _Var3, _Var4)
+AND
+CreateItemTemplateAtPosition("CONT_Humans_Backpack_Merchant_A_360e3e11-c7f8-4281-848a-596e37df884b", _Var2, _Var3, _Var4, _Var5)
+THEN
+MoveAllItemsTo(_Var1, _Var5);
+NOT DB_EG_MakeNPCAferDying(_Var1);
+CharacterMakeNPC(_Var1);
+
+PROC
+Proc_EG_TryRestartAfterPromisedExplosion()
+AND
+DB_IsPlayer(_Var1)
+AND NOT
+DB_EG_FirstFightKilledPromised(_Var1)
+AND
+CharacterIsDead(_Var1, 0)
+AND
+IsSpeakerReserved(_Var1, 0)
+AND NOT
+DB_GlobalFlag("EG_SidedWithIfan")
+THEN
+RemoveStatus(_Var1, "COW");
+RemoveStatus(_Var1, "CHICKEN");
+DB_EG_RestartedAfterPromisedExplosion(1);
+PROC_EG_StartFirstFightDialog(_Var1);
+
+PROC
+Proc_EG_TryRestartAfterPromisedExplosion()
+AND NOT
+DB_EG_RestartedAfterPromisedExplosion(1)
+THEN
+PROC_EG_TryStartPostBraccusDialogueIfPromisedHandled();
+
+IF
+CharacterDied((CHARACTERGUID)_Var1)
+AND
+DB_GlobalFlag("EG_PromisedFight")
+AND
+DB_EG_FirstFightKickedPromisePlayer(_Var1)
+AND
+DB_IsPlayer(_Var2)
+THEN
+SetInArena(_Var2, 0);
+
+IF
+CharacterDied((CHARACTERGUID)_Var1)
+AND
+DB_GlobalFlag("EG_PromisedFight")
+AND
+DB_EG_FirstFightKickedPromisePlayer(_Var1)
+AND
+DB_EG_FirstFightParticipants(_Var2)
+THEN
+SetInArena(_Var2, 0);
+
+IF
+CharacterDying((CHARACTERGUID)_Var1)
+AND
+DB_GlobalFlag("EG_PromisedFight")
+AND
+DB_EG_FirstFightKickedPromisePlayer(_Var1)
+AND NOT
+DB_GlobalFlag("EG_SidedWithIfan")
+THEN
+PROC_EG_SpeechAtEndOfCombat("EG_LucianDallisBraccus");
+
+IF
+CharacterDied((CHARACTERGUID)_Var1)
+AND
+DB_GlobalFlag("EG_PromisedFight")
+AND
+DB_EG_FirstFightKickedPromisePlayer(_Var1)
+AND
+DB_GlobalFlag("EG_SidedWithIfan")
+THEN
+PROC_EG_TryStartPostBraccusDialogueIfPromisedHandled();
+
+IF
+CharacterDied((CHARACTERGUID)_Var1)
+AND
+DB_GlobalFlag("EG_PromisedFight")
+AND NOT
+DB_EG_FirstFightKickedPromisePlayer(_Var1)
+THEN
+PROC_EG_TryStartPostBraccusDialogue();
+
+PROC
+PROC_EG_SpeechAtEndOfCombat_Ready("EG_LucianDallisBraccus")
+AND
+DB_EG_FirstFightKickedPromisePlayer(_Var1)
+AND
+GetClosestAlivePlayer(_Var1, _Var2, _)
+THEN
+RemoveStatus(_Var2, "COW");
+RemoveStatus(_Var2, "CHICKEN");
+PROC_EG_StartFirstFightDialog(_Var2);
+
+IF
+CharacterDied((CHARACTERGUID)_Var1)
+AND
+ObjectGetFlag(_Var1, "EG_PromisedFight_ObjFlag", 1)
+THEN
+ObjectSetFlag(_Var1, "End_TakeSwornFailed");
+
+IF
+DialogEnded("EG_LucianDallisBraccus", _)
+AND
+DB_GlobalFlag("EndFight_IfanVsAll")
+AND
+DB_CompanionAvatarBond(CHARACTERGUID_S_Player_Ifan_ad9a3327-4456-42a7-9bf4-7ad60cc9e54f, _Var2)
+THEN
+PROC_Origins_CompanionLeavePermanently(CHARACTERGUID_S_Player_Ifan_ad9a3327-4456-42a7-9bf4-7ad60cc9e54f);
+SetVarFixedString(CHARACTERGUID_S_Player_Ifan_ad9a3327-4456-42a7-9bf4-7ad60cc9e54f, "currentState", "");
+SetRelationIndivFactionToPlayers(CHARACTERGUID_S_Player_Ifan_ad9a3327-4456-42a7-9bf4-7ad60cc9e54f, 0);
+CharacterSetRelationFactionToIndivFaction("ARX_EG_Lucian", CHARACTERGUID_S_Player_Ifan_ad9a3327-4456-42a7-9bf4-7ad60cc9e54f, 0);
+CharacterSetRelationIndivFactionToFaction(CHARACTERGUID_S_Player_Ifan_ad9a3327-4456-42a7-9bf4-7ad60cc9e54f, "ARX_EG_Lucian", 0);
+
+IF
+CharacterDied(CHARACTERGUID_S_Player_Ifan_ad9a3327-4456-42a7-9bf4-7ad60cc9e54f)
+AND
+DB_GlobalFlag("EndFight_IfanVsAll")
+THEN
+PROC_EG_SetFightParticipantsArena(0);
+PROC_EG_SpeechAtEndOfCombat("EG_LucianDallisBraccus");
+
+PROC
+PROC_EG_SpeechAtEndOfCombat_Ready("EG_LucianDallisBraccus")
+AND
+DB_GlobalFlag("EndFight_IfanVsAll")
+AND NOT
+DB_EG_IfanVsAllFollowUpDone(1)
+AND
+GetClosestAlivePlayer(CHARACTERGUID_S_Player_Ifan_ad9a3327-4456-42a7-9bf4-7ad60cc9e54f, _Var1, _)
+THEN
+RemoveStatus(_Var1, "COW");
+RemoveStatus(_Var1, "CHICKEN");
+DB_EG_IfanVsAllFollowUpDone(1);
+PROC_EG_StartFirstFightDialog(_Var1);
+
+QRY
+QRY_EG_FirstFightParticipantActive()
+AND
+DB_EG_FirstFightParticipants(_Var1)
+AND NOT
+DB_Dead(_Var1)
+AND
+HasActiveStatus(_Var1, "UNCONSCIOUS", 0)
+THEN
+DB_NOOP(1);
+
+PROC
+PROC_EG_TryStartPostBraccusDialogueIfPromisedHandled()
+AND
+DB_GlobalFlag("EG_SidedWithIfan")
+AND
+DB_IsPlayer(_Var1)
+AND
+IsTagged(_Var1, "PROMISED", 1)
+AND NOT
+DB_EG_RestartedLucianDallisBraccusAfterSidedWithIfan(1)
+AND NOT
+QRY_EG_FirstFightParticipantActive()
+THEN
+DB_EG_TryStartPostBraccusDialogueHandled(1);
+DB_EG_RestartedLucianDallisBraccusAfterSidedWithIfan(1);
+PROC_EG_SetFightParticipantsArena(0);
+PROC_EG_RestartLucianDallisBraccusForPromised(_Var1);
+
+PROC
+PROC_EG_TryStartPostBraccusDialogueIfPromisedHandled()
+AND NOT
+DB_EG_TryStartPostBraccusDialogueHandled(1)
+THEN
+PROC_EG_TryStartPostBraccusDialogue();
+
+PROC
+PROC_EG_TryStartPostBraccusDialogueIfPromisedHandled()
+THEN
+NOT DB_EG_TryStartPostBraccusDialogueHandled(1);
+
+PROC
+PROC_EG_RestartLucianDallisBraccusForPromised((CHARACTERGUID)_Var1)
+AND
+CharacterIsDead(_Var1, 1)
+THEN
+DB_EG_ResurrectingPromisedForDialog(_Var1);
+Proc_GLO_Promise_Effect_Prepare(_Var1);
+CharacterResurrect(_Var1);
+
+PROC
+PROC_EG_RestartLucianDallisBraccusForPromised((CHARACTERGUID)_Var1)
+AND
+CharacterIsDead(_Var1, 0)
+THEN
+PROC_EG_SpeechAtEndOfCombat("EG_LucianDallisBraccus");
+
+IF
+CharacterResurrected((CHARACTERGUID)_Var1)
+AND
+DB_EG_ResurrectingPromisedForDialog(_Var1)
+THEN
+Proc_GLO_Promise_Effect_Stop(_Var1);
+NOT DB_EG_ResurrectingPromisedForDialog(_Var1);
+PROC_EG_RestartLucianDallisBraccusForPromised(_Var1);
+
+PROC
+PROC_EG_SpeechAtEndOfCombat_Ready("EG_LucianDallisBraccus")
+AND
+DB_GlobalFlag("EG_SidedWithIfan")
+AND NOT
+DB_EG_SidedWithIfanDone(1)
+AND
+GetClosestAlivePlayer(CHARACTERGUID_S_Player_Ifan_ad9a3327-4456-42a7-9bf4-7ad60cc9e54f, _Var1, _)
+THEN
+RemoveStatus(_Var1, "COW");
+RemoveStatus(_Var1, "CHICKEN");
+DB_EG_SidedWithIfanDone(1);
+PROC_EG_StartFirstFightDialog(_Var1);
+
+IF
+DialogEnded("EG_LucianDallisBraccus", _)
+AND
+DB_GlobalFlag("EndFight_FightLucian")
+THEN
+SetRelationFactionToPlayers("ARX_EG_Lucian", 0);
+PROC_EG_LucianBecameHostile();
+
+IF
+StoryEvent(CHARACTERGUID_S_GLO_Braccus_358ba541-0710-43be-8263-87afe1a8d9b5, "EG_BraccusTransformationEffect_1")
+THEN
+PROC_LoopEffect("RS3_FX_Skills_Void_EtherealStorm_Prepare_Root_01", CHARACTERGUID_S_GLO_Braccus_358ba541-0710-43be-8263-87afe1a8d9b5, "TransformationLoop", "ARX_EndGame", "");
+PlayEffectAtPosition("RS3_FX_GP_ScriptedEvent_Braccus_Empower_SceneDestruction_01", 60, -3.68, 53.51);
+
+IF
+StoryEvent(CHARACTERGUID_S_GLO_Braccus_358ba541-0710-43be-8263-87afe1a8d9b5, "EG_BraccusTransformationEffect_1")
+AND
+DB_InRegion(_Var1, TRIGGERGUID_S_EG_KnockDownTrigger_d25ec409-32f8-4adf-9183-ec9389bf0726)
+AND
+_Var1 != CHARACTERGUID_S_GLO_Braccus_358ba541-0710-43be-8263-87afe1a8d9b5
+AND
+HasActiveStatus(_Var1, "KNOCKED_DOWN", 0)
+AND
+HasActiveStatus(_Var1, "InstantKnockdown", 0)
+AND
+HasActiveStatus(_Var1, "UNCONSCIOUS", 0)
+AND NOT
+DB_Dead(_Var1)
+THEN
+DB_EG_KnockedDownAfterBraccusTransform(_Var1);
+ApplyStatus(_Var1, "KNOCKED_DOWN", -1, 1);
+
+IF
+StoryEvent(CHARACTERGUID_S_GLO_Braccus_358ba541-0710-43be-8263-87afe1a8d9b5, (STRING)_Var1)
+AND
+DB_EG_BraccusImpacts(_Var1, _Var2)
+AND
+DB_IsPlayer(_Var3)
+AND
+GetDistanceTo(_Var3, CHARACTERGUID_S_GLO_Braccus_358ba541-0710-43be-8263-87afe1a8d9b5, _Var4)
+AND
+_Var4 <= 20
+THEN
+PlayEffect(_Var3, _Var2);
+
+IF
+StoryEvent(CHARACTERGUID_S_GLO_Braccus_358ba541-0710-43be-8263-87afe1a8d9b5, "EG_BraccusTransformationEffect_1")
+AND
+GetPosition(CHARACTERGUID_S_GLO_Braccus_358ba541-0710-43be-8263-87afe1a8d9b5, _Var1, _Var2, _Var3)
+THEN
+PlayEffectAtPosition("RS3_FX_GP_ScriptedEvent_Braccus_Empower_01", _Var1, _Var2, _Var3);
+PlayEffectAtPosition("RS3_FX_GP_ScriptedEvent_Braccus_Empower_01_SupportElements", _Var1, _Var2, _Var3);
+
+IF
+StoryEvent(CHARACTERGUID_S_GLO_Braccus_358ba541-0710-43be-8263-87afe1a8d9b5, "EG_BraccusTransformationHappens")
+AND
+DB_GlobalFlag("ARX_EG_LucianIsHostile")
+AND
+GetPosition(CHARACTERGUID_S_GLO_Braccus_358ba541-0710-43be-8263-87afe1a8d9b5, _Var1, _Var2, _Var3)
+THEN
+PROC_StopLoopEffect(CHARACTERGUID_S_GLO_Braccus_358ba541-0710-43be-8263-87afe1a8d9b5, "TransformationLoop");
+PlayEffectAtPosition("RS3_FX_Skills_Polymorph_Soul_TurnInto_Cast_Overlay_01", _Var1, _Var2, _Var3);
+PlayEffectAtPosition("RS3_FX_GP_ScriptedEvent_ARX_Endgame_BraccusTransformation_01", _Var1, _Var2, _Var3);
+CharacterSetCustomName(CHARACTERGUID_S_GLO_Braccus_358ba541-0710-43be-8263-87afe1a8d9b5, "");
+CharacterTransform(CHARACTERGUID_S_GLO_Braccus_358ba541-0710-43be-8263-87afe1a8d9b5, "CHARACTERGUID_EG_Transform_Braccus_6b7b437c-a273-4c3f-a123-ae35302aec69", 0, 0, 1, 1, 1, 1, 0);
+
+IF
+StoryEvent(CHARACTERGUID_S_GLO_Braccus_358ba541-0710-43be-8263-87afe1a8d9b5, "EG_BraccusTransformationHappens")
+AND NOT
+DB_GlobalFlag("ARX_EG_LucianIsHostile")
+AND
+GetPosition(CHARACTERGUID_S_GLO_Braccus_358ba541-0710-43be-8263-87afe1a8d9b5, _Var1, _Var2, _Var3)
+THEN
+PROC_StopLoopEffect(CHARACTERGUID_S_GLO_Braccus_358ba541-0710-43be-8263-87afe1a8d9b5, "TransformationLoop");
+PlayEffectAtPosition("RS3_FX_Skills_Polymorph_Soul_TurnInto_Cast_Overlay_01", _Var1, _Var2, _Var3);
+PlayEffectAtPosition("RS3_FX_GP_ScriptedEvent_ARX_Endgame_BraccusTransformation_01", _Var1, _Var2, _Var3);
+CharacterSetCustomName(CHARACTERGUID_S_GLO_Braccus_358ba541-0710-43be-8263-87afe1a8d9b5, "");
+CharacterTransform(CHARACTERGUID_S_GLO_Braccus_358ba541-0710-43be-8263-87afe1a8d9b5, "CHARACTERGUID_EG_Transform_Braccus_Strong_dd652e06-fe3a-4017-848a-6431a861fbf2", 0, 0, 1, 1, 1, 1, 0);
+CharacterTransform(CHARACTERGUID_S_EndGame_Kraken_ae15de17-4238-4ae0-af43-48cd0f72f8f5, "CHARACTERGUID_DONOTUSE_Creatures_Kraken_C_fa901ff8-0ce0-4b02-9362-e425d3aa939c", 0, 0, 1, 1, 1, 1, 0);
+
+IF
+GlobalFlagSet("EndGame_BraccusTransformStarted")
+AND
+GetClosestAlivePlayer(CHARACTERGUID_S_GLO_Braccus_358ba541-0710-43be-8263-87afe1a8d9b5, _Var1, _Var2)
+AND
+StartDialog_Internal("EG_BraccusSummon", 1, CHARACTERGUID_S_GLO_Braccus_358ba541-0710-43be-8263-87afe1a8d9b5, CHARACTERGUID_S_ARX_EG_Lucian_62d0ca66-b6db-4a10-a457-effe0b64aca0, CHARACTERGUID_S_GLO_Dallis_69b951dc-55a4-44b8-a2d5-5efedbd7d572, ITEMGUID_S_EG_KrakenCamHelper_d7482c6f-9230-4d2e-9c7d-5e43b39f05fc, _Var1, NULL_00000000-0000-0000-0000-000000000000, 1)
+THEN
+DB_Noop(1);
+
+IF
+DialogEnded("EG_BraccusSummon", _)
+THEN
+JumpToTurn(CHARACTERGUID_S_EndGame_Kraken_ae15de17-4238-4ae0-af43-48cd0f72f8f5);
+
+IF
+DialogEnded("EG_LucianDallisBraccus", _)
+AND
+DB_GlobalFlag("EndFight_BraccusTransform")
+AND NOT
+DB_GlobalFlag("EndGame_BraccusTransformStarted")
+THEN
+SetRelationFactionToPlayers("ARX_EG_Lucian", 100);
+Proc_EG_GatherForBraccusTransform();
+
+IF
+DialogEnded("EG_BraccusBetrayal", _)
+AND
+DB_GlobalFlag("EndFight_BraccusTransform")
+AND NOT
+DB_GlobalFlag("EndGame_BraccusTransformStarted")
+THEN
+CharacterSetImmortal(CHARACTERGUID_S_GLO_Braccus_358ba541-0710-43be-8263-87afe1a8d9b5, 0);
+Proc_EG_GatherForBraccusTransform();
+
+IF
+CharacterReceivedDamage(CHARACTERGUID_S_GLO_Dallis_69b951dc-55a4-44b8-a2d5-5efedbd7d572, _, _)
+AND NOT
+DB_GlobalFlag("EndGame_BraccusTransformStarted")
+AND
+IsInArena(CHARACTERGUID_S_GLO_Braccus_358ba541-0710-43be-8263-87afe1a8d9b5, 1)
+AND
+CharacterGetHitpointsPercentage(CHARACTERGUID_S_GLO_Dallis_69b951dc-55a4-44b8-a2d5-5efedbd7d572, _Var3)
+AND
+_Var3 <= 25
+AND
+GetClosestAlivePlayer(CHARACTERGUID_S_GLO_Braccus_358ba541-0710-43be-8263-87afe1a8d9b5, _Var4, _)
+THEN
+ObjectSetFlag(CHARACTERGUID_S_GLO_Braccus_358ba541-0710-43be-8263-87afe1a8d9b5, "EG_DallisHurt", 0);
+Proc_EG_BraccusBetrayalDialogTimer(_Var4);
+
+IF
+CharacterReceivedDamage(CHARACTERGUID_S_GLO_Braccus_358ba541-0710-43be-8263-87afe1a8d9b5, _, _)
+AND NOT
+DB_GlobalFlag("EndGame_BraccusTransformStarted")
+AND
+IsInArena(CHARACTERGUID_S_GLO_Braccus_358ba541-0710-43be-8263-87afe1a8d9b5, 1)
+AND
+CharacterGetHitpointsPercentage(CHARACTERGUID_S_GLO_Braccus_358ba541-0710-43be-8263-87afe1a8d9b5, _Var3)
+AND
+_Var3 <= 25
+AND
+GetClosestAlivePlayer(CHARACTERGUID_S_GLO_Braccus_358ba541-0710-43be-8263-87afe1a8d9b5, _Var4, _)
+THEN
+ObjectSetFlag(CHARACTERGUID_S_GLO_Braccus_358ba541-0710-43be-8263-87afe1a8d9b5, "EG_BraccusHurt", 0);
+Proc_EG_BraccusBetrayalDialogTimer(_Var4);
+
+PROC
+Proc_EG_BraccusBetrayalDialogTimer((CHARACTERGUID)_Var1)
+AND
+QueryOnlyOnce("EG_BraccusBetrayalDialogTimer")
+THEN
+ProcObjectTimer(_Var1, "EG_BraccusBetrayalDialogTimer", 300);
+
+PROC
+ProcObjectTimerFinished((CHARACTERGUID)_Var1, "EG_BraccusBetrayalDialogTimer")
+AND NOT
+DB_Dead(S_GLO_Braccus_358ba541-0710-43be-8263-87afe1a8d9b5)
+AND NOT
+DB_Dead(_Var1)
+AND
+HasAppliedStatus(S_GLO_Braccus_358ba541-0710-43be-8263-87afe1a8d9b5, "DYING", 0)
+AND
+HasAppliedStatus(_Var1, "DYING", 0)
+THEN
+Proc_EG_BraccusBetrayalDialog(_Var1);
+
+PROC
+ProcObjectTimerFinished((CHARACTERGUID)_Var1, "EG_BraccusBetrayalDialogTimer")
+AND
+HasAppliedStatus(_Var1, "DYING", 1)
+THEN
+NOT DB_OnlyOnce("EG_BraccusBetrayalDialogTimer");
+
+PROC
+ProcObjectTimerFinished((CHARACTERGUID)_Var1, "EG_BraccusBetrayalDialogTimer")
+AND
+DB_Dead(_Var1)
+THEN
+NOT DB_OnlyOnce("EG_BraccusBetrayalDialogTimer");
+
+PROC
+Proc_EG_BraccusBetrayalDialog((CHARACTERGUID)_Var1)
+AND
+CharacterIsIncapacitated(S_GLO_Braccus_358ba541-0710-43be-8263-87afe1a8d9b5, 1)
+THEN
+ProcSetInvulnerable(S_GLO_Braccus_358ba541-0710-43be-8263-87afe1a8d9b5, 1);
+RemoveHarmfulStatuses(S_GLO_Braccus_358ba541-0710-43be-8263-87afe1a8d9b5);
+
+PROC
+Proc_EG_BraccusBetrayalDialog((CHARACTERGUID)_Var1)
+AND
+QueryOnlyOnce("EG_BraccusBetrayal")
+AND
+StartDialog_Internal("EG_BraccusBetrayal", 1, CHARACTERGUID_S_GLO_Dallis_69b951dc-55a4-44b8-a2d5-5efedbd7d572, CHARACTERGUID_S_ARX_EG_Lucian_62d0ca66-b6db-4a10-a457-effe0b64aca0, CHARACTERGUID_S_GLO_Braccus_358ba541-0710-43be-8263-87afe1a8d9b5, _Var1, NULL_00000000-0000-0000-0000-000000000000, NULL_00000000-0000-0000-0000-000000000000, 1)
+THEN
+DB_OnlyOnce("EndGame_BraccusTransformStart");
+DB_CombatCutscene_PrioritizedObject(CHARACTERGUID_S_GLO_Braccus_358ba541-0710-43be-8263-87afe1a8d9b5);
+CharacterSetReactionPriority(CHARACTERGUID_S_GLO_Braccus_358ba541-0710-43be-8263-87afe1a8d9b5, "Use_SummonKraken", 500);
+proc_SE_ARX_Endgame_SFX_PostFX_Deactivate();
+
+IF
+CombatStarted((INTEGER)_Var1)
+AND NOT
+DB_OnlyOnce("EndGame_BraccusTransform")
+AND
+DB_GlobalFlag("EndFight_BraccusTransform")
+AND
+DB_CombatCharacters(CHARACTERGUID_S_GLO_Braccus_358ba541-0710-43be-8263-87afe1a8d9b5, _Var1)
+AND
+DB_IsPlayer(_Var2)
+AND
+DB_CombatCharacters(_Var2, _Var1)
+AND NOT
+DB_GlobalFlag("EndGame_BraccusTransformStarted")
+THEN
+DB_CombatCutscene_PrioritizedObject(CHARACTERGUID_S_GLO_Braccus_358ba541-0710-43be-8263-87afe1a8d9b5);
+CharacterSetReactionPriority(CHARACTERGUID_S_GLO_Braccus_358ba541-0710-43be-8263-87afe1a8d9b5, "Use_SummonKraken", 500);
+
+IF
+StoryEvent(CHARACTERGUID_S_GLO_Braccus_358ba541-0710-43be-8263-87afe1a8d9b5, "EG_BraccusTransformation")
+AND
+DB_CombatCharacters(CHARACTERGUID_S_GLO_Braccus_358ba541-0710-43be-8263-87afe1a8d9b5, _Var1)
+AND
+DB_CombatCharacters(_Var2, _Var1)
+AND
+_Var2 != CHARACTERGUID_S_GLO_Braccus_358ba541-0710-43be-8263-87afe1a8d9b5
+THEN
+ObjectSetFlag(_Var2, "GLO_BlockRegenAfterCombat", 0);
+
+IF
+StoryEvent(CHARACTERGUID_S_GLO_Braccus_358ba541-0710-43be-8263-87afe1a8d9b5, "EG_BraccusTransformation")
+THEN
+ActivatePersistentLevelTemplateWithCombat(LEVELTEMPLATEGUID_S_ARX_EndGame_Fight2_4487e011-1282-491e-946a-6bcfd2f24dfc);
+CharacterSetImmortal(CHARACTERGUID_S_GLO_Braccus_358ba541-0710-43be-8263-87afe1a8d9b5, 0);
+CharacterSetReactionPriority(CHARACTERGUID_S_GLO_Dallis_69b951dc-55a4-44b8-a2d5-5efedbd7d572, "EndGameTransform", 500);
+SetTag(CHARACTERGUID_S_GLO_Dallis_69b951dc-55a4-44b8-a2d5-5efedbd7d572, "AI_IGNORED_TARGET");
+
+IF
+StoryEvent(CHARACTERGUID_S_GLO_Braccus_358ba541-0710-43be-8263-87afe1a8d9b5, "EG_BraccusTransformation")
+AND
+DB_EG_FirstFightParticipants(_Var1)
+THEN
+SetStoryEvent(_Var1, "ClearPeaceReturn");
+SetCombatGroupID(_Var1, "c1c20d9b-2507-4ebf-8ed5-1fd4512f7a34");
+
+IF
+GlobalFlagSet("EG_BraccusSummonKraken")
+THEN
+ProcSetInvulnerable(S_GLO_Braccus_358ba541-0710-43be-8263-87afe1a8d9b5, 0);
+CharacterAppear(CHARACTERGUID_S_EndGame_Kraken_ae15de17-4238-4ae0-af43-48cd0f72f8f5, 1, "EG_KrakenOnStage");
+CharacterSetForceSynch(CHARACTERGUID_S_EndGame_Kraken_ae15de17-4238-4ae0-af43-48cd0f72f8f5, 1);
+MusicPlayGeneral("Arx_end_Fight_part_02");
+
+IF
+GlobalFlagSet("EG_BraccusSummonKraken")
+AND
+DB_IsPlayer(_Var1)
+THEN
+StartCameraSpline(SPLINEGUID_S_ARX_KrakenAppearance_bfd87802-56ab-4123-95b7-1f4b0cb51295, _Var1, 3, 1, 1, 0);
+
+IF
+TextEventSet("EG_TryKrakenSpline")
+THEN
+CharacterAppear(CHARACTERGUID_S_EndGame_Kraken_ae15de17-4238-4ae0-af43-48cd0f72f8f5, 1, "EG_KrakenOnStage");
+MusicPlayGeneral("Arx_end_Fight_part_02");
+
+IF
+TextEventSet("EG_TryKrakenSpline")
+AND
+DB_IsPlayer(_Var1)
+THEN
+StartCameraSpline(SPLINEGUID_S_ARX_KrakenAppearance_bfd87802-56ab-4123-95b7-1f4b0cb51295, _Var1, 3, 1, 1, 0);
+
+IF
+StoryEvent(CHARACTERGUID_S_EndGame_Kraken_ae15de17-4238-4ae0-af43-48cd0f72f8f5, "EG_KrakenOnStage")
+THEN
+CharacterSetForceSynch(CHARACTERGUID_S_EndGame_Kraken_ae15de17-4238-4ae0-af43-48cd0f72f8f5, 1);
+SetInArena(CHARACTERGUID_S_EndGame_Kraken_ae15de17-4238-4ae0-af43-48cd0f72f8f5, 1);
+EnterCombat(CHARACTERGUID_S_EndGame_Kraken_ae15de17-4238-4ae0-af43-48cd0f72f8f5, CHARACTERGUID_S_GLO_Braccus_358ba541-0710-43be-8263-87afe1a8d9b5);
+Proc_CombatCutscene_PrioritizedObject_Purge();
+SetVarFixedString(CHARACTERGUID_S_GLO_Braccus_358ba541-0710-43be-8263-87afe1a8d9b5, "AiHint", "AiHint_Mage");
+
+IF
+StoryEvent(CHARACTERGUID_S_EndGame_Kraken_ae15de17-4238-4ae0-af43-48cd0f72f8f5, "EG_KrakenOnStage")
+THEN
+EndTurn(CHARACTERGUID_S_GLO_Braccus_358ba541-0710-43be-8263-87afe1a8d9b5);
+CharacterSetReactionPriority(CHARACTERGUID_S_GLO_Braccus_358ba541-0710-43be-8263-87afe1a8d9b5, "Use_SummonKraken", 0);
+
+IF
+StoryEvent(CHARACTERGUID_S_EndGame_Kraken_ae15de17-4238-4ae0-af43-48cd0f72f8f5, "EG_KrakenOnStage")
+AND
+DB_CombatCharacters(CHARACTERGUID_S_GLO_Braccus_358ba541-0710-43be-8263-87afe1a8d9b5, _Var1)
+AND
+DB_CombatCharacters(_Var2, _Var1)
+THEN
+ObjectClearFlag(_Var2, "GLO_BlockRegenAfterCombat", 0);
+
+PROC
+Proc_EG_GatherForBraccusTransform()
+THEN
+SetFaction(CHARACTERGUID_S_GLO_Braccus_358ba541-0710-43be-8263-87afe1a8d9b5, "ARX_EG_GodKing");
+
+PROC
+Proc_EG_GatherForBraccusTransform()
+AND
+DB_IsPlayer(_Var1)
+AND NOT
+DB_Dead(_Var1)
+THEN
+EnterCombat(_Var1, CHARACTERGUID_S_GLO_Braccus_358ba541-0710-43be-8263-87afe1a8d9b5);
+
+IF
+CharacterEnteredTrigger(_, TRIGGERGUID_S_EG_HallOfEchoesCrypt_2e5fdc20-a715-47b1-a25e-e6eaeb4c074f)
+AND
+QueryOnlyOnce("EG_HallofEchoesCryptTeleport")
+THEN
+PROC_EG_TeleportCharactersToHallOfEchoesCrypt();
+
+PROC
+PROC_EG_TeleportCharactersToHallOfEchoesCrypt()
+AND
+DB_EG_TransitionTrigger(_Var1, _, _Var3)
+AND
+DB_InRegion(_Var4, _Var1)
+AND NOT
+DB_AppearingAllies(_Var4, _, _)
+THEN
+SetStoryEvent(_Var4, _Var3);
+
+IF
+StoryEvent((CHARACTERGUID)_Var1, (STRING)_Var2)
+AND
+DB_EG_TransitionTrigger(_Var3, _, _Var2)
+AND
+DB_EG_HoeTransferCounter(_Var3, _Var5)
+AND
+IntegerSum(1, _Var5, _Var6)
+AND
+DB_EG_HoETransferDestinations(_Var3, _Var7, _Var6)
+THEN
+PlayEffect(_Var1, "RS3_FX_GP_ScriptedEvent_HOE_Summoning_01");
+TeleportTo(_Var1, _Var7, "", 0);
+NOT DB_EG_HoeTransferCounter(_Var3, _Var5);
+DB_EG_HoeTransferCounter(_Var3, _Var6);
+
+IF
+StoryEvent((CHARACTERGUID)_Var1, (STRING)_Var2)
+AND
+DB_EG_TransitionTrigger(_Var3, _, _Var2)
+AND NOT
+DB_EG_HoeTransferCounter(_Var3, _)
+AND
+DB_EG_HoETransferDestinations(_Var3, _Var6, 1)
+THEN
+PlayEffect(_Var1, "RS3_FX_GP_ScriptedEvent_HOE_Summoning_01");
+TeleportTo(_Var1, _Var6, "", 0);
+DB_EG_HoeTransferCounter(_Var3, 1);
+
+IF
+DB_EG_HoeTransferCounter(_Var1, _Var2)
+AND
+DB_EG_TransitionTrigger(_Var1, _Var2, _)
+THEN
+NOT DB_EG_HoeTransferCounter(_Var1, _Var2);
+
+PROC
+PROC_EG_TeleportCharactersToHallOfEchoesCrypt()
+THEN
+GlobalSetFlag("EG_DestroyDestructibles");
+
+PROC
+PROC_EG_TeleportCharactersToHallOfEchoesCrypt()
+AND
+DB_EG_KnockedDownAfterBraccusTransform(_Var1)
+AND NOT
+DB_Dead(_Var1)
+AND
+Random(500, _Var2)
+AND
+IntegerSum(1000, _Var2, _Var3)
+THEN
+ProcObjectTimer(_Var1, "EG_GetUpAfterBraccusKD", _Var3);
+
+PROC
+ProcObjectTimerFinished((CHARACTERGUID)_Var1, "EG_GetUpAfterBraccusKD")
+THEN
+RemoveStatus(_Var1, "KNOCKED_DOWN");
+NOT DB_EG_KnockedDownAfterBraccusTransform(_Var1);
+
+IF
+CharacterDied(CHARACTERGUID_S_GLO_Braccus_358ba541-0710-43be-8263-87afe1a8d9b5)
+AND NOT
+DB_OnlyOnce("EG_HallofEchoesCryptTeleport")
+AND
+DB_EG_KnockedDownAfterBraccusTransform(_Var1)
+THEN
+RemoveStatus(_Var1, "KNOCKED_DOWN");
+
+PROC
+PROC_EG_TeleportCharactersToHallOfEchoesCrypt()
+THEN
+TimerLaunch("EG_BackupTeleportToSecondArea", 100);
+
+IF
+TimerFinished("EG_BackupTeleportToSecondArea")
+THEN
+IterateParties("EG_BackupTeleportToSecondArea");
+
+IF
+TimerFinished("EG_BackupTeleportToSecondArea")
+AND
+DB_CombatCharacters(_Var1, _)
+AND
+ObjectIsInTrigger(_Var1, TRIGGERGUID_S_EG_KnockDownTrigger_d25ec409-32f8-4adf-9183-ec9389bf0726, 0)
+THEN
+SetStoryEvent(_Var1, "EG_BackupTeleportToSecondArea");
+
+IF
+StoryEvent((CHARACTERGUID)_Var1, "EG_BackupTeleportToSecondArea")
+AND
+ObjectIsInTrigger(_Var1, TRIGGERGUID_S_EG_KnockDownTrigger_d25ec409-32f8-4adf-9183-ec9389bf0726, 0)
+THEN
+TeleportToPosition(_Var1, 205, -7.8, 91, "", 0);
+
+IF
+SavegameLoaded((INTEGER)_Var1, (INTEGER)_Var2, (INTEGER)_Var3, (INTEGER)_Var4)
+AND
+QRY_VersionIsOlderThan(_Var1, _Var2, _Var3, _Var4, 3, 6, 1, 0)
+AND
+DB_OnlyOnce("EG_HallofEchoesCryptTeleport")
+AND
+QRY_EG_SecondFightMembersAlive()
+AND
+DB_CombatCharacters(_Var5, _)
+AND
+ObjectIsInTrigger(_Var5, TRIGGERGUID_S_EG_KnockDownTrigger_d25ec409-32f8-4adf-9183-ec9389bf0726, 0)
+THEN
+SetStoryEvent(_Var5, "EG_BackupTeleportToSecondArea");
+
+PROC
+PROC_EG_TeleportCharactersToHallOfEchoesCrypt()
+AND
+DB_IsPlayer(_Var1)
+THEN
+FadeToBlack(_Var1, 1.4, 1, "");
+TriggerSetAtmosphere(TRIGGERGUID_AtmosphereTrigger_ARX_Endgame_HoE_1bfac72f-f0b7-4b0d-8394-53f10886220f, "24ade782-016b-46d3-8137-273d0b3dc65d");
+Proc_CameraShakeAroundCharacter(ITEMGUID_S_ARX_EG_LucianChair_a807a420-ccf9-4aa6-aa54-bb691229be55, 1100, 40);
+
+IF
+StoryEvent(CHARACTERGUID_S_GLO_Braccus_358ba541-0710-43be-8263-87afe1a8d9b5, "EG_BraccusTransformation")
+THEN
+Proc_CameraShakeAroundCharacter(ITEMGUID_S_ARX_EG_LucianChair_a807a420-ccf9-4aa6-aa54-bb691229be55, 600, 40);
+
+PROC
+PROC_EG_TeleportCharactersToHallOfEchoesCrypt()
+THEN
+TimerLaunch("EG_PillarsRise", 1000);
+TimerLaunch("EG_PillarsRisen", 10000);
+
+IF
+TimerFinished("EG_PillarsRise")
+THEN
+PlayAnimation(ITEMGUID_S_EG_Endgame_Hoe_Platforms_Animated_eb9ce049-72c7-4ee3-89aa-e3ec8ee8307f, "spawn");
+ItemSetForceSynch(ITEMGUID_S_EG_Endgame_Hoe_Platforms_Animated_eb9ce049-72c7-4ee3-89aa-e3ec8ee8307f, 1);
+
+IF
+TimerFinished("EG_PillarsRisen")
+THEN
+TimerLaunch("EG_RemoveAnimatedPlatform", 1500);
+GlobalSetFlag("EG_PillarsRisen");
+
+IF
+TimerFinished("EG_RemoveAnimatedPlatform")
+THEN
+SetOnStage(ITEMGUID_S_EG_Endgame_Hoe_Platforms_Animated_eb9ce049-72c7-4ee3-89aa-e3ec8ee8307f, 0);
+ItemSetForceSynch(ITEMGUID_S_EG_Endgame_Hoe_Platforms_Animated_eb9ce049-72c7-4ee3-89aa-e3ec8ee8307f, 0);
+
+IF
+StoryEvent((ITEMGUID)_Var1, "EG_PlatformAppearing")
+THEN
+ItemSetForceSynch(_Var1, 1);
+
+IF
+DialogStarted((STRING)_Var1, (INTEGER)_Var2)
+AND
+DB_EG_GlobalDialogs(_Var1)
+AND
+DB_IsPlayer(_Var3)
+AND NOT
+DB_Dead(_Var3)
+AND
+IsSpeakerReserved(_Var3, 0)
+THEN
+DialogAddActor(_Var2, _Var3);
+
+IF
+DB_EG_ImmortalCharacters(_Var1)
+THEN
+CharacterSetImmortal(_Var1, 1);
+
+IF
+CharacterReceivedDamage((CHARACTERGUID)_Var1, _, _)
+AND
+DB_EG_ImmortalCharacters(_Var1)
+AND
+CharacterGetHitpointsPercentage(_Var1, _Var4)
+AND
+_Var4 <= 1
+THEN
+ObjectSetFlag(_Var1, "GLO_BlockRegenAfterCombat", 0);
+SetCanFight(_Var1, 0);
+SetCanJoinCombat(_Var1, 0);
+ApplyStatus(_Var1, "UNCONSCIOUS", -1);
+DB_DoNotFace(_Var1);
+SetFaction(_Var1, "EG_Unconscious");
+SetTag(_Var1, "AI_IGNORED_TARGET");
+NOT DB_EG_ImmortalCharacters(_Var1);
+DB_EG_KnockedOut(_Var1);
+PROC_EG_TryStartPostBraccusDialogueIfPromisedHandled();
+Proc_Ifan_KilledLucian_TryGiveUpdate(_Var1);
+
+PROC
+Proc_Ifan_KilledLucian_TryGiveUpdate((CHARACTERGUID)_Var1)
+AND
+_Var1 == CHARACTERGUID_S_ARX_EG_Lucian_62d0ca66-b6db-4a10-a457-effe0b64aca0
+AND
+IsTagged(CHARACTERGUID_S_Player_Ifan_ad9a3327-4456-42a7-9bf4-7ad60cc9e54f, "AVATAR", 1)
+THEN
+ObjectSetFlag(CHARACTERGUID_S_Player_Ifan_ad9a3327-4456-42a7-9bf4-7ad60cc9e54f, "QuestUpdate_FTJ_Ifan_DarkFaction_KilledLucianCrypt");
+
+PROC
+Proc_Ifan_KilledLucian_TryGiveUpdate(CHARACTERGUID_S_ARX_EG_Lucian_62d0ca66-b6db-4a10-a457-effe0b64aca0)
+AND
+DB_CompanionAvatarBond(CHARACTERGUID_S_Player_Ifan_ad9a3327-4456-42a7-9bf4-7ad60cc9e54f, _Var1)
+THEN
+UserSetFlag(_Var1, "QuestUpdate_FTJ_COM_Ifan_KilledLucianCrypt");
+
+IF
+CharacterDied(CHARACTERGUID_S_GLO_Braccus_358ba541-0710-43be-8263-87afe1a8d9b5)
+AND
+DB_GlobalFlag("EndGame_BraccusTransformStarted")
+AND
+CharacterIsDead(CHARACTERGUID_S_EndGame_Kraken_ae15de17-4238-4ae0-af43-48cd0f72f8f5, 0)
+THEN
+StartCameraSpline(SPLINEGUID_S_ARX_KrakenDeath_c524be82-6c77-497a-85f8-3299b06ef4a1, NULL_00000000-0000-0000-0000-000000000000, 1, 1, 0, 0);
+DB_CombatCutscene_PrioritizedObject(CHARACTERGUID_S_EndGame_Kraken_ae15de17-4238-4ae0-af43-48cd0f72f8f5);
+CharacterSetForceSynch(CHARACTERGUID_S_EndGame_Kraken_ae15de17-4238-4ae0-af43-48cd0f72f8f5, 1);
+CharacterDie(CHARACTERGUID_S_EndGame_Kraken_ae15de17-4238-4ae0-af43-48cd0f72f8f5, 0, "DoT");
+SetOnStage(ITEMGUID_S_EG_KrakenDeathStaller_18aa72dc-c718-48ca-b8ef-e3017cd923cd, 1);
+EnterCombat(ITEMGUID_S_EG_KrakenDeathStaller_18aa72dc-c718-48ca-b8ef-e3017cd923cd, CHARACTERGUID_S_EndGame_Kraken_ae15de17-4238-4ae0-af43-48cd0f72f8f5);
+
+IF
+CharacterDied(CHARACTERGUID_S_GLO_Braccus_358ba541-0710-43be-8263-87afe1a8d9b5)
+AND
+DB_GlobalFlag("EndGame_BraccusTransformStarted")
+AND
+CharacterIsDead(CHARACTERGUID_S_EndGame_Kraken_ae15de17-4238-4ae0-af43-48cd0f72f8f5, 1)
+THEN
+GlobalSetFlag("EG_KrakenAndBraccusAreDead");
+PROC_EG_TryStartPostBraccusDialogueIfPromisedHandled();
+
+IF
+CharacterDied(CHARACTERGUID_S_GLO_Braccus_358ba541-0710-43be-8263-87afe1a8d9b5)
+AND NOT
+DB_GlobalFlag("EndGame_BraccusTransformStarted")
+THEN
+GlobalSetFlag("EG_KrakenAndBraccusAreDead");
+PROC_EG_TryStartPostBraccusDialogueIfPromisedHandled();
+
+IF
+CharacterDying(CHARACTERGUID_S_EndGame_Kraken_ae15de17-4238-4ae0-af43-48cd0f72f8f5)
+AND
+CharacterIsDead(CHARACTERGUID_S_GLO_Braccus_358ba541-0710-43be-8263-87afe1a8d9b5, 1)
+THEN
+Proc_CombatCutscene_PrioritizedObject_Purge();
+DB_CombatCutscene_PrioritizedObject(ITEMGUID_S_EG_KrakenDeathStaller_18aa72dc-c718-48ca-b8ef-e3017cd923cd);
+
+IF
+CameraReachedNode(SPLINEGUID_S_ARX_KrakenDeath_c524be82-6c77-497a-85f8-3299b06ef4a1, _, _, _, 1)
+THEN
+Proc_CombatCutscene_PrioritizedObject_Purge();
+SetOnStage(ITEMGUID_S_EG_KrakenDeathStaller_18aa72dc-c718-48ca-b8ef-e3017cd923cd, 0);
+GlobalSetFlag("EG_KrakenAndBraccusAreDead");
+PROC_EG_TryStartPostBraccusDialogueIfPromisedHandled();
+
+IF
+CharacterDied(CHARACTERGUID_S_EndGame_Kraken_ae15de17-4238-4ae0-af43-48cd0f72f8f5)
+AND
+DB_EG_KrakenRespawnCounter(_Var1)
+THEN
+NOT DB_EG_KrakenRespawnCounter(_Var1);
+
+IF
+CharacterDied(CHARACTERGUID_S_EndGame_Kraken_ae15de17-4238-4ae0-af43-48cd0f72f8f5)
+THEN
+DB_EG_KrakenRespawnCounter(1);
+
+IF
+ObjectTurnStarted(CHARACTERGUID_S_GLO_Braccus_358ba541-0710-43be-8263-87afe1a8d9b5)
+AND
+DB_EG_KrakenRespawnCounter(_Var1)
+AND
+IntegerSum(_Var1, 1, _Var2)
+THEN
+NOT DB_EG_KrakenRespawnCounter(_Var1);
+DB_EG_KrakenRespawnCounter(_Var2);
+
+IF
+DB_EG_KrakenRespawnCounter(3)
+THEN
+SetOnStage(CHARACTERGUID_S_EndGame_Kraken_ae15de17-4238-4ae0-af43-48cd0f72f8f5, 1);
+CharacterResurrect(CHARACTERGUID_S_EndGame_Kraken_ae15de17-4238-4ae0-af43-48cd0f72f8f5);
+
+IF
+CharacterDied(CHARACTERGUID_S_EndGame_Kraken_ae15de17-4238-4ae0-af43-48cd0f72f8f5)
+THEN
+SetOnStage(S_EndGame_Kraken_ae15de17-4238-4ae0-af43-48cd0f72f8f5, 0);
+
+IF
+SavegameLoaded(_, _, _, _)
+AND
+CharacterIsDead(S_EndGame_Kraken_ae15de17-4238-4ae0-af43-48cd0f72f8f5, 1)
+THEN
+SetOnStage(S_EndGame_Kraken_ae15de17-4238-4ae0-af43-48cd0f72f8f5, 0);
+
+PROC
+Proc_PartyDecisionDialog_CollectPlayers((CHARACTERGUID)_Var1, "ARX_PDD_EndGame_SideLucian")
+THEN
+DB_PartyDecisionDialog_Players("ARX_PDD_EndGame_SideLucian", _Var1, 1);
+DB_PartyDecisionDialog_PlayerCount("ARX_PDD_EndGame_SideLucian", 1);
+
+PROC
+Proc_PartyDecisionDialog_CollectPlayers((CHARACTERGUID)_Var1, "ARX_PDD_EndGame_SideLucian")
+AND
+DB_IsPlayer(_Var2)
+AND
+_Var2 != _Var1
+AND
+CharacterIsPolymorphInteractionDisabled(_Var2, 0)
+AND
+IsTagged(_Var2, "HENCHMAN", 0)
+AND
+IsTagged(_Var2, "AVATAR", 0)
+AND
+DB_PartyDecisionDialog_PlayerCount("ARX_PDD_EndGame_SideLucian", _Var3)
+AND
+IntegerSum(_Var3, 1, _Var4)
+AND NOT
+DB_ExcludePlayerForPDD("ARX_PDD_EndGame_SideLucian", _Var2)
+AND
+DB_PartyDecisionDialog_DualDialogInstance("ARX_PDD_EndGame_SideLucian", _Var5, _)
+AND
+DialogRemoveActorFromDialog(_Var5, _Var2, 1)
+THEN
+DB_PartyDecisionDialog_Players("ARX_PDD_EndGame_SideLucian", _Var2, _Var4);
+NOT DB_PartyDecisionDialog_PlayerCount("ARX_PDD_EndGame_SideLucian", _Var3);
+DB_PartyDecisionDialog_PlayerCount("ARX_PDD_EndGame_SideLucian", _Var4);
+DB_ExcludePlayerForPDD("ARX_PDD_EndGame_SideLucian", _Var2);
+DB_EG_ReaddToDialogAfterGDD(_Var5, _Var2);
+
+PROC
+Proc_PartyDecisionDialog_CollectPlayers((CHARACTERGUID)_Var1, "ARX_PDD_EndGame_SideLucian")
+AND
+DB_IsPlayer(_Var2)
+AND
+_Var2 != _Var1
+AND
+IsTagged(_Var2, "AVATAR", 1)
+AND
+DB_PartyDecisionDialog_PlayerCount("ARX_PDD_EndGame_SideLucian", _Var3)
+AND
+IntegerSum(_Var3, 1, _Var4)
+AND NOT
+DB_ExcludePlayerForPDD("ARX_PDD_EndGame_SideLucian", _Var2)
+AND
+DB_PartyDecisionDialog_DualDialogInstance("ARX_PDD_EndGame_SideLucian", _Var5, _)
+AND
+DialogRemoveActorFromDialog(_Var5, _Var2, 1)
+THEN
+DB_PartyDecisionDialog_Players("ARX_PDD_EndGame_SideLucian", _Var2, _Var4);
+NOT DB_PartyDecisionDialog_PlayerCount("ARX_PDD_EndGame_SideLucian", _Var3);
+DB_PartyDecisionDialog_PlayerCount("ARX_PDD_EndGame_SideLucian", _Var4);
+DB_ExcludePlayerForPDD("ARX_PDD_EndGame_SideLucian", _Var2);
+DB_EG_ReaddToDialogAfterGDD(_Var5, _Var2);
+
+PROC
+Proc_PartyDecisionDialog_Cleanup("ARX_PDD_EndGame_SideLucian")
+AND
+DB_EG_ReaddToDialogAfterGDD(_Var1, _Var2)
+THEN
+DialogAddActor(_Var1, _Var2);
+
+PROC
+PROC_EG_TryFixBrokenBraccusDallisPDD()
+AND NOT
+DB_DialogName("ARX_PDD_EndGame_SideLucian", _)
+AND NOT
+DB_DialogName("EG_LucianDallisBraccus", _)
+AND NOT
+DB_GlobalFlag("EndGame_BraccusTransformStarted")
+AND NOT
+DB_Dead(CHARACTERGUID_S_GLO_Braccus_358ba541-0710-43be-8263-87afe1a8d9b5)
+AND NOT
+DB_GlobalFlag("EndFight_FightLucian")
+AND NOT
+DB_GlobalFlag("EG_ConvincedBraccus")
+AND NOT
+DB_PartyDecisionDialog_OutcomeEvent("ARX_PDD_EndGame_SideLucian", _, _)
+AND
+DB_OnlyOnce("EG_StartFirstFightDialog")
+AND
+DB_IsPlayer(_Var5)
+AND
+IsTagged(_Var5, "PDD_Player1", 1)
+AND
+ObjectGetFlag(_Var5, "ARX_PDD_EndGame_SideLucian_No", 0)
+AND
+ObjectGetFlag(_Var5, "ARX_PDD_EndGame_SideLucian_Yes", 0)
+AND
+DB_EG_LucianDallisBraccusGarethSpeaker(_Var6)
+THEN
+PROC_EG_FixBrokenPDD(_Var5);
+Proc_StartDialog(0, "EG_LucianDallisBraccus", CHARACTERGUID_S_GLO_Dallis_69b951dc-55a4-44b8-a2d5-5efedbd7d572, CHARACTERGUID_S_GLO_Braccus_358ba541-0710-43be-8263-87afe1a8d9b5, CHARACTERGUID_S_ARX_EG_Lucian_62d0ca66-b6db-4a10-a457-effe0b64aca0, ITEMGUID_S_GLO_EighthPromiseHelper_000_9c8c6eb9-84bb-47a6-91cb-4ef33442df06, _Var6, _Var5);
+
+PROC
+PROC_EG_FixBrokenPDD((CHARACTERGUID)_Var1)
+AND
+ObjectGetFlag(_Var1, "FixedAChosen", 1)
+THEN
+ObjectSetFlag(_Var1, "ARX_PDD_EndGame_SideLucian_No", 0);
+ObjectSetFlag(_Var1, "ARX_PDD_EndGame_SideLucian_No_Fix", 0);
+
+PROC
+PROC_EG_FixBrokenPDD((CHARACTERGUID)_Var1)
+AND
+ObjectGetFlag(_Var1, "FixedBChosen", 1)
+THEN
+ObjectSetFlag(_Var1, "ARX_PDD_EndGame_SideLucian_Yes", 0);
+ObjectSetFlag(_Var1, "ARX_PDD_EndGame_SideLucian_Yes_Fix", 0);
+
+IF
+GlobalFlagSet("EG_DallisTransform")
+AND
+GetPosition(CHARACTERGUID_S_GLO_Dallis_69b951dc-55a4-44b8-a2d5-5efedbd7d572, _Var1, _Var2, _Var3)
+THEN
+PlayEffectAtPosition("RS3_FX_GP_ScriptedEvent_ARX_Endgame_DallisTransformation_01", _Var1, _Var2, _Var3);
+PlayEffectAtPosition("RS3_FX_Skills_Polymorph_Soul_TurnInto_Cast_Overlay_01", _Var1, _Var2, _Var3);
+CharacterTransform(CHARACTERGUID_S_GLO_Dallis_69b951dc-55a4-44b8-a2d5-5efedbd7d572, "FTJ_Magister_TheHammer_Undead_7c4db933-ef47-44b8-ac5e-806f9412ba56", 0, 0, 0, 0, 1, 1, 0);
+
+IF
+CharacterStatusApplied(CHARACTERGUID_S_GLO_Dallis_69b951dc-55a4-44b8-a2d5-5efedbd7d572, "DALLISDRAGON_COMBAT", _)
+AND
+CharacterGetEquippedWeapon(CHARACTERGUID_S_GLO_Dallis_69b951dc-55a4-44b8-a2d5-5efedbd7d572, _Var2)
+THEN
+CharacterRemoveSkill(CHARACTERGUID_S_GLO_Dallis_69b951dc-55a4-44b8-a2d5-5efedbd7d572, "Target_EnemySourceVampirism");
+CharacterRemoveSkill(CHARACTERGUID_S_GLO_Dallis_69b951dc-55a4-44b8-a2d5-5efedbd7d572, "Shout_Quest_DallisDragonForm_Combat");
+CharacterUnequipItem(CHARACTERGUID_S_GLO_Dallis_69b951dc-55a4-44b8-a2d5-5efedbd7d572, _Var2);
+ItemTemplateAddTo("ARX_Endgame_Dallis_DragonWeapon_ea6bace5-4169-4928-9ac8-f6ac28e32c15", CHARACTERGUID_S_GLO_Dallis_69b951dc-55a4-44b8-a2d5-5efedbd7d572, 1);
+DB_GLO_Dallis_Weapon(_Var2);
+
+IF
+ItemTemplateAddedToCharacter(ITEMGUID_ARX_Endgame_Dallis_DragonWeapon_ea6bace5-4169-4928-9ac8-f6ac28e32c15, (ITEMGUID)_Var1, CHARACTERGUID_S_GLO_Dallis_69b951dc-55a4-44b8-a2d5-5efedbd7d572)
+THEN
+CharacterEquipItem(CHARACTERGUID_S_GLO_Dallis_69b951dc-55a4-44b8-a2d5-5efedbd7d572, _Var1);
+
+IF
+CharacterStatusRemoved(CHARACTERGUID_S_GLO_Dallis_69b951dc-55a4-44b8-a2d5-5efedbd7d572, "DALLISDRAGON_COMBAT", _)
+AND
+DB_GLO_Dallis_Weapon(_Var2)
+THEN
+CharacterEquipItem(CHARACTERGUID_S_GLO_Dallis_69b951dc-55a4-44b8-a2d5-5efedbd7d572, _Var2);
+NOT DB_GLO_Dallis_Weapon(_Var2);
+
+IF
+ObjectLeftCombat(CHARACTERGUID_S_GLO_Dallis_69b951dc-55a4-44b8-a2d5-5efedbd7d572, _)
+AND NOT
+DB_EG_KnockedOut(CHARACTERGUID_S_GLO_Dallis_69b951dc-55a4-44b8-a2d5-5efedbd7d572)
+AND
+HasActiveStatus(CHARACTERGUID_S_GLO_Dallis_69b951dc-55a4-44b8-a2d5-5efedbd7d572, "DALLISDRAGON_COMBAT", 1)
+THEN
+PROC_LoopEffect("RS3_FX_GP_Status_BlindingRadiance_01", CHARACTERGUID_S_GLO_Dallis_69b951dc-55a4-44b8-a2d5-5efedbd7d572, "EG_DallisTransformBack", "FJ_FortJoy_Main", "");
+CharacterSetAnimationOverride(CHARACTERGUID_S_GLO_Dallis_69b951dc-55a4-44b8-a2d5-5efedbd7d572, "");
+PlayAnimation(CHARACTERGUID_S_GLO_Dallis_69b951dc-55a4-44b8-a2d5-5efedbd7d572, "transform_to_lizard");
+TimerLaunch("Timer_EG_DallisTransform", 2500);
+TimerLaunch("Timer_EG_DallisTransformFX", 5000);
+
+IF
+TimerFinished("Timer_EG_DallisTransform")
+AND
+GetPosition(CHARACTERGUID_S_GLO_Dallis_69b951dc-55a4-44b8-a2d5-5efedbd7d572, _Var1, _Var2, _Var3)
+THEN
+PlayScaledEffectAtPosition("RS3_FX_Skills_Air_Wind_Shout_01", 2, _Var1, _Var2, _Var3);
+RemoveStatus(CHARACTERGUID_S_GLO_Dallis_69b951dc-55a4-44b8-a2d5-5efedbd7d572, "DALLISDRAGON_COMBAT");
+
+IF
+CharacterStatusRemoved(CHARACTERGUID_S_GLO_Dallis_69b951dc-55a4-44b8-a2d5-5efedbd7d572, "DALLISDRAGON_COMBAT", _)
+THEN
+PlayAnimation(CHARACTERGUID_S_GLO_Dallis_69b951dc-55a4-44b8-a2d5-5efedbd7d572, "transform_from_dragon");
+
+IF
+TimerFinished("Timer_EG_DallisTransformFX")
+THEN
+PROC_StopLoopEffect(CHARACTERGUID_S_GLO_Dallis_69b951dc-55a4-44b8-a2d5-5efedbd7d572, "EG_DallisTransformBack");
+
+PROC
+PROC_EG_CheckSilentMonkGareth()
+AND
+QRY_EG_ImportantNPCIsAllied(CHARACTERGUID_S_FTJ_SW_Warrior_SeekerCaptain_1329f018-23e4-4717-9bc8-074b28d04c54)
+THEN
+SetOnStage(CHARACTERGUID_S_EG_PurgedGareth_b9aedbdc-bd03-42ce-b97d-24d790d4f6e2, 0);
+NOT DB_EG_FirstFightParticipants(CHARACTERGUID_S_EG_PurgedGareth_b9aedbdc-bd03-42ce-b97d-24d790d4f6e2);
+ProcSetInvulnerable(CHARACTERGUID_S_FTJ_SW_Warrior_SeekerCaptain_1329f018-23e4-4717-9bc8-074b28d04c54, 0);
+
+PROC
+PROC_EG_CheckSilentMonkGareth()
+AND
+DB_Dead(CHARACTERGUID_S_FTJ_SW_Warrior_SeekerCaptain_1329f018-23e4-4717-9bc8-074b28d04c54)
+THEN
+SetOnStage(CHARACTERGUID_S_EG_PurgedGareth_b9aedbdc-bd03-42ce-b97d-24d790d4f6e2, 0);
+NOT DB_EG_FirstFightParticipants(CHARACTERGUID_S_EG_PurgedGareth_b9aedbdc-bd03-42ce-b97d-24d790d4f6e2);
+
+PROC
+PROC_EG_CheckSilentMonkGareth()
+AND
+DB_EG_FirstFightParticipants(CHARACTERGUID_S_EG_PurgedGareth_b9aedbdc-bd03-42ce-b97d-24d790d4f6e2)
+THEN
+GlobalSetFlag("EG_GarethSilentMonkPresent");
+
+IF
+CharacterDied(CHARACTERGUID_S_EG_PurgedGareth_b9aedbdc-bd03-42ce-b97d-24d790d4f6e2)
+AND
+DB_IsPlayer(_Var1)
+THEN
+PartySetFlag(_Var1, "QuestUpdate_CORE_Chapter7_CRYPT_End_PurgedGarethDead");
+
+PROC
+PROC_EG_LucianBecameHostile()
+THEN
+GlobalSetFlag("ARX_EG_LucianIsHostile");
+
+PROC
+PROC_EG_LucianBecameHostile()
+AND
+DB_IsPlayer(_Var1)
+AND
+QueryOnlyOnce("SE_ARX_Endgame_SFX_PostFX_Activate")
+AND NOT
+DB_GlobalFlag("EndGame_BraccusTransformStarted")
+THEN
+proc_SE_ARX_Endgame_SFX_PostFX_Activate();
+
+PROC
+proc_SE_ARX_Endgame_SFX_PostFX_Activate()
+THEN
+MusicPlayGeneral("SE_ARX_Endgame_SFX_PostFX_Activate");
+TriggerSetSoundRTPC(TRIGGERGUID_SoundVolumeTrigger_EndGame_State_53d0cc6c-ecfe-4b28-bb47-f610d3f31498, "SE_ARX_EndGame_ProgressiveFX", 100, 1);
+GlobalSetFlag("SE_ARX_Endgame_SFX_PostFX_Active");
+
+PROC
+proc_SE_ARX_Endgame_SFX_PostFX_Deactivate()
+THEN
+MusicPlayGeneral("SE_ARX_Endgame_SFX_PostFX_Deactivate");
+TriggerSetSoundRTPC(TRIGGERGUID_SoundVolumeTrigger_EndGame_State_53d0cc6c-ecfe-4b28-bb47-f610d3f31498, "SE_ARX_EndGame_ProgressiveFX", 0, 1);
+GlobalClearFlag("SE_ARX_Endgame_SFX_PostFX_Active");
+
+PROC
+PROC_EG_StartPostBraccusDialogue(_)
+AND
+DB_OnlyOnce("SE_ARX_Endgame_SFX_PostFX_Activate")
+THEN
+proc_SE_ARX_Endgame_SFX_PostFX_Deactivate();
+
+IF
+SavegameLoaded(_, _, _, _)
+AND
+DB_CurrentLevel("ARX_Endgame")
+AND
+DB_GlobalFlag("SE_ARX_Endgame_SFX_PostFX_Active")
+THEN
+MusicPlayGeneral("SE_ARX_Endgame_SFX_PostFX_Activate");
+
+IF
+TimerFinished("SE_ARX_Endgame_SFX_PostFX_Activate_OnTrigger")
+THEN
+proc_SE_ARX_Endgame_SFX_PostFX_Activate();
+
+IF
+TimerFinished("SE_ARX_Endgame_SFX_PostFX_Deactivate_OnTrigger")
+THEN
+proc_SE_ARX_Endgame_SFX_PostFX_Deactivate();
+
+IF
+TextEventSet("EG_RemoveGareth")
+THEN
+SetOnStage(CHARACTERGUID_S_EG_PurgedGareth_b9aedbdc-bd03-42ce-b97d-24d790d4f6e2, 0);
+NOT DB_EG_LucianDallisBraccusGarethSpeaker(CHARACTERGUID_S_EG_PurgedGareth_b9aedbdc-bd03-42ce-b97d-24d790d4f6e2);
+DB_EG_LucianDallisBraccusGarethSpeaker(NULL_00000000-0000-0000-0000-000000000000);
+
+IF
+ObjectEnteredCombat((CHARACTERGUID)_Var1, _)
+AND
+DB_EG_FirstFightParticipants(_Var1)
+AND
+IsInArena(_Var1, 0)
+THEN
+PROC_EG_SetFightParticipantsArena(1);
+
+PROC
+PROC_EG_SetFightParticipantsArena((INTEGER)_Var1)
+AND
+DB_EG_FirstFightParticipants(_Var2)
+THEN
+SetInArena(_Var2, _Var1);
+
+PROC
+PROC_EG_SetFightParticipantsArena((INTEGER)_Var1)
+AND
+DB_EG_LohseAppearedWithDoctor(1)
+THEN
+SetInArena(CHARACTERGUID_S_Player_Lohse_bb932b13-8ebf-4ab4-aac0-83e6924e4295, _Var1);
+
+PROC
+PROC_EG_SetFightParticipantsArena((INTEGER)_Var1)
+AND NOT
+DB_Dead(CHARACTERGUID_S_Player_Ifan_ad9a3327-4456-42a7-9bf4-7ad60cc9e54f)
+AND
+DB_GlobalFlag("EndFight_IfanVsAll")
+THEN
+SetInArena(CHARACTERGUID_S_Player_Ifan_ad9a3327-4456-42a7-9bf4-7ad60cc9e54f, _Var1);
+
+PROC
+PROC_EG_SetFightParticipantsArena((INTEGER)_Var1)
+AND
+DB_IsPlayer(_Var2)
+THEN
+SetInArena(_Var2, _Var1);
+
+PROC
+PROC_EG_SetFightParticipantsArena((INTEGER)_Var1)
+AND
+DB_EG_DemonDealer(_Var2)
+AND NOT
+DB_IsPlayer(_Var2)
+THEN
+SetInArena(_Var2, _Var1);
+
+PROC
+PROC_EG_SetFightParticipantsArena((INTEGER)_Var1)
+AND
+ObjectIsOnStage(CHARACTERGUID_S_EndGame_Kraken_ae15de17-4238-4ae0-af43-48cd0f72f8f5, 1)
+THEN
+SetInArena(CHARACTERGUID_S_EndGame_Kraken_ae15de17-4238-4ae0-af43-48cd0f72f8f5, _Var1);
+
+PROC
+PROC_EG_SetFightParticipantsArena((INTEGER)_Var1)
+AND
+DB_GlobalFlag("EG_DoctorPresent")
+AND NOT
+DB_Dead(CHARACTERGUID_S_ARX_DoctorsHouse_TheDoctor_83083470-c543-45b3-ac8a-108df0daca8d)
+THEN
+SetInArena(CHARACTERGUID_S_ARX_DoctorsHouse_TheDoctor_83083470-c543-45b3-ac8a-108df0daca8d, _Var1);
+
+PROC
+PROC_EG_SetFightParticipantsArena((INTEGER)_Var1)
+AND
+DB_GlobalFlag("EG_DoctorPresent")
+AND
+DB_EG_DemonDealer(_Var2)
+AND
+DB_GLO_PartyMembers_Kick_PartyMembers(_Var2, _Var3, 1)
+THEN
+SetInArena(_Var3, _Var1);
+
+PROC
+PROC_EG_SetFightParticipantsArena((INTEGER)_Var1)
+AND
+DB_EG_FirstFightKickedPromisePlayer(_Var2)
+AND
+DB_GLO_PartyMembers_Kick_PartyMembers(_Var3, _Var4, 1)
+THEN
+SetInArena(_Var4, _Var1);
+
+IF
+DB_EG_FirstFightParticipants(_Var1)
+THEN
+ProcCharacterDisableAllCrimes(_Var1);
+DB_IgnoreAssault(_Var1);
+
+IF
+DialogStarted("ARX_PDD_EndGame_SideLucian", _)
+AND
+DB_IsPlayer(_Var2)
+THEN
+ObjectSetFlag(_Var2, "QuestUpdate_CORE_Chapter7_CRYPT_End_Intro1");
+ObjectSetFlag(_Var2, "QuestUpdate_CORE_Chapter7_CRYPT_End_Intro2");
+ObjectSetFlag(_Var2, "QuestUpdate_CORE_Chapter7_CRYPT_End_Intro3");
+
+IF
+GlobalFlagSet("EG_TeleportGodKingHelper")
+AND
+DB_IsPlayer(_Var1)
+THEN
+ObjectSetFlag(_Var1, "QuestUpdate_CORE_Chapter7_CRYPT_End_Intro1");
+ObjectSetFlag(_Var1, "QuestUpdate_CORE_Chapter7_CRYPT_End_Intro2");
+ObjectSetFlag(_Var1, "QuestUpdate_CORE_Chapter7_CRYPT_End_Intro3");
+
+IF
+GlobalFlagSet("EndFight_BraccusTransform")
+AND
+DB_IsPlayer(_Var1)
+THEN
+ObjectSetFlag(_Var1, "QuestUpdate_CORE_Chapter7_CRYPT_End_Intro4");
+
+IF
+TextEventSet("myst")
+AND
+DB_QuestDef_State("CORE_Chapter7", _Var1)
+AND
+StringConcatenate("QuestUpdate_CORE_Chapter7_", _Var1, _Var2)
+AND
+DB_IsPlayer(_Var3)
+THEN
+ObjectSetFlag(_Var3, _Var2);
+
+IF
+SavegameLoaded((INTEGER)_Var1, (INTEGER)_Var2, (INTEGER)_Var3, (INTEGER)_Var4)
+AND
+DB_EG_KnockedOut(_Var5)
+THEN
+SetCanFight(_Var5, 0);
+SetCanJoinCombat(_Var5, 0);
+
+IF
+ObjectReadyInCombat((CHARACTERGUID)_Var1, _)
+AND
+DB_EG_KnockedOut(_Var1)
+THEN
+SetCanFight(_Var1, 0);
+SetCanJoinCombat(_Var1, 0);
+
+
+EXITSECTION
+ENDEXITSECTION
+
+ParentTargetEdge "EndGame"

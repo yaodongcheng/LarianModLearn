@@ -1,0 +1,68 @@
+Version 1
+SubGoalCombiner SGC_AND
+
+INITSECTION
+DB_Dialogs(CHARACTERGUID_S_ARX_Cathedral_Dog_b9627fb3-f0ad-425c-a0dd-3ede0d222416, "ARX_Cathedral_ArhusDog");
+DB_HasStoryEvent(ITEMGUID_S_ARX_Cathedral_Dog_Toy_Blue_Ball_28e47d61-804e-492b-9484-2ed46d76bb3f, "ARX_Cathedral_Dog_HasBall");
+DB_GiveItemToEvent(ITEMGUID_S_ARX_Cathedral_Dog_Toy_Blue_Ball_28e47d61-804e-492b-9484-2ed46d76bb3f, "ARX_Cathedral_Dog_ReceivedBall");
+
+KBSECTION
+IF
+CharacterDied(CHARACTERGUID_S_ARX_Cathedral_Dog_b9627fb3-f0ad-425c-a0dd-3ede0d222416)
+AND
+DB_IsPlayer(_Var1)
+AND
+UserGetFlag(_Var1, "QuestUpdate_ARX_Cathedral_Dog_DogWantsBall", 1)
+AND
+CharacterCanSee(_Var1, CHARACTERGUID_S_ARX_Cathedral_Dog_b9627fb3-f0ad-425c-a0dd-3ede0d222416, 1)
+THEN
+UserSetFlag(_Var1, "QuestUpdate_ARX_Cathedral_Dog_DogIsDead");
+
+IF
+CharacterSawCharacter((CHARACTERGUID)_Var1, CHARACTERGUID_S_ARX_Cathedral_Dog_b9627fb3-f0ad-425c-a0dd-3ede0d222416)
+AND
+DB_IsPlayer(_Var1)
+AND
+DB_Dead(CHARACTERGUID_S_ARX_Cathedral_Dog_b9627fb3-f0ad-425c-a0dd-3ede0d222416)
+AND
+UserGetFlag(_Var1, "QuestUpdate_ARX_Cathedral_Dog_DogWantsBall", 1)
+THEN
+UserSetFlag(_Var1, "QuestUpdate_ARX_Cathedral_Dog_DogIsDead");
+
+IF
+ObjectFlagSet("ARX_Cathedral_Dog_ReceivedBall", CHARACTERGUID_S_ARX_Cathedral_Dog_b9627fb3-f0ad-425c-a0dd-3ede0d222416, _)
+THEN
+SetStoryEvent(CHARACTERGUID_S_ARX_Cathedral_Dog_b9627fb3-f0ad-425c-a0dd-3ede0d222416, "GEN_Asleep_Deactivate");
+SetVarFixedString(CHARACTERGUID_S_ARX_Cathedral_Dog_b9627fb3-f0ad-425c-a0dd-3ede0d222416, "currentState", "State_Default");
+
+IF
+ItemAddedToCharacter(ITEMGUID_S_ARX_Cathedral_Dog_Toy_Blue_Ball_28e47d61-804e-492b-9484-2ed46d76bb3f, (CHARACTERGUID)_Var1)
+AND
+DB_IsPlayer(_Var1)
+AND
+UserGetFlag(_Var1, "ARX_Cathedral_ArhusDog_PickupBallOnce", 0)
+THEN
+UserSetFlag(_Var1, "ARX_Cathedral_ArhusDog_PickupBallOnce");
+Proc_StartDialog(1, "ARX_AD_Cathedral_ArhusDog_PickupBall", _Var1);
+
+IF
+GlobalFlagSet("ARX_KemmVault_Arhu_InCathedral")
+AND NOT
+DB_Dead(CHARACTERGUID_S_ARX_Cathedral_Dog_b9627fb3-f0ad-425c-a0dd-3ede0d222416)
+THEN
+SetStoryEvent(CHARACTERGUID_S_ARX_Cathedral_Dog_b9627fb3-f0ad-425c-a0dd-3ede0d222416, "GEN_Asleep_Deactivate");
+SetVarFixedString(CHARACTERGUID_S_ARX_Cathedral_Dog_b9627fb3-f0ad-425c-a0dd-3ede0d222416, "currentState", "State_Default");
+ProcForceStopDialog(CHARACTERGUID_S_ARX_Cathedral_Dog_b9627fb3-f0ad-425c-a0dd-3ede0d222416);
+SetHasDialog(CHARACTERGUID_S_ARX_Cathedral_Dog_b9627fb3-f0ad-425c-a0dd-3ede0d222416, 0);
+ProcCharacterMoveTo(CHARACTERGUID_S_ARX_Cathedral_Dog_b9627fb3-f0ad-425c-a0dd-3ede0d222416, CHARACTERGUID_S_ARX_KemmVault_Arhu_7befbac9-04f4-4861-81a9-8d2eeb21df5b, 1, "ARX_Cathedral_DogReachedArhu");
+
+IF
+StoryEvent(CHARACTERGUID_S_ARX_Cathedral_Dog_b9627fb3-f0ad-425c-a0dd-3ede0d222416, "ARX_Cathedral_DogReachedArhu")
+THEN
+SetHasDialog(CHARACTERGUID_S_ARX_Cathedral_Dog_b9627fb3-f0ad-425c-a0dd-3ede0d222416, 1);
+
+
+EXITSECTION
+ENDEXITSECTION
+
+ParentTargetEdge "ARX"

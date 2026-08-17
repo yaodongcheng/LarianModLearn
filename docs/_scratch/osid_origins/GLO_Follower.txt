@@ -1,0 +1,291 @@
+Version 1
+SubGoalCombiner SGC_AND
+
+INITSECTION
+DB_AllFollowersIgnoreRegion("LV_HoE_Main");
+
+KBSECTION
+IF
+DB_Followers(_Var1, _Var2)
+THEN
+SetVarFixedString(_Var1, "ownerFlag", _Var2);
+
+PROC
+PROC_Follower_PurgeQueue((CHARACTERGUID)_Var1)
+THEN
+CharacterPurgeQueue(_Var1);
+ProcClearMovingFacts(_Var1);
+ObjectClearFlag(_Var1, "GLO_FollowerDisappearingOutOfSight");
+
+IF
+ObjectFlagSet((STRING)_Var1, (GUIDSTRING)_Var2, _)
+AND
+DB_Followers(_Var4, _Var1)
+THEN
+DB_FollowerOwners(_Var2, _Var4);
+
+IF
+ObjectFlagCleared((STRING)_Var1, (GUIDSTRING)_Var2, _)
+AND
+DB_Followers(_Var4, _Var1)
+THEN
+NOT DB_FollowerOwners(_Var2, _Var4);
+
+IF
+StoryEvent((CHARACTERGUID)_Var1, "GLO_TeleportFollower")
+AND
+DB_Followers(_Var1, _)
+AND
+GetVarObject(_Var1, "owner", _Var3)
+THEN
+DialogRequestStop(_Var1);
+PROC_Follower_PurgeQueue(_Var1);
+TeleportTo(_Var1, _Var3);
+
+IF
+StoryEvent((CHARACTERGUID)_Var1, "GLO_MakeFollowerAppear")
+AND
+DB_Followers(_Var1, _)
+AND
+GetVarObject(_Var1, "owner", _Var3)
+AND
+GetVarInteger(_Var1, "playAppearAnimation", _Var4)
+THEN
+PROC_Follower_PurgeQueue(_Var1);
+CharacterAppearAt(_Var1, _Var3, _Var4, "GLO_FollowerHasAppeared");
+
+IF
+ObjectFlagSet("GLO_FollowerDisappearOutOfSight", (CHARACTERGUID)_Var1, _)
+AND
+DB_Followers(_Var1, _)
+AND
+GetVarObject(_Var1, "owner", _Var4)
+THEN
+ProcCharacterDisappearOutOfSightToObject(_Var1, _Var4, 1, "GLO_FollowerDisappearedOutOfSight", 0);
+ObjectClearFlag(_Var1, "GLO_FollowerDisappearOutOfSight");
+
+IF
+CharacterWentOnStage((CHARACTERGUID)_Var1, 0)
+AND
+DB_FollowerOwners(_Var1, _Var2)
+THEN
+DialogRequestStop(_Var2);
+SetOnStage(_Var2, 0);
+
+IF
+CharacterWentOnStage((CHARACTERGUID)_Var1, 1)
+AND
+DB_FollowerOwners(_Var1, _Var2)
+AND
+GetVarInteger(_Var2, "playAppearAnimation", _Var3)
+THEN
+PROC_Follower_PurgeQueue(_Var2);
+CharacterAppearAt(_Var2, _Var1, _Var3, "GLO_FollowerHasAppeared");
+
+IF
+RegionStarted((STRING)_Var1)
+AND
+DB_FollowerOwners(_Var2, _Var3)
+AND
+DB_IsPlayer(_Var2)
+AND NOT
+DB_FollowerIgnoreRegion(_Var1, _Var3)
+AND NOT
+DB_AllFollowersIgnoreRegion(_Var1)
+THEN
+TeleportTo(_Var3, _Var2);
+
+IF
+DB_FollowerOwners(_Var1, _Var2)
+AND
+DB_FollowerHideInTrigger(_Var3, _Var2)
+THEN
+TriggerRegisterForCharacter(_Var3, _Var1);
+
+IF
+ObjectFlagCleared((STRING)_Var1, (CHARACTERGUID)_Var2, _)
+AND
+DB_Followers(_Var4, _Var1)
+AND
+DB_FollowerHideInTrigger(_Var5, _Var4)
+THEN
+TriggerUnregisterForCharacter(_Var5, _Var2);
+
+IF
+CharacterEnteredTrigger((CHARACTERGUID)_Var1, (TRIGGERGUID)_Var2)
+AND
+DB_FollowerOwners(_Var1, _)
+AND
+DB_FollowerHideInTrigger(_Var2, _Var4)
+THEN
+DialogRequestStop(_Var4);
+SetOnStage(_Var4, 0);
+
+IF
+CharacterLeftTrigger((CHARACTERGUID)_Var1, (TRIGGERGUID)_Var2)
+AND
+DB_FollowerOwners(_Var1, _)
+AND
+DB_FollowerHideInTrigger(_Var2, _Var4)
+AND
+GetVarInteger(_Var4, "playAppearAnimation", _Var5)
+THEN
+PROC_HideFollowers_Reappear(_Var4, _Var1, _Var5);
+
+IF
+DB_FollowerOwners(_Var1, _Var2)
+AND
+DB_FollowerShowInTrigger(_Var3, _Var2)
+THEN
+TriggerRegisterForCharacter(_Var3, _Var1);
+
+IF
+ObjectFlagCleared((STRING)_Var1, (CHARACTERGUID)_Var2, _)
+AND
+DB_Followers(_Var4, _Var1)
+AND
+DB_FollowerShowInTrigger(_Var5, _Var4)
+THEN
+TriggerUnregisterForCharacter(_Var5, _Var2);
+
+IF
+CharacterEnteredTrigger((CHARACTERGUID)_Var1, (TRIGGERGUID)_Var2)
+AND
+DB_FollowerOwners(_Var1, _Var3)
+AND
+DB_FollowerShowInTrigger(_Var2, _Var3)
+AND
+GetVarInteger(_Var3, "playAppearAnimation", _Var4)
+THEN
+PROC_Follower_PurgeQueue(_Var3);
+CharacterAppearAt(_Var3, _Var1, _Var4, "GLO_FollowerHasAppeared");
+
+IF
+CharacterLeftTrigger((CHARACTERGUID)_Var1, (TRIGGERGUID)_Var2)
+AND
+DB_FollowerOwners(_Var1, _)
+AND
+DB_FollowerShowInTrigger(_Var2, _Var4)
+THEN
+DialogRequestStop(_Var4);
+SetOnStage(_Var4, 0);
+
+IF
+DB_FollowerOwners(_Var1, _)
+AND
+DB_HideAllFollowersInTrigger(_Var3)
+THEN
+TriggerRegisterForCharacter(_Var3, _Var1);
+
+IF
+ObjectFlagCleared((STRING)_Var1, (CHARACTERGUID)_Var2, _)
+AND
+DB_Followers(_Var4, _Var1)
+AND
+DB_HideAllFollowersInTrigger(_Var5)
+THEN
+TriggerUnregisterForCharacter(_Var5, _Var2);
+
+IF
+CharacterEnteredTrigger((CHARACTERGUID)_Var1, (TRIGGERGUID)_Var2)
+AND
+DB_FollowerOwners(_Var1, _Var3)
+AND
+DB_HideAllFollowersInTrigger(_Var2)
+THEN
+DialogRequestStop(_Var3);
+SetOnStage(_Var3, 0);
+
+IF
+CharacterLeftTrigger((CHARACTERGUID)_Var1, (TRIGGERGUID)_Var2)
+AND
+DB_FollowerOwners(_Var1, _Var3)
+AND
+DB_HideAllFollowersInTrigger(_Var2)
+AND
+GetVarInteger(_Var3, "playAppearAnimation", _Var4)
+THEN
+PROC_HideFollowers_Reappear(_Var3, _Var1, _Var4);
+
+PROC
+PROC_HideFollowers_Reappear((CHARACTERGUID)_Var1, (GUIDSTRING)_Var2, (INTEGER)_Var3)
+AND
+QRY_AnyRegionActive()
+THEN
+PROC_Follower_PurgeQueue(_Var1);
+CharacterAppearAt(_Var1, _Var2, _Var3, "GLO_FollowerHasAppeared");
+
+PROC
+PROC_HideFollowers_Reappear((CHARACTERGUID)_Var1, (GUIDSTRING)_Var2, (INTEGER)_Var3)
+AND NOT
+QRY_AnyRegionActive()
+THEN
+PROC_Follower_PurgeQueue(_Var1);
+SetOnStage(_Var1, 1);
+
+IF
+DB_FollowerOwners(_Var1, _)
+AND
+DB_ShowAllFollowersInTrigger(_Var3)
+THEN
+TriggerRegisterForCharacter(_Var3, _Var1);
+
+IF
+ObjectFlagCleared((STRING)_Var1, (CHARACTERGUID)_Var2, _)
+AND
+DB_Followers(_Var4, _Var1)
+AND
+DB_ShowAllFollowersInTrigger(_Var5)
+THEN
+TriggerUnregisterForCharacter(_Var5, _Var2);
+
+IF
+CharacterEnteredTrigger((CHARACTERGUID)_Var1, (TRIGGERGUID)_Var2)
+AND
+DB_FollowerOwners(_Var1, _Var3)
+AND
+DB_ShowAllFollowersInTrigger(_Var2)
+AND
+GetVarInteger(_Var3, "playAppearAnimation", _Var4)
+THEN
+PROC_Follower_PurgeQueue(_Var3);
+CharacterAppearAt(_Var3, _Var1, _Var4, "GLO_FollowerHasAppeared");
+
+IF
+CharacterLeftTrigger((CHARACTERGUID)_Var1, (TRIGGERGUID)_Var2)
+AND
+DB_FollowerOwners(_Var1, _Var3)
+AND
+DB_ShowAllFollowersInTrigger(_Var2)
+THEN
+DialogRequestStop(_Var3);
+SetOnStage(_Var3, 0);
+
+IF
+CharacterLeveledUp((CHARACTERGUID)_Var1)
+AND
+DB_FollowerOwners(_Var1, _Var2)
+AND
+GetVarInteger(_Var2, "levelUpWithOwner", 1)
+THEN
+CharacterLevelUp(_Var2);
+
+QRY
+QRY_IsSummonOrPartyFollower((CHARACTERGUID)_Var1)
+AND
+CharacterIsSummon(_Var1, 1)
+THEN
+DB_NOOP(1);
+
+QRY
+QRY_IsSummonOrPartyFollower((CHARACTERGUID)_Var1)
+AND
+CharacterIsPartyFollower(_Var1, 1)
+THEN
+DB_NOOP(1);
+
+
+EXITSECTION
+ENDEXITSECTION
+
+ParentTargetEdge "__Shared_Campaign"

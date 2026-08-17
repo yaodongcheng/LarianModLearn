@@ -1,0 +1,99 @@
+Version 1
+SubGoalCombiner SGC_AND
+
+INITSECTION
+DB_CrimeReaction_DoNotInterrogate(RC_FTJ_ChapelMagister_001_068d4518-9b23-4e2c-a160-8d978d1f78ff);
+DB_CrimeReaction_DoNotInterrogate(RC_FTJ_ChapelMagister_002_090d7104-97f7-4603-a114-47dceaf021e5);
+DB_CrimeReaction_DoNotInterrogate(RC_FTJ_ChapelMagister_003_b5cb12b2-f347-4415-95ac-8d5ac4fc464b);
+DB_CrimeReaction_DoNotInterrogate(RC_FTJ_ChapelMagister_004_8f330be0-a442-408f-850e-c7fd94e74ada);
+DB_CrimeReaction_DoNotInterrogate(S_FTJ_ChapelMagister_Captain_c4d751d4-20ff-4281-baf4-8ddeb1383e7e);
+ProcCharacterDisableAllCrimes(RC_FTJ_ChapelMagister_001_068d4518-9b23-4e2c-a160-8d978d1f78ff);
+ProcCharacterDisableAllCrimes(RC_FTJ_ChapelMagister_002_090d7104-97f7-4603-a114-47dceaf021e5);
+ProcCharacterDisableAllCrimes(RC_FTJ_ChapelMagister_003_b5cb12b2-f347-4415-95ac-8d5ac4fc464b);
+ProcCharacterDisableAllCrimes(RC_FTJ_ChapelMagister_004_8f330be0-a442-408f-850e-c7fd94e74ada);
+ProcCharacterDisableAllCrimes(S_FTJ_ChapelMagister_Captain_c4d751d4-20ff-4281-baf4-8ddeb1383e7e);
+ProcCharacterEnableCrime(RC_FTJ_ChapelMagister_001_068d4518-9b23-4e2c-a160-8d978d1f78ff, "FTJTrespassChapel");
+ProcCharacterEnableCrime(RC_FTJ_ChapelMagister_002_090d7104-97f7-4603-a114-47dceaf021e5, "FTJTrespassChapel");
+ProcCharacterEnableCrime(RC_FTJ_ChapelMagister_003_b5cb12b2-f347-4415-95ac-8d5ac4fc464b, "FTJTrespassChapel");
+ProcCharacterEnableCrime(RC_FTJ_ChapelMagister_004_8f330be0-a442-408f-850e-c7fd94e74ada, "FTJTrespassChapel");
+ProcCharacterEnableCrime(S_FTJ_ChapelMagister_Captain_c4d751d4-20ff-4281-baf4-8ddeb1383e7e, "FTJTrespassChapel");
+ProcCharacterDisableAllCrimes(S_FTJ_DyingMan_80288510-7e12-4710-90cb-16a1e2d50efc);
+ProcCharacterDisableAllCrimes(S_FTJ_InjuredMagister_8a0cd6fb-18f2-46ca-8a04-88d3c4d3caf8);
+ProcCharacterDisableAllCrimes(S_FTJ_ImprissonedSkeptic_792c9745-1a8d-4d63-ae4c-33927457730a);
+ProcCharacterDisableAllCrimes(CHARACTERGUID_S_FTJ_TorturedSeeker_8d839534-a039-4b5c-bfa6-6b88da149eb2);
+ProcCharacterDisableAllCrimes(S_FTJ_Florence_c272a37a-85ea-438f-9871-1551ef45d338);
+DB_DontCreateMurder(S_FTJ_BeachGheist_47263b13-ace6-4950-99b6-4f2b6ae8cc6c);
+DB_NoLowAttitudeDialog(S_FTJ_BeachGheist_47263b13-ace6-4950-99b6-4f2b6ae8cc6c);
+DB_DontCreateMurder(S_FTJ_InjuredMagister_8a0cd6fb-18f2-46ca-8a04-88d3c4d3caf8);
+DB_IgnoreAssault(S_FTJ_InjuredMagister_8a0cd6fb-18f2-46ca-8a04-88d3c4d3caf8);
+ProcCharacterDisableAllCrimes(CHARACTERGUID_S_FTJ_BeachGheist_47263b13-ace6-4950-99b6-4f2b6ae8cc6c);
+ProcCharacterEnableCrime(CHARACTERGUID_S_FTJ_BeachGheist_47263b13-ace6-4950-99b6-4f2b6ae8cc6c, "Assault");
+ProcCharacterEnableCrime(CHARACTERGUID_S_FTJ_BeachGheist_47263b13-ace6-4950-99b6-4f2b6ae8cc6c, "SummonAssault");
+ProcCharacterEnableCrime(CHARACTERGUID_S_FTJ_BeachGheist_47263b13-ace6-4950-99b6-4f2b6ae8cc6c, "PickPocketFailed");
+DB_CrimeReaction_CustomWarning(CHARACTERGUID_S_FTJ_BeachGheist_47263b13-ace6-4950-99b6-4f2b6ae8cc6c, "Assault", "FTJ_BeachGheist_CustomAssault");
+DB_CrimeReaction_CustomWarning(CHARACTERGUID_S_FTJ_BeachGheist_47263b13-ace6-4950-99b6-4f2b6ae8cc6c, "SummonAssault", "FTJ_AD_BeachGheist_CustomAssault");
+DB_CrimeWarningIsAD("FTJ_AD_BeachGheist_CustomAssault");
+DB_CrimeReaction_CustomWarning(CHARACTERGUID_S_FTJ_BeachGheist_47263b13-ace6-4950-99b6-4f2b6ae8cc6c, "PickPocketFailed", "FTJ_BeachGheist_CustomAssault");
+ProcCrimeSetCustomPrimarySensibleAction(CHARACTERGUID_S_FTJ_BeachGheist_47263b13-ace6-4950-99b6-4f2b6ae8cc6c, "Assault", "");
+ProcCrimeSetCustomPrimarySensibleAction(CHARACTERGUID_S_FTJ_BeachGheist_47263b13-ace6-4950-99b6-4f2b6ae8cc6c, "SummonAssault", "");
+ProcCrimeSetCustomPrimarySensibleAction(CHARACTERGUID_S_FTJ_BeachGheist_47263b13-ace6-4950-99b6-4f2b6ae8cc6c, "PickPocketFailed", "");
+DB_TriggerVandaliseInCombat(S_FTJ_GhettoToCourtyardDoor_c0e994cb-dc32-496e-9ed3-2e1d6b989b44);
+ItemSetOwner(S_FTJ_GhettoToCourtyardDoor_c0e994cb-dc32-496e-9ed3-2e1d6b989b44, S_FTJ_GhettoGuard_005_76f7ca78-4799-4e55-9b00-ff3b3cd2066b);
+DB_MurderIgnoreFor(S_FTJ_ImprissonedSkeptic_792c9745-1a8d-4d63-ae4c-33927457730a, S_FTJ_OlgoGuard_005_6cad1eb7-7d14-45e0-af87-0ea519aa5887);
+DB_MurderIgnoreFor(S_FTJ_ImprissonedSkeptic_792c9745-1a8d-4d63-ae4c-33927457730a, S_FTJ_GhettoBoss_84758f75-01a3-4cce-9922-f42ffc4afddd);
+DB_MurderIgnoreFor(S_FTJ_ImprissonedSkeptic_792c9745-1a8d-4d63-ae4c-33927457730a, S_FTJ_OlgoGuard_001_59786a5f-a665-498c-8bf3-ecb9e6cd69dc);
+DB_MurderIgnoreFor(S_FTJ_ImprissonedSkeptic_792c9745-1a8d-4d63-ae4c-33927457730a, S_FTJ_OlgoGuard_003_59fc99da-4c46-41d1-a467-1edbf5615921);
+DB_MurderIgnoreFor(S_FTJ_ImprissonedSkeptic_792c9745-1a8d-4d63-ae4c-33927457730a, S_FTJ_BlackMarketDealer_7ecdfdd5-fb22-411d-9c19-0f6f62123671);
+DB_MurderIgnoreFor(S_FTJ_ImprissonedSkeptic_792c9745-1a8d-4d63-ae4c-33927457730a, S_FTJ_OlgoGuard_004_eab494d8-4c9e-47f1-afb4-30815e1ea68c);
+DB_MurderIgnoreFor(CHARACTERGUID_S_Player_Ifan_ad9a3327-4456-42a7-9bf4-7ad60cc9e54f, S_RC_FTJ_ShakedownDwarf_0991b582-8305-4259-8280-a55bbe32a1b6);
+DB_MurderIgnoreFor(RC_FTJ_ShakedownElf_c854185f-ce11-416f-b327-d692a5e3a789, S_RC_FTJ_ShakedownDwarf_0991b582-8305-4259-8280-a55bbe32a1b6);
+DB_MurderIgnoreFor(CHARACTERGUID_S_Player_Ifan_ad9a3327-4456-42a7-9bf4-7ad60cc9e54f, S_RC_FTJ_OlgoGuard_002_6d445f10-dec4-4026-9d9f-5b1c3fcd3e94);
+DB_MurderIgnoreFor(RC_FTJ_ShakedownElf_c854185f-ce11-416f-b327-d692a5e3a789, S_RC_FTJ_OlgoGuard_002_6d445f10-dec4-4026-9d9f-5b1c3fcd3e94);
+DB_CrimeReaction_DoNotInterrogate(S_FTJ_CollaredPrisoner_5bec83d5-d441-4491-980f-798ddf38d08d);
+ItemToInventory(Scroll_Skill_Air_Teleportation_001_03c4f5df-0eb0-4a27-9dc7-a755f0905a17, COR_Imps_Skeleton_A_001_ORI_Terrain_Main_Rework_000_fb68eef2-3d39-849d-47a4-aa19fcdce335);
+CharacterDisableCrime(S_FTJ_OlgoCellarMagister_001_402470db-ad49-4de7-8a60-7f69c8e5d26e, "EscapedFortJoyPrison");
+CharacterDisableCrime(S_FTJ_OlgoCellarMagister_002_6d6b84bf-e940-4c28-a2b6-12516d049792, "EscapedFortJoyPrison");
+CharacterDisableCrime(S_FTJ_OlgoCellarMagister_003_e8c14f56-b34a-41c3-adb3-dda318c5bdc1, "EscapedFortJoyPrison");
+CharacterDisableCrime(S_FTJ_OlgoCellarMagister_004_2955b578-1a8e-4ecd-aa7f-5f084c428e25, "EscapedFortJoyPrison");
+DB_RegionPrison("FJ_FortJoy_Main_FortJoy", S_FortJoy_PlayerPrisonCell_5eec6152-28bc-4555-b476-1a3bc2db02e5);
+DB_PrisonChest(S_FortJoy_PlayerPrisonCell_5eec6152-28bc-4555-b476-1a3bc2db02e5, S_FTJ_PrisonChest_f6ad139b-f60f-404b-b04b-7c03d8a81a05);
+DB_PrisonEvidenceChest(S_FortJoy_PlayerPrisonCell_5eec6152-28bc-4555-b476-1a3bc2db02e5, S_FTJ_Prison_Evidence_Chest_5437e8ae-6fe3-4d6c-ab36-e9e02ca2a565);
+DB_PlayerPrison(S_FortJoy_PlayerPrisonCell_5eec6152-28bc-4555-b476-1a3bc2db02e5, S_FortJoy_PlayerPrisonDoor_2dd80040-28aa-4445-8438-1e2424d7228f, "EscapedFortJoyPrison", "EscapedFortJoyPrisonAD");
+DB_PlayerPrison_Door(S_FortJoy_PlayerPrisonCell_5eec6152-28bc-4555-b476-1a3bc2db02e5, S_DOOR_Humans_Prison_A_Door_A_027_ORI_Terrain_Main_Rework_000_d9245a92-efb1-8698-2929-1ee370f8f7ae, "RC_FTJ_HoldingCells");
+
+KBSECTION
+PROC
+ProcCrimeOnCustomSensibleAction(CHARACTERGUID_S_FTJ_BeachGheist_47263b13-ace6-4950-99b6-4f2b6ae8cc6c, _, _, _, _, (CHARACTERGUID)_Var5, (CHARACTERGUID)_Var6, (CHARACTERGUID)_Var7, (CHARACTERGUID)_Var8, _)
+THEN
+Proc_StartDialog(1, "FTJ_AD_BeachGheist_CustomAssault", CHARACTERGUID_S_FTJ_BeachGheist_47263b13-ace6-4950-99b6-4f2b6ae8cc6c);
+SetStoryEvent(CHARACTERGUID_S_FTJ_BeachGheist_47263b13-ace6-4950-99b6-4f2b6ae8cc6c, "Crime_CustomSensibleActionDone");
+ProcMakeNPCHostile(CHARACTERGUID_S_FTJ_BeachGheist_47263b13-ace6-4950-99b6-4f2b6ae8cc6c, _Var5);
+ProcMakeNPCHostile(CHARACTERGUID_S_FTJ_BeachGheist_47263b13-ace6-4950-99b6-4f2b6ae8cc6c, _Var6);
+ProcMakeNPCHostile(CHARACTERGUID_S_FTJ_BeachGheist_47263b13-ace6-4950-99b6-4f2b6ae8cc6c, _Var7);
+ProcMakeNPCHostile(CHARACTERGUID_S_FTJ_BeachGheist_47263b13-ace6-4950-99b6-4f2b6ae8cc6c, _Var8);
+
+IF
+CharacterOnCrimeSensibleActionNotification(CHARACTERGUID_S_FTJ_BeachGheist_47263b13-ace6-4950-99b6-4f2b6ae8cc6c, _, (INTEGER)_Var2, "CRIME_OsirisReaction", _, (CHARACTERGUID)_Var4, (CHARACTERGUID)_Var5, (CHARACTERGUID)_Var6, (CHARACTERGUID)_Var7, _)
+AND
+CrimeGetType(_Var2, "SummonAssault")
+THEN
+ProcMakeNPCHostile(CHARACTERGUID_S_FTJ_BeachGheist_47263b13-ace6-4950-99b6-4f2b6ae8cc6c, _Var4);
+ProcMakeNPCHostile(CHARACTERGUID_S_FTJ_BeachGheist_47263b13-ace6-4950-99b6-4f2b6ae8cc6c, _Var5);
+ProcMakeNPCHostile(CHARACTERGUID_S_FTJ_BeachGheist_47263b13-ace6-4950-99b6-4f2b6ae8cc6c, _Var6);
+ProcMakeNPCHostile(CHARACTERGUID_S_FTJ_BeachGheist_47263b13-ace6-4950-99b6-4f2b6ae8cc6c, _Var7);
+
+PROC
+ProcRegionEnded("FJ_FortJoy_Main")
+THEN
+GoalCompleted;
+
+
+EXITSECTION
+NOT DB_CrimeReaction_DoNotWarn(RC_FTJ_ChapelMagister_001_068d4518-9b23-4e2c-a160-8d978d1f78ff);
+NOT DB_CrimeReaction_DoNotWarn(RC_FTJ_ChapelMagister_002_090d7104-97f7-4603-a114-47dceaf021e5);
+NOT DB_CrimeReaction_DoNotWarn(RC_FTJ_ChapelMagister_003_b5cb12b2-f347-4415-95ac-8d5ac4fc464b);
+NOT DB_CrimeReaction_DoNotWarn(RC_FTJ_ChapelMagister_004_8f330be0-a442-408f-850e-c7fd94e74ada);
+NOT DB_CrimeReaction_DoNotWarn(S_FTJ_ChapelMagister_Captain_c4d751d4-20ff-4281-baf4-8ddeb1383e7e);
+ENDEXITSECTION
+
+ParentTargetEdge "FortJoy"

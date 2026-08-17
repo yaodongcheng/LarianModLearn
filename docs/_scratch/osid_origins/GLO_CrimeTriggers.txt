@@ -1,0 +1,17 @@
+Version 1
+SubGoalCombiner SGC_AND
+
+INITSECTION
+
+KBSECTION
+IF
+RegionStarted("TestLevel_GenericBehaviours")
+THEN
+DB_TrespassTrigger(S_ForbiddenArea_09a5b8ed-58c3-4795-bc5e-c1284befa718, S_ForbiddenExit_b88f4404-a4a1-42f0-ae3c-26cc96a72a69);
+DB_TrespassTrigger(HouseTest_ForbetenArea_fb085e7e-6820-4776-9a35-6369a6fe8ec5, Traspassing_Trigger_Exist_bdc5b3da-041a-4d98-bb68-149869203e83);
+
+
+EXITSECTION
+ENDEXITSECTION
+
+ParentTargetEdge "Start"

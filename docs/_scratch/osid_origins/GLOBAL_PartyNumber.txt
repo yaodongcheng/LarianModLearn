@@ -1,0 +1,468 @@
+Version 1
+SubGoalCombiner SGC_AND
+
+INITSECTION
+DB_GLO_PartyAmountFlags("GLO_PartyOf4", 4);
+DB_GLO_PartyAmountFlags("GLO_PartyOf3", 3);
+DB_GLO_PartyAmountFlags("GLO_PartyOf2", 2);
+DB_GLO_PartyAmountFlags("GLO_PartyOf1", 1);
+DB_UserCounter(0);
+
+KBSECTION
+PROC
+Proc_DialogFlagSetup(_, (GUIDSTRING)_Var2, (GUIDSTRING)_Var3)
+AND
+DB_GLO_CheckSpeakerNumber(_Var2, _Var4)
+AND
+DB_IsPlayer(_Var3)
+THEN
+Proc_CountParty(_Var3, _Var4);
+
+PROC
+Proc_DialogFlagSetup(_, (GUIDSTRING)_Var2, (GUIDSTRING)_Var3)
+AND
+DB_GLO_CheckSpeakerNumber(_Var3, _Var4)
+AND
+DB_IsPlayer(_Var2)
+THEN
+Proc_CountParty(_Var2, _Var4);
+
+PROC
+Proc_DialogFlagSetup((STRING)_Var1, (GUIDSTRING)_Var2, (GUIDSTRING)_Var3, (GUIDSTRING)_Var4)
+AND
+DB_GLO_CheckSpeakerNumber(_Var2, _Var5)
+AND
+DB_IsPlayer(_Var3)
+THEN
+Proc_CountParty(_Var3, _Var5);
+
+PROC
+Proc_DialogFlagSetup((STRING)_Var1, (GUIDSTRING)_Var2, (GUIDSTRING)_Var3, (GUIDSTRING)_Var4)
+AND
+DB_GLO_CheckSpeakerNumber(_Var2, _Var5)
+AND
+DB_IsPlayer(_Var4)
+THEN
+Proc_CountParty(_Var4, _Var5);
+
+PROC
+Proc_DialogFlagSetup((STRING)_Var1, (GUIDSTRING)_Var2, (GUIDSTRING)_Var3, (GUIDSTRING)_Var4)
+AND
+DB_GLO_CheckSpeakerNumber(_Var3, _Var5)
+AND
+DB_IsPlayer(_Var2)
+THEN
+Proc_CountParty(_Var2, _Var5);
+
+PROC
+Proc_DialogFlagSetup((STRING)_Var1, (GUIDSTRING)_Var2, (GUIDSTRING)_Var3, (GUIDSTRING)_Var4)
+AND
+DB_GLO_CheckSpeakerNumber(_Var3, _Var5)
+AND
+DB_IsPlayer(_Var4)
+THEN
+Proc_CountParty(_Var4, _Var5);
+
+PROC
+Proc_DialogFlagSetup((STRING)_Var1, (GUIDSTRING)_Var2, (GUIDSTRING)_Var3, (GUIDSTRING)_Var4)
+AND
+DB_GLO_CheckSpeakerNumber(_Var4, _Var5)
+AND
+DB_IsPlayer(_Var2)
+THEN
+Proc_CountParty(_Var2, _Var5);
+
+PROC
+Proc_DialogFlagSetup((STRING)_Var1, (GUIDSTRING)_Var2, (GUIDSTRING)_Var3, (GUIDSTRING)_Var4)
+AND
+DB_GLO_CheckSpeakerNumber(_Var4, _Var5)
+AND
+DB_IsPlayer(_Var3)
+THEN
+Proc_CountParty(_Var3, _Var5);
+
+PROC
+Proc_DialogFlagSetup((STRING)_Var1, (GUIDSTRING)_Var2, (GUIDSTRING)_Var3, (GUIDSTRING)_Var4, (GUIDSTRING)_Var5)
+AND
+DB_GLO_CheckSpeakerNumber(_Var2, _Var6)
+AND
+DB_IsPlayer(_Var3)
+THEN
+Proc_CountParty(_Var3, _Var6);
+
+PROC
+Proc_DialogFlagSetup((STRING)_Var1, (GUIDSTRING)_Var2, (GUIDSTRING)_Var3, (GUIDSTRING)_Var4, (GUIDSTRING)_Var5)
+AND
+DB_GLO_CheckSpeakerNumber(_Var2, _Var6)
+AND
+DB_IsPlayer(_Var4)
+THEN
+Proc_CountParty(_Var4, _Var6);
+
+PROC
+Proc_DialogFlagSetup((STRING)_Var1, (GUIDSTRING)_Var2, (GUIDSTRING)_Var3, (GUIDSTRING)_Var4, (GUIDSTRING)_Var5)
+AND
+DB_GLO_CheckSpeakerNumber(_Var2, _Var6)
+AND
+DB_IsPlayer(_Var5)
+THEN
+Proc_CountParty(_Var5, _Var6);
+
+PROC
+Proc_DialogFlagSetup((STRING)_Var1, (GUIDSTRING)_Var2, (GUIDSTRING)_Var3, (GUIDSTRING)_Var4, (GUIDSTRING)_Var5)
+AND
+DB_GLO_CheckSpeakerNumber(_Var3, _Var6)
+AND
+DB_IsPlayer(_Var2)
+THEN
+Proc_CountParty(_Var2, _Var6);
+
+PROC
+Proc_DialogFlagSetup((STRING)_Var1, (GUIDSTRING)_Var2, (GUIDSTRING)_Var3, (GUIDSTRING)_Var4, (GUIDSTRING)_Var5)
+AND
+DB_GLO_CheckSpeakerNumber(_Var3, _Var6)
+AND
+DB_IsPlayer(_Var4)
+THEN
+Proc_CountParty(_Var4, _Var6);
+
+PROC
+Proc_DialogFlagSetup((STRING)_Var1, (GUIDSTRING)_Var2, (GUIDSTRING)_Var3, (GUIDSTRING)_Var4, (GUIDSTRING)_Var5)
+AND
+DB_GLO_CheckSpeakerNumber(_Var3, _Var6)
+AND
+DB_IsPlayer(_Var5)
+THEN
+Proc_CountParty(_Var5, _Var6);
+
+PROC
+Proc_DialogFlagSetup((STRING)_Var1, (GUIDSTRING)_Var2, (GUIDSTRING)_Var3, (GUIDSTRING)_Var4, (GUIDSTRING)_Var5)
+AND
+DB_GLO_CheckSpeakerNumber(_Var4, _Var6)
+AND
+DB_IsPlayer(_Var2)
+THEN
+Proc_CountParty(_Var2, _Var6);
+
+PROC
+Proc_DialogFlagSetup((STRING)_Var1, (GUIDSTRING)_Var2, (GUIDSTRING)_Var3, (GUIDSTRING)_Var4, (GUIDSTRING)_Var5)
+AND
+DB_GLO_CheckSpeakerNumber(_Var4, _Var6)
+AND
+DB_IsPlayer(_Var3)
+THEN
+Proc_CountParty(_Var3, _Var6);
+
+PROC
+Proc_DialogFlagSetup((STRING)_Var1, (GUIDSTRING)_Var2, (GUIDSTRING)_Var3, (GUIDSTRING)_Var4, (GUIDSTRING)_Var5)
+AND
+DB_GLO_CheckSpeakerNumber(_Var4, _Var6)
+AND
+DB_IsPlayer(_Var5)
+THEN
+Proc_CountParty(_Var5, _Var6);
+
+PROC
+Proc_DialogFlagSetup((STRING)_Var1, (GUIDSTRING)_Var2, (GUIDSTRING)_Var3, (GUIDSTRING)_Var4, (GUIDSTRING)_Var5)
+AND
+DB_GLO_CheckSpeakerNumber(_Var5, _Var6)
+AND
+DB_IsPlayer(_Var2)
+THEN
+Proc_CountParty(_Var2, _Var6);
+
+PROC
+Proc_DialogFlagSetup((STRING)_Var1, (GUIDSTRING)_Var2, (GUIDSTRING)_Var3, (GUIDSTRING)_Var4, (GUIDSTRING)_Var5)
+AND
+DB_GLO_CheckSpeakerNumber(_Var5, _Var6)
+AND
+DB_IsPlayer(_Var3)
+THEN
+Proc_CountParty(_Var3, _Var6);
+
+PROC
+Proc_DialogFlagSetup((STRING)_Var1, (GUIDSTRING)_Var2, (GUIDSTRING)_Var3, (GUIDSTRING)_Var4, (GUIDSTRING)_Var5)
+AND
+DB_GLO_CheckSpeakerNumber(_Var5, _Var6)
+AND
+DB_IsPlayer(_Var4)
+THEN
+Proc_CountParty(_Var4, _Var6);
+
+PROC
+Proc_DialogFlagSetup((STRING)_Var1, (GUIDSTRING)_Var2, (GUIDSTRING)_Var3, (GUIDSTRING)_Var4, (GUIDSTRING)_Var5, (GUIDSTRING)_Var6)
+AND
+DB_GLO_CheckSpeakerNumber(_Var2, _Var7)
+AND
+DB_IsPlayer(_Var3)
+THEN
+Proc_CountParty(_Var3, _Var7);
+
+PROC
+Proc_DialogFlagSetup((STRING)_Var1, (GUIDSTRING)_Var2, (GUIDSTRING)_Var3, (GUIDSTRING)_Var4, (GUIDSTRING)_Var5, (GUIDSTRING)_Var6)
+AND
+DB_GLO_CheckSpeakerNumber(_Var2, _Var7)
+AND
+DB_IsPlayer(_Var4)
+THEN
+Proc_CountParty(_Var4, _Var7);
+
+PROC
+Proc_DialogFlagSetup((STRING)_Var1, (GUIDSTRING)_Var2, (GUIDSTRING)_Var3, (GUIDSTRING)_Var4, (GUIDSTRING)_Var5, (GUIDSTRING)_Var6)
+AND
+DB_GLO_CheckSpeakerNumber(_Var2, _Var7)
+AND
+DB_IsPlayer(_Var5)
+THEN
+Proc_CountParty(_Var5, _Var7);
+
+PROC
+Proc_DialogFlagSetup((STRING)_Var1, (GUIDSTRING)_Var2, (GUIDSTRING)_Var3, (GUIDSTRING)_Var4, (GUIDSTRING)_Var5, (GUIDSTRING)_Var6)
+AND
+DB_GLO_CheckSpeakerNumber(_Var2, _Var7)
+AND
+DB_IsPlayer(_Var6)
+THEN
+Proc_CountParty(_Var6, _Var7);
+
+PROC
+Proc_DialogFlagSetup((STRING)_Var1, (GUIDSTRING)_Var2, (GUIDSTRING)_Var3, (GUIDSTRING)_Var4, (GUIDSTRING)_Var5, (GUIDSTRING)_Var6)
+AND
+DB_GLO_CheckSpeakerNumber(_Var3, _Var7)
+AND
+DB_IsPlayer(_Var2)
+THEN
+Proc_CountParty(_Var2, _Var7);
+
+PROC
+Proc_DialogFlagSetup((STRING)_Var1, (GUIDSTRING)_Var2, (GUIDSTRING)_Var3, (GUIDSTRING)_Var4, (GUIDSTRING)_Var5, (GUIDSTRING)_Var6)
+AND
+DB_GLO_CheckSpeakerNumber(_Var3, _Var7)
+AND
+DB_IsPlayer(_Var4)
+THEN
+Proc_CountParty(_Var4, _Var7);
+
+PROC
+Proc_DialogFlagSetup((STRING)_Var1, (GUIDSTRING)_Var2, (GUIDSTRING)_Var3, (GUIDSTRING)_Var4, (GUIDSTRING)_Var5, (GUIDSTRING)_Var6)
+AND
+DB_GLO_CheckSpeakerNumber(_Var3, _Var7)
+AND
+DB_IsPlayer(_Var5)
+THEN
+Proc_CountParty(_Var5, _Var7);
+
+PROC
+Proc_DialogFlagSetup((STRING)_Var1, (GUIDSTRING)_Var2, (GUIDSTRING)_Var3, (GUIDSTRING)_Var4, (GUIDSTRING)_Var5, (GUIDSTRING)_Var6)
+AND
+DB_GLO_CheckSpeakerNumber(_Var3, _Var7)
+AND
+DB_IsPlayer(_Var6)
+THEN
+Proc_CountParty(_Var6, _Var7);
+
+PROC
+Proc_DialogFlagSetup((STRING)_Var1, (GUIDSTRING)_Var2, (GUIDSTRING)_Var3, (GUIDSTRING)_Var4, (GUIDSTRING)_Var5, (GUIDSTRING)_Var6)
+AND
+DB_GLO_CheckSpeakerNumber(_Var4, _Var7)
+AND
+DB_IsPlayer(_Var2)
+THEN
+Proc_CountParty(_Var2, _Var7);
+
+PROC
+Proc_DialogFlagSetup((STRING)_Var1, (GUIDSTRING)_Var2, (GUIDSTRING)_Var3, (GUIDSTRING)_Var4, (GUIDSTRING)_Var5, (GUIDSTRING)_Var6)
+AND
+DB_GLO_CheckSpeakerNumber(_Var4, _Var7)
+AND
+DB_IsPlayer(_Var3)
+THEN
+Proc_CountParty(_Var3, _Var7);
+
+PROC
+Proc_DialogFlagSetup((STRING)_Var1, (GUIDSTRING)_Var2, (GUIDSTRING)_Var3, (GUIDSTRING)_Var4, (GUIDSTRING)_Var5, (GUIDSTRING)_Var6)
+AND
+DB_GLO_CheckSpeakerNumber(_Var4, _Var7)
+AND
+DB_IsPlayer(_Var5)
+THEN
+Proc_CountParty(_Var5, _Var7);
+
+PROC
+Proc_DialogFlagSetup((STRING)_Var1, (GUIDSTRING)_Var2, (GUIDSTRING)_Var3, (GUIDSTRING)_Var4, (GUIDSTRING)_Var5, (GUIDSTRING)_Var6)
+AND
+DB_GLO_CheckSpeakerNumber(_Var4, _Var7)
+AND
+DB_IsPlayer(_Var6)
+THEN
+Proc_CountParty(_Var6, _Var7);
+
+PROC
+Proc_DialogFlagSetup((STRING)_Var1, (GUIDSTRING)_Var2, (GUIDSTRING)_Var3, (GUIDSTRING)_Var4, (GUIDSTRING)_Var5, (GUIDSTRING)_Var6)
+AND
+DB_GLO_CheckSpeakerNumber(_Var5, _Var7)
+AND
+DB_IsPlayer(_Var2)
+THEN
+Proc_CountParty(_Var2, _Var7);
+
+PROC
+Proc_DialogFlagSetup((STRING)_Var1, (GUIDSTRING)_Var2, (GUIDSTRING)_Var3, (GUIDSTRING)_Var4, (GUIDSTRING)_Var5, (GUIDSTRING)_Var6)
+AND
+DB_GLO_CheckSpeakerNumber(_Var5, _Var7)
+AND
+DB_IsPlayer(_Var3)
+THEN
+Proc_CountParty(_Var3, _Var7);
+
+PROC
+Proc_DialogFlagSetup((STRING)_Var1, (GUIDSTRING)_Var2, (GUIDSTRING)_Var3, (GUIDSTRING)_Var4, (GUIDSTRING)_Var5, (GUIDSTRING)_Var6)
+AND
+DB_GLO_CheckSpeakerNumber(_Var5, _Var7)
+AND
+DB_IsPlayer(_Var4)
+THEN
+Proc_CountParty(_Var4, _Var7);
+
+PROC
+Proc_DialogFlagSetup((STRING)_Var1, (GUIDSTRING)_Var2, (GUIDSTRING)_Var3, (GUIDSTRING)_Var4, (GUIDSTRING)_Var5, (GUIDSTRING)_Var6)
+AND
+DB_GLO_CheckSpeakerNumber(_Var5, _Var7)
+AND
+DB_IsPlayer(_Var6)
+THEN
+Proc_CountParty(_Var6, _Var7);
+
+PROC
+Proc_DialogFlagSetup((STRING)_Var1, (GUIDSTRING)_Var2, (GUIDSTRING)_Var3, (GUIDSTRING)_Var4, (GUIDSTRING)_Var5, (GUIDSTRING)_Var6)
+AND
+DB_GLO_CheckSpeakerNumber(_Var6, _Var7)
+AND
+DB_IsPlayer(_Var2)
+THEN
+Proc_CountParty(_Var2, _Var7);
+
+PROC
+Proc_DialogFlagSetup((STRING)_Var1, (GUIDSTRING)_Var2, (GUIDSTRING)_Var3, (GUIDSTRING)_Var4, (GUIDSTRING)_Var5, (GUIDSTRING)_Var6)
+AND
+DB_GLO_CheckSpeakerNumber(_Var6, _Var7)
+AND
+DB_IsPlayer(_Var3)
+THEN
+Proc_CountParty(_Var3, _Var7);
+
+PROC
+Proc_DialogFlagSetup((STRING)_Var1, (GUIDSTRING)_Var2, (GUIDSTRING)_Var3, (GUIDSTRING)_Var4, (GUIDSTRING)_Var5, (GUIDSTRING)_Var6)
+AND
+DB_GLO_CheckSpeakerNumber(_Var6, _Var7)
+AND
+DB_IsPlayer(_Var4)
+THEN
+Proc_CountParty(_Var4, _Var7);
+
+PROC
+Proc_DialogFlagSetup((STRING)_Var1, (GUIDSTRING)_Var2, (GUIDSTRING)_Var3, (GUIDSTRING)_Var4, (GUIDSTRING)_Var5, (GUIDSTRING)_Var6)
+AND
+DB_GLO_CheckSpeakerNumber(_Var6, _Var7)
+AND
+DB_IsPlayer(_Var5)
+THEN
+Proc_CountParty(_Var5, _Var7);
+
+PROC
+Proc_CountParty((GUIDSTRING)_Var1, _)
+THEN
+DB_Singleton("GLO_PartyCount", 1);
+
+PROC
+Proc_CountParty((GUIDSTRING)_Var1, _)
+AND
+DB_GLO_PartyAmountFlags(_Var3, _)
+THEN
+ObjectClearFlag(_Var1, _Var3, 0);
+
+PROC
+Proc_CountParty((CHARACTERGUID)_Var1, (REAL)_Var2)
+AND
+DB_IsPlayer(_Var1)
+AND
+DB_IsPlayer(_Var3)
+AND
+_Var1 != _Var3
+AND
+CharacterIsInPartyWith(_Var1, _Var3, 1)
+AND
+GetDistanceTo(_Var1, _Var3, _Var4)
+AND
+_Var4 <= _Var2
+AND
+DB_Singleton("GLO_PartyCount", _Var5)
+AND
+IntegerSum(_Var5, 1, _Var6)
+THEN
+DB_Singleton("GLO_PartyCount", _Var6);
+
+PROC
+Proc_CountParty((CHARACTERGUID)_Var1, -1)
+AND
+DB_IsPlayer(_Var1)
+AND
+DB_IsPlayer(_Var2)
+AND
+_Var1 != _Var2
+AND
+CharacterIsInPartyWith(_Var1, _Var2, 1)
+AND
+DB_Singleton("GLO_PartyCount", _Var3)
+AND
+IntegerSum(_Var3, 1, _Var4)
+THEN
+DB_Singleton("GLO_PartyCount", _Var4);
+
+PROC
+Proc_CountParty((GUIDSTRING)_Var1, _)
+AND
+DB_Singleton("GLO_PartyCount", _Var3)
+AND
+DB_GLO_PartyAmountFlags(_Var4, _Var3)
+THEN
+NOT DB_Singleton("GLO_PartyCount", _Var3);
+ObjectSetFlag(_Var1, _Var4, 0);
+
+IF
+UserConnected(_, _, _)
+AND
+DB_UserCounter(_Var4)
+AND
+IntegerSum(_Var4, 1, _Var5)
+THEN
+NOT DB_UserCounter(_Var4);
+DB_UserCounter(_Var5);
+
+IF
+UserDisconnected(_, _, _)
+AND
+DB_UserCounter(_Var4)
+AND
+IntegerSubtract(_Var4, 1, _Var5)
+THEN
+NOT DB_UserCounter(_Var4);
+DB_UserCounter(_Var5);
+
+IF
+DB_UserCounter(1)
+THEN
+GlobalClearFlag("GLO_MultiPlayer");
+
+IF
+DB_UserCounter(_Var1)
+AND
+_Var1 != 1
+THEN
+GlobalSetFlag("GLO_MultiPlayer");
+
+
+EXITSECTION
+ENDEXITSECTION
+
+ParentTargetEdge "DOS2ModWrapper"

@@ -1,0 +1,399 @@
+Version 1
+SubGoalCombiner SGC_AND
+
+INITSECTION
+DB_OneShotPlayerTrigger(S_RC_OIL_Docks_HouseTrig_6ac80f7c-b9e8-4bc3-9025-48c42eae3b84);
+DB_OneShotUser_VoicebarkTrigger(S_RC_OIL_Docks_VoicebarkTrig_20f78808-991c-4c5d-a491-ad62b40a9d0e, "RC_OIL_Docks_VB_ApproachingDocks");
+DB_Ghosts(CHARACTERGUID_S_RC_OIL_Docks_Blackring_01_7b338908-1d50-4991-87eb-2cf16e6a0222, CHARACTERGUID_S_GLO_OilfieldsDock_BlackRing_Ghost_1_0aa1f058-e6b8-4bdd-8e45-17d8345a3481, "RC_OIL_Docks_Ghost");
+DB_Ghosts(CHARACTERGUID_S_GLO_OilfieldsDock_BlackRing_2_f9c39bba-cb07-4eec-a4a5-3f020362d112, CHARACTERGUID_S_GLO_OilfieldsDock_BlackRing_Ghost_2_be841bf1-fe2a-4688-9791-d049ff47af3f, "RC_OIL_Docks_Ghost2");
+DB_Ghosts(CHARACTERGUID_S_GLO_OilfieldsDock_BlackRing_3_0249de44-326e-4ee9-b0c0-cde2727e8bb6, CHARACTERGUID_S_GLO_OilfieldsDock_BlackRing_Ghost_3_dbc4e060-b967-44ef-ad3c-42a72f1a22f2, "RC_OIL_Docks_Ghost3");
+DB_Dialogs(CHARACTERGUID_S_RC_OIL_Docks_Blackring_01_7b338908-1d50-4991-87eb-2cf16e6a0222, "RC_OIL_Dock_BlackringOfficer");
+DB_Dialogs(CHARACTERGUID_S_GLO_OilfieldsDock_BlackRing_2_f9c39bba-cb07-4eec-a4a5-3f020362d112, "RC_OIL_Dock_Blackring2");
+DB_Dialogs(CHARACTERGUID_S_GLO_OilfieldsDock_BlackRing_3_0249de44-326e-4ee9-b0c0-cde2727e8bb6, "RC_OIL_Dock_Blackring3");
+DB_RC_OIL_DockBlackRing(CHARACTERGUID_S_GLO_OilfieldsDock_BlackRing_1_7b338908-1d50-4991-87eb-2cf16e6a0222);
+DB_RC_OIL_DockBlackRing(CHARACTERGUID_S_GLO_OilfieldsDock_BlackRing_2_f9c39bba-cb07-4eec-a4a5-3f020362d112);
+DB_RC_OIL_DockBlackRing(CHARACTERGUID_S_GLO_OilfieldsDock_BlackRing_3_0249de44-326e-4ee9-b0c0-cde2727e8bb6);
+CharacterAddSourcePoints(CHARACTERGUID_S_RC_OIL_Dock_Shriker1_a710c818-9284-4e00-9a47-7260023350c3, 1);
+CharacterAddSourcePoints(CHARACTERGUID_S_RC_OIL_Dock_Shriker2_985c3950-3152-4620-969f-6525ed75d41f, 1);
+DB_FTJ_SW_SourceTotems(CHARACTERGUID_S_RC_OIL_Dock_Shriker1_a710c818-9284-4e00-9a47-7260023350c3, "RC_OIL_Shriker1", "RC_OIL_Shriker1_Spotted");
+DB_FTJ_SW_SourceTotems(CHARACTERGUID_S_RC_OIL_Dock_Shriker2_985c3950-3152-4620-969f-6525ed75d41f, "RC_OIL_Shriker2", "RC_OIL_Shriker2_Spotted");
+SetOnStage(ITEMGUID_S_RC_OIL_WhiteMagisterShip_ad9f2625-65fd-4b57-986d-81c159c8cd5f, 0);
+DB_RC_OIL_WhiteMagisterGroup(CHARACTERGUID_S_RC_DW_WhiteMagister_SilentMonk_01_112e6755-131d-4eac-8ac9-e07c0a1eca3a, TRIGGERGUID_S_RC_OIL_Dock_Guard1_21ec7145-8c27-4bd4-b6f7-1c8904d66e22, "RC_OIL_Dock_SilentMonk_01");
+DB_RC_OIL_WhiteMagisterGroup(CHARACTERGUID_S_RC_DW_WhiteMagister_SilentMonk_02_c09bc858-fd51-4ab1-8e47-6acdbcacc44e, TRIGGERGUID_S_RC_OIL_Dock_Guard2_266eb694-da06-4786-b91a-6510127022e0, "RC_OIL_Dock_SilentMonk_02");
+DB_Dialogs(CHARACTERGUID_S_RC_OIL_InnerField_Magister_8_f9931bbc-60ff-4527-8263-6b4af470ce6f, "RC_OIL_InnerField_Magister_DockGuard");
+DB_RC_OIL_Dock_Magisters(CHARACTERGUID_S_RC_OIL_Docks_WhiteMagister_01_f1e8c0fd-a1e8-4576-b3cf-59cfe01499f4);
+DB_RC_OIL_Dock_Magisters(CHARACTERGUID_S_RC_OIL_Docks_Watcher_01_adfec5a9-f65e-44c5-9661-963d82475890);
+DB_RC_OIL_Dock_Magisters(CHARACTERGUID_S_RC_OIL_Docks_Watcher_02_d3c6c540-acc2-4ceb-bff2-2999f3ff8ef4);
+DB_RC_OIL_Dock_Magisters(CHARACTERGUID_S_RC_OIL_Docks_Watcher_03_f8593986-be91-4f06-a271-2c02ace99ead);
+DB_DoNotFace(CHARACTERGUID_S_RC_OIL_Docks_WhiteMagister_01_f1e8c0fd-a1e8-4576-b3cf-59cfe01499f4);
+DB_DoNotFace(CHARACTERGUID_S_RC_DW_WhiteMagister_b1bdd004-a286-4ad5-9826-a763d672b2a7);
+
+KBSECTION
+IF
+DB_RC_OIL_DockBlackRing(_Var1)
+THEN
+CharacterSetAnimationOverride(_Var1, "Execution_01_Loop");
+ProcCharacterDisableAllCrimes(_Var1);
+SetCanFight(_Var1, 0);
+SetHasDialog(_Var1, 0);
+ApplyStatus(_Var1, "QUEST_TIEDUP", -1, 1);
+
+IF
+CharacterEnteredTrigger((CHARACTERGUID)_Var1, TRIGGERGUID_S_RC_OIL_SUB_Oilfields_bdbc337d-ee81-4b3d-96f7-d291fc5b271f)
+AND
+QueryOnlyOnce("RC_OIL_DockRingFX")
+AND
+DB_RC_OIL_DockBlackRing(_Var2)
+THEN
+PROC_LoopEffect("RS3_FX_GP_Status_Shackles_of_Pain_01", _Var2, "FX_RC_OIL_Dock_BlackRingChain", "RC_Main", "Dummy_BodyFX");
+
+IF
+CharacterEnteredTrigger((CHARACTERGUID)_Var1, TRIGGERGUID_S_RC_OIL_Docks_VoicebarkTrig_20f78808-991c-4c5d-a491-ad62b40a9d0e)
+THEN
+PartySetFlag(_Var1, "QuestUpdate_RC_DF_PaladinCheckpoint_MagistersTalking");
+
+IF
+CharacterEnteredTrigger((CHARACTERGUID)_Var1, TRIGGERGUID_S_RC_OIL_SUB_Oilfields_bdbc337d-ee81-4b3d-96f7-d291fc5b271f)
+AND
+CharacterIsDead(CHARACTERGUID_S_RC_DW_WhiteMagister_b1bdd004-a286-4ad5-9826-a763d672b2a7, 0)
+AND NOT
+DB_DialogNPCs(_, CHARACTERGUID_S_RC_DW_WhiteMagister_b1bdd004-a286-4ad5-9826-a763d672b2a7, _)
+AND
+GlobalGetFlag("RC_OIL_Docks_WhiteMagisterArrived", 0)
+THEN
+Proc_RC_DW_WhiteMagisterLeave();
+
+IF
+StoryEvent(CHARACTERGUID_S_RC_DW_WhiteMagister_b1bdd004-a286-4ad5-9826-a763d672b2a7, "RC_DW_ReachedBoat")
+AND
+GlobalGetFlag("RC_OIL_BlackRingEvent", 0)
+THEN
+TimerLaunch("Timer_RC_OIL_ShipArrived", 3000);
+
+IF
+TimerFinished("Timer_RC_OIL_ShipArrived")
+THEN
+SetOnStage(ITEMGUID_S_RC_OIL_WhiteMagisterShip_ad9f2625-65fd-4b57-986d-81c159c8cd5f, 1);
+
+IF
+ItemWentOnStage(ITEMGUID_S_RC_OIL_WhiteMagisterShip_ad9f2625-65fd-4b57-986d-81c159c8cd5f, 1)
+THEN
+CharacterSetReactionPriority(CHARACTERGUID_S_RC_DW_WhiteMagister_b1bdd004-a286-4ad5-9826-a763d672b2a7, "TalkTo", 0);
+TeleportTo(CHARACTERGUID_S_RC_DW_WhiteMagister_b1bdd004-a286-4ad5-9826-a763d672b2a7, TRIGGERGUID_S_RC_OIL_WhiteMagisterFlee_78417bdb-4288-4eeb-8821-4242b8e096e0);
+CharacterLevelUpTo(CHARACTERGUID_S_RC_DW_WhiteMagister_b1bdd004-a286-4ad5-9826-a763d672b2a7, 16);
+SetOnStage(CHARACTERGUID_S_RC_DW_WhiteMagister_b1bdd004-a286-4ad5-9826-a763d672b2a7, 1);
+Proc_RC_OIL_WhiteMagisterCreepsArrive();
+SetFaction(CHARACTERGUID_S_RC_DW_WhiteMagister_b1bdd004-a286-4ad5-9826-a763d672b2a7, "RC_OIL_Docks_Magisters");
+SetCombatGroupID(CHARACTERGUID_S_RC_DW_WhiteMagister_b1bdd004-a286-4ad5-9826-a763d672b2a7, "0ce50563-fcc3-4d67-af27-10500ce43930");
+ProcCharacterMoveTo(CHARACTERGUID_S_RC_DW_WhiteMagister_b1bdd004-a286-4ad5-9826-a763d672b2a7, TRIGGERGUID_S_RC_OIL_WhiteMagister_96987aac-76f0-4818-82ec-7635e2a84fdc, 1, "RC_OIL_WhiteMagisterArrived");
+
+PROC
+Proc_RC_OIL_WhiteMagisterCreepsArrive()
+AND
+DB_RC_OIL_WhiteMagisterGroup(_Var1, _Var2, _Var3)
+AND NOT
+DB_Dead(_Var1)
+THEN
+CharacterLevelUpTo(_Var1, 14);
+TeleportTo(_Var1, CHARACTERGUID_S_RC_DW_WhiteMagister_b1bdd004-a286-4ad5-9826-a763d672b2a7);
+SetOnStage(_Var1, 1);
+SetFaction(_Var1, "RC_OIL_Docks_Magisters");
+SetCombatGroupID(_Var1, "0ce50563-fcc3-4d67-af27-10500ce43930");
+ProcCharacterMoveTo(_Var1, _Var2, 0, "");
+DB_RC_OIL_Dock_Magisters(_Var1);
+DB_Dialogs(_Var1, _Var3);
+
+IF
+StoryEvent(CHARACTERGUID_S_RC_DW_WhiteMagister_b1bdd004-a286-4ad5-9826-a763d672b2a7, "RC_OIL_WhiteMagisterArrived")
+THEN
+GlobalSetFlag("RC_OIL_Docks_WhiteMagisterArrived");
+DB_RC_OIL_Dock_Magisters(CHARACTERGUID_S_RC_DW_WhiteMagister_b1bdd004-a286-4ad5-9826-a763d672b2a7);
+
+IF
+StoryEvent(CHARACTERGUID_S_RC_DW_WhiteMagister_b1bdd004-a286-4ad5-9826-a763d672b2a7, "RC_OIL_WhiteMagisterArrived")
+AND
+CharacterConsume(CHARACTERGUID_S_RC_DW_WhiteMagister_b1bdd004-a286-4ad5-9826-a763d672b2a7, "POTION_Medium_Perception_Potion", _)
+THEN
+DB_NOOP(1);
+
+IF
+StoryEvent((CHARACTERGUID)_Var1, "RC_OIL_Dock_ExecutionDialog")
+AND
+GlobalGetFlag("RC_OIL_Docks_WhiteMagisterArrived", 1)
+THEN
+Proc_StartDialog(0, "RC_OIL_Dock_Execution", CHARACTERGUID_S_RC_OIL_Docks_WhiteMagister_01_f1e8c0fd-a1e8-4576-b3cf-59cfe01499f4, CHARACTERGUID_S_RC_DW_WhiteMagister_b1bdd004-a286-4ad5-9826-a763d672b2a7, _Var1);
+
+IF
+StoryEvent((CHARACTERGUID)_Var1, "RC_OIL_Dock_ExecutionDialog")
+AND
+GlobalGetFlag("RC_OIL_Docks_WhiteMagisterArrived", 0)
+THEN
+Proc_StartDialog(0, "RC_OIL_Dock_ExecutionAlone", CHARACTERGUID_S_RC_OIL_Docks_WhiteMagister_01_f1e8c0fd-a1e8-4576-b3cf-59cfe01499f4, _Var1);
+
+IF
+ObjectTurnStarted(CHARACTERGUID_S_RC_DW_WhiteMagister_b1bdd004-a286-4ad5-9826-a763d672b2a7)
+AND
+QueryOnlyOnce("RC_OIL_Dock_ReimondAD")
+THEN
+Proc_StartDialog(1, "RC_OIL_Docks_AD_ExecutionInterrupted", CHARACTERGUID_S_RC_DW_WhiteMagister_b1bdd004-a286-4ad5-9826-a763d672b2a7);
+
+IF
+AttackedByObject((CHARACTERGUID)_Var1, CHARACTERGUID_S_RC_OIL_Docks_WhiteMagister_01_f1e8c0fd-a1e8-4576-b3cf-59cfe01499f4, _, _, _)
+AND
+DB_RC_OIL_DockBlackRing(_Var1)
+AND
+QueryOnlyOnce("RC_OIL_Dock_ExecutionAD")
+THEN
+Proc_StartDialog(1, "RC_OIL_AD_DockExecute", CHARACTERGUID_S_RC_OIL_Docks_WhiteMagister_01_f1e8c0fd-a1e8-4576-b3cf-59cfe01499f4);
+
+IF
+DialogEnded("RC_OIL_Dock_ExecutionAlone", _)
+THEN
+CharacterSetReactionPriority(S_RC_OIL_Docks_WhiteMagister_01_f1e8c0fd-a1e8-4576-b3cf-59cfe01499f4, "ExecuteBlackRing", 100);
+Proc_RC_OIL_Dock_MakeMagistersHostile();
+
+IF
+DialogEnded("RC_OIL_Dock_Execution", _)
+THEN
+CharacterSetReactionPriority(S_RC_OIL_Docks_WhiteMagister_01_f1e8c0fd-a1e8-4576-b3cf-59cfe01499f4, "ExecuteBlackRing", 100);
+Proc_RC_OIL_Dock_MakeMagistersHostile();
+
+PROC
+Proc_RC_OIL_Dock_MakeMagistersHostile()
+THEN
+CharacterSetRelationFactionToFaction("RC_OIL_Docks_Magisters", "RC_Oil_Docks_Blackring", 0);
+CharacterSetRelationFactionToFaction("RC_Oil_Docks_Blackring", "RC_OIL_Docks_Magisters", 0);
+CharacterSetRelationFactionToFaction("RC_OIL_Docks_Magisters", "Hero", 0);
+
+IF
+AttackedByObject((CHARACTERGUID)_Var1, CHARACTERGUID_S_RC_OIL_Docks_WhiteMagister_01_f1e8c0fd-a1e8-4576-b3cf-59cfe01499f4, _, _, _)
+AND
+DB_RC_OIL_DockBlackRing(_Var1)
+THEN
+NOT DB_OnlyOnce("RC_OIL_Dock_ExecutionAD");
+
+IF
+ObjectEnteredCombat(CHARACTERGUID_S_RC_OIL_Docks_WhiteMagister_01_f1e8c0fd-a1e8-4576-b3cf-59cfe01499f4, _)
+THEN
+Proc_RC_OIL_Dock_MakeMagistersHostile();
+GlobalSetFlag("RC_OIL_Dock_CastShackles");
+
+IF
+ObjectTurnEnded(CHARACTERGUID_S_RC_DW_WhiteMagister_b1bdd004-a286-4ad5-9826-a763d672b2a7)
+AND
+DB_GlobalFlag("RC_OIL_Docks_WhiteMagisterArrived")
+AND
+QueryOnlyOnce("RC_OIL_Dock_WhiteMagisterLeave")
+THEN
+CharacterSetReactionPriority(CHARACTERGUID_S_RC_DW_WhiteMagister_b1bdd004-a286-4ad5-9826-a763d672b2a7, "EscapeToTheShip", 1000);
+TriggerRegisterForCharacter(TRIGGERGUID_S_RC_OIL_WhiteMagisterEscapeBox_9a434423-7443-46c2-afa6-30aa3c5d30b8, CHARACTERGUID_S_RC_DW_WhiteMagister_b1bdd004-a286-4ad5-9826-a763d672b2a7);
+Proc_GLO_JournalCoreStory_Chapter4_RC_Reimond_MetOIL_Update();
+
+IF
+CharacterEnteredTrigger(CHARACTERGUID_S_RC_DW_WhiteMagister_b1bdd004-a286-4ad5-9826-a763d672b2a7, TRIGGERGUID_S_RC_OIL_WhiteMagisterEscapeBox_9a434423-7443-46c2-afa6-30aa3c5d30b8)
+THEN
+TriggerUnregisterForCharacter(TRIGGERGUID_S_RC_OIL_WhiteMagisterEscapeBox_9a434423-7443-46c2-afa6-30aa3c5d30b8, CHARACTERGUID_S_RC_DW_WhiteMagister_b1bdd004-a286-4ad5-9826-a763d672b2a7);
+CharacterSetReactionPriority(CHARACTERGUID_S_RC_DW_WhiteMagister_b1bdd004-a286-4ad5-9826-a763d672b2a7, "EscapeToTheShip", 0);
+Proc_GLO_JournalCoreStory_Chapter4_RC_Reimond_MetOIL_Update();
+SetStoryEvent(CHARACTERGUID_S_RC_DW_WhiteMagister_b1bdd004-a286-4ad5-9826-a763d672b2a7, "RC_OIL_WhiteMagisterLeave");
+
+IF
+StoryEvent(CHARACTERGUID_S_RC_DW_WhiteMagister_b1bdd004-a286-4ad5-9826-a763d672b2a7, "RC_OIL_WhiteMagisterLeave")
+THEN
+SetOnStage(CHARACTERGUID_S_RC_DW_WhiteMagister_b1bdd004-a286-4ad5-9826-a763d672b2a7, 0);
+ItemSetForceSynch(ITEMGUID_S_RC_OIL_WhiteMagisterShip_ad9f2625-65fd-4b57-986d-81c159c8cd5f, 1);
+proc_ItemMoveToTrigger(ITEMGUID_S_RC_OIL_WhiteMagisterShip_ad9f2625-65fd-4b57-986d-81c159c8cd5f, TRIGGERGUID_S_RC_OIL_WhiteMagisterShipDestination_e495b95d-31e6-41de-88f3-fd7af76b4fc3, 3, 1.1, 1);
+TimerLaunch("Timer_RC_OIL_Dock_Ship", 8000);
+
+IF
+TimerFinished("Timer_RC_OIL_Dock_Ship")
+THEN
+ItemSetForceSynch(ITEMGUID_S_RC_OIL_WhiteMagisterShip_ad9f2625-65fd-4b57-986d-81c159c8cd5f, 0);
+SetOnStage(ITEMGUID_S_RC_OIL_WhiteMagisterShip_ad9f2625-65fd-4b57-986d-81c159c8cd5f, 0);
+
+IF
+GameBookInterfaceClosed(ITEMGUID_S_RC_OIL_WhiteMagisterLetter_08aaeaf5-d910-43a8-8198-8a2f0c49b1a7, (CHARACTERGUID)_Var1)
+THEN
+ObjectSetFlag(_Var1, "QuestUpdate_RC_DF_PaladinCheckpoint_WhiteMagister");
+
+IF
+CharacterLeftTrigger((CHARACTERGUID)_Var1, TRIGGERGUID_S_RC_OIL_SUB_Oilfields_bdbc337d-ee81-4b3d-96f7-d291fc5b271f)
+AND
+DB_Dead(CHARACTERGUID_S_RC_OIL_Docks_WhiteMagister_01_f1e8c0fd-a1e8-4576-b3cf-59cfe01499f4)
+AND NOT
+DB_InRegion(_, TRIGGERGUID_S_RC_OIL_SUB_Oilfields_bdbc337d-ee81-4b3d-96f7-d291fc5b271f)
+AND
+QueryOnlyOnce("RC_OIL_Dock_BlackRingEscape")
+AND
+DB_RC_OIL_DockBlackRing(_Var3)
+AND NOT
+DB_Dead(_Var3)
+THEN
+SetHasDialog(_Var3, 0);
+CharacterDisappearOutOfSight(_Var3, 0, 1, "", 1);
+
+IF
+GameBookInterfaceClosed(ITEMGUID_S_RC_OIL_Docks_CaveMap_de853206-6a67-491f-9cb4-390594838b4c, (CHARACTERGUID)_Var1)
+THEN
+ObjectSetFlag(_Var1, "QuestUpdate_RC_OIL_Main_Traps");
+
+IF
+GameBookInterfaceClosed(ITEMGUID_S_RC_OIL_WhiteMagisterLetter_08aaeaf5-d910-43a8-8198-8a2f0c49b1a7, (CHARACTERGUID)_Var1)
+THEN
+ObjectSetFlag(_Var1, "QuestUpdate_RC_DF_PaladinCheckpoint_WhiteMagister");
+
+IF
+GameBookInterfaceClosed(ITEMGUID_S_RC_OIL_WhiteMagisterLetter_08aaeaf5-d910-43a8-8198-8a2f0c49b1a7, (CHARACTERGUID)_Var1)
+AND
+PartyGetFlag(_Var1, "RC_OIL_CORE_RD_TheMagistersAreHeretics", 0)
+THEN
+PartySetFlag(_Var1, "RC_OIL_CORE_RD_TheMagistersAreHeretics");
+ProcDefineReflectionDialog("RC_OIL_CORE_RD_TheMagistersAreHeretics", _Var1);
+
+IF
+CharacterDied(CHARACTERGUID_S_RC_OIL_Docks_WhiteMagister_01_f1e8c0fd-a1e8-4576-b3cf-59cfe01499f4)
+THEN
+PROC_StopLoopEffect(CHARACTERGUID_S_RC_OIL_Docks_WhiteMagister_01_f1e8c0fd-a1e8-4576-b3cf-59cfe01499f4, "FX_RC_OIL_Dock_BlackRingChain");
+GlobalSetFlag("RC_OIL_BlackRingsFreed");
+
+IF
+CharacterDied(CHARACTERGUID_S_RC_OIL_Docks_WhiteMagister_01_f1e8c0fd-a1e8-4576-b3cf-59cfe01499f4)
+AND
+DB_RC_OIL_DockBlackRing(_Var1)
+AND
+Random(3000, _Var2)
+AND
+GetClosestAlivePlayer(_Var1, _Var3, _)
+THEN
+ProcObjectTimer(_Var1, "Timer_RC_OIL_RingRescued", _Var2);
+DB_RC_BI_RingRescuedPlayer(_Var3);
+PartySetFlag(_Var3, "RC_OIL_Dock_SavedBlackRing");
+
+PROC
+ProcObjectTimerFinished((CHARACTERGUID)_Var1, "Timer_RC_OIL_RingRescued")
+THEN
+PROC_StopLoopEffect(_Var1, "FX_RC_OIL_Dock_BlackRingChain");
+PlayEffect(_Var1, "RS3_FX_GP_ScriptedEvent_BreakingShackles_01");
+CharacterSetAnimationOverride(_Var1, "");
+SetVarFixedString(_Var1, "currentState", "State_Dock");
+ProcCharacterEnableAllCrimes(_Var1);
+SetCanFight(_Var1, 1);
+SetHasDialog(_Var1, 1);
+RemoveStatus(_Var1, "QUEST_TIEDUP");
+SetVarInteger(_Var1, "bool_CanCower", 1);
+SetVarInteger(_Var1, "bool_CanFleeWhileCowering", 1);
+SetVarInteger(_Var1, "bool_CombatFallbackAD", 1);
+SetVarInteger(_Var1, "FleeFromDangerousSurface", 1);
+SetVarInteger(_Var1, "bool_CanChickenFlee", 1);
+
+PROC
+ProcObjectTimerFinished(CHARACTERGUID_S_GLO_OilfieldsDock_BlackRing_1_7b338908-1d50-4991-87eb-2cf16e6a0222, "Timer_RC_OIL_RingRescued")
+THEN
+Proc_StartDialog(1, "RC_OIL_AD_Dock_BlackRingCurse", CHARACTERGUID_S_GLO_OilfieldsDock_BlackRing_1_7b338908-1d50-4991-87eb-2cf16e6a0222);
+
+IF
+CharacterDied((CHARACTERGUID)_Var1)
+AND
+DB_RC_OIL_DockBlackRing(_Var1)
+AND
+DB_LoopEffect(_Var1, _, "FX_RC_OIL_Dock_BlackRingChain", _, _, _)
+THEN
+PROC_StopLoopEffect(_Var1, "FX_RC_OIL_Dock_BlackRingChain");
+PlayEffect(_Var1, "RS3_FX_GP_ScriptedEvent_BreakingShackles_01");
+
+IF
+CharacterKilledBy(CHARACTERGUID_S_RC_OIL_Docks_WhiteMagister_01_f1e8c0fd-a1e8-4576-b3cf-59cfe01499f4, (CHARACTERGUID)_Var1, (CHARACTERGUID)_Var2)
+AND
+DB_IsPlayer(_Var1)
+AND
+PartyGetFlag(_Var1, "RC_OIL_Dock_SavedBlackRing", 0)
+THEN
+PartySetFlag(_Var1, "RC_OIL_Dock_SavedBlackRing");
+
+IF
+ObjectLeftCombat(CHARACTERGUID_S_RC_OIL_Docks_WhiteMagister_01_f1e8c0fd-a1e8-4576-b3cf-59cfe01499f4, (INTEGER)_Var1)
+AND
+CharacterIsDead(CHARACTERGUID_S_RC_OIL_Docks_WhiteMagister_01_f1e8c0fd-a1e8-4576-b3cf-59cfe01499f4, 0)
+AND
+DB_IsPlayer(_Var2)
+AND
+DB_WasInCombat(_Var2, _Var1)
+AND
+PartyGetFlag(_Var2, "RC_OIL_Dock_SavedBlackRing", 0)
+THEN
+PartySetFlag(_Var2, "RC_OIL_Dock_SavedBlackRing");
+
+IF
+ObjectLeftCombat(CHARACTERGUID_S_RC_OIL_Docks_WhiteMagister_01_f1e8c0fd-a1e8-4576-b3cf-59cfe01499f4, (INTEGER)_Var1)
+AND
+CharacterIsDead(CHARACTERGUID_S_RC_OIL_Docks_WhiteMagister_01_f1e8c0fd-a1e8-4576-b3cf-59cfe01499f4, 0)
+AND
+DB_IsPlayer(_Var2)
+AND
+PartyGetFlag(_Var2, "RC_OIL_Dock_SavedBlackRing", 0)
+AND
+CombatGetIDForCharacter(_Var2, _Var1)
+THEN
+PartySetFlag(_Var2, "RC_OIL_Dock_SavedBlackRing");
+
+IF
+StoryEvent((CHARACTERGUID)_Var1, "RC_OIL_DockWarning")
+THEN
+Proc_StartDialog(0, "RC_OIL_InnerField_Magister_DockGuard", CHARACTERGUID_S_RC_OIL_InnerField_Magister_8_f9931bbc-60ff-4527-8263-6b4af470ce6f, _Var1);
+
+IF
+CombatEnded((INTEGER)_Var1)
+AND
+DB_RC_BI_RingRescuedPlayer(_Var2)
+AND
+DB_WasInCombat(_Var2, _Var1)
+AND
+DB_IsPlayer(_Var2)
+AND
+SysCount("DB_RC_OIL_DockBlackRing", 1, 3)
+THEN
+PartySetFlag(_Var2, "QuestUpdate_RC_DF_PaladinCheckpoint_SavedAllBlackring");
+NOT DB_RC_BI_RingRescuedPlayer(_Var2);
+
+IF
+CombatEnded((INTEGER)_Var1)
+AND
+DB_RC_BI_RingRescuedPlayer(_Var2)
+AND
+DB_WasInCombat(_Var2, _Var1)
+AND
+DB_IsPlayer(_Var2)
+AND
+SysCount("DB_RC_OIL_DockBlackRing", 1, _Var3)
+AND
+_Var3 > 0
+AND
+_Var3 < 3
+THEN
+PartySetFlag(_Var2, "QuestUpdate_RC_DF_PaladinCheckpoint_SavedBlackring");
+NOT DB_RC_BI_RingRescuedPlayer(_Var2);
+
+IF
+CharacterDied((CHARACTERGUID)_Var1)
+AND
+DB_RC_OIL_DockBlackRing(_Var1)
+THEN
+NOT DB_RC_OIL_DockBlackRing(_Var1);
+
+IF
+CharacterDied((CHARACTERGUID)_Var1)
+AND
+DB_RC_OIL_Dock_Magisters(_Var1)
+THEN
+NOT DB_RC_OIL_Dock_Magisters(_Var1);
+
+IF
+RegionEnded("RC_Main")
+THEN
+GoalCompleted;
+
+
+EXITSECTION
+ENDEXITSECTION
+
+ParentTargetEdge "ReapersCoast"

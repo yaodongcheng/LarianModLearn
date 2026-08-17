@@ -1,0 +1,951 @@
+Version 1
+SubGoalCombiner SGC_AND
+
+INITSECTION
+TriggerRegisterForCharacter(TRIGGERGUID_S_ARX_KemmVault_PatrollingGuard_02_Corridor_901ca004-d1c8-464b-8f55-8bcf41aec450, CHARACTERGUID_S_ARX_KemmVault_PatrollingGuard_02_4fde0022-8cff-4156-8fff-36cc7307366f);
+TriggerRegisterForCharacter(TRIGGERGUID_S_ARX_KemmVault_PatrollingGuard_01_Corridor_de1e26a8-76eb-451a-a022-72d126824ebb, CHARACTERGUID_S_ARX_KemmVault_PatrollingGuard_01_71b39828-e6fa-40be-968e-f99409c05fa6);
+ProcTriggerRegisterForPlayers(TRIGGERGUID_S_ARX_KemmVault_Floor_01_8bd84dae-9618-4027-9a62-a03bc59a7beb);
+ProcTriggerRegisterForPlayers(TRIGGERGUID_S_ARX_KemmVault_SecondFloor_c3c87da9-f9ae-4954-9402-6906b1c23d86);
+DB_OneShotPlayerTrigger(TRIGGERGUID_S_ARX_KemmVault_EnterVBTrig_79d445b4-c268-45bd-aae0-6dc43b778954);
+DB_ARX_KemmVault_PatrollingGuard_Splines(CHARACTERGUID_S_ARX_KemmVault_PatrollingGuard_01_71b39828-e6fa-40be-968e-f99409c05fa6, SPLINEGUID_S_ARX_KemmVault_PatrollingGuard_01_Spline_Default_76648ebb-5ef5-4c89-b522-14c8dc2cd05e, SPLINEGUID_S_ARX_KemmVault_PatrollingGuard_01_Spline_Corridor_928b3cb2-687c-410a-8679-a76fd8ef8570, SPLINEGUID_S_ARX_KemmVault_PatrollingGuard_01_Spline_Corridor_Locked_9df6ea4c-872a-43d3-8601-213b7c28699b, TRIGGERGUID_S_ARX_KemmVault_PatrollingGuard_01_Corridor_de1e26a8-76eb-451a-a022-72d126824ebb);
+DB_ARX_KemmVault_PatrollingGuard_Splines(CHARACTERGUID_S_ARX_KemmVault_PatrollingGuard_02_4fde0022-8cff-4156-8fff-36cc7307366f, SPLINEGUID_S_ARX_KemmVault_PatrollingGuard_02_Spline_Default_3d22850c-38da-4db0-8e3f-31c47c906672, SPLINEGUID_S_ARX_KemmVault_PatrollingGuard_02_Spline_Corridor_8b13a09b-1e70-40b3-8967-bc704ced9d3b, SPLINEGUID_S_ARX_KemmVault_PatrollingGuard_02_Spline_Corridor_Locked_a435d44b-bc21-4f62-8828-fd3ada077754, TRIGGERGUID_S_ARX_KemmVault_PatrollingGuard_02_Corridor_901ca004-d1c8-464b-8f55-8bcf41aec450);
+DB_ARX_KemmVault_PatrollingGuard_Door(CHARACTERGUID_S_ARX_KemmVault_PatrollingGuard_01_71b39828-e6fa-40be-968e-f99409c05fa6, ITEMGUID_S_ARX_KemmVault_HiddenCorridor_01_01_a74e990f-7b74-4c33-aa76-21bd6035c25a);
+DB_ARX_KemmVault_PatrollingGuard_Door(CHARACTERGUID_S_ARX_KemmVault_PatrollingGuard_01_71b39828-e6fa-40be-968e-f99409c05fa6, ITEMGUID_S_ARX_KemmVault_HiddenCorridor_01_02_9cc6ad48-2c31-43ee-a434-8c9286f38862);
+DB_ARX_KemmVault_PatrollingGuard_Door(CHARACTERGUID_S_ARX_KemmVault_PatrollingGuard_02_4fde0022-8cff-4156-8fff-36cc7307366f, ITEMGUID_S_ARX_KemmVault_HiddenCorridor_02_01_a61febf5-44e4-4fb1-a72f-182230a3b7b7);
+DB_ARX_KemmVault_PatrollingGuard_Door(CHARACTERGUID_S_ARX_KemmVault_PatrollingGuard_02_4fde0022-8cff-4156-8fff-36cc7307366f, ITEMGUID_S_ARX_KemmVault_HiddenCorridor_02_02_f12819c8-6205-40af-b641-0b55163b12af);
+DB_ARX_KemmVault_PatrollingGuard(CHARACTERGUID_S_ARX_KemmVault_PatrollingGuard_01_71b39828-e6fa-40be-968e-f99409c05fa6);
+DB_ARX_KemmVault_PatrollingGuard(CHARACTERGUID_S_ARX_KemmVault_PatrollingGuard_02_4fde0022-8cff-4156-8fff-36cc7307366f);
+DB_ARX_KemmVault_PatrollingGuard(CHARACTERGUID_S_ARX_KemmVault_PatrollingGuard_03_8ced1bfc-a77e-42c0-b1dd-fb4d707e8bb7);
+SetHasDialog(ITEMGUID_S_ARX_KemmVault_GhostPainting_b635adb9-4114-48ff-9c28-ed8004b46679, 1);
+DB_Dialogs(ITEMGUID_S_ARX_KemmVault_GhostPainting_b635adb9-4114-48ff-9c28-ed8004b46679, "ARX_KemmVault_GhostPainting");
+DB_HasStoryEvent(ITEMGUID_S_ARX_KemmVault_OriginalPainting_f360db17-5fbb-4aa6-bf94-daf857dede83, "ARX_KemmVault_HasOriginalPainting");
+DB_HasStoryEvent(ITEMGUID_S_ARX_Cathedral_ReplicaPainting_Original_d8190259-0da4-46d5-9333-f4714aba016e, "ARX_KemmVault_HasReplicaPainting");
+DB_ARX_KemmVault_SidePainting(ITEMGUID_S_ARX_KemmVault_SidePainting_02_eb7266ac-a3bf-4a4d-bf1c-b123427a7a76, "ARX_KemmVault_VB_SidePainting_02");
+DB_ARX_KemmVault_SidePainting(ITEMGUID_S_ARX_KemmVault_SidePainting_01_c54180de-fe87-455b-bb21-a86691ae6253, "ARX_KemmVault_VB_SidePainting_01");
+DB_ARX_KemmVault_ReplicaPainting(ITEMGUID_S_ARX_Cathedral_ReplicaPainting_Side_01_93fe5e7e-5079-461d-9ce5-f8532757f387, "ARX_KemmVault_VB_ReplicaPainting_01");
+DB_ARX_KemmVault_ReplicaPainting(ITEMGUID_S_ARX_Cathedral_ReplicaPainting_Side_02_a6c41572-fb0a-4cc8-85fb-e780871d9463, "ARX_KemmVault_VB_ReplicaPainting_02");
+DB_ARX_KemmVault_ReplicaPainting(ITEMGUID_S_ARX_Cathedral_ReplicaPainting_Original_d8190259-0da4-46d5-9333-f4714aba016e, "ARX_KemmVault_VB_ReplicaPainting_Original");
+ItemToInventory(ITEMGUID_RC_ARX_KemmVault_Key_02_2e01bcd4-4ad7-4492-af01-08fec9405c63, CHARACTERGUID_S_ARX_KemmMansion_Lady_6437df25-3c12-4a69-96b2-0188afb59255);
+ItemToInventory(ITEMGUID_S_ARX_KemmVault_WeddingRing_Wife_549aaea3-c37d-4bb4-b662-b9185e1d36db, CHARACTERGUID_S_ARX_KemmMansion_Lady_6437df25-3c12-4a69-96b2-0188afb59255);
+ItemToInventory(ITEMGUID_S_ARX_KemmVault_WeddingRing_Husband_55947740-8916-47b3-b67f-aa503f29808e, CHARACTERGUID_S_ARX_Kemm_3e6ead7d-dd35-4f9d-985e-af2de0d76d28);
+ItemSetCanInteract(ITEMGUID_S_ARX_KemmVault_FinalFloor_Ent_6f13e629-298a-452d-b060-3aaac2ab2175, 0);
+DB_AD_Dialog(ITEMGUID_S_ARX_KemmVault_SecondFloor_AltarSign_e134dbf9-62fd-4416-9cfe-f758672c80f7, "ARX_KemmVault_AD_SecondFloor_AltarSign");
+TriggerRegisterForItems(TRIGGERGUID_S_ARX_KemmVault_SecondFloor_Altar_OrigBox_f21a6590-a0de-4e4b-9b53-3de7c51a55a2);
+ApplyStatus(ITEMGUID_S_ARX_KemmVault_FalseBook_ae2b9e9b-112a-4f25-b174-ba4081961e1e, "GROUNDED", -1, 1);
+DB_Dialogs(CHARACTERGUID_S_ARX_KemmVault_PatrollingGuard_01_71b39828-e6fa-40be-968e-f99409c05fa6, "ARX_KemmVault_PatrollingGuard_01");
+DB_Dialogs(CHARACTERGUID_S_ARX_KemmVault_PatrollingGuard_02_4fde0022-8cff-4156-8fff-36cc7307366f, "ARX_KemmVault_PatrollingGuard_02");
+DB_Dialogs(CHARACTERGUID_S_ARX_KemmVault_PatrollingGuard_03_8ced1bfc-a77e-42c0-b1dd-fb4d707e8bb7, "ARX_KemmVault_PatrollingGuard_03");
+DB_ARX_KemmVault_IntruderDialog(CHARACTERGUID_S_ARX_KemmVault_PatrollingGuard_01_71b39828-e6fa-40be-968e-f99409c05fa6, "ARX_KemmVault_AD_PatrollingGuard_01");
+DB_ARX_KemmVault_IntruderDialog(CHARACTERGUID_S_ARX_KemmVault_PatrollingGuard_02_4fde0022-8cff-4156-8fff-36cc7307366f, "ARX_KemmVault_AD_PatrollingGuard_02");
+DB_ARX_KemmVault_IntruderDialog(CHARACTERGUID_S_ARX_KemmVault_PatrollingGuard_03_8ced1bfc-a77e-42c0-b1dd-fb4d707e8bb7, "ARX_KemmVault_AD_PatrollingGuard_03");
+DB_NoLowAttitudeDialog(CHARACTERGUID_S_ARX_KemmVault_PatrollingGuard_01_71b39828-e6fa-40be-968e-f99409c05fa6);
+DB_NoLowAttitudeDialog(CHARACTERGUID_S_ARX_KemmVault_PatrollingGuard_02_4fde0022-8cff-4156-8fff-36cc7307366f);
+DB_NoLowAttitudeDialog(CHARACTERGUID_S_ARX_KemmVault_PatrollingGuard_03_8ced1bfc-a77e-42c0-b1dd-fb4d707e8bb7);
+DB_ARX_KemmVault_Rings(ITEMGUID_S_ARX_KemmVault_WeddingRing_Wife_549aaea3-c37d-4bb4-b662-b9185e1d36db, "ARX_KemmVault_IntruderDialog_Wife");
+DB_ARX_KemmVault_Rings(ITEMGUID_S_ARX_KemmVault_WeddingRing_Husband_55947740-8916-47b3-b67f-aa503f29808e, "ARX_KemmVault_IntruderDialog_Husband");
+DB_RingsSlots("Ring2");
+DB_RingsSlots("Ring");
+ProcTriggerRegisterForPlayers(TRIGGERGUID_S_ARX_KemmVault_SecondFloor_EighthInteraction_b1555297-83e9-4fb0-bb39-e3894bcd18d6);
+PROC_LoopEffect("RS3_FX_GP_ScriptedEvent_GhostPainting_Indication_01", TRIGGERGUID_S_ARX_KemmVault_GhostPainting_EnvEffect_56051e17-602f-483c-bdf3-7fdac267c0e4, "ARX_KemmVault_GhostPainting_EnvEffect_Loop", "ARX_Main", "");
+PROC_LoopEffect("RS3_FX_GP_ScriptedEvent_GhostPainting_Indication_01", TRIGGERGUID_S_ARX_KemmVault_GhostPainting_EnvEffect_Door_42506579-0d54-4bb7-94de-610362349db3, "ARX_KemmVault_GhostPainting_EnvEffect_Loop", "ARX_Main", "");
+DB_SecretRegions_OnOpenedDoor(TRIGGERGUID_S_ARX_KemmVault_SecretTrigger_SecretPath_f573c308-9d6e-4074-afff-d33bd54b5e6d, ITEMGUID_S_ARX_KemmVault_HiddenCorridor_02_02_f12819c8-6205-40af-b641-0b55163b12af);
+DB_SecretRegions_OnOpenedDoor(TRIGGERGUID_S_ARX_KemmVault_SecretTrigger_SecretPath_f573c308-9d6e-4074-afff-d33bd54b5e6d, ITEMGUID_S_ARX_KemmVault_HiddenCorridor_02_01_a61febf5-44e4-4fb1-a72f-182230a3b7b7);
+DB_SecretRegions_OnOpenedDoor(TRIGGERGUID_S_ARX_KemmVault_SecretTrigger_PaintingRoom_f510755e-b5d0-431d-aa1b-dcc2164015ce, ITEMGUID_S_ARX_KemmVault_HiddenCorridor_02_SecretRoom_7fb3aa29-6329-46d7-bd0d-2f2b832b85ab);
+DB_SecretRegions_OnOpenedDoor(TRIGGERGUID_S_ARX_KemmVault_SecretTrigger_BackroomHatch_c4c797fe-73b6-47c4-9524-11fe34e2e98c, ITEMGUID_S_ARX_KemmVault_SecretDoor_ToSecondFloor_053a645a-f595-4529-a665-bb2541864d32);
+DB_SecretRegions_OnEnteredTrig(TRIGGERGUID_S_ARX_KemmVault_SecretTrigger_BackroomHatch_c4c797fe-73b6-47c4-9524-11fe34e2e98c, TRIGGERGUID_S_ARX_KemmVault_Backroom_SecretTrigger_2745c42a-d2f5-43cc-b9cd-9a871cf7e098);
+DB_SecretRegions_OnEnteredTrig(TRIGGERGUID_S_ARX_KemmVault_SecretTrigger_Backroom_6f059499-1a42-49c6-850b-4b8bd6757863, TRIGGERGUID_S_ARX_KemmVault_Backroom_SecretTrigger_2745c42a-d2f5-43cc-b9cd-9a871cf7e098);
+DB_SecretRegions_OnOpenedDoor(TRIGGERGUID_S_ARX_KemmVault_SecretTrigger_Backroom_6f059499-1a42-49c6-850b-4b8bd6757863, ITEMGUID_S_ARX_KemmVault_PaintingDoor_e08d9645-a04c-445b-b097-a93bbcd981d9);
+DB_SecretRegions_OnStoryEvent(TRIGGERGUID_S_ARX_KemmVault_SecretTrigger_Backroom_6f059499-1a42-49c6-850b-4b8bd6757863, "ARX_KemmVault_PlaceOriginalPainting");
+DB_Ghosts(CHARACTERGUID_S_ARX_KemmVault_DeadThief_0c3c5ac8-971d-46f3-b2f5-bf27a83cebe2, CHARACTERGUID_S_ARX_KemmVault_DeadThief_Ghost_1e27bf04-081f-4e11-ade3-8c7ca39ce754, "ARX_KemmVault_DeadThief_Ghost");
+DB_CustomEvent2DisplayText_Item(ITEMGUID_S_ARX_KemmVault_SecondFloor_Altar_0d3e20c5-b8d2-4b2e-95a1-9331e9653476, "HiddenPerceptionReveal", "ARX_KemmVault_SecondFloor_AD_Altar");
+DB_ARX_KemmVault_Key(ITEMGUID_S_ARX_KemmVault_SecretEntrance_Key_01_22993856-a4aa-4621-9049-db7e056659c2);
+DB_ARX_KemmVault_Key(ITEMGUID_S_ARX_KemmVault_SecretEntrance_Key_02_2e01bcd4-4ad7-4492-af01-08fec9405c63);
+DB_QuestMerge_KemmVault("QuestUpdate_ARX_KemmVault_PainterSewers_Start", "QuestUpdate_ARX_FindingThievesGuild_PainterSewers_Start");
+DB_QuestMerge_KemmVault("QuestUpdate_ARX_KemmVault_LookingForSewers", "QuestUpdate_ARX_FindingThievesGuild_LookingForSewers");
+DB_QuestMerge_KemmVault("QuestUpdate_ARX_KemmVault_CheeseTraderHelpers_Start", "QuestUpdate_ARX_FindingThievesGuild_CheeseTraderHelpers_Start");
+DB_QuestMerge_KemmVault("QuestUpdate_ARX_KemmVault_LearntAboutGuild_Start", "QuestUpdate_ARX_FindingThievesGuild_LearntAboutGuild_Start");
+DB_QuestMerge_KemmVault("QuestUpdate_ARX_KemmVault_EnteredTheSewers", "QuestUpdate_ARX_FindingThievesGuild_EnteredTheSewers");
+DB_QuestMerge_KemmVault("QuestUpdate_ARX_KemmVault_KnowTheWay", "QuestUpdate_ARX_FindingThievesGuild_KnowTheWay");
+DB_QuestMerge_KemmVault("QuestUpdate_ARX_KemmVault_VictorRoss", "QuestUpdate_ARX_FindingThievesGuild_VictorRoss");
+DB_QuestMerge_KemmVault("QuestUpdate_ARX_KemmVault_ThievesGuild_CloseLeftARX", "QuestUpdate_ARX_FindingThievesGuild_CloseLeftARX");
+DB_QuestMerge_KemmVault("QuestUpdate_ARX_KemmVault_FoundTheGuild", "QuestUpdate_ARX_FindingThievesGuild_FoundTheGuild");
+DB_QuestMerge_KemmVault("QuestUpdate_ARX_KemmVault_Replica_GhostPaintingSolved", "QuestUpdate_ARX_KemmVault_Replica_GhostPaintingSolved");
+DB_QuestMerge_KemmVault("QuestUpdate_ARX_KemmVault_ThievesGuild_PaintingOfferMade", "QuestUpdate_ARX_KemmVault_ThievesGuild_PaintingOfferMade");
+DB_QuestMerge_KemmVault("QuestUpdate_ARX_KemmVault_ThievesGuild_SeenPainting", "QuestUpdate_ARX_KemmVault_ThievesGuild_SeenPainting");
+DB_JDF_QuestLinkedFlag("QuestUpdate_ARX_FindingThievesGuild_KemmVaultGhost_Start", "QuestUpdate_ARX_FindingThievesGuild_KemmVaultGhost_Start");
+
+KBSECTION
+IF
+TextEventSet("paint")
+THEN
+GlobalSetFlag("ARX_KemmVault_PlaceOriginalPainting");
+
+IF
+TextEventSet("givepaint")
+AND
+DB_IsPlayer(_Var1)
+THEN
+ItemToInventory(ITEMGUID_S_ARX_KemmVault_OriginalPainting_f360db17-5fbb-4aa6-bf94-daf857dede83, _Var1, 1, 1);
+ItemToInventory(ITEMGUID_S_ARX_Cathedral_ReplicaPainting_Original_d8190259-0da4-46d5-9333-f4714aba016e, _Var1, 1, 1);
+
+IF
+ItemEnteredTrigger(ITEMGUID_S_ARX_KemmVault_OriginalPainting_f360db17-5fbb-4aa6-bf94-daf857dede83, TRIGGERGUID_S_ARX_KemmVault_GhostPainting_EventTrig_b064aaaa-7fef-49c2-8ae0-7e387ef1ab55, _)
+AND
+GlobalGetFlag("ARX_KemmVault_PlaceOriginalPainting", 0)
+THEN
+GlobalSetFlag("ARX_KemmVault_PlaceOriginalPainting");
+Proc_KemmVault_PlacedPainting_Check();
+
+PROC
+Proc_KemmVault_PlacedPainting_Check()
+AND
+DB_IsPlayer(_Var1)
+AND
+DB_InRegion(_Var1, TRIGGERGUID_S_ARX_KemmVault_Floor_01_8bd84dae-9618-4027-9a62-a03bc59a7beb)
+THEN
+ObjectSetFlag(_Var1, "QuestUpdate_ARX_KemmVault_KemmVault_GhostPaintingSolved");
+
+IF
+ItemEnteredTrigger(ITEMGUID_S_ARX_Cathedral_ReplicaPainting_Original_d8190259-0da4-46d5-9333-f4714aba016e, TRIGGERGUID_S_ARX_KemmVault_GhostPainting_EventTrig_b064aaaa-7fef-49c2-8ae0-7e387ef1ab55, _)
+AND
+GlobalGetFlag("ARX_KemmVault_PlaceOriginalPainting", 0)
+THEN
+GlobalSetFlag("ARX_KemmVault_PlacedReplica");
+GlobalSetFlag("ARX_KemmVault_PlaceOriginalPainting");
+Proc_KemmVault_PlacedPainting_Check();
+
+IF
+GlobalFlagSet("ARX_KemmVault_PlaceOriginalPainting")
+THEN
+Proc_ARX_KemmVault_PlaceOriginalPainting();
+
+PROC
+Proc_ARX_KemmVault_PlaceOriginalPainting()
+AND
+GlobalGetFlag("ARX_KemmVault_PlacedReplica", 1)
+THEN
+DB_ARX_KemmVault_PlacedPainting(ITEMGUID_S_ARX_Cathedral_ReplicaPainting_Original_d8190259-0da4-46d5-9333-f4714aba016e);
+
+PROC
+Proc_ARX_KemmVault_PlaceOriginalPainting()
+AND
+GlobalGetFlag("ARX_KemmVault_PlacedReplica", 0)
+THEN
+DB_ARX_KemmVault_PlacedPainting(ITEMGUID_S_ARX_KemmVault_OriginalPainting_f360db17-5fbb-4aa6-bf94-daf857dede83);
+
+PROC
+Proc_ARX_KemmVault_PlaceOriginalPainting()
+AND
+DB_ARX_KemmVault_PlacedPainting(_Var1)
+AND
+ItemIsInInventory(_Var1, 0)
+THEN
+SetOnStage(_Var1, 0);
+NOT DB_ARX_KemmVault_PlacedPainting(_Var1);
+
+PROC
+Proc_ARX_KemmVault_PlaceOriginalPainting()
+AND
+DB_ARX_KemmVault_PlacedPainting(_Var1)
+AND
+ItemIsInInventory(_Var1, 1)
+THEN
+ItemDestroy(_Var1);
+NOT DB_ARX_KemmVault_PlacedPainting(_Var1);
+
+PROC
+Proc_ARX_KemmVault_PlaceOriginalPainting()
+THEN
+PlayEffect(ITEMGUID_S_ARX_KemmVault_GhostPainting_b635adb9-4114-48ff-9c28-ed8004b46679, "RS3_FX_Skills_Source_Bless_Cast_Target_01");
+PlayEffect(ITEMGUID_S_ARX_KemmVault_GhostPainting_b635adb9-4114-48ff-9c28-ed8004b46679, "RS3_FX_Char_Ghosts_Teleport_out_01");
+ClearTag(ITEMGUID_S_ARX_KemmVault_GhostPainting_b635adb9-4114-48ff-9c28-ed8004b46679, "GHOST");
+Transform(ITEMGUID_S_ARX_KemmVault_GhostPainting_b635adb9-4114-48ff-9c28-ed8004b46679, "FUR_Humans_Painting_Church_I_fd236ddb-9d72-4784-b22e-17d32638c3ed", 1);
+ApplyStatus(ITEMGUID_S_ARX_KemmVault_GhostPainting_b635adb9-4114-48ff-9c28-ed8004b46679, "GROUNDED", -1, 1);
+SetHasDialog(ITEMGUID_S_ARX_KemmVault_GhostPainting_b635adb9-4114-48ff-9c28-ed8004b46679, 0);
+ProcRemoveAllDialogEntriesForSpeaker(ITEMGUID_S_ARX_KemmVault_GhostPainting_b635adb9-4114-48ff-9c28-ed8004b46679);
+DB_ARX_KemmVault_SidePainting(ITEMGUID_S_ARX_KemmVault_GhostPainting_b635adb9-4114-48ff-9c28-ed8004b46679, "ARX_KemmVault_VB_OriginalPainting");
+ItemOpen(ITEMGUID_S_ARX_KemmVault_PaintingDoor_e08d9645-a04c-445b-b097-a93bbcd981d9);
+PROC_StopLoopEffect(TRIGGERGUID_S_ARX_KemmVault_GhostPainting_EnvEffect_56051e17-602f-483c-bdf3-7fdac267c0e4, "ARX_KemmVault_GhostPainting_EnvEffect_Loop");
+PROC_StopLoopEffect(TRIGGERGUID_S_ARX_KemmVault_GhostPainting_EnvEffect_Door_42506579-0d54-4bb7-94de-610362349db3, "ARX_KemmVault_GhostPainting_EnvEffect_Loop");
+
+IF
+TextEventSet("pnt")
+AND
+DB_IsPlayer(_Var1)
+AND
+QueryOnlyOnce("pnt")
+THEN
+ItemToInventory(ITEMGUID_S_ARX_KemmVault_OriginalPainting_f360db17-5fbb-4aa6-bf94-daf857dede83, _Var1, 1, 1);
+ItemToInventory(ITEMGUID_S_ARX_Cathedral_ReplicaPainting_Original_d8190259-0da4-46d5-9333-f4714aba016e, _Var1, 1, 1);
+ApplyStatus(_Var1, "SPIRIT_VISION", -1, 1);
+TeleportTo(_Var1, ITEMGUID_S_ARX_KemmVault_GhostPainting_b635adb9-4114-48ff-9c28-ed8004b46679, "", 1);
+
+IF
+CharacterUsedItem((CHARACTERGUID)_Var1, ITEMGUID_S_ARX_KemmVault_PaintingDoor_e08d9645-a04c-445b-b097-a93bbcd981d9)
+AND
+ItemIsClosed(ITEMGUID_S_ARX_KemmVault_PaintingDoor_e08d9645-a04c-445b-b097-a93bbcd981d9, 1)
+AND
+DB_IsPlayer(_Var1)
+THEN
+StartVoiceBark("ARX_VB_KemmVault_PaintingDoor_Locked", _Var1);
+
+PROC
+Proc_ARX_KemmVault_FalseBook()
+AND
+ItemIsClosed(ITEMGUID_S_ARX_KemmVault_SecretDoor_ToSecondFloor_053a645a-f595-4529-a665-bb2541864d32, 1)
+THEN
+Proc_StartDialog(1, "GLO_AD_PressurePlateActivated", ITEMGUID_S_ARX_KemmVault_FalseBook_ae2b9e9b-112a-4f25-b174-ba4081961e1e);
+ItemOpen(ITEMGUID_S_ARX_KemmVault_SecretDoor_ToSecondFloor_053a645a-f595-4529-a665-bb2541864d32);
+
+PROC
+Proc_ARX_KemmVault_FalseBook()
+AND
+ItemIsOpened(ITEMGUID_S_ARX_KemmVault_SecretDoor_ToSecondFloor_053a645a-f595-4529-a665-bb2541864d32, 1)
+THEN
+Proc_StartDialog(1, "GLO_AD_PressurePlateActivated", ITEMGUID_S_ARX_KemmVault_FalseBook_ae2b9e9b-112a-4f25-b174-ba4081961e1e);
+ItemClose(ITEMGUID_S_ARX_KemmVault_SecretDoor_ToSecondFloor_053a645a-f595-4529-a665-bb2541864d32);
+
+PROC
+ProcBlockUseOfItem((CHARACTERGUID)_Var1, ITEMGUID_S_ARX_KemmVault_FalseBook_ae2b9e9b-112a-4f25-b174-ba4081961e1e)
+THEN
+DB_CustomUseItemResponse(_Var1, ITEMGUID_S_ARX_KemmVault_FalseBook_ae2b9e9b-112a-4f25-b174-ba4081961e1e, 0);
+Proc_ARX_KemmVault_FalseBook();
+
+PROC
+ProcBlockPickupOfItem((CHARACTERGUID)_Var1, ITEMGUID_S_ARX_KemmVault_FalseBook_ae2b9e9b-112a-4f25-b174-ba4081961e1e)
+THEN
+DB_CustomPickupItemResponse(_Var1, ITEMGUID_S_ARX_KemmVault_FalseBook_ae2b9e9b-112a-4f25-b174-ba4081961e1e, 0);
+Proc_ARX_KemmVault_FalseBook();
+
+PROC
+ProcBlockMoveOfItem((CHARACTERGUID)_Var1, ITEMGUID_S_ARX_KemmVault_FalseBook_ae2b9e9b-112a-4f25-b174-ba4081961e1e)
+THEN
+DB_CustomMoveItemResponse(_Var1, ITEMGUID_S_ARX_KemmVault_FalseBook_ae2b9e9b-112a-4f25-b174-ba4081961e1e, 0);
+Proc_ARX_KemmVault_FalseBook();
+
+IF
+ItemDestroyed(ITEMGUID_S_ARX_KemmVault_FalseBook_ae2b9e9b-112a-4f25-b174-ba4081961e1e)
+AND
+QueryOnlyOnce("ARX_KemmVault_FalseBook")
+THEN
+Proc_StartDialog(1, "GLO_AD_PressurePlateActivated", ITEMGUID_S_ARX_KemmVault_FalseBook_Helper_35d2e667-9f7b-4d67-a133-c37a0fc8f8e6);
+ItemOpen(ITEMGUID_S_ARX_KemmVault_SecretDoor_ToSecondFloor_053a645a-f595-4529-a665-bb2541864d32);
+
+IF
+CharacterItemEvent(_, _, "ARX_KemmVault_SecondFloor_AltarOpen")
+THEN
+proc_ItemMoveToTrigger(ITEMGUID_S_ARX_KemmVault_SecondFloor_Altar_0d3e20c5-b8d2-4b2e-95a1-9331e9653476, TRIGGERGUID_S_ARX_KemmVault_SecondFloor_Altar_MoveToPoint_c8f64d9d-867e-4d67-95a0-2e3509d85368, 0.8, 1.1, 0);
+ItemSetCanInteract(ITEMGUID_S_ARX_KemmVault_FinalFloor_Ent_6f13e629-298a-452d-b060-3aaac2ab2175, 1);
+Proc_ARX_KemmVault_EighthShrine_Open_SetUpdate();
+
+IF
+ItemDestroyed(ITEMGtUID_S_ARX_KemmVault_SecondFloor_Altar_0d3e20c5-b8d2-4b2e-95a1-9331e9653476)
+THEN
+ItemSetCanInteract(ITEMGUID_S_ARX_KemmVault_FinalFloor_Ent_6f13e629-298a-452d-b060-3aaac2ab2175, 1);
+Proc_ARX_KemmVault_EighthShrine_Open_SetUpdate();
+
+PROC
+Proc_ARX_KemmVault_EighthShrine_Open_SetUpdate()
+AND
+DB_IsPlayer(_Var1)
+AND
+DB_InRegion(_Var1, TRIGGERGUID_S_ARX_KemmVault_SecondFloor_c3c87da9-f9ae-4954-9402-6906b1c23d86)
+THEN
+UserSetFlag(_Var1, "QuestUpdate_ARX_KemmVault_EighthShrine_Open");
+
+IF
+ItemEquipped((ITEMGUID)_Var1, (CHARACTERGUID)_Var2)
+AND
+DB_ARX_KemmVault_Rings(_Var1, _Var3)
+THEN
+ObjectSetFlag(_Var2, _Var3);
+
+IF
+ItemUnEquipped((ITEMGUID)_Var1, (CHARACTERGUID)_Var2)
+AND
+DB_ARX_KemmVault_Rings(_Var1, _Var3)
+THEN
+ObjectClearFlag(_Var2, _Var3);
+
+IF
+ItemUnEquipped((ITEMGUID)_Var1, (CHARACTERGUID)_Var2)
+AND
+DB_ARX_KemmVault_IntruderDetected_Welcome(_Var2)
+AND
+DB_ARX_KemmVault_Rings(_Var1, _Var3)
+AND NOT
+qry_ARX_KemmVault_Rings_CheckIfEquipped(_Var2)
+THEN
+NOT DB_ARX_KemmVault_IntruderDetected_Welcome(_Var2);
+
+QRY
+qry_ARX_KemmVault_Rings_CheckIfEquipped((CHARACTERGUID)_Var1)
+AND
+DB_ARX_KemmVault_Rings(_Var2, _Var3)
+AND
+DB_RingsSlots(_Var4)
+AND
+CharacterGetEquippedItem(_Var1, _Var4, _Var2)
+THEN
+DB_Noop(1);
+
+IF
+CharacterCharacterEvent((CHARACTERGUID)_Var1, (CHARACTERGUID)_Var2, "ARX_KemmVault_PatrollingGuard_Spotted")
+THEN
+Proc_ARX_KemmVault_IntruderDetected(_Var1, _Var2);
+GlobalClearFlag("ARX_KemmVault_PatrollingGuard_ResetSpotter");
+
+PROC
+Proc_ARX_KemmVault_IntruderDetected((CHARACTERGUID)_Var1, (CHARACTERGUID)_Var2)
+AND
+qry_ARX_KemmVault_Rings_CheckIfEquipped(_Var2)
+AND NOT
+DB_ARX_KemmVault_IntruderDetected_Welcome(_Var2)
+AND NOT
+DB_ARX_KemmVault_IntruderDetected_WelcomeDialog(_Var2)
+THEN
+DB_ARX_KemmVault_IntruderDetected_WelcomeDialog(_Var2);
+DB_ARX_KemmVault_IntruderDetected_Welcome(_Var2);
+
+PROC
+Proc_ARX_KemmVault_IntruderDetected((CHARACTERGUID)_Var1, (CHARACTERGUID)_Var2)
+AND NOT
+DB_ARX_KemmVault_IntruderDetected_Welcome(_Var2)
+AND
+DB_ARX_KemmVault_IntruderDialog(_Var1, _Var3)
+THEN
+DB_ARX_KemmVault_IntruderDetected_Hostile(_Var2);
+CharacterLookAt(_Var1, _Var2);
+Proc_StartDialog(1, _Var3, _Var1, _Var2);
+CharacterSetTemporaryHostileRelation(_Var1, _Var2);
+
+PROC
+Proc_ARX_KemmVault_IntruderDetected((CHARACTERGUID)_Var1, (CHARACTERGUID)_Var2)
+AND NOT
+DB_ARX_KemmVault_IntruderDetected_Hostile(_)
+AND
+DB_ARX_KemmVault_IntruderDetected_WelcomeDialog(_Var2)
+AND
+DB_ARX_KemmVault_IntruderDialog(_Var1, _Var4)
+THEN
+CharacterLookAt(_Var1, _Var2);
+Proc_StartDialog(1, _Var4, _Var1, _Var2);
+NOT DB_ARX_KemmVault_IntruderDetected_WelcomeDialog(_Var2);
+
+PROC
+Proc_ARX_KemmVault_IntruderDetected(_, _)
+AND
+DB_ARX_KemmVault_IntruderDetected_Hostile(_Var3)
+THEN
+NOT DB_ARX_KemmVault_IntruderDetected_Hostile(_Var3);
+
+PROC
+Proc_ARX_KemmVault_IntruderDetected(_, _)
+THEN
+GlobalSetFlag("ARX_KemmVault_PatrollingGuard_ResetSpotter");
+
+IF
+CharacterLeftTrigger((CHARACTERGUID)_Var1, TRIGGERGUID_S_ARX_KemmVault_Floor_01_8bd84dae-9618-4027-9a62-a03bc59a7beb)
+AND
+DB_ARX_KemmVault_IntruderDetected_Welcome(_Var1)
+THEN
+NOT DB_ARX_KemmVault_IntruderDetected_Welcome(_Var1);
+
+IF
+DB_ARX_KemmVault_IntruderDialog(_Var1, _)
+THEN
+CharacterSetImmortal(_Var1, 1);
+
+IF
+CharacterVitalityChanged((CHARACTERGUID)_Var1, _)
+AND
+DB_ARX_KemmVault_IntruderDialog(_Var1, _)
+AND
+CharacterGetHitpointsPercentage(_Var1, _Var4)
+AND
+_Var4 <= 10
+AND
+CharacterIsDead(_Var1, 0)
+THEN
+PROC_LoopEffect("RS3_FX_GP_Status_VoidWoken_Statue_01", _Var1, "ARX_KemmVault_PatrollingGuard_LoopEffect", "ARX_Main", "Dummy_NeckFX");
+PROC_LoopEffect("RS3_FX_GP_Status_SourceInfused_01", _Var1, "ARX_KemmVault_PatrollingGuard_LoopEffect", "ARX_Main", "Dummy_NeckFX");
+CharacterSetAnimationSetOverride(_Var1, "Inactive_01");
+ApplyStatus(_Var1, "AUTOMATON_INACTIVE", 18, 1);
+CharacterAddSourcePoints(_Var1, 1);
+
+IF
+CharacterStatusRemoved((CHARACTERGUID)_Var1, "AUTOMATON_INACTIVE", _)
+THEN
+PROC_StopLoopEffect(_Var1, "ARX_KemmVault_PatrollingGuard_LoopEffect");
+CharacterSetAnimationSetOverride(_Var1, "");
+CharacterAddSourcePoints(_Var1, -1);
+SetHasDialog(_Var1, 1);
+
+IF
+CharacterUsedSkillOnTarget((CHARACTERGUID)_Var1, (CHARACTERGUID)_Var2, (STRING)_Var3, _, _)
+AND
+DB_SourceVampirism_Skills(_Var3)
+AND
+DB_ARX_KemmVault_IntruderDialog(_Var2, _Var6)
+AND
+HasActiveStatus(_Var2, "AUTOMATON_INACTIVE", 1)
+THEN
+TimerLaunch(_Var6, 3000);
+
+IF
+TimerFinished((STRING)_Var1)
+AND
+DB_ARX_KemmVault_IntruderDialog(_Var2, _Var1)
+THEN
+RemoveStatus(_Var2, "AUTOMATON_INACTIVE");
+CharacterSetImmortal(_Var2, 0);
+CharacterSetAnimationSetOverride(_Var2, "");
+CharacterDie(_Var2, 1, "DoT");
+
+IF
+CharacterStatusApplied((CHARACTERGUID)_Var1, "AUTOMATON_INACTIVE", _)
+AND
+CombatGetIDForCharacter(_Var1, _Var3)
+AND
+DB_IsPlayer(_Var4)
+AND
+CombatGetIDForCharacter(_Var4, _Var3)
+AND
+QueryOnlyOnce("ARX_KemmVault_VB_InactiveAutomaton")
+THEN
+StartVoiceBark("ARX_KemmVault_VB_InactiveAutomaton", _Var4);
+
+IF
+AttackedByObject((CHARACTERGUID)_Var1, _, (CHARACTERGUID)_Var3, _, _)
+AND
+_Var1 != _Var3
+AND
+DB_ARX_KemmVault_PatrollingGuard(_Var1)
+AND
+CharacterIsInCombat(_Var1, 0)
+THEN
+CharacterSetTemporaryHostileRelation(_Var1, _Var3);
+EnterCombat(_Var1, _Var3);
+
+IF
+CharacterStatusRemoved((CHARACTERGUID)_Var1, "AUTOMATON_INACTIVE", _)
+THEN
+SetHasDialog(_Var1, 0);
+
+IF
+CharacterStatusRemoved((CHARACTERGUID)_Var1, "AUTOMATON_INACTIVE", _)
+AND
+DB_ARX_KemmVault_PatrollingGuard_CanLeaveCombat(_Var1, _Var3)
+THEN
+NOT DB_ARX_KemmVault_PatrollingGuard_CanLeaveCombat(_Var1, _Var3);
+
+IF
+CharacterStatusApplied((CHARACTERGUID)_Var1, "AUTOMATON_INACTIVE", _)
+AND
+CombatGetIDForCharacter(_Var1, _Var3)
+THEN
+DB_ARX_KemmVault_PatrollingGuard_CanLeaveCombat(_Var1, _Var3);
+NOT DB_ARX_KemmVault_PatrollingGuard_DoNotLeave(1);
+Proc_ARX_KemmVault_PatrollingGuard_CheckLeaveCombat();
+
+PROC
+Proc_ARX_KemmVault_PatrollingGuard_CheckLeaveCombat()
+AND
+DB_ARX_KemmVault_PatrollingGuard_CanLeaveCombat(_Var1, _Var2)
+AND
+DB_ARX_KemmVault_PatrollingGuard(_Var3)
+AND
+CombatGetIDForCharacter(_Var3, _Var2)
+AND NOT
+DB_ARX_KemmVault_PatrollingGuard_CanLeaveCombat(_Var3, _)
+THEN
+DB_ARX_KemmVault_PatrollingGuard_DoNotLeave(1);
+
+PROC
+Proc_ARX_KemmVault_PatrollingGuard_CheckLeaveCombat()
+AND NOT
+DB_ARX_KemmVault_PatrollingGuard_DoNotLeave(1)
+AND
+DB_ARX_KemmVault_PatrollingGuard_CanLeaveCombat(_Var1, _Var2)
+THEN
+LeaveCombat(_Var1);
+NOT DB_ARX_KemmVault_PatrollingGuard_CanLeaveCombat(_Var1, _Var2);
+
+IF
+CharacterDied((CHARACTERGUID)_Var1)
+AND
+DB_ARX_KemmVault_PatrollingGuard(_Var1)
+THEN
+NOT DB_ARX_KemmVault_PatrollingGuard(_Var1);
+
+QRY
+qry_ARX_KemmVault_PatrollingGuard_InCombat((INTEGER)_Var1)
+AND
+DB_ARX_KemmVault_PatrollingGuard(_Var2)
+AND
+DB_CombatCharacters(_Var2, _Var1)
+THEN
+DB_Noop(1);
+
+IF
+ObjectFlagSet((STRING)_Var1, (CHARACTERGUID)_Var2, _)
+AND
+DB_ARX_KemmVault_Rings(_Var4, _Var1)
+AND
+DB_CombatCharacters(_Var2, _Var5)
+AND
+qry_ARX_KemmVault_PatrollingGuard_InCombat(_Var5)
+THEN
+Proc_SetTagForCombat(_Var2, "AI_UNPREFERRED_TARGET");
+proc_ARX_KemmVault_PatrollingGuard_PlayerLeftCombat(_Var2, _Var5);
+
+IF
+ObjectFlagCleared((STRING)_Var1, (CHARACTERGUID)_Var2, _)
+AND
+DB_ARX_KemmVault_Rings(_Var4, _Var1)
+AND
+DB_CombatCharacters(_Var2, _Var5)
+AND
+qry_ARX_KemmVault_PatrollingGuard_InCombat(_Var5)
+AND NOT
+qry_ARX_KemmVault_Rings_CheckIfEquipped(_Var2)
+THEN
+ClearTag(_Var2, "AI_UNPREFERRED_TARGET");
+
+IF
+ObjectEnteredCombat((CHARACTERGUID)_Var1, (INTEGER)_Var2)
+AND
+DB_IsPlayer(_Var1)
+AND
+qry_ARX_KemmVault_Rings_CheckIfEquipped(_Var1)
+AND
+qry_ARX_KemmVault_PatrollingGuard_InCombat(_Var2)
+THEN
+Proc_SetTagForCombat(_Var1, "AI_UNPREFERRED_TARGET");
+
+IF
+ObjectLeftCombat((CHARACTERGUID)_Var1, (INTEGER)_Var2)
+AND
+qry_ARX_KemmVault_PatrollingGuard_InCombat(_Var2)
+AND
+DB_IsPlayer(_Var1)
+THEN
+proc_ARX_KemmVault_PatrollingGuard_PlayerLeftCombat(_Var1, _Var2);
+
+PROC
+proc_ARX_KemmVault_PatrollingGuard_PlayerLeftCombat((CHARACTERGUID)_Var1, (INTEGER)_Var2)
+AND
+DB_IsPlayer(_Var3)
+AND
+_Var3 != _Var1
+AND
+DB_CombatCharacters(_Var3, _Var2)
+AND NOT
+qry_ARX_KemmVault_Rings_CheckIfEquipped(_Var3)
+AND
+qry_ARX_KemmVault_PatrollingGuard_InCombat(_Var2)
+THEN
+DB_ARX_KemmVault_PatrollingGuard_StillHaveEnemies(_Var3);
+
+PROC
+proc_ARX_KemmVault_PatrollingGuard_PlayerLeftCombat((CHARACTERGUID)_Var1, (INTEGER)_Var2)
+AND NOT
+DB_ARX_KemmVault_PatrollingGuard_StillHaveEnemies(_)
+THEN
+proc_ARX_KemmVault_PatrollingGuard_EndCombat(_Var2);
+
+PROC
+proc_ARX_KemmVault_PatrollingGuard_PlayerLeftCombat((CHARACTERGUID)_Var1, (INTEGER)_Var2)
+AND
+DB_ARX_KemmVault_PatrollingGuard_StillHaveEnemies(_Var3)
+THEN
+NOT DB_ARX_KemmVault_PatrollingGuard_StillHaveEnemies(_Var3);
+
+PROC
+proc_ARX_KemmVault_PatrollingGuard_EndCombat((INTEGER)_Var1)
+THEN
+EndCombat(_Var1);
+
+PROC
+proc_ARX_KemmVault_PatrollingGuard_EndCombat((INTEGER)_Var1)
+AND
+DB_ARX_KemmVault_IntruderDetected_Welcome(_Var2)
+THEN
+NOT DB_ARX_KemmVault_IntruderDetected_Welcome(_Var2);
+
+IF
+ItemClosed((ITEMGUID)_Var1)
+AND
+DB_ARX_KemmVault_PatrollingGuard_Door(_Var2, _Var1)
+THEN
+Proc_ARX_KemmVault_PatrollingGuard_Update(_Var2);
+
+IF
+ItemOpened((ITEMGUID)_Var1)
+AND
+DB_ARX_KemmVault_PatrollingGuard_Door(_Var2, _Var1)
+THEN
+Proc_ARX_KemmVault_PatrollingGuard_Update(_Var2);
+
+PROC
+Proc_ARX_KemmVault_PatrollingGuard_Update((CHARACTERGUID)_Var1)
+THEN
+NOT DB_ARX_KemmVault_PatrollingGuard_OpenState(1);
+
+PROC
+Proc_ARX_KemmVault_PatrollingGuard_Update((CHARACTERGUID)_Var1)
+AND
+DB_ARX_KemmVault_PatrollingGuard_Door(_Var1, _Var2)
+AND
+ItemIsOpened(_Var2, 1)
+AND
+DB_ARX_KemmVault_PatrollingGuard_Splines(_Var1, _, _Var4, _, _)
+THEN
+SetVarObject(_Var1, "SplineGUID", _Var4);
+SetStoryEvent(_Var1, "InterruptPatrol");
+DB_ARX_KemmVault_PatrollingGuard_OpenState(1);
+
+PROC
+Proc_ARX_KemmVault_PatrollingGuard_Update((CHARACTERGUID)_Var1)
+AND NOT
+DB_ARX_KemmVault_PatrollingGuard_OpenState(1)
+AND
+DB_ARX_KemmVault_PatrollingGuard_Splines(_Var1, _Var2, _, _, _Var5)
+AND NOT
+DB_InRegion(_Var1, _Var5)
+THEN
+SetVarObject(_Var1, "SplineGUID", _Var2);
+SetStoryEvent(_Var1, "InterruptPatrol");
+
+PROC
+Proc_ARX_KemmVault_PatrollingGuard_Update((CHARACTERGUID)_Var1)
+AND NOT
+DB_ARX_KemmVault_PatrollingGuard_OpenState(1)
+AND
+DB_ARX_KemmVault_PatrollingGuard_Splines(_Var1, _, _, _Var4, _Var5)
+AND
+DB_InRegion(_Var1, _Var5)
+THEN
+SetVarObject(_Var1, "SplineGUID", _Var4);
+SetStoryEvent(_Var1, "InterruptPatrol");
+
+PROC
+ProcOneShotTriggerEntered((CHARACTERGUID)_Var1, TRIGGERGUID_S_ARX_KemmVault_EnterVBTrig_79d445b4-c268-45bd-aae0-6dc43b778954)
+THEN
+StartVoiceBark("ARX_KemmVault_VB_EnteredVault", _Var1);
+
+IF
+ObjectFlagSet("ARX_KemmVault_Lever_ShowMarker", (CHARACTERGUID)_Var1, _)
+THEN
+ProcShowMarker(_Var1, "ARX_KemmVault_Lever");
+
+IF
+CharacterUsedItem((CHARACTERGUID)_Var1, ITEMGUID_S_RC_DW_KemmVault_SecretEntrance_Lever_6e261d03-1365-41b8-a565-446fd854b554)
+THEN
+ProcHideMarker(_Var1, "ARX_KemmVault_Lever");
+
+IF
+CharacterEnteredTrigger((CHARACTERGUID)_Var1, TRIGGERGUID_S_ARX_KemmVault_Floor_01_8bd84dae-9618-4027-9a62-a03bc59a7beb)
+AND
+ObjectGetFlag(_Var1, "QuestUpdate_ARX_KemmVault_KemmVault_EnteredTheVault", 0)
+THEN
+ObjectSetFlag(_Var1, "QuestUpdate_ARX_KemmVault_KemmVault_EnteredTheVault");
+ProcHideMarker(_Var1, "ARX_KemmVault_Lever");
+
+IF
+ItemGhostRevealed(ITEMGUID_S_ARX_KemmVault_GhostPainting_b635adb9-4114-48ff-9c28-ed8004b46679)
+AND
+DB_IsPlayer(_Var1)
+AND
+CharacterCanSee(_Var1, ITEMGUID_S_ARX_KemmVault_GhostPainting_b635adb9-4114-48ff-9c28-ed8004b46679, 1)
+THEN
+ObjectSetFlag(_Var1, "QuestUpdate_ARX_KemmVault_KemmVault_GhostPainting");
+
+IF
+ObjectFlagSet("ARX_KemmVault_KnowsAboutGhostPainting", (GUIDSTRING)_Var1, _)
+THEN
+ObjectSetFlag(_Var1, "QuestUpdate_ARX_KemmVault_KemmVault_GhostPainting");
+
+IF
+CharacterEnteredTrigger((CHARACTERGUID)_Var1, TRIGGERGUID_S_ARX_KemmVault_SecondFloor_c3c87da9-f9ae-4954-9402-6906b1c23d86)
+THEN
+ObjectSetFlag(_Var1, "QuestUpdate_ARX_KemmVault_EighthShrine_Entered");
+UserSetFlag(_Var1, "ARX_KemmVault_SawEighthShrine");
+
+IF
+TextEventSet("kemkey")
+AND
+DB_IsPlayer(_Var1)
+THEN
+ItemToInventory(ITEMGUID_S_ARX_KemmVault_SecretEntrance_Key_01_22993856-a4aa-4621-9049-db7e056659c2, _Var1, 1, 1);
+ItemToInventory(ITEMGUID_S_ARX_KemmVault_SecretEntrance_Key_02_2e01bcd4-4ad7-4492-af01-08fec9405c63, _Var1, 1, 1);
+
+IF
+GlobalFlagSet("RC_DW_KemmVault_SecretEntrance_Unlocked")
+AND
+DB_CustomLockpickItemResponse(_Var1, S_ARX_KemmVault_SecretEntrance_Ent_38b137bb-2d1b-4ef7-b685-1cef60049212, _Var2)
+THEN
+NOT DB_CustomLockpickItemResponse(_Var1, S_ARX_KemmVault_SecretEntrance_Ent_38b137bb-2d1b-4ef7-b685-1cef60049212, _Var2);
+
+PROC
+ProcBlockUseOfItem((CHARACTERGUID)_Var1, S_ARX_KemmVault_SecretEntrance_Ent_38b137bb-2d1b-4ef7-b685-1cef60049212)
+AND
+GlobalGetFlag("RC_DW_KemmVault_SecretEntrance_Unlocked", 0)
+THEN
+DB_CustomUseItemResponse(_Var1, S_ARX_KemmVault_SecretEntrance_Ent_38b137bb-2d1b-4ef7-b685-1cef60049212, 0);
+StartVoiceBark("RC_ARX_VB_KemmVault_SecretEntrance_Locked", _Var1);
+
+PROC
+ProcBlockUseOfItem((CHARACTERGUID)_Var1, S_ARX_KemmVault_SecretEntrance_Ent_38b137bb-2d1b-4ef7-b685-1cef60049212)
+AND
+GlobalGetFlag("RC_DW_KemmVault_SecretEntrance_Unlocked", 1)
+AND
+ItemIsLocked(S_ARX_KemmVault_SecretEntrance_Ent_38b137bb-2d1b-4ef7-b685-1cef60049212, 0)
+THEN
+DB_CustomUseItemResponse(_Var1, S_ARX_KemmVault_SecretEntrance_Ent_38b137bb-2d1b-4ef7-b685-1cef60049212, 0);
+DB_Queue("RC_DW_KemmVault_SecretEntrance_VoiceBark");
+TeleportTo(_Var1, S_ARX_KemmVault_SecretEntrance_EntTrig_0e6e3967-a9d2-4240-9daa-a75f450e0142, "RC_DW_KemmVault_SecretEntrance_Teleported", 1);
+
+PROC
+ProcBlockUseOfItem((CHARACTERGUID)_Var1, S_ARX_KemmVault_SecretEntrance_Ent_38b137bb-2d1b-4ef7-b685-1cef60049212)
+AND
+GlobalGetFlag("RC_DW_KemmVault_SecretEntrance_Unlocked", 1)
+AND
+DB_ARX_KemmVault_Key(_Var2)
+AND
+ItemIsInPartyInventory(_Var2, _Var1, 0, 1)
+AND
+ItemIsLocked(S_ARX_KemmVault_SecretEntrance_Ent_38b137bb-2d1b-4ef7-b685-1cef60049212, 1)
+THEN
+ItemUnLock(S_ARX_KemmVault_SecretEntrance_Ent_38b137bb-2d1b-4ef7-b685-1cef60049212);
+DB_CustomUseItemResponse(_Var1, S_ARX_KemmVault_SecretEntrance_Ent_38b137bb-2d1b-4ef7-b685-1cef60049212, 0);
+DB_Queue("RC_DW_KemmVault_SecretEntrance_VoiceBark");
+TeleportTo(_Var1, S_ARX_KemmVault_SecretEntrance_EntTrig_0e6e3967-a9d2-4240-9daa-a75f450e0142, "RC_DW_KemmVault_SecretEntrance_Teleported", 1);
+
+PROC
+ProcBlockUseOfItem((CHARACTERGUID)_Var1, S_ARX_KemmVault_SecretEntrance_Ent_38b137bb-2d1b-4ef7-b685-1cef60049212)
+AND
+GlobalGetFlag("RC_DW_KemmVault_SecretEntrance_Unlocked", 1)
+AND
+DB_ARX_KemmVault_Key(_Var2)
+AND
+ItemIsInPartyInventory(_Var2, _Var1, 0, 0)
+AND
+ItemIsLocked(S_ARX_KemmVault_SecretEntrance_Ent_38b137bb-2d1b-4ef7-b685-1cef60049212, 1)
+THEN
+DB_CustomUseItemResponse(_Var1, S_ARX_KemmVault_SecretEntrance_Ent_38b137bb-2d1b-4ef7-b685-1cef60049212, 0);
+StartVoiceBark("RC_ARX_VB_KemmVault_SecretEntrance_Locked", _Var1);
+
+PROC
+ProcBlockLockpickItem((CHARACTERGUID)_Var1, S_ARX_KemmVault_SecretEntrance_Ent_38b137bb-2d1b-4ef7-b685-1cef60049212)
+AND
+GlobalGetFlag("RC_DW_KemmVault_SecretEntrance_Unlocked", 0)
+THEN
+DB_CustomLockpickItemResponse(_Var1, S_ARX_KemmVault_SecretEntrance_Ent_38b137bb-2d1b-4ef7-b685-1cef60049212, 0);
+StartVoiceBark("RC_ARX_VB_KemmVault_SecretEntrance_Locked", _Var1);
+
+IF
+CharacterItemEvent((CHARACTERGUID)_Var1, _, "RC_DW_KemmVault_SecretEntrance_Lever_Success")
+AND
+QueryOnlyOnce("RC_DW_KemmVault_SecretEntrance_Lever_Success")
+AND
+PlayLoopEffect(RC_DW_MansionYard_PoolWater_55b9be93-2ba1-46b8-bc34-78a4af05bb66, "RS3_FX_GP_ScriptedEvent_CameraShake_Loop_00-50", "", _Var3)
+THEN
+PlaySound(ITEMGUID_S_ARX_KemmVault_SecretEntrance_Ent_38b137bb-2d1b-4ef7-b685-1cef60049212, "SE_ARX_KemmsVault_GardenPool_Drain");
+proc_ItemMoveToTrigger(ITEMGUID_S_RC_DW_MansionYard_PoolWater_55b9be93-2ba1-46b8-bc34-78a4af05bb66, RC_DW_MansionYard_Pool_FinalTrig_7739af5b-3675-4bf0-b745-9abd441a95cf, 0.1, 1, 0);
+DB_RC_ARX_PoolWater_EffectHandle(_Var3, _Var1);
+
+IF
+ItemMoved(RC_DW_MansionYard_PoolWater_55b9be93-2ba1-46b8-bc34-78a4af05bb66)
+AND
+DB_RC_ARX_PoolWater_EffectHandle(_Var1, _Var2)
+THEN
+StopLoopEffect(_Var1);
+ItemLock(S_ARX_KemmVault_SecretEntrance_Ent_38b137bb-2d1b-4ef7-b685-1cef60049212, "ARX_KemmVault_SecretEntrance_Key");
+GlobalSetFlag("RC_DW_KemmVault_SecretEntrance_Unlocked");
+NOT DB_RC_ARX_PoolWater_EffectHandle(_Var1, _Var2);
+StartVoiceBark("ARX_KemmVault_VB_WaterDrained", _Var2);
+UserSetFlag(_Var2, "ARX_KemmVault_KemmVault_LowerWater");
+UserSetFlag(_Var2, "QuestUpdate_ARX_KemmVault_KemmVault_LowerWater");
+
+IF
+ItemMoved(ITEMGUID_S_ARX_AntiqueTraders_UglyPainting_de23c6d9-2fbb-4594-84ff-61e599e996b8)
+AND
+GlobalGetFlag("ARX_AntiqueTraders_UglyPainting_Moved", 0)
+THEN
+GlobalSetFlag("ARX_AntiqueTraders_UglyPainting_Moved");
+
+IF
+ItemAddedToCharacter(ITEMGUID_S_ARX_AntiqueTraders_UglyPainting_de23c6d9-2fbb-4594-84ff-61e599e996b8, _)
+AND
+GlobalGetFlag("ARX_AntiqueTraders_UglyPainting_Moved", 0)
+THEN
+GlobalSetFlag("ARX_AntiqueTraders_UglyPainting_Moved");
+
+IF
+ItemAddedToContainer(ITEMGUID_S_ARX_AntiqueTraders_UglyPainting_de23c6d9-2fbb-4594-84ff-61e599e996b8, _)
+AND
+GlobalGetFlag("ARX_AntiqueTraders_UglyPainting_Moved", 0)
+THEN
+GlobalSetFlag("ARX_AntiqueTraders_UglyPainting_Moved");
+
+IF
+CharacterUsedItem((CHARACTERGUID)_Var1, ITEMGUID_S_ARX_AntiqueTraders_UglyPainting_Couch_18207389-f1a8-4d5f-b82d-7bfd2ed0d508)
+AND
+GlobalGetFlag("ARX_AntiqueTraders_UglyPainting_Moved", 0)
+AND
+GlobalGetFlag("ARX_AntiqueTraders_UglyPainting_VB_Done", 0)
+THEN
+Proc_ARX_AntiqueTraders_UglyPainting_VB(_Var1);
+
+PROC
+Proc_ARX_AntiqueTraders_UglyPainting_VB(_)
+AND NOT
+DB_ARX_AntiqueTraders_UglyPainting_VB(_)
+THEN
+TimerLaunch("ARX_AntiqueTraders_UglyPainting_VB_Timer", 500);
+
+PROC
+Proc_ARX_AntiqueTraders_UglyPainting_VB((CHARACTERGUID)_Var1)
+AND NOT
+DB_ARX_AntiqueTraders_UglyPainting_VB(_Var1)
+THEN
+DB_ARX_AntiqueTraders_UglyPainting_VB(_Var1);
+
+IF
+CharacterStatusRemoved((CHARACTERGUID)_Var1, "SITTING", _)
+AND
+DB_ARX_AntiqueTraders_UglyPainting_VB(_Var1)
+THEN
+NOT DB_ARX_AntiqueTraders_UglyPainting_VB(_Var1);
+
+IF
+TimerFinished("ARX_AntiqueTraders_UglyPainting_VB_Timer")
+AND
+DB_ARX_AntiqueTraders_UglyPainting_VB(_Var1)
+AND
+GlobalGetFlag("ARX_AntiqueTraders_UglyPainting_VB_Done", 0)
+THEN
+GlobalSetFlag("ARX_AntiqueTraders_UglyPainting_VB_Done");
+StartVoiceBark("ARX_KemmVault_VB_UglyPainting", _Var1);
+NOT DB_ARX_AntiqueTraders_UglyPainting_VB(_Var1);
+
+IF
+CharacterUsedItem((CHARACTERGUID)_Var1, (ITEMGUID)_Var2)
+AND
+DB_ARX_KemmVault_SidePainting(_Var2, _Var3)
+AND NOT
+DB_DialogPlayers(_, _Var1, _)
+THEN
+StartVoiceBark(_Var3, _Var1);
+
+IF
+DB_ARX_KemmVault_SidePainting(_Var1, _)
+THEN
+ApplyStatus(_Var1, "GROUNDED", -1, 1);
+
+IF
+CharacterUsedItem((CHARACTERGUID)_Var1, (ITEMGUID)_Var2)
+AND
+DB_ARX_KemmVault_ReplicaPainting(_Var2, _Var3)
+AND NOT
+DB_DialogPlayers(_, _Var1, _)
+THEN
+StartVoiceBark(_Var3, _Var1);
+
+IF
+VoiceBarkStarted((STRING)_Var1, _)
+AND
+DB_ARX_KemmVault_ReplicaPainting(_Var3, _Var1)
+THEN
+ItemSetCanInteract(_Var3, 0);
+
+IF
+VoiceBarkFailed((STRING)_Var1)
+AND
+DB_ARX_KemmVault_ReplicaPainting(_Var2, _Var1)
+THEN
+ItemSetCanInteract(_Var2, 1);
+
+IF
+VoiceBarkEnded((STRING)_Var1, _)
+AND
+DB_ARX_KemmVault_ReplicaPainting(_Var3, _Var1)
+THEN
+ItemSetCanInteract(_Var3, 1);
+
+IF
+ItemAddedToCharacter(ITEMGUID_S_ARX_Cathedral_ReplicaPainting_Original_d8190259-0da4-46d5-9333-f4714aba016e, (CHARACTERGUID)_Var1)
+AND
+UserGetFlag(_Var1, "QuestUpdate_ARX_KemmVault_KemmVault_GhostPainting", 1)
+THEN
+UserSetFlag(_Var1, "QuestUpdate_ARX_KemmVault_ReplicePainting");
+
+IF
+ObjectFlagSet("QuestUpdate_ARX_KemmVault_KemmVault_GhostPainting", (CHARACTERGUID)_Var1, _)
+AND
+ItemIsInCharacterInventory(ITEMGUID_S_ARX_Cathedral_ReplicaPainting_Original_d8190259-0da4-46d5-9333-f4714aba016e, _Var1, 1)
+THEN
+UserSetFlag(_Var1, "QuestUpdate_ARX_KemmVault_ReplicePainting");
+
+IF
+DB_QuestMerge_KemmVault(_Var1, _Var2)
+AND NOT
+DB_JDF_QuestLinkedFlag(_Var2, _Var1)
+THEN
+DB_JDF_QuestLinkedFlag(_Var2, _Var1);
+DB_JDF_Dependencies("QuestUpdate_ARX_FindingThievesGuild_KemmVaultGhost_Start", _Var2);
+
+IF
+ObjectFlagSet((STRING)_Var1, _, _)
+AND
+DB_QuestDef_CloseEvent("ARX_KemmVault_SUBA", _Var1)
+THEN
+Proc_ClearSubquest_ARX_KemmVault_SUBA();
+
+PROC
+Proc_ClearSubquest_ARX_KemmVault_SUBA()
+THEN
+PROC_JournalEntries_ClearQuestState("ARX_KemmVault", "KemmVaultGhost_Start");
+PROC_JournalEntries_ClearQuestState("ARX_KemmVault", "CheeseTraderHelpers_Start");
+PROC_JournalEntries_ClearQuestState("ARX_KemmVault", "LearntAboutGuild_Start");
+PROC_JournalEntries_ClearQuestState("ARX_KemmVault", "VictorRoss");
+PROC_JournalEntries_ClearQuestState("ARX_KemmVault", "PainterSewers_Start");
+PROC_JournalEntries_ClearQuestState("ARX_KemmVault", "LookingForSewers");
+PROC_JournalEntries_ClearQuestState("ARX_KemmVault", "EnteredTheSewers");
+PROC_JournalEntries_ClearQuestState("ARX_KemmVault", "KnowTheWay");
+PROC_JournalEntries_ClearQuestState("ARX_KemmVault", "FoundTheGuild");
+PROC_JournalEntries_ClearQuestState("ARX_KemmVault", "ThievesGuild_SeenPainting");
+PROC_JournalEntries_ClearQuestState("ARX_KemmVault", "ThievesGuild_PaintingOfferMade");
+PROC_JournalEntries_ClearQuestState("ARX_KemmVault", "ThievesGuild_BoughtPainting");
+PROC_JournalEntries_ClearQuestState("ARX_KemmVault", "ThievesGuild_GotPainting");
+PROC_JournalEntries_ClearQuestState("ARX_KemmVault", "ThievesGuild_CloseLeftARX");
+PROC_JournalEntries_ClearQuestState("ARX_KemmVault", "Replica_GhostPaintingSolved");
+NOT DB_QuestDef_UpdateEvent("ARX_KemmVault", "KemmVaultGhost_Start", "QuestUpdate_ARX_FindingThievesGuild_KemmVaultGhost_Start");
+NOT DB_QuestDef_UpdateEvent("ARX_KemmVault", "GotStolenPainting", "QuestUpdate_ARX_KemmVault_ThievesGuild_BoughtPainting");
+NOT DB_QuestDef_UpdateEvent("ARX_KemmVault", "GotStolenPainting", "QuestUpdate_ARX_KemmVault_ThievesGuild_GotPainting");
+
+PROC
+Proc_ClearSubquest_ARX_KemmVault_SUBA()
+AND
+DB_QuestMerge_KemmVault(_Var1, _Var2)
+THEN
+NOT DB_JDF_QuestLinkedFlag(_Var2, _Var1);
+NOT DB_JDF_Dependencies("QuestUpdate_ARX_FindingThievesGuild_KemmVaultGhost_Start", _Var2);
+
+IF
+ObjectFlagSet("QuestUpdate_ARX_KemmVault_KemmVault_GhostPaintingSolved", _, _)
+AND
+DB_IsPlayer(_Var3)
+AND
+PartyGetFlag(_Var3, "QuestUpdate_ARX_KemmVault_ThievesGuild_GotPainting", 0)
+AND
+PartyGetFlag(_Var3, "QuestUpdate_ARX_KemmVault_ThievesGuild_BoughtPainting", 0)
+THEN
+ObjectSetFlag(_Var3, "QuestUpdate_ARX_KemmVault_Replica_GhostPaintingSolved");
+
+
+EXITSECTION
+ENDEXITSECTION
+
+ParentTargetEdge "ARX"

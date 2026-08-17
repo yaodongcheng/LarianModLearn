@@ -1,0 +1,229 @@
+Version 1
+SubGoalCombiner SGC_AND
+
+INITSECTION
+ProcTriggerRegisterForPlayers(TRIGGERGUID_S_ARX_Sewers_QsSecretLab_VBTrig_4d4ff9d6-74b8-4eb9-bbe0-1f09db799e3f);
+DB_KillCounter_Internal(CHARACTERGUID_S_ARX_Sewers_EliteImperialGuard_01_Unmasked_125b1265-cef0-4782-b7e6-a551210a2a8c, "ARX_Sewers_QUnamsked");
+DB_KillCounter_Internal(CHARACTERGUID_S_ARX_Sewers_EliteImperialGuard_04_Unmasked_e9293a04-303a-45b4-9226-1fbef76cc131, "ARX_Sewers_QUnamsked");
+DB_KillCounter_Internal(CHARACTERGUID_S_ARX_Sewers_ImperialGuard_01_Unmasked_2a5e722e-0123-48ae-9d51-027bd9079b5c, "ARX_Sewers_QUnamsked");
+DB_KillCounter_Internal(CHARACTERGUID_S_ARX_Sewers_ImperialGuard_02_Unmasked_4d847c4b-3eb9-4ccf-8d94-f1d2b5de9f01, "ARX_Sewers_QUnamsked");
+DB_KillCounter_Internal(CHARACTERGUID_S_ARX_Sewers_Q_52f20922-7b22-4d47-90f7-83172f21fe3b, "ARX_Sewers_QUnamsked");
+DB_KillCounter("ARX_Sewers_QUnamsked", 5);
+DB_ARX_Sewers_QsLab_FalseDoor(ITEMGUID_S_ARX_Sewers_QsLab_FalseDoor_01_4b183bd4-aad0-4c3f-b98f-ee1eb3e22773, TRIGGERGUID_S_ARX_Sewers_QsLab_FalseDoor_01_Trigger_353f751e-a388-4847-850b-d14b1f282389, 0);
+DB_ARX_Sewers_QsLab_FalseDoor(ITEMGUID_S_ARX_Sewers_QsLab_FalseDoor_02_b0799811-bc05-4b4c-ba34-e41590ebf538, TRIGGERGUID_S_ARX_Sewers_QsLab_FalseDoor_02_Trigger_eb57b74a-3220-4c93-903c-9261825a26df, 0);
+
+KBSECTION
+IF
+CharacterUsedItem((CHARACTERGUID)_Var1, (ITEMGUID)_Var2)
+AND
+DB_IsPlayer(_Var1)
+AND
+DB_QsLab_GasChamber(_, _Var2)
+AND
+QueryOnlyOnce("ARX_Sewers_VB_UsedQsGasChambers")
+THEN
+DB_ARX_Sewers_VB_UsedQsGasChambers(_Var1);
+TimerLaunch("ARX_Sewers_VB_UsedQsGasChambers_Timer", 1000);
+
+IF
+TimerFinished("ARX_Sewers_VB_UsedQsGasChambers_Timer")
+AND
+DB_ARX_Sewers_VB_UsedQsGasChambers(_Var1)
+THEN
+StartVoiceBark("ARX_Sewers_VB_UsedQsGasChambers", _Var1);
+NOT DB_ARX_Sewers_VB_UsedQsGasChambers(_Var1);
+
+IF
+CharacterEnteredTrigger((CHARACTERGUID)_Var1, TRIGGERGUID_S_ARX_Sewers_QsLaboratory_CheckRegion_f6ffb641-af9d-453b-a422-379b19eac3e6)
+AND
+DB_IsPlayer(_Var1)
+AND
+PartyGetFlag(_Var1, "RC_ARX_Sewers_Q_PlayerArrested", 0)
+AND
+QueryOnlyOnce("ARX_Sewers_VB_EnteredTheLab")
+THEN
+StartVoiceBark("ARX_Sewers_VB_EnteredTheLab", _Var1);
+
+IF
+ItemOpened(ITEMGUID_S_ARX_Sewers_QsLab_ToSourceRoom_TrappedDoor_3acfbed2-4f9c-4ff9-9aa5-af3809136000)
+AND
+GetClosestAlivePlayer(ITEMGUID_S_ARX_Sewers_QsLab_ToSourceRoom_TrappedDoor_3acfbed2-4f9c-4ff9-9aa5-af3809136000, _Var1, _)
+THEN
+CharacterItemSetEvent(_Var1, ITEMGUID_S_ARX_Sewers_QsLab_ToSourceRoom_TrappedDoor_3acfbed2-4f9c-4ff9-9aa5-af3809136000, "ARX_Sewers_QsLab_ToSourceRoom_DoorTrap");
+
+IF
+CharacterEnteredTrigger((CHARACTERGUID)_Var1, TRIGGERGUID_S_ARX_Sewers_QsSecretLab_VBTrig_4d4ff9d6-74b8-4eb9-bbe0-1f09db799e3f)
+AND
+DB_IsPlayer(_Var1)
+AND
+QueryOnlyOnce("ARX_Sewers_VB_QsSourceDraining")
+THEN
+StartVoiceBark("ARX_Sewers_VB_QsSourceDraining", _Var1);
+
+IF
+CharacterEnteredTrigger((CHARACTERGUID)_Var1, TRIGGERGUID_S_ARX_Sewers_QsSecretLab_VBTrig_4d4ff9d6-74b8-4eb9-bbe0-1f09db799e3f)
+AND
+DB_IsPlayer(_Var1)
+THEN
+ObjectSetFlag(_Var1, "QuestUpdate_ARX_MissingPrisoners_FoundDeadPrisoners");
+
+IF
+ObjectEnteredCombat((CHARACTERGUID)_Var1, (INTEGER)_Var2)
+AND
+DB_KillCounter_Internal(_Var1, "ARX_Sewers_QUnamsked")
+AND
+DB_IsPlayer(_Var3)
+AND
+IsTagged(_Var3, "PROMISED", 1)
+AND
+CombatGetIDForCharacter(_Var3, _Var2)
+AND NOT
+DB_ARX_Sewers_QUnmasked_Promised(_Var3)
+THEN
+DB_ARX_Sewers_QUnmasked_Promised(_Var3);
+
+IF
+CharacterDying(CHARACTERGUID_S_ARX_Sewers_Q_52f20922-7b22-4d47-90f7-83172f21fe3b)
+AND
+DB_IsPlayer(_Var1)
+AND
+IsTagged(_Var1, "PROMISED", 0)
+AND
+CharacterCanSee(_Var1, CHARACTERGUID_S_ARX_Sewers_Q_52f20922-7b22-4d47-90f7-83172f21fe3b, 1)
+THEN
+proc_Trigger_ARX_Sewers_VB_QsDeath(_Var1);
+
+PROC
+proc_Trigger_ARX_Sewers_VB_QsDeath((CHARACTERGUID)_Var1)
+AND
+DB_CombatCharacters(_Var1, _)
+THEN
+DB_ARX_Sewers_VB_QsDeath_Queue(_Var1);
+
+PROC
+proc_Trigger_ARX_Sewers_VB_QsDeath((CHARACTERGUID)_Var1)
+AND NOT
+DB_ARX_Sewers_VB_QsDeath_Queue(_)
+AND
+QRY_SpeakerIsAvailable(_Var1)
+AND
+QueryOnlyOnce("ARX_Sewers_VB_QsDeath")
+THEN
+StartVoiceBark("ARX_Sewers_VB_QsDeath", _Var1);
+
+IF
+ObjectLeftCombat((CHARACTERGUID)_Var1, _)
+AND
+DB_ARX_Sewers_VB_QsDeath_Queue(_Var1)
+AND NOT
+DB_Dead(_Var1)
+AND
+QueryOnlyOnce("ARX_Sewers_VB_QsDeath")
+THEN
+StartVoiceBark("ARX_Sewers_VB_QsDeath", _Var1);
+NOT DB_ARX_Sewers_VB_QsDeath_Queue(_Var1);
+
+IF
+VoiceBarkStarted("ARX_Sewers_VB_QsDeath", _)
+AND
+DB_ARX_Sewers_VB_QsDeath_Queue(_Var2)
+THEN
+NOT DB_ARX_Sewers_VB_QsDeath_Queue(_Var2);
+
+IF
+VoiceBarkFailed("ARX_Sewers_VB_QsDeath")
+AND
+DB_ARX_Sewers_VB_QsDeath_Queue(_Var1)
+THEN
+NOT DB_ARX_Sewers_VB_QsDeath_Queue(_Var1);
+
+IF
+CharacterLeftTrigger((CHARACTERGUID)_Var1, TRIGGERGUID_S_ARX_Sewers_QueensFloor_c2ac0f3b-cea2-4c74-a3bf-2b4e82a54b85)
+AND
+DB_ARX_Sewers_VB_QsDeath_Queue(_Var1)
+THEN
+NOT DB_ARX_Sewers_VB_QsDeath_Queue(_Var1);
+
+IF
+SavegameLoaded((INTEGER)_Var1, (INTEGER)_Var2, (INTEGER)_Var3, (INTEGER)_Var4)
+AND
+QRY_VersionIsOlderThan(_Var1, _Var2, _Var3, _Var4, 3, 6, 0, 1)
+AND
+DB_ARX_Sewers_VB_QsDeath_Queue(_Var5)
+THEN
+proc_Check_ARX_Sewers_VB_QsDeath_Queue(_Var5);
+
+PROC
+proc_Check_ARX_Sewers_VB_QsDeath_Queue((CHARACTERGUID)_Var1)
+AND NOT
+DB_InRegion(_Var1, TRIGGERGUID_S_ARX_Sewers_QueensFloor_c2ac0f3b-cea2-4c74-a3bf-2b4e82a54b85)
+THEN
+NOT DB_ARX_Sewers_VB_QsDeath_Queue(_Var1);
+
+PROC
+proc_Check_ARX_Sewers_VB_QsDeath_Queue((CHARACTERGUID)_Var1)
+AND NOT
+DB_CombatCharacters(_Var1, _)
+THEN
+NOT DB_ARX_Sewers_VB_QsDeath_Queue(_Var1);
+
+IF
+ObjectFlagSet("ARX_Sewers_Q_Ghost_GhostPoof", (CHARACTERGUID)_Var1, (INTEGER)_Var2)
+THEN
+DB_ARX_Sewers_Q_Ghost_GhostPoof(_Var1, _Var2);
+
+IF
+DialogEnded("ARX_Sewers_Q_Ghost", (INTEGER)_Var1)
+AND
+DB_ARX_Sewers_Q_Ghost_GhostPoof(_Var2, _Var1)
+THEN
+Proc_GhostHacks_GhostPoof(_Var2);
+NOT DB_ARX_Sewers_Q_Ghost_GhostPoof(_Var2, _Var1);
+
+IF
+CharacterEnteredTrigger((CHARACTERGUID)_Var1, (TRIGGERGUID)_Var2)
+AND
+DB_ARX_Sewers_QsLab_FalseDoor(_Var3, _Var2, 0)
+THEN
+NOT DB_ARX_Sewers_QsLab_FalseDoor(_Var3, _Var2, 0);
+DB_ARX_Sewers_QsLab_FalseDoor(_Var3, _Var2, 1);
+SetStoryEvent(_Var3, "setMaterial");
+PlaySound(_Var3, "Items_Objects_IllusionMaterial_Appear");
+
+IF
+CharacterLeftTrigger((CHARACTERGUID)_Var1, (TRIGGERGUID)_Var2)
+AND
+DB_ARX_Sewers_QsLab_FalseDoor(_Var3, _Var2, 1)
+AND NOT
+DB_InRegion(_, _Var2)
+AND
+QRY_AnyRegionActive()
+THEN
+NOT DB_ARX_Sewers_QsLab_FalseDoor(_Var3, _Var2, 1);
+DB_ARX_Sewers_QsLab_FalseDoor(_Var3, _Var2, 0);
+SetStoryEvent(_Var3, "stopMaterial");
+PlaySound(_Var3, "Items_Objects_IllusionMaterial_Disappear");
+
+IF
+DB_ARX_Sewers_QsLab_FalseDoor(_, _Var2, _)
+THEN
+ProcTriggerRegisterForPlayers(_Var2);
+
+IF
+CharacterJoinedParty((CHARACTERGUID)_Var1)
+AND
+CharacterIsSummon(_Var1, 1)
+AND
+CharacterGetOwner(_Var1, _Var2)
+AND
+DB_IsPlayer(_Var2)
+AND
+DB_ARX_Sewers_QsLab_FalseDoor(_, _Var4, _)
+THEN
+TriggerRegisterForCharacter(_Var4, _Var1);
+
+
+EXITSECTION
+ENDEXITSECTION
+
+ParentTargetEdge "ARX"

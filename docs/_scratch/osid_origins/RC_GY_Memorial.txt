@@ -1,0 +1,357 @@
+Version 1
+SubGoalCombiner SGC_AND
+
+INITSECTION
+DB_RC_GY_MemorialHero(CHARACTERGUID_S_RC_GY_Memorial_Lizard_c58aa84d-c95e-4f4f-87b6-d69aebdbe66c, ITEMGUID_S_RC_GY_Memorial_LizardHeroTomb_d3441698-63fd-4405-91fd-9fec449c2365);
+DB_RC_GY_MemorialHero(CHARACTERGUID_S_RC_GY_Memorial_Dwarf_7d1620d7-9039-4368-b6dc-3142a8fcebc6, ITEMGUID_S_RC_GY_Memorial_DwarvenHeroTomb_f2161dad-8cd9-4143-880e-668ee0ce4c97);
+DB_RC_GY_MemorialHero(CHARACTERGUID_S_RC_GY_Memorial_Human_a8331e8a-dbe8-4595-887a-ef3d5deaa6da, ITEMGUID_S_RC_GY_Memorial_HumanHeroTomb_06aa38eb-9229-417c-8e3f-8fd5e79aafc2);
+DB_RC_GY_MemorialHero(CHARACTERGUID_S_RC_GY_Memorial_Elf_77ddb0cc-d623-46dd-97d7-b108db8394ee, ITEMGUID_S_RC_GY_Memorial_ElvenHeroTomb_a73db6bb-fd89-4c49-bad7-b248db1e506b);
+DB_RC_GY_MemorialHeroPhase2(CHARACTERGUID_S_RC_GY_Memorial_Lizard_c58aa84d-c95e-4f4f-87b6-d69aebdbe66c, CHARACTERGUID_S_RC_GY_Memorial_Lizard_Phase2_fec94203-562e-456d-aae4-24d503fea891);
+DB_RC_GY_MemorialHeroPhase2(CHARACTERGUID_S_RC_GY_Memorial_Dwarf_7d1620d7-9039-4368-b6dc-3142a8fcebc6, CHARACTERGUID_S_RC_GY_Memorial_Dwarf_Phase2_3dc8d524-5ca3-4f21-84d6-f5586ed9a73b);
+DB_RC_GY_MemorialHeroPhase2(CHARACTERGUID_S_RC_GY_Memorial_Human_a8331e8a-dbe8-4595-887a-ef3d5deaa6da, CHARACTERGUID_S_RC_GY_Memorial_Human_Phase2_4ceea501-acfd-49e4-989b-4600c7e33d22);
+DB_RC_GY_MemorialHeroPhase2(CHARACTERGUID_S_RC_GY_Memorial_Elf_77ddb0cc-d623-46dd-97d7-b108db8394ee, CHARACTERGUID_S_RC_GY_Memorial_Elf_Phase2_9c784155-a60f-4247-9c64-1259234f8289);
+DB_ShovelArea(TRIGGERGUID_S_RC_GY_Memorial_GraveElfArea_1d9714e7-0cdb-4393-80ce-42de6aa3184a, "RC_GY_Memorial_Elf_Reward", ITEMGUID_S_RC_GY_Memorial_GraveElf_92f6f2c3-84c5-4d62-adce-717e472119f1);
+DB_ShovelRewardItemAppear("RC_GY_Memorial_Elf_Reward", ITEMGUID_S_RC_GY_Memorial_GraveElfChest_4a2642eb-54ff-46f9-ab42-b9ee203487c7, TRIGGERGUID_S_RC_GY_Memorial_GraveElf_Point_c0c2195a-687f-4764-a8aa-07cfefa3aab1);
+DB_ShovelArea(TRIGGERGUID_S_RC_GY_Memorial_GraveDwarfArea_e58b28ea-bc77-48e7-8361-8b1805dd6123, "RC_GY_Memorial_Dwarf_Reward", ITEMGUID_S_RC_GY_Memorial_GraveDwarf_347c87bb-ff72-40cc-bf9e-7fcb26181c55);
+DB_ShovelRewardItemAppear("RC_GY_Memorial_Dwarf_Reward", ITEMGUID_S_RC_GY_Memorial_GraveDwarfChest_dd85f438-1426-4a1c-935a-47c52b0a9012, TRIGGERGUID_S_RC_GY_Memorial_GraveDwarf_Point_85a4df49-fd95-40b6-8c27-ab42a9607f79);
+DB_ShovelArea(TRIGGERGUID_S_RC_GY_Memorial_GraveHumanArea_540381bd-6775-44c8-9289-d0eac65f3cd7, "RC_GY_Memorial_Human_Reward", ITEMGUID_S_RC_GY_Memorial_GraveHuman_02fbd675-a4fc-466a-8e47-d766d465779e);
+DB_ShovelRewardItemAppear("RC_GY_Memorial_Human_Reward", ITEMGUID_S_RC_GY_Memorial_GraveHumanChest_e77c13f2-64f2-4db4-89cc-6fb48236f643, TRIGGERGUID_S_RC_GY_Memorial_GraveHuman_Point_0829fca1-9b51-4888-a9ae-4266712981cc);
+DB_ShovelArea(TRIGGERGUID_S_RC_GY_Memorial_GraveLizardArea_89270c8a-715d-44ea-b7c8-9a7bcb427540, "RC_GY_Memorial_Lizard_Reward", ITEMGUID_S_RC_GY_Memorial_GraveLizard_36ca683b-7f25-4772-9a1f-ce8a01f4b6d3);
+DB_ShovelRewardItemAppear("RC_GY_Memorial_Lizard_Reward", ITEMGUID_S_RC_GY_Memorial_GraveLizardChest_b1ba4cc4-3bd9-4157-bae2-3d295c8ac19c, TRIGGERGUID_S_RC_GY_Memorial_GraveLizard_Point_8e55ab86-7ed3-4d3d-9189-f4605ab6c951);
+DB_RC_GY_MemorialChests("RC_GY_Memorial_Elf_Reward", "QuestUpdate_RC_GY_MemorialOfHeroes_FarmlandsChest");
+DB_RC_GY_MemorialChests("RC_GY_Memorial_Dwarf_Reward", "QuestUpdate_RC_GY_MemorialOfHeroes_SawmillChest");
+DB_RC_GY_MemorialChests("RC_GY_Memorial_Human_Reward", "QuestUpdate_RC_GY_MemorialOfHeroes_GraveyardChest");
+DB_RC_GY_MemorialChests("RC_GY_Memorial_Lizard_Reward", "QuestUpdate_RC_GY_MemorialOfHeroes_OilfieldChest");
+DB_RC_GY_MemorialTombs(ITEMGUID_S_RC_GY_Memorial_HumanHeroTomb_06aa38eb-9229-417c-8e3f-8fd5e79aafc2, "BLD_Humans_Tomb_Base_Destruct_A_a4c36acc-06f8-414f-8cc9-cded6a318840", "RC_GY_Memorial_HumanGrave");
+DB_RC_GY_MemorialTombs(ITEMGUID_S_RC_GY_Memorial_LizardHeroTomb_d3441698-63fd-4405-91fd-9fec449c2365, "BLD_Humans_Tomb_Base_Destruct_B_6c3b35f4-ce80-41ed-808f-2ff753125b20", "RC_GY_Memorial_LizardGrave");
+DB_RC_GY_MemorialTombs(ITEMGUID_S_RC_GY_Memorial_ElvenHeroTomb_a73db6bb-fd89-4c49-bad7-b248db1e506b, "BLD_Humans_Tomb_Base_Destruct_A_a4c36acc-06f8-414f-8cc9-cded6a318840", "RC_GY_Memorial_ElfGrave");
+DB_RC_GY_MemorialTombs(ITEMGUID_S_RC_GY_Memorial_DwarvenHeroTomb_f2161dad-8cd9-4143-880e-668ee0ce4c97, "BLD_Humans_Tomb_Base_Destruct_B_6c3b35f4-ce80-41ed-808f-2ff753125b20", "RC_GY_Memorial_DwarfGrave");
+DB_RC_GY_MemorialTombs_Secrets(ITEMGUID_S_RC_GY_Memorial_HumanHeroTomb_06aa38eb-9229-417c-8e3f-8fd5e79aafc2, "RC_GY_MemorialHumanChest", ITEMGUID_S_RC_GY_Memorial_GraveHumanChest_e77c13f2-64f2-4db4-89cc-6fb48236f643, "QuestUpdate_RC_GY_MemorialOfHeroes_MarkerToGraveyard");
+DB_RC_GY_MemorialTombs_Secrets(ITEMGUID_S_RC_GY_Memorial_LizardHeroTomb_d3441698-63fd-4405-91fd-9fec449c2365, "RC_GY_MemorialLizardChest", ITEMGUID_S_RC_GY_Memorial_GraveLizardChest_b1ba4cc4-3bd9-4157-bae2-3d295c8ac19c, "QuestUpdate_RC_GY_MemorialOfHeroes_MarkerToOilfields");
+DB_RC_GY_MemorialTombs_Secrets(ITEMGUID_S_RC_GY_Memorial_ElvenHeroTomb_a73db6bb-fd89-4c49-bad7-b248db1e506b, "RC_GY_MemorialElfChest", ITEMGUID_S_RC_GY_Memorial_GraveElfChest_4a2642eb-54ff-46f9-ab42-b9ee203487c7, "QuestUpdate_RC_GY_MemorialOfHeroes_MarkerToFarmlands");
+DB_RC_GY_MemorialTombs_Secrets(ITEMGUID_S_RC_GY_Memorial_DwarvenHeroTomb_f2161dad-8cd9-4143-880e-668ee0ce4c97, "RC_GY_MemorialDwarfChest", ITEMGUID_S_RC_GY_Memorial_GraveDwarfChest_dd85f438-1426-4a1c-935a-47c52b0a9012, "QuestUpdate_RC_GY_MemorialOfHeroes_MarkerToSawmill");
+DB_OneShotPlayerTrigger(TRIGGERGUID_S_RC_GY_Memorial_Intro_c1247def-c9a2-4526-b359-0dfeccaf1aba);
+DB_RC_GY_MemorialDialogsToTriggerHeroes("RC_GY_Memorial_HumanGrave");
+DB_RC_GY_MemorialDialogsToTriggerHeroes("RC_GY_Memorial_ElfGrave");
+DB_RC_GY_MemorialDialogsToTriggerHeroes("RC_GY_Memorial_LizardGrave");
+DB_RC_GY_MemorialDialogsToTriggerHeroes("RC_GY_Memorial_DwarfGrave");
+DB_Dialogs(ITEMGUID_S_RC_GY_MemorialSign_ef578745-74c6-40e7-b338-2b69b50ec688, "RC_GY_MemorialPlaque");
+
+KBSECTION
+IF
+DB_RC_GY_MemorialHero(_Var1, _)
+THEN
+SetOnStage(_Var1, 0);
+
+IF
+DB_RC_GY_MemorialHeroPhase2(_, _Var2)
+THEN
+SetOnStage(_Var2, 0);
+ApplyStatus(_Var2, "QUEST_PROMISE", -1, 1);
+
+PROC
+ProcOneShotTriggerEntered((CHARACTERGUID)_Var1, TRIGGERGUID_S_RC_GY_Memorial_Intro_c1247def-c9a2-4526-b359-0dfeccaf1aba)
+THEN
+Proc_StartDialog(1, "RC_GY_VB_MemorialOfHeroes_Intro", _Var1);
+
+IF
+CharacterUsedItem((CHARACTERGUID)_Var1, (ITEMGUID)_Var2)
+AND
+DB_RC_GY_MemorialTombs(_Var2, _, _Var4)
+THEN
+Proc_StartDialog(0, _Var4, _Var2, _Var1);
+PartySetFlag(_Var1, "QuestUpdate_RC_GY_MemorialOfHeroes_FoundBurial");
+
+IF
+CharacterUsedItem((CHARACTERGUID)_Var1, ITEMGUID_S_RC_GY_MemorialSign_ef578745-74c6-40e7-b338-2b69b50ec688)
+THEN
+PartySetFlag(_Var1, "QuestUpdate_RC_GY_MemorialOfHeroes_FoundBurial");
+
+IF
+CharacterUsedItem((CHARACTERGUID)_Var1, (ITEMGUID)_Var2)
+AND
+DB_RC_GY_MemorialTombs_Secrets(_Var2, _Var3, _Var4, _Var5)
+AND
+ObjectGetFlag(_Var1, _Var5, 0)
+AND
+ObjectIsOnStage(_Var4, 0)
+THEN
+AddSecret(_Var1, _Var3);
+Proc_RC_GY_MemorialSecretReveal(_Var4);
+ObjectSetFlag(_Var1, _Var5);
+
+PROC
+Proc_RC_GY_MemorialSecretReveal((ITEMGUID)_Var1)
+AND
+DB_ShovelRewardItemAppear(_Var2, _Var1, _)
+AND
+DB_ShovelArea(_, _Var2, _Var5)
+THEN
+ProcSetPerceptionDifficulty(_Var5, "Trivial");
+
+IF
+DialogEnded((STRING)_Var1, (INTEGER)_Var2)
+AND
+DB_RC_GY_MemorialDialogsToTriggerHeroes(_Var1)
+AND
+DB_DialogPlayers(_Var2, _Var3, 1)
+THEN
+NOT DB_RC_GY_MemorialDialogsToTriggerHeroes(_Var1);
+Proc_RC_GY_TryStartHeroRise(_Var3);
+
+PROC
+Proc_RC_GY_TryStartHeroRise((CHARACTERGUID)_Var1)
+AND NOT
+DB_RC_GY_MemorialDialogsToTriggerHeroes(_)
+AND
+QueryOnlyOnce("RC_GY_Memorial_HeroesRise")
+THEN
+Proc_StartDialog(0, "RC_GY_Memorial", ITEMGUID_S_RC_GY_Memorial_HumanHeroTomb_06aa38eb-9229-417c-8e3f-8fd5e79aafc2, ITEMGUID_S_RC_GY_Memorial_LizardHeroTomb_d3441698-63fd-4405-91fd-9fec449c2365, ITEMGUID_S_RC_GY_Memorial_ElvenHeroTomb_a73db6bb-fd89-4c49-bad7-b248db1e506b, ITEMGUID_S_RC_GY_Memorial_DwarvenHeroTomb_f2161dad-8cd9-4143-880e-668ee0ce4c97, _Var1);
+
+IF
+CharacterUsedItem((CHARACTERGUID)_Var1, ITEMGUID_S_RC_GY_MemorialOfHeroes_9503c708-09a4-49ab-8c20-7827de172eea)
+AND
+GlobalGetFlag("RC_GY_MemorialSpawn", 1)
+THEN
+StartVoiceBark("RC_GY_VB_Memorial", _Var1);
+
+IF
+DialogRequestFailed("RC_GY_Memorial", _)
+THEN
+Proc_RC_GY_SpawnHeroes();
+
+IF
+DialogEnded("RC_GY_Memorial", _)
+THEN
+Proc_RC_GY_SpawnHeroes();
+
+PROC
+Proc_RC_GY_SpawnHeroes()
+AND
+QueryOnlyOnce("RC_GY_MemorialSpawn")
+AND
+DB_RC_GY_MemorialHero(_Var1, _)
+AND
+Random(3000, _Var3)
+THEN
+ProcObjectTimer(_Var1, "Timer_RC_GY_Memorial_FX", _Var3);
+
+PROC
+Proc_RC_GY_SpawnHeroes()
+AND
+DB_IsPlayer(_Var1)
+THEN
+ProcHideMarker(_Var1, "RC_GY_MemorialOfHeroes");
+
+PROC
+ProcObjectTimerFinished((CHARACTERGUID)_Var1, "Timer_RC_GY_Memorial_FX")
+AND
+GetPosition(_Var1, _Var2, _Var3, _Var4)
+THEN
+PlayEffectAtPosition("RS3_FX_GP_Combat_Death_Petrified_01_Medium", _Var2, _Var3, _Var4);
+ProcObjectTimer(_Var1, "Timer_RC_GY_Memorial_Appear", 1600);
+
+PROC
+ProcObjectTimerFinished((CHARACTERGUID)_Var1, "Timer_RC_GY_Memorial_Appear")
+AND
+DB_RC_GY_MemorialHero(_Var1, _Var2)
+AND
+DB_RC_GY_MemorialTombs(_Var2, _Var3, _)
+THEN
+CharacterAppear(_Var1, 1, "");
+Transform(_Var2, _Var3, 1);
+ItemSetCanInteract(_Var2, 0);
+
+IF
+DB_RC_GY_MemorialHero(_Var1, _)
+THEN
+ApplyStatus(_Var1, "QUEST_PROMISE", -1, 1);
+
+IF
+ObjectEnteredCombat((CHARACTERGUID)_Var1, (INTEGER)_Var2)
+AND
+DB_RC_GY_MemorialHero(_Var1, _)
+AND
+DB_IsPlayer(_Var4)
+AND
+DB_CombatCharacters(_Var4, _Var2)
+THEN
+PartySetFlag(_Var4, "QuestUpdate_RC_GY_MemorialOfHeroes_CombatBurial");
+
+IF
+CombatEnded((INTEGER)_Var1)
+AND
+DB_RC_GY_MemorialOfHeroes_CombatWonChar(_Var2)
+AND
+DB_WasInCombat(_Var2, _Var1)
+AND NOT
+Qry_RC_GY_MemorialOfHeroes_CharAlive()
+AND
+DB_IsPlayer(_Var3)
+AND
+DB_WasInCombat(_Var3, _Var1)
+THEN
+PartySetFlag(_Var3, "QuestUpdate_RC_GY_MemorialOfHeroes_CombatWon");
+
+QRY
+Qry_RC_GY_MemorialOfHeroes_CharAlive()
+AND
+DB_RC_GY_MemorialOfHeroes_CombatWonChar(_Var1)
+AND NOT
+DB_Dead(_Var1)
+THEN
+DB_NOOP(1);
+
+IF
+DB_RC_GY_MemorialHeroPhase2(_, _Var2)
+THEN
+DB_RC_GY_MemorialOfHeroes_CombatWonChar(_Var2);
+
+IF
+ObjectEnteredCombat(CHARACTERGUID_S_RC_GY_Memorial_Human_a8331e8a-dbe8-4595-887a-ef3d5deaa6da, _)
+AND
+QueryOnlyOnce("RC_GY_Memorial_HumanCommentCombat")
+THEN
+Proc_StartDialog(1, "RC_GY_AD_Memorial_Human", CHARACTERGUID_S_RC_GY_Memorial_Human_a8331e8a-dbe8-4595-887a-ef3d5deaa6da);
+
+IF
+ObjectTurnStarted(CHARACTERGUID_S_RC_GY_Memorial_Lizard_c58aa84d-c95e-4f4f-87b6-d69aebdbe66c)
+AND
+QueryOnlyOnce("RC_GY_Memorial_LizardCommentCombat")
+THEN
+Proc_StartDialog(1, "RC_GY_AD_Memorial_Lizard", CHARACTERGUID_S_RC_GY_Memorial_Lizard_c58aa84d-c95e-4f4f-87b6-d69aebdbe66c);
+
+IF
+ObjectTurnStarted(CHARACTERGUID_S_RC_GY_Memorial_Dwarf_7d1620d7-9039-4368-b6dc-3142a8fcebc6)
+AND
+QueryOnlyOnce("RC_GY_Memorial_DwarfCommentCombat")
+THEN
+Proc_StartDialog(1, "RC_GY_AD_Memorial_Dwarf", CHARACTERGUID_S_RC_GY_Memorial_Dwarf_7d1620d7-9039-4368-b6dc-3142a8fcebc6);
+
+IF
+ObjectTurnStarted(CHARACTERGUID_S_RC_GY_Memorial_Elf_77ddb0cc-d623-46dd-97d7-b108db8394ee)
+AND
+QueryOnlyOnce("RC_GY_Memorial_ElfCommentCombat")
+THEN
+Proc_StartDialog(1, "RC_GY_AD_Memorial_Elf", CHARACTERGUID_S_RC_GY_Memorial_Elf_77ddb0cc-d623-46dd-97d7-b108db8394ee);
+
+PROC
+Proc_ObjectLeftCombat((CHARACTERGUID)_Var1, (INTEGER)_Var2)
+AND
+DB_IsPlayer(_Var1)
+AND
+DB_RC_GY_MemorialHero(_Var3, _)
+AND
+DB_WasInCombat(_Var3, _Var2)
+AND
+QueryOnlyOnce("RC_GY_Memorial_Reflection")
+THEN
+ProcObjectTimer(_Var1, "Timer_RC_GY_VB_Memorial_Promise", 1000);
+ProcObjectTimer(_Var1, "Timer_RC_GY_Memorial_Reflection", 3000);
+
+PROC
+ProcObjectTimerFinished((CHARACTERGUID)_Var1, "Timer_RC_GY_VB_Memorial_Promise")
+THEN
+StartVoiceBark("RC_GY_VB_Memorial_Promise", _Var1);
+
+PROC
+ProcObjectTimerFinished((CHARACTERGUID)_Var1, "Timer_RC_GY_Memorial_Reflection")
+THEN
+ProcDefineReflectionDialog("RC_GY_RD_Memorial_Promise", _Var1);
+
+IF
+GameBookInterfaceClosed(ITEMGUID_S_RC_GY_Memorial_ListOfDeeds_63ffe707-95f0-4d7e-9d31-71d4bba89245, (CHARACTERGUID)_Var1)
+AND
+ObjectGetFlag(_Var1, "QuestUpdate_RC_GY_MemorialOfHeroes_FoundMemorialBook", 0)
+AND NOT
+DB_OnlyOnce("RC_GY_MemorialSpawn")
+THEN
+ObjectSetFlag(_Var1, "QuestUpdate_RC_GY_MemorialOfHeroes_FoundMemorialBook");
+ProcShowMarker(_Var1, "RC_GY_MemorialOfHeroes");
+
+PROC
+ProcShovelRewards((CHARACTERGUID)_Var1, (STRING)_Var2)
+AND
+DB_RC_GY_MemorialChests(_Var2, _Var3)
+THEN
+ObjectSetFlag(_Var1, _Var3);
+NOT DB_RC_GY_MemorialChests(_Var2, _Var3);
+Proc_RC_GY_MemorialChestCheck(_Var1);
+
+PROC
+Proc_RC_GY_MemorialChestCheck((CHARACTERGUID)_Var1)
+AND NOT
+DB_RC_GY_MemorialChests(_, _)
+THEN
+ObjectSetFlag(_Var1, "QuestUpdate_RC_GY_MemorialOfHeroes_NoChests");
+
+PROC
+ProcRegionEnded("RC_Main")
+AND
+DB_IsPlayer(_Var1)
+AND
+ObjectGetFlag(_Var1, "QuestUpdate_RC_GY_MemorialOfHeroes_MarkerToSawmill", 0)
+AND
+ObjectGetFlag(_Var1, "QuestUpdate_RC_GY_MemorialOfHeroes_MarkerToFarmlands", 0)
+AND
+ObjectGetFlag(_Var1, "QuestUpdate_RC_GY_MemorialOfHeroes_MarkerToGraveyard", 0)
+AND
+ObjectGetFlag(_Var1, "QuestUpdate_RC_GY_MemorialOfHeroes_MarkerToOilfields", 0)
+THEN
+ObjectSetFlag(_Var1, "QuestUpdate_RC_GY_MemorialOfHeroes_CloseLeftRC");
+
+PROC
+ProcRegionEnded("RC_Main")
+THEN
+ProcSetFlagOnAll("QuestUpdate_RC_GY_MemorialOfHeroes_RegionEnd");
+
+IF
+CharacterResurrected((CHARACTERGUID)_Var1)
+AND
+DB_RC_GY_MemorialHero(_Var1, _)
+THEN
+ApplyStatus(_Var1, "QUEST_PROMISE", -1, 1);
+
+IF
+CharacterDied((CHARACTERGUID)_Var1)
+AND
+DB_RC_GY_MemorialHero(_Var1, _)
+AND
+DB_RC_GY_MemorialHeroPhase2(_Var1, _Var3)
+THEN
+PROC_LoopEffectAtPosition("RS3_FX_GP_ScriptedEvent_Resurrection_01", _Var1, "RC_GY_MemorialHeroPillar", "RC_Main");
+ProcObjectTimer(_Var1, "Timer_RC_GY_MemorialResStart", 3000);
+
+PROC
+ProcObjectTimerFinished((GUIDSTRING)_Var1, "Timer_RC_GY_MemorialResStart")
+AND
+GetPosition(_Var1, _Var2, _Var3, _Var4)
+THEN
+PlayEffectAtPosition("RS3_FX_GP_Combat_Death_Generic_Dissolve_01", _Var2, _Var3, _Var4);
+PlayEffect(_Var1, "RS3_FX_GP_Combat_Death_Generic_Dissolve_Body_01");
+PROC_StopLoopEffect(_Var1, "RC_GY_MemorialHeroPillar");
+ProcObjectTimer(_Var1, "Timer_RC_GY_MemorialRes", 1800);
+
+PROC
+ProcObjectTimerFinished((CHARACTERGUID)_Var1, "Timer_RC_GY_MemorialRes")
+AND
+DB_RC_GY_MemorialHeroPhase2(_Var1, _Var2)
+THEN
+SetOnStage(_Var1, 0);
+CharacterAppearAtCustom(_Var2, _Var1, "resurrect", "RC_GY_MemorialHeroResurrected");
+PlayEffect(_Var2, "RS3_FX_GP_Combat_Resurrect_Generic_01", "Dummy_BodyFX");
+PlayEffect(_Var2, "RS3_FX_GP_Combat_Resurrect_Generic_Overlay_01");
+
+IF
+ObjectTurnStarted((CHARACTERGUID)_Var1)
+AND
+DB_RC_GY_MemorialHeroPhase2(_Var2, _Var1)
+THEN
+NOT DB_RC_GY_MemorialHeroPhase2(_Var2, _Var1);
+Proc_StartDialog(1, "RC_GY_AD_Memorial_GodKing", _Var1);
+
+
+EXITSECTION
+ENDEXITSECTION
+
+ParentTargetEdge "ReapersCoast"

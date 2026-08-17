@@ -1,0 +1,27 @@
+Version 1
+SubGoalCombiner SGC_AND
+
+INITSECTION
+DB_GLO_LVNPCsLeaving_LVTriggers("CoS_Main", TRIGGERGUID_S_CoS_SUB_Temples_LVTopDeck_f9679914-8348-4083-9171-1f62bd020ef0, ITEMGUID_S_RC_LV_TP_Beach_000_1f46931a-4c58-4055-9b2d-cfdeaddb968e, TRIGGERGUID_S_CoS_Temples_BeachArrive_Point_77a8ac6e-4fd5-4a09-ab9a-0e2aa58c13c0, 0);
+DB_GLO_LVNPCsLeaving_NPC_ProximityTrigger("CoS_Main", CHARACTERGUID_S_FTJ_SW_Warrior_SeekerCaptain_1329f018-23e4-4717-9bc8-074b28d04c54, TRIGGERGUID_S_COS_GarethProximityBox_b454a26d-db9a-4f52-9db5-cda9808c25f7, "", 0);
+DB_GLO_LVNPCsLeaving_NPC_EmergencyTrigger("CoS_Main", CHARACTERGUID_S_FTJ_SW_Warrior_SeekerCaptain_1329f018-23e4-4717-9bc8-074b28d04c54, TRIGGERGUID_S_COS_GarethEmergencyBox_7e2f3989-8246-4eb6-a5f9-6bf2a130d596, "", 0);
+
+KBSECTION
+IF
+StoryEvent(CHARACTERGUID_S_FTJ_SW_Warrior_SeekerCaptain_1329f018-23e4-4717-9bc8-074b28d04c54, "GLO_LVNPCsLeaving_OutOfSight")
+AND
+DB_GLO_LVNPCsLeaving_NPC_LeavingFor("CoS_Main", CHARACTERGUID_S_FTJ_SW_Warrior_SeekerCaptain_1329f018-23e4-4717-9bc8-074b28d04c54, _, _Var2)
+THEN
+SetStoryEvent(CHARACTERGUID_S_FTJ_SW_Warrior_SeekerCaptain_1329f018-23e4-4717-9bc8-074b28d04c54, "CoS_TeleportToElfTemple");
+
+PROC
+PROC_GLO_LVNPCsLeaving_EmergencyExit("CoS_Main", CHARACTERGUID_S_FTJ_SW_Warrior_SeekerCaptain_1329f018-23e4-4717-9bc8-074b28d04c54, _)
+THEN
+SetOnStage(CHARACTERGUID_S_FTJ_SW_Warrior_SeekerCaptain_1329f018-23e4-4717-9bc8-074b28d04c54, 0);
+SetStoryEvent(CHARACTERGUID_S_FTJ_SW_Warrior_SeekerCaptain_1329f018-23e4-4717-9bc8-074b28d04c54, "CoS_TeleportToElfTemple");
+
+
+EXITSECTION
+ENDEXITSECTION
+
+ParentTargetEdge "CouncilOfSeven"

@@ -1,0 +1,155 @@
+Version 1
+SubGoalCombiner SGC_AND
+
+INITSECTION
+DB_GLO_SourceCollars_Region("TUT_Tutorial_A");
+DB_GLO_SourceCollars_PrisonersWithCollars(S_TUT_LowerDeck_DwarvenCarpenter_c0c25bbc-8106-402f-b706-ac20533b0c9a);
+DB_GLO_SourceCollars_PrisonersWithCollars(S_TUT_LowerDeck_GruelServer_849900b9-e78d-47c7-87f3-c8d97f797d36);
+DB_GLO_SourceCollars_PrisonersWithCollars(S_TUT_LowerDeck_LohseSongBoy1_835a993e-1bf1-4e6f-8922-20dd8b99bca4);
+DB_GLO_SourceCollars_PrisonersWithCollars(S_TUT_LowerDeck_LohseSongBoy2_2d56d0b1-c7a7-4e60-a495-4ea64ca38f0e);
+DB_GLO_SourceCollars_PrisonersWithCollars(S_TUT_LowerDeck_LohseSongGirl1_a681c125-8493-4046-ab1f-6c2201336a22);
+DB_GLO_SourceCollars_PrisonersWithCollars(CHARACTERGUID_S_GLO_Windego_d783285f-d3be-4cba-8333-db8976cef182);
+DB_GLO_SourceCollars_PrisonersWithCollars(CHARACTERGUID_S_TUT_CargoHold_UnrulyPrisoner_d7a61dc6-a249-4e97-9914-53ea24e320ae);
+DB_OneShot_ADTrigger(S_TUT_LowerDeck_StartRoomExitADBox_283dca9a-d883-423f-8a12-f5979b34e3a6, "TUT_AD_LowerDeck_Humans_Female_Magister_Priest_000", CHARACTERGUID_S_TUT_Humans_Female_Magister_Priest_000_9d17cf06-6fad-49a8-82de-54518a9bf5df);
+DB_TUT_LowerDeck_CollaringPriest_KnockedDown_AD_DelayMin(10000);
+DB_TUT_LowerDeck_CollaringPriest_KnockedDown_AD_DelayRange(20000);
+
+KBSECTION
+IF
+AutomatedDialogStarted("TUT_AD_LowerDeck_Humans_Female_Magister_Priest_000", _)
+AND
+GetClosestAlivePlayer(CHARACTERGUID_S_TUT_Humans_Female_Magister_Priest_000_9d17cf06-6fad-49a8-82de-54518a9bf5df, _Var2, _)
+THEN
+CharacterLookAt(CHARACTERGUID_S_TUT_Humans_Female_Magister_Priest_000_9d17cf06-6fad-49a8-82de-54518a9bf5df, _Var2);
+
+IF
+DialogStarted("TUT_LowerDeck_Humans_Female_Magister_Priest_000", _)
+THEN
+DB_TUT_LowerDeck_TalkedToCollaringSourcerer(1);
+
+IF
+CharacterUsedItem((CHARACTERGUID)_Var1, S_TUT_LowerDeck_DoorToStairs_005_54f3dd0b-b26c-4d74-a9a5-1cb46a68f92f)
+AND
+DB_IsPlayer(_Var1)
+AND NOT
+DB_TUT_LowerDeck_TalkedToCollaringSourcerer(1)
+AND
+QRY_SpeakerIsAvailableAndInDialogRange(_Var1, S_TUT_Humans_Female_Magister_Priest_000_9d17cf06-6fad-49a8-82de-54518a9bf5df)
+THEN
+Proc_StartDialog(0, "TUT_LowerDeck_Humans_Female_Magister_Priest_000", S_TUT_Humans_Female_Magister_Priest_000_9d17cf06-6fad-49a8-82de-54518a9bf5df, _Var1);
+
+IF
+ObjectFlagSet("TUT_CheckNeckCollar", (CHARACTERGUID)_Var1, (INTEGER)_Var2)
+THEN
+PlayAnimation(_Var1, "Check_Neck_01");
+ObjectClearFlag(_Var1, "TUT_CheckNeckCollar");
+
+IF
+ObjectFlagSet("TUT_CollaringPriest_SourceCasted", (CHARACTERGUID)_Var1, (INTEGER)_Var2)
+THEN
+DB_TUT_CollaringPriest_SourceCasted_Dialog(_Var1, _Var2);
+PlayAnimation(_Var1, "cast_target_start", "TUT_CollaringPriest_SourceCasted_Attempt");
+
+IF
+StoryEvent((CHARACTERGUID)_Var1, "TUT_CollaringPriest_SourceCasted_Attempt")
+AND
+DB_TUT_CollaringPriest_SourceCasted_Dialog(_Var1, _)
+THEN
+CharacterSetAnimationOverride(_Var1, "stillcrippled");
+ProcObjectTimer(_Var1, "TUT_CollaringPriest_SourceCasted_Attempt_Recover", 2500);
+
+IF
+DialogEnded("TUT_LowerDeck_Humans_Female_Magister_Priest_000", (INTEGER)_Var1)
+AND
+DB_TUT_CollaringPriest_SourceCasted_Dialog(_Var2, _Var1)
+THEN
+ProcObjectTimerCancel(_Var2, "TUT_CollaringPriest_SourceCasted_Attempt_Recover");
+PROC_TUT_CollaringPriest_SourceCasted_Attempt_Recover(_Var2, _Var1);
+
+PROC
+ProcObjectTimerFinished((CHARACTERGUID)_Var1, "TUT_CollaringPriest_SourceCasted_Attempt_Recover")
+AND
+DB_TUT_CollaringPriest_SourceCasted_Dialog(_Var1, _Var2)
+THEN
+PROC_TUT_CollaringPriest_SourceCasted_Attempt_Recover(_Var1, _Var2);
+
+PROC
+PROC_TUT_CollaringPriest_SourceCasted_Attempt_Recover((CHARACTERGUID)_Var1, (INTEGER)_Var2)
+THEN
+NOT DB_TUT_CollaringPriest_SourceCasted_Dialog(_Var1, _Var2);
+CharacterSetAnimationOverride(_Var1, "");
+
+IF
+DialogEnded("TUT_LowerDeck_Humans_Female_Magister_Priest_000", (INTEGER)_Var1)
+AND
+DialogGetInvolvedPlayer(_Var1, 1, _Var2)
+THEN
+CharacterFlushQueue(_Var2);
+
+IF
+GlobalFlagSet("TUT_RescueCombatFinished")
+AND NOT
+DB_Dead(CHARACTERGUID_S_TUT_Humans_Female_Magister_Priest_000_9d17cf06-6fad-49a8-82de-54518a9bf5df)
+THEN
+TimerLaunch("TUT_CollaringPriest_KnockedDown_AD", 0);
+
+IF
+TimerFinished("TUT_CollaringPriest_KnockedDown_AD")
+AND NOT
+DB_Dead(CHARACTERGUID_S_TUT_Humans_Female_Magister_Priest_000_9d17cf06-6fad-49a8-82de-54518a9bf5df)
+AND
+DB_TUT_LowerDeck_CollaringPriest_KnockedDown_AD_DelayMin(_Var1)
+AND
+DB_TUT_LowerDeck_CollaringPriest_KnockedDown_AD_DelayRange(_Var2)
+AND
+Random(_Var2, _Var3)
+AND
+IntegerSum(_Var3, _Var1, _Var4)
+THEN
+Proc_StartDialog(1, "TUT_AD_LowerDeck_Humans_Female_Magister_Priest_000_KnockedDown", CHARACTERGUID_S_TUT_Humans_Female_Magister_Priest_000_9d17cf06-6fad-49a8-82de-54518a9bf5df);
+TimerLaunch("TUT_CollaringPriest_KnockedDown_AD", _Var4);
+
+IF
+ObjectFlagSet("TUT_CollaringPriest_CryForHelp", CHARACTERGUID_S_TUT_Humans_Female_Magister_Priest_000_9d17cf06-6fad-49a8-82de-54518a9bf5df, _)
+AND NOT
+DB_Dead(CHARACTERGUID_S_TUT_Humans_Female_Magister_Priest_000_9d17cf06-6fad-49a8-82de-54518a9bf5df)
+AND
+DB_TUT_LowerDeck_CollaringPriest_KnockedDown_AD_DelayMin(_Var2)
+AND
+DB_TUT_LowerDeck_CollaringPriest_KnockedDown_AD_DelayRange(_Var3)
+THEN
+NOT DB_TUT_LowerDeck_CollaringPriest_KnockedDown_AD_DelayMin(_Var2);
+NOT DB_TUT_LowerDeck_CollaringPriest_KnockedDown_AD_DelayRange(_Var3);
+DB_TUT_LowerDeck_CollaringPriest_KnockedDown_AD_DelayMin(5000);
+DB_TUT_LowerDeck_CollaringPriest_KnockedDown_AD_DelayRange(5000);
+ProcForceStopDialog(CHARACTERGUID_S_TUT_Humans_Female_Magister_Priest_000_9d17cf06-6fad-49a8-82de-54518a9bf5df);
+TimerCancel("TUT_CollaringPriest_KnockedDown_AD");
+TimerLaunch("TUT_CollaringPriest_KnockedDown_AD", 0);
+
+IF
+ObjectFlagSet("TUT_CollaringPriest_SummonTheKraken", CHARACTERGUID_S_TUT_Humans_Female_Magister_Priest_000_9d17cf06-6fad-49a8-82de-54518a9bf5df, _)
+THEN
+TimerCancel("TUT_CollaringPriest_KnockedDown_AD");
+
+IF
+CharacterUsedItem((CHARACTERGUID)_Var1, S_TUT_LowerDeck_AlexandarStatue_b636af92-9984-41a3-8494-aee6b18ac622)
+THEN
+Proc_StartDialog(1, "TUT_AD_LowerDeck_SeeAlexandar", _Var1);
+
+IF
+DB_HasMet(_Var1, _Var2, "")
+AND
+DB_GLO_SourceCollars_PrisonersWithCollars(_Var1)
+THEN
+ObjectSetFlag(_Var2, "TUT_LowerDeck_TalkedToPrisoner");
+
+PROC
+ProcRegionEnded("TUT_Tutorial_A")
+THEN
+GoalCompleted;
+
+
+EXITSECTION
+ENDEXITSECTION
+
+ParentTargetEdge "Tutorial_PrisonShip"

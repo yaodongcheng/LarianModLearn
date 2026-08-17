@@ -1,0 +1,94 @@
+Version 1
+SubGoalCombiner SGC_AND
+
+INITSECTION
+DB_Dialogs(S_RC_DW_Drunk_ad6b6989-1fda-4202-9c46-3bd2f61a2ba5, "RC_DW_Drunk");
+ProcDeclareCounter("RC_DW_Drunk_DrinkCount");
+DB_QuestDef_AddEvent("RC_DW_SpidersKiss", "RC_DW_Drunk_TellAboutSpider");
+DB_QuestDef_UpdateEvent("RC_DW_SpidersKiss", "DrunkElfRefSpider", "RC_DW_Drunk_TellAboutSpider");
+
+KBSECTION
+IF
+ObjectFlagSet("RC_DW_Drunk_PlayerDrink1", (CHARACTERGUID)_Var1, (INTEGER)_Var2)
+THEN
+proc_RC_DW_DrunkMakePlayerDrink(_Var1, 15);
+
+IF
+ObjectFlagSet("RC_DW_Drunk_PlayerDrink2", (CHARACTERGUID)_Var1, (INTEGER)_Var2)
+THEN
+proc_RC_DW_DrunkMakePlayerDrink(_Var1, 30);
+
+IF
+ObjectFlagSet("RC_DW_Drunk_PlayerDrink3", (CHARACTERGUID)_Var1, (INTEGER)_Var2)
+THEN
+proc_RC_DW_DrunkMakePlayerDrink(_Var1, 60);
+
+PROC
+proc_RC_DW_DrunkMakePlayerDrink((CHARACTERGUID)_Var1, (REAL)_Var2)
+AND
+IsTagged(_Var1, "UNDEAD", 0)
+THEN
+RemoveStatus(_Var1, "DRUNK");
+ApplyStatus(_Var1, "DRUNK", _Var2, -1);
+
+PROC
+proc_RC_DW_DrunkMakePlayerDrink((CHARACTERGUID)_Var1, (REAL)_Var2)
+THEN
+ProcIncreaseCounter("RC_DW_Drunk_DrinkCount");
+
+IF
+DB_GlobalCounter("RC_DW_Drunk_DrinkCount", _Var1)
+AND
+_Var1 >= 3
+THEN
+GlobalSetFlag("RC_DW_Drunk_HadTooManyDrinks");
+
+IF
+DialogEnded("RC_DW_Drunk", (INTEGER)_Var1)
+AND
+GlobalGetFlag("RC_DW_Drunk_HadTooManyDrinks", 1)
+AND
+DB_DialogNPCs(_Var1, S_RC_DW_Drunk_ad6b6989-1fda-4202-9c46-3bd2f61a2ba5, 1)
+THEN
+RemoveStatus(S_RC_DW_Drunk_ad6b6989-1fda-4202-9c46-3bd2f61a2ba5, "DRUNK");
+RemoveStatus(S_RC_DW_Drunk_ad6b6989-1fda-4202-9c46-3bd2f61a2ba5, "SITTING");
+ApplyStatus(S_RC_DW_Drunk_ad6b6989-1fda-4202-9c46-3bd2f61a2ba5, "KNOCKED_DOWN", -1, -1);
+ProcRemoveAllDialogEntriesForSpeaker(S_RC_DW_Drunk_ad6b6989-1fda-4202-9c46-3bd2f61a2ba5);
+SetHasDialog(S_RC_DW_Drunk_ad6b6989-1fda-4202-9c46-3bd2f61a2ba5, 1);
+
+IF
+CharacterStatusRemoved(S_RC_DW_Drunk_ad6b6989-1fda-4202-9c46-3bd2f61a2ba5, "KNOCKED_DOWN", _)
+AND
+GlobalGetFlag("RC_DW_Drunk_HadTooManyDrinks", 1)
+THEN
+DB_Dialogs(S_RC_DW_Drunk_ad6b6989-1fda-4202-9c46-3bd2f61a2ba5, "RC_DW_Drunk");
+GlobalClearFlag("RC_DW_Drunk_HadTooManyDrinks");
+
+PROC
+PROC_GLOBAL_DialogStartRequested(S_RC_DW_Drunk_ad6b6989-1fda-4202-9c46-3bd2f61a2ba5, (GUIDSTRING)_Var1)
+AND
+GlobalGetFlag("RC_DW_Drunk_HadTooManyDrinks", 1)
+THEN
+Proc_StartDialog(1, "RC_DW_AD_Drunk_DrankTooMuch", S_RC_DW_Drunk_ad6b6989-1fda-4202-9c46-3bd2f61a2ba5);
+
+IF
+CharacterDied(S_RC_DW_Drunk_ad6b6989-1fda-4202-9c46-3bd2f61a2ba5)
+THEN
+GlobalSetFlag("RC_DW_Drunk_IsDead");
+
+IF
+DialogEnded("RC_DW_Drunk", (INTEGER)_Var1)
+AND
+DB_DialogPlayers(_Var1, _Var2, 1)
+AND
+ObjectGetFlag(_Var2, "RC_DW_Drunk_PlayerDrink1", 1)
+THEN
+ObjectClearFlag(_Var2, "RC_DW_Drunk_PlayerDrink1", _Var1);
+ObjectClearFlag(_Var2, "RC_DW_Drunk_PlayerDrink2", _Var1);
+ObjectClearFlag(_Var2, "RC_DW_Drunk_PlayerDrink3", _Var1);
+
+
+EXITSECTION
+ENDEXITSECTION
+
+ParentTargetEdge "ReapersCoast"

@@ -1,0 +1,148 @@
+Version 1
+SubGoalCombiner SGC_AND
+
+INITSECTION
+
+KBSECTION
+IF
+ObjectLostTag((CHARACTERGUID)_Var1, "PROMISED")
+THEN
+ObjectSetFlag(_Var1, "GLO_Promise_PromiseBreaker");
+NOT DB_GLO_Promise_HasBeenAccepted(_Var1);
+ObjectClearFlag(_Var1, "GLO_Promise_PromiseBound", 0);
+
+IF
+ObjectLostTag((CHARACTERGUID)_Var1, "PROMISED")
+AND
+CharacterHasSkill(_Var1, "Target_Curse", 1)
+THEN
+CharacterRemoveSkill(_Var1, "Target_Curse");
+
+IF
+ObjectLostTag((CHARACTERGUID)_Var1, "PROMISED")
+AND
+CharacterHasSkill(_Var1, "Target_Bless", 0)
+THEN
+CharacterAddSkill(_Var1, "Target_Bless");
+
+IF
+ObjectLostTag((CHARACTERGUID)_Var1, "PROMISED")
+AND NOT
+DB_GLO_Promise_HasBeenAccepted(_)
+THEN
+GlobalClearFlag("GLO_Promise_Accepted");
+
+IF
+DialogEnded((STRING)_Var1, (INTEGER)_Var2)
+AND
+DB_GLO_Promise_BreakPromiseDialog(_Var1)
+AND
+DialogGetInvolvedPlayer(_Var2, 1, _Var3)
+AND
+ObjectGetFlag(_Var3, "GLO_Promise_Broken", 1)
+THEN
+ObjectClearFlag(_Var3, "GLO_Promise_Broken", _Var2);
+PROC_GLO_Promise_Broken(_Var3, 1);
+
+PROC
+PROC_GLO_Promise_Broken((CHARACTERGUID)_Var1, 1)
+AND
+DB_GLO_Promise_HasBeenAccepted(_Var1)
+THEN
+NOT DB_IsPlayer(_Var1);
+CharacterDie(_Var1, 0, "DoT");
+CharacterRemoveFromParty(_Var1);
+CharacterMakeNPC(_Var1);
+
+IF
+ObjectFlagSet("GLO_Promise_Relieved", (CHARACTERGUID)_Var1, (INTEGER)_Var2)
+THEN
+ObjectClearFlag(_Var1, "GLO_Promise_Relieved", _Var2);
+CharacterUseSkill(_Var1, "Shout_Quest_PromiseBreak", _Var1, 1, 1, 1);
+
+PROC
+PROC_GLO_Promise_Broken((CHARACTERGUID)_Var1, (INTEGER)_Var2)
+AND
+DB_GLO_Promise_HasBeenAccepted(_Var1)
+THEN
+ClearTag(_Var1, "PROMISED");
+
+PROC
+Proc_OneTimeEventFlag((GUIDSTRING)_Var1, "GLO_PromiseBreak_Effect_Prepare", _)
+THEN
+Proc_GLO_PromiseBreak_Effect_Prepare(_Var1);
+
+PROC
+Proc_OneTimeEventFlag((GUIDSTRING)_Var1, "GLO_PromiseBreak_Effect_Accept", _)
+THEN
+Proc_GLO_PromiseBreak_Effect_Accept(_Var1);
+
+PROC
+Proc_OneTimeEventFlag((GUIDSTRING)_Var1, "GLO_Promise_Effect_Stop", _)
+THEN
+Proc_GLO_Promise_Effect_Stop(_Var1);
+
+PROC
+Proc_GLO_PromiseBreak_Effect_Prepare((GUIDSTRING)_Var1)
+AND
+DB_CurrentLevel(_Var2)
+THEN
+PROC_LoopEffect("RS3_FX_GP_ScriptedEvent_BreakPromise_Start_01", _Var1, "FX_GLO_PromiseBreak_Prepare", _Var2, "");
+
+PROC
+Proc_GLO_PromiseBreak_Effect_Accept((GUIDSTRING)_Var1)
+AND
+DB_CurrentLevel(_Var2)
+THEN
+PlayAnimation(_Var1, "skill_cast_shout_01_cast");
+PlayEffect(_Var1, "RS3_FX_GP_ScriptedEvent_BreakPromise_End_01");
+Proc_GLO_PromiseBreak_Effect_Stop(_Var1);
+
+PROC
+Proc_GLO_PromiseBreak_Effect_Stop((GUIDSTRING)_Var1)
+THEN
+PROC_StopLoopEffect(_Var1, "FX_GLO_PromiseBreak_Prepare");
+
+IF
+CharacterUsedSkill((CHARACTERGUID)_Var1, "Shout_Quest_PromiseBreak", _, _)
+THEN
+PROC_GLO_Promise_Broken(_Var1, 0);
+Proc_GLO_PromiseBreaker_BreakIt(_Var1);
+
+PROC
+Proc_GLO_PromiseBreaker_BreakIt((CHARACTERGUID)_Var1)
+AND
+DB_IsPlayer(_Var1)
+AND
+ItemTemplateIsInUserInventory(_Var1, "WPN_Ataraxians_Scythe_2H_A_3b45c978-5a42-40b5-a7aa-183852616910", 1, _Var2)
+AND
+_Var2 >= 1
+AND
+GetItemForItemTemplateInInventory(_Var1, "WPN_Ataraxians_Scythe_2H_A_3b45c978-5a42-40b5-a7aa-183852616910", _Var3)
+THEN
+ItemSetDurability(_Var3, 0);
+CharacterUnequipItem(_Var1, _Var3);
+UserSetFlag(_Var1, "QuestUpdate_CORE_Covenant_Freed");
+
+PROC
+Proc_GLO_PromiseBreaker_BreakIt((CHARACTERGUID)_Var1)
+AND NOT
+DB_IsPlayer(_Var1)
+AND
+GetItemForItemTemplateInInventory(_Var1, "WPN_Ataraxians_Scythe_2H_A_3b45c978-5a42-40b5-a7aa-183852616910", _Var2)
+THEN
+ItemSetDurability(_Var2, 0);
+CharacterUnequipItem(_Var1, _Var2);
+
+IF
+ObjectFlagSet("GLO_PromiseBreaker_UseSkill", (CHARACTERGUID)_Var1, _)
+AND
+ObjectIsCharacter(_Var1, 1)
+THEN
+CharacterUseSkill(_Var1, "Shout_Quest_PromiseBreak", _Var1, 1, 1, 1);
+
+
+EXITSECTION
+ENDEXITSECTION
+
+ParentTargetEdge "GLO_ThePromise_Activation"

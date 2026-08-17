@@ -1,0 +1,65 @@
+Version 1
+SubGoalCombiner SGC_AND
+
+INITSECTION
+
+KBSECTION
+PROC
+ProcRemoveCounter((STRING)_Var1)
+AND
+DB_GlobalCounter(_Var1, _Var2)
+THEN
+NOT DB_GlobalCounter(_Var1, _Var2);
+
+PROC
+ProcDeclareCounter((STRING)_Var1)
+THEN
+ProcRemoveCounter(_Var1);
+DB_GlobalCounter(_Var1, 0);
+
+PROC
+ProcIncreaseCounter((STRING)_Var1)
+THEN
+ProcIncreaseCounter(_Var1, 1);
+
+PROC
+ProcIncreaseCounter((STRING)_Var1, (INTEGER)_Var2)
+AND
+DB_GlobalCounter(_Var1, _Var3)
+AND
+IntegerSum(_Var3, _Var2, _Var4)
+THEN
+NOT DB_GlobalCounter(_Var1, _Var3);
+DB_GlobalCounter(_Var1, _Var4);
+ProcCounterIncreased(_Var1, _Var4);
+
+PROC
+ProcCounterIncreased((STRING)_Var1, (INTEGER)_Var2)
+THEN
+DB_NOOP(1);
+
+PROC
+ProcDecreaseCounter((STRING)_Var1)
+THEN
+ProcDecreaseCounter(_Var1, 1);
+
+PROC
+ProcDecreaseCounter((STRING)_Var1, (INTEGER)_Var2)
+AND
+DB_GlobalCounter(_Var1, _Var3)
+AND
+IntegerSubtract(_Var3, _Var2, _Var4)
+THEN
+NOT DB_GlobalCounter(_Var1, _Var3);
+DB_GlobalCounter(_Var1, _Var4);
+ProcCounterDecreased(_Var1, _Var3);
+
+PROC
+ProcCounterDecreased((STRING)_Var1, (INTEGER)_Var2)
+THEN
+DB_NOOP(1);
+
+
+EXITSECTION
+ENDEXITSECTION
+

@@ -1,0 +1,113 @@
+Version 1
+SubGoalCombiner SGC_AND
+
+INITSECTION
+CharacterSetCanTrade(CHARACTERGUID_S_GLO_Windego_d783285f-d3be-4cba-8333-db8976cef182, 0);
+CharacterAddSourcePoints(CHARACTERGUID_S_GLO_Windego_d783285f-d3be-4cba-8333-db8976cef182, 2);
+DB_Dialogs(CHARACTERGUID_S_GLO_Windego_d783285f-d3be-4cba-8333-db8976cef182, ITEMGUID_S_FTJ_SW_GodKingHelper_551f3337-71c5-42a4-9cab-70e9decafaed, "FTJ_SW_Windego");
+DB_DoNotFace(CHARACTERGUID_S_GLO_Windego_d783285f-d3be-4cba-8333-db8976cef182);
+
+KBSECTION
+PROC
+ProcRegionStarted("FJ_FortJoy_Main")
+AND
+QueryOnlyOnce("FTJ_SW_WindegoSetup")
+THEN
+ProcCharacterEnableAllCrimes(CHARACTERGUID_S_GLO_Windego_d783285f-d3be-4cba-8333-db8976cef182);
+TeleportTo(CHARACTERGUID_S_GLO_Windego_d783285f-d3be-4cba-8333-db8976cef182, S_FTJ_SW_EscapedPrisonerWander_f57894b0-743f-47c5-8116-21cc59d6b97e);
+SetOnStage(CHARACTERGUID_S_GLO_Windego_d783285f-d3be-4cba-8333-db8976cef182, 1);
+SetCanJoinCombat(CHARACTERGUID_S_GLO_Windego_d783285f-d3be-4cba-8333-db8976cef182, 1);
+SetCombatGroupID(CHARACTERGUID_S_GLO_Windego_d783285f-d3be-4cba-8333-db8976cef182, "");
+SetCanFight(CHARACTERGUID_S_GLO_Windego_d783285f-d3be-4cba-8333-db8976cef182, 1);
+ProcRemoveAllDialogEntriesForSpeaker(CHARACTERGUID_S_FTJ_SW_EscapedPrisoner_d783285f-d3be-4cba-8333-db8976cef182);
+DB_Dialogs(CHARACTERGUID_S_GLO_Windego_d783285f-d3be-4cba-8333-db8976cef182, ITEMGUID_S_FTJ_SW_GodKingHelper_551f3337-71c5-42a4-9cab-70e9decafaed, "FTJ_SW_Windego");
+SetHasDialog(CHARACTERGUID_S_GLO_Windego_d783285f-d3be-4cba-8333-db8976cef182, 1);
+SetVarFixedString(CHARACTERGUID_S_GLO_Windego_d783285f-d3be-4cba-8333-db8976cef182, "currentState", "State_PrisonerWander");
+SetVarFloat(CHARACTERGUID_S_GLO_Windego_d783285f-d3be-4cba-8333-db8976cef182, "CheckRadius", 15);
+SetFaction(CHARACTERGUID_S_GLO_Windego_d783285f-d3be-4cba-8333-db8976cef182, "FTJ_SW_Windego");
+PROC_FTJ_WindegoForceSpotting();
+
+PROC
+PROC_FTJ_WindegoForceSpotting()
+AND
+GetVarInteger(CHARACTERGUID_S_GLO_Windego_d783285f-d3be-4cba-8333-db8976cef182, "SpottedPlayer", 1)
+THEN
+SetStoryEvent(CHARACTERGUID_S_GLO_Windego_d783285f-d3be-4cba-8333-db8976cef182, "StartEventOnSight_RestartSpotting");
+
+IF
+ObjectEnteredCombat(CHARACTERGUID_S_GLO_Windego_d783285f-d3be-4cba-8333-db8976cef182, (INTEGER)_Var1)
+AND
+GetRegion(CHARACTERGUID_S_GLO_Windego_d783285f-d3be-4cba-8333-db8976cef182, "FJ_FortJoy_Main")
+THEN
+Proc_StartDialog(1, "FTJ_SW_AD_WindegoAttack", CHARACTERGUID_S_GLO_Windego_d783285f-d3be-4cba-8333-db8976cef182);
+
+IF
+CharacterDying(CHARACTERGUID_S_GLO_Windego_d783285f-d3be-4cba-8333-db8976cef182)
+AND
+GetClosestAlivePlayer(CHARACTERGUID_S_GLO_Windego_d783285f-d3be-4cba-8333-db8976cef182, _Var1, _Var2)
+AND
+_Var2 < 10
+THEN
+Proc_StartDialog(1, "FTJ_SW_VB_WindegoDead", _Var1);
+
+IF
+ItemTemplateAddedToCharacter(EQ_Shapeshifter_Mask_A_01cdf746-dbb0-4db6-9232-7dbb68b81e52, _, (CHARACTERGUID)_Var2)
+AND
+DB_IsPlayer(_Var2)
+AND
+IsTagged(_Var2, "UNDEAD", 0)
+AND
+PartyGetFlag(_Var2, "FTJ_SW_ShapeshiftingMask", 0)
+THEN
+PartySetFlag(_Var2, "FTJ_SW_ShapeshiftingMask");
+
+IF
+StoryEvent((CHARACTERGUID)_Var1, "GLO_WindegoOnSightEvent")
+THEN
+CharacterLookAt(CHARACTERGUID_S_GLO_Windego_d783285f-d3be-4cba-8333-db8976cef182, TRIGGERGUID_S_FTJ_SW_Behavior_WindegoCast_05501517-9ef0-450d-a8bd-ef2225e3550c);
+Proc_StartDialog(0, "FTJ_SW_Windego", CHARACTERGUID_S_GLO_Windego_d783285f-d3be-4cba-8333-db8976cef182, ITEMGUID_S_FTJ_SW_GodKingHelper_551f3337-71c5-42a4-9cab-70e9decafaed, _Var1);
+
+IF
+DialogRequestFailed("FTJ_SW_Windego", _)
+THEN
+SetRelationFactionToPlayers("FTJ_SW_Windego", 0);
+
+IF
+DialogStarted("FTJ_SW_Windego", _)
+THEN
+ProcCleanUpSneakTrigger(TRIGGERGUID_S_FTJ_SW_OneShot_EscapedPrisoner_0eea3eeb-8983-496e-a337-f287a0b88618);
+ProcTriggerUnregisterForPlayers(TRIGGERGUID_S_FTJ_SW_OneShot_EscapedPrisoner_0eea3eeb-8983-496e-a337-f287a0b88618);
+
+IF
+DialogEnded("FTJ_SW_Windego", _)
+THEN
+SetRelationFactionToPlayers("FTJ_SW_Windego", 0);
+
+IF
+CharacterDied(CHARACTERGUID_S_GLO_Windego_d783285f-d3be-4cba-8333-db8976cef182)
+THEN
+ProcCleanUpSneakTrigger(TRIGGERGUID_S_FTJ_SW_OneShot_EscapedPrisoner_0eea3eeb-8983-496e-a337-f287a0b88618);
+ProcTriggerUnregisterForPlayers(TRIGGERGUID_S_FTJ_SW_OneShot_EscapedPrisoner_0eea3eeb-8983-496e-a337-f287a0b88618);
+
+IF
+CharacterKilledBy(CHARACTERGUID_S_GLO_Windego_d783285f-d3be-4cba-8333-db8976cef182, (CHARACTERGUID)_Var1, (CHARACTERGUID)_Var2)
+AND
+DB_IsPlayer(_Var1)
+THEN
+UserSetFlag(_Var1, "ARX_Prison_WindegoCell_KilledInFTJ");
+
+IF
+ObjectFlagSet("FTJ_SW_WindegoCastFail", CHARACTERGUID_S_GLO_Windego_d783285f-d3be-4cba-8333-db8976cef182, _)
+THEN
+PlayEffect(CHARACTERGUID_S_GLO_Windego_d783285f-d3be-4cba-8333-db8976cef182, "RS3_FX_GP_ScriptedEvent_Windego_CastFail_01");
+
+PROC
+ProcRegionEnded("FJ_FortJoy_Main")
+THEN
+GoalCompleted;
+
+
+EXITSECTION
+ENDEXITSECTION
+
+ParentTargetEdge "FortJoy"

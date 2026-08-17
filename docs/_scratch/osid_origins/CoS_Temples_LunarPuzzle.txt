@@ -1,0 +1,256 @@
+Version 1
+SubGoalCombiner SGC_AND
+
+INITSECTION
+DB_CoS_LunarPuzzle_CorrectSequence(ITEMGUID_S_CoS_LunarPuzzle_Pillar_Human_87b93084-d827-4927-ad47-f5a845823d34, 0, 1);
+DB_CoS_LunarPuzzle_CorrectSequence(ITEMGUID_S_CoS_LunarPuzzle_Pillar_Orc_da90d683-eb51-4dfe-a94d-d23e77e4fa21, 0, 1);
+DB_CoS_LunarPuzzle_CorrectSequence(ITEMGUID_S_CoS_LunarPuzzle_Pillar_Elf_71893a6d-0501-4e68-bd1e-d09e9dc7545e, 0, 0);
+DB_CoS_LunarPuzzle_CorrectSequence(ITEMGUID_S_CoS_LunarPuzzle_Pillar_Imp_fab307d8-bfd8-42e0-a7b8-ef34e8be234b, 0, 0);
+DB_CoS_LunarPuzzle_CorrectSequence(ITEMGUID_S_CoS_LunarPuzzle_Pillar_Dwarf_ea957f1d-f4ce-4449-b318-36d3ab784539, 0, 0);
+DB_CoS_LunarPuzzle_CorrectSequence(ITEMGUID_S_CoS_LunarPuzzle_Pillar_Lizard_1dbf389d-a2e0-46ae-aa7e-fa05f08f1aeb, 0, 1);
+DB_CoS_LunarPuzzle_CorrectSequence(ITEMGUID_S_CoS_LunarPuzzle_Pillar_Wizard_36545703-1dd9-4c74-aa20-f87ce25a5327, 0, 0);
+ItemSetCanInteract(ITEMGUID_S_CoS_Temples_LunarPuzzle_StairsToAcademy_5de6dc48-1b07-4273-82f4-8eaed0bebf90, 0);
+DB_LunarPuzzle_LightningStrikes(CHARACTERGUID_S_CoS_LunarPuzzle_LightningStrike_000_f56d9ee6-d344-4f14-82f4-cfc7a0351f3e);
+DB_LunarPuzzle_LightningStrikes(CHARACTERGUID_S_CoS_LunarPuzzle_LightningStrike_001_ea6a726a-15ef-485b-aa4b-cc20e6d12dcb);
+DB_LunarPuzzle_LightningStrikes(CHARACTERGUID_S_CoS_LunarPuzzle_LightningStrike_002_2c3ff7ca-9c7e-454f-b3e2-b454f2197009);
+DB_LunarPuzzle_LightningStrikes(CHARACTERGUID_S_CoS_LunarPuzzle_LightningStrike_003_12a621fc-dec6-4327-928c-f9c045c47b8e);
+DB_LunarPuzzle_LightningStrikes(CHARACTERGUID_S_CoS_LunarPuzzle_LightningStrike_004_f8a1269b-afc2-427e-b930-67ce1381fa4b);
+DB_LunarPuzzle_LightningStrikes(CHARACTERGUID_S_CoS_LunarPuzzle_LightningStrike_005_460cef72-b0f2-49f7-b760-f8cb009c20dd);
+DB_LunarPuzzle_LightningStrikes(CHARACTERGUID_S_CoS_LunarPuzzle_LightningStrike_006_a0cb04a1-d0ad-430e-9953-b5a25259db4a);
+DB_LunarPuzzle_LightningStrikes(CHARACTERGUID_S_CoS_LunarPuzzle_LightningStrike_007_706db991-f633-41b5-8715-df5fa4a496b8);
+DB_CoS_Academy_ConductorPuzzle("CoS_Temples_LunarPuzzle", 1);
+DB_CoS_Academy_ConductorPuzzle_Conductor("CoS_Temples_LunarPuzzle", ITEMGUID_S_CoS_LunarPuzzle_Conductor_c65400af-9cbc-4cea-9e3d-6f97ad997b7e);
+DB_CoS_Academy_ConductorPuzzle_Lever("CoS_Temples_LunarPuzzle", ITEMGUID_S_CoS_LunarPuzzle_Switch_76796818-b76e-49d4-bce9-2241052b4ca3);
+
+KBSECTION
+IF
+DB_LunarPuzzle_LightningStrikes(_Var1)
+THEN
+SetVisible(_Var1, 0);
+SetOnStage(_Var1, 0);
+
+IF
+StoryEvent((ITEMGUID)_Var1, "LunarPuzzle_Sun")
+AND
+DB_CoS_LunarPuzzle_CorrectSequence(_Var1, _Var2, _Var3)
+THEN
+NOT DB_CoS_LunarPuzzle_CorrectSequence(_Var1, _Var2, _Var3);
+DB_CoS_LunarPuzzle_CorrectSequence(_Var1, 1, _Var3);
+
+IF
+StoryEvent((ITEMGUID)_Var1, "LunarPuzzle_Moon")
+AND
+DB_CoS_LunarPuzzle_CorrectSequence(_Var1, _Var2, _Var3)
+THEN
+NOT DB_CoS_LunarPuzzle_CorrectSequence(_Var1, _Var2, _Var3);
+DB_CoS_LunarPuzzle_CorrectSequence(_Var1, 0, _Var3);
+
+IF
+CharacterUsedItem((CHARACTERGUID)_Var1, ITEMGUID_S_CoS_Temples_BeachDeadMagisterDiary_001_46cde198-a626-4671-8422-f386cd464fc4)
+THEN
+PartySetFlag(_Var1, "QuestUpdate_CoS_Temples_Info_AccessTheCouncil");
+
+IF
+CharacterItemEvent((CHARACTERGUID)_Var1, ITEMGUID_S_CoS_LunarPuzzle_Switch_76796818-b76e-49d4-bce9-2241052b4ca3, "LunarPuzzle_LeverUsed")
+AND
+DB_IsPlayer(_Var1)
+AND
+GlobalGetFlag("CoS_LunarPuzzle_GateOpened", 0)
+THEN
+Proc_CoS_LunarPuzzle_SequenceEntered();
+
+IF
+CharacterItemEvent((CHARACTERGUID)_Var1, ITEMGUID_S_CoS_LunarPuzzle_Switch_76796818-b76e-49d4-bce9-2241052b4ca3, "LunarPuzzle_LeverUsed")
+AND
+GlobalGetFlag("CoS_LunarPuzzle_GateOpened", 0)
+AND
+QRY_IsSummonOrPartyFollower(_Var1)
+THEN
+Proc_CoS_LunarPuzzle_ActivateDefenses();
+
+PROC
+Proc_CoS_LunarPuzzle_SequenceEntered()
+AND
+DB_CoS_LunarPuzzle_CorrectSequence(_Var1, _, _)
+THEN
+ItemSetCanInteract(_Var1, 0);
+
+PROC
+Proc_CoS_LunarPuzzle_SequenceEntered()
+THEN
+ProcDeclareCounter("CoS_LunarPuzzle_CorrectSequenceCounter");
+
+PROC
+Proc_CoS_LunarPuzzle_SequenceEntered()
+AND
+DB_CoS_LunarPuzzle_CorrectSequence(_Var1, _Var2, _Var3)
+AND
+_Var2 == _Var3
+THEN
+ProcIncreaseCounter("CoS_LunarPuzzle_CorrectSequenceCounter", 1);
+
+PROC
+Proc_CoS_LunarPuzzle_SequenceEntered()
+AND
+DB_GlobalCounter("CoS_LunarPuzzle_CorrectSequenceCounter", _Var1)
+AND
+SysCount("DB_CoS_LunarPuzzle_CorrectSequence", 3, _Var2)
+AND
+_Var2 == _Var1
+THEN
+Proc_CoS_LunarPuzzle_OpenGate();
+
+PROC
+Proc_CoS_LunarPuzzle_OpenGate()
+AND
+GetPosition(ITEMGUID_S_CoS_LunarPuzzle_Door_3891b5ec-468d-46b8-8d4a-5b4a7973f916, _Var1, _Var2, _Var3)
+AND
+RealSum(_Var2, 2, _Var4)
+THEN
+GlobalSetFlag("CoS_LunarPuzzle_GateOpened");
+ItemSetCanInteract(ITEMGUID_S_CoS_Temples_LunarPuzzle_StairsToAcademy_5de6dc48-1b07-4273-82f4-8eaed0bebf90, 1);
+ItemDestroy(ITEMGUID_S_CoS_LunarPuzzle_Door_3891b5ec-468d-46b8-8d4a-5b4a7973f916);
+PlayEffectAtPosition("RS3_FX_Char_Creatures_Shriker_LightningBolt_Impact_01", _Var1, _Var4, _Var3);
+NOT DB_CoS_Academy_ConductorPuzzle("CoS_Temples_LunarPuzzle", 1);
+
+PROC
+Proc_CoS_LunarPuzzle_OpenGate()
+AND
+DB_IsPlayer(_Var1)
+THEN
+PartySetFlag(_Var1, "QuestUpdate_CoS_Temples_Lunar_Completed");
+
+PROC
+Proc_CoS_LunarPuzzle_SequenceEntered()
+AND
+DB_GlobalCounter("CoS_LunarPuzzle_CorrectSequenceCounter", _Var1)
+AND
+SysCount("DB_CoS_LunarPuzzle_CorrectSequence", 3, _Var2)
+AND
+_Var2 != _Var1
+THEN
+Proc_CoS_LunarPuzzle_ActivateDefenses();
+
+PROC
+Proc_CoS_LunarPuzzle_ActivateDefenses()
+AND
+DB_LunarPuzzle_LightningStrikes(_Var1)
+THEN
+ProcCharacterDisableAllCrimes(_Var1);
+SetOnStage(_Var1, 1);
+
+PROC
+Proc_CoS_LunarPuzzle_ActivateDefenses()
+THEN
+TriggerSetAtmosphere(TRIGGERGUID_S_ATM_CoS_LunarPuzzle_67244331-566a-476c-b795-4001f955c5a6, "09edc0f3-c27e-414a-a053-a4c1d2d1271a");
+ItemSetCanInteract(ITEMGUID_S_CoS_LunarPuzzle_Switch_76796818-b76e-49d4-bce9-2241052b4ca3, 0);
+TimerLaunch("CoS_LunarPuzzle_DeactivateDefenses", 14500);
+
+IF
+TimerFinished("CoS_LunarPuzzle_DeactivateDefenses")
+AND
+DB_LunarPuzzle_LightningStrikes(_Var1)
+THEN
+SetOnStage(_Var1, 0);
+
+IF
+TimerFinished("CoS_LunarPuzzle_DeactivateDefenses")
+THEN
+TriggerResetAtmosphere(TRIGGERGUID_S_ATM_CoS_LunarPuzzle_67244331-566a-476c-b795-4001f955c5a6);
+ItemSetCanInteract(ITEMGUID_S_CoS_LunarPuzzle_Switch_76796818-b76e-49d4-bce9-2241052b4ca3, 1);
+
+PROC
+Proc_CoS_LunarPuzzle_ActivateDefenses()
+AND
+DB_CoS_LunarPuzzle_CorrectSequence(_Var1, _, _)
+THEN
+ItemSetCanInteract(_Var1, 1);
+
+PROC
+Proc_CoS_LunarPuzzle_ActivateDefenses()
+THEN
+ProcRemoveCounter("CoS_LunarPuzzle_CorrectSequenceCounter");
+
+IF
+ItemDestroyed((ITEMGUID)_Var1)
+AND
+DB_CoS_LunarPuzzle_CorrectSequence(_Var1, _, _)
+THEN
+DB_CoS_LunarPuzzle_DestroyedPillars(_Var1);
+Proc_CoS_LunarPuzzle_CheckAllPillarsDestroyed();
+
+PROC
+Proc_CoS_LunarPuzzle_CheckAllPillarsDestroyed()
+AND
+SysCount("DB_CoS_LunarPuzzle_CorrectSequence", 3, _Var1)
+AND
+SysCount("DB_CoS_LunarPuzzle_DestroyedPillars", 1, _Var2)
+AND
+_Var1 == _Var2
+THEN
+Proc_CoS_LunarPuzzle_OpenGate();
+
+IF
+ObjectFlagSet("CoS_Temples_LunarImp_Sequence", (CHARACTERGUID)_Var1, _)
+THEN
+PartySetFlag(_Var1, "CoS_Temples_LunarImp_Sequence");
+PartySetFlag(_Var1, "QuestUpdate_CoS_Temples_Lunar_Imp");
+
+IF
+ObjectFlagSet("CoS_Temples_LunarHuman_Sequence", (CHARACTERGUID)_Var1, _)
+THEN
+PartySetFlag(_Var1, "CoS_Temples_LunarHuman_Sequence");
+PartySetFlag(_Var1, "QuestUpdate_CoS_Temples_Lunar_Human");
+
+IF
+ObjectFlagSet("CoS_Temples_LunarElf_Sequence", (CHARACTERGUID)_Var1, _)
+THEN
+PartySetFlag(_Var1, "CoS_Temples_LunarElf_Sequence");
+PartySetFlag(_Var1, "QuestUpdate_CoS_Temples_Lunar_Elf");
+
+IF
+ObjectFlagSet("CoS_Temples_LunarDwarf_Sequence", (CHARACTERGUID)_Var1, _)
+THEN
+PartySetFlag(_Var1, "CoS_Temples_LunarDwarf_Sequence");
+PartySetFlag(_Var1, "QuestUpdate_CoS_Temples_Lunar_Dwarf");
+
+IF
+ObjectFlagSet("CoS_Temples_LunarOrc_Sequence", (CHARACTERGUID)_Var1, _)
+THEN
+PartySetFlag(_Var1, "CoS_Temples_LunarOrc_Sequence");
+PartySetFlag(_Var1, "QuestUpdate_CoS_Temples_Lunar_Orc");
+
+IF
+ObjectFlagSet("CoS_Temples_LunarWizard_Sequence", (CHARACTERGUID)_Var1, _)
+THEN
+PartySetFlag(_Var1, "CoS_Temples_LunarWizard_Sequence");
+PartySetFlag(_Var1, "QuestUpdate_CoS_Temples_Lunar_Wizard");
+
+IF
+ObjectFlagSet("CoS_Temples_LunarLizard_Sequence", (CHARACTERGUID)_Var1, _)
+THEN
+PartySetFlag(_Var1, "CoS_Temples_LunarLizard_Sequence");
+PartySetFlag(_Var1, "QuestUpdate_CoS_Temples_Lunar_Lizard");
+
+IF
+GameBookInterfaceClosed(ITEMGUID_S_CoS_Temples_SallowManDiary_846a6724-be4f-4a88-af33-3aebf504c4e6, (CHARACTERGUID)_Var1)
+THEN
+PartySetFlag(_Var1, "CoS_Temples_CapacitorInfo");
+
+IF
+ObjectFlagSet("CoS_Temples_CapacitorInfo", (GUIDSTRING)_Var1, _)
+THEN
+ObjectSetFlag(_Var1, "QuestUpdate_CoS_Temples_Lunar_Capacitor");
+
+IF
+CharacterUsedItem((CHARACTERGUID)_Var1, ITEMGUID_S_CoS_Temples_SecretEntranceToAcademy_06f8de74-ab24-4bf5-aba2-61d2c831302d)
+AND
+DB_IsPlayer(_Var1)
+THEN
+PartySetFlag(_Var1, "CoS_Temples_KnowsHowToEnterAcademy_BackEntrance");
+
+
+EXITSECTION
+ENDEXITSECTION
+
+ParentTargetEdge "CoS_Temples"

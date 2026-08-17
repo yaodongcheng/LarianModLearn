@@ -1,0 +1,1290 @@
+Version 1
+SubGoalCombiner SGC_AND
+
+INITSECTION
+ProcDeclareCounter("ARX_CreepyShop_CreepyCraftsman_TellAboutTraps_Dialog");
+DB_Dialogs(S_ARX_CreepyShop_CreepyCraftsman_63af3c4c-b4d6-4f97-9c49-50d80c41d394, "ARX_CreepyShop_CreepyCraftsman");
+DB_Ghosts(S_ARX_CreepyShop_CreepyCraftsman_63af3c4c-b4d6-4f97-9c49-50d80c41d394, S_ARX_CreepyShop_CreepyCraftsman_Ghost_b3c8a7c7-45ea-4947-a2b4-30587e5e99fa, "ARX_CreepyShop_CreepyCraftsman_Ghost");
+DB_Dialogs(S_ARX_CreepyShop_1stRoom_SourcePuppet1_e584817f-1320-4056-a02f-5b4622d4d707, "ARX_CreepyShop_SourcePuppet");
+SetHasDialog(S_ARX_CreepyShop_1stRoom_SourcePuppet2_9951e2e6-b114-4413-b36e-25f929d961e7, 1);
+DB_Dialogs(S_ARX_CreepyShop_1stRoom_SourcePuppet3_e6f70daa-9d61-45a2-af9c-0376aa288495, "ARX_CreepyShop_SourcePuppet");
+DB_Dialogs(S_ARX_CreepyShop_2ndRoom_SourcePuppet1_2c91e073-9f81-4e3f-92cc-db1eb8ad0172, "ARX_CreepyShop_SourcePuppet");
+DB_Dialogs(S_ARX_CreepyShop_2ndRoom_SourcePuppet3_45dfd954-93eb-4b82-80f2-6265c7277ffa, "ARX_CreepyShop_SourcePuppet");
+DB_Dialogs(S_ARX_CreepyShop_2ndRoom_SourcePuppet2_0ac99f41-5e40-4edc-b546-b4795a315b25, "ARX_CreepyShop_SourcePuppet");
+DB_Dialogs(S_ARX_CreepyShop_2ndFloor_SourcePuppet1_480f3e01-426b-4d07-b001-892b8aa7b7f7, "ARX_CreepyShop_SourcePuppet");
+DB_Dialogs(S_ARX_CreepyShop_2ndFloor_SourcePuppet2_aa35f60d-d12f-4021-b714-5207f138434b, "ARX_CreepyShop_SourcePuppet");
+DB_Dialogs(S_ARX_CreepyShop_2ndFloor_SourcePuppet3_ccce45e6-566c-4d59-88a0-f2721c2a692e, "ARX_CreepyShop_SourcePuppet");
+DB_Dialogs(S_ARX_CreepyShop_2ndFloor_SourcePuppet4_69cf2e83-1b5a-4831-b214-352cadceba96, "ARX_CreepyShop_SourcePuppet");
+DB_Dialogs(S_ARX_CreepyShop_2ndFloor_SourcePuppet5_72df0b99-e10f-4c8c-81de-c3967f31d94d, "ARX_CreepyShop_SourcePuppet");
+DB_ItemOwnerShipTriggers("ARX_Main", S_ARX_CreepyCraftsman_ShopFirstFloor_071d7947-c5f6-4c44-ae1c-bed1f10a573d, S_ARX_CreepyShop_CreepyCraftsman_63af3c4c-b4d6-4f97-9c49-50d80c41d394);
+DB_ItemOwnerShipTriggers("ARX_Main", S_ARX_CreepyCraftsman_Shop2ndFloor_7ec6f5e8-5ced-4cbc-88df-19d29d726c78, S_ARX_CreepyShop_CreepyCraftsman_63af3c4c-b4d6-4f97-9c49-50d80c41d394);
+DB_ARX_CreepyShop_HackyChairs(S_ARX_CreepyShop_PuppetChairHack1_233d42f1-93ba-4fe9-9fa2-1605db0236e2, S_FUR_Humans_Citz_Table_A3_000_737e2774-87fd-4aa0-8e86-d24e260a9ccc);
+DB_ARX_CreepyShop_HackyChairs(S_ARX_CreepyShop_PuppetChairHack2_659eaa66-0d8d-4d50-8f90-d15093f497a6, S_FUR_Humans_Blacksmith_Workbench_C_000_ARX_Main_Rework_000_b3dc22ca-105d-8441-33ff-ea232a46e9e9);
+DB_ARX_CreepyShop_HackyChairs(S_ARX_CreepyShop_PuppetChairHack3_c7a7d90d-6026-4976-9ace-88b43359bc1d, FUR_Humans_Citz_LongestTable_Poor_A1_000_d19f023b-4685-4516-8295-c7a3bbd45528);
+DB_ARX_CreepyShop_HackyChairs(S_ARX_CreepyShop_PuppetChairHack4_08690826-2793-46d5-b723-19929b74db42, S_FUR_Dwarves_Citz_Table_A_000_51eaf951-1852-4472-87c9-933ff4a41d1d);
+DB_ARX_CreepyShop_PuppetChairs(S_ARX_CreepyShop_1stRoom_SourcePuppet1_e584817f-1320-4056-a02f-5b4622d4d707, S_ARX_CreepyShop_PuppetChairHack3_c7a7d90d-6026-4976-9ace-88b43359bc1d);
+DB_ARX_CreepyShop_PuppetChairs(S_ARX_CreepyShop_1stRoom_SourcePuppet2_9951e2e6-b114-4413-b36e-25f929d961e7, S_ARX_CreepyShop_PuppetChairHack2_659eaa66-0d8d-4d50-8f90-d15093f497a6);
+DB_ARX_CreepyShop_PuppetChairs(S_ARX_CreepyShop_1stRoom_SourcePuppet3_e6f70daa-9d61-45a2-af9c-0376aa288495, S_ARX_CreepyShop_PuppetChairHack1_233d42f1-93ba-4fe9-9fa2-1605db0236e2);
+DB_ARX_CreepyShop_PuppetChairs(S_ARX_CreepyShop_2ndRoom_SourcePuppet3_45dfd954-93eb-4b82-80f2-6265c7277ffa, S_ARX_CreepyShop_PuppetChairHack4_08690826-2793-46d5-b723-19929b74db42);
+DB_ARX_CreepyShop_SourcePuppets(S_ARX_CreepyShop_1stRoom_SourcePuppet1_e584817f-1320-4056-a02f-5b4622d4d707);
+DB_ARX_CreepyShop_SourcePuppets(S_ARX_CreepyShop_1stRoom_SourcePuppet2_9951e2e6-b114-4413-b36e-25f929d961e7);
+DB_ARX_CreepyShop_SourcePuppets(S_ARX_CreepyShop_1stRoom_SourcePuppet3_e6f70daa-9d61-45a2-af9c-0376aa288495);
+DB_ARX_CreepyShop_SourcePuppets(S_ARX_CreepyShop_2ndRoom_SourcePuppet1_2c91e073-9f81-4e3f-92cc-db1eb8ad0172);
+DB_ARX_CreepyShop_SourcePuppets(S_ARX_CreepyShop_2ndRoom_SourcePuppet3_45dfd954-93eb-4b82-80f2-6265c7277ffa);
+DB_ARX_CreepyShop_SourcePuppets(S_ARX_CreepyShop_2ndRoom_SourcePuppet2_0ac99f41-5e40-4edc-b546-b4795a315b25);
+DB_ARX_CreepyShop_SourcePuppets(S_ARX_CreepyShop_2ndFloor_SourcePuppet1_480f3e01-426b-4d07-b001-892b8aa7b7f7);
+DB_ARX_CreepyShop_SourcePuppets(S_ARX_CreepyShop_2ndFloor_SourcePuppet2_aa35f60d-d12f-4021-b714-5207f138434b);
+DB_ARX_CreepyShop_SourcePuppets(S_ARX_CreepyShop_2ndFloor_SourcePuppet3_ccce45e6-566c-4d59-88a0-f2721c2a692e);
+DB_ARX_CreepyShop_SourcePuppets(S_ARX_CreepyShop_2ndFloor_SourcePuppet4_69cf2e83-1b5a-4831-b214-352cadceba96);
+DB_ARX_CreepyShop_SourcePuppets(S_ARX_CreepyShop_2ndFloor_SourcePuppet5_72df0b99-e10f-4c8c-81de-c3967f31d94d);
+DB_ARX_CreepyShop_SourcePuppets_GodKing(S_ARX_CreepyShop_2ndFloor_SourcePuppet1_480f3e01-426b-4d07-b001-892b8aa7b7f7);
+DB_ARX_CreepyShop_SourcePuppets_GodKing(S_ARX_CreepyShop_2ndFloor_SourcePuppet2_aa35f60d-d12f-4021-b714-5207f138434b);
+DB_ARX_CreepyShop_SourcePuppets_GodKing(S_ARX_CreepyShop_2ndFloor_SourcePuppet3_ccce45e6-566c-4d59-88a0-f2721c2a692e);
+DB_ARX_CreepyShop_SourcePuppets_GodKing(S_ARX_CreepyShop_2ndFloor_SourcePuppet4_69cf2e83-1b5a-4831-b214-352cadceba96);
+DB_ARX_CreepyShop_SourcePuppets_GodKing(S_ARX_CreepyShop_2ndFloor_SourcePuppet5_72df0b99-e10f-4c8c-81de-c3967f31d94d);
+DB_ARX_CreepyShop_SourcePuppets_Spawners(S_ARX_CreepyShop_2ndFloor_SourcePuppet1_480f3e01-426b-4d07-b001-892b8aa7b7f7, S_ARX_CreepyShop_PuppetSpawner1_f547ad22-83c5-445e-89b8-09e339531f59, S_ARX_CreepyShop_PuppetSpawner1_FloorHack_e4d6bcc5-c7f1-4eb4-a674-1dd2440e9ddb);
+DB_ARX_CreepyShop_SourcePuppets_Spawners(S_ARX_CreepyShop_2ndFloor_SourcePuppet2_aa35f60d-d12f-4021-b714-5207f138434b, S_ARX_CreepyShop_PuppetSpawner2_16d0b55c-fbdc-46dc-bf48-4ad9b67ed8f5, S_ARX_CreepyShop_PuppetSpawner2_FloorHack_671fd16f-fd3d-4838-9062-93fee54c2fb5, S_ARX_CreepyShop_2ndFloor_SourcePuppet2_SpawnOnEntry_0b99ac83-9dbe-4c20-8201-af36480b6a1e);
+DB_ARX_CreepyShop_SourcePuppets_Spawners(S_ARX_CreepyShop_2ndFloor_SourcePuppet5_72df0b99-e10f-4c8c-81de-c3967f31d94d, S_ARX_CreepyShop_PuppetSpawner3_cdd9a78e-ee76-4894-91e6-ce466e448602, S_ARX_CreepyShop_PuppetSpawner3_FloorHack_b19b98ba-fef5-4ad8-8b3c-338db15cbff3, S_ARX_CreepyShop_2ndFloor_SourcePuppet3_SpawnOnEntry_08043c19-957a-4ae5-8ad2-c0028bf8fd61);
+ProcTriggerRegisterForPlayers(S_ARX_CreepyShop_CreepyCraftsmen_StartConversaton_5c27fa66-a6c3-4368-bdde-d538bb90a711);
+TriggerRegisterForCharacter(S_ARX_CreepyShop_CreepyCraftsmen_StartConversaton_5c27fa66-a6c3-4368-bdde-d538bb90a711, S_ARX_CreepyShop_CreepyCraftsman_63af3c4c-b4d6-4f97-9c49-50d80c41d394);
+TriggerRegisterForCharacter(S_ARX_CreepyShop_CreepyCraftsmen_StartConversaton_5c27fa66-a6c3-4368-bdde-d538bb90a711, S_ARX_CreepyShop_1stRoom_SourcePuppet1_e584817f-1320-4056-a02f-5b4622d4d707);
+TriggerRegisterForCharacter(S_ARX_CreepyCraftsman_ShopFirstFloor_071d7947-c5f6-4c44-ae1c-bed1f10a573d, S_ARX_CreepyShop_CreepyCraftsman_63af3c4c-b4d6-4f97-9c49-50d80c41d394);
+TriggerRegisterForCharacter(S_ARX_CreepyCraftsman_Shop2ndFloor_7ec6f5e8-5ced-4cbc-88df-19d29d726c78, S_ARX_CreepyShop_CreepyCraftsman_63af3c4c-b4d6-4f97-9c49-50d80c41d394);
+DB_TrespassTrigger(S_ARX_CreepyShop_2ndRoom_f739c0d4-6528-466e-a185-11b082f2e057, S_ARX_CreepyShop_Tresspassing_Out_2dc7d29e-da1d-48da-a7ec-c0fd6a84d1fb, "ARX_CreepyCraftsman_TresspassingIn2ndRoom", S_ARX_CreepyShop_CreepyCraftsman_63af3c4c-b4d6-4f97-9c49-50d80c41d394);
+DB_TrespassTrigger(S_ARX_CreepyCraftsman_Shop2ndFloor_7ec6f5e8-5ced-4cbc-88df-19d29d726c78, S_ARX_CreepyShop_Tresspassing_Out_2dc7d29e-da1d-48da-a7ec-c0fd6a84d1fb, "ARX_CreepyCraftsman_TresspassingIn2ndRoom", S_ARX_CreepyShop_CreepyCraftsman_63af3c4c-b4d6-4f97-9c49-50d80c41d394);
+ProcTriggerRegisterForPlayers(S_ARX_CreepyCraftsman_Shop2ndFloor_7ec6f5e8-5ced-4cbc-88df-19d29d726c78);
+DB_HasStoryEvent(ITEMGUID_S_ARX_CreepyCraftsman_ScrollOfAtonment_b5a89b75-bbef-44f1-b22f-148a1b9d13ab, "ARX_CreepyCraftsman_Has_Scroll");
+DB_GiveItemToEvent(S_ARX_CreepyCraftsman_SourceAmulet_f9c139b9-bb0f-4027-b8a4-806df5336fd2, "ARX_CreepyCraftsman_Give_SourceAmulet");
+DB_HasStoryEvent(S_ARX_CreepyCraftsman_SourceAmulet_f9c139b9-bb0f-4027-b8a4-806df5336fd2, "ARX_CreepyCraftsman_Has_SourceAmulet");
+ItemToInventory(S_ARX_CreepyCraftsman_SourceAmulet_f9c139b9-bb0f-4027-b8a4-806df5336fd2, S_ARX_CreepyShop_CreepyCraftsman_63af3c4c-b4d6-4f97-9c49-50d80c41d394);
+ItemToInventory(S_ARX_CreepyCraftsman_CathedralDesigns_b5a89b75-bbef-44f1-b22f-148a1b9d13ab, S_ARX_CreepyCraftsman_OldWorkStation_4b67b311-7654-4a90-ba46-c68ec4495bc5);
+ItemToInventory(S_ARX_CreepyCraftsman_UnsentLetterToDad_7b7476cb-87e0-4f0d-baa4-dece00dd16ce, S_ARX_CreepyShop_CreepyCraftsman_63af3c4c-b4d6-4f97-9c49-50d80c41d394);
+ProcDeclareCounter("ARX_CreepyCraftsman_WarnPlayer_StoleSource");
+SetOnStage(S_ARX_CreepyShop_CreepyCraftsman_63af3c4c-b4d6-4f97-9c49-50d80c41d394, 1);
+DB_DeadEvent(CHARACTERGUID_S_ARX_CreepyShop_CreepyCraftsman_63af3c4c-b4d6-4f97-9c49-50d80c41d394, "ARX_CreepyCraftsman_CreepyIsDead");
+SetOnStage(CHARACTERGUID_S_ARX_GodKing_InvisHelper_CreepyShop_c573050e-cb3f-4074-9858-d0cb61148345, 0);
+
+KBSECTION
+IF
+DB_ARX_CreepyShop_SourcePuppets(_Var1)
+THEN
+SetTag(_Var1, "SOURCE_PUPPET");
+CharacterDisableAllCrimes(_Var1);
+DB_IgnoreAssault(_Var1);
+DB_NoLowAttitudeDialog(_Var1);
+TriggerRegisterForCharacter(S_ARX_CreepyCraftsman_Shop2ndFloor_7ec6f5e8-5ced-4cbc-88df-19d29d726c78, _Var1);
+TriggerRegisterForCharacter(S_ARX_CreepyCraftsman_ShopFirstFloor_071d7947-c5f6-4c44-ae1c-bed1f10a573d, _Var1);
+
+IF
+ObjectWasTagged((CHARACTERGUID)_Var1, "SOURCE_PUPPET")
+THEN
+CharacterDisableAllCrimes(_Var1);
+DB_IgnoreAssault(_Var1);
+DB_NoLowAttitudeDialog(_Var1);
+
+IF
+DB_ARX_CreepyShop_PuppetChairs(_Var1, _Var2)
+THEN
+CharacterUseItem(_Var1, _Var2, "");
+
+IF
+CharacterDied((CHARACTERGUID)_Var1)
+AND
+DB_ARX_CreepyShop_PuppetChairs(_Var1, _Var2)
+THEN
+SetOnStage(_Var2, 0);
+
+IF
+StoryEvent((CHARACTERGUID)_Var1, "ARX_CreepyShop_PuppetReachedChair")
+AND
+DB_ARX_CreepyShop_HackyChairs(_Var1, _Var2)
+THEN
+CharacterUseItem(_Var1, _Var2, "");
+
+IF
+ItemDestroyed((ITEMGUID)_Var1)
+AND
+DB_ARX_CreepyShop_HackyChairs(_Var2, _Var1)
+THEN
+ItemDestroy(_Var2);
+
+IF
+GameBookInterfaceClosed(ARX_Barracks_Archives_ToyMakerReport_d6afb020-20d3-4ba1-9650-56a7002d7f9a, (CHARACTERGUID)_Var1)
+THEN
+UserSetFlag(_Var1, "ARX_CreepyShop_CreepyCraftman_ReadReportInBarracks");
+ObjectSetFlag(_Var1, "QuestUpdate_ARX_CreepyCraftsman_KnowAboutCathedral");
+
+IF
+ObjectFlagSet("QuestUpdate_ARX_CreepyCraftsman_KnowAboutCathedral", (GUIDSTRING)_Var1, _)
+THEN
+ObjectSetFlag(_Var1, "ARX_CreepyShop_CreepyCraftman_ReadReportInBarracks");
+
+IF
+CharacterEnteredTrigger(S_ARX_CreepyShop_CreepyCraftsman_63af3c4c-b4d6-4f97-9c49-50d80c41d394, S_ARX_CreepyShop_CreepyCraftsmen_StartConversaton_5c27fa66-a6c3-4368-bdde-d538bb90a711)
+AND
+DB_InRegion(S_ARX_CreepyShop_1stRoom_SourcePuppet1_e584817f-1320-4056-a02f-5b4622d4d707, S_ARX_CreepyShop_CreepyCraftsmen_StartConversaton_5c27fa66-a6c3-4368-bdde-d538bb90a711)
+THEN
+ObjectSetFlag(S_ARX_CreepyShop_CreepyCraftsman_63af3c4c-b4d6-4f97-9c49-50d80c41d394, "ARX_CreepyShop_CreepyCraftman_ShowTrickNearPuppet");
+
+IF
+CharacterLeftTrigger(S_ARX_CreepyShop_CreepyCraftsman_63af3c4c-b4d6-4f97-9c49-50d80c41d394, S_ARX_CreepyShop_CreepyCraftsmen_StartConversaton_5c27fa66-a6c3-4368-bdde-d538bb90a711)
+THEN
+ObjectClearFlag(S_ARX_CreepyShop_CreepyCraftsman_63af3c4c-b4d6-4f97-9c49-50d80c41d394, "ARX_CreepyShop_CreepyCraftman_ShowTrickNearPuppet", 0);
+
+IF
+DialogEnded("ARX_CreepyShop_CreepyCraftsman", (INTEGER)_Var1)
+AND
+DialogGetInvolvedPlayer(_Var1, 1, _Var2)
+AND
+ObjectGetFlag(_Var2, "ARX_CC_CreepyCraftsman_PlayerWitnessedTrick", 1)
+THEN
+ObjectClearFlag(_Var2, "ARX_CC_CreepyCraftsman_PlayerWitnessedTrick", 0);
+
+IF
+ObjectFlagSet("ARX_CreepyShop_CreepyCraftsman_TurnToPuppet", S_ARX_CreepyShop_CreepyCraftsman_63af3c4c-b4d6-4f97-9c49-50d80c41d394, (INTEGER)_Var1)
+THEN
+CharacterLookAt(S_ARX_CreepyShop_CreepyCraftsman_63af3c4c-b4d6-4f97-9c49-50d80c41d394, S_ARX_CreepyShop_1stRoom_SourcePuppet1_e584817f-1320-4056-a02f-5b4622d4d707);
+PlayAnimation(S_ARX_CreepyShop_CreepyCraftsman_63af3c4c-b4d6-4f97-9c49-50d80c41d394, "use_craft");
+
+IF
+GlobalFlagSet("ARX_CreepyShop_CreepyCraftsman_ShowedTrick")
+AND
+CharacterIsDead(S_ARX_CreepyShop_1stRoom_SourcePuppet1_e584817f-1320-4056-a02f-5b4622d4d707, 0)
+THEN
+ObjectSetFlag(S_ARX_CreepyShop_1stRoom_SourcePuppet1_e584817f-1320-4056-a02f-5b4622d4d707, "ARX_CreepyShop_SourcePuppet_IsOn");
+PlayAnimation(S_ARX_CreepyShop_1stRoom_SourcePuppet1_e584817f-1320-4056-a02f-5b4622d4d707, "Sit_Surprise_01", "");
+
+IF
+ObjectFlagSet("ARX_CreepyShop_CreepyCraftsman_TurnToPlayer", S_ARX_CreepyShop_CreepyCraftsman_63af3c4c-b4d6-4f97-9c49-50d80c41d394, (INTEGER)_Var1)
+AND
+DialogGetInvolvedPlayer(_Var1, 1, _Var2)
+THEN
+CharacterLookAt(S_ARX_CreepyShop_CreepyCraftsman_63af3c4c-b4d6-4f97-9c49-50d80c41d394, _Var2);
+
+PROC
+PROC_GLOBAL_DialogStartRequested(S_ARX_CreepyShop_1stRoom_SourcePuppet2_9951e2e6-b114-4413-b36e-25f929d961e7, (GUIDSTRING)_Var1)
+AND
+CharacterCanSee(S_ARX_CreepyShop_CreepyCraftsman_63af3c4c-b4d6-4f97-9c49-50d80c41d394, _Var1, 1)
+AND
+QRY_SpeakerIsAvailable(S_ARX_CreepyShop_CreepyCraftsman_63af3c4c-b4d6-4f97-9c49-50d80c41d394)
+THEN
+Proc_StartDialog(0, "ARX_CreepyShop_CreepyCraftsman_DontTouchThePuppet", S_ARX_CreepyShop_CreepyCraftsman_63af3c4c-b4d6-4f97-9c49-50d80c41d394, _Var1);
+
+PROC
+PROC_GLOBAL_DialogStartRequested(S_ARX_CreepyShop_1stRoom_SourcePuppet2_9951e2e6-b114-4413-b36e-25f929d961e7, (GUIDSTRING)_Var1)
+AND
+CharacterCanSee(S_ARX_CreepyShop_CreepyCraftsman_63af3c4c-b4d6-4f97-9c49-50d80c41d394, _Var1, 0)
+THEN
+Proc_StartDialog(0, "ARX_CreepyShop_SourcePuppet", S_ARX_CreepyShop_1stRoom_SourcePuppet2_9951e2e6-b114-4413-b36e-25f929d961e7, _Var1);
+
+IF
+DialogStarted("ARX_CreepyShop_TresspassingCrime", (INTEGER)_Var1)
+AND
+DialogGetInvolvedNPC(_Var1, 1, S_ARX_CreepyShop_CreepyCraftsman_63af3c4c-b4d6-4f97-9c49-50d80c41d394)
+THEN
+ObjectSetFlag(S_ARX_CreepyShop_CreepyCraftsman_63af3c4c-b4d6-4f97-9c49-50d80c41d394, "ARX_CreepyShop_Craftsman_StartedCrimeDialog");
+
+IF
+DialogStarted("ARX_CreepyShop_CreepyCraftsman_StartCombat", (INTEGER)_Var1)
+AND
+DialogGetInvolvedNPC(_Var1, 1, S_ARX_CreepyShop_CreepyCraftsman_63af3c4c-b4d6-4f97-9c49-50d80c41d394)
+THEN
+ObjectSetFlag(S_ARX_CreepyShop_CreepyCraftsman_63af3c4c-b4d6-4f97-9c49-50d80c41d394, "ARX_CreepyShop_Craftsman_StartedCrimeDialog");
+
+IF
+StoryEvent((GUIDSTRING)_Var1, "ARX_CreepyShop_Craftsman_StopAllDialogs")
+THEN
+ProcForceStopDialog(_Var1);
+
+IF
+StoryEvent((GUIDSTRING)_Var1, "ARX_CreepyShop_Craftsman_StopAllDialogs")
+THEN
+Proc_StartDialog(1, "ARX_AD_CreepyCraftsman_Alarmed_GoInvestigate", _Var1);
+
+IF
+DialogEnded("ARX_CreepyShop_TresspassingCrime", (INTEGER)_Var1)
+AND
+DialogGetInvolvedNPC(_Var1, 1, _Var2)
+THEN
+ObjectClearFlag(_Var2, "ARX_CreepyShop_Craftsman_StartedCrimeDialog", 0);
+
+IF
+DialogEnded("ARX_CreepyShop_CreepyCraftsman_StartCombat", (INTEGER)_Var1)
+AND
+DialogGetInvolvedNPC(_Var1, 1, _Var2)
+THEN
+ObjectClearFlag(_Var2, "ARX_CreepyShop_Craftsman_StartedCrimeDialog", 0);
+
+IF
+DialogStarted((STRING)_Var1, (INTEGER)_Var2)
+AND
+DialogGetInvolvedNPC(_Var2, 1, _Var3)
+AND
+IsTagged(_Var3, "SOURCE_PUPPET", 1)
+AND
+CharacterGetMagicArmorPercentage(_Var3, 0)
+THEN
+ObjectSetFlag(_Var3, "ARX_SourcePuppet_HasNoMagicalArmor");
+
+IF
+DialogEnded((STRING)_Var1, (INTEGER)_Var2)
+AND
+DialogGetInvolvedNPC(_Var2, 1, _Var3)
+AND
+IsTagged(_Var3, "SOURCE_PUPPET", 1)
+THEN
+ObjectClearFlag(_Var3, "ARX_SourcePuppet_HasNoMagicalArmor");
+
+IF
+DialogEnded((STRING)_Var1, (INTEGER)_Var2)
+AND
+DialogGetInvolvedNPC(_Var2, 1, _Var3)
+AND
+IsTagged(_Var3, "SOURCE_PUPPET", 1)
+AND
+DialogGetInvolvedPlayer(_Var2, 1, _Var4)
+AND
+ObjectGetFlag(_Var4, "ARX_CreepyShop_SourcePuppet_PlayerStoleSource", 1)
+THEN
+ObjectClearFlag(_Var4, "ARX_CreepyShop_SourcePuppet_PlayerStoleSource", 0);
+CharacterUseSkill(_Var4, "Target_SourceVampirism", _Var3);
+
+IF
+CharacterUsedSkillOnTarget((CHARACTERGUID)_Var1, (CHARACTERGUID)_Var2, (STRING)_Var3, _, _)
+AND
+DB_SourceVampirism_Skills(_Var3)
+AND
+IsTagged(_Var2, "SOURCE_PUPPET", 1)
+AND
+ObjectGetFlag(_Var2, "ARX_CreepyShop_SourcePuppet_IsOn", 1)
+THEN
+ARX_CreepyShop_SourceVamp_Puppet(_Var1, _Var2);
+
+PROC
+ARX_CreepyShop_SourceVamp_Puppet((CHARACTERGUID)_Var1, (CHARACTERGUID)_Var2)
+AND
+CharacterGetMagicArmorPercentage(_Var2, 0)
+AND
+CharacterIsDead(_Var2, 0)
+THEN
+ObjectClearFlag(_Var2, "ARX_CreepyShop_SourcePuppet_IsOn", 0);
+
+PROC
+ARX_CreepyShop_SourceVamp_Puppet((CHARACTERGUID)_Var1, (CHARACTERGUID)_Var2)
+AND
+DB_IsPlayer(_Var1)
+THEN
+CharacterRegisterCrime(_Var1, "ARX_CreepyCraftsman_TurnedOffPuppet", NULL_00000000-0000-0000-0000-000000000000, NULL_00000000-0000-0000-0000-000000000000, 0);
+DB_ARX_CreepyShop_SourceVamp_Puppet(_Var1, _Var2);
+
+IF
+AttackedByObject((CHARACTERGUID)_Var1, (CHARACTERGUID)_Var2, _, _, _)
+AND
+DB_IsPlayer(_Var2)
+AND
+DB_ARX_CreepyShop_SourcePuppets(_Var1)
+AND
+ObjectGetFlag(_Var1, "ARX_CreepyShop_SourcePuppet_IsOn", 1)
+THEN
+ARX_CreepyShopMakePuppetsHostile(_Var2);
+
+IF
+AttackedByObject((CHARACTERGUID)_Var1, (CHARACTERGUID)_Var2, _, _, _)
+AND
+DB_IsPlayer(_Var2)
+AND
+DB_ARX_CreepyShop_SourcePuppets(_Var1)
+AND
+ObjectGetFlag(_Var1, "ARX_CreepyShop_SourcePuppet_IsOn", 0)
+AND
+CharacterCanSee(S_ARX_CreepyShop_CreepyCraftsman_63af3c4c-b4d6-4f97-9c49-50d80c41d394, _Var2, 1)
+THEN
+ARX_CreepyShopMakePuppetsHostile(_Var2);
+
+PROC
+ARX_CreepyShopMakePuppetsHostile((CHARACTERGUID)_Var1)
+AND NOT
+DB_ARX_CreepyShop_SourceVamp_Puppet(_Var1, _)
+AND
+DB_ARX_CreepyShop_SourcePuppets(_Var3)
+AND
+DB_InRegion(_Var3, _Var4)
+AND
+DB_InRegion(_Var1, _Var4)
+AND
+ObjectGetFlag(_Var3, "ARX_CreepyShop_SourcePuppet_IsOn", 1)
+THEN
+ProcMakeNPCHostile(_Var1, _Var3);
+
+PROC
+ARX_CreepyShopMakePuppetsHostile((CHARACTERGUID)_Var1)
+AND NOT
+DB_ARX_CreepyShop_SourceVamp_Puppet(_Var1, _)
+AND
+CharacterIsDead(S_ARX_CreepyShop_CreepyCraftsman_63af3c4c-b4d6-4f97-9c49-50d80c41d394, 0)
+AND
+CharacterIsInCombat(S_ARX_CreepyShop_CreepyCraftsman_63af3c4c-b4d6-4f97-9c49-50d80c41d394, 0)
+AND
+DB_InRegion(S_ARX_CreepyShop_CreepyCraftsman_63af3c4c-b4d6-4f97-9c49-50d80c41d394, _Var3)
+AND
+DB_InRegion(_Var1, _Var3)
+THEN
+ProcForceStopDialog(S_ARX_CreepyShop_CreepyCraftsman_63af3c4c-b4d6-4f97-9c49-50d80c41d394);
+Proc_StartDialog(1, "ARX_AD_CreepyCraftsman_AttackedPuppets", S_ARX_CreepyShop_CreepyCraftsman_63af3c4c-b4d6-4f97-9c49-50d80c41d394);
+ProcMakeNPCHostile(_Var1, S_ARX_CreepyShop_CreepyCraftsman_63af3c4c-b4d6-4f97-9c49-50d80c41d394);
+
+PROC
+ARX_CreepyShopMakePuppetsHostile((CHARACTERGUID)_Var1)
+AND
+DB_ARX_CreepyShop_SourceVamp_Puppet(_Var1, _Var2)
+THEN
+NOT DB_ARX_CreepyShop_SourceVamp_Puppet(_Var1, _Var2);
+
+IF
+CharacterDied(S_ARX_CreepyShop_CreepyCraftsman_63af3c4c-b4d6-4f97-9c49-50d80c41d394)
+THEN
+SetRelationFactionToPlayers("ARX_CC_CreepyCraftsmen", 0);
+
+IF
+CharacterEnteredTrigger((CHARACTERGUID)_Var1, S_ARX_CreepyCraftsman_Shop2ndFloor_7ec6f5e8-5ced-4cbc-88df-19d29d726c78)
+AND
+DB_IsPlayer(_Var1)
+THEN
+ObjectSetFlag(_Var1, "ARX_CreepyCraftsman_PlayerIsOn_2ndFloor");
+
+IF
+CharacterLeftTrigger((CHARACTERGUID)_Var1, S_ARX_CreepyCraftsman_Shop2ndFloor_7ec6f5e8-5ced-4cbc-88df-19d29d726c78)
+AND
+DB_IsPlayer(_Var1)
+THEN
+ObjectClearFlag(_Var1, "ARX_CreepyCraftsman_PlayerIsOn_2ndFloor");
+
+IF
+CharacterKilledBy(S_ARX_CreepyShop_CreepyCraftsman_63af3c4c-b4d6-4f97-9c49-50d80c41d394, (CHARACTERGUID)_Var1, (CHARACTERGUID)_Var2)
+AND
+DB_IsPlayer(_Var1)
+THEN
+ProcSetFactionHostileToIndivPlayer("ARX_CC_CreepyCraftsmen", _Var1);
+
+IF
+DialogStarted("ARX_CreepyShop_CreepyCraftsman", (INTEGER)_Var1)
+AND
+DialogGetInvolvedPlayer(_Var1, 1, _Var2)
+AND
+ObjectGetFlag(_Var2, "ARX_CreepyCraftsman_AgreedToFillSourceAmulet", 1)
+AND
+ItemIsInCharacterInventory(S_ARX_CreepyCraftsman_SourceAmulet_f9c139b9-bb0f-4027-b8a4-806df5336fd2, _Var2, 1)
+AND
+ObjectGetFlag(S_ARX_CreepyCraftsman_SourceAmulet_f9c139b9-bb0f-4027-b8a4-806df5336fd2, "GLO_SourceAmuletIsFull", 1)
+THEN
+ObjectSetFlag(_Var2, "ARX_CreepyCraftsman_SourceAmuletIsFull");
+
+IF
+DialogEnded("ARX_CreepyShop_CreepyCraftsman", (INTEGER)_Var1)
+AND
+DialogGetInvolvedPlayer(_Var1, 1, _Var2)
+AND
+ObjectGetFlag(_Var2, "ARX_CreepyCraftsman_SourceAmuletIsFull", 1)
+THEN
+ObjectClearFlag(_Var2, "ARX_CreepyCraftsman_SourceAmuletIsFull", 0);
+
+IF
+CharacterUsedSkillOnTarget((CHARACTERGUID)_Var1, (GUIDSTRING)_Var2, "Target_Item_ReplenishSource", _, _)
+AND
+IsTagged(_Var2, "SOURCE_PUPPET", 1)
+AND
+ObjectGetFlag(_Var2, "ARX_CreepyShop_SourcePuppet_IsOn", 0)
+THEN
+ObjectSetFlag(_Var2, "ARX_CreepyShop_SourcePuppet_IsOn");
+
+IF
+CharacterCharacterEvent((CHARACTERGUID)_Var1, S_ARX_CreepyShop_CreepyCraftsman_63af3c4c-b4d6-4f97-9c49-50d80c41d394, "ARX_CreepyShop_CreepyCraftsman_StartDialog_InCombat")
+AND
+CombatGetIDForCharacter(_Var1, _Var2)
+AND
+DB_IsPlayer(_Var3)
+AND
+DB_CombatCharacters(_Var3, _Var2)
+AND
+QRY_SpeakerIsAvailable(_Var3, 1)
+AND
+DB_GlobalCounter("ARX_CreepyShop_CreepyCraftsman_TellAboutTraps_Dialog", _Var4)
+THEN
+ProcIncreaseCounter("ARX_CreepyShop_CreepyCraftsman_TellAboutTraps_Dialog", 1);
+DB_ARX_CreepyShop_CreepyCraftsman_TellAboutTraps_Dialog(_Var3, _Var4);
+
+IF
+CharacterCharacterEvent((CHARACTERGUID)_Var1, S_ARX_CreepyShop_CreepyCraftsman_63af3c4c-b4d6-4f97-9c49-50d80c41d394, "ARX_CreepyShop_CreepyCraftsman_StartDialog_InCombat")
+AND
+DB_ARX_CreepyShop_CreepyCraftsman_TellAboutTraps_Dialog(_Var2, 4)
+AND
+DB_ARX_CreepyShop_CreepyCraftsman_TellAboutTraps_Dialog(_Var3, 3)
+AND
+DB_ARX_CreepyShop_CreepyCraftsman_TellAboutTraps_Dialog(_Var4, 2)
+AND
+DB_ARX_CreepyShop_CreepyCraftsman_TellAboutTraps_Dialog(_Var5, 1)
+AND
+DB_ARX_CreepyShop_CreepyCraftsman_TellAboutTraps_Dialog(_Var6, 0)
+AND
+QRY_SpeakerIsAvailable(_Var6, 1)
+AND
+StartDialog_Internal("ARX_CreepyShop_CreepyCraftsman_TellAboutTraps", 1, S_ARX_CreepyShop_CreepyCraftsman_63af3c4c-b4d6-4f97-9c49-50d80c41d394, _Var6, _Var5, _Var4, _Var3, _Var2, 1)
+THEN
+DB_NOOP(1);
+
+IF
+CharacterCharacterEvent((CHARACTERGUID)_Var1, S_ARX_CreepyShop_CreepyCraftsman_63af3c4c-b4d6-4f97-9c49-50d80c41d394, "ARX_CreepyShop_CreepyCraftsman_StartDialog_InCombat")
+AND
+DB_ARX_CreepyShop_CreepyCraftsman_TellAboutTraps_Dialog(_Var2, 3)
+AND
+DB_ARX_CreepyShop_CreepyCraftsman_TellAboutTraps_Dialog(_Var3, 2)
+AND
+DB_ARX_CreepyShop_CreepyCraftsman_TellAboutTraps_Dialog(_Var4, 1)
+AND
+DB_ARX_CreepyShop_CreepyCraftsman_TellAboutTraps_Dialog(_Var5, 0)
+AND
+QRY_SpeakerIsAvailable(_Var5, 1)
+AND
+StartDialog_Internal("ARX_CreepyShop_CreepyCraftsman_TellAboutTraps", 1, S_ARX_CreepyShop_CreepyCraftsman_63af3c4c-b4d6-4f97-9c49-50d80c41d394, _Var5, _Var4, _Var3, _Var2, NULL_00000000-0000-0000-0000-000000000000, 1)
+THEN
+DB_NOOP(1);
+
+IF
+CharacterCharacterEvent((CHARACTERGUID)_Var1, S_ARX_CreepyShop_CreepyCraftsman_63af3c4c-b4d6-4f97-9c49-50d80c41d394, "ARX_CreepyShop_CreepyCraftsman_StartDialog_InCombat")
+AND
+DB_ARX_CreepyShop_CreepyCraftsman_TellAboutTraps_Dialog(_Var2, 2)
+AND
+DB_ARX_CreepyShop_CreepyCraftsman_TellAboutTraps_Dialog(_Var3, 1)
+AND
+DB_ARX_CreepyShop_CreepyCraftsman_TellAboutTraps_Dialog(_Var4, 0)
+AND
+QRY_SpeakerIsAvailable(_Var4, 1)
+AND
+StartDialog_Internal("ARX_CreepyShop_CreepyCraftsman_TellAboutTraps", 1, S_ARX_CreepyShop_CreepyCraftsman_63af3c4c-b4d6-4f97-9c49-50d80c41d394, _Var4, _Var3, _Var2, NULL_00000000-0000-0000-0000-000000000000, NULL_00000000-0000-0000-0000-000000000000, 1)
+THEN
+DB_NOOP(1);
+
+IF
+CharacterCharacterEvent((CHARACTERGUID)_Var1, S_ARX_CreepyShop_CreepyCraftsman_63af3c4c-b4d6-4f97-9c49-50d80c41d394, "ARX_CreepyShop_CreepyCraftsman_StartDialog_InCombat")
+AND
+DB_ARX_CreepyShop_CreepyCraftsman_TellAboutTraps_Dialog(_Var2, 1)
+AND
+DB_ARX_CreepyShop_CreepyCraftsman_TellAboutTraps_Dialog(_Var3, 0)
+AND
+QRY_SpeakerIsAvailable(_Var3, 1)
+AND
+StartDialog_Internal("ARX_CreepyShop_CreepyCraftsman_TellAboutTraps", 1, S_ARX_CreepyShop_CreepyCraftsman_63af3c4c-b4d6-4f97-9c49-50d80c41d394, _Var3, _Var2, NULL_00000000-0000-0000-0000-000000000000, NULL_00000000-0000-0000-0000-000000000000, NULL_00000000-0000-0000-0000-000000000000, 1)
+THEN
+DB_NOOP(1);
+
+IF
+CharacterCharacterEvent((CHARACTERGUID)_Var1, S_ARX_CreepyShop_CreepyCraftsman_63af3c4c-b4d6-4f97-9c49-50d80c41d394, "ARX_CreepyShop_CreepyCraftsman_StartDialog_InCombat")
+AND
+DB_ARX_CreepyShop_CreepyCraftsman_TellAboutTraps_Dialog(_Var2, 0)
+AND
+QRY_SpeakerIsAvailable(_Var2, 1)
+AND
+StartDialog_Internal("ARX_CreepyShop_CreepyCraftsman_TellAboutTraps", 1, S_ARX_CreepyShop_CreepyCraftsman_63af3c4c-b4d6-4f97-9c49-50d80c41d394, _Var2, NULL_00000000-0000-0000-0000-000000000000, NULL_00000000-0000-0000-0000-000000000000, NULL_00000000-0000-0000-0000-000000000000, NULL_00000000-0000-0000-0000-000000000000, 1)
+THEN
+DB_NOOP(1);
+
+IF
+DialogStarted("ARX_CreepyShop_CreepyCraftsman_TellAboutTraps", (INTEGER)_Var1)
+AND
+DialogGetInvolvedNPC(_Var1, 1, _Var2)
+AND
+DialogGetInvolvedPlayer(_Var1, 1, _Var3)
+THEN
+CharacterLookAt(_Var2, _Var3);
+
+IF
+CharacterCharacterEvent((CHARACTERGUID)_Var1, S_ARX_CreepyShop_CreepyCraftsman_63af3c4c-b4d6-4f97-9c49-50d80c41d394, "ARX_CreepyShop_CreepyCraftsman_StartDialog_InCombat")
+AND
+DB_ARX_CreepyShop_CreepyCraftsman_TellAboutTraps_Dialog(_Var1, _)
+THEN
+CharacterSetImmortal(_Var1, 1);
+
+IF
+DialogEnded("ARX_CreepyShop_CreepyCraftsman_TellAboutTraps", (INTEGER)_Var1)
+AND
+DB_ARX_CreepyShop_CreepyCraftsman_TellAboutTraps_Dialog(_Var2, _)
+THEN
+CharacterSetImmortal(_Var2, 0);
+
+IF
+DialogEnded("ARX_CreepyShop_CreepyCraftsman_TellAboutTraps", (INTEGER)_Var1)
+AND
+DialogGetInvolvedNPC(_Var1, 1, _Var2)
+AND
+DialogGetInvolvedPlayer(_Var1, 1, _Var3)
+AND
+ObjectGetFlag(_Var3, "ARX_CreepyShop_CreepyCraftsman_SparedHim", 1)
+AND
+CombatGetIDForCharacter(_Var2, _Var4)
+THEN
+PartySetFlag(_Var3, "ARX_CreepyCraftsman_AllowAccess");
+SetRelationFactionToPlayers("ARX_CC_CreepyCraftsmen", 50);
+EndCombat(_Var4);
+ProcCharacterDisappearOutOfSight(_Var2, 0, 1, "ARX_CreepyShop_CreepyCraftsman_Fled", 1);
+SetHasDialog(_Var2, 0);
+
+IF
+DialogEnded("ARX_CreepyShop_CreepyCraftsman_TellAboutTraps", (INTEGER)_Var1)
+AND
+DialogGetInvolvedNPC(_Var1, 1, _Var2)
+AND
+DialogGetInvolvedPlayer(_Var1, 1, _Var3)
+AND
+ObjectGetFlag(_Var3, "ARX_CreepyShop_CreepyCraftsman_SparedHim", 0)
+THEN
+Proc_StartDialog(1, "ARX_AD_CreepyCraftsman_SummonPuppets", _Var2);
+ObjectSetFlag(_Var2, "ARX_CreepyShop_CreepyCraftsman_SpawnPuppets");
+
+IF
+ObjectFlagSet("ARX_CreepyShop_CreepyCraftsman_SpawnPuppets", S_ARX_CreepyShop_CreepyCraftsman_63af3c4c-b4d6-4f97-9c49-50d80c41d394, _)
+AND
+DB_ARX_CreepyShop_SourcePuppets(_Var2)
+THEN
+SetCombatGroupID(_Var2, "");
+
+IF
+ObjectFlagCleared("ARX_CreepyShop_CreepyCraftsman_SpawnPuppets", S_ARX_CreepyShop_CreepyCraftsman_63af3c4c-b4d6-4f97-9c49-50d80c41d394, _)
+AND
+DB_ARX_CreepyShop_SourcePuppets(_Var2)
+AND NOT
+DB_ARX_CreepyShop_SourcePuppets_GodKing(_Var2)
+THEN
+SetCombatGroupID(_Var2, "04db7ab9-89a1-4726-9079-bcacf085c66b");
+
+IF
+ObjectFlagCleared("ARX_CreepyShop_CreepyCraftsman_SpawnPuppets", S_ARX_CreepyShop_CreepyCraftsman_63af3c4c-b4d6-4f97-9c49-50d80c41d394, _)
+AND
+DB_ARX_CreepyShop_SourcePuppets_GodKing(_Var2)
+THEN
+SetCombatGroupID(_Var2, "a02c828e-9c7f-4c6b-94f7-e53fbca889e0");
+
+IF
+DB_ARX_CreepyShop_SourcePuppets_Spawners(_Var1, _Var2, _Var3)
+THEN
+DB_ARX_CreepyShop_SourcePuppets_Spawners(_Var1, _Var2, _Var3, NULL_00000000-0000-0000-0000-000000000000);
+
+IF
+ObjectFlagSet("ARX_CreepyShop_CreepyCraftsman_SpawnPuppets", (GUIDSTRING)_Var1, _)
+AND
+DB_ARX_CreepyShop_SourcePuppets_Spawners(_Var3, _Var4, _Var5, _)
+AND
+ObjectGetFlag(_Var3, "ARX_CreepyShop_SourcePuppet_WaitToBeSpawned", 1)
+AND
+CharacterIsDead(_Var3, 0)
+THEN
+proc_ARX_CreepyCraftsman_SpawnPuppetFromItem(_Var3, _Var4, _Var5);
+
+PROC
+ProcBlockUseOfItem((CHARACTERGUID)_Var1, (ITEMGUID)_Var2)
+AND
+DB_IsPlayer(_Var1)
+AND
+DB_ARX_CreepyShop_SourcePuppets_Spawners(_Var3, _Var2, _Var4, _)
+AND
+ObjectGetFlag(_Var3, "ARX_CreepyShop_SourcePuppet_WaitToBeSpawned", 1)
+AND
+CharacterIsDead(_Var3, 0)
+THEN
+DB_CustomUseItemResponse(_Var1, _Var2, 0);
+proc_ARX_CreepyCraftsman_SpawnPuppetFromItem(_Var3, _Var2, _Var4);
+
+PROC
+proc_ARX_CreepyCraftsman_SpawnPuppetFromItem((CHARACTERGUID)_Var1, (ITEMGUID)_Var2, (ITEMGUID)_Var3)
+AND
+HasActiveStatus(_Var1, "INVISIBLE", 1)
+THEN
+RemoveStatus(_Var1, "INVISIBLE");
+
+PROC
+proc_ARX_CreepyCraftsman_SpawnPuppetFromItem((CHARACTERGUID)_Var1, (ITEMGUID)_Var2, (ITEMGUID)_Var3)
+THEN
+SetOnStage(_Var3, 0);
+PlayAnimation(_Var2, "open");
+ItemSetCanInteract(_Var2, 0);
+ProcObjectTimer(_Var2, "ARX_CreepyShop_SourcePuppet_Spawned", 500);
+
+PROC
+ProcObjectTimerFinished((ITEMGUID)_Var1, "ARX_CreepyShop_SourcePuppet_Spawned")
+AND
+DB_ARX_CreepyShop_SourcePuppets_Spawners(_Var2, _Var1, _Var3, _)
+THEN
+ObjectSetFlag(_Var2, "ARX_CreepyShop_SourcePuppet_IsOn");
+ItemSetCanInteract(_Var1, 1);
+PlayAnimation(_Var1, "close");
+
+IF
+ItemDestroyed((ITEMGUID)_Var1)
+AND
+DB_ARX_CreepyShop_SourcePuppets_Spawners(_Var2, _Var1, _Var3, _)
+AND
+CharacterIsDead(_Var2, 0)
+AND
+ObjectGetFlag(_Var2, "ARX_CreepyShop_SourcePuppet_WaitToBeSpawned", 1)
+THEN
+CharacterDie(_Var2, 0, "Physical");
+
+IF
+ItemDestroyed((ITEMGUID)_Var1)
+AND
+DB_ARX_CreepyShop_SourcePuppets_Spawners(_Var2, _Var1, _Var3, _)
+THEN
+ItemDestroy(_Var3);
+
+IF
+ObjectFlagSet("ARX_CreepyCraftsman_AllowAccess", (CHARACTERGUID)_Var1, (INTEGER)_Var2)
+AND
+DB_TrespassTrigger(_Var3, _Var4, _Var5, S_ARX_CreepyShop_CreepyCraftsman_63af3c4c-b4d6-4f97-9c49-50d80c41d394)
+THEN
+ProcCharacterDisableCrime(_Var1, _Var5);
+
+IF
+ObjectFlagSet("ARX_CreepyCraftsman_AllowAccess", (CHARACTERGUID)_Var1, (INTEGER)_Var2)
+AND
+DB_TrespassTrigger(_Var3, _Var4, _Var5, S_ARX_CreepyShop_CreepyCraftsman_63af3c4c-b4d6-4f97-9c49-50d80c41d394)
+AND
+DB_InRegion(_Var1, _Var3)
+THEN
+CharacterStopCrime(_Var1, _Var5, _Var3);
+
+IF
+ObjectFlagSet("ARX_CreepyCraftsman_AllowAccess", (GUIDSTRING)_Var1, (INTEGER)_Var2)
+THEN
+ItemClearOwner(ITEMGUID_1m_CastleHouse_A_Stairs_A_002_ARX_Main_Rework_000_739c5c21-ab3f-8b8a-3b4f-7bc28ccc1a15);
+ItemClearOwner(ITEMGUID_1m_CityHouse_A_Door_A_014_ARX_Main_Rework_000_54fdaac5-5964-80e4-214b-4bff92338c89);
+ItemClearOwner(ITEMGUID_05m_WoodenHouse_A_Stair_Down_A_Item_004_b507ea66-e916-4195-bf0d-93cc00fa7ecc);
+ItemClearOwner(ITEMGUID_S_ARX_CreepyCraftsman_CathedralDesignHolder_4b67b311-7654-4a90-ba46-c68ec4495bc5);
+
+IF
+GameBookInterfaceClosed(S_ARX_CreepyCraftsman_UnsentLetterToDad_7b7476cb-87e0-4f0d-baa4-dece00dd16ce, (CHARACTERGUID)_Var1)
+THEN
+UserSetFlag(_Var1, "ARX_CreepyCraftsman_PlayerKnowsPassword");
+
+IF
+CharacterUsedItem((CHARACTERGUID)_Var1, S_ARX_CreepyCraftsman_CathedralDesignHolder_4b67b311-7654-4a90-ba46-c68ec4495bc5)
+AND
+DB_IsPlayer(_Var1)
+AND
+ItemIsLocked(S_ARX_CreepyCraftsman_CathedralDesignHolder_4b67b311-7654-4a90-ba46-c68ec4495bc5, 1)
+THEN
+Proc_StartDialog(0, "ARX_CreepyCraftsman_CathedralDesignHolder", _Var1);
+
+IF
+DialogEnded("ARX_CreepyCraftsman_CathedralDesignHolder", (INTEGER)_Var1)
+AND
+GlobalGetFlag("ARX_CreepyCraftsman_CathedralDesignHolder_Unlocked", 1)
+AND
+DialogGetInvolvedPlayer(_Var1, 1, _Var2)
+THEN
+ItemUnLock(S_ARX_CreepyCraftsman_CathedralDesignHolder_4b67b311-7654-4a90-ba46-c68ec4495bc5);
+CharacterUseItem(_Var2, S_ARX_CreepyCraftsman_CathedralDesignHolder_4b67b311-7654-4a90-ba46-c68ec4495bc5, "");
+
+IF
+DialogEnded("ARX_CreepyCraftsman_CathedralDesignHolder", (INTEGER)_Var1)
+AND
+DialogGetInvolvedPlayer(_Var1, 1, _Var2)
+AND
+ObjectGetFlag(_Var2, "ARX_CreepyCraftsman_PlayerGuessedWrong", 1)
+THEN
+PlayEffect(_Var2, "RS3_FX_GP_Impacts_Mine_Electric_01");
+CharacterDie(_Var2, 0, "Electrocution");
+ObjectClearFlag(_Var2, "ARX_CreepyCraftsman_PlayerGuessedWrong", 0);
+
+IF
+CharacterCharacterEvent((CHARACTERGUID)_Var1, (CHARACTERGUID)_Var2, "ARX_CreepyCraftsman_GodKing_BringPuppetsToLife")
+AND
+QRY_SpeakerIsAvailable(_Var2)
+AND
+QRY_SpeakerIsAvailable(_Var1)
+AND
+QueryOnlyOnce("ARX_CreepyCraftsman_GodKing_PuppetDialogStart")
+THEN
+SetOnStage(CHARACTERGUID_S_ARX_GodKing_InvisHelper_CreepyShop_c573050e-cb3f-4074-9858-d0cb61148345, 1);
+TeleportTo(CHARACTERGUID_S_ARX_GodKing_InvisHelper_CreepyShop_c573050e-cb3f-4074-9858-d0cb61148345, _Var2);
+Proc_StartDialog(0, "ARX_CreepyCraftsman_GodKing_BringPuppetsToLife", _Var2, CHARACTERGUID_S_ARX_GodKing_InvisHelper_CreepyShop_c573050e-cb3f-4074-9858-d0cb61148345, _Var1);
+
+IF
+CharacterCharacterEvent((CHARACTERGUID)_Var1, (CHARACTERGUID)_Var2, "ARX_CreepyCraftsman_GodKing_BringPuppetsToLife")
+AND
+DB_IsPlayer(_Var3)
+AND
+IsTagged(_Var3, "PROMISED", 1)
+AND
+ObjectGetFlag(_Var3, "ARX_CreepyCraftsman_PlayerIsOn_2ndFloor", 1)
+THEN
+GlobalSetFlag("ARX_CreepyCraftsman_GodKing_PromisedInTheRoom");
+
+IF
+DialogStarted("ARX_CreepyCraftsman_GodKing_BringPuppetsToLife", (INTEGER)_Var1)
+AND
+DB_DialogNPCs(_Var1, _Var2, _)
+AND
+DB_ARX_CreepyShop_SourcePuppets_GodKing(_Var2)
+AND
+DB_IsPlayer(_Var4)
+AND NOT
+DB_DialogPlayers(_Var1, _Var4, _)
+AND
+QRY_SpeakerIsAvailableAndInDialogRange(_Var4, _Var2)
+THEN
+DialogAddActor(_Var1, _Var4);
+
+IF
+CharacterLeftTrigger((CHARACTERGUID)_Var1, S_ARX_CreepyCraftsman_Shop2ndFloor_7ec6f5e8-5ced-4cbc-88df-19d29d726c78)
+AND
+GlobalGetFlag("ARX_CreepyCraftsman_GodKing_PromisedInTheRoom", 1)
+THEN
+proc_ARX_CreepyCraftsman_Shop2ndFloor_CheckForPromisedPlayers(S_ARX_CreepyCraftsman_Shop2ndFloor_7ec6f5e8-5ced-4cbc-88df-19d29d726c78);
+
+PROC
+proc_ARX_CreepyCraftsman_Shop2ndFloor_CheckForPromisedPlayers((TRIGGERGUID)_Var1)
+AND
+DB_IsPlayer(_Var2)
+AND
+IsTagged(_Var2, "PROMISED", 1)
+AND
+DB_InRegion(_Var2, _Var1)
+THEN
+DB_ARX_CreepyCraftsman_Shop2ndFloor_PromisedPlayerInRegion(_Var2);
+
+PROC
+proc_ARX_CreepyCraftsman_Shop2ndFloor_CheckForPromisedPlayers((TRIGGERGUID)_Var1)
+AND NOT
+DB_ARX_CreepyCraftsman_Shop2ndFloor_PromisedPlayerInRegion(_)
+THEN
+GlobalClearFlag("ARX_CreepyCraftsman_GodKing_PromisedInTheRoom");
+
+PROC
+proc_ARX_CreepyCraftsman_Shop2ndFloor_CheckForPromisedPlayers((TRIGGERGUID)_Var1)
+AND
+DB_ARX_CreepyCraftsman_Shop2ndFloor_PromisedPlayerInRegion(_Var2)
+THEN
+NOT DB_ARX_CreepyCraftsman_Shop2ndFloor_PromisedPlayerInRegion(_Var2);
+
+IF
+CharacterLeftTrigger((CHARACTERGUID)_Var1, S_ARX_CreepyCraftsman_Shop2ndFloor_7ec6f5e8-5ced-4cbc-88df-19d29d726c78)
+AND
+DB_IsPlayer(_Var1)
+AND
+IsTagged(_Var1, "AI_UNPREFERRED_TARGET", 1)
+THEN
+ClearTag(_Var1, "AI_UNPREFERRED_TARGET");
+
+IF
+DialogRequestFailed("ARX_CreepyCraftsman_GodKing_BringPuppetsToLife", (INTEGER)_Var1)
+THEN
+NOT DB_OnlyOnce("ARX_CreepyCraftsman_GodKing_PuppetDialogStart");
+
+IF
+DialogStarted("ARX_CreepyCraftsman_GodKing_BringPuppetsToLife", (INTEGER)_Var1)
+THEN
+GlobalSetFlag("ARX_CreepyCraftsman_GodKing_PuppetDialogStarted");
+
+IF
+ObjectFlagSet("ARX_CreepyCraftsman_PuppetTalksWithVoiceOfGodKing", (CHARACTERGUID)_Var1, (INTEGER)_Var2)
+THEN
+proc_ARX_CreepyCraftsman_GodKing_BringPuppetsToLifeTransformPuppets(_Var1);
+PlaySound(_Var1, "SE_ARX_Puppet_Transformation_01");
+
+IF
+DialogEnded("ARX_CreepyCraftsman_GodKing_BringPuppetsToLife", (INTEGER)_Var1)
+AND
+DB_DialogNPCs(_Var1, _Var2, 1)
+THEN
+PlaySound(_Var2, "SE_ARX_Puppet_Transformation_01");
+PlaySound(_Var2, "SE_ARX_Puppet_Transformation_GodKingLaugh_01");
+
+IF
+DialogEnded("ARX_CreepyCraftsman_GodKing_BringPuppetsToLife", (INTEGER)_Var1)
+AND
+DB_ARX_CreepyShop_SourcePuppets_GodKing(_Var2)
+AND
+CharacterIsDead(_Var2, 0)
+THEN
+proc_ARX_CreepyCraftsman_GodKing_BringPuppetsToLifeTransformPuppets(_Var2);
+SetOnStage(CHARACTERGUID_S_ARX_GodKing_InvisHelper_CreepyShop_c573050e-cb3f-4074-9858-d0cb61148345, 0);
+
+PROC
+proc_ARX_CreepyCraftsman_GodKing_BringPuppetsToLifeTransformPuppets((CHARACTERGUID)_Var1)
+THEN
+ObjectSetFlag(_Var1, "ARX_CreepyCraftsman_PuppetPossessedByGodKing");
+SetVarInteger(_Var1, "ADOnTurnedOn", 0);
+SetVarInteger(_Var1, "ADOnTurnedOff", 0);
+SetVarInteger(_Var1, "NotifyPuppetIsOffToCreep", 0);
+SetVarInteger(_Var1, "PuppetIsSpotting", 0);
+PlayEffect(_Var1, "RS3_FX_GP_ScriptedEvent_ARX_Puppet_Transformation_01");
+PROC_LoopEffect("RS3_FX_GP_ScriptedEvent_ARX_Puppet_Possessed_01", _Var1, "ARX_CreepyCraftsman_PuppetPossessedByGodKing", "ARX_Main", "");
+ApplyStatus(_Var1, "POSSESSED", -1, 1);
+SetFaction(_Var1, "ARX_CreepyCraftsman_GodKing_Puppet");
+CharacterAddSkill(_Var1, "Target_Curse");
+
+PROC
+proc_ARX_CreepyCraftsman_GodKing_BringPuppetsToLifeTransformPuppets((CHARACTERGUID)_Var1)
+AND
+QueryOnlyOnce("ARX_CreepyCraftsman_GodKing_BringPuppetsToLife_SetRelationOnce")
+AND
+DB_IsPlayer(_Var2)
+AND
+IsTagged(_Var2, "PROMISED", 1)
+THEN
+CharacterSetRelationFactionToIndivFaction("ARX_CreepyCraftsman_GodKing_Puppet", _Var2, 50);
+
+QRY
+qry_ARX_CreepyCraftsman_GodKing_InCombat((INTEGER)_Var1)
+AND
+DB_ARX_CreepyShop_SourcePuppets_GodKing(_Var2)
+AND
+DB_CombatCharacters(_Var2, _Var1)
+AND
+ObjectGetFlag(_Var2, "ARX_CreepyCraftsman_PuppetPossessedByGodKing", 1)
+THEN
+DB_Noop(1);
+
+IF
+ObjectEnteredCombat((CHARACTERGUID)_Var1, (INTEGER)_Var2)
+AND
+DB_IsPlayer(_Var1)
+AND
+IsTagged(_Var1, "PROMISED", 1)
+AND
+qry_ARX_CreepyCraftsman_GodKing_InCombat(_Var2)
+THEN
+Proc_SetTagForCombat(_Var1, "AI_UNPREFERRED_TARGET");
+
+IF
+ObjectLeftCombat((CHARACTERGUID)_Var1, (INTEGER)_Var2)
+AND
+DB_IsPlayer(_Var1)
+AND
+qry_ARX_CreepyCraftsman_GodKing_InCombat(_Var2)
+THEN
+proc_ARX_CreepyShop_SourcePuppets_GodKing_PlayerLeftCombat(_Var1, _Var2);
+
+PROC
+proc_ARX_CreepyShop_SourcePuppets_GodKing_PlayerLeftCombat((CHARACTERGUID)_Var1, (INTEGER)_Var2)
+AND
+DB_IsPlayer(_Var3)
+AND
+_Var3 != _Var1
+AND
+DB_CombatCharacters(_Var3, _Var2)
+AND
+IsTagged(_Var3, "PROMISED", 0)
+THEN
+DB_ARX_CreepyShop_SourcePuppets_GodKing_HaveEnemiesInCombat(_Var1);
+
+PROC
+proc_ARX_CreepyShop_SourcePuppets_GodKing_PlayerLeftCombat((CHARACTERGUID)_Var1, (INTEGER)_Var2)
+AND NOT
+DB_ARX_CreepyShop_SourcePuppets_GodKing_HaveEnemiesInCombat(_)
+THEN
+proc_ARX_CreepyShop_SourcePuppets_GodKing_EndCombat(_Var2);
+
+PROC
+proc_ARX_CreepyShop_SourcePuppets_GodKing_PlayerLeftCombat((CHARACTERGUID)_Var1, (INTEGER)_Var2)
+AND
+DB_ARX_CreepyShop_SourcePuppets_GodKing_HaveEnemiesInCombat(_Var3)
+THEN
+NOT DB_ARX_CreepyShop_SourcePuppets_GodKing_HaveEnemiesInCombat(_Var3);
+
+PROC
+proc_ARX_CreepyShop_SourcePuppets_GodKing_EndCombat((INTEGER)_Var1)
+AND NOT
+DB_OnlyOnce("ARX_CreepyShop_SourcePuppets_GodKing_EndCombat_OnlyOnce")
+AND
+DB_IsPlayer(_Var2)
+AND
+DB_CombatCharacters(_Var2, _Var1)
+AND
+IsTagged(_Var2, "PROMISED", 1)
+AND
+DB_ARX_CreepyShop_SourcePuppets_GodKing(_Var3)
+AND
+DB_CombatCharacters(_Var3, _Var1)
+AND
+QRY_SpeakerIsAvailable(_Var3, 1)
+AND
+QRY_SpeakerIsAvailable(_Var2, 1)
+AND
+QueryOnlyOnce("ARX_CreepyShop_SourcePuppets_GodKing_EndCombat_OnlyOnce")
+THEN
+EndCombat(_Var1);
+ProcCharacterMoveToAndTalk(_Var3, _Var2, "ARX_CreepyShop_SourcePuppets_GodKing_EndCombat", 0, "ARX_CreepyShop_SourcePuppets_GodKing_EndCombat_Dialog", 1, 15);
+
+PROC
+proc_ARX_CreepyShop_SourcePuppets_GodKing_EndCombat((INTEGER)_Var1)
+AND
+DB_OnlyOnce("ARX_CreepyShop_SourcePuppets_GodKing_EndCombat_OnlyOnce")
+THEN
+EndCombat(_Var1);
+
+IF
+CharacterMoveToAndTalkFailed((CHARACTERGUID)_Var1, (GUIDSTRING)_Var2, "ARX_CreepyShop_SourcePuppets_GodKing_EndCombat_Dialog")
+AND
+DB_OnlyOnce("ARX_CreepyShop_SourcePuppets_GodKing_EndCombat_OnlyOnce")
+THEN
+NOT DB_OnlyOnce("ARX_CreepyShop_SourcePuppets_GodKing_EndCombat_OnlyOnce");
+
+IF
+CharacterMoveToAndTalkRequestDialogFailedEvent((CHARACTERGUID)_Var1, (GUIDSTRING)_Var2, "ARX_CreepyShop_SourcePuppets_GodKing_EndCombat_Dialog")
+AND
+DB_OnlyOnce("ARX_CreepyShop_SourcePuppets_GodKing_EndCombat_OnlyOnce")
+THEN
+NOT DB_OnlyOnce("ARX_CreepyShop_SourcePuppets_GodKing_EndCombat_OnlyOnce");
+
+IF
+DialogStarted("ARX_CreepyShop_SourcePuppets_GodKing_EndCombat", (INTEGER)_Var1)
+AND
+DB_DialogNPCs(_Var1, _Var2, 1)
+THEN
+SetOnStage(CHARACTERGUID_S_ARX_GodKing_InvisHelper_CreepyShop_c573050e-cb3f-4074-9858-d0cb61148345, 1);
+TeleportTo(CHARACTERGUID_S_ARX_GodKing_InvisHelper_CreepyShop_c573050e-cb3f-4074-9858-d0cb61148345, _Var2);
+DialogAddActorAt(_Var1, CHARACTERGUID_S_ARX_GodKing_InvisHelper_CreepyShop_c573050e-cb3f-4074-9858-d0cb61148345, 3);
+
+IF
+DialogEnded("ARX_CreepyShop_SourcePuppets_GodKing_EndCombat", (INTEGER)_Var1)
+THEN
+SetOnStage(CHARACTERGUID_S_ARX_GodKing_InvisHelper_CreepyShop_c573050e-cb3f-4074-9858-d0cb61148345, 0);
+
+IF
+CharacterDying((CHARACTERGUID)_Var1)
+AND
+DB_LoopEffect(_Var1, _Var2, "ARX_CreepyCraftsman_PuppetPossessedByGodKing", _Var3, _Var4, _Var5)
+THEN
+PROC_StopLoopEffect(_Var1, "ARX_CreepyCraftsman_PuppetPossessedByGodKing");
+
+PROC
+proc_ARX_CreepyCraftsman_GodKing_BringPuppetsToLifeTransformPuppets((CHARACTERGUID)_Var1)
+AND
+DB_ARX_CreepyShop_SourcePuppets_Spawners(_Var1, _Var2, _Var3, _)
+AND
+ObjectGetFlag(_Var1, "ARX_CreepyShop_SourcePuppet_WaitToBeSpawned", 1)
+THEN
+proc_ARX_CreepyCraftsman_SpawnPuppetFromItem(_Var1, _Var2, _Var3);
+
+PROC
+proc_ARX_CreepyCraftsman_GodKing_BringPuppetsToLifeTransformPuppets((CHARACTERGUID)_Var1)
+AND
+DB_ARX_CreepyShop_SourcePuppets_GodKing(_Var1)
+THEN
+NOT DB_ARX_CreepyShop_SourcePuppets(_Var1);
+
+IF
+CombatStarted((INTEGER)_Var1)
+AND
+qry_ARX_CreepyCraftsman_GodKing_InCombat(_Var1)
+AND
+DB_IsPlayer(_Var2)
+AND
+DB_CombatCharacters(_Var2, _Var1)
+THEN
+PartySetFlag(_Var2, "ARX_CreepyCraftsman_GodKing_FoughtPuppets");
+
+IF
+ObjectEnteredCombat((CHARACTERGUID)_Var1, (INTEGER)_Var2)
+AND
+DB_IsPlayer(_Var1)
+AND
+qry_ARX_CreepyCraftsman_GodKing_InCombat(_Var2)
+THEN
+PartySetFlag(_Var1, "ARX_CreepyCraftsman_GodKing_FoughtPuppets");
+
+PROC
+ARX_CreepyShop_SourceVamp_Puppet((CHARACTERGUID)_Var1, (CHARACTERGUID)_Var2)
+AND
+DB_CombatCharacters(_Var1, _Var3)
+AND
+qry_ARX_CreepyCraftsman_GodKing_InCombat(_Var3)
+AND
+GetUUID(_Var2, _Var4)
+AND
+StringConcatenate(_Var4, "TimerToTurnOn", _Var5)
+THEN
+ProcDeclareCounter(_Var5);
+DB_ARX_CreepyShop_SourcePuppets_GodKingTurnsPuppetOn(_Var2, _Var1, _Var3, _Var5);
+
+IF
+ObjectTurnStarted((CHARACTERGUID)_Var1)
+AND
+DB_CombatCharacters(_Var1, _Var2)
+AND
+DB_ARX_CreepyShop_SourcePuppets_GodKingTurnsPuppetOn(_Var3, _Var4, _Var2, _Var5)
+THEN
+ProcIncreaseCounter(_Var5, 1);
+
+IF
+ObjectTurnEnded((CHARACTERGUID)_Var1)
+AND
+DB_CombatCharacters(_Var1, _Var2)
+AND
+DB_ARX_CreepyShop_SourcePuppets_GodKingTurnsPuppetOn(_Var3, _Var4, _Var2, _Var5)
+AND
+DB_GlobalCounter(_Var5, 2)
+THEN
+proc_ARX_CreepyCraftsman_GodKing_BringPuppetBackToLife(_Var3);
+
+IF
+ObjectSwitchedCombat((CHARACTERGUID)_Var1, (INTEGER)_Var2, (INTEGER)_Var3)
+AND
+DB_ARX_CreepyShop_SourcePuppets_GodKingTurnsPuppetOn(_Var1, _Var4, _Var2, _Var5)
+THEN
+NOT DB_ARX_CreepyShop_SourcePuppets_GodKingTurnsPuppetOn(_Var1, _Var4, _Var2, _Var5);
+DB_ARX_CreepyShop_SourcePuppets_GodKingTurnsPuppetOn(_Var1, _Var4, _Var3, _Var5);
+
+IF
+CharacterDying((CHARACTERGUID)_Var1)
+AND
+DB_ARX_CreepyShop_SourcePuppets_GodKingTurnsPuppetOn(_Var1, _Var2, _Var3, _Var4)
+THEN
+NOT DB_ARX_CreepyShop_SourcePuppets_GodKingTurnsPuppetOn(_Var1, _Var2, _Var3, _Var4);
+ProcRemoveCounter(_Var4);
+
+IF
+CombatEnded((INTEGER)_Var1)
+AND
+DB_ARX_CreepyShop_SourcePuppets_GodKingTurnsPuppetOn(_Var2, _Var3, _Var1, _Var4)
+AND NOT
+DB_CombatCharacters(_, _Var1)
+THEN
+NOT DB_ARX_CreepyShop_SourcePuppets_GodKingTurnsPuppetOn(_Var2, _Var3, _Var1, _Var4);
+proc_ARX_CreepyCraftsman_GodKing_BringPuppetBackToLife(_Var2);
+ProcRemoveCounter(_Var4);
+
+PROC
+proc_ARX_CreepyCraftsman_GodKing_BringPuppetBackToLife((CHARACTERGUID)_Var1)
+AND NOT
+DB_ARX_AD_CreepyCraftsman_GodKing_BringPuppetsToLife_FirstTime(_)
+THEN
+SetCanFight(_Var1, 1);
+SetCanJoinCombat(_Var1, 1);
+CharacterSetReactionPriority(_Var1, "DontMoveWhileAD_Combat", 1800);
+
+PROC
+proc_ARX_CreepyCraftsman_GodKing_BringPuppetBackToLife((CHARACTERGUID)_Var1)
+AND
+DB_ARX_AD_CreepyCraftsman_GodKing_BringPuppetsToLife_FirstTime(_)
+THEN
+ObjectSetFlag(_Var1, "ARX_CreepyShop_SourcePuppet_IsOn");
+PlayEffect(_Var1, "RS3_FX_GP_ScriptedEvent_ARX_Puppet_Transformation_01");
+ApplyStatus(_Var1, "POSSESSED", -1, 1);
+
+PROC
+proc_ARX_CreepyCraftsman_GodKing_BringPuppetBackToLife((CHARACTERGUID)_Var1)
+AND
+CharacterIsInCombat(_Var1, 1)
+THEN
+JumpToTurn(_Var1);
+
+PROC
+proc_ARX_CreepyCraftsman_GodKing_BringPuppetBackToLife((CHARACTERGUID)_Var1)
+AND
+DB_ARX_CreepyShop_SourcePuppets_GodKingTurnsPuppetOn(_Var1, _Var2, _Var3, _Var4)
+AND NOT
+DB_ARX_AD_CreepyCraftsman_GodKing_BringPuppetsToLife_FirstTime(_)
+THEN
+Proc_StartDialog(1, "ARX_AD_CreepyCraftsman_GodKing_BringPuppetsToLife", _Var1);
+DB_ARX_AD_CreepyCraftsman_GodKing_BringPuppetsToLife_FirstTime(_Var1);
+
+IF
+AutomatedDialogEnded("ARX_AD_CreepyCraftsman_GodKing_BringPuppetsToLife", _)
+AND
+DB_ARX_AD_CreepyCraftsman_GodKing_BringPuppetsToLife_FirstTime(_Var2)
+THEN
+CharacterSetReactionPriority(_Var2, "DontMoveWhileAD_Combat", 0);
+proc_ARX_CreepyCraftsman_GodKing_BringPuppetBackToLife(_Var2);
+
+IF
+AutomatedDialogRequestFailed("ARX_AD_CreepyCraftsman_GodKing_BringPuppetsToLife", _)
+AND
+DB_ARX_AD_CreepyCraftsman_GodKing_BringPuppetsToLife_FirstTime(_Var2)
+THEN
+CharacterSetReactionPriority(_Var2, "DontMoveWhileAD_Combat", 0);
+proc_ARX_CreepyCraftsman_GodKing_BringPuppetBackToLife(_Var2);
+
+PROC
+proc_ARX_CreepyCraftsman_GodKing_BringPuppetBackToLife((CHARACTERGUID)_Var1)
+AND
+DB_ARX_CreepyShop_SourcePuppets_GodKingTurnsPuppetOn(_Var1, _Var2, _Var3, _Var4)
+THEN
+NOT DB_ARX_CreepyShop_SourcePuppets_GodKingTurnsPuppetOn(_Var1, _Var2, _Var3, _Var4);
+ProcRemoveCounter(_Var4);
+
+IF
+ObjectFlagSet("ARX_CreepyCraftsman_PlayerKnowsCathedralSecret", (CHARACTERGUID)_Var1, (INTEGER)_Var2)
+THEN
+PartySetFlag(_Var1, "QuestUpdate_ARX_CreepyCraftsman_KnowCathedralSecret");
+
+IF
+DialogEnded("ARX_CreepyShop_CreepyCraftsman", (INTEGER)_Var1)
+AND
+DialogGetInvolvedPlayer(_Var1, 1, _Var2)
+THEN
+PartySetFlag(_Var2, "QuestUpdate_ARX_CreepyCraftsman_MetCreep");
+
+IF
+DialogEnded("ARX_CreepyCraftsman_CathedralDesignHolder", (INTEGER)_Var1)
+AND
+DialogGetInvolvedPlayer(_Var1, 1, _Var2)
+THEN
+PartySetFlag(_Var2, "QuestUpdate_ARX_CreepyCraftsman_InteractedWithDesk");
+
+IF
+DialogEnded("ARX_CreepyCraftsman_CathedralDesignHolder", (INTEGER)_Var1)
+AND
+GlobalGetFlag("ARX_CreepyCraftsman_CathedralDesignHolder_Unlocked", 1)
+AND
+DialogGetInvolvedPlayer(_Var1, 1, _Var2)
+THEN
+PartySetFlag(_Var2, "QuestUpdate_ARX_CreepyCraftsman_DeskIsOpen");
+
+IF
+DialogEnded("ARX_CreepyShop_TresspassingCrime", (INTEGER)_Var1)
+AND
+DialogGetInvolvedPlayer(_Var1, 1, _Var2)
+THEN
+PartySetFlag(_Var2, "QuestUpdate_ARX_CreepyCraftsman_TriedToGoTo2ndFloor");
+
+IF
+TextEventSet("CC_ComeToMe")
+THEN
+CharacterMoveTo(S_ARX_CreepyShop_CreepyCraftsman_63af3c4c-b4d6-4f97-9c49-50d80c41d394, S_Player_Lohse_bb932b13-8ebf-4ab4-aac0-83e6924e4295, 1, "", 0);
+
+IF
+TextEventSet("ARX_CreepyCraftsman_Knows_Password")
+AND
+DB_IsPlayer(_Var1)
+THEN
+UserSetFlag(_Var1, "ARX_CreepyCraftsman_PlayerKnowsPassword");
+
+IF
+TextEventSet("CC_AllPuppetsToMe")
+AND
+DB_ARX_CreepyShop_SourcePuppets(_Var1)
+THEN
+CharacterMoveTo(_Var1, S_Player_Lohse_bb932b13-8ebf-4ab4-aac0-83e6924e4295, 1, "", 0);
+
+IF
+TextEventSet("CC_AwayfromMe")
+THEN
+CharacterMoveTo(S_ARX_CreepyShop_CreepyCraftsman_63af3c4c-b4d6-4f97-9c49-50d80c41d394, S_ARX_CreepyShop_CreepyCraftsmen_StartConversaton_5c27fa66-a6c3-4368-bdde-d538bb90a711, 1, "", 0);
+
+IF
+TextEventSet("CC_FirstRoom_TurnPuppetsOn")
+AND
+DB_ARX_CreepyShop_SourcePuppets(_Var1)
+THEN
+ObjectSetFlag(_Var1, "ARX_CreepyShop_SourcePuppet_IsOn");
+
+IF
+TextEventSet("CC_FirstRoom_TurnPuppetsOff")
+AND
+DB_ARX_CreepyShop_SourcePuppets(_Var1)
+THEN
+ObjectClearFlag(_Var1, "ARX_CreepyShop_SourcePuppet_IsOn", 0);
+
+IF
+TextEventSet("ARX_CC_ShowTrick")
+THEN
+GlobalSetFlag("ARX_CreepyShop_CreepyCraftsman_ShowedTrick");
+
+IF
+TextEventSet("ARX_CC-StartDialog")
+AND
+DB_IsPlayer(_Var1)
+THEN
+Proc_StartDialog(0, "ARX_CreepyShop_CreepyCraftsman", S_ARX_CreepyShop_CreepyCraftsman_63af3c4c-b4d6-4f97-9c49-50d80c41d394, _Var1);
+
+IF
+TextEventSet("ARX_AmuletToPlayer")
+AND
+DB_IsPlayer(_Var1)
+THEN
+ItemToInventory(S_ARX_CreepyCraftsman_SourceAmulet_f9c139b9-bb0f-4027-b8a4-806df5336fd2, _Var1);
+
+IF
+TextEventSet("ARX_SourceAmulet_AddCharge")
+THEN
+ItemAddCharges(S_ARX_CreepyCraftsman_SourceAmulet_f9c139b9-bb0f-4027-b8a4-806df5336fd2, 1);
+
+IF
+TextEventSet("ARX_SourceAmulet_RemoveCharge")
+THEN
+ItemAddCharges(S_ARX_CreepyCraftsman_SourceAmulet_f9c139b9-bb0f-4027-b8a4-806df5336fd2, -1);
+
+IF
+TextEventSet("ARX_CC-SpawnPuppet1")
+THEN
+ObjectSetFlag(S_ARX_CreepyShop_CreepyCraftsman_63af3c4c-b4d6-4f97-9c49-50d80c41d394, "ARX_CreepyShop_CreepyCraftsman_SpawnPuppets");
+PlayAnimation(S_ARX_CreepyShop_PuppetSpawner1_f547ad22-83c5-445e-89b8-09e339531f59, "open", "ARX_ItemOpened");
+ObjectSetFlag(S_ARX_CreepyShop_2ndFloor_SourcePuppet1_480f3e01-426b-4d07-b001-892b8aa7b7f7, "ARX_CreepyShop_SourcePuppet_IsOn");
+
+IF
+StoryEvent((GUIDSTRING)_Var1, "ARX_ItemOpened")
+THEN
+DebugText(_Var1, "ARX_ItemOpened");
+
+IF
+TextEventSet("ARX_CreepyCraftsman_AmuletIsFull")
+AND
+DB_IsPlayer(_Var1)
+THEN
+ObjectSetFlag(_Var1, "ARX_CreepyCraftsman_SourceAmuletIsFull");
+
+IF
+TextEventSet("ARX_CreepyCraftsman_FixAttitude")
+AND
+DB_IsPlayer(_Var1)
+THEN
+CharacterAddAttitudeTowardsPlayer(S_ARX_CreepyShop_CreepyCraftsman_63af3c4c-b4d6-4f97-9c49-50d80c41d394, _Var1, 51);
+
+IF
+TextEventSet("CreepyFreeArhu")
+THEN
+GlobalSetFlag("ARX_KemmVault_Arhu_Freed");
+
+IF
+TextEventSet("CreepyArhuSentMe")
+AND
+DB_IsPlayer(_Var1)
+THEN
+ObjectSetFlag(_Var1, "ARX_Arhu_CreepyCraftsmanAmulet");
+
+IF
+TextEventSet("CreepyReadDoc")
+AND
+DB_IsPlayer(_Var1)
+THEN
+ObjectSetFlag(_Var1, "ARX_CreepyShop_CreepyCraftman_ReadReportInBarracks");
+
+IF
+TextEventSet("Creepy_allowAccess")
+AND
+DB_IsPlayer(_Var1)
+THEN
+ObjectSetFlag(_Var1, "ARX_CreepyCraftsman_AllowAccess");
+
+IF
+TextEventSet("TeleportCreepyTo2ndFloor")
+THEN
+TeleportTo(S_ARX_CreepyShop_CreepyCraftsman_63af3c4c-b4d6-4f97-9c49-50d80c41d394, S_ARX_CreepyCraftsman_Shop2ndFloor_7ec6f5e8-5ced-4cbc-88df-19d29d726c78);
+
+IF
+SavegameLoaded((INTEGER)_Var1, (INTEGER)_Var2, (INTEGER)_Var3, (INTEGER)_Var4)
+AND
+QRY_VersionIsOlderThan(_Var1, _Var2, _Var3, _Var4, 3, 6, 0, 1)
+AND
+DB_IsPlayer(_Var5)
+AND
+UserGetFlag(_Var5, "ARX_Arhu_CreepyCraftsmanAmulet", 1)
+THEN
+PartySetFlag(_Var5, "ARX_Arhu_CreepyCraftsmanAmulet");
+
+
+EXITSECTION
+ENDEXITSECTION
+
+ParentTargetEdge "ARX"

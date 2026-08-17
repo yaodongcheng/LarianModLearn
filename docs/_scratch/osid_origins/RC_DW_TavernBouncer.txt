@@ -1,0 +1,227 @@
+Version 1
+SubGoalCombiner SGC_AND
+
+INITSECTION
+ProcTriggerRegisterForPlayers(RC_DW_Tavern_BouncerTrig_cdaf7fe6-3094-4e1e-bcd9-893350feaec2);
+ProcTriggerRegisterForPlayers(TRIGGERGUID_S_RC_DW_Undertavern_41caf09c-8ddd-461f-a892-a085009b648b);
+DB_Dialogs(RC_DW_TavernBouncer_375ff3ff-13c3-4498-b4b8-2c183df7751b, "RC_DW_TavernBouncer");
+DB_NoLowAttitudeDialog(RC_DW_TavernBouncer_375ff3ff-13c3-4498-b4b8-2c183df7751b);
+SetOnStage(RC_DW_ToUndertavernStairs_404ed36a-1b24-48de-963b-2ac07950ad1f, 0);
+
+KBSECTION
+IF
+DialogStarted("RC_DW_TavernBouncer", (INTEGER)_Var1)
+AND
+DB_DialogPlayers(_Var1, _Var2, 1)
+THEN
+ProcEvaluateMagicPocketGold(_Var2, ">=", 50, "RC_DW_TavernBouncer_PartyHas50Gold");
+
+IF
+ObjectFlagSet("RC_DW_TavernBouncer_GiveGold", (CHARACTERGUID)_Var1, _)
+THEN
+ProcAddGoldToMagicPockets(_Var1, -50);
+CharacterAddGold(RC_DW_TavernBouncer_375ff3ff-13c3-4498-b4b8-2c183df7751b, 50);
+
+IF
+CharacterEnteredTrigger((CHARACTERGUID)_Var1, TRIGGERGUID_S_RC_DW_Undertavern_41caf09c-8ddd-461f-a892-a085009b648b)
+THEN
+UserSetFlag(_Var1, "RC_DW_TavernBouncer_Cleared", 0);
+
+IF
+StoryEvent((CHARACTERGUID)_Var1, "RC_DW_TavernBouncer_CharSpotted")
+AND NOT
+UserGetFlag(_Var1, "RC_DW_TavernBouncer_Cleared", 1)
+AND
+UserGetFlag(_Var1, "RC_DW_TavernBouncer_Questioned", 0)
+THEN
+Proc_StartDialog(0, "RC_DW_TavernBouncer", RC_DW_TavernBouncer_375ff3ff-13c3-4498-b4b8-2c183df7751b, _Var1);
+ObjectSetFlag(_Var1, "RC_DW_TavernBouncer_Questioned", 0);
+
+IF
+CharacterUsedItem((CHARACTERGUID)_Var1, ITEMGUID_S_RC_DW_ToUndertavernStairs_OnStage_8464a78a-67a7-4298-ab61-a3d6be429839)
+THEN
+Proc_RC_DW_ToUndertavernStairs(_Var1);
+
+PROC
+Proc_RC_DW_ToUndertavernStairs((CHARACTERGUID)_Var1)
+AND NOT
+DB_IsPlayer(_Var1)
+THEN
+TeleportTo(_Var1, RC_DW_Tavern_Hideout_Ent_3c484eae-b27c-42a9-9407-09dcdf52ae4b);
+
+PROC
+Proc_RC_DW_ToUndertavernStairs((CHARACTERGUID)_Var1)
+AND NOT
+UserGetFlag(_Var1, "RC_DW_TavernBouncer_Cleared", 1)
+AND
+CharacterCanSee(RC_DW_TavernBouncer_375ff3ff-13c3-4498-b4b8-2c183df7751b, _Var1, 0)
+THEN
+TeleportTo(_Var1, RC_DW_Tavern_Hideout_Ent_3c484eae-b27c-42a9-9407-09dcdf52ae4b);
+
+PROC
+Proc_RC_DW_ToUndertavernStairs((CHARACTERGUID)_Var1)
+AND
+UserGetFlag(_Var1, "RC_DW_TavernBouncer_Cleared", 1)
+THEN
+TeleportTo(_Var1, RC_DW_Tavern_Hideout_Ent_3c484eae-b27c-42a9-9407-09dcdf52ae4b);
+
+IF
+ObjectFlagSet("RC_DW_TavernBouncer_Cleared", _, _)
+AND
+GlobalGetFlag("RC_DW_TavernBouncer_ClearSpotter", 0)
+THEN
+GlobalSetFlag("RC_DW_TavernBouncer_ClearSpotter");
+
+IF
+DialogEnded("RC_DW_TavernBouncer", _)
+AND
+GlobalGetFlag("RC_DW_TavernBouncer_ClearSpotter", 0)
+THEN
+GlobalClearFlag("RC_DW_TavernBouncer_ResetSpotter");
+GlobalSetFlag("RC_DW_TavernBouncer_ResetSpotter");
+
+PROC
+Proc_RC_DW_ToUndertavernStairs((CHARACTERGUID)_Var1)
+AND NOT
+UserGetFlag(_Var1, "RC_DW_TavernBouncer_Cleared", 1)
+AND
+UserGetFlag(_Var1, "RC_DW_TavernBouncer_FirstWarning", 1)
+AND
+CharacterCanSee(RC_DW_TavernBouncer_375ff3ff-13c3-4498-b4b8-2c183df7751b, _Var1, 1)
+AND
+CharacterIsInCombat(RC_DW_TavernBouncer_375ff3ff-13c3-4498-b4b8-2c183df7751b, 0)
+THEN
+ProcForceStopDialog(RC_DW_TavernBouncer_375ff3ff-13c3-4498-b4b8-2c183df7751b);
+ProcMakeNPCHostile(RC_DW_TavernBouncer_375ff3ff-13c3-4498-b4b8-2c183df7751b, _Var1);
+DB_TavernBouncer_HostileTo(_Var1);
+
+PROC
+Proc_RC_DW_ToUndertavernStairs((CHARACTERGUID)_Var1)
+AND NOT
+UserGetFlag(_Var1, "RC_DW_TavernBouncer_Cleared", 1)
+AND
+CharacterCanSee(RC_DW_TavernBouncer_375ff3ff-13c3-4498-b4b8-2c183df7751b, _Var1, 1)
+AND
+CharacterIsInCombat(RC_DW_TavernBouncer_375ff3ff-13c3-4498-b4b8-2c183df7751b, 1)
+THEN
+GlobalSetFlag("RC_DW_TavernBouncer_InCombatWarning");
+Proc_StartDialog(1, "RC_DW_AD_TavernBouncer", CHARACTERGUID_S_RC_DW_TavernBouncer_375ff3ff-13c3-4498-b4b8-2c183df7751b);
+
+PROC
+Proc_RC_DW_ToUndertavernStairs((CHARACTERGUID)_Var1)
+AND NOT
+UserGetFlag(_Var1, "RC_DW_TavernBouncer_Cleared", 1)
+AND NOT
+UserGetFlag(_Var1, "RC_DW_TavernBouncer_FirstWarning", 1)
+AND
+CharacterCanSee(RC_DW_TavernBouncer_375ff3ff-13c3-4498-b4b8-2c183df7751b, _Var1, 1)
+AND
+CharacterIsInCombat(RC_DW_TavernBouncer_375ff3ff-13c3-4498-b4b8-2c183df7751b, 0)
+THEN
+Proc_RC_DW_TavernBouncer_SetWarning(_Var1);
+ObjectSetFlag(_Var1, "RC_DW_TavernBouncer_FirstWarning", 0);
+ObjectSetFlag(_Var1, "RC_DW_TavernBouncer_WarningDialog", 0);
+ProcForceStopDialog(RC_DW_TavernBouncer_375ff3ff-13c3-4498-b4b8-2c183df7751b);
+Proc_StartDialog(0, "RC_DW_TavernBouncer", RC_DW_TavernBouncer_375ff3ff-13c3-4498-b4b8-2c183df7751b, _Var1);
+
+PROC
+Proc_RC_DW_TavernBouncer_SetWarning(_)
+AND
+DB_InRegion(_Var2, TRIGGERGUID_S_RC_DW_Tavern_BouncerTrig_cdaf7fe6-3094-4e1e-bcd9-893350feaec2)
+AND
+ObjectGetFlag(_Var2, "RC_DW_TavernBouncer_FirstWarning", 0)
+THEN
+ObjectSetFlag(_Var2, "RC_DW_TavernBouncer_FirstWarning", 0);
+
+PROC
+Proc_RC_DW_ToUndertavernStairs((CHARACTERGUID)_Var1)
+AND
+CharacterCanSee(RC_DW_TavernBouncer_375ff3ff-13c3-4498-b4b8-2c183df7751b, _Var1, 0)
+THEN
+TeleportTo(_Var1, RC_DW_Tavern_Hideout_Ent_3c484eae-b27c-42a9-9407-09dcdf52ae4b);
+
+IF
+ObjectFlagSet("RC_DW_TavernBouncer_HostileTo", (CHARACTERGUID)_Var1, _)
+THEN
+DB_TavernBouncer_HostileTo(_Var1);
+
+IF
+ObjectFlagSet("RC_DW_TavernBouncer_HostileTo", (CHARACTERGUID)_Var1, _)
+AND
+DB_IsPlayer(_Var3)
+AND
+CharacterIsInPartyWith(_Var3, _Var1, 1)
+AND NOT
+DB_TavernBouncer_HostileTo(_Var3)
+THEN
+DB_TavernBouncer_HostileTo(_Var3);
+
+IF
+ObjectTurnEnded((CHARACTERGUID)_Var1)
+AND NOT
+DB_RC_DW_TavernBouncer_GiveUp(1)
+AND
+DB_TavernBouncer_HostileTo(_Var1)
+AND
+CharacterGetMagicArmorPercentage(CHARACTERGUID_S_RC_DW_TavernBouncer_375ff3ff-13c3-4498-b4b8-2c183df7751b, 0)
+AND
+CharacterIsDead(CHARACTERGUID_S_RC_DW_TavernBouncer_375ff3ff-13c3-4498-b4b8-2c183df7751b, 0)
+AND
+HasActiveStatus(CHARACTERGUID_S_RC_DW_TavernBouncer_375ff3ff-13c3-4498-b4b8-2c183df7751b, "STUNNED", 0)
+AND
+HasActiveStatus(CHARACTERGUID_S_RC_DW_TavernBouncer_375ff3ff-13c3-4498-b4b8-2c183df7751b, "FROZEN", 0)
+AND
+HasActiveStatus(CHARACTERGUID_S_RC_DW_TavernBouncer_375ff3ff-13c3-4498-b4b8-2c183df7751b, "PETRIFIED", 0)
+THEN
+Proc_RC_DW_TavernBouncer_GiveUp(_Var1);
+DB_RC_DW_TavernBouncer_GiveUp(1);
+
+IF
+ObjectTurnEnded((CHARACTERGUID)_Var1)
+AND NOT
+DB_RC_DW_TavernBouncer_GiveUp(1)
+AND
+DB_TavernBouncer_HostileTo(_Var1)
+AND
+CharacterGetArmorPercentage(CHARACTERGUID_S_RC_DW_TavernBouncer_375ff3ff-13c3-4498-b4b8-2c183df7751b, _Var2)
+AND
+_Var2 <= 0
+AND
+CharacterIsDead(CHARACTERGUID_S_RC_DW_TavernBouncer_375ff3ff-13c3-4498-b4b8-2c183df7751b, 0)
+AND
+HasActiveStatus(CHARACTERGUID_S_RC_DW_TavernBouncer_375ff3ff-13c3-4498-b4b8-2c183df7751b, "STUNNED", 0)
+AND
+HasActiveStatus(CHARACTERGUID_S_RC_DW_TavernBouncer_375ff3ff-13c3-4498-b4b8-2c183df7751b, "FROZEN", 0)
+AND
+HasActiveStatus(CHARACTERGUID_S_RC_DW_TavernBouncer_375ff3ff-13c3-4498-b4b8-2c183df7751b, "PETRIFIED", 0)
+THEN
+Proc_RC_DW_TavernBouncer_GiveUp(_Var1);
+DB_RC_DW_TavernBouncer_GiveUp(1);
+
+PROC
+Proc_RC_DW_TavernBouncer_GiveUp((CHARACTERGUID)_Var1)
+AND
+CombatGetIDForCharacter(CHARACTERGUID_S_RC_DW_TavernBouncer_375ff3ff-13c3-4498-b4b8-2c183df7751b, _Var2)
+AND
+CombatGetIDForCharacter(_Var1, _Var2)
+THEN
+JumpToTurn(CHARACTERGUID_S_RC_DW_TavernBouncer_375ff3ff-13c3-4498-b4b8-2c183df7751b);
+NOT DB_TavernBouncer_HostileTo(_Var1);
+ChangeAttitude(CHARACTERGUID_S_RC_DW_TavernBouncer_375ff3ff-13c3-4498-b4b8-2c183df7751b, _Var1, 0);
+EndCombat(_Var2);
+GlobalSetFlag("RC_DW_TavernBouncer_LostFight");
+UserSetFlag(_Var1, "RC_DW_TavernBouncer_Cleared");
+Proc_StartDialog(1, "RC_DW_AD_TavernBouncer", CHARACTERGUID_S_RC_DW_TavernBouncer_375ff3ff-13c3-4498-b4b8-2c183df7751b);
+
+IF
+ObjectLeftCombat(CHARACTERGUID_S_RC_DW_TavernBouncer_375ff3ff-13c3-4498-b4b8-2c183df7751b, _)
+AND
+DB_TavernBouncer_HostileTo(_Var2)
+THEN
+NOT DB_TavernBouncer_HostileTo(_Var2);
+
+
+EXITSECTION
+ENDEXITSECTION
+
+ParentTargetEdge "ReapersCoast"

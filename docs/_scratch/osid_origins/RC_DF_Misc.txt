@@ -1,0 +1,23 @@
+Version 1
+SubGoalCombiner SGC_AND
+
+INITSECTION
+DB_Dialogs(CHARACTERGUID_S_RC_DF_Animals_Rabbit_A_000_d813def9-ace7-48b2-a918-bf5cf32a3e94, "RC_DF_Animals_Rabbit_000");
+DB_Dialogs(CHARACTERGUID_S_RC_DF_Animals_Rabbit_A_001_5d601bf8-c73c-4233-9eb4-fe647ffee1c6, "RC_DF_Animals_Rabbit_001");
+DB_Dialogs(CHARACTERGUID_S_RC_DF_Animals_Rabbit_A_002_48cd3db8-b6c8-4bbd-ae12-ea53467f3ea0, "RC_DF_Animals_Rabbit_002");
+DB_Dialogs(CHARACTERGUID_S_RC_DF_Animals_Rabbit_A_White_000_86834d6c-1401-42a3-8b82-f1deafd3ee78, "RC_DF_Animals_RabbitWhite_001");
+DB_Dialogs(CHARACTERGUID_S_RC_DF_Animals_Squirrel_A_000_5d66f01e-c3de-48a7-a453-efd0d28e6e05, "RC_DF_Animals_Squirrel_000");
+DB_Dialogs(CHARACTERGUID_S_RC_DF_Animals_Squirrel_A_001_a5384962-66ee-4fad-be34-e22b63534116, "RC_DF_Animals_Squirrel_001");
+DB_Dialogs(CHARACTERGUID_S_RC_DF_Animals_Squirrel_A_002_94c089e9-ac75-463d-abb0-804c0afea327, "RC_DF_Animals_Squirrel_002");
+
+KBSECTION
+IF
+RegionEnded("RC_Main")
+THEN
+GoalCompleted;
+
+
+EXITSECTION
+ENDEXITSECTION
+
+ParentTargetEdge "ReapersCoast"

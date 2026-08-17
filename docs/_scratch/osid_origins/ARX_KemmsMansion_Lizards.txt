@@ -1,0 +1,53 @@
+Version 1
+SubGoalCombiner SGC_AND
+
+INITSECTION
+DB_Dialogs(CHARACTERGUID_S_ARX_KemmMansion_2ndFloor_LizardNoble_01_37a7425d-1cfe-4492-aa40-d66caf396a58, "ARX_KemmMansion_2ndFloor_LizardNoble_01");
+DB_Dialogs(CHARACTERGUID_S_ARX_KemmMansion_2ndFloor_LizardNoble_02_c66063b8-b546-4185-96be-f3058aa84257, "ARX_KemmMansion_2ndFloor_LizardNoble_02");
+DB_Dialogs(CHARACTERGUID_S_ARX_KemmMansion_2ndFloor_LizardNoble_03_2ac35354-4d80-4e7d-8113-5acb7b22a787, "ARX_KemmMansion_2ndFloor_LizardNoble_03");
+DB_OriginMomentTag("ARX_KemmMansion_2ndFloor_LizardNoble_01", "RED PRINCE", "ARX_KemmMansion_LizardNobles_COM_RedPrince");
+DB_QuestDef_State("FTJ_COM_RedPrince", "KemmMansion_NotPregnant");
+DB_QuestDef_State("FTJ_COM_RedPrince", "KemmMansion_Pregnant");
+DB_QuestDef_UpdateEvent("FTJ_COM_RedPrince", "HouseOfShadows_KemmMansion_NotPregnant", "QuestUpdate_FTJ_COM_RedPrince_KemmMansion_NotPregnant");
+DB_QuestDef_UpdateEvent("FTJ_COM_RedPrince", "HouseOfShadows_KemmMansion_Pregnant", "QuestUpdate_FTJ_COM_RedPrince_KemmMansion_Pregnant");
+DB_QuestDef_State("FTJ_OriginRedPrince", "KemmMansion_NotPregnant");
+DB_QuestDef_State("FTJ_OriginRedPrince", "KemmMansion_Pregnant");
+
+KBSECTION
+IF
+DialogEnded("ARX_LizardPrincess", _)
+THEN
+NOT DB_OriginMomentTag("ARX_KemmMansion_2ndFloor_LizardNoble_01", "RED PRINCE", "ARX_KemmMansion_LizardNobles_COM_RedPrince");
+
+IF
+DialogEnded("ARX_LizardPrincess_COM_RedPrince", _)
+THEN
+NOT DB_OriginMomentTag("ARX_KemmMansion_2ndFloor_LizardNoble_01", "RED PRINCE", "ARX_KemmMansion_LizardNobles_COM_RedPrince");
+
+IF
+ObjectFlagSet("ARX_HorrorSleep_Sunset_Newt_TaughtSkill", _, _)
+THEN
+GlobalSetFlag("ARX_HorrorSleep_Complete_WithDragonNewborn");
+
+IF
+TextEventSet("sleepkill")
+THEN
+GlobalSetFlag("ARX_HorrorSleep_Closed");
+GlobalSetFlag("ARX_HorrorSleep_Sunset_RedPrincess_Dead");
+
+IF
+TextEventSet("sleeplive")
+THEN
+GlobalSetFlag("ARX_HorrorSleep_Closed");
+GlobalClearFlag("ARX_HorrorSleep_Sunset_RedPrincess_Dead");
+
+IF
+TextEventSet("sadhapreg")
+THEN
+GlobalSetFlag("RC_RedPrincessPregnantAfterRC");
+
+
+EXITSECTION
+ENDEXITSECTION
+
+ParentTargetEdge "ARX"

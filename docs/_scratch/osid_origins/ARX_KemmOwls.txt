@@ -1,0 +1,164 @@
+Version 1
+SubGoalCombiner SGC_AND
+
+INITSECTION
+DB_ARX_KemmMansion_Owls(CHARACTERGUID_S_ARX_KemmMansion_Owl_01_2d5c23bf-85a3-47d7-b8bb-74b256e8b107, 1, "ARX_KemmMansion_AD_Owl_01", TRIGGERGUID_S_ARX_KemmMansion_Owl_01_TirgPoint_9089cb08-1ddd-47cd-8a77-5990721b5244);
+DB_ARX_KemmMansion_Owls(CHARACTERGUID_S_ARX_KemmMansion_Owl_02_c3071d2e-e383-451b-a6f8-1b0788c53655, 2, "ARX_KemmMansion_AD_Owl_02", TRIGGERGUID_S_ARX_KemmMansion_Owl_02_TrigPoint_af8db60a-4032-458d-87ae-0151f6ad3826);
+DB_ARX_KemmMansion_Owls(CHARACTERGUID_S_ARX_KemmMansion_Owl_03_9943779b-7420-4ffb-9723-75ba9f4a10b4, 3, "ARX_KemmMansion_AD_Owl_03", TRIGGERGUID_S_ARX_KemmMansion_Owl_03_TrigPoint_dc9af694-2b6b-44b6-9ad4-14c6492a9407);
+DB_Dialogs(CHARACTERGUID_S_ARX_KemmMansion_Owl_01_2d5c23bf-85a3-47d7-b8bb-74b256e8b107, CHARACTERGUID_S_ARX_KemmMansion_Owl_02_c3071d2e-e383-451b-a6f8-1b0788c53655, CHARACTERGUID_S_ARX_KemmMansion_Owl_03_9943779b-7420-4ffb-9723-75ba9f4a10b4, ITEMGUID_S_ARX_KemmMansion_Owl_Corpse_InvisHelper_f18c2639-187f-4d11-9d78-a87f6e17976b, "ARX_KemmMansion_Owls");
+DB_Dialogs(CHARACTERGUID_S_ARX_KemmMansion_Owlmaster_9b8aaff3-2d0d-4385-995f-a6f08751f709, "ARX_KemmMansion_Owlmaster");
+DB_Dialogs(CHARACTERGUID_S_ARX_KemmMansion_Owl_SummonedOwl_cfc56af5-be1a-46a8-8130-c7d9c7c95ddf, "ARX_KemmMansion_Owl_SummonedOwl");
+DB_Ghosts(CHARACTERGUID_S_ARX_KemmMansion_Owl_Corpse_f12be6a5-56f8-47a9-b519-1708d035c31f, CHARACTERGUID_S_ARX_KemmMansion_Owl_Corpse_Ghost_1a3d4147-ac91-4b01-8af3-4a6df289ad1e, "ARX_KemmMansion_Owl_CorpseGhost");
+SetOnStage(ITEMGUID_S_ARX_KemmMansion_OwlmasterLetter_01_8d37023c-9472-45f6-9d09-4e01168ff0a0, 0);
+SetOnStage(CHARACTERGUID_S_ARX_KemmMansion_Owl_SummonedOwl_cfc56af5-be1a-46a8-8130-c7d9c7c95ddf, 0);
+Proc_ARX_KemmMansion_SetLetters();
+TeleportTo(ITEMGUID_S_ARX_KemmMansion_Owl_Corpse_InvisHelper_f18c2639-187f-4d11-9d78-a87f6e17976b, CHARACTERGUID_S_ARX_KemmMansion_Owl_Corpse_f12be6a5-56f8-47a9-b519-1708d035c31f);
+TriggerRegisterForItems(TRIGGERGUID_S_ARX_KemmMansion_OwlBox_9e8ad95f-db82-4a89-af70-7a2d7af0c5da);
+DB_HasStoryEvent(ITEMGUID_S_ARX_KemmMansion_Owl_Corpse_Hand_482dda7c-f64c-45ce-a453-d194ffc1bee1, "ARX_KemmMansion_Owl_Corpse_Has_Hand");
+
+KBSECTION
+IF
+TextEventSet("owl")
+AND
+DB_IsPlayer(_Var1)
+THEN
+UserSetFlag(_Var1, "QuestUpdate_RC_DF_PaladinCheckpoint_Finished");
+Proc_ARX_KemmMansion_SetLetters();
+
+PROC
+Proc_ARX_KemmMansion_SetLetters()
+AND
+DB_IsPlayer(_Var1)
+AND
+UserGetFlag(_Var1, "QuestUpdate_RC_DF_PaladinCheckpoint_Finished", 1)
+THEN
+SetOnStage(ITEMGUID_S_ARX_KemmMansion_OwlmasterLetter_01_8d37023c-9472-45f6-9d09-4e01168ff0a0, 1);
+SetOnStage(CHARACTERGUID_S_ARX_KemmMansion_Owl_SummonedOwl_cfc56af5-be1a-46a8-8130-c7d9c7c95ddf, 1);
+
+IF
+CharacterTeleported(CHARACTERGUID_S_ARX_KemmMansion_Owl_Corpse_f12be6a5-56f8-47a9-b519-1708d035c31f, _, _, _, _, _, _, _, _)
+THEN
+TeleportTo(ITEMGUID_S_ARX_KemmMansion_Owl_Corpse_InvisHelper_f18c2639-187f-4d11-9d78-a87f6e17976b, CHARACTERGUID_S_ARX_KemmMansion_Owl_Corpse_f12be6a5-56f8-47a9-b519-1708d035c31f);
+
+IF
+ObjectFlagSet("ARX_KemmMansion_Owls_TakeHand", (GUIDSTRING)_Var1, _)
+THEN
+ItemToInventory(ITEMGUID_S_ARX_KemmMansion_Owl_Corpse_Hand_482dda7c-f64c-45ce-a453-d194ffc1bee1, _Var1);
+
+IF
+DialogStarted("ARX_KemmMansion_Owls", _)
+THEN
+CharacterMakeStoryNpc(CHARACTERGUID_S_ARX_KemmMansion_Owl_Corpse_f12be6a5-56f8-47a9-b519-1708d035c31f, 1);
+
+IF
+DialogEnded("ARX_KemmMansion_Owls", _)
+THEN
+CharacterMakeStoryNpc(CHARACTERGUID_S_ARX_KemmMansion_Owl_Corpse_f12be6a5-56f8-47a9-b519-1708d035c31f, 0);
+
+PROC
+ProcBlockPickupOfItem((CHARACTERGUID)_Var1, ITEMGUID_S_ARX_KemmMansion_Owl_Corpse_Hand_482dda7c-f64c-45ce-a453-d194ffc1bee1)
+AND
+GlobalGetFlag("ARX_KemmMansion_Owls_HandTaken", 0)
+AND
+GlobalGetFlag("ARX_KemmMansion_OwlIsDead", 0)
+THEN
+DB_CustomPickupItemResponse(_Var1, ITEMGUID_S_ARX_KemmMansion_Owl_Corpse_Hand_482dda7c-f64c-45ce-a453-d194ffc1bee1, 0);
+Proc_ARX_KemmMansion_Owls_InitiateDialog(_Var1);
+
+PROC
+ProcBlockMoveOfItem((CHARACTERGUID)_Var1, ITEMGUID_S_ARX_KemmMansion_Owl_Corpse_Hand_482dda7c-f64c-45ce-a453-d194ffc1bee1)
+AND
+GlobalGetFlag("ARX_KemmMansion_Owls_HandTaken", 0)
+AND
+GlobalGetFlag("ARX_KemmMansion_OwlIsDead", 0)
+THEN
+DB_CustomMoveItemResponse(_Var1, ITEMGUID_S_ARX_KemmMansion_Owl_Corpse_Hand_482dda7c-f64c-45ce-a453-d194ffc1bee1, 0);
+Proc_ARX_KemmMansion_Owls_InitiateDialog(_Var1);
+
+PROC
+ProcBlockUseOfItem((CHARACTERGUID)_Var1, ITEMGUID_S_ARX_KemmMansion_Owl_Corpse_Hand_482dda7c-f64c-45ce-a453-d194ffc1bee1)
+AND
+GlobalGetFlag("ARX_KemmMansion_Owls_HandTaken", 0)
+AND
+GlobalGetFlag("ARX_KemmMansion_OwlIsDead", 0)
+THEN
+DB_CustomUseItemResponse(_Var1, ITEMGUID_S_ARX_KemmMansion_Owl_Corpse_Hand_482dda7c-f64c-45ce-a453-d194ffc1bee1, 0);
+Proc_ARX_KemmMansion_Owls_InitiateDialog(_Var1);
+
+PROC
+Proc_ARX_KemmMansion_Owls_InitiateDialog((CHARACTERGUID)_Var1)
+AND
+IsSpeakerReserved(ITEMGUID_S_ARX_KemmMansion_Owl_Corpse_InvisHelper_f18c2639-187f-4d11-9d78-a87f6e17976b, 0)
+THEN
+Proc_StartDialog(0, "ARX_KemmMansion_Owls", CHARACTERGUID_S_ARX_KemmMansion_Owl_01_2d5c23bf-85a3-47d7-b8bb-74b256e8b107, CHARACTERGUID_S_ARX_KemmMansion_Owl_02_c3071d2e-e383-451b-a6f8-1b0788c53655, CHARACTERGUID_S_ARX_KemmMansion_Owl_03_9943779b-7420-4ffb-9723-75ba9f4a10b4, ITEMGUID_S_ARX_KemmMansion_Owl_Corpse_InvisHelper_f18c2639-187f-4d11-9d78-a87f6e17976b, _Var1);
+
+IF
+CharacterLootedCharacterCorpse((CHARACTERGUID)_Var1, CHARACTERGUID_S_ARX_KemmMansion_Owl_Corpse_f12be6a5-56f8-47a9-b519-1708d035c31f)
+AND
+GlobalGetFlag("ARX_KemmMansion_OwlIsDead", 0)
+THEN
+DB_CustomUseItemResponse(_Var1, CHARACTERGUID_S_ARX_KemmMansion_Owl_Corpse_f12be6a5-56f8-47a9-b519-1708d035c31f, 0);
+Proc_ARX_KemmMansion_Owls_InitiateDialog(_Var1);
+
+IF
+ItemLeftTrigger(ITEMGUID_S_ARX_KemmMansion_Owl_Corpse_Hand_482dda7c-f64c-45ce-a453-d194ffc1bee1, TRIGGERGUID_S_ARX_KemmMansion_OwlBox_9e8ad95f-db82-4a89-af70-7a2d7af0c5da, _)
+THEN
+GlobalSetFlag("ARX_KemmMansion_Owls_HandTaken");
+
+IF
+ItemAddedToCharacter(ITEMGUID_S_ARX_KemmMansion_Owl_Corpse_Hand_482dda7c-f64c-45ce-a453-d194ffc1bee1, _)
+THEN
+GlobalSetFlag("ARX_KemmMansion_Owls_HandTaken");
+
+IF
+ItemAddedToContainer(ITEMGUID_S_ARX_KemmMansion_Owl_Corpse_Hand_482dda7c-f64c-45ce-a453-d194ffc1bee1, _)
+THEN
+GlobalSetFlag("ARX_KemmMansion_Owls_HandTaken");
+
+IF
+ItemDestroyed(ITEMGUID_S_ARX_KemmMansion_Owl_Corpse_Hand_482dda7c-f64c-45ce-a453-d194ffc1bee1)
+THEN
+GlobalSetFlag("ARX_KemmMansion_Owls_HandTaken");
+
+IF
+DialogStarted("ARX_KemmMansion_Owls", _)
+AND
+DB_ARX_KemmMansion_Owls(_Var2, _, _, _Var5)
+THEN
+CharacterMoveTo(_Var2, _Var5, 1, "ARX_KemmMansion_Owls_ArrivedToTrig", 0);
+
+IF
+StoryEvent((CHARACTERGUID)_Var1, "ARX_KemmMansion_Owls_ArrivedToTrig")
+AND
+DB_DialogNPCs(_Var2, _Var1, _)
+AND
+DB_DialogPlayers(_Var2, _Var4, _)
+THEN
+CharacterLookAt(_Var1, _Var4);
+
+IF
+CharacterDied((CHARACTERGUID)_Var1)
+AND
+DB_ARX_KemmMansion_Owls(_Var1, _, _, _)
+THEN
+Proc_ARX_KemmMansion_Owls_SetAutomatedDialog();
+GlobalSetFlag("ARX_KemmMansion_OwlIsDead");
+
+PROC
+Proc_ARX_KemmMansion_Owls_SetAutomatedDialog()
+AND
+DB_ARX_KemmMansion_Owls(_Var1, _, _Var3, _)
+THEN
+ProcRemoveAllDialogEntriesForSpeaker(_Var1);
+DB_AD_Dialog(_Var1, _Var3);
+
+IF
+GameBookInterfaceClosed(ITEMGUID_S_ARX_KemmMansion_OwlmasterLetter_01_8d37023c-9472-45f6-9d09-4e01168ff0a0, (CHARACTERGUID)_Var1)
+THEN
+UserSetFlag(_Var1, "ARX_KemmMansion_Read_OwlmasterLetter");
+
+
+EXITSECTION
+ENDEXITSECTION
+
+ParentTargetEdge "ARX"

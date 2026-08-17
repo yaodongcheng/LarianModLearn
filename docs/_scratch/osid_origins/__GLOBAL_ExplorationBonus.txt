@@ -1,0 +1,82 @@
+Version 1
+SubGoalCombiner SGC_AND
+
+INITSECTION
+
+KBSECTION
+IF
+DB_ExplorationZones(_Var1, _Var2, _Var3, _Var4)
+AND NOT
+DB_Subregion(_Var1, _, _)
+THEN
+ProcTriggerRegisterForPlayers(_Var1);
+
+IF
+CharacterEnteredTrigger((CHARACTERGUID)_Var1, (TRIGGERGUID)_Var2)
+AND
+DB_ExplorationZones(_Var2, _Var3, _Var4, _Var5)
+THEN
+ProcAddXPToParty(_Var1, _Var2);
+ProcCheckRemoveExplorationZone(_Var2);
+
+PROC
+ProcAddXPToParty((CHARACTERGUID)_Var1, (TRIGGERGUID)_Var2)
+AND
+DB_ExplorationZones(_Var2, _Var3, _Var4, _Var5)
+AND
+DB_IsPlayer(_Var6)
+AND NOT
+DB_ExplorationXPGiven(_Var6, _Var2)
+AND
+CharacterIsInPartyWith(_Var6, _Var1, 1)
+THEN
+DB_ExplorationXPGiven(_Var6, _Var2);
+CharacterAddExplorationExperience(_Var6, _Var3, _Var4, _Var5);
+
+IF
+DB_ExplorationXPGiven(_Var1, _Var2)
+AND NOT
+DB_Subregion(_Var2, _, _)
+THEN
+TriggerUnregisterForCharacter(_Var2, _Var1);
+
+PROC
+ProcCheckRemoveExplorationZone((TRIGGERGUID)_Var1)
+AND
+DB_IsPlayer(_Var2)
+AND NOT
+DB_ExplorationXPGiven(_Var2, _Var1)
+THEN
+DB_ExplorationZoneStillOpen(1);
+
+PROC
+ProcCheckRemoveExplorationZone((TRIGGERGUID)_Var1)
+AND NOT
+DB_ExplorationZoneStillOpen(1)
+AND
+DB_ExplorationZones(_Var1, _Var2, _Var3, _Var4)
+THEN
+NOT DB_ExplorationZones(_Var1, _Var2, _Var3, _Var4);
+
+PROC
+ProcCheckRemoveExplorationZone((TRIGGERGUID)_Var1)
+THEN
+NOT DB_ExplorationZoneStillOpen(1);
+
+IF
+CharacterJoinedParty((CHARACTERGUID)_Var1)
+AND
+DB_ExplorationZones(_Var2, _Var3, _Var4, _Var5)
+AND
+DB_ExplorationXPGiven(_Var6, _Var2)
+AND
+CharacterIsInPartyWith(_Var6, _Var1, 1)
+THEN
+DB_ExplorationXPGiven(_Var1, _Var2);
+ProcCheckRemoveExplorationZone(_Var2);
+
+
+EXITSECTION
+ENDEXITSECTION
+
+ParentTargetEdge "__Start"

@@ -1,0 +1,290 @@
+Version 1
+SubGoalCombiner SGC_AND
+
+INITSECTION
+DB_TUT_LowerDeck_RescueCombatVoidling(S_TUT_LowerDeck_Starboard_Helper_Invisible_A_001_a5528d7b-b26c-4141-8b07-c9e2a9205177, ITEMGUID_S_TUT_LowerDeck_RescueCombat_VoidlingSpawn_000_b0286eaa-e03b-42a8-bb4d-53f3e52b5715);
+DB_TUT_LowerDeck_RescueCombatVoidling(S_TUT_LowerDeck_Starboard_Helper_Invisible_A_002_e45a068b-70bb-4e91-973d-3d6c616aa072, ITEMGUID_S_TUT_LowerDeck_RescueCombat_VoidlingSpawn_001_79647956-ffc5-4488-a754-d57f63a61402);
+DB_TUT_LowerDeck_RescueCombatVoidling(S_TUT_LowerDeck_Port_Helper_Invisible_A_001_df020bc5-7887-418e-a1ba-cf9c467d0ba9, ITEMGUID_S_TUT_LowerDeck_RescueCombat_VoidlingSpawn_002_1e1ae820-d4ab-4299-b07e-190441ea6a70);
+DB_TUT_LowerDeck_RescueCombatVoidling(S_TUT_LowerDeck_Port_Helper_Invisible_A_004_b5d5c52e-544c-445f-b0cf-ddcaf4cc4405, ITEMGUID_S_TUT_LowerDeck_RescueCombat_VoidlingSpawn_004_4ef9f67c-29c1-4a88-ab78-150155661c3a);
+DB_KillCounter("TUT_RescueCombat", 0);
+
+KBSECTION
+IF
+TextEventSet("tut_hatchlinginthehole")
+THEN
+PROC_TUT_LowerDeck_LaunchVoidLings();
+
+PROC
+PROC_TUT_LowerDeck_LaunchVoidLings()
+AND
+DB_TUT_OriginsToRescue(_Var1)
+AND NOT
+DB_IsPlayer(_Var1)
+AND
+IsSpeakerReserved(_Var1, 1)
+THEN
+ProcForceStopDialog(_Var1);
+
+PROC
+PROC_TUT_LowerDeck_LaunchVoidLings()
+AND
+DB_TUT_OriginsToRescue(_Var1)
+AND NOT
+DB_IsPlayer(_Var1)
+THEN
+SetRelationIndivFactionToPlayers(_Var1, 100);
+
+PROC
+PROC_TUT_LowerDeck_LaunchVoidLings()
+AND
+DB_TUT_LowerDeck_RescueCombatVoidling(_Var1, _)
+AND
+Random(1000, _Var3)
+THEN
+ProcObjectTimer(_Var1, "TUT_LowerDeck_LaunchVoidling", _Var3);
+
+PROC
+ProcObjectTimerFinished((ITEMGUID)_Var1, "TUT_LowerDeck_LaunchVoidling")
+AND
+DB_TUT_LowerDeck_RescueCombatVoidling(_Var1, _Var2)
+AND
+GetVarString(_Var1, "TurretShootEvent", _Var3)
+THEN
+SetVarObject(_Var1, "TargetItem", _Var2);
+SetVarInteger(_Var1, "TurretCasterLevel", 1);
+SetStoryEvent(_Var1, _Var3);
+
+IF
+StoryEvent((ITEMGUID)_Var1, "fire")
+AND
+DB_TUT_LowerDeck_RescueCombatVoidling(_Var1, _Var2)
+AND
+GetDistanceTo(_Var1, _Var2, _Var3)
+AND
+RealProduct(_Var3, 100, _Var4)
+AND
+Integer(_Var4, _Var5)
+THEN
+ProcObjectTimer(_Var1, "TUT_LowerDeck_AddVoidwoken", _Var5);
+
+PROC
+ProcObjectTimerFinished((ITEMGUID)_Var1, "TUT_LowerDeck_AddVoidwoken")
+AND
+DB_TUT_LowerDeck_RescueCombatVoidling(_Var1, _Var2)
+AND
+GetPosition(_Var2, _Var3, _Var4, _Var5)
+AND
+CharacterCreateAtPosition(_Var3, _Var4, _Var5, "TUT_Creatures_Voidwoken_Hatchling_d3d153ae-4f4c-4d15-9082-2a8208831626", 0, _Var6)
+THEN
+PROC_TUT_AddRescueCombat(_Var6);
+
+PROC
+PROC_TUT_AddRescueCombat((CHARACTERGUID)_Var1)
+AND
+DB_KillCounter("TUT_RescueCombat", _Var2)
+AND
+IntegerSum(_Var2, 1, _Var3)
+THEN
+NOT DB_KillCounter("TUT_RescueCombat", _Var2);
+DB_KillCounter("TUT_RescueCombat", _Var3);
+
+PROC
+PROC_TUT_AddRescueCombat((CHARACTERGUID)_Var1)
+THEN
+DB_KillCounter_Internal(_Var1, "TUT_RescueCombat");
+
+IF
+GlobalFlagSet("TUT_LowerDeck_OriginsFleeingToTop")
+THEN
+PROC_TUT_LowerDeck_LaunchVoidLings();
+
+IF
+CombatStarted((INTEGER)_Var1)
+AND
+DB_KillCounter_Internal(_Var2, "TUT_RescueCombat")
+THEN
+DB_NOOP(1);
+
+IF
+CombatStarted((INTEGER)_Var1)
+AND
+DB_CombatCharacters(_Var2, _Var1)
+AND
+DB_KillCounter_Internal(_Var2, "TUT_RescueCombat")
+AND
+QueryOnlyOnce("TUT_RescueCombat_GotCombatID")
+THEN
+DB_TUT_RescueCombat(_Var1);
+
+IF
+CombatStarted((INTEGER)_Var1)
+AND
+DB_TUT_RescueCombat(_Var1)
+THEN
+DB_TUT_RescueCombatStarted(_Var1);
+
+IF
+DB_TUT_RescueCombatStarted(_Var1)
+AND
+DB_IsPlayer(_Var2)
+AND
+DB_CombatCharacters(_Var2, _Var1)
+AND
+GlobalGetFlag("TUT_RescueCombat_JumpedToTurn", 0)
+THEN
+JumpToTurn(_Var2);
+GlobalSetFlag("TUT_RescueCombat_JumpedToTurn");
+
+IF
+ObjectEnteredCombat((CHARACTERGUID)_Var1, (INTEGER)_Var2)
+AND
+DB_TUT_RescueCombatStarted(_Var2)
+AND
+DB_IsPlayer(_Var1)
+AND
+GlobalGetFlag("TUT_RescueCombat_JumpedToTurn", 0)
+THEN
+JumpToTurn(_Var1);
+
+IF
+CombatStarted((INTEGER)_Var1)
+AND
+DB_TUT_RescueCombat(_Var1)
+AND
+DB_CombatCharacters(_Var2, _Var1)
+AND
+DB_IsPlayer(_Var2)
+THEN
+ObjectSetFlag(_Var2, "TUT_FoughtInRescueCombat");
+
+IF
+ObjectEnteredCombat((CHARACTERGUID)_Var1, (INTEGER)_Var2)
+AND
+DB_TUT_RescueCombat(_Var2)
+AND
+DB_IsPlayer(_Var1)
+THEN
+ObjectSetFlag(_Var1, "TUT_FoughtInRescueCombat");
+
+IF
+ObjectFlagSet("TUT_FoughtInRescueCombat", (GUIDSTRING)_Var1, _)
+THEN
+ObjectSetFlag(_Var1, "GLO_SetTag_HERO");
+
+IF
+ObjectTurnStarted((CHARACTERGUID)_Var1)
+AND
+DB_TUT_OriginsToRescue(_Var1)
+AND
+DB_GlobalFlag("TUT_LowerDeck_OriginsFleeingToTop")
+AND
+DB_GlobalFlag("TUT_RescueCombat_JumpedToTurn")
+AND NOT
+DB_IsPlayer(_Var1)
+AND
+CharacterIsDead(_Var1, 0)
+AND NOT
+DB_TUT_RescueCombat_FirstTurnAD(_Var1)
+THEN
+DB_TUT_RescueCombat_FirstTurnAD(_Var1);
+SetStoryEvent(_Var1, "GEN_PauseCombatComments");
+Proc_StartDialog(1, "TUT_AD_RescueCombat_FirstTurn", _Var1);
+
+PROC
+ReactOnKillCounter("TUT_RescueCombat")
+THEN
+GlobalSetFlag("TUT_RescueCombatFinished");
+PROC_TUT_RescueCombat_FinishAD();
+
+IF
+ObjectLeftCombat((CHARACTERGUID)_Var1, _)
+AND
+DB_TUT_OriginsToRescue(_Var1)
+AND
+GlobalGetFlag("TUT_LowerDeck_OriginsFleeingToTop", 1)
+AND NOT
+DB_IsPlayer(_Var1)
+AND
+CharacterIsDead(_Var1, 0)
+THEN
+DB_TUT_RescueCombat_FinishAD(_Var1);
+
+PROC
+PROC_TUT_RescueCombat_FinishAD()
+AND
+DB_TUT_RescueCombat_FinishAD(_Var1)
+AND
+QueryOnlyOnce("TUT_RescueCombat_FinishAD")
+THEN
+NOT DB_TUT_RescueCombat_FinishAD(_Var1);
+Proc_StartDialog(1, "TUT_AD_RescueCombat_Finished", _Var1);
+
+PROC
+PROC_TUT_RescueCombat_FinishAD()
+THEN
+NOT DB_OnlyOnce("TUT_RescueCombat_FinishAD");
+
+IF
+AutomatedDialogEnded("TUT_AD_RescueCombat_Finished", _)
+THEN
+PROC_TUT_RescueCombat_FinishAD();
+
+PROC
+PROC_TUT_LowerDeck_RescueCombatVoidlingCleanUp()
+AND
+DB_TUT_LowerDeck_RescueCombatVoidling(_Var1, _Var2)
+THEN
+NOT DB_TUT_LowerDeck_RescueCombatVoidling(_Var1, _Var2);
+
+PROC
+ProcRegionEnded("TUT_Tutorial_A")
+AND
+DB_TUT_RescueCombat_FinishAD(_Var1)
+THEN
+NOT DB_TUT_RescueCombat_FinishAD(_Var1);
+
+PROC
+ProcRegionEnded("TUT_Tutorial_A")
+AND
+DB_KillCounter_Internal(_Var1, "TUT_RescueCombat")
+THEN
+NOT DB_KillCounter_Internal(_Var1, "TUT_RescueCombat");
+
+PROC
+ProcRegionEnded("TUT_Tutorial_A")
+AND
+DB_KillCounter("TUT_RescueCombat", _Var1)
+THEN
+NOT DB_KillCounter("TUT_RescueCombat", _Var1);
+
+PROC
+ProcRegionEnded("TUT_Tutorial_A")
+THEN
+PROC_TUT_LowerDeck_RescueCombatVoidlingCleanUp();
+
+PROC
+ProcRegionEnded("TUT_Tutorial_A")
+AND
+DB_OriginRecruitmentLocation_Region("TUT_Tutorial_A", _Var1, _, _)
+AND NOT
+DB_IsPlayer(_Var1)
+THEN
+SetRelationIndivFactionToPlayers(_Var1, 50);
+
+PROC
+ProcRegionEnded("TUT_Tutorial_A")
+AND
+DB_TUT_RescueCombat_FirstTurnAD(_Var1)
+THEN
+NOT DB_TUT_RescueCombat_FirstTurnAD(_Var1);
+
+PROC
+ProcRegionEnded("TUT_Tutorial_A")
+THEN
+GoalCompleted;
+
+
+EXITSECTION
+ENDEXITSECTION
+
+ParentTargetEdge "TUT_Rescue"

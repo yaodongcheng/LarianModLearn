@@ -1,0 +1,22 @@
+Version 1
+SubGoalCombiner SGC_AND
+
+INITSECTION
+DB_Inflation_RegionChange("CoS_Main", 117);
+DB_Inflation_RegionChange("CoS_Main_Ending", 117);
+DB_Inflation_RegionChange("ARX_Main", 130);
+DB_Inflation_RegionChange("ARX_EndGame", 130);
+
+KBSECTION
+IF
+RegionStarted((STRING)_Var1)
+AND
+DB_Inflation_RegionChange(_Var1, _Var2)
+THEN
+SetGlobalPriceModifier(_Var2);
+
+
+EXITSECTION
+ENDEXITSECTION
+
+ParentTargetEdge "DOS2Patch6NewGameWrapper"

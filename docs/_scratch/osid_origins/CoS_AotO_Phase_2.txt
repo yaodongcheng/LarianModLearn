@@ -1,0 +1,700 @@
+Version 1
+SubGoalCombiner SGC_AND
+
+INITSECTION
+SetOnStage(CHARACTERGUID_S_GLO_Dallis_69b951dc-55a4-44b8-a2d5-5efedbd7d572, 0);
+SetOnStage(CHARACTERGUID_S_GLO_Braccus_358ba541-0710-43be-8263-87afe1a8d9b5, 0);
+ProcTriggerRegisterForPlayers(TRIGGERGUID_S_CoS_AotO_StartGodsEvent_Trigger_45972925-2f2d-42d5-a58c-49982809dced);
+DB_CoS_AotO_SilentMonks(CHARACTERGUID_S_CoS_AotO_SilentMonk_001_d64285b4-51d4-4f71-afcb-3f04ec33bc31);
+DB_CoS_AotO_SilentMonks(CHARACTERGUID_S_CoS_AotO_SilentMonk_002_bfe682fb-cfe4-423e-9be7-6af5ac934e87);
+DB_CoS_AotO_SilentMonks(CHARACTERGUID_S_CoS_AotO_SilentMonk_003_d7655de4-b0dc-4eec-ae55-c9e0064b2b58);
+DB_CoS_AotO_SilentMonks(CHARACTERGUID_S_CoS_AotO_SilentMonk_004_6d9b5096-775a-44b0-aad2-f87edefd9b2d);
+DB_CoS_AotO_SilentMonks(CHARACTERGUID_S_CoS_AotO_SilentMonk_005_7c6d5355-c8eb-4dd5-9961-1e4a8d4bdafd);
+DB_CoS_AotO_SilentMonks(CHARACTERGUID_S_CoS_AotO_SilentMonk_006_34e0f99c-0639-4408-be08-59f1fc7459f1);
+DB_CoS_AotO_CompanionOneLiners(CHARACTERGUID_S_Player_Beast_f25ca124-a4d2-427b-af62-df66df41a978, "CoS_AotO_Beast_EscapeOneLiner");
+DB_CoS_AotO_CompanionOneLiners(CHARACTERGUID_S_Player_Fane_02a77f1f-872b-49ca-91ab-32098c443beb, "CoS_AotO_Fane_EscapeOneLiner");
+DB_CoS_AotO_CompanionOneLiners(CHARACTERGUID_S_Player_Ifan_ad9a3327-4456-42a7-9bf4-7ad60cc9e54f, "CoS_AotO_Ifan_EscapeOneLiner");
+DB_CoS_AotO_CompanionOneLiners(CHARACTERGUID_S_Player_Lohse_bb932b13-8ebf-4ab4-aac0-83e6924e4295, "CoS_AotO_Lohse_EscapeOneLiner");
+DB_CoS_AotO_CompanionOneLiners(CHARACTERGUID_S_Player_RedPrince_a26a1efb-cdc8-4cf3-a7b2-b2f9544add6f, "CoS_AotO_RedPrince_EscapeOneLiner");
+DB_CoS_AotO_CompanionOneLiners(CHARACTERGUID_S_Player_Sebille_c8d55eaf-e4eb-466a-8f0d-6a9447b5b24c, "CoS_AotO_Sebille_EscapeOneLiner");
+DB_CoS_AotO_CreateGodwokenNemesis_NemesisTemplate("UNDEAD", "QUEST_CoS_GodwokenNemesis_Wizard_684ce482-c091-432c-adff-34039d580eb9", "CoS_AotO_Amadia_Buff", "CoS_AotO_Phase2_GodConfrontation_Amadia");
+DB_CoS_AotO_CreateGodwokenNemesis_NemesisTemplate("HUMAN", "QUEST_CoS_GodwokenNemesis_Human_2f17616a-b8d0-44df-a5b1-614755e48ac7", "CoS_AotO_Rhalic_Buff", "CoS_AotO_Phase2_GodConfrontation_Rhalic");
+DB_CoS_AotO_CreateGodwokenNemesis_NemesisTemplate("ELF", "QUEST_CoS_GodwokenNemesis_Elf_773b0671-b28b-4acb-8015-18c015f7e34f", "CoS_AotO_Tir_Buff", "CoS_AotO_Phase2_GodConfrontation_Tir");
+DB_CoS_AotO_CreateGodwokenNemesis_NemesisTemplate("LIZARD", "QUEST_CoS_GodwokenNemesis_Lizard_d4dbc857-7fc4-4e55-8920-64532de49e5e", "CoS_AotO_Zorl_Buff", "CoS_AotO_Phase2_GodConfrontation_Zorl");
+DB_CoS_AotO_CreateGodwokenNemesis_NemesisTemplate("DWARF", "QUEST_CoS_GodwokenNemesis_Dwarf_682b3c8d-cdc6-45aa-8e61-fb468284ca7e", "CoS_AotO_Duna_Buff", "CoS_AotO_Phase2_GodConfrontation_Duna");
+DB_CoS_AotO_CreateGodwokenNemesis_SkillCombos("AirSpecialist", "Projectile_EnemyLightningBolt", 4);
+DB_CoS_AotO_CreateGodwokenNemesis_SkillCombos("AirSpecialist", "ProjectileStrike_EnemyDazingBolt", 5);
+DB_CoS_AotO_CreateGodwokenNemesis_SkillCombos("AirSpecialist", "Target_EnemyPressureSpike", 6);
+DB_CoS_AotO_CreateGodwokenNemesis_SkillCombos("AirSpecialist", "Shout_EnemyElectricFence", 8);
+DB_CoS_AotO_CreateGodwokenNemesis_SkillCombos("AirSpecialist", "Storm_EnemyLightning", 9);
+DB_CoS_AotO_Nemesis_AiHint("AirSpecialist", "AiHint_Mage", "SwapArchetype_Mage");
+DB_CoS_AotO_CreateGodwokenNemesis_SkillCombos("FireSpecialist", "Projectile_EnemyFlamingDaggers", 3);
+DB_CoS_AotO_CreateGodwokenNemesis_SkillCombos("FireSpecialist", "Target_EnemyHaste", 4);
+DB_CoS_AotO_CreateGodwokenNemesis_SkillCombos("FireSpecialist", "Target_EnemyFireWhip", 5);
+DB_CoS_AotO_CreateGodwokenNemesis_SkillCombos("FireSpecialist", "Zone_EnemyLaserRay", 6);
+DB_CoS_AotO_CreateGodwokenNemesis_SkillCombos("FireSpecialist", "Target_EnemySpontCombustion", 6);
+DB_CoS_AotO_CreateGodwokenNemesis_SkillCombos("FireSpecialist", "ProjectileStrike_EnemyMeteorShower", 9);
+DB_CoS_AotO_Nemesis_AiHint("FireSpecialist", "AiHint_Mage", "SwapArchetype_Mage");
+DB_CoS_AotO_CreateGodwokenNemesis_SkillCombos("WarriorLore", "Cone_EnemyGroundSmash", 3);
+DB_CoS_AotO_CreateGodwokenNemesis_SkillCombos("WarriorLore", "Target_EnemyCripplingBlow", 4);
+DB_CoS_AotO_CreateGodwokenNemesis_SkillCombos("WarriorLore", "Shout_EnemyWhirlwind", 5);
+DB_CoS_AotO_CreateGodwokenNemesis_SkillCombos("WarriorLore", "Target_EnemyFlurry", 6);
+DB_CoS_AotO_CreateGodwokenNemesis_SkillCombos("WarriorLore", "Jump_EnemyPhoenixDive", 7);
+DB_CoS_AotO_CreateGodwokenNemesis_SkillCombos("WarriorLore", "Target_EnemyOverpower", 9);
+DB_CoS_AotO_CreateGodwokenNemesis_SkillCombos("Polymorph", "Target_EnemyTentacleLash", 4);
+DB_CoS_AotO_CreateGodwokenNemesis_SkillCombos("Polymorph", "Shout_EnemySteelSkin", 5);
+DB_CoS_AotO_CreateGodwokenNemesis_SkillCombos("Polymorph", "Target_EnemyStripResistance", 6);
+DB_CoS_AotO_CreateGodwokenNemesis_SkillCombos("RogueLore", "Projectile_EnemyThrowingKnife", 3);
+DB_CoS_AotO_CreateGodwokenNemesis_SkillCombos("RogueLore", "Projectile_EnemyChloroform", 4);
+DB_CoS_AotO_CreateGodwokenNemesis_SkillCombos("RogueLore", "Target_EnemyCorruptedBlade", 5);
+DB_CoS_AotO_CreateGodwokenNemesis_SkillCombos("RogueLore", "Jump_EnemyCloakAndDagger", 7);
+DB_CoS_AotO_CreateGodwokenNemesis_SkillCombos("RogueLore", "Target_EnemyDaggersDrawn", 8);
+DB_CoS_AotO_CreateGodwokenNemesis_SkillCombos("RogueLore", "Target_EnemyFatality", 9);
+DB_CoS_AotO_CreateGodwokenNemesis_SkillCombos("Summoning", "Target_EnemyHarmony", 4);
+DB_CoS_AotO_CreateGodwokenNemesis_SkillCombos("Summoning", "Target_EnemySoulMate", 5);
+DB_CoS_AotO_CreateGodwokenNemesis_SkillCombos("Summoning", "Target_EnemyTotemFromSurface", 6);
+DB_CoS_AotO_CreateGodwokenNemesis_SkillCombos("WaterSpecialist", "Target_EnemyFrostyShell", 3);
+DB_CoS_AotO_CreateGodwokenNemesis_SkillCombos("WaterSpecialist", "ProjectileStrike_EnemyHailStrike", 4);
+DB_CoS_AotO_CreateGodwokenNemesis_SkillCombos("WaterSpecialist", "Projectile_EnemyIceFan", 5);
+DB_CoS_AotO_CreateGodwokenNemesis_SkillCombos("WaterSpecialist", "Target_EnemyWinterBlast", 6);
+DB_CoS_AotO_CreateGodwokenNemesis_SkillCombos("WaterSpecialist", "Projectile_EnemyChainHeal", 7);
+DB_CoS_AotO_CreateGodwokenNemesis_SkillCombos("WaterSpecialist", "Cone_EnemySteamLance", 8);
+DB_CoS_AotO_CreateGodwokenNemesis_SkillCombos("WaterSpecialist", "ProjectileStrike_EnemyHailAttack", 9);
+DB_CoS_AotO_Nemesis_AiHint("WaterSpecialist", "AiHint_Mage", "SwapArchetype_Mage");
+DB_CoS_AotO_CreateGodwokenNemesis_SkillCombos("Necromancy", "Target_EnemyMosquitoSwarm", 3);
+DB_CoS_AotO_CreateGodwokenNemesis_SkillCombos("Necromancy", "Target_EnemyShacklesOfPain", 5);
+DB_CoS_AotO_CreateGodwokenNemesis_SkillCombos("Necromancy", "Target_EnemyInfect", 6);
+DB_CoS_AotO_CreateGodwokenNemesis_SkillCombos("Necromancy", "Target_EnemyGraspOfTheStarved", 7);
+DB_CoS_AotO_CreateGodwokenNemesis_SkillCombos("Necromancy", "Cone_EnemySilencingStare", 8);
+DB_CoS_AotO_CreateGodwokenNemesis_SkillCombos("Necromancy", "Shout_EnemyNecromancerTotems", 9);
+DB_CoS_AotO_Nemesis_AiHint("EarthSpecialist", "AiHint_Mage", "SwapArchetype_Mage");
+DB_CoS_AotO_CreateGodwokenNemesis_SkillCombos("EarthSpecialist", "Projectile_EnemyPyroclasticRock", 3);
+DB_CoS_AotO_CreateGodwokenNemesis_SkillCombos("EarthSpecialist", "Projectile_EnemyPoisonDart", 4);
+DB_CoS_AotO_CreateGodwokenNemesis_SkillCombos("EarthSpecialist", "Shout_EnemyReactiveArmor", 5);
+DB_CoS_AotO_CreateGodwokenNemesis_SkillCombos("EarthSpecialist", "Target_EnemyWormTremor", 6);
+DB_CoS_AotO_CreateGodwokenNemesis_SkillCombos("EarthSpecialist", "Projectile_EnemyAcidSpores", 7);
+DB_CoS_AotO_CreateGodwokenNemesis_SkillCombos("EarthSpecialist", "Projectile_EnemyPyroclasticEruption", 9);
+DB_CoS_AotO_Nemesis_AiHint("EarthSpecialist", "AiHint_Mage", "SwapArchetype_Mage");
+DB_CoS_AotO_CreateGodwokenNemesis_SkillCombos("RangerLore", "Projectile_EnemyRicochet", 3);
+DB_CoS_AotO_CreateGodwokenNemesis_SkillCombos("RangerLore", "Jump_EnemyTacticalRetreat", 7);
+DB_CoS_AotO_CreateGodwokenNemesis_SkillCombos("RangerLore", "Projectile_EnemyPinDown", 5);
+DB_CoS_AotO_CreateGodwokenNemesis_SkillCombos("RangerLore", "Projectile_EnemyArrowSpray", 6);
+DB_CoS_AotO_CreateGodwokenNemesis_SkillCombos("RangerLore", "Projectile_EnemySnipe", 7);
+DB_CoS_AotO_CreateGodwokenNemesis_SkillCombos("RangerLore", "ProjectileStrike_EnemyRainOfArrows", 9);
+DB_CoS_AotO_Nemesis_AiHint("RangerLore", "AiHint_Ranger", "SwapArchetype_Ranged");
+DB_CoS_AotO_GlobalDialogs("CoS_AotO_Phase2_Start");
+DB_CoS_AotO_GlobalDialogs("CoS_AotO_BraccusEvent");
+DB_CoS_AotO_GlobalDialogs("CoS_AotO_BraccusEvent_AlexandarToDallis");
+DB_CoS_AotO_GlobalDialogs("CoS_AotO_Phase2_GodConfrontation_Amadia");
+DB_CoS_AotO_GlobalDialogs("CoS_AotO_Phase2_GodConfrontation_Rhalic");
+DB_CoS_AotO_GlobalDialogs("CoS_AotO_Phase2_GodConfrontation_Tir");
+DB_CoS_AotO_GlobalDialogs("CoS_AotO_Phase2_GodConfrontation_Zorl");
+DB_CoS_AotO_GlobalDialogs("CoS_AotO_Phase2_GodConfrontation_Amadia");
+DB_CoS_AotO_GlobalDialogs("CoS_AotO_Phase2_GodConfrontation_Duna");
+DB_CoS_AotO_GlobalDialogs("CoS_AotO_Phase2_SourceTitanTransformation");
+DB_CoS_AotO_GlobalDialogs("CoS_AotO_Phase3_MaladyTelepathy");
+DB_CoS_AotO_Phase_2_LowerAreaSpawn(TRIGGERGUID_S_CoS_AotO_P2_TeleportTrigger_001_e3d919fb-3dbd-4351-807d-73933f66ea2d);
+DB_CoS_AotO_Phase_2_LowerAreaSpawn(TRIGGERGUID_S_CoS_AotO_P2_TeleportTrigger_002_63c99ace-12b2-46a9-8fff-ce7da1297530);
+DB_CoS_AotO_Phase_2_LowerAreaSpawn(TRIGGERGUID_S_CoS_AotO_P2_TeleportTrigger_003_a7614547-ea05-424e-ac5d-6a7059bed27c);
+DB_CoS_AotO_Phase_2_LowerAreaSpawn(TRIGGERGUID_S_CoS_AotO_P2_TeleportTrigger_004_3b2997ab-cd17-4b3c-9f8c-8248672de162);
+DB_CoS_AotO_CaveIns_Phase2(CHARACTERGUID_S_CoS_AotO_CaveInLocation_P3_001_34fd471e-2f9c-4bf7-9b25-7e5ddd2a66f1);
+DB_CoS_AotO_CaveIns_Phase2(CHARACTERGUID_S_CoS_AotO_CaveInLocation_P3_002_ff5993db-9d23-4cfc-983f-5bdda0dd3372);
+DB_CoS_AotO_CaveIns_Phase2(CHARACTERGUID_S_CoS_AotO_CaveInLocation_P3_003_5e8f40e1-5a4e-4cd0-a46b-b1618357af60);
+DB_CoS_AotO_CaveIns_Phase2(CHARACTERGUID_S_CoS_AotO_CaveInLocation_P3_004_66f50553-4446-4ef4-84b3-c3b7ec54d6fd);
+Proc_CoS_AotO_PhaseTwo_Setup();
+
+KBSECTION
+IF
+RegionStarted("CoS_Main_Ending")
+AND
+DB_CoS_AotO_PhaseTwoInit(1)
+AND
+QueryOnlyOnce("Proc_CoS_AotO_PhasTwoInit_Once")
+THEN
+Proc_CoS_AotO_PhaseTwoInit();
+NOT DB_CoS_AotO_PhaseTwoInit(1);
+
+IF
+DB_CoS_AotO_PhaseTwoInit(1)
+AND
+QueryOnlyOnce("Proc_CoS_AotO_PhasTwoInit_Once")
+THEN
+Proc_CoS_AotO_PhaseTwoInit();
+NOT DB_CoS_AotO_PhaseTwoInit(1);
+
+PROC
+Proc_CoS_AotO_PhaseTwo_Setup()
+AND
+DB_CoS_AotO_SilentMonks(_Var1)
+THEN
+SetOnStage(_Var1, 0);
+SetCanFight(_Var1, 0);
+SetCanJoinCombat(_Var1, 0);
+
+PROC
+Proc_CoS_AotO_PhaseTwo_Setup()
+AND
+DB_CoS_AotO_CaveIns_Phase2(_Var1)
+THEN
+SetOnStage(_Var1, 0);
+
+PROC
+Proc_CoS_AotO_PhaseTwoInit()
+AND
+DB_IsPlayer(_Var1)
+THEN
+CharacterUnfreeze(_Var1);
+CharacterSetAnimationOverride(_Var1, "knockdown_fall");
+Proc_ShakeCameraForTime(_Var1, 9000);
+
+PROC
+Proc_CoS_AotO_PhaseTwoInit()
+THEN
+TimerLaunch("CoS_AotO_PurgingCamera_Timer", 4000);
+
+IF
+TimerFinished("CoS_AotO_PurgingCamera_Timer")
+THEN
+TimerLaunch("CoS_AotO_PurgingCamera_FadeDelay", 1100);
+
+IF
+TimerFinished("CoS_AotO_PurgingCamera_FadeDelay")
+AND
+DB_IsPlayer(_Var1)
+THEN
+FadeToBlack(_Var1, 3, 0, "Proc_CoS_AotO_PhaseTwoInit_FadeOut");
+
+PROC
+Proc_CoS_AotO_PhaseTwoInit()
+AND
+DB_CoS_AotO_Competitors(_Var1)
+AND NOT
+DB_IsPlayer(_Var1)
+AND
+CharacterIsDead(_Var1, 0)
+THEN
+CharacterDie(_Var1, 1, "DoT");
+
+PROC
+Proc_CoS_AotO_PhaseTwoInit()
+AND
+DB_CoS_AotO_Defender(_Var1)
+THEN
+CharacterDie(_Var1, 0, "DoT");
+
+IF
+FadeOutDone(_, "Proc_CoS_AotO_PhaseTwoInit_FadeOut")
+AND
+QueryOnlyOnce("Proc_CoS_AotO_PhaseTwoInit_FadeOut_Once")
+THEN
+Proc_CoS_AotO_PhaseTwoInit_1();
+
+PROC
+Proc_CoS_AotO_PhaseTwoInit_1()
+AND
+QueryOnlyOnce("Proc_CoS_AotO_PhaseThreeInit_FadeOut_Once")
+THEN
+TimerLaunch("Proc_CoS_AotO_PhaseTwoInit_FadeIn_Delay", 2500);
+
+IF
+TimerFinished("Proc_CoS_AotO_PhaseTwoInit_FadeIn_Delay")
+AND
+DB_IsPlayer(_Var1)
+AND
+DB_CoS_AotO_Phase_2_LowerAreaSpawn(_Var2)
+AND NOT
+DB_CoS_AotO_Phase_2_LowerAreaSpawn(_Var1, _)
+AND NOT
+DB_CoS_AotO_Phase_2_LowerAreaSpawn(_, _Var2)
+THEN
+CharacterRemoveSummons(_Var1, 0);
+TeleportTo(_Var1, _Var2);
+DB_CoS_AotO_Phase_2_LowerAreaSpawn(_Var1, _Var2);
+NOT DB_CoS_AotO_Phase_2_LowerAreaSpawn(_Var2);
+CharacterSetAnimationOverride(_Var1, "");
+PartySetFlag(_Var1, "QuestUpdate_CoS_ArenaOfTheOne_Phase_2_Start");
+SetCanFight(_Var1, 1);
+SetCanJoinCombat(_Var1, 1);
+
+IF
+TimerFinished("Proc_CoS_AotO_PhaseTwoInit_FadeIn_Delay")
+AND
+DB_IsPlayer(_Var1)
+AND
+CharacterIsDead(_Var1, 0)
+THEN
+FadeToBlack(_Var1, 3, 1, "Proc_CoS_AotO_PhaseThreeInit_FadeIn");
+Proc_CharacterFullRestore(_Var1);
+ProcRemovePolymorphs(_Var1);
+CharacterPurgeQueue(_Var1);
+PlayAnimation(_Var1, "knockdown_getup");
+
+IF
+TimerFinished("Proc_CoS_AotO_PhaseTwoInit_FadeIn_Delay")
+THEN
+TimerLaunch("CoS_AotO_PhaseTwo_StartDelay", 5500);
+ActivatePersistentLevelTemplate(b7407095-373b-4195-bdb8-4874bc3fd58b);
+
+IF
+TimerFinished("Proc_CoS_AotO_PhaseTwoInit_FadeIn_Delay")
+AND
+DB_GLO_PartyMembers_RecruiteeAvatarBond(_Var1, _Var2)
+THEN
+CharacterAttachToGroup(_Var1, _Var2);
+
+IF
+TimerFinished("CoS_AotO_PhaseTwo_StartDelay")
+THEN
+AutoSave();
+
+PROC
+PROC_GLOBAL_DialogStartRequested((CHARACTERGUID)_Var1, (CHARACTERGUID)_Var2)
+AND
+DB_IsPlayer(_Var1)
+AND
+DB_IsPlayer(_Var2)
+AND
+DB_InRegion(_Var2, TRIGGERGUID_S_CoS_SUB_AotO_LowerArea_b1f47fb3-e8b4-40d3-9c4f-aac7ca3129fd)
+AND
+DB_InRegion(_Var1, TRIGGERGUID_S_CoS_SUB_AotO_LowerArea_b1f47fb3-e8b4-40d3-9c4f-aac7ca3129fd)
+AND
+DB_CoS_AotO_CompanionOneLiners(_Var1, _Var3)
+THEN
+DialogRequestStop(_Var1);
+Proc_StartDialog(0, _Var3, _Var1, _Var2);
+
+IF
+TimerFinished("CoS_AotO_PhaseTwo_StartDelay")
+AND
+DB_IsPlayer(_Var1)
+AND
+QueryOnlyOnce("CoS_AotO_VB_AwakenInRubble_Once")
+THEN
+StartVoiceBark("CoS_AotO_VB_AwakenInRubble", _Var1);
+
+IF
+CharacterEnteredTrigger((CHARACTERGUID)_Var1, TRIGGERGUID_S_CoS_AotO_StartGodsEvent_Trigger_45972925-2f2d-42d5-a58c-49982809dced)
+AND
+QueryOnlyOnce("CoS_AotO_PhaseTwoCombat_TriggerDialog")
+THEN
+Proc_CoS_AotO_Phase2_StartDialog(_Var1);
+ProcTriggerUnregisterForPlayers(TRIGGERGUID_S_CoS_AotO_StartGodsEvent_Trigger_45972925-2f2d-42d5-a58c-49982809dced);
+
+PROC
+Proc_CoS_AotO_Phase2_StartDialog((CHARACTERGUID)_Var1)
+AND
+StartDialog_Internal("CoS_AotO_Phase2_Start", 1, _Var1, NULL_00000000-0000-0000-0000-000000000000, NULL_00000000-0000-0000-0000-000000000000, NULL_00000000-0000-0000-0000-000000000000, NULL_00000000-0000-0000-0000-000000000000, NULL_00000000-0000-0000-0000-000000000000, 1)
+AND
+QueryOnlyOnce("CoS_AotO_Phase2_StartDialog_Once")
+THEN
+Proc_DialogFlagSetup("CoS_AotO_Phase2_Start", _Var1);
+CharacterUnfreeze(_Var1);
+DB_CombatCutscene_PrioritizedObject(_Var1);
+
+IF
+DialogEnded("CoS_AotO_Phase2_Start", _)
+THEN
+Proc_CoS_AotO_AvatarHasDoneGodConfrontation();
+Proc_CoS_AotO_CheckLastNemesisStanding();
+SetOnStage(CHARACTERGUID_S_CoS_AotO_CaveInLocation_P3_001_34fd471e-2f9c-4bf7-9b25-7e5ddd2a66f1, 1);
+SetOnStage(CHARACTERGUID_S_CoS_AotO_CaveInLocation_P3_002_ff5993db-9d23-4cfc-983f-5bdda0dd3372, 1);
+SetOnStage(CHARACTERGUID_S_CoS_AotO_CaveInLocation_P3_003_5e8f40e1-5a4e-4cd0-a46b-b1618357af60, 1);
+SetOnStage(CHARACTERGUID_S_CoS_AotO_CaveInLocation_P3_004_66f50553-4446-4ef4-84b3-c3b7ec54d6fd, 1);
+
+PROC
+Proc_CoS_AotO_AvatarHasDoneGodConfrontation()
+AND
+DB_IsPlayer(_Var1)
+AND
+IsTagged(_Var1, "AVATAR", 1)
+AND
+IsSpeakerReserved(_Var1, 0)
+AND
+CharacterIsDead(_Var1, 0)
+AND NOT
+DB_CoS_AotO_AvatarHasDoneGodConfrontation(_Var1)
+AND
+DB_CoS_AotO_Nemesis(_Var2, _Var1, _)
+AND NOT
+DB_QueueNextGodConfrontation(_, _)
+THEN
+DB_CoS_AotO_AvatarHasDoneGodConfrontation(_Var1);
+DB_QueueNextGodConfrontation(_Var1, _Var2);
+DB_CombatCutscene_PrioritizedObject(_Var2);
+
+IF
+DB_CoS_AotO_Nemesis(_Var1, _, _)
+THEN
+SetCombatGroupID(_Var1, "CoS_AotO_NemesisCombatGroup");
+
+IF
+ObjectTurnStarted((CHARACTERGUID)_Var1)
+AND
+DB_QueueNextGodConfrontation(_Var2, _Var1)
+AND
+DB_CoS_AotO_Nemesis(_Var1, _Var2, _Var3)
+AND
+StartDialog_Internal(_Var3, 1, _Var1, _Var2, NULL_00000000-0000-0000-0000-000000000000, NULL_00000000-0000-0000-0000-000000000000, NULL_00000000-0000-0000-0000-000000000000, NULL_00000000-0000-0000-0000-000000000000, 1)
+THEN
+NOT DB_QueueNextGodConfrontation(_Var2, _Var1);
+
+IF
+DialogEnded((STRING)_Var1, (INTEGER)_Var2)
+AND
+DialogGetInvolvedNPC(_Var2, 1, _Var3)
+AND
+ObjectGetFlag(_Var3, "CoS_AotO_NemesisPurgePlayerAfterDialog", 1)
+AND
+DB_CoS_AotO_Nemesis(_Var3, _Var4, _Var1)
+THEN
+PartySetFlag(_Var4, "QuestUpdate_CoS_ArenaOfTheOne_Phase_2_Gods");
+CharacterAddSkill(_Var3, "Target_Quest_PurgeCharacter");
+CharacterUseSkill(_Var3, "Target_Quest_PurgeCharacter", _Var4, 1);
+ProcObjectTimer(_Var4, "CoS_AotO_NemesisPurgePlayer_Timer", 3200);
+
+PROC
+ProcObjectTimerFinished((CHARACTERGUID)_Var1, "CoS_AotO_NemesisPurgePlayer_Timer")
+THEN
+CharacterDie(_Var1, 0, "Explode");
+ProcObjectTimer(_Var1, "CoS_AotO_NemesisPurgePlayerNextTurnDelay_Timer", 2000);
+
+PROC
+ProcObjectTimerFinished((CHARACTERGUID)_Var1, "CoS_AotO_NemesisPurgePlayerNextTurnDelay_Timer")
+THEN
+Proc_CoS_AotO_AvatarHasDoneGodConfrontation();
+
+IF
+DialogEnded((STRING)_Var1, (INTEGER)_Var2)
+AND
+DB_CoS_AotO_Nemesis(_Var3, _Var4, _Var1)
+THEN
+Proc_CombatCutscene_PrioritizedObject_Purge();
+
+IF
+DialogEnded((STRING)_Var1, _)
+AND
+DB_CoS_AotO_Nemesis(_Var3, _, _Var1)
+AND
+DB_CoS_AotO_Nemesis(_Var5, _, _)
+THEN
+CharacterSetArmorPercentage(_Var5, 100);
+CharacterSetMagicArmorPercentage(_Var5, 100);
+
+IF
+DialogEnded((STRING)_Var1, (INTEGER)_Var2)
+AND
+DB_CoS_AotO_Nemesis(_Var3, _Var4, _Var1)
+AND
+DialogGetInvolvedNPC(_Var2, 1, _Var3)
+AND
+ObjectGetFlag(_Var3, "CoS_AotO_NemesisPurgePlayerAfterDialog", 0)
+THEN
+Proc_CoS_AotO_AvatarHasDoneGodConfrontation();
+UserSetFlag(_Var4, "QuestUpdate_CORE_Chapter5_COS_GodBattle");
+
+IF
+TextEventSet("nemesis")
+AND
+CharacterGetHostCharacter(_Var1)
+THEN
+Proc_CoS_AotO_CreateGodwokenNemesis(_Var1);
+
+IF
+GlobalFlagSet("CoS_AotO_CreateGodwokenNemesis")
+AND
+DB_CoS_AotO_Competitors(_Var1)
+AND
+CharacterIsDead(_Var1, 0)
+THEN
+Proc_CoS_AotO_CreateGodwokenNemesis(_Var1);
+
+QRY
+QRY_CoS_AotO_GodwokenGetRealRace((CHARACTERGUID)_Var1)
+AND
+CharacterGetRace(_Var1, 0, _Var2)
+AND
+DB_CoS_AotO_CreateGodwokenNemesis_NemesisTemplate(_Var2, _, _, _)
+AND NOT
+DB_CoS_AotO_GodwokenRealRace(_Var1, _Var2)
+THEN
+DB_CoS_AotO_GodwokenRealRace(_Var1, _Var2);
+
+QRY
+QRY_CoS_AotO_GodwokenGetRealRace((CHARACTERGUID)_Var1)
+AND NOT
+DB_CoS_AotO_GodwokenRealRace(_Var1, _)
+THEN
+DB_CoS_AotO_GodwokenRealRace(_Var1, "undead");
+
+PROC
+Proc_CoS_AotO_CreateGodwokenNemesis((CHARACTERGUID)_Var1)
+AND
+QRY_CoS_AotO_GodwokenGetRealRace(_Var1)
+AND
+DB_CoS_AotO_GodwokenRealRace(_Var1, _Var2)
+AND
+ObjectGetFlag(_Var1, "CoS_AotO_NemesisCreated", 0)
+AND
+DB_CoS_AotO_CreateGodwokenNemesis_NemesisTemplate(_Var3, _Var4, _Var5, _Var6)
+AND
+_Var2 == _Var3
+AND
+GetPosition(_Var1, _Var7, _Var8, _Var9)
+AND
+RealSum(_Var7, 5.5, _Var10)
+AND NOT
+DB_CoS_AotO_Nemesis(_, _Var1, _)
+AND
+CharacterCreateAtPosition(_Var10, _Var8, _Var9, _Var4, 1, _Var13)
+THEN
+PlayEffectAtPosition("RS3_FX_GP_ScriptedEvent_HOE_Summoning_01", _Var10, _Var8, _Var9);
+ObjectSetFlag(_Var13, "CoS_AotO_IsNemesis");
+CharacterTransformAppearanceTo(_Var13, _Var1, 1, 0);
+CharacterDisableAllCrimes(_Var13);
+Proc_CoS_AotO_CreateGodwokenNemesis(_Var1, _Var13);
+ObjectSetFlag(_Var1, "CoS_AotO_NemesisCreated");
+PROC_LoopEffect("RS3_FX_Char_Enemies_ShadowPlayer_01", _Var13, "SourceMaterial", "CoS_Main_Ending", "");
+DB_CoS_AotO_Nemesis(_Var13, _Var1, _Var6);
+ApplyStatus(_Var13, "ETHEREAL_SOLES", -1, 1);
+ApplyStatus(_Var13, "SOURCEBLOOD", -1, 1);
+CharacterLookAt(_Var1, _Var13);
+CharacterSetCorpseLootable(_Var13, 0);
+ObjectSetFlag(_Var13, _Var5);
+
+IF
+DialogEnded((STRING)_Var1, _)
+AND
+DB_CoS_AotO_Nemesis(_Var3, _, _Var1)
+AND
+DB_CoS_AotO_CreateGodwokenNemesis_NemesisTemplate(_, _, _Var7, _)
+AND
+ObjectGetFlag(_Var3, _Var7, 1)
+AND
+GlobalGetFlag(_Var7, 1)
+THEN
+ObjectSetFlag(_Var3, "CoS_AotO_GodRecieveBuff");
+
+IF
+ObjectFlagSet("CoS_AotO_GodRecieveBuff", (CHARACTERGUID)_Var1, _)
+AND
+DB_CoS_AotO_Nemesis(_Var1, _, _)
+AND
+DB_CoS_AotO_CreateGodwokenNemesis_NemesisTemplate(_, _, _Var7, _)
+AND
+ObjectGetFlag(_Var1, _Var7, 1)
+AND
+DB_CoS_AotO_Nemesis(_Var9, _, _)
+AND
+ObjectGetFlag(_Var9, _Var7, 1)
+THEN
+ApplyStatus(_Var9, "ENRAGED", -1, 1);
+
+IF
+DB_CoS_AotO_Nemesis(_Var1, _, _)
+AND
+DB_CoS_AotO_Competitors(_Var4)
+THEN
+CharacterSetRelationIndivFactionToIndivFaction(_Var4, _Var1, 0);
+CharacterSetRelationIndivFactionToIndivFaction(_Var1, _Var4, 0);
+
+PROC
+Proc_CoS_AotO_CreateGodwokenNemesis((CHARACTERGUID)_Var1, (CHARACTERGUID)_Var2)
+AND
+DB_CoS_AotO_CreateGodwokenNemesis_SkillCombos(_Var3, _Var4, _Var5)
+AND
+CharacterGetAbility(_Var1, _Var3, _Var6)
+AND
+_Var6 >= _Var5
+THEN
+CharacterAddSkill(_Var2, _Var4);
+Proc_CoS_AotO_CreateGodwokenNemesis_AddAbilityLevel(_Var2, _Var3, _Var6);
+
+PROC
+Proc_CoS_AotO_CreateGodwokenNemesis_AddAbilityLevel((CHARACTERGUID)_Var1, (STRING)_Var2, (INTEGER)_Var3)
+AND
+StringConcatenate("_CoS_AotO_AddAbilityLevel_", _Var2, _Var4)
+AND
+GetUUID(_Var1, _Var5)
+AND
+StringConcatenate(_Var5, _Var4, _Var6)
+AND
+QueryOnlyOnce(_Var6)
+THEN
+CharacterAddAbility(_Var1, _Var2, _Var3);
+
+PROC
+Proc_CoS_AotO_CreateGodwokenNemesis_AddAbilityLevel((CHARACTERGUID)_Var1, (STRING)_Var2, (INTEGER)_Var3)
+AND
+CharacterGetAbility(_Var1, _Var2, _Var4)
+AND
+DB_CoS_AotO_Nemesis_AiHint(_Var2, _Var5, _Var6)
+AND
+_Var4 > 4
+THEN
+SetVarFixedString(_Var1, "AiHint", _Var5);
+SetStoryEvent(_Var1, _Var6);
+
+IF
+CharacterKilledBy((CHARACTERGUID)_Var1, (CHARACTERGUID)_Var2, (CHARACTERGUID)_Var3)
+AND
+ObjectGetFlag(_Var1, "CoS_AotO_IsNemesis", 1)
+AND
+DB_IsPlayer(_Var2)
+THEN
+SetTag(_Var2, "GODSLAYER");
+
+IF
+CharacterDying((CHARACTERGUID)_Var1)
+AND
+DB_CoS_AotO_Nemesis(_Var1, _Var2, _Var3)
+THEN
+NOT DB_CoS_AotO_Nemesis(_Var1, _Var2, _Var3);
+CreatePuddle(_Var1, "SurfaceSource", 10, 120, 3, 5, 0.2);
+Proc_CoS_AotO_CheckLastNemesisStanding();
+
+PROC
+Proc_CoS_AotO_CheckLastNemesisStanding()
+AND
+SysCount("DB_CoS_AotO_Nemesis", 3, _Var1)
+AND
+_Var1 == 1
+AND
+DB_CoS_AotO_Nemesis(_Var2, _Var3, _)
+THEN
+DB_CoS_AotO_LastNemesis(_Var2);
+CharacterResurrect(_Var2);
+CharacterSetImmortal(_Var2, 1);
+
+IF
+DB_CoS_AotO_LastNemesis(_Var1)
+AND
+CharacterGetHitpointsPercentage(_Var1, _Var2)
+AND
+_Var2 < 55
+AND
+QueryOnlyOnce("CoS_AotO_PhaseThreeInit_Once")
+THEN
+Proc_CoS_AotO_PhaseThreeInit();
+
+IF
+CharacterReceivedDamage((CHARACTERGUID)_Var1, _, _)
+AND
+DB_CoS_AotO_LastNemesis(_Var1)
+AND
+CharacterGetHitpointsPercentage(_Var1, _Var4)
+AND
+_Var4 < 55
+AND
+QueryOnlyOnce("CoS_AotO_PhaseThreeInit_Once")
+THEN
+Proc_CoS_AotO_PhaseThreeInit();
+
+IF
+SavegameLoaded((INTEGER)_Var1, (INTEGER)_Var2, (INTEGER)_Var3, (INTEGER)_Var4)
+AND
+QRY_VersionIsOlderThan(_Var1, _Var2, _Var3, _Var4, 3, 6, 0, 1)
+AND NOT
+DB_CoS_AotO_CreateGodwokenNemesis_SkillCombos("RangerLore", "ProjectileStrike_EnemyRainOfArrows", 9)
+THEN
+Proc_CoS_AotO_CreateGodwokenNemesis_SkillReset();
+
+PROC
+Proc_CoS_AotO_CreateGodwokenNemesis_SkillReset()
+AND
+DB_CoS_AotO_Nemesis(_Var1, _, _)
+AND
+DB_CoS_AotO_CreateGodwokenNemesis_SkillCombos(_, _Var5, _)
+AND
+CharacterHasSkill(_Var1, _Var5, 1)
+THEN
+CharacterRemoveSkill(_Var1, _Var5);
+
+PROC
+Proc_CoS_AotO_CreateGodwokenNemesis_SkillReset()
+AND
+QueryOnlyOnce("CoS_AotO_CreateGodwokenNemesis_SkillDataBasePurge_Once")
+AND
+DB_CoS_AotO_CreateGodwokenNemesis_SkillCombos(_Var1, _Var2, _Var3)
+THEN
+NOT DB_CoS_AotO_CreateGodwokenNemesis_SkillCombos(_Var1, _Var2, _Var3);
+
+PROC
+Proc_CoS_AotO_CreateGodwokenNemesis_SkillReset()
+AND
+QueryOnlyOnce("CoS_AotO_CreateGodwokenNemesis_SkillDataBasUpdate_Once")
+THEN
+DB_CoS_AotO_CreateGodwokenNemesis_SkillCombos("AirSpecialist", "Projectile_EnemyLightningBolt", 4);
+DB_CoS_AotO_CreateGodwokenNemesis_SkillCombos("AirSpecialist", "ProjectileStrike_EnemyDazingBolt", 5);
+DB_CoS_AotO_CreateGodwokenNemesis_SkillCombos("AirSpecialist", "Target_EnemyPressureSpike", 6);
+DB_CoS_AotO_CreateGodwokenNemesis_SkillCombos("AirSpecialist", "Shout_EnemyElectricFence", 8);
+DB_CoS_AotO_CreateGodwokenNemesis_SkillCombos("AirSpecialist", "Storm_EnemyLightning", 9);
+DB_CoS_AotO_CreateGodwokenNemesis_SkillCombos("FireSpecialist", "Projectile_EnemyFlamingDaggers", 3);
+DB_CoS_AotO_CreateGodwokenNemesis_SkillCombos("FireSpecialist", "Target_EnemyHaste", 4);
+DB_CoS_AotO_CreateGodwokenNemesis_SkillCombos("FireSpecialist", "Target_EnemyFireWhip", 5);
+DB_CoS_AotO_CreateGodwokenNemesis_SkillCombos("FireSpecialist", "Zone_EnemyLaserRay", 6);
+DB_CoS_AotO_CreateGodwokenNemesis_SkillCombos("FireSpecialist", "Target_EnemySpontCombustion", 6);
+DB_CoS_AotO_CreateGodwokenNemesis_SkillCombos("FireSpecialist", "ProjectileStrike_EnemyMeteorShower", 9);
+DB_CoS_AotO_CreateGodwokenNemesis_SkillCombos("WarriorLore", "Cone_EnemyGroundSmash", 3);
+DB_CoS_AotO_CreateGodwokenNemesis_SkillCombos("WarriorLore", "Target_EnemyCripplingBlow", 4);
+DB_CoS_AotO_CreateGodwokenNemesis_SkillCombos("WarriorLore", "Shout_EnemyWhirlwind", 5);
+DB_CoS_AotO_CreateGodwokenNemesis_SkillCombos("WarriorLore", "Target_EnemyFlurry", 6);
+DB_CoS_AotO_CreateGodwokenNemesis_SkillCombos("WarriorLore", "Jump_EnemyPhoenixDive", 7);
+DB_CoS_AotO_CreateGodwokenNemesis_SkillCombos("WarriorLore", "Target_EnemyOverpower", 9);
+DB_CoS_AotO_CreateGodwokenNemesis_SkillCombos("Polymorph", "Target_EnemyTentacleLash", 4);
+DB_CoS_AotO_CreateGodwokenNemesis_SkillCombos("Polymorph", "Shout_EnemySteelSkin", 5);
+DB_CoS_AotO_CreateGodwokenNemesis_SkillCombos("Polymorph", "Target_EnemyStripResistance", 6);
+DB_CoS_AotO_CreateGodwokenNemesis_SkillCombos("RogueLore", "Projectile_EnemyThrowingKnife", 3);
+DB_CoS_AotO_CreateGodwokenNemesis_SkillCombos("RogueLore", "Projectile_EnemyChloroform", 4);
+DB_CoS_AotO_CreateGodwokenNemesis_SkillCombos("RogueLore", "Target_EnemyCorruptedBlade", 5);
+DB_CoS_AotO_CreateGodwokenNemesis_SkillCombos("RogueLore", "Jump_EnemyCloakAndDagger", 7);
+DB_CoS_AotO_CreateGodwokenNemesis_SkillCombos("RogueLore", "Target_EnemyDaggersDrawn", 8);
+DB_CoS_AotO_CreateGodwokenNemesis_SkillCombos("RogueLore", "Target_EnemyFatality", 9);
+DB_CoS_AotO_CreateGodwokenNemesis_SkillCombos("Summoning", "Target_EnemyHarmony", 4);
+DB_CoS_AotO_CreateGodwokenNemesis_SkillCombos("Summoning", "Target_EnemySoulMate", 5);
+DB_CoS_AotO_CreateGodwokenNemesis_SkillCombos("Summoning", "Target_EnemyTotemFromSurface", 6);
+DB_CoS_AotO_CreateGodwokenNemesis_SkillCombos("WaterSpecialist", "Target_EnemyFrostyShell", 3);
+DB_CoS_AotO_CreateGodwokenNemesis_SkillCombos("WaterSpecialist", "ProjectileStrike_EnemyHailStrike", 4);
+DB_CoS_AotO_CreateGodwokenNemesis_SkillCombos("WaterSpecialist", "Projectile_EnemyIceFan", 5);
+DB_CoS_AotO_CreateGodwokenNemesis_SkillCombos("WaterSpecialist", "Target_EnemyWinterBlast", 6);
+DB_CoS_AotO_CreateGodwokenNemesis_SkillCombos("WaterSpecialist", "Projectile_EnemyChainHeal", 7);
+DB_CoS_AotO_CreateGodwokenNemesis_SkillCombos("WaterSpecialist", "Cone_EnemySteamLance", 8);
+DB_CoS_AotO_CreateGodwokenNemesis_SkillCombos("WaterSpecialist", "ProjectileStrike_EnemyHailAttack", 9);
+DB_CoS_AotO_CreateGodwokenNemesis_SkillCombos("Necromancy", "Target_EnemyMosquitoSwarm", 3);
+DB_CoS_AotO_CreateGodwokenNemesis_SkillCombos("Necromancy", "Target_EnemyShacklesOfPain", 5);
+DB_CoS_AotO_CreateGodwokenNemesis_SkillCombos("Necromancy", "Target_EnemyInfect", 6);
+DB_CoS_AotO_CreateGodwokenNemesis_SkillCombos("Necromancy", "Target_EnemyGraspOfTheStarved", 7);
+DB_CoS_AotO_CreateGodwokenNemesis_SkillCombos("Necromancy", "Cone_EnemySilencingStare", 8);
+DB_CoS_AotO_CreateGodwokenNemesis_SkillCombos("Necromancy", "Shout_EnemyNecromancerTotems", 9);
+DB_CoS_AotO_Nemesis_AiHint("EarthSpecialist", "AiHint_Mage", "SwapArchetype_Mage");
+DB_CoS_AotO_CreateGodwokenNemesis_SkillCombos("EarthSpecialist", "Projectile_EnemyPyroclasticRock", 3);
+DB_CoS_AotO_CreateGodwokenNemesis_SkillCombos("EarthSpecialist", "Projectile_EnemyPoisonDart", 4);
+DB_CoS_AotO_CreateGodwokenNemesis_SkillCombos("EarthSpecialist", "Shout_EnemyReactiveArmor", 5);
+DB_CoS_AotO_CreateGodwokenNemesis_SkillCombos("EarthSpecialist", "Target_EnemyWormTremor", 6);
+DB_CoS_AotO_CreateGodwokenNemesis_SkillCombos("EarthSpecialist", "Projectile_EnemyAcidSpores", 7);
+DB_CoS_AotO_CreateGodwokenNemesis_SkillCombos("EarthSpecialist", "Projectile_EnemyPyroclasticEruption", 9);
+DB_CoS_AotO_CreateGodwokenNemesis_SkillCombos("RangerLore", "Projectile_EnemyRicochet", 3);
+DB_CoS_AotO_CreateGodwokenNemesis_SkillCombos("RangerLore", "Jump_EnemyTacticalRetreat", 7);
+DB_CoS_AotO_CreateGodwokenNemesis_SkillCombos("RangerLore", "Projectile_EnemyPinDown", 5);
+DB_CoS_AotO_CreateGodwokenNemesis_SkillCombos("RangerLore", "Projectile_EnemyArrowSpray", 6);
+DB_CoS_AotO_CreateGodwokenNemesis_SkillCombos("RangerLore", "Projectile_EnemySnipe", 7);
+DB_CoS_AotO_CreateGodwokenNemesis_SkillCombos("RangerLore", "ProjectileStrike_EnemyRainOfArrows", 9);
+DB_CoS_AotO_Nemesis_AiHint("RangerLore", "AiHint_Ranger", "SwapArchetype_Ranged");
+
+PROC
+Proc_CoS_AotO_CreateGodwokenNemesis_SkillReset()
+AND
+DB_CoS_AotO_Nemesis(_Var1, _Var2, _)
+AND
+DB_CoS_AotO_CreateGodwokenNemesis_SkillCombos(_Var4, _Var5, _Var6)
+AND
+CharacterGetAbility(_Var2, _Var4, _Var7)
+AND
+_Var7 >= _Var6
+THEN
+CharacterAddSkill(_Var1, _Var5);
+
+
+EXITSECTION
+ENDEXITSECTION
+
+ParentTargetEdge "CoS_ArenaOfTheOne"

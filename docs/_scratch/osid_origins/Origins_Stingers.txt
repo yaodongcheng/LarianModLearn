@@ -1,0 +1,17 @@
+Version 1
+SubGoalCombiner SGC_AND
+
+INITSECTION
+
+KBSECTION
+IF
+ObjectFlagSet("GLO_Story_Inst", (CHARACTERGUID)_Var1, (INTEGER)_Var2)
+THEN
+ObjectClearFlag(_Var1, "GLO_Story_Inst", _Var2);
+MusicPlayForPeerWithInstrument(_Var1, _Var1, "Instr_Story");
+
+
+EXITSECTION
+ENDEXITSECTION
+
+ParentTargetEdge "Start"

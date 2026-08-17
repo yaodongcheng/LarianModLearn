@@ -1,0 +1,173 @@
+Version 1
+SubGoalCombiner SGC_AND
+
+INITSECTION
+DB_KillCounter_Internal(CHARACTERGUID_S_LV_SecretCabin_Gheist_01_fe577de0-0c2e-409e-b0fc-0361beb980b7, "LV_DallisSecretRoomCombat");
+DB_KillCounter_Internal(CHARACTERGUID_S_LV_SecretCabin_Gheist_02_fb0cbbf3-0dbf-4d3d-b7d3-60e723701a49, "LV_DallisSecretRoomCombat");
+DB_KillCounter("LV_DallisSecretRoomCombat", 2);
+ItemSetCanInteract(ITEMGUID_S_LV_DallisTreasureRoom_ButtonIn_969a7d9f-008a-4243-96c1-b22aa786aa32, 0);
+Proc_LV_DallisRooms_Init();
+DB_LV_DallisCloset_RotatedRegions("RC_Main");
+DB_LV_DallisCloset_RotatedRegions("CoS_Main");
+
+KBSECTION
+IF
+DialogEnded("LV_DallisDoor_001", (INTEGER)_Var1)
+AND
+DialogGetInvolvedPlayer(_Var1, 1, _Var2)
+AND
+GlobalGetFlag("LV_DallisDoorsAwake", 1)
+THEN
+PartySetFlag(_Var2, "QuestUpdate_LV_Main_MetDoor");
+
+IF
+DialogEnded("LV_DallisDoor_002", (INTEGER)_Var1)
+AND
+DialogGetInvolvedPlayer(_Var1, 1, _Var2)
+AND
+GlobalGetFlag("LV_DallisDoorsAwake", 1)
+THEN
+PartySetFlag(_Var2, "QuestUpdate_LV_Main_MetDoor");
+
+IF
+ItemAddedToCharacter(ITEMGUID_S_LV_AlexandarGem_f38a1146-88be-42f0-8bf9-b8abc46ad32e, (CHARACTERGUID)_Var1)
+AND
+DB_IsPlayer(_Var1)
+THEN
+PartySetFlag(_Var1, "QuestUpdate_LV_Main_AlexandarKey");
+
+IF
+GlobalFlagSet("LV_DallisRoomDoorsOpen")
+THEN
+ItemOpen(ITEMGUID_S_LV_DallisDoor_001_5cd5c0b6-eb62-4199-a35c-924628b37663);
+DialogRequestStop(ITEMGUID_S_LV_DallisDoor_002_f250ec01-c849-4f9d-b465-3eb5185ef755);
+
+IF
+AttackedByObject(ITEMGUID_S_LV_DallisDoor_001_5cd5c0b6-eb62-4199-a35c-924628b37663, (CHARACTERGUID)_Var1, _, _, _)
+AND
+GlobalGetFlag("LV_DallisDoorsAwake", 1)
+AND
+DB_IsPlayer(_Var1)
+AND
+QRY_SpeakerIsAvailable(_Var1)
+AND
+QRY_SpeakerIsAvailable(ITEMGUID_S_LV_DallisDoor_001_5cd5c0b6-eb62-4199-a35c-924628b37663)
+AND
+QueryOnlyOnce("LV_DallisDoor_001_AttackedDialog_Once")
+THEN
+ObjectSetFlag(ITEMGUID_S_LV_DallisDoor_001_5cd5c0b6-eb62-4199-a35c-924628b37663, "LV_DallisDoor_001_AttackedDialog_Once");
+Proc_StartDialog(0, "LV_DallisDoor_001", ITEMGUID_S_LV_DallisDoor_001_5cd5c0b6-eb62-4199-a35c-924628b37663, _Var1);
+
+IF
+AttackedByObject(ITEMGUID_S_LV_DallisDoor_002_f250ec01-c849-4f9d-b465-3eb5185ef755, (CHARACTERGUID)_Var1, _, _, _)
+AND
+GlobalGetFlag("LV_DallisDoorsAwake", 1)
+AND
+DB_IsPlayer(_Var1)
+AND
+QRY_SpeakerIsAvailable(_Var1)
+AND
+QRY_SpeakerIsAvailable(ITEMGUID_S_LV_DallisDoor_002_f250ec01-c849-4f9d-b465-3eb5185ef755)
+AND
+QueryOnlyOnce("LV_DallisDoor_002_AttackedDialog_Once")
+THEN
+ObjectSetFlag(ITEMGUID_S_LV_DallisDoor_002_f250ec01-c849-4f9d-b465-3eb5185ef755, "LV_DallisDoor_002_AttackedDialog_Once");
+Proc_StartDialog(0, "LV_DallisDoor_002", ITEMGUID_S_LV_DallisDoor_002_f250ec01-c849-4f9d-b465-3eb5185ef755, _Var1);
+
+IF
+GlobalFlagSet("LV_DallisDoorsAwake")
+THEN
+SetStoryEvent(ITEMGUID_S_LV_DallisDoor_001_5cd5c0b6-eb62-4199-a35c-924628b37663, "Activate");
+SetStoryEvent(ITEMGUID_S_LV_DallisDoor_002_f250ec01-c849-4f9d-b465-3eb5185ef755, "Activate");
+ItemSetStoryItem(ITEMGUID_S_LV_AlexandarGem_f38a1146-88be-42f0-8bf9-b8abc46ad32e, 0);
+
+IF
+TextEventSet("ActivateDoors")
+THEN
+GlobalSetFlag("LV_DallisDoorsAwake");
+
+IF
+GameBookInterfaceClosed(ITEMGUID_LV_DeadMagisterDiary_562abfb9-2dfb-4d74-8164-7e41d399dc9a, (CHARACTERGUID)_Var1)
+THEN
+PartySetFlag(_Var1, "LV_DallisDoor_HasPassword");
+
+IF
+ObjectFlagSet("LV_DallisDoor_HasPassword", (CHARACTERGUID)_Var1, _)
+AND
+GlobalGetFlag("LV_DallisRoomDoorsOpen", 0)
+THEN
+PartySetFlag(_Var1, "QuestUpdate_LV_Main_DoorPassword");
+
+PROC
+ReactOnKillCounter("LV_DallisSecretRoomCombat")
+AND
+GetClosestAlivePlayer(TRIGGERGUID_S_LV_SUB_DallisSecretRoom_608e1902-0ed8-4aa6-99b9-fec2d1e518cd, _Var1, _)
+THEN
+StartVoiceBark("LV_VB_DallisSecretCabin", _Var1);
+
+IF
+CharacterUsedItem(_, ITEMGUID_S_LV_DallisTreasureRoom_ButtonOut_938b19d3-1c94-402a-a4c1-d6db6a967684)
+THEN
+ItemOpen(ITEMGUID_S_LV_DallisDoor_002_f250ec01-c849-4f9d-b465-3eb5185ef755);
+
+IF
+CharacterUsedItem(_, ITEMGUID_S_LV_DallisTreasureRoom_ButtonIn_969a7d9f-008a-4243-96c1-b22aa786aa32)
+THEN
+ProcItemLocalMove(ITEMGUID_S_LV_DallisSlidingDoor_36a929e6-3f8f-4f82-9bff-03f639b8d6f5, 0, -5.8, 0, 1, 0);
+TimerLaunch("LV_DallisSlidingDoor_Offstage", 3000);
+
+IF
+TimerFinished("LV_DallisSlidingDoor_Offstage")
+THEN
+SetOnStage(ITEMGUID_S_LV_DallisSlidingDoor_36a929e6-3f8f-4f82-9bff-03f639b8d6f5, 0);
+
+IF
+CharacterItemEvent(_, ITEMGUID_S_LV_DallisRoomPressurePlate_000d5cf2-4466-4bea-b62d-5669f22fa3ac, "LV_MoveSlidingCloset_Source")
+THEN
+ItemSetCanInteract(ITEMGUID_S_LV_DallisTreasureRoom_ButtonIn_969a7d9f-008a-4243-96c1-b22aa786aa32, 0);
+
+IF
+CharacterItemEvent(_, ITEMGUID_S_LV_DallisRoomPressurePlate_000d5cf2-4466-4bea-b62d-5669f22fa3ac, "LV_MoveSlidingCloset_Target")
+THEN
+ItemSetCanInteract(ITEMGUID_S_LV_DallisTreasureRoom_ButtonIn_969a7d9f-008a-4243-96c1-b22aa786aa32, 1);
+
+PROC
+Proc_LV_DallisRooms_Init()
+AND
+CharacterIsDead(CHARACTERGUID_S_FTJ_DallisGheist_001_fa573f6f-7af3-40da-bc9a-e7d984711b09, 1)
+THEN
+SetOnStage(CHARACTERGUID_S_LV_SecretCabin_Gheist_01_fe577de0-0c2e-409e-b0fc-0361beb980b7, 0);
+
+PROC
+Proc_LV_DallisRooms_Init()
+AND
+CharacterIsDead(CHARACTERGUID_S_FTJ_DallisGheist_002_5aff71df-ec52-41cc-9b28-fb6b491a15c4, 1)
+THEN
+SetOnStage(CHARACTERGUID_S_LV_SecretCabin_Gheist_02_fb0cbbf3-0dbf-4d3d-b7d3-60e723701a49, 0);
+
+PROC
+ProcRegionStarted((STRING)_Var1)
+THEN
+Proc_LV_DallisCloset_SetOffset(_Var1);
+
+PROC
+Proc_LV_DallisCloset_SetOffset((STRING)_Var1)
+AND
+DB_LV_DallisCloset_RotatedRegions(_Var1)
+THEN
+SetVarFloat3(ITEMGUID_S_LV_DallisCloset_003_4f7eae86-cb2a-4270-9b83-b163581f09d2, "TargetOffSet", 0, 0, -1.1);
+SetStoryEvent(ITEMGUID_S_LV_DallisCloset_003_4f7eae86-cb2a-4270-9b83-b163581f09d2, "LV_DallisCloset_ReSetPos");
+
+PROC
+Proc_LV_DallisCloset_SetOffset((STRING)_Var1)
+AND NOT
+DB_LV_DallisCloset_RotatedRegions(_Var1)
+THEN
+SetVarFloat3(ITEMGUID_S_LV_DallisCloset_003_4f7eae86-cb2a-4270-9b83-b163581f09d2, "TargetOffSet", -1.1, 0, 0);
+SetStoryEvent(ITEMGUID_S_LV_DallisCloset_003_4f7eae86-cb2a-4270-9b83-b163581f09d2, "LV_DallisCloset_ReSetPos");
+
+
+EXITSECTION
+ENDEXITSECTION
+
+ParentTargetEdge "LadyVengeance"

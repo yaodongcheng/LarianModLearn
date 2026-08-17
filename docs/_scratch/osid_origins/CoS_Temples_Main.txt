@@ -1,0 +1,471 @@
+Version 1
+SubGoalCombiner SGC_AND
+
+INITSECTION
+ProcTriggerRegisterForPlayers(TRIGGERGUID_S_CoS_Temples_BeachDeadMagistersVB_Box_ce9903fc-dc1d-4647-97b3-7ee4728d95fa);
+ProcTriggerRegisterForPlayers(TRIGGERGUID_S_CoS_Temples_VB_Battlefield_001_Box_c50dfa09-0194-4a5c-b2ad-4a100c2fbecc);
+ProcTriggerRegisterForPlayers(TRIGGERGUID_S_CoS_Temples_VB_Battlefield_002_Box_b041ded5-4352-4ae8-95f0-906d7678acf3);
+DB_Dialogs(CHARACTERGUID_S_CoS_Temples_Animal_001_dcfc1ffb-692c-425a-b1bd-3fd44479545e, "CoS_Temples_Animal_001");
+DB_Dialogs(CHARACTERGUID_S_CoS_Temples_Animal_003_d062079b-2451-4b65-a45f-64084911ce09, "CoS_Temples_Animal_003");
+DB_Ghosts(CHARACTERGUID_S_CoS_Temples_MurderedGodwoken_001_Corpse_a0e9707f-5c3d-4213-bce9-659c19733607, CHARACTERGUID_S_CoS_Temples_MurderedGodwoken_001_ab39072d-efb4-4071-9fc7-7001f95fc78b, "CoS_Temples_MurderedGodwoken_001");
+DB_ShovelArea(TRIGGERGUID_S_CoS_Dirtmound_Box_001_02d8ea95-d94d-4082-a7cf-d624df03f175, "CoS_Dirtmound_Box_001", ITEMGUID_S_CoS_Dirtmound_001_295624e9-7f50-4001-92eb-15e1d37d093e);
+DB_ShovelRewardItemScatter("CoS_Dirtmound_Box_001", ITEMGUID_S_CoS_AtaraxianArtifact_001_0b5b59d3-1def-4778-8126-9d0bf952db56);
+DB_ShovelArea(TRIGGERGUID_S_CoS_Dirtmound_Box_002_c39809c3-7235-4944-9c65-0f9fdcc9c242, "CoS_Dirtmound_Box_002", ITEMGUID_S_CoS_Dirtmound_002_2d97107b-5ca8-4b95-9f23-9017643a5c13);
+DB_ShovelRewardItemScatter("CoS_Dirtmound_Box_002", ITEMGUID_S_CoS_AtaraxianArtifact_002_acaef79a-a261-4b7c-acb5-d381ec7c4f43);
+DB_ShovelArea(TRIGGERGUID_S_CoS_Dirtmound_Box_003_5f46de7f-a809-434b-ab82-0291b2a1eedc, "CoS_Dirtmound_Box_003", ITEMGUID_S_CoS_Dirtmound_003_94ff570b-de10-43b1-87e5-67efd2f0eca0);
+DB_ShovelRewardItemAppear("CoS_Dirtmound_Box_003", ITEMGUID_S_CoS_Dirtmound_003_Treasure_2f16e3ec-a19f-4d0f-8d1b-0791a0d0d711, TRIGGERGUID_S_CoS_Dirtmound_Box_003_DragTo_47b6536d-dea0-4775-a3c4-d2e16ab94842);
+DB_ShovelArea(TRIGGERGUID_S_CoS_Temples_SecretTunnel_Hole_Box_71f54f46-76a4-445e-a803-389f342c8136, "CoS_Temples_SecretTunnel_Hole", ITEMGUID_S_CoS_Temples_SecretTunnel_DirtPile_23b0234e-a77a-49fc-b736-fd3dbd6d6c69);
+DB_ShovelRewardItemSpawn("CoS_Temples_SecretTunnel_Hole", ITEMGUID_S_CoS_Temples_SecretTunnel_Hole_eef59dc8-f3f7-40c5-98e7-127b3f85c7d4);
+DB_ShovelArea(TRIGGERGUID_S_CoS_DirtMound_005_Box_f1027a04-efff-489e-8167-2a83d9d62809, "S_CoS_DirtMound_005", ITEMGUID_S_CoS_DirtMound_005_1d019cd3-8528-4914-bc92-3931ad79e49d);
+DB_ShovelRewardItemScatter("S_CoS_DirtMound_005", ITEMGUID_S_CoS_DirtMound_005_Reward_7410aa24-5f48-4198-9669-1ddace4dbc69);
+DB_CoS_Banter(TRIGGERGUID_S_CoS_BanterVB_Box_001_14882df7-1e2e-456b-9018-471568dfbdbe, "CoS_Temples_VB_Banter_001");
+DB_CoS_Banter(TRIGGERGUID_S_CoS_BanterVB_Box_002_0b178eec-c28f-4783-a6f5-9dbc10c4c670, "CoS_Temples_VB_Banter_002");
+DB_CoS_Banter(TRIGGERGUID_S_CoS_BanterVB_Box_003_64b7956d-2ba0-4dcb-813f-293d25f992c1, "CoS_Temples_VB_Banter_003");
+DB_CoS_Banter(TRIGGERGUID_S_CoS_Temples_Elf_BanterVB_001_3f8d015e-04ae-4235-83c4-79432c3d3378, "CoS_Temples_VB_Banter_004");
+DB_CoS_Banter(TRIGGERGUID_S_CoS_Temples_VB_Banter_005_Box_3f07820b-9453-413e-9fab-846995a50bd4, "CoS_Temples_VB_Banter_005");
+DB_CoS_Banter(TRIGGERGUID_S_CoS_Temples_VB_HeartOfTheMotherTree_Box_4336fa90-dbd3-459f-9d58-247e686a1ce2, "CoS_Temples_VB_HeartOfTheMotherTree");
+DB_CoS_Banter(TRIGGERGUID_S_CoS_Temples_Imp_SlowVB_Trigger_0214347f-540a-4026-a89e-f63f20395965, "CoS_Temples_VB_ImpTempleSlowed");
+DB_CoS_Banter(TRIGGERGUID_S_CoS_Academy_VB_Banter_001_Box_c93f00e9-f4e6-4410-bcda-320b27e3c2a7, "CoS_Academy_VB_Banter_001");
+DB_CoS_Banter(TRIGGERGUID_S_CoS_SUB_Academy_Library_bb3fbf51-7449-4dd9-b230-d5692c517e6e, "CoS_Academy_VB_Banter_002");
+DB_CoS_Banter(TRIGGERGUID_S_CoS_SUB_Academy_Temple_814547e3-9867-4a17-904d-f465736a7a5f, "CoS_Academy_VB_Banter_EnteredTemple");
+DB_HasTemplateItem("QUEST_CoS_RaanaarCapacitor_1d838f3b-dc81-45e3-855d-4adc7d127042", "GLO_HasAtaraxianCapacitor");
+DB_HasTemplateItem("FUR_WashSoap_A_eda48b44-7f26-4922-84bf-85725ef067c1", "GLO_HasSoap");
+DB_CoS_Temples_ColwynFlags("RC_DW_JailorMagister_Leave");
+DB_CoS_Temples_ColwynFlags("RC_DW_JailorMagister_LeaveKey");
+DB_CoS_EternalPlaques(ITEMGUID_S_CoS_Temples_Orc_EternalPlaque_001_db6a1503-1b96-45df-b170-d3dbee6257f7, "CoS_Temples_Orc_VB_EternalPlaque_001");
+DB_CoS_EternalPlaques(ITEMGUID_S_CoS_Temples_Orc_EternalPlaque_002_0a2ab624-5465-4369-b9ba-bd599567f6bf, "CoS_Temples_Orc_VB_EternalPlaque_002");
+DB_CoS_EternalPlaques(ITEMGUID_S_CoS_Temples_Wizard_EternalPlaque_001_43f1152e-16a0-4404-b0bd-7dad5e9f96a2, "CoS_Temples_Wizard_VB_EternalPlaque_001");
+DB_CoS_EternalPlaques(ITEMGUID_S_CoS_Temples_Lizard_EternalPlaque_001_4450c829-7589-479c-9445-012d160eabb9, "CoS_Temples_Lizard_VB_EternalPlaque_001");
+DB_CoS_EternalPlaques(ITEMGUID_S_CoS_Academy_EternalPlaque_001_af2aa3fa-6301-41be-9838-2ea807777c49, "CoS_Academy_VB_EternalPlaque_001");
+Proc_CoS_Temples_Main();
+
+KBSECTION
+PROC
+Proc_CoS_Temples_Main()
+AND
+DB_IsPlayer(_Var1)
+THEN
+PartySetFlag(_Var1, "QuestUpdate_CoS_Temples_Start");
+
+PROC
+ProcBlockUseOfItem((CHARACTERGUID)_Var1, (ITEMGUID)_Var2)
+AND
+GetTemplate(_Var2, _Var3)
+AND
+_Var3 == "BLD_Raanaar_Waypointshrine_A_64c62f4b-dae4-4cfd-82cf-bc4aacd1f9b0"
+AND
+QueryOnlyOnce("CoS_FirstWaypointUsed_Once")
+THEN
+DB_CustomUseItemResponse(_Var1, _Var2, 0);
+Proc_StartDialog(0, "CoS_FirstWaypointUsed", _Var2, _Var1);
+
+PROC
+Proc_CoS_Temples_Main()
+AND
+CharacterIsDead(CHARACTERGUID_S_GLO_JailorMagister_51bc3b1a-98cd-4c06-9b4a-e171381fbe25, 0)
+THEN
+TeleportTo(CHARACTERGUID_S_GLO_JailorMagister_51bc3b1a-98cd-4c06-9b4a-e171381fbe25, TRIGGERGUID_S_CoS_Temples_MagisterColwyn_Point_fa68bdc3-e2f9-4058-a99e-6483cc49b4d1);
+CharacterDieImmediate(CHARACTERGUID_S_GLO_JailorMagister_51bc3b1a-98cd-4c06-9b4a-e171381fbe25, 0, "DoT");
+
+IF
+CharacterLootedCharacterCorpse((CHARACTERGUID)_Var1, CHARACTERGUID_S_GLO_JailorMagister_51bc3b1a-98cd-4c06-9b4a-e171381fbe25)
+AND
+DB_CoS_Temples_ColwynFlags(_Var2)
+AND
+QRY_SpeakerIsAvailable(_Var1)
+AND
+UserGetFlag(_Var1, _Var2, 1)
+AND
+QueryOnlyOnce("CoS_Temples_VB_ColwynsCorpse_Once")
+THEN
+ProcObjectTimer(_Var1, "CoS_Temples_VB_ColwynsCorpse_Timer", 1200);
+
+PROC
+ProcObjectTimerFinished((CHARACTERGUID)_Var1, "CoS_Temples_VB_ColwynsCorpse_Timer")
+THEN
+StartVoiceBark("CoS_Temples_VB_ColwynsCorpse", _Var1);
+
+IF
+TextEventSet("colwyn")
+AND
+CharacterGetHostCharacter(_Var1)
+THEN
+PartySetFlag(_Var1, "RC_DW_JailorMagister_Leave");
+
+IF
+ItemAddedToCharacter(ITEMGUID_S_CoS_Temples_MagisterShield_eeb11150-e899-437d-b7b9-0b792c0d8959, (CHARACTERGUID)_Var1)
+AND
+QRY_SpeakerIsAvailable(_Var1)
+AND NOT
+DB_OnlyOnce("CoS_Temples_VB_DeadMagister_Once")
+THEN
+ProcObjectTimer(_Var1, "CoS_Temples_VB_DeadMagister_Timer", 800);
+
+PROC
+ProcObjectTimerFinished((CHARACTERGUID)_Var1, "CoS_Temples_VB_DeadMagister_Timer")
+AND
+QRY_SpeakerIsAvailable(_Var1)
+AND
+QueryOnlyOnce("CoS_Temples_VB_DeadMagister_Once")
+THEN
+StartVoiceBark("CoS_Temples_VB_DeadMagister", _Var1);
+
+IF
+CharacterEnteredTrigger((CHARACTERGUID)_Var1, TRIGGERGUID_S_CoS_Temples_BeachDeadMagistersVB_Box_ce9903fc-dc1d-4647-97b3-7ee4728d95fa)
+AND
+QRY_SpeakerIsAvailable(_Var1)
+AND
+QueryOnlyOnce("CoS_Temples_BeachDeadMagistersVB_Once")
+THEN
+StartVoiceBark("CoS_Temples_VB_BeachDeadMagisters", _Var1);
+
+IF
+CharacterUsedSkill((CHARACTERGUID)_Var1, "Shout_SpiritVision", _, _)
+AND
+DB_InRegion(_Var1, TRIGGERGUID_S_CoS_Temples_BeachDeadMagistersVB_Box_ce9903fc-dc1d-4647-97b3-7ee4728d95fa)
+THEN
+ProcTriggerUnregisterForPlayers(TRIGGERGUID_S_CoS_Temples_BeachDeadMagistersVB_Box_ce9903fc-dc1d-4647-97b3-7ee4728d95fa);
+ProcObjectTimer(_Var1, "CoS_Temples_BeachDeadMagisters_NoGhostsVB_Delay", 3200);
+
+PROC
+ProcObjectTimerFinished((CHARACTERGUID)_Var1, "CoS_Temples_BeachDeadMagisters_NoGhostsVB_Delay")
+AND
+QRY_SpeakerIsAvailable(_Var1)
+AND
+QueryOnlyOnce("CoS_Temples_BeachDeadMagisters_NoGhostsVB_Once")
+THEN
+StartVoiceBark("CoS_Temples_BeachDeadMagisters_NoGhosts", _Var1);
+
+IF
+CharacterItemEvent((CHARACTERGUID)_Var1, ITEMGUID_S_CoS_Temples_BeachDeadMagister_Limb_001_c03a2c63-b03f-416c-8e3a-3dc62c52757d, "GLO_AteBodyPart")
+THEN
+Proc_StartDialog(0, "CoS_Temples_BeachDeadMagister_Limb_001", _Var1);
+
+IF
+DB_OnlyOnce("CoS_Temples_BeachDeadMagistersVB_Once")
+AND
+DB_IsPlayer(_Var1)
+THEN
+PartySetFlag(_Var1, "QuestUpdate_CoS_Temples_BeachDeadMagisters");
+
+IF
+CharacterLootedCharacterCorpse((CHARACTERGUID)_Var1, (CHARACTERGUID)_Var2)
+AND
+DB_IsPlayer(_Var1)
+AND
+QRY_SpeakerIsAvailable(_Var1)
+AND
+IsTagged(_Var2, "BLACK_RING", 1)
+AND
+QueryOnlyOnce("CoS_Temples_VB_LootedBlackRingCorpse_Once")
+THEN
+StartVoiceBark("CoS_Temples_VB_LootedBlackRingCorpse", _Var1);
+
+IF
+CharacterLootedCharacterCorpse((CHARACTERGUID)_Var1, (CHARACTERGUID)_Var2)
+AND
+IsTagged(_Var2, "BLACK_RING", 1)
+AND
+DB_IsPlayer(_Var1)
+AND
+ObjectGetFlag(_Var1, "QuestUpdate_CoS_BlackRing_Start", 0)
+THEN
+PartySetFlag(_Var1, "QuestUpdate_CoS_BlackRing_Start");
+
+IF
+DialogEnded(_, (INTEGER)_Var2)
+AND
+DialogGetInvolvedNPC(_Var2, 1, _Var3)
+AND
+IsTagged(_Var3, "BLACK_RING", 1)
+AND
+DialogGetInvolvedPlayer(_Var2, 1, _Var4)
+THEN
+PartySetFlag(_Var4, "QuestUpdate_CoS_BlackRing_Start");
+
+IF
+CharacterDying((CHARACTERGUID)_Var1)
+AND
+DB_CombatCharacters(_Var1, _Var2)
+AND
+DB_IsPlayer(_Var3)
+AND
+DB_CombatCharacters(_Var3, _Var2)
+AND
+QRY_GLO_KilledEvent_WasEnemy(_Var1, _Var3, _Var2)
+AND
+IsTagged(_Var1, "BLACK_RING", 1)
+THEN
+PartySetFlag(_Var3, "QuestUpdate_CoS_BlackRing_Start");
+
+IF
+CharacterEnteredTrigger((CHARACTERGUID)_Var1, TRIGGERGUID_S_CoS_Temples_VB_Battlefield_001_Box_c50dfa09-0194-4a5c-b2ad-4a100c2fbecc)
+AND
+QRY_SpeakerIsAvailable(_Var1)
+AND
+QueryOnlyOnce("CoS_Temples_VB_Battlefield_001_Once")
+THEN
+StartVoiceBark("CoS_Temples_VB_Battlefield_001", _Var1);
+
+IF
+CharacterUsedSkill((CHARACTERGUID)_Var1, "Shout_SpiritVision", _, _)
+AND
+DB_InRegion(_Var1, TRIGGERGUID_S_CoS_Temples_VB_Battlefield_001_Box_c50dfa09-0194-4a5c-b2ad-4a100c2fbecc)
+AND
+QRY_SpeakerIsAvailable(_Var1)
+AND
+QueryOnlyOnce("CoS_Temples_VB_Battlefield_001_NoGhostsVB_Once")
+THEN
+ProcTriggerUnregisterForPlayers(TRIGGERGUID_S_CoS_Temples_VB_Battlefield_001_Box_c50dfa09-0194-4a5c-b2ad-4a100c2fbecc);
+ProcObjectTimer(_Var1, "CoS_Temples_VB_Battlefield_001_NoGhostsVB_Delay", 3200);
+
+PROC
+ProcObjectTimerFinished((CHARACTERGUID)_Var1, "CoS_Temples_VB_Battlefield_001_NoGhostsVB_Delay")
+THEN
+StartVoiceBark("CoS_Temples_VB_Battlefield_001_NoGhosts", _Var1);
+
+IF
+CharacterEnteredTrigger((CHARACTERGUID)_Var1, TRIGGERGUID_S_CoS_Temples_VB_Battlefield_002_Box_b041ded5-4352-4ae8-95f0-906d7678acf3)
+AND
+QRY_SpeakerIsAvailable(_Var1)
+AND
+QueryOnlyOnce("CoS_Temples_VB_Battlefield_002_Once")
+THEN
+StartVoiceBark("CoS_Temples_VB_Battlefield_002", _Var1);
+
+IF
+CharacterUsedSkill((CHARACTERGUID)_Var1, "Shout_SpiritVision", _, _)
+AND
+DB_InRegion(_Var1, TRIGGERGUID_S_CoS_Temples_VB_Battlefield_002_Box_b041ded5-4352-4ae8-95f0-906d7678acf3)
+AND
+QRY_SpeakerIsAvailable(_Var1)
+AND
+QueryOnlyOnce("CoS_Temples_VB_Battlefield_002_NoGhostsVB_Once")
+THEN
+ProcTriggerUnregisterForPlayers(TRIGGERGUID_S_CoS_Temples_VB_Battlefield_002_Box_b041ded5-4352-4ae8-95f0-906d7678acf3);
+ProcObjectTimer(_Var1, "CoS_Temples_VB_Battlefield_002_NoGhostsVB_Delay", 3200);
+
+PROC
+ProcObjectTimerFinished((CHARACTERGUID)_Var1, "CoS_Temples_VB_Battlefield_002_NoGhostsVB_Delay")
+THEN
+StartVoiceBark("CoS_Temples_VB_Battlefield_002_NoGhosts", _Var1);
+
+IF
+ObjectFlagSet("PlayAnimation_Kneel_02", (CHARACTERGUID)_Var1, _)
+THEN
+ObjectClearFlag(_Var1, "PlayAnimation_Kneel_02", 0);
+PlayAnimation(_Var1, "Kneel_02");
+
+IF
+ObjectFlagSet("PlayAnimation_use_activate", (CHARACTERGUID)_Var1, _)
+THEN
+ObjectClearFlag(_Var1, "PlayAnimation_use_activate", 0);
+PlayAnimation(_Var1, "use_activate");
+
+IF
+ObjectFlagSet("PlayAnimation_use_drink", (CHARACTERGUID)_Var1, _)
+THEN
+PlayAnimation(_Var1, "use_drink");
+ObjectClearFlag(_Var1, "PlayAnimation_use_drink");
+
+IF
+ObjectFlagSet("AnimationOverride_Loop_Kneel_01", (CHARACTERGUID)_Var1, (INTEGER)_Var2)
+THEN
+CharacterSetAnimationOverride(_Var1, "Kneel_01_Loop");
+DB_Clear_AnimationOverride_AfterDialog(_Var1, _Var2);
+
+IF
+ObjectFlagCleared("Clear_AnimationOverride", (CHARACTERGUID)_Var1, _)
+AND
+DB_Clear_AnimationOverride_AfterDialog(_Var1, _Var3)
+THEN
+CharacterSetAnimationOverride(_Var1, "");
+NOT DB_Clear_AnimationOverride_AfterDialog(_Var1, _Var3);
+
+IF
+DialogEnded(_, (INTEGER)_Var2)
+AND
+DB_Clear_AnimationOverride_AfterDialog(_Var3, _Var2)
+THEN
+ObjectClearFlag(_Var3, "Clear_AnimationOverride");
+
+IF
+DB_CoS_Banter(_Var1, _Var2)
+THEN
+ProcTriggerRegisterForPlayers(_Var1);
+
+IF
+CharacterEnteredTrigger((CHARACTERGUID)_Var1, (TRIGGERGUID)_Var2)
+AND
+DB_IsPlayer(_Var1)
+AND
+DB_CoS_Banter(_Var2, _Var3)
+AND
+StringConcatenate(_Var3, "_Once", _Var4)
+AND
+QueryOnlyOnce(_Var4)
+THEN
+StartVoiceBark(_Var3, _Var1);
+
+IF
+GlobalFlagSet("CoS_Temples_Orc_TempleDrained")
+THEN
+DB_OnlyOnce("CoS_Temples_VB_Banter_001_Once");
+
+PROC
+Proc_CoS_Temples_Main()
+THEN
+Proc_CoS_Temples_RandomScreenShake();
+
+PROC
+Proc_CoS_Temples_RandomScreenShake()
+AND
+Random(30000, _Var1)
+AND
+Real(_Var1, _Var2)
+AND
+RealSum(30000, _Var2, _Var3)
+AND
+Integer(_Var3, _Var4)
+THEN
+TimerLaunch("CoS_Temples_RandomScreenShake", _Var4);
+
+IF
+TimerFinished("CoS_Temples_RandomScreenShake")
+AND
+DB_IsPlayer(_Var1)
+AND
+DB_InRegion(_Var1, TRIGGERGUID_S_CoS_Temples_SUB_Island_b5ab6a49-b015-4908-8f49-7b152d6c5d30)
+THEN
+Proc_ShakeCameraForTime(_Var1, 5000);
+Proc_CoS_Temples_RandomScreenShake();
+
+IF
+CharacterUsedItem((CHARACTERGUID)_Var1, (ITEMGUID)_Var2)
+AND
+DB_CoS_EternalPlaques(_Var2, _Var3)
+AND
+IsTagged(_Var1, "SCHOLAR", 1)
+THEN
+Proc_StartDialog(1, _Var3, _Var1);
+
+IF
+CharacterUsedItem((CHARACTERGUID)_Var1, (ITEMGUID)_Var2)
+AND
+DB_CoS_EternalPlaques(_Var2, _Var3)
+AND
+IsTagged(_Var1, "SCHOLAR", 0)
+THEN
+Proc_StartDialog(1, "CoS_Temples_VB_CannotReadPlaque", _Var1);
+
+IF
+CharacterUsedItem((CHARACTERGUID)_Var1, ITEMGUID_S_CoS_Temples_MapMarkerPaper_001_fe7141e7-14b2-4013-9b06-8a37ced6724d)
+THEN
+ShowMapMarker(_Var1, "CoS_Temple_Human", 1);
+
+IF
+CharacterUsedItem((CHARACTERGUID)_Var1, ITEMGUID_S_CoS_Temples_MapMarkerPaper_002_fddc3faf-8206-472e-8f3a-e456b8eb02a5)
+THEN
+ShowMapMarker(_Var1, "CoS_BlackRingAtOrcTemple", 1);
+
+IF
+CharacterEnteredTrigger((CHARACTERGUID)_Var1, TRIGGERGUID_S_CoS_SUB_Temples_Lizard_0a009ed0-61f5-4670-9d26-1417ebf02922)
+THEN
+ProcShowMarker(_Var1, "CoS_LizardTemple");
+
+IF
+CharacterEnteredTrigger((CHARACTERGUID)_Var1, TRIGGERGUID_S_CoS_SUB_Temples_Imp_11361b1e-7609-41bd-9334-fadb26024a9d)
+THEN
+ProcShowMarker(_Var1, "CoS_ImpShrine");
+
+IF
+CharacterUsedItem((CHARACTERGUID)_Var1, ITEMGUID_S_CoS_Temples_Orc_DoorToTemple_6b60b5c8-0205-46c4-865f-7d8f3c085a3a)
+THEN
+ProcShowMarker(_Var1, "CoS_OrcTempleEntrance");
+
+IF
+CharacterUsedItem((CHARACTERGUID)_Var1, ITEMGUID_S_CoS_Temples_Wizard_PortalToTemple_c91cae95-8b2e-40ff-8df2-6e9ecf411555)
+THEN
+ProcShowMarker(_Var1, "CoS_VineToAmadiaTemple");
+
+IF
+CharacterUsedItem((CHARACTERGUID)_Var1, ITEMGUID_S_CoS_Temples_Dwarf_DoorToTemple_4f0beeae-7d8c-4dc1-b354-3c612bfd4edf)
+THEN
+ProcShowMarker(_Var1, "COS_DwarfTemple");
+
+IF
+CharacterEnteredTrigger((CHARACTERGUID)_Var1, TRIGGERGUID_S_CoS_SUB_Temples_Elf_b3f134d0-e320-4bec-802c-6a093d291363)
+THEN
+ProcShowMarker(_Var1, "CoS_ElfTempleEntrance");
+
+IF
+CharacterEnteredTrigger((CHARACTERGUID)_Var1, TRIGGERGUID_S_CoS_SUB_Temples_Human_1d089d37-fc5e-4cc6-807e-51d0535dc0cc)
+THEN
+ProcShowMarker(_Var1, "CoS_Temple_Human");
+
+IF
+CharacterEnteredTrigger((CHARACTERGUID)_Var1, TRIGGERGUID_S_CoS_SUB_Temples_LunarShrine_1f465afc-c57c-4f4b-9860-d874655f3444)
+THEN
+ProcShowMarker(_Var1, "CoS_LunarShrine");
+
+IF
+ObjectWasTagged((CHARACTERGUID)_Var1, "BLOCK_RESURRECTION")
+AND
+DB_Avatars(_Var1)
+AND
+CharacterIsDead(_Var1, 1)
+AND NOT
+DB_Avatars_WithBLOCK_RESURRECTION(_Var1)
+THEN
+DB_Avatars_WithBLOCK_RESURRECTION(_Var1);
+
+IF
+CharacterDied((CHARACTERGUID)_Var1)
+AND
+DB_Avatars(_Var1)
+AND
+IsTagged(_Var1, "BLOCK_RESURRECTION", 1)
+AND NOT
+DB_Avatars_WithBLOCK_RESURRECTION(_Var1)
+THEN
+DB_Avatars_WithBLOCK_RESURRECTION(_Var1);
+
+IF
+ObjectLostTag((CHARACTERGUID)_Var1, "BLOCK_RESURRECTION")
+AND
+DB_Avatars_WithBLOCK_RESURRECTION(_Var1)
+THEN
+NOT DB_Avatars_WithBLOCK_RESURRECTION(_Var1);
+
+IF
+CharacterResurrected((CHARACTERGUID)_Var1)
+AND
+DB_Avatars(_Var1)
+AND
+IsTagged(_Var1, "BLOCK_RESURRECTION", 1)
+AND
+DB_Avatars_WithBLOCK_RESURRECTION(_Var1)
+THEN
+NOT DB_Avatars_WithBLOCK_RESURRECTION(_Var1);
+
+IF
+DB_Avatars_WithBLOCK_RESURRECTION(_Var1)
+AND
+SysCount("DB_Avatars_WithBLOCK_RESURRECTION", 1, _Var2)
+AND
+SysCount("DB_Avatars", 1, _Var3)
+AND
+_Var3 == _Var2
+THEN
+GlobalSetFlag("GLO_GameOver");
+
+PROC
+ProcRegionEnded("CoS_Main")
+THEN
+GoalCompleted;
+
+
+EXITSECTION
+ENDEXITSECTION
+
+ParentTargetEdge "CoS_Temples"

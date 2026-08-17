@@ -1,0 +1,173 @@
+Version 1
+SubGoalCombiner SGC_AND
+
+INITSECTION
+DB_BlockSoulJarDestroyVB(ITEMGUID_S_FTJ_SoulJarTrap_001_f1048dcf-98bb-4cd1-9de8-c11363bf3f27);
+DB_BlockSoulJarDestroyVB(ITEMGUID_S_FTJ_SoulJarTrap_002_af88fbb9-143d-4663-8f74-a889bc7686ad);
+DB_BlockSoulJarDestroyVB(ITEMGUID_S_FTJ_SoulJarTrap_003_a843c58b-25f8-44bd-a0dc-9702f146d357);
+DB_BlockSoulJarDestroyVB(ITEMGUID_S_FTJ_SoulJarTrap_004_fcea4277-68af-410f-93c8-29693cb13cf7);
+DB_GLO_SourcePointDialog("FTJ_WithermooreSoulJar");
+DB_GLO_SourcePointDialog("FTJ_SW_SoulJar_GuardUndead1");
+DB_GLO_SourcePointDialog("FTJ_SW_SoulJar_GuardUndead2");
+DB_GLO_SourcePointDialog("FTJ_SW_SoulJar_GuardUndead3");
+DB_GLO_SourcePointDialog("FTJ_SW_SoulJar_ShelterUndead");
+DB_GLO_SourcePointDialog("FTJ_SW_SoulJar_Illusionist");
+DB_GLO_SourcePointDialog("FTJ_SW_River");
+
+KBSECTION
+IF
+ItemDestroying((ITEMGUID)_Var1)
+AND
+IsTagged(_Var1, "SOULJAR", 1)
+AND NOT
+DB_FTJ_SoulJar_Removed(_Var1)
+AND
+ObjectGetFlag(_Var1, "Absorb_SoulJar", 0)
+THEN
+PROC_GLO_SoulJar_PlayDestroyEffect(_Var1);
+
+IF
+DialogEnded(_, (INTEGER)_Var2)
+AND
+DialogGetInvolvedNPC(_Var2, 1, _Var3)
+AND
+IsTagged(_Var3, "SOULJAR", 1)
+AND
+DialogGetInvolvedPlayer(_Var2, 1, _Var4)
+AND
+ItemIsInPartyInventory(_Var3, _Var4, 0, 1)
+AND
+ObjectGetFlag(_Var3, "Destroy_SoulJar", 1)
+THEN
+PlayEffect(_Var4, "RS3_FX_GP_ScriptedEvent_SourceJar_Break_01");
+PROC_GLO_SoulJar_PlayDestroyEffect(_Var3);
+DB_FTJ_SoulJar_Removed(_Var3);
+ItemRemove(_Var3);
+DB_DestroyedItems(_Var3);
+
+IF
+DialogEnded(_, (INTEGER)_Var2)
+AND
+DialogGetInvolvedNPC(_Var2, 1, _Var3)
+AND
+IsTagged(_Var3, "SOULJAR", 1)
+AND
+ObjectGetFlag(_Var3, "Destroy_SoulJar", 1)
+AND
+DialogGetInvolvedPlayer(_Var2, 1, _Var4)
+AND
+ItemIsInCharacterInventory(_Var3, _Var4, 0)
+THEN
+ItemDestroy(_Var3);
+ProcForceStopDialog(_Var4);
+
+IF
+DialogEnded(_, (INTEGER)_Var2)
+AND
+DialogGetInvolvedNPC(_Var2, 1, _Var3)
+AND
+IsTagged(_Var3, "SOULJAR", 1)
+AND
+ObjectGetFlag(_Var3, "Absorb_SoulJar", 1)
+AND
+DialogGetInvolvedPlayer(_Var2, 1, _Var4)
+AND
+DB_Dialogs(_Var3, _Var5)
+THEN
+Proc_AddSourcePoint(_Var4);
+Transform(_Var3, "PUZ_Source_Jar_Empty_A_f5a33e40-171c-4cf0-9f86-9343fd5df646", 0);
+PROC_GLO_SoulJar_PlayDestroyEffect(_Var3);
+PlayAnimation(_Var4, "use_activate");
+PlayEffect(_Var4, "RS3_FX_GP_ScriptedEvent_Source_Absorb_01");
+NOT DB_Dialogs(_Var3, _Var5);
+ObjectSetFlag(_Var4, "GLO_PathOfBlood_DisrespectedSoul");
+Proc_AbsorbedSoulJar(_Var4, _Var3);
+
+PROC
+Proc_AbsorbedSoulJar((CHARACTERGUID)_Var1, (ITEMGUID)_Var2)
+THEN
+DB_NOOP(1);
+
+IF
+ObjectFlagSet("Pickup_SoulJar", (CHARACTERGUID)_Var1, (INTEGER)_Var2)
+AND
+DialogGetInvolvedNPC(_Var2, 1, _Var3)
+THEN
+DB_SoulJarPickup(_Var1, _Var3, _Var2);
+ObjectClearFlag(_Var1, "Pickup_SoulJar", _Var2);
+
+IF
+DialogEnded(_, (INTEGER)_Var2)
+AND
+DB_SoulJarPickup(_Var3, _Var4, _Var2)
+THEN
+CharacterPickupItem(_Var3, _Var4, "");
+NOT DB_SoulJarPickup(_Var3, _Var4, _Var2);
+
+IF
+ItemAddedToCharacter((ITEMGUID)_Var1, _)
+AND
+ObjectExists(_Var1, 1)
+AND
+IsTagged(_Var1, "SOULJAR", 1)
+AND
+ObjectGetFlag(_Var1, "Jar_Pickedup", 0)
+THEN
+ObjectSetFlag(_Var1, "Jar_Pickedup");
+
+PROC
+PROC_GLO_SoulJar_PlayDestroyEffect((ITEMGUID)_Var1)
+AND
+ItemIsInInventory(_Var1, 0)
+AND
+GetPosition(_Var1, _Var2, _Var3, _Var4)
+THEN
+PlayEffectAtPosition("RS3_FX_GP_ScriptedEvent_SourceJar_Death_launch_01", _Var2, _Var3, _Var4);
+
+PROC
+PROC_GLO_SoulJar_PlayDestroyEffect((ITEMGUID)_Var1)
+AND
+ItemIsInInventory(_Var1, 1)
+AND
+GetInventoryOwner(_Var1, _Var2)
+THEN
+PlayEffect(_Var2, "RS3_FX_GP_ScriptedEvent_SourceJar_Death_launch_01");
+
+IF
+DialogStarted((STRING)_Var1, (INTEGER)_Var2)
+AND
+DB_GLO_SourcePointDialog(_Var1)
+AND
+DialogGetInvolvedPlayer(_Var2, 1, _Var3)
+AND
+Qry_GLO_RemoveBlockDialogSourceAbsorbtion(_Var3)
+THEN
+ObjectSetFlag(_Var3, "GLO_CanAbsorbSourceInDialog");
+
+IF
+DialogEnded((STRING)_Var1, (INTEGER)_Var2)
+AND
+DB_GLO_SourcePointDialog(_Var1)
+AND
+DialogGetInvolvedPlayer(_Var2, 1, _Var3)
+THEN
+ObjectClearFlag(_Var3, "GLO_CanAbsorbSourceInDialog");
+
+QRY
+Qry_GLO_RemoveBlockDialogSourceAbsorbtion((CHARACTERGUID)_Var1)
+AND
+HasActiveStatus(_Var1, "SOURCE_MUTED", 0)
+AND
+CharacterGetMaxSourcePoints(_Var1, _Var2)
+AND
+CharacterGetSourcePoints(_Var1, _Var3)
+AND
+_Var3 < _Var2
+THEN
+DB_NOOP(1);
+
+
+EXITSECTION
+ENDEXITSECTION
+
+ParentTargetEdge "Start"

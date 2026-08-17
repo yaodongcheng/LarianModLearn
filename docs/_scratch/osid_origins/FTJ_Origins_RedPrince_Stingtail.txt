@@ -1,0 +1,238 @@
+Version 1
+SubGoalCombiner SGC_AND
+
+INITSECTION
+DB_RedPrinceOrigin_SeesDeadPeople(CHARACTERGUID_S_FTJ_LizardDreamer_ffb80725-25ff-4174-98cb-60a11612e5c4, "FTJ_RedPrinceOrigin_StingtailDead");
+DB_RedPrinceOrigin_SeesDeadPeople(CHARACTERGUID_S_FTJ_SW_CheckpointSourcerer_02f6e4f7-587c-41d0-9ac6-89104f9d16ad, "FTJ_RedPrinceOrigin_BaharaDead");
+
+KBSECTION
+IF
+TextEventSet("rp_reset")
+THEN
+DB_RedPrinceOrigin_SeesDeadPeople(CHARACTERGUID_S_FTJ_LizardDreamer_ffb80725-25ff-4174-98cb-60a11612e5c4, "FTJ_RedPrinceOrigin_StingtailDead");
+DB_RedPrinceOrigin_SeesDeadPeople(CHARACTERGUID_S_FTJ_SW_CheckpointSourcerer_02f6e4f7-587c-41d0-9ac6-89104f9d16ad, "FTJ_RedPrinceOrigin_BaharaDead");
+UserClearFlag(CHARACTERGUID_S_Player_RedPrince_a26a1efb-cdc8-4cf3-a7b2-b2f9544add6f, "QuestUpdate_FTJ_OriginRedPrince_DreamerKilledBeforeTalking", 0);
+UserClearFlag(CHARACTERGUID_S_Player_RedPrince_a26a1efb-cdc8-4cf3-a7b2-b2f9544add6f, "QuestUpdate_FTJ_OriginRedPrince_DreamerKilledAfterTalking", 0);
+UserClearFlag(CHARACTERGUID_S_Player_RedPrince_a26a1efb-cdc8-4cf3-a7b2-b2f9544add6f, "QuestUpdate_FTJ_OriginRedPrince_StingtailGaveInfo", 0);
+UserClearFlag(CHARACTERGUID_S_Player_RedPrince_a26a1efb-cdc8-4cf3-a7b2-b2f9544add6f, "FTJ_RedPrinceOrigin_GotStingtailInfo", 0);
+UserClearFlag(CHARACTERGUID_S_Player_RedPrince_a26a1efb-cdc8-4cf3-a7b2-b2f9544add6f, "QuestUpdate_FTJ_OriginRedPrince_BaharaKilled_StingtailGaveInfo", 0);
+UserClearFlag(CHARACTERGUID_S_Player_RedPrince_a26a1efb-cdc8-4cf3-a7b2-b2f9544add6f, "QuestUpdate_FTJ_OriginRedPrince_BaharaKilled_NoStingtailInfo", 0);
+UserClearFlag(CHARACTERGUID_S_Player_RedPrince_a26a1efb-cdc8-4cf3-a7b2-b2f9544add6f, "QuestUpdate_FTJ_OriginRedPrince_BaharaInfo", 0);
+UserClearFlag(CHARACTERGUID_S_Player_RedPrince_a26a1efb-cdc8-4cf3-a7b2-b2f9544add6f, "QuestUpdate_FTJ_COM_RedPrince_Stingtail", 0);
+UserClearFlag(CHARACTERGUID_S_Player_RedPrince_a26a1efb-cdc8-4cf3-a7b2-b2f9544add6f, "QuestUpdate_FTJ_COM_RedPrince_StingtailDead", 0);
+UserClearFlag(CHARACTERGUID_S_Player_RedPrince_a26a1efb-cdc8-4cf3-a7b2-b2f9544add6f, "QuestUpdate_FTJ_COM_RedPrince_Bahara", 0);
+UserClearFlag(CHARACTERGUID_S_Player_RedPrince_a26a1efb-cdc8-4cf3-a7b2-b2f9544add6f, "QuestUpdate_FTJ_COM_RedPrince_BaharaKilled_StingtailGaveInfo", 0);
+UserClearFlag(CHARACTERGUID_S_Player_RedPrince_a26a1efb-cdc8-4cf3-a7b2-b2f9544add6f, "QuestUpdate_FTJ_COM_RedPrince_BaharaKilled_NoStingtailInfo", 0);
+NOT DB_Dead(CHARACTERGUID_S_FTJ_LizardDreamer_ffb80725-25ff-4174-98cb-60a11612e5c4);
+NOT DB_Dead(CHARACTERGUID_S_FTJ_SW_CheckpointSourcerer_02f6e4f7-587c-41d0-9ac6-89104f9d16ad);
+NOT DB_Sees(CHARACTERGUID_S_Player_RedPrince_a26a1efb-cdc8-4cf3-a7b2-b2f9544add6f, CHARACTERGUID_S_FTJ_LizardDreamer_ffb80725-25ff-4174-98cb-60a11612e5c4);
+NOT DB_Sees(CHARACTERGUID_S_Player_RedPrince_a26a1efb-cdc8-4cf3-a7b2-b2f9544add6f, CHARACTERGUID_S_FTJ_SW_CheckpointSourcerer_02f6e4f7-587c-41d0-9ac6-89104f9d16ad);
+
+IF
+TextEventSet("rp_reset")
+AND
+DB_HasMet(_Var1, CHARACTERGUID_S_Player_RedPrince_a26a1efb-cdc8-4cf3-a7b2-b2f9544add6f, _Var2)
+AND
+DB_RedPrinceOrigin_SeesDeadPeople(_Var1, _)
+THEN
+NOT DB_HasMet(_Var1, CHARACTERGUID_S_Player_RedPrince_a26a1efb-cdc8-4cf3-a7b2-b2f9544add6f, _Var2);
+
+IF
+TextEventSet("rp_stmet")
+THEN
+DB_HasMet(CHARACTERGUID_S_FTJ_LizardDreamer_ffb80725-25ff-4174-98cb-60a11612e5c4, CHARACTERGUID_S_Player_RedPrince_a26a1efb-cdc8-4cf3-a7b2-b2f9544add6f, "LIZARD");
+
+IF
+TextEventSet("rp_stinfo")
+AND
+IsTagged(CHARACTERGUID_S_Player_RedPrince_a26a1efb-cdc8-4cf3-a7b2-b2f9544add6f, "AVATAR", 1)
+THEN
+ObjectSetFlag(CHARACTERGUID_S_Player_RedPrince_a26a1efb-cdc8-4cf3-a7b2-b2f9544add6f, "QuestUpdate_FTJ_OriginRedPrince_StingtailGaveInfo");
+
+IF
+TextEventSet("rp_stinfo")
+AND
+IsTagged(CHARACTERGUID_S_Player_RedPrince_a26a1efb-cdc8-4cf3-a7b2-b2f9544add6f, "AVATAR", 0)
+THEN
+UserSetFlag(CHARACTERGUID_S_Player_RedPrince_a26a1efb-cdc8-4cf3-a7b2-b2f9544add6f, "QuestUpdate_FTJ_COM_RedPrince_Stingtail");
+
+IF
+TextEventSet("rp_stdead")
+THEN
+DB_Dead(CHARACTERGUID_S_FTJ_LizardDreamer_ffb80725-25ff-4174-98cb-60a11612e5c4);
+
+IF
+TextEventSet("rp_stsee")
+THEN
+DB_Sees(CHARACTERGUID_S_Player_RedPrince_a26a1efb-cdc8-4cf3-a7b2-b2f9544add6f, CHARACTERGUID_S_FTJ_LizardDreamer_ffb80725-25ff-4174-98cb-60a11612e5c4);
+
+IF
+TextEventSet("rp_bdead")
+THEN
+DB_Dead(CHARACTERGUID_S_FTJ_SW_CheckpointSourcerer_02f6e4f7-587c-41d0-9ac6-89104f9d16ad);
+
+IF
+TextEventSet("rp_bsee")
+THEN
+DB_Sees(CHARACTERGUID_S_Player_RedPrince_a26a1efb-cdc8-4cf3-a7b2-b2f9544add6f, CHARACTERGUID_S_FTJ_SW_CheckpointSourcerer_02f6e4f7-587c-41d0-9ac6-89104f9d16ad);
+
+IF
+DB_HasMet(_Var1, CHARACTERGUID_S_Player_RedPrince_a26a1efb-cdc8-4cf3-a7b2-b2f9544add6f, _)
+AND
+DB_RedPrinceOrigin_SeesDeadPeople(_Var1, _)
+AND
+IsTagged(CHARACTERGUID_S_Player_RedPrince_a26a1efb-cdc8-4cf3-a7b2-b2f9544add6f, "AVATAR", 1)
+THEN
+ObjectSetFlag(CHARACTERGUID_S_Player_RedPrince_a26a1efb-cdc8-4cf3-a7b2-b2f9544add6f, "FTJ_RedPrinceAvatar_HasMet_Stingtail");
+
+IF
+DB_Dead(_Var1)
+AND
+DB_RedPrinceOrigin_SeesDeadPeople(_Var1, _Var2)
+AND
+DB_Sees(CHARACTERGUID_S_Player_RedPrince_a26a1efb-cdc8-4cf3-a7b2-b2f9544add6f, _Var1)
+THEN
+ObjectSetFlag(CHARACTERGUID_S_Player_RedPrince_a26a1efb-cdc8-4cf3-a7b2-b2f9544add6f, _Var2);
+
+IF
+ObjectFlagSet("FTJ_RedPrinceOrigin_StingtailDead", CHARACTERGUID_S_Player_RedPrince_a26a1efb-cdc8-4cf3-a7b2-b2f9544add6f, _)
+THEN
+PROC_FTJ_Origins_RedPrince_StingtailDead();
+
+PROC
+PROC_FTJ_Origins_RedPrince_StingtailDead()
+AND
+ObjectGetFlag(CHARACTERGUID_S_Player_RedPrince_a26a1efb-cdc8-4cf3-a7b2-b2f9544add6f, "FTJ_RedPrinceAvatar_HasMet_Stingtail", 0)
+AND
+IsTagged(CHARACTERGUID_S_Player_RedPrince_a26a1efb-cdc8-4cf3-a7b2-b2f9544add6f, "AVATAR", 1)
+THEN
+ObjectSetFlag(CHARACTERGUID_S_Player_RedPrince_a26a1efb-cdc8-4cf3-a7b2-b2f9544add6f, "QuestUpdate_FTJ_OriginRedPrince_DreamerKilledBeforeTalking");
+
+PROC
+PROC_FTJ_Origins_RedPrince_StingtailDead()
+AND
+UserGetFlag(CHARACTERGUID_S_Player_RedPrince_a26a1efb-cdc8-4cf3-a7b2-b2f9544add6f, "FTJ_RedPrinceAvatar_HasMet_Stingtail", 1)
+THEN
+UserSetFlag(CHARACTERGUID_S_Player_RedPrince_a26a1efb-cdc8-4cf3-a7b2-b2f9544add6f, "QuestUpdate_FTJ_OriginRedPrince_DreamerKilledAfterTalking");
+
+PROC
+PROC_FTJ_Origins_RedPrince_StingtailDead()
+AND
+IsTagged(CHARACTERGUID_S_Player_RedPrince_a26a1efb-cdc8-4cf3-a7b2-b2f9544add6f, "AVATAR", 0)
+AND
+DB_IsPlayer(_Var1)
+AND
+IsTagged(_Var1, "AVATAR", 1)
+AND
+CharacterIsInPartyWith(_Var1, CHARACTERGUID_S_Player_RedPrince_a26a1efb-cdc8-4cf3-a7b2-b2f9544add6f, 1)
+THEN
+UserSetFlag(CHARACTERGUID_S_Player_RedPrince_a26a1efb-cdc8-4cf3-a7b2-b2f9544add6f, "QuestUpdate_FTJ_COM_RedPrince_StingtailDead");
+
+PROC
+PROC_FTJ_Origins_RedPrince_StingtailDead()
+THEN
+ObjectSetFlag(CHARACTERGUID_S_Player_RedPrince_a26a1efb-cdc8-4cf3-a7b2-b2f9544add6f, "FTJ_RedPrinceOrigin_DeadStingtailBeforeInfo");
+
+PROC
+PROC_FTJ_Origins_RedPrince_StingtailDead()
+THEN
+Proc_StartDialog(1, "FTJ_AD_RedPrinceStingtailDead", CHARACTERGUID_S_Player_RedPrince_a26a1efb-cdc8-4cf3-a7b2-b2f9544add6f);
+
+PROC
+PROC_FTJ_Origins_RedPrince_StingtailDead()
+THEN
+PROC_FTJ_Origins_RedPrince_DeadPersonFinished(CHARACTERGUID_S_FTJ_LizardDreamer_ffb80725-25ff-4174-98cb-60a11612e5c4);
+
+IF
+ObjectFlagSet("FTJ_RedPrinceOrigin_BaharaDead", CHARACTERGUID_S_Player_RedPrince_a26a1efb-cdc8-4cf3-a7b2-b2f9544add6f, _)
+THEN
+PROC_FTJ_Origins_RedPrince_BaharaDead();
+
+PROC
+PROC_FTJ_Origins_RedPrince_BaharaDead()
+AND
+ObjectGetFlag(CHARACTERGUID_S_Player_RedPrince_a26a1efb-cdc8-4cf3-a7b2-b2f9544add6f, "QuestUpdate_FTJ_OriginRedPrince_StingtailGaveInfo", 1)
+THEN
+ObjectSetFlag(CHARACTERGUID_S_Player_RedPrince_a26a1efb-cdc8-4cf3-a7b2-b2f9544add6f, "QuestUpdate_FTJ_OriginRedPrince_BaharaKilled_StingtailGaveInfo");
+ObjectSetFlag(CHARACTERGUID_S_Player_RedPrince_a26a1efb-cdc8-4cf3-a7b2-b2f9544add6f, "FTJ_RedPrinceOrigin_GotStingtailInfo");
+
+PROC
+PROC_FTJ_Origins_RedPrince_BaharaDead()
+AND
+ObjectGetFlag(CHARACTERGUID_S_Player_RedPrince_a26a1efb-cdc8-4cf3-a7b2-b2f9544add6f, "QuestUpdate_FTJ_OriginRedPrince_StingtailGaveInfo", 0)
+AND
+IsTagged(CHARACTERGUID_S_Player_RedPrince_a26a1efb-cdc8-4cf3-a7b2-b2f9544add6f, "AVATAR", 1)
+THEN
+ObjectSetFlag(CHARACTERGUID_S_Player_RedPrince_a26a1efb-cdc8-4cf3-a7b2-b2f9544add6f, "QuestUpdate_FTJ_OriginRedPrince_BaharaKilled_NoStingtailInfo");
+
+PROC
+PROC_FTJ_Origins_RedPrince_BaharaDead()
+AND
+UserGetFlag(CHARACTERGUID_S_Player_RedPrince_a26a1efb-cdc8-4cf3-a7b2-b2f9544add6f, "QuestUpdate_FTJ_COM_RedPrince_Stingtail", 1)
+THEN
+UserSetFlag(CHARACTERGUID_S_Player_RedPrince_a26a1efb-cdc8-4cf3-a7b2-b2f9544add6f, "QuestUpdate_FTJ_COM_RedPrince_BaharaKilled_StingtailGaveInfo");
+UserSetFlag(CHARACTERGUID_S_Player_RedPrince_a26a1efb-cdc8-4cf3-a7b2-b2f9544add6f, "FTJ_RedPrinceOrigin_GotStingtailInfo");
+
+PROC
+PROC_FTJ_Origins_RedPrince_BaharaDead()
+AND
+UserGetFlag(CHARACTERGUID_S_Player_RedPrince_a26a1efb-cdc8-4cf3-a7b2-b2f9544add6f, "QuestUpdate_FTJ_COM_RedPrince_Stingtail", 0)
+AND
+IsTagged(CHARACTERGUID_S_Player_RedPrince_a26a1efb-cdc8-4cf3-a7b2-b2f9544add6f, "AVATAR", 0)
+THEN
+UserSetFlag(CHARACTERGUID_S_Player_RedPrince_a26a1efb-cdc8-4cf3-a7b2-b2f9544add6f, "QuestUpdate_FTJ_COM_RedPrince_BaharaKilled_NoStingtailInfo");
+
+PROC
+PROC_FTJ_Origins_RedPrince_BaharaDead()
+THEN
+Proc_StartDialog(1, "FTJ_SW_AD_RedPrinceBaharaDead", CHARACTERGUID_S_Player_RedPrince_a26a1efb-cdc8-4cf3-a7b2-b2f9544add6f);
+
+PROC
+PROC_FTJ_Origins_RedPrince_BaharaDead()
+THEN
+PROC_FTJ_Origins_RedPrince_DeadPersonFinished(CHARACTERGUID_S_FTJ_SW_CheckpointSourcerer_02f6e4f7-587c-41d0-9ac6-89104f9d16ad);
+
+IF
+ObjectFlagSet("QuestUpdate_FTJ_OriginRedPrince_StingtailGaveInfo", _, _)
+THEN
+PROC_FTJ_Origins_RedPrince_DeadPersonFinished(CHARACTERGUID_S_FTJ_LizardDreamer_ffb80725-25ff-4174-98cb-60a11612e5c4);
+
+IF
+ObjectFlagSet("QuestUpdate_FTJ_COM_RedPrince_Stingtail", _, _)
+THEN
+PROC_FTJ_Origins_RedPrince_DeadPersonFinished(CHARACTERGUID_S_FTJ_LizardDreamer_ffb80725-25ff-4174-98cb-60a11612e5c4);
+
+IF
+ObjectFlagSet("QuestUpdate_FTJ_OriginRedPrince_BaharaInfo", _, _)
+THEN
+PROC_FTJ_Origins_RedPrince_DeadPersonFinished(CHARACTERGUID_S_FTJ_SW_CheckpointSourcerer_02f6e4f7-587c-41d0-9ac6-89104f9d16ad);
+
+IF
+ObjectFlagSet("QuestUpdate_FTJ_COM_RedPrince_Bahara", _, _)
+THEN
+PROC_FTJ_Origins_RedPrince_DeadPersonFinished(CHARACTERGUID_S_FTJ_SW_CheckpointSourcerer_02f6e4f7-587c-41d0-9ac6-89104f9d16ad);
+
+PROC
+PROC_FTJ_Origins_RedPrince_DeadPersonFinished((CHARACTERGUID)_Var1)
+AND
+DB_RedPrinceOrigin_SeesDeadPeople(_Var1, _Var2)
+THEN
+NOT DB_RedPrinceOrigin_SeesDeadPeople(_Var1, _Var2);
+
+PROC
+PROC_FTJ_Origins_RedPrince_DeadPersonFinished((CHARACTERGUID)_Var1)
+AND NOT
+DB_RedPrinceOrigin_SeesDeadPeople(_, _)
+THEN
+GoalCompleted;
+
+PROC
+ProcRegionEnded("FJ_FortJoy_Main")
+THEN
+GoalCompleted;
+
+
+EXITSECTION
+ENDEXITSECTION
+
+ParentTargetEdge "FortJoy"

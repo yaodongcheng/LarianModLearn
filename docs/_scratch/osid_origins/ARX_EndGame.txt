@@ -1,0 +1,39 @@
+Version 1
+SubGoalCombiner SGC_AND
+
+INITSECTION
+DB_AutoSaveTrigger(TRIGGERGUID_S_ARX_Crypt_LastAutosave_655f136f-a25d-4329-8ee7-5adee39dba2d);
+DB_Dialogs(ITEMGUID_S_ARX_StairsToEndGame_90c2494c-a63a-44d7-964a-8fcbca4c05ad, "Arx_Endgame_Stairs");
+TriggerRegisterForCharacter(TRIGGERGUID_S_ARX_CryptBridge_IfanKiss_99a43983-9d38-4474-8293-d86a725afbba, CHARACTERGUID_S_Player_Ifan_ad9a3327-4456-42a7-9bf4-7ad60cc9e54f);
+
+KBSECTION
+IF
+ObjectFlagSet("ARX_Endgame_Stairs_ReadyCheck", (GUIDSTRING)_Var1, _)
+THEN
+ReadyCheckStart(_Var1, "ARX_EndGame");
+
+IF
+ReadyCheckPassed("ARX_EndGame")
+AND
+DB_IsPlayer(_Var1)
+AND
+QueryOnlyOnce("ARX_TeleportTo_Intro_Scene")
+THEN
+CharacterTeleportPartiesToTrigger(TRIGGERGUID_S_ARX_EndGame_Enter_bd166e2a-7623-490e-94df-78079e7cbacc, "Intro_Scene");
+
+IF
+CharacterEnteredTrigger(CHARACTERGUID_S_Player_Ifan_ad9a3327-4456-42a7-9bf4-7ad60cc9e54f, TRIGGERGUID_S_ARX_CryptBridge_IfanKiss_99a43983-9d38-4474-8293-d86a725afbba)
+AND
+DB_CompanionAvatarBond(CHARACTERGUID_S_Player_Ifan_ad9a3327-4456-42a7-9bf4-7ad60cc9e54f, _Var1)
+AND
+ObjectGetFlag(_Var1, "CoS_DNotS_SpentWithIfan", 1)
+AND
+ObjectGetFlag(CHARACTERGUID_S_Player_Ifan_ad9a3327-4456-42a7-9bf4-7ad60cc9e54f, "GLO_Relationship_Positive", 1)
+THEN
+Proc_RelationshipDialog(CHARACTERGUID_S_Player_Ifan_ad9a3327-4456-42a7-9bf4-7ad60cc9e54f, "EG_BeforeCrypt_CRD_Ifan", _Var1);
+
+
+EXITSECTION
+ENDEXITSECTION
+
+ParentTargetEdge "ARX"

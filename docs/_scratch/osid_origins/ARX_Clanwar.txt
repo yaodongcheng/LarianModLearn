@@ -1,0 +1,1088 @@
+Version 1
+SubGoalCombiner SGC_AND
+
+INITSECTION
+TriggerRegisterForCharacter(TRIGGERGUID_S_ARX_ClanWarAndStatue_ActivationTrigger_67932552-0fa1-480e-99ed-287cb8751b28, CHARACTERGUID_S_ARX_ClanWar_Paladins_Leader_01_cba510ab-ae58-42d1-9548-ed825644274c);
+ProcTriggerRegisterForPlayers(TRIGGERGUID_S_ARX_ClanWarAndStatue_ActivationTrigger_67932552-0fa1-480e-99ed-287cb8751b28);
+ProcTriggerRegisterForPlayers(TRIGGERGUID_S_ARX_ClanWar_VB_SeenFightTrig_c4f75b75-26f7-438f-b992-9729f539dd03);
+ProcTriggerRegisterForPlayers(TRIGGERGUID_S_ARX_Bridge_KeepExit_44df54e4-c4a4-4a99-87bb-ea63966df1a0);
+DB_OneShotPlayerTrigger(TRIGGERGUID_S_ARX_Outskirts_OutsideKeep_e4ae589e-fd3c-4d5c-8527-501898003d58);
+DB_Ghosts(CHARACTERGUID_S_ARX_Bridge_DeadMagister_011_275edc46-5e49-4d8f-bd69-7fd266eedcf4, CHARACTERGUID_S_ARX_Bridge_DeadMagister_011_Ghost_d2b20a36-1ae3-4f5c-8e64-2bf01af2f481, "ARX_Bridge_DeadMagister_011_Ghost");
+DB_ClanWar_Characters(CHARACTERGUID_S_ARX_ClanWar_Paladins_Caster_01_aaf523bc-e177-4579-bb71-15269a135e09, "RC_Paladins", 2);
+DB_ClanWar_Characters(CHARACTERGUID_S_ARX_ClanWar_Paladins_Ranger_01_15eb3dd7-b052-4d76-9567-ee5db2edc2a5, "RC_Paladins", 3);
+DB_ClanWar_Characters(CHARACTERGUID_S_ARX_ClanWar_Paladins_Tank_01_caeadc75-0cf9-40ca-bfdc-3097445a54ea, "RC_Paladins", 4);
+DB_ClanWar_PaladinSplinePatrol(CHARACTERGUID_S_ARX_ClanWar_Paladins_Ranger_01_15eb3dd7-b052-4d76-9567-ee5db2edc2a5, SPLINEGUID_S_ARX_ClanWar_PostFightPatrol_01_cf083740-9e36-447b-963b-1f51a47bacfa);
+DB_ClanWar_PaladinSplinePatrol(CHARACTERGUID_S_ARX_ClanWar_Paladins_Tank_01_caeadc75-0cf9-40ca-bfdc-3097445a54ea, SPLINEGUID_S_ARX_ClanWar_Paladins_Tank_01_Spline_aa945860-e18a-4ba4-a2b0-f3268f2d5f0f);
+DB_ClanWar_PaladinSeat(CHARACTERGUID_S_ARX_ClanWar_Paladins_Caster_01_aaf523bc-e177-4579-bb71-15269a135e09, ITEMGUID_S_ARX_ClanWar_Paladins_Caster_01_Chair_780ba3b4-25f3-41d8-8319-bad3f95ede47);
+DB_ClanWar_PaladinSplinePatrol(CHARACTERGUID_S_ARX_Bridge_GateGuard_01_a8e0e254-48af-416f-9ab6-fae6a306a4a8, SPLINEGUID_S_ARX_Bridge_GateGuard_01_Spline_44d8d92b-0158-424c-b083-99017ddd5a03);
+DB_ClanWar_PaladinSplinePatrol(CHARACTERGUID_S_ARX_Bridge_GateGuard_02_4e0bcdd3-0df6-4eb5-906b-136ba68f8b1b, SPLINEGUID_S_ARX_Bridge_GateGuard_02_904cd922-7d58-499b-8913-b2cb768c0107);
+DB_ClanWar_PaladinSplinePatrol(CHARACTERGUID_S_ARX_Bridge_GateGuard_04_642867f5-2db9-4780-8db2-4f84b42cf480, SPLINEGUID_S_ARX_Bridge_GateGuard_04_caf9f2e1-8361-4d3d-a965-bd07b614725f);
+DB_ClanWar_PaladinTriggerPoint(CHARACTERGUID_S_ARX_Bridge_GateGuard_03_a1d619cc-ed6b-42e2-ac76-ebe6372617c7, TRIGGERGUID_S_ARX_Bridge_GateGuard_03_Pos_a0a9e066-9828-429a-a60a-e2a2eaa2e5dd);
+DB_Ghosts(CHARACTERGUID_S_ARX_ClanWar_Magister_Grunmire_cf05ccd6-c314-4a99-a315-828b81f34c5c, CHARACTERGUID_S_ARX_ClanWar_Magister_Grunmire_Ghost_dd5a9660-2ff0-437a-aad9-88112c05cce4, "ARX_ClanWar_MagisterGhost");
+DB_Dialogs(CHARACTERGUID_S_ARX_ClanWar_Paladins_Leader_01_cba510ab-ae58-42d1-9548-ed825644274c, "ARX_ClanWar_Paladins_Leader_01");
+DB_Dialogs(CHARACTERGUID_S_ARX_ClanWar_Paladins_Caster_01_aaf523bc-e177-4579-bb71-15269a135e09, "ARX_ClanWar_Paladins_Caster_01");
+DB_Dialogs(CHARACTERGUID_S_ARX_ClanWar_Paladins_Ranger_01_15eb3dd7-b052-4d76-9567-ee5db2edc2a5, "ARX_ClanWar_Paladins_Ranger_01");
+DB_Dialogs(CHARACTERGUID_S_ARX_ClanWar_Paladins_Tank_01_caeadc75-0cf9-40ca-bfdc-3097445a54ea, "ARX_ClanWar_Paladins_Tank_01");
+DB_DeadEvent(CHARACTERGUID_S_ARX_ClanWar_Paladins_Leader_01_cba510ab-ae58-42d1-9548-ed825644274c, "RC_DW_ClanWar_AnaOrellIsDead");
+DB_DeadEvent(CHARACTERGUID_S_ARX_ClanWar_Paladins_Tank_01_caeadc75-0cf9-40ca-bfdc-3097445a54ea, "ARX_ClanWar_Tank_01_IsDead");
+DB_KillCounter_Internal(CHARACTERGUID_S_ARX_ClanWar_Paladins_Caster_01_aaf523bc-e177-4579-bb71-15269a135e09, "ARX_Clanwar_All");
+DB_KillCounter_Internal(CHARACTERGUID_S_ARX_ClanWar_Paladins_Ranger_01_15eb3dd7-b052-4d76-9567-ee5db2edc2a5, "ARX_Clanwar_All");
+DB_KillCounter_Internal(CHARACTERGUID_S_ARX_ClanWar_Paladins_Tank_01_caeadc75-0cf9-40ca-bfdc-3097445a54ea, "ARX_Clanwar_All");
+DB_KillCounter_Internal(CHARACTERGUID_S_ARX_ClanWar_BatOnStage_01_e3603964-4654-44a0-9556-61ac9cde82af, "ARX_Clanwar_All");
+DB_KillCounter_Internal(CHARACTERGUID_S_ARX_ClanWar_BatOnStage_02_ff762c81-0473-490c-b4f5-742aac4637ea, "ARX_Clanwar_All");
+DB_KillCounter_Internal(CHARACTERGUID_S_ARX_ClanWar_BatOffStage_01_df50b95d-807b-47e5-8854-c2f01ae4f74b, "ARX_Clanwar_All");
+DB_KillCounter_Internal(CHARACTERGUID_S_ARX_ClanWar_BatOffStage_02_0fde4292-1148-4bdb-b923-1165e93b0452, "ARX_Clanwar_All");
+DB_KillCounter_Internal(CHARACTERGUID_S_ARX_ClanWar_BatOffStage_03_89bd87d9-018d-4d8b-8c01-64bfdb9550d8, "ARX_Clanwar_All");
+DB_KillCounter_Internal(CHARACTERGUID_S_ARX_ClanWar_BatOffStage_04_434e0934-5584-4fc3-8ae3-51de5e5eb730, "ARX_Clanwar_All");
+DB_KillCounter_Internal(CHARACTERGUID_S_ARX_ClanWar_BatOffStage_05_41813ffd-4b91-408d-b4c9-538b6280b844, "ARX_Clanwar_All");
+DB_KillCounter_Internal(CHARACTERGUID_S_ARX_ClanWar_OffstageVoidwoken_04_88815bab-a98e-4dc6-a071-f4a20ad665eb, "ARX_Clanwar_All");
+DB_KillCounter_Internal(CHARACTERGUID_S_ARX_ClanWar_OffstageVoidwoken_05_34904668-b37b-4f36-a769-f0b140e58826, "ARX_Clanwar_All");
+DB_KillCounter_Internal(CHARACTERGUID_S_ARX_ClanWar_OffstageVoidwoken_06_295919a7-a232-4e6f-8ed3-869808c21052, "ARX_Clanwar_All");
+DB_KillCounter("ARX_Clanwar_All", 13);
+DB_KillCounter_Internal(CHARACTERGUID_S_ARX_ClanWar_BatOnStage_01_e3603964-4654-44a0-9556-61ac9cde82af, "ARX_Clanwar_NoPaladins");
+DB_KillCounter_Internal(CHARACTERGUID_S_ARX_ClanWar_BatOnStage_02_ff762c81-0473-490c-b4f5-742aac4637ea, "ARX_Clanwar_NoPaladins");
+DB_KillCounter_Internal(CHARACTERGUID_S_ARX_ClanWar_BatOffStage_01_df50b95d-807b-47e5-8854-c2f01ae4f74b, "ARX_Clanwar_NoPaladins");
+DB_KillCounter_Internal(CHARACTERGUID_S_ARX_ClanWar_BatOffStage_02_0fde4292-1148-4bdb-b923-1165e93b0452, "ARX_Clanwar_NoPaladins");
+DB_KillCounter_Internal(CHARACTERGUID_S_ARX_ClanWar_BatOffStage_03_89bd87d9-018d-4d8b-8c01-64bfdb9550d8, "ARX_Clanwar_NoPaladins");
+DB_KillCounter_Internal(CHARACTERGUID_S_ARX_ClanWar_BatOffStage_04_434e0934-5584-4fc3-8ae3-51de5e5eb730, "ARX_Clanwar_NoPaladins");
+DB_KillCounter_Internal(CHARACTERGUID_S_ARX_ClanWar_BatOffStage_05_41813ffd-4b91-408d-b4c9-538b6280b844, "ARX_Clanwar_NoPaladins");
+DB_KillCounter_Internal(CHARACTERGUID_S_ARX_ClanWar_OffstageVoidwoken_04_88815bab-a98e-4dc6-a071-f4a20ad665eb, "ARX_Clanwar_NoPaladins");
+DB_KillCounter_Internal(CHARACTERGUID_S_ARX_ClanWar_OffstageVoidwoken_05_34904668-b37b-4f36-a769-f0b140e58826, "ARX_Clanwar_NoPaladins");
+DB_KillCounter_Internal(CHARACTERGUID_S_ARX_ClanWar_OffstageVoidwoken_06_295919a7-a232-4e6f-8ed3-869808c21052, "ARX_Clanwar_NoPaladins");
+DB_KillCounter("ARX_Clanwar_NoPaladins", 10);
+DB_ARX_VoidwokenStatues_Characters(CHARACTERGUID_S_ARX_ClanWar_BatOnStage_01_e3603964-4654-44a0-9556-61ac9cde82af);
+DB_ARX_VoidwokenStatues_Characters(CHARACTERGUID_S_ARX_ClanWar_BatOnStage_02_ff762c81-0473-490c-b4f5-742aac4637ea);
+DB_ARX_VoidwokenStatues_Characters(CHARACTERGUID_S_ARX_ClanWar_BatOnStage_03_41813ffd-4b91-408d-b4c9-538b6280b844);
+DB_ARX_VoidwokenStatues_Characters(CHARACTERGUID_S_ARX_ClanWar_BatOffStage_01_df50b95d-807b-47e5-8854-c2f01ae4f74b);
+DB_ARX_VoidwokenStatues_Characters(CHARACTERGUID_S_ARX_ClanWar_BatOffStage_02_0fde4292-1148-4bdb-b923-1165e93b0452);
+DB_ARX_VoidwokenStatues_Characters(CHARACTERGUID_S_ARX_ClanWar_BatOffStage_03_89bd87d9-018d-4d8b-8c01-64bfdb9550d8);
+DB_ARX_VoidwokenStatues_Characters(CHARACTERGUID_S_ARX_ClanWar_BatOffStage_04_434e0934-5584-4fc3-8ae3-51de5e5eb730);
+DB_ARX_VoidwokenStatues_Characters(CHARACTERGUID_S_ARX_ClanWar_OffstageVoidwoken_04_88815bab-a98e-4dc6-a071-f4a20ad665eb);
+DB_ARX_VoidwokenStatues_Characters(CHARACTERGUID_S_ARX_ClanWar_OffstageVoidwoken_05_34904668-b37b-4f36-a769-f0b140e58826);
+DB_ARX_VoidwokenStatues_Characters(CHARACTERGUID_S_ARX_ClanWar_OffstageVoidwoken_06_295919a7-a232-4e6f-8ed3-869808c21052);
+DB_ARX_ClanWar_GateGuards(CHARACTERGUID_S_ARX_Bridge_GateGuard_01_a8e0e254-48af-416f-9ab6-fae6a306a4a8);
+DB_ARX_ClanWar_GateGuards(CHARACTERGUID_S_ARX_Bridge_GateGuard_02_4e0bcdd3-0df6-4eb5-906b-136ba68f8b1b);
+DB_ARX_ClanWar_GateGuards(CHARACTERGUID_S_ARX_Bridge_GateGuard_03_a1d619cc-ed6b-42e2-ac76-ebe6372617c7);
+DB_ARX_ClanWar_GateGuards(CHARACTERGUID_S_ARX_Bridge_GateGuard_04_642867f5-2db9-4780-8db2-4f84b42cf480);
+DB_ARX_ClanWar_Paladins_Killed(CHARACTERGUID_S_ARX_ClanWar_Paladins_Killed_03_60ae5f03-fac7-476f-b889-8d8b21e50e7a);
+DB_ARX_ClanWar_Paladins_Killed(CHARACTERGUID_S_ARX_ClanWar_Paladins_Killed_01_8731806b-2216-4335-bff6-c96b06aed798);
+DB_ARX_ClanWar_Paladins_Killed(CHARACTERGUID_S_ARX_ClanWar_Paladins_Killed_02_6350e649-ae6b-4179-8893-ea7329f2ed85);
+DB_ARX_ClanWar_BatOffStage(CHARACTERGUID_S_ARX_ClanWar_BatOffStage_01_df50b95d-807b-47e5-8854-c2f01ae4f74b);
+DB_ARX_ClanWar_BatOffStage(CHARACTERGUID_S_ARX_ClanWar_BatOffStage_02_0fde4292-1148-4bdb-b923-1165e93b0452);
+DB_ARX_ClanWar_BatOffStage(CHARACTERGUID_S_ARX_ClanWar_BatOffStage_03_89bd87d9-018d-4d8b-8c01-64bfdb9550d8);
+DB_ARX_ClanWar_BatOffStage(CHARACTERGUID_S_ARX_ClanWar_BatOffStage_04_434e0934-5584-4fc3-8ae3-51de5e5eb730);
+DB_ARX_ClanWar_BatOffStage(CHARACTERGUID_S_ARX_ClanWar_OffstageVoidwoken_04_88815bab-a98e-4dc6-a071-f4a20ad665eb);
+DB_ARX_ClanWar_BatOffStage(CHARACTERGUID_S_ARX_ClanWar_OffstageVoidwoken_05_34904668-b37b-4f36-a769-f0b140e58826);
+DB_ARX_ClanWar_BatOffStage(CHARACTERGUID_S_ARX_ClanWar_OffstageVoidwoken_06_295919a7-a232-4e6f-8ed3-869808c21052);
+DB_ARX_ClanWar_BatOffStage_AttackEvent(CHARACTERGUID_S_ARX_ClanWar_BatOffStage_02_0fde4292-1148-4bdb-b923-1165e93b0452, "ARX_ClanWar_BatOffStage_02_Spawned", 1);
+DB_ARX_ClanWar_BatOffStage_AttackEvent(CHARACTERGUID_S_ARX_ClanWar_BatOffStage_04_434e0934-5584-4fc3-8ae3-51de5e5eb730, "ARX_ClanWar_BatOffStage_04_Spawned", 2);
+DB_ARX_ClanWar_BatOffStage_AttackEvent(CHARACTERGUID_S_ARX_ClanWar_OffstageVoidwoken_04_88815bab-a98e-4dc6-a071-f4a20ad665eb, "ARX_ClanWar_BatOffStage_05_Spawned", 3);
+DB_ARX_ClanWar_BatOffStage_AttackEvent(CHARACTERGUID_S_ARX_ClanWar_OffstageVoidwoken_05_34904668-b37b-4f36-a769-f0b140e58826, "ARX_ClanWar_BatOffStage_06_Spawned", 4);
+DB_ARX_ClanWar_BatOffStage_AttackEvent(CHARACTERGUID_S_ARX_ClanWar_OffstageVoidwoken_06_295919a7-a232-4e6f-8ed3-869808c21052, "ARX_ClanWar_BatOffStage_07_Spawned", 5);
+DB_ARX_ClanWar_BatOffStage_SpawnCount(1);
+ProcTriggerRegisterForPlayers(TRIGGERGUID_S_ARX_Clanwars_ForceStopCombat_4a2f8b8b-d3f6-4d9a-bafa-8a95b14c6f3a);
+
+KBSECTION
+IF
+DB_ARX_ClanWar_GateGuards(_Var1)
+THEN
+ProcCharacterDisableAllCrimes(_Var1);
+
+IF
+CharacterEnteredTrigger(CHARACTERGUID_S_ARX_ClanWar_Paladins_Leader_01_cba510ab-ae58-42d1-9548-ed825644274c, TRIGGERGUID_S_ARX_ClanWarAndStatue_ActivationTrigger_67932552-0fa1-480e-99ed-287cb8751b28)
+THEN
+SetStoryEvent(CHARACTERGUID_S_ARX_ClanWar_Paladins_Leader_01_cba510ab-ae58-42d1-9548-ed825644274c, "ARX_ClanWar_Paladins_Leader_01_Interrupt");
+
+IF
+StoryEvent((CHARACTERGUID)_Var1, "ARX_ClanWar_Paladins_Leader_01_SpottedChar")
+AND
+UserGetFlag(_Var1, "RC_DW_ClanWar_HelpedPaladins", 1)
+AND
+QueryOnlyOnce("ARX_ClanWar_Paladins_Leader_01_InitiateSpotter")
+THEN
+Proc_StartDialog(0, "ARX_ClanWar_Paladins_Leader_01", CHARACTERGUID_S_ARX_ClanWar_Paladins_Leader_01_cba510ab-ae58-42d1-9548-ed825644274c, _Var1);
+
+IF
+DB_ClanWar_Characters(_Var1, _, _)
+THEN
+CharacterSetImmortal(_Var1, 1);
+ProcSetInvulnerable(_Var1, 1);
+DB_IsNotMessingAround(_Var1);
+
+IF
+ObjectTurnStarted((CHARACTERGUID)_Var1)
+AND
+DB_ClanWar_Characters(_Var1, _, _)
+AND
+GlobalGetFlag("ARX_ClanWar_Paladins_StopSkip", 0)
+THEN
+EndTurn(_Var1);
+
+IF
+DB_ARX_VoidwokenStatues_Characters(_Var1)
+THEN
+SetVarInteger(_Var1, "StayInAiHints", 1);
+SetVarFixedString(_Var1, "AiHint", "AIHint_ARX_DrillWorm");
+CharacterSetImmortal(_Var1, 1);
+ProcSetInvulnerable(_Var1, 1);
+
+IF
+AttackedByObject((CHARACTERGUID)_Var1, (CHARACTERGUID)_Var2, (GUIDSTRING)_Var3, _, _)
+AND
+_Var1 != _Var3
+AND
+DB_ARX_VoidwokenStatues_Characters(_Var1)
+AND
+CharacterIsInCombat(_Var2, 0)
+AND
+QueryOnlyOnce("RC_DW_ClanWar_SetImmortalOff")
+THEN
+Proc_ClanWar_SetImmportalOff();
+
+IF
+ObjectEnteredCombat((CHARACTERGUID)_Var1, (INTEGER)_Var2)
+AND
+DB_ARX_ClanWar_Paladins_Killed(_Var3)
+AND
+CombatGetIDForCharacter(_Var3, _Var2)
+AND
+DB_IsPlayer(_Var1)
+AND
+QueryOnlyOnce("RC_DW_ClanWar_SetImmortalOff")
+THEN
+Proc_ClanWar_SetImmportalOff();
+
+IF
+ObjectEnteredCombat((CHARACTERGUID)_Var1, (INTEGER)_Var2)
+AND
+DB_KillCounter_Internal(_Var3, "ARX_Clanwar_All")
+AND
+CombatGetIDForCharacter(_Var3, _Var2)
+AND
+DB_IsPlayer(_Var1)
+AND
+QueryOnlyOnce("RC_DW_ClanWar_SetImmortalOff")
+THEN
+Proc_ClanWar_SetImmportalOff();
+
+IF
+StoryEvent((GUIDSTRING)_Var1, "ARX_ClanWar_Paladins_OnSight")
+AND
+DB_KillCounter_Internal(_Var2, "ARX_Clanwar_NoPaladins")
+THEN
+EnterCombat(_Var1, _Var2);
+
+PROC
+Proc_ClanWar_SetImmportalOff()
+AND
+DB_ClanWar_Characters(_Var1, _, _)
+THEN
+ClearVarObject(_Var1, "AiHint");
+SetVarInteger(_Var1, "StayInAiHints", 0);
+CharacterSetImmortal(_Var1, 0);
+ProcSetInvulnerable(_Var1, 0);
+
+PROC
+Proc_ClanWar_SetImmportalOff()
+THEN
+GlobalSetFlag("ARX_ClanWar_Paladins_StopSpotter");
+GlobalSetFlag("ARX_ClanWar_Paladins_StopSkip");
+
+PROC
+Proc_ClanWar_SetImmportalOff()
+AND
+DB_ARX_VoidwokenStatues_Characters(_Var1)
+THEN
+ClearVarObject(_Var1, "AiHint");
+SetVarInteger(_Var1, "StayInAiHints", 0);
+CharacterSetImmortal(_Var1, 0);
+ProcSetInvulnerable(_Var1, 0);
+
+IF
+CharacterDying((CHARACTERGUID)_Var1)
+AND
+DB_ClanWar_Characters(_Var1, _Var2, _Var3)
+THEN
+NOT DB_ClanWar_Characters(_Var1, _Var2, _Var3);
+Proc_Arx_ClanWar_CheckIfPaladinsDied();
+
+PROC
+Proc_Arx_ClanWar_CheckIfPaladinsDied()
+AND NOT
+DB_ClanWar_Characters(_, "RC_Paladins", _)
+THEN
+GlobalSetFlag("ARX_ClanWar_PaladinsDiedInCombat");
+
+IF
+ObjectEnteredCombat((CHARACTERGUID)_Var1, (INTEGER)_Var2)
+AND
+DB_IsPlayer(_Var1)
+AND
+DB_KillCounter_Internal(_Var3, "ARX_Clanwar_All")
+AND
+CombatGetIDForCharacter(_Var3, _Var2)
+AND NOT
+DB_ClanWar_CharacterJoinedFight(_Var1)
+THEN
+DB_ClanWar_CharacterJoinedFight(_Var1);
+UserSetFlag(_Var1, "RC_DW_ClanWar_HelpedPaladins", 0);
+
+IF
+CombatStarted((INTEGER)_Var1)
+AND
+DB_IsPlayer(_Var2)
+AND
+CombatGetIDForCharacter(_Var2, _Var1)
+AND
+DB_KillCounter_Internal(_Var3, "ARX_Clanwar_All")
+AND
+CombatGetIDForCharacter(_Var3, _Var1)
+AND NOT
+DB_ClanWar_CharacterJoinedFight(_Var2)
+THEN
+DB_ClanWar_CharacterJoinedFight(_Var2);
+UserSetFlag(_Var2, "RC_DW_ClanWar_HelpedPaladins", 0);
+
+PROC
+ReactOnKillCounter("ARX_Clanwar_All")
+AND
+QueryOnlyOnce("Proc_ARX_Clanwar_CombatEnded")
+THEN
+Proc_ARX_Clanwar_CombatEnded();
+GlobalSetFlag("ARX_ClanWar_Paladins_StopSpotter");
+
+PROC
+ReactOnKillCounter("ARX_Clanwar_NoPaladins")
+AND
+QueryOnlyOnce("Proc_ARX_Clanwar_CombatEnded")
+THEN
+Proc_ARX_Clanwar_CombatEnded();
+
+PROC
+Proc_ARX_Clanwar_CombatEnded()
+AND
+DB_ClanWar_CharacterJoinedFight(_Var1)
+AND
+QueryOnlyOnce("ARX_ClanWar_RD_SourceWeapons")
+THEN
+ProcDefineReflectionDialog("ARX_ClanWar_RD_SourceWeapons", _Var1);
+
+PROC
+Proc_ARX_Clanwar_CombatEnded()
+AND
+QueryOnlyOnce("DW_ClanWar_FightEnded")
+THEN
+GlobalSetFlag("RC_ARX_ClanWar_Completed");
+GlobalSetFlag("ARX_ClanWar_Done");
+TriggerSetAtmosphere(TRIGGERGUID_ATM_ARX_ClanWars_8ae8183c-555a-4841-851c-ae850be4b2d8, "f83b1ab1-8367-4add-84b0-5b9b6b55aa5c");
+Proc_ClanWar_PaladinWon_PostFight_MoveTo();
+
+PROC
+Proc_ClanWar_PaladinWon_PostFight_MoveTo()
+AND
+DB_ClanWar_Characters(_Var1, "RC_Paladins", _)
+THEN
+Proc_ClanWar_PaladinsPostFight_SetActions(_Var1);
+
+PROC
+Proc_ClanWar_PaladinWon_PostFight_MoveTo()
+AND
+DB_ARX_ClanWar_GateGuards(_Var1)
+THEN
+Proc_ClanWar_PaladinsPostFight_SetActions(_Var1);
+
+PROC
+Proc_ClanWar_PaladinWon_PostFight_MoveTo()
+THEN
+ObjectSetFlag(CHARACTERGUID_S_ARX_ClanWar_Paladins_Leader_01_cba510ab-ae58-42d1-9548-ed825644274c, "ARX_PaladinPostFight_Actions");
+Proc_ClanWar_PaladinsPostFight_SetActions(CHARACTERGUID_S_ARX_ClanWar_Paladins_Leader_01_cba510ab-ae58-42d1-9548-ed825644274c);
+
+PROC
+Proc_ClanWar_PaladinsPostFight_SetActions((CHARACTERGUID)_Var1)
+THEN
+ObjectSetFlag(_Var1, "ARX_PaladinPostFight_Actions");
+ObjectSetFlag(_Var1, "ARX_PaladinPostFight_ArrivedToFinalPos");
+
+PROC
+Proc_ClanWar_PaladinsPostFight_SetActions((CHARACTERGUID)_Var1)
+AND
+DB_ClanWar_PaladinSplinePatrol(_Var1, _Var2)
+THEN
+SetVarObject(_Var1, "SplineGUID", _Var2);
+SetStoryEvent(_Var1, "InitiateSplinePatrol");
+
+PROC
+Proc_ClanWar_PaladinsPostFight_SetActions((CHARACTERGUID)_Var1)
+AND
+DB_ClanWar_PaladinTriggerPoint(_Var1, _Var2)
+THEN
+CharacterMoveTo(_Var1, _Var2, 0, "", 0);
+
+PROC
+Proc_ClanWar_PaladinsPostFight_SetActions((CHARACTERGUID)_Var1)
+AND
+DB_ClanWar_PaladinSeat(_Var1, _Var2)
+THEN
+SetVarObject(_Var1, "Seat", _Var2);
+
+PROC
+Proc_ClanWar_PaladinsPostFight_SetActions(CHARACTERGUID_S_ARX_ClanWar_Paladins_Leader_01_cba510ab-ae58-42d1-9548-ed825644274c)
+THEN
+SetVarFixedString(CHARACTERGUID_S_ARX_ClanWar_Paladins_Leader_01_cba510ab-ae58-42d1-9548-ed825644274c, "currentState", "Default");
+
+IF
+CharacterEnteredTrigger((CHARACTERGUID)_Var1, TRIGGERGUID_S_SUB_Arx_cb6e79c8-f5f8-49d7-8d46-133e2d13349d)
+THEN
+ObjectSetFlag(_Var1, "ARX_EnteredArx");
+
+IF
+CharacterEnteredTrigger((CHARACTERGUID)_Var1, TRIGGERGUID_S_SUB_Arx_cb6e79c8-f5f8-49d7-8d46-133e2d13349d)
+AND
+DB_IsPlayer(_Var1)
+AND
+GlobalGetFlag("ARX_ClanWar_Done", 0)
+THEN
+Proc_ARX_ClanWar_CleanFight();
+
+PROC
+Proc_ARX_ClanWar_CleanFight()
+AND
+DB_ARX_ClanWar_CleanFight_False(1)
+THEN
+NOT DB_ARX_ClanWar_CleanFight_False(1);
+
+PROC
+Proc_ARX_ClanWar_CleanFight()
+AND
+DB_ClanWar_Characters(_Var1, _, _)
+AND
+DB_IsPlayer(_Var4)
+AND
+CharacterCanSee(_Var4, _Var1, 1)
+THEN
+DB_ARX_ClanWar_CleanFight_False(1);
+
+PROC
+Proc_ARX_ClanWar_CleanFight()
+AND
+DB_ClanWar_Characters(_Var1, _, _)
+THEN
+ClearVarObject(_Var1, "AiHint");
+SetVarInteger(_Var1, "StayInAiHints", 0);
+CharacterSetImmortal(_Var1, 0);
+ProcSetInvulnerable(_Var1, 0);
+
+PROC
+Proc_ARX_ClanWar_CleanFight()
+AND
+DB_ARX_VoidwokenStatues_Characters(_Var1)
+THEN
+ClearVarObject(_Var1, "AiHint");
+SetVarInteger(_Var1, "StayInAiHints", 0);
+CharacterSetImmortal(_Var1, 0);
+ProcSetInvulnerable(_Var1, 0);
+
+PROC
+Proc_ARX_ClanWar_CleanFight()
+AND NOT
+DB_ARX_ClanWar_CleanFight_False(1)
+AND
+DB_KillCounter_Internal(_Var1, "ARX_Clanwar_All")
+THEN
+CharacterDie(_Var1, 0, "DoT");
+
+PROC
+Proc_ARX_ClanWar_CleanFight()
+AND NOT
+DB_ARX_ClanWar_CleanFight_False(1)
+THEN
+CharacterSetImmortal(CHARACTERGUID_S_ARX_ClanWar_Paladins_Killed_01_8731806b-2216-4335-bff6-c96b06aed798, 0);
+ProcSetInvulnerable(CHARACTERGUID_S_ARX_ClanWar_Paladins_Killed_01_8731806b-2216-4335-bff6-c96b06aed798, 0);
+CharacterSetImmortal(CHARACTERGUID_S_ARX_ClanWar_Paladins_Killed_02_6350e649-ae6b-4179-8893-ea7329f2ed85, 0);
+ProcSetInvulnerable(CHARACTERGUID_S_ARX_ClanWar_Paladins_Killed_02_6350e649-ae6b-4179-8893-ea7329f2ed85, 0);
+CharacterSetImmortal(CHARACTERGUID_S_ARX_ClanWar_Paladins_Killed_03_60ae5f03-fac7-476f-b889-8d8b21e50e7a, 0);
+ProcSetInvulnerable(CHARACTERGUID_S_ARX_ClanWar_Paladins_Killed_03_60ae5f03-fac7-476f-b889-8d8b21e50e7a, 0);
+CharacterDie(CHARACTERGUID_S_ARX_ClanWar_Paladins_Killed_01_8731806b-2216-4335-bff6-c96b06aed798, 0, "DoT");
+CharacterDie(CHARACTERGUID_S_ARX_ClanWar_Paladins_Killed_02_6350e649-ae6b-4179-8893-ea7329f2ed85, 0, "DoT");
+CharacterDie(CHARACTERGUID_S_ARX_ClanWar_Paladins_Killed_03_60ae5f03-fac7-476f-b889-8d8b21e50e7a, 0, "DoT");
+
+IF
+ObjectFlagSet("ARX_ClanWar_Paladins_Caster_01_GaveBeer", (GUIDSTRING)_Var1, _)
+THEN
+ItemTemplateAddTo("CON_Drink_Bottle_Beer_A_db0fab18-da5b-402c-8680-13a18163e7f8", _Var1, 1);
+
+IF
+ObjectFlagSet("ARX_ClanWar_Paladins_Caster_01_DrinkBeer", (CHARACTERGUID)_Var1, _)
+AND
+GetItemForItemTemplateInInventory(_Var1, "CON_Drink_Bottle_Beer_A_db0fab18-da5b-402c-8680-13a18163e7f8", _Var3)
+THEN
+CharacterUseItem(_Var1, _Var3, "");
+
+IF
+ObjectEnteredCombat((CHARACTERGUID)_Var1, (INTEGER)_Var2)
+AND
+DB_KillCounter_Internal(_Var1, "ARX_Clanwar_NoPaladins")
+AND
+DB_IsPlayer(_Var3)
+AND
+CombatGetIDForCharacter(_Var3, _Var2)
+THEN
+UserSetFlag(_Var3, "ARX_ClanWars_WasInCombat");
+
+IF
+ObjectEnteredCombat((CHARACTERGUID)_Var1, (INTEGER)_Var2)
+AND
+DB_IsPlayer(_Var1)
+AND
+DB_KillCounter_Internal(_Var3, "ARX_Clanwar_NoPaladins")
+AND
+CombatGetIDForCharacter(_Var3, _Var2)
+THEN
+UserSetFlag(_Var1, "ARX_ClanWars_WasInCombat");
+
+PROC
+ReactOnKillCounter("ARX_Clanwar_NoPaladins")
+THEN
+ItemSetForceSynch(ITEMGUID_S_ARX_CS_PlaceHolderGate_b099766e-8580-4453-9eb3-b071f5e68098, 1);
+ItemOpen(ITEMGUID_S_ARX_CS_PlaceHolderGate_b099766e-8580-4453-9eb3-b071f5e68098);
+GlobalSetFlag("ARX_VS_StatuesDestroyed");
+GlobalSetFlag("ARX_ClanWar_Paladins_Leader_01_InitiateSpotter");
+ProcForceStopDialog(CHARACTERGUID_S_ARX_ClanWar_Paladins_Leader_01_cba510ab-ae58-42d1-9548-ed825644274c);
+
+IF
+ItemOpened(ITEMGUID_S_ARX_CS_PlaceHolderGate_b099766e-8580-4453-9eb3-b071f5e68098)
+THEN
+ItemSetForceSynch(ITEMGUID_S_ARX_CS_PlaceHolderGate_b099766e-8580-4453-9eb3-b071f5e68098, 0);
+
+IF
+ItemOpened(ITEMGUID_S_ARX_CS_PlaceHolderGate_b099766e-8580-4453-9eb3-b071f5e68098)
+AND
+DB_ARX_ClanWar_GateGuards(_Var1)
+THEN
+ProcCharacterEnableAllCrimes(_Var1);
+
+IF
+ItemDestroying(ITEMGUID_S_ARX_CS_PlaceHolderGate_b099766e-8580-4453-9eb3-b071f5e68098)
+AND
+DB_ARX_ClanWar_GateGuards(_Var1)
+THEN
+ProcCharacterEnableAllCrimes(_Var1);
+
+IF
+ObjectFlagSet("ARX_ClanWar_SetTag_GiantSlayer", (GUIDSTRING)_Var1, _)
+AND
+IsTagged(_Var1, "GIANT_SLAYER", 0)
+THEN
+SetTag(_Var1, "GIANT_SLAYER");
+
+PROC
+ProcOneShotTriggerEntered((CHARACTERGUID)_Var1, TRIGGERGUID_S_ARX_Outskirts_OutsideKeep_e4ae589e-fd3c-4d5c-8527-501898003d58)
+AND
+QueryOnlyOnce("ARX_VB_ClanWar_seeBodies")
+THEN
+StartVoiceBark("ARX_VB_ClanWar_seeBodies", _Var1);
+DB_QuestUpdate_ARX_Barracks_Clanwars_Corpses(_Var1);
+
+IF
+VoiceBarkEnded("ARX_VB_ClanWar_seeBodies", (INTEGER)_Var1)
+AND
+DB_QuestUpdate_ARX_Barracks_Clanwars_Corpses(_Var2)
+THEN
+NOT DB_QuestUpdate_ARX_Barracks_Clanwars_Corpses(_Var2);
+PartySetFlag(_Var2, "QuestUpdate_ARX_Barracks_Clanwars_Corpses");
+
+IF
+VoiceBarkFailed("ARX_VB_ClanWar_seeBodies")
+AND
+DB_QuestUpdate_ARX_Barracks_Clanwars_Corpses(_Var1)
+THEN
+NOT DB_QuestUpdate_ARX_Barracks_Clanwars_Corpses(_Var1);
+PartySetFlag(_Var1, "QuestUpdate_ARX_Barracks_Clanwars_Corpses");
+
+IF
+CharacterEnteredTrigger((CHARACTERGUID)_Var1, TRIGGERGUID_S_ARX_ClanWar_VB_SeenFightTrig_c4f75b75-26f7-438f-b992-9729f539dd03)
+AND
+DB_IsPlayer(_Var1)
+AND
+CharacterIsInCombat(_Var1, 0)
+AND
+GlobalGetFlag("RC_ARX_ClanWar_Completed", 0)
+AND
+QueryOnlyOnce("RC_ARX_VB_ClanWar_seeFight")
+THEN
+StartVoiceBark("RC_ARX_VB_ClanWar_seeFight", _Var1);
+
+PROC
+ProcBlockUseOfItem((CHARACTERGUID)_Var1, ITEMGUID_S_ARX_CS_PlaceHolderGate_b099766e-8580-4453-9eb3-b071f5e68098)
+AND
+DB_IsPlayer(_Var1)
+AND
+GlobalGetFlag("ARX_ClanWar_Done", 0)
+AND
+IsSpeakerReserved(CHARACTERGUID_S_ARX_ClanWar_Paladins_Leader_01_cba510ab-ae58-42d1-9548-ed825644274c, 1)
+THEN
+DB_CustomUseItemResponse(_Var1, ITEMGUID_S_ARX_CS_PlaceHolderGate_b099766e-8580-4453-9eb3-b071f5e68098, 0);
+StartVoiceBark("ARX_VB_MainGate", _Var1);
+
+PROC
+ProcBlockUseOfItem((CHARACTERGUID)_Var1, ITEMGUID_S_ARX_CS_PlaceHolderGate_b099766e-8580-4453-9eb3-b071f5e68098)
+AND
+DB_IsPlayer(_Var1)
+AND
+GlobalGetFlag("ARX_ClanWar_Done", 0)
+AND
+IsSpeakerReserved(CHARACTERGUID_S_ARX_ClanWar_Paladins_Leader_01_cba510ab-ae58-42d1-9548-ed825644274c, 0)
+AND
+CharacterIsDead(CHARACTERGUID_S_ARX_ClanWar_Paladins_Leader_01_cba510ab-ae58-42d1-9548-ed825644274c, 1)
+THEN
+DB_CustomUseItemResponse(_Var1, ITEMGUID_S_ARX_CS_PlaceHolderGate_b099766e-8580-4453-9eb3-b071f5e68098, 0);
+StartVoiceBark("ARX_VB_MainGate", _Var1);
+
+PROC
+ProcBlockUseOfItem((CHARACTERGUID)_Var1, ITEMGUID_S_ARX_CS_PlaceHolderGate_b099766e-8580-4453-9eb3-b071f5e68098)
+AND
+DB_IsPlayer(_Var1)
+AND
+GlobalGetFlag("ARX_ClanWar_Done", 0)
+AND
+IsSpeakerReserved(CHARACTERGUID_S_ARX_ClanWar_Paladins_Leader_01_cba510ab-ae58-42d1-9548-ed825644274c, 0)
+AND
+CharacterIsDead(CHARACTERGUID_S_ARX_ClanWar_Paladins_Leader_01_cba510ab-ae58-42d1-9548-ed825644274c, 0)
+THEN
+DB_CustomUseItemResponse(_Var1, ITEMGUID_S_ARX_CS_PlaceHolderGate_b099766e-8580-4453-9eb3-b071f5e68098, 0);
+Proc_StartDialog(0, "ARX_ClanWar_Paladins_Leader_01", CHARACTERGUID_S_ARX_ClanWar_Paladins_Leader_01_cba510ab-ae58-42d1-9548-ed825644274c, _Var1);
+
+PROC
+ProcBlockUseOfItem((CHARACTERGUID)_Var1, ITEMGUID_S_ARX_CS_PlaceHolderGate_b099766e-8580-4453-9eb3-b071f5e68098)
+AND
+DB_IsPlayer(_Var1)
+AND
+GlobalGetFlag("ARX_ClanWar_Done", 1)
+THEN
+DB_CustomUseItemResponse(_Var1, ITEMGUID_S_ARX_CS_PlaceHolderGate_b099766e-8580-4453-9eb3-b071f5e68098, 0);
+StartVoiceBark("ARX_VB_MainGate", _Var1);
+
+PROC
+ProcBlockUseOfItem((CHARACTERGUID)_Var1, ITEMGUID_S_ARX_CS_PlaceHolderGate_b099766e-8580-4453-9eb3-b071f5e68098)
+AND NOT
+DB_IsPlayer(_Var1)
+THEN
+DB_CustomUseItemResponse(_Var1, ITEMGUID_S_ARX_CS_PlaceHolderGate_b099766e-8580-4453-9eb3-b071f5e68098, 0);
+
+IF
+DB_ARX_ClanWar_BatOffStage(_Var1)
+THEN
+SetOnStage(_Var1, 0);
+
+IF
+DB_ARX_ClanWar_Paladins_Killed(_Var1)
+THEN
+SetVarInteger(_Var1, "StayInAiHints", 1);
+SetVarFixedString(_Var1, "AiHint", "AiHint_Unique");
+CharacterSetFightMode(_Var1, 1, 0);
+CharacterSetImmortal(_Var1, 1);
+ProcSetInvulnerable(_Var1, 1);
+CharacterSetArmorPercentage(_Var1, 0);
+CharacterSetMagicArmorPercentage(_Var1, 0);
+
+PROC
+Proc_ClanWar_SetImmportalOff()
+AND
+DB_ARX_ClanWar_Paladins_Killed(_Var1)
+THEN
+SetVarInteger(_Var1, "StayInAiHints", 0);
+ClearVarObject(_Var1, "AiHint");
+CharacterSetImmortal(_Var1, 0);
+ProcSetInvulnerable(_Var1, 0);
+SetTag(_Var1, "IGNORE_UNDEAD_CRIME");
+
+IF
+CombatStarted((INTEGER)_Var1)
+AND
+CombatGetIDForCharacter(CHARACTERGUID_S_ARX_ClanWar_Paladins_Killed_01_8731806b-2216-4335-bff6-c96b06aed798, _Var1)
+AND
+CharacterIsDead(CHARACTERGUID_S_ARX_ClanWar_Paladins_Killed_01_8731806b-2216-4335-bff6-c96b06aed798, 0)
+AND
+DB_IsPlayer(_Var2)
+AND
+CombatGetIDForCharacter(_Var2, _Var1)
+THEN
+Proc_ARX_ClanWar_Paladins_Killed_01_JumpToTurn(_Var1);
+
+IF
+ObjectEnteredCombat(CHARACTERGUID_S_ARX_ClanWar_Paladins_Killed_01_8731806b-2216-4335-bff6-c96b06aed798, (INTEGER)_Var1)
+AND
+DB_IsPlayer(_Var2)
+AND
+CombatGetIDForCharacter(_Var2, _Var1)
+AND
+CharacterIsDead(CHARACTERGUID_S_ARX_ClanWar_Paladins_Killed_01_8731806b-2216-4335-bff6-c96b06aed798, 0)
+THEN
+Proc_ARX_ClanWar_Paladins_Killed_01_JumpToTurn(_Var1);
+
+IF
+ObjectEnteredCombat((CHARACTERGUID)_Var1, (INTEGER)_Var2)
+AND
+DB_IsPlayer(_Var1)
+AND
+CombatGetIDForCharacter(CHARACTERGUID_S_ARX_ClanWar_Paladins_Killed_01_8731806b-2216-4335-bff6-c96b06aed798, _Var2)
+AND
+CharacterIsDead(CHARACTERGUID_S_ARX_ClanWar_Paladins_Killed_01_8731806b-2216-4335-bff6-c96b06aed798, 0)
+THEN
+Proc_ARX_ClanWar_Paladins_Killed_01_JumpToTurn(_Var2);
+
+PROC
+Proc_ARX_ClanWar_Paladins_Killed_01_JumpToTurn((INTEGER)_Var1)
+AND
+IsCombatActive(_Var1, 1)
+AND
+CombatGetActiveEntity(_Var1, _Var2)
+AND
+_Var2 != CHARACTERGUID_S_ARX_ClanWar_Paladins_Killed_01_8731806b-2216-4335-bff6-c96b06aed798
+AND
+GlobalGetFlag("ARX_ClanWar_Paladins_Killed_01_JumpToTurn", 0)
+THEN
+GlobalSetFlag("ARX_ClanWar_Paladins_Killed_01_JumpToTurn");
+JumpToTurn(CHARACTERGUID_S_ARX_ClanWar_Paladins_Killed_01_8731806b-2216-4335-bff6-c96b06aed798);
+
+PROC
+Proc_ARX_ClanWar_Paladins_Killed_01_JumpToTurn((INTEGER)_Var1)
+AND
+CombatGetActiveEntity(_Var1, CHARACTERGUID_S_ARX_ClanWar_Paladins_Killed_01_8731806b-2216-4335-bff6-c96b06aed798)
+AND
+GlobalGetFlag("ARX_ClanWar_Paladins_Killed_01_JumpToTurn", 0)
+THEN
+GlobalSetFlag("ARX_ClanWar_Paladins_Killed_01_JumpToTurn");
+
+IF
+AutomatedDialogEnded("ARX_ClanWar_AD_Paladins_Killed_01", _)
+AND
+QueryOnlyOnce("ARX_ClanWar_AD_Paladins_Killed_01")
+THEN
+CharacterAppearAt(CHARACTERGUID_S_ARX_ClanWar_BatOffStage_01_df50b95d-807b-47e5-8854-c2f01ae4f74b, TRIGGERGUID_S_ARX_ClanWar_BatOffStage_01_AppearPoint_f09e8150-3bde-493a-9afb-fa75c82d4ca7, 1, "");
+SetStoryEvent(CHARACTERGUID_S_ARX_ClanWar_BatOffStage_01_df50b95d-807b-47e5-8854-c2f01ae4f74b, "ARX_ClanWar_BatOffStage_01_Spawned");
+
+IF
+CharacterDied(CHARACTERGUID_S_ARX_ClanWar_Paladins_Killed_01_8731806b-2216-4335-bff6-c96b06aed798)
+AND
+QueryOnlyOnce("ARX_ClanWar_AD_Paladins_Killed_01")
+THEN
+CharacterAppearAt(CHARACTERGUID_S_ARX_ClanWar_BatOffStage_01_df50b95d-807b-47e5-8854-c2f01ae4f74b, TRIGGERGUID_S_ARX_ClanWar_BatOffStage_01_AppearPoint_f09e8150-3bde-493a-9afb-fa75c82d4ca7, 1, "");
+SetStoryEvent(CHARACTERGUID_S_ARX_ClanWar_BatOffStage_01_df50b95d-807b-47e5-8854-c2f01ae4f74b, "ARX_ClanWar_BatOffStage_01_Spawned");
+
+IF
+StoryEvent(_, "ARX_ClanWar_BatOffStage_01_Spawned")
+THEN
+EnterCombat(CHARACTERGUID_S_ARX_ClanWar_BatOffStage_01_df50b95d-807b-47e5-8854-c2f01ae4f74b, CHARACTERGUID_S_ARX_ClanWar_Paladins_Killed_01_8731806b-2216-4335-bff6-c96b06aed798);
+
+IF
+CombatStarted((INTEGER)_Var1)
+AND
+CombatGetIDForCharacter(CHARACTERGUID_S_ARX_ClanWar_BatOffStage_01_df50b95d-807b-47e5-8854-c2f01ae4f74b, _Var1)
+AND
+QueryOnlyOnce("ARX_ClanWar_BatOffStage_01_JumpToTurn")
+THEN
+JumpToTurn(CHARACTERGUID_S_ARX_ClanWar_BatOffStage_01_df50b95d-807b-47e5-8854-c2f01ae4f74b);
+Proc_CameraShakeAroundCharacter(CHARACTERGUID_S_ARX_ClanWar_BatOffStage_01_df50b95d-807b-47e5-8854-c2f01ae4f74b, 3000, 20);
+CharacterAppearCustom(CHARACTERGUID_S_ARX_ClanWar_BatOffStage_03_89bd87d9-018d-4d8b-8c01-64bfdb9550d8, "Drop", "");
+
+IF
+ObjectEnteredCombat(CHARACTERGUID_S_ARX_ClanWar_BatOffStage_01_df50b95d-807b-47e5-8854-c2f01ae4f74b, (INTEGER)_Var1)
+AND
+QueryOnlyOnce("ARX_ClanWar_BatOffStage_01_JumpToTurn")
+THEN
+JumpToTurn(CHARACTERGUID_S_ARX_ClanWar_BatOffStage_01_df50b95d-807b-47e5-8854-c2f01ae4f74b);
+Proc_CameraShakeAroundCharacter(CHARACTERGUID_S_ARX_ClanWar_BatOffStage_01_df50b95d-807b-47e5-8854-c2f01ae4f74b, 3000, 20);
+CharacterAppearCustom(CHARACTERGUID_S_ARX_ClanWar_BatOffStage_03_89bd87d9-018d-4d8b-8c01-64bfdb9550d8, "Drop", "");
+
+IF
+ObjectTurnStarted(CHARACTERGUID_S_ARX_ClanWar_BatOffStage_01_df50b95d-807b-47e5-8854-c2f01ae4f74b)
+AND
+QueryOnlyOnce("S_ARX_ClanWar_BatOffStage_01_Target_EnemyCorpseExplosion_Bat")
+THEN
+Proc_ClanWar_BatOffStage_01_Target_EnemyCorpseExplosion();
+
+PROC
+Proc_ClanWar_BatOffStage_01_Target_EnemyCorpseExplosion()
+THEN
+CharacterAddSourcePoints(CHARACTERGUID_S_ARX_ClanWar_BatOffStage_01_df50b95d-807b-47e5-8854-c2f01ae4f74b, 3);
+
+PROC
+Proc_ClanWar_BatOffStage_01_Target_EnemyCorpseExplosion()
+AND
+DB_ARX_ClanWar_Paladins_Killed(_Var1)
+AND
+CharacterIsDead(_Var1, 0)
+AND
+QueryOnlyOnce("ARX_ClanWar_BatOffStage_01_UsedSkill")
+THEN
+CharacterLookAt(CHARACTERGUID_S_ARX_ClanWar_BatOffStage_01_df50b95d-807b-47e5-8854-c2f01ae4f74b, _Var1);
+CharacterUseSkill(CHARACTERGUID_S_ARX_ClanWar_BatOffStage_01_df50b95d-807b-47e5-8854-c2f01ae4f74b, "Projectile_EnemyInfectiousBlood_Bat", _Var1, 1, 1);
+
+IF
+AttackedByObject((CHARACTERGUID)_Var1, _, (GUIDSTRING)_Var3, _, _)
+AND
+_Var1 != _Var3
+AND
+DB_ARX_ClanWar_Paladins_Killed(_Var1)
+AND
+CharacterIsDead(_Var1, 0)
+THEN
+CharacterDie(_Var1, 1, "Explode");
+
+IF
+CharacterKilledBy((CHARACTERGUID)_Var1, (CHARACTERGUID)_Var2, _)
+AND
+DB_ARX_VoidwokenStatues_Characters(_Var1)
+THEN
+DB_ARX_ClanWar_BatOffStage_Spawn(_Var2);
+
+IF
+CharacterDied((CHARACTERGUID)_Var1)
+AND
+DB_ARX_VoidwokenStatues_Characters(_Var1)
+AND NOT
+DB_ARX_ClanWar_BatOffStage_Spawn(_)
+THEN
+DB_ARX_ClanWar_BatOffStage_SpawnFallback(1);
+
+IF
+CharacterDied((CHARACTERGUID)_Var1)
+AND
+DB_ARX_VoidwokenStatues_Characters(_Var1)
+THEN
+Proc_ARX_ClanWar_BatOffStage_CheckOutOfCombatFallback();
+
+PROC
+Proc_ARX_ClanWar_BatOffStage_CheckOutOfCombatFallback()
+THEN
+NOT DB_ARX_ClanWar_BatOffStage_FailOutOfCombatFallback(1);
+
+PROC
+Proc_ARX_ClanWar_BatOffStage_CheckOutOfCombatFallback()
+AND
+DB_KillCounter_Internal(_Var1, "ARX_Clanwar_All")
+AND
+CharacterIsInCombat(_Var1, 1)
+THEN
+DB_ARX_ClanWar_BatOffStage_FailOutOfCombatFallback(1);
+
+PROC
+Proc_ARX_ClanWar_BatOffStage_CheckOutOfCombatFallback()
+AND
+DB_ARX_ClanWar_BatOffStage_Spawn(_Var1)
+AND
+CharacterIsInCombat(_Var1, 1)
+THEN
+DB_ARX_ClanWar_BatOffStage_FailOutOfCombatFallback(1);
+
+PROC
+Proc_ARX_ClanWar_BatOffStage_CheckOutOfCombatFallback()
+AND NOT
+DB_ARX_ClanWar_BatOffStage_FailOutOfCombatFallback(1)
+AND
+DB_ARX_ClanWar_BatOffStage_Spawn(_Var1)
+THEN
+NOT DB_ARX_ClanWar_BatOffStage_Spawn(_Var1);
+
+PROC
+Proc_ARX_ClanWar_BatOffStage_CheckOutOfCombatFallback()
+AND NOT
+DB_ARX_ClanWar_BatOffStage_FailOutOfCombatFallback(1)
+AND
+QueryOnlyOnce("ARX_ClanWar_BatOffStage_OutOfCombatFallback")
+AND
+DB_ARX_ClanWar_BatOffStage_AttackEvent(_Var1, _Var2, _)
+THEN
+Proc_ARX_ClanWar_BatOffStage_Spawn_CheckSpawn(_Var1);
+ProcStateManagerCharacterMoveTo(_Var1, TRIGGERGUID_S_ARX_ClanWar_Paladins_Killed_AiHint_865cbcde-da49-44a5-8646-62aa4ae56b32, 1, 10, "", "");
+SetStoryEvent(_Var1, _Var2);
+DebugText(_Var1, "CLANWAR OUT OF COMBAT FALLBACK!!");
+
+IF
+ObjectTurnEnded((CHARACTERGUID)_Var1)
+AND
+CombatGetIDForCharacter(_Var1, _Var2)
+AND
+DB_KillCounter_Internal(_Var3, "ARX_Clanwar_All")
+AND
+CombatGetIDForCharacter(_Var3, _Var2)
+AND
+DB_ARX_ClanWar_BatOffStage_SpawnFallback_Once(1)
+THEN
+NOT DB_ARX_ClanWar_BatOffStage_SpawnFallback_Once(1);
+
+IF
+ObjectTurnEnded((CHARACTERGUID)_Var1)
+AND
+DB_ARX_ClanWar_BatOffStage_Spawn(_Var2)
+AND
+CombatGetIDForCharacter(_Var1, _Var3)
+AND
+CombatGetIDForCharacter(_Var2, _Var3)
+THEN
+Proc_ARX_ClanWar_BatOffStage_Spawn();
+
+IF
+ObjectTurnEnded((CHARACTERGUID)_Var1)
+AND
+DB_ARX_ClanWar_BatOffStage_SpawnFallback(1)
+AND
+CombatGetIDForCharacter(_Var1, _Var2)
+AND
+DB_KillCounter_Internal(_Var3, "ARX_Clanwar_All")
+AND
+CombatGetIDForCharacter(_Var3, _Var2)
+AND NOT
+DB_ARX_ClanWar_BatOffStage_SpawnFallback_Once(1)
+THEN
+DB_ARX_ClanWar_BatOffStage_Spawn(_Var1);
+DB_ARX_ClanWar_BatOffStage_SpawnFallback_Once(1);
+NOT DB_ARX_ClanWar_BatOffStage_SpawnFallback(1);
+Proc_ARX_ClanWar_BatOffStage_Spawn();
+
+PROC
+Proc_ARX_ClanWar_BatOffStage_Spawn()
+THEN
+GlobalClearFlag("ARX_ClanWar_JumpToTurnAvailable");
+
+PROC
+Proc_ARX_ClanWar_BatOffStage_Spawn()
+AND
+DB_ARX_ClanWar_BatOffStage_SpawnCount(_Var1)
+AND
+DB_ARX_ClanWar_BatOffStage_AttackEvent(_Var2, _Var3, _Var1)
+AND
+IntegerSum(_Var1, 1, _Var4)
+AND
+DB_ARX_ClanWar_BatOffStage_Spawn(_Var5)
+THEN
+NOT DB_ARX_ClanWar_BatOffStage_Spawn(_Var5);
+DB_ARX_ClanWar_BatOffStage_AttackEvent_Spawned(_Var2, _Var3, _Var5);
+NOT DB_ARX_ClanWar_BatOffStage_SpawnCount(_Var1);
+DB_ARX_ClanWar_BatOffStage_SpawnCount(_Var4);
+Proc_ARX_ClanWar_BatOffStage_Spawn_CheckSpawn(_Var2);
+ProcStateManagerCharacterMoveTo(_Var2, TRIGGERGUID_S_ARX_ClanWar_Paladins_Killed_AiHint_865cbcde-da49-44a5-8646-62aa4ae56b32, 1, 10, "", "");
+SetStoryEvent(_Var2, _Var3);
+
+PROC
+Proc_ARX_ClanWar_BatOffStage_Spawn_CheckSpawn((CHARACTERGUID)_Var1)
+AND
+ObjectIsOnStage(_Var1, 0)
+AND
+GetTemplate(_Var1, _Var2)
+AND
+_Var2 != "Creatures_GiantInsect_B_Wings_43d2c6db-2a93-4204-b0a0-ee19537fe14f"
+THEN
+CharacterAppear(_Var1, 1, "");
+
+PROC
+Proc_ARX_ClanWar_BatOffStage_Spawn_CheckSpawn((CHARACTERGUID)_Var1)
+AND
+ObjectIsOnStage(_Var1, 0)
+AND
+GetTemplate(_Var1, _Var2)
+AND
+_Var2 == "Creatures_GiantInsect_B_Wings_43d2c6db-2a93-4204-b0a0-ee19537fe14f"
+THEN
+CharacterAppearCustom(_Var1, "Drop", "");
+
+IF
+StoryEvent((CHARACTERGUID)_Var1, (STRING)_Var2)
+AND
+DB_ARX_ClanWar_BatOffStage_AttackEvent_Spawned(_Var1, _Var2, _Var3)
+THEN
+EnterCombat(_Var1, _Var3);
+
+IF
+StoryEvent((CHARACTERGUID)_Var1, (STRING)_Var2)
+AND
+DB_ARX_ClanWar_BatOffStage_AttackEvent_Spawned(_Var1, _Var2, _)
+AND
+DB_ARX_ClanWar_Paladins_Killed(_Var4)
+AND
+CharacterIsDead(_Var4, 0)
+THEN
+EnterCombat(_Var4, _Var1);
+
+IF
+CombatStarted((INTEGER)_Var1)
+AND
+DB_ARX_ClanWar_BatOffStage_AttackEvent_Spawned(_Var2, _Var3, _Var4)
+AND
+CombatGetIDForCharacter(_Var2, _Var1)
+AND
+QueryOnlyOnce(_Var3)
+AND
+GlobalGetFlag("ARX_ClanWar_JumpToTurnAvailable", 0)
+THEN
+GlobalSetFlag("ARX_ClanWar_JumpToTurnAvailable");
+JumpToTurn(_Var2);
+NOT DB_ARX_ClanWar_BatOffStage_AttackEvent_Spawned(_Var2, _Var3, _Var4);
+
+IF
+ObjectEnteredCombat((CHARACTERGUID)_Var1, (INTEGER)_Var2)
+AND
+IsCombatActive(_Var2, 1)
+AND
+DB_ARX_ClanWar_BatOffStage_AttackEvent_Spawned(_Var1, _Var3, _Var4)
+AND
+QueryOnlyOnce(_Var3)
+AND
+GlobalGetFlag("ARX_ClanWar_JumpToTurnAvailable", 0)
+THEN
+GlobalSetFlag("ARX_ClanWar_JumpToTurnAvailable");
+JumpToTurn(_Var1);
+NOT DB_ARX_ClanWar_BatOffStage_AttackEvent_Spawned(_Var1, _Var3, _Var4);
+
+IF
+GlobalFlagSet("ARX_ClanWar_JumpToTurnAvailable")
+AND
+DB_ARX_ClanWar_BatOffStage_AttackEvent_Spawned(_Var1, _Var2, _Var3)
+THEN
+NOT DB_ARX_ClanWar_BatOffStage_AttackEvent_Spawned(_Var1, _Var2, _Var3);
+
+IF
+CombatEnded((INTEGER)_Var1)
+AND
+DB_ARX_ClanWar_BatOffStage_Spawn(_Var2)
+AND
+DB_WasInCombat(_Var2, _Var1)
+AND
+DB_ARX_VoidwokenStatues_Characters(_Var3)
+AND
+CharacterIsInCombat(_Var3, 0)
+AND
+DB_ARX_ClanWar_BatOffStage_AttackEvent(_Var4, _, _)
+AND
+ObjectIsOnStage(_Var4, 0)
+AND NOT
+DB_ARX_ClanWar_BatOffStage_Spawn_FallbackCheck(1)
+THEN
+DB_ARX_ClanWar_BatOffStage_Spawn_FallbackCheck(1);
+Proc_ARX_ClanWar_BatOffStage_Spawn_FallbackCheck();
+
+IF
+CombatEnded((INTEGER)_Var1)
+AND
+DB_ARX_ClanWar_BatOffStage_SpawnFallback(1)
+AND
+DB_ARX_VoidwokenStatues_Characters(_Var2)
+AND
+DB_WasInCombat(_Var2, _Var1)
+AND
+CharacterIsInCombat(_Var2, 0)
+AND
+DB_ARX_ClanWar_BatOffStage_AttackEvent(_Var3, _, _)
+AND
+ObjectIsOnStage(_Var3, 0)
+AND NOT
+DB_ARX_ClanWar_BatOffStage_Spawn_FallbackCheck(1)
+THEN
+DB_ARX_ClanWar_BatOffStage_Spawn_FallbackCheck(1);
+Proc_ARX_ClanWar_BatOffStage_Spawn_FallbackCheck();
+
+PROC
+Proc_ARX_ClanWar_BatOffStage_Spawn_FallbackCheck()
+AND
+DB_ClanWar_Characters(_Var1, _, _)
+AND
+CharacterIsDead(_Var1, 0)
+AND NOT
+DB_ARX_ClanWar_BatOffStage_Spawn(_)
+THEN
+DB_ARX_ClanWar_BatOffStage_Spawn(_Var1);
+
+PROC
+Proc_ARX_ClanWar_BatOffStage_Spawn_FallbackCheck()
+AND NOT
+DB_ARX_ClanWar_BatOffStage_Spawn(_)
+AND
+DB_ARX_ClanWar_BatOffStage_AttackEvent(_Var2, _, _)
+THEN
+CharacterAppear(_Var2, 1, "");
+ProcStateManagerCharacterMoveTo(_Var2, TRIGGERGUID_S_ARX_ClanWar_Paladins_Killed_AiHint_865cbcde-da49-44a5-8646-62aa4ae56b32, 1, 10, "", "");
+DebugText(_Var2, "CLANWAR FALLBACK!!");
+
+PROC
+Proc_ARX_ClanWar_BatOffStage_Spawn_FallbackCheck()
+AND
+DB_ARX_ClanWar_BatOffStage_Spawn(_Var1)
+THEN
+DebugText(_Var1, "CLANWAR FALLBACK ON ME");
+NOT DB_ARX_ClanWar_BatOffStage_SpawnFallback(1);
+Proc_ARX_ClanWar_BatOffStage_Spawn();
+
+IF
+ObjectLeftCombat((CHARACTERGUID)_Var1, (INTEGER)_Var2)
+AND
+DB_ARX_ClanWar_Paladins_Killed(_Var1)
+AND
+CharacterIsDead(_Var1, 0)
+AND
+GlobalGetFlag("ARX_ClanWar_Done", 1)
+THEN
+ProcCharacterDisappearOutOfSightToObject(_Var1, ITEMGUID_S_ARX_CS_PlaceHolderGate_b099766e-8580-4453-9eb3-b071f5e68098, 1, "", 1);
+
+IF
+CharacterLeftTrigger(_, TRIGGERGUID_S_ARX_Clanwars_ForceStopCombat_4a2f8b8b-d3f6-4d9a-bafa-8a95b14c6f3a)
+AND NOT
+DB_InRegion(_, TRIGGERGUID_S_ARX_Clanwars_ForceStopCombat_4a2f8b8b-d3f6-4d9a-bafa-8a95b14c6f3a)
+AND
+DB_KillCounter_Internal(_Var3, "ARX_Clanwar_All")
+AND NOT
+DB_Dead(_Var3)
+THEN
+SetCanFight(_Var3, 0);
+
+IF
+CharacterEnteredTrigger((CHARACTERGUID)_Var1, TRIGGERGUID_S_ARX_Clanwars_ForceStopCombat_4a2f8b8b-d3f6-4d9a-bafa-8a95b14c6f3a)
+AND
+DB_IsPlayer(_Var1)
+AND
+DB_KillCounter_Internal(_Var2, "ARX_Clanwar_All")
+AND NOT
+DB_Dead(_Var2)
+THEN
+SetCanFight(_Var2, 1);
+
+IF
+SavegameLoaded((INTEGER)_Var1, (INTEGER)_Var2, (INTEGER)_Var3, (INTEGER)_Var4)
+AND
+QRY_VersionIsOlderThan(_Var1, _Var2, _Var3, _Var4, 3, 6, 1, 0)
+AND
+GlobalGetFlag("ARX_ClanWar_Paladins_StopSkip", 1)
+AND
+GlobalGetFlag("RC_ARX_ClanWar_Completed", 0)
+THEN
+Proc_ARX_ClanWar_CheckSavegame();
+
+PROC
+Proc_ARX_ClanWar_CheckSavegame()
+AND
+DB_ARX_VoidwokenStatues_Characters(_Var1)
+AND
+CharacterIsDead(_Var1, 0)
+AND
+ObjectIsOnStage(_Var1, 1)
+AND NOT
+DB_ARX_ClanWar_CheckSavegameSuccess(1)
+THEN
+DB_ARX_ClanWar_CheckSavegameSuccess(1);
+
+PROC
+Proc_ARX_ClanWar_CheckSavegame()
+AND NOT
+DB_ARX_ClanWar_CheckSavegameSuccess(1)
+AND
+DB_ARX_ClanWar_BatOffStage_AttackEvent(_Var1, _Var2, _)
+THEN
+Proc_ARX_ClanWar_BatOffStage_Spawn_CheckSpawn(_Var1);
+ProcStateManagerCharacterMoveTo(_Var1, TRIGGERGUID_S_ARX_ClanWar_Paladins_Killed_AiHint_865cbcde-da49-44a5-8646-62aa4ae56b32, 1, 10, "", "");
+SetStoryEvent(_Var1, _Var2);
+
+
+EXITSECTION
+ENDEXITSECTION
+
+ParentTargetEdge "ARX"

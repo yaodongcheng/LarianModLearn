@@ -1,0 +1,268 @@
+Version 1
+SubGoalCombiner SGC_AND
+
+INITSECTION
+DB_EG_GlobalDialogs("EG_TheChoice");
+DB_EG_GlobalDialogs("EG_Companion_TheChoice");
+DB_EG_GlobalDialogs("EG_NooneChoseDivinity");
+DB_EG_CutsceneFlags("EG_Ending1_NewDivine", "CS_Ending01");
+DB_EG_CutsceneFlags("EG_Ending2_SourceForAll", "CS_Ending01");
+DB_EG_CutsceneFlags("EG_Ending3_Purge", "CS_Ending01");
+DB_EG_CutsceneFlags("EG_Ending4_GodKing", "CS_Ending01");
+DB_EG_CutsceneFlags("EG_Ending_5_Demon", "CS_Ending01");
+ItemSetCanInteract(ITEMGUID_S_EG_Aeteran_07405202-99b6-4516-ab57-a20e7fcd3083, 0);
+PROC_LoopEffect("RS3_FX_GP_ScriptedEvent_SourceGlow_Overlay_01", ITEMGUID_S_EG_Aeteran_07405202-99b6-4516-ab57-a20e7fcd3083, "EG_AeteranGlow", "ARX_EndGame", "");
+DB_EG_DivineJournalUpdates(CHARACTERGUID_S_Player_Ifan_ad9a3327-4456-42a7-9bf4-7ad60cc9e54f, "QuestUpdate_FTJ_COM_Ifan_Crypt_Divine", "QuestUpdate_FTJ_Ifan_DarkFaction_ChoseCompanionDivine");
+DB_EG_DivineJournalUpdates(CHARACTERGUID_S_Player_Lohse_bb932b13-8ebf-4ab4-aac0-83e6924e4295, "QuestUpdate_FTJ_COM_Lohse_Crypt_Divine", "QuestUpdate_FTJ_OriginLohse_ChoseCompanionDivine");
+DB_EG_DivineJournalUpdates(CHARACTERGUID_S_Player_Fane_02a77f1f-872b-49ca-91ab-32098c443beb, "QuestUpdate_FTJ_COM_Fane_Crypt_Divine", "QuestUpdate_FTJ_OriginFane_ChoseCompanionDivine");
+DB_EG_DivineJournalUpdates(CHARACTERGUID_S_Player_Sebille_c8d55eaf-e4eb-466a-8f0d-6a9447b5b24c, "QuestUpdate_FTJ_COM_Sebille_Crypt_Divine", "QuestUpdate_FTJ_OriginSebille_ChoseCompanionDivine");
+DB_EG_DivineJournalUpdates(CHARACTERGUID_S_Player_Beast_f25ca124-a4d2-427b-af62-df66df41a978, "QuestUpdate_FTJ_COM_Beast_Crypt_Divine", "QuestUpdate_FTJ_OriginBeast_ChoseCompanionDivine");
+DB_EG_DivineJournalUpdates(CHARACTERGUID_S_Player_RedPrince_a26a1efb-cdc8-4cf3-a7b2-b2f9544add6f, "QuestUpdate_FTJ_COM_RedPrince_Crypt_Divine", "QuestUpdate_FTJ_OriginRedPrince_ChoseCompanionDivine");
+
+KBSECTION
+PROC
+PROC_EG_MakeTheChoice(_)
+AND
+DB_IsPlayer(_Var2)
+AND
+DB_IsPlayer(_Var3)
+AND
+_Var2 != _Var3
+THEN
+MakePeace(_Var2, _Var3, 0);
+
+PROC
+PROC_EG_MakeTheChoice(_)
+AND
+DB_EG_DivinityCompetitor(_Var2)
+AND NOT
+DB_IsPlayer(_Var2)
+THEN
+SetInArena(_Var2, 0);
+LeaveCombat(_Var2);
+ProcForceStopDialog(_Var2);
+
+PROC
+PROC_EG_MakeTheChoice(_)
+AND
+DB_IsPlayer(_Var2)
+THEN
+SetInArena(_Var2, 0);
+LeaveCombat(_Var2);
+ProcForceStopDialog(_Var2);
+
+PROC
+PROC_EG_MakeTheChoice(_)
+THEN
+CreateSurface(TRIGGERGUID_S_EG_TheChoicePosition_660fda5a-ae95-4aaf-a044-a18b234a48d7, "SurfaceNone", 5, -1);
+CreateSurface(TRIGGERGUID_S_EG_TheChoicePosition_B_87f4c6f5-15df-4521-9ca8-9939fcb73378, "SurfaceNone", 5, -1);
+
+PROC
+PROC_EG_MakeTheChoice((CHARACTERGUID)_Var1)
+AND
+DB_GlobalFlag("EndGame_BraccusTransformStarted")
+AND
+GetDistanceTo(_Var1, TRIGGERGUID_S_EG_TheChoicePosition_B_87f4c6f5-15df-4521-9ca8-9939fcb73378, _Var2)
+AND
+_Var2 >= 15
+THEN
+CharacterTeleportPartiesToTrigger(TRIGGERGUID_S_EG_TheChoicePosition_B_87f4c6f5-15df-4521-9ca8-9939fcb73378, "");
+
+PROC
+PROC_EG_MakeTheChoice((CHARACTERGUID)_Var1)
+AND NOT
+DB_GlobalFlag("EndGame_BraccusTransformStarted")
+AND
+GetDistanceTo(_Var1, TRIGGERGUID_S_EG_TheChoicePosition_660fda5a-ae95-4aaf-a044-a18b234a48d7, _Var2)
+AND
+_Var2 >= 15
+THEN
+CharacterTeleportPartiesToTrigger(TRIGGERGUID_S_EG_TheChoicePosition_660fda5a-ae95-4aaf-a044-a18b234a48d7, "");
+
+PROC
+PROC_EG_MakeTheChoice((CHARACTERGUID)_Var1)
+AND NOT
+DB_GlobalFlag("EG_Ending4_GodKing")
+THEN
+ObjectSetFlag(_Var1, "EG_TheChoice_MadeIt");
+DB_EG_Decider(_Var1);
+
+PROC
+PROC_EG_MakeTheChoice((CHARACTERGUID)_Var1)
+THEN
+TimerLaunch("EG_TheChoiceTimer", 300);
+DB_EG_MakingTheChoice(_Var1);
+
+IF
+TimerFinished("EG_TheChoiceTimer")
+AND
+DB_EG_MakingTheChoice(_Var1)
+AND NOT
+DB_GlobalFlag("EG_Ending4_GodKing")
+AND
+DB_IsPlayer(_Var1)
+THEN
+Proc_StartDialog(0, "EG_TheChoice", ITEMGUID_S_EG_Aeteran_07405202-99b6-4516-ab57-a20e7fcd3083, _Var1);
+
+IF
+TimerFinished("EG_TheChoiceTimer")
+AND
+DB_EG_MakingTheChoice(_Var1)
+AND NOT
+DB_GlobalFlag("EG_Ending4_GodKing")
+AND NOT
+DB_IsPlayer(_Var1)
+AND
+GetClosestAlivePlayer(_Var1, _Var2, _)
+THEN
+Proc_StartDialog(0, "EG_Companion_TheChoice", _Var1, _Var2);
+
+IF
+TimerFinished("EG_TheChoiceTimer")
+AND
+DB_EG_MakingTheChoice(_Var1)
+AND NOT
+DB_GlobalFlag("EG_Ending4_GodKing")
+AND
+HasActiveStatus(CHARACTERGUID_S_ARX_EG_Lucian_62d0ca66-b6db-4a10-a457-effe0b64aca0, "SITTING", 0)
+THEN
+RemoveHarmfulStatuses(_Var1);
+CharacterUseItem(_Var1, ITEMGUID_S_ARX_EG_LucianChair_a807a420-ccf9-4aa6-aa54-bb691229be55, "");
+
+IF
+TimerFinished("EG_TheChoiceTimer")
+AND
+DB_EG_MakingTheChoice(_Var1)
+AND
+DB_GlobalFlag("EG_Ending4_GodKing")
+THEN
+TeleportTo(ITEMGUID_S_GLO_EighthPromiseHelper_000_9c8c6eb9-84bb-47a6-91cb-4ef33442df06, _Var1);
+Proc_StartDialog(0, "EG_NooneChoseDivinity", ITEMGUID_S_GLO_EighthPromiseHelper_000_9c8c6eb9-84bb-47a6-91cb-4ef33442df06, _Var1);
+
+IF
+TimerFinished("EG_TheChoiceTimer")
+THEN
+DB_EG_EpilogCanStart(1);
+
+PROC
+Proc_ObjectLeftCombat((CHARACTERGUID)_Var1, _)
+AND
+DB_EG_MakingTheChoice(_Var1)
+AND NOT
+DB_GlobalFlag("EG_Ending1_NewDivine")
+AND NOT
+DB_GlobalFlag("EG_Ending2_SourceForAll")
+AND NOT
+DB_GlobalFlag("EG_Ending3_Purge")
+AND NOT
+DB_GlobalFlag("EG_Ending4_GodKing")
+AND
+DB_IsPlayer(_Var1)
+THEN
+Proc_StartDialog(0, "EG_TheChoice", ITEMGUID_S_EG_Aeteran_07405202-99b6-4516-ab57-a20e7fcd3083, _Var1);
+
+PROC
+Proc_ObjectLeftCombat((CHARACTERGUID)_Var1, _)
+AND
+DB_EG_MakingTheChoice(_Var1)
+AND NOT
+DB_GlobalFlag("EG_Ending1_NewDivine")
+AND NOT
+DB_GlobalFlag("EG_Ending2_SourceForAll")
+AND NOT
+DB_GlobalFlag("EG_Ending3_Purge")
+AND NOT
+DB_GlobalFlag("EG_Ending4_GodKing")
+AND NOT
+DB_IsPlayer(_Var1)
+AND
+GetClosestAlivePlayer(_Var1, _Var3, _)
+THEN
+Proc_StartDialog(0, "EG_Companion_TheChoice", _Var1, _Var3);
+
+PROC
+ProcBlockUseOfItem((CHARACTERGUID)_Var1, ITEMGUID_S_ARX_EG_LucianChair_a807a420-ccf9-4aa6-aa54-bb691229be55)
+AND
+CharacterIsInCombat(_Var1, 1)
+THEN
+DB_CustomUseItemResponse(_Var1, ITEMGUID_S_ARX_EG_LucianChair_a807a420-ccf9-4aa6-aa54-bb691229be55, 0);
+
+PROC
+ProcBlockUseOfItem((CHARACTERGUID)_Var1, ITEMGUID_S_ARX_EG_LucianChair_a807a420-ccf9-4aa6-aa54-bb691229be55)
+AND
+CharacterIsInCombat(_Var1, 1)
+AND
+DB_IsPlayer(_Var1)
+THEN
+Proc_StartDialog(1, "GLO_AD_CannotUseNow", _Var1);
+
+IF
+DialogEnded((STRING)_Var1, _)
+AND
+DB_EG_CutsceneFlags(_Var3, _)
+AND
+GlobalGetFlag(_Var3, 1)
+AND
+DB_EG_GlobalDialogs(_Var1)
+AND
+DB_IsPlayer(_Var5)
+THEN
+PROC_EG_TransitionToEpilog(_Var5);
+
+PROC
+PROC_EG_TransitionToEpilog((CHARACTERGUID)_Var1)
+THEN
+PlayMovieForDialog(_Var1, "EG_Epilogue_WindegoCutScene", "Windego_Cutscene");
+
+PROC
+PROC_EG_TransitionToEpilog((CHARACTERGUID)_Var1)
+AND
+QueryOnlyOnce("EG_EpilogueStarted")
+THEN
+PROC_EG_Epilogue_Start();
+
+IF
+MoviePlaylistFinished("Windego_Cutscene")
+AND
+QueryOnlyOnce("EG_EpilogueStarted")
+THEN
+PROC_EG_Epilogue_Start();
+
+PROC
+PROC_EG_Epilogue_Start()
+AND
+DB_GlobalFlag("EG_Ending1_NewDivine")
+AND
+DB_EG_Decider(_Var1)
+THEN
+PROC_LoopEffect("RS3_FX_GP_ScriptedEvent_GodsAura_01", _Var1, "DivineAura", "ARX_Endgame", "Dummy_StatusFX");
+
+PROC
+PROC_EG_MakeTheChoice((CHARACTERGUID)_Var1)
+AND
+IsTagged(_Var1, "AVATAR", 0)
+AND
+DB_EG_DivineJournalUpdates(_Var1, _Var2, _)
+THEN
+UserSetFlag(_Var1, _Var2);
+
+PROC
+PROC_EG_MakeTheChoice((CHARACTERGUID)_Var1)
+AND
+IsTagged(_Var1, "AVATAR", 0)
+AND
+DB_Companion_FixatedFlag(_Var1, _Var2)
+AND
+DB_Avatars(_Var3)
+AND
+ObjectGetFlag(_Var3, _Var2, 1)
+AND
+DB_EG_DivineJournalUpdates(_Var3, _, _Var5)
+THEN
+ObjectSetFlag(_Var3, _Var5);
+
+
+EXITSECTION
+ENDEXITSECTION
+
+ParentTargetEdge "EndGame"

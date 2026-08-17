@@ -1,0 +1,374 @@
+Version 1
+SubGoalCombiner SGC_AND
+
+INITSECTION
+DB_RC_DW_MagicLute("RC_DW_SpeedLute", "Shout_QUEST_PlayLute_Haste", "RC_DW_Haste_MagicalLute_933350b3-e6a0-4aa3-99b6-fbb25e94f43e");
+DB_RC_DW_MagicLute("RC_DW_HealthLute", "Shout_QUEST_PlayLute_Heal", "RC_DW_Healing_MagicalLute_48e24b5c-030d-4e72-b3af-7f517bbb8115");
+DB_RC_DW_MagicLute("RC_DW_BlessLute", "Shout_QUEST_PlayLute_Bless", "RC_DW_Bless_MagicalLute_31d99ceb-83ab-44b6-98ce-8d97eed3650a");
+
+KBSECTION
+IF
+CharacterUsedItem(CHARACTERGUID_S_Player_Lohse_bb932b13-8ebf-4ab4-aac0-83e6924e4295, ITEMGUID_S_FTJ_LaslorLute_6e70de6f-8bb8-4ae6-b779-09312c4472b4)
+AND
+ItemIsInInventory(ITEMGUID_S_FTJ_LaslorLute_6e70de6f-8bb8-4ae6-b779-09312c4472b4, 0)
+THEN
+CharacterPickupItem(CHARACTERGUID_S_Player_Lohse_bb932b13-8ebf-4ab4-aac0-83e6924e4295, ITEMGUID_S_FTJ_LaslorLute_6e70de6f-8bb8-4ae6-b779-09312c4472b4, "");
+
+IF
+CharacterUsedItem(CHARACTERGUID_S_Player_Lohse_bb932b13-8ebf-4ab4-aac0-83e6924e4295, ITEMGUID_S_FTJ_LaslorLute_6e70de6f-8bb8-4ae6-b779-09312c4472b4)
+AND
+ItemIsInInventory(ITEMGUID_S_FTJ_LaslorLute_6e70de6f-8bb8-4ae6-b779-09312c4472b4, 1)
+THEN
+ItemToInventory(ITEMGUID_S_FTJ_LaslorLute_6e70de6f-8bb8-4ae6-b779-09312c4472b4, CHARACTERGUID_S_Player_Lohse_bb932b13-8ebf-4ab4-aac0-83e6924e4295);
+
+IF
+CharacterUsedItem((CHARACTERGUID)_Var1, ITEMGUID_S_FTJ_LaslorLute_6e70de6f-8bb8-4ae6-b779-09312c4472b4)
+AND
+QRY_SpeakerIsAvailable(_Var1)
+THEN
+Proc_StartDialog(1, "FTJ_AD_UseLaslorLute", _Var1);
+
+IF
+CharacterUsedItem((CHARACTERGUID)_Var1, ITEMGUID_S_FTJ_LaslorLute_6e70de6f-8bb8-4ae6-b779-09312c4472b4)
+AND
+QRY_SpeakerIsAvailable(CHARACTERGUID_S_Player_Lohse_bb932b13-8ebf-4ab4-aac0-83e6924e4295)
+THEN
+Proc_FTJ_UseLaslorLute(_Var1);
+
+IF
+CharacterUsedItem(CHARACTERGUID_S_Player_Lohse_bb932b13-8ebf-4ab4-aac0-83e6924e4295, ITEMGUID_S_FTJ_LaslorLute_6e70de6f-8bb8-4ae6-b779-09312c4472b4)
+AND
+QRY_SpeakerIsAvailable(CHARACTERGUID_S_Player_Lohse_bb932b13-8ebf-4ab4-aac0-83e6924e4295)
+AND NOT
+DB_Dead(CHARACTERGUID_S_ARX_DoctorsHouse_TheDoctor_83083470-c543-45b3-ac8a-108df0daca8d)
+THEN
+ItemDestroy(ITEMGUID_S_FTJ_LaslorLute_6e70de6f-8bb8-4ae6-b779-09312c4472b4);
+
+PROC
+Proc_FTJ_UseLaslorLute(CHARACTERGUID_S_Player_Lohse_bb932b13-8ebf-4ab4-aac0-83e6924e4295)
+AND
+ObjectGetFlag(CHARACTERGUID_S_Player_Lohse_bb932b13-8ebf-4ab4-aac0-83e6924e4295, "GLO_Polymorphed", 1)
+THEN
+ProcRemovePolymorphs(CHARACTERGUID_S_Player_Lohse_bb932b13-8ebf-4ab4-aac0-83e6924e4295);
+
+PROC
+Proc_FTJ_UseLaslorLute(CHARACTERGUID_S_Player_Lohse_bb932b13-8ebf-4ab4-aac0-83e6924e4295)
+THEN
+ItemSetCanInteract(ITEMGUID_S_FTJ_LaslorLute_6e70de6f-8bb8-4ae6-b779-09312c4472b4, 0);
+MusicPlayOnCharacter(CHARACTERGUID_S_Player_Lohse_bb932b13-8ebf-4ab4-aac0-83e6924e4295, "SE_Lohse_OM_PlayLute_1st");
+CharacterUseSkill(CHARACTERGUID_S_Player_Lohse_bb932b13-8ebf-4ab4-aac0-83e6924e4295, "Shout_QUEST_PlayLute", CHARACTERGUID_S_Player_Lohse_bb932b13-8ebf-4ab4-aac0-83e6924e4295, 0, 1, 1);
+
+IF
+ObjectFlagSet("FTJ_ThrowLute", (CHARACTERGUID)_Var1, _)
+AND
+ObjectGetFlag(_Var1, "GLO_Polymorphed", 1)
+THEN
+ProcRemovePolymorphs(_Var1);
+
+IF
+ObjectFlagSet("FTJ_ThrowLute", (CHARACTERGUID)_Var1, _)
+AND
+GetPosition(_Var1, _Var3, _Var4, _Var5)
+AND
+RealSum(_Var3, 1.5, _Var6)
+THEN
+TeleportToPosition(GLO_Lohse_LuteThrow_Helper_6d386628-1fe3-4e84-9f3e-e140ab0f8eb7, _Var6, _Var4, _Var5, "", 0);
+CharacterUseSkill(CHARACTERGUID_S_Player_Lohse_bb932b13-8ebf-4ab4-aac0-83e6924e4295, "Projectile_QUEST_Grenade_Lute", GLO_Lohse_LuteThrow_Helper_6d386628-1fe3-4e84-9f3e-e140ab0f8eb7, 0, 1, 1);
+
+IF
+StoryEvent((ITEMGUID)_Var1, "RC_DW_LuteProjectile_TouchedGound")
+THEN
+PlayEffect(_Var1, "RS3_FX_GP_Impacts_MagicalLute_01");
+Transform(_Var1, "FTJ_Laslors_Broekn_Lute_a8a93b69-9acd-4c87-aace-d7c27f6a5092", 0);
+DB_HasStoryEvent(_Var1, "RC_DW_HasLaslors_Broken_Lute");
+DB_GiveItemToEvent(_Var1, "RC_DW_GiveLaslors_Broken_Lute");
+TimerLaunch("FTJ_DestroyLute", 1000);
+
+IF
+DB_RC_DW_MagicLute(_Var1, _Var2, _Var3)
+THEN
+DB_SharedObjectFlags(_Var1);
+
+IF
+ObjectFlagSet("RC_DW_GiveMagicLute", (GUIDSTRING)_Var1, _)
+AND
+DB_RC_DW_MagicLute(_Var3, _Var4, _Var5)
+AND
+ObjectGetFlag(_Var1, _Var3, 1)
+THEN
+ItemTemplateAddTo(_Var5, _Var1, 1);
+
+IF
+ItemTemplateAddedToCharacter((GUIDSTRING)_Var1, (ITEMGUID)_Var2, (CHARACTERGUID)_Var3)
+AND
+String(_Var1, _Var4)
+AND
+DB_RC_DW_MagicLute(_Var5, _Var6, _Var4)
+AND
+ObjectGetFlag(_Var3, _Var5, 1)
+AND NOT
+DB_RC_DW_UseMagicLute(_Var2, _Var6, _Var5)
+THEN
+DB_RC_DW_UseMagicLute(_Var2, _Var6, _Var5);
+
+IF
+ItemTemplateAddedToCharacter((GUIDSTRING)_Var1, (ITEMGUID)_Var2, (CHARACTERGUID)_Var3)
+AND
+String(_Var1, _Var4)
+AND
+DB_RC_DW_MagicLute(_Var5, _Var6, _Var4)
+AND
+ObjectGetFlag(_Var3, _Var5, 1)
+THEN
+ItemSetCanInteract(_Var2, 1);
+
+IF
+CharacterUsedItem((CHARACTERGUID)_Var1, (ITEMGUID)_Var2)
+AND
+GetTemplate(_Var2, _Var3)
+AND
+DB_RC_DW_MagicLute(_Var4, _Var5, _Var3)
+AND
+ItemIsInPartyInventory(_Var2, _Var1, 0, 0)
+THEN
+CharacterPickupItem(_Var1, _Var2, "");
+
+IF
+CharacterUsedItem(CHARACTERGUID_S_Player_Lohse_bb932b13-8ebf-4ab4-aac0-83e6924e4295, (ITEMGUID)_Var1)
+AND
+DB_RC_DW_UseMagicLute(_Var1, _Var2, _Var3)
+AND
+ObjectGetFlag(CHARACTERGUID_S_Player_Lohse_bb932b13-8ebf-4ab4-aac0-83e6924e4295, _Var3, 0)
+THEN
+ObjectSetFlag(CHARACTERGUID_S_Player_Lohse_bb932b13-8ebf-4ab4-aac0-83e6924e4295, _Var3);
+
+IF
+CharacterUsedItem((CHARACTERGUID)_Var1, (ITEMGUID)_Var2)
+AND
+DB_IsPlayer(_Var1)
+AND
+DB_RC_DW_UseMagicLute(_Var2, _Var3, _Var4)
+THEN
+Proc_StartDialog(1, "RC_DW_AD_UseMagicLute", _Var1);
+
+IF
+CharacterUsedItem(CHARACTERGUID_S_Player_Lohse_bb932b13-8ebf-4ab4-aac0-83e6924e4295, (ITEMGUID)_Var1)
+AND
+DB_RC_DW_UseMagicLute(_Var1, _Var2, _Var3)
+THEN
+Proc_DW_UseLaslorLute(CHARACTERGUID_S_Player_Lohse_bb932b13-8ebf-4ab4-aac0-83e6924e4295, _Var2, _Var1);
+
+PROC
+Proc_DW_UseLaslorLute((CHARACTERGUID)_Var1, (STRING)_Var2, (ITEMGUID)_Var3)
+THEN
+ItemSetCanInteract(_Var3, 0);
+
+PROC
+Proc_DW_UseLaslorLute(CHARACTERGUID_S_Player_Lohse_bb932b13-8ebf-4ab4-aac0-83e6924e4295, (STRING)_Var1, (ITEMGUID)_Var2)
+AND
+ObjectGetFlag(CHARACTERGUID_S_Player_Lohse_bb932b13-8ebf-4ab4-aac0-83e6924e4295, "GLO_Polymorphed", 1)
+THEN
+ProcRemovePolymorphs(CHARACTERGUID_S_Player_Lohse_bb932b13-8ebf-4ab4-aac0-83e6924e4295);
+
+PROC
+Proc_DW_UseLaslorLute(CHARACTERGUID_S_Player_Lohse_bb932b13-8ebf-4ab4-aac0-83e6924e4295, (STRING)_Var1, (ITEMGUID)_Var2)
+AND
+GlobalGetFlag("GLO_LohseHasDemons", 1)
+THEN
+MusicPlayOnCharacter(CHARACTERGUID_S_Player_Lohse_bb932b13-8ebf-4ab4-aac0-83e6924e4295, "SE_Lohse_OM_PlayLute_2nd_Demon");
+
+PROC
+Proc_DW_UseLaslorLute(CHARACTERGUID_S_Player_Lohse_bb932b13-8ebf-4ab4-aac0-83e6924e4295, (STRING)_Var1, (ITEMGUID)_Var2)
+AND
+GlobalGetFlag("GLO_LohseHasDemons", 0)
+THEN
+MusicPlayOnCharacter(CHARACTERGUID_S_Player_Lohse_bb932b13-8ebf-4ab4-aac0-83e6924e4295, "SE_Lohse_OM_PlayLute_2nd_NoDemon");
+
+PROC
+Proc_DW_UseLaslorLute(CHARACTERGUID_S_Player_Lohse_bb932b13-8ebf-4ab4-aac0-83e6924e4295, (STRING)_Var1, (ITEMGUID)_Var2)
+THEN
+CharacterUseSkill(CHARACTERGUID_S_Player_Lohse_bb932b13-8ebf-4ab4-aac0-83e6924e4295, _Var1, CHARACTERGUID_S_Player_Lohse_bb932b13-8ebf-4ab4-aac0-83e6924e4295, 0, 1, 1);
+
+IF
+ObjectFlagSet("RC_DW_MagicLute_BurnIt", (CHARACTERGUID)_Var1, _)
+AND
+ObjectGetFlag(_Var1, "GLO_Polymorphed", 1)
+THEN
+ProcRemovePolymorphs(_Var1);
+
+IF
+ObjectFlagSet("RC_DW_MagicLute_BurnIt", (CHARACTERGUID)_Var1, _)
+AND
+GetPosition(CHARACTERGUID_S_Player_Lohse_bb932b13-8ebf-4ab4-aac0-83e6924e4295, _Var3, _Var4, _Var5)
+AND
+RealSum(_Var3, 1.5, _Var6)
+AND
+DB_RC_DW_UseMagicLute(_Var7, _, _)
+THEN
+ItemDestroy(_Var7);
+TeleportToPosition(GLO_Lohse_LuteThrow_Helper_6d386628-1fe3-4e84-9f3e-e140ab0f8eb7, _Var6, _Var4, _Var5, "", 0);
+CharacterUseSkill(CHARACTERGUID_S_Player_Lohse_bb932b13-8ebf-4ab4-aac0-83e6924e4295, "Projectile_QUEST_Grenade_MagicalLute", GLO_Lohse_LuteThrow_Helper_6d386628-1fe3-4e84-9f3e-e140ab0f8eb7, 0, 1, 1);
+
+IF
+ObjectFlagSet("RC_DW_MagicLute_BurnIt", (CHARACTERGUID)_Var1, _)
+AND
+DB_RC_DW_UseMagicLute(_Var3, _Var4, _Var5)
+THEN
+NOT DB_RC_DW_UseMagicLute(_Var3, _Var4, _Var5);
+
+IF
+AutomatedDialogEnded("RC_DW_AD_UseMagicLute", (INTEGER)_Var1)
+AND
+DialogGetInvolvedPlayer(_Var1, 1, _Var2)
+AND
+ObjectGetFlag(_Var2, "RC_DW_MagicLute_BurnIt", 0)
+AND
+DB_RC_DW_UseMagicLute(_Var3, _Var4, _Var5)
+THEN
+ItemSetCanInteract(_Var3, 1);
+
+IF
+GlobalFlagSet("RC_DW_MagicLute_LostPower")
+AND
+DB_RC_DW_UseMagicLute(_Var1, _Var2, _Var3)
+THEN
+ItemTemplateAddTo("LOOT_Guitar_Lute_A_58d19c4b-87a5-47f1-8335-f48dd1af3a36", S_Player_Lohse_bb932b13-8ebf-4ab4-aac0-83e6924e4295, 1);
+ItemDestroy(_Var1);
+NOT DB_RC_DW_UseMagicLute(_Var1, _Var2, _Var3);
+
+IF
+CharacterDied(CHARACTERGUID_S_ARX_DoctorsHouse_TheDoctor_83083470-c543-45b3-ac8a-108df0daca8d)
+THEN
+GlobalClearFlag("GLO_LohseHasDemons");
+
+IF
+TextEventSet("Shout_QUEST_PlayLute")
+THEN
+CharacterUseSkill(CHARACTERGUID_S_Player_Lohse_bb932b13-8ebf-4ab4-aac0-83e6924e4295, "Shout_QUEST_PlayLute", CHARACTERGUID_S_Player_Lohse_bb932b13-8ebf-4ab4-aac0-83e6924e4295, 0, 1, 1);
+
+IF
+TextEventSet("Projectile_QUEST_Grenade_Lute")
+AND
+GetPosition(CHARACTERGUID_S_Player_Lohse_bb932b13-8ebf-4ab4-aac0-83e6924e4295, _Var1, _Var2, _Var3)
+AND
+RealSum(_Var1, 1, _Var4)
+THEN
+TeleportToPosition(GLO_Lohse_LuteThrow_Helper_6d386628-1fe3-4e84-9f3e-e140ab0f8eb7, _Var4, _Var2, _Var3, "", 0);
+CharacterUseSkill(CHARACTERGUID_S_Player_Lohse_bb932b13-8ebf-4ab4-aac0-83e6924e4295, "Projectile_QUEST_Grenade_Lute", GLO_Lohse_LuteThrow_Helper_6d386628-1fe3-4e84-9f3e-e140ab0f8eb7, 0, 1, 1);
+
+IF
+TextEventSet("GiveLute")
+AND
+DB_IsPlayer(_Var1)
+AND
+QueryOnlyOnce("Debug_GiveLute")
+THEN
+ItemToInventory(ITEMGUID_S_FTJ_LaslorLute_6e70de6f-8bb8-4ae6-b779-09312c4472b4, _Var1);
+
+IF
+TextEventSet("LohseRemoveDemon")
+THEN
+GlobalClearFlag("GLO_LohseHasDemons");
+
+IF
+TextEventSet("GiveBrokenLute")
+AND
+DB_IsPlayer(CHARACTERGUID_S_Player_Lohse_bb932b13-8ebf-4ab4-aac0-83e6924e4295)
+AND
+GetPosition(CHARACTERGUID_S_Player_Lohse_bb932b13-8ebf-4ab4-aac0-83e6924e4295, _Var1, _Var2, _Var3)
+AND
+CreateItemTemplateAtPosition("FTJ_Laslors_Broekn_Lute_a8a93b69-9acd-4c87-aace-d7c27f6a5092", _Var1, _Var2, _Var3, _Var4)
+THEN
+DB_HasStoryEvent(_Var4, "RC_DW_HasLaslors_Broken_Lute");
+DB_GiveItemToEvent(_Var4, "RC_DW_GiveLaslors_Broken_Lute");
+
+IF
+TextEventSet("GiveBlessingLute")
+THEN
+GlobalClearFlag("RC_DW_MagicLute_LostPower");
+ObjectClearFlag(CHARACTERGUID_S_Player_Lohse_bb932b13-8ebf-4ab4-aac0-83e6924e4295, "RC_DW_BlessLute");
+ObjectClearFlag(CHARACTERGUID_S_Player_Lohse_bb932b13-8ebf-4ab4-aac0-83e6924e4295, "RC_DW_GiveMagicLute");
+ObjectClearFlag(CHARACTERGUID_S_Player_Lohse_bb932b13-8ebf-4ab4-aac0-83e6924e4295, "RC_DW_MagicLute_BurnIt");
+ObjectSetFlag(CHARACTERGUID_S_Player_Lohse_bb932b13-8ebf-4ab4-aac0-83e6924e4295, "RC_DW_BlessLute");
+ObjectSetFlag(CHARACTERGUID_S_Player_Lohse_bb932b13-8ebf-4ab4-aac0-83e6924e4295, "RC_DW_GiveMagicLute");
+
+IF
+TextEventSet("LOHSE_Test_Full_Preformance1")
+THEN
+ObjectSetFlag(CHARACTERGUID_S_Player_Lohse_bb932b13-8ebf-4ab4-aac0-83e6924e4295, "DOS2_CHAPTER9_Arx");
+ObjectSetFlag(CHARACTERGUID_S_Player_Ifan_ad9a3327-4456-42a7-9bf4-7ad60cc9e54f, "DOS2_CHAPTER9_Arx");
+GlobalSetFlag("ARX_TheDoctor_IsDead");
+Proc_StartDialog(0, "Lohse2", CHARACTERGUID_S_Player_Lohse_bb932b13-8ebf-4ab4-aac0-83e6924e4295, CHARACTERGUID_S_Player_Ifan_ad9a3327-4456-42a7-9bf4-7ad60cc9e54f);
+
+IF
+TextEventSet("LOHSE_Test_Full_Preformance2")
+THEN
+Proc_StartDialog(0, "ARX_TheDoctorIsDead_CRD_Lohse", CHARACTERGUID_S_Player_Lohse_bb932b13-8ebf-4ab4-aac0-83e6924e4295, CHARACTERGUID_S_Player_Ifan_ad9a3327-4456-42a7-9bf4-7ad60cc9e54f);
+
+IF
+ObjectFlagSet("GLO_Lohse_PlayFullSong", (CHARACTERGUID)_Var1, (INTEGER)_Var2)
+AND
+CharacterIsInFightMode(_Var1, 1)
+THEN
+CharacterSetFightMode(_Var1, 0, 1);
+
+IF
+ObjectFlagSet("GLO_Lohse_PlayFullSong", (CHARACTERGUID)_Var1, (INTEGER)_Var2)
+THEN
+ProcRemovePolymorphs(_Var1);
+CharacterSetAnimationOverride(_Var1, "Play_LohseSong_01");
+DB_GLO_Lohse_PlayFullSong(_Var1, _Var2);
+ProcObjectTimer(_Var1, "GLO_Lohse_PlayFullSong", 161000);
+
+PROC
+ProcObjectTimerFinished((CHARACTERGUID)_Var1, "GLO_Lohse_PlayFullSong")
+THEN
+ObjectClearFlag(_Var1, "GLO_Lohse_PlayFullSong");
+
+IF
+DialogEnded((STRING)_Var1, (INTEGER)_Var2)
+AND
+DB_GLO_Lohse_PlayFullSong(_Var3, _Var2)
+THEN
+NOT DB_GLO_Lohse_PlayFullSong(_Var3, _Var2);
+ObjectClearFlag(_Var3, "GLO_Lohse_PlayFullSong");
+
+IF
+ObjectFlagCleared("GLO_Lohse_PlayFullSong", (CHARACTERGUID)_Var1, (INTEGER)_Var2)
+AND
+DB_GLO_Lohse_PlayFullSong(_Var1, _Var2)
+THEN
+NOT DB_GLO_Lohse_PlayFullSong(_Var1, _Var2);
+
+IF
+ObjectFlagCleared("GLO_Lohse_PlayFullSong", (CHARACTERGUID)_Var1, (INTEGER)_Var2)
+THEN
+ProcObjectTimerCancel(_Var1, "GLO_Lohse_PlayFullSong");
+CharacterSetAnimationOverride(_Var1, "");
+PlayAnimation(_Var1, "Bow_01");
+PlaySound(_Var1, "SE_FTJ_Lastor_Lohse_Stop");
+
+IF
+TextEventSet("LohsetestSong")
+THEN
+CharacterSetAnimationOverride(CHARACTERGUID_S_Player_Lohse_bb932b13-8ebf-4ab4-aac0-83e6924e4295, "Play_LohseSong_01");
+
+IF
+CharacterUsedItemTemplate(CHARACTERGUID_S_Player_Lohse_bb932b13-8ebf-4ab4-aac0-83e6924e4295, "UNIQUE_ARX_LohseLute_ad88041c-4b88-4540-b1c8-2dd8e1cc9185", _)
+THEN
+Proc_StartDialog(0, "ARX_Lohse_Lute", CHARACTERGUID_S_Player_Lohse_bb932b13-8ebf-4ab4-aac0-83e6924e4295);
+
+IF
+CharacterDied(CHARACTERGUID_S_ARX_DoctorsHouse_TheDoctor_83083470-c543-45b3-ac8a-108df0daca8d)
+AND
+IsTagged(CHARACTERGUID_S_Player_Lohse_bb932b13-8ebf-4ab4-aac0-83e6924e4295, "AVATAR", 1)
+AND
+QueryOnlyOnce("Add_ARX_LohseLute")
+THEN
+ItemTemplateAddTo("UNIQUE_ARX_LohseLute_ad88041c-4b88-4540-b1c8-2dd8e1cc9185", CHARACTERGUID_S_ARX_DoctorsHouse_TheDoctor_83083470-c543-45b3-ac8a-108df0daca8d, 1);
+
+
+EXITSECTION
+ENDEXITSECTION
+
+ParentTargetEdge "Start"

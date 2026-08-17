@@ -1,0 +1,458 @@
+Version 1
+SubGoalCombiner SGC_AND
+
+INITSECTION
+DB_OriginMomentTag("ARX_SpyMasterAppear", "RED PRINCE", "ARX_SpyMasterAppear_COM_RedPrince");
+DB_ARX_SpymasterAssassins(CHARACTERGUID_S_ARX_RedPrince_SpyAssassin1_602fd714-97d7-4c31-a845-99f360c3529f);
+DB_ARX_SpymasterAssassins(CHARACTERGUID_S_ARX_RedPrince_SpyAssassin2_066ac5e8-4081-49e9-a3e0-02d6aa0c9b8b);
+DB_ARX_SpymasterAssassins(CHARACTERGUID_S_ARX_RedPrince_SpyAssassin3_78481ae6-c470-48da-afb8-349d9cc97b8a);
+DB_ARX_SpymasterAssassins(CHARACTERGUID_S_ARX_RedPrince_SpyAssassin4_81d2e1bc-91e9-44c9-90b4-40e612b8823f);
+DB_ARX_SpymasterAssassins(CHARACTERGUID_S_ARX_RedPrince_SpyAssassin5_f87f4ef3-04a6-461a-a285-4aaf64394eda);
+DB_ARX_SpymasterAssassins(CHARACTERGUID_S_ARX_RedPrince_SpyAssassin6_9897fda1-daa2-4c33-b607-8bcb1947f0c8);
+PROC_ARX_SetupSpymasterAmbush();
+ProcTriggerRegisterForPlayers(TRIGGERGUID_S_ARX_SpymasterAmbush_Primer_86fde062-7313-425a-ac48-204d306f5af6);
+ProcTriggerRegisterForPlayers(TRIGGERGUID_S_ARX_RP_RegisterForSpymasterAmbush_5f4a2bba-b47e-4e9a-9eca-87179f5968ae);
+SetOnStage(ITEMGUID_S_ARX_SpymasterAmbush_RewardChest_a708b260-bb8f-4508-a6c7-320886157e8e, 0);
+DB_HasStoryEvent(ITEMGUID_S_ARX_SpymasterAmbush_RewardChest_a708b260-bb8f-4508-a6c7-320886157e8e, "ARX_SpymasterAmbush_HasRewardChest");
+DB_GiveItemToEventWithClear(ITEMGUID_S_ARX_SpymasterAmbush_RewardChest_a708b260-bb8f-4508-a6c7-320886157e8e, "ARX_SpymasterAmbush_GiveRewardChest");
+DB_ARX_SpymasterDialogs("ARX_SpyMasterAppear");
+DB_ARX_SpymasterDialogs("ARX_SpyMasterAppear_COM_RedPrince");
+
+KBSECTION
+IF
+DB_ARX_SpymasterAssassins(_Var1)
+THEN
+ApplyStatus(_Var1, "INVISIBLE", 6, 1);
+SetOnStage(_Var1, 0);
+
+IF
+CharacterEnteredTrigger((CHARACTERGUID)_Var1, TRIGGERGUID_S_ARX_RP_RegisterForSpymasterAmbush_5f4a2bba-b47e-4e9a-9eca-87179f5968ae)
+THEN
+DB_ARX_WasInSunsetScene(_Var1);
+
+PROC
+PROC_ARX_SetupSpymasterAmbush()
+AND NOT
+DB_Dead(CHARACTERGUID_S_CoS_Temples_SpyMaster_787c6c4a-6e5a-4044-9616-27e21e5a171e)
+THEN
+CharacterSetCanTrade(CHARACTERGUID_S_CoS_Temples_SpyMaster_787c6c4a-6e5a-4044-9616-27e21e5a171e, 0);
+CharacterLevelUpTo(CHARACTERGUID_S_CoS_Temples_SpyMaster_787c6c4a-6e5a-4044-9616-27e21e5a171e, 20);
+ProcTriggerRegisterForPlayers(TRIGGERGUID_S_ARX_SpymasterAmbush_Primer_86fde062-7313-425a-ac48-204d306f5af6);
+SetFaction(CHARACTERGUID_S_CoS_Temples_SpyMaster_787c6c4a-6e5a-4044-9616-27e21e5a171e, "ARX_SpyMasterAmbush");
+SetOnStage(CHARACTERGUID_S_CoS_Temples_SpyMaster_787c6c4a-6e5a-4044-9616-27e21e5a171e, 0);
+ProcRemoveAllDialogEntriesForSpeaker(CHARACTERGUID_S_CoS_Temples_SpyMaster_787c6c4a-6e5a-4044-9616-27e21e5a171e);
+DB_Dialogs(CHARACTERGUID_S_CoS_Temples_SpyMaster_787c6c4a-6e5a-4044-9616-27e21e5a171e, "ARX_SpyMasterAppear");
+proc_ARX_SetupSpymasterAmbush_GhostSetUp(CHARACTERGUID_S_CoS_Temples_SpyMaster_787c6c4a-6e5a-4044-9616-27e21e5a171e);
+GlobalSetFlag("ARX_SpyMaster_IsInARX");
+
+PROC
+proc_ARX_SetupSpymasterAmbush_GhostSetUp((CHARACTERGUID)_Var1)
+AND NOT
+DB_Ghosts(_Var1, _, _)
+THEN
+DB_Ghosts(CHARACTERGUID_S_CoS_Temples_BlackRingHub_SpyMaster_787c6c4a-6e5a-4044-9616-27e21e5a171e, CHARACTERGUID_S_CoS_Temples_BlackRingHub_SpyMaster_Ghost_5f6d5496-b2fd-42a5-933b-906bb8ab2590, "CoS_Temples_BlackRingHub_SpyMaster_Ghost");
+
+PROC
+proc_ARX_SetupSpymasterAmbush_GhostSetUp((CHARACTERGUID)_Var1)
+AND NOT
+DB_OriginMomentTag("CoS_Temples_BlackRingHub_SpyMaster_Ghost", "RED PRINCE", "CoS_Temples_BlackRingHub_SpyMaster_Ghost_COM_RedPrince")
+AND
+ObjectGetFlag(CHARACTERGUID_S_Player_RedPrince_a26a1efb-cdc8-4cf3-a7b2-b2f9544add6f, "CoS_Temples_SpyMaster_COM_RedPrince_Completed", 0)
+THEN
+DB_OriginMomentTag("CoS_Temples_BlackRingHub_SpyMaster_Ghost", "RED PRINCE", "CoS_Temples_BlackRingHub_SpyMaster_Ghost_COM_RedPrince");
+
+IF
+CharacterEnteredTrigger((CHARACTERGUID)_Var1, TRIGGERGUID_S_ARX_SpymasterAmbush_Primer_86fde062-7313-425a-ac48-204d306f5af6)
+THEN
+DB_ARX_WasInSunsetScene(_Var1);
+
+IF
+TimerFinished("RC_ARX_VB_HorrorSleep_Sunset_BackToReality")
+AND
+DB_ARX_WasInSunsetScene(_Var1)
+THEN
+TriggerRegisterForCharacter(TRIGGERGUID_S_ARX_SpyMasterAmbush_bd0348a9-94a3-4bab-ab4d-d964f1ebaa1d, _Var1);
+
+IF
+CharacterEnteredTrigger((CHARACTERGUID)_Var1, TRIGGERGUID_S_ARX_SpyMasterAmbush_bd0348a9-94a3-4bab-ab4d-d964f1ebaa1d)
+AND
+HasActiveStatus(_Var1, "INVISIBLE", 0)
+AND
+HasActiveStatus(_Var1, "SNEAKING", 0)
+AND
+CharacterIsDead(_Var1, 0)
+THEN
+Proc_ARX_FindTargetSpymasterAmbush(_Var1);
+
+IF
+CharacterStatusRemoved((CHARACTERGUID)_Var1, "INVISIBLE", _)
+AND
+DB_InRegion(_Var1, TRIGGERGUID_S_ARX_SpyMasterAmbush_bd0348a9-94a3-4bab-ab4d-d964f1ebaa1d)
+THEN
+Proc_ARX_FindTargetSpymasterAmbush(_Var1);
+
+IF
+CharacterResurrected((CHARACTERGUID)_Var1)
+AND
+DB_InRegion(_Var1, TRIGGERGUID_S_ARX_SpyMasterAmbush_bd0348a9-94a3-4bab-ab4d-d964f1ebaa1d)
+THEN
+Proc_ARX_FindTargetSpymasterAmbush(_Var1);
+
+IF
+CharacterStatusRemoved((CHARACTERGUID)_Var1, "SNEAKING", _)
+AND
+DB_InRegion(_Var1, TRIGGERGUID_S_ARX_SpyMasterAmbush_bd0348a9-94a3-4bab-ab4d-d964f1ebaa1d)
+THEN
+Proc_ARX_FindTargetSpymasterAmbush(_Var1);
+
+PROC
+Proc_ARX_FindTargetSpymasterAmbush(CHARACTERGUID_S_Player_RedPrince_a26a1efb-cdc8-4cf3-a7b2-b2f9544add6f)
+AND
+CharacterIsDead(CHARACTERGUID_S_CoS_Temples_SpyMaster_787c6c4a-6e5a-4044-9616-27e21e5a171e, 0)
+THEN
+Proc_ARX_LaunchSpymasterAmbush(CHARACTERGUID_S_Player_RedPrince_a26a1efb-cdc8-4cf3-a7b2-b2f9544add6f);
+
+PROC
+Proc_ARX_FindTargetSpymasterAmbush((CHARACTERGUID)_Var1)
+AND
+CharacterIsDead(CHARACTERGUID_S_CoS_Temples_SpyMaster_787c6c4a-6e5a-4044-9616-27e21e5a171e, 0)
+AND
+_Var1 != CHARACTERGUID_S_Player_RedPrince_a26a1efb-cdc8-4cf3-a7b2-b2f9544add6f
+AND NOT
+DB_InRegion(_, TRIGGERGUID_S_ARX_SpymasterAmbush_Primer_86fde062-7313-425a-ac48-204d306f5af6)
+AND
+DB_InRegion(CHARACTERGUID_S_Player_RedPrince_a26a1efb-cdc8-4cf3-a7b2-b2f9544add6f, TRIGGERGUID_S_ARX_LizardConsulate_Garden_e91bc36a-e395-49e0-9ece-2cdee6aa1ecc)
+THEN
+Proc_ARX_LaunchSpymasterAmbush(_Var1);
+
+PROC
+Proc_ARX_FindTargetSpymasterAmbush((CHARACTERGUID)_Var1)
+AND
+CharacterIsDead(CHARACTERGUID_S_CoS_Temples_SpyMaster_787c6c4a-6e5a-4044-9616-27e21e5a171e, 1)
+AND NOT
+DB_Avatars(CHARACTERGUID_S_Player_RedPrince_a26a1efb-cdc8-4cf3-a7b2-b2f9544add6f)
+THEN
+UserSetFlag(_Var1, "QuestUpdate_FTJ_COM_RedPrince_SpymasterMissingAfterRedPrincess");
+
+PROC
+Proc_ARX_FindTargetSpymasterAmbush((CHARACTERGUID)_Var1)
+AND
+CharacterIsDead(CHARACTERGUID_S_CoS_Temples_SpyMaster_787c6c4a-6e5a-4044-9616-27e21e5a171e, 1)
+AND
+DB_Avatars(CHARACTERGUID_S_Player_RedPrince_a26a1efb-cdc8-4cf3-a7b2-b2f9544add6f)
+THEN
+ObjectSetFlag(_Var1, "QuestUpdate_FTJ_OriginRedPrince_SpymasterMissingAfterRedPrincess");
+
+PROC
+Proc_ARX_LaunchSpymasterAmbush((CHARACTERGUID)_Var1)
+AND NOT
+DB_OnlyOnce("ARX_LaunchSpymasterAmbush")
+AND
+_Var1 != CHARACTERGUID_S_Player_RedPrince_a26a1efb-cdc8-4cf3-a7b2-b2f9544add6f
+AND
+QRY_SpeakerIsAvailableAndInDialogRange(CHARACTERGUID_S_Player_RedPrince_a26a1efb-cdc8-4cf3-a7b2-b2f9544add6f, _Var1)
+THEN
+Proc_ARX_LaunchSpymasterAmbush(CHARACTERGUID_S_Player_RedPrince_a26a1efb-cdc8-4cf3-a7b2-b2f9544add6f);
+
+PROC
+Proc_ARX_LaunchSpymasterAmbush((CHARACTERGUID)_Var1)
+AND
+_Var1 != CHARACTERGUID_S_Player_RedPrince_a26a1efb-cdc8-4cf3-a7b2-b2f9544add6f
+AND NOT
+QRY_SpeakerIsAvailableAndInDialogRange(CHARACTERGUID_S_Player_RedPrince_a26a1efb-cdc8-4cf3-a7b2-b2f9544add6f, _Var1)
+AND
+QueryOnlyOnce("ARX_LaunchSpymasterAmbush")
+THEN
+Proc_ARX_SpymasterAmbush_TeleportAndSetup(_Var1);
+
+PROC
+Proc_ARX_LaunchSpymasterAmbush(CHARACTERGUID_S_Player_RedPrince_a26a1efb-cdc8-4cf3-a7b2-b2f9544add6f)
+AND
+QueryOnlyOnce("ARX_LaunchSpymasterAmbush")
+THEN
+Proc_ARX_SpymasterAmbush_TeleportAndSetup(CHARACTERGUID_S_Player_RedPrince_a26a1efb-cdc8-4cf3-a7b2-b2f9544add6f);
+
+PROC
+Proc_ARX_SpymasterAmbush_TeleportAndSetup((CHARACTERGUID)_Var1)
+THEN
+CharacterLevelUpTo(CHARACTERGUID_S_CoS_Temples_SpyMaster_787c6c4a-6e5a-4044-9616-27e21e5a171e, 20);
+CharacterSetCanTrade(CHARACTERGUID_S_CoS_Temples_SpyMaster_787c6c4a-6e5a-4044-9616-27e21e5a171e, 0);
+TeleportTo(CHARACTERGUID_S_CoS_Temples_SpyMaster_787c6c4a-6e5a-4044-9616-27e21e5a171e, TRIGGERGUID_S_ARX_SpyMasterAppearPoint_86bf5577-1f3c-45ca-b591-24476406383f, "ARX_SpymasterAppearAfterPrincess", 0);
+ProcTriggerUnregisterForPlayers(TRIGGERGUID_S_ARX_SpyMasterAmbush_bd0348a9-94a3-4bab-ab4d-d964f1ebaa1d);
+ProcTriggerUnregisterForPlayers(TRIGGERGUID_S_ARX_SpymasterAmbush_Primer_86fde062-7313-425a-ac48-204d306f5af6);
+SetVarFixedString(CHARACTERGUID_S_CoS_Temples_SpyMaster_787c6c4a-6e5a-4044-9616-27e21e5a171e, "currentState", "DoNothing");
+GlobalSetFlag("CoS_SpyMaster_StopSpotting");
+DB_ARX_SpymasterSpeakToAfterTeleport(_Var1);
+
+IF
+StoryEvent(CHARACTERGUID_S_CoS_Temples_SpyMaster_787c6c4a-6e5a-4044-9616-27e21e5a171e, "ARX_SpymasterAppearAfterPrincess")
+AND
+DB_ARX_SpymasterSpeakToAfterTeleport(_Var1)
+THEN
+Foop(CHARACTERGUID_S_CoS_Temples_SpyMaster_787c6c4a-6e5a-4044-9616-27e21e5a171e);
+Proc_StartDialog(0, "ARX_SpyMasterAppear", CHARACTERGUID_S_CoS_Temples_SpyMaster_787c6c4a-6e5a-4044-9616-27e21e5a171e, _Var1);
+NOT DB_ARX_SpymasterSpeakToAfterTeleport(_Var1);
+
+IF
+CharacterLeftTrigger(_, TRIGGERGUID_S_ARX_SpyMasterAmbush_bd0348a9-94a3-4bab-ab4d-d964f1ebaa1d)
+AND NOT
+DB_InRegion(_, TRIGGERGUID_S_ARX_SpymasterAmbush_Primer_86fde062-7313-425a-ac48-204d306f5af6)
+AND NOT
+DB_InRegion(_, TRIGGERGUID_S_ARX_SpyMasterAmbush_bd0348a9-94a3-4bab-ab4d-d964f1ebaa1d)
+THEN
+ProcTriggerUnregisterForPlayers(TRIGGERGUID_S_ARX_SpyMasterAmbush_bd0348a9-94a3-4bab-ab4d-d964f1ebaa1d);
+ProcTriggerUnregisterForPlayers(TRIGGERGUID_S_ARX_SpymasterAmbush_Primer_86fde062-7313-425a-ac48-204d306f5af6);
+
+IF
+ObjectEnteredCombat(CHARACTERGUID_S_CoS_Temples_SpyMaster_787c6c4a-6e5a-4044-9616-27e21e5a171e, _)
+AND
+DB_ARX_SpymasterAssassins(_Var2)
+THEN
+CharacterAppear(_Var2, 1, "");
+
+IF
+DB_CombatCharacters(CHARACTERGUID_S_CoS_Temples_SpyMaster_787c6c4a-6e5a-4044-9616-27e21e5a171e, _Var1)
+AND
+DB_IsPlayer(_Var2)
+AND
+DB_CombatCharacters(_Var2, _Var1)
+AND
+QueryOnlyOnce("ARX_SpyMasterAmbush_TurnHostileOnce")
+THEN
+SetRelationFactionToPlayers("ARX_SpyMasterAmbush", 0);
+
+IF
+ObjectFlagSet("FactionHostileToIndivPlayerAfterDialog", (CHARACTERGUID)_Var1, (INTEGER)_Var2)
+AND
+DB_IsPlayer(_Var1)
+AND
+DB_DialogNPCs(_Var2, S_CoS_Temples_SpyMaster_787c6c4a-6e5a-4044-9616-27e21e5a171e, _Var3)
+AND
+ObjectIsInTrigger(_Var1, TRIGGERGUID_S_ARX_LizardConsulate_Garden_e91bc36a-e395-49e0-9ece-2cdee6aa1ecc, 1)
+THEN
+DB_RX_SpyMasterAmbush_ForceEnterCombatAfterDialog(_Var2);
+
+IF
+DialogEnded((STRING)_Var1, (INTEGER)_Var2)
+AND
+DB_ARX_SpymasterDialogs(_Var1)
+AND
+DB_RX_SpyMasterAmbush_ForceEnterCombatAfterDialog(_Var2)
+AND
+DB_IsPlayer(_Var3)
+AND
+ObjectIsInTrigger(_Var3, TRIGGERGUID_S_ARX_LizardConsulate_Garden_e91bc36a-e395-49e0-9ece-2cdee6aa1ecc, 1)
+AND
+HasActiveStatus(_Var3, "SNEAKING", 0)
+AND
+HasActiveStatus(_Var3, "INVISIBLE", 0)
+THEN
+EnterCombat(S_CoS_Temples_SpyMaster_787c6c4a-6e5a-4044-9616-27e21e5a171e, _Var3);
+NOT DB_RX_SpyMasterAmbush_ForceEnterCombatAfterDialog(_Var2);
+
+IF
+ObjectLeftCombat((CHARACTERGUID)_Var1, _)
+AND
+DB_ARX_SpymasterAssassins(_Var1)
+AND
+CharacterIsDead(_Var1, 0)
+THEN
+ApplyStatus(_Var1, "INVISIBLE", -1, 1);
+
+IF
+ObjectFlagSet("FactionHostileToIndivPlayerAfterDialog", (CHARACTERGUID)_Var1, (INTEGER)_Var2)
+AND
+DB_DialogNPCs(_Var2, S_CoS_Temples_SpyMaster_787c6c4a-6e5a-4044-9616-27e21e5a171e, _Var3)
+THEN
+DB_ARX_SpyMasterAmbush_ForceAlignmentHostility(_Var2);
+
+IF
+DialogEnded((STRING)_Var1, (INTEGER)_Var2)
+AND
+DB_ARX_SpymasterDialogs(_Var1)
+AND
+DB_ARX_SpyMasterAmbush_ForceAlignmentHostility(_Var2)
+THEN
+SetRelationFactionToPlayers("ARX_SpyMasterAmbush", 0);
+
+IF
+ObjectLeftCombat(CHARACTERGUID_S_CoS_Temples_SpyMaster_787c6c4a-6e5a-4044-9616-27e21e5a171e, _)
+AND
+CharacterIsDead(CHARACTERGUID_S_CoS_Temples_SpyMaster_787c6c4a-6e5a-4044-9616-27e21e5a171e, 0)
+AND
+qry_ARX_SpyMasterAmbush_IsHostile()
+THEN
+proc_ARX_SpyMasterAmbush_Disappear_AfterCobmat();
+
+PROC
+proc_ARX_SpyMasterAmbush_Disappear_AfterCobmat()
+AND
+CharacterIsDead(CHARACTERGUID_S_Player_RedPrince_a26a1efb-cdc8-4cf3-a7b2-b2f9544add6f, 1)
+THEN
+ObjectSetFlag(CHARACTERGUID_S_CoS_Temples_SpyMaster_787c6c4a-6e5a-4044-9616-27e21e5a171e, "ARX_SpyMaster_Disappear_RP_IsDead");
+
+PROC
+proc_ARX_SpyMasterAmbush_Disappear_AfterCobmat()
+THEN
+Proc_StartDialog(1, "ARX_AD_SpyMaster_Disappear", CHARACTERGUID_S_CoS_Temples_SpyMaster_787c6c4a-6e5a-4044-9616-27e21e5a171e);
+
+IF
+AutomatedDialogEnded("ARX_AD_SpyMaster_Disappear", _)
+AND
+CharacterIsDead(CHARACTERGUID_S_CoS_Temples_SpyMaster_787c6c4a-6e5a-4044-9616-27e21e5a171e, 0)
+THEN
+ObjectClearFlag(CHARACTERGUID_S_CoS_Temples_SpyMaster_787c6c4a-6e5a-4044-9616-27e21e5a171e, "ARX_SpyMaster_Disappear_RP_IsDead");
+ApplyStatus(CHARACTERGUID_S_CoS_Temples_SpyMaster_787c6c4a-6e5a-4044-9616-27e21e5a171e, "INVISIBLE", -1, 1);
+
+QRY
+qry_ARX_SpyMasterAmbush_IsHostile()
+AND
+DB_IsPlayer(_Var1)
+AND
+CharacterIsEnemy(CHARACTERGUID_S_CoS_Temples_SpyMaster_787c6c4a-6e5a-4044-9616-27e21e5a171e, _Var1, 1)
+THEN
+DB_Noop(1);
+
+PROC
+Proc_ARX_LaunchSpymasterAmbush((CHARACTERGUID)_Var1)
+AND
+GlobalGetFlag("RC_RedPrincessPregnantAfterRC", 1)
+AND
+GlobalGetFlag("ARX_HorrorSleep_Sunset_NewtIsDead", 1)
+AND
+GlobalGetFlag("ARX_RedPrincessKilled", 1)
+THEN
+GlobalSetFlag("ARX_SpyMaster_CongratulateForStopingDragons");
+
+PROC
+Proc_ARX_LaunchSpymasterAmbush((CHARACTERGUID)_Var1)
+AND
+GlobalGetFlag("RC_RedPrincessPregnantAfterRC", 0)
+AND
+GlobalGetFlag("ARX_RedPrincessKilled", 1)
+THEN
+GlobalSetFlag("ARX_SpyMaster_CongratulateForStopingDragons");
+
+IF
+GlobalFlagSet("ARX_SpyMaster_CongratulateForStopingDragons")
+AND
+DB_OriginMomentTag("CoS_Temples_BlackRingHub_SpyMaster_Ghost", "RED PRINCE", "CoS_Temples_BlackRingHub_SpyMaster_Ghost_COM_RedPrince")
+THEN
+NOT DB_OriginMomentTag("CoS_Temples_BlackRingHub_SpyMaster_Ghost", "RED PRINCE", "CoS_Temples_BlackRingHub_SpyMaster_Ghost_COM_RedPrince");
+
+PROC
+Proc_ARX_LaunchSpymasterAmbush(_)
+THEN
+DB_OnlyOnce("ARX_SpyMaster_GiveTreasure");
+
+PROC
+Proc_ARX_LaunchSpymasterAmbush(_)
+AND
+DB_GlobalFlag("ARX_RedPrincessKilled")
+AND NOT
+DB_GlobalFlag("RC_RedPrincessPregnantAfterRC")
+AND
+DB_OnlyOnce("ARX_SpyMaster_GiveTreasure")
+THEN
+SetOnStage(ITEMGUID_S_ARX_SpymasterAmbush_RewardChest_a708b260-bb8f-4508-a6c7-320886157e8e, 1);
+ItemToInventory(ITEMGUID_S_ARX_SpymasterAmbush_RewardChest_a708b260-bb8f-4508-a6c7-320886157e8e, CHARACTERGUID_S_CoS_Temples_SpyMaster_787c6c4a-6e5a-4044-9616-27e21e5a171e);
+NOT DB_OnlyOnce("ARX_SpyMaster_GiveTreasure");
+
+PROC
+Proc_ARX_LaunchSpymasterAmbush(_)
+AND
+DB_GlobalFlag("ARX_RedPrincessKilled")
+AND
+DB_GlobalFlag("RC_RedPrincessPregnantAfterRC")
+AND
+DB_OnlyOnce("ARX_SpyMaster_GiveTreasure")
+THEN
+SetOnStage(ITEMGUID_S_ARX_SpymasterAmbush_RewardChest_a708b260-bb8f-4508-a6c7-320886157e8e, 1);
+ItemToInventory(ITEMGUID_S_ARX_SpymasterAmbush_RewardChest_a708b260-bb8f-4508-a6c7-320886157e8e, CHARACTERGUID_S_CoS_Temples_SpyMaster_787c6c4a-6e5a-4044-9616-27e21e5a171e);
+NOT DB_OnlyOnce("ARX_SpyMaster_GiveTreasure");
+
+IF
+TextEventSet("ARX_SpyMaster")
+AND
+DB_IsPlayer(_Var1)
+AND
+QueryOnlyOnce("ARX_SpyMaster")
+THEN
+Proc_ARX_FindTargetSpymasterAmbush(_Var1);
+
+IF
+CharacterUsedSkill((CHARACTERGUID)_Var1, "Summon_Quest_SummonNewt", _, _)
+AND
+DB_CombatCharacters(CHARACTERGUID_S_CoS_Temples_BlackRingHub_SpyMaster_787c6c4a-6e5a-4044-9616-27e21e5a171e, _Var4)
+AND
+DB_CombatCharacters(_Var1, _Var4)
+AND
+QueryOnlyOnce("ARX_SpyMaster_ReactToDragonInCobmat_OnlyOnce")
+THEN
+DB_ARX_SpyMaster_ReactToDragonInCobmat(_Var4);
+
+IF
+ObjectTurnStarted(CHARACTERGUID_S_CoS_Temples_BlackRingHub_SpyMaster_787c6c4a-6e5a-4044-9616-27e21e5a171e)
+AND
+DB_ARX_SpyMaster_ReactToDragonInCobmat(_Var1)
+AND NOT
+Query_IsPlayerHiding(CHARACTERGUID_S_CoS_Temples_BlackRingHub_SpyMaster_787c6c4a-6e5a-4044-9616-27e21e5a171e)
+AND
+DB_CombatCharacters(CHARACTERGUID_S_CoS_Temples_BlackRingHub_SpyMaster_787c6c4a-6e5a-4044-9616-27e21e5a171e, _Var1)
+THEN
+Proc_StartDialog(1, "ARX_AD_SpyMaster_ReactToDragon", CHARACTERGUID_S_CoS_Temples_BlackRingHub_SpyMaster_787c6c4a-6e5a-4044-9616-27e21e5a171e);
+NOT DB_ARX_SpyMaster_ReactToDragonInCobmat(_Var1);
+
+IF
+AttackedByObject(CHARACTERGUID_S_CoS_Temples_BlackRingHub_SpyMaster_787c6c4a-6e5a-4044-9616-27e21e5a171e, _, (GUIDSTRING)_Var2, _, _)
+AND
+DB_ARX_SpyMaster_ReactToDragonInCobmat(_Var5)
+AND
+GetTemplate(_Var2, "QUEST_ARX_HorrorSleep_Sunset_Newt_1918aa0e-862e-4f53-8656-7f579658222a")
+THEN
+CharacterLookAt(CHARACTERGUID_S_CoS_Temples_BlackRingHub_SpyMaster_787c6c4a-6e5a-4044-9616-27e21e5a171e, _Var2);
+Proc_StartDialog(1, "ARX_AD_SpyMaster_ReactToDragon", CHARACTERGUID_S_CoS_Temples_BlackRingHub_SpyMaster_787c6c4a-6e5a-4044-9616-27e21e5a171e);
+NOT DB_ARX_SpyMaster_ReactToDragonInCobmat(_Var5);
+
+IF
+ObjectSwitchedCombat(CHARACTERGUID_S_CoS_Temples_BlackRingHub_SpyMaster_787c6c4a-6e5a-4044-9616-27e21e5a171e, (INTEGER)_Var1, (INTEGER)_Var2)
+AND
+DB_ARX_SpyMaster_ReactToDragonInCobmat(_Var1)
+THEN
+NOT DB_ARX_SpyMaster_ReactToDragonInCobmat(_Var1);
+DB_ARX_SpyMaster_ReactToDragonInCobmat(_Var2);
+
+IF
+CombatEnded((INTEGER)_Var1)
+AND
+DB_ARX_SpyMaster_ReactToDragonInCobmat(_Var1)
+AND NOT
+Query_IsPlayerHiding(CHARACTERGUID_S_CoS_Temples_BlackRingHub_SpyMaster_787c6c4a-6e5a-4044-9616-27e21e5a171e)
+THEN
+Proc_StartDialog(1, "ARX_AD_SpyMaster_ReactToDragon", CHARACTERGUID_S_CoS_Temples_BlackRingHub_SpyMaster_787c6c4a-6e5a-4044-9616-27e21e5a171e);
+NOT DB_ARX_SpyMaster_ReactToDragonInCobmat(_Var1);
+
+IF
+CombatEnded((INTEGER)_Var1)
+AND
+DB_ARX_SpyMaster_ReactToDragonInCobmat(_Var1)
+THEN
+NOT DB_ARX_SpyMaster_ReactToDragonInCobmat(_Var1);
+NOT DB_OnlyOnce("ARX_SpyMaster_ReactToDragonInCobmat_OnlyOnce");
+
+IF
+DialogEnded((STRING)_Var1, (INTEGER)_Var2)
+AND
+DB_ARX_SpymasterDialogs(_Var1)
+AND
+DialogGetInvolvedNPC(_Var2, 1, _Var3)
+AND
+ObjectGetFlag(_Var3, "ARX_SpyMasterAppear_Disappear", 1)
+THEN
+Poof(_Var3);
+
+
+EXITSECTION
+ENDEXITSECTION
+
+ParentTargetEdge "ARX"

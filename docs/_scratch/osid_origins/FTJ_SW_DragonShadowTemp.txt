@@ -1,0 +1,217 @@
+Version 1
+SubGoalCombiner SGC_AND
+
+INITSECTION
+DB_FTJ_SW_DragonShadowSpot(S_FTJ_SW_FB_Silentmonk_SourceTotem_003_2dc065a4-e0ad-4dac-9e31-bec0bb1e9e33, 1500);
+DB_FTJ_SW_DragonShadowSpot(CHARACTERGUID_S_FTJ_SW_FB_Silentmonk_SourceTotem_004_aaf5b56f-53f9-4f55-a4de-34d743bca4ce, 2800);
+DB_FTJ_SW_DragonShadowSpot(CHARACTERGUID_S_FTJ_SW_FB_Silentmonk_SourceTotem_002_b4398dd0-9059-41f6-b6fb-6be6308732dc, 3600);
+DB_FTJ_SW_DragonShadowSpot(CHARACTERGUID_S_FTJ_SW_FB_Silentmonk_SourceTotem_000_82bb2bd5-10f3-4b35-b472-10896e4bc519, 4500);
+DB_FTJ_SW_DragonShadowSpot(CHARACTERGUID_S_FTJ_SW_FB_Silentmonk_SourceTotem_001_ac3e4362-5823-4af7-ad9d-bf92e00b752e, 5500);
+DB_Dialogs(CHARACTERGUID_S_FTJ_SW_TotemRat_bf5baa13-5bc3-43b2-b379-0f836c266b10, "FTJ_SW_TotemRat");
+ProcTriggerRegisterForPlayers(TRIGGERGUID_S_FTJ_SW_OneShot_DragonShadow_a3140064-5c4a-4779-ab74-0d3bca61bd86);
+
+KBSECTION
+IF
+TextEventSet("dr_s")
+AND
+DB_IsPlayer(_Var1)
+AND
+QueryOnlyOnce("FTJ_SW_DragonShadowEvent")
+THEN
+PROC_LoopEffect("RS3_FX_Char_Creatures_DragonShadow_01", ITEMGUID_S_FTJ_SW_DragonShadow_3c22f591-58ad-4a04-a085-24c71a0e245b, "FTJ_SW_DragonShadowFX", "FJ_FortJoy_Main", "");
+TimerLaunch("Timer_FTJ_SW_DragonShadow", 12000);
+proc_ItemMoveToTrigger(ITEMGUID_S_FTJ_SW_DragonShadow_3c22f591-58ad-4a04-a085-24c71a0e245b, TRIGGERGUID_S_FTJ_SW_DragonShadow1_be152aed-aab3-4b90-b0d4-94b8495fcef7, 2, 1.05, 1);
+Proc_FTJ_SW_DragonShadowEvent();
+Proc_FTJ_SW_DragonCoolingEvent(_Var1);
+DialogRequestStop(_Var1);
+StartVoiceBark("FTJ_SW_VB_DragonShadowAppear", _Var1);
+ProcTriggerUnregisterForPlayers(TRIGGERGUID_S_FTJ_SW_OneShot_DragonShadow_a3140064-5c4a-4779-ab74-0d3bca61bd86);
+Proc_ShakeCameraForTime(_Var1, 800);
+TimerLaunch("Creatures_Dragon_ABC_Shriekers_Help_AudioEvent", 4000);
+
+IF
+DialogEnded("FTJ_SW_TotemRat", _)
+AND
+GlobalGetFlag("FTJ_SW_TotemRatRun", 1)
+THEN
+SetHasDialog(CHARACTERGUID_S_FTJ_SW_TotemRat_bf5baa13-5bc3-43b2-b379-0f836c266b10, 0);
+CharacterMoveTo(CHARACTERGUID_S_FTJ_SW_TotemRat_bf5baa13-5bc3-43b2-b379-0f836c266b10, TRIGGERGUID_S_FTJ_SW_TotemRatRun_3e9f00ba-4254-4ac7-9923-469381000d2f, 1, "", 1);
+
+PROC
+Proc_FTJ_SW_TotemKillCharacter((CHARACTERGUID)_Var1, CHARACTERGUID_S_FTJ_SW_TotemRat_bf5baa13-5bc3-43b2-b379-0f836c266b10)
+AND
+DB_FTJ_SW_SourceTotems(_Var1, _, _)
+AND
+DB_IsPlayer(_Var4)
+AND
+GetDistanceTo(_Var4, CHARACTERGUID_S_FTJ_SW_TotemRat_bf5baa13-5bc3-43b2-b379-0f836c266b10, _Var5)
+AND
+_Var5 < 20
+AND
+QueryOnlyOnce("FTJ_SW_TotemRatDead")
+THEN
+StartVoiceBark("FTJ_SW_VB_TotemRatDead", _Var4);
+
+IF
+CharacterEnteredTrigger((CHARACTERGUID)_Var1, TRIGGERGUID_S_FTJ_SW_OneShot_DragonShadow_a3140064-5c4a-4779-ab74-0d3bca61bd86)
+AND
+GlobalGetFlag("FTJ_SW_PurgedDragon_FreedByRedPrinceAvatar", 0)
+AND
+PartyGetFlag(_Var1, "FTJ_SW_DragonFriend", 1)
+AND
+ObjectGetFlag(_Var1, "QuestUpdate_FTJ_SW_PurgedDragon_DragonDead", 0)
+AND
+QueryOnlyOnce("FTJ_SW_DragonShadowEvent")
+THEN
+PROC_LoopEffect("RS3_FX_Char_Creatures_DragonShadow_01", ITEMGUID_S_FTJ_SW_DragonShadow_3c22f591-58ad-4a04-a085-24c71a0e245b, "FTJ_SW_DragonShadowFX", "FJ_FortJoy_Main", "");
+TimerLaunch("Timer_FTJ_SW_DragonShadow", 12000);
+proc_ItemMoveToTrigger(ITEMGUID_S_FTJ_SW_DragonShadow_3c22f591-58ad-4a04-a085-24c71a0e245b, TRIGGERGUID_S_FTJ_SW_DragonShadow1_be152aed-aab3-4b90-b0d4-94b8495fcef7, 2, 1.05, 1);
+Proc_FTJ_SW_DragonShadowEvent();
+Proc_FTJ_SW_DragonCoolingEvent(_Var1);
+ProcObjectTimer(_Var1, "Timer_FJT_SW_PurgedDragonBuff", 11000);
+DialogRequestStop(_Var1);
+StartVoiceBark("FTJ_SW_VB_DragonShadowAppear", _Var1);
+ProcTriggerUnregisterForPlayers(TRIGGERGUID_S_FTJ_SW_OneShot_DragonShadow_a3140064-5c4a-4779-ab74-0d3bca61bd86);
+Proc_ShakeCameraForTime(_Var1, 800);
+TimerLaunch("Creatures_Dragon_ABC_Shriekers_Help_AudioEvent", 4000);
+
+IF
+TimerFinished("Creatures_Dragon_ABC_Shriekers_Help_AudioEvent")
+THEN
+PlaySound(ITEMGUID_S_FTJ_SW_DragonShadow_AudioHelper_2f697e6f-2368-452c-b8f7-dc86c12d2fb6, "Creatures_Dragon_ABC_Shriekers_Help");
+proc_ItemMoveToTrigger(ITEMGUID_S_FTJ_SW_DragonShadow_AudioHelper_2f697e6f-2368-452c-b8f7-dc86c12d2fb6, TRIGGERGUID_S_FTJ_SW_DragonShadow1_be152aed-aab3-4b90-b0d4-94b8495fcef7, 2, 1.05, 1);
+
+IF
+TimerFinished("Timer_FTJ_SW_DragonShadow")
+THEN
+PROC_StopLoopEffect(ITEMGUID_S_FTJ_SW_DragonShadow_3c22f591-58ad-4a04-a085-24c71a0e245b, "FTJ_SW_DragonShadowFX");
+
+PROC
+Proc_FTJ_SW_DragonCoolingEvent((CHARACTERGUID)_Var1)
+THEN
+ApplyStatus(_Var1, "CHILLED", 60, 1);
+Proc_FTJ_SW_DragonChill(_Var1);
+
+PROC
+ProcObjectTimerFinished((CHARACTERGUID)_Var1, "Timer_FJT_SW_PurgedDragonBuff")
+AND NOT
+DB_GlobalFlag("FTJ_SW_PurgedDragon_DestroyedShriker")
+AND
+QueryOnlyOnce("FTJ_SW_PurgedDragonBuff")
+THEN
+ApplyStatus(_Var1, "ENCOURAGED", 300, 1);
+ObjectSetFlag(_Var1, "QuestUpdate_FTJ_SW_PurgedDragon_DragonHelpBuff");
+UserSetFlag(_Var1, "QuestUpdate_FTJ_Escape_Island_DragonHelp");
+Proc_FTJ_SW_DragonBuff(_Var1);
+
+PROC
+Proc_FTJ_SW_DragonBuff((CHARACTERGUID)_Var1)
+AND
+DB_IsPlayer(_Var2)
+AND
+_Var1 != _Var2
+AND
+GetDistanceTo(_Var1, _Var2, _Var3)
+AND
+_Var3 <= 25
+THEN
+ApplyStatus(_Var2, "ENCOURAGED", 300, 1);
+
+PROC
+Proc_FTJ_SW_DragonChill((CHARACTERGUID)_Var1)
+AND
+DB_IsPlayer(_Var2)
+AND
+_Var1 != _Var2
+AND
+GetDistanceTo(_Var1, _Var2, _Var3)
+AND
+_Var3 <= 25
+THEN
+ApplyStatus(_Var2, "CHILLED", 60, 1);
+
+PROC
+Proc_FTJ_SW_DragonShadowEvent()
+AND
+DB_FTJ_SW_DragonShadowSpot(_Var1, _Var2)
+THEN
+ProcObjectTimer(_Var1, "Timer_FTJ_SW_DragonWinterStrike", _Var2);
+
+PROC
+ProcObjectTimerFinished((CHARACTERGUID)_Var1, "Timer_FTJ_SW_DragonWinterStrike")
+AND
+DB_FTJ_SW_DragonShadowSpot(_Var1, _)
+AND
+CharacterIsDead(_Var1, 0)
+AND
+GetPosition(_Var1, _Var3, _Var4, _Var5)
+THEN
+GlobalSetFlag("FTJ_SW_PurgedDragon_DestroyedShriker");
+CreateExplosionAtPosition(_Var3, _Var4, _Var5, "Projectile_SlaneIceShard", -1);
+PlayScaledEffectAtPosition("RS3_FX_GP_ScriptedEvent_FTJ_SlaneVsShriekers_Impact_01", 2.5, _Var3, _Var4, _Var5);
+CharacterDie(_Var1, 1, "DoT");
+CreateSurfaceAtPosition(_Var3, _Var4, _Var5, "SurfaceWaterFrozen", 2, 60);
+
+IF
+CharacterDying((CHARACTERGUID)_Var1)
+AND
+DB_FTJ_SW_DragonShadowSpot(_Var1, _)
+AND
+GetPosition(_Var1, _Var3, _Var4, _Var5)
+THEN
+PlayScaledEffectAtPosition("RS3_FX_GP_ScriptedEvent_SourceJar_Break_01", 2, _Var3, _Var4, _Var5);
+
+PROC
+ProcObjectTimerFinished((CHARACTERGUID)_Var1, "Timer_FTJ_SW_DragonWinterStrike")
+AND
+DB_FTJ_SW_DragonShadowSpot(_Var1, _)
+AND
+GlobalGetFlag("FTJ_SW_PurgedDragon_DestroyedShriker", 1)
+AND
+QueryOnlyOnce("FTJ_SW_Shriekers_SlaneShriekerUpdate")
+AND
+DB_IsPlayer(_Var3)
+AND
+GetDistanceTo(_Var1, _Var3, _Var4)
+AND
+_Var4 < 100
+THEN
+Proc_ShakeCameraForTime(_Var3, 800);
+UserSetFlag(_Var3, "QuestUpdate_FTJ_SW_Shriekers_SlaneShrieker");
+
+PROC
+ProcObjectTimerFinished(CHARACTERGUID_S_FTJ_SW_FB_Silentmonk_SourceTotem_001_ac3e4362-5823-4af7-ad9d-bf92e00b752e, "Timer_FTJ_SW_DragonWinterStrike")
+THEN
+GlobalSetFlag("FTJ_SW_CallToArms_PathIsCleared");
+
+PROC
+ProcObjectTimerFinished(_, "Timer_FTJ_SW_DragonWinterStrike")
+AND
+GlobalGetFlag("FTJ_SW_PurgedDragon_DestroyedShriker", 1)
+AND
+DB_IsPlayer(_Var2)
+AND
+ObjectGetFlag(_Var2, "FTJ_SW_DragonFriend", 1)
+THEN
+ObjectSetFlag(_Var2, "QuestUpdate_FTJ_SW_PurgedDragon_DragonHelp");
+UserSetFlag(_Var2, "QuestUpdate_FTJ_Escape_Island_DragonHelp");
+
+IF
+CharacterDied((CHARACTERGUID)_Var1)
+AND
+DB_FTJ_SW_DragonShadowSpot(_Var1, _Var2)
+THEN
+NOT DB_FTJ_SW_DragonShadowSpot(_Var1, _Var2);
+
+IF
+TextEventSet("Creatures_Dragon_ABC_Shriekers_Help_Text")
+THEN
+TeleportToPosition(ITEMGUID_S_FTJ_SW_DragonShadow_AudioHelper_2f697e6f-2368-452c-b8f7-dc86c12d2fb6, 582.97, -7.74, 271.02, "", 0);
+PlaySound(ITEMGUID_S_FTJ_SW_DragonShadow_AudioHelper_2f697e6f-2368-452c-b8f7-dc86c12d2fb6, "Creatures_Dragon_ABC_Shriekers_Help");
+proc_ItemMoveToTrigger(ITEMGUID_S_FTJ_SW_DragonShadow_AudioHelper_2f697e6f-2368-452c-b8f7-dc86c12d2fb6, TRIGGERGUID_S_FTJ_SW_DragonShadow1_be152aed-aab3-4b90-b0d4-94b8495fcef7, 2, 1.05, 1);
+
+
+EXITSECTION
+ENDEXITSECTION
+
+ParentTargetEdge "FortJoy"

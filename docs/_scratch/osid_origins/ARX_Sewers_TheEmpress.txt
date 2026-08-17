@@ -1,0 +1,391 @@
+Version 1
+SubGoalCombiner SGC_AND
+
+INITSECTION
+ProcTriggerRegisterForPlayers(TRIGGERGUID_S_ARX_Sewers_EmpressDialogTrig_56404ea4-4559-484e-b26d-6bf5c2178e91);
+ProcTriggerRegisterForPlayers(TRIGGERGUID_S_ARX_Sewers_EmpressRoom_b6c8bef5-7f68-40b5-8922-813df2090a27);
+TriggerRegisterForCharacter(TRIGGERGUID_S_ARX_Sewers_EmpressRoom_b6c8bef5-7f68-40b5-8922-813df2090a27, CHARACTERGUID_S_ARX_Sewers_EliteImperialGuard_05_92e4175a-6419-4afb-86f0-88915c288e4b);
+ProcTriggerRegisterForPlayers(TRIGGERGUID_S_ARX_Sewers_TheEmpress_EnteringTheRoom_Check_bf9eaa7f-890c-4e0d-8dec-82ee2b380c18);
+ProcTriggerRegisterForPlayers(TRIGGERGUID_S_ARX_Sewers_TheEmpressRoom_Outside_1fe642fb-d346-43f0-ae34-42bbf3f20fb9);
+ProcTriggerRegisterForPlayers(TRIGGERGUID_S_ARX_Sewers_QueensFloor_c2ac0f3b-cea2-4c74-a3bf-2b4e82a54b85);
+DB_Dialogs(CHARACTERGUID_S_ARX_Sewers_TheEmpress_78c95ad2-2d1a-4358-9c9c-77ff9a5fc3c9, "ARX_Sewers_TheQueen");
+ProcCharacterDisableAllCrimes(CHARACTERGUID_S_ARX_Sewers_TheEmpress_78c95ad2-2d1a-4358-9c9c-77ff9a5fc3c9);
+ProcCharacterDisableAllCrimes(CHARACTERGUID_S_ARX_Sewers_Q_52f20922-7b22-4d47-90f7-83172f21fe3b);
+ProcCharacterEnableCrime(CHARACTERGUID_S_ARX_Sewers_TheEmpress_78c95ad2-2d1a-4358-9c9c-77ff9a5fc3c9, "Assault");
+ProcCharacterEnableCrime(CHARACTERGUID_S_ARX_Sewers_Q_52f20922-7b22-4d47-90f7-83172f21fe3b, "Assault");
+SetOnStage(CHARACTERGUID_S_ARX_Sewers_EliteImperialGuard_01_Unmasked_125b1265-cef0-4782-b7e6-a551210a2a8c, 0);
+SetOnStage(CHARACTERGUID_S_ARX_Sewers_EliteImperialGuard_04_Unmasked_e9293a04-303a-45b4-9226-1fbef76cc131, 0);
+SetOnStage(CHARACTERGUID_S_ARX_Sewers_ImperialGuard_01_Unmasked_2a5e722e-0123-48ae-9d51-027bd9079b5c, 0);
+SetOnStage(CHARACTERGUID_S_ARX_Sewers_ImperialGuard_02_Unmasked_4d847c4b-3eb9-4ccf-8d94-f1d2b5de9f01, 0);
+DB_ARX_Sewers_QsUnmaskedGuards(CHARACTERGUID_S_ARX_Sewers_EliteImperialGuard_01_3b854d60-91ed-4ad4-8295-28ba34468e39, dCHARACTERGUID_S_ARX_Sewers_EliteImperialGuard_01_Unmasked_125b1265-cef0-4782-b7e6-a551210a2a8c);
+DB_ARX_Sewers_QsUnmaskedGuards(CHARACTERGUID_S_ARX_Sewers_EliteImperialGuard_04_110c12f2-0a0b-404a-8212-8c3a3793f267, CHARACTERGUID_S_ARX_Sewers_EliteImperialGuard_04_Unmasked_e9293a04-303a-45b4-9226-1fbef76cc131);
+DB_ARX_Sewers_QsUnmaskedGuards(CHARACTERGUID_S_ARX_Sewers_ImperialGuard_01_23f7110a-bbb0-44b0-a13c-a89295646b61, CHARACTERGUID_S_ARX_Sewers_ImperialGuard_01_Unmasked_2a5e722e-0123-48ae-9d51-027bd9079b5c);
+DB_ARX_Sewers_QsUnmaskedGuards(CHARACTERGUID_S_ARX_Sewers_ImperialGuard_02_b1c2fb4c-ef6f-4805-a3a4-b60fc64e9ddd, CHARACTERGUID_S_ARX_Sewers_ImperialGuard_02_Unmasked_4d847c4b-3eb9-4ccf-8d94-f1d2b5de9f01);
+DB_DeadEvent(CHARACTERGUID_S_ARX_Sewers_TheEmpress_78c95ad2-2d1a-4358-9c9c-77ff9a5fc3c9, "ARX_Sewers_TheEmpress_IsDead");
+ItemToInventory(ITEMGUID_S_ARX_Sewers_ToQsLab_Key_01_15d3d015-2913-4f4d-9f11-b0e08dd7fde5, CHARACTERGUID_S_ARX_Sewers_Q_52f20922-7b22-4d47-90f7-83172f21fe3b);
+DB_ARX_Achievements_Tags("CHAMPION_FTJ", "ARX_Achievements_01");
+DB_ARX_Achievements_Tags("CHAMPION_DW", "ARX_Achievements_04");
+DB_ARX_Achievements_Globals("CoS_AlexandarDead", "ARX_Achievements_06");
+DB_ARX_Achievements_Globals("RC_GY_RykerDead", "ARX_Achievements_07");
+DB_ARX_Achievements_Globals("CoS_Temples_BlackRingHub_SpyMaster_IsDead", "ARX_Achievements_08");
+DB_ARX_Achievements_Globals("CoS_SallowMan_IsDead", "ARX_Achievements_09");
+DB_AddCharactersInTriggerToDialog("ARX_Sewers_QueenAndQ_FirstEncounter", TRIGGERGUID_S_ARX_Sewers_QueensFloor_c2ac0f3b-cea2-4c74-a3bf-2b4e82a54b85, 1);
+DB_AddCharactersInTriggerToDialog("ARX_Sewers_TheEmpress_EnteringTheRoom", TRIGGERGUID_S_ARX_Sewers_QueensFloor_c2ac0f3b-cea2-4c74-a3bf-2b4e82a54b85, 1);
+DB_AddCharactersInTriggerToDialog("ARX_Sewers_QueenAndQ_FirstEncounter_COM_Beast", TRIGGERGUID_S_ARX_Sewers_QueensFloor_c2ac0f3b-cea2-4c74-a3bf-2b4e82a54b85, 1);
+Proc_RegisterPartyDecisionDialogOutcomes_Fixed("ARX_Sewers_TheQueen_PDD_QueensFate", "ARX_Sewers_PDD_QueensFate_Kill", "ARX_Sewers_PDD_QueensFate_Safe", "", "", "");
+
+KBSECTION
+IF
+ObjectEnteredCombat((CHARACTERGUID)_Var1, _)
+AND
+DB_ARX_Sewers_QsUnmaskedGuards(_Var1, _)
+AND
+QueryOnlyOnce("RC_SW_CombatSave_Isbeil")
+THEN
+AutoSave();
+
+IF
+ObjectEnteredCombat((CHARACTERGUID)_Var1, _)
+AND
+DB_ARX_Sewers_QsUnmaskedGuards(_, _Var1)
+AND
+QueryOnlyOnce("ARX_CombatSave_Isbeil")
+THEN
+AutoSave();
+
+IF
+DB_ARX_Sewers_QsUnmaskedGuards(_, _Var2)
+THEN
+SetOnStage(_Var2, 0);
+
+PROC
+ProcBlockUseOfItem((CHARACTERGUID)_Var1, ITEMGUID_S_ARX_Sewers_QueenRoom_Ladder_ExtStairs_9b0a0133-7656-4427-abbb-82017225e20c)
+AND
+CharacterIsDead(CHARACTERGUID_S_ARX_Sewers_ImperialGuard_01_23f7110a-bbb0-44b0-a13c-a89295646b61, 0)
+AND
+CharacterIsInCombat(CHARACTERGUID_S_ARX_Sewers_ImperialGuard_01_23f7110a-bbb0-44b0-a13c-a89295646b61, 0)
+AND
+HasAppliedStatus(_Var1, "INVISIBLE", 0)
+THEN
+Proc_ARX_Sewers_QueenRoom_Ladder_ExtStairs_Check(_Var1);
+
+PROC
+Proc_ARX_Sewers_QueenRoom_Ladder_ExtStairs_Check((CHARACTERGUID)_Var1)
+AND
+DB_Sewers_TheEmpress_EnteringTheRoom_DialogRequested(1)
+AND
+GlobalGetFlag("ARX_Sewers_TheEmpress_MetTheEmpress", 0)
+AND
+GlobalGetFlag("ARX_Sewers_ImperialGuard_01_FirstWarning", 1)
+THEN
+GlobalSetFlag("ARX_Sewers_ImperialGuard_01_CombatWarning");
+DB_CustomUseItemResponse(_Var1, ITEMGUID_S_ARX_Sewers_QueenRoom_Ladder_ExtStairs_9b0a0133-7656-4427-abbb-82017225e20c, 0);
+Proc_StartDialog(1, "ARX_Sewers_AD_ImperialGuard_01", CHARACTERGUID_S_ARX_Sewers_ImperialGuard_01_23f7110a-bbb0-44b0-a13c-a89295646b61);
+ProcSetRelationToPlayers(CHARACTERGUID_S_ARX_Sewers_ImperialGuard_01_23f7110a-bbb0-44b0-a13c-a89295646b61, 0);
+SetRelationFactionToPlayers("RC_ARX_Sewers_ImperialGuards", 0);
+SetRelationFactionToPlayers("ARX_Sewers_Q", 0);
+EnterCombat(CHARACTERGUID_S_ARX_Sewers_ImperialGuard_01_23f7110a-bbb0-44b0-a13c-a89295646b61, _Var1);
+
+PROC
+Proc_ARX_Sewers_QueenRoom_Ladder_ExtStairs_Check((CHARACTERGUID)_Var1)
+AND
+DB_Sewers_TheEmpress_EnteringTheRoom_DialogRequested(1)
+AND
+GlobalGetFlag("ARX_Sewers_TheEmpress_MetTheEmpress", 0)
+AND
+GlobalGetFlag("ARX_Sewers_ImperialGuard_01_FirstWarning", 0)
+THEN
+DB_CustomUseItemResponse(_Var1, ITEMGUID_S_ARX_Sewers_QueenRoom_Ladder_ExtStairs_9b0a0133-7656-4427-abbb-82017225e20c, 0);
+GlobalSetFlag("ARX_Sewers_ImperialGuard_01_FirstWarning");
+ProcForceStopDialog(CHARACTERGUID_S_ARX_Sewers_ImperialGuard_01_23f7110a-bbb0-44b0-a13c-a89295646b61);
+Proc_StartDialog(0, "ARX_Sewers_ImperialGuard_01", CHARACTERGUID_S_ARX_Sewers_ImperialGuard_01_23f7110a-bbb0-44b0-a13c-a89295646b61, _Var1);
+
+PROC
+Proc_ARX_Sewers_QueenRoom_Ladder_ExtStairs_Check((CHARACTERGUID)_Var1)
+AND NOT
+DB_Sewers_TheEmpress_EnteringTheRoom_DialogRequested(1)
+THEN
+DB_CustomUseItemResponse(_Var1, ITEMGUID_S_ARX_Sewers_QueenRoom_Ladder_ExtStairs_9b0a0133-7656-4427-abbb-82017225e20c, 0);
+Proc_ARX_Sewers_TheEmpress_EnteringTheRoom_TryInitiateDialog(_Var1);
+
+IF
+GlobalFlagSet("ARX_Sewers_TheQueen_RoyalGuardUnsheath")
+AND
+DB_KillCounter_Internal(_Var1, "ARX_Sewers_TheEmpressRoom")
+THEN
+CharacterLookAt(_Var1, CHARACTERGUID_S_ARX_Sewers_TheEmpress_78c95ad2-2d1a-4358-9c9c-77ff9a5fc3c9);
+CharacterSetFightMode(_Var1, 1, 0);
+
+IF
+CharacterEnteredTrigger((CHARACTERGUID)_Var1, TRIGGERGUID_S_ARX_Sewers_EmpressRoom_b6c8bef5-7f68-40b5-8922-813df2090a27)
+AND
+ObjectGetFlag(_Var1, "ARX_Sewers_TheQueen_KnowsQueenInSewers", 0)
+THEN
+UserSetFlag(_Var1, "ARX_Sewers_TheQueen_KnowsQueenInSewers");
+GlobalSetFlag("ARX_Sewers_TheEmpress_InitiateDialogWithQ");
+
+IF
+StoryEvent((CHARACTERGUID)_Var1, "ARX_Sewers_TheEmpress_EnteringTheRoom_Spotted")
+AND
+GlobalGetFlag("ARX_Sewers_TheEmpress_MetTheEmpress", 0)
+AND NOT
+DB_ARX_Sewers_TheEmpress_EnteringTheRoom_Spotted(_)
+THEN
+DB_ARX_Sewers_TheEmpress_EnteringTheRoom_Spotted(_Var1);
+TimerLaunch("ARX_Sewers_TheEmpress_EnteringTheRoom_Spotted", 500);
+
+IF
+TimerFinished("ARX_Sewers_TheEmpress_EnteringTheRoom_Spotted")
+AND
+DB_ARX_Sewers_TheEmpress_EnteringTheRoom_Spotted(_Var1)
+THEN
+Proc_ARX_Sewers_TheEmpress_EnteringTheRoom_TryInitiateDialog(_Var1);
+NOT DB_ARX_Sewers_TheEmpress_EnteringTheRoom_Spotted(_Var1);
+
+PROC
+PROC_GLOBAL_DialogStartRequested(CHARACTERGUID_S_ARX_Sewers_ImperialGuard_01_23f7110a-bbb0-44b0-a13c-a89295646b61, (CHARACTERGUID)_Var1)
+AND
+GlobalGetFlag("ARX_Sewers_TheEmpress_MetTheEmpress", 0)
+THEN
+Proc_ARX_Sewers_TheEmpress_EnteringTheRoom_TryInitiateDialog(_Var1);
+
+PROC
+Proc_ARX_Sewers_TheEmpress_EnteringTheRoom_TryInitiateDialog((CHARACTERGUID)_Var1)
+AND NOT
+QRY_SpeakerIsAvailableAndInDialogRange(CHARACTERGUID_S_Player_Beast_f25ca124-a4d2-427b-af62-df66df41a978, _Var1)
+THEN
+Proc_ARX_Sewers_TheEmpress_EnteringTheRoom_InitiateDialog(_Var1);
+
+PROC
+Proc_ARX_Sewers_TheEmpress_EnteringTheRoom_TryInitiateDialog((CHARACTERGUID)_Var1)
+AND
+QRY_SpeakerIsAvailableAndInDialogRange(CHARACTERGUID_S_Player_Beast_f25ca124-a4d2-427b-af62-df66df41a978, _Var1)
+THEN
+Proc_ARX_Sewers_TheEmpress_EnteringTheRoom_InitiateDialog(CHARACTERGUID_S_Player_Beast_f25ca124-a4d2-427b-af62-df66df41a978);
+
+PROC
+Proc_ARX_Sewers_TheEmpress_EnteringTheRoom_InitiateDialog((CHARACTERGUID)_Var1)
+THEN
+GlobalClearFlag("ARX_Sewers_TheEmpress_EnteringTheRoom_InitiateSpot");
+
+PROC
+Proc_ARX_Sewers_TheEmpress_EnteringTheRoom_InitiateDialog((CHARACTERGUID)_Var1)
+THEN
+CharacterSetFightMode(CHARACTERGUID_S_ARX_Sewers_ImperialGuard_01_23f7110a-bbb0-44b0-a13c-a89295646b61, 1, 0);
+Proc_StartDialog(0, "ARX_Sewers_TheEmpress_EnteringTheRoom", CHARACTERGUID_S_ARX_Sewers_ImperialGuard_01_23f7110a-bbb0-44b0-a13c-a89295646b61, CHARACTERGUID_S_ARX_Sewers_TheEmpress_78c95ad2-2d1a-4358-9c9c-77ff9a5fc3c9, CHARACTERGUID_S_ARX_Sewers_Q_52f20922-7b22-4d47-90f7-83172f21fe3b, _Var1);
+DB_Sewers_TheEmpress_EnteringTheRoom_DialogRequested(1);
+GlobalSetFlag("ARX_Sewers_TheEmpress_MetTheEmpress");
+ObjectSetFlag(_Var1, "QuestUpdate_RC_ARX_TheImperialDwarves_Sewers_EnteredQueensRoom");
+
+PROC
+Proc_ARX_Sewers_TheEmpress_EnteringTheRoom_InitiateDialog((CHARACTERGUID)_Var1)
+AND
+CharacterIsInCombat(CHARACTERGUID_S_ARX_Sewers_ImperialGuard_01_23f7110a-bbb0-44b0-a13c-a89295646b61, 1)
+THEN
+DB_Queue_ARX_Sewers_TheEmpress_EnteringTheRoom_InitiateDialog(_Var1);
+
+PROC
+Proc_ARX_Sewers_TheEmpress_EnteringTheRoom_InitiateDialog((CHARACTERGUID)_Var1)
+AND NOT
+DB_Sewers_TheEmpress_EnteringTheRoom_DialogRequested(1)
+THEN
+GlobalSetFlag("ARX_Sewers_TheEmpress_EnteringTheRoom_InitiateSpot");
+
+IF
+DialogStarted("ARX_Sewers_TheEmpress_EnteringTheRoom", _)
+THEN
+GlobalSetFlag("ARX_Sewers_TheEmpress_EnteringTheRoom_StopSpot");
+GlobalClearFlag("ARX_Sewers_TheEmpress_EnteringTheRoom_InitiateSpot");
+
+IF
+DialogRequestFailed("ARX_Sewers_TheEmpress_EnteringTheRoom", _)
+THEN
+GlobalSetFlag("ARX_Sewers_TheEmpress_EnteringTheRoom_InitiateSpot");
+NOT DB_Sewers_TheEmpress_EnteringTheRoom_DialogRequested(1);
+
+IF
+ObjectFlagSet("ARX_Sewers_TheEmpress_EneteringTheRoom_LowerSpear", (CHARACTERGUID)_Var1, _)
+THEN
+CharacterSetFightMode(CHARACTERGUID_S_ARX_Sewers_ImperialGuard_01_23f7110a-bbb0-44b0-a13c-a89295646b61, 0, 0);
+
+IF
+CharacterEnteredTrigger((CHARACTERGUID)_Var1, TRIGGERGUID_S_ARX_Sewers_EmpressRoom_b6c8bef5-7f68-40b5-8922-813df2090a27)
+THEN
+GlobalSetFlag("RC_ARX_Sewers_EliteImperialGuard_02_EnteredTrig");
+
+IF
+CharacterEnteredTrigger((CHARACTERGUID)_Var1, TRIGGERGUID_S_ARX_Sewers_EmpressDialogTrig_56404ea4-4559-484e-b26d-6bf5c2178e91)
+AND
+DB_IsPlayer(_Var1)
+AND NOT
+DB_ARX_Sewers_EmpressDialog_InitiateDialog(_)
+AND
+CharacterIsInCombat(CHARACTERGUID_S_ARX_Sewers_TheEmpress_78c95ad2-2d1a-4358-9c9c-77ff9a5fc3c9, 0)
+AND
+CharacterIsInCombat(CHARACTERGUID_S_ARX_Sewers_Q_52f20922-7b22-4d47-90f7-83172f21fe3b, 0)
+THEN
+DB_ARX_Sewers_EmpressDialog_InitiateDialog(_Var1);
+Proc_ARX_Sewers_EmpressDialog_InitiateDialog(_Var1);
+
+PROC
+Proc_ARX_Sewers_EmpressDialog_InitiateDialog(_)
+AND
+DB_IsPlayer(_Var2)
+AND
+DB_InRegion(_Var2, TRIGGERGUID_S_ARX_Sewers_QueensFloor_c2ac0f3b-cea2-4c74-a3bf-2b4e82a54b85)
+THEN
+ObjectClearFlag(_Var2, "Resist_Arrest");
+ProcForceStopDialog(_Var2);
+
+PROC
+Proc_ARX_Sewers_EmpressDialog_InitiateDialog(_)
+AND
+DB_IsPlayer(_Var2)
+AND
+DB_InRegion(_Var2, TRIGGERGUID_S_ARX_Sewers_QueensFloor_c2ac0f3b-cea2-4c74-a3bf-2b4e82a54b85)
+AND
+CharacterGetReservedUserID(_Var2, _Var3)
+AND
+GetUserProfileID(_Var3, _Var4)
+AND
+DB_UserAlign(_Var4, _Var5, 0)
+AND
+DB_IsPlayer(_Var6)
+AND
+_Var2 != _Var6
+AND
+CharacterGetReservedUserID(_Var6, _Var7)
+AND
+GetUserProfileID(_Var7, _Var5)
+THEN
+MakePeace(_Var2, _Var6, 0);
+LeaveCombat(_Var2);
+
+PROC
+Proc_ARX_Sewers_EmpressDialog_InitiateDialog((CHARACTERGUID)_Var1)
+AND
+HasAppliedStatus(_Var1, "INVISIBLE", 1)
+THEN
+CharacterLookAt(CHARACTERGUID_S_ARX_Sewers_Q_52f20922-7b22-4d47-90f7-83172f21fe3b, _Var1);
+PlayAnimation(CHARACTERGUID_S_ARX_Sewers_Q_52f20922-7b22-4d47-90f7-83172f21fe3b, "skill_cast_target_soul_01_cast");
+PlayEffect(CHARACTERGUID_S_ARX_Sewers_Q_52f20922-7b22-4d47-90f7-83172f21fe3b, "RS3_FX_Skills_Void_Netherswap_Reappear_01");
+PlayEffect(_Var1, "RS3_FX_Skills_Void_Netherswap_Disappear_Root_01");
+RemoveStatus(_Var1, "INVISIBLE");
+DB_ARX_Sewers_EmpressDialog_InitiateDialog_InviseWait(_Var1);
+TimerLaunch("ARX_Sewers_EmpressDialog_InitiateDialog_InviseWait", 800);
+
+PROC
+Proc_ARX_Sewers_EmpressDialog_InitiateDialog((CHARACTERGUID)_Var1)
+AND NOT
+DB_ARX_Sewers_EmpressDialog_InitiateDialog_InviseWait(_)
+THEN
+ProcForceStopDialog(CHARACTERGUID_S_ARX_Sewers_TheEmpress_78c95ad2-2d1a-4358-9c9c-77ff9a5fc3c9);
+ObjectSetFlag(_Var1, "QuestUpdate_RC_ARX_TheImperialDwarves_Sewers_MetTheQueenWithQ");
+GlobalSetFlag("RC_ARX_Sewers_Empress_IntroDialog");
+Proc_StartDialog(0, "ARX_Sewers_QueenAndQ_FirstEncounter", CHARACTERGUID_S_ARX_Sewers_TheEmpress_78c95ad2-2d1a-4358-9c9c-77ff9a5fc3c9, CHARACTERGUID_S_ARX_Sewers_Q_52f20922-7b22-4d47-90f7-83172f21fe3b, _Var1);
+ProcTriggerUnregisterForPlayers(TRIGGERGUID_S_ARX_Sewers_EmpressDialogTrig_56404ea4-4559-484e-b26d-6bf5c2178e91);
+GlobalSetFlag("ARX_Sewers_TheEmpress_MetTheEmpress");
+PROC_ARX_Sewers_QueenAndQ_FirstEncounter_Achievements(_Var1);
+
+IF
+TimerFinished("ARX_Sewers_EmpressDialog_InitiateDialog_InviseWait")
+AND
+DB_ARX_Sewers_EmpressDialog_InitiateDialog_InviseWait(_Var1)
+THEN
+ProcForceStopDialog(CHARACTERGUID_S_ARX_Sewers_TheEmpress_78c95ad2-2d1a-4358-9c9c-77ff9a5fc3c9);
+ObjectSetFlag(_Var1, "QuestUpdate_RC_ARX_TheImperialDwarves_Sewers_MetTheQueenWithQ");
+GlobalSetFlag("RC_ARX_Sewers_Empress_IntroDialog");
+Proc_StartDialog(0, "ARX_Sewers_QueenAndQ_FirstEncounter", CHARACTERGUID_S_ARX_Sewers_TheEmpress_78c95ad2-2d1a-4358-9c9c-77ff9a5fc3c9, CHARACTERGUID_S_ARX_Sewers_Q_52f20922-7b22-4d47-90f7-83172f21fe3b, _Var1);
+ProcTriggerUnregisterForPlayers(TRIGGERGUID_S_ARX_Sewers_EmpressDialogTrig_56404ea4-4559-484e-b26d-6bf5c2178e91);
+GlobalSetFlag("ARX_Sewers_TheEmpress_MetTheEmpress");
+PROC_ARX_Sewers_QueenAndQ_FirstEncounter_Achievements(_Var1);
+
+PROC
+PROC_ARX_Sewers_QueenAndQ_FirstEncounter_Achievements((CHARACTERGUID)_Var1)
+AND
+DB_ARX_Achievements_Tags(_Var2, _Var3)
+AND
+IsTagged(_Var1, _Var2, 1)
+THEN
+GlobalSetFlag(_Var3);
+
+PROC
+PROC_ARX_Sewers_QueenAndQ_FirstEncounter_Achievements((CHARACTERGUID)_Var1)
+AND
+DB_ARX_Achievements_Globals(_Var2, _Var3)
+AND
+GlobalGetFlag(_Var2, 1)
+THEN
+GlobalSetFlag(_Var3);
+
+IF
+CharacterUsedItem((CHARACTERGUID)_Var1, ITEMGUID_S_ARX_Sewers_QsOrdersFromD_70afb84a-a006-47ac-8515-979d86064faf)
+THEN
+UserSetFlag(_Var1, "RC_ARX_Sewers_ReadQsOrdersFromD");
+
+IF
+CharacterUsedItem((CHARACTERGUID)_Var1, ITEMGUID_S_ARX_Sewers_QsResearchJournal_447f5803-4d3d-49bc-b59a-e2dc25b11a15)
+THEN
+ObjectSetFlag(_Var1, "QuestUpdate_RC_ARX_TheImperialDwarves_Sewers_Q_ReadResearchNotes");
+
+IF
+CharacterUsedItem((CHARACTERGUID)_Var1, ITEMGUID_S_ARX_Sewers_QsResearchJournal_Godwoken_33551be5-3d2f-41fb-9ab0-5a47de78931a)
+THEN
+ObjectSetFlag(_Var1, "QuestUpdate_RC_ARX_TheImperialDwarves_Sewers_Q_ReadResearchNotes");
+
+IF
+DialogEnded("ARX_Sewers_TheQueen", _)
+AND
+GlobalGetFlag("ARX_Sewers_TheQueen_HostileToPlayers", 1)
+THEN
+SetRelationFactionToPlayers("RC_ARX_Sewers_ImperialGuards", 0);
+
+IF
+DialogEnded("ARX_Sewers_TheEmpress_EnteringTheRoom", _)
+AND
+GlobalGetFlag("ARX_Sewers_TheEmpress_EnteringTheRoom_HostileToPlayers", 1)
+THEN
+SetRelationFactionToPlayers("RC_ARX_Sewers_ImperialGuards", 0);
+
+IF
+ObjectEnteredCombat(CHARACTERGUID_S_ARX_Sewers_Q_52f20922-7b22-4d47-90f7-83172f21fe3b, _)
+AND
+GlobalGetFlag("RC_ARX_Sewers_Empress_IntroDialog", 0)
+THEN
+SetRelationFactionToPlayers("RC_ARX_Sewers_ImperialGuards", 0);
+SetRelationFactionToPlayers("ARX_Sewers_Q", 0);
+
+IF
+AttackedByObject(CHARACTERGUID_S_ARX_Sewers_TheEmpress_78c95ad2-2d1a-4358-9c9c-77ff9a5fc3c9, _, _, _, _)
+AND
+GlobalGetFlag("RC_ARX_Sewers_Empress_IntroDialog", 0)
+THEN
+SetRelationFactionToPlayers("RC_ARX_Sewers_ImperialGuards", 0);
+SetRelationFactionToPlayers("ARX_Sewers_Q", 0);
+
+IF
+DialogStarted("ARX_Sewers_QueenAndQ_FirstEncounter_COM_Beast", _)
+THEN
+Proc_Sewers_QueenRoomCharacters_StopCrimes();
+
+IF
+DialogStarted("ARX_Sewers_QueenAndQ_FirstEncounter", _)
+THEN
+Proc_Sewers_QueenRoomCharacters_StopCrimes();
+
+PROC
+Proc_Sewers_QueenRoomCharacters_StopCrimes()
+AND
+DB_IsPlayer(_Var1)
+AND
+DB_InRegion(_Var1, TRIGGERGUID_S_ARX_Sewers_QueensFloor_c2ac0f3b-cea2-4c74-a3bf-2b4e82a54b85)
+AND
+CharacterIgnoreActiveCrimes(_Var1, _)
+THEN
+DB_NOOP(1);
+
+
+EXITSECTION
+ENDEXITSECTION
+
+ParentTargetEdge "ARX"

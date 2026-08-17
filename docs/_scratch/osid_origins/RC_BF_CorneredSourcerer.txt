@@ -1,0 +1,846 @@
+Version 1
+SubGoalCombiner SGC_AND
+
+INITSECTION
+DB_Dialogs(CHARACTERGUID_S_RC_BF_CorneredSourcerer_MagisterLead_0cbd14fe-ac44-414c-a7a9-89dfa2af71bf, "RC_BF_CorneredSourcerer_MagisterLead");
+DB_Dialogs(CHARACTERGUID_S_RC_BF_CorneredSourcerer_MagisterMinion1_ceb3514f-ec41-424a-b5e3-2c14c69a9502, "RC_BF_CorneredSourcerer_MagisterMinion1");
+DB_Dialogs(CHARACTERGUID_S_RC_BF_CorneredSourcerer_MagisterMinion2_4f124b9c-8ebb-4a21-a729-1f9c3d690447, "RC_BF_CorneredSourcerer_MagisterMinion2");
+DB_Dialogs(CHARACTERGUID_S_RC_BF_CorneredSourcerer_Sourcerer_b201a72c-8ead-4bbf-8612-fcd8c0944e52, "RC_BF_CorneredSourcerer_Sourcerer_First");
+DB_Ghosts(CHARACTERGUID_S_RC_BF_CorneredSourcerer_Sourcerer_b201a72c-8ead-4bbf-8612-fcd8c0944e52, CHARACTERGUID_S_RC_BF_CorneredSourcerer_Sourcerer_Ghost_9560735b-50f4-42f3-b19d-2cf06a9641c0, "RC_BF_CorneredSourcerer_Sourcerer_Ghost");
+DB_Ghosts(CHARACTERGUID_S_RC_BF_CorneredSourcerer_MagisterLead_0cbd14fe-ac44-414c-a7a9-89dfa2af71bf, CHARACTERGUID_S_RC_BF_CorneredSourcerer_MagisterLead_Ghost_af60509d-c320-41a7-8841-4686add368ea, "RC_BF_CorneredSourcerer_MagisterLead_Ghost");
+DB_Ghosts(CHARACTERGUID_S_RC_BF_CorneredSourcerer_MagisterMinion1_ceb3514f-ec41-424a-b5e3-2c14c69a9502, CHARACTERGUID_S_RC_BF_CorneredSourcerer_MagisterMinion1_Ghost_b1254cf8-c35d-4071-9e23-205606ec68f6, "RC_BF_CorneredSourcerer_MagisterMinion1_Ghost");
+DB_Ghosts(CHARACTERGUID_S_RC_BF_CorneredSourcerer_MagisterMinion2_4f124b9c-8ebb-4a21-a729-1f9c3d690447, CHARACTERGUID_S_RC_BF_CorneredSourcerer_MagisterMinion2_Ghost_98eba46d-8284-4c62-99a0-6b9f5e43647f, "RC_BF_CorneredSourcerer_MagisterMinion2_Ghost");
+ProcTriggerRegisterForPlayers(TRIGGERGUID_S_RC_BF_CorneredSourcerer_FaceToFace_48303cfc-d873-4e4b-9973-7ec6e28d7ccb);
+ProcTriggerRegisterForPlayers(TRIGGERGUID_S_RC_BF_CorneredSourcerer_Warzone_7f9dd2fa-b3fc-4d95-ab4b-cade544714c5);
+DB_RC_BF_CorneredSourcerer_Magisters(CHARACTERGUID_S_RC_BF_CorneredSourcerer_MagisterLead_0cbd14fe-ac44-414c-a7a9-89dfa2af71bf);
+DB_RC_BF_CorneredSourcerer_Magisters(CHARACTERGUID_S_RC_BF_CorneredSourcerer_MagisterMinion1_ceb3514f-ec41-424a-b5e3-2c14c69a9502);
+DB_RC_BF_CorneredSourcerer_Magisters(CHARACTERGUID_S_RC_BF_CorneredSourcerer_MagisterMinion2_4f124b9c-8ebb-4a21-a729-1f9c3d690447);
+DB_KillCounter("RC_BF_CorneredSourcerer_Magisters", 3);
+DB_RC_DF_CorneredSourcerer_Destination(TRIGGERGUID_S_RC_DF_CorneredSourcerer_Destination1_816bc96a-fabf-47ba-be39-95b11386db2e);
+DB_RC_DF_CorneredSourcerer_Destination(TRIGGERGUID_S_RC_DF_CorneredSourcerer_Destination2_6cc73b0b-a3d7-47b7-aa9d-c866ffa68f5f);
+DB_RC_DF_CorneredSourcerer_Destination(TRIGGERGUID_S_RC_DF_CorneredSourcerer_Destination3_083cfb00-661e-4850-8a5c-609bb2e87c13);
+DB_RC_DF_CorneredSourcerer_Destination(TRIGGERGUID_S_RC_DF_CorneredSourcerer_Destination4_7c890062-3274-4423-82f4-d969f71074f3);
+DB_RC_DF_CorneredSourcerer_Destination(TRIGGERGUID_S_RC_DF_CorneredSourcerer_Destination5_ff6622ba-b0b8-4312-98f7-6df57265ca66);
+DB_RC_DF_CorneredSourcerer_Destination(TRIGGERGUID_S_RC_DF_CorneredSourcerer_Destination6_cdee48b7-7c7e-4fc0-abe8-df6bfffb7a56);
+DB_RC_DF_CorneredSourcerer_Destination(TRIGGERGUID_S_RC_DF_CorneredSourcerer_Destination7_c9c04735-2a58-455a-a083-aad466f16950);
+DB_RC_DF_CorneredSourcerer_Destination(TRIGGERGUID_S_RC_DF_CorneredSourcerer_Destination8_2715c5a6-a8bb-48a7-9faf-497697ff32d6);
+DB_RC_DF_CorneredSourcerer_Rifts(ITEMGUID_S_RC_BF_CorneredSourcerer_Portal1_db92ab86-37f2-4c8c-b983-86db203677ba, TRIGGERGUID_S_RC_BF_RiftSpot_1_b070e1a4-a82e-48af-a786-41f7a67fd04b, TRIGGERGUID_S_RC_BF_RiftSpot_1_DS_b2dcd084-68b7-4396-948e-6fde01814699, 1);
+DB_RC_DF_CorneredSourcerer_Rifts(ITEMGUID_S_RC_BF_CorneredSourcerer_Portal2_468e7706-abfb-4b3c-b049-8685dbfea492, TRIGGERGUID_S_RC_BF_RiftSpot_2_5c649ec4-d1f1-4c78-bdc6-f1fff50f81ce, TRIGGERGUID_S_RC_BF_RiftSpot_2_DS_2ce8dd27-9533-4d63-9707-5cfd468225be, 1);
+DB_RC_DF_CorneredSourcerer_Rifts(ITEMGUID_S_RC_BF_CorneredSourcerer_Portal3_d47129b4-ea04-466c-a513-c0ba919f3928, TRIGGERGUID_S_RC_BF_RiftSpot_3_01792c85-166a-4c13-b9cd-ba648a9e8483, TRIGGERGUID_S_RC_BF_RiftSpot_3_DS_6a9fdb9e-94c7-43b2-a156-50ed3280d167, 1);
+DB_RC_DF_CorneredSourcerer_Rifts(ITEMGUID_S_RC_BF_CorneredSourcerer_Portal4_add315c5-91dd-4898-a46c-67a4a6d1f402, TRIGGERGUID_S_RC_BF_RiftSpot_4_8e086558-da8c-41f8-80b5-5de8ba6a9d1b, TRIGGERGUID_S_RC_BF_RiftSpot_4_DS_6da98306-0a37-4a3e-93e3-8e32ba40d20a, 2);
+DB_RC_DF_CorneredSourcerer_Rifts(ITEMGUID_S_RC_BF_CorneredSourcerer_Portal5_fc951e50-28e7-4f3e-9019-8431fd5292c1, TRIGGERGUID_S_RC_BF_RiftSpot_5_fa47d482-9280-454a-a09a-5e0e9a6becc8, TRIGGERGUID_S_RC_BF_RiftSpot_5_DS_410c0a8f-5a1e-4556-b8da-417af96d9990, 3);
+DB_RC_DF_CorneredSourcerer_RiftDemons(ITEMGUID_S_RC_BF_CorneredSourcerer_Portal1_db92ab86-37f2-4c8c-b983-86db203677ba, CHARACTERGUID_S_RC_BF_CorneredSourcerer_Wave1_Demon1_6be567e2-e96b-479e-9cbd-4441bc766028, 1);
+DB_RC_DF_CorneredSourcerer_RiftDemons(ITEMGUID_S_RC_BF_CorneredSourcerer_Portal1_db92ab86-37f2-4c8c-b983-86db203677ba, CHARACTERGUID_S_RC_BF_CorneredSourcerer_Wave1_Demon2_7485bc8c-e4c7-4d9f-a5c1-3fe645ac2f2b, 2);
+DB_RC_DF_CorneredSourcerer_RiftDemons(ITEMGUID_S_RC_BF_CorneredSourcerer_Portal1_db92ab86-37f2-4c8c-b983-86db203677ba, CHARACTERGUID_S_RC_BF_CorneredSourcerer_Wave1_Demon3_53f3f106-a886-4d73-b693-b8d4ee53f7e5, 3);
+DB_RC_DF_CorneredSourcerer_RiftDemons(ITEMGUID_S_RC_BF_CorneredSourcerer_Portal2_468e7706-abfb-4b3c-b049-8685dbfea492, CHARACTERGUID_S_RC_BF_CorneredSourcerer_Wave2_Demon1_4f3795cc-07e5-47cf-a7b3-d55e5132bfeb, 1);
+DB_RC_DF_CorneredSourcerer_RiftDemons(ITEMGUID_S_RC_BF_CorneredSourcerer_Portal2_468e7706-abfb-4b3c-b049-8685dbfea492, CHARACTERGUID_S_RC_BF_CorneredSourcerer_Wave2_Demon2_175b32c9-13e9-4a5a-9091-2ff4fc2a8357, 2);
+DB_RC_DF_CorneredSourcerer_RiftDemons(ITEMGUID_S_RC_BF_CorneredSourcerer_Portal2_468e7706-abfb-4b3c-b049-8685dbfea492, CHARACTERGUID_S_RC_BF_CorneredSourcerer_Wave2_Demon3_f268456f-845f-4c84-876c-c55f593ea13c, 3);
+DB_RC_DF_CorneredSourcerer_RiftDemons(ITEMGUID_S_RC_BF_CorneredSourcerer_Portal3_d47129b4-ea04-466c-a513-c0ba919f3928, CHARACTERGUID_S_RC_BF_CorneredSourcerer_Wave3_Demon1_836357fe-360c-47c7-b16a-3fddc9b45b79, 1);
+DB_RC_DF_CorneredSourcerer_RiftDemons(ITEMGUID_S_RC_BF_CorneredSourcerer_Portal3_d47129b4-ea04-466c-a513-c0ba919f3928, CHARACTERGUID_S_RC_BF_CorneredSourcerer_Wave3_Demon2_e527ace3-d6bb-4682-bda8-56417257218d, 2);
+DB_RC_DF_CorneredSourcerer_RiftDemons(ITEMGUID_S_RC_BF_CorneredSourcerer_Portal3_d47129b4-ea04-466c-a513-c0ba919f3928, CHARACTERGUID_S_RC_BF_CorneredSourcerer_Wave3_Demon3_943a84e5-e184-46b2-bc71-34a3009b95a8, 3);
+DB_RC_DF_CorneredSourcerer_RiftDemons(ITEMGUID_S_RC_BF_CorneredSourcerer_Portal4_add315c5-91dd-4898-a46c-67a4a6d1f402, CHARACTERGUID_S_RC_BF_CorneredSourcerer_Wave4_Demon1_bdf20b86-2916-4206-9349-5454e1b477ce, 1);
+DB_RC_DF_CorneredSourcerer_RiftDemons(ITEMGUID_S_RC_BF_CorneredSourcerer_Portal4_add315c5-91dd-4898-a46c-67a4a6d1f402, CHARACTERGUID_S_RC_BF_CorneredSourcerer_Wave4_Demon2_b14b1259-7089-4a24-8e9d-3b0a4e540a39, 2);
+DB_RC_DF_CorneredSourcerer_RiftDemons(ITEMGUID_S_RC_BF_CorneredSourcerer_Portal4_add315c5-91dd-4898-a46c-67a4a6d1f402, CHARACTERGUID_S_RC_BF_CorneredSourcerer_Wave4_Demon3_bb55dfc5-dcd7-458a-adc6-bd6ab4f94ddb, 3);
+DB_RC_DF_CorneredSourcerer_RiftDemons(ITEMGUID_S_RC_BF_CorneredSourcerer_Portal5_fc951e50-28e7-4f3e-9019-8431fd5292c1, CHARACTERGUID_S_RC_BF_CorneredSourcerer_Wave5_Demon1_2ebcbfaf-010f-49a5-b18f-3bb322c72351, 1);
+DB_RC_DF_CorneredSourcerer_RiftDemons(ITEMGUID_S_RC_BF_CorneredSourcerer_Portal5_fc951e50-28e7-4f3e-9019-8431fd5292c1, CHARACTERGUID_S_RC_BF_CorneredSourcerer_Wave5_Demon2_3bf2c1b9-7277-489d-9367-fa387f459ac3, 2);
+DB_RC_DF_CorneredSourcerer_RiftDemons(ITEMGUID_S_RC_BF_CorneredSourcerer_Portal5_fc951e50-28e7-4f3e-9019-8431fd5292c1, CHARACTERGUID_S_RC_BF_CorneredSourcerer_Wave5_Demon3_b1423c5a-1543-4037-b118-0a5494c402c0, 3);
+DB_DeadEvent(CHARACTERGUID_S_RC_BF_CorneredSourcerer_Sourcerer_b201a72c-8ead-4bbf-8612-fcd8c0944e52, "RC_BF_CorneredSourcerer_SourcererDead");
+ProcCharacterDisableAllCrimes(CHARACTERGUID_S_RC_BF_CorneredSourcerer_Sourcerer_b201a72c-8ead-4bbf-8612-fcd8c0944e52);
+DB_DontCreateMurder(CHARACTERGUID_S_RC_BF_CorneredSourcerer_Sourcerer_b201a72c-8ead-4bbf-8612-fcd8c0944e52);
+TriggerRegisterForCharacter(TRIGGERGUID_S_RC_BF_CorneredSourcerer_Zone_95cfbf2a-bb8f-4021-b1f8-5d0ad62464d5, CHARACTERGUID_S_RC_BF_CorneredSourcerer_Sourcerer_b201a72c-8ead-4bbf-8612-fcd8c0944e52);
+DB_QuestDef_State("RC_BF_CorneredSourcerer", "FoundSituation", 1);
+DB_QuestDef_AddEvent("RC_BF_CorneredSourcerer", "RC_FL_Hannag_UsefulFact");
+DB_QuestDef_AddEvent("RC_BF_CorneredSourcerer", "RC_OIL_ThirdHouse_KnowHannag");
+DB_QuestDef_AddEvent("RC_BF_CorneredSourcerer", "RC_BF_KilledHannag");
+DB_QuestDef_UpdateEvent("RC_BF_CorneredSourcerer", "Lead_Accepted", "RC_BF_CorneredSourcerer_Lead_Accepted");
+DB_QuestDef_UpdateEvent("RC_BF_CorneredSourcerer", "Lead_Reward", "RC_BF_CorneredSourcerer_HelpedMagisters");
+DB_QuestDef_UpdateEvent("RC_BF_CorneredSourcerer", "HelpingSourcerer", "RC_BF_CorneredSourcerer_HelpingSourcerer");
+DB_QuestDef_UpdateEvent("RC_BF_CorneredSourcerer", "SourcererWarned", "RC_BF_CorneredSourcerer_SourcererWarned");
+DB_QuestDef_UpdateEvent("RC_BF_CorneredSourcerer", "KilledMagister", "RC_BF_CorneredSourcerer_KilledMagister");
+DB_QuestDef_UpdateEvent("RC_BF_CorneredSourcerer", "RewardedSourcerer", "RC_BF_CorneredSourcerer_RewardedSourcerer");
+DB_QuestDef_UpdateEvent("RC_BF_CorneredSourcerer", "OtherRewarded", "RC_BF_CorneredSourcerer_OtherRewarded");
+DB_QuestDef_UpdateEvent("RC_BF_CorneredSourcerer", "KilledHannag", "RC_BF_KilledHannag");
+DB_QuestDef_UpdateEvent("RC_BF_CorneredSourcerer", "HannagDied", "RC_BF_CorneredSourcerer_HannagDied");
+DB_QuestDef_UpdateEvent("RC_BF_CorneredSourcerer", "UsefulFact", "RC_FL_Hannag_UsefulFact");
+DB_QuestDef_UpdateEvent("RC_BF_CorneredSourcerer", "KnowHannag", "RC_OIL_ThirdHouse_KnowHannag");
+DB_QuestDef_UpdateEvent("RC_BF_CorneredSourcerer", "ChoiceMagister", "QuestUpdate_RC_BF_CorneredSourcerer_FoundSituation");
+DB_QuestDef_UpdateEvent("RC_BF_CorneredSourcerer", "ChoiceSourcerer", "QuestUpdate_RC_BF_CorneredSourcerer_FoundSituation");
+DB_QuestDef_State("RC_BF_CorneredSourcerer", "ThankedSourcerer");
+DB_QuestDef_State("RC_BF_CorneredSourcerer", "ToldApprenticeDead");
+DB_QuestDef_State("RC_BF_CorneredSourcerer", "ToldApprenticeAlive");
+DB_QuestDef_State("RC_BF_CorneredSourcerer", "HannagParadiseDowns");
+DB_QuestDef_State("RC_BF_CorneredSourcerer", "HannagSworn");
+DB_QuestDef_State("RC_BF_CorneredSourcerer", "AllDead", -1);
+DB_QuestDef_State("RC_BF_CorneredSourcerer", "CloseLeftRC", -1);
+DB_QuestDef_CloseEvent("RC_BF_CorneredSourcerer", "RC_BF_CorneredSourcerer_RewardedSourcerer");
+DB_QuestDef_CloseEvent("RC_BF_CorneredSourcerer", "QuestUpdate_RC_BF_CorneredSourcerer_ThankedSourcerer");
+DB_QuestDef_CloseEvent("RC_BF_CorneredSourcerer", "RC_BF_CorneredSourcerer_OtherRewarded");
+DB_QuestDef_CloseEvent("RC_BF_CorneredSourcerer", "RC_BF_CorneredSourcerer_HelpedMagisters");
+DB_CorneredSourcerer_FaceToFace(TRIGGERGUID_S_RC_BF_CorneredSourcerer_FaceToFace_48303cfc-d873-4e4b-9973-7ec6e28d7ccb);
+DB_CorneredSourcerer_Zone(TRIGGERGUID_S_RC_BF_CorneredSourcerer_Zone_95cfbf2a-bb8f-4021-b1f8-5d0ad62464d5);
+DB_CorneredSourcerer_MagisterTooClose(TRIGGERGUID_S_RC_BF_CorneredSourcerer_MagistersTooClose_1_f99b41f0-5434-4087-96d2-20986a0f50d8);
+ProcTriggerRegisterForPlayers(TRIGGERGUID_S_RC_BF_CorneredSourcerer_FaceToFace_2_6ad142ce-1e25-4324-998e-ae3f1a44cb47);
+DB_CorneredSourcerer_Bears(CHARACTERGUID_S_RC_BF_CorneredSourcerer_Bear_1c5934a0-05f8-41da-b4ad-52b6de2bfeac);
+DB_CorneredSourcerer_Bears(CHARACTERGUID_S_RC_BF_CorneredSourcerer_BearCub1_d829b5d3-0d5b-4246-a69c-e87cda78032a);
+DB_CorneredSourcerer_Bears(CHARACTERGUID_S_RC_BF_CorneredSourcerer_BearCub2_f2a69071-d7b0-4ea5-9516-86ac283953b0);
+DB_CorneredSourcerer_Animals(CHARACTERGUID_S_RC_BF_CorneredSourcerer_Bear_1c5934a0-05f8-41da-b4ad-52b6de2bfeac);
+DB_CorneredSourcerer_Animals(CHARACTERGUID_S_RC_BF_CorneredSourcerer_BearCub1_d829b5d3-0d5b-4246-a69c-e87cda78032a);
+DB_CorneredSourcerer_Animals(CHARACTERGUID_S_RC_BF_CorneredSourcerer_BearCub2_f2a69071-d7b0-4ea5-9516-86ac283953b0);
+DB_CorneredSourcerer_Animals(CHARACTERGUID_S_RC_BF_CorneredSourcerer_WhiteRabbit_51b7ff0f-b8f8-4411-8c72-abfc37a892d8);
+DB_DeadEvent(CHARACTERGUID_S_RC_BF_CorneredSourcerer_Bear_1c5934a0-05f8-41da-b4ad-52b6de2bfeac, "RC_BF_CorneredSourcerer_Bear_Dead");
+DB_DeadEvent(CHARACTERGUID_S_RC_BF_CorneredSourcerer_BearCub1_d829b5d3-0d5b-4246-a69c-e87cda78032a, "RC_BF_CorneredSourcerer_BearCub1_Dead");
+DB_DeadEvent(CHARACTERGUID_S_RC_BF_CorneredSourcerer_BearCub2_f2a69071-d7b0-4ea5-9516-86ac283953b0, "RC_BF_CorneredSourcerer_BearCub2_Dead");
+DB_Dialogs(CHARACTERGUID_S_RC_BF_CorneredSourcerer_WhiteRabbit_51b7ff0f-b8f8-4411-8c72-abfc37a892d8, "RC_BF_CorneredSourcerer_WhiteRabbit");
+DB_Dialogs(CHARACTERGUID_S_RC_BF_CorneredSourcerer_Bear_1c5934a0-05f8-41da-b4ad-52b6de2bfeac, "RC_BF_CorneredSourcerer_Bear");
+DB_Dialogs(CHARACTERGUID_S_RC_BF_CorneredSourcerer_BearCub1_d829b5d3-0d5b-4246-a69c-e87cda78032a, "RC_BF_CorneredSourcerer_BearCub1");
+DB_Dialogs(CHARACTERGUID_S_RC_BF_CorneredSourcerer_BearCub2_f2a69071-d7b0-4ea5-9516-86ac283953b0, "RC_BF_CorneredSourcerer_BearCub2");
+DB_Dialogs(CHARACTERGUID_S_RC_BF_CloisterNun1_13396081-119b-4d2e-b82e-b9cb991759b3, "RC_BF_CloisterNun1");
+DB_Dialogs(CHARACTERGUID_S_RC_BF_CloisterNun2_75801251-73f7-4d21-a4df-faa9c8b0700e, "RC_BF_CloisterNun2");
+DB_Dialogs(CHARACTERGUID_S_RC_BF_CloisterNun3_9fefdddf-2a25-4e75-9062-1c610de131d1, "RC_BF_CloisterNun3");
+DB_OneShotPlayerTrigger(TRIGGERGUID_S_RC_BF_CorneredSourcerer_SawMagister_3427d8d8-38d7-4149-9c16-bb2d99b2a74d);
+SetOnStage(CHARACTERGUID_S_RC_BF_CorneredSourcerer_Sourcerer_Promised_48ee51f8-8691-4838-b1e6-ac7c1cec4aa4, 0);
+CharacterSetCanTrade(CHARACTERGUID_S_RC_BF_CorneredSourcerer_Sourcerer_b201a72c-8ead-4bbf-8612-fcd8c0944e52, 0);
+
+KBSECTION
+IF
+StoryEvent((CHARACTERGUID)_Var1, "RC_DF_CorneredSourcererSpot")
+AND NOT
+QRY_RC_BF_CorneredSourcerer_AfterMagisterDeadDialog(_Var1)
+AND NOT
+QRY_RC_BF_CorneredSourcerer_NearbyDialog(_Var1)
+AND NOT
+QRY_RC_BF_CorneredSourcerer_LavaSpell(_Var1)
+AND NOT
+QRY_RC_BF_CorneredSourcerer_StopSpotting()
+THEN
+ObjectSetFlag(CHARACTERGUID_S_RC_BF_CorneredSourcerer_Sourcerer_b201a72c-8ead-4bbf-8612-fcd8c0944e52, "RestartSpot");
+
+QRY
+QRY_RC_BF_CorneredSourcerer_AfterMagisterDeadDialog((CHARACTERGUID)_Var1)
+AND
+DB_GlobalFlag("RC_BF_CorneredSourcerer_MagistersDead")
+AND
+QRY_RC_BF_StartCorneredSourcererDialog(_Var1)
+THEN
+DB_NOOP(0);
+
+QRY
+QRY_RC_BF_CorneredSourcerer_NearbyDialog((CHARACTERGUID)_Var1)
+AND
+DB_CorneredSourcerer_FaceToFace(_Var2)
+AND
+DB_InRegion(_Var1, _Var2)
+AND NOT
+DB_GlobalFlag("RC_BF_CorneredSourcerer_MagistersDead")
+AND
+QRY_RC_BF_StartCorneredSourcererDialog(_Var1)
+THEN
+DB_NOOP(0);
+
+QRY
+QRY_RC_BF_StartCorneredSourcererDialog((CHARACTERGUID)_Var1)
+AND
+DB_IsPlayer(_Var1)
+AND NOT
+QRY_IsSummonOrPartyFollower(_Var1)
+AND
+CharacterIsPolymorphInteractionDisabled(_Var1, 0)
+AND
+DB_Dialogs(CHARACTERGUID_S_RC_BF_CorneredSourcerer_Sourcerer_b201a72c-8ead-4bbf-8612-fcd8c0944e52, _Var2)
+AND
+UserGetFlag(_Var1, "RC_BF_CorneredSourcerer_HelpingSourcerer", 0)
+AND
+QRY_SpeakerIsAvailable(CHARACTERGUID_S_RC_BF_CorneredSourcerer_Sourcerer_b201a72c-8ead-4bbf-8612-fcd8c0944e52)
+AND
+QRY_SpeakerIsAvailable(_Var1)
+THEN
+PROC_StartDialog(0, _Var2, CHARACTERGUID_S_RC_BF_CorneredSourcerer_Sourcerer_b201a72c-8ead-4bbf-8612-fcd8c0944e52, _Var1);
+
+QRY
+QRY_RC_BF_CorneredSourcerer_LavaSpell((CHARACTERGUID)_Var1)
+AND NOT
+DB_GlobalFlag("RC_BF_CorneredSourcerer_MagistersDead")
+AND
+QRY_IsSummonOrPartyFollower(_Var1)
+AND
+DB_CorneredSourcerer_FaceToFace(_Var2)
+AND NOT
+DB_InRegion(_Var1, _Var2)
+AND
+GetDistanceTo(_Var1, CHARACTERGUID_S_RC_BF_CorneredSourcerer_Sourcerer_b201a72c-8ead-4bbf-8612-fcd8c0944e52, _Var3)
+AND
+_Var3 >= 1.3
+THEN
+CharacterUseSkill(CHARACTERGUID_S_RC_BF_CorneredSourcerer_Sourcerer_b201a72c-8ead-4bbf-8612-fcd8c0944e52, "Target_Quest_CorneredSourcerer_LavaPortal", _Var1, 1);
+
+QRY
+QRY_RC_BF_CorneredSourcerer_LavaSpell((CHARACTERGUID)_Var1)
+AND NOT
+DB_GlobalFlag("RC_BF_CorneredSourcerer_MagistersDead")
+AND NOT
+QRY_IsSummonOrPartyFollower(_Var1)
+AND
+DB_CorneredSourcerer_FaceToFace(_Var2)
+AND NOT
+DB_InRegion(_Var1, _Var2)
+AND
+UserGetFlag(_Var1, "RC_BF_CorneredSourcerer_HelpingSourcerer", 0)
+AND
+GetDistanceTo(_Var1, CHARACTERGUID_S_RC_BF_CorneredSourcerer_Sourcerer_b201a72c-8ead-4bbf-8612-fcd8c0944e52, _Var3)
+AND
+_Var3 >= 1.3
+AND
+IsSpeakerReserved(_Var1, 0)
+THEN
+CharacterUseSkill(CHARACTERGUID_S_RC_BF_CorneredSourcerer_Sourcerer_b201a72c-8ead-4bbf-8612-fcd8c0944e52, "Target_Quest_CorneredSourcerer_LavaPortal", _Var1, 1);
+
+IF
+CharacterUsedSkill(CHARACTERGUID_S_RC_BF_CorneredSourcerer_Sourcerer_b201a72c-8ead-4bbf-8612-fcd8c0944e52, "Target_Quest_CorneredSourcerer_LavaPortal", _, _)
+AND NOT
+DB_GlobalFlag("RC_BF_CorneredSourcerer_MagistersDead")
+THEN
+ObjectSetFlag(CHARACTERGUID_S_RC_BF_CorneredSourcerer_Sourcerer_b201a72c-8ead-4bbf-8612-fcd8c0944e52, "RestartSpot");
+ClearVarObject(CHARACTERGUID_S_RC_BF_CorneredSourcerer_Sourcerer_b201a72c-8ead-4bbf-8612-fcd8c0944e52, "Attacker");
+
+IF
+CharacterUsedSkillOnTarget(CHARACTERGUID_S_RC_BF_CorneredSourcerer_Sourcerer_b201a72c-8ead-4bbf-8612-fcd8c0944e52, (CHARACTERGUID)_Var1, "Target_Quest_CorneredSourcerer_LavaPortal", _, _)
+AND
+DB_IsPlayer(_Var1)
+AND
+QueryOnlyOnce("RC_BF_VB_KilledLava")
+THEN
+ProcObjectTimer(_Var1, "RC_BF_VB_KilledLava", 1500);
+
+PROC
+ProcObjectTimerFinished((CHARACTERGUID)_Var1, "RC_BF_VB_KilledLava")
+AND
+DB_IsPlayer(_Var2)
+AND
+CharacterIsInPartyWith(_Var2, _Var1, 1)
+AND
+CharacterCanSee(_Var2, _Var1, 1)
+AND
+CharacterIsDeadOrFeign(_Var2, 0)
+AND
+QueryOnlyOnce("RC_BF_VB_KilledLava_DoVB")
+THEN
+StartVoiceBark("RC_BF_VB_KilledLava", _Var2);
+
+IF
+CharacterUsedSkillOnTarget(CHARACTERGUID_S_RC_BF_CorneredSourcerer_Sourcerer_b201a72c-8ead-4bbf-8612-fcd8c0944e52, (CHARACTERGUID)_Var1, "Target_Quest_CorneredSourcerer_LavaPortal", _, _)
+THEN
+PROC_BF_CorneredSourcerer_RegisterTarget(_Var1);
+
+QRY
+QRY_RC_BF_CorneredSourcerer_StopSpotting()
+AND
+DB_GlobalFlag("RC_BF_CorneredSourcerer_Hostile")
+THEN
+DB_NOOP(1);
+
+QRY
+QRY_RC_BF_CorneredSourcerer_StopSpotting()
+AND
+DB_GlobalFlag("RC_BF_CorneredSourcerer_Relaxed")
+THEN
+DB_NOOP(1);
+
+IF
+DialogEnded((STRING)_Var1, (INTEGER)_Var2)
+AND
+DB_Dialogs(CHARACTERGUID_S_RC_BF_CorneredSourcerer_Sourcerer_b201a72c-8ead-4bbf-8612-fcd8c0944e52, _Var1)
+AND NOT
+DB_GlobalFlag("RC_BF_CorneredSourcerer_Hostile")
+AND NOT
+DB_GlobalFlag("RC_BF_CorneredSourcerer_Relaxed")
+THEN
+ObjectSetFlag(CHARACTERGUID_S_RC_BF_CorneredSourcerer_Sourcerer_b201a72c-8ead-4bbf-8612-fcd8c0944e52, "RestartSpot");
+
+IF
+GlobalFlagSet("RC_BF_CorneredSourcerer_Relaxed")
+THEN
+SetVarFixedString(CHARACTERGUID_S_RC_BF_CorneredSourcerer_Sourcerer_b201a72c-8ead-4bbf-8612-fcd8c0944e52, "currentState", "State_Rescued");
+
+IF
+GlobalFlagSet("RC_BF_CorneredSourcerer_ChangePositions")
+AND
+GetPosition(CHARACTERGUID_S_RC_BF_CorneredSourcerer_Sourcerer_b201a72c-8ead-4bbf-8612-fcd8c0944e52, _Var1, _Var2, _Var3)
+THEN
+NOT DB_CorneredSourcerer_FaceToFace(TRIGGERGUID_S_RC_BF_CorneredSourcerer_FaceToFace_48303cfc-d873-4e4b-9973-7ec6e28d7ccb);
+NOT DB_CorneredSourcerer_Zone(TRIGGERGUID_S_RC_BF_CorneredSourcerer_Zone_95cfbf2a-bb8f-4021-b1f8-5d0ad62464d5);
+NOT DB_CorneredSourcerer_MagisterTooClose(TRIGGERGUID_S_RC_BF_CorneredSourcerer_MagistersTooClose_1_f99b41f0-5434-4087-96d2-20986a0f50d8);
+DB_CorneredSourcerer_FaceToFace(TRIGGERGUID_S_RC_BF_CorneredSourcerer_FaceToFace_2_6ad142ce-1e25-4324-998e-ae3f1a44cb47);
+DB_CorneredSourcerer_Zone(TRIGGERGUID_S_RC_BF_CorneredSourcerer_Zone_2_4e311c3a-2211-498b-a516-98dce524a94a);
+DB_CorneredSourcerer_MagisterTooClose(TRIGGERGUID_S_RC_BF_CorneredSourcerer_MagistersTooClose_2_ae7f2f12-83f6-464e-b298-63c1d6cd1434);
+SetVarObject(CHARACTERGUID_S_RC_BF_CorneredSourcerer_Sourcerer_b201a72c-8ead-4bbf-8612-fcd8c0944e52, "SpotTrigger", TRIGGERGUID_S_RC_BF_CorneredSourcerer_Warzone_2_7f401467-0eb7-4562-832e-fcb526fd6434);
+TeleportTo(CHARACTERGUID_S_RC_BF_CorneredSourcerer_Sourcerer_b201a72c-8ead-4bbf-8612-fcd8c0944e52, TRIGGERGUID_S_RC_BF_CorneredSourcerer_TeleportToDestination_6db58514-d7aa-45fd-a85a-38ec5f2ef659, "RC_BF_CorneredSourcerer_ArrivedUpTop", 0);
+ProcRemoveAllDialogEntriesForSpeaker(CHARACTERGUID_S_RC_BF_CorneredSourcerer_Sourcerer_b201a72c-8ead-4bbf-8612-fcd8c0944e52);
+DB_Dialogs(CHARACTERGUID_S_RC_BF_CorneredSourcerer_Sourcerer_b201a72c-8ead-4bbf-8612-fcd8c0944e52, "RC_BF_CorneredSourcerer_Sourcerer");
+SetVarObject(CHARACTERGUID_S_RC_BF_CorneredSourcerer_Sourcerer_b201a72c-8ead-4bbf-8612-fcd8c0944e52, "HomePoint", TRIGGERGUID_S_RC_BF_CorneredSourcerer_Home_2_7aefabbd-e6f7-4a09-aa69-c5ff0d5e713d);
+SetVarObject(CHARACTERGUID_S_RC_BF_CorneredSourcerer_Sourcerer_b201a72c-8ead-4bbf-8612-fcd8c0944e52, "LightningPortal1", ITEMGUID_S_RC_BF_CorneredSourcerer_FireballPortal_1_adf2a3a0-c67d-4a3b-93c1-a731f46bbae4);
+SetVarObject(CHARACTERGUID_S_RC_BF_CorneredSourcerer_Sourcerer_b201a72c-8ead-4bbf-8612-fcd8c0944e52, "LightningPortal2", ITEMGUID_S_RC_BF_CorneredSourcerer_FireballPortal_2_b883e7c2-d946-4824-bcf5-9353338f955e);
+SetVarObject(CHARACTERGUID_S_RC_BF_CorneredSourcerer_Sourcerer_b201a72c-8ead-4bbf-8612-fcd8c0944e52, "LightningPortal3", ITEMGUID_S_RC_BF_CorneredSourcerer_FireballPortal_3_b3143999-3cd2-4a68-b34b-bdcbdc3aaf2e);
+SetVarObject(CHARACTERGUID_S_RC_BF_CorneredSourcerer_Sourcerer_b201a72c-8ead-4bbf-8612-fcd8c0944e52, "LightningPortal4", ITEMGUID_S_RC_BF_CorneredSourcerer_FireballPortal_4_0e59e5b6-28d0-41ca-8445-3a694c01d223);
+SetVarObject(CHARACTERGUID_S_RC_BF_CorneredSourcerer_Sourcerer_b201a72c-8ead-4bbf-8612-fcd8c0944e52, "LightningPortal5", ITEMGUID_S_RC_BF_CorneredSourcerer_FireballPortal_3_b3143999-3cd2-4a68-b34b-bdcbdc3aaf2e);
+SetVarObject(CHARACTERGUID_S_RC_BF_CorneredSourcerer_Sourcerer_b201a72c-8ead-4bbf-8612-fcd8c0944e52, "LightningPortal6", ITEMGUID_S_RC_BF_CorneredSourcerer_FireballPortal_4_0e59e5b6-28d0-41ca-8445-3a694c01d223);
+SetVarString(CHARACTERGUID_S_RC_BF_CorneredSourcerer_Sourcerer_b201a72c-8ead-4bbf-8612-fcd8c0944e52, "PortalEvent1", "RC_BF_CorneredSourcerer_Fire_1b");
+SetVarString(CHARACTERGUID_S_RC_BF_CorneredSourcerer_Sourcerer_b201a72c-8ead-4bbf-8612-fcd8c0944e52, "PortalEvent2", "RC_BF_CorneredSourcerer_Fire_2b");
+SetVarString(CHARACTERGUID_S_RC_BF_CorneredSourcerer_Sourcerer_b201a72c-8ead-4bbf-8612-fcd8c0944e52, "PortalEvent3", "RC_BF_CorneredSourcerer_Fire_3b");
+SetVarString(CHARACTERGUID_S_RC_BF_CorneredSourcerer_Sourcerer_b201a72c-8ead-4bbf-8612-fcd8c0944e52, "PortalEvent4", "RC_BF_CorneredSourcerer_Fire_4b");
+SetVarString(CHARACTERGUID_S_RC_BF_CorneredSourcerer_Sourcerer_b201a72c-8ead-4bbf-8612-fcd8c0944e52, "PortalEvent5", "RC_BF_CorneredSourcerer_Fire_3b");
+SetVarString(CHARACTERGUID_S_RC_BF_CorneredSourcerer_Sourcerer_b201a72c-8ead-4bbf-8612-fcd8c0944e52, "PortalEvent6", "RC_BF_CorneredSourcerer_Fire_4b");
+SetVarFixedString(CHARACTERGUID_S_RC_BF_CorneredSourcerer_MagisterMinion1_ceb3514f-ec41-424a-b5e3-2c14c69a9502, "currentState", "State_Cornering2");
+SetVarFixedString(CHARACTERGUID_S_RC_BF_CorneredSourcerer_MagisterMinion2_4f124b9c-8ebb-4a21-a729-1f9c3d690447, "currentState", "State_Cornering2");
+SetVarFixedString(CHARACTERGUID_S_RC_BF_CorneredSourcerer_MagisterLead_0cbd14fe-ac44-414c-a7a9-89dfa2af71bf, "currentState", "State_Cornering2");
+PlayEffectAtPosition("RS3_FX_Skills_Air_FreeFall_Disappear_01", _Var1, _Var2, _Var3);
+PlayEffect(TRIGGERGUID_S_RC_BF_CorneredSourcerer_TeleportToDestination_6db58514-d7aa-45fd-a85a-38ec5f2ef659, "RS3_FX_Skills_Air_FreeFall_Reappear_01");
+SetVarString(CHARACTERGUID_S_RC_BF_CorneredSourcerer_Sourcerer_b201a72c-8ead-4bbf-8612-fcd8c0944e52, "LightningPortalEffect", "RS3_FX_GP_ScriptedEvent_HannagPortal_01_Fire");
+
+IF
+StoryEvent(CHARACTERGUID_S_RC_BF_CorneredSourcerer_Sourcerer_b201a72c-8ead-4bbf-8612-fcd8c0944e52, "RC_BF_CorneredSourcerer_ArrivedUpTop")
+THEN
+ProcCharacterMoveTo(CHARACTERGUID_S_RC_BF_CorneredSourcerer_Sourcerer_b201a72c-8ead-4bbf-8612-fcd8c0944e52, TRIGGERGUID_S_RC_BF_CorneredSourcerer_Home_2_7aefabbd-e6f7-4a09-aa69-c5ff0d5e713d, 1, "");
+ObjectSetFlag(CHARACTERGUID_S_RC_BF_CorneredSourcerer_Sourcerer_b201a72c-8ead-4bbf-8612-fcd8c0944e52, "RestartSpot");
+DB_IgnoreAssault(CHARACTERGUID_S_RC_BF_CorneredSourcerer_Sourcerer_b201a72c-8ead-4bbf-8612-fcd8c0944e52);
+
+IF
+DB_RC_BF_CorneredSourcerer_Magisters(_Var1)
+THEN
+ProcCharacterDisableCrime(_Var1, "VandaliseNoOwner");
+ProcCharacterDisableCrime(_Var1, "TeleportPlayerDialog");
+DB_KilledEvent(_Var1, "RC_BF_CorneredSourcerer_KilledMagister");
+DB_MurderIgnoreFor(CHARACTERGUID_S_RC_BF_CorneredSourcerer_Sourcerer_b201a72c-8ead-4bbf-8612-fcd8c0944e52, _Var1);
+
+IF
+ObjectEnteredCombat((CHARACTERGUID)_Var1, _)
+AND
+DB_RC_BF_CorneredSourcerer_Magisters(_Var1)
+AND
+DB_RC_BF_CorneredSourcerer_Magisters(_Var3)
+AND
+CharacterIsInCombat(_Var3, 0)
+THEN
+DialogRequestStop(_Var3);
+
+IF
+DB_RC_BF_CorneredSourcerer_Magisters(_Var1)
+THEN
+DB_KillCounter_Internal(_Var1, "RC_BF_CorneredSourcerer_Magisters");
+
+PROC
+ReactOnKillCounter("RC_BF_CorneredSourcerer_Magisters")
+THEN
+GlobalSetFlag("RC_BF_CorneredSourcerer_MagistersDead");
+SetVarFixedString(CHARACTERGUID_S_RC_BF_CorneredSourcerer_Sourcerer_b201a72c-8ead-4bbf-8612-fcd8c0944e52, "currentState", "State_Wait");
+ObjectSetFlag(CHARACTERGUID_S_RC_BF_CorneredSourcerer_Sourcerer_b201a72c-8ead-4bbf-8612-fcd8c0944e52, "RestartSpot");
+ProcCharacterEnableAllCrimes(CHARACTERGUID_S_RC_BF_CorneredSourcerer_Sourcerer_b201a72c-8ead-4bbf-8612-fcd8c0944e52);
+NOT DB_OneShotPlayerTrigger(TRIGGERGUID_S_RC_BF_CorneredSourcerer_SawMagister_3427d8d8-38d7-4149-9c16-bb2d99b2a74d);
+ProcTriggerUnregisterForPlayers(TRIGGERGUID_S_RC_BF_CorneredSourcerer_SawMagister_3427d8d8-38d7-4149-9c16-bb2d99b2a74d);
+NOT DB_IgnoreAssault(CHARACTERGUID_S_RC_BF_CorneredSourcerer_Sourcerer_b201a72c-8ead-4bbf-8612-fcd8c0944e52);
+
+PROC
+ReactOnKillCounter("RC_BF_CorneredSourcerer_Magisters")
+THEN
+ProcRemoveAllDialogEntriesForSpeaker(CHARACTERGUID_S_RC_BF_CorneredSourcerer_Sourcerer_b201a72c-8ead-4bbf-8612-fcd8c0944e52);
+DB_Dialogs(CHARACTERGUID_S_RC_BF_CorneredSourcerer_Sourcerer_b201a72c-8ead-4bbf-8612-fcd8c0944e52, "RC_BF_CorneredSourcerer_Sourcerer");
+
+PROC
+ReactOnKillCounter("RC_BF_CorneredSourcerer_Magisters")
+AND
+DB_CorneredSourcerer_Zone(_Var1)
+THEN
+NOT DB_CorneredSourcerer_Zone(_Var1);
+
+IF
+DB_CorneredSourcerer_MagisterTooClose(_Var1)
+AND
+DB_RC_BF_CorneredSourcerer_Magisters(_Var2)
+THEN
+TriggerRegisterForCharacter(_Var1, _Var2);
+
+IF
+CharacterEnteredTrigger((CHARACTERGUID)_Var1, (TRIGGERGUID)_Var2)
+AND
+DB_RC_BF_CorneredSourcerer_Magisters(_Var1)
+AND
+DB_CorneredSourcerer_MagisterTooClose(_Var2)
+THEN
+SetVarFixedString(CHARACTERGUID_S_RC_BF_CorneredSourcerer_Sourcerer_b201a72c-8ead-4bbf-8612-fcd8c0944e52, "currentState", "State_SuicidePortal");
+SetFaction(CHARACTERGUID_S_RC_BF_CorneredSourcerer_Sourcerer_b201a72c-8ead-4bbf-8612-fcd8c0944e52, "RC_BF_CorneredSourcerer_Demons");
+
+IF
+CharacterKilledBy(CHARACTERGUID_S_RC_BF_CorneredSourcerer_Sourcerer_b201a72c-8ead-4bbf-8612-fcd8c0944e52, _, (CHARACTERGUID)_Var2)
+THEN
+PROC_RC_BF_RegisterHannagKiller(_Var2);
+
+IF
+CharacterStatusApplied(CHARACTERGUID_S_RC_BF_CorneredSourcerer_Sourcerer_b201a72c-8ead-4bbf-8612-fcd8c0944e52, "TELEPORT_FALLING", (CHARACTERGUID)_Var1)
+THEN
+DB_RC_BF_CharacterTeleportedSourcerer(_Var1);
+
+IF
+CharacterStatusRemoved(CHARACTERGUID_S_RC_BF_CorneredSourcerer_Sourcerer_b201a72c-8ead-4bbf-8612-fcd8c0944e52, "TELEPORT_FALLING", _)
+AND
+DB_RC_BF_CharacterTeleportedSourcerer(_Var2)
+THEN
+NOT DB_RC_BF_CharacterTeleportedSourcerer(_Var2);
+
+PROC
+PROC_BF_CorneredSourcerer_RegisterTarget((CHARACTERGUID)_Var1)
+AND
+GetUUID(_Var1, _Var2)
+AND
+StringConcatenate("RC_BF_CorneredSourcerer_RegisterLavaTarget_", _Var2, _Var3)
+AND
+GetPosition(_Var1, _Var4, _Var5, _Var6)
+AND
+CharacterGetOwner(_Var1, _Var7)
+THEN
+DB_BF_CorneredSourcerer_RegisterTarget(_Var3, _Var4, _Var5, _Var6, _Var7);
+TimerLaunch(_Var3, 5000);
+
+IF
+CharacterDying(CHARACTERGUID_S_RC_BF_CorneredSourcerer_Sourcerer_b201a72c-8ead-4bbf-8612-fcd8c0944e52)
+AND
+GetSurfaceGroundAt(CHARACTERGUID_S_RC_BF_CorneredSourcerer_Sourcerer_b201a72c-8ead-4bbf-8612-fcd8c0944e52, "SurfaceLava")
+AND
+DB_BF_CorneredSourcerer_RegisterTarget(_, _Var2, _Var3, _Var4, _Var5)
+AND
+GetDistanceToPosition(CHARACTERGUID_S_RC_BF_CorneredSourcerer_Sourcerer_b201a72c-8ead-4bbf-8612-fcd8c0944e52, _Var2, _Var3, _Var4, _Var6)
+AND
+_Var6 <= 1.7
+THEN
+PROC_RC_BF_RegisterHannagKiller(_Var5);
+
+IF
+TimerFinished((STRING)_Var1)
+AND
+DB_BF_CorneredSourcerer_RegisterTarget(_Var1, _Var2, _Var3, _Var4, _Var5)
+THEN
+NOT DB_BF_CorneredSourcerer_RegisterTarget(_Var1, _Var2, _Var3, _Var4, _Var5);
+
+IF
+CharacterDying(CHARACTERGUID_S_RC_BF_CorneredSourcerer_Sourcerer_b201a72c-8ead-4bbf-8612-fcd8c0944e52)
+AND
+DB_RC_BF_CharacterTeleportedSourcerer(_Var1)
+THEN
+PROC_RC_BF_RegisterHannagKiller(_Var1);
+
+PROC
+PROC_RC_BF_RegisterHannagKiller((CHARACTERGUID)_Var1)
+AND
+DB_IsPlayer(_Var1)
+THEN
+UserSetFlag(_Var1, "RC_BF_KilledHannag");
+GlobalSetFlag("RC_BF_HannagKilledByPlayer");
+
+PROC
+PROC_RC_BF_RegisterHannagKiller((CHARACTERGUID)_Var1)
+AND
+QRY_IsSummonOrPartyFollower(_Var1)
+AND
+CharacterGetOwner(_Var1, _Var2)
+AND
+DB_IsPlayer(_Var2)
+THEN
+UserSetFlag(_Var2, "RC_BF_KilledHannag");
+GlobalSetFlag("RC_BF_HannagKilledByPlayer");
+
+IF
+GlobalFlagSet("RC_BF_HannagKilledByPlayer")
+THEN
+Proc_StartDialog(1, "RC_BF_AD_CorneredSourcerer_Lead_SourcererKilled", CHARACTERGUID_S_RC_BF_CorneredSourcerer_MagisterLead_0cbd14fe-ac44-414c-a7a9-89dfa2af71bf);
+
+IF
+ObjectFlagSet("RC_BF_KilledHannag", (CHARACTERGUID)_Var1, _)
+AND
+CharacterIsEnemy(_Var1, CHARACTERGUID_S_RC_BF_CorneredSourcerer_MagisterLead_0cbd14fe-ac44-414c-a7a9-89dfa2af71bf, 0)
+THEN
+CharacterSetRelationFactionToIndivFaction("RC_DF_CorneredSourcerers_Magisters", _Var1, 100);
+CharacterSetRelationIndivFactionToFaction(_Var1, "RC_DF_CorneredSourcerers_Magisters", 100);
+
+IF
+ObjectFlagSet("RC_BF_CorneredSourcerer_GetSkillBook", (GUIDSTRING)_Var1, _)
+THEN
+ItemTemplateAddTo("BOOK_Skill_Summoning_PlanarGateway_27c01b16-bf05-4794-9a4b-073e2e249b5f", _Var1, 1);
+
+IF
+StoryEvent((GUIDSTRING)_Var1, "RC_BF_CorneredSourcerer_LeadSpot")
+THEN
+Proc_StartDialog(0, "RC_BF_CorneredSourcerer_MagisterLead", CHARACTERGUID_S_RC_BF_CorneredSourcerer_MagisterLead_0cbd14fe-ac44-414c-a7a9-89dfa2af71bf, _Var1);
+
+IF
+ObjectEnteredCombat((CHARACTERGUID)_Var1, _)
+AND
+DB_RC_BF_CorneredSourcerer_Magisters(_Var1)
+THEN
+CharacterSetCanSpotSneakers(_Var1, 1);
+
+IF
+CharacterDying(CHARACTERGUID_S_RC_BF_CorneredSourcerer_Sourcerer_b201a72c-8ead-4bbf-8612-fcd8c0944e52)
+AND
+DB_RC_BF_CorneredSourcerer_Magisters(_Var1)
+THEN
+CharacterSetCanSpotSneakers(_Var1, 1);
+
+IF
+ObjectFlagSet("RC_BF_CorneredSourcerer_Lead_reward", (CHARACTERGUID)_Var1, _)
+THEN
+CharacterGiveReward(_Var1, "OnlyGold");
+
+IF
+ObjectFlagSet("RC_DW_Meistr_SourceKnowledge_Hannag", (CHARACTERGUID)_Var1, _)
+AND
+DB_CorneredSourcerer_Animals(_Var3)
+THEN
+NOT DB_CorneredSourcerer_Animals(_Var3);
+PlayEffect(_Var1, "RS3_FX_GP_ScriptedEvent_SourceJar_Death_launch_01");
+PlayEffect(_Var3, "RS3_FX_GP_ScriptedEvent_SourceJar_Death_Impact_01");
+CharacterDie(_Var3, 1, "Explode");
+
+IF
+ObjectFlagSet("RC_BF_LosePetPal", (CHARACTERGUID)_Var1, _)
+AND
+CharacterHasTalent(_Var1, "AnimalEmpathy", 1)
+THEN
+CharacterRemoveTalent(_Var1, "AnimalEmpathy");
+ClearTag(_Var1, "PETPAL");
+OpenMessageBox(_Var1, "RC_DF_LostPetpal");
+
+IF
+CharacterDied(CHARACTERGUID_S_RC_BF_CorneredSourcerer_BearCub1_d829b5d3-0d5b-4246-a69c-e87cda78032a)
+AND NOT
+DB_Dead(CHARACTERGUID_S_RC_BF_CorneredSourcerer_Bear_1c5934a0-05f8-41da-b4ad-52b6de2bfeac)
+AND
+GetDistanceTo(CHARACTERGUID_S_RC_BF_CorneredSourcerer_BearCub1_d829b5d3-0d5b-4246-a69c-e87cda78032a, CHARACTERGUID_S_RC_BF_CorneredSourcerer_Bear_1c5934a0-05f8-41da-b4ad-52b6de2bfeac, _Var1)
+AND
+_Var1 <= 15
+THEN
+ProcCharacterMoveTo(CHARACTERGUID_S_RC_BF_CorneredSourcerer_Bear_1c5934a0-05f8-41da-b4ad-52b6de2bfeac, CHARACTERGUID_S_RC_BF_CorneredSourcerer_BearCub1_d829b5d3-0d5b-4246-a69c-e87cda78032a, 0, "");
+
+IF
+CharacterDied(CHARACTERGUID_S_RC_BF_CorneredSourcerer_BearCub1_d829b5d3-0d5b-4246-a69c-e87cda78032a)
+AND NOT
+DB_Dead(CHARACTERGUID_S_RC_BF_CorneredSourcerer_Bear_1c5934a0-05f8-41da-b4ad-52b6de2bfeac)
+THEN
+CharacterSetReactionPriority(CHARACTERGUID_S_RC_BF_CorneredSourcerer_Bear_1c5934a0-05f8-41da-b4ad-52b6de2bfeac, "Wandering1", 0);
+CharacterSetReactionPriority(CHARACTERGUID_S_RC_BF_CorneredSourcerer_Bear_1c5934a0-05f8-41da-b4ad-52b6de2bfeac, "Wandering2", 0);
+
+IF
+CharacterDied(CHARACTERGUID_S_RC_BF_CorneredSourcerer_BearCub2_f2a69071-d7b0-4ea5-9516-86ac283953b0)
+AND NOT
+DB_Dead(CHARACTERGUID_S_RC_BF_CorneredSourcerer_Bear_1c5934a0-05f8-41da-b4ad-52b6de2bfeac)
+AND
+GetDistanceTo(CHARACTERGUID_S_RC_BF_CorneredSourcerer_BearCub2_f2a69071-d7b0-4ea5-9516-86ac283953b0, CHARACTERGUID_S_RC_BF_CorneredSourcerer_Bear_1c5934a0-05f8-41da-b4ad-52b6de2bfeac, _Var1)
+AND
+_Var1 <= 15
+THEN
+ProcCharacterMoveTo(CHARACTERGUID_S_RC_BF_CorneredSourcerer_Bear_1c5934a0-05f8-41da-b4ad-52b6de2bfeac, CHARACTERGUID_S_RC_BF_CorneredSourcerer_BearCub1_d829b5d3-0d5b-4246-a69c-e87cda78032a, 0, "");
+
+IF
+CharacterDied(CHARACTERGUID_S_RC_BF_CorneredSourcerer_BearCub2_f2a69071-d7b0-4ea5-9516-86ac283953b0)
+AND NOT
+DB_Dead(CHARACTERGUID_S_RC_BF_CorneredSourcerer_Bear_1c5934a0-05f8-41da-b4ad-52b6de2bfeac)
+THEN
+CharacterSetReactionPriority(CHARACTERGUID_S_RC_BF_CorneredSourcerer_Bear_1c5934a0-05f8-41da-b4ad-52b6de2bfeac, "Wandering1", 0);
+CharacterSetReactionPriority(CHARACTERGUID_S_RC_BF_CorneredSourcerer_Bear_1c5934a0-05f8-41da-b4ad-52b6de2bfeac, "Wandering2", 0);
+
+IF
+ObjectEnteredCombat((CHARACTERGUID)_Var1, _)
+AND
+DB_CorneredSourcerer_Bears(_Var1)
+AND
+DB_CorneredSourcerer_Bears(_Var3)
+THEN
+ProcForceStopDialog(_Var3);
+
+PROC
+ProcOneShotTriggerEntered((CHARACTERGUID)_Var1, TRIGGERGUID_S_RC_BF_CorneredSourcerer_SawMagister_3427d8d8-38d7-4149-9c16-bb2d99b2a74d)
+THEN
+StartVoiceBark("RC_BF_VB_SawMagister", _Var1);
+
+IF
+ObjectEnteredCombat((ITEMGUID)_Var1, _)
+AND
+DB_RC_DF_CorneredSourcerer_Rifts(_Var1, _, _, _)
+AND
+QueryOnlyOnce("RC_BF_CombatSave_CorneredSourcerer")
+THEN
+AutoSave();
+
+IF
+TextEventSet("riffraff")
+THEN
+TeleportTo(CHARACTERGUID_S_RC_BF_CorneredSourcerer_Sourcerer_b201a72c-8ead-4bbf-8612-fcd8c0944e52, TRIGGERGUID_S_RC_BF_CorneredSourcerer_Home_2_7aefabbd-e6f7-4a09-aa69-c5ff0d5e713d);
+DB_RC_BF_CorneredSourcererCastSpell(1);
+SetFaction(CHARACTERGUID_S_RC_BF_CorneredSourcerer_Sourcerer_b201a72c-8ead-4bbf-8612-fcd8c0944e52, "Evil NPC");
+CharacterUseSkill(CHARACTERGUID_S_RC_BF_CorneredSourcerer_Sourcerer_b201a72c-8ead-4bbf-8612-fcd8c0944e52, "Shout_Quest_HannagSuicide", CHARACTERGUID_S_RC_BF_CorneredSourcerer_Sourcerer_b201a72c-8ead-4bbf-8612-fcd8c0944e52, 1);
+CharacterDie(CHARACTERGUID_S_RC_BF_CorneredSourcerer_MagisterLead_0cbd14fe-ac44-414c-a7a9-89dfa2af71bf, 1, "DoT");
+CharacterDie(CHARACTERGUID_S_RC_BF_CorneredSourcerer_MagisterMinion1_ceb3514f-ec41-424a-b5e3-2c14c69a9502, 1, "DoT");
+CharacterDie(CHARACTERGUID_S_RC_BF_CorneredSourcerer_MagisterMinion2_4f124b9c-8ebb-4a21-a729-1f9c3d690447, 1, "DoT");
+
+IF
+DB_RC_DF_CorneredSourcerer_Rifts(_Var1, _Var2, _, _)
+THEN
+SetOnStage(_Var1, 0);
+SetFaction(_Var1, "RC_BF_CorneredSourcerer_Demons");
+TeleportTo(_Var1, _Var2);
+
+IF
+DB_RC_DF_CorneredSourcerer_RiftDemons(_Var1, _Var2, _Var3)
+THEN
+SetOnStage(_Var2, 0);
+SetFaction(_Var2, "RC_BF_CorneredSourcerer_Demons");
+DB_RC_DF_CorneredSourcerer_RiftDemon_Indexes(_Var1, 1);
+
+IF
+StoryEvent((ITEMGUID)_Var1, "RC_BF_CorneredSourcerer_SummonDemon")
+AND
+DB_RC_DF_CorneredSourcerer_RiftDemon_Indexes(_Var1, _Var2)
+AND
+DB_RC_DF_CorneredSourcerer_RiftDemons(_Var1, _Var3, _Var2)
+THEN
+TeleportTo(_Var3, _Var1);
+CharacterAppear(_Var3, 1, "");
+PlayEffect(_Var3, "RS3_FX_GP_ScriptedEvent_HannagPortal_01_Void_Summon");
+NOT DB_RC_DF_CorneredSourcerer_RiftDemons(_Var1, _Var3, _Var2);
+
+IF
+StoryEvent((ITEMGUID)_Var1, "RC_BF_CorneredSourcerer_SummonDemon")
+AND NOT
+DB_RC_DF_CorneredSourcerer_RiftDemons(_Var1, _, _)
+AND
+DB_RC_DF_CorneredSourcerer_RiftDemon_Indexes(_Var1, _Var4)
+THEN
+NOT DB_RC_DF_CorneredSourcerer_RiftDemon_Indexes(_Var1, _Var4);
+ObjectSetFlag(_Var1, "RC_BF_NoSummonsLeft");
+
+IF
+StoryEvent((ITEMGUID)_Var1, "RC_BF_CorneredSourcerer_SummonDemon")
+AND
+DB_RC_DF_CorneredSourcerer_RiftDemon_Indexes(_Var1, _Var2)
+AND
+IntegerSum(_Var2, 1, _Var3)
+THEN
+NOT DB_RC_DF_CorneredSourcerer_RiftDemon_Indexes(_Var1, _Var2);
+DB_RC_DF_CorneredSourcerer_RiftDemon_Indexes(_Var1, _Var3);
+
+IF
+AutomatedDialogStarted("RC_BF_AD_CorneredSourcerer_Combat", _)
+THEN
+DB_RC_BF_CorneredSourcererCastSpell(1);
+
+IF
+CharacterStatusApplied(CHARACTERGUID_S_RC_BF_CorneredSourcerer_Sourcerer_b201a72c-8ead-4bbf-8612-fcd8c0944e52, "DYING", CHARACTERGUID_S_RC_BF_CorneredSourcerer_Sourcerer_b201a72c-8ead-4bbf-8612-fcd8c0944e52)
+AND
+DB_RC_BF_CorneredSourcererCastSpell(1)
+AND
+QueryOnlyOnce("RC_DF_CornererSourcerer_SummonRifts")
+THEN
+PROC_LoopEffect("RS3_FX_GP_ScriptedEvent_Resurrection_01", CHARACTERGUID_S_RC_BF_CorneredSourcerer_Sourcerer_b201a72c-8ead-4bbf-8612-fcd8c0944e52, "RC_BF_HannagPromise", "RC_Main", "");
+Proc_CameraShakeAroundCharacter(CHARACTERGUID_S_RC_BF_CorneredSourcerer_Sourcerer_b201a72c-8ead-4bbf-8612-fcd8c0944e52, 60, 12);
+SetCombatGroupID(CHARACTERGUID_S_RC_BF_CorneredSourcerer_Sourcerer_b201a72c-8ead-4bbf-8612-fcd8c0944e52, "d527752e-33fc-4d7d-b41a-a8dae30782d8");
+Proc_StartDialog(1, "RC_BF_AD_CorneredSourcerer_Lead_SourcererDied", CHARACTERGUID_S_RC_BF_CorneredSourcerer_MagisterLead_0cbd14fe-ac44-414c-a7a9-89dfa2af71bf);
+Proc_RC_BF_CorneredSourcerer_RaisePortal(1);
+DB_RC_BF_CorneredSourcerer_LastPortalInd(1);
+
+PROC
+Proc_RC_BF_CorneredSourcerer_RaisePortal((INTEGER)_Var1)
+AND NOT
+ObjectIsInTrigger(CHARACTERGUID_S_RC_BF_CorneredSourcerer_Sourcerer_b201a72c-8ead-4bbf-8612-fcd8c0944e52, TRIGGERGUID_S_RC_BF_HannagDownstairs_0a07e5e8-4273-41f5-b4a3-a9b843386b7f, 1)
+AND
+DB_RC_DF_CorneredSourcerer_Rifts(_Var2, _Var3, _Var4, _Var1)
+THEN
+TeleportTo(_Var2, _Var3);
+SetOnStage(_Var2, 1);
+
+PROC
+Proc_RC_BF_CorneredSourcerer_RaisePortal((INTEGER)_Var1)
+AND
+ObjectIsInTrigger(CHARACTERGUID_S_RC_BF_CorneredSourcerer_Sourcerer_b201a72c-8ead-4bbf-8612-fcd8c0944e52, TRIGGERGUID_S_RC_BF_HannagDownstairs_0a07e5e8-4273-41f5-b4a3-a9b843386b7f, 1)
+AND
+DB_RC_DF_CorneredSourcerer_Rifts(_Var2, _Var3, _Var4, _Var1)
+THEN
+TeleportTo(_Var2, _Var4);
+SetOnStage(_Var2, 1);
+
+PROC
+Proc_RC_BF_CorneredSourcerer_RaisePortal((INTEGER)_Var1)
+AND NOT
+DB_RC_DF_CorneredSourcerer_Rifts(_, _, _, _Var1)
+AND
+ObjectIsOnStage(CHARACTERGUID_S_RC_BF_CorneredSourcerer_Sourcerer_Promised_48ee51f8-8691-4838-b1e6-ac7c1cec4aa4, 0)
+THEN
+CreateSurface(CHARACTERGUID_S_RC_BF_CorneredSourcerer_Sourcerer_b201a72c-8ead-4bbf-8612-fcd8c0944e52, "SurfaceNone", 2.5, 0);
+PROC_StopLoopEffect(CHARACTERGUID_S_RC_BF_CorneredSourcerer_Sourcerer_b201a72c-8ead-4bbf-8612-fcd8c0944e52, "RC_BF_HannagPromise");
+TeleportTo(CHARACTERGUID_S_RC_BF_CorneredSourcerer_Sourcerer_Promised_48ee51f8-8691-4838-b1e6-ac7c1cec4aa4, CHARACTERGUID_S_RC_BF_CorneredSourcerer_Sourcerer_b201a72c-8ead-4bbf-8612-fcd8c0944e52);
+SetOnStage(CHARACTERGUID_S_RC_BF_CorneredSourcerer_Sourcerer_b201a72c-8ead-4bbf-8612-fcd8c0944e52, 0);
+
+PROC
+Proc_RC_BF_CorneredSourcerer_RaisePortal((INTEGER)_Var1)
+AND NOT
+DB_RC_DF_CorneredSourcerer_Rifts(_, _, _, _Var1)
+AND
+GetPosition(CHARACTERGUID_S_RC_BF_CorneredSourcerer_Sourcerer_Promised_48ee51f8-8691-4838-b1e6-ac7c1cec4aa4, _Var5, _Var6, _Var7)
+AND
+ObjectIsOnStage(CHARACTERGUID_S_RC_BF_CorneredSourcerer_Sourcerer_Promised_48ee51f8-8691-4838-b1e6-ac7c1cec4aa4, 0)
+THEN
+CharacterAppear(CHARACTERGUID_S_RC_BF_CorneredSourcerer_Sourcerer_Promised_48ee51f8-8691-4838-b1e6-ac7c1cec4aa4, 1, "");
+SetFaction(CHARACTERGUID_S_RC_BF_CorneredSourcerer_Sourcerer_Promised_48ee51f8-8691-4838-b1e6-ac7c1cec4aa4, "RC_BF_CorneredSourcerer_Demons");
+PlayEffectAtPosition("RS3_FX_GP_ScriptedEvent_Replenish_SourcePoint_01", _Var5, _Var6, _Var7);
+
+IF
+CharacterWentOnStage(CHARACTERGUID_S_RC_BF_CorneredSourcerer_Sourcerer_Promised_48ee51f8-8691-4838-b1e6-ac7c1cec4aa4, 1)
+THEN
+PlayEffect(CHARACTERGUID_S_RC_BF_CorneredSourcerer_Sourcerer_Promised_48ee51f8-8691-4838-b1e6-ac7c1cec4aa4, "RS3_FX_GP_ScriptedEvent_Replenish_SourcePoint_01");
+ProcObjectTimer(CHARACTERGUID_S_RC_BF_CorneredSourcerer_Sourcerer_Promised_48ee51f8-8691-4838-b1e6-ac7c1cec4aa4, "Timer_RC_DF_HannagResurrectTP", 5000);
+
+PROC
+ProcObjectTimerFinished(CHARACTERGUID_S_RC_BF_CorneredSourcerer_Sourcerer_b201a72c-8ead-4bbf-8612-fcd8c0944e52, "Timer_RC_DF_HannagResurrectTP")
+THEN
+TeleportTo(CHARACTERGUID_S_RC_BF_CorneredSourcerer_Sourcerer_b201a72c-8ead-4bbf-8612-fcd8c0944e52, TRIGGERGUID_S_RC_BF_RiftSpot_Hannag_2de9f55e-d0c0-4e74-8b73-388b07ed5049);
+
+IF
+ObjectEnteredCombat(ITEMGUID_S_RC_BF_CorneredSourcerer_Portal4_add315c5-91dd-4898-a46c-67a4a6d1f402, _)
+THEN
+JumpToTurn(ITEMGUID_S_RC_BF_CorneredSourcerer_Portal4_add315c5-91dd-4898-a46c-67a4a6d1f402);
+
+IF
+ObjectEnteredCombat(ITEMGUID_S_RC_BF_CorneredSourcerer_Portal5_fc951e50-28e7-4f3e-9019-8431fd5292c1, _)
+THEN
+JumpToTurn(ITEMGUID_S_RC_BF_CorneredSourcerer_Portal5_fc951e50-28e7-4f3e-9019-8431fd5292c1);
+
+IF
+ObjectEnteredCombat(CHARACTERGUID_S_RC_BF_CorneredSourcerer_Sourcerer_Promised_48ee51f8-8691-4838-b1e6-ac7c1cec4aa4, (INTEGER)_Var1)
+THEN
+JumpToTurn(CHARACTERGUID_S_RC_BF_CorneredSourcerer_Sourcerer_Promised_48ee51f8-8691-4838-b1e6-ac7c1cec4aa4);
+
+IF
+ObjectEnteredCombat(CHARACTERGUID_S_RC_BF_CorneredSourcerer_Sourcerer_Promised_48ee51f8-8691-4838-b1e6-ac7c1cec4aa4, (INTEGER)_Var1)
+AND
+DB_IsPlayer(_Var2)
+AND
+DB_CombatCharacters(_Var2, _Var1)
+THEN
+UserSetFlag(_Var2, "QuestUpdate_RC_BF_CorneredSourcerer_HannagSworn");
+
+IF
+CharacterWentOnStage((CHARACTERGUID)_Var1, 1)
+AND
+DB_RC_DF_CorneredSourcerer_RiftDemons(_, _Var1, _)
+AND
+GetPosition(_Var1, _Var4, _Var5, _Var6)
+THEN
+PlayEffect(_Var1, "RS3_FX_GP_ScriptedEvent_HannagPortal_01_Void_Summon");
+
+IF
+ItemDestroyed((ITEMGUID)_Var1)
+AND
+DB_RC_DF_CorneredSourcerer_Rifts(_Var1, _Var2, _Var3, _Var4)
+THEN
+NOT DB_RC_DF_CorneredSourcerer_Rifts(_Var1, _Var2, _Var3, _Var4);
+Proc_RC_BF_CorneredSourcerer_SummonNewRift();
+
+PROC
+Proc_RC_BF_CorneredSourcerer_SummonNewRift()
+AND
+DB_RC_BF_CorneredSourcerer_LastPortalInd(_Var1)
+AND
+IntegerSum(_Var1, 1, _Var2)
+THEN
+NOT DB_RC_BF_CorneredSourcerer_LastPortalInd(_Var1);
+DB_RC_BF_CorneredSourcerer_LastPortalInd(_Var2);
+Proc_RC_BF_CorneredSourcerer_RaisePortal(_Var2);
+
+IF
+CharacterDied(CHARACTERGUID_S_RC_BF_CorneredSourcerer_Sourcerer_b201a72c-8ead-4bbf-8612-fcd8c0944e52)
+AND
+DB_RC_BF_CorneredSourcerer_Magisters(_Var1)
+THEN
+SetVarFixedString(_Var1, "currentState", "State_WonFight");
+CharacterSetCanSpotSneakers(_Var1, 1);
+
+IF
+CharacterLeftTrigger(CHARACTERGUID_S_RC_BF_CorneredSourcerer_Sourcerer_b201a72c-8ead-4bbf-8612-fcd8c0944e52, (TRIGGERGUID)_Var1)
+AND
+DB_CorneredSourcerer_Zone(_Var1)
+AND
+GetVarFixedString(CHARACTERGUID_S_RC_BF_CorneredSourcerer_Sourcerer_b201a72c-8ead-4bbf-8612-fcd8c0944e52, "currentAction", _Var2)
+THEN
+CharacterSetReactionPriority(CHARACTERGUID_S_RC_BF_CorneredSourcerer_Sourcerer_b201a72c-8ead-4bbf-8612-fcd8c0944e52, _Var2, 0);
+SetVarFixedString(CHARACTERGUID_S_RC_BF_CorneredSourcerer_Sourcerer_b201a72c-8ead-4bbf-8612-fcd8c0944e52, "currentAction", "");
+
+IF
+CharacterLeftTrigger(CHARACTERGUID_S_RC_BF_CorneredSourcerer_Sourcerer_b201a72c-8ead-4bbf-8612-fcd8c0944e52, (TRIGGERGUID)_Var1)
+AND
+DB_CorneredSourcerer_Zone(_Var1)
+THEN
+SetVarFixedString(CHARACTERGUID_S_RC_BF_CorneredSourcerer_Sourcerer_b201a72c-8ead-4bbf-8612-fcd8c0944e52, "currentState", "State_SuicidePortal");
+SetFaction(CHARACTERGUID_S_RC_BF_CorneredSourcerer_Sourcerer_b201a72c-8ead-4bbf-8612-fcd8c0944e52, "RC_BF_CorneredSourcerer_Demons");
+
+IF
+AutomatedDialogEnded("RC_BF_AD_CorneredSourcerer_Combat", _)
+AND
+DB_CombatCharacters(CHARACTERGUID_S_RC_BF_CorneredSourcerer_Sourcerer_b201a72c-8ead-4bbf-8612-fcd8c0944e52, _Var2)
+AND
+DB_CombatCharacters(_Var3, _Var2)
+AND
+DB_IsPlayer(_Var3)
+THEN
+UserSetFlag(_Var3, "RC_BF_CorneredSourcerer_HannagDied", 0);
+
+IF
+AutomatedDialogEnded("RC_BF_AD_CorneredSourcerer_Combat", _)
+AND
+DB_IsPlayer(_Var2)
+AND
+GetDistanceTo(_Var2, CHARACTERGUID_S_RC_BF_CorneredSourcerer_Sourcerer_b201a72c-8ead-4bbf-8612-fcd8c0944e52, _Var3)
+AND
+_Var3 <= 25
+THEN
+UserSetFlag(_Var2, "RC_BF_CorneredSourcerer_HannagDied", 0);
+
+IF
+ObjectFlagSet("RC_BF_CorneredSourcerer_HannagDied", (CHARACTERGUID)_Var1, _)
+AND
+CharacterIsEnemy(_Var1, CHARACTERGUID_S_RC_BF_CorneredSourcerer_MagisterLead_0cbd14fe-ac44-414c-a7a9-89dfa2af71bf, 0)
+THEN
+CharacterSetRelationFactionToIndivFaction("RC_DF_CorneredSourcerers_Magisters", _Var1, 100);
+CharacterSetRelationIndivFactionToFaction(_Var1, "RC_DF_CorneredSourcerers_Magisters", 100);
+
+IF
+ObjectFlagSet("QuestUpdate_RC_BF_CorneredSourcerer_LearnApprentice", (CHARACTERGUID)_Var1, _)
+AND
+UserGetFlag(_Var1, "QuestUpdate_RC_OIL_ThirdHouse_SourcererDead", 1)
+THEN
+ObjectSetFlag(_Var1, "QuestUpdate_RC_BF_CorneredSourcerer_ToldApprenticeDead");
+
+IF
+CharacterDied(CHARACTERGUID_S_RC_BF_CorneredSourcerer_MagisterLead_0cbd14fe-ac44-414c-a7a9-89dfa2af71bf)
+AND
+DB_Dead(CHARACTERGUID_S_RC_BF_CorneredSourcerer_Sourcerer_b201a72c-8ead-4bbf-8612-fcd8c0944e52)
+AND
+DB_IsPlayer(_Var1)
+THEN
+ObjectSetFlag(_Var1, "QuestUpdate_RC_BF_CorneredSourcerer_AllDead", 0);
+
+IF
+CharacterDied(CHARACTERGUID_S_RC_BF_CorneredSourcerer_Sourcerer_b201a72c-8ead-4bbf-8612-fcd8c0944e52)
+AND
+DB_Dead(CHARACTERGUID_S_RC_BF_CorneredSourcerer_MagisterLead_0cbd14fe-ac44-414c-a7a9-89dfa2af71bf)
+AND
+DB_IsPlayer(_Var1)
+THEN
+ObjectSetFlag(_Var1, "QuestUpdate_RC_BF_CorneredSourcerer_AllDead", 0);
+
+IF
+GlobalFlagSet("RC_BF_CorneredSourcerer_Relaxed")
+THEN
+SetTag(CHARACTERGUID_S_RC_BF_CorneredSourcerer_Sourcerer_b201a72c-8ead-4bbf-8612-fcd8c0944e52, "TRADER");
+CharacterSetCanTrade(CHARACTERGUID_S_RC_BF_CorneredSourcerer_Sourcerer_b201a72c-8ead-4bbf-8612-fcd8c0944e52, 1);
+
+
+EXITSECTION
+ENDEXITSECTION
+
+ParentTargetEdge "ReapersCoast"

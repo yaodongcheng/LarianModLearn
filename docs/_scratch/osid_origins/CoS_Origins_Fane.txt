@@ -1,0 +1,28 @@
+Version 1
+SubGoalCombiner SGC_AND
+
+INITSECTION
+DB_Origins_Fane_TempleTrigger(TRIGGERGUID_S_CoS_SUB_Temples_Lizard_0a009ed0-61f5-4670-9d26-1417ebf02922);
+DB_Origins_Fane_TempleTrigger(TRIGGERGUID_S_CoS_SUB_Temples_Human_1d089d37-fc5e-4cc6-807e-51d0535dc0cc);
+DB_Origins_Fane_TempleTrigger(TRIGGERGUID_S_CoS_SUB_Temples_Imp_11361b1e-7609-41bd-9334-fadb26024a9d);
+DB_Origins_Fane_TempleTrigger(TRIGGERGUID_S_CoS_SUB_Temples_Lizard_0a009ed0-61f5-4670-9d26-1417ebf02922);
+DB_Origins_Fane_TempleTrigger(TRIGGERGUID_S_CoS_SUB_Temples_Orc_Outer_822f3b48-7129-46b4-8de9-260d87f0dd19);
+DB_Origins_Fane_TempleTrigger(TRIGGERGUID_S_CoS_SUB_Temples_Wizard_b339683b-fb87-4fe5-93ab-599970df44af);
+DB_Origins_Fane_TempleTrigger(TRIGGERGUID_S_CoS_SUB_Temples_LunarShrine_1f465afc-c57c-4f4b-9860-d874655f3444);
+DB_Origins_Fane_TempleTrigger(TRIGGERGUID_S_CoS_SUB_Temples_DwarfOuter_49078452-7317-47ba-9d57-67d17227d6f3);
+DB_Origins_Fane_TempleTrigger(TRIGGERGUID_S_CoS_SUB_Temples_Elf_b3f134d0-e320-4bec-802c-6a093d291363);
+
+KBSECTION
+IF
+CharacterEnteredTrigger(CHARACTERGUID_S_Player_Fane_02a77f1f-872b-49ca-91ab-32098c443beb, (TRIGGERGUID)_Var1)
+AND
+DB_Origins_Fane_TempleTrigger(_Var1)
+THEN
+ObjectSetFlag(CHARACTERGUID_S_Player_Fane_02a77f1f-872b-49ca-91ab-32098c443beb, "CoS_Fane_SawTemple");
+GoalCompleted;
+
+
+EXITSECTION
+ENDEXITSECTION
+
+ParentTargetEdge "CouncilOfSeven"

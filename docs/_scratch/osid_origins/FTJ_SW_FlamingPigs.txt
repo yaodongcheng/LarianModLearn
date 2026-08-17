@@ -1,0 +1,549 @@
+Version 1
+SubGoalCombiner SGC_AND
+
+INITSECTION
+DB_FTW_SW_FlamingPigs(CHARACTERGUID_FTJ_FlamingPig_001_11f09d54-c36f-48e4-8941-22e2b4460027);
+DB_FTW_SW_FlamingPigs(CHARACTERGUID_FTJ_FlamingPig_002_5d4a5363-db5b-4560-988d-688bfa9029f1);
+DB_FTW_SW_FlamingPigs(CHARACTERGUID_FTJ_FlamingPig_003_af836062-5b68-4ff8-bc4b-5e3adc08d21a);
+DB_FTW_SW_FlamingPigs(CHARACTERGUID_FTJ_FlamingPig_004_581c15cc-49c1-4174-89cc-e2d0b707b5f3);
+DB_FTW_SW_FlamingPigs(CHARACTERGUID_FTJ_FlamingPig_005_4b63dc21-611f-4d36-bd7c-7d9f9091bae5);
+DB_Dialogs(CHARACTERGUID_FTJ_FlamingPig_001_11f09d54-c36f-48e4-8941-22e2b4460027, "FTJ_SW_FlamingPig_001");
+DB_Dialogs(CHARACTERGUID_FTJ_FlamingPig_002_5d4a5363-db5b-4560-988d-688bfa9029f1, "FTJ_SW_FlamingPig_002");
+DB_Dialogs(CHARACTERGUID_FTJ_FlamingPig_003_af836062-5b68-4ff8-bc4b-5e3adc08d21a, "FTJ_SW_FlamingPig_003");
+DB_Dialogs(CHARACTERGUID_FTJ_FlamingPig_004_581c15cc-49c1-4174-89cc-e2d0b707b5f3, "FTJ_SW_FlamingPig_004");
+DB_Dialogs(CHARACTERGUID_FTJ_FlamingPig_005_4b63dc21-611f-4d36-bd7c-7d9f9091bae5, "FTJ_SW_FlamingPig_005");
+SetOnStage(CHARACTERGUID_S_FTJ_FlamingPigsGuardian_8b81e540-4d4e-40d9-af53-eca6f5ad72bd, 0);
+DB_Dialogs(CHARACTERGUID_S_FTJ_SW_RestoredPig_da63cfca-291f-48af-961d-139268d7ae16, "FTJ_SW_RestoredPig");
+DB_Dialogs(CHARACTERGUID_S_FTJ_SW_RestoredPig_Cured_51c10663-5a0e-4166-a384-813829e6e7bb, "FTJ_SW_RestoredPig_Cured");
+SetOnStage(CHARACTERGUID_S_FTJ_SW_RestoredPig_da63cfca-291f-48af-961d-139268d7ae16, 0);
+SetOnStage(CHARACTERGUID_S_FTJ_SW_RestoredPig_Cured_51c10663-5a0e-4166-a384-813829e6e7bb, 0);
+ProcTriggerRegisterForPlayers(TRIGGERGUID_S_FTJ_SW_KerbanReactionCloud1_271be1ff-3f13-44e8-9f40-f1ac650be6d7);
+
+KBSECTION
+IF
+CharacterSawCharacter((CHARACTERGUID)_Var1, (CHARACTERGUID)_Var2)
+AND
+DB_IsPlayer(_Var1)
+AND
+DB_FTW_SW_FlamingPigs(_Var2)
+AND
+QueryOnlyOnce("FTJ_SW_SawFlamingPigsVB_Once")
+THEN
+StartVoiceBark("FTJ_SW_VB_SawFlamingPigs", _Var1);
+
+IF
+StoryEvent((GUIDSTRING)_Var1, "FTJ_SW_FlamingPigDialogStart_1")
+AND NOT
+DB_FTJ_SW_OncePerPig(CHARACTERGUID_FTJ_FlamingPig_001_11f09d54-c36f-48e4-8941-22e2b4460027)
+AND
+QueryOnlyOnce("FTJ_SW_FlamingPigDialogStart")
+THEN
+Proc_StartDialog(0, "FTJ_SW_FlamingPig", CHARACTERGUID_FTJ_FlamingPig_001_11f09d54-c36f-48e4-8941-22e2b4460027, _Var1);
+
+IF
+StoryEvent((GUIDSTRING)_Var1, "FTJ_SW_FlamingPigDialogStart_2")
+AND NOT
+DB_FTJ_SW_OncePerPig(CHARACTERGUID_FTJ_FlamingPig_002_5d4a5363-db5b-4560-988d-688bfa9029f1)
+AND
+QueryOnlyOnce("FTJ_SW_FlamingPigDialogStart")
+THEN
+Proc_StartDialog(0, "FTJ_SW_FlamingPig", CHARACTERGUID_FTJ_FlamingPig_002_5d4a5363-db5b-4560-988d-688bfa9029f1, _Var1);
+
+IF
+StoryEvent((GUIDSTRING)_Var1, "FTJ_SW_FlamingPigDialogStart_3")
+AND NOT
+DB_FTJ_SW_OncePerPig(CHARACTERGUID_FTJ_FlamingPig_003_af836062-5b68-4ff8-bc4b-5e3adc08d21a)
+AND
+QueryOnlyOnce("FTJ_SW_FlamingPigDialogStart")
+THEN
+Proc_StartDialog(0, "FTJ_SW_FlamingPig", CHARACTERGUID_FTJ_FlamingPig_003_af836062-5b68-4ff8-bc4b-5e3adc08d21a, _Var1);
+
+IF
+StoryEvent((GUIDSTRING)_Var1, "FTJ_SW_FlamingPigDialogStart_4")
+AND NOT
+DB_FTJ_SW_OncePerPig(CHARACTERGUID_FTJ_FlamingPig_004_581c15cc-49c1-4174-89cc-e2d0b707b5f3)
+AND
+QueryOnlyOnce("FTJ_SW_FlamingPigDialogStart")
+THEN
+Proc_StartDialog(0, "FTJ_SW_FlamingPig", CHARACTERGUID_FTJ_FlamingPig_004_581c15cc-49c1-4174-89cc-e2d0b707b5f3, _Var1);
+
+IF
+StoryEvent((GUIDSTRING)_Var1, "FTJ_SW_FlamingPigDialogStart_5")
+AND NOT
+DB_FTJ_SW_OncePerPig(CHARACTERGUID_FTJ_FlamingPig_005_4b63dc21-611f-4d36-bd7c-7d9f9091bae5)
+AND
+QueryOnlyOnce("FTJ_SW_FlamingPigDialogStart")
+THEN
+Proc_StartDialog(0, "FTJ_SW_FlamingPig", CHARACTERGUID_FTJ_FlamingPig_005_4b63dc21-611f-4d36-bd7c-7d9f9091bae5, _Var1);
+
+IF
+DialogStarted("FTJ_SW_FlamingPig", (INTEGER)_Var1)
+AND
+DialogGetInvolvedPlayer(_Var1, 1, _Var2)
+AND
+CharacterHasSkill(_Var2, "Target_Bless", 1)
+THEN
+ObjectSetFlag(_Var2, "FTJ_SW_PlayerHasBlessSpell");
+
+IF
+DialogEnded("FTJ_SW_FlamingPig", (INTEGER)_Var1)
+AND
+DialogGetInvolvedPlayer(_Var1, 1, _Var2)
+AND
+ObjectGetFlag(_Var2, "FTJ_SW_PlayerHasBlessSpell", 1)
+THEN
+ObjectClearFlag(_Var2, "FTJ_SW_PlayerHasBlessSpell", 0);
+
+IF
+CharacterStatusApplied((CHARACTERGUID)_Var1, "HOLY_FIRE", (CHARACTERGUID)_Var2)
+AND
+DB_FTW_SW_FlamingPigs(_Var1)
+AND
+DB_IsPlayer(_Var2)
+THEN
+Proc_FTJ_SW_FlamingPigsStatusCheck(_Var1, _Var2);
+
+IF
+CharacterStatusApplied((CHARACTERGUID)_Var1, "BLESSED", (CHARACTERGUID)_Var2)
+AND
+DB_FTW_SW_FlamingPigs(_Var1)
+AND
+DB_IsPlayer(_Var2)
+THEN
+Proc_FTJ_SW_FlamingPigsStatusCheck(_Var1, _Var2);
+
+IF
+CharacterStatusRemoved((CHARACTERGUID)_Var1, "PERMANENT_NECROFIRE", (GUIDSTRING)_Var2)
+AND
+_Var2 == NULL_00000000-0000-0000-0000-000000000000
+AND
+GetClosestAlivePlayer(_Var1, _Var3, _)
+AND
+DB_FTW_SW_FlamingPigs(_Var1)
+THEN
+Proc_FTJ_SW_FlamingPigsStatusCheck(_Var1, _Var3);
+
+PROC
+Proc_FTJ_SW_FlamingPigsStatusCheck((CHARACTERGUID)_Var1, (CHARACTERGUID)_Var2)
+AND NOT
+DB_FTJ_SW_OncePerPig(_Var1)
+AND
+CharacterIsDead(_Var1, 0)
+THEN
+CharacterLookAt(_Var1, _Var2);
+SetHasDialog(_Var1, 0);
+PartyAddExperience(_Var2, 1, 5, 2);
+DB_FTJ_SW_OncePerPig(_Var1);
+PartySetFlag(_Var2, "QuestUpdate_FTJ_SW_CursedPig_BlessedPig");
+
+PROC
+Proc_FTJ_SW_FlamingPigsStatusCheck((CHARACTERGUID)_Var1, (CHARACTERGUID)_Var2)
+AND
+CharacterIsDead(_Var1, 0)
+AND
+IsTagged(_Var2, "PETPAL", 1)
+AND
+GetUUID(_Var1, _Var3)
+AND
+StringConcatenate(_Var3, "_FTJ_SW_PigThankPetpal", _Var4)
+AND
+QueryOnlyOnce(_Var4)
+THEN
+ObjectSetFlag(_Var1, "FTJ_SW_PigThankPetpal");
+Proc_StartDialog(1, "FTJ_SW_AD_FlamingPigThanksPlayer", _Var1);
+ObjectSetFlag(_Var2, "FTJ_SW_CuredPig", 0);
+PartySetFlag(_Var2, "QuestUpdate_FTJ_SW_CursedPig_BlessedPig");
+
+PROC
+Proc_FTJ_SW_FlamingPigsStatusCheck((CHARACTERGUID)_Var1, (CHARACTERGUID)_Var2)
+AND
+CharacterIsDead(_Var1, 0)
+AND
+IsTagged(_Var2, "PETPAL", 0)
+THEN
+Proc_StartDialog(1, "FTJ_SW_AD_FlamingPigThanksPlayer", _Var1);
+ObjectSetFlag(_Var2, "FTJ_SW_CuredPig", 0);
+PartySetFlag(_Var2, "QuestUpdate_FTJ_SW_CursedPig_BlessedPig");
+
+PROC
+Proc_FTJ_SW_FlamingPigsStatusCheck((CHARACTERGUID)_Var1, (CHARACTERGUID)_Var2)
+AND NOT
+QRY_FTJ_SW_FlamingPigRemaining()
+AND
+PartyGetFlag(_Var2, "QuestUpdate_FTJ_SW_CursedPig_MetBlessedPig", 0)
+THEN
+PartySetFlag(_Var2, "QuestUpdate_FTJ_SW_CursedPig_BlessedAllPigs");
+
+QRY
+QRY_FTJ_SW_FlamingPigRemaining()
+AND
+DB_FTW_SW_FlamingPigs(_Var1)
+AND NOT
+DB_FTJ_SW_OncePerPig(_Var1)
+THEN
+DB_NOOP(1);
+
+IF
+DialogEnded("FTJ_SW_FlamingPig", (INTEGER)_Var1)
+AND
+DialogGetInvolvedNPC(_Var1, 1, _Var2)
+AND
+GetClosestAlivePlayer(_Var2, _Var3, _)
+AND
+DB_FTJ_SW_OncePerPig(_Var2)
+AND
+QueryOnlyOnce("FTJ_SW_SummonGuardian_Once")
+THEN
+ProcObjectTimer(_Var3, "FTJ_FlamingPigsGuardian", 2200);
+
+IF
+AutomatedDialogStarted("FTJ_SW_AD_FlamingPigThanksPlayer", (INTEGER)_Var1)
+AND
+DialogGetInvolvedNPC(_Var1, 1, _Var2)
+AND
+GetClosestAlivePlayer(_Var2, _Var3, _)
+AND
+QueryOnlyOnce("FTJ_SW_SummonGuardian_Once")
+THEN
+ProcObjectTimer(_Var3, "FTJ_FlamingPigsGuardian", 2200);
+
+PROC
+ProcObjectTimerFinished((CHARACTERGUID)_Var1, "FTJ_FlamingPigsGuardian")
+THEN
+CharacterAppearAt(CHARACTERGUID_S_FTJ_FlamingPigsGuardian_8b81e540-4d4e-40d9-af53-eca6f5ad72bd, _Var1, 1, "");
+PlayEffect(CHARACTERGUID_S_FTJ_FlamingPigsGuardian_8b81e540-4d4e-40d9-af53-eca6f5ad72bd, "RS3_FX_GP_ScriptedEvent_Teleport_GenericSmoke_02");
+PartySetFlag(_Var1, "QuestUpdate_FTJ_SW_CursedPig_MeetGuardian");
+
+IF
+StoryEvent((CHARACTERGUID)_Var1, "FTJ_SW_FlamingPigGuardianDialogStart")
+THEN
+Proc_StartDialog(0, "FTJ_SW_FlamingPigGuardian", CHARACTERGUID_S_FTJ_FlamingPigsGuardian_8b81e540-4d4e-40d9-af53-eca6f5ad72bd, _Var1);
+
+IF
+DialogEnded("FTJ_SW_FlamingPigGuardian", _)
+AND
+GlobalGetFlag("FTJ_SW_FlamingPigsGuardianHostile", 1)
+THEN
+ProcSetRelationToPlayers(CHARACTERGUID_S_FTJ_FlamingPigsGuardian_8b81e540-4d4e-40d9-af53-eca6f5ad72bd, 0);
+
+PROC
+Proc_ObjectLeftCombat(CHARACTERGUID_S_FTJ_FlamingPigsGuardian_8b81e540-4d4e-40d9-af53-eca6f5ad72bd, (INTEGER)_Var1)
+AND
+DB_Dead(CHARACTERGUID_S_FTJ_FlamingPigsGuardian_8b81e540-4d4e-40d9-af53-eca6f5ad72bd)
+AND
+DB_IsPlayer(_Var2)
+AND
+DB_CombatCharacters(_Var2, _Var1)
+THEN
+PartySetFlag(_Var2, "QuestUpdate_FTJ_SW_CursedPig_FightGuardian");
+
+PROC
+Proc_ObjectLeftCombat(CHARACTERGUID_S_FTJ_FlamingPigsGuardian_8b81e540-4d4e-40d9-af53-eca6f5ad72bd, (INTEGER)_Var1)
+AND
+DB_Dead(CHARACTERGUID_S_FTJ_FlamingPigsGuardian_8b81e540-4d4e-40d9-af53-eca6f5ad72bd)
+AND
+DB_IsPlayer(_Var2)
+AND
+DB_WasInCombat(_Var2, _Var1)
+THEN
+PartySetFlag(_Var2, "QuestUpdate_FTJ_SW_CursedPig_FightGuardian");
+
+IF
+CharacterKilledBy(CHARACTERGUID_S_FTJ_FlamingPigsGuardian_8b81e540-4d4e-40d9-af53-eca6f5ad72bd, (CHARACTERGUID)_Var1, _)
+AND
+DB_IsPlayer(_Var1)
+THEN
+PartySetFlag(_Var1, "QuestUpdate_FTJ_SW_CursedPig_FightGuardian");
+
+IF
+DialogEnded("FTJ_SW_FlamingPigGuardian", (INTEGER)_Var1)
+AND
+GlobalGetFlag("FTJ_SW_FlamingPigsGuardianPersuadeSuccess", 1)
+AND
+DialogGetInvolvedPlayer(_Var1, 1, _Var2)
+THEN
+PartySetFlag(_Var2, "FTJ_SW_FlamingPigsGuardianPersuadeSuccess");
+PartySetFlag(_Var2, "QuestUpdate_FTJ_SW_CursedPig_PersuadeGuardian");
+CharacterSetAnimationOverride(CHARACTERGUID_S_FTJ_FlamingPigsGuardian_8b81e540-4d4e-40d9-af53-eca6f5ad72bd, "die_dot");
+TimerLaunch("FTJ_BraccusPigGuardianDie", 2400);
+TimerLaunch("FTJ_BraccusPigGuardianDieAD", 100);
+SetCanFight(CHARACTERGUID_S_FTJ_FlamingPigsGuardian_8b81e540-4d4e-40d9-af53-eca6f5ad72bd, 0);
+ProcSetInvulnerable(CHARACTERGUID_S_FTJ_FlamingPigsGuardian_8b81e540-4d4e-40d9-af53-eca6f5ad72bd, 1);
+PartyAddExperience(_Var2, 1, 5, 10);
+
+IF
+TimerFinished("FTJ_BraccusPigGuardianDieAD")
+THEN
+PlayEffect(CHARACTERGUID_S_FTJ_FlamingPigsGuardian_8b81e540-4d4e-40d9-af53-eca6f5ad72bd, "RS3_FX_GP_ScriptedEvent_FTJ_FlamingPigsGuardian_Appear_01");
+Proc_StartDialog(1, "FTJ_SW_AD_PigGuardianDies", CHARACTERGUID_S_FTJ_FlamingPigsGuardian_8b81e540-4d4e-40d9-af53-eca6f5ad72bd);
+
+IF
+TimerFinished("FTJ_BraccusPigGuardianDie")
+THEN
+ProcSetInvulnerable(CHARACTERGUID_S_FTJ_FlamingPigsGuardian_8b81e540-4d4e-40d9-af53-eca6f5ad72bd, 0);
+CharacterDie(CHARACTERGUID_S_FTJ_FlamingPigsGuardian_8b81e540-4d4e-40d9-af53-eca6f5ad72bd, 1, "DoT");
+
+IF
+TextEventSet("pigguard")
+AND
+CharacterGetHostCharacter(_Var1)
+THEN
+ProcObjectTimer(_Var1, "FTJ_FlamingPigsGuardian", 2000);
+
+IF
+TextEventSet("pigguardleave")
+AND
+CharacterGetHostCharacter(_Var1)
+THEN
+PlayEffect(CHARACTERGUID_S_FTJ_FlamingPigsGuardian_8b81e540-4d4e-40d9-af53-eca6f5ad72bd, "RS3_FX_GP_ScriptedEvent_Teleport_GenericSmoke_02");
+PlayAnimation(CHARACTERGUID_S_FTJ_FlamingPigsGuardian_8b81e540-4d4e-40d9-af53-eca6f5ad72bd, "climb_DownAttach", "GEN_GoOffStage");
+PartyAddExperience(_Var1, 1, 5, 10);
+
+IF
+CharacterEnteredTrigger((CHARACTERGUID)_Var1, TRIGGERGUID_S_FTJ_SW_KerbanReactionCloud1_271be1ff-3f13-44e8-9f40-f1ac650be6d7)
+AND
+PartyGetFlag(_Var1, "QuestUpdate_FTJ_SW_CursedPig_MetBlessedPig", 1)
+AND
+PartyGetFlag(_Var1, "QuestUpdate_FTJ_SW_CursedPig_ToldPig", 0)
+THEN
+ObjectSetFlag(_Var1, "QuestUpdate_FTJ_SW_CursedPig_FoundShrine");
+
+IF
+ObjectFlagSet("FTJ_SW_RestoredPig_SentToShelter", (GUIDSTRING)_Var1, (INTEGER)_Var2)
+THEN
+ObjectSetFlag(_Var1, "QuestUpdate_FTJ_SW_CursedPig_ToldPig");
+
+IF
+CharacterWentOnStage((CHARACTERGUID)_Var1, 0)
+AND
+DB_FTW_SW_FlamingPigs(_Var1)
+AND
+HasActiveStatus(_Var1, "NECROFIRE", 0)
+AND
+QueryOnlyOnce("FTJ_SW_RestoredPigAppear")
+THEN
+CharacterAppearOutOfSightTo(CHARACTERGUID_S_FTJ_SW_RestoredPig_da63cfca-291f-48af-961d-139268d7ae16, TRIGGERGUID_S_FTJ_SW_RestoredPigPoint1_2a31cb63-832a-4d11-945c-9b0cd48058a6, 0, 0, "FTJ_SW_AppearPoint1");
+
+IF
+StoryEvent(CHARACTERGUID_S_FTJ_SW_RestoredPig_da63cfca-291f-48af-961d-139268d7ae16, "FTJ_SW_AppearPoint1")
+THEN
+ProcCharacterMoveTo(CHARACTERGUID_S_FTJ_SW_RestoredPig_da63cfca-291f-48af-961d-139268d7ae16, TRIGGERGUID_S_FTJ_SW_RestoredPigPoint1_2a31cb63-832a-4d11-945c-9b0cd48058a6, 1, "");
+
+IF
+DialogEnded("FTJ_SW_RestoredPig", _)
+AND
+ObjectGetFlag(CHARACTERGUID_S_FTJ_SW_RestoredPig_da63cfca-291f-48af-961d-139268d7ae16, "FTJ_SW_GoToShelter", 1)
+AND
+QueryOnlyOnce("FTJ_SW_RestoredPigToShelter")
+THEN
+SetHasDialog(CHARACTERGUID_S_FTJ_SW_RestoredPig_da63cfca-291f-48af-961d-139268d7ae16, 0);
+ProcCharacterDisappearOutOfSight(CHARACTERGUID_S_FTJ_SW_RestoredPig_da63cfca-291f-48af-961d-139268d7ae16, 90, 1, "FTJ_SW_PigDisappear", 0);
+
+IF
+StoryEvent(CHARACTERGUID_S_FTJ_SW_RestoredPig_da63cfca-291f-48af-961d-139268d7ae16, "FTJ_SW_PigDisappear")
+THEN
+SetHasDialog(CHARACTERGUID_S_FTJ_SW_RestoredPig_da63cfca-291f-48af-961d-139268d7ae16, 0);
+CharacterAppearOutOfSightTo(CHARACTERGUID_S_FTJ_SW_RestoredPig_da63cfca-291f-48af-961d-139268d7ae16, TRIGGERGUID_S_FTJ_SW_RestoredPigPoint2_db8bb328-c529-4b84-8d5a-20bc237a9821, 0, 0, "FTJ_SW_PigAppearShelter");
+
+IF
+StoryEvent(CHARACTERGUID_S_FTJ_SW_RestoredPig_da63cfca-291f-48af-961d-139268d7ae16, "FTJ_SW_PigAppearShelter")
+THEN
+ProcCharacterMoveTo(CHARACTERGUID_S_FTJ_SW_RestoredPig_da63cfca-291f-48af-961d-139268d7ae16, TRIGGERGUID_S_FTJ_SW_RestoredPigPoint2_db8bb328-c529-4b84-8d5a-20bc237a9821, 1, "");
+
+IF
+DialogEnded("FTJ_SW_RestoredPig", (INTEGER)_Var1)
+AND
+DB_DialogPlayers(_Var1, _Var2, _)
+AND
+ObjectGetFlag(CHARACTERGUID_S_FTJ_SW_RestoredPig_da63cfca-291f-48af-961d-139268d7ae16, "FTJ_SW_MoveToPool", 1)
+AND
+QueryOnlyOnce("FTJ_SW_RestoredPigToPool")
+THEN
+DB_FTJ_SW_FlamingPigs_PoolPlayer(_Var2);
+ProcCharacterMoveTo(CHARACTERGUID_S_FTJ_SW_RestoredPig_da63cfca-291f-48af-961d-139268d7ae16, TRIGGERGUID_S_FTJ_SW_RestoredPigPoint3_fbba3975-b979-4234-bce8-7a8e941015c9, 1, "FTJ_SW_PigInPool");
+SetHasDialog(CHARACTERGUID_S_FTJ_SW_RestoredPig_da63cfca-291f-48af-961d-139268d7ae16, 0);
+
+IF
+StoryEvent(CHARACTERGUID_S_FTJ_SW_RestoredPig_da63cfca-291f-48af-961d-139268d7ae16, "FTJ_SW_PigInPool")
+THEN
+SetHasDialog(CHARACTERGUID_S_FTJ_SW_RestoredPig_da63cfca-291f-48af-961d-139268d7ae16, 1);
+CharacterLookAt(CHARACTERGUID_S_FTJ_SW_RestoredPig_da63cfca-291f-48af-961d-139268d7ae16, S_FTJ_SW_ShelterShrine_e362cc61-ec69-4a5f-b505-bcbae32d3650);
+
+IF
+StoryEvent(CHARACTERGUID_S_FTJ_SW_RestoredPig_da63cfca-291f-48af-961d-139268d7ae16, "FTJ_SW_PigInPool")
+AND
+GlobalGetFlag("FTJ_SW_GoddessStatue_Heals", 1)
+THEN
+Proc_FTJ_SW_RestoredPigCure();
+
+IF
+StoryEvent(CHARACTERGUID_S_FTJ_SW_RestoredPig_da63cfca-291f-48af-961d-139268d7ae16, "FTJ_SW_PigInPool")
+AND
+GlobalGetFlag("FTJ_SW_GoddessStatue_Bleeds", 1)
+THEN
+Proc_FTJ_SW_RestoredPigDestroy();
+
+IF
+StoryEvent(CHARACTERGUID_S_FTJ_SW_RestoredPig_da63cfca-291f-48af-961d-139268d7ae16, "FTJ_SW_PigInPool")
+AND
+GlobalGetFlag("FTJ_SW_GoddessStatue_Bleeds", 0)
+AND
+GlobalGetFlag("FTJ_SW_GoddessStatue_Heals", 0)
+THEN
+DB_FTJ_SW_PigWaitingCloud(1);
+
+IF
+GlobalFlagSet("FTJ_SW_GoddessStatue_Bleeds")
+AND
+DB_FTJ_SW_PigWaitingCloud(1)
+THEN
+PROC_RemoveDialogFromCharacter(CHARACTERGUID_S_FTJ_SW_RestoredPig_da63cfca-291f-48af-961d-139268d7ae16);
+Proc_FTJ_SW_RestoredPigDestroy();
+
+IF
+GlobalFlagSet("FTJ_SW_GoddessStatue_Heals")
+AND
+DB_FTJ_SW_PigWaitingCloud(1)
+THEN
+PROC_RemoveDialogFromCharacter(CHARACTERGUID_S_FTJ_SW_RestoredPig_da63cfca-291f-48af-961d-139268d7ae16);
+Proc_FTJ_SW_RestoredPigCure();
+
+PROC
+Proc_FTJ_SW_RestoredPigCure()
+THEN
+PROC_LoopEffect("RS3_FX_Skills_Water_Prepare_Water_Base_01", CHARACTERGUID_S_FTJ_SW_RestoredPig_da63cfca-291f-48af-961d-139268d7ae16, "FTJ_SW_RestorationFX", "FJ_FortJoy_Main", "");
+PlaySound(CHARACTERGUID_S_FTJ_SW_RestoredPig_da63cfca-291f-48af-961d-139268d7ae16, "SE_FTJ_SW_ShrineOfAmadia_Bless_02");
+TimerLaunch("FTJ_SW_PigCure", 3000);
+
+IF
+TimerFinished("FTJ_SW_PigCure")
+AND
+GetPosition(CHARACTERGUID_S_FTJ_SW_RestoredPig_da63cfca-291f-48af-961d-139268d7ae16, _Var1, _Var2, _Var3)
+THEN
+PROC_StopLoopEffect(CHARACTERGUID_S_FTJ_SW_RestoredPig_da63cfca-291f-48af-961d-139268d7ae16, "FTJ_SW_RestorationFX");
+PlayScaledEffectAtPosition("RS3_FX_Skills_Water_Impact_01", 2, _Var1, _Var2, _Var3);
+PlayEffectAtPosition("RS3_FX_GP_ScriptedEvent_Teleport_GenericSmoke_01", _Var1, _Var2, _Var3);
+SetOnStage(CHARACTERGUID_S_FTJ_SW_RestoredPig_da63cfca-291f-48af-961d-139268d7ae16, 0);
+SetOnStage(CHARACTERGUID_S_FTJ_SW_RestoredPig_Cured_51c10663-5a0e-4166-a384-813829e6e7bb, 1);
+Proc_StartDialog(1, "FTJ_SW_AD_RestoredPig_Cured", CHARACTERGUID_S_FTJ_SW_RestoredPig_Cured_51c10663-5a0e-4166-a384-813829e6e7bb, CHARACTERGUID_S_FTJ_SW_ShelterUndead_f0602373-d2cb-4658-a91b-9d111c928152);
+
+IF
+TimerFinished("FTJ_SW_PigCure")
+AND
+DB_FTJ_SW_FlamingPigs_PoolPlayer(_Var1)
+THEN
+NOT DB_FTJ_SW_FlamingPigs_PoolPlayer(_Var1);
+PartySetFlag(_Var1, "QuestUpdate_FTJ_SW_CursedPig_CuredPigAmadia");
+
+PROC
+Proc_FTJ_SW_RestoredPigDestroy()
+THEN
+PROC_LoopEffect("RS3_FX_GP_ScriptedEvent_FJ_RestoredPigDestroy_01", CHARACTERGUID_S_FTJ_SW_RestoredPig_da63cfca-291f-48af-961d-139268d7ae16, "FTJ_SW_DestructionFX", "FJ_FortJoy_Main", "");
+CharacterSetReactionPriority(CHARACTERGUID_S_FTJ_SW_RestoredPig_Cured_51c10663-5a0e-4166-a384-813829e6e7bb, "WalkToBench", 0);
+CharacterSetReactionPriority(CHARACTERGUID_S_FTJ_SW_RestoredPig_Cured_51c10663-5a0e-4166-a384-813829e6e7bb, "Sit", 0);
+TimerLaunch("FTJ_SW_PigDestroy", 2000);
+
+IF
+TimerFinished("FTJ_SW_PigDestroy")
+AND
+GetPosition(CHARACTERGUID_S_FTJ_SW_RestoredPig_da63cfca-291f-48af-961d-139268d7ae16, _Var1, _Var2, _Var3)
+THEN
+PROC_StopLoopEffect(CHARACTERGUID_S_FTJ_SW_RestoredPig_da63cfca-291f-48af-961d-139268d7ae16, "FTJ_SW_DestructionFX");
+PlayEffectAtPosition("RS3_FX_GP_ScriptedEvent_FJ_PigTransform_01", _Var1, _Var2, _Var3);
+SetOnStage(CHARACTERGUID_S_FTJ_SW_RestoredPig_da63cfca-291f-48af-961d-139268d7ae16, 0);
+SetOnStage(CHARACTERGUID_S_FTJ_SW_RestoredPig_Cured_51c10663-5a0e-4166-a384-813829e6e7bb, 1);
+PROC_LoopEffect("RS3_FX_GP_ScriptedEvent_FJ_RestoredPigDestroy_01", CHARACTERGUID_S_FTJ_SW_RestoredPig_Cured_51c10663-5a0e-4166-a384-813829e6e7bb, "FTJ_SW_DestructionFX", "FJ_FortJoy_Main", "");
+SetHasDialog(CHARACTERGUID_S_FTJ_SW_RestoredPig_Cured_51c10663-5a0e-4166-a384-813829e6e7bb, 0);
+Proc_StartDialog(1, "FTJ_SW_AD_RestoredPig_Destroyed", CHARACTERGUID_S_FTJ_SW_RestoredPig_Cured_51c10663-5a0e-4166-a384-813829e6e7bb);
+CharacterSetAnimationOverride(CHARACTERGUID_S_FTJ_SW_RestoredPig_Cured_51c10663-5a0e-4166-a384-813829e6e7bb, "cower");
+PlaySound(CHARACTERGUID_S_FTJ_SW_RestoredPig_da63cfca-291f-48af-961d-139268d7ae16, "SE_FTJ_SW_ShrineOfAmadia_Curse_02");
+
+IF
+TimerFinished("FTJ_SW_PigDestroy")
+AND
+DB_FTJ_SW_FlamingPigs_PoolPlayer(_Var1)
+THEN
+NOT DB_FTJ_SW_FlamingPigs_PoolPlayer(_Var1);
+PartySetFlag(_Var1, "QuestUpdate_FTJ_SW_CursedPig_KilledPigAmadia");
+
+IF
+AutomatedDialogEnded("FTJ_SW_AD_RestoredPig_Destroyed", _)
+THEN
+TimerLaunch("FTJ_SW_RestoredPig_Destroy", 2000);
+
+IF
+TimerFinished("FTJ_SW_RestoredPig_Destroy")
+THEN
+PROC_StopLoopEffect(CHARACTERGUID_S_FTJ_SW_RestoredPig_Cured_51c10663-5a0e-4166-a384-813829e6e7bb, "FTJ_SW_DestructionFX");
+CharacterDie(CHARACTERGUID_S_FTJ_SW_RestoredPig_Cured_51c10663-5a0e-4166-a384-813829e6e7bb, 0, "Explode");
+
+IF
+TimerFinished("FTJ_SW_RestoredPig_Destroy")
+AND
+QRY_SpeakerIsAvailable(CHARACTERGUID_S_FTJ_SW_ShelterUndead_f0602373-d2cb-4658-a91b-9d111c928152)
+THEN
+CharacterLookAt(CHARACTERGUID_S_FTJ_SW_ShelterUndead_f0602373-d2cb-4658-a91b-9d111c928152, CHARACTERGUID_S_FTJ_SW_RestoredPig_Cured_51c10663-5a0e-4166-a384-813829e6e7bb);
+PlayAnimation(CHARACTERGUID_S_FTJ_SW_ShelterUndead_f0602373-d2cb-4658-a91b-9d111c928152, "Cower");
+Proc_StartDialog(1, "FTJ_SW_AD_ShelterUndead_PigDestroyed", CHARACTERGUID_S_FTJ_SW_ShelterUndead_f0602373-d2cb-4658-a91b-9d111c928152);
+
+IF
+TextEventSet("FTJ_FlamingPigsGuardian_FX")
+THEN
+SetOnStage(CHARACTERGUID_S_FTJ_FlamingPigsGuardian_8b81e540-4d4e-40d9-af53-eca6f5ad72bd, 1);
+PlayEffect(CHARACTERGUID_S_FTJ_FlamingPigsGuardian_8b81e540-4d4e-40d9-af53-eca6f5ad72bd, "RS3_FX_GP_ScriptedEvent_FTJ_FlamingPigsGuardian_Appear_01");
+
+IF
+TextEventSet("Proc_FTJ_SW_RestoredPigDestroy")
+THEN
+SetOnStage(CHARACTERGUID_S_FTJ_SW_RestoredPig_da63cfca-291f-48af-961d-139268d7ae16, 1);
+PROC_RemoveDialogFromCharacter(CHARACTERGUID_S_FTJ_SW_RestoredPig_da63cfca-291f-48af-961d-139268d7ae16);
+Proc_FTJ_SW_RestoredPigDestroy();
+
+IF
+CharacterDied((CHARACTERGUID)_Var1)
+AND
+DB_FTW_SW_FlamingPigs(_Var1)
+AND
+CharacterIsDead(CHARACTERGUID_FTJ_FlamingPig_001_11f09d54-c36f-48e4-8941-22e2b4460027, 1)
+AND
+CharacterIsDead(CHARACTERGUID_FTJ_FlamingPig_002_5d4a5363-db5b-4560-988d-688bfa9029f1, 1)
+AND
+CharacterIsDead(CHARACTERGUID_FTJ_FlamingPig_003_af836062-5b68-4ff8-bc4b-5e3adc08d21a, 1)
+AND
+CharacterIsDead(CHARACTERGUID_FTJ_FlamingPig_004_581c15cc-49c1-4174-89cc-e2d0b707b5f3, 1)
+AND
+CharacterIsDead(CHARACTERGUID_FTJ_FlamingPig_005_4b63dc21-611f-4d36-bd7c-7d9f9091bae5, 1)
+AND
+DB_IsPlayer(_Var2)
+THEN
+PartySetFlag(_Var2, "QuestUpdate_FTJ_SW_CursedPig_KilledAllPigs");
+
+IF
+SavegameLoaded((INTEGER)_Var1, (INTEGER)_Var2, (INTEGER)_Var3, (INTEGER)_Var4)
+AND
+QRY_VersionIsOlderThan(_Var1, _Var2, _Var3, _Var4, 3, 6, 3, 0)
+AND
+CharacterIsDead(CHARACTERGUID_FTJ_FlamingPig_001_11f09d54-c36f-48e4-8941-22e2b4460027, 1)
+AND
+CharacterIsDead(CHARACTERGUID_FTJ_FlamingPig_002_5d4a5363-db5b-4560-988d-688bfa9029f1, 1)
+AND
+CharacterIsDead(CHARACTERGUID_FTJ_FlamingPig_003_af836062-5b68-4ff8-bc4b-5e3adc08d21a, 1)
+AND
+CharacterIsDead(CHARACTERGUID_FTJ_FlamingPig_004_581c15cc-49c1-4174-89cc-e2d0b707b5f3, 1)
+AND
+CharacterIsDead(CHARACTERGUID_FTJ_FlamingPig_005_4b63dc21-611f-4d36-bd7c-7d9f9091bae5, 1)
+AND
+DB_IsPlayer(_Var5)
+THEN
+PartySetFlag(_Var5, "QuestUpdate_FTJ_SW_CursedPig_KilledAllPigs");
+
+PROC
+ProcRegionEnded("FJ_FortJoy_Main")
+THEN
+GoalCompleted;
+
+
+EXITSECTION
+ENDEXITSECTION
+
+ParentTargetEdge "FortJoy"

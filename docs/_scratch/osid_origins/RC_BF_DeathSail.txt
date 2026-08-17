@@ -1,0 +1,424 @@
+Version 1
+SubGoalCombiner SGC_AND
+
+INITSECTION
+DB_IsNotMessingAround(CHARACTERGUID_S_RC_BF_Ferryman_6d4270d3-2f01-4674-8668-396ac0a4c703);
+DB_Dialogs(ITEMGUID_S_RC_BF_DeathBoat_1ca15059-2465-4f15-a520-375a36cb1444, "RC_BF_DeathSail");
+DB_Dialogs(CHARACTERGUID_S_RC_BF_Ferryman_6d4270d3-2f01-4674-8668-396ac0a4c703, "RC_BF_Ferryman");
+DB_RC_BF_DeathBoat_Dialogs("RC_BF_DeathSail");
+DB_RC_BF_DeathBoat_Dialogs("RC_BF_Ferryman");
+DB_RC_BF_DeathBoat_PlayerPoints(0, TRIGGERGUID_S_RC_BF_DeathLake_AtIsland_8fa57310-343c-4f2d-b7de-180c7f34e03e);
+DB_RC_BF_DeathBoat_PlayerPoints(1, TRIGGERGUID_S_RC_BF_DeathLake_AtLand_c6c9f5e7-ef78-4db0-abe3-5d75f5445598);
+DB_RC_BF_DeathBoat_FerrymanPoints(0, TRIGGERGUID_S_RC_BF_Ferryman_AtIsland_be187703-9064-4c4c-81dd-9a4e87c7218f);
+DB_RC_BF_DeathBoat_FerrymanPoints(1, TRIGGERGUID_S_RC_BF_Ferryman_AtLand_c34c49b9-72fd-4892-9d37-e1458ef70836);
+DB_RC_BF_DeathBoat_Points(0, TRIGGERGUID_S_RC_BF_DeathBoat_AtIsland_3a65aa4e-8b8b-4a4a-800f-768194134c17);
+DB_RC_BF_DeathBoat_Points(1, TRIGGERGUID_S_RC_BF_DeathBoat_AtLand_c114dbf0-3b49-44d6-8841-397485448a09);
+DB_RC_BF_DeathBoat_Price(100);
+DB_OneTimeEventFlag("RC_BF_DeathBoat_Pay");
+TriggerRegisterForItems(TRIGGERGUID_S_RC_BF_DeathBoat_AtLand_Box_05c7007e-fe2f-41a4-8e81-9728102d23df);
+TriggerRegisterForItems(TRIGGERGUID_S_RC_BF_DeathBoat_AtIsland_Box_4d2f16bf-c9b9-4283-844f-c0c28f85494e);
+DB_RC_BF_DeathBoat_VBTriggers(TRIGGERGUID_S_RC_BF_DeathBoat_VB_AtLand_45eca41e-29aa-48ad-82d6-deb6e953ddf5, 0);
+DB_RC_BF_DeathBoat_VBTriggers(TRIGGERGUID_S_RC_BF_DeathBoat_VB_AtIsland_2c00e22d-0cdf-4909-8fa4-527bb33be027, 1);
+
+KBSECTION
+IF
+TextEventSet("rcbfboatreset")
+THEN
+TeleportTo(ITEMGUID_S_RC_BF_DeathBoat_1ca15059-2465-4f15-a520-375a36cb1444, TRIGGERGUID_S_RC_BF_DeathBoat_AtLand_c114dbf0-3b49-44d6-8841-397485448a09);
+TeleportTo(CHARACTERGUID_S_RC_BF_Ferryman_6d4270d3-2f01-4674-8668-396ac0a4c703, TRIGGERGUID_S_RC_BF_Ferryman_AtLand_c34c49b9-72fd-4892-9d37-e1458ef70836);
+Foop(CHARACTERGUID_S_RC_BF_Ferryman_6d4270d3-2f01-4674-8668-396ac0a4c703);
+ItemSetCanInteract(ITEMGUID_S_RC_BF_DeathBoat_1ca15059-2465-4f15-a520-375a36cb1444, 1);
+GlobalClearFlag("RC_BF_DeathBoat_AtIsland");
+SysClear("RC_BF_SailTeleport", 2);
+
+IF
+TextEventSet("rcbfboatreset")
+AND
+DB_IsPlayer(_Var1)
+THEN
+SetVisible(_Var1, 1);
+ProcSetInvulnerable(_Var1, 0);
+CharacterUnfreeze(_Var1);
+
+IF
+TextEventSet("rcbftrip")
+THEN
+SetStoryEvent(ITEMGUID_S_RC_BF_DeathBoat_1ca15059-2465-4f15-a520-375a36cb1444, "Trip");
+
+IF
+TextEventSet("rcbftrip1")
+THEN
+SetStoryEvent(ITEMGUID_S_RC_BF_DeathBoat_1ca15059-2465-4f15-a520-375a36cb1444, "Trip1");
+
+IF
+DB_RC_BF_DeathBoat_VBTriggers(_Var1, _)
+THEN
+ProcTriggerRegisterForPlayers(_Var1);
+
+IF
+CharacterEnteredTrigger((CHARACTERGUID)_Var1, (TRIGGERGUID)_Var2)
+AND
+DB_RC_BF_DeathBoat_VBTriggers(_Var2, _Var3)
+AND
+DB_IsPlayer(_Var1)
+AND
+GlobalGetFlag("RC_BF_DeathBoat_AtIsland", _Var3)
+AND
+UserGetFlag(_Var1, "RC_BF_VB_FoundDeathBoat", 0)
+THEN
+StartVoiceBark("RC_BF_VB_FoundDeathBoat", _Var1);
+UserSetFlag(_Var1, "RC_BF_VB_FoundDeathBoat");
+
+IF
+DB_RC_BF_DeathBoat_Price(_Var1)
+THEN
+DB_DialogMoneyTransfer(1, "RC_BF_Ferryman", _Var1);
+
+PROC
+ProcBlockUseOfItem((CHARACTERGUID)_Var1, ITEMGUID_S_RC_BF_DeathBoat_1ca15059-2465-4f15-a520-375a36cb1444)
+AND
+DB_IsPlayer(_Var1)
+AND NOT
+DB_Dead(CHARACTERGUID_S_RC_BF_Ferryman_6d4270d3-2f01-4674-8668-396ac0a4c703)
+AND
+QRY_IsInRange(CHARACTERGUID_S_RC_BF_Ferryman_6d4270d3-2f01-4674-8668-396ac0a4c703, ITEMGUID_S_RC_BF_DeathBoat_1ca15059-2465-4f15-a520-375a36cb1444, 15)
+THEN
+DB_CustomUseItemResponse(_Var1, ITEMGUID_S_RC_BF_DeathBoat_1ca15059-2465-4f15-a520-375a36cb1444, 0);
+Proc_RC_BF_DeathBoat_Unauthorized(_Var1);
+Proc_StartDialog(0, "RC_BF_Ferryman", CHARACTERGUID_S_RC_BF_Ferryman_6d4270d3-2f01-4674-8668-396ac0a4c703, _Var1);
+
+PROC
+Proc_RC_BF_DeathBoat_Unauthorized((CHARACTERGUID)_Var1)
+AND
+ObjectGetFlag(_Var1, "RC_BF_DeathBoat_UnauthorizedUse", 1)
+THEN
+ObjectSetFlag(_Var1, "RC_BF_DeathBoat_UnauthorizedUse_Twice");
+
+PROC
+Proc_RC_BF_DeathBoat_Unauthorized((CHARACTERGUID)_Var1)
+AND
+ObjectGetFlag(_Var1, "RC_BF_DeathBoat_UnauthorizedUse", 0)
+THEN
+ObjectSetFlag(_Var1, "RC_BF_DeathBoat_UnauthorizedUse");
+
+IF
+ItemEnteredTrigger(ITEMGUID_S_RC_BF_DeathBoat_1ca15059-2465-4f15-a520-375a36cb1444, TRIGGERGUID_S_RC_BF_DeathBoat_AtIsland_Box_4d2f16bf-c9b9-4283-844f-c0c28f85494e, _)
+THEN
+GlobalSetFlag("RC_BF_DeathBoat_AtIsland");
+ItemSetCanInteract(ITEMGUID_S_RC_BF_DeathBoat_1ca15059-2465-4f15-a520-375a36cb1444, 1);
+
+IF
+ItemEnteredTrigger(ITEMGUID_S_RC_BF_DeathBoat_1ca15059-2465-4f15-a520-375a36cb1444, TRIGGERGUID_S_RC_BF_DeathBoat_AtLand_Box_05c7007e-fe2f-41a4-8e81-9728102d23df, _)
+THEN
+ItemSetCanInteract(ITEMGUID_S_RC_BF_DeathBoat_1ca15059-2465-4f15-a520-375a36cb1444, 1);
+
+IF
+ItemLeftTrigger(ITEMGUID_S_RC_BF_DeathBoat_1ca15059-2465-4f15-a520-375a36cb1444, TRIGGERGUID_S_RC_BF_DeathBoat_AtIsland_Box_4d2f16bf-c9b9-4283-844f-c0c28f85494e, _)
+THEN
+GlobalClearFlag("RC_BF_DeathBoat_AtIsland");
+
+PROC
+Proc_RC_BF_DeathBoat_Poof((CHARACTERGUID)_Var1)
+THEN
+Proc_TeleportSmoke(_Var1);
+SetVisible(_Var1, 0);
+ProcSetInvulnerable(_Var1, 1);
+CharacterFreeze(_Var1);
+
+PROC
+Proc_RC_BF_DeathBoat_PoofFerry()
+AND NOT
+DB_Dead(CHARACTERGUID_S_RC_BF_Ferryman_6d4270d3-2f01-4674-8668-396ac0a4c703)
+THEN
+Proc_TeleportSmoke(CHARACTERGUID_S_RC_BF_Ferryman_6d4270d3-2f01-4674-8668-396ac0a4c703);
+SetVisible(CHARACTERGUID_S_RC_BF_Ferryman_6d4270d3-2f01-4674-8668-396ac0a4c703, 0);
+ProcSetInvulnerable(CHARACTERGUID_S_RC_BF_Ferryman_6d4270d3-2f01-4674-8668-396ac0a4c703, 1);
+CharacterFreeze(CHARACTERGUID_S_RC_BF_Ferryman_6d4270d3-2f01-4674-8668-396ac0a4c703);
+
+PROC
+Proc_RC_BF_DeathBoat_Foop((CHARACTERGUID)_Var1)
+THEN
+CharacterUnfreeze(_Var1);
+ProcSetInvulnerable(_Var1, 0);
+SetVisible(_Var1, 1);
+Proc_TeleportSmoke(_Var1);
+
+IF
+DialogEnded((STRING)_Var1, (INTEGER)_Var2)
+AND
+DB_RC_BF_DeathBoat_Dialogs(_Var1)
+AND
+DB_GlobalFlag("RC_BF_DeathBoat_Sail")
+AND
+DB_DialogPlayers(_Var2, _Var3, 1)
+AND
+DB_IsPlayer(_Var3)
+AND
+GlobalGetFlag("RC_BF_DeathBoat_AtIsland", _Var4)
+THEN
+DB_RC_BF_DeathBoat_SailFromIsland(_Var4);
+Proc_RC_BF_DeathBoat_PoofFerry();
+DB_RC_BF_DeathBoat_PlayersInTrip(_Var3);
+Proc_RC_BF_DeathBoat_PoofAll(_Var3);
+Proc_RC_BF_DeathBoat_BoatMove(_Var4);
+
+IF
+DialogEnded((STRING)_Var1, (INTEGER)_Var2)
+AND
+DB_RC_BF_DeathBoat_Dialogs(_Var1)
+THEN
+GlobalClearFlag("RC_BF_DeathBoat_Sail");
+
+PROC
+Proc_RC_BF_DeathBoat_PoofAll((CHARACTERGUID)_Var1)
+AND
+DB_IsPlayer(_Var2)
+AND
+CharacterIsInPartyWith(_Var2, _Var1, 1)
+AND
+CharactersAreGrouped(_Var2, _Var1, 1)
+THEN
+Proc_RC_BF_DeathBoat_ChooseWhoToPoof(_Var2);
+
+PROC
+Proc_RC_BF_DeathBoat_ChooseWhoToPoof((CHARACTERGUID)_Var1)
+AND
+QRY_IsInRange(_Var1, ITEMGUID_S_RC_BF_DeathBoat_1ca15059-2465-4f15-a520-375a36cb1444, 14)
+THEN
+DB_RC_BF_DeathBoat_PlayersInTrip(_Var1);
+Proc_RC_BF_DeathBoat_Poof(_Var1);
+FadeToBlack(_Var1, 1, 0, "RC_BF_DeathBoat_Fade");
+
+PROC
+Proc_RC_BF_DeathBoat_ChooseWhoToPoof((CHARACTERGUID)_Var1)
+AND NOT
+QRY_IsInRange(_Var1, ITEMGUID_S_RC_BF_DeathBoat_1ca15059-2465-4f15-a520-375a36cb1444, 14)
+THEN
+CharacterDetachFromGroup(_Var1);
+
+PROC
+Proc_RC_BF_DeathBoat_BoatMove((INTEGER)_Var1)
+THEN
+ItemSetCanInteract(ITEMGUID_S_RC_BF_DeathBoat_1ca15059-2465-4f15-a520-375a36cb1444, 0);
+SetVarInteger(ITEMGUID_S_RC_BF_DeathBoat_1ca15059-2465-4f15-a520-375a36cb1444, "AtIsland", _Var1);
+SetStoryEvent(ITEMGUID_S_RC_BF_DeathBoat_1ca15059-2465-4f15-a520-375a36cb1444, "StartSail");
+ProcObjectTimer(ITEMGUID_S_RC_BF_DeathBoat_1ca15059-2465-4f15-a520-375a36cb1444, "RC_BF_DeathBoat_SailTimer", 1100);
+
+IF
+DB_RC_BF_DeathBoat_PlayersInTrip(_Var1)
+AND
+CharacterIsDead(_Var1, 0)
+AND
+IsTagged(_Var1, "UNDEAD", 1)
+THEN
+GlobalSetFlag("RC_BF_DeathBoat_Survivers");
+
+IF
+DB_RC_BF_DeathBoat_PlayersInTrip(_Var1)
+AND
+CharacterIsDead(_Var1, 0)
+AND
+IsTagged(_Var1, "UNDEAD", 0)
+THEN
+GlobalSetFlag("RC_BF_DeathBoat_Harvest");
+
+PROC
+ProcObjectTimerFinished(ITEMGUID_S_RC_BF_DeathBoat_1ca15059-2465-4f15-a520-375a36cb1444, "RC_BF_DeathBoat_SailTimer")
+THEN
+Proc_RC_BF_DeathBoat_Arrived();
+
+PROC
+ProcObjectTimerCancel(ITEMGUID_S_RC_BF_DeathBoat_1ca15059-2465-4f15-a520-375a36cb1444, "RC_BF_DeathBoat_SailTimer")
+THEN
+Proc_RC_BF_DeathBoat_Arrived();
+
+PROC
+Proc_RC_BF_DeathBoat_Arrived()
+AND
+DB_RC_BF_DeathBoat_PlayersInTrip(_Var1)
+THEN
+FadeToBlack(_Var1, 1, 1, "RC_BF_DeathBoat_Unfade");
+
+PROC
+Proc_RC_BF_DeathBoat_Arrived()
+THEN
+Proc_RC_BF_DeathBoat_BoatFinishMove();
+Proc_RC_BF_DeathBoat_FoopFerry();
+Proc_RC_BF_DeathBoat_FoopAll();
+
+PROC
+Proc_RC_BF_DeathBoat_BoatFinishMove()
+AND
+DB_RC_BF_DeathBoat_SailFromIsland(_Var1)
+AND
+DB_RC_BF_DeathBoat_Points(_Var1, _Var2)
+THEN
+TeleportTo(ITEMGUID_S_RC_BF_DeathBoat_1ca15059-2465-4f15-a520-375a36cb1444, _Var2);
+ItemMoveToTrigger(ITEMGUID_S_RC_BF_DeathBoat_1ca15059-2465-4f15-a520-375a36cb1444, _Var2, 1, 1, 1, "");
+ItemSetCanInteract(ITEMGUID_S_RC_BF_DeathBoat_1ca15059-2465-4f15-a520-375a36cb1444, 1);
+
+PROC
+Proc_RC_BF_DeathBoat_FoopFerry()
+AND NOT
+DB_Dead(CHARACTERGUID_S_RC_BF_Ferryman_6d4270d3-2f01-4674-8668-396ac0a4c703)
+AND
+DB_RC_BF_DeathBoat_SailFromIsland(_Var1)
+AND
+DB_RC_BF_DeathBoat_FerrymanPoints(_Var1, _Var2)
+THEN
+TeleportTo(CHARACTERGUID_S_RC_BF_Ferryman_6d4270d3-2f01-4674-8668-396ac0a4c703, _Var2);
+Proc_RC_BF_DeathBoat_Foop(CHARACTERGUID_S_RC_BF_Ferryman_6d4270d3-2f01-4674-8668-396ac0a4c703);
+
+PROC
+Proc_RC_BF_DeathBoat_FoopAll()
+AND
+DB_RC_BF_DeathBoat_SailFromIsland(_Var1)
+AND
+DB_RC_BF_DeathBoat_PlayerPoints(_Var1, _Var2)
+AND
+DB_RC_BF_DeathBoat_PlayersInTrip(_Var3)
+THEN
+TeleportTo(_Var3, _Var2);
+Proc_RC_BF_DeathBoat_Foop(_Var3);
+
+PROC
+Proc_RC_BF_DeathBoat_Arrived()
+AND NOT
+DB_Dead(CHARACTERGUID_S_RC_BF_Ferryman_6d4270d3-2f01-4674-8668-396ac0a4c703)
+THEN
+Proc_RC_BF_DeathBoat_ArrivedWithFerry();
+
+PROC
+Proc_RC_BF_DeathBoat_Arrived()
+AND
+DB_Dead(CHARACTERGUID_S_RC_BF_Ferryman_6d4270d3-2f01-4674-8668-396ac0a4c703)
+THEN
+Proc_RC_BF_DeathBoat_ArrivedSolely();
+
+PROC
+Proc_RC_BF_DeathBoat_ArrivedSolely()
+AND
+DB_RC_BF_DeathBoat_PlayersInTrip(_Var1)
+THEN
+Proc_RC_BF_DeathBoat_DieFromDeathFog(_Var1);
+
+PROC
+Proc_RC_BF_DeathBoat_ArrivedSolely()
+THEN
+Proc_RC_BF_DeathBoat_ArriveCleanUp();
+
+PROC
+Proc_RC_BF_DeathBoat_ArrivedWithFerry()
+AND
+DB_RC_BF_DeathBoat_PlayersInTrip(_Var1)
+AND
+CharacterIsDead(_Var1, 0)
+THEN
+ApplyStatus(_Var1, "KNOCKED_DOWN", -1, 1);
+CharacterSetAnimationOverride(_Var1, "knockdown_loop");
+
+PROC
+Proc_RC_BF_DeathBoat_ArrivedWithFerry()
+AND
+DB_GlobalFlag("RC_BF_DeathBoat_Harvest")
+AND
+DB_RC_BF_DeathBoat_PlayersInTrip(_Var1)
+THEN
+PartySetFlag(_Var1, "RC_BF_DeathBoat_CompanionDied");
+
+PROC
+Proc_RC_BF_DeathBoat_ArrivedWithFerry()
+AND
+DB_RC_BF_DeathBoat_PlayersInTrip(_Var1)
+AND
+IsTagged(_Var1, "UNDEAD", 0)
+THEN
+CharacterSetHitpointsPercentage(_Var1, 1);
+
+PROC
+Proc_RC_BF_DeathBoat_ArrivedWithFerry()
+AND
+DB_RC_BF_DeathBoat_PlayersInTrip(_Var1)
+AND
+GlobalGetFlag("RC_BF_DeathBoat_DialogAfterStarting", 0)
+AND
+QRY_SpeakerIsAvailable(CHARACTERGUID_S_RC_BF_Ferryman_6d4270d3-2f01-4674-8668-396ac0a4c703, 1)
+THEN
+GlobalSetFlag("RC_BF_DeathBoat_DialogAfterStarting");
+Proc_StartDialog(0, "RC_BF_Ferryman", CHARACTERGUID_S_RC_BF_Ferryman_6d4270d3-2f01-4674-8668-396ac0a4c703, _Var1);
+
+IF
+DialogStarted("RC_BF_Ferryman", _)
+AND
+GlobalGetFlag("RC_BF_DeathBoat_DialogAfterStarting", 1)
+THEN
+GlobalSetFlag("RC_BF_DeathBoat_DialogAfterStarted");
+
+IF
+DialogRequestFailed("RC_BF_Ferryman", _)
+AND
+GlobalGetFlag("RC_BF_DeathBoat_DialogAfterStarting", 1)
+THEN
+Proc_RC_BF_DeathBoat_AfterTrip();
+
+IF
+DialogEnded("RC_BF_Ferryman", _)
+AND
+GlobalGetFlag("RC_BF_DeathBoat_DialogAfterStarted", 1)
+THEN
+Proc_RC_BF_DeathBoat_AfterTrip();
+
+PROC
+Proc_RC_BF_DeathBoat_ArrivedWithFerry()
+AND
+GlobalGetFlag("RC_BF_DeathBoat_DialogAfterStarting", 0)
+THEN
+Proc_RC_BF_DeathBoat_AfterTrip();
+
+PROC
+Proc_RC_BF_DeathBoat_AfterTrip()
+AND
+DB_RC_BF_DeathBoat_PlayersInTrip(_Var1)
+AND
+CharacterIsDead(_Var1, 0)
+THEN
+CharacterSetAnimationOverride(_Var1, "");
+RemoveStatus(_Var1, "KNOCKED_DOWN");
+Proc_RC_BF_DeathBoat_DieFromDeathFog(_Var1);
+
+PROC
+Proc_RC_BF_DeathBoat_AfterTrip()
+THEN
+Proc_RC_BF_DeathBoat_ArriveCleanUp();
+
+PROC
+Proc_RC_BF_DeathBoat_DieFromDeathFog((CHARACTERGUID)_Var1)
+AND
+DB_IsPlayer(_Var1)
+AND
+IsTagged(_Var1, "UNDEAD", 0)
+THEN
+CharacterDie(_Var1, 0, "DoT");
+
+PROC
+Proc_RC_BF_DeathBoat_ArriveCleanUp()
+THEN
+GlobalClearFlag("RC_BF_DeathBoat_Harvest");
+GlobalClearFlag("RC_BF_DeathBoat_Survivers");
+GlobalClearFlag("RC_BF_DeathBoat_DialogAfterStarting");
+GlobalClearFlag("RC_BF_DeathBoat_DialogAfterStarted");
+SysClear("DB_RC_BF_DeathBoat_SailFromIsland", 1);
+SysClear("DB_RC_BF_DeathBoat_PlayersInTrip", 1);
+
+
+EXITSECTION
+SysClear("DB_RC_BF_DeathBoat_Dialogs", 1);
+SysClear("DB_RC_BF_DeathBoat_PlayerPoints", 2);
+SysClear("DB_RC_BF_DeathBoat_FerrymanPoints", 2);
+SysClear("DB_RC_BF_DeathBoat_Points", 2);
+SysClear("DB_RC_BF_DeathBoat_Price", 1);
+NOT DB_OneTimeEventFlag("RC_BF_DeathBoat_Pay");
+SysClear("DB_RC_BF_DeathBoat_VBTriggers", 2);
+ENDEXITSECTION
+
+ParentTargetEdge "ReapersCoast"

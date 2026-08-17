@@ -1,0 +1,200 @@
+Version 1
+SubGoalCombiner SGC_AND
+
+INITSECTION
+DB_TUT_DefendedSourcerers(CHARACTERGUID_S_TUT_LowerDeck_DwarvenCarpenter_c0c25bbc-8106-402f-b706-ac20533b0c9a);
+DB_TUT_DefendedSourcerers(CHARACTERGUID_S_TUT_LowerDeck_GruelServer_849900b9-e78d-47c7-87f3-c8d97f797d36);
+DB_TUT_Magister(CHARACTERGUID_S_TUT_LowerDeck_PrayingMagister_096479c9-a702-4161-a5ba-fb2b3312bf76);
+DB_TUT_Magister(CHARACTERGUID_S_TUT_LowerDeck_SourceHound_Investigator_000_e809d2d7-d64f-4fd6-9407-f22e06ca5ed7);
+DB_TUT_Magister(CHARACTERGUID_S_TUT_LowerDeck_Magister_Grunt_Investigator_000_47ab7059-829c-4523-adf2-6cf91fa3b29f);
+DB_TUT_Magister(CHARACTERGUID_S_TUT_LowerDeck_ExitDoorGuard_001_bf967ae2-69a9-4791-8f80-ad72236edaf7);
+PROC_TUT_MakeOriginsProtectedSourcerers();
+
+KBSECTION
+IF
+CharacterUsedItem((CHARACTERGUID)_Var1, S_TUT_LowerDeck_Morticia_2cc84796-b4f8-4686-b84f-38cf0d86877b)
+THEN
+Proc_StartDialog(1, "TUT_AD_LowerDeck_Morticia", _Var1);
+
+PROC
+ProcTutAttemptWindegoKnockdown(S_TUT_Humans_Female_Magister_Priest_000_9d17cf06-6fad-49a8-82de-54518a9bf5df)
+THEN
+DB_DoNotFace(S_TUT_Humans_Female_Magister_Priest_000_9d17cf06-6fad-49a8-82de-54518a9bf5df);
+
+IF
+GlobalFlagSet("TUT_RescueCombatFinished")
+THEN
+DB_OneShotPlayerTrigger(TUT_LowerDeck_CollaringMagister_Help_5f7fdff5-eb51-4b40-9d1a-bb9cfe567237);
+
+QRY
+QRY_TUT_LowerDeck_CollaringMagisterInRegularDialog()
+AND
+DB_DialogNPCs(_Var1, S_TUT_Humans_Female_Magister_Priest_000_9d17cf06-6fad-49a8-82de-54518a9bf5df, _)
+AND NOT
+DB_AutomatedDialog(_Var1)
+THEN
+DB_NOOP(1);
+
+IF
+CharacterEnteredTrigger((CHARACTERGUID)_Var1, TUT_LowerDeck_CollaringMagister_Help_5f7fdff5-eb51-4b40-9d1a-bb9cfe567237)
+AND NOT
+QRY_TUT_LowerDeck_CollaringMagisterInRegularDialog()
+AND NOT
+DB_Dead(S_TUT_Humans_Female_Magister_Priest_000_9d17cf06-6fad-49a8-82de-54518a9bf5df)
+THEN
+ObjectSetFlag(S_TUT_Humans_Female_Magister_Priest_000_9d17cf06-6fad-49a8-82de-54518a9bf5df, "TUT_CollaringPriest_CryForHelp");
+ProcObjectTimer(_Var1, "TUT_LowerDeck_HearCollaringMagisterCryForHelp", 200);
+
+PROC
+ProcObjectTimerFinished((GUIDSTRING)_Var1, "TUT_LowerDeck_HearCollaringMagisterCryForHelp")
+THEN
+Proc_StartDialog(1, "TUT_AD_LowerDeck_Humans_Female_Magister_Priest_000_CallForHelp", _Var1);
+
+IF
+ObjectFlagSet("TUT_DyingPriest_Bleed", S_TUT_Humans_Female_Magister_Priest_000_9d17cf06-6fad-49a8-82de-54518a9bf5df, _)
+THEN
+ObjectClearFlag(S_TUT_Humans_Female_Magister_Priest_000_9d17cf06-6fad-49a8-82de-54518a9bf5df, "TUT_DyingPriest_Bleed");
+ApplyStatus(S_TUT_Humans_Female_Magister_Priest_000_9d17cf06-6fad-49a8-82de-54518a9bf5df, "BLEEDING", -1, 1);
+CreateSurface(S_TUT_Humans_Female_Magister_Priest_000_9d17cf06-6fad-49a8-82de-54518a9bf5df, "SurfaceBlood", 1, -1);
+
+IF
+ObjectFlagSet("TUT_DyingPriest_StopBleed", S_TUT_Humans_Female_Magister_Priest_000_9d17cf06-6fad-49a8-82de-54518a9bf5df, _)
+THEN
+RemoveStatus(S_TUT_Humans_Female_Magister_Priest_000_9d17cf06-6fad-49a8-82de-54518a9bf5df, "BLEEDING");
+
+IF
+DialogEnded("TUT_LowerDeck_Humans_Female_Magister_Priest_000", (INTEGER)_Var1)
+AND
+GlobalGetFlag("TUT_LowerDeck_WindegoHasCastSpell", 1)
+AND
+DialogGetInvolvedPlayer(_Var1, 1, _Var2)
+AND
+ObjectGetFlag(_Var2, "TUT_CollaringPriest_Dying", 1)
+AND NOT
+DB_TUT_LowerDeck_CollaringMagisterDying(1)
+THEN
+CreateSurface(S_TUT_Humans_Female_Magister_Priest_000_9d17cf06-6fad-49a8-82de-54518a9bf5df, "SurfaceBlood", 2, -1);
+DB_TUT_LowerDeck_CollaringMagisterDying(1);
+TimerLaunch("TUT_LowerDeck_CollaringMagisterDying", 9700);
+
+IF
+TimerFinished("TUT_LowerDeck_CollaringMagisterDying")
+THEN
+NOT DB_TUT_LowerDeck_CollaringMagisterDying(1);
+CharacterDie(S_TUT_Humans_Female_Magister_Priest_000_9d17cf06-6fad-49a8-82de-54518a9bf5df, 1, "DoT");
+
+IF
+DialogEnded("TUT_LowerDeck_Humans_Female_Magister_Priest_000", (INTEGER)_Var1)
+AND
+DialogGetInvolvedPlayer(_Var1, 1, _Var2)
+AND
+ObjectGetFlag(_Var2, "TUT_CollaringPriest_Kill", 1)
+THEN
+CharacterDie(S_TUT_Humans_Female_Magister_Priest_000_9d17cf06-6fad-49a8-82de-54518a9bf5df, 1, "Physical");
+
+IF
+ObjectFlagSet("TUT_ShakeCamera", (CHARACTERGUID)_Var1, _)
+THEN
+Proc_CameraShakeAroundCharacter(_Var1, 10, 2);
+ProcObjectTimer(_Var1, "TUT_ShakeCameraFinished", 2100);
+
+PROC
+ProcObjectTimerFinished((GUIDSTRING)_Var1, "TUT_ShakeCameraFinished")
+THEN
+ObjectClearFlag(_Var1, "TUT_ShakeCamera");
+
+IF
+DialogEnded("TUT_LowerDeck_Humans_Female_Magister_Priest_000", (INTEGER)_Var1)
+AND
+ObjectGetFlag(CHARACTERGUID_S_TUT_Humans_Female_Magister_Priest_000_9d17cf06-6fad-49a8-82de-54518a9bf5df, "TUT_CollaringPriest_SummonTheKraken", 1)
+AND
+QueryOnlyOnce("TUT_SummonTheKraken")
+THEN
+PROC_TUT_SummonTheKraken();
+
+PROC
+PROC_TUT_MakeOriginsProtectedSourcerers()
+AND
+DB_OriginRecruitmentLocation_Region("TUT_Tutorial_A", _Var1, _, _)
+AND NOT
+DB_IsPlayer(_Var1)
+THEN
+DB_TUT_DefendedSourcerers(_Var1);
+CharacterSetRelationIndivFactionToFaction(_Var1, "TUT_LowerDeckSourcerers", 100);
+CharacterSetRelationFactionToIndivFaction("TUT_LowerDeckSourcerers", _Var1, 100);
+
+PROC
+ProcMakeNPCHostile((CHARACTERGUID)_Var1, (CHARACTERGUID)_Var2)
+AND
+DB_IsPlayer(_Var1)
+AND
+DB_TUT_DefendedSourcerers(_Var2)
+AND
+DB_TUT_Magister(_Var3)
+THEN
+ProcMakeNPCHostile(_Var1, _Var3);
+
+PROC
+Proc_TUT_GiveQuests((CHARACTERGUID)_Var1)
+THEN
+DB_TUT_PlayerReceivedQuests(_Var1);
+UserSetFlag(_Var1, "QuestUpdate_CORE_Chapter1_TUT_Start");
+UserSetFlag(_Var1, "QuestUpdate_CORE_Chapter1_TUT_Lore");
+UserSetFlag(_Var1, "QuestUpdate_CORE_Chapter1_TUT_FTJ");
+UserSetFlag(_Var1, "QuestUpdate_CORE_Magisters_InitialSetup");
+PartySetFlag(_Var1, "QuestUpdate_TUT_ShipMurder_WakeUp");
+
+PROC
+Proc_TUT_GiveQuests((CHARACTERGUID)_Var1)
+AND
+DB_GLO_SourceCollars_OncePerNPC(_Var1)
+AND
+IsTagged(_Var1, "AVATAR", 1)
+AND
+ObjectGetFlag(_Var1, "QuestUpdate_RC_FTJ_SourceCollar_StartSourceCollar", 0)
+THEN
+ObjectSetFlag(_Var1, "QuestUpdate_RC_FTJ_SourceCollar_StartSourceCollar");
+
+PROC
+ProcRegionEnded("TUT_Tutorial_A")
+AND
+DB_IsPlayer(_Var1)
+AND NOT
+DB_TUT_PlayerReceivedQuests(_Var1)
+THEN
+Proc_TUT_GiveQuests(_Var1);
+
+PROC
+ProcBlockUseOfItem((CHARACTERGUID)_Var1, ITEMGUID_BOOK_poster_C_000_LV_Deck-1_001_f409e1b1-5bc0-40d6-93b9-14a32fc57a0b)
+AND
+CharacterHasRecipeUnlocked(_Var1, "CON_Food_PotatoBoiled_A_CON_Drink_Cup_A_Milk", 1)
+AND
+CharacterHasRecipeUnlocked(_Var1, "CON_Food_Potato_A_FUR_BoilingPot_A", 1)
+AND
+CharacterHasRecipeUnlocked(_Var1, "CON_Food_Potato_A_TOOL_Hammer", 1)
+AND
+CharacterHasRecipeUnlocked(_Var1, "CON_Food_Potato_Mash_Cold_A_FUR_BoilingPot_A", 1)
+AND
+CharacterHasRecipeUnlocked(_Var1, "Oven_CON_Food_Potato_Mash_Cold_A", 1)
+AND
+CharacterHasRecipeUnlocked(_Var1, "FUR_BoilingPot_A_CON_Food_Potato_Mash_Cold_A", 1)
+THEN
+Proc_StartDialog(1, "CMB_AD_PC_Repeat", _Var1);
+
+PROC
+ProcRegionEnded("TUT_Tutorial_A")
+AND
+DB_OriginRecruitmentLocation_Region("TUT_Tutorial_A", _Var1, _, _)
+THEN
+CharacterEnableAllCrimes(_Var1);
+
+PROC
+ProcRegionEnded("TUT_Tutorial_A")
+THEN
+GoalCompleted;
+
+
+EXITSECTION
+ENDEXITSECTION
+
+ParentTargetEdge "Tutorial_PrisonShip"

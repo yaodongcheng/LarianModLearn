@@ -1,0 +1,382 @@
+Version 1
+SubGoalCombiner SGC_AND
+
+INITSECTION
+DB_HasStoryEvent(RC_FTJ_FlorenceLeg_09d02979-2749-4f1d-b1b7-5d2ddcfd6aa9, "FTJ_HasFlorenceLeg");
+DB_GiveItemToEvent(RC_FTJ_FlorenceLeg_09d02979-2749-4f1d-b1b7-5d2ddcfd6aa9, "FTJ_FlorenceLegToDog");
+DB_GiveItemToEvent(RC_FTJ_FlorenceLeg_09d02979-2749-4f1d-b1b7-5d2ddcfd6aa9, "FTJ_FlorenceLegToKniles");
+ProcTriggerRegisterForPlayers(TRIGGERGUID_S_FTJ_DallisGheistKnockback_Poly_b76b52e8-b2cd-4021-ba2f-5bae9d4233e8);
+ProcTriggerRegisterForPlayers(TRIGGERGUID_S_FTJ_DallisEventAutoEnd_Poly_c66c0ceb-84d0-42f2-af77-854d178a58d5);
+DB_FTJ_DallisGheist(S_FTJ_DallisGheist_001_fa573f6f-7af3-40da-bc9a-e7d984711b09, S_FTJ_GheistKnockdown_Point_001_f96b6d3f-40c4-46ff-8a1f-d04d9118c107);
+DB_FTJ_DallisGheist(S_FTJ_DallisGheist_002_5aff71df-ec52-41cc-9b28-fb6b491a15c4, S_FTJ_GheistKnockdown_Point_002_3fe7a7f6-4091-4324-b93e-84af7f14fdca);
+CrimeAreaSetTensionModifier(TRIGGERGUID_S_FTJ_CrimeRegion_DallsScene_6e23e5d6-4dae-405f-9364-0fe332e9d440, 4);
+Proc_FTJ_DallisEventStart();
+ItemTemplateAddTo("CON_Potion_A_Health_Large_68b40462-247a-44fd-87d0-c2eea2f49ed1", S_FTJ_Florence_c272a37a-85ea-438f-9871-1551ef45d338, 1);
+ItemTemplateAddTo("GRN_Grenade_Molotov_A_5208b121-64fa-4704-8924-c61c576e1ac5", S_FTJ_Florence_c272a37a-85ea-438f-9871-1551ef45d338, 1);
+ItemTemplateAddTo("Scroll_Skill_Source_Resurrect_60180909-ee47-4d1c-b81c-e43bd8fdce1e", S_FTJ_Florence_c272a37a-85ea-438f-9871-1551ef45d338, 1);
+DB_SceneManager(GLO_Dallis_69b951dc-55a4-44b8-a2d5-5efedbd7d572, "FTJ_DallasStartScene");
+DB_SceneManager(RC_FTJ_DallisGheist_001_fa573f6f-7af3-40da-bc9a-e7d984711b09, "FTJ_DallasStartScene");
+DB_SceneManager(RC_FTJ_DallisGheist_002_5aff71df-ec52-41cc-9b28-fb6b491a15c4, "FTJ_DallasStartScene");
+DB_SceneManager(GLO_Alexandar_03e6345f-1bd3-403c-80e2-a443a74f6349, "FTJ_DallasStartScene");
+DB_SceneManager(S_FTJ_Florence_c272a37a-85ea-438f-9871-1551ef45d338, "FTJ_DallasStartScene");
+DB_SceneTriggerManager("FTJ_DallasStartScene", S_FTJ_DallisGheistKnockback_Poly_b76b52e8-b2cd-4021-ba2f-5bae9d4233e8);
+DB_DoNotFace(CHARACTERGUID_S_GLO_Dallis_69b951dc-55a4-44b8-a2d5-5efedbd7d572);
+DB_DoNotFace(CHARACTERGUID_S_FTJ_Florence_c272a37a-85ea-438f-9871-1551ef45d338);
+DB_DoNotFace(CHARACTERGUID_S_GLO_Alexandar_03e6345f-1bd3-403c-80e2-a443a74f6349);
+
+KBSECTION
+PROC
+Proc_FTJ_DallisEventStart()
+THEN
+ProcCharacterDisableAllCrimes(GLO_Dallis_69b951dc-55a4-44b8-a2d5-5efedbd7d572);
+ProcCharacterDisableAllCrimes(RC_FTJ_DallisGheist_001_fa573f6f-7af3-40da-bc9a-e7d984711b09);
+ProcCharacterDisableAllCrimes(RC_FTJ_DallisGheist_002_5aff71df-ec52-41cc-9b28-fb6b491a15c4);
+ProcCharacterDisableAllCrimes(GLO_Alexandar_03e6345f-1bd3-403c-80e2-a443a74f6349);
+DB_IsNotMessingAround(CHARACTERGUID_S_GLO_Alexandar_03e6345f-1bd3-403c-80e2-a443a74f6349);
+DB_IsNotMessingAround(CHARACTERGUID_S_GLO_Dallis_69b951dc-55a4-44b8-a2d5-5efedbd7d572);
+DB_IsNotMessingAround(CHARACTERGUID_S_FTJ_DallisGheist_002_5aff71df-ec52-41cc-9b28-fb6b491a15c4);
+DB_IsNotMessingAround(CHARACTERGUID_S_FTJ_DallisGheist_001_fa573f6f-7af3-40da-bc9a-e7d984711b09);
+DB_IsNotMessingAround(S_FTJ_GhettoGuard_001_ee5789f4-9320-493f-8fa1-a4ec1b8177f2);
+DB_IsNotMessingAround(S_FTJ_GhettoGuard_002_098c299c-a7a1-4857-9ab5-fb01849a68ae);
+DB_IsNotMessingAround(S_FTJ_GhettoGuard_003_7db795c9-9e63-40ab-a2f9-21b46fdb0c74);
+DB_IsNotMessingAround(S_FTJ_GhettoGuard_004_d11296d9-833f-4070-9fa7-44ac606aedb8);
+CharacterSetImmortal(S_GLO_Dallis_69b951dc-55a4-44b8-a2d5-5efedbd7d572, 1);
+CharacterSetImmortal(S_GLO_Alexandar_03e6345f-1bd3-403c-80e2-a443a74f6349, 1);
+SetOnStage(RC_FTJ_FlorenceLeg_09d02979-2749-4f1d-b1b7-5d2ddcfd6aa9, 0);
+
+PROC
+Proc_FTJ_DallisEventStart()
+THEN
+PROC_LoopEffect("RS3_FX_GP_Status_HoECollar_01", CHARACTERGUID_S_GLO_Alexandar_03e6345f-1bd3-403c-80e2-a443a74f6349, "FTJ_SourceCollar", "FJ_FortJoy_Main", "Dummy_NeckFX");
+ApplyStatus(CHARACTERGUID_S_GLO_Alexandar_03e6345f-1bd3-403c-80e2-a443a74f6349, "SOURCE_MUTED", -1, 1);
+
+IF
+StoryEvent((CHARACTERGUID)_Var1, "FTJ_StartDallisEvent")
+AND
+IsTagged(_Var1, "UNDEAD", 1)
+AND
+IsTagged(_Var1, "VEILED_UNDEAD", 0)
+AND
+IsTagged(_Var1, "MASKED_UNDEAD", 0)
+AND
+QueryOnlyOnce("FTJ_StartDallisEvent_OneShot")
+THEN
+LeaveCombat(_Var1);
+Proc_StartDialog(0, "GEB_Attack_Undead", GLO_Dallis_69b951dc-55a4-44b8-a2d5-5efedbd7d572, _Var1);
+
+PROC
+Proc_SceneOver("FTJ_DallasStartScene")
+THEN
+SetTag(CHARACTERGUID_S_GLO_Dallis_69b951dc-55a4-44b8-a2d5-5efedbd7d572, "IGNORE_UNDEAD_CRIME");
+
+IF
+StoryEvent((CHARACTERGUID)_Var1, "FTJ_StartDallisEvent")
+AND
+QueryOnlyOnce("FTJ_StartDallisEvent_OneShot")
+THEN
+LeaveCombat(_Var1);
+Proc_StartDialog(0, "FTJ_DallisPurgeAtusa", GLO_Dallis_69b951dc-55a4-44b8-a2d5-5efedbd7d572, GLO_Alexandar_03e6345f-1bd3-403c-80e2-a443a74f6349, RC_FTJ_Florence_c272a37a-85ea-438f-9871-1551ef45d338, _Var1);
+
+IF
+DialogEnded("FTJ_DallisPurgeAtusa", (INTEGER)_Var1)
+THEN
+ProcForceStopDialog(S_RC_FTJ_Florence_c272a37a-85ea-438f-9871-1551ef45d338);
+ProcForceStopDialog(S_GLO_Dallis_69b951dc-55a4-44b8-a2d5-5efedbd7d572);
+ProcForceStopDialog(S_GLO_Alexandar_03e6345f-1bd3-403c-80e2-a443a74f6349);
+NOT DB_DoNotFace(CHARACTERGUID_S_GLO_Alexandar_03e6345f-1bd3-403c-80e2-a443a74f6349);
+
+IF
+ObjectFlagSet("FTJ_KnowsAtusaHelpsEscape", (CHARACTERGUID)_Var1, _)
+AND
+CharacterIsDead(S_RC_FTJ_Florence_c272a37a-85ea-438f-9871-1551ef45d338, 0)
+THEN
+ObjectSetFlag(_Var1, "QuestUpdate_FTJ_Escape_StartFlorence");
+
+IF
+CharacterUsedSkillOnTarget(S_GLO_Dallis_69b951dc-55a4-44b8-a2d5-5efedbd7d572, S_FTJ_Florence_c272a37a-85ea-438f-9871-1551ef45d338, "Target_Quest_PurgeCharacter", _, _)
+THEN
+TimerLaunch("FTJ_DallisCastPurgeOnAtusa", 1400);
+
+IF
+TimerFinished("FTJ_DallisCastPurgeOnAtusa")
+THEN
+GlobalSetFlag("FTJ_DallisCastPurgeOnAtusa");
+
+IF
+CharacterDying(S_RC_FTJ_Florence_c272a37a-85ea-438f-9871-1551ef45d338)
+AND
+GlobalGetFlag("FTJ_DallisCastPurgeOnAtusa", 1)
+THEN
+SetOnStage(RC_FTJ_FlorenceLeg_09d02979-2749-4f1d-b1b7-5d2ddcfd6aa9, 1);
+ItemToInventory(RC_FTJ_FlorenceLeg_09d02979-2749-4f1d-b1b7-5d2ddcfd6aa9, CHARACTERGUID_S_FTJ_Florence_c272a37a-85ea-438f-9871-1551ef45d338);
+
+IF
+CharacterDying(S_RC_FTJ_Florence_c272a37a-85ea-438f-9871-1551ef45d338)
+AND
+GlobalGetFlag("FTJ_DallisCastPurgeOnAtusa", 1)
+AND
+DB_IsPlayer(_Var1)
+AND
+CharacterCanSee(_Var1, CHARACTERGUID_S_FTJ_Florence_c272a37a-85ea-438f-9871-1551ef45d338, 1)
+THEN
+Proc_ShakeCameraForTime(_Var1, 850);
+
+IF
+GlobalFlagSet("FTJ_DallisGhettoEventEnd")
+THEN
+DB_RemoveIsNotMessingAround(CHARACTERGUID_S_FTJ_GhettoGuard_001_ee5789f4-9320-493f-8fa1-a4ec1b8177f2);
+DB_RemoveIsNotMessingAround(CHARACTERGUID_S_FTJ_GhettoGuard_002_098c299c-a7a1-4857-9ab5-fb01849a68ae);
+DB_RemoveIsNotMessingAround(CHARACTERGUID_S_FTJ_GhettoGuard_003_7db795c9-9e63-40ab-a2f9-21b46fdb0c74);
+DB_RemoveIsNotMessingAround(CHARACTERGUID_S_FTJ_GhettoGuard_004_d11296d9-833f-4070-9fa7-44ac606aedb8);
+
+IF
+CharacterDying(S_RC_FTJ_Florence_c272a37a-85ea-438f-9871-1551ef45d338)
+AND
+CharacterIsInCombat(CHARACTERGUID_S_FTJ_Florence_c272a37a-85ea-438f-9871-1551ef45d338, 0)
+AND
+GlobalGetFlag("FTJ_DallisCastPurgeOnAtusa", 1)
+AND
+GetClosestAlivePlayer(CHARACTERGUID_S_FTJ_Florence_c272a37a-85ea-438f-9871-1551ef45d338, _Var1, _Var2)
+AND
+_Var2 < 15
+THEN
+ProcDefineReflectionDialog("FTJ_RD_AtusaDeath", _Var1);
+
+IF
+GlobalFlagSet("FTJ_AtusaCutsTongue")
+AND
+GetPosition(S_RC_FTJ_Florence_c272a37a-85ea-438f-9871-1551ef45d338, _Var1, _Var2, _Var3)
+AND
+RealSum(_Var2, 2, _Var4)
+THEN
+PlayAnimation(S_RC_FTJ_Florence_c272a37a-85ea-438f-9871-1551ef45d338, "hit");
+PlayEffectAtPosition("RS3_FX_GP_ScriptedEvent_FTJ_Florence_CutTongue_Blood_01", _Var1, _Var4, _Var3);
+TimerLaunch("FTJ_AtusaCutTongue", 400);
+
+IF
+TimerFinished("FTJ_AtusaCutTongue")
+THEN
+CreateSurface(S_RC_FTJ_Florence_c272a37a-85ea-438f-9871-1551ef45d338, "SurfaceBlood", 0.1, -1);
+
+IF
+GlobalFlagSet("FTJ_DallisCastPurgeOnAtusa")
+AND
+DB_IsPlayer(_Var1)
+AND
+GetDistanceTo(_Var1, CHARACTERGUID_S_FTJ_Florence_c272a37a-85ea-438f-9871-1551ef45d338, _Var2)
+AND
+_Var2 < 20
+THEN
+UserSetFlag(_Var1, "QuestUpdate_FTJ_Escape_FlorenceEnd");
+UserSetFlag(_Var1, "QuestUpdate_FTJ_Seeker_AtusaEvent");
+
+IF
+CharacterUsedItem((CHARACTERGUID)_Var1, ITEMGUID_S_FTJ_FlorenceLeg_09d02979-2749-4f1d-b1b7-5d2ddcfd6aa9)
+AND
+DB_IsPlayer(_Var1)
+AND
+IsTagged(_Var1, "ELF", 1)
+THEN
+UserSetFlag(_Var1, "QuestUpdate_FTJ_Escape_AtusaLimb");
+UserSetFlag(_Var1, "QuestUpdate_FTJ_Seeker_AtusaLimb");
+
+IF
+ObjectFlagSet("FTJ_Seeker_Unnis_SetMetFlag", (CHARACTERGUID)_Var1, _)
+AND
+UserGetFlag(_Var1, "QuestUpdate_FTJ_Escape_FlorenceEnd", 0)
+THEN
+UserSetFlag(_Var1, "QuestUpdate_FTJ_Seeker_UnnisMet");
+
+IF
+ObjectFlagSet("FTJ_Seeker_Unnis_SetMetFlag", (CHARACTERGUID)_Var1, _)
+AND
+UserGetFlag(_Var1, "QuestUpdate_FTJ_Escape_FlorenceEnd", 1)
+THEN
+UserSetFlag(_Var1, "QuestUpdate_FTJ_Seeker_UnnisMetAtusa");
+
+IF
+ObjectFlagSet("FTJ_DallisSubduePlayer", (CHARACTERGUID)_Var1, _)
+THEN
+PlayAnimation(S_GLO_Dallis_69b951dc-55a4-44b8-a2d5-5efedbd7d572, "skill_silence_cast");
+PlayAnimation(_Var1, "knockdown_fall");
+ApplyStatus(_Var1, "KNOCKED_DOWN", 12, 1);
+PlayEffect(_Var1, "RS3_FX_Skills_Air_FreeFall_Disappear_01");
+PlayEffect(CHARACTERGUID_S_GLO_Dallis_69b951dc-55a4-44b8-a2d5-5efedbd7d572, "RS3_FX_Skills_Air_FreeFall_Cast_01");
+
+IF
+CharacterEnteredTrigger((CHARACTERGUID)_Var1, S_FTJ_DallisGheistKnockback_Poly_b76b52e8-b2cd-4021-ba2f-5bae9d4233e8)
+AND
+DB_IsPlayer(_Var1)
+AND
+QRY_SpeakerIsAvailable(_Var1)
+AND
+DB_FTJ_DallisGheist(_Var2, _Var3)
+AND
+DB_FTJ_DallisGheist(_Var4, _Var5)
+AND
+_Var2 != _Var4
+AND
+_Var3 != _Var5
+AND
+GetDistanceTo(_Var2, _Var1, _Var6)
+AND
+GetDistanceTo(_Var4, _Var1, _Var7)
+AND
+_Var6 > _Var7
+AND
+CharacterCanSee(_Var4, _Var1, 1)
+AND
+GlobalGetFlag("FTJ_FlorenceEventEnded", 0)
+AND
+QRY_SpeakerIsAvailable(_Var4)
+THEN
+Proc_FTJ_GheistKnockBackPlayer(_Var1, _Var5, _Var4);
+
+PROC
+Proc_FTJ_GheistKnockBackPlayer((CHARACTERGUID)_Var1, (TRIGGERGUID)_Var2, (CHARACTERGUID)_Var3)
+THEN
+CharacterPurgeQueue(_Var3);
+CharacterLookAt(_Var3, _Var1);
+PlayAnimation(_Var3, "skill_blitzbolt_cast");
+RemoveStatus(_Var1, "RESTED");
+ApplyStatus(_Var1, "KNOCKED_DOWN", 1.5, 1);
+TeleportTo(_Var1, _Var2);
+Proc_StartDialog(1, "FTJ_AD_GheistKnockbackPlayer", _Var3);
+PlayEffect(_Var3, "RS3_FX_GP_ScriptedEvent_RadialBlowBack_01");
+
+IF
+CharacterDied(CHARACTERGUID_S_FTJ_Florence_c272a37a-85ea-438f-9871-1551ef45d338)
+AND
+DB_IsPlayer(_Var1)
+AND
+CharacterCanSee(_Var1, CHARACTERGUID_S_FTJ_Florence_c272a37a-85ea-438f-9871-1551ef45d338, 1)
+THEN
+ObjectSetFlag(_Var1, "FTJ_KnowsAtusaIsDead");
+
+IF
+CharacterSawCharacter((CHARACTERGUID)_Var1, CHARACTERGUID_S_FTJ_Florence_c272a37a-85ea-438f-9871-1551ef45d338)
+AND
+CharacterIsDead(CHARACTERGUID_S_FTJ_Florence_c272a37a-85ea-438f-9871-1551ef45d338, 1)
+THEN
+UserSetFlag(_Var1, "FTJ_KnowsAtusaIsDead");
+
+PROC
+Proc_SceneInterrupted(_, _, "FTJ_DallasStartScene", (STRING)_Var3)
+AND
+DB_GLO_GenericSceneManager_LeavingReason(_Var3)
+AND
+DB_SceneManager(_Var4, "FTJ_DallasStartScene")
+AND
+_Var4 != S_FTJ_Florence_c272a37a-85ea-438f-9871-1551ef45d338
+THEN
+DB_OnlyOnce("FTJ_StartDallisEvent_OneShot");
+DialogRequestStop(_Var4);
+GlobalSetFlag("FTJ_ForceStartDallisPurge");
+Proc_SceneOver("FTJ_DallasStartScene");
+
+PROC
+Proc_SceneInterrupted(_, (CHARACTERGUID)_Var2, "FTJ_DallasStartScene", (STRING)_Var3)
+AND
+QRY_FTJDallisEvent_InterruptReasonAttackedOrCombat(_Var3)
+AND
+DB_SceneManager(_Var4, "FTJ_DallasStartScene")
+THEN
+DB_OnlyOnce("FTJ_StartDallisEvent_OneShot");
+DialogRequestStop(_Var4);
+DialogRequestStop(_Var2);
+GlobalSetFlag("FTJ_ForceStartDallisPurge");
+Proc_SceneOver("FTJ_DallasStartScene");
+ProcMakeNPCHostile(_Var4, _Var2);
+
+QRY
+QRY_FTJDallisEvent_InterruptReasonAttackedOrCombat((STRING)_Var1)
+AND
+_Var1 == "Attacked"
+THEN
+DB_NOOP(1);
+
+QRY
+QRY_FTJDallisEvent_InterruptReasonAttackedOrCombat((STRING)_Var1)
+AND
+_Var1 == "EnteredCombat"
+THEN
+DB_NOOP(1);
+
+IF
+GlobalFlagSet("FTJ_FlorenceEventEnded")
+THEN
+Proc_SceneOver("FTJ_DallasStartScene");
+
+PROC
+Proc_FTJ_EscapedFortJoy((CHARACTERGUID)_Var1)
+AND
+GlobalGetFlag("FTJ_FlorencePurgingEnd", 0)
+THEN
+DB_OnlyOnce("FTJ_StartDallisEvent_OneShot");
+DialogRequestStop(CHARACTERGUID_S_GLO_Dallis_69b951dc-55a4-44b8-a2d5-5efedbd7d572);
+GlobalSetFlag("FTJ_ForceStartDallisPurge");
+
+IF
+CharacterDied(CHARACTERGUID_S_FTJ_Florence_c272a37a-85ea-438f-9871-1551ef45d338)
+AND
+GlobalGetFlag("FTJ_FlorencePurgingEnd", 0)
+THEN
+GlobalSetFlag("FTJ_ForceStartDallisPurge");
+
+IF
+CharacterEnteredTrigger((CHARACTERGUID)_Var1, TRIGGERGUID_S_FTJ_DallisEventAutoEnd_Poly_c66c0ceb-84d0-42f2-af77-854d178a58d5)
+THEN
+Proc_FTJ_EscapedFortJoy(_Var1);
+
+PROC
+Proc_FTJ_EscapedFortJoy((CHARACTERGUID)_Var1)
+AND NOT
+DB_OncePerPlayerCharacter(_Var1, "QuestUpdate_FTJ_Escape_EnterDunes")
+THEN
+CharacterSetRelationIndivFactionToFaction(_Var1, "RC_Magister", 0);
+CharacterSetRelationFactionToIndivFaction("RC_Magister", _Var1, 0);
+DB_OncePerPlayerCharacter(_Var1, "QuestUpdate_FTJ_Escape_EnterDunes");
+ObjectSetFlag(_Var1, "QuestUpdate_FTJ_Escape_EnterDunes");
+
+PROC
+Proc_FTJ_EscapedFortJoy((CHARACTERGUID)_Var1)
+AND
+DB_OriginRecruitmentLocation(_Var1, _Var2)
+AND
+DB_OriginRecruitmentLocation_Region("__Shelter", _Var1, _Var3, _Var4)
+THEN
+DB_OriginRecruitmentLocation(_Var1, _Var3);
+NOT DB_OriginRecruitmentLocation_Region("__Shelter", _Var1, _Var3, _Var4);
+NOT DB_OriginRecruitmentLocation(_Var1, _Var2);
+SetVarFixedString(_Var1, "currentState", _Var4);
+ObjectSetFlag(_Var1, "FTJ_SW_InShelter");
+
+PROC
+Proc_FTJ_EscapedFortJoy((CHARACTERGUID)_Var1)
+AND
+QueryOnlyOnce("FTJ_SW_RD_EscapedFortJoy")
+THEN
+ProcDefineReflectionDialog("FTJ_SW_RD_EscapedFortJoy", _Var1);
+
+PROC
+Proc_SceneOver("FTJ_DallasStartScene")
+THEN
+ProcCharacterDisableAllCrimes(RC_FTJ_DallisGheist_001_fa573f6f-7af3-40da-bc9a-e7d984711b09);
+ProcCharacterDisableAllCrimes(RC_FTJ_DallisGheist_002_5aff71df-ec52-41cc-9b28-fb6b491a15c4);
+
+IF
+TextEventSet("stundallis")
+THEN
+ApplyStatus(CHARACTERGUID_S_GLO_Dallis_69b951dc-55a4-44b8-a2d5-5efedbd7d572, "STUNNED", -1, 1);
+
+PROC
+ProcRegionEnded("FJ_FortJoy_Main")
+THEN
+CharacterSetForceUpdate(CHARACTERGUID_S_GLO_Dallis_69b951dc-55a4-44b8-a2d5-5efedbd7d572, 0);
+GoalCompleted;
+
+
+EXITSECTION
+ENDEXITSECTION
+
+ParentTargetEdge "FortJoy"

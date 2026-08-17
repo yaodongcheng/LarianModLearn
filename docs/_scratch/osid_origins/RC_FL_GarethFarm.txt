@@ -1,0 +1,654 @@
+Version 1
+SubGoalCombiner SGC_AND
+
+INITSECTION
+DB_RC_FL_GarethFarmVW(CHARACTERGUID_S_RC_FL_GarethFarmVW1_1_a1260bd5-4caf-40a9-9558-e119c81fdd98);
+DB_RC_FL_GarethFarmVW(CHARACTERGUID_S_RC_FL_GarethFarmVW1_2_da52aca9-69ab-4cb9-84d7-4d4ce85f2c12);
+DB_RC_FL_GarethFarmVW(CHARACTERGUID_S_RC_FL_GarethFarmVW1_3_47227566-7a40-4f00-bc52-67ee8d4b8b94);
+DB_RC_FL_GarethFarmVW(CHARACTERGUID_S_RC_FL_GarethFarmVW1_4_ca61aa84-49d9-4d77-85ed-bd4e4de66304);
+DB_RC_FL_GarethFarmVW(CHARACTERGUID_S_RC_FL_GarethFarmVW2_1_56945fd8-ec9e-4fa3-bcb6-ad5d15da26f1);
+DB_RC_FL_GarethFarmVW(CHARACTERGUID_S_RC_FL_GarethFarmVW2_2_1a50a697-550a-4d17-a647-e3bdc84d9bad);
+DB_RC_FL_GarethFarmMonks(CHARACTERGUID_S_RC_FL_GarethFarmSM1_bc156105-76c2-4ad0-8c38-d86acbead472, "RC_FL_GarethFarmSM1");
+DB_RC_FL_GarethFarmMonks(CHARACTERGUID_S_RC_FL_GarethFarmSM2_fd629c53-8682-4985-b634-28283868a0bc, "RC_FL_GarethFarmSM2");
+DB_RC_FL_GarethFarmMonks(CHARACTERGUID_S_RC_FL_GarethFarmSM3_4136b414-ee70-4bb8-b289-912aa05f2616, "RC_FL_GarethFarmSM3");
+DB_RC_FL_GarethFarmMonks(CHARACTERGUID_S_RC_FL_GarethFarmSM4_907892a0-9c49-4ebd-bfa7-4272640e4c7e, "RC_FL_GarethFarmSM4");
+DB_KillCounter("RC_FL_GarethFarmMonks", 4);
+SetOnStage(CHARACTERGUID_S_RC_FL_GarethMother2_fa4c4ab6-e653-4410-b5ac-da4ed07e5bfc, 0);
+SetOnStage(CHARACTERGUID_S_RC_FL_GarethMother_Ghost1_c0665d91-5979-436a-8269-2d063ffb3cfc, 0);
+SetOnStage(CHARACTERGUID_S_RC_FL_GarethMother_Ghost2_42fe1799-5ee7-482e-b677-5a7b3adca366, 0);
+SetOnStage(CHARACTERGUID_S_RC_FL_GarethFather2_d3b72720-fa5d-4602-8a44-62a818d65f0e, 0);
+SetOnStage(CHARACTERGUID_S_RC_FL_GarethFather_Ghost1_29c6eddb-fcf7-45d2-9224-8445c0b61350, 0);
+SetOnStage(CHARACTERGUID_S_RC_FL_GarethFather_Ghost2_57942cbc-55fb-4777-a837-f84481601a9e, 0);
+DB_RC_FL_GarethParentsGrave(TRIGGERGUID_S_RC_FL_GarethFatherGraveBox_84edd24c-6aed-487f-ad41-0b8c66603c2c, "RC_FL_GarethFatherGrave", ITEMGUID_S_RC_FL_GarethFatherGrave_84e17a7b-7b37-46c5-997e-6f71dcd3076b, CHARACTERGUID_S_RC_FL_GarethFather2_d3b72720-fa5d-4602-8a44-62a818d65f0e, CHARACTERGUID_S_RC_FL_GarethFather_Ghost2_57942cbc-55fb-4777-a837-f84481601a9e);
+DB_RC_FL_GarethParentsGrave(TRIGGERGUID_S_RC_FL_GarethMotherGraveBox_8662f467-cdb8-49b8-a777-b82201180138, "RC_FL_GarethMotherGrave", ITEMGUID_S_RC_FL_GarethMotherGrave_0ea7bd25-2742-4e14-a6fc-dd9bfeb9ce8c, CHARACTERGUID_S_RC_FL_GarethMother2_fa4c4ab6-e653-4410-b5ac-da4ed07e5bfc, CHARACTERGUID_S_RC_FL_GarethMother_Ghost2_42fe1799-5ee7-482e-b677-5a7b3adca366);
+DB_Ghosts(CHARACTERGUID_S_RC_FL_GarethMother_Ghost2_42fe1799-5ee7-482e-b677-5a7b3adca366, "");
+DB_Ghosts(CHARACTERGUID_S_RC_FL_GarethFather_Ghost2_57942cbc-55fb-4777-a837-f84481601a9e, "");
+SetOnStage(CHARACTERGUID_S_RC_FL_GarethFarmPaladin1_065af9e3-f902-496e-9061-c7c405ebfb41, 0);
+SetOnStage(CHARACTERGUID_S_RC_FL_GarethFarmPaladin2_534d497a-05fd-4e5e-8987-770fd3297ac2, 0);
+DB_Dialogs(CHARACTERGUID_S_RC_FL_GarethFarmPaladin1_065af9e3-f902-496e-9061-c7c405ebfb41, CHARACTERGUID_S_RC_FL_GarethFarmPaladin2_534d497a-05fd-4e5e-8987-770fd3297ac2, "RC_FL_FarmPaladins");
+DB_QuestDef_State("RC_FL_GarethFarm", "FoundWithJonathan", 1);
+DB_QuestDef_State("RC_FL_GarethFarm", "StartMalady", 1);
+DB_QuestDef_State("RC_FL_GarethFarm", "KilledMonks");
+DB_QuestDef_AddEvent("RC_FL_GarethFarm", "RC_FL_Gareth_FoundDigging");
+DB_QuestDef_AddEvent("RC_FL_GarethFarm", "RC_FL_GarethFarm_KnowMonks");
+DB_QuestDef_UpdateEvent("RC_FL_GarethFarm", "PersuadedOpenDoor", "RC_FL_GarethFarm_PersuadedOpenDoor");
+DB_QuestDef_UpdateEvent("RC_FL_GarethFarm", "FoundDigging", "RC_FL_Gareth_FoundDigging");
+DB_QuestDef_UpdateEvent("RC_FL_GarethFarm", "KilledJonathanFields", "RC_FL_KilledJonathanFields");
+DB_QuestDef_UpdateEvent("RC_FL_GarethFarm", "ChoseJonathanRelease", "RC_FL_ChoseJonathanRelease");
+DB_QuestDef_UpdateEvent("RC_FL_GarethFarm", "WantMonksDead", "RC_FL_Gareth_WantMonksDead");
+DB_QuestDef_UpdateEvent("RC_FL_GarethFarm", "KnowMonks", "RC_FL_Gareth_KnowMonks");
+DB_QuestDef_UpdateEvent("RC_FL_GarethFarm", "ConvincedReturn", "RC_FL_Gareth_ConvincedGarethReturn");
+DB_QuestDef_UpdateEvent("RC_FL_GarethFarm", "KnowSearch", "RC_FL_Gareth_KnowSearch");
+DB_QuestDef_State("RC_FL_GarethFarm", "Gloves");
+DB_QuestDef_State("RC_FL_GarethFarm", "ConvincedKillJonathan", -1);
+DB_QuestDef_State("RC_FL_GarethFarm", "SuckedParents");
+DB_QuestDef_State("RC_FL_GarethFarm", "JonathanCancelled");
+DB_QuestDef_State("RC_FL_GarethFarm", "GarethVisitFamily");
+DB_QuestDef_State("RC_FL_GarethFarm", "GarethDead", -1);
+DB_QuestDef_State("RC_FL_GarethFarm", "CloseLeftRCHouse", -1);
+DB_QuestDef_State("RC_FL_GarethFarm", "CloseLeftRCJonathan", -1);
+DB_QuestDef_State("RC_FL_GarethFarm", "CancelOnLadyVengeance", -1);
+DB_QuestDef_UpdateEvent("RC_FL_GarethFarm", "KnowJonathan", "RC_FL_Gareth_KnowJonathan");
+DB_QuestDef_UpdateEvent("RC_FL_GarethFarm", "ToldGarethJonathan", "RC_FL_Gareth_ToldGarethJonathan");
+DB_QuestDef_UpdateEvent("RC_FL_GarethFarm", "HuntingJonathan", "RC_FL_Gareth_AfterJonathan");
+DB_QuestDef_State("RC_FL_GarethFarm", "GaveRing", -1);
+DB_QuestDef_State("RC_FL_GarethFarm", "Lied", -1);
+DB_QuestDef_State("RC_FL_GarethFarm", "HasJonathanRing");
+DB_QuestDef_CloseEvent("RC_FL_GarethFarm", "RC_FL_Gareth_SentDownDarkPath");
+DB_QuestDef_CloseEvent("RC_FL_GarethFarm", "RC_FL_Gareth_ConvincedGarethReturn");
+DB_QuestDef_CloseEvent("RC_FL_GarethFarm", "RC_FL_KilledJonathanFields");
+DB_QuestDef_AddEvent("RC_FL_GarethParents", "RC_FL_GarethParents_KnowFarmVoidwoken");
+DB_QuestDef_UpdateEvent("RC_FL_GarethParents", "KnowFarmVoidwoken", "RC_FL_GarethParents_KnowFarmVoidwoken");
+DB_QuestDef_UpdateEvent("RC_FL_GarethParents", "HelpingFarmVoidwoken", "RC_FL_GarethParents_HelpingFarmVoidwoken");
+DB_QuestDef_UpdateEvent("RC_FL_GarethParents", "DefeatedFarmVoidwoken", "RC_FL_DefeatedFarmVoidwoken");
+DB_QuestDef_UpdateEvent("RC_FL_GarethParents", "HelpedFarmVoidwoken", "RC_FL_GarethParents_HelpedFarmVoidwoken");
+DB_QuestDef_CloseEvent("RC_FL_GarethParents", "RC_FL_GarethParents_HelpedFarmVoidwoken");
+DB_QuestDef_UpdateEvent("RC_FL_GarethParents", "CoupleDead", "QuestUpdate_RC_FL_Garethparents_BothDead");
+DB_QuestDef_CloseEvent("RC_FL_GarethParents", "QuestUpdate_RC_FL_Garethparents_BothDead");
+DB_QuestDef_State("RC_FL_GarethParents", "CloseLeftRC", -1);
+Proc_JDF_CreateCustomFlagsDependency("RC_FL_Gareth_ToldGarethJonathan", "RC_OIL_HasJonathansRing", "QuestUpdate_RC_FL_GarethFarm_HasJonathanRing");
+Proc_JDF_CreateCustomFlagsDependency("RC_FL_Gareth_AfterJonathan", "RC_OIL_HasJonathansRing", "QuestUpdate_RC_FL_GarethFarm_HasJonathanRing");
+DB_DeadEvent(CHARACTERGUID_S_RC_FL_GarethFather_c96cd4d8-3e1f-4bcb-a637-a48ce9b284b7, "RC_FL_GarethFatherDead");
+DB_DeadEvent(CHARACTERGUID_S_RC_FL_GarethMother_4baf3c5c-6604-43b1-aef6-6b39afceceaf, "RC_FL_GarethMotherDead");
+DB_HasStoryEvent(ITEMGUID_S_RC_FL_GarethHomeKey_f5583f04-4977-4394-80a5-8abeed5107bc, "RC_FL_HasGarethHomeKey");
+DB_GiveItemToEventWithClear(ITEMGUID_S_RC_FL_GarethHomeKey_f5583f04-4977-4394-80a5-8abeed5107bc, "RC_FL_GiveGarethHomeKey");
+ProcTriggerRegisterForPlayers(TRIGGERGUID_S_RC_FL_GarethFarm_77ac0151-140d-4b3b-ac12-94ac23b91030);
+DB_HasStoryEvent(ITEMGUID_S_RC_FL_JonathanGloves_1ece34b2-0434-4bf5-945a-331c06194073, "RC_FL_HasJonathanGloves");
+DB_HasStoryEvent(ITEMGUID_S_RC_FL_GarethParentsReward_9d6e5589-f905-447c-80df-0f9758a4bdc5, "RC_FL_HasGarethParentsReward");
+DB_HasStoryEvent(ITEMGUID_S_RC_FL_GarethParentsRewardRing_92852580-8e0f-4e81-83b1-73a3468628bb, "RC_FL_HasGarethParentsRewardRing");
+DB_GiveItemToEventWithClear(ITEMGUID_S_RC_FL_GarethParentsReward_9d6e5589-f905-447c-80df-0f9758a4bdc5, "RC_FL_GiveGarethParentsReward");
+DB_GiveItemToEventWithClear(ITEMGUID_S_RC_FL_GarethParentsRewardRing_92852580-8e0f-4e81-83b1-73a3468628bb, "RC_FL_GiveGarethParentsRewardRing");
+DB_ShovelArea(TRIGGERGUID_S_RC_FL_GarethParentsSavings_Box_c8463e4c-322a-49be-a20a-0cdac234cb95, "RC_DF_GarethParentsSavings", ITEMGUID_S_RC_FL_GarethParentsSavings_Pile_52a50fb3-9502-4e8d-afbb-cf45344ea627);
+DB_ShovelRewardItemAppear("RC_DF_GarethParentsSavings", ITEMGUID_S_RC_FL_GarethParentsSavings_Chest_e019fb3b-bdc6-43de-a82e-888ca124e1bb, TRIGGERGUID_S_RC_FL_GarethParentsSavings_Dest_f38f6113-fcd2-4178-9b20-75bb076ec19b);
+PROC_RC_FL_CheckGarethFarmDeadGareth();
+
+KBSECTION
+PROC
+PROC_RC_FL_CheckGarethFarmDeadGareth()
+AND NOT
+QRY_RC_FL_ParentsDeadSetupVariant()
+THEN
+PROC_RC_FL_GarethFarmSetup();
+
+PROC
+PROC_RC_FL_CheckGarethFarmDeadGareth()
+AND
+CharacterIsDead(CHARACTERGUID_S_FTJ_SW_Warrior_SeekerCaptain_1329f018-23e4-4717-9bc8-074b28d04c54, 1)
+THEN
+GlobalSetFlag("RC_FL_GarethDiedBeforeFarm");
+
+QRY
+QRY_RC_FL_ParentsDeadSetupVariant()
+AND
+CharacterIsDead(CHARACTERGUID_S_GLO_GarethFriend_9372d7fb-dc95-4acf-b455-8a36d610e203, 0)
+AND
+CharacterIsDead(CHARACTERGUID_S_FTJ_SW_Warrior_SeekerCaptain_1329f018-23e4-4717-9bc8-074b28d04c54, 0)
+THEN
+DB_NOOP(1);
+
+IF
+DB_RC_FL_GarethFarmVW(_Var1)
+THEN
+SetOnStage(_Var1, 0);
+
+IF
+DB_RC_FL_GarethFarmMonks(_Var1, _Var2)
+THEN
+SetOnStage(_Var1, 0);
+DB_Dialogs(_Var1, _Var2);
+DB_IgnoreAssault(_Var1);
+
+PROC
+PROC_RC_FL_GarethFarmSetup()
+AND NOT
+DB_OnlyOnce("RC_FL_GarethFarmSetup")
+THEN
+ProcRemoveNPCADs(CHARACTERGUID_S_FTJ_SW_Warrior_SeekerCaptain_1329f018-23e4-4717-9bc8-074b28d04c54);
+
+PROC
+PROC_RC_FL_GarethFarmSetup()
+AND NOT
+DB_OnlyOnce("RC_FL_GarethFarmSetup")
+AND
+QRY_RC_FL_ParentsDeadSetupVariant()
+AND
+DB_RC_FL_GarethFarmMonks(_Var1, _)
+THEN
+SetOnStage(_Var1, 1);
+
+PROC
+PROC_RC_FL_GarethFarmSetup()
+AND NOT
+DB_OnlyOnce("RC_FL_GarethFarmSetup")
+AND
+QRY_RC_FL_ParentsDeadSetupVariant()
+THEN
+SetOnStage(CHARACTERGUID_S_RC_FL_GarethFarmPaladin1_065af9e3-f902-496e-9061-c7c405ebfb41, 1);
+CharacterLevelUpTo(CHARACTERGUID_S_FTJ_SW_Warrior_SeekerCaptain_1329f018-23e4-4717-9bc8-074b28d04c54, 13);
+SetOnStage(CHARACTERGUID_S_RC_FL_GarethFarmPaladin2_534d497a-05fd-4e5e-8987-770fd3297ac2, 1);
+TeleportTo(CHARACTERGUID_S_FTJ_SW_Warrior_SeekerCaptain_1329f018-23e4-4717-9bc8-074b28d04c54, S_RC_FL_GarethDigSpot_d0ea8c69-0181-489f-8992-d4311cea59c8, "", 0);
+ItemLock(ITEMGUID_S_RC_FL_GarethFarmEntrance_e4af474b-dbad-4764-8bfb-543d532d77ee, "RC_FL_GarethHouseDoor");
+ItemSetOwner(ITEMGUID_S_RC_FL_GarethFarmEntrance_e4af474b-dbad-4764-8bfb-543d532d77ee, CHARACTERGUID_S_RC_FL_GarethFarmPaladin1_065af9e3-f902-496e-9061-c7c405ebfb41);
+SetVarFixedString(CHARACTERGUID_S_FTJ_SW_Warrior_SeekerCaptain_1329f018-23e4-4717-9bc8-074b28d04c54, "currentState", "State_FL_Dig_Parents");
+PROC_RemoveDialogFromCharacter(CHARACTERGUID_S_FTJ_SW_Warrior_SeekerCaptain_1329f018-23e4-4717-9bc8-074b28d04c54);
+DB_Dialogs(CHARACTERGUID_S_FTJ_SW_Warrior_SeekerCaptain_1329f018-23e4-4717-9bc8-074b28d04c54, "RC_FL_Gareth");
+SetOnStage(CHARACTERGUID_S_RC_FL_GarethMother_4baf3c5c-6604-43b1-aef6-6b39afceceaf, 0);
+SetOnStage(CHARACTERGUID_S_RC_FL_GarethFather_c96cd4d8-3e1f-4bcb-a637-a48ce9b284b7, 0);
+SetOnStage(CHARACTERGUID_S_FTJ_SW_Warrior_SeekerCaptain_1329f018-23e4-4717-9bc8-074b28d04c54, 1);
+CharacterSetFightMode(CHARACTERGUID_S_FTJ_SW_Warrior_SeekerCaptain_1329f018-23e4-4717-9bc8-074b28d04c54, 0, 1);
+SetOnStage(ITEMGUID_S_RC_FL_GarethFarm_ArmoireDown_5ae12be1-6c5a-4653-8ea6-ce1a4fe10e9c, 0);
+
+PROC
+PROC_RC_FL_GarethFarmSetup()
+AND NOT
+DB_OnlyOnce("RC_FL_GarethFarmSetup")
+AND
+QRY_RC_FL_ParentsDeadSetupVariant()
+AND
+DB_RC_FL_GarethParentsGrave(_Var1, _Var2, _Var3, _Var4, _Var5)
+THEN
+SetOnStage(_Var5, 1);
+DB_ShovelArea(_Var1, _Var2, _Var3);
+DB_DontCreateUseForbiddenItem(_Var3);
+
+PROC
+PROC_RC_FL_GarethFarmSetup()
+AND NOT
+DB_OnlyOnce("RC_FL_GarethFarmSetup")
+AND NOT
+QRY_RC_FL_ParentsDeadSetupVariant()
+AND
+DB_RC_FL_GarethFarmVW(_Var1)
+THEN
+SetOnStage(_Var1, 1);
+
+PROC
+PROC_RC_FL_GarethFarmSetup()
+AND NOT
+DB_OnlyOnce("RC_FL_GarethFarmSetup")
+AND NOT
+QRY_RC_FL_ParentsDeadSetupVariant()
+THEN
+SetOnStage(S_RC_FL_GarethFatherCross_8ff74909-3f45-453b-baee-8d22ced1c29f, 0);
+SetOnStage(S_RC_FL_GarethMotherCross_b775d109-32d4-4735-b227-54a03a75bcf5, 0);
+SetOnStage(ITEMGUID_S_RC_FL_GarethFatherGrave_84e17a7b-7b37-46c5-997e-6f71dcd3076b, 0);
+SetOnStage(ITEMGUID_S_RC_FL_GarethMotherGrave_0ea7bd25-2742-4e14-a6fc-dd9bfeb9ce8c, 0);
+DB_Dialogs(CHARACTERGUID_S_RC_FL_GarethFather_c96cd4d8-3e1f-4bcb-a637-a48ce9b284b7, CHARACTERGUID_S_RC_FL_GarethMother_4baf3c5c-6604-43b1-aef6-6b39afceceaf, "RC_FL_GarethParents");
+SetOnStage(ITEMGUID_S_RC_FL_GarethHouseWall_cef3c9e2-c47d-409e-b374-c1ec5445f2b3, 0);
+SetOnStage(ITEMGUID_S_RC_FL_GarethFarm_ArmoireUp_0077b365-bdc5-4101-9430-a779e3d5cea2, 0);
+SetOnStage(ITEMGUID_S_RC_FL_GarethFarm_Crate1_743c69b0-3df7-44a3-af58-fc25260c7bf3, 0);
+SetOnStage(ITEMGUID_S_RC_FL_GarethFarm_Crate2_e84e209d-3add-458d-a0fb-72f6c3f85bd5, 0);
+SetOnStage(ITEMGUID_S_RC_FL_JonathanGloves_1ece34b2-0434-4bf5-945a-331c06194073, 0);
+
+PROC
+PROC_RC_FL_GarethFarmSetup()
+AND NOT
+DB_OnlyOnce("RC_FL_GarethFarmSetup")
+AND NOT
+QRY_RC_FL_ParentsDeadSetupVariant()
+AND
+ItemIsInInventory(ITEMGUID_S_RC_FL_GarethParentsReward_9d6e5589-f905-447c-80df-0f9758a4bdc5, 0)
+THEN
+ItemToInventory(ITEMGUID_S_RC_FL_GarethParentsReward_9d6e5589-f905-447c-80df-0f9758a4bdc5, CHARACTERGUID_S_RC_FL_GarethMother_4baf3c5c-6604-43b1-aef6-6b39afceceaf);
+
+PROC
+PROC_RC_FL_GarethFarmSetup()
+THEN
+DB_OnlyOnce("RC_FL_GarethFarmSetup");
+
+IF
+DB_RC_FL_GarethFarmMonks(_Var1, _)
+THEN
+DB_KillCounter_Internal(_Var1, "RC_FL_GarethFarmMonks");
+ProcCharacterDisableAllCrimes(_Var1);
+DB_DontCreateMurder(_Var1);
+
+IF
+CharacterDying((CHARACTERGUID)_Var1)
+AND
+DB_RC_FL_GarethFarmMonks(_Var1, _)
+THEN
+GlobalSetFlag("RC_FL_GarethFarmMonkKilled");
+
+PROC
+ReactOnKillCounter("RC_FL_GarethFarmMonks")
+THEN
+GlobalSetFlag("RC_FL_GarethFarmMonksDead");
+
+PROC
+ReactOnKillCounter("RC_FL_GarethFarmMonks")
+AND
+GetVarFixedString(CHARACTERGUID_S_FTJ_SW_Warrior_SeekerCaptain_1329f018-23e4-4717-9bc8-074b28d04c54, "currentState", "State_FL_KillMonks")
+THEN
+SetHasDialog(CHARACTERGUID_S_FTJ_SW_Warrior_SeekerCaptain_1329f018-23e4-4717-9bc8-074b28d04c54, 1);
+SetVarFixedString(CHARACTERGUID_S_FTJ_SW_Warrior_SeekerCaptain_1329f018-23e4-4717-9bc8-074b28d04c54, "currentState", "State_FL_Farm_Idle");
+
+PROC
+ReactOnKillCounter("RC_FL_GarethFarmMonks")
+AND
+DB_IsPlayer(_Var1)
+AND
+DB_InRegion(_Var1, TRIGGERGUID_S_RC_FL_GarethFarm_77ac0151-140d-4b3b-ac12-94ac23b91030)
+THEN
+UserSetFlag(_Var1, "QuestUpdate_RC_FL_GarethFarm_KilledMonks", 0);
+
+IF
+GlobalFlagSet("RC_FL_FarmPaladins_LeaveFarm")
+THEN
+ItemClearOwner(ITEMGUID_S_RC_FL_GarethFarmEntrance_e4af474b-dbad-4764-8bfb-543d532d77ee);
+SetHasDialog(CHARACTERGUID_S_RC_FL_GarethFarmPaladin1_065af9e3-f902-496e-9061-c7c405ebfb41, 0);
+SetHasDialog(CHARACTERGUID_S_RC_FL_GarethFarmPaladin2_534d497a-05fd-4e5e-8987-770fd3297ac2, 0);
+CharacterSetReactionPriority(CHARACTERGUID_S_RC_FL_GarethFarmPaladin2_534d497a-05fd-4e5e-8987-770fd3297ac2, "ProtestDestroyBar", 320);
+CharacterSetReactionPriority(CHARACTERGUID_S_RC_FL_GarethFarmPaladin1_065af9e3-f902-496e-9061-c7c405ebfb41, "Leave", 350);
+
+IF
+ItemUnlocked(S_RC_FL_GarethFarmEntrance_e4af474b-dbad-4764-8bfb-543d532d77ee, _, _)
+AND
+QueryOnlyOnce("RC_FL_DestroyedGarethFarmDoor")
+AND
+ObjectGetFlag(CHARACTERGUID_S_FTJ_SW_Warrior_SeekerCaptain_1329f018-23e4-4717-9bc8-074b28d04c54, "RC_FL_Gareth_LeavetoLV", 0)
+THEN
+SetStoryEvent(CHARACTERGUID_S_FTJ_SW_Warrior_SeekerCaptain_1329f018-23e4-4717-9bc8-074b28d04c54, "FL_GoToFarm");
+DialogRequestStopForDialog("RC_FL_Gareth", CHARACTERGUID_S_FTJ_SW_Warrior_SeekerCaptain_1329f018-23e4-4717-9bc8-074b28d04c54);
+ItemUnLock(ITEMGUID_S_RC_FL_GarethFarmEntrance_e4af474b-dbad-4764-8bfb-543d532d77ee);
+ItemClearOwner(ITEMGUID_S_RC_FL_GarethFarmEntrance_e4af474b-dbad-4764-8bfb-543d532d77ee);
+
+IF
+ItemDestroyed(S_RC_FL_GarethFarmEntrance_e4af474b-dbad-4764-8bfb-543d532d77ee)
+AND
+QueryOnlyOnce("RC_FL_DestroyedGarethFarmDoor")
+AND
+ObjectGetFlag(CHARACTERGUID_S_FTJ_SW_Warrior_SeekerCaptain_1329f018-23e4-4717-9bc8-074b28d04c54, "RC_FL_Gareth_LeavetoLV", 0)
+THEN
+SetStoryEvent(CHARACTERGUID_S_FTJ_SW_Warrior_SeekerCaptain_1329f018-23e4-4717-9bc8-074b28d04c54, "FL_GoToFarm");
+DialogRequestStopForDialog("RC_FL_Gareth", CHARACTERGUID_S_FTJ_SW_Warrior_SeekerCaptain_1329f018-23e4-4717-9bc8-074b28d04c54);
+ItemUnLock(ITEMGUID_S_RC_FL_GarethFarmEntrance_e4af474b-dbad-4764-8bfb-543d532d77ee);
+ItemClearOwner(ITEMGUID_S_RC_FL_GarethFarmEntrance_e4af474b-dbad-4764-8bfb-543d532d77ee);
+
+IF
+StoryEvent((CHARACTERGUID)_Var1, "RC_FL_TalkToAboutMonks")
+AND NOT
+UserGetFlag(_Var1, "RC_FL_Gareth_AskedKillMonks", 1)
+THEN
+Proc_StartDialog(0, "RC_FL_Gareth", CHARACTERGUID_S_FTJ_SW_Warrior_SeekerCaptain_1329f018-23e4-4717-9bc8-074b28d04c54, _Var1);
+
+IF
+DialogEnded("RC_FL_Gareth", _)
+AND
+ObjectGetFlag(CHARACTERGUID_S_FTJ_SW_Warrior_SeekerCaptain_1329f018-23e4-4717-9bc8-074b28d04c54, "RC_FL_Gareth_LeavetoLV", 1)
+THEN
+PROC_RemoveDialogFromCharacter(CHARACTERGUID_S_FTJ_SW_Warrior_SeekerCaptain_1329f018-23e4-4717-9bc8-074b28d04c54);
+DB_AD_Dialog(CHARACTERGUID_S_FTJ_SW_Warrior_SeekerCaptain_1329f018-23e4-4717-9bc8-074b28d04c54, "RC_FL_AD_Gareth_Leaving_GaveUpVengeance");
+ProcCharacterDisappearOutOfSight(CHARACTERGUID_S_FTJ_SW_Warrior_SeekerCaptain_1329f018-23e4-4717-9bc8-074b28d04c54, 0, 0, "RC_FL_GarethVanishedToLV", 0);
+
+IF
+DialogEnded((STRING)_Var1, (INTEGER)_Var2)
+AND
+DB_RC_FL_GarethFarmMonks(_Var3, _Var1)
+AND
+DB_DialogPlayers(_Var2, _Var4, 1)
+AND
+ObjectGetFlag(_Var4, "RC_FL_KillMonk", 1)
+THEN
+CharacterAttack(_Var4, _Var3);
+ObjectClearFlag(_Var4, "RC_FL_KillMonk");
+
+PROC
+PROC_GLOBAL_DialogStartRequested(CHARACTERGUID_S_RC_FL_GarethFather_Ghost2_57942cbc-55fb-4777-a837-f84481601a9e, (CHARACTERGUID)_Var1)
+THEN
+PROC_FL_RC_JonathanAliveGhostsTalkTo(_Var1);
+
+PROC
+PROC_GLOBAL_DialogStartRequested(CHARACTERGUID_S_RC_FL_GarethMother_Ghost2_42fe1799-5ee7-482e-b677-5a7b3adca366, (CHARACTERGUID)_Var1)
+THEN
+PROC_FL_RC_JonathanAliveGhostsTalkTo(_Var1);
+
+PROC
+PROC_FL_RC_JonathanAliveGhostsTalkTo((CHARACTERGUID)_Var1)
+AND
+QRY_RC_FL_GhostAvailableForDialog(CHARACTERGUID_S_RC_FL_GarethFather_Ghost2_57942cbc-55fb-4777-a837-f84481601a9e, _Var1)
+AND
+QRY_RC_FL_GhostAvailableForDialog(CHARACTERGUID_S_RC_FL_GarethMother_Ghost2_42fe1799-5ee7-482e-b677-5a7b3adca366, _Var1)
+THEN
+Proc_StartDialog(0, "RC_FL_GarethParents_Ghosts2", CHARACTERGUID_S_RC_FL_GarethMother_Ghost2_42fe1799-5ee7-482e-b677-5a7b3adca366, CHARACTERGUID_S_RC_FL_GarethFather_Ghost2_57942cbc-55fb-4777-a837-f84481601a9e, _Var1);
+
+PROC
+PROC_FL_RC_JonathanAliveGhostsTalkTo((CHARACTERGUID)_Var1)
+AND
+QRY_RC_FL_GhostAvailableForDialog(CHARACTERGUID_S_RC_FL_GarethFather_Ghost2_57942cbc-55fb-4777-a837-f84481601a9e, _Var1)
+AND NOT
+QRY_RC_FL_GhostAvailableForDialog(CHARACTERGUID_S_RC_FL_GarethMother_Ghost2_42fe1799-5ee7-482e-b677-5a7b3adca366, _Var1)
+THEN
+Proc_StartDialog(0, "RC_FL_GarethFather_Ghost2", CHARACTERGUID_S_RC_FL_GarethFather_Ghost2_57942cbc-55fb-4777-a837-f84481601a9e, _Var1);
+
+PROC
+PROC_FL_RC_JonathanAliveGhostsTalkTo((CHARACTERGUID)_Var1)
+AND NOT
+QRY_RC_FL_GhostAvailableForDialog(CHARACTERGUID_S_RC_FL_GarethFather_Ghost2_57942cbc-55fb-4777-a837-f84481601a9e, _Var1)
+AND
+QRY_RC_FL_GhostAvailableForDialog(CHARACTERGUID_S_RC_FL_GarethMother_Ghost2_42fe1799-5ee7-482e-b677-5a7b3adca366, _Var1)
+THEN
+Proc_StartDialog(0, "RC_FL_GarethMother_Ghost2", CHARACTERGUID_S_RC_FL_GarethMother_Ghost2_42fe1799-5ee7-482e-b677-5a7b3adca366, _Var1);
+
+QRY
+QRY_RC_FL_GhostAvailableForDialog((CHARACTERGUID)_Var1, (CHARACTERGUID)_Var2)
+AND NOT
+DB_GoneGhosts(_Var1)
+AND
+CharacterCanSeeGhost(_Var2, _Var1, 1)
+AND
+QRY_SpeakerIsAvailable(_Var1)
+THEN
+DB_NOOP(1);
+
+IF
+CharacterUsedSkillOnTarget((CHARACTERGUID)_Var1, CHARACTERGUID_S_RC_FL_GarethFather_Ghost2_57942cbc-55fb-4777-a837-f84481601a9e, (STRING)_Var2, _, _)
+AND
+DB_SourceVampirism_Skills(_Var2)
+THEN
+PartySetFlag(_Var1, "QuestUpdate_RC_FL_GarethFarm_SuckedParents", 0);
+
+IF
+CharacterUsedSkillOnTarget((CHARACTERGUID)_Var1, CHARACTERGUID_S_RC_FL_GarethMother_Ghost2_42fe1799-5ee7-482e-b677-5a7b3adca366, (STRING)_Var2, _, _)
+AND
+DB_SourceVampirism_Skills(_Var2)
+THEN
+PartySetFlag(_Var1, "QuestUpdate_RC_FL_GarethFarm_SuckedParents", 0);
+
+IF
+CharacterGhostDestroyed(_, CHARACTERGUID_S_RC_FL_GarethFather_Ghost2_57942cbc-55fb-4777-a837-f84481601a9e)
+THEN
+GlobalSetFlag("RC_FL_GarethFatherGhost2_Gone");
+
+IF
+CharacterGhostDestroyed(_, CHARACTERGUID_S_RC_FL_GarethMother_Ghost2_42fe1799-5ee7-482e-b677-5a7b3adca366)
+THEN
+GlobalSetFlag("RC_FL_GarethMotherGhost2_Gone");
+
+IF
+ItemAddedToCharacter(ITEMGUID_S_RC_FL_JonathanGloves_1ece34b2-0434-4bf5-945a-331c06194073, (CHARACTERGUID)_Var1)
+AND
+PartyGetFlag(_Var1, "RC_FL_Gareth_KnowJonathan", 0)
+AND
+PartyGetFlag(_Var1, "RC_FL_Gareth_AfterJonathan", 0)
+THEN
+PartySetFlag(_Var1, "QuestUpdate_RC_FL_GarethFarm_Gloves", 0);
+
+IF
+DialogEnded("RC_FL_Gareth", _)
+AND
+GlobalGetFlag("RC_FL_Gareth_DarkPathStarted", 1)
+THEN
+PROC_RemoveDialogFromCharacter(CHARACTERGUID_S_FTJ_SW_Warrior_SeekerCaptain_1329f018-23e4-4717-9bc8-074b28d04c54);
+DB_AD_Dialog(CHARACTERGUID_S_FTJ_SW_Warrior_SeekerCaptain_1329f018-23e4-4717-9bc8-074b28d04c54, "RC_FL_AD_Gareth_DarkPathJonathanDead");
+ProcCharacterDisappearOutOfSight(CHARACTERGUID_S_FTJ_SW_Warrior_SeekerCaptain_1329f018-23e4-4717-9bc8-074b28d04c54, 0, 0, "", 0);
+
+PROC
+ProcBlockUseOfItem((CHARACTERGUID)_Var1, (ITEMGUID)_Var2)
+AND
+DB_RC_FL_GarethParentsGrave(_, _Var4, _Var2, _, _)
+AND NOT
+DB_RC_FL_GraveAlreadyExcavated(_Var4)
+AND NOT
+DB_Shovelling_Mound(_, _Var2)
+AND
+QRY_RC_FL_GarethReactGraveDesecration(_Var1)
+THEN
+DB_CustomUseItemResponse(_Var1, _Var2, 0);
+DB_RC_FL_GraveAlreadyExcavated(_Var4);
+
+PROC
+ProcBlockUseOfItem((CHARACTERGUID)_Var1, (ITEMGUID)_Var2)
+AND
+ObjectExists(_Var2, 1)
+AND
+IsTagged(_Var2, "SHOVEL", 1)
+AND
+DB_RC_FL_GarethParentsGrave(_Var3, _, _Var5, _, _)
+AND
+DB_InRegion(_Var1, _Var3)
+AND NOT
+DB_Shovelling_Mound(_, _Var5)
+AND
+CharacterIsInFightMode(_Var1, _Var9)
+AND
+QRY_RC_FL_GarethReactGraveDesecration(_Var1)
+THEN
+DB_CustomUseItemResponse(_Var1, _Var2, 0);
+
+QRY
+QRY_RC_FL_GarethReactGraveDesecration((CHARACTERGUID)_Var1)
+AND
+CharacterCanSee(CHARACTERGUID_S_FTJ_SW_Warrior_SeekerCaptain_1329f018-23e4-4717-9bc8-074b28d04c54, _Var1, 1)
+AND
+CharacterIsDead(CHARACTERGUID_S_FTJ_SW_Warrior_SeekerCaptain_1329f018-23e4-4717-9bc8-074b28d04c54, 0)
+AND
+CharacterIsInCombat(CHARACTERGUID_S_FTJ_SW_Warrior_SeekerCaptain_1329f018-23e4-4717-9bc8-074b28d04c54, 0)
+AND
+CharacterIsPolymorphInteractionDisabled(CHARACTERGUID_S_FTJ_SW_Warrior_SeekerCaptain_1329f018-23e4-4717-9bc8-074b28d04c54, 0)
+AND
+ObjectGetFlag(CHARACTERGUID_S_FTJ_SW_Warrior_SeekerCaptain_1329f018-23e4-4717-9bc8-074b28d04c54, "RC_FL_GarethReactingToDesecration", 1)
+THEN
+ProcForceStopDialog(CHARACTERGUID_S_FTJ_SW_Warrior_SeekerCaptain_1329f018-23e4-4717-9bc8-074b28d04c54);
+Proc_CharacterSetTemporaryHostileRelation(CHARACTERGUID_S_FTJ_SW_Warrior_SeekerCaptain_1329f018-23e4-4717-9bc8-074b28d04c54, _Var1);
+
+QRY
+QRY_RC_FL_GarethReactGraveDesecration((CHARACTERGUID)_Var1)
+AND
+CharacterCanSee(CHARACTERGUID_S_FTJ_SW_Warrior_SeekerCaptain_1329f018-23e4-4717-9bc8-074b28d04c54, _Var1, 1)
+AND
+CharacterIsDead(CHARACTERGUID_S_FTJ_SW_Warrior_SeekerCaptain_1329f018-23e4-4717-9bc8-074b28d04c54, 0)
+AND
+CharacterIsInCombat(CHARACTERGUID_S_FTJ_SW_Warrior_SeekerCaptain_1329f018-23e4-4717-9bc8-074b28d04c54, 0)
+AND
+CharacterIsPolymorphInteractionDisabled(CHARACTERGUID_S_FTJ_SW_Warrior_SeekerCaptain_1329f018-23e4-4717-9bc8-074b28d04c54, 0)
+AND
+ObjectGetFlag(CHARACTERGUID_S_FTJ_SW_Warrior_SeekerCaptain_1329f018-23e4-4717-9bc8-074b28d04c54, "RC_FL_GarethReactingToDesecration", 0)
+AND
+PartyFindTaggedItem(_Var1, "SHOVEL", 0, _)
+THEN
+ProcForceStopDialog(CHARACTERGUID_S_FTJ_SW_Warrior_SeekerCaptain_1329f018-23e4-4717-9bc8-074b28d04c54);
+Proc_StartDialog(0, "RC_FL_GarethGraveDesecration", CHARACTERGUID_S_FTJ_SW_Warrior_SeekerCaptain_1329f018-23e4-4717-9bc8-074b28d04c54, _Var1);
+ObjectSetFlag(CHARACTERGUID_S_FTJ_SW_Warrior_SeekerCaptain_1329f018-23e4-4717-9bc8-074b28d04c54, "RC_FL_GarethReactingToDesecration", 0);
+
+QRY
+QRY_RC_FL_GarethReactGraveDesecration((CHARACTERGUID)_Var1)
+AND
+CharacterCanSee(CHARACTERGUID_S_FTJ_SW_Warrior_SeekerCaptain_1329f018-23e4-4717-9bc8-074b28d04c54, _Var1, 1)
+AND
+CharacterIsDead(CHARACTERGUID_S_FTJ_SW_Warrior_SeekerCaptain_1329f018-23e4-4717-9bc8-074b28d04c54, 0)
+AND
+CharacterIsInCombat(CHARACTERGUID_S_FTJ_SW_Warrior_SeekerCaptain_1329f018-23e4-4717-9bc8-074b28d04c54, 0)
+AND
+CharacterIsPolymorphInteractionDisabled(CHARACTERGUID_S_FTJ_SW_Warrior_SeekerCaptain_1329f018-23e4-4717-9bc8-074b28d04c54, 0)
+AND
+ObjectGetFlag(CHARACTERGUID_S_FTJ_SW_Warrior_SeekerCaptain_1329f018-23e4-4717-9bc8-074b28d04c54, "RC_FL_GarethReactingToDesecration", 0)
+AND NOT
+PartyFindTaggedItem(_Var1, "SHOVEL", 0, _)
+THEN
+ProcForceStopDialog(CHARACTERGUID_S_FTJ_SW_Warrior_SeekerCaptain_1329f018-23e4-4717-9bc8-074b28d04c54);
+Proc_StartDialog(0, "RC_FL_GarethGraveDesecrationNoShovel", CHARACTERGUID_S_FTJ_SW_Warrior_SeekerCaptain_1329f018-23e4-4717-9bc8-074b28d04c54, _Var1);
+ObjectSetFlag(CHARACTERGUID_S_FTJ_SW_Warrior_SeekerCaptain_1329f018-23e4-4717-9bc8-074b28d04c54, "RC_FL_GarethReactingToDesecration", 0);
+
+IF
+DialogEnded("RC_FL_GarethGraveDesecrationNoShovel", _)
+THEN
+ObjectClearFlag(CHARACTERGUID_S_FTJ_SW_Warrior_SeekerCaptain_1329f018-23e4-4717-9bc8-074b28d04c54, "RC_FL_GarethReactingToDesecration", 0);
+
+IF
+DialogEnded("RC_FL_GarethGraveDesecration", _)
+THEN
+ObjectClearFlag(CHARACTERGUID_S_FTJ_SW_Warrior_SeekerCaptain_1329f018-23e4-4717-9bc8-074b28d04c54, "RC_FL_GarethReactingToDesecration", 0);
+
+PROC
+ProcShovelRewards(_, (STRING)_Var2)
+AND
+DB_RC_FL_GarethParentsGrave(_, _Var2, _, _Var5, _Var6)
+THEN
+SetOnStage(_Var5, 1);
+CharacterLinkGhost(_Var5, _Var6);
+
+IF
+CharacterStatusApplied((CHARACTERGUID)_Var1, "DRAIN", _)
+AND
+DB_RC_FL_GarethParentsGrave(_, _, _Var5, _Var6, _Var1)
+AND
+ObjectIsOnStage(_Var5, 1)
+THEN
+ApplyStatus(_Var6, "EXPLODE", 0, 1);
+
+IF
+StoryEvent(CHARACTERGUID_S_FTJ_SW_Warrior_SeekerCaptain_1329f018-23e4-4717-9bc8-074b28d04c54, "RC_FL_CheckWaitMonks")
+AND NOT
+DB_InRegion(_, TRIGGERGUID_S_RC_FL_GarethFarm_77ac0151-140d-4b3b-ac12-94ac23b91030)
+THEN
+Proc_StartDialog(1, "RC_FL_AD_Gareth_RanOutOfPatience", CHARACTERGUID_S_FTJ_SW_Warrior_SeekerCaptain_1329f018-23e4-4717-9bc8-074b28d04c54);
+SetVarFixedString(CHARACTERGUID_S_FTJ_SW_Warrior_SeekerCaptain_1329f018-23e4-4717-9bc8-074b28d04c54, "currentState", "State_FL_KillMonks");
+
+IF
+ObjectFlagSet("RC_FL_GarethFarmSM1_Smelly", (GUIDSTRING)_Var1, _)
+THEN
+ObjectClearFlag(_Var1, "RC_FL_GarethFarmSM1", 0);
+ApplyStatus(_Var1, "SMELLY", 5);
+
+IF
+ObjectFlagSet("QuestUpdate_RC_FL_GarethFarm_GaveRing", (GUIDSTRING)_Var1, (INTEGER)_Var2)
+THEN
+ObjectSetFlag(_Var1, "RC_FL_Gareth_SentDownDarkPath", _Var2);
+
+IF
+ObjectFlagSet("QuestUpdate_RC_FL_GarethFarm_Lied", (GUIDSTRING)_Var1, (INTEGER)_Var2)
+THEN
+ObjectSetFlag(_Var1, "RC_FL_Gareth_SentDownDarkPath", _Var2);
+
+IF
+ObjectFlagSet("RC_FL_GarethFarm_TryCancelOnLadyVengeance", (CHARACTERGUID)_Var1, _)
+AND
+PartyGetFlag(_Var1, "QuestUpdate_RC_FL_GarethFarm_JonathanCancelled", 0)
+AND
+PartyGetFlag(_Var1, "RC_FL_Gareth_ConvincedGarethReturn", 0)
+THEN
+PartySetFlag(_Var1, "QuestUpdate_RC_FL_GarethFarm_CancelOnLadyVengeance");
+
+IF
+ObjectFlagSet("RC_FL_GarethFarm_TryCancelOnLadyVengeance", (GUIDSTRING)_Var1, _)
+THEN
+ObjectClearFlag(_Var1, "RC_FL_GarethFarm_TryCancelOnLadyVengeance", 0);
+
+QRY
+QRY_RC_FL_OtherGarethFarmVoidwokenAlive((CHARACTERGUID)_Var1)
+AND
+DB_RC_FL_GarethFarmVW(_Var2)
+AND
+CharacterIsDead(_Var2, 0)
+AND
+_Var2 != _Var1
+AND
+HasActiveStatus(_Var2, "DYING", 0)
+THEN
+DB_NOOP(0);
+
+IF
+CharacterDying((CHARACTERGUID)_Var1)
+AND
+DB_RC_FL_GarethFarmVW(_Var1)
+AND NOT
+QRY_RC_FL_OtherGarethFarmVoidwokenAlive(_Var1)
+AND
+DB_CombatCharacters(_Var1, _Var2)
+AND
+DB_CombatCharacters(_Var3, _Var2)
+AND
+DB_IsPlayer(_Var3)
+THEN
+UserSetFlag(_Var3, "RC_FL_DefeatedFarmVoidwoken", 0);
+
+IF
+CharacterKilledBy((CHARACTERGUID)_Var1, (CHARACTERGUID)_Var2, (CHARACTERGUID)_Var3)
+AND
+DB_IsPlayer(_Var2)
+AND NOT
+QRY_RC_FL_OtherGarethFarmVoidwokenAlive(_Var1)
+THEN
+UserSetFlag(_Var2, "RC_FL_DefeatedFarmVoidwoken", 0);
+
+IF
+ObjectFlagSet("RC_FL_ArrivedHome", CHARACTERGUID_S_RC_FL_GarethFather_c96cd4d8-3e1f-4bcb-a637-a48ce9b284b7, _)
+THEN
+PROC_RemoveDialogFromCharacter(CHARACTERGUID_S_RC_FL_GarethFather_c96cd4d8-3e1f-4bcb-a637-a48ce9b284b7);
+DB_Dialogs(CHARACTERGUID_S_RC_FL_GarethFather_c96cd4d8-3e1f-4bcb-a637-a48ce9b284b7, "RC_FL_GarethFather");
+
+IF
+ObjectFlagSet("RC_FL_ArrivedHome", CHARACTERGUID_S_RC_FL_GarethMother_4baf3c5c-6604-43b1-aef6-6b39afceceaf, _)
+THEN
+PROC_RemoveDialogFromCharacter(CHARACTERGUID_S_RC_FL_GarethMother_4baf3c5c-6604-43b1-aef6-6b39afceceaf);
+DB_Dialogs(CHARACTERGUID_S_RC_FL_GarethMother_4baf3c5c-6604-43b1-aef6-6b39afceceaf, "RC_FL_GarethMother");
+
+IF
+CharacterDied(CHARACTERGUID_S_RC_FL_GarethMother_4baf3c5c-6604-43b1-aef6-6b39afceceaf)
+AND
+DB_Dialogs(CHARACTERGUID_S_RC_FL_GarethFather_c96cd4d8-3e1f-4bcb-a637-a48ce9b284b7, CHARACTERGUID_S_RC_FL_GarethMother_4baf3c5c-6604-43b1-aef6-6b39afceceaf, "RC_FL_GarethParents")
+THEN
+PROC_RemoveDialogFromCharacter(CHARACTERGUID_S_RC_FL_GarethFather_c96cd4d8-3e1f-4bcb-a637-a48ce9b284b7);
+DB_Dialogs(CHARACTERGUID_S_RC_FL_GarethFather_c96cd4d8-3e1f-4bcb-a637-a48ce9b284b7, "RC_FL_GarethFather");
+
+IF
+CharacterDied(CHARACTERGUID_S_RC_FL_GarethFather_c96cd4d8-3e1f-4bcb-a637-a48ce9b284b7)
+AND
+DB_Dialogs(CHARACTERGUID_S_RC_FL_GarethFather_c96cd4d8-3e1f-4bcb-a637-a48ce9b284b7, CHARACTERGUID_S_RC_FL_GarethMother_4baf3c5c-6604-43b1-aef6-6b39afceceaf, "RC_FL_GarethParents")
+THEN
+PROC_RemoveDialogFromCharacter(CHARACTERGUID_S_RC_FL_GarethMother_4baf3c5c-6604-43b1-aef6-6b39afceceaf);
+DB_Dialogs(CHARACTERGUID_S_RC_FL_GarethMother_4baf3c5c-6604-43b1-aef6-6b39afceceaf, "RC_FL_GarethMother");
+
+IF
+ObjectFlagSet("RC_FL_ShowMarker_ParentsSavings", (CHARACTERGUID)_Var1, _)
+THEN
+ProcShowMarker(_Var1, "RC_FL_ParentsSavings");
+
+PROC
+ProcShovelRewards(_, "RC_DF_GarethParentsSavings")
+THEN
+GlobalSetFlag("RC_DF_GarethParentsSavings_ChestRewardDug");
+
+PROC
+ProcShovelRewards((CHARACTERGUID)_Var1, "RC_DF_GarethParentsSavings")
+THEN
+ProcHideMarker(_Var1, "RC_FL_ParentsSavings");
+
+IF
+CharacterEnteredTrigger((CHARACTERGUID)_Var1, TRIGGERGUID_S_RC_FL_GarethParentsSavings_Box_c8463e4c-322a-49be-a20a-0cdac234cb95)
+AND
+GlobalGetFlag("RC_DF_GarethParentsSavings_ChestRewardDug", 1)
+THEN
+ProcHideMarker(_Var1, "RC_FL_ParentsSavings");
+
+IF
+GameBookInterfaceClosed(ITEMGUID_S_RC_DF_GarethShack_Journal_b2fc2a7c-ed88-4f4e-805f-b71d25508f98, (CHARACTERGUID)_Var1)
+THEN
+ProcShowMarker(_Var1, "RC_DF_GarethShack_Dig");
+
+
+EXITSECTION
+ENDEXITSECTION
+
+ParentTargetEdge "ReapersCoast"

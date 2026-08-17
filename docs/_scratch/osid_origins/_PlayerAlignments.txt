@@ -1,0 +1,195 @@
+Version 1
+SubGoalCombiner SGC_AND
+
+INITSECTION
+
+KBSECTION
+PROC
+ProcFixPlayerAlignments()
+AND
+DB_IsPlayer(_Var1)
+AND NOT
+DB_PlayerAlignments_BlockFix(_Var1)
+AND
+IsInArena(_Var1, 0)
+AND
+CharacterIsPlayer(_Var1, 1)
+AND
+DB_IsPlayer(_Var2)
+AND NOT
+DB_PlayerAlignments_BlockFix(_Var2)
+AND
+_Var1 != _Var2
+AND
+IsInArena(_Var2, 0)
+AND
+CharacterIsPlayer(_Var2, 1)
+AND
+CharacterGetReservedUserID(_Var1, _Var3)
+AND
+CharacterGetReservedUserID(_Var2, _Var4)
+AND
+GetUserProfileID(_Var3, _Var5)
+AND
+GetUserProfileID(_Var4, _Var6)
+THEN
+ProcSetPlayerAlignment(_Var1, _Var2, _Var5, _Var6);
+
+PROC
+ProcFixPlayerAlignments()
+AND
+DB_IsPlayer(_Var1)
+AND NOT
+DB_PlayerAlignments_BlockFix(_Var1)
+AND
+IsInArena(_Var1, 0)
+AND
+DB_IsPlayer(_Var2)
+AND NOT
+DB_PlayerAlignments_BlockFix(_Var2)
+AND
+_Var1 != _Var2
+AND
+IsInArena(_Var2, 0)
+AND
+CharacterGetRelationToCharacter(_Var1, _Var2, _Var3)
+THEN
+ProcLeavePartyIfRelationLow(_Var1, _Var2, _Var3);
+
+PROC
+ProcSetPlayerAlignment((CHARACTERGUID)_Var1, (CHARACTERGUID)_Var2, (STRING)_Var3, (STRING)_Var4)
+AND
+DB_UserAlign(_Var3, _Var4, _Var5)
+THEN
+CharacterSetRelationIndivFactionToIndivFaction(_Var1, _Var2, _Var5);
+
+PROC
+ProcSetPlayerAlignment((CHARACTERGUID)_Var1, (CHARACTERGUID)_Var2, (STRING)_Var3, (STRING)_Var4)
+AND NOT
+DB_UserAlign(_Var3, _Var4, _)
+AND
+CharacterIsInPartyWith(_Var1, _Var2, 1)
+THEN
+CharacterSetRelationIndivFactionToIndivFaction(_Var1, _Var2, 100);
+
+PROC
+ProcSetPlayerAlignment((CHARACTERGUID)_Var1, (CHARACTERGUID)_Var2, (STRING)_Var3, (STRING)_Var4)
+AND NOT
+DB_UserAlign(_Var3, _Var4, _)
+AND
+CharacterIsInPartyWith(_Var1, _Var2, 0)
+THEN
+CharacterSetRelationIndivFactionToIndivFaction(_Var1, _Var2, 50);
+
+PROC
+ProcLeavePartyIfRelationLow((CHARACTERGUID)_Var1, (CHARACTERGUID)_Var2, (INTEGER)_Var3)
+AND
+_Var3 < 25
+AND
+CharacterIsInPartyWith(_Var1, _Var2, 1)
+AND
+CharacterGetReservedUserID(_Var1, _Var4)
+AND
+CharacterGetReservedUserID(_Var2, _Var5)
+AND
+_Var4 != _Var5
+THEN
+LeaveParty(_Var5);
+
+IF
+CharacterReservedUserIDChanged(_, _, _)
+THEN
+ProcFixPlayerAlignments();
+
+IF
+DB_IsPlayer(_)
+THEN
+ProcFixPlayerAlignments();
+
+IF
+GlobalFlagSet("SetupUserAlignments")
+THEN
+ProcFixPlayerAlignments();
+GlobalClearFlag("SetupUserAlignments");
+
+IF
+CharacterJoinedParty(_)
+THEN
+ProcFixPlayerAlignments();
+
+IF
+GameStarted(_, _)
+THEN
+GlobalSetFlag("SetupUserAlignments");
+
+IF
+UserDisconnected((INTEGER)_Var1, _, (STRING)_Var3)
+AND
+DB_UserAlign(_Var3, _Var4, _Var5)
+THEN
+NOT DB_UserAlign(_Var3, _Var4, _Var5);
+
+IF
+UserDisconnected((INTEGER)_Var1, _, (STRING)_Var3)
+AND
+DB_UserAlign(_Var4, _Var3, _Var5)
+THEN
+NOT DB_UserAlign(_Var4, _Var3, _Var5);
+
+IF
+UserMakeWar((INTEGER)_Var1, (INTEGER)_Var2, 1)
+AND
+GetUserProfileID(_Var1, _Var3)
+AND
+GetUserProfileID(_Var2, _Var4)
+THEN
+ProcSetUserAlign(_Var3, _Var4, 0);
+ProcSetUserAlign(_Var4, _Var3, 0);
+ProcFixPlayerAlignments();
+
+IF
+UserMakeWar((INTEGER)_Var1, (INTEGER)_Var2, 0)
+AND
+GetUserProfileID(_Var1, _Var3)
+AND
+GetUserProfileID(_Var2, _Var4)
+THEN
+NOT DB_UserAlign(_Var3, _Var4, 0);
+NOT DB_UserAlign(_Var4, _Var3, 0);
+ProcFixPlayerAlignments();
+
+PROC
+ProcSetUserAlign((STRING)_Var1, (STRING)_Var2, (INTEGER)_Var3)
+AND
+DB_UserAlign(_Var1, _Var2, _Var4)
+THEN
+NOT DB_UserAlign(_Var1, _Var2, _Var4);
+
+PROC
+ProcSetUserAlign((STRING)_Var1, (STRING)_Var2, (INTEGER)_Var3)
+THEN
+DB_UserAlign(_Var1, _Var2, _Var3);
+
+IF
+TextEventSet("useralign")
+AND
+DB_UserAlign(_Var1, _Var2, _Var3)
+AND
+DB_IsPlayer(_Var4)
+AND
+StringConcatenate(_Var1, " vs ", _Var5)
+AND
+StringConcatenate(_Var5, _Var2, _Var6)
+AND
+StringConcatenate(_Var6, ":  ", _Var7)
+AND
+IntegertoString(_Var3, _Var8)
+AND
+StringConcatenate(_Var7, _Var8, _Var9)
+THEN
+DebugText(_Var4, _Var9);
+
+
+EXITSECTION
+ENDEXITSECTION
+

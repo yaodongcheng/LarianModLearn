@@ -1,0 +1,458 @@
+Version 1
+SubGoalCombiner SGC_AND
+
+INITSECTION
+ProcTriggerRegisterForPlayers(TRIGGERGUID_S_ARX_Sewers_ThievesGuild_78585cd2-5618-47d4-9582-917172bca61a);
+DB_Dialogs(CHARACTERGUID_S_ARX_Sewers_ThievesGuild_Thief_01_7f183394-4c57-4784-af0f-8407f0222333, "ARX_Sewers_ThievesGuild_Thief_01");
+DB_Dialogs(CHARACTERGUID_S_ARX_Sewers_ThievesGuild_ThiefLeader_aae19753-a36c-432e-a62e-be6f4ea35611, "ARX_Sewers_ThievesGuild_Thief_02");
+DB_Dialogs(CHARACTERGUID_S_ARX_Sewers_ThievesGuild_Thief_03_3f57233e-626f-40e3-969f-f1b0ccf50600, "ARX_Sewers_ThievesGuild_Thief_03");
+DB_ARX_Sewers_ThievesGuild(CHARACTERGUID_S_ARX_Sewers_ThievesGuild_Thief_01_7f183394-4c57-4784-af0f-8407f0222333, "ARX_Sewers_ThievesGuild_Thief_01");
+DB_ARX_Sewers_ThievesGuild(CHARACTERGUID_S_ARX_Sewers_ThievesGuild_ThiefLeader_aae19753-a36c-432e-a62e-be6f4ea35611, "ARX_Sewers_ThievesGuild_Thief_02");
+DB_ARX_Sewers_ThievesGuild(CHARACTERGUID_S_ARX_Sewers_ThievesGuild_Thief_03_3f57233e-626f-40e3-969f-f1b0ccf50600, "ARX_Sewers_ThievesGuild_Thief_03");
+CharacterSetCanTrade(CHARACTERGUID_S_ARX_Sewers_ThievesGuild_ThiefLeader_aae19753-a36c-432e-a62e-be6f4ea35611, 0);
+DB_Dialogs(CHARACTERGUID_S_ARX_Sewers_ThievesGuild_Troll_f26db157-177c-4179-9b92-fef97781379e, "ARX_Sewers_ThievesGuild_Troll");
+DB_Dialogs(CHARACTERGUID_S_ARX_Sewers_ThievesGuild_Troll_01_32d49d9d-9926-4faf-8962-d111ac468cc1, "ARX_Sewers_ThievesGuild_Troll_01");
+DB_Dialogs(CHARACTERGUID_S_ARX_Sewers_ThievesGuild_Troll_02_dd48adc6-8571-4b28-9f1d-6edcde889867, "ARX_Sewers_ThievesGuild_Troll_02");
+DB_ARX_Sewers_ThievesGuild_Troll(CHARACTERGUID_S_ARX_Sewers_ThievesGuild_Troll_f26db157-177c-4179-9b92-fef97781379e);
+DB_ARX_Sewers_ThievesGuild_Troll(CHARACTERGUID_S_ARX_Sewers_ThievesGuild_Troll_01_32d49d9d-9926-4faf-8962-d111ac468cc1);
+DB_ARX_Sewers_ThievesGuild_Troll(CHARACTERGUID_S_ARX_Sewers_ThievesGuild_Troll_02_dd48adc6-8571-4b28-9f1d-6edcde889867);
+DB_DialogMoneyTransfer(1, "ARX_Sewers_ThievesGuild_Thief_02", 10000);
+ProcTriggerRegisterForPlayers(TRIGGERGUID_S_ARX_Sewers_ThievesGuild_PaintingTrig_3932fa8d-afa2-4076-b887-40986e4b47db);
+TriggerRegisterForItems(TRIGGERGUID_S_ARX_Sewers_ThievesGuild_PaintingTrig_3932fa8d-afa2-4076-b887-40986e4b47db);
+DB_AddCharactersInTriggerToDialog("ARX_Sewers_ThievesGuild_Thief_02", TRIGGERGUID_S_ARX_Sewers_ThievesGuild_78585cd2-5618-47d4-9582-917172bca61a, 1);
+DB_Ghosts(CHARACTERGUID_S_ARX_Sewers_ThievesGuild_DeadThief_e7abd076-a9b4-4249-bb75-20b1988dd2ae, CHARACTERGUID_S_ARX_Sewers_ThievesGuild_DeadThief_Ghost_ac404c7b-da5a-4e1c-b691-c28d8688e627, "ARX_Sewers_ThievesGuild_DeadThief_Ghost");
+DB_FindingThievesGuild_Started("QuestUpdate_ARX_FindingThievesGuild_KemmVaultGhost_Start");
+DB_ARX_Manholes(ITEMGUID_S_ARX_LookingForSewers_Manhole_EfluentToSea_01_13e4dc8e-76e0-4605-a9f6-fe6ab3e76e3f, "ARX_Manhole_EffluentToSea");
+DB_ARX_Manholes(ITEMGUID_S_ARX_LookingForSewers_Manhole_EfluentToSea_02_2f02e38c-b517-4dd8-8c87-60d5f1f28370, "ARX_Manhole_EffluentToSea");
+DB_ARX_Manholes(ITEMGUID_S_ARX_LookingForSewers_Manhole_EffluentToRiver_01_c52f6677-9507-4020-a335-1e1a3b917af5, "ARX_Manhole_EffluentToRiver");
+DB_ARX_Manholes(ITEMGUID_S_ARX_LookingForSewers_Manhole_EffluentToRiver_02_8ea32abe-0d4d-46c9-abff-0fe47eb4d40a, "ARX_Manhole_EffluentToRiver");
+DB_ARX_Manholes(ITEMGUID_S_ARX_LookingForSewers_Manhole_InSewers_01_67ab72d8-d041-4abc-94e7-93bdea63c714, "ARX_Manhole_ToEstate");
+DB_ARX_Manholes(ITEMGUID_S_ARX_LookingForSewers_Manhole_InSewers_02_f055eaa1-26b3-4f19-96f1-367fbf5a86a8, "ARX_Manhole_ToEstate");
+DB_ARX_Manholes(ITEMGUID_S_ARX_LookingForSewers_Manhole_ToEstate_01_b2ce80bf-c344-4735-9059-515a15799016, "ARX_Manhole_ToEstate");
+DB_ARX_Manholes(ITEMGUID_S_ARX_LookingForSewers_Manhole_ToEstate_02_1dbb8f90-29f2-45c7-ad9f-072a261724dc, "ARX_Manhole_ToEstate");
+DB_ARX_Manholes(ITEMGUID_S_ARX_LookingForSewers_Manhole_ToEstate_03_64c4167c-5a45-4d2b-9b16-53ce4446963e, "ARX_Manhole_ToEstate");
+DB_ARX_Manholes(ITEMGUID_S_ARX_LookingForSewers_Manhole_Junction_01_bef7b233-9043-456e-8738-cede345371c1, "ARX_Manhole_Junction");
+DB_ARX_Manholes(ITEMGUID_S_ARX_LookingForSewers_Manhole_Junction_02_8b0b55ce-70fa-40d9-9d51-c9fe6d0a744d, "ARX_Manhole_Junction");
+DB_ARX_Manholes(ITEMGUID_S_ARX_LookingForSewers_Manhole_Junction_03_5930ae4e-cd48-4378-8f01-d06359e47c7c, "ARX_Manhole_Junction");
+DB_ARX_Manholes(ITEMGUID_S_ARX_LookingForSewers_Manhole_Garden_01_8bc46580-97a6-4f4e-9d1e-e56f9296aa7c, "ARX_Manhole_Garden");
+DB_ARX_Manholes(ITEMGUID_S_ARX_LookingForSewers_Manhole_BothSides_01_a8b2b95f-c2fc-4916-9ada-e9e7b609ac56, "ARX_Manhole_BothWays");
+DB_ARX_Manholes(ITEMGUID_S_ARX_LookingForSewers_Manhole_BothSides_02_9a07aedd-f13a-4917-834d-b5bbca729f2a, "ARX_Manhole_BothWays");
+DB_ARX_Manholes(ITEMGUID_S_ARX_LookingForSewers_Manhole_BothSides_03_f9c06b78-f178-45ac-9f26-7891b320dbfa, "ARX_Manhole_BothWays");
+DB_ARX_Manholes(ITEMGUID_S_ARX_LookingForSewers_Manhole_BothSides_04_2cb0d4b7-5b15-4e0e-9308-eb89d86d6986, "ARX_Manhole_BothWays");
+DB_ARX_Manholes(ITEMGUID_S_ARX_LookingForSewers_Manhole_BothSides_05_33522a79-31ac-4e26-9740-5aaec19d4ebe, "ARX_Manhole_BothWays");
+DB_ARX_Manholes(ITEMGUID_S_ARX_LookingForSewers_Manhole_BothSides_06_aa554be2-d4ea-4aec-aa82-f5ec53b85cf9, "ARX_Manhole_BothWays");
+DB_ARX_Manholes(ITEMGUID_S_ARX_LookingForSewers_Manhole_Debris_01_4e0b4ca1-ae12-44c9-a952-1bc4e0db8db3, "ARX_Manhole_Debris");
+DB_ARX_Manholes(ITEMGUID_S_ARX_LookingForSewers_Manhole_Blood_01_07f9565c-3056-43d9-8193-0c36dc8469ec, "ARX_Manhole_Blood");
+DB_ARX_Manholes(ITEMGUID_S_ARX_LookingForSewers_Manhole_Blood_03_357670c6-1b25-40cf-b085-ac16cd46484a, "ARX_Manhole_Blood");
+DB_ARX_Manholes(ITEMGUID_S_ARX_LookingForSewers_Manhole_Blood_04_5bd3c9c1-d776-4310-8d23-2fd8c38d2cc3, "ARX_Manhole_Blood");
+DB_ARX_Manholes(ITEMGUID_S_ARX_LookingForSewers_Manhole_Blood_05_d0a7b8aa-cfa3-43a9-927b-9637577555e1, "ARX_Manhole_Blood");
+DB_ARX_KemmVault_ThievesGuild_KnowsAboutPainting("ARX_KemmVault_KnowsAboutGhostPainting");
+DB_ARX_KemmVault_ThievesGuild_KnowsAboutPainting("QuestUpdate_ARX_KemmVault_ThievesGuild_KnowPainting");
+DB_ARX_KemmVault_ThievesGuild_KnowsAboutPainting("QuestUpdate_ARX_KemmVault_KemmVault_AtticLetter");
+DB_ARX_KemmVault_ThievesGuild_KnowsAboutPainting("QuestUpdate_ARX_KemmVault_LucianPainting");
+
+KBSECTION
+IF
+DB_ARX_Sewers_ThievesGuild(_Var1, _)
+THEN
+CharacterSetImmortal(_Var1, 1);
+ProcCrimeSetCustomPrimarySensibleAction(_Var1, "Steal", "");
+ProcCrimeSetCustomPrimarySensibleAction(_Var1, "UseForbiddenItem", "");
+ProcCrimeSetCustomPrimarySensibleAction(_Var1, "PickPocketFailed", "");
+ProcCrimeSetCustomPrimarySensibleAction(_Var1, "Assault", "");
+ProcCrimeSetCustomPrimarySensibleAction(_Var1, "SneakSteal", "");
+ProcCrimeSetCustomPrimarySensibleAction(_Var1, "IncapacitatedAssault", "");
+ProcCrimeSetCustomPrimarySensibleAction(_Var1, "SummonAssault", "");
+
+IF
+DB_ARX_Sewers_ThievesGuild_Troll(_Var1)
+THEN
+ProcCrimeSetCustomPrimarySensibleAction(_Var1, "Steal", "");
+ProcCrimeSetCustomPrimarySensibleAction(_Var1, "UseForbiddenItem", "");
+ProcCrimeSetCustomPrimarySensibleAction(_Var1, "PickPocketFailed", "");
+ProcCrimeSetCustomPrimarySensibleAction(_Var1, "Assault", "");
+ProcCrimeSetCustomPrimarySensibleAction(_Var1, "SneakSteal", "");
+ProcCrimeSetCustomPrimarySensibleAction(_Var1, "IncapacitatedAssault", "");
+ProcCrimeSetCustomPrimarySensibleAction(_Var1, "SummonAssault", "");
+
+IF
+CharacterEnteredTrigger(_, TRIGGERGUID_S_ARX_Sewers_ThievesGuild_78585cd2-5618-47d4-9582-917172bca61a)
+AND
+GlobalGetFlag("ARX_Sewers_HidingThieves_PlayerInTrigger", 0)
+THEN
+GlobalSetFlag("ARX_Sewers_HidingThieves_PlayerInTrigger");
+
+IF
+CharacterEnteredTrigger((CHARACTERGUID)_Var1, TRIGGERGUID_S_ARX_Sewers_ThievesGuild_78585cd2-5618-47d4-9582-917172bca61a)
+AND
+QueryOnlyOnce("ARX_Sewers_HidingThieves_VB_EnteredTrigger")
+THEN
+StartVoiceBark("ARX_Sewers_HidingThieves_VB_EnteredTrigger", _Var1);
+
+IF
+CharacterEnteredTrigger((CHARACTERGUID)_Var1, TRIGGERGUID_S_ARX_Sewers_ThievesGuild_78585cd2-5618-47d4-9582-917172bca61a)
+THEN
+UserSetFlag(_Var1, "ARX_Sewers_ThievesGuild_Found");
+UserSetFlag(_Var1, "QuestUpdate_ARX_FindingThievesGuild_FoundTheGuild");
+
+IF
+CharacterLeftTrigger(_, TRIGGERGUID_S_ARX_Sewers_ThievesGuild_78585cd2-5618-47d4-9582-917172bca61a)
+AND NOT
+DB_InRegion(_, TRIGGERGUID_S_ARX_Sewers_ThievesGuild_78585cd2-5618-47d4-9582-917172bca61a)
+THEN
+GlobalClearFlag("ARX_Sewers_HidingThieves_PlayerInTrigger");
+
+IF
+StoryEvent((GUIDSTRING)_Var1, "ARX_Sewers_ThievesGuild_Leader_CharSpotted")
+AND
+QueryOnlyOnce("ARX_Sewers_ThievesGuild_Thief_02")
+THEN
+GlobalSetFlag("ARX_Sewers_ThievesGuild_Leader_CheckpointDialog");
+Proc_StartDialog(0, "ARX_Sewers_ThievesGuild_Thief_02", CHARACTERGUID_S_ARX_Sewers_ThievesGuild_ThiefLeader_aae19753-a36c-432e-a62e-be6f4ea35611, _Var1);
+
+IF
+GlobalFlagSet("ARX_Sewers_HidingThieves_Unhide")
+THEN
+NOT DB_AddCharactersInTriggerToDialog("ARX_Sewers_ThievesGuild_Thief_02", TRIGGERGUID_S_ARX_Sewers_ThievesGuild_78585cd2-5618-47d4-9582-917172bca61a, 1);
+
+IF
+ObjectFlagSet("ARX_Sewers_ThievesGuild_ThiefLeader_GiveBackGold", (CHARACTERGUID)_Var1, _)
+AND
+DB_DialogMoneyTransfer(1, "ARX_Neighborhood_Street_TraderBaker", _Var3)
+THEN
+CharacterAddGold(_Var1, _Var3);
+
+IF
+GlobalFlagSet("ARX_Sewers_ThievesGuild_Thief_02_EnableTrading")
+THEN
+CharacterSetCanTrade(CHARACTERGUID_S_ARX_Sewers_ThievesGuild_ThiefLeader_aae19753-a36c-432e-a62e-be6f4ea35611, 1);
+
+IF
+DialogEnded("ARX_Sewers_ThievesGuild_Thief_02", _)
+AND
+GlobalGetFlag("ARX_Sewers_ThievesGuild_Thief_02_InitiateCombatAfterDialog", 1)
+THEN
+Proc_ARX_Sewers_ThievesGuild_Disappear();
+
+IF
+ObjectEnteredCombat((CHARACTERGUID)_Var1, _)
+AND
+DB_ARX_Sewers_ThievesGuild_Troll(_Var1)
+AND
+GlobalGetFlag("ARX_Sewers_ThievesGuild_Disappeared", 0)
+THEN
+Proc_ARX_Sewers_ThievesGuild_Disappear();
+
+PROC
+ProcCrimeOnCustomSensibleAction((CHARACTERGUID)_Var1, _, _, _, _, (CHARACTERGUID)_Var6, _, _, _, _)
+AND
+DB_ARX_Sewers_ThievesGuild_Troll(_Var1)
+AND NOT
+DB_ARX_Sewers_ThievesGuild_CrimeRunning(_Var1)
+THEN
+DB_ARX_Sewers_ThievesGuild_CrimeRunning(_Var1);
+Proc_ARX_Sewers_ThievesGuild_Disappear_Dialog(_Var6);
+
+PROC
+ProcCrimeOnCustomSensibleAction((CHARACTERGUID)_Var1, _, _, _, _, (CHARACTERGUID)_Var6, _, _, _, _)
+AND
+DB_ARX_Sewers_ThievesGuild(_Var1, _)
+AND NOT
+DB_ARX_Sewers_ThievesGuild_CrimeRunning(_Var1)
+THEN
+DB_ARX_Sewers_ThievesGuild_CrimeRunning(_Var1);
+Proc_ARX_Sewers_ThievesGuild_Disappear_Dialog(_Var6);
+
+IF
+AttackedByObject((CHARACTERGUID)_Var1, (CHARACTERGUID)_Var2, _, _, _)
+AND
+DB_IsPlayer(_Var2)
+AND
+DB_ARX_Sewers_ThievesGuild(_Var1, _)
+AND NOT
+DB_ARX_Sewers_ThievesGuild_CrimeRunning(_Var1)
+THEN
+DB_ARX_Sewers_ThievesGuild_CrimeRunning(_Var1);
+Proc_ARX_Sewers_ThievesGuild_Disappear_Dialog(_Var2);
+
+IF
+AttackedByObject((CHARACTERGUID)_Var1, (CHARACTERGUID)_Var2, _, _, _)
+AND
+DB_IsPlayer(_Var2)
+AND
+DB_ARX_Sewers_ThievesGuild_Troll(_Var1)
+AND NOT
+DB_ARX_Sewers_ThievesGuild_CrimeRunning(_Var1)
+THEN
+DB_ARX_Sewers_ThievesGuild_CrimeRunning(_Var1);
+Proc_ARX_Sewers_ThievesGuild_Disappear_Dialog(_Var2);
+
+IF
+AttackedByObject((CHARACTERGUID)_Var1, _, (CHARACTERGUID)_Var3, _, _)
+AND
+DB_IsPlayer(_Var3)
+AND
+DB_ARX_Sewers_ThievesGuild(_Var1, _)
+AND NOT
+DB_ARX_Sewers_ThievesGuild_CrimeRunning(_Var1)
+THEN
+DB_ARX_Sewers_ThievesGuild_CrimeRunning(_Var1);
+Proc_ARX_Sewers_ThievesGuild_Disappear_Dialog(_Var3);
+
+IF
+AttackedByObject((CHARACTERGUID)_Var1, _, (CHARACTERGUID)_Var3, _, _)
+AND
+DB_IsPlayer(_Var3)
+AND
+DB_ARX_Sewers_ThievesGuild_Troll(_Var1)
+AND NOT
+DB_ARX_Sewers_ThievesGuild_CrimeRunning(_Var1)
+THEN
+DB_ARX_Sewers_ThievesGuild_CrimeRunning(_Var1);
+Proc_ARX_Sewers_ThievesGuild_Disappear_Dialog(_Var3);
+
+PROC
+Proc_ARX_Sewers_ThievesGuild_Disappear_Dialog((CHARACTERGUID)_Var1)
+AND
+GlobalGetFlag("ARX_Sewers_ThievesGuild_Disappear_DialogWarning", 1)
+AND
+GlobalGetFlag("ARX_Sewers_ThievesGuild_Disappeared", 0)
+THEN
+Proc_ARX_Sewers_ThievesGuild_Disappear();
+
+PROC
+Proc_ARX_Sewers_ThievesGuild_Disappear_Dialog((CHARACTERGUID)_Var1)
+AND
+GlobalGetFlag("ARX_Sewers_ThievesGuild_Disappear_DialogWarning", 0)
+AND
+GlobalGetFlag("ARX_Sewers_ThievesGuild_Disappeared", 0)
+AND
+CharacterIsDead(CHARACTERGUID_S_ARX_Sewers_ThievesGuild_ThiefLeader_aae19753-a36c-432e-a62e-be6f4ea35611, 0)
+THEN
+GlobalSetFlag("ARX_Sewers_ThievesGuild_Disappear_DialogWarning");
+ProcForceStopDialog(CHARACTERGUID_S_ARX_Sewers_ThievesGuild_ThiefLeader_aae19753-a36c-432e-a62e-be6f4ea35611);
+Proc_StartDialog(0, "ARX_Sewers_ThievesGuild_Thief_02", CHARACTERGUID_S_ARX_Sewers_ThievesGuild_ThiefLeader_aae19753-a36c-432e-a62e-be6f4ea35611, _Var1);
+
+IF
+DialogStarted("ARX_Sewers_ThievesGuild_Thief_02", _)
+AND
+DB_ARX_Sewers_ThievesGuild_CrimeRunning(_Var2)
+AND
+_Var2 != CHARACTERGUID_S_ARX_Sewers_ThievesGuild_ThiefLeader_aae19753-a36c-432e-a62e-be6f4ea35611
+THEN
+NOT DB_ARX_Sewers_ThievesGuild_CrimeRunning(_Var2);
+
+PROC
+Proc_ARX_Sewers_ThievesGuild_Disappear()
+THEN
+GlobalSetFlag("ARX_Sewers_ThievesGuild_Disappeared");
+ProcForceStopDialog(CHARACTERGUID_S_ARX_Sewers_ThievesGuild_ThiefLeader_aae19753-a36c-432e-a62e-be6f4ea35611);
+ItemCloseAndLock(ITEMGUID_S_ARX_Sewers_ThievesGuild_HiddenDoor_2a9ddab3-03d6-4694-b782-d2c53a911834, "null");
+CharacterDisappearOutOfSight(CHARACTERGUID_S_ARX_Sewers_ThievesGuild_ThiefLeader_aae19753-a36c-432e-a62e-be6f4ea35611, 0, 1, "", 1);
+SetStoryEvent(CHARACTERGUID_S_ARX_Sewers_ThievesGuild_ThiefLeader_aae19753-a36c-432e-a62e-be6f4ea35611, "Crime_CustomSensibleActionDone");
+
+PROC
+Proc_ARX_Sewers_ThievesGuild_Disappear()
+AND
+DB_ARX_Sewers_ThievesGuild_Troll(_Var1)
+THEN
+SetFaction(_Var1, "Evil NPC");
+
+PROC
+Proc_ARX_Sewers_ThievesGuild_Disappear()
+AND
+DB_ARX_Sewers_ThievesGuild_Troll(_Var1)
+AND
+DB_InRegion(_Var2, TRIGGERGUID_S_ARX_Sewers_ThievesGuild_78585cd2-5618-47d4-9582-917172bca61a)
+AND
+QueryOnlyOnce("ARX_Sewers_ThievesGuild_Disappear_EnterCombat")
+THEN
+EnterCombat(_Var1, _Var2);
+
+PROC
+Proc_ARX_Sewers_ThievesGuild_Disappear()
+AND
+DB_ARX_Sewers_ThievesGuild(_Var1, _)
+AND
+_Var1 != CHARACTERGUID_S_ARX_Sewers_ThievesGuild_ThiefLeader_aae19753-a36c-432e-a62e-be6f4ea35611
+THEN
+ProcForceStopDialog(_Var1);
+CharacterDisappearOutOfSight(_Var1, 0, 1, "", 1);
+SetStoryEvent(_Var1, "Crime_CustomSensibleActionDone");
+
+IF
+ItemLeftTrigger(ITEMGUID_S_ARX_KemmVault_OriginalPainting_f360db17-5fbb-4aa6-bf94-daf857dede83, TRIGGERGUID_S_ARX_Sewers_ThievesGuild_PaintingTrig_3932fa8d-afa2-4076-b887-40986e4b47db, _)
+THEN
+GlobalSetFlag("ARX_Sewers_ThievesGuild_PaintingStolen");
+
+IF
+ItemEnteredTrigger(ITEMGUID_S_ARX_KemmVault_OriginalPainting_f360db17-5fbb-4aa6-bf94-daf857dede83, TRIGGERGUID_S_ARX_Sewers_ThievesGuild_PaintingTrig_3932fa8d-afa2-4076-b887-40986e4b47db, _)
+THEN
+GlobalClearFlag("ARX_Sewers_ThievesGuild_PaintingStolen");
+
+IF
+ItemAddedToCharacter(ITEMGUID_S_ARX_KemmVault_OriginalPainting_f360db17-5fbb-4aa6-bf94-daf857dede83, _)
+THEN
+GlobalSetFlag("ARX_Sewers_ThievesGuild_PaintingStolen");
+
+IF
+ItemAddedToCharacter(ITEMGUID_S_ARX_KemmVault_OriginalPainting_f360db17-5fbb-4aa6-bf94-daf857dede83, (CHARACTERGUID)_Var1)
+AND
+ObjectGetFlag(_Var1, "ARX_KemmVault_ThievesGuild_KnowsAboutPainting", 1)
+AND
+ObjectGetFlag(_Var1, "QuestUpdate_ARX_KemmVault_ThievesGuild_GotPainting", 0)
+AND
+ObjectGetFlag(_Var1, "QuestUpdate_ARX_KemmVault_ThievesGuild_BoughtPainting", 0)
+THEN
+ObjectSetFlag(_Var1, "QuestUpdate_ARX_KemmVault_ThievesGuild_GotPainting");
+
+IF
+CharacterEnteredTrigger((CHARACTERGUID)_Var1, TRIGGERGUID_S_ARX_Sewers_ThievesGuild_PaintingTrig_3932fa8d-afa2-4076-b887-40986e4b47db)
+AND
+UserGetFlag(_Var1, "ARX_Sewers_ThievesGuild_SeenPainting", 0)
+THEN
+UserSetFlag(_Var1, "ARX_Sewers_ThievesGuild_SeenPainting");
+
+IF
+ObjectFlagSet("ARX_Sewers_ThievesGuild_SeenPainting", (GUIDSTRING)_Var1, _)
+AND
+ObjectGetFlag(_Var1, "QuestUpdate_ARX_KemmVault_ThievesGuild_SeenPainting", 0)
+AND
+ObjectGetFlag(_Var1, "ARX_KemmVault_ThievesGuild_KnowsAboutPainting", 1)
+THEN
+ObjectSetFlag(_Var1, "QuestUpdate_ARX_KemmVault_ThievesGuild_SeenPainting");
+
+IF
+CharacterEnteredTrigger((CHARACTERGUID)_Var1, TRIGGERGUID_S_ARX_Sewers_ThievesGuild_PaintingTrig_3932fa8d-afa2-4076-b887-40986e4b47db)
+AND
+QueryOnlyOnce("ARX_Sewers_VB_ThievesGuild_SeenPainting")
+THEN
+StartVoiceBark("ARX_Sewers_VB_ThievesGuild_SeenPainting", _Var1);
+
+IF
+ObjectFlagSet("ARX_Sewers_ThievesGuild_Thief_02_GiveGold", (CHARACTERGUID)_Var1, _)
+THEN
+ItemClearOwner(ITEMGUID_S_ARX_KemmVault_OriginalPainting_f360db17-5fbb-4aa6-bf94-daf857dede83);
+CharacterPickupItem(_Var1, ITEMGUID_S_ARX_KemmVault_OriginalPainting_f360db17-5fbb-4aa6-bf94-daf857dede83, "");
+
+IF
+ObjectFlagSet("ARX_Sewers_ThievesGuild_Thief_02_Discount", (CHARACTERGUID)_Var1, _)
+THEN
+CharacterAddAttitudeTowardsPlayer(CHARACTERGUID_S_ARX_Sewers_ThievesGuild_ThiefLeader_aae19753-a36c-432e-a62e-be6f4ea35611, _Var1, 50);
+
+IF
+CharacterItemEvent(_, _, "ARX_Sewers_ThievesGuild_DoorLever_On")
+THEN
+Proc_ARX_Sewers_ThievesGuild_DoorLever_On();
+
+PROC
+Proc_ARX_Sewers_ThievesGuild_DoorLever_On()
+THEN
+NOT DB_ARX_Sewers_ThievesGuild_DoorLever_On(1);
+
+PROC
+Proc_ARX_Sewers_ThievesGuild_DoorLever_On()
+AND
+ItemIsClosed(ITEMGUID_S_ARX_Sewers_ThievesGuild_HiddenDoor_2a9ddab3-03d6-4694-b782-d2c53a911834, 1)
+THEN
+ItemUnlockAndOpen(ITEMGUID_S_ARX_Sewers_ThievesGuild_HiddenDoor_2a9ddab3-03d6-4694-b782-d2c53a911834);
+DB_ARX_Sewers_ThievesGuild_DoorLever_On(1);
+
+PROC
+Proc_ARX_Sewers_ThievesGuild_DoorLever_On()
+AND
+DoorIsClosing(ITEMGUID_S_ARX_Sewers_ThievesGuild_HiddenDoor_2a9ddab3-03d6-4694-b782-d2c53a911834, 1)
+AND NOT
+DB_ARX_Sewers_ThievesGuild_DoorLever_On(1)
+THEN
+ItemUnlockAndOpen(ITEMGUID_S_ARX_Sewers_ThievesGuild_HiddenDoor_2a9ddab3-03d6-4694-b782-d2c53a911834);
+DB_ARX_Sewers_ThievesGuild_DoorLever_On(1);
+
+PROC
+Proc_ARX_Sewers_ThievesGuild_DoorLever_On()
+AND
+ItemIsClosed(ITEMGUID_S_ARX_Sewers_ThievesGuild_HiddenDoor_2a9ddab3-03d6-4694-b782-d2c53a911834, 0)
+AND NOT
+DB_ARX_Sewers_ThievesGuild_DoorLever_On(1)
+THEN
+ItemCloseAndLock(ITEMGUID_S_ARX_Sewers_ThievesGuild_HiddenDoor_2a9ddab3-03d6-4694-b782-d2c53a911834, "null");
+DB_ARX_Sewers_ThievesGuild_DoorLever_On(1);
+
+PROC
+Proc_ARX_Sewers_ThievesGuild_DoorLever_On()
+AND
+DoorIsOpening(ITEMGUID_S_ARX_Sewers_ThievesGuild_HiddenDoor_2a9ddab3-03d6-4694-b782-d2c53a911834, 1)
+AND NOT
+DB_ARX_Sewers_ThievesGuild_DoorLever_On(1)
+THEN
+ItemCloseAndLock(ITEMGUID_S_ARX_Sewers_ThievesGuild_HiddenDoor_2a9ddab3-03d6-4694-b782-d2c53a911834, "null");
+
+IF
+ObjectFlagSet("ARX_Neighborhood_Street_TraderBaker_ShowMarker", (CHARACTERGUID)_Var1, _)
+THEN
+ProcShowMarker(_Var1, "ARX_Sewers_ThievesGuild_HiddenDoor");
+ProcShowMarker(_Var1, "ARX_Barracks_SecretPassageToPrison");
+
+IF
+ObjectFlagSet((STRING)_Var1, (CHARACTERGUID)_Var2, _)
+AND
+DB_FindingThievesGuild_Started(_Var1)
+THEN
+ObjectSetFlag(_Var2, "ARX_FindingThievesGuild_QuestStarted");
+
+IF
+DB_ARX_Manholes(_Var1, _)
+THEN
+ItemClearOwner(_Var1);
+
+IF
+GlobalFlagSet("ARX_InitiateGenocide")
+AND
+DB_ARX_Manholes(_Var1, _Var2)
+THEN
+NOT DB_ARX_Manholes(_Var1, _Var2);
+DB_ARX_Manholes(_Var1, "ARX_Manhole_Deathfog");
+
+IF
+CharacterUsedItem((CHARACTERGUID)_Var1, (ITEMGUID)_Var2)
+AND
+DB_ARX_Manholes(_Var2, _Var3)
+THEN
+Proc_StartDialog(1, _Var3, _Var1);
+
+IF
+DialogEnded("ARX_Sewers_Rat", _)
+AND
+GlobalGetFlag("ARX_Sewers_Rat_ShowDoor", 1)
+AND
+QueryOnlyOnce("ARX_Sewers_Rat_ShowDoor")
+THEN
+ProcCharacterMoveTo(CHARACTERGUID_S_ARX_Sewers_Rat_90dc8a36-051e-46fe-a77d-45b69cb1805b, ITEMGUID_S_ARX_Sewers_ThievesGuild_HiddenDoor_2a9ddab3-03d6-4694-b782-d2c53a911834, 1, "ARX_Sewers_Rat_ShowDoor_Reached");
+
+IF
+StoryEvent(CHARACTERGUID_S_ARX_Sewers_Rat_90dc8a36-051e-46fe-a77d-45b69cb1805b, "ARX_Sewers_Rat_ShowDoor_Reached")
+THEN
+GlobalClearFlag("ARX_Sewers_Rat_ShowDoor");
+GlobalSetFlag("ARX_Sewers_Rat_ShowedDoor");
+Proc_StartDialog(1, "ARX_Sewers_AD_Rat", CHARACTERGUID_S_ARX_Sewers_Rat_90dc8a36-051e-46fe-a77d-45b69cb1805b);
+SetStoryEvent(ITEMGUID_S_ARX_Sewers_ThievesGuild_HiddenDoor_2a9ddab3-03d6-4694-b782-d2c53a911834, "StoryReveal");
+
+IF
+TextEventSet("findguild")
+AND
+DB_IsPlayer(_Var1)
+THEN
+ObjectSetFlag(_Var1, "QuestUpdate_ARX_FindingThievesGuild_LearntAboutGuild_Start");
+
+IF
+ObjectFlagSet((STRING)_Var1, (GUIDSTRING)_Var2, _)
+AND
+DB_ARX_KemmVault_ThievesGuild_KnowsAboutPainting(_Var1)
+THEN
+ObjectSetFlag(_Var2, "ARX_KemmVault_ThievesGuild_KnowsAboutPainting");
+
+
+EXITSECTION
+ENDEXITSECTION
+
+ParentTargetEdge "ARX"

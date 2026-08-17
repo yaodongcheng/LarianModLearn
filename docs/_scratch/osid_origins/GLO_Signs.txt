@@ -1,0 +1,48 @@
+Version 1
+SubGoalCombiner SGC_AND
+
+INITSECTION
+
+KBSECTION
+IF
+DB_IsSign(_Var1, _, _Var3)
+THEN
+ObjectSetFlag(_Var1, _Var3, 0);
+
+IF
+CharacterUsedItem((CHARACTERGUID)_Var1, (ITEMGUID)_Var2)
+AND
+DB_IsSign(_Var2, _Var3, _)
+THEN
+Proc_StartDialog(1, _Var3, _Var2, _Var1);
+
+IF
+DialogEnded("RC_DW_WantedPoster2", (INTEGER)_Var1)
+AND
+DB_DialogPlayers(_Var2, _Var3, 1)
+AND
+QueryOnlyOnce("RC_DW_WantedPoster2")
+THEN
+StartVoiceBark("RC_DW_VB_WantedPoster2", _Var3);
+
+IF
+DialogEnded("RC_DW_WantedPoster3", (INTEGER)_Var1)
+AND
+DialogGetInvolvedPlayer(_Var1, 1, _Var2)
+AND
+QueryOnlyOnce("RC_DW_WantedPoster3")
+THEN
+ProcDefineReflectionDialog("RC_DW_RD_WantedPoster3", _Var2);
+
+PROC
+Proc_ReflectionDialogDone("RC_DW_RD_WantedPoster3", (CHARACTERGUID)_Var1)
+AND
+QueryOnlyOnce("RC_DW_VB_WantedPoster3")
+THEN
+StartVoiceBark("RC_DW_VB_WantedPoster3", _Var1);
+
+
+EXITSECTION
+ENDEXITSECTION
+
+ParentTargetEdge "DOS2ModWrapper"

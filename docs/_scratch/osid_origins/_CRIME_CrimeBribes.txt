@@ -1,0 +1,317 @@
+Version 1
+SubGoalCombiner SGC_AND
+
+INITSECTION
+DB_CrimeBribes_BaseAmountUntilLevel(0, 50, 10, 1);
+DB_CrimeBribes_BaseAmountUntilLevel(0, 70, 20, 5);
+DB_CrimeBribes_BaseAmountUntilLevel(0, 150, 50, 9);
+DB_CrimeBribes_BaseAmountUntilLevel(0, 245, 65, 13);
+DB_CrimeBribes_BaseAmountUntilLevel(0, 410, 110, 16);
+DB_CrimeBribes_BaseAmountUntilLevel(0, 600, 200, 18);
+DB_CrimeBribes_BaseAmountUntilLevel(0, 800, 250, 20);
+DB_CrimeBribes_BaseAmountUntilLevel(1, 125, 25, 1);
+DB_CrimeBribes_BaseAmountUntilLevel(1, 175, 30, 5);
+DB_CrimeBribes_BaseAmountUntilLevel(1, 400, 60, 9);
+DB_CrimeBribes_BaseAmountUntilLevel(1, 625, 100, 13);
+DB_CrimeBribes_BaseAmountUntilLevel(1, 1100, 200, 16);
+DB_CrimeBribes_BaseAmountUntilLevel(1, 1600, 400, 18);
+DB_CrimeBribes_BaseAmountUntilLevel(1, 2200, 500, 20);
+DB_CrimeBribes_SevereCrimes("Murder");
+DB_CrimeBribes_SevereCrimes("SneakMurder");
+DB_CrimeBribes_SevereCrimes("Assault");
+
+KBSECTION
+QRY
+QRY_GLOBAL_Shapeshifting_GetPolymorphStatus((CHARACTERGUID)_Var1)
+THEN
+DB_NOOP(1);
+
+QRY
+QRY_GLOBAL_Shapeshifting_GetPolymorphStatus_Fallback((CHARACTERGUID)_Var1)
+AND NOT
+DB_GLOBAL_Shapeshifting_PolymorphStatus(_)
+THEN
+DB_GLOBAL_Shapeshifting_PolymorphStatus("");
+
+QRY
+QRY_GLOBAL_Shapeshifting_GetPolymorphStatus_Fallback((CHARACTERGUID)_Var1)
+THEN
+DB_NOOP(1);
+
+QRY
+QRY_CrimeBribes_CrimeGetSeverity((STRING)_Var1)
+AND
+DB_CrimeBribes_CrimeSeverity(_Var2)
+THEN
+NOT DB_CrimeBribes_CrimeSeverity(_Var2);
+
+QRY
+QRY_CrimeBribes_CrimeGetSeverity((STRING)_Var1)
+AND
+DB_CrimeBribes_SevereCrimes(_Var1)
+THEN
+DB_CrimeBribes_CrimeSeverity(1);
+
+QRY
+QRY_CrimeBribes_CrimeGetSeverity((STRING)_Var1)
+AND NOT
+DB_CrimeBribes_CrimeSeverity(1)
+THEN
+DB_CrimeBribes_CrimeSeverity(0);
+
+IF
+ObjectFlagSet((STRING)_Var1, (GUIDSTRING)_Var2, (INTEGER)_Var3)
+AND
+DB_ItemEvents_TransferFlagToMoneyVarIndex(_Var1, _Var4)
+AND
+DB_DialogName(_Var5, _Var3)
+AND
+DB_CrimeTriggers_GeneralBribeDialog(_Var4, _Var5)
+AND
+DB_DialogMoneyTransfer(_Var4, _Var5, _, _, _Var8)
+AND
+DB_DialogPlayers(_Var3, _Var9, 1)
+AND
+DB_DialogNPCs(_Var3, _Var10, _Var8)
+AND
+QRY_GLOBAL_Shapeshifting_GetPolymorphStatus(_Var9)
+AND
+QRY_GLOBAL_Shapeshifting_GetPolymorphStatus_Fallback(_Var9)
+AND
+DB_GLOBAL_Shapeshifting_PolymorphStatus(_Var11)
+THEN
+PROC_CrimeBribes_RecordBribe(_Var10, _Var9, _Var11);
+
+PROC
+PROC_CrimeBribes_RecordBribe((CHARACTERGUID)_Var1, (CHARACTERGUID)_Var2, (STRING)_Var3)
+AND
+DB_CrimeBribes_PairBribes(_Var1, _Var2, _Var3, _Var4)
+AND
+IntegerSum(_Var4, 1, _Var5)
+THEN
+NOT DB_CrimeBribes_PairBribes(_Var1, _Var2, _Var3, _Var4);
+DB_CrimeBribes_PairBribes(_Var1, _Var2, _Var3, _Var5);
+
+PROC
+PROC_CrimeBribes_RecordBribe((CHARACTERGUID)_Var1, (CHARACTERGUID)_Var2, (STRING)_Var3)
+AND NOT
+DB_CrimeBribes_PairBribes(_Var1, _Var2, _Var3, _)
+THEN
+DB_CrimeBribes_PairBribes(_Var1, _Var2, _Var3, 1);
+
+QRY
+QRY_CrimeBribes_BribedTooManyTimes((CHARACTERGUID)_Var1, (CHARACTERGUID)_Var2, (STRING)_Var3)
+AND
+DB_CrimeBribes_BribedTooManyTimes(_Var4)
+THEN
+NOT DB_CrimeBribes_BribedTooManyTimes(_Var4);
+
+QRY
+QRY_CrimeBribes_BribedTooManyTimes((CHARACTERGUID)_Var1, (CHARACTERGUID)_Var2, (STRING)_Var3)
+AND
+DB_CrimeBribes_PairBribes(_Var1, _Var2, _Var3, _Var4)
+AND
+_Var4 >= 1
+THEN
+DB_CrimeBribes_BribedTooManyTimes(1);
+
+QRY
+QRY_CrimeBribes_BribedTooManyTimes((CHARACTERGUID)_Var1, (CHARACTERGUID)_Var2, (STRING)_Var3)
+AND NOT
+DB_CrimeBribes_BribedTooManyTimes(1)
+THEN
+DB_CrimeBribes_BribedTooManyTimes(0);
+
+PROC
+PROC_CrimeBribes_GetBribeBounds((INTEGER)_Var1, (INTEGER)_Var2)
+AND
+DB_CrimeBribes_GetBribeBounds(_Var3, _Var4)
+THEN
+NOT DB_CrimeBribes_GetBribeBounds(_Var3, _Var4);
+
+PROC
+PROC_CrimeBribes_GetBribeBounds((INTEGER)_Var1, (INTEGER)_Var2)
+AND
+DB_CrimeBribes_BaseAmountUntilLevel(_Var1, _Var3, _Var4, 1)
+THEN
+DB_CrimeBribes_GetBribeBounds(_Var3, _Var4);
+
+PROC
+PROC_CrimeBribes_GetBribeBounds((INTEGER)_Var1, (INTEGER)_Var2)
+AND
+DB_CrimeBribes_BaseAmountUntilLevel(_Var1, _Var3, _Var4, _Var5)
+AND
+DB_CrimeBribes_GetBribeBounds(_Var6, _Var7)
+AND
+_Var5 <= _Var2
+AND
+_Var3 > _Var6
+THEN
+NOT DB_CrimeBribes_GetBribeBounds(_Var6, _Var7);
+DB_CrimeBribes_GetBribeBounds(_Var3, _Var4);
+
+PROC
+PROC_CrimeBribes_GetBribe((CHARACTERGUID)_Var1, (INTEGER)_Var2, (INTEGER)_Var3)
+AND NOT
+DB_CrimeBribes_GetBribe_NPC(_Var1, _Var2, _Var3, _)
+THEN
+PROC_CrimeBribes_GetBribeBounds(_Var3, _Var2);
+
+PROC
+PROC_CrimeBribes_GetBribe((CHARACTERGUID)_Var1, (INTEGER)_Var2, (INTEGER)_Var3)
+AND NOT
+DB_CrimeBribes_GetBribe_NPC(_Var1, _Var2, _Var3, _)
+AND
+DB_CrimeBribes_GetBribeBounds(_Var5, _Var6)
+AND
+Random(_Var6, _Var7)
+AND
+IntegerSum(_Var5, _Var7, _Var8)
+THEN
+DB_CrimeBribes_GetBribe_NPC(_Var1, _Var2, _Var3, _Var8);
+
+PROC
+PROC_CrimeBribes_GetBribe((CHARACTERGUID)_Var1, (INTEGER)_Var2, (INTEGER)_Var3)
+AND
+DB_CrimeBribes_GetBribe(_Var4)
+THEN
+NOT DB_CrimeBribes_GetBribe(_Var4);
+
+PROC
+PROC_CrimeBribes_GetBribe((CHARACTERGUID)_Var1, (INTEGER)_Var2, (INTEGER)_Var3)
+AND
+DB_CrimeBribes_GetBribe_NPC(_Var1, _Var2, _Var3, _Var4)
+THEN
+DB_CrimeBribes_GetBribe(_Var4);
+
+IF
+CrimeInterrogationRequest((STRING)_Var1, (INTEGER)_Var2, (CHARACTERGUID)_Var3, (CHARACTERGUID)_Var4, (CHARACTERGUID)_Var5, (CHARACTERGUID)_Var6, (CHARACTERGUID)_Var7, (STRING)_Var8)
+THEN
+PROC_CrimeBribes_SetCrimeBribe(_Var2, _Var3, _Var4, _Var8);
+
+PROC
+ProcStartCrimeDialog((INTEGER)_Var1, (STRING)_Var2, 1, (CHARACTERGUID)_Var3, (CHARACTERGUID)_Var4, (CHARACTERGUID)_Var5, (CHARACTERGUID)_Var6, (CHARACTERGUID)_Var7)
+THEN
+PROC_CrimeBribes_SetCrimeBribe(_Var1, _Var3, _Var4, _Var2);
+
+PROC
+PROC_CrimeBribes_SetCrimeBribe((INTEGER)_Var1, (CHARACTERGUID)_Var2, (CHARACTERGUID)_Var3, (STRING)_Var4)
+AND
+QRY_CrimeBribes_DisableBribe(_Var1, _Var2, _Var3, _Var4)
+THEN
+DB_CrimeBribesDisabledBribe(_Var2, _Var3, _Var4);
+ObjectSetFlag(_Var2, "GEB_BribeDisabled");
+
+QRY
+QRY_CrimeBribes_DisableBribe((INTEGER)_Var1, (CHARACTERGUID)_Var2, (CHARACTERGUID)_Var3, (STRING)_Var4)
+AND
+QRY_GLOBAL_Shapeshifting_GetPolymorphStatus(_Var3)
+AND
+DB_GLOBAL_Shapeshifting_PolymorphStatus(_Var5)
+AND
+QRY_CrimeBribes_BribedTooManyTimes(_Var2, _Var3, _Var5)
+AND
+DB_CrimeBribes_BribedTooManyTimes(1)
+THEN
+DB_NOOP(1);
+
+IF
+DialogEnded((STRING)_Var1, (INTEGER)_Var2)
+AND
+DB_CrimeBribesDisabledBribe(_Var3, _Var4, _Var1)
+AND
+DB_DialogNPCs(_Var2, _Var3, _)
+AND
+DB_DialogPlayers(_Var2, _Var4, _)
+THEN
+NOT DB_CrimeBribesDisabledBribe(_Var3, _Var4, _Var1);
+ObjectClearFlag(_Var3, "GEB_BribeDisabled");
+
+PROC
+PROC_CrimeBribes_SetCrimeBribe((INTEGER)_Var1, (CHARACTERGUID)_Var2, (CHARACTERGUID)_Var3, (STRING)_Var4)
+AND
+DB_CrimeTriggers_GeneralBribeDialog(_Var5, _Var4)
+AND
+CrimeGetType(_Var1, _Var6)
+AND
+QRY_CrimeBribes_CrimeGetSeverity(_Var6)
+AND
+QRY_GLOBAL_Shapeshifting_GetPolymorphStatus(_Var3)
+AND
+DB_GLOBAL_Shapeshifting_PolymorphStatus(_Var7)
+AND
+QRY_CrimeBribes_BribedTooManyTimes(_Var2, _Var3, _Var7)
+AND
+DB_CrimeBribes_CrimeSeverity(_Var8)
+AND
+DB_CrimeBribes_BribedTooManyTimes(_Var9)
+AND
+IntegerMax(_Var8, _Var9, _Var10)
+AND
+CrimeIsTensionOverWarningTreshold(_Var3, _Var11)
+AND
+IntegerMax(_Var10, _Var11, _Var12)
+AND
+CharacterGetLevel(_Var2, _Var13)
+THEN
+PROC_CrimeBribes_GetBribe(_Var2, _Var13, _Var12);
+
+PROC
+PROC_CrimeBribes_SetCrimeBribe((INTEGER)_Var1, (CHARACTERGUID)_Var2, (CHARACTERGUID)_Var3, (STRING)_Var4)
+AND
+DB_CrimeTriggers_GeneralBribeDialog(_Var5, _Var4)
+AND
+DB_CrimeBribes_GetBribe(_Var6)
+THEN
+DB_DialogMoneyTransfer(_Var5, _Var4, _Var6);
+
+IF
+ObjectFlagSet("GEN_TransferNPCPayment", (GUIDSTRING)_Var1, (INTEGER)_Var2)
+AND
+DialogIsCrimeDialog(_Var2, 1)
+AND
+DB_DialogNPCs(_Var2, _Var3, _)
+THEN
+DB_CRIME_CrimeBribes_Bribed(_Var3, _Var1);
+
+IF
+OnCrimeConfrontationDone((INTEGER)_Var1, (CHARACTERGUID)_Var2, _, (CHARACTERGUID)_Var4, (CHARACTERGUID)_Var5, (CHARACTERGUID)_Var6, (CHARACTERGUID)_Var7)
+AND
+DB_CRIME_CrimeBribes_Bribed(_Var2, _Var8)
+THEN
+CharacterStopCrimeWithID(_Var4, _Var1);
+CharacterStopCrimeWithID(_Var5, _Var1);
+CharacterStopCrimeWithID(_Var6, _Var1);
+CharacterStopCrimeWithID(_Var7, _Var1);
+NOT DB_CRIME_CrimeBribes_Bribed(_Var2, _Var8);
+ProcCrimeBribedGuards(_Var2, _Var8);
+
+PROC
+ProcCrimeBribedGuards((GUIDSTRING)_Var1, (CHARACTERGUID)_Var2)
+THEN
+CrimeIgnoreAllCrimesForCriminal(_Var2, _Var1, 300000);
+DB_CrimeBribeSource(_Var2);
+CharacterLaunchIteratorAroundObject(_Var2, 20, "GEB_CrimeBribeGuards");
+FireOsirisEvents();
+NOT DB_CrimeBribeSource(_Var2);
+
+IF
+StoryEvent((CHARACTERGUID)_Var1, "GEB_CrimeBribeGuards")
+AND NOT
+DB_CombatCharacters(_Var1, _)
+AND
+DB_CrimeBribeSource(_Var3)
+AND NOT
+DB_Dead(_Var1)
+AND
+CharacterIsPlayer(_Var1, 0)
+AND
+QryNPCIsGuard(_Var1)
+THEN
+CrimeIgnoreAllCrimesForCriminal(_Var3, _Var1, 300000);
+
+
+EXITSECTION
+ENDEXITSECTION
+
+ParentTargetEdge "__Start"

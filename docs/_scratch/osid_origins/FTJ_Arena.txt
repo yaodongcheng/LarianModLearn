@@ -1,0 +1,189 @@
+Version 1
+SubGoalCombiner SGC_AND
+
+INITSECTION
+DB_Dialogs(CHARACTERGUID_S_FTJ_ArenaMaster_4eadc6c7-f934-43ad-bb74-c59358106114, "FTJ_ArenaMaster");
+DB_Dialogs(CHARACTERGUID_S_GLO_BurnishedOne_dc614e64-d6ef-4b45-8864-73f2a92a1980, "FTJ_BurnishedOne");
+DB_Dialogs(CHARACTERGUID_S_FTJ_ArenaFan_001_bbffcfab-50b8-4200-afb8-514e5c2a64eb, "FTJ_ArenaFan_001");
+DB_Dialogs(CHARACTERGUID_S_FTJ_ArenaFan_002_b4e2cd45-b391-48e0-8c6f-edb57cbc5eae, "FTJ_ArenaFan_002");
+DB_Dialogs(CHARACTERGUID_S_FTJ_ArenaDwarf_7f9740f2-84c2-4858-82b1-579c969f559e, "FTJ_ArenaDwarf");
+DB_FTJ_ArenaFans(CHARACTERGUID_S_FTJ_ArenaMaster_4eadc6c7-f934-43ad-bb74-c59358106114);
+DB_FTJ_ArenaFans(CHARACTERGUID_S_GLO_BurnishedOne_dc614e64-d6ef-4b45-8864-73f2a92a1980);
+DB_FTJ_ArenaFans(CHARACTERGUID_S_FTJ_ArenaFan_001_bbffcfab-50b8-4200-afb8-514e5c2a64eb);
+DB_FTJ_ArenaFans(CHARACTERGUID_S_FTJ_ArenaFan_002_b4e2cd45-b391-48e0-8c6f-edb57cbc5eae);
+ProcTriggerRegisterForPlayers(TRIGGERGUID_S_FTJ_Arena_PlayerCheck_Poly_749aa992-3754-459b-99f3-d3a30c39cea3);
+DB_ArenaMaster_SetFlags("FortJoy", "Arena_FortJoy_User", "User", TRIGGERGUID_S_FTJ_Arena_PlayerCheck_Poly_749aa992-3754-459b-99f3-d3a30c39cea3);
+DB_ArenaMaster_SetFlags("FortJoy", "Arena_FortJoy_Party", "Party", TRIGGERGUID_S_FTJ_Arena_PlayerCheck_Poly_749aa992-3754-459b-99f3-d3a30c39cea3);
+DB_ArenaMaster_SetFlags("FortJoy", "Arena_FortJoy_Pvp", "PVP", TRIGGERGUID_S_FTJ_Arena_PlayerCheck_Poly_749aa992-3754-459b-99f3-d3a30c39cea3);
+DB_ArenaMaster_SetFlags("FortJoy", "Arena_FortJoy_Single", "Single", TRIGGERGUID_S_FTJ_Arena_PlayerCheck_Poly_749aa992-3754-459b-99f3-d3a30c39cea3);
+DB_ArenaMaster_WinFlags("FortJoy", "Arena_FortJoy_Champion");
+DB_ArenaMaster(CHARACTERGUID_S_FTJ_ArenaMaster_4eadc6c7-f934-43ad-bb74-c59358106114, "FTJ_ArenaMaster", "FortJoy", TRIGGERGUID_S_FTJ_Arena_ReturnTrigger_2673782a-a56a-420d-a8c9-22a6eaed5bd9);
+DB_ArenaMaster_WinFlags("FortJoy", "FTJ_Arena_WonArena", "FTJ_Arena_LostArena");
+DB_ArenaPresets_Player("FortJoy", "Arena_TeamA", TRIGGERGUID_S_FTJ_Arena_TeamA_Spawn_f82f11eb-29a7-45a5-a1af-9a956e482917);
+DB_ArenaPresets_Player("FortJoy", "Arena_TeamB", TRIGGERGUID_S_FTJ_Arena_TeamB_Spawn_894b8b71-b32c-4454-bd83-32d2d53eacc2);
+DB_ArenaPresets_Mobs("FortJoy", S_FTJ_Arena_Gladiator_001_51a8d141-c7df-4d56-8d28-ca403033ca16, S_FTJ_Arena_GladiatorSpawn_001_e9210258-ed60-4d49-84cd-a10d92ca62b4);
+DB_ArenaPresets_Mobs("FortJoy", CHARACTERGUID_S_FTJ_Arena_Gladiator_002_31fcfd4c-1417-4ac8-8817-1dfb8a5b8e7b, TRIGGERGUID_S_FTJ_Arena_GladiatorSpawn_002_3d984233-14ea-444b-bfd2-21ee1fc3d1b3);
+DB_ArenaPresets_Mobs("FortJoy", CHARACTERGUID_S_FTJ_Arena_Gladiator_003_b81cb546-05b1-404c-ae00-d76a0702bb86, TRIGGERGUID_S_FTJ_Arena_GladiatorSpawn_003_c1f6c8be-fadc-4a02-ad4a-c32aef95be39);
+DB_ArenaPresets_Mobs("FortJoy", CHARACTERGUID_S_FTJ_Arena_Gladiator_004_d2a430fc-8f01-4962-b455-93f883c287d0, TRIGGERGUID_S_FTJ_Arena_GladiatorSpawn_004_2bfeccc1-5233-46f2-8ba3-929f8c7f589a);
+SetOnStage(CHARACTERGUID_S_FTJ_RingGirl_Helper_2c6f3151-8d67-4af7-a4b7-e18b7c64ac94, 0);
+Proc_FTJ_ArenaStart();
+Proc_PyramidBlockerTriggerAdd(TRIGGERGUID_S_FTJ_ArenaTeleportBlock_dafa246f-4cbe-4e89-b9e7-bcde4391258b);
+DB_ArenaChampionTag("FortJoy", "CHAMPION_FTJ");
+
+KBSECTION
+PROC
+Proc_FTJ_ArenaStart()
+AND
+DB_ArenaPresets_Mobs("FortJoy", _Var1, _)
+THEN
+SetOnStage(_Var1, 0);
+
+IF
+ObjectEnteredCombat((CHARACTERGUID)_Var1, _)
+AND
+DB_ArenaPresets_Mobs(_Var1)
+AND
+QueryOnlyOnce("FTJ_Combatsave_Arena")
+THEN
+AutoSave();
+
+PROC
+Proc_Arena_Win(_)
+AND
+DB_Arena_MobParticipants(_, _Var3, _, _)
+AND
+DB_ArenaPresets_Mobs("FortJoy", _Var3, _Var6)
+THEN
+NOT DB_ArenaPresets_Mobs("FortJoy", _Var3, _Var6);
+SetOnStage(_Var3, 0);
+
+IF
+ObjectFlagSet("FTJ_Arena_WonArena", (CHARACTERGUID)_Var1, _)
+AND
+CharacterIsDead(_Var1, 0)
+AND
+QueryOnlyOnce("FTJ_Arena_WonArena_PvE_OneShot")
+THEN
+StartVoiceBark("FTJ_VB_WonPvEArena", _Var1);
+
+IF
+ObjectWasTagged((CHARACTERGUID)_Var1, "CHAMPION_FTJ")
+THEN
+UserSetFlag(_Var1, "QuestUpdate_FTJ_Arena_Fought_Arena_Won", 0);
+
+IF
+ObjectFlagSet("FTJ_Arena_LostArena", (CHARACTERGUID)_Var1, _)
+THEN
+ClearTag(_Var1, "CHAMPION_FTJ");
+Proc_FTJ_Arena_LostArena(_Var1);
+
+PROC
+Proc_FTJ_Arena_LostArena(_)
+THEN
+NOT DB_FTJ_Arena_TheresWinner(1);
+
+PROC
+Proc_FTJ_Arena_LostArena(_)
+AND
+DB_IsPlayer(_Var2)
+AND
+IsTagged(_Var2, "CHAMPION_FTJ", 1)
+THEN
+DB_FTJ_Arena_TheresWinner(1);
+
+PROC
+Proc_FTJ_Arena_LostArena((CHARACTERGUID)_Var1)
+AND NOT
+DB_FTJ_Arena_TheresWinner(1)
+THEN
+UserSetFlag(_Var1, "QuestUpdate_FTJ_Arena_Fought_Arena_Loss", 0);
+
+IF
+CharacterEnteredTrigger((CHARACTERGUID)_Var1, TRIGGERGUID_S_FTJ_SUB_ArenaPit_8b9567de-8945-4655-a0f0-219c9646869e)
+THEN
+UserSetFlag(_Var1, "QuestUpdate_FTJ_Arena_Found_Arena", 0);
+
+IF
+ObjectFlagSet("FTJ_ArenaFan_001_ApplyInspire", (CHARACTERGUID)_Var1, _)
+THEN
+CharacterAddSkill(CHARACTERGUID_S_FTJ_ArenaFan_001_bbffcfab-50b8-4200-afb8-514e5c2a64eb, "Target_EnemyFrostyShell");
+CharacterUseSkill(CHARACTERGUID_S_FTJ_ArenaFan_001_bbffcfab-50b8-4200-afb8-514e5c2a64eb, "Target_EnemyFrostyShell", _Var1);
+DB_FTJ_ArenaFan_001_ApplyInspireTarget(_Var1);
+
+IF
+CharacterUsedSkillOnTarget(CHARACTERGUID_S_FTJ_ArenaFan_001_bbffcfab-50b8-4200-afb8-514e5c2a64eb, (CHARACTERGUID)_Var1, "Target_EnemyFrostyShell", _, _)
+AND
+DB_FTJ_ArenaFan_001_ApplyInspireTarget(_Var1)
+THEN
+ApplyStatus(_Var1, "MAGIC_SHELL", 300);
+NOT DB_FTJ_ArenaFan_001_ApplyInspireTarget(_Var1);
+
+PROC
+Proc_Arena_Win_TeleportOut()
+AND
+DB_IsPlayer(_Var1)
+AND
+IsTagged(_Var1, "CHAMPION_FTJ", 1)
+AND
+DB_FTJ_ArenaFans(_Var2)
+AND
+QRY_SpeakerIsAvailable(_Var2)
+THEN
+CharacterLookAt(_Var2, _Var1);
+PlayAnimation(_Var2, "Cheer_03", "FTJ_ArenaFanCheer_1");
+
+IF
+StoryEvent((CHARACTERGUID)_Var1, "FTJ_ArenaFanCheer_1")
+AND
+DB_IsPlayer(_Var2)
+AND
+IsTagged(_Var2, "CHAMPION_FTJ", 1)
+AND
+QRY_SpeakerIsAvailable(_Var1)
+THEN
+CharacterLookAt(_Var1, _Var2);
+PlayAnimation(_Var1, "Cheer_03", "FTJ_ArenaFanCheer_2");
+
+IF
+StoryEvent(CHARACTERGUID_S_FTJ_ArenaMaster_4eadc6c7-f934-43ad-bb74-c59358106114, "FTJ_ArenaFanCheer_1")
+AND
+QRY_SpeakerIsAvailable(CHARACTERGUID_S_FTJ_ArenaMaster_4eadc6c7-f934-43ad-bb74-c59358106114)
+THEN
+Proc_StartDialog(1, "FTJ_AD_CongratulateChamp", CHARACTERGUID_S_FTJ_ArenaMaster_4eadc6c7-f934-43ad-bb74-c59358106114);
+
+IF
+StoryEvent((CHARACTERGUID)_Var1, "FTJ_ArenaFanCheer_2")
+AND
+DB_IsPlayer(_Var2)
+AND
+IsTagged(_Var2, "CHAMPION_FTJ", 1)
+AND
+QRY_SpeakerIsAvailable(_Var1)
+THEN
+CharacterLookAt(_Var1, _Var2);
+PlayAnimation(_Var1, "Cheer_03");
+
+IF
+ObjectFlagSet("FTJ_Arena_ChampionSmith_Update", (CHARACTERGUID)_Var1, _)
+AND
+IsTagged(_Var1, "CHAMPION_FTJ", 1)
+THEN
+ObjectSetFlag(_Var1, "QuestUpdate_RC_FTJ_SourceCollar_ChampionSmith");
+
+IF
+ObjectFlagSet("FTJ_Arena_ChampionSmith_Update", (CHARACTERGUID)_Var1, _)
+AND
+IsTagged(_Var1, "CHAMPION_FTJ", 0)
+THEN
+ObjectClearFlag(_Var1, "FTJ_Arena_ChampionSmith_Update");
+
+PROC
+ProcRegionEnded("FJ_FortJoy_Main")
+THEN
+GoalCompleted;
+
+
+EXITSECTION
+ENDEXITSECTION
+
+ParentTargetEdge "FortJoy"

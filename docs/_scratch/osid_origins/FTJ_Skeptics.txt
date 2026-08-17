@@ -1,0 +1,381 @@
+Version 1
+SubGoalCombiner SGC_AND
+
+INITSECTION
+Proc_JDF_CreateDependency("RC_FTJ_OlgoSaheila", "GriffHint", "RatHint");
+DB_Dialogs(S_FTJ_Skeptic_Elf_001_d8902155-d0e3-4dfe-b6dd-d90fd5606f50, "FTJ_CaveElf_001");
+DB_Dialogs(S_FTJ_Sceptic_Lizard_001_fcacdf08-b05f-4333-b0e0-ddf29c13d8e0, "FTJ_Saheila");
+DB_Dialogs(S_FTJ_ImprissonedSkeptic_792c9745-1a8d-4d63-ae4c-33927457730a, "FTJ_CagedElf");
+DB_Dialogs(S_FTJ_SkepticChild_001_780631fb-3619-4ed1-b48b-f1ff847d4183, "FTJ_SkepticChild_001");
+DB_Dialogs(S_FTJ_SkepticChild_002_7f795cf2-db7f-46b6-aa9c-f9d5eefcc789, "FTJ_SkepticChild_002");
+DB_Dialogs(S_FTJ_SkepticSoldier_9dc4da24-9cd5-43cc-a01c-6923b59bd066, "FTJ_SkepticSoldier");
+DB_Dialogs(S_FTJ_LizardDreamer_ffb80725-25ff-4174-98cb-60a11612e5c4, "FTJ_LizardDreamer");
+SetVarInteger(S_FTJ_ImprissonedSkeptic_792c9745-1a8d-4d63-ae4c-33927457730a, "bool_CanChickenFlee", 0);
+DB_IsSign(ITEMGUID_S_FTJ_ModySign_398fc5f1-22ca-43b6-a011-cf38c94d5b91, "FTJ_Signs", "FTJ_ModySign");
+DB_ShovelArea(RC_FTJ_DirtMound_008_Box_c991d6cb-d3da-4b09-941c-804f2853e2ec, "FTJ_SkepticSecretEntrance", RC_FTJ_DirtPile_008_fe17ca0b-c376-40ff-8463-493d9d7677d6);
+DB_ShovelRewardItemSpawn("FTJ_SkepticSecretEntrance", RC_FTJ_HatchToFTJUnderGround_001_2368c7c7-8d2a-437e-a344-4c8ac5e63946);
+SetOnStage(ITEMGUID_S_FTJ_SaheilaLimb_5b5de70d-0fe2-4a30-97b7-fd86ba1ee942, 0);
+DB_HasStoryEvent(ITEMGUID_S_FTJ_SaheilasSignetAmulet_7572756c-cb2e-4534-ba7b-ad6d22451bd7, "FTJ_HasSaheilaSignet");
+DB_GiveItemToEvent(ITEMGUID_S_FTJ_SaheilasSignetAmulet_7572756c-cb2e-4534-ba7b-ad6d22451bd7, "FTJ_SaheilaSignetTo");
+Proc_FTJ_SkepticsStart();
+
+KBSECTION
+PROC
+Proc_FTJ_SkepticsStart()
+THEN
+ProcCharacterDisableAllCrimes(CHARACTERGUID_S_FTJ_ImprissonedSkeptic_792c9745-1a8d-4d63-ae4c-33927457730a);
+ItemToInventory(RC_FTJ_OlgoDrugs_7a4769d5-c45b-49c1-a22b-5121073c6096, RC_FTJ_OlgoOranges_c5d71987-c3ee-4775-a7b9-807461de56a3, 1);
+ItemToInventory(RC_FTJ_OlgoOranges_c5d71987-c3ee-4775-a7b9-807461de56a3, RC_FTJ_LizardDreamer_ffb80725-25ff-4174-98cb-60a11612e5c4, 1);
+ItemToInventory(RC_FTJ_SaheilasSignetAmulet_7572756c-cb2e-4534-ba7b-ad6d22451bd7, RC_FTJ_ImprissonedSkeptic_792c9745-1a8d-4d63-ae4c-33927457730a, 1);
+CharacterSetHitpointsPercentage(CHARACTERGUID_S_FTJ_ImprissonedSkeptic_792c9745-1a8d-4d63-ae4c-33927457730a, 15);
+
+IF
+DialogEnded("FTJ_LizardDreamer", _)
+AND NOT
+DB_GlobalFlag("FTJ_DreamerHasSlept")
+THEN
+ProcRemoveAllDialogEntriesForSpeaker(S_FTJ_LizardDreamer_ffb80725-25ff-4174-98cb-60a11612e5c4);
+DB_AD_Dialog(S_FTJ_LizardDreamer_ffb80725-25ff-4174-98cb-60a11612e5c4, "FTJ_AD_LizardDreamer_WalkingToBed");
+
+IF
+CharacterEnteredTrigger((CHARACTERGUID)_Var1, RC_FTJ_SUB_Caverns_e23bceea-0d50-44ab-98b1-260c7f483ff2)
+AND
+QRY_SpeakerIsAvailable(_Var1)
+AND
+QueryOnlyOnce("RC_FTJ_VB_EnterCaverns")
+THEN
+StartVoiceBark("FTJ_VB_EnterCaverns", _Var1);
+
+IF
+GlobalFlagSet("FTJ_DreamerHasSlept")
+THEN
+SetTag(CHARACTERGUID_S_FTJ_LizardDreamer_ffb80725-25ff-4174-98cb-60a11612e5c4, "BADASSCIVILIAN");
+DB_OriginMomentTag_HighPriority("FTJ_LizardDreamer", "RED PRINCE", "FTJ_LizardDreamer_COM_RedPrince");
+DB_OriginMomentTag("FTJ_LizardDreamer", "SEBILLE", "FTJ_LizardDreamer_COM_Sebille");
+ProcRemoveNPCADs(S_FTJ_LizardDreamer_ffb80725-25ff-4174-98cb-60a11612e5c4);
+DB_Dialogs(S_FTJ_LizardDreamer_ffb80725-25ff-4174-98cb-60a11612e5c4, "FTJ_LizardDreamer");
+
+IF
+DialogStarted("FTJ_LizardDreamer", _)
+THEN
+RemoveStatus(CHARACTERGUID_S_FTJ_LizardDreamer_ffb80725-25ff-4174-98cb-60a11612e5c4, "SLEEPING");
+
+IF
+ObjectFlagSet("FTJ_SaheilaGaveQuest", (CHARACTERGUID)_Var1, _)
+AND
+CharacterIsDead(RC_FTJ_ImprissonedSkeptic_792c9745-1a8d-4d63-ae4c-33927457730a, 0)
+THEN
+UserSetFlag(_Var1, "QuestAdd_RC_FTJ_OlgoSaheila");
+UserSetFlag(_Var1, "QuestUpdate_RC_FTJ_OlgoSaheila_SaheilaAgreeToHelp");
+
+IF
+ObjectFlagSet("FTJ_AmryoGaveQuest", (CHARACTERGUID)_Var1, _)
+AND
+CharacterIsDead(RC_FTJ_ImprissonedSkeptic_792c9745-1a8d-4d63-ae4c-33927457730a, 0)
+AND
+UserGetFlag(_Var1, "FTJ_SaheilaGaveQuest", 0)
+THEN
+UserSetFlag(_Var1, "QuestAdd_RC_FTJ_OlgoSaheila");
+UserSetFlag(_Var1, "QuestUpdate_RC_FTJ_OlgoSaheila_SkepticAgreeToHelp");
+
+IF
+CharacterDied(S_RC_FTJ_GhettoBoss_84758f75-01a3-4cce-9922-f42ffc4afddd)
+AND
+DB_IsPlayer(_Var1)
+THEN
+ProcHideMarker(_Var1, "RC_FTJ_Olgo");
+
+IF
+CharacterDied(S_RC_FTJ_GhettoBoss_84758f75-01a3-4cce-9922-f42ffc4afddd)
+THEN
+GlobalSetFlag("FTJ_GhettoBossIsDead");
+
+IF
+CharacterDied(CHARACTERGUID_S_FTJ_Saheila_fcacdf08-b05f-4333-b0e0-ddf29c13d8e0)
+THEN
+GlobalSetFlag("FTJ_SaheilaIsDead");
+
+IF
+CharacterDied(RC_FTJ_Sceptic_Lizard_001_fcacdf08-b05f-4333-b0e0-ddf29c13d8e0)
+AND
+DB_IsPlayer(_Var1)
+THEN
+GlobalSetFlag("FTJ_SaheilaIsDead");
+ProcHideMarker(_Var1, "RC_FTJ_Saheila");
+SetOnStage(ITEMGUID_S_FTJ_SaheilaLimb_5b5de70d-0fe2-4a30-97b7-fd86ba1ee942, 1);
+ItemToInventory(ITEMGUID_S_FTJ_SaheilaLimb_5b5de70d-0fe2-4a30-97b7-fd86ba1ee942, CHARACTERGUID_S_FTJ_Saheila_fcacdf08-b05f-4333-b0e0-ddf29c13d8e0);
+
+IF
+CharacterDied(RC_FTJ_ImprissonedSkeptic_792c9745-1a8d-4d63-ae4c-33927457730a)
+AND
+DB_IsPlayer(_Var1)
+THEN
+GlobalSetFlag("FTJ_HarlonDead");
+
+IF
+AttackedByObject(CHARACTERGUID_S_FTJ_SkepticChild_001_780631fb-3619-4ed1-b48b-f1ff847d4183, (CHARACTERGUID)_Var1, _, _, _)
+AND
+DB_IsPlayer(_Var1)
+AND
+GetDistanceTo(CHARACTERGUID_S_FTJ_SkepticChild_001_780631fb-3619-4ed1-b48b-f1ff847d4183, CHARACTERGUID_S_FTJ_SkepticChild_002_7f795cf2-db7f-46b6-aa9c-f9d5eefcc789, _Var5)
+AND
+_Var5 < 14
+THEN
+SetStoryEvent(CHARACTERGUID_S_FTJ_SkepticChild_002_7f795cf2-db7f-46b6-aa9c-f9d5eefcc789, "ForceStopDialog");
+SetStoryEvent(CHARACTERGUID_S_FTJ_SkepticChild_001_780631fb-3619-4ed1-b48b-f1ff847d4183, "ForceStopDialog");
+ProcObjectTimerCancel(CHARACTERGUID_S_FTJ_SkepticChild_002_7f795cf2-db7f-46b6-aa9c-f9d5eefcc789, "GEB_AppearNPCOutOfSight");
+SetScriptFrame(CHARACTERGUID_S_FTJ_SkepticChild_002_7f795cf2-db7f-46b6-aa9c-f9d5eefcc789, "RunFromChildKiller");
+
+IF
+AttackedByObject(CHARACTERGUID_S_FTJ_SkepticChild_002_7f795cf2-db7f-46b6-aa9c-f9d5eefcc789, (CHARACTERGUID)_Var1, _, _, _)
+AND
+DB_IsPlayer(_Var1)
+AND
+GetDistanceTo(CHARACTERGUID_S_FTJ_SkepticChild_001_780631fb-3619-4ed1-b48b-f1ff847d4183, CHARACTERGUID_S_FTJ_SkepticChild_002_7f795cf2-db7f-46b6-aa9c-f9d5eefcc789, _Var5)
+AND
+_Var5 < 14
+THEN
+SetStoryEvent(CHARACTERGUID_S_FTJ_SkepticChild_002_7f795cf2-db7f-46b6-aa9c-f9d5eefcc789, "ForceStopDialog");
+SetStoryEvent(CHARACTERGUID_S_FTJ_SkepticChild_001_780631fb-3619-4ed1-b48b-f1ff847d4183, "ForceStopDialog");
+ProcObjectTimerCancel(CHARACTERGUID_S_FTJ_SkepticChild_001_780631fb-3619-4ed1-b48b-f1ff847d4183, "GEB_AppearNPCOutOfSight");
+SetScriptFrame(CHARACTERGUID_S_FTJ_SkepticChild_001_780631fb-3619-4ed1-b48b-f1ff847d4183, "RunFromChildKiller");
+
+IF
+ObjectFlagSet("RC_FTJ_OlgoSaheila_AmyroThanks", (CHARACTERGUID)_Var1, _)
+AND
+DB_IsPlayer(_Var1)
+AND
+QuestAccepted(_Var1, "RC_FTJ_OlgoSaheila", 1)
+THEN
+Proc_RC_FTJ_OlgoSaheila_SkepticReleased_Update(_Var1);
+ObjectSetFlag(_Var1, "QuestUpdate_FTJ_Escape_AmyroSaved");
+
+PROC
+Proc_RC_FTJ_OlgoSaheila_SkepticReleased_Update((CHARACTERGUID)_Var1)
+THEN
+ObjectSetFlag(_Var1, "FTJ_SkepticReleased");
+
+PROC
+Proc_RC_FTJ_OlgoSaheila_SkepticReleased_Update((CHARACTERGUID)_Var1)
+AND
+ObjectGetFlag(_Var1, "QuestUpdate_RC_FTJ_OlgoSaheila_SaheilaAgreeToHelp", 1)
+THEN
+ObjectSetFlag(_Var1, "QuestUpdate_RC_FTJ_OlgoSaheila_SkepticReleased_Saheila");
+
+PROC
+Proc_RC_FTJ_OlgoSaheila_SkepticReleased_Update((CHARACTERGUID)_Var1)
+AND
+ObjectGetFlag(_Var1, "QuestUpdate_RC_FTJ_OlgoSaheila_SaheilaAgreeToHelp", 0)
+THEN
+ObjectSetFlag(_Var1, "QuestUpdate_RC_FTJ_OlgoSaheila_SkepticReleased");
+
+IF
+GlobalFlagSet("FTJ_ImprissonedSkepticFreed")
+THEN
+SetVarInteger(S_FTJ_ImprissonedSkeptic_792c9745-1a8d-4d63-ae4c-33927457730a, "bool_CanChickenFlee", 1);
+
+IF
+StoryEvent((CHARACTERGUID)_Var1, "FTJ_ImprissonedSkepticDoDialog")
+THEN
+DB_Crime_DoNotStopDialog("FTJ_CagedElf");
+Proc_StartDialog(0, "FTJ_CagedElf", RC_FTJ_ImprissonedSkeptic_792c9745-1a8d-4d63-ae4c-33927457730a, _Var1);
+SetCanFight(RC_FTJ_ImprissonedSkeptic_792c9745-1a8d-4d63-ae4c-33927457730a, 1);
+
+IF
+DialogEnded("FTJ_CagedElf", _)
+AND
+GlobalGetFlag("FTJ_ImprissonedSkepticFreed", 1)
+AND
+DB_IsPlayer(_Var2)
+THEN
+ProcShowMarker(_Var2, "RC_FTJ_SecretEntranceToUnderground");
+ProcCharacterEnableAllCrimes(RC_FTJ_ImprissonedSkeptic_792c9745-1a8d-4d63-ae4c-33927457730a);
+NOT DB_Crime_DoNotStopDialog("FTJ_CagedElf");
+
+IF
+GlobalFlagSet("FTJ_ImprissonedSkepticFreed")
+THEN
+DB_IgnoreAssault(RC_FTJ_ImprissonedSkeptic_792c9745-1a8d-4d63-ae4c-33927457730a);
+
+IF
+ItemOpened(S_FTJ_ImprissonedSkepticCageDoor_a4de2766-b580-4db4-b8a0-ad906fdca96b)
+THEN
+ObjectSetFlag(RC_FTJ_ImprissonedSkeptic_792c9745-1a8d-4d63-ae4c-33927457730a, "FTJ_FTJ_ImprissonedSkepticDoorIsOpen");
+NOT DB_IgnoreAssault(RC_FTJ_ImprissonedSkeptic_792c9745-1a8d-4d63-ae4c-33927457730a);
+
+IF
+CharacterUsedSkillOnTarget((CHARACTERGUID)_Var1, RC_FTJ_ImprissonedSkeptic_792c9745-1a8d-4d63-ae4c-33927457730a, (STRING)_Var2, "Teleportation", _)
+AND
+DB_OnlyOnce("FTJ_ImprisonedSkeptic_Released")
+AND
+GlobalGetFlag("FTJ_ImprissonedSkepticFreed", 1)
+AND
+ObjectGetFlag(RC_FTJ_ImprissonedSkeptic_792c9745-1a8d-4d63-ae4c-33927457730a, "FTJ_FTJ_ImprissonedSkepticDoorIsOpen", 0)
+THEN
+DB_IgnoreAssault(RC_FTJ_ImprissonedSkeptic_792c9745-1a8d-4d63-ae4c-33927457730a);
+
+IF
+AttackedByObject(RC_FTJ_ImprissonedSkeptic_792c9745-1a8d-4d63-ae4c-33927457730a, (CHARACTERGUID)_Var1, _, _, _)
+AND
+DB_IsPlayer(_Var1)
+AND
+DB_IgnoreAssault(RC_FTJ_ImprissonedSkeptic_792c9745-1a8d-4d63-ae4c-33927457730a)
+THEN
+NOT DB_IgnoreAssault(RC_FTJ_ImprissonedSkeptic_792c9745-1a8d-4d63-ae4c-33927457730a);
+
+IF
+DialogEnded("FTJ_CagedElf", _)
+AND
+GlobalGetFlag("FTJ_ImprissonedSkepticFreed", 1)
+AND
+QueryOnlyOnce("FTJ_RevealHatchToUnderground")
+THEN
+SetVarFloat(S_FTJ_DirtPile_008_fe17ca0b-c376-40ff-8463-493d9d7677d6, "MinDistance", 7);
+ProcSetPerceptionDifficulty(S_FTJ_DirtPile_008_fe17ca0b-c376-40ff-8463-493d9d7677d6, "Trivial");
+
+IF
+ObjectFlagSet("FTJ_SaheilaSignetTo", (CHARACTERGUID)_Var1, _)
+THEN
+ObjectSetFlag(_Var1, "QuestAdd_RC_FTJ_SaheilaSignet");
+ObjectSetFlag(_Var1, "QuestUpdate_RC_FTJ_SaheilaSignet_SignetStart");
+
+IF
+ObjectFlagSet("FactionHostileToIndivPlayerAfterDialog", (GUIDSTRING)_Var1, (INTEGER)_Var2)
+AND
+DialogGetInvolvedNPC(_Var2, 1, CHARACTERGUID_S_FTJ_SkepticSoldier_9dc4da24-9cd5-43cc-a01c-6923b59bd066)
+THEN
+SetFaction(CHARACTERGUID_S_FTJ_SkepticSoldier_9dc4da24-9cd5-43cc-a01c-6923b59bd066, "FTJ_SkepticsSoldier");
+CharacterSetRelationFactionToIndivFaction("FTJ_Skeptics", CHARACTERGUID_S_FTJ_SkepticSoldier_9dc4da24-9cd5-43cc-a01c-6923b59bd066, 50);
+SetCombatGroupID(CHARACTERGUID_S_FTJ_SkepticSoldier_9dc4da24-9cd5-43cc-a01c-6923b59bd066, "");
+
+IF
+ObjectFlagSet("FTJ_SkepticSoldier_Tag_Soldier", (CHARACTERGUID)_Var1, _)
+AND
+QueryOnlyOnce("FTJ_SkepticSoldier_Tag_Soldier")
+THEN
+PartySetShopPriceModifier(RC_FTJ_SkepticSoldier_9dc4da24-9cd5-43cc-a01c-6923b59bd066, _Var1, 65);
+
+IF
+ItemAddedToContainer((ITEMGUID)_Var1, RC_FTJ_OlgoOranges_c5d71987-c3ee-4775-a7b9-807461de56a3)
+AND
+_Var1 != RC_FTJ_OlgoDrugs_7a4769d5-c45b-49c1-a22b-5121073c6096
+THEN
+proc_FTJ_OlgoDrugs_DestroyOranges();
+
+PROC
+proc_FTJ_OlgoDrugs_DestroyOranges()
+AND
+DB_IsPlayer(_Var1)
+AND
+ItemIsInCharacterInventory(RC_FTJ_OlgoOranges_c5d71987-c3ee-4775-a7b9-807461de56a3, _Var1, 1)
+THEN
+MoveAllItemsTo(RC_FTJ_OlgoOranges_c5d71987-c3ee-4775-a7b9-807461de56a3, _Var1);
+ItemDestroy(RC_FTJ_OlgoOranges_c5d71987-c3ee-4775-a7b9-807461de56a3);
+PlaySound(_Var1, "SE_FTJ_GriffSaheila_LargeOrangeDestroy");
+
+IF
+TextEventSet("GiveOrange")
+THEN
+ItemToInventory(RC_FTJ_OlgoOranges_c5d71987-c3ee-4775-a7b9-807461de56a3, S_Player_Sebille_c8d55eaf-e4eb-466a-8f0d-6a9447b5b24c, 1);
+
+IF
+CharacterKilledBy(CHARACTERGUID_S_GLO_Saheila_fcacdf08-b05f-4333-b0e0-ddf29c13d8e0, (CHARACTERGUID)_Var1, (CHARACTERGUID)_Var2)
+AND
+DB_IsPlayer(_Var1)
+THEN
+PartySetFlag(_Var1, "FTJ_KilledSaheila");
+
+IF
+CharacterDying(CHARACTERGUID_S_GLO_Saheila_fcacdf08-b05f-4333-b0e0-ddf29c13d8e0)
+AND
+DB_CombatCharacters(CHARACTERGUID_S_GLO_Saheila_fcacdf08-b05f-4333-b0e0-ddf29c13d8e0, _Var1)
+AND
+DB_IsPlayer(_Var2)
+AND
+DB_CombatCharacters(_Var2, _Var1)
+THEN
+PartySetFlag(_Var2, "FTJ_KilledSaheila");
+
+IF
+SavegameLoaded((INTEGER)_Var1, (INTEGER)_Var2, (INTEGER)_Var3, (INTEGER)_Var4)
+AND
+QRY_VersionIsOlderThan(_Var1, _Var2, _Var3, _Var4, 3, 5, 1, 0)
+AND NOT
+DB_QuestDef_State("FTJ_Escape", "AmyroDead")
+THEN
+DB_QuestDef_State("FTJ_Escape", "AmyroDead");
+
+IF
+SavegameLoaded((INTEGER)_Var1, (INTEGER)_Var2, (INTEGER)_Var3, (INTEGER)_Var4)
+AND
+QRY_VersionIsOlderThan(_Var1, _Var2, _Var3, _Var4, 3, 5, 1, 0)
+AND
+DB_Dead(CHARACTERGUID_S_FTJ_ImprisonedSkeptic_792c9745-1a8d-4d63-ae4c-33927457730a)
+AND
+DB_IsPlayer(_Var5)
+AND
+QRY_FTJ_MainQuestAmyroMet(_Var5)
+AND
+ObjectGetFlag(_Var5, "QuestUpdate_FTJ_Escape_AmyroSaved", 0)
+AND
+ObjectGetFlag(_Var5, "QuestUpdate_FTJ_Escape_AmyroDead", 0)
+THEN
+ObjectSetFlag(_Var5, "QuestUpdate_FTJ_Escape_AmyroDead");
+
+IF
+CharacterDied(CHARACTERGUID_S_FTJ_ImprisonedSkeptic_792c9745-1a8d-4d63-ae4c-33927457730a)
+AND
+DB_IsPlayer(_Var1)
+AND
+QRY_FTJ_MainQuestAmyroMet(_Var1)
+AND
+ObjectGetFlag(_Var1, "QuestUpdate_FTJ_Escape_AmyroSaved", 0)
+THEN
+ObjectSetFlag(_Var1, "QuestUpdate_FTJ_Escape_AmyroDead");
+
+QRY
+QRY_FTJ_MainQuestAmyroMet((CHARACTERGUID)_Var1)
+AND
+ObjectGetFlag(_Var1, "QuestUpdate_FTJ_Escape_FindAmyro", 1)
+THEN
+DB_NOOP(1);
+
+QRY
+QRY_FTJ_MainQuestAmyroMet((CHARACTERGUID)_Var1)
+AND
+ObjectGetFlag(_Var1, "QuestUpdate_FTJ_Escape_AmyroMet", 1)
+THEN
+DB_NOOP(1);
+
+IF
+CharacterDied(CHARACTERGUID_S_FTJ_ImprisonedSkeptic_792c9745-1a8d-4d63-ae4c-33927457730a)
+AND
+DB_IsPlayer(_Var1)
+AND
+ObjectGetFlag(_Var1, "FTJ_SaheilaToldPlayerAboutAmyro", 1)
+THEN
+ObjectSetFlag(_Var1, "QuestUpdate_FTJ_Escape_AmyroDead");
+
+IF
+SavegameLoaded((INTEGER)_Var1, (INTEGER)_Var2, (INTEGER)_Var3, (INTEGER)_Var4)
+AND
+QRY_VersionIsOlderThan(_Var1, _Var2, _Var3, _Var4, 3, 5, 1, 0)
+AND
+DB_Dead(CHARACTERGUID_S_FTJ_ImprisonedSkeptic_792c9745-1a8d-4d63-ae4c-33927457730a)
+AND
+DB_IsPlayer(_Var5)
+AND
+ObjectGetFlag(_Var5, "FTJ_SaheilaToldPlayerAboutAmyro", 1)
+THEN
+ObjectSetFlag(_Var5, "QuestUpdate_FTJ_Escape_AmyroDead");
+
+PROC
+ProcRegionEnded("FJ_FortJoy_Main")
+THEN
+GoalCompleted;
+
+
+EXITSECTION
+ENDEXITSECTION
+
+ParentTargetEdge "FortJoy"

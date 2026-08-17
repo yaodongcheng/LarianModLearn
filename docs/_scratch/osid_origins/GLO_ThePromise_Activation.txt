@@ -1,0 +1,32 @@
+Version 1
+SubGoalCombiner SGC_AND
+
+INITSECTION
+DB_ThePromise_Activation_Regions("CoS_Main");
+DB_ThePromise_Activation_Regions("ARX_Main");
+
+KBSECTION
+IF
+RegionStarted((STRING)_Var1)
+AND
+DB_ThePromise_Activation_Regions(_Var1)
+THEN
+GoalCompleted;
+
+IF
+TextEventSet("promise_activate")
+THEN
+GoalCompleted;
+
+IF
+DB_ThePromise_Activation_Regions(_Var1)
+AND
+DB_CurrentLevel(_Var1)
+THEN
+GoalCompleted;
+
+
+EXITSECTION
+ENDEXITSECTION
+
+ParentTargetEdge "Start"

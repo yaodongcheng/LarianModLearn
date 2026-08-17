@@ -1,0 +1,670 @@
+Version 1
+SubGoalCombiner SGC_AND
+
+INITSECTION
+DB_Ghosts(CHARACTERGUID_S_CoS_Temples_KnightOfXantezza_a8d1878e-4541-4538-a9aa-428868274ef9, "CoS_Temples_KnightOfXantezza_Ghost");
+DB_Dialogs(ITEMGUID_S_CoS_Temples_Imp_Gem_4d633ea8-ecc1-4c04-914f-aa2f8b192a86, "CoS_Temples_Imp_Gem");
+DB_Dialogs(ITEMGUID_S_CoS_Temples_Imp_Pedestal_d32b2830-5c1d-4280-8019-996ed8baf4b3, "CoS_Temples_Imp_Pedestal");
+DB_CoS_Temples_BlackRingCamp_Wargs(CHARACTERGUID_S_CoS_Temples_Warg_001_d7e44fc1-f355-4785-a2af-b7f42d022dc0);
+DB_CoS_Temples_BlackRingCamp_Wargs(CHARACTERGUID_S_CoS_Temples_Warg_002_da8964e5-e95a-4bfa-9c57-ff0538b86b2e);
+DB_KillCounter_Internal(CHARACTERGUID_S_CoS_Temples_Warg_001_d7e44fc1-f355-4785-a2af-b7f42d022dc0, "CoS_Wargs");
+DB_KillCounter_Internal(CHARACTERGUID_S_CoS_Temples_Warg_002_da8964e5-e95a-4bfa-9c57-ff0538b86b2e, "CoS_Wargs");
+DB_KillCounter("CoS_Wargs", 2);
+DB_Dialogs(CHARACTERGUID_S_CoS_Temples_Warg_001_d7e44fc1-f355-4785-a2af-b7f42d022dc0, CHARACTERGUID_S_CoS_Temples_Warg_002_da8964e5-e95a-4bfa-9c57-ff0538b86b2e, "CoS_Temples_BlackRingCamp_Wargs");
+DB_DoNotFace(CHARACTERGUID_S_CoS_Temples_Warg_001_d7e44fc1-f355-4785-a2af-b7f42d022dc0);
+DB_DoNotFace(CHARACTERGUID_S_CoS_Temples_Warg_002_da8964e5-e95a-4bfa-9c57-ff0538b86b2e);
+DB_CoS_Temples_Imp_Doors(ITEMGUID_S_CoS_Temples_Imp_Door_001_f035c273-e0db-43a1-bed9-bb06defd3f64, "Imp_Door_001_Counter", 4);
+DB_CoS_Temples_Imp_Doors_PressurePlates("Imp_Door_001_Counter", ITEMGUID_S_CoS_Temples_Imp_PP_001_0f89ee4a-8ce0-4d2d-b6b3-bf98cc616ca2);
+DB_CoS_Temples_Imp_Doors_PressurePlates("Imp_Door_001_Counter", ITEMGUID_S_CoS_Temples_Imp_PP_002_cabaa878-7ce4-4bad-a4a8-65fa138bfab5);
+DB_CoS_Temples_Imp_Doors_PressurePlates("Imp_Door_001_Counter", ITEMGUID_S_CoS_Temples_Imp_PP_003_74b71a27-cc82-464f-aef3-6a8a8a3c0d97);
+DB_CoS_Temples_Imp_Doors_PressurePlates("Imp_Door_001_Counter", ITEMGUID_S_CoS_Temples_Imp_PP_004_2e800114-bb6e-47de-bc77-ca8a96be89e7);
+DB_CoS_Temples_Imp_Doors(ITEMGUID_S_CoS_Temples_Imp_Door_001_f035c273-e0db-43a1-bed9-bb06defd3f64);
+DB_CoS_Temples_Imp_Doors(ITEMGUID_S_CoS_Temples_Imp_Door_002_09dc52ee-54b6-4dc0-89d1-6227f3f2bd7c);
+DB_CoS_Temples_Imp_Doors(ITEMGUID_S_CoS_Temples_Imp_Door_003_37ca6caf-1cd2-4996-8e52-f3e37bfd3f4b);
+DB_CoS_Temples_Imp_Doors(ITEMGUID_S_CoS_Temples_Imp_Door_004_e874cdc5-3686-4c8f-8fcc-d841d3d8282f);
+DB_CoS_Temples_Imp_Doors(ITEMGUID_S_CoS_Temples_Imp_Door_005_edc435c5-5a06-4e21-ac99-f1bba80ad950);
+DB_CoS_Temples_Imp_Doors(ITEMGUID_S_CoS_Temples_Imp_Door_006_9bb5cd40-950c-4832-b9ca-19f04d203263);
+DB_Ghosts(CHARACTERGUID_S_CoS_Temples_Imp_DeadImp_001_d3fc2710-8d72-4f1a-a2b5-c0ef72d43b2e, CHARACTERGUID_S_CoS_Temples_Imp_DeadImp_001_Ghost_62e4f21c-d12c-4cf7-91b9-a54cd075ac09, "CoS_Temples_Imp_DeadImp_001_Ghost");
+DB_Dialogs(ITEMGUID_S_CoS_Temples_Imp_Terminal_001_3abee305-94cb-4e49-aa44-c2103508f517, "CoS_Temples_Imp_Terminal_001");
+DB_Dialogs(ITEMGUID_S_CoS_Temples_Imp_Terminal_002_963ff64d-183c-4cff-b8d5-dc3f8f26dc87, "CoS_Temples_Imp_Terminal_002");
+DB_Dialogs(ITEMGUID_S_CoS_Temples_Imp_Terminal_003_88d08a7b-8e06-46c3-bb16-7578468e76ff, "CoS_Temples_Imp_Terminal_003");
+DB_Dialogs(ITEMGUID_S_CoS_Temples_Imp_Terminal_004_577e4226-312b-46d5-87f7-24b5aafb0c48, "CoS_Temples_Imp_Terminal_004");
+DB_Dialogs(ITEMGUID_S_CoS_Temples_Imp_Terminal_005_3dbdcee7-3a88-4056-8d38-ac131c38d35f, "CoS_Temples_Imp_Terminal_005");
+DB_Dialogs(ITEMGUID_S_CoS_Temples_Imp_Terminal_006_42697bf4-4406-40cc-94f0-c3f22233ec4c, "CoS_Temples_Imp_Terminal_006");
+DB_CoS_ImpTemple_SpeedCurrent(0);
+ProcTriggerRegisterForPlayers(TRIGGERGUID_S_CoS_TempleS_Imp_CoreCombat_Poly_347783ce-7adf-46e2-9177-af55ea7dd031);
+DB_CoS_ImpTemple_SpeedData(0, TRIGGERGUID_S_CoS_Temples_Imp_Slow_Environment_5cfc1227-42c9-4904-ac7a-c9509d5f6da1, 0);
+DB_CoS_ImpTemple_SpeedData(1, TRIGGERGUID_S_CoS_Temples_Imp_Haste_Environment_b36d7308-b84c-457d-85db-860ee9d333eb, 100);
+
+KBSECTION
+IF
+DialogStarted("CoS_Temples_Imp_Gem", (INTEGER)_Var1)
+AND
+DialogGetInvolvedPlayer(_Var1, 1, _Var2)
+THEN
+PartySetFlag(_Var2, "QuestUpdate_CoS_ImpTemple_UsedGem");
+
+IF
+DialogEnded("CoS_Temples_Imp_Gem", (INTEGER)_Var1)
+AND
+DialogGetInvolvedPlayer(_Var1, 1, _Var2)
+AND
+ObjectGetFlag(_Var2, "CoS_Temples_Imp_SendToPocketRealm", 1)
+THEN
+TeleportTo(_Var2, TRIGGERGUID_S_CoS_Temples_Imp_PocketPlaneEnter_Point_8cee932d-fa52-46cb-8eee-01d1122adb52, "", 1);
+PartySetFlag(_Var2, "QuestUpdate_CoS_ImpTemple_SentToRealm");
+
+IF
+DialogEnded("CoS_Temples_Imp_Pedestal", (INTEGER)_Var1)
+AND
+DialogGetInvolvedPlayer(_Var1, 1, _Var2)
+AND
+QRY_SpeakerIsAvailable(_Var2)
+AND
+QueryOnlyOnce("CoS_Temples_VB_ImpPedestal_Once")
+THEN
+StartVoiceBark("CoS_Temples_VB_ImpPedestal", _Var2);
+
+IF
+CharacterUsedItem((CHARACTERGUID)_Var1, ITEMGUID_S_CoS_Temples_Imp_Pedestal_d32b2830-5c1d-4280-8019-996ed8baf4b3)
+AND
+ObjectGetFlag(_Var1, "CoS_Temples_UsedEmptyImpPedestal", 0)
+THEN
+UserSetFlag(_Var1, "CoS_Temples_UsedEmptyImpPedestal");
+
+IF
+ObjectFlagSet("CoS_BRCamp_GiveFishToDog", (CHARACTERGUID)_Var1, _)
+AND
+QueryOnlyOnce("CoS_BRCamp_GiveFishToDog_Once")
+AND
+QryRemoveTaggedLocalItemsFromMagicPockets(_Var1, "FISH", 1)
+THEN
+DB_NOOP(1);
+
+IF
+AttackedByObject((CHARACTERGUID)_Var1, _, (CHARACTERGUID)_Var3, _, _)
+AND
+DB_CoS_Temples_BlackRingCamp_Wargs(_Var1)
+AND
+CharacterIsPlayer(_Var3, 1)
+THEN
+Proc_CoS_Temples_Wargs_GoHostile();
+
+IF
+ObjectFlagSet("CoS_BRCamp_GiveMeatToDog", (CHARACTERGUID)_Var1, _)
+AND
+QryRemoveTaggedLocalItemsFromMagicPockets(_Var1, "MEAT", 1)
+THEN
+DB_NOOP(1);
+
+IF
+ObjectFlagSet("CoS_BRCamp_GiveMeatToDog", (CHARACTERGUID)_Var1, _)
+THEN
+ObjectClearFlag(_Var1, "CoS_BRCamp_GiveMeatToDog", 0);
+
+IF
+ObjectFlagSet("CoS_BRCamp_GiveLimbToDog", (CHARACTERGUID)_Var1, _)
+AND
+QryRemoveTaggedLocalItemsFromMagicPockets(_Var1, "BODYPART", 1)
+THEN
+DB_NOOP(1);
+
+IF
+ObjectFlagSet("CoS_BRCamp_GiveLimbToDog", (CHARACTERGUID)_Var1, _)
+THEN
+ObjectClearFlag(_Var1, "CoS_BRCamp_GiveLimbToDog", 0);
+
+IF
+DialogEnded("CoS_Temples_BlackRingCamp_Wargs", (INTEGER)_Var1)
+AND
+GlobalGetFlag("CoS_Temples_BlackRingCamp_WargsPersuaded", 1)
+THEN
+PROC_RemoveDialogFromCharacter(CHARACTERGUID_S_CoS_Temples_Warg_001_d7e44fc1-f355-4785-a2af-b7f42d022dc0);
+PROC_RemoveDialogFromCharacter(CHARACTERGUID_S_CoS_Temples_Warg_002_da8964e5-e95a-4bfa-9c57-ff0538b86b2e);
+DB_Dialogs(CHARACTERGUID_S_CoS_Temples_Warg_001_d7e44fc1-f355-4785-a2af-b7f42d022dc0, "CoS_Temples_BlackRingCamp_Warg_001");
+DB_Dialogs(CHARACTERGUID_S_CoS_Temples_Warg_002_da8964e5-e95a-4bfa-9c57-ff0538b86b2e, "CoS_Temples_BlackRingCamp_Warg_002");
+NOT DB_DoNotFace(CHARACTERGUID_S_CoS_Temples_Warg_001_d7e44fc1-f355-4785-a2af-b7f42d022dc0);
+NOT DB_DoNotFace(CHARACTERGUID_S_CoS_Temples_Warg_002_da8964e5-e95a-4bfa-9c57-ff0538b86b2e);
+
+IF
+DialogEnded("CoS_Temples_BlackRingCamp_Wargs", (INTEGER)_Var1)
+AND
+DialogGetInvolvedPlayer(_Var1, 1, _Var2)
+AND
+GlobalGetFlag("CoS_BRCamp_Wargs_Leave", 1)
+THEN
+ProcCharacterDisappearOutOfSight(CHARACTERGUID_S_CoS_Temples_Warg_001_d7e44fc1-f355-4785-a2af-b7f42d022dc0, 0, 1, "", 0);
+ProcCharacterDisappearOutOfSight(CHARACTERGUID_S_CoS_Temples_Warg_002_da8964e5-e95a-4bfa-9c57-ff0538b86b2e, 0, 1, "", 0);
+Proc_QuestUpdate_CoS_BlackRing_Wargs(_Var2);
+
+PROC
+Proc_QuestUpdate_CoS_BlackRing_Wargs((CHARACTERGUID)_Var1)
+AND
+ObjectGetFlag(_Var1, "QuestUpdate_CoS_ImpTemple_Start_Knight", 1)
+THEN
+PartySetFlag(_Var1, "QuestUpdate_CoS_ImpTemple_Wargs");
+
+PROC
+ReactOnKillCounter("CoS_Wargs")
+AND
+DB_IsPlayer(_Var1)
+THEN
+Proc_QuestUpdate_CoS_BlackRing_Wargs(_Var1);
+
+IF
+ItemAddedToCharacter(ITEMGUID_S_CoS_Temples_Imp_Gem_4d633ea8-ecc1-4c04-914f-aa2f8b192a86, (CHARACTERGUID)_Var1)
+AND
+DB_IsPlayer(_Var1)
+AND
+GlobalGetFlag("CoS_Temples_BlackRingCamp_WargsPersuaded", 0)
+AND
+PartyGetFlag(_Var1, "CoS_Temples_BlackRingCamp_PickedUpGemInDialog", 0)
+THEN
+Proc_CoS_Temples_Wargs_GoHostile();
+
+IF
+CharacterUsedSkillOnTarget((CHARACTERGUID)_Var1, ITEMGUID_S_CoS_Temples_Imp_Gem_4d633ea8-ecc1-4c04-914f-aa2f8b192a86, _, _, _)
+AND
+DB_IsPlayer(_Var1)
+AND
+GlobalGetFlag("CoS_Temples_BlackRingCamp_WargsPersuaded", 0)
+AND
+PartyGetFlag(_Var1, "CoS_Temples_BlackRingCamp_PickedUpGemInDialog", 0)
+AND
+DB_CoS_Temples_BlackRingCamp_Wargs(_Var5)
+AND
+CharacterCanSee(_Var5, _Var1, 1)
+AND
+QueryOnlyOnce("CoS_Temples_WargsSawPlayerUseSkillOnGem")
+THEN
+Proc_CoS_Temples_Wargs_GoHostile();
+
+PROC
+Proc_CoS_Temples_Wargs_GoHostile()
+THEN
+CharacterSetRelationFactionToFaction("Hero", "CoS_BRCamp_Warg", 0);
+CharacterSetRelationFactionToFaction("CoS_BRCamp_Warg", "Hero", 0);
+ProcForceStopDialog(CHARACTERGUID_S_CoS_Temples_Warg_001_d7e44fc1-f355-4785-a2af-b7f42d022dc0);
+ProcForceStopDialog(CHARACTERGUID_S_CoS_Temples_Warg_002_da8964e5-e95a-4bfa-9c57-ff0538b86b2e);
+Proc_StartDialog(1, "CMB_AD_CombatFallback", CHARACTERGUID_S_CoS_Temples_Warg_001_d7e44fc1-f355-4785-a2af-b7f42d022dc0);
+
+IF
+CharacterDied((CHARACTERGUID)_Var1)
+AND
+DB_CoS_Temples_BlackRingCamp_Wargs(_Var1)
+AND
+DB_CoS_Temples_BlackRingCamp_Wargs(_Var2)
+THEN
+SetHasDialog(_Var2, 0);
+
+IF
+CharacterDied((CHARACTERGUID)_Var1)
+AND
+DB_CoS_Temples_BlackRingCamp_Wargs(_Var1)
+AND
+DB_CoS_Temples_BlackRingCamp_Wargs(_Var2)
+AND
+GlobalGetFlag("CoS_Temples_BlackRingCamp_WargsPersuaded", 0)
+THEN
+ProcSetRelationToPlayers(_Var2, 0);
+
+IF
+ObjectFlagSet("CoS_Temples_BlackRingCamp_PickedUpGemInDialog", (CHARACTERGUID)_Var1, _)
+THEN
+CharacterMoveTo(_Var1, ITEMGUID_S_CoS_Temples_Imp_Gem_4d633ea8-ecc1-4c04-914f-aa2f8b192a86, 0, "", 0);
+CharacterPickupItem(_Var1, ITEMGUID_S_CoS_Temples_Imp_Gem_4d633ea8-ecc1-4c04-914f-aa2f8b192a86, "");
+
+PROC
+ProcBlockMoveOfItem((CHARACTERGUID)_Var1, ITEMGUID_S_CoS_Temples_Imp_Gem_4d633ea8-ecc1-4c04-914f-aa2f8b192a86)
+AND
+QRY_CoS_UseImpGem(_Var1, CHARACTERGUID_S_CoS_Temples_Warg_001_d7e44fc1-f355-4785-a2af-b7f42d022dc0)
+THEN
+DB_NOOP(1);
+
+QRY
+QRY_CoS_UseImpGem((CHARACTERGUID)_Var1, (CHARACTERGUID)_Var2)
+AND
+CharacterIsDead(_Var2, 0)
+AND
+GlobalGetFlag("CoS_Temples_BlackRingCamp_WargsPersuaded", 0)
+AND
+CharacterCanSee(_Var2, _Var1, 1)
+THEN
+DB_CustomPickupItemResponse(_Var1, ITEMGUID_S_CoS_Temples_Imp_Gem_4d633ea8-ecc1-4c04-914f-aa2f8b192a86, 0);
+Proc_CoS_Temples_Wargs_GoHostile();
+
+QRY
+QRY_CoS_UseImpGem((CHARACTERGUID)_Var1, (CHARACTERGUID)_Var2)
+AND
+QRY_IsAvailableTo(_Var1, ITEMGUID_S_CoS_Temples_Imp_Gem_4d633ea8-ecc1-4c04-914f-aa2f8b192a86)
+AND
+GlobalGetFlag("CoS_Temples_BlackRingCamp_WargsPersuaded", 1)
+AND
+QueryOnlyOnce("CoS_StartImpGemDialog_Once")
+THEN
+DB_CustomPickupItemResponse(_Var1, ITEMGUID_S_CoS_Temples_Imp_Gem_4d633ea8-ecc1-4c04-914f-aa2f8b192a86, 0);
+Proc_StartDialog(0, "CoS_Temples_Imp_Gem", ITEMGUID_S_CoS_Temples_Imp_Gem_4d633ea8-ecc1-4c04-914f-aa2f8b192a86, _Var1);
+
+QRY
+QRY_CoS_UseImpGem((CHARACTERGUID)_Var1, (CHARACTERGUID)_Var2)
+AND
+QRY_IsAvailableTo(_Var1, ITEMGUID_S_CoS_Temples_Imp_Gem_4d633ea8-ecc1-4c04-914f-aa2f8b192a86)
+AND
+CharacterIsDead(_Var2, 1)
+AND
+QueryOnlyOnce("CoS_StartImpGemDialog_Once")
+THEN
+DB_CustomPickupItemResponse(_Var1, ITEMGUID_S_CoS_Temples_Imp_Gem_4d633ea8-ecc1-4c04-914f-aa2f8b192a86, 0);
+Proc_StartDialog(0, "CoS_Temples_Imp_Gem", ITEMGUID_S_CoS_Temples_Imp_Gem_4d633ea8-ecc1-4c04-914f-aa2f8b192a86, _Var1);
+
+PROC
+ProcBlockPickupOfItem((CHARACTERGUID)_Var1, ITEMGUID_S_CoS_Temples_Imp_Gem_4d633ea8-ecc1-4c04-914f-aa2f8b192a86)
+AND
+QRY_CoS_PickUpImpGem(_Var1, CHARACTERGUID_S_CoS_Temples_Warg_001_d7e44fc1-f355-4785-a2af-b7f42d022dc0)
+THEN
+DB_NOOP(1);
+
+QRY
+QRY_CoS_PickUpImpGem((CHARACTERGUID)_Var1, (CHARACTERGUID)_Var2)
+AND
+CharacterIsDead(_Var2, 0)
+AND
+GlobalGetFlag("CoS_Temples_BlackRingCamp_WargsPersuaded", 0)
+AND
+CharacterCanSee(_Var2, _Var1, 1)
+AND
+ObjectGetFlag(_Var1, "CoS_Temples_BlackRingCamp_PickedUpGemInDialog", 0)
+THEN
+DB_CustomPickupItemResponse(_Var1, ITEMGUID_S_CoS_Temples_Imp_Gem_4d633ea8-ecc1-4c04-914f-aa2f8b192a86, 0);
+Proc_CoS_Temples_Wargs_GoHostile();
+
+QRY
+QRY_CoS_PickUpImpGem((CHARACTERGUID)_Var1, (CHARACTERGUID)_Var2)
+AND
+CharacterIsDead(_Var2, 1)
+AND
+QRY_IsAvailableTo(_Var1, ITEMGUID_S_CoS_Temples_Imp_Gem_4d633ea8-ecc1-4c04-914f-aa2f8b192a86)
+AND
+QueryOnlyOnce("CoS_StartImpGemDialog_Once")
+THEN
+DB_CustomPickupItemResponse(_Var1, ITEMGUID_S_CoS_Temples_Imp_Gem_4d633ea8-ecc1-4c04-914f-aa2f8b192a86, 0);
+Proc_StartDialog(0, "CoS_Temples_Imp_Gem", ITEMGUID_S_CoS_Temples_Imp_Gem_4d633ea8-ecc1-4c04-914f-aa2f8b192a86, _Var1);
+
+QRY
+QRY_CoS_PickUpImpGem((CHARACTERGUID)_Var1, (CHARACTERGUID)_Var2)
+AND
+GlobalGetFlag("CoS_Temples_BlackRingCamp_WargsPersuaded", 1)
+AND
+QRY_IsAvailableTo(_Var1, ITEMGUID_S_CoS_Temples_Imp_Gem_4d633ea8-ecc1-4c04-914f-aa2f8b192a86)
+AND
+QueryOnlyOnce("CoS_StartImpGemDialog_Once")
+THEN
+DB_CustomPickupItemResponse(_Var1, ITEMGUID_S_CoS_Temples_Imp_Gem_4d633ea8-ecc1-4c04-914f-aa2f8b192a86, 0);
+Proc_StartDialog(0, "CoS_Temples_Imp_Gem", ITEMGUID_S_CoS_Temples_Imp_Gem_4d633ea8-ecc1-4c04-914f-aa2f8b192a86, _Var1);
+
+QRY
+QRY_CoS_PickUpImpGem((CHARACTERGUID)_Var1, (CHARACTERGUID)_Var2)
+AND
+DB_CombatCharacters(_Var1, _)
+THEN
+Proc_StartDialog(1, "GLO_AD_CannotUseNow", _Var1);
+
+IF
+CharacterLootedCharacterCorpse((CHARACTERGUID)_Var1, (CHARACTERGUID)_Var2)
+AND
+DB_IsPlayer(_Var1)
+AND
+QRY_SpeakerIsAvailable(_Var1)
+AND
+GetTemplate(_Var2, _Var3)
+AND
+_Var3 == "Creatures_Raanaar_Automaton_A_ccda6778-4ab9-45c7-beff-8dede26f04e8"
+AND
+QueryOnlyOnce("CoS_Temples_VB_LootedAutomation_Once")
+THEN
+StartVoiceBark("CoS_Temples_VB_LootedAutomation", _Var1);
+
+IF
+DB_CoS_Temples_Imp_Doors(_Var1, _Var2, _)
+THEN
+ProcDeclareCounter(_Var2);
+
+IF
+CharacterItemEvent(_, (ITEMGUID)_Var2, "ImpPressurePlateOn")
+AND
+DB_CoS_Temples_Imp_Doors_PressurePlates(_Var3, _Var2)
+THEN
+ProcIncreaseCounter(_Var3, 1);
+
+IF
+CharacterItemEvent(_, (ITEMGUID)_Var2, "ImpPressurePlateOff")
+AND
+DB_CoS_Temples_Imp_Doors_PressurePlates(_Var3, _Var2)
+THEN
+ProcDecreaseCounter(_Var3, 1);
+
+IF
+DB_GlobalCounter(_Var1, _Var2)
+AND
+DB_CoS_Temples_Imp_Doors(_Var3, _Var1, _Var4)
+AND
+_Var2 == _Var4
+THEN
+ItemOpen(_Var3);
+
+IF
+DB_GlobalCounter(_Var1, _Var2)
+AND
+DB_CoS_Temples_Imp_Doors(_Var3, _Var1, _Var4)
+AND
+_Var2 != _Var4
+THEN
+ItemClose(_Var3);
+
+IF
+ItemOpened(ITEMGUID_S_CoS_Temples_Imp_Door_001_f035c273-e0db-43a1-bed9-bb06defd3f64)
+THEN
+ItemClose(ITEMGUID_S_CoS_Temples_Imp_Door_003_37ca6caf-1cd2-4996-8e52-f3e37bfd3f4b);
+
+IF
+ItemClosed(ITEMGUID_S_CoS_Temples_Imp_Door_001_f035c273-e0db-43a1-bed9-bb06defd3f64)
+THEN
+ItemOpen(ITEMGUID_S_CoS_Temples_Imp_Door_003_37ca6caf-1cd2-4996-8e52-f3e37bfd3f4b);
+
+IF
+DB_CoS_ImpTemple_SpeedCurrent(_Var1)
+AND
+DB_CoS_ImpTemple_SpeedData(_Var2, _Var3, _)
+AND
+_Var1 != _Var2
+AND
+DB_CoS_ImpTemple_SpeedData(_Var1, _Var5, _Var6)
+THEN
+TeleportTo(_Var3, TRIGGERGUID_S_CoS_Temples_Imp_EnvironmentMoveto_Trigger_1b44428e-e52a-4b92-85f3-a4496105b87b);
+TeleportTo(_Var5, TRIGGERGUID_S_CoS_SUB_Temples_PocketPlane_0aa27bf9-6e3f-45ff-8868-7e7f7dde8302);
+TriggerSetSoundRTPC(TRIGGERGUID_S_SoundVolumeTrigger_CoS_Temple_Imp_a4b90c9e-2259-4fe1-971d-8c0c68817600, "ImpPocketDimension_Pitch", _Var6, 1);
+
+IF
+CharacterUsedItem(_, ITEMGUID_S_CoS_Temples_Imp_SpeedLever_21d022c7-c382-44ec-bfa2-f17b82435ed7)
+AND
+DB_CoS_ImpTemple_SpeedCurrent(_Var2)
+AND
+DB_CoS_ImpTemple_SpeedData(_Var3, _, _)
+AND
+_Var2 != _Var3
+THEN
+NOT DB_CoS_ImpTemple_SpeedCurrent(_Var2);
+DB_CoS_ImpTemple_SpeedCurrent(_Var3);
+ProcTriggerUnregisterForPlayers(TRIGGERGUID_S_CoS_Temples_Imp_SlowVB_Trigger_0214347f-540a-4026-a89e-f63f20395965);
+
+IF
+CharacterEnteredTrigger((CHARACTERGUID)_Var1, TRIGGERGUID_S_CoS_Temples_Imp_SlowVB_Trigger_0214347f-540a-4026-a89e-f63f20395965)
+THEN
+PartySetFlag(_Var1, "QuestUpdate_CoS_ImpTemple_TimeSlowed");
+
+IF
+GameBookInterfaceClosed(ITEMGUID_S_CoS_Temples_Imp_Diary_973dd6da-798c-4b34-8fb1-8f898f3bc9f4, (CHARACTERGUID)_Var1)
+THEN
+PartySetFlag(_Var1, "QuestUpdate_CoS_ImpTemple_ImpDiary");
+
+IF
+CharacterUsedItem((CHARACTERGUID)_Var1, ITEMGUID_S_CoS_Temples_Imp_EmergencyLever_e1842374-4b0d-4aa2-a0f7-326dc3dd9f93)
+THEN
+PlayAnimation(ITEMGUID_S_CoS_Temples_Imp_EmergencyLever_e1842374-4b0d-4aa2-a0f7-326dc3dd9f93, "Full_Open");
+PlaySound(ITEMGUID_S_CoS_Temples_Imp_EmergencyLever_e1842374-4b0d-4aa2-a0f7-326dc3dd9f93, "SE_CoS_Pocket_Realm_Core_Fail_State_Distant");
+Proc_ShakeCameraForTime(_Var1, 1600);
+Proc_CoS_Temples_Imp_EmergencyFlush();
+
+PROC
+Proc_CoS_Temples_Imp_EmergencyFlush()
+THEN
+DB_coS_Temples_Imp_FlushActive(1);
+TriggerSetAtmosphere(TRIGGERGUID_AtmosphereTrigger_CoS_Temple_Imp_ee24b0dc-0808-45d2-b2b7-0eac021e9dfd, "c2fedccf-778e-4c9f-b9af-2953a131866a");
+CreatePuddle(ITEMGUID_S_CoS_Temples_Imp_Core_9464fa7c-5d84-4335-9566-ef295cf35ba4, "SurfaceDeathfogCloud", 50000, 50050, 90, 100, 0.1);
+CreatePuddle(ITEMGUID_S_CoS_Temples_Imp_Core_9464fa7c-5d84-4335-9566-ef295cf35ba4, "SurfaceLava", 50000, 50050, 90, 100, 0.2);
+ItemSetCanInteract(ITEMGUID_S_CoS_Temples_Imp_EmergencyLever_e1842374-4b0d-4aa2-a0f7-326dc3dd9f93, 0);
+PlayEffect(ITEMGUID_S_CoS_Temples_Imp_Core_9464fa7c-5d84-4335-9566-ef295cf35ba4, "RS3_FX_GP_Combat_CorpseExplosion_SourceStone_01_Large");
+TimerLaunch("CoS_Temples_Imp_EmergencyFlush_Reset", 20000);
+PlaySound(ITEMGUID_S_CoS_Temples_Imp_Core_9464fa7c-5d84-4335-9566-ef295cf35ba4, "SE_CoS_Pocket_Realm_Core_Fail_State");
+
+PROC
+Proc_CoS_Temples_Imp_EmergencyFlush()
+AND
+DB_CoS_Temples_Imp_Doors(_Var1)
+THEN
+ItemOpen(_Var1);
+ItemSetCanInteract(_Var1, 0);
+
+IF
+TimerFinished("CoS_Temples_Imp_EmergencyFlush_Reset")
+THEN
+ItemSetCanInteract(ITEMGUID_S_CoS_Temples_Imp_EmergencyLever_e1842374-4b0d-4aa2-a0f7-326dc3dd9f93, 1);
+CreatePuddle(ITEMGUID_S_CoS_Temples_Imp_Core_9464fa7c-5d84-4335-9566-ef295cf35ba4, "SurfaceNone", 50000, 50050, 90, 100, 0.2);
+TriggerSetAtmosphere(TRIGGERGUID_AtmosphereTrigger_CoS_Temple_Imp_ee24b0dc-0808-45d2-b2b7-0eac021e9dfd, "232833f3-8270-46fb-bb8b-fdcdb27414b6");
+PlayAnimation(ITEMGUID_S_CoS_Temples_Imp_EmergencyLever_e1842374-4b0d-4aa2-a0f7-326dc3dd9f93, "Close_01");
+NOT DB_coS_Temples_Imp_FlushActive(1);
+
+IF
+TimerFinished("CoS_Temples_Imp_EmergencyFlush_Reset")
+THEN
+TimerLaunch("CoS_Temples_Imp_EmergencyFlush_Reset_DoorReset", 18000);
+
+IF
+TimerFinished("CoS_Temples_Imp_EmergencyFlush_Reset_DoorReset")
+AND
+DB_CoS_Temples_Imp_Doors(_Var1)
+THEN
+ItemClose(_Var1);
+ItemSetCanInteract(_Var1, 1);
+
+IF
+CharacterEnteredTrigger((CHARACTERGUID)_Var1, TRIGGERGUID_S_CoS_SUB_Temples_PocketPlane_0aa27bf9-6e3f-45ff-8868-7e7f7dde8302)
+AND
+DB_IsPlayer(_Var1)
+AND
+QueryOnlyOnce("CoS_Temples_Imp_VB_EnteredPocketRealm_Once")
+THEN
+ProcObjectTimer(_Var1, "CoS_Temples_Imp_VB_EnteredPocketRealm_Timer", 3000);
+
+PROC
+ProcObjectTimerFinished((CHARACTERGUID)_Var1, "CoS_Temples_Imp_VB_EnteredPocketRealm_Timer")
+THEN
+StartVoiceBark("CoS_Temples_Imp_VB_EnteredPocketRealm", _Var1);
+
+IF
+CharacterUsedItem(_, ITEMGUID_S_CoS_Temples_Imp_Door_002_Lever_38c8ad99-8756-48e8-aa71-9d7066734b87)
+AND
+ItemIsOpened(ITEMGUID_S_CoS_Temples_Imp_Door_002_09dc52ee-54b6-4dc0-89d1-6227f3f2bd7c, 0)
+THEN
+ItemOpen(ITEMGUID_S_CoS_Temples_Imp_Door_002_09dc52ee-54b6-4dc0-89d1-6227f3f2bd7c);
+
+IF
+CharacterUsedItem(_, ITEMGUID_S_CoS_Temples_Imp_Door_002_Lever_38c8ad99-8756-48e8-aa71-9d7066734b87)
+AND
+ItemIsOpened(ITEMGUID_S_CoS_Temples_Imp_Door_002_09dc52ee-54b6-4dc0-89d1-6227f3f2bd7c, 1)
+THEN
+ItemClose(ITEMGUID_S_CoS_Temples_Imp_Door_002_09dc52ee-54b6-4dc0-89d1-6227f3f2bd7c);
+
+IF
+CharacterUsedItem(_, ITEMGUID_S_CoS_Temples_Imp_Door_006_Lever_3f2c7205-2067-46fb-b0e3-ecc891d3e938)
+AND
+ItemIsOpened(ITEMGUID_S_CoS_Temples_Imp_Door_006_9bb5cd40-950c-4832-b9ca-19f04d203263, 0)
+THEN
+ItemOpen(ITEMGUID_S_CoS_Temples_Imp_Door_006_9bb5cd40-950c-4832-b9ca-19f04d203263);
+
+IF
+CharacterUsedItem(_, ITEMGUID_S_CoS_Temples_Imp_Door_006_Lever_3f2c7205-2067-46fb-b0e3-ecc891d3e938)
+AND
+ItemIsOpened(ITEMGUID_S_CoS_Temples_Imp_Door_006_9bb5cd40-950c-4832-b9ca-19f04d203263, 1)
+THEN
+ItemClose(ITEMGUID_S_CoS_Temples_Imp_Door_006_9bb5cd40-950c-4832-b9ca-19f04d203263);
+
+IF
+CharacterEnteredTrigger((CHARACTERGUID)_Var1, TRIGGERGUID_S_CoS_TempleS_Imp_CoreCombat_Poly_347783ce-7adf-46e2-9177-af55ea7dd031)
+AND
+GlobalGetFlag("CoS_Temples_Imp_CoreDeactivated", 0)
+THEN
+RemoveStatus(_Var1, "INVISIBLE");
+SetInArena(_Var1, 1);
+SetInArena(ITEMGUID_S_CoS_Temples_Imp_Core_9464fa7c-5d84-4335-9566-ef295cf35ba4, 1);
+EnterCombat(_Var1, ITEMGUID_S_CoS_Temples_Imp_Core_9464fa7c-5d84-4335-9566-ef295cf35ba4);
+
+IF
+CharacterLeftTrigger((CHARACTERGUID)_Var1, TRIGGERGUID_S_CoS_TempleS_Imp_CoreCombat_Poly_347783ce-7adf-46e2-9177-af55ea7dd031)
+THEN
+SetInArena(_Var1, 0);
+
+IF
+ObjectEnteredCombat(ITEMGUID_S_CoS_Temples_Imp_Core_9464fa7c-5d84-4335-9566-ef295cf35ba4, _)
+THEN
+TriggerSetAtmosphere(TRIGGERGUID_AtmosphereTrigger_CoS_Temple_Imp_ee24b0dc-0808-45d2-b2b7-0eac021e9dfd, "c2fedccf-778e-4c9f-b9af-2953a131866a");
+PlaySound(ITEMGUID_S_CoS_Temples_Imp_Core_9464fa7c-5d84-4335-9566-ef295cf35ba4, "SE_CoS_Pocket_Realm_Core_Battle_Start");
+
+IF
+ObjectLeftCombat(ITEMGUID_S_CoS_Temples_Imp_Core_9464fa7c-5d84-4335-9566-ef295cf35ba4, _)
+AND NOT
+DB_coS_Temples_Imp_FlushActive(1)
+THEN
+TriggerSetAtmosphere(TRIGGERGUID_AtmosphereTrigger_CoS_Temple_Imp_ee24b0dc-0808-45d2-b2b7-0eac021e9dfd, "232833f3-8270-46fb-bb8b-fdcdb27414b6");
+
+IF
+ObjectLeftCombat(ITEMGUID_S_CoS_Temples_Imp_Core_9464fa7c-5d84-4335-9566-ef295cf35ba4, _)
+THEN
+PlaySound(ITEMGUID_S_CoS_Temples_Imp_Core_9464fa7c-5d84-4335-9566-ef295cf35ba4, "SE_CoS_Pocket_Realm_Core_Battle_Stop");
+
+IF
+CharacterEnteredTrigger((CHARACTERGUID)_Var1, TRIGGERGUID_S_CoS_TempleS_Imp_CoreCombat_Poly_347783ce-7adf-46e2-9177-af55ea7dd031)
+AND
+QueryOnlyOnce("CoS_Temples_Imp_CoreCombat_Once")
+AND
+StartDialog_Internal("CoS_Temples_Imp_CoreCombat", 1, ITEMGUID_S_CoS_Temples_Imp_Core_9464fa7c-5d84-4335-9566-ef295cf35ba4, _Var1, NULL_00000000-0000-0000-0000-000000000000, NULL_00000000-0000-0000-0000-000000000000, NULL_00000000-0000-0000-0000-000000000000, NULL_00000000-0000-0000-0000-000000000000, 1)
+THEN
+DB_CoS_Temples_Imp_CoreCombat_TargetPlayer(_Var1);
+
+IF
+CombatStarted((INTEGER)_Var1)
+AND
+DB_CombatCharacters(_Var2, _Var1)
+AND
+DB_CoS_Temples_Imp_CoreCombat_TargetPlayer(_Var2)
+AND
+DB_CombatObjects(ITEMGUID_S_CoS_Temples_Imp_Core_9464fa7c-5d84-4335-9566-ef295cf35ba4, _Var1)
+THEN
+JumpToTurn(_Var2);
+NOT DB_CoS_Temples_Imp_CoreCombat_TargetPlayer(_Var2);
+
+IF
+CombatStarted((INTEGER)_Var1)
+AND
+DB_CombatObjects(ITEMGUID_S_CoS_Temples_Imp_Core_9464fa7c-5d84-4335-9566-ef295cf35ba4, _Var1)
+AND
+DB_CombatCharacters(_Var2, _Var1)
+AND
+DB_CoS_Temples_Imp_CoreCombat_TargetPlayer(_Var2)
+THEN
+JumpToTurn(_Var2);
+NOT DB_CoS_Temples_Imp_CoreCombat_TargetPlayer(_Var2);
+
+IF
+SavegameLoaded((INTEGER)_Var1, (INTEGER)_Var2, (INTEGER)_Var3, (INTEGER)_Var4)
+AND
+QRY_VersionIsOlderThan(_Var1, _Var2, _Var3, _Var4, 3, 6, 1, 0)
+AND
+DB_DialogName("CoS_Temples_Imp_CoreCombat", _Var5)
+AND
+DialogGetInvolvedPlayer(_Var5, 1, _Var6)
+AND
+DB_CombatObjects(ITEMGUID_S_CoS_Temples_Imp_Core_9464fa7c-5d84-4335-9566-ef295cf35ba4, _Var7)
+AND
+DB_CombatCharacters(_Var6, _Var7)
+AND
+CombatGetActiveEntity(_Var7, _Var8)
+AND
+_Var6 != _Var8
+THEN
+JumpToTurn(_Var6);
+
+IF
+DialogEnded("CoS_Temples_Imp_CoreCombat", _)
+AND
+GlobalGetFlag("CoS_Temples_Imp_Core_JumpToTurn", 1)
+THEN
+JumpToTurn(ITEMGUID_S_CoS_Temples_Imp_Core_9464fa7c-5d84-4335-9566-ef295cf35ba4);
+GlobalClearFlag("CoS_Temples_Imp_Core_JumpToTurn");
+
+IF
+CharacterUsedItem((CHARACTERGUID)_Var1, ITEMGUID_S_CoS_Temples_Imp_Core_9464fa7c-5d84-4335-9566-ef295cf35ba4)
+AND
+QueryOnlyOnce("CoS_Temples_Imp_DeactivateCore")
+THEN
+Proc_CoS_Temples_Imp_DeactivateCore();
+PartySetFlag(_Var1, "QuestUpdate_CoS_ImpTemple_Core_Deactivated");
+
+IF
+DialogStarted("CoS_Temples_Imp_Core", (INTEGER)_Var1)
+AND
+GlobalGetFlag("CoS_Temples_Imp_CoreDeactivated", 1)
+THEN
+PlaySound(ITEMGUID_S_CoS_Temples_Imp_Core_9464fa7c-5d84-4335-9566-ef295cf35ba4, "SE_CoS_Pocket_Realm_Core_Activation");
+
+PROC
+Proc_CoS_Temples_Imp_DeactivateCore()
+THEN
+Proc_StartDialog(1, "CoS_Temples_Imp_AD_CoreDeactivated", ITEMGUID_S_CoS_Temples_Imp_Core_9464fa7c-5d84-4335-9566-ef295cf35ba4);
+SetFaction(ITEMGUID_S_CoS_Temples_Imp_Core_9464fa7c-5d84-4335-9566-ef295cf35ba4, "Neutral NPC");
+SetCanFight(ITEMGUID_S_CoS_Temples_Imp_Core_9464fa7c-5d84-4335-9566-ef295cf35ba4, 0);
+GlobalSetFlag("CoS_Temples_Imp_CoreDeactivated");
+TriggerSetAtmosphere(TRIGGERGUID_AtmosphereTrigger_CoS_Temple_Imp_ee24b0dc-0808-45d2-b2b7-0eac021e9dfd, "232833f3-8270-46fb-bb8b-fdcdb27414b6");
+DB_Dialogs(ITEMGUID_S_CoS_Temples_Imp_Core_9464fa7c-5d84-4335-9566-ef295cf35ba4, "CoS_Temples_Imp_Core");
+SetInArena(ITEMGUID_S_CoS_Temples_Imp_Core_9464fa7c-5d84-4335-9566-ef295cf35ba4, 0);
+
+IF
+AutomatedDialogEnded("CoS_Temples_Imp_AD_CoreDeactivated", _)
+AND
+IsSpeakerReserved(ITEMGUID_S_CoS_Temples_Imp_Core_9464fa7c-5d84-4335-9566-ef295cf35ba4, 0)
+AND
+GetClosestAlivePlayer(ITEMGUID_S_CoS_Temples_Imp_Core_9464fa7c-5d84-4335-9566-ef295cf35ba4, _Var2, _)
+AND
+QRY_SpeakerIsAvailable(_Var2)
+AND
+QueryOnlyOnce("CoS_Temples_Imp_CoreTryStartDialog_Once")
+THEN
+Proc_StartDialog(0, "CoS_Temples_Imp_Core", ITEMGUID_S_CoS_Temples_Imp_Core_9464fa7c-5d84-4335-9566-ef295cf35ba4, _Var2);
+
+PROC
+Proc_CoS_Temples_Imp_DeactivateCore()
+AND
+DB_IsPlayer(_Var1)
+THEN
+SetInArena(_Var1, 0);
+
+IF
+ObjectTurnStarted(ITEMGUID_S_CoS_Temples_Imp_Core_9464fa7c-5d84-4335-9566-ef295cf35ba4)
+THEN
+ProcForceStopDialog(ITEMGUID_S_CoS_Temples_Imp_Core_9464fa7c-5d84-4335-9566-ef295cf35ba4);
+Proc_StartDialog(1, "CoS_Temples_Imp_AD_CoreEmergencyFlush", ITEMGUID_S_CoS_Temples_Imp_Core_9464fa7c-5d84-4335-9566-ef295cf35ba4);
+
+IF
+AutomatedDialogEnded("CoS_Temples_Imp_AD_CoreEmergencyFlush", _)
+THEN
+Proc_CoS_Temples_Imp_EmergencyFlush();
+ProcObjectTimer(ITEMGUID_S_CoS_Temples_Imp_Core_9464fa7c-5d84-4335-9566-ef295cf35ba4, "CoS_Temples_Imp_Core_EndTurn", 5000);
+
+PROC
+ProcObjectTimerFinished(ITEMGUID_S_CoS_Temples_Imp_Core_9464fa7c-5d84-4335-9566-ef295cf35ba4, "CoS_Temples_Imp_Core_EndTurn")
+THEN
+EndTurn(ITEMGUID_S_CoS_Temples_Imp_Core_9464fa7c-5d84-4335-9566-ef295cf35ba4);
+
+PROC
+ProcRegionEnded("CoS_Main")
+THEN
+GoalCompleted;
+
+
+EXITSECTION
+SetInArena(ITEMGUID_S_CoS_Temples_Imp_Core_9464fa7c-5d84-4335-9566-ef295cf35ba4, 0);
+ProcRemoveAllDialogEntriesForSpeaker(ITEMGUID_S_CoS_Temples_Imp_Gem_4d633ea8-ecc1-4c04-914f-aa2f8b192a86);
+ItemSetStoryItem(ITEMGUID_S_CoS_Temples_Imp_Gem_4d633ea8-ecc1-4c04-914f-aa2f8b192a86, 0);
+ENDEXITSECTION
+
+ParentTargetEdge "CoS_Temples"

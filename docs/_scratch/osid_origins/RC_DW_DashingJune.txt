@@ -1,0 +1,60 @@
+Version 1
+SubGoalCombiner SGC_AND
+
+INITSECTION
+DB_Dialogs(CHARACTERGUID_S_RC_DW_CommonerDwarf_05_f627dac6-365a-4d8d-b33b-10fc63ffbe30, "RC_DW_CommonerDwarf_05");
+DB_DialogMoneyTransfer(1, "RC_DW_CommonerDwarf_05", 250);
+DB_GLO_Attribute_Check_AgainstSpeaker("RC_DW_CommonerDwarf_05", 1, "Wits", "Normal", 2, 1);
+DB_HasStoryEvent(S_RC_DW_GlovesOfThievery_736e329f-3c53-48de-9a00-fb6eaf40a423, "RC_DW_DashingJune_HasGloves");
+DB_GiveItemToEvent(S_RC_DW_GlovesOfThievery_736e329f-3c53-48de-9a00-fb6eaf40a423, "RC_DW_DashingJune_GiveGloves");
+ItemToInventory(S_RC_DW_GlovesOfThievery_736e329f-3c53-48de-9a00-fb6eaf40a423, CHARACTERGUID_S_RC_DW_CommonerDwarf_05_f627dac6-365a-4d8d-b33b-10fc63ffbe30);
+CharacterDisableCrime(CHARACTERGUID_S_RC_DW_CommonerDwarf_05_f627dac6-365a-4d8d-b33b-10fc63ffbe30, "Steal");
+CharacterDisableCrime(CHARACTERGUID_S_RC_DW_CommonerDwarf_05_f627dac6-365a-4d8d-b33b-10fc63ffbe30, "ItemDestroy");
+CharacterDisableCrime(CHARACTERGUID_S_RC_DW_CommonerDwarf_05_f627dac6-365a-4d8d-b33b-10fc63ffbe30, "Vandalise");
+CharacterDisableCrime(CHARACTERGUID_S_RC_DW_CommonerDwarf_05_f627dac6-365a-4d8d-b33b-10fc63ffbe30, "VandaliseNoOwner");
+CharacterDisableCrime(CHARACTERGUID_S_RC_DW_CommonerDwarf_05_f627dac6-365a-4d8d-b33b-10fc63ffbe30, "Trespassing");
+CharacterDisableCrime(CHARACTERGUID_S_RC_DW_CommonerDwarf_05_f627dac6-365a-4d8d-b33b-10fc63ffbe30, "MoveForbiddenItem");
+CharacterDisableCrime(CHARACTERGUID_S_RC_DW_CommonerDwarf_05_f627dac6-365a-4d8d-b33b-10fc63ffbe30, "UseForbiddenItem");
+CharacterDisableCrime(CHARACTERGUID_S_RC_DW_CommonerDwarf_05_f627dac6-365a-4d8d-b33b-10fc63ffbe30, "TeleportPlayerDialog");
+
+KBSECTION
+IF
+DialogEnded("RC_DW_CommonerDwarf_05", (INTEGER)_Var1)
+AND
+DB_DialogNPCs(_Var1, S_RC_DW_CommonerDwarf_05_f627dac6-365a-4d8d-b33b-10fc63ffbe30, 1)
+AND
+DB_DialogPlayers(_Var1, _Var2, 1)
+AND
+ObjectGetFlag(_Var2, "RC_DW_June_MetAbove", 1)
+AND
+QueryOnlyOnce("RC_DW_DashingJune_GoGetHigh")
+THEN
+SetHasDialog(S_RC_DW_CommonerDwarf_05_f627dac6-365a-4d8d-b33b-10fc63ffbe30, 0);
+ProcCharacterDisappearOutOfSight(S_RC_DW_CommonerDwarf_05_f627dac6-365a-4d8d-b33b-10fc63ffbe30, 0, 1, "RC_DW_DashingJune_Disappeared", 0);
+
+IF
+StoryEvent(S_RC_DW_CommonerDwarf_05_f627dac6-365a-4d8d-b33b-10fc63ffbe30, "RC_DW_DashingJune_Disappeared")
+THEN
+SetHasDialog(S_RC_DW_CommonerDwarf_05_f627dac6-365a-4d8d-b33b-10fc63ffbe30, 1);
+CharacterAppearOutOfSightTo(S_RC_DW_CommonerDwarf_05_f627dac6-365a-4d8d-b33b-10fc63ffbe30, S_RC_DW_DashingJune_SmokingPoint_17c764b1-d5d1-4fa1-8535-a62db8fbe8b9, 0, 0, "");
+ObjectSetFlag(S_RC_DW_CommonerDwarf_05_f627dac6-365a-4d8d-b33b-10fc63ffbe30, "RC_DW_DashingJune_IsInUndertavern");
+
+IF
+TextEventSet("MetButter")
+AND
+DB_IsPlayer(_Var1)
+THEN
+ObjectSetFlag(_Var1, "FTJ_OlgoGuard_004_HasMet");
+
+IF
+TextEventSet("Butter_Talk")
+AND
+GetClosestPlayer(S_RC_DW_CommonerDwarf_05_f627dac6-365a-4d8d-b33b-10fc63ffbe30, _Var1, _)
+THEN
+Proc_StartDialog(0, "FTJ_GhettoBossGuard_004", S_RC_DW_CommonerDwarf_05_f627dac6-365a-4d8d-b33b-10fc63ffbe30, _Var1);
+
+
+EXITSECTION
+ENDEXITSECTION
+
+ParentTargetEdge "ReapersCoast"

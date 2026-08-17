@@ -1,0 +1,25 @@
+Version 1
+SubGoalCombiner SGC_AND
+
+INITSECTION
+Proc_ExclamationMarkCleanup();
+
+KBSECTION
+IF
+GameEventSet("GAMEEVENT_GameStarted")
+THEN
+InitStory();
+GoalCompleted;
+
+PROC
+Proc_ExclamationMarkCleanup()
+AND
+DB_IsPlayer(_Var1)
+THEN
+CharacterStopAllEffectsWithName(_Var1, "RS3_FX_UI_Exclamation_Mark_01");
+SetHasDialog(_Var1, 0);
+
+
+EXITSECTION
+ENDEXITSECTION
+

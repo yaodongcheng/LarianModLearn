@@ -1,0 +1,303 @@
+Version 1
+SubGoalCombiner SGC_AND
+
+INITSECTION
+Proc_CoS_GarethsRevenge_Init();
+
+KBSECTION
+IF
+DialogEnded("CoS_LV_Gareth", (INTEGER)_Var1)
+AND
+GlobalGetFlag("CoS_GarethRevenge_SceneActive", 0)
+AND
+GlobalGetFlag("CoS_GarethLeaveToElfTemple", 1)
+AND
+DialogGetInvolvedPlayer(_Var1, 1, _Var2)
+AND
+QueryOnlyOnce("CoS_GarethsRevenge_LeaveLV_Once")
+THEN
+PROC_GLO_LVNPCsLeaving_NPCLeaveForMainland("CoS_Main", CHARACTERGUID_S_FTJ_SW_Warrior_SeekerCaptain_1329f018-23e4-4717-9bc8-074b28d04c54);
+
+IF
+StoryEvent(CHARACTERGUID_S_FTJ_SW_Warrior_SeekerCaptain_1329f018-23e4-4717-9bc8-074b28d04c54, "CoS_TeleportToElfTemple")
+AND
+ObjectIsOnStage(CHARACTERGUID_S_FTJ_SW_Warrior_SeekerCaptain_1329f018-23e4-4717-9bc8-074b28d04c54, 0)
+THEN
+Proc_CoS_GarethsRevenge_SendToElfTemple();
+
+PROC
+Proc_CoS_GarethsRevenge_Init()
+AND
+CharacterIsDead(CHARACTERGUID_S_FTJ_SW_Warrior_SeekerCaptain_1329f018-23e4-4717-9bc8-074b28d04c54, 0)
+AND
+GlobalGetFlag("RC_FL_GarethGaveUpRevenge", 0)
+THEN
+Proc_CoS_GarethsRevenge_SendToElfTemple();
+PROC_RemoveDialogFromCharacter(CHARACTERGUID_S_FTJ_SW_Warrior_SeekerCaptain_1329f018-23e4-4717-9bc8-074b28d04c54);
+CharacterLevelUpTo(CHARACTERGUID_S_FTJ_SW_Warrior_SeekerCaptain_1329f018-23e4-4717-9bc8-074b28d04c54, 16);
+
+PROC
+Proc_CoS_GarethsRevenge_Init()
+AND
+CharacterIsDead(CHARACTERGUID_S_FTJ_SW_Warrior_SeekerCaptain_1329f018-23e4-4717-9bc8-074b28d04c54, 0)
+THEN
+DB_Ghosts(CHARACTERGUID_S_FTJ_SW_Warrior_SeekerCaptain_1329f018-23e4-4717-9bc8-074b28d04c54, CHARACTERGUID_S_CoS_GarethGhost_5a80461b-8bd9-46a8-937e-92af1cf1fbb9, "CoS_Temples_GarethGhost");
+
+PROC
+Proc_CoS_GarethsRevenge_Init()
+AND
+CharacterIsDead(CHARACTERGUID_S_FTJ_SW_Warrior_SeekerCaptain_1329f018-23e4-4717-9bc8-074b28d04c54, 1)
+THEN
+SetOnStage(CHARACTERGUID_S_CoS_GarethGhost_5a80461b-8bd9-46a8-937e-92af1cf1fbb9, 0);
+
+PROC
+Proc_CoS_GarethsRevenge_SendToElfTemple()
+AND
+QueryOnlyOnce("CoS_GarethsRevenge_SendToElfTemple_Once")
+THEN
+DB_Dialogs(CHARACTERGUID_S_FTJ_SW_Warrior_SeekerCaptain_1329f018-23e4-4717-9bc8-074b28d04c54, "CoS_LV_Gareth");
+SetHasDialog(CHARACTERGUID_S_FTJ_SW_Warrior_SeekerCaptain_1329f018-23e4-4717-9bc8-074b28d04c54, 0);
+TeleportTo(CHARACTERGUID_S_FTJ_SW_Warrior_SeekerCaptain_1329f018-23e4-4717-9bc8-074b28d04c54, TRIGGERGUID_S_CoS_Temples_Elf_Gareth_Point_6ca52b3c-5140-4863-b96b-b2a1aaa55ec0, "CoS_GarethRevenge_SetupScene", 0);
+
+IF
+StoryEvent(CHARACTERGUID_S_FTJ_SW_Warrior_SeekerCaptain_1329f018-23e4-4717-9bc8-074b28d04c54, "CoS_GarethRevenge_SetupScene")
+THEN
+Proc_CoS_GarethRevenge_SetupScene();
+
+PROC
+Proc_CoS_GarethRevenge_SetupScene()
+AND
+ObjectIsOnStage(CHARACTERGUID_S_FTJ_SW_Warrior_SeekerCaptain_1329f018-23e4-4717-9bc8-074b28d04c54, 0)
+THEN
+SetOnStage(CHARACTERGUID_S_FTJ_SW_Warrior_SeekerCaptain_1329f018-23e4-4717-9bc8-074b28d04c54, 1);
+
+PROC
+Proc_CoS_GarethRevenge_SetupScene()
+THEN
+GlobalSetFlag("CoS_GarethRevenge_SceneActive");
+
+PROC
+Proc_CoS_GarethRevenge_SetupScene()
+AND
+GetFaction(CHARACTERGUID_S_FTJ_SW_Warrior_SeekerCaptain_1329f018-23e4-4717-9bc8-074b28d04c54, _Var1)
+THEN
+DB_CoS_GarethRevenge_GarethOldFaction(_Var1);
+SetFaction(CHARACTERGUID_S_FTJ_SW_Warrior_SeekerCaptain_1329f018-23e4-4717-9bc8-074b28d04c54, "CoS_Gareth");
+SetVarFixedString(CHARACTERGUID_S_FTJ_SW_Warrior_SeekerCaptain_1329f018-23e4-4717-9bc8-074b28d04c54, "currentState", "CoS_GarethRevenge_SceneActive");
+CharacterSetFightMode(CHARACTERGUID_S_FTJ_SW_Warrior_SeekerCaptain_1329f018-23e4-4717-9bc8-074b28d04c54, 1, 1);
+SetHasDialog(CHARACTERGUID_S_FTJ_SW_Warrior_SeekerCaptain_1329f018-23e4-4717-9bc8-074b28d04c54, 1);
+
+PROC
+Proc_CoS_GarethRevenge_SetupScene()
+AND
+DB_Temples_AlexandarsBattalion(_Var1)
+THEN
+SetHasDialog(_Var1, 0);
+CharacterLookAt(_Var1, CHARACTERGUID_S_FTJ_SW_Warrior_SeekerCaptain_1329f018-23e4-4717-9bc8-074b28d04c54);
+SetVarFixedString(_Var1, "currentState", "CoS_GarethRevenge_SceneActive");
+CharacterSetFightMode(_Var1, 1, 1);
+
+PROC
+PROC_GLOBAL_DialogStartRequested(CHARACTERGUID_S_FTJ_SW_Warrior_SeekerCaptain_1329f018-23e4-4717-9bc8-074b28d04c54, (CHARACTERGUID)_Var1)
+AND
+GlobalGetFlag("CoS_GarethRevenge_SceneActive", 1)
+THEN
+ProcForceStopDialog(CHARACTERGUID_S_FTJ_SW_Warrior_SeekerCaptain_1329f018-23e4-4717-9bc8-074b28d04c54);
+Proc_CoS_Temples_ApprochAlexandarDialog_Start(_Var1);
+
+IF
+StoryEvent((CHARACTERGUID)_Var1, "CoS_Temples_ApprochAlexandarDialog_Start")
+THEN
+Proc_CoS_Temples_ApprochAlexandarDialog_Start(_Var1);
+
+PROC
+Proc_CoS_Temples_ApprochAlexandarDialog_Start((CHARACTERGUID)_Var1)
+AND
+GlobalGetFlag("CoS_GarethRevenge_SceneActive", 1)
+AND
+GlobalGetFlag("CoS_DelorusQuestComplete", 1)
+AND
+QRY_SpeakerIsAvailable(CHARACTERGUID_S_CoS_Delorus_ab4a9043-f15a-4500-90cf-aa0d520b9327)
+AND
+CharacterCanSee(CHARACTERGUID_S_CoS_Delorus_ab4a9043-f15a-4500-90cf-aa0d520b9327, CHARACTERGUID_S_GLO_Alexandar_03e6345f-1bd3-403c-80e2-a443a74f6349, 1)
+AND
+QueryOnlyOnce("CoS_Temples_ApprochAlexandarDialog_Start_Once")
+THEN
+Proc_StartDialog(0, "CoS_Temples_GarethsRevengeEvent", CHARACTERGUID_S_FTJ_SW_Warrior_SeekerCaptain_1329f018-23e4-4717-9bc8-074b28d04c54, CHARACTERGUID_S_GLO_Alexandar_03e6345f-1bd3-403c-80e2-a443a74f6349, CHARACTERGUID_S_CoS_Temples_MagisterBodyguard_003_34e18de0-f377-4830-bfce-229ff479ee80, CHARACTERGUID_S_CoS_Delorus_ab4a9043-f15a-4500-90cf-aa0d520b9327, _Var1);
+ObjectSetFlag(_Var1, "QuestUpdate_CoS_GarethsRevenge_Start_ElfTemple");
+ObjectSetFlag(CHARACTERGUID_S_CoS_Delorus_ab4a9043-f15a-4500-90cf-aa0d520b9327, "CoS_GarethRevenge_DelorusInvolved");
+
+PROC
+Proc_CoS_Temples_ApprochAlexandarDialog_Start((CHARACTERGUID)_Var1)
+AND
+GlobalGetFlag("CoS_GarethRevenge_SceneActive", 1)
+AND
+QueryOnlyOnce("CoS_Temples_ApprochAlexandarDialog_Start_Once")
+THEN
+Proc_StartDialog(0, "CoS_Temples_GarethsRevengeEvent", CHARACTERGUID_S_FTJ_SW_Warrior_SeekerCaptain_1329f018-23e4-4717-9bc8-074b28d04c54, CHARACTERGUID_S_GLO_Alexandar_03e6345f-1bd3-403c-80e2-a443a74f6349, CHARACTERGUID_S_CoS_Temples_MagisterBodyguard_003_34e18de0-f377-4830-bfce-229ff479ee80, NULL_00000000-0000-0000-0000-000000000000, _Var1);
+ObjectSetFlag(_Var1, "QuestUpdate_CoS_GarethsRevenge_Start_ElfTemple");
+
+IF
+DialogEnded("CoS_Temples_GarethsRevengeEvent", (INTEGER)_Var1)
+AND
+GlobalGetFlag("CoS_GarethRevenge_SceneActive", 1)
+AND
+GlobalGetFlag("CoS_GarethRevenge_Resolution_HostileToGareth", 0)
+AND
+GlobalGetFlag("CoS_GarethRevenge_Resolution_HostileToAlexandar", 0)
+AND
+GlobalGetFlag("CoS_GarethRevenge_Resolution_Peaceful", 0)
+THEN
+NOT DB_OnlyOnce("CoS_Temples_ApprochAlexandarDialog_Start_Once");
+
+IF
+DialogEnded("CoS_Temples_GarethsRevengeEvent", (INTEGER)_Var1)
+AND
+GlobalGetFlag("CoS_GarethRevenge_Resolution_HostileToGareth", 1)
+AND
+DialogGetInvolvedPlayer(_Var1, 1, _Var2)
+THEN
+CharacterSetRelationFactionToFaction("CoS_Gareth", "Hero", 0);
+CharacterSetRelationFactionToFaction("Hero", "CoS_Gareth", 0);
+CharacterSetRelationFactionToFaction("CoS_Gareth", "CoS_Magister", 0);
+CharacterSetRelationFactionToFaction("CoS_Magister", "CoS_Gareth", 0);
+ObjectSetFlag(_Var2, "QuestUpdate_CoS_GarethsRevenge_SidedAlexandar");
+
+IF
+CharacterDied(CHARACTERGUID_S_FTJ_SW_Warrior_SeekerCaptain_1329f018-23e4-4717-9bc8-074b28d04c54)
+AND
+GlobalGetFlag("CoS_GarethRevenge_SceneActive", 1)
+AND
+DB_IsPlayer(_Var1)
+AND
+ObjectGetFlag(_Var1, "QuestUpdate_CoS_GarethsRevenge_Start_ElfTemple", 1)
+THEN
+ObjectSetFlag(_Var1, "QuestUpdate_CoS_GarethsRevenge_End_GarethDead");
+
+IF
+CharacterDied(CHARACTERGUID_S_FTJ_SW_Warrior_SeekerCaptain_1329f018-23e4-4717-9bc8-074b28d04c54)
+AND
+GlobalGetFlag("CoS_GarethRevenge_SceneActive", 1)
+THEN
+Proc_CoS_GarethRevenge_SceneCleanup();
+
+IF
+DialogEnded("CoS_Temples_GarethsRevengeEvent", (INTEGER)_Var1)
+AND
+GlobalGetFlag("CoS_GarethRevenge_Resolution_HostileToAlexandar", 1)
+AND
+DialogGetInvolvedPlayer(_Var1, 1, _Var2)
+THEN
+CharacterSetRelationFactionToFaction("CoS_Magister", "Hero", 0);
+CharacterSetRelationFactionToFaction("Hero", "CoS_Magister", 0);
+CharacterSetRelationFactionToFaction("CoS_Gareth", "CoS_Magister", 0);
+CharacterSetRelationFactionToFaction("CoS_Magister", "CoS_Gareth", 0);
+CharacterSetRelationFactionToFaction("CoS_Gareth", "Hero", 100);
+CharacterSetRelationFactionToFaction("Hero", "CoS_Gareth", 100);
+ObjectSetFlag(_Var2, "QuestUpdate_CoS_GarethsRevenge_SidedGareth");
+Proc_CoS_DelorusHostileCheck();
+
+PROC
+Proc_CoS_DelorusHostileCheck()
+AND
+GlobalGetFlag("CoS_DelorusQuestComplete", 1)
+THEN
+CharacterSetRelationFactionToFaction("CoS_Magister_Delorus", "Hero", 0);
+CharacterSetRelationFactionToFaction("Hero", "CoS_Magister_Delorus", 0);
+
+IF
+CharacterDied(CHARACTERGUID_S_GLO_Alexandar_03e6345f-1bd3-403c-80e2-a443a74f6349)
+AND
+GlobalGetFlag("CoS_GarethRevenge_SceneActive", 1)
+THEN
+SetVarFixedString(CHARACTERGUID_S_FTJ_SW_Warrior_SeekerCaptain_1329f018-23e4-4717-9bc8-074b28d04c54, "currentState", "CoS_GarethRevenge_AlexDead_ThankPlayer");
+Proc_CoS_GarethRevenge_SceneCleanup();
+
+IF
+ObjectEnteredCombat(CHARACTERGUID_S_FTJ_SW_Warrior_SeekerCaptain_1329f018-23e4-4717-9bc8-074b28d04c54, _)
+AND
+GlobalGetFlag("CoS_GarethRevenge_SceneActive", 1)
+THEN
+CharacterSetRelationFactionToFaction("CoS_Gareth", "CoS_Magister", 0);
+CharacterSetRelationFactionToFaction("CoS_Magister", "CoS_Gareth", 0);
+
+IF
+ObjectEnteredCombat(CHARACTERGUID_S_GLO_Alexandar_03e6345f-1bd3-403c-80e2-a443a74f6349, _)
+AND
+GlobalGetFlag("CoS_GarethRevenge_SceneActive", 1)
+THEN
+CharacterSetRelationFactionToFaction("CoS_Gareth", "CoS_Magister", 0);
+CharacterSetRelationFactionToFaction("CoS_Magister", "CoS_Gareth", 0);
+
+IF
+DialogEnded("CoS_Temples_GarethsRevengeEvent", (INTEGER)_Var1)
+AND
+GlobalGetFlag("CoS_GarethRevenge_Resolution_Peaceful", 1)
+AND
+DialogGetInvolvedPlayer(_Var1, 1, _Var2)
+THEN
+SetHasDialog(CHARACTERGUID_S_FTJ_SW_Warrior_SeekerCaptain_1329f018-23e4-4717-9bc8-074b28d04c54, 0);
+ProcCharacterDisappearOutOfSight(CHARACTERGUID_S_FTJ_SW_Warrior_SeekerCaptain_1329f018-23e4-4717-9bc8-074b28d04c54, 180, 1, "CoS_GarethRevenge_ReturnToLV", 0);
+Proc_CoS_GarethRevenge_SceneCleanup();
+ObjectSetFlag(_Var2, "QuestUpdate_CoS_GarethsRevenge_End_ReturnToLV");
+
+IF
+StoryEvent(CHARACTERGUID_S_FTJ_SW_Warrior_SeekerCaptain_1329f018-23e4-4717-9bc8-074b28d04c54, "CoS_GarethRevenge_ReturnToLV")
+AND
+DB_CoS_GarethRevenge_GarethOldFaction(_Var1)
+THEN
+SetVarFixedString(CHARACTERGUID_S_FTJ_SW_Warrior_SeekerCaptain_1329f018-23e4-4717-9bc8-074b28d04c54, "currentState", "State_CoS_LV");
+SetFaction(CHARACTERGUID_S_FTJ_SW_Warrior_SeekerCaptain_1329f018-23e4-4717-9bc8-074b28d04c54, _Var1);
+TeleportTo(CHARACTERGUID_S_FTJ_SW_Warrior_SeekerCaptain_1329f018-23e4-4717-9bc8-074b28d04c54, TRIGGERGUID_S_CoS_LV_GarethDefault_Point_7024f11f-3d2a-430c-8cc8-339771411791);
+SetOnStage(CHARACTERGUID_S_FTJ_SW_Warrior_SeekerCaptain_1329f018-23e4-4717-9bc8-074b28d04c54, 1);
+SetHasDialog(CHARACTERGUID_S_FTJ_SW_Warrior_SeekerCaptain_1329f018-23e4-4717-9bc8-074b28d04c54, 1);
+CharacterSetFightMode(CHARACTERGUID_S_FTJ_SW_Warrior_SeekerCaptain_1329f018-23e4-4717-9bc8-074b28d04c54, 0, 1);
+
+PROC
+Proc_CoS_GarethRevenge_SceneCleanup()
+THEN
+GlobalClearFlag("CoS_GarethRevenge_SceneActive");
+SetVarFixedString(CHARACTERGUID_S_GLO_Alexandar_03e6345f-1bd3-403c-80e2-a443a74f6349, "currentState", "State_CoS_AtElfTemple");
+
+PROC
+Proc_CoS_GarethRevenge_SceneCleanup()
+AND
+DB_Temples_AlexandarsBattalion(_Var1)
+AND
+_Var1 != CHARACTERGUID_S_GLO_Alexandar_03e6345f-1bd3-403c-80e2-a443a74f6349
+THEN
+SetVarFixedString(_Var1, "currentState", "State_Default");
+
+PROC
+Proc_CoS_GarethRevenge_SceneCleanup()
+AND
+DB_Temples_AlexandarsBattalion(_Var1)
+THEN
+SetHasDialog(_Var1, 1);
+CharacterSetFightMode(_Var1, 0, 1);
+
+IF
+StoryEvent(CHARACTERGUID_S_GLO_Alexandar_03e6345f-1bd3-403c-80e2-a443a74f6349, "CoS_AlexandarAppearInTemple")
+AND
+GlobalGetFlag("CoS_GarethRevenge_SceneActive", 1)
+THEN
+CharacterDie(CHARACTERGUID_S_FTJ_SW_Warrior_SeekerCaptain_1329f018-23e4-4717-9bc8-074b28d04c54, 0, "DoT");
+
+IF
+StoryEvent((CHARACTERGUID)_Var1, "CoS_GarethRevenge_AlexDead_ThankPlayer_StartDialog")
+THEN
+Proc_StartDialog(0, "CoS_GarethRevenge_AlexDead_ThankPlayer", CHARACTERGUID_S_FTJ_SW_Warrior_SeekerCaptain_1329f018-23e4-4717-9bc8-074b28d04c54, _Var1);
+SetVarFixedString(CHARACTERGUID_S_FTJ_SW_Warrior_SeekerCaptain_1329f018-23e4-4717-9bc8-074b28d04c54, "currentState", "State_CoS_LeaveToBlackRing");
+
+IF
+DialogEnded("CoS_GarethRevenge_AlexDead_ThankPlayer", (INTEGER)_Var1)
+AND
+DialogGetInvolvedPlayer(_Var1, 1, _Var2)
+THEN
+ObjectSetFlag(_Var2, "QuestUpdate_CoS_GarethsRevenge_End_GarethLeaves");
+
+
+EXITSECTION
+ENDEXITSECTION
+
+ParentTargetEdge "CoS_Temples"

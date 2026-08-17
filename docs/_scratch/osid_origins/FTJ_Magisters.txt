@@ -1,0 +1,179 @@
+Version 1
+SubGoalCombiner SGC_AND
+
+INITSECTION
+DB_Dialogs(RC_FTJ_GhettoGuard_001_ee5789f4-9320-493f-8fa1-a4ec1b8177f2, "FTJ_GhettoGuard_001");
+DB_Dialogs(RC_FTJ_GhettoGuard_002_098c299c-a7a1-4857-9ab5-fb01849a68ae, "FTJ_GhettoGuard_002");
+DB_Dialogs(RC_FTJ_GhettoGuard_003_7db795c9-9e63-40ab-a2f9-21b46fdb0c74, "FTJ_GhettoGuard_003");
+DB_Dialogs(RC_FTJ_GhettoGuard_004_d11296d9-833f-4070-9fa7-44ac606aedb8, "FTJ_GhettoGuard_004");
+DB_Dialogs(CHARACTERGUID_S_FTJ_GhettoGuard_005_76f7ca78-4799-4e55-9b00-ff3b3cd2066b, "FTJ_GhettoGuard_005");
+DB_Dialogs(CHARACTERGUID_S_FTJ_GhettoGuard_006_4c568459-0d25-4a1b-926f-20b8a85b900c, "FTJ_GhettoGuard_006");
+DB_Dialogs(CHARACTERGUID_S_FTJ_GhettoSourcehound_001_9ebc1321-960a-44e0-9274-f2ae8db6a093, "FTJ_GhettoSourcehound_001");
+DB_FTJ_Magisters(RC_FTJ_GhettoGuard_001_ee5789f4-9320-493f-8fa1-a4ec1b8177f2);
+DB_FTJ_Magisters(RC_FTJ_GhettoGuard_002_098c299c-a7a1-4857-9ab5-fb01849a68ae);
+DB_FTJ_Magisters(RC_FTJ_GhettoGuard_003_7db795c9-9e63-40ab-a2f9-21b46fdb0c74);
+DB_FTJ_Magisters(RC_FTJ_GhettoGuard_004_d11296d9-833f-4070-9fa7-44ac606aedb8);
+DB_FTJ_Magisters(RC_FTJ_ChapelMagister_001_068d4518-9b23-4e2c-a160-8d978d1f78ff);
+DB_FTJ_Magisters(RC_FTJ_ChapelMagister_002_090d7104-97f7-4603-a114-47dceaf021e5);
+DB_FTJ_Magisters(RC_FTJ_ChapelMagister_003_b5cb12b2-f347-4415-95ac-8d5ac4fc464b);
+DB_FTJ_Magisters(RC_FTJ_ChapelMagister_004_8f330be0-a442-408f-850e-c7fd94e74ada);
+DB_FTJ_Magisters(RC_FTJ_Florence_c272a37a-85ea-438f-9871-1551ef45d338);
+DB_DeadEvent(RC_FTJ_GhettoGuard_004_d11296d9-833f-4070-9fa7-44ac606aedb8, "FTJ_MagisterBorris_Dead");
+DB_FTJ_ChapelMagisters(RC_FTJ_HighPriest_2a09f30c-0a3b-495f-8386-5390a6c4c08d);
+DB_FTJ_ChapelMagisters(RC_FTJ_AnkhPriest_f06d709f-335c-4c34-b959-9ae753bc7d68);
+DB_FTJ_ChapelMagisters(RC_FTJ_AnkhPriestess_dfca80ec-cd31-48ed-abfc-801514f1bd8e);
+DB_FTJ_ChapelMagisters(RC_FTJ_CourtRoomGuard_001_c51d581d-9245-431f-a1eb-88adc8149827);
+DB_FTJ_ChapelMagisters(CHARACTERGUID_S_FTJ_CourtRoomGuard_002_bb9fd6c4-4231-44ac-a24d-5955dc300147);
+ItemToInventory(ITEMGUID_S_FTJ_CaptainTrippelKey_a3973e2d-2289-419f-aa5f-da72df7882f2, CHARACTERGUID_S_FTJ_ChapelMagister_Captain_c4d751d4-20ff-4281-baf4-8ddeb1383e7e);
+ItemToInventory(FTJ_FrontDoorKey_0af6562e-07c4-4eec-bf39-8b000e34ca3b, RC_FTJ_ChapelMagister_002_090d7104-97f7-4603-a114-47dceaf021e5);
+ItemToInventory(FTJ_FrontDoorKey_001_44452f92-34ad-417f-af4e-f9f1e2c136ad, RC_FTJ_GhettoGuard_004_d11296d9-833f-4070-9fa7-44ac606aedb8);
+ItemToInventory(ITEMGUID_S_FTJ_FrontDoorKey_002_c8470cbe-bb7c-4a93-831d-52ae60801937, CHARACTERGUID_S_FTJ_GhettoGuard_005_76f7ca78-4799-4e55-9b00-ff3b3cd2066b);
+ItemToInventory(ITEMGUID_S_FTJ_MagisterChestBed_01_Key_e4fe4d41-85a8-45ae-99ac-feb00ec84047, CHARACTERGUID_S_FTJ_GhettoGuard_001_ee5789f4-9320-493f-8fa1-a4ec1b8177f2);
+CharacterDisableAllCrimes(S_GLO_PaladinEmissary_c01e16ca-ce9a-48c8-ac36-90ef7de12404);
+CharacterEnableCrime(S_GLO_PaladinEmissary_c01e16ca-ce9a-48c8-ac36-90ef7de12404, "PickPocketFailed");
+DB_AssaultFamilyIgnoreFor(S_GLO_PaladinEmissary_c01e16ca-ce9a-48c8-ac36-90ef7de12404, RC_FTJ_ChapelMagister_Captain_c4d751d4-20ff-4281-baf4-8ddeb1383e7e);
+DB_AssaultFamilyIgnoreFor(RC_FTJ_ChapelMagister_Captain_c4d751d4-20ff-4281-baf4-8ddeb1383e7e, S_GLO_PaladinEmissary_c01e16ca-ce9a-48c8-ac36-90ef7de12404);
+SetOnStage(S_FTJ_Limb_PaladinEmissary_9104ba5c-2645-42ea-9b24-f48e2583630e, 0);
+ItemSetForceSynch(ITEMGUID_S_FTJ_BridgeToDunes_A_e376b5a2-52ec-4935-b8fc-2b53fcee5fb7, 1);
+DB_TrespassTrigger(S_FTJ_SUB_Chapel_29763898-0722-4f22-bed2-5ec94b837fd3, NULL_00000000-0000-0000-0000-000000000000, "FTJTrespassChapel");
+Proc_FTJ_MagistersStart();
+
+KBSECTION
+PROC
+Proc_FTJ_MagistersStart()
+AND
+DB_FTJ_Magisters(_Var1)
+AND
+DB_IsPlayer(_Var2)
+THEN
+DB_WarnedPlayerOfAttack(_Var1, 3);
+DB_CustomForbiddenDoorDialog(_Var1, "FTJ_Magister_Forbidden_Door");
+
+IF
+ObjectFlagSet("FTJ_DoCollarlessArrestAfterDialog", (CHARACTERGUID)_Var1, (INTEGER)_Var2)
+AND
+DialogGetInvolvedPlayer(_Var2, 1, _Var3)
+THEN
+ObjectClearFlag(_Var1, "FTJ_DoCollarlessArrestAfterDialog", 0);
+DB_DoCollarlessArestAfterDialog(_Var3);
+
+IF
+DialogEnded(_, (INTEGER)_Var2)
+AND
+DialogGetInvolvedPlayer(_Var2, 1, _Var3)
+AND
+DB_DoCollarlessArestAfterDialog(_Var3)
+THEN
+ProcCrimeTeleportCharacterToPrison(_Var3, S_FortJoy_PlayerPrisonCell_5eec6152-28bc-4555-b476-1a3bc2db02e5);
+NOT DB_DoCollarlessArestAfterDialog(_Var3);
+
+IF
+AttackedByObject(S_GLO_PaladinEmissary_c01e16ca-ce9a-48c8-ac36-90ef7de12404, _, (GUIDSTRING)_Var2, _, _)
+AND
+S_GLO_PaladinEmissary_c01e16ca-ce9a-48c8-ac36-90ef7de12404 != _Var2
+THEN
+PROC_FTJ_Magisters_TryStartCorkMagisterFight();
+
+IF
+CharacterReceivedDamage(S_GLO_PaladinEmissary_c01e16ca-ce9a-48c8-ac36-90ef7de12404, _, _)
+THEN
+PROC_FTJ_Magisters_TryStartCorkMagisterFight();
+
+IF
+AttackedByObject(RC_FTJ_ChapelMagister_Captain_c4d751d4-20ff-4281-baf4-8ddeb1383e7e, _, (GUIDSTRING)_Var2, _, _)
+AND
+RC_FTJ_ChapelMagister_Captain_c4d751d4-20ff-4281-baf4-8ddeb1383e7e != _Var2
+THEN
+PROC_FTJ_Magisters_TryStartCorkMagisterFight();
+
+IF
+CharacterReceivedDamage(RC_FTJ_ChapelMagister_Captain_c4d751d4-20ff-4281-baf4-8ddeb1383e7e, _, _)
+THEN
+PROC_FTJ_Magisters_TryStartCorkMagisterFight();
+
+IF
+ObjectEnteredCombat(RC_FTJ_ChapelMagister_Captain_c4d751d4-20ff-4281-baf4-8ddeb1383e7e, _)
+THEN
+PROC_FTJ_Magisters_TryStartCorkMagisterFight();
+
+PROC
+PROC_FTJ_Magisters_TryStartCorkMagisterFight()
+AND
+CharacterIsDead(CHARACTERGUID_S_GLO_PaladinEmissary_c01e16ca-ce9a-48c8-ac36-90ef7de12404, 0)
+THEN
+ProcForceStopDialog(RC_FTJ_ChapelMagister_Captain_c4d751d4-20ff-4281-baf4-8ddeb1383e7e);
+ProcForceStopDialog(RC_FTJ_PaladinEmissary_c01e16ca-ce9a-48c8-ac36-90ef7de12404);
+CharacterSetReactionPriority(RC_FTJ_PaladinEmissary_c01e16ca-ce9a-48c8-ac36-90ef7de12404, "DialogWithMagisterCaptain", 0);
+CharacterSetReactionPriority(RC_FTJ_PaladinEmissary_c01e16ca-ce9a-48c8-ac36-90ef7de12404, "GoToCaptain", 500);
+PROC_FTJ_Magisters_SetPaladinFightRelations();
+
+PROC
+PROC_FTJ_Magisters_SetPaladinFightRelations()
+THEN
+SetFaction(RC_FTJ_PaladinEmissary_c01e16ca-ce9a-48c8-ac36-90ef7de12404, "FTJ_PaladinEmissary");
+SetFaction(RC_FTJ_ChapelMagister_Captain_c4d751d4-20ff-4281-baf4-8ddeb1383e7e, "RC_FTJ_ChapelMagisterCaptain");
+CharacterSetRelationIndivFactionToIndivFaction(RC_FTJ_PaladinEmissary_c01e16ca-ce9a-48c8-ac36-90ef7de12404, RC_FTJ_ChapelMagister_Captain_c4d751d4-20ff-4281-baf4-8ddeb1383e7e, 0);
+CharacterSetRelationIndivFactionToIndivFaction(RC_FTJ_ChapelMagister_Captain_c4d751d4-20ff-4281-baf4-8ddeb1383e7e, RC_FTJ_PaladinEmissary_c01e16ca-ce9a-48c8-ac36-90ef7de12404, 0);
+CharacterSetRelationFactionToIndivFaction("Hero", RC_FTJ_PaladinEmissary_c01e16ca-ce9a-48c8-ac36-90ef7de12404, 100);
+CharacterSetRelationIndivFactionToFaction(RC_FTJ_PaladinEmissary_c01e16ca-ce9a-48c8-ac36-90ef7de12404, "Hero", 100);
+CharacterSetRelationFactionToIndivFaction("Hero", RC_FTJ_ChapelMagister_Captain_c4d751d4-20ff-4281-baf4-8ddeb1383e7e, 0);
+CharacterSetRelationIndivFactionToFaction(RC_FTJ_ChapelMagister_Captain_c4d751d4-20ff-4281-baf4-8ddeb1383e7e, "Hero", 0);
+EnterCombat(RC_FTJ_PaladinEmissary_c01e16ca-ce9a-48c8-ac36-90ef7de12404, RC_FTJ_ChapelMagister_Captain_c4d751d4-20ff-4281-baf4-8ddeb1383e7e);
+
+IF
+ObjectTurnStarted(CHARACTERGUID_S_FTJ_ChapelMagister_Captain_c4d751d4-20ff-4281-baf4-8ddeb1383e7e)
+AND
+CharacterCanSee(RC_FTJ_ChapelMagister_Captain_c4d751d4-20ff-4281-baf4-8ddeb1383e7e, RC_FTJ_PaladinEmissary_c01e16ca-ce9a-48c8-ac36-90ef7de12404, 1)
+AND
+CharacterIsDead(CHARACTERGUID_S_GLO_PaladinEmissary_c01e16ca-ce9a-48c8-ac36-90ef7de12404, 0)
+AND
+QueryOnlyOnce("FTJ_MagisterCaptainDoPaladinAD")
+THEN
+Proc_StartDialog(1, "FTJ_AD_ChapelMagisterCaptainGoHostile", RC_FTJ_ChapelMagister_Captain_c4d751d4-20ff-4281-baf4-8ddeb1383e7e);
+
+IF
+CharacterDied(CHARACTERGUID_S_GLO_PaladinEmissary_c01e16ca-ce9a-48c8-ac36-90ef7de12404)
+THEN
+SetOnStage(S_FTJ_Limb_PaladinEmissary_9104ba5c-2645-42ea-9b24-f48e2583630e, 1);
+ItemToInventory(S_FTJ_Limb_PaladinEmissary_9104ba5c-2645-42ea-9b24-f48e2583630e, CHARACTERGUID_S_GLO_PaladinEmissary_c01e16ca-ce9a-48c8-ac36-90ef7de12404);
+
+IF
+StoryEvent((CHARACTERGUID)_Var1, "FTJ_PaladinEmissaryStartDialogWithPlayer")
+AND
+QueryOnlyOnce("FTJ_EmissaryThanksPlayer")
+THEN
+Proc_StartDialog(0, "FTJ_PaladinEmissaryThanksPlayer", CHARACTERGUID_S_GLO_PaladinEmissary_c01e16ca-ce9a-48c8-ac36-90ef7de12404, _Var1);
+PartyAddExperience(_Var1, 1, 4, 10);
+
+IF
+CharacterEnteredTrigger((CHARACTERGUID)_Var1, RC_FTJ_SUB_Chapel_29763898-0722-4f22-bed2-5ec94b837fd3)
+AND
+QRY_SpeakerIsAvailable(_Var1)
+AND
+CharacterGetReservedUserID(_Var1, _Var2)
+AND
+GetUserProfileID(_Var2, _Var3)
+AND NOT
+DB_RC_FTJ_DidChapelWarning(_Var3)
+THEN
+Proc_StartDialog(1, "FTJ_AD_PlayerEnterUpperFortJoy", _Var1);
+DB_RC_FTJ_DidChapelWarning(_Var3);
+
+IF
+DialogStarted("FTJ_GhettoGuard_004", (INTEGER)_Var1)
+AND
+DialogGetInvolvedPlayer(_Var1, 1, _Var2)
+THEN
+UserSetFlag(_Var2, "FTJ_MagisterBorris_HasMet");
+
+PROC
+ProcRegionEnded("FJ_FortJoy_Main")
+THEN
+ItemSetForceSynch(ITEMGUID_S_FTJ_BridgeToDunes_A_e376b5a2-52ec-4935-b8fc-2b53fcee5fb7, 0);
+GoalCompleted;
+
+
+EXITSECTION
+ENDEXITSECTION
+
+ParentTargetEdge "FortJoy"

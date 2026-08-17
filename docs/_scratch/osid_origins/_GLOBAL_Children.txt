@@ -1,0 +1,28 @@
+Version 1
+SubGoalCombiner SGC_AND
+
+INITSECTION
+
+KBSECTION
+IF
+DB_Children(_Var1)
+THEN
+CharacterSetImmortal(_Var1, 1);
+SetCanFight(_Var1, 0);
+SetCanJoinCombat(_Var1, 0);
+DB_CrimeReaction_DoNotInterrogate(_Var1);
+PROC_GLO_Children_EnableKidCrimes(_Var1);
+
+PROC
+PROC_GLO_Children_EnableKidCrimes((CHARACTERGUID)_Var1)
+THEN
+ProcCharacterDisableAllCrimes(_Var1);
+ProcCharacterEnableCrime(_Var1, "PickPocketFailed");
+ProcCharacterEnableCrime(_Var1, "ActiveUndead");
+ProcCharacterEnableCrime(_Var1, "Steal");
+ProcCharacterEnableCrime(_Var1, "TeleportPlayerDialog");
+
+
+EXITSECTION
+ENDEXITSECTION
+

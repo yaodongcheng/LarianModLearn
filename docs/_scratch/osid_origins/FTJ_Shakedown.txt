@@ -1,0 +1,351 @@
+Version 1
+SubGoalCombiner SGC_AND
+
+INITSECTION
+DB_Dialogs(RC_FTJ_ShakedownElf_c854185f-ce11-416f-b327-d692a5e3a789, S_RC_FTJ_ShakedownDwarf_0991b582-8305-4259-8280-a55bbe32a1b6, S_RC_FTJ_OlgoGuard_002_6d445f10-dec4-4026-9d9f-5b1c3fcd3e94, "FTJ_ShakedownEvent");
+DB_FTJ_ShakedownBrutes(CHARACTERGUID_S_FTJ_ShakedownDwarf_0991b582-8305-4259-8280-a55bbe32a1b6);
+DB_FTJ_ShakedownBrutes(S_RC_FTJ_OlgoGuard_002_6d445f10-dec4-4026-9d9f-5b1c3fcd3e94);
+DB_FTJ_ShakeDownNPCs(S_RC_FTJ_ShakedownDwarf_0991b582-8305-4259-8280-a55bbe32a1b6);
+DB_FTJ_ShakeDownNPCs(RC_FTJ_ShakedownElf_c854185f-ce11-416f-b327-d692a5e3a789);
+DB_FTJ_ShakeDownNPCs(S_RC_FTJ_OlgoGuard_002_6d445f10-dec4-4026-9d9f-5b1c3fcd3e94);
+ProcTriggerRegisterForPlayers(TRIGGERGUID_S_FTJ_ShakedownEventSaw_Box_86575c24-ef13-4c5c-a30e-5aa6ab23d337);
+ItemToInventory(ITEMGUID_S_FTJ_Limb_ElodiHead_999a3538-2fa9-476c-8d6d-da99da0827a8, CHARACTERGUID_S_FTJ_ShakedownElf_c854185f-ce11-416f-b327-d692a5e3a789);
+DB_GiveItemToEvent(ITEMGUID_S_FTJ_Limb_ElodiHead_999a3538-2fa9-476c-8d6d-da99da0827a8, "FTJ_GiveElodiHead");
+CharacterSetCanTrade(RC_FTJ_ShakedownElf_c854185f-ce11-416f-b327-d692a5e3a789, 0);
+DB_NoLowAttitudeDialog(CHARACTERGUID_S_FTJ_ShakedownElf_c854185f-ce11-416f-b327-d692a5e3a789);
+Proc_FTJ_Shakedown_Init();
+
+KBSECTION
+PROC
+Proc_FTJ_Shakedown_Init()
+AND
+IsTagged(CHARACTERGUID_S_Player_Ifan_ad9a3327-4456-42a7-9bf4-7ad60cc9e54f, "AVATAR", 0)
+THEN
+SetFaction(CHARACTERGUID_S_Player_Ifan_ad9a3327-4456-42a7-9bf4-7ad60cc9e54f, "FTJ_ShakeDownElf");
+
+PROC
+ProcMakeNPCHostile(CHARACTERGUID_S_FTJ_ShakedownElf_c854185f-ce11-416f-b327-d692a5e3a789, (CHARACTERGUID)_Var1)
+AND
+IsTagged(CHARACTERGUID_S_Player_Ifan_ad9a3327-4456-42a7-9bf4-7ad60cc9e54f, "AVATAR", 0)
+THEN
+ProcMakeNPCHostile(CHARACTERGUID_S_Player_Ifan_ad9a3327-4456-42a7-9bf4-7ad60cc9e54f, _Var1);
+
+PROC
+PROC_GLOBAL_DialogStartRequested((CHARACTERGUID)_Var1, (GUIDSTRING)_Var2)
+AND
+DB_FTJ_ShakeDownNPCs(_Var1)
+AND
+IsTagged(CHARACTERGUID_S_Player_Ifan_ad9a3327-4456-42a7-9bf4-7ad60cc9e54f, "AVATAR", 0)
+AND
+CharacterIsDead(CHARACTERGUID_S_Player_Ifan_ad9a3327-4456-42a7-9bf4-7ad60cc9e54f, 0)
+AND
+GetDistanceTo(CHARACTERGUID_S_Player_Ifan_ad9a3327-4456-42a7-9bf4-7ad60cc9e54f, CHARACTERGUID_S_FTJ_ShakedownElf_c854185f-ce11-416f-b327-d692a5e3a789, _Var3)
+AND
+_Var3 < 18
+AND NOT
+DB_OnlyOnce("FTJ_ShakedownEvent_End")
+THEN
+DialogRequestStop(_Var1);
+Proc_StartDialog(0, "FTJ_ShakedownEvent", RC_FTJ_ShakedownElf_c854185f-ce11-416f-b327-d692a5e3a789, S_RC_FTJ_ShakedownDwarf_0991b582-8305-4259-8280-a55bbe32a1b6, S_RC_FTJ_OlgoGuard_002_6d445f10-dec4-4026-9d9f-5b1c3fcd3e94, _Var2, CHARACTERGUID_S_Player_Ifan_ad9a3327-4456-42a7-9bf4-7ad60cc9e54f);
+CharacterSetRelationIndivFactionToIndivFaction(CHARACTERGUID_S_Player_Ifan_ad9a3327-4456-42a7-9bf4-7ad60cc9e54f, CHARACTERGUID_S_FTJ_ShakedownElf_c854185f-ce11-416f-b327-d692a5e3a789, 100);
+
+PROC
+PROC_GLOBAL_DialogStartRequested(CHARACTERGUID_S_Player_Ifan_ad9a3327-4456-42a7-9bf4-7ad60cc9e54f, (GUIDSTRING)_Var1)
+AND
+IsTagged(CHARACTERGUID_S_Player_Ifan_ad9a3327-4456-42a7-9bf4-7ad60cc9e54f, "AVATAR", 0)
+AND NOT
+DB_OnlyOnce("FTJ_ShakedownEvent_End")
+THEN
+DialogRequestStop(CHARACTERGUID_S_Player_Ifan_ad9a3327-4456-42a7-9bf4-7ad60cc9e54f);
+Proc_StartDialog(0, "FTJ_ShakedownEvent", RC_FTJ_ShakedownElf_c854185f-ce11-416f-b327-d692a5e3a789, S_RC_FTJ_ShakedownDwarf_0991b582-8305-4259-8280-a55bbe32a1b6, S_RC_FTJ_OlgoGuard_002_6d445f10-dec4-4026-9d9f-5b1c3fcd3e94, _Var1, CHARACTERGUID_S_Player_Ifan_ad9a3327-4456-42a7-9bf4-7ad60cc9e54f);
+
+IF
+ObjectEnteredCombat((CHARACTERGUID)_Var1, _)
+AND
+DB_FTJ_ShakeDownNPCs(_Var1)
+THEN
+DialogRequestStop(_Var1);
+
+IF
+CharacterDied((CHARACTERGUID)_Var1)
+AND
+DB_FTJ_ShakeDownNPCs(_Var1)
+THEN
+Proc_RC_FTJ_EndShakedown();
+
+IF
+DialogStarted("FTJ_ShakedownEvent", (INTEGER)_Var1)
+AND
+DialogGetInvolvedPlayer(_Var1, 1, _Var2)
+THEN
+PartySetFlag(_Var2, "FTJ_SawBrutesTerrorizing");
+
+PROC
+Proc_RC_FTJ_EndShakedown()
+AND
+QueryOnlyOnce("FTJ_ShakedownEvent_End")
+THEN
+PROC_RemoveDialogFromCharacter(RC_FTJ_ShakedownElf_c854185f-ce11-416f-b327-d692a5e3a789);
+PROC_RemoveDialogFromCharacter(S_RC_FTJ_ShakedownDwarf_0991b582-8305-4259-8280-a55bbe32a1b6);
+PROC_RemoveDialogFromCharacter(S_RC_FTJ_OlgoGuard_002_6d445f10-dec4-4026-9d9f-5b1c3fcd3e94);
+DB_Dialogs(CHARACTERGUID_S_FTJ_ShakedownElf_c854185f-ce11-416f-b327-d692a5e3a789, "FTJ_ShakedownElf");
+DB_Dialogs(CHARACTERGUID_S_FTJ_ShakedownDwarf_0991b582-8305-4259-8280-a55bbe32a1b6, "FTJ_ShakedownBrute");
+DB_Dialogs(CHARACTERGUID_S_FTJ_OlgoGuard_002_6d445f10-dec4-4026-9d9f-5b1c3fcd3e94, "FTJ_GhettoBossGuard_002");
+NOT DB_NoStealingReaction(RC_FTJ_ShakedownElf_c854185f-ce11-416f-b327-d692a5e3a789);
+NOT DB_NoStealingReaction(S_RC_FTJ_ShakedownDwarf_0991b582-8305-4259-8280-a55bbe32a1b6);
+NOT DB_NoStealingReaction(S_RC_FTJ_OlgoGuard_002_6d445f10-dec4-4026-9d9f-5b1c3fcd3e94);
+SetVarFixedString(S_RC_FTJ_OlgoGuard_002_6d445f10-dec4-4026-9d9f-5b1c3fcd3e94, "currentState", "State_Default");
+SetVarFixedString(S_RC_FTJ_ShakedownDwarf_0991b582-8305-4259-8280-a55bbe32a1b6, "currentState", "State_Default");
+CharacterSetReactionPriority(RC_FTJ_ShakedownElf_c854185f-ce11-416f-b327-d692a5e3a789, "MoveToDefaultPos", 1000);
+DB_FTJ_SaheilaAllies(RC_FTJ_ShakedownElf_c854185f-ce11-416f-b327-d692a5e3a789);
+CharacterSetCanTrade(RC_FTJ_ShakedownElf_c854185f-ce11-416f-b327-d692a5e3a789, 1);
+
+IF
+DialogEnded("FTJ_ShakedownEvent", (INTEGER)_Var1)
+AND
+GlobalGetFlag("FTJ_Shakedown_SideElf", 1)
+AND
+DialogGetInvolvedPlayer(_Var1, 1, _Var2)
+THEN
+Proc_RC_FTJ_EndShakedown();
+UserSetFlag(_Var2, "FTJ_AddElodiAttitude");
+UserSetFlag(_Var2, "FTJ_HelpedAgainstShakedownBrutes");
+PartySetFlag(_Var2, "GLO_SetTag_HERO");
+CharacterSetRelationFactionToFaction("FTJ_ShakeDownElf", "Hero", 100);
+CharacterSetRelationFactionToFaction("Hero", "FTJ_ShakeDownElf", 100);
+ProcMakeNPCHostile(_Var2, S_RC_FTJ_ShakedownDwarf_0991b582-8305-4259-8280-a55bbe32a1b6);
+ProcMakeNPCHostile(S_RC_FTJ_ShakedownDwarf_0991b582-8305-4259-8280-a55bbe32a1b6, RC_FTJ_ShakedownElf_c854185f-ce11-416f-b327-d692a5e3a789);
+ObjectSetFlag(_Var2, "QuestUpdate_FTJ_Elodi_ElodiRescued");
+
+IF
+DialogEnded("FTJ_ShakedownEvent", (INTEGER)_Var1)
+AND
+GlobalGetFlag("FTJ_Shakedown_SideBrutes", 1)
+AND
+DialogGetInvolvedPlayer(_Var1, 1, _Var2)
+THEN
+Proc_RC_FTJ_EndShakedown();
+UserSetFlag(_Var2, "FTJ_AddShakedownBrutesAttitude");
+ProcMakeNPCHostile(_Var2, CHARACTERGUID_S_FTJ_ShakedownElf_c854185f-ce11-416f-b327-d692a5e3a789);
+ProcMakeNPCHostile(S_RC_FTJ_ShakedownDwarf_0991b582-8305-4259-8280-a55bbe32a1b6, RC_FTJ_ShakedownElf_c854185f-ce11-416f-b327-d692a5e3a789);
+PartySetFlag(_Var2, "GLO_SetTag_VILLAIN");
+
+IF
+DialogEnded("FTJ_ShakedownEvent", (INTEGER)_Var1)
+AND
+GlobalGetFlag("FTJ_Shakedown_Neutral", 1)
+THEN
+Proc_RC_FTJ_EndShakedown();
+ProcMakeNPCHostile(CHARACTERGUID_S_FTJ_ShakedownDwarf_0991b582-8305-4259-8280-a55bbe32a1b6, CHARACTERGUID_S_FTJ_ShakedownElf_c854185f-ce11-416f-b327-d692a5e3a789);
+
+IF
+DialogEnded("FTJ_ShakedownEvent", (INTEGER)_Var1)
+AND
+GlobalGetFlag("FTJ_Shakedown_Neutral", 1)
+AND
+DialogGetInvolvedPlayer(_Var1, 1, _Var2)
+AND NOT
+QRY_IsSummonOrPartyFollower(_Var2)
+AND
+IsTagged(CHARACTERGUID_S_Player_Ifan_ad9a3327-4456-42a7-9bf4-7ad60cc9e54f, "AVATAR", 0)
+THEN
+CharacterAddAttitudeTowardsPlayer(CHARACTERGUID_S_Player_Ifan_ad9a3327-4456-42a7-9bf4-7ad60cc9e54f, _Var2, -5);
+
+IF
+DialogEnded("FTJ_ShakedownEvent", (INTEGER)_Var1)
+AND
+DialogGetInvolvedPlayer(_Var1, 1, _Var2)
+AND
+GlobalGetFlag("FTJ_Shakedown_Peace", 1)
+THEN
+Proc_RC_FTJ_EndShakedown();
+UserSetFlag(_Var2, "FTJ_AddElodiAttitude");
+CharacterAddAttitudeTowardsPlayer(CHARACTERGUID_S_FTJ_ShakedownElf_c854185f-ce11-416f-b327-d692a5e3a789, _Var2, 20);
+CharacterSetRelationFactionToFaction("FTJ_ShakeDownElf", "Hero", 100);
+CharacterSetRelationFactionToFaction("Hero", "FTJ_ShakeDownElf", 100);
+PartyAddExperience(_Var2, 1, 2, 5);
+ObjectSetFlag(_Var2, "QuestUpdate_FTJ_Elodi_ElodiRescued");
+PartySetFlag(_Var2, "GLO_SetTag_HERO");
+Proc_StartDialog(0, "FTJ_ShakedownElfThanksPlayer", RC_FTJ_ShakedownElf_c854185f-ce11-416f-b327-d692a5e3a789, _Var2);
+
+IF
+ObjectFlagSet("FTJ_AddElodiAttitude", (CHARACTERGUID)_Var1, _)
+AND NOT
+QRY_IsSummonOrPartyFollower(_Var1)
+THEN
+CharacterAddAttitudeTowardsPlayer(CHARACTERGUID_S_FTJ_ShakedownElf_c854185f-ce11-416f-b327-d692a5e3a789, _Var1, 50);
+CharacterSetRelationFactionToFaction("FTJ_ShakeDownElf", "Hero", 100);
+CharacterSetRelationFactionToFaction("Hero", "FTJ_ShakeDownElf", 100);
+
+IF
+ObjectFlagSet("FTJ_AddElodiAttitude", (CHARACTERGUID)_Var1, _)
+AND NOT
+QRY_IsSummonOrPartyFollower(_Var1)
+AND
+IsTagged(CHARACTERGUID_S_Player_Ifan_ad9a3327-4456-42a7-9bf4-7ad60cc9e54f, "AVATAR", 0)
+THEN
+CharacterAddAttitudeTowardsPlayer(CHARACTERGUID_S_Player_Ifan_ad9a3327-4456-42a7-9bf4-7ad60cc9e54f, _Var1, 10);
+
+IF
+ObjectFlagSet("FTJ_AddShakedownBrutesAttitude", (CHARACTERGUID)_Var1, _)
+AND NOT
+QRY_IsSummonOrPartyFollower(_Var1)
+AND
+DB_FTJ_ShakedownBrutes(_Var3)
+THEN
+CharacterAddAttitudeTowardsPlayer(_Var3, _Var1, 50);
+
+IF
+ObjectFlagSet("FTJ_AddShakedownBrutesAttitude", (CHARACTERGUID)_Var1, _)
+AND NOT
+QRY_IsSummonOrPartyFollower(_Var1)
+AND
+IsTagged(CHARACTERGUID_S_Player_Ifan_ad9a3327-4456-42a7-9bf4-7ad60cc9e54f, "AVATAR", 0)
+THEN
+CharacterAddAttitudeTowardsPlayer(CHARACTERGUID_S_Player_Ifan_ad9a3327-4456-42a7-9bf4-7ad60cc9e54f, _Var1, -20);
+
+IF
+ObjectFlagSet("FTJ_Shakedown_KnockDown", (CHARACTERGUID)_Var1, (INTEGER)_Var2)
+AND
+DialogGetInvolvedPlayer(_Var2, 1, _Var3)
+THEN
+CharacterLookAt(_Var3, _Var1);
+PlayAnimation(_Var3, "skill_trip_cast");
+ApplyStatus(_Var1, "KNOCKED_DOWN", 16, 1);
+
+IF
+ObjectFlagSet("FTJ_ShakeDown_MoveTo", (CHARACTERGUID)_Var1, (INTEGER)_Var2)
+AND
+DialogGetInvolvedPlayer(_Var2, 1, _Var3)
+THEN
+CharacterMoveTo(_Var1, _Var3, 0, "", 0);
+
+IF
+ObjectFlagSet("FTJ_Shakedown_Cripple", (GUIDSTRING)_Var1, _)
+THEN
+ApplyStatus(_Var1, "CRIPPLED", -1, 1);
+
+IF
+ObjectEnteredCombat((CHARACTERGUID)_Var1, (INTEGER)_Var2)
+AND
+DB_IsPlayer(_Var1)
+AND
+DB_FTJ_ShakedownBrutes(_Var3)
+AND
+DB_CombatCharacters(_Var3, _Var2)
+AND
+DB_CombatCharacters(CHARACTERGUID_S_FTJ_ShakedownElf_c854185f-ce11-416f-b327-d692a5e3a789, _Var2)
+AND
+CharacterGetRelationToCharacter(CHARACTERGUID_S_FTJ_ShakedownElf_c854185f-ce11-416f-b327-d692a5e3a789, _Var1, _Var4)
+AND
+_Var4 != 0
+THEN
+UserClearFlag(_Var1, "FTJ_Shakedown_Neutral", 0);
+GlobalClearFlag("FTJ_Shakedown_Neutral");
+ObjectSetFlag(_Var1, "FTJ_HelpedAgainstShakedownBrutes");
+
+IF
+ObjectEnteredCombat(CHARACTERGUID_S_FTJ_ShakedownElf_c854185f-ce11-416f-b327-d692a5e3a789, (INTEGER)_Var1)
+AND
+DB_IsPlayer(_Var2)
+AND
+DB_FTJ_ShakedownBrutes(_Var3)
+AND
+DB_CombatCharacters(_Var2, _Var1)
+AND
+DB_CombatCharacters(_Var3, _Var1)
+AND
+CharacterGetRelationToCharacter(CHARACTERGUID_S_FTJ_ShakedownElf_c854185f-ce11-416f-b327-d692a5e3a789, _Var2, _Var4)
+AND
+_Var4 != 0
+THEN
+UserClearFlag(_Var2, "FTJ_Shakedown_Neutral", 0);
+GlobalClearFlag("FTJ_Shakedown_Neutral");
+ObjectSetFlag(_Var2, "FTJ_HelpedAgainstShakedownBrutes");
+
+IF
+CharacterRelationChangedTo(CHARACTERGUID_S_FTJ_ShakedownElf_c854185f-ce11-416f-b327-d692a5e3a789, (CHARACTERGUID)_Var1, 0)
+AND
+DB_IsPlayer(_Var1)
+THEN
+UserClearFlag(_Var1, "FTJ_HelpedAgainstShakedownBrutes", 0);
+
+IF
+StoryEvent(_, "FTJ_ShakedownElfStartDialogWithPlayer")
+AND
+DB_IsPlayer(_Var2)
+AND
+ObjectGetFlag(_Var2, "FTJ_HelpedAgainstShakedownBrutes", 1)
+THEN
+UserSetFlag(_Var2, "FTJ_Shakedown_SavedElodi");
+
+IF
+StoryEvent((CHARACTERGUID)_Var1, "FTJ_ShakedownElfStartDialogWithPlayer")
+AND
+QRY_SpeakerIsAvailable(CHARACTERGUID_S_Player_Ifan_ad9a3327-4456-42a7-9bf4-7ad60cc9e54f)
+AND
+IsTagged(CHARACTERGUID_S_Player_Ifan_ad9a3327-4456-42a7-9bf4-7ad60cc9e54f, "AVATAR", 0)
+AND
+QueryOnlyOnce("FTJ_ShakedownElfStartDialogWithPlayer")
+THEN
+Proc_StartDialog(0, "FTJ_ShakedownElfThanksPlayer", RC_FTJ_ShakedownElf_c854185f-ce11-416f-b327-d692a5e3a789, _Var1, CHARACTERGUID_S_Player_Ifan_ad9a3327-4456-42a7-9bf4-7ad60cc9e54f);
+
+IF
+StoryEvent((CHARACTERGUID)_Var1, "FTJ_ShakedownElfStartDialogWithPlayer")
+AND
+QueryOnlyOnce("FTJ_ShakedownElfStartDialogWithPlayer")
+THEN
+Proc_StartDialog(0, "FTJ_ShakedownElfThanksPlayer", RC_FTJ_ShakedownElf_c854185f-ce11-416f-b327-d692a5e3a789, _Var1);
+
+IF
+CharacterEnteredTrigger((CHARACTERGUID)_Var1, TRIGGERGUID_S_FTJ_ShakedownEventSaw_Box_86575c24-ef13-4c5c-a30e-5aa6ab23d337)
+AND
+QueryOnlyOnce("FTJ_ShakedownEventHasBeenSeen")
+THEN
+DB_FTJ_ShakedownEventSeen(1);
+
+IF
+CharacterLeftTrigger((CHARACTERGUID)_Var1, TRIGGERGUID_S_FTJ_SUB_Ghetto_19107918-c6d6-4c93-a377-e8a76c8d0f27)
+AND
+DB_IsPlayer(_Var1)
+AND NOT
+DB_OnlyOnce("FTJ_ShakedownEvent_End")
+AND
+DB_OnlyOnce("FTJ_ShakedownEventHasBeenSeen")
+AND
+GetClosestPlayer(CHARACTERGUID_S_FTJ_ShakedownElf_c854185f-ce11-416f-b327-d692a5e3a789, _Var2, _)
+AND
+CharacterIsDead(CHARACTERGUID_S_FTJ_ShakedownElf_c854185f-ce11-416f-b327-d692a5e3a789, 0)
+AND
+CharacterCanSee(_Var2, CHARACTERGUID_S_FTJ_ShakedownElf_c854185f-ce11-416f-b327-d692a5e3a789, 0)
+AND
+GetDistanceTo(CHARACTERGUID_S_FTJ_ShakedownElf_c854185f-ce11-416f-b327-d692a5e3a789, _Var1, _Var4)
+AND
+_Var4 > 35
+THEN
+CharacterDie(CHARACTERGUID_S_FTJ_ShakedownElf_c854185f-ce11-416f-b327-d692a5e3a789, 0, "DoT");
+
+IF
+CharacterDied(CHARACTERGUID_S_FTJ_ShakedownElf_c854185f-ce11-416f-b327-d692a5e3a789)
+AND
+DB_IsPlayer(_Var1)
+AND
+QuestAccepted(_Var1, "FTJ_Elodi", 1)
+THEN
+ObjectSetFlag(_Var1, "QuestUpdate_FTJ_Elodi_ElodiDead");
+
+IF
+ItemRemovedFromCharacter(ITEMGUID_S_FTJ_Limb_ElodiHead_999a3538-2fa9-476c-8d6d-da99da0827a8, CHARACTERGUID_S_FTJ_ShakedownElf_c854185f-ce11-416f-b327-d692a5e3a789)
+THEN
+ObjectSetFlag(CHARACTERGUID_S_FTJ_ShakedownElf_c854185f-ce11-416f-b327-d692a5e3a789, "FTJ_LostHead");
+
+PROC
+ProcRegionEnded("FJ_FortJoy_Main")
+THEN
+GoalCompleted;
+
+
+EXITSECTION
+ENDEXITSECTION
+
+ParentTargetEdge "FortJoy"

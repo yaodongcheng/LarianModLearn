@@ -1,0 +1,76 @@
+Version 1
+SubGoalCombiner SGC_AND
+
+INITSECTION
+DB_DebugTags("RC_Main", "CHAMPION_FTJ", 1);
+DB_DebugGlobalFlags("RC_Main", "FTJ_SW_GarethAtShelter");
+DB_DebugGlobalFlags("RC_Main", "FTJ_SW_ToldTarleneGarethAtShelter");
+DB_DebugGlobalFlags("RC_Main", "FTJ_SW_AllInjuredSeekersHealed");
+DB_DebugPlayerCharacterFlags("RC_Main", "RC_FTJ_OlgoGuard_004_OfferedToMeet");
+DB_DebugPlayerCharacterFlags("RC_Main", "FTJ_OlgoGuard_004_HasMet");
+DB_DebugPlayerCharacterFlags("RC_Main", "FTJ_SW_ShrineSendToHoE");
+DB_DebugPlayerCharacterFlags("RC_Main", "FTJ_MetKniles");
+DB_DebugPlayerCharacterFlags("RC_Main", "FTJ_RemoveSourceCollar");
+DB_DebugPlayerCharacterFlags("RC_Main", "FTJ_SW_HasMet_EscapedPrisoner");
+DB_DebugPlayerCharacterFlags("RC_Main", "FTJ_SW_HasMetHan");
+DB_DebugPlayerCharacterFlags("RC_Main", "FTJ_SW_Samadel_HasMet");
+DB_DebugPlayerCharacterFlags("RC_Main", "FTJ_SW_ToldTarleneGarethAtShelter");
+DB_DebugPlayerCharacterFlags("RC_Main", "FTJ_SW_TurnCoatMagister_HasMet");
+DB_DebugPlayerCharacterFlags("RC_Main", "FTJ_SW_RiverHasMet");
+DB_DebugPlayerCharacterFlags("RC_Main", "FTJ_SW_HasMetGareth");
+DB_DebugPlayerCharacterFlags("RC_Main", "FTJ_SW_GoddessStatue_HasMet");
+DB_DebugPlayerCharacterFlags("RC_Main", "FTJ_SW_Squire_HasMet");
+DB_DebugPlayerCharacterFlags("RC_Main", "FTJ_SW_InjuredDoctorHasMet");
+DB_DebugPlayerCharacterFlags("RC_Main", "FTJ_SW_InjuredSeeker_001_HasMet");
+DB_DebugPlayerCharacterFlags("RC_Main", "FTJ_SW_InjuredSeeker_002_HasMet");
+DB_DebugPlayerCharacterFlags("RC_Main", "FTJ_SW_DefeatedSeeker_001_Hasmet");
+DB_DebugObjectFlags("RC_Main", CHARACTERGUID_S_FTJ_SW_SeekerNearSourceTotem_302a752b-d9fa-4e00-b214-f722dc4fa8d6, "FTJ_SW_ToldTarleneGarethAtShelter");
+
+KBSECTION
+IF
+TextEventSet("DW")
+THEN
+ProcDoDebugSetup("RC_Main");
+
+IF
+ObjectFlagSet("Debug_RC_Main_Setup", (GUIDSTRING)_Var1, _)
+THEN
+ProcDoDebugSetup("RC_Main");
+
+IF
+DB_DebugProfileChar(S_Player_Fane_02a77f1f-872b-49ca-91ab-32098c443beb)
+THEN
+RemoveStatus(CHARACTERGUID_S_Player_Fane_02a77f1f-872b-49ca-91ab-32098c443beb, "FANE_ELF");
+
+PROC
+ProcSetupDebugParty()
+AND
+DB_DebugProfileChar(_Var1)
+AND
+GetItemForItemTemplateInInventory(_Var1, "RC_FTJ_Amulet_SourceCollar_8bf8b97c-556e-4e69-8fc7-39241783dcc1", _)
+THEN
+Proc_GLO_SourceCollars_EquipSourceCollar(_Var1);
+
+PROC
+ProcSetupDebugParty()
+AND
+DB_DebugProfileChar(_Var1)
+AND NOT
+GetItemForItemTemplateInInventory(_Var1, "RC_FTJ_Amulet_SourceCollar_8bf8b97c-556e-4e69-8fc7-39241783dcc1", _)
+THEN
+ObjectSetFlag(_Var1, "FTJ_RemoveSourceCollar");
+RemoveStatus(_Var1, "SOURCE_MUTED");
+
+IF
+ObjectFlagSet("FTJ_SW_ShrineSendToHoE", (CHARACTERGUID)_Var1, _)
+AND
+DB_InDebugSetup(1)
+THEN
+DB_FTJ_SW_CompanionHadHoEExperience(_Var1);
+ProcObjectTimerCancel(_Var1, "FTJ_SW_GiveCompanionBless");
+
+
+EXITSECTION
+ENDEXITSECTION
+
+ParentTargetEdge "DOS2ModWrapper"

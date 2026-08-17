@@ -1,0 +1,169 @@
+Version 1
+SubGoalCombiner SGC_AND
+
+INITSECTION
+DB_Dialogs(CHARACTERGUID_S_ARX_DoctorsHouse_Prison_Bard_be60f0e2-c10a-4e4c-bb80-2d096f1a49c8, "ARX_DoctorsHouse_Prison_Bard");
+DB_Ghosts(CHARACTERGUID_S_ARX_DoctorsHouse_Prison_Bard_be60f0e2-c10a-4e4c-bb80-2d096f1a49c8, CHARACTERGUID_S_ARX_DoctorsHouse_Prison_Bard_Ghost_18ab99fe-aad3-42ab-bee5-4d71e9dc21f1, "ARX_DoctorsHouse_Prison_Bard_Ghost");
+DB_Dialogs(CHARACTERGUID_S_ARX_DoctorsHouse_Prison_Jahan_6cb996a6-44f4-4a27-ab09-a45dde64051c, "ARX_DoctorsHouse_Prison_Jahan");
+DB_Dialogs(CHARACTERGUID_S_ARX_DoctorsHouse_Prison_Lizard_c2c6b104-ac72-4a36-b9f7-d91bef785ea3, "ARX_DoctorsHouse_Prison_Lizard");
+DB_DoNotFace(CHARACTERGUID_S_ARX_DoctorsHouse_Prison_Lizard_c2c6b104-ac72-4a36-b9f7-d91bef785ea3);
+DB_ARX_TheDoctor_Prison_SetUp(CHARACTERGUID_S_ARX_DoctorsHouse_Prison_Bard_be60f0e2-c10a-4e4c-bb80-2d096f1a49c8, "RC_DW_Tavern_Bard_IsDead", "ARX_DoctorsHouse_Prison_Bard_InPrison");
+DB_ARX_TheDoctor_Prison_SetUp(CHARACTERGUID_S_ARX_DoctorsHouse_Prison_Jahan_6cb996a6-44f4-4a27-ab09-a45dde64051c, "RC_BF_DemonHunter_Dead", "ARX_DoctorsHouse_Prison_Jahan_InPrison");
+DB_ARX_TheDoctor_Prison_SetUp(CHARACTERGUID_S_ARX_DoctorsHouse_Prison_Lizard_c2c6b104-ac72-4a36-b9f7-d91bef785ea3, "RC_BI_LizardDemonLeader_Dead", "ARX_DoctorsHouse_Prison_Lizard_InPrison");
+Proc_ARX_TheDoctor_Prison_SetUp();
+DB_OneShotPlayerTrigger(TRIGGERGUID_S_ARX_DoctorsHouse_Basement_3ef36364-704f-4be4-a993-1ece14ae354c);
+DB_OneShotPlayerTrigger(TRIGGERGUID_S_ARX_DoctorsHouse_Basement_Prison_3671900b-ddbc-48ee-9bdf-594eff772189);
+ItemSetCanInteract(ITEMGUID_S_ARX_DoctorsHouse_Basement_HiddenHatch_Ent_b2671e21-f7e6-40b2-bed9-00099f98014f, 0);
+ProcCharacterDisableAllCrimes(CHARACTERGUID_S_ARX_DoctorsHouse_Prison_Bard_be60f0e2-c10a-4e4c-bb80-2d096f1a49c8);
+ProcCharacterDisableAllCrimes(CHARACTERGUID_S_ARX_DoctorsHouse_Prison_Jahan_6cb996a6-44f4-4a27-ab09-a45dde64051c);
+ProcCharacterDisableAllCrimes(CHARACTERGUID_S_ARX_DoctorsHouse_Prison_Lizard_c2c6b104-ac72-4a36-b9f7-d91bef785ea3);
+DB_NoLowAttitudeDialog(CHARACTERGUID_S_ARX_DoctorsHouse_Prison_Bard_be60f0e2-c10a-4e4c-bb80-2d096f1a49c8);
+DB_NoLowAttitudeDialog(CHARACTERGUID_S_ARX_DoctorsHouse_Prison_Jahan_6cb996a6-44f4-4a27-ab09-a45dde64051c);
+DB_NoLowAttitudeDialog(CHARACTERGUID_S_ARX_DoctorsHouse_Prison_Lizard_c2c6b104-ac72-4a36-b9f7-d91bef785ea3);
+DB_BlockThreatenedDialog(CHARACTERGUID_S_ARX_DoctorsHouse_Prison_Bard_be60f0e2-c10a-4e4c-bb80-2d096f1a49c8);
+DB_BlockThreatenedDialog(CHARACTERGUID_S_ARX_DoctorsHouse_Prison_Jahan_6cb996a6-44f4-4a27-ab09-a45dde64051c);
+DB_BlockThreatenedDialog(CHARACTERGUID_S_ARX_DoctorsHouse_Prison_Lizard_c2c6b104-ac72-4a36-b9f7-d91bef785ea3);
+
+KBSECTION
+IF
+DB_ARX_TheDoctor_Prison_SetUp(_Var1, _, _)
+THEN
+SetOnStage(_Var1, 0);
+
+PROC
+Proc_ARX_TheDoctor_Prison_SetUp()
+THEN
+SetOnStage(ITEMGUID_S_ARX_DoctorsHouse_Prison_Lizard_CorpsePile_38f246cd-0241-4781-b2be-c8b9507626c3, 0);
+
+IF
+ObjectFlagSet("RC_DW_Meistr_SourceKnowledge_Advocate_Learned", _, _)
+THEN
+SetOnStage(ITEMGUID_S_ARX_DoctorsHouse_Prison_Lizard_CorpsePile_38f246cd-0241-4781-b2be-c8b9507626c3, 1);
+
+PROC
+Proc_ARX_TheDoctor_Prison_SetUp()
+AND
+DB_IsPlayer(_Var1)
+AND
+PartyGetFlag(_Var1, "RC_DW_Meistr_SourceKnowledge_Advocate_Learned", 1)
+AND
+QueryOnlyOnce("ARX_DoctorsHouse_Prison_Lizard_CorpsePile_OnStage")
+THEN
+SetOnStage(ITEMGUID_S_ARX_DoctorsHouse_Prison_Lizard_CorpsePile_38f246cd-0241-4781-b2be-c8b9507626c3, 1);
+
+PROC
+Proc_ARX_TheDoctor_Prison_SetUp()
+AND
+DB_ARX_TheDoctor_Prison_SetUp(_Var1, _Var2, _Var3)
+AND
+_Var1 != CHARACTERGUID_S_ARX_DoctorsHouse_Prison_Jahan_6cb996a6-44f4-4a27-ab09-a45dde64051c
+AND
+GlobalGetFlag(_Var2, 0)
+THEN
+SetOnStage(_Var1, 1);
+GlobalSetFlag(_Var3);
+GlobalSetFlag("ARX_DoctorsHouse_Prison_HasPrisoners");
+
+IF
+GlobalFlagSet("ARX_TheCrash_Jahan_DisappearOutOfSight")
+AND
+DB_ARX_TheDoctor_Prison_SetUp(CHARACTERGUID_S_ARX_DoctorsHouse_Prison_Jahan_6cb996a6-44f4-4a27-ab09-a45dde64051c, _, _Var2)
+AND
+GlobalGetFlag(_Var2, 0)
+THEN
+SetOnStage(CHARACTERGUID_S_ARX_DoctorsHouse_Prison_Jahan_6cb996a6-44f4-4a27-ab09-a45dde64051c, 1);
+GlobalSetFlag(_Var2);
+GlobalSetFlag("ARX_DoctorsHouse_Prison_HasPrisoners");
+
+IF
+ObjectFlagSet("ARX_DoctorsHouse_Prison_Lizard_HasMet", (CHARACTERGUID)_Var1, _)
+AND
+UserGetFlag(_Var1, "ARX_DoctorsHouse_Prison_SpokeToPrisoner", 0)
+THEN
+UserSetFlag(_Var1, "ARX_DoctorsHouse_Prison_SpokeToPrisoner");
+UserSetFlag(_Var1, "ARX_DoctorsHouse_TheDoctor_KnowsPrisoners");
+
+IF
+ObjectFlagSet("ARX_DoctorsHouse_Prison_Bard_HasMet", (CHARACTERGUID)_Var1, _)
+AND
+UserGetFlag(_Var1, "ARX_DoctorsHouse_Prison_SpokeToPrisoner", 0)
+THEN
+UserSetFlag(_Var1, "ARX_DoctorsHouse_Prison_SpokeToPrisoner");
+UserSetFlag(_Var1, "ARX_DoctorsHouse_TheDoctor_KnowsPrisoners");
+
+IF
+ObjectFlagSet("ARX_DoctorsHouse_Prison_Jahan_HasMet", (CHARACTERGUID)_Var1, _)
+THEN
+UserSetFlag(_Var1, "ARX_DoctorsHouse_TheDoctor_KnowsPrisoners");
+
+IF
+DialogEnded("ARX_DoctorsHouse_Prison_Bard", _)
+AND
+GetClosestAlivePlayer(CHARACTERGUID_S_ARX_DoctorsHouse_Prison_Bard_be60f0e2-c10a-4e4c-bb80-2d096f1a49c8, _Var2, _)
+AND
+QueryOnlyOnce("ARX_DoctorsHouse_VB_Prison_Bard")
+THEN
+StartVoiceBark("ARX_DoctorsHouse_VB_Prison_Bard", _Var2);
+
+PROC
+ProcOneShotTriggerEntered((CHARACTERGUID)_Var1, TRIGGERGUID_S_ARX_DoctorsHouse_Basement_3ef36364-704f-4be4-a993-1ece14ae354c)
+AND
+UserGetFlag(_Var1, "ARX_DoctorsHouse_EnteredFromBelow", 0)
+THEN
+StartVoiceBark("ARX_DoctorsHouse_VB_Basement", _Var1);
+
+PROC
+ProcOneShotTriggerEntered((CHARACTERGUID)_Var1, TRIGGERGUID_S_ARX_DoctorsHouse_Basement_3ef36364-704f-4be4-a993-1ece14ae354c)
+THEN
+StartVoiceBark("ARX_DoctorsHouse_VB_Basement_Prison", _Var1);
+
+PROC
+ProcOneShotTriggerEntered((CHARACTERGUID)_Var1, TRIGGERGUID_S_ARX_DoctorsHouse_Vault_VBTrig_75704d90-ce29-4e07-b460-e6a4845301e1)
+THEN
+StartVoiceBark("ARX_DoctorsHouse_VB_Vault", _Var1);
+
+IF
+CharacterUsedItem((CHARACTERGUID)_Var1, ITEMGUID_S_ARX_DoctorsHouse_Prison_Lizard_CorpsePile_38f246cd-0241-4781-b2be-c8b9507626c3)
+AND
+PartyGetFlag(_Var1, "RC_DW_Meistr_SourceKnowledge_Advocate_Learned", 1)
+AND
+QueryOnlyOnce("ARX_DoctorsHouse_RD_AdvocatesCorpses")
+THEN
+ProcDefineReflectionDialog("ARX_DoctorsHouse_RD_AdvocatesCorpses", _Var1);
+
+IF
+StoryEvent((GUIDSTRING)_Var1, "permaLockedSet")
+AND
+GetClosestAlivePlayer(_Var1, _Var2, _)
+AND
+QueryOnlyOnce("ARX_DoctorsHouse_VB_Vault_LockedVault")
+THEN
+StartVoiceBark("ARX_DoctorsHouse_VB_Vault_LockedVault", _Var2);
+
+IF
+ItemDestroyed(ITEMGUID_S_ARX_DoctorsHouse_PrisonDoor_03_e1c4f8f7-8b1e-40de-8cc8-3431aaf88ad7)
+THEN
+ItemSetCanInteract(ITEMGUID_S_ARX_DoctorsHouse_Basement_HiddenHatch_Ent_b2671e21-f7e6-40b2-bed9-00099f98014f, 1);
+
+IF
+ItemOpened(ITEMGUID_S_ARX_DoctorsHouse_PrisonDoor_03_e1c4f8f7-8b1e-40de-8cc8-3431aaf88ad7)
+THEN
+ItemSetCanInteract(ITEMGUID_S_ARX_DoctorsHouse_Basement_HiddenHatch_Ent_b2671e21-f7e6-40b2-bed9-00099f98014f, 1);
+
+IF
+ItemClosed(ITEMGUID_S_ARX_DoctorsHouse_PrisonDoor_03_e1c4f8f7-8b1e-40de-8cc8-3431aaf88ad7)
+THEN
+ItemSetCanInteract(ITEMGUID_S_ARX_DoctorsHouse_Basement_HiddenHatch_Ent_b2671e21-f7e6-40b2-bed9-00099f98014f, 0);
+
+IF
+CharacterUsedItem(_, ITEMGUID_S_ARX_DoctorsHouse_Basement_HiddenHatch_Ext_f7365d45-2b83-499e-aedc-a12f404beda4)
+AND
+ItemIsClosed(ITEMGUID_S_ARX_DoctorsHouse_PrisonDoor_03_e1c4f8f7-8b1e-40de-8cc8-3431aaf88ad7, 1)
+THEN
+ItemUnlockAndOpen(ITEMGUID_S_ARX_DoctorsHouse_PrisonDoor_03_e1c4f8f7-8b1e-40de-8cc8-3431aaf88ad7);
+
+
+EXITSECTION
+ENDEXITSECTION
+
+ParentTargetEdge "ARX"

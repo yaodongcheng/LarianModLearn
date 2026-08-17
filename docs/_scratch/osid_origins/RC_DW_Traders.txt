@@ -1,0 +1,211 @@
+Version 1
+SubGoalCombiner SGC_AND
+
+INITSECTION
+DB_Dialogs(CHARACTERGUID_S_RC_DW_Beggar_1e45bbdf-4cba-4f27-9a0f-75f850403671, "RC_DW_Beggar");
+DB_Dialogs(CHARACTERGUID_S_RC_DW_BeggarDog_efbd54fc-86a6-4bb7-8429-418ef2f000d1, "RC_DW_BeggarDog");
+DB_Dialogs(CHARACTERGUID_S_RC_DW_Togrof_103ffc7d-fa4a-4e84-8e9c-886e21b57b40, "RC_DW_Togrof");
+DB_DW_PriceIncrease(TRIGGERGUID_S_RC_DW_PriceIncreaseDriftwood_1d9b2178-3d96-4c05-af7c-4e4601c83da9);
+DB_DW_PriceIncrease(TRIGGERGUID_S_RC_DW_PriceIncreaseUnderTavern_7aa18946-c407-4db0-bc68-0705ec4883b7);
+DB_DW_PriceIncrease(TRIGGERGUID_S_RC_DW_PriceIncreaseUpstairs_b7b20494-fd79-469d-bc2e-43050cd76b42);
+DB_ManualTradeNPC(CHARACTERGUID_S_RC_DW_Shopper2_c5cc6fc5-9a03-43d7-aef4-6b72e9bec9af);
+DB_DeadEvent(CHARACTERGUID_S_RC_DW_BeggarDog_efbd54fc-86a6-4bb7-8429-418ef2f000d1, "RC_DW_BeggarDogDead");
+DB_QuestDef_State("RC_DW_Beggar", "MetBeggar", 1);
+DB_QuestDef_State("RC_DW_Beggar", "HelpedDog", 1);
+DB_QuestDef_State("RC_DW_Beggar", "DogSick", 1);
+DB_QuestDef_State("RC_DW_Beggar", "HelpedDogNoPetpal", 1);
+DB_QuestDef_UpdateEvent("RC_DW_Beggar", "ToldPouch", "RC_DW_DogToldYouAboutMoney");
+DB_QuestDef_UpdateEvent("RC_DW_Beggar", "GotPouch", "RC_DW_StoletheBeggarsPurse");
+DB_QuestDef_State("RC_DW_Beggar", "ExtortedBeggar", -1);
+DB_QuestDef_State("RC_DW_Beggar", "GraveyardDogHint", -1);
+DB_QuestDef_State("RC_DW_Beggar", "KilledDog", -1);
+DB_QuestDef_State("RC_DW_Beggar", "CloseLeftRC", -1);
+DB_QuestDef_CloseAtRegionEnded("RC_DW_Beggar", "QuestUpdate_RC_DW_Beggar_CloseLeftRC", "RC_Main");
+DB_QuestDef_State("RC_DW_Beggar", "UnpunishBeggar", -1);
+DB_QuestDef_CloseEvent("RC_DW_Beggar", "QuestUpdate_RC_DW_Beggar_KilledDog");
+DB_QuestDef_CloseEvent("RC_DW_Beggar", "RC_DW_StoletheBeggarsPurse");
+CharacterAddGold(CHARACTERGUID_S_RC_DW_Beggar_1e45bbdf-4cba-4f27-9a0f-75f850403671, 20);
+DB_DialogMoneyTransfer(1, "RC_DW_Beggar", 1);
+DB_DialogMoneyTransfer(2, "RC_DW_Beggar", 20);
+DB_DialogMoneyTransfer(3, "RC_DW_Beggar", 5);
+DB_DialogMoneyTransfer(4, "RC_DW_Beggar", 10);
+DB_KilledEvent(CHARACTERGUID_S_RC_DW_BeggarDog_efbd54fc-86a6-4bb7-8429-418ef2f000d1, "QuestUpdate_RC_DW_Beggar_KilledDog");
+CharacterSetReactionPriority(CHARACTERGUID_S_RC_DW_BeggarDog_efbd54fc-86a6-4bb7-8429-418ef2f000d1, "Wandering", 0);
+
+KBSECTION
+IF
+ObjectFlagSet("RC_DW_ReduceAttitudeFoodTrader", (CHARACTERGUID)_Var1, _)
+THEN
+CharacterAddAttitudeTowardsPlayer(CHARACTERGUID_S_RC_DW_TraderSkill_b22c2335-d5b2-46ca-aaaf-2787c4dbc172, _Var1, -10);
+ObjectClearFlag(_Var1, "RC_DW_ReduceAttitudeFoodTrader", 0);
+
+IF
+ObjectFlagSet("RC_DW_ImproveAttitudeFoodTrader", (CHARACTERGUID)_Var1, _)
+THEN
+CharacterAddAttitudeTowardsPlayer(CHARACTERGUID_S_RC_DW_TraderSkill_b22c2335-d5b2-46ca-aaaf-2787c4dbc172, _Var1, 10);
+ObjectClearFlag(_Var1, "RC_DW_ImproveAttitudeFoodTrader", 0);
+
+PROC
+Proc_DialogFlagSetup("RC_DW_Beggar", _, (GUIDSTRING)_Var2)
+THEN
+ObjectClearFlag(_Var2, "RC_DW_CanGiveAlms", 0);
+ObjectClearFlag(_Var2, "RC_DW_CanPickpocket", 0);
+
+PROC
+Proc_DialogFlagSetup("RC_DW_Beggar", _, (CHARACTERGUID)_Var2)
+AND
+CharacterGetAbility(_Var2, "Thievery", _Var3)
+AND
+_Var3 >= 3
+THEN
+ObjectSetFlag(_Var2, "RC_DW_CanPickpocket", 0);
+
+PROC
+Proc_DialogFlagSetup("RC_DW_Beggar", _, (CHARACTERGUID)_Var2)
+THEN
+ProcEvaluateMagicPocketGold(_Var2, ">=", 1, "RC_DW_CanGiveAlms");
+
+IF
+ObjectFlagSet("RC_DW_Beggar_FailedSteal", (CHARACTERGUID)_Var1, _)
+THEN
+CharacterRegisterCrime(_Var1, "PickPocketFailed", NULL_00000000-0000-0000-0000-000000000000, CHARACTERGUID_S_RC_DW_Beggar_1e45bbdf-4cba-4f27-9a0f-75f850403671, 0);
+
+IF
+ObjectFlagSet("RC_DW_Beggar_A", (CHARACTERGUID)_Var1, _)
+AND
+DB_DialogMoneyTransfer(1, "RC_DW_Beggar", _Var3)
+AND
+IntegerProduct(_Var3, -1, _Var4)
+THEN
+ProcAddGoldToMagicPockets(_Var1, _Var4);
+CharacterAddGold(CHARACTERGUID_S_RC_DW_Beggar_1e45bbdf-4cba-4f27-9a0f-75f850403671, _Var3);
+ObjectClearFlag(_Var1, "RC_DW_Beggar_A", 0);
+
+IF
+DialogEnded("RC_DW_BeggarDog", (INTEGER)_Var1)
+AND
+DB_DialogPlayers(_Var1, _Var2, 1)
+AND
+DB_GlobalFlag("RC_DW_KillBeggarDog")
+AND
+CrimeGetNewID(_Var3)
+THEN
+CharacterDie(CHARACTERGUID_S_RC_DW_BeggarDog_efbd54fc-86a6-4bb7-8429-418ef2f000d1, 1, "DoT");
+CharacterRegisterCrime(_Var2, "KilledAnimal", CHARACTERGUID_S_RC_DW_BeggarDog_efbd54fc-86a6-4bb7-8429-418ef2f000d1, NULL_00000000-0000-0000-0000-000000000000, _Var3);
+
+IF
+DB_InRegion(_Var1, _Var2)
+AND
+DB_DW_PriceIncrease(_Var2)
+AND NOT
+DB_IsPlayer(_Var1)
+THEN
+SetTagPriceModifier(_Var1, "FOOD", 2);
+
+IF
+CharacterLeftTrigger((CHARACTERGUID)_Var1, (TRIGGERGUID)_Var2)
+AND
+DB_DW_PriceIncrease(_Var2)
+AND NOT
+QRY_RC_DW_IsInPriceIncreaseArea(_Var1)
+AND NOT
+DB_IsPlayer(_Var1)
+THEN
+SetTagPriceModifier(_Var1, "FOOD", 1);
+
+QRY
+QRY_RC_DW_IsInPriceIncreaseArea((CHARACTERGUID)_Var1)
+AND
+DB_DW_PriceIncrease(_Var2)
+AND
+ObjectIsInTrigger(_Var1, _Var2, 1)
+THEN
+DB_NOOP(0);
+
+PROC
+Proc_DialogFlagSetup(_, CHARACTERGUID_S_RC_DW_Shopper2_c5cc6fc5-9a03-43d7-aef4-6b72e9bec9af, (GUIDSTRING)_Var2)
+AND
+IsTagged(_Var2, "LIZARD", 1)
+THEN
+DB_PreventTradeBetween(CHARACTERGUID_S_RC_DW_Shopper2_c5cc6fc5-9a03-43d7-aef4-6b72e9bec9af, _Var2);
+CharacterSetCanTrade(CHARACTERGUID_S_RC_DW_Shopper2_c5cc6fc5-9a03-43d7-aef4-6b72e9bec9af, 0);
+
+IF
+DialogEnded("RC_DW_BeggarDog", _)
+AND
+DB_GlobalFlag("RC_DW_BeggarDogIsFine")
+AND
+QueryOnlyOnce("RC_DW_BeggarDogIsFine")
+THEN
+ProcCharacterDisableAllCrimes(CHARACTERGUID_S_RC_DW_BeggarDog_efbd54fc-86a6-4bb7-8429-418ef2f000d1);
+SetHasDialog(CHARACTERGUID_S_RC_DW_BeggarDog_efbd54fc-86a6-4bb7-8429-418ef2f000d1, 0);
+ProcCharacterDisappearOutOfSightToObject(CHARACTERGUID_S_RC_DW_BeggarDog_efbd54fc-86a6-4bb7-8429-418ef2f000d1, TRIGGERGUID_S_RC_GY_BeggarDogBox_1acd7bd8-d844-4889-bc59-2693a4ca4d3a, 1, "RC_DW_BeggarDog_ToGY", 0);
+
+IF
+StoryEvent(_, "RC_DW_BeggarDog_ToGY")
+THEN
+NOT DB_DeadEvent(CHARACTERGUID_S_RC_DW_BeggarDog_efbd54fc-86a6-4bb7-8429-418ef2f000d1, "RC_DW_BeggarDogDead");
+CharacterSetReactionPriority(CHARACTERGUID_S_RC_DW_BeggarDog_efbd54fc-86a6-4bb7-8429-418ef2f000d1, "Wandering", 300);
+CharacterSetReactionPriority(CHARACTERGUID_S_RC_DW_BeggarDog_efbd54fc-86a6-4bb7-8429-418ef2f000d1, "WanderVillage", 0);
+SetHasDialog(CHARACTERGUID_S_RC_DW_BeggarDog_efbd54fc-86a6-4bb7-8429-418ef2f000d1, 1);
+ProcCharacterEnableAllCrimes(CHARACTERGUID_S_RC_DW_BeggarDog_efbd54fc-86a6-4bb7-8429-418ef2f000d1);
+CharacterAppearOutOfSightToObject(CHARACTERGUID_S_RC_DW_BeggarDog_efbd54fc-86a6-4bb7-8429-418ef2f000d1, TRIGGERGUID_S_RC_GY_BeggarDogBox_1acd7bd8-d844-4889-bc59-2693a4ca4d3a, TRIGGERGUID_S_RC_DW_BeggarDogHome_c6ccfab9-b95a-4b67-98f9-8b6ae946d352, 0, "");
+
+IF
+DB_Sees(_Var1, CHARACTERGUID_S_RC_DW_BeggarDog_efbd54fc-86a6-4bb7-8429-418ef2f000d1)
+AND
+DB_Dead(CHARACTERGUID_S_RC_DW_BeggarDog_efbd54fc-86a6-4bb7-8429-418ef2f000d1)
+AND
+DB_IsPlayer(_Var1)
+THEN
+ObjectSetFlag(_Var1, "QuestUpdate_RC_DW_Beggar_KilledDog");
+
+IF
+ObjectFlagSet("RC_DW_Beggar_ExtortGold_1", (CHARACTERGUID)_Var1, _)
+AND
+DB_DialogMoneyTransfer(1, "RC_DW_Beggar", _Var3)
+AND
+IntegerProduct(_Var3, -1, _Var4)
+THEN
+ProcAddGoldToMagicPockets(_Var1, _Var3);
+CharacterAddGold(CHARACTERGUID_S_RC_DW_Beggar_1e45bbdf-4cba-4f27-9a0f-75f850403671, _Var4);
+ObjectClearFlag(_Var1, "RC_DW_Beggar_ExtortGold_1", 0);
+
+IF
+ObjectFlagSet("RC_DW_Beggar_ExtortGold_2", (CHARACTERGUID)_Var1, _)
+AND
+DB_DialogMoneyTransfer(2, "RC_DW_Beggar", _Var3)
+AND
+IntegerProduct(_Var3, -1, _Var4)
+THEN
+ProcAddGoldToMagicPockets(_Var1, _Var3);
+CharacterAddGold(CHARACTERGUID_S_RC_DW_Beggar_1e45bbdf-4cba-4f27-9a0f-75f850403671, _Var4);
+ObjectClearFlag(_Var1, "RC_DW_Beggar_ExtortGold_2", 0);
+
+IF
+ObjectFlagSet("RC_DW_Beggar_ExtortGold_3", (CHARACTERGUID)_Var1, _)
+AND
+DB_DialogMoneyTransfer(3, "RC_DW_Beggar", _Var3)
+AND
+IntegerProduct(_Var3, -1, _Var4)
+THEN
+ProcAddGoldToMagicPockets(_Var1, _Var3);
+CharacterAddGold(CHARACTERGUID_S_RC_DW_Beggar_1e45bbdf-4cba-4f27-9a0f-75f850403671, _Var4);
+ObjectClearFlag(_Var1, "RC_DW_Beggar_ExtortGold_3", 0);
+
+IF
+ObjectFlagSet("RC_DW_Beggar_ExtortGold_4", (CHARACTERGUID)_Var1, _)
+AND
+DB_DialogMoneyTransfer(4, "RC_DW_Beggar", _Var3)
+AND
+IntegerProduct(_Var3, -1, _Var4)
+THEN
+ProcAddGoldToMagicPockets(_Var1, _Var3);
+CharacterAddGold(CHARACTERGUID_S_RC_DW_Beggar_1e45bbdf-4cba-4f27-9a0f-75f850403671, _Var4);
+ObjectClearFlag(_Var1, "RC_DW_Beggar_ExtortGold_4", 0);
+
+
+EXITSECTION
+ENDEXITSECTION
+
+ParentTargetEdge "ReapersCoast"

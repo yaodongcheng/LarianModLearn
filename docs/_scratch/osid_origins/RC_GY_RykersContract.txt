@@ -1,0 +1,557 @@
+Version 1
+SubGoalCombiner SGC_AND
+
+INITSECTION
+DB_RC_GY_RykersContract_RitualGhosts(CHARACTERGUID_RC_GY_RykersRitualGhost_000_0eabc79c-7826-48d1-a049-933671a043f0, TRIGGERGUID_S_RC_GY_RykersContract_RitualGhost_InRoom_000_24c9f6f6-7e9a-42c7-a622-cf1434058646);
+DB_RC_GY_RykersContract_RitualGhosts(CHARACTERGUID_RC_GY_RykersRitualGhost_001_4ee66881-2def-4375-93e4-d5732a0097e2, TRIGGERGUID_S_RC_GY_RykersContract_RitualGhost_InRoom_001_cac3fe16-009f-4c7f-bf47-826514514023);
+DB_RC_GY_RykersContract_RitualGhosts(CHARACTERGUID_RC_GY_RykersRitualGhost_002_d222ea63-3026-405e-aee4-de7942fed1ed, TRIGGERGUID_S_RC_GY_RykersContract_RitualGhost_InRoom_002_d25ce824-d277-4a37-9379-dd4b81fe90e7);
+DB_GiveTemplateFromNpcToPlayerDialogEvent("RC_GY_RykersNote_6b4db312-fef1-4b1f-9562-70d9400eaf07", "RC_GY_RykersBodyguard_GiveNote", "RC_GY_RykersBodyguard_GaveNote");
+TriggerRegisterForCharacter(TRIGGERGUID_S_RC_GY_SUB_RykersSecretChamber_736934a1-d5ed-4eae-8f7b-18426ef78325, CHARACTERGUID_S_RC_GY_Ryker_522b8095-b539-4a82-84f3-bf8e5a74dfe4);
+SetOnStage(ITEMGUID_RC_GY_RykersNote_OnTable_576a999a-144a-41bb-a5c6-bedb66819ade, 0);
+DB_OneTimeEventFlag("RC_GY_RykersContract_Phase0th");
+DB_OneTimeEventFlag("RC_GY_RykersContract_Phase1st");
+DB_OneTimeEventFlag("RC_GY_RykersContract_Phase2nd");
+DB_OneTimeEventFlag("RC_GY_RykersContract_PhaseEmpty");
+DB_OneTimeEventFlag("RC_GY_RykersContract_PhaseInterrupted");
+DB_OneTimeEventFlag("RC_GY_RykersContract_PhaseLast");
+DB_OneTimeEventFlag("RC_GY_RykersContract_ApplySpiritVision");
+Proc_RC_GY_RykersContract_RitualGhostSetup();
+DB_RC_GY_RykersContract_ContractKnowledgeFlags("RC_GY_RykersContract_SourcererList_Start");
+DB_RC_GY_RykersContract_ContractKnowledgeFlags("RC_KnowsAssassinationContract");
+DB_RC_GY_RykersContract_ContractKnowledgeFlags("QuestUpdate_RC_GY_RykersContract_IfanAvatarKnowsRyker");
+DB_RC_GY_RykersContract_ContractKnowledgeFlags("QuestUpdate_RC_GY_RykersContract_IfanCompanionKnowsRyker");
+
+KBSECTION
+IF
+TextEventSet("ryker2")
+AND
+DB_IsPlayer(_Var1)
+THEN
+ObjectSetFlag(CHARACTERGUID_S_RC_GY_Ryker_522b8095-b539-4a82-84f3-bf8e5a74dfe4, "GaveQuest");
+ObjectSetFlag(_Var1, "QuestUpdate_RC_GY_RykersContract_GotRykersQuest");
+GlobalSetFlag("RC_GY_RykerWentToSecretChamber");
+ClearVarObject(CHARACTERGUID_S_RC_GY_Ryker_522b8095-b539-4a82-84f3-bf8e5a74dfe4, "Seat");
+ClearVarObject(CHARACTERGUID_S_RC_GY_Ryker_522b8095-b539-4a82-84f3-bf8e5a74dfe4, "SeatTrigger");
+TeleportTo(CHARACTERGUID_S_RC_GY_Ryker_522b8095-b539-4a82-84f3-bf8e5a74dfe4, TRIGGERGUID_S_RC_GY_RykersSecretChamber_RykerTeleportPoint_c9cde360-b119-4bc2-9d5a-aebb148f95c4);
+
+IF
+TextEventSet("ryker2")
+AND
+CharacterGetHostCharacter(_Var1)
+THEN
+ItemTemplateAddTo("QUEST_AtaraxianTablet_PromiseInfo_23edac9b-2517-4fd0-a068-6bc9e60d1bbc", _Var1, 1);
+
+IF
+TextEventSet("ryker_clear")
+AND
+CharacterGetHostCharacter(_Var1)
+THEN
+PartyClearFlag(_Var1, "RC_GY_RykersContract_SourcererList_Start", 0);
+PartyClearFlag(_Var1, "QuestUpdate_RC_GY_RykersContract_GotRykersQuest", 0);
+PartyClearFlag(_Var1, "QuestUpdate_RC_GY_RykersContract_IfanAvatarKnowsRyker", 0);
+PartyClearFlag(_Var1, "QuestUpdate_RC_GY_RykersContract_IfanCompanionKnowsRyker", 0);
+PartyClearFlag(_Var1, "QuestUpdate_RC_GY_RykersContract_RefusedRykersQuest", 0);
+PartyClearFlag(_Var1, "QuestUpdate_RC_GY_RykersContract_KnowsAboutBetrayal", 0);
+PartyClearFlag(_Var1, "QuestUpdate_RC_GY_RykersContract_FoundAtaraxianTablet", 0);
+PartyClearFlag(_Var1, "QuestUpdate_RC_GY_RykersContract_DeliveredAtaraxianTablet", 0);
+PartyClearFlag(_Var1, "QuestUpdate_RC_GY_RykersContract_LeaveTabletForMe", 0);
+PartyClearFlag(_Var1, "QuestUpdate_RC_GY_RykersContract_BetrayedByRyker", 0);
+PartyClearFlag(_Var1, "QuestUpdate_RC_GY_RykersContract_KilledRyker", 0);
+PartyClearFlag(_Var1, "QuestUpdate_RC_GY_RykersContract_EnteredBlackPits", 0);
+PartyClearFlag(_Var1, "QuestUpdate_RC_GY_RykersContract_EnteredCave", 0);
+PartyClearFlag(_Var1, "QuestUpdate_RC_GY_RykersContract_FoundTomb", 0);
+
+IF
+GlobalFlagSet("RC_GY_RykerDead")
+AND
+DB_IsPlayer(_Var1)
+THEN
+PartySetFlag(_Var1, "QuestUpdate_RC_GY_RykersContract_KilledRyker");
+
+IF
+ObjectFlagSet("GLO_HasAtaraxianTablet_PromiseInfo", (CHARACTERGUID)_Var1, _)
+THEN
+PartySetFlag(_Var1, "QuestUpdate_RC_GY_RykersContract_FoundAtaraxianTablet");
+
+IF
+CharacterEnteredTrigger((CHARACTERGUID)_Var1, TRIGGERGUID_S_RC_OIL_SUB_Oilfields_bdbc337d-ee81-4b3d-96f7-d291fc5b271f)
+AND
+DB_IsPlayer(_Var1)
+AND
+PartyGetFlag(_Var1, "QuestUpdate_RC_GY_RykersContract_EnteredBlackPits", 0)
+THEN
+PartySetFlag(_Var1, "QuestUpdate_RC_GY_RykersContract_EnteredBlackPits");
+
+IF
+CharacterUsedItem((CHARACTERGUID)_Var1, ITEMGUID_S_RC_OIL_OilcaveEntrance_d7ec2f5b-99bf-4a9d-a621-f31a3b1ff10b)
+THEN
+PartySetFlag(_Var1, "QuestUpdate_RC_GY_RykersContract_EnteredCave");
+
+PROC
+ProcOneShotTriggerEntered((CHARACTERGUID)_Var1, S_RC_OIL_OneShot_PuzzleRoom_5fe4cda8-4827-4adb-964b-a52811a4edbe)
+THEN
+PartySetFlag(_Var1, "QuestUpdate_RC_GY_RykersContract_FoundTomb");
+
+IF
+ObjectFlagSet("RC_GY_RykersContract_QuestRewardHack", (CHARACTERGUID)_Var1, _)
+AND
+DB_IsPlayer(_Var1)
+THEN
+ProcGiveQuestReward(_Var1, "RC_GY_RykersContract", "QuestReward");
+
+IF
+GameBookInterfaceClosed(ITEMGUID_S_RC_GY_RykerHouse_GodwokenAssassinationContract_ff0e47e4-021b-47e2-ae55-a0be648d389d, (CHARACTERGUID)_Var1)
+AND
+DB_IsPlayer(_Var1)
+THEN
+PartySetFlag(_Var1, "QuestUpdate_RC_GY_RykersContract_KnowsAboutBetrayal");
+
+IF
+GameBookInterfaceClosed((ITEMGUID)_Var1, (CHARACTERGUID)_Var2)
+AND
+GetTemplate(_Var1, "GLO_GodwokenAssassinationContract_0b88012c-9b14-409e-b50d-328d6b154781")
+AND
+DB_IsPlayer(_Var2)
+THEN
+PartySetFlag(_Var2, "RC_KnowsAssassinationContract", 0);
+
+QRY
+QRY_RC_GY_RykersContract_CheckKnowsBetrayal((CHARACTERGUID)_Var1)
+AND
+PartyGetFlag(_Var1, "RC_GY_RykersContract_SourcererList_Start", 1)
+AND
+PartyGetFlag(_Var1, "RC_KnowsAssassinationContract", 1)
+THEN
+DB_NOOP(1);
+
+QRY
+QRY_RC_GY_RykersContract_CheckKnowsBetrayal((CHARACTERGUID)_Var1)
+AND
+PartyGetFlag(_Var1, "QuestUpdate_RC_GY_RykersContract_IfanAvatarKnowsRyker", 1)
+AND
+PartyGetFlag(_Var1, "RC_KnowsAssassinationContract", 1)
+THEN
+DB_NOOP(1);
+
+QRY
+QRY_RC_GY_RykersContract_CheckKnowsBetrayal((CHARACTERGUID)_Var1)
+AND
+PartyGetFlag(_Var1, "QuestUpdate_RC_GY_RykersContract_IfanCompanionKnowsRyker", 1)
+AND
+PartyGetFlag(_Var1, "RC_KnowsAssassinationContract", 1)
+THEN
+DB_NOOP(1);
+
+IF
+ObjectFlagSet("QuestUpdate_RC_GY_RykersContract_GotRykersQuest", (CHARACTERGUID)_Var1, _)
+AND
+DB_IsPlayer(_Var1)
+AND
+PartyGetFlag(_Var1, "RC_GY_RykersContract_SourcererList_Start", 0)
+AND
+CharacterIsInPartyWith(CHARACTERGUID_S_Player_Ifan_ad9a3327-4456-42a7-9bf4-7ad60cc9e54f, _Var1, 1)
+AND
+DB_Avatars(CHARACTERGUID_S_Player_Ifan_ad9a3327-4456-42a7-9bf4-7ad60cc9e54f)
+THEN
+PartySetFlag(_Var1, "QuestUpdate_RC_GY_RykersContract_IfanAvatarKnowsRyker");
+
+IF
+ObjectFlagSet("QuestUpdate_RC_GY_RykersContract_GotRykersQuest", (CHARACTERGUID)_Var1, _)
+AND
+DB_IsPlayer(_Var1)
+AND
+PartyGetFlag(_Var1, "RC_GY_RykersContract_SourcererList_Start", 0)
+AND
+CharacterIsInPartyWith(CHARACTERGUID_S_Player_Ifan_ad9a3327-4456-42a7-9bf4-7ad60cc9e54f, _Var1, 1)
+AND NOT
+DB_Avatars(CHARACTERGUID_S_Player_Ifan_ad9a3327-4456-42a7-9bf4-7ad60cc9e54f)
+THEN
+PartySetFlag(_Var1, "QuestUpdate_RC_GY_RykersContract_IfanCompanionKnowsRyker");
+
+IF
+ObjectFlagSet((STRING)_Var1, (CHARACTERGUID)_Var2, _)
+AND
+DB_RC_GY_RykersContract_ContractKnowledgeFlags(_Var1)
+AND
+DB_IsPlayer(_Var2)
+AND
+PartyGetFlag(_Var2, "QuestUpdate_RC_GY_RykersContract_KnowsAboutBetrayal", 0)
+AND
+QRY_RC_GY_RykersContract_CheckKnowsBetrayal(_Var2)
+THEN
+PartySetFlag(_Var2, "QuestUpdate_RC_GY_RykersContract_KnowsAboutBetrayal");
+
+PROC
+Proc_RC_GY_KilledRyker((CHARACTERGUID)_Var1)
+AND
+QueryOnlyOnce("RC_GY_VB_KilledRyker")
+THEN
+StartVoiceBark("RC_GY_VB_KilledRyker", _Var1);
+
+IF
+ObjectFlagSet("QuestUpdate_RC_GY_RykersContract_DeliveredAtaraxianTablet", (CHARACTERGUID)_Var1, _)
+AND
+DB_IsPlayer(_Var1)
+AND
+QryTakeItemTemplateFromMagicPockets(_Var1, "QUEST_AtaraxianTablet_PromiseInfo_23edac9b-2517-4fd0-a068-6bc9e60d1bbc", 1, CHARACTERGUID_S_RC_GY_Ryker_522b8095-b539-4a82-84f3-bf8e5a74dfe4)
+THEN
+DB_NOOP(1);
+
+IF
+ObjectFlagSet("QuestUpdate_RC_GY_RykersContract_DeliveredAtaraxianTablet", (GUIDSTRING)_Var1, _)
+THEN
+ObjectSetFlag(CHARACTERGUID_S_RC_GY_Ryker_522b8095-b539-4a82-84f3-bf8e5a74dfe4, "ReceivedTablet");
+
+IF
+CharacterItemEvent((CHARACTERGUID)_Var1, ITEMGUID_S_RC_GY_RykersSecretChamber_LibraryLever_0eea1dc1-db92-4794-8ce3-353e5c5f61c2, "RC_GY_RykersSecretChamber_OpenLibrary")
+THEN
+StartVoiceBark("RC_GY_VB_RykersSecretChamber_Lever", _Var1);
+
+IF
+CharacterUsedItem((CHARACTERGUID)_Var1, ITEMGUID_S_RC_GY_RykersSecretChamber_LibraryDoor_889cae0e-f8c4-4f66-8b0c-77c9661e7ee5)
+AND
+DB_IsPlayer(_Var1)
+AND
+ItemIsLocked(ITEMGUID_S_RC_GY_RykersSecretChamber_LibraryDoor_889cae0e-f8c4-4f66-8b0c-77c9661e7ee5, 1)
+THEN
+StartVoiceBark("RC_GY_VB_RykersSecretChamber_LibraryDoor", _Var1);
+
+PROC
+ProcBlockLockpickItem((CHARACTERGUID)_Var1, ITEMGUID_S_RC_GY_RykersSecretChamber_LibraryDoor_889cae0e-f8c4-4f66-8b0c-77c9661e7ee5)
+AND
+DB_IsPlayer(_Var1)
+AND
+ItemIsLocked(ITEMGUID_S_RC_GY_RykersSecretChamber_LibraryDoor_889cae0e-f8c4-4f66-8b0c-77c9661e7ee5, 1)
+THEN
+DB_CustomLockpickItemResponse(_Var1, ITEMGUID_S_RC_GY_RykersSecretChamber_LibraryDoor_889cae0e-f8c4-4f66-8b0c-77c9661e7ee5, 0);
+StartVoiceBark("RC_GY_VB_RykersSecretChamber_LibraryDoor", _Var1);
+
+IF
+CharacterCharacterEvent((CHARACTERGUID)_Var1, (CHARACTERGUID)_Var2, "RC_GY_GiveRykersNote")
+AND
+DB_IsPlayer(_Var2)
+AND
+DB_RC_GY_RykersBodyguardsInRoom(_Var1)
+AND
+PartyGetFlag(_Var2, "RC_GY_GotRykersNote", 0)
+THEN
+Proc_StartDialog(0, "RC_GY_RykersBodyguard_GiveNote", _Var1, _Var2);
+PartySetFlag(_Var2, "RC_GY_GotRykersNote");
+
+IF
+CharacterLeftTrigger((CHARACTERGUID)_Var1, TRIGGERGUID_S_RC_GY_SUB_RykerHouse_GroundFloor_f685aad8-a811-4d5c-9e90-81e5a66456cc)
+AND
+QRY_AnyRegionActive()
+AND
+DB_IsPlayer(_Var1)
+AND NOT
+DB_GlobalFlag("RC_GY_RykerWentToSecretChamber")
+AND
+ObjectGetFlag(CHARACTERGUID_S_RC_GY_Ryker_522b8095-b539-4a82-84f3-bf8e5a74dfe4, "GaveQuest", 1)
+AND NOT
+QRY_RC_GY_PlayerInRykersMansion()
+AND
+ObjectGetFlag(CHARACTERGUID_S_RC_GY_Ryker_522b8095-b539-4a82-84f3-bf8e5a74dfe4, "ReceivedTablet", 0)
+THEN
+Proc_RC_GY_RykerGoToSecretChamber();
+
+QRY
+QRY_RC_GY_PlayerInRykersMansion()
+AND
+DB_IsPlayer(_Var1)
+AND
+DB_InRegion(_Var1, TRIGGERGUID_S_RC_GY_SUB_RykerHouse_GroundFloor_f685aad8-a811-4d5c-9e90-81e5a66456cc)
+THEN
+DB_NOOP(1);
+
+QRY
+QRY_RC_GY_PlayerInRykersMansion()
+AND
+DB_IsPlayer(_Var1)
+AND
+DB_InRegion(_Var1, TRIGGERGUID_S_RC_GY_SUB_RykerHouse_SecondFloor_0b11d783-9950-4ea8-9d2c-d18026d49025)
+THEN
+DB_NOOP(1);
+
+PROC
+Proc_RC_GY_RykerGoToSecretChamber()
+AND
+ObjectGetFlag(CHARACTERGUID_S_RC_GY_Ryker_522b8095-b539-4a82-84f3-bf8e5a74dfe4, "GoingToSecretChamber", 0)
+THEN
+ObjectSetFlag(CHARACTERGUID_S_RC_GY_Ryker_522b8095-b539-4a82-84f3-bf8e5a74dfe4, "GoingToSecretChamber");
+ClearVarObject(CHARACTERGUID_S_RC_GY_Ryker_522b8095-b539-4a82-84f3-bf8e5a74dfe4, "Seat");
+ClearVarObject(CHARACTERGUID_S_RC_GY_Ryker_522b8095-b539-4a82-84f3-bf8e5a74dfe4, "SeatTrigger");
+SetScriptframe(CHARACTERGUID_S_RC_GY_Ryker_522b8095-b539-4a82-84f3-bf8e5a74dfe4, "MoveToSecretChamber");
+
+IF
+GlobalFlagSet("RC_GY_RykerUnlockedHatch")
+THEN
+Proc_RC_GY_RykersContract_UnlockSecretHatch();
+ItemClearOwner(ITEMGUID_S_RC_GY_RykersSecretChamber_Hatch_e2f19559-8a6c-479b-8454-189a1dac255a);
+
+IF
+CharacterEnteredTrigger(CHARACTERGUID_S_RC_GY_Ryker_522b8095-b539-4a82-84f3-bf8e5a74dfe4, TRIGGERGUID_S_RC_GY_SUB_RykersSecretChamber_736934a1-d5ed-4eae-8f7b-18426ef78325)
+THEN
+TriggerUnregisterForCharacter(TRIGGERGUID_S_RC_GY_SUB_RykersSecretChamber_736934a1-d5ed-4eae-8f7b-18426ef78325, CHARACTERGUID_S_RC_GY_Ryker_522b8095-b539-4a82-84f3-bf8e5a74dfe4);
+GlobalSetFlag("RC_GY_RykerWentToSecretChamber");
+ObjectSetFlag(CHARACTERGUID_S_RC_GY_Ryker_522b8095-b539-4a82-84f3-bf8e5a74dfe4, "RC_GY_RykerWentToSecretChamber");
+ObjectClearFlag(CHARACTERGUID_S_RC_GY_Ryker_522b8095-b539-4a82-84f3-bf8e5a74dfe4, "GoingToSecretChamber");
+Proc_RC_GY_RykerWentToSecretChamber();
+
+PROC
+Proc_RC_GY_RykerWentToSecretChamber()
+AND
+DB_RC_GY_RykersBodyguardsInSecretChamber(_Var1, _Var2)
+THEN
+Foop(_Var1);
+SetOnStage(_Var2, 1);
+
+PROC
+Proc_RC_GY_RykerWentToSecretChamber()
+THEN
+SetOnStage(ITEMGUID_RC_GY_RykersNote_OnTable_576a999a-144a-41bb-a5c6-bedb66819ade, 1);
+
+PROC
+Proc_RC_GY_RykerWentToSecretChamber()
+AND
+DB_RC_GY_RykersBodyguardsInRoom(_Var1)
+AND NOT
+DB_Dead(_Var1)
+THEN
+ItemTemplateAddTo("RC_GY_RykersNote_6b4db312-fef1-4b1f-9562-70d9400eaf07", _Var1, 1);
+ObjectSetFlag(_Var1, "RC_GY_RykerWentToSecretChamber");
+
+IF
+CharacterCharacterEvent(CHARACTERGUID_S_RC_GY_Ryker_522b8095-b539-4a82-84f3-bf8e5a74dfe4, (CHARACTERGUID)_Var1, "RC_GY_RykersContract_RykerAsksOnSight")
+AND
+DB_IsPlayer(_Var1)
+THEN
+Proc_StartDialog(0, "RC_GY_Ryker", CHARACTERGUID_S_RC_GY_Ryker_522b8095-b539-4a82-84f3-bf8e5a74dfe4, _Var1);
+
+IF
+CharacterUsedItem(_, ITEMGUID_S_RC_GY_RykersCarpet_1b69c50c-91ee-4edd-8055-a43898acc00d)
+THEN
+ObjectSetFlag(ITEMGUID_S_RC_GY_RykersCarpet_1b69c50c-91ee-4edd-8055-a43898acc00d, "Removed");
+PlayEffect(ITEMGUID_S_RC_GY_RykersCarpet_1b69c50c-91ee-4edd-8055-a43898acc00d, "RS3_FX_GP_ScriptedEvent_RC_GY_RykersCarpe_Rollover_01");
+PlaySound(ITEMGUID_S_RC_GY_RykersCarpet_1b69c50c-91ee-4edd-8055-a43898acc00d, "SE_RC_GY_RykersCarpe_Rollover");
+TimerLaunch("RC_GY_RykersCarpet_OffStage", 500);
+PROC_LoopEffect("RS3_FX_GP_ScriptedEvent_SourceGlow_Overlay_01", ITEMGUID_S_RC_GY_RykersSecretChamber_Hatch_e2f19559-8a6c-479b-8454-189a1dac255a, "SourceInfused", "RC_Main", "");
+SetOnStage(ITEMGUID_S_RC_GY_RykersCarpetRolled_7543a9fc-c34a-4fcc-a4da-6289203145b9, 1);
+SetOnStage(ITEMGUID_S_RC_GY_RykersSecretChamber_Hatch_e2f19559-8a6c-479b-8454-189a1dac255a, 1);
+
+IF
+TimerFinished("RC_GY_RykersCarpet_OffStage")
+THEN
+SetOnStage(ITEMGUID_S_RC_GY_RykersCarpet_1b69c50c-91ee-4edd-8055-a43898acc00d, 0);
+
+IF
+CharacterUsedItem(_, ITEMGUID_TOOL_Ladder_6H_B_019_a87e5ca1-c46f-4527-bfb3-38dca09dc644)
+THEN
+Proc_RC_GY_RykersContract_UnlockSecretHatch();
+
+PROC
+Proc_RC_GY_RykersContract_UnlockSecretHatch()
+THEN
+SetOnStage(ITEMGUID_S_RC_GY_RykersCarpet_1b69c50c-91ee-4edd-8055-a43898acc00d, 0);
+SetOnStage(ITEMGUID_S_RC_GY_RykersCarpetRolled_7543a9fc-c34a-4fcc-a4da-6289203145b9, 1);
+SetOnStage(ITEMGUID_S_RC_GY_RykersSecretChamber_Hatch_e2f19559-8a6c-479b-8454-189a1dac255a, 1);
+ItemUnLock(ITEMGUID_S_RC_GY_RykersSecretChamber_Hatch_e2f19559-8a6c-479b-8454-189a1dac255a);
+PROC_StopLoopEffect(ITEMGUID_S_RC_GY_RykersSecretChamber_Hatch_e2f19559-8a6c-479b-8454-189a1dac255a, "SourceInfused");
+
+PROC
+Proc_RC_GY_RykersContract_RitualGhostSetup()
+AND
+DB_RC_GY_RykersContract_RitualGhosts(_Var1, _)
+THEN
+DB_Dialogs(_Var1, "RC_GY_RykersContract_RitualGhost");
+DB_BlockThreatenedDialog(_Var1);
+SetStoryEvent(_Var1, "RC_GY_RitualGhost_StateHide");
+
+PROC
+Proc_RC_GY_RykersContract_GhostsState0th()
+THEN
+CharacterUseSkill(CHARACTERGUID_S_RC_GY_Ryker_522b8095-b539-4a82-84f3-bf8e5a74dfe4, "Shout_SpiritVision", NULL_00000000-0000-0000-0000-000000000000, 0);
+
+PROC
+Proc_OneTimeEventFlag((CHARACTERGUID)_Var1, "RC_GY_RykersContract_ApplySpiritVision")
+AND
+DB_IsPlayer(_Var1)
+AND
+CharacterCanSee(CHARACTERGUID_S_RC_GY_Ryker_522b8095-b539-4a82-84f3-bf8e5a74dfe4, _Var1, 1)
+THEN
+ApplyStatus(_Var1, "SPIRIT_VISION", 30, 1);
+
+PROC
+Proc_RC_GY_RykersContract_GhostsState0th()
+AND NOT
+DB_GlobalFlag("RC_GY_RykerWentToSecretChamber")
+AND
+DB_RC_GY_RykersContract_RitualGhosts(_Var1, _Var2)
+THEN
+TeleportTo(_Var1, _Var2);
+CharacterLookFromTrigger(_Var1, _Var2, 0);
+
+PROC
+Proc_RC_GY_RykersContract_GhostsState0th()
+AND
+DB_RC_GY_RykersContract_RitualGhosts(_Var1, _)
+AND
+String(_Var1, _Var3)
+AND
+StringConcatenate("RC_GY_RykersContract_RykerBeam_", _Var3, _Var4)
+THEN
+ObjectSetFlag(_Var1, "RC_GY_RykersContract_RitualGhost_InUse");
+SetStoryEvent(_Var1, "RC_GY_RitualGhost_State0th");
+PROC_StopLoopBeamEffect(CHARACTERGUID_S_RC_GY_Ryker_522b8095-b539-4a82-84f3-bf8e5a74dfe4, _Var4);
+
+PROC
+Proc_RC_GY_RykersContract_GhostsState1st()
+AND
+DB_RC_GY_RykersContract_RitualGhosts(_Var1, _)
+AND
+String(_Var1, _Var3)
+AND
+StringConcatenate("RC_GY_RykersContract_RykerBeam_", _Var3, _Var4)
+THEN
+ObjectSetFlag(_Var1, "RC_GY_RykersContract_RitualGhost_InUse");
+SetStoryEvent(_Var1, "RC_GY_RitualGhost_State1st");
+PROC_LoopBeamEffect("RS3_FX_Skills_Soul_ShacklesOfPain_LinkBeam_01", CHARACTERGUID_S_RC_GY_Ryker_522b8095-b539-4a82-84f3-bf8e5a74dfe4, _Var1, "", "", _Var4, "RC_Main");
+
+PROC
+Proc_RC_GY_RykersContract_GhostsState2nd()
+AND
+DB_RC_GY_RykersContract_RitualGhosts(_Var1, _)
+THEN
+ObjectSetFlag(_Var1, "RC_GY_RykersContract_RitualGhost_InUse");
+SetStoryEvent(_Var1, "RC_GY_RitualGhost_State2nd");
+
+PROC
+Proc_OneTimeEventFlag("RC_GY_RykersContract_Phase0th")
+THEN
+Proc_RC_GY_RykersContract_GhostsState0th();
+RemoveStatus(CHARACTERGUID_S_RC_GY_Ryker_522b8095-b539-4a82-84f3-bf8e5a74dfe4, "SITTING");
+PlayAnimation(CHARACTERGUID_S_RC_GY_Ryker_522b8095-b539-4a82-84f3-bf8e5a74dfe4, "skill_prepare_voodoo_01_start", "RC_GY_RykersContract_VoodooStart");
+
+IF
+StoryEvent(CHARACTERGUID_S_RC_GY_Ryker_522b8095-b539-4a82-84f3-bf8e5a74dfe4, "RC_GY_RykersContract_VoodooStart")
+AND
+GlobalGetFlag("RC_GY_RykersContract_Ritual_Unavailable", 0)
+THEN
+CharacterSetAnimationOverride(CHARACTERGUID_S_RC_GY_Ryker_522b8095-b539-4a82-84f3-bf8e5a74dfe4, "skill_prepare_voodoo_01_loop");
+
+PROC
+Proc_OneTimeEventFlag("RC_GY_RykersContract_Phase1st")
+THEN
+Proc_RC_GY_RykersContract_GhostsState1st();
+PROC_LoopEffect("RS3_FX_Skills_Source_Prepare_Ground_01", CHARACTERGUID_S_RC_GY_Ryker_522b8095-b539-4a82-84f3-bf8e5a74dfe4, "RC_GY_RykersContract_RykerEffect", "RC_Main", "");
+
+PROC
+Proc_OneTimeEventFlag("RC_GY_RykersContract_Phase2nd")
+THEN
+Proc_RC_GY_RykersContract_GhostsState2nd();
+
+PROC
+Proc_OneTimeEventFlag("RC_GY_RykersContract_PhaseEmpty")
+THEN
+GlobalSetFlag("RC_GY_RykersContract_Ritual_Unavailable");
+
+PROC
+Proc_OneTimeEventFlag((CHARACTERGUID)_Var1, "RC_GY_RykersContract_PhaseLast")
+AND
+DB_IsPlayer(_Var1)
+THEN
+PROC_LoopBeamEffect("RS3_FX_Skills_Soul_ShacklesOfPain_LinkBeam_01", _Var1, CHARACTERGUID_S_RC_GY_Ryker_522b8095-b539-4a82-84f3-bf8e5a74dfe4, "", "", "RC_GY_RykersContract_RykerBeam", "RC_Main");
+PROC_LoopEffect("RS3_FX_GP_Status_SourceInfused_01", _Var1, "RC_GY_RykersContract_SourceInfused", "RC_Main", "");
+
+PROC
+Proc_OneTimeEventFlag("RC_GY_RykersContract_PhaseEmpty")
+AND
+DB_IsPlayer(_Var1)
+THEN
+PROC_StopLoopBeamEffect(_Var1, "RC_GY_RykersContract_RykerBeam");
+PROC_StopLoopEffect(_Var1, "RC_GY_RykersContract_SourceInfused");
+
+PROC
+Proc_OneTimeEventFlag("RC_GY_RykersContract_PhaseEmpty")
+AND
+DB_RC_GY_RykersContract_RitualGhosts(_Var1, _)
+AND
+String(_Var1, _Var3)
+AND
+StringConcatenate("RC_GY_RykersContract_RykerBeam_", _Var3, _Var4)
+THEN
+PROC_StopLoopBeamEffect(CHARACTERGUID_S_RC_GY_Ryker_522b8095-b539-4a82-84f3-bf8e5a74dfe4, _Var4);
+PlayEffect(_Var1, "RS3_FX_GP_ScriptedEvents_ARX_HorrorSleep_Arena_Resurrect_01");
+Proc_GhostHacks_GhostPoof(_Var1);
+
+PROC
+Proc_OneTimeEventFlag("RC_GY_RykersContract_PhaseEmpty")
+THEN
+CharacterSetAnimationOverride(CHARACTERGUID_S_RC_GY_Ryker_522b8095-b539-4a82-84f3-bf8e5a74dfe4, "");
+PROC_StopLoopEffect(CHARACTERGUID_S_RC_GY_Ryker_522b8095-b539-4a82-84f3-bf8e5a74dfe4, "RC_GY_RykersContract_RykerEffect");
+
+PROC
+Proc_OneTimeEventFlag("RC_GY_RykersContract_PhaseInterrupted")
+AND
+DB_IsPlayer(_Var1)
+THEN
+PROC_StopLoopBeamEffect(_Var1, "RC_GY_RykersContract_RykerBeam");
+PROC_StopLoopEffect(_Var1, "RC_GY_RykersContract_SourceInfused");
+
+PROC
+Proc_OneTimeEventFlag("RC_GY_RykersContract_PhaseInterrupted")
+THEN
+Proc_RC_GY_RykersContract_GhostsState0th();
+CharacterSetAnimationOverride(CHARACTERGUID_S_RC_GY_Ryker_522b8095-b539-4a82-84f3-bf8e5a74dfe4, "");
+PROC_StopLoopEffect(CHARACTERGUID_S_RC_GY_Ryker_522b8095-b539-4a82-84f3-bf8e5a74dfe4, "RC_GY_RykersContract_RykerEffect");
+
+PROC
+Proc_OneTimeEventFlag("RC_GY_RykersContract_PhaseInterrupted")
+AND
+DB_RC_GY_RykersContract_RitualGhosts(_Var1, _)
+THEN
+ObjectClearFlag(_Var1, "RC_GY_RykersContract_RitualGhost_InUse");
+
+QRY
+QRY_RC_GY_RykerStopAnimationOverride()
+AND
+DB_IsPlayer(_Var1)
+AND
+PartyGetFlag(_Var1, "RC_DW_Meistr_SourceKnowledge_Ryker", 1)
+THEN
+DB_NOOP(1);
+
+QRY
+QRY_RC_GY_RykerStopAnimationOverride()
+AND
+DB_IsPlayer(_Var1)
+AND
+PartyGetFlag(_Var1, "QuestUpdate_RC_GY_RykersContract_AcceptedSP", 1)
+THEN
+DB_NOOP(1);
+
+IF
+SavegameLoaded((INTEGER)_Var1, (INTEGER)_Var2, (INTEGER)_Var3, (INTEGER)_Var4)
+AND
+QRY_VersionIsOlderThan(_Var1, _Var2, _Var3, _Var4, 3, 6, 3, 0)
+AND
+QRY_RC_GY_RykerStopAnimationOverride()
+THEN
+CharacterSetAnimationOverride(S_RC_GY_Ryker_522b8095-b539-4a82-84f3-bf8e5a74dfe4, "");
+
+
+EXITSECTION
+SysClear("DB_RC_GY_RykersContract_RitualGhosts", 2);
+NOT DB_GiveTemplateFromNpcToPlayerDialogEvent("RC_GY_RykersNote_6b4db312-fef1-4b1f-9562-70d9400eaf07", "RC_GY_RykersBodyguard_GiveNote", "RC_GY_RykersBodyguard_GaveNote");
+TriggerUnregisterForCharacter(TRIGGERGUID_S_RC_GY_SUB_RykersSecretChamber_736934a1-d5ed-4eae-8f7b-18426ef78325, CHARACTERGUID_S_RC_GY_Ryker_522b8095-b539-4a82-84f3-bf8e5a74dfe4);
+NOT DB_OneTimeEventFlag("RC_GY_RykersContract_Phase0th");
+NOT DB_OneTimeEventFlag("RC_GY_RykersContract_Phase1st");
+NOT DB_OneTimeEventFlag("RC_GY_RykersContract_Phase2nd");
+NOT DB_OneTimeEventFlag("RC_GY_RykersContract_PhaseEmpty");
+NOT DB_OneTimeEventFlag("RC_GY_RykersContract_PhaseInterrupted");
+NOT DB_OneTimeEventFlag("RC_GY_RykersContract_PhaseLast");
+NOT DB_OneTimeEventFlag("RC_GY_RykersContract_ApplySpiritVision");
+SysClear("DB_RC_GY_RykersContract_ContractKnowledgeFlags", 1);
+ENDEXITSECTION
+
+ParentTargetEdge "ReapersCoast"

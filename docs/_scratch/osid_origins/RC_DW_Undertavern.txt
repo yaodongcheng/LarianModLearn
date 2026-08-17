@@ -1,0 +1,93 @@
+Version 1
+SubGoalCombiner SGC_AND
+
+INITSECTION
+ProcTriggerRegisterForPlayers(TRIGGERGUID_S_RC_DW_EnterUndertavern1_6390e17b-70ff-42e3-8c41-12e50e79080f);
+ProcTriggerRegisterForPlayers(TRIGGERGUID_S_RC_DW_EnterUndertavern2_0bada950-df41-4682-b395-cbb231d860bd);
+DB_Dialogs(S_RC_DW_UT_Sleeping_Dwarf_3ca73309-787f-49e0-a94b-2882762b2487, "RC_DW_Undertavern_SleepingDwarf");
+DB_Dialogs(CHARACTERGUID_S_RC_DW_UnderTavern_CloudUser_1a77c071-0f46-4da1-8f8a-26c1ee90aa03, "RC_DW_UnderTavern_CloudUser");
+ItemToInventory(ITEMGUID_S_RC_DW_LoharsWeddingInvitation_b1ceabe0-cf1c-4013-9c87-d05d19b74641, ITEMGUID_S_RC_DW_UnderTavern_LoharSecretCache_433484af-16c1-41ed-8d26-ee7329b7b9d2);
+
+KBSECTION
+IF
+CharacterEnteredTrigger((CHARACTERGUID)_Var1, TRIGGERGUID_S_RC_DW_EnterUndertavern2_0bada950-df41-4682-b395-cbb231d860bd)
+AND
+DB_InRegion(_Var1, TRIGGERGUID_S_RC_DW_EnterUndertavern1_6390e17b-70ff-42e3-8c41-12e50e79080f)
+AND NOT
+DB_RC_DW_WelcomedToUnderTavern(_Var1)
+THEN
+Proc_StartDialog(1, "RC_DW_AD_UnderTavern_Welcome", CHARACTERGUID_S_RC_DW_UnderTavern_Bartender_cb016e2c-2e96-4dd7-bf78-aa1fdefb5424, _Var1);
+ProcTriggerUnregisterForPlayers(TRIGGERGUID_S_RC_DW_EnterUndertavern2_0bada950-df41-4682-b395-cbb231d860bd);
+Proc_Undertavern_RegisterGreeted(_Var1);
+
+IF
+AutomatedDialogEnded("RC_DW_AD_UnderTavern_Welcome", _)
+THEN
+ProcTriggerRegisterForPlayers(TRIGGERGUID_S_RC_DW_EnterUndertavern2_0bada950-df41-4682-b395-cbb231d860bd);
+
+PROC
+Proc_Undertavern_RegisterGreeted((CHARACTERGUID)_Var1)
+AND
+DB_IsPlayer(_Var2)
+AND
+GetDistanceTo(_Var1, _Var2, _Var3)
+AND
+_Var3 < 10
+THEN
+DB_RC_DW_WelcomedToUnderTavern(_Var2);
+
+IF
+CharacterUsedItem(CHARACTERGUID_S_RC_DW_UT_Sleeping_Dwarf_3ca73309-787f-49e0-a94b-2882762b2487, ITEMGUID_S_RC_DW_Dwarven_Patron_Sleepingbag_75d3a117-eb59-4604-a1c8-436dfe8a8f30)
+THEN
+ApplyStatus(CHARACTERGUID_S_RC_DW_UT_Sleeping_Dwarf_3ca73309-787f-49e0-a94b-2882762b2487, "SLEEPING", -1);
+
+IF
+ItemDestroying(ITEMGUID_S_RC_DW_UnderTavern_LoharSecretCache_Painting_a2d6e68d-f19c-4d2a-b81c-cb9ce3827830)
+AND
+GetVarInteger(ITEMGUID_S_RC_DW_UnderTavern_LoharSecretCache_433484af-16c1-41ed-8d26-ee7329b7b9d2, "NewIsVisible", 0)
+THEN
+SetStoryEvent(ITEMGUID_S_RC_DW_UnderTavern_LoharSecretCache_433484af-16c1-41ed-8d26-ee7329b7b9d2, "RevealFromStory");
+
+IF
+ItemMoved(ITEMGUID_S_RC_DW_UnderTavern_LoharSecretCache_Painting_a2d6e68d-f19c-4d2a-b81c-cb9ce3827830)
+AND
+GetVarInteger(ITEMGUID_S_RC_DW_UnderTavern_LoharSecretCache_433484af-16c1-41ed-8d26-ee7329b7b9d2, "NewIsVisible", 0)
+THEN
+SetStoryEvent(ITEMGUID_S_RC_DW_UnderTavern_LoharSecretCache_433484af-16c1-41ed-8d26-ee7329b7b9d2, "RevealFromStory");
+
+IF
+ItemAddedToCharacter(ITEMGUID_S_RC_DW_UnderTavern_LoharSecretCache_Painting_a2d6e68d-f19c-4d2a-b81c-cb9ce3827830, _)
+AND
+GetVarInteger(ITEMGUID_S_RC_DW_UnderTavern_LoharSecretCache_433484af-16c1-41ed-8d26-ee7329b7b9d2, "NewIsVisible", 0)
+THEN
+SetStoryEvent(ITEMGUID_S_RC_DW_UnderTavern_LoharSecretCache_433484af-16c1-41ed-8d26-ee7329b7b9d2, "RevealFromStory");
+
+IF
+ItemAddedToContainer(ITEMGUID_S_RC_DW_UnderTavern_LoharSecretCache_Painting_a2d6e68d-f19c-4d2a-b81c-cb9ce3827830, _)
+AND
+GetVarInteger(ITEMGUID_S_RC_DW_UnderTavern_LoharSecretCache_433484af-16c1-41ed-8d26-ee7329b7b9d2, "NewIsVisible", 0)
+THEN
+SetStoryEvent(ITEMGUID_S_RC_DW_UnderTavern_LoharSecretCache_433484af-16c1-41ed-8d26-ee7329b7b9d2, "RevealFromStory");
+
+IF
+ItemAddedToCharacter(ITEMGUID_S_RC_DW_LoharsWeddingInvitation_b1ceabe0-cf1c-4013-9c87-d05d19b74641, (CHARACTERGUID)_Var1)
+AND
+DB_IsPlayer(_Var1)
+THEN
+GlobalSetFlag("RC_DW_LoharsWeddingInvitation_RemovedFromLohar");
+
+IF
+ItemAddedToContainer(ITEMGUID_S_RC_DW_LoharsWeddingInvitation_b1ceabe0-cf1c-4013-9c87-d05d19b74641, ITEMGUID_S_RC_DW_UnderTavern_LoharSecretCache_433484af-16c1-41ed-8d26-ee7329b7b9d2)
+THEN
+GlobalClearFlag("RC_DW_LoharsWeddingInvitation_RemovedFromLohar");
+
+IF
+ItemAddedToCharacter(ITEMGUID_S_RC_DW_LoharsWeddingInvitation_b1ceabe0-cf1c-4013-9c87-d05d19b74641, CHARACTERGUID_S_RC_DW_UnderTavern_DwarfBoss_8e58abc6-1010-4e67-97b2-b9686586e784)
+THEN
+GlobalClearFlag("RC_DW_LoharsWeddingInvitation_RemovedFromLohar");
+
+
+EXITSECTION
+ENDEXITSECTION
+
+ParentTargetEdge "ReapersCoast"

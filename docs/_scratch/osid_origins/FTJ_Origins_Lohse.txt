@@ -1,0 +1,890 @@
+Version 1
+SubGoalCombiner SGC_AND
+
+INITSECTION
+DB_OriginMomentTag("FTJ_Saheila", "LOHSE", "FTJ_Saheila_COM_Lohse");
+DB_OriginMomentTag("FTJ_Saheila", "SHAPESHIFT_LOHSE", "FTJ_Saheila_COM_Lohse");
+DB_OriginMomentTag("FTJ_Prison_JahanApprentice", "LOHSE", "FTJ_Prison_JahanApprentice_COM_Lohse");
+DB_OriginMomentTag("FTJ_Prison_JahanApprentice", "SHAPESHIFT_LOHSE", "FTJ_Prison_JahanApprentice_COM_Lohse");
+DB_OriginMomentTag("RC_BF_DemonHunter", "LOHSE", "RC_BF_DemonHunter_COM_Lohse");
+DB_OriginMomentTag("RC_BF_DemonHunter", "LOHSE_SHAPESHIFT", "RC_BF_DemonHunter_COM_Lohse");
+DB_OriginMomentTag("RC_BI_River", "LOHSE", "RC_BI_River_COM_Lohse");
+DB_OriginMomentTag("RC_LV_RiverOnBoat", "LOHSE", "RC_LV_RiverOnBoat_COM_Lohse");
+DB_OriginMomentTag("RC_LV_RiverOnBoat", "SHAPESHIFT_LOHSE", "RC_LV_RiverOnBoat_COM_Lohse");
+DB_OriginMomentTag_3SP_HighPriority("ARX_DoctorsHouse_TheDoctor", "LOHSE", "ARX_DoctorsHouse_TheDoctor_COM_Lohse");
+DB_OriginMomentTag_3SP_HighPriority("ARX_DoctorsHouse_TheDoctor", "SHAPESHIFT_LOHSE", "ARX_DoctorsHouse_TheDoctor_COM_Lohse");
+DB_OriginMomentTag_3SP("ARX_DoctorsHouse_TheDoctor", "BEAST", "ARX_DoctorsHouse_TheDoctor_COM_Beast");
+DB_OriginDialogTrigger("RC_DW_Tavern_RichMerchant", TRIGGERGUID_S_FTJ_SW_NearZillik_f19a66cf-c53e-483c-9b25-90f2f877900b);
+DB_OriginDialogTrigger("ARX_DoctorsHouse_TheDoctor", TRIGGERGUID_ARX_OMs_NearDoctor_382ac1ce-0969-4f25-90ba-dae7b1f1ec7c);
+DB_FTJ_LohseSaheilaDialog("FTJ_LohseSaheilaEvent");
+DB_FTJ_LohseSaheilaDialog("FTJ_Saheila_COM_Lohse");
+DB_OneTimeEventFlag("RC_BF_Lohse_Exorcism_FallAndGetUp");
+DB_OneTimeEventFlag("RC_BF_Lohse_Exorcism_Knockdown");
+DB_OneTimeEventFlag("RC_BF_Lohse_Exorcism_DemonEffect");
+DB_OneTimeEventFlag("RC_BF_Lohse_Exorcism_DemonEffectOff");
+DB_OrphanFlagForwarding("FTJ_Prison_JahanApprentice_DidCompanionLohseEvent");
+DB_SharedObjectFlags("GLO_Lohse_MetJahan");
+
+KBSECTION
+IF
+RegionStarted("FJ_FortJoy_Main")
+AND
+QueryOnlyOnce("FTJ_LohseInit")
+THEN
+DB_FTJ_SaheilaAllies(CHARACTERGUID_S_FTJ_SkepticSoldier_9dc4da24-9cd5-43cc-a01c-6923b59bd066);
+DB_FTJ_SaheilaAllies(CHARACTERGUID_S_FTJ_Skeptic_Elf_001_d8902155-d0e3-4dfe-b6dd-d90fd5606f50);
+DB_DeadEvent(CHARACTERGUID_S_FTJ_Saheila_fcacdf08-b05f-4333-b0e0-ddf29c13d8e0, "FTJ_Saheila_Dead");
+Proc_FTJ_Origins_Lohse_Start();
+
+IF
+ObjectFlagSet("FTJ_ElodiReturnedToCave", CHARACTERGUID_S_FTJ_ShakedownElf_c854185f-ce11-416f-b327-d692a5e3a789, _)
+AND NOT
+DB_FTJ_SaheilaAllies(CHARACTERGUID_S_FTJ_ShakedownElf_c854185f-ce11-416f-b327-d692a5e3a789)
+THEN
+DB_FTJ_SaheilaAllies(CHARACTERGUID_S_FTJ_ShakedownElf_c854185f-ce11-416f-b327-d692a5e3a789);
+
+PROC
+Proc_FTJ_Origins_Lohse_Start()
+AND
+IsTagged(CHARACTERGUID_S_Player_Lohse_bb932b13-8ebf-4ab4-aac0-83e6924e4295, "AVATAR", 0)
+THEN
+DB_DoNotFace(CHARACTERGUID_S_Player_Lohse_bb932b13-8ebf-4ab4-aac0-83e6924e4295);
+
+PROC
+Proc_FTJ_Origins_Lohse_Start()
+AND
+IsTagged(CHARACTERGUID_S_Player_Lohse_bb932b13-8ebf-4ab4-aac0-83e6924e4295, "AVATAR", 1)
+THEN
+ObjectSetFlag(CHARACTERGUID_S_Player_Lohse_bb932b13-8ebf-4ab4-aac0-83e6924e4295, "QuestUpdate_FTJ_OriginLohse_LohseWashedAshore");
+
+IF
+DialogEnded("Lohse_Recruitment", _)
+THEN
+ObjectClearFlag(CHARACTERGUID_S_Player_Lohse_bb932b13-8ebf-4ab4-aac0-83e6924e4295, "FTJ_LohsePlayPossesseddAnimation", 0);
+
+IF
+ObjectFlagCleared("FTJ_LohsePlayPossesseddAnimation", CHARACTERGUID_S_Player_Lohse_bb932b13-8ebf-4ab4-aac0-83e6924e4295, _)
+THEN
+CharacterSetAnimationOverride(CHARACTERGUID_S_Player_Lohse_bb932b13-8ebf-4ab4-aac0-83e6924e4295, "");
+
+PROC
+PROC_GLO_PartyMembers_Add(CHARACTERGUID_S_Player_Lohse_bb932b13-8ebf-4ab4-aac0-83e6924e4295, (CHARACTERGUID)_Var1)
+AND NOT
+DB_GlobalFlag("FTJ_LV_SetUp")
+THEN
+ObjectSetFlag(_Var1, "GLO_Lohse_RecruitedInFortJoy");
+
+PROC
+PROC_GLO_PartyMembers_Add(CHARACTERGUID_S_Player_Lohse_bb932b13-8ebf-4ab4-aac0-83e6924e4295, (CHARACTERGUID)_Var1)
+AND
+DB_GlobalFlag("FTJ_LV_SetUp")
+THEN
+ObjectSetFlag(_Var1, "GLO_Lohse_RecruitedInLV");
+
+IF
+DB_OriginRecruitmentLocation_Region("__Shelter", CHARACTERGUID_S_Player_Lohse_bb932b13-8ebf-4ab4-aac0-83e6924e4295, _, _)
+THEN
+NOT DB_DoNotFace(CHARACTERGUID_S_Player_Lohse_bb932b13-8ebf-4ab4-aac0-83e6924e4295);
+CharacterSetAnimationOverride(CHARACTERGUID_S_Player_Lohse_bb932b13-8ebf-4ab4-aac0-83e6924e4295, "");
+
+PROC
+PROC_GLO_PartyMembers_Add(CHARACTERGUID_S_Player_Lohse_bb932b13-8ebf-4ab4-aac0-83e6924e4295, (CHARACTERGUID)_Var1)
+AND
+ObjectGetFlag(_Var1, "QuestAdd_FTJ_COM_Lohse", 0)
+AND
+ObjectGetFlag(_Var1, "GLO_Lohse_RecruitedInFortJoy", 0)
+THEN
+ObjectSetFlag(_Var1, "QuestAdd_FTJ_COM_Lohse");
+ObjectSetFlag(_Var1, "QuestUpdate_FTJ_COM_Lohse_StartLV");
+
+PROC
+PROC_GLO_PartyMembers_Add(CHARACTERGUID_S_Player_Lohse_bb932b13-8ebf-4ab4-aac0-83e6924e4295, (CHARACTERGUID)_Var1)
+AND
+ObjectGetFlag(_Var1, "QuestAdd_FTJ_COM_Lohse", 0)
+AND NOT
+DB_GlobalFlag("FTJ_LV_SetUp")
+THEN
+ObjectSetFlag(_Var1, "QuestAdd_FTJ_COM_Lohse");
+ObjectSetFlag(_Var1, "QuestUpdate_FTJ_COM_Lohse_Start");
+
+PROC
+PROC_EndLohseSaheilaMoment()
+AND
+CharacterIsDead(CHARACTERGUID_S_FTJ_Saheila_fcacdf08-b05f-4333-b0e0-ddf29c13d8e0, 0)
+AND
+DB_IsPlayer(_Var1)
+AND
+IsTagged(_Var1, "AVATAR", 1)
+AND
+ObjectGetFlag(_Var1, "QuestAdd_FTJ_COM_Lohse", 1)
+THEN
+ObjectSetFlag(_Var1, "QuestUpdate_FTJ_COM_Lohse_Saheila_Lives");
+
+PROC
+PROC_EndLohseSaheilaMoment()
+AND
+CharacterIsDead(CHARACTERGUID_S_FTJ_Saheila_fcacdf08-b05f-4333-b0e0-ddf29c13d8e0, 1)
+AND
+DB_IsPlayer(_Var1)
+AND
+IsTagged(_Var1, "AVATAR", 1)
+AND
+ObjectGetFlag(_Var1, "QuestAdd_FTJ_COM_Lohse", 1)
+THEN
+ObjectSetFlag(_Var1, "QuestUpdate_FTJ_COM_Lohse_Saheila_Dies");
+
+IF
+SavegameLoaded((INTEGER)_Var1, (INTEGER)_Var2, (INTEGER)_Var3, (INTEGER)_Var4)
+AND
+QRY_VersionIsOlderThan(_Var1, _Var2, _Var3, _Var4, 3, 6, 0, 1)
+AND
+DB_FTJ_InLohseSaheilaEvent(1)
+THEN
+GlobalSetFlag("FTJ_LohseSaheilaEventIsActive");
+
+IF
+DialogStarted((STRING)_Var1, _)
+AND
+DB_FTJ_LohseSaheilaDialog(_Var1)
+THEN
+GlobalSetFlag("FTJ_LohseSaheilaEventIsActive");
+
+PROC
+PROC_EndLohseSaheilaMoment()
+THEN
+GlobalClearFlag("FTJ_LohseSaheilaEventIsActive");
+
+PROC
+PROC_GLOBAL_DialogStartRequested(CHARACTERGUID_S_FTJ_Saheila_fcacdf08-b05f-4333-b0e0-ddf29c13d8e0, CHARACTERGUID_S_Player_Lohse_bb932b13-8ebf-4ab4-aac0-83e6924e4295)
+AND
+GetRegion(CHARACTERGUID_S_GLO_Saheila_fcacdf08-b05f-4333-b0e0-ddf29c13d8e0, _Var1)
+AND
+_Var1 == "FJ_FortJoy_Main"
+AND
+IsTagged(CHARACTERGUID_S_Player_Lohse_bb932b13-8ebf-4ab4-aac0-83e6924e4295, "AVATAR", 1)
+AND
+QueryOnlyOnce("FTJ_OriginLohseSaheilaEvent")
+THEN
+ProcForceStopDialog(CHARACTERGUID_S_FTJ_Saheila_fcacdf08-b05f-4333-b0e0-ddf29c13d8e0);
+ProcForceStopDialog(CHARACTERGUID_S_Player_Lohse_bb932b13-8ebf-4ab4-aac0-83e6924e4295);
+Proc_StartDialog(0, "FTJ_LohseSaheilaEvent", CHARACTERGUID_S_FTJ_Saheila_fcacdf08-b05f-4333-b0e0-ddf29c13d8e0, CHARACTERGUID_S_Player_Lohse_bb932b13-8ebf-4ab4-aac0-83e6924e4295);
+Proc_LohseSaheilaEventSetUp();
+
+PROC
+Proc_LohseSaheilaEventSetUp()
+AND
+DB_IsPlayer(_Var1)
+AND
+IsTagged(_Var1, "AVATAR", 0)
+THEN
+DB_ExcludePlayerForPDD("FTJ_PDD_LohseSaheilaEvent", _Var1);
+
+IF
+ObjectFlagSet("FTJ_JoinSaheilaInCombat", CHARACTERGUID_S_Player_Lohse_bb932b13-8ebf-4ab4-aac0-83e6924e4295, _)
+AND
+DB_CompanionAvatarBond(CHARACTERGUID_S_Player_Lohse_bb932b13-8ebf-4ab4-aac0-83e6924e4295, _Var2)
+THEN
+ObjectClearFlag(CHARACTERGUID_S_Player_Lohse_bb932b13-8ebf-4ab4-aac0-83e6924e4295, "FTJ_JoinSaheilaInCombat");
+ObjectSetFlag(_Var2, "FTJ_JoinSaheilaInCombat");
+
+IF
+ObjectFlagSet("FTJ_JoinSaheilaInCombat", (CHARACTERGUID)_Var1, _)
+AND
+_Var1 != CHARACTERGUID_S_Player_Lohse_bb932b13-8ebf-4ab4-aac0-83e6924e4295
+AND
+IsTagged(CHARACTERGUID_S_Player_Lohse_bb932b13-8ebf-4ab4-aac0-83e6924e4295, "AVATAR", 0)
+THEN
+DB_FTJ_LohseSaheila_KickLohseOut(_Var1);
+
+PROC
+Proc_COMFinished("FTJ_Saheila_COM_Lohse", _)
+AND
+GetFaction(CHARACTERGUID_S_Player_Lohse_bb932b13-8ebf-4ab4-aac0-83e6924e4295, _Var2)
+AND
+DB_OriginNPCAlignment(CHARACTERGUID_S_Player_Lohse_bb932b13-8ebf-4ab4-aac0-83e6924e4295, _Var3)
+THEN
+DB_FTJ_Origins_Lohse_OriginalFaction(_Var2);
+SetFaction(CHARACTERGUID_S_Player_Lohse_bb932b13-8ebf-4ab4-aac0-83e6924e4295, _Var3);
+DB_PlayerAlignments_BlockFix(CHARACTERGUID_S_Player_Lohse_bb932b13-8ebf-4ab4-aac0-83e6924e4295);
+CharacterRemoveFromParty(CHARACTERGUID_S_Player_Lohse_bb932b13-8ebf-4ab4-aac0-83e6924e4295);
+CharacterMakeNPC(CHARACTERGUID_S_Player_Lohse_bb932b13-8ebf-4ab4-aac0-83e6924e4295);
+
+PROC
+Proc_COMFinished("FTJ_Saheila_COM_Lohse", _)
+AND
+DB_FTJ_LohseSaheila_KickLohseOut(_)
+AND
+DB_IsPlayer(_Var3)
+THEN
+ProcMakeNPCHostile(CHARACTERGUID_S_Player_Lohse_bb932b13-8ebf-4ab4-aac0-83e6924e4295, _Var3);
+
+IF
+DialogEnded("FTJ_LohseSaheilaEvent", _)
+THEN
+ProcMakeNPCHostile(CHARACTERGUID_S_FTJ_Saheila_fcacdf08-b05f-4333-b0e0-ddf29c13d8e0, CHARACTERGUID_S_Player_Lohse_bb932b13-8ebf-4ab4-aac0-83e6924e4295);
+ProcMakeNPCHostile(CHARACTERGUID_S_FTJ_SkepticSoldier_9dc4da24-9cd5-43cc-a01c-6923b59bd066, CHARACTERGUID_S_Player_Lohse_bb932b13-8ebf-4ab4-aac0-83e6924e4295);
+DB_FTJ_InLohseSaheilaEvent(1);
+DB_FTJ_OriginsLohseCombatStarted(1);
+CharacterSetImmortal(CHARACTERGUID_S_Player_Lohse_bb932b13-8ebf-4ab4-aac0-83e6924e4295, 1);
+DB_FTJ_SaheilaLohseImmortal(1);
+
+PROC
+Proc_COMFinished("FTJ_Saheila_COM_Lohse", _)
+THEN
+ProcMakeNPCHostile(CHARACTERGUID_S_FTJ_Saheila_fcacdf08-b05f-4333-b0e0-ddf29c13d8e0, CHARACTERGUID_S_Player_Lohse_bb932b13-8ebf-4ab4-aac0-83e6924e4295);
+ProcMakeNPCHostile(CHARACTERGUID_S_FTJ_SkepticSoldier_9dc4da24-9cd5-43cc-a01c-6923b59bd066, CHARACTERGUID_S_Player_Lohse_bb932b13-8ebf-4ab4-aac0-83e6924e4295);
+DB_FTJ_InLohseSaheilaEvent(1);
+DB_FTJ_OriginsLohseCombatStarted(1);
+
+PROC
+Proc_COMFinished("FTJ_Saheila_COM_Lohse", _)
+AND
+DB_IsPlayer(_Var2)
+AND
+CharacterGetAttitudeTowardsPlayer(CHARACTERGUID_S_Player_Lohse_bb932b13-8ebf-4ab4-aac0-83e6924e4295, _Var2, _Var3)
+THEN
+DB_FTJ_Saheila_PreFightAttitude(_Var2, _Var3);
+
+IF
+CombatStarted((INTEGER)_Var1)
+AND
+DB_FTJ_OriginsLohseCombatStarted(1)
+AND
+DB_FTJ_InLohseSaheilaEvent(1)
+AND
+DB_IsPlayer(_Var2)
+AND NOT
+DB_Dead(CHARACTERGUID_S_FTJ_Saheila_fcacdf08-b05f-4333-b0e0-ddf29c13d8e0)
+AND
+CombatGetIDForCharacter(_Var2, _Var1)
+AND
+CombatGetIDForCharacter(CHARACTERGUID_S_Player_Lohse_bb932b13-8ebf-4ab4-aac0-83e6924e4295, _Var1)
+THEN
+NOT DB_FTJ_OriginsLohseCombatStarted(1);
+Proc_StartDialog(1, "FTJ_AD_SaheilaLohseFightStart", CHARACTERGUID_S_FTJ_Saheila_fcacdf08-b05f-4333-b0e0-ddf29c13d8e0);
+
+IF
+GlobalFlagSet("FTJ_AmyroReturned")
+THEN
+DB_FTJ_SaheilaAllies(CHARACTERGUID_S_FTJ_ImprisonedSkeptic_792c9745-1a8d-4d63-ae4c-33927457730a);
+
+IF
+SavegameLoaded((INTEGER)_Var1, (INTEGER)_Var2, (INTEGER)_Var3, (INTEGER)_Var4)
+AND
+QRY_VersionIsOlderThan(_Var1, _Var2, _Var3, _Var4, 3, 6, 0, 1)
+AND
+DB_CurrentLevel("FJ_FortJoy_Main")
+AND
+GlobalGetFlag("FTJ_AmyroReturned", 1)
+AND
+CharacterIsDead(CHARACTERGUID_S_FTJ_ImprisonedSkeptic_792c9745-1a8d-4d63-ae4c-33927457730a, 0)
+THEN
+DB_FTJ_SaheilaAllies(CHARACTERGUID_S_FTJ_ImprisonedSkeptic_792c9745-1a8d-4d63-ae4c-33927457730a);
+
+IF
+DialogEnded("FTJ_LohseSaheilaEvent", _)
+AND
+DB_IsPlayer(_Var2)
+AND
+DB_InRegion(_Var2, TRIGGERGUID_S_FTJ_SUB_Caverns_e23bceea-0d50-44ab-98b1-260c7f483ff2)
+AND
+ObjectGetFlag(_Var2, "FTJ_JoinLohseInCombat", 1)
+THEN
+ProcMakeNPCHostile(CHARACTERGUID_S_FTJ_Saheila_fcacdf08-b05f-4333-b0e0-ddf29c13d8e0, _Var2);
+
+IF
+DialogEnded("FTJ_LohseSaheilaEvent", _)
+AND
+DB_IsPlayer(_Var2)
+AND
+DB_InRegion(_Var2, TRIGGERGUID_S_FTJ_SUB_Caverns_e23bceea-0d50-44ab-98b1-260c7f483ff2)
+AND
+ObjectGetFlag(_Var2, "FTJ_JoinSaheilaInCombat", 1)
+THEN
+ProcMakeNPCHostile(CHARACTERGUID_S_Player_Lohse_bb932b13-8ebf-4ab4-aac0-83e6924e4295, _Var2);
+
+PROC
+Proc_COMFinished("FTJ_Saheila_COM_Lohse", _)
+AND
+DB_CompanionAvatarBond(CHARACTERGUID_S_Player_Lohse_bb932b13-8ebf-4ab4-aac0-83e6924e4295, _Var2)
+AND
+DB_InRegion(_Var2, TRIGGERGUID_S_FTJ_SUB_Caverns_e23bceea-0d50-44ab-98b1-260c7f483ff2)
+AND
+ObjectGetFlag(_Var2, "FTJ_JoinLohseInCombat", 1)
+THEN
+ProcMakeNPCHostile(CHARACTERGUID_S_FTJ_Saheila_fcacdf08-b05f-4333-b0e0-ddf29c13d8e0, _Var2);
+
+IF
+ObjectLeftCombat(CHARACTERGUID_S_Player_Lohse_bb932b13-8ebf-4ab4-aac0-83e6924e4295, _)
+AND
+CharacterIsInCombat(CHARACTERGUID_S_Player_Lohse_bb932b13-8ebf-4ab4-aac0-83e6924e4295, 0)
+AND
+DB_FTJ_InLohseSaheilaEvent(1)
+THEN
+PROC_EndLohseSaheilaMoment();
+
+IF
+CharacterReceivedDamage(CHARACTERGUID_S_Player_Lohse_bb932b13-8ebf-4ab4-aac0-83e6924e4295, _, _)
+AND
+DB_FTJ_InLohseSaheilaEvent(1)
+AND
+CharacterGetHitpointsPercentage(CHARACTERGUID_S_Player_Lohse_bb932b13-8ebf-4ab4-aac0-83e6924e4295, _Var3)
+AND
+_Var3 > 50
+AND NOT
+DB_Dead(CHARACTERGUID_S_FTJ_Saheila_fcacdf08-b05f-4333-b0e0-ddf29c13d8e0)
+AND
+Random(2, 0)
+THEN
+Proc_StartDialog(1, "FTJ_AD_SaheilaLohseFightOngoing", CHARACTERGUID_S_GLO_Saheila_fcacdf08-b05f-4333-b0e0-ddf29c13d8e0);
+
+IF
+CharacterReceivedDamage(CHARACTERGUID_S_Player_Lohse_bb932b13-8ebf-4ab4-aac0-83e6924e4295, _, _)
+AND
+DB_FTJ_InLohseSaheilaEvent(1)
+AND
+CharacterGetHitpointsPercentage(CHARACTERGUID_S_Player_Lohse_bb932b13-8ebf-4ab4-aac0-83e6924e4295, _Var3)
+AND
+_Var3 <= 50
+AND
+_Var3 >= 30
+AND NOT
+DB_Dead(CHARACTERGUID_S_FTJ_Saheila_fcacdf08-b05f-4333-b0e0-ddf29c13d8e0)
+AND
+QueryOnlyOnce("FTJ_SaheilaLohseEventHalf")
+THEN
+Proc_StartDialog(1, "FTJ_AD_SaheilaLohseFightHalf", CHARACTERGUID_S_GLO_Saheila_fcacdf08-b05f-4333-b0e0-ddf29c13d8e0);
+
+IF
+CharacterReceivedDamage(CHARACTERGUID_S_Player_Lohse_bb932b13-8ebf-4ab4-aac0-83e6924e4295, _, _)
+AND
+DB_FTJ_InLohseSaheilaEvent(1)
+AND
+CharacterGetHitpointsPercentage(CHARACTERGUID_S_Player_Lohse_bb932b13-8ebf-4ab4-aac0-83e6924e4295, _Var3)
+AND
+_Var3 < 30
+AND
+CombatGetIDForCharacter(CHARACTERGUID_S_Player_Lohse_bb932b13-8ebf-4ab4-aac0-83e6924e4295, _Var4)
+THEN
+CharacterSetHitpointsPercentage(CHARACTERGUID_S_Player_Lohse_bb932b13-8ebf-4ab4-aac0-83e6924e4295, 30);
+PROC_EndLohseSaheilaMoment();
+
+IF
+CharacterDying(CHARACTERGUID_S_Player_Lohse_bb932b13-8ebf-4ab4-aac0-83e6924e4295)
+AND
+DB_FTJ_InLohseSaheilaEvent(1)
+AND
+IsTagged(CHARACTERGUID_S_Player_Lohse_bb932b13-8ebf-4ab4-aac0-83e6924e4295, "AVATAR", 0)
+THEN
+ObjectSetFlag(CHARACTERGUID_S_Player_Lohse_bb932b13-8ebf-4ab4-aac0-83e6924e4295, "FTJ_LohseFledSaheilaEvent");
+
+IF
+CharacterDied(CHARACTERGUID_S_FTJ_Saheila_fcacdf08-b05f-4333-b0e0-ddf29c13d8e0)
+AND
+DB_FTJ_InLohseSaheilaEvent(1)
+THEN
+PROC_EndLohseSaheilaMoment();
+
+IF
+CharacterDying(CHARACTERGUID_S_FTJ_Saheila_fcacdf08-b05f-4333-b0e0-ddf29c13d8e0)
+THEN
+ObjectSetFlag(S_FTJ_SkepticChild_002_7f795cf2-db7f-46b6-aa9c-f9d5eefcc789, "GEB_DontAppearAfter");
+ObjectSetFlag(S_FTJ_SkepticChild_001_780631fb-3619-4ed1-b48b-f1ff847d4183, "GEB_DontAppearAfter");
+
+PROC
+PROC_EndLohseSaheilaMoment()
+AND
+CombatGetIDForCharacter(CHARACTERGUID_S_Player_Lohse_bb932b13-8ebf-4ab4-aac0-83e6924e4295, _Var1)
+THEN
+EndCombat(_Var1);
+
+PROC
+PROC_EndLohseSaheilaMoment()
+THEN
+NOT DB_PlayerAlignments_BlockFix(CHARACTERGUID_S_Player_Lohse_bb932b13-8ebf-4ab4-aac0-83e6924e4295);
+
+PROC
+PROC_EndLohseSaheilaMoment()
+AND
+DB_FTJ_SaheilaAllies(_Var1)
+AND
+CharacterIsInCombat(_Var1, 1)
+AND
+CombatGetIDForCharacter(_Var1, _Var2)
+THEN
+NOT DB_CombatCharacters(_Var1, _Var2);
+DB_IgnoreAssault(_Var1);
+ProcObjectTimer(_Var1, "StopIgnoringAssault", 7000);
+EndCombat(_Var2);
+
+PROC
+ProcObjectTimerFinished((CHARACTERGUID)_Var1, "StopIgnoringAssault")
+THEN
+NOT DB_IgnoreAssault(_Var1);
+
+PROC
+PROC_EndLohseSaheilaMoment()
+AND
+DB_CompanionAvatarBond(CHARACTERGUID_S_Player_Lohse_bb932b13-8ebf-4ab4-aac0-83e6924e4295, _Var1)
+AND
+DB_FTJ_Origins_Lohse_OriginalFaction(_Var2)
+THEN
+CharacterMakePlayer(CHARACTERGUID_S_Player_Lohse_bb932b13-8ebf-4ab4-aac0-83e6924e4295, _Var1);
+SetFaction(CHARACTERGUID_S_Player_Lohse_bb932b13-8ebf-4ab4-aac0-83e6924e4295, _Var2);
+
+PROC
+PROC_EndLohseSaheilaMoment()
+AND
+DB_FTJ_LohseSaheila_KickLohseOut(_Var1)
+AND
+DB_Avatars(CHARACTERGUID_S_Player_Lohse_bb932b13-8ebf-4ab4-aac0-83e6924e4295)
+THEN
+CharacterMakePlayer(CHARACTERGUID_S_Player_Lohse_bb932b13-8ebf-4ab4-aac0-83e6924e4295, _Var1);
+
+PROC
+PROC_EndLohseSaheilaMoment()
+AND
+CharacterIsDead(CHARACTERGUID_S_Player_Lohse_bb932b13-8ebf-4ab4-aac0-83e6924e4295, 1)
+THEN
+DB_FTJ_Saheila_LohseDied(1);
+
+IF
+CharacterResurrected(CHARACTERGUID_S_Player_Lohse_bb932b13-8ebf-4ab4-aac0-83e6924e4295)
+AND
+DB_FTJ_Saheila_LohseDied(1)
+THEN
+NOT DB_FTJ_Saheila_LohseDied(1);
+Proc_Saheila_LohseResurrected();
+
+PROC
+Proc_Saheila_LohseResurrected()
+AND
+IsTagged(CHARACTERGUID_S_Player_Lohse_bb932b13-8ebf-4ab4-aac0-83e6924e4295, "AVATAR", 1)
+AND NOT
+QRY_IsAvailableTo(CHARACTERGUID_S_Player_Lohse_bb932b13-8ebf-4ab4-aac0-83e6924e4295, CHARACTERGUID_S_FTJ_Saheila_fcacdf08-b05f-4333-b0e0-ddf29c13d8e0)
+AND
+QueryOnlyOnce("FTJ_LohseSaheilaEventEnd_Once")
+THEN
+Proc_StartDialog(0, "FTJ_LohseSaheilaEventEnd_001", NULL_00000000-0000-0000-0000-000000000000, CHARACTERGUID_S_Player_Lohse_bb932b13-8ebf-4ab4-aac0-83e6924e4295);
+
+PROC
+Proc_Saheila_LohseResurrected()
+AND
+IsTagged(CHARACTERGUID_S_Player_Lohse_bb932b13-8ebf-4ab4-aac0-83e6924e4295, "AVATAR", 1)
+AND
+QRY_IsAvailableTo(CHARACTERGUID_S_Player_Lohse_bb932b13-8ebf-4ab4-aac0-83e6924e4295, CHARACTERGUID_S_FTJ_Saheila_fcacdf08-b05f-4333-b0e0-ddf29c13d8e0)
+AND
+QueryOnlyOnce("FTJ_LohseSaheilaEventEnd_Once")
+THEN
+Proc_StartDialog(0, "FTJ_LohseSaheilaEventEnd_001", CHARACTERGUID_S_FTJ_Saheila_fcacdf08-b05f-4333-b0e0-ddf29c13d8e0, CHARACTERGUID_S_Player_Lohse_bb932b13-8ebf-4ab4-aac0-83e6924e4295);
+
+PROC
+Proc_Saheila_LohseResurrected()
+AND
+IsTagged(CHARACTERGUID_S_Player_Lohse_bb932b13-8ebf-4ab4-aac0-83e6924e4295, "AVATAR", 0)
+THEN
+Proc_RelationshipDialog(CHARACTERGUID_S_Player_Lohse_bb932b13-8ebf-4ab4-aac0-83e6924e4295, "FTJ_Saheila_CRD_Lohse", CHARACTERGUID_S_Player_Lohse_bb932b13-8ebf-4ab4-aac0-83e6924e4295);
+
+PROC
+PROC_EndLohseSaheilaMoment()
+AND
+DB_FTJ_Saheila_PreFightAttitude(_Var1, _Var2)
+AND
+CharacterGetAttitudeTowardsPlayer(CHARACTERGUID_S_Player_Lohse_bb932b13-8ebf-4ab4-aac0-83e6924e4295, _Var1, _Var3)
+AND
+IntegerSubtract(_Var2, _Var3, _Var4)
+THEN
+NOT DB_FTJ_Saheila_PreFightAttitude(_Var1, _Var2);
+CharacterAddAttitudeTowardsPlayer(CHARACTERGUID_S_Player_Lohse_bb932b13-8ebf-4ab4-aac0-83e6924e4295, _Var1, _Var4);
+
+PROC
+PROC_EndLohseSaheilaMoment()
+AND
+CharacterIsDead(CHARACTERGUID_S_FTJ_Saheila_fcacdf08-b05f-4333-b0e0-ddf29c13d8e0, 1)
+AND
+DB_FTJ_SaheilaAllies(_Var1)
+AND
+CharacterIsDead(_Var1, 0)
+THEN
+CharacterMoveTo(_Var1, ITEMGUID_S_FTJ_CaveExit_4cc1f8d1-6961-4a18-a1cf-282b2abcc99a, 1, "GEN_GoOffStage", 2);
+
+PROC
+PROC_EndLohseSaheilaMoment()
+AND
+GetDistanceTo(CHARACTERGUID_S_Player_Lohse_bb932b13-8ebf-4ab4-aac0-83e6924e4295, CHARACTERGUID_S_FTJ_Saheila_fcacdf08-b05f-4333-b0e0-ddf29c13d8e0, _Var1)
+AND
+_Var1 > 16
+THEN
+ObjectSetFlag(CHARACTERGUID_S_Player_Lohse_bb932b13-8ebf-4ab4-aac0-83e6924e4295, "FTJ_LohseFledSaheilaEvent");
+DebugText(CHARACTERGUID_S_Player_Lohse_bb932b13-8ebf-4ab4-aac0-83e6924e4295, "FLED");
+
+IF
+CharacterSawCharacter((CHARACTERGUID)_Var1, CHARACTERGUID_S_GLO_Saheila_fcacdf08-b05f-4333-b0e0-ddf29c13d8e0)
+AND
+ObjectGetFlag(_Var1, "FTJ_LohseQueueSaheilaFollowUp", 1)
+AND
+QRY_SpeakerIsAvailable(_Var1)
+AND
+CharacterIsDead(CHARACTERGUID_S_GLO_Saheila_fcacdf08-b05f-4333-b0e0-ddf29c13d8e0, 1)
+AND
+QueryOnlyOnce("FTJ_LohseSaheilaEventEnd_Once")
+THEN
+Proc_StartDialog(0, "FTJ_LohseSaheilaEventEnd_001", NULL_00000000-0000-0000-0000-000000000000, _Var1);
+
+IF
+CharacterSawCharacter((CHARACTERGUID)_Var1, CHARACTERGUID_S_GLO_Saheila_fcacdf08-b05f-4333-b0e0-ddf29c13d8e0)
+AND
+ObjectGetFlag(_Var1, "FTJ_LohseQueueSaheilaFollowUp", 1)
+AND
+QRY_IsAvailableTo(_Var1, CHARACTERGUID_S_FTJ_Saheila_fcacdf08-b05f-4333-b0e0-ddf29c13d8e0)
+AND
+QueryOnlyOnce("FTJ_LohseSaheilaEventEnd_Once")
+THEN
+Proc_StartDialog(0, "FTJ_LohseSaheilaEventEnd_001", CHARACTERGUID_S_FTJ_Saheila_fcacdf08-b05f-4333-b0e0-ddf29c13d8e0, _Var1);
+
+IF
+DB_Chapter(CHARACTERGUID_S_Player_Lohse_bb932b13-8ebf-4ab4-aac0-83e6924e4295, 5)
+THEN
+ObjectClearFlag(CHARACTERGUID_S_Player_Lohse_bb932b13-8ebf-4ab4-aac0-83e6924e4295, "FTJ_LohseQueueSaheilaFollowUp");
+
+IF
+TextEventSet("lohsefollowup")
+AND
+CharacterGetHostCharacter(_Var1)
+THEN
+ObjectSetFlag(_Var1, "FTJ_LohseQueueSaheilaFollowUp");
+
+PROC
+PROC_EndLohseSaheilaMoment()
+AND
+IsTagged(CHARACTERGUID_S_Player_Lohse_bb932b13-8ebf-4ab4-aac0-83e6924e4295, "AVATAR", 1)
+AND NOT
+QRY_IsAvailableTo(CHARACTERGUID_S_Player_Lohse_bb932b13-8ebf-4ab4-aac0-83e6924e4295, CHARACTERGUID_S_FTJ_Saheila_fcacdf08-b05f-4333-b0e0-ddf29c13d8e0)
+AND
+ObjectGetFlag(CHARACTERGUID_S_Player_Lohse_bb932b13-8ebf-4ab4-aac0-83e6924e4295, "FTJ_LohseFledSaheilaEvent", 0)
+AND
+QueryOnlyOnce("FTJ_LohseSaheilaEventEnd_Once")
+THEN
+Proc_StartDialog(0, "FTJ_LohseSaheilaEventEnd_001", NULL_00000000-0000-0000-0000-000000000000, CHARACTERGUID_S_Player_Lohse_bb932b13-8ebf-4ab4-aac0-83e6924e4295);
+
+PROC
+PROC_EndLohseSaheilaMoment()
+AND
+IsTagged(CHARACTERGUID_S_Player_Lohse_bb932b13-8ebf-4ab4-aac0-83e6924e4295, "AVATAR", 1)
+AND
+ObjectGetFlag(CHARACTERGUID_S_Player_Lohse_bb932b13-8ebf-4ab4-aac0-83e6924e4295, "FTJ_LohseFledSaheilaEvent", 1)
+THEN
+ObjectSetFlag(CHARACTERGUID_S_Player_Lohse_bb932b13-8ebf-4ab4-aac0-83e6924e4295, "FTJ_LohseQueueSaheilaFollowUp");
+
+PROC
+PROC_EndLohseSaheilaMoment()
+AND
+IsTagged(CHARACTERGUID_S_Player_Lohse_bb932b13-8ebf-4ab4-aac0-83e6924e4295, "AVATAR", 1)
+AND
+QRY_IsAvailableTo(CHARACTERGUID_S_Player_Lohse_bb932b13-8ebf-4ab4-aac0-83e6924e4295, CHARACTERGUID_S_FTJ_Saheila_fcacdf08-b05f-4333-b0e0-ddf29c13d8e0)
+AND
+QueryOnlyOnce("FTJ_LohseSaheilaEventEnd_Once")
+THEN
+Proc_StartDialog(0, "FTJ_LohseSaheilaEventEnd_001", CHARACTERGUID_S_FTJ_Saheila_fcacdf08-b05f-4333-b0e0-ddf29c13d8e0, CHARACTERGUID_S_Player_Lohse_bb932b13-8ebf-4ab4-aac0-83e6924e4295);
+
+PROC
+PROC_EndLohseSaheilaMoment()
+AND
+IsTagged(CHARACTERGUID_S_Player_Lohse_bb932b13-8ebf-4ab4-aac0-83e6924e4295, "AVATAR", 0)
+THEN
+Proc_RelationshipDialog(CHARACTERGUID_S_Player_Lohse_bb932b13-8ebf-4ab4-aac0-83e6924e4295, "FTJ_Saheila_CRD_Lohse", CHARACTERGUID_S_Player_Lohse_bb932b13-8ebf-4ab4-aac0-83e6924e4295);
+
+PROC
+PROC_EndLohseSaheilaMoment()
+THEN
+DB_NoLowAttitudeDialog(CHARACTERGUID_S_FTJ_Saheila_fcacdf08-b05f-4333-b0e0-ddf29c13d8e0);
+DB_NoLowAttitudeDialog(CHARACTERGUID_S_FTJ_Skeptic_Elf_001_d8902155-d0e3-4dfe-b6dd-d90fd5606f50);
+DB_NoLowAttitudeDialog(CHARACTERGUID_S_FTJ_SkepticSoldier_9dc4da24-9cd5-43cc-a01c-6923b59bd066);
+NOT DB_FTJ_InLohseSaheilaEvent(1);
+
+PROC
+PROC_EndLohseSaheilaMoment()
+AND
+IsTagged(CHARACTERGUID_S_Player_Lohse_bb932b13-8ebf-4ab4-aac0-83e6924e4295, "AVATAR", 1)
+THEN
+ObjectSetFlag(CHARACTERGUID_S_Player_Lohse_bb932b13-8ebf-4ab4-aac0-83e6924e4295, "QuestAdd_FTJ_OriginLohse");
+ObjectSetFlag(CHARACTERGUID_S_Player_Lohse_bb932b13-8ebf-4ab4-aac0-83e6924e4295, "QuestUpdate_FTJ_OriginLohse_Start");
+
+IF
+DialogEnded("FTJ_LohseSaheilaEventEnd_001", _)
+AND
+IsTagged(CHARACTERGUID_S_Player_Lohse_bb932b13-8ebf-4ab4-aac0-83e6924e4295, "AVATAR", 1)
+THEN
+ProcDefineReflectionDialog("FTJ_RD_OriginLohseSaheilaEvent", CHARACTERGUID_S_Player_Lohse_bb932b13-8ebf-4ab4-aac0-83e6924e4295);
+
+IF
+DialogEnded("FTJ_LohseSaheilaEventEnd_001", _)
+AND
+DB_CompanionAvatarBond(CHARACTERGUID_S_Player_Ifan_ad9a3327-4456-42a7-9bf4-7ad60cc9e54f, CHARACTERGUID_S_Player_Lohse_bb932b13-8ebf-4ab4-aac0-83e6924e4295)
+AND
+DB_GlobalFlag("FTJ_Saheila_Dead")
+THEN
+Proc_RelationshipDialog(CHARACTERGUID_S_Player_Ifan_ad9a3327-4456-42a7-9bf4-7ad60cc9e54f, "FTJ_Saheila_ARD_Ifan", CHARACTERGUID_S_FTJ_Saheila_fcacdf08-b05f-4333-b0e0-ddf29c13d8e0);
+
+PROC
+PROC_EndLohseSaheilaMoment()
+AND
+IsTagged(CHARACTERGUID_S_Player_Lohse_bb932b13-8ebf-4ab4-aac0-83e6924e4295, "AVATAR", 0)
+AND NOT
+DB_FTJ_LohseSaheila_KickLohseOut(_)
+THEN
+StartVoiceBark("FTJ_VB_OM_SaheilaLohse_ChoseLohse", CHARACTERGUID_S_Player_Lohse_bb932b13-8ebf-4ab4-aac0-83e6924e4295);
+
+PROC
+PROC_EndLohseSaheilaMoment()
+AND
+IsTagged(CHARACTERGUID_S_Player_Lohse_bb932b13-8ebf-4ab4-aac0-83e6924e4295, "AVATAR", 0)
+AND
+DB_FTJ_LohseSaheila_KickLohseOut(_Var1)
+THEN
+StartVoiceBark("FTJ_VB_OM_SaheilaLohse_ChoseSaheila", _Var1);
+
+PROC
+PROC_EndLohseSaheilaMoment()
+THEN
+GlobalSetFlag("GLO_Lohse_SaheilaEventHappened");
+
+PROC
+PROC_EndLohseSaheilaMoment()
+AND
+DB_FTJ_LohseSaheila_KickLohseOut(_Var1)
+THEN
+NOT DB_FTJ_LohseSaheila_KickLohseOut(_Var1);
+
+PROC
+PROC_EndLohseSaheilaMoment()
+AND
+DB_FTJ_SaheilaLohseImmortal(1)
+THEN
+NOT DB_FTJ_SaheilaLohseImmortal(1);
+CharacterSetImmortal(CHARACTERGUID_S_Player_Lohse_bb932b13-8ebf-4ab4-aac0-83e6924e4295, 0);
+
+IF
+GlobalFlagSet("FTJ_COM_LohseRunToSaheila")
+THEN
+ProcCharacterMoveTo(CHARACTERGUID_S_Player_Lohse_bb932b13-8ebf-4ab4-aac0-83e6924e4295, CHARACTERGUID_S_GLO_Saheila_fcacdf08-b05f-4333-b0e0-ddf29c13d8e0, 1, "");
+
+IF
+DB_Avatars(CHARACTERGUID_S_Player_Lohse_bb932b13-8ebf-4ab4-aac0-83e6924e4295)
+THEN
+DB_OriginMomentTag("FTJ_GhettoDwarf_001", "LOHSE", "");
+
+IF
+TimerFinished("FTJ_DestroyLute")
+AND
+IsTagged(CHARACTERGUID_S_Player_Lohse_bb932b13-8ebf-4ab4-aac0-83e6924e4295, "AVATAR", 1)
+THEN
+ObjectSetFlag(CHARACTERGUID_S_Player_Lohse_bb932b13-8ebf-4ab4-aac0-83e6924e4295, "QuestAdd_FTJ_OriginLohse");
+ObjectSetFlag(CHARACTERGUID_S_Player_Lohse_bb932b13-8ebf-4ab4-aac0-83e6924e4295, "QuestUpdate_FTJ_OriginLohse_Lute");
+
+IF
+TimerFinished("FTJ_DestroyLute")
+AND
+DB_CompanionAvatarBond(_Var1, CHARACTERGUID_S_Player_Lohse_bb932b13-8ebf-4ab4-aac0-83e6924e4295)
+AND
+QueryOnlyOnce("FTJ_LohseDestroyedLute_ARD_Any")
+THEN
+Proc_RelationshipDialog(_Var1, "FTJ_LohseDestroyedLute_ARD_Any", CHARACTERGUID_S_Player_Lohse_bb932b13-8ebf-4ab4-aac0-83e6924e4295);
+
+IF
+ObjectFlagSet("FTJ_Witch_LohseDiscount", CHARACTERGUID_S_Player_Lohse_bb932b13-8ebf-4ab4-aac0-83e6924e4295, _)
+THEN
+PartySetShopPriceModifier(CHARACTERGUID_S_FTJ_SW_Witch_4014aee0-56f1-47e0-a8eb-89c4b5a1da83, CHARACTERGUID_S_Player_Lohse_bb932b13-8ebf-4ab4-aac0-83e6924e4295, 65);
+
+IF
+StoryEvent(CHARACTERGUID_S_Player_Lohse_bb932b13-8ebf-4ab4-aac0-83e6924e4295, "FTJ_DoHoEReturnRD")
+THEN
+ObjectSetFlag(CHARACTERGUID_S_Player_Lohse_bb932b13-8ebf-4ab4-aac0-83e6924e4295, "QuestUpdate_FTJ_OriginLohse_HallOfEchoes");
+
+PROC
+Proc_COMFinished("FTJ_Prison_JahanApprentice_COM_Lohse", (CHARACTERGUID)_Var1)
+THEN
+ObjectSetFlag(_Var1, "QuestUpdate_FTJ_COM_Lohse_JahanApprentice");
+
+IF
+DB_Chapter(CHARACTERGUID_S_Player_Lohse_bb932b13-8ebf-4ab4-aac0-83e6924e4295, 5)
+AND
+DB_CompanionAvatarBond(CHARACTERGUID_S_Player_Lohse_bb932b13-8ebf-4ab4-aac0-83e6924e4295, _Var1)
+THEN
+ProcObjectTimer(_Var1, "RC_LV_StartAct2_CRD_Lohse", 1000);
+
+PROC
+ProcObjectTimerFinished((CHARACTERGUID)_Var1, "RC_LV_StartAct2_CRD_Lohse")
+THEN
+Proc_RelationshipDialog(CHARACTERGUID_S_Player_Lohse_bb932b13-8ebf-4ab4-aac0-83e6924e4295, "RC_LV_StartAct2_CRD_Lohse", _Var1);
+
+IF
+ObjectFlagSet("Debug_OrigLohseDem", (CHARACTERGUID)_Var1, _)
+THEN
+ObjectClearFlag(_Var1, "Debug_OrigLohseDem");
+TeleportTo(_Var1, TRIGGERGUID_S_RC_BI_CampDemonAppearAtTree_000_f2f1b0cb-093a-4995-97c3-650370dc8b91);
+CharacterDie(S_RC_BI_AncestorTree_Blackring_001_5c413561-15bf-4cd7-8db6-f69df9bf978d, 1, "DoT");
+CharacterDie(S_RC_BI_AncestorTree_Blackring_002_ce4b11ce-0f4b-487b-a67c-4123134e1b8b, 1, "DoT");
+CharacterDie(S_RC_BI_AncestorTree_Blackring_003_ec71afef-c81f-4c56-b81d-7bc73958478d, 1, "DoT");
+CharacterDie(S_RC_BI_AncestorTree_Blackring_004_f1ca4587-d0e9-415c-a0c9-c0dd0a992748, 1, "DoT");
+ObjectSetFlag(CHARACTERGUID_S_Player_Lohse_bb932b13-8ebf-4ab4-aac0-83e6924e4295, "GLO_Lohse_MetJahan");
+GlobalSetFlag("RC_BI_AncestorTree_Awoken");
+
+IF
+ObjectFlagSet("Debug_OrigLohseDem2", (CHARACTERGUID)_Var1, _)
+THEN
+ObjectClearFlag(_Var1, "Debug_OrigLohseDem2");
+CharacterDie(S_RC_BI_AncestorTree_Blackring_001_5c413561-15bf-4cd7-8db6-f69df9bf978d, 1, "DoT");
+CharacterDie(S_RC_BI_AncestorTree_Blackring_002_ce4b11ce-0f4b-487b-a67c-4123134e1b8b, 1, "DoT");
+CharacterDie(S_RC_BI_AncestorTree_Blackring_003_ec71afef-c81f-4c56-b81d-7bc73958478d, 1, "DoT");
+CharacterDie(S_RC_BI_AncestorTree_Blackring_004_f1ca4587-d0e9-415c-a0c9-c0dd0a992748, 1, "DoT");
+ObjectSetFlag(CHARACTERGUID_S_Player_Lohse_bb932b13-8ebf-4ab4-aac0-83e6924e4295, "GLO_Lohse_MetJahan");
+GlobalSetFlag("RC_BI_AncestorTree_Awoken");
+PartySetFlag(CHARACTERGUID_S_Player_Lohse_bb932b13-8ebf-4ab4-aac0-83e6924e4295, "GLO_Lohse_KnowDemonName");
+NOT DB_OriginMomentTag("RC_BF_DemonHunter", "LOHSE", "RC_BF_DemonHunter_COM_Lohse");
+NOT DB_OriginMomentTag("RC_BF_DemonHunter", "LOHSE_SHAPESHIFT", "RC_BF_DemonHunter_COM_Lohse");
+DB_OriginMomentTag("RC_BF_DemonHunter", "LOHSE", "RC_BF_DemonHunter_COM_Lohse");
+TeleportTo(_Var1, CHARACTERGUID_S_GLO_Jahan_4d222cfd-49c8-41d3-8cb7-2a2b56232633);
+
+IF
+ObjectFlagSet("RC_DW_Meistr_FoundListOfSourcerers", CHARACTERGUID_S_Player_Lohse_bb932b13-8ebf-4ab4-aac0-83e6924e4295, _)
+THEN
+PartySetFlag(CHARACTERGUID_S_Player_Lohse_bb932b13-8ebf-4ab4-aac0-83e6924e4295, "Lohse_JahanIsSourcerer");
+
+PROC
+Proc_COMFinished("RC_BF_DemonHunter_COM_Lohse", (CHARACTERGUID)_Var1)
+AND NOT
+DB_RC_BI_AncestorTreeCOMPreReqs(1)
+THEN
+DB_RC_BI_AncestorTreeCOMPreReqs(1);
+ObjectSetFlag(CHARACTERGUID_S_Player_Lohse_bb932b13-8ebf-4ab4-aac0-83e6924e4295, "GLO_Lohse_MetJahan");
+ProcObjectTimer(_Var1, "RC_BF_JahanWarnsLohsesAvatar", 500);
+
+PROC
+ProcObjectTimerFinished((CHARACTERGUID)_Var1, "RC_BF_JahanWarnsLohsesAvatar")
+AND
+PartyGetFlag(_Var1, "GLO_Lohse_KnowDemonName", 0)
+THEN
+ObjectSetFlag(_Var1, "QuestUpdate_FTJ_COM_Lohse_MetJahan");
+
+PROC
+ProcObjectTimerFinished((CHARACTERGUID)_Var1, "RC_BF_JahanWarnsLohsesAvatar")
+AND
+PartyGetFlag(_Var1, "GLO_Lohse_KnowDemonName", 0)
+AND
+GetDistanceTo(_Var1, CHARACTERGUID_S_GLO_Jahan_4d222cfd-49c8-41d3-8cb7-2a2b56232633, _Var2)
+AND
+_Var2 < 15
+THEN
+Proc_StartDialog(0, "RC_BF_JahanWarnsLohsesAvatar", CHARACTERGUID_S_GLO_Jahan_4d222cfd-49c8-41d3-8cb7-2a2b56232633, _Var1);
+
+IF
+ObjectFlagSet("RC_BF_Jahan_QuestFinished", _, _)
+THEN
+DB_RC_BI_AncestorTreeCOMPreReqs(2);
+
+IF
+DB_RC_BI_AncestorTreeCOMPreReqs(1)
+AND
+DB_RC_BI_AncestorTreeCOMPreReqs(2)
+THEN
+DB_OriginMomentTag("RC_BF_DemonHunter", "LOHSE", "RC_BF_DemonHunter_COM_Lohse");
+DB_OriginMomentTag("RC_BF_DemonHunter", "LOHSE_SHAPESHIFT", "RC_BF_DemonHunter_COM_Lohse");
+
+IF
+ObjectFlagSet("QuestUpdate_FTJ_COM_Lohse_FailedJahanExorcism", (CHARACTERGUID)_Var1, _)
+THEN
+Proc_RelationshipDialog(CHARACTERGUID_S_Player_Lohse_bb932b13-8ebf-4ab4-aac0-83e6924e4295, "RC_BF_DemonHunter_Exorcism_CRD_Lohse", _Var1);
+
+PROC
+Proc_OneTimeEventFlag(CHARACTERGUID_S_Player_Lohse_bb932b13-8ebf-4ab4-aac0-83e6924e4295, "RC_BF_Lohse_Exorcism_FallAndGetUp")
+THEN
+SetStoryEvent(CHARACTERGUID_S_Player_Lohse_bb932b13-8ebf-4ab4-aac0-83e6924e4295, "GEN_FallAndGetUp");
+
+PROC
+Proc_OneTimeEventFlag(CHARACTERGUID_S_Player_Lohse_bb932b13-8ebf-4ab4-aac0-83e6924e4295, "RC_BF_Lohse_Exorcism_Knockdown")
+THEN
+SetStoryEvent(CHARACTERGUID_S_Player_Lohse_bb932b13-8ebf-4ab4-aac0-83e6924e4295, "GEN_FallAndLie");
+
+PROC
+Proc_OneTimeEventFlag(CHARACTERGUID_S_Player_Lohse_bb932b13-8ebf-4ab4-aac0-83e6924e4295, "RC_BF_Lohse_Exorcism_DemonEffect")
+THEN
+PROC_LoopEffect("RS3_FX_GP_ScriptedEvent_Loshe_Exorcism_01", CHARACTERGUID_S_Player_Lohse_bb932b13-8ebf-4ab4-aac0-83e6924e4295, "RC_BF_Lohse_Exorcism_DemonEffect", "RC_Main", "");
+
+PROC
+Proc_OneTimeEventFlag(CHARACTERGUID_S_Player_Lohse_bb932b13-8ebf-4ab4-aac0-83e6924e4295, "RC_BF_Lohse_Exorcism_DemonEffectOff")
+THEN
+PROC_StopLoopEffect(CHARACTERGUID_S_Player_Lohse_bb932b13-8ebf-4ab4-aac0-83e6924e4295, "RC_BF_Lohse_Exorcism_DemonEffect");
+
+PROC
+Proc_DialogFlagSetup("CoS_LV_Jahan", CHARACTERGUID_S_GLO_Jahan_4d222cfd-49c8-41d3-8cb7-2a2b56232633, (CHARACTERGUID)_Var1)
+AND
+DB_CompanionAvatarBond(CHARACTERGUID_S_Player_Lohse_bb932b13-8ebf-4ab4-aac0-83e6924e4295, _Var1)
+AND
+QueryOnlyOnce("GLO_Jahan_LohsesAvatar")
+THEN
+ObjectSetFlag(_Var1, "GLO_Jahan_LohsesAvatar");
+
+IF
+DB_Chapter(CHARACTERGUID_S_Player_Lohse_bb932b13-8ebf-4ab4-aac0-83e6924e4295, 6)
+AND
+DB_CompanionAvatarBond(CHARACTERGUID_S_Player_Lohse_bb932b13-8ebf-4ab4-aac0-83e6924e4295, _Var1)
+THEN
+ProcObjectTimer(_Var1, "CoS_LV_StartAct2m_CRD_Lohse", 1000);
+
+PROC
+ProcObjectTimerFinished((CHARACTERGUID)_Var1, "CoS_LV_StartAct2m_CRD_Lohse")
+THEN
+Proc_RelationshipDialog(CHARACTERGUID_S_Player_Lohse_bb932b13-8ebf-4ab4-aac0-83e6924e4295, "CoS_LV_StartAct2m_CRD_Lohse", _Var1);
+
+IF
+GameBookInterfaceClosed(ITEMGUID_S_CoS_BOOK_ForbiddenLibrary_001_66503ac1-b98d-43ab-8a2f-db9704bd5355, (CHARACTERGUID)_Var1)
+AND
+GetDistanceTo(_Var1, CHARACTERGUID_S_Player_Lohse_bb932b13-8ebf-4ab4-aac0-83e6924e4295, _Var2)
+AND
+_Var2 < 15
+AND
+QueryOnlyOnce("CoS_AD_Library_LohseDemonReacts")
+THEN
+Proc_StartDialog(1, "CoS_AD_Library_LohseDemonReacts", CHARACTERGUID_S_Player_Lohse_bb932b13-8ebf-4ab4-aac0-83e6924e4295);
+
+IF
+DialogStarted("ARX_LV_River", _)
+AND
+ObjectGetFlag(CHARACTERGUID_S_Player_Lohse_bb932b13-8ebf-4ab4-aac0-83e6924e4295, "ARX_LV_River_LeftLV", 0)
+AND
+PartyGetFlag(CHARACTERGUID_S_Player_Lohse_bb932b13-8ebf-4ab4-aac0-83e6924e4295, "GLO_Lohse_KnowDemonName", 1)
+AND
+QueryOnlyOnce("ARX_LV_River_Crash_COM_Lohse")
+THEN
+DB_OriginMomentTag("ARX_LV_River", "LOHSE", "ARX_LV_River_Crash_COM_Lohse");
+DB_OriginMomentTag("ARX_LV_River", "SHAPESHIFT_LOHSE", "ARX_LV_River_Crash_COM_Lohse");
+
+PROC
+Proc_ARX_TheCrash_NPCLeave()
+THEN
+NOT DB_OriginMomentTag("ARX_LV_River", "LOHSE", "ARX_LV_River_Crash_COM_Lohse");
+NOT DB_OriginMomentTag("ARX_LV_River", "SHAPESHIFT_LOHSE", "ARX_LV_River_Crash_COM_Lohse");
+
+IF
+DB_OriginMomentTag("ARX_LV_River", _, _)
+AND
+DB_OriginMoment_COMREQ_Denied(_Var3, _Var4)
+THEN
+NOT DB_OriginMoment_COMREQ_Denied(_Var3, _Var4);
+
+IF
+DB_CompanionAvatarBond(CHARACTERGUID_S_Player_Lohse_bb932b13-8ebf-4ab4-aac0-83e6924e4295, _Var1)
+THEN
+PartySetFlag(_Var1, "GLO_Lohse_InParty");
+
+PROC
+Proc_CompanionLeftParty(CHARACTERGUID_S_Player_Lohse_bb932b13-8ebf-4ab4-aac0-83e6924e4295, (CHARACTERGUID)_Var1)
+THEN
+PartyClearFlag(_Var1, "GLO_Lohse_InParty", 0);
+
+
+EXITSECTION
+ENDEXITSECTION
+
+ParentTargetEdge "Start"

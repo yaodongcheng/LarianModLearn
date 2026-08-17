@@ -1,0 +1,951 @@
+Version 1
+SubGoalCombiner SGC_AND
+
+INITSECTION
+DB_Dialogs(CHARACTERGUID_S_RC_DF_PolyServants_Cow_000_0e78c281-786d-44e8-92b3-5f28d923bf27, CHARACTERGUID_S_RC_DF_PolyServants_Cow_001_acad4053-f195-41ca-a8f6-8934389870d0, "RC_DF_PolyServants_Cows");
+DB_Ghosts(CHARACTERGUID_S_RC_DF_PolyServants_Cow_000_0e78c281-786d-44e8-92b3-5f28d923bf27, CHARACTERGUID_S_RC_DF_PolyServants_Ghost_000_4779bfa5-3d90-4160-924b-42e20cf1f6c8, "RC_DF_PolyServants_Ghost_000");
+DB_Ghosts(CHARACTERGUID_S_RC_DF_PolyServants_Cow_001_acad4053-f195-41ca-a8f6-8934389870d0, CHARACTERGUID_S_RC_DF_PolyServants_Ghost_001_46f9458f-8f6c-44ab-8f84-9bcffc432dfb, "RC_DF_PolyServants_Ghost_001");
+ProcTriggerRegisterForPlayers(TRIGGERGUID_S_RC_DF_PolyServants_Potion_Box_cf5c937e-45bd-4e08-a0e2-5d3d62edb183);
+ProcTriggerRegisterForPlayers(TRIGGERGUID_S_RC_DF_PolyServants_AreaBox_b81e0eeb-7a1d-4b02-9b69-9ca05f2a6b2e);
+DB_OneShot_VoiceBarkTrigger(TRIGGERGUID_S_RC_DF_PolyServants_WitchHouseVB_Box_81719396-7c40-406b-a184-630247f5620c, "RC_DF_VB_PolyServants_EnterWitchHouse");
+DB_Dialogs(CHARACTERGUID_S_RC_BF_PolyServants_BurningWitch_73ffd67d-1536-41eb-b96d-be3c03515913, "RC_BF_PolyServants_BurningWitch");
+DB_Ghosts(CHARACTERGUID_S_RC_BF_PolyServants_DeadMagister_5fa42220-3f81-4809-88e2-ec3666523148, CHARACTERGUID_S_RC_BF_PolyServants_DeadMagister_Ghost_d1dc5c8c-3a75-4da9-90e2-5a31e855cc26, "RC_BF_PolyServants_MagisterGhost");
+DB_Dialogs(CHARACTERGUID_S_RC_DF_PolyServant_WitchPet_Frog_932c9fb3-cb8c-4b8a-bb1c-b5f1e5131ea0, "RC_DF_PolyServants_WitchPet");
+DB_Dialogs(CHARACTERGUID_S_RC_DF_PolyServant_WitchPet_GiantFrog_fdbc8e5a-2e1b-490d-b2fb-7ddef0aa82b6, "RC_DF_PolyServants_WitchGiantPet");
+ProcTriggerRegisterForPlayers(TRIGGERGUID_S_RC_DF_PolyServants_GiantFrog_WanderBox_a0c3baeb-a630-4876-be50-570454b77939);
+DB_RC_DF_PolyLovers(CHARACTERGUID_S_RC_DF_PolyServants_Cow_000_0e78c281-786d-44e8-92b3-5f28d923bf27, CHARACTERGUID_S_RC_DF_PolyServants_Human_000_1c244f6b-5e25-482d-9c9d-7aea865997ce, "RC_DF_PolyLovers_ChooseCow_000");
+DB_RC_DF_PolyLovers(CHARACTERGUID_S_RC_DF_PolyServants_Cow_001_acad4053-f195-41ca-a8f6-8934389870d0, CHARACTERGUID_S_RC_DF_PolyServants_Human_001_9b3e065c-ec45-4d91-9130-cfed833ae8d7, "RC_DF_PolyLovers_ChooseCow_001");
+DB_RC_DF_PolyLovers_Dialogs(CHARACTERGUID_S_RC_DF_PolyServants_Cow_000_0e78c281-786d-44e8-92b3-5f28d923bf27, "RC_DF_PolyServants_Cow_000", "RC_DF_AD_PolyServants_BackIntoHumanForm", "RC_DF_PolyLovers_IsCow_000");
+DB_RC_DF_PolyLovers_Dialogs(CHARACTERGUID_S_RC_DF_PolyServants_Cow_001_acad4053-f195-41ca-a8f6-8934389870d0, "RC_DF_PolyServants_Cow_001", "RC_DF_AD_PolyServants_BackIntoHumanForm_001", "RC_DF_PolyLovers_IsCow_001");
+DB_RC_DF_PolyLovers_MarketPoints(CHARACTERGUID_S_RC_DF_PolyServants_Human_000_1c244f6b-5e25-482d-9c9d-7aea865997ce, TRIGGERGUID_S_RC_DF_PolyServants_Market_Point_000_d9a86ed4-ccaa-4961-a6b7-246f9225e661);
+DB_RC_DF_PolyLovers_MarketPoints(CHARACTERGUID_S_RC_DF_PolyServants_Human_001_9b3e065c-ec45-4d91-9130-cfed833ae8d7, TRIGGERGUID_S_RC_DF_PolyServants_Market_Point_001_67093d57-4ace-4b9a-a16d-4bd1b499bdbc);
+DB_RC_DF_PolyLovers_Rewards("RC_DF_PolyLovers_ChooseCow_000", "QuestUpdate_RC_DF_PolyLovers_GavePotionTo000", "QuestUpdate_RC_DF_PolyLovers_GavePotionTo000WithReward");
+DB_RC_DF_PolyLovers_Rewards("RC_DF_PolyLovers_ChooseCow_001", "QuestUpdate_RC_DF_PolyLovers_GavePotionTo001", "QuestUpdate_RC_DF_PolyLovers_GavePotionTo001WithReward");
+DB_RC_DF_PolyLovers_OneCowFlags("QuestUpdate_RC_DF_PolyLovers_GavePotionTo000WithReward", "QuestUpdate_RC_DF_PolyLovers_TrueCheck");
+DB_RC_DF_PolyLovers_OneCowFlags("QuestUpdate_RC_DF_PolyLovers_GavePotionTo001WithReward", "QuestUpdate_RC_DF_PolyLovers_TrueCheck");
+DB_RC_DF_PolyLovers_OneCowFlags("QuestUpdate_RC_DF_PolyLovers_GavePotionTo000", "QuestUpdate_RC_DF_PolyLovers_TrueCheck");
+DB_RC_DF_PolyLovers_OneCowFlags("QuestUpdate_RC_DF_PolyLovers_GavePotionTo001", "QuestUpdate_RC_DF_PolyLovers_TrueCheck");
+DB_RC_DF_PolyLovers_OneCowFlags("QuestUpdate_RC_DF_PolyLovers_CowsAreOK", "QuestUpdate_RC_DF_PolyLovers_False");
+DB_RC_DF_PolyLovers_OneCowFlags("QuestUpdate_RC_DF_PolyLovers_CowsAreDead", "QuestUpdate_RC_DF_PolyLovers_False");
+DB_RC_DF_PolyLovers_OneCowFlags("QuestUpdate_RC_DF_PolyLovers_CowsFled", "QuestUpdate_RC_DF_PolyLovers_False");
+DB_RC_DF_PolyLovers_OneCowFlags("QuestUpdate_RC_DF_PolyLovers_SavedCows", "QuestUpdate_RC_DF_PolyLovers_False");
+Proc_RC_DF_PolyLovers_SetUpCrimes();
+GlobalSetFlag("RC_DF_PolyLovers_IsCow_000");
+GlobalSetFlag("RC_DF_PolyLovers_IsCow_001");
+DB_HasStoryEvent(ITEMGUID_S_RC_DF_UNIQUE_QUEST_LOOT_WitchEye_000_b5085e49-620e-4200-8453-10a7c270a4a2, "QuestUpdate_RC_DF_PolyLovers_HasWitchIngredient");
+SetOnStage(CHARACTERGUID_S_RC_DF_PolyServants_Human_000_1c244f6b-5e25-482d-9c9d-7aea865997ce, 0);
+SetOnStage(CHARACTERGUID_S_RC_DF_PolyServants_Human_001_9b3e065c-ec45-4d91-9130-cfed833ae8d7, 0);
+DB_Dialogs(CHARACTERGUID_S_RC_DF_PolyServants_Human_000_1c244f6b-5e25-482d-9c9d-7aea865997ce, "RC_DF_PolyServants_Human_000");
+DB_Dialogs(CHARACTERGUID_S_RC_DF_PolyServants_Human_001_9b3e065c-ec45-4d91-9130-cfed833ae8d7, "RC_DF_PolyServants_Human_001");
+DB_DeadEvent(CHARACTERGUID_S_RC_DF_PolyServants_Cow_000_0e78c281-786d-44e8-92b3-5f28d923bf27, "RC_DF_PolyLovers_CowIsDead_000");
+DB_DeadEvent(CHARACTERGUID_S_RC_DF_PolyServants_Cow_001_acad4053-f195-41ca-a8f6-8934389870d0, "RC_DF_PolyLovers_CowIsDead_001");
+DB_DeadEvent(CHARACTERGUID_S_RC_DF_PolyServants_Human_000_1c244f6b-5e25-482d-9c9d-7aea865997ce, "RC_DF_PolyLovers_CowIsDead_000");
+DB_DeadEvent(CHARACTERGUID_S_RC_DF_PolyServants_Human_001_9b3e065c-ec45-4d91-9130-cfed833ae8d7, "RC_DF_PolyLovers_CowIsDead_001");
+DB_RC_DF_PolyServants_BookEntries(0, 0, "RC_DF_WitchPotion_NoTag");
+DB_RC_DF_PolyServants_BookEntries(0, 1, "RC_DF_WitchPotion_NoScholar");
+DB_RC_DF_PolyServants_BookEntries(1, 0, "RC_DF_WitchPotion_NoMystic");
+DB_RC_DF_PolyServants_BookEntries(1, 1, "RC_DF_WitchPotion_AllTags");
+DB_RC_DF_PolyServants_PreviousBookEntry("RC_DF_WitchPotion_NoTag");
+AddEntryToCustomBook("RC_DF_WitchPotion_Base", "RC_DF_WitchPotion_NoTag");
+DB_Dialogs(CHARACTERGUID_S_RC_DF_PolyServants_WarningRat_d25f7881-0093-46f2-be22-5b891e9a16ad, "RC_DF_PolyServants_WarningRat");
+ProcTriggerRegisterForPlayers(TRIGGERGUID_S_RC_DF_PolyServants_WarningRat_Leave_Box_cc627786-d2f3-4956-91dc-33ae998d010f);
+ProcTriggerRegisterForPlayers(TRIGGERGUID_S_RC_DF_PolyServants_WarningRat_Spawn_Box_69fa14de-edab-49a9-a499-de76c0f1ba9d);
+DB_OneShotPlayerTrigger(TRIGGERGUID_S_RC_DF_PolyServants_WarningRat_Leave_Box_cc627786-d2f3-4956-91dc-33ae998d010f);
+DB_OneShotPlayerTrigger(TRIGGERGUID_S_RC_DF_RatCurse_SpotRatsVB_Box_cab47530-28a7-4d42-b7fd-17a9fe413746);
+ProcTriggerRegisterForPlayers(TRIGGERGUID_S_RC_DF_PolyServants_SpotChest_Box_e1e2408e-dd68-4a3d-83ac-bb21b97dd65a);
+TriggerRegisterForCharacter(TRIGGERGUID_S_RC_DF_WitchHouse_FirstFloor_7ffa27f8-69e4-4d3f-b9ef-d6cbb1d151a8, CHARACTERGUID_S_RC_DF_PolyServants_WarningRat_d25f7881-0093-46f2-be22-5b891e9a16ad);
+DB_ShovelArea(TRIGGERGUID_S_RC_DF_PolyServants_ForestPile_Box_20e146e8-3457-4db0-aa82-ec19ce38621e, "RC_DF_PolyServants_RewardChestPile", ITEMGUID_S_RC_DF_PolyServants_ForestPile_f79e93d3-1741-45c4-a812-b004f4705f74);
+DB_ShovelRewardItemAppear("RC_DF_PolyServants_RewardChestPile", ITEMGUID_S_RC_DF_PolyServants_Chest_da945b31-6982-43ea-b9f8-97380258dbbc, TRIGGERGUID_S_RC_DF_PolyServants_Chest_Point_c1a181f9-ad21-494b-bb66-de789f530f81);
+DB_RC_BF_BurningWitchTotems(CHARACTERGUID_S_RC_BF_BurningWitch_Totem_01_168d8a19-e90b-4dcc-be3e-b98b7da07b5c, 100);
+DB_RC_BF_BurningWitchTotems(CHARACTERGUID_S_RC_BF_BurningWitch_Totem_02_91799d68-50b2-493a-a48e-bd8068aa5c5f, 400);
+DB_RC_BF_BurningWitchTotems(CHARACTERGUID_S_RC_BF_BurningWitch_Totem_03_ab60ce8a-119c-4c12-881b-cd84307f7cc5, 1100);
+DB_RC_BF_BurningWitchTotems(CHARACTERGUID_S_RC_BF_BurningWitch_Totem_04_c5c19581-d90e-457b-a96e-0bcb9b9a8a9e, 700);
+DB_RC_BF_BurningWitchTotems(CHARACTERGUID_S_RC_BF_BurningWitch_Totem_05_5b1c3f94-5617-49e1-9f48-b40b387d828a, 300);
+
+KBSECTION
+IF
+TextEventSet("DestroyPolyPotion")
+THEN
+ItemDestroy(ITEMGUID_S_RC_DF_PolyServants_Potion_15cd395c-1c9d-42ee-8d8f-666df4688e27);
+
+IF
+TextEventSet("SavePolyCow")
+AND
+DB_RC_DF_PolyLovers(_Var1, _Var2, _Var3)
+AND
+DB_RC_DF_PolyLovers_Dialogs(_Var1, _, _Var5, _Var6)
+AND
+GetPosition(_Var1, _Var7, _Var8, _Var9)
+THEN
+GlobalSetFlag("RC_DF_PolyLovers_HumanWillComeBack");
+GlobalClearFlag(_Var6);
+NOT DB_RC_DF_PolyLovers(_Var1, _Var2, _Var3);
+DB_RC_DF_PolyLovers_Humans(_Var2);
+Poof(_Var1);
+TeleportToPosition(_Var2, _Var7, _Var8, _Var9, "", 0);
+SetOnStage(_Var2, 1);
+Proc_StartDialog(1, _Var5, _Var2);
+
+IF
+ObjectEnteredCombat(S_RC_BF_PolyServants_BurningWitch_73ffd67d-1536-41eb-b96d-be3c03515913, _)
+AND
+QueryOnlyOnce("RC_BF_CombatSave_BurningWitch")
+THEN
+AutoSave();
+
+IF
+DB_RC_BF_BurningWitchTotems(_Var1, _)
+THEN
+SetOnStage(_Var1, 0);
+
+IF
+CharacterCharacterEvent(CHARACTERGUID_S_RC_BF_PolyServants_BurningWitch_73ffd67d-1536-41eb-b96d-be3c03515913, (CHARACTERGUID)_Var1, "RC_BF_PolyServants_WitchSpot")
+THEN
+Proc_StartDialog(0, "RC_BF_PolyServants_BurningWitch", CHARACTERGUID_S_RC_BF_PolyServants_BurningWitch_73ffd67d-1536-41eb-b96d-be3c03515913, _Var1);
+
+IF
+DialogEnded("RC_BF_PolyServants_BurningWitch", (INTEGER)_Var1)
+THEN
+SetFaction(CHARACTERGUID_S_RC_BF_PolyServants_BurningWitch_73ffd67d-1536-41eb-b96d-be3c03515913, "Evil NPC");
+Proc_RC_BF_BurningTurnedAggro();
+
+PROC
+Proc_RC_BF_BurningTurnedAggro()
+AND
+QueryOnlyOnce("RC_BF_BurningWitchAttacks")
+AND
+DB_RC_BF_BurningWitchTotems(_Var1, _Var2)
+THEN
+ProcObjectTimer(_Var1, "RC_BF_BurningWitch_Totems", _Var2);
+
+PROC
+ProcObjectTimerFinished((CHARACTERGUID)_Var1, "RC_BF_BurningWitch_Totems")
+THEN
+ApplyStatus(_Var1, "SUMMONING_ABILITY", -1);
+CharacterAppear(_Var1, 1, "");
+
+IF
+CharacterDied(CHARACTERGUID_S_RC_BF_PolyServants_BurningWitch_73ffd67d-1536-41eb-b96d-be3c03515913)
+AND
+DB_RC_BF_BurningWitchTotems(_Var1, _)
+THEN
+CharacterDie(_Var1, 0, "DoT");
+
+IF
+CharacterDied((CHARACTERGUID)_Var1)
+AND
+DB_RC_BF_BurningWitchTotems(_Var1, _Var2)
+THEN
+NOT DB_RC_BF_BurningWitchTotems(_Var1, _Var2);
+SetOnStage(_Var1, 0);
+
+IF
+CharacterReceivedDamage(CHARACTERGUID_S_RC_BF_PolyServants_BurningWitch_73ffd67d-1536-41eb-b96d-be3c03515913, _, _)
+AND NOT
+DB_OnlyOnce("RC_BF_BurningWitchAttacks")
+THEN
+SetFaction(CHARACTERGUID_S_RC_BF_PolyServants_BurningWitch_73ffd67d-1536-41eb-b96d-be3c03515913, "Evil NPC");
+Proc_RC_BF_BurningTurnedAggro();
+
+IF
+CharacterSawCharacter((CHARACTERGUID)_Var1, CHARACTERGUID_S_RC_BF_PolyServants_BurningWitch_73ffd67d-1536-41eb-b96d-be3c03515913)
+AND
+DB_IsPlayer(_Var1)
+AND
+DB_Dead(CHARACTERGUID_S_RC_BF_PolyServants_BurningWitch_73ffd67d-1536-41eb-b96d-be3c03515913)
+THEN
+Proc_RC_DF_SawWitchCorpse(_Var1);
+
+IF
+CharacterDied(CHARACTERGUID_S_RC_BF_PolyServants_BurningWitch_73ffd67d-1536-41eb-b96d-be3c03515913)
+AND
+DB_IsPlayer(_Var1)
+AND
+CharacterCanSee(_Var1, CHARACTERGUID_S_RC_BF_PolyServants_BurningWitch_73ffd67d-1536-41eb-b96d-be3c03515913, 1)
+THEN
+Proc_RC_DF_SawWitchCorpse(_Var1);
+
+PROC
+Proc_RC_DF_SawWitchCorpse((CHARACTERGUID)_Var1)
+THEN
+UserSetFlag(_Var1, "RC_DF_SawWitchCorpse");
+
+PROC
+Proc_RC_DF_SawWitchCorpse((CHARACTERGUID)_Var1)
+AND
+UserGetFlag(_Var1, "QuestUpdate_RC_DF_PolyLovers_KnowsAboutWitch", 1)
+THEN
+UserSetFlag(_Var1, "QuestUpdate_RC_DF_PolyLovers_SawWitch");
+
+IF
+CharacterEnteredTrigger((CHARACTERGUID)_Var1, TRIGGERGUID_S_RC_DF_WitchHouse_FirstFloor_7ffa27f8-69e4-4d3f-b9ef-d6cbb1d151a8)
+THEN
+UserSetFlag(_Var1, "RC_DF_PolyServants_EnteredWitchHouse");
+
+IF
+ItemAddedToCharacter(ITEMGUID_S_RC_DF_UNIQUE_QUEST_LOOT_WitchEye_000_b5085e49-620e-4200-8453-10a7c270a4a2, (CHARACTERGUID)_Var1)
+AND
+DB_IsPlayer(_Var1)
+AND
+QueryOnlyOnce("RC_DF_AD_PolyServants_PickUpUniqueIng")
+AND
+DB_InRegion(_Var1, TRIGGERGUID_S_RC_DF_WitchHouse_FirstFloor_7ffa27f8-69e4-4d3f-b9ef-d6cbb1d151a8)
+THEN
+Proc_StartDialog(1, "RC_DF_AD_PolyServants_PickUpUniqueIng", _Var1);
+
+IF
+ItemTemplateAddedToCharacter(QUEST_CON_Potion_Large_WitchPotion_1d7bfc5d-7548-48d6-b7ff-35e81c44a2ca, (ITEMGUID)_Var1, (CHARACTERGUID)_Var2)
+AND
+DB_IsPlayer(_Var2)
+AND
+CharacterGetReservedUserID(_Var2, _Var3)
+AND
+GetUserProfileID(_Var3, _Var4)
+AND
+DB_RC_DF_PolyServants_PotionAdded(_Var5, _Var4)
+AND
+_Var1 != _Var5
+THEN
+UserSetFlag(_Var2, "QuestUpdate_RC_DF_PolyLovers_HasSecondPotion");
+
+IF
+ItemTemplateAddedToCharacter(QUEST_CON_Potion_Large_WitchPotion_1d7bfc5d-7548-48d6-b7ff-35e81c44a2ca, (ITEMGUID)_Var1, (CHARACTERGUID)_Var2)
+AND
+DB_IsPlayer(_Var2)
+AND
+CharacterGetReservedUserID(_Var2, _Var3)
+AND
+GetUserProfileID(_Var3, _Var4)
+AND NOT
+DB_RC_DF_PolyServants_PotionAdded(_Var1, _Var4)
+THEN
+DB_RC_DF_PolyServants_PotionAdded(_Var1, _Var4);
+UserSetFlag(_Var2, "QuestUpdate_RC_DF_PolyLovers_HasPotion");
+
+IF
+CharacterUsedItemTemplate((CHARACTERGUID)_Var1, "QUEST_CON_Potion_Large_WitchPotion_1d7bfc5d-7548-48d6-b7ff-35e81c44a2ca", _)
+AND
+CharacterIsPlayer(_Var1, 1)
+AND
+QRY_RC_DF_PolyLovers_PotionWasDrank()
+THEN
+Proc_StartDialog(1, "RC_DF_AD_PolyServants_DrinkPotion", _Var1);
+UserSetFlag(_Var1, "QuestUpdate_RC_DF_PolyLovers_DrankPotion");
+
+IF
+CharacterUsedItemTemplate((CHARACTERGUID)_Var1, "QUEST_CON_Potion_Large_WitchPotion_1d7bfc5d-7548-48d6-b7ff-35e81c44a2ca", _)
+AND
+CharacterIsPlayer(_Var1, 1)
+AND NOT
+QRY_RC_DF_PolyLovers_PotionWasDrank()
+THEN
+Proc_StartDialog(1, "RC_DF_AD_PolyServants_DrinkPotion", _Var1);
+UserSetFlag(_Var1, "QuestUpdate_RC_DF_PolyLovers_DrankFirstPotion");
+
+IF
+ItemDestroyed(ITEMGUID_S_RC_DF_PolyServants_Potion_15cd395c-1c9d-42ee-8d8f-666df4688e27)
+THEN
+GlobalSetFlag("RC_DF_PolyLovers_NoPotionLeft");
+
+IF
+CharacterEnteredTrigger((CHARACTERGUID)_Var1, TRIGGERGUID_S_RC_DF_PolyServants_Potion_Box_cf5c937e-45bd-4e08-a0e2-5d3d62edb183)
+AND
+ObjectExists(ITEMGUID_S_RC_DF_PolyServants_Potion_15cd395c-1c9d-42ee-8d8f-666df4688e27, 0)
+AND
+ObjectExists(ITEMGUID_S_RC_DF_UNIQUE_QUEST_LOOT_WitchEye_000_b5085e49-620e-4200-8453-10a7c270a4a2, 0)
+AND
+ItemTemplateIsInUserInventory(_Var1, "QUEST_CON_Potion_Large_WitchPotion_1d7bfc5d-7548-48d6-b7ff-35e81c44a2ca", 0, _Var2)
+AND
+_Var2 == 0
+THEN
+UserSetFlag(_Var1, "QuestUpdate_RC_DF_PolyLovers_NoPotionLeft");
+
+IF
+CharacterUsedItemTemplate((CHARACTERGUID)_Var1, "QUEST_CON_Potion_Large_WitchPotion_1d7bfc5d-7548-48d6-b7ff-35e81c44a2ca", _)
+AND
+HasActiveStatus(_Var1, "COW", 1)
+THEN
+RemoveStatus(_Var1, "COW");
+
+IF
+CharacterUsedItemTemplate((CHARACTERGUID)_Var1, "QUEST_CON_Potion_Health_WitchPotion_Masked_Huge_A_e87b2b86-88db-4524-ae5e-a2bc5e46e387", _)
+AND
+HasActiveStatus(_Var1, "COW", 1)
+THEN
+RemoveStatus(_Var1, "COW");
+
+IF
+ObjectFlagSet((STRING)_Var1, (GUIDSTRING)_Var2, _)
+AND
+DB_QuestDef_CloseEvent("RC_DF_PolyLovers", _Var1)
+THEN
+GlobalSetFlag("RC_DF_PolyLovers_QuestEnded");
+
+IF
+ObjectFlagSet((STRING)_Var1, (CHARACTERGUID)_Var2, (INTEGER)_Var3)
+AND
+DB_RC_DF_PolyLovers(_Var4, _Var5, _Var1)
+AND
+DB_DialogPlayers(_Var3, _Var2, _)
+AND
+QRY_RC_DF_PolyLovers_SetQuestFlags(_Var2, _Var1)
+THEN
+DB_RC_DF_PolyLovers_TransformAfterDialog(_Var4, _Var3, _Var2);
+Proc_RC_DF_PolyLovers_CheckCloseQuest(_Var4, _Var2);
+Proc_RC_DF_PolyLovers_ConsumePotion(_Var4, _Var2);
+
+IF
+ObjectFlagSet((STRING)_Var1, (CHARACTERGUID)_Var2, (INTEGER)_Var3)
+AND
+DB_RC_DF_PolyLovers_LeftCow(_Var4, _Var5, _Var1)
+AND
+DB_DialogPlayers(_Var3, _Var2, _)
+AND
+QRY_RC_DF_PolyLovers_SetQuestFlags(_Var2, _Var1)
+THEN
+DB_RC_DF_PolyLovers_TransformAfterDialog(_Var4, _Var3, _Var2);
+Proc_RC_DF_PolyLovers_CheckCloseQuest(_Var4, _Var2);
+Proc_RC_DF_PolyLovers_ConsumePotion(_Var4, _Var2);
+
+QRY
+QRY_RC_DF_PolyLovers_SetQuestFlags((CHARACTERGUID)_Var1, (STRING)_Var2)
+AND
+ObjectGetFlag(_Var1, "RC_DF_PolyLovers_PersuasionSuccess", 1)
+AND
+DB_RC_DF_PolyLovers_Rewards(_Var2, _, _Var4)
+THEN
+UserSetFlag(_Var1, _Var4);
+
+QRY
+QRY_RC_DF_PolyLovers_SetQuestFlags((CHARACTERGUID)_Var1, (STRING)_Var2)
+AND
+ObjectGetFlag(_Var1, "RC_DF_PolyLovers_PersuasionSuccess", 0)
+AND
+DB_RC_DF_PolyLovers_Rewards(_Var2, _Var3, _)
+THEN
+UserSetFlag(_Var1, _Var3);
+
+PROC
+Proc_RC_DF_PolyLovers_CheckCloseQuest((CHARACTERGUID)_Var1, (CHARACTERGUID)_Var2)
+AND
+DB_RC_DF_PolyLovers_LeftCow(_Var1, _, _)
+THEN
+UserSetFlag(_Var2, "QuestUpdate_RC_DF_PolyLovers_SavedCows");
+GlobalSetFlag("RC_DF_PolyServants_CowsOK");
+
+PROC
+Proc_RC_DF_PolyLovers_CheckCloseQuest((CHARACTERGUID)_Var1, (CHARACTERGUID)_Var2)
+AND NOT
+DB_RC_DF_PolyLovers_LeftCow(_Var1, _, _)
+AND
+UserGetFlag(_Var2, "RC_DF_PolyLovers_ChooseCow_000", 1)
+AND
+UserGetFlag(_Var2, "RC_DF_PolyLovers_ChooseCow_001", 1)
+THEN
+UserSetFlag(_Var2, "QuestUpdate_RC_DF_PolyLovers_SavedCows");
+GlobalSetFlag("RC_DF_PolyServants_CowsOK");
+
+PROC
+Proc_RC_DF_PolyLovers_CheckCloseQuest((CHARACTERGUID)_Var1, (CHARACTERGUID)_Var2)
+AND
+GlobalGetFlag("RC_DF_PolyServants_CowsOK", 0)
+AND
+QRY_RC_DF_PolyLovers_PotionWasDrank()
+THEN
+UserSetFlag(_Var2, "QuestUpdate_RC_DF_PolyLovers_DrankPotion");
+
+QRY
+QRY_RC_DF_PolyLovers_PotionWasDrank()
+AND
+DB_IsPlayer(_Var1)
+AND
+UserGetFlag(_Var1, "QuestUpdate_RC_DF_PolyLovers_DrankFirstPotion", 1)
+THEN
+DB_NOOP(1);
+
+PROC
+Proc_RC_DF_PolyLovers_ConsumePotion((CHARACTERGUID)_Var1, (CHARACTERGUID)_Var2)
+THEN
+PlayAnimation(_Var1, "use_eat");
+ApplyStatus(_Var1, "CONSUME", 2);
+
+PROC
+Proc_RC_DF_PolyLovers_ConsumePotion((CHARACTERGUID)_Var1, (CHARACTERGUID)_Var2)
+THEN
+ItemTemplateRemoveFromUser("QUEST_CON_Potion_Large_WitchPotion_1d7bfc5d-7548-48d6-b7ff-35e81c44a2ca", _Var2, 1);
+CharacterAddAttitudeTowardsPlayer(_Var1, _Var2, 100);
+
+IF
+DialogEnded(_, (INTEGER)_Var2)
+AND
+DB_RC_DF_PolyLovers_TransformAfterDialog(_Var3, _Var2, _Var4)
+THEN
+NOT DB_RC_DF_PolyLovers_TransformAfterDialog(_Var3, _Var2, _Var4);
+Proc_RC_DF_PolyLovers_TransformBack(_Var3, _Var4);
+Proc_RC_DF_PolyLovers_RemoveCowGhost(_Var3);
+
+PROC
+Proc_RC_DF_PolyLovers_TransformBack((CHARACTERGUID)_Var1, (GUIDSTRING)_Var2)
+AND
+DB_RC_DF_PolyLovers_LeftCow(_Var1, _Var3, _Var4)
+AND
+DB_RC_DF_PolyLovers_Dialogs(_Var1, _, _Var6, _Var7)
+AND
+GetPosition(_Var1, _Var8, _Var9, _Var10)
+THEN
+GlobalClearFlag(_Var7);
+NOT DB_RC_DF_PolyLovers_LeftCow(_Var1, _Var3, _Var4);
+DB_RC_DF_PolyLovers_Humans(_Var3);
+Poof(_Var1);
+TeleportToPosition(_Var3, _Var8, _Var9, _Var10, "", 0);
+SetOnStage(_Var3, 1);
+CharacterLookAt(_Var3, _Var2);
+Proc_StartDialog(1, _Var6, _Var3);
+
+PROC
+Proc_RC_DF_PolyLovers_TransformBack((CHARACTERGUID)_Var1, (GUIDSTRING)_Var2)
+AND
+DB_RC_DF_PolyLovers(_Var3, _Var4, _Var5)
+AND
+_Var1 != _Var3
+AND
+ObjectGetFlag(_Var2, _Var5, 0)
+THEN
+CharacterLookAt(_Var3, _Var1);
+NOT DB_RC_DF_PolyLovers(_Var3, _Var4, _Var5);
+DB_RC_DF_PolyLovers_LeftCow(_Var3, _Var4, _Var5);
+Proc_RC_DF_PolyLovers_SetIndivCowDialog(_Var3);
+
+PROC
+Proc_RC_DF_PolyLovers_TransformBack((CHARACTERGUID)_Var1, (CHARACTERGUID)_Var2)
+AND
+UserGetFlag(_Var2, "RC_DF_PolyLovers_PersuasionSuccess", 1)
+AND
+DB_RC_DF_PolyLovers(_Var1, _Var3, _Var4)
+THEN
+UserSetFlag(_Var2, "QuestUpdate_RC_DF_PolyLovers_PersuadedCow", 0);
+GlobalSetFlag("RC_DF_PolyLovers_HumanWillComeBack");
+
+PROC
+Proc_RC_DF_PolyLovers_TransformBack((CHARACTERGUID)_Var1, (GUIDSTRING)_Var2)
+AND
+DB_RC_DF_PolyLovers(_Var1, _Var3, _Var4)
+AND
+DB_RC_DF_PolyLovers_Dialogs(_Var1, _, _Var6, _Var7)
+AND
+GetPosition(_Var1, _Var8, _Var9, _Var10)
+THEN
+GlobalClearFlag(_Var7);
+NOT DB_RC_DF_PolyLovers(_Var1, _Var3, _Var4);
+DB_RC_DF_PolyLovers_Humans(_Var3);
+Poof(_Var1);
+TeleportToPosition(_Var3, _Var8, _Var9, _Var10, "", 0);
+SetOnStage(_Var3, 1);
+CharacterLookAt(_Var3, _Var2);
+Proc_StartDialog(1, _Var6, _Var3);
+
+IF
+CharacterLeftTrigger((CHARACTERGUID)_Var1, TRIGGERGUID_S_RC_DF_DriftwoodFields_3f20daea-37d9-4305-96cc-eb0317b3965e)
+AND
+DB_IsPlayer(_Var1)
+AND NOT
+QryCheckOtherPlayersInTrigger(NULL_00000000-0000-0000-0000-000000000000, TRIGGERGUID_S_RC_DF_DriftwoodFields_3f20daea-37d9-4305-96cc-eb0317b3965e)
+AND
+DB_RC_DF_PolyLovers_Humans(_Var2)
+THEN
+NOT DB_RC_DF_PolyLovers_Humans(_Var2);
+RC_DF_PolyLovers_CheckHumanLeaves(_Var2);
+
+PROC
+RC_DF_PolyLovers_CheckHumanLeaves((CHARACTERGUID)_Var1)
+AND NOT
+DB_Dead(_Var1)
+THEN
+SetHasDialog(_Var1, 0);
+ProcCharacterDisappearOutOfSightToObject(_Var1, TRIGGERGUID_S_RC_DF_PolyServants_HumanLeave_Point_fd7517da-163e-4fbc-8430-87ade04b62e8, 0, "RC_DF_PolyServants_Disappeared", 0);
+
+IF
+StoryEvent((CHARACTERGUID)_Var1, "RC_DF_PolyServants_Disappeared")
+AND
+GlobalGetFlag("RC_DF_PolyLovers_HumanWillComeBack", 1)
+AND
+DB_RC_DF_PolyLovers_MarketPoints(_Var1, _Var2)
+THEN
+CharacterAppearOutOfSightToObject(_Var1, _Var2, _Var2, 0, "RC_DF_PolyServants_AppearedOutOfSight");
+
+IF
+StoryEvent((CHARACTERGUID)_Var1, "RC_DF_PolyServants_AppearedOutOfSight")
+AND
+GlobalGetFlag("RC_DF_PolyLovers_HumanWillComeBack", 1)
+AND
+DB_RC_DF_PolyLovers_MarketPoints(_Var1, _Var2)
+THEN
+SetVarObject(_Var1, "DefaultPointTrigger", _Var2);
+ProcCharacterMoveTo(_Var1, _Var2, 1, "RC_DF_PolyLovers_SurvivorMovedTo");
+
+IF
+StoryEvent((CHARACTERGUID)_Var1, "RC_DF_PolyLovers_SurvivorMovedTo")
+AND
+GetPosition(_Var1, _Var2, _Var3, _Var4)
+THEN
+ObjectSetFlag(_Var1, "RC_DF_PolyServants_InDriftwood");
+SetVarInteger(_Var1, "CanWander", 0);
+SetVarFloat3(_Var1, "NPCOrgPos", _Var2, _Var3, _Var4);
+SetVarFloat3(_Var1, "DefaultPoint", _Var2, _Var3, _Var4);
+SetHasDialog(_Var1, 1);
+SetFaction(_Var1, "DW_Traders");
+ProcCrimeClearAllCustomSensibleAction(_Var1, "AttackAnimal");
+ProcCrimeClearAllCustomSensibleAction(_Var1, "KilledAnimal");
+
+IF
+StoryEvent(CHARACTERGUID_S_RC_DF_PolyServants_Human_000_1c244f6b-5e25-482d-9c9d-7aea865997ce, "RC_DF_PolyLovers_SurvivorMovedTo")
+THEN
+SetVarFixedString(CHARACTERGUID_S_RC_DF_PolyServants_Human_000_1c244f6b-5e25-482d-9c9d-7aea865997ce, "AnimationStanding", "Trader_01");
+
+IF
+StoryEvent(CHARACTERGUID_S_RC_DF_PolyServants_Human_001_9b3e065c-ec45-4d91-9130-cfed833ae8d7, "RC_DF_PolyLovers_SurvivorMovedTo")
+THEN
+SetVarFixedString(CHARACTERGUID_S_RC_DF_PolyServants_Human_001_9b3e065c-ec45-4d91-9130-cfed833ae8d7, "AnimationStanding", "Yawn_01");
+
+PROC
+PROC_RC_DF_PolyLovers_FindPotion((CHARACTERGUID)_Var1)
+THEN
+ProcClearMagicPocketsOwnershipFlag(_Var1, "RC_DF_PolyLovers_HasPotion");
+ProcClearMagicPocketsOwnershipFlag(_Var1, "RC_DF_PolyLovers_HasTwoPotions");
+
+PROC
+PROC_RC_DF_PolyLovers_FindPotion((CHARACTERGUID)_Var1)
+THEN
+DB_PolyLoversPotionCount(_Var1, 0);
+
+PROC
+PROC_RC_DF_PolyLovers_FindPotion((CHARACTERGUID)_Var1)
+AND
+CharacterGetReservedUserID(_Var1, _Var2)
+AND
+DB_IsPlayer(_Var3)
+AND
+CharacterGetReservedUserID(_Var3, _Var2)
+AND
+ItemTemplateIsInCharacterInventory(_Var3, "QUEST_CON_Potion_Large_WitchPotion_1d7bfc5d-7548-48d6-b7ff-35e81c44a2ca", _Var4)
+AND
+_Var4 > 0
+AND
+DB_PolyLoversPotionCount(_Var1, _Var5)
+AND
+IntegerSum(_Var5, _Var4, _Var6)
+THEN
+NOT DB_PolyLoversPotionCount(_Var1, _Var5);
+DB_PolyLoversPotionCount(_Var1, _Var6);
+
+PROC
+PROC_RC_DF_PolyLovers_FindPotion((CHARACTERGUID)_Var1)
+AND
+DB_PolyLoversPotionCount(_Var1, _Var2)
+AND
+_Var2 >= 2
+THEN
+ProcSetMagicPocketsOwnershipFlag(_Var1, "RC_DF_PolyLovers_HasTwoPotions");
+
+PROC
+PROC_RC_DF_PolyLovers_FindPotion((CHARACTERGUID)_Var1)
+AND
+DB_PolyLoversPotionCount(_Var1, _Var2)
+AND
+_Var2 > 0
+THEN
+ProcSetMagicPocketsOwnershipFlag(_Var1, "RC_DF_PolyLovers_HasPotion");
+
+PROC
+PROC_RC_DF_PolyLovers_FindPotion((CHARACTERGUID)_Var1)
+AND
+DB_PolyLoversPotionCount(_Var1, _Var2)
+THEN
+NOT DB_PolyLoversPotionCount(_Var1, _Var2);
+
+PROC
+Proc_ItemEventCheck()
+AND
+DB_IsPlayer(_Var1)
+THEN
+PROC_RC_DF_PolyLovers_FindPotion(_Var1);
+
+IF
+ItemTemplateAddedToCharacter(QUEST_CON_Potion_Large_WitchPotion_1d7bfc5d-7548-48d6-b7ff-35e81c44a2ca, _, (CHARACTERGUID)_Var2)
+THEN
+PROC_RC_DF_PolyLovers_FindPotion(_Var2);
+
+IF
+ItemTemplateRemovedFromCharacter("QUEST_CON_Potion_Large_WitchPotion_1d7bfc5d-7548-48d6-b7ff-35e81c44a2ca", _, (CHARACTERGUID)_Var2)
+THEN
+PROC_RC_DF_PolyLovers_FindPotion(_Var2);
+
+IF
+DialogStarted("RC_DF_PolyServants_Cows", (INTEGER)_Var1)
+AND
+DB_DialogPlayers(_Var1, _Var2, _)
+THEN
+PROC_RC_DF_PolyLovers_FindPotion(_Var2);
+
+PROC
+Proc_RC_DF_PolyLovers_SetUpCrimes()
+AND
+DB_RC_DF_PolyLovers(_Var1, _, _)
+THEN
+ProcCrimeSetAllCustomSensibleAction(_Var1, "AttackAnimal", "");
+ProcCrimeSetAllCustomSensibleAction(_Var1, "KilledAnimal", "");
+
+IF
+DB_RC_DF_PolyLovers_LeftCow(_Var1, _, _)
+THEN
+ProcCrimeSetAllCustomSensibleAction(_Var1, "Murder", "");
+ProcCrimeSetAllCustomSensibleAction(_Var1, "Assault", "");
+
+IF
+DB_RC_DF_PolyLovers_Humans(_Var1)
+THEN
+ProcCrimeSetAllCustomSensibleAction(_Var1, "AttackAnimal", "CRIME_Flee");
+ProcCrimeSetAllCustomSensibleAction(_Var1, "KilledAnimal", "CRIME_Flee");
+
+PROC
+ProcCrimeOnCustomSensibleAction((CHARACTERGUID)_Var1, _, _, _, _, _, _, _, _, _)
+AND
+DB_RC_DF_PolyLovers(_Var1, _, _)
+THEN
+SetStoryEvent(_Var1, "Crime_CustomSensibleActionDone");
+
+IF
+AttackedByObject((CHARACTERGUID)_Var1, _, _, _, _)
+AND
+DB_RC_DF_PolyLovers(_Var1, _, _)
+AND
+DB_RC_DF_PolyLovers(_Var8, _Var9, _Var10)
+THEN
+NOT DB_RC_DF_PolyLovers(_Var8, _Var9, _Var10);
+Proc_RC_DF_PolyLovers_CowFlee(_Var8);
+
+PROC
+ProcCrimeOnCustomSensibleAction((CHARACTERGUID)_Var1, _, _, _, _, _, _, _, _, _)
+AND
+DB_RC_DF_PolyLovers_LeftCow(_Var1, _Var11, _Var12)
+THEN
+SetStoryEvent(_Var1, "Crime_CustomSensibleActionDone");
+
+IF
+AttackedByObject((CHARACTERGUID)_Var1, _, _, _, _)
+AND
+DB_RC_DF_PolyLovers_LeftCow(_Var1, _Var6, _Var7)
+THEN
+NOT DB_RC_DF_PolyLovers_LeftCow(_Var1, _Var6, _Var7);
+Proc_RC_DF_PolyLovers_CowFlee(_Var1);
+
+PROC
+Proc_RC_DF_PolyLovers_CowFlee((CHARACTERGUID)_Var1)
+THEN
+ProcCharacterDisappearOutOfSightToObject(_Var1, TRIGGERGUID_S_RC_DF_PolyServants_HumanLeave_Point_fd7517da-163e-4fbc-8430-87ade04b62e8, 1, "", 0);
+Proc_RC_DF_PolyLovers_RemoveCowGhost(_Var1);
+DB_RC_DF_PolyLovers_CowsFled(1);
+
+PROC
+Proc_RC_DF_PolyLovers_SetIndivCowDialog((CHARACTERGUID)_Var1)
+AND
+DB_RC_DF_PolyLovers_Dialogs(_Var1, _Var2, _, _)
+THEN
+NOT DB_Dialogs(CHARACTERGUID_S_RC_DF_PolyServants_Cow_000_0e78c281-786d-44e8-92b3-5f28d923bf27, CHARACTERGUID_S_RC_DF_PolyServants_Cow_001_acad4053-f195-41ca-a8f6-8934389870d0, "RC_DF_PolyServants_Cows");
+PROC_RemoveDialogFromCharacter(_Var1);
+DB_Dialogs(_Var1, _Var2);
+
+PROC
+Proc_RC_DF_PolyLovers_RemoveCowGhost((CHARACTERGUID)_Var1)
+AND
+DB_Ghosts(_Var1, _Var2, _Var3)
+THEN
+CharacterUnlinkGhost(_Var1, _Var2);
+NOT DB_Ghosts(_Var1, _Var2, _Var3);
+
+IF
+DB_RC_DF_PolyLovers_CowsFled(1)
+AND
+DB_IsPlayer(_Var1)
+AND
+DB_InRegion(_Var1, TRIGGERGUID_S_RC_DF_PolyServants_AreaBox_b81e0eeb-7a1d-4b02-9b69-9ca05f2a6b2e)
+THEN
+UserSetFlag(_Var1, "QuestUpdate_RC_DF_PolyLovers_CowsFled");
+
+IF
+CharacterEnteredTrigger((CHARACTERGUID)_Var1, TRIGGERGUID_S_RC_DF_PolyServants_AreaBox_b81e0eeb-7a1d-4b02-9b69-9ca05f2a6b2e)
+AND
+DB_RC_DF_PolyLovers_CowsFled(1)
+THEN
+UserSetFlag(_Var1, "QuestUpdate_RC_DF_PolyLovers_CowsFled");
+
+IF
+CharacterEnteredTrigger((CHARACTERGUID)_Var1, TRIGGERGUID_S_RC_DF_PolyServants_AreaBox_b81e0eeb-7a1d-4b02-9b69-9ca05f2a6b2e)
+AND
+DB_GlobalFlag("RC_DF_PolyServants_CowsOK")
+THEN
+UserSetFlag(_Var1, "QuestUpdate_RC_DF_PolyLovers_CowsAreOK");
+
+IF
+DB_InRegion(_Var1, TRIGGERGUID_S_RC_DF_PolyServants_AreaBox_b81e0eeb-7a1d-4b02-9b69-9ca05f2a6b2e)
+AND
+DB_IsPlayer(_Var1)
+AND
+DB_Dead(CHARACTERGUID_S_RC_DF_PolyServants_Cow_000_0e78c281-786d-44e8-92b3-5f28d923bf27)
+AND
+DB_Dead(CHARACTERGUID_S_RC_DF_PolyServants_Cow_001_acad4053-f195-41ca-a8f6-8934389870d0)
+THEN
+ObjectSetFlag(_Var1, "QuestUpdate_RC_DF_PolyLovers_CowsAreDead");
+
+IF
+CharacterEnteredTrigger((CHARACTERGUID)_Var1, TRIGGERGUID_S_RC_DF_PolyServants_GiantFrog_WanderBox_a0c3baeb-a630-4876-be50-570454b77939)
+AND
+DB_IsPlayer(_Var1)
+THEN
+ProcMakeNPCHostile(CHARACTERGUID_S_RC_DF_PolyServant_WitchPet_GiantFrog_fdbc8e5a-2e1b-490d-b2fb-7ddef0aa82b6, _Var1);
+
+PROC
+ProcBlockUseOfItem((CHARACTERGUID)_Var1, ITEMGUID_S_RC_DF_PolyServants_Book_WitchPotion_e723e337-37e3-4711-bb37-5e27e0f59aba)
+AND
+DB_RC_DF_PolyServants_BookEntries(_Var2, _Var3, _Var4)
+AND
+IsTagged(_Var1, "SCHOLAR", _Var2)
+AND
+IsTagged(_Var1, "MYSTIC", _Var3)
+THEN
+Proc_RC_DF_PolyServants_TransformBook(_Var4, _Var1);
+
+PROC
+Proc_RC_DF_PolyServants_TransformBook((STRING)_Var1, (CHARACTERGUID)_Var2)
+AND
+DB_RC_DF_PolyServants_PreviousBookEntry(_Var3)
+THEN
+RemoveEntryFromCustomBook("RC_DF_WitchPotion_Base", _Var3);
+NOT DB_RC_DF_PolyServants_PreviousBookEntry(_Var3);
+DB_RC_DF_PolyServants_PreviousBookEntry(_Var1);
+AddEntryToCustomBook("RC_DF_WitchPotion_Base", _Var1);
+DB_CustomUseItemResponse(_Var2, ITEMGUID_S_RC_DF_PolyServants_Book_WitchPotion_e723e337-37e3-4711-bb37-5e27e0f59aba, 1);
+OpenCustomBookUI(_Var2, "RC_DF_WitchPotion_Base");
+
+IF
+CharacterUsedItem((CHARACTERGUID)_Var1, ITEMGUID_S_RC_DF_PolyServants_Book_WitchPotion_e723e337-37e3-4711-bb37-5e27e0f59aba)
+AND
+IsTagged(_Var1, "SCHOLAR", 1)
+AND
+IsTagged(_Var1, "MYSTIC", 1)
+THEN
+CharacterUnlockRecipe(_Var1, "QUEST_UNI_LOOT_RC_DF_WitchEye_CON_Nature_Mushroom_Boletus_A_CON_Herb_Augmentor_A", 1);
+Proc_StartDialog(1, "RC_DF_AD_PolyServants_LearnedWitchRecipe", _Var1);
+UserSetFlag(_Var1, "QuestUpdate_RC_DF_PolyLovers_HasRecipeBook");
+
+PROC
+ProcOneShotTriggerEntered((CHARACTERGUID)_Var1, TRIGGERGUID_S_RC_DF_PolyServants_WarningRat_Leave_Box_cc627786-d2f3-4956-91dc-33ae998d010f)
+THEN
+ProcTriggerUnregisterForPlayers(TRIGGERGUID_S_RC_DF_PolyServants_WarningRat_Leave_Box_cc627786-d2f3-4956-91dc-33ae998d010f);
+
+IF
+CharacterEnteredTrigger((CHARACTERGUID)_Var1, TRIGGERGUID_S_RC_DF_PolyServants_WarningRat_Leave_Box_cc627786-d2f3-4956-91dc-33ae998d010f)
+AND NOT
+DB_Dead(CHARACTERGUID_S_RC_DF_PolyServants_WarningRat_d25f7881-0093-46f2-be22-5b891e9a16ad)
+AND
+ObjectIsInTrigger(CHARACTERGUID_S_RC_DF_PolyServants_WarningRat_d25f7881-0093-46f2-be22-5b891e9a16ad, TRIGGERGUID_S_RC_DF_WitchHouse_FirstFloor_7ffa27f8-69e4-4d3f-b9ef-d6cbb1d151a8, 1)
+THEN
+ProcForceStopDialog(CHARACTERGUID_S_RC_DF_PolyServants_WarningRat_d25f7881-0093-46f2-be22-5b891e9a16ad);
+ProcCharacterMoveTo(CHARACTERGUID_S_RC_DF_PolyServants_WarningRat_d25f7881-0093-46f2-be22-5b891e9a16ad, TRIGGERGUID_S_RC_DF_PolyServants_WarningRat_LeavePoint_c888c010-054f-44f9-9d5b-42fea023b58f, 1, "RC_DF_PolyLovers_WarningRat_Left");
+
+IF
+StoryEvent(CHARACTERGUID_S_RC_DF_PolyServants_WarningRat_d25f7881-0093-46f2-be22-5b891e9a16ad, "RC_DF_PolyLovers_WarningRat_Left")
+THEN
+GlobalSetFlag("RC_DF_PolyLovers_WarningRat_InBasement");
+SetOnStage(CHARACTERGUID_S_RC_DF_PolyServants_WarningRat_d25f7881-0093-46f2-be22-5b891e9a16ad, 0);
+
+IF
+CharacterEnteredTrigger((CHARACTERGUID)_Var1, TRIGGERGUID_S_RC_DF_PolyServants_WarningRat_Spawn_Box_69fa14de-edab-49a9-a499-de76c0f1ba9d)
+THEN
+ProcTriggerUnregisterForPlayers(TRIGGERGUID_S_RC_DF_PolyServants_WarningRat_Spawn_Box_69fa14de-edab-49a9-a499-de76c0f1ba9d);
+
+IF
+CharacterEnteredTrigger((CHARACTERGUID)_Var1, TRIGGERGUID_S_RC_DF_PolyServants_WarningRat_Spawn_Box_69fa14de-edab-49a9-a499-de76c0f1ba9d)
+AND NOT
+DB_Dead(CHARACTERGUID_S_RC_DF_PolyServants_WarningRat_d25f7881-0093-46f2-be22-5b891e9a16ad)
+AND
+GlobalGetFlag("RC_DF_PolyLovers_WarningRat_InBasement", 1)
+THEN
+CharacterAppearAt(CHARACTERGUID_S_RC_DF_PolyServants_WarningRat_d25f7881-0093-46f2-be22-5b891e9a16ad, TRIGGERGUID_S_RC_DF_PolyServants_WarningRat_Spawn_Point_d09b5902-cfdf-4011-a9a8-5f452f4fb735, 0, "");
+ProcCharacterMoveToAndTalk(CHARACTERGUID_S_RC_DF_PolyServants_WarningRat_d25f7881-0093-46f2-be22-5b891e9a16ad, _Var1, "RC_DF_PolyServants_WarningRat", 0, "RC_DF_PolyServants_WarningRatRestart", 1, 5);
+
+IF
+DialogEnded("RC_DF_PolyServants_WarningRat", _)
+AND
+GlobalGetFlag("RC_DF_PolyLovers_WarningRat_InBasement", 1)
+THEN
+CharacterFreeze(CHARACTERGUID_S_RC_DF_PolyServants_WarningRat_d25f7881-0093-46f2-be22-5b891e9a16ad);
+ProcObjectTimer(CHARACTERGUID_S_RC_DF_PolyServants_WarningRat_d25f7881-0093-46f2-be22-5b891e9a16ad, "RC_DF_PolyServants_WarningRatExplodesDelay", 300);
+
+PROC
+ProcObjectTimerFinished(CHARACTERGUID_S_RC_DF_PolyServants_WarningRat_d25f7881-0093-46f2-be22-5b891e9a16ad, "RC_DF_PolyServants_WarningRatExplodesDelay")
+THEN
+CharacterUnfreeze(CHARACTERGUID_S_RC_DF_PolyServants_WarningRat_d25f7881-0093-46f2-be22-5b891e9a16ad);
+SetStoryEvent(CHARACTERGUID_S_RC_DF_PolyServants_WarningRat_d25f7881-0093-46f2-be22-5b891e9a16ad, "RC_DF_PolyServants_WarningRatExplodes");
+
+IF
+StoryEvent(_, "RC_DF_PolyServants_WarningRatExplodes")
+AND
+GetClosestAlivePlayer(CHARACTERGUID_S_RC_DF_PolyServants_WarningRat_d25f7881-0093-46f2-be22-5b891e9a16ad, _Var2, _)
+AND
+DB_InRegion(_Var2, TRIGGERGUID_S_RC_DF_PolyServants_WitchCellar_Subregion_Box_b68fee58-c072-4e92-b538-6c27ae6a6228)
+THEN
+Proc_StartDialog(1, "RC_DF_AD_PolyServants_RatExploded", _Var2);
+
+PROC
+ProcOneShotTriggerEntered((CHARACTERGUID)_Var1, TRIGGERGUID_S_RC_DF_RatCurse_SpotRatsVB_Box_cab47530-28a7-4d42-b7fd-17a9fe413746)
+AND NOT
+DB_Dead(CHARACTERGUID_S_RC_DF_RatCurse_RatGuard_62e2cec4-081d-470a-acb8-c9d8b5fb9360)
+THEN
+StartVoiceBark("RC_DF_VB_PolyServants_SeeRats", _Var1);
+
+IF
+CharacterUsedItem(_, ITEMGUID_S_RC_DF_WitchCellar_Lever_000_77969906-64c9-45cd-9740-2270e5b3d5ab)
+AND
+ItemIsOpened(ITEMGUID_S_RC_DF_WitchCellar_Door_000_27406f3b-4e45-482b-a386-581fd5b99aa6, 0)
+THEN
+ItemUnlockAndOpen(ITEMGUID_S_RC_DF_WitchCellar_Door_000_27406f3b-4e45-482b-a386-581fd5b99aa6);
+
+IF
+CharacterUsedItem(_, ITEMGUID_S_RC_DF_WitchCellar_Lever_000_77969906-64c9-45cd-9740-2270e5b3d5ab)
+AND
+ItemIsOpened(ITEMGUID_S_RC_DF_WitchCellar_Door_000_27406f3b-4e45-482b-a386-581fd5b99aa6, 1)
+THEN
+ItemCloseAndLock(ITEMGUID_S_RC_DF_WitchCellar_Door_000_27406f3b-4e45-482b-a386-581fd5b99aa6, "NO_KEY");
+
+IF
+ObjectFlagSet("QuestUpdate_RC_DF_PolyLovers_GavePotionTo001WithReward", (CHARACTERGUID)_Var1, _)
+THEN
+ProcShowMarker(_Var1, "RC_DF_PolyServants_RewardChest");
+
+PROC
+ProcShovelRewards(_, "RC_DF_PolyServants_RewardChestPile")
+THEN
+GlobalSetFlag("RC_DF_PolyServants_ChestRewardDug");
+
+PROC
+ProcShovelRewards((CHARACTERGUID)_Var1, "RC_DF_PolyServants_RewardChestPile")
+AND
+ObjectGetFlag(_Var1, "QuestUpdate_RC_DF_PolyLovers_GavePotionTo001WithReward", 1)
+THEN
+UserSetFlag(_Var1, "QuestUpdate_RC_DF_PolyLovers_FoundTreasure");
+
+IF
+CharacterEnteredTrigger((CHARACTERGUID)_Var1, TRIGGERGUID_S_RC_DF_PolyServants_SpotChest_Box_e1e2408e-dd68-4a3d-83ac-bb21b97dd65a)
+AND
+ObjectGetFlag(_Var1, "QuestUpdate_RC_DF_PolyLovers_GavePotionTo001WithReward", 1)
+AND
+GlobalGetFlag("RC_DF_PolyServants_ChestRewardDug", 0)
+THEN
+ProcTriggerUnregisterForPlayers(TRIGGERGUID_S_RC_DF_PolyServants_SpotChest_Box_e1e2408e-dd68-4a3d-83ac-bb21b97dd65a);
+SetStoryEvent(ITEMGUID_S_RC_DF_PolyServants_ForestPile_f79e93d3-1741-45c4-a812-b004f4705f74, "StoryReveal");
+StartVoiceBark("RC_DF_VB_PolyServants_SpotTreasurePile", _Var1);
+ProcHideMarker(_Var1, "RC_DF_PolyServants_RewardChest");
+
+IF
+CharacterEnteredTrigger((CHARACTERGUID)_Var1, TRIGGERGUID_S_RC_DF_PolyServants_SpotChest_Box_e1e2408e-dd68-4a3d-83ac-bb21b97dd65a)
+AND
+ObjectGetFlag(_Var1, "QuestUpdate_RC_DF_PolyLovers_GavePotionTo001WithReward", 1)
+AND
+GlobalGetFlag("RC_DF_PolyServants_ChestRewardDug", 1)
+THEN
+ProcTriggerUnregisterForPlayers(TRIGGERGUID_S_RC_DF_PolyServants_SpotChest_Box_e1e2408e-dd68-4a3d-83ac-bb21b97dd65a);
+StartVoiceBark("RC_DF_VB_PolyServants_SpotTreasurePile", _Var1);
+ProcHideMarker(_Var1, "RC_DF_PolyServants_RewardChest");
+
+IF
+ObjectFlagSet("RC_DF_PolyServants_ReceiveBooks", (CHARACTERGUID)_Var1, (INTEGER)_Var2)
+AND
+DB_DialogNPCs(_Var2, _Var3, _)
+AND
+DB_DialogPlayers(_Var2, _Var1, _)
+THEN
+ProcGenerateTradeTreasure(_Var1, _Var3);
+DB_RC_DF_PolyLovers_BookToPlayer(_Var1);
+InventoryLaunchTagIterator(_Var3, "BOOK", "", "RC_DF_PolyServants_ItemIter", "RC_DF_PolyServants_ItemIterCompleted");
+
+IF
+StoryEvent((ITEMGUID)_Var1, "RC_DF_PolyServants_ItemIter")
+AND
+DB_RC_DF_PolyLovers_BookToPlayer(_Var2)
+THEN
+ItemToInventory(_Var1, _Var2);
+
+IF
+GlobalFlagSet("RC_DF_PolyServants_ItemIterCompleted")
+AND
+DB_RC_DF_PolyLovers_BookToPlayer(_Var1)
+THEN
+GlobalClearFlag("RC_DF_PolyServants_ItemIterCompleted");
+NOT DB_RC_DF_PolyLovers_BookToPlayer(_Var1);
+
+IF
+ObjectFlagSet((STRING)_Var1, (GUIDSTRING)_Var2, _)
+AND
+DB_RC_DF_PolyLovers_OneCowFlags(_Var1, _Var4)
+AND
+ObjectGetFlag(_Var2, _Var4, 0)
+THEN
+ObjectSetFlag(_Var2, _Var4);
+
+IF
+SavegameLoaded((INTEGER)_Var1, (INTEGER)_Var2, (INTEGER)_Var3, (INTEGER)_Var4)
+AND
+QRY_VersionIsOlderThan(_Var1, _Var2, _Var3, _Var4, 3, 6, 1, 0)
+THEN
+DB_RC_DF_PolyLovers_OneCowFlags("QuestUpdate_RC_DF_PolyLovers_GavePotionTo000", "QuestUpdate_RC_DF_PolyLovers_TrueCheck");
+DB_RC_DF_PolyLovers_OneCowFlags("QuestUpdate_RC_DF_PolyLovers_GavePotionTo001", "QuestUpdate_RC_DF_PolyLovers_TrueCheck");
+
+IF
+SavegameLoaded((INTEGER)_Var1, (INTEGER)_Var2, (INTEGER)_Var3, (INTEGER)_Var4)
+AND
+QRY_VersionIsOlderThan(_Var1, _Var2, _Var3, _Var4, 3, 6, 5, 0)
+AND
+CharacterIsDead(S_RC_DF_PolyServants_Cow_001_acad4053-f195-41ca-a8f6-8934389870d0, 1)
+AND
+CharacterIsDead(S_RC_DF_PolyServants_Cow_000_0e78c281-786d-44e8-92b3-5f28d923bf27, 0)
+AND
+ObjectIsOnStage(S_RC_DF_PolyServants_Cow_000_0e78c281-786d-44e8-92b3-5f28d923bf27, 1)
+THEN
+ProcForceStopDialog(S_RC_DF_PolyServants_Cow_000_0e78c281-786d-44e8-92b3-5f28d923bf27);
+Proc_RC_DF_PolyLovers_CowFlee(S_RC_DF_PolyServants_Cow_000_0e78c281-786d-44e8-92b3-5f28d923bf27);
+SysClear("DB_RC_DF_PolyLovers_LeftCow", 3);
+SysClear("DB_RC_DF_PolyLovers", 3);
+
+IF
+SavegameLoaded((INTEGER)_Var1, (INTEGER)_Var2, (INTEGER)_Var3, (INTEGER)_Var4)
+AND
+QRY_VersionIsOlderThan(_Var1, _Var2, _Var3, _Var4, 3, 6, 5, 0)
+AND
+CharacterIsDead(S_RC_DF_PolyServants_Cow_000_0e78c281-786d-44e8-92b3-5f28d923bf27, 1)
+AND
+CharacterIsDead(S_RC_DF_PolyServants_Cow_001_acad4053-f195-41ca-a8f6-8934389870d0, 0)
+AND
+ObjectIsOnStage(S_RC_DF_PolyServants_Cow_001_acad4053-f195-41ca-a8f6-8934389870d0, 1)
+THEN
+ProcForceStopDialog(S_RC_DF_PolyServants_Cow_001_acad4053-f195-41ca-a8f6-8934389870d0);
+Proc_RC_DF_PolyLovers_CowFlee(S_RC_DF_PolyServants_Cow_001_acad4053-f195-41ca-a8f6-8934389870d0);
+SysClear("DB_RC_DF_PolyLovers_LeftCow", 3);
+SysClear("DB_RC_DF_PolyLovers", 3);
+
+IF
+CharacterEnteredTrigger((CHARACTERGUID)_Var1, TRIGGERGUID_S_RC_DF_WitchHouse_FirstFloor_7ffa27f8-69e4-4d3f-b9ef-d6cbb1d151a8)
+THEN
+UserSetFlag(_Var1, "QuestUpdate_RC_DF_PolyLovers_WitchOutside");
+
+PROC
+ProcRegionEnded("RC_Main")
+THEN
+GoalCompleted;
+
+
+EXITSECTION
+NOT DB_RC_DF_PolyLovers_CowsFled(1);
+ENDEXITSECTION
+
+ParentTargetEdge "ReapersCoast"

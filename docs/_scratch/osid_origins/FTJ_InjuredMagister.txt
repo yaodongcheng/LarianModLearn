@@ -1,0 +1,256 @@
+Version 1
+SubGoalCombiner SGC_AND
+
+INITSECTION
+DB_Dialogs(RC_FTJ_InjuredMagister_8a0cd6fb-18f2-46ca-8a04-88d3c4d3caf8, "FTJ_InjuredMagister");
+DB_NoLowAttitudeDialog(CHARACTERGUID_S_FTJ_InjuredMagister_8a0cd6fb-18f2-46ca-8a04-88d3c4d3caf8);
+CharacterSetHitpointsPercentage(RC_FTJ_InjuredMagister_8a0cd6fb-18f2-46ca-8a04-88d3c4d3caf8, 35);
+CharacterSetArmorPercentage(CHARACTERGUID_S_FTJ_InjuredMagister_8a0cd6fb-18f2-46ca-8a04-88d3c4d3caf8, 0);
+CharacterSetMagicArmorPercentage(CHARACTERGUID_S_FTJ_InjuredMagister_8a0cd6fb-18f2-46ca-8a04-88d3c4d3caf8, 0);
+ProcCharacterDisableAllCrimes(RC_FTJ_InjuredMagister_8a0cd6fb-18f2-46ca-8a04-88d3c4d3caf8);
+CharacterSetAnimationOverride(RC_FTJ_InjuredMagister_8a0cd6fb-18f2-46ca-8a04-88d3c4d3caf8, "knockdown_loop");
+SetTag(CHARACTERGUID_S_FTJ_InjuredMagister_8a0cd6fb-18f2-46ca-8a04-88d3c4d3caf8, "NO_ARMOR_REGEN");
+ObjectSetFlag(CHARACTERGUID_S_FTJ_InjuredMagister_8a0cd6fb-18f2-46ca-8a04-88d3c4d3caf8, "GLO_BlockRegenAfterCombat");
+SetHasDialog(CHARACTERGUID_S_FTJ_InjuredMagister_8a0cd6fb-18f2-46ca-8a04-88d3c4d3caf8, 0);
+DB_CrimeReaction_DoNotInterrogate(S_FTJ_OlgoCellarMagister_001_402470db-ad49-4de7-8a60-7f69c8e5d26e);
+DB_CrimeReaction_DoNotInterrogate(S_FTJ_OlgoCellarMagister_002_6d6b84bf-e940-4c28-a2b6-12516d049792);
+DB_CrimeReaction_DoNotInterrogate(S_FTJ_OlgoCellarMagister_003_e8c14f56-b34a-41c3-adb3-dda318c5bdc1);
+DB_CrimeReaction_DoNotInterrogate(S_FTJ_OlgoCellarMagister_004_2955b578-1a8e-4ecd-aa7f-5f084c428e25);
+DB_FTJ_Prison_MagisterToComeToCell(S_FTJ_OlgoCellarMagister_001_402470db-ad49-4de7-8a60-7f69c8e5d26e);
+DB_FTJ_Prison_MagisterToComeToCell(S_FTJ_OlgoCellarMagister_002_6d6b84bf-e940-4c28-a2b6-12516d049792);
+DB_FTJ_Prison_MagisterToComeToCell(S_FTJ_OlgoCellarMagister_003_e8c14f56-b34a-41c3-adb3-dda318c5bdc1);
+DB_FTJ_Prison_MagisterToComeToCell(S_FTJ_OlgoCellarMagister_004_2955b578-1a8e-4ecd-aa7f-5f084c428e25);
+DB_DeadEvent(CHARACTERGUID_S_FTJ_InjuredMagister_8a0cd6fb-18f2-46ca-8a04-88d3c4d3caf8, "FTJ_DelorusIsDead");
+CharacterSetCanTrade(CHARACTERGUID_S_FTJ_InjuredMagister_8a0cd6fb-18f2-46ca-8a04-88d3c4d3caf8, 0);
+
+KBSECTION
+IF
+CombatEnded((INTEGER)_Var1)
+AND
+DB_WasInCombat(RC_FTJ_InjuredMagister_8a0cd6fb-18f2-46ca-8a04-88d3c4d3caf8, _Var2)
+THEN
+SetStoryEvent(RC_FTJ_InjuredMagister_8a0cd6fb-18f2-46ca-8a04-88d3c4d3caf8, "ClearPeaceReturn");
+
+IF
+StoryEvent((CHARACTERGUID)_Var1, "FTJ_InjuredMagisterPlea")
+AND NOT
+DB_FTJ_MagisterPleaOneShot(1)
+THEN
+Proc_StartDialog(0, "FTJ_InjuredMagister", RC_FTJ_InjuredMagister_8a0cd6fb-18f2-46ca-8a04-88d3c4d3caf8, _Var1);
+CharacterSetReactionPriority(RC_FTJ_InjuredMagister_8a0cd6fb-18f2-46ca-8a04-88d3c4d3caf8, "FTJ_CanSeePlayer", 0);
+
+IF
+DialogStarted("FTJ_InjuredMagister", _)
+THEN
+DB_FTJ_MagisterPleaOneShot(1);
+
+IF
+DialogEnded("FTJ_InjuredMagister", _)
+AND
+CharacterIsDead(RC_FTJ_InjuredMagister_8a0cd6fb-18f2-46ca-8a04-88d3c4d3caf8, 0)
+AND NOT
+DB_FTJ_MagisterPleadForLife(1)
+THEN
+SetHasDialog(CHARACTERGUID_S_FTJ_InjuredMagister_8a0cd6fb-18f2-46ca-8a04-88d3c4d3caf8, 1);
+DB_FTJ_MagisterPleadForLife(1);
+
+IF
+ObjectFlagSet("FTJ_GivePotionToMagister", (CHARACTERGUID)_Var1, _)
+AND
+UserTransferTaggedLocalItems(_Var1, CHARACTERGUID_S_FTJ_InjuredMagister_8a0cd6fb-18f2-46ca-8a04-88d3c4d3caf8, "HEALING_POTION", 1, _)
+THEN
+DB_FTJ_InjuredMagister_UseNext_HEALING_POTION(_Var1);
+
+IF
+ItemAddedToCharacter((ITEMGUID)_Var1, CHARACTERGUID_S_FTJ_InjuredMagister_8a0cd6fb-18f2-46ca-8a04-88d3c4d3caf8)
+AND
+IsTagged(_Var1, "HEALING_POTION", 1)
+AND
+DB_FTJ_InjuredMagister_UseNext_HEALING_POTION(_Var2)
+AND
+QRY_FTJ_InjuredMagisterUsedPotion(_Var1, _Var2)
+THEN
+NOT DB_FTJ_InjuredMagister_UseNext_HEALING_POTION(_Var2);
+CharacterUseItem(CHARACTERGUID_S_FTJ_InjuredMagister_8a0cd6fb-18f2-46ca-8a04-88d3c4d3caf8, _Var1, "");
+
+QRY
+QRY_FTJ_InjuredMagisterUsedPotion((ITEMGUID)_Var1, (CHARACTERGUID)_Var2)
+AND
+IsTagged(_Var1, "POISONED", 0)
+THEN
+GlobalSetFlag("FTJ_InjuredMagisterSaved");
+CharacterSetHitpointsPercentage(RC_FTJ_InjuredMagister_8a0cd6fb-18f2-46ca-8a04-88d3c4d3caf8, 100);
+RemoveHarmfulStatuses(CHARACTERGUID_S_FTJ_InjuredMagister_8a0cd6fb-18f2-46ca-8a04-88d3c4d3caf8);
+CharacterSetAnimationOverride(RC_FTJ_InjuredMagister_8a0cd6fb-18f2-46ca-8a04-88d3c4d3caf8, "");
+PlayAnimation(RC_FTJ_InjuredMagister_8a0cd6fb-18f2-46ca-8a04-88d3c4d3caf8, "knockdown_getup", "");
+CharacterAddAttitudeTowardsPlayer(CHARACTERGUID_S_FTJ_InjuredMagister_8a0cd6fb-18f2-46ca-8a04-88d3c4d3caf8, _Var2, 50);
+UserSetFlag(_Var2, "FTJ_PlayerHealedDelorus");
+ClearTag(CHARACTERGUID_S_FTJ_InjuredMagister_8a0cd6fb-18f2-46ca-8a04-88d3c4d3caf8, "NO_ARMOR_REGEN");
+ObjectClearFlag(CHARACTERGUID_S_FTJ_InjuredMagister_8a0cd6fb-18f2-46ca-8a04-88d3c4d3caf8, "GLO_BlockRegenAfterCombat");
+
+QRY
+QRY_FTJ_InjuredMagisterUsedPotion((ITEMGUID)_Var1, (CHARACTERGUID)_Var2)
+AND
+IsTagged(_Var1, "POISONED", 1)
+THEN
+ApplyStatus(CHARACTERGUID_S_FTJ_InjuredMagister_8a0cd6fb-18f2-46ca-8a04-88d3c4d3caf8, "POISONED", 10, 1);
+DB_FTJ_PoisonInjuredMagister(1);
+
+IF
+ObjectFlagSet("FTJ_ModyPotionTo", CHARACTERGUID_S_FTJ_InjuredMagister_8a0cd6fb-18f2-46ca-8a04-88d3c4d3caf8, _)
+THEN
+ApplyStatus(CHARACTERGUID_S_FTJ_InjuredMagister_8a0cd6fb-18f2-46ca-8a04-88d3c4d3caf8, "POISONED", 10, 1);
+DB_FTJ_PoisonInjuredMagister(1);
+SetOnStage(ITEMGUID_S_FTJ_ModyPotion_f4671d69-ea09-442d-b261-fc814d8945f3, 0);
+
+IF
+DialogEnded("FTJ_InjuredMagister", _)
+AND
+DB_FTJ_PoisonInjuredMagister(1)
+THEN
+NOT DB_FTJ_PoisonInjuredMagister(1);
+SetHasDialog(CHARACTERGUID_S_FTJ_InjuredMagister_8a0cd6fb-18f2-46ca-8a04-88d3c4d3caf8, 0);
+TimerLaunch("FTJ_KillInjuredMagister_Poison", 1000);
+
+IF
+TimerFinished("FTJ_KillInjuredMagister_Poison")
+THEN
+CharacterDie(RC_FTJ_InjuredMagister_8a0cd6fb-18f2-46ca-8a04-88d3c4d3caf8, 1, "DoT");
+
+IF
+CharacterStatusApplied(RC_FTJ_InjuredMagister_8a0cd6fb-18f2-46ca-8a04-88d3c4d3caf8, (STRING)_Var1, (CHARACTERGUID)_Var2)
+AND
+QRY_IsHealingStatus(_Var1)
+AND
+CharacterIsPartyMember(_Var2, 1)
+AND NOT
+QRY_IsSummonOrPartyFollower(_Var2)
+AND
+QRY_SpeakerIsAvailable(RC_FTJ_InjuredMagister_8a0cd6fb-18f2-46ca-8a04-88d3c4d3caf8)
+AND NOT
+DB_FTJ_MagisterPlayerToThank(_Var2)
+THEN
+Proc_FTJ_InjuredMagister_SetHealed(_Var2);
+
+IF
+CharacterStatusApplied(RC_FTJ_InjuredMagister_8a0cd6fb-18f2-46ca-8a04-88d3c4d3caf8, (STRING)_Var1, (CHARACTERGUID)_Var2)
+AND
+QRY_IsHealingStatus(_Var1)
+AND
+CharacterIsPartyMember(_Var2, 1)
+AND
+QRY_IsSummonOrPartyFollower(_Var2)
+AND
+CharacterGetOwner(_Var2, _Var3)
+AND
+QRY_SpeakerIsAvailable(RC_FTJ_InjuredMagister_8a0cd6fb-18f2-46ca-8a04-88d3c4d3caf8)
+AND NOT
+DB_FTJ_MagisterPlayerToThank(_Var3)
+THEN
+Proc_FTJ_InjuredMagister_SetHealed(_Var3);
+
+PROC
+Proc_FTJ_InjuredMagister_SetHealed((CHARACTERGUID)_Var1)
+THEN
+ProcForceStopDialog(CHARACTERGUID_S_FTJ_InjuredMagister_8a0cd6fb-18f2-46ca-8a04-88d3c4d3caf8);
+SetHasDialog(RC_FTJ_InjuredMagister_8a0cd6fb-18f2-46ca-8a04-88d3c4d3caf8, 0);
+RemoveHarmfulStatuses(CHARACTERGUID_S_FTJ_InjuredMagister_8a0cd6fb-18f2-46ca-8a04-88d3c4d3caf8);
+CharacterSetAnimationOverride(RC_FTJ_InjuredMagister_8a0cd6fb-18f2-46ca-8a04-88d3c4d3caf8, "");
+PlayAnimation(RC_FTJ_InjuredMagister_8a0cd6fb-18f2-46ca-8a04-88d3c4d3caf8, "knockdown_getup", "FTJ_MagisterDoThanksForHealing");
+DB_FTJ_MagisterPlayerToThank(_Var1);
+GlobalSetFlag("FTJ_MagisterHealedBySpell");
+UserSetFlag(_Var1, "FTJ_PlayerHealedDelorus");
+SetHasDialog(RC_FTJ_InjuredMagister_8a0cd6fb-18f2-46ca-8a04-88d3c4d3caf8, 1);
+CharacterAddAttitudeTowardsPlayer(CHARACTERGUID_S_FTJ_InjuredMagister_8a0cd6fb-18f2-46ca-8a04-88d3c4d3caf8, _Var1, 50);
+CrimeAreaSetTensionModifier(TRIGGERGUID_FTJ_CrimeArea_HoundMaster_c588abde-5ae2-43e6-95c7-c7c8ff0f6c0a, 0);
+
+IF
+StoryEvent(RC_FTJ_InjuredMagister_8a0cd6fb-18f2-46ca-8a04-88d3c4d3caf8, "FTJ_MagisterDoThanksForHealing")
+AND
+DB_FTJ_MagisterPlayerToThank(_Var1)
+THEN
+SetCanFight(CHARACTERGUID_S_FTJ_InjuredMagister_8a0cd6fb-18f2-46ca-8a04-88d3c4d3caf8, 1);
+ClearTag(CHARACTERGUID_S_FTJ_InjuredMagister_8a0cd6fb-18f2-46ca-8a04-88d3c4d3caf8, "NO_ARMOR_REGEN");
+ObjectClearFlag(CHARACTERGUID_S_FTJ_InjuredMagister_8a0cd6fb-18f2-46ca-8a04-88d3c4d3caf8, "GLO_BlockRegenAfterCombat");
+CharacterSetRelationIndivFactionToIndivFaction(CHARACTERGUID_S_FTJ_InjuredMagister_8a0cd6fb-18f2-46ca-8a04-88d3c4d3caf8, CHARACTERGUID_S_FTJ_OlgoCellarMagister_001_402470db-ad49-4de7-8a60-7f69c8e5d26e, 0);
+CharacterSetRelationIndivFactionToIndivFaction(CHARACTERGUID_S_FTJ_OlgoCellarMagister_001_402470db-ad49-4de7-8a60-7f69c8e5d26e, CHARACTERGUID_S_FTJ_InjuredMagister_8a0cd6fb-18f2-46ca-8a04-88d3c4d3caf8, 0);
+CharacterSetRelationIndivFactionToIndivFaction(CHARACTERGUID_S_FTJ_InjuredMagister_8a0cd6fb-18f2-46ca-8a04-88d3c4d3caf8, _Var1, 50);
+CharacterSetRelationIndivFactionToIndivFaction(_Var1, CHARACTERGUID_S_FTJ_InjuredMagister_8a0cd6fb-18f2-46ca-8a04-88d3c4d3caf8, 50);
+
+IF
+StoryEvent(RC_FTJ_InjuredMagister_8a0cd6fb-18f2-46ca-8a04-88d3c4d3caf8, "FTJ_MagisterDoThanksForHealing")
+AND
+DB_FTJ_MagisterPlayerToThank(_Var1)
+AND
+CharacterIsDead(CHARACTERGUID_S_FTJ_OlgoCellarMagister_001_402470db-ad49-4de7-8a60-7f69c8e5d26e, 0)
+THEN
+CharacterSetRelationIndivFactionToIndivFaction(CHARACTERGUID_S_FTJ_OlgoCellarMagister_001_402470db-ad49-4de7-8a60-7f69c8e5d26e, _Var1, 0);
+CharacterSetRelationIndivFactionToIndivFaction(_Var1, CHARACTERGUID_S_FTJ_OlgoCellarMagister_001_402470db-ad49-4de7-8a60-7f69c8e5d26e, 0);
+EnterCombat(_Var1, CHARACTERGUID_S_FTJ_OlgoCellarMagister_001_402470db-ad49-4de7-8a60-7f69c8e5d26e);
+
+IF
+StoryEvent(RC_FTJ_InjuredMagister_8a0cd6fb-18f2-46ca-8a04-88d3c4d3caf8, "FTJ_MagisterDoThanksForHealing")
+AND
+DB_FTJ_MagisterPlayerToThank(_Var1)
+AND
+CharacterIsInCombat(CHARACTERGUID_S_FTJ_InjuredMagister_8a0cd6fb-18f2-46ca-8a04-88d3c4d3caf8, 0)
+THEN
+Proc_StartDialog(0, "FTJ_InjuredMagister", RC_FTJ_InjuredMagister_8a0cd6fb-18f2-46ca-8a04-88d3c4d3caf8, _Var1);
+
+IF
+DialogEnded("FTJ_InjuredMagister", _)
+AND
+GlobalGetFlag("FTJ_InjuredMagisterSaved", 1)
+THEN
+DialogRequestStop(RC_FTJ_InjuredMagister_8a0cd6fb-18f2-46ca-8a04-88d3c4d3caf8);
+Proc_StartDialog(1, "FTJ_AD_InjuredMagisterSaved", RC_FTJ_InjuredMagister_8a0cd6fb-18f2-46ca-8a04-88d3c4d3caf8);
+SetHasDialog(RC_FTJ_InjuredMagister_8a0cd6fb-18f2-46ca-8a04-88d3c4d3caf8, 0);
+
+IF
+CharacterLeftTrigger(_, RC_FTJ_SUB_HoldingCells_2cf84586-d155-47be-95bc-372ccd034dc6)
+AND
+DB_FTJ_MagisterPleaOneShot(1)
+AND
+GlobalGetFlag("FTJ_InjuredMagisterSaved", 0)
+AND
+GetClosestPlayer(RC_FTJ_InjuredMagister_8a0cd6fb-18f2-46ca-8a04-88d3c4d3caf8, _Var2, _Var3)
+AND
+_Var3 > 20
+THEN
+CharacterDie(RC_FTJ_InjuredMagister_8a0cd6fb-18f2-46ca-8a04-88d3c4d3caf8, 1, "DoT");
+
+IF
+DialogEnded("FTJ_CollaredPrisoner", (INTEGER)_Var1)
+AND
+DialogGetInvolvedPlayer(_Var1, 1, _Var2)
+AND
+ObjectGetFlag(_Var2, "FTJ_CollaredPrisoner_Panic", 1)
+AND
+QueryOnlyOnce("FTJ_CollaredPrisoner_PanicAD")
+THEN
+Proc_StartDialog(1, "FTJ_AD_CollaredPrisoner_Panic", CHARACTERGUID_S_FTJ_CollaredPrisoner_5bec83d5-d441-4491-980f-798ddf38d08d);
+
+IF
+StoryEvent((CHARACTERGUID)_Var1, "S_FTJ_CollaredPrisoner_InitDialog")
+AND NOT
+DB_InRegion(_Var1, TRIGGERGUID_S_FortJoy_PlayerPrisonCell_5eec6152-28bc-4555-b476-1a3bc2db02e5)
+THEN
+Proc_StartDialog(0, "FTJ_CollaredPrisoner", CHARACTERGUID_S_FTJ_CollaredPrisoner_5bec83d5-d441-4491-980f-798ddf38d08d, _Var1);
+
+IF
+StoryEvent((CHARACTERGUID)_Var1, "S_FTJ_CollaredPrisoner_InitDialog")
+AND
+DB_InRegion(_Var1, TRIGGERGUID_S_FortJoy_PlayerPrisonCell_5eec6152-28bc-4555-b476-1a3bc2db02e5)
+THEN
+SetStoryEvent(CHARACTERGUID_S_FTJ_CollaredPrisoner_5bec83d5-d441-4491-980f-798ddf38d08d, "StartEventOnSight_RestartSpotting");
+
+PROC
+ProcRegionEnded("FJ_FortJoy_Main")
+THEN
+GoalCompleted;
+
+
+EXITSECTION
+ENDEXITSECTION
+
+ParentTargetEdge "FortJoy"

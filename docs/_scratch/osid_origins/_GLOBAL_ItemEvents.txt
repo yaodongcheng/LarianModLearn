@@ -1,0 +1,930 @@
+Version 1
+SubGoalCombiner SGC_AND
+
+INITSECTION
+DB_TaggedItemInitialSetup(1);
+DB_TaggedItemTracker("HEALING_POTION");
+DB_TaggedItemTracker("BODYPART");
+DB_TaggedItemTracker("MEAT");
+DB_TaggedItemTracker("FISH");
+DB_TaggedItemTracker("BOOK");
+DB_TaggedItemTracker("QUEST_ANCESTOR_TREE_BRANCH");
+DB_TaggedItemTracker("FOOD");
+DB_TaggedItemTracker("BONE");
+DB_TaggedItemTracker("TOY");
+DB_TaggedItemTracker("ALCOHOL");
+DB_TaggedItemTracker("CHEESE");
+DB_TaggedItemTracker("VEGETABLE");
+DB_TaggedItemTracker("DRUDANAE");
+NOT DB_TaggedItemInitialSetup(1);
+DB_ItemEvents_TransferFlagToMoneyVarIndex("GEN_TransferNPCPayment", 1);
+DB_ItemEvents_TransferFlagToMoneyVarIndex("GEN_TransferNPCPayment_2", 2);
+DB_ItemEvents_TransferFlagToMoneyVarIndex("GEN_TransferNPCPayment_3", 3);
+DB_ItemEvents_TransferFlagToMoneyVarIndex("GEN_TransferNPCPayment_4", 4);
+DB_ItemEvents_TransferFlagToMoneyVarIndex("GEN_TransferNPCPayment_5", 5);
+
+KBSECTION
+IF
+CharacterMadePlayer((CHARACTERGUID)_Var1)
+THEN
+DB_IgnoreReservedChanged(_Var1);
+
+IF
+DB_CharacterCreationDummy(_Var1)
+THEN
+DB_IgnoreReservedChanged(_Var1);
+
+IF
+CharacterReservedUserIDChanged((CHARACTERGUID)_Var1, _, _)
+AND
+DB_IsPlayer(_Var1)
+AND NOT
+DB_IgnoreReservedChanged(_Var1)
+THEN
+Proc_ItemEventCheck();
+
+IF
+CharacterReservedUserIDChanged((CHARACTERGUID)_Var1, _, _)
+THEN
+NOT DB_IgnoreReservedChanged(_Var1);
+
+IF
+SavegameLoaded(_, _, _, _)
+THEN
+Proc_ItemEventCheck();
+
+PROC
+PROC_GLO_PartyMembers_Add((CHARACTERGUID)_Var1, _)
+AND NOT
+DB_BlockOwnershipChecks(1)
+THEN
+Proc_ItemEventCheck();
+
+PROC
+ProcSetMagicPocketsItemTemplatecount((CHARACTERGUID)_Var1, (STRING)_Var2, _)
+AND
+DB_MagicPocketsItemTemplateCount(_Var1, _Var2, _Var4)
+THEN
+NOT DB_MagicPocketsItemTemplateCount(_Var1, _Var2, _Var4);
+
+PROC
+ProcSetMagicPocketsItemTemplatecount((CHARACTERGUID)_Var1, (STRING)_Var2, (INTEGER)_Var3)
+THEN
+DB_MagicPocketsItemTemplateCount(_Var1, _Var2, _Var3);
+
+IF
+StoryEvent((CHARACTERGUID)_Var1, "GEN_CloseInventory")
+THEN
+CloseUI(_Var1, "Inventory");
+
+IF
+CharacterItemEvent((CHARACTERGUID)_Var1, (ITEMGUID)_Var2, (STRING)_Var3)
+AND
+DB_AwaitingBodypartDialog(_Var1, _Var2)
+THEN
+NOT DB_AwaitingBodypartDialog(_Var1, _Var2);
+ProcCheckBodyPartDialog(_Var1, _Var3);
+
+IF
+CharacterItemEvent((CHARACTERGUID)_Var1, (ITEMGUID)_Var2, "GLO_AteBodyPart")
+THEN
+DB_AwaitingBodypartDialog(_Var1, _Var2);
+
+PROC
+ProcCheckBodyPartDialog((CHARACTERGUID)_Var1, (STRING)_Var2)
+AND
+_Var2 != ""
+THEN
+ProcTriggerLimbEatingDialog(_Var1, _Var2);
+
+PROC
+ProcTriggerLimbEatingDialog((CHARACTERGUID)_Var1, (STRING)_Var2)
+AND
+CharacterIsInCombat(_Var1, 0)
+THEN
+Proc_StartDialog(0, _Var2, _Var1);
+
+PROC
+ProcTriggerLimbEatingDialog((CHARACTERGUID)_Var1, (STRING)_Var2)
+AND
+CharacterIsInCombat(_Var1, 1)
+THEN
+CloseUI(_Var1, "Inventory");
+
+IF
+DialogEnded("GEN_Limb_RottenLimb", (INTEGER)_Var1)
+AND
+DB_DialogPlayers(_Var1, _Var2, _)
+AND
+CharacterConsume(_Var2, "CON_BodyPart_Harm", _)
+THEN
+DB_NOOP(0);
+
+QRY
+QryItemInMagicPockets((CHARACTERGUID)_Var1, (ITEMGUID)_Var2)
+AND
+ItemIsInUserInventory(_Var2, _Var1, 0, 1)
+THEN
+DB_NOOP(1);
+
+QRY
+QryItemTemplateInMagicPockets((CHARACTERGUID)_Var1, (STRING)_Var2)
+AND
+ItemTemplateIsInUserInventory(_Var1, _Var2, 0, _Var3)
+AND
+_Var3 > 0
+THEN
+DB_NOOP(1);
+
+QRY
+QryTaggedItemInMagicPockets((CHARACTERGUID)_Var1, (STRING)_Var2)
+AND
+UserFindTaggedItem(_Var1, _Var2, 0, _Var3)
+THEN
+DB_NOOP(1);
+
+QRY
+QryItemTemplateInMagicPocketsCount((CHARACTERGUID)_Var1, (STRING)_Var2)
+AND
+ItemTemplateIsInUserInventory(_Var1, _Var2, 0, _Var3)
+AND
+_Var3 > 0
+THEN
+ProcSetMagicPocketsItemTemplatecount(_Var1, _Var2, _Var3);
+
+QRY
+QryRemoveTaggedLocalItemsFromMagicPockets((CHARACTERGUID)_Var1, (STRING)_Var2, (INTEGER)_Var3)
+AND
+UserRemoveTaggedLocalItems(_Var1, _Var2, _Var3, _Var4)
+AND
+_Var4 == _Var3
+THEN
+DB_NOOP(1);
+
+QRY
+QryTakeItemFromMagicPockets((CHARACTERGUID)_Var1, (ITEMGUID)_Var2, (CHARACTERGUID)_Var3)
+AND
+ItemIsInUserInventory(_Var2, _Var1, 1, 1)
+THEN
+ItemToInventory(_Var2, _Var3);
+
+QRY
+QryTakeItemTemplateFromMagicPockets((CHARACTERGUID)_Var1, (STRING)_Var2, (INTEGER)_Var3, (CHARACTERGUID)_Var4)
+AND
+ItemTemplateIsInUserInventory(_Var1, _Var2, 1, _Var3)
+THEN
+ItemTemplateRemoveFromUser(_Var2, _Var1, _Var3);
+ItemTemplateAddTo(_Var2, _Var4, _Var3);
+
+QRY
+QryRemoveItemTemplateFromMagicPockets((CHARACTERGUID)_Var1, (STRING)_Var2, (INTEGER)_Var3)
+AND
+ItemTemplateIsInUserInventory(_Var1, _Var2, 1, _Var4)
+AND
+_Var4 >= _Var3
+THEN
+ItemTemplateRemoveFromUser(_Var2, _Var1, _Var3);
+
+QRY
+QryRemoveTaggedItemFromMagicPockets((CHARACTERGUID)_Var1, (STRING)_Var2, (INTEGER)_Var3)
+AND
+UserRemoveTaggedLocalItems(_Var1, _Var2, _Var3, _)
+THEN
+DB_NOOP(1);
+
+QRY
+QryEvaluateMagicPocketGold((CHARACTERGUID)_Var1, "<", (INTEGER)_Var2)
+AND
+UserGetGold(_Var1, _Var3)
+AND
+_Var3 < _Var2
+THEN
+DB_NOOP(1);
+
+QRY
+QryEvaluateMagicPocketGold((CHARACTERGUID)_Var1, "<=", (INTEGER)_Var2)
+AND
+UserGetGold(_Var1, _Var3)
+AND
+_Var3 <= _Var2
+THEN
+DB_NOOP(1);
+
+QRY
+QryEvaluateMagicPocketGold((CHARACTERGUID)_Var1, ">", (INTEGER)_Var2)
+AND
+UserGetGold(_Var1, _Var3)
+AND
+_Var3 > _Var2
+THEN
+DB_NOOP(1);
+
+QRY
+QryEvaluateMagicPocketGold((CHARACTERGUID)_Var1, ">=", (INTEGER)_Var2)
+AND
+UserGetGold(_Var1, _Var3)
+AND
+_Var3 >= _Var2
+THEN
+DB_NOOP(1);
+
+QRY
+QryEvaluateMagicPocketGold((CHARACTERGUID)_Var1, "==", (INTEGER)_Var2)
+AND
+UserGetGold(_Var1, _Var3)
+AND
+_Var3 == _Var2
+THEN
+DB_NOOP(1);
+
+PROC
+ProcEvaluateMagicPocketGold((CHARACTERGUID)_Var1, "<", (INTEGER)_Var2, (STRING)_Var3)
+AND
+UserGetGold(_Var1, _Var4)
+AND
+_Var4 < _Var2
+THEN
+ObjectSetFlag(_Var1, _Var3);
+
+PROC
+ProcEvaluateMagicPocketGold((CHARACTERGUID)_Var1, "<=", (INTEGER)_Var2, (STRING)_Var3)
+AND
+UserGetGold(_Var1, _Var4)
+AND
+_Var4 <= _Var2
+THEN
+ObjectSetFlag(_Var1, _Var3);
+
+PROC
+ProcEvaluateMagicPocketGold((CHARACTERGUID)_Var1, "==", (INTEGER)_Var2, (STRING)_Var3)
+AND
+UserGetGold(_Var1, _Var4)
+AND
+_Var4 == _Var2
+THEN
+ObjectSetFlag(_Var1, _Var3);
+
+PROC
+ProcEvaluateMagicPocketGold((CHARACTERGUID)_Var1, ">", (INTEGER)_Var2, (STRING)_Var3)
+AND
+UserGetGold(_Var1, _Var4)
+AND
+_Var4 > _Var2
+THEN
+ObjectSetFlag(_Var1, _Var3);
+
+PROC
+ProcEvaluateMagicPocketGold((CHARACTERGUID)_Var1, ">=", (INTEGER)_Var2, (STRING)_Var3)
+AND
+UserGetGold(_Var1, _Var4)
+AND
+_Var4 >= _Var2
+THEN
+ObjectSetFlag(_Var1, _Var3);
+
+PROC
+ProcAddGoldToMagicPockets((CHARACTERGUID)_Var1, (INTEGER)_Var2)
+THEN
+UserAddGold(_Var1, _Var2);
+
+PROC
+ProcLaunchMagicPocketIterator((CHARACTERGUID)_Var1, (STRING)_Var2, (STRING)_Var3)
+AND
+CharacterGetReservedUserID(_Var1, _Var4)
+AND
+DB_IsPlayer(_Var5)
+AND
+CharacterGetReservedUserID(_Var5, _Var4)
+THEN
+InventoryLaunchIterator(_Var5, _Var2, "");
+
+PROC
+ProcLaunchMagicPocketIterator((CHARACTERGUID)_Var1, (STRING)_Var2, (STRING)_Var3)
+AND
+_Var3 != ""
+THEN
+GlobalSetFlag(_Var3);
+SetStoryEvent(_Var1, _Var3);
+
+PROC
+ProcLaunchMagicPocketTagIterator((CHARACTERGUID)_Var1, (STRING)_Var2, (STRING)_Var3, (STRING)_Var4, (STRING)_Var5)
+AND
+CharacterGetReservedUserID(_Var1, _Var6)
+AND
+DB_IsPlayer(_Var7)
+AND
+CharacterGetReservedUserID(_Var7, _Var6)
+THEN
+InventoryLaunchTagIterator(_Var7, _Var2, _Var3, _Var4, "");
+
+PROC
+ProcLaunchMagicPocketTagIterator((CHARACTERGUID)_Var1, (STRING)_Var2, (STRING)_Var3, (STRING)_Var4, (STRING)_Var5)
+AND
+_Var5 != ""
+THEN
+GlobalSetFlag(_Var5);
+SetStoryEvent(_Var1, _Var5);
+
+PROC
+ProcLaunchMagicPocketTemplateIterator((CHARACTERGUID)_Var1, (STRING)_Var2, (STRING)_Var3, (STRING)_Var4)
+AND
+CharacterGetReservedUserID(_Var1, _Var5)
+AND
+DB_IsPlayer(_Var6)
+AND
+CharacterGetReservedUserID(_Var6, _Var5)
+THEN
+InventoryLaunchTemplateIterator(_Var6, _Var2, _Var3, "");
+
+PROC
+ProcLaunchMagicPocketTemplateIterator((CHARACTERGUID)_Var1, (STRING)_Var2, (STRING)_Var3, (STRING)_Var4)
+AND
+_Var4 != ""
+THEN
+GlobalSetFlag(_Var4);
+SetStoryEvent(_Var1, _Var4);
+
+QRY
+QRY_HasMagicPocketsOwnershipFlag((CHARACTERGUID)_Var1, (STRING)_Var2)
+AND
+DB_IsPlayer(_Var1)
+AND
+UserGetFlag(_Var1, _Var2, 1)
+THEN
+DB_Noop(1);
+
+QRY
+QRY_HasMagicPocketsOwnershipFlag((CHARACTERGUID)_Var1, (STRING)_Var2)
+AND NOT
+DB_IsPlayer(_Var1)
+AND
+ObjectGetFlag(_Var1, _Var2, 1)
+THEN
+DB_Noop(1);
+
+PROC
+ProcSetMagicPocketsOwnershipFlag((CHARACTERGUID)_Var1, (STRING)_Var2)
+AND
+DB_IsPlayer(_Var1)
+THEN
+UserSetFlag(_Var1, _Var2, 0);
+
+PROC
+ProcSetMagicPocketsOwnershipFlag((CHARACTERGUID)_Var1, (STRING)_Var2)
+AND NOT
+DB_IsPlayer(_Var1)
+THEN
+ObjectSetFlag(_Var1, _Var2);
+
+PROC
+ProcClearMagicPocketsOwnershipFlag((CHARACTERGUID)_Var1, (STRING)_Var2)
+AND
+DB_IsPlayer(_Var1)
+THEN
+UserClearFlag(_Var1, _Var2, 0);
+
+PROC
+ProcClearMagicPocketsOwnershipFlag((CHARACTERGUID)_Var1, (STRING)_Var2)
+AND NOT
+DB_IsPlayer(_Var1)
+THEN
+ObjectClearFlag(_Var1, _Var2, 0);
+
+PROC
+Proc_ItemEvents_DialogMoneyTransfer_New((INTEGER)_Var1, (STRING)_Var2, (INTEGER)_Var3, (INTEGER)_Var4, (INTEGER)_Var5)
+AND
+DB_DialogMoneyTransfer(_Var1, _Var2, _Var6, _Var7, _Var8)
+THEN
+NOT DB_DialogMoneyTransfer(_Var1, _Var2, _Var6, _Var7, _Var8);
+
+PROC
+Proc_ItemEvents_DialogMoneyTransfer_New((INTEGER)_Var1, (STRING)_Var2, (INTEGER)_Var3, (INTEGER)_Var4, (INTEGER)_Var5)
+THEN
+DB_DialogMoneyTransfer(_Var1, _Var2, _Var3, _Var4, _Var5);
+
+IF
+DB_DialogMoneyTransfer(_Var1, _Var2, _Var3)
+THEN
+Proc_ItemEvents_DialogMoneyTransfer_New(_Var1, _Var2, _Var3, 2, 1);
+
+IF
+DB_DialogMoneyTransfer(_Var1, _Var2, _Var3, _Var4)
+THEN
+Proc_ItemEvents_DialogMoneyTransfer_New(_Var1, _Var2, _Var3, _Var4, 1);
+
+IF
+ObjectFlagSet((STRING)_Var1, (CHARACTERGUID)_Var2, (INTEGER)_Var3)
+AND
+DB_ItemEvents_TransferFlagToMoneyVarIndex(_Var1, _Var4)
+AND
+DB_DialogName(_Var5, _Var3)
+AND
+DB_DialogMoneyTransfer(_Var4, _Var5, _Var6, _Var7, _Var8)
+THEN
+Proc_TransferMoneyInDialog(_Var3, _Var6, _Var2, _Var8);
+
+PROC
+Proc_TransferMoneyInDialog((INTEGER)_Var1, (INTEGER)_Var2, (CHARACTERGUID)_Var3, (INTEGER)_Var4)
+AND
+DB_DialogPlayers(_Var1, _Var3, _)
+AND
+DB_DialogNPCs(_Var1, _Var6, _Var4)
+AND
+QryEvaluateMagicPocketGold(_Var3, ">=", _Var2)
+AND
+IntegerSubtract(0, _Var2, _Var7)
+THEN
+ProcAddGoldToMagicPockets(_Var3, _Var7);
+CharacterAddGold(_Var6, _Var2);
+DB_TransferMoneyInDialog_Succeeded(1);
+
+PROC
+Proc_TransferMoneyInDialog((INTEGER)_Var1, (INTEGER)_Var2, (CHARACTERGUID)_Var3, (INTEGER)_Var4)
+AND
+DB_DialogNPCs(_Var1, _Var3, _)
+AND
+DB_DialogPlayers(_Var1, _Var6, _Var4)
+AND
+CharacterGetGold(_Var3, _Var7)
+AND
+_Var2 <= _Var7
+AND
+IntegerSubtract(0, _Var2, _Var8)
+THEN
+ProcAddGoldToMagicPockets(_Var6, _Var2);
+CharacterAddGold(_Var3, _Var8);
+DB_TransferMoneyInDialog_Succeeded(1);
+
+IF
+ObjectFlagSet((STRING)_Var1, (GUIDSTRING)_Var2, (INTEGER)_Var3)
+AND
+DB_ItemEvents_TransferFlagToMoneyVarIndex(_Var1, _)
+AND NOT
+DB_TransferMoneyInDialog_Succeeded(1)
+AND
+DB_DialogName(_Var5, _Var3)
+AND
+StringConcatenate("GEN_TransferNPCPayment failed for: ", _Var5, _Var6)
+THEN
+DebugBreak(_Var6);
+
+IF
+ObjectFlagSet((STRING)_Var1, (GUIDSTRING)_Var2, (INTEGER)_Var3)
+AND
+DB_ItemEvents_TransferFlagToMoneyVarIndex(_Var1, _)
+THEN
+NOT DB_TransferMoneyInDialog_Succeeded(1);
+ObjectClearFlag(_Var2, _Var1);
+
+IF
+ItemAddedToCharacter((ITEMGUID)_Var1, (CHARACTERGUID)_Var2)
+AND
+DB_HasStoryEvent(_Var1, _Var3)
+THEN
+SetOnStage(_Var1, 1);
+ProcSetMagicPocketsOwnershipFlag(_Var2, _Var3);
+
+IF
+ItemRemovedFromCharacter((ITEMGUID)_Var1, (CHARACTERGUID)_Var2)
+AND
+DB_HasStoryEvent(_Var1, _Var3)
+THEN
+ProcClearMagicPocketsOwnershipFlag(_Var2, _Var3);
+
+IF
+DB_HasStoryEvent(_Var1, _Var2)
+AND
+ItemGetOwner(_Var1, _Var3)
+AND
+_Var3 != NULL_00000000-0000-0000-0000-000000000000
+AND
+ItemIsInCharacterInventory(_Var1, _Var3, 1)
+THEN
+ProcSetMagicPocketsOwnershipFlag(_Var3, _Var2);
+
+IF
+ObjectFlagSet((STRING)_Var1, (GUIDSTRING)_Var2, _)
+AND
+DB_GiveItemToEvent(_Var4, _Var1)
+THEN
+ItemToInventory(_Var4, _Var2, 1);
+
+IF
+ObjectFlagSet((STRING)_Var1, (GUIDSTRING)_Var2, _)
+AND
+DB_GiveItemToEventWithClear(_Var4, _Var1)
+THEN
+ItemToInventory(_Var4, _Var2, 1);
+ObjectClearFlag(_Var2, _Var1, 0);
+
+PROC
+Proc_ItemEventCheck()
+AND
+DB_HasStoryEvent(_, _Var2)
+THEN
+PROC_ClearHasStoryEvent(_Var2);
+
+PROC
+PROC_ClearHasStoryEvent((STRING)_Var1)
+AND
+DB_ProcessedUser(_Var2)
+THEN
+NOT DB_ProcessedUser(_Var2);
+
+PROC
+PROC_ClearHasStoryEvent((STRING)_Var1)
+AND
+DB_IsPlayer(_Var2)
+AND
+CharacterGetReservedUserID(_Var2, _Var3)
+AND NOT
+DB_ProcessedUser(_Var3)
+THEN
+DB_ProcessedUser(_Var3);
+ProcClearMagicPocketsOwnershipFlag(_Var2, _Var1);
+
+PROC
+Proc_ItemEventCheck()
+AND
+DB_HasStoryEvent(_Var1, _Var2)
+AND
+ObjectExists(_Var1, 1)
+AND
+ItemIsInInventory(_Var1, 1)
+AND
+ItemGetOwner(_Var1, _Var3)
+AND
+DB_IsPlayer(_Var3)
+THEN
+ProcSetMagicPocketsOwnershipFlag(_Var3, _Var2);
+
+IF
+ItemEquipped((ITEMGUID)_Var1, (CHARACTERGUID)_Var2)
+AND
+DB_SetStoryFlagWhenEquipped(_Var1, _Var3)
+THEN
+ObjectSetFlag(_Var2, _Var3);
+
+IF
+ItemUnEquipped((ITEMGUID)_Var1, (CHARACTERGUID)_Var2)
+AND
+DB_SetStoryFlagWhenEquipped(_Var1, _Var3)
+THEN
+ObjectClearFlag(_Var2, _Var3);
+
+IF
+ItemAddedToCharacter((ITEMGUID)_Var1, (CHARACTERGUID)_Var2)
+AND
+ObjectExists(_Var1, 1)
+AND
+DB_TaggedItemTracker(_Var3)
+AND
+IsTagged(_Var1, _Var3, 1)
+AND
+StringConcatenate("Has_TaggedItem_", _Var3, _Var4)
+THEN
+ProcSetMagicPocketsOwnershipFlag(_Var2, _Var4);
+DB_HasTaggedItem(_Var2, _Var1, _Var3, _Var4);
+
+IF
+DB_TaggedItemInitialSetup(1)
+THEN
+DB_TaggedItemRecheck(1);
+
+IF
+DB_TaggedItemRecheck(1)
+AND NOT
+DB_TaggedItemInitialSetup(1)
+THEN
+NOT DB_TaggedItemRecheck(1);
+ProcCheckItemTags();
+
+PROC
+ProcCheckItemTags()
+AND
+DB_IsPlayer(_Var1)
+AND
+DB_TaggedItemTracker(_Var2)
+THEN
+DB_ItemTagCheckingPlayer(_Var1, _Var2);
+InventoryLaunchTagIterator(_Var1, _Var2, "", "_Check_Item_Tags_", "");
+FireOsirisEvents();
+NOT DB_ItemTagCheckingPlayer(_Var1, _Var2);
+
+IF
+StoryEvent((ITEMGUID)_Var1, "_Check_Item_Tags_")
+AND
+DB_ItemTagCheckingPlayer(_Var2, _Var3)
+AND
+StringConcatenate("Has_TaggedItem_", _Var3, _Var4)
+THEN
+ProcSetMagicPocketsOwnershipFlag(_Var2, _Var4);
+DB_HasTaggedItem(_Var2, _Var1, _Var3, _Var4);
+
+IF
+DB_TaggedItemTracker(_Var1)
+AND NOT
+DB_TaggedItemInitialSetup(1)
+THEN
+ProcCheckInventoriesForTag(_Var1);
+
+PROC
+ProcCheckInventoriesForTag((STRING)_Var1)
+AND
+DB_IsPlayer(_Var2)
+THEN
+DB_ItemTagCheckingPlayer(_Var2, _Var1);
+InventoryLaunchTagIterator(_Var2, _Var1, "", "_Check_Item_Tag_", "");
+FireOsirisEvents();
+NOT DB_ItemTagCheckingPlayer(_Var2, _Var1);
+
+IF
+StoryEvent((ITEMGUID)_Var1, "_Check_Item_Tag_")
+AND
+DB_ItemTagCheckingPlayer(_Var2, _Var3)
+AND
+StringConcatenate("Has_TaggedItem_", _Var3, _Var4)
+THEN
+ProcSetMagicPocketsOwnershipFlag(_Var2, _Var4);
+DB_HasTaggedItem(_Var2, _Var1, _Var3, _Var4);
+
+IF
+ItemStackedWith((ITEMGUID)_Var1, _)
+AND
+DB_HasTaggedItem(_Var3, _Var1, _Var4, _Var5)
+THEN
+NOT DB_HasTaggedItem(_Var3, _Var1, _Var4, _Var5);
+
+IF
+ItemRemovedFromCharacter((ITEMGUID)_Var1, (CHARACTERGUID)_Var2)
+AND
+DB_HasTaggedItem(_Var2, _Var1, _Var3, _Var4)
+THEN
+NOT DB_HasTaggedItem(_Var2, _Var1, _Var3, _Var4);
+Proc_CheckForItemTagInMagicPockets(_Var2, _Var3);
+
+PROC
+Proc_CheckForItemTagInMagicPockets((CHARACTERGUID)_Var1, (STRING)_Var2)
+AND NOT
+QryTaggedItemInMagicPockets(_Var1, _Var2)
+AND
+StringConcatenate("Has_TaggedItem_", _Var2, _Var3)
+THEN
+ProcClearMagicPocketsOwnershipFlag(_Var1, _Var3);
+
+PROC
+Proc_ItemEventCheck()
+AND
+DB_TaggedItemTracker(_Var1)
+AND
+StringConcatenate("Has_TaggedItem_", _Var1, _Var2)
+AND
+DB_IsPlayer(_Var3)
+THEN
+ProcClearMagicPocketsOwnershipFlag(_Var3, _Var2);
+
+IF
+RegionStarted(_)
+AND
+DB_HasTaggedItem(_Var2, _Var3, _Var4, _Var5)
+AND
+ObjectExists(_Var2, 0)
+THEN
+NOT DB_HasTaggedItem(_Var2, _Var3, _Var4, _Var5);
+
+PROC
+Proc_ItemEventCheck()
+AND
+DB_HasTaggedItem(_Var1, _Var2, _Var3, _Var4)
+THEN
+ProcSetMagicPocketsOwnershipFlag(_Var1, _Var4);
+
+IF
+ItemTemplateAddedToCharacter((GUIDSTRING)_Var1, (ITEMGUID)_Var2, (CHARACTERGUID)_Var3)
+AND
+String(_Var1, _Var4)
+AND
+DB_HasTemplateItem(_Var4, _Var5)
+THEN
+Proc_OnAddItemTemplateToChar(_Var3, _Var4, _Var5);
+
+IF
+ItemTemplateRemovedFromCharacter((STRING)_Var1, (ITEMGUID)_Var2, (CHARACTERGUID)_Var3)
+AND
+DB_HasTemplateItem(_Var1, _Var4)
+THEN
+Proc_OnRemoveItemTemplateFromChar(_Var3, _Var1, _Var4);
+
+IF
+DB_HasTemplateItem(_Var1, _Var2)
+AND
+DB_IsPlayer(_Var3)
+THEN
+Proc_OnAddItemTemplateToChar(_Var3, _Var1, _Var2);
+
+PROC
+Proc_ItemEventCheck()
+AND
+DB_HasTemplateItem(_Var1, _Var2)
+THEN
+PROC_SetTemplateOwnerShipFlag(_Var1, _Var2);
+
+PROC
+PROC_SetTemplateOwnerShipFlag(_, _)
+AND
+DB_CheckedUser(_Var3)
+THEN
+NOT DB_CheckedUser(_Var3);
+
+PROC
+PROC_SetTemplateOwnerShipFlag((STRING)_Var1, (STRING)_Var2)
+AND
+DB_IsPlayer(_Var3)
+AND
+CharacterGetReservedUserID(_Var3, _Var4)
+AND NOT
+DB_CheckedUser(_Var4)
+THEN
+DB_CheckedUser(_Var4);
+ProcClearMagicPocketsOwnershipFlag(_Var3, _Var2);
+Proc_OnAddItemTemplateToChar(_Var3, _Var1, _Var2);
+
+PROC
+Proc_OnAddItemTemplateToChar((CHARACTERGUID)_Var1, (STRING)_Var2, (STRING)_Var3)
+AND
+ItemTemplateIsInUserInventory(_Var1, _Var2, 0, _Var4)
+AND
+_Var4 > 0
+THEN
+ProcSetMagicPocketsOwnershipFlag(_Var1, _Var3);
+
+PROC
+Proc_OnRemoveItemTemplateFromChar((CHARACTERGUID)_Var1, (STRING)_Var2, (STRING)_Var3)
+AND
+ItemTemplateIsInUserInventory(_Var1, _Var2, 0, _Var4)
+AND
+_Var4 < 1
+THEN
+ProcClearMagicPocketsOwnershipFlag(_Var1, _Var3);
+
+PROC
+Proc_ItemEvents_ItemTemplateScriptFlag_New((INTEGER)_Var1, (STRING)_Var2, (STRING)_Var3, (INTEGER)_Var4, (INTEGER)_Var5)
+AND
+DB_HasItemTemplateScriptFlag(_Var1, _Var2, _Var6, _Var7, _Var8)
+AND
+_Var6 != _Var3
+THEN
+NOT DB_HasItemTemplateScriptFlag(_Var1, _Var2, _Var6, _Var7, _Var8);
+
+PROC
+Proc_ItemEvents_ItemTemplateScriptFlag_New((INTEGER)_Var1, (STRING)_Var2, (STRING)_Var3, (INTEGER)_Var4, (INTEGER)_Var5)
+AND
+DB_HasItemTemplateScriptFlag(_Var1, _Var2, _Var6, _Var7, _Var8)
+AND
+_Var7 != _Var4
+THEN
+NOT DB_HasItemTemplateScriptFlag(_Var1, _Var2, _Var6, _Var7, _Var8);
+
+PROC
+Proc_ItemEvents_ItemTemplateScriptFlag_New((INTEGER)_Var1, (STRING)_Var2, (STRING)_Var3, (INTEGER)_Var4, (INTEGER)_Var5)
+AND
+DB_HasItemTemplateScriptFlag(_Var1, _Var2, _Var6, _Var7, _Var8)
+AND
+_Var8 != _Var5
+THEN
+NOT DB_HasItemTemplateScriptFlag(_Var1, _Var2, _Var6, _Var7, _Var8);
+
+PROC
+Proc_ItemEvents_ItemTemplateScriptFlag_New((INTEGER)_Var1, (STRING)_Var2, (STRING)_Var3, (INTEGER)_Var4, (INTEGER)_Var5)
+THEN
+DB_HasItemTemplateScriptFlag(_Var1, _Var2, _Var3, _Var4, _Var5);
+
+IF
+DB_HasItemTemplateScriptFlag(_Var1, _Var2, _Var3, _Var4)
+THEN
+Proc_ItemEvents_ItemTemplateScriptFlag_New(_Var1, _Var2, _Var3, _Var4, 1);
+
+IF
+DB_HasItemTemplateScriptFlag(_Var1, _Var2, _Var3, _Var4, _Var5)
+THEN
+Proc_ItemEvents_ItemTemplateScriptFlag_New(_Var1, _Var2, _Var3, _Var4, _Var5);
+
+IF
+ObjectFlagSet((STRING)_Var1, (CHARACTERGUID)_Var2, (INTEGER)_Var3)
+AND
+DB_GiveTemplateFromPlayerDialogEvent(_Var4, _Var1, _Var5)
+AND
+DialogGetInvolvedPlayer(_Var3, 1, _Var6)
+THEN
+ObjectClearFlag(_Var2, _Var1, 0);
+Proc_PlayerGivesItemFromTemplate(_Var6, _Var2, _Var4, _Var5);
+
+IF
+ObjectFlagSet((STRING)_Var1, (CHARACTERGUID)_Var2, (INTEGER)_Var3)
+AND
+DB_GiveTemplateFromNpcToPlayerDialogEvent(_Var4, _Var1, _Var5)
+AND
+DialogGetInvolvedPlayer(_Var3, 1, _Var6)
+THEN
+ObjectClearFlag(_Var2, _Var1, 0);
+Proc_NPCGivesItemFromTemplate(_Var2, _Var6, _Var4, _Var5);
+
+IF
+ObjectFlagSet((STRING)_Var1, (CHARACTERGUID)_Var2, _)
+AND
+DB_GiveNewItemFromTemplateEvent(_Var4, _Var1)
+THEN
+ObjectClearFlag(_Var2, _Var1, 0);
+ItemTemplateAddTo(_Var4, _Var2, 1);
+
+IF
+ObjectFlagSet((STRING)_Var1, (CHARACTERGUID)_Var2, _)
+AND
+DB_RemoveItemFromTemplateEvent(_Var4, _Var1, _Var5)
+AND NOT
+DB_RemoveItemFromTemplate_InProgress(_Var1)
+THEN
+DB_RemoveItemFromTemplate_InProgress(_Var1);
+ObjectClearFlag(_Var2, _Var1, 0);
+Proc_RemoveItemFromTemplate(_Var2, _Var4, _Var5);
+Proc_RemoveItemFromTemplateContinueIfFailed(_Var2, _Var1, _Var5);
+
+PROC
+Proc_RemoveItemFromTemplateContinueIfFailed((CHARACTERGUID)_Var1, (STRING)_Var2, (STRING)_Var3)
+AND
+ObjectGetFlag(_Var1, _Var3, 0)
+THEN
+NOT DB_RemoveItemFromTemplate_InProgress(_Var2);
+
+IF
+ObjectFlagSet((STRING)_Var1, (CHARACTERGUID)_Var2, _)
+AND
+DB_RemoveItemFromTemplateEvent(_Var4, _Var1, _Var5)
+AND
+DB_RemoveItemFromTemplate_InProgress(_Var1)
+THEN
+NOT DB_RemoveItemFromTemplate_InProgress(_Var1);
+
+PROC
+Proc_PlayerGivesItemFromTemplate((CHARACTERGUID)_Var1, (CHARACTERGUID)_Var2, (STRING)_Var3, (STRING)_Var4)
+AND
+QryRemoveItemTemplateFromMagicPockets(_Var1, _Var3, 1)
+THEN
+ItemTemplateAddTo(_Var3, _Var2, 1);
+ObjectSetFlag(_Var2, _Var4);
+
+PROC
+Proc_NPCGivesItemFromTemplate((CHARACTERGUID)_Var1, (CHARACTERGUID)_Var2, (STRING)_Var3, (STRING)_Var4)
+AND
+ItemTemplateIsInCharacterInventory(_Var1, _Var3, _Var5)
+AND
+_Var5 > 0
+THEN
+ItemTemplateRemoveFrom(_Var3, _Var1, 1);
+ItemTemplateAddTo(_Var3, _Var2, 1);
+ObjectSetFlag(_Var1, _Var4);
+
+PROC
+Proc_RemoveItemFromTemplate((CHARACTERGUID)_Var1, (STRING)_Var2, (STRING)_Var3)
+AND
+DB_IsPlayer(_Var1)
+AND
+QryRemoveItemTemplateFromMagicPockets(_Var1, _Var2, 1)
+THEN
+ObjectSetFlag(_Var1, _Var3);
+
+PROC
+Proc_RemoveItemFromTemplate((CHARACTERGUID)_Var1, (STRING)_Var2, (STRING)_Var3)
+AND NOT
+DB_IsPlayer(_Var1)
+AND
+ItemTemplateIsInCharacterInventory(_Var1, _Var2, _Var4)
+AND
+_Var4 > 0
+THEN
+ItemTemplateRemoveFrom(_Var2, _Var1, 1);
+ObjectSetFlag(_Var1, _Var3);
+
+IF
+DialogEnded(_, (INTEGER)_Var2)
+AND
+DialogGetInvolvedNPC(_Var2, 1, _Var3)
+AND
+ObjectIsItem(_Var3, 1)
+AND
+ObjectGetFlag(_Var3, "ItemPickup", 1)
+AND
+DialogGetInvolvedPlayer(_Var2, 1, _Var4)
+THEN
+CharacterPickupItem(_Var4, _Var3, "");
+ObjectClearFlag(_Var3, "ItemPickup", 0);
+
+IF
+StoryEvent((CHARACTERGUID)_Var1, "GEN_Animation_Activate")
+THEN
+PlayAnimation(_Var1, "use_activate");
+
+
+EXITSECTION
+ENDEXITSECTION
+

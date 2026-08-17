@@ -1,0 +1,872 @@
+Version 1
+SubGoalCombiner SGC_AND
+
+INITSECTION
+DB_Dialogs(CHARACTERGUID_S_RC_BI_DwarfDemonTrader_1579c996-687f-48ef-9b66-174b39e5cdd7, "RC_BI_DwarfDemonTrader");
+DB_Dialogs(CHARACTERGUID_S_GLO_Advocate_bfa3e903-78ab-46aa-9a95-54fb956eb2b3, "RC_BI_LizardDemonLeader");
+DB_Dialogs(CHARACTERGUID_S_RC_BI_CampDemon_000_7458c767-b68a-490c-a840-23209a3f2b3e, "RC_BI_CampDemon_000");
+DB_Dialogs(CHARACTERGUID_S_RC_BI_CampDemon_001_29ef3742-1c2f-4bff-8375-53f1c55bb7f2, "RC_BI_CampDemon_001");
+DB_Dialogs(CHARACTERGUID_S_RC_BI_CampDemon_002_5443b7be-2cdd-4c24-bcd7-e9b94b66aec1, "RC_BI_CampDemon_002");
+DB_Dialogs(CHARACTERGUID_S_RC_BI_CampDemonHound_000_9ef6408e-d911-48ba-bc06-ad465ccb22c0, "RC_BI_CampDemonHound_000");
+DB_Dialogs(CHARACTERGUID_S_RC_BI_CampDemonHound_001_32342040-653c-46cd-9212-653df84974f6, "RC_BI_CampDemonHound_001");
+DB_Dialogs(CHARACTERGUID_S_GLO_AdvocatePrisoner_4db4f43f-56b3-4dbe-9ec6-994901b24a7e, "RC_BI_LizardDemonLeader_RitualPrisoner");
+DB_Ghosts(CHARACTERGUID_S_RC_BI_DwarfDemonTrader_1579c996-687f-48ef-9b66-174b39e5cdd7, CHARACTERGUID_S_RC_BI_DwarfDemonTrader_Ghost_25740d4a-ab67-47ec-a4e5-4d673ff6ecdb, "RC_BI_DwarfDemonTrader_Ghost");
+DB_DeadEvent(CHARACTERGUID_S_GLO_Advocate_bfa3e903-78ab-46aa-9a95-54fb956eb2b3, "RC_BI_LizardDemonLeader_Dead");
+DB_KilledEvent(CHARACTERGUID_S_GLO_Advocate_bfa3e903-78ab-46aa-9a95-54fb956eb2b3, "RC_BI_KilledLizardDemonLeader");
+DB_SupernaturalBeing(CHARACTERGUID_S_GLO_Advocate_bfa3e903-78ab-46aa-9a95-54fb956eb2b3);
+DB_RC_BI_DemonCamp_WelcomeDialog(CHARACTERGUID_S_RC_BI_CampDemon_002_5443b7be-2cdd-4c24-bcd7-e9b94b66aec1, "RC_BI_CampDemon_Welcome");
+DB_RC_BI_DemonCamp_WelcomeDialog(CHARACTERGUID_S_RC_BI_CampDemon_001_29ef3742-1c2f-4bff-8375-53f1c55bb7f2, "RC_BI_CampDemon_Welcome_Elf");
+DB_RC_BI_DemonCampToTree(CHARACTERGUID_S_GLO_Advocate_bfa3e903-78ab-46aa-9a95-54fb956eb2b3, TRIGGERGUID_S_RC_BI_LizardDemonAppearAtTree_7fcce9fe-0267-4a11-a6ed-794c43fc38d1);
+DB_RC_BI_DemonCampToTree(CHARACTERGUID_S_RC_BI_DwarfDemonTrader_1579c996-687f-48ef-9b66-174b39e5cdd7, TRIGGERGUID_S_RC_BI_DwarfDemonAppearAtTree_2bf53d52-d875-4992-b602-d8b61fecc38e);
+DB_RC_BI_DemonCampToTree(CHARACTERGUID_S_RC_BI_CampDemon_000_7458c767-b68a-490c-a840-23209a3f2b3e, TRIGGERGUID_S_RC_BI_CampDemonAppearAtTree_000_f2f1b0cb-093a-4995-97c3-650370dc8b91);
+DB_RC_BI_DemonCampToTree(CHARACTERGUID_S_RC_BI_CampDemon_001_29ef3742-1c2f-4bff-8375-53f1c55bb7f2, TRIGGERGUID_S_RC_BI_CampDemonAppearAtTree_001_0ece11e1-0e26-44da-b742-4a236ab8de5d);
+DB_RC_BI_DemonCampToTree(CHARACTERGUID_S_RC_BI_CampDemon_002_5443b7be-2cdd-4c24-bcd7-e9b94b66aec1, TRIGGERGUID_S_RC_BI_CampDemonAppearAtTree_002_72d0af7a-fbae-4fe3-898a-e98509bb541a);
+DB_RC_BI_DemonCampToTree(CHARACTERGUID_S_RC_BI_CampDemonHound_000_9ef6408e-d911-48ba-bc06-ad465ccb22c0, TRIGGERGUID_S_RC_BI_CampDemonHoundsAppearAtTree_4f88b1cc-d371-4dff-aea5-e784202ea3d1);
+DB_RC_BI_DemonCampToTree(CHARACTERGUID_S_RC_BI_CampDemonHound_001_32342040-653c-46cd-9212-653df84974f6, TRIGGERGUID_S_RC_BI_CampDemonHoundsAppearAtTree_4f88b1cc-d371-4dff-aea5-e784202ea3d1);
+DB_RC_BI_DemonCampAtTree(CHARACTERGUID_S_RC_BI_DwarfDemonTrader_1579c996-687f-48ef-9b66-174b39e5cdd7, TRIGGERGUID_S_RC_BI_DwarfDemonResidenceAtTree_cb4e929d-c766-4aa0-bf4b-9ec3b4af8877);
+DB_RC_BI_DemonCampAtTree(CHARACTERGUID_S_RC_BI_CampDemon_000_7458c767-b68a-490c-a840-23209a3f2b3e, TRIGGERGUID_S_RC_BI_CampDemonResidenceAtTree_000_0aa985c7-4078-4dae-bb97-784a86d8acf3);
+DB_RC_BI_DemonCampAtTree(CHARACTERGUID_S_RC_BI_CampDemon_001_29ef3742-1c2f-4bff-8375-53f1c55bb7f2, TRIGGERGUID_S_RC_BI_CampDemonResidenceAtTree_001_2205c39f-9160-4e92-b96c-21c105d4de1b);
+DB_RC_BI_DemonCampAtTree(CHARACTERGUID_S_RC_BI_CampDemon_002_5443b7be-2cdd-4c24-bcd7-e9b94b66aec1, TRIGGERGUID_S_RC_BI_CampDemonResidenceAtTree_002_c4efafbb-4956-47ab-b1d3-63f640400b8b);
+DB_RC_BI_DemonCampHounds(CHARACTERGUID_S_RC_BI_CampDemonHound_000_9ef6408e-d911-48ba-bc06-ad465ccb22c0);
+DB_RC_BI_DemonCampHounds(CHARACTERGUID_S_RC_BI_CampDemonHound_001_32342040-653c-46cd-9212-653df84974f6);
+DB_RC_BI_DemonCampHounds_AtTreeSpline(CHARACTERGUID_S_RC_BI_CampDemonHound_000_9ef6408e-d911-48ba-bc06-ad465ccb22c0, SPLINEGUID_S_RC_BI_DemonCamp_Hound_AtTree_000_Spline_d7e9a2ef-63c6-4102-95b2-5428f5e3dfbc);
+ProcTriggerRegisterForPlayers(TRIGGERGUID_S_RC_BI_DemonCamp_DiscoverVBTrigger_03e493b2-0f5e-489d-8c0a-e9670ea7e150);
+DB_RC_BI_RiverDwarfDemon_Chatters(CHARACTERGUID_S_GLO_River_f4931ebe-10b0-43c4-9182-640cf052717e);
+DB_RC_BI_RiverDwarfDemon_Chatters(CHARACTERGUID_S_RC_BI_DwarfDemonTrader_1579c996-687f-48ef-9b66-174b39e5cdd7);
+ProcTriggerRegisterForPlayers(TRIGGERGUID_S_RC_BI_DemonCamp_RiverDialogTrigger_d390633a-faa7-4f5a-b1fa-df98258fb981);
+TriggerRegisterForCharacter(TRIGGERGUID_S_RC_BI_DemonCamp_RiverDialogTrigger_d390633a-faa7-4f5a-b1fa-df98258fb981, CHARACTERGUID_S_GLO_River_f4931ebe-10b0-43c4-9182-640cf052717e);
+TriggerRegisterForCharacter(TRIGGERGUID_S_RC_BI_DemonCamp_RiverDialogTrigger_d390633a-faa7-4f5a-b1fa-df98258fb981, CHARACTERGUID_S_RC_BI_DwarfDemonTrader_1579c996-687f-48ef-9b66-174b39e5cdd7);
+TriggerRegisterForCharacter(TRIGGERGUID_S_RC_BI_BloodIslandRegion_9c0a84b1-314c-4262-b33b-26cfcdfc10ee, CHARACTERGUID_S_GLO_River_f4931ebe-10b0-43c4-9182-640cf052717e);
+DB_RC_BI_DemonCampVoidwoken(CHARACTERGUID_S_RC_BI_DemonCamp_Voidwoken_000_2b8d786d-2fcf-46f8-badb-5ec6afe6c717);
+DB_RC_BI_DemonCampVoidwoken(CHARACTERGUID_S_RC_BI_DemonCamp_Voidwoken_001_e24656e0-bcf7-4776-8f0a-4a87268043ee);
+DB_RC_BI_DemonCampVoidwoken(CHARACTERGUID_S_RC_BI_DemonCamp_Voidwoken_002_fd4926d8-ddee-4272-8d7f-329c53d898af);
+DB_RC_BI_DemonCampVoidwoken(CHARACTERGUID_S_RC_BI_DemonCamp_Voidwoken_003_8ff8dd7b-f5da-461a-8d33-abf942e973af);
+DB_RC_BI_DemonCampVoidwoken(CHARACTERGUID_S_RC_BI_DemonCamp_Voidwoken_003_8ff8dd7b-f5da-461a-8d33-abf942e973af);
+DB_RC_BI_AncestorTreeHealPoints(TRIGGERGUID_S_RC_BI_AncestorTree_EffectPoint_000_27cd3a2d-af8f-4896-a658-68d791d4538b);
+DB_RC_BI_AncestorTreeHealPoints(TRIGGERGUID_S_RC_BI_AncestorTree_EffectPoint_001_b8cabdbe-6172-4982-ad62-86daf0347b14);
+DB_RC_BI_AncestorTreeHealPoints(TRIGGERGUID_S_RC_BI_AncestorTree_EffectPoint_002_d99a9174-6fda-44e7-a535-99871c75b0b1);
+DB_RC_BI_AncestorTreeHealPoints(TRIGGERGUID_S_RC_BI_AncestorTree_EffectPoint_003_a6a9094f-f067-4a9d-a557-3e8c2e47e96f);
+DB_RC_BI_AncestorTreeHealPoints(TRIGGERGUID_S_RC_BI_AncestorTree_EffectPoint_004_5b484b2c-2b6e-43d5-938a-e487300a8d55);
+DB_RC_BI_AncestorTreeHealPoints(TRIGGERGUID_S_RC_BI_AncestorTree_EffectPoint_005_a6ffcc05-02d9-4215-aa9b-d00db38d114d);
+DB_RC_BI_AncestorTreeHealPoints(TRIGGERGUID_S_RC_BI_AncestorTree_EffectPoint_006_88948581-6500-4bfd-ad64-ac6095222102);
+DB_RC_BI_DwarfDemon_BetFlags("RC_BI_DwarfDemon_BetOnRiver");
+DB_RC_BI_DwarfDemon_BetFlags("RC_BI_DwarfDemon_BetAgainstRiver");
+DB_RC_BI_DwarfDemon_Bet(500);
+SetOnStage(CHARACTERGUID_S_GLO_AdvocatePrisoner_4db4f43f-56b3-4dbe-9ec6-994901b24a7e, 0);
+DB_RC_BI_ThePresence_CompletionFlags("QuestUpdate_RC_BI_ThePresence_Reported");
+DB_RC_BI_ThePresence_CompletionFlags("QuestUpdate_RC_BI_ThePresence_UnexpectedCompletion");
+DB_OneTimeEventFlag("RC_BI_Advocate_Ritual_0");
+DB_OneTimeEventFlag("RC_BI_Advocate_Ritual_1");
+DB_OneTimeEventFlag("RC_BI_Advocate_Ritual_Death");
+DB_OneTimeEventFlag("RC_BI_Advocate_Ritual_End");
+DB_OneTimeEventFlag("RC_BI_Advocate_Ritual_Interrupt");
+Proc_JDF_CreateDependency("RC_BI_ThePresence", "GotTaskKillVoidwoken", "AncestorTreeFound");
+Proc_JDF_CreateDependency("RC_BI_ThePresence", "UnexpectedWelcome", "LizardDemonDead");
+Proc_JDF_CreateDependency("RC_BI_ThePresence", "LizardDemonFound", "LizardDemonDead");
+Proc_JDF_CreateDependency("RC_BI_ThePresence", "GotTaskKillVoidwoken", "KilledVoidwoken");
+DB_RC_BI_ThePresence_Ritual_EffectPoints(TRIGGERGUID_S_RC_BI_AdvocatePrisoner_EffectPoint_000_5b233994-b50d-4bcc-a3af-d36aa490b162);
+DB_RC_BI_ThePresence_Ritual_EffectPoints(TRIGGERGUID_S_RC_BI_AdvocatePrisoner_EffectPoint_001_a97aa3be-46f4-4a90-bcac-2dad02b9086b);
+DB_RC_BI_ThePresence_Ritual_EffectPoints(TRIGGERGUID_S_RC_BI_AdvocatePrisoner_EffectPoint_002_1442f7fc-2dfa-45fd-852e-fb1462cf6b63);
+DB_RC_BI_ThePresence_Ritual_EffectPoints(TRIGGERGUID_S_RC_BI_AdvocatePrisoner_EffectPoint_003_7908c0e7-0f2b-4e18-90a2-0668d935af6f);
+ProcCharacterDisableAllCrimes(CHARACTERGUID_S_GLO_AdvocatePrisoner_4db4f43f-56b3-4dbe-9ec6-994901b24a7e);
+ProcTriggerRegisterForPlayers(TRIGGERGUID_S_RC_BI_Camp_HeartMessengerTrigger_8e5a4783-6d1b-4b61-b13b-13b38db7c89b);
+SetOnStage(CHARACTERGUID_S_RC_BI_Camp_HeartMessenger_666d737d-4821-4c77-9dd9-09492190a5e4, 0);
+CharacterDisableAllCrimes(CHARACTERGUID_S_RC_BI_Camp_HeartMessenger_666d737d-4821-4c77-9dd9-09492190a5e4);
+
+KBSECTION
+IF
+TextEventSet("dbg_rc_bi_killed")
+THEN
+Proc_RC_BI_DemonCampToTree();
+
+IF
+TextEventSet("dbg_rc_bi_ad")
+THEN
+Proc_StartDialog(1, "RC_BI_AD_CampDemonsTalk", CHARACTERGUID_S_RC_BI_CampDemon_000_7458c767-b68a-490c-a840-23209a3f2b3e, CHARACTERGUID_S_RC_BI_CampDemon_001_29ef3742-1c2f-4bff-8375-53f1c55bb7f2);
+
+IF
+TextEventSet("dbg_flag")
+AND
+GetTextEventParamString(1, _Var1)
+AND
+DB_IsPlayer(_Var2)
+THEN
+ObjectSetFlag(_Var2, _Var1);
+
+IF
+TextEventSet("dbg_rc_bi_killbr")
+AND
+DB_BI_AncestorTree_Wizard(_Var1)
+THEN
+CharacterDie(_Var1, 1, "DoT");
+
+IF
+TextEventSet("dbg_rc_bi_treename")
+AND
+DB_IsPlayer(_Var1)
+THEN
+ObjectSetFlag(_Var1, "RC_BI_Archive_KnowName");
+
+IF
+TextEventSet("riverdis")
+THEN
+Proc_RC_BI_RiverDisappear("RiverDis");
+
+IF
+TextEventSet("riverap")
+THEN
+Foop(CHARACTERGUID_S_GLO_River_f4931ebe-10b0-43c4-9182-640cf052717e);
+
+IF
+DB_RC_BI_DemonCampHounds(_Var1)
+THEN
+ProcCrimeSetAllCustomSensibleAction(_Var1, "AttackAnimal", "");
+ProcCrimeSetAllCustomSensibleAction(_Var1, "SummonAttackAnimal", "");
+ProcCrimeSetAllCustomSensibleAction(_Var1, "KilledAnimal", "");
+ProcCrimeSetAllCustomSensibleAction(_Var1, "SummonKilledAnimal", "");
+ProcCrimeSetAllCustomSensibleAction(_Var1, "Assault", "");
+ProcCrimeSetAllCustomSensibleAction(_Var1, "IncapacitatedAssault", "");
+
+PROC
+ProcCrimeOnCustomSensibleAction((CHARACTERGUID)_Var1, _, _, _, _, (CHARACTERGUID)_Var6, _, _, _, _)
+AND
+DB_RC_BI_DemonCampHounds(_Var1)
+AND
+DB_IsPlayer(_Var6)
+THEN
+CharacterSetTemporaryHostileRelation(_Var1, _Var6);
+SetStoryEvent(_Var1, "Crime_CustomSensibleActionDone");
+
+IF
+DB_QuestDef_CloseEvent("RC_BI_ThePresence", _Var1)
+THEN
+DB_RC_BI_ThePresence_QuestEndFlags(_Var1);
+
+IF
+CharacterDied((CHARACTERGUID)_Var1)
+AND
+DB_RC_BI_DemonCamp(_Var1)
+THEN
+NOT DB_RC_BI_DemonCamp(_Var1);
+
+IF
+ObjectFlagSet("RC_BI_KilledLizardDemonLeader", (CHARACTERGUID)_Var1, _)
+AND
+DB_IsPlayer(_Var1)
+AND
+GetFaction(CHARACTERGUID_S_GLO_Advocate_bfa3e903-78ab-46aa-9a95-54fb956eb2b3, _Var3)
+THEN
+ProcSetFactionHostileToIndivPlayer(_Var3, _Var1);
+
+QRY
+QRY_RC_BI_DemonCamp_MetNoMessengers((CHARACTERGUID)_Var1)
+AND
+PartyGetFlag(_Var1, "RC_BI_Bridge_Demons_HasMet", 0)
+AND
+PartyGetFlag(_Var1, "RC_BI_HeartMessenger_HasMet", 0)
+AND
+PartyGetFlag(_Var1, "JDF_RC_BI_ThePresence_UnexpectedWelcome", 0)
+AND
+PartyGetFlag(_Var1, "JDF_RC_BI_ThePresence_LizardDemonFound", 0)
+THEN
+DB_NOOP(1);
+
+IF
+CharacterCharacterEvent((CHARACTERGUID)_Var1, (CHARACTERGUID)_Var2, "RC_BI_LookAtEachOther")
+THEN
+CharacterLookAt(_Var1, _Var2);
+CharacterLookAt(_Var2, _Var1);
+
+IF
+StoryEvent((GUIDSTRING)_Var1, "RC_BI_Animate_emotion_thankful")
+THEN
+PlayAnimation(_Var1, "emotion_thankful");
+
+IF
+ObjectFlagSet("QuestUpdate_RC_BI_ThePresence_GotTaskKillVoidwoken", (CHARACTERGUID)_Var1, (INTEGER)_Var2)
+AND
+DB_DialogPlayers(_Var2, _Var1, 1)
+AND
+DB_IsPlayer(_Var1)
+AND
+UserGetFlag(_Var1, "RC_BI_CORE_RD_WhatScaresADemon_Said", 0)
+THEN
+UserSetFlag(_Var1, "RC_BI_CORE_RD_WhatScaresADemon_Said");
+ProcDefineReflectionDialog("RC_BI_CORE_RD_WhatScaresADemon", _Var1);
+
+IF
+CharacterEnteredTrigger((CHARACTERGUID)_Var1, TRIGGERGUID_S_RC_BI_BloodIslandRegion_9c0a84b1-314c-4262-b33b-26cfcdfc10ee)
+AND
+DB_IsPlayer(_Var1)
+AND NOT
+DB_GlobalFlag("RC_BI_RiverInCamp")
+AND
+ObjectGetFlag(CHARACTERGUID_S_GLO_River_f4931ebe-10b0-43c4-9182-640cf052717e, "RC_LV_Coordinator", 0)
+AND
+QueryOnlyOnce("RC_BI_PutRiverOnIsland")
+THEN
+ProcClearStoryMove(CHARACTERGUID_S_GLO_River_f4931ebe-10b0-43c4-9182-640cf052717e);
+ProcRemoveAllDialogEntriesForSpeaker(CHARACTERGUID_S_GLO_River_f4931ebe-10b0-43c4-9182-640cf052717e);
+DB_Dialogs(CHARACTERGUID_S_GLO_River_f4931ebe-10b0-43c4-9182-640cf052717e, "RC_BI_River");
+TeleportTo(CHARACTERGUID_S_GLO_River_f4931ebe-10b0-43c4-9182-640cf052717e, TRIGGERGUID_S_RC_BI_DemonCamp_RiverDialogTrigger_d390633a-faa7-4f5a-b1fa-df98258fb981);
+SetOnStage(CHARACTERGUID_S_GLO_River_f4931ebe-10b0-43c4-9182-640cf052717e, 1);
+GlobalSetFlag("RC_BI_RiverInCamp");
+CharacterLookAt(CHARACTERGUID_S_GLO_River_f4931ebe-10b0-43c4-9182-640cf052717e, CHARACTERGUID_S_RC_BI_DwarfDemonTrader_1579c996-687f-48ef-9b66-174b39e5cdd7);
+CharacterLookAt(CHARACTERGUID_S_RC_BI_DwarfDemonTrader_1579c996-687f-48ef-9b66-174b39e5cdd7, CHARACTERGUID_S_GLO_River_f4931ebe-10b0-43c4-9182-640cf052717e);
+
+IF
+DialogStarted("RC_BI_River", (INTEGER)_Var1)
+THEN
+DB_GLO_AllDialogObjectFlagsShared(_Var1);
+
+IF
+CharacterSawCharacter((CHARACTERGUID)_Var1, CHARACTERGUID_S_GLO_River_f4931ebe-10b0-43c4-9182-640cf052717e)
+AND
+DB_IsPlayer(_Var1)
+AND
+DB_GlobalFlag("RC_BI_RiverInCamp")
+AND
+ObjectGetFlag(_Var1, "RC_BI_SawRiver", 0)
+THEN
+PartySetFlag(_Var1, "RC_BI_SawRiver");
+
+IF
+CharacterLeftTrigger((CHARACTERGUID)_Var1, TRIGGERGUID_S_RC_BI_DemonCamp_RiverDialogTrigger_d390633a-faa7-4f5a-b1fa-df98258fb981)
+AND
+DB_RC_BI_RiverDwarfDemon_Chatters(_Var1)
+THEN
+Proc_RC_BI_RiverTurnOffAD();
+
+IF
+ObjectEnteredCombat((CHARACTERGUID)_Var1, _)
+AND
+DB_RC_BI_RiverDwarfDemon_Chatters(_Var1)
+THEN
+Proc_RC_BI_RiverTurnOffAD();
+
+PROC
+Proc_RC_BI_RiverTurnOffAD()
+THEN
+RemoveOneShotAD(TRIGGERGUID_S_RC_BI_DemonCamp_RiverDialogTrigger_d390633a-faa7-4f5a-b1fa-df98258fb981);
+TriggerUnregisterForCharacter(TRIGGERGUID_S_RC_BI_DemonCamp_RiverDialogTrigger_d390633a-faa7-4f5a-b1fa-df98258fb981, CHARACTERGUID_S_GLO_River_f4931ebe-10b0-43c4-9182-640cf052717e);
+TriggerUnregisterForCharacter(TRIGGERGUID_S_RC_BI_DemonCamp_RiverDialogTrigger_d390633a-faa7-4f5a-b1fa-df98258fb981, CHARACTERGUID_S_RC_BI_DwarfDemonTrader_1579c996-687f-48ef-9b66-174b39e5cdd7);
+
+PROC
+Proc_RC_BI_RiverDisappear((STRING)_Var1)
+THEN
+Proc_RC_BI_RiverTurnOffAD();
+ProcForceStopDialog(CHARACTERGUID_S_GLO_River_f4931ebe-10b0-43c4-9182-640cf052717e);
+LeaveCombat(CHARACTERGUID_S_GLO_River_f4931ebe-10b0-43c4-9182-640cf052717e);
+SetCanJoinCombat(CHARACTERGUID_S_GLO_River_f4931ebe-10b0-43c4-9182-640cf052717e, 0);
+Proc_StartDialog(1, "RC_BI_AD_RiverDisappear", CHARACTERGUID_S_GLO_River_f4931ebe-10b0-43c4-9182-640cf052717e);
+DB_RC_BF_RiverDisappearEvent(_Var1);
+PlayAnimation(CHARACTERGUID_S_GLO_River_f4931ebe-10b0-43c4-9182-640cf052717e, "skill_cast_self_air_01_cast", "RC_BF_River_CastTeleportOut");
+
+IF
+StoryEvent(CHARACTERGUID_S_GLO_River_f4931ebe-10b0-43c4-9182-640cf052717e, "RC_BF_River_CastTeleportOut")
+AND
+DB_RC_BF_RiverDisappearEvent(_Var1)
+AND
+GetPosition(CHARACTERGUID_S_GLO_River_f4931ebe-10b0-43c4-9182-640cf052717e, _Var2, _Var3, _Var4)
+THEN
+PlayEffectAtPosition("RS3_FX_GP_ScriptedEvent_Teleport_GenericSmoke_01", _Var2, _Var3, _Var4);
+SetCanJoinCombat(CHARACTERGUID_S_GLO_River_f4931ebe-10b0-43c4-9182-640cf052717e, 1);
+SetOnStage(CHARACTERGUID_S_GLO_River_f4931ebe-10b0-43c4-9182-640cf052717e, 0);
+SetStoryEvent(CHARACTERGUID_S_GLO_River_f4931ebe-10b0-43c4-9182-640cf052717e, _Var1);
+NOT DB_RC_BF_RiverDisappearEvent(_Var1);
+
+IF
+CharacterWentOnStage(CHARACTERGUID_S_GLO_River_f4931ebe-10b0-43c4-9182-640cf052717e, 0)
+AND
+DB_GlobalFlag("RC_BI_RiverInCamp")
+THEN
+GlobalClearFlag("RC_BI_RiverInCamp");
+
+IF
+ObjectEnteredCombat(CHARACTERGUID_S_GLO_River_f4931ebe-10b0-43c4-9182-640cf052717e, _)
+AND
+DB_InRegion(CHARACTERGUID_S_GLO_River_f4931ebe-10b0-43c4-9182-640cf052717e, TRIGGERGUID_S_RC_BI_BloodIslandRegion_9c0a84b1-314c-4262-b33b-26cfcdfc10ee)
+THEN
+Proc_RC_BI_RiverDisappear("RC_BI_RiverLeftIsland");
+
+IF
+StoryEvent(CHARACTERGUID_S_GLO_River_f4931ebe-10b0-43c4-9182-640cf052717e, "RC_LV_FetchingByWarOwlToLadyVengeance")
+AND
+DB_InRegion(CHARACTERGUID_S_GLO_River_f4931ebe-10b0-43c4-9182-640cf052717e, TRIGGERGUID_S_RC_BI_BloodIslandRegion_9c0a84b1-314c-4262-b33b-26cfcdfc10ee)
+THEN
+Proc_RC_BI_RiverDisappear("RC_LV_FetchedByWarOwlToLadyVengeance");
+
+IF
+CharacterEnteredTrigger((CHARACTERGUID)_Var1, TRIGGERGUID_S_RC_BI_DemonCamp_RiverDialogTrigger_d390633a-faa7-4f5a-b1fa-df98258fb981)
+AND
+DB_IsPlayer(_Var1)
+AND
+DB_GlobalFlag("RC_BI_RiverInCamp")
+AND
+CharacterIsDead(CHARACTERGUID_S_GLO_River_f4931ebe-10b0-43c4-9182-640cf052717e, 0)
+AND
+CharacterIsDead(CHARACTERGUID_S_RC_BI_DwarfDemonTrader_1579c996-687f-48ef-9b66-174b39e5cdd7, 0)
+THEN
+ProcTriggerUnregisterForPlayers(TRIGGERGUID_S_RC_BI_DemonCamp_RiverDialogTrigger_d390633a-faa7-4f5a-b1fa-df98258fb981);
+Proc_StartDialog(1, "RC_BI_AD_DemonCamp_RiverTalk", CHARACTERGUID_S_GLO_River_f4931ebe-10b0-43c4-9182-640cf052717e, CHARACTERGUID_S_RC_BI_DwarfDemonTrader_1579c996-687f-48ef-9b66-174b39e5cdd7);
+
+IF
+DialogStarted("RC_BI_DwarfDemonTrader", (INTEGER)_Var1)
+AND
+DB_RC_BI_DwarfDemon_Bet(_Var2)
+THEN
+DialogSetVariableInt("RC_BI_DwarfDemonTrader", "GEN_CheckPocketGold_SpeakerIndex_8504b4e0-886e-4912-9525-fbe559c5f8ff", 2);
+DialogSetVariableInt("RC_BI_DwarfDemonTrader", "GEN_CheckMagicPocketGold_6057ad05-9492-4630-9f0a-be548b134c54", _Var2);
+
+IF
+ObjectFlagSet((STRING)_Var1, (CHARACTERGUID)_Var2, _)
+AND
+DB_RC_BI_DwarfDemon_BetFlags(_Var1)
+AND
+DB_IsPlayer(_Var2)
+AND
+DB_RC_BI_DwarfDemon_Bet(_Var4)
+AND
+IntegerProduct(_Var4, -1, _Var5)
+THEN
+ProcAddGoldToMagicPockets(_Var2, _Var5);
+
+IF
+ObjectFlagSet("RC_BI_DwarfDemon_WinBet", (CHARACTERGUID)_Var1, _)
+AND
+DB_IsPlayer(_Var1)
+AND
+DB_RC_BI_DwarfDemon_Bet(_Var3)
+AND
+IntegerProduct(_Var3, 2, _Var4)
+THEN
+ProcAddGoldToMagicPockets(_Var1, _Var4);
+
+IF
+CharacterEnteredTrigger((CHARACTERGUID)_Var1, TRIGGERGUID_S_RC_BI_DemonCamp_DiscoverVBTrigger_03e493b2-0f5e-489d-8c0a-e9670ea7e150)
+AND
+QRY_OncePerUserAndNearbyPlayers(_Var1, "RC_BI_DemonCamp_DiscoveredVB")
+THEN
+StartVoiceBark("RC_BI_VB_DiscoverDemonCamp", _Var1);
+
+IF
+GlobalFlagSet("RC_BI_DemonCampWentToTree")
+THEN
+ProcTriggerUnregisterForPlayers(TRIGGERGUID_S_RC_BI_DemonCamp_DiscoverVBTrigger_03e493b2-0f5e-489d-8c0a-e9670ea7e150);
+
+IF
+GlobalFlagSet("RC_BI_LizardDemonLeader_Dead")
+THEN
+ProcTriggerUnregisterForPlayers(TRIGGERGUID_S_RC_BI_DemonCamp_DiscoverVBTrigger_03e493b2-0f5e-489d-8c0a-e9670ea7e150);
+
+IF
+CharacterCharacterEvent((CHARACTERGUID)_Var1, (CHARACTERGUID)_Var2, "RC_BI_DemonCamp_Spotted")
+AND NOT
+DB_GlobalFlag("RC_BI_DemonCampWentToTree")
+AND
+QRY_RC_BI_DemonCamp_MetNoMessengers(_Var2)
+AND
+DB_RC_BI_DemonCamp_WelcomeDialog(_Var1, _Var3)
+THEN
+PartySetFlag(_Var2, "JDF_RC_BI_ThePresence_UnexpectedWelcome");
+Proc_StartDialog(0, _Var3, _Var1, _Var2);
+
+IF
+ObjectFlagSet("RC_BI_LizardDemonLeader_Hostile", (CHARACTERGUID)_Var1, (INTEGER)_Var2)
+AND
+DB_IsPlayer(_Var1)
+THEN
+ProcSetFactionHostileToIndivPlayer("RC_BI_TheMan", _Var1);
+EnterCombat(CHARACTERGUID_S_GLO_Advocate_bfa3e903-78ab-46aa-9a95-54fb956eb2b3, _Var1);
+
+IF
+TextEventSet("advocate_vw")
+THEN
+GlobalSetFlag("RC_BI_DemonCampVoidwokenAttack");
+
+IF
+TextEventSet("advocate")
+AND
+DB_IsPlayer(_Var1)
+THEN
+ProcSetFactionHostileToIndivPlayer("RC_BI_TheMan", _Var1);
+EnterCombat(CHARACTERGUID_S_GLO_Advocate_bfa3e903-78ab-46aa-9a95-54fb956eb2b3, _Var1);
+
+IF
+DB_RC_BI_DemonCampVoidwoken(_Var1)
+THEN
+SetOnStage(_Var1, 0);
+
+IF
+GlobalFlagSet("RC_BI_DemonCampVoidwokenAttack")
+THEN
+DialogRequestStop(CHARACTERGUID_S_GLO_Advocate_bfa3e903-78ab-46aa-9a95-54fb956eb2b3);
+Proc_StartDialog(1, "RC_BI_AD_LizardDemonLeader_Attacked", CHARACTERGUID_S_GLO_Advocate_bfa3e903-78ab-46aa-9a95-54fb956eb2b3);
+
+IF
+GlobalFlagSet("RC_BI_DemonCampVoidwokenAttack")
+AND NOT
+DB_Dead(CHARACTERGUID_S_GLO_Advocate_bfa3e903-78ab-46aa-9a95-54fb956eb2b3)
+AND
+DB_RC_BI_DemonCampVoidwoken(_Var1)
+THEN
+CharacterAddPreferredAiTargetTag(_Var1, "ADVOCATE");
+
+IF
+GlobalFlagSet("RC_BI_DemonCampVoidwokenAttack")
+AND
+DB_RC_BI_DemonCampVoidwoken(_Var1)
+AND
+Random(3000, _Var2)
+AND
+IntegerSum(1000, _Var2, _Var3)
+THEN
+ProcObjectTimer(_Var1, "Timer_RC_BI_DemonCampVoidwoken", _Var3);
+
+PROC
+ProcObjectTimerFinished((CHARACTERGUID)_Var1, "Timer_RC_BI_DemonCampVoidwoken")
+AND
+GetPosition(_Var1, _Var2, _Var3, _Var4)
+THEN
+PlayEffectAtPosition("RS3_FX_GP_Impacts_Flight_01", _Var2, _Var3, _Var4);
+CharacterAppear(_Var1, 1, "");
+
+PROC
+Proc_RC_BI_BlackRingKilled()
+AND
+DB_IsPlayer(_Var1)
+THEN
+ObjectSetFlag(_Var1, "JDF_RC_BI_ThePresence_KilledVoidwoken");
+
+PROC
+Proc_RC_BI_BlackRingKilled()
+THEN
+Proc_RC_BI_DemonCampToTree();
+
+PROC
+Proc_RC_BI_DemonCampToTree()
+THEN
+GlobalSetFlag("RC_BI_DemonCampWentToTree");
+ProcTriggerUnregisterForPlayers(TRIGGERGUID_S_RC_BI_DemonCamp_RiverDialogTrigger_d390633a-faa7-4f5a-b1fa-df98258fb981);
+
+PROC
+Proc_RC_BI_DemonCampToTree()
+THEN
+Proc_RC_BI_RiverDisappear("RC_BI_RiverLeftIsland");
+
+PROC
+Proc_RC_BI_DemonCampToTree()
+AND
+DB_RC_BI_DemonCampHounds(_Var1)
+THEN
+SetStoryEvent(_Var1, "StopPatrol");
+
+PROC
+Proc_RC_BI_DemonCampToTree()
+THEN
+ClearVarObject(CHARACTERGUID_S_RC_BI_CampDemon_002_5443b7be-2cdd-4c24-bcd7-e9b94b66aec1, "WanderArea");
+
+PROC
+Proc_RC_BI_DemonCampToTree()
+AND NOT
+DB_Dead(CHARACTERGUID_S_GLO_Advocate_bfa3e903-78ab-46aa-9a95-54fb956eb2b3)
+AND
+DB_RC_BI_DemonCampToTree(_Var1, _Var2)
+AND NOT
+DB_Dead(_Var1)
+THEN
+DialogRequestStop(_Var1);
+Poof(_Var1);
+
+PROC
+Proc_RC_BI_DemonCampToTree()
+THEN
+CreateSurface(ITEMGUID_S_RC_BI_AncestorTree_843ffd17-c196-4d97-a2c5-90f2bdf4b9a9, "SurfaceNone", 20, -1);
+
+IF
+CharacterWentOnStage((CHARACTERGUID)_Var1, 0)
+AND
+DB_RC_BI_DemonCampToTree(_Var1, _Var2)
+THEN
+CreateSurface(_Var2, "SurfaceNone", 5, -1);
+TeleportTo(_Var1, _Var2);
+Foop(_Var1);
+Proc_RC_BI_DemonCampAtTree(_Var1);
+
+PROC
+Proc_RC_BI_DemonCampAtTree((CHARACTERGUID)_Var1)
+AND
+DB_RC_BI_DemonCampHounds_AtTreeSpline(_Var1, _Var2)
+THEN
+SetVarObject(_Var1, "SplineGUID", _Var2);
+SetStoryEvent(_Var1, "InitiateSplinePatrol");
+
+PROC
+Proc_RC_BI_DemonCampAtTree((CHARACTERGUID)_Var1)
+AND
+DB_RC_BI_DemonCampAtTree(_Var1, _Var2)
+THEN
+ProcCharacterMoveTo(_Var1, _Var2, 0, "RC_BI_CampDemonAtTree_FinalPosition");
+
+IF
+StoryEvent(CHARACTERGUID_S_RC_BI_CampDemon_002_5443b7be-2cdd-4c24-bcd7-e9b94b66aec1, "RC_BI_CampDemonAtTree_FinalPosition")
+THEN
+SetVarObject(CHARACTERGUID_S_RC_BI_CampDemon_002_5443b7be-2cdd-4c24-bcd7-e9b94b66aec1, "WanderArea", TRIGGERGUID_S_RC_BI_CampDemonResidenceAtTree_002_c4efafbb-4956-47ab-b1d3-63f640400b8b);
+
+IF
+StoryEvent(CHARACTERGUID_S_RC_BI_CampDemon_000_7458c767-b68a-490c-a840-23209a3f2b3e, "RC_BI_CampDemonAtTree_FinalPosition")
+THEN
+ClearVarObject(CHARACTERGUID_S_RC_BI_CampDemon_000_7458c767-b68a-490c-a840-23209a3f2b3e, "Position");
+CharacterSetReactionPriority(CHARACTERGUID_S_RC_BI_CampDemon_000_7458c767-b68a-490c-a840-23209a3f2b3e, "Action_NpcReturnToPostion", 0);
+
+IF
+StoryEvent(CHARACTERGUID_S_RC_BI_CampDemon_001_29ef3742-1c2f-4bff-8375-53f1c55bb7f2, "RC_BI_CampDemonAtTree_FinalPosition")
+THEN
+ClearVarObject(CHARACTERGUID_S_RC_BI_CampDemon_001_29ef3742-1c2f-4bff-8375-53f1c55bb7f2, "Position");
+CharacterSetReactionPriority(CHARACTERGUID_S_RC_BI_CampDemon_001_29ef3742-1c2f-4bff-8375-53f1c55bb7f2, "Action_NpcReturnToPostion", 0);
+
+IF
+CharacterEnteredTrigger(CHARACTERGUID_S_GLO_Advocate_bfa3e903-78ab-46aa-9a95-54fb956eb2b3, TRIGGERGUID_S_RC_BI_AncestorTree_Area_f3e22261-796e-4052-a2b2-8208373648db)
+THEN
+SetStoryEvent(CHARACTERGUID_S_GLO_Advocate_bfa3e903-78ab-46aa-9a95-54fb956eb2b3, "RC_BI_AppearedAtTree");
+
+IF
+CharacterEnteredTrigger(CHARACTERGUID_S_GLO_Advocate_bfa3e903-78ab-46aa-9a95-54fb956eb2b3, TRIGGERGUID_S_RC_BI_AncestorTree_Area_f3e22261-796e-4052-a2b2-8208373648db)
+AND
+DB_GlobalFlag("RC_BI_DemonCampWentToTree")
+THEN
+CharacterLaunchIteratorAroundObject(CHARACTERGUID_S_GLO_Advocate_bfa3e903-78ab-46aa-9a95-54fb956eb2b3, 25, "RC_BI_LizardDemonLeaderQuestEnd");
+Proc_StartDialog(1, "RC_BI_AD_LizardDemonLeader_TreeCleared", CHARACTERGUID_S_GLO_Advocate_bfa3e903-78ab-46aa-9a95-54fb956eb2b3);
+
+IF
+StoryEvent((CHARACTERGUID)_Var1, "RC_BI_LizardDemonLeaderQuestEnd")
+AND
+DB_IsPlayer(_Var1)
+THEN
+Proc_RC_BI_ThePresence_CheckTaskKiller(_Var1);
+
+PROC
+Proc_RC_BI_ThePresence_CheckTaskKiller((CHARACTERGUID)_Var1)
+AND
+ObjectGetFlag(_Var1, "QuestUpdate_RC_BI_ThePresence_GotTaskKillVoidwoken", 1)
+AND
+ObjectGetFlag(_Var1, "QuestUpdate_RC_BI_ThePresence_KilledVoidwoken", 1)
+THEN
+DB_RC_BI_LizardTalkTo(_Var1, 1);
+
+PROC
+Proc_RC_BI_ThePresence_CheckTaskKiller((CHARACTERGUID)_Var1)
+AND
+ObjectGetFlag(_Var1, "QuestUpdate_RC_BI_ThePresence_GotTaskKillVoidwoken", 1)
+AND
+ObjectGetFlag(_Var1, "QuestUpdate_RC_BI_ThePresence_KilledVoidwoken", 0)
+THEN
+DB_RC_BI_LizardTalkTo(_Var1, 2);
+
+PROC
+Proc_RC_BI_ThePresence_CheckTaskKiller((CHARACTERGUID)_Var1)
+AND
+ObjectGetFlag(_Var1, "QuestUpdate_RC_BI_ThePresence_GotTaskKillVoidwoken", 0)
+THEN
+DB_RC_BI_LizardTalkTo(_Var1, 3);
+
+IF
+AutomatedDialogEnded("RC_BI_AD_LizardDemonLeader_TreeCleared", _)
+AND
+DB_RC_BI_LizardTalkTo(_Var2, 1)
+AND
+QueryOnlyOnce("RC_BI_LizardDemonLeader_QuestEndDialog")
+THEN
+Proc_StartDialog(0, "RC_BI_LizardDemonLeader", CHARACTERGUID_S_GLO_Advocate_bfa3e903-78ab-46aa-9a95-54fb956eb2b3, _Var2);
+
+IF
+AutomatedDialogEnded("RC_BI_AD_LizardDemonLeader_TreeCleared", _)
+AND
+DB_RC_BI_LizardTalkTo(_Var2, 2)
+AND
+QueryOnlyOnce("RC_BI_LizardDemonLeader_QuestEndDialog")
+THEN
+Proc_StartDialog(0, "RC_BI_LizardDemonLeader", CHARACTERGUID_S_GLO_Advocate_bfa3e903-78ab-46aa-9a95-54fb956eb2b3, _Var2);
+
+IF
+AutomatedDialogEnded("RC_BI_AD_LizardDemonLeader_TreeCleared", _)
+AND
+DB_RC_BI_LizardTalkTo(_Var2, 3)
+AND
+QueryOnlyOnce("RC_BI_LizardDemonLeader_QuestEndDialog")
+THEN
+Proc_StartDialog(0, "RC_BI_LizardDemonLeader", CHARACTERGUID_S_GLO_Advocate_bfa3e903-78ab-46aa-9a95-54fb956eb2b3, _Var2);
+
+IF
+StoryEvent(CHARACTERGUID_S_GLO_Advocate_bfa3e903-78ab-46aa-9a95-54fb956eb2b3, "RC_BI_CastHeal")
+THEN
+Proc_StartDialog(1, "RC_BI_AD_LizardDemonLeader_HealTree", CHARACTERGUID_S_GLO_Advocate_bfa3e903-78ab-46aa-9a95-54fb956eb2b3);
+PlayAnimation(CHARACTERGUID_S_GLO_Advocate_bfa3e903-78ab-46aa-9a95-54fb956eb2b3, "skill_cast_aoe_voodoo_01_cast", "RC_BI_CastHeal_AnimFinish");
+PROC_LoopEffect("RS3_FX_GP_ScriptedEvent_RC_BI_AncestorTree_Prepare_01", CHARACTERGUID_S_GLO_Advocate_bfa3e903-78ab-46aa-9a95-54fb956eb2b3, "RC_BI_TreeHeal", "RC_Main", "");
+ProcObjectTimer(CHARACTERGUID_S_GLO_Advocate_bfa3e903-78ab-46aa-9a95-54fb956eb2b3, "RC_BI_CastHealFinishEffectTimer", 1500);
+
+PROC
+ProcObjectTimerFinished(CHARACTERGUID_S_GLO_Advocate_bfa3e903-78ab-46aa-9a95-54fb956eb2b3, "RC_BI_CastHealFinishEffectTimer")
+THEN
+PROC_StopLoopEffect(CHARACTERGUID_S_GLO_Advocate_bfa3e903-78ab-46aa-9a95-54fb956eb2b3, "RC_BI_TreeHeal");
+PlayEffect(CHARACTERGUID_S_GLO_Advocate_bfa3e903-78ab-46aa-9a95-54fb956eb2b3, "RS3_FX_GP_ScriptedEvent_RC_BI_AncestorTree_Cast_01");
+
+IF
+StoryEvent(CHARACTERGUID_S_GLO_Advocate_bfa3e903-78ab-46aa-9a95-54fb956eb2b3, "RC_BI_CastHeal_AnimFinish")
+AND
+DB_RC_BI_AncestorTreeHealPoints(_Var1)
+THEN
+PlayEffect(_Var1, "RS3_FX_GP_ScriptedEvent_RC_BI_AncestorTree_Status_01");
+
+IF
+StoryEvent(CHARACTERGUID_S_GLO_Advocate_bfa3e903-78ab-46aa-9a95-54fb956eb2b3, "RC_BI_CastHeal_AnimFinish")
+THEN
+CreateSurface(ITEMGUID_S_RC_BI_AncestorTree_843ffd17-c196-4d97-a2c5-90f2bdf4b9a9, "SurfaceNone", 20, -1);
+
+IF
+ObjectFlagSet("RC_BI_KilledLizardDemonLeader", (CHARACTERGUID)_Var1, _)
+AND
+DB_IsPlayer(_Var1)
+THEN
+PartySetFlag(_Var1, "JDF_RC_BF_ThePresence_KilledLizardDemon");
+
+IF
+GlobalFlagSet("RC_BI_LizardDemonLeader_Dead")
+AND
+DB_IsPlayer(_Var1)
+THEN
+PartySetFlag(_Var1, "JDF_RC_BF_ThePresence_KilledLizardDemon");
+
+IF
+DialogStarted("RC_BI_LizardDemonLeader", (INTEGER)_Var1)
+AND
+DB_DialogPlayers(_Var1, _Var2, _)
+AND
+DB_IsPlayer(_Var2)
+AND
+ObjectGetFlag(_Var2, "JDF_RC_BI_ThePresence_LizardDemonFound", 0)
+THEN
+ObjectSetFlag(_Var2, "JDF_RC_BI_ThePresence_LizardDemonFound");
+
+IF
+CharacterSawCharacter((CHARACTERGUID)_Var1, CHARACTERGUID_S_GLO_Advocate_bfa3e903-78ab-46aa-9a95-54fb956eb2b3)
+AND
+DB_IsPlayer(_Var1)
+THEN
+ObjectSetFlag(_Var1, "JDF_RC_BF_ThePresence_FoundTheLizard");
+
+IF
+GlobalFlagSet("RC_BI_LizardDemonLeader_Dead")
+AND
+DB_IsPlayer(_Var1)
+THEN
+ObjectSetFlag(_Var1, "JDF_RC_BI_ThePresence_LizardDemonDead");
+
+IF
+CharacterEnteredTrigger((CHARACTERGUID)_Var1, TRIGGERGUID_S_RC_BI_AncestorTree_Area_f3e22261-796e-4052-a2b2-8208373648db)
+AND
+DB_IsPlayer(_Var1)
+THEN
+ObjectSetFlag(_Var1, "JDF_RC_BI_ThePresence_AncestorTreeFound", 0);
+
+IF
+ObjectFlagSet("QuestUpdate_RC_BI_ThePresence_AncestorTreeFound", (CHARACTERGUID)_Var1, _)
+AND
+DB_IsPlayer(_Var1)
+THEN
+ProcShowMarker(_Var1, "RC_BI_ThePresence");
+
+IF
+ObjectFlagSet("QuestUpdate_RC_BI_ThePresence_GotTaskKillVoidwoken", (CHARACTERGUID)_Var1, _)
+AND
+DB_IsPlayer(_Var1)
+THEN
+ProcShowMarker(_Var1, "RC_BI_ThePresence");
+
+IF
+ObjectFlagSet((STRING)_Var1, (CHARACTERGUID)_Var2, _)
+AND
+DB_RC_BI_ThePresence_QuestEndFlags(_Var1)
+AND
+DB_IsPlayer(_Var2)
+THEN
+ProcHideMarker(_Var2, "RC_BI_ThePresence");
+
+IF
+ObjectFlagSet((STRING)_Var1, (CHARACTERGUID)_Var2, _)
+AND
+DB_RC_BI_ThePresence_CompletionFlags(_Var1)
+AND
+DB_IsPlayer(_Var2)
+THEN
+PartySetFlag(_Var2, "QuestUpdate_RC_BI_TheTruth_TalkedLizard");
+
+IF
+ObjectFlagSet("QuestUpdate_RC_BI_ThePresence_Reported", (CHARACTERGUID)_Var1, _)
+AND
+DB_IsPlayer(_Var1)
+THEN
+PartySetFlag(_Var1, "RC_BI_ThePresence_KnowCoS");
+
+PROC
+Proc_OneTimeEventFlag("RC_BI_Advocate_Ritual_0")
+THEN
+GlobalSetFlag("RC_BI_Advocate_InRitual");
+
+PROC
+Proc_OneTimeEventFlag("RC_BI_Advocate_Ritual_0")
+THEN
+PlayEffect(CHARACTERGUID_S_GLO_AdvocatePrisoner_4db4f43f-56b3-4dbe-9ec6-994901b24a7e, "RS3_FX_GP_ScriptedEvent_HOE_Summoning_01");
+Foop(CHARACTERGUID_S_GLO_AdvocatePrisoner_4db4f43f-56b3-4dbe-9ec6-994901b24a7e);
+ProcSetInvulnerable(CHARACTERGUID_S_GLO_AdvocatePrisoner_4db4f43f-56b3-4dbe-9ec6-994901b24a7e, 1);
+TeleportTo(CHARACTERGUID_S_GLO_AdvocatePrisoner_4db4f43f-56b3-4dbe-9ec6-994901b24a7e, TRIGGERGUID_S_RC_BI_AdvocatePrisoner_Point_efe33ee2-d4b1-43c2-b9f0-7dbf709599e2);
+CharacterLookFromTrigger(CHARACTERGUID_S_GLO_AdvocatePrisoner_4db4f43f-56b3-4dbe-9ec6-994901b24a7e, TRIGGERGUID_S_RC_BI_AdvocatePrisoner_Point_efe33ee2-d4b1-43c2-b9f0-7dbf709599e2, 0);
+PROC_LoopEffect("RS3_FX_GP_ScriptedEvent_SourceGlow_Overlay_01", CHARACTERGUID_S_GLO_AdvocatePrisoner_4db4f43f-56b3-4dbe-9ec6-994901b24a7e, "RC_BI_Advocate_Ritual_Overlay", "RC_Main", "");
+CharacterSetAnimationOverride(CHARACTERGUID_S_GLO_AdvocatePrisoner_4db4f43f-56b3-4dbe-9ec6-994901b24a7e, "Execution_01_Loop");
+PROC_LoopEffect("RS3_FX_GP_ScriptedEvent_HoECharacterGlow_01", CHARACTERGUID_S_GLO_AdvocatePrisoner_4db4f43f-56b3-4dbe-9ec6-994901b24a7e, "RC_BI_Advocate_Ritual_HoEEffect", "RC_Main", "");
+PlayAnimation(CHARACTERGUID_S_GLO_Advocate_bfa3e903-78ab-46aa-9a95-54fb956eb2b3, "skill_prepare_voodoo_01_start", "RC_BI_Advocate_Ritual_VoodooStart");
+
+PROC
+Proc_OneTimeEventFlag("RC_BI_Advocate_Ritual_0")
+AND
+DB_RC_BI_ThePresence_Ritual_EffectPoints(_Var1)
+THEN
+PROC_LoopEffect("RS3_FX_GP_Status_SourceInfused_01", _Var1, "RC_BI_Advocate_Ritual_SourceEffect", "RC_Main", "");
+
+IF
+StoryEvent(CHARACTERGUID_S_GLO_Advocate_bfa3e903-78ab-46aa-9a95-54fb956eb2b3, "RC_BI_Advocate_Ritual_VoodooStart")
+AND
+GlobalGetFlag("RC_BI_Advocate_InRitual", 1)
+THEN
+CharacterSetAnimationOverride(CHARACTERGUID_S_GLO_Advocate_bfa3e903-78ab-46aa-9a95-54fb956eb2b3, "skill_prepare_voodoo_01_loop");
+
+PROC
+Proc_OneTimeEventFlag("RC_BI_Advocate_Ritual_1")
+AND
+DB_DialogNPCs(_Var1, CHARACTERGUID_S_GLO_Advocate_bfa3e903-78ab-46aa-9a95-54fb956eb2b3, 1)
+AND
+DB_DialogPlayers(_Var1, _Var2, 1)
+AND
+DB_IsPlayer(_Var2)
+THEN
+PROC_LoopEffect("RS3_FX_GP_ScriptedEvent_SourcePillar_01", CHARACTERGUID_S_GLO_AdvocatePrisoner_4db4f43f-56b3-4dbe-9ec6-994901b24a7e, "RC_BI_Advocate_Ritual_PillarEffect", "RC_Main", "");
+PROC_LoopBeamEffect("RS3_FX_Skills_Soul_ShacklesOfPain_LinkBeam_01", _Var2, CHARACTERGUID_S_GLO_AdvocatePrisoner_4db4f43f-56b3-4dbe-9ec6-994901b24a7e, "", "", "RC_BI_Advocate_Ritual_BeamEffect", "RC_Main");
+PROC_LoopEffect("RS3_FX_GP_Status_SourceInfused_01", _Var2, "RC_BI_Advocate_Ritual_Effect", "RC_Main", "");
+
+PROC
+Proc_OneTimeEventFlag("RC_BI_Advocate_Ritual_Death")
+THEN
+GlobalSetFlag("RC_BI_Advocate_Ritual_Unavailable");
+
+PROC
+Proc_OneTimeEventFlag("RC_BI_Advocate_Ritual_Death")
+AND
+GetPosition(CHARACTERGUID_S_GLO_AdvocatePrisoner_4db4f43f-56b3-4dbe-9ec6-994901b24a7e, _Var1, _Var2, _Var3)
+THEN
+PlayEffectAtPosition("RS3_FX_GP_Combat_CorpseExplosion_Blood_01_Medium", _Var1, _Var2, _Var3);
+CharacterDie(CHARACTERGUID_S_GLO_AdvocatePrisoner_4db4f43f-56b3-4dbe-9ec6-994901b24a7e, 0, "Physical");
+RC_BI_Advocate_Ritual_CleanUp();
+
+PROC
+Proc_OneTimeEventFlag("RC_BI_Advocate_Ritual_End")
+THEN
+CharacterSetAnimationOverride(CHARACTERGUID_S_GLO_Advocate_bfa3e903-78ab-46aa-9a95-54fb956eb2b3, "");
+RC_BI_Advocate_Ritual_CleanUp();
+
+PROC
+Proc_OneTimeEventFlag("RC_BI_Advocate_Ritual_Interrupt")
+THEN
+CharacterSetAnimationOverride(CHARACTERGUID_S_GLO_Advocate_bfa3e903-78ab-46aa-9a95-54fb956eb2b3, "");
+RC_BI_Advocate_Ritual_CleanUp();
+
+PROC
+RC_BI_Advocate_Ritual_CleanUp()
+THEN
+GlobalClearFlag("RC_BI_Advocate_InRitual");
+
+PROC
+RC_BI_Advocate_Ritual_CleanUp()
+AND
+DB_RC_BI_ThePresence_Ritual_EffectPoints(_Var1)
+THEN
+PROC_StopLoopEffect(_Var1, "RC_BI_Advocate_Ritual_SourceEffect");
+
+PROC
+RC_BI_Advocate_Ritual_CleanUp()
+AND
+DB_IsPlayer(_Var1)
+THEN
+PROC_StopLoopBeamEffect(_Var1, "RC_BI_Advocate_Ritual_BeamEffect");
+PROC_StopLoopEffect(_Var1, "RC_BI_Advocate_Ritual_Effect");
+
+PROC
+RC_BI_Advocate_Ritual_CleanUp()
+THEN
+PROC_StopLoopEffect(CHARACTERGUID_S_GLO_AdvocatePrisoner_4db4f43f-56b3-4dbe-9ec6-994901b24a7e, "RC_BI_Advocate_Ritual_PillarEffect");
+PROC_StopLoopEffect(CHARACTERGUID_S_GLO_AdvocatePrisoner_4db4f43f-56b3-4dbe-9ec6-994901b24a7e, "RC_BI_Advocate_Ritual_HoEEffect");
+PROC_StopLoopEffect(CHARACTERGUID_S_GLO_AdvocatePrisoner_4db4f43f-56b3-4dbe-9ec6-994901b24a7e, "RC_BI_Advocate_Ritual_Overlay");
+CharacterSetAnimationOverride(CHARACTERGUID_S_GLO_AdvocatePrisoner_4db4f43f-56b3-4dbe-9ec6-994901b24a7e, "");
+PlayEffect(CHARACTERGUID_S_GLO_AdvocatePrisoner_4db4f43f-56b3-4dbe-9ec6-994901b24a7e, "RS3_FX_GP_ScriptedEvent_HOE_Summoning_01");
+ProcSetInvulnerable(CHARACTERGUID_S_GLO_AdvocatePrisoner_4db4f43f-56b3-4dbe-9ec6-994901b24a7e, 0);
+Poof(CHARACTERGUID_S_GLO_AdvocatePrisoner_4db4f43f-56b3-4dbe-9ec6-994901b24a7e);
+
+IF
+CharacterDied(CHARACTERGUID_S_GLO_AdvocatePrisoner_4db4f43f-56b3-4dbe-9ec6-994901b24a7e)
+THEN
+GlobalSetFlag("RC_BI_Advocate_Ritual_Unavailable");
+
+IF
+CharacterEnteredTrigger((CHARACTERGUID)_Var1, TRIGGERGUID_S_RC_BI_Camp_HeartMessengerTrigger_8e5a4783-6d1b-4b61-b13b-13b38db7c89b)
+AND
+DB_IsPlayer(_Var1)
+AND
+QRY_RC_BI_HeartMessenger_ShouldAppear(_Var1)
+THEN
+PROC_RC_BI_Advocate_HeartMessengerAppearTo(_Var1);
+
+QRY
+QRY_RC_BI_HeartMessenger_ShouldAppear((CHARACTERGUID)_Var1)
+AND NOT
+DB_RC_BI_HeartMessenger_Appeared(1)
+AND
+QRY_RC_BI_DemonCamp_MetNoMessengers(_Var1)
+THEN
+DB_NOOP(1);
+
+PROC
+PROC_RC_BI_Advocate_HeartMessengerAppearTo((CHARACTERGUID)_Var1)
+THEN
+DB_RC_BI_HeartMessenger_Appeared(1);
+ProcTriggerUnregisterForPlayers(TRIGGERGUID_S_RC_BI_Camp_HeartMessengerTrigger_8e5a4783-6d1b-4b61-b13b-13b38db7c89b);
+TeleportTo(CHARACTERGUID_S_RC_BI_Camp_HeartMessenger_666d737d-4821-4c77-9dd9-09492190a5e4, _Var1);
+Foop(CHARACTERGUID_S_RC_BI_Camp_HeartMessenger_666d737d-4821-4c77-9dd9-09492190a5e4);
+Proc_StartDialog(0, "RC_BI_HeartMessenger", CHARACTERGUID_S_RC_BI_Camp_HeartMessenger_666d737d-4821-4c77-9dd9-09492190a5e4, _Var1);
+
+IF
+DialogEnded("RC_BI_HeartMessenger", _)
+THEN
+Poof(CHARACTERGUID_S_RC_BI_Camp_HeartMessenger_666d737d-4821-4c77-9dd9-09492190a5e4);
+
+IF
+AttackedByObject(CHARACTERGUID_S_RC_BI_Camp_HeartMessenger_666d737d-4821-4c77-9dd9-09492190a5e4, _, (GUIDSTRING)_Var2, _, _)
+AND
+CHARACTERGUID_S_RC_BI_Camp_HeartMessenger_666d737d-4821-4c77-9dd9-09492190a5e4 != _Var2
+THEN
+Poof(CHARACTERGUID_S_RC_BI_Camp_HeartMessenger_666d737d-4821-4c77-9dd9-09492190a5e4);
+
+IF
+CharacterReceivedDamage(CHARACTERGUID_S_RC_BI_Camp_HeartMessenger_666d737d-4821-4c77-9dd9-09492190a5e4, _, _)
+THEN
+Poof(CHARACTERGUID_S_RC_BI_Camp_HeartMessenger_666d737d-4821-4c77-9dd9-09492190a5e4);
+
+
+EXITSECTION
+SysClear("DB_RC_BI_DwarfDemon_BetFlags", 1);
+SysClear("DB_RC_BI_DwarfDemon_Bet", 1);
+SysClear("DB_RC_BI_ThePresence_CompletionFlags", 1);
+ProcTriggerUnregisterForPlayers(TRIGGERGUID_S_RC_BI_DemonCamp_RiverDialogTrigger_d390633a-faa7-4f5a-b1fa-df98258fb981);
+TriggerUnregisterForCharacter(TRIGGERGUID_S_RC_BI_DemonCamp_RiverDialogTrigger_d390633a-faa7-4f5a-b1fa-df98258fb981, CHARACTERGUID_S_GLO_River_f4931ebe-10b0-43c4-9182-640cf052717e);
+TriggerUnregisterForCharacter(TRIGGERGUID_S_RC_BI_DemonCamp_RiverDialogTrigger_d390633a-faa7-4f5a-b1fa-df98258fb981, CHARACTERGUID_S_RC_BI_DwarfDemonTrader_1579c996-687f-48ef-9b66-174b39e5cdd7);
+ENDEXITSECTION
+
+ParentTargetEdge "ReapersCoast"

@@ -1,0 +1,74 @@
+Version 1
+SubGoalCombiner SGC_AND
+
+INITSECTION
+
+KBSECTION
+IF
+TextEventSet("CloseQuests")
+AND
+CharacterGetHostCharacter(_Var1)
+THEN
+ObjectSetFlag(_Var1, "QuestUpdate_RC_DF_TrollBridge_MetGrog");
+ObjectSetFlag(_Var1, "QuestUpdate_RC_DF_TrollBridge_CounterOffer");
+
+IF
+TextEventSet("repeatWindego")
+THEN
+DB_DebugRepeatWindego(1);
+
+IF
+TextEventSet("stopWindego")
+THEN
+NOT DB_DebugRepeatWindego(1);
+
+IF
+TimerFinished("TUT_StopWindegoWave")
+AND
+DB_DebugRepeatWindego(1)
+THEN
+TimerLaunch("DBG_RepeatWindego", 8000);
+
+IF
+TimerFinished("TUT_StopWindegoWave")
+AND
+DB_DebugRepeatWindego(1)
+THEN
+NOT DB_TUT_WindegoFinishedCastingAnimation(1);
+Proc_DbgClearWindegoSurfaces();
+TriggerLaunchIterator(S_TUT_LowerDeck_Box_6ee7d227-8d55-485f-bfa5-135cf23a6bd1, "DBG_Restore");
+NOT DB_TUT_LowerDeck_BlackOutAfterWindego(1);
+NOT DB_OnlyOnce("TUT_WindegoWakeUpPlayers");
+SetOnStage(CHARACTERGUID_S_GLO_Windego_d783285f-d3be-4cba-8333-db8976cef182, 1);
+NOT DB_OnlyOnce("PROC_TUT_WindegoHasCastExplosion");
+PROC_TUT_DebugRestoreWindego();
+PROC_TUT_LowerDeck_WindegoStart();
+
+PROC
+Proc_DbgClearWindegoSurfaces()
+AND
+DB_TUT_LowerDeck_WindegoExplosionPoints(_Var1, _Var2, _Var3)
+AND
+GetPosition(_Var1, _Var4, _Var5, _Var6)
+THEN
+CreateSurfaceAtPosition(_Var4, _Var5, _Var6, "SurfaceNone", 2, -1);
+
+PROC
+Proc_DbgClearWindegoSurfaces()
+AND
+DB_TUT_LowerDeck_LeakEffects(_Var1)
+THEN
+SetOnStage(_Var1, 0);
+
+IF
+StoryEvent((CHARACTERGUID)_Var1, "DBG_Restore")
+AND
+CharacterIsDead(_Var1, 1)
+THEN
+CharacterResurrect(_Var1);
+
+
+EXITSECTION
+ENDEXITSECTION
+
+ParentTargetEdge "DOS2ModWrapper"

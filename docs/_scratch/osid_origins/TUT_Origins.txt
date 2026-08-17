@@ -1,0 +1,99 @@
+Version 1
+SubGoalCombiner SGC_AND
+
+INITSECTION
+DB_TUT_OriginQuestStarts(CHARACTERGUID_S_Player_Ifan_ad9a3327-4456-42a7-9bf4-7ad60cc9e54f, "QuestAdd_FTJ_Ifan_DarkFaction", "QuestUpdate_FTJ_Ifan_DarkFaction_Start_BeachWakeup");
+DB_TUT_OriginQuestStarts(CHARACTERGUID_S_Player_Lohse_bb932b13-8ebf-4ab4-aac0-83e6924e4295, "QuestAdd_FTJ_OriginLohse", "QuestUpdate_FTJ_OriginLohse_Start_BeachWakeup");
+DB_TUT_OriginQuestStarts(CHARACTERGUID_S_Player_Sebille_c8d55eaf-e4eb-466a-8f0d-6a9447b5b24c, "QuestAdd_FTJ_OriginSebille", "QuestUpdate_FTJ_OriginSebille_Start_Dreamer");
+DB_TUT_OriginQuestStarts(CHARACTERGUID_S_Player_RedPrince_a26a1efb-cdc8-4cf3-a7b2-b2f9544add6f, "QuestAdd_FTJ_OriginRedPrince", "QuestUpdate_FTJ_OriginRedPrince_Start_BeachWakeup");
+DB_TUT_OriginQuestStarts(CHARACTERGUID_S_Player_Fane_02a77f1f-872b-49ca-91ab-32098c443beb, "QuestAdd_FTJ_OriginFane", "QuestUpdate_FTJ_OriginFane_Start_BoatWakeup");
+DB_TUT_OriginQuestStarts(CHARACTERGUID_S_Player_Beast_f25ca124-a4d2-427b-af62-df66df41a978, "QuestAdd_FTJ_OriginBeast", "QuestUpdate_FTJ_OriginBeast_Start_BoatWakeup");
+DB_DeadEvent(CHARACTERGUID_S_TUT_LowerDeck_PrayingMagister_096479c9-a702-4161-a5ba-fb2b3312bf76, "TUT_LowerDeck_PrayingMagisterDead");
+
+KBSECTION
+IF
+GameStarted("TUT_Tutorial_A", _)
+AND
+QueryOnlyOnce("FTJ_SebilleOriginStoryInit_TUT")
+AND
+IsTagged(CHARACTERGUID_S_Player_Sebille_c8d55eaf-e4eb-466a-8f0d-6a9447b5b24c, "AVATAR", 1)
+THEN
+SetOnStage(ITEMGUID_S_FTJ_SebilleNeedle_818d574a-5cad-4401-a574-4bff60ab7026, 1);
+ItemToInventory(ITEMGUID_S_FTJ_SebilleNeedle_818d574a-5cad-4401-a574-4bff60ab7026, CHARACTERGUID_S_Player_Sebille_c8d55eaf-e4eb-466a-8f0d-6a9447b5b24c, -1, 0);
+
+IF
+GameStarted("TUT_Tutorial_A", _)
+AND
+QueryOnlyOnce("FTJ_IfanStoryInit_TUT")
+THEN
+ItemToInventory(ITEMGUID_S_FTJ_IfanNoteFromDarkFaction_51899f0f-6ea2-4522-893b-69ccd87b97fb, CHARACTERGUID_S_Player_Ifan_ad9a3327-4456-42a7-9bf4-7ad60cc9e54f, -1, 0);
+
+PROC
+Proc_TUT_GiveQuests((CHARACTERGUID)_Var1)
+AND
+DB_TUT_OriginQuestStarts(_Var1, _Var2, _Var3)
+THEN
+ObjectSetFlag(_Var1, _Var2);
+ObjectSetFlag(_Var1, _Var3);
+
+PROC
+PROC_TUT_InitTutorial()
+AND NOT
+DB_IsPlayer(CHARACTERGUID_S_Player_Ifan_ad9a3327-4456-42a7-9bf4-7ad60cc9e54f)
+THEN
+SetHasDialog(CHARACTERGUID_S_Player_Ifan_ad9a3327-4456-42a7-9bf4-7ad60cc9e54f, 1);
+
+PROC
+PROC_GLOBAL_DialogStartRequested(CHARACTERGUID_S_Player_Ifan_ad9a3327-4456-42a7-9bf4-7ad60cc9e54f, (GUIDSTRING)_Var1)
+AND NOT
+DB_IsPlayer(CHARACTERGUID_S_Player_Ifan_ad9a3327-4456-42a7-9bf4-7ad60cc9e54f)
+AND
+QRY_SpeakerIsAvailable(CHARACTERGUID_S_TUT_LowerDeck_PrayingMagister_096479c9-a702-4161-a5ba-fb2b3312bf76)
+THEN
+Proc_StartDialog(0, "TUT_LowerDeck_OriginIfan", CHARACTERGUID_S_Player_Ifan_ad9a3327-4456-42a7-9bf4-7ad60cc9e54f, CHARACTERGUID_S_TUT_LowerDeck_PrayingMagister_096479c9-a702-4161-a5ba-fb2b3312bf76, _Var1);
+
+PROC
+PROC_GLOBAL_DialogStartRequested(CHARACTERGUID_S_Player_Ifan_ad9a3327-4456-42a7-9bf4-7ad60cc9e54f, (GUIDSTRING)_Var1)
+AND NOT
+DB_IsPlayer(CHARACTERGUID_S_Player_Ifan_ad9a3327-4456-42a7-9bf4-7ad60cc9e54f)
+AND NOT
+QRY_SpeakerIsAvailable(CHARACTERGUID_S_TUT_LowerDeck_PrayingMagister_096479c9-a702-4161-a5ba-fb2b3312bf76)
+THEN
+Proc_StartDialog(0, "TUT_LowerDeck_OriginIfan_DeadMagister", CHARACTERGUID_S_Player_Ifan_ad9a3327-4456-42a7-9bf4-7ad60cc9e54f, _Var1);
+
+IF
+CharacterDied((CHARACTERGUID)_Var1)
+AND
+DB_OriginRecruitmentLocation_Region("TUT_Tutorial_A", _Var1, _, _)
+AND NOT
+DB_IsPlayer(_Var1)
+THEN
+ObjectSetFlag(_Var1, "TUT_KilledOnPrisonShip");
+
+PROC
+ProcBlockUseOfItem((CHARACTERGUID)_Var1, (ITEMGUID)_Var2)
+AND
+DB_TUT_LowerDeck_StartingTriggers(_, _Var2)
+AND NOT
+DB_TUT_StartPlayerBed(_Var1, _Var2)
+THEN
+DB_CustomUseItemResponse(_Var1, _Var2, 0);
+Proc_StartDialog(1, "TUT_AD_LowerDeck_UseCollaringTable", _Var1);
+
+IF
+TextEventSet("TUT_unfreeze")
+AND
+DB_IsPlayer(_Var1)
+THEN
+CharacterUnfreeze(_Var1);
+
+PROC
+ProcRegionEnded("TUT_Tutorial_A")
+THEN
+GoalCompleted;
+
+
+EXITSECTION
+ENDEXITSECTION
+
+ParentTargetEdge "Tutorial_PrisonShip"

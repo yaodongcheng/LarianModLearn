@@ -1,0 +1,332 @@
+Version 1
+SubGoalCombiner SGC_AND
+
+INITSECTION
+DB_HasStoryEvent(ITEMGUID_S_FTJ_TeleporterNPCQuestItem_c9e1fb97-0c98-4d24-b83c-33755f89b59a, "FTJ_HasTeleportItem");
+DB_Dialogs(CHARACTERGUID_S_FTJ_TeleporterNPC_4e291594-10ec-4c1f-a126-936e45ff875d, "FTJ_TeleporterNPC");
+ProcTriggerRegisterForPlayers(TRIGGERGUID_S_FTJ_TelportPuzzleFirstPlatform_EventTrigger_1c4d9f18-07fb-41f6-b39b-daece074befe);
+ItemSetCanInteract(ITEMGUID_S_FTJ_TeleporterHoleEntrance_760b13f5-4762-463e-bb72-2219b42e0c99, 0);
+ItemToInventory(ITEMGUID_S_FTJ_TeleporterNPCQuestItem_c9e1fb97-0c98-4d24-b83c-33755f89b59a, CHARACTERGUID_S_FTJ_TeleporteQuestrCroc_003_7cf7d4d4-de1a-4ac7-999a-1f128fac3789);
+ItemToInventory(ITEMGUID_S_FTJ_DeadTeleporterElf_BodyPart_5c2e999f-1177-4a73-a2bb-a12a0ad23540, CHARACTERGUID_S_FTJ_DeadTeleporterElf_3d4c8c64-9c94-4cf4-8d7c-2ce70f1d06ff);
+ItemToInventory(ITEMGUID_S_FTJ_GawinRobe_8fdd6231-e34e-4f73-b13c-ba71a00efe8e, CHARACTERGUID_S_FTJ_TeleporterNPC_4e291594-10ec-4c1f-a126-936e45ff875d);
+DB_GLO_CheckSpeakerNumber(CHARACTERGUID_S_FTJ_TeleporterNPC_4e291594-10ec-4c1f-a126-936e45ff875d, -1);
+DB_FTJ_TeleporterOnPlatformStates("State_StartTeleportPuzzle");
+DB_FTJ_TeleporterOnPlatformStates("State_TeleportPuzzleSecondPhase");
+ProcCharacterDisableCrime(CHARACTERGUID_S_FTJ_TeleporterNPC_4e291594-10ec-4c1f-a126-936e45ff875d, "FTJCollarless");
+ProcCharacterDisableCrime(CHARACTERGUID_S_FTJ_TeleporterNPC_4e291594-10ec-4c1f-a126-936e45ff875d, "FTJCollarlessADs");
+SetOnStage(ITEMGUID_S_FTJ_TeleporterHoleEntrance_760b13f5-4762-463e-bb72-2219b42e0c99, 0);
+
+KBSECTION
+IF
+ObjectFlagSet("FTJ_TeleporterNPCAquireNewUser", (CHARACTERGUID)_Var1, _)
+THEN
+Proc_StartDialog(0, "FTJ_TeleporterNPC", S_FTJ_TeleporterNPC_4e291594-10ec-4c1f-a126-936e45ff875d, _Var1);
+
+IF
+CharacterUsedItem((CHARACTERGUID)_Var1, ITEMGUID_S_FTJ_DeadTeleporterElf_BodyPart_5c2e999f-1177-4a73-a2bb-a12a0ad23540)
+AND
+IsTagged(_Var1, "ELF", 1)
+THEN
+ProcShowMarker(_Var1, "FTJ_TeleporterElfTreasure");
+
+IF
+ItemDestroying(ITEMGUID_S_FTJ_TeleporterTreeTrunk_76c4615a-37bb-48d8-af3d-51690d60a857)
+THEN
+SetOnStage(ITEMGUID_S_FTJ_TeleporterHoleEntrance_760b13f5-4762-463e-bb72-2219b42e0c99, 1);
+
+IF
+ObjectFlagSet("FTJ_AcceptedTeleport", (CHARACTERGUID)_Var1, _)
+THEN
+ObjectSetFlag(_Var1, "QuestAdd_FTJ_Teleporter");
+ObjectSetFlag(_Var1, "QuestUpdate_FTJ_Teleporter_Start");
+UserSetFlag(_Var1, "QuestUpdate_FTJ_Escape_TeleportMet");
+
+IF
+ObjectFlagSet("FTJ_TeleporterClosed", (CHARACTERGUID)_Var1, _)
+THEN
+ObjectSetFlag(_Var1, "QuestUpdate_FTJ_Teleporter_Alcove");
+
+IF
+ObjectFlagSet("FTJ_TeleporterClosed", (CHARACTERGUID)_Var1, _)
+AND
+DB_IsPlayer(_Var3)
+AND
+_Var1 != _Var3
+AND
+PartyGetFlag(_Var3, "FTJ_TeleporterClosed", 0)
+THEN
+ObjectSetFlag(_Var3, "QuestUpdate_FTJ_Teleporter_EndOpportunityLost");
+ObjectSetFlag(_Var3, "QuestUpdate_FTJ_Escape_Teleport_Fail");
+
+IF
+CharacterUsedSkillOnTarget(CHARACTERGUID_S_FTJ_TeleporterNPC_4e291594-10ec-4c1f-a126-936e45ff875d, (CHARACTERGUID)_Var1, (STRING)_Var2, "Teleportation", _)
+AND
+CharacterGetAbility(_Var1, "PainReflection", _Var4)
+AND
+_Var4 > 0
+THEN
+DB_IgnoreAssault(CHARACTERGUID_S_FTJ_TeleporterNPC_4e291594-10ec-4c1f-a126-936e45ff875d);
+
+IF
+CharacterUsedSkillOnTarget((CHARACTERGUID)_Var1, CHARACTERGUID_S_FTJ_TeleporterNPC_4e291594-10ec-4c1f-a126-936e45ff875d, (STRING)_Var2, "Teleportation", _)
+AND
+GlobalGetFlag("FTJ_TeleporterLeaveEntrance", 1)
+THEN
+DB_IgnoreAssault(CHARACTERGUID_S_FTJ_TeleporterNPC_4e291594-10ec-4c1f-a126-936e45ff875d);
+
+IF
+AttackedByObject(CHARACTERGUID_S_FTJ_TeleporterNPC_4e291594-10ec-4c1f-a126-936e45ff875d, (CHARACTERGUID)_Var1, _, _, _)
+AND
+DB_IsPlayer(_Var1)
+AND
+DB_IgnoreAssault(CHARACTERGUID_S_FTJ_TeleporterNPC_4e291594-10ec-4c1f-a126-936e45ff875d)
+THEN
+NOT DB_IgnoreAssault(CHARACTERGUID_S_FTJ_TeleporterNPC_4e291594-10ec-4c1f-a126-936e45ff875d);
+
+IF
+CharacterLootedCharacterCorpse((CHARACTERGUID)_Var1, CHARACTERGUID_S_FTJ_TeleporteQuestrCroc_001_bc1a10a1-51b6-42c5-b517-827565f6512b)
+THEN
+ProcHideMarker(_Var1, "FTJ_TeleporterCroc");
+
+IF
+DialogStarted("FTJ_TeleporterNPC", (INTEGER)_Var1)
+AND
+DialogGetInvolvedPlayer(_Var1, 1, _Var2)
+AND
+ObjectGetFlag(_Var2, "FTJ_HasTeleportItem", 0)
+AND
+CharacterHasSkill(_Var2, "Teleportation_FreeFall", 1)
+THEN
+ObjectSetFlag(_Var2, "S_FTJ_HasTeleportSpell");
+
+IF
+DialogEnded("FTJ_TeleporterNPC", (INTEGER)_Var1)
+AND
+DialogGetInvolvedPlayer(_Var1, 1, _Var2)
+AND
+ObjectGetFlag(_Var2, "S_FTJ_HasTeleportSpell", 1)
+THEN
+ObjectClearFlag(_Var2, "S_FTJ_HasTeleportSpell", 0);
+
+IF
+SavegameLoaded((INTEGER)_Var1, (INTEGER)_Var2, (INTEGER)_Var3, (INTEGER)_Var4)
+AND
+QRY_VersionIsOlderThan(_Var1, _Var2, _Var3, _Var4, 3, 5, 1, 0)
+AND NOT
+DB_QuestDef_State("FTJ_Escape", "Teleport_Fail")
+THEN
+DB_QuestDef_State("FTJ_Escape", "Teleport_Fail");
+
+IF
+SavegameLoaded((INTEGER)_Var1, (INTEGER)_Var2, (INTEGER)_Var3, (INTEGER)_Var4)
+AND
+QRY_VersionIsOlderThan(_Var1, _Var2, _Var3, _Var4, 3, 5, 1, 0)
+AND
+DB_IsPlayer(_Var5)
+AND
+ObjectGetFlag(_Var5, "QuestUpdate_FTJ_Teleporter_EndOpportunityLost", 1)
+AND
+ObjectGetFlag(_Var5, "QuestUpdate_FTJ_Escape_Teleport_Fail", 0)
+THEN
+ObjectSetFlag(_Var5, "QuestUpdate_FTJ_Escape_Teleport_Fail");
+
+IF
+SavegameLoaded((INTEGER)_Var1, (INTEGER)_Var2, (INTEGER)_Var3, (INTEGER)_Var4)
+AND
+QRY_VersionIsOlderThan(_Var1, _Var2, _Var3, _Var4, 3, 5, 1, 0)
+AND
+DB_IsPlayer(_Var5)
+AND
+ObjectGetFlag(_Var5, "QuestUpdate_FTJ_Teleporter_EndFail", 1)
+AND
+ObjectGetFlag(_Var5, "QuestUpdate_FTJ_Escape_Teleport_Fail", 0)
+THEN
+ObjectSetFlag(_Var5, "QuestUpdate_FTJ_Escape_Teleport_Fail");
+
+IF
+DialogStarted("FTJ_TeleporterNPC", (INTEGER)_Var1)
+AND
+ObjectGetFlag(S_FTJ_TeleporterNPC_4e291594-10ec-4c1f-a126-936e45ff875d, "FTJ_WaitingInAlcove", 1)
+AND
+DialogGetInvolvedPlayer(_Var1, 1, _Var2)
+AND
+ObjectGetFlag(_Var2, "FTJ_TeleporterClosed", 1)
+THEN
+ObjectSetFlag(_Var2, "QuestUpdate_FTJ_Teleporter_PuzzleStart");
+
+IF
+ItemAddedToCharacter(ITEMGUID_S_FTJ_TeleporterNPCQuestItem_c9e1fb97-0c98-4d24-b83c-33755f89b59a, (CHARACTERGUID)_Var1)
+AND
+DB_IsPlayer(_Var1)
+AND
+QueryOnlyOnce("FTJ_Teleporter_GloveTaken")
+THEN
+ObjectSetFlag(_Var1, "QuestUpdate_FTJ_Teleporter_DropGlove");
+
+IF
+CharacterLeftTrigger((CHARACTERGUID)_Var1, TRIGGERGUID_S_FTJ_SUB_HiddenAlcove_ccfb91cd-1de7-4758-9f21-cbb871fee147)
+AND
+DB_IsPlayer(_Var1)
+AND
+GetClosestPlayer(CHARACTERGUID_S_FTJ_TeleporterNPC_4e291594-10ec-4c1f-a126-936e45ff875d, _Var2, _)
+AND
+CharacterIsDead(CHARACTERGUID_S_FTJ_TeleporterNPC_4e291594-10ec-4c1f-a126-936e45ff875d, 0)
+AND
+CharacterCanSee(_Var2, CHARACTERGUID_S_FTJ_TeleporterNPC_4e291594-10ec-4c1f-a126-936e45ff875d, 0)
+AND
+GetDistanceTo(CHARACTERGUID_S_FTJ_TeleporterNPC_4e291594-10ec-4c1f-a126-936e45ff875d, _Var1, _Var4)
+AND
+DB_FTJ_TeleporterOnPlatformStates(_Var5)
+AND
+GetVarFixedString(CHARACTERGUID_S_FTJ_TeleporterNPC_4e291594-10ec-4c1f-a126-936e45ff875d, "currentState", _Var5)
+AND
+_Var4 > 30
+THEN
+TeleportTo(CHARACTERGUID_S_FTJ_TeleporterNPC_4e291594-10ec-4c1f-a126-936e45ff875d, TRIGGERGUID_S_FTJ_GawinDeath_Point_ed67b0f1-a238-46c0-8e38-03da8e2087e3);
+ItemDestroy(ITEMGUID_S_FTJ_TeleporterTreeTrunk_76c4615a-37bb-48d8-af3d-51690d60a857);
+CharacterDie(CHARACTERGUID_S_FTJ_TeleporterNPC_4e291594-10ec-4c1f-a126-936e45ff875d, 1, "DoT");
+
+IF
+AutomatedDialogEnded("FTJ_AD_TeleporterNPCDeath", _)
+AND
+DB_IsPlayer(_Var2)
+AND
+ObjectGetFlag(_Var2, "FTJ_TeleporterClosed", 1)
+THEN
+ObjectSetFlag(_Var2, "QuestUpdate_FTJ_Teleporter_End");
+ProcHideMarker(_Var2, "RC_FTJ_Alcove");
+
+IF
+CharacterDied(S_FTJ_TeleporterNPC_4e291594-10ec-4c1f-a126-936e45ff875d)
+AND
+DB_IsPlayer(_Var1)
+AND
+ObjectGetFlag(_Var1, "FTJ_TeleporterClosed", 1)
+AND
+GlobalGetFlag("FTJ_TeleporterEscaped", 1)
+THEN
+ObjectSetFlag(_Var1, "QuestUpdate_FTJ_Teleporter_End");
+ProcHideMarker(_Var1, "RC_FTJ_Alcove");
+
+IF
+CharacterDied(S_FTJ_TeleporterNPC_4e291594-10ec-4c1f-a126-936e45ff875d)
+AND
+DB_IsPlayer(_Var1)
+AND
+ObjectGetFlag(_Var1, "FTJ_TeleporterClosed", 1)
+AND
+GlobalGetFlag("FTJ_TeleporterEscaped", 0)
+THEN
+ObjectSetFlag(_Var1, "QuestUpdate_FTJ_Teleporter_EndFail");
+ObjectSetFlag(_Var1, "QuestUpdate_FTJ_Escape_Teleport_Fail");
+ProcHideMarker(_Var1, "RC_FTJ_Alcove");
+
+IF
+CharacterDied(S_FTJ_TeleporterNPC_4e291594-10ec-4c1f-a126-936e45ff875d)
+AND
+DB_IsPlayer(_Var1)
+AND
+DB_InRegion(_Var1, TRIGGERGUID_S_FTJ_TelportPuzzleFirstPlatform_EventTrigger_1c4d9f18-07fb-41f6-b39b-daece074befe)
+AND
+CharacterIsInCombat(_Var1, 0)
+AND
+QueryOnlyOnce("FTJ_StuckOnPlatformVB_OneShot")
+THEN
+CharacterLookAt(_Var1, ITEMGUID_S_FTJ_TeleporterTreeTrunk_76c4615a-37bb-48d8-af3d-51690d60a857);
+StartVoiceBark("FTJ_VB_StuckOnPlatform", _Var1);
+
+IF
+GlobalFlagSet("FTJ_TeleporterEscaped")
+AND
+DB_IsPlayer(_Var1)
+AND
+DB_InRegion(_Var1, TRIGGERGUID_S_FTJ_TelportPuzzleFirstPlatform_EventTrigger_1c4d9f18-07fb-41f6-b39b-daece074befe)
+AND
+CharacterIsInCombat(_Var1, 0)
+AND
+QueryOnlyOnce("FTJ_StuckOnPlatformVB_OneShot")
+THEN
+CharacterLookAt(_Var1, ITEMGUID_S_FTJ_TeleporterTreeTrunk_76c4615a-37bb-48d8-af3d-51690d60a857);
+StartVoiceBark("FTJ_VB_StuckOnPlatform", _Var1);
+
+IF
+VoiceBarkStarted("FTJ_VB_StuckOnPlatform", _)
+AND
+DB_IsPlayer(_Var2)
+AND
+DB_InRegion(_Var2, TRIGGERGUID_S_FTJ_TelportPuzzleFirstPlatform_EventTrigger_1c4d9f18-07fb-41f6-b39b-daece074befe)
+AND
+CharacterIsInCombat(_Var2, 0)
+THEN
+TimerLaunch("FTJ_SecondTeleporterHoleHint", 20000);
+
+IF
+TimerFinished("FTJ_SecondTeleporterHoleHint")
+AND
+DB_IsPlayer(_Var1)
+AND
+DB_InRegion(_Var1, TRIGGERGUID_S_FTJ_TelportPuzzleFirstPlatform_EventTrigger_1c4d9f18-07fb-41f6-b39b-daece074befe)
+AND
+QueryOnlyOnce("FTJ_StuckOnPlatformVBSecondHint_OneShot")
+THEN
+StartVoiceBark("FTJ_VB_StuckOnPlatform", _Var1);
+
+IF
+StoryEvent((GUIDSTRING)_Var1, "FTJ_ShortKnockdown")
+THEN
+ApplyStatus(_Var1, "KNOCKED_DOWN", 1, 1);
+
+IF
+CharacterUsedItem((CHARACTERGUID)_Var1, ITEMGUID_S_FTJ_CaveEntranceToPrison_e2cbcf37-16ed-420d-ab04-41c1723bd188)
+AND
+DB_IsPlayer(_Var1)
+AND
+QueryOnlyOnce("FTJ_VB_FallIntoPrison_OneShot")
+THEN
+ProcObjectTimer(_Var1, "FTJ_VB_FallIntoPrison_Timer", 2200);
+
+PROC
+ProcObjectTimerFinished((CHARACTERGUID)_Var1, "FTJ_VB_FallIntoPrison_Timer")
+THEN
+StartVoiceBark("FTJ_VB_FallIntoPrison", _Var1);
+
+IF
+TextEventSet("tpAlcove")
+AND
+DB_IsPlayer(_Var1)
+THEN
+ObjectSetFlag(_Var1, "QuestAdd_FTJ_Teleporter");
+ObjectSetFlag(_Var1, "QuestUpdate_FTJ_Teleporter_PuzzleStart");
+ObjectSetFlag(_Var1, "FTJ_TeleporterClosed");
+TeleportTo(CHARACTERGUID_S_FTJ_TeleporterNPC_4e291594-10ec-4c1f-a126-936e45ff875d, TRIGGERGUID_S_FTJ_TelepoerterTeleportPlayerTo_Point_6ae7f67a-e72e-43e1-a4c4-866c680d4ec9);
+
+IF
+CharacterDying(CHARACTERGUID_S_FTJ_TeleporterNPC_4e291594-10ec-4c1f-a126-936e45ff875d)
+THEN
+ItemSetStoryItem(ITEMGUID_S_FTJ_GawinRobe_8fdd6231-e34e-4f73-b13c-ba71a00efe8e, 0);
+
+IF
+ItemDestroyed(ITEMGUID_S_FTJ_TeleporterTreeTrunk_76c4615a-37bb-48d8-af3d-51690d60a857)
+THEN
+ItemSetCanInteract(ITEMGUID_S_FTJ_TeleporterHoleEntrance_760b13f5-4762-463e-bb72-2219b42e0c99, 1);
+
+IF
+ItemRemovedFromCharacter(ITEMGUID_S_FTJ_GawinRobe_8fdd6231-e34e-4f73-b13c-ba71a00efe8e, CHARACTERGUID_S_FTJ_TeleporterNPC_4e291594-10ec-4c1f-a126-936e45ff875d)
+THEN
+ItemSetStoryItem(ITEMGUID_S_FTJ_GawinRobe_8fdd6231-e34e-4f73-b13c-ba71a00efe8e, 0);
+
+IF
+ItemAddedToCharacter(ITEMGUID_S_FTJ_GawinRobe_8fdd6231-e34e-4f73-b13c-ba71a00efe8e, CHARACTERGUID_S_FTJ_TeleporterNPC_4e291594-10ec-4c1f-a126-936e45ff875d)
+THEN
+ItemSetStoryItem(ITEMGUID_S_FTJ_GawinRobe_8fdd6231-e34e-4f73-b13c-ba71a00efe8e, 1);
+
+PROC
+ProcRegionEnded("FJ_FortJoy_Main")
+THEN
+GoalCompleted;
+
+
+EXITSECTION
+ENDEXITSECTION
+
+ParentTargetEdge "FortJoy"

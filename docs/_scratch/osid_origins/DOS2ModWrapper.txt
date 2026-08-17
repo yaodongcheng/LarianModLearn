@@ -1,0 +1,16 @@
+Version 1
+SubGoalCombiner SGC_AND
+
+INITSECTION
+
+KBSECTION
+IF
+GameModeStarted("Campaign", (INTEGER)_Var1)
+THEN
+GoalCompleted;
+Proc_GameModeStarted("Campaign", _Var1);
+
+
+EXITSECTION
+ENDEXITSECTION
+

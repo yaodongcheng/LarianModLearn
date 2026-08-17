@@ -1,0 +1,388 @@
+Version 1
+SubGoalCombiner SGC_AND
+
+INITSECTION
+DB_Ghosts(CHARACTERGUID_RC_WH_Ambush02_SourcererCorpse_a06ea1fa-56e9-4112-b26c-e29fda535c95, CHARACTERGUID_RC_WH_Ambush02_Sourcerer_Ghost_a7a98245-d614-4d97-b676-9b5275ddd9ab, "RC_WH_Ambush02_SourcererGhost");
+DB_RC_WH_CollaredCorpse(CHARACTERGUID_RC_WH_Ambush02_DwarfCorpse_b9fe58a7-31ac-4273-8323-0e8506ea1487);
+DB_RC_WH_CollaredCorpse(CHARACTERGUID_RC_WH_Ambush02_HumanCorpse_6c238598-396a-4f16-b159-dce49cd59e5d);
+DB_RC_WH_CollaredCorpse(CHARACTERGUID_RC_WH_Ambush02_SourcererCorpse_a06ea1fa-56e9-4112-b26c-e29fda535c95);
+DB_RC_WH_Ambushers(CHARACTERGUID_RC_WH_Ambush01_DwarfRanger_6fe51a7e-7a70-4151-9f0b-b1d21ffd9dc1);
+DB_RC_WH_Ambushers(CHARACTERGUID_RC_WH_Ambush01_DwarfCaster_ade0ee22-8fb7-422b-9c32-978a1f5f79ca);
+DB_RC_WH_Ambushers(CHARACTERGUID_RC_WH_Ambush02_DwarfCaster_516967c7-315b-499d-8779-255482b3106e);
+DB_RC_WH_Ambushers(CHARACTERGUID_RC_WH_Ambush02_DwarfRanger_cc677d58-8ec6-4046-8d3d-d03bdb620e09);
+DB_RC_WH_Ambushers(CHARACTERGUID_RC_WH_Ambush02_DwarfRogue_d8103bb4-79b5-4b2a-a5df-2681261acfc6);
+DB_RC_WH_Ambushers(CHARACTERGUID_RC_WH_Ambush02_DwarfWarrior_7c63431f-4a27-4e63-acfe-f24f23745b52);
+DB_RC_WH_AmbushesVBs(1, "RC_WH_VB_Ambush_StartOne", "RC_WH_VB_Ambush_EndOne");
+DB_RC_WH_AmbushesVBs(2, "RC_WH_VB_Ambush_StartTwo", "RC_WH_RD_PostAmbushes");
+DB_Ghosts(RC_WH_Ambush01_DwarfRanger_6fe51a7e-7a70-4151-9f0b-b1d21ffd9dc1, S_RC_WH_Ambush01_DwarfRanger_Spirit_4016bf30-ee08-48d4-b4ad-aade962ebef8, "RC_WH_Ambush01_DwarfRanger_Ghost");
+DB_Ghosts(S_RC_WH_Ambush01_DwarfCaster_ade0ee22-8fb7-422b-9c32-978a1f5f79ca, S_RC_WH_Ambush01_DwarfCaster_Spirit_7b5bc070-0aae-4755-82b1-3192547fc134, "RC_WH_Ambush01_DwarfCaster_Ghost");
+DB_Ghosts(RC_WH_Ambush02_DwarfRanger_cc677d58-8ec6-4046-8d3d-d03bdb620e09, S_RC_WH_Ambush02_DwarfRanger_Spirit_efe96f52-3577-46e7-9014-4e0e400f9a1b, "RC_WH_Ambush02_DwarfRanger_Ghost");
+DB_Ghosts(RC_WH_Ambush02_DwarfRogue_d8103bb4-79b5-4b2a-a5df-2681261acfc6, S_RC_WH_Ambush02_DwarfRogue_Spirit_d261058d-abb1-412a-8771-63ed52b4f3f8, "RC_WH_Ambush02_DwarfRogue_Ghost");
+DB_Ghosts(S_RC_WH_Ambush02_DwarfCaster_516967c7-315b-499d-8779-255482b3106e, S_RC_WH_Ambush02_DwarfCaster_Spirit_3acb9031-93b8-4be3-b8b2-eea3395b4543, "RC_WH_Ambush02_DwarfCaster_Ghost");
+DB_Ghosts(S_RC_WH_Ambush02_DwarfWarrior_7c63431f-4a27-4e63-acfe-f24f23745b52, S_RC_WH_Ambush02_DwarfWarrior_Spirit_8e200bf5-4561-4063-b8b6-9197f5e0a449, "RC_WH_Ambush02_DwarfWarrior_Ghost");
+DB_AmbushTrigger(TRIGGERGUID_RC_WH_Ambush01_CombatTrigger_b8931c03-c3e1-418a-a1b9-81efdff7d08a, NULL_00000000-0000-0000-0000-000000000000);
+DB_RC_WH_AmbushersForTrigger(TRIGGERGUID_RC_WH_Ambush01_CombatTrigger_b8931c03-c3e1-418a-a1b9-81efdff7d08a, CHARACTERGUID_S_RC_WH_Ambush01_DwarfRanger_6fe51a7e-7a70-4151-9f0b-b1d21ffd9dc1, TRIGGERGUID_S_RC_WH_Ambush01_RangerPoint_eec660d5-1d4a-492d-8460-797f162a64b9);
+DB_RC_WH_AmbushersForTrigger(TRIGGERGUID_RC_WH_Ambush01_CombatTrigger_b8931c03-c3e1-418a-a1b9-81efdff7d08a, CHARACTERGUID_S_RC_WH_Ambush01_DwarfCaster_ade0ee22-8fb7-422b-9c32-978a1f5f79ca, TRIGGERGUID_S_RC_WH_Ambush01_CasterPoint_f1871947-64aa-4d61-a1df-7c1d64ab1c2c);
+DB_OneShotPlayerTrigger(TRIGGERGUID_RC_WH_Ambush01_WitsTrigger_38bb2777-0599-44de-88ff-9bb7c1010a55);
+DB_RC_WH_AmbushAnnouncer(TRIGGERGUID_RC_WH_Ambush01_LeaveTrigger_a5932baf-d609-434e-bb7d-9f0979299d7c, S_RC_WH_Ambush01_DwarfCaster_ade0ee22-8fb7-422b-9c32-978a1f5f79ca, "RC_WH_Ambush01_Proclamation");
+DB_OneShotPlayerTrigger(TRIGGERGUID_S_RC_WH_Ambush02_CaravanCommentTrigger_b3273eea-778d-41c9-a4c8-c7d865c00aa4);
+DB_AmbushTrigger(TRIGGERGUID_RC_WH_Ambush02_CombatTrigger_cdc42ba3-24eb-4edb-adbc-7f3c2892be79, NULL_00000000-0000-0000-0000-000000000000);
+DB_RC_WH_AmbushersForTrigger(TRIGGERGUID_RC_WH_Ambush02_CombatTrigger_cdc42ba3-24eb-4edb-adbc-7f3c2892be79, CHARACTERGUID_RC_WH_Ambush02_DwarfCaster_516967c7-315b-499d-8779-255482b3106e, TRIGGERGUID_S_RC_WH_Ambush02_CasterPoint_463c3005-9ac3-4f93-94ae-f1e6a31085f3);
+DB_RC_WH_AmbushersForTrigger(TRIGGERGUID_RC_WH_Ambush02_CombatTrigger_cdc42ba3-24eb-4edb-adbc-7f3c2892be79, CHARACTERGUID_RC_WH_Ambush02_DwarfRanger_cc677d58-8ec6-4046-8d3d-d03bdb620e09, TRIGGERGUID_S_RC_WH_Ambush02_RangerPoint_a18ff618-d9a7-4ef2-890a-fedd53bcf725);
+DB_RC_WH_AmbushersForTrigger(TRIGGERGUID_RC_WH_Ambush02_CombatTrigger_cdc42ba3-24eb-4edb-adbc-7f3c2892be79, CHARACTERGUID_RC_WH_Ambush02_DwarfRogue_d8103bb4-79b5-4b2a-a5df-2681261acfc6, TRIGGERGUID_S_RC_WH_Ambush02_RoguePoint_b9818dd8-d060-48dc-ad8c-03b3307b154e);
+DB_RC_WH_AmbushersForTrigger(TRIGGERGUID_RC_WH_Ambush02_CombatTrigger_cdc42ba3-24eb-4edb-adbc-7f3c2892be79, CHARACTERGUID_RC_WH_Ambush02_DwarfWarrior_7c63431f-4a27-4e63-acfe-f24f23745b52, TRIGGERGUID_S_RC_WH_Ambush02_WarriorPoint_0afbc544-91a2-406a-84cb-cf79aba3697c);
+DB_RC_WH_TrapMines(ITEMGUID_S_RC_WH_Ambush02_Mine01_b373691e-20f5-45c5-b870-1bdf165ea7e0);
+DB_RC_WH_TrapMines(ITEMGUID_S_RC_WH_Ambush02_Mine02_35951026-5516-49ea-b71c-1308e7ebba96);
+DB_RC_WH_TrapMines(ITEMGUID_S_RC_WH_Ambush02_Mine03_4bada126-d466-436d-a724-9bb37b6b3ab8);
+DB_RC_WH_TrapMines(ITEMGUID_S_RC_WH_Ambush02_Mine04_cec98ad6-0d43-485a-8e8f-0a9641560d7a);
+DB_RC_WH_TrapMines(ITEMGUID_S_RC_WH_Ambush02_Mine05_d386f24e-ebc3-42db-885b-0717da717fbf);
+DB_RC_WH_AmbushAnnouncer(TRIGGERGUID_RC_WH_Ambush02_LeaveTrigger_5b0e3b20-8baa-48fc-9ad1-7b47b5cb60a3, CHARACTERGUID_S_RC_WH_Ambush02_DwarfWarrior_7c63431f-4a27-4e63-acfe-f24f23745b52, "RC_WH_Ambush02_Proclamation");
+
+KBSECTION
+IF
+StoryEvent((GUIDSTRING)_Var1, "RC_WH_AD_PossessedMordusDwarfDies")
+AND
+StartDialog_Internal_NoDeadCheck("RC_WH_AD_PossessedMordusDwarfDies", 0, _Var1, NULL_00000000-0000-0000-0000-000000000000, NULL_00000000-0000-0000-0000-000000000000, NULL_00000000-0000-0000-0000-000000000000, NULL_00000000-0000-0000-0000-000000000000, NULL_00000000-0000-0000-0000-000000000000, 1)
+THEN
+DB_NOOP(1);
+
+IF
+DB_RC_WH_Ambushers(_Var1)
+THEN
+ApplyStatus(_Var1, "POSSESSED", -1);
+SetOnStage(_Var1, 0);
+
+PROC
+ProcLaunchAmbush((TRIGGERGUID)_Var1, (CHARACTERGUID)_Var2)
+AND
+DB_RC_WH_AmbushAnnouncer(_Var3, _Var4, _Var5)
+AND
+DB_RC_WH_AmbushersForTrigger(_Var1, _Var4, _Var6)
+AND NOT
+DB_RC_WH_AmbushAnnouncementStarted(_Var3, _Var2)
+THEN
+ProcTriggerRegisterForPlayers(_Var3);
+DB_RC_WH_AmbushAnnouncementStarted(_Var3, _Var2);
+Proc_RC_WH_InitAmbusher(_Var4, _Var6);
+Proc_StartDialog(0, _Var5, _Var4, _Var2);
+
+IF
+DB_Dead(_Var1)
+AND
+DB_RC_WH_AmbushAnnouncer(_Var2, _Var1, _Var3)
+THEN
+NOT DB_RC_WH_AmbushAnnouncer(_Var2, _Var1, _Var3);
+
+PROC
+Proc_RC_WH_InitAmbusher((CHARACTERGUID)_Var1, (TRIGGERGUID)_Var2)
+AND
+GlobalGetFlag("RC_DW_WC_BossElderIsDead", 0)
+THEN
+Foop(_Var1);
+ProcCharacterMoveTo(_Var1, _Var2, 0, "");
+
+IF
+DialogStarted((STRING)_Var1, _)
+AND
+DB_RC_WH_AmbushAnnouncementStarted(_Var3, _Var4)
+AND
+DB_RC_WH_AmbushAnnouncer(_Var3, _Var5, _Var1)
+THEN
+DB_RC_WH_AmbushAnnouncementBusy(_Var3);
+
+IF
+CharacterLeftTrigger((CHARACTERGUID)_Var1, (TRIGGERGUID)_Var2)
+AND
+QRY_AnyRegionActive()
+AND
+DB_RC_WH_AmbushAnnouncementStarted(_Var2, _Var3)
+AND
+HasActiveStatus(_Var1, "INVISIBLE", 0)
+AND
+HasActiveStatus(_Var1, "SNEAKING", 0)
+AND
+DB_RC_WH_AmbushAnnouncer(_Var2, _Var4, _Var5)
+THEN
+Proc_RC_WH_CleanUpAnnoucementAndLaunchAmbush(_Var2, _Var3);
+
+IF
+CharacterReceivedDamage((CHARACTERGUID)_Var1, _, _)
+AND
+CharacterIsInCombat(_Var1, 0)
+AND
+DB_RC_WH_AmbushAnnouncer(_Var4, _Var1, _Var5)
+AND
+DB_RC_WH_AmbushAnnouncementStarted(_Var4, _Var6)
+THEN
+Proc_RC_WH_CleanUpAnnoucementAndLaunchAmbush(_Var4, _Var6);
+
+IF
+DialogEnded((STRING)_Var1, (INTEGER)_Var2)
+AND
+DB_RC_WH_AmbushAnnouncementStarted(_Var3, _Var4)
+AND
+DB_RC_WH_AmbushAnnouncer(_Var3, _Var5, _Var1)
+THEN
+NOT DB_RC_WH_AmbushAnnouncementBusy(_Var3);
+Proc_RC_WH_CleanUpAnnoucementAndLaunchAmbush(_Var3, _Var4);
+
+PROC
+Proc_RC_WH_CleanUpAnnoucementAndLaunchAmbush((TRIGGERGUID)_Var1, (CHARACTERGUID)_Var2)
+AND
+DB_RC_WH_AmbushAnnouncementBusy(_Var1)
+AND
+DB_RC_WH_AmbushAnnouncer(_Var1, _Var3, _Var4)
+THEN
+NOT DB_RC_WH_AmbushAnnouncementBusy(_Var1);
+DialogRequestStopForDialog(_Var4, _Var3);
+
+PROC
+Proc_RC_WH_CleanUpAnnoucementAndLaunchAmbush((TRIGGERGUID)_Var1, (CHARACTERGUID)_Var2)
+THEN
+ProcTriggerUnregisterForPlayers(_Var1);
+NOT DB_RC_WH_AmbushAnnouncementStarted(_Var1);
+Proc_RC_WH_LaunchAmbushForTrigger(_Var1, _Var2);
+
+PROC
+Proc_RC_WH_LaunchAmbushForTrigger(TRIGGERGUID_RC_WH_Ambush01_LeaveTrigger_a5932baf-d609-434e-bb7d-9f0979299d7c, (CHARACTERGUID)_Var1)
+AND
+DB_RC_WH_AmbushersForTrigger(RC_WH_Ambush01_CombatTrigger_b8931c03-c3e1-418a-a1b9-81efdff7d08a, _Var2, _Var3)
+AND NOT
+DB_RC_WH_AmbushAnnouncer(TRIGGERGUID_RC_WH_Ambush01_LeaveTrigger_a5932baf-d609-434e-bb7d-9f0979299d7c, _Var2, _)
+THEN
+Proc_RC_WH_InitAmbusher(_Var2, _Var3);
+Proc_RC_WH_EnterAmbush(_Var1);
+Proc_StartDialog(1, "RC_WH_AD_Ambush01_BattleCries", CHARACTERGUID_RC_WH_Ambush01_DwarfRanger_6fe51a7e-7a70-4151-9f0b-b1d21ffd9dc1);
+
+PROC
+ProcOneShotTriggerEntered((CHARACTERGUID)_Var1, TRIGGERGUID_RC_WH_Ambush01_WitsTrigger_38bb2777-0599-44de-88ff-9bb7c1010a55)
+AND
+DB_IsPlayer(_Var2)
+AND
+QRY_IsInRange(_Var1, _Var2, 10)
+AND
+QRY_CheckPlayerStat(_Var2, "Wits", 15)
+AND
+QueryOnlyOnce("RC_WH_Ambush_CheckWits")
+THEN
+DB_RC_WH_Ambush_WitsGood(1);
+StartVoiceBark("RC_WH_VB_Ambush", _Var2);
+
+PROC
+ProcOneShotTriggerEntered((CHARACTERGUID)_Var1, TRIGGERGUID_RC_WH_Ambush01_WitsTrigger_38bb2777-0599-44de-88ff-9bb7c1010a55)
+AND NOT
+DB_RC_WH_Ambush_WitsGood(_)
+AND
+DB_RC_WH_AmbushersForTrigger(RC_WH_Ambush01_CombatTrigger_b8931c03-c3e1-418a-a1b9-81efdff7d08a, _Var3, _)
+AND
+CharacterConsume(_Var3, "POTION_Medium_Perception_Potion", _)
+THEN
+DB_NOOP(1);
+
+IF
+CharacterDied((CHARACTERGUID)_Var1)
+AND
+DB_RC_WH_AmbushersForTrigger(RC_WH_Ambush01_CombatTrigger_b8931c03-c3e1-418a-a1b9-81efdff7d08a, _Var1, _Var2)
+THEN
+NOT DB_RC_WH_AmbushersForTrigger(RC_WH_Ambush01_CombatTrigger_b8931c03-c3e1-418a-a1b9-81efdff7d08a, _Var1, _Var2);
+PROC_RC_WH_Ambushers_CheckAlive(TRIGGERGUID_RC_WH_Ambush01_CombatTrigger_b8931c03-c3e1-418a-a1b9-81efdff7d08a);
+
+IF
+DialogEnded("RC_WH_Ambush01_Proclamation", (INTEGER)_Var1)
+AND
+ObjectGetFlag(CHARACTERGUID_S_RC_WH_Ambush01_DwarfCaster_ade0ee22-8fb7-422b-9c32-978a1f5f79ca, "RC_WH_AmbushersLeave", 1)
+AND
+DB_RC_WH_AmbushersForTrigger(RC_WH_Ambush01_CombatTrigger_b8931c03-c3e1-418a-a1b9-81efdff7d08a, _Var2, _Var3)
+THEN
+Proc_RC_WH_Ambushes_CleaningUp(_Var2);
+NOT DB_RC_WH_AmbushersForTrigger(RC_WH_Ambush01_CombatTrigger_b8931c03-c3e1-418a-a1b9-81efdff7d08a, _Var2, _Var3);
+NOT DB_RC_WH_Ambushers(_Var2);
+
+PROC
+PROC_GLOBAL_DialogStartRequested(CHARACTERGUID_RC_WH_Ambush02_Sourcerer_Ghost_a7a98245-d614-4d97-b676-9b5275ddd9ab, (CHARACTERGUID)_Var1)
+AND
+UserGetFlag(_Var1, "RC_WH_Ambush2_Ghost_Peace", 0)
+THEN
+PlayAnimation(CHARACTERGUID_RC_WH_Ambush02_Sourcerer_Ghost_a7a98245-d614-4d97-b676-9b5275ddd9ab, "skill_prepare_divine_01_loop");
+PlayAnimation(CHARACTERGUID_RC_WH_Ambush02_Sourcerer_Ghost_a7a98245-d614-4d97-b676-9b5275ddd9ab, "skill_cast_aoe_divine_01_cast");
+
+IF
+ObjectFlagSet("RC_WH_Ambush02_Ghost_PlayerBlesses", CHARACTERGUID_RC_WH_Ambush02_Sourcerer_Ghost_a7a98245-d614-4d97-b676-9b5275ddd9ab, (INTEGER)_Var1)
+AND
+DialogGetInvolvedPlayer(_Var1, 1, _Var2)
+THEN
+PlayAnimation(_Var2, "skill_prepare_divine_01_loop");
+PlayAnimation(_Var2, "skill_cast_aoe_divine_01_cast");
+
+PROC
+ProcOneShotTriggerEntered((CHARACTERGUID)_Var1, TRIGGERGUID_S_RC_WH_Ambush02_CaravanCommentTrigger_b3273eea-778d-41c9-a4c8-c7d865c00aa4)
+THEN
+Proc_StartDialog(1, "RC_WH_AD_Ambush02_CaravanComment", _Var1);
+
+IF
+DB_RC_WH_AmbushTwoTriggered(_)
+THEN
+RemoveOneShotDialog(TRIGGERGUID_S_RC_WH_Ambush02_CaravanCommentTrigger_b3273eea-778d-41c9-a4c8-c7d865c00aa4);
+
+IF
+GameStarted("RC_Main", _)
+AND
+DB_RC_WH_CollaredCorpse(_Var2)
+AND NOT
+DB_RC_WH_CollaredCorpse_OncePerCorpse(_Var2)
+THEN
+DB_RC_WH_CollaredCorpse_OncePerCorpse(_Var2);
+PROC_LoopEffect("RS3_FX_GP_Status_HoECollar_01", _Var2, "RC_DW_WC_SourceCollar", "RC_Main", "Dummy_NeckFX");
+
+IF
+StoryEvent((GUIDSTRING)_Var1, "Mine")
+AND
+DB_RC_WH_TrapMines(_Var1)
+AND NOT
+DB_RC_WH_AmbushTwoTriggered(_)
+AND
+GetClosestAlivePlayer(_Var1, _Var3, _)
+THEN
+ProcTriggerUnregisterForPlayers(TRIGGERGUID_RC_WH_Ambush02_CombatTrigger_cdc42ba3-24eb-4edb-adbc-7f3c2892be79);
+ProcLaunchAmbush(TRIGGERGUID_RC_WH_Ambush02_CombatTrigger_cdc42ba3-24eb-4edb-adbc-7f3c2892be79, _Var3);
+
+PROC
+Proc_RC_WH_LaunchAmbushForTrigger(TRIGGERGUID_RC_WH_Ambush02_LeaveTrigger_5b0e3b20-8baa-48fc-9ad1-7b47b5cb60a3, (CHARACTERGUID)_Var1)
+AND
+DB_RC_WH_AmbushersForTrigger(TRIGGERGUID_RC_WH_Ambush02_CombatTrigger_cdc42ba3-24eb-4edb-adbc-7f3c2892be79, _Var2, _Var3)
+AND NOT
+DB_RC_WH_AmbushAnnouncer(TRIGGERGUID_RC_WH_Ambush02_LeaveTrigger_5b0e3b20-8baa-48fc-9ad1-7b47b5cb60a3, _Var2, _)
+THEN
+Proc_RC_WH_InitAmbusher(_Var2, _Var3);
+DB_RC_WH_AmbushTwoTriggered(1);
+Proc_RC_WH_EnterAmbush(_Var1);
+Proc_StartDialog(1, "RC_WH_AD_Ambush02_BattleCries", CHARACTERGUID_RC_WH_Ambush02_DwarfWarrior_7c63431f-4a27-4e63-acfe-f24f23745b52);
+
+IF
+CharacterDied((CHARACTERGUID)_Var1)
+AND
+DB_RC_WH_AmbushersForTrigger(TRIGGERGUID_RC_WH_Ambush02_CombatTrigger_cdc42ba3-24eb-4edb-adbc-7f3c2892be79, _Var1, _Var2)
+THEN
+NOT DB_RC_WH_AmbushersForTrigger(TRIGGERGUID_RC_WH_Ambush02_CombatTrigger_cdc42ba3-24eb-4edb-adbc-7f3c2892be79, _Var1, _Var2);
+PROC_RC_WH_Ambushers_CheckAlive(TRIGGERGUID_RC_WH_Ambush02_CombatTrigger_cdc42ba3-24eb-4edb-adbc-7f3c2892be79);
+
+PROC
+PROC_RC_WH_Ambushers_CheckAlive((TRIGGERGUID)_Var1)
+AND NOT
+DB_RC_WH_AmbushersForTrigger(_Var1, _, _)
+AND
+DB_RC_WH_AmbushedPlayer(_Var4)
+THEN
+Proc_RC_WH_EndedAmbush(_Var4);
+
+PROC
+Proc_RC_WH_EnterAmbush((CHARACTERGUID)_Var1)
+AND NOT
+DB_RC_WH_AmbushNumber(_)
+THEN
+DB_RC_WH_AmbushNumber(1);
+
+PROC
+Proc_RC_WH_EnterAmbush((CHARACTERGUID)_Var1)
+AND
+DB_RC_WH_AmbushNumber(_Var2)
+AND
+DB_RC_WH_AmbushesVBs(_Var2, _Var3, _)
+THEN
+StartVoiceBark(_Var3, _Var1);
+DB_RC_WH_AmbushedPlayer(_Var1);
+
+PROC
+Proc_RC_WH_EndedAmbush((CHARACTERGUID)_Var1)
+AND
+DB_RC_WH_AmbushNumber(_Var2)
+AND
+DB_RC_WH_AmbushesVBs(_Var2, _, _Var4)
+AND
+IntegerSum(_Var2, 1, _Var5)
+AND
+QRY_RC_WH_PlayDialog(_Var2, _Var4, _Var1)
+THEN
+NOT DB_RC_WH_AmbushedPlayer(_Var1);
+NOT DB_RC_WH_AmbushNumber(_Var2);
+DB_RC_WH_AmbushNumber(_Var5);
+
+QRY
+QRY_RC_WH_PlayDialog((INTEGER)_Var1, (STRING)_Var2, (CHARACTERGUID)_Var3)
+AND
+_Var1 == 1
+THEN
+StartVoiceBark(_Var2, _Var3);
+
+QRY
+QRY_RC_WH_PlayDialog((INTEGER)_Var1, (STRING)_Var2, (CHARACTERGUID)_Var3)
+AND
+_Var1 == 2
+THEN
+ProcObjectTimer(_Var3, _Var2, 3000);
+
+PROC
+ProcObjectTimerFinished((CHARACTERGUID)_Var1, "RC_WH_RD_PostAmbushes")
+THEN
+ProcDefineReflectionDialog("RC_WH_RD_PostAmbushes", _Var1);
+DB_RC_WH_ClearAmbushes(1);
+
+PROC
+Proc_RC_WH_EnterAmbush((CHARACTERGUID)_Var1)
+THEN
+UserSetFlag(_Var1, "RC_WH_Ambushes_Encountered");
+
+IF
+DB_RC_WH_ClearAmbushes(1)
+THEN
+GoalCompleted;
+
+IF
+GlobalFlagSet("RC_DW_WC_BossElderIsDead")
+AND
+DB_RC_WH_Ambushers(_Var1)
+THEN
+DialogRequestStop(_Var1);
+Proc_RC_WH_Ambushes_CleaningUp(_Var1);
+
+PROC
+Proc_RC_WH_Ambushes_CleaningUp((CHARACTERGUID)_Var1)
+AND
+DB_IsPlayer(_Var2)
+THEN
+RemoveStatus(_Var1, "POSSESSED");
+SetFaction(_Var1, "Neutral");
+LeaveCombat(_Var1);
+ChangeAttitude(_Var1, _Var2, 0);
+SetHasDialog(_Var1, 0);
+CharacterDisappearOutOfSight(_Var1, 79, 1, "", 1);
+
+IF
+GlobalFlagSet("RC_DW_WC_BossElderIsDead")
+THEN
+GoalCompleted;
+
+
+EXITSECTION
+NOT DB_RC_WH_Ambushers(CHARACTERGUID_RC_WH_Ambush01_DwarfRanger_6fe51a7e-7a70-4151-9f0b-b1d21ffd9dc1);
+NOT DB_RC_WH_Ambushers(CHARACTERGUID_RC_WH_Ambush01_DwarfCaster_ade0ee22-8fb7-422b-9c32-978a1f5f79ca);
+NOT DB_RC_WH_Ambushers(CHARACTERGUID_RC_WH_Ambush02_DwarfCaster_516967c7-315b-499d-8779-255482b3106e);
+NOT DB_RC_WH_Ambushers(CHARACTERGUID_RC_WH_Ambush02_DwarfRanger_cc677d58-8ec6-4046-8d3d-d03bdb620e09);
+NOT DB_RC_WH_Ambushers(CHARACTERGUID_RC_WH_Ambush02_DwarfRogue_d8103bb4-79b5-4b2a-a5df-2681261acfc6);
+NOT DB_RC_WH_Ambushers(CHARACTERGUID_RC_WH_Ambush02_DwarfWarrior_7c63431f-4a27-4e63-acfe-f24f23745b52);
+NOT DB_RC_WH_AmbushersForTrigger(TRIGGERGUID_RC_WH_Ambush01_CombatTrigger_b8931c03-c3e1-418a-a1b9-81efdff7d08a, CHARACTERGUID_S_RC_WH_Ambush01_DwarfRanger_6fe51a7e-7a70-4151-9f0b-b1d21ffd9dc1, TRIGGERGUID_S_RC_WH_Ambush01_RangerPoint_eec660d5-1d4a-492d-8460-797f162a64b9);
+NOT DB_RC_WH_AmbushersForTrigger(TRIGGERGUID_RC_WH_Ambush01_CombatTrigger_b8931c03-c3e1-418a-a1b9-81efdff7d08a, CHARACTERGUID_S_RC_WH_Ambush01_DwarfCaster_ade0ee22-8fb7-422b-9c32-978a1f5f79ca, TRIGGERGUID_S_RC_WH_Ambush01_CasterPoint_f1871947-64aa-4d61-a1df-7c1d64ab1c2c);
+NOT DB_RC_WH_AmbushersForTrigger(TRIGGERGUID_RC_WH_Ambush02_CombatTrigger_cdc42ba3-24eb-4edb-adbc-7f3c2892be79, CHARACTERGUID_RC_WH_Ambush02_DwarfCaster_516967c7-315b-499d-8779-255482b3106e, TRIGGERGUID_S_RC_WH_Ambush02_CasterPoint_463c3005-9ac3-4f93-94ae-f1e6a31085f3);
+NOT DB_RC_WH_AmbushersForTrigger(TRIGGERGUID_RC_WH_Ambush02_CombatTrigger_cdc42ba3-24eb-4edb-adbc-7f3c2892be79, CHARACTERGUID_RC_WH_Ambush02_DwarfRanger_cc677d58-8ec6-4046-8d3d-d03bdb620e09, TRIGGERGUID_S_RC_WH_Ambush02_RangerPoint_a18ff618-d9a7-4ef2-890a-fedd53bcf725);
+NOT DB_RC_WH_AmbushersForTrigger(TRIGGERGUID_RC_WH_Ambush02_CombatTrigger_cdc42ba3-24eb-4edb-adbc-7f3c2892be79, CHARACTERGUID_RC_WH_Ambush02_DwarfRogue_d8103bb4-79b5-4b2a-a5df-2681261acfc6, TRIGGERGUID_S_RC_WH_Ambush02_RoguePoint_b9818dd8-d060-48dc-ad8c-03b3307b154e);
+NOT DB_RC_WH_AmbushersForTrigger(TRIGGERGUID_RC_WH_Ambush02_CombatTrigger_cdc42ba3-24eb-4edb-adbc-7f3c2892be79, CHARACTERGUID_RC_WH_Ambush02_DwarfWarrior_7c63431f-4a27-4e63-acfe-f24f23745b52, TRIGGERGUID_S_RC_WH_Ambush02_WarriorPoint_0afbc544-91a2-406a-84cb-cf79aba3697c);
+NOT DB_RC_WH_TrapMines(ITEMGUID_S_RC_WH_Ambush02_Mine01_b373691e-20f5-45c5-b870-1bdf165ea7e0);
+NOT DB_RC_WH_TrapMines(ITEMGUID_S_RC_WH_Ambush02_Mine02_35951026-5516-49ea-b71c-1308e7ebba96);
+NOT DB_RC_WH_TrapMines(ITEMGUID_S_RC_WH_Ambush02_Mine03_4bada126-d466-436d-a724-9bb37b6b3ab8);
+NOT DB_RC_WH_TrapMines(ITEMGUID_S_RC_WH_Ambush02_Mine04_cec98ad6-0d43-485a-8e8f-0a9641560d7a);
+NOT DB_RC_WH_TrapMines(ITEMGUID_S_RC_WH_Ambush02_Mine05_d386f24e-ebc3-42db-885b-0717da717fbf);
+NOT DB_RC_WH_AmbushesVBs(1, "RC_WH_VB_Ambush_StartOne", "RC_WH_VB_Ambush_EndOne");
+NOT DB_RC_WH_AmbushesVBs(2, "RC_WH_VB_Ambush_StartTwo", "RC_WH_RD_PostAmbushes");
+ENDEXITSECTION
+
+ParentTargetEdge "ReapersCoast"

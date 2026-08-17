@@ -1,0 +1,445 @@
+Version 1
+SubGoalCombiner SGC_AND
+
+INITSECTION
+Proc_RegisterPartyDecisionDialogOutcomes_Fixed("PVPDialogTest2", "TestA", "TestB", "", "", "");
+Proc_RegisterPartyDecisionDialogOutcomes_Optional("PVPDialogTest2", "Test1", "Test2", "Test3", "", "");
+
+KBSECTION
+IF
+TextEventSet("g")
+THEN
+SetHasDialog(CHARACTERGUID_S_Player_Sebille_c8d55eaf-e4eb-466a-8f0d-6a9447b5b24c, 1);
+
+IF
+TextEventSet("kickavatar")
+AND
+CharacterGetHostCharacter(_Var1)
+THEN
+PROC_GLO_PartyMembers_Kick(_Var1, "Hero KickedAvatarCompanions");
+
+IF
+TextEventSet("kickifan")
+THEN
+PROC_GLO_PartyMembers_Kick(CHARACTERGUID_S_Player_Ifan_ad9a3327-4456-42a7-9bf4-7ad60cc9e54f, "Hero KickedAvatarCompanions");
+
+IF
+TextEventSet("playsound")
+AND
+CharacterGetHostCharacter(_Var1)
+AND
+GetTextEventParamString(1, _Var2)
+THEN
+PlaySound(_Var1, _Var2);
+
+IF
+TextEventSet("dismissall")
+AND
+CharacterGetHostCharacter(_Var1)
+AND
+DB_Avatars(_Var1)
+AND
+DB_IsPlayer(_Var2)
+AND NOT
+DB_Avatars(_Var2)
+THEN
+PROC_GLO_PartyMembers_Remove(_Var2, _Var1, 0);
+
+IF
+TextEventSet("sourcerain")
+AND
+CharacterGetHostCharacter(_Var1)
+AND
+GetPosition(_Var1, _Var2, _Var3, _Var4)
+AND
+Integer(_Var2, _Var5)
+AND
+Integer(_Var4, _Var6)
+THEN
+PROC_DebugSourceRain(_Var5, _Var3, _Var6, 5);
+
+PROC
+PROC_DebugSourceRain((INTEGER)_Var1, (REAL)_Var2, (INTEGER)_Var3, (INTEGER)_Var4)
+AND
+_Var4 > 0
+AND
+Random(14, _Var5)
+AND
+Random(14, _Var6)
+AND
+IntegerSum(_Var1, _Var5, _Var7)
+AND
+IntegerSum(_Var7, -7, _Var8)
+AND
+IntegerSum(_Var3, _Var6, _Var9)
+AND
+IntegerSum(_Var9, -7, _Var10)
+AND
+Real(_Var8, _Var11)
+AND
+Real(_Var10, _Var12)
+AND
+IntegerSubtract(_Var4, 1, _Var13)
+THEN
+CreateSurfaceAtPosition(_Var11, _Var2, _Var12, "SurfaceSource", 1, 20);
+PROC_DebugSourceRain(_Var1, _Var2, _Var3, _Var13);
+
+IF
+TextEventSet("10u")
+AND
+DB_IsPlayer(_Var1)
+AND
+CharacterIsControlled(_Var1, 1)
+AND
+DB_CompanionAvatarBond(_Var2, _Var1)
+THEN
+ObjectSetFlag(_Var2, "CompanionRelationUp10", 0);
+
+IF
+TextEventSet("10d")
+AND
+DB_IsPlayer(_Var1)
+AND
+CharacterIsControlled(_Var1, 1)
+AND
+DB_CompanionAvatarBond(_Var2, _Var1)
+THEN
+ObjectSetFlag(_Var2, "CompanionRelationDown10", 0);
+
+IF
+TextEventSet("att")
+AND
+DB_IsPlayer(_Var1)
+AND
+CharacterIsControlled(_Var1, 1)
+AND
+DB_CompanionAvatarBond(_Var2, _Var1)
+AND
+CharacterGetAttitudeTowardsPlayer(_Var2, _Var1, _Var3)
+AND
+IntegertoString(_Var3, _Var4)
+AND
+StringConcatenate("Attitude: ", _Var4, _Var5)
+THEN
+DebugText(_Var2, _Var5);
+
+IF
+TextEventSet("1sp")
+AND
+DB_IsPlayer(_Var1)
+AND
+CharacterIsControlled(_Var1, 1)
+THEN
+ObjectClearFlag(_Var1, "GLO_Has2MaxMP", 0);
+ObjectClearFlag(_Var1, "GLO_Has3MaxMP", 0);
+CharacterOverrideMaxSourcePoints(_Var1, 1);
+CharacterAddSourcePoints(_Var1, 3);
+
+IF
+TextEventSet("2sp")
+AND
+DB_IsPlayer(_Var1)
+AND
+CharacterIsControlled(_Var1, 1)
+THEN
+ObjectSetFlag(_Var1, "GLO_Has2MaxMP");
+ObjectClearFlag(_Var1, "GLO_Has3MaxMP", 0);
+CharacterOverrideMaxSourcePoints(_Var1, 2);
+CharacterAddSourcePoints(_Var1, 3);
+
+IF
+TextEventSet("3sp")
+AND
+DB_IsPlayer(_Var1)
+AND
+CharacterIsControlled(_Var1, 1)
+THEN
+ObjectSetFlag(_Var1, "GLO_Has2MaxMP");
+ObjectSetFlag(_Var1, "GLO_Has3MaxMP");
+CharacterOverrideMaxSourcePoints(_Var1, 3);
+CharacterAddSourcePoints(_Var1, 3);
+
+IF
+TextEventSet("noavatar")
+AND
+DB_IsPlayer(_Var1)
+THEN
+ClearTag(_Var1, "AVATAR");
+
+IF
+TextEventSet("questtest")
+THEN
+QuestAdd(Player_Red_Prince_a26a1efb-cdc8-4cf3-a7b2-b2f9544add6f, "FTJ_COM_Lohse");
+QuestUpdate(Player_Red_Prince_a26a1efb-cdc8-4cf3-a7b2-b2f9544add6f, "FTJ_COM_Lohse", "Saheila_Dies");
+QuestUpdate(Player_Red_Prince_a26a1efb-cdc8-4cf3-a7b2-b2f9544add6f, "FTJ_COM_Lohse", "Saheila_Lives");
+
+IF
+TextEventSet("refdiag")
+AND
+DB_IsPlayer(_Var1)
+AND
+CharacterIsControlled(_Var1, 1)
+THEN
+NOT DB_ReflectionDialog_Finished("FTJ_RD_SilentMonks");
+ProcDefineReflectionDialog("FTJ_RD_SilentMonks", _Var1);
+
+IF
+TextEventSet("refdiag2")
+AND
+DB_IsPlayer(_Var1)
+AND
+CharacterIsControlled(_Var1, 1)
+THEN
+NOT DB_ReflectionDialog_Finished("LV_RD_CompanionDismissal");
+ProcDefineReflectionDialog("LV_RD_CompanionDismissal", _Var1);
+
+IF
+TextEventSet("refdiag3")
+AND
+DB_IsPlayer(_Var1)
+AND
+CharacterIsControlled(_Var1, 1)
+THEN
+NOT DB_ReflectionDialog_Finished("LV_RD_CompanionDismissal");
+ProcDefineReflectionDialog("LV_RD_CompanionDismissal", _Var1);
+ProcStartReflectionDialog(_Var1, "LV_RD_CompanionDismissal");
+
+IF
+TextEventSet("reldiag")
+THEN
+NOT DB_RelationshipDialogsFinished(CHARACTERGUID_S_Player_Lohse_bb932b13-8ebf-4ab4-aac0-83e6924e4295, "FTJ_Saheila_CRD_Lohse");
+Proc_RelationshipDialog(CHARACTERGUID_S_Player_Lohse_bb932b13-8ebf-4ab4-aac0-83e6924e4295, "FTJ_Saheila_CRD_Lohse", CHARACTERGUID_S_Player_Lohse_bb932b13-8ebf-4ab4-aac0-83e6924e4295);
+
+IF
+TextEventSet("animpartymale")
+THEN
+Transform(Player_Ifan_ad9a3327-4456-42a7-9bf4-7ad60cc9e54f, "Dwarves_Hero_Male_024d1763-b2aa-46ec-b705-6338059838be", 1);
+Transform(Player_Jean_Pyke_bb932b13-8ebf-4ab4-aac0-83e6924e4295, "Elves_Hero_Male_19913083-924e-45ec-8b5b-119d5913722f", 1);
+Transform(Player_Placeholder_Elf_c8d55eaf-e4eb-466a-8f0d-6a9447b5b24c, "Humans_Hero_Male_25611432-e5e4-482a-8f5d-196c9e90001e", 1);
+Transform(Player_Red_Prince_a26a1efb-cdc8-4cf3-a7b2-b2f9544add6f, "Lizards_Hero_Male_fa12e21f-0a10-47dd-af46-ab2c9a53cf6d", 1);
+
+IF
+TextEventSet("animpartyfemale")
+THEN
+Transform(Player_Ifan_ad9a3327-4456-42a7-9bf4-7ad60cc9e54f, "Dwarves_Hero_Female_c1c58707-b06e-499e-9c43-91a90be602b0", 1);
+Transform(Player_Jean_Pyke_bb932b13-8ebf-4ab4-aac0-83e6924e4295, "Elves_Hero_Female_7ef846f5-34dc-450c-815e-a58dfc190a7b", 1);
+Transform(Player_Placeholder_Elf_c8d55eaf-e4eb-466a-8f0d-6a9447b5b24c, "Humans_Hero_Female_de8ea39b-6989-4b93-b34a-81e549c540f2", 1);
+Transform(Player_Red_Prince_a26a1efb-cdc8-4cf3-a7b2-b2f9544add6f, "Lizards_Hero_Female_e4a6bcfa-ecd6-4e56-8592-cd16b85a1c50", 1);
+
+IF
+TextEventSet("animpartydwarfelf")
+THEN
+Transform(Player_Ifan_ad9a3327-4456-42a7-9bf4-7ad60cc9e54f, "Dwarves_Hero_Male_024d1763-b2aa-46ec-b705-6338059838be", 1);
+Transform(Player_Jean_Pyke_bb932b13-8ebf-4ab4-aac0-83e6924e4295, "Dwarves_Hero_Female_c1c58707-b06e-499e-9c43-91a90be602b0", 1);
+Transform(Player_Placeholder_Elf_c8d55eaf-e4eb-466a-8f0d-6a9447b5b24c, "Elves_Hero_Male_19913083-924e-45ec-8b5b-119d5913722f", 1);
+Transform(Player_Red_Prince_a26a1efb-cdc8-4cf3-a7b2-b2f9544add6f, "Elves_Hero_Female_7ef846f5-34dc-450c-815e-a58dfc190a7b", 1);
+
+IF
+TextEventSet("animpartyhumanlizard")
+THEN
+Transform(Player_Ifan_ad9a3327-4456-42a7-9bf4-7ad60cc9e54f, "Humans_Hero_Male_25611432-e5e4-482a-8f5d-196c9e90001e", 1);
+Transform(Player_Jean_Pyke_bb932b13-8ebf-4ab4-aac0-83e6924e4295, "Humans_Hero_Female_de8ea39b-6989-4b93-b34a-81e549c540f2", 1);
+Transform(Player_Placeholder_Elf_c8d55eaf-e4eb-466a-8f0d-6a9447b5b24c, "Lizards_Hero_Male_fa12e21f-0a10-47dd-af46-ab2c9a53cf6d", 1);
+Transform(Player_Red_Prince_a26a1efb-cdc8-4cf3-a7b2-b2f9544add6f, "Lizards_Hero_Female_e4a6bcfa-ecd6-4e56-8592-cd16b85a1c50", 1);
+
+IF
+TextEventSet("animpartycustom")
+THEN
+Transform(Player_Ifan_ad9a3327-4456-42a7-9bf4-7ad60cc9e54f, "Humans_Hero_Male_25611432-e5e4-482a-8f5d-196c9e90001e", 1);
+Transform(Player_Jean_Pyke_bb932b13-8ebf-4ab4-aac0-83e6924e4295, "Humans_Hero_Female_de8ea39b-6989-4b93-b34a-81e549c540f2", 1);
+Transform(Player_Placeholder_Elf_c8d55eaf-e4eb-466a-8f0d-6a9447b5b24c, "Elves_Hero_Female_7ef846f5-34dc-450c-815e-a58dfc190a7b", 1);
+Transform(Player_Red_Prince_a26a1efb-cdc8-4cf3-a7b2-b2f9544add6f, "Lizards_Hero_Male_fa12e21f-0a10-47dd-af46-ab2c9a53cf6d", 1);
+
+IF
+TextEventSet("DHan")
+THEN
+SetStoryEvent(S_FTJ_CapturedChild_53d4aa5c-dd91-4e12-9ca8-d66879cc6ffb, "FTJ_SW_TeleportToShelter");
+
+IF
+TextEventSet("PrintReserved")
+AND
+CharacterGetHostCharacter(_Var1)
+THEN
+CharacterLaunchIteratorAroundObject(_Var1, 30, "Loop_PrintReserved");
+
+IF
+StoryEvent((GUIDSTRING)_Var1, "Loop_PrintReserved")
+AND
+IsSpeakerReserved(_Var1, 1)
+THEN
+DebugText(_Var1, "RESERVED");
+
+IF
+StoryEvent((GUIDSTRING)_Var1, "Loop_PrintReserved")
+AND
+IsSpeakerReserved(_Var1, 0)
+THEN
+DebugText(_Var1, "AVAILABLE");
+
+IF
+TextEventSet("tut")
+THEN
+DB_InitialTutorialsShown(1);
+
+IF
+TextEventSet("tut")
+AND
+GetTextEventParamString(1, _Var1)
+THEN
+PROC_CheckPlayTut(_Var1);
+
+IF
+TextEventSet("movie")
+THEN
+ProcStartMovie("DOS Cutscene 1.bik");
+
+IF
+TextEventSet("2ap")
+AND
+CharacterGetHostCharacter(_Var1)
+THEN
+CharacterAddActionPoints(_Var1, 2);
+
+IF
+TextEventSet("add_henchman")
+AND
+CharacterGetHostCharacter(_Var1)
+THEN
+CharacterMakePlayer(CHARACTERGUID_Slava_TestSummmon_96121647-6c23-4aa4-a964-171b763ec7b2, _Var1);
+
+IF
+TextEventSet("add_to_char")
+AND
+CharacterGetHostCharacter(_Var1)
+THEN
+CharacterAddToPlayerCharacter(CHARACTERGUID_Slava_TestSummmon_96121647-6c23-4aa4-a964-171b763ec7b2, _Var1);
+
+IF
+TextEventSet("hpp")
+AND
+GetTextEventParamReal(1, _Var1)
+THEN
+CharacterSetHitpointsPercentage(CHARACTERGUID_S_GLO_Meistr_01ae5541-cef7-4d3a-8799-cee7f3d3c34d, _Var1);
+
+IF
+TextEventSet("charflag")
+AND
+GetTextEventParamString(1, _Var1)
+AND
+CharacterGetHostCharacter(_Var2)
+THEN
+ObjectSetFlag(_Var2, _Var1);
+
+IF
+TextEventSet("userflag")
+AND
+GetTextEventParamString(1, _Var1)
+AND
+CharacterGetHostCharacter(_Var2)
+THEN
+UserSetFlag(_Var2, _Var1);
+
+IF
+TextEventSet("partyflag")
+AND
+GetTextEventParamString(1, _Var1)
+AND
+CharacterGetHostCharacter(_Var2)
+THEN
+PartySetFlag(_Var2, _Var1);
+
+IF
+TextEventSet("globalflag")
+AND
+GetTextEventParamString(1, _Var1)
+THEN
+GlobalSetFlag(_Var1);
+
+IF
+TextEventSet("ccharflag")
+AND
+GetTextEventParamString(1, _Var1)
+AND
+CharacterGetHostCharacter(_Var2)
+THEN
+ObjectClearFlag(_Var2, _Var1);
+
+IF
+TextEventSet("cuserflag")
+AND
+GetTextEventParamString(1, _Var1)
+AND
+CharacterGetHostCharacter(_Var2)
+THEN
+UserClearFlag(_Var2, _Var1, 0);
+
+IF
+TextEventSet("cpartyflag")
+AND
+GetTextEventParamString(1, _Var1)
+AND
+CharacterGetHostCharacter(_Var2)
+THEN
+PartyClearFlag(_Var2, _Var1, 0);
+
+IF
+TextEventSet("cglobalflag")
+AND
+GetTextEventParamString(1, _Var1)
+THEN
+GlobalClearFlag(_Var1);
+
+IF
+TextEventSet("sendevent")
+AND
+GetTextEventParamUUID(1, _Var1)
+AND
+GetTextEventParamString(2, _Var2)
+THEN
+SetStoryEvent(_Var1, _Var2);
+
+IF
+TextEventSet("objectflag")
+AND
+GetTextEventParamUUID(1, _Var1)
+AND
+GetTextEventParamString(2, _Var2)
+THEN
+ObjectSetFlag(_Var1, _Var2);
+
+IF
+TextEventSet("cobjectflag")
+AND
+GetTextEventParamUUID(1, _Var1)
+AND
+GetTextEventParamString(2, _Var2)
+THEN
+ObjectClearFlag(_Var1, _Var2);
+
+IF
+TextEventSet("weaken")
+THEN
+PartySetFlag(CHARACTERGUID_S_Player_Lohse_bb932b13-8ebf-4ab4-aac0-83e6924e4295, "GLO_Lohse_KnowDemonName");
+Proc_ARX_TheCrash_NPCLeave();
+
+IF
+TextEventSet("cd2")
+THEN
+NOT DB_OriginInPartyDialog(CHARACTERGUID_S_Player_Ifan_ad9a3327-4456-42a7-9bf4-7ad60cc9e54f, "Ifan");
+DB_OriginInPartyDialog(CHARACTERGUID_S_Player_Ifan_ad9a3327-4456-42a7-9bf4-7ad60cc9e54f, "Ifan2");
+NOT DB_OriginInPartyDialog(CHARACTERGUID_S_Player_Lohse_bb932b13-8ebf-4ab4-aac0-83e6924e4295, "Lohse");
+DB_OriginInPartyDialog(CHARACTERGUID_S_Player_Lohse_bb932b13-8ebf-4ab4-aac0-83e6924e4295, "Lohse2");
+NOT DB_OriginInPartyDialog(CHARACTERGUID_S_Player_Sebille_c8d55eaf-e4eb-466a-8f0d-6a9447b5b24c, "Sebille");
+DB_OriginInPartyDialog(CHARACTERGUID_S_Player_Sebille_c8d55eaf-e4eb-466a-8f0d-6a9447b5b24c, "Sebille2");
+NOT DB_OriginInPartyDialog(CHARACTERGUID_S_Player_RedPrince_a26a1efb-cdc8-4cf3-a7b2-b2f9544add6f, "RedPrince");
+DB_OriginInPartyDialog(CHARACTERGUID_S_Player_RedPrince_a26a1efb-cdc8-4cf3-a7b2-b2f9544add6f, "RedPrince2");
+PROC_GLO_PartyMembers_SetInpartyDialog(CHARACTERGUID_S_Player_Ifan_ad9a3327-4456-42a7-9bf4-7ad60cc9e54f, "Ifan2");
+PROC_GLO_PartyMembers_SetInpartyDialog(CHARACTERGUID_S_Player_Lohse_bb932b13-8ebf-4ab4-aac0-83e6924e4295, "Lohse2");
+PROC_GLO_PartyMembers_SetInpartyDialog(CHARACTERGUID_S_Player_Sebille_c8d55eaf-e4eb-466a-8f0d-6a9447b5b24c, "Sebille2");
+PROC_GLO_PartyMembers_SetInpartyDialog(CHARACTERGUID_S_Player_RedPrince_a26a1efb-cdc8-4cf3-a7b2-b2f9544add6f, "RedPrince2");
+
+
+EXITSECTION
+ENDEXITSECTION
+
+ParentTargetEdge "Start"

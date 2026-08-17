@@ -1,0 +1,22 @@
+Version 1
+SubGoalCombiner SGC_AND
+
+INITSECTION
+DB_Dialogs(CHARACTERGUID_Sandbox_Ship_Captain_dc36935c-4452-47af-8bab-f34c48754e13, CHARACTERGUID_Sandbox_Ship_Elisabeth_Fendrish_a7b94f10-865f-4ffd-8770-fce3973366ff, "Sandbox_Quest");
+DB_QuestDef_State("SandboxQuest", "Accept", 1);
+DB_QuestDef_State("SandboxQuest", "GoBack");
+DB_QuestDef_State("SandboxQuest", "Finish", -1);
+ProcTriggerRegisterForPlayers(TRIGGERGUID_CaveQuestTrigger_fb308de8-145b-4749-8b92-db51ea2bc019);
+DB_QuestDef_QuestReward("SandboxQuest", "Finish", "QuestUpdate_SandboxQuest_Finish");
+
+KBSECTION
+IF
+CharacterEnteredTrigger((CHARACTERGUID)_Var1, TRIGGERGUID_CaveQuestTrigger_fb308de8-145b-4749-8b92-db51ea2bc019)
+THEN
+ObjectSetFlag(_Var1, "QuestUpdate_SandboxQuest_GoBack");
+
+
+EXITSECTION
+ENDEXITSECTION
+
+ParentTargetEdge "Sandbox"

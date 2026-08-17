@@ -1,0 +1,54 @@
+Version 1
+SubGoalCombiner SGC_AND
+
+INITSECTION
+DB_Dialogs(CHARACTERGUID_S_RC_DW_FishFactory_Worker_03_386874ef-36f4-40d6-a72b-3833cf752d99, "RC_DW_FishFactory_Worker_03");
+DB_RC_DW_FishScholar_Fish("FOOD_FishA_Voidwoken", "RC_DW_FishScholar_Fish_A");
+DB_RC_DW_FishScholar_Fish("FOOD_FishB_Voidwoken", "RC_DW_FishScholar_Fish_B");
+DB_RC_DW_FishScholar_Fish("FOOD_FishC_Voidwoken", "RC_DW_FishScholar_Fish_C");
+DB_RC_DW_FishscholarReward("RC_DW_FishScholar_Fish_A", "Quest_Herbmix_Alertness_ff4adb8c-c79c-4976-9a3a-cef0d901ccee", "CON_Food_Voidwoken_Fish_A_ccab0994-cc3a-4ae6-9b45-2a2263cc677f", "RCP_Herbmix_Alertness_Potent");
+DB_RC_DW_FishscholarReward("RC_DW_FishScholar_Fish_B", "Quest_Herbmix_Ferocity_ff74d2bf-8a91-452f-9ea8-f6756bb0d700", "CON_Food_Voidwoken_Fish_B_ea14f970-ac06-463a-a6f2-7a5fb9a268ac", "RCP_Herbmix_Ferocity_Potent");
+DB_RC_DW_FishscholarReward("RC_DW_FishScholar_Fish_C", "Quest_Herbmix_Enlightenment_ff07e9ef-d489-4eb8-af72-548b183f87bc", "CON_Food_Voidwoken_Fish_C_c241b56c-e0e7-406f-b426-ad5d96b2c93b", "RCP_Herbmix_Enlightenment_Potent");
+
+KBSECTION
+IF
+ObjectFlagSet((STRING)_Var1, (CHARACTERGUID)_Var2, _)
+AND
+DB_RC_DW_FishScholar_Fish(_Var4, _Var1)
+AND
+CharacterConsume(_Var2, _Var4, _)
+THEN
+PlayAnimation(_Var2, "Use_Eat");
+ApplyStatus(_Var2, "DISEASED", 6, 1);
+DB_RC_DW_FishScholar_FishLeft(_Var4);
+
+IF
+DB_RC_DW_FishScholar_FishLeft(_Var1)
+AND
+SysCount("DB_RC_DW_FishScholar_FishLeft", 1, 3)
+THEN
+GlobalSetFlag("RC_DW_FishScholar_NoFish");
+
+IF
+ObjectFlagSet("RC_DW_FishScholarReward", (GUIDSTRING)_Var1, _)
+AND
+DB_RC_DW_FishscholarReward(_Var3, _Var4, _Var5, _Var6)
+AND
+ObjectGetFlag(_Var1, _Var3, 1)
+THEN
+ItemTemplateAddTo(_Var4, _Var1, 1);
+ItemTemplateAddTo(_Var5, _Var1, 1);
+UnlockJournalRecipe(_Var6);
+
+IF
+RegionEnded("RC_Main")
+AND
+DB_IsPlayer(_Var1)
+THEN
+ObjectSetFlag(_Var1, "QuestClose_RC_DW_FishScholar");
+
+
+EXITSECTION
+ENDEXITSECTION
+
+ParentTargetEdge "ReapersCoast"

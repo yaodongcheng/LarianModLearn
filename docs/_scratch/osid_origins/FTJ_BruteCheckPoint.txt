@@ -1,0 +1,136 @@
+Version 1
+SubGoalCombiner SGC_AND
+
+INITSECTION
+DB_RC_FTJ_CheckPointBrutes(RC_FTJ_Brute_001_94131f94-2152-49f2-8ee2-9832263eec05);
+DB_RC_FTJ_CheckPointBrutes(RC_FTJ_Brute_002_e3ec4f83-ddef-4f10-8c71-5a022b571dad);
+DB_RC_FTJ_CheckPointBrutes(RC_FTJ_Brute_003_75c00f7f-f7ff-4227-bbe8-fe2a28fcb11c);
+DB_ItemOwnerShipTriggers("FJ_FortJoy_Main", TRIGGERGUID_S_FTJ_OWNERSHIP_CardGameBrutes_8f6e6dd3-c089-4334-a644-aca8db197ffd, CHARACTERGUID_S_FTJ_Brute_001_94131f94-2152-49f2-8ee2-9832263eec05);
+
+KBSECTION
+IF
+ObjectEnteredCombat((CHARACTERGUID)_Var1, _)
+AND
+DB_RC_FTJ_CheckPointBrutes(_Var1)
+AND
+DB_RC_FTJ_CheckPointBrutes(_Var3)
+THEN
+ProcForceStopDialog(_Var3);
+
+IF
+StoryEvent((CHARACTERGUID)_Var1, "FTJ_StartBruteCheckPointDialog")
+THEN
+Proc_StartDialog(0, "FTJ_BruteLeader", RC_FTJ_Brute_001_94131f94-2152-49f2-8ee2-9832263eec05, _Var1);
+
+IF
+ObjectFlagSet("FTJ_BruteLeaderPlayCards", (CHARACTERGUID)_Var1, _)
+THEN
+CharacterMoveTo(_Var1, S_FTJ_Brute_001_94131f94-2152-49f2-8ee2-9832263eec05, 0, "FTJ_PlayCards", 1);
+
+IF
+StoryEvent((CHARACTERGUID)_Var1, "FTJ_PlayCards")
+THEN
+PlayAnimation(_Var1, "use_craft", "");
+PlayAnimation(RC_FTJ_Brute_001_94131f94-2152-49f2-8ee2-9832263eec05, "use_craft", "");
+
+IF
+CharacterDied(RC_FTJ_Brute_001_94131f94-2152-49f2-8ee2-9832263eec05)
+AND
+DB_IsPlayer(_Var1)
+THEN
+ObjectSetFlag(_Var1, "FTJ_ClearedCheckPoint", 1);
+
+IF
+ObjectFlagSet("FTJ_BrutesPayPlayer", (CHARACTERGUID)_Var1, _)
+THEN
+CharacterAddGold(_Var1, 100);
+
+IF
+ObjectFlagSet("FTJ_AddCoinPurse", (CHARACTERGUID)_Var1, _)
+THEN
+ItemTemplateAddTo("LOOT_CoinPurse_A_2602d149-ace2-41b4-8ef1-de0911e7632e", _Var1, 1);
+ObjectClearFlag(_Var1, "FTJ_AddCoinPurse", 0);
+
+IF
+ObjectFlagSet("FTJ_BruteLeaderGiveGear", (CHARACTERGUID)_Var1, _)
+AND
+CharacterGetEquippedItem(_Var1, "Breast", _Var3)
+THEN
+ItemToInventory(_Var3, CHARACTERGUID_S_FTJ_Brute_001_94131f94-2152-49f2-8ee2-9832263eec05);
+
+IF
+ObjectFlagSet("FTJ_BruteLeaderGiveGear", (CHARACTERGUID)_Var1, _)
+AND
+CharacterGetEquippedItem(_Var1, "Belt", _Var3)
+THEN
+ItemToInventory(_Var3, CHARACTERGUID_S_FTJ_Brute_001_94131f94-2152-49f2-8ee2-9832263eec05);
+
+IF
+ObjectFlagSet("FTJ_BruteLeaderGiveGear", (CHARACTERGUID)_Var1, _)
+AND
+CharacterGetEquippedItem(_Var1, "Gloves", _Var3)
+THEN
+ItemToInventory(_Var3, CHARACTERGUID_S_FTJ_Brute_001_94131f94-2152-49f2-8ee2-9832263eec05);
+
+IF
+ObjectFlagSet("FTJ_BruteLeaderGiveGear", (CHARACTERGUID)_Var1, _)
+AND
+CharacterGetEquippedItem(_Var1, "Boots", _Var3)
+THEN
+ItemToInventory(_Var3, CHARACTERGUID_S_FTJ_Brute_001_94131f94-2152-49f2-8ee2-9832263eec05);
+
+IF
+ObjectFlagSet("FTJ_BruteLeaderGiveGear", (CHARACTERGUID)_Var1, _)
+AND
+CharacterGetEquippedItem(_Var1, "Ring", _Var3)
+THEN
+ItemToInventory(_Var3, CHARACTERGUID_S_FTJ_Brute_001_94131f94-2152-49f2-8ee2-9832263eec05);
+
+IF
+ObjectFlagSet("FTJ_BruteLeaderGiveGear", (CHARACTERGUID)_Var1, _)
+AND
+CharacterGetEquippedItem(_Var1, "Weapon", _Var3)
+THEN
+ItemToInventory(_Var3, CHARACTERGUID_S_FTJ_Brute_001_94131f94-2152-49f2-8ee2-9832263eec05);
+
+IF
+ObjectFlagSet("FTJ_BruteLeaderGiveGear", (CHARACTERGUID)_Var1, _)
+AND
+CharacterGetEquippedItem(_Var1, "Shield", _Var3)
+THEN
+ItemToInventory(_Var3, CHARACTERGUID_S_FTJ_Brute_001_94131f94-2152-49f2-8ee2-9832263eec05);
+
+IF
+ObjectFlagSet("FTJ_BruteLeaderGiveGear", (CHARACTERGUID)_Var1, _)
+AND
+CharacterGetEquippedItem(_Var1, "Helmet", _Var3)
+THEN
+ItemToInventory(_Var3, CHARACTERGUID_S_FTJ_Brute_001_94131f94-2152-49f2-8ee2-9832263eec05);
+
+IF
+ObjectFlagSet("FTJ_BruteLeaderGiveGear", (CHARACTERGUID)_Var1, _)
+AND
+CharacterGetEquippedItem(_Var1, "Ring2", _Var3)
+THEN
+ItemToInventory(_Var3, CHARACTERGUID_S_FTJ_Brute_001_94131f94-2152-49f2-8ee2-9832263eec05);
+
+IF
+ObjectFlagSet("FTJ_BruteLeaderGiveGear", (CHARACTERGUID)_Var1, _)
+AND
+CharacterGetGold(_Var1, _Var3)
+AND
+IntegerSubtract(0, _Var3, _Var4)
+THEN
+CharacterAddGold(CHARACTERGUID_S_FTJ_Brute_001_94131f94-2152-49f2-8ee2-9832263eec05, _Var3);
+CharacterAddGold(_Var1, _Var4);
+
+PROC
+ProcRegionEnded("FJ_FortJoy_Main")
+THEN
+GoalCompleted;
+
+
+EXITSECTION
+ENDEXITSECTION
+
+ParentTargetEdge "FortJoy"

@@ -1,0 +1,229 @@
+Version 1
+SubGoalCombiner SGC_AND
+
+INITSECTION
+DB_Ghosts(CHARACTERGUID_S_RC_GY_Lizards_Ghost_1_bc157e83-6085-4d88-93c4-40b8940aed5f, "RC_GY_Lizards_Ghost_1");
+DB_ShovelArea(TRIGGERGUID_S_RC_GY_BuriedLizardArea_78074e86-3b82-47b5-b78c-777725334c86, "RC_GY_BuriedLizardLeg", ITEMGUID_S_RC_GY_BuriedLizard_Pile_74175d4e-dcbb-4bdf-bb87-b40310b25a01);
+DB_ShovelRewardItemAppear("RC_GY_BuriedLizardLeg", ITEMGUID_S_RC_GY_BuriedLizardLeg_7414697d-cf1a-4053-be4f-83c269a4cc06, TRIGGERGUID_S_RC_GY_BuriedLizardPoint_a583ebe3-a09e-4ed8-9940-055f87a24e47);
+TriggerRegisterForItems(TRIGGERGUID_S_RC_GY_EternalFire_Surface_0fe54ce9-ed60-480a-a485-4dc9507f0082);
+DB_HasStoryEvent(ITEMGUID_S_RC_GY_BuriedLizardLeg_7414697d-cf1a-4053-be4f-83c269a4cc06, "RC_GY_HasBuriedLizardLeg");
+ProcTriggerRegisterForPlayers(TRIGGERGUID_S_RC_GY_BuriedLizard_303f1582-6fc9-4940-a910-0e8478de9a4d);
+
+KBSECTION
+PROC
+ProcShovelRewards((CHARACTERGUID)_Var1, "RC_GY_BuriedLizardLeg")
+AND NOT
+DB_GoneGhosts(CHARACTERGUID_S_RC_GY_Lizards_Ghost_1_bc157e83-6085-4d88-93c4-40b8940aed5f)
+THEN
+ObjectSetFlag(_Var1, "QuestUpdate_RC_GY_BuriedLizard_FoundLeg");
+StartVoiceBark("RC_GY_VB_BuriedLizardTomb", _Var1);
+
+IF
+ItemAddedToCharacter(ITEMGUID_S_RC_GY_BuriedLizardLeg_7414697d-cf1a-4053-be4f-83c269a4cc06, (CHARACTERGUID)_Var1)
+AND
+DB_InRegion(_Var1, TRIGGERGUID_S_RC_GY_BuriedLizard_303f1582-6fc9-4940-a910-0e8478de9a4d)
+AND
+CharacterCanSeeGhost(_Var1, CHARACTERGUID_S_RC_GY_Lizards_Ghost_1_bc157e83-6085-4d88-93c4-40b8940aed5f, 1)
+AND
+ObjectGetFlag(_Var1, "QuestUpdate_RC_GY_BuriedLizard_TalkLizard", 0)
+THEN
+Proc_StartDialog(0, "RC_GY_Lizards_Ghost_1", CHARACTERGUID_S_RC_GY_Lizards_Ghost_1_bc157e83-6085-4d88-93c4-40b8940aed5f, _Var1);
+
+IF
+ItemAddedToCharacter(ITEMGUID_S_RC_GY_BuriedLizardLeg_7414697d-cf1a-4053-be4f-83c269a4cc06, (CHARACTERGUID)_Var1)
+AND
+DB_InRegion(_Var1, TRIGGERGUID_S_RC_GY_BuriedLizard_303f1582-6fc9-4940-a910-0e8478de9a4d)
+AND
+CharacterCanSeeGhost(_Var1, CHARACTERGUID_S_RC_GY_Lizards_Ghost_1_bc157e83-6085-4d88-93c4-40b8940aed5f, 0)
+AND
+ObjectGetFlag(_Var1, "QuestUpdate_RC_GY_BuriedLizard_TalkLizard", 0)
+THEN
+Proc_StartDialog(0, "RC_GY_BuriedLizardFoundLimb", _Var1);
+
+IF
+ItemEnteredTrigger(ITEMGUID_S_RC_GY_BuriedLizardLeg_7414697d-cf1a-4053-be4f-83c269a4cc06, TRIGGERGUID_S_RC_GY_EternalFire_Surface_0fe54ce9-ed60-480a-a485-4dc9507f0082, (CHARACTERGUID)_Var1)
+THEN
+PlayEffect(ITEMGUID_S_RC_GY_BuriedLizardLeg_7414697d-cf1a-4053-be4f-83c269a4cc06, "RS3_FX_Skills_Fire_Impact");
+PlayEffect(ITEMGUID_S_RC_GY_BuriedLizardLeg_7414697d-cf1a-4053-be4f-83c269a4cc06, "RS3_FX_GP_ScriptedEvent_SourceJar_Death_launch_01");
+ItemSetCanInteract(ITEMGUID_S_RC_GY_BuriedLizardLeg_7414697d-cf1a-4053-be4f-83c269a4cc06, 0);
+ProcObjectTimer(ITEMGUID_S_RC_GY_BuriedLizardLeg_7414697d-cf1a-4053-be4f-83c269a4cc06, "Timer_RC_GY_BuriedLizardBurnLeg", 1500);
+DB_RC_GY_BuriedLizardPlayer(_Var1);
+
+IF
+DB_RC_GY_BuriedLizardPlayer(_Var1)
+AND NOT
+DB_GoneGhosts(CHARACTERGUID_S_RC_GY_Lizards_Ghost_1_bc157e83-6085-4d88-93c4-40b8940aed5f)
+THEN
+ProcTryStopDialogFor(CHARACTERGUID_S_RC_GY_Lizards_Ghost_1_bc157e83-6085-4d88-93c4-40b8940aed5f);
+TeleportTo(CHARACTERGUID_S_RC_GY_Lizards_Ghost_1_bc157e83-6085-4d88-93c4-40b8940aed5f, _Var1);
+PlayEffect(CHARACTERGUID_S_RC_GY_Lizards_Ghost_1_bc157e83-6085-4d88-93c4-40b8940aed5f, "RS3_FX_GP_ScriptedEvent_Teleport_GenericSmoke_01");
+ProcRemoveDialogEntryForSpeaker(CHARACTERGUID_S_RC_GY_Lizards_Ghost_1_bc157e83-6085-4d88-93c4-40b8940aed5f, "RC_GY_Lizards_Ghost_1");
+
+PROC
+ProcObjectTimerFinished(ITEMGUID_S_RC_GY_BuriedLizardLeg_7414697d-cf1a-4053-be4f-83c269a4cc06, "Timer_RC_GY_BuriedLizardBurnLeg")
+THEN
+GlobalSetFlag("RC_GY_BuriedLizardBurnLeg");
+ItemDestroy(ITEMGUID_S_RC_GY_BuriedLizardLeg_7414697d-cf1a-4053-be4f-83c269a4cc06);
+TriggerUnregisterForItems(TRIGGERGUID_S_RC_GY_EternalFire_Surface_0fe54ce9-ed60-480a-a485-4dc9507f0082);
+
+PROC
+ProcObjectTimerFinished(ITEMGUID_S_RC_GY_BuriedLizardLeg_7414697d-cf1a-4053-be4f-83c269a4cc06, "Timer_RC_GY_BuriedLizardBurnLeg")
+AND
+DB_RC_GY_BuriedLizardPlayer(_Var1)
+AND
+CharacterCanSeeGhost(_Var1, CHARACTERGUID_S_RC_GY_Lizards_Ghost_1_bc157e83-6085-4d88-93c4-40b8940aed5f, 1)
+THEN
+Proc_StartDialog(0, "RC_GY_BuriedLizardPoof", CHARACTERGUID_S_RC_GY_Lizards_Ghost_1_bc157e83-6085-4d88-93c4-40b8940aed5f, _Var1);
+
+PROC
+ProcObjectTimerFinished(ITEMGUID_S_RC_GY_BuriedLizardLeg_7414697d-cf1a-4053-be4f-83c269a4cc06, "Timer_RC_GY_BuriedLizardBurnLeg")
+AND
+DB_RC_GY_BuriedLizardPlayer(_Var1)
+AND
+CharacterCanSeeGhost(_Var1, CHARACTERGUID_S_RC_GY_Lizards_Ghost_1_bc157e83-6085-4d88-93c4-40b8940aed5f, 0)
+THEN
+Proc_StartDialog(0, "RC_GY_BuriedLizard_PoofInvisible", CHARACTERGUID_S_RC_GY_Lizards_Ghost_1_bc157e83-6085-4d88-93c4-40b8940aed5f, _Var1);
+
+PROC
+ProcObjectTimerFinished(ITEMGUID_S_RC_GY_BuriedLizardLeg_7414697d-cf1a-4053-be4f-83c269a4cc06, "Timer_RC_GY_BuriedLizardBurnLeg")
+AND NOT
+DB_RC_GY_BuriedLizardPlayer(_)
+THEN
+Proc_GhostHacks_GhostPoof(CHARACTERGUID_S_RC_GY_Lizards_Ghost_1_bc157e83-6085-4d88-93c4-40b8940aed5f);
+
+IF
+DialogRequestFailed(_, (INTEGER)_Var2)
+AND
+GlobalGetFlag("RC_GY_BuriedLizardBurnLeg", 1)
+AND
+DialogGetInvolvedNPC(_Var2, 1, CHARACTERGUID_S_RC_GY_Lizards_Ghost_1_bc157e83-6085-4d88-93c4-40b8940aed5f)
+THEN
+Proc_GhostHacks_GhostPoof(CHARACTERGUID_S_RC_GY_Lizards_Ghost_1_bc157e83-6085-4d88-93c4-40b8940aed5f);
+
+IF
+DialogEnded(_, (INTEGER)_Var2)
+AND
+GlobalGetFlag("RC_GY_BuriedLizardBurnLeg", 1)
+AND
+DialogGetInvolvedNPC(_Var2, 1, CHARACTERGUID_S_RC_GY_Lizards_Ghost_1_bc157e83-6085-4d88-93c4-40b8940aed5f)
+THEN
+Proc_GhostHacks_GhostPoof(CHARACTERGUID_S_RC_GY_Lizards_Ghost_1_bc157e83-6085-4d88-93c4-40b8940aed5f);
+
+IF
+DialogEnded("RC_GY_Lizards_Ghost_1", (INTEGER)_Var1)
+AND
+DialogGetInvolvedPlayer(_Var1, 1, _Var2)
+AND
+ObjectGetFlag(_Var2, "RC_GY_BuriedLizard_Poof", 1)
+THEN
+ApplyStatus(_Var2, "CURSED", -1, 1);
+Proc_GhostHacks_GhostPoof(CHARACTERGUID_S_RC_GY_Lizards_Ghost_1_bc157e83-6085-4d88-93c4-40b8940aed5f);
+
+IF
+CharacterUsedItem((CHARACTERGUID)_Var1, ITEMGUID_S_RC_GY_BuriedLizardLeg_7414697d-cf1a-4053-be4f-83c269a4cc06)
+AND NOT
+DB_RC_GY_BuriedLizardPlayer(_)
+THEN
+ProcRemoveDialogEntryForSpeaker(CHARACTERGUID_S_RC_GY_Lizards_Ghost_1_bc157e83-6085-4d88-93c4-40b8940aed5f, "RC_GY_Lizards_Ghost_1");
+CharacterSetAnimationOverride(CHARACTERGUID_S_RC_GY_Lizards_Ghost_1_bc157e83-6085-4d88-93c4-40b8940aed5f, "Sit_Sick_01_Loop");
+DB_RC_GY_BuriedLizardConsumed(1);
+
+IF
+DialogEnded("RC_GY_BuriedLizardLimb", (INTEGER)_Var1)
+AND NOT
+DB_RC_GY_BuriedLizardPlayer(_)
+AND
+DialogGetInvolvedPlayer(_Var1, 1, _Var3)
+THEN
+Proc_StartDialog(0, "RC_GY_BuriedLizardPoofCurse", CHARACTERGUID_S_RC_GY_Lizards_Ghost_1_bc157e83-6085-4d88-93c4-40b8940aed5f, _Var3);
+
+IF
+CharacterUsedItem((CHARACTERGUID)_Var1, ITEMGUID_S_RC_GY_BuriedLizardLeg_7414697d-cf1a-4053-be4f-83c269a4cc06)
+AND NOT
+DB_RC_GY_BuriedLizardPlayer(_)
+AND
+IsTagged(_Var1, "ELF", 0)
+THEN
+Proc_StartDialog(0, "RC_GY_BuriedLizardPoofCurse", CHARACTERGUID_S_RC_GY_Lizards_Ghost_1_bc157e83-6085-4d88-93c4-40b8940aed5f, _Var1);
+
+IF
+DialogEnded("RC_GY_BuriedLizardPoofCurse", (INTEGER)_Var1)
+AND
+DialogGetInvolvedPlayer(_Var1, 1, _Var2)
+THEN
+ApplyStatus(_Var2, "CURSED", -1, 1);
+ObjectSetFlag(_Var2, "QuestUpdate_RC_GY_BuriedLizard_AteLeg");
+Proc_GhostHacks_GhostPoof(CHARACTERGUID_S_RC_GY_Lizards_Ghost_1_bc157e83-6085-4d88-93c4-40b8940aed5f);
+
+IF
+DialogRequestFailed("RC_GY_BuriedLizardPoofCurse", (INTEGER)_Var1)
+AND
+DialogGetInvolvedPlayer(_Var1, 1, _Var2)
+THEN
+ApplyStatus(_Var2, "CURSED", -1, 1);
+ObjectSetFlag(_Var2, "QuestUpdate_RC_GY_BuriedLizard_AteLeg");
+Proc_GhostHacks_GhostPoof(CHARACTERGUID_S_RC_GY_Lizards_Ghost_1_bc157e83-6085-4d88-93c4-40b8940aed5f);
+
+IF
+ItemDestroyed(ITEMGUID_S_RC_GY_BuriedLizardLeg_7414697d-cf1a-4053-be4f-83c269a4cc06)
+AND NOT
+DB_RC_GY_BuriedLizardPlayer(_)
+AND NOT
+DB_RC_GY_BuriedLizardConsumed(1)
+THEN
+Proc_GhostHacks_GhostPoof(CHARACTERGUID_S_RC_GY_Lizards_Ghost_1_bc157e83-6085-4d88-93c4-40b8940aed5f);
+
+IF
+DB_RC_GY_BuriedLizardPlayer(_Var1)
+THEN
+ObjectSetFlag(_Var1, "QuestUpdate_RC_GY_BuriedLizard_BurnedLeg");
+
+IF
+CharacterUsedSkillOnTarget((CHARACTERGUID)_Var1, CHARACTERGUID_S_RC_GY_Lizards_Ghost_1_bc157e83-6085-4d88-93c4-40b8940aed5f, (STRING)_Var2, _, _)
+AND
+DB_SourceVampirism_Skills(_Var2)
+AND
+DB_IsPlayer(_Var1)
+AND
+QuestAccepted(_Var1, "RC_GY_BuriedLizard", 1)
+AND
+QuestIsClosed(_Var1, "RC_GY_BuriedLizard", 0)
+THEN
+ObjectSetFlag(_Var1, "QuestUpdate_RC_GY_BuriedLizard_SuckedLizard");
+
+IF
+CharacterGhostDestroyed(_, CHARACTERGUID_S_RC_GY_Lizards_Ghost_1_bc157e83-6085-4d88-93c4-40b8940aed5f)
+AND
+DB_IsPlayer(_Var2)
+AND
+QuestAccepted(_Var2, "RC_GY_BuriedLizard", 1)
+AND
+QuestIsClosed(_Var2, "RC_GY_BuriedLizard", 0)
+AND
+GlobalGetFlag("RC_GY_BuriedLizardBurnLeg", 0)
+THEN
+ObjectSetFlag(_Var2, "QuestUpdate_RC_GY_BuriedLizard_LizardDestroyed");
+
+IF
+CharacterGhostDestroyed(_, CHARACTERGUID_S_RC_GY_Lizards_Ghost_1_bc157e83-6085-4d88-93c4-40b8940aed5f)
+AND
+DB_IsPlayer(_Var2)
+AND
+QuestAccepted(_Var2, "RC_GY_BuriedLizard", 1)
+AND
+QuestIsClosed(_Var2, "RC_GY_BuriedLizard", 0)
+AND
+GlobalGetFlag("RC_GY_BuriedLizardBurnLeg", 1)
+THEN
+ObjectSetFlag(_Var2, "QuestUpdate_RC_GY_BuriedLizard_LizardPoof");
+
+IF
+RegionEnded("RC_Main")
+THEN
+ProcSetFlagOnAll("QuestClose_RC_GY_BuriedLizard");
+
+
+EXITSECTION
+ENDEXITSECTION
+
+ParentTargetEdge "ReapersCoast"

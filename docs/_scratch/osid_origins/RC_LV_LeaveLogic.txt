@@ -1,0 +1,621 @@
+Version 1
+SubGoalCombiner SGC_AND
+
+INITSECTION
+DB_RC_LV_QuestNPCDesiredBeforeLeavingForCoS(S_GLO_Tarquin_a3d0cdcc-d0b0-464d-9ad7-43b38baed620, "Tarquin");
+DB_RC_LV_QuestNPCDesiredBeforeLeavingForCoS(CHARACTERGUID_S_FTJ_SW_Warrior_SeekerCaptain_1329f018-23e4-4717-9bc8-074b28d04c54, "Gareth");
+DB_RC_LV_QuestNPCDesiredBeforeLeavingForCoS(CHARACTERGUID_S_GLO_Meistr_01ae5541-cef7-4d3a-8799-cee7f3d3c34d, "Meistr");
+Proc_RegisterPartyDecisionDialogOutcomes_Fixed("RC_LV_PDD_GoToCouncilOfSeven", "RC_LV_GoToCoS", "RC_LV_DontGoToCoS", "", "", "");
+DB_RC_LV_QuestNPCDialogOnBoatBeforeGoingToCoS(CHARACTERGUID_S_GLO_River_f4931ebe-10b0-43c4-9182-640cf052717e, "RC_LV_RiverOnBoat");
+DB_RC_LV_QuestNPCDialogOnBoatBeforeGoingToCoS(CHARACTERGUID_S_GLO_Tarquin_a3d0cdcc-d0b0-464d-9ad7-43b38baed620, "RC_LV_Tarquin");
+DB_RC_LV_QuestNPCDialogOnBoatBeforeGoingToCoS(CHARACTERGUID_S_FTJ_SW_Warrior_SeekerCaptain_1329f018-23e4-4717-9bc8-074b28d04c54, "RC_LV_Gareth");
+DB_RC_LV_QuestNPCDialogOnBoatBeforeGoingToCoS(CHARACTERGUID_S_GLO_Almira_49b466a9-e67f-4e3c-8f66-3636ba7dd54f, "RC_LV_Almira");
+DB_RC_LV_QuestNPCDialogOnBoatBeforeGoingToCoS(CHARACTERGUID_S_GLO_Mihaly_3355517b-0a92-426b-9160-54fa8507adf2, "RC_LV_Mihaly");
+DB_RC_LV_QuestNPCDialogOnBoatBeforeGoingToCoS(CHARACTERGUID_S_FTJ_CapturedChild_53d4aa5c-dd91-4e12-9ca8-d66879cc6ffb, "RC_LV_Han");
+DB_RC_LV_MaladyCoSFallBack_TeacherGoneGlobalFlag(S_RC_DW_WC_BossFight_Skeleton_Mordus_d46ade3f-f786-4fcc-975c-361a106f2853, "RC_DW_WC_BossFight_BossFlee");
+DB_RC_LV_MaladyCoSFallBack_TeacherGonePartyFlag(CHARACTERGUID_S_GLO_Saheila_fcacdf08-b05f-4333-b0e0-ddf29c13d8e0, "RC_MIL_ThankedBySaheila");
+DB_RC_LV_MaladyCoSFallBack_TeacherGoneCharacterFlag(CHARACTERGUID_S_GLO_Almira_49b466a9-e67f-4e3c-8f66-3636ba7dd54f, "RC_FL_Almira_Attack");
+DB_RC_LV_MaladyCoSFallBack_TeacherGoneCharacterFlag(CHARACTERGUID_S_RC_BF_CorneredSourcerer_Sourcerer_b201a72c-8ead-4bbf-8612-fcd8c0944e52, "RC_BF_CorneredSourcerer_RefusedHelpApprentice");
+DB_RC_LV_MaladyCoSFallBack_TeacherGoneCharacterFlagOnTeacher(CHARACTERGUID_S_RC_BF_CorneredSourcerer_Sourcerer_b201a72c-8ead-4bbf-8612-fcd8c0944e52, "RC_BF_CorneredSourcerer_KnowApprenticeFate");
+DB_RC_LV_LeaveLogic_WarOwl(CHARACTERGUID_S_Player_Owl_000_ab1aaf68-04a0-49c5-9c8f-0524e627b87d);
+DB_RC_LV_LeaveLogic_WarOwl(CHARACTERGUID_S_Player_Owl_001_41548b04-b8da-4b33-a08d-5432da09f822);
+DB_RC_LV_LeaveLogic_WarOwl(CHARACTERGUID_S_Player_Owl_002_9975bb66-47fe-4913-8a1c-2a310bed697c);
+DB_RC_LV_LeaveLogic_WarOwl(CHARACTERGUID_S_Player_Owl_003_0d3b10c8-0938-4aa7-a423-aa135a0271b9);
+DB_RC_LV_LeaveLogic_OriginFinished(CHARACTERGUID_S_Player_RedPrince_a26a1efb-cdc8-4cf3-a7b2-b2f9544add6f, 1, "QuestUpdate_FTJ_OriginRedPrince_RedPrincessTryKill");
+DB_RC_LV_LeaveLogic_OriginFinished(CHARACTERGUID_S_Player_RedPrince_a26a1efb-cdc8-4cf3-a7b2-b2f9544add6f, 1, "QuestUpdate_FTJ_OriginRedPrince_RedPrincessMate");
+DB_RC_LV_LeaveLogic_OriginFinished(CHARACTERGUID_S_Player_RedPrince_a26a1efb-cdc8-4cf3-a7b2-b2f9544add6f, 1, "QuestUpdate_FTJ_OriginRedPrince_RedPrincessEscape");
+DB_RC_LV_LeaveLogic_OriginFinished(CHARACTERGUID_S_Player_RedPrince_a26a1efb-cdc8-4cf3-a7b2-b2f9544add6f, 0, "QuestUpdate_FTJ_COM_RedPrince_RedPrincessTryKill");
+DB_RC_LV_LeaveLogic_OriginFinished(CHARACTERGUID_S_Player_RedPrince_a26a1efb-cdc8-4cf3-a7b2-b2f9544add6f, 0, "QuestUpdate_FTJ_COM_RedPrince_RedPrincessMate");
+DB_RC_LV_LeaveLogic_OriginFinished(CHARACTERGUID_S_Player_RedPrince_a26a1efb-cdc8-4cf3-a7b2-b2f9544add6f, 0, "QuestUpdate_FTJ_COM_RedPrince_RedPrincessEscape");
+DB_RC_LV_LeaveLogic_OriginFinished(CHARACTERGUID_S_Player_RedPrince_a26a1efb-cdc8-4cf3-a7b2-b2f9544add6f, 0, "QuestUpdate_FTJ_COM_RedPrince_RedPrincessRefused");
+DB_RC_LV_LeaveLogic_OriginFinished_BecauseSomeoneDead(CHARACTERGUID_S_Player_RedPrince_a26a1efb-cdc8-4cf3-a7b2-b2f9544add6f, CHARACTERGUID_S_GLO_RedPrincess_050fbbf9-3fc9-40cd-9cbb-43b4b3754a5e);
+DB_RC_LV_LeaveLogic_OriginFinished_Flag(CHARACTERGUID_S_Player_RedPrince_a26a1efb-cdc8-4cf3-a7b2-b2f9544add6f, "RC_LV_RedPrince_Finished");
+DB_RC_LV_LeaveLogic_OriginFinished(CHARACTERGUID_S_Player_Sebille_c8d55eaf-e4eb-466a-8f0d-6a9447b5b24c, 1, "QuestUpdate_FTJ_OriginSebille_Roost");
+DB_RC_LV_LeaveLogic_OriginFinished(CHARACTERGUID_S_Player_Sebille_c8d55eaf-e4eb-466a-8f0d-6a9447b5b24c, 0, "QuestUpdate_FTJ_COM_Sebille_Roost");
+DB_RC_LV_LeaveLogic_OriginFinished_BecauseSomeoneDead(CHARACTERGUID_S_Player_Sebille_c8d55eaf-e4eb-466a-8f0d-6a9447b5b24c, CHARACTERGUID_S_RC_MIL_Roost_6fffadfe-b2a8-4e12-a664-ba84c0b0a3a3);
+DB_RC_LV_LeaveLogic_OriginFinished_Flag(CHARACTERGUID_S_Player_Sebille_c8d55eaf-e4eb-466a-8f0d-6a9447b5b24c, "RC_LV_Sebille_Finished");
+DB_RC_LV_LeaveLogic_OriginFinishedGlobal(CHARACTERGUID_S_Player_Ifan_ad9a3327-4456-42a7-9bf4-7ad60cc9e54f, "GLO_Ifan_LearnedAboutBetrayal");
+DB_RC_LV_LeaveLogic_OriginFinished_BecauseSomeoneDeadAndGhostToo(CHARACTERGUID_S_Player_Ifan_ad9a3327-4456-42a7-9bf4-7ad60cc9e54f, CHARACTERGUID_S_RC_WC_BombScientist_eb96f108-fd71-43fd-b30f-9da2a7a09949, CHARACTERGUID_S_RC_WC_BombScientist_Ghost_1077afc5-70c5-4c88-ba53-adacddb10e48);
+DB_RC_LV_LeaveLogic_OriginFinished_Flag(CHARACTERGUID_S_Player_Ifan_ad9a3327-4456-42a7-9bf4-7ad60cc9e54f, "RC_LV_Ifan_Finished");
+DB_RC_LV_LeaveLogic_OriginFinished(CHARACTERGUID_S_Player_Beast_f25ca124-a4d2-427b-af62-df66df41a978, 1, "RC_DW_BST_BelievedLohar");
+DB_RC_LV_LeaveLogic_OriginFinished(CHARACTERGUID_S_Player_Beast_f25ca124-a4d2-427b-af62-df66df41a978, 1, "QuestUpdate_FTJ_OriginBeast_ToArx_1");
+DB_RC_LV_LeaveLogic_OriginFinished(CHARACTERGUID_S_Player_Beast_f25ca124-a4d2-427b-af62-df66df41a978, 1, "QuestUpdate_FTJ_OriginBeast_ToArx_2");
+DB_RC_LV_LeaveLogic_OriginFinished(CHARACTERGUID_S_Player_Beast_f25ca124-a4d2-427b-af62-df66df41a978, 0, "RC_DW_BST_BelievedLohar");
+DB_RC_LV_LeaveLogic_OriginFinished(CHARACTERGUID_S_Player_Beast_f25ca124-a4d2-427b-af62-df66df41a978, 0, "QuestUpdate_FTJ_COM_Beast_ToArx_1");
+DB_RC_LV_LeaveLogic_OriginFinished(CHARACTERGUID_S_Player_Beast_f25ca124-a4d2-427b-af62-df66df41a978, 0, "QuestUpdate_FTJ_COM_Beast_ToArx_2");
+DB_RC_LV_LeaveLogic_OriginFinished_BecauseSomeoneDeadAndGhostToo(CHARACTERGUID_S_Player_Beast_f25ca124-a4d2-427b-af62-df66df41a978, CHARACTERGUID_S_RC_DW_UnderTavern_DwarfBoss_8e58abc6-1010-4e67-97b2-b9686586e784, CHARACTERGUID_S_RC_DW_UnderTavern_DwarfBoss_Ghost_7cb1ebac-b400-44a4-92e6-beaebb5f027c);
+DB_RC_LV_LeaveLogic_OriginFinished_Flag(CHARACTERGUID_S_Player_Beast_f25ca124-a4d2-427b-af62-df66df41a978, "RC_LV_Beast_Finished");
+DB_RC_LV_LeaveLogic_OriginFinished(CHARACTERGUID_S_Player_Fane_02a77f1f-872b-49ca-91ab-32098c443beb, 1, "QuestUpdate_FTJ_OriginFane_TalkedToEternalAetera");
+DB_RC_LV_LeaveLogic_OriginFinished(CHARACTERGUID_S_Player_Fane_02a77f1f-872b-49ca-91ab-32098c443beb, 0, "QuestUpdate_FTJ_COM_Fane_TalkedToEternalAetera");
+DB_RC_LV_LeaveLogic_OriginFinished_BecauseSomeoneDead(CHARACTERGUID_S_Player_Fane_02a77f1f-872b-49ca-91ab-32098c443beb, CHARACTERGUID_S_RC_OIL_Tomb_Ataraxian_b844294c-62c2-4ff8-82f1-f874b9e4352d);
+DB_RC_LV_LeaveLogic_OriginFinished_Flag(CHARACTERGUID_S_Player_Fane_02a77f1f-872b-49ca-91ab-32098c443beb, "RC_LV_Fane_Finished");
+PROC_RC_LV_LeaveLogic_Init();
+
+KBSECTION
+PROC
+PROC_RC_LV_LeaveLogic_Init()
+AND
+DB_GLO_LevelTraveler("CoS_Main", _Var1, _Var2, _Var3, _Var4, _Var5, _Var6)
+THEN
+TriggerRegisterForCharacter(S_RC_LV_OnBoard_3d5b3e43-2126-464e-81d1-3c0b60841276, _Var1);
+
+PROC
+PROC_RC_LV_LeaveLogic_Init()
+AND
+DB_RC_LV_LeaveLogic_WarOwl(_Var1)
+THEN
+SetOnStage(_Var1, 0);
+
+PROC
+PROC_RC_LV_LeaveLogic_Init()
+AND
+DB_RC_LV_QuestNPCDesiredBeforeLeavingForCoS(_Var1, _Var2)
+AND
+DB_Dead(_Var1)
+AND
+StringConcatenate("RC_LV_", _Var2, _Var3)
+AND
+StringConcatenate(_Var3, "_KnowDead", _Var4)
+AND
+StringConcatenate(_Var3, "_Finished", _Var5)
+THEN
+ObjectSetFlag(CHARACTERGUID_S_GLO_River_f4931ebe-10b0-43c4-9182-640cf052717e, _Var4);
+ObjectSetFlag(CHARACTERGUID_S_GLO_River_f4931ebe-10b0-43c4-9182-640cf052717e, _Var5);
+
+PROC
+PROC_RC_LV_LeaveLogic_Init()
+THEN
+PROC_GLO_PartyMembers_CleanDBIsPlayer();
+
+IF
+DB_Sees(_Var1, _Var2)
+AND
+DB_RC_LV_QuestNPCDesiredBeforeLeavingForCoS(_Var2, _Var3)
+AND
+DB_Dead(_Var2)
+AND
+StringConcatenate("RC_DW_LV_LeaveForCoS_", _Var3, _Var4)
+AND
+StringConcatenate(_Var4, "_Dead", _Var5)
+THEN
+UserSetFlag(_Var1, _Var5);
+
+IF
+StoryEvent((CHARACTERGUID)_Var1, "RC_LV_ReturnToLVAfterQuest")
+THEN
+DB_RC_LV_GoingToCoS(_Var1);
+CharacterAppearAt(_Var1, S_RC_LV_Entrance_5d830273-0215-4be4-96ce-8a1122f01bb0, 0, "");
+
+IF
+CharacterEnteredTrigger((CHARACTERGUID)_Var1, S_RC_LV_OnBoard_3d5b3e43-2126-464e-81d1-3c0b60841276)
+AND
+DB_RC_LV_GoingToCoS(_Var1)
+AND
+DB_RC_LV_QuestNPCDialogOnBoatBeforeGoingToCoS(_Var1, _Var2)
+THEN
+ProcRemoveAllDialogEntriesForSpeaker(_Var1);
+DB_Dialogs(_Var1, _Var2);
+SetVarFixedString(_Var1, "currentState", "State_RC_LV_AfterQuest");
+PROC_RC_LV_SetQuestCompletedFlag(_Var1);
+CharacterSetFightMode(_Var1, 0, 0);
+
+IF
+StoryEvent((GUIDSTRING)_Var1, "RC_BI_RiverLeftIsland")
+THEN
+SetStoryEvent(_Var1, "RC_LV_ReturnToLVAfterQuest");
+
+IF
+StoryEvent((GUIDSTRING)_Var1, "RC_FL_GarethVanishedToLV")
+THEN
+ProcRemoveNPCADs(_Var1);
+SetStoryEvent(_Var1, "RC_LV_ReturnToLVAfterQuest");
+
+IF
+StoryEvent((GUIDSTRING)_Var1, "RC_FL_GarethVanishedToLV")
+THEN
+NOT DB_GLO_LVNPCsLeaving_NPC_ProximityTrigger("RC_Main", CHARACTERGUID_S_FTJ_SW_Warrior_SeekerCaptain_1329f018-23e4-4717-9bc8-074b28d04c54, TRIGGERGUID_S_RC_DW_GarethJonathanScene_ProximityBox_c81e959a-c9a7-4532-a27c-30f17c171cf6, "GarethJonathanScene", 500);
+NOT DB_GLO_LVNPCsLeaving_NPC_EmergencyTrigger("RC_Main", CHARACTERGUID_S_FTJ_SW_Warrior_SeekerCaptain_1329f018-23e4-4717-9bc8-074b28d04c54, TRIGGERGUID_S_RC_DW_GarethJonathanScene_EmergencyBox_b12aa523-2f2a-477d-b79a-fe439fa671ba, "GarethJonathanScene", 500);
+NOT DB_GLO_LVNPCsLeaving_NPC_ProximityTrigger("RC_Main", CHARACTERGUID_S_FTJ_SW_Warrior_SeekerCaptain_1329f018-23e4-4717-9bc8-074b28d04c54, TRIGGERGUID_S_RC_FL_GarethFarm_Setup_da4c6510-e2fb-4aa5-b978-bbc8797e6c32, "GarethFarm", 700);
+NOT DB_GLO_LVNPCsLeaving_NPC_EmergencyTrigger("RC_Main", CHARACTERGUID_S_FTJ_SW_Warrior_SeekerCaptain_1329f018-23e4-4717-9bc8-074b28d04c54, TRIGGERGUID_S_RC_FL_GarethFarm_Setup_2_bfa27265-ddc6-42c3-a6ee-33dbc7ec6e3b, "GarethFarm", 700);
+
+IF
+StoryEvent((GUIDSTRING)_Var1, "RC_FL_GarethVanishedToLV")
+AND NOT
+DB_OnlyOnce("RC_FL_GarethFarmSetup")
+THEN
+PROC_RC_DF_GarethAndJonathanSetupNextScene();
+
+PROC
+PROC_RC_LV_SetQuestCompletedFlag((CHARACTERGUID)_Var1)
+AND
+DB_RC_LV_QuestNPCDesiredBeforeLeavingForCoS(_Var1, _Var2)
+AND
+StringConcatenate("RC_LV_", _Var2, _Var3)
+AND
+StringConcatenate(_Var3, "_Finished", _Var4)
+THEN
+ObjectSetFlag(CHARACTERGUID_S_GLO_River_f4931ebe-10b0-43c4-9182-640cf052717e, _Var4);
+ObjectSetFlag(_Var1, _Var4);
+
+IF
+GlobalFlagSet("RC_FL_Gareth_DarkPathStarted")
+THEN
+PROC_RC_LV_SetQuestCompletedFlag(CHARACTERGUID_S_FTJ_SW_Warrior_SeekerCaptain_1329f018-23e4-4717-9bc8-074b28d04c54);
+
+QRY
+QRY_RC_LV_LeaveLogic_SourceTeacherUnavailableFor((CHARACTERGUID)_Var1, (CHARACTERGUID)_Var2)
+AND
+DB_Dead(_Var1)
+THEN
+DB_NOOP(1);
+
+QRY
+QRY_RC_LV_LeaveLogic_SourceTeacherUnavailableFor((CHARACTERGUID)_Var1, (CHARACTERGUID)_Var2)
+AND
+DB_RC_DW_Meistr_SourceKnowledge_PartyFlagRefused(_Var1, _Var3)
+AND
+PartyGetFlag(_Var2, _Var3, 1)
+THEN
+DB_NOOP(1);
+
+QRY
+QRY_RC_LV_LeaveLogic_SourceTeacherUnavailableFor((CHARACTERGUID)_Var1, (CHARACTERGUID)_Var2)
+AND
+DB_RC_DW_Meistr_SourceKnowledge(_Var1, _Var3)
+AND
+DB_GLO_SourcePointUnlockBlock(_Var3, _Var4)
+AND
+GlobalGetFlag(_Var4, 1)
+THEN
+DB_NOOP(1);
+
+QRY
+QRY_RC_LV_LeaveLogic_SourceTeacherUnavailableFor((CHARACTERGUID)_Var1, (CHARACTERGUID)_Var2)
+AND
+DB_RC_LV_MaladyCoSFallBack_TeacherGoneGlobalFlag(_Var1, _Var3)
+AND
+GlobalGetFlag(_Var3, 1)
+THEN
+DB_NOOP(1);
+
+QRY
+QRY_RC_LV_LeaveLogic_SourceTeacherUnavailableFor((CHARACTERGUID)_Var1, (CHARACTERGUID)_Var2)
+AND
+DB_RC_LV_MaladyCoSFallBack_TeacherGonePartyFlag(_Var1, _Var3)
+AND
+PartyGetFlag(_Var2, _Var3, 1)
+THEN
+DB_NOOP(1);
+
+QRY
+QRY_RC_LV_LeaveLogic_SourceTeacherUnavailableFor((CHARACTERGUID)_Var1, (CHARACTERGUID)_Var2)
+AND
+DB_RC_LV_MaladyCoSFallBack_TeacherGoneCharacterFlag(_Var1, _Var3)
+AND
+ObjectGetFlag(_Var2, _Var3, 1)
+THEN
+DB_NOOP(1);
+
+QRY
+QRY_RC_LV_LeaveLogic_SourceTeacherUnavailableFor((CHARACTERGUID)_Var1, (CHARACTERGUID)_Var2)
+AND
+DB_RC_LV_MaladyCoSFallBack_TeacherGoneCharacterFlagOnTeacher(_Var1, _Var3)
+AND
+ObjectGetFlag(_Var1, _Var3, 1)
+THEN
+DB_NOOP(1);
+
+QRY
+QRY_RC_LV_LeaveLogic_CountAvailableSourceTeachersFor((CHARACTERGUID)_Var1)
+THEN
+ProcDeclareCounter("RC_LV_LeaveLogic_AvailableSourceTeachers");
+
+QRY
+QRY_RC_LV_LeaveLogic_CountAvailableSourceTeachersFor((CHARACTERGUID)_Var1)
+AND
+DB_RC_DW_Meistr_SourceKnowledge(_Var2, _Var3)
+AND
+StringConcatenate(_Var3, "_Learned", _Var4)
+AND
+ObjectGetFlag(_Var1, _Var4, 0)
+AND NOT
+QRY_RC_LV_LeaveLogic_SourceTeacherUnavailableFor(_Var2, _Var1)
+THEN
+ProcIncreaseCounter("RC_LV_LeaveLogic_AvailableSourceTeachers");
+
+QRY
+QRY_RC_LV_LeaveLogic_SourceTeachersLeftForPlayer((CHARACTERGUID)_Var1)
+AND
+QRY_RC_LV_LeaveLogic_CountAvailableSourceTeachersFor(_Var1)
+AND
+DB_GlobalCounter("RC_LV_LeaveLogic_AvailableSourceTeachers", _Var2)
+AND
+_Var2 >= 1
+THEN
+DB_NOOP(1);
+
+QRY
+QRY_RC_LV_LeaveLogic_SourceTeachersLeft()
+AND
+DB_IsPlayer(_Var1)
+AND
+QRY_RC_LV_LeaveLogic_SourceTeachersLeftForPlayer(_Var1)
+THEN
+DB_NOOP(1);
+
+PROC
+PROC_RC_LV_LeaveLogic_MaladyReturnsIfNoTeachersLeft()
+AND
+DB_IsPlayer(_Var1)
+AND NOT
+DB_RC_LV_LeaveLogic_PlayerNoTeachersLeft(_Var1)
+AND NOT
+QRY_RC_LV_LeaveLogic_SourceTeachersLeftForPlayer(_Var1)
+AND
+ObjectGetFlag(_Var1, "GLO_Has3MaxMP", 0)
+THEN
+DB_RC_LV_LeaveLogic_PlayerNoTeachersLeft(_Var1);
+DB_RC_LV_LeaveLogic_PlayerNoTeachersLeft_New(_Var1);
+ObjectSetFlag(_Var1, "RC_PlayerNoTeachersLeft");
+
+PROC
+PROC_RC_LV_LeaveLogic_MaladyReturnsIfNoTeachersLeft()
+AND
+DB_RC_LV_LeaveLogic_PlayerNoTeachersLeft_New(_Var1)
+AND NOT
+DB_RC_LV_Coordinator(CHARACTERGUID_S_GLO_River_f4931ebe-10b0-43c4-9182-640cf052717e)
+THEN
+PROC_RC_LV_FetchByWarowl(CHARACTERGUID_S_GLO_River_f4931ebe-10b0-43c4-9182-640cf052717e, TRIGGERGUID_RC_LV_Entrance_5d830273-0215-4be4-96ce-8a1122f01bb0, "RC_LV_RiverBackOnLV");
+
+PROC
+PROC_RC_LV_LeaveLogic_MaladyReturnsIfNoTeachersLeft_ClearOnePreferNonAvatar((CHARACTERGUID)_Var1, (CHARACTERGUID)_Var2)
+AND
+DB_Avatars(_Var1)
+THEN
+NOT DB_RC_LV_LeaveLogic_PlayerNoTeachersLeft_New(_Var2);
+
+PROC
+PROC_RC_LV_LeaveLogic_MaladyReturnsIfNoTeachersLeft_ClearOnePreferNonAvatar((CHARACTERGUID)_Var1, (CHARACTERGUID)_Var2)
+AND
+DB_Avatars(_Var2)
+AND NOT
+DB_Avatars(_Var1)
+THEN
+NOT DB_RC_LV_LeaveLogic_PlayerNoTeachersLeft_New(_Var1);
+
+PROC
+PROC_RC_LV_LeaveLogic_MaladyReturnsIfNoTeachersLeft_ClearOnePreferNonAvatar((CHARACTERGUID)_Var1, (CHARACTERGUID)_Var2)
+AND NOT
+DB_Avatars(_Var1)
+AND NOT
+DB_Avatars(_Var2)
+THEN
+NOT DB_RC_LV_LeaveLogic_PlayerNoTeachersLeft_New(_Var2);
+
+PROC
+PROC_RC_LV_LeaveLogic_MaladyReturnsIfNoTeachersLeft()
+AND
+DB_RC_LV_LeaveLogic_PlayerNoTeachersLeft_New(_Var1)
+AND
+ObjectIsInTrigger(_Var1, S_RC_LV_OnBoard_3d5b3e43-2126-464e-81d1-3c0b60841276, 1)
+THEN
+NOT DB_RC_LV_LeaveLogic_PlayerNoTeachersLeft_New(_Var1);
+
+PROC
+PROC_RC_LV_LeaveLogic_MaladyReturnsIfNoTeachersLeft()
+AND
+DB_RC_LV_LeaveLogic_PlayerNoTeachersLeft_New(_Var1)
+AND
+DB_RC_LV_LeaveLogic_PlayerNoTeachersLeft_New(_Var2)
+AND
+_Var1 != _Var2
+AND
+GetDistanceTo(_Var1, _Var2, _Var3)
+AND
+_Var3 <= 17
+AND
+CharacterGetReservedUserID(_Var1, _Var4)
+AND
+CharacterGetReservedUserID(_Var2, _Var4)
+THEN
+PROC_RC_LV_LeaveLogic_MaladyReturnsIfNoTeachersLeft_ClearOnePreferNonAvatar(_Var1, _Var2);
+
+PROC
+PROC_RC_LV_LeaveLogic_MaladyReturnsIfNoTeachersLeft()
+AND
+DB_RC_LV_LeaveLogic_PlayerNoTeachersLeft_New(_Var1)
+AND
+DB_RC_LV_LeaveLogic_WarOwl(_Var2)
+AND NOT
+DB_RC_LV_LeaveLogic_WarOwl_SentForPlayer(_Var1)
+THEN
+DB_RC_LV_LeaveLogic_WarOwl_SentForPlayer(_Var1);
+NOT DB_RC_LV_LeaveLogic_WarOwl(_Var2);
+NOT DB_RC_LV_LeaveLogic_PlayerNoTeachersLeft_New(_Var1);
+DB_RC_WarOwls(_Var2, _Var1, "RC_LV_MaladyWarOwlMessageToPlayer", 1);
+PROC_RC_DispatchWarOwl(_Var2);
+
+PROC
+PROC_RC_LV_LeaveLogic_MaladyReturnsIfNoTeachersLeft()
+AND
+DB_RC_LV_LeaveLogic_WarOwl_SentForPlayer(_Var1)
+THEN
+NOT DB_RC_LV_LeaveLogic_WarOwl_SentForPlayer(_Var1);
+
+IF
+DB_Dead(_Var1)
+AND
+DB_RC_DW_Meistr_SourceKnowledge(_Var1, _)
+THEN
+PROC_RC_LV_LeaveLogic_MaladyReturnsIfNoTeachersLeft();
+
+IF
+GlobalFlagSet((STRING)_Var1)
+AND
+DB_GLO_SourcePointUnlockBlock(_, _Var1)
+THEN
+PROC_RC_LV_LeaveLogic_MaladyReturnsIfNoTeachersLeft();
+
+IF
+GlobalFlagSet((STRING)_Var1)
+AND
+DB_RC_LV_MaladyCoSFallBack_TeacherGoneGlobalFlag(_, _Var1)
+THEN
+PROC_RC_LV_LeaveLogic_MaladyReturnsIfNoTeachersLeft();
+
+IF
+ObjectFlagSet((STRING)_Var1, _, _)
+AND
+DB_RC_LV_MaladyCoSFallBack_TeacherGonePartyFlag(_, _Var1)
+THEN
+PROC_RC_LV_LeaveLogic_MaladyReturnsIfNoTeachersLeft();
+
+IF
+ObjectFlagSet((STRING)_Var1, _, _)
+AND
+DB_RC_DW_Meistr_SourceKnowledge_PartyFlagRefused(_, _Var1)
+THEN
+PROC_RC_LV_LeaveLogic_MaladyReturnsIfNoTeachersLeft();
+
+IF
+ObjectFlagSet((STRING)_Var1, _, _)
+AND
+DB_RC_LV_MaladyCoSFallBack_TeacherGoneCharacterFlag(_, _Var1)
+THEN
+PROC_RC_LV_LeaveLogic_MaladyReturnsIfNoTeachersLeft();
+
+IF
+ObjectFlagSet((STRING)_Var1, _, _)
+AND
+DB_RC_LV_MaladyCoSFallBack_TeacherGoneCharacterFlagOnTeacher(_, _Var1)
+THEN
+PROC_RC_LV_LeaveLogic_MaladyReturnsIfNoTeachersLeft();
+
+IF
+TextEventSet("rc_killsourceteachers")
+AND
+DB_RC_DW_Meistr_SourceKnowledge(_Var1, _Var2)
+THEN
+CharacterSetImmortal(_Var1, 0);
+CharacterDie(_Var1, 0, "DoT");
+
+IF
+ObjectFlagSet("RC_DW_River_KnowCoS", (GUIDSTRING)_Var1, _)
+THEN
+ObjectSetFlag(_Var1, "RC_DW_KnowCoS");
+
+IF
+ObjectFlagSet((STRING)_Var1, (CHARACTERGUID)_Var2, _)
+AND
+DB_RC_DW_Meistr_SourceKnowledge_PartyFlagRefused(_, _Var1)
+THEN
+PartySetFlag(_Var2, "RC_RefusedAtLeastOneSP");
+
+IF
+CharacterEnteredTrigger((CHARACTERGUID)_Var1, S_RC_LV_OnBoard_3d5b3e43-2126-464e-81d1-3c0b60841276)
+THEN
+GlobalClearFlag("RC_LV_NotAllPlayersOnBoard");
+
+IF
+CharacterEnteredTrigger((CHARACTERGUID)_Var1, S_RC_LV_OnBoard_3d5b3e43-2126-464e-81d1-3c0b60841276)
+AND
+DB_IsPlayer(_Var2)
+AND NOT
+DB_InRegion(_Var2, S_RC_LV_OnBoard_3d5b3e43-2126-464e-81d1-3c0b60841276)
+THEN
+GlobalSetFlag("RC_LV_NotAllPlayersOnBoard");
+
+IF
+GlobalFlagSet("RC_LV_SendOwls")
+AND
+GetUserCount(_Var1)
+AND
+_Var1 > 1
+AND
+DB_IsPlayer(_Var2)
+AND NOT
+DB_InRegion(_Var2, S_RC_LV_OnBoard_3d5b3e43-2126-464e-81d1-3c0b60841276)
+THEN
+OpenMessageBox(_Var2, "RC_LV_ComeToLV");
+
+IF
+DialogEnded("RC_LV_RiverOnBoat", (INTEGER)_Var1)
+AND
+DB_DialogPlayers(_Var1, _Var2, _)
+AND
+ObjectGetFlag(_Var2, "RC_LV_GoToCosReadyCheck", 1)
+THEN
+DB_RC_LV_ReadyCheckPlayer(_Var2);
+ObjectClearFlag(_Var2, "RC_LV_GoToCosReadyCheck");
+ObjectClearFlag(CHARACTERGUID_S_GLO_River_f4931ebe-10b0-43c4-9182-640cf052717e, "RC_LV_GoToCoS");
+ObjectClearFlag(CHARACTERGUID_S_GLO_River_f4931ebe-10b0-43c4-9182-640cf052717e, "RC_LV_DontGoToCoS");
+ReadyCheckStart(_Var2, "RC_LV_GoToCos");
+
+IF
+ReadyCheckPassed("RC_LV_GoToCos")
+AND
+DB_RC_LV_ReadyCheckPlayer(_Var1)
+THEN
+NOT DB_RC_LV_ReadyCheckPlayer(_Var1);
+ObjectSetFlag(CHARACTERGUID_S_GLO_River_f4931ebe-10b0-43c4-9182-640cf052717e, "RC_LV_GoToCoS");
+SetHasDialog(CHARACTERGUID_S_GLO_River_f4931ebe-10b0-43c4-9182-640cf052717e, 0);
+Proc_RC_LV_GoToCos_NoMatterWhat();
+
+PROC
+Proc_RC_LV_GoToCos_NoMatterWhat()
+AND NOT
+QRY_StartDialog(1, "RC_LV_AD_RiverReadyCheckReaction", CHARACTERGUID_S_GLO_River_f4931ebe-10b0-43c4-9182-640cf052717e)
+THEN
+DialogRequestStop(CHARACTERGUID_S_GLO_River_f4931ebe-10b0-43c4-9182-640cf052717e);
+CharacterTeleportPartiesToTriggerWithMovie(S_CoS_LV_RegionStart_8c00afb8-43af-4de7-953a-a7456f996a4c, "", "CS_IslandofSeven");
+SetHasDialog(CHARACTERGUID_S_GLO_River_f4931ebe-10b0-43c4-9182-640cf052717e, 1);
+
+IF
+ReadyCheckFailed("RC_LV_GoToCos")
+AND
+DB_RC_LV_ReadyCheckPlayer(_Var1)
+THEN
+NOT DB_RC_LV_ReadyCheckPlayer(_Var1);
+ObjectSetFlag(CHARACTERGUID_S_GLO_River_f4931ebe-10b0-43c4-9182-640cf052717e, "RC_LV_DontGoToCoS");
+Proc_RC_LV_GoToCos_NoMatterWhat();
+
+IF
+AutomatedDialogRequestFailed("RC_LV_AD_RiverReadyCheckReaction", (INTEGER)_Var1)
+AND
+ObjectGetFlag(CHARACTERGUID_S_GLO_River_f4931ebe-10b0-43c4-9182-640cf052717e, "RC_LV_GoToCoS", 1)
+THEN
+CharacterTeleportPartiesToTriggerWithMovie(S_CoS_LV_RegionStart_8c00afb8-43af-4de7-953a-a7456f996a4c, "", "CS_IslandofSeven");
+SetHasDialog(CHARACTERGUID_S_GLO_River_f4931ebe-10b0-43c4-9182-640cf052717e, 1);
+
+IF
+AutomatedDialogEnded("RC_LV_AD_RiverReadyCheckReaction", (INTEGER)_Var1)
+AND
+ObjectGetFlag(CHARACTERGUID_S_GLO_River_f4931ebe-10b0-43c4-9182-640cf052717e, "RC_LV_GoToCoS", 1)
+THEN
+CharacterTeleportPartiesToTriggerWithMovie(S_CoS_LV_RegionStart_8c00afb8-43af-4de7-953a-a7456f996a4c, "", "CS_IslandofSeven");
+SetHasDialog(CHARACTERGUID_S_GLO_River_f4931ebe-10b0-43c4-9182-640cf052717e, 1);
+
+QRY
+QRY_RC_LV_LeaveLogic_OriginFinished((CHARACTERGUID)_Var1)
+AND NOT
+DB_IsPlayer(_Var1)
+THEN
+DB_NOOP(1);
+
+QRY
+QRY_RC_LV_LeaveLogic_OriginFinished((CHARACTERGUID)_Var1)
+AND
+IsTagged(_Var1, "AVATAR", _Var2)
+AND
+DB_RC_LV_LeaveLogic_OriginFinished(_Var1, _Var2, _Var3)
+AND
+ObjectGetFlag(_Var1, _Var3, 1)
+THEN
+DB_NOOP(1);
+
+QRY
+QRY_RC_LV_LeaveLogic_OriginFinished((CHARACTERGUID)_Var1)
+AND
+DB_RC_LV_LeaveLogic_OriginFinished_BecauseSomeoneDead(_Var1, _Var2)
+AND
+DB_Dead(_Var2)
+THEN
+DB_NOOP(1);
+
+QRY
+QRY_RC_LV_LeaveLogic_OriginFinished((CHARACTERGUID)_Var1)
+AND
+DB_RC_LV_LeaveLogic_OriginFinished_BecauseSomeoneDeadAndGhostToo(_Var1, _Var2, _Var3)
+AND
+DB_Dead(_Var2)
+AND
+DB_GoneGhosts(_Var3)
+THEN
+DB_NOOP(1);
+
+QRY
+QRY_RC_LV_LeaveLogic_OriginFinished((CHARACTERGUID)_Var1)
+AND
+DB_RC_LV_LeaveLogic_OriginFinishedGlobal(_Var1, _Var2)
+AND
+GlobalGetFlag(_Var2, 1)
+THEN
+DB_NOOP(1);
+
+PROC
+Proc_DialogFlagSetup("RC_LV_RiverOnBoat", CHARACTERGUID_S_GLO_River_f4931ebe-10b0-43c4-9182-640cf052717e, (GUIDSTRING)_Var1)
+AND
+DB_RC_LV_LeaveLogic_OriginFinished_Flag(_Var2, _Var3)
+THEN
+ObjectClearFlag(CHARACTERGUID_S_GLO_River_f4931ebe-10b0-43c4-9182-640cf052717e, _Var3);
+
+PROC
+Proc_DialogFlagSetup("RC_LV_RiverOnBoat", CHARACTERGUID_S_GLO_River_f4931ebe-10b0-43c4-9182-640cf052717e, (GUIDSTRING)_Var1)
+AND
+DB_RC_LV_LeaveLogic_OriginFinished_Flag(_Var2, _Var3)
+AND
+QRY_RC_LV_LeaveLogic_OriginFinished(_Var2)
+THEN
+ObjectSetFlag(CHARACTERGUID_S_GLO_River_f4931ebe-10b0-43c4-9182-640cf052717e, _Var3);
+
+IF
+ObjectFlagSet("RC_LV_ConfirmLeavingAct2", (CHARACTERGUID)_Var1, _)
+THEN
+AutoSave();
+
+IF
+SavegameLoaded(_, _, _, _)
+THEN
+PROC_RC_LV_LeaveLogic_MaladyReturnsIfNoTeachersLeft();
+
+PROC
+ProcRegionEnded("RC_Main")
+AND
+DB_RC_LV_GoingToCoS(_Var1)
+THEN
+NOT DB_RC_LV_GoingToCoS(_Var1);
+
+IF
+ReadyCheckPassed("RC_LV_GoToCos")
+THEN
+DB_RC_LV_BlockMagicMirror(1);
+
+PROC
+ProcBlockUseOfItem((CHARACTERGUID)_Var1, ITEMGUID_S_LV_Mirror_6ca9a17e-6c68-4232-b4f2-8ef60f5085ee)
+AND
+DB_RC_LV_BlockMagicMirror(1)
+THEN
+DB_CustomUseItemResponse(_Var1, ITEMGUID_S_LV_Mirror_6ca9a17e-6c68-4232-b4f2-8ef60f5085ee, 0);
+Proc_StartDialog(1, "GLO_AD_CannotUseNow", _Var1);
+
+PROC
+ProcRegionEnded("RC_Main")
+THEN
+NOT DB_RC_LV_BlockMagicMirror(1);
+GoalCompleted;
+
+
+EXITSECTION
+ENDEXITSECTION
+
+ParentTargetEdge "ReapersCoast"

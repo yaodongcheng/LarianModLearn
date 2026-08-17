@@ -1,0 +1,53 @@
+Version 1
+SubGoalCombiner SGC_AND
+
+INITSECTION
+DB_SebilleOrigin_SeesDeadPeople(CHARACTERGUID_S_FTJ_LizardDreamer_ffb80725-25ff-4174-98cb-60a11612e5c4);
+DB_SebilleOrigin_SeesDeadPeople(CHARACTERGUID_S_FTJ_GhettoBoss_84758f75-01a3-4cce-9922-f42ffc4afddd);
+DB_SebilleOrigin_SeesDeadPeople(CHARACTERGUID_S_FTJ_IfanHandler_d0920841-a984-4ea4-92c6-31d236ee2540);
+
+KBSECTION
+IF
+DB_Dead(_Var1)
+AND
+DB_CompanionAvatarBond(CHARACTERGUID_S_Player_Sebille_c8d55eaf-e4eb-466a-8f0d-6a9447b5b24c, _)
+AND
+DB_SebilleOrigin_SeesDeadPeople(_Var1)
+AND
+DB_Sees(CHARACTERGUID_S_Player_Sebille_c8d55eaf-e4eb-466a-8f0d-6a9447b5b24c, _Var1)
+THEN
+PROC_SebilleSeesQuestDead(_Var1);
+
+PROC
+PROC_SebilleSeesQuestDead(S_FTJ_LizardDreamer_ffb80725-25ff-4174-98cb-60a11612e5c4)
+AND
+ObjectGetFlag(CHARACTERGUID_S_Player_Sebille_c8d55eaf-e4eb-466a-8f0d-6a9447b5b24c, "QuestUpdate_FTJ_COM_Sebille_Stingtail", 0)
+THEN
+ObjectSetFlag(CHARACTERGUID_S_Player_Sebille_c8d55eaf-e4eb-466a-8f0d-6a9447b5b24c, "QuestUpdate_FTJ_COM_Sebille_StingtailDead");
+NOT DB_SebilleOrigin_SeesDeadPeople(S_FTJ_LizardDreamer_ffb80725-25ff-4174-98cb-60a11612e5c4);
+
+PROC
+PROC_SebilleSeesQuestDead(S_FTJ_GhettoBoss_84758f75-01a3-4cce-9922-f42ffc4afddd)
+AND
+ObjectGetFlag(CHARACTERGUID_S_Player_Sebille_c8d55eaf-e4eb-466a-8f0d-6a9447b5b24c, "QuestUpdate_FTJ_COM_Sebille_Stingtail", 1)
+AND
+ObjectGetFlag(CHARACTERGUID_S_Player_Sebille_c8d55eaf-e4eb-466a-8f0d-6a9447b5b24c, "QuestUpdate_FTJ_COM_Sebille_Griff", 0)
+THEN
+ObjectSetFlag(CHARACTERGUID_S_Player_Sebille_c8d55eaf-e4eb-466a-8f0d-6a9447b5b24c, "QuestUpdate_FTJ_COM_Sebille_GriffDead");
+NOT DB_SebilleOrigin_SeesDeadPeople(S_FTJ_GhettoBoss_84758f75-01a3-4cce-9922-f42ffc4afddd);
+
+PROC
+PROC_SebilleSeesQuestDead(S_FTJ_IfanHandler_d0920841-a984-4ea4-92c6-31d236ee2540)
+AND
+ObjectGetFlag(CHARACTERGUID_S_Player_Sebille_c8d55eaf-e4eb-466a-8f0d-6a9447b5b24c, "QuestUpdate_FTJ_COM_Sebille_Griff", 1)
+AND
+ObjectGetFlag(CHARACTERGUID_S_Player_Sebille_c8d55eaf-e4eb-466a-8f0d-6a9447b5b24c, "QuestUpdate_FTJ_COM_Sebille_Zaleskar", 0)
+THEN
+ObjectSetFlag(CHARACTERGUID_S_Player_Sebille_c8d55eaf-e4eb-466a-8f0d-6a9447b5b24c, "QuestUpdate_FTJ_COM_Sebille_ZaleskarDead");
+NOT DB_SebilleOrigin_SeesDeadPeople(S_FTJ_IfanHandler_d0920841-a984-4ea4-92c6-31d236ee2540);
+
+
+EXITSECTION
+ENDEXITSECTION
+
+ParentTargetEdge "FortJoy"

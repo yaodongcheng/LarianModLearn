@@ -1,0 +1,32 @@
+Version 1
+SubGoalCombiner SGC_AND
+
+INITSECTION
+DB_CheckLevelStart_PlayerChests("LV_HoE_Main");
+DB_CheckLevelStart_PlayerChests("RC_Main");
+DB_CheckLevelStart_PlayerChests("CoS_Main");
+DB_CheckLevelStart_PlayerChests("CoS_Main_Ending");
+DB_CheckLevelStart_PlayerChests("ARX_Main");
+
+KBSECTION
+IF
+RegionStarted((STRING)_Var1)
+AND
+DB_CheckLevelStart_PlayerChests(_Var1)
+THEN
+EnableSendToHomestead(1);
+GoalCompleted;
+
+IF
+DB_CheckLevelStart_PlayerChests(_Var1)
+AND
+DB_CurrentLevel(_Var1)
+THEN
+EnableSendToHomestead(1);
+GoalCompleted;
+
+
+EXITSECTION
+ENDEXITSECTION
+
+ParentTargetEdge "GLO_LadyVengeanceHub"

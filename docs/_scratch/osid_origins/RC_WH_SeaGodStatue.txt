@@ -1,0 +1,128 @@
+Version 1
+SubGoalCombiner SGC_AND
+
+INITSECTION
+DB_Dialogs(ITEMGUID_S_RC_WH_SeaGodStatue_c15f7f1e-b973-4df4-a7c7-5b53bf4544ae, "RC_WH_SeaGodStatue_Statue");
+DB_RC_WH_SeaGodStatue_Torches(ITEMGUID_S_RC_WH_SeaGodStatue_Torch1_381068a0-5052-439c-a15f-c3032101267a);
+DB_RC_WH_SeaGodStatue_Torches(ITEMGUID_S_RC_WH_SeaGodStatue_Torch2_83e85068-5252-40f3-b7a3-c8343ac08bca);
+DB_RC_WH_SeaGodStatue_Torches(ITEMGUID_S_RC_WH_SeaGodStatue_Torch3_3e52d2b7-e6fd-4570-bc1a-559a269fcdff);
+DB_RC_WH_SeaGodStatue_Torches(ITEMGUID_S_RC_WH_SeaGodStatue_Torch4_ea34159e-772b-4959-9829-4d1d2df90342);
+DB_RC_WH_SeaGodStatue_Torches(ITEMGUID_S_RC_WH_SeaGodStatue_Torch5_68cc2db4-e8c2-4e2d-a5da-f0ddbb617ee5);
+DB_RC_WH_SeaGodStatue_TorchesDoused(ITEMGUID_S_RC_WH_SeaGodStatue_Torch1_381068a0-5052-439c-a15f-c3032101267a);
+DB_RC_WH_SeaGodStatue_TorchesDoused(ITEMGUID_S_RC_WH_SeaGodStatue_Torch2_83e85068-5252-40f3-b7a3-c8343ac08bca);
+DB_RC_WH_SeaGodStatue_TorchesDoused(ITEMGUID_S_RC_WH_SeaGodStatue_Torch3_3e52d2b7-e6fd-4570-bc1a-559a269fcdff);
+DB_RC_WH_SeaGodStatue_TorchesDoused(ITEMGUID_S_RC_WH_SeaGodStatue_Torch4_ea34159e-772b-4959-9829-4d1d2df90342);
+DB_RC_WH_SeaGodStatue_TorchesDoused(ITEMGUID_S_RC_WH_SeaGodStatue_Torch5_68cc2db4-e8c2-4e2d-a5da-f0ddbb617ee5);
+ProcDeclareCounter("RC_WH_SeaGodStatue_TorchDoused");
+SetOnStage(ITEMGUID_S_RC_WH_SeaGodStatue_Rainbow_b4570109-be37-479b-b368-194f4f7e74ea, 0);
+SetOnStage(ITEMGUID_S_RC_WH_SeaGodStatue_BookOfProphecies_453bb313-1985-4c63-a3f6-1c9a0bcd4119, 0);
+ProcTriggerRegisterForPlayers(TRIGGERGUID_S_RC_WH_SeaGodStatue_DiscoverTrigger_f43c276d-ca61-46e1-a9cb-5663f154e957);
+
+KBSECTION
+IF
+TextEventSet("rcwhtorches")
+THEN
+GlobalSetFlag("RC_WH_SeaGodStatue_AllTorchesLit");
+TimerCancel("RC_WH_SeaGodStatue_AllTorchesLitTimer");
+TimerLaunch("RC_WH_SeaGodStatue_AllTorchesLitTimer", 3000);
+
+IF
+CharacterEnteredTrigger((CHARACTERGUID)_Var1, TRIGGERGUID_S_RC_WH_SeaGodStatue_DiscoverTrigger_f43c276d-ca61-46e1-a9cb-5663f154e957)
+AND
+DB_IsPlayer(_Var1)
+THEN
+ObjectSetFlag(_Var1, "QuestUpdate_RC_WH_SeaGodStatue_DiscoveredStatue");
+
+IF
+ItemStatusRemoved((ITEMGUID)_Var1, "BURNING", _)
+AND
+DB_RC_WH_SeaGodStatue_Torches(_Var1)
+THEN
+DB_RC_WH_SeaGodStatue_TorchesDoused(_Var1);
+
+IF
+ItemStatusChange((ITEMGUID)_Var1, "BURNING", _)
+AND
+DB_RC_WH_SeaGodStatue_Torches(_Var1)
+AND
+HasActiveStatus(_Var1, "BURNING", 1)
+THEN
+NOT DB_RC_WH_SeaGodStatue_TorchesDoused(_Var1);
+Proc_RC_WH_SeaGodStatue_CheckAllTorchesLit();
+ProcObjectTimerCancel(_Var1, "DouseTimer");
+ProcObjectTimer(_Var1, "DouseTimer", 1000);
+
+PROC
+ProcObjectTimerFinished((GUIDSTRING)_Var1, "DouseTimer")
+AND
+DB_RC_WH_SeaGodStatue_Torches(_Var1)
+AND
+GlobalGetFlag("RC_WH_SeaGodStatue_AllTorchesLit", _Var2)
+AND
+_Var2 == 0
+THEN
+RemoveStatus(_Var1, "BURNING");
+ProcIncreaseCounter("RC_WH_SeaGodStatue_TorchDoused");
+Proc_RC_WH_SeaGodStatue_CheckDouseCounter();
+
+PROC
+Proc_RC_WH_SeaGodStatue_CheckAllTorchesLit()
+AND NOT
+DB_RC_WH_SeaGodStatue_TorchesDoused(_)
+THEN
+GlobalSetFlag("RC_WH_SeaGodStatue_AllTorchesLit");
+TimerCancel("RC_WH_SeaGodStatue_AllTorchesLitTimer");
+TimerLaunch("RC_WH_SeaGodStatue_AllTorchesLitTimer", 3000);
+
+IF
+TimerFinished("RC_WH_SeaGodStatue_AllTorchesLitTimer")
+AND
+GlobalGetFlag("RC_WH_SeaGodStatue_RainbowShown", 0)
+AND
+GetClosestAlivePlayer(ITEMGUID_S_RC_WH_SeaGodStatue_c15f7f1e-b973-4df4-a7c7-5b53bf4544ae, _Var1, _)
+THEN
+GlobalSetFlag("RC_WH_SeaGodStatue_RainbowShown");
+SetOnStage(ITEMGUID_S_RC_WH_SeaGodStatue_Rainbow_b4570109-be37-479b-b368-194f4f7e74ea, 1);
+PlaySound(ITEMGUID_S_RC_WH_SeaGodStatue_c15f7f1e-b973-4df4-a7c7-5b53bf4544ae, "SE_RC_WH_SeaGodStatue_Rainbow");
+StartVoiceBark("RC_WH_VB_SeaGodStatue_Rainbow", _Var1);
+ObjectSetFlag(_Var1, "QuestUpdate_RC_WH_SeaGodStatue_AllTorchesLit");
+PROC_LoopEffect("RS3_FX_GP_ScriptedEvent_PuzzleCompleted_01", TRIGGERGUID_S_RC_WH_SeaGodStatue_EffectTrigger_5d59d89c-7acf-4f3e-9ae6-610effca1701, "FX_RC_WH_SeaGodStatue_SolvedEffect", "RC_Main", "");
+
+PROC
+Proc_RC_WH_SeaGodStatue_CheckDouseCounter()
+AND
+DB_GlobalCounter("RC_WH_SeaGodStatue_TorchDoused", _Var1)
+AND
+_Var1 == 3
+AND
+GetClosestAlivePlayer(ITEMGUID_S_RC_WH_SeaGodStatue_c15f7f1e-b973-4df4-a7c7-5b53bf4544ae, _Var2, _)
+THEN
+StartVoiceBark("RC_WH_VB_SeaGodStatue_DouseComment", _Var2);
+ObjectSetFlag(_Var2, "QuestUpdate_RC_WH_SeaGodStatue_TorchesDoused");
+
+IF
+DialogEnded("RC_WH_SeaGodStatue_Statue", (INTEGER)_Var1)
+AND
+GlobalGetFlag("RC_WH_SeaGodStatue_RainbowShown", _Var2)
+AND
+_Var2 == 1
+AND
+GlobalGetFlag("RC_WH_SeaGodStatue_RewardGiven", 0)
+AND
+DB_DialogPlayers(_Var1, _Var3, _)
+THEN
+Foop(ITEMGUID_S_RC_WH_SeaGodStatue_BookOfProphecies_453bb313-1985-4c63-a3f6-1c9a0bcd4119);
+GlobalSetFlag("RC_WH_SeaGodStatue_RewardGiven");
+ObjectSetFlag(_Var3, "QuestUpdate_RC_WH_SeaGodStatue_Reward");
+PROC_StopLoopEffect(TRIGGERGUID_S_RC_WH_SeaGodStatue_EffectTrigger_5d59d89c-7acf-4f3e-9ae6-610effca1701, "FX_RC_WH_SeaGodStatue_SolvedEffect");
+GoalCompleted;
+
+
+EXITSECTION
+SysClear("DB_RC_WH_SeaGodStatue_Torches", 1);
+SysClear("DB_RC_WH_SeaGodStatue_TorchesDoused", 1);
+ProcRemoveCounter("RC_WH_SeaGodStatue_TorchDoused");
+ProcTriggerUnregisterForPlayers(TRIGGERGUID_S_RC_WH_SeaGodStatue_DiscoverTrigger_f43c276d-ca61-46e1-a9cb-5663f154e957);
+ENDEXITSECTION
+
+ParentTargetEdge "ReapersCoast"

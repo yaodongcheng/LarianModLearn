@@ -1,0 +1,479 @@
+Version 1
+SubGoalCombiner SGC_AND
+
+INITSECTION
+DB_ARX_TalkingFlower(ITEMGUID_S_ARX_TalkingFlower1_6f2f90d9-2195-4db1-afb9-c114f7acbf52, "ARX_TalkingFlower1");
+DB_ARX_TalkingFlower(ITEMGUID_S_ARX_TalkingFlower2_46a74598-0a86-47b3-a265-f0c6e94d3009, "ARX_TalkingFlower2");
+DB_ARX_TalkingFlower(ITEMGUID_S_ARX_TalkingFlower3_c5b22973-1fde-454e-b272-aeb430bc2cfe, "ARX_TalkingFlower3");
+DB_Dialogs(CHARACTERGUID_S_RC_ARX_KemmMansion_GardenFrog_e053e8cd-3c79-4788-8105-80056b35504a, "RC_ARX_KemmMansion_GardenFrog");
+DB_Dialogs(ITEMGUID_S_ARX_ScreamerContainer_401a262d-a6b1-4227-864a-412b54d3d68f, "ARX_KemmGarden_ScreamerContainer");
+DB_ShovelArea(TRIGGERGUID_S_ARX_YarrowShovel_0ca1323f-9f10-430e-97f4-584cb0eba50b, "ARX_YarrowShovel", ITEMGUID_S_ARX_YarrowPile_f9fb6c43-5427-4839-a5c0-553eb8b48f23);
+DB_ShovelRewardItemSpawn("ARX_YarrowShovel", ITEMGUID_S_ARX_YatrrowDrudanae_32bcf5c7-1d5b-4779-bab3-b535ed0ee456);
+DB_ShovelRewardItemScatter("ARX_YarrowShovel", ITEMGUID_S_ARX_YatrrowDrudanae_Reward_55182707-3415-464f-8a73-d9b87a71f6fa);
+DB_OneShot_VoiceBarkTrigger(TRIGGERGUID_S_ARX_Box_GardenYarrow_253ab6ce-52bd-460f-9c4d-ec747c520da7, "ARX_VB_KemmMansion_Yarrow");
+DB_OneShot_VoiceBarkTrigger(TRIGGERGUID_S_ARX_Box_GardenBloodRose_523fc590-3e81-4722-804f-ad475817bdcb, "ARX_VB_KemmMansion_BloodRose");
+ItemSetCanInteract(ITEMGUID_S_ARX_KemmGarden_Screamer_9981fb6c-72d3-45ec-8529-fc1c240503eb, 0);
+DB_ARX_KemmsGarden_HotKettle(ITEMGUID_S_ARX_KemmGarden_HotKettle1_6ac9eb77-ba70-4716-b7c8-67da15baf0ea);
+DB_ARX_KemmsGarden_HotKettle(ITEMGUID_S_ARX_KemmGarden_HotKettle2_c5da22ae-7cb4-45db-966a-95d8fc95b8bb);
+DB_ARX_KemmsGarden_HotKettle(ITEMGUID_S_ARX_KemmGarden_HotKettle3_423fd987-a2b8-40ad-800b-9ebae2aea4b2);
+DB_ARX_KemmsGarden_HotKettle(ITEMGUID_S_ARX_KemmGarden_HotKettle4_7e8811d2-6bff-44af-8a16-cc6b1190679b);
+DB_ARX_KemmsGarden_Cobmat_HiddenPlants(CHARACTERGUID_S_RC_ARX_KemmMansion_Garden_Shambl_Caster_01_f971c19e-4fbb-45fb-a57e-2d7991aade88, ITEMGUID_S_RC_ARX_KemmMansion_Garden_Shambl_Caster_01_Bush_92daeded-9b63-44d0-9378-f87406b417d9);
+DB_ARX_KemmsGarden_Cobmat_HiddenPlants(CHARACTERGUID_S_RC_ARX_KemmMansion_Garden_Shambl_Caster_02_67ea8705-133f-42d6-b8fe-32065f6c45c2, ITEMGUID_S_RC_ARX_KemmMansion_Garden_Shambl_Caster_02_Bush_8dafc15a-9e02-4a48-896b-ac8da73a6890);
+DB_ARX_KemmsGarden_Cobmat_HiddenPlants(CHARACTERGUID_S_RC_ARX_KemmMansion_Garden_Shambl_Ranger_02_cddc80f7-32dd-4cd4-bdf4-0cf29b531ece, ITEMGUID_S_RC_ARX_KemmMansion_Garden_Shambl_Ranger_02_Trunk_30ebca4b-33bb-4da8-82c7-734165f01242);
+DB_ARX_KemmsGarden_Cobmat_HiddenPlants(CHARACTERGUID_S_RC_ARX_KemmMansion_Garden_Shambl_Ranger_01_cb26f904-3b70-4d1b-b36d-aee47955f8f3, ITEMGUID_S_RC_ARX_KemmMansion_Garden_Shambl_Ranger_01_Trunk_0f10ec6c-f8d0-4218-af8f-b657a1864c03);
+DB_ARX_KemmsGarden_Cobmat(CHARACTERGUID_S_RC_ARX_KemmMansion_Garden_Shambl_Tank_01_0b0b9920-64e4-4b29-b465-0c578916a099);
+DB_ARX_KemmsGarden_Cobmat(CHARACTERGUID_S_RC_ARX_KemmMansion_Garden_Shambl_Caster_01_f971c19e-4fbb-45fb-a57e-2d7991aade88);
+DB_ARX_KemmsGarden_Cobmat(CHARACTERGUID_S_RC_ARX_KemmMansion_Garden_Shambl_Caster_02_67ea8705-133f-42d6-b8fe-32065f6c45c2);
+DB_ARX_KemmsGarden_Cobmat(CHARACTERGUID_S_RC_ARX_KemmMansion_Garden_Shambl_Ranger_02_cddc80f7-32dd-4cd4-bdf4-0cf29b531ece);
+DB_ARX_KemmsGarden_Cobmat(CHARACTERGUID_S_RC_ARX_KemmMansion_Garden_Shambl_Ranger_01_cb26f904-3b70-4d1b-b36d-aee47955f8f3);
+ProcTriggerRegisterForPlayers(TRIGGERGUID_S_ARX_KemmMansion_Garden_Shamb_BoxT_9741375d-99f9-4240-8a79-97b575abe998);
+
+KBSECTION
+IF
+DialogEnded("ARX_KemmGarden_ScreamerContainer", (INTEGER)_Var1)
+AND
+GlobalGetFlag("ARX_KemmGarden_PickScreamer", 1)
+AND
+DialogGetInvolvedPlayer(_Var1, 1, _Var2)
+AND
+GetPosition(ITEMGUID_S_ARX_ScreamerContainer_401a262d-a6b1-4227-864a-412b54d3d68f, _Var3, _Var4, _Var5)
+AND
+RealSum(_Var4, 2, _Var6)
+THEN
+PlaySound(ITEMGUID_S_ARX_KemmGarden_Screamer_9981fb6c-72d3-45ec-8529-fc1c240503eb, "Items_Objects_Destroy_SwitchBypass_ClayGlass_Hvy");
+ObjectSetFlag(_Var2, "ARX_KemmGarden_PlayerDestroyedContainer");
+PlayEffectAtPosition("RS3_FX_GP_Impacts_Glass_Ice_Big_01", _Var3, _Var6, _Var5);
+ItemDestroy(ITEMGUID_S_ARX_ScreamerContainer_401a262d-a6b1-4227-864a-412b54d3d68f);
+PlayEffect(_Var2, "RS3_FX_GP_Combat_CameraShake_A");
+ItemSetCanInteract(ITEMGUID_S_ARX_KemmGarden_Screamer_9981fb6c-72d3-45ec-8529-fc1c240503eb, 1);
+
+IF
+CharacterDestroyedItem((CHARACTERGUID)_Var1, S_ARX_ScreamerContainer_401a262d-a6b1-4227-864a-412b54d3d68f)
+AND
+DB_IsPlayer(_Var1)
+THEN
+ObjectSetFlag(_Var1, "ARX_KemmGarden_PlayerDestroyedContainer");
+PlayEffect(_Var1, "RS3_FX_GP_Combat_CameraShake_A");
+
+IF
+ItemDestroying(S_ARX_ScreamerContainer_401a262d-a6b1-4227-864a-412b54d3d68f)
+AND
+GetPosition(ITEMGUID_S_ARX_ScreamerContainer_401a262d-a6b1-4227-864a-412b54d3d68f, _Var1, _Var2, _Var3)
+AND
+RealSum(_Var2, 2, _Var4)
+THEN
+PlaySound(ITEMGUID_S_ARX_KemmGarden_Screamer_9981fb6c-72d3-45ec-8529-fc1c240503eb, "Items_Objects_Destroy_SwitchBypass_ClayGlass_Hvy");
+ItemSetCanInteract(ITEMGUID_S_ARX_KemmGarden_Screamer_9981fb6c-72d3-45ec-8529-fc1c240503eb, 1);
+PlayEffectAtPosition("RS3_FX_GP_Impacts_Glass_Ice_Big_01", _Var1, _Var4, _Var3);
+ObjectSetFlag(S_ARX_Screamer_9981fb6c-72d3-45ec-8529-fc1c240503eb, "ARX_Scremer_StartScreaming");
+PROC_LoopEffect("RS3_FX_GP_ScriptedEvent_Screamer_Plant_01", S_ARX_Screamer_9981fb6c-72d3-45ec-8529-fc1c240503eb, "S_ARX_Screamer_LoopFX", "__ANY__", "");
+Proc_ARX_AD_Screamer_Plant_StartAD();
+
+IF
+ItemMoved(S_ARX_ScreamerContainer_401a262d-a6b1-4227-864a-412b54d3d68f)
+THEN
+ItemSetCanInteract(ITEMGUID_S_ARX_KemmGarden_Screamer_9981fb6c-72d3-45ec-8529-fc1c240503eb, 1);
+
+PROC
+Proc_ARX_AD_Screamer_Plant_StartAD()
+AND
+DB_IsPlayer(_Var1)
+AND
+ObjectGetFlag(_Var1, "ARX_KemmGarden_PlayerDestroyedContainer", 1)
+AND
+QueryOnlyOnce("ARX_KemmGarden_PlayerDestroyedContainer")
+THEN
+Proc_StartDialog(1, "ARX_AD_Screamer", S_ARX_Screamer_9981fb6c-72d3-45ec-8529-fc1c240503eb, _Var1);
+
+PROC
+Proc_ARX_AD_Screamer_Plant_StartAD()
+AND
+QueryOnlyOnce("ARX_KemmGarden_PlayerDestroyedContainer")
+THEN
+Proc_StartDialog(1, "ARX_AD_Screamer", S_ARX_Screamer_9981fb6c-72d3-45ec-8529-fc1c240503eb);
+
+IF
+CanPickupItem((CHARACTERGUID)_Var1, S_ARX_Screamer_9981fb6c-72d3-45ec-8529-fc1c240503eb, (INTEGER)_Var2)
+AND
+DB_IsPlayer(_Var1)
+AND
+ObjectGetFlag(_Var1, "ARX_ScreamerInInventory", 0)
+THEN
+PROC_StopLoopEffect(S_ARX_Screamer_9981fb6c-72d3-45ec-8529-fc1c240503eb, "S_ARX_Screamer_LoopFX");
+
+IF
+ItemTemplateAddedToCharacter(PUZ_Plant_Screamer_9bedc21f-eb84-46f6-b902-d119a6a5aa3c, (ITEMGUID)_Var1, (CHARACTERGUID)_Var2)
+AND
+DB_IsPlayer(_Var2)
+AND
+ObjectGetFlag(_Var2, "ARX_ScreamerInInventory", 0)
+THEN
+ObjectSetFlag(_Var2, "ARX_ScreamerInInventory");
+ApplyStatus(_Var2, "DEAF", -1, 1);
+ApplyStatus(_Var2, "MUTED", -1, 1);
+Proc_StartDialog(1, "ARX_AD_Screamer_AddedTo_PlayerInventory", _Var2);
+CharacterRegisterCrime(_Var2, "LoudContinuousNoise", NULL_00000000-0000-0000-0000-000000000000, NULL_00000000-0000-0000-0000-000000000000, 0);
+PlaySound(_Var2, "SE_ARX_ScreamingPlant_Loop_Start");
+PlaySound(_Var2, "SE_ARX_ScreamingPlant_AddedToInventory");
+
+IF
+ItemTemplateAddedToContainer("PUZ_Plant_Screamer_9bedc21f-eb84-46f6-b902-d119a6a5aa3c", (ITEMGUID)_Var1, (ITEMGUID)_Var2)
+AND
+ObjectGetFlag(_Var2, "ARX_ScreamerInInventory", 0)
+THEN
+PROC_LoopEffect("RS3_FX_GP_ScriptedEvent_Screamer_Plant_01", _Var2, "S_ARX_Screamer_LoopFX_Container", "__ANY__", "");
+PlaySound(_Var2, "SE_ARX_ScreamingPlant_AddedToInventory");
+ObjectSetFlag(_Var2, "ARX_ScreamerInInventory");
+proc_ARX_Screamer_CheckFor_ContainerHelper_Add(_Var2);
+
+PROC
+proc_ARX_Screamer_CheckFor_ContainerHelper_Add((ITEMGUID)_Var1)
+AND NOT
+DB_GlobalFlag("ARX_Screamer_ContainerHelper_DoesntExist")
+THEN
+SetOnStage(ITEMGUID_S_ARX_KemmGarden_Screamer_Helper_bba16abb-f727-45ae-9d1d-9e7045193f70, 1);
+TeleportTo(ITEMGUID_S_ARX_KemmGarden_Screamer_Helper_bba16abb-f727-45ae-9d1d-9e7045193f70, _Var1);
+ObjectSetFlag(ITEMGUID_S_ARX_KemmGarden_Screamer_Helper_bba16abb-f727-45ae-9d1d-9e7045193f70, "ARX_Scremer_StartScreaming");
+
+IF
+ItemTemplateRemovedFromContainer("PUZ_Plant_Screamer_9bedc21f-eb84-46f6-b902-d119a6a5aa3c", (ITEMGUID)_Var1, (ITEMGUID)_Var2)
+AND
+ItemTemplateIsInContainer(_Var2, "PUZ_Plant_Screamer_9bedc21f-eb84-46f6-b902-d119a6a5aa3c", 0)
+AND
+ObjectGetFlag(_Var2, "ARX_ScreamerInInventory", 1)
+THEN
+ObjectClearFlag(_Var2, "ARX_ScreamerInInventory");
+PlaySound(_Var2, "SE_ARX_ScreamingPlant_RemovedFromInventory");
+PROC_StopLoopEffect(_Var2, "S_ARX_Screamer_LoopFX_Container");
+proc_ARX_Screamer_CheckFor_ContainerHelper_Remove();
+
+IF
+ItemTemplateRemovedFromContainer("PUZ_Plant_Screamer_9bedc21f-eb84-46f6-b902-d119a6a5aa3c", (ITEMGUID)_Var1, (ITEMGUID)_Var2)
+AND
+ItemIsInInventory(_Var1, 0)
+THEN
+PROC_LoopEffect("RS3_FX_GP_ScriptedEvent_Screamer_Plant_01", S_ARX_Screamer_9981fb6c-72d3-45ec-8529-fc1c240503eb, "S_ARX_Screamer_LoopFX", "__ANY__", "");
+
+PROC
+proc_ARX_Screamer_CheckFor_ContainerHelper_Remove()
+AND NOT
+DB_GlobalFlag("ARX_Screamer_ContainerHelper_DoesntExist")
+THEN
+ObjectClearFlag(ITEMGUID_S_ARX_KemmGarden_Screamer_Helper_bba16abb-f727-45ae-9d1d-9e7045193f70, "ARX_Scremer_StartScreaming");
+SetOnStage(ITEMGUID_S_ARX_KemmGarden_Screamer_Helper_bba16abb-f727-45ae-9d1d-9e7045193f70, 0);
+
+IF
+ItemTemplateAddedToCharacter(PUZ_Plant_Screamer_9bedc21f-eb84-46f6-b902-d119a6a5aa3c, (ITEMGUID)_Var1, (CHARACTERGUID)_Var2)
+AND NOT
+DB_IsPlayer(_Var2)
+THEN
+PlayAnimation(_Var2, "cower");
+Proc_StartDialog(1, "GEB_ARX_AD_DropScreamer", _Var2);
+ItemDrop(_Var1);
+Proc_StartDialog(1, "ARX_AD_Screamer", _Var1);
+
+IF
+ItemTemplateRemovedFromCharacter("PUZ_Plant_Screamer_9bedc21f-eb84-46f6-b902-d119a6a5aa3c", (ITEMGUID)_Var1, (CHARACTERGUID)_Var2)
+AND
+DB_IsPlayer(_Var2)
+AND
+ItemTemplateIsInCharacterInventory(_Var2, "PUZ_Plant_Screamer_9bedc21f-eb84-46f6-b902-d119a6a5aa3c", 0)
+AND
+ObjectGetFlag(_Var2, "ARX_ScreamerInInventory", 1)
+THEN
+ObjectClearFlag(_Var2, "ARX_ScreamerInInventory");
+RemoveStatus(_Var2, "MUTED");
+RemoveStatus(_Var2, "DEAF");
+PlaySound(_Var2, "SE_ARX_ScreamingPlant_Loop_Stop");
+PlaySound(_Var2, "SE_ARX_ScreamingPlant_RemovedFromInventory");
+CharacterStopCrime(_Var2, "LoudContinuousNoise", NULL_00000000-0000-0000-0000-000000000000);
+
+IF
+ItemTemplateRemovedFromCharacter("PUZ_Plant_Screamer_9bedc21f-eb84-46f6-b902-d119a6a5aa3c", (ITEMGUID)_Var1, (CHARACTERGUID)_Var2)
+AND
+ItemIsInInventory(_Var1, 0)
+THEN
+PROC_LoopEffect("RS3_FX_GP_ScriptedEvent_Screamer_Plant_01", S_ARX_Screamer_9981fb6c-72d3-45ec-8529-fc1c240503eb, "S_ARX_Screamer_LoopFX", "__ANY__", "");
+
+IF
+CharacterUsedItem((CHARACTERGUID)_Var1, ITEMGUID_S_ARX_Screamer_9981fb6c-72d3-45ec-8529-fc1c240503eb)
+AND
+ItemIsInCharacterInventory(ITEMGUID_S_ARX_Screamer_9981fb6c-72d3-45ec-8529-fc1c240503eb, _Var1, 1)
+THEN
+CloseUI(_Var1, "Inventory");
+Proc_StartDialog(1, "ARX_AD_ScreamerSquash", _Var1);
+PlaySound(_Var1, "SE_ARX_ScreamingPlant_Loop_Stop");
+
+IF
+CharacterUsedItem((CHARACTERGUID)_Var1, ITEMGUID_S_ARX_Screamer_9981fb6c-72d3-45ec-8529-fc1c240503eb)
+AND
+ItemIsInCharacterInventory(ITEMGUID_S_ARX_Screamer_9981fb6c-72d3-45ec-8529-fc1c240503eb, _Var1, 0)
+THEN
+Proc_StartDialog(1, "ARX_AD_ScreamerSquash", _Var1);
+
+IF
+CharacterUsedItem((CHARACTERGUID)_Var1, ITEMGUID_S_ARX_Screamer_9981fb6c-72d3-45ec-8529-fc1c240503eb)
+THEN
+PROC_StopLoopEffect(ITEMGUID_S_ARX_Screamer_9981fb6c-72d3-45ec-8529-fc1c240503eb, "S_ARX_Screamer_LoopFX");
+CharacterAddSkill(_Var1, "Shout_Deafen");
+PlaySound(_Var1, "SE_ARX_ScreamingPlant_AddedToInventory");
+
+PROC
+ProcBlockPickupOfItem((CHARACTERGUID)_Var1, (ITEMGUID)_Var2)
+AND
+DB_ARX_KemmsGarden_HotKettle(_Var2)
+THEN
+Proc_StartDialog(1, "ARX_AD_HotKettleStuck", _Var1);
+DB_CustomPickupItemResponse(_Var1, _Var2, 0);
+
+IF
+StoryEvent((GUIDSTRING)_Var1, "GEN_RedKettleTransform")
+AND
+GetPosition(_Var1, _Var2, _Var3, _Var4)
+THEN
+PlayEffectAtPosition("RS3_FX_GP_ScriptedEvent_KettlePlantTransfom_01", _Var2, _Var3, _Var4);
+Transform(_Var1, "PUZ_Red_Kettle_104712bc-6757-4253-a71d-b1749d693a1c", 0);
+
+IF
+DB_ARX_TalkingFlower(_Var1, _Var2)
+THEN
+DB_Dialogs(_Var1, _Var2);
+
+IF
+DialogStarted((STRING)_Var1, _)
+AND
+DB_ARX_TalkingFlower(_Var3, _Var1)
+THEN
+PROC_LoopEffect("RS3_FX_Surface_Clouds_Petals_01_Blue", _Var3, "FX_ParrotPlant", "Arx_Main", "");
+
+IF
+ObjectFlagSet("ARX_TalkingFlower_Touch", (GUIDSTRING)_Var1, _)
+THEN
+ObjectClearFlag(_Var1, "ARX_TalkingFlower_Touch", 0);
+PROC_LoopEffect("RS3_FX_GP_Status_BlindingRadiance_01", _Var1, "FX_ParrotPlant", "Arx_Main", "");
+
+IF
+DialogEnded((STRING)_Var1, _)
+AND
+DB_ARX_TalkingFlower(_Var3, _Var1)
+THEN
+PROC_StopLoopEffect(_Var3, "FX_ParrotPlant");
+
+IF
+ObjectFlagSet("ARX_TalkingFlower_Pickup_Freeze", (GUIDSTRING)_Var1, (INTEGER)_Var2)
+THEN
+ApplyStatus(_Var1, "FROZEN", 2, 1);
+ObjectClearFlag(_Var1, "ARX_TalkingFlower_Pickup_Freeze");
+
+IF
+ItemAddedToCharacter(ITEMGUID_S_ARX_BigYarrow_ac9ec8a8-12e3-4c4f-a3b1-78393d564638, (CHARACTERGUID)_Var1)
+AND
+QueryOnlyOnce("ARX_VB_BeautifulYarrow")
+THEN
+StartVoiceBark("ARX_VB_BeautifulYarrow", _Var1);
+
+IF
+CharacterUsedItem((CHARACTERGUID)_Var1, ITEMGUID_S_ARX_BigYarrow_ac9ec8a8-12e3-4c4f-a3b1-78393d564638)
+AND
+QueryOnlyOnce("ARX_VB_BeautifulYarrow")
+THEN
+StartVoiceBark("ARX_VB_BeautifulYarrow", _Var1);
+
+PROC
+ProcShovelRewards((CHARACTERGUID)_Var1, "ARX_YarrowShovel")
+THEN
+StartVoiceBark("ARX_VB_DrudanaeYarrow", _Var1);
+
+IF
+DB_ARX_KemmsGarden_Cobmat_HiddenPlants(_Var1, _Var2)
+THEN
+TeleportTo(_Var2, _Var1);
+
+IF
+DB_ARX_KemmsGarden_Cobmat(_Var1)
+THEN
+SetOnStage(_Var1, 0);
+
+IF
+CharacterEnteredTrigger((CHARACTERGUID)_Var1, TRIGGERGUID_S_ARX_KemmMansion_Garden_Shamb_BoxT_9741375d-99f9-4240-8a79-97b575abe998)
+AND
+DB_IsPlayer(_Var1)
+AND
+HasActiveStatus(_Var1, "INVISIBLE", 0)
+AND
+HasActiveStatus(_Var1, "SNEAKING", 0)
+AND
+CharacterIsDeadOrFeign(_Var1, 0)
+AND
+QRY_SpeakerIsAvailable(_Var1)
+AND
+QueryOnlyOnce("ARX_KemmMansion_Garden_ShamblingMound_StartDialog")
+THEN
+proc_ARX_KemmMansion_Garden_ShamblingMound_StartDialog(_Var1);
+
+IF
+CharacterStatusRemoved((CHARACTERGUID)_Var1, "INVISIBLE", _)
+AND
+DB_InRegion(_Var1, TRIGGERGUID_S_ARX_KemmMansion_Garden_Shamb_BoxT_9741375d-99f9-4240-8a79-97b575abe998)
+AND
+QRY_SpeakerIsAvailable(_Var1)
+AND
+QueryOnlyOnce("ARX_KemmMansion_Garden_ShamblingMound_StartDialog")
+THEN
+proc_ARX_KemmMansion_Garden_ShamblingMound_StartDialog(_Var1);
+
+IF
+CharacterResurrected((CHARACTERGUID)_Var1)
+AND
+DB_InRegion(_Var1, TRIGGERGUID_S_ARX_KemmMansion_Garden_Shamb_BoxT_9741375d-99f9-4240-8a79-97b575abe998)
+AND
+QRY_SpeakerIsAvailable(_Var1)
+AND
+QueryOnlyOnce("ARX_KemmMansion_Garden_ShamblingMound_StartDialog")
+THEN
+proc_ARX_KemmMansion_Garden_ShamblingMound_StartDialog(_Var1);
+
+IF
+CharacterStatusRemoved((CHARACTERGUID)_Var1, "PLAY_DEAD", _)
+AND
+DB_InRegion(_Var1, TRIGGERGUID_S_ARX_KemmMansion_Garden_Shamb_BoxT_9741375d-99f9-4240-8a79-97b575abe998)
+AND
+QueryOnlyOnce("ARX_KemmMansion_Garden_ShamblingMound_StartDialog")
+THEN
+proc_ARX_KemmMansion_Garden_ShamblingMound_StartDialog(_Var1);
+
+IF
+CharacterStatusRemoved((CHARACTERGUID)_Var1, "SNEAKING", _)
+AND
+DB_InRegion(_Var1, TRIGGERGUID_S_ARX_KemmMansion_Garden_Shamb_BoxT_9741375d-99f9-4240-8a79-97b575abe998)
+AND
+QueryOnlyOnce("ARX_KemmMansion_Garden_ShamblingMound_StartDialog")
+THEN
+proc_ARX_KemmMansion_Garden_ShamblingMound_StartDialog(_Var1);
+
+PROC
+proc_ARX_KemmMansion_Garden_ShamblingMound_StartDialog((CHARACTERGUID)_Var1)
+THEN
+Proc_StartDialog(0, "ARX_KemmMansion_Garden_ShamblingMound", ITEMGUID_S_RC_ARX_KemmMansion_Garden_Shambl_Tank_01_Tree_c59116f2-0c7e-49ad-84f8-b00ca1bdba98, _Var1);
+ProcTriggerUnregisterForPlayers(TRIGGERGUID_S_ARX_KemmMansion_Garden_Shamb_BoxT_9741375d-99f9-4240-8a79-97b575abe998);
+
+IF
+ObjectFlagSet("ARX_KemmMansion_Garden_ShamblingMound_Tree_PlayFX", ITEMGUID_S_RC_ARX_KemmMansion_Garden_Shambl_Tank_01_Tree_c59116f2-0c7e-49ad-84f8-b00ca1bdba98, (INTEGER)_Var1)
+THEN
+PROC_LoopEffect("RS3_FX_ScriptedEvent_ARX_KemmsGarden_Transform_Loop_01", ITEMGUID_S_RC_ARX_KemmMansion_Garden_Shambl_Tank_01_Tree_c59116f2-0c7e-49ad-84f8-b00ca1bdba98, "ARX_KemmMansion_Garden_ShamblingMound_Tree_PlayFX", "ARX_Main", "");
+
+IF
+DialogEnded("ARX_KemmMansion_Garden_ShamblingMound", (INTEGER)_Var1)
+THEN
+PROC_StopLoopEffect(ITEMGUID_S_RC_ARX_KemmMansion_Garden_Shambl_Tank_01_Tree_c59116f2-0c7e-49ad-84f8-b00ca1bdba98, "ARX_KemmMansion_Garden_ShamblingMound_Tree_PlayFX");
+PlayEffect(ITEMGUID_S_RC_ARX_KemmMansion_Garden_Shambl_Tank_01_Tree_c59116f2-0c7e-49ad-84f8-b00ca1bdba98, "RS3_FX_ScriptedEvent_ARX_KemmsGarden_Transform_01");
+CharacterAppear(CHARACTERGUID_S_RC_ARX_KemmMansion_Garden_Shambl_Tank_01_0b0b9920-64e4-4b29-b465-0c578916a099, 1, "ARX_KemmsGarden_TreeAppeared");
+PlayEffect(CHARACTERGUID_S_RC_ARX_KemmMansion_Garden_Shambl_Tank_01_0b0b9920-64e4-4b29-b465-0c578916a099, "RS3_FX_ScriptedEvent_ARX_KemmsGarden_Transform_01");
+PlaySound(CHARACTERGUID_S_RC_ARX_KemmMansion_Garden_Shambl_Tank_01_0b0b9920-64e4-4b29-b465-0c578916a099, "FX_Char_Animals_Bear_A_VoidTransform_01_Part1");
+ProcObjectTimer(CHARACTERGUID_S_RC_ARX_KemmMansion_Garden_Shambl_Tank_01_0b0b9920-64e4-4b29-b465-0c578916a099, "Play_FX_Char_Animals_Bear_A_VoidTransform_01_Part2", 1100);
+
+PROC
+ProcObjectTimerFinished(CHARACTERGUID_S_RC_ARX_KemmMansion_Garden_Shambl_Tank_01_0b0b9920-64e4-4b29-b465-0c578916a099, "Play_FX_Char_Animals_Bear_A_VoidTransform_01_Part2")
+THEN
+PlaySound(CHARACTERGUID_S_RC_ARX_KemmMansion_Garden_Shambl_Tank_01_0b0b9920-64e4-4b29-b465-0c578916a099, "FX_Char_Animals_Bear_A_VoidTransform_01_Part2");
+
+IF
+StoryEvent(CHARACTERGUID_S_RC_ARX_KemmMansion_Garden_Shambl_Tank_01_0b0b9920-64e4-4b29-b465-0c578916a099, "ARX_KemmsGarden_TreeAppeared")
+THEN
+SetOnStage(ITEMGUID_S_RC_ARX_KemmMansion_Garden_Shambl_Tank_01_Tree_c59116f2-0c7e-49ad-84f8-b00ca1bdba98, 0);
+
+IF
+CharacterUsedSkill(CHARACTERGUID_S_RC_ARX_KemmMansion_Garden_Shambl_Tank_01_0b0b9920-64e4-4b29-b465-0c578916a099, "Rain_EnemySunshine", _, _)
+AND
+ObjectIsInTrigger(CHARACTERGUID_S_RC_ARX_KemmMansion_Garden_Shambl_Tank_01_0b0b9920-64e4-4b29-b465-0c578916a099, TRIGGERGUID_ATM_ARX_KemmGarden_Sunshine_14603675-9941-4b9f-b092-e90cabe0c073, 1)
+AND
+QueryOnlyOnce("ARX_KemmMansion_Garden_Shambl_Tank_Rain_EnemySunshine")
+THEN
+TriggerSetAtmosphere(TRIGGERGUID_ATM_ARX_KemmGarden_Sunshine_14603675-9941-4b9f-b092-e90cabe0c073, "cd367a1b-5845-4fb2-acf2-c9b4d2d123bd");
+
+IF
+ObjectEnteredCombat(CHARACTERGUID_S_RC_ARX_KemmMansion_Garden_Shambl_Tank_01_0b0b9920-64e4-4b29-b465-0c578916a099, (INTEGER)_Var1)
+THEN
+DB_ARX_KemmMansion_Garden_Shamb_SunShineInCobmat(CHARACTERGUID_S_RC_ARX_KemmMansion_Garden_Shambl_Tank_01_0b0b9920-64e4-4b29-b465-0c578916a099, _Var1);
+
+IF
+ObjectSwitchedCombat(CHARACTERGUID_S_RC_ARX_KemmMansion_Garden_Shambl_Tank_01_0b0b9920-64e4-4b29-b465-0c578916a099, (INTEGER)_Var1, (INTEGER)_Var2)
+THEN
+NOT DB_ARX_KemmMansion_Garden_Shamb_SunShineInCobmat(CHARACTERGUID_S_RC_ARX_KemmMansion_Garden_Shambl_Tank_01_0b0b9920-64e4-4b29-b465-0c578916a099, _Var1);
+DB_ARX_KemmMansion_Garden_Shamb_SunShineInCobmat(CHARACTERGUID_S_RC_ARX_KemmMansion_Garden_Shambl_Tank_01_0b0b9920-64e4-4b29-b465-0c578916a099, _Var2);
+
+IF
+ObjectTurnStarted((CHARACTERGUID)_Var1)
+AND
+DB_IsPlayer(_Var1)
+AND
+DB_CombatCharacters(_Var1, _Var2)
+AND
+DB_ARX_KemmsGarden_Cobmat(_Var3)
+AND
+DB_CombatCharacters(_Var3, _Var2)
+AND
+QueryOnlyOnce("ARX_VB_KemmsMansion_Garden_CombatFlower_PlayerReact")
+THEN
+StartVoiceBark("ARX_VB_KemmsMansion_Garden_CombatFlower_PlayerReact", _Var1);
+
+IF
+VoiceBarkFailed("ARX_VB_KemmsMansion_Garden_CombatFlower_PlayerReact")
+AND
+DB_OnlyOnce("ARX_VB_KemmsMansion_Garden_CombatFlower_PlayerReact")
+THEN
+NOT DB_OnlyOnce("ARX_VB_KemmsMansion_Garden_CombatFlower_PlayerReact");
+
+IF
+CombatEnded((INTEGER)_Var1)
+AND
+DB_ARX_KemmMansion_Garden_Shamb_SunShineInCobmat(CHARACTERGUID_S_RC_ARX_KemmMansion_Garden_Shambl_Tank_01_0b0b9920-64e4-4b29-b465-0c578916a099, _Var1)
+AND
+CharacterIsDead(CHARACTERGUID_S_RC_ARX_KemmMansion_Garden_Shambl_Tank_01_0b0b9920-64e4-4b29-b465-0c578916a099, 1)
+THEN
+TriggerSetAtmosphere(TRIGGERGUID_ATM_ARX_KemmGarden_Sunshine_14603675-9941-4b9f-b092-e90cabe0c073, "f83b1ab1-8367-4add-84b0-5b9b6b55aa5c");
+
+IF
+CombatEnded((INTEGER)_Var1)
+AND
+DB_ARX_KemmMansion_Garden_Shamb_SunShineInCobmat(CHARACTERGUID_S_RC_ARX_KemmMansion_Garden_Shambl_Tank_01_0b0b9920-64e4-4b29-b465-0c578916a099, _Var1)
+THEN
+NOT DB_ARX_KemmMansion_Garden_Shamb_SunShineInCobmat(CHARACTERGUID_S_RC_ARX_KemmMansion_Garden_Shambl_Tank_01_0b0b9920-64e4-4b29-b465-0c578916a099, _Var1);
+
+IF
+ObjectEnteredCombat(CHARACTERGUID_S_RC_ARX_KemmMansion_Garden_Shambl_Tank_01_0b0b9920-64e4-4b29-b465-0c578916a099, (INTEGER)_Var1)
+AND
+DB_ARX_KemmsGarden_Cobmat_HiddenPlants(_Var2, _Var3)
+THEN
+CharacterAppear(_Var2, 0, "ARX_KemmsMansion_Garden_CombatFlowerAppeared");
+PlayEffect(_Var3, "RS3_FX_ScriptedEvent_ARX_KemmsGarden_Transform_01");
+PlayEffect(_Var2, "RS3_FX_ScriptedEvent_ARX_KemmsGarden_Transform_01");
+ProcObjectTimer(_Var3, "ARX_KemmsMansion_Garden_CombatFlower_BushOffStage", 1000);
+
+PROC
+ProcObjectTimerFinished((GUIDSTRING)_Var1, "ARX_KemmsMansion_Garden_CombatFlower_PlayEffect")
+AND
+DB_ARX_KemmsGarden_Cobmat_HiddenPlants(_Var2, _Var1)
+THEN
+PlayEffect(_Var2, "RS3_FX_ScriptedEvent_ARX_KemmsGarden_Transform_01");
+
+PROC
+ProcObjectTimerFinished((GUIDSTRING)_Var1, "ARX_KemmsMansion_Garden_CombatFlower_BushOffStage")
+AND
+DB_ARX_KemmsGarden_Cobmat_HiddenPlants(_Var2, _Var1)
+THEN
+SetOnStage(_Var1, 0);
+NOT DB_ARX_KemmsGarden_Cobmat_HiddenPlants(_Var2, _Var1);
+
+IF
+GameBookInterfaceClosed(S_ARX_KemmsGarden_Doctor_Letter_11d0b435-b0b3-4cec-a100-0594b8f1e934, (CHARACTERGUID)_Var1)
+AND
+DB_IsPlayer(_Var1)
+THEN
+ObjectSetFlag(_Var1, "QuestUpdate_ARX_TheDoctor_KemmGarden_Doctor");
+
+
+EXITSECTION
+ENDEXITSECTION
+
+ParentTargetEdge "ARX"

@@ -1,0 +1,462 @@
+Version 1
+SubGoalCombiner SGC_AND
+
+INITSECTION
+DB_Dialogs(CHARACTERGUID_S_ARX_Neighborhood_TheFence_973d85be-5756-4bf1-aae3-a2b06fcb2b31, "ARX_Neighborhood_TheFence");
+DB_Ghosts(CHARACTERGUID_S_ARX_Neighborhood_TheFence_973d85be-5756-4bf1-aae3-a2b06fcb2b31, CHARACTERGUID_S_ARX_Neighborhood_TheFence_000_fe74095e-9031-4e45-8c87-aae921ac93ed, "ARX_Neighborhood_TheFence_Ghost");
+DB_NoLowAttitudeDialog(CHARACTERGUID_S_ARX_Neighborhood_HouseDemon_HidingDemon_01_f7a9e3e9-1d24-41e2-9c7b-86feae69b012);
+DB_NoLowAttitudeDialog(CHARACTERGUID_S_ARX_Neighborhood_HouseDemon_HidingDemon_02_3d0566de-786e-4ff9-ab1a-5c7a279c1580);
+DB_NoLowAttitudeDialog(CHARACTERGUID_S_ARX_Neighborhood_HouseDemon_HidingDemon_03_0fc21242-8f25-4091-a42b-e7614199a243);
+DB_NoLowAttitudeDialog(CHARACTERGUID_S_ARX_Neighborhood_TheFence_973d85be-5756-4bf1-aae3-a2b06fcb2b31);
+DB_ARX_Neighborhood_TheFence_Demons(CHARACTERGUID_S_ARX_Neighborhood_HouseDemon_HidingDemon_01_f7a9e3e9-1d24-41e2-9c7b-86feae69b012);
+DB_ARX_Neighborhood_TheFence_Demons(CHARACTERGUID_S_ARX_Neighborhood_HouseDemon_HidingDemon_02_3d0566de-786e-4ff9-ab1a-5c7a279c1580);
+DB_ARX_Neighborhood_TheFence_Demons(CHARACTERGUID_S_ARX_Neighborhood_HouseDemon_HidingDemon_03_0fc21242-8f25-4091-a42b-e7614199a243);
+DB_TrespassTrigger(TRIGGERGUID_S_ARX_Neighborhood_TheFence_Cellar_95e0f20b-b3f2-4117-97bb-5e2aa8ebd003, TRIGGERGUID_S_ARX_Neighborhood_HouseDemon_Ext_70d71a09-f576-4fc2-a78f-6dae8a73c186);
+DB_ARX_Neighborhood_TheFence_DemonCombatTriggers(CHARACTERGUID_S_ARX_Neighborhood_TheFence_973d85be-5756-4bf1-aae3-a2b06fcb2b31, TRIGGERGUID_S_ARX_Neighborhood_TheFence_CombatTrigger_Fence_854d58d6-bf5a-43ff-9018-ae348b2a842c);
+DB_ARX_Neighborhood_TheFence_DemonCombatTriggers(CHARACTERGUID_S_ARX_Neighborhood_TheFenceDemon_01_f7a9e3e9-1d24-41e2-9c7b-86feae69b012, TRIGGERGUID_S_ARX_Neighborhood_HouseDemon_HidingDemon_01_CombatTrigger_252f328c-6456-49cd-a038-eb18efbf17cb);
+DB_ARX_Neighborhood_TheFence_DemonCombatTriggers(CHARACTERGUID_S_ARX_Neighborhood_TheFenceDemon_02_3d0566de-786e-4ff9-ab1a-5c7a279c1580, TRIGGERGUID_S_ARX_Neighborhood_HouseDemon_HidingDemon_01_CombatTrigger_2_622ac7ff-d47d-459b-9449-5efdbf642733);
+DB_ARX_Neighborhood_TheFence_DemonCombatTriggers(CHARACTERGUID_S_ARX_Neighborhood_TheFenceDemon_03_0fc21242-8f25-4091-a42b-e7614199a243, TRIGGERGUID_S_ARX_Neighborhood_HouseDemon_HidingDemon_01_CombatTrigger_3_43110fec-0814-446f-b7bd-3060cb7268ed);
+ItemToInventory(ITEMGUID_S_ARX_Neighborhood_TheFence_BloodVial_Cuboard_Key_a8b36869-0265-4b89-ac22-dd9fd437b5b2, CHARACTERGUID_S_ARX_Neighborhood_TheFence_973d85be-5756-4bf1-aae3-a2b06fcb2b31);
+ItemToInventory(ITEMGUID_S_ARX_Neighborhood_HouseDemon_BasementKey_001_cb95594a-29a6-4286-a018-ea8df4aef503, CHARACTERGUID_S_ARX_Neighborhood_TheFence_Demon_02_3d0566de-786e-4ff9-ab1a-5c7a279c1580);
+SetOnStage(ITEMGUID_S_QUEST_ARX_TheFence_VialOfBlood_fb9d0282-d4b8-43e7-b177-8fab118f33ac, 0);
+SetOnStage(ITEMGUID_S_QUEST_ARX_TheFence_VialOfBlood_Undead_87df5043-b602-4cf2-835d-124aa50f37d3, 0);
+DB_ARX_Neighborhood_TheFence_SetupPlayerLoanVial(ITEMGUID_S_QUEST_ARX_TheFence_VialOfBlood_fb9d0282-d4b8-43e7-b177-8fab118f33ac, 0);
+DB_ARX_Neighborhood_TheFence_SetupPlayerLoanVial(ITEMGUID_S_QUEST_ARX_TheFence_VialOfBlood_Undead_87df5043-b602-4cf2-835d-124aa50f37d3, 1);
+Proc_PyramidBlockerTriggerAdd(TRIGGERGUID_S_ARX_Neighborhood_TheFence_Cellar_95e0f20b-b3f2-4117-97bb-5e2aa8ebd003);
+DB_QuestDef_State("ARX_Neighborhood_TheFence", "GotLoan", 1);
+DB_QuestDef_State("ARX_Neighborhood_TheFence", "GotLoan_Undead", 1);
+DB_QuestDef_State("ARX_Neighborhood_TheFence", "FoundBasement");
+DB_QuestDef_State("ARX_Neighborhood_TheFence", "TookBackMyVial");
+DB_QuestDef_UpdateEvent("ARX_Neighborhood_TheFence", "FoundBasement", "ARX_Neighborhood_TheFence_EnteredCellar");
+DB_QuestDef_State("ARX_Neighborhood_TheFence", "FoundBloodCupboard");
+DB_QuestDef_State("ARX_Neighborhood_TheFence", "DeadFence", -1);
+DB_QuestDef_State("ARX_Neighborhood_TheFence", "TimeToPlay_Paid", -1);
+DB_QuestDef_State("ARX_Neighborhood_TheFence", "TimeToPlay_DidntPaid_NoDeath", -1);
+DB_QuestDef_State("ARX_Neighborhood_TheFence", "TimeToPlay_DidntPaid_Death", -1);
+DB_QuestDef_State("ARX_Neighborhood_TheFence", "TimetoPlay_CantPay_NoDeath", -1);
+DB_QuestDef_State("ARX_Neighborhood_TheFence", "TimetoPlay_CantPay_Death", -1);
+DB_QuestDef_State("ARX_Neighborhood_TheFence", "CloseLeftARX", -1);
+DB_DialogMoneyTransfer(1, "ARX_Neighborhood_TheFence", 10000);
+DB_DialogMoneyTransfer(2, "ARX_Neighborhood_TheFence", 50000);
+DB_DialogMoneyTransfer(3, "ARX_Neighborhood_TheFence", 100000);
+DB_DialogMoneyTransfer(4, "ARX_Neighborhood_TheFence", 150000);
+DB_ARX_Neighborhood_TheFence_GoldFlags("ARX_Neighborhood_TheFence_Loan_1", 10000);
+DB_ARX_Neighborhood_TheFence_GoldFlags("ARX_Neighborhood_TheFence_Loan_2", 50000);
+DB_ARX_Neighborhood_TheFence_GoldFlags("ARX_Neighborhood_TheFence_Loan_3", 100000);
+DB_ARX_Neighborhood_TheFence_GoldFlags("ARX_Neighborhood_TheFence_Loan_Max", 150000);
+ItemToInventory(ITEMGUID_S_ARX_Neighborhood_TheFence_BloodVial_RandomPerson_01_05b16553-ba0c-442a-9e0a-6bee6496be99, ITEMGUID_S_ARX_Neighborhood_TheFence_BloodVial_Rack_01_c6861b45-81b2-4a8e-8bce-38b7b0a9ae70);
+ItemToInventory(ITEMGUID_S_ARX_Neighborhood_TheFence_BloodVial_RandomPerson_02_24d53292-c347-4b81-897b-6ff4c5b7b551, ITEMGUID_S_ARX_Neighborhood_TheFence_BloodVial_Rack_02_97cd0a8b-4620-448b-a8a4-99d09b0ddf6a);
+ItemToInventory(ITEMGUID_S_ARX_Neighborhood_TheFence_BloodVial_RandomPerson_03_11cf4e11-2b88-43a3-8f54-13deef968e21, ITEMGUID_S_ARX_Neighborhood_TheFence_BloodVial_Rack_03_21700c09-d34c-4c77-900f-f6835415d934);
+ItemToInventory(ITEMGUID_S_ARX_Neighborhood_TheFence_BloodVial_RandomPerson_04_99e70db4-cdd4-4eba-b32e-32ba5298ccb0, ITEMGUID_S_ARX_Neighborhood_TheFence_BloodVial_Rack_02_97cd0a8b-4620-448b-a8a4-99d09b0ddf6a);
+DB_ARX_Neighborhood_TheFence_BloodVial_Rack(ITEMGUID_S_ARX_Neighborhood_TheFence_BloodVial_Rack_01_c6861b45-81b2-4a8e-8bce-38b7b0a9ae70);
+DB_ARX_Neighborhood_TheFence_BloodVial_Rack(ITEMGUID_S_ARX_Neighborhood_TheFence_BloodVial_Rack_02_97cd0a8b-4620-448b-a8a4-99d09b0ddf6a);
+DB_ARX_Neighborhood_TheFence_BloodVial_Rack(ITEMGUID_S_ARX_Neighborhood_TheFence_BloodVial_Rack_03_21700c09-d34c-4c77-900f-f6835415d934);
+
+KBSECTION
+IF
+ObjectFlagSet("ARX_Neighborhood_TheFence_PlayerAcceptedLoan", (CHARACTERGUID)_Var1, (INTEGER)_Var2)
+AND
+DB_ARX_Neighborhood_TheFence_SetupPlayerLoanVial(_Var3, _Var4)
+AND
+IsTagged(_Var1, "UNDEAD", _Var4)
+THEN
+DB_ARX_Neighborhood_TheFence_PlayerInDebt(_Var1);
+Proc_ARX_Neighborhood_TheFence_GotLoan_SetUpdate(_Var1);
+SetOnStage(_Var3, 1);
+DB_ARX_Neighborhood_TheFence_BloodVail_InCuboard(_Var3, _Var1, "ARX_Neighborhood_TheFence_HasPlayerVail");
+ItemToInventory(_Var3, ITEMGUID_S_ARX_Neighborhood_TheFence_BloodVial_Rack_01_c6861b45-81b2-4a8e-8bce-38b7b0a9ae70);
+DB_HasStoryEvent(_Var3, "ARX_Neighborhood_TheFence_Player_HasPlayerVail");
+
+IF
+ObjectFlagSet("ARX_Neighborhood_TheFence_PlayerIsInDebt", (GUIDSTRING)_Var1, (INTEGER)_Var2)
+AND
+DialogGetInvolvedNPC(_Var2, 1, _Var3)
+THEN
+PlayEffect(_Var3, "RS3_FX_GP_ScriptedEvent_ARX_TheFence_DrawBlood_01");
+PlayEffect(_Var1, "RS3_FX_GP_ScriptedEvent_ARX_TheFence_DrawBlood_01");
+PlayEffect(S_ARX_Neighborhood_TheFence_BloodVial_Cuboard_6d3a39ca-cd76-4fb6-b766-6ef71fb06a96, "RS3_FX_GP_ScriptedEvent_ARX_TheFence_DrawBlood_01");
+
+IF
+ItemTemplateAddedToContainer("QUEST_ARX_TheFence_VialOfBlood_28d4eebf-c6a1-4d9c-8c41-88f04fd92f11", (ITEMGUID)_Var1, (ITEMGUID)_Var2)
+AND
+DB_ARX_Neighborhood_TheFence_BloodVial_Rack(_Var2)
+AND
+DB_ARX_Neighborhood_TheFence_PlayerInDebt(_Var3)
+THEN
+ObjectSetFlag(S_ARX_Neighborhood_TheFence_BloodVial_Cuboard_6d3a39ca-cd76-4fb6-b766-6ef71fb06a96, "ARX_Neighborhood_TheFence_HasPlayerVail");
+DB_ARX_Neighborhood_TheFence_BloodVail_InCuboard(_Var1, _Var3, "ARX_Neighborhood_TheFence_HasPlayerVail");
+NOT DB_ARX_Neighborhood_TheFence_PlayerInDebt(_Var3);
+
+IF
+ItemAddedToContainer((ITEMGUID)_Var1, (ITEMGUID)_Var2)
+AND
+DB_ARX_Neighborhood_TheFence_BloodVial_Rack(_Var2)
+AND
+DB_ARX_Neighborhood_TheFence_BloodVail_InCuboard(_Var1, _Var3, _Var4)
+THEN
+ObjectSetFlag(S_ARX_Neighborhood_TheFence_BloodVial_Cuboard_6d3a39ca-cd76-4fb6-b766-6ef71fb06a96, _Var4);
+ObjectSetFlag(_Var3, _Var4);
+ObjectClearFlag(S_ARX_Neighborhood_TheFence_973d85be-5756-4bf1-aae3-a2b06fcb2b31, "ARX_Neighborhood_TheFence_Vail_Combat_IsNotThere");
+
+IF
+ItemRemovedFromContainer((ITEMGUID)_Var1, (ITEMGUID)_Var2)
+AND
+DB_ARX_Neighborhood_TheFence_BloodVial_Rack(_Var2)
+AND
+DB_ARX_Neighborhood_TheFence_BloodVail_InCuboard(_Var1, _Var3, _Var4)
+THEN
+ObjectClearFlag(_Var3, _Var4);
+ObjectClearFlag(S_ARX_Neighborhood_TheFence_BloodVial_Cuboard_6d3a39ca-cd76-4fb6-b766-6ef71fb06a96, _Var4);
+
+IF
+GlobalFlagSet("ARX_Neighborhood_TheFence_PlayerAcceptedLoan")
+AND
+DB_IsPlayer(_Var1)
+AND
+DB_ARX_Neighborhood_TheFence_GoldFlags(_Var2, _Var3)
+AND
+ObjectGetFlag(_Var1, _Var2, 1)
+AND
+IntegerProduct(_Var3, 3, _Var4)
+THEN
+CharacterAddGold(_Var1, _Var3);
+DB_DialogMoneyTransfer(1, "ARX_Neighborhood_TheFence_TimeToCollect", _Var4);
+ProcTriggerRegisterForPlayers(TRIGGERGUID_S_ARX_DivineTomb_DeathRoom_TheFenceTimeToPay_e9f7c7dc-02f9-46ff-85fa-f341dba4436b);
+
+IF
+DB_ARX_Neighborhood_TheFence_BloodVial_Rack(_Var1)
+THEN
+ItemSetCanInteract(_Var1, 0);
+
+IF
+CharacterUsedItem((CHARACTERGUID)_Var1, ITEMGUID_S_ARX_Neighborhood_TheFence_BloodVial_Cuboard_6d3a39ca-cd76-4fb6-b766-6ef71fb06a96)
+AND
+ItemIsLocked(ITEMGUID_S_ARX_Neighborhood_TheFence_BloodVial_Cuboard_6d3a39ca-cd76-4fb6-b766-6ef71fb06a96, 0)
+AND
+QueryOnlyOnce("ARX_Neighborhood_TheFence_BloodVial_Cuboard_CanUseVials")
+AND
+DB_ARX_Neighborhood_TheFence_BloodVial_Rack(_Var2)
+THEN
+ItemSetCanInteract(_Var2, 1);
+
+IF
+CharacterEnteredTrigger((CHARACTERGUID)_Var1, TRIGGERGUID_S_ARX_Neighborhood_TheFence_Cellar_95e0f20b-b3f2-4117-97bb-5e2aa8ebd003)
+AND
+UserGetFlag(_Var1, "ARX_Neighborhood_TheFence_EnteredCellar", 0)
+THEN
+UserSetFlag(_Var1, "ARX_Neighborhood_TheFence_EnteredCellar");
+
+IF
+ObjectEnteredCombat((GUIDSTRING)_Var1, (INTEGER)_Var2)
+AND
+DB_ARX_Neighborhood_TheFence_Demons(_Var1)
+THEN
+PlayEffect(_Var1, "RS3_FX_GP_Combat_CorpseExplosion_Blood_01_Medium");
+Transform(_Var1, "ARX_Demon_Fence_8e8f7bd0-c8ab-44ce-b88b-a5470785fadd", 0);
+SetFaction(_Var1, "ARX_Neighborhood_TheFence_Demon");
+SetRelationFactionToPlayers("ARX_Neighborhood_TheFence_Demon", 0);
+
+IF
+ObjectEnteredCombat((GUIDSTRING)_Var1, (INTEGER)_Var2)
+AND
+DB_ARX_Neighborhood_TheFence_Demons(_Var1)
+AND NOT
+DB_ARX_Neighborhood_TheFence_Combat(_Var2)
+AND
+GlobalGetFlag("ARX_Neighborhood_TheFence_TimeToCollect", 0)
+THEN
+DB_ARX_Neighborhood_TheFence_Combat(_Var2);
+
+IF
+ObjectEnteredCombat(S_ARX_Neighborhood_TheFence_973d85be-5756-4bf1-aae3-a2b06fcb2b31, (INTEGER)_Var1)
+AND NOT
+DB_ARX_Neighborhood_TheFence_Combat(_Var1)
+AND
+GlobalGetFlag("ARX_Neighborhood_TheFence_TimeToCollect", 0)
+THEN
+DB_ARX_Neighborhood_TheFence_Combat(_Var1);
+
+IF
+CombatStarted((INTEGER)_Var1)
+AND
+DB_ARX_Neighborhood_TheFence_Combat(_Var1)
+AND
+DB_ARX_Neighborhood_TheFence_DemonCombatTriggers(_Var2, _Var3)
+AND NOT
+DB_CombatCharacters(_Var2, _Var1)
+AND NOT
+DB_DialogNPCs(_, _Var2, _)
+THEN
+PlayEffect(_Var2, "RS3_FX_GP_ScriptedEvent_Teleport_GenericSmoke_02");
+TeleportTo(_Var2, _Var3);
+PlayEffect(_Var2, "RS3_FX_GP_ScriptedEvent_Teleport_GenericSmoke_02");
+
+IF
+CombatEnded((INTEGER)_Var1)
+AND
+DB_ARX_Neighborhood_TheFence_Combat(_Var1)
+THEN
+NOT DB_ARX_Neighborhood_TheFence_Combat(_Var1);
+
+IF
+CharacterItemEvent((CHARACTERGUID)_Var1, (ITEMGUID)_Var2, "ARX_Neighborhood_TheFence_PlayBloodEffect")
+THEN
+PlayEffect(_Var1, "RS3_FX_GP_ScriptedEvent_ARX_TheFence_DrawBlood_01");
+PlayEffect(_Var2, "RS3_FX_GP_ScriptedEvent_ARX_TheFence_DrawBlood_01");
+
+IF
+CharacterKilledBy(S_ARX_Neighborhood_TheFence_973d85be-5756-4bf1-aae3-a2b06fcb2b31, (CHARACTERGUID)_Var1, (CHARACTERGUID)_Var2)
+AND
+DB_IsPlayer(_Var1)
+THEN
+UserSetFlag(_Var1, "ARX_Neighborhood_TheFence_KilledTheFence");
+
+IF
+CharacterEnteredTrigger((CHARACTERGUID)_Var1, TRIGGERGUID_S_ARX_DivineTomb_DeathRoom_TheFenceTimeToPay_e9f7c7dc-02f9-46ff-85fa-f341dba4436b)
+AND
+ObjectGetFlag(_Var1, "ARX_Neighborhood_TheFence_PlayerIsInDebt", 1)
+AND
+HasActiveStatus(_Var1, "INVISIBLE", 0)
+THEN
+ProcTriggerUnregisterForPlayers(TRIGGERGUID_S_ARX_DivineTomb_DeathRoom_TheFenceTimeToPay_e9f7c7dc-02f9-46ff-85fa-f341dba4436b);
+GlobalSetFlag("ARX_Neighborhood_TheFence_TimeToCollect");
+
+IF
+CharacterStatusRemoved((CHARACTERGUID)_Var1, "INVISIBLE", _)
+AND
+DB_InRegion(_Var1, TRIGGERGUID_S_ARX_DivineTomb_DeathRoom_TheFenceTimeToPay_e9f7c7dc-02f9-46ff-85fa-f341dba4436b)
+AND
+ObjectGetFlag(_Var1, "ARX_Neighborhood_TheFence_PlayerIsInDebt", 1)
+THEN
+ProcTriggerUnregisterForPlayers(TRIGGERGUID_S_ARX_DivineTomb_DeathRoom_TheFenceTimeToPay_e9f7c7dc-02f9-46ff-85fa-f341dba4436b);
+GlobalSetFlag("ARX_Neighborhood_TheFence_TimeToCollect");
+
+IF
+GlobalFlagSet("ARX_Neighborhood_TheFence_TimeToCollect")
+THEN
+ClearVarObject(CHARACTERGUID_S_ARX_Neighborhood_TheFence_973d85be-5756-4bf1-aae3-a2b06fcb2b31, "Seat");
+
+IF
+GlobalFlagSet("ARX_Neighborhood_TheFence_TimeToCollect")
+AND
+DB_ARX_Neighborhood_TheFence_BloodVail_InCuboard(_Var1, _Var2, _Var3)
+AND
+CharacterIsDead(CHARACTERGUID_S_ARX_Neighborhood_TheFence_973d85be-5756-4bf1-aae3-a2b06fcb2b31, 0)
+THEN
+ProcForceStopDialog(CHARACTERGUID_S_ARX_Neighborhood_TheFence_973d85be-5756-4bf1-aae3-a2b06fcb2b31);
+PlayEffect(CHARACTERGUID_S_ARX_Neighborhood_TheFence_973d85be-5756-4bf1-aae3-a2b06fcb2b31, "RS3_FX_GP_ScriptedEvent_Teleport_GenericSmoke_02");
+TeleportTo(CHARACTERGUID_S_ARX_Neighborhood_TheFence_973d85be-5756-4bf1-aae3-a2b06fcb2b31, TRIGGERGUID_S_ARX_DivineTomb_DeathRoom_TheFenceTimeToPay_Point_3079bbe2-0cf6-4e35-b344-753a88005db7);
+PlayEffect(CHARACTERGUID_S_ARX_Neighborhood_TheFence_973d85be-5756-4bf1-aae3-a2b06fcb2b31, "RS3_FX_GP_ScriptedEvent_Teleport_GenericSmoke_02");
+CharacterLookAt(CHARACTERGUID_S_ARX_Neighborhood_TheFence_973d85be-5756-4bf1-aae3-a2b06fcb2b31, _Var2);
+
+IF
+CharacterCharacterEvent(CHARACTERGUID_S_ARX_Neighborhood_TheFence_973d85be-5756-4bf1-aae3-a2b06fcb2b31, (CHARACTERGUID)_Var1, "ARX_Neighborhood_TheFence_SpottedPlayerInDebt")
+THEN
+Proc_StartDialog(0, "ARX_Neighborhood_TheFence_TimeToCollect", CHARACTERGUID_S_ARX_Neighborhood_TheFence_973d85be-5756-4bf1-aae3-a2b06fcb2b31, _Var1);
+
+IF
+DialogEnded("ARX_Neighborhood_TheFence_TimeToCollect", (INTEGER)_Var1)
+AND
+DialogGetInvolvedPlayer(_Var1, 1, _Var2)
+AND
+ObjectGetFlag(_Var2, "ARX_Neighborhood_TheFence_PlayerIsInDebt", 1)
+AND
+ObjectGetFlag(_Var2, "ARX_Neighborhood_TheFence_HasPlayerVail", 1)
+THEN
+CharacterDie(_Var2, 0, "DoT");
+
+IF
+DialogEnded("ARX_Neighborhood_TheFence_TimeToCollect", (INTEGER)_Var1)
+AND
+DialogGetInvolvedNPC(_Var1, 1, _Var2)
+AND
+GetPosition(_Var2, _Var3, _Var4, _Var5)
+THEN
+PlayEffectAtPosition("RS3_FX_GP_ScriptedEvent_Teleport_GenericSmoke_02", _Var3, _Var4, _Var5);
+
+IF
+DialogEnded("ARX_Neighborhood_TheFence_TimeToCollect", (INTEGER)_Var1)
+THEN
+SetOnStage(CHARACTERGUID_S_ARX_Neighborhood_TheFence_973d85be-5756-4bf1-aae3-a2b06fcb2b31, 0);
+
+IF
+ObjectFlagSet("ARX_Neighborhood_TheFence_TryToKillPlayer_InDialog", (GUIDSTRING)_Var1, (INTEGER)_Var2)
+AND
+DialogGetInvolvedPlayer(_Var2, 1, _Var3)
+AND
+ObjectGetFlag(_Var3, "ARX_Neighborhood_TheFence_PlayerIsInDebt", 1)
+AND
+ObjectGetFlag(_Var3, "ARX_Neighborhood_TheFence_HasPlayerVail", 1)
+THEN
+PlayEffect(_Var1, "RS3_FX_GP_ScriptedEvent_ARX_TheFence_DrawBlood_01");
+PlayEffect(_Var3, "RS3_FX_GP_ScriptedEvent_ARX_TheFence_DrawBlood_01");
+ApplyStatus(_Var3, "WARM", -1, 1);
+ApplyStatus(_Var3, "FEAR", -1, 1);
+
+IF
+ObjectFlagSet("ARX_Neighborhood_TheFence_TryToKillPlayer_InDialog", (GUIDSTRING)_Var1, (INTEGER)_Var2)
+AND
+DialogGetInvolvedPlayer(_Var2, 1, _Var3)
+AND
+ObjectGetFlag(_Var3, "ARX_Neighborhood_TheFence_PlayerIsInDebt", 1)
+AND
+ObjectGetFlag(_Var3, "ARX_Neighborhood_TheFence_HasPlayerVail", 0)
+THEN
+PlayEffect(_Var1, "RS3_FX_GP_ScriptedEvent_ARX_TheFence_DrawBlood_01");
+
+IF
+DialogEnded("ARX_Neighborhood_TheFence_TimeToCollect", (INTEGER)_Var1)
+AND
+DialogGetInvolvedPlayer(_Var1, 1, _Var2)
+AND
+ObjectGetFlag(_Var2, "ARX_Neighborhood_TheFence_PlayerIsInDebt", 1)
+AND
+ObjectGetFlag(_Var2, "ARX_Neighborhood_TheFence_HasPlayerVail", 1)
+THEN
+ObjectSetFlag(_Var2, "ARX_Neighborhood_TheFence_KillPlayer");
+CharacterDie(_Var2, 1, "DoT");
+
+IF
+ObjectFlagSet("ARX_Neighborhood_TheFence_KnockdownPlayer", (GUIDSTRING)_Var1, (INTEGER)_Var2)
+THEN
+ApplyStatus(_Var1, "KNOCKED_DOWN", -1, 1);
+
+IF
+CharacterDied((CHARACTERGUID)_Var1)
+AND
+DB_IsPlayer(_Var1)
+AND
+ObjectGetFlag(_Var1, "ARX_Neighborhood_TheFence_KillPlayer", 1)
+AND
+GetPosition(_Var1, _Var2, _Var3, _Var4)
+AND
+CharacterGetReservedUserID(_Var1, _Var5)
+THEN
+LeaveParty(_Var5);
+PlayEffectAtPosition("RS3_FX_GP_ScriptedEvent_Teleport_GenericSmoke_02", _Var2, _Var3, _Var4);
+CharacterDetachFromGroup(_Var1);
+TeleportTo(_Var1, TRIGGERGUID_S_ARX_Neighborhood_TheFence_PlayerDeath_5b70fc0b-86d8-442b-9571-ebdc5598abab);
+
+IF
+ObjectFlagSet("ARX_Neighborhood_TheFence_KillPlayer", (GUIDSTRING)_Var1, _)
+THEN
+CrimeAreaSetTensionModifier(TRIGGERGUID_S_ARX_CrimeAreaTrigger_Neighborhood_TheFence_Basement_d531cbc2-92ed-466c-a525-94cdcc0afe40, 4);
+
+PROC
+Proc_ARX_Neighborhood_TheFence_GotLoan_SetUpdate((CHARACTERGUID)_Var1)
+AND
+IsTagged(_Var1, "UNDEAD", 1)
+THEN
+UserSetFlag(_Var1, "QuestUpdate_ARX_Neighborhood_TheFence_GotLoan_Undead");
+
+PROC
+Proc_ARX_Neighborhood_TheFence_GotLoan_SetUpdate((CHARACTERGUID)_Var1)
+AND
+IsTagged(_Var1, "UNDEAD", 0)
+THEN
+UserSetFlag(_Var1, "QuestUpdate_ARX_Neighborhood_TheFence_GotLoan");
+
+IF
+ObjectFlagSet("ARX_Neighborhood_TheFence_Player_HasPlayerVail", (CHARACTERGUID)_Var1, (INTEGER)_Var2)
+AND
+PartyGetFlag(_Var1, "ARX_Neighborhood_TheFence_PlayerIsInDebt", 1)
+THEN
+ObjectSetFlag(_Var1, "QuestUpdate_ARX_Neighborhood_TheFence_TookBackMyVial");
+
+IF
+CharacterUsedItem((CHARACTERGUID)_Var1, ITEMGUID_S_ARX_Neighborhood_TheFence_BloodVial_Cuboard_6d3a39ca-cd76-4fb6-b766-6ef71fb06a96)
+AND
+ItemIsLocked(ITEMGUID_S_ARX_Neighborhood_TheFence_BloodVial_Cuboard_6d3a39ca-cd76-4fb6-b766-6ef71fb06a96, 0)
+THEN
+ObjectSetFlag(_Var1, "QuestUpdate_ARX_Neighborhood_TheFence_FoundBloodCupboard");
+
+IF
+CharacterDied(CHARACTERGUID_S_ARX_Neighborhood_TheFence_973d85be-5756-4bf1-aae3-a2b06fcb2b31)
+AND
+DB_IsPlayer(_Var1)
+AND
+ObjectGetFlag(_Var1, "ARX_Neighborhood_TheFence_PlayerAcceptedLoan", 1)
+THEN
+ObjectSetFlag(_Var1, "QuestUpdate_ARX_Neighborhood_TheFence_DeadFence");
+
+IF
+DialogEnded("ARX_Neighborhood_TheFence_TimeToCollect", (INTEGER)_Var1)
+AND
+DialogGetInvolvedPlayer(_Var1, 1, _Var2)
+AND
+ObjectGetFlag(_Var2, "ARX_Neighborhood_TheFence_PlayerIsInDebt", 0)
+THEN
+ObjectSetFlag(_Var2, "QuestUpdate_ARX_Neighborhood_TheFence_TimeToPlay_Paid");
+
+IF
+DialogEnded("ARX_Neighborhood_TheFence_TimeToCollect", (INTEGER)_Var1)
+AND
+DialogGetInvolvedPlayer(_Var1, 1, _Var2)
+AND
+ObjectGetFlag(_Var2, "ARX_Neighborhood_TheFence_PlayerIsInDebt", 1)
+AND
+ObjectGetFlag(_Var2, "ARX_Neighborhood_TheFence_HasPlayerVail", 0)
+THEN
+ObjectSetFlag(_Var2, "QuestUpdate_ARX_Neighborhood_TheFence_TimeToPlay_DidntPaid_NoDeath");
+
+IF
+DialogEnded("ARX_Neighborhood_TheFence_TimeToCollect", (INTEGER)_Var1)
+AND
+DialogGetInvolvedPlayer(_Var1, 1, _Var2)
+AND
+ObjectGetFlag(_Var2, "ARX_Neighborhood_TheFence_PlayerIsInDebt", 1)
+AND
+ObjectGetFlag(_Var2, "ARX_Neighborhood_TheFence_HasPlayerVail", 1)
+THEN
+ObjectSetFlag(_Var2, "QuestUpdate_ARX_Neighborhood_TheFence_TimeToPlay_DidntPaid_Death");
+
+IF
+ObjectFlagSet("ARX_Neighborhood_TheFence_TimetoPlay_SetUpdate", (CHARACTERGUID)_Var1, _)
+AND
+ObjectGetFlag(_Var1, "ARX_Neighborhood_TheFence_HasPlayerVail", 0)
+THEN
+UserSetFlag(_Var1, "QuestUpdate_ARX_Neighborhood_TheFence_TimetoPlay_CantPay_NoDeath");
+
+IF
+ObjectFlagSet("ARX_Neighborhood_TheFence_TimetoPlay_SetUpdate", (CHARACTERGUID)_Var1, _)
+AND
+ObjectGetFlag(_Var1, "ARX_Neighborhood_TheFence_HasPlayerVail", 1)
+THEN
+UserSetFlag(_Var1, "QuestUpdate_ARX_Neighborhood_TheFence_TimetoPlay_CantPay_Death");
+
+IF
+TextEventSet("Debug_TheFence_AddVail")
+THEN
+ItemTemplateAddTo("QUEST_ARX_TheFence_VialOfBlood_28d4eebf-c6a1-4d9c-8c41-88f04fd92f11", ITEMGUID_S_ARX_Neighborhood_TheFence_BloodVial_Rack_01_c6861b45-81b2-4a8e-8bce-38b7b0a9ae70, 1);
+
+IF
+TextEventSet("Debug_TheFence_AddFlagToCuboard")
+THEN
+ObjectSetFlag(S_ARX_Neighborhood_TheFence_BloodVial_Cuboard_6d3a39ca-cd76-4fb6-b766-6ef71fb06a96, "ARX_Neighborhood_TheFence_HasPlayerVail");
+
+IF
+TextEventSet("ARX_Neighborhood_TheFence_TimeToCollect")
+THEN
+GlobalSetFlag("ARX_Neighborhood_TheFence_TimeToCollect");
+
+IF
+TextEventSet("Clear_ARX_Neighborhood_TheFence_TimeToCollect")
+THEN
+SetOnStage(S_ARX_Neighborhood_TheFence_973d85be-5756-4bf1-aae3-a2b06fcb2b31, 1);
+GlobalClearFlag("ARX_Neighborhood_TheFence_TimeToCollect");
+
+IF
+TextEventSet("ARX_TheFence_KillPlayer")
+AND
+CharacterGetReservedUserID(CHARACTERGUID_S_Player_Lohse_bb932b13-8ebf-4ab4-aac0-83e6924e4295, _Var1)
+THEN
+CharacterDetachFromGroup(CHARACTERGUID_S_Player_Lohse_bb932b13-8ebf-4ab4-aac0-83e6924e4295);
+LeaveParty(_Var1);
+TeleportToPosition(CHARACTERGUID_S_Player_Lohse_bb932b13-8ebf-4ab4-aac0-83e6924e4295, 50, 0, 0, "", 0);
+PROC_Origins_CompanionLeavePermanently(CHARACTERGUID_S_Player_Lohse_bb932b13-8ebf-4ab4-aac0-83e6924e4295);
+
+
+EXITSECTION
+ENDEXITSECTION
+
+ParentTargetEdge "ARX"

@@ -1,0 +1,85 @@
+Version 1
+SubGoalCombiner SGC_AND
+
+INITSECTION
+TriggerRegisterForCharacter(TRIGGERGUID_S_RC_DU_RiverInitationTrigger_fc2735f8-78e6-40a5-80a2-1e447de3271c, CHARACTERGUID_S_GLO_River_f4931ebe-10b0-43c4-9182-640cf052717e);
+
+KBSECTION
+IF
+CharacterLeftTrigger(CHARACTERGUID_S_GLO_River_f4931ebe-10b0-43c4-9182-640cf052717e, TRIGGERGUID_S_RC_DU_RiverInitationTrigger_fc2735f8-78e6-40a5-80a2-1e447de3271c)
+AND
+QRY_AnyRegionActive()
+THEN
+TriggerUnregisterForCharacter(TRIGGERGUID_S_RC_DU_RiverInitationTrigger_fc2735f8-78e6-40a5-80a2-1e447de3271c, CHARACTERGUID_S_GLO_River_f4931ebe-10b0-43c4-9182-640cf052717e);
+GlobalClearFlag("RC_DU_VL_EnableSpottingLogicRiver");
+GlobalSetFlag("RC_DU_VL_StopSpottingLogicRiver");
+
+IF
+StoryEvent((CHARACTERGUID)_Var1, "RC_DU_VL_StartRiverDialogue")
+AND
+ObjectGetFlag(CHARACTERGUID_S_GLO_River_f4931ebe-10b0-43c4-9182-640cf052717e, "RC_DU_VL_TalkedToRiver", 0)
+THEN
+Proc_RC_DU_VL_StartRiverDialogue(_Var1);
+
+PROC
+Proc_RC_DU_VL_StartRiverDialogue((CHARACTERGUID)_Var1)
+AND NOT
+QRY_RC_LV_Act2Intro_TryLohse()
+AND NOT
+QRY_RC_LV_Act2Intro_TryAnyAvatar()
+THEN
+DialogRequestStop(_Var1);
+ObjectSetFlag(CHARACTERGUID_S_GLO_River_f4931ebe-10b0-43c4-9182-640cf052717e, "RC_DU_VL_TalkedToRiver");
+ProcFaceEachother(_Var1, CHARACTERGUID_S_GLO_River_f4931ebe-10b0-43c4-9182-640cf052717e);
+Proc_StartDialog(0, "RC_DU_VL_River", CHARACTERGUID_S_GLO_River_f4931ebe-10b0-43c4-9182-640cf052717e, _Var1);
+
+QRY
+QRY_RC_LV_Act2Intro_TryLohse()
+AND
+DB_Avatars(CHARACTERGUID_S_Player_Lohse_bb932b13-8ebf-4ab4-aac0-83e6924e4295)
+AND
+QRY_SpeakerIsAvailableAndInDialogRange(CHARACTERGUID_S_Player_Lohse_bb932b13-8ebf-4ab4-aac0-83e6924e4295, CHARACTERGUID_S_GLO_River_f4931ebe-10b0-43c4-9182-640cf052717e)
+AND
+QRY_StartDialog(0, "RC_DU_VL_River", CHARACTERGUID_S_GLO_River_f4931ebe-10b0-43c4-9182-640cf052717e, CHARACTERGUID_S_Player_Lohse_bb932b13-8ebf-4ab4-aac0-83e6924e4295)
+THEN
+ObjectSetFlag(CHARACTERGUID_S_GLO_River_f4931ebe-10b0-43c4-9182-640cf052717e, "RC_DU_VL_TalkedToRiver");
+
+QRY
+QRY_RC_LV_Act2Intro_TryAnyAvatar()
+AND
+DB_Avatars(_Var1)
+AND
+QRY_SpeakerIsAvailableAndInDialogRange(_Var1, CHARACTERGUID_S_GLO_River_f4931ebe-10b0-43c4-9182-640cf052717e)
+AND
+QRY_StartDialog(0, "RC_DU_VL_River", CHARACTERGUID_S_GLO_River_f4931ebe-10b0-43c4-9182-640cf052717e, _Var1)
+THEN
+ObjectSetFlag(CHARACTERGUID_S_GLO_River_f4931ebe-10b0-43c4-9182-640cf052717e, "RC_DU_VL_TalkedToRiver");
+
+IF
+DialogEnded("RC_DU_VL_River", (INTEGER)_Var1)
+AND
+DB_DialogPlayers(_Var1, _Var2, 1)
+THEN
+PROC_GLO_River_AbortTeleportedAway();
+SetHasDialog(CHARACTERGUID_S_GLO_River_f4931ebe-10b0-43c4-9182-640cf052717e, 0);
+DB_BlockRiverAttackReaction(1);
+CharacterMoveTo(CHARACTERGUID_S_GLO_River_f4931ebe-10b0-43c4-9182-640cf052717e, TRIGGERGUID_RC_LV_Entrance_5d830273-0215-4be4-96ce-8a1122f01bb0, 0, "RC_LV_VL_RiverGoToBloodIsland", 0);
+
+IF
+StoryEvent(CHARACTERGUID_S_GLO_River_f4931ebe-10b0-43c4-9182-640cf052717e, "RC_LV_VL_RiverGoToBloodIsland")
+THEN
+TeleportTo(CHARACTERGUID_S_GLO_River_f4931ebe-10b0-43c4-9182-640cf052717e, TRIGGERGUID_RC_LV_Exit_07c3b04e-f9d4-469d-b498-d9dab649084a, "RC_LV_VL_RiverGoToBloodIsland_OnCoast", 0);
+ProcRemoveAllDialogEntriesForSpeaker(CHARACTERGUID_S_GLO_River_f4931ebe-10b0-43c4-9182-640cf052717e);
+SetVarFixedString(CHARACTERGUID_S_GLO_River_f4931ebe-10b0-43c4-9182-640cf052717e, "currentState", "");
+NOT DB_BlockRiverAttackReaction(1);
+
+IF
+StoryEvent(CHARACTERGUID_S_GLO_River_f4931ebe-10b0-43c4-9182-640cf052717e, "RC_LV_VL_RiverGoToBloodIsland_OnCoast")
+THEN
+CharacterDisappearOutOfSight(CHARACTERGUID_S_GLO_River_f4931ebe-10b0-43c4-9182-640cf052717e, 0, 0, "RC_LV_VL_RiverAtBloodIsland", 0);
+
+
+EXITSECTION
+ENDEXITSECTION
+
+ParentTargetEdge "ReapersCoast"

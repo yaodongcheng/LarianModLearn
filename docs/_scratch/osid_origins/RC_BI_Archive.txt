@@ -1,0 +1,75 @@
+Version 1
+SubGoalCombiner SGC_AND
+
+INITSECTION
+DB_ShovelArea(TRIGGERGUID_S_RC_BI_Archive_Dirtpile_Area_9b210f70-a0d5-4be5-9e55-3a1b9a39b44c, "RC_BI_Archive_Dirtpile", ITEMGUID_S_RC_BI_Archive_Dirtpile_bf0555ad-49d5-4082-8cda-580c882295ad);
+DB_ShovelRewardItemAppear("RC_BI_Archive_Dirtpile", ITEMGUID_S_RC_BI_Archive_Hatch_50bb86d9-3342-4922-ab4f-5bb89503b458, TRIGGERGUID_S_RC_BI_Archive_Dirtpile_Point_cfe770cd-e76a-434a-b50e-32f6803a90a3);
+DB_Ghosts(CHARACTERGUID_S_RC_BI_Archivist_4832213e-5d2b-4c74-b6c0-1eda942a942d, S_RC_BI_Archive_Ghost_414739cb-bc1b-405a-ae7a-2c4488e8aad2, "RC_BI_Archive_Ghost");
+ProcTriggerRegisterForPlayers(TRIGGERGUID_S_RC_Archive_Area_4ddfdb27-9559-459e-93e9-4a28a789cd39);
+ProcTriggerRegisterForPlayers(TRIGGERGUID_S_RC_BI_Archive_EntranceSearch_e046dd5e-935b-492b-abd7-d2fc12138149);
+
+KBSECTION
+IF
+CharacterEnteredTrigger((CHARACTERGUID)_Var1, TRIGGERGUID_S_RC_BI_Archive_EntranceSearch_e046dd5e-935b-492b-abd7-d2fc12138149)
+AND
+ObjectIsOnStage(ITEMGUID_S_RC_BI_Archive_Hatch_50bb86d9-3342-4922-ab4f-5bb89503b458, 0)
+AND
+UserGetFlag(_Var1, "QuestUpdate_RC_BI_TheTruth_ArchiveLocated", 1)
+AND
+UserGetFlag(_Var1, "RC_BI_Archive_SawEntrance", 0)
+THEN
+UserSetFlag(_Var1, "RC_BI_Archive_SawEntrance");
+StartVoiceBark("RC_BI_VB_DiscoverArchiveEntrance", _Var1);
+
+IF
+GameBookInterfaceClosed(ITEMGUID_S_RC_BI_Archive_Document_Sourcerer_30534651-6c6d-492e-bd45-aadb5e830100, (CHARACTERGUID)_Var1)
+THEN
+PartySetFlag(_Var1, "QuestUpdate_RC_BI_TheTruth_FoundOutTreesName");
+
+IF
+GameBookInterfaceClosed(ITEMGUID_S_RC_BI_Archive_Document_Vault_001_cf094a5e-2f65-462b-beac-6d474f6baef9, (CHARACTERGUID)_Var1)
+THEN
+ObjectSetFlag(_Var1, "QuestUpdate_RC_BI_TheVaults_LearnedAboutVaults");
+ProcShowMarker(_Var1, "RC_BI_Vault_001");
+
+IF
+GameBookInterfaceClosed(ITEMGUID_S_RC_BI_Archive_Document_Vault_002_c81c2e3a-e90d-4f82-9b87-6f1aee7392f0, (CHARACTERGUID)_Var1)
+THEN
+ObjectSetFlag(_Var1, "QuestUpdate_RC_BI_TheVaults_LearnedAboutVaults");
+ProcShowMarker(_Var1, "RC_BI_Vault_002");
+
+IF
+GameBookInterfaceClosed(ITEMGUID_S_RC_BI_Archive_Document_Vault_003_bb47a298-9abf-40c2-ab01-92c4883c6aee, (CHARACTERGUID)_Var1)
+THEN
+ObjectSetFlag(_Var1, "QuestUpdate_RC_BI_TheVaults_LearnedAboutVaults");
+ProcShowMarker(_Var1, "RC_BI_Vault_003");
+
+IF
+GameBookInterfaceClosed(ITEMGUID_S_RC_BI_Archive_Document_Vault_004_5fe49af0-8793-4af8-b446-6848f49c9022, (CHARACTERGUID)_Var1)
+THEN
+ObjectSetFlag(_Var1, "QuestUpdate_RC_BI_TheVaults_LearnedAboutVaults");
+
+IF
+ObjectFlagSet("RC_BI_ArchiveMarker", (CHARACTERGUID)_Var1, _)
+THEN
+ProcShowMarker(_Var1, "RC_BI_Archive");
+ProcSetPerceptionDifficulty(ITEMGUID_S_RC_BI_Archive_Dirtpile_bf0555ad-49d5-4082-8cda-580c882295ad, "Trivial");
+
+IF
+ObjectFlagSet("QuestUpdate_RC_BI_TheTruth_ArchiveKnown", (GUIDSTRING)_Var1, _)
+THEN
+ProcSetPerceptionDifficulty(ITEMGUID_S_RC_BI_Archive_Dirtpile_bf0555ad-49d5-4082-8cda-580c882295ad, "Trivial");
+
+IF
+CharacterEnteredTrigger((CHARACTERGUID)_Var1, TRIGGERGUID_S_RC_Archive_Area_4ddfdb27-9559-459e-93e9-4a28a789cd39)
+AND
+UserGetFlag(_Var1, "QuestUpdate_RC_BI_TheTruth_ArchiveDiscovered", 0)
+THEN
+UserSetFlag(_Var1, "QuestUpdate_RC_BI_TheTruth_ArchiveDiscovered");
+StartVoiceBark("RC_BI_VB_DiscoverArchive", _Var1);
+
+
+EXITSECTION
+ENDEXITSECTION
+
+ParentTargetEdge "ReapersCoast"

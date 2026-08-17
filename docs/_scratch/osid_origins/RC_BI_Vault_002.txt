@@ -1,0 +1,91 @@
+Version 1
+SubGoalCombiner SGC_AND
+
+INITSECTION
+Proc_RegisterPartyDecisionDialogOutcomes_Fixed("RC_BI_PDD_Vault_Possessed_002", "RC_BI_PDD_Vault_Possessed_Keep", "RC_BI_PDD_Vault_Possessed_Leave", "", "", "");
+Transform(S_RC_BI_Vault_Lever_002_ae44746c-a239-4654-bd5b-fbc7eb204c3f, "QUEST_VaultLever_Repaired_42d170f8-5798-4b8d-994f-b987f522ec52", 1);
+ObjectSetFlag(S_RC_BI_Vault_Lever_002_ae44746c-a239-4654-bd5b-fbc7eb204c3f, "RC_BI_Vault_Repaired", 1);
+ObjectSetFlag(S_RC_BI_Vault_Ghost_002_b5697652-50a0-4db5-a195-9584b56f7c81, "RC_BI_Vault_Repaired", 1);
+DB_Children(CHARACTERGUID_S_RC_BI_Vault_PosessedPerson_002_1bfd9e78-846f-4f24-82db-6ebb48ddc203);
+ProcSetInvulnerable(CHARACTERGUID_S_RC_BI_Vault_PosessedPerson_002_1bfd9e78-846f-4f24-82db-6ebb48ddc203, 1);
+ProcCharacterDisableAllCrimes(CHARACTERGUID_S_RC_BI_Vault_PosessedPerson_002_1bfd9e78-846f-4f24-82db-6ebb48ddc203);
+CharacterSetCanTrade(CHARACTERGUID_S_RC_BI_Vault_PosessedPerson_002_1bfd9e78-846f-4f24-82db-6ebb48ddc203, 0);
+
+KBSECTION
+IF
+DB_Sees(_Var1, CHARACTERGUID_S_RC_BI_Vault_PosessedPerson_002_1bfd9e78-846f-4f24-82db-6ebb48ddc203)
+AND
+DB_Sees(_Var1, CHARACTERGUID_S_RC_BI_Vault_Cat_de900e03-eb64-4515-a2f6-7be33c72f7a1)
+THEN
+ObjectSetFlag(_Var1, "QuestUpdate_RC_BI_TheVaultKid_KidMet");
+
+IF
+DB_RC_BI_Vault_Pillars_Count(CHARACTERGUID_S_RC_BI_Vault_PosessedPerson_002_1bfd9e78-846f-4f24-82db-6ebb48ddc203, 0, _)
+THEN
+ObjectSetFlag(CHARACTERGUID_S_RC_BI_Vault_PosessedPerson_002_1bfd9e78-846f-4f24-82db-6ebb48ddc203, "RC_BI_Vault_002_KidReleased");
+
+IF
+DialogStartRequested(CHARACTERGUID_S_RC_BI_Vault_PosessedPerson_002_1bfd9e78-846f-4f24-82db-6ebb48ddc203, (GUIDSTRING)_Var1)
+AND
+ObjectGetFlag(_Var1, "RC_BI_Vault_002_CatPersuaded", 0)
+AND
+CharacterIsDead(CHARACTERGUID_S_RC_BI_Vault_Cat_de900e03-eb64-4515-a2f6-7be33c72f7a1, 0)
+THEN
+DialogRequestStop(_Var1);
+Proc_StartDialog(0, "RC_BI_Vault_Cat", CHARACTERGUID_S_RC_BI_Vault_Cat_de900e03-eb64-4515-a2f6-7be33c72f7a1, _Var1);
+
+IF
+DialogEnded("RC_BI_Vault_Possessed_002", _)
+AND
+ObjectGetFlag(CHARACTERGUID_S_RC_BI_Vault_PosessedPerson_002_1bfd9e78-846f-4f24-82db-6ebb48ddc203, "RC_BI_Vault_002_Join", 1)
+AND
+QueryOnlyOnce("RC_BI_Vault_PossessedKid_GoToLV")
+THEN
+PROC_LoopEffect("RS3_FX_Skills_Spirits_Resurrect_Target", CHARACTERGUID_S_RC_BI_Vault_PosessedPerson_002_1bfd9e78-846f-4f24-82db-6ebb48ddc203, "RC_BI_KidTeleport", "RC_Main", "");
+SetHasDialog(CHARACTERGUID_S_RC_BI_Vault_PosessedPerson_002_1bfd9e78-846f-4f24-82db-6ebb48ddc203, 0);
+RemoveHarmfulStatuses(CHARACTERGUID_S_RC_BI_Vault_PosessedPerson_002_1bfd9e78-846f-4f24-82db-6ebb48ddc203);
+ProcObjectTimer(CHARACTERGUID_S_RC_BI_Vault_PosessedPerson_002_1bfd9e78-846f-4f24-82db-6ebb48ddc203, "RC_BI_KidTeleport_1", 2000);
+
+PROC
+ProcObjectTimerFinished(CHARACTERGUID_S_RC_BI_Vault_PosessedPerson_002_1bfd9e78-846f-4f24-82db-6ebb48ddc203, "RC_BI_KidTeleport_1")
+AND
+GetPosition(CHARACTERGUID_S_RC_BI_Vault_PosessedPerson_002_1bfd9e78-846f-4f24-82db-6ebb48ddc203, _Var1, _Var2, _Var3)
+THEN
+PlayEffectAtPosition("RS3_FX_GP_ScriptedEvent_Replenish_SourcePoint_01", _Var1, _Var2, _Var3);
+CharacterAppearOutOfSightTo(CHARACTERGUID_S_RC_BI_Vault_PosessedPerson_002_1bfd9e78-846f-4f24-82db-6ebb48ddc203, TRIGGERGUID_S_GLO_LV_PossessedKid_Point_077ccfeb-20c3-4f98-a329-f9bc6042554b, 90, 0, "RC_BI_PossessedKidToLV");
+SetHasDialog(CHARACTERGUID_S_RC_BI_Vault_PosessedPerson_002_1bfd9e78-846f-4f24-82db-6ebb48ddc203, 1);
+TimerLaunch("RC_BI_KidTeleport_2", 3000);
+
+IF
+TimerFinished("RC_BI_KidTeleport_2")
+THEN
+PROC_StopLoopEffect(CHARACTERGUID_S_RC_BI_Vault_PosessedPerson_002_1bfd9e78-846f-4f24-82db-6ebb48ddc203, "RC_BI_KidTeleport");
+
+IF
+CharacterReceivedDamage(CHARACTERGUID_S_RC_BI_Vault_Cat_de900e03-eb64-4515-a2f6-7be33c72f7a1, _, _)
+THEN
+SetFaction(CHARACTERGUID_S_RC_BI_Vault_Cat_de900e03-eb64-4515-a2f6-7be33c72f7a1, "Evil NPC");
+
+IF
+ObjectFlagSet("QuestUpdate_RC_BI_TheVaults_TookKid", (GUIDSTRING)_Var1, _)
+THEN
+ObjectSetFlag(CHARACTERGUID_S_RC_BI_Vault_Cat_de900e03-eb64-4515-a2f6-7be33c72f7a1, "RC_BI_TheVaults_TookKid");
+
+IF
+CharacterLeftTrigger((CHARACTERGUID)_Var1, S_RC_BI_Vault_Area_002_58f8c677-8c3a-4bb9-ac19-673d1635f72c)
+AND
+QRY_AnyRegionActive()
+AND
+ObjectGetFlag(CHARACTERGUID_S_RC_BI_Vault_Cat_de900e03-eb64-4515-a2f6-7be33c72f7a1, "RC_BI_TheVaults_TookKid", 1)
+AND
+ObjectIsOnStage(CHARACTERGUID_S_RC_BI_Vault_Cat_de900e03-eb64-4515-a2f6-7be33c72f7a1, 1)
+AND NOT
+DB_InRegion(_, S_RC_BI_Vault_Area_002_58f8c677-8c3a-4bb9-ac19-673d1635f72c)
+THEN
+SetOnStage(CHARACTERGUID_S_RC_BI_Vault_Cat_de900e03-eb64-4515-a2f6-7be33c72f7a1, 0);
+
+
+EXITSECTION
+ENDEXITSECTION
+
+ParentTargetEdge "ReapersCoast"

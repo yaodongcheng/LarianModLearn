@@ -1,0 +1,69 @@
+Version 1
+SubGoalCombiner SGC_AND
+
+INITSECTION
+
+KBSECTION
+IF
+TimerFinished("TUT_BreakCrate")
+AND
+QueryOnlyOnce("TUT_OriginsGetUp")
+AND
+QRY_TUT_AnyRescueOriginNPCAlive()
+THEN
+GlobalSetFlag("TUT_OriginsWokenUp");
+DB_TUT_OriginWakeUpRandom(1);
+DB_TUT_OriginWakeUpRandomOffset(0);
+PROC_TUT_WakeUpOrigins();
+
+PROC
+PROC_TUT_WakeUpOrigins()
+AND
+DB_TUT_OriginsToRescue(_Var1)
+AND
+DB_TUT_LowerDeck_WindegoKnockedDown(_Var1)
+AND NOT
+DB_Dead(_Var1)
+AND NOT
+DB_TUT_OriginWokenUp(_Var1)
+AND
+DB_TUT_OriginWakeUpRandom(_Var2)
+AND
+DB_TUT_OriginWakeUpRandomOffset(_Var3)
+AND
+Random(_Var2, _Var4)
+AND
+IntegerSum(_Var2, _Var4, _Var5)
+THEN
+DB_TUT_OriginWokenUp(_Var1);
+ProcObjectTimer(_Var1, "TUT_LowerDeck_OriginGetUp", _Var5);
+NOT DB_TUT_OriginWakeUpRandom(_Var2);
+NOT DB_TUT_OriginWakeUpRandomOffset(_Var3);
+DB_TUT_OriginWakeUpRandom(3000);
+DB_TUT_OriginWakeUpRandomOffset(500);
+ProcForceStopDialog(_Var1);
+
+PROC
+ProcObjectTimerFinished((CHARACTERGUID)_Var1, "TUT_LowerDeck_OriginGetUp")
+THEN
+SetVarInteger(_Var1, "CanSpeak", 1);
+PROC_TUT_RemoveWindegoKnockDownEffects(_Var1);
+Proc_StartDialog(1, "TUT_AD_LowerDeck_OriginsWakeUpAfterWindego", _Var1);
+
+PROC
+ProcRegionEnded("TUT_Tutorial_A")
+AND
+DB_OriginRecruitmentLocation_Region("TUT_Tutorial_A", _Var1, _, _)
+THEN
+SetVarInteger(_Var1, "CanSpeak", 1);
+
+PROC
+ProcRegionEnded("TUT_Tutorial_A")
+THEN
+GoalCompleted;
+
+
+EXITSECTION
+ENDEXITSECTION
+
+ParentTargetEdge "TUT_LowerDeck"

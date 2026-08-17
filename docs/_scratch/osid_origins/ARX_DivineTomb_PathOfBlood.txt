@@ -1,0 +1,529 @@
+Version 1
+SubGoalCombiner SGC_AND
+
+INITSECTION
+DB_Dialogs(ITEMGUID_S_ARX_Cathedral_DivineTomb_PoB_LucianStatue_f6ea9ac6-851d-c9f2-c82e-1867f4c3e461, "ARX_Cathedral_DivineTomb_PoB_LucianStatue");
+DB_OneShot_VoiceBarkTrigger(TRIGGERGUID_S_ARX_Cathedral_DivineTomb_PoB_DivineStatueVB_Box_ec070412-568c-42d7-8f9b-04a76fb34c2b, "ARX_VB_Cathedral_DivineTomb_PoB_DivineStatue");
+ProcTriggerRegisterForPlayers(TRIGGERGUID_S_ARX_Cathedral_DivineTomb_PoB_Room_Box_6c22bc88-0738-4688-8cf6-5a68b7d2faa7);
+ProcTriggerRegisterForPlayers(TRIGGERGUID_S_ARX_Cathedral_DivineTomb_PoB_CloseDoor_Poly_de035de8-bf1c-4ae8-bf8d-989815c9dc44);
+ProcTriggerRegisterForPlayers(TRIGGERGUID_S_ARX_Cathedral_DivineTomb_PoB_Button_Box_13a913ae-5ce1-4eef-a72e-7474c571e31b);
+Proc_ARX_DivineTomb_PoB_CheckResetLocks();
+DB_ARX_Cathedral_DivineTomb_PoB_Amulets(ITEMGUID_S_ARX_CreepyCraftsman_SourceAmulet_f9c139b9-bb0f-4027-b8a4-806df5336fd2, "ARX_CreepyCraftsman_Has_SourceAmulet", "ARX_DivineTomb_PoB_FullCreepyAmulet", "ARX_DivineTomb_PoB_InsertedCreepyAmulet");
+DB_Ghosts(CHARACTERGUID_S_ARX_Cathedral_PoB_DeadPilgrim_000_5b80fb8f-278f-4a36-889e-222ab2b9aff8, CHARACTERGUID_S_ARX_Cathedral_PoB_DeadPilgrim_Ghost_000_6c18cafe-362e-4d68-b09e-4211c898d168, "ARX_Cathedral_DivineTomb_PoB_Ghost_000");
+DB_Ghosts(CHARACTERGUID_S_ARX_Cathedral_PoB_DeadPilgrim_001_b90d4b4c-fd71-4ad1-93ca-a690cd08c151, CHARACTERGUID_S_ARX_Cathedral_PoB_DeadPilgrim_Ghost_001_a6b00f0a-d238-48d6-9f13-09619816c4da, "ARX_Cathedral_DivineTomb_PoB_Ghost_001");
+DB_Ghosts(CHARACTERGUID_S_ARX_Cathedral_PoB_DeadPilgrim_002_c8070e30-430a-46a5-892f-c11ed841492b, CHARACTERGUID_S_ARX_Cathedral_PoB_DeadPilgrim_Ghost_002_2109e053-93ac-460c-aace-3634f8628674, "ARX_Cathedral_DivineTomb_PoB_Ghost_002");
+DB_Ghosts(CHARACTERGUID_S_ARX_Cathedral_PoB_DeadPilgrim_003_3d98bd57-7a24-4905-8810-7b9ff4b8109a, CHARACTERGUID_S_ARX_Cathedral_PoB_DeadPilgrim_Ghost_003_09cd47d0-8b22-4d91-8dbc-343bf739f35e, "ARX_Cathedral_DivineTomb_PoB_Ghost_003");
+DB_Ghosts(CHARACTERGUID_S_ARX_Cathedral_PoB_DeadPilgrim_004_4a586b2b-fe66-4a9b-867a-f29ee1be9faf, CHARACTERGUID_S_ARX_Cathedral_PoB_DeadPilgrim_Ghost_004_12f37b6d-5040-477e-ac18-4d19f9dc2d13, "ARX_Cathedral_DivineTomb_PoB_Ghost_004");
+DB_ARX_PoB_PassingFlags("ARX_Cathedral_DivineTomb_PoB_PartyMemberAccepted");
+DB_ARX_PoB_PassingFlags("ARX_DivineTomb_BypassedPathOfBlood");
+DB_ARX_PoB_LearnTrickAmulet("ARX_CreepyCraftsman_ConvincedToRevealAmulet");
+DB_ARX_PoB_LearnTrickAmulet("QuestUpdate_ARX_HuntingForDallis_LearnedFromArhu");
+DB_ARX_PoB_LearnTrickAmulet("QuestUpdate_ARX_HuntingForDallis_LearnedFromArhusGhost");
+
+KBSECTION
+PROC
+Proc_ARX_DivineTomb_PoB_CheckResetLocks()
+AND
+Qry_ARX_DivineTomb_PoB_AnyPurePlayerInPoB()
+THEN
+Proc_ARX_DivineTomb_PoB_ResetLocks();
+
+PROC
+Proc_ARX_DivineTomb_PoB_CheckResetLocks()
+AND NOT
+Qry_ARX_DivineTomb_PoB_AnyPurePlayerInPoB()
+AND NOT
+Qry_ARX_DivineTomb_PoB_AnyAlivePlayerInPoB()
+THEN
+Proc_ARX_DivineTomb_PoB_ResetLocks();
+
+PROC
+Proc_ARX_DivineTomb_PoB_ResetLocks()
+AND
+ItemIsClosed(ITEMGUID_S_ARX_Cathedral_DivineTomb_PoB_Door_313635ac-5ab3-4906-8dcf-21296bf8ba04, 1)
+THEN
+PlaySound(ITEMGUID_S_ARX_Cathedral_DivineTomb_PoB_Door_313635ac-5ab3-4906-8dcf-21296bf8ba04, "SE_ARX_Path_Of_Blood_Door_Open");
+
+PROC
+Proc_ARX_DivineTomb_PoB_ResetLocks()
+THEN
+ItemUnlockAndOpen(ITEMGUID_S_ARX_Cathedral_DivineTomb_PoB_Door_313635ac-5ab3-4906-8dcf-21296bf8ba04);
+
+QRY
+Qry_ARX_DivineTomb_PoB_AnyAlivePlayerInPoB()
+AND
+DB_IsPlayer(_Var1)
+AND
+CharacterIsDead(_Var1, 0)
+AND
+DB_InRegion(_Var1, TRIGGERGUID_S_ARX_Cathedral_DivineTomb_PoB_Room_Box_6c22bc88-0738-4688-8cf6-5a68b7d2faa7)
+THEN
+DB_NOOP(1);
+
+QRY
+Qry_ARX_DivineTomb_PoB_AnyPurePlayerInPoB()
+AND
+DB_IsPlayer(_Var1)
+AND
+ObjectGetFlag(_Var1, "ARX_Cathedral_DivineTomb_PoB_Accepted", 1)
+AND
+DB_InRegion(_Var1, TRIGGERGUID_S_ARX_Cathedral_DivineTomb_PoB_Room_Box_6c22bc88-0738-4688-8cf6-5a68b7d2faa7)
+THEN
+DB_NOOP(1);
+
+IF
+CharacterEnteredTrigger((CHARACTERGUID)_Var1, TRIGGERGUID_S_ARX_Cathedral_DivineTomb_PoB_CloseDoor_Poly_de035de8-bf1c-4ae8-bf8d-989815c9dc44)
+THEN
+Proc_ARX_DivineTomb_PoB_CloseDoor(_Var1);
+
+IF
+CharacterResurrected((CHARACTERGUID)_Var1)
+AND
+DB_InRegion(_Var1, TRIGGERGUID_S_ARX_Cathedral_DivineTomb_PoB_Room_Box_6c22bc88-0738-4688-8cf6-5a68b7d2faa7)
+THEN
+Proc_ARX_DivineTomb_PoB_CloseDoor(_Var1);
+
+PROC
+Proc_ARX_DivineTomb_PoB_CloseDoor((CHARACTERGUID)_Var1)
+AND NOT
+Qry_ARX_DivineTomb_PoB_AnyPurePlayerInPoB()
+AND
+ItemIsOpened(ITEMGUID_S_ARX_Cathedral_DivineTomb_PoB_Door_313635ac-5ab3-4906-8dcf-21296bf8ba04, 1)
+THEN
+ItemCloseAndLock(ITEMGUID_S_ARX_Cathedral_DivineTomb_PoB_Door_313635ac-5ab3-4906-8dcf-21296bf8ba04, "NO_KEY");
+PlaySound(ITEMGUID_S_ARX_Cathedral_DivineTomb_PoB_Door_313635ac-5ab3-4906-8dcf-21296bf8ba04, "SE_ARX_Path_Of_Blood_Door_Close");
+Proc_ARX_DivineTomb_PoB_CloseDoorReaction(_Var1);
+
+PROC
+Proc_ARX_DivineTomb_PoB_CloseDoorReaction((CHARACTERGUID)_Var1)
+AND
+DB_IsPlayer(_Var1)
+THEN
+PartySetFlag(_Var1, "QuestUpdate_ARX_HuntingForDallis_EnterPoB");
+
+PROC
+Proc_ARX_DivineTomb_PoB_CloseDoorReaction((CHARACTERGUID)_Var1)
+AND
+DB_IsPlayer(_Var1)
+AND
+UserGetFlag(_Var1, "ARX_Cathedral_DivineTomb_EnteredPathOfBlood", 0)
+THEN
+UserSetFlag(_Var1, "ARX_Cathedral_DivineTomb_EnteredPathOfBlood");
+Proc_StartDialog(1, "ARX_AD_Cathedral_DivineTomb_PoB_DoorCloses", _Var1);
+
+IF
+CharacterLeftTrigger((CHARACTERGUID)_Var1, TRIGGERGUID_S_ARX_Cathedral_DivineTomb_PoB_Room_Box_6c22bc88-0738-4688-8cf6-5a68b7d2faa7)
+THEN
+Proc_ARX_DivineTomb_PoB_CheckResetLocks();
+
+IF
+CharacterDied((CHARACTERGUID)_Var1)
+AND
+DB_InRegion(_Var1, TRIGGERGUID_S_ARX_Cathedral_DivineTomb_PoB_Room_Box_6c22bc88-0738-4688-8cf6-5a68b7d2faa7)
+THEN
+Proc_ARX_DivineTomb_PoB_CheckResetLocks();
+
+IF
+GlobalFlagSet("ARX_DivineTomb_PoB_UnlockHatch")
+THEN
+GlobalClearFlag("ARX_DivineTomb_PoB_UnlockHatch");
+Proc_ARX_DivineTomb_PoB_OpenHatch();
+
+IF
+ObjectFlagSet("ARX_Catherdral_PoB_PlayCameraSpline", (CHARACTERGUID)_Var1, _)
+THEN
+FadeToBlack(_Var1, 0.2, 0, "ARX_Catherdral_PoB_PlayCameraSpline_Fade");
+DB_ARX_Catherdral_PoB_PlayCameraSpline_Fade(_Var1);
+
+IF
+FadeOutDone(_, "ARX_Catherdral_PoB_PlayCameraSpline_Fade")
+AND
+DB_ARX_Catherdral_PoB_PlayCameraSpline_Fade(_Var2)
+THEN
+FadeToBlack(_Var2, 0.2, 1, "");
+StartCameraSpline(SPLINEGUID_S_ARX_Cathedral_DivineTomb_PoB_CameraSpline_feb38ac2-cf8f-4b0d-9692-ead2f44f83a3, _Var2, 0, 0, 1, 0);
+DB_ARX_Cathedral_DivineTomb_PoB_PlayerInCameraSpline(_Var2);
+NOT DB_ARX_Catherdral_PoB_PlayCameraSpline_Fade(_Var2);
+
+PROC
+Proc_ARX_DivineTomb_PoB_OpenHatch()
+THEN
+ItemUnlockAndOpen(ITEMGUID_S_ARX_Cathedral_DivineTomb_PoB_Hatch_59a3160e-b322-4426-b244-6e586611ebe2);
+
+IF
+DialogEnded("ARX_Cathedral_DivineTomb_PoB_LucianStatue", _)
+AND
+DB_ARX_Cathedral_DivineTomb_PoB_PlayerInCameraSpline(_Var2)
+THEN
+StopCameraSpline(SPLINEGUID_S_ARX_Cathedral_DivineTomb_PoB_CameraSpline_feb38ac2-cf8f-4b0d-9692-ead2f44f83a3, _Var2);
+NOT DB_ARX_Cathedral_DivineTomb_PoB_PlayerInCameraSpline(_Var2);
+
+PROC
+Proc_ARX_DivineTomb_PoB_OpenHatch()
+AND
+QueryOnlyOnce("ARX_DT_PoB_RevealHatch")
+THEN
+SetStoryEvent(ITEMGUID_S_ARX_Cathedral_DivineTomb_PoB_Hatch_59a3160e-b322-4426-b244-6e586611ebe2, "StoryReveal");
+PlaySound(ITEMGUID_S_ARX_Cathedral_DivineTomb_PoB_Hatch_59a3160e-b322-4426-b244-6e586611ebe2, "SE_ARX_Cathedral_DivineTomb_PoB_HatchButton_Hatch");
+DB_ARX_Cathedral_DivineTomb_PoB_OpenedHatch(1);
+
+PROC
+ProcBlockUseOfItem((CHARACTERGUID)_Var1, ITEMGUID_S_ARX_Cathedral_DivineTomb_PoB_Door_313635ac-5ab3-4906-8dcf-21296bf8ba04)
+AND
+ItemIsOpened(ITEMGUID_S_ARX_Cathedral_DivineTomb_PoB_Door_313635ac-5ab3-4906-8dcf-21296bf8ba04, 1)
+THEN
+DB_CustomUseItemResponse(_Var1, ITEMGUID_S_ARX_Cathedral_DivineTomb_PoB_Door_313635ac-5ab3-4906-8dcf-21296bf8ba04, 0);
+Proc_StartDialog(1, "ARX_AD_Cathedral_DivineTomb_PoB_BlockedDoor", _Var1);
+
+IF
+CharacterEnteredTrigger((CHARACTERGUID)_Var1, TRIGGERGUID_S_ARX_Cathedral_DivineTomb_PoB_Button_Box_13a913ae-5ce1-4eef-a72e-7474c571e31b)
+AND
+ObjectGetFlag(_Var1, "ARX_CreepyCraftsman_PlayerKnowsCathedralSecret", 1)
+THEN
+SetStoryEvent(ITEMGUID_S_ARX_Cathedral_DivineTomb_PoB_HatchButton_37ce22bc-c3b2-4cf9-95da-ae9fd79ff909, "StoryReveal");
+StartVoiceBark("ARX_VB_DivineTomb_PoB_RevealSecretButton", _Var1);
+
+IF
+CharacterUsedItem((CHARACTERGUID)_Var1, ITEMGUID_S_ARX_Cathedral_DivineTomb_PoB_HatchButton_37ce22bc-c3b2-4cf9-95da-ae9fd79ff909)
+THEN
+Proc_StartDialog(0, "ARX_Cathedral_DivineTomb_PoB_SecretButton", ITEMGUID_S_ARX_Cathedral_DivineTomb_PoB_HatchButton_37ce22bc-c3b2-4cf9-95da-ae9fd79ff909, _Var1);
+
+IF
+DialogStarted("ARX_Cathedral_DivineTomb_PoB_SecretButton", (INTEGER)_Var1)
+AND
+DB_DialogPlayers(_Var1, _Var2, _)
+THEN
+Proc_ARX_DivineTomb_PoB_SetAmuletChargesFlag(_Var2);
+
+PROC
+Proc_ARX_DivineTomb_PoB_SetAmuletChargesFlag((CHARACTERGUID)_Var1)
+AND
+DB_ARX_Cathedral_DivineTomb_PoB_Amulets(_Var2, _Var3, _Var4, _)
+AND
+ObjectGetFlag(_Var1, _Var3, 1)
+AND
+ObjectGetFlag(_Var2, "GLO_SourceAmuletIsFull", 1)
+THEN
+ObjectSetFlag(_Var1, _Var4);
+
+IF
+DialogEnded("ARX_Cathedral_DivineTomb_PoB_SecretButton", (INTEGER)_Var1)
+AND
+DB_DialogPlayers(_Var1, _Var2, _)
+AND
+DB_ARX_Cathedral_DivineTomb_PoB_Amulets(_Var4, _Var5, _Var6, _)
+THEN
+ObjectClearFlag(_Var2, _Var6);
+
+IF
+DialogEnded("ARX_Cathedral_DivineTomb_PoB_SecretButton", (INTEGER)_Var1)
+THEN
+ObjectClearFlag(ITEMGUID_S_ARX_Cathedral_DivineTomb_PoB_HatchButton_37ce22bc-c3b2-4cf9-95da-ae9fd79ff909, "ARX_DivineTomb_PoB_HoldsEmptyAmulet");
+ObjectClearFlag(ITEMGUID_S_ARX_Cathedral_DivineTomb_PoB_HatchButton_37ce22bc-c3b2-4cf9-95da-ae9fd79ff909, "ARX_DivineTomb_PoB_HoldsFullAmulet");
+
+IF
+ObjectFlagSet((STRING)_Var1, (GUIDSTRING)_Var2, _)
+AND
+DB_ARX_Cathedral_DivineTomb_PoB_Amulets(_Var4, _Var5, _Var6, _Var1)
+THEN
+ItemDrop(_Var4);
+SetOnStage(_Var4, 0);
+DB_ARX_Cathedral_DivineTomb_PoB_AmuletInMechanism(1);
+ObjectClearFlag(_Var2, _Var1);
+DB_ARX_DivineTomb_PoB_AmuletToDrop(_Var4, _Var2);
+
+IF
+ObjectFlagSet("ARX_DivineTomb_PoB_HoldsFullAmulet", ITEMGUID_S_ARX_Cathedral_DivineTomb_PoB_HatchButton_37ce22bc-c3b2-4cf9-95da-ae9fd79ff909, _)
+THEN
+PROC_LoopEffect("RS3_FX_GP_ScriptedEvent_ARX_PoB_HatchButton_01", ITEMGUID_S_ARX_Cathedral_DivineTomb_PoB_HatchButton_37ce22bc-c3b2-4cf9-95da-ae9fd79ff909, "ARX_DivineTomb_PoB_GlowingButton", "__ANY__", "");
+DB_ARX_DivineTomb_PoB_ActiveEffect(1);
+
+IF
+ObjectFlagSet("ARX_Cathedral_DivineTomb_PoB_Accepted", _, (INTEGER)_Var2)
+AND
+IsSpeakerReserved(ITEMGUID_S_ARX_Cathedral_DivineTomb_PoB_Hatch_59a3160e-b322-4426-b244-6e586611ebe2, 0)
+THEN
+DialogAddActor(_Var2, ITEMGUID_S_ARX_Cathedral_DivineTomb_PoB_Hatch_59a3160e-b322-4426-b244-6e586611ebe2);
+
+IF
+ObjectFlagSet("ARX_DivineTomb_BypassedPathOfBlood", _, (INTEGER)_Var2)
+AND
+IsSpeakerReserved(ITEMGUID_S_ARX_Cathedral_DivineTomb_PoB_Hatch_59a3160e-b322-4426-b244-6e586611ebe2, 0)
+THEN
+DialogAddActor(_Var2, ITEMGUID_S_ARX_Cathedral_DivineTomb_PoB_Hatch_59a3160e-b322-4426-b244-6e586611ebe2);
+
+IF
+GlobalFlagSet("ARX_DivineTomb_PoB_DrainAmulet")
+THEN
+PlayEffect(ITEMGUID_S_ARX_Cathedral_DivineTomb_PoB_HatchButton_37ce22bc-c3b2-4cf9-95da-ae9fd79ff909, "RS3_FX_GP_ScriptedEvent_ARX_PoB_HatchButton_01_Consumed");
+Proc_CameraShakeAroundCharacter(ITEMGUID_S_ARX_Cathedral_DivineTomb_PoB_HatchButton_37ce22bc-c3b2-4cf9-95da-ae9fd79ff909, 2, 4);
+ItemAddCharges(ITEMGUID_S_ARX_CreepyCraftsman_SourceAmulet_f9c139b9-bb0f-4027-b8a4-806df5336fd2, -5);
+proc_SourceAmulet_AddSource(ITEMGUID_S_ARX_CreepyCraftsman_SourceAmulet_f9c139b9-bb0f-4027-b8a4-806df5336fd2, -5);
+
+IF
+GlobalFlagSet("ARX_DivineTomb_PoB_DrainAmulet")
+AND
+DB_ARX_DivineTomb_PoB_ActiveEffect(1)
+THEN
+NOT DB_ARX_DivineTomb_PoB_ActiveEffect(1);
+PROC_StopLoopEffect(ITEMGUID_S_ARX_Cathedral_DivineTomb_PoB_HatchButton_37ce22bc-c3b2-4cf9-95da-ae9fd79ff909, "ARX_DivineTomb_PoB_GlowingButton");
+
+IF
+ObjectFlagCleared("ARX_DivineTomb_PoB_HoldsFullAmulet", ITEMGUID_S_ARX_Cathedral_DivineTomb_PoB_HatchButton_37ce22bc-c3b2-4cf9-95da-ae9fd79ff909, _)
+AND
+DB_ARX_DivineTomb_PoB_ActiveEffect(1)
+THEN
+NOT DB_ARX_DivineTomb_PoB_ActiveEffect(1);
+PROC_StopLoopEffect(ITEMGUID_S_ARX_Cathedral_DivineTomb_PoB_HatchButton_37ce22bc-c3b2-4cf9-95da-ae9fd79ff909, "ARX_DivineTomb_PoB_GlowingButton");
+
+IF
+DialogEnded("ARX_Cathedral_DivineTomb_PoB_SecretButton", (INTEGER)_Var1)
+AND
+DB_ARX_DivineTomb_PoB_AmuletToDrop(_Var2, _Var3)
+THEN
+NOT DB_ARX_Cathedral_DivineTomb_PoB_AmuletInMechanism(1);
+NOT DB_ARX_DivineTomb_PoB_AmuletToDrop(_Var2, _Var3);
+ItemToInventory(_Var2, _Var3);
+
+IF
+DialogEnded("ARX_Cathedral_DivineTomb_PoB_LucianStatue", (INTEGER)_Var1)
+AND
+DB_DialogPlayers(_Var1, _Var2, _)
+AND
+ObjectGetFlag(_Var2, "ARX_Cathedral_DivineTomb_PoB_Rejected", 1)
+THEN
+PlayEffect(_Var2, "RS3_FX_Skills_Voodoo_Target_Ground_01");
+PartySetFlag(_Var2, "QuestUpdate_ARX_HuntingForDallis_FailPoB");
+CharacterDie(_Var2, 0, "DoT");
+
+IF
+DialogEnded("ARX_Cathedral_DivineTomb_PoB_LucianStatue", (INTEGER)_Var1)
+AND
+DB_DialogPlayers(_Var1, _Var2, _)
+AND
+ObjectGetFlag(_Var2, "ARX_Cathedral_DivineTomb_PoB_Accepted", 1)
+THEN
+GlobalSetFlag("ARX_Cathedral_DivineTomb_PoB_WasPassed");
+Proc_ARX_DivineTomb_PoB_CharacterAccepted(_Var2);
+
+PROC
+Proc_ARX_DivineTomb_PoB_CharacterAccepted((CHARACTERGUID)_Var1)
+AND NOT
+DB_ARX_PoB_IsPure(_Var1)
+THEN
+DB_ARX_PoB_IsPure(_Var1);
+Proc_StartDialog(1, "ARX_AD_DivineTomb_PoB_Accepted", _Var1);
+PlayEffect(_Var1, "RS3_FX_Skills_Divine_MassBless_Impact_01");
+ApplyStatus(_Var1, "PURE", -1, 1);
+CharacterRegisterCrime(_Var1, "ARX_PassedPathOfBlood", NULL_00000000-0000-0000-0000-000000000000, NULL_00000000-0000-0000-0000-000000000000, 0);
+Proc_ARX_DivineTomb_PoB_CheckResetLocks();
+
+PROC
+Proc_ARX_DivineTomb_PoB_CharacterAccepted((CHARACTERGUID)_Var1)
+THEN
+PartySetFlag(_Var1, "ARX_Cathedral_DivineTomb_PoB_PartyMemberAccepted");
+
+PROC
+Proc_ARX_DivineTomb_PoB_CharacterAccepted((CHARACTERGUID)_Var1)
+AND NOT
+DB_ARX_Cathedral_DivineTomb_PoB_OpenedHatch(1)
+THEN
+Proc_ARX_DivineTomb_PoB_OpenHatch();
+
+IF
+ObjectFlagSet("ARX_Cathedral_PoB_AcceptedOrCheated", _, _)
+THEN
+Proc_ARX_DivineTomb_PoB_OpenHatch();
+
+IF
+ObjectFlagSet((STRING)_Var1, (CHARACTERGUID)_Var2, _)
+AND
+DB_ARX_PoB_PassingFlags(_Var1)
+THEN
+PartySetFlag(_Var2, "ARX_PoB_PassedOrCheated");
+
+IF
+TextEventSet("PoB_PassLegit")
+AND
+CharacterGetHostCharacter(_Var1)
+THEN
+ObjectSetFlag(_Var1, "ARX_Cathedral_DivineTomb_PoB_Accepted");
+GlobalSetFlag("ARX_Cathedral_DivineTomb_PoB_WasPassed");
+Proc_ARX_DivineTomb_PoB_CharacterAccepted(_Var1);
+
+IF
+TextEventSet("PoB_GiveItems")
+AND
+DB_IsPlayer(_Var1)
+THEN
+UserSetFlag(_Var1, "ARX_CreepyCraftsman_PlayerKnowsCathedralSecret");
+ItemToInventory(ITEMGUID_S_ARX_CreepyCraftsman_SourceAmulet_f9c139b9-bb0f-4027-b8a4-806df5336fd2, _Var1);
+ItemToInventory(ITEMGUID_S_ARX_CreepyCraftsman_ScrollOfAtonment_b5a89b75-bbef-44f1-b22f-148a1b9d13ab, _Var1);
+Proc_StartDialog(1, "GLO_AD_SourceAmulet_IsFull", _Var1);
+ProcReplenishedAmulet(_Var1);
+
+IF
+TextEventSet("PoB_GiveItems")
+THEN
+ItemAddCharges(ITEMGUID_S_ARX_CreepyCraftsman_SourceAmulet_f9c139b9-bb0f-4027-b8a4-806df5336fd2, 5);
+ObjectSetFlag(ITEMGUID_S_ARX_CreepyCraftsman_SourceAmulet_f9c139b9-bb0f-4027-b8a4-806df5336fd2, "GLO_SourceAmuletIsFull");
+
+IF
+TextEventSet("PoB_CheckFlags")
+AND
+DB_IsPlayer(_Var1)
+AND
+ObjectGetFlag(_Var1, "GLO_StoleItem", 1)
+THEN
+DebugText(_Var1, "Steal - FAILED");
+
+IF
+TextEventSet("PoB_CheckFlags")
+AND
+DB_IsPlayer(_Var1)
+AND
+ObjectGetFlag(_Var1, "GLO_StoleItem", 0)
+THEN
+DebugText(_Var1, "Steal - PASSED");
+
+IF
+TextEventSet("PoB_CheckFlags")
+AND
+DB_IsPlayer(_Var1)
+AND
+ObjectGetFlag(_Var1, "GLO_PathOfBlood_MurderedInnocent", 1)
+THEN
+DebugText(_Var1, "Kill - FAILED");
+
+IF
+TextEventSet("PoB_CheckFlags")
+AND
+DB_IsPlayer(_Var1)
+AND
+ObjectGetFlag(_Var1, "GLO_PathOfBlood_MurderedInnocent", 0)
+THEN
+DebugText(_Var1, "Kill - PASSED");
+
+IF
+TextEventSet("PoB_CheckFlags")
+AND
+DB_IsPlayer(_Var1)
+AND
+ObjectGetFlag(_Var1, "GLO_Promise_PromiseBreaker", 1)
+THEN
+DebugText(_Var1, "Void - FAILED");
+
+IF
+TextEventSet("PoB_CheckFlags")
+AND
+DB_IsPlayer(_Var1)
+AND
+ObjectGetFlag(_Var1, "GLO_Promise_PromiseBreaker", 0)
+THEN
+DebugText(_Var1, "Void - PASSED");
+
+IF
+TextEventSet("PoB_CheckFlags")
+AND
+DB_IsPlayer(_Var1)
+AND
+IsTagged(_Var1, "PROMISED", 1)
+THEN
+DebugText(_Var1, "Void - FAILED");
+
+IF
+TextEventSet("PoB_CheckFlags")
+AND
+DB_IsPlayer(_Var1)
+AND
+IsTagged(_Var1, "PROMISED", 0)
+THEN
+DebugText(_Var1, "Void - PASSED");
+
+IF
+TextEventSet("PoB_CheckFlags")
+AND
+DB_IsPlayer(_Var1)
+AND
+ObjectGetFlag(_Var1, "GLO_PathOfBlood_DisrespectedSoul", 0)
+THEN
+DebugText(_Var1, "Soul - PASSED");
+
+IF
+TextEventSet("PoB_CheckFlags")
+AND
+DB_IsPlayer(_Var1)
+AND
+ObjectGetFlag(_Var1, "GLO_PathOfBlood_DisrespectedSoul", 1)
+THEN
+DebugText(_Var1, "Soul - FAILED");
+
+IF
+TextEventSet("PoB_ResetAll")
+AND
+DB_IsPlayer(_Var1)
+THEN
+ObjectClearFlag(_Var1, "GLO_StoleItem");
+ObjectClearFlag(_Var1, "GLO_PathOfBlood_MurderedInnocent");
+ObjectClearFlag(_Var1, "GLO_Promise_PromiseBreaker");
+ClearTag(_Var1, "PROMISED");
+ObjectClearFlag(_Var1, "GLO_PathOfBlood_DisrespectedSoul");
+
+IF
+GameBookInterfaceClosed(ITEMGUID_S_ARX_CreepyCraftsman_Book_SourceAmuletManual_000_6485696d-bad0-4965-9b40-431ff56040d5, (CHARACTERGUID)_Var1)
+THEN
+ObjectSetFlag(_Var1, "ARX_HuntingForDallis_ReadSourceAmuletManual");
+
+IF
+GameBookInterfaceClosed(ITEMGUID_S_ARX_Cathedral_Book_SourceAmuletManual_000_8866aca0-91f9-440a-abcd-0442576d2777, (CHARACTERGUID)_Var1)
+THEN
+ObjectSetFlag(_Var1, "ARX_HuntingForDallis_ReadSourceAmuletManual");
+
+IF
+ObjectFlagSet("ARX_HuntingForDallis_ReadSourceAmuletManual", (CHARACTERGUID)_Var1, _)
+AND
+ItemTemplateIsInPartyInventory(_Var1, "QUEST_ARX_SourceAmulet_86c59384-3686-4594-b485-507caed669a5", 0, _Var3)
+AND
+_Var3 > 0
+AND
+DB_ARX_PoB_LearnTrickAmulet(_Var4)
+AND
+PartyGetFlag(_Var1, _Var4, 1)
+THEN
+PartySetFlag(_Var1, "QuestUpdate_ARX_HuntingForDallis_SourceAmulet");
+
+IF
+ItemTemplateAddedToCharacter(QUEST_ARX_SourceAmulet_86c59384-3686-4594-b485-507caed669a5, _, (CHARACTERGUID)_Var2)
+AND
+DB_IsPlayer(_Var2)
+AND
+ObjectGetFlag(_Var2, "QuestUpdate_ARX_HuntingForDallis_SourceAmulet", 0)
+AND
+PartyGetFlag(_Var2, "ARX_HuntingForDallis_ReadSourceAmuletManual", 1)
+AND
+DB_ARX_PoB_LearnTrickAmulet(_Var3)
+AND
+ObjectGetFlag(_Var2, _Var3, 1)
+THEN
+PartySetFlag(_Var2, "QuestUpdate_ARX_HuntingForDallis_SourceAmulet");
+
+IF
+ObjectFlagSet((STRING)_Var1, (CHARACTERGUID)_Var2, _)
+AND
+DB_IsPlayer(_Var2)
+AND
+DB_ARX_PoB_LearnTrickAmulet(_Var1)
+AND
+ObjectGetFlag(_Var2, "QuestUpdate_ARX_HuntingForDallis_SourceAmulet", 0)
+AND
+ItemTemplateIsInPartyInventory(_Var2, "QUEST_ARX_SourceAmulet_86c59384-3686-4594-b485-507caed669a5", 0, _Var4)
+AND
+_Var4 > 0
+THEN
+PartySetFlag(_Var2, "QuestUpdate_ARX_HuntingForDallis_SourceAmulet");
+
+
+EXITSECTION
+ENDEXITSECTION
+
+ParentTargetEdge "ARX"

@@ -1,0 +1,177 @@
+Version 1
+SubGoalCombiner SGC_AND
+
+INITSECTION
+DB_ARX_TheDoctor_FishBarrel_Gold(1000);
+ProcTriggerRegisterForPlayers(TRIGGERGUID_S_ARX_DoctorsHouse_SecretCellar_FishBarrel_Trig_efc35e50-d053-45bd-8cd3-9de856b16227);
+ProcTriggerRegisterForPlayers(TRIGGERGUID_S_ARX_DoctorsHouse_SecretCellar_Trig_81020c39-35d2-4f60-9741-ef107d19a58c);
+ProcTriggerRegisterForPlayers(TRIGGERGUID_S_ARX_DoctorsHouse_Corridor_7f99267e-ddbc-4d78-91b7-43f1d83b22c0);
+ApplyStatus(ITEMGUID_S_ARX_TheDoctor_FishBarrel_7ab5ed36-5556-4055-ab2c-942894de1dd1, "GROUNDED", -1, 1);
+ApplyStatus(ITEMGUID_S_ARX_DoctorsHouse_FishBarrel_Inside_29981902-ba0c-4066-87d0-7f75db5b6ac8, "GROUNDED", -1, 1);
+
+KBSECTION
+IF
+CharacterUsedSkillOnTarget(_, ITEMGUID_S_ARX_TheDoctor_FishBarrel_7ab5ed36-5556-4055-ab2c-942894de1dd1, "Target_Quest_ARX_FishBarrel", _, _)
+AND
+GlobalGetFlag("ARX_TheDoctor_FishBarrelDestroyed", 0)
+THEN
+Proc_ARX_TheDoctor_FishBarrel_MoveAllItems();
+
+IF
+CharacterUsedSkillOnTarget((CHARACTERGUID)_Var1, ITEMGUID_S_ARX_TheDoctor_FishBarrel_7ab5ed36-5556-4055-ab2c-942894de1dd1, "Target_Quest_ARX_FishBarrel", _, _)
+AND
+GlobalGetFlag("ARX_TheDoctor_FishBarrelDestroyed", 1)
+THEN
+StartVoiceBark("ARX_DoctorsHouse_VB_FishBarrelFailed", _Var1);
+
+PROC
+Proc_ARX_TheDoctor_FishBarrel_MoveAllItems()
+THEN
+ItemClose(ITEMGUID_S_ARX_TheDoctor_FishBarrel_7ab5ed36-5556-4055-ab2c-942894de1dd1);
+ItemClose(ITEMGUID_S_ARX_TheDoctor_FishBarrel_Inside_29981902-ba0c-4066-87d0-7f75db5b6ac8);
+PROC_LoopEffect("RS3_FX_GP_ScriptedEvent_S_ARX_TheDoctor_FishBarrel_01", S_ARX_TheDoctor_FishBarrel_7ab5ed36-5556-4055-ab2c-942894de1dd1, "ARX_TheDoctor_FishBarrel_Effect", "ARX_Main", "");
+
+PROC
+Proc_ARX_TheDoctor_FishBarrel_MoveAllItems()
+AND
+DB_ARX_TheDoctor_FishBarrel_Count(_Var1)
+THEN
+NOT DB_ARX_TheDoctor_FishBarrel_Count(_Var1);
+
+PROC
+Proc_ARX_TheDoctor_FishBarrel_MoveAllItems()
+THEN
+DB_ARX_TheDoctor_FishBarrel_Count(0);
+
+PROC
+Proc_ARX_TheDoctor_FishBarrel_MoveAllItems()
+THEN
+InventoryLaunchTagIterator(ITEMGUID_S_ARX_TheDoctor_FishBarrel_7ab5ed36-5556-4055-ab2c-942894de1dd1, "VOIDTAINTED", "FISH", "ARX_TheDoctor_FishBarrel_Iterator", "ARX_TheDoctor_FishBarrel_IteratorDone");
+
+IF
+StoryEvent((ITEMGUID)_Var1, "ARX_TheDoctor_FishBarrel_Iterator")
+AND
+ItemGetAmount(_Var1, _Var2)
+AND
+DB_ARX_TheDoctor_FishBarrel_Count(_Var3)
+AND
+IntegerSum(_Var3, _Var2, _Var4)
+THEN
+NOT DB_ARX_TheDoctor_FishBarrel_Count(_Var3);
+DB_ARX_TheDoctor_FishBarrel_Count(_Var4);
+
+IF
+GlobalFlagSet("ARX_TheDoctor_FishBarrel_IteratorDone")
+THEN
+Proc_ARX_TheDoctor_FishBarrel_IteratorDone();
+
+PROC
+Proc_ARX_TheDoctor_FishBarrel_IteratorDone()
+THEN
+GlobalClearFlag("ARX_TheDoctor_FishBarrel_IteratorDone");
+MoveAllItemsTo(ITEMGUID_S_ARX_TheDoctor_FishBarrel_7ab5ed36-5556-4055-ab2c-942894de1dd1, ITEMGUID_S_ARX_TheDoctor_FishBarrel_Inside_29981902-ba0c-4066-87d0-7f75db5b6ac8);
+
+PROC
+Proc_ARX_TheDoctor_FishBarrel_IteratorDone()
+AND
+DB_ARX_TheDoctor_FishBarrel_Count(_Var1)
+AND
+DB_ARX_TheDoctor_FishBarrel_Gold(_Var2)
+AND
+IntegerProduct(_Var2, _Var1, _Var3)
+THEN
+ItemTemplateAddTo("LOOT_Gold_Big_A_1c3c9c74-34a1-4685-989e-410dc080be6f", ITEMGUID_S_ARX_TheDoctor_FishBarrel_7ab5ed36-5556-4055-ab2c-942894de1dd1, _Var3);
+
+PROC
+Proc_ARX_TheDoctor_FishBarrel_IteratorDone()
+THEN
+PROC_StopLoopEffect(S_ARX_TheDoctor_FishBarrel_7ab5ed36-5556-4055-ab2c-942894de1dd1, "ARX_TheDoctor_FishBarrel_Effect");
+
+IF
+ItemDestroyed(ITEMGUID_S_ARX_DoctorsHouse_FishBarrel_Inside_29981902-ba0c-4066-87d0-7f75db5b6ac8)
+THEN
+GlobalSetFlag("ARX_TheDoctor_FishBarrelDestroyed");
+
+IF
+ItemDestroyed(ITEMGUID_S_ARX_TheDoctor_FishBarrel_7ab5ed36-5556-4055-ab2c-942894de1dd1)
+THEN
+GlobalSetFlag("ARX_TheDoctor_FishBarrelDestroyed");
+
+IF
+CharacterEnteredTrigger((CHARACTERGUID)_Var1, TRIGGERGUID_S_ARX_DoctorsHouse_SecretCellar_Trig_81020c39-35d2-4f60-9741-ef107d19a58c)
+AND
+ObjectGetFlag(_Var1, "ARX_DoctorsHouse_SecretCellar_Entered", 0)
+THEN
+ObjectSetFlag(_Var1, "ARX_DoctorsHouse_SecretCellar_Entered");
+
+IF
+CharacterEnteredTrigger((CHARACTERGUID)_Var1, TRIGGERGUID_S_ARX_DoctorsHouse_SecretCellar_FishBarrel_Trig_efc35e50-d053-45bd-8cd3-9de856b16227)
+AND
+ObjectGetFlag(_Var1, "ARX_DoctorsHouse_SecretCellar_Entered", 0)
+AND
+ObjectGetFlag(_Var1, "ARX_DoctorsHouse_EnteredFromBelow", 0)
+THEN
+ObjectSetFlag(_Var1, "ARX_DoctorsHouse_EnteredFromBelow");
+
+IF
+CharacterEnteredTrigger((CHARACTERGUID)_Var1, TRIGGERGUID_S_ARX_DoctorsHouse_GroundFloor_6a0dd371-c420-4b93-ba0e-a1aea9531617)
+AND
+ObjectGetFlag(_Var1, "ARX_DoctorsHouse_EnteredFromBelow", 1)
+THEN
+ObjectClearFlag(_Var1, "ARX_DoctorsHouse_EnteredFromBelow", 0);
+ObjectSetFlag(_Var1, "ARX_DoctorsHouse_TheDoctor_EnteredFromBelow");
+
+IF
+CharacterEnteredTrigger((CHARACTERGUID)_Var1, TRIGGERGUID_S_ARX_DoctorsHouse_Corridor_7f99267e-ddbc-4d78-91b7-43f1d83b22c0)
+AND
+ObjectGetFlag(_Var1, "ARX_DoctorsHouse_TheDoctor_EnteredFromBelow", 1)
+THEN
+ObjectClearFlag(_Var1, "ARX_DoctorsHouse_TheDoctor_EnteredFromBelow");
+
+IF
+CharacterEnteredTrigger((CHARACTERGUID)_Var1, TRIGGERGUID_S_ARX_DoctorsHouse_SecretCellar_FishBarrel_Trig_efc35e50-d053-45bd-8cd3-9de856b16227)
+AND
+UserGetFlag(_Var1, "ARX_DoctorsHouse_SecretCellar_Entered", 0)
+AND NOT
+DB_ARX_DoctorsHouse_VB_SecretCellar_FishBarrel(_)
+THEN
+TimerLaunch("ARX_DoctorsHouse_SecretCellar_FishBarrel_Entered", 1000);
+DB_ARX_DoctorsHouse_VB_SecretCellar_FishBarrel(_Var1);
+
+IF
+TimerFinished("ARX_DoctorsHouse_SecretCellar_FishBarrel_Entered")
+AND
+DB_ARX_DoctorsHouse_VB_SecretCellar_FishBarrel(_Var1)
+THEN
+StartVoiceBark("ARX_DoctorsHouse_VB_SecretCellar_FishBarrel", _Var1);
+NOT DB_ARX_DoctorsHouse_VB_SecretCellar_FishBarrel(_Var1);
+
+PROC
+ProcBlockPickupOfItem((CHARACTERGUID)_Var1, ITEMGUID_S_ARX_TheDoctor_FishBarrel_7ab5ed36-5556-4055-ab2c-942894de1dd1)
+THEN
+DB_CustomPickupItemResponse(_Var1, ITEMGUID_S_ARX_TheDoctor_FishBarrel_7ab5ed36-5556-4055-ab2c-942894de1dd1, 0);
+StartVoiceBark("ARX_TheDoctor_VB_FishBarrel_AttemptedToMove", _Var1);
+
+PROC
+ProcBlockMoveOfItem((CHARACTERGUID)_Var1, ITEMGUID_S_ARX_TheDoctor_FishBarrel_7ab5ed36-5556-4055-ab2c-942894de1dd1)
+THEN
+DB_CustomMoveItemResponse(_Var1, ITEMGUID_S_ARX_TheDoctor_FishBarrel_7ab5ed36-5556-4055-ab2c-942894de1dd1, 0);
+StartVoiceBark("ARX_TheDoctor_VB_FishBarrel_AttemptedToMove", _Var1);
+
+PROC
+ProcBlockPickupOfItem((CHARACTERGUID)_Var1, ITEMGUID_S_ARX_DoctorsHouse_FishBarrel_Inside_29981902-ba0c-4066-87d0-7f75db5b6ac8)
+THEN
+DB_CustomPickupItemResponse(_Var1, ITEMGUID_S_ARX_DoctorsHouse_FishBarrel_Inside_29981902-ba0c-4066-87d0-7f75db5b6ac8, 0);
+StartVoiceBark("ARX_TheDoctor_VB_FishBarrel_AttemptedToMove", _Var1);
+
+PROC
+ProcBlockMoveOfItem((CHARACTERGUID)_Var1, ITEMGUID_S_ARX_DoctorsHouse_FishBarrel_Inside_29981902-ba0c-4066-87d0-7f75db5b6ac8)
+THEN
+DB_CustomMoveItemResponse(_Var1, ITEMGUID_S_ARX_DoctorsHouse_FishBarrel_Inside_29981902-ba0c-4066-87d0-7f75db5b6ac8, 0);
+StartVoiceBark("ARX_TheDoctor_VB_FishBarrel_AttemptedToMove", _Var1);
+
+
+EXITSECTION
+ENDEXITSECTION
+
+ParentTargetEdge "ARX"

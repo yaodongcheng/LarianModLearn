@@ -1,0 +1,113 @@
+Version 1
+SubGoalCombiner SGC_AND
+
+INITSECTION
+DB_CoS_Temples_ElfCave_Automaton(CHARACTERGUID_S_CoS_Temples_ElfCave_Automaton_001_3242ab1a-db0d-4c3b-a7f1-68c8d62bc651);
+DB_CoS_Temples_ElfCave_Automaton(CHARACTERGUID_S_CoS_Temples_ElfCave_Automaton_002_444c20b4-8f62-4903-a0ff-de55707496e0);
+DB_CoS_Temples_ElfCave_Automaton(CHARACTERGUID_S_CoS_Temples_ElfCave_Automaton_003_88f85544-1280-4b00-8beb-d05c6747afa4);
+DB_CoS_Temples_ElfCave_Automaton(CHARACTERGUID_S_CoS_Temples_ElfCave_Automaton_004_c35234bc-6172-4661-a766-7542b6df79e5);
+DB_Dialogs(ITEMGUID_S_CoS_Temples_ElfCave_Treasure_bf5b269a-555a-4153-b0b4-0bc070885b33, "CoS_Temples_ElfCave_Sword");
+ApplyStatus(ITEMGUID_S_CoS_Temples_ElfCave_Treasure_bf5b269a-555a-4153-b0b4-0bc070885b33, "GROUNDED", -1);
+SetOnStage(ITEMGUID_S_CoS_WPN_EternalSword_Reward_0bff00c6-23ed-4f0f-a883-bf7ca76326ba, 0);
+
+KBSECTION
+IF
+DB_CoS_Temples_ElfCave_Automaton(_Var1)
+THEN
+DB_Dialogs(_Var1, "CoS_Temples_ElfCave_Automaton");
+DB_DoNotFace(_Var1);
+SetStoryEvent(_Var1, "CreateCapacitorLink");
+
+PROC
+Proc_CoS_ElfCaveAutomatons_GoHostile()
+AND
+QueryOnlyOnce("CoS_Temples_ElfCave_AtmSwap_Once")
+THEN
+TriggerSetAtmosphere(TRIGGERGUID_AtmosphereTrigger_CoS_SmallCave1_55c628b5-b35e-4a05-b0ef-eaba3cd2b950, "0077f217-0c6b-46c7-b954-741322f3388e");
+
+PROC
+ProcBlockMoveOfItem((CHARACTERGUID)_Var1, ITEMGUID_S_CoS_Temples_ElfCave_Treasure_bf5b269a-555a-4153-b0b4-0bc070885b33)
+THEN
+DB_CustomMoveItemResponse(_Var1, ITEMGUID_S_CoS_Temples_ElfCave_Treasure_bf5b269a-555a-4153-b0b4-0bc070885b33, 0);
+Proc_CoS_Temples_ElfCave_TryStartDialog(_Var1);
+
+PROC
+ProcBlockPickupOfItem((CHARACTERGUID)_Var1, ITEMGUID_S_CoS_Temples_ElfCave_Treasure_bf5b269a-555a-4153-b0b4-0bc070885b33)
+THEN
+DB_CustomPickupItemResponse(_Var1, ITEMGUID_S_CoS_Temples_ElfCave_Treasure_bf5b269a-555a-4153-b0b4-0bc070885b33, 0);
+Proc_CoS_Temples_ElfCave_TryStartDialog(_Var1);
+
+PROC
+ProcBlockUseOfItem((CHARACTERGUID)_Var1, ITEMGUID_S_CoS_Temples_ElfCave_Treasure_bf5b269a-555a-4153-b0b4-0bc070885b33)
+THEN
+DB_CustomUseItemResponse(_Var1, ITEMGUID_S_CoS_Temples_ElfCave_Treasure_bf5b269a-555a-4153-b0b4-0bc070885b33, 0);
+Proc_CoS_Temples_ElfCave_TryStartDialog(_Var1);
+
+PROC
+Proc_CoS_Temples_ElfCave_TryStartDialog((CHARACTERGUID)_Var1)
+AND
+QRY_IsAvailableTo(_Var1, ITEMGUID_S_CoS_Temples_ElfCave_Treasure_bf5b269a-555a-4153-b0b4-0bc070885b33)
+THEN
+Proc_StartDialog(0, "CoS_Temples_ElfCave_Sword", ITEMGUID_S_CoS_Temples_ElfCave_Treasure_bf5b269a-555a-4153-b0b4-0bc070885b33, _Var1);
+
+IF
+AttackedByObject((GUIDSTRING)_Var1, (CHARACTERGUID)_Var2, _, _, _)
+AND
+DB_CoS_Temples_ElfCave_Automaton(_Var1)
+AND
+CharacterIsPlayer(_Var2, 1)
+AND NOT
+DB_OnlyOnce("CoS_Temples_ElfCave_AutomatonsGoHostile_Once")
+THEN
+Proc_CoS_ElfCaveAutomatons_GoHostile();
+EnterCombat(_Var1, _Var2);
+
+IF
+CharacterDied((CHARACTERGUID)_Var1)
+AND
+DB_CoS_Temples_ElfCave_Automaton(_Var1)
+AND NOT
+DB_OnlyOnce("CoS_Temples_ElfCave_AutomatonsGoHostile_Once")
+THEN
+Proc_CoS_ElfCaveAutomatons_GoHostile();
+
+PROC
+Proc_CoS_ElfCaveAutomatons_GoHostile()
+THEN
+GlobalSetFlag("CoS_Temples_ElfCave_AutomatonsHostile");
+ProcForceStopDialog(ITEMGUID_S_CoS_Temples_ElfCave_Treasure_bf5b269a-555a-4153-b0b4-0bc070885b33);
+
+PROC
+Proc_CoS_ElfCaveAutomatons_GoHostile()
+AND
+QueryOnlyOnce("CoS_Temples_ElfCave_AutomatonsGoHostile_Once")
+AND
+DB_CoS_Temples_ElfCave_Automaton(_Var1)
+THEN
+SetFaction(_Var1, "Evil NPC");
+
+IF
+ObjectFlagSet("CoS_Temples_ElfCave_SwordToPlayer", (GUIDSTRING)_Var1, _)
+THEN
+SetVisible(ITEMGUID_S_CoS_Temples_ElfCave_Treasure_bf5b269a-555a-4153-b0b4-0bc070885b33, 0);
+ItemSetCanInteract(ITEMGUID_S_CoS_Temples_ElfCave_Treasure_bf5b269a-555a-4153-b0b4-0bc070885b33, 0);
+SetOnStage(ITEMGUID_S_CoS_WPN_EternalSword_Reward_0bff00c6-23ed-4f0f-a883-bf7ca76326ba, 1);
+ItemToInventory(ITEMGUID_S_CoS_WPN_EternalSword_Reward_0bff00c6-23ed-4f0f-a883-bf7ca76326ba, _Var1, 1);
+
+IF
+DialogEnded("CoS_Temples_ElfCave_Sword", (INTEGER)_Var1)
+AND
+DialogGetInvolvedPlayer(_Var1, 1, _Var2)
+AND
+ObjectGetFlag(_Var2, "CoS_Temples_ElfCave_SwordToPlayer", 1)
+AND
+GlobalGetFlag("CoS_Temples_ElfCave_AutomatonsHostile", 0)
+THEN
+Proc_CoS_ElfCaveAutomatons_GoHostile();
+SetOnStage(ITEMGUID_S_CoS_Temples_ElfCave_Treasure_bf5b269a-555a-4153-b0b4-0bc070885b33, 0);
+
+
+EXITSECTION
+ENDEXITSECTION
+
+ParentTargetEdge "CoS_Temples"

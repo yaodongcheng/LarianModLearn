@@ -1,0 +1,196 @@
+Version 1
+SubGoalCombiner SGC_AND
+
+INITSECTION
+DB_Dialogs(CHARACTERGUID_S_RC_OIL_Tomb_Ataraxian_b844294c-62c2-4ff8-82f1-f874b9e4352d, "RC_OIL_Tomb_Ataraxian");
+DB_RC_OIL_TombEternal(CHARACTERGUID_S_RC_OIL_Tomb_Ataraxian_b844294c-62c2-4ff8-82f1-f874b9e4352d);
+DB_RC_OIL_TombEternal(CHARACTERGUID_S_RC_OIL_Tomb_Ataraxian_Doggy_01_84213369-e09e-4589-b4d5-7e8bbbba8d18);
+DB_RC_OIL_TombEternal(CHARACTERGUID_S_RC_OIL_Tomb_Ataraxian_Doggy_02_6ed136a3-0f28-4b58-a9df-82f6c9d949dd);
+DB_RC_OIL_TombEternal(CHARACTERGUID_S_RC_OIL_Tomb_Ataraxian_Doggy_03_efa12e2c-a6b8-4bd7-a3cb-bc161940f306);
+DB_RC_OIL_TombEternal(CHARACTERGUID_S_RC_OIL_Tomb_Ataraxian_Doggy_04_753d4374-ec3c-4d1f-ba60-c8d8c350baed);
+DB_RC_OIL_TombContainer(ITEMGUID_S_RC_OIL_Tomb_Container1_5c8337fb-5756-c77f-df22-c9f87db7cff1);
+DB_RC_OIL_TombContainer(ITEMGUID_S_RC_OIL_Tomb_Container2_0de639fc-d402-4f44-9b73-908a538c6caf);
+DB_OneShotPlayerTrigger(TRIGGERGUID_S_RC_OIL_Tomb_Init_6ace20f3-492a-4bb7-a658-9d82e608dc6a);
+ItemSetCanInteract(ITEMGUID_RC_OIL_Puzzle_Sarcofagus1_7644f7e9-1358-4433-9800-e7d1363290ec, 0);
+DB_KilledEvent(CHARACTERGUID_S_RC_OIL_Tomb_Ataraxian_b844294c-62c2-4ff8-82f1-f874b9e4352d, "QuestUpdate_RC_OIL_Main_EternalKilled");
+
+KBSECTION
+IF
+TextEventSet("ppp")
+THEN
+ItemMoveToTrigger(ITEMGUID_S_RC_OIL_Cave_HumanStatue_de08b287-3dd5-4114-8234-0fd8ec8909a2, TRIGGERGUID_S_RC_OIL_Cave_HumanStatue_Point_07b53116-66f4-435b-8d08-32ecbbecc8c5, 2.5, 1.1, 0);
+
+IF
+ObjectEnteredCombat((CHARACTERGUID)_Var1, _)
+AND
+DB_RC_OIL_TombEternal(_Var1)
+AND
+QueryOnlyOnce("RC_OIL_CombatSave_Ataraxian")
+THEN
+AutoSave();
+
+IF
+DB_RC_OIL_TombEternal(_Var1)
+THEN
+SetOnStage(_Var1, 0);
+
+PROC
+ProcOneShotTriggerEntered((CHARACTERGUID)_Var1, TRIGGERGUID_S_RC_OIL_Tomb_Init_6ace20f3-492a-4bb7-a658-9d82e608dc6a)
+THEN
+Proc_StartDialog(1, "RC_OIL_AD_TombInit", _Var1);
+Proc_ShakeCameraForTime(_Var1, 4800);
+
+PROC
+ProcOneShotTriggerEntered((CHARACTERGUID)_Var1, TRIGGERGUID_S_RC_OIL_Tomb_Init_6ace20f3-492a-4bb7-a658-9d82e608dc6a)
+AND
+DB_RC_OIL_TombContainer(_Var2)
+THEN
+PlayEffect(_Var2, "RS3_FX_GP_ScriptedEvent_Source_Absorb_01");
+TimerLaunch("Timer_RC_OIL_Puzzle_TombTransform", 4800);
+
+IF
+TimerFinished("Timer_RC_OIL_Puzzle_TombTransform")
+THEN
+ItemSetCanInteract(ITEMGUID_RC_OIL_Puzzle_Sarcofagus1_7644f7e9-1358-4433-9800-e7d1363290ec, 1);
+
+IF
+CharacterUsedItem((CHARACTERGUID)_Var1, ITEMGUID_RC_OIL_Puzzle_Sarcofagus1_7644f7e9-1358-4433-9800-e7d1363290ec)
+AND
+QueryOnlyOnce("RC_OIL_Cave_Sarcofagus")
+THEN
+PartySetFlag(_Var1, "QuestUpdate_RC_OIL_Main_OpenTomb");
+DB_RC_OIL_Cave_EternalAwaker(_Var1);
+PlayEffect(ITEMGUID_RC_OIL_Puzzle_Sarcofagus1_7644f7e9-1358-4433-9800-e7d1363290ec, "RS3_FX_GP_ScriptedEvent_PuzzlePillars_01");
+GlobalSetFlag("RC_OIL_Tomb_StartSouceLeak");
+CharacterAppear(CHARACTERGUID_S_RC_OIL_Tomb_Ataraxian_b844294c-62c2-4ff8-82f1-f874b9e4352d, 1, "RC_OIL_EternalAppeared");
+CharacterAppear(CHARACTERGUID_S_RC_OIL_Tomb_Ataraxian_Doggy_01_84213369-e09e-4589-b4d5-7e8bbbba8d18, 1, "");
+CharacterAppear(CHARACTERGUID_S_RC_OIL_Tomb_Ataraxian_Doggy_03_efa12e2c-a6b8-4bd7-a3cb-bc161940f306, 1, "");
+Transform(ITEMGUID_RC_OIL_Puzzle_Sarcofagus1_7644f7e9-1358-4433-9800-e7d1363290ec, "PUZ_Ataraxian_Sarcophagus_26ee75d9-4a0d-4e24-af47-506e8d189489", 0);
+ItemSetCanInteract(ITEMGUID_RC_OIL_Puzzle_Sarcofagus1_7644f7e9-1358-4433-9800-e7d1363290ec, 0);
+CreateSurface(ITEMGUID_RC_OIL_Puzzle_Sarcofagus1_7644f7e9-1358-4433-9800-e7d1363290ec, "SurfaceSource", 2.5, -1);
+TimerLaunch("RC_OIL_Tomb_SecondHoundAppears", 400);
+
+IF
+StoryEvent(CHARACTERGUID_S_RC_OIL_Tomb_Ataraxian_b844294c-62c2-4ff8-82f1-f874b9e4352d, "RC_OIL_EternalAppeared")
+AND
+GetPosition(CHARACTERGUID_S_RC_OIL_Tomb_Ataraxian_b844294c-62c2-4ff8-82f1-f874b9e4352d, _Var1, _Var2, _Var3)
+THEN
+PlayAnimation(S_RC_OIL_Tomb_Ataraxian_b844294c-62c2-4ff8-82f1-f874b9e4352d, "cast_target_cast");
+TeleportTo(S_RC_OIL_Tomb_Ataraxian_b844294c-62c2-4ff8-82f1-f874b9e4352d, RC_EternalBoss_SpawnTeleport_01_59824763-52df-4cea-be06-771196c8f4f9, "RC_OIL_EternalTp", 1);
+
+IF
+StoryEvent(CHARACTERGUID_S_RC_OIL_Tomb_Ataraxian_b844294c-62c2-4ff8-82f1-f874b9e4352d, "RC_OIL_EternalTp")
+AND
+GetPosition(CHARACTERGUID_S_RC_OIL_Tomb_Ataraxian_b844294c-62c2-4ff8-82f1-f874b9e4352d, _Var1, _Var2, _Var3)
+THEN
+PlayEffectAtPosition("RS3_FX_Char_Ghosts_Teleport_in_01", _Var1, _Var2, _Var3);
+
+IF
+StoryEvent(CHARACTERGUID_S_RC_OIL_Tomb_Ataraxian_b844294c-62c2-4ff8-82f1-f874b9e4352d, "RC_OIL_EternalTp")
+AND
+DB_RC_OIL_Cave_EternalAwaker(_Var1)
+THEN
+Proc_StartDialog(0, "RC_OIL_Tomb_Ataraxian", CHARACTERGUID_S_RC_OIL_Tomb_Ataraxian_b844294c-62c2-4ff8-82f1-f874b9e4352d, _Var1);
+
+IF
+ObjectFlagSet("GLO_Origin_GodsAura_Start", (GUIDSTRING)_Var1, _)
+THEN
+ObjectClearFlag(_Var1, "GLO_Origin_GodsAura_Start");
+PROC_LoopEffect("RS3_FX_GP_ScriptedEvent_GodsAura_01_Fading", _Var1, "RC_OIL_OriginPossessed", "RC_Main", "Dummy_StatusFX");
+
+IF
+ObjectFlagSet("GLO_Origin_GodsAura_Stop", (GUIDSTRING)_Var1, _)
+THEN
+ObjectClearFlag(_Var1, "GLO_Origin_GodsAura_Stop");
+PROC_StopLoopEffect(_Var1, "RC_OIL_OriginPossessed");
+
+IF
+TimerFinished("RC_OIL_Tomb_SecondHoundAppears")
+THEN
+CharacterAppear(CHARACTERGUID_S_RC_OIL_Tomb_Ataraxian_Doggy_02_6ed136a3-0f28-4b58-a9df-82f6c9d949dd, 1, "");
+CharacterAppear(CHARACTERGUID_S_RC_OIL_Tomb_Ataraxian_Doggy_04_753d4374-ec3c-4d1f-ba60-c8d8c350baed, 1, "");
+
+IF
+CharacterReceivedDamage(CHARACTERGUID_S_RC_OIL_Tomb_Ataraxian_b844294c-62c2-4ff8-82f1-f874b9e4352d, _, _)
+AND
+QueryOnlyOnce("RC_OIL_EternalCombat")
+THEN
+SetFaction(CHARACTERGUID_S_RC_OIL_Tomb_Ataraxian_b844294c-62c2-4ff8-82f1-f874b9e4352d, "Evil NPC");
+SetFaction(CHARACTERGUID_S_RC_OIL_Tomb_Ataraxian_Doggy_01_84213369-e09e-4589-b4d5-7e8bbbba8d18, "Evil NPC");
+SetFaction(CHARACTERGUID_S_RC_OIL_Tomb_Ataraxian_Doggy_02_6ed136a3-0f28-4b58-a9df-82f6c9d949dd, "Evil NPC");
+SetFaction(CHARACTERGUID_S_RC_OIL_Tomb_Ataraxian_Doggy_03_efa12e2c-a6b8-4bd7-a3cb-bc161940f306, "Evil NPC");
+SetFaction(CHARACTERGUID_S_RC_OIL_Tomb_Ataraxian_Doggy_04_753d4374-ec3c-4d1f-ba60-c8d8c350baed, "Evil NPC");
+
+IF
+DialogEnded("RC_OIL_Tomb_Ataraxian", (INTEGER)_Var1)
+AND
+DB_DialogPlayers(_Var1, _Var2, 1)
+THEN
+Proc_RC_OIL_AtaraxianDialogEnded(_Var2);
+
+PROC
+Proc_RC_OIL_AtaraxianDialogEnded((CHARACTERGUID)_Var1)
+THEN
+ProcShowMarker(_Var1, "RC_OIL_Ruins");
+
+PROC
+Proc_RC_OIL_AtaraxianDialogEnded((CHARACTERGUID)_Var1)
+AND
+QueryOnlyOnce("RC_OIL_EternalCombat")
+THEN
+SetFaction(CHARACTERGUID_S_RC_OIL_Tomb_Ataraxian_b844294c-62c2-4ff8-82f1-f874b9e4352d, "Evil NPC");
+SetFaction(CHARACTERGUID_S_RC_OIL_Tomb_Ataraxian_Doggy_01_84213369-e09e-4589-b4d5-7e8bbbba8d18, "Evil NPC");
+SetFaction(CHARACTERGUID_S_RC_OIL_Tomb_Ataraxian_Doggy_02_6ed136a3-0f28-4b58-a9df-82f6c9d949dd, "Evil NPC");
+SetFaction(CHARACTERGUID_S_RC_OIL_Tomb_Ataraxian_Doggy_03_efa12e2c-a6b8-4bd7-a3cb-bc161940f306, "Evil NPC");
+SetFaction(CHARACTERGUID_S_RC_OIL_Tomb_Ataraxian_Doggy_04_753d4374-ec3c-4d1f-ba60-c8d8c350baed, "Evil NPC");
+
+PROC
+Proc_ObjectLeftCombat((CHARACTERGUID)_Var1, (INTEGER)_Var2)
+AND
+DB_IsPlayer(_Var1)
+AND
+DB_WasInCombat(CHARACTERGUID_S_RC_OIL_Tomb_Ataraxian_b844294c-62c2-4ff8-82f1-f874b9e4352d, _Var2)
+AND
+PartyGetFlag(_Var1, "RC_OIL_Tomb_GodRDDFired", 0)
+THEN
+PartySetFlag(_Var1, "RC_OIL_Tomb_GodRDDFired");
+ProcDefineReflectionDialog("RC_OIL_RD_GodsWereEternals", _Var1);
+
+IF
+AttackedByObject((GUIDSTRING)_Var1, _, (GUIDSTRING)_Var3, _, _)
+AND
+_Var1 != _Var3
+AND
+DB_RC_OIL_TombEternal(_Var1)
+AND
+GetFaction(_Var1, "Good NPC")
+AND
+QueryOnlyOnce("RC_OIL_EternalCombat")
+AND
+DB_RC_OIL_TombEternal(_Var6)
+THEN
+SetFaction(_Var6, "Evil NPC");
+
+IF
+ObjectEnteredCombat(CHARACTERGUID_S_RC_OIL_Tomb_Ataraxian_b844294c-62c2-4ff8-82f1-f874b9e4352d, (INTEGER)_Var1)
+AND
+DB_IsPlayer(_Var2)
+AND
+CharacterIsEnemy(_Var2, CHARACTERGUID_S_RC_OIL_Tomb_Ataraxian_b844294c-62c2-4ff8-82f1-f874b9e4352d, 1)
+AND
+DB_CombatCharacters(_Var2, _Var1)
+THEN
+PartySetFlag(_Var2, "QuestUpdate_RC_OIL_Main_EternalFight");
+
+IF
+DB_OnlyOnce("RC_OIL_EternalCombat")
+AND
+DB_DialogNPCs(_, CHARACTERGUID_S_RC_OIL_Tomb_Ataraxian_b844294c-62c2-4ff8-82f1-f874b9e4352d, _)
+THEN
+DialogRequestStop(CHARACTERGUID_S_RC_OIL_Tomb_Ataraxian_b844294c-62c2-4ff8-82f1-f874b9e4352d);
+
+
+EXITSECTION
+ENDEXITSECTION
+
+ParentTargetEdge "ReapersCoast"

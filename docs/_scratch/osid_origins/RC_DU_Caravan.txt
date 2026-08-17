@@ -1,0 +1,277 @@
+Version 1
+SubGoalCombiner SGC_AND
+
+INITSECTION
+ProcTriggerRegisterForPlayers(TRIGGERGUID_S_RC_DU_Caravan_Box_af654fb9-679b-4f79-bb99-0060b0386156);
+DB_OneShotPlayerTrigger(TRIGGERGUID_S_RC_DU_Caravan_Box_af654fb9-679b-4f79-bb99-0060b0386156);
+DB_Dialogs(CHARACTERGUID_S_RC_DU_Caravan_SurvivingDwarf_1c3759c4-284d-46e1-98e0-da880d9f3da8, "RC_DU_Caravan_SurvivingDwarf");
+CharacterSetAnimationOverride(CHARACTERGUID_S_RC_DU_Caravan_SurvivingDwarf_1c3759c4-284d-46e1-98e0-da880d9f3da8, "Cower_03_Loop");
+ProcCharacterDisableCrime(S_RC_DU_Caravan_SurvivingDwarf_1c3759c4-284d-46e1-98e0-da880d9f3da8, "Assault");
+DB_Ghosts(CHARACTERGUID_S_RC_DU_Caravan_Animals_Bull_52decead-a3cd-4941-8506-6be9d4db7309, CHARACTERGUID_S_RC_DU_Caravan_Animals_Bull_Ghost_52dc3883-2a72-4a6a-8809-9c6a6fda218f, "RC_DU_Caravan_GhostBull");
+DB_Ghosts(CHARACTERGUID_S_RC_DU_Caravan_DeadMagisterGrunt_5508277d-09e8-4ec2-93c5-3824a0e86a88, CHARACTERGUID_S_RC_DU_Caravan_GhostMagisterGrunt_009a6001-ba8c-4d54-b774-159c31d4ba50, "RC_DU_Caravan_MagisterGrunt");
+DB_Ghosts(CHARACTERGUID_S_RC_DU_Caravan_DeadDwarfBossSon_66c2bf72-3e8e-4e43-96df-3a154cd81cf5, CHARACTERGUID_S_RC_DU_Caravan_GhostDwarfBossSon_ea9a590b-38bd-40f8-9c1d-4b61ee2437fa, "");
+DB_Ghosts(CHARACTERGUID_S_RC_DU_Caravan_DeadMagister_09ab81e9-aa82-486d-b9f4-e172732d4bb8, CHARACTERGUID_S_RC_DU_Caravan_GhostMagister_5b36ece1-5fa7-4505-96e5-8b9a92106a29, "");
+ItemToInventory(ITEMGUID_S_RC_DU_Caravan_DwarfBoss_Family_Boots_bada2227-ae1f-4aa9-a889-1bcad74959ec, CHARACTERGUID_S_RC_DU_Caravan_Dead_Liliansson_66c2bf72-3e8e-4e43-96df-3a154cd81cf5);
+DB_RC_DU_Caravan_BloodiedBodylimbs(S_RC_DU_Caravan_VoidTainted_BodyPart_001_b1dabd59-6493-4a1d-96c3-b77e053bbf7e);
+DB_RC_DU_Caravan_BloodiedBodylimbs(S_RC_DU_Caravan_VoidTainted_BodyPart_002_2a2ca906-4b2d-4ba7-ab2e-f68eb0a6ad7c);
+DB_RC_DU_Caravan_BloodiedBodylimbs(S_RC_DU_Caravan_VoidTainted_BodyPart_003_75f2c498-552e-4b55-957c-bde40029d6e2);
+DB_RC_DU_Caravan_BloodiedBodylimbs(S_RC_DU_Caravan_VoidTainted_BodyPart_004_8cdfc914-c0c6-4a6e-850f-dbea4fbebb2c);
+DB_RC_DU_Caravan_BloodiedBodylimbs(S_RC_DU_Caravan_VoidTainted_BodyPart_005_7ef238da-5ed8-474a-b4a0-ac87945643b0);
+DB_RC_DU_Caravan_BloodiedBodylimbs(S_LOOT_Human_Bodypart_Leg_A_Fresh_Sourcerer_000_a2f7f4a4-83f4-4b16-b517-91c0a06170a8);
+proc_RC_DU_Caravan_AddBloodToTaintedLimbs();
+
+KBSECTION
+IF
+CharacterEnteredTrigger((CHARACTERGUID)_Var1, TRIGGERGUID_S_RC_DU_Caravan_Box_af654fb9-679b-4f79-bb99-0060b0386156)
+AND
+PartyGetFlag(_Var1, "RC_DU_SeenCaraven", 0)
+THEN
+PartySetFlag(_Var1, "RC_DU_SeenCaraven", 0);
+StartVoiceBark("RC_DU_VB_SeenCaraven", _Var1);
+PartySetFlag(_Var1, "QuestAdd_RC_DW_WreckedCaravan");
+PartySetFlag(_Var1, "QuestUpdate_RC_DW_WreckedCaravan_SawCaravan");
+
+IF
+ObjectFlagSet("RC_DU_UpdateWreckedCaravan", (CHARACTERGUID)_Var1, _)
+THEN
+PartySetFlag(_Var1, "RC_DW_WreckedCaravan_KnowOfGhostsContacts");
+PartySetFlag(_Var1, "QuestUpdate_RC_DW_WreckedCaravan_KnowOfGhostsContacts");
+
+IF
+ObjectFlagSet("RC_DU_ToldLilianAboutCaravan", (CHARACTERGUID)_Var1, _)
+THEN
+PartySetFlag(_Var1, "QuestUpdate_RC_DW_WreckedCaravan_ToldLilian");
+
+IF
+ObjectFlagSet("RC_DU_ToldMagisterAboutCaravan", (CHARACTERGUID)_Var1, _)
+THEN
+PartySetFlag(_Var1, "QuestUpdate_RC_DW_WreckedCaravan_ToldMagister");
+
+IF
+SkillAdded((CHARACTERGUID)_Var1, "Shout_SpiritVision", _)
+AND
+DB_IsPlayer(_Var1)
+AND
+ObjectGetFlag(_Var1, "RC_DU_SeenCaraven", 1)
+THEN
+PartySetFlag(_Var1, "QuestUpdate_RC_DW_WreckedCaravan_HaveSourceVision");
+
+PROC
+proc_RC_DU_Caravan_AddBloodToTaintedLimbs()
+AND
+DB_RC_DU_Caravan_BloodiedBodylimbs(_Var1)
+THEN
+CreatePuddle(_Var1, "SurfaceBlood", 3, 7, 3, 4, 0.02);
+
+IF
+CharacterUsedSkillOnTarget((CHARACTERGUID)_Var1, S_RC_DU_Caravan_GhostMagister_5b36ece1-5fa7-4505-96e5-8b9a92106a29, (STRING)_Var2, _, _)
+AND
+DB_SourceVampirism_Skills(_Var2)
+THEN
+GlobalSetFlag("RC_DU_Caravan_GhostMagisterPoofed");
+
+IF
+ObjectFlagSet("GLO_GhostSuck", S_RC_DU_Caravan_GhostMagister_5b36ece1-5fa7-4505-96e5-8b9a92106a29, _)
+THEN
+GlobalSetFlag("RC_DU_Caravan_GhostMagisterPoofed");
+
+IF
+CharacterUsedSkillOnTarget((CHARACTERGUID)_Var1, S_RC_DU_Caravan_Liliansson_ea9a590b-38bd-40f8-9c1d-4b61ee2437fa, (STRING)_Var2, _, _)
+AND
+DB_SourceVampirism_Skills(_Var2)
+THEN
+GlobalSetFlag("RC_DU_Caravan_LilianssonPoofed");
+
+IF
+ObjectFlagSet("GLO_GhostSuck", S_RC_DU_Caravan_Liliansson_ea9a590b-38bd-40f8-9c1d-4b61ee2437fa, _)
+THEN
+GlobalSetFlag("RC_DU_Caravan_LilianssonPoofed");
+
+IF
+GlobalFlagSet("RC_DU_Caravan_LilianssonPoofed")
+THEN
+GlobalSetFlag("RC_DU_Caravan_LilianssonGone");
+
+IF
+GlobalFlagSet("RC_DU_Caravan_LilianssonVanished")
+THEN
+GlobalSetFlag("RC_DU_Caravan_LilianssonGone");
+
+IF
+GlobalFlagSet("RC_DU_Caravan_GhostMagisterPoofed")
+THEN
+GlobalSetFlag("RC_DU_Caravan_GhostMagisterGone");
+
+IF
+GlobalFlagSet("RC_DU_Caravan_GhostMagisterVanished")
+THEN
+GlobalSetFlag("RC_DU_Caravan_GhostMagisterGone");
+
+PROC
+PROC_GLOBAL_DialogStartRequested(S_RC_DU_Caravan_GhostMagister_5b36ece1-5fa7-4505-96e5-8b9a92106a29, (CHARACTERGUID)_Var1)
+AND
+DB_IsPlayer(_Var1)
+THEN
+proc_RC_DU_Caravan_StartDialogWithGhosts(S_RC_DU_Caravan_GhostMagister_5b36ece1-5fa7-4505-96e5-8b9a92106a29, _Var1);
+
+PROC
+PROC_GLOBAL_DialogStartRequested(S_RC_DU_Caravan_Liliansson_ea9a590b-38bd-40f8-9c1d-4b61ee2437fa, (CHARACTERGUID)_Var1)
+AND
+DB_IsPlayer(_Var1)
+THEN
+proc_RC_DU_Caravan_StartDialogWithGhosts(S_RC_DU_Caravan_Liliansson_ea9a590b-38bd-40f8-9c1d-4b61ee2437fa, _Var1);
+
+PROC
+proc_RC_DU_Caravan_StartDialogWithGhosts((CHARACTERGUID)_Var1, (CHARACTERGUID)_Var2)
+THEN
+DB_NOOP(1);
+
+PROC
+proc_RC_DU_Caravan_StartDialogWithGhosts((CHARACTERGUID)_Var1, (CHARACTERGUID)_Var2)
+AND
+GlobalGetFlag("RC_DU_Caravan_LilianssonGone", 0)
+AND
+GlobalGetFlag("RC_DU_Caravan_GhostMagisterGone", 0)
+THEN
+Proc_StartDialog(0, "RC_DU_Caravan_GhostMagisterAndDwarf", S_RC_DU_Caravan_GhostMagister_5b36ece1-5fa7-4505-96e5-8b9a92106a29, S_RC_DU_Caravan_Liliansson_ea9a590b-38bd-40f8-9c1d-4b61ee2437fa, _Var2);
+
+PROC
+proc_RC_DU_Caravan_StartDialogWithGhosts((CHARACTERGUID)_Var1, (CHARACTERGUID)_Var2)
+AND
+GlobalGetFlag("RC_DU_Caravan_LilianssonGone", 1)
+AND
+GlobalGetFlag("RC_DU_Caravan_GhostMagisterGone", 0)
+THEN
+Proc_StartDialog(0, "RC_DU_Caravan_GhostMagisterAndDwarf", S_RC_DU_Caravan_GhostMagister_5b36ece1-5fa7-4505-96e5-8b9a92106a29, NULL_00000000-0000-0000-0000-000000000000, _Var2);
+
+PROC
+proc_RC_DU_Caravan_StartDialogWithGhosts((CHARACTERGUID)_Var1, (CHARACTERGUID)_Var2)
+AND
+GlobalGetFlag("RC_DU_Caravan_LilianssonGone", 0)
+AND
+GlobalGetFlag("RC_DU_Caravan_GhostMagisterGone", 1)
+THEN
+Proc_StartDialog(0, "RC_DU_Caravan_GhostMagisterAndDwarf", NULL_00000000-0000-0000-0000-000000000000, S_RC_DU_Caravan_Liliansson_ea9a590b-38bd-40f8-9c1d-4b61ee2437fa, _Var2);
+
+IF
+CharacterStatusApplied(S_RC_DU_Caravan_Liliansson_ea9a590b-38bd-40f8-9c1d-4b61ee2437fa, "SPIRIT", _)
+AND
+HasActiveStatus(S_RC_DU_Caravan_Liliansson_ea9a590b-38bd-40f8-9c1d-4b61ee2437fa, "SPIRIT", 1)
+AND
+QRY_SpeakerIsAvailable(S_RC_DU_Caravan_GhostMagister_5b36ece1-5fa7-4505-96e5-8b9a92106a29)
+THEN
+Proc_StartDialog(0, "RC_DU_AD_CravanGhostsArgue", S_RC_DU_Caravan_Liliansson_ea9a590b-38bd-40f8-9c1d-4b61ee2437fa, S_RC_DU_Caravan_GhostMagister_5b36ece1-5fa7-4505-96e5-8b9a92106a29);
+
+IF
+AttackedByObject(S_RC_DU_Caravan_GhostMagister_5b36ece1-5fa7-4505-96e5-8b9a92106a29, S_RC_DU_Caravan_Liliansson_ea9a590b-38bd-40f8-9c1d-4b61ee2437fa, _, _, _)
+THEN
+Proc_StartDialog(1, "RC_DU_AD_Caravan_GhostMagisterGotHit", S_RC_DU_Caravan_GhostMagister_5b36ece1-5fa7-4505-96e5-8b9a92106a29);
+
+IF
+ObjectFlagSet("RC_DU_Caravan_GhostMagisterHitDwarf", S_RC_DU_Caravan_GhostMagister_5b36ece1-5fa7-4505-96e5-8b9a92106a29, (INTEGER)_Var1)
+THEN
+CharacterAttack(S_RC_DU_Caravan_GhostMagister_5b36ece1-5fa7-4505-96e5-8b9a92106a29, S_RC_DU_Caravan_Liliansson_ea9a590b-38bd-40f8-9c1d-4b61ee2437fa);
+
+IF
+AutomatedDialogEnded("RC_DU_AD_CravanGhostsArgue", (INTEGER)_Var1)
+AND
+DialogGetInvolvedNPC(_Var1, 2, _Var2)
+AND
+ObjectGetFlag(_Var2, "RC_DU_Caravan_GhostMagisterHitDwarf", 1)
+THEN
+ObjectClearFlag(_Var2, "RC_DU_Caravan_GhostMagisterHitDwarf", _Var1);
+
+IF
+DialogStarted("RC_DU_Caravan_SurvivingDwarf", (INTEGER)_Var1)
+THEN
+CharacterSetAnimationOverride(CHARACTERGUID_S_RC_DU_Caravan_SurvivingDwarf_1c3759c4-284d-46e1-98e0-da880d9f3da8, "");
+CharacterSetFightMode(CHARACTERGUID_S_RC_DU_Caravan_SurvivingDwarf_1c3759c4-284d-46e1-98e0-da880d9f3da8, 1, 0);
+
+IF
+ObjectFlagSet("RC_DU_Caravan_SurvivingDwarf_HasMet", (GUIDSTRING)_Var1, _)
+THEN
+CharacterLookAt(CHARACTERGUID_S_RC_DU_Caravan_SurvivingDwarf_1c3759c4-284d-46e1-98e0-da880d9f3da8, _Var1);
+
+IF
+DialogStarted("RC_DU_Caravan_SurvivingDwarf_COM_Beast", (INTEGER)_Var1)
+THEN
+CharacterSetAnimationOverride(CHARACTERGUID_S_RC_DU_Caravan_SurvivingDwarf_1c3759c4-284d-46e1-98e0-da880d9f3da8, "");
+CharacterSetFightMode(CHARACTERGUID_S_RC_DU_Caravan_SurvivingDwarf_1c3759c4-284d-46e1-98e0-da880d9f3da8, 1, 0);
+
+IF
+ObjectFlagSet("RC_DU_Caravan_SurvivingDwarf_CombatModeOff", CHARACTERGUID_S_RC_DU_Caravan_SurvivingDwarf_1c3759c4-284d-46e1-98e0-da880d9f3da8, (INTEGER)_Var1)
+THEN
+CharacterSetFightMode(CHARACTERGUID_S_RC_DU_Caravan_SurvivingDwarf_1c3759c4-284d-46e1-98e0-da880d9f3da8, 0, 0);
+
+IF
+ObjectFlagSet("RC_DU_Caravan_ShowUnderTavernMarker", (CHARACTERGUID)_Var1, _)
+THEN
+PartySetFlag(_Var1, "QuestUpdate_RC_DW_WreckedCaravan_FindLilian");
+
+IF
+DialogEnded("RC_DU_Caravan_SurvivingDwarf", (INTEGER)_Var1)
+AND
+DialogGetInvolvedNPC(_Var1, 1, _Var2)
+AND
+ObjectGetFlag(_Var2, "RC_DU_Caravan_SurvivingDwarfFlee", 1)
+THEN
+ProcCharacterDisappearOutOfSight(_Var2, 0, 1, "", 1);
+SetHasDialog(_Var2, 0);
+
+IF
+CharacterReceivedDamage(CHARACTERGUID_S_RC_DU_Caravan_SurvivingDwarf_1c3759c4-284d-46e1-98e0-da880d9f3da8, _, _)
+THEN
+CharacterSetAnimationOverride(CHARACTERGUID_S_RC_DU_Caravan_SurvivingDwarf_1c3759c4-284d-46e1-98e0-da880d9f3da8, "");
+
+IF
+ObjectEnteredCombat(CHARACTERGUID_S_RC_DU_Caravan_SurvivingDwarf_1c3759c4-284d-46e1-98e0-da880d9f3da8, (INTEGER)_Var1)
+THEN
+CharacterSetAnimationOverride(CHARACTERGUID_S_RC_DU_Caravan_SurvivingDwarf_1c3759c4-284d-46e1-98e0-da880d9f3da8, "");
+
+IF
+CharacterReceivedDamage(CHARACTERGUID_S_RC_DU_Caravan_SurvivingDwarf_1c3759c4-284d-46e1-98e0-da880d9f3da8, _, _)
+AND
+CharacterIsInCombat(CHARACTERGUID_S_RC_DU_Caravan_SurvivingDwarf_1c3759c4-284d-46e1-98e0-da880d9f3da8, 0)
+THEN
+Proc_StartDialog(1, "RC_AD_DU_Caravan_SurvivingDwarf", S_RC_DU_Caravan_SurvivingDwarf_1c3759c4-284d-46e1-98e0-da880d9f3da8);
+ProcCharacterDisappearOutOfSight(CHARACTERGUID_S_RC_DU_Caravan_SurvivingDwarf_1c3759c4-284d-46e1-98e0-da880d9f3da8, 0, 1, "", 1);
+SetHasDialog(CHARACTERGUID_S_RC_DU_Caravan_SurvivingDwarf_1c3759c4-284d-46e1-98e0-da880d9f3da8, 0);
+
+IF
+TextEventSet("DU_Caravan_Set_DWFlags")
+AND
+DB_IsPlayer(_Var1)
+THEN
+ObjectSetFlag(_Var1, "RC_DW_WhiteMagister_SaidSawCaravan");
+
+IF
+DialogStarted(_, (INTEGER)_Var2)
+AND
+DialogGetInvolvedPlayer(_Var2, 1, _Var3)
+AND
+CharacterHasSkill(_Var3, "Target_Bless", 1)
+THEN
+ObjectSetFlag(_Var3, "Has_Bless");
+
+IF
+DialogStarted(_, (INTEGER)_Var2)
+AND
+DialogGetInvolvedPlayer(_Var2, 1, _Var3)
+AND
+CharacterHasSkill(_Var3, "Target_Bless", 0)
+THEN
+ObjectClearFlag(_Var3, "Has_Bless", 0);
+
+IF
+ObjectFlagSet("Use_Bless", (CHARACTERGUID)_Var1, (INTEGER)_Var2)
+AND
+DialogGetInvolvedNPC(_Var2, 1, _Var3)
+THEN
+ObjectClearFlag(_Var1, "Use_Bless", 0);
+CharacterUseSkill(_Var1, "Target_Bless", _Var3);
+
+
+EXITSECTION
+ENDEXITSECTION
+
+ParentTargetEdge "ReapersCoast"

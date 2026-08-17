@@ -1,0 +1,163 @@
+Version 1
+SubGoalCombiner SGC_AND
+
+INITSECTION
+DB_LoopEffectDisabledInCombat("RS3_FX_UI_PersonIcon_01");
+
+KBSECTION
+IF
+GlobalFlagSet("GLO_DisableRelationshipDialogsPermanently")
+THEN
+GoalCompleted;
+
+PROC
+Proc_RelationshipDialog((CHARACTERGUID)_Var1, (STRING)_Var2, (CHARACTERGUID)_Var3)
+AND NOT
+DB_Dead(_Var1)
+AND
+DB_CompanionAvatarBond(_Var1, _Var4)
+AND NOT
+DB_RelationshipDialogsFinished(_Var1, _Var2)
+AND NOT
+DB_HandlingRelationshipDialog(_Var1, _Var2)
+AND
+GetDistanceTo(_Var1, _Var3, _Var5)
+AND
+_Var5 < 30
+AND
+CharacterGetReservedUserID(_Var1, _Var6)
+AND
+CharacterGetReservedUserID(_Var4, _Var6)
+THEN
+DB_RelationshipDialog_Queue(_Var1, _Var2);
+ProcLaunchTestCompanionQueueTimer();
+
+PROC
+ProcLaunchTestCompanionQueueTimer()
+AND NOT
+DB_TestingCompanionQueue(1)
+THEN
+DB_TestingCompanionQueue(1);
+TimerLaunch("Test_RelationshipDialog_Queue", 1500);
+
+IF
+TimerFinished("Test_RelationshipDialog_Queue")
+THEN
+NOT DB_TestingCompanionQueue(1);
+Proc_Test_RelationshipDialog_Queue();
+
+IF
+DialogEnded((STRING)_Var1, _)
+AND
+DB_HandlingRelationshipDialog(_Var3, _Var1)
+THEN
+PROC_StopLoopEffect(_Var3, "RelationshipMarker");
+NOT DB_HandlingRelationshipDialog(_Var3, _Var1);
+DB_RelationshipDialogsFinished(_Var3, _Var1);
+
+IF
+DialogEnded(_, (INTEGER)_Var2)
+AND
+DB_DialogPlayers(_Var2, _Var3, 1)
+AND
+DB_RelationshipDialog_Queue(_Var3, _Var4)
+THEN
+Proc_Test_RelationshipDialog_Queue();
+
+IF
+CharacterDied((CHARACTERGUID)_Var1)
+AND
+IsTagged(_Var1, "AVATAR", 0)
+THEN
+ProcCancelAllRelationshipDialogs(_Var1);
+
+PROC
+Proc_Test_RelationshipDialog_Queue()
+AND
+DB_RelationshipDialog_Queue(_Var1, _Var2)
+AND NOT
+DB_ReflectionDialogs_Queued(_Var1, _)
+AND NOT
+DB_HandlingRelationshipDialog(_Var1, _)
+THEN
+DB_HandlingRelationshipDialog(_Var1, _Var2);
+NOT DB_RelationshipDialog_Queue(_Var1, _Var2);
+PROC_LoopEffect("RS3_FX_UI_PersonIcon_01", _Var1, "RelationshipMarker", "__ANY__", "Dummy_OverheadFX");
+DB_RelationshipDialogs(_Var1, _Var2);
+PROC_PeaceTimerLaunch(_Var2, 60000);
+
+IF
+SavegameLoaded((INTEGER)_Var1, (INTEGER)_Var2, (INTEGER)_Var3, (INTEGER)_Var4)
+AND
+QRY_VersionIsOlderThan(_Var1, _Var2, _Var3, _Var4, 3, 6, 1, 0)
+AND
+DB_RelationshipDialogs(_Var5, _Var6)
+THEN
+PROC_PeaceTimerLaunch(_Var6, 60000);
+
+IF
+TimerFinished((STRING)_Var1)
+AND
+DB_RelationshipDialogs(_Var2, _Var1)
+THEN
+ProcCancelOneRelationshipDialog(_Var2, _Var1);
+
+IF
+DB_ReflectionDialogs_Queued(_Var1, _)
+AND
+DB_RelationshipDialogs(_Var1, _Var3)
+THEN
+PROC_StopLoopEffect(_Var1, "RelationshipMarker");
+NOT DB_HandlingRelationshipDialog(_Var1, _Var3);
+NOT DB_RelationshipDialogs(_Var1, _Var3);
+DB_RelationshipDialog_Queue(_Var1, _Var3);
+
+PROC
+ProcCancelAllRelationshipDialogsForAllCompanions()
+AND
+DB_IsPlayer(_Var1)
+AND
+IsTagged(_Var1, "AVATAR", 0)
+THEN
+ProcCancelAllRelationshipDialogs(_Var1);
+
+PROC
+ProcCancelAllRelationshipDialogs((CHARACTERGUID)_Var1)
+AND
+DB_HandlingRelationshipDialog(_Var1, _Var2)
+THEN
+ProcCancelOneRelationshipDialog(_Var1, _Var2);
+
+PROC
+ProcCancelAllRelationshipDialogs((CHARACTERGUID)_Var1)
+AND
+DB_RelationshipDialog_Queue(_Var1, _Var2)
+THEN
+ProcCancelOneRelationshipDialog(_Var1, _Var2);
+
+PROC
+ProcCancelOneRelationshipDialog((CHARACTERGUID)_Var1, (STRING)_Var2)
+AND
+DB_HandlingRelationshipDialog(_Var1, _Var2)
+THEN
+PROC_StopLoopEffect(_Var1, "RelationshipMarker");
+NOT DB_HandlingRelationshipDialog(_Var1, _Var2);
+NOT DB_RelationshipDialogs(_Var1, _Var2);
+
+PROC
+ProcCancelOneRelationshipDialog((CHARACTERGUID)_Var1, (STRING)_Var2)
+AND
+DB_RelationshipDialog_Queue(_Var1, _Var2)
+THEN
+NOT DB_RelationshipDialog_Queue(_Var1, _Var2);
+
+PROC
+ProcCancelOneRelationshipDialog((CHARACTERGUID)_Var1, (STRING)_Var2)
+THEN
+DB_RelationshipDialogsFinished(_Var1, _Var2);
+
+
+EXITSECTION
+ENDEXITSECTION
+
+ParentTargetEdge "__Shared_Campaign"

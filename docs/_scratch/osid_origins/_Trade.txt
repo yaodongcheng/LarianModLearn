@@ -1,0 +1,386 @@
+Version 1
+SubGoalCombiner SGC_AND
+
+INITSECTION
+DB_DoubleAttitudePrice(1, 2);
+DB_DoubleAttitudePrice(2, 2);
+DB_DoubleAttitudePrice(3, 3);
+DB_DoubleAttitudePrice(4, 3);
+DB_DoubleAttitudePrice(5, 4);
+DB_DoubleAttitudePrice(6, 5);
+DB_DoubleAttitudePrice(7, 6);
+DB_DoubleAttitudePrice(8, 7);
+DB_DoubleAttitudePrice(9, 12);
+DB_DoubleAttitudePrice(10, 15);
+DB_DoubleAttitudePrice(11, 20);
+DB_DoubleAttitudePrice(12, 25);
+DB_DoubleAttitudePrice(13, 30);
+DB_DoubleAttitudePrice(14, 35);
+DB_DoubleAttitudePrice(15, 40);
+DB_DoubleAttitudePrice(16, 60);
+DB_DoubleAttitudePrice(17, 65);
+DB_DoubleAttitudePrice(18, 75);
+DB_DoubleAttitudePrice(19, 85);
+DB_DoubleAttitudePrice(20, 95);
+DB_DoubleAttitudePrice(21, 100);
+
+KBSECTION
+PROC
+GenTradeItems((CHARACTERGUID)_Var1, (CHARACTERGUID)_Var2)
+AND NOT
+DB_TraderGeneratedTreasureForLevel(_Var2, _)
+THEN
+DB_TraderGeneratedTreasureForLevel(_Var2, 0);
+
+PROC
+GenTradeItems((CHARACTERGUID)_Var1, (CHARACTERGUID)_Var2)
+AND
+DB_TraderGeneratedTreasureForLevel(_Var2, _Var3)
+AND
+CharacterGetLevel(_Var1, _Var4)
+AND
+_Var4 > _Var3
+THEN
+NOT DB_TraderGeneratedTreasureForLevel(_Var2, _Var3);
+DB_TraderGeneratedTreasureForLevel(_Var2, _Var4);
+DoGenTradeItems(_Var1, _Var2);
+
+PROC
+ProcClearTradeFacts((CHARACTERGUID)_Var1)
+AND
+DB_TraderGeneratedTreasureForLevel(_Var1, _Var2)
+THEN
+NOT DB_TraderGeneratedTreasureForLevel(_Var1, _Var2);
+
+PROC
+GenTradeItems((CHARACTERGUID)_Var1, (CHARACTERGUID)_Var2)
+AND
+DB_LastTradeItemGeneration(_Var2, _Var3)
+AND
+_Var3 != 0
+AND
+DB_Time(_, _, _Var6)
+AND
+IntegerSubtract(_Var6, _Var3, _Var7)
+AND
+_Var7 >= 12
+THEN
+DoGenTradeItems(_Var1, _Var2);
+
+PROC
+GenTradeItems((CHARACTERGUID)_Var1, (CHARACTERGUID)_Var2)
+AND
+DB_LastTradeItemGeneration(_Var2, 0)
+THEN
+DoGenTradeItems(_Var1, _Var2);
+
+PROC
+DoGenTradeItems((CHARACTERGUID)_Var1, (CHARACTERGUID)_Var2)
+AND
+DB_LastTradeItemGeneration(_Var2, _Var3)
+THEN
+NOT DB_LastTradeItemGeneration(_Var2, _Var3);
+
+PROC
+DoGenTradeItems((CHARACTERGUID)_Var1, (CHARACTERGUID)_Var2)
+AND
+DB_Time(_, _, _Var5)
+THEN
+ProcGenerateTradeTreasure(_Var1, _Var2);
+DB_LastTradeItemGeneration(_Var2, _Var5);
+
+PROC
+ProcClearGeneratedItems((CHARACTERGUID)_Var1)
+AND NOT
+DB_ItemsCleared(_Var1)
+THEN
+DB_ItemsCleared(_Var1);
+CharacterClearTradeGeneratedItems(_Var1);
+
+IF
+DB_CustomTradeTreasure(_Var1, _Var2)
+THEN
+ProcClearLastTradeTime(_Var1);
+
+PROC
+ProcClearLastTradeTime((CHARACTERGUID)_Var1)
+AND
+DB_LastTradeItemGeneration(_Var1, _Var2)
+THEN
+NOT DB_LastTradeItemGeneration(_Var1, _Var2);
+DB_LastTradeItemGeneration(_Var1, 0);
+
+PROC
+ProcGenerateTradeTreasure((CHARACTERGUID)_Var1, (CHARACTERGUID)_Var2)
+AND
+DB_CustomTradeTreasure(_Var2, _Var3)
+THEN
+ProcClearGeneratedItems(_Var2);
+DB_CharacterGenerateCustomTradeTreasure(_Var1, _Var2, _Var3);
+DB_TreasureGenerated(1);
+
+PROC
+ProcGenerateTradeTreasure((CHARACTERGUID)_Var1, (CHARACTERGUID)_Var2)
+AND NOT
+DB_TreasureGenerated(1)
+THEN
+GenerateItems(_Var1, _Var2);
+
+PROC
+ProcGenerateTradeTreasure((CHARACTERGUID)_Var1, (CHARACTERGUID)_Var2)
+THEN
+NOT DB_TreasureGenerated(1);
+NOT DB_ItemsCleared(_Var2);
+
+IF
+CharacterPrecogDying((CHARACTERGUID)_Var1)
+AND
+IsTagged(_Var1, "TRADER", 1)
+AND
+CharacterIsPlayer(_Var1, 0)
+AND NOT
+DB_TraderGeneratedTreasureForLevel(_Var1, _)
+AND
+GetClosestPlayer(_Var1, _Var3, _)
+THEN
+ProcGenerateTradeTreasure(_Var3, _Var1);
+
+PROC
+StartTrade((CHARACTERGUID)_Var1, (CHARACTERGUID)_Var2)
+THEN
+GenTradeItems(_Var1, _Var2);
+ResetInsults(_Var1, _Var2);
+
+PROC
+StartTrade((CHARACTERGUID)_Var1, (CHARACTERGUID)_Var2)
+THEN
+DoStartTrade_1(_Var1, _Var2);
+
+PROC
+DoStartTrade_1((CHARACTERGUID)_Var1, (CHARACTERGUID)_Var2)
+AND
+DB_NoRepair(_Var2)
+AND
+DB_NoIdentify(_Var2)
+THEN
+ActivateTrade(_Var1, _Var2, 0, 0, 1);
+
+PROC
+DoStartTrade_1((CHARACTERGUID)_Var1, (CHARACTERGUID)_Var2)
+AND NOT
+DB_NoRepair(_Var2)
+AND
+DB_NoIdentify(_Var2)
+THEN
+ActivateTrade(_Var1, _Var2, 1, 0, 1);
+
+PROC
+DoStartTrade_1((CHARACTERGUID)_Var1, (CHARACTERGUID)_Var2)
+AND
+DB_NoRepair(_Var2)
+AND NOT
+DB_NoIdentify(_Var2)
+THEN
+ActivateTrade(_Var1, _Var2, 0, 1, 1);
+
+PROC
+DoStartTrade_1((CHARACTERGUID)_Var1, (CHARACTERGUID)_Var2)
+AND NOT
+DB_NoRepair(_Var2)
+AND NOT
+DB_NoIdentify(_Var2)
+THEN
+ActivateTrade(_Var1, _Var2, 1, 1, 1);
+
+IF
+RequestTrade((CHARACTERGUID)_Var1, (CHARACTERGUID)_Var2)
+THEN
+StartTrade(_Var1, _Var2);
+
+PROC
+ResetInsults((CHARACTERGUID)_Var1, (CHARACTERGUID)_Var2)
+AND
+DB_InsultCounter(_Var1, _Var2, _Var3)
+THEN
+NOT DB_InsultCounter(_Var1, _Var2, _Var3);
+
+PROC
+ResetInsults((CHARACTERGUID)_Var1, (CHARACTERGUID)_Var2)
+THEN
+DB_InsultCounter(_Var1, _Var2, 0);
+
+IF
+HappyWithDeal((CHARACTERGUID)_Var1, (CHARACTERGUID)_Var2, (INTEGER)_Var3, (INTEGER)_Var4)
+AND
+QRY_GetAttitudeChangeForTrade(_Var1, _Var2, _Var3, _Var4)
+AND
+DB_AttitudeAdjustMent(_Var1, _Var2, _Var5)
+AND
+_Var5 != 0
+THEN
+CharacterAddAttitudeTowardsPlayer(_Var2, _Var1, _Var5);
+
+IF
+HappyWithDeal((CHARACTERGUID)_Var1, (CHARACTERGUID)_Var2, (INTEGER)_Var3, (INTEGER)_Var4)
+AND
+_Var3 >= _Var4
+AND
+DB_AttitudeAdjustMent(_Var1, _Var2, _Var5)
+THEN
+ExecuteDeal(_Var1, 1, _Var5);
+
+IF
+HappyWithDeal((CHARACTERGUID)_Var1, (CHARACTERGUID)_Var2, (INTEGER)_Var3, (INTEGER)_Var4)
+AND
+_Var3 < _Var4
+AND
+DB_AttitudeAdjustMent(_Var1, _Var2, _Var5)
+THEN
+ExecuteDeal(_Var1, 0, _Var5);
+
+QRY
+QRY_GetAttitudeChangeForTrade((CHARACTERGUID)_Var1, (CHARACTERGUID)_Var2, (INTEGER)_Var3, (INTEGER)_Var4)
+AND NOT
+DB_TempTradeBalance(_Var1, _Var2, _)
+THEN
+DB_TempTradeBalance(_Var1, _Var2, 0);
+
+QRY
+QRY_GetAttitudeChangeForTrade((CHARACTERGUID)_Var1, (CHARACTERGUID)_Var2, (INTEGER)_Var3, (INTEGER)_Var4)
+AND
+IntegerSubtract(_Var3, _Var4, _Var5)
+AND
+DB_TempTradeBalance(_Var1, _Var2, _Var6)
+AND
+IntegerSum(_Var5, _Var6, _Var7)
+AND
+CharacterGetLevel(_Var2, _Var8)
+AND
+IntegerMin(_Var8, 21, _Var9)
+AND
+DB_DoubleAttitudePrice(_Var9, _Var10)
+AND
+IntegerSum(_Var7, _Var7, _Var11)
+AND
+IntegerDivide(_Var11, _Var10, _Var12)
+AND
+IntegerProduct(_Var12, _Var10, _Var13)
+AND
+IntegerMax(_Var13, -1, _Var14)
+AND
+IntegerMin(_Var14, 1, _Var15)
+AND
+IntegerSum(_Var13, _Var15, _Var16)
+AND
+IntegerDivide(_Var16, 2, _Var17)
+AND
+IntegerSubtract(_Var7, _Var17, _Var18)
+THEN
+NOT DB_TempTradeBalance(_Var1, _Var2, _Var6);
+DB_TempTradeBalance(_Var1, _Var2, _Var18);
+PROC_Trade_SetAttitudeAdjustment(_Var1, _Var2, _Var12);
+
+PROC
+PROC_Trade_SetAttitudeAdjustment((CHARACTERGUID)_Var1, (CHARACTERGUID)_Var2, (INTEGER)_Var3)
+AND
+DB_AttitudeAdjustMent(_Var1, _Var2, _Var4)
+THEN
+NOT DB_AttitudeAdjustMent(_Var1, _Var2, _Var4);
+
+PROC
+PROC_Trade_SetAttitudeAdjustment((CHARACTERGUID)_Var1, (CHARACTERGUID)_Var2, (INTEGER)_Var3)
+AND
+_Var3 >= 0
+THEN
+DB_AttitudeAdjustMent(_Var1, _Var2, _Var3);
+
+PROC
+PROC_Trade_SetAttitudeAdjustment((CHARACTERGUID)_Var1, (CHARACTERGUID)_Var2, (INTEGER)_Var3)
+AND
+_Var3 < 0
+AND
+DB_InsultCounter(_Var1, _Var2, _Var4)
+AND
+_Var4 < 2
+AND
+IntegerSum(_Var4, 1, _Var5)
+AND
+DB_TempTradeBalance(_Var1, _Var2, _Var6)
+THEN
+DB_AttitudeAdjustMent(_Var1, _Var2, 0);
+NOT DB_InsultCounter(_Var1, _Var2, _Var4);
+DB_InsultCounter(_Var1, _Var2, _Var5);
+NOT DB_TempTradeBalance(_Var1, _Var2, _Var6);
+DB_TempTradeBalance(_Var1, _Var2, 0);
+
+PROC
+PROC_Trade_SetAttitudeAdjustment((CHARACTERGUID)_Var1, (CHARACTERGUID)_Var2, (INTEGER)_Var3)
+AND
+_Var3 < 0
+AND NOT
+DB_AttitudeAdjustMent(_Var1, _Var2, _)
+AND
+CharacterGetAttitudeTowardsPlayer(_Var2, _Var1, _Var5)
+AND
+IntegerSubtract(_Var5, 15, _Var6)
+AND
+IntegerMax(_Var6, -45, _Var7)
+AND
+IntegerSubtract(_Var7, _Var5, _Var8)
+THEN
+DB_AttitudeAdjustMent(_Var1, _Var2, _Var8);
+
+IF
+ObjectFlagSet("StartTrade", (CHARACTERGUID)_Var1, (INTEGER)_Var2)
+AND
+DB_DialogNPCs(_Var2, _Var3, 1)
+THEN
+StartTrade(_Var1, _Var3);
+ObjectClearFlag(_Var1, "StartTrade", _Var2);
+
+PROC
+Proc_DialogFlagSetup(_, (CHARACTERGUID)_Var2, (GUIDSTRING)_Var3)
+AND
+DB_ManualTradeNPC(_Var2)
+AND
+DB_PreventTradeBetween(_Var2, _Var3)
+THEN
+CharacterSetCanTrade(_Var2, 0);
+
+PROC
+Proc_DialogFlagSetup(_, (CHARACTERGUID)_Var2, (GUIDSTRING)_Var3)
+AND
+IsTagged(_Var2, "GHOST", 1)
+THEN
+CharacterSetCanTrade(_Var2, 0);
+
+IF
+ObjectFlagSet("PreventTradeWithPlayer", (GUIDSTRING)_Var1, (INTEGER)_Var2)
+AND
+DialogGetInvolvedPlayer(_Var2, 1, _Var3)
+THEN
+DB_ManualTradeNPC(_Var1);
+DB_PreventTradeBetween(_Var1, _Var3);
+ObjectClearFlag(_Var1, "PreventTradeWithPlayer", _Var2);
+
+PROC
+Proc_DialogFlagSetup(_, (CHARACTERGUID)_Var2, (GUIDSTRING)_Var3)
+AND
+DB_ManualTradeNPC(_Var2)
+AND NOT
+DB_PreventTradeBetween(_Var2, _Var3)
+THEN
+CharacterSetCanTrade(_Var2, 1);
+
+IF
+SavegameLoaded((INTEGER)_Var1, (INTEGER)_Var2, (INTEGER)_Var3, (INTEGER)_Var4)
+AND
+QRY_VersionIsOlderThan(_Var1, _Var2, _Var3, _Var4, 3, 6, 0, 0)
+THEN
+NOT DB_DoubleAttitudePriceOverTwenty(100);
+DB_DoubleAttitudePrice(21, 100);
+
+
+EXITSECTION
+ENDEXITSECTION
+

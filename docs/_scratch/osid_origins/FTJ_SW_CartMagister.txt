@@ -1,0 +1,141 @@
+Version 1
+SubGoalCombiner SGC_AND
+
+INITSECTION
+DB_Dialogs(CHARACTERGUID_S_FTJ_SW_CartMagister_a6d0df31-2870-4b43-8a0f-93076f25b514, "FTJ_SW_CartMagister");
+DB_SneakTriggerSpotter(TRIGGERGUID_S_FTJ_SW_OneShot_CartMagister_9194187d-a04d-421f-80ea-3759f5e88635, CHARACTERGUID_S_FTJ_SW_CartMagister_a6d0df31-2870-4b43-8a0f-93076f25b514);
+DB_IsNotMessingAround(CHARACTERGUID_S_FTJ_SW_CartMagister_a6d0df31-2870-4b43-8a0f-93076f25b514);
+ItemToInventory(ITEMGUID_S_FTJ_SW_CartMagister_LetterMom_ae48880e-ef02-49f5-bbb7-1aad57b69d46, CHARACTERGUID_S_FTJ_SW_CartMagister_a6d0df31-2870-4b43-8a0f-93076f25b514);
+ItemToInventory(ITEMGUID_S_FTJ_SW_CartMagister_LetterDallis_9353f715-5e93-41ef-8b72-721dbda356bb, CHARACTERGUID_S_FTJ_SW_DeadMagister08_04533248-66c8-4dc2-9b2e-b5e8ad1c96e3);
+CharacterSetHitpointsPercentage(CHARACTERGUID_S_FTJ_SW_CartMagister_a6d0df31-2870-4b43-8a0f-93076f25b514, 65);
+ItemToInventory(S_FTJ_SW_CartBodyPart_4bb52c0b-f8e0-48a5-b588-30720e00d9aa, S_FTJ_SW_DeadMagister08_04533248-66c8-4dc2-9b2e-b5e8ad1c96e3);
+ItemToInventory(ITEMGUID_S_FTJ_SW_CartMagister_Wand1_8d48ba1b-6be2-47a3-9430-6a1928f53631, ITEMGUID_S_FTJ_SW_CartMagister_Box_cdde465a-cc1e-4244-ad07-60382230cb19);
+DB_FTJ_SW_CartMagisterSkeleton(S_FTJ_SW_Cart_Skeleton1_2c5d8d19-5be8-4079-bc08-a5a2592992d0);
+DB_FTJ_SW_CartMagisterSkeleton(CHARACTERGUID_S_FTJ_SW_Cart_Skeleton2_e0a7b56f-34a1-4213-85e4-85697f2cfb68);
+DB_FTJ_SW_CartMagisterSkeleton(CHARACTERGUID_S_FTJ_SW_Cart_Skeleton3_f7d6972d-3071-411d-b3e9-f18524eb9d2c);
+DB_FTJ_SW_CartMagisterSkeleton(CHARACTERGUID_S_FTJ_SW_Cart_Skeleton4_89571d9e-b861-4706-9c2d-1b8c7d8329e4);
+
+KBSECTION
+IF
+DB_FTJ_SW_CartMagisterSkeleton(_Var1)
+THEN
+SetOnStage(_Var1, 0);
+
+PROC
+ProcCharInTriggerSpotted((CHARACTERGUID)_Var1, TRIGGERGUID_S_FTJ_SW_OneShot_CartMagister_9194187d-a04d-421f-80ea-3759f5e88635)
+AND
+QRY_IsAvailableTo(_Var1, CHARACTERGUID_S_FTJ_SW_CartMagister_a6d0df31-2870-4b43-8a0f-93076f25b514)
+THEN
+Proc_StartDialog(0, "FTJ_SW_CartMagister", CHARACTERGUID_S_FTJ_SW_CartMagister_a6d0df31-2870-4b43-8a0f-93076f25b514, _Var1);
+
+IF
+DialogStarted("FTJ_SW_CartMagister", _)
+AND
+QueryOnlyOnce("FTJ_SW_CartMagister")
+THEN
+CharacterSetFightMode(CHARACTERGUID_S_FTJ_SW_CartMagister_a6d0df31-2870-4b43-8a0f-93076f25b514, 1, 0);
+ProcCleanUpSneakTrigger(TRIGGERGUID_S_FTJ_SW_OneShot_CartMagister_9194187d-a04d-421f-80ea-3759f5e88635);
+ProcTriggerUnregisterForPlayers(TRIGGERGUID_S_FTJ_SW_OneShot_CartMagister_9194187d-a04d-421f-80ea-3759f5e88635);
+
+IF
+GlobalFlagSet("FTJ_SW_CartMagister_HideWeapon")
+THEN
+CharacterSetFightMode(CHARACTERGUID_S_FTJ_SW_CartMagister_a6d0df31-2870-4b43-8a0f-93076f25b514, 0, 0);
+
+IF
+DialogEnded("FTJ_SW_CartMagister", _)
+AND
+GlobalGetFlag("FTJ_SW_CartMagister_RunAway", 1)
+THEN
+SetHasDialog(CHARACTERGUID_S_FTJ_SW_CartMagister_a6d0df31-2870-4b43-8a0f-93076f25b514, 0);
+ProcCharacterDisableAllCrimes(CHARACTERGUID_S_FTJ_SW_CartMagister_a6d0df31-2870-4b43-8a0f-93076f25b514);
+ProcCharacterMoveTo(CHARACTERGUID_S_FTJ_SW_CartMagister_a6d0df31-2870-4b43-8a0f-93076f25b514, TRIGGERGUID_S_FTJ_SW_CartMagisterEscape_747dc5a0-bf2b-47e6-8b84-8ec14fd54a74, 0, "FTJ_SW_CartMagisterPoof");
+
+IF
+StoryEvent(CHARACTERGUID_S_FTJ_SW_CartMagister_a6d0df31-2870-4b43-8a0f-93076f25b514, "FTJ_SW_CartMagisterPoof")
+THEN
+ProcCharacterDisappearOutOfSight(CHARACTERGUID_S_FTJ_SW_CartMagister_a6d0df31-2870-4b43-8a0f-93076f25b514, 0, 0, "", 1);
+
+IF
+GlobalFlagSet("FTJ_SW_CartMagister_Stumble")
+THEN
+PlayAnimation(CHARACTERGUID_S_FTJ_SW_CartMagister_a6d0df31-2870-4b43-8a0f-93076f25b514, "knockdown_fall");
+
+IF
+DialogEnded("FTJ_SW_CartMagister", _)
+AND
+GlobalGetFlag("FTJ_SW_CartMagister_Skeletons", 1)
+AND
+DB_FTJ_SW_CartMagisterSkeleton(_Var2)
+THEN
+CharacterAppear(_Var2, 1, "");
+
+IF
+CharacterDied((CHARACTERGUID)_Var1)
+AND
+DB_FTJ_SW_CartMagisterSkeleton(_Var1)
+AND NOT
+QRY_FTJ_SW_CartMagisterSkeletonAlive()
+AND
+DB_IsPlayer(_Var2)
+THEN
+CharacterSetRelationIndivFactionToIndivFaction(CHARACTERGUID_S_FTJ_SW_CartMagister_a6d0df31-2870-4b43-8a0f-93076f25b514, _Var2, 50);
+CharacterSetRelationIndivFactionToIndivFaction(_Var2, CHARACTERGUID_S_FTJ_SW_CartMagister_a6d0df31-2870-4b43-8a0f-93076f25b514, 50);
+
+QRY
+QRY_FTJ_SW_CartMagisterSkeletonAlive()
+AND
+DB_FTJ_SW_CartMagisterSkeleton(_Var1)
+AND
+CharacterIsDead(_Var1, 0)
+THEN
+DB_NOOP(1);
+
+IF
+DialogEnded("FTJ_SW_CartMagister", _)
+AND
+GlobalGetFlag("FTJ_SW_CartMagister_Skeletons", 1)
+THEN
+GlobalClearFlag("FTJ_SW_CartMagister_Skeletons");
+
+PROC
+Proc_ObjectLeftCombat(CHARACTERGUID_S_FTJ_SW_CartMagister_a6d0df31-2870-4b43-8a0f-93076f25b514, (INTEGER)_Var1)
+AND
+DB_WasInCombat(CHARACTERGUID_S_FTJ_SW_Cart_Skeleton1_2c5d8d19-5be8-4079-bc08-a5a2592992d0, _Var1)
+AND
+DB_IsPlayer(_Var2)
+AND
+DB_WasInCombat(_Var2, _Var1)
+THEN
+ObjectSetFlag(_Var2, "FTJ_SW_HasMet_CartMagister");
+
+PROC
+Proc_ObjectLeftCombat(S_FTJ_SW_CartMagister_a6d0df31-2870-4b43-8a0f-93076f25b514, (INTEGER)_Var1)
+AND
+DB_WasInCombat(CHARACTERGUID_S_FTJ_SW_Cart_Skeleton1_2c5d8d19-5be8-4079-bc08-a5a2592992d0, _Var1)
+AND
+CharacterIsDead(CHARACTERGUID_S_FTJ_SW_CartMagister_a6d0df31-2870-4b43-8a0f-93076f25b514, 0)
+AND
+GetClosestAlivePlayer(CHARACTERGUID_S_FTJ_SW_CartMagister_a6d0df31-2870-4b43-8a0f-93076f25b514, _Var2, _)
+AND
+DB_WasInCombat(_Var2, _Var1)
+AND
+QRY_IsAvailableTo(_Var2, CHARACTERGUID_S_FTJ_SW_CartMagister_a6d0df31-2870-4b43-8a0f-93076f25b514)
+THEN
+Proc_StartDialog(0, "FTJ_SW_CartMagister", CHARACTERGUID_S_FTJ_SW_CartMagister_a6d0df31-2870-4b43-8a0f-93076f25b514, _Var2);
+
+IF
+DialogEnded("FTJ_SW_CartMagister", (INTEGER)_Var1)
+AND
+DB_DialogPlayers(_Var1, _Var2, 1)
+AND
+ObjectGetFlag(_Var2, "FTJ_SW_CartMagister_Hostile", 1)
+THEN
+ObjectClearFlag(_Var2, "FTJ_SW_CartMagister_Hostile");
+EnterCombat(CHARACTERGUID_S_FTJ_SW_CartMagister_a6d0df31-2870-4b43-8a0f-93076f25b514, _Var2);
+
+
+EXITSECTION
+ENDEXITSECTION
+
+ParentTargetEdge "FortJoy"

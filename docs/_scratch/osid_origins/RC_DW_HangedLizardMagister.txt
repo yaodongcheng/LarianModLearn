@@ -1,0 +1,17 @@
+Version 1
+SubGoalCombiner SGC_AND
+
+INITSECTION
+DB_Ghosts(CHARACTERGUID_S_RC_DW_ZusanCorpse_0dd0a40e-a91c-4e71-8f30-c99c40e695a9, CHARACTERGUID_S_RC_DW_ZusanGhost_f8e85731-7b98-4f67-aced-0675927b103f, "RC_DW_HangedLizardMagister");
+
+KBSECTION
+IF
+DB_GoneGhosts(CHARACTERGUID_S_RC_DW_ZusanCorpse_0dd0a40e-a91c-4e71-8f30-c99c40e695a9)
+THEN
+GoalCompleted;
+
+
+EXITSECTION
+ENDEXITSECTION
+
+ParentTargetEdge "ReapersCoast"

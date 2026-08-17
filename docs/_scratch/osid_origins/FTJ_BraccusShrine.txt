@@ -1,0 +1,293 @@
+Version 1
+SubGoalCombiner SGC_AND
+
+INITSECTION
+DB_Dialogs(S_FTJ_BraccusShrine_920b6b30-744e-49d9-999b-758f2e9c5cfe, "FTJ_BraccusShrine");
+DB_Dialogs(CHARACTERGUID_S_FTJ_SW_BraccusArmory_Magister_4a75220a-983d-44d7-a762-f7d5a4197be0, "FTJ_SW_BraccusArmoryMagister");
+DB_FTJ_SW_BraccusArmoryPlaque(ITEMGUID_S_FTJ_SW_BraccusArmory_Statue1_3d860e4e-8feb-42ec-93b6-2ae4e3e0af27, "FTJ_SW_AD_BraccusArmoryPlaque1");
+DB_FTJ_SW_BraccusArmoryPlaque(ITEMGUID_S_FTJ_SW_BraccusArmory_Statue2_b55af0bb-b27d-49d2-934a-022dcca4f509, "FTJ_SW_AD_BraccusArmoryPlaque2");
+DB_FTJ_SW_BraccusArmoryPlaque(ITEMGUID_S_FTJ_SW_BraccusArmory_Statue3_ee5d3ea2-a4ec-47e0-93e5-e76dbf684bb8, "FTJ_SW_AD_BraccusArmoryPlaque3");
+CharacterSetAnimationOverride(CHARACTERGUID_S_FTJ_SW_BraccusArmory_Magister_4a75220a-983d-44d7-a762-f7d5a4197be0, "Lie_Wounded_03_Loop");
+ProcCharacterDisableAllCrimes(CHARACTERGUID_S_FTJ_SW_BraccusArmory_Magister_4a75220a-983d-44d7-a762-f7d5a4197be0);
+CharacterSetHitpointsPercentage(CHARACTERGUID_S_FTJ_SW_BraccusArmory_Magister_4a75220a-983d-44d7-a762-f7d5a4197be0, 25);
+ApplyStatus(ITEMGUID_S_FTJ_SW_BraccusArmory_Lever_fff7f974-2901-43b1-8d3f-054bd9b898bd, "CURSED", -1);
+ItemToInventory(ITEMGUID_S_FTJ_ARM_BraccusHelm_Cured_92a963b6-d4e0-4dc6-a49d-8b0847bfb7f5, CHARACTERGUID_S_FTJ_SW_BraccusDemon_020cb16e-8a44-4525-9f61-d11c78a21c06);
+SetOnStage(ITEMGUID_S_FTJ_BraccusShrine_ClickThrough_70aff6a1-7eca-4e35-9823-8ce455c2bd6e, 0);
+SetOnStage(CHARACTERGUID_S_FTJ_SW_BraccusDemon_020cb16e-8a44-4525-9f61-d11c78a21c06, 0);
+SetOnStage(ITEMGUID_S_FTJ_ARM_BraccusHelm_Uncured_9e30ecd5-ce72-49d6-a798-c20c8235dd77, 0);
+ProcDeclareCounter("FTJ_BraccusAxeSourceVampUses");
+DB_OneShot_VoiceBarkTrigger(TRIGGERGUID_S_FTJ_SW_BraccusShrineVB_Box_e558aac1-3585-4af3-a9ed-f2f22e4c7ac2, "FTJ_SW_VB_BraccusVault");
+DB_SneakTriggerSpotter(TRIGGERGUID_S_FTJ_SW_OneShot_ArmoryMagister_ec1cf899-5369-4e70-9a54-c5d51350f53b, CHARACTERGUID_S_FTJ_SW_BraccusArmory_Magister_4a75220a-983d-44d7-a762-f7d5a4197be0);
+DB_SourceFountains(ITEMGUID_S_FTJ_SW_BraccusArmory_SourceFountain_26e1d60e-ba27-4bf5-906f-17ba90feb6e0, TRIGGERGUID_S_FTJ_SW_BraccusArmory_SourceFountain_Point_d361f37a-d277-4b4d-aa34-5cc00868e15c);
+DB_HasStoryEvent(ITEMGUID_S_FTJ_SW_BraccusCurseRing_08732b24-8f87-4ecf-b6e6-4cead56297ae, "FTJ_SW_AsCursedRingInInventory");
+
+KBSECTION
+IF
+CharacterUsedItem((CHARACTERGUID)_Var1, (ITEMGUID)_Var2)
+AND
+DB_FTJ_SW_BraccusArmoryPlaque(_Var2, _Var3)
+THEN
+Proc_StartDialog(1, _Var3, _Var2);
+
+IF
+CharacterUsedItem((CHARACTERGUID)_Var1, ITEMGUID_S_FTJ_SW_BraccusArmoryDoor_6685e055-ced3-4fd3-9da8-7799f7b2807e)
+AND
+ItemIsLocked(ITEMGUID_S_FTJ_SW_BraccusArmoryDoor_6685e055-ced3-4fd3-9da8-7799f7b2807e, 1)
+THEN
+ObjectSetFlag(_Var1, "QuestUpdate_FTJ_SW_BraccusArmory_Start");
+
+IF
+CharacterUsedItem((CHARACTERGUID)_Var1, ITEMGUID_S_FTJ_SW_BraccusArmory_Lever_fff7f974-2901-43b1-8d3f-054bd9b898bd)
+AND
+HasAppliedStatus(ITEMGUID_S_FTJ_SW_BraccusArmory_Lever_fff7f974-2901-43b1-8d3f-054bd9b898bd, "CURSED", 1)
+THEN
+ObjectSetFlag(_Var1, "QuestUpdate_FTJ_SW_BraccusArmory_Start");
+
+IF
+ObjectFlagSet("FTJ_SW_BraccusArmoryDoorOpen", (CHARACTERGUID)_Var1, _)
+AND
+QueryOnlyOnce("FTJ_SW_BraccusArmoryDoorOpen")
+THEN
+ObjectSetFlag(_Var1, "QuestUpdate_FTJ_SW_BraccusArmory_OpenDoorArmory");
+ItemUnlockAndOpen(ITEMGUID_S_FTJ_SW_BraccusArmoryDoor_6685e055-ced3-4fd3-9da8-7799f7b2807e);
+PartyAddExperience(_Var1, 1, 5, 1);
+Proc_ShakeCameraForTime(_Var1, 1000);
+
+IF
+ObjectFlagSet("FTJ_SW_BraccusArmoryDoorOpen", (CHARACTERGUID)_Var1, _)
+AND
+QueryOnlyOnce("FTJ_SW_VB_BraccusArmoryOpened")
+AND
+QRY_SpeakerIsAvailable(_Var1)
+THEN
+StartVoiceBark("FTJ_SW_VB_BraccusArmoryOpened", _Var1);
+
+IF
+CharacterUsedSkillOnTarget((CHARACTERGUID)_Var1, ITEMGUID_S_FTJ_SW_BraccusArmory_Lever_fff7f974-2901-43b1-8d3f-054bd9b898bd, "Target_Bless", _, _)
+THEN
+RemoveStatus(ITEMGUID_S_FTJ_SW_BraccusArmory_Lever_fff7f974-2901-43b1-8d3f-054bd9b898bd, "CURSED");
+
+IF
+StoryEvent((CHARACTERGUID)_Var1, "FTJ_SW_BraccusArmory_Curse")
+AND
+ObjectGetFlag(_Var1, "FTJ_SW_BraccusArmory_Curse", 0)
+AND
+QRY_SpeakerIsAvailable(_Var1)
+THEN
+StartVoiceBark("FTJ_SW_VB_BraccusArmoryCurse", _Var1);
+
+IF
+DialogStarted("FTJ_SW_BraccusArmoryMagister", (INTEGER)_Var1)
+AND
+DB_DialogPlayers(_Var1, _Var2, 1)
+THEN
+ObjectSetFlag(_Var2, "QuestUpdate_FTJ_SW_BraccusArmory_Start");
+
+PROC
+ProcCharInTriggerSpotted((CHARACTERGUID)_Var1, TRIGGERGUID_S_FTJ_SW_OneShot_ArmoryMagister_ec1cf899-5369-4e70-9a54-c5d51350f53b)
+AND
+QRY_IsAvailableTo(_Var1, CHARACTERGUID_S_FTJ_SW_BraccusArmory_Magister_4a75220a-983d-44d7-a762-f7d5a4197be0)
+THEN
+Proc_StartDialog(0, "FTJ_SW_BraccusArmoryMagister", CHARACTERGUID_S_FTJ_SW_BraccusArmory_Magister_4a75220a-983d-44d7-a762-f7d5a4197be0, _Var1);
+
+IF
+DialogStarted("FTJ_SW_BraccusArmoryMagister", _)
+THEN
+ProcCleanUpSneakTrigger(TRIGGERGUID_S_FTJ_SW_OneShot_ArmoryMagister_ec1cf899-5369-4e70-9a54-c5d51350f53b);
+ProcTriggerUnregisterForPlayers(TRIGGERGUID_S_FTJ_SW_OneShot_ArmoryMagister_ec1cf899-5369-4e70-9a54-c5d51350f53b);
+
+IF
+DialogStarted("FTJ_BraccusShrine", (INTEGER)_Var1)
+AND
+DialogGetInvolvedPlayer(_Var1, 1, _Var2)
+AND
+CharacterGetSourcePoints(_Var2, _Var3)
+AND
+_Var3 > 0
+THEN
+ObjectSetFlag(_Var2, "FTJ_HasSourcePointForBraccusShrine");
+DB_FTJ_BraccusShrinePlayerClearFlags(_Var2);
+
+IF
+DialogEnded("FTJ_BraccusShrine", _)
+AND
+DB_FTJ_BraccusShrinePlayerClearFlags(_Var2)
+THEN
+NOT DB_FTJ_BraccusShrinePlayerClearFlags(_Var2);
+ObjectClearFlag(_Var2, "FTJ_HasSourcePointForBraccusShrine", 0);
+
+IF
+GlobalFlagSet("FTJ_OpenBraccusShrine")
+THEN
+ItemSetCanInteract(S_FTJ_BraccusShrine_920b6b30-744e-49d9-999b-758f2e9c5cfe, 0);
+PlayAnimation(S_FTJ_BraccusShrine_920b6b30-744e-49d9-999b-758f2e9c5cfe, "open");
+TimerLaunch("FTJ_BraccusShrineSwap", 5200);
+
+IF
+TimerFinished("FTJ_BraccusShrineSwap")
+AND
+GetPosition(S_FTJ_BraccusShrine_920b6b30-744e-49d9-999b-758f2e9c5cfe, _Var1, _Var2, _Var3)
+THEN
+TeleportToPosition(ITEMGUID_S_FTJ_BraccusShrine_ClickThrough_70aff6a1-7eca-4e35-9823-8ce455c2bd6e, _Var1, _Var2, _Var3, "", 0);
+ItemSetCanInteract(ITEMGUID_S_FTJ_BraccusShrine_ClickThrough_70aff6a1-7eca-4e35-9823-8ce455c2bd6e, 0);
+TimerLaunch("FTJ_BraccusShrineSwapOffStage", 400);
+SetOnStage(ITEMGUID_S_FTJ_BraccusShrine_ClickThrough_70aff6a1-7eca-4e35-9823-8ce455c2bd6e, 1);
+SetOnStage(ITEMGUID_S_FTJ_ARM_BraccusHelm_Uncured_9e30ecd5-ce72-49d6-a798-c20c8235dd77, 1);
+PROC_LoopEffect("RS3_FX_GP_ScriptedEvent_RaanaarWaypoint_Active_01", ITEMGUID_S_FTJ_BraccusShrine_ClickThrough_70aff6a1-7eca-4e35-9823-8ce455c2bd6e, "FTJ_BraccusShrine_ActiveFx", "FJ_FortJoy_Main", "");
+
+IF
+TimerFinished("FTJ_BraccusShrineSwapOffStage")
+THEN
+SetOnStage(S_FTJ_BraccusShrine_920b6b30-744e-49d9-999b-758f2e9c5cfe, 0);
+
+IF
+TextEventSet("shrineopen")
+THEN
+GlobalSetFlag("FTJ_OpenBraccusShrine");
+
+PROC
+ProcOneShotTriggerEntered((CHARACTERGUID)_Var1, TRIGGERGUID_S_FTJ_SW_BraccusShrineVB_Box_e558aac1-3585-4af3-a9ed-f2f22e4c7ac2)
+THEN
+ObjectSetFlag(_Var1, "QuestUpdate_FTJ_SW_BraccusArmory_SeeRaanaarArmory");
+
+IF
+CharacterUsedItem((CHARACTERGUID)_Var1, ITEMGUID_S_FTJ_BraccusShrine_920b6b30-744e-49d9-999b-758f2e9c5cfe)
+THEN
+ObjectSetFlag(_Var1, "QuestUpdate_FTJ_SW_BraccusArmory_SeeRaanaarArmory");
+
+IF
+ObjectFlagSet("RemoveOneSourcePoint", (GUIDSTRING)_Var1, (INTEGER)_Var2)
+AND
+DB_DialogName("FTJ_BraccusShrine", _Var2)
+THEN
+ObjectSetFlag(_Var1, "QuestUpdate_FTJ_SW_BraccusArmory_OpenRaanaarArmory");
+
+PROC
+ProcRegionEnded("FJ_FortJoy_Main")
+AND
+DB_IsPlayer(_Var1)
+AND
+ObjectGetFlag(_Var1, "QuestUpdate_FTJ_SW_BraccusArmory_Start", 1)
+AND
+ObjectGetFlag(_Var1, "QuestUpdate_FTJ_SW_BraccusArmory_OpenRaanaarArmory", 0)
+THEN
+ObjectSetFlag(_Var1, "QuestUpdate_FTJ_SW_BraccusArmory_CloseLeftFortJoy");
+
+IF
+CharacterUsedSkill((CHARACTERGUID)_Var1, "Target_SourceDisruption", _, _)
+AND
+DB_FTJ_BraccusHelmOn(_Var1)
+THEN
+ProcIncreaseCounter("FTJ_BraccusAxeSourceVampUses");
+
+IF
+ItemEquipped(ITEMGUID_S_FTJ_ARM_BraccusHelm_Uncured_9e30ecd5-ce72-49d6-a798-c20c8235dd77, (CHARACTERGUID)_Var1)
+THEN
+DB_FTJ_BraccusHelmOn(_Var1);
+
+IF
+ItemUnEquipped(ITEMGUID_S_FTJ_ARM_BraccusHelm_Uncured_9e30ecd5-ce72-49d6-a798-c20c8235dd77, (CHARACTERGUID)_Var1)
+AND
+DB_FTJ_BraccusHelmOn(_Var1)
+THEN
+NOT DB_FTJ_BraccusHelmOn(_Var1);
+
+IF
+DB_GlobalCounter("FTJ_BraccusAxeSourceVampUses", _Var1)
+AND
+DB_IsPlayer(_Var2)
+AND
+DB_FTJ_BraccusHelmOn(_Var2)
+AND
+_Var1 != 0
+AND
+_Var1 < 3
+THEN
+Proc_StartDialog(1, "FTJ_SW_AD_BraccusAxeUseVampirism", _Var2);
+
+IF
+DB_GlobalCounter("FTJ_BraccusAxeSourceVampUses", 3)
+THEN
+GlobalSetFlag("FTJ_BraccusAxeDemonSpawned");
+
+IF
+TextEventSet("bigboy")
+AND
+CharacterGetHostCharacter(_Var1)
+THEN
+CharacterAppearAt(CHARACTERGUID_S_FTJ_SW_BraccusDemon_020cb16e-8a44-4525-9f61-d11c78a21c06, _Var1, 1, "FTJ_DemonInBraccusAxeSpawned");
+DB_FTJ_BraccusHelmDemonPlayerTarget(_Var1);
+
+IF
+GlobalFlagSet("FTJ_BraccusAxeDemonSpawned")
+AND
+DB_IsPlayer(_Var1)
+AND
+ItemIsInCharacterInventory(ITEMGUID_S_FTJ_ARM_BraccusHelm_Uncured_9e30ecd5-ce72-49d6-a798-c20c8235dd77, _Var1, 1)
+THEN
+ItemRemove(ITEMGUID_S_FTJ_ARM_BraccusHelm_Uncured_9e30ecd5-ce72-49d6-a798-c20c8235dd77);
+CharacterAppearAt(CHARACTERGUID_S_FTJ_SW_BraccusDemon_020cb16e-8a44-4525-9f61-d11c78a21c06, _Var1, 1, "FTJ_DemonInBraccusAxeSpawned");
+DB_FTJ_BraccusHelmDemonPlayerTarget(_Var1);
+Proc_StartDialog(1, "FTJ_SW_AD_BraccusAxeUseVampirism", _Var1);
+PartySetFlag(_Var1, "QuestUpdate_FTJ_SW_Tyrant_HelmDemon");
+
+IF
+StoryEvent((GUIDSTRING)_Var1, "FTJ_DemonInBraccusAxeSpawned")
+AND
+DB_FTJ_BraccusHelmDemonPlayerTarget(_Var2)
+AND
+QRY_IsAvailableTo(CHARACTERGUID_S_FTJ_SW_BraccusDemon_020cb16e-8a44-4525-9f61-d11c78a21c06, _Var2)
+THEN
+Proc_StartDialog(0, "FTJ_SW_BraccusDemon", CHARACTERGUID_S_FTJ_SW_BraccusDemon_020cb16e-8a44-4525-9f61-d11c78a21c06, _Var2);
+
+IF
+DialogEnded("FTJ_SW_BraccusDemon", _)
+THEN
+ProcSetRelationToPlayers(CHARACTERGUID_S_FTJ_SW_BraccusDemon_020cb16e-8a44-4525-9f61-d11c78a21c06, 0);
+
+IF
+StoryEvent(CHARACTERGUID_S_FTJ_SW_BraccusDemon_020cb16e-8a44-4525-9f61-d11c78a21c06, "FTJ_DemonInBraccusAxeSpawned")
+AND
+DB_FTJ_BraccusHelmDemonPlayerTarget(_Var1)
+AND NOT
+QRY_IsAvailableTo(CHARACTERGUID_S_FTJ_SW_BraccusDemon_020cb16e-8a44-4525-9f61-d11c78a21c06, _Var1)
+THEN
+Proc_StartDialog(1, "FTJ_SW_AD_BraccusDemon", CHARACTERGUID_S_FTJ_SW_BraccusDemon_020cb16e-8a44-4525-9f61-d11c78a21c06);
+ProcSetRelationToPlayers(CHARACTERGUID_S_FTJ_SW_BraccusDemon_020cb16e-8a44-4525-9f61-d11c78a21c06, 0);
+
+IF
+ObjectLeftCombat(CHARACTERGUID_S_FTJ_SW_BraccusDemon_020cb16e-8a44-4525-9f61-d11c78a21c06, _)
+AND
+QRY_SpeakerIsAvailable(CHARACTERGUID_S_FTJ_SW_BraccusDemon_020cb16e-8a44-4525-9f61-d11c78a21c06)
+THEN
+ProcCharacterDisappearOutOfSight(CHARACTERGUID_S_FTJ_SW_BraccusDemon_020cb16e-8a44-4525-9f61-d11c78a21c06, 0, 1, "", 1);
+
+PROC
+ProcQuestCategorySet("FTJ_SW_CursedRing", _, (CHARACTERGUID)_Var2)
+AND
+QuestAccepted(_Var2, "FTJ_SW_CursedRing", 1)
+THEN
+Proc_FTJ_SW_CurseRing_RegionEndedUpdate(_Var2);
+
+PROC
+Proc_FTJ_SW_CurseRing_RegionEndedUpdate((CHARACTERGUID)_Var1)
+AND
+UserGetFlag(_Var1, "FTJ_SW_AsCursedRingInInventory", 0)
+THEN
+ObjectSetFlag(_Var1, "QuestUpdate_FTJ_SW_CursedRing_CloseLeftLevel");
+QuestArchive(_Var1, "FTJ_SW_CursedRing", 1);
+
+PROC
+Proc_FTJ_SW_CurseRing_RegionEndedUpdate((CHARACTERGUID)_Var1)
+AND
+UserGetFlag(_Var1, "FTJ_SW_AsCursedRingInInventory", 1)
+AND
+ObjectGetFlag(_Var1, "FTJ_SW_HasBraccusRingCurse", 1)
+THEN
+ObjectSetFlag(_Var1, "QuestUpdate_FTJ_SW_CursedRing_MoveToNextCategory");
+
+
+EXITSECTION
+ENDEXITSECTION
+
+ParentTargetEdge "FortJoy"

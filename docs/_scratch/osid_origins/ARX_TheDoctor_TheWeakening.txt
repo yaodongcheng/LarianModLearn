@@ -1,0 +1,1551 @@
+Version 1
+SubGoalCombiner SGC_AND
+
+INITSECTION
+DB_Dialogs(CHARACTERGUID_S_ARX_TheWeakening_CandlePleb_01_7aa9c86f-5aa4-4993-9a22-975c3a1b5e95, "ARX_TheWeakening_CandlePleb_01");
+DB_Dialogs(CHARACTERGUID_S_ARX_TheWeakening_CandlePleb_02_6e57b697-b566-4df8-819f-f5e7f9cf2edb, "ARX_TheWeakening_CandlePleb_02");
+DB_Ghosts(CHARACTERGUID_S_ARX_TheWeakening_CandlePleb_02_6e57b697-b566-4df8-819f-f5e7f9cf2edb, CHARACTERGUID_S_ARX_TheWeakening_CandlePleb_02_Ghost_f07b1eed-7a7f-447f-b40c-aad9cb0d5225, "ARX_TheWeakening_CandlePleb_02_Ghost");
+DB_Ghosts(CHARACTERGUID_S_ARX_TheWeakening_CandlePleb_01_7aa9c86f-5aa4-4993-9a22-975c3a1b5e95, CHARACTERGUID_S_ARX_TheWeakening_CandlePleb_01_Ghost_36b0cae3-153f-4026-a5fd-220c9b2e758e, "ARX_TheWeakening_CandlePleb_01_Ghost");
+DB_TheWeakening_Candles(ITEMGUID_S_ARX_TheWeakening_Candle_A_8bbfe8f2-53f8-429d-8f05-80cb3781f165, ITEMGUID_S_ARX_TheWeakening_Candle_A_Ghost_3dca99da-6302-4668-8bcf-fec1378cece3, "ARX_TheWeakening_SnuffedCandle_A", "ARX_TheWeakening_VB_SnuffedCandle_A", "ARX_TheWeakening_PreservedCandle_A");
+DB_TheWeakening_Candles(ITEMGUID_S_ARX_TheWeakening_Candle_B_01_f6402eb3-dd43-8ba6-326f-8495f8666325, ITEMGUID_S_ARX_TheWeakening_Candle_B_01_Ghost_9b7967dc-2666-45c3-83f1-06f8f587bb34, "ARX_TheWeakening_SnuffedCandle_B", "ARX_TheWeakening_VB_SnuffedCandle_B", "ARX_TheWeakening_PreservedCandle_B");
+DB_TheWeakening_Candles(ITEMGUID_S_ARX_TheWeakening_Candle_B_02_fc088d66-073a-83f5-3d5d-d051660f962d, ITEMGUID_S_ARX_TheWeakening_Candle_B_02_Ghost_bd74d0d4-a272-47c6-a44c-0f72f96d33a6, "ARX_TheWeakening_SnuffedCandle_B", "ARX_TheWeakening_VB_SnuffedCandle_B", "ARX_TheWeakening_PreservedCandle_B");
+TriggerRegisterForCharacter(TRIGGERGUID_S_ARX_TheWeakening_TrigBox_459daa15-937c-44b8-8685-649549500210, CHARACTERGUID_S_GLO_River_f4931ebe-10b0-43c4-9182-640cf052717e);
+ProcTriggerRegisterForPlayers(TRIGGERGUID_S_ARX_TheWeakening_TrigBox_459daa15-937c-44b8-8685-649549500210);
+ProcTriggerRegisterForPlayers(TRIGGERGUID_S_ARX_TheWeakening_FinalRoom_c2d8c0d3-2874-4612-9981-693616b52fb0);
+TriggerRegisterForItems(TRIGGERGUID_S_ARX_TheWeakening_TrigBox_459daa15-937c-44b8-8685-649549500210);
+SetOnStage(ITEMGUID_S_ARX_TheWeakening_PortalEnt_32f298e5-c562-46bb-8425-1a45d5fd0a2f, 0);
+Proc_RegisterPartyDecisionDialogOutcomes_Fixed("ARX_TheWeakening_PDD_FinalDecision", "ARX_TheWeakening_PDD_FinalDecision_Snuff", "ARX_TheWeakening_PDD_FinalDecision_Preserve", "", "", "");
+SetVisible(ITEMGUID_S_ARX_TheWeakening_Bridge_A_4e59a531-0745-4fb1-aae8-96058f384995, 0);
+ProcTriggerRegisterForPlayers(TRIGGERGUID_S_ARX_TheWeakening_River_ReachedGate_Trigger_2661fb76-e44a-46d6-b926-b96b3171a55c);
+DB_ARX_TheWeakening_DeadPlebs(CHARACTERGUID_S_ARX_Neighborhood_HouseSchool_ConceredParent_8e4dd316-aa43-4f5f-9093-92f0a7f749fe);
+DB_ARX_TheWeakening_DeadPlebs(CHARACTERGUID_S_ARX_Neighborhood_Pleb_Backstreet_01_4ac78cb1-8ad2-4372-89ee-0eb202c56ad0);
+DB_ARX_TheWeakening_DeadPlebs(CHARACTERGUID_S_ARX_Neighborhood_Pleb_Construction_03_78780aa6-34f9-4955-b330-e163b3bd8e9f);
+DB_ARX_TheWeakening_DeadPlebs(CHARACTERGUID_S_ARX_MerchantEstate_Servant_02_cf990d8a-107a-4fff-b4f9-a57ed892b1a6);
+DB_ARX_TheWeakening_DeadPlebs(CHARACTERGUID_S_ARX_CitySquare_Pleb_Market_04_ab97a640-7e56-4c85-a736-47340c04a19b);
+DB_ARX_TheWeakening_DeadPlebs(CHARACTERGUID_S_ARX_Cathedral_Priest_001_49aa9784-05d7-40da-b0c8-18bb32d0ef93);
+DB_ARX_TheWeakening_DeadPlebs(CHARACTERGUID_S_ARX_KemmMansion_Pleb_Shopper2_c025c722-e2a7-4fa9-af7f-512c334234ee);
+PROC_LoopEffect("RS3_FX_GP_ScriptedEvent_Weakening_CandleSea_01", TRIGGERGUID_S_ARX_TheWeakening_CandlesEffect_Trig_01_afd8cca9-a0c7-49a6-bdae-7beb04d82084, "RS3_FX_GP_ScriptedEvent_Weakening_CandleSea_01", "ARX_Main", "");
+PROC_LoopEffect("RS3_FX_GP_ScriptedEvent_Weakening_CandleSea_01", TRIGGERGUID_S_ARX_TheWeakening_CandlesEffect_Trig_02_a42b8c45-dbbe-480c-b9d0-35fa5669197a, "RS3_FX_GP_ScriptedEvent_Weakening_CandleSea_01", "ARX_Main", "");
+PROC_LoopEffect("RS3_FX_GP_ScriptedEvent_Weakening_CandleSea_01", TRIGGERGUID_S_ARX_TheWeakening_CandlesEffect_Trig_03_79fe80bf-68f2-430e-a7d0-686568cbd753, "RS3_FX_GP_ScriptedEvent_Weakening_CandleSea_01", "ARX_Main", "");
+DB_ARX_TheWeakening_Flames(ITEMGUID_S_ARX_TheWeakening_Flames_000_50d0f4a6-0ca4-cbc0-a018-ca01e9c8a958);
+DB_ARX_TheWeakening_Flames(ITEMGUID_S_ARX_TheWeakening_Flames_001_08779163-e170-ce8b-d0db-bf6cd83bb3f9);
+DB_ARX_TheWeakening_Flames(ITEMGUID_S_ARX_TheWeakening_Flames_002_4804cade-f1bb-c145-cac7-77d1ff39c178);
+DB_ARX_TheWeakening_Flames(ITEMGUID_S_ARX_TheWeakening_Flames_003_9e027b6f-65d8-c292-cf7f-8ef95de93b82);
+DB_ARX_TheWeakening_Flames(ITEMGUID_S_ARX_TheWeakening_Flames_004_9c6781f9-7dfd-ce1f-a16e-64bb9f3ea5af);
+DB_ARX_TheWeakening_Flames(ITEMGUID_S_ARX_TheWeakening_Flames_005_2b84087a-7566-43c3-816f-50c2af881b00);
+DB_ARX_TheWeakening_Flames(ITEMGUID_S_ARX_TheWeakening_Flames_006_85679f81-ce26-cbf8-a769-5ea6c44bfd6c);
+DB_ARX_TheWeakening_Flames(ITEMGUID_S_ARX_TheWeakening_Flames_007_c6291e72-d1e0-c16d-b7f8-f93892f60a9e);
+DB_ARX_TheWeakening_Flames(ITEMGUID_S_ARX_TheWeakening_Flames_008_ec21f105-99af-88b5-12c6-66be4f5772cf);
+DB_ARX_TheWeakening_Flames(ITEMGUID_S_ARX_TheWeakening_Flames_009_ab30ba1d-8402-8146-2540-4a61e2db22b5);
+DB_ARX_TheWeakening_Flames(ITEMGUID_S_ARX_TheWeakening_Flames_010_92cf886d-82dd-8aa7-20d3-880b28ea29cf);
+DB_ARX_TheWeakening_Flames(ITEMGUID_S_ARX_TheWeakening_Flames_011_ec9239b3-e404-80f3-02ce-e92b9e0d508a);
+DB_ARX_TheWeakening_Flames(ITEMGUID_S_ARX_TheWeakening_Flames_012_d19e2e76-a9bf-832a-2676-a82b3d608cf0);
+DB_ARX_TheWeakening_Flames(ITEMGUID_S_ARX_TheWeakening_Flames_013_2a57541a-a573-4625-b665-edcec52f6bfb);
+DB_ARX_TheWeakening_Flames(ITEMGUID_S_ARX_TheWeakening_Flames_014_09eace25-c1bf-4197-ae75-b0e99c7c9e7f);
+DB_ARX_TheWeakening_Flames(ITEMGUID_S_ARX_TheWeakening_Flames_015_b7d26afc-a3d3-42f2-9a5e-d0c81d48db95);
+DB_ARX_TheWeakening_Flames(ITEMGUID_S_ARX_TheWeakening_Flames_016_af227f6e-95e1-4e31-a0eb-6552f20ad92b);
+DB_ARX_TheWeakening_Flames(ITEMGUID_S_ARX_TheWeakening_Flames_017_5b78b970-309e-4980-ae0e-a6d00d6ee816);
+DB_ARX_TheWeakening_Flames(ITEMGUID_S_ARX_TheWeakening_Flames_018_742d8f01-3f6b-44f9-aee3-61104816f410);
+DB_ARX_TheWeakening_Flames(ITEMGUID_S_ARX_TheWeakening_Flames_019_3c3b043d-f97d-417a-9631-1b282598c42b);
+DB_ARX_TheWeakening_Flames(ITEMGUID_S_ARX_TheWeakening_Flames_020_b8123e91-9bad-47e3-a83b-ef0fe10ea672);
+DB_ARX_TheWeakening_Flames(ITEMGUID_S_ARX_TheWeakening_Flames_021_d543dd53-cc3b-4189-a2cb-956689869961);
+DB_ARX_TheWeakening_Flames(ITEMGUID_S_ARX_TheWeakening_Flames_022_2fcebe3b-b54f-c9c1-b3c3-678faf29eacf);
+DB_ARX_TheWeakening_Flames(ITEMGUID_S_ARX_TheWeakening_Flames_023_2083a467-b549-cf2c-c90d-75ac79596ab5);
+DB_ARX_TheWeakening_Flames(ITEMGUID_S_ARX_TheWeakening_Flames_024_0d5c6a69-f7ae-4d54-91ce-f4bf9fcf37ad);
+DB_ARX_TheWeakening_Flames(ITEMGUID_S_ARX_TheWeakening_Flames_025_91588445-5b66-4d23-95bb-9c20d5956322);
+DB_ARX_TheWeakening_Flames(ITEMGUID_S_ARX_TheWeakening_Flames_026_4158bdaf-a73b-c201-bcc8-27a79a77d81a);
+DB_ARX_TheWeakening_Flames(ITEMGUID_S_ARX_TheWeakening_Flames_027_8396d65a-2f4f-421b-888f-f19074e8ea94);
+DB_ARX_TheWeakening_Flames(ITEMGUID_S_ARX_TheWeakening_Flames_028_5c030f51-8ab2-4c70-a3d8-e176295cd643);
+DB_ARX_TheWeakening_Flames(ITEMGUID_S_ARX_TheWeakening_Flames_029_f1bf354b-627c-c0aa-bd3d-7439fddf6ece);
+DB_ARX_TheWeakening_Flames(ITEMGUID_S_ARX_TheWeakening_Flames_034_5e1129e7-5645-4bb1-b46c-7efab2ea7790);
+DB_ARX_TheWeakening_Flames(ITEMGUID_S_ARX_TheWeakening_Flames_032_fbad30ca-85fd-4261-9e26-99eaeae64ac9);
+DB_ARX_TheWeakening_Flames(ITEMGUID_S_ARX_TheWeakening_Flames_035_d9cbfe34-e7f4-4590-a6ea-bb0ed6d3a962);
+DB_ARX_TheWeakening_Flames(ITEMGUID_S_ARX_TheWeakening_Flames_033_7c6f2fdb-4546-4efd-921e-595197865e9e);
+DB_ARX_TheWeakening_Flames(ITEMGUID_S_ARX_TheWeakening_Flames_030_c200e361-27ae-4434-9dcf-d6d4d4c1ec64);
+DB_ARX_TheWeakening_Flames(ITEMGUID_S_ARX_TheWeakening_Flames_031_7f613638-7d83-46ba-9872-e558dd5d681b);
+DB_ARX_TheWeakening_Flames(ITEMGUID_S_ARX_TheWeakening_Flames_044_50ab4373-ca49-4625-a77b-dd132a8bf0f2);
+DB_ARX_TheWeakening_Flames(ITEMGUID_S_ARX_TheWeakening_Flames_043_9ee93dce-628b-4f4e-9acc-6fad5ad8d82c);
+DB_ARX_TheWeakening_Flames(ITEMGUID_S_ARX_TheWeakening_Flames_042_56725741-390a-4e0c-91bf-0078dccccd66);
+DB_ARX_TheWeakening_Flames(ITEMGUID_S_ARX_TheWeakening_Flames_040_60d670dd-2ca5-4eee-8c87-1f507f64b803);
+DB_ARX_TheWeakening_Flames(ITEMGUID_S_ARX_TheWeakening_Flames_041_66b00fac-93a6-4ec0-b421-64d0da7851eb);
+DB_ARX_TheWeakening_Flames(ITEMGUID_S_ARX_TheWeakening_Flames_045_bdcbd269-92a9-4c9c-81b5-dbe31b67ec14);
+DB_ARX_TheWeakening_Flames(ITEMGUID_S_ARX_TheWeakening_Flames_046_f94a8864-5c21-4684-acb5-eb6b2de92af4);
+DB_ARX_TheWeakening_Flames(ITEMGUID_S_ARX_TheWeakening_Flames_047_b39231b1-63d2-488d-b0fb-8dc0bc24f808);
+DB_ARX_TheWeakening_RoomReached_ADEvents("ARX_TheWeakening_AD_Malady_ArrivedCandle_A", "QuestUpdate_ARX_TheWeakening_RoomA_Reached", "QuestUpdate_ARX_TheWeakening_RoomA_SoulCandles");
+DB_ARX_TheWeakening_RoomReached_ADEvents("ARX_TheWeakening_AD_Malady_ArrivedCandle_B", "QuestUpdate_ARX_TheWeakening_RoomB_Reached", "QuestUpdate_ARX_TheWeakening_RoomB_SoulCandles");
+DB_ARX_TheWeakening_RoomReached_DialogEvents("ARX_TheWeakening_Candle_A", "QuestUpdate_ARX_TheWeakening_RoomA_Reached", "QuestUpdate_ARX_TheWeakening_RoomA_SoulCandles");
+DB_ARX_TheWeakening_RoomReached_DialogEvents("ARX_TheWeakening_Candle_A_COM_Lohse", "QuestUpdate_ARX_TheWeakening_RoomA_Reached", "QuestUpdate_ARX_TheWeakening_RoomA_SoulCandles");
+DB_ARX_TheWeakening_RoomReached_DialogEvents("ARX_TheWeakening_Candle_B", "QuestUpdate_ARX_TheWeakening_RoomB_Reached", "QuestUpdate_ARX_TheWeakening_RoomB_SoulCandles");
+DB_ARX_TheWeakening_RoomReached_DialogEvents("ARX_TheWeakening_Candle_B_COM_Lohse", "QuestUpdate_ARX_TheWeakening_RoomB_Reached", "QuestUpdate_ARX_TheWeakening_RoomB_SoulCandles");
+
+KBSECTION
+IF
+TextEventSet("weakening")
+THEN
+SetStoryEvent(CHARACTERGUID_S_GLO_River_f4931ebe-10b0-43c4-9182-640cf052717e, "ARX_TheWeakening_LohseIsAvailable_MaladyDisappear");
+
+IF
+StoryEvent(_, "ARX_TheWeakening_LohseIsAvailable_MaladyDisappear")
+AND
+DB_OriginMomentTag("ARX_LV_River", _Var2, _Var3)
+THEN
+NOT DB_OriginMomentTag("ARX_LV_River", _Var2, _Var3);
+
+IF
+StoryEvent(_, "ARX_TheWeakening_LohseIsAvailable_MaladyDisappear")
+THEN
+SetHasDialog(CHARACTERGUID_S_GLO_River_f4931ebe-10b0-43c4-9182-640cf052717e, 1);
+DB_OriginMomentTag("ARX_LV_River", "LOHSE", "ARX_LV_River_WeakeningIntro_COM_Lohse");
+DB_OriginMomentTag("ARX_LV_River", "SHAPESHIFT_LOHSE", "ARX_LV_River_WeakeningIntro_COM_Lohse");
+GlobalSetFlag("ARX_LV_River_LeftLV");
+SetVarFloat(CHARACTERGUID_S_GLO_River_f4931ebe-10b0-43c4-9182-640cf052717e, "CheckRadius", 7.5);
+SetVarFixedString(CHARACTERGUID_S_GLO_River_f4931ebe-10b0-43c4-9182-640cf052717e, "GlobalEvent_InitiateSpotter", "ARX_River_TheWeakening_InitiateSpotLohse");
+SetVarFixedString(CHARACTERGUID_S_GLO_River_f4931ebe-10b0-43c4-9182-640cf052717e, "GlobalEvent_StopSpotter", "ARX_River_TheWeakening_StopSpotLohse");
+SetVarFixedString(CHARACTERGUID_S_GLO_River_f4931ebe-10b0-43c4-9182-640cf052717e, "HasTag", "LOHSE");
+SetVarFixedString(CHARACTERGUID_S_GLO_River_f4931ebe-10b0-43c4-9182-640cf052717e, "HasTag_Shapeshift", "SHAPESHIFT_LOHSE");
+SetVarString(CHARACTERGUID_S_GLO_River_f4931ebe-10b0-43c4-9182-640cf052717e, "SpotCharacterEvent", "ARX_River_TheWeakening_SpottedLohse");
+CharacterAppearAt(CHARACTERGUID_S_GLO_River_f4931ebe-10b0-43c4-9182-640cf052717e, TRIGGERGUID_S_ARX_DoctrosHouse_MaladyPointTrig_007d2c51-02b2-4879-8705-27bbc7ab4082, 1, "");
+GlobalSetFlag("ARX_LV_River_InitiateWeakeningDialog");
+GlobalSetFlag("ARX_River_TheWeakening_InitiateSpotLohse");
+
+IF
+StoryEvent(CHARACTERGUID_S_Player_Lohse_bb932b13-8ebf-4ab4-aac0-83e6924e4295, "ARX_River_TheWeakening_SpottedLohse")
+AND
+IsTagged(CHARACTERGUID_S_Player_Lohse_bb932b13-8ebf-4ab4-aac0-83e6924e4295, "AVATAR", 0)
+AND
+GlobalGetFlag("ARX_River_TheWeakening_FinalRoom", 0)
+AND
+GlobalGetFlag("ARX_TheWeakening_Completed", 0)
+AND
+GlobalGetFlag("ARX_TheWeakening_FinalScene_Failed", 0)
+AND NOT
+DB_CharacterPolymorphedInto(CHARACTERGUID_S_Player_Lohse_bb932b13-8ebf-4ab4-aac0-83e6924e4295, _)
+AND
+QRY_SpeakerIsAvailable(CHARACTERGUID_S_Player_Lohse_bb932b13-8ebf-4ab4-aac0-83e6924e4295)
+AND
+QRY_SpeakerIsAvailable(CHARACTERGUID_S_GLO_River_f4931ebe-10b0-43c4-9182-640cf052717e)
+THEN
+Proc_StartDialog(0, "ARX_LV_River", CHARACTERGUID_S_GLO_River_f4931ebe-10b0-43c4-9182-640cf052717e, CHARACTERGUID_S_Player_Lohse_bb932b13-8ebf-4ab4-aac0-83e6924e4295);
+GlobalSetFlag("ARX_River_TheWeakening_StopSpotLohse");
+
+IF
+StoryEvent(CHARACTERGUID_S_Player_Lohse_bb932b13-8ebf-4ab4-aac0-83e6924e4295, "ARX_River_TheWeakening_SpottedLohse")
+AND
+IsTagged(CHARACTERGUID_S_Player_Lohse_bb932b13-8ebf-4ab4-aac0-83e6924e4295, "AVATAR", 1)
+AND
+GlobalGetFlag("ARX_River_TheWeakening_FinalRoom", 0)
+AND
+GlobalGetFlag("ARX_TheWeakening_Completed", 0)
+AND
+GlobalGetFlag("ARX_TheWeakening_FinalScene_Failed", 0)
+AND
+QRY_SpeakerIsAvailable(CHARACTERGUID_S_Player_Lohse_bb932b13-8ebf-4ab4-aac0-83e6924e4295)
+AND
+QRY_SpeakerIsAvailable(CHARACTERGUID_S_GLO_River_f4931ebe-10b0-43c4-9182-640cf052717e)
+THEN
+Proc_StartDialog(0, "ARX_LV_River", CHARACTERGUID_S_GLO_River_f4931ebe-10b0-43c4-9182-640cf052717e, CHARACTERGUID_S_Player_Lohse_bb932b13-8ebf-4ab4-aac0-83e6924e4295);
+GlobalSetFlag("ARX_River_TheWeakening_StopSpotLohse");
+
+IF
+StoryEvent(CHARACTERGUID_S_Player_Lohse_bb932b13-8ebf-4ab4-aac0-83e6924e4295, "ARX_River_TheWeakening_SpottedLohse")
+AND
+GlobalGetFlag("ARX_River_TheWeakening_FinalRoom", 0)
+AND
+GlobalGetFlag("ARX_TheWeakening_Completed", 0)
+AND NOT
+QRY_SpeakerIsAvailable(CHARACTERGUID_S_GLO_River_f4931ebe-10b0-43c4-9182-640cf052717e)
+THEN
+GlobalSetFlag("ARX_River_TheWeakening_InitiateSpotLohse");
+
+IF
+StoryEvent(CHARACTERGUID_S_Player_Lohse_bb932b13-8ebf-4ab4-aac0-83e6924e4295, "ARX_River_TheWeakening_SpottedLohse")
+AND
+GlobalGetFlag("ARX_River_TheWeakening_FinalRoom", 0)
+AND
+GlobalGetFlag("ARX_TheWeakening_Completed", 0)
+AND NOT
+QRY_SpeakerIsAvailable(CHARACTERGUID_S_Player_Lohse_bb932b13-8ebf-4ab4-aac0-83e6924e4295)
+THEN
+GlobalSetFlag("ARX_River_TheWeakening_InitiateSpotLohse");
+
+IF
+DialogStarted("ARX_LV_River", (INTEGER)_Var1)
+AND
+GlobalGetFlag("ARX_LV_River_InitiateWeakeningDialog", 1)
+AND
+DB_DialogPlayers(_Var1, CHARACTERGUID_S_Player_Lohse_bb932b13-8ebf-4ab4-aac0-83e6924e4295, _)
+THEN
+GlobalSetFlag("ARX_River_TheWeakening_StopSpotLohse");
+
+IF
+DialogStarted("ARX_LV_River_WeakeningIntro_COM_Lohse", (INTEGER)_Var1)
+AND
+GlobalGetFlag("ARX_LV_River_InitiateWeakeningDialog", 1)
+AND
+DB_DialogPlayers(_Var1, CHARACTERGUID_S_Player_Lohse_bb932b13-8ebf-4ab4-aac0-83e6924e4295, _)
+THEN
+GlobalSetFlag("ARX_River_TheWeakening_StopSpotLohse");
+
+IF
+GlobalFlagSet("ARX_LV_River_TheWeakeningSpellcasting")
+THEN
+CharacterSetAnimationOverride(CHARACTERGUID_S_GLO_River_f4931ebe-10b0-43c4-9182-640cf052717e, "skill_prepare_divine_01_loop");
+PROC_LoopEffect("RS3_FX_Skills_Void_Netherswap_Prepare_Root_01", CHARACTERGUID_S_GLO_River_f4931ebe-10b0-43c4-9182-640cf052717e, "ARX_LV_River_TheWeakeningSpellcasting", "ARX_Main", "");
+
+IF
+DialogEnded("ARX_LV_River", _)
+AND
+GlobalGetFlag("ARX_LV_River_TheWeakeningSpellcasting", 1)
+THEN
+Proc_ARX_LV_River_TheWeakeningSpellcasting();
+Proc_ARX_LV_River_TheWeakening_TeleportPlayers();
+GlobalClearFlag("ARX_LV_River_TheWeakeningSpellcasting");
+
+IF
+DialogEnded("ARX_LV_River_WeakeningIntro_COM_Lohse", _)
+AND
+GlobalGetFlag("ARX_LV_River_TheWeakeningSpellcasting", 1)
+THEN
+Proc_ARX_LV_River_TheWeakeningSpellcasting();
+Proc_ARX_LV_River_TheWeakening_TeleportPlayers();
+GlobalClearFlag("ARX_LV_River_TheWeakeningSpellcasting");
+
+PROC
+Proc_ARX_LV_River_TheWeakeningSpellcasting()
+THEN
+CharacterSetAnimationOverride(CHARACTERGUID_S_GLO_River_f4931ebe-10b0-43c4-9182-640cf052717e, "");
+PROC_StopLoopEffect(CHARACTERGUID_S_GLO_River_f4931ebe-10b0-43c4-9182-640cf052717e, "ARX_LV_River_TheWeakeningSpellcasting");
+PlayAnimation(CHARACTERGUID_S_GLO_River_f4931ebe-10b0-43c4-9182-640cf052717e, "skill_cast_aoe_divine_01_cast");
+PlayEffect(CHARACTERGUID_S_GLO_River_f4931ebe-10b0-43c4-9182-640cf052717e, "RS3_FX_Skills_Void_Netherswap_Disappear_Root_01");
+
+PROC
+Proc_ARX_LV_River_TheWeakening_TeleportPlayers()
+AND
+QueryOnlyOnce("Proc_ARX_LV_River_TheWeakening_TeleportPlayers")
+THEN
+Proc_ARX_LV_River_TheWeakening_TeleportPlayers2();
+
+PROC
+Proc_ARX_LV_River_TheWeakening_TeleportPlayers2()
+THEN
+DB_ARX_LV_River_WeakeningTeleportAfterDialog(CHARACTERGUID_S_Player_Lohse_bb932b13-8ebf-4ab4-aac0-83e6924e4295);
+
+PROC
+Proc_ARX_LV_River_TheWeakening_TeleportPlayers2()
+AND
+DB_IsPlayer(_Var1)
+AND
+_Var1 != CHARACTERGUID_S_Player_Lohse_bb932b13-8ebf-4ab4-aac0-83e6924e4295
+AND
+QRY_SpeakerIsAvailableAndInDialogRange(_Var1, CHARACTERGUID_S_Player_Lohse_bb932b13-8ebf-4ab4-aac0-83e6924e4295)
+AND
+CharacterIsInPartyWith(_Var1, CHARACTERGUID_S_Player_Lohse_bb932b13-8ebf-4ab4-aac0-83e6924e4295, 1)
+THEN
+DB_ARX_LV_River_WeakeningTeleportAfterDialog(_Var1);
+
+PROC
+Proc_ARX_LV_River_TheWeakening_TeleportPlayers2()
+AND
+DB_ARX_LV_River_WeakeningTeleportAfterDialog(_Var1)
+THEN
+PlayEffect(_Var1, "RS3_FX_Skills_Void_Netherswap_Disappear_Root_01");
+FadeToBlack(_Var1, 2, 0, "ARX_LV_River_WeakeningTeleportAfterDialog_FadeOut");
+
+IF
+FadeOutDone(_, "ARX_LV_River_WeakeningTeleportAfterDialog_FadeOut")
+AND
+DB_ARX_LV_River_WeakeningTeleportAfterDialog(_Var2)
+THEN
+NOT DB_ARX_LV_River_WeakeningTeleportAfterDialog(_Var2);
+Proc_ARX_TheWeakening_Teleport(_Var2);
+
+PROC
+Proc_ARX_TheWeakening_Teleport(_)
+AND
+QueryOnlyOnce("ARX_TheWeakening_RiverTeleported")
+THEN
+SetStoryEvent(CHARACTERGUID_S_GLO_River_f4931ebe-10b0-43c4-9182-640cf052717e, "ARX_Malady_ClearWanderTrigger");
+PlayEffect(CHARACTERGUID_S_GLO_River_f4931ebe-10b0-43c4-9182-640cf052717e, "RS3_FX_Skills_Void_Netherswap_Reappear_01");
+TeleportTo(CHARACTERGUID_S_GLO_River_f4931ebe-10b0-43c4-9182-640cf052717e, TRIGGERGUID_S_ARX_TheWeakening_PortalEnt_Point_River_fe9e8278-8a25-4528-ab52-2de16f9ad09f);
+CharacterLookAt(CHARACTERGUID_S_GLO_River_f4931ebe-10b0-43c4-9182-640cf052717e, TRIGGERGUID_S_ARX_TheWeakening_PortalEnt_Point_9098e0fe-132a-4221-b8a2-4fb93157c016);
+GlobalClearFlag("ARX_LV_River_InitiateWeakeningDialog");
+GlobalSetFlag("ARX_TheWeakening_River_IntroductionToTheWeakening");
+GlobalSetFlag("ARX_TheWeakening_River_Initiated");
+SetOnStage(ITEMGUID_S_ARX_TheWeakening_PortalEnt_32f298e5-c562-46bb-8425-1a45d5fd0a2f, 1);
+DB_OriginMomentTag("ARX_LV_River", "LOHSE", "ARX_TheWeakening_COM_Intro");
+DB_OriginMomentTag("ARX_LV_River", "SHAPESHIFT_LOHSE", "ARX_TheWeakening_COM_Intro");
+DB_OriginMomentTag_3SP("ARX_TheWeakening_Candle_A", "LOHSE", "ARX_TheWeakening_Candle_A_COM_Lohse");
+DB_OriginMomentTag_3SP("ARX_TheWeakening_Candle_A", "SHAPESHIFT_LOHSE", "ARX_TheWeakening_Candle_A_COM_Lohse");
+DB_OriginMomentTag_3SP("ARX_TheWeakening_Candle_B", "LOHSE", "ARX_TheWeakening_Candle_B_COM_Lohse");
+DB_OriginMomentTag_3SP("ARX_TheWeakening_Candle_B", "SHAPESHIFT_LOHSE", "ARX_TheWeakening_Candle_B_COM_Lohse");
+
+PROC
+Proc_ARX_TheWeakening_Teleport((CHARACTERGUID)_Var1)
+THEN
+PlayEffect(_Var1, "RS3_FX_Skills_Void_Netherswap_Reappear_01");
+TeleportTo(_Var1, TRIGGERGUID_S_ARX_TheWeakening_PortalEnt_Point_9098e0fe-132a-4221-b8a2-4fb93157c016);
+CharacterLookAt(_Var1, CHARACTERGUID_S_GLO_River_f4931ebe-10b0-43c4-9182-640cf052717e);
+FadeToBlack(_Var1, 2, 1, "ARX_LV_River_WeakeningTeleportAfterDialog_FadeIn");
+
+IF
+FadeInDone(_, "ARX_LV_River_WeakeningTeleportAfterDialog_FadeIn")
+THEN
+Proc_StartDialog(0, "ARX_LV_River", CHARACTERGUID_S_GLO_River_f4931ebe-10b0-43c4-9182-640cf052717e, CHARACTERGUID_S_Player_Lohse_bb932b13-8ebf-4ab4-aac0-83e6924e4295);
+
+IF
+DialogEnded("ARX_LV_River", _)
+AND
+GlobalGetFlag("ARX_TheWeakening_River_IntroductionToTheWeakening", 1)
+THEN
+ProcCharacterMoveTo(CHARACTERGUID_S_GLO_River_f4931ebe-10b0-43c4-9182-640cf052717e, TRIGGERGUID_S_ARX_TheWeakening_MaladyPoint_01_8dec7cd1-4f8b-4f30-8fe2-a3ec6b19a8ad, 0, "ARX_TheWeakening_Malady_CandleA");
+GlobalSetFlag("ARX_TheWeakening_Malady_Candle_A");
+GlobalClearFlag("ARX_TheWeakening_River_IntroductionToTheWeakening");
+
+IF
+DialogEnded("ARX_TheWeakening_COM_Intro", _)
+AND
+GlobalGetFlag("ARX_TheWeakening_River_IntroductionToTheWeakening", 1)
+THEN
+ProcCharacterMoveTo(CHARACTERGUID_S_GLO_River_f4931ebe-10b0-43c4-9182-640cf052717e, TRIGGERGUID_S_ARX_TheWeakening_MaladyPoint_01_8dec7cd1-4f8b-4f30-8fe2-a3ec6b19a8ad, 0, "ARX_TheWeakening_Malady_CandleA");
+GlobalSetFlag("ARX_TheWeakening_Malady_Candle_A");
+GlobalClearFlag("ARX_TheWeakening_River_IntroductionToTheWeakening");
+
+IF
+StoryEvent(_, "ARX_TheWeakening_Malady_CandleA")
+AND
+IsSpeakerReserved(CHARACTERGUID_S_GLO_River_f4931ebe-10b0-43c4-9182-640cf052717e, 0)
+AND
+GlobalGetFlag("ARX_TheWeakening_Candle_A_Resolved", 0)
+THEN
+CharacterLookAt(CHARACTERGUID_S_GLO_River_f4931ebe-10b0-43c4-9182-640cf052717e, ITEMGUID_S_ARX_TheWeakening_Candle_A_8bbfe8f2-53f8-429d-8f05-80cb3781f165);
+Proc_StartDialog(1, "ARX_TheWeakening_AD_Malady_ArrivedCandle_A", CHARACTERGUID_S_GLO_River_f4931ebe-10b0-43c4-9182-640cf052717e);
+
+IF
+CharacterUsedItem((CHARACTERGUID)_Var1, ITEMGUID_S_ARX_TheWeakening_Candle_A_8bbfe8f2-53f8-429d-8f05-80cb3781f165)
+THEN
+Proc_ARX_TheWeakening_Candle_A(_Var1);
+
+PROC
+Proc_ARX_TheWeakening_Candle_A((CHARACTERGUID)_Var1)
+AND
+GlobalGetFlag("ARX_TheWeakening_Candle_A_Resolved", 0)
+AND
+IsSpeakerReserved(ITEMGUID_S_ARX_TheWeakening_Candle_A_8bbfe8f2-53f8-429d-8f05-80cb3781f165, 0)
+THEN
+ProcForceStopDialog(CHARACTERGUID_S_GLO_River_f4931ebe-10b0-43c4-9182-640cf052717e);
+CharacterMoveTo(CHARACTERGUID_S_GLO_River_f4931ebe-10b0-43c4-9182-640cf052717e, TRIGGERGUID_S_ARX_TheWeakening_MaladyPoint_01_8dec7cd1-4f8b-4f30-8fe2-a3ec6b19a8ad, 1, "", 0);
+Proc_StartDialog(0, "ARX_TheWeakening_Candle_A", ITEMGUID_S_ARX_TheWeakening_Candle_A_8bbfe8f2-53f8-429d-8f05-80cb3781f165, CHARACTERGUID_S_GLO_River_f4931ebe-10b0-43c4-9182-640cf052717e, _Var1);
+GlobalClearFlag("ARX_TheWeakening_Candle_A_MaladyNOTInDialog");
+
+PROC
+Proc_ARX_TheWeakening_Candle_A((CHARACTERGUID)_Var1)
+AND
+IsSpeakerReserved(ITEMGUID_S_ARX_TheWeakening_Candle_A_8bbfe8f2-53f8-429d-8f05-80cb3781f165, 0)
+AND
+GlobalGetFlag("ARX_TheWeakening_Candle_A_Resolved", 1)
+THEN
+Proc_StartDialog(0, "ARX_TheWeakening_Candle_A", ITEMGUID_S_ARX_TheWeakening_Candle_A_8bbfe8f2-53f8-429d-8f05-80cb3781f165, NULL_00000000-0000-0000-0000-000000000000, _Var1);
+GlobalSetFlag("ARX_TheWeakening_Candle_A_MaladyNOTInDialog");
+
+IF
+GlobalFlagSet("ARX_TheWeakening_Candle_A_Resolved")
+THEN
+NOT DB_OriginMomentTag_3SP("ARX_TheWeakening_Candle_A", "LOHSE", "ARX_TheWeakening_Candle_A_COM_Lohse");
+NOT DB_OriginMomentTag_3SP("ARX_TheWeakening_Candle_A", "SHAPESHIFT_LOHSE", "ARX_TheWeakening_Candle_A_COM_Lohse");
+
+IF
+DialogEnded("ARX_TheWeakening_Candle_A_COM_Lohse", _)
+AND
+QueryOnlyOnce("ARX_TheWeakening_Candle_A_Resolved_MoveTo_Gate")
+THEN
+GlobalSetFlag("ARX_TheWeakening_Candle_A_Resolved");
+GlobalSetFlag("ARX_TheWeakening_Candle_A_ResovledViaDialog");
+SetHasDialog(CHARACTERGUID_S_GLO_River_f4931ebe-10b0-43c4-9182-640cf052717e, 0);
+Proc_StartDialog(1, "ARX_TheWeakening_AD_Malady_CandleSnuffed_A", CHARACTERGUID_S_GLO_River_f4931ebe-10b0-43c4-9182-640cf052717e);
+TimerLaunch("ARX_TheWeakening_Candle_A_Resolved_Fallback", 1500);
+
+IF
+DialogEnded("ARX_TheWeakening_Candle_A", _)
+AND
+GlobalGetFlag("ARX_TheWeakening_Candle_A_Resolved", 1)
+AND
+QueryOnlyOnce("ARX_TheWeakening_Candle_A_Resolved_MoveTo_Gate")
+THEN
+GlobalSetFlag("ARX_TheWeakening_Candle_A_ResovledViaDialog");
+SetHasDialog(CHARACTERGUID_S_GLO_River_f4931ebe-10b0-43c4-9182-640cf052717e, 0);
+Proc_StartDialog(1, "ARX_TheWeakening_AD_Malady_CandleSnuffed_A", CHARACTERGUID_S_GLO_River_f4931ebe-10b0-43c4-9182-640cf052717e);
+TimerLaunch("ARX_TheWeakening_Candle_A_Resolved_Fallback", 1500);
+
+IF
+TimerFinished("ARX_TheWeakening_Candle_A_Resolved_Fallback")
+THEN
+SetStoryEvent(CHARACTERGUID_S_GLO_River_f4931ebe-10b0-43c4-9182-640cf052717e, "ARX_Malady_ClearWanderTrigger");
+SetHasDialog(CHARACTERGUID_S_GLO_River_f4931ebe-10b0-43c4-9182-640cf052717e, 1);
+ProcCharacterMoveTo(CHARACTERGUID_S_GLO_River_f4931ebe-10b0-43c4-9182-640cf052717e, TRIGGERGUID_S_ARX_TheWeakening_Bridge_A_Point_c00011c8-2937-4648-9fcb-2b6351b72365, 1, "ARX_TheWeakening_River_ReachedGate_A");
+GlobalSetFlag("ARX_TheWeakening_Candle_A_Resolved_MovedAway");
+
+IF
+StoryEvent(_, "ARX_TheWeakening_River_ReachedGate_A")
+THEN
+CharacterLookAt(CHARACTERGUID_S_GLO_River_f4931ebe-10b0-43c4-9182-640cf052717e, TRIGGERGUID_S_ARX_TheWeakening_MaladyPoint_02_9e58fa83-0309-4295-9a2e-7c6a61d37908);
+Proc_ARX_TheWeakening_River_ReachedGate_A();
+
+IF
+CharacterEnteredTrigger((CHARACTERGUID)_Var1, TRIGGERGUID_S_ARX_TheWeakening_River_ReachedGate_Trigger_2661fb76-e44a-46d6-b926-b96b3171a55c)
+AND
+DB_Queue("ARX_TheWeakening_River_ReachedGate_A")
+AND
+GlobalGetFlag("ARX_TheWeakening_River_ReachedGate_A_Started", 0)
+THEN
+Proc_ARX_TheWeakening_River_ReachedGate_A();
+
+PROC
+Proc_ARX_TheWeakening_River_ReachedGate_A()
+AND
+DB_InRegion(_, TRIGGERGUID_S_ARX_TheWeakening_River_ReachedGate_Trigger_2661fb76-e44a-46d6-b926-b96b3171a55c)
+THEN
+ProcForceStopDialog(CHARACTERGUID_S_GLO_River_f4931ebe-10b0-43c4-9182-640cf052717e);
+NOT DB_Queue("ARX_TheWeakening_River_ReachedGate_A");
+CharacterLookAt(CHARACTERGUID_S_GLO_River_f4931ebe-10b0-43c4-9182-640cf052717e, TRIGGERGUID_S_ARX_TheWeakening_MaladyPoint_02_9e58fa83-0309-4295-9a2e-7c6a61d37908);
+Proc_StartDialog(1, "ARX_TheWeakening_AD_Malady_Bridge", CHARACTERGUID_S_GLO_River_f4931ebe-10b0-43c4-9182-640cf052717e);
+PROC_LoopEffect("RS3_FX_Skills_Void_Netherswap_Prepare_Root_01", CHARACTERGUID_S_GLO_River_f4931ebe-10b0-43c4-9182-640cf052717e, "ARX_TheWeakening_River_ReachedGate_A_Effect", "ARX_Main", "");
+SetHasDialog(CHARACTERGUID_S_GLO_River_f4931ebe-10b0-43c4-9182-640cf052717e, 0);
+GlobalSetFlag("ARX_TheWeakening_River_ReachedGate_A_Started");
+
+PROC
+Proc_ARX_TheWeakening_River_ReachedGate_A()
+AND NOT
+DB_InRegion(_, TRIGGERGUID_S_ARX_TheWeakening_River_ReachedGate_Trigger_2661fb76-e44a-46d6-b926-b96b3171a55c)
+AND
+GlobalGetFlag("ARX_TheWeakening_River_ReachedGate_A_Started", 0)
+THEN
+DB_Queue("ARX_TheWeakening_River_ReachedGate_A");
+
+IF
+AutomatedDialogEnded("ARX_TheWeakening_AD_Malady_Bridge", _)
+THEN
+CharacterLookAt(CHARACTERGUID_S_GLO_River_f4931ebe-10b0-43c4-9182-640cf052717e, TRIGGERGUID_S_ARX_TheWeakening_MaladyPoint_02_9e58fa83-0309-4295-9a2e-7c6a61d37908);
+PROC_StopLoopEffect(CHARACTERGUID_S_GLO_River_f4931ebe-10b0-43c4-9182-640cf052717e, "ARX_TheWeakening_River_ReachedGate_A_Effect");
+CharacterSetAnimationOverride(CHARACTERGUID_S_GLO_River_f4931ebe-10b0-43c4-9182-640cf052717e, "");
+PlayAnimation(CHARACTERGUID_S_GLO_River_f4931ebe-10b0-43c4-9182-640cf052717e, "skill_cast_aoe_divine_01_cast");
+TimerLaunch("ARX_TheWeakening_AD_Malady_Bridge_Timer", 300);
+SetVisible(ITEMGUID_S_ARX_TheWeakening_Bridge_A_4e59a531-0745-4fb1-aae8-96058f384995, 1);
+PlayEffect(ITEMGUID_S_ARX_TheWeakening_Bridge_A_4e59a531-0745-4fb1-aae8-96058f384995, "RS3_FX_GP_ScriptedEvent_WeakeningBridge_01");
+
+IF
+TimerFinished("ARX_TheWeakening_AD_Malady_Bridge_Timer")
+THEN
+SetOnStage(ITEMGUID_S_ARX_TheWeakening_Bridge_A_Blocker_0d848d47-a167-4fc4-9683-85113661f163, 0);
+SetOnStage(ITEMGUID_S_ARX_TheWeakening_Bridge_A_TeleportBlocker_fc68297b-c41c-44b0-a11f-e818174b6144, 0);
+SetHasDialog(CHARACTERGUID_S_GLO_River_f4931ebe-10b0-43c4-9182-640cf052717e, 1);
+
+IF
+ItemWentOnStage(ITEMGUID_S_ARX_TheWeakening_Bridge_A_Blocker_0d848d47-a167-4fc4-9683-85113661f163, 0)
+AND
+QueryOnlyOnce("ARX_TheWeakening_Candle_A_Resolved_MoveTo")
+THEN
+ProcCharacterMoveTo(CHARACTERGUID_S_GLO_River_f4931ebe-10b0-43c4-9182-640cf052717e, TRIGGERGUID_S_ARX_TheWeakening_MaladyPoint_02_9e58fa83-0309-4295-9a2e-7c6a61d37908, 1, "ARX_TheWeakening_AD_Malady_ArrivedCandle_B");
+
+IF
+StoryEvent(_, "ARX_TheWeakening_AD_Malady_ArrivedCandle_B")
+AND
+IsSpeakerReserved(CHARACTERGUID_S_GLO_River_f4931ebe-10b0-43c4-9182-640cf052717e, 0)
+AND
+GlobalGetFlag("ARX_TheWeakening_Candle_B_Resolved", 0)
+THEN
+CharacterLookAt(CHARACTERGUID_S_GLO_River_f4931ebe-10b0-43c4-9182-640cf052717e, ITEMGUID_S_ARX_TheWeakening_Candle_B_01_Ghost_9b7967dc-2666-45c3-83f1-06f8f587bb34);
+Proc_StartDialog(1, "ARX_TheWeakening_AD_Malady_ArrivedCandle_B", CHARACTERGUID_S_GLO_River_f4931ebe-10b0-43c4-9182-640cf052717e);
+
+IF
+CharacterUsedItem((CHARACTERGUID)_Var1, ITEMGUID_S_ARX_TheWeakening_Candle_B_01_f6402eb3-dd43-8ba6-326f-8495f8666325)
+THEN
+Proc_ARX_TheWeakening_Candle_B(_Var1);
+
+IF
+CharacterUsedItem((CHARACTERGUID)_Var1, ITEMGUID_S_ARX_TheWeakening_Candle_B_02_fc088d66-073a-83f5-3d5d-d051660f962d)
+THEN
+Proc_ARX_TheWeakening_Candle_B(_Var1);
+
+PROC
+Proc_ARX_TheWeakening_Candle_B((CHARACTERGUID)_Var1)
+AND
+GlobalGetFlag("ARX_TheWeakening_Candle_B_Resolved", 0)
+AND
+IsSpeakerReserved(ITEMGUID_S_ARX_TheWeakening_Candle_B_01_f6402eb3-dd43-8ba6-326f-8495f8666325, 0)
+THEN
+ProcForceStopDialog(CHARACTERGUID_S_GLO_River_f4931ebe-10b0-43c4-9182-640cf052717e);
+ProcCharacterMoveTo(CHARACTERGUID_S_GLO_River_f4931ebe-10b0-43c4-9182-640cf052717e, TRIGGERGUID_S_ARX_TheWeakening_MaladyPoint_02_9e58fa83-0309-4295-9a2e-7c6a61d37908, 1, "");
+Proc_StartDialog(0, "ARX_TheWeakening_Candle_B", ITEMGUID_S_ARX_TheWeakening_Candle_B_01_f6402eb3-dd43-8ba6-326f-8495f8666325, CHARACTERGUID_S_GLO_River_f4931ebe-10b0-43c4-9182-640cf052717e, _Var1);
+
+PROC
+Proc_ARX_TheWeakening_Candle_B((CHARACTERGUID)_Var1)
+AND
+IsSpeakerReserved(ITEMGUID_S_ARX_TheWeakening_Candle_B_01_f6402eb3-dd43-8ba6-326f-8495f8666325, 0)
+AND
+GlobalGetFlag("ARX_TheWeakening_Candle_B_Resolved", 1)
+THEN
+Proc_StartDialog(0, "ARX_TheWeakening_Candle_B", ITEMGUID_S_ARX_TheWeakening_Candle_B_01_f6402eb3-dd43-8ba6-326f-8495f8666325, NULL_00000000-0000-0000-0000-000000000000, _Var1);
+
+IF
+DialogStarted("ARX_TheWeakening_Candle_B", (INTEGER)_Var1)
+THEN
+DialogAddActorAt(_Var1, ITEMGUID_S_ARX_TheWeakening_Candle_B_02_fc088d66-073a-83f5-3d5d-d051660f962d, 4);
+
+IF
+DialogStarted("ARX_TheWeakening_Candle_B_COM_Lohse", (INTEGER)_Var1)
+THEN
+DialogAddActorAt(_Var1, ITEMGUID_S_ARX_TheWeakening_Candle_B_02_fc088d66-073a-83f5-3d5d-d051660f962d, 5);
+
+IF
+DialogEnded("ARX_TheWeakening_Candle_B", _)
+AND
+GlobalGetFlag("ARX_TheWeakening_Candle_B_Resolved", 1)
+AND
+QueryOnlyOnce("ARX_TheWeakening_Candle_B_Resolved_MoveTo")
+THEN
+GlobalSetFlag("ARX_TheWeakening_Candle_B_ResovledViaDialog");
+SetHasDialog(CHARACTERGUID_S_GLO_River_f4931ebe-10b0-43c4-9182-640cf052717e, 0);
+Proc_StartDialog(1, "ARX_TheWeakening_AD_Malady_CandleSnuffed_B", CHARACTERGUID_S_GLO_River_f4931ebe-10b0-43c4-9182-640cf052717e);
+TimerLaunch("ARX_TheWeakening_Candle_B_Resolved_Fallback", 1500);
+
+IF
+DialogEnded("ARX_TheWeakening_Candle_B_COM_Lohse", _)
+AND
+QueryOnlyOnce("ARX_TheWeakening_Candle_B_Resolved_MoveTo")
+THEN
+GlobalSetFlag("ARX_TheWeakening_Candle_B_Resolved");
+GlobalSetFlag("ARX_TheWeakening_Candle_B_ResovledViaDialog");
+SetHasDialog(CHARACTERGUID_S_GLO_River_f4931ebe-10b0-43c4-9182-640cf052717e, 0);
+Proc_StartDialog(1, "ARX_TheWeakening_AD_Malady_CandleSnuffed_B", CHARACTERGUID_S_GLO_River_f4931ebe-10b0-43c4-9182-640cf052717e);
+TimerLaunch("ARX_TheWeakening_Candle_B_Resolved_Fallback", 1500);
+
+IF
+GlobalFlagSet("ARX_TheWeakening_Candle_B_Resolved")
+AND NOT
+DB_DialogNPCs(_, CHARACTERGUID_S_GLO_River_f4931ebe-10b0-43c4-9182-640cf052717e, _)
+AND
+QueryOnlyOnce("ARX_TheWeakening_Candle_B_Resolved_MoveTo")
+THEN
+SetHasDialog(CHARACTERGUID_S_GLO_River_f4931ebe-10b0-43c4-9182-640cf052717e, 0);
+TimerLaunch("ARX_TheWeakening_Candle_B_Resolved_Fallback", 4000);
+
+IF
+GlobalFlagSet("ARX_TheWeakening_Candle_B_Resolved")
+THEN
+Proc_ARX_TheWeakening_CandlePlebs();
+
+PROC
+Proc_ARX_TheWeakening_CandlePlebs()
+AND
+CharacterIsDead(CHARACTERGUID_S_ARX_TheWeakening_CandlePleb_02_6e57b697-b566-4df8-819f-f5e7f9cf2edb, 0)
+THEN
+GlobalSetFlag("ARX_TheWeakening_CandlePleb_02_DiedInWeakening");
+ProcForceStopDialog(CHARACTERGUID_S_ARX_TheWeakening_CandlePleb_02_6e57b697-b566-4df8-819f-f5e7f9cf2edb);
+CharacterDie(CHARACTERGUID_S_ARX_TheWeakening_CandlePleb_02_6e57b697-b566-4df8-819f-f5e7f9cf2edb, 1, "DoT");
+
+PROC
+Proc_ARX_TheWeakening_CandlePlebs()
+AND
+CharacterIsDead(CHARACTERGUID_S_ARX_TheWeakening_CandlePleb_01_7aa9c86f-5aa4-4993-9a22-975c3a1b5e95, 0)
+THEN
+GlobalSetFlag("ARX_TheWeakening_CandlePleb_01_DiedInWeakening");
+ProcForceStopDialog(CHARACTERGUID_S_ARX_TheWeakening_CandlePleb_01_7aa9c86f-5aa4-4993-9a22-975c3a1b5e95);
+CharacterDie(CHARACTERGUID_S_ARX_TheWeakening_CandlePleb_01_7aa9c86f-5aa4-4993-9a22-975c3a1b5e95, 1, "DoT");
+
+PROC
+Proc_ARX_TheWeakening_CandlePlebs()
+AND
+DB_ARX_CandlePleb_Ghost(_Var1)
+THEN
+Proc_GhostHacks_GhostPoof(_Var1);
+NOT DB_ARX_CandlePleb_Ghost(_Var1);
+
+IF
+CharacterTurnedToGhost(CHARACTERGUID_S_ARX_TheWeakening_CandlePleb_01_7aa9c86f-5aa4-4993-9a22-975c3a1b5e95, (CHARACTERGUID)_Var1)
+AND
+GlobalGetFlag("ARX_TheWeakening_Candle_B_Resolved", 0)
+THEN
+DB_ARX_CandlePleb_Ghost(_Var1);
+
+IF
+CharacterTurnedToGhost(CHARACTERGUID_S_ARX_TheWeakening_CandlePleb_02_6e57b697-b566-4df8-819f-f5e7f9cf2edb, (CHARACTERGUID)_Var1)
+AND
+GlobalGetFlag("ARX_TheWeakening_Candle_B_Resolved", 0)
+THEN
+DB_ARX_CandlePleb_Ghost(_Var1);
+
+IF
+CharacterTurnedToGhost(CHARACTERGUID_S_ARX_TheWeakening_CandlePleb_01_7aa9c86f-5aa4-4993-9a22-975c3a1b5e95, (CHARACTERGUID)_Var1)
+AND
+GlobalGetFlag("ARX_TheWeakening_Candle_B_Resolved", 1)
+THEN
+Proc_GhostHacks_GhostPoof(_Var1);
+
+IF
+CharacterTurnedToGhost(CHARACTERGUID_S_ARX_TheWeakening_CandlePleb_02_6e57b697-b566-4df8-819f-f5e7f9cf2edb, (CHARACTERGUID)_Var1)
+AND
+GlobalGetFlag("ARX_TheWeakening_Candle_B_Resolved", 1)
+THEN
+Proc_GhostHacks_GhostPoof(_Var1);
+
+IF
+TimerFinished("ARX_TheWeakening_Candle_B_Resolved_Fallback")
+THEN
+SetHasDialog(CHARACTERGUID_S_GLO_River_f4931ebe-10b0-43c4-9182-640cf052717e, 0);
+SetStoryEvent(CHARACTERGUID_S_GLO_River_f4931ebe-10b0-43c4-9182-640cf052717e, "ARX_Malady_ClearWanderTrigger");
+ProcForceStopDialog(CHARACTERGUID_S_GLO_River_f4931ebe-10b0-43c4-9182-640cf052717e);
+ProcCharacterMoveTo(CHARACTERGUID_S_GLO_River_f4931ebe-10b0-43c4-9182-640cf052717e, ITEMGUID_S_ARX_TheWeakening_Gate_B_b90a23fb-a6fc-4082-aed5-6c76d1127a0f, 1, "ARX_TheWeakening_River_ReachedGate_B");
+GlobalSetFlag("ARX_TheWeakening_Candle_B_Resolved_MovedAway");
+
+IF
+StoryEvent(_, "ARX_TheWeakening_River_ReachedGate_B")
+THEN
+SetHasDialog(CHARACTERGUID_S_GLO_River_f4931ebe-10b0-43c4-9182-640cf052717e, 0);
+SetOnStage(ITEMGUID_S_ARX_TheWeakening_Gate_B_Blocker_1136708c-58fd-40d4-ae6b-4d745e6d17bf, 0);
+ItemUnLock(ITEMGUID_S_ARX_TheWeakening_Gate_B_b90a23fb-a6fc-4082-aed5-6c76d1127a0f);
+CharacterUseItem(CHARACTERGUID_S_GLO_River_f4931ebe-10b0-43c4-9182-640cf052717e, ITEMGUID_S_ARX_TheWeakening_Gate_B_b90a23fb-a6fc-4082-aed5-6c76d1127a0f, "");
+
+IF
+ItemOpened(ITEMGUID_S_ARX_TheWeakening_Gate_B_b90a23fb-a6fc-4082-aed5-6c76d1127a0f)
+THEN
+ProcCharacterMoveTo(CHARACTERGUID_S_GLO_River_f4931ebe-10b0-43c4-9182-640cf052717e, TRIGGERGUID_S_ARX_TheWeakening_MaladyPoint_03_c378ca9c-93f7-4934-b2e0-e6159f67fd73, 1, "ARX_TheWeakening_River_ReachedFinalPos");
+
+IF
+StoryEvent(_, "ARX_TheWeakening_River_ReachedFinalPos")
+THEN
+SetHasDialog(CHARACTERGUID_S_GLO_River_f4931ebe-10b0-43c4-9182-640cf052717e, 1);
+CharacterLookAt(CHARACTERGUID_S_GLO_River_f4931ebe-10b0-43c4-9182-640cf052717e, TRIGGERGUID_S_ARX_TheWeakening_FinalScene_CloudPoint_17bf6d36-38f2-42ba-9617-5eeabc90dd0c, 0);
+DB_DoNotFace(CHARACTERGUID_S_GLO_River_f4931ebe-10b0-43c4-9182-640cf052717e);
+GlobalSetFlag("ARX_River_TheWeakening_FinalRoom");
+DB_OriginMomentTag("ARX_LV_River", "LOHSE", "ARX_LV_River_Weakening_FinalRoom_COM_Lohse");
+DB_OriginMomentTag("ARX_LV_River", "SHAPESHIFT_LOHSE", "ARX_LV_River_Weakening_FinalRoom_COM_Lohse");
+
+IF
+DialogStarted("ARX_LV_River", (INTEGER)_Var1)
+AND
+DB_OriginMomentTag("ARX_LV_River", "LOHSE", "ARX_LV_River_Weakening_FinalRoom_COM_Lohse")
+AND
+DB_DialogPlayers(_Var1, CHARACTERGUID_S_Player_Lohse_bb932b13-8ebf-4ab4-aac0-83e6924e4295, _)
+AND
+IsTagged(CHARACTERGUID_S_Player_Lohse_bb932b13-8ebf-4ab4-aac0-83e6924e4295, "AVATAR", 1)
+THEN
+NOT DB_OriginMomentTag("ARX_LV_River", "LOHSE", "ARX_LV_River_Weakening_FinalRoom_COM_Lohse");
+NOT DB_OriginMomentTag("ARX_LV_River", "SHAPESHIFT_LOHSE", "ARX_LV_River_Weakening_FinalRoom_COM_Lohse");
+
+IF
+ObjectFlagSet("ARX_TheWeakening_River_FaceChar", (GUIDSTRING)_Var1, _)
+THEN
+NOT DB_DoNotFace(CHARACTERGUID_S_GLO_River_f4931ebe-10b0-43c4-9182-640cf052717e);
+CharacterLookAt(CHARACTERGUID_S_GLO_River_f4931ebe-10b0-43c4-9182-640cf052717e, _Var1, 0);
+CharacterMoveTo(CHARACTERGUID_S_GLO_River_f4931ebe-10b0-43c4-9182-640cf052717e, _Var1, 0, "ARX_TheWeakening_River_FaceChar_Anim", 0);
+
+IF
+StoryEvent(CHARACTERGUID_S_GLO_River_f4931ebe-10b0-43c4-9182-640cf052717e, "ARX_TheWeakening_River_FaceChar_Anim")
+THEN
+PlayAnimation(CHARACTERGUID_S_GLO_River_f4931ebe-10b0-43c4-9182-640cf052717e, "No_02");
+
+IF
+CharacterEnteredTrigger((CHARACTERGUID)_Var1, TRIGGERGUID_S_ARX_TheWeakening_FinalRoom_c2d8c0d3-2874-4612-9981-693616b52fb0)
+AND
+QueryOnlyOnce("ARX_TheWeakening_VB_ReachedFinalRoom")
+THEN
+StartVoiceBark("ARX_TheWeakening_VB_ReachedFinalRoom", _Var1);
+
+IF
+CharacterEnteredTrigger(CHARACTERGUID_S_Player_Lohse_bb932b13-8ebf-4ab4-aac0-83e6924e4295, TRIGGERGUID_S_ARX_TheWeakening_FinalRoom_c2d8c0d3-2874-4612-9981-693616b52fb0)
+AND
+ObjectGetFlag(CHARACTERGUID_S_Player_Lohse_bb932b13-8ebf-4ab4-aac0-83e6924e4295, "QuestUpdate_ARX_TheWeakening_FinalRoom_Arrive", 0)
+THEN
+ObjectSetFlag(CHARACTERGUID_S_Player_Lohse_bb932b13-8ebf-4ab4-aac0-83e6924e4295, "QuestUpdate_ARX_TheWeakening_FinalRoom_Arrive");
+
+IF
+ObjectFlagSet("ARX_TheWeakening_COM_LohseLookAway", (CHARACTERGUID)_Var1, _)
+THEN
+CharacterLookAt(_Var1, TRIGGERGUID_S_ARX_TheWeakening_FinalScene_CloudPoint_17bf6d36-38f2-42ba-9617-5eeabc90dd0c);
+
+IF
+DialogEnded("ARX_LV_River_Weakening_FinalRoom_COM_Lohse", _)
+AND
+GlobalGetFlag("ARX_TheWeakening_FinalScene", 1)
+AND
+GlobalGetFlag("ARX_TheWeakening_Completed", 0)
+THEN
+SetHasDialog(CHARACTERGUID_S_GLO_River_f4931ebe-10b0-43c4-9182-640cf052717e, 0);
+CharacterLookAt(CHARACTERGUID_S_GLO_River_f4931ebe-10b0-43c4-9182-640cf052717e, TRIGGERGUID_S_ARX_TheWeakening_FinalScene_CloudPoint_17bf6d36-38f2-42ba-9617-5eeabc90dd0c);
+Proc_ARX_TheWeakening_DoRain();
+TimerLaunch("ARX_TheWeakening_FinalScene_Timer", 7000);
+DB_OriginMomentTag("ARX_LV_River", "LOHSE", "ARX_LV_River_Weakening_Completed_COM_Lohse");
+DB_OriginMomentTag("ARX_LV_River", "SHAPESHIFT_LOHSE", "ARX_LV_River_Weakening_Completed_COM_Lohse");
+
+PROC
+Proc_ARX_TheWeakening_DoRain()
+THEN
+CharacterSetAnimationOverride(CHARACTERGUID_S_GLO_River_f4931ebe-10b0-43c4-9182-640cf052717e, "");
+PlayAnimation(CHARACTERGUID_S_GLO_River_f4931ebe-10b0-43c4-9182-640cf052717e, "skill_cast_aoe_water_01_cast", "ARX_TheWeakening_DoRain_Animated");
+PlayEffect(CHARACTERGUID_S_GLO_River_f4931ebe-10b0-43c4-9182-640cf052717e, "RS3_FX_Skills_Water_Cast_AoE_Water_Root_01");
+PROC_StopLoopEffect(CHARACTERGUID_S_GLO_River_f4931ebe-10b0-43c4-9182-640cf052717e, "ARX_LV_River_TheWeakeningSpellcasting");
+TriggerSetAtmosphere(TRIGGERGUID_ATM_TheWeakening_A_7d6bb93e-ad83-4258-94b8-e2e6b8df3719, "d1ff7611-46e1-4779-b28e-91723a74d3ae");
+PROC_StopLoopEffect(TRIGGERGUID_S_ARX_TheWeakening_CandlesEffect_Trig_01_afd8cca9-a0c7-49a6-bdae-7beb04d82084, "RS3_FX_GP_ScriptedEvent_Weakening_CandleSea_01");
+PROC_StopLoopEffect(TRIGGERGUID_S_ARX_TheWeakening_CandlesEffect_Trig_02_a42b8c45-dbbe-480c-b9d0-35fa5669197a, "RS3_FX_GP_ScriptedEvent_Weakening_CandleSea_01");
+PROC_StopLoopEffect(TRIGGERGUID_S_ARX_TheWeakening_CandlesEffect_Trig_03_79fe80bf-68f2-430e-a7d0-686568cbd753, "RS3_FX_GP_ScriptedEvent_Weakening_CandleSea_01");
+
+IF
+StoryEvent(CHARACTERGUID_S_GLO_River_f4931ebe-10b0-43c4-9182-640cf052717e, "ARX_TheWeakening_DoRain_Animated")
+THEN
+GlobalSetFlag("ARX_TheWeakening_Completed");
+GlobalSetFlag("ARX_River_TheWeakening_FinalRoom_PostRain");
+
+IF
+DialogStarted("ARX_LV_River", (INTEGER)_Var1)
+AND
+DB_OriginMomentTag("ARX_LV_River", "LOHSE", "ARX_LV_River_Weakening_Completed_COM_Lohse")
+AND
+DB_DialogPlayers(_Var1, CHARACTERGUID_S_Player_Lohse_bb932b13-8ebf-4ab4-aac0-83e6924e4295, _)
+AND
+IsTagged(CHARACTERGUID_S_Player_Lohse_bb932b13-8ebf-4ab4-aac0-83e6924e4295, "AVATAR", 1)
+THEN
+NOT DB_OriginMomentTag("ARX_LV_River", "LOHSE", "ARX_LV_River_Weakening_Completed_COM_Lohse");
+NOT DB_OriginMomentTag("ARX_LV_River", "SHAPESHIFT_LOHSE", "ARX_LV_River_Weakening_Completed_COM_Lohse");
+
+IF
+DialogEnded("ARX_LV_River", _)
+AND
+GlobalGetFlag("ARX_TheWeakening_FinalScene", 1)
+AND
+GlobalGetFlag("ARX_TheWeakening_Completed", 0)
+THEN
+SetHasDialog(CHARACTERGUID_S_GLO_River_f4931ebe-10b0-43c4-9182-640cf052717e, 0);
+CharacterLookAt(CHARACTERGUID_S_GLO_River_f4931ebe-10b0-43c4-9182-640cf052717e, TRIGGERGUID_S_ARX_TheWeakening_FinalScene_CloudPoint_17bf6d36-38f2-42ba-9617-5eeabc90dd0c);
+Proc_ARX_TheWeakening_DoRain();
+TimerLaunch("ARX_TheWeakening_FinalScene_Timer", 7000);
+
+IF
+TimerFinished("ARX_TheWeakening_FinalScene_Timer")
+AND
+GlobalGetFlag("ARX_River_TheWeakening_FinalRoom_PostRain", 1)
+THEN
+Proc_StartDialog(1, "ARX_LV_AD_River", CHARACTERGUID_S_GLO_River_f4931ebe-10b0-43c4-9182-640cf052717e);
+SetHasDialog(CHARACTERGUID_S_GLO_River_f4931ebe-10b0-43c4-9182-640cf052717e, 1);
+
+PROC
+Proc_ARX_TheWeakening_DoRain()
+THEN
+MusicPlayGeneral("Lohse_ambient_02_oneshot");
+
+IF
+ItemGhostRevealed((ITEMGUID)_Var1)
+AND
+DB_TheWeakening_Candles(_Var2, _Var1, _, _, _)
+THEN
+ObjectSetFlag(_Var2, "ARX_TheWeakening_Candle_GhostRevealed");
+
+IF
+ItemGhostRevealed(ITEMGUID_S_ARX_TheWeakening_Candle_A_Ghost_3dca99da-6302-4668-8bcf-fec1378cece3)
+THEN
+ObjectSetFlag(CHARACTERGUID_S_Player_Lohse_bb932b13-8ebf-4ab4-aac0-83e6924e4295, "QuestUpdate_ARX_TheWeakening_RoomA_SoulCandles");
+
+IF
+ItemGhostRevealed(ITEMGUID_S_ARX_TheWeakening_Candle_A_Ghost_3dca99da-6302-4668-8bcf-fec1378cece3)
+AND
+DB_Avatars(CHARACTERGUID_S_Player_Lohse_bb932b13-8ebf-4ab4-aac0-83e6924e4295)
+THEN
+DB_OriginMomentTag_3SP("ARX_TheWeakening_Candle_A", "LOHSE", "ARX_TheWeakening_Candle_A_COM_Lohse");
+DB_OriginMomentTag_3SP("ARX_TheWeakening_Candle_A", "SHAPESHIFT_LOHSE", "ARX_TheWeakening_Candle_A_COM_Lohse");
+
+IF
+ItemGhostRevealed(ITEMGUID_S_ARX_TheWeakening_Candle_B_01_Ghost_9b7967dc-2666-45c3-83f1-06f8f587bb34)
+THEN
+ObjectSetFlag(CHARACTERGUID_S_Player_Lohse_bb932b13-8ebf-4ab4-aac0-83e6924e4295, "QuestUpdate_ARX_TheWeakening_RoomB_SoulCandles");
+
+IF
+ItemGhostRevealed(ITEMGUID_S_ARX_TheWeakening_Candle_B_01_Ghost_9b7967dc-2666-45c3-83f1-06f8f587bb34)
+AND
+DB_Avatars(CHARACTERGUID_S_Player_Lohse_bb932b13-8ebf-4ab4-aac0-83e6924e4295)
+THEN
+DB_OriginMomentTag_3SP("ARX_TheWeakening_Candle_B", "LOHSE", "ARX_TheWeakening_Candle_B_COM_Lohse");
+DB_OriginMomentTag_3SP("ARX_TheWeakening_Candle_B", "SHAPESHIFT_LOHSE", "ARX_TheWeakening_Candle_B_COM_Lohse");
+
+IF
+ObjectFlagSet("ARX_TheWeakening_Candle_Snuffed", (ITEMGUID)_Var1, _)
+AND
+DB_TheWeakening_Candles(_Var1, _Var3, _, _, _)
+AND
+GetPosition(_Var3, _Var7, _Var8, _Var9)
+THEN
+PlayEffectAtPosition("RS3_FX_Skills_Void_Divine_Cast_Root_01", _Var7, _Var8, _Var9);
+SetOnStage(_Var3, 0);
+SetStoryEvent(_Var1, "Snuffed");
+
+IF
+ObjectFlagSet("ARX_TheWeakening_Candle_Snuffed", ITEMGUID_S_ARX_TheWeakening_Candle_B_01_f6402eb3-dd43-8ba6-326f-8495f8666325, _)
+THEN
+ObjectSetFlag(ITEMGUID_S_ARX_TheWeakening_Candle_B_02_fc088d66-073a-83f5-3d5d-d051660f962d, "ARX_TheWeakening_Candle_Snuffed");
+
+IF
+ObjectFlagSet("ARX_TheWeakening_Candle_Preserved", ITEMGUID_S_ARX_TheWeakening_Candle_B_01_f6402eb3-dd43-8ba6-326f-8495f8666325, _)
+THEN
+ObjectSetFlag(ITEMGUID_S_ARX_TheWeakening_Candle_B_02_fc088d66-073a-83f5-3d5d-d051660f962d, "ARX_TheWeakening_Candle_Preserved");
+
+IF
+ItemStatusRemoved((ITEMGUID)_Var1, "BURNING", (CHARACTERGUID)_Var2)
+AND
+HasAppliedStatus(_Var1, "BURNING", 0)
+AND
+GlobalGetFlag("ARX_TheWeakening_River_Initiated", 1)
+AND
+DB_TheWeakening_Candles(_Var1, _, _Var4, _, _)
+AND
+ObjectGetFlag(_Var1, "ARX_TheWeakening_Candle_Snuffed", 0)
+THEN
+ObjectSetFlag(_Var1, "ARX_TheWeakening_Candle_Snuffed");
+ObjectSetFlag(_Var2, _Var4);
+Proc_ARX_TheWeakening_SnuffedCandle_Voicebark(_Var1, _Var2);
+ObjectSetFlag(_Var2, "GLO_PathOfBlood_MurderedInnocent");
+
+IF
+ItemStatusRemoved((ITEMGUID)_Var1, "BURNING", (CHARACTERGUID)_Var2)
+AND
+HasAppliedStatus(_Var1, "BURNING", 0)
+AND
+GlobalGetFlag("ARX_TheWeakening_River_Initiated", 1)
+AND
+DB_TheWeakening_Candles(_Var1, _, _Var4, _, _)
+AND NOT
+DB_IsPlayer(_Var2)
+AND
+ObjectGetFlag(_Var1, "ARX_TheWeakening_Candle_Snuffed", 0)
+AND
+GetClosestAlivePlayer(CHARACTERGUID_S_GLO_River_f4931ebe-10b0-43c4-9182-640cf052717e, _Var7, _)
+THEN
+ObjectSetFlag(_Var1, "ARX_TheWeakening_Candle_Snuffed");
+ObjectSetFlag(_Var7, _Var4);
+Proc_ARX_TheWeakening_SnuffedCandle_Voicebark(_Var1, _Var7);
+
+IF
+ItemStatusRemoved(ITEMGUID_S_ARX_TheWeakening_Candle_A_8bbfe8f2-53f8-429d-8f05-80cb3781f165, "BURNING", (GUIDSTRING)_Var1)
+AND
+HasAppliedStatus(ITEMGUID_S_ARX_TheWeakening_Candle_A_8bbfe8f2-53f8-429d-8f05-80cb3781f165, "BURNING", 0)
+THEN
+GlobalSetFlag("ARX_TheWeakening_Candle_A_Resolved");
+ObjectSetFlag(_Var1, "ARX_TheWeakening_SnuffedCandle_A");
+
+IF
+ItemStatusRemoved((ITEMGUID)_Var1, "BURNING", (GUIDSTRING)_Var2)
+AND
+DB_TheWeakening_Candles(_Var1, _, _, _, _)
+AND
+_Var1 != ITEMGUID_S_ARX_TheWeakening_Candle_A_8bbfe8f2-53f8-429d-8f05-80cb3781f165
+AND
+HasAppliedStatus(_Var1, "BURNING", 0)
+THEN
+GlobalSetFlag("ARX_TheWeakening_Candle_B_Resolved");
+ObjectSetFlag(_Var2, "ARX_TheWeakening_SnuffedCandle_B");
+
+PROC
+Proc_ARX_TheWeakening_SnuffedCandle_Voicebark(ITEMGUID_S_ARX_TheWeakening_Candle_A_8bbfe8f2-53f8-429d-8f05-80cb3781f165, CHARACTERGUID_S_Player_Lohse_bb932b13-8ebf-4ab4-aac0-83e6924e4295)
+THEN
+ObjectSetFlag(CHARACTERGUID_S_Player_Lohse_bb932b13-8ebf-4ab4-aac0-83e6924e4295, "QuestUpdate_ARX_TheWeakening_RoomA_SoulCandles_Snuffed");
+
+PROC
+Proc_ARX_TheWeakening_SnuffedCandle_Voicebark(ITEMGUID_S_ARX_TheWeakening_Candle_A_8bbfe8f2-53f8-429d-8f05-80cb3781f165, (CHARACTERGUID)_Var1)
+AND
+_Var1 != CHARACTERGUID_S_Player_Lohse_bb932b13-8ebf-4ab4-aac0-83e6924e4295
+THEN
+ObjectSetFlag(CHARACTERGUID_S_Player_Lohse_bb932b13-8ebf-4ab4-aac0-83e6924e4295, "QuestUpdate_ARX_TheWeakening_RoomA_SoulCandles_SomeoneElseSnuffed");
+
+PROC
+Proc_ARX_TheWeakening_SnuffedCandle_Voicebark(ITEMGUID_S_ARX_TheWeakening_Candle_A_8bbfe8f2-53f8-429d-8f05-80cb3781f165, (CHARACTERGUID)_Var1)
+AND
+GlobalGetFlag("ARX_TheWeakening_Candle_A_Resolved_MovedAway", 0)
+AND
+QueryOnlyOnce("ARX_TheWeakening_Candle_A_SnuffedOutOfDialog_Once")
+THEN
+ProcForceStopDialog(ITEMGUID_S_ARX_TheWeakening_Candle_A_8bbfe8f2-53f8-429d-8f05-80cb3781f165);
+ProcForceStopDialog(CHARACTERGUID_S_GLO_River_f4931ebe-10b0-43c4-9182-640cf052717e);
+GlobalSetFlag("ARX_TheWeakening_Candle_A_SnuffedOutOfDialog_Once");
+Proc_StartDialog(0, "ARX_TheWeakening_Candle_A", ITEMGUID_S_ARX_TheWeakening_Candle_A_8bbfe8f2-53f8-429d-8f05-80cb3781f165, CHARACTERGUID_S_GLO_River_f4931ebe-10b0-43c4-9182-640cf052717e, _Var1);
+GlobalClearFlag("ARX_TheWeakening_Candle_A_MaladyNOTInDialog");
+
+PROC
+Proc_ARX_TheWeakening_SnuffedCandle_Voicebark(ITEMGUID_S_ARX_TheWeakening_Candle_A_8bbfe8f2-53f8-429d-8f05-80cb3781f165, (CHARACTERGUID)_Var1)
+AND
+GlobalGetFlag("ARX_TheWeakening_Candle_A_Resolved_MovedAway", 1)
+AND
+QueryOnlyOnce("ARX_TheWeakening_Candle_A_SnuffedOutOfDialog_Once")
+THEN
+ProcForceStopDialog(ITEMGUID_S_ARX_TheWeakening_Candle_A_8bbfe8f2-53f8-429d-8f05-80cb3781f165);
+GlobalSetFlag("ARX_TheWeakening_Candle_A_SnuffedOutOfDialog_Once");
+Proc_StartDialog(0, "ARX_TheWeakening_Candle_A", ITEMGUID_S_ARX_TheWeakening_Candle_A_8bbfe8f2-53f8-429d-8f05-80cb3781f165, NULL_00000000-0000-0000-0000-000000000000, _Var1);
+GlobalSetFlag("ARX_TheWeakening_Candle_A_MaladyNOTInDialog");
+
+PROC
+Proc_ARX_TheWeakening_SnuffedCandle_Voicebark((ITEMGUID)_Var1, CHARACTERGUID_S_Player_Lohse_bb932b13-8ebf-4ab4-aac0-83e6924e4295)
+AND
+DB_TheWeakening_Candles(_Var1, _, _, "ARX_TheWeakening_VB_SnuffedCandle_B", _Var4)
+THEN
+ObjectSetFlag(CHARACTERGUID_S_Player_Lohse_bb932b13-8ebf-4ab4-aac0-83e6924e4295, "QuestUpdate_ARX_TheWeakening_RoomB_SoulCandles_Snuffed");
+
+PROC
+Proc_ARX_TheWeakening_SnuffedCandle_Voicebark((ITEMGUID)_Var1, (CHARACTERGUID)_Var2)
+AND
+DB_TheWeakening_Candles(_Var1, _, _, "ARX_TheWeakening_VB_SnuffedCandle_B", _)
+AND
+GlobalGetFlag("ARX_TheWeakening_Candle_B_Resolved_MovedAway", 0)
+AND
+QueryOnlyOnce("ARX_TheWeakening_Candle_B_SnuffedOutOfDialog_Once")
+THEN
+ProcForceStopDialog(ITEMGUID_S_ARX_TheWeakening_Candle_A_8bbfe8f2-53f8-429d-8f05-80cb3781f165);
+ProcForceStopDialog(CHARACTERGUID_S_GLO_River_f4931ebe-10b0-43c4-9182-640cf052717e);
+GlobalSetFlag("ARX_TheWeakening_Candle_B_SnuffedOutOfDialog_Once");
+Proc_StartDialog(0, "ARX_TheWeakening_Candle_B", ITEMGUID_S_ARX_TheWeakening_Candle_B_01_f6402eb3-dd43-8ba6-326f-8495f8666325, CHARACTERGUID_S_GLO_River_f4931ebe-10b0-43c4-9182-640cf052717e, _Var2);
+
+PROC
+Proc_ARX_TheWeakening_SnuffedCandle_Voicebark((ITEMGUID)_Var1, (CHARACTERGUID)_Var2)
+AND
+DB_TheWeakening_Candles(_Var1, _, _, "ARX_TheWeakening_VB_SnuffedCandle_B", _)
+AND
+GlobalGetFlag("ARX_TheWeakening_Candle_B_Resolved_MovedAway", 1)
+AND
+QueryOnlyOnce("ARX_TheWeakening_Candle_B_SnuffedOutOfDialog_Once")
+THEN
+ProcForceStopDialog(ITEMGUID_S_ARX_TheWeakening_Candle_A_8bbfe8f2-53f8-429d-8f05-80cb3781f165);
+GlobalSetFlag("ARX_TheWeakening_Candle_B_SnuffedOutOfDialog_Once");
+Proc_StartDialog(0, "ARX_TheWeakening_Candle_B", ITEMGUID_S_ARX_TheWeakening_Candle_B_01_f6402eb3-dd43-8ba6-326f-8495f8666325, NULL_00000000-0000-0000-0000-000000000000, _Var2);
+
+PROC
+Proc_ARX_TheWeakening_SnuffedCandle_Voicebark((ITEMGUID)_Var1, (CHARACTERGUID)_Var2)
+AND
+DB_TheWeakening_Candles(_Var1, _, _, "ARX_TheWeakening_VB_SnuffedCandle_B", _Var5)
+AND
+_Var2 != CHARACTERGUID_S_Player_Lohse_bb932b13-8ebf-4ab4-aac0-83e6924e4295
+THEN
+ObjectSetFlag(CHARACTERGUID_S_Player_Lohse_bb932b13-8ebf-4ab4-aac0-83e6924e4295, "QuestUpdate_ARX_TheWeakening_RoomB_SoulCandles_SomeoneElseSnuffed");
+
+IF
+DialogEnded("ARX_TheWeakening_Candle_A", _)
+AND
+GlobalGetFlag("ARX_TheWeakening_River_TeleportOut", 1)
+AND
+QueryOnlyOnce("Proc_TheWeakening_TeleportOut")
+THEN
+PlayAnimation(CHARACTERGUID_S_GLO_River_f4931ebe-10b0-43c4-9182-640cf052717e, "skill_cast_aoe_divine_01_cast");
+GlobalSetFlag("ARX_TheWeakening_FinalScene_Failed");
+Proc_TheWeakening_TeleportOut();
+GlobalClearFlag("ARX_TheWeakening_River_TeleportOut");
+
+IF
+DialogEnded("ARX_TheWeakening_Candle_B", _)
+AND
+GlobalGetFlag("ARX_TheWeakening_River_TeleportOut", 1)
+AND
+QueryOnlyOnce("Proc_TheWeakening_TeleportOut")
+THEN
+PlayAnimation(CHARACTERGUID_S_GLO_River_f4931ebe-10b0-43c4-9182-640cf052717e, "skill_cast_aoe_divine_01_cast");
+GlobalSetFlag("ARX_TheWeakening_FinalScene_Failed");
+Proc_TheWeakening_TeleportOut();
+GlobalClearFlag("ARX_TheWeakening_River_TeleportOut");
+
+IF
+DialogEnded("ARX_LV_River", _)
+AND
+GlobalGetFlag("ARX_TheWeakening_River_TeleportOut", 1)
+AND
+QueryOnlyOnce("Proc_TheWeakening_TeleportOut")
+THEN
+PlayAnimation(CHARACTERGUID_S_GLO_River_f4931ebe-10b0-43c4-9182-640cf052717e, "skill_cast_aoe_divine_01_cast");
+Proc_TheWeakening_TeleportOut();
+GlobalClearFlag("ARX_TheWeakening_River_TeleportOut");
+
+IF
+DialogEnded("ARX_LV_River_Weakening_FinalRoom_COM_Lohse", _)
+AND
+GlobalGetFlag("ARX_TheWeakening_River_TeleportOut", 1)
+AND
+QueryOnlyOnce("Proc_TheWeakening_TeleportOut")
+THEN
+PlayAnimation(CHARACTERGUID_S_GLO_River_f4931ebe-10b0-43c4-9182-640cf052717e, "skill_cast_aoe_divine_01_cast");
+Proc_TheWeakening_TeleportOut();
+GlobalClearFlag("ARX_TheWeakening_River_TeleportOut");
+
+IF
+DialogEnded("ARX_LV_River_Weakening_Completed_COM_Lohse", _)
+AND
+GlobalGetFlag("ARX_TheWeakening_River_TeleportOut", 1)
+AND
+QueryOnlyOnce("Proc_TheWeakening_TeleportOut")
+THEN
+PlayAnimation(CHARACTERGUID_S_GLO_River_f4931ebe-10b0-43c4-9182-640cf052717e, "skill_cast_aoe_divine_01_cast");
+Proc_TheWeakening_TeleportOut();
+GlobalClearFlag("ARX_TheWeakening_River_TeleportOut");
+
+IF
+CharacterDied(CHARACTERGUID_S_GLO_River_f4931ebe-10b0-43c4-9182-640cf052717e)
+AND
+GlobalGetFlag("ARX_TheWeakening_River_Initiated", 1)
+AND
+GlobalGetFlag("ARX_TheWeakening_Completed", 0)
+AND
+GlobalGetFlag("ARX_TheWeakening_FinalScene_Failed", 0)
+AND
+QueryOnlyOnce("Proc_TheWeakening_TeleportOut")
+THEN
+Proc_TheWeakening_TeleportOut();
+
+IF
+CharacterLeftTrigger(CHARACTERGUID_S_Player_Lohse_bb932b13-8ebf-4ab4-aac0-83e6924e4295, TRIGGERGUID_S_ARX_TheWeakening_TrigBox_459daa15-937c-44b8-8685-649549500210)
+AND
+QueryOnlyOnce("Proc_TheWeakening_TeleportOut")
+THEN
+Proc_TheWeakening_TeleportOut();
+GlobalSetFlag("ARX_TheWeakening_Lohse_LeftTrigger");
+ObjectSetFlag(CHARACTERGUID_S_Player_Lohse_bb932b13-8ebf-4ab4-aac0-83e6924e4295, "ARX_LV_River_LohseDisappointed");
+
+IF
+ObjectFlagSet("RC_DU_VL_PlayerAttackedRiver", _, _)
+AND
+GlobalGetFlag("ARX_TheWeakening_River_Initiated", 1)
+THEN
+GlobalSetFlag("ARX_TheWeakening_Lohse_LeftTrigger");
+Proc_TheWeakening_TeleportOut();
+
+PROC
+Proc_TheWeakening_TeleportOut()
+AND
+GlobalGetFlag("ARX_TheWeakening_River_Initiated", 1)
+AND
+GlobalGetFlag("ARX_TheWeakening_Completed", 0)
+AND
+GlobalGetFlag("ARX_TheWeakening_FinalScene_Failed", 0)
+THEN
+GlobalSetFlag("ARX_TheWeakening_Lohse_LeftTrigger");
+ObjectSetFlag(CHARACTERGUID_S_Player_Lohse_bb932b13-8ebf-4ab4-aac0-83e6924e4295, "ARX_LV_River_LohseDisappointed");
+
+PROC
+Proc_TheWeakening_TeleportOut()
+THEN
+SetOnStage(ITEMGUID_S_ARX_TheWeakening_PortalEnt_32f298e5-c562-46bb-8425-1a45d5fd0a2f, 0);
+GlobalClearFlag("ARX_TheWeakening_River_Initiated");
+SetHasDialog(CHARACTERGUID_S_GLO_River_f4931ebe-10b0-43c4-9182-640cf052717e, 1);
+
+PROC
+Proc_TheWeakening_TeleportOut()
+AND
+GlobalGetFlag("ARX_TheWeakening_Completed", 1)
+THEN
+ObjectSetFlag(CHARACTERGUID_S_Player_Lohse_bb932b13-8ebf-4ab4-aac0-83e6924e4295, "QuestUpdate_ARX_TheWeakening_End_Completed");
+
+PROC
+Proc_TheWeakening_TeleportOut()
+AND
+GlobalGetFlag("ARX_TheWeakening_Completed", 0)
+THEN
+ObjectSetFlag(CHARACTERGUID_S_Player_Lohse_bb932b13-8ebf-4ab4-aac0-83e6924e4295, "QuestUpdate_ARX_TheWeakening_End_Failed");
+
+PROC
+Proc_TheWeakening_TeleportOut()
+AND
+DB_InRegion(_Var1, TRIGGERGUID_S_ARX_TheWeakening_TrigBox_459daa15-937c-44b8-8685-649549500210)
+THEN
+PlayEffect(_Var1, "RS3_FX_Skills_Void_Netherswap_Disappear_Root_01");
+DB_ARX_TheWeakening_TeleportOut_FadeOut(_Var1);
+FadeToBlack(_Var1, 2, 0, "ARX_TheWeakening_TeleportOut_FadeOut");
+
+PROC
+Proc_TheWeakening_TeleportOut()
+THEN
+Proc_ARX_TheWeakening_TeleportOut_FadeOut();
+
+IF
+FadeOutDone(_, "ARX_TheWeakening_TeleportOut_FadeOut")
+THEN
+Proc_ARX_TheWeakening_TeleportOut_FadeOut();
+
+PROC
+Proc_ARX_TheWeakening_TeleportOut_FadeOut()
+AND
+DB_ARX_TheWeakening_TeleportOut_FadeOut(_Var1)
+THEN
+NOT DB_ARX_TheWeakening_TeleportOut_FadeOut(_Var1);
+ProcForceStopDialog(_Var1);
+CharacterPurgeQueue(_Var1);
+TeleportTo(_Var1, TRIGGERGUID_S_ARX_TheWeakening_PortalExt_Point_ac0a42f4-f618-456e-b9ca-d316e960e94a);
+FadeToBlack(_Var1, 2, 1, "ARX_TheWeakening_TeleportOut_FadeIn");
+PlayEffect(_Var1, "RS3_FX_Skills_Void_Netherswap_Reappear_01");
+
+PROC
+Proc_ARX_TheWeakening_TeleportOut_FadeOut()
+AND
+DB_InRegion(CHARACTERGUID_S_GLO_River_f4931ebe-10b0-43c4-9182-640cf052717e, TRIGGERGUID_S_ARX_TheWeakening_TrigBox_459daa15-937c-44b8-8685-649549500210)
+AND
+CharacterIsDead(CHARACTERGUID_S_GLO_River_f4931ebe-10b0-43c4-9182-640cf052717e, 0)
+AND
+GlobalGetFlag("ARX_TheWeakening_Completed", 1)
+THEN
+ProcForceStopDialog(CHARACTERGUID_S_GLO_River_f4931ebe-10b0-43c4-9182-640cf052717e);
+CharacterPurgeQueue(CHARACTERGUID_S_GLO_River_f4931ebe-10b0-43c4-9182-640cf052717e);
+TeleportTo(CHARACTERGUID_S_GLO_River_f4931ebe-10b0-43c4-9182-640cf052717e, TRIGGERGUID_S_ARX_DoctrosHouse_MaladyPointTrig_007d2c51-02b2-4879-8705-27bbc7ab4082, "ARX_TheWeakening_River_TeleportedToPortalExt", 0);
+PlayEffect(CHARACTERGUID_S_GLO_River_f4931ebe-10b0-43c4-9182-640cf052717e, "RS3_FX_Skills_Void_Netherswap_Reappear_01");
+
+PROC
+Proc_ARX_TheWeakening_TeleportOut_FadeOut()
+AND
+DB_InRegion(CHARACTERGUID_S_GLO_River_f4931ebe-10b0-43c4-9182-640cf052717e, TRIGGERGUID_S_ARX_TheWeakening_TrigBox_459daa15-937c-44b8-8685-649549500210)
+AND
+CharacterIsDead(CHARACTERGUID_S_GLO_River_f4931ebe-10b0-43c4-9182-640cf052717e, 0)
+AND
+GlobalGetFlag("ARX_TheWeakening_FinalScene_Failed", 1)
+THEN
+ProcForceStopDialog(CHARACTERGUID_S_GLO_River_f4931ebe-10b0-43c4-9182-640cf052717e);
+CharacterPurgeQueue(CHARACTERGUID_S_GLO_River_f4931ebe-10b0-43c4-9182-640cf052717e);
+TeleportTo(CHARACTERGUID_S_GLO_River_f4931ebe-10b0-43c4-9182-640cf052717e, TRIGGERGUID_S_ARX_DoctrosHouse_MaladyPointTrig_007d2c51-02b2-4879-8705-27bbc7ab4082, "ARX_TheWeakening_River_TeleportedToPortalExt", 0);
+PlayEffect(CHARACTERGUID_S_GLO_River_f4931ebe-10b0-43c4-9182-640cf052717e, "RS3_FX_Skills_Void_Netherswap_Reappear_01");
+
+PROC
+Proc_ARX_TheWeakening_TeleportOut_FadeOut()
+THEN
+ProcDefineReflectionDialog("ARX_TheWeakening_RD_WeakeningDone", CHARACTERGUID_S_Player_Lohse_bb932b13-8ebf-4ab4-aac0-83e6924e4295);
+PROC_StopLoopEffect(CHARACTERGUID_S_GLO_River_f4931ebe-10b0-43c4-9182-640cf052717e, "ARX_LV_River_TheWeakeningSpellcasting");
+CharacterSetAnimationOverride(CHARACTERGUID_S_GLO_River_f4931ebe-10b0-43c4-9182-640cf052717e, "");
+
+PROC
+ProcCancelReflectionDialog("ARX_TheWeakening_RD_WeakeningDone")
+THEN
+Proc_RelationshipDialog(CHARACTERGUID_S_Player_Lohse_bb932b13-8ebf-4ab4-aac0-83e6924e4295, "ARX_WeakeningDone_CRD_Lohse", CHARACTERGUID_S_Player_Lohse_bb932b13-8ebf-4ab4-aac0-83e6924e4295);
+
+PROC
+Proc_ARX_TheWeakening_TeleportOut_FadeOut()
+AND
+DB_InRegion(CHARACTERGUID_S_GLO_River_f4931ebe-10b0-43c4-9182-640cf052717e, TRIGGERGUID_S_ARX_TheWeakening_TrigBox_459daa15-937c-44b8-8685-649549500210)
+AND
+CharacterIsDead(CHARACTERGUID_S_GLO_River_f4931ebe-10b0-43c4-9182-640cf052717e, 0)
+AND
+GlobalGetFlag("ARX_TheWeakening_Completed", 0)
+AND
+GlobalGetFlag("ARX_TheWeakening_FinalScene_Failed", 0)
+THEN
+ProcForceStopDialog(CHARACTERGUID_S_GLO_River_f4931ebe-10b0-43c4-9182-640cf052717e);
+CharacterPurgeQueue(CHARACTERGUID_S_GLO_River_f4931ebe-10b0-43c4-9182-640cf052717e);
+TeleportTo(CHARACTERGUID_S_GLO_River_f4931ebe-10b0-43c4-9182-640cf052717e, TRIGGERGUID_S_ARX_LV_Malady_PostCrash_59b1b9d1-047c-4bed-aa67-242e1ccc4822);
+PlayEffect(CHARACTERGUID_S_GLO_River_f4931ebe-10b0-43c4-9182-640cf052717e, "RS3_FX_Skills_Void_Netherswap_Reappear_01");
+
+PROC
+Proc_TheWeakening_TeleportOut()
+AND
+DB_ARX_TheWeakening_PyramidInWeakening(_Var1)
+AND
+CharacterIsDead(CHARACTERGUID_S_GLO_River_f4931ebe-10b0-43c4-9182-640cf052717e, 0)
+THEN
+ItemToInventory(_Var1, CHARACTERGUID_S_GLO_River_f4931ebe-10b0-43c4-9182-640cf052717e);
+
+PROC
+Proc_TheWeakening_TeleportOut()
+AND
+DB_ARX_TheWeakening_PyramidInWeakening(_Var1)
+AND
+CharacterIsDead(CHARACTERGUID_S_GLO_River_f4931ebe-10b0-43c4-9182-640cf052717e, 1)
+THEN
+ItemToInventory(_Var1, CHARACTERGUID_S_ARX_DoctorsHouse_TheDoctor_83083470-c543-45b3-ac8a-108df0daca8d);
+
+IF
+ItemEnteredTrigger((ITEMGUID)_Var1, TRIGGERGUID_S_ARX_TheWeakening_TrigBox_459daa15-937c-44b8-8685-649549500210, _)
+AND
+DB_TeleporterPyramid(_Var1)
+THEN
+DB_ARX_TheWeakening_PyramidInWeakening(_Var1);
+
+IF
+ItemLeftTrigger((ITEMGUID)_Var1, TRIGGERGUID_S_ARX_TheWeakening_TrigBox_459daa15-937c-44b8-8685-649549500210, _)
+AND
+DB_ARX_TheWeakening_PyramidInWeakening(_Var1)
+THEN
+NOT DB_ARX_TheWeakening_PyramidInWeakening(_Var1);
+
+IF
+StoryEvent(_, "ARX_TheWeakening_River_TeleportedToPortalExt")
+AND
+QueryOnlyOnce("Proc_ARX_TheWeakening_TeleportOut_CheckDialog")
+THEN
+Proc_ARX_TheWeakening_TeleportOut_CheckDialog();
+
+IF
+FadeInDone(_, "ARX_TheWeakening_TeleportOut_FadeIn")
+AND
+QueryOnlyOnce("Proc_ARX_TheWeakening_TeleportOut_CheckDialog")
+THEN
+Proc_ARX_TheWeakening_TeleportOut_CheckDialog();
+
+PROC
+Proc_ARX_TheWeakening_TeleportOut_CheckDialog()
+AND
+GlobalGetFlag("ARX_TheWeakening_FinalScene_Failed", _Var1)
+AND
+GlobalGetFlag("ARX_TheWeakening_Completed", _Var2)
+AND
+IntegerSum(_Var1, _Var2, _Var3)
+AND
+_Var3 > 0
+THEN
+SetVarFixedString(CHARACTERGUID_S_GLO_River_f4931ebe-10b0-43c4-9182-640cf052717e, "HasTag", "LOHSE");
+SetVarFixedString(CHARACTERGUID_S_GLO_River_f4931ebe-10b0-43c4-9182-640cf052717e, "HasTag_Shapeshift", "SHAPESHIFT_LOHSE");
+GlobalSetFlag("ARX_River_TheWeakening_InitiateSpotLohse");
+DB_OriginMomentTag("ARX_LV_River", "LOHSE", "ARX_LV_River_Weakening_Afterwards_COM_Lohse");
+DB_OriginMomentTag("ARX_LV_River", "SHAPESHIFT_LOHSE", "ARX_LV_River_Weakening_Afterwards_COM_Lohse");
+
+IF
+StoryEvent(CHARACTERGUID_S_Player_Lohse_bb932b13-8ebf-4ab4-aac0-83e6924e4295, "ARX_River_TheWeakening_SpottedLohse")
+AND
+GlobalGetFlag("ARX_TheWeakening_Completed", 1)
+AND
+GlobalGetFlag("ARX_TheWeakening_River_Initiated", 0)
+THEN
+Proc_StartDialog(0, "ARX_LV_River", CHARACTERGUID_S_GLO_River_f4931ebe-10b0-43c4-9182-640cf052717e, CHARACTERGUID_S_Player_Lohse_bb932b13-8ebf-4ab4-aac0-83e6924e4295);
+
+IF
+StoryEvent(CHARACTERGUID_S_Player_Lohse_bb932b13-8ebf-4ab4-aac0-83e6924e4295, "ARX_River_TheWeakening_SpottedLohse")
+AND
+GlobalGetFlag("ARX_TheWeakening_FinalScene_Failed", 1)
+AND
+GlobalGetFlag("ARX_TheWeakening_River_Initiated", 0)
+THEN
+Proc_StartDialog(0, "ARX_LV_River", CHARACTERGUID_S_GLO_River_f4931ebe-10b0-43c4-9182-640cf052717e, CHARACTERGUID_S_Player_Lohse_bb932b13-8ebf-4ab4-aac0-83e6924e4295);
+
+IF
+StoryEvent(CHARACTERGUID_S_Player_Lohse_bb932b13-8ebf-4ab4-aac0-83e6924e4295, "ARX_River_TheWeakening_SpottedLohse")
+AND
+DB_CompanionAvatarBond(CHARACTERGUID_S_Player_Lohse_bb932b13-8ebf-4ab4-aac0-83e6924e4295, _)
+AND
+GlobalGetFlag("ARX_TheWeakening_Completed", 1)
+AND
+GlobalGetFlag("ARX_TheWeakening_River_Initiated", 0)
+AND
+IsSpeakerReserved(CHARACTERGUID_S_GLO_River_f4931ebe-10b0-43c4-9182-640cf052717e, 0)
+AND
+IsSpeakerReserved(CHARACTERGUID_S_Player_Lohse_bb932b13-8ebf-4ab4-aac0-83e6924e4295, 0)
+THEN
+Proc_StartDialog(0, "ARX_LV_River_Weakening_Afterwards_COM_Lohse", CHARACTERGUID_S_GLO_River_f4931ebe-10b0-43c4-9182-640cf052717e, CHARACTERGUID_S_Player_Lohse_bb932b13-8ebf-4ab4-aac0-83e6924e4295);
+
+IF
+StoryEvent(CHARACTERGUID_S_Player_Lohse_bb932b13-8ebf-4ab4-aac0-83e6924e4295, "ARX_River_TheWeakening_SpottedLohse")
+AND
+DB_CompanionAvatarBond(CHARACTERGUID_S_Player_Lohse_bb932b13-8ebf-4ab4-aac0-83e6924e4295, _)
+AND
+GlobalGetFlag("ARX_TheWeakening_FinalScene_Failed", 1)
+AND
+GlobalGetFlag("ARX_TheWeakening_River_Initiated", 0)
+AND
+IsSpeakerReserved(CHARACTERGUID_S_GLO_River_f4931ebe-10b0-43c4-9182-640cf052717e, 0)
+AND
+IsSpeakerReserved(CHARACTERGUID_S_Player_Lohse_bb932b13-8ebf-4ab4-aac0-83e6924e4295, 0)
+THEN
+Proc_StartDialog(0, "ARX_LV_River_Weakening_Afterwards_COM_Lohse", CHARACTERGUID_S_GLO_River_f4931ebe-10b0-43c4-9182-640cf052717e, CHARACTERGUID_S_Player_Lohse_bb932b13-8ebf-4ab4-aac0-83e6924e4295);
+
+IF
+DialogEnded("ARX_LV_River", _)
+AND
+GlobalGetFlag("ARX_LV_River_GoToLVAfterDialog", 1)
+THEN
+SetHasDialog(CHARACTERGUID_S_GLO_River_f4931ebe-10b0-43c4-9182-640cf052717e, 0);
+ProcCharacterDisappearOutOfSightToObject(CHARACTERGUID_S_GLO_River_f4931ebe-10b0-43c4-9182-640cf052717e, TRIGGERGUID_ARX_LV_River_WeakeningDialog_BackToLV_Trig_e083d42d-d5bf-41b5-8e41-2b23721918a5, 0, "ARX_LV_River_LohseDeclinedWeakening_Disappeared", 0);
+GlobalClearFlag("ARX_LV_River_GoToLVAfterDialog");
+
+IF
+DialogEnded("ARX_LV_River_Weakening_Afterwards_COM_Lohse", _)
+AND
+GlobalGetFlag("ARX_LV_River_GoToLVAfterDialog", 1)
+THEN
+SetHasDialog(CHARACTERGUID_S_GLO_River_f4931ebe-10b0-43c4-9182-640cf052717e, 0);
+ProcCharacterDisappearOutOfSightToObject(CHARACTERGUID_S_GLO_River_f4931ebe-10b0-43c4-9182-640cf052717e, TRIGGERGUID_ARX_LV_River_WeakeningDialog_BackToLV_Trig_e083d42d-d5bf-41b5-8e41-2b23721918a5, 0, "ARX_LV_River_LohseDeclinedWeakening_Disappeared", 0);
+GlobalClearFlag("ARX_LV_River_GoToLVAfterDialog");
+
+IF
+GlobalFlagSet("ARX_DoctorsHouse_TheDoctor_LohseSightedDialog")
+AND
+GlobalGetFlag("ARX_LV_River_InitiateWeakeningDialog", 1)
+AND
+CharacterIsInCombat(CHARACTERGUID_S_GLO_River_f4931ebe-10b0-43c4-9182-640cf052717e, 0)
+THEN
+ProcForceStopDialog(CHARACTERGUID_S_GLO_River_f4931ebe-10b0-43c4-9182-640cf052717e);
+SetHasDialog(CHARACTERGUID_S_GLO_River_f4931ebe-10b0-43c4-9182-640cf052717e, 0);
+ProcCharacterDisappearOutOfSightToObject(CHARACTERGUID_S_GLO_River_f4931ebe-10b0-43c4-9182-640cf052717e, TRIGGERGUID_ARX_LV_River_WeakeningDialog_BackToLV_Trig_e083d42d-d5bf-41b5-8e41-2b23721918a5, 0, "ARX_LV_River_WeakeningDialog_BackToLV", 0);
+GlobalClearFlag("ARX_LV_River_InitiateWeakeningDialog");
+ObjectSetFlag(CHARACTERGUID_S_Player_Lohse_bb932b13-8ebf-4ab4-aac0-83e6924e4295, "ARX_LV_River_LohseDisappointed");
+
+IF
+ObjectLeftCombat(CHARACTERGUID_S_GLO_River_f4931ebe-10b0-43c4-9182-640cf052717e, _)
+AND
+GlobalGetFlag("ARX_LV_River_InitiateWeakeningDialog", 1)
+AND
+GlobalGetFlag("ARX_DoctorsHouse_TheDoctor_LohseSightedDialog", 1)
+THEN
+SetHasDialog(CHARACTERGUID_S_GLO_River_f4931ebe-10b0-43c4-9182-640cf052717e, 0);
+ProcCharacterDisappearOutOfSightToObject(CHARACTERGUID_S_GLO_River_f4931ebe-10b0-43c4-9182-640cf052717e, TRIGGERGUID_ARX_LV_River_WeakeningDialog_BackToLV_Trig_e083d42d-d5bf-41b5-8e41-2b23721918a5, 0, "ARX_LV_River_WeakeningDialog_BackToLV", 0);
+GlobalClearFlag("ARX_LV_River_InitiateWeakeningDialog");
+ObjectSetFlag(CHARACTERGUID_S_Player_Lohse_bb932b13-8ebf-4ab4-aac0-83e6924e4295, "ARX_LV_River_LohseDisappointed");
+
+IF
+StoryEvent(_, "ARX_LV_River_WeakeningDialog_BackToLV")
+THEN
+GlobalClearFlag("ARX_LV_River_LeftLV");
+CharacterAppearAt(CHARACTERGUID_S_GLO_River_f4931ebe-10b0-43c4-9182-640cf052717e, TRIGGERGUID_S_ARX_LV_Malady_PostCrash_59b1b9d1-047c-4bed-aa67-242e1ccc4822, 1, "");
+SetHasDialog(CHARACTERGUID_S_GLO_River_f4931ebe-10b0-43c4-9182-640cf052717e, 1);
+GlobalSetFlag("ARX_River_TheWeakening_StopSpotLohse");
+
+IF
+StoryEvent(_, "ARX_LV_River_LohseDeclinedWeakening_Disappeared")
+THEN
+GlobalClearFlag("ARX_LV_River_GoToLVAfterDialog");
+CharacterAppearAt(CHARACTERGUID_S_GLO_River_f4931ebe-10b0-43c4-9182-640cf052717e, TRIGGERGUID_S_ARX_LV_Malady_PostCrash_59b1b9d1-047c-4bed-aa67-242e1ccc4822, 1, "");
+SetHasDialog(CHARACTERGUID_S_GLO_River_f4931ebe-10b0-43c4-9182-640cf052717e, 1);
+GlobalSetFlag("ARX_River_TheWeakening_StopSpotLohse");
+
+IF
+GlobalFlagCleared("ARX_LV_River_InitiateWeakeningDialog")
+THEN
+NOT DB_OriginMomentTag("ARX_LV_River", "LOHSE", "ARX_LV_River_WeakeningIntro_COM_Lohse");
+NOT DB_OriginMomentTag("ARX_LV_River", "SHAPESHIFT_LOHSE", "ARX_LV_River_WeakeningIntro_COM_Lohse");
+
+IF
+SavegameLoaded((INTEGER)_Var1, (INTEGER)_Var2, (INTEGER)_Var3, (INTEGER)_Var4)
+AND
+QRY_VersionIsOlderThan(_Var1, _Var2, _Var3, _Var4, 3, 6, 1, 0)
+AND
+GlobalGetFlag("ARX_LV_River_InitiateWeakeningDialog", 0)
+THEN
+NOT DB_OriginMomentTag("ARX_LV_River", "LOHSE", "ARX_LV_River_WeakeningIntro_COM_Lohse");
+NOT DB_OriginMomentTag("ARX_LV_River", "SHAPESHIFT_LOHSE", "ARX_LV_River_WeakeningIntro_COM_Lohse");
+
+IF
+CharacterDied(CHARACTERGUID_S_ARX_DoctorsHouse_TheDoctor_83083470-c543-45b3-ac8a-108df0daca8d)
+THEN
+ObjectSetFlag(CHARACTERGUID_S_Player_Lohse_bb932b13-8ebf-4ab4-aac0-83e6924e4295, "QuestUpdate_ARX_TheWeakening_TheDoctor_IsDead");
+
+IF
+GlobalFlagSet("ARX_TheWeakening_Completed")
+THEN
+Proc_ARX_TheWeakening_Completed();
+
+PROC
+Proc_ARX_TheWeakening_Completed()
+THEN
+ApplyStatus(CHARACTERGUID_S_ARX_DoctorsHouse_TheDoctor_83083470-c543-45b3-ac8a-108df0daca8d, "QUEST_WEAKENED", -1);
+ObjectSetFlag(CHARACTERGUID_S_Player_Lohse_bb932b13-8ebf-4ab4-aac0-83e6924e4295, "GLO_PathOfBlood_MurderedInnocent");
+
+IF
+TextEventSet("cndl")
+THEN
+Proc_ARX_TheWeakening_Completed();
+
+PROC
+Proc_ARX_TheWeakening_Completed()
+AND
+DB_ARX_TheWeakening_DeadPlebs(_Var1)
+AND
+CharacterIsDead(_Var1, 0)
+AND
+GetPosition(_Var1, _Var2, _Var3, _Var4)
+AND
+CreateItemTemplateAtPosition("ITEMGUID_LTS_Weakening_Candle_E_Spawned_ONLYUSEDIN_THEWEAKENING_5c80a160-5431-475e-83bc-26f6f5308734", _Var2, _Var3, _Var4, _Var5)
+THEN
+DB_ARX_TheWeakening_DeadPlebs_Candle(_Var1, _Var5);
+
+PROC
+Proc_ARX_TheWeakening_Completed()
+AND
+DB_ARX_TheWeakening_DeadPlebs(_Var1)
+AND
+CharacterIsDead(_Var1, 0)
+THEN
+ProcForceStopDialog(_Var1);
+CharacterDie(_Var1, 1, "Explode");
+
+PROC
+Proc_ARX_TheWeakening_Completed()
+AND
+DB_ARX_TheWeakening_DeadPlebs_Ghost(_Var1)
+THEN
+Proc_GhostHacks_GhostPoof(_Var1);
+NOT DB_ARX_TheWeakening_DeadPlebs_Ghost(_Var1);
+
+IF
+CharacterTurnedToGhost((CHARACTERGUID)_Var1, (CHARACTERGUID)_Var2)
+AND
+DB_ARX_TheWeakening_DeadPlebs(_Var1)
+AND
+GlobalGetFlag("ARX_TheWeakening_Completed", 1)
+THEN
+Proc_GhostHacks_GhostPoof(_Var2);
+
+IF
+CharacterTurnedToGhost((CHARACTERGUID)_Var1, (CHARACTERGUID)_Var2)
+AND
+DB_ARX_TheWeakening_DeadPlebs(_Var1)
+AND
+GlobalGetFlag("ARX_TheWeakening_Completed", 0)
+THEN
+DB_ARX_TheWeakening_DeadPlebs_Ghost(_Var2);
+
+IF
+ObjectEnteredCombat(CHARACTERGUID_S_Player_Lohse_bb932b13-8ebf-4ab4-aac0-83e6924e4295, (INTEGER)_Var1)
+AND NOT
+DB_TheDoctor_LohseInCombatWithDoctor(1)
+AND
+CombatGetIDForCharacter(CHARACTERGUID_S_ARX_DoctorsHouse_TheDoctor_83083470-c543-45b3-ac8a-108df0daca8d, _Var1)
+THEN
+DB_TheDoctor_LohseInCombatWithDoctor(1);
+
+IF
+ObjectEnteredCombat(CHARACTERGUID_S_ARX_DoctorsHouse_TheDoctor_83083470-c543-45b3-ac8a-108df0daca8d, (INTEGER)_Var1)
+AND NOT
+DB_TheDoctor_LohseInCombatWithDoctor(1)
+AND
+CombatGetIDForCharacter(CHARACTERGUID_S_Player_Lohse_bb932b13-8ebf-4ab4-aac0-83e6924e4295, _Var1)
+THEN
+DB_TheDoctor_LohseInCombatWithDoctor(1);
+
+IF
+ObjectLeftCombat(CHARACTERGUID_S_Player_Lohse_bb932b13-8ebf-4ab4-aac0-83e6924e4295, _)
+AND
+DB_TheDoctor_LohseInCombatWithDoctor(1)
+AND
+CharacterIsDead(CHARACTERGUID_S_ARX_DoctorsHouse_TheDoctor_83083470-c543-45b3-ac8a-108df0daca8d, 1)
+AND
+IsTagged(CHARACTERGUID_S_Player_Lohse_bb932b13-8ebf-4ab4-aac0-83e6924e4295, "AVATAR", 1)
+AND
+CharacterIsDead(CHARACTERGUID_S_Player_Lohse_bb932b13-8ebf-4ab4-aac0-83e6924e4295, 0)
+THEN
+NOT DB_Queue("ARX_Lohse_DoctorsDeathEvent");
+NOT DB_TheDoctor_LohseInCombatWithDoctor(1);
+ObjectSetFlag(CHARACTERGUID_S_Player_Lohse_bb932b13-8ebf-4ab4-aac0-83e6924e4295, "QuestUpdate_FTJ_OriginLohse_DoctorDefeat");
+Proc_StartDialog(0, "ARX_Lohse_DoctorsDeathEvent", CHARACTERGUID_S_Player_Lohse_bb932b13-8ebf-4ab4-aac0-83e6924e4295);
+
+IF
+CharacterDied(CHARACTERGUID_S_ARX_DoctorsHouse_TheDoctor_83083470-c543-45b3-ac8a-108df0daca8d)
+AND
+DB_TheDoctor_LohseInCombatWithDoctor(1)
+AND
+IsTagged(CHARACTERGUID_S_Player_Lohse_bb932b13-8ebf-4ab4-aac0-83e6924e4295, "AVATAR", 1)
+AND
+CharacterIsDead(CHARACTERGUID_S_Player_Lohse_bb932b13-8ebf-4ab4-aac0-83e6924e4295, 1)
+THEN
+DB_Queue("ARX_Lohse_DoctorsDeathEvent");
+
+IF
+CharacterDying(CHARACTERGUID_S_Player_Lohse_bb932b13-8ebf-4ab4-aac0-83e6924e4295)
+AND
+DB_TheDoctor_LohseInCombatWithDoctor(1)
+AND
+DB_Avatars(CHARACTERGUID_S_Player_Lohse_bb932b13-8ebf-4ab4-aac0-83e6924e4295)
+AND
+CharacterIsDead(CHARACTERGUID_S_ARX_DoctorsHouse_TheDoctor_83083470-c543-45b3-ac8a-108df0daca8d, 1)
+THEN
+DB_Queue("ARX_Lohse_DoctorsDeathEvent");
+
+IF
+CharacterResurrected(CHARACTERGUID_S_Player_Lohse_bb932b13-8ebf-4ab4-aac0-83e6924e4295)
+AND
+DB_Queue("ARX_Lohse_DoctorsDeathEvent")
+AND
+CharacterIsInCombat(CHARACTERGUID_S_Player_Lohse_bb932b13-8ebf-4ab4-aac0-83e6924e4295, 0)
+THEN
+NOT DB_Queue("ARX_Lohse_DoctorsDeathEvent");
+NOT DB_TheDoctor_LohseInCombatWithDoctor(1);
+ObjectSetFlag(CHARACTERGUID_S_Player_Lohse_bb932b13-8ebf-4ab4-aac0-83e6924e4295, "QuestUpdate_FTJ_OriginLohse_DoctorDefeat");
+Proc_StartDialog(0, "ARX_Lohse_DoctorsDeathEvent", CHARACTERGUID_S_Player_Lohse_bb932b13-8ebf-4ab4-aac0-83e6924e4295);
+
+IF
+CharacterLootedCharacterCorpse((CHARACTERGUID)_Var1, (CHARACTERGUID)_Var2)
+AND
+DB_ARX_TheWeakening_DeadPlebs_Candle(_Var2, _Var3)
+THEN
+StartVoiceBark("ARX_TheWeakening_VB_BlackWax", _Var1);
+NOT DB_ARX_TheWeakening_DeadPlebs_Candle(_Var2, _Var3);
+ItemSetCanInteract(_Var3, 0);
+
+IF
+CharacterUsedItem((CHARACTERGUID)_Var1, (ITEMGUID)_Var2)
+AND
+DB_ARX_TheWeakening_DeadPlebs_Candle(_Var3, _Var2)
+THEN
+StartVoiceBark("ARX_TheWeakening_VB_BlackWax", _Var1);
+NOT DB_ARX_TheWeakening_DeadPlebs_Candle(_Var3, _Var2);
+ItemSetCanInteract(_Var2, 0);
+
+IF
+ObjectFlagSet("ARX_TheWeakening_VB_BlackWax_FirstTime", CHARACTERGUID_S_Player_Lohse_bb932b13-8ebf-4ab4-aac0-83e6924e4295, _)
+AND
+QueryOnlyOnce("ARX_TheWeakening_CRD_Lohse_BlackWax")
+THEN
+Proc_RelationshipDialog(CHARACTERGUID_S_Player_Lohse_bb932b13-8ebf-4ab4-aac0-83e6924e4295, "ARX_TheWeakening_CRD_Lohse_BlackWax", CHARACTERGUID_S_Player_Lohse_bb932b13-8ebf-4ab4-aac0-83e6924e4295);
+
+IF
+CharacterEnteredTrigger(CHARACTERGUID_S_Player_Lohse_bb932b13-8ebf-4ab4-aac0-83e6924e4295, TRIGGERGUID_S_ARX_TheWeakening_TrigBox_459daa15-937c-44b8-8685-649549500210)
+THEN
+GlobalSetFlag("ARX_TheWeakening_Ongoing");
+
+IF
+CharacterLeftTrigger(CHARACTERGUID_S_Player_Lohse_bb932b13-8ebf-4ab4-aac0-83e6924e4295, TRIGGERGUID_S_ARX_TheWeakening_TrigBox_459daa15-937c-44b8-8685-649549500210)
+THEN
+GlobalClearFlag("ARX_TheWeakening_Ongoing");
+
+IF
+StoryEvent((GUIDSTRING)_Var1, "ARX_TheWeakening_TurnOffFlames")
+AND
+DB_ARX_TheWeakening_Flames(_Var2)
+THEN
+ItemSetForceSynch(_Var2, 1);
+SetStoryEvent(_Var2, "ARX_TheWeakening_TurnOffFlames_TurnOffBuffer");
+
+IF
+StoryEvent((GUIDSTRING)_Var1, "ARX_TheWeakening_TurnOffFlames_TurnOffBuffer")
+THEN
+SetStoryEvent(_Var1, "turnOff");
+
+PROC
+Proc_TheWeakening_TeleportOut()
+AND
+DB_ARX_TheWeakening_Flames(_Var1)
+THEN
+ItemSetForceSynch(_Var1, 0);
+NOT DB_ARX_TheWeakening_Flames(_Var1);
+
+IF
+AutomatedDialogStarted((STRING)_Var1, _)
+AND
+DB_ARX_TheWeakening_RoomReached_ADEvents(_Var1, _Var3, _Var4)
+AND
+DB_Sees(_Var5, CHARACTERGUID_S_GLO_River_f4931ebe-10b0-43c4-9182-640cf052717e)
+AND
+DB_IsPlayer(_Var5)
+AND
+UserGetFlag(_Var5, _Var4, 0)
+THEN
+ObjectSetFlag(_Var5, _Var3);
+
+IF
+DialogStarted((STRING)_Var1, (INTEGER)_Var2)
+AND
+DB_ARX_TheWeakening_RoomReached_DialogEvents(_Var1, _Var3, _Var4)
+AND
+DB_IsPlayer(_Var5)
+AND
+DB_DialogPlayers(_Var2, _Var5, _)
+AND
+UserGetFlag(_Var5, _Var4, 0)
+THEN
+ObjectSetFlag(_Var5, _Var3);
+
+IF
+TextEventSet("rain")
+THEN
+SetStoryEvent(CHARACTERGUID_S_GLO_River_f4931ebe-10b0-43c4-9182-640cf052717e, "ARX_TheWeakening_DoRain_Animated");
+
+PROC
+ProcRegionEnded("ARX_Main")
+THEN
+GoalCompleted;
+
+
+EXITSECTION
+ENDEXITSECTION
+
+ParentTargetEdge "ARX"

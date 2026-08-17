@@ -1,0 +1,300 @@
+Version 1
+SubGoalCombiner SGC_AND
+
+INITSECTION
+
+KBSECTION
+QRY
+QryIsDebugProfileAvatar((CHARACTERGUID)_Var1)
+AND
+DB_DebugProfileChar(_Var1)
+AND
+IsTagged(_Var1, "AVATAR", 1)
+THEN
+DB_Noop(1);
+
+PROC
+ProcTryClearAvatarTag((CHARACTERGUID)_Var1)
+AND NOT
+DB_DebugAVATARFound(_Var1)
+THEN
+ClearTag(_Var1, "AVATAR");
+
+IF
+CharacterLoadedInPreset((CHARACTERGUID)_Var1)
+AND NOT
+DB_GLO_PartyPresets_Block(1)
+THEN
+NOT DB_DoNotFace(_Var1);
+SetOnStage(_Var1, 1);
+DB_DebugProfileChar(_Var1);
+ProcSelectDebugAVATAR(_Var1);
+
+IF
+PartyPresetLoaded((STRING)_Var1)
+AND NOT
+DB_GLO_PartyPresets_Block(1)
+THEN
+ProcSetupDebugParty();
+ProcDoDebugSetup(_Var1);
+
+IF
+PartyPresetLoaded(_)
+AND NOT
+DB_GLO_PartyPresets_Block(1)
+AND
+DB_DebugAVATARFound(_Var2)
+THEN
+NOT DB_DebugAVATARFound(_Var2);
+
+IF
+DB_DebugAVATARFound(_Var1)
+THEN
+ProcMarkUndeadOrigin(_Var1);
+
+PROC
+ProcSetupDebugParty()
+THEN
+ProcVerifyDebugAvatar();
+
+PROC
+ProcSetupDebugParty()
+AND
+DB_IsPlayer(_Var1)
+AND NOT
+DB_GenericOrigins(_Var1)
+AND NOT
+QryIsDebugProfileAvatar(_Var1)
+THEN
+NOT DB_IsPlayer(_Var1);
+ProcUnRegisterPlayerTriggers(_Var1);
+ProcTryClearAvatarTag(_Var1);
+DB_GLO_PartyMembers_BlockReturnToRecruitmentPosition(_Var1);
+PROC_GLO_PartyMembers_Remove(_Var1, NULL_00000000-0000-0000-0000-000000000000, 1, 0);
+NOT DB_GLO_PartyMembers_BlockReturnToRecruitmentPosition(_Var1);
+
+PROC
+ProcSetupDebugParty()
+AND
+DB_IsPlayer(_Var1)
+AND
+DB_GenericOrigins(_Var1)
+AND NOT
+DB_DebugProfileChar(_Var1)
+THEN
+NOT DB_IsPlayer(_Var1);
+ProcUnRegisterPlayerTriggers(_Var1);
+ProcTryClearAvatarTag(_Var1);
+DB_GLO_PartyMembers_BlockReturnToRecruitmentPosition(_Var1);
+PROC_GLO_PartyMembers_Remove(_Var1, NULL_00000000-0000-0000-0000-000000000000, 1, 0);
+NOT DB_GLO_PartyMembers_BlockReturnToRecruitmentPosition(_Var1);
+
+PROC
+ProcSetupDebugParty()
+AND
+DB_DebugProfileChar(_Var1)
+AND NOT
+DB_IsPlayer(_Var1)
+THEN
+ObjectSetFlag(_Var1, "GLO_CompanionHasBeenRecruited");
+ProcAddDebugCharToParty(_Var1);
+
+PROC
+ProcSelectDebugAVATAR((CHARACTERGUID)_Var1)
+AND NOT
+DB_DebugAVATARFound(_)
+AND
+IsTagged(_Var1, "AVATAR", 1)
+THEN
+DB_DebugAVATARFound(_Var1);
+
+PROC
+ProcVerifyDebugAvatar()
+AND NOT
+DB_DebugAVATARFound(_)
+AND
+CharacterGetHostCharacter(_Var2)
+THEN
+SetTag(_Var2, "AVATAR");
+DB_DebugAVATARFound(_Var2);
+
+PROC
+ProcVerifyDebugAvatar()
+AND
+DB_DebugAVATARFound(_Var1)
+AND NOT
+DB_GLO_PartyMembers_DefaultFaction(_Var1, _)
+AND
+GetFaction(_Var1, _Var3)
+THEN
+DB_GLO_PartyMembers_DefaultFaction(_Var1, _Var3);
+
+PROC
+ProcAddDebugCharToParty((CHARACTERGUID)_Var1)
+AND
+DB_DebugAVATARFound(_Var2)
+AND
+IsTagged(_Var1, "AVATAR", 0)
+THEN
+PROC_GLO_PartyMembers_Add(_Var1, _Var2);
+ObjectSetFlag(_Var1, "GLO_HasSelectedPreset");
+
+PROC
+ProcAddDebugCharToParty((CHARACTERGUID)_Var1)
+AND
+DB_DebugAVATARFound(_Var2)
+AND
+IsTagged(_Var1, "AVATAR", 1)
+AND
+DB_GLO_PartyMembers_DefaultFaction(_Var1, _Var3)
+THEN
+ProcCharacterDisableAllCrimes(_Var1);
+ProcAssignCharacterToPlayer(_Var1, _Var2);
+ProcRegisterPlayerTriggers(_Var1);
+SetFaction(_Var1, _Var3);
+DB_IsPlayer(_Var1);
+ProcRemoveAllDialogEntriesForSpeaker(_Var1);
+SetHasDialog(_Var1, 0);
+NOT DB_GLO_PartyMembers_DefaultFaction(_Var1, _Var3);
+CharacterAttachToGroup(_Var1, _Var2);
+Proc_CheckPartyFull();
+
+PROC
+ProcAddDebugCharToParty((CHARACTERGUID)_Var1)
+AND NOT
+DB_DebugAVATARFound(_)
+AND
+GetFaction(_Var1, _Var3)
+THEN
+CharacterMakePlayer(_Var1, NULL_00000000-0000-0000-0000-000000000000);
+MakePlayerActive(_Var1);
+SetTag(_Var1, "AVATAR");
+DB_DebugAVATARFound(_Var1);
+DB_GLO_PartyMembers_DefaultFaction(_Var1, _Var3);
+ProcAddDebugCharToParty(_Var1);
+
+PROC
+ProcSetupDebugParty()
+AND
+DB_DebugProfileChar(_Var1)
+AND
+CharacterHasTalent(_Var1, "AnimalEmpathy", 1)
+THEN
+SetTag(_Var1, "PETPAL");
+
+PROC
+ProcDoDebugSetup((STRING)_Var1)
+THEN
+DB_InDebugSetup(1);
+ProcDebugResetPreviousRegion();
+ProcDebugSetCurrentRegion(_Var1);
+ProcDebugGiveTags(_Var1);
+ProcDebugGiveGlobalFlags(_Var1);
+ProcDebugGivePlayerCharacterFlags(_Var1);
+ProcDebugGiveObjectFlags(_Var1);
+FireOsirisEvents();
+NOT DB_InDebugSetup(1);
+
+PROC
+ProcDebugResetPreviousRegion()
+AND
+DB_DebugPreviousRegion(_Var1)
+THEN
+ProcDebugRemoveObjectFlags(_Var1);
+ProcDebugRemovePlayerCharacterFlags(_Var1);
+ProcDebugRemoveGlobalFlags(_Var1);
+ProcDebugRemoveTags(_Var1);
+
+PROC
+ProcDebugSetCurrentRegion(_)
+AND
+DB_DebugPreviousRegion(_Var2)
+THEN
+NOT DB_DebugPreviousRegion(_Var2);
+
+PROC
+ProcDebugSetCurrentRegion((STRING)_Var1)
+THEN
+DB_DebugPreviousRegion(_Var1);
+
+PROC
+ProcDebugGiveTag((CHARACTERGUID)_Var1, (STRING)_Var2, 1)
+AND
+IsTagged(_Var1, "AVATAR", 1)
+THEN
+SetTag(_Var1, _Var2);
+
+PROC
+ProcDebugGiveTag((CHARACTERGUID)_Var1, (STRING)_Var2, 0)
+THEN
+SetTag(_Var1, _Var2);
+
+PROC
+ProcDebugGiveTags((STRING)_Var1)
+AND
+DB_DebugTags(_Var1, _Var2, _Var3)
+AND
+DB_IsPlayer(_Var4)
+THEN
+ProcDebugGiveTag(_Var4, _Var2, _Var3);
+
+PROC
+ProcDebugGiveGlobalFlags((STRING)_Var1)
+AND
+DB_DebugGlobalFlags(_Var1, _Var2)
+THEN
+GlobalSetFlag(_Var2);
+
+PROC
+ProcDebugGivePlayerCharacterFlags((STRING)_Var1)
+AND
+DB_DebugPlayerCharacterFlags(_Var1, _Var2)
+AND
+DB_IsPlayer(_Var3)
+THEN
+ObjectSetFlag(_Var3, _Var2, 0);
+
+PROC
+ProcDebugGiveObjectFlags((STRING)_Var1)
+AND
+DB_DebugObjectFlags(_Var1, _Var2, _Var3)
+THEN
+ObjectSetFlag(_Var2, _Var3, 0);
+
+PROC
+ProcDebugRemoveTags((STRING)_Var1)
+AND
+DB_DebugTags(_Var1, _Var2, _)
+AND
+DB_IsPlayer(_Var4)
+THEN
+ClearTag(_Var4, _Var2);
+
+PROC
+ProcDebugRemoveGlobalFlags((STRING)_Var1)
+AND
+DB_DebugGlobalFlags(_Var1, _Var2)
+THEN
+GlobalClearFlag(_Var2);
+
+PROC
+ProcDebugRemovePlayerCharacterFlags((STRING)_Var1)
+AND
+DB_DebugPlayerCharacterFlags(_Var1, _Var2)
+AND
+DB_IsPlayer(_Var3)
+THEN
+ObjectClearFlag(_Var3, _Var2, 0);
+
+PROC
+ProcDebugRemoveObjectFlags((STRING)_Var1)
+AND
+DB_DebugObjectFlags(_Var1, _Var2, _Var3)
+THEN
+ObjectClearFlag(_Var2, _Var3, 0);
+
+
+EXITSECTION
+ENDEXITSECTION
+
+ParentTargetEdge "__Shared_Campaign"

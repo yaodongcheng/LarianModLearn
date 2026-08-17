@@ -1,0 +1,345 @@
+Version 1
+SubGoalCombiner SGC_AND
+
+INITSECTION
+DB_ARX_Kemm_Assassins(CHARACTERGUID_S_ARX_CS_KemmAssassins_Ranger_01_0c2ab91d-119a-43a3-a0fc-ddd1a3c3fb73, 200);
+DB_ARX_Kemm_Assassins(CHARACTERGUID_S_ARX_CS_KemmAssassins_Warrior_01_16f8cbe3-610f-4754-bc83-65dcd2f7a851, 800);
+DB_ARX_Kemm_Assassins(CHARACTERGUID_S_ARX_CS_KemmAssassins_Mage_01_88559275-fff6-4581-aac2-728220ca4758, 2000);
+DB_ARX_Kemm_Assassins(CHARACTERGUID_S_ARX_CS_KemmAssassins_Rogue_01_951c4dfe-fd76-43ff-81a8-a4caa12ef5d6, 2500);
+DB_ARX_Kemm_Assassins_FXHelper(CHARACTERGUID_S_ARX_CS_KemmAssassins_Warrior_01_16f8cbe3-610f-4754-bc83-65dcd2f7a851, ITEMGUID_S_ARX_CS_KemmAssassins_Warrior_01_Helper_Invisible_A_d7759c80-5961-4522-b397-c42c1e260afd);
+DB_ARX_Kemm_Assassins_FXHelper(CHARACTERGUID_S_ARX_CS_KemmAssassins_Mage_01_88559275-fff6-4581-aac2-728220ca4758, ITEMGUID_S_ARX_CS_KemmAssassins_Mage_01_Helper_Invisible_A_32e4cf21-3728-49c6-a11c-626c3606070e);
+DB_ARX_Kemm_Assassins_FXHelper(CHARACTERGUID_S_ARX_CS_KemmAssassins_Rogue_01_951c4dfe-fd76-43ff-81a8-a4caa12ef5d6, ITEMGUID_S_ARX_CS_KemmAssassins_Rogue_01_Helper_Invisible_A_a9689798-a3b0-4046-9ec4-0b004c551422);
+DB_Ghosts(CHARACTERGUID_S_ARX_CS_KemmAssassins_Lizards_Male_Skeleton_0c2ab91d-119a-43a3-a0fc-ddd1a3c3fb73, CHARACTERGUID_S_ARX_CS_KemmAssassins_Lizards_Male_Skeleton_Ghost_000_b7ed6a52-7d0d-4500-a04d-9663165a10ab, "ARX_Kemm_AssassinEncounter_SpiritOfAssassin");
+DB_ARX_Kemm_Assassins_LureItems(ITEMGUID_S_ARX_CS_KemmAssassins_Torch_Standing_000_be579f33-f0c5-4ac7-b040-ec9aa3d67142);
+DB_ARX_Kemm_Assassins_LureItems(ITEMGUID_S_ARX_CS_KemmAssassins_Market_Wagon_D_Interactible_000_093e8a03-619d-457d-b027-6a75e92c86bc);
+DB_ARX_Kemm_Assassins_LureItems(ITEMGUID_S_ARX_CS_KemmAssassins_Potion_Health_000_c13bd820-8e04-4511-ab0d-8ba6ad4c1508);
+DB_ARX_Kemm_Assassins_LureItems(ITEMGUID_S_ARX_CS_KemmAssassins_Scroll_Skill_Source_Resurrect_000_87911f60-b540-45a4-8e43-14c309786125);
+DB_ARX_Kemm_Assassins_LureItems(ITEMGUID_S_ARX_CS_KemmAssassins_Barrel_Water_000_b4d724c6-24ed-4769-8509-30b99d7cd40d);
+DB_ARX_Kemm_Assassins_LureItems(ITEMGUID_S_ARX_CS_KemmAssassins_Barrel_Water_001_564a9d5d-a6c9-467b-b340-0a45937ebd78);
+DB_ARX_Kemm_Assassins_LureItems(ITEMGUID_S_ARX_CS_KemmAssassins_Barrel_Oil_000_0c69f5f0-53a6-4d61-bbbb-9bafd60fdea6);
+Proc_ARX_Kemm_AssassinEncounter_InitialSetup();
+
+KBSECTION
+IF
+TextEventSet("AssassinEncounter")
+AND
+DB_IsPlayer(_Var1)
+THEN
+ObjectSetFlag(_Var1, "ARX_ConfrontedKemm_BlackRing");
+
+PROC
+Proc_ARX_Kemm_AssassinEncounter_InitialSetup()
+AND
+DB_ARX_Kemm_Assassins(_Var1, _)
+THEN
+SetOnStage(_Var1, 0);
+
+PROC
+Proc_ARX_Kemm_AssassinEncounter_InitialSetup()
+AND
+DB_ARX_Kemm_Assassins_LureItems(_Var1)
+THEN
+SetOnStage(_Var1, 0);
+
+IF
+ObjectFlagSet("ARX_ConfrontedKemm_BlackRing", (CHARACTERGUID)_Var1, _)
+THEN
+PartySetFlag(_Var1, "ARX_Kemm_AssassinEncounter_Target");
+
+IF
+ObjectFlagSet("ARX_ConfrontedKemm_BlackRing", (CHARACTERGUID)_Var1, _)
+AND
+QueryOnlyOnce("ARX_Kemm_AssassinEncounter_SetUp")
+THEN
+Proc_ARX_Kemm_AssassinEncounter_CheckSetUp();
+
+PROC
+Proc_ARX_Kemm_AssassinEncounter_CheckSetUp()
+THEN
+TriggerLaunchIterator(TRIGGERGUID_S_ARX_Kemm_AssassinEncounter_IteratorBox_536e2dd6-8438-4441-8d8d-31a3092feae0, "ARX_Kemm_AssassinEncounter_SetUpIterator");
+FireOsirisEvents();
+Proc_ARX_Kemm_AssassinEncounter_CheckIterationResult();
+
+IF
+StoryEvent((CHARACTERGUID)_Var1, "ARX_Kemm_AssassinEncounter_SetUpIterator")
+AND
+DB_IsPlayer(_Var1)
+THEN
+GlobalSetFlag("ARX_Kemm_AssassinEncounter_SetUpNotClear");
+
+IF
+StoryEvent((CHARACTERGUID)_Var1, "ARX_Kemm_AssassinEncounter_SetUpIterator")
+AND
+QRY_IsSummonOrPartyFollower(_Var1)
+THEN
+GlobalSetFlag("ARX_Kemm_AssassinEncounter_SetUpNotClear");
+
+PROC
+Proc_ARX_Kemm_AssassinEncounter_CheckIterationResult()
+AND
+GlobalGetFlag("ARX_Kemm_AssassinEncounter_SetUpNotClear", 0)
+THEN
+Proc_ARX_Kemm_AssassinEncounter_SetUp();
+
+PROC
+Proc_ARX_Kemm_AssassinEncounter_CheckIterationResult()
+AND
+GlobalGetFlag("ARX_Kemm_AssassinEncounter_SetUpNotClear", 1)
+THEN
+GlobalClearFlag("ARX_Kemm_AssassinEncounter_SetUpNotClear");
+TimerLaunch("ARX_Kemm_AssassinEncounter_CheckSetUp_Timer", 1000);
+
+IF
+TimerFinished("ARX_Kemm_AssassinEncounter_CheckSetUp_Timer")
+THEN
+Proc_ARX_Kemm_AssassinEncounter_CheckSetUp();
+
+PROC
+Proc_ARX_Kemm_AssassinEncounter_SetUp()
+AND
+DB_ARX_Kemm_Assassins_LureItems(_Var1)
+THEN
+SetOnStage(_Var1, 1);
+
+PROC
+Proc_ARX_Kemm_AssassinEncounter_SetUp()
+THEN
+TriggerRegisterForPlayers(TRIGGERGUID_S_ARX_CS_KemmAssassins_Box_Trigger_4734b84b-b7b7-4566-a787-e6a64788fb79);
+
+QRY
+QRY_ARX_Kemm_AssassinEncounter_CheckSeeBridge()
+AND
+DB_IsPlayer(_Var1)
+AND
+GetDistanceTo(_Var1, ITEMGUID_S_ARX_SignRoad_02_a3c298cf-37bf-4f2f-b0a4-de77d7e5548c, _Var2)
+AND
+_Var2 < 45
+THEN
+DB_NOOP(1);
+
+IF
+CharacterEnteredTrigger((CHARACTERGUID)_Var1, TRIGGERGUID_S_ARX_CS_KemmAssassins_Box_Trigger_4734b84b-b7b7-4566-a787-e6a64788fb79)
+AND
+GlobalGetFlag("ARX_Kemm_AssassinEncounter_CombatStarted", 0)
+AND
+PartyGetFlag(_Var1, "ARX_Kemm_AssassinEncounter_Target", 1)
+THEN
+GlobalSetFlag("ARX_Kemm_AssassinEncounter_CombatStarted");
+TriggerUnregisterForPlayers(TRIGGERGUID_S_ARX_CS_KemmAssassins_Box_Trigger_4734b84b-b7b7-4566-a787-e6a64788fb79);
+Proc_ARX_Kemm_AssassinEncounter_VictorVossFlee(_Var1);
+Proc_StartDialog(1, "ARX_Kemm_AssassinEncounter_AD_AmbushStarted", _Var1);
+Proc_ARX_Kemm_AssassinEncounter_StartCombat();
+
+PROC
+Proc_ARX_Kemm_AssassinEncounter_StartCombat()
+AND
+DB_ARX_Kemm_Assassins(_Var1, _Var2)
+THEN
+ProcObjectTimer(_Var1, "ARX_Kemm_AssassinEncounter_SpawnDelay", _Var2);
+
+PROC
+ProcObjectTimerFinished((CHARACTERGUID)_Var1, "ARX_Kemm_AssassinEncounter_SpawnDelay")
+THEN
+Proc_ARX_Kemm_AssassinEncounter_Spawn(_Var1);
+
+PROC
+Proc_ARX_Kemm_AssassinEncounter_Spawn((CHARACTERGUID)_Var1)
+AND
+DB_ARX_Kemm_Assassins_FXHelper(_Var1, _Var2)
+THEN
+CharacterAppearCustom(_Var1, "Jump_Out_01", "ARX_Kemm_AssassinEncounter_Appeared");
+PlayEffect(_Var2, "RS3_FX_GP_ScriptedEvent_Spawn_WaterEmerge_01");
+ApplyStatus(_Var1, "WET", 16);
+
+IF
+StoryEvent((GUIDSTRING)_Var1, "ARX_Kemm_AssassinEncounter_Appeared")
+THEN
+CreateSurface(_Var1, "SurfaceWater", 1, -1);
+
+PROC
+Proc_ARX_Kemm_AssassinEncounter_Spawn(CHARACTERGUID_S_ARX_CS_KemmAssassins_Lizards_Male_Skeleton_0c2ab91d-119a-43a3-a0fc-ddd1a3c3fb73)
+THEN
+CharacterAppear(CHARACTERGUID_S_ARX_CS_KemmAssassins_Lizards_Male_Skeleton_0c2ab91d-119a-43a3-a0fc-ddd1a3c3fb73, 1, "");
+
+PROC
+Proc_ARX_Kemm_AssassinEncounter_VictorVossFlee((CHARACTERGUID)_Var1)
+AND NOT
+DB_Dead(CHARACTERGUID_S_ARX_CS_ShadyMerchant_ff4ef85b-d479-415e-8d64-56f144e04649)
+THEN
+SetVarInteger(CHARACTERGUID_S_ARX_CS_ShadyMerchant_ff4ef85b-d479-415e-8d64-56f144e04649, "bool_CanCower", 0);
+ProcForceStopDialog(CHARACTERGUID_S_ARX_CS_ShadyMerchant_ff4ef85b-d479-415e-8d64-56f144e04649);
+SetHasDialog(CHARACTERGUID_S_ARX_CS_ShadyMerchant_ff4ef85b-d479-415e-8d64-56f144e04649, 0);
+CharacterLookAt(CHARACTERGUID_S_ARX_CS_ShadyMerchant_ff4ef85b-d479-415e-8d64-56f144e04649, _Var1);
+CharacterSetFightMode(CHARACTERGUID_S_ARX_CS_ShadyMerchant_ff4ef85b-d479-415e-8d64-56f144e04649, 1, 1);
+Proc_StartDialog(1, "ARX_Kemm_AssassinEncounter_AD_VictorFlee", CHARACTERGUID_S_ARX_CS_ShadyMerchant_ff4ef85b-d479-415e-8d64-56f144e04649);
+
+IF
+AutomatedDialogRequestFailed("ARX_Kemm_AssassinEncounter_AD_VictorFlee", _)
+AND NOT
+DB_Dead(CHARACTERGUID_S_ARX_CS_ShadyMerchant_ff4ef85b-d479-415e-8d64-56f144e04649)
+THEN
+Proc_ARX_Kemm_AssassinEncounter_VictorVossFlee_Part2();
+
+IF
+AutomatedDialogEnded("ARX_Kemm_AssassinEncounter_AD_VictorFlee", _)
+AND NOT
+DB_Dead(CHARACTERGUID_S_ARX_CS_ShadyMerchant_ff4ef85b-d479-415e-8d64-56f144e04649)
+THEN
+Proc_ARX_Kemm_AssassinEncounter_VictorVossFlee_Part2();
+
+PROC
+Proc_ARX_Kemm_AssassinEncounter_VictorVossFlee_Part2()
+AND
+CharacterConsume(CHARACTERGUID_S_ARX_CS_ShadyMerchant_ff4ef85b-d479-415e-8d64-56f144e04649, "CON_Potion_Invisible_A", _)
+THEN
+DB_NOOP(1);
+
+PROC
+Proc_ARX_Kemm_AssassinEncounter_VictorVossFlee_Part2()
+THEN
+CharacterSetFightMode(CHARACTERGUID_S_ARX_CS_ShadyMerchant_ff4ef85b-d479-415e-8d64-56f144e04649, 0, 1);
+CharacterFleeOutOfSight(CHARACTERGUID_S_ARX_CS_ShadyMerchant_ff4ef85b-d479-415e-8d64-56f144e04649, "ARX_Kemm_AssassinEncounter_VictorVossFled");
+
+IF
+StoryEvent(CHARACTERGUID_S_ARX_CS_ShadyMerchant_ff4ef85b-d479-415e-8d64-56f144e04649, "ARX_Kemm_AssassinEncounter_VictorVossFled")
+THEN
+SetVarInteger(CHARACTERGUID_S_ARX_CS_ShadyMerchant_ff4ef85b-d479-415e-8d64-56f144e04649, "bool_CanCower", 1);
+GlobalSetFlag("ARX_Kemm_AssassinEncounter_VictorVossFled");
+
+PROC
+Proc_ARX_Kemm_AssassinEncounter_VictorVossComeBack()
+AND
+DB_GlobalFlag("ARX_Kemm_AssassinEncounter_VictorVossFled")
+AND NOT
+DB_Dead(CHARACTERGUID_S_ARX_CS_ShadyMerchant_ff4ef85b-d479-415e-8d64-56f144e04649)
+THEN
+GlobalClearFlag("ARX_Kemm_AssassinEncounter_VictorVossFled");
+CharacterAppearOutOfSightTo(CHARACTERGUID_S_ARX_CS_ShadyMerchant_ff4ef85b-d479-415e-8d64-56f144e04649, TRIGGERGUID_S_ARX_CS_ShadyMerchant_PointTrigger_8163ce5b-8c63-495e-8eb3-11ab5975203c, 0, 0, "ARX_Kemm_AssassinEncounter_VVCameBack");
+SetHasDialog(CHARACTERGUID_S_ARX_CS_ShadyMerchant_ff4ef85b-d479-415e-8d64-56f144e04649, 1);
+
+IF
+StoryEvent((GUIDSTRING)_Var1, "ARX_Kemm_AssassinEncounter_VVCameBack")
+AND
+HasActiveStatus(_Var1, "INVISIBLE", 1)
+THEN
+RemoveStatus(_Var1, "INVISIBLE");
+
+IF
+ObjectEnteredCombat(CHARACTERGUID_S_RC_ARX_Burner1_d082bad8-df6a-4dde-bf7d-6c15485c57b4, (INTEGER)_Var1)
+AND
+QRY_ARX_Kemm_AssassinEncounter_AnyAssassinInCombat(_Var1)
+THEN
+ObjectSetFlag(CHARACTERGUID_S_RC_ARX_Burner1_d082bad8-df6a-4dde-bf7d-6c15485c57b4, "ARX_Kemm_AssassinEncounter_WasInCombat");
+
+IF
+CharacterDied((CHARACTERGUID)_Var1)
+AND
+DB_ARX_Kemm_Assassins(_Var1, _Var2)
+THEN
+NOT DB_ARX_Kemm_Assassins(_Var1, _Var2);
+Proc_ARX_Kemm_AssassinEncounter_CheckPostFight();
+
+PROC
+Proc_ARX_Kemm_AssassinEncounter_CheckPostFight()
+AND NOT
+DB_ARX_Kemm_Assassins(_, _)
+AND NOT
+DB_GlobalFlag("ARX_Kemm_AssassinEncounter_CombatEnded")
+THEN
+Proc_ARX_Kemm_AssassinEncounter_EndCombat();
+
+IF
+ObjectLeftCombat((CHARACTERGUID)_Var1, (INTEGER)_Var2)
+AND
+DB_IsPlayer(_Var1)
+AND NOT
+DB_GlobalFlag("ARX_Kemm_AssassinEncounter_CombatEnded")
+AND
+DB_GlobalFlag("ARX_Kemm_AssassinEncounter_CombatStarted")
+AND NOT
+QRY_ARX_Kemm_AssassinEncounter_AnyPlayerInCombat(_Var2)
+THEN
+Proc_ARX_Kemm_AssassinEncounter_EndCombat();
+
+PROC
+Proc_ARX_Kemm_AssassinEncounter_EndCombat()
+AND
+DB_ARX_Kemm_Assassins(_Var1, _)
+THEN
+Proc_ARX_Kemm_AssassinEncounter_Flee(_Var1);
+
+PROC
+Proc_ARX_Kemm_AssassinEncounter_EndCombat()
+THEN
+GlobalSetFlag("ARX_Kemm_AssassinEncounter_CombatEnded");
+Proc_ARX_Kemm_AssassinEncounter_VictorVossComeBack();
+
+PROC
+Proc_ARX_Kemm_AssassinEncounter_Flee((CHARACTERGUID)_Var1)
+THEN
+SetHasDialog(_Var1, 0);
+SetCanFight(_Var1, 0);
+SetFaction(_Var1, "Neutral NPC");
+CharacterFleeOutOfSight(_Var1, "");
+
+PROC
+Proc_ARX_Kemm_AssassinEncounter_Flee((CHARACTERGUID)_Var1)
+AND
+DB_ARX_Kemm_Assassins(_Var1, _Var2)
+THEN
+NOT DB_ARX_Kemm_Assassins(_Var1, _Var2);
+
+IF
+AutomatedDialogStarted("ARX_Kemm_AssassinEncounter_AD_FirstTurn", _)
+AND
+DB_CombatCharacters(CHARACTERGUID_S_ARX_CS_KemmAssassins_Lizards_Male_Skeleton_0c2ab91d-119a-43a3-a0fc-ddd1a3c3fb73, _Var2)
+AND
+DB_IsPlayer(_Var3)
+AND
+DB_CombatCharacters(_Var3, _Var2)
+THEN
+ObjectSetFlag(_Var3, "ARX_Kemm_AssassinEncounter_WasTaunted");
+
+IF
+ObjectEnteredCombat((CHARACTERGUID)_Var1, (INTEGER)_Var2)
+AND
+DB_IsPlayer(_Var1)
+AND
+QRY_ARX_Kemm_AssassinEncounter_AnyAssassinInCombat(_Var2)
+THEN
+ObjectSetFlag(_Var1, "ARX_Kemm_AssassinEncounter_WasInCombat");
+
+QRY
+QRY_ARX_Kemm_AssassinEncounter_AnyAssassinInCombat((INTEGER)_Var1)
+AND
+DB_ARX_Kemm_Assassins(_Var2, _)
+AND
+DB_CombatCharacters(_Var2, _Var1)
+THEN
+DB_NOOP(1);
+
+QRY
+QRY_ARX_Kemm_AssassinEncounter_AnyPlayerInCombat((INTEGER)_Var1)
+AND
+DB_IsPlayer(_Var2)
+AND
+DB_CombatCharacters(_Var2, _Var1)
+THEN
+DB_NOOP(1);
+
+IF
+GameBookInterfaceClosed(ITEMGUID_S_ARX_CS_KemmAssassins_Contract_a056e700-72c2-41a1-9ddb-6b0aafdd6bac, (CHARACTERGUID)_Var1)
+AND
+DB_IsPlayer(_Var1)
+AND
+QueryOnlyOnce("ARX_Kemm_AssassinEncounter_ReadContract")
+AND NOT
+DB_GlobalFlag("ARX_KemmVault_ArhusPrison_KemmAppeared")
+THEN
+StartVoiceBark("ARX_Kemm_AssassinEncounter_VB_KillingContract", _Var1);
+
+
+EXITSECTION
+ENDEXITSECTION
+
+ParentTargetEdge "ARX"

@@ -1,0 +1,74 @@
+Version 1
+SubGoalCombiner SGC_AND
+
+INITSECTION
+DB_DeadEvent(CHARACTERGUID_S_GLO_Windego_d783285f-d3be-4cba-8333-db8976cef182, "CoS_WindegoKilled");
+Proc_CoS_Temples_Windego_Init();
+
+KBSECTION
+PROC
+Proc_CoS_Temples_Windego_Init()
+THEN
+TeleportTo(CHARACTERGUID_S_GLO_Windego_d783285f-d3be-4cba-8333-db8976cef182, TRIGGERGUID_S_CoS_Temples_Windego_Point_e9f11a5a-a51a-418b-87d9-41b3fa4be57f);
+CharacterResurrect(CHARACTERGUID_S_GLO_Windego_d783285f-d3be-4cba-8333-db8976cef182);
+Transform(CHARACTERGUID_S_GLO_Windego_d783285f-d3be-4cba-8333-db8976cef182, "UNIQUE_Windego_Undead_6d42f147-f097-4a9d-9cc0-ab6e53213c5b", 0, 0, 1);
+
+IF
+ObjectTransformed(CHARACTERGUID_S_GLO_Windego_d783285f-d3be-4cba-8333-db8976cef182, UNIQUE_Windego_Undead_6d42f147-f097-4a9d-9cc0-ab6e53213c5b)
+THEN
+CharacterAddSourcePoints(CHARACTERGUID_S_GLO_Windego_d783285f-d3be-4cba-8333-db8976cef182, 3);
+CharacterAddSkill(CHARACTERGUID_S_GLO_Windego_d783285f-d3be-4cba-8333-db8976cef182, "ProjectileStrike_EnemyMeteorShower");
+CharacterAddSkill(CHARACTERGUID_S_GLO_Windego_d783285f-d3be-4cba-8333-db8976cef182, "Projectile_EnemyInfectiousFlame");
+CharacterAddSkill(CHARACTERGUID_S_GLO_Windego_d783285f-d3be-4cba-8333-db8976cef182, "Shout_EnemyBoneCage");
+CharacterAddSkill(CHARACTERGUID_S_GLO_Windego_d783285f-d3be-4cba-8333-db8976cef182, "Shout_EnemySupernova");
+CharacterAddSkill(CHARACTERGUID_S_GLO_Windego_d783285f-d3be-4cba-8333-db8976cef182, "Shout_EnemyFear");
+CharacterAddSkill(CHARACTERGUID_S_GLO_Windego_d783285f-d3be-4cba-8333-db8976cef182, "Teleportation_EnemyFreeFall");
+CharacterAddSkill(CHARACTERGUID_S_GLO_Windego_d783285f-d3be-4cba-8333-db8976cef182, "Teleportation_EnemyFeatherFallSelf_SkeletonMage");
+CharacterAddSkill(CHARACTERGUID_S_GLO_Windego_d783285f-d3be-4cba-8333-db8976cef182, "Target_EnemySpontCombustion");
+CharacterAddSkill(CHARACTERGUID_S_GLO_Windego_d783285f-d3be-4cba-8333-db8976cef182, "Target_EnemyCharm");
+CharacterAddSkill(CHARACTERGUID_S_GLO_Windego_d783285f-d3be-4cba-8333-db8976cef182, "Target_EnemyCurse");
+CharacterAddSkill(CHARACTERGUID_S_GLO_Windego_d783285f-d3be-4cba-8333-db8976cef182, "Target_EnemyGraspOfTheStarved");
+CharacterAddSkill(CHARACTERGUID_S_GLO_Windego_d783285f-d3be-4cba-8333-db8976cef182, "Target_EnemyFireWhip");
+SetFaction(CHARACTERGUID_S_GLO_Windego_d783285f-d3be-4cba-8333-db8976cef182, "CoS_Temples_Windego");
+PROC_RemoveDialogFromCharacter(CHARACTERGUID_S_GLO_Windego_d783285f-d3be-4cba-8333-db8976cef182);
+NOT DB_Dead(CHARACTERGUID_S_GLO_Windego_d783285f-d3be-4cba-8333-db8976cef182);
+NOT DB_DoNotFace(CHARACTERGUID_S_GLO_Windego_d783285f-d3be-4cba-8333-db8976cef182);
+DB_Dialogs(CHARACTERGUID_S_GLO_Windego_d783285f-d3be-4cba-8333-db8976cef182, "CoS_Temples_Windego");
+CharacterLevelUpTo(CHARACTERGUID_S_GLO_Windego_d783285f-d3be-4cba-8333-db8976cef182, 16);
+SetVarFixedString(CHARACTERGUID_S_GLO_Windego_d783285f-d3be-4cba-8333-db8976cef182, "currentState", "State_CoS_Idle");
+DB_Ghosts(CHARACTERGUID_S_GLO_Windego_d783285f-d3be-4cba-8333-db8976cef182, CHARACTERGUID_S_CoS_Temples_Windego_Ghost_5def2396-07ad-42cc-97de-8afd19dfbf60, "CoS_Temples_Windego_Ghost");
+ObjectSetFlag(CHARACTERGUID_S_GLO_Windego_d783285f-d3be-4cba-8333-db8976cef182, "GLO_WindegoOnSightEvent_StartSpotting");
+CharacterGiveReward(CHARACTERGUID_S_GLO_Windego_d783285f-d3be-4cba-8333-db8976cef182, "GenericEnemy");
+TimerLaunch("CoS_RestoreWindegoGhostDialog", 2000);
+
+IF
+TimerFinished("CoS_RestoreWindegoGhostDialog")
+AND
+DB_GoneGhosts(CHARACTERGUID_S_CoS_Temples_Windego_Ghost_5def2396-07ad-42cc-97de-8afd19dfbf60)
+THEN
+NOT DB_GoneGhosts(CHARACTERGUID_S_CoS_Temples_Windego_Ghost_5def2396-07ad-42cc-97de-8afd19dfbf60);
+DB_Dialogs(CHARACTERGUID_S_CoS_Temples_Windego_Ghost_5def2396-07ad-42cc-97de-8afd19dfbf60, "CoS_Temples_Windego_Ghost");
+
+IF
+DialogEnded("CoS_Temples_Windego", (INTEGER)_Var1)
+AND
+DialogGetInvolvedPlayer(_Var1, 1, _Var2)
+THEN
+SetRelationFactionToPlayers("CoS_Temples_Windego", 0);
+EnterCombat(CHARACTERGUID_S_GLO_Windego_d783285f-d3be-4cba-8333-db8976cef182, _Var2);
+
+IF
+StoryEvent((GUIDSTRING)_Var1, "GLO_WindegoOnSightEvent")
+THEN
+Proc_StartDialog(0, "CoS_Temples_Windego", CHARACTERGUID_S_GLO_Windego_d783285f-d3be-4cba-8333-db8976cef182, _Var1);
+
+PROC
+ProcRegionEnded("CoS_Main")
+THEN
+GoalCompleted;
+
+
+EXITSECTION
+ENDEXITSECTION
+
+ParentTargetEdge "CoS_Temples"

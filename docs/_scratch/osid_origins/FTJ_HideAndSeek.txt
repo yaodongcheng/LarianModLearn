@@ -1,0 +1,328 @@
+Version 1
+SubGoalCombiner SGC_AND
+
+INITSECTION
+Proc_RC_FTJ_HideAndSeek_Start();
+DB_Dialogs(RC_FTJ_Fluffy_cbc0f26c-b9b4-428e-851e-e1921c1dda38, "FTJ_Fluffy");
+DB_ShovelArea(RC_FTJ_DirtMound_005_Box_9e10a129-0f0b-4804-982d-d1ff84bea8c7, "FTJ_RezikHole", RC_FTJ_DirtMound_005_85605eb7-b89b-48d5-a1bf-a24a95f7d5c3);
+DB_ShovelRewardItemSpawn("FTJ_RezikHole", RC_FTJ_RezikHole_b1ef3134-b711-4e8d-8e1e-dbe9e7655a54);
+SetOnStage(ITEMGUID_S_FTJ_ModyPotion_f4671d69-ea09-442d-b261-fc814d8945f3, 0);
+DB_HasStoryEvent(ITEMGUID_S_FTJ_ModyPotion_f4671d69-ea09-442d-b261-fc814d8945f3, "FTJ_HasModyPotion");
+DB_GiveItemToEvent(ITEMGUID_S_FTJ_ModyPotion_f4671d69-ea09-442d-b261-fc814d8945f3, "FTJ_ModyPotionTo");
+ObjectSetFlag(ITEMGUID_S_NAT_Hole_Entrance_A_001_69902a2a-417d-4769-9c23-76964bd44916, "FTJ_RezikHole");
+DB_DoNotFace(CHARACTERGUID_S_FTJ_Fluffy_cbc0f26c-b9b4-428e-851e-e1921c1dda38);
+
+KBSECTION
+PROC
+Proc_RC_FTJ_HideAndSeek_Start()
+THEN
+ProcCharacterDisableAllCrimes(RC_FTJ_Fluffy_cbc0f26c-b9b4-428e-851e-e1921c1dda38);
+SetOnStage(RC_FTJ_RezikHole_b1ef3134-b711-4e8d-8e1e-dbe9e7655a54, 0);
+ItemToInventory(RC_FTJ_FluffyBelt_d823cd3e-a9fe-4821-b900-5c7c4bcd1f33, RC_FTJ_Fluffy_cbc0f26c-b9b4-428e-851e-e1921c1dda38, 1);
+
+IF
+ItemRemovedFromCharacter(RC_FTJ_FluffyBelt_d823cd3e-a9fe-4821-b900-5c7c4bcd1f33, CHARACTERGUID_S_FTJ_Fluffy_cbc0f26c-b9b4-428e-851e-e1921c1dda38)
+THEN
+ItemSetStoryItem(RC_FTJ_FluffyBelt_d823cd3e-a9fe-4821-b900-5c7c4bcd1f33, 0);
+
+IF
+CharacterUsedItem((CHARACTERGUID)_Var1, ITEMGUID_S_FTJ_RezikHoleBack_1757ab39-6c0b-4f55-a5c7-8d50a112c474)
+AND
+GetPosition(ITEMGUID_S_FTJ_DirtMound_005_85605eb7-b89b-48d5-a1bf-a24a95f7d5c3, _Var2, _Var3, _Var4)
+AND
+QueryOnlyOnce("FTJ_HatchToWitherMooreRevealByLaddyUse")
+THEN
+PlayEffectAtPosition("RS3_FX_GP_Impacts_Dust_01", _Var2, _Var3, _Var4);
+SetOnStage(ITEMGUID_S_FTJ_DirtMound_005_85605eb7-b89b-48d5-a1bf-a24a95f7d5c3, 0);
+SetOnStage(ITEMGUID_S_FTJ_RezikHole_b1ef3134-b711-4e8d-8e1e-dbe9e7655a54, 1);
+PlayEffect(_Var1, "RS3_FX_GP_Impacts_Dust_01");
+
+IF
+CharacterUsedItem(_, ITEMGUID_S_FTJ_RezikHole_b1ef3134-b711-4e8d-8e1e-dbe9e7655a54)
+AND NOT
+DB_OnlyOnce("FTJ_HatchToWitherMooreRevealByLaddyUse")
+THEN
+DB_OnlyOnce("FTJ_HatchToWitherMooreRevealByLaddyUse");
+
+PROC
+ProcBlockUseOfItem((CHARACTERGUID)_Var1, ITEMGUID_S_NAT_Hole_Entrance_A_001_69902a2a-417d-4769-9c23-76964bd44916)
+AND
+DB_IsPlayer(_Var1)
+AND
+IsTagged(_Var1, "DWARF", 0)
+THEN
+Proc_StartDialog(1, "FTJ_Signs", ITEMGUID_S_NAT_Hole_Entrance_A_001_69902a2a-417d-4769-9c23-76964bd44916, _Var1);
+DB_CustomUseItemResponse(_Var1, ITEMGUID_S_NAT_Hole_Entrance_A_001_69902a2a-417d-4769-9c23-76964bd44916, 0);
+
+PROC
+ProcBlockUseOfItem((CHARACTERGUID)_Var1, ITEMGUID_S_NAT_Hole_Entrance_A_001_69902a2a-417d-4769-9c23-76964bd44916)
+AND
+DB_IsPlayer(_Var1)
+AND
+IsTagged(_Var1, "DWARF", 1)
+AND
+QRY_SpeakerIsAvailable(_Var1)
+THEN
+CharacterDetachFromGroup(_Var1);
+
+IF
+CharacterUsedItem((CHARACTERGUID)_Var1, ITEMGUID_S_NAT_Hole_Entrance_A_001_69902a2a-417d-4769-9c23-76964bd44916)
+AND
+DB_IsPlayer(_Var1)
+AND
+IsTagged(_Var1, "DWARF", 1)
+AND
+QRY_SpeakerIsAvailable(_Var1)
+THEN
+DialogRequestStop(ITEMGUID_S_NAT_Hole_Entrance_A_001_69902a2a-417d-4769-9c23-76964bd44916);
+CharacterDetachFromGroup(_Var1);
+Proc_StartDialog(1, "FTJ_AD_UseModyHole", _Var1);
+
+IF
+DialogEnded("FTJ_SkepticChild_001", (INTEGER)_Var1)
+AND
+DialogGetInvolvedPlayer(_Var1, 1, _Var2)
+AND
+ObjectGetFlag(_Var2, "FTJ_SkepticChildFemale_RP", 1)
+AND
+QueryOnlyOnce("FTJ_SkepticChildRunAwayFromRedPrince")
+THEN
+ProcCharacterMoveTo(CHARACTERGUID_S_FTJ_SkepticChild_001_780631fb-3619-4ed1-b48b-f1ff847d4183, TRIGGERGUID_S_FTJ_HidingSpot_002_aa7f1261-7ab3-442c-aad3-796b0e9f1297, 1, "");
+
+IF
+StoryEvent((CHARACTERGUID)_Var1, "FTJ_FoundRezik")
+AND
+GlobalGetFlag("FTJ_FoundRezik", 1)
+THEN
+GlobalSetFlag("FTJ_FoundRezikAgain");
+Proc_StartDialog(0, "FTJ_SkepticChild_001", RC_FTJ_SkepticChild_001_780631fb-3619-4ed1-b48b-f1ff847d4183, _Var1);
+
+IF
+StoryEvent((CHARACTERGUID)_Var1, "FTJ_FoundRezik")
+AND
+GlobalGetFlag("FTJ_FoundRezik", 0)
+THEN
+GlobalSetFlag("FTJ_FoundRezik");
+Proc_StartDialog(0, "FTJ_SkepticChild_001", RC_FTJ_SkepticChild_001_780631fb-3619-4ed1-b48b-f1ff847d4183, _Var1);
+
+IF
+CharacterLeftTrigger(_, RC_FTJ_SUB_Caverns_e23bceea-0d50-44ab-98b1-260c7f483ff2)
+AND
+GlobalGetFlag("FTJ_RezikHide", 1)
+AND
+GetClosestPlayer(RC_FTJ_SkepticChild_001_780631fb-3619-4ed1-b48b-f1ff847d4183, _Var2, _Var3)
+AND
+_Var3 > 15
+THEN
+SetStoryEvent(RC_FTJ_SkepticChild_001_780631fb-3619-4ed1-b48b-f1ff847d4183, "FTJ_RevealMe");
+
+IF
+CharacterReceivedDamage(RC_FTJ_SkepticChild_001_780631fb-3619-4ed1-b48b-f1ff847d4183, _, _)
+AND
+GlobalGetFlag("FTJ_RezikHide", 1)
+THEN
+SetStoryEvent(RC_FTJ_SkepticChild_001_780631fb-3619-4ed1-b48b-f1ff847d4183, "FTJ_RevealMe");
+
+IF
+GlobalFlagSet("FTJ_ShowHatchToWithermoore")
+AND
+DB_IsPlayer(_Var1)
+AND
+DB_InRegion(_Var1, TRIGGERGUID_S_FTJ_SUB_Caverns_e23bceea-0d50-44ab-98b1-260c7f483ff2)
+THEN
+ProcShowMarker(_Var1, "FTJ_WithermooreHatch");
+
+IF
+CharacterEnteredTrigger((CHARACTERGUID)_Var1, TRIGGERGUID_S_FTJ_SUB_ForgottenPrison_19189f21-ef9d-4558-af38-494473f59334)
+AND
+GlobalGetFlag("FTJ_ShowHatchToWithermoore", 1)
+AND
+DB_IsPlayer(_Var2)
+AND
+CharacterIsInPartyWith(_Var1, _Var2, 1)
+AND
+DB_ActivePlayerMarker(_Var2, "FTJ_WithermooreHatch")
+THEN
+ProcHideMarker(_Var1, "FTJ_WithermooreHatch");
+
+IF
+GlobalFlagSet("FTJ_ShowHatchToWithermoore")
+THEN
+SetVarFloat(ITEMGUID_S_FTJ_DirtMound_005_85605eb7-b89b-48d5-a1bf-a24a95f7d5c3, "MinDistance", 7);
+ProcSetPerceptionDifficulty(ITEMGUID_S_FTJ_DirtMound_005_85605eb7-b89b-48d5-a1bf-a24a95f7d5c3, "Trivial");
+
+IF
+StoryEvent((CHARACTERGUID)_Var1, "FTJ_SkepticChildGivePoison")
+AND
+QueryOnlyOnce("FTJ_SkepticChildGivePoison_Once")
+THEN
+Proc_StartDialog(0, "FTJ_SkepticChildGivePoison", CHARACTERGUID_S_FTJ_SkepticChild_001_780631fb-3619-4ed1-b48b-f1ff847d4183, _Var1);
+
+IF
+ObjectFlagSet("FTJ_SkepticChildGivePoison", (CHARACTERGUID)_Var1, _)
+THEN
+SetOnStage(ITEMGUID_S_FTJ_ModyPotion_f4671d69-ea09-442d-b261-fc814d8945f3, 1);
+ItemToInventory(ITEMGUID_S_FTJ_ModyPotion_f4671d69-ea09-442d-b261-fc814d8945f3, _Var1);
+
+IF
+StoryEvent((CHARACTERGUID)_Var1, "FTJ_DoDialogWithFluffyAndChild")
+THEN
+Proc_StartDialog(0, "FTJ_FluffyWithChild", RC_FTJ_Fluffy_cbc0f26c-b9b4-428e-851e-e1921c1dda38, RC_FTJ_SkepticChild_001_780631fb-3619-4ed1-b48b-f1ff847d4183, _Var1);
+GlobalSetFlag("FTJ_DidDialogWithRezikAndFluffy");
+
+IF
+CharacterUsedItem((CHARACTERGUID)_Var1, RC_FTJ_FluffySpear_56442ff7-1ba9-4f44-9bdf-b6a4a2bb13f6)
+THEN
+Proc_FTJ_PullWithermooreSpear(_Var1);
+
+PROC
+ProcBlockMoveOfItem((CHARACTERGUID)_Var1, RC_FTJ_FluffySpear_56442ff7-1ba9-4f44-9bdf-b6a4a2bb13f6)
+THEN
+DB_CustomMoveItemResponse(_Var1, RC_FTJ_FluffySpear_56442ff7-1ba9-4f44-9bdf-b6a4a2bb13f6, 0);
+Proc_FTJ_PullWithermooreSpear(_Var1);
+
+PROC
+ProcBlockPickupOfItem((CHARACTERGUID)_Var1, RC_FTJ_FluffySpear_56442ff7-1ba9-4f44-9bdf-b6a4a2bb13f6)
+THEN
+DB_CustomPickupItemResponse(_Var1, RC_FTJ_FluffySpear_56442ff7-1ba9-4f44-9bdf-b6a4a2bb13f6, 0);
+Proc_FTJ_PullWithermooreSpear(_Var1);
+
+PROC
+Proc_FTJ_PullWithermooreSpear((CHARACTERGUID)_Var1)
+AND
+CharacterGetAttribute(_Var1, "Strength", _Var2)
+AND
+_Var2 < 12
+THEN
+CharacterLookAt(_Var1, ITEMGUID_S_FTJ_WPN_FluffySpear_56442ff7-1ba9-4f44-9bdf-b6a4a2bb13f6, 1);
+PlayAnimation(_Var1, "use_activate");
+Proc_StartDialog(1, "FTJ_SpearLowStrength", _Var1);
+
+PROC
+Proc_FTJ_PullWithermooreSpear((CHARACTERGUID)_Var1)
+AND
+CharacterGetAttribute(_Var1, "Strength", _Var2)
+AND
+_Var2 >= 12
+AND
+QRY_FTJ_PulledWithermooreSpear(_Var1)
+THEN
+Proc_RC_FTJ_FluffyFreed();
+PlayAnimation(_Var1, "use_activate");
+CharacterLookAt(_Var1, ITEMGUID_S_FTJ_WPN_FluffySpear_56442ff7-1ba9-4f44-9bdf-b6a4a2bb13f6, 1);
+SetOnStage(RC_FTJ_FluffySpear_56442ff7-1ba9-4f44-9bdf-b6a4a2bb13f6, 0);
+
+QRY
+QRY_FTJ_PulledWithermooreSpear((CHARACTERGUID)_Var1)
+AND
+CharacterIsSummon(_Var1, 0)
+THEN
+Proc_StartDialog(1, "FTJ_SpearHighStrength", _Var1);
+ItemTemplateAddTo("RC_FTJ_HideAndSeek_Spear_56081500-204b-4941-98fb-53fc31c44704", _Var1, 1);
+DB_RC_FTJ_PlayerFreedFluffy(_Var1);
+
+QRY
+QRY_FTJ_PulledWithermooreSpear((CHARACTERGUID)_Var1)
+AND
+CharacterIsSummon(_Var1, 1)
+AND
+CharacterGetOwner(_Var1, _Var2)
+AND
+GetPosition(_Var1, _Var3, _Var4, _Var5)
+AND
+CreateItemTemplateAtPosition("RC_FTJ_HideAndSeek_Spear_56081500-204b-4941-98fb-53fc31c44704", _Var3, _Var4, _Var5, _)
+THEN
+DB_RC_FTJ_PlayerFreedFluffy(_Var2);
+
+IF
+CharacterDestroyedItem((CHARACTERGUID)_Var1, RC_FTJ_FluffySpear_56442ff7-1ba9-4f44-9bdf-b6a4a2bb13f6)
+AND NOT
+QRY_IsSummonOrPartyFollower(_Var1)
+AND
+CharacterIsDead(RC_FTJ_Fluffy_cbc0f26c-b9b4-428e-851e-e1921c1dda38, 0)
+THEN
+DB_RC_FTJ_PlayerFreedFluffy(_Var1);
+
+IF
+CharacterDestroyedItem((CHARACTERGUID)_Var1, RC_FTJ_FluffySpear_56442ff7-1ba9-4f44-9bdf-b6a4a2bb13f6)
+AND
+QRY_IsSummonOrPartyFollower(_Var1)
+AND
+CharacterGetOwner(_Var1, _Var2)
+AND
+CharacterIsDead(RC_FTJ_Fluffy_cbc0f26c-b9b4-428e-851e-e1921c1dda38, 0)
+THEN
+DB_RC_FTJ_PlayerFreedFluffy(_Var2);
+
+IF
+ItemDestroying(RC_FTJ_FluffySpear_56442ff7-1ba9-4f44-9bdf-b6a4a2bb13f6)
+THEN
+CreateSurface(CHARACTERGUID_S_FTJ_Fluffy_cbc0f26c-b9b4-428e-851e-e1921c1dda38, "SurfaceNone", 3, 1);
+Proc_RC_FTJ_FluffyFreed();
+
+PROC
+Proc_RC_FTJ_FluffyFreed()
+AND
+CharacterIsDead(RC_FTJ_Fluffy_cbc0f26c-b9b4-428e-851e-e1921c1dda38, 0)
+THEN
+PlaySound(RC_FTJ_Fluffy_cbc0f26c-b9b4-428e-851e-e1921c1dda38, "SE_FTJ_HideAndSeek_SpearRemove");
+ProcCharacterEnableAllCrimes(CHARACTERGUID_S_FTJ_Fluffy_cbc0f26c-b9b4-428e-851e-e1921c1dda38);
+SetVarInteger(RC_FTJ_Fluffy_cbc0f26c-b9b4-428e-851e-e1921c1dda38, "StatusReApplyOnRemove", 0);
+SetVarInteger(RC_FTJ_Fluffy_cbc0f26c-b9b4-428e-851e-e1921c1dda38, "ForceStatusOnInit", 0);
+SetVarInteger(RC_FTJ_Fluffy_cbc0f26c-b9b4-428e-851e-e1921c1dda38, "SetStatus", 0);
+GlobalSetFlag("FTJ_FluffyFreedFromSpear");
+ProcForceStopDialog(RC_FTJ_Fluffy_cbc0f26c-b9b4-428e-851e-e1921c1dda38);
+RemoveStatus(RC_FTJ_Fluffy_cbc0f26c-b9b4-428e-851e-e1921c1dda38, "PETRIFIED");
+SetCanFight(RC_FTJ_Fluffy_cbc0f26c-b9b4-428e-851e-e1921c1dda38, 1);
+PlayEffect(RC_FTJ_Fluffy_cbc0f26c-b9b4-428e-851e-e1921c1dda38, "RS3_FX_Skills_Warrior_Impact_Weapon_01");
+TimerLaunch("FTJ_FluffyFreedDialogStart", 2200);
+NOT DB_DoNotFace(CHARACTERGUID_S_FTJ_Fluffy_cbc0f26c-b9b4-428e-851e-e1921c1dda38);
+
+IF
+AttackedByObject(CHARACTERGUID_S_FTJ_Fluffy_cbc0f26c-b9b4-428e-851e-e1921c1dda38, (CHARACTERGUID)_Var1, _, _, _)
+AND
+DB_IsPlayer(_Var1)
+AND
+GlobalGetFlag("FTJ_FluffyFreedFromSpear", 0)
+AND
+QRY_SpeakerIsAvailable(CHARACTERGUID_S_FTJ_Fluffy_cbc0f26c-b9b4-428e-851e-e1921c1dda38)
+THEN
+Proc_StartDialog(1, "FTJ_AD_WithermooreReactToCrime", CHARACTERGUID_S_FTJ_Fluffy_cbc0f26c-b9b4-428e-851e-e1921c1dda38);
+
+IF
+CharacterPickpocketFailed((CHARACTERGUID)_Var1, CHARACTERGUID_S_FTJ_Fluffy_cbc0f26c-b9b4-428e-851e-e1921c1dda38)
+AND
+DB_IsPlayer(_Var1)
+AND
+GlobalGetFlag("FTJ_FluffyFreedFromSpear", 0)
+AND
+QRY_SpeakerIsAvailable(CHARACTERGUID_S_FTJ_Fluffy_cbc0f26c-b9b4-428e-851e-e1921c1dda38)
+THEN
+Proc_StartDialog(1, "FTJ_AD_WithermooreReactToCrime", CHARACTERGUID_S_FTJ_Fluffy_cbc0f26c-b9b4-428e-851e-e1921c1dda38);
+
+IF
+TimerFinished("FTJ_FluffyFreedDialogStart")
+AND
+DB_RC_FTJ_PlayerFreedFluffy(_Var1)
+AND
+QRY_IsAvailableTo(RC_FTJ_Fluffy_cbc0f26c-b9b4-428e-851e-e1921c1dda38, _Var1)
+AND
+QueryOnlyOnce("FTJ_FluffyFreedDialogStart")
+THEN
+Proc_StartDialog(0, "FTJ_Fluffy", RC_FTJ_Fluffy_cbc0f26c-b9b4-428e-851e-e1921c1dda38, _Var1);
+
+IF
+ObjectFlagSet("FTJ_ModyShowedTreasure", (CHARACTERGUID)_Var1, _)
+THEN
+ProcShowMarker(_Var1, "FTJ_ModyPlayHouse");
+
+PROC
+ProcRegionEnded("FJ_FortJoy_Main")
+THEN
+GoalCompleted;
+
+
+EXITSECTION
+ENDEXITSECTION
+
+ParentTargetEdge "FortJoy"

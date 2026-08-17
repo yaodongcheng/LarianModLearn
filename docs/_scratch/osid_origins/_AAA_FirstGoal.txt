@@ -1,0 +1,674 @@
+Version 1
+SubGoalCombiner SGC_AND
+
+INITSECTION
+DB_Time(1, 10, 10);
+DB_HalfHour(20, 20);
+DB_GameHour(300000);
+StartTimeOfDayTimerLoop();
+DB_FirstGoal_MoneyDialogVar(1, "GEN_CheckMagicPocketGold_6057ad05-9492-4630-9f0a-be548b134c54");
+DB_FirstGoal_MoneyDialogVar(2, "GEN_CheckMagicPocketGold_2_463b0f43-5410-412d-aba3-875cf81c38ca");
+DB_FirstGoal_MoneyDialogVar(3, "GEN_CheckMagicPocketGold_3_01f129ea-b4dc-44b6-8154-9a948f876a82");
+DB_FirstGoal_MoneyDialogVar(4, "GEN_CheckMagicPocketGold_4_5dac5eea-faeb-459c-b675-46c51519b784");
+DB_FirstGoal_MoneyDialogVar(5, "GEN_CheckMagicPocketGold_5_8860ed48-ba5f-4b7b-82bf-f1220f967d41");
+DB_FirstGoal_MoneyDialogVar(6, "GEN_CheckMagicPocketGold_6_ebf7de6b-4598-4feb-9c50-8083fc0fc59d");
+DB_FirstGoal_CheckPocketGoldSpeakerVar(1, "GEN_CheckPocketGold_SpeakerIndex_8504b4e0-886e-4912-9525-fbe559c5f8ff");
+DB_FirstGoal_CheckPocketGoldSpeakerVar(2, "GEN_CheckPocketGold_2_SpeakerIndex_a9c4d456-3ef5-491d-a1eb-49f09b91e8b4");
+DB_FirstGoal_CheckPocketGoldSpeakerVar(3, "GEN_CheckPocketGold_3_SpeakerIndex_d7fa1537-77d4-4d7d-a955-7ffda90e6207");
+DB_FirstGoal_CheckPocketGoldSpeakerVar(4, "GEN_CheckPocketGold_4_SpeakerIndex_5c499066-448b-4d0c-8dc9-d1553d04c6d4");
+DB_FirstGoal_CheckPocketGoldSpeakerVar(5, "GEN_CheckPocketGold_5_SpeakerIndex_65757687-b815-43fe-be9c-1cefe82efb60");
+DB_FirstGoal_HasItemTemplate_TemplateVar(1, "GEN_CheckHasItemTemplate_Template_ae6d2014-ca40-414b-a222-84b87efb1f05");
+DB_FirstGoal_HasItemTemplate_TemplateVar(2, "GEN_CheckHasItemTemplate_Template_2_1c16723d-50a0-4917-a198-0970edb93555");
+DB_FirstGoal_HasItemTemplate_TemplateVar(3, "GEN_CheckHasItemTemplate_Template_3_3965b187-cbef-40cd-9d7c-37bcb37ea2cd");
+DB_FirstGoal_HasItemTemplate_TemplateVar(4, "GEN_CheckHasItemTemplate_Template_4_4343086d-0af4-4509-8af7-efb6ae4ca057");
+DB_FirstGoal_HasItemTemplate_TemplateVar(5, "GEN_CheckHasItemTemplate_Template_5_069bdd27-9c44-4f21-b062-fcf75a541407");
+DB_FirstGoal_HasItemTemplate_SpeakerVar(1, "GEN_CheckHasItemTemplate_Speaker_a41274ae-7edf-4f3d-a137-dd45978c6224");
+DB_FirstGoal_HasItemTemplate_SpeakerVar(2, "GEN_CheckHasItemTemplate_Speaker_2_2674a9aa-1c71-42c3-977e-ffee67be69c6");
+DB_FirstGoal_HasItemTemplate_SpeakerVar(3, "GEN_CheckHasItemTemplate_Speaker_3_7f89238b-be41-4d7a-a9a8-6dc74a2ef8be");
+DB_FirstGoal_HasItemTemplate_SpeakerVar(4, "GEN_CheckHasItemTemplate_Speaker_4_33065191-7bc1-40dc-bd8c-3b897abb591e");
+DB_FirstGoal_HasItemTemplate_SpeakerVar(5, "GEN_CheckHasItemTemplate_Speaker_5_4fa046a9-a305-4b89-8383-ff6173a8b774");
+DB_FirstGoal_HasItemTemplate_AmountVar(1, "GEN_CheckHasItemTemplate_Amount_573b8076-ac9f-4c43-9161-f6eb76a90781");
+DB_FirstGoal_HasItemTemplate_AmountVar(2, "GEN_CheckHasItemTemplate_Amount_2_0663d6aa-c918-4b65-85a7-bd8e10247734");
+DB_FirstGoal_HasItemTemplate_AmountVar(3, "GEN_CheckHasItemTemplate_Amount_3_3837a5d2-c5d1-4200-bb5c-d7b8ad45f53a");
+DB_FirstGoal_HasItemTemplate_AmountVar(4, "GEN_CheckHasItemTemplate_Amount_4_32f62ba7-e482-4651-8927-636de5701edc");
+DB_FirstGoal_HasItemTemplate_AmountVar(5, "GEN_CheckHasItemTemplate_Amount_5_51db6483-c37d-4e38-b423-ebeb975571ac");
+
+KBSECTION
+PROC
+Proc_GameModeStarted((STRING)_Var1, _)
+THEN
+ProcSetCurrentGameMode(_Var1);
+
+PROC
+ProcSetCurrentGameMode((STRING)_Var1)
+AND
+DB_CurrentGameMode(_Var2)
+THEN
+NOT DB_CurrentGameMode(_Var2);
+
+PROC
+ProcSetCurrentGameMode((STRING)_Var1)
+THEN
+DB_CurrentGameMode(_Var1);
+
+IF
+DialogRequestFailed((STRING)_Var1, (INTEGER)_Var2)
+THEN
+DB_MarkedForDelete(_Var2);
+ProcGetInvolvedPlayers(_Var2);
+ProcGetInvolvedNPCs(_Var2);
+ProcSaveNumActors(_Var2);
+ProcClearDialogFlagsForPlayers(_Var2);
+ProcClearDialogFlagsForNPCs(_Var2);
+DB_DialogRequestFailed(_Var1, _Var2);
+
+IF
+AutomatedDialogRequestFailed((STRING)_Var1, (INTEGER)_Var2)
+THEN
+ProcGetInvolvedPlayers(_Var2);
+ProcGetInvolvedNPCs(_Var2);
+ProcSaveNumActors(_Var2);
+DB_AutomatedDialog(_Var2);
+DB_DialogRequestFailed(_Var1, _Var2);
+
+IF
+DialogStarted((STRING)_Var1, (INTEGER)_Var2)
+THEN
+ProcGetInvolvedPlayers(_Var2);
+ProcGetInvolvedNPCs(_Var2);
+ProcSaveNumActors(_Var2);
+ProcSetDialogGoldCheckAmount(_Var1);
+ProcSetDialogItemTemplateCheckAmount(_Var1);
+DB_DialogName(_Var1, _Var2);
+
+IF
+DialogActorJoined((STRING)_Var1, (INTEGER)_Var2, (GUIDSTRING)_Var3)
+THEN
+ProcAddActorToDialogList(_Var2, _Var3);
+ProcSetStoryNPC(_Var2, _Var3);
+ProcSetNumberOfInvolvedActors(_Var2);
+
+IF
+VoiceBarkStarted(_, (INTEGER)_Var2)
+THEN
+DB_AutomatedDialogIsVB(_Var2);
+
+IF
+AutomatedDialogStarted((STRING)_Var1, (INTEGER)_Var2)
+THEN
+ProcGetInvolvedPlayers(_Var2);
+ProcGetInvolvedNPCs(_Var2);
+ProcSaveNumActors(_Var2);
+DB_AutomatedDialog(_Var2);
+DB_DialogName(_Var1, _Var2);
+
+PROC
+ProcSetStoryNPC((INTEGER)_Var1, (CHARACTERGUID)_Var2)
+AND NOT
+DB_AutomatedDialog(_Var1)
+AND
+ObjectIsCharacter(_Var2, 1)
+AND NOT
+DB_CombatCharacters(_Var2, _)
+THEN
+CharacterMakeStoryNpc(_Var2, 1);
+
+PROC
+ProcSetStoryNPC((INTEGER)_Var1, (GUIDSTRING)_Var2)
+AND NOT
+DB_AutomatedDialog(_Var1)
+THEN
+ProcItemSetInvulnerableForDialog(_Var2);
+
+PROC
+ProcAddActorToDialogList((INTEGER)_Var1, (GUIDSTRING)_Var2)
+AND
+DB_IsPlayer(_Var2)
+AND
+DB_DialogNumPlayers(_Var1, _Var3)
+AND
+IntegerSum(_Var3, 1, _Var4)
+THEN
+DB_DialogPlayers(_Var1, _Var2, _Var4);
+
+PROC
+ProcAddActorToDialogList((INTEGER)_Var1, (GUIDSTRING)_Var2)
+AND NOT
+DB_IsPlayer(_Var2)
+AND
+DB_DialogNumNPCs(_Var1, _Var3)
+AND
+IntegerSum(_Var3, 1, _Var4)
+THEN
+DB_DialogNPCs(_Var1, _Var2, _Var4);
+
+PROC
+ProcSetNumberOfInvolvedActors((INTEGER)_Var1)
+AND
+DB_DialogNumPlayers(_Var1, _Var2)
+AND
+DB_DialogNumNPCs(_Var1, _Var3)
+THEN
+NOT DB_DialogNumPlayers(_Var1, _Var2);
+NOT DB_DialogNumNPCs(_Var1, _Var3);
+ProcSaveNumActors(_Var1);
+
+PROC
+ProcSaveNumActors((INTEGER)_Var1)
+AND
+DialogGetNumberOfInvolvedNPCs(_Var1, _Var2)
+AND
+DialogGetNumberOfInvolvedPlayers(_Var1, _Var3)
+THEN
+DB_DialogNumPlayers(_Var1, _Var3);
+DB_DialogNumNPCs(_Var1, _Var2);
+
+PROC
+ProcGetInvolvedNPCs((INTEGER)_Var1)
+THEN
+ProcGetInvolveNPC(_Var1, 1);
+
+PROC
+ProcGetInvolveNPC((INTEGER)_Var1, (INTEGER)_Var2)
+AND
+DialogGetInvolvedNPC(_Var1, _Var2, _Var3)
+AND
+IntegerSum(_Var2, 1, _Var4)
+THEN
+DB_DialogNPCs(_Var1, _Var3, _Var2);
+ProcGetInvolveNPC(_Var1, _Var4);
+
+PROC
+ProcGetInvolvedPlayers((INTEGER)_Var1)
+THEN
+ProcGetInvolvePlayer(_Var1, 1);
+
+PROC
+ProcGetInvolvePlayer((INTEGER)_Var1, (INTEGER)_Var2)
+AND
+DialogGetInvolvedPlayer(_Var1, _Var2, _Var3)
+AND
+IntegerSum(_Var2, 1, _Var4)
+THEN
+DB_DialogPlayers(_Var1, _Var3, _Var2);
+ProcGetInvolvePlayer(_Var1, _Var4);
+
+PROC
+ProcSetDialogGoldCheckAmount((STRING)_Var1)
+AND
+DB_DialogMoneyTransfer(_Var2, _Var1, _Var3, _Var4, _)
+AND
+DB_FirstGoal_MoneyDialogVar(_Var2, _Var6)
+AND
+DB_FirstGoal_CheckPocketGoldSpeakerVar(_Var2, _Var7)
+THEN
+DialogSetVariableInt(_Var1, _Var6, _Var3);
+DialogSetVariableInt(_Var1, _Var7, _Var4);
+
+PROC
+ProcSetDialogItemTemplateCheckAmount((STRING)_Var1)
+AND
+DB_HasItemTemplateScriptFlag(_Var2, _Var1, _Var3, _Var4, _Var5)
+AND
+DB_FirstGoal_HasItemTemplate_TemplateVar(_Var2, _Var6)
+AND
+DB_FirstGoal_HasItemTemplate_SpeakerVar(_Var2, _Var7)
+AND
+DB_FirstGoal_HasItemTemplate_AmountVar(_Var2, _Var8)
+THEN
+DialogSetVariableString(_Var1, _Var6, _Var3);
+DialogSetVariableInt(_Var1, _Var7, _Var4);
+DialogSetVariableInt(_Var1, _Var8, _Var5);
+
+PROC
+ProcCheckIfOtherPlayersCanSeeNPC(_, _)
+AND
+DB_OtherPlayersSee(_Var3)
+THEN
+NOT DB_OtherPlayersSee(_Var3);
+
+PROC
+ProcCheckIfOtherPlayersCanSeeNPC((CHARACTERGUID)_Var1, (CHARACTERGUID)_Var2)
+AND
+DB_IsPlayer(_Var3)
+AND
+_Var3 != _Var1
+AND
+DB_Sees(_Var4, _Var2)
+THEN
+DB_OtherPlayersSee(_Var2);
+
+QRY
+QryCheckOtherPlayersInTrigger((CHARACTERGUID)_Var1, (TRIGGERGUID)_Var2)
+AND
+DB_IsPlayer(_Var3)
+AND
+_Var3 != _Var1
+AND
+DB_InRegion(_Var3, _Var2)
+THEN
+DB_NOOP(1);
+
+PROC
+ProcTriggerRegisterForPlayers((TRIGGERGUID)_Var1)
+AND
+GetRegion(_Var1, _Var2)
+THEN
+DB_PlayerTriggers(_Var2, _Var1);
+ProcDoTriggerRegisterForPlayers(_Var2, _Var1);
+
+PROC
+ProcDoTriggerRegisterForPlayers((STRING)_Var1, (TRIGGERGUID)_Var2)
+AND
+ObjectExists(_Var2, 0)
+THEN
+DB_PlayerTriggerToRegister(_Var1, _Var2);
+
+PROC
+ProcDoTriggerRegisterForPlayers((STRING)_Var1, (TRIGGERGUID)_Var2)
+AND NOT
+DB_PlayerTriggerToRegister(_Var1, _Var2)
+THEN
+TriggerRegisterForPlayers(_Var2);
+
+PROC
+ProcTriggerUnregisterForPlayers((TRIGGERGUID)_Var1)
+AND
+DB_PlayerTriggers(_Var2, _Var1)
+AND
+ObjectExists(_Var1, 0)
+THEN
+DB_PlayerTriggerToUnregister(_Var2, _Var1);
+
+PROC
+ProcTriggerUnregisterForPlayers((TRIGGERGUID)_Var1)
+AND
+DB_PlayerTriggers(_Var2, _Var1)
+AND NOT
+DB_PlayerTriggerToUnregister(_Var2, _Var1)
+THEN
+TriggerUnregisterForPlayers(_Var1);
+
+PROC
+ProcTriggerUnregisterForPlayers((TRIGGERGUID)_Var1)
+AND
+DB_PlayerTriggers(_Var2, _Var1)
+THEN
+NOT DB_PlayerTriggers(_Var2, _Var1);
+
+PROC
+ProcRegisterPlayerTriggers((CHARACTERGUID)_Var1)
+AND
+DB_PlayerTriggers(_Var2, _Var3)
+AND
+ObjectExists(_Var3, 0)
+THEN
+DB_PlayerTriggerToRegisterForCharacter(_Var1, _Var2, _Var3);
+
+PROC
+ProcRegisterPlayerTriggers((CHARACTERGUID)_Var1)
+AND
+DB_PlayerTriggers(_Var2, _Var3)
+AND NOT
+DB_PlayerTriggerToRegisterForCharacter(_Var1, _Var2, _Var3)
+THEN
+TriggerRegisterForCharacter(_Var3, _Var1);
+
+PROC
+ProcUnRegisterPlayerTriggers((CHARACTERGUID)_Var1)
+AND
+DB_PlayerTriggers(_Var2, _Var3)
+AND
+ObjectExists(_Var3, 0)
+THEN
+DB_PlayerTriggerToUnregisterForCharacter(_Var1, _Var2, _Var3);
+
+PROC
+ProcUnRegisterPlayerTriggers((CHARACTERGUID)_Var1)
+AND
+DB_PlayerTriggers(_Var2, _Var3)
+AND NOT
+DB_PlayerTriggerToUnregisterForCharacter(_Var1, _Var2, _Var3)
+THEN
+TriggerUnregisterForCharacter(_Var3, _Var1);
+
+IF
+DB_PlayerTriggerToUnregisterForCharacter(_Var1, _Var2, _Var3)
+THEN
+NOT DB_PlayerTriggerToRegisterForCharacter(_Var1, _Var2, _Var3);
+
+IF
+DB_PlayerTriggerToRegisterForCharacter(_Var1, _Var2, _Var3)
+THEN
+NOT DB_PlayerTriggerToUnregisterForCharacter(_Var1, _Var2, _Var3);
+
+IF
+DB_PlayerTriggerToUnregister(_Var1, _Var2)
+THEN
+NOT DB_PlayerTriggerToRegister(_Var1, _Var2);
+
+IF
+DB_PlayerTriggerToRegister(_Var1, _Var2)
+THEN
+NOT DB_PlayerTriggerToUnregister(_Var1, _Var2);
+
+IF
+RegionStarted((STRING)_Var1)
+THEN
+ProcRegisterTriggersForRegion(_Var1);
+ProcUnregisterTriggersForRegion(_Var1);
+ProcRegisterTriggersForCharacters(_Var1);
+ProcUnregisterTriggersForCharacters(_Var1);
+
+PROC
+ProcRegisterTriggersForRegion((STRING)_Var1)
+AND
+DB_PlayerTriggerToRegister(_Var1, _Var2)
+THEN
+TriggerRegisterForPlayers(_Var2);
+NOT DB_PlayerTriggerToRegister(_Var1, _Var2);
+
+PROC
+ProcUnregisterTriggersForRegion((STRING)_Var1)
+AND
+DB_PlayerTriggerToUnregister(_Var1, _Var2)
+THEN
+TriggerUnregisterForPlayers(_Var2);
+NOT DB_PlayerTriggerToUnregister(_Var1, _Var2);
+
+PROC
+ProcRegisterTriggersForCharacters((STRING)_Var1)
+AND
+DB_PlayerTriggerToRegisterForCharacter(_Var2, _Var1, _Var3)
+THEN
+TriggerRegisterForCharacter(_Var3, _Var2);
+NOT DB_PlayerTriggerToRegisterForCharacter(_Var2, _Var1, _Var3);
+
+PROC
+ProcUnregisterTriggersForCharacters((STRING)_Var1)
+AND
+DB_PlayerTriggerToUnregisterForCharacter(_Var2, _Var1, _Var3)
+THEN
+TriggerUnregisterForCharacter(_Var3, _Var2);
+NOT DB_PlayerTriggerToUnregisterForCharacter(_Var2, _Var1, _Var3);
+
+PROC
+ProcSetupGenericTimers((CHARACTERGUID)_Var1)
+AND
+GetUUID(_Var1, _Var2)
+AND
+StringConcatenate(_Var2, "_genTim", _Var3)
+THEN
+DB_GenericDialogTimers(_Var1, _Var3);
+
+PROC
+ProcRemoveGenericTimer((CHARACTERGUID)_Var1)
+AND
+DB_GenericDialogTimers(_Var1, _Var2)
+THEN
+NOT DB_GenericDialogTimers(_Var1, _Var2);
+
+PROC
+StartTimeOfDayTimerLoop()
+AND
+DB_GameHour(_Var1)
+THEN
+TimerLaunch("TimeOfDay", _Var1);
+
+IF
+TimerFinished("TimeOfDay")
+AND
+DB_GameHour(_Var1)
+AND
+DB_Time(_, _Var3, _)
+AND
+IntegerSum(_Var3, 1, _Var5)
+AND
+IntegerModulo(_Var5, 24, _Var6)
+THEN
+TimerLaunch("TimeOfDay", _Var1);
+NewHour(_Var6);
+
+PROC
+NewHour(0)
+AND
+DB_Time(_Var1, _, _)
+AND
+IntegerSum(_Var1, 1, _Var4)
+THEN
+UpdateTime(_Var4, 0);
+
+PROC
+NewHour((INTEGER)_Var1)
+AND
+_Var1 != 0
+AND
+DB_Time(_Var2, _, _)
+THEN
+UpdateTime(_Var2, _Var1);
+
+PROC
+UpdateTime((INTEGER)_Var1, (INTEGER)_Var2)
+AND
+DB_Time(_Var3, _Var4, _Var5)
+AND
+IntegerSubtract(_Var1, 1, _Var6)
+AND
+IntegerProduct(_Var6, 24, _Var7)
+AND
+IntegerSum(_Var7, _Var2, _Var8)
+THEN
+NOT DB_Time(_Var3, _Var4, _Var5);
+DB_Time(_Var1, _Var2, _Var8);
+
+IF
+CharacterSawCharacter((CHARACTERGUID)_Var1, (CHARACTERGUID)_Var2)
+AND
+DB_IsPlayer(_Var1)
+THEN
+DB_Sees(_Var1, _Var2);
+
+IF
+DB_Sees(_Var1, _Var2)
+AND
+DB_SeenAliveNPCPartyFlag(_Var2, _Var3)
+AND
+DB_IsPlayer(_Var1)
+AND NOT
+DB_Dead(_Var2)
+THEN
+PartySetFlag(_Var1, _Var3);
+
+IF
+CharacterDying((CHARACTERGUID)_Var1)
+AND
+DB_Sees(_Var1, _Var2)
+THEN
+NOT DB_Sees(_Var1, _Var2);
+
+IF
+CharacterLostSightOfCharacter((CHARACTERGUID)_Var1, (CHARACTERGUID)_Var2)
+AND
+DB_IsPlayer(_Var1)
+THEN
+NOT DB_Sees(_Var1, _Var2);
+NOT DB_Sees(_Var2, _Var1);
+
+IF
+DB_Sees(_Var1, _Var2)
+AND
+DB_IsPlayer(_Var2)
+AND
+DB_PlayerIsInvisible(_Var2, 1)
+AND NOT
+DB_IsStoryNpc(_Var1)
+THEN
+NOT DB_Sees(_Var1, _Var2);
+
+IF
+DB_Sees(_Var1, _Var2)
+AND
+DB_IsPlayer(_Var1)
+AND NOT
+DB_PlayerIsInvisible(_Var1, 1)
+THEN
+DB_Sees(_Var2, _Var1);
+
+IF
+DB_Sees(_Var1, _Var2)
+AND
+DB_IsPlayer(_Var1)
+AND
+DB_IsStoryNpc(_Var2)
+THEN
+DB_Sees(_Var2, _Var1);
+
+IF
+CharacterEnteredTrigger((CHARACTERGUID)_Var1, (TRIGGERGUID)_Var2)
+THEN
+DB_InRegion(_Var1, _Var2);
+
+IF
+CharacterLeftTrigger((CHARACTERGUID)_Var1, (TRIGGERGUID)_Var2)
+THEN
+NOT DB_InRegion(_Var1, _Var2);
+DB_WasInRegion(_Var1, _Var2);
+
+IF
+CharacterDying((CHARACTERGUID)_Var1)
+THEN
+DB_Dead(_Var1);
+
+IF
+CharacterDied((CHARACTERGUID)_Var1)
+AND NOT
+DB_Dead(_Var1)
+THEN
+DB_Dead(_Var1);
+
+IF
+CharacterResurrected((CHARACTERGUID)_Var1)
+THEN
+NOT DB_Dead(_Var1);
+
+IF
+DB_Dead(_Var1)
+AND NOT
+DB_IsPlayer(_Var1)
+AND
+DB_InRegion(_Var1, _Var2)
+THEN
+NOT DB_InRegion(_Var1, _Var2);
+
+IF
+DB_Dead(_Var1)
+AND
+DB_DeadEvent(_Var1, _Var2)
+AND
+GlobalGetFlag(_Var2, 0)
+THEN
+GlobalSetFlag(_Var2);
+
+IF
+RegionStarted((STRING)_Var1)
+THEN
+DB_CurrentLevel(_Var1);
+
+IF
+RegionEnded((STRING)_Var1)
+THEN
+NOT DB_CurrentLevel(_Var1);
+
+QRY
+QRY_AnyRegionActive()
+AND
+DB_CurrentLevel(_)
+THEN
+DB_NOOP(1);
+
+IF
+DB_Dead(_Var1)
+AND
+DB_Sees(_Var2, _Var1)
+AND
+DB_SeenDeadNPCPartyFlag(_Var1, _Var3)
+AND
+DB_IsPlayer(_Var2)
+THEN
+PartySetFlag(_Var2, _Var3);
+
+IF
+CharacterDying((CHARACTERGUID)_Var1)
+AND
+DB_SeenDeadNPCPartyFlag(_Var1, _Var2)
+AND
+DB_CombatCharacters(_Var1, _Var3)
+AND
+DB_IsPlayer(_Var4)
+AND
+DB_CombatCharacters(_Var4, _Var3)
+THEN
+PartySetFlag(_Var4, _Var2);
+
+IF
+DB_OneShotPlayerTrigger(_Var1)
+THEN
+ProcTriggerRegisterForPlayers(_Var1);
+
+IF
+DB_OneShotPlayerOnlyTrigger(_Var1)
+THEN
+TriggerRegisterForPlayers(_Var1);
+
+IF
+CharacterEnteredTrigger((CHARACTERGUID)_Var1, (TRIGGERGUID)_Var2)
+AND
+DB_OneShotPlayerOnlyTrigger(_Var2)
+THEN
+TriggerUnregisterForPlayers(_Var2);
+NOT DB_OneShotPlayerOnlyTrigger(_Var2);
+ProcOneShotTriggerEntered(_Var1, _Var2);
+
+PROC
+RemoveOneShotTrigger((TRIGGERGUID)_Var1)
+AND
+DB_OneShotPlayerTrigger(_Var1)
+THEN
+ProcTriggerUnregisterForPlayers(_Var1);
+NOT DB_OneShotPlayerTrigger(_Var1);
+
+IF
+CharacterEnteredTrigger((CHARACTERGUID)_Var1, (TRIGGERGUID)_Var2)
+AND
+DB_OneShotPlayerTrigger(_Var2)
+AND
+DB_IsPlayer(_Var1)
+THEN
+RemoveOneShotTrigger(_Var2);
+ProcOneShotTriggerEntered(_Var1, _Var2);
+
+PROC
+ProcOneShotTriggerEntered((CHARACTERGUID)_Var1, (TRIGGERGUID)_Var2)
+THEN
+DB_NOOP(1);
+
+IF
+DialogEnded(_, (INTEGER)_Var2)
+AND
+DB_GLO_CharacterAnimationForDialog(_Var3, _Var2)
+AND
+DB_IsPlayer(_Var3)
+THEN
+CharacterFlushQueue(_Var3);
+
+IF
+DialogEnded(_, (INTEGER)_Var2)
+AND
+DB_GLO_CharacterAnimationForDialog(_Var3, _Var2)
+THEN
+NOT DB_GLO_CharacterAnimationForDialog(_Var3, _Var2);
+
+
+EXITSECTION
+ENDEXITSECTION
+

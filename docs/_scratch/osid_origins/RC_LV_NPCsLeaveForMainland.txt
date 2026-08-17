@@ -1,0 +1,85 @@
+Version 1
+SubGoalCombiner SGC_AND
+
+INITSECTION
+DB_GLO_LVNPCsLeaving_LVTriggers("RC_Main", S_RC_LV_OnBoard_3d5b3e43-2126-464e-81d1-3c0b60841276, S_RC_LV_Entrance_5d830273-0215-4be4-96ce-8a1122f01bb0, S_RC_LV_Exit_07c3b04e-f9d4-469d-b498-d9dab649084a, 70);
+DB_GLO_LVNPCsLeaving_NPC("RC_Main", CHARACTERGUID_S_FTJ_SW_Warrior_SeekerCaptain_1329f018-23e4-4717-9bc8-074b28d04c54);
+DB_GLO_LVNPCsLeaving_NPC("RC_Main", CHARACTERGUID_S_GLO_Tarquin_a3d0cdcc-d0b0-464d-9ad7-43b38baed620);
+DB_GLO_LVNPCsLeaving_NPC_ProximityTrigger("RC_Main", CHARACTERGUID_S_FTJ_SW_Warrior_SeekerCaptain_1329f018-23e4-4717-9bc8-074b28d04c54, TRIGGERGUID_S_RC_DW_GarethJonathanScene_ProximityBox_c81e959a-c9a7-4532-a27c-30f17c171cf6, "GarethJonathanScene", 500);
+DB_GLO_LVNPCsLeaving_NPC_EmergencyTrigger("RC_Main", CHARACTERGUID_S_FTJ_SW_Warrior_SeekerCaptain_1329f018-23e4-4717-9bc8-074b28d04c54, TRIGGERGUID_S_RC_DW_GarethJonathanScene_EmergencyBox_b12aa523-2f2a-477d-b79a-fe439fa671ba, "GarethJonathanScene", 500);
+DB_GLO_LVNPCsLeaving_NPC_ProximityTrigger("RC_Main", CHARACTERGUID_S_FTJ_SW_Warrior_SeekerCaptain_1329f018-23e4-4717-9bc8-074b28d04c54, TRIGGERGUID_S_RC_FL_GarethFarm_Setup_da4c6510-e2fb-4aa5-b978-bbc8797e6c32, "GarethFarm", 700);
+DB_GLO_LVNPCsLeaving_NPC_EmergencyTrigger("RC_Main", CHARACTERGUID_S_FTJ_SW_Warrior_SeekerCaptain_1329f018-23e4-4717-9bc8-074b28d04c54, TRIGGERGUID_S_RC_FL_GarethFarm_Setup_2_bfa27265-ddc6-42c3-a6ee-33dbc7ec6e3b, "GarethFarm", 700);
+DB_GLO_LVNPCsLeaving_NPC_ProximityTrigger("RC_Main", CHARACTERGUID_S_GLO_Tarquin_a3d0cdcc-d0b0-464d-9ad7-43b38baed620, S_RC_GY_TarquinProximityBox_99ca2b43-33b6-40d1-a43d-c55b8eb4736b, "", 0);
+DB_GLO_LVNPCsLeaving_NPC_EmergencyTrigger("RC_Main", CHARACTERGUID_S_GLO_Tarquin_a3d0cdcc-d0b0-464d-9ad7-43b38baed620, S_RC_GY_TarquinEmergencyBox_af785a5f-20eb-43a6-a33e-dd695eec2035, "", 0);
+
+KBSECTION
+IF
+ObjectFlagSet("GLO_Has3MaxMP", _, _)
+THEN
+PROC_GLO_LVNPCsLeaving_LeaveForMainland("RC_Main");
+
+IF
+GlobalFlagSet("RC_BI_RiverInCamp")
+THEN
+PROC_GLO_LVNPCsLeaving_LeaveForMainland("RC_Main");
+
+IF
+ObjectFlagSet("RC_DW_KnowCos", _, _)
+THEN
+PROC_GLO_LVNPCsLeaving_LeaveForMainland("RC_Main");
+
+IF
+StoryEvent(CHARACTERGUID_S_FTJ_SW_Warrior_SeekerCaptain_1329f018-23e4-4717-9bc8-074b28d04c54, "GLO_LVNPCsLeaving_OutOfSight")
+AND
+DB_GLO_LVNPCsLeaving_NPC_LeavingFor("RC_Main", CHARACTERGUID_S_FTJ_SW_Warrior_SeekerCaptain_1329f018-23e4-4717-9bc8-074b28d04c54, _, _Var2)
+AND
+QueryOnlyOnce("RC_FL_GarethAndJonathanSetUp")
+THEN
+PROC_Setup_GarethAndJonathan();
+
+IF
+StoryEvent(CHARACTERGUID_S_FTJ_SW_Warrior_SeekerCaptain_1329f018-23e4-4717-9bc8-074b28d04c54, "GLO_LVNPCsLeaving_OutOfSight")
+AND
+DB_GLO_LVNPCsLeaving_NPC_LeavingFor("RC_Main", CHARACTERGUID_S_FTJ_SW_Warrior_SeekerCaptain_1329f018-23e4-4717-9bc8-074b28d04c54, "GarethJonathanScene", _Var1)
+THEN
+NOT DB_GLO_LVNPCsLeaving_NPC_LeavingFor("RC_Main", CHARACTERGUID_S_FTJ_SW_Warrior_SeekerCaptain_1329f018-23e4-4717-9bc8-074b28d04c54, "GarethJonathanScene", _Var1);
+
+IF
+StoryEvent(CHARACTERGUID_S_FTJ_SW_Warrior_SeekerCaptain_1329f018-23e4-4717-9bc8-074b28d04c54, "GLO_LVNPCsLeaving_OutOfSight")
+AND
+DB_GLO_LVNPCsLeaving_NPC_LeavingFor("RC_Main", CHARACTERGUID_S_FTJ_SW_Warrior_SeekerCaptain_1329f018-23e4-4717-9bc8-074b28d04c54, "GarethFarm", _Var1)
+AND
+QueryOnlyOnce("RC_FL_GarethAndJonathanSetUp")
+THEN
+PROC_Setup_GarethAndJonathan();
+
+IF
+StoryEvent(CHARACTERGUID_S_FTJ_SW_Warrior_SeekerCaptain_1329f018-23e4-4717-9bc8-074b28d04c54, "GLO_LVNPCsLeaving_OutOfSight")
+AND
+DB_GLO_LVNPCsLeaving_NPC_LeavingFor("RC_Main", CHARACTERGUID_S_FTJ_SW_Warrior_SeekerCaptain_1329f018-23e4-4717-9bc8-074b28d04c54, "GarethFarm", _Var1)
+THEN
+NOT DB_GLO_LVNPCsLeaving_NPC_LeavingFor("RC_Main", CHARACTERGUID_S_FTJ_SW_Warrior_SeekerCaptain_1329f018-23e4-4717-9bc8-074b28d04c54, "GarethFarm", _Var1);
+PROC_RC_DF_EmergencyJonathanSceneStop();
+
+PROC
+PROC_GLO_LVNPCsLeaving_EmergencyExit("RC_Main", CHARACTERGUID_S_FTJ_SW_Warrior_SeekerCaptain_1329f018-23e4-4717-9bc8-074b28d04c54, _)
+AND
+QueryOnlyOnce("RC_FL_GarethAndJonathanSetUp")
+THEN
+PROC_Setup_GarethAndJonathan();
+
+PROC
+PROC_GLO_LVNPCsLeaving_ProximityAlert("RC_Main", CHARACTERGUID_S_FTJ_SW_Warrior_SeekerCaptain_1329f018-23e4-4717-9bc8-074b28d04c54, "GarethFarm", _)
+THEN
+PROC_RC_DF_EmergencyJonathanSceneStop();
+
+PROC
+PROC_GLO_LVNPCsLeaving_EmergencyExit("RC_Main", CHARACTERGUID_S_FTJ_SW_Warrior_SeekerCaptain_1329f018-23e4-4717-9bc8-074b28d04c54, "GarethFarm")
+THEN
+PROC_RC_DF_GarethAndJonathanSetupNextScene();
+
+
+EXITSECTION
+ENDEXITSECTION
+
+ParentTargetEdge "ReapersCoast"

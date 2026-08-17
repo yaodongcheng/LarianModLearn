@@ -1,0 +1,196 @@
+Version 1
+SubGoalCombiner SGC_AND
+
+INITSECTION
+
+KBSECTION
+PROC
+PROC_Shared_DOS_Henchmen_AddRecruiter((CHARACTERGUID)_Var1, (STRING)_Var2)
+THEN
+DB_Shared_DOS_Henchmen_Recruiter(_Var1);
+DB_Dialogs(_Var1, _Var2);
+
+PROC
+PROC_Shared_DOS_Henchmen_AddHenchman((CHARACTERGUID)_Var1, (CHARACTERGUID)_Var2, (STRING)_Var3, (STRING)_Var4, (INTEGER)_Var5)
+THEN
+DB_Shared_DOS_Henchmen_PriceGroup(_Var1, _Var4, _Var5, _Var3);
+DB_Shared_DOS_Henchmen_Recruitee(_Var1, _Var3, _Var2);
+
+PROC
+PROC_Shared_DOS_Henchmen_Init((CHARACTERGUID)_Var1)
+AND
+DB_Shared_DOS_Henchmen_Recruiter(_Var1)
+THEN
+CharacterSetCanTrade(_Var1, 0);
+CharacterDisableCrime(_Var1, "ActiveUndead");
+
+IF
+DB_Shared_DOS_Henchmen_Recruiter(_Var1)
+AND
+DB_Dialogs(_Var1, _Var2)
+AND
+DB_Shared_DOS_Henchmen_PriceGroup(_Var1, _, _Var4, _)
+THEN
+DB_DialogMoneyTransfer(_Var4, _Var2, 0);
+
+PROC
+PROC_Shared_DOS_Henchmen_Init((CHARACTERGUID)_Var1)
+AND
+DB_Shared_DOS_Henchmen_Recruitee(_Var1, _Var2, _Var3)
+AND
+StringConcatenate("Shared_DOS_ToBeHired_", _Var2, _Var4)
+AND
+StringConcatenate("Shared_DOS_Hired_", _Var2, _Var5)
+THEN
+DB_Shared_DOS_Henchmen_HiredFlags(_Var2, _Var4, _Var5, _Var1);
+SetOnStage(_Var3, 0);
+
+PROC
+PROC_Shared_DOS_Henchmen_Init((CHARACTERGUID)_Var1)
+AND
+DB_Shared_DOS_Henchmen_Recruitee(_Var1, _Var2, _Var3)
+AND
+StringConcatenate("Hero Henchman ", _Var2, _Var4)
+THEN
+DB_GLO_PartyMembers_DefaultFaction(_Var3, _Var4);
+
+QRY
+QRY_GLO_PartyMembers_GetInPartyDialog((CHARACTERGUID)_Var1)
+AND
+DB_Shared_DOS_Henchmen_Recruitee(_, _, _Var1)
+THEN
+DB_GLO_PartyMembers_InPartyDialog(_Var1, "GLO_Henchman");
+
+IF
+ObjectFlagSet((STRING)_Var1, (CHARACTERGUID)_Var2, (INTEGER)_Var3)
+AND
+DB_Shared_DOS_Henchmen_Recruiter(_Var2)
+AND
+DB_Dialogs(_Var2, _Var4)
+AND
+DB_DialogPlayers(_Var3, _Var5, _)
+AND
+CharacterGetLevel(_Var5, _Var7)
+AND
+DB_Shared_DOS_Henchmen_PriceGroup(_Var2, _Var1, _Var8, _Var9)
+AND
+CharacterGetHenchmanPresetPrice(_Var5, _Var9, _Var10)
+AND
+DB_FirstGoal_MoneyDialogVar(_Var8, _Var11)
+THEN
+ObjectClearFlag(_Var2, _Var1);
+DialogSetVariableInt(_Var4, _Var11, _Var10);
+
+IF
+ObjectFlagSet((STRING)_Var1, (CHARACTERGUID)_Var2, (INTEGER)_Var3)
+AND
+DB_Shared_DOS_Henchmen_Recruiter(_Var2)
+AND
+DB_Shared_DOS_Henchmen_HiredFlags(_Var4, _Var1, _Var5, _Var2)
+AND
+DB_DialogPlayers(_Var3, _Var6, _)
+AND
+DB_DialogName(_Var8, _Var3)
+AND
+CharacterGetHenchmanPresetPrice(_Var6, _Var4, _Var9)
+AND
+DB_FirstGoal_MoneyDialogVar(1, _Var10)
+THEN
+DB_Shared_DOS_Henchmen_HireAfterDialog(_Var4, _Var3, _Var2);
+DB_DialogMoneyTransfer(1, _Var8, _Var9);
+DialogSetVariableInt(_Var8, _Var10, _Var9);
+
+IF
+ObjectFlagCleared((STRING)_Var1, (CHARACTERGUID)_Var2, (INTEGER)_Var3)
+AND
+DB_Shared_DOS_Henchmen_Recruiter(_Var2)
+AND
+DB_Shared_DOS_Henchmen_HiredFlags(_Var4, _Var1, _Var5, _Var2)
+THEN
+NOT DB_Shared_DOS_Henchmen_HireAfterDialog(_Var4, _Var3, _Var2);
+
+IF
+ObjectFlagSet("Shared_DOS_HenchmenHireConfirmed", (CHARACTERGUID)_Var1, (INTEGER)_Var2)
+AND
+DB_DialogPlayers(_Var2, _Var3, _)
+AND
+DB_Shared_DOS_Henchmen_HireAfterDialog(_Var5, _Var2, _Var1)
+AND
+DB_Shared_DOS_Henchmen_HiredFlags(_Var5, _Var6, _Var7, _Var1)
+AND
+DB_Shared_DOS_Henchmen_Recruitee(_Var1, _Var5, _Var8)
+THEN
+ObjectClearFlag(_Var1, _Var6);
+ObjectSetFlag(_Var1, _Var7);
+ObjectClearFlag(_Var1, "Shared_DOS_HenchmenHireConfirmed");
+DB_GLO_PartyMembers_OriginalAlignment(_Var8, "Neutral");
+PROC_Shared_DOS_Henchmen_AddToParty(_Var8, _Var5, _Var3, _Var2);
+
+PROC
+PROC_Shared_DOS_Henchmen_AddToParty((CHARACTERGUID)_Var1, (STRING)_Var2, (CHARACTERGUID)_Var3, (INTEGER)_Var4)
+AND
+GlobalGetFlag("GEN_MaxPlayerCountReached", 0)
+AND
+GetUUID(_Var1, _Var5)
+AND
+StringConcatenate("Shared_DOS_Henchmen_MadePlayer_", _Var5, _Var6)
+AND
+QueryOnlyOnce(_Var6)
+THEN
+DB_Shared_DOS_Henchmen_Recruited(_Var3, _Var2, _Var1);
+SetOnStage(_Var1, 1);
+CharacterMakePlayer(_Var1, _Var3);
+
+PROC
+PROC_Shared_DOS_Henchmen_AddToParty((CHARACTERGUID)_Var1, (STRING)_Var2, (CHARACTERGUID)_Var3, (INTEGER)_Var4)
+AND
+GlobalGetFlag("GEN_MaxPlayerCountReached", 0)
+THEN
+PROC_GLO_PartyMembers_Add(_Var1, _Var3);
+CharacterApplyHenchmanPreset(_Var1, _Var2);
+TeleportTo(_Var1, _Var3);
+Foop(_Var1);
+ObjectSetDialogFlag(_Var3, "GEN_TransferNPCPayment", _Var4);
+
+PROC
+PROC_GLO_PartyMembers_MakeNPCHook((CHARACTERGUID)_Var1)
+AND NOT
+DB_GLO_PartyMembers_BlockReturnToRecruitmentPosition(_Var1)
+AND
+DB_Shared_DOS_Henchmen_Recruited(_Var2, _Var3, _Var1)
+THEN
+CharacterDisappearOutOfSight(_Var1, 0, 0, "Shared_DOS_Henchmen_Dismissed", 0);
+
+IF
+StoryEvent((CHARACTERGUID)_Var1, "Shared_DOS_Henchmen_Dismissed")
+AND
+DB_Shared_DOS_Henchmen_Recruiter(_Var2)
+AND
+DB_Shared_DOS_Henchmen_Recruited(_Var3, _Var4, _Var1)
+AND
+DB_Shared_DOS_Henchmen_HiredFlags(_Var4, _Var5, _Var6, _Var2)
+AND NOT
+DB_GLO_PartyMembers_TempRemoved(_, _Var1)
+THEN
+NOT DB_Shared_DOS_Henchmen_Recruited(_Var3, _Var4, _Var1);
+PROC_GLO_PartyMembers_TransferInventoryToPlayer(_Var1, _Var3);
+ObjectClearFlag(_Var2, _Var6);
+
+PROC
+PROC_Shared_DOS_DisableHenchmenRecruiting((CHARACTERGUID)_Var1)
+AND
+DB_Shared_DOS_Henchmen_Recruiter(_Var1)
+THEN
+ObjectSetFlag(_Var1, "Shared_DOS_HecnhmenRecruiter_Blocked");
+
+PROC
+PROC_Shared_DOS_EnableHenchmenRecruiting((CHARACTERGUID)_Var1)
+AND
+DB_Shared_DOS_Henchmen_Recruiter(_Var1)
+THEN
+ObjectClearFlag(_Var1, "Shared_DOS_HecnhmenRecruiter_Blocked");
+
+
+EXITSECTION
+ENDEXITSECTION
+

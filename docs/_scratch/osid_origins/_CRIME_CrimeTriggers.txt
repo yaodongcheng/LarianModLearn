@@ -1,0 +1,4610 @@
+Version 1
+SubGoalCombiner SGC_AND
+
+INITSECTION
+DB_CrimeWarningIsAD("GEB_AD_Noticed_EscapedPrisonerHelpful");
+DB_CrimeWarningIsAD("GEB_AD_Noticed_Vandalise");
+DB_CrimeWarningIsAD("GEB_AD_Noticed_Sneaking");
+DB_CrimeWarningIsAD("GEB_AD_Noticed_Smelly");
+DB_CrimeWarningIsAD("GEB_AD_Noticed_Weapons");
+DB_CrimeWarningIsAD("GEB_AD_Noticed_AttackedAnimal");
+DB_CrimeWarningIsAD("GEB_AD_Noticed_KilledAnimal");
+DB_CrimeWarningIsAD("GEB_AD_Noticed_AnimalAttackedAnimal");
+DB_CrimeWarningIsAD("GEB_AD_Help_Thief");
+DB_CrimeWarningIsAD("GEB_AD_FTJ_Noticed_NoCollar");
+DB_CrimeWarningIsAD("GEB_AD_Noticed_SummonAssault");
+DB_CrimeWarningIsAD("GEB_AD_Noticed_SummonVandalise");
+DB_CrimeWarningIsAD("GEB_AD_Noticed_Summon");
+DB_CrimeWarningIsAD("GEB_AD_Noticed_SummonMoveItem");
+DB_CrimeWarningIsAD("GEB_AD_Noticed_Polymorphed");
+DB_CrimeWarningIsAD("GEB_Lohse_AD_Warning_SummonAssault");
+DB_CrimeWarningIsAD("GEB_Ifan_AD_Warning_SummonAssault");
+DB_CrimeWarningIsAD("GEB_Sebille_AD_Warning_SummonAssault");
+DB_CrimeWarningIsAD("GEB_RedPrince_AD_Warning_SummonAssault");
+DB_CrimeWarningIsAD("GEB_AD_NoticedDeadSilentMonk");
+DB_CrimeWarningIsAD("GEB_AD_Noticed_Pickpocket");
+DB_TrespassingCrimes("Trespassing");
+DB_CRIME_MurderType(0, 0, 0, "Murder");
+DB_CRIME_MurderType(1, 0, 0, "SneakMurder");
+DB_CRIME_MurderType(0, 1, 0, "KilledAnimal");
+DB_CRIME_MurderType(1, 1, 0, "SneakKilledAnimal");
+DB_CRIME_MurderType(0, 0, 1, "SummonMurder");
+DB_CRIME_MurderType(1, 0, 1, "SummonMurder");
+DB_CRIME_MurderType(0, 1, 1, "SummonKilledAnimal");
+DB_CRIME_MurderType(1, 1, 1, "SummonKilledAnimal");
+DB_CRIME_ForbiddenStatus("LYING");
+DB_StatusReaction("SMELLY", "Smelly");
+DB_StatusReaction("UNSHEATHED", "WeaponsDrawn");
+DB_IgnoreVandaliseTag("JUNK");
+DB_IgnoreVandaliseTag("IGNOREVANDALISE");
+DB_CrimeTriggers_GeneralBribeDialog(1, "GEB_Arrest");
+DB_CrimeTriggers_GeneralBribeDialog(1, "GEB_Arrest_EscapedPrison");
+DB_CrimeTriggers_GeneralBribeDialog(1, "GEB_Arrest_Theft");
+DB_CrimeTriggers_GeneralBribeDialog(1, "GEB_Arrest_Trespassing");
+DB_CrimeTriggers_GeneralBribeDialog(1, "GEB_Arrest_UseForbiddenItem");
+DB_CrimeTriggers_GeneralBribeDialog(1, "GEB_Arrest_Vandalise");
+DB_CrimeTriggers_GeneralBribeDialog(1, "GEB_Interrogation");
+DB_CrimeTriggers_GeneralBribeDialog(1, "GEB_Interrogation_Assault");
+DB_CrimeTriggers_GeneralBribeDialog(1, "GEB_Interrogation_Murder");
+DB_CrimeTriggers_GeneralBribeDialog(1, "GEB_Interrogation_PickPocketNoticed");
+DB_CrimeTriggers_GeneralBribeDialog(1, "GEB_Interrogation_Steal");
+DB_CrimeTriggers_GeneralBribeDialog(1, "GEB_Interrogation_UsedSource");
+DB_CrimeTriggers_GeneralBribeDialog(1, "GEB_Interrogation_Vandalise");
+DB_CrimeTriggers_GeneralBribeDialog(1, "GEB_Warning_PickPocketFailed_EvidenceCheck");
+DB_CrimeTriggers_GeneralBribeDialog(1, "GEB_Warning_Theft");
+DB_CrimeTriggers_GeneralBribeDialog(1, "GEB_Warning_UseForbiddenItem");
+DB_CannotPickpocketTags("ANIMAL");
+DB_CannotPickpocketTags("ELEMENTAL");
+DB_CannotPickpocketTags("GHOST");
+DB_CannotPickpocketTags("VOIDLING");
+DB_CannotPickpocketTags("VOIDSECT");
+DB_CannotPickpocketTags("VOID_SOLDIER");
+DB_CannotPickpocketTags("ALANBIRD");
+DB_CannotPickpocketTags("MOLESPITTER");
+DB_CannotPickpocketTags("NIGHTFANG");
+DB_CannotPickpocketTags("VOIDWOLF");
+DB_CannotPickpocketTags("FLESH_GOLEM");
+DB_CannotPickpocketTags("BLOCK_PICKPOCKET");
+DB_CrimeAttitudeChange("SourceMagic", -5);
+DB_CrimeAttitudeChange("Murder", -30);
+DB_CrimeAttitudeChange("SpiritTalk", -1);
+DB_CrimeAttitudeChange("Assault", -20);
+DB_CrimeAttitudeChange("Steal", -5);
+DB_CrimeAttitudeChange("PickPocketFailed", -5);
+DB_CrimeAttitudeChange("PickPocket", -10);
+DB_CrimeAttitudeChange("ItemDestroy", -15);
+DB_CrimeAttitudeChange("Vandalise", -10);
+DB_CrimeAttitudeChange("VandaliseNoOwner", -5);
+DB_CrimeAttitudeChange("Trespassing", -5);
+DB_CrimeAttitudeChange("UseForbiddenItem", -5);
+DB_CrimeAttitudeChange("MoveForbiddenItem", -5);
+DB_CrimeAttitudeChange("AttackAnimal", -5);
+DB_CrimeAttitudeChange("TeleportPlayerDialog", -5);
+DB_EvidenceCheckInWarning("GEB_Warning_PickPocketFailed_EvidenceCheck");
+DB_EvidenceCheckInWarning("RC_WH_DijinnItem_Interrogation");
+DB_NeutralTagIgnore("GHOST");
+DB_Negate(0, 1);
+DB_Negate(1, 0);
+DB_IgnoreDamageSources("SurfaceMove");
+DB_IgnoreDamageSources("StatusTick");
+DB_IgnoreDamageSources("SurfaceStatus");
+DB_IgnoreDamageSources("Offhand");
+DB_LinkedCrimes("Assault", "SummonAssault");
+DB_LinkedCrimes("Assault", "IncapacitatedAssault");
+DB_LinkedCrimes("Murder", "KilledAnimal");
+DB_LinkedCrimes("Murder", "SneakKilledAnimal");
+DB_LinkedCrimes("Murder", "SneakMurder");
+DB_LinkedCrimes("Murder", "SummonMurder");
+DB_LinkedCrimes("Murder", "SummonKilledAnimal");
+DB_LinkedCrimes("MoveForbiddenItem", "SummonMoveForbiddenItem");
+DB_CrimeWarningHostileADs("GEB_Warning_Theft", "GEB_AD_Help_Thief");
+DB_CrimeWarningHostileADs("GEB_Warning_UseForbiddenItem", "GEB_AD_Help_UseForbiddenItem");
+DB_ItemStatusAffectCharacterOnUse("BURNING");
+DB_ItemStatusAffectCharacterOnUse("SHOCKED");
+DB_CRIME_CrimeLocationScoreIncrease(0, 0, 3, 1);
+DB_CRIME_CrimeLocationScoreIncrease(1, 0, 2, 1);
+DB_CRIME_CrimeLocationScoreIncrease(0, 1, 1, 1);
+DB_CRIME_CrimeLocationScoreIncrease(1, 1, 2, 1);
+DB_CRIME_CrimeLocationScore_GoToAttackerThreshold(9);
+DB_CRIME_CrimeLocationScore_StartAttackingThreshold(13);
+DB_CRIME_Assault_HealthStartAttackingThreshold(80);
+DB_CRIME_FleeReaction("CRIME_Flee");
+DB_CRIME_FleeReaction("CRIME_FleeWithAD");
+DB_CRIME_MoveForbiddenCrime(0, "MoveForbiddenItem");
+DB_CRIME_MoveForbiddenCrime(1, "SummonMoveForbiddenItem");
+
+KBSECTION
+PROC
+Proc_GameModeStarted("GameMaster", _)
+THEN
+GoalCompleted;
+
+IF
+StoryEvent((CHARACTERGUID)_Var1, "CRIMES_SuspendCrimeReactions")
+THEN
+CharacterDisableAllCrimes(_Var1);
+
+IF
+StoryEvent((CHARACTERGUID)_Var1, "CRIMES_ResumeCrimeReactions")
+AND NOT
+DB_CharacterAllCrimesDisabled(_Var1)
+THEN
+CharacterEnableAllCrimes(_Var1);
+
+IF
+StoryEvent((CHARACTERGUID)_Var1, "CRIMES_ResumeCrimeReactions")
+AND
+DB_CharacterCrimeDisabled(_Var1, _Var2)
+THEN
+CharacterDisableCrime(_Var1, _Var2);
+
+IF
+StoryEvent((CHARACTERGUID)_Var1, "CRIMES_ResumeCrimeReactions")
+AND
+DB_CharacterCrimeEnabled(_Var1, _Var2)
+THEN
+CharacterEnableCrime(_Var1, _Var2);
+
+QRY
+QRY_CRIME_CrimeTriggers_IsCrimeFamilyMember((STRING)_Var1, (STRING)_Var2)
+AND
+_Var1 == _Var2
+THEN
+DB_NOOP(1);
+
+QRY
+QRY_CRIME_CrimeTriggers_IsCrimeFamilyMember((STRING)_Var1, (STRING)_Var2)
+AND
+DB_LinkedCrimes(_Var2, _Var1)
+THEN
+DB_NOOP(1);
+
+PROC
+PROC_CRIME_CrimeTriggers_GetSilentWitnessesForCrime((INTEGER)_Var1, (CHARACTERGUID)_Var2, "Assault", (GUIDSTRING)_Var3, (CHARACTERGUID)_Var4)
+AND
+DB_AssaultIgnoreFor(_Var5, _Var4)
+THEN
+DB_CRIME_CrimeTriggers_SilentWitnessesForCrime(_Var5);
+
+PROC
+PROC_CRIME_CrimeTriggers_GetSilentWitnessesForCrime((INTEGER)_Var1, (CHARACTERGUID)_Var2, (STRING)_Var3, (GUIDSTRING)_Var4, (CHARACTERGUID)_Var5)
+AND
+DB_AssaultFamilyIgnoreFor(_Var6, _Var5)
+AND
+QRY_CRIME_CrimeTriggers_IsCrimeFamilyMember(_Var3, "Assault")
+THEN
+DB_CRIME_CrimeTriggers_SilentWitnessesForCrime(_Var6);
+
+PROC
+ProcCharacterRegisterCrime((CHARACTERGUID)_Var1, (STRING)_Var2, (GUIDSTRING)_Var3, (CHARACTERGUID)_Var4, (INTEGER)_Var5, (CHARACTERGUID)_Var6)
+AND NOT
+QRY_CRIME_BlockRegisterCrime(_Var1, _Var2, _Var3, _Var4, _Var5, _Var6)
+THEN
+ProcCharacterRegisterCrimeHandleIgnoresBefore(_Var1, _Var2, _Var3, _Var4, _Var5, _Var6);
+
+PROC
+ProcCharacterRegisterCrimeWithPosition((CHARACTERGUID)_Var1, (STRING)_Var2, (GUIDSTRING)_Var3, (CHARACTERGUID)_Var4, (REAL)_Var5, (REAL)_Var6, (REAL)_Var7, (INTEGER)_Var8, (CHARACTERGUID)_Var9)
+AND NOT
+QRY_CRIME_BlockRegisterCrime(_Var1, _Var2, _Var3, _Var4, _Var8, _Var9)
+THEN
+ProcCharacterRegisterCrimeHandleIgnoresBefore(_Var1, _Var2, _Var3, _Var4, _Var8, _Var9);
+
+PROC
+ProcCharacterRegisterCrimeHandleIgnoresBefore((CHARACTERGUID)_Var1, (STRING)_Var2, (GUIDSTRING)_Var3, (CHARACTERGUID)_Var4, (INTEGER)_Var5, (CHARACTERGUID)_Var6)
+THEN
+PROC_CRIME_CrimeTriggers_GetSilentWitnessesForCrime(_Var5, _Var1, _Var2, _Var3, _Var6);
+
+PROC
+ProcCharacterRegisterCrimeHandleIgnoresBefore((CHARACTERGUID)_Var1, (STRING)_Var2, (GUIDSTRING)_Var3, (CHARACTERGUID)_Var4, (INTEGER)_Var5, (CHARACTERGUID)_Var6)
+AND
+DB_CRIME_CrimeTriggers_SilentWitnessesForCrime(_Var7)
+AND
+DB_CharacterCrimeDisabled(_Var7, _Var2)
+THEN
+NOT DB_CRIME_CrimeTriggers_SilentWitnessesForCrime(_Var7);
+DB_CRIME_CrimeTriggers_SilentWitnessIgnoreOnly(_Var7);
+
+PROC
+ProcCharacterRegisterCrimeHandleIgnoresBefore((CHARACTERGUID)_Var1, (STRING)_Var2, (GUIDSTRING)_Var3, (CHARACTERGUID)_Var4, (INTEGER)_Var5, (CHARACTERGUID)_Var6)
+AND
+DB_CRIME_CrimeTriggers_SilentWitnessesForCrime(_Var7)
+AND
+DB_CharacterAllCrimesDisabled(_Var7)
+AND NOT
+DB_CharacterCrimeEnabled(_Var7, _Var2)
+THEN
+NOT DB_CRIME_CrimeTriggers_SilentWitnessesForCrime(_Var7);
+DB_CRIME_CrimeTriggers_SilentWitnessIgnoreOnly(_Var7);
+
+PROC
+ProcCharacterRegisterCrimeHandleIgnoresBefore((CHARACTERGUID)_Var1, (STRING)_Var2, (GUIDSTRING)_Var3, (CHARACTERGUID)_Var4, (INTEGER)_Var5, (CHARACTERGUID)_Var6)
+AND
+DB_CRIME_CrimeTriggers_SilentWitnessesForCrime(_Var7)
+THEN
+CharacterDisableCrime(_Var7, _Var2);
+
+PROC
+ProcCharacterRegisterCrime((CHARACTERGUID)_Var1, (STRING)_Var2, (GUIDSTRING)_Var3, (CHARACTERGUID)_Var4, (INTEGER)_Var5, (CHARACTERGUID)_Var6)
+AND NOT
+QRY_CRIME_BlockRegisterCrime(_Var1, _Var2, _Var3, _Var4, _Var5, _Var6)
+THEN
+CharacterRegisterCrime(_Var1, _Var2, _Var3, _Var4, _Var5);
+
+QRY
+QRY_CRIME_BlockRegisterCrime((CHARACTERGUID)_Var1, (STRING)_Var2, (GUIDSTRING)_Var3, (CHARACTERGUID)_Var4, (INTEGER)_Var5, (CHARACTERGUID)_Var6)
+AND
+1 == 0
+THEN
+DB_NOOP(0);
+
+PROC
+ProcCharacterRegisterCrimeWithPosition((CHARACTERGUID)_Var1, (STRING)_Var2, (GUIDSTRING)_Var3, (CHARACTERGUID)_Var4, (REAL)_Var5, (REAL)_Var6, (REAL)_Var7, (INTEGER)_Var8, (CHARACTERGUID)_Var9)
+AND NOT
+QRY_CRIME_BlockRegisterCrime(_Var1, _Var2, _Var3, _Var4, _Var8, _Var9)
+THEN
+CharacterRegisterCrimeWithPosition(_Var1, _Var2, _Var3, _Var4, _Var5, _Var6, _Var7, _Var8);
+PROC_CRIME_CrimeWithPositionIsRegistered(_Var9, _Var5, _Var6, _Var7, _Var2, _Var8, _Var3, _Var1);
+
+PROC
+PROC_CRIME_CrimeWithPositionIsRegistered((CHARACTERGUID)_Var1, (REAL)_Var2, (REAL)_Var3, (REAL)_Var4, (STRING)_Var5, (INTEGER)_Var6, (GUIDSTRING)_Var7, (CHARACTERGUID)_Var8)
+THEN
+DB_NOOP(1);
+
+PROC
+ProcCharacterRegisterCrimeWithPosition((CHARACTERGUID)_Var1, (STRING)_Var2, (GUIDSTRING)_Var3, (CHARACTERGUID)_Var4, (REAL)_Var5, (REAL)_Var6, (REAL)_Var7, (INTEGER)_Var8, (CHARACTERGUID)_Var9)
+AND
+QRY_CRIME_BlockRegisterCrime(_Var1, _Var2, _Var3, _Var4, _Var8, _Var9)
+THEN
+PROC_CRIME_CharacterRegisterCrimeBlocked(_Var1, _Var2, _Var3, _Var4, _Var8, _Var9);
+
+PROC
+ProcCharacterRegisterCrime((CHARACTERGUID)_Var1, (STRING)_Var2, (GUIDSTRING)_Var3, (CHARACTERGUID)_Var4, (INTEGER)_Var5, (CHARACTERGUID)_Var6)
+AND
+QRY_CRIME_BlockRegisterCrime(_Var1, _Var2, _Var3, _Var4, _Var5, _Var6)
+THEN
+PROC_CRIME_CharacterRegisterCrimeBlocked(_Var1, _Var2, _Var3, _Var4, _Var5, _Var6);
+
+PROC
+PROC_CRIME_CharacterRegisterCrimeBlocked((CHARACTERGUID)_Var1, (STRING)_Var2, (GUIDSTRING)_Var3, (CHARACTERGUID)_Var4, (INTEGER)_Var5, (CHARACTERGUID)_Var6)
+THEN
+DB_NOOP(1);
+
+PROC
+ProcCharacterRegisterCrime((CHARACTERGUID)_Var1, (STRING)_Var2, (GUIDSTRING)_Var3, (CHARACTERGUID)_Var4, (INTEGER)_Var5, (CHARACTERGUID)_Var6)
+THEN
+ProcCharacterRegisterCrimeHandleIgnoresAfter(_Var2, _Var5);
+
+PROC
+ProcCharacterRegisterCrimeWithPosition((CHARACTERGUID)_Var1, (STRING)_Var2, (GUIDSTRING)_Var3, (CHARACTERGUID)_Var4, (REAL)_Var5, (REAL)_Var6, (REAL)_Var7, (INTEGER)_Var8, (CHARACTERGUID)_Var9)
+THEN
+ProcCharacterRegisterCrimeHandleIgnoresAfter(_Var2, _Var8);
+
+PROC
+ProcCharacterRegisterCrimeHandleIgnoresAfter((STRING)_Var1, (INTEGER)_Var2)
+AND
+DB_CRIME_CrimeTriggers_SilentWitnessesForCrime(_Var3)
+THEN
+CrimeIgnoreCrime(_Var2, _Var3);
+CharacterEnableCrime(_Var3, _Var1);
+NOT DB_CRIME_CrimeTriggers_SilentWitnessesForCrime(_Var3);
+
+PROC
+ProcCharacterRegisterCrimeHandleIgnoresAfter((STRING)_Var1, (INTEGER)_Var2)
+AND
+DB_CRIME_CrimeTriggers_SilentWitnessIgnoreOnly(_Var3)
+THEN
+NOT DB_CRIME_CrimeTriggers_SilentWitnessIgnoreOnly(_Var3);
+CrimeIgnoreCrime(_Var2, _Var3);
+
+IF
+CharacterOnCrimeSensibleActionNotification((CHARACTERGUID)_Var1, (STRING)_Var2, (INTEGER)_Var3, (STRING)_Var4, (STRING)_Var5, (CHARACTERGUID)_Var6, (CHARACTERGUID)_Var7, (CHARACTERGUID)_Var8, (CHARACTERGUID)_Var9, _)
+AND
+_Var4 != "CRIME_OsirisReaction"
+AND
+_Var4 != "CRIME_Arrest"
+THEN
+ProcForceStopDialog(_Var1);
+
+IF
+CrimeDisabled((CHARACTERGUID)_Var1, "")
+THEN
+ProcCharacterDisableAllCrimes(_Var1);
+
+IF
+CrimeDisabled((CHARACTERGUID)_Var1, (STRING)_Var2)
+AND
+_Var2 != ""
+THEN
+ProcCharacterDisableCrime(_Var1, _Var2);
+
+IF
+CrimeEnabled((CHARACTERGUID)_Var1, "")
+THEN
+ProcCharacterEnableAllCrimes(_Var1);
+
+IF
+CrimeEnabled((CHARACTERGUID)_Var1, (STRING)_Var2)
+AND
+_Var2 != ""
+THEN
+ProcCharacterEnableCrime(_Var1, _Var2);
+
+PROC
+ProcCharacterDisableAllCrimes((CHARACTERGUID)_Var1)
+THEN
+DB_CharacterAllCrimesDisabled(_Var1);
+CharacterDisableAllCrimes(_Var1);
+
+PROC
+ProcCharacterEnableAllCrimes((CHARACTERGUID)_Var1)
+THEN
+NOT DB_CharacterAllCrimesDisabled(_Var1);
+CharacterEnableAllCrimes(_Var1);
+
+PROC
+ProcCharacterEnableCrime((CHARACTERGUID)_Var1, (STRING)_Var2)
+THEN
+DB_CharacterCrimeEnabled(_Var1, _Var2);
+CharacterEnableCrime(_Var1, _Var2);
+
+PROC
+ProcCharacterDisableCrime((CHARACTERGUID)_Var1, (STRING)_Var2)
+THEN
+DB_CharacterCrimeDisabled(_Var1, _Var2);
+CharacterDisableCrime(_Var1, _Var2);
+
+IF
+DB_CharacterCrimeEnabled(_Var1, _Var2)
+THEN
+NOT DB_CharacterCrimeDisabled(_Var1, _Var2);
+
+IF
+DB_CharacterCrimeDisabled(_Var1, _Var2)
+THEN
+NOT DB_CharacterCrimeEnabled(_Var1, _Var2);
+
+IF
+DB_CrimeReaction_DoNotWarn(_Var1)
+THEN
+DB_CrimeReaction_DoNotWarn2(_Var1);
+CharacterEnableCrimeWarnings(_Var1, 0);
+
+IF
+DB_CrimeReaction_DoNotWarn2(_Var1)
+AND NOT
+DB_CrimeReaction_DoNotWarn(_Var1)
+THEN
+NOT DB_CrimeReaction_DoNotWarn2(_Var1);
+CharacterEnableCrimeWarnings(_Var1, 1);
+
+IF
+CharacterOnCrimeSensibleActionNotification((CHARACTERGUID)_Var1, (STRING)_Var2, (INTEGER)_Var3, "CRIME_OsirisReaction", (STRING)_Var4, (CHARACTERGUID)_Var5, (CHARACTERGUID)_Var6, (CHARACTERGUID)_Var7, (CHARACTERGUID)_Var8, _)
+AND NOT
+DB_CrimeReaction_DoNotWarn(_Var1)
+AND
+CrimeGetType(_Var3, _Var10)
+AND NOT
+DB_CrimeReaction_CustomWarning(_Var1, _Var10, _)
+THEN
+ProcCrimeCheckCrimeTypeForFlags(_Var3, _Var1, _Var5, _Var6, _Var7, _Var8, _Var10, _Var4);
+ProcCrimeSetupWarning(_Var2, _Var3, _Var1, _Var5, _Var6, _Var7, _Var8, _Var4);
+ProcCrimeWarningTryStopDialogs(_Var3, _Var1, _Var5, _Var6, _Var7, _Var8, _Var4);
+ProcCrimeCheckStartedWarning(_Var3, _Var1, _Var5, _Var6, _Var7, _Var8, _Var4);
+
+IF
+CharacterOnCrimeSensibleActionNotification((CHARACTERGUID)_Var1, (STRING)_Var2, (INTEGER)_Var3, "CRIME_OsirisReaction", (STRING)_Var4, (CHARACTERGUID)_Var5, (CHARACTERGUID)_Var6, (CHARACTERGUID)_Var7, (CHARACTERGUID)_Var8, _)
+AND NOT
+DB_CrimeReaction_DoNotWarn(_Var1)
+AND
+CrimeGetType(_Var3, _Var10)
+AND
+DB_CrimeReaction_CustomWarning(_Var1, _Var10, _Var11)
+THEN
+ProcCrimeCheckCrimeTypeForFlags(_Var3, _Var1, _Var5, _Var6, _Var7, _Var8, _Var10, _Var11);
+ProcCrimeSetupWarning(_Var2, _Var3, _Var1, _Var5, _Var6, _Var7, _Var8, _Var11);
+ProcCrimeWarningTryStopDialogs(_Var3, _Var1, _Var5, _Var6, _Var7, _Var8, _Var11);
+ProcCrimeCheckStartedWarning(_Var3, _Var1, _Var5, _Var6, _Var7, _Var8, _Var11);
+
+IF
+CharacterOnCrimeSensibleActionNotification((CHARACTERGUID)_Var1, (STRING)_Var2, (INTEGER)_Var3, "CRIME_OsirisReaction", (STRING)_Var4, (CHARACTERGUID)_Var5, (CHARACTERGUID)_Var6, (CHARACTERGUID)_Var7, (CHARACTERGUID)_Var8, _)
+AND
+DB_CrimeReaction_DoNotWarn(_Var1)
+THEN
+CrimeConfrontationDone(_Var3, _Var1);
+
+PROC
+ProcCrimeCheckCrimeTypeForFlags((INTEGER)_Var1, (CHARACTERGUID)_Var2, (CHARACTERGUID)_Var3, (CHARACTERGUID)_Var4, (CHARACTERGUID)_Var5, (CHARACTERGUID)_Var6, (STRING)_Var7, (STRING)_Var8)
+AND
+QryCrimeIsVandalismWithTension(_Var7)
+THEN
+ProcCrimeSetupCountFlag(_Var1, _Var2, _Var3, _Var4, _Var5, _Var6, "Vandalise", _Var8);
+
+PROC
+ProcCrimeCheckCrimeTypeForFlags((INTEGER)_Var1, (CHARACTERGUID)_Var2, (CHARACTERGUID)_Var3, (CHARACTERGUID)_Var4, (CHARACTERGUID)_Var5, (CHARACTERGUID)_Var6, (STRING)_Var7, (STRING)_Var8)
+AND NOT
+QryCrimeIsVandalismWithTension(_Var7)
+THEN
+ProcCrimeSetupCountFlag(_Var1, _Var2, _Var3, _Var4, _Var5, _Var6, _Var7, _Var8);
+
+QRY
+QryCrimeIsVandalismWithTension((STRING)_Var1)
+AND
+_Var1 == "Vandalise"
+THEN
+DB_NOOP(1);
+
+QRY
+QryCrimeIsVandalismWithTension((STRING)_Var1)
+AND
+_Var1 == "ItemDestroy"
+THEN
+DB_NOOP(1);
+
+PROC
+ProcCrimeSetupCountFlag((INTEGER)_Var1, (CHARACTERGUID)_Var2, (CHARACTERGUID)_Var3, (CHARACTERGUID)_Var4, (CHARACTERGUID)_Var5, (CHARACTERGUID)_Var6, (STRING)_Var7, (STRING)_Var8)
+AND
+CrimeGetTension(_Var1, _Var9)
+AND
+_Var9 > 0
+THEN
+DB_Crime_RequestedDialogWithTension(_Var7, _Var8, _Var2, _Var3, _Var4, _Var5, _Var6);
+
+PROC
+ProcCrimeSetupCountFlag((INTEGER)_Var1, (CHARACTERGUID)_Var2, (CHARACTERGUID)_Var3, (CHARACTERGUID)_Var4, (CHARACTERGUID)_Var5, (CHARACTERGUID)_Var6, (STRING)_Var7, (STRING)_Var8)
+AND
+DB_Crime_RequestedDialogWithTension(_Var7, _Var8, _Var2, _, _, _, _)
+THEN
+ProcCrimeSetupCountFlag_ForEachCriminal(_Var7, _Var2, _Var3);
+ProcCrimeSetupCountFlag_ForEachCriminal(_Var7, _Var2, _Var4);
+ProcCrimeSetupCountFlag_ForEachCriminal(_Var7, _Var2, _Var5);
+ProcCrimeSetupCountFlag_ForEachCriminal(_Var7, _Var2, _Var6);
+
+PROC
+ProcCrimeSetupCountFlag_ForEachCriminal((STRING)_Var1, (CHARACTERGUID)_Var2, (CHARACTERGUID)_Var3)
+AND
+_Var3 != NULL_00000000-0000-0000-0000-000000000000
+AND NOT
+DB_Crime_WarningCount(_, _Var1, _Var3, _Var2)
+THEN
+DB_Crime_WarningCount(1, _Var1, _Var3, _Var2);
+
+PROC
+ProcCrimeSetupCountFlag_ForEachCriminal((STRING)_Var1, (CHARACTERGUID)_Var2, (CHARACTERGUID)_Var3)
+AND
+_Var3 != NULL_00000000-0000-0000-0000-000000000000
+AND
+DB_Crime_WarningCount(_Var4, _Var1, _Var3, _Var2)
+AND
+IntegertoString(_Var4, _Var5)
+AND
+StringConcatenate("GEB_CrimeWarning_", _Var5, _Var6)
+THEN
+ObjectSetFlag(_Var3, _Var6);
+
+IF
+DialogEnded((STRING)_Var1, (INTEGER)_Var2)
+AND
+DB_TemporaryHostilityAfterDialog(_, _Var2)
+AND
+DB_CrimeWarningHostileADs(_Var1, _Var4)
+AND
+DB_DialogNPCs(_Var2, _Var5, 1)
+THEN
+Proc_StartDialog(1, _Var4, _Var5);
+
+PROC
+ProcCrimeSetupWarning((STRING)_Var1, (INTEGER)_Var2, (CHARACTERGUID)_Var3, (CHARACTERGUID)_Var4, (CHARACTERGUID)_Var5, (CHARACTERGUID)_Var6, (CHARACTERGUID)_Var7, (STRING)_Var8)
+THEN
+ObjectClearFlag(_Var4, "GEB_CrimeHasEvidenceInInventory");
+
+PROC
+ProcCrimeSetupWarning((STRING)_Var1, (INTEGER)_Var2, (CHARACTERGUID)_Var3, (CHARACTERGUID)_Var4, (CHARACTERGUID)_Var5, (CHARACTERGUID)_Var6, (CHARACTERGUID)_Var7, (STRING)_Var8)
+AND
+CrimeGetType(_Var2, "Steal")
+AND
+CrimeFindEvidence(_Var2, _Var3, _Var4, _Var5, _Var6, _Var7, 1, _, _)
+THEN
+DB_Interrogation(_Var3, _Var2);
+ObjectSetFlag(_Var4, "GEB_CrimeHasEvidenceInInventory");
+
+PROC
+ProcCrimeSetupWarning((STRING)_Var1, (INTEGER)_Var2, (CHARACTERGUID)_Var3, (CHARACTERGUID)_Var4, (CHARACTERGUID)_Var5, (CHARACTERGUID)_Var6, (CHARACTERGUID)_Var7, (STRING)_Var8)
+THEN
+SetVarInteger(_Var3, "CrimeID", _Var2);
+SetVarFixedString(_Var3, "RegionID", _Var1);
+DB_Crime_SetupCriminalIndex(_Var2, 1);
+ProcCrimeSetupValidWarningCriminals(_Var2, _Var3, _Var4);
+ProcCrimeSetupValidWarningCriminals(_Var2, _Var3, _Var5);
+ProcCrimeSetupValidWarningCriminals(_Var2, _Var3, _Var6);
+ProcCrimeSetupValidWarningCriminals(_Var2, _Var3, _Var7);
+ProcCrimeSetupNullWarningCriminals(_Var2, _Var3);
+
+PROC
+ProcCrimeSetupValidWarningCriminals((INTEGER)_Var1, (CHARACTERGUID)_Var2, (CHARACTERGUID)_Var3)
+AND NOT
+QryCrimeCharacterIsSummonOrNull(_Var3)
+AND
+DB_Crime_SetupCriminalIndex(_Var1, _Var4)
+AND
+IntegertoString(_Var4, _Var5)
+AND
+StringConcatenate("Criminal", _Var5, _Var6)
+AND
+IntegerSum(_Var4, 1, _Var7)
+THEN
+SetVarObject(_Var2, _Var6, _Var3);
+NOT DB_Crime_SetupCriminalIndex(_Var1, _Var4);
+DB_Crime_SetupCriminalIndex(_Var1, _Var7);
+
+PROC
+ProcCrimeSetupNullWarningCriminals((INTEGER)_Var1, (CHARACTERGUID)_Var2)
+AND
+DB_Crime_SetupCriminalIndex(_Var1, _Var3)
+AND
+_Var3 < 5
+AND
+IntegertoString(_Var3, _Var4)
+AND
+StringConcatenate("Criminal", _Var4, _Var5)
+AND
+IntegerSum(_Var3, 1, _Var6)
+THEN
+ClearVarObject(_Var2, _Var5);
+NOT DB_Crime_SetupCriminalIndex(_Var1, _Var3);
+DB_Crime_SetupCriminalIndex(_Var1, _Var6);
+ProcCrimeSetupNullWarningCriminals(_Var1, _Var2);
+
+PROC
+ProcCrimeSetupWarning((STRING)_Var1, (INTEGER)_Var2, (CHARACTERGUID)_Var3, (CHARACTERGUID)_Var4, (CHARACTERGUID)_Var5, (CHARACTERGUID)_Var6, (CHARACTERGUID)_Var7, (STRING)_Var8)
+AND
+DB_Crime_SetupCriminalIndex(_Var2, _Var9)
+THEN
+NOT DB_Crime_SetupCriminalIndex(_Var2, _Var9);
+
+PROC
+ProcCrimeSetupWarning((STRING)_Var1, (INTEGER)_Var2, (CHARACTERGUID)_Var3, (CHARACTERGUID)_Var4, (CHARACTERGUID)_Var5, (CHARACTERGUID)_Var6, (CHARACTERGUID)_Var7, (STRING)_Var8)
+AND
+GetPosition(_Var3, _Var9, _Var10, _Var11)
+THEN
+SetVarFloat3(_Var3, "NPCOrgPos", _Var9, _Var10, _Var11);
+
+PROC
+ProcCrimeSetupWarning((STRING)_Var1, (INTEGER)_Var2, (CHARACTERGUID)_Var3, (CHARACTERGUID)_Var4, (CHARACTERGUID)_Var5, (CHARACTERGUID)_Var6, (CHARACTERGUID)_Var7, (STRING)_Var8)
+AND
+DB_EvidenceCheckInWarning(_Var8)
+THEN
+DB_Crime_Interrogation(_Var2, _Var3, _Var4, _Var5, _Var6, _Var7, _Var8);
+
+PROC
+ProcCrimeWarningTryStopDialogs((INTEGER)_Var1, (CHARACTERGUID)_Var2, (CHARACTERGUID)_Var3, (CHARACTERGUID)_Var4, (CHARACTERGUID)_Var5, (CHARACTERGUID)_Var6, (STRING)_Var7)
+AND
+DB_CrimeWarningIsAD(_Var7)
+THEN
+ProcCrimeInterruptStoryDialogs(_Var1, _Var7, 0, _Var2, _Var3, _Var4, _Var5, _Var6);
+
+PROC
+ProcCrimeWarningTryStopDialogs((INTEGER)_Var1, (CHARACTERGUID)_Var2, (CHARACTERGUID)_Var3, (CHARACTERGUID)_Var4, (CHARACTERGUID)_Var5, (CHARACTERGUID)_Var6, (STRING)_Var7)
+AND NOT
+DB_CrimeWarningIsAD(_Var7)
+THEN
+ProcCrimeInterruptStoryDialogs(_Var1, _Var7, 1, _Var2, _Var3, _Var4, _Var5, _Var6);
+
+PROC
+ProcCrimeCheckStartedWarning((INTEGER)_Var1, (CHARACTERGUID)_Var2, (CHARACTERGUID)_Var3, (CHARACTERGUID)_Var4, (CHARACTERGUID)_Var5, (CHARACTERGUID)_Var6, (STRING)_Var7)
+AND
+DB_Crime_FailedToInterruptStoryDialogs(_Var1, _Var7, _Var2, _Var3, _Var4, _Var5, _Var6)
+AND
+DB_Crime_RequestedDialogWithTension(_Var8, _Var7, _Var2, _Var3, _Var4, _Var5, _Var6)
+AND
+DB_Crime_WarningCount(_Var9, _Var10, _Var11, _Var2)
+AND
+IntegertoString(_Var9, _Var12)
+AND
+StringConcatenate("GEB_CrimeWarning_", _Var12, _Var13)
+THEN
+NOT DB_Crime_RequestedDialogWithTension(_Var8, _Var7, _Var2, _Var3, _Var4, _Var5, _Var6);
+ObjectClearFlag(_Var11, _Var13, 0);
+
+PROC
+ProcCrimeCheckStartedWarning((INTEGER)_Var1, (CHARACTERGUID)_Var2, (CHARACTERGUID)_Var3, (CHARACTERGUID)_Var4, (CHARACTERGUID)_Var5, (CHARACTERGUID)_Var6, (STRING)_Var7)
+AND
+DB_Crime_FailedToInterruptStoryDialogs(_Var1, _Var7, _Var2, _Var3, _Var4, _Var5, _Var6)
+THEN
+ProcCrimeFailedToInterruptStoryDialog(_Var1, _Var2, _Var3, _Var4, _Var5, _Var6, _Var7);
+NOT DB_Crime_FailedToInterruptStoryDialogs(_Var1, _Var7, _Var2, _Var3, _Var4, _Var5, _Var6);
+CrimeConfrontationDone(_Var1, _Var2);
+
+PROC
+ProcCrimeCheckStartedWarning((INTEGER)_Var1, (CHARACTERGUID)_Var2, (CHARACTERGUID)_Var3, (CHARACTERGUID)_Var4, (CHARACTERGUID)_Var5, (CHARACTERGUID)_Var6, (STRING)_Var7)
+AND
+DB_Crime_FailedToInterruptStoryDialogs(_Var1, _Var7, _Var2, _Var3, _Var4, _Var5, _Var6)
+AND
+CrimeIsContinuous(_Var1, 1)
+THEN
+ProcCrimeFailedToInterruptStoryDialog(_Var1, _Var2, _Var3, _Var4, _Var5, _Var6, _Var7);
+NOT DB_Crime_FailedToInterruptStoryDialogs(_Var1, _Var7, _Var2, _Var3, _Var4, _Var5, _Var6);
+
+PROC
+ProcCrimeFailedToInterruptStoryDialog((INTEGER)_Var1, (CHARACTERGUID)_Var2, (CHARACTERGUID)_Var3, (CHARACTERGUID)_Var4, (CHARACTERGUID)_Var5, (CHARACTERGUID)_Var6, (STRING)_Var7)
+THEN
+DB_NOOP(1);
+
+PROC
+ProcCrimeCheckStartedWarning((INTEGER)_Var1, (CHARACTERGUID)_Var2, (CHARACTERGUID)_Var3, (CHARACTERGUID)_Var4, (CHARACTERGUID)_Var5, (CHARACTERGUID)_Var6, (STRING)_Var7)
+AND
+DB_Crime_FailedToInterruptStoryDialogs(_Var8, _Var9, _Var10, _Var11, _Var12, _Var13, _Var14)
+THEN
+NOT DB_Crime_FailedToInterruptStoryDialogs(_Var8, _Var9, _Var10, _Var11, _Var12, _Var13, _Var14);
+
+IF
+DialogEnded((STRING)_Var1, (INTEGER)_Var2)
+AND
+DB_Crime_RequestedDialogWithTension(_Var3, _Var1, _Var4, _Var5, _Var6, _Var7, _Var8)
+AND
+DB_DialogNPCs(_Var2, _Var4, _)
+AND
+DB_DialogPlayers(_Var2, _Var10, _)
+AND
+DB_Crime_WarningCount(_Var12, _Var3, _Var10, _Var4)
+AND
+IntegertoString(_Var12, _Var13)
+AND
+StringConcatenate("GEB_CrimeWarning_", _Var13, _Var14)
+AND
+ObjectGetFlag(_Var10, _Var14, 1)
+AND
+IntegerSum(_Var12, 1, _Var15)
+THEN
+NOT DB_Crime_RequestedDialogWithTension(_Var3, _Var1, _Var4, _Var5, _Var6, _Var7, _Var8);
+ObjectClearFlag(_Var10, _Var14, 0);
+NOT DB_Crime_WarningCount(_Var12, _Var3, _Var10, _Var4);
+DB_Crime_WarningCount(_Var15, _Var3, _Var10, _Var4);
+
+IF
+DB_Crime_WarningCount(_Var1, _Var2, _Var3, _Var4)
+AND
+_Var1 > 3
+THEN
+NOT DB_Crime_WarningCount(_Var1, _Var2, _Var3, _Var4);
+DB_Crime_WarningCount(3, _Var2, _Var3, _Var4);
+
+IF
+DialogEnded((STRING)_Var1, (INTEGER)_Var2)
+AND
+DB_CrimeWarner(_Var3, _Var4, _Var1)
+AND
+DB_DialogNPCs(_Var2, _Var4, _)
+THEN
+CrimeConfrontationDone(_Var3, _Var4);
+NOT DB_CrimeWarner(_Var3, _Var4, _Var1);
+
+IF
+AutomatedDialogEnded((STRING)_Var1, (INTEGER)_Var2)
+AND
+DB_Crime_RequestedDialogWithTension(_Var3, _Var1, _Var4, _Var5, _Var6, _Var7, _Var8)
+AND
+DB_DialogNPCs(_Var2, _Var4, _)
+AND
+DB_Crime_WarningAD_Target(_Var3, _Var4, _Var5)
+AND
+DB_Crime_WarningCount(_Var10, _Var3, _Var11, _Var4)
+AND
+IntegertoString(_Var10, _Var12)
+AND
+StringConcatenate("GEB_CrimeWarning_", _Var12, _Var13)
+AND
+ObjectGetFlag(_Var11, _Var13, 1)
+AND
+IntegerSum(_Var10, 1, _Var14)
+THEN
+NOT DB_Crime_RequestedDialogWithTension(_Var3, _Var1, _Var4, _Var5, _Var6, _Var7, _Var8);
+ObjectClearFlag(_Var11, _Var13, 0);
+NOT DB_Crime_WarningCount(_Var10, _Var3, _Var11, _Var4);
+DB_Crime_WarningCount(_Var14, _Var3, _Var11, _Var4);
+
+IF
+AutomatedDialogEnded((STRING)_Var1, (INTEGER)_Var2)
+AND
+DB_DialogNPCs(_Var2, _Var3, _)
+AND
+DB_Crime_WarningAD_Target(_Var5, _Var3, _Var6)
+THEN
+NOT DB_Crime_WarningAD_Target(_Var5, _Var3, _Var6);
+
+PROC
+ProcHandleCrimeDialog((CHARACTERGUID)_Var1, (CHARACTERGUID)_Var2, (CHARACTERGUID)_Var3, (CHARACTERGUID)_Var4, (CHARACTERGUID)_Var5, (STRING)_Var6, 0, (INTEGER)_Var7)
+THEN
+DB_CrimeDialogStartFailed(_Var1, _Var2, _Var3, _Var4, _Var5, _Var6);
+
+IF
+OnCrimeResolved((INTEGER)_Var1, (CHARACTERGUID)_Var2, (CHARACTERGUID)_Var3, (CHARACTERGUID)_Var4, (CHARACTERGUID)_Var5, (CHARACTERGUID)_Var6)
+AND
+DB_CrimeDialogStartFailed(_Var7, _Var3, _Var4, _Var5, _Var6, _Var8)
+AND
+DB_Crime_RequestedDialogWithTension(_Var9, _Var8, _Var7, _Var3, _Var4, _Var5, _Var6)
+AND
+DB_Crime_WarningCount(_Var10, _Var9, _Var11, _Var7)
+AND
+IntegertoString(_Var10, _Var12)
+AND
+StringConcatenate("GEB_CrimeWarning_", _Var12, _Var13)
+AND
+ObjectGetFlag(_Var11, _Var13, 1)
+AND
+IntegerSum(_Var10, 1, _Var14)
+THEN
+NOT DB_CrimeDialogStartFailed(_Var7, _Var3, _Var4, _Var5, _Var6, _Var8);
+NOT DB_Crime_RequestedDialogWithTension(_Var9, _Var8, _Var7, _Var3, _Var4, _Var5, _Var6);
+ObjectClearFlag(_Var11, _Var13, 0);
+NOT DB_Crime_WarningAD_Target(_Var9, _Var7, _Var11);
+NOT DB_Crime_WarningCount(_Var10, _Var9, _Var11, _Var7);
+DB_Crime_WarningCount(_Var14, _Var9, _Var11, _Var7);
+
+PROC
+ProcHandleCrimeDialog((CHARACTERGUID)_Var1, (CHARACTERGUID)_Var2, (CHARACTERGUID)_Var3, (CHARACTERGUID)_Var4, (CHARACTERGUID)_Var5, (STRING)_Var6, 1, (INTEGER)_Var7)
+AND
+GetPosition(_Var1, _Var8, _Var9, _Var10)
+THEN
+SetVarFloat3(_Var1, "NPCOrgPos", _Var8, _Var9, _Var10);
+
+PROC
+ProcHandleCrimeDialog((CHARACTERGUID)_Var1, (CHARACTERGUID)_Var2, (CHARACTERGUID)_Var3, (CHARACTERGUID)_Var4, (CHARACTERGUID)_Var5, (STRING)_Var6, 1, 1)
+THEN
+CharacterLookAt(_Var1, _Var2, 0);
+CharacterLookAt(_Var2, _Var1, 0);
+CharacterMakeStoryNpc(_Var1, 1);
+CharacterMakeStoryNpc(_Var2, 1);
+CharacterMakeStoryNpc(_Var3, 1);
+CharacterMakeStoryNpc(_Var4, 1);
+CharacterMakeStoryNpc(_Var5, 1);
+
+PROC
+ProcHandleCrimeDialog((CHARACTERGUID)_Var1, (CHARACTERGUID)_Var2, (CHARACTERGUID)_Var3, (CHARACTERGUID)_Var4, (CHARACTERGUID)_Var5, (STRING)_Var6, 1, 0)
+THEN
+CharacterLookAt(_Var1, _Var2, 0);
+
+PROC
+ProcHandleCrimeDialog((CHARACTERGUID)_Var1, (CHARACTERGUID)_Var2, (CHARACTERGUID)_Var3, (CHARACTERGUID)_Var4, (CHARACTERGUID)_Var5, (STRING)_Var6, 1, _)
+AND
+DB_CRIME_ForbiddenStatus(_Var8)
+AND
+HasActiveStatus(_Var1, _Var8, 1)
+THEN
+RemoveStatus(_Var1, _Var8);
+
+IF
+CharacterLeftParty((CHARACTERGUID)_Var1)
+AND
+ObjectExists(_Var1, 1)
+AND
+IsTagged(_Var1, "SUMMON", 1)
+AND
+DB_Crime_WarningCount(_Var2, _Var3, _Var1, _Var4)
+THEN
+NOT DB_Crime_WarningCount(_Var2, _Var3, _Var1, _Var4);
+
+IF
+CharacterOnCrimeSensibleActionNotification((CHARACTERGUID)_Var1, (STRING)_Var2, (INTEGER)_Var3, "CRIME_OsirisReaction", (STRING)_Var4, (CHARACTERGUID)_Var5, (CHARACTERGUID)_Var6, (CHARACTERGUID)_Var7, (CHARACTERGUID)_Var8, _)
+THEN
+ObjectClearFlag(_Var1, "GEB_Arrest_HavePrison", 0);
+
+IF
+CharacterOnCrimeSensibleActionNotification((CHARACTERGUID)_Var1, (STRING)_Var2, (INTEGER)_Var3, "CRIME_OsirisReaction", (STRING)_Var4, (CHARACTERGUID)_Var5, (CHARACTERGUID)_Var6, (CHARACTERGUID)_Var7, (CHARACTERGUID)_Var8, _)
+AND
+DB_RegionPrison(_Var2, _)
+THEN
+ObjectSetFlag(_Var1, "GEB_Arrest_HavePrison");
+
+QRY
+QryCrimeOnlyHasSummonCriminal((CHARACTERGUID)_Var1, (CHARACTERGUID)_Var2, (CHARACTERGUID)_Var3, (CHARACTERGUID)_Var4)
+AND
+QryCrimeCharacterIsSummonOrNull(_Var1)
+AND
+QryCrimeCharacterIsSummonOrNull(_Var2)
+AND
+QryCrimeCharacterIsSummonOrNull(_Var3)
+AND
+QryCrimeCharacterIsSummonOrNull(_Var4)
+THEN
+DB_NOOP(1);
+
+QRY
+QryCrimeCharacterIsSummonOrNull((CHARACTERGUID)_Var1)
+AND
+QRY_CharacterIsNull(_Var1)
+THEN
+DB_NOOP(1);
+
+QRY
+QryCrimeCharacterIsSummonOrNull((CHARACTERGUID)_Var1)
+AND NOT
+QRY_CharacterIsNull(_Var1)
+AND
+IsTagged(_Var1, "SUMMON", 1)
+THEN
+DB_NOOP(1);
+
+QRY
+QryCrimeAssailantIsNotSummon((CHARACTERGUID)_Var1, (CHARACTERGUID)_Var2)
+AND
+_Var1 == _Var2
+THEN
+DB_NOOP(1);
+
+QRY
+QryCrimeAssailantIsNotSummon((CHARACTERGUID)_Var1, (CHARACTERGUID)_Var2)
+AND
+QRY_CharacterIsNull(_Var2)
+THEN
+DB_NOOP(1);
+
+IF
+CharacterJoinedParty((CHARACTERGUID)_Var1)
+AND
+IsTagged(_Var1, "SUMMON", 1)
+THEN
+CharacterRegisterCrime(_Var1, "ActiveSummon", NULL_00000000-0000-0000-0000-000000000000, NULL_00000000-0000-0000-0000-000000000000, 0);
+
+IF
+CharacterLeftParty((CHARACTERGUID)_Var1)
+AND
+IsTagged(_Var1, "SUMMON", 1)
+THEN
+CharacterStopCrime(_Var1, "ActiveSummon", NULL_00000000-0000-0000-0000-000000000000);
+
+IF
+StoryEvent((CHARACTERGUID)_Var1, "CRIME_SetCrimeInvestigationPos")
+AND
+GetVarInteger(_Var1, "CrimeID", _Var2)
+AND
+DB_CRIME_CrimeInvestigationPos(_Var2, _Var3, _Var4, _Var5)
+THEN
+SetVarInteger(_Var1, "bool_RunToInvestigationScene", 1);
+SetVarFloat3(_Var1, "CrimePos", _Var3, _Var4, _Var5);
+
+IF
+StoryEvent((CHARACTERGUID)_Var1, "CRIME_SetCrimeInvestigationPos")
+THEN
+CharacterSetReactionPriority(_Var1, "WalkToCrimeScene", 30000);
+
+IF
+CrimeInterrogationRequest((STRING)_Var1, (INTEGER)_Var2, (CHARACTERGUID)_Var3, (CHARACTERGUID)_Var4, (CHARACTERGUID)_Var5, (CHARACTERGUID)_Var6, (CHARACTERGUID)_Var7, (STRING)_Var8)
+THEN
+ObjectClearFlag(_Var3, "GEB_Arrest_HavePrison", 0);
+
+IF
+CrimeInterrogationRequest((STRING)_Var1, (INTEGER)_Var2, (CHARACTERGUID)_Var3, (CHARACTERGUID)_Var4, (CHARACTERGUID)_Var5, (CHARACTERGUID)_Var6, (CHARACTERGUID)_Var7, (STRING)_Var8)
+AND
+DB_RegionPrison(_Var1, _)
+THEN
+ObjectSetFlag(_Var3, "GEB_Arrest_HavePrison");
+
+PROC
+ProcCrimeCheckInterrogationDialog((STRING)_Var1, (INTEGER)_Var2, (CHARACTERGUID)_Var3, (CHARACTERGUID)_Var4, (CHARACTERGUID)_Var5, (CHARACTERGUID)_Var6, (CHARACTERGUID)_Var7, (STRING)_Var8)
+AND
+IsTagged(_Var3, "ANIMAL", 0)
+AND
+IsTagged(_Var3, "KID", 0)
+THEN
+DB_Crime_InterrogationStarted(_Var2, _Var3);
+ProcStartInterrogationDialog(_Var2, _Var3, _Var4, _Var5, _Var6, _Var7, _Var8);
+
+PROC
+ProcCrimeCheckInterrogationDialog((STRING)_Var1, (INTEGER)_Var2, (CHARACTERGUID)_Var3, (CHARACTERGUID)_Var4, (CHARACTERGUID)_Var5, (CHARACTERGUID)_Var6, (CHARACTERGUID)_Var7, (STRING)_Var8)
+AND NOT
+DB_Crime_InterrogationStarted(_Var2, _Var3)
+AND
+IsTagged(_Var3, "ANIMAL", 1)
+THEN
+DB_Crime_InterrogationStarted(_Var2, _Var3);
+CrimeInterrogationDone(_Var2, _Var3, 1, _Var4, _Var5, _Var6, _Var7);
+
+PROC
+ProcCrimeCheckInterrogationDialog((STRING)_Var1, (INTEGER)_Var2, (CHARACTERGUID)_Var3, (CHARACTERGUID)_Var4, (CHARACTERGUID)_Var5, (CHARACTERGUID)_Var6, (CHARACTERGUID)_Var7, (STRING)_Var8)
+AND NOT
+DB_Crime_InterrogationStarted(_Var2, _Var3)
+AND
+IsTagged(_Var3, "AGGRESSIVEANIMAL", 1)
+THEN
+DB_Crime_InterrogationStarted(_Var2, _Var3);
+Proc_StartDialog(1, "GEB_AD_Noticed_AnimalAttackedAnimal", _Var3);
+ProcMakeNPCHostile(_Var3, _Var4);
+ProcMakeNPCHostile(_Var3, _Var5);
+ProcMakeNPCHostile(_Var3, _Var6);
+ProcMakeNPCHostile(_Var3, _Var7);
+
+PROC
+ProcCrimeCheckInterrogationDialog((STRING)_Var1, (INTEGER)_Var2, (CHARACTERGUID)_Var3, (CHARACTERGUID)_Var4, (CHARACTERGUID)_Var5, (CHARACTERGUID)_Var6, (CHARACTERGUID)_Var7, (STRING)_Var8)
+AND NOT
+DB_Crime_InterrogationStarted(_Var2, _Var3)
+AND
+IsTagged(_Var3, "KID", 1)
+THEN
+DB_Crime_InterrogationStarted(_Var2, _Var3);
+CrimeInterrogationDone(_Var2, _Var3, 1, _Var4, _Var5, _Var6, _Var7);
+
+PROC
+ProcCrimeCheckInterrogationDialog((STRING)_Var1, (INTEGER)_Var2, (CHARACTERGUID)_Var3, (CHARACTERGUID)_Var4, (CHARACTERGUID)_Var5, (CHARACTERGUID)_Var6, (CHARACTERGUID)_Var7, (STRING)_Var8)
+THEN
+NOT DB_Crime_InterrogationStarted(_Var2, _Var3);
+
+IF
+CrimeInterrogationRequest((STRING)_Var1, (INTEGER)_Var2, (CHARACTERGUID)_Var3, (CHARACTERGUID)_Var4, (CHARACTERGUID)_Var5, (CHARACTERGUID)_Var6, (CHARACTERGUID)_Var7, (STRING)_Var8)
+THEN
+DB_InterrogationRequested(_Var1, _Var2, _Var3, _Var4, _Var5, _Var6, _Var7, _Var8);
+CharacterDisableAllCrimes(_Var3);
+SetHasDialog(_Var3, 0);
+CharacterMoveToAndTalk(_Var3, _Var4, "", 0, "GEB_InterrogationMove", 1, 6);
+
+IF
+CharacterMoveToAndTalkRequestDialog((CHARACTERGUID)_Var1, (CHARACTERGUID)_Var2, _, _, "GEB_InterrogationMove")
+AND
+DB_InterrogationRequested(_Var5, _Var6, _Var1, _Var2, _Var7, _Var8, _Var9, _Var10)
+THEN
+ProcCrimeCheckInterrogationDialog(_Var5, _Var6, _Var1, _Var2, _Var7, _Var8, _Var9, _Var10);
+
+IF
+CharacterMoveToAndTalkFailed((CHARACTERGUID)_Var1, _, "GEB_InterrogationMove")
+AND
+DB_InterrogationRequested(_Var3, _Var4, _Var1, _Var5, _Var6, _Var7, _Var8, _Var9)
+THEN
+PROC_HandleFailedInterrogation(_Var1, _Var4);
+
+IF
+CharacterMoveToAndTalkRequestDialogFailedEvent((CHARACTERGUID)_Var1, _, "GEB_InterrogationMove")
+AND
+DB_InterrogationRequested(_Var3, _Var4, _Var1, _Var5, _Var6, _Var7, _Var8, _Var9)
+THEN
+PROC_HandleFailedInterrogation(_Var1, _Var4);
+
+PROC
+PROC_HandleFailedInterrogation((CHARACTERGUID)_Var1, (INTEGER)_Var2)
+AND
+DB_InterrogationRequested(_Var3, _Var2, _Var1, _Var4, _Var5, _Var6, _Var7, _Var8)
+THEN
+PROC_CancelInterrogation(_Var1, _Var2, 0, _Var4, _Var5, _Var6, _Var7);
+
+PROC
+PROC_CancelInterrogation((CHARACTERGUID)_Var1, (INTEGER)_Var2, (INTEGER)_Var3, (CHARACTERGUID)_Var4, (CHARACTERGUID)_Var5, (CHARACTERGUID)_Var6, (CHARACTERGUID)_Var7)
+THEN
+CrimeInterrogationDone(_Var2, _Var1, _Var3, _Var4, _Var5, _Var6, _Var7);
+ProcCleanUpInterrogation(_Var1);
+NOT DB_IgnoreInterrogation(_Var1, NULL_00000000-0000-0000-0000-000000000000);
+ProcObjectTimer(_Var1, "GEB_RestoreInterrogation", 4500);
+CrimeEnableInterrogation(_Var1, 0);
+
+PROC
+PROC_CancelInterrogation((CHARACTERGUID)_Var1, (INTEGER)_Var2, 0, (CHARACTERGUID)_Var3, (CHARACTERGUID)_Var4, (CHARACTERGUID)_Var5, (CHARACTERGUID)_Var6)
+THEN
+CrimeResetInterrogationForCriminals(_Var2, _Var3, _Var4, _Var5, _Var6);
+
+PROC
+ProcObjectTimerFinished((CHARACTERGUID)_Var1, "GEB_RestoreInterrogation")
+AND NOT
+DB_CrimeReaction_DoNotInterrogate(_Var1)
+THEN
+CrimeEnableInterrogation(_Var1, 1);
+
+PROC
+ProcCleanUpInterrogation((CHARACTERGUID)_Var1)
+AND
+DB_InterrogationRequested(_Var2, _Var3, _Var1, _Var4, _Var5, _Var6, _Var7, _Var8)
+THEN
+ProcRestoreGenericBehaviour(_Var1);
+SetHasDialog(_Var1, 1);
+NOT DB_InterrogationRequested(_Var2, _Var3, _Var1, _Var4, _Var5, _Var6, _Var7, _Var8);
+
+IF
+CharacterMoveToAndTalkRequestDialog((CHARACTERGUID)_Var1, (CHARACTERGUID)_Var2, _, _, "GEB_InterrogationMove")
+AND NOT
+DB_InterrogationRequested(_, _, _Var1, _Var2, _, _, _, _)
+THEN
+CharacterMoveToAndTalkRequestDialogFailed(_Var1, _Var2, "GEB_InterrogationMove");
+
+IF
+DB_Crime_FailedToInterruptStoryDialogs(_Var1, _Var2, _Var3, _Var4, _Var5, _Var6, _Var7)
+AND
+DB_InterrogationRequested(_Var8, _Var1, _Var3, _Var4, _Var5, _Var6, _Var7, _Var2)
+THEN
+CharacterMoveToAndTalkRequestDialogFailed(_Var3, _Var4, "GEB_InterrogationMove");
+
+IF
+DB_Crime_InterrogationStarted(_Var1, _Var2)
+AND
+DB_InterrogationRequested(_Var3, _Var1, _Var2, _Var4, _Var5, _Var6, _Var7, _Var8)
+THEN
+ProcCleanUpInterrogation(_Var2);
+
+IF
+OnCrimeResolved((INTEGER)_Var1, _, _, _, _, _)
+AND
+DB_InterrogationRequested(_, _Var1, _Var8, _, _, _, _, _)
+THEN
+ProcCleanUpInterrogation(_Var8);
+
+PROC
+ProcStartInterrogationDialog((INTEGER)_Var1, (CHARACTERGUID)_Var2, (CHARACTERGUID)_Var3, (CHARACTERGUID)_Var4, (CHARACTERGUID)_Var5, (CHARACTERGUID)_Var6, (STRING)_Var7)
+AND
+_Var7 == ""
+THEN
+ProcDoStartInterrogationDialog(_Var1, _Var2, _Var3, _Var4, _Var5, _Var6, "GEB_Interrogation");
+
+PROC
+ProcStartInterrogationDialog((INTEGER)_Var1, (CHARACTERGUID)_Var2, (CHARACTERGUID)_Var3, (CHARACTERGUID)_Var4, (CHARACTERGUID)_Var5, (CHARACTERGUID)_Var6, (STRING)_Var7)
+AND
+_Var7 != ""
+THEN
+ProcDoStartInterrogationDialog(_Var1, _Var2, _Var3, _Var4, _Var5, _Var6, _Var7);
+
+PROC
+ProcDoStartInterrogationDialog(_, (CHARACTERGUID)_Var2, (CHARACTERGUID)_Var3, (CHARACTERGUID)_Var4, (CHARACTERGUID)_Var5, (CHARACTERGUID)_Var6, (STRING)_Var7)
+AND
+DB_Interrogation(_Var2, _Var8)
+THEN
+NOT DB_Interrogation(_Var2, _Var8);
+
+PROC
+ProcDoStartInterrogationDialog((INTEGER)_Var1, (CHARACTERGUID)_Var2, (CHARACTERGUID)_Var3, (CHARACTERGUID)_Var4, (CHARACTERGUID)_Var5, (CHARACTERGUID)_Var6, (STRING)_Var7)
+THEN
+ProcCrimeInterruptStoryDialogs(_Var1, _Var7, 1, _Var2, _Var3, _Var4, _Var5, _Var6);
+ProcCrimeCheckInterrogationDialogSucceeded(_Var1, _Var2, _Var3, _Var4, _Var5, _Var6, _Var7);
+
+PROC
+ProcCrimeCheckInterrogationDialogSucceeded((INTEGER)_Var1, (CHARACTERGUID)_Var2, (CHARACTERGUID)_Var3, (CHARACTERGUID)_Var4, (CHARACTERGUID)_Var5, (CHARACTERGUID)_Var6, (STRING)_Var7)
+AND NOT
+DB_Crime_FailedToInterruptStoryDialogs(_Var1, _Var7, _Var2, _Var3, _Var4, _Var5, _Var6)
+THEN
+DB_Crime_Interrogation(_Var1, _Var2, _Var3, _Var4, _Var5, _Var6, _Var7);
+DB_Interrogation(_Var2, _Var1);
+
+PROC
+ProcCrimeCheckInterrogationDialogSucceeded((INTEGER)_Var1, (CHARACTERGUID)_Var2, (CHARACTERGUID)_Var3, (CHARACTERGUID)_Var4, (CHARACTERGUID)_Var5, (CHARACTERGUID)_Var6, (STRING)_Var7)
+AND
+DB_Crime_FailedToInterruptStoryDialogs(_Var1, _Var7, _Var2, _Var3, _Var4, _Var5, _Var6)
+THEN
+CrimeInterrogationDone(_Var1, _Var2, 1, _Var3, _Var4, _Var5, _Var6);
+
+IF
+ObjectFlagSet("CRIME_Allow_Search", (CHARACTERGUID)_Var1, (INTEGER)_Var2)
+THEN
+ObjectClearFlag(_Var1, "CRIME_Allow_Search", _Var2);
+ObjectClearFlag(_Var1, "CRIME_EvidenceFound", _Var2);
+ObjectClearFlag(_Var1, "CRIME_GuiltFound", _Var2);
+ObjectClearFlag(_Var1, "CRIME_FoundEvidenceCurrentCrime", _Var2);
+ObjectClearFlag(_Var1, "CRIME_FoundGuiltyPlayer", _Var2);
+
+IF
+ObjectFlagSet("CRIME_Allow_Search", (CHARACTERGUID)_Var1, (INTEGER)_Var2)
+AND
+DB_Crime_Interrogation(_Var3, _Var1, _Var4, _Var5, _Var6, _Var7, _)
+AND
+CrimeFindEvidence(_Var3, _Var1, _Var4, _Var5, _Var6, _Var7, _Var9, _Var10, _Var11)
+AND
+QRY_GetCriminalGuilty(_Var3, _Var1, _Var9, _Var10, _Var11)
+THEN
+DB_Interrogation(_Var1, _Var3);
+
+IF
+ObjectFlagSet("CRIME_Resist_Search", (CHARACTERGUID)_Var1, (INTEGER)_Var2)
+THEN
+ObjectClearFlag(_Var1, "CRIME_Resist_Search", _Var2);
+DB_Crime_CombatAfterDialog(_Var2);
+
+QRY
+QRY_GetCriminalGuilty((INTEGER)_Var1, (CHARACTERGUID)_Var2, (INTEGER)_Var3, (INTEGER)_Var4, (INTEGER)_Var5)
+AND
+_Var4 == 1
+THEN
+ObjectSetFlag(_Var2, "CRIME_EvidenceFound", 0);
+
+QRY
+QRY_GetCriminalGuilty((INTEGER)_Var1, (CHARACTERGUID)_Var2, (INTEGER)_Var3, (INTEGER)_Var4, (INTEGER)_Var5)
+AND
+_Var5 == 1
+THEN
+ObjectSetFlag(_Var2, "CRIME_GuiltFound", 0);
+
+QRY
+QRY_GetCriminalGuilty((INTEGER)_Var1, (CHARACTERGUID)_Var2, (INTEGER)_Var3, (INTEGER)_Var4, (INTEGER)_Var5)
+AND
+_Var3 == 1
+THEN
+ObjectSetFlag(_Var2, "CRIME_FoundEvidenceCurrentCrime", 0);
+
+IF
+ObjectFlagSet("CRIME_FoundGuiltyPlayer", (CHARACTERGUID)_Var1, (INTEGER)_Var2)
+AND
+DB_Interrogation(_Var1, _Var3)
+THEN
+DB_EvidenceFound(_Var3, _Var1);
+
+IF
+ObjectFlagSet("CRIME_ReturnGoodsToOnwer", (CHARACTERGUID)_Var1, (INTEGER)_Var2)
+AND
+DB_Interrogation(_Var1, _Var3)
+THEN
+ObjectClearFlag(_Var1, "CRIME_ReturnGoodsToOnwer", _Var2);
+CrimeTransferEvidenceTo(_Var3, _Var1);
+
+IF
+ObjectFlagSet("CRIME_CallGuardsFromDialog", (CHARACTERGUID)_Var1, (INTEGER)_Var2)
+AND
+DB_DialogPlayers(_Var2, _Var3, 1)
+THEN
+ObjectClearFlag(_Var1, "CRIME_CallGuardsFromDialog");
+DB_Crime_CallingGuards(_Var1, _Var3, _Var2);
+
+IF
+DialogEnded((STRING)_Var1, (INTEGER)_Var2)
+AND
+DB_DialogNPCs(_Var2, _Var3, 1)
+AND
+DB_Crime_Interrogation(_Var4, _Var3, _Var5, _Var6, _Var7, _Var8, _Var1)
+AND
+DB_Crime_CallingGuards(_Var3, _, _Var2)
+THEN
+NOT DB_EvidenceFound(_Var4, _Var3);
+
+IF
+DialogEnded((STRING)_Var1, (INTEGER)_Var2)
+AND
+DB_DialogNPCs(_Var2, _Var3, 1)
+AND
+DB_Crime_Interrogation(_Var4, _Var3, _Var5, _Var6, _Var7, _Var8, _Var1)
+AND NOT
+DB_Crime_CallingGuards(_Var3, _, _Var2)
+THEN
+ProcCheckInterrogationDone(_Var3, _Var1);
+
+PROC
+ProcCheckInterrogationDone((CHARACTERGUID)_Var1, (STRING)_Var2)
+AND NOT
+DB_EvidenceCheckInWarning(_Var2)
+AND
+DB_Crime_Interrogation(_Var3, _Var1, _Var4, _Var5, _Var6, _Var7, _Var2)
+THEN
+NOT DB_Crime_Interrogation(_Var3, _Var1, _Var4, _Var5, _Var6, _Var7, _Var2);
+ProcStopInterrogation(_Var3, _Var1, _Var4, _Var5, _Var6, _Var7);
+
+IF
+DialogEnded((STRING)_Var1, (INTEGER)_Var2)
+AND
+DB_Crime_CallingGuards(_Var3, _Var4, _Var2)
+AND
+DB_Interrogation(_Var3, _Var5)
+THEN
+SetVarObject(_Var3, "Criminal1", _Var4);
+SetVarString(_Var3, "ArrestDialog", "GEB_Arrest");
+SetVarInteger(_Var3, "CrimeID", _Var5);
+SetStoryEvent(_Var3, "CRIME_CallGuardsFromDialog");
+NOT DB_Crime_CallingGuards(_Var3, _Var4, _Var2);
+
+IF
+ObjectFlagSet("CRIME_FleeHelpFromDialog", (CHARACTERGUID)_Var1, (INTEGER)_Var2)
+AND
+DB_DialogPlayers(_Var2, _Var3, 1)
+THEN
+DB_Crime_FleeCallforHelp(_Var1, _Var3, _Var2);
+
+IF
+DialogEnded((STRING)_Var1, (INTEGER)_Var2)
+AND
+DB_Crime_FleeCallforHelp(_Var3, _Var4, _Var2)
+AND
+DB_Interrogation(_Var3, _Var5)
+THEN
+SetVarObject(_Var3, "Criminal1", _Var4);
+SetVarString(_Var3, "ArrestDialog", "GEB_Arrest");
+SetVarInteger(_Var3, "CrimeID", _Var5);
+SetStoryEvent(_Var3, "CRIME_FleeHelpFromDialog");
+NOT DB_Crime_FleeCallforHelp(_Var3, _Var4, _Var2);
+
+IF
+DialogEnded((STRING)_Var1, (INTEGER)_Var2)
+AND
+DB_DialogPlayers(_Var2, _Var3, 1)
+AND
+ObjectGetFlag(_Var3, "CRIME_PersuasionFailed", 1)
+THEN
+ObjectClearFlag(_Var3, "CRIME_PersuasionFailed", 0);
+
+IF
+DialogEnded((STRING)_Var1, (INTEGER)_Var2)
+AND
+DB_Crime_CombatAfterDialog(_Var2)
+AND
+DB_DialogNPCs(_Var2, _Var3, 1)
+AND
+DB_DialogPlayers(_Var2, _Var4, _)
+THEN
+ProcMakeNPCHostile(_Var4, _Var3);
+NOT DB_Crime_CombatAfterDialog(_Var2);
+
+IF
+DialogEnded((STRING)_Var1, (INTEGER)_Var2)
+AND
+DB_DialogNPCs(_Var2, _Var3, 1)
+AND
+DB_Crime_Interrogation(_Var4, _Var3, _Var5, _Var6, _Var7, _Var8, _Var1)
+THEN
+NOT DB_Crime_Interrogation(_Var4, _Var3, _Var5, _Var6, _Var7, _Var8, _Var1);
+
+PROC
+ProcStopInterrogation((INTEGER)_Var1, (CHARACTERGUID)_Var2, (CHARACTERGUID)_Var3, (CHARACTERGUID)_Var4, (CHARACTERGUID)_Var5, (CHARACTERGUID)_Var6)
+AND
+DB_EvidenceFound(_Var1, _Var2)
+THEN
+CrimeInterrogationDone(_Var1, _Var2, 1, _Var3, _Var4, _Var5, _Var6);
+
+PROC
+ProcStopInterrogation((INTEGER)_Var1, (CHARACTERGUID)_Var2, (CHARACTERGUID)_Var3, (CHARACTERGUID)_Var4, (CHARACTERGUID)_Var5, (CHARACTERGUID)_Var6)
+AND NOT
+DB_EvidenceFound(_Var1, _Var2)
+THEN
+CrimeInterrogationDone(_Var1, _Var2, 0, _Var3, _Var4, _Var5, _Var6);
+
+PROC
+ProcStopInterrogation((INTEGER)_Var1, (CHARACTERGUID)_Var2, (CHARACTERGUID)_Var3, (CHARACTERGUID)_Var4, (CHARACTERGUID)_Var5, (CHARACTERGUID)_Var6)
+THEN
+NOT DB_EvidenceFound(_Var1, _Var2);
+
+IF
+OnCrimeSawCriminalInCombat((INTEGER)_Var1, (CHARACTERGUID)_Var2, (CHARACTERGUID)_Var3)
+AND
+IsTagged(_Var2, "CIVILIAN", 0)
+AND
+IsTagged(_Var2, "ANIMAL", 0)
+THEN
+ProcMakeNPCHostile(_Var2, _Var3);
+
+IF
+DB_TrespassTrigger(_Var1, _Var2)
+THEN
+DB_TrespassTrigger(_Var1, _Var2, "Trespassing", NULL_00000000-0000-0000-0000-000000000000);
+
+IF
+DB_TrespassTrigger(_Var1, _Var2, _Var3)
+THEN
+DB_TrespassTrigger(_Var1, _Var2, _Var3, NULL_00000000-0000-0000-0000-000000000000);
+
+IF
+DB_TrespassTrigger(_Var1, _Var2, _Var3, _Var4)
+THEN
+DB_TrespassingCrimes(_Var3);
+
+IF
+DB_TrespassTrigger(_Var1, _, _, _)
+THEN
+ProcTriggerRegisterForPlayers(_Var1);
+
+PROC
+ProcRemoveDBTrespassTrigger((TRIGGERGUID)_Var1, (TRIGGERGUID)_Var2)
+THEN
+ProcRemoveDBTrespassTrigger(_Var1, _Var2, NULL_00000000-0000-0000-0000-000000000000);
+
+PROC
+ProcRemoveDBTrespassTrigger((TRIGGERGUID)_Var1, (TRIGGERGUID)_Var2, (CHARACTERGUID)_Var3)
+AND
+DB_TrespassTrigger(_Var1, _Var2, _Var4, _Var3)
+AND
+DB_IsPlayer(_Var5)
+THEN
+CharacterStopCrime(_Var5, _Var4, _Var1);
+
+PROC
+ProcRemoveDBTrespassTrigger((TRIGGERGUID)_Var1, (TRIGGERGUID)_Var2, (CHARACTERGUID)_Var3)
+AND
+DB_TrespassTrigger(_Var1, _Var2, _Var4)
+AND
+DB_IsPlayer(_Var5)
+THEN
+CharacterStopCrime(_Var5, _Var4, _Var1);
+
+PROC
+ProcRemoveDBTrespassTrigger((TRIGGERGUID)_Var1, (TRIGGERGUID)_Var2, (CHARACTERGUID)_Var3)
+AND
+DB_TrespassTrigger(_Var1, _Var2)
+AND
+DB_IsPlayer(_Var4)
+THEN
+CharacterStopCrime(_Var4, "Trespassing", _Var1);
+
+PROC
+ProcRemoveDBTrespassTrigger((TRIGGERGUID)_Var1, (TRIGGERGUID)_Var2, (CHARACTERGUID)_Var3)
+AND
+DB_TrespassTrigger(_Var1, _Var2, _Var4, _Var3)
+THEN
+NOT DB_TrespassTrigger(_Var1, _Var2, _Var4, _Var3);
+
+PROC
+ProcRemoveDBTrespassTrigger((TRIGGERGUID)_Var1, (TRIGGERGUID)_Var2, (CHARACTERGUID)_Var3)
+AND
+DB_TrespassTrigger(_Var1, _Var2)
+THEN
+NOT DB_TrespassTrigger(_Var1, _Var2);
+
+PROC
+ProcRemoveDBTrespassTrigger((TRIGGERGUID)_Var1, (TRIGGERGUID)_Var2, (CHARACTERGUID)_Var3)
+AND
+DB_TrespassTrigger(_Var1, _Var2, _Var4)
+THEN
+NOT DB_TrespassTrigger(_Var1, _Var2, _Var4);
+
+IF
+CharacterEnteredTrigger((CHARACTERGUID)_Var1, (TRIGGERGUID)_Var2)
+AND
+DB_TrespassTrigger(_Var2, _, _Var4, _Var5)
+AND
+DB_IsPlayer(_Var1)
+AND NOT
+DB_CharacterCrimeDisabled(_Var1, _Var4)
+THEN
+ProcCharacterRegisterCrime(_Var1, _Var4, _Var2, _Var5, 0, _Var5);
+
+PROC
+ProcCharacterRegisterCrime((CHARACTERGUID)_Var1, (STRING)_Var2, (TRIGGERGUID)_Var3, (CHARACTERGUID)_Var4, (INTEGER)_Var5, (CHARACTERGUID)_Var6)
+AND
+DB_TrespassTrigger(_Var3, _, _Var2, _Var6)
+AND NOT
+QRY_CRIME_BlockRegisterCrime(_Var1, _Var2, _Var3, _Var4, _Var5, _Var6)
+THEN
+DB_PlayerTrespassing(_Var1, _Var3);
+
+IF
+CharacterLeftTrigger((CHARACTERGUID)_Var1, (TRIGGERGUID)_Var2)
+AND
+DB_TrespassTrigger(_Var2, _, _Var4, _Var5)
+THEN
+CharacterStopCrime(_Var1, _Var4, _Var2);
+NOT DB_PlayerTrespassing(_Var1, _Var2);
+
+IF
+ObjectFlagSet("TeleportOutOfTrespass", (GUIDSTRING)_Var1, (INTEGER)_Var2)
+THEN
+DB_CrimeTeleportOutOfTrespass(_Var1, _Var2);
+
+IF
+DialogEnded(_, (INTEGER)_Var2)
+AND
+DB_DialogPlayers(_Var2, _Var3, 1)
+AND
+DB_PlayerTrespassing(_Var3, _Var4)
+AND
+DB_CrimeTeleportOutOfTrespass(_Var3, _Var2)
+AND
+DB_TrespassTrigger(_Var4, _Var5, _, _)
+AND
+DB_DialogPlayers(_Var2, _Var8, _)
+THEN
+TeleportTo(_Var8, _Var5, "", 1);
+NOT DB_PlayerTrespassing(_Var3, _Var4);
+NOT DB_CrimeTeleportOutOfTrespass(_Var8, _Var2);
+ObjectClearFlag(_Var8, "TeleportOutOfTrespass", 0);
+CharacterFlushQueue(_Var8);
+FireOsirisEvents();
+
+IF
+DialogEnded(_, (INTEGER)_Var2)
+AND
+DB_CrimeTeleportOutOfTrespass(_Var3, _Var2)
+THEN
+NOT DB_CrimeTeleportOutOfTrespass(_Var3, _Var2);
+ObjectClearFlag(_Var3, "TeleportOutOfTrespass", 0);
+
+IF
+CharacterSelectedAsBestUnavailableFallbackLead((CHARACTERGUID)_Var1, (STRING)_Var2, (INTEGER)_Var3, (INTEGER)_Var4, (CHARACTERGUID)_Var5, (CHARACTERGUID)_Var6, (CHARACTERGUID)_Var7, (CHARACTERGUID)_Var8)
+AND NOT
+QryCrimeOnlyHasSummonCriminal(_Var5, _Var6, _Var7, _Var8)
+AND
+CrimeGetType(_Var3, _Var9)
+AND
+DB_TrespassingCrimes(_Var9)
+THEN
+ProcCrimeTrespassingCheckDetection(_Var3, _Var1, _Var5);
+ProcCrimeTrespassingCheckDetection(_Var3, _Var1, _Var6);
+ProcCrimeTrespassingCheckDetection(_Var3, _Var1, _Var7);
+ProcCrimeTrespassingCheckDetection(_Var3, _Var1, _Var8);
+ProcCrimeTrespassingCheckValidLead(_Var3, _Var1);
+ProcCrimeTrespassingStopNPCsDialogAndMakeHostileTo(_Var3, _Var4, _Var1);
+
+PROC
+ProcCrimeTrespassingCheckDetection((INTEGER)_Var1, (CHARACTERGUID)_Var2, (CHARACTERGUID)_Var3)
+AND
+_Var3 != NULL_00000000-0000-0000-0000-000000000000
+AND
+GetDistanceTo(_Var2, _Var3, _Var4)
+AND
+CrimeGetDetectionRange(_Var1, _Var5)
+AND
+_Var4 <= _Var5
+THEN
+DB_Crime_TrespassUnavailableLeadDetected(_Var2, _Var3);
+
+PROC
+ProcCrimeTrespassingCheckValidLead((INTEGER)_Var1, (CHARACTERGUID)_Var2)
+AND
+QryCrimeTrespassUnavailableLeadDetected(_Var2)
+THEN
+ProcCrimeTrespassingBlockHostileFallback(_Var1, _Var2);
+
+QRY
+QryCrimeTrespassUnavailableLeadDetected((CHARACTERGUID)_Var1)
+AND
+DB_Crime_TrespassUnavailableLeadDetected(_Var1, _)
+THEN
+DB_NOOP(1);
+
+PROC
+ProcCrimeTrespassingBlockHostileFallback((INTEGER)_Var1, (CHARACTERGUID)_Var2)
+THEN
+DB_NOOP(1);
+
+PROC
+ProcCrimeTrespassingStopNPCsDialogAndMakeHostileTo((INTEGER)_Var1, (INTEGER)_Var2, (CHARACTERGUID)_Var3)
+AND
+DB_Crime_TrespassUnavailableLeadDetected(_Var3, _Var4)
+AND NOT
+DB_CrimeTrespassingBlockHostile(_Var1, _Var3)
+THEN
+ProcTryMergingCrimes(_Var1, _Var2, _Var3, _Var4);
+
+PROC
+ProcTryMergingCrimes((INTEGER)_Var1, (INTEGER)_Var2, (CHARACTERGUID)_Var3, (CHARACTERGUID)_Var4)
+THEN
+NOT DB_CanMergeCrimes(1);
+
+PROC
+ProcTryMergingCrimes((INTEGER)_Var1, (INTEGER)_Var2, (CHARACTERGUID)_Var3, (CHARACTERGUID)_Var4)
+AND
+QryCanMergeCrimes(_Var1, _Var2, _Var4)
+THEN
+DB_CanMergeCrimes(1);
+
+IF
+OnCriminalMergedWithCrime((INTEGER)_Var1, (CHARACTERGUID)_Var2)
+AND
+CrimeGetLeadInvestigator(_Var1, _Var3)
+AND
+CrimeGetType(_Var1, _Var4)
+AND
+DB_CrimeAttitudeChange(_Var4, _Var5)
+THEN
+ProcCrimeCheckIfAttitudeCauseCombat(_Var3, _Var2, _Var5);
+
+PROC
+ProcTryMergingCrimes((INTEGER)_Var1, (INTEGER)_Var2, (CHARACTERGUID)_Var3, (CHARACTERGUID)_Var4)
+AND NOT
+DB_CanMergeCrimes(1)
+AND
+QueryOnlyOnce("CRIME_Trespassing_NPCForceStopDialog")
+THEN
+ProcForceStopDialog(_Var3);
+
+PROC
+ProcTryMergingCrimes((INTEGER)_Var1, (INTEGER)_Var2, (CHARACTERGUID)_Var3, (CHARACTERGUID)_Var4)
+AND NOT
+DB_CanMergeCrimes(1)
+THEN
+CrimeIgnoreCrime(_Var2, _Var3);
+CrimeIgnoreCrime(_Var1, _Var3);
+DB_CrimeTresPassCombatFallback(_Var3);
+ProcTryStartAttackAD(_Var3);
+CharacterSetTemporaryHostileRelation(_Var3, _Var4);
+
+PROC
+ProcTryMergingCrimes((INTEGER)_Var1, (INTEGER)_Var2, (CHARACTERGUID)_Var3, (CHARACTERGUID)_Var4)
+AND
+DB_CanMergeCrimes(1)
+AND
+DB_DialogNPCs(_Var5, _Var3, _)
+THEN
+CharacterStopCrimeWithID(_Var4, _Var1);
+DialogAddActor(_Var5, _Var4);
+
+QRY
+QryCanMergeCrimes((INTEGER)_Var1, (INTEGER)_Var2, (CHARACTERGUID)_Var3)
+AND
+CrimeGetType(_Var1, _Var4)
+AND
+CrimeGetType(_Var2, _Var4)
+AND
+CrimeAddCriminal(_Var2, _Var3, 1)
+THEN
+DB_Noop(1);
+
+PROC
+ProcTryStartAttackAD((CHARACTERGUID)_Var1)
+AND NOT
+QRY_BlockAttackAD(_Var1)
+AND
+IsTagged(_Var1, "ANIMAL", 0)
+AND
+HasAppliedStatus(_Var1, "UNCONSCIOUS", 0)
+AND
+HasAppliedStatus(_Var1, "LIE_DYING", 0)
+AND
+HasAppliedStatus(_Var1, "MUTED", 0)
+THEN
+Proc_StartDialog(1, "GEB_AD_AttackHelp", _Var1);
+
+QRY
+QRY_BlockAttackAD((CHARACTERGUID)_Var1)
+AND
+1 == 0
+THEN
+DB_NOOP(1);
+
+PROC
+ProcCrimeTrespassingStopNPCsDialogAndMakeHostileTo((INTEGER)_Var1, (INTEGER)_Var2, (CHARACTERGUID)_Var3)
+AND
+DB_Crime_TrespassUnavailableLeadDetected(_Var3, _Var4)
+THEN
+NOT DB_OnlyOnce("CRIME_Trespassing_NPCForceStopDialog");
+NOT DB_Crime_TrespassUnavailableLeadDetected(_Var3, _Var4);
+
+PROC
+ProcCrimeTrespassingStopNPCsDialogAndMakeHostileTo((INTEGER)_Var1, (INTEGER)_Var2, (CHARACTERGUID)_Var3)
+THEN
+DB_CrimeTrespassingBlockHostile(_Var1, _Var3);
+
+IF
+ObjectEnteredCombat((CHARACTERGUID)_Var1, _)
+AND
+DB_CrimeTresPassCombatFallback(_Var1)
+AND
+DB_CrimeTrespassingBlockHostile(_Var3, _Var1)
+THEN
+NOT DB_CrimeTrespassingBlockHostile(_Var3, _Var1);
+
+IF
+OnCrimeResolved((INTEGER)_Var1, _, _, _, _, _)
+AND
+DB_CrimeTrespassingBlockHostile(_Var1, _Var7)
+THEN
+NOT DB_CrimeTrespassingBlockHostile(_Var1, _Var7);
+
+IF
+CharacterSelectedAsBestUnavailableFallbackLead((CHARACTERGUID)_Var1, (STRING)_Var2, (INTEGER)_Var3, (INTEGER)_Var4, (CHARACTERGUID)_Var5, (CHARACTERGUID)_Var6, (CHARACTERGUID)_Var7, (CHARACTERGUID)_Var8)
+AND
+CrimeGetTension(_Var3, _Var9)
+AND
+_Var9 > 0
+AND
+CrimeGetType(_Var3, _Var10)
+AND NOT
+DB_TrespassingCrimes(_Var10)
+AND
+DB_DialogNPCs(_Var11, _Var1, _)
+AND
+CrimeGetCriminals(_Var4, _Var13, _Var14, _Var15, _Var16)
+THEN
+CrimeConfrontationDone(_Var3, _Var1);
+ProcForceStopDialog(_Var1);
+Proc_CharacterSetTemporaryHostileRelation(_Var1, _Var13);
+Proc_CharacterSetTemporaryHostileRelation(_Var1, _Var14);
+Proc_CharacterSetTemporaryHostileRelation(_Var1, _Var15);
+Proc_CharacterSetTemporaryHostileRelation(_Var1, _Var16);
+Proc_CharacterSetTemporaryHostileRelation(_Var1, _Var5);
+Proc_CharacterSetTemporaryHostileRelation(_Var1, _Var6);
+Proc_CharacterSetTemporaryHostileRelation(_Var1, _Var7);
+Proc_CharacterSetTemporaryHostileRelation(_Var1, _Var8);
+
+IF
+CharacterStatusAttempt((CHARACTERGUID)_Var1, "CHICKEN", (CHARACTERGUID)_Var2)
+AND
+DB_IsPlayer(_Var2)
+AND NOT
+DB_IsPlayer(_Var1)
+AND NOT
+DB_IgnoreAssault(_Var1)
+AND NOT
+DB_CombatCharacters(_Var1, _)
+AND NOT
+DB_IgnoreAssaultFor(_Var2, _Var1)
+AND
+ObjectIsCharacter(_Var1, 1)
+AND
+IsTagged(_Var1, "GHOST", 0)
+AND
+IsTagged(_Var1, "SUMMON", 0)
+AND
+HasAppliedStatus(_Var1, "CHICKEN", 1)
+AND
+CharacterIsEnemy(_Var1, _Var2, 0)
+THEN
+DB_Crime_PolymorphedIgnoreAssault(_Var1, _Var2);
+
+QRY
+QRY_CRIME_PlayerInDialogTeleportedTooFarInit((INTEGER)_Var1, (CHARACTERGUID)_Var2, (REAL)_Var3, (REAL)_Var4, (REAL)_Var5)
+AND NOT
+DB_CRIME_DialogTeleportInitialPosition(_Var1, _Var2, _, _, _)
+THEN
+DB_CRIME_DialogTeleportInitialPosition(_Var1, _Var2, _Var3, _Var4, _Var5);
+
+QRY
+QRY_CRIME_PlayerInDialogTeleportedTooFarInit((INTEGER)_Var1, (CHARACTERGUID)_Var2, (REAL)_Var3, (REAL)_Var4, (REAL)_Var5)
+THEN
+DB_NOOP(1);
+
+QRY
+QRY_CRIME_PlayerInDialogTeleportedTooFar((CHARACTERGUID)_Var1, (REAL)_Var2, (REAL)_Var3, (REAL)_Var4)
+AND
+DB_IsPlayer(_Var1)
+AND
+DB_DialogPlayers(_Var5, _Var1, _)
+AND NOT
+DB_AutomatedDialog(_Var5)
+AND
+QRY_CRIME_PlayerInDialogTeleportedTooFarInit(_Var5, _Var1, _Var2, _Var3, _Var4)
+AND
+DB_CRIME_DialogTeleportInitialPosition(_Var5, _Var1, _Var7, _Var8, _Var9)
+AND
+DB_DialogNPCs(_Var5, _Var10, _)
+AND
+ObjectIsCharacter(_Var10, 1)
+AND
+GetDistanceToPosition(_Var10, _Var7, _Var8, _Var9, _Var12)
+AND
+GetDistanceTo(_Var10, _Var1, _Var13)
+AND
+RealSum(_Var12, 5, _Var14)
+AND
+_Var13 > _Var14
+THEN
+DB_CRIME_PlayerInDialogTeleportedTooFar(_Var5, _Var1, _Var10);
+
+IF
+DialogEnded(_, (INTEGER)_Var2)
+AND
+DB_CRIME_DialogTeleportInitialPosition(_Var2, _Var3, _Var4, _Var5, _Var6)
+THEN
+NOT DB_CRIME_DialogTeleportInitialPosition(_Var2, _Var3, _Var4, _Var5, _Var6);
+
+IF
+CharacterTeleported((CHARACTERGUID)_Var1, _, (REAL)_Var3, (REAL)_Var4, (REAL)_Var5, (REAL)_Var6, (REAL)_Var7, (REAL)_Var8, _)
+AND
+QRY_CRIME_PlayerInDialogTeleportedTooFar(_Var1, _Var3, _Var4, _Var5)
+AND
+DB_CRIME_PlayerInDialogTeleportedTooFar(_Var10, _Var1, _Var11)
+AND
+CharacterIsCrimeEnabled(_Var11, "TeleportPlayerDialog", 1)
+AND
+RealSum(_Var7, 1, _Var12)
+THEN
+NOT DB_CRIME_PlayerInDialogTeleportedTooFar(_Var10, _Var1, _Var11);
+ProcCrimeTryForceStopDialog(_Var11);
+ProcCharacterRegisterCrimeWithPosition(_Var1, "TeleportPlayerDialog", NULL_00000000-0000-0000-0000-000000000000, _Var11, _Var6, _Var12, _Var8, 0, _Var11);
+
+QRY
+QryHasNeutralBlockTag((CHARACTERGUID)_Var1)
+AND
+DB_NeutralTagIgnore(_Var2)
+AND
+IsTagged(_Var1, _Var2, 1)
+THEN
+DB_NOOP(1);
+
+IF
+AttackedByObject((CHARACTERGUID)_Var1, (CHARACTERGUID)_Var2, (CHARACTERGUID)_Var3, _, (STRING)_Var5)
+AND
+_Var1 != _Var3
+AND NOT
+DB_Crime_Assault(_, _, _Var1)
+AND NOT
+DB_Crime_Assault(_, _Var2, _)
+AND NOT
+DB_Crime_PolymorphedIgnoreAssault(_Var1, _Var2)
+AND NOT
+QryIgnoreDamageSource(_Var5)
+AND NOT
+DB_IgnoreAssault(_Var1)
+AND NOT
+DB_IgnoreAssaultFor(_Var2, _Var1)
+AND
+ObjectIsCharacter(_Var1, 1)
+AND
+CharacterIsPlayer(_Var2, 1)
+AND
+CharacterIsDeadOrFeign(_Var2, 0)
+AND
+CharacterIsPlayer(_Var1, 0)
+AND
+Qry_AreInCombat(_Var2, _Var1)
+AND
+CharacterCanFight(_Var1, 1)
+AND
+CharacterIsDead(_Var1, 0)
+AND
+CharacterIsNeutral(_Var1, _Var2, 1)
+AND NOT
+QryHasNeutralBlockTag(_Var1)
+AND
+IsTagged(_Var1, "ANIMAL", 0)
+AND
+DB_CombatCharacters(_Var1, _Var10)
+THEN
+ProcWarnPlayerOfAttack(_Var1, _Var2, _Var10);
+
+IF
+ObjectLeftCombat((CHARACTERGUID)_Var1, _)
+AND
+DB_CombatWarnings(_Var1, _Var3)
+THEN
+NOT DB_CombatWarnings(_Var1, _Var3);
+
+PROC
+ProcWarnPlayerOfAttack((CHARACTERGUID)_Var1, (CHARACTERGUID)_Var2, (INTEGER)_Var3)
+AND NOT
+DB_CombatWarnings(_Var1, _)
+THEN
+DB_CombatWarnings(_Var1, 0);
+
+PROC
+ProcWarnPlayerOfAttack((CHARACTERGUID)_Var1, (CHARACTERGUID)_Var2, (INTEGER)_Var3)
+AND NOT
+DB_CombatCharacters(_Var2, _)
+AND
+DB_CombatWarnings(_Var1, _Var5)
+THEN
+NOT DB_CombatWarnings(_Var1, _Var5);
+DB_CombatWarnings(_Var1, 3);
+
+PROC
+ProcWarnPlayerOfAttack((CHARACTERGUID)_Var1, _, _)
+THEN
+ObjectClearFlag(_Var1, "GEB_Crime_LastNeutralWarning");
+ObjectClearFlag(_Var1, "GEB_Crime_AttackNeutralWarning");
+
+PROC
+ProcWarnPlayerOfAttack((CHARACTERGUID)_Var1, (CHARACTERGUID)_Var2, (INTEGER)_Var3)
+AND
+DB_CombatWarnings(_Var1, _Var4)
+AND
+IntegerSum(_Var4, 1, _Var5)
+THEN
+NOT DB_CombatWarnings(_Var1, _Var4);
+DB_CombatWarnings(_Var1, _Var5);
+
+PROC
+ProcWarnPlayerOfAttack((CHARACTERGUID)_Var1, (CHARACTERGUID)_Var2, (INTEGER)_Var3)
+AND
+DB_CombatWarnings(_Var1, _Var4)
+AND
+_Var4 > 3
+THEN
+ObjectSetFlag(_Var1, "GEB_Crime_AttackNeutralWarning");
+ProcMakeNPCHostile(_Var1, _Var2);
+
+PROC
+ProcWarnPlayerOfAttack((CHARACTERGUID)_Var1, (CHARACTERGUID)_Var2, (INTEGER)_Var3)
+AND
+DB_CombatWarnings(_Var1, 3)
+THEN
+ObjectSetFlag(_Var1, "GEB_Crime_LastNeutralWarning");
+
+PROC
+ProcWarnPlayerOfAttack((CHARACTERGUID)_Var1, (CHARACTERGUID)_Var2, (INTEGER)_Var3)
+AND
+DB_CombatWarnings(_Var1, _Var4)
+AND
+QryDoNeutralAttackWarning(_Var4)
+THEN
+Proc_StartDialog(1, "GEB_AD_WarnFriendlyFire", _Var1);
+
+QRY
+QryDoNeutralAttackWarning((INTEGER)_Var1)
+AND
+_Var1 < 3
+AND
+Random(100, _Var2)
+AND
+_Var2 <= 40
+THEN
+DB_Noop(1);
+
+QRY
+QryDoNeutralAttackWarning(3)
+THEN
+DB_Noop(1);
+
+QRY
+Qry_AreInCombat((CHARACTERGUID)_Var1, (CHARACTERGUID)_Var2)
+AND
+DB_CombatCharacters(_Var2, _)
+THEN
+DB_NOOP(1);
+
+QRY
+Qry_AreInCombat((CHARACTERGUID)_Var1, (CHARACTERGUID)_Var2)
+AND
+DB_CombatCharacters(_Var1, _)
+THEN
+DB_NOOP(1);
+
+PROC
+ProcClearAssaultDBForCrime((INTEGER)_Var1)
+AND
+DB_Crime_Assault(_Var1, _Var2, _Var3)
+THEN
+NOT DB_Crime_Assault(_Var1, _Var2, _Var3);
+
+IF
+OnCrimeRemoved((INTEGER)_Var1, (CHARACTERGUID)_Var2, (CHARACTERGUID)_Var3, (CHARACTERGUID)_Var4, (CHARACTERGUID)_Var5, (CHARACTERGUID)_Var6)
+THEN
+ProcClearAssaultDBForCrime(_Var1);
+
+IF
+OnCrimeResolved((INTEGER)_Var1, (CHARACTERGUID)_Var2, (CHARACTERGUID)_Var3, (CHARACTERGUID)_Var4, (CHARACTERGUID)_Var5, (CHARACTERGUID)_Var6)
+AND
+_Var2 != NULL_00000000-0000-0000-0000-000000000000
+AND
+DB_Crime_Assault(_Var1, _, _)
+AND
+IntegertoString(_Var1, _Var9)
+AND
+StringConcatenate("Timer_ClearAttackDB", _Var9, _Var10)
+THEN
+DB_Crime_PlayerAttacked(_Var1, _Var3, _Var2);
+DB_Crime_PlayerAttacked(_Var1, _Var4, _Var2);
+DB_Crime_PlayerAttacked(_Var1, _Var5, _Var2);
+DB_Crime_PlayerAttacked(_Var1, _Var6, _Var2);
+DB_AttackTimer(_Var1, _Var10);
+ProcObjectTimer(_Var2, _Var10, 1500);
+NOT DB_Crime_PlayerAttacked(_Var1, NULL_00000000-0000-0000-0000-000000000000, _Var2);
+
+IF
+OnCrimeResolved((INTEGER)_Var1, (CHARACTERGUID)_Var2, (CHARACTERGUID)_Var3, (CHARACTERGUID)_Var4, (CHARACTERGUID)_Var5, (CHARACTERGUID)_Var6)
+THEN
+ProcClearAssaultDBForCrime(_Var1);
+
+PROC
+ProcObjectTimerFinished((CHARACTERGUID)_Var1, (STRING)_Var2)
+AND
+DB_AttackTimer(_Var3, _Var2)
+AND
+DB_Crime_PlayerAttacked(_Var3, _Var4, _Var1)
+AND NOT
+DB_CombatCharacters(_Var1, _)
+THEN
+NOT DB_Crime_PlayerAttacked(_Var3, _Var4, _Var1);
+
+PROC
+ProcObjectTimerFinished((GUIDSTRING)_Var1, (STRING)_Var2)
+AND
+DB_AttackTimer(_Var3, _Var2)
+THEN
+NOT DB_AttackTimer(_Var3, _Var2);
+
+IF
+CrimeInterrogationRequest((STRING)_Var1, (INTEGER)_Var2, (CHARACTERGUID)_Var3, (CHARACTERGUID)_Var4, (CHARACTERGUID)_Var5, (CHARACTERGUID)_Var6, (CHARACTERGUID)_Var7, (STRING)_Var8)
+THEN
+ProcClearAssaultDBForCrime(_Var2);
+
+IF
+OnCrimeMergedWith((INTEGER)_Var1, (INTEGER)_Var2)
+AND
+DB_Crime_Assault(_Var1, _Var3, _Var4)
+THEN
+NOT DB_Crime_Assault(_Var1, _Var3, _Var4);
+DB_Crime_Assault(_Var2, _Var3, _Var4);
+
+IF
+CharacterOnCrimeSensibleActionNotification((CHARACTERGUID)_Var1, _, (INTEGER)_Var3, _, _, (CHARACTERGUID)_Var6, _, _, _, 1)
+AND
+DB_Crime_Assault(_Var3, _Var6, _Var10)
+THEN
+NOT DB_Crime_Assault(_Var3, _Var6, _Var10);
+DB_Crime_Assault(_Var3, _Var6, _Var1);
+
+QRY
+QryIgnoreDamageSource((STRING)_Var1)
+AND
+DB_IgnoreDamageSources(_Var1)
+THEN
+DB_NOOP(1);
+
+IF
+AttackedByObject((CHARACTERGUID)_Var1, (CHARACTERGUID)_Var2, (CHARACTERGUID)_Var3, _, (STRING)_Var5)
+AND
+_Var1 != _Var3
+AND NOT
+DB_IgnoreAssault(_Var1)
+AND NOT
+DB_Crime_PolymorphedIgnoreAssault(_Var1, _Var2)
+AND NOT
+DB_CombatCharacters(_Var1, _)
+AND NOT
+DB_Crime_Assault(_, _, _Var1)
+AND
+CharacterIsPlayer(_Var2, 1)
+AND NOT
+QryIgnoreDamageSource(_Var5)
+AND
+CharacterIsDeadOrFeign(_Var2, 0)
+AND
+ObjectIsCharacter(_Var1, 1)
+AND
+CharacterIsPlayer(_Var1, 0)
+AND
+CharacterIsDead(_Var1, 0)
+AND
+IsTagged(_Var1, "GHOST", 0)
+AND
+IsTagged(_Var1, "SUMMON", 0)
+THEN
+ProcCrimeCheckAssailant(_Var1, _Var2, _Var3);
+
+PROC
+ProcCrimeCheckAssailant((CHARACTERGUID)_Var1, (CHARACTERGUID)_Var2, (CHARACTERGUID)_Var3)
+AND NOT
+QRY_CharacterIsNull(_Var3)
+AND
+IsTagged(_Var3, "SUMMON", 1)
+AND NOT
+DB_IgnoreAssaultFor(_Var3, _Var1)
+AND NOT
+DB_Crime_Assault(_, _Var3, _)
+AND
+CharacterIsEnemy(_Var1, _Var3, 0)
+THEN
+ProcCrimeRegisterAssault(_Var3, _Var1, 1);
+
+PROC
+ProcCrimeCheckAssailant((CHARACTERGUID)_Var1, (CHARACTERGUID)_Var2, (CHARACTERGUID)_Var3)
+AND
+QryCrimeAssailantIsNotSummon(_Var2, _Var3)
+AND NOT
+DB_IgnoreAssaultFor(_Var2, _Var1)
+AND NOT
+DB_Crime_Assault(_, _Var2, _)
+AND
+CharacterIsEnemy(_Var1, _Var2, 0)
+THEN
+ProcCrimeRegisterAssault(_Var2, _Var1, 0);
+
+PROC
+ProcCrimeRegisterAssault((CHARACTERGUID)_Var1, (CHARACTERGUID)_Var2, 0)
+AND
+IsTagged(_Var2, "ANIMAL", 0)
+THEN
+ProcCrimeRegisterAssaultType(_Var1, _Var2, "Assault");
+
+PROC
+ProcCrimeRegisterAssault((CHARACTERGUID)_Var1, (CHARACTERGUID)_Var2, 0)
+AND
+IsTagged(_Var2, "ANIMAL", 1)
+THEN
+ProcCrimeRegisterAssaultType(_Var1, _Var2, "AttackAnimal");
+
+PROC
+ProcCrimeRegisterAssault((CHARACTERGUID)_Var1, (CHARACTERGUID)_Var2, 1)
+AND
+IsTagged(_Var2, "ANIMAL", 0)
+THEN
+ProcCrimeRegisterAssaultType(_Var1, _Var2, "SummonAssault");
+
+PROC
+ProcCrimeRegisterAssault((CHARACTERGUID)_Var1, (CHARACTERGUID)_Var2, 1)
+AND
+IsTagged(_Var2, "ANIMAL", 1)
+THEN
+ProcCrimeRegisterAssaultType(_Var1, _Var2, "SummonAttackAnimal");
+
+QRY
+QRY_CRIMES_AssaultCrimeGetCrimeLocationScoreIncrease((CHARACTERGUID)_Var1, (CHARACTERGUID)_Var2)
+AND
+DB_CRIME_AssaultCrimeGetCrimeLocationScoreIncrease(_Var3)
+THEN
+NOT DB_CRIME_AssaultCrimeGetCrimeLocationScoreIncrease(_Var3);
+
+QRY
+QRY_CRIMES_AssaultCrimeGetCrimeLocationScoreIncrease((CHARACTERGUID)_Var1, (CHARACTERGUID)_Var2)
+AND
+HasActiveStatus(_Var1, "SNEAKING", _Var3)
+AND
+HasActiveStatus(_Var1, "INVISIBLE", _Var4)
+AND
+CharacterGetAttribute(_Var1, "WITS", _Var5)
+AND
+CharacterGetAttribute(_Var1, "WITS", _Var6)
+AND
+IntegerSubtract(_Var6, _Var5, _Var7)
+AND
+QRY_IntegerSign(_Var7)
+AND
+DB_IntegerSign(_Var8)
+AND
+DB_CRIME_CrimeLocationScoreIncrease(_Var3, _Var4, _Var9, _Var10)
+AND
+Random(_Var10, _Var11)
+AND
+IntegerSum(_Var9, _Var11, _Var12)
+AND
+IntegerSum(_Var12, _Var8, _Var13)
+THEN
+DB_CRIME_AssaultCrimeGetCrimeLocationScoreIncrease(_Var13);
+
+QRY
+QRY_CRIME_AssaultCrimeGetInvestigationPos((CHARACTERGUID)_Var1, (CHARACTERGUID)_Var2)
+AND
+DB_CRIME_AssaultCrimeInvestigationPos(_Var3, _Var4, _Var5)
+THEN
+NOT DB_CRIME_AssaultCrimeInvestigationPos(_Var3, _Var4, _Var5);
+
+QRY
+QRY_CRIME_AssaultCrimeGetInvestigationPos((CHARACTERGUID)_Var1, (CHARACTERGUID)_Var2)
+THEN
+Proc_ObjectCountHelper(_Var2, "CRIME_CrimeTriggers_AssaultCrimeLocation");
+
+QRY
+QRY_CRIME_AssaultCrimeGetInvestigationPos((CHARACTERGUID)_Var1, (CHARACTERGUID)_Var2)
+AND
+QRY_CRIMES_AssaultCrimeGetCrimeLocationScoreIncrease(_Var1, _Var2)
+AND
+DB_CRIME_AssaultCrimeGetCrimeLocationScoreIncrease(_Var3)
+THEN
+Proc_ObjectCountHelper(_Var2, "CRIME_CrimeTriggers_AssaultCrimeLocation", _Var3);
+
+QRY
+QRY_CRIME_AssaultCrimeGetInvestigationPos((CHARACTERGUID)_Var1, (CHARACTERGUID)_Var2)
+AND
+DB_ObjectCountHelper(_Var2, "CRIME_CrimeTriggers_AssaultCrimeLocation", _Var3)
+AND
+DB_CRIME_CrimeLocationScore_GoToAttackerThreshold(_Var4)
+AND
+_Var3 >= _Var4
+AND
+GetPosition(_Var1, _Var5, _Var6, _Var7)
+AND
+RealSum(_Var6, 1, _Var8)
+THEN
+DB_CRIME_AssaultCrimeInvestigationPos(_Var5, _Var8, _Var7);
+
+QRY
+QRY_CRIME_AssaultCrimeGetInvestigationPos((CHARACTERGUID)_Var1, (CHARACTERGUID)_Var2)
+AND NOT
+DB_CRIME_AssaultCrimeInvestigationPos(_, _, _)
+AND
+GetPosition(_Var2, _Var6, _Var7, _Var8)
+AND
+RealSum(_Var7, 1, _Var9)
+THEN
+DB_CRIME_AssaultCrimeInvestigationPos(_Var6, _Var9, _Var8);
+
+IF
+CharacterDied((CHARACTERGUID)_Var1)
+AND
+DB_ObjectCountHelper(_Var1, "CRIME_CrimeTriggers_AssaultCrimeLocation", _Var2)
+THEN
+NOT DB_ObjectCountHelper(_Var1, "CRIME_CrimeTriggers_AssaultCrimeLocation", _Var2);
+
+PROC
+ProcCrimeRegisterAssaultType((CHARACTERGUID)_Var1, (CHARACTERGUID)_Var2, (STRING)_Var3)
+AND
+QRY_CRIME_AssaultCrimeGetInvestigationPos(_Var1, _Var2)
+AND
+CharacterIsCrimeEnabled(_Var2, _Var3, 1)
+AND
+DB_ObjectCountHelper(_Var2, "CRIME_CrimeTriggers_AssaultCrimeLocation", _Var4)
+AND
+DB_CRIME_CrimeLocationScore_StartAttackingThreshold(_Var5)
+AND
+_Var4 >= _Var5
+AND
+CharacterCanFight(_Var2, 1)
+AND
+CrimeGetNewID(_Var6)
+THEN
+DB_CrimeRegisterAssaultType_Handled(1);
+ProcTryStartAttackAD(_Var2);
+Proc_CharacterSetTemporaryHostileRelation(_Var2, _Var1);
+EnterCombat(_Var2, _Var1);
+DB_Crime_PlayerAttacked(_Var6, _Var1, _Var2);
+
+IF
+CharacterSetTemporaryRelationsFailed((CHARACTERGUID)_Var1, (CHARACTERGUID)_Var2)
+AND NOT
+DB_CombatCharacters(_Var2, _)
+AND
+DB_Crime_PlayerAttacked(_Var4, _Var1, _Var2)
+THEN
+NOT DB_Crime_PlayerAttacked(_Var4, _Var1, _Var2);
+
+PROC
+ProcCrimeRegisterAssaultType((CHARACTERGUID)_Var1, (CHARACTERGUID)_Var2, (STRING)_Var3)
+AND
+CharacterIsCrimeEnabled(_Var2, _Var3, 1)
+AND
+CharacterGetHitpointsPercentage(_Var2, _Var4)
+AND
+DB_CRIME_Assault_HealthStartAttackingThreshold(_Var5)
+AND
+_Var4 < _Var5
+AND
+CharacterCanFight(_Var2, 1)
+AND
+CharacterIsDead(_Var2, 0)
+AND
+CrimeGetNewID(_Var6)
+THEN
+DB_CrimeRegisterAssaultType_Handled(1);
+ProcTryStartAttackAD(_Var2);
+Proc_CharacterSetTemporaryHostileRelation(_Var2, _Var1);
+EnterCombat(_Var2, _Var1);
+DB_Crime_PlayerAttacked(_Var6, _Var1, _Var2);
+
+PROC
+ProcCrimeRegisterAssaultType((CHARACTERGUID)_Var1, (CHARACTERGUID)_Var2, (STRING)_Var3)
+AND NOT
+DB_CrimeRegisterAssaultType_Handled(1)
+AND
+GetPosition(_Var2, _Var4, _Var5, _Var6)
+AND
+RealSum(_Var5, 1, _Var7)
+AND
+CrimeIsAnyNPCGoingToReact(_Var1, _Var3, _Var2, _Var4, _Var7, _Var6, _Var8)
+AND
+CrimeGetNewID(_Var9)
+AND
+DB_CRIME_AssaultCrimeInvestigationPos(_Var10, _Var11, _Var12)
+THEN
+NOT DB_CRIME_AssaultCrimeInvestigationPos(_Var10, _Var11, _Var12);
+DB_CRIME_CrimeInvestigationPos(_Var9, _Var10, _Var11, _Var12);
+DB_Crime_Assault(_Var9, _Var1, _Var2);
+ProcCheckRegisterAssault(_Var1, _Var2, _Var3, _Var4, _Var7, _Var6, _Var9, _Var8);
+
+PROC
+ProcCrimeRegisterAssaultType((CHARACTERGUID)_Var1, (CHARACTERGUID)_Var2, (STRING)_Var3)
+AND
+DB_CrimeRegisterAssaultType_Handled(1)
+THEN
+NOT DB_CrimeRegisterAssaultType_Handled(1);
+
+PROC
+ProcClearAssaultDBForCrime((INTEGER)_Var1)
+AND
+DB_CRIME_CrimeInvestigationPos(_Var1, _Var2, _Var3, _Var4)
+THEN
+NOT DB_CRIME_CrimeInvestigationPos(_Var1, _Var2, _Var3, _Var4);
+
+PROC
+ProcCheckRegisterAssault((CHARACTERGUID)_Var1, (CHARACTERGUID)_Var2, (STRING)_Var3, (REAL)_Var4, (REAL)_Var5, (REAL)_Var6, (INTEGER)_Var7, 1)
+THEN
+ProcCharacterRegisterCrimeWithPosition(_Var1, _Var3, NULL_00000000-0000-0000-0000-000000000000, _Var2, _Var4, _Var5, _Var6, _Var7, _Var2);
+
+PROC
+ProcCheckRegisterAssault((CHARACTERGUID)_Var1, (CHARACTERGUID)_Var2, (STRING)_Var3, (REAL)_Var4, (REAL)_Var5, (REAL)_Var6, (INTEGER)_Var7, 0)
+THEN
+ProcCharacterRegisterCrimeWithPosition(_Var1, "IncapacitatedAssault", NULL_00000000-0000-0000-0000-000000000000, _Var2, _Var4, _Var5, _Var6, _Var7, _Var2);
+
+IF
+AttackedByObject((CHARACTERGUID)_Var1, (CHARACTERGUID)_Var2, (CHARACTERGUID)_Var3, _, _)
+AND
+_Var1 != _Var3
+AND
+DB_Crime_PolymorphedIgnoreAssault(_Var1, _Var2)
+AND
+GetPosition(_Var1, _Var6, _Var7, _Var8)
+AND
+RealSum(_Var7, 1, _Var9)
+AND
+CrimeGetNewID(_Var10)
+THEN
+NOT DB_Crime_PolymorphedIgnoreAssault(_Var1, _Var2);
+CharacterRegisterCrimeWithPosition(_Var2, "Polymorphed", NULL_00000000-0000-0000-0000-000000000000, _Var1, _Var6, _Var9, _Var8, _Var10);
+PROC_CRIME_TryPolymorphedCrimeAttitudeAdjustment(_Var1, _Var2);
+
+PROC
+PROC_CRIME_TryPolymorphedCrimeAttitudeAdjustment((CHARACTERGUID)_Var1, (CHARACTERGUID)_Var2)
+AND
+CharacterCanSee(_Var1, _Var2, 1)
+THEN
+ProcCheckAdjustAttitude(_Var1, _Var1, _Var2, NULL_00000000-0000-0000-0000-000000000000, NULL_00000000-0000-0000-0000-000000000000, NULL_00000000-0000-0000-0000-000000000000, -5, 1);
+
+IF
+CharacterUsedSkillOnTarget((CHARACTERGUID)_Var1, (CHARACTERGUID)_Var2, "Teleportation_Netherswap", _, _)
+AND NOT
+Qry_AreInCombat(_Var1, _Var2)
+AND
+CharacterIsPlayer(_Var1, 1)
+AND
+ObjectIsCharacter(_Var2, 1)
+AND
+CharacterIsDeadOrFeign(_Var1, 0)
+AND
+CharacterIsPlayer(_Var2, 0)
+AND
+CharacterIsDead(_Var2, 0)
+THEN
+ProcDoCrimeCheckAssailant(_Var1, _Var2);
+
+PROC
+ProcDoCrimeCheckAssailant((CHARACTERGUID)_Var1, (CHARACTERGUID)_Var2)
+AND
+CharacterIsSummon(_Var1, 1)
+AND
+CharacterGetOwner(_Var1, _Var3)
+THEN
+ProcCrimeCheckAssailant(_Var2, _Var3, _Var1);
+
+PROC
+ProcDoCrimeCheckAssailant((CHARACTERGUID)_Var1, (CHARACTERGUID)_Var2)
+AND
+CharacterIsSummon(_Var1, 0)
+THEN
+ProcCrimeCheckAssailant(_Var2, _Var1, _Var1);
+
+IF
+CharacterUsedSkillOnTarget((CHARACTERGUID)_Var1, (CHARACTERGUID)_Var2, "Teleportation_Netherswap", _, _)
+AND
+DB_CombatCharacters(_Var2, _)
+AND NOT
+DB_CombatCharacters(_Var1, _)
+AND
+CharacterIsPlayer(_Var1, 1)
+AND
+CharacterIsDeadOrFeign(_Var1, 0)
+AND
+CharacterIsPlayer(_Var2, 0)
+AND
+CharacterIsDead(_Var2, 0)
+THEN
+EnterCombat(_Var1, _Var2);
+
+IF
+AutomatedDialogEnded("GEB_AD_CallForHelp", (INTEGER)_Var1)
+AND
+DB_DialogNPCs(_Var1, _Var2, 1)
+AND
+IsTagged(_Var2, "KID", 1)
+AND
+ObjectGetFlag(_Var2, "GEB_FleeOutOfSight", 0)
+THEN
+ObjectSetFlag(_Var2, "GEB_FleeOutOfSight");
+
+IF
+ObjectFlagSet("GEB_FleeOutOfSight", (CHARACTERGUID)_Var1, _)
+THEN
+SetHasDialog(_Var1, 0);
+ProcCharacterDisappearOutOfSight(_Var1, 0, 1, "GEB_NPCFledOutOfSight", 1);
+Proc_StartDialog(1, "GEB_AD_CallForHelp", _Var1);
+ProcForceStopDialog(_Var1);
+
+IF
+ObjectFlagSet("GEB_FleeOutOfSight", (GUIDSTRING)_Var1, _)
+AND NOT
+DB_GEB_FledOutOfSight(_Var1, _, _, _)
+AND
+GetPosition(_Var1, _Var6, _Var7, _Var8)
+THEN
+DB_GEB_FledOutOfSight(_Var1, _Var6, _Var7, _Var8);
+
+IF
+ObjectFlagSet("GEB_FleeOutOfSight", (CHARACTERGUID)_Var1, _)
+AND
+DB_Crime_Assault(_Var3, _Var4, _Var1)
+THEN
+ProcClearAssaultDBForCrime(_Var3);
+
+IF
+CharacterWentOnStage((CHARACTERGUID)_Var1, 0)
+AND
+DB_Crime_Assault(_Var2, _Var3, _Var1)
+THEN
+ProcClearAssaultDBForCrime(_Var2);
+
+IF
+CharacterDied((CHARACTERGUID)_Var1)
+AND
+DB_Crime_Assault(_Var2, _Var3, _Var1)
+THEN
+ProcClearAssaultDBForCrime(_Var2);
+
+IF
+CharacterDied((CHARACTERGUID)_Var1)
+AND
+DB_Crime_Assault(_Var2, _Var1, _Var3)
+THEN
+ProcClearAssaultDBForCrime(_Var2);
+
+IF
+CharacterLeftParty((CHARACTERGUID)_Var1)
+AND
+DB_Crime_Assault(_Var2, _Var1, _Var3)
+THEN
+ProcClearAssaultDBForCrime(_Var2);
+
+IF
+RegionStarted((STRING)_Var1)
+AND
+DB_Crime_Assault(_Var2, _Var3, _Var4)
+THEN
+ProcClearAssaultDBForCrime(_Var2);
+
+IF
+StoryEvent((GUIDSTRING)_Var1, "GEB_NPCFledOutOfSight")
+AND
+ObjectGetFlag(_Var1, "GEB_DontAppearAfter", 0)
+THEN
+ProcObjectTimer(_Var1, "GEB_AppearNPCOutOfSight", 15000);
+
+IF
+ObjectFlagSet("GEB_DontAppearAfter", (GUIDSTRING)_Var1, _)
+THEN
+ProcObjectTimerCancel(_Var1, "GEB_AppearNPCOutOfSight");
+
+IF
+ObjectFlagSet("GEB_DontAppearAfter", (CHARACTERGUID)_Var1, _)
+AND
+DB_GEB_NPCAppearAfterCombat(_Var1, _Var3)
+THEN
+NOT DB_GEB_NPCAppearAfterCombat(_Var1, _Var3);
+
+PROC
+ProcObjectTimerCancel((CHARACTERGUID)_Var1, "GEB_AppearNPCOutOfSight")
+AND
+DB_GEB_FledOutOfSight(_Var1, _Var2, _Var3, _Var4)
+THEN
+NOT DB_GEB_FledOutOfSight(_Var1, _Var2, _Var3, _Var4);
+
+PROC
+ProcObjectTimerFinished((CHARACTERGUID)_Var1, "GEB_AppearNPCOutOfSight")
+AND
+DB_GEB_FledOutOfSight(_Var1, _Var2, _Var3, _Var4)
+AND
+GetClosestPlayerToPosition(_Var2, _Var3, _Var4, _Var5, _Var6)
+THEN
+ProcCrimeAppearOutOfSightChecks(_Var1, _Var5, _Var6);
+
+PROC
+ProcCrimeAppearOutOfSightChecks((CHARACTERGUID)_Var1, (CHARACTERGUID)_Var2, (REAL)_Var3)
+AND
+_Var3 > 20
+THEN
+ProcAppearOutOfSightAfterFleeing(_Var1);
+
+PROC
+ProcCrimeAppearOutOfSightChecks((CHARACTERGUID)_Var1, (CHARACTERGUID)_Var2, (REAL)_Var3)
+AND
+_Var3 <= 20
+AND
+Query_CharacterIsAliveAndNotInCombat(_Var2)
+AND
+IsSpeakerReserved(_Var2, 0)
+THEN
+ProcAppearOutOfSightAfterFleeing(_Var1);
+
+PROC
+ProcCrimeAppearOutOfSightChecks((CHARACTERGUID)_Var1, (CHARACTERGUID)_Var2, (REAL)_Var3)
+AND
+_Var3 <= 20
+AND
+DB_CombatCharacters(_Var2, _Var4)
+THEN
+DB_GEB_NPCAppearAfterCombat(_Var1, _Var4);
+
+PROC
+ProcCrimeAppearOutOfSightChecks((CHARACTERGUID)_Var1, (CHARACTERGUID)_Var2, (REAL)_Var3)
+AND
+_Var3 <= 20
+AND
+CharacterIsDeadOrFeign(_Var2, 1)
+THEN
+ProcAppearOutOfSight_DeadClosestPlayer(_Var1, _Var2);
+
+PROC
+ProcCrimeAppearOutOfSightChecks((CHARACTERGUID)_Var1, (CHARACTERGUID)_Var2, (REAL)_Var3)
+AND NOT
+DB_GEB_NPCAppearAfterCombat(_Var1, _)
+AND
+_Var3 <= 20
+AND
+IsSpeakerReserved(_Var2, 1)
+AND
+DB_DialogPlayers(_Var5, _Var2, 1)
+THEN
+DB_GEB_NPCAppearAfterDialog(_Var1, _Var5);
+
+PROC
+ProcAppearOutOfSight_DeadClosestPlayer((CHARACTERGUID)_Var1, (CHARACTERGUID)_Var2)
+AND
+GetClosestAlivePlayer(_Var2, _Var3, _)
+THEN
+DB_GEB_AppearOutOfSight_AlivePlayerFound(_Var1, _Var3);
+
+PROC
+ProcAppearOutOfSight_DeadClosestPlayer((CHARACTERGUID)_Var1, (CHARACTERGUID)_Var2)
+AND NOT
+DB_GEB_AppearOutOfSight_AlivePlayerFound(_Var1, _)
+THEN
+ProcAppearOutOfSightAfterFleeing(_Var1);
+
+PROC
+ProcAppearOutOfSight_DeadClosestPlayer((CHARACTERGUID)_Var1, _)
+AND
+DB_GEB_AppearOutOfSight_AlivePlayerFound(_Var1, _Var3)
+AND
+DB_GEB_FledOutOfSight(_Var1, _Var4, _Var5, _Var6)
+AND
+GetDistanceToPosition(_Var3, _Var4, _Var5, _Var6, _Var7)
+THEN
+NOT DB_GEB_AppearOutOfSight_AlivePlayerFound(_Var1, _Var3);
+ProcCrimeAppearOutOfSightChecks(_Var1, _Var3, _Var7);
+
+IF
+DialogEnded(_, (INTEGER)_Var2)
+AND
+DB_GEB_NPCAppearAfterDialog(_Var3, _Var2)
+THEN
+NOT DB_GEB_NPCAppearAfterDialog(_Var3, _Var2);
+ProcObjectTimer(_Var3, "GEB_AppearNPCOutOfSight", 3000);
+
+IF
+CombatEnded((INTEGER)_Var1)
+AND
+DB_GEB_NPCAppearAfterCombat(_Var2, _Var1)
+THEN
+NOT DB_GEB_NPCAppearAfterCombat(_Var2, _Var1);
+ProcObjectTimer(_Var2, "GEB_AppearNPCOutOfSight", 3000);
+
+PROC
+ProcAppearOutOfSightAfterFleeing((CHARACTERGUID)_Var1)
+AND
+DB_GEB_FledOutOfSight(_Var1, _Var2, _Var3, _Var4)
+THEN
+NOT DB_GEB_FledOutOfSight(_Var1, _Var2, _Var3, _Var4);
+SetHasDialog(_Var1, 1);
+CharacterAppearAtPositionOutOfSightTo(_Var1, _Var2, _Var3, _Var4, 0, 0, "GEB_NPCAppeared");
+ObjectClearFlag(_Var1, "GEB_FleeOutOfSight", 0);
+Proc_CharacterFullRestore(_Var1);
+
+IF
+CharacterUsedSkill((CHARACTERGUID)_Var1, (STRING)_Var2, _, _)
+AND
+DB_IsPlayer(_Var1)
+AND
+IsSourceSkill(_Var2, 1)
+THEN
+CharacterRegisterCrime(_Var1, "SourceMagic", NULL_00000000-0000-0000-0000-000000000000, NULL_00000000-0000-0000-0000-000000000000, 0);
+
+IF
+CharacterStoleItem((CHARACTERGUID)_Var1, (ITEMGUID)_Var2, (REAL)_Var3, (REAL)_Var4, (REAL)_Var5, (CHARACTERGUID)_Var6, (ITEMGUID)_Var7, _)
+AND
+CharacterIsPlayer(_Var1, 1)
+AND
+_Var7 == NULL_00000000-0000-0000-0000-000000000000
+THEN
+ProcCharacterRegisterCrimeWithPosition(_Var1, "Steal", _Var2, _Var6, _Var3, _Var4, _Var5, 0, _Var6);
+
+QRY
+QryCrimeKillerVictimWereInSameCombat((CHARACTERGUID)_Var1, (CHARACTERGUID)_Var2)
+AND
+DB_CombatCharacters(_Var1, _Var3)
+AND
+DB_WasInCombat(_Var2, _Var3)
+THEN
+DB_NOOP(1);
+
+QRY
+QryCrimeKillerVictimWereInSameCombat((CHARACTERGUID)_Var1, (CHARACTERGUID)_Var2)
+AND
+DB_CombatCharacters(_Var1, _Var3)
+AND
+DB_CombatCharacters(_Var2, _Var3)
+THEN
+DB_NOOP(1);
+
+QRY
+QryCrimeCharacterCanCreateMurder((CHARACTERGUID)_Var1)
+AND
+IsTagged(_Var1, "SUMMON", 0)
+AND
+IsTagged(_Var1, "TOTEM", 0)
+THEN
+DB_NOOP(1);
+
+QRY
+QryCrimeMurderGetCrimeTypeCustom((CHARACTERGUID)_Var1, (CHARACTERGUID)_Var2)
+AND
+DB_CrimeNeverEverSet__INVALID(1)
+THEN
+DB_NOOP(1);
+
+QRY
+QryCrimeMurderGetCrimeType((CHARACTERGUID)_Var1, (CHARACTERGUID)_Var2)
+AND
+DB_CrimeMurderCrimeType(_Var3)
+THEN
+NOT DB_CrimeMurderCrimeType(_Var3);
+
+QRY
+QryCrimeMurderGetCrimeType((CHARACTERGUID)_Var1, (CHARACTERGUID)_Var2)
+AND
+QryCrimeMurderGetCrimeTypeCustom(_Var1, _Var2)
+THEN
+DB_NOOP(1);
+
+QRY
+QryCrimeMurderGetCrimeType((CHARACTERGUID)_Var1, (CHARACTERGUID)_Var2)
+AND NOT
+DB_CrimeMurderCrimeType(_)
+AND
+IsTagged(_Var2, "ANIMAL", _Var4)
+AND
+HasActiveStatus(_Var1, "SNEAKING", _Var5)
+AND
+CharacterIsSummon(_Var1, _Var6)
+AND
+DB_CRIME_MurderType(_Var5, _Var4, _Var6, _Var7)
+THEN
+DB_CrimeMurderCrimeType(_Var7);
+
+PROC
+ProcCrimeMurderDefineSilentWitness((INTEGER)_Var1, (CHARACTERGUID)_Var2, (CHARACTERGUID)_Var3, (CHARACTERGUID)_Var4)
+AND
+QryCrimeMurderGetCrimeType(_Var3, _Var4)
+AND
+DB_CrimeMurderCrimeType(_Var5)
+AND NOT
+DB_CharacterCrimeDisabled(_Var2, _Var5)
+THEN
+DB_CrimeSilentWitness(_Var1, _Var5, _Var2);
+
+PROC
+PROC_CRIME_CrimeTriggers_GetSilentWitnessesForCrime((INTEGER)_Var1, (CHARACTERGUID)_Var2, (STRING)_Var3, (GUIDSTRING)_Var4, (CHARACTERGUID)_Var5)
+AND
+DB_CrimeSilentWitness(_Var1, _Var3, _Var6)
+THEN
+NOT DB_CrimeSilentWitness(_Var1, _Var3, _Var6);
+DB_CRIME_CrimeTriggers_SilentWitnessesForCrime(_Var6);
+
+PROC
+PROC_CRIME_CrimeTriggers_GetSilentWitnessesForCrime((INTEGER)_Var1, (CHARACTERGUID)_Var2, (STRING)_Var3, (GUIDSTRING)_Var4, (CHARACTERGUID)_Var5)
+AND
+DB_MurderIgnoreFor(_Var6, _Var5)
+THEN
+DB_CRIME_CrimeTriggers_SilentWitnessesForCrime(_Var6);
+
+PROC
+ProcCrimeCreateMurder((CHARACTERGUID)_Var1, (CHARACTERGUID)_Var2, (INTEGER)_Var3)
+AND
+QryCrimeMurderGetCrimeType(_Var1, _Var2)
+AND
+DB_CrimeMurderCrimeType(_Var4)
+AND
+GetPosition(_Var2, _Var5, _Var6, _Var7)
+AND
+RealSum(_Var6, 1, _Var8)
+THEN
+ProcCharacterRegisterCrimeWithPosition(_Var1, _Var4, NULL_00000000-0000-0000-0000-000000000000, NULL_00000000-0000-0000-0000-000000000000, _Var5, _Var8, _Var7, _Var3, _Var2);
+
+IF
+CharacterKilledBy((CHARACTERGUID)_Var1, (CHARACTERGUID)_Var2, (CHARACTERGUID)_Var3)
+AND NOT
+DB_IsPlayer(_Var1)
+AND
+CharacterIsPlayer(_Var3, 1)
+AND
+CharacterIsPartyFollower(_Var3, 0)
+AND
+CharacterIsEnemy(_Var1, _Var3, 0)
+AND NOT
+DB_DontCreateMurder(_Var1)
+AND NOT
+QryCrimeKillerVictimWereInSameCombat(_Var3, _Var1)
+AND
+QryCrimeCharacterCanCreateMurder(_Var1)
+AND
+CrimeGetNewID(_Var4)
+THEN
+DebugText(_Var1, "OneShot Murder Crime Scene");
+DB_CrimeMurderCreated(_Var1, _Var3);
+ProcCrimeCreateMurder(_Var3, _Var1, _Var4);
+
+IF
+CharacterKilledBy((CHARACTERGUID)_Var1, (CHARACTERGUID)_Var2, (CHARACTERGUID)_Var3)
+AND NOT
+DB_CrimeMurderCreated(_Var1, _Var3)
+AND NOT
+DB_IsPlayer(_Var1)
+AND NOT
+DB_DontCreateMurder(_Var1)
+AND
+DB_Crime_Assault(_, _, _Var1)
+AND
+QryCrimeCharacterCanCreateMurder(_Var1)
+AND
+CharacterIsPlayer(_Var3, 1)
+AND
+CharacterIsPartyFollower(_Var3, 0)
+AND
+CrimeGetNewID(_Var6)
+THEN
+DebugText(_Var1, "Mid Investigate Murder Crime Scene");
+ProcCrimeCreateMurder(_Var3, _Var1, _Var6);
+
+IF
+CharacterKilledBy((CHARACTERGUID)_Var1, (CHARACTERGUID)_Var2, (CHARACTERGUID)_Var3)
+AND NOT
+DB_CrimeMurderCreated(_Var1, _Var3)
+AND
+DB_Crime_PlayerAttacked(_, _, _Var1)
+AND
+DB_CombatCharacters(_Var1, _Var6)
+AND NOT
+DB_IsPlayer(_Var1)
+AND NOT
+DB_DontCreateMurder(_Var1)
+AND
+CharacterIsPlayer(_Var3, 1)
+AND
+CharacterIsPartyFollower(_Var3, 0)
+AND
+QryCrimeCharacterCanCreateMurder(_Var1)
+AND
+CrimeGetNewID(_Var7)
+AND
+IntegertoString(_Var7, _Var8)
+AND
+StringConcatenate(_Var8, "GEB_IgnoreCrime", _Var9)
+THEN
+DebugText(_Var1, "Assault murder scene");
+DB_CrimeMurderSilentWitnessCollectionContext(_Var7, _Var1, _Var9, _Var3);
+CharacterLaunchIteratorAroundObject(_Var1, 25, _Var9);
+
+PROC
+ProcCrimeMurderMaybeMakeSilentWitness((INTEGER)_Var1, (CHARACTERGUID)_Var2, (CHARACTERGUID)_Var3, (CHARACTERGUID)_Var4)
+AND NOT
+DB_CombatCharacters(_Var2, _)
+THEN
+ProcCrimeMurderDefineSilentWitness(_Var1, _Var2, _Var3, _Var4);
+
+PROC
+ProcCrimeMurderMaybeMakeSilentWitness((INTEGER)_Var1, (CHARACTERGUID)_Var2, (CHARACTERGUID)_Var3, (CHARACTERGUID)_Var4)
+AND
+DB_CombatCharacters(_Var2, _)
+AND
+CharacterIsAlly(_Var2, _Var3, 1)
+THEN
+ProcCrimeMurderDefineSilentWitness(_Var1, _Var2, _Var3, _Var4);
+
+PROC
+ProcCrimeMurderMaybeMakeSilentWitness((INTEGER)_Var1, (CHARACTERGUID)_Var2, (CHARACTERGUID)_Var3, (CHARACTERGUID)_Var4)
+AND
+DB_CombatCharacters(_Var2, _)
+AND
+CharacterIsNeutral(_Var2, _Var3, 1)
+THEN
+ProcCrimeMurderDefineSilentWitness(_Var1, _Var2, _Var3, _Var4);
+
+PROC
+ProcCrimeMurderMaybeMakeSilentWitness((INTEGER)_Var1, (CHARACTERGUID)_Var2, (CHARACTERGUID)_Var3, (CHARACTERGUID)_Var4)
+AND
+DB_CombatCharacters(_Var2, _)
+AND
+DB_IsPlayer(_Var6)
+AND
+CharacterIsAlly(_Var2, _Var6, 1)
+AND
+CharacterIsAlly(_Var6, _Var3, 1)
+THEN
+ProcCrimeMurderDefineSilentWitness(_Var1, _Var2, _Var3, _Var4);
+
+IF
+StoryEvent((CHARACTERGUID)_Var1, (STRING)_Var2)
+AND
+DB_CrimeMurderSilentWitnessCollectionContext(_Var3, _Var4, _Var2, _Var5)
+AND
+_Var1 != NULL_00000000-0000-0000-0000-000000000000
+AND NOT
+DB_Dead(_Var1)
+THEN
+ProcCrimeMurderMaybeMakeSilentWitness(_Var3, _Var1, _Var5, _Var4);
+
+IF
+StoryEvent((GUIDSTRING)_Var1, (STRING)_Var2)
+AND
+DB_CrimeMurderSilentWitnessCollectionContext(_Var3, _Var4, _Var2, _Var5)
+AND
+_Var1 == NULL_00000000-0000-0000-0000-000000000000
+THEN
+NOT DB_CrimeMurderSilentWitnessCollectionContext(_Var3, _Var4, _Var2, _Var5);
+DebugText(_Var4, "Normal Murder Crime Scene");
+ProcCrimeCreateMurder(_Var5, _Var4, _Var3);
+
+QRY
+Qry_HasDontCreateMurderInCombat((INTEGER)_Var1)
+AND
+DB_CombatCharacters(_Var2, _Var1)
+AND
+DB_DontCreateMurder(_Var2)
+THEN
+DB_NOOP(1);
+
+IF
+ObjectEnteredCombat((GUIDSTRING)_Var1, (INTEGER)_Var2)
+AND
+ObjectIsCharacter(_Var1, 1)
+AND
+Qry_HasDontCreateMurderInCombat(_Var2)
+AND
+DB_CombatCharacters(_Var3, _Var2)
+AND NOT
+DB_IsPlayer(_Var3)
+AND NOT
+DB_DontCreateMurder(_Var3)
+THEN
+DB_DontCreateMurder(_Var3);
+DB_CrimeCreateMurderAfterCombat(_Var3, _Var2);
+DebugText(_Var3, " Killing me won't create a murder in this combat, because I joined a combat with others whose murder gets ignored");
+
+IF
+ObjectSwitchedCombat((CHARACTERGUID)_Var1, (INTEGER)_Var2, (INTEGER)_Var3)
+AND
+DB_CrimeCreateMurderAfterCombat(_Var1, _Var2)
+THEN
+NOT DB_CrimeCreateMurderAfterCombat(_Var1, _Var2);
+DB_CrimeCreateMurderAfterCombat(_Var1, _Var3);
+
+IF
+CombatEnded((INTEGER)_Var1)
+AND
+DB_CrimeCreateMurderAfterCombat(_Var2, _Var1)
+THEN
+NOT DB_CrimeCreateMurderAfterCombat(_Var2, _Var1);
+NOT DB_DontCreateMurder(_Var2);
+
+IF
+ObjectEnteredCombat((CHARACTERGUID)_Var1, _)
+AND
+ObjectIsCharacter(_Var1, 1)
+THEN
+ProcCrimeAddToAttackedDBIfAssaultCombat(_Var1);
+
+IF
+ObjectSwitchedCombat((CHARACTERGUID)_Var1, _, _)
+AND
+ObjectIsCharacter(_Var1, 1)
+THEN
+ProcCrimeAddToAttackedDBIfAssaultCombat(_Var1);
+
+IF
+DB_Crime_PlayerAttacked(_Var1, _Var2, _Var3)
+THEN
+ProcCrimeAddToAttackedDBIfAssaultCombat(_Var3);
+
+PROC
+ProcCrimeAddToAttackedDBIfAssaultCombat((CHARACTERGUID)_Var1)
+AND
+DB_CombatCharacters(_Var1, _Var2)
+AND
+DB_Crime_PlayerAttacked(_Var3, _Var4, _Var5)
+AND
+DB_CombatCharacters(_Var4, _Var2)
+AND
+DB_CombatCharacters(_Var6, _Var2)
+AND NOT
+DB_Crime_PlayerAttacked(_Var3, _Var4, _Var6)
+AND
+CharacterIsPartyMember(_Var6, 0)
+AND
+CharacterIsSummon(_Var6, 0)
+AND
+CharacterIsAlly(_Var5, _Var6, 1)
+THEN
+DB_Crime_PlayerAttacked(_Var3, _Var4, _Var6);
+DebugText(_Var6, " Killing me will create a murder scene (probably joined combat to help assaulted NPC), although it will be ignored by anyone within a 25m radius of this combat");
+
+IF
+ObjectLeftCombat((CHARACTERGUID)_Var1, _)
+AND
+DB_Crime_PlayerAttacked(_Var3, _Var4, _Var1)
+THEN
+NOT DB_Crime_PlayerAttacked(_Var3, _Var4, _Var1);
+
+IF
+OnCrimeMergedWith((INTEGER)_Var1, (INTEGER)_Var2)
+AND
+DB_CrimeMurderSilentWitnessCollectionContext(_Var1, _Var3, _Var4, _Var5)
+THEN
+NOT DB_CrimeMurderSilentWitnessCollectionContext(_Var1, _Var3, _Var4, _Var5);
+DB_CrimeMurderSilentWitnessCollectionContext(_Var2, _Var3, _Var4, _Var5);
+
+IF
+OnCrimeMergedWith((INTEGER)_Var1, (INTEGER)_Var2)
+AND
+DB_CrimeSilentWitness(_Var1, _Var3, _Var4)
+THEN
+NOT DB_CrimeSilentWitness(_Var1, _Var3, _Var4);
+DB_CrimeSilentWitness(_Var2, _Var3, _Var4);
+
+IF
+CharacterKilledBy((CHARACTERGUID)_Var1, (CHARACTERGUID)_Var2, (CHARACTERGUID)_Var3)
+AND
+DB_CrimeMurderCreated(_Var1, _Var3)
+THEN
+NOT DB_CrimeMurderCreated(_Var1, _Var3);
+
+IF
+RequestPickpocket((CHARACTERGUID)_Var1, (CHARACTERGUID)_Var2)
+AND
+DB_CannotPickpocketTags(_Var3)
+AND
+IsTagged(_Var2, _Var3, 1)
+AND
+CharacterIsPartyMember(_Var2, 0)
+THEN
+DB_PickpocketingBlocked(1);
+Proc_StartDialog(1, "GEB_AD_CannotPickpocket", _Var1);
+
+IF
+RequestPickpocket((CHARACTERGUID)_Var1, (CHARACTERGUID)_Var2)
+AND NOT
+DB_PickpocketingBlocked(1)
+THEN
+RemoveStatus(_Var1, "INVISIBLE");
+
+IF
+CharacterPickpocketFailed((CHARACTERGUID)_Var1, _)
+THEN
+RemoveStatus(_Var1, "INVISIBLE");
+
+IF
+RequestPickpocket((CHARACTERGUID)_Var1, (CHARACTERGUID)_Var2)
+AND
+DB_PickpocketingBlocked(1)
+THEN
+StartPickpocket(_Var1, _Var2, 0);
+
+IF
+RequestPickpocket((CHARACTERGUID)_Var1, (CHARACTERGUID)_Var2)
+AND NOT
+DB_PickpocketingBlocked(1)
+AND
+CharacterIsPartyMember(_Var2, 0)
+THEN
+GenTradeItems(_Var1, _Var2);
+StartPickpocket(_Var1, _Var2, 1);
+
+IF
+RequestPickpocket((CHARACTERGUID)_Var1, (CHARACTERGUID)_Var2)
+THEN
+NOT DB_PickpocketingBlocked(1);
+
+IF
+RequestPickpocket((CHARACTERGUID)_Var1, (CHARACTERGUID)_Var2)
+AND
+CharacterIsPartyMember(_Var2, 1)
+THEN
+StartPickpocket(_Var1, _Var2, 1);
+
+IF
+CharacterPickpocketSuccess((CHARACTERGUID)_Var1, (CHARACTERGUID)_Var2, (ITEMGUID)_Var3, (INTEGER)_Var4)
+AND
+CharacterIsCrimeEnabled(_Var2, "EmptyPocketNoticed", 1)
+AND
+CharacterCanSpotCrimes(_Var2, 1)
+AND
+Random(10000, _Var5)
+AND
+IntegerSum(_Var5, 5000, _Var6)
+THEN
+DB_Pickpocketed(_Var1, _Var2, _Var3);
+ProcObjectTimerCancel(_Var2, "CRIME_Pickpocket_CheckPockets");
+ProcObjectTimer(_Var2, "CRIME_Pickpocket_CheckPockets", _Var6);
+
+PROC
+ProcObjectTimerFinished((CHARACTERGUID)_Var1, "CRIME_Pickpocket_CheckPockets")
+AND
+CharacterIsDead(_Var1, 0)
+AND
+IsSpeakerReserved(_Var1, 1)
+AND
+Random(10000, _Var2)
+AND
+IntegerSum(_Var2, 5000, _Var3)
+THEN
+ProcObjectTimerCancel(_Var1, "CRIME_Pickpocket_CheckPockets");
+ProcObjectTimer(_Var1, "CRIME_Pickpocket_CheckPockets", _Var3);
+
+PROC
+ProcObjectTimerFinished((CHARACTERGUID)_Var1, "CRIME_Pickpocket_CheckPockets")
+AND
+QRY_SpeakerIsAvailable(_Var1)
+AND
+DB_Pickpocketed(_Var2, _Var1, _)
+AND
+QueryOnlyOnce("CRIME_Pickpocket_PlayAnimation")
+THEN
+RemoveStatus(_Var1, "SITTING");
+RemoveStatus(_Var1, "LYING");
+PlayAnimation(_Var1, "PickPocket_01");
+
+PROC
+ProcObjectTimerFinished((CHARACTERGUID)_Var1, "CRIME_Pickpocket_CheckPockets")
+AND
+QRY_SpeakerIsAvailable(_Var1)
+AND
+DB_Pickpocketed(_Var2, _Var1, _Var3)
+AND
+GetPosition(_Var1, _Var4, _Var5, _Var6)
+THEN
+NOT DB_OnlyOnce("CRIME_Pickpocket_PlayAnimation");
+NOT DB_Pickpocketed(_Var2, _Var1, _Var3);
+CharacterRegisterCrimeWithPosition(_Var2, "EmptyPocketNoticed", _Var3, _Var1, _Var4, _Var5, _Var6, 0);
+
+IF
+CharacterPickpocketFailed((CHARACTERGUID)_Var1, (CHARACTERGUID)_Var2)
+AND
+CharacterIsPartyMember(_Var2, 0)
+AND
+DB_CannotPickpocketTags(_Var3)
+AND
+IsTagged(_Var2, _Var3, 1)
+THEN
+DB_PickpocketingBlocked(1);
+
+IF
+CharacterPickpocketFailed((CHARACTERGUID)_Var1, (CHARACTERGUID)_Var2)
+AND NOT
+DB_PickpocketingBlocked(1)
+AND
+CharacterIsPartyMember(_Var2, 0)
+THEN
+ProcCrimePickpocketFailedFlow(_Var1, _Var2);
+
+PROC
+ProcCrimePickpocketFailedFlow((CHARACTERGUID)_Var1, (CHARACTERGUID)_Var2)
+THEN
+ProcObjectTimerCancel(_Var2, "CRIME_Pickpocket_CheckPockets");
+
+PROC
+ProcCrimePickpocketFailedFlow((CHARACTERGUID)_Var1, (CHARACTERGUID)_Var2)
+AND
+CharacterIsCrimeEnabled(_Var2, "PickPocketFailed", 1)
+THEN
+RemoveStatus(_Var1, "SNEAKING");
+RemoveStatus(_Var2, "SLEEPING");
+RemoveStatus(_Var2, "LYING");
+
+PROC
+ProcCrimePickpocketFailedFlow((CHARACTERGUID)_Var1, (CHARACTERGUID)_Var2)
+AND NOT
+DB_Pickpocketed(_Var1, _Var2, _)
+THEN
+ProcRegisterPickPocketFailed(_Var1, _Var2, NULL_00000000-0000-0000-0000-000000000000);
+
+PROC
+ProcCrimePickpocketFailedFlow((CHARACTERGUID)_Var1, (CHARACTERGUID)_Var2)
+AND
+DB_Pickpocketed(_Var1, _Var2, _)
+AND
+QryCrimeWarningPickPocketFailed_NpcDoesNOTCheckEvidence(_Var2)
+AND NOT
+DB_PickpocketFailedNoEvidenceRegistered(1)
+THEN
+DB_PickpocketFailedNoEvidenceRegistered(1);
+ProcRegisterPickPocketFailed(_Var1, _Var2, NULL_00000000-0000-0000-0000-000000000000);
+
+PROC
+ProcCrimePickpocketFailedFlow((CHARACTERGUID)_Var1, (CHARACTERGUID)_Var2)
+THEN
+NOT DB_PickpocketFailedNoEvidenceRegistered(1);
+
+PROC
+ProcCrimePickpocketFailedFlow((CHARACTERGUID)_Var1, (CHARACTERGUID)_Var2)
+AND
+DB_Pickpocketed(_Var1, _Var2, _Var3)
+AND NOT
+QryCrimeWarningPickPocketFailed_NpcDoesNOTCheckEvidence(_Var2)
+THEN
+ProcRegisterPickPocketFailed(_Var1, _Var2, _Var3);
+NOT DB_Pickpocketed(_Var1, _Var2, _Var3);
+
+PROC
+ProcRegisterPickPocketFailed((CHARACTERGUID)_Var1, (CHARACTERGUID)_Var2, (GUIDSTRING)_Var3)
+AND
+GetPosition(_Var2, _Var4, _Var5, _Var6)
+AND
+RealSum(_Var5, 1, _Var7)
+THEN
+CharacterRegisterCrimeWithPosition(_Var1, "PickPocketFailed", _Var3, _Var2, _Var4, _Var7, _Var6, 0);
+
+QRY
+QryCrimeWarningPickPocketFailed_NpcDoesNOTCheckEvidence((CHARACTERGUID)_Var1)
+AND
+CharacterIsPartyMember(_Var1, 0)
+AND NOT
+QryNPCIsGuard(_Var1)
+THEN
+DB_NOOP(1);
+
+PROC
+ProcCrimePickpocketFailedFlow((CHARACTERGUID)_Var1, (CHARACTERGUID)_Var2)
+THEN
+NOT DB_PickpocketingBlocked(1);
+
+IF
+CharacterOnCrimeSensibleActionNotification((CHARACTERGUID)_Var1, _, (INTEGER)_Var3, "CRIME_Draw", _, (CHARACTERGUID)_Var5, (CHARACTERGUID)_Var6, (CHARACTERGUID)_Var7, (CHARACTERGUID)_Var8, _)
+AND NOT
+DB_CombatCharacters(_Var5, _)
+AND NOT
+DB_CombatCharacters(_Var1, _)
+AND NOT
+DB_NPCDrawForCrimial(_Var1, _Var3, _Var5)
+AND
+CharacterCanSee(_Var1, _Var5, _)
+THEN
+DB_NPCDrawForCrimial(_Var1, _Var3, _Var5);
+
+IF
+CharacterLostSightOfCharacter((CHARACTERGUID)_Var1, (CHARACTERGUID)_Var2)
+AND NOT
+DB_CombatCharacters(_Var1, _)
+AND
+DB_NPCDrawForCrimial(_Var1, _Var4, _Var2)
+THEN
+CharacterSetFightMode(_Var1, 0, 0);
+NOT DB_NPCDrawForCrimial(_Var1, _Var4, _Var2);
+
+PROC
+ProcStoreFightMode((CHARACTERGUID)_Var1)
+AND NOT
+DB_FightModeState(_Var1, _)
+AND
+CharacterIsInFightMode(_Var1, _Var3)
+THEN
+DB_FightModeState(_Var1, _Var3);
+
+PROC
+ProcRestoreFightMode((CHARACTERGUID)_Var1)
+AND
+DB_FightModeState(_Var1, _Var2)
+AND NOT
+DB_CombatCharacters(_Var1, _)
+THEN
+CharacterSetFightMode(_Var1, _Var2, 0);
+NOT DB_FightModeState(_Var1, _Var2);
+
+IF
+StoryEvent((CHARACTERGUID)_Var1, "CRIME_RestoreUnsheath")
+AND
+ObjectExists(_Var1, 1)
+THEN
+ProcRestoreFightMode(_Var1);
+
+IF
+CharacterOnCrimeSensibleActionNotification((CHARACTERGUID)_Var1, _, (INTEGER)_Var3, _, _, (CHARACTERGUID)_Var6, (CHARACTERGUID)_Var7, (CHARACTERGUID)_Var8, (CHARACTERGUID)_Var9, _)
+AND NOT
+DB_CombatCharacters(_Var1, _)
+AND
+CrimeGetType(_Var3, "WeaponsDrawn")
+AND NOT
+DB_NPCSheathWeapon(_Var1, _Var6)
+THEN
+DB_NPCSheathWeapon(_Var1, _Var6);
+DB_NPCSheathWeapon(_Var1, _Var7);
+DB_NPCSheathWeapon(_Var1, _Var8);
+DB_NPCSheathWeapon(_Var1, _Var9);
+NOT DB_NPCSheathWeapon(_Var1, NULL_00000000-0000-0000-0000-000000000000);
+ProcStoreFightMode(_Var1);
+CharacterSetFightMode(_Var1, 1, 0);
+
+IF
+CharacterStatusRemoved((CHARACTERGUID)_Var1, "UNSHEATHED", _)
+AND
+DB_IsPlayer(_Var1)
+AND
+DB_NPCSheathWeapon(_Var3, _Var1)
+AND NOT
+DB_CombatCharacters(_Var3, _)
+THEN
+NOT DB_NPCSheathWeapon(_Var3, _Var1);
+ProcCrimeCheckIfPlayersWeaponsOut(_Var3);
+
+PROC
+ProcCrimeCheckIfPlayersWeaponsOut((CHARACTERGUID)_Var1)
+AND NOT
+DB_NPCSheathWeapon(_Var1, _)
+AND NOT
+DB_CombatCharacters(_Var1, _)
+THEN
+ProcRestoreFightMode(_Var1);
+SetStoryEvent(_Var1, "NPCReturnToOrginalPos");
+
+IF
+ObjectLeftCombat((CHARACTERGUID)_Var1, _)
+AND
+DB_NPCSheathWeapon(_Var1, _)
+AND
+ObjectExists(_Var1, 1)
+AND
+CharacterIsDead(_Var1, 0)
+THEN
+ProcRestoreFightMode(_Var1);
+
+IF
+CharacterLostSightOfCharacter((CHARACTERGUID)_Var1, (CHARACTERGUID)_Var2)
+AND
+DB_NPCSheathWeapon(_Var1, _Var2)
+THEN
+NOT DB_NPCSheathWeapon(_Var1, _Var2);
+ProcCrimeCheckIfPlayersWeaponsOut(_Var1);
+
+IF
+DB_BlockThreatenedDialog(_Var1)
+THEN
+CharacterDisableCrime(_Var1, "WeaponsDrawn");
+DB_CheckWeaponsDrawnCrime(_Var1);
+
+IF
+DB_CheckWeaponsDrawnCrime(_Var1)
+AND NOT
+DB_BlockThreatenedDialog(_Var1)
+AND NOT
+DB_CharacterCrimeDisabled(_Var1, "WeaponsDrawn")
+THEN
+CharacterEnableCrime(_Var1, "WeaponsDrawn");
+
+IF
+CharacterSawSneakingCharacter((CHARACTERGUID)_Var1, (CHARACTERGUID)_Var2)
+AND
+CharacterIsPlayer(_Var1, 0)
+THEN
+CharacterRegisterCrime(_Var2, "Sneaking", NULL_00000000-0000-0000-0000-000000000000, _Var1, 0);
+
+QRY
+QRY_Crime_ItemHasHPorIndestructible((ITEMGUID)_Var1)
+AND
+ItemIsDestructible(_Var1, 0)
+THEN
+DB_NOOP(1);
+
+QRY
+QRY_Crime_ItemHasHPorIndestructible((ITEMGUID)_Var1)
+AND
+ItemIsDestructible(_Var1, 1)
+AND
+ItemGetHealthPoints(_Var1, _Var2)
+AND
+_Var2 > 0
+THEN
+DB_NOOP(1);
+
+IF
+AttackedByObject((ITEMGUID)_Var1, (CHARACTERGUID)_Var2, (CHARACTERGUID)_Var3, _, (STRING)_Var5)
+AND NOT
+QryIgnoreDamageSource(_Var5)
+AND
+ObjectIsItem(_Var1, 1)
+AND
+CharacterIsPlayer(_Var2, 1)
+AND
+QRY_Crime_ItemHasHPorIndestructible(_Var1)
+THEN
+ProcCrimeVandaliseCheckOwner(_Var1, _Var2, _Var3);
+
+PROC
+ProcCrimeVandaliseCheckOwner((ITEMGUID)_Var1, (CHARACTERGUID)_Var2, (CHARACTERGUID)_Var3)
+AND
+ItemGetOwner(_Var1, _Var4)
+AND
+_Var4 != NULL_00000000-0000-0000-0000-000000000000
+AND
+CharacterIsPlayer(_Var4, 0)
+THEN
+ProcCrimeVandaliseCheckVandal(_Var1, _Var4, _Var2, _Var3, "");
+
+PROC
+ProcCrimeVandaliseCheckOwner((ITEMGUID)_Var1, (CHARACTERGUID)_Var2, (CHARACTERGUID)_Var3)
+AND
+ItemGetOwner(_Var1, _Var4)
+AND
+_Var4 == NULL_00000000-0000-0000-0000-000000000000
+AND NOT
+QryCheckforVandaliseTags(_Var1)
+THEN
+ProcCrimeVandaliseCheckVandal(_Var1, NULL_00000000-0000-0000-0000-000000000000, _Var2, _Var3, "NoOwner");
+
+PROC
+ProcCrimeVandaliseCheckVandal((ITEMGUID)_Var1, (CHARACTERGUID)_Var2, (CHARACTERGUID)_Var3, (CHARACTERGUID)_Var4, (STRING)_Var5)
+AND NOT
+QRY_CharacterIsNull(_Var4)
+AND
+CharacterIsSummon(_Var4, 1)
+AND
+QryShouldTriggerVandaliseCrime(_Var1, _Var4)
+AND NOT
+DB_Crime_Vandalise(_Var4, _Var1, _)
+THEN
+ProcCrimeRegisterVandalise(_Var1, _Var2, _Var4, "Summon", _Var5);
+
+PROC
+ProcCrimeVandaliseCheckVandal((ITEMGUID)_Var1, (CHARACTERGUID)_Var2, (CHARACTERGUID)_Var3, (CHARACTERGUID)_Var4, (STRING)_Var5)
+AND
+_Var3 == _Var4
+AND
+QryShouldTriggerVandaliseCrime(_Var1, _Var3)
+AND NOT
+DB_Crime_Vandalise(_Var3, _Var1, _)
+THEN
+ProcCrimeRegisterVandalise(_Var1, _Var2, _Var3, "", _Var5);
+
+PROC
+ProcCrimeRegisterVandalise((ITEMGUID)_Var1, (CHARACTERGUID)_Var2, (CHARACTERGUID)_Var3)
+THEN
+ProcCrimeRegisterVandalise(_Var1, _Var2, _Var3, "", "");
+
+PROC
+ProcCrimeRegisterVandalise((ITEMGUID)_Var1, (CHARACTERGUID)_Var2, (CHARACTERGUID)_Var3, (STRING)_Var4, (STRING)_Var5)
+AND
+StringConcatenate(_Var4, "Vandalise", _Var6)
+AND
+StringConcatenate(_Var6, _Var5, _Var7)
+AND
+GetPosition(_Var1, _Var8, _Var9, _Var10)
+AND
+RealSum(_Var9, 1, _Var11)
+AND
+CrimeGetNewID(_Var12)
+THEN
+DB_Crime_Vandalise(_Var3, _Var1, _Var12);
+CharacterRegisterCrimeWithPosition(_Var3, _Var7, _Var1, _Var2, _Var8, _Var11, _Var10, _Var12);
+
+QRY
+QryCheckforVandaliseTags((ITEMGUID)_Var1)
+AND
+DB_IgnoreVandaliseTag(_Var2)
+AND
+IsTagged(_Var1, _Var2, 1)
+THEN
+DB_NOOP(1);
+
+QRY
+QryShouldTriggerVandaliseCrime((ITEMGUID)_Var1, (CHARACTERGUID)_Var2)
+AND NOT
+DB_CombatCharacters(_Var2, _)
+THEN
+DB_NOOP(1);
+
+QRY
+QryShouldTriggerVandaliseCrime((ITEMGUID)_Var1, (CHARACTERGUID)_Var2)
+AND
+DB_TriggerVandaliseInCombat(_Var1)
+THEN
+DB_NOOP(1);
+
+IF
+OnCrimeMergedWith((INTEGER)_Var1, (INTEGER)_Var2)
+AND
+DB_Crime_Vandalise(_Var3, _Var4, _Var1)
+THEN
+NOT DB_Crime_Vandalise(_Var3, _Var4, _Var1);
+DB_Crime_Vandalise(_Var3, _Var4, _Var2);
+
+QRY
+QryCheckforVandaliseTags((ITEMGUID)_Var1)
+AND
+DB_IgnoreVandaliseTag(_Var2)
+AND
+IsTagged(_Var1, _Var2, 1)
+THEN
+DB_NOOP(1);
+
+IF
+OnCrimeRemoved((INTEGER)_Var1, (CHARACTERGUID)_Var2, (CHARACTERGUID)_Var3, (CHARACTERGUID)_Var4, (CHARACTERGUID)_Var5, (CHARACTERGUID)_Var6)
+THEN
+ProcCrimeClearVandaliseDB(_Var3, _Var1);
+ProcCrimeClearVandaliseDB(_Var4, _Var1);
+ProcCrimeClearVandaliseDB(_Var5, _Var1);
+ProcCrimeClearVandaliseDB(_Var6, _Var1);
+
+IF
+OnCrimeResolved((INTEGER)_Var1, (CHARACTERGUID)_Var2, (CHARACTERGUID)_Var3, (CHARACTERGUID)_Var4, (CHARACTERGUID)_Var5, (CHARACTERGUID)_Var6)
+AND
+CrimeGetType(_Var1, "Vandalise")
+THEN
+ProcCrimeClearVandaliseDB(_Var3, _Var1);
+ProcCrimeClearVandaliseDB(_Var4, _Var1);
+ProcCrimeClearVandaliseDB(_Var5, _Var1);
+ProcCrimeClearVandaliseDB(_Var6, _Var1);
+
+IF
+OnCrimeResolved((INTEGER)_Var1, (CHARACTERGUID)_Var2, (CHARACTERGUID)_Var3, (CHARACTERGUID)_Var4, (CHARACTERGUID)_Var5, (CHARACTERGUID)_Var6)
+AND
+CrimeGetType(_Var1, "VandaliseNoOwner")
+THEN
+ProcCrimeClearVandaliseDB(_Var3, _Var1);
+ProcCrimeClearVandaliseDB(_Var4, _Var1);
+ProcCrimeClearVandaliseDB(_Var5, _Var1);
+ProcCrimeClearVandaliseDB(_Var6, _Var1);
+
+PROC
+ProcCrimeClearVandaliseDB((CHARACTERGUID)_Var1, (INTEGER)_Var2)
+AND
+DB_Crime_Vandalise(_Var1, _Var3, _Var2)
+THEN
+NOT DB_Crime_Vandalise(_Var1, _Var3, _Var2);
+
+IF
+AttackedByObject((ITEMGUID)_Var1, (CHARACTERGUID)_Var2, (CHARACTERGUID)_Var3, _, (STRING)_Var5)
+AND NOT
+QryIgnoreDamageSource(_Var5)
+AND
+ObjectIsItem(_Var1, 1)
+AND
+CharacterIsPlayer(_Var2, 1)
+AND NOT
+DB_CombatCharacters(_Var2, _)
+AND
+ItemIsDestructible(_Var1, 1)
+AND
+ItemGetHealthPoints(_Var1, _Var7)
+AND
+_Var7 < 1
+AND NOT
+DB_Crime_ItemDestroyed(_Var1, _Var2)
+AND
+ItemGetOwner(_Var1, _Var8)
+AND
+_Var8 != NULL_00000000-0000-0000-0000-000000000000
+AND
+CharacterIsPlayer(_Var8, 0)
+THEN
+ProcCrimeItemDestroyCheckVandal(_Var1, _Var8, _Var2, _Var3);
+
+PROC
+ProcCrimeItemDestroyCheckVandal((ITEMGUID)_Var1, (CHARACTERGUID)_Var2, (CHARACTERGUID)_Var3, (CHARACTERGUID)_Var4)
+AND NOT
+QRY_CharacterIsNull(_Var4)
+AND
+CharacterIsSummon(_Var4, 1)
+AND
+QryShouldTriggerVandaliseCrime(_Var1, _Var4)
+AND NOT
+DB_Crime_Vandalise(_Var4, _Var1, _)
+THEN
+ProcCrimeRegisterItemDestroy(_Var1, _Var2, _Var4, "Summon");
+
+PROC
+ProcCrimeItemDestroyCheckVandal((ITEMGUID)_Var1, (CHARACTERGUID)_Var2, (CHARACTERGUID)_Var3, (CHARACTERGUID)_Var4)
+AND
+_Var3 == _Var4
+AND
+QryShouldTriggerVandaliseCrime(_Var1, _Var3)
+AND NOT
+DB_Crime_Vandalise(_Var3, _Var1, _)
+THEN
+ProcCrimeRegisterItemDestroy(_Var1, _Var2, _Var3, "");
+
+PROC
+ProcCrimeRegisterItemDestroy((ITEMGUID)_Var1, (CHARACTERGUID)_Var2, (CHARACTERGUID)_Var3, (STRING)_Var4)
+AND
+StringConcatenate(_Var4, "ItemDestroy", _Var5)
+AND
+GetPosition(_Var1, _Var6, _Var7, _Var8)
+AND
+RealSum(_Var7, 1, _Var9)
+THEN
+DB_Crime_ItemDestroyed(_Var1, _Var3);
+CharacterRegisterCrimeWithPosition(_Var3, _Var5, _Var1, _Var2, _Var6, _Var9, _Var8, 0);
+
+IF
+CharacterStatusApplied((CHARACTERGUID)_Var1, (STRING)_Var2, _)
+AND
+_Var2 != "UNSHEATHED"
+AND
+DB_IsPlayer(_Var1)
+AND
+DB_StatusReaction(_Var2, _Var4)
+AND
+HasActiveStatus(_Var1, _Var2, 1)
+THEN
+DB_StatusReactingToPlayer(_Var1, _Var2);
+CharacterRegisterCrime(_Var1, _Var4, NULL_00000000-0000-0000-0000-000000000000, NULL_00000000-0000-0000-0000-000000000000, 0);
+
+IF
+CharacterStatusApplied((CHARACTERGUID)_Var1, (STRING)_Var2, _)
+AND
+_Var2 == "UNSHEATHED"
+AND
+DB_IsPlayer(_Var1)
+AND NOT
+DB_CombatCharacters(_Var1, _)
+AND
+DB_StatusReaction(_Var2, _Var5)
+AND
+HasActiveStatus(_Var1, _Var2, 1)
+THEN
+DB_StatusReactingToPlayer(_Var1, _Var2);
+CharacterRegisterCrime(_Var1, _Var5, NULL_00000000-0000-0000-0000-000000000000, NULL_00000000-0000-0000-0000-000000000000, 0);
+
+IF
+CharacterStatusRemoved((CHARACTERGUID)_Var1, (STRING)_Var2, _)
+AND
+DB_IsPlayer(_Var1)
+AND
+DB_StatusReaction(_Var2, _Var4)
+THEN
+CharacterStopCrime(_Var1, _Var4, NULL_00000000-0000-0000-0000-000000000000);
+NOT DB_StatusReactingToPlayer(_Var1, _Var2);
+
+IF
+DB_IsNotMessingAround(_Var1)
+THEN
+DB_AttackOnAssault(_Var1);
+SetTag(_Var1, "NOT_MESSING_AROUND");
+ProcCharacterEnableCrime(_Var1, "Assault");
+
+IF
+DB_RemoveIsNotMessingAround(_Var1)
+THEN
+NOT DB_IsNotMessingAround(_Var1);
+NOT DB_RemoveIsNotMessingAround(_Var1);
+ClearTag(_Var1, "NOT_MESSING_AROUND");
+
+IF
+DB_AttackOnAssault(_Var1)
+AND NOT
+DB_IsNotMessingAround(_Var1)
+THEN
+NOT DB_AttackOnAssault(_Var1);
+ClearTag(_Var1, "NOT_MESSING_AROUND");
+
+QRY
+QryNPCCaresAboutVictim((CHARACTERGUID)_Var1, (CHARACTERGUID)_Var2, _)
+AND
+IsTagged(_Var1, "ANIMAL", 1)
+AND
+IsTagged(_Var2, "ANIMAL", 1)
+THEN
+DB_NOOP(1);
+
+QRY
+QryNPCCaresAboutVictim((CHARACTERGUID)_Var1, (CHARACTERGUID)_Var2, (INTEGER)_Var3)
+AND
+IsTagged(_Var1, "ANIMAL", 0)
+AND
+QryNonAnimalNPCCaresAboutVictim(_Var1, _Var2, _Var3)
+THEN
+DB_NOOP(1);
+
+QRY
+QryNonAnimalNPCCaresAboutVictim((CHARACTERGUID)_Var1, (CHARACTERGUID)_Var2, 0)
+AND
+ObjectIsCharacter(_Var2, 0)
+THEN
+DB_NOOP(1);
+
+QRY
+QryNonAnimalNPCCaresAboutVictim((CHARACTERGUID)_Var1, (CHARACTERGUID)_Var2, 0)
+AND
+ObjectIsCharacter(_Var2, 1)
+AND
+CharacterIsAlly(_Var1, _Var2, 1)
+THEN
+DB_NOOP(1);
+
+QRY
+QryNonAnimalNPCCaresAboutVictim((CHARACTERGUID)_Var1, (CHARACTERGUID)_Var2, 1)
+THEN
+DB_NOOP(1);
+
+IF
+CharacterOnCrimeSensibleActionNotification((CHARACTERGUID)_Var1, (STRING)_Var2, (INTEGER)_Var3, (STRING)_Var4, (STRING)_Var5, (CHARACTERGUID)_Var6, (CHARACTERGUID)_Var7, (CHARACTERGUID)_Var8, (CHARACTERGUID)_Var9, (INTEGER)_Var10)
+AND
+CrimeGetType(_Var3, _Var11)
+AND NOT
+DB_NPC_CrimeAttitude_DoNotChange(_Var1, _Var11)
+AND
+DB_CrimeAttitudeChange(_Var11, _Var12)
+AND
+CrimeGetVictim(_Var3, _Var13)
+THEN
+ProcCheckAdjustAttitude(_Var1, _Var13, _Var6, _Var7, _Var8, _Var9, _Var12, _Var10);
+
+PROC
+ProcCheckAdjustAttitude((CHARACTERGUID)_Var1, (CHARACTERGUID)_Var2, (CHARACTERGUID)_Var3, (CHARACTERGUID)_Var4, (CHARACTERGUID)_Var5, (CHARACTERGUID)_Var6, (INTEGER)_Var7, (INTEGER)_Var8)
+AND
+QryNPCCaresAboutVictim(_Var1, _Var2, _Var8)
+THEN
+ProcCrimeCheckIfAttitudeCauseCombat(_Var1, _Var3, _Var7);
+ProcCrimeCheckIfAttitudeCauseCombat(_Var1, _Var4, _Var7);
+ProcCrimeCheckIfAttitudeCauseCombat(_Var1, _Var5, _Var7);
+ProcCrimeCheckIfAttitudeCauseCombat(_Var1, _Var6, _Var7);
+
+PROC
+ProcCrimeCheckIfAttitudeCauseCombat((CHARACTERGUID)_Var1, (CHARACTERGUID)_Var2, (INTEGER)_Var3)
+THEN
+CharacterAddAttitudeTowardsPlayer(_Var1, _Var2, _Var3);
+
+PROC
+ProcCrimeCheckIfAttitudeCauseCombat((CHARACTERGUID)_Var1, (CHARACTERGUID)_Var2, (INTEGER)_Var3)
+AND
+CharacterGetAttitudeTowardsPlayer(_Var1, _Var2, _Var4)
+AND
+_Var4 <= -75
+AND
+IntegerSubtract(-74, _Var4, _Var5)
+THEN
+CharacterAddAttitudeTowardsPlayer(_Var1, _Var2, _Var5);
+
+QRY
+QRY_CrimeNPCUnAvailableForDialog((CHARACTERGUID)_Var1, (CHARACTERGUID)_Var2, (CHARACTERGUID)_Var3, (CHARACTERGUID)_Var4, (CHARACTERGUID)_Var5)
+AND
+IsSpeakerReserved(_Var1, 1)
+THEN
+DB_NOOP(1);
+
+QRY
+QRY_CrimeNPCUnAvailableForDialog((CHARACTERGUID)_Var1, (CHARACTERGUID)_Var2, (CHARACTERGUID)_Var3, (CHARACTERGUID)_Var4, (CHARACTERGUID)_Var5)
+AND
+_Var2 != NULL_00000000-0000-0000-0000-000000000000
+AND
+IsSpeakerReserved(_Var2, 1)
+THEN
+DB_NOOP(1);
+
+QRY
+QRY_CrimeNPCUnAvailableForDialog((CHARACTERGUID)_Var1, (CHARACTERGUID)_Var2, (CHARACTERGUID)_Var3, (CHARACTERGUID)_Var4, (CHARACTERGUID)_Var5)
+AND
+_Var3 != NULL_00000000-0000-0000-0000-000000000000
+AND
+IsSpeakerReserved(_Var3, 1)
+THEN
+DB_NOOP(1);
+
+QRY
+QRY_CrimeNPCUnAvailableForDialog((CHARACTERGUID)_Var1, (CHARACTERGUID)_Var2, (CHARACTERGUID)_Var3, (CHARACTERGUID)_Var4, (CHARACTERGUID)_Var5)
+AND
+_Var4 != NULL_00000000-0000-0000-0000-000000000000
+AND
+IsSpeakerReserved(_Var4, 1)
+THEN
+DB_NOOP(1);
+
+QRY
+QRY_CrimeNPCUnAvailableForDialog((CHARACTERGUID)_Var1, (CHARACTERGUID)_Var2, (CHARACTERGUID)_Var3, (CHARACTERGUID)_Var4, (CHARACTERGUID)_Var5)
+AND
+_Var5 != NULL_00000000-0000-0000-0000-000000000000
+AND
+IsSpeakerReserved(_Var5, 1)
+THEN
+DB_NOOP(1);
+
+QRY
+QRY_CrimeNPCUnAvailableForDialog((CHARACTERGUID)_Var1, (CHARACTERGUID)_Var2, (CHARACTERGUID)_Var3, (CHARACTERGUID)_Var4, (CHARACTERGUID)_Var5)
+AND
+CharacterIsDead(_Var1, 1)
+THEN
+DB_NOOP(1);
+
+QRY
+QRY_CrimeNPCUnAvailableForDialog((CHARACTERGUID)_Var1, (CHARACTERGUID)_Var2, (CHARACTERGUID)_Var3, (CHARACTERGUID)_Var4, (CHARACTERGUID)_Var5)
+AND
+GetRegion(_Var1, _Var6)
+AND NOT
+DB_CurrentLevel(_Var6)
+THEN
+DB_NOOP(1);
+
+QRY
+QRY_CrimeNPCUnAvailableForDialog((CHARACTERGUID)_Var1, (CHARACTERGUID)_Var2, (CHARACTERGUID)_Var3, (CHARACTERGUID)_Var4, (CHARACTERGUID)_Var5)
+AND
+CombatGetIDForCharacter(_Var1, _Var6)
+AND
+_Var6 != 0
+THEN
+DB_NOOP(1);
+
+QRY
+QRY_CrimeNPCUnAvailableForDialog((CHARACTERGUID)_Var1, (CHARACTERGUID)_Var2, (CHARACTERGUID)_Var3, (CHARACTERGUID)_Var4, (CHARACTERGUID)_Var5)
+AND
+CharacterIsEnemy(_Var1, _Var2, 1)
+THEN
+DB_NOOP(1);
+
+QRY
+QRY_CrimeNPCUnAvailableForDialog((CHARACTERGUID)_Var1, (CHARACTERGUID)_Var2, (CHARACTERGUID)_Var3, (CHARACTERGUID)_Var4, (CHARACTERGUID)_Var5)
+AND
+_Var3 != NULL_00000000-0000-0000-0000-000000000000
+AND
+CharacterIsEnemy(_Var1, _Var3, 1)
+THEN
+DB_NOOP(1);
+
+QRY
+QRY_CrimeNPCUnAvailableForDialog((CHARACTERGUID)_Var1, (CHARACTERGUID)_Var2, (CHARACTERGUID)_Var3, (CHARACTERGUID)_Var4, (CHARACTERGUID)_Var5)
+AND
+_Var4 != NULL_00000000-0000-0000-0000-000000000000
+AND
+CharacterIsEnemy(_Var1, _Var4, 1)
+THEN
+DB_NOOP(1);
+
+QRY
+QRY_CrimeNPCUnAvailableForDialog((CHARACTERGUID)_Var1, (CHARACTERGUID)_Var2, (CHARACTERGUID)_Var3, (CHARACTERGUID)_Var4, (CHARACTERGUID)_Var5)
+AND
+_Var5 != NULL_00000000-0000-0000-0000-000000000000
+AND
+CharacterIsEnemy(_Var1, _Var5, 1)
+THEN
+DB_NOOP(1);
+
+PROC
+ProcTryStopDialogFor((CHARACTERGUID)_Var1)
+AND
+_Var1 != NULL_00000000-0000-0000-0000-000000000000
+AND
+CharacterIsPlayer(_Var1, 1)
+AND
+DB_DialogPlayers(_Var2, _Var1, _)
+AND
+DB_DialogName(_Var4, _Var2)
+AND NOT
+DB_Crime_DoNotStopDialog(_Var4)
+THEN
+DialogRequestStop(_Var1);
+DB_StoppedDialog(1);
+
+PROC
+ProcTryStopDialogFor((CHARACTERGUID)_Var1)
+AND
+_Var1 != NULL_00000000-0000-0000-0000-000000000000
+AND
+CharacterIsPlayer(_Var1, 0)
+AND
+DB_DialogNPCs(_Var2, _Var1, _)
+AND
+DB_DialogName(_Var4, _Var2)
+AND NOT
+DB_Crime_DoNotStopDialog(_Var4)
+THEN
+DialogRequestStop(_Var1);
+DB_StoppedDialog(1);
+
+PROC
+ProcCrimeInterruptStoryDialogs((INTEGER)_Var1, (STRING)_Var2, 1, (CHARACTERGUID)_Var3, (CHARACTERGUID)_Var4, (CHARACTERGUID)_Var5, (CHARACTERGUID)_Var6, (CHARACTERGUID)_Var7)
+THEN
+ProcTryStopDialogFor(_Var3);
+ProcTryStopDialogFor(_Var4);
+ProcTryStopDialogFor(_Var5);
+ProcTryStopDialogFor(_Var6);
+ProcTryStopDialogFor(_Var7);
+
+PROC
+ProcCrimeInterruptStoryDialogs(_, _, 1, _, _, _, _, _)
+AND
+DB_StoppedDialog(1)
+THEN
+NOT DB_StoppedDialog(1);
+FireOsirisEvents();
+
+PROC
+ProcCrimeInterruptStoryDialogs((INTEGER)_Var1, (STRING)_Var2, 0, (CHARACTERGUID)_Var3, (CHARACTERGUID)_Var4, (CHARACTERGUID)_Var5, (CHARACTERGUID)_Var6, (CHARACTERGUID)_Var7)
+AND
+DB_DialogNPCs(_Var8, _Var3, _)
+AND
+DB_DialogName(_Var10, _Var8)
+AND NOT
+DB_Crime_DoNotStopDialog(_Var10)
+THEN
+DialogRequestStop(_Var3);
+FireOsirisEvents();
+
+PROC
+ProcCrimeInterruptStoryDialogs((INTEGER)_Var1, (STRING)_Var2, 0, (CHARACTERGUID)_Var3, (CHARACTERGUID)_Var4, (CHARACTERGUID)_Var5, (CHARACTERGUID)_Var6, (CHARACTERGUID)_Var7)
+AND NOT
+QRY_CrimeNPCUnAvailableForDialog(_Var3, NULL_00000000-0000-0000-0000-000000000000, NULL_00000000-0000-0000-0000-000000000000, NULL_00000000-0000-0000-0000-000000000000, NULL_00000000-0000-0000-0000-000000000000)
+THEN
+ProcStartCrimeDialog(_Var1, _Var2, 0, _Var3, _Var4, _Var5, _Var6, _Var7);
+
+PROC
+ProcCrimeInterruptStoryDialogs((INTEGER)_Var1, (STRING)_Var2, 1, (CHARACTERGUID)_Var3, (CHARACTERGUID)_Var4, (CHARACTERGUID)_Var5, (CHARACTERGUID)_Var6, (CHARACTERGUID)_Var7)
+AND NOT
+QRY_CrimeNPCUnAvailableForDialog(_Var3, _Var4, _Var5, _Var6, _Var7)
+THEN
+ProcStartCrimeDialog(_Var1, _Var2, 1, _Var3, _Var4, _Var5, _Var6, _Var7);
+
+PROC
+ProcHandleCrimeDialog((CHARACTERGUID)_Var1, (CHARACTERGUID)_Var2, (CHARACTERGUID)_Var3, (CHARACTERGUID)_Var4, (CHARACTERGUID)_Var5, (STRING)_Var6, 1, _)
+AND
+DB_CheckInterrupt(_Var8, _Var1)
+THEN
+DB_Interrupted(_Var8, _Var1, 1);
+
+PROC
+ProcHandleCrimeDialog((CHARACTERGUID)_Var1, (CHARACTERGUID)_Var2, (CHARACTERGUID)_Var3, (CHARACTERGUID)_Var4, (CHARACTERGUID)_Var5, (STRING)_Var6, 1, _)
+AND
+DB_CheckInterrupt(_Var8, _Var1)
+THEN
+NOT DB_CheckInterrupt(_Var8, _Var1);
+
+PROC
+ProcStartCrimeDialog((INTEGER)_Var1, (STRING)_Var2, (INTEGER)_Var3, (CHARACTERGUID)_Var4, (CHARACTERGUID)_Var5, (CHARACTERGUID)_Var6, (CHARACTERGUID)_Var7, (CHARACTERGUID)_Var8)
+THEN
+DB_NOOP(1);
+
+PROC
+ProcStartCrimeDialog((INTEGER)_Var1, (STRING)_Var2, 1, (CHARACTERGUID)_Var3, (CHARACTERGUID)_Var4, (CHARACTERGUID)_Var5, (CHARACTERGUID)_Var6, (CHARACTERGUID)_Var7)
+AND
+DialogStartCrimeDialog(_Var1, _Var2, 1, _Var3, _Var4, _Var5, _Var6, _Var7, _Var8)
+THEN
+DB_CheckInterrupt(_Var1, _Var3);
+DB_CrimeWarner(_Var1, _Var3, _Var2);
+ProcHandleCrimeDialog(_Var3, _Var4, _Var5, _Var6, _Var7, _Var2, _Var8, 1);
+
+PROC
+ProcStartCrimeDialog((INTEGER)_Var1, (STRING)_Var2, 0, (CHARACTERGUID)_Var3, (CHARACTERGUID)_Var4, (CHARACTERGUID)_Var5, (CHARACTERGUID)_Var6, (CHARACTERGUID)_Var7)
+AND
+DialogStartCrimeDialog(_Var1, _Var2, 0, _Var3, NULL_00000000-0000-0000-0000-000000000000, NULL_00000000-0000-0000-0000-000000000000, NULL_00000000-0000-0000-0000-000000000000, NULL_00000000-0000-0000-0000-000000000000, _Var8)
+AND
+CrimeGetType(_Var1, _Var9)
+THEN
+DB_Crime_WarningAD_Target(_Var9, _Var3, _Var4);
+DB_CheckInterrupt(_Var1, _Var3);
+CrimeConfrontationDone(_Var1, _Var3);
+ProcHandleCrimeDialog(_Var3, _Var4, _Var5, _Var6, _Var7, _Var2, _Var8, 0);
+DB_Interrupted(_Var1, _Var3, 1);
+
+PROC
+ProcCrimeInterruptStoryDialogs((INTEGER)_Var1, (STRING)_Var2, (INTEGER)_Var3, (CHARACTERGUID)_Var4, (CHARACTERGUID)_Var5, (CHARACTERGUID)_Var6, (CHARACTERGUID)_Var7, (CHARACTERGUID)_Var8)
+AND NOT
+DB_Interrupted(_Var1, _Var4, 1)
+THEN
+DB_Crime_FailedToInterruptStoryDialogs(_Var1, _Var2, _Var4, _Var5, _Var6, _Var7, _Var8);
+
+PROC
+ProcCrimeInterruptStoryDialogs((INTEGER)_Var1, (STRING)_Var2, (INTEGER)_Var3, (CHARACTERGUID)_Var4, (CHARACTERGUID)_Var5, (CHARACTERGUID)_Var6, (CHARACTERGUID)_Var7, (CHARACTERGUID)_Var8)
+THEN
+NOT DB_Interrupted(_Var1, _Var4, 1);
+
+PROC
+ProcCrimeTryForceStopDialog((CHARACTERGUID)_Var1)
+THEN
+ProcTryStopDialogFor(_Var1);
+
+PROC
+ProcCrimeTryForceStopDialog((CHARACTERGUID)_Var1)
+AND
+DB_StoppedDialog(1)
+THEN
+NOT DB_StoppedDialog(1);
+FireOsirisEvents();
+
+IF
+DialogStarted("GEB_Warning_UseForbiddenItem", (INTEGER)_Var1)
+AND
+DB_DialogPlayers(_Var1, _Var2, 1)
+AND
+DB_CRIME_ForbiddenStatus(_Var3)
+AND
+HasActiveStatus(_Var2, _Var3, 1)
+THEN
+RemoveStatus(_Var2, _Var3);
+
+IF
+CharacterUsedSkillOnTarget((CHARACTERGUID)_Var1, (ITEMGUID)_Var2, _, "teleportation", _)
+AND
+CharacterIsPlayer(_Var1, 1)
+AND
+ObjectIsItem(_Var2, 1)
+AND
+ItemCanSitOn(_Var2, 0)
+AND
+ItemGetOwner(_Var2, _Var5)
+AND NOT
+QRY_CharacterIsNull(_Var5)
+AND
+CharacterIsPlayer(_Var5, 0)
+THEN
+CharacterRegisterCrime(_Var1, "MoveForbiddenItem", _Var2, _Var5, 0);
+
+PROC
+ProcCrimeTryRegisteringMoveForbiddenItem((CHARACTERGUID)_Var1, (ITEMGUID)_Var2, (INTEGER)_Var3)
+AND
+CharacterIsPlayer(_Var1, 1)
+AND
+ItemCanSitOn(_Var2, 0)
+AND
+ItemGetOwner(_Var2, _Var4)
+AND NOT
+QRY_CharacterIsNull(_Var4)
+AND
+CharacterIsPlayer(_Var4, 0)
+AND
+CharacterIsSummon(_Var1, _Var5)
+AND
+DB_CRIME_MoveForbiddenCrime(_Var5, _Var6)
+THEN
+ProcSendMoveRequestResult(_Var1, _Var2, _Var3);
+CharacterRegisterCrime(_Var1, _Var6, _Var2, _Var4, 0);
+DB_MoveCrimeRegistered(1);
+
+PROC
+ProcSendMoveRequestResult((CHARACTERGUID)_Var1, (ITEMGUID)_Var2, (INTEGER)_Var3)
+AND
+GetPosition(_Var2, _Var4, _Var5, _Var6)
+AND
+ItemGetOwner(_Var2, _Var7)
+AND
+CrimeIsAnyNPCGoingToReact(_Var1, "MoveForbiddenItem", _Var7, _Var4, _Var5, _Var6, _Var8)
+AND
+DB_Negate(_Var8, _Var9)
+THEN
+RequestProcessed(_Var1, _Var3, _Var9);
+
+PROC
+ProcCrimeTryRegisteringMoveForbiddenItem((CHARACTERGUID)_Var1, (ITEMGUID)_Var2, (INTEGER)_Var3)
+AND NOT
+DB_MoveCrimeRegistered(1)
+THEN
+RequestProcessed(_Var1, _Var3, 1);
+
+PROC
+ProcCrimeTryRegisteringMoveForbiddenItem((CHARACTERGUID)_Var1, (ITEMGUID)_Var2, (INTEGER)_Var3)
+THEN
+NOT DB_MoveCrimeRegistered(1);
+
+IF
+CanUseItem((CHARACTERGUID)_Var1, (ITEMGUID)_Var2, (INTEGER)_Var3)
+THEN
+ProcBlockUseOfItem(_Var1, _Var2);
+ProcProcessUseOfItemWithStatus(_Var1, _Var2);
+ProcProcessUseOfItem(_Var1, _Var2, _Var3);
+
+IF
+CanMoveItem((CHARACTERGUID)_Var1, (ITEMGUID)_Var2, (INTEGER)_Var3)
+THEN
+ProcBlockMoveOfItem(_Var1, _Var2);
+ProcProcessMoveOfItem(_Var1, _Var2, _Var3);
+
+IF
+CanPickupItem((CHARACTERGUID)_Var1, (ITEMGUID)_Var2, (INTEGER)_Var3)
+THEN
+ProcBlockPickupOfItem(_Var1, _Var2);
+ProcProcessPickupOfItem(_Var1, _Var2, _Var3);
+
+IF
+CanLockpickItem((CHARACTERGUID)_Var1, (ITEMGUID)_Var2, (INTEGER)_Var3)
+THEN
+ProcBlockLockpickItem(_Var1, _Var2);
+ProcProcessLockpickItem(_Var1, _Var2, _Var3);
+
+IF
+CanCombineItem((CHARACTERGUID)_Var1, (ITEMGUID)_Var2, (ITEMGUID)_Var3, (ITEMGUID)_Var4, (ITEMGUID)_Var5, (ITEMGUID)_Var6, (INTEGER)_Var7)
+THEN
+ProcBlockCombineItem(_Var1, _Var2);
+ProcBlockCombineItem(_Var1, _Var3);
+ProcBlockCombineItem(_Var1, _Var4);
+ProcBlockCombineItem(_Var1, _Var5);
+ProcBlockCombineItem(_Var1, _Var6);
+ProcProcessCombineItem(_Var1, _Var2, _Var3, _Var4, _Var5, _Var6, _Var7);
+
+PROC
+ProcBlockUseOfItem((CHARACTERGUID)_Var1, (ITEMGUID)_Var2)
+THEN
+DB_NOOP(1);
+
+PROC
+ProcBlockMoveOfItem((CHARACTERGUID)_Var1, (ITEMGUID)_Var2)
+THEN
+DB_NOOP(1);
+
+PROC
+ProcBlockPickupOfItem((CHARACTERGUID)_Var1, (ITEMGUID)_Var2)
+THEN
+DB_NOOP(1);
+
+PROC
+ProcBlockLockpickItem((CHARACTERGUID)_Var1, (ITEMGUID)_Var2)
+THEN
+DB_NOOP(1);
+
+PROC
+ProcBlockCombineItem((CHARACTERGUID)_Var1, (ITEMGUID)_Var2)
+THEN
+DB_NOOP(1);
+
+PROC
+ProcProcessUseOfItemWithStatus((CHARACTERGUID)_Var1, (ITEMGUID)_Var2)
+AND
+DB_IsPlayer(_Var1)
+AND NOT
+DB_CustomUseItemResponse(_Var1, _Var2, 0)
+AND
+DB_ItemStatusAffectCharacterOnUse(_Var3)
+AND
+HasActiveStatus(_Var2, _Var3, 1)
+AND NOT
+QRYItemStatusIsNotAppliedToUser(_Var2, _Var3)
+THEN
+ApplyStatus(_Var1, _Var3, 12);
+
+QRY
+QRYItemStatusIsNotAppliedToUser((ITEMGUID)_Var1, (STRING)_Var2)
+AND
+_Var2 == "BURNING"
+AND
+ItemIsTorch(_Var1, 1)
+THEN
+DB_NOOP(1);
+
+PROC
+ProcProcessUseOfItem((CHARACTERGUID)_Var1, (ITEMGUID)_Var2, (INTEGER)_Var3)
+AND
+DB_CustomUseItemResponse(_Var1, _Var2, _Var4)
+THEN
+RequestProcessed(_Var1, _Var3, _Var4);
+
+PROC
+ProcProcessUseOfItem((CHARACTERGUID)_Var1, (ITEMGUID)_Var2, (INTEGER)_Var3)
+AND NOT
+DB_CustomUseItemResponse(_Var1, _Var2, _)
+AND
+ItemCanSitOn(_Var2, 0)
+AND
+ItemIsLadder(_Var2, 0)
+AND
+ItemIsPublicDomain(_Var2, 0)
+THEN
+DB_HandledRequest(_Var1, _Var2, _Var3);
+ProcCrimeTryRegisteringUseForbiddenItem(_Var1, _Var2, _Var3);
+
+PROC
+ProcProcessUseOfItem((CHARACTERGUID)_Var1, (ITEMGUID)_Var2, (INTEGER)_Var3)
+AND NOT
+DB_CustomUseItemResponse(_Var1, _Var2, _)
+AND NOT
+DB_HandledRequest(_Var1, _Var2, _Var3)
+THEN
+RequestProcessed(_Var1, _Var3, 1);
+
+PROC
+ProcProcessUseOfItem((CHARACTERGUID)_Var1, (ITEMGUID)_Var2, (INTEGER)_Var3)
+AND
+DB_HandledRequest(_Var1, _Var2, _Var3)
+THEN
+NOT DB_HandledRequest(_Var1, _Var2, _Var3);
+
+PROC
+ProcProcessMoveOfItem((CHARACTERGUID)_Var1, (ITEMGUID)_Var2, (INTEGER)_Var3)
+AND
+DB_CustomMoveItemResponse(_Var1, _Var2, _Var4)
+THEN
+RequestProcessed(_Var1, _Var3, _Var4);
+
+PROC
+ProcProcessMoveOfItem((CHARACTERGUID)_Var1, (ITEMGUID)_Var2, (INTEGER)_Var3)
+AND NOT
+DB_CustomMoveItemResponse(_Var1, _Var2, _)
+THEN
+ProcCrimeTryRegisteringMoveForbiddenItem(_Var1, _Var2, _Var3);
+
+PROC
+ProcProcessPickupOfItem((CHARACTERGUID)_Var1, (ITEMGUID)_Var2, (INTEGER)_Var3)
+AND
+DB_CustomPickupItemResponse(_Var1, _Var2, _Var4)
+THEN
+RequestProcessed(_Var1, _Var3, _Var4);
+
+PROC
+ProcProcessPickupOfItem((CHARACTERGUID)_Var1, (ITEMGUID)_Var2, (INTEGER)_Var3)
+AND NOT
+DB_CustomPickupItemResponse(_Var1, _Var2, _)
+THEN
+ProcCrimeTryRegisteringStealItem(_Var1, _Var2, _Var3);
+
+PROC
+ProcProcessLockpickItem((CHARACTERGUID)_Var1, (ITEMGUID)_Var2, (INTEGER)_Var3)
+AND
+DB_CustomLockpickItemResponse(_Var1, _Var2, _Var4)
+THEN
+RequestProcessed(_Var1, _Var3, _Var4);
+
+PROC
+ProcProcessLockpickItem((CHARACTERGUID)_Var1, (ITEMGUID)_Var2, (INTEGER)_Var3)
+AND NOT
+DB_CustomLockpickItemResponse(_Var1, _Var2, _)
+THEN
+ProcCrimeTryRegisteringUseForbiddenItem(_Var1, _Var2, _Var3);
+
+PROC
+ProcProcessCombineItem((CHARACTERGUID)_Var1, (ITEMGUID)_Var2, (ITEMGUID)_Var3, (ITEMGUID)_Var4, (ITEMGUID)_Var5, (ITEMGUID)_Var6, (INTEGER)_Var7)
+AND NOT
+QryCombineItemHasCustomResult(_Var1, _Var2, _Var3, _Var4, _Var5, _Var6)
+AND
+CharacterIsPlayer(_Var1, 1)
+THEN
+ProcCrimeCheckRegisterUseForbiddenItem(_Var1, _Var2, _Var7);
+ProcCrimeCheckRegisterUseForbiddenItem(_Var1, _Var3, _Var7);
+ProcCrimeCheckRegisterUseForbiddenItem(_Var1, _Var4, _Var7);
+ProcCrimeCheckRegisterUseForbiddenItem(_Var1, _Var5, _Var7);
+ProcCrimeCheckRegisterUseForbiddenItem(_Var1, _Var6, _Var7);
+
+PROC
+ProcProcessCombineItem((CHARACTERGUID)_Var1, (ITEMGUID)_Var2, (ITEMGUID)_Var3, (ITEMGUID)_Var4, (ITEMGUID)_Var5, (ITEMGUID)_Var6, (INTEGER)_Var7)
+AND
+QryCombineItemHasCustomResult(_Var1, _Var2, _Var3, _Var4, _Var5, _Var6)
+THEN
+ProcProcessCustomCombineResponse(_Var1, _Var2, _Var3, _Var4, _Var5, _Var6, _Var7);
+
+PROC
+ProcProcessCustomCombineResponse((CHARACTERGUID)_Var1, (ITEMGUID)_Var2, (ITEMGUID)_Var3, (ITEMGUID)_Var4, (ITEMGUID)_Var5, (ITEMGUID)_Var6, (INTEGER)_Var7)
+AND
+QryCombineItemIsBlocked(_Var1, _Var2, _Var3, _Var4, _Var5, _Var6)
+THEN
+RequestProcessed(_Var1, _Var7, 0);
+
+PROC
+ProcProcessCustomCombineResponse((CHARACTERGUID)_Var1, (ITEMGUID)_Var2, (ITEMGUID)_Var3, (ITEMGUID)_Var4, (ITEMGUID)_Var5, (ITEMGUID)_Var6, (INTEGER)_Var7)
+AND NOT
+QryCombineItemIsBlocked(_Var1, _Var2, _Var3, _Var4, _Var5, _Var6)
+THEN
+RequestProcessed(_Var1, _Var7, 1);
+
+PROC
+ProcCrimeTryRegisteringUseForbiddenItem((CHARACTERGUID)_Var1, (ITEMGUID)_Var2, (INTEGER)_Var3)
+AND
+CharacterIsPlayer(_Var1, 1)
+THEN
+ProcCrimeCheckRegisterUseForbiddenItem(_Var1, _Var2, _Var3);
+
+PROC
+ProcCrimeTryRegisteringUseForbiddenItem((CHARACTERGUID)_Var1, (ITEMGUID)_Var2, (INTEGER)_Var3)
+AND
+CharacterIsPlayer(_Var1, 0)
+THEN
+RequestProcessed(_Var1, _Var3, 1);
+
+PROC
+ProcCrimeTryRegisteringStealItem((CHARACTERGUID)_Var1, (ITEMGUID)_Var2, (INTEGER)_Var3)
+AND
+CharacterIsPlayer(_Var1, 0)
+THEN
+DB_StealRequestHandled(1);
+RequestProcessed(_Var1, _Var3, 1);
+
+PROC
+ProcCrimeTryRegisteringStealItem((CHARACTERGUID)_Var1, (ITEMGUID)_Var2, (INTEGER)_Var3)
+AND NOT
+DB_StealRequestHandled(1)
+AND NOT
+QryCrimeItemHasNPCOwner(_Var2)
+THEN
+DB_StealRequestHandled(1);
+RequestProcessed(_Var1, _Var3, 1);
+
+PROC
+ProcCrimeTryRegisteringStealItem((CHARACTERGUID)_Var1, (ITEMGUID)_Var2, (INTEGER)_Var3)
+AND NOT
+DB_StealRequestHandled(1)
+AND
+ItemGetOwner(_Var2, _Var4)
+AND
+CharacterIsPlayer(_Var4, 0)
+AND
+GetPosition(_Var2, _Var5, _Var6, _Var7)
+AND
+CrimeIsAnyNPCGoingToReact(_Var1, "Steal", _Var4, _Var5, _Var6, _Var7, 1)
+THEN
+DB_StealRequestHandled(1);
+RequestProcessed(_Var1, _Var3, 0);
+CharacterRegisterCrimeWithPosition(_Var1, "Steal", _Var2, _Var4, _Var5, _Var6, _Var7, 0);
+
+PROC
+ProcCrimeTryRegisteringStealItem((CHARACTERGUID)_Var1, (ITEMGUID)_Var2, (INTEGER)_Var3)
+AND NOT
+DB_StealRequestHandled(1)
+THEN
+RequestProcessed(_Var1, _Var3, 1);
+
+PROC
+ProcCrimeTryRegisteringStealItem(_, _, _)
+THEN
+NOT DB_StealRequestHandled(1);
+
+PROC
+ProcProcessUseOfItem((CHARACTERGUID)_Var1, (ITEMGUID)_Var2, (INTEGER)_Var3)
+AND
+DB_CustomUseItemResponse(_Var1, _Var2, _Var4)
+THEN
+NOT DB_CustomUseItemResponse(_Var1, _Var2, _Var4);
+
+PROC
+ProcProcessMoveOfItem((CHARACTERGUID)_Var1, (ITEMGUID)_Var2, (INTEGER)_Var3)
+AND
+DB_CustomMoveItemResponse(_Var1, _Var2, _Var4)
+THEN
+NOT DB_CustomMoveItemResponse(_Var1, _Var2, _Var4);
+
+PROC
+ProcProcessPickupOfItem((CHARACTERGUID)_Var1, (ITEMGUID)_Var2, (INTEGER)_Var3)
+AND
+DB_CustomPickupItemResponse(_Var1, _Var2, _Var4)
+THEN
+NOT DB_CustomPickupItemResponse(_Var1, _Var2, _Var4);
+
+PROC
+ProcProcessLockpickItem((CHARACTERGUID)_Var1, (ITEMGUID)_Var2, (INTEGER)_Var3)
+AND
+DB_CustomLockpickItemResponse(_Var1, _Var2, _Var4)
+THEN
+NOT DB_CustomLockpickItemResponse(_Var1, _Var2, _Var4);
+
+PROC
+ProcProcessCombineItem((CHARACTERGUID)_Var1, (ITEMGUID)_Var2, (INTEGER)_Var3)
+AND
+DB_CustomCombineItemResponse(_Var1, _Var2, _Var4)
+THEN
+NOT DB_CustomCombineItemResponse(_Var1, _Var2, _Var4);
+
+PROC
+ProcCrimeCheckRegisterUseForbiddenItem((CHARACTERGUID)_Var1, (ITEMGUID)_Var2, (INTEGER)_Var3)
+AND NOT
+QryCrimeItemHasNPCOwner(_Var2)
+AND NOT
+DB_DontCreateUseForbiddenItem(_Var2)
+THEN
+RequestProcessed(_Var1, _Var3, 1);
+
+PROC
+ProcCrimeCheckRegisterUseForbiddenItem((CHARACTERGUID)_Var1, (ITEMGUID)_Var2, (INTEGER)_Var3)
+AND
+DB_DontCreateUseForbiddenItem(_Var2)
+THEN
+RequestProcessed(_Var1, _Var3, 1);
+
+PROC
+ProcCrimeCheckRegisterUseForbiddenItem((CHARACTERGUID)_Var1, (ITEMGUID)_Var2, (INTEGER)_Var3)
+AND NOT
+DB_DontCreateUseForbiddenItem(_Var2)
+AND
+QryCrimeItemHasNPCOwner(_Var2)
+AND
+HasActiveStatus(_Var1, "SNEAKING", 1)
+THEN
+DB_Crime_UseForbiddenItem(_Var1, "SneakUseForbiddenItem", _Var2);
+RequestProcessed(_Var1, _Var3, 1);
+CharacterRegisterCrime(_Var1, "SneakUseForbiddenItem", _Var2, NULL_00000000-0000-0000-0000-000000000000, 0);
+
+PROC
+ProcCrimeCheckRegisterUseForbiddenItem((CHARACTERGUID)_Var1, (ITEMGUID)_Var2, (INTEGER)_Var3)
+AND NOT
+DB_DontCreateUseForbiddenItem(_Var2)
+AND
+QryCrimeItemHasNPCOwner(_Var2)
+AND
+HasActiveStatus(_Var1, "SNEAKING", 0)
+AND
+GetPosition(_Var2, _Var4, _Var5, _Var6)
+AND
+ItemGetOwner(_Var2, _Var7)
+AND
+CrimeIsAnyNPCGoingToReact(_Var1, "UseForbiddenItem", _Var7, _Var4, _Var5, _Var6, _Var8)
+THEN
+ProcCrimeRegisterUseForbiddenItem(_Var1, _Var2, _Var3, _Var8);
+
+PROC
+ProcCrimeRegisterUseForbiddenItem((CHARACTERGUID)_Var1, (ITEMGUID)_Var2, (INTEGER)_Var3, (INTEGER)_Var4)
+AND
+DB_Negate(_Var4, _Var5)
+THEN
+DB_Crime_UseForbiddenItem(_Var1, "UseForbiddenItem", _Var2);
+RequestProcessed(_Var1, _Var3, _Var5);
+CharacterRegisterCrime(_Var1, "UseForbiddenItem", _Var2, NULL_00000000-0000-0000-0000-000000000000, 0);
+
+IF
+OnCrimeConfrontationDone((INTEGER)_Var1, (CHARACTERGUID)_Var2, 1, (CHARACTERGUID)_Var3, (CHARACTERGUID)_Var4, (CHARACTERGUID)_Var5, (CHARACTERGUID)_Var6)
+AND
+CrimeGetType(_Var1, "UseForbiddenItem")
+THEN
+ProcCrimeForbiddenItemGetEvidence(_Var1, _Var3, "UseForbiddenItem");
+
+IF
+OnCrimeConfrontationDone((INTEGER)_Var1, (CHARACTERGUID)_Var2, 1, (CHARACTERGUID)_Var3, (CHARACTERGUID)_Var4, (CHARACTERGUID)_Var5, (CHARACTERGUID)_Var6)
+AND
+CrimeGetType(_Var1, "SneakUseForbiddenItem")
+THEN
+ProcCrimeForbiddenItemGetEvidence(_Var1, _Var3, "SneakUseForbiddenItem");
+
+PROC
+ProcCrimeForbiddenItemGetEvidence((INTEGER)_Var1, (CHARACTERGUID)_Var2, (STRING)_Var3)
+AND NOT
+QRY_CharacterIsNull(_Var2)
+AND
+CrimeGetNumberOfEvidence(_Var1, _Var4)
+AND
+_Var4 > 0
+AND
+CrimeGetEvidence(_Var1, 1, _Var5)
+THEN
+ProcCrimeStopForbiddenItem(_Var2, _Var3, _Var5);
+
+PROC
+ProcCrimeForbiddenItemGetEvidence((INTEGER)_Var1, (CHARACTERGUID)_Var2, (STRING)_Var3)
+AND NOT
+QRY_CharacterIsNull(_Var2)
+AND
+CrimeGetNumberOfEvidence(_Var1, _Var4)
+AND
+_Var4 < 1
+THEN
+ProcCrimeStopForbiddenItem(_Var2, _Var3, NULL_00000000-0000-0000-0000-000000000000);
+
+PROC
+ProcCrimeStopForbiddenItem((CHARACTERGUID)_Var1, (STRING)_Var2, (ITEMGUID)_Var3)
+THEN
+CharacterStopCrime(_Var1, _Var2, _Var3);
+
+PROC
+ProcCrimeStopForbiddenItem((CHARACTERGUID)_Var1, (STRING)_Var2, (ITEMGUID)_Var3)
+AND
+DB_Crime_UseForbiddenItem(_Var4, _Var2, _Var3)
+THEN
+NOT DB_Crime_UseForbiddenItem(_Var4, _Var2, _Var3);
+
+IF
+CharacterStoppedUsingItem((CHARACTERGUID)_Var1, (ITEMGUID)_Var2)
+AND
+DB_Crime_UseForbiddenItem(_Var1, _Var3, _Var2)
+THEN
+NOT DB_Crime_UseForbiddenItem(_Var1, _Var3, _Var2);
+CharacterStopCrime(_Var1, _Var3, _Var2);
+
+IF
+CharacterStoppedLockpickingItem((CHARACTERGUID)_Var1, (ITEMGUID)_Var2)
+AND
+DB_Crime_UseForbiddenItem(_Var1, _Var3, _Var2)
+THEN
+NOT DB_Crime_UseForbiddenItem(_Var1, _Var3, _Var2);
+CharacterStopCrime(_Var1, _Var3, _Var2);
+
+IF
+CharacterStoppedCombiningItems((CHARACTERGUID)_Var1, (ITEMGUID)_Var2, (ITEMGUID)_Var3, (ITEMGUID)_Var4, (ITEMGUID)_Var5, (ITEMGUID)_Var6)
+THEN
+ProcCrimeStopCombineItemCrime(_Var1, _Var2);
+ProcCrimeStopCombineItemCrime(_Var1, _Var3);
+ProcCrimeStopCombineItemCrime(_Var1, _Var4);
+ProcCrimeStopCombineItemCrime(_Var1, _Var5);
+ProcCrimeStopCombineItemCrime(_Var1, _Var6);
+
+PROC
+ProcCrimeStopCombineItemCrime((CHARACTERGUID)_Var1, (ITEMGUID)_Var2)
+AND
+DB_Crime_UseForbiddenItem(_Var1, _Var3, _Var2)
+THEN
+CharacterStopCrime(_Var1, _Var3, _Var2);
+
+QRY
+QryCrimeClearCombineItemBD((CHARACTERGUID)_Var1, (STRING)_Var2)
+AND
+DB_Crime_UseForbiddenItem(_Var1, _Var2, _Var3)
+THEN
+NOT DB_Crime_UseForbiddenItem(_Var1, _Var2, _Var3);
+
+QRY
+QryCrimeIsValidItemRequest((CHARACTERGUID)_Var1, (ITEMGUID)_Var2)
+AND
+CharacterIsPlayer(_Var1, 0)
+THEN
+DB_NOOP(1);
+
+QRY
+QryCrimeIsValidItemRequest((CHARACTERGUID)_Var1, (ITEMGUID)_Var2)
+AND
+CharacterIsPlayer(_Var1, 1)
+AND NOT
+QryCrimeItemHasNPCOwner(_Var2)
+THEN
+DB_NOOP(1);
+
+QRY
+QryCrimeCombinedItemsAreValid((ITEMGUID)_Var1, (ITEMGUID)_Var2, (ITEMGUID)_Var3, (ITEMGUID)_Var4, (ITEMGUID)_Var5)
+AND NOT
+QryCrimeItemHasNPCOwner(_Var1)
+AND NOT
+QryCrimeItemHasNPCOwner(_Var2)
+AND NOT
+QryCrimeItemHasNPCOwner(_Var3)
+AND NOT
+QryCrimeItemHasNPCOwner(_Var4)
+AND NOT
+QryCrimeItemHasNPCOwner(_Var5)
+THEN
+DB_NOOP(1);
+
+QRY
+QryCrimeItemHasNPCOwner((ITEMGUID)_Var1)
+AND
+ItemGetOwner(_Var1, _Var2)
+AND NOT
+QRY_CharacterIsNull(_Var2)
+AND
+CharacterIsPlayer(_Var2, 0)
+THEN
+DB_NOOP(1);
+
+QRY
+QryCombineItemHasCustomResult((CHARACTERGUID)_Var1, (ITEMGUID)_Var2, (ITEMGUID)_Var3, (ITEMGUID)_Var4, (ITEMGUID)_Var5, (ITEMGUID)_Var6)
+AND
+DB_CustomCombineItemResponse(_Var1, _Var2, _)
+THEN
+DB_NOOP(1);
+
+QRY
+QryCombineItemHasCustomResult((CHARACTERGUID)_Var1, (ITEMGUID)_Var2, (ITEMGUID)_Var3, (ITEMGUID)_Var4, (ITEMGUID)_Var5, (ITEMGUID)_Var6)
+AND
+DB_CustomCombineItemResponse(_Var1, _Var3, _)
+THEN
+DB_NOOP(1);
+
+QRY
+QryCombineItemHasCustomResult((CHARACTERGUID)_Var1, (ITEMGUID)_Var2, (ITEMGUID)_Var3, (ITEMGUID)_Var4, (ITEMGUID)_Var5, (ITEMGUID)_Var6)
+AND
+DB_CustomCombineItemResponse(_Var1, _Var4, _)
+THEN
+DB_NOOP(1);
+
+QRY
+QryCombineItemHasCustomResult((CHARACTERGUID)_Var1, (ITEMGUID)_Var2, (ITEMGUID)_Var3, (ITEMGUID)_Var4, (ITEMGUID)_Var5, (ITEMGUID)_Var6)
+AND
+DB_CustomCombineItemResponse(_Var1, _Var5, _)
+THEN
+DB_NOOP(1);
+
+QRY
+QryCombineItemHasCustomResult((CHARACTERGUID)_Var1, (ITEMGUID)_Var2, (ITEMGUID)_Var3, (ITEMGUID)_Var4, (ITEMGUID)_Var5, (ITEMGUID)_Var6)
+AND
+DB_CustomCombineItemResponse(_Var1, _Var6, _)
+THEN
+DB_NOOP(1);
+
+QRY
+QryCombineItemIsBlocked((CHARACTERGUID)_Var1, (ITEMGUID)_Var2, (ITEMGUID)_Var3, (ITEMGUID)_Var4, (ITEMGUID)_Var5, (ITEMGUID)_Var6)
+AND
+DB_CustomCombineItemResponse(_Var1, _Var2, 1)
+THEN
+DB_NOOP(1);
+
+QRY
+QryCombineItemIsBlocked((CHARACTERGUID)_Var1, (ITEMGUID)_Var2, (ITEMGUID)_Var3, (ITEMGUID)_Var4, (ITEMGUID)_Var5, (ITEMGUID)_Var6)
+AND
+DB_CustomCombineItemResponse(_Var1, _Var3, 1)
+THEN
+DB_NOOP(1);
+
+QRY
+QryCombineItemIsBlocked((CHARACTERGUID)_Var1, (ITEMGUID)_Var2, (ITEMGUID)_Var3, (ITEMGUID)_Var4, (ITEMGUID)_Var5, (ITEMGUID)_Var6)
+AND
+DB_CustomCombineItemResponse(_Var1, _Var4, 1)
+THEN
+DB_NOOP(1);
+
+QRY
+QryCombineItemIsBlocked((CHARACTERGUID)_Var1, (ITEMGUID)_Var2, (ITEMGUID)_Var3, (ITEMGUID)_Var4, (ITEMGUID)_Var5, (ITEMGUID)_Var6)
+AND
+DB_CustomCombineItemResponse(_Var1, _Var5, 1)
+THEN
+DB_NOOP(1);
+
+QRY
+QryCombineItemIsBlocked((CHARACTERGUID)_Var1, (ITEMGUID)_Var2, (ITEMGUID)_Var3, (ITEMGUID)_Var4, (ITEMGUID)_Var5, (ITEMGUID)_Var6)
+AND
+DB_CustomCombineItemResponse(_Var1, _Var6, 1)
+THEN
+DB_NOOP(1);
+
+PROC
+ProcCrimeSetAllCustomSensibleAction((CHARACTERGUID)_Var1, (STRING)_Var2, (STRING)_Var3)
+THEN
+ProcCrimeSetCustomPrimarySensibleAction(_Var1, _Var2, _Var3);
+ProcCrimeSetCustomSecondarySensibleAction(_Var1, _Var2, _Var3);
+
+PROC
+ProcCrimeSetCustomPrimarySensibleAction((CHARACTERGUID)_Var1, (STRING)_Var2, (STRING)_Var3)
+AND
+DB_CrimeReaction_CustomSensibleAction(_Var1, _Var2, 1)
+AND
+StringConcatenate("Setting a custom primary sensible action [", _Var3, _Var4)
+AND
+StringConcatenate(_Var4, "] on a character that already have one for crime: ", _Var5)
+AND
+StringConcatenate(_Var5, _Var2, _Var6)
+THEN
+DebugBreak(_Var6);
+
+PROC
+ProcCrimeSetCustomPrimarySensibleAction((CHARACTERGUID)_Var1, (STRING)_Var2, _)
+THEN
+DB_CrimeReaction_CustomSensibleAction(_Var1, _Var2, 1);
+
+PROC
+ProcCrimeSetCustomPrimarySensibleAction((CHARACTERGUID)_Var1, (STRING)_Var2, (STRING)_Var3)
+AND
+_Var3 == ""
+THEN
+ProcCrimeSetCustomSensibleActionVariable(_Var1, _Var2, "CRIME_UndefinedSensibleAction", "Primary_");
+
+PROC
+ProcCrimeSetCustomPrimarySensibleAction((CHARACTERGUID)_Var1, (STRING)_Var2, (STRING)_Var3)
+AND
+_Var3 != ""
+THEN
+ProcCrimeSetCustomSensibleActionVariable(_Var1, _Var2, _Var3, "Primary_");
+
+PROC
+ProcCrimeSetCustomSecondarySensibleAction((CHARACTERGUID)_Var1, (STRING)_Var2, (STRING)_Var3)
+AND
+DB_CrimeReaction_CustomSensibleAction(_Var1, _Var2, 0)
+AND
+StringConcatenate("Setting a custom secondary sensible action [", _Var3, _Var4)
+AND
+StringConcatenate(_Var4, "] on a character that already have one for crime: ", _Var5)
+AND
+StringConcatenate(_Var5, _Var2, _Var6)
+THEN
+DebugBreak(_Var6);
+
+PROC
+ProcCrimeSetCustomSecondarySensibleAction((CHARACTERGUID)_Var1, (STRING)_Var2, _)
+THEN
+DB_CrimeReaction_CustomSensibleAction(_Var1, _Var2, 0);
+
+PROC
+ProcCrimeSetCustomSecondarySensibleAction((CHARACTERGUID)_Var1, (STRING)_Var2, (STRING)_Var3)
+AND
+_Var3 == ""
+THEN
+ProcCrimeSetCustomSensibleActionVariable(_Var1, _Var2, "CRIME_UndefinedSensibleAction", "Secondary_");
+
+PROC
+ProcCrimeSetCustomSecondarySensibleAction((CHARACTERGUID)_Var1, (STRING)_Var2, (STRING)_Var3)
+AND
+_Var3 != ""
+THEN
+ProcCrimeSetCustomSensibleActionVariable(_Var1, _Var2, _Var3, "Secondary_");
+
+PROC
+ProcCrimeSetCustomSensibleActionVariable((CHARACTERGUID)_Var1, (STRING)_Var2, (STRING)_Var3, (STRING)_Var4)
+AND
+StringConcatenate("Custom", _Var4, _Var5)
+AND
+StringConcatenate(_Var5, _Var2, _Var6)
+THEN
+SetVarFixedString(_Var1, _Var6, _Var3);
+
+PROC
+ProcCrimeClearCustomPrimarySensibleAction((CHARACTERGUID)_Var1, (STRING)_Var2)
+AND
+StringConcatenate("CustomPrimary_", _Var2, _Var3)
+THEN
+SetVarFixedString(_Var1, _Var3, "");
+
+PROC
+ProcCrimeClearCustomPrimarySensibleAction((CHARACTERGUID)_Var1, (STRING)_Var2)
+AND
+DB_CrimeReaction_CustomSensibleAction(_Var1, _Var2, 1)
+THEN
+NOT DB_CrimeReaction_CustomSensibleAction(_Var1, _Var2, 1);
+
+PROC
+ProcCrimeClearCustomSecondarySensibleAction((CHARACTERGUID)_Var1, (STRING)_Var2)
+AND
+StringConcatenate("CustomSecondary_", _Var2, _Var3)
+THEN
+SetVarFixedString(_Var1, _Var3, "");
+
+PROC
+ProcCrimeClearCustomSecondarySensibleAction((CHARACTERGUID)_Var1, (STRING)_Var2)
+AND
+DB_CrimeReaction_CustomSensibleAction(_Var1, _Var2, 0)
+THEN
+NOT DB_CrimeReaction_CustomSensibleAction(_Var1, _Var2, 0);
+
+PROC
+ProcCrimeClearAllCustomSensibleAction((CHARACTERGUID)_Var1, (STRING)_Var2)
+AND
+StringConcatenate("CustomPrimary_", _Var2, _Var3)
+AND
+StringConcatenate("CustomSecondary_", _Var2, _Var4)
+THEN
+SetVarFixedString(_Var1, _Var3, "");
+SetVarFixedString(_Var1, _Var4, "");
+
+PROC
+ProcCrimeClearAllCustomSensibleAction((CHARACTERGUID)_Var1, (STRING)_Var2)
+AND
+DB_CrimeReaction_CustomSensibleAction(_Var1, _Var2, _Var3)
+THEN
+NOT DB_CrimeReaction_CustomSensibleAction(_Var1, _Var2, _Var3);
+
+IF
+CharacterOnCrimeSensibleActionNotification((CHARACTERGUID)_Var1, (STRING)_Var2, (INTEGER)_Var3, (STRING)_Var4, (STRING)_Var5, (CHARACTERGUID)_Var6, (CHARACTERGUID)_Var7, (CHARACTERGUID)_Var8, (CHARACTERGUID)_Var9, (INTEGER)_Var10)
+AND
+CrimeGetType(_Var3, _Var11)
+AND
+DB_CrimeReaction_CustomSensibleAction(_Var1, _Var11, _Var10)
+THEN
+ProcCrimeOnCustomSensibleAction(_Var1, _Var2, _Var3, _Var4, _Var5, _Var6, _Var7, _Var8, _Var9, _Var10);
+
+PROC
+ProcCrimeOnCustomSensibleAction((CHARACTERGUID)_Var1, (STRING)_Var2, (INTEGER)_Var3, (STRING)_Var4, (STRING)_Var5, (CHARACTERGUID)_Var6, (CHARACTERGUID)_Var7, (CHARACTERGUID)_Var8, (CHARACTERGUID)_Var9, (INTEGER)_Var10)
+THEN
+DB_NOOP(1);
+
+IF
+DB_CrimeReaction_DoNotInterrogate(_Var1)
+THEN
+DB_Crime_CheckInterrogate(_Var1);
+CrimeEnableInterrogation(_Var1, 0);
+
+IF
+DB_Crime_CheckInterrogate(_Var1)
+AND NOT
+DB_CrimeReaction_DoNotInterrogate(_Var1)
+THEN
+NOT DB_Crime_CheckInterrogate(_Var1);
+CrimeEnableInterrogation(_Var1, 1);
+
+PROC
+ProcCrimeSetCustomInvestigationAD((CHARACTERGUID)_Var1, (STRING)_Var2)
+THEN
+SetVarString(_Var1, "CRIME_InvestigateAD", _Var2);
+
+PROC
+ProcCharacterDisableCrime((CHARACTERGUID)_Var1, (STRING)_Var2)
+AND
+DB_LinkedCrimes(_Var2, _Var3)
+THEN
+DB_CharacterCrimeDisabled(_Var1, _Var3);
+CharacterDisableCrime(_Var1, _Var3);
+
+PROC
+ProcCharacterEnableCrime((CHARACTERGUID)_Var1, (STRING)_Var2)
+AND
+DB_LinkedCrimes(_Var2, _Var3)
+THEN
+DB_CharacterCrimeEnabled(_Var1, _Var3);
+CharacterEnableCrime(_Var1, _Var3);
+
+IF
+DB_CrimeAttitudeChange("Assault", _Var1)
+THEN
+DB_CrimeAttitudeChange("IncapacitatedAssault", _Var1);
+
+IF
+CharacterOnCrimeSensibleActionNotification((CHARACTERGUID)_Var1, _, (INTEGER)_Var3, (STRING)_Var4, _, _, _, _, _, _)
+AND
+DB_CRIME_FleeReaction(_Var4)
+AND
+CrimeGetTension(_Var3, 0)
+THEN
+DB_CRIME_ZeroTensionFlee(_Var3, _Var1);
+
+IF
+OnCrimeConfrontationDone((INTEGER)_Var1, (CHARACTERGUID)_Var2, _, _, _, _, _)
+AND
+CrimeGetTension(_Var1, 0)
+AND NOT
+DB_CRIME_ZeroTensionFlee(_Var1, _Var2)
+THEN
+SetStoryEvent(_Var2, "ClearCrimeReturnPos");
+
+IF
+OnCrimeConfrontationDone((INTEGER)_Var1, (CHARACTERGUID)_Var2, _, _, _, _, _)
+THEN
+NOT DB_CRIME_ZeroTensionFlee(_Var1, _Var2);
+
+IF
+SavegameLoaded((INTEGER)_Var1, (INTEGER)_Var2, (INTEGER)_Var3, (INTEGER)_Var4)
+AND
+QRY_VersionIsOlderThan(_Var1, _Var2, _Var3, _Var4, 3, 6, 3, 0)
+THEN
+DB_CrimeWarningIsAD("GEB_AD_Noticed_Pickpocket");
+
+
+EXITSECTION
+ENDEXITSECTION
+
+ParentTargetEdge "__Start"

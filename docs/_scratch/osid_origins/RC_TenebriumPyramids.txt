@@ -1,0 +1,94 @@
+Version 1
+SubGoalCombiner SGC_AND
+
+INITSECTION
+DB_RC_TenebriumChest(ITEMGUID_S_RC_TenebriumChestRyker_c551014b-1194-4c40-a014-23669ce6bb19);
+DB_RC_TenebriumChest(ITEMGUID_S_RC_TenebriumChestArchive_ca4cfb15-a9e2-411b-823f-b6221013f2ea);
+Proc_RC_CheckTenebriumChests();
+
+KBSECTION
+PROC
+Proc_RC_CheckTenebriumChests()
+AND
+DB_TeleporterPyramid(_Var1)
+AND
+GetInventoryOwner(_Var1, _Var2)
+AND
+DB_RC_TenebriumChest(_Var2)
+THEN
+Proc_PyramidCustomBlockAdd(_Var1, "RC_TenebriumChest");
+
+IF
+DB_RC_TenebriumChest(_Var1)
+THEN
+ItemClearOwner(_Var1);
+
+IF
+CharacterUsedItem((CHARACTERGUID)_Var1, (ITEMGUID)_Var2)
+AND
+DB_RC_TenebriumChest(_Var2)
+THEN
+Proc_RC_TenebriumChestDrain(_Var1);
+
+IF
+AttackedByObject((ITEMGUID)_Var1, (CHARACTERGUID)_Var2, _, _, _)
+AND
+DB_IsPlayer(_Var2)
+AND
+DB_RC_TenebriumChest(_Var1)
+THEN
+Proc_RC_TenebriumChestDrain(_Var2);
+
+PROC
+Proc_RC_TenebriumChestDrain((CHARACTERGUID)_Var1)
+THEN
+UserSetFlag(_Var1, "GLO_UsedTenebriumChest");
+PlayEffect(_Var1, "RS3_FX_GP_ScriptedEvent_Source_Absorb_01");
+CharacterAddSourcePoints(_Var1, -1);
+StartVoiceBark("RC_GLO_VB_TenebriumChest", _Var1);
+
+IF
+ItemAddedToContainer((ITEMGUID)_Var1, (ITEMGUID)_Var2)
+AND
+DB_TeleporterPyramid(_Var1)
+AND
+GetInventoryOwner(_Var1, _Var3)
+AND
+DB_RC_TenebriumChest(_Var3)
+THEN
+Proc_PyramidCustomBlockAdd(_Var1, "RC_TenebriumChest");
+
+IF
+ItemAddedToContainer((ITEMGUID)_Var1, (ITEMGUID)_Var2)
+AND
+DB_TeleporterPyramid(_Var1)
+AND
+GetInventoryOwner(_Var1, _Var3)
+AND NOT
+DB_RC_TenebriumChest(_Var3)
+AND
+DB_PyramidCustomBlock(_Var1, "RC_TenebriumChest")
+THEN
+Proc_PyramidCustomBlockRemove(_Var1, "RC_TenebriumChest");
+
+IF
+ItemRemovedFromContainer((ITEMGUID)_Var1, (ITEMGUID)_Var2)
+AND
+DB_RC_TenebriumChest(_Var2)
+AND
+DB_TeleporterPyramid(_Var1)
+THEN
+Proc_PyramidCustomBlockRemove(_Var1, "RC_TenebriumChest");
+
+IF
+ItemAddedToCharacter((ITEMGUID)_Var1, (CHARACTERGUID)_Var2)
+AND
+DB_PyramidCustomBlock(_Var1, "RC_TenebriumChest")
+THEN
+Proc_PyramidCustomBlockRemove(_Var1, "RC_TenebriumChest");
+
+
+EXITSECTION
+ENDEXITSECTION
+
+ParentTargetEdge "ReapersCoast"

@@ -1,0 +1,266 @@
+Version 1
+SubGoalCombiner SGC_AND
+
+INITSECTION
+ProcTriggerRegisterForPlayers(TRIGGERGUID_S_RC_DU_WithermooreEventStart_Poly_2f6a178c-001b-484e-8065-27f4a825445d);
+DB_Dialogs(ITEMGUID_S_FTJ_SoulJar_bac29376-28ae-42e0-b4d2-e02c408f4eda, "FTJ_WithermooreSoulJar");
+DB_HasStoryEvent(ITEMGUID_S_FTJ_SoulJar_bac29376-28ae-42e0-b4d2-e02c408f4eda, "RC_FTJ_HasWithermooreSoulJar");
+Proc_RegisterPartyDecisionDialogOutcomes_Fixed("FTJ_PDD_SoulJar", "FTJ_PDD_SoulJar_Smash", "FTJ_PDD_SoulJar_Absorb", "FTJ_PDD_SoulJar_Leave", "", "");
+DB_IsSign(ITEMGUID_S_FTJ_SoulJarPlaque_001_33b70b29-5206-4f01-a4b8-7341d9406fcb, "FTJ_Signs", "FTJ_SoulJarPlaque_1");
+DB_IsSign(ITEMGUID_S_FTJ_SoulJarPlaque_002_d958ad01-d2d2-42ad-b86b-d8741beffb51, "FTJ_Signs", "FTJ_SoulJarPlaque_2");
+DB_IsSign(ITEMGUID_S_FTJ_SoulJarPlaque_003_219cb65c-551e-43ac-bc77-1fb86668b4cc, "FTJ_Signs", "FTJ_SoulJarPlaque_3");
+DB_IsSign(ITEMGUID_S_FTJ_SoulJarPlaque_004_490daf78-b899-4bdf-8f70-cd72fe6ee99e, "FTJ_Signs", "FTJ_SoulJarPlaque_4");
+DB_IsSign(ITEMGUID_S_FTJ_SoulJarPlaque_005_00787e24-94bc-410e-95e5-6205ba125f14, "FTJ_Signs", "FTJ_SoulJarPlaque_5");
+SetOnStage(ITEMGUID_S_HatchToPhylacteryRoom_c11fec87-792a-47eb-a79e-15b3237b4416, 0);
+PROC_FTJ_SoulJar_Init();
+
+KBSECTION
+IF
+TextEventSet("destrftj")
+THEN
+ItemDestroy(ITEMGUID_S_FTJ_SoulJar_bac29376-28ae-42e0-b4d2-e02c408f4eda);
+
+IF
+ItemDestroyed(ITEMGUID_S_FTJ_SoulJar_bac29376-28ae-42e0-b4d2-e02c408f4eda)
+THEN
+DebugText(CHARACTERGUID_S_Player_Sebille_c8d55eaf-e4eb-466a-8f0d-6a9447b5b24c, "Destr");
+
+PROC
+PROC_FTJ_SoulJar_Init()
+THEN
+DB_KilledEvent(CHARACTERGUID_S_FTJ_Fluffy_cbc0f26c-b9b4-428e-851e-e1921c1dda38, "FTJ_KilledFluffy");
+DB_FTJ_SoulJar_KilledUpdate(0, "QuestUpdate_RC_FTJ_SoulJar_WithermooreKilledBeforeStartSJ");
+DB_FTJ_SoulJar_KilledUpdate(1, "QuestUpdate_RC_FTJ_SoulJar_WithermooreKilledAfterStartSJ");
+DB_FTJ_SoulJar_DeadUpdate(0, "QuestUpdate_RC_FTJ_SoulJar_WithermooreDeadBeforeStartSJ");
+DB_FTJ_SoulJar_DeadUpdate(1, "QuestUpdate_RC_FTJ_SoulJar_WithermooreDeadAfterStartSJ");
+
+IF
+ItemDestroyed(ITEMGUID_S_FTJ_SoulJar_bac29376-28ae-42e0-b4d2-e02c408f4eda)
+AND NOT
+DB_FTJ_SoulJar_Removed(ITEMGUID_S_FTJ_SoulJar_bac29376-28ae-42e0-b4d2-e02c408f4eda)
+AND
+ObjectGetFlag(ITEMGUID_S_FTJ_SoulJar_bac29376-28ae-42e0-b4d2-e02c408f4eda, "Absorb_SoulJar", 0)
+THEN
+Proc_FTJ_DestroyWithermooreSoulJar();
+
+IF
+DialogEnded("FTJ_WithermooreSoulJar", (INTEGER)_Var1)
+AND
+ObjectGetFlag(ITEMGUID_S_FTJ_SoulJar_bac29376-28ae-42e0-b4d2-e02c408f4eda, "Destroy_SoulJar", 1)
+THEN
+Proc_FTJ_DestroyWithermooreSoulJar();
+
+PROC
+Proc_FTJ_DestroyWithermooreSoulJar()
+AND NOT
+DB_OnlyOnce("FTJ_SoulJar_Destroyed")
+THEN
+SetVarInteger(CHARACTERGUID_S_FTJ_Fluffy_cbc0f26c-b9b4-428e-851e-e1921c1dda38, "StatusReApplyOnRemove", 0);
+SetVarInteger(CHARACTERGUID_S_FTJ_Fluffy_cbc0f26c-b9b4-428e-851e-e1921c1dda38, "ForceStatusOnInit", 0);
+RemoveStatus(CHARACTERGUID_S_FTJ_Fluffy_cbc0f26c-b9b4-428e-851e-e1921c1dda38, "PETRIFIED");
+CharacterDie(RC_FTJ_Fluffy_cbc0f26c-b9b4-428e-851e-e1921c1dda38, 1, "DoT");
+PlayEffect(CHARACTERGUID_S_FTJ_Fluffy_cbc0f26c-b9b4-428e-851e-e1921c1dda38, "RS3_FX_GP_ScriptedEvent_SourceJar_Death_Impact_01");
+GlobalSetFlag("RC_FTJ_SoulJarDestroyed");
+
+PROC
+Proc_FTJ_DestroyWithermooreSoulJar()
+AND
+QueryOnlyOnce("FTJ_SoulJar_Destroyed")
+AND
+DB_IsPlayer(_Var1)
+AND
+ObjectGetFlag(_Var1, "FTJ_SoulJar_Accepted", 1)
+THEN
+UserSetFlag(_Var1, "QuestUpdate_RC_FTJ_SoulJar_DestroyedSJ");
+
+IF
+ObjectFlagSet("FTJ_SoulJar_QuestOffered", (CHARACTERGUID)_Var1, _)
+AND
+DB_RC_FTJ_PlayerFreedFluffy(_Var3)
+AND
+CharacterGetReservedUserID(_Var1, _Var4)
+AND
+CharacterGetReservedUserID(_Var3, _Var4)
+THEN
+UserSetFlag(_Var1, "QuestUpdate_RC_FTJ_SoulJar_WithermooreFreed");
+
+IF
+ObjectFlagSet("FTJ_SoulJar_QuestOffered", (CHARACTERGUID)_Var1, _)
+AND
+ObjectGetFlag(_Var1, "QuestUpdate_RC_FTJ_SoulJar_WithermooreFreed", 0)
+THEN
+UserSetFlag(_Var1, "QuestUpdate_RC_FTJ_SoulJar_WithermooreQuestNotFreed");
+
+QRY
+QRY_FTJ_SoulJar_SetKnowAboutSoulJar((CHARACTERGUID)_Var1)
+THEN
+NOT DB_FTJ_SoulJar_KnowAboutSoulJar(0);
+NOT DB_FTJ_SoulJar_KnowAboutSoulJar(1);
+
+QRY
+QRY_FTJ_SoulJar_SetKnowAboutSoulJar((CHARACTERGUID)_Var1)
+AND
+ObjectGetFlag(_Var1, "QuestUpdate_RC_FTJ_SoulJar_WithermooreFreed", 1)
+THEN
+DB_FTJ_SoulJar_KnowAboutSoulJar(1);
+
+QRY
+QRY_FTJ_SoulJar_SetKnowAboutSoulJar((CHARACTERGUID)_Var1)
+AND
+ObjectGetFlag(_Var1, "WithermooreQuestNotFreed", 1)
+THEN
+DB_FTJ_SoulJar_KnowAboutSoulJar(1);
+
+QRY
+QRY_FTJ_SoulJar_SetKnowAboutSoulJar((CHARACTERGUID)_Var1)
+AND
+ObjectGetFlag(_Var1, "QuestUpdate_RC_FTJ_SoulJar_StartSJ", 1)
+THEN
+DB_FTJ_SoulJar_KnowAboutSoulJar(1);
+
+QRY
+QRY_FTJ_SoulJar_SetKnowAboutSoulJar((CHARACTERGUID)_Var1)
+AND NOT
+DB_FTJ_SoulJar_KnowAboutSoulJar(1)
+THEN
+DB_FTJ_SoulJar_KnowAboutSoulJar(0);
+
+IF
+ItemAddedToCharacter(ITEMGUID_S_FTJ_SoulJar_bac29376-28ae-42e0-b4d2-e02c408f4eda, (CHARACTERGUID)_Var1)
+AND
+DB_IsPlayer(_Var1)
+AND
+ObjectGetFlag(_Var1, "FTJ_SoulJar_Accepted", 1)
+THEN
+UserSetFlag(_Var1, "QuestUpdate_RC_FTJ_SoulJar_PickupSJ");
+
+IF
+DialogEnded(_, (INTEGER)_Var2)
+AND
+DialogGetInvolvedNPC(_Var2, 1, ITEMGUID_S_FTJ_SoulJar_bac29376-28ae-42e0-b4d2-e02c408f4eda)
+AND
+DialogGetInvolvedPlayer(_Var2, 1, _Var3)
+AND
+ObjectGetFlag(ITEMGUID_S_FTJ_SoulJar_bac29376-28ae-42e0-b4d2-e02c408f4eda, "Absorb_SoulJar", 1)
+THEN
+Proc_FTJ_UseSoulJar(_Var3);
+
+PROC
+Proc_FTJ_UseSoulJar((CHARACTERGUID)_Var1)
+THEN
+CharacterDie(RC_FTJ_Fluffy_cbc0f26c-b9b4-428e-851e-e1921c1dda38, 1, "DoT");
+GlobalSetFlag("FTJ_SoulJarUsed");
+ProcDefineReflectionDialog("FTJ_RD_SoulJarUsed", _Var1);
+
+PROC
+Proc_FTJ_UseSoulJar((CHARACTERGUID)_Var1)
+AND
+QRY_FTJ_SoulJar_SetKnowAboutSoulJar(_Var1)
+AND
+DB_FTJ_SoulJar_KnowAboutSoulJar(1)
+THEN
+UserSetFlag(_Var1, "QuestUpdate_RC_FTJ_SoulJar_UsedSoulJar");
+
+IF
+ObjectFlagSet("FTJ_KilledFluffy", (CHARACTERGUID)_Var1, _)
+AND
+QRY_FTJ_SoulJar_SetKnowAboutSoulJar(_Var1)
+AND
+DB_FTJ_SoulJar_KnowAboutSoulJar(_Var3)
+AND
+DB_FTJ_SoulJar_KilledUpdate(_Var3, _Var4)
+THEN
+ObjectSetFlag(_Var1, _Var4);
+
+IF
+CharacterDied(CHARACTERGUID_S_FTJ_Fluffy_cbc0f26c-b9b4-428e-851e-e1921c1dda38)
+THEN
+DB_FTJ_SoulJar_FluffyDead(1);
+
+IF
+DB_Sees(_Var1, CHARACTERGUID_S_FTJ_Fluffy_cbc0f26c-b9b4-428e-851e-e1921c1dda38)
+AND
+DB_FTJ_SoulJar_FluffyDead(1)
+AND
+DB_IsPlayer(_Var1)
+AND
+GlobalGetFlag("FTJ_SW_FluffyAtUndeadSoulJar", 0)
+THEN
+PROC_FTJ_SoulJar_MaybeSetWithermooreDeadUpdate(_Var1);
+
+PROC
+PROC_FTJ_SoulJar_MaybeSetWithermooreDeadUpdate((CHARACTERGUID)_Var1)
+AND
+QRY_FTJ_SoulJar_SetKnowAboutSoulJar(_Var1)
+AND
+DB_FTJ_SoulJar_KnowAboutSoulJar(_Var2)
+AND
+DB_FTJ_SoulJar_DeadUpdate(_Var2, _Var3)
+THEN
+UserSetFlag(_Var1, _Var3);
+
+IF
+CharacterDied(RC_FTJ_Fluffy_cbc0f26c-b9b4-428e-851e-e1921c1dda38)
+THEN
+GlobalSetFlag("FTJ_WithermooreIsDead");
+
+IF
+ObjectFlagSet("FTJ_SoulJar_Accepted", (CHARACTERGUID)_Var1, _)
+THEN
+SetVarFloat(ITEMGUID_S_FTJ_SoulJarButton_12c71c4f-5d11-4572-b89f-84faea8b43b9, "MinDistance", 7);
+ProcSetPerceptionDifficulty(ITEMGUID_S_FTJ_SoulJarButton_12c71c4f-5d11-4572-b89f-84faea8b43b9, "Trivial");
+
+IF
+CharacterUsedItem((CHARACTERGUID)_Var1, ITEMGUID_S_FTJ_SoulJarButton_12c71c4f-5d11-4572-b89f-84faea8b43b9)
+AND
+QueryOnlyOnce("FTJ_SoulJarRevealStairs")
+AND
+DB_IsPlayer(_Var1)
+THEN
+ItemSetCanInteract(ITEMGUID_S_FTJ_SoulJarButton_12c71c4f-5d11-4572-b89f-84faea8b43b9, 0);
+proc_ItemMoveToTrigger(RC_FTJ_SoulJarMoveableAltar_4414e9e0-27fd-481a-8e3b-c1a404c5c911, RC_FTJ_SoulJarAltar_Point_267194e7-1991-400b-b842-270e8503ac3c, 0.6, 0, 1);
+PROC_LoopEffect("RS3_FX_Environment_Smoke_Small_02", RC_FTJ_SoulJarMoveableAltar_4414e9e0-27fd-481a-8e3b-c1a404c5c911, "FTJ_SoulJar_SmokeLoopFX", "FJ_FortJoy_Main", "Dummy_FX");
+ProcHideMarker(_Var1, "RC_FTJ_SoulJarButton");
+SetOnStage(ITEMGUID_S_HatchToPhylacteryRoom_c11fec87-792a-47eb-a79e-15b3237b4416, 1);
+
+IF
+ItemMoved(RC_FTJ_SoulJarMoveableAltar_4414e9e0-27fd-481a-8e3b-c1a404c5c911)
+THEN
+PROC_StopLoopEffect(RC_FTJ_SoulJarMoveableAltar_4414e9e0-27fd-481a-8e3b-c1a404c5c911, "FTJ_SoulJar_SmokeLoopFX");
+
+IF
+DialogEnded("FTJ_Fluffy", (INTEGER)_Var1)
+AND
+GlobalGetFlag("FTJ_AgreeToDestroySoulJar", 1)
+AND
+DialogGetInvolvedPlayer(_Var1, 1, _Var2)
+THEN
+PlayEffect(_Var2, "RS3_FX_GP_ScriptedEvent_SourceJar_Break_01");
+DB_FTJ_SoulJar_Removed(ITEMGUID_S_FTJ_SoulJar_bac29376-28ae-42e0-b4d2-e02c408f4eda);
+ItemRemove(ITEMGUID_S_FTJ_SoulJar_bac29376-28ae-42e0-b4d2-e02c408f4eda);
+Proc_FTJ_DestroyWithermooreSoulJar();
+
+IF
+CharacterDied(CHARACTERGUID_S_FTJ_Fluffy_cbc0f26c-b9b4-428e-851e-e1921c1dda38)
+AND NOT
+DB_DestroyedItems(ITEMGUID_S_FTJ_SoulJar_bac29376-28ae-42e0-b4d2-e02c408f4eda)
+AND
+ObjectGetFlag(ITEMGUID_S_FTJ_SoulJar_bac29376-28ae-42e0-b4d2-e02c408f4eda, "Absorb_SoulJar", 0)
+AND
+ObjectGetFlag(ITEMGUID_S_FTJ_SoulJar_bac29376-28ae-42e0-b4d2-e02c408f4eda, "Destroy_SoulJar", 0)
+THEN
+PROC_GLO_SoulJar_PlayDestroyEffect(ITEMGUID_S_FTJ_SoulJar_bac29376-28ae-42e0-b4d2-e02c408f4eda);
+Transform(ITEMGUID_S_FTJ_SoulJar_bac29376-28ae-42e0-b4d2-e02c408f4eda, "PUZ_Source_Jar_Empty_A_f5a33e40-171c-4cf0-9f86-9343fd5df646", 0);
+NOT DB_Dialogs(ITEMGUID_S_FTJ_SoulJar_bac29376-28ae-42e0-b4d2-e02c408f4eda, "FTJ_WithermooreSoulJar");
+GlobalSetFlag("FTJ_WitherMoore_GotKilled");
+
+PROC
+ProcRegionEnded("FJ_FortJoy_Main")
+THEN
+GoalCompleted;
+
+
+EXITSECTION
+ENDEXITSECTION
+
+ParentTargetEdge "FortJoy"

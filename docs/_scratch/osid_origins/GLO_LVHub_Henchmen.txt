@@ -1,0 +1,245 @@
+Version 1
+SubGoalCombiner SGC_AND
+
+INITSECTION
+DB_GLO_LVHub_Henchmen_Captain(CHARACTERGUID_S_GLO_LV_HenchmenRecruiter_ed64ea06-9060-4b29-88dd-623ab008fae6);
+DB_GLO_LVHub_Henchmen_Recruitee("Fighter", S_GLO_Henchman_Fighter_3f44ca37-37db-4415-9c07-8a6a5043f4d9);
+DB_GLO_LVHub_Henchmen_Recruitee("Battlemage", CHARACTERGUID_S_GLO_Henchman_Battlemage_771422fe-7f0a-4997-a600-66de69c75d80);
+DB_GLO_LVHub_Henchmen_Recruitee("Knight", CHARACTERGUID_S_GLO_Henchman_Knight_3b4ec079-75be-4f79-8f4b-449c650d438d);
+DB_GLO_LVHub_Henchmen_Recruitee("Inquisitor", CHARACTERGUID_S_GLO_Henchman_Inquisitor_0d13b184-24a7-42e1-acf4-5728e92a25f9);
+DB_GLO_LVHub_Henchmen_Recruitee("Ranger", CHARACTERGUID_S_GL_Henchman_Ranger_9bb343ab-65fe-4a8b-b1b6-0d084f5444ee);
+DB_GLO_LVHub_Henchmen_Recruitee("Rogue", CHARACTERGUID_S_GLO_Henchman_Rogue_0ea50c31-7f09-484e-aec1-2f8d5492e8cb);
+DB_GLO_LVHub_Henchmen_Recruitee("Shadowblade", CHARACTERGUID_S_GLO_Henchman_Shadowblade_83fcfdd1-3150-4080-9f69-5461ce57fee2);
+DB_GLO_LVHub_Henchmen_Recruitee("Wayfarer", CHARACTERGUID_S_GLO_Henchman_Wayfarer_32bccd3b-17ea-4daf-989a-141842293970);
+DB_GLO_LVHub_Henchmen_Recruitee("Metamorph", CHARACTERGUID_S_GLO_Henchman_Metamorph_0ab5b88b-368c-4303-b95f-0a34a9838d33);
+DB_GLO_LVHub_Henchmen_Recruitee("Conjurer", CHARACTERGUID_S_GLO_Henchman_Conjurer_12837117-e53e-4997-9b02-a1d2aa89419a);
+DB_GLO_LVHub_Henchmen_Recruitee("Wizard", CHARACTERGUID_S_GLO_Henchman_Wizard_0539b874-7adc-4dfc-8258-bdbae55309ad);
+DB_GLO_LVHub_Henchmen_Recruitee("Witch", CHARACTERGUID_S_GLO_Henchman_Witch_4c565d89-c00b-47ab-8335-9edfa9757971);
+DB_GLO_LVHub_Henchmen_Recruitee("Enchanter", CHARACTERGUID_S_GLO_Henchman_Enchanter_827b9f8c-6bd9-4f52-a2ab-7fe6c425bbe5);
+DB_GLO_LVHub_Henchmen_Recruitee("Cleric", CHARACTERGUID_S_GLO_Henchman_Cleric_240a8377-e26c-4cfa-ac84-2a2e6369e9da);
+DB_GLO_LVHub_Henchmen_PriceGroup("LVHub_Henchmen_PricesGroup1", 1, "Fighter");
+DB_GLO_LVHub_Henchmen_PriceGroup("LVHub_Henchmen_PricesGroup1", 2, "Battlemage");
+DB_GLO_LVHub_Henchmen_PriceGroup("LVHub_Henchmen_PricesGroup1", 3, "Knight");
+DB_GLO_LVHub_Henchmen_PriceGroup("LVHub_Henchmen_PricesGroup1", 4, "Inquisitor");
+DB_GLO_LVHub_Henchmen_PriceGroup("LVHub_Henchmen_PricesGroup2", 1, "Ranger");
+DB_GLO_LVHub_Henchmen_PriceGroup("LVHub_Henchmen_PricesGroup2", 2, "Rogue");
+DB_GLO_LVHub_Henchmen_PriceGroup("LVHub_Henchmen_PricesGroup2", 3, "Shadowblade");
+DB_GLO_LVHub_Henchmen_PriceGroup("LVHub_Henchmen_PricesGroup2", 4, "Wayfarer");
+DB_GLO_LVHub_Henchmen_PriceGroup("LVHub_Henchmen_PricesGroup2", 5, "Metamorph");
+DB_GLO_LVHub_Henchmen_PriceGroup("LVHub_Henchmen_PricesGroup3", 1, "Conjurer");
+DB_GLO_LVHub_Henchmen_PriceGroup("LVHub_Henchmen_PricesGroup3", 2, "Wizard");
+DB_GLO_LVHub_Henchmen_PriceGroup("LVHub_Henchmen_PricesGroup3", 3, "Witch");
+DB_GLO_LVHub_Henchmen_PriceGroup("LVHub_Henchmen_PricesGroup3", 4, "Enchanter");
+DB_GLO_LVHub_Henchmen_PriceGroup("LVHub_Henchmen_PricesGroup3", 5, "Cleric");
+PROC_GLO_LVHub_Henchmen_Init();
+
+KBSECTION
+PROC
+PROC_GLO_LVHub_Henchmen_Init()
+AND
+DB_GLO_LVHub_Henchmen_Captain(_Var1)
+THEN
+DB_Dialogs(_Var1, "LV_Hub_HenchmenRecruiter");
+
+PROC
+PROC_GLO_LVHub_Henchmen_Init()
+AND
+DB_GLO_LVHub_Henchmen_Captain(_Var1)
+THEN
+CharacterSetCanTrade(_Var1, 0);
+CharacterDisableCrime(_Var1, "ActiveUndead");
+
+IF
+DB_GLO_LVHub_Henchmen_Captain(_Var1)
+AND
+DB_Dialogs(_Var1, _Var2)
+AND
+DB_GLO_LVHub_Henchmen_PriceGroup(_, _Var4, _)
+THEN
+DB_DialogMoneyTransfer(_Var4, _Var2, 0);
+
+PROC
+PROC_GLO_LVHub_Henchmen_Init()
+AND
+DB_GLO_LVHub_Henchmen_Recruitee(_Var1, _Var2)
+AND
+StringConcatenate("GLO_LVHub_ToBeHired_", _Var1, _Var3)
+AND
+StringConcatenate("GLO_LVHub_Hired_", _Var1, _Var4)
+THEN
+DB_GLO_LVHub_Henchmen_HiredFlags(_Var1, _Var3, _Var4);
+ObjectSetFlag(_Var2, "FTJ_RemoveSourceCollar");
+SetOnStage(_Var2, 0);
+
+PROC
+PROC_GLO_LVHub_Henchmen_Init()
+AND
+DB_GLO_LVHub_Henchmen_Recruitee(_Var1, _Var2)
+AND
+StringConcatenate("Hero Henchman ", _Var1, _Var3)
+THEN
+DB_GLO_PartyMembers_DefaultFaction(_Var2, _Var3);
+
+QRY
+QRY_GLO_PartyMembers_GetInPartyDialog((CHARACTERGUID)_Var1)
+AND
+DB_GLO_LVHub_Henchmen_Recruitee(_, _Var1)
+THEN
+DB_GLO_PartyMembers_InPartyDialog(_Var1, "GLO_Henchman");
+
+IF
+ObjectFlagSet((STRING)_Var1, (CHARACTERGUID)_Var2, (INTEGER)_Var3)
+AND
+DB_GLO_LVHub_Henchmen_Captain(_Var2)
+AND
+DB_Dialogs(_Var2, _Var4)
+AND
+DB_DialogPlayers(_Var3, _Var5, _)
+AND
+CharacterGetLevel(_Var5, _Var7)
+AND
+DB_GLO_LVHub_Henchmen_PriceGroup(_Var1, _Var8, _Var9)
+AND
+CharacterGetHenchmanPresetPrice(_Var5, _Var9, _Var10)
+AND
+DB_FirstGoal_MoneyDialogVar(_Var8, _Var11)
+THEN
+ObjectClearFlag(_Var2, _Var1);
+DialogSetVariableInt(_Var4, _Var11, _Var10);
+
+IF
+ObjectFlagSet((STRING)_Var1, (CHARACTERGUID)_Var2, (INTEGER)_Var3)
+AND
+DB_GLO_LVHub_Henchmen_Captain(_Var2)
+AND
+DB_GLO_LVHub_Henchmen_HiredFlags(_Var4, _Var1, _Var5)
+AND
+DB_DialogPlayers(_Var3, _Var6, _)
+AND
+DB_DialogName(_Var8, _Var3)
+AND
+CharacterGetHenchmanPresetPrice(_Var6, _Var4, _Var9)
+AND
+DB_FirstGoal_MoneyDialogVar(1, _Var10)
+THEN
+DB_GLO_LVHub_Henchmen_HireAfterDialog(_Var4, _Var3);
+DB_DialogMoneyTransfer(1, _Var8, _Var9);
+DialogSetVariableInt(_Var8, _Var10, _Var9);
+
+IF
+ObjectFlagCleared((STRING)_Var1, (CHARACTERGUID)_Var2, (INTEGER)_Var3)
+AND
+DB_GLO_LVHub_Henchmen_Captain(_Var2)
+AND
+DB_GLO_LVHub_Henchmen_HiredFlags(_Var4, _Var1, _Var5)
+THEN
+NOT DB_GLO_LVHub_Henchmen_HireAfterDialog(_Var4, _Var3);
+
+IF
+DialogEnded(_, (INTEGER)_Var2)
+AND
+DB_GLO_LVHub_Henchmen_Captain(_Var3)
+AND
+DB_GLO_LVHub_Henchmen_HireAfterDialog(_Var4, _Var2)
+AND
+DB_DialogPlayers(_Var2, _Var5, _)
+AND
+DB_GLO_LVHub_Henchmen_HiredFlags(_Var4, _Var7, _Var8)
+AND
+DB_GLO_LVHub_Henchmen_Recruitee(_Var4, _Var9)
+THEN
+ObjectClearFlag(_Var3, _Var7);
+ObjectSetFlag(_Var3, _Var8);
+DB_GLO_PartyMembers_OriginalAlignment(_Var9, "Neutral");
+DB_GLO_LVHub_Henchmen_Recruited(_Var5, _Var4, _Var9);
+SetOnStage(_Var9, 1);
+PROC_GLO_LVHub_Henchmen_AddToParty(_Var9, _Var4, _Var5);
+
+PROC
+PROC_GLO_LVHub_Henchmen_AddToParty((CHARACTERGUID)_Var1, (STRING)_Var2, (CHARACTERGUID)_Var3)
+AND
+GetUUID(_Var1, _Var4)
+AND
+StringConcatenate("GLO_LVHub_Henchmen_MadePlayer_", _Var4, _Var5)
+AND
+QueryOnlyOnce(_Var5)
+THEN
+CharacterMakePlayer(_Var1, _Var3);
+
+PROC
+PROC_GLO_LVHub_Henchmen_AddToParty((CHARACTERGUID)_Var1, (STRING)_Var2, (CHARACTERGUID)_Var3)
+THEN
+PROC_GLO_PartyMembers_Add(_Var1, _Var3);
+CharacterApplyHenchmanPreset(_Var1, _Var2);
+ObjectClearFlag(_Var1, "GLO_HasSpiritVision");
+ObjectClearFlag(_Var1, "GLO_HasSourceVampirism");
+Proc_UnlockSourcePointsAndPowers(_Var1, _Var3);
+TeleportTo(_Var1, _Var3);
+Foop(_Var1);
+
+PROC
+PROC_GLO_PartyMembers_MakeNPCHook((CHARACTERGUID)_Var1)
+AND NOT
+DB_GLO_PartyMembers_BlockReturnToRecruitmentPosition(_Var1)
+AND
+DB_GLO_LVHub_Henchmen_Recruited(_Var2, _Var3, _Var1)
+THEN
+CharacterDisappearOutOfSight(_Var1, 0, 0, "GLO_LVHub_Henchmen_Dismissed", 0);
+
+IF
+StoryEvent((CHARACTERGUID)_Var1, "GLO_LVHub_Henchmen_Dismissed")
+AND
+DB_GLO_LVHub_Henchmen_Captain(_Var2)
+AND
+DB_GLO_LVHub_Henchmen_Recruited(_Var3, _Var4, _Var1)
+AND
+DB_GLO_LVHub_Henchmen_HiredFlags(_Var4, _Var5, _Var6)
+AND NOT
+DB_GLO_PartyMembers_TempRemoved(_, _Var1)
+THEN
+NOT DB_GLO_LVHub_Henchmen_Recruited(_Var3, _Var4, _Var1);
+PROC_GLO_PartyMembers_TransferInventoryToPlayer(_Var1, _Var3);
+ObjectClearFlag(_Var2, _Var6);
+
+IF
+GlobalFlagSet("FTJ_LV_StartHoELevel")
+AND
+DB_GLO_LVHub_Henchmen_Captain(_Var1)
+THEN
+ObjectSetFlag(_Var1, "GLO_LVHub_Blocked");
+
+PROC
+ProcRegionEnded("LV_HoE_Main")
+AND
+DB_GLO_LVHub_Henchmen_Captain(_Var1)
+THEN
+ObjectClearFlag(_Var1, "GLO_LVHub_Blocked");
+
+IF
+RegionStarted("CoS_Main_Ending")
+AND
+DB_GLO_LVHub_Henchmen_Captain(_Var1)
+THEN
+ObjectSetFlag(_Var1, "GLO_LVHub_Blocked");
+
+PROC
+ProcRegionEnded("CoS_Main_Ending")
+AND
+DB_GLO_LVHub_Henchmen_Captain(_Var1)
+THEN
+ObjectClearFlag(_Var1, "GLO_LVHub_Blocked");
+
+IF
+RegionStarted("RC_Main")
+AND
+DB_GLO_LVHub_Henchmen_Captain(_Var1)
+THEN
+TeleportTo(_Var1, TRIGGERGUID_S_GLO_LV_HenchmenRecruiterTopDeck_f1799a1a-a4e7-4887-aa8a-5c26090685d0);
+SetVarObject(_Var1, "LVDefaultPoint", TRIGGERGUID_S_GLO_LV_HenchmenRecruiterTopDeck_f1799a1a-a4e7-4887-aa8a-5c26090685d0);
+SetVarFixedString(_Var1, "currentState", "State_LV");
+
+
+EXITSECTION
+ENDEXITSECTION
+
+ParentTargetEdge "GLO_LadyVengeanceHub"

@@ -1,0 +1,24 @@
+Version 1
+SubGoalCombiner SGC_AND
+
+INITSECTION
+DB_Origins(S_Player_Sebille_c8d55eaf-e4eb-466a-8f0d-6a9447b5b24c);
+DB_Origins(S_Player_Lohse_bb932b13-8ebf-4ab4-aac0-83e6924e4295);
+DB_Origins(S_Player_Red_Prince_a26a1efb-cdc8-4cf3-a7b2-b2f9544add6f);
+DB_Origins(S_Player_Ifan_ad9a3327-4456-42a7-9bf4-7ad60cc9e54f);
+DB_Origins(S_Player_Fane_02a77f1f-872b-49ca-91ab-32098c443beb);
+DB_Origins(S_Player_Beast_f25ca124-a4d2-427b-af62-df66df41a978);
+DB_Origins(S_Player_GenericOrigin_7b6c1f26-fe4e-40bd-a5d0-e6ff58cef4fe);
+DB_NeutralTagIgnore("SILENTMONK");
+
+KBSECTION
+PROC
+PROC_Shared_CharacterCreationFinished()
+THEN
+GoalCompleted;
+
+
+EXITSECTION
+ENDEXITSECTION
+
+ParentTargetEdge "DOS2ModWrapper"

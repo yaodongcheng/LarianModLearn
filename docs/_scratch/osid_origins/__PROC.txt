@@ -1,0 +1,1608 @@
+Version 1
+SubGoalCombiner SGC_AND
+
+INITSECTION
+DB_InternalGroup_Count(0);
+
+KBSECTION
+PROC
+CharacterGiveReward((CHARACTERGUID)_Var1, (STRING)_Var2)
+THEN
+CharacterGiveReward(_Var1, _Var2, 1);
+
+PROC
+ItemTemplateAddTo((STRING)_Var1, (GUIDSTRING)_Var2, (INTEGER)_Var3)
+THEN
+ItemTemplateAddTo(_Var1, _Var2, _Var3, 1);
+
+PROC
+ItemToInventory((ITEMGUID)_Var1, (GUIDSTRING)_Var2)
+THEN
+ItemToInventory(_Var1, _Var2, 1, 1, 1);
+
+PROC
+ItemToInventory((ITEMGUID)_Var1, (GUIDSTRING)_Var2, (INTEGER)_Var3)
+THEN
+ItemToInventory(_Var1, _Var2, _Var3, 1, 1);
+
+PROC
+ItemToInventory((ITEMGUID)_Var1, (GUIDSTRING)_Var2, (INTEGER)_Var3, (INTEGER)_Var4)
+THEN
+ItemToInventory(_Var1, _Var2, _Var3, _Var4, 1);
+
+PROC
+ProcCharacterFollowCharacter((CHARACTERGUID)_Var1, (CHARACTERGUID)_Var2)
+THEN
+ProcCharacterStopFollow(_Var1);
+DB_Following(_Var1, _Var2);
+ProcCheckCombatFollow(_Var1, _Var2);
+
+PROC
+ProcCheckCombatFollow((CHARACTERGUID)_Var1, (CHARACTERGUID)_Var2)
+AND
+CombatGetIDForCharacter(_Var1, 0)
+THEN
+CharacterFollowCharacter(_Var1, _Var2);
+
+PROC
+ProcCharacterStopFollow((CHARACTERGUID)_Var1)
+AND
+CharacterIsDead(_Var1, 0)
+THEN
+CharacterStopFollow(_Var1);
+
+PROC
+ProcCharacterStopFollow((CHARACTERGUID)_Var1)
+AND
+DB_Following(_Var1, _Var2)
+THEN
+NOT DB_Following(_Var1, _Var2);
+
+IF
+CharacterDying((CHARACTERGUID)_Var1)
+THEN
+ProcCharacterStopFollow(_Var1);
+
+IF
+ObjectEnteredCombat((CHARACTERGUID)_Var1, _)
+AND
+DB_Following(_Var1, _)
+THEN
+CharacterStopFollow(_Var1);
+
+IF
+ObjectLeftCombat((CHARACTERGUID)_Var1, _)
+AND
+DB_Following(_Var1, _Var3)
+THEN
+CharacterFollowCharacter(_Var1, _Var3);
+
+IF
+DB_DoNotFace(_Var1)
+THEN
+CharacterSetDoNotFaceFlag(_Var1, 1);
+DB_CheckDoNotFace(_Var1);
+
+IF
+DB_CheckDoNotFace(_Var1)
+AND NOT
+DB_DoNotFace(_Var1)
+THEN
+CharacterSetDoNotFaceFlag(_Var1, 0);
+NOT DB_CheckDoNotFace(_Var1);
+
+PROC
+ProcFaceCharacter((CHARACTERGUID)_Var1, (GUIDSTRING)_Var2)
+AND NOT
+DB_DoNotFace(_Var1)
+AND
+ObjectIsCharacter(_Var1, 1)
+AND
+CharacterIsIncapacitated(_Var1, 0)
+THEN
+CharacterLookAt(_Var1, _Var2, 0);
+
+PROC
+ProcFaceEachother((CHARACTERGUID)_Var1, (GUIDSTRING)_Var2)
+AND NOT
+DB_DoNotFace(_Var1)
+AND
+ObjectIsCharacter(_Var1, 1)
+AND
+CharacterIsIncapacitated(_Var1, 0)
+THEN
+CharacterLookAt(_Var1, _Var2, 0);
+
+PROC
+ProcFaceEachother((GUIDSTRING)_Var1, (CHARACTERGUID)_Var2)
+AND NOT
+DB_DoNotFace(_Var2)
+AND
+ObjectIsCharacter(_Var2, 1)
+AND
+CharacterIsIncapacitated(_Var2, 0)
+THEN
+CharacterLookAt(_Var2, _Var1, 0);
+
+PROC
+ProcIncreaseInternalCount()
+AND
+DB_InternalGroup_Count(_Var1)
+AND
+IntegerSum(_Var1, 1, _Var2)
+THEN
+NOT DB_InternalGroup_Count(_Var1);
+DB_InternalGroup_Count(_Var2);
+
+IF
+DB_Dialogs(_Var1, _Var2)
+THEN
+SetHasDialog(_Var1, 1);
+ProcIncreaseInternalCount();
+ProcInteralCounterEntry(_Var1, _Var2);
+
+PROC
+ProcInteralCounterEntry((GUIDSTRING)_Var1, (STRING)_Var2)
+AND
+DB_InternalGroup_Count(_Var3)
+THEN
+DB_InternalCounter(_Var3, _Var2, 1);
+DB_Internal_Dialogs(_Var1, _Var2, _Var3, 1);
+
+IF
+DB_Dialogs(_Var1, _Var2, _Var3)
+THEN
+SetHasDialog(_Var1, 1);
+SetHasDialog(_Var2, 1);
+ProcIncreaseInternalCount();
+ProcInteralCounterEntry(_Var1, _Var2, _Var3);
+
+PROC
+ProcInteralCounterEntry((GUIDSTRING)_Var1, (GUIDSTRING)_Var2, (STRING)_Var3)
+AND
+DB_InternalGroup_Count(_Var4)
+THEN
+DB_InternalCounter(_Var4, _Var3, 2);
+DB_Internal_Dialogs(_Var1, _Var3, _Var4, 1);
+DB_Internal_Dialogs(_Var2, _Var3, _Var4, 2);
+
+IF
+DB_Dialogs(_Var1, _Var2, _Var3, _Var4)
+THEN
+SetHasDialog(_Var1, 1);
+SetHasDialog(_Var2, 1);
+SetHasDialog(_Var3, 1);
+ProcIncreaseInternalCount();
+ProcInteralCounterEntry(_Var1, _Var2, _Var3, _Var4);
+
+PROC
+ProcInteralCounterEntry((GUIDSTRING)_Var1, (GUIDSTRING)_Var2, (GUIDSTRING)_Var3, (STRING)_Var4)
+AND
+DB_InternalGroup_Count(_Var5)
+THEN
+DB_InternalCounter(_Var5, _Var4, 3);
+DB_Internal_Dialogs(_Var1, _Var4, _Var5, 1);
+DB_Internal_Dialogs(_Var2, _Var4, _Var5, 2);
+DB_Internal_Dialogs(_Var3, _Var4, _Var5, 3);
+
+IF
+DB_Dialogs(_Var1, _Var2, _Var3, _Var4, _Var5)
+THEN
+SetHasDialog(_Var1, 1);
+SetHasDialog(_Var2, 1);
+SetHasDialog(_Var3, 1);
+SetHasDialog(_Var4, 1);
+ProcIncreaseInternalCount();
+ProcInteralCounterEntry(_Var1, _Var2, _Var3, _Var4, _Var5);
+
+PROC
+ProcInteralCounterEntry((GUIDSTRING)_Var1, (GUIDSTRING)_Var2, (GUIDSTRING)_Var3, (GUIDSTRING)_Var4, (STRING)_Var5)
+AND
+DB_InternalGroup_Count(_Var6)
+THEN
+DB_InternalCounter(_Var6, _Var5, 4);
+DB_Internal_Dialogs(_Var1, _Var5, _Var6, 1);
+DB_Internal_Dialogs(_Var2, _Var5, _Var6, 2);
+DB_Internal_Dialogs(_Var3, _Var5, _Var6, 3);
+DB_Internal_Dialogs(_Var4, _Var5, _Var6, 4);
+
+PROC
+ProcStartNPCDialog((GUIDSTRING)_Var1, (STRING)_Var2, (INTEGER)_Var3)
+AND
+DB_InternalCounter(_Var3, _Var2, 1)
+AND
+DB_Internal_Dialogs(_Var4, _Var2, _Var3, 1)
+THEN
+Proc_StartDialog(0, _Var2, _Var4, _Var1);
+
+PROC
+ProcStartNPCDialog((GUIDSTRING)_Var1, (STRING)_Var2, (INTEGER)_Var3)
+AND
+DB_InternalCounter(_Var3, _Var2, 2)
+AND
+DB_Internal_Dialogs(_Var4, _Var2, _Var3, 1)
+AND
+DB_Internal_Dialogs(_Var5, _Var2, _Var3, 2)
+THEN
+Proc_StartDialog(0, _Var2, _Var4, _Var5, _Var1);
+
+PROC
+ProcStartNPCDialog((GUIDSTRING)_Var1, (STRING)_Var2, (INTEGER)_Var3)
+AND
+DB_InternalCounter(_Var3, _Var2, 3)
+AND
+DB_Internal_Dialogs(_Var4, _Var2, _Var3, 1)
+AND
+DB_Internal_Dialogs(_Var5, _Var2, _Var3, 2)
+AND
+DB_Internal_Dialogs(_Var6, _Var2, _Var3, 3)
+THEN
+Proc_StartDialog(0, _Var2, _Var4, _Var5, _Var6, _Var1);
+
+PROC
+ProcStartNPCDialog((GUIDSTRING)_Var1, (STRING)_Var2, (INTEGER)_Var3)
+AND
+DB_InternalCounter(_Var3, _Var2, 4)
+AND
+DB_Internal_Dialogs(_Var4, _Var2, _Var3, 1)
+AND
+DB_Internal_Dialogs(_Var5, _Var2, _Var3, 2)
+AND
+DB_Internal_Dialogs(_Var6, _Var2, _Var3, 3)
+AND
+DB_Internal_Dialogs(_Var7, _Var2, _Var3, 4)
+THEN
+Proc_StartDialog(0, _Var2, _Var4, _Var5, _Var6, _Var7, _Var1);
+
+PROC
+NPCDialogStartRequested((GUIDSTRING)_Var1, (GUIDSTRING)_Var2)
+AND
+DB_Internal_Dialogs(_Var1, _Var3, _Var4, 1)
+AND NOT
+DB_TempRequested(_Var1, _, _)
+THEN
+DB_TempRequested(_Var1, _Var3, _Var4);
+
+PROC
+NPCDialogStartRequested((GUIDSTRING)_Var1, (GUIDSTRING)_Var2)
+AND
+DB_Internal_Dialogs(_Var1, _Var3, _Var4, _)
+AND NOT
+DB_TempRequested(_Var1, _, _)
+THEN
+DB_TempRequested(_Var1, _Var3, _Var4);
+
+PROC
+NPCDialogStartRequested((CHARACTERGUID)_Var1, (CHARACTERGUID)_Var2)
+AND NOT
+DB_TempRequested(_Var1, _, _)
+AND
+QRY_SpeakerIsAvailable(_Var1)
+AND
+QRY_SpeakerIsAvailable(_Var2)
+AND
+ObjectIsCharacter(_Var1, 1)
+AND
+HasDefaultDialog(_Var1, 1)
+THEN
+DialogRequestStop(_Var1);
+DialogRequestStop(_Var2);
+ProcTryStartDefaultDialog(_Var1, _Var2);
+
+PROC
+NPCDialogStartRequested((GUIDSTRING)_Var1, (GUIDSTRING)_Var2)
+AND
+DB_TempRequested(_Var1, _Var3, _Var4)
+THEN
+NOT DB_TempRequested(_Var1, _Var3, _Var4);
+ProcStartNPCDialog(_Var2, _Var3, _Var4);
+
+PROC
+ProcTryStartDefaultDialog((CHARACTERGUID)_Var1, (CHARACTERGUID)_Var2)
+AND
+StartDefaultDialog(_Var1, _Var2, _Var3, _Var4)
+THEN
+ProcHandleDefaultDialogSetting(_Var1, _Var2, _Var3, _Var4);
+
+PROC
+ProcHandleDefaultDialogSetting((CHARACTERGUID)_Var1, (CHARACTERGUID)_Var2, (STRING)_Var3, 1)
+THEN
+ProcFaceCharacter(_Var1, _Var2);
+Proc_DialogFlagSetup(_Var3, _Var1, _Var2);
+
+PROC
+ProcHandleDefaultDialogSetting((CHARACTERGUID)_Var1, (CHARACTERGUID)_Var2, (STRING)_Var3, 0)
+THEN
+Proc_DialogFlagSetup(_Var3, _Var1, _Var2);
+ProcFaceCharacter(_Var1, _Var2);
+ProcFaceCharacter(_Var2, _Var1);
+ProcItemSetInvulnerableForDialog(_Var1);
+ProcItemSetInvulnerableForDialog(_Var2);
+CharacterMakeStoryNpc(_Var1, 1);
+CharacterMakeStoryNpc(_Var2, 1);
+DB_HasMetCharactersToCheck(_Var1, _Var2);
+
+PROC
+ProcRemoveAllDialogEntriesForSpeaker((GUIDSTRING)_Var1)
+AND
+DB_Internal_Dialogs(_Var1, _Var2, _Var3, 1)
+THEN
+ProcRemoveInternalDialogEntries(_Var2, _Var3);
+ProcRemoveExternalDialogEntry(_Var1, _Var2, _Var3);
+
+PROC
+ProcRemoveDialogEntryForSpeaker((GUIDSTRING)_Var1, (STRING)_Var2)
+AND
+DB_Internal_Dialogs(_Var1, _Var2, _Var3, 1)
+THEN
+ProcRemoveInternalDialogEntries(_Var2, _Var3);
+ProcRemoveExternalDialogEntry(_Var1, _Var2, _Var3);
+
+IF
+DB_Dead(_Var1)
+AND NOT
+DB_KeepDialogsOnDeath(_Var1)
+AND
+DB_Internal_Dialogs(_Var1, _Var2, _Var3, _Var4)
+AND
+DB_Internal_Dialogs(_Var5, _Var2, _Var3, 1)
+THEN
+ProcRemoveDialogEntryForSpeaker(_Var5, _Var2);
+
+PROC
+ProcRemoveExternalDialogEntry((GUIDSTRING)_Var1, (STRING)_Var2, (INTEGER)_Var3)
+AND
+DB_InternalCounter(_Var3, _Var2, 1)
+AND
+DB_Dialogs(_Var1, _Var2)
+THEN
+NOT DB_Dialogs(_Var1, _Var2);
+NOT DB_InternalCounter(_Var3, _Var2, 1);
+
+PROC
+ProcRemoveExternalDialogEntry((GUIDSTRING)_Var1, (STRING)_Var2, (INTEGER)_Var3)
+AND
+DB_InternalCounter(_Var3, _Var2, 2)
+AND
+DB_Dialogs(_Var1, _Var4, _Var2)
+THEN
+NOT DB_Dialogs(_Var1, _Var4, _Var2);
+NOT DB_InternalCounter(_Var3, _Var2, 2);
+
+PROC
+ProcRemoveExternalDialogEntry((GUIDSTRING)_Var1, (STRING)_Var2, (INTEGER)_Var3)
+AND
+DB_InternalCounter(_Var3, _Var2, 3)
+AND
+DB_Dialogs(_Var1, _Var4, _Var5, _Var2)
+THEN
+NOT DB_Dialogs(_Var1, _Var4, _Var5, _Var2);
+NOT DB_InternalCounter(_Var3, _Var2, 3);
+
+PROC
+ProcRemoveExternalDialogEntry((GUIDSTRING)_Var1, (STRING)_Var2, (INTEGER)_Var3)
+AND
+DB_InternalCounter(_Var3, _Var2, 4)
+AND
+DB_Dialogs(_Var1, _Var4, _Var5, _Var6, _Var2)
+THEN
+NOT DB_Dialogs(_Var1, _Var4, _Var5, _Var6, _Var2);
+NOT DB_InternalCounter(_Var3, _Var2, 4);
+
+PROC
+ProcRemoveInternalDialogEntries((STRING)_Var1, (INTEGER)_Var2)
+AND
+DB_Internal_Dialogs(_Var3, _Var1, _Var2, _Var4)
+THEN
+NOT DB_Internal_Dialogs(_Var3, _Var1, _Var2, _Var4);
+
+IF
+CharacterUsedItem((CHARACTERGUID)_Var1, (ITEMGUID)_Var2)
+AND
+DB_Dialogs(_Var2, _Var3)
+AND
+DB_CombatCharacters(_Var1, _)
+AND NOT
+DB_IgnoreCombatItems(_Var2)
+THEN
+Proc_StartDialog(1, "GLO_AD_CannotUseNow", _Var1);
+
+IF
+CharacterUsedItem((CHARACTERGUID)_Var1, (ITEMGUID)_Var2)
+AND
+DB_Dialogs(_Var2, _Var3)
+AND NOT
+DB_CombatCharacters(_Var1, _)
+THEN
+Proc_StartDialog(0, _Var3, _Var2, _Var1);
+
+IF
+CharacterUsedItem((CHARACTERGUID)_Var1, (ITEMGUID)_Var2)
+AND
+DB_Dialogs(_Var2, _Var3)
+AND
+DB_CombatCharacters(_Var1, _)
+AND
+DB_IgnoreCombatItems(_Var2)
+THEN
+Proc_StartDialog(0, _Var3, _Var2, _Var1);
+
+IF
+CharacterItemEvent((CHARACTERGUID)_Var1, (ITEMGUID)_Var2, "GEN_StartItemDialog")
+AND NOT
+DB_Dialogs(_Var2, _)
+AND
+DB_IsPlayer(_Var1)
+AND NOT
+DB_CombatCharacters(_Var1, _)
+AND
+GetVarString(_Var2, "ItemDialog", _Var5)
+THEN
+Proc_StartDialog(0, _Var5, _Var2, _Var1);
+
+IF
+CharacterItemEvent((CHARACTERGUID)_Var1, (ITEMGUID)_Var2, "GEN_StartItemDialog")
+AND NOT
+DB_Dialogs(_Var2, _)
+AND
+DB_IsPlayer(_Var1)
+AND
+DB_CombatCharacters(_Var1, _)
+AND
+DB_IgnoreCombatItems(_Var2)
+AND
+GetVarString(_Var2, "ItemDialog", _Var5)
+THEN
+Proc_StartDialog(0, _Var5, _Var2, _Var1);
+
+IF
+CharacterUsedItem((CHARACTERGUID)_Var1, (ITEMGUID)_Var2)
+AND
+DB_AD_Dialog(_Var2, _Var3)
+THEN
+Proc_StartDialog(1, _Var3, _Var2);
+
+PROC
+ProcSetInvulnerable((GUIDSTRING)_Var1, 1)
+THEN
+DB_ObjectStoryInvulnerable(_Var1);
+SetInvulnerable_UseProcSetInvulnerable(_Var1, 1);
+
+PROC
+ProcSetInvulnerable((GUIDSTRING)_Var1, 0)
+THEN
+NOT DB_ObjectStoryInvulnerable(_Var1);
+SetInvulnerable_UseProcSetInvulnerable(_Var1, 0);
+
+PROC
+ProcClearDialogFlagsForPlayers((INTEGER)_Var1)
+AND
+DB_DialogPlayers(_Var1, _Var2, _Var3)
+THEN
+ProcClearPlayerIfNotInOtherDialog(_Var1, _Var2);
+
+PROC
+ProcClearPlayerIfNotInOtherDialog((INTEGER)_Var1, (GUIDSTRING)_Var2)
+AND
+DB_DialogPlayers(_Var3, _Var2, _)
+AND
+_Var3 != _Var1
+AND NOT
+DB_AutomatedDialog(_Var3)
+AND NOT
+DB_MarkedForDelete(_Var3)
+THEN
+DB_TempIsInOtherDialog(_Var2, 1);
+
+PROC
+ProcClearPlayerIfNotInOtherDialog((INTEGER)_Var1, (CHARACTERGUID)_Var2)
+AND NOT
+DB_TempIsInOtherDialog(_Var2, 1)
+THEN
+SetStoryNpcStatus(_Var2);
+
+PROC
+ProcClearPlayerIfNotInOtherDialog((INTEGER)_Var1, (GUIDSTRING)_Var2)
+THEN
+NOT DB_TempIsInOtherDialog(_Var2, 1);
+
+PROC
+ProcClearDialogFlagsForNPCs((INTEGER)_Var1)
+AND
+DB_DialogNPCs(_Var1, _Var2, _Var3)
+THEN
+ProcClearNPCIfNotInOtherDialog(_Var1, _Var2);
+
+PROC
+ProcClearNPCIfNotInOtherDialog((INTEGER)_Var1, (GUIDSTRING)_Var2)
+AND
+DB_DialogNPCs(_Var3, _Var2, _)
+AND
+_Var3 != _Var1
+AND NOT
+DB_AutomatedDialog(_Var3)
+AND NOT
+DB_MarkedForDelete(_Var3)
+THEN
+DB_TempIsInOtherDialog(_Var2, 1);
+
+PROC
+ProcClearNPCIfNotInOtherDialog((INTEGER)_Var1, (CHARACTERGUID)_Var2)
+AND NOT
+DB_TempIsInOtherDialog(_Var2, 1)
+THEN
+SetStoryNpcStatus(_Var2);
+
+PROC
+ProcClearNPCIfNotInOtherDialog((INTEGER)_Var1, (GUIDSTRING)_Var2)
+AND NOT
+DB_TempIsInOtherDialog(_Var2, 1)
+AND NOT
+DB_ObjectStoryInvulnerable(_Var2)
+AND
+ObjectIsItem(_Var2, 1)
+THEN
+SetInvulnerable_UseProcSetInvulnerable(_Var2, 0);
+
+PROC
+ProcClearNPCIfNotInOtherDialog((INTEGER)_Var1, (GUIDSTRING)_Var2)
+THEN
+NOT DB_TempIsInOtherDialog(_Var2, 1);
+
+PROC
+SetRelationFactionToPlayers((STRING)_Var1, (INTEGER)_Var2)
+THEN
+CharacterSetRelationFactionToFaction(_Var1, "Hero", _Var2);
+CharacterSetRelationFactionToFaction("Hero", _Var1, _Var2);
+CharacterSetRelationFactionToFaction(_Var1, "Companion", _Var2);
+CharacterSetRelationFactionToFaction("Companion", _Var1, _Var2);
+
+PROC
+SetRelationIndivFactionToPlayers((CHARACTERGUID)_Var1, (INTEGER)_Var2)
+THEN
+CharacterSetRelationIndivFactionToFaction(_Var1, "Hero", _Var2);
+CharacterSetRelationFactionToIndivFaction("Hero", _Var1, _Var2);
+CharacterSetRelationIndivFactionToFaction(_Var1, "Companion", _Var2);
+CharacterSetRelationFactionToIndivFaction("Companion", _Var1, _Var2);
+
+PROC
+ProcSetRelationToPlayers((CHARACTERGUID)_Var1, (INTEGER)_Var2)
+AND
+_Var2 == 0
+AND
+GetFaction(_Var1, _Var3)
+THEN
+SetFaction(_Var1, "Evil NPC");
+DB_PreviousAlignment(_Var1, _Var3);
+
+PROC
+ProcSetRelationToPlayers((CHARACTERGUID)_Var1, (INTEGER)_Var2)
+AND
+_Var2 == 100
+AND NOT
+DB_PreviousAlignment(_Var1, _)
+AND
+GetFaction(_Var1, _Var4)
+THEN
+CharacterSetRelationFactionToFaction(_Var4, "Hero", 100);
+CharacterSetRelationFactionToFaction("Hero", _Var4, 100);
+
+PROC
+ProcSetRelationToPlayers((CHARACTERGUID)_Var1, (INTEGER)_Var2)
+AND
+DB_IsPlayer(_Var3)
+AND
+_Var2 == 100
+AND
+DB_PreviousAlignment(_Var1, _Var4)
+THEN
+SetFaction(_Var1, _Var4);
+CharacterSetRelationFactionToFaction(_Var4, "Hero", 100);
+CharacterSetRelationFactionToFaction("Hero", _Var4, 100);
+NOT DB_PreviousAlignment(_Var1, _Var4);
+
+PROC
+ProcSetHostileToIndivPlayer((CHARACTERGUID)_Var1, (CHARACTERGUID)_Var2)
+THEN
+CharacterSetRelationIndivFactionToIndivFaction(_Var1, _Var2, 0);
+CharacterSetRelationIndivFactionToIndivFaction(_Var2, _Var1, 0);
+
+PROC
+ProcSetFactionHostileToIndivPlayer((STRING)_Var1, (CHARACTERGUID)_Var2)
+THEN
+CharacterSetRelationFactionToIndivFaction(_Var1, _Var2, 0);
+CharacterSetRelationIndivFactionToFaction(_Var2, _Var1, 0);
+
+IF
+ObjectFlagSet("ChangeAttitude", (CHARACTERGUID)_Var1, (INTEGER)_Var2)
+AND
+GetVarInteger(_Var1, "ChangeAttitude", _Var3)
+AND
+DB_DialogNPCs(_Var2, _Var4, 1)
+THEN
+ObjectClearFlag(_Var1, "ChangeAttitude", _Var2);
+CharacterAddAttitudeTowardsPlayer(_Var4, _Var1, _Var3);
+
+PROC
+ChangeAttitude((CHARACTERGUID)_Var1, (CHARACTERGUID)_Var2, (INTEGER)_Var3)
+THEN
+CharacterAddAttitudeTowardsPlayer(_Var1, _Var2, _Var3);
+
+PROC
+PROC_PeaceTimerLaunch((STRING)_Var1, (INTEGER)_Var2)
+AND
+DB_CombatCharacters(_Var3, _)
+AND
+DB_IsPlayer(_Var3)
+AND NOT
+DB_PeaceTimer(_Var1)
+THEN
+DB_PeaceTimer(_Var1);
+DB_PeaceTimerStillToStart(_Var1, _Var2);
+
+PROC
+PROC_PeaceTimerLaunch((STRING)_Var1, (INTEGER)_Var2)
+AND NOT
+DB_PeaceTimer(_Var1)
+THEN
+DB_PeaceTimer(_Var1);
+TimerLaunch(_Var1, _Var2);
+
+IF
+ObjectEnteredCombat((CHARACTERGUID)_Var1, _)
+AND
+DB_IsPlayer(_Var1)
+AND
+DB_PeaceTimer(_Var3)
+THEN
+TimerPause(_Var3);
+
+IF
+ObjectLeftCombat((CHARACTERGUID)_Var1, _)
+AND
+DB_IsPlayer(_Var1)
+AND
+DB_PeaceTimer(_Var3)
+THEN
+ProcUnPausePeaceTimerIfNoPlayerInCombat(_Var3);
+
+PROC
+ProcUnPausePeaceTimerIfNoPlayerInCombat((STRING)_Var1)
+AND
+DB_IsPlayer(_Var2)
+AND
+DB_CombatCharacters(_Var2, _)
+THEN
+DB_PlayerInCombat(1);
+
+PROC
+ProcUnPausePeaceTimerIfNoPlayerInCombat((STRING)_Var1)
+AND NOT
+DB_PlayerInCombat(1)
+AND NOT
+DB_PeaceTimerStillToStart(_Var1, _)
+THEN
+TimerUnpause(_Var1);
+
+PROC
+ProcUnPausePeaceTimerIfNoPlayerInCombat((STRING)_Var1)
+AND NOT
+DB_PlayerInCombat(1)
+AND
+DB_PeaceTimerStillToStart(_Var1, _Var2)
+THEN
+TimerLaunch(_Var1, _Var2);
+NOT DB_PeaceTimerStillToStart(_Var1, _Var2);
+
+PROC
+ProcUnPausePeaceTimerIfNoPlayerInCombat((STRING)_Var1)
+THEN
+NOT DB_PlayerInCombat(1);
+
+IF
+TimerFinished((STRING)_Var1)
+AND
+DB_PeaceTimer(_Var1)
+THEN
+NOT DB_PeaceTimer(_Var1);
+
+PROC
+ItemCloseAndLock((ITEMGUID)_Var1, (STRING)_Var2)
+THEN
+ItemClose(_Var1);
+ItemLock(_Var1, _Var2);
+
+PROC
+ItemUnlockAndOpen((ITEMGUID)_Var1)
+THEN
+ItemUnLock(_Var1);
+ItemOpen(_Var1);
+
+IF
+DB_AD_Dialog(_Var1, _)
+THEN
+SetHasDialog(_Var1, 1);
+
+IF
+DB_AD_Dialog(_Var1, _Var2, _)
+THEN
+SetHasDialog(_Var1, 1);
+SetHasDialog(_Var2, 1);
+
+PROC
+PROC_GLOBAL_DialogStartRequested((GUIDSTRING)_Var1, (GUIDSTRING)_Var2)
+AND
+DB_AD_Dialog(_Var1, _Var3)
+AND NOT
+DB_ADRequested(_Var1)
+AND
+QRY_StartDialog(1, _Var3, _Var1)
+THEN
+DB_ADRequested(_Var1);
+DB_FoundDialog(_Var1, _Var2);
+
+PROC
+PROC_GLOBAL_DialogStartRequested((GUIDSTRING)_Var1, (GUIDSTRING)_Var2)
+AND
+DB_AD_Dialog(_Var1, _Var3, _Var4)
+AND NOT
+DB_ADRequested(_Var1)
+AND NOT
+DB_ADRequested(_Var3)
+AND
+QRY_StartDialog(1, _Var4, _Var1, _Var3)
+THEN
+DB_ADRequested(_Var1);
+DB_ADRequested(_Var3);
+DB_FoundDialog(_Var1, _Var2);
+
+PROC
+PROC_GLOBAL_DialogStartRequested((GUIDSTRING)_Var1, (GUIDSTRING)_Var2)
+AND
+DB_AD_Dialog(_Var3, _Var1, _Var4)
+AND NOT
+DB_ADRequested(_Var3)
+AND NOT
+DB_ADRequested(_Var1)
+AND
+QRY_StartDialog(1, _Var4, _Var3, _Var1)
+THEN
+DB_ADRequested(_Var3);
+DB_ADRequested(_Var1);
+DB_FoundDialog(_Var1, _Var2);
+
+IF
+AutomatedDialogEnded((STRING)_Var1, (INTEGER)_Var2)
+THEN
+ProcClearADRequests(_Var1, _Var2);
+
+IF
+AutomatedDialogRequestFailed((STRING)_Var1, (INTEGER)_Var2)
+THEN
+ProcClearADRequests(_Var1, _Var2);
+
+PROC
+ProcClearADRequests((STRING)_Var1, (INTEGER)_Var2)
+AND
+DB_DialogNPCs(_Var2, _Var3, 1)
+AND
+DB_AD_Dialog(_Var3, _Var1)
+THEN
+NOT DB_ADRequested(_Var3);
+
+PROC
+ProcClearADRequests((STRING)_Var1, (INTEGER)_Var2)
+AND
+DB_DialogPlayers(_Var2, _Var3, 1)
+AND
+DB_AD_Dialog(_Var3, _Var1)
+THEN
+NOT DB_ADRequested(_Var3);
+
+PROC
+ProcClearADRequests((STRING)_Var1, (INTEGER)_Var2)
+AND
+DB_DialogNPCs(_Var2, _Var3, _)
+AND
+DB_AD_Dialog(_, _, _Var1)
+THEN
+NOT DB_ADRequested(_Var3);
+
+PROC
+ProcClearADRequests((STRING)_Var1, (INTEGER)_Var2)
+AND
+DB_DialogPlayers(_Var2, _Var3, 1)
+AND
+DB_AD_Dialog(_, _, _Var1)
+THEN
+NOT DB_ADRequested(_Var3);
+
+PROC
+ProcRemoveNPCADs((GUIDSTRING)_Var1)
+AND
+DB_AD_Dialog(_Var1, _Var2)
+THEN
+NOT DB_AD_Dialog(_Var1, _Var2);
+NOT DB_ADRequested(_Var1);
+
+PROC
+ProcRemoveNPCADs((GUIDSTRING)_Var1)
+AND
+DB_AD_Dialog(_Var1, _Var2, _Var3)
+THEN
+NOT DB_AD_Dialog(_Var1, _Var2, _Var3);
+NOT DB_ADRequested(_Var1);
+NOT DB_ADRequested(_Var2);
+
+PROC
+ProcRemoveNPCADs((GUIDSTRING)_Var1)
+AND
+DB_AD_Dialog(_Var2, _Var1, _Var3)
+THEN
+NOT DB_AD_Dialog(_Var2, _Var1, _Var3);
+NOT DB_ADRequested(_Var2);
+NOT DB_ADRequested(_Var1);
+
+PROC
+PROC_GLOBAL_DialogStartRequested((GUIDSTRING)_Var1, (GUIDSTRING)_Var2)
+AND
+DB_AD_Dialog(_Var1, _)
+THEN
+ProcFaceEachother(_Var1, _Var2);
+
+PROC
+ProcObjectTimer((GUIDSTRING)_Var1, (STRING)_Var2, (INTEGER)_Var3)
+AND
+GetUUID(_Var1, _Var4)
+AND
+StringConcatenate(_Var4, _Var2, _Var5)
+THEN
+DB_ObjectTimer(_Var1, _Var5, _Var2);
+TimerLaunch(_Var5, _Var3);
+
+PROC
+ProcObjectTimerCancel((GUIDSTRING)_Var1, (STRING)_Var2)
+AND
+DB_ObjectTimer(_Var1, _Var3, _Var2)
+THEN
+NOT DB_ObjectTimer(_Var1, _Var3, _Var2);
+TimerCancel(_Var3);
+
+IF
+TimerFinished((STRING)_Var1)
+AND
+DB_ObjectTimer(_Var2, _Var1, _Var3)
+THEN
+NOT DB_ObjectTimer(_Var2, _Var1, _Var3);
+ProcObjectTimerFinished(_Var2, _Var3);
+
+PROC
+ProcObjectTimerFinished((GUIDSTRING)_Var1, (STRING)_Var2)
+THEN
+DB_NOOP(1);
+
+PROC
+PROC_CheckPlayTut((STRING)_Var1)
+AND
+DB_IsPlayer(_Var2)
+THEN
+PROC_CheckPlayTut(_Var2, _Var1);
+
+PROC
+PROC_CheckPlayTut((CHARACTERGUID)_Var1, (STRING)_Var2)
+AND
+DB_StartTutMessages(1)
+THEN
+ProcPlayTut(_Var1, _Var2);
+
+PROC
+PROC_CheckPlayTutWithDelay((STRING)_Var1, (INTEGER)_Var2)
+AND
+DB_IsPlayer(_Var3)
+THEN
+PROC_CheckPlayTutWithDelay(_Var3, _Var1, _Var2);
+
+PROC
+PROC_CheckPlayTutWithDelay((CHARACTERGUID)_Var1, (STRING)_Var2, (INTEGER)_Var3)
+AND NOT
+DB_TutorialMessage(_Var1, _Var2, _)
+AND
+GetUUID(_Var1, _Var5)
+AND
+StringConcatenate(_Var5, "_Tut", _Var6)
+THEN
+TimerLaunch(_Var6, _Var3);
+DB_TutorialMessage(_Var1, _Var2, _Var6);
+
+IF
+TimerFinished((STRING)_Var1)
+AND
+DB_StartTutMessages(1)
+AND
+DB_TutorialMessage(_Var2, _Var3, _Var1)
+THEN
+NOT DB_TutorialMessage(_Var2, _Var3, _Var1);
+ProcPlayTut(_Var2, _Var3);
+
+PROC
+ProcSaveGenericBehaviourState((CHARACTERGUID)_Var1)
+AND NOT
+DB_StoryMoving(_Var1, 1)
+AND
+DB_Internal_Dialogs(_Var1, _, _, _)
+THEN
+DB_NPCHadDialog(_Var1, 1);
+
+PROC
+ProcSaveGenericBehaviourState((CHARACTERGUID)_Var1)
+AND NOT
+DB_StoryMoving(_Var1, 1)
+AND
+DB_AD_Dialog(_Var1, _)
+THEN
+DB_NPCHadDialog(_Var1, 1);
+
+PROC
+ProcInternalMoveDisableGenericBehaviours((CHARACTERGUID)_Var1)
+AND NOT
+DB_AD_Dialog(_Var1, _)
+THEN
+SetHasDialog(_Var1, 0);
+
+PROC
+ProcInternalMoveDisableGenericBehaviours((CHARACTERGUID)_Var1)
+THEN
+CharacterDisableAllCrimes(_Var1);
+
+PROC
+ProcRestoreGenericBehaviour((CHARACTERGUID)_Var1)
+AND NOT
+DB_CharacterAllCrimesDisabled(_Var1)
+THEN
+CharacterEnableAllCrimes(_Var1);
+
+PROC
+ProcRestoreGenericBehaviour((CHARACTERGUID)_Var1)
+AND
+DB_CharacterCrimeDisabled(_Var1, _Var2)
+THEN
+CharacterDisableCrime(_Var1, _Var2);
+
+PROC
+ProcRestoreGenericBehaviour((CHARACTERGUID)_Var1)
+AND
+DB_CharacterCrimeEnabled(_Var1, _Var2)
+THEN
+CharacterEnableCrime(_Var1, _Var2);
+
+PROC
+ProcRestoreGenericBehaviour((CHARACTERGUID)_Var1)
+AND
+DB_NPCHadDialog(_Var1, 1)
+THEN
+NOT DB_NPCHadDialog(_Var1, 1);
+SetHasDialog(_Var1, 1);
+
+PROC
+ProcSetMoveEvent((STRING)_Var1)
+AND
+_Var1 != ""
+THEN
+DB_MoveEvent(_Var1);
+
+PROC
+ProcSetMoveEvent("")
+THEN
+DB_MoveEvent("_ResetGenericBehaviours_");
+
+PROC
+ProcExecuteMove((CHARACTERGUID)_Var1, (GUIDSTRING)_Var2, (INTEGER)_Var3)
+AND
+DB_MoveEvent(_Var4)
+AND
+DB_CharMovementCommandID(_Var1, _Var5)
+THEN
+NOT DB_MoveEvent(_Var4);
+CharacterMoveTo(_Var1, _Var2, _Var3, _Var4, 0);
+DB_CharacterMovement(_Var1, _Var4, _Var5);
+
+PROC
+ProcExecuteMove((CHARACTERGUID)_Var1, (REAL)_Var2, (REAL)_Var3, (REAL)_Var4, (INTEGER)_Var5)
+AND
+DB_MoveEvent(_Var6)
+AND
+DB_CharMovementCommandID(_Var1, _Var7)
+THEN
+NOT DB_MoveEvent(_Var6);
+CharacterMoveToPosition(_Var1, _Var2, _Var3, _Var4, _Var5, _Var6);
+DB_CharacterMovement(_Var1, _Var6, _Var7);
+
+PROC
+ProcBumpOsirisMoveCommandID((CHARACTERGUID)_Var1)
+AND NOT
+DB_CharMovementCommandID(_Var1, _)
+THEN
+DB_CharMovementCommandID(_Var1, 0);
+
+PROC
+ProcBumpOsirisMoveCommandID((CHARACTERGUID)_Var1)
+AND
+DB_CharMovementCommandID(_Var1, _Var2)
+AND
+IntegerSum(1, _Var2, _Var3)
+THEN
+NOT DB_CharMovementCommandID(_Var1, _Var2);
+DB_CharMovementCommandID(_Var1, _Var3);
+
+PROC
+ProcCharacterMoveTo((CHARACTERGUID)_Var1, _, _, _)
+THEN
+SetStoryEvent(_Var1, "ClearCrimeReturnPos");
+ProcBumpOsirisMoveCommandID(_Var1);
+
+PROC
+ProcCharacterMoveTo((CHARACTERGUID)_Var1, (GUIDSTRING)_Var2, (INTEGER)_Var3, (STRING)_Var4)
+AND
+DB_CharMovementCommandID(_Var1, _Var5)
+THEN
+ProcSaveGenericBehaviourState(_Var1);
+ProcInternalMoveDisableGenericBehaviours(_Var1);
+ProcSetMoveEvent(_Var4);
+ProcExecuteMove(_Var1, _Var2, _Var3);
+DB_StoryMoving(_Var1, 1);
+DB_MovingTo(_Var1, _Var2, _Var3, _Var5);
+
+PROC
+ProcCharacterMoveTo((CHARACTERGUID)_Var1, _, _, _)
+THEN
+ProcBumpOsirisMoveCommandID(_Var1);
+
+PROC
+ProcCharacterMoveToPosition((CHARACTERGUID)_Var1, _, _, _, _, _)
+THEN
+SetStoryEvent(_Var1, "ClearCrimeReturnPos");
+ProcBumpOsirisMoveCommandID(_Var1);
+
+PROC
+ProcCharacterMoveToPosition((CHARACTERGUID)_Var1, (REAL)_Var2, (REAL)_Var3, (REAL)_Var4, (INTEGER)_Var5, (STRING)_Var6)
+AND
+DB_CharMovementCommandID(_Var1, _Var7)
+THEN
+ProcSaveGenericBehaviourState(_Var1);
+ProcInternalMoveDisableGenericBehaviours(_Var1);
+ProcSetMoveEvent(_Var6);
+ProcExecuteMove(_Var1, _Var2, _Var3, _Var4, _Var5);
+DB_StoryMoving(_Var1, 1);
+DB_MovingTo(_Var1, _Var2, _Var3, _Var4, _Var5, _Var7);
+
+PROC
+ProcCharacterMoveToPosition((CHARACTERGUID)_Var1, _, _, _, _, _)
+THEN
+ProcBumpOsirisMoveCommandID(_Var1);
+
+PROC
+ProcResumeStoryMoving((CHARACTERGUID)_Var1)
+AND
+DB_CharacterMovement(_Var1, _Var2, _Var3)
+AND NOT
+DB_SelectedMove(_Var1)
+THEN
+ProcSelectMove(_Var1, _Var3);
+
+PROC
+ProcSelectMove((CHARACTERGUID)_Var1, (INTEGER)_Var2)
+AND
+DB_MovingTo(_Var1, _Var3, _Var4, _Var2)
+AND
+DB_CharacterMovement(_Var1, _Var5, _Var2)
+THEN
+DB_SelectedMove(_Var1);
+CharacterMoveTo(_Var1, _Var3, _Var4, _Var5, 0);
+
+PROC
+ProcSelectMove((CHARACTERGUID)_Var1, (INTEGER)_Var2)
+AND
+DB_MovingTo(_Var1, _Var3, _Var4, _Var5, _Var6, _Var2)
+AND
+DB_CharacterMovement(_Var1, _Var7, _Var2)
+THEN
+DB_SelectedMove(_Var1);
+CharacterMoveToPosition(_Var1, _Var3, _Var4, _Var5, _Var6, _Var7);
+
+PROC
+ProcResumeStoryMoving((CHARACTERGUID)_Var1)
+THEN
+NOT DB_SelectedMove(_Var1);
+
+PROC
+ProcClearMovingFacts((CHARACTERGUID)_Var1)
+AND
+DB_CharacterMovement(_Var1, _Var2, _Var3)
+THEN
+NOT DB_CharacterMovement(_Var1, _Var2, _Var3);
+
+PROC
+ProcClearMovingFacts((CHARACTERGUID)_Var1)
+AND
+DB_MovingTo(_Var1, _Var2, _Var3, _Var4)
+THEN
+NOT DB_MovingTo(_Var1, _Var2, _Var3, _Var4);
+
+PROC
+ProcClearMovingFacts((CHARACTERGUID)_Var1)
+AND
+DB_MovingTo(_Var1, _Var2, _Var3, _Var4, _Var5, _Var6)
+THEN
+NOT DB_MovingTo(_Var1, _Var2, _Var3, _Var4, _Var5, _Var6);
+
+PROC
+ProcClearMovingFacts((CHARACTERGUID)_Var1)
+THEN
+ProcRestoreGenericBehaviour(_Var1);
+
+IF
+StoryEvent((CHARACTERGUID)_Var1, (STRING)_Var2)
+AND
+DB_CharacterMovement(_Var1, _Var2, _Var3)
+THEN
+NOT DB_ClearedMoveEvent(_Var1);
+
+IF
+StoryEvent((CHARACTERGUID)_Var1, (STRING)_Var2)
+AND
+DB_CharacterMovement(_Var1, _Var2, _Var3)
+AND
+DB_MovingTo(_Var1, _Var4, _Var5, _Var3)
+AND NOT
+DB_ClearedMoveEvent(_Var1)
+THEN
+DB_ClearedMoveEvent(_Var1);
+NOT DB_MovingTo(_Var1, _Var4, _Var5, _Var3);
+
+IF
+StoryEvent((CHARACTERGUID)_Var1, (STRING)_Var2)
+AND
+DB_CharacterMovement(_Var1, _Var2, _Var3)
+AND
+DB_MovingTo(_Var1, _Var4, _Var5, _Var6, _Var7, _Var3)
+AND NOT
+DB_ClearedMoveEvent(_Var1)
+THEN
+DB_ClearedMoveEvent(_Var1);
+NOT DB_MovingTo(_Var1, _Var4, _Var5, _Var6, _Var7, _Var3);
+
+IF
+StoryEvent((CHARACTERGUID)_Var1, (STRING)_Var2)
+AND
+DB_CharacterMovement(_Var1, _Var2, _Var3)
+THEN
+NOT DB_HandledMoveEvent(_Var1);
+
+IF
+StoryEvent((CHARACTERGUID)_Var1, (STRING)_Var2)
+AND
+DB_CharacterMovement(_Var1, _Var2, _Var3)
+AND NOT
+DB_HandledMoveEvent(_Var1)
+THEN
+DB_HandledMoveEvent(_Var1);
+NOT DB_CharacterMovement(_Var1, _Var2, _Var3);
+SetStoryEvent(_Var1, "ClearCrimeReturnPos");
+ProcCheckRestoreGenericBehaviours(_Var1);
+ProcResumeStoryMoving(_Var1);
+
+PROC
+ProcCheckRestoreGenericBehaviours((CHARACTERGUID)_Var1)
+AND NOT
+DB_CharacterMovement(_Var1, _, _)
+THEN
+NOT DB_StoryMoving(_Var1, 1);
+ProcRestoreGenericBehaviour(_Var1);
+
+IF
+AttackedByObject((CHARACTERGUID)_Var1, (CHARACTERGUID)_Var2, (CHARACTERGUID)_Var3, _, (STRING)_Var5)
+AND
+_Var1 != _Var3
+AND
+DB_StoryMoving(_Var1, 1)
+AND NOT
+DB_CombatCharacters(_Var1, _)
+AND NOT
+QryIgnoreDamageSource(_Var5)
+AND
+CharacterIsPlayer(_Var3, 1)
+THEN
+ProcMakeNPCHostile(_Var3, _Var1);
+
+IF
+DB_Dead(_Var1)
+AND
+DB_StoryMoving(_Var1, 1)
+THEN
+ProcClearStoryMove(_Var1);
+
+IF
+CharacterWentOnStage((CHARACTERGUID)_Var1, 0)
+AND
+DB_StoryMoving(_Var1, 1)
+THEN
+ProcClearStoryMove(_Var1);
+
+IF
+ObjectEnteredCombat((CHARACTERGUID)_Var1, _)
+AND
+DB_StoryMoving(_Var1, 1)
+THEN
+CharacterPurgeQueue(_Var1);
+
+IF
+ObjectLeftCombat((CHARACTERGUID)_Var1, _)
+AND NOT
+DB_Dead(_Var1)
+AND
+DB_StoryMoving(_Var1, 1)
+THEN
+ProcResumeStoryMoving(_Var1);
+
+PROC
+ProcClearStoryMove((CHARACTERGUID)_Var1)
+THEN
+NOT DB_StoryMoving(_Var1, 1);
+ProcClearMovingFacts(_Var1);
+CharacterPurgeQueue(_Var1);
+
+PROC
+ProcStateManagerCharacterMoveTo((CHARACTERGUID)_Var1, (GUIDSTRING)_Var2, (INTEGER)_Var3, (REAL)_Var4, (STRING)_Var5, (STRING)_Var6)
+AND
+ObjectIsCharacter(_Var2, 1)
+THEN
+DB_ProcStateManagerCharacterMoveTo_Handled(1);
+SetVarObject(_Var1, "DestinationCharacter", _Var2);
+SetVarFixedString(_Var1, "currentState", "State_Manager_Go_To_Character");
+
+PROC
+ProcStateManagerCharacterMoveTo((CHARACTERGUID)_Var1, (GUIDSTRING)_Var2, (INTEGER)_Var3, (REAL)_Var4, (STRING)_Var5, (STRING)_Var6)
+AND NOT
+DB_ProcStateManagerCharacterMoveTo_Handled(1)
+AND
+ObjectIsItem(_Var2, 1)
+THEN
+DB_ProcStateManagerCharacterMoveTo_Handled(1);
+SetVarObject(_Var1, "DestinationItem", _Var2);
+SetVarFixedString(_Var1, "currentState", "State_Manager_Go_To_Item");
+
+PROC
+ProcStateManagerCharacterMoveTo((CHARACTERGUID)_Var1, (GUIDSTRING)_Var2, (INTEGER)_Var3, (REAL)_Var4, (STRING)_Var5, (STRING)_Var6)
+AND NOT
+DB_ProcStateManagerCharacterMoveTo_Handled(1)
+THEN
+SetVarObject(_Var1, "Destination", _Var2);
+SetVarFixedString(_Var1, "currentState", "State_Manager_Go_To_Trigger");
+
+PROC
+ProcStateManagerCharacterMoveTo((CHARACTERGUID)_Var1, (GUIDSTRING)_Var2, (INTEGER)_Var3, (REAL)_Var4, (STRING)_Var5, (STRING)_Var6)
+THEN
+NOT DB_ProcStateManagerCharacterMoveTo_Handled(1);
+SetVarInteger(_Var1, "Running", _Var3);
+SetVarFloat(_Var1, "Distance", _Var4);
+SetVarString(_Var1, "ArriveEvent", _Var5);
+SetVarFixedString(_Var1, "AfterArriveState", _Var6);
+
+PROC
+ReactOnKillCounter((STRING)_Var1)
+THEN
+DB_NOOP(1);
+
+PROC
+ProcStartMovie((STRING)_Var1)
+AND
+DB_IsPlayer(_Var2)
+AND
+CharacterGetReservedUserID(_Var2, _Var3)
+AND
+GetUserProfileID(_Var3, _Var4)
+AND NOT
+DB_MoviePlayed(_Var4, _Var1)
+THEN
+DB_MoviePlayed(_Var4, _Var1);
+MoviePlay(_Var2, _Var1);
+
+QRY
+QRY_GetClosestAvailableCharacterTo((CHARACTERGUID)_Var1, (INTEGER)_Var2)
+AND
+QRY_GetClosestAvailableCharacterTo(_Var1, _Var2, 0, NULL_00000000-0000-0000-0000-000000000000)
+THEN
+DB_NoOp(1);
+
+QRY
+QRY_GetClosestAvailableCharacterTo((CHARACTERGUID)_Var1, (INTEGER)_Var2, (INTEGER)_Var3, (CHARACTERGUID)_Var4)
+AND
+QRY_GetClosestAvailableCharacterTo(_Var1, _Var2, _Var3, _Var4, NULL_00000000-0000-0000-0000-000000000000)
+THEN
+DB_NoOp(1);
+
+QRY
+QRY_GetClosestAvailableCharacterTo((CHARACTERGUID)_Var1, (INTEGER)_Var2, (INTEGER)_Var3, (CHARACTERGUID)_Var4, (CHARACTERGUID)_Var5)
+AND
+QRY_GetClosestAvailableCharacterTo_ClearFacts(_Var1)
+AND
+DB_IsPlayer(_Var6)
+AND
+_Var6 != _Var5
+AND
+QRY_Conditional_CharacterCanSee(_Var2, _Var1, _Var6)
+AND
+QRY_SpeakerIsAvailable(_Var6)
+AND
+QRY_Conditional_CharacterIsInPartyWith(_Var3, _Var6, _Var4)
+AND
+GetDistanceTo(_Var6, _Var1, _Var7)
+THEN
+DB_ClosestAvailableCharacterTo(_Var6, _Var1, _Var7);
+
+QRY
+QRY_GetClosestAvailableCharacterTo_ClearFacts((CHARACTERGUID)_Var1)
+THEN
+PROC_GetClosestAvailableCharacterTo_ClearFacts(_Var1);
+
+PROC
+PROC_GetClosestAvailableCharacterTo_ClearFacts((CHARACTERGUID)_Var1)
+AND
+DB_ClosestAvailableCharacterTo(_Var2, _Var1, _Var3)
+THEN
+NOT DB_ClosestAvailableCharacterTo(_Var2, _Var1, _Var3);
+
+IF
+DB_ClosestAvailableCharacterTo(_Var1, _Var2, _Var3)
+AND
+DB_ClosestAvailableCharacterTo(_Var4, _Var2, _Var5)
+AND
+_Var1 != _Var4
+AND
+_Var3 <= _Var5
+THEN
+NOT DB_ClosestAvailableCharacterTo(_Var4, _Var2, _Var5);
+
+QRY
+QRY_Conditional_CharacterCanSee(0, (CHARACTERGUID)_Var1, (CHARACTERGUID)_Var2)
+THEN
+DB_NoOp(1);
+
+QRY
+QRY_Conditional_CharacterCanSee(1, (CHARACTERGUID)_Var1, (CHARACTERGUID)_Var2)
+AND
+CharacterCanSee(_Var1, _Var2, 1)
+THEN
+DB_NoOp(1);
+
+QRY
+QRY_Conditional_CharacterIsInPartyWith(0, (CHARACTERGUID)_Var1, (CHARACTERGUID)_Var2)
+THEN
+DB_NoOp(1);
+
+QRY
+QRY_Conditional_CharacterIsInPartyWith(1, (CHARACTERGUID)_Var1, (CHARACTERGUID)_Var2)
+AND
+CharacterIsInPartyWith(_Var1, _Var2, 1)
+THEN
+DB_NoOp(1);
+
+PROC
+ProcCharacterDisappearOutOfSight((CHARACTERGUID)_Var1, (INTEGER)_Var2, (INTEGER)_Var3, (STRING)_Var4, (INTEGER)_Var5)
+THEN
+CharacterDisableAllCrimes(_Var1);
+DB_CharacterDisappearedOutOfSight(_Var1, _Var4, 1);
+CharacterDisappearOutOfSight(_Var1, _Var2, _Var3, _Var4, _Var5);
+
+PROC
+ProcCharacterDisappearOutOfSightToObject((CHARACTERGUID)_Var1, (GUIDSTRING)_Var2, (INTEGER)_Var3, (STRING)_Var4, (INTEGER)_Var5)
+THEN
+CharacterDisableAllCrimes(_Var1);
+DB_CharacterDisappearedOutOfSight(_Var1, _Var4, 1);
+CharacterDisappearOutOfSightToObject(_Var1, _Var2, _Var3, _Var4, _Var5);
+
+QRY
+QryCanSeeAttackers((CHARACTERGUID)_Var1, (CHARACTERGUID)_Var2, (CHARACTERGUID)_Var3)
+AND
+_Var3 != NULL_00000000-0000-0000-0000-000000000000
+AND
+_Var3 != _Var2
+AND
+CharacterCanSee(_Var1, _Var3, 1)
+THEN
+DB_SawAttacker(_Var3);
+
+QRY
+QryCanSeeAttackers((CHARACTERGUID)_Var1, (CHARACTERGUID)_Var2, (CHARACTERGUID)_Var3)
+AND NOT
+DB_SawAttacker(_)
+AND
+CharacterCanSee(_Var1, _Var2, 1)
+THEN
+DB_SawAttacker(_Var2);
+
+IF
+AttackedByObject((CHARACTERGUID)_Var1, (CHARACTERGUID)_Var2, (GUIDSTRING)_Var3, _, _)
+AND
+_Var3 != _Var1
+AND
+ObjectIsOnStage(_Var1, 1)
+AND
+DB_CharacterDisappearedOutOfSight(_Var1, _, 1)
+AND
+IsTagged(_Var1, "ANIMAL", 0)
+AND
+CharacterCanFight(_Var1, 1)
+AND
+ObjectIsCharacter(_Var2, 1)
+AND
+QryCanSeeAttackers(_Var1, _Var2, _Var3)
+AND
+DB_SawAttacker(_Var7)
+THEN
+DB_StoppedOutOfSight(_Var1);
+CharacterPurgeQueue(_Var1);
+CharacterSetTemporaryHostileRelation(_Var1, _Var7);
+NOT DB_SawAttacker(_Var7);
+
+IF
+CharacterSetTemporaryRelationsFailed((CHARACTERGUID)_Var1, (CHARACTERGUID)_Var2)
+AND
+DB_StoppedOutOfSight(_Var1)
+THEN
+ProcResumeDisappearOutOfSight(_Var1);
+
+IF
+ObjectLeftCombat((CHARACTERGUID)_Var1, _)
+AND
+DB_StoppedOutOfSight(_Var1)
+THEN
+ProcResumeDisappearOutOfSight(_Var1);
+
+PROC
+ProcResumeDisappearOutOfSight((CHARACTERGUID)_Var1)
+AND NOT
+DB_Dead(_Var1)
+AND
+DB_CharacterDisappearedOutOfSight(_Var1, _Var2, 1)
+THEN
+NOT DB_StoppedOutOfSight(_Var1);
+CharacterDisappearOutOfSight(_Var1, 0, 1, _Var2, 1);
+
+IF
+CharacterWentOnStage((CHARACTERGUID)_Var1, 1)
+AND
+DB_CharacterDisappearedOutOfSight(_Var1, _Var2, _Var3)
+THEN
+NOT DB_CharacterDisappearedOutOfSight(_Var1, _Var2, _Var3);
+ProcRestoreGenericBehaviour(_Var1);
+
+IF
+StoryEvent((CHARACTERGUID)_Var1, "GEN_CharacterDisableAllCrimesBeforeDisappear")
+THEN
+CharacterDisableAllCrimes(_Var1);
+DB_CharacterDisappearedOutOfSight(_Var1, "", 0);
+
+IF
+StoryEvent((CHARACTERGUID)_Var1, "GEN_CharacterDisableAllCrimesBeforeDisappear_ReactToCombat")
+THEN
+CharacterDisableAllCrimes(_Var1);
+DB_CharacterDisappearedOutOfSight(_Var1, "", 1);
+
+PROC
+ProcClearDisappearData((CHARACTERGUID)_Var1)
+AND
+DB_CharacterDisappearedOutOfSight(_Var1, _Var2, _Var3)
+THEN
+NOT DB_CharacterDisappearedOutOfSight(_Var1, _Var2, _Var3);
+
+PROC
+Proc_CharacterSetTemporaryHostileRelation((CHARACTERGUID)_Var1, (CHARACTERGUID)_Var2)
+AND
+_Var2 != NULL_00000000-0000-0000-0000-000000000000
+AND
+_Var1 != NULL_00000000-0000-0000-0000-000000000000
+THEN
+CharacterSetTemporaryHostileRelation(_Var1, _Var2);
+
+IF
+RegionEnded((STRING)_Var1)
+THEN
+ProcRegionEnded(_Var1);
+
+PROC
+ProcRegionEnded((STRING)_Var1)
+THEN
+DB_NOOP(1);
+
+QRY
+QRY_IsHealingStatus((STRING)_Var1)
+AND
+_Var1 != "HEAL"
+AND
+GetStatusType(_Var1, "HEAL")
+AND
+GetHealStat(_Var1, "Vitality")
+THEN
+DB_NOOP(1);
+
+QRY
+QRY_IsHealingStatus((STRING)_Var1)
+AND
+GetStatusType(_Var1, "HEALING")
+AND
+GetHealStat(_Var1, "Vitality")
+THEN
+DB_NOOP(1);
+
+PROC
+ItemMoveToTrigger((ITEMGUID)_Var1, (TRIGGERGUID)_Var2, (REAL)_Var3, (REAL)_Var4, (INTEGER)_Var5, (STRING)_Var6)
+THEN
+ItemMoveToTrigger(_Var1, _Var2, _Var3, _Var4, _Var5, _Var6, 1);
+
+PROC
+ItemMoveToTrigger((ITEMGUID)_Var1, (TRIGGERGUID)_Var2, (REAL)_Var3, (REAL)_Var4, (INTEGER)_Var5)
+THEN
+ItemMoveToTrigger(_Var1, _Var2, _Var3, _Var4, _Var5, "", 1);
+
+PROC
+ItemMoveToPosition((ITEMGUID)_Var1, (REAL)_Var2, (REAL)_Var3, (REAL)_Var4, (REAL)_Var5, (REAL)_Var6, (STRING)_Var7)
+THEN
+ItemMoveToPosition(_Var1, _Var2, _Var3, _Var4, _Var5, _Var6, _Var7, 1);
+
+PROC
+ItemMoveToPosition((ITEMGUID)_Var1, (REAL)_Var2, (REAL)_Var3, (REAL)_Var4, (REAL)_Var5, (REAL)_Var6)
+THEN
+ItemMoveToPosition(_Var1, _Var2, _Var3, _Var4, _Var5, _Var6, "", 1);
+
+PROC
+Transform((ITEMGUID)_Var1, (STRING)_Var2)
+THEN
+Transform(_Var1, _Var2, 0, 0, 0);
+
+PROC
+Transform((GUIDSTRING)_Var1, (STRING)_Var2, (INTEGER)_Var3)
+THEN
+Transform(_Var1, _Var2, _Var3, 0, 0);
+
+PROC
+Transform((GUIDSTRING)_Var1, (STRING)_Var2, (INTEGER)_Var3, (INTEGER)_Var4)
+THEN
+Transform(_Var1, _Var2, _Var3, _Var4, 0);
+
+PROC
+ProcSetPerceptionDifficulty((ITEMGUID)_Var1, (STRING)_Var2)
+THEN
+SetVarFixedString(_Var1, "Difficulty", _Var2);
+SetStoryEvent(_Var1, "GLO_OverrideWitsCheck");
+
+PROC
+PlayEffect((GUIDSTRING)_Var1, (STRING)_Var2)
+THEN
+PlayEffect(_Var1, _Var2, "");
+
+PROC
+ApplyDamage((GUIDSTRING)_Var1, (INTEGER)_Var2, (STRING)_Var3)
+THEN
+ApplyDamage(_Var1, _Var2, _Var3, NULL_00000000-0000-0000-0000-000000000000);
+
+PROC
+ApplyStatus((GUIDSTRING)_Var1, (STRING)_Var2, (REAL)_Var3, (INTEGER)_Var4)
+THEN
+ApplyStatus(_Var1, _Var2, _Var3, _Var4, NULL_00000000-0000-0000-0000-000000000000);
+
+PROC
+CharacterDie((CHARACTERGUID)_Var1, (INTEGER)_Var2, (STRING)_Var3)
+THEN
+CharacterDie(_Var1, _Var2, _Var3, NULL_00000000-0000-0000-0000-000000000000);
+
+PROC
+CharacterDieImmediate((CHARACTERGUID)_Var1, (INTEGER)_Var2, (STRING)_Var3)
+THEN
+CharacterDieImmediate(_Var1, _Var2, _Var3, NULL_00000000-0000-0000-0000-000000000000);
+
+
+EXITSECTION
+ENDEXITSECTION
+
+ParentTargetEdge "__Start"

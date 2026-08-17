@@ -1,0 +1,420 @@
+Version 1
+SubGoalCombiner SGC_AND
+
+INITSECTION
+
+KBSECTION
+IF
+DB_WaypointInfo(_Var1, _Var2, _Var3)
+THEN
+RegisterWaypoint(_Var3, _Var1);
+
+IF
+CharacterItemEvent((CHARACTERGUID)_Var1, (ITEMGUID)_Var2, "WaypointDiscovered")
+AND
+DB_WaypointInfo(_Var2, _Var3, _Var4)
+THEN
+PROC_UnlockWaypoint(_Var4, _Var1);
+
+IF
+CharacterUsedItem((CHARACTERGUID)_Var1, (ITEMGUID)_Var2)
+AND
+DB_WaypointInfo(_Var2, _, _Var4)
+THEN
+PROC_UnlockWaypoint(_Var4, _Var1);
+
+PROC
+PROC_UnlockWaypoint((STRING)_Var1, (CHARACTERGUID)_Var2)
+AND NOT
+DB_WaypointUnlocked(_Var1, _Var2)
+AND
+DB_WaypointInfo(_, _Var4, _Var1)
+THEN
+PROC_UnlockWaypoint_Notification(_Var1, _Var2);
+UnlockWaypoint(_Var1, _Var4, _Var2);
+PROC_UnlockWaypoint_RecordDB(_Var1, _Var2);
+
+PROC
+PROC_UnlockWaypoint_Notification((STRING)_Var1, (CHARACTERGUID)_Var2)
+AND NOT
+QRY_UnlockWaypoint_AlreadyUnlockedForParty(_Var1, _Var2)
+AND
+DB_WaypointInfo(_Var3, _Var4, _Var1)
+THEN
+ShowNotification(_Var2, "GLO_WaypointDiscovered");
+SetStoryEvent(_Var3, "WaypointDiscoveredEffect");
+
+PROC
+PROC_UnlockWaypoint_Notification((STRING)_Var1, (CHARACTERGUID)_Var2)
+AND
+CharacterGetReservedUserID(_Var2, _Var3)
+AND
+DB_AtLeastOneWayPointUnlockedFor(_Var2)
+AND NOT
+DB_BlockWaypointUsage(_Var2)
+THEN
+PROC_CheckPlayTut(_Var2, "TUT_Homestead");
+
+PROC
+PROC_UnlockWaypoint_Notification((STRING)_Var1, (CHARACTERGUID)_Var2)
+THEN
+DB_AtLeastOneWayPointUnlockedFor(_Var2);
+
+QRY
+QRY_UnlockWaypoint_AlreadyUnlockedForParty((STRING)_Var1, (CHARACTERGUID)_Var2)
+AND
+DB_WaypointUnlocked(_Var1, _Var3)
+AND
+_Var3 != _Var2
+AND
+CharacterIsInPartyWith(_Var3, _Var2, 1)
+THEN
+DB_NOOP(1);
+
+PROC
+PROC_UnlockWaypoint_RecordDB((STRING)_Var1, (CHARACTERGUID)_Var2)
+AND
+DB_IsPlayer(_Var3)
+AND
+CharacterIsInPartyWith(_Var3, _Var2, 1)
+THEN
+DB_WaypointUnlocked(_Var1, _Var3);
+PROC_WaypointUnlocked_Event(_Var3);
+
+PROC
+PROC_UnlockWaypointForAll((STRING)_Var1)
+AND
+DB_WaypointInfo(_, _, _Var1)
+AND
+DB_IsPlayer(_Var4)
+THEN
+PROC_UnlockWaypoint(_Var1, _Var4);
+
+PROC
+PROC_LockWaypoint((STRING)_Var1, (CHARACTERGUID)_Var2)
+THEN
+LockWaypoint(_Var1, _Var2);
+
+PROC
+PROC_LockWaypoint((STRING)_Var1, (CHARACTERGUID)_Var2)
+AND
+DB_WaypointUnlocked(_Var1, _Var2)
+THEN
+PROC_LockWaypoint_DBRecord(_Var1, _Var2);
+
+PROC
+PROC_LockWaypoint_DBRecord((STRING)_Var1, (CHARACTERGUID)_Var2)
+AND
+DB_IsPlayer(_Var3)
+AND
+CharacterIsInPartyWith(_Var3, _Var2, 1)
+THEN
+NOT DB_WaypointUnlocked(_Var1, _Var3);
+PROC_WaypointLocked_Event(_Var3);
+
+PROC
+PROC_LockWaypointForAll((STRING)_Var1)
+AND
+DB_WaypointInfo(_, _, _Var1)
+AND
+DB_IsPlayer(_Var4)
+THEN
+PROC_LockWaypoint(_Var1, _Var4);
+
+IF
+RegionEnded((STRING)_Var1)
+AND
+DB_WaypointInfo(_Var2, _, _Var4)
+AND
+ObjectExists(_Var2, 1)
+AND
+GetRegion(_Var2, _Var1)
+THEN
+PROC_LockWaypointForAll(_Var4);
+
+PROC
+PROC_WaypointUnlocked_Event((CHARACTERGUID)_Var1)
+AND NOT
+DB_BlockWaypointUsage(_Var1)
+THEN
+PROC_SetHomesteadKey_NewRooms(_Var1);
+
+PROC
+PROC_WaypointLocked_Event((CHARACTERGUID)_Var1)
+AND NOT
+DB_WaypointUnlocked(_, _Var1)
+THEN
+PROC_SetHomesteadKey_Disabled(_Var1);
+
+PROC
+PROC_BlockWaypointUsage((CHARACTERGUID)_Var1)
+AND
+DB_IsPlayer(_Var1)
+THEN
+DB_BlockWaypointUsage(_Var1);
+SetHomesteadKeyState(3, _Var1);
+
+PROC
+PROC_UnblockWaypointUsage((CHARACTERGUID)_Var1)
+THEN
+NOT DB_BlockWaypointUsage(_Var1);
+
+PROC
+PROC_UnblockWaypointUsage((CHARACTERGUID)_Var1)
+AND
+DB_HomesteadKeyState(_Var1, _Var2)
+THEN
+PROC_UnblockWaypointUsage_Helper(_Var1, _Var2);
+
+PROC
+PROC_UnblockWaypointUsage_Helper((CHARACTERGUID)_Var1, 0)
+THEN
+PROC_SetHomesteadKey_Invisible(_Var1);
+
+PROC
+PROC_UnblockWaypointUsage_Helper((CHARACTERGUID)_Var1, 1)
+THEN
+PROC_SetHomesteadKey_Enabled(_Var1);
+
+PROC
+PROC_UnblockWaypointUsage_Helper((CHARACTERGUID)_Var1, 2)
+THEN
+PROC_SetHomesteadKey_NewRooms(_Var1);
+
+PROC
+PROC_UnblockWaypointUsage_Helper((CHARACTERGUID)_Var1, 3)
+THEN
+PROC_SetHomesteadKey_Disabled(_Var1);
+
+IF
+CharacterUsedItem((CHARACTERGUID)_Var1, (ITEMGUID)_Var2)
+AND
+DB_WaypointInfo(_Var2, _, _Var4)
+AND NOT
+DB_CombatCharacters(_Var1, _)
+AND NOT
+DB_BlockWaypointUsage(_Var1)
+AND NOT
+DB_WaypointBlockUI(_Var2)
+AND NOT
+DB_Dialogs(_Var2, _)
+AND NOT
+DB_IsSign(_Var2, _, _)
+THEN
+PROC_OpenWaypointUI(_Var1, _Var4, _Var2);
+PROC_CheckPlayTut(_Var1, "TUT_Waypoint");
+
+IF
+CharacterUsedItem((CHARACTERGUID)_Var1, (ITEMGUID)_Var2)
+AND
+DB_WaypointInfo(_Var2, _, _)
+AND
+DB_IsPlayer(_Var1)
+AND
+DB_CombatCharacters(_Var1, _)
+THEN
+Proc_StartDialog(1, "GLO_AD_CannotUseNow", _Var1);
+
+IF
+ObjectFlagSet("OpenWaypointUI", (CHARACTERGUID)_Var1, (INTEGER)_Var2)
+AND NOT
+DB_BlockWaypointUsage(_Var1)
+AND
+DB_DialogNPCs(_Var2, _Var3, 1)
+AND
+DB_WaypointInfo(_Var3, _Var4, _Var5)
+THEN
+PROC_OpenWaypointUI(_Var1, _Var5, _Var3);
+PROC_CheckPlayTut(_Var1, "TUT_Waypoint");
+
+IF
+ObjectFlagSet("OpenWaypointUI", (GUIDSTRING)_Var1, (INTEGER)_Var2)
+THEN
+ObjectClearFlag(_Var1, "OpenWaypointUI", _Var2);
+
+IF
+CharacterRequestsHomestead((CHARACTERGUID)_Var1)
+AND NOT
+DB_BlockWaypointUsage(_Var1)
+AND
+QRY_HasWaypointsUnlocked(_Var1)
+THEN
+PROC_OpenWaypointUI(_Var1, "", NULL_00000000-0000-0000-0000-000000000000);
+
+QRY
+QRY_HasWaypointsUnlocked((CHARACTERGUID)_Var1)
+AND
+DB_WaypointUnlocked(_, _Var1)
+THEN
+DB_NOOP(1);
+
+IF
+CharacterTeleportToWaypoint((CHARACTERGUID)_Var1, (TRIGGERGUID)_Var2)
+THEN
+TeleportTo(_Var1, _Var2, "", 1, 1);
+
+IF
+CharacterTeleportToFleeWaypoint((CHARACTERGUID)_Var1, (TRIGGERGUID)_Var2)
+THEN
+TeleportTo(_Var1, _Var2, "", 0, 1, 1);
+
+PROC
+PROC_OpenWaypointUI((CHARACTERGUID)_Var1, (STRING)_Var2, (ITEMGUID)_Var3)
+THEN
+OpenWaypointUI(_Var1, _Var2, _Var3, 0);
+
+PROC
+PROC_OpenWaypointUIForFlee((CHARACTERGUID)_Var1, (STRING)_Var2, (ITEMGUID)_Var3)
+THEN
+OpenWaypointUI(_Var1, _Var2, _Var3, 1);
+
+PROC
+PROC_SetHomesteadKey_Invisible((CHARACTERGUID)_Var1)
+THEN
+SetHomesteadKeyState(0, _Var1);
+PROC_HomesteadKey_ReplaceHelper(_Var1, 0);
+
+PROC
+PROC_SetHomesteadKey_Enabled((CHARACTERGUID)_Var1)
+THEN
+SetHomesteadKeyState(1, _Var1);
+PROC_HomesteadKey_ReplaceHelper(_Var1, 1);
+
+PROC
+PROC_SetHomesteadKey_NewRooms((CHARACTERGUID)_Var1)
+THEN
+SetHomesteadKeyState(2, _Var1);
+PROC_HomesteadKey_ReplaceHelper(_Var1, 2);
+
+PROC
+PROC_SetHomesteadKey_Disabled((CHARACTERGUID)_Var1)
+THEN
+SetHomesteadKeyState(3, _Var1);
+PROC_HomesteadKey_ReplaceHelper(_Var1, 3);
+
+PROC
+PROC_HomesteadKey_ReplaceHelper((CHARACTERGUID)_Var1, (INTEGER)_Var2)
+AND
+DB_HomesteadKeyState(_Var1, _Var3)
+THEN
+NOT DB_HomesteadKeyState(_Var1, _Var3);
+DB_HomesteadKeyState(_Var1, _Var2);
+
+PROC
+PROC_HomesteadKey_ReplaceHelper((CHARACTERGUID)_Var1, (INTEGER)_Var2)
+AND NOT
+DB_HomesteadKeyState(_Var1, _)
+THEN
+DB_HomesteadKeyState(_Var1, _Var2);
+
+IF
+CharacterJoinedParty((CHARACTERGUID)_Var1)
+AND
+DB_IsPlayer(_Var1)
+AND
+DB_IsPlayer(_Var2)
+AND
+_Var1 != _Var2
+AND
+CharacterIsInPartyWith(_Var2, _Var1, 1)
+THEN
+PROC_WayPoints_ShareWayPointState(_Var1, _Var2);
+
+PROC
+PROC_WayPoints_ShareWayPointState((CHARACTERGUID)_Var1, (CHARACTERGUID)_Var2)
+AND
+DB_WaypointUnlocked(_Var3, _Var1)
+THEN
+PROC_UnlockWaypoint(_Var3, _Var2);
+
+PROC
+PROC_WayPoints_ShareWayPointState((CHARACTERGUID)_Var1, (CHARACTERGUID)_Var2)
+AND
+DB_WaypointUnlocked(_Var3, _Var2)
+THEN
+PROC_UnlockWaypoint(_Var3, _Var1);
+
+IF
+SavegameLoaded((INTEGER)_Var1, (INTEGER)_Var2, (INTEGER)_Var3, (INTEGER)_Var4)
+AND
+QRY_VersionIsOlderThan(_Var1, _Var2, _Var3, _Var4, 3, 5, 1, 0)
+AND
+DB_IsPlayer(_Var5)
+AND
+DB_IsPlayer(_Var6)
+AND
+_Var5 != _Var6
+AND
+CharacterIsInPartyWith(_Var6, _Var5, 1)
+THEN
+PROC_WayPoints_ShareWayPointState(_Var5, _Var6);
+
+PROC
+PROC_GLO_PartyMembers_RecruiteeAvatarBond_IfDifferent((CHARACTERGUID)_Var1, (CHARACTERGUID)_Var2)
+AND
+DB_BlockWaypointUsage(_Var2)
+THEN
+PROC_BlockWaypointUsage(_Var1);
+
+PROC
+PROC_GLO_PartyMembers_RecruiteeAvatarBond_IfDifferent((CHARACTERGUID)_Var1, (CHARACTERGUID)_Var2)
+AND
+DB_BlockWaypointUsage(_Var1)
+THEN
+PROC_BlockWaypointUsage(_Var2);
+
+IF
+CharacterReservedUserIDChanged((CHARACTERGUID)_Var1, _, -65536)
+AND
+DB_WaypointUnlocked(_Var3, _Var1)
+THEN
+NOT DB_WaypointUnlocked(_Var3, _Var1);
+
+IF
+CharacterReservedUserIDChanged((CHARACTERGUID)_Var1, -65536, (INTEGER)_Var2)
+AND
+_Var2 != -65536
+AND
+DB_IsPlayer(_Var3)
+AND
+_Var1 != _Var3
+AND
+CharacterIsInPartyWith(_Var3, _Var1, 1)
+THEN
+PROC_WayPoints_ShareWayPointState(_Var1, _Var3);
+
+IF
+TextEventSet("wp")
+THEN
+PROC_Debug_UnlockAllWP();
+PROC_Debug_OpenWaypointUI();
+
+IF
+TextEventSet("wpunlock")
+THEN
+PROC_Debug_UnlockAllWP();
+
+IF
+TextEventSet("wpmenu")
+THEN
+PROC_Debug_OpenWaypointUI();
+
+PROC
+PROC_Debug_UnlockAllWP()
+AND
+DB_WaypointInfo(_, _Var2, _Var3)
+THEN
+PROC_UnlockWaypointForAll(_Var3);
+
+PROC
+PROC_Debug_OpenWaypointUI()
+AND
+CharacterGetHostCharacter(_Var1)
+THEN
+PROC_OpenWaypointUI(_Var1, "", NULL_00000000-0000-0000-0000-000000000000);
+
+
+EXITSECTION
+ENDEXITSECTION
+
+ParentTargetEdge "__Start"

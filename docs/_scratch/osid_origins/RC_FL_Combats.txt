@@ -1,0 +1,137 @@
+Version 1
+SubGoalCombiner SGC_AND
+
+INITSECTION
+DB_RC_FL_ShatteredHouseNPCs(CHARACTERGUID_S_RC_FL_ShatteredHouse_Alchemist_85327fc2-2e11-4bbc-89df-0fa931d7927a);
+DB_RC_FL_ShatteredHouseNPCs(CHARACTERGUID_S_RC_FL_ShatteredHouse_Rogue_fa31e18c-89a5-477c-b35b-6637d3eb2dab);
+DB_RC_FL_ShatteredHouseNPCs(CHARACTERGUID_S_RC_FL_ShatteredHouse_Chef_4890000e-78cc-42b8-b571-7ab7ed93f70c);
+DB_RC_FL_ShatteredHouseNPCs(CHARACTERGUID_S_RC_FL_ShatteredHouse_Archer_8a4080d6-5f92-4ec7-9bef-05ab4500b9ab);
+DB_OneShotPlayerTrigger(TRIGGERGUID_S_RC_FL_ShatteredHouse_Box_997f678b-2471-4d0a-848e-e7dab3bc31fc);
+ApplyStatus(CHARACTERGUID_S_RC_FL_ShatteredHouse_Chef_4890000e-78cc-42b8-b571-7ab7ed93f70c, "FIRE_IMMUNITY_AURA", -1, 1);
+DB_RC_FL_AmbushForAlmira_Dudes(CHARACTERGUID_S_RC_FL_AlmiraAmbushers_01_ff71dae9-0bce-406f-8b37-debc73093aed, 1);
+DB_RC_FL_AmbushForAlmira_Dudes(CHARACTERGUID_S_RC_FL_AlmiraAmbushers_02_f03d3b57-6fdf-4c90-8597-0a3064fad14c, 2);
+DB_RC_FL_AmbushForAlmira_Dudes(CHARACTERGUID_S_RC_FL_AlmiraAmbushers_03_2ec22495-62dd-4bca-a00a-9843cd2ca014, 3);
+DB_RC_FL_AmbushForAlmira_Dudes(CHARACTERGUID_S_RC_FL_AlmiraAmbushers_04_d7753b26-948b-4d21-baae-97e5d9dcac28, 4);
+DB_RC_FL_AmbushForAlmira_Dudes(CHARACTERGUID_S_RC_FL_AlmiraAmbushers_05_1ec3fe37-5680-4b2b-8268-99e918c5632b, 5);
+DB_RC_FL_AmbushForAlmira_Dudes(CHARACTERGUID_S_RC_FL_AlmiraAmbushers_06_4dbc09d5-fd80-4db1-8973-30bad4901227, 6);
+DB_RC_FL_AmbushForAlmira_SpawnPoints(TRIGGERGUID_S_RC_FL_AlmiraAmbushers_SpawnPointA_01_eaba260f-a6e8-4898-8363-561a03d288d2, 1, 1);
+DB_RC_FL_AmbushForAlmira_SpawnPoints(TRIGGERGUID_S_RC_FL_AlmiraAmbushers_SpawnPointA_02_9e64f73f-1e45-4d49-b29b-6de69bd9dd82, 2, 1);
+DB_RC_FL_AmbushForAlmira_SpawnPoints(TRIGGERGUID_S_RC_FL_AlmiraAmbushers_SpawnPointA_03_bdcb0fce-24f8-48e3-a488-7c7ca95b43ee, 3, 1);
+DB_RC_FL_AmbushForAlmira_SpawnPoints(TRIGGERGUID_S_RC_FL_AlmiraAmbushers_SpawnPointA_04_8665527d-7567-465a-9c2c-03a5761af565, 4, 1);
+DB_RC_FL_AmbushForAlmira_SpawnPoints(TRIGGERGUID_S_RC_FL_AlmiraAmbushers_SpawnPointA_05_cfc61abd-d2a4-4d8a-b63b-42658301dff8, 5, 1);
+DB_RC_FL_AmbushForAlmira_SpawnPoints(TRIGGERGUID_S_RC_FL_AlmiraAmbushers_SpawnPointA_06_cc6c1f6c-24d7-4ef9-896e-10cf25b102fe, 6, 1);
+DB_RC_FL_AmbushForAlmira_SpawnPoints(TRIGGERGUID_S_RC_FL_AlmiraAmbushers_SpawnPointB_01_0e24c100-7474-4365-a74c-f9320c48b471, 1, 2);
+DB_RC_FL_AmbushForAlmira_SpawnPoints(TRIGGERGUID_S_RC_FL_AlmiraAmbushers_SpawnPointB_02_9c3980b8-2028-4f4a-a507-70296634b190, 2, 2);
+DB_RC_FL_AmbushForAlmira_SpawnPoints(TRIGGERGUID_S_RC_FL_AlmiraAmbushers_SpawnPointB_03_76e6c851-20e0-49d9-934f-c6d21c1623ff, 3, 2);
+DB_RC_FL_AmbushForAlmira_SpawnPoints(TRIGGERGUID_S_RC_FL_AlmiraAmbushers_SpawnPointB_04_2fd33bd0-0b98-49c9-936a-2cd491fe56b7, 4, 2);
+DB_RC_FL_AmbushForAlmira_SpawnPoints(TRIGGERGUID_S_RC_FL_AlmiraAmbushers_SpawnPointB_05_8b4dafa5-c5fe-412d-9f50-76535b74d0d1, 5, 2);
+DB_RC_FL_AmbushForAlmira_SpawnPoints(TRIGGERGUID_S_RC_FL_AlmiraAmbushers_SpawnPointB_06_98111370-6acd-4376-a514-81243c705219, 6, 2);
+DB_RC_FL_AmbushForAlmira_Triggers(TRIGGERGUID_S_RC_FL_AmbushForAlmira_Trigger01_9ba83df5-c561-40fc-b0d6-c00d508a7110, 1);
+DB_RC_FL_AmbushForAlmira_Triggers(TRIGGERGUID_S_RC_FL_AmbushForAlmira_Trigger02_50d3e59e-b51d-413a-a632-f33eb9c87ef2, 2);
+DB_ShovelArea(TRIGGERGUID_S_RC_FL_Lowlands_ForestPile_Box_d6ff7296-1d38-41a9-81bf-d01d82658759, "RC_FL_Lowlands_RewardElvenChestPile", ITEMGUID_S_RC_FL_Lowlands_ForestPile_4246f838-65aa-464b-a2d9-73d1cac6f4c7);
+DB_ShovelRewardItemAppear("RC_FL_Lowlands_RewardElvenChestPile", ITEMGUID_S_RC_FL_Lowlands_ElvenChest_3372b8db-900f-428a-8024-3e0718bc980c, TRIGGERGUID_S_RC_FL_Lowlands_ElvenChest_Point_43bed4e7-ae2b-4643-bc7b-233d66fcdd5a);
+
+KBSECTION
+IF
+DB_RC_FL_ShatteredHouseNPCs(_Var1)
+THEN
+SetOnStage(_Var1, 0);
+
+PROC
+ProcOneShotTriggerEntered(_, TRIGGERGUID_S_RC_FL_ShatteredHouse_Box_997f678b-2471-4d0a-848e-e7dab3bc31fc)
+AND
+DB_RC_FL_ShatteredHouseNPCs(_Var2)
+THEN
+Foop(_Var2);
+NOT DB_RC_FL_ShatteredHouseNPCs(_Var2);
+
+PROC
+ProcOneShotTriggerEntered((CHARACTERGUID)_Var1, TRIGGERGUID_S_RC_FL_ShatteredHouse_Box_997f678b-2471-4d0a-848e-e7dab3bc31fc)
+AND
+QueryOnlyOnce("RC_FL_ShatteredHouse_Ambush")
+THEN
+StartVoiceBark("RC_FL_VB_ShatteredHouse_Ambush", _Var1);
+
+IF
+DB_RC_FL_AmbushForAlmira_Dudes(_Var1, _)
+THEN
+SetOnStage(_Var1, 0);
+
+IF
+GlobalFlagSet("RC_FL_BrokenPromises_Escorting")
+AND
+GlobalGetFlag("RC_FL_AlanBossDead", 0)
+AND
+DB_RC_FL_AmbushForAlmira_Triggers(_Var1, _)
+THEN
+TriggerRegisterForCharacter(_Var1, CHARACTERGUID_S_GLO_Mihaly_3355517b-0a92-426b-9160-54fa8507adf2);
+
+IF
+CharacterEnteredTrigger(CHARACTERGUID_S_GLO_Mihaly_3355517b-0a92-426b-9160-54fa8507adf2, (TRIGGERGUID)_Var1)
+AND
+DB_RC_FL_AmbushForAlmira_Triggers(_Var1, _Var2)
+AND
+DB_RC_FL_BrokenPromises_PlayerWithMihaly(_Var3)
+THEN
+Proc_RC_FL_AmbushForAlmira(_Var2);
+Proc_RC_FL_AmbushForAlmiraCleanUp();
+StartVoiceBark("ARX_Sewers_VB_CombatRoom", _Var3);
+
+IF
+GlobalFlagSet("RC_FL_AlanBossDead")
+THEN
+Proc_RC_FL_AmbushForAlmiraCleanUp();
+
+PROC
+Proc_RC_FL_AmbushForAlmiraCleanUp()
+AND
+DB_RC_FL_AmbushForAlmira_Triggers(_Var1, _)
+THEN
+TriggerUnregisterForCharacter(_Var1, CHARACTERGUID_S_GLO_Mihaly_3355517b-0a92-426b-9160-54fa8507adf2);
+
+PROC
+Proc_RC_FL_AmbushForAlmira((INTEGER)_Var1)
+AND
+DB_RC_FL_AmbushForAlmira_Dudes(_Var2, _Var3)
+AND
+DB_RC_FL_AmbushForAlmira_SpawnPoints(_Var4, _Var3, _Var1)
+THEN
+TeleportTo(_Var2, _Var4);
+CharacterAppear(_Var2, 1, "");
+NOT DB_RC_FL_AmbushForAlmira_SpawnPoints(_Var4, _Var3, _Var1);
+NOT DB_RC_FL_AmbushForAlmira_Dudes(_Var2, _Var3);
+
+IF
+CharacterUsedItem((CHARACTERGUID)_Var1, ITEMGUID_S_RC_FL_Lowlands_ElvenNote_78b36edc-5fc8-4e92-88e6-835be4c455d8)
+AND
+DB_IsPlayer(_Var1)
+THEN
+AddSecret(_Var1, "RC_FL_Lowlands_ElvenSecret");
+
+
+EXITSECTION
+NOT DB_RC_FL_ShatteredHouseNPCs(CHARACTERGUID_S_RC_FL_ShatteredHouse_Alchemist_85327fc2-2e11-4bbc-89df-0fa931d7927a);
+NOT DB_RC_FL_ShatteredHouseNPCs(CHARACTERGUID_S_RC_FL_ShatteredHouse_Rogue_fa31e18c-89a5-477c-b35b-6637d3eb2dab);
+NOT DB_RC_FL_ShatteredHouseNPCs(CHARACTERGUID_S_RC_FL_ShatteredHouse_Chef_4890000e-78cc-42b8-b571-7ab7ed93f70c);
+NOT DB_RC_FL_ShatteredHouseNPCs(CHARACTERGUID_S_RC_FL_ShatteredHouse_Archer_8a4080d6-5f92-4ec7-9bef-05ab4500b9ab);
+NOT DB_RC_FL_AmbushForAlmira_Dudes(CHARACTERGUID_S_RC_FL_AlmiraAmbushers_01_ff71dae9-0bce-406f-8b37-debc73093aed, 1);
+NOT DB_RC_FL_AmbushForAlmira_Dudes(CHARACTERGUID_S_RC_FL_AlmiraAmbushers_02_f03d3b57-6fdf-4c90-8597-0a3064fad14c, 2);
+NOT DB_RC_FL_AmbushForAlmira_Dudes(CHARACTERGUID_S_RC_FL_AlmiraAmbushers_03_2ec22495-62dd-4bca-a00a-9843cd2ca014, 3);
+NOT DB_RC_FL_AmbushForAlmira_Dudes(CHARACTERGUID_S_RC_FL_AlmiraAmbushers_04_d7753b26-948b-4d21-baae-97e5d9dcac28, 4);
+NOT DB_RC_FL_AmbushForAlmira_Dudes(CHARACTERGUID_S_RC_FL_AlmiraAmbushers_05_1ec3fe37-5680-4b2b-8268-99e918c5632b, 5);
+NOT DB_RC_FL_AmbushForAlmira_Dudes(CHARACTERGUID_S_RC_FL_AlmiraAmbushers_06_4dbc09d5-fd80-4db1-8973-30bad4901227, 6);
+NOT DB_RC_FL_AmbushForAlmira_SpawnPoints(TRIGGERGUID_S_RC_FL_AlmiraAmbushers_SpawnPointA_01_eaba260f-a6e8-4898-8363-561a03d288d2, 1, 1);
+NOT DB_RC_FL_AmbushForAlmira_SpawnPoints(TRIGGERGUID_S_RC_FL_AlmiraAmbushers_SpawnPointA_02_9e64f73f-1e45-4d49-b29b-6de69bd9dd82, 2, 1);
+NOT DB_RC_FL_AmbushForAlmira_SpawnPoints(TRIGGERGUID_S_RC_FL_AlmiraAmbushers_SpawnPointA_03_bdcb0fce-24f8-48e3-a488-7c7ca95b43ee, 3, 1);
+NOT DB_RC_FL_AmbushForAlmira_SpawnPoints(TRIGGERGUID_S_RC_FL_AlmiraAmbushers_SpawnPointA_04_8665527d-7567-465a-9c2c-03a5761af565, 4, 1);
+NOT DB_RC_FL_AmbushForAlmira_SpawnPoints(TRIGGERGUID_S_RC_FL_AlmiraAmbushers_SpawnPointA_05_cfc61abd-d2a4-4d8a-b63b-42658301dff8, 5, 1);
+NOT DB_RC_FL_AmbushForAlmira_SpawnPoints(TRIGGERGUID_S_RC_FL_AlmiraAmbushers_SpawnPointA_06_cc6c1f6c-24d7-4ef9-896e-10cf25b102fe, 6, 1);
+NOT DB_RC_FL_AmbushForAlmira_SpawnPoints(TRIGGERGUID_S_RC_FL_AlmiraAmbushers_SpawnPointB_01_0e24c100-7474-4365-a74c-f9320c48b471, 1, 2);
+NOT DB_RC_FL_AmbushForAlmira_SpawnPoints(TRIGGERGUID_S_RC_FL_AlmiraAmbushers_SpawnPointB_02_9c3980b8-2028-4f4a-a507-70296634b190, 2, 2);
+NOT DB_RC_FL_AmbushForAlmira_SpawnPoints(TRIGGERGUID_S_RC_FL_AlmiraAmbushers_SpawnPointB_03_76e6c851-20e0-49d9-934f-c6d21c1623ff, 3, 2);
+NOT DB_RC_FL_AmbushForAlmira_SpawnPoints(TRIGGERGUID_S_RC_FL_AlmiraAmbushers_SpawnPointB_04_2fd33bd0-0b98-49c9-936a-2cd491fe56b7, 4, 2);
+NOT DB_RC_FL_AmbushForAlmira_SpawnPoints(TRIGGERGUID_S_RC_FL_AlmiraAmbushers_SpawnPointB_05_8b4dafa5-c5fe-412d-9f50-76535b74d0d1, 5, 2);
+NOT DB_RC_FL_AmbushForAlmira_SpawnPoints(TRIGGERGUID_S_RC_FL_AlmiraAmbushers_SpawnPointB_06_98111370-6acd-4376-a514-81243c705219, 6, 2);
+ENDEXITSECTION
+
+ParentTargetEdge "ReapersCoast"

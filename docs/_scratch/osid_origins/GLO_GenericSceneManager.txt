@@ -1,0 +1,192 @@
+Version 1
+SubGoalCombiner SGC_AND
+
+INITSECTION
+DB_GLO_GenericSceneManager_LeavingReason("LeftTrigger");
+DB_GLO_GenericSceneManager_LeavingReason("PlayerTeleportInDialog");
+
+KBSECTION
+IF
+DB_SceneManager(_Var1, _Var2)
+THEN
+CharacterDisableAllCrimes(_Var1);
+proc_DB_SceneTriggerManager_CheckIgnoreAssault(_Var1, _Var2);
+
+IF
+DB_SceneManager(_Var1, _Var2)
+AND
+DB_SceneTriggerManager(_Var2, _Var3, _)
+THEN
+TriggerRegisterForCharacter(_Var3, _Var1);
+
+IF
+DB_SceneTriggerManager(_Var1, _Var2)
+THEN
+DB_SceneTriggerManager(_Var1, _Var2, 1);
+
+PROC
+proc_DB_SceneTriggerManager_CheckIgnoreAssault((CHARACTERGUID)_Var1, (STRING)_Var2)
+AND
+DB_IgnoreAssault(_Var1)
+AND NOT
+DB_SceneTriggerManager_EnableAssaultAfterScene(_Var1, _Var2)
+THEN
+DB_SceneTriggerManager_AssaultDisabledBeofreScene(_Var1, _Var2);
+
+PROC
+proc_DB_SceneTriggerManager_CheckIgnoreAssault((CHARACTERGUID)_Var1, (STRING)_Var2)
+AND NOT
+DB_IgnoreAssault(_Var1)
+AND NOT
+DB_SceneTriggerManager_AssaultDisabledBeofreScene(_Var1, _Var2)
+THEN
+DB_IgnoreAssault(_Var1);
+DB_SceneTriggerManager_EnableAssaultAfterScene(_Var1, _Var2);
+
+IF
+CharacterLeftTrigger((CHARACTERGUID)_Var1, (TRIGGERGUID)_Var2)
+AND
+DB_SceneTriggerManager(_Var3, _Var2, _)
+AND
+DB_SceneManager(_Var1, _Var3)
+THEN
+Proc_SceneInterrupted(_Var1, NULL_00000000-0000-0000-0000-000000000000, _Var3, "LeftTrigger");
+
+IF
+ObjectEnteredCombat((CHARACTERGUID)_Var1, (INTEGER)_Var2)
+AND
+DB_SceneManager(_Var1, _Var3)
+AND
+DB_IsPlayer(_Var4)
+AND
+DB_CombatCharacters(_Var4, _Var2)
+THEN
+Proc_SceneInterrupted(_Var1, _Var4, _Var3, "EnteredCombat");
+
+IF
+AttackedByObject((CHARACTERGUID)_Var1, (CHARACTERGUID)_Var2, (CHARACTERGUID)_Var3, _, _)
+AND
+_Var1 != _Var3
+AND
+DB_SceneManager(_Var1, _Var6)
+AND
+_Var3 != NULL_00000000-0000-0000-0000-000000000000
+THEN
+Proc_SceneInterrupted(_Var1, _Var3, _Var6, "Attacked");
+
+IF
+AttackedByObject((CHARACTERGUID)_Var1, (CHARACTERGUID)_Var2, (CHARACTERGUID)_Var3, _, _)
+AND
+_Var1 != _Var3
+AND
+DB_SceneManager(_Var1, _Var6)
+AND
+_Var3 == NULL_00000000-0000-0000-0000-000000000000
+THEN
+Proc_SceneInterrupted(_Var1, _Var2, _Var6, "Attacked");
+
+IF
+CharacterTeleported((CHARACTERGUID)_Var1, _, (REAL)_Var3, (REAL)_Var4, (REAL)_Var5, (REAL)_Var6, (REAL)_Var7, (REAL)_Var8, _)
+AND
+QRY_CRIME_PlayerInDialogTeleportedTooFar(_Var1, _Var3, _Var4, _Var5)
+AND
+DB_CRIME_PlayerInDialogTeleportedTooFar(_Var10, _Var1, _Var11)
+AND
+DB_SceneManager(_Var11, _Var12)
+THEN
+NOT DB_CRIME_PlayerInDialogTeleportedTooFar(_Var10, _Var1, _Var11);
+Proc_SceneInterrupted(_Var11, _Var1, _Var12, "PlayerTeleportInDialog");
+
+IF
+CharacterUsedSkillOnTarget((CHARACTERGUID)_Var1, (CHARACTERGUID)_Var2, _, "Teleportation", _)
+AND
+CharacterIsPlayer(_Var1, 1)
+AND
+DB_SceneManager(_Var2, _Var5)
+THEN
+Proc_SceneInterrupted(_Var2, _Var1, _Var5, "Attacked");
+
+PROC
+PROC_GLOBAL_DialogStartRequested((CHARACTERGUID)_Var1, (CHARACTERGUID)_Var2)
+AND
+DB_IsPlayer(_Var2)
+AND
+DB_SceneManager(_Var1, _Var3)
+THEN
+Proc_SceneInterrupted(_Var1, _Var2, _Var3, "StartedDialog");
+
+IF
+CharacterDestroyedItem((CHARACTERGUID)_Var1, (ITEMGUID)_Var2)
+AND
+DB_IsPlayer(_Var1)
+AND
+DB_SceneTriggerManager(_Var3, _Var4, 0)
+AND
+ObjectIsInTrigger(_Var2, _Var4, 1)
+THEN
+Proc_SceneInterrupted(_Var2, _Var1, _Var3, "DestroyedItem");
+
+PROC
+Proc_SceneInterrupted((GUIDSTRING)_Var1, (STRING)_Var2, (STRING)_Var3)
+THEN
+Proc_SceneInterrupted(_Var1, NULL_00000000-0000-0000-0000-000000000000, _Var2, _Var3);
+
+PROC
+Proc_SceneInterrupted((GUIDSTRING)_Var1, (CHARACTERGUID)_Var2, (STRING)_Var3, (STRING)_Var4)
+THEN
+DB_NOOP(1);
+
+PROC
+Proc_SceneOver((STRING)_Var1)
+AND
+DB_SceneTriggerManager(_Var1, _Var2, _Var3)
+AND
+DB_SceneManager(_Var4, _Var1)
+THEN
+TriggerUnregisterForCharacter(_Var2, _Var4);
+NOT DB_SceneTriggerManager(_Var1, _Var2, _Var3);
+
+PROC
+Proc_SceneOver((STRING)_Var1)
+AND
+DB_SceneManager(_Var2, _Var1)
+AND
+DB_SceneTriggerManager_EnableAssaultAfterScene(_Var2, _Var1)
+THEN
+NOT DB_IgnoreAssault(_Var2);
+NOT DB_SceneTriggerManager_EnableAssaultAfterScene(_Var2, _Var1);
+
+PROC
+Proc_SceneOver((STRING)_Var1)
+AND
+DB_SceneManager(_Var2, _Var1)
+THEN
+ProcRestoreGenericBehaviourAfterScene(_Var2);
+NOT DB_SceneManager(_Var2, _Var1);
+
+PROC
+ProcRestoreGenericBehaviourAfterScene((CHARACTERGUID)_Var1)
+AND NOT
+DB_CharacterAllCrimesDisabled(_Var1)
+THEN
+CharacterEnableAllCrimes(_Var1);
+
+PROC
+ProcRestoreGenericBehaviourAfterScene((CHARACTERGUID)_Var1)
+AND
+DB_CharacterCrimeDisabled(_Var1, _Var2)
+THEN
+CharacterDisableCrime(_Var1, _Var2);
+
+PROC
+ProcRestoreGenericBehaviourAfterScene((CHARACTERGUID)_Var1)
+AND
+DB_CharacterCrimeEnabled(_Var1, _Var2)
+THEN
+CharacterEnableCrime(_Var1, _Var2);
+
+
+EXITSECTION
+ENDEXITSECTION
+
+ParentTargetEdge "DOS2ModWrapper"

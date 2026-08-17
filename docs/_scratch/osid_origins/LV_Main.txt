@@ -1,0 +1,714 @@
+Version 1
+SubGoalCombiner SGC_AND
+
+INITSECTION
+DB_LV_DeadSeekersFromAct1(CHARACTERGUID_S_FTJ_SW_Warrior_DefeatedSeeker_001_0726af1f-1a3c-4984-a9e1-05a9ae6d28dc, TRIGGERGUID_S_LV_DeadSeeker_Point_001_71d394da-f155-4a63-959f-baf7ed37a6fb);
+DB_LV_DeadSeekersFromAct1(CHARACTERGUID_S_FTJ_SW_Warrior_DefeatedSeeker_003_46a7c73f-c0f0-4f02-be00-edbb3cdfc425, TRIGGERGUID_S_LV_DeadSeeker_Point_002_9d93cf09-bb16-4111-839d-0a927230b2c9);
+DB_LV_DeadSeekersFromAct1(CHARACTERGUID_S_FTJ_SW_Warrior_InjuredSeeker_002_f4f71f66-0891-47db-8c44-1e92afc1d743, TRIGGERGUID_S_LV_InjuredSeeker002Default_Point_d078e5af-c14a-4157-8652-c749cc1a2842);
+DB_LV_LivingSeekersFromAct1(CHARACTERGUID_S_FTJ_SW_Warrior_ShelterNPC_001_325c2042-b2fb-4b06-872d-123086ca82d4, TRIGGERGUID_S_LV_SamadelDefault_Point_226d5907-8774-4343-8006-a7924d1c1b54, "LV_Samadel");
+DB_LV_LivingSeekersFromAct1(CHARACTERGUID_S_FTJ_SW_CollarRemovingSeeker_437c00b3-6544-44dd-8396-a43848b19a1e, TRIGGERGUID_S_LV_LeyaDefault_Point_78ec3081-6779-44d9-a36f-d65676260394, "LV_Leya");
+DB_LV_LivingSeekersFromAct1(CHARACTERGUID_S_FTJ_SW_Warrior_CollarRemoverFriend_01bd86e1-75ca-46a6-853e-b8dd64c2cd22, TRIGGERGUID_S_LV_DugganDefault_Point_1df859f6-219a-4460-b5b4-a5751cbdb981, "LV_Duggan");
+DB_LV_LivingSeekersFromAct1(CHARACTERGUID_S_FTJ_SW_Warrior_InjuredDoctor_2478f36b-f0e4-4508-8746-0ee2e42d2e32, TRIGGERGUID_S_LV_SimoneDefault_Point_a3d51bf8-6bd1-45c2-9199-dcf8731dce0f, "LV_Simone");
+DB_LV_LivingSeekersFromAct1(CHARACTERGUID_S_FTJ_SW_Warrior_InjuredSeeker_001_b9d3bc65-c15a-45e5-a453-b1540a85e88d, TRIGGERGUID_S_LV_InjuredSeeker001Default_Point_943a5851-f58f-4945-8b56-2e03748afa57, "LV_Jules");
+DB_LV_LivingSeekersFromAct1(CHARACTERGUID_S_FTJ_SW_Warrior_Squire_650e8e08-55a2-4ea6-a9f3-c027e4f8c494, TRIGGERGUID_S_FTJ_LV_ExterDefault_Point_623d477f-b2c9-492c-90d2-0d497956bb88, "FTJ_LV_Exter");
+DB_Dialogs(ITEMGUID_S_LV_ShipHead_01cbf5c6-6d95-4397-8680-b29f0e5eac58, "LV_ShipHead");
+DB_Dialogs(ITEMGUID_S_LV_DallisDoor_001_5cd5c0b6-eb62-4199-a35c-924628b37663, "LV_DallisDoor_001");
+DB_Dialogs(ITEMGUID_S_LV_DallisDoor_002_f250ec01-c849-4f9d-b465-3eb5185ef755, "LV_DallisDoor_002");
+DB_Dialogs(CHARACTERGUID_S_LV_Seeker_001_03ddfad1-bfd7-4a8b-83c8-643e16616e65, "LV_SeekerPrisonGuard");
+DB_Dialogs(CHARACTERGUID_S_FTJ_LV_MagisterPrisoner_001_80a2e428-d20c-47a6-8d85-451720a87fd4, "LV_MagisterPrisoner_001");
+DB_Dialogs(CHARACTERGUID_S_LV_Seeker_002_c7fec918-570a-4d9a-9009-c310f8d97826, "LV_ShipHeadSeeker_001");
+DB_Dialogs(CHARACTERGUID_S_LV_Rat_001_84fa44bf-b963-4f84-8776-719ac0a0d361, "LV_Rat_001");
+DB_Dialogs(CHARACTERGUID_S_LV_HoE_SeekerMerchant_a3d0cdcc-d0b0-464d-9ad7-43b38baed620, "LV_SeekerMerchant");
+DB_Dialogs(CHARACTERGUID_S_LV_SkeletonCat_27467b0f-55a1-448e-bd29-1370d6407a5e, "LV_SkeletonCat");
+DB_Dialogs(CHARACTERGUID_S_LV_SilentMonkRunner_001_9a8dc57f-a369-465a-b957-2dd84bb7324f, "LV_SilentMonkRunner_001");
+DB_Dialogs(CHARACTERGUID_S_LV_SilentMonkRunner_002_c6bd6c05-f2a9-4aa9-89e8-13bdae797555, "LV_SilentMonkRunner_002");
+DB_LV_DeadSeekerVBs(CHARACTERGUID_S_FTJ_SW_Warrior_DefeatedSeeker_003_46a7c73f-c0f0-4f02-be00-edbb3cdfc425, "LV_VB_KerbanCorpse", "FTJ_SW_TurnCoatMagister_HasMet");
+DB_LV_DeadSeekerVBs(CHARACTERGUID_S_FTJ_SW_Warrior_DefeatedSeeker_001_0726af1f-1a3c-4984-a9e1-05a9ae6d28dc, "LV_VB_MatisCorpse", "FTJ_DefeatedSeeker_001_Hasmet");
+DB_LV_DeadSeekerVBs(CHARACTERGUID_S_FTJ_SW_Warrior_InjuredSeeker_002_f4f71f66-0891-47db-8c44-1e92afc1d743, "LV_VB_KlaudCorpse", "FTJ_SW_Klaud_HasMet");
+ItemToInventory(ITEMGUID_S_LV_CellKey_af3a6a05-7b18-49b5-b155-abdfdfee35f5, CHARACTERGUID_S_LV_Seeker_001_03ddfad1-bfd7-4a8b-83c8-643e16616e65);
+DB_HasStoryEvent(ITEMGUID_S_LV_DallisTome_f7119f0d-035e-4dfb-a91e-de06a52c62bc, "LV_HasDallisTome");
+DB_HasStoryEvent(ITEMGUID_S_LV_AlexandarGem_f38a1146-88be-42f0-8bf9-b8abc46ad32e, "LV_HasAlexandarGem");
+DB_HasStoryEvent(ITEMGUID_S_LV_CellKey_af3a6a05-7b18-49b5-b155-abdfdfee35f5, "LV_HasPrisonCellKey");
+DB_GiveItemToEvent(ITEMGUID_S_LV_AlexandarGem_f38a1146-88be-42f0-8bf9-b8abc46ad32e, "LV_AlexandarGemTo");
+DB_DeadEvent(CHARACTERGUID_S_LV_HoE_SeekerMerchant_a3d0cdcc-d0b0-464d-9ad7-43b38baed620, "LV_SeekerMerchantIsDead");
+DB_DeadEvent(CHARACTERGUID_S_FTJ_LV_MagisterPrisoner_001_80a2e428-d20c-47a6-8d85-451720a87fd4, "LV_MagisterPrisonerIsDead");
+DB_LV_Main_FTJ_Seeker("QuestUpdate_FTJ_Seeker_BaharaMetToldSeeker");
+DB_LV_Main_FTJ_Seeker("QuestUpdate_FTJ_Seeker_MissingLeaders");
+DB_LV_Main_FTJ_Seeker("QuestUpdate_FTJ_Seeker_GarethMet");
+DB_LV_Main_FTJ_Seeker("QuestUpdate_FTJ_Seeker_CrucifiedSeekerMet");
+DB_LV_Main_FTJ_Seeker("QuestUpdate_FTJ_Seeker_SeekerEscape");
+CharacterDisableAllCrimes(CHARACTERGUID_S_FTJ_LV_MagisterPrisoner_001_80a2e428-d20c-47a6-8d85-451720a87fd4);
+DB_IsNotMessingAround(CHARACTERGUID_S_FTJ_LV_MagisterPrisoner_001_80a2e428-d20c-47a6-8d85-451720a87fd4);
+Proc_RegisterPartyDecisionDialogOutcomes_Fixed("LV_PDD_SeekerMerchant", "LV_PDD_SeekerMerchant_Peace", "LV_PDD_SeekerMerchant_Hostile", "", "", "");
+ProcTriggerRegisterForPlayers(TRIGGERGUID_S_LV_ShipheadSeekerDialog_Box_7238fe07-d6dc-4ebc-bcf1-5c66f18b66f4);
+ProcTriggerRegisterForPlayers(TRIGGERGUID_S_LV_PrisonArea_b3612408-987e-4cfa-8e25-d2a2dd9c9587);
+SetOnStage(CHARACTERGUID_S_LV_HoE_Gareth_Ghost_090693be-27c3-45ce-81a7-46f3271bc10f, 0);
+DB_IgnoreAssault(CHARACTERGUID_S_GLO_Alexandar_03e6345f-1bd3-403c-80e2-a443a74f6349);
+DB_BlockThreatenedDialog(CHARACTERGUID_S_GLO_Alexandar_03e6345f-1bd3-403c-80e2-a443a74f6349);
+DB_GlobalReflectionDialog("LV_RD_CompanionDismissal");
+ProcCharacterDisableCrime(CHARACTERGUID_S_GLO_Tarquin_a3d0cdcc-d0b0-464d-9ad7-43b38baed620, "ActiveUndead");
+ProcCharacterDisableCrime(CHARACTERGUID_S_LV_Seeker_001_03ddfad1-bfd7-4a8b-83c8-643e16616e65, "ActiveUndead");
+ProcCharacterDisableCrime(CHARACTERGUID_S_LV_Seeker_002_c7fec918-570a-4d9a-9009-c310f8d97826, "ActiveUndead");
+Proc_LV_Main_Start();
+SetOnStage(ITEMGUID_CONT_Humans_Citz_Package_A_010_3c0fad99-4daa-46a7-86aa-3a3146f2859a, 0);
+SetOnStage(ITEMGUID_CONT_Humans_Citz_Package_A_011_cd5b748e-c22d-4a50-83fa-483a4d183919, 0);
+SetOnStage(ITEMGUID_CONT_Humans_Citz_Package_A_014_c690632b-2262-4cae-a10e-04604c7e8ae4, 0);
+SetOnStage(ITEMGUID_CONT_Humans_Citz_Package_A_013_28a9595d-872a-46cc-a2ba-5145e3e91717, 0);
+SetOnStage(ITEMGUID_CONT_Humans_Citz_Package_A_009_95c62634-508f-41f4-baf5-79355b6136ce, 0);
+SetOnStage(ITEMGUID_CONT_Humans_Citz_Package_A_012_79eb1924-85e7-4b2a-8de8-38be7af17717, 0);
+
+KBSECTION
+PROC
+Proc_LV_Main_Start()
+AND
+DB_IsPlayer(_Var1)
+THEN
+PROC_LV_Main_StartQuest(_Var1);
+
+IF
+CharacterEnteredTrigger((CHARACTERGUID)_Var1, TRIGGERGUID_S_LV_SUB_DallisQuarters_e5659154-32d9-44b5-a108-18b6c667a192)
+THEN
+PartySetFlag(_Var1, "QuestUpdate_LV_Main_GetIntoDallisRoom");
+
+PROC
+PROC_LV_Main_StartQuest((CHARACTERGUID)_Var1)
+AND
+QRY_LV_Main_HasMetSeeker(_Var1)
+THEN
+ObjectSetFlag(_Var1, "QuestAdd_LV_Main");
+ObjectSetFlag(_Var1, "QuestUpdate_LV_Main_Start");
+
+PROC
+PROC_LV_Main_StartQuest((CHARACTERGUID)_Var1)
+AND NOT
+QRY_LV_Main_HasMetSeeker(_Var1)
+THEN
+ObjectSetFlag(_Var1, "QuestAdd_LV_Main");
+ObjectSetFlag(_Var1, "QuestUpdate_LV_Main_Start_NoSeeker");
+
+QRY
+QRY_LV_Main_HasMetSeeker((CHARACTERGUID)_Var1)
+AND
+QuestAccepted(_Var1, "FTJ_Seeker", 1)
+AND
+DB_LV_Main_FTJ_Seeker(_Var2)
+AND
+PartyGetFlag(_Var1, _Var2, 1)
+THEN
+DB_NOOP(1);
+
+PROC
+Proc_ObjectLeftCombat(CHARACTERGUID_S_GLO_Tarquin_a3d0cdcc-d0b0-464d-9ad7-43b38baed620, (INTEGER)_Var1)
+AND
+DB_Dead(CHARACTERGUID_S_GLO_Tarquin_a3d0cdcc-d0b0-464d-9ad7-43b38baed620)
+AND
+DB_IsPlayer(_Var2)
+AND
+DB_WasInCombat(_Var2, _Var1)
+THEN
+UserSetFlag(_Var2, "QuestUpdate_LV_Main_Tarquin_Kill");
+
+PROC
+Proc_ObjectLeftCombat(CHARACTERGUID_S_GLO_Tarquin_a3d0cdcc-d0b0-464d-9ad7-43b38baed620, (INTEGER)_Var1)
+AND
+DB_Dead(CHARACTERGUID_S_GLO_Tarquin_a3d0cdcc-d0b0-464d-9ad7-43b38baed620)
+AND
+DB_IsPlayer(_Var2)
+AND
+DB_CombatCharacters(_Var2, _Var1)
+THEN
+UserSetFlag(_Var2, "QuestUpdate_LV_Main_Tarquin_Kill");
+
+IF
+CharacterKilledBy(CHARACTERGUID_S_GLO_Tarquin_a3d0cdcc-d0b0-464d-9ad7-43b38baed620, (CHARACTERGUID)_Var1, _)
+AND
+DB_IsPlayer(_Var1)
+THEN
+UserSetFlag(_Var1, "QuestUpdate_LV_Main_Tarquin_Kill");
+
+IF
+CharacterDied(S_FTJ_SeekerCaptain_1329f018-23e4-4717-9bc8-074b28d04c54)
+THEN
+GlobalSetFlag("FTJ_SW_GarethDead");
+
+IF
+CharacterUsedItemTemplate((CHARACTERGUID)_Var1, "BLD_Humans_Warmachine_Turret_E_a9c6305f-f940-4c47-bf2c-ec72718bc02d", _)
+AND
+GlobalGetFlag("FTJ_LV_BeginLVAssault", 0)
+AND
+DB_IsPlayer(_Var1)
+AND
+QRY_SpeakerIsAvailable(_Var1)
+AND
+QueryOnlyOnce("LV_VB_UsedBallista_Once")
+THEN
+StartVoiceBark("LV_VB_UsedBallista", _Var1);
+
+IF
+GameBookInterfaceClosed(ITEMGUID_LV_DallisResearchNotes_002_7f59841d-1c0b-4080-815e-709d0f4cdb47, (CHARACTERGUID)_Var1)
+THEN
+ObjectSetFlag(_Var1, "QuestUpdate_LV_Main_InfoTheMistake");
+
+PROC
+Proc_LV_Main_Start()
+AND
+DB_OriginRecruitmentLocation(_Var1, _)
+THEN
+ObjectClearFlag(_Var1, "FTJ_SW_InShelter", 0);
+ObjectSetFlag(_Var1, "LV_OnLadyVengeance");
+
+PROC
+Proc_LV_Main_Start()
+AND
+GlobalGetFlag("FTJ_SW_GarethAtShelter", 0)
+THEN
+SetVarInteger(CHARACTERGUID_S_FTJ_SW_CollarRemovingSeeker_437c00b3-6544-44dd-8396-a43848b19a1e, "InspectingEnvironment", 0);
+
+IF
+GameStarted("LV_HoE_Main", _)
+AND
+QueryOnlyOnce("LV_DismissCompanions")
+THEN
+PROC_GLO_LVDismissCompanionsAfterDialog("LV_RD_CompanionDismissal", 0, 1);
+
+IF
+DialogStarted("LV_ShipHeadSeeker_001", _)
+THEN
+DB_OnlyOnce("LV_ShipHeadSeeker_001_DoesWarning");
+
+IF
+CharacterEnteredTrigger((CHARACTERGUID)_Var1, TRIGGERGUID_S_LV_ShipheadSeekerDialog_Box_7238fe07-d6dc-4ebc-bcf1-5c66f18b66f4)
+AND
+QueryOnlyOnce("LV_ShipHeadSeeker_001_DoesWarning")
+AND
+QRY_IsAvailableTo(CHARACTERGUID_S_LV_Seeker_002_c7fec918-570a-4d9a-9009-c310f8d97826, _Var1)
+THEN
+Proc_StartDialog(0, "LV_ShipHeadSeeker_001", CHARACTERGUID_S_LV_Seeker_002_c7fec918-570a-4d9a-9009-c310f8d97826, _Var1);
+ProcTriggerUnregisterForPlayers(TRIGGERGUID_S_LV_ShipheadSeekerDialog_Box_7238fe07-d6dc-4ebc-bcf1-5c66f18b66f4);
+
+PROC
+Proc_LV_Main_Start()
+THEN
+GlobalSetFlag("FTJ_LV_SetUp");
+
+IF
+GlobalFlagSet("FTJ_LV_SetUp")
+THEN
+GlobalSetFlag("FTJ_LV_SetUp_Copy");
+
+PROC
+Proc_LV_Main_Start()
+THEN
+PROC_RemoveDialogFromCharacter(CHARACTERGUID_S_GLO_River_f4931ebe-10b0-43c4-9182-640cf052717e);
+SetOnStage(CHARACTERGUID_S_GLO_River_f4931ebe-10b0-43c4-9182-640cf052717e, 1);
+DB_Dialogs(CHARACTERGUID_S_GLO_River_f4931ebe-10b0-43c4-9182-640cf052717e, "FTJ_LV_River");
+SetVarFixedString(CHARACTERGUID_S_GLO_River_f4931ebe-10b0-43c4-9182-640cf052717e, "currentState", "State_LV_OnLadyVengeance");
+TeleportTo(CHARACTERGUID_S_GLO_Alexandar_03e6345f-1bd3-403c-80e2-a443a74f6349, ITEMGUID_S_FTJ_LV_AlexandarBed_e026138b-0760-4e98-a558-787f70e0e64a);
+ItemToInventory(ITEMGUID_S_LV_AlexandarGem_f38a1146-88be-42f0-8bf9-b8abc46ad32e, CHARACTERGUID_S_GLO_Alexandar_03e6345f-1bd3-403c-80e2-a443a74f6349);
+CharacterResurrect(CHARACTERGUID_S_GLO_Alexandar_03e6345f-1bd3-403c-80e2-a443a74f6349);
+CharacterSetHitpointsPercentage(CHARACTERGUID_S_GLO_Alexandar_03e6345f-1bd3-403c-80e2-a443a74f6349, 5);
+CharacterSetArmorPercentage(CHARACTERGUID_S_GLO_Alexandar_03e6345f-1bd3-403c-80e2-a443a74f6349, 0);
+CharacterSetMagicArmorPercentage(CHARACTERGUID_S_GLO_Alexandar_03e6345f-1bd3-403c-80e2-a443a74f6349, 0);
+SetFaction(CHARACTERGUID_S_GLO_Alexandar_03e6345f-1bd3-403c-80e2-a443a74f6349, "Neutral NPC");
+SetCanFight(CHARACTERGUID_S_GLO_Alexandar_03e6345f-1bd3-403c-80e2-a443a74f6349, 0);
+SetCanJoinCombat(CHARACTERGUID_S_GLO_Alexandar_03e6345f-1bd3-403c-80e2-a443a74f6349, 0);
+ProcCharacterDisableAllCrimes(CHARACTERGUID_S_GLO_Alexandar_03e6345f-1bd3-403c-80e2-a443a74f6349);
+CharacterSetCanSpotSneakers(CHARACTERGUID_S_GLO_Alexandar_03e6345f-1bd3-403c-80e2-a443a74f6349, 0);
+SetVarFixedString(CHARACTERGUID_S_GLO_Alexandar_03e6345f-1bd3-403c-80e2-a443a74f6349, "currentState", "State_FTJ_LV_Coma");
+DB_NoLowAttitudeDialog(CHARACTERGUID_S_GLO_Alexandar_03e6345f-1bd3-403c-80e2-a443a74f6349);
+CharacterSetImmortal(S_GLO_Alexandar_03e6345f-1bd3-403c-80e2-a443a74f6349, 0);
+NOT DB_Dead(CHARACTERGUID_S_GLO_Alexandar_03e6345f-1bd3-403c-80e2-a443a74f6349);
+DB_Dialogs(CHARACTERGUID_S_GLO_Alexandar_03e6345f-1bd3-403c-80e2-a443a74f6349, "LV_AlexandarInComa");
+ApplyStatus(CHARACTERGUID_S_GLO_Alexandar_03e6345f-1bd3-403c-80e2-a443a74f6349, "HALL_OF_ECHOES", -1, 1);
+DB_DontCreateMurder(CHARACTERGUID_S_GLO_Alexandar_03e6345f-1bd3-403c-80e2-a443a74f6349);
+SetVarInteger(CHARACTERGUID_S_GLO_Alexandar_03e6345f-1bd3-403c-80e2-a443a74f6349, "bool_CanChickenFlee", 0);
+
+IF
+CharacterUsedItem(CHARACTERGUID_S_GLO_Alexandar_03e6345f-1bd3-403c-80e2-a443a74f6349, ITEMGUID_S_FTJ_LV_AlexandarBed_e026138b-0760-4e98-a558-787f70e0e64a)
+AND
+QueryOnlyOnce("LV_Alexandar_SourceCollar_Once")
+THEN
+PROC_LoopEffect("RS3_FX_GP_Status_HoECollar_01", CHARACTERGUID_S_GLO_Alexandar_03e6345f-1bd3-403c-80e2-a443a74f6349, "LV_Alexandar_SourceCollar", "LV_HoE_Main", "Dummy_NeckFX");
+ApplyStatus(CHARACTERGUID_S_GLO_Alexandar_03e6345f-1bd3-403c-80e2-a443a74f6349, "SOURCE_MUTED", -1, 1);
+ApplyStatus(CHARACTERGUID_S_GLO_Alexandar_03e6345f-1bd3-403c-80e2-a443a74f6349, "HALL_OF_ECHOES", -1, 1);
+
+PROC
+Proc_LV_Main_Start()
+AND
+CharacterIsDead(CHARACTERGUID_S_FTJ_SW_Warrior_SeekerCaptain_1329f018-23e4-4717-9bc8-074b28d04c54, 0)
+THEN
+SetOnStage(CHARACTERGUID_S_FTJ_SW_Warrior_SeekerCaptain_1329f018-23e4-4717-9bc8-074b28d04c54, 1);
+SetVarFixedString(CHARACTERGUID_S_FTJ_SW_Warrior_SeekerCaptain_1329f018-23e4-4717-9bc8-074b28d04c54, "currentState", "State_LV_OnLadyVengeance");
+PROC_RemoveDialogFromCharacter(CHARACTERGUID_S_FTJ_SW_Warrior_SeekerCaptain_1329f018-23e4-4717-9bc8-074b28d04c54);
+DB_Dialogs(CHARACTERGUID_S_FTJ_SW_Warrior_SeekerCaptain_1329f018-23e4-4717-9bc8-074b28d04c54, "FTJ_LV_Gareth");
+SetFaction(CHARACTERGUID_S_FTJ_SW_Warrior_SeekerCaptain_1329f018-23e4-4717-9bc8-074b28d04c54, "RC_Gareth");
+TeleportTo(CHARACTERGUID_S_FTJ_SW_Warrior_SeekerCaptain_1329f018-23e4-4717-9bc8-074b28d04c54, TRIGGERGUID_S_FTJ_LV_GarethDefault_Point_000_92e6b479-63a3-46f8-b5a3-55bdbd4251bc, "", 0);
+ProcCharacterDisableCrime(CHARACTERGUID_S_FTJ_SW_Warrior_SeekerCaptain_1329f018-23e4-4717-9bc8-074b28d04c54, "ActiveUndead");
+
+PROC
+Proc_LV_Main_Start()
+THEN
+TeleportTo(CHARACTERGUID_S_GLO_River_f4931ebe-10b0-43c4-9182-640cf052717e, TRIGGERGUID_S_FTJ_LV_RiverDefault_Point_10995bd4-9ccf-42b6-839a-294e93081412, "StartEventOnSight_RestartSpotting", 0);
+TeleportTo(CHARACTERGUID_S_FTJ_CapturedChild_53d4aa5c-dd91-4e12-9ca8-d66879cc6ffb, TRIGGERGUID_S_LV_HanDefault_Point_8365ef96-3e41-4d8e-bd9e-d536be2a2ce6);
+PROC_RemoveDialogFromCharacter(CHARACTERGUID_S_FTJ_CapturedChild_53d4aa5c-dd91-4e12-9ca8-d66879cc6ffb);
+DB_Dialogs(CHARACTERGUID_S_FTJ_CapturedChild_53d4aa5c-dd91-4e12-9ca8-d66879cc6ffb, "LV_Han");
+CharacterLevelUpTo(CHARACTERGUID_S_GLO_Dallis_69b951dc-55a4-44b8-a2d5-5efedbd7d572, 13);
+CharacterLevelUpTo(CHARACTERGUID_S_FTJ_SW_Warrior_SeekerCaptain_1329f018-23e4-4717-9bc8-074b28d04c54, 10);
+ProcCharacterDisableCrime(CHARACTERGUID_S_FTJ_CapturedChild_53d4aa5c-dd91-4e12-9ca8-d66879cc6ffb, "ActiveUndead");
+
+PROC
+Proc_LV_Main_Start()
+AND
+DB_LV_DeadSeekersFromAct1(_Var1, _Var2)
+AND
+CharacterIsDead(_Var1, 0)
+THEN
+SetOnStage(_Var1, 1);
+TeleportTo(_Var1, _Var2);
+CharacterDieImmediate(_Var1, 1, "DoT");
+CreateSurface(_Var2, "SurfaceBlood", 2, -1);
+
+PROC
+Proc_LV_Main_Start()
+AND
+CharacterIsDead(CHARACTERGUID_S_FTJ_SW_Warrior_CollarRemoverFriend_01bd86e1-75ca-46a6-853e-b8dd64c2cd22, 1)
+THEN
+GlobalSetFlag("FTJ_SW_DugganDied");
+
+PROC
+Proc_LV_Main_Start()
+AND
+DB_LV_LivingSeekersFromAct1(_Var1, _Var2, _Var3)
+AND
+CharacterIsDead(_Var1, 0)
+THEN
+SetOnStage(_Var1, 1);
+TeleportTo(_Var1, _Var2);
+SetVarFixedString(_Var1, "currentState", "State_InLadyVengeance");
+PROC_RemoveDialogFromCharacter(_Var1);
+DB_Dialogs(_Var1, _Var3);
+ProcCharacterDisableCrime(_Var1, "ActiveUndead");
+
+PROC
+Proc_LV_Main_Start()
+AND
+CharacterIsDead(CHARACTERGUID_S_FTJ_SW_SeekerNearSourceTotem_302a752b-d9fa-4e00-b214-f722dc4fa8d6, 0)
+AND
+GlobalGetFlag("FTJ_SW_ToldTarleneGarethAtShelter", 1)
+THEN
+SetOnStage(CHARACTERGUID_S_FTJ_SW_SeekerNearSourceTotem_302a752b-d9fa-4e00-b214-f722dc4fa8d6, 1);
+TeleportTo(CHARACTERGUID_S_FTJ_SW_SeekerNearSourceTotem_302a752b-d9fa-4e00-b214-f722dc4fa8d6, TRIGGERGUID_S_LV_TarleneDefault_Point_d79d9a9e-c6e2-4957-ba95-0b126fb102a4);
+SetVarFixedString(CHARACTERGUID_S_FTJ_SW_SeekerNearSourceTotem_302a752b-d9fa-4e00-b214-f722dc4fa8d6, "currentState", "State_InLadyVengeance");
+PROC_RemoveDialogFromCharacter(CHARACTERGUID_S_FTJ_SW_SeekerNearSourceTotem_302a752b-d9fa-4e00-b214-f722dc4fa8d6);
+DB_Dialogs(CHARACTERGUID_S_FTJ_SW_SeekerNearSourceTotem_302a752b-d9fa-4e00-b214-f722dc4fa8d6, "LV_Tarlene");
+ProcCharacterDisableCrime(CHARACTERGUID_S_FTJ_SW_SeekerNearSourceTotem_302a752b-d9fa-4e00-b214-f722dc4fa8d6, "ActiveUndead");
+
+PROC
+Proc_LV_Main_Start()
+THEN
+TimerLaunch("LV_StartingVB", 8500);
+
+IF
+TimerFinished("LV_StartingVB")
+AND
+CharacterGetHostCharacter(_Var1)
+THEN
+StartVoiceBark("LV_VB_BattleReaction", _Var1);
+
+IF
+StoryEvent((CHARACTERGUID)_Var1, "FTJ_LV_RiverStartDialog")
+AND
+CharacterIsDead(CHARACTERGUID_S_FTJ_SW_Warrior_SeekerCaptain_1329f018-23e4-4717-9bc8-074b28d04c54, 0)
+AND
+GlobalGetFlag("FTJ_LV_BeginLVAssault", 0)
+AND
+QueryOnlyOnce("FTJ_LV_RiverStartDialog_Once")
+THEN
+Proc_StartDialog(0, "FTJ_LV_RiverWithGareth", CHARACTERGUID_S_GLO_River_f4931ebe-10b0-43c4-9182-640cf052717e, CHARACTERGUID_S_FTJ_SW_Warrior_SeekerCaptain_1329f018-23e4-4717-9bc8-074b28d04c54, _Var1);
+UserSetFlag(_Var1, "QuestUpdate_LV_Main_MetRiver");
+
+IF
+StoryEvent((CHARACTERGUID)_Var1, "FTJ_LV_RiverStartDialog")
+AND
+CharacterIsDead(CHARACTERGUID_S_FTJ_SW_Warrior_SeekerCaptain_1329f018-23e4-4717-9bc8-074b28d04c54, 1)
+AND
+GlobalGetFlag("FTJ_LV_BeginLVAssault", 0)
+AND
+QueryOnlyOnce("FTJ_LV_RiverStartDialog_Once")
+THEN
+Proc_StartDialog(0, "FTJ_LV_River", CHARACTERGUID_S_GLO_River_f4931ebe-10b0-43c4-9182-640cf052717e, _Var1);
+UserSetFlag(_Var1, "QuestUpdate_LV_Main_MetRiver");
+
+IF
+DialogEnded(_, (INTEGER)_Var2)
+AND
+DialogGetInvolvedNPC(_Var2, 1, CHARACTERGUID_S_GLO_River_f4931ebe-10b0-43c4-9182-640cf052717e)
+AND
+DialogGetInvolvedPlayer(_Var2, 1, _Var3)
+AND
+ObjectGetFlag(_Var3, "QuestUpdate_LV_Main_MetRiver", 1)
+AND
+QueryOnlyOnce("LV_RD_ShipheadQuest_Once")
+THEN
+ProcDefineReflectionDialog("LV_RD_ShipheadQuest", _Var3);
+
+IF
+StoryEvent((CHARACTERGUID)_Var1, "LV_StartRiverDialogAfterShipAwakens")
+THEN
+Proc_StartDialog(0, "FTJ_LV_River", CHARACTERGUID_S_GLO_River_f4931ebe-10b0-43c4-9182-640cf052717e, _Var1);
+
+IF
+DialogStarted("FTJ_LV_River", (INTEGER)_Var1)
+AND
+DialogGetInvolvedPlayer(_Var1, 1, _Var2)
+THEN
+PartyClearFlag(_Var2, "LV_PlayerWokeShip", 0);
+
+IF
+GlobalFlagSet("LV_ShipHead_CanSail")
+AND
+DB_IsPlayer(_Var1)
+THEN
+ObjectClearFlag(_Var1, "LV_PlayerWokeShip", 0);
+
+IF
+GlobalFlagSet("LV_ShipHead_CanSail")
+AND
+DB_IsPlayer(_Var1)
+AND
+DB_DialogPlayers(_Var2, _Var1, 1)
+AND
+DB_DialogNPCs(_Var2, ITEMGUID_S_LV_ShipHead_01cbf5c6-6d95-4397-8680-b29f0e5eac58, 1)
+THEN
+ObjectSetFlag(_Var1, "LV_PlayerWokeShip");
+
+IF
+ObjectFlagSet("LV_HasDallisTome", (CHARACTERGUID)_Var1, _)
+AND
+DB_IsPlayer(_Var1)
+AND
+QueryOnlyOnce("LV_FoundSongBook")
+THEN
+PartySetFlag(_Var1, "QuestUpdate_LV_Main_GetSongBook");
+Proc_StartDialog(1, "LV_AD_PickedUpSongBook", _Var1);
+
+IF
+CharacterLootedCharacterCorpse((CHARACTERGUID)_Var1, (CHARACTERGUID)_Var2)
+AND
+DB_LV_DeadSeekerVBs(_Var2, _Var3, _Var4)
+AND
+UserGetFlag(_Var1, _Var4, 1)
+THEN
+StartVoiceBark(_Var3, _Var1);
+NOT DB_LV_DeadSeekerVBs(_Var2, _Var3, _Var4);
+
+IF
+DialogEnded("FTJ_LV_River", (INTEGER)_Var1)
+AND
+GlobalGetFlag("FTJ_LV_RiverDoReadyCheck", 1)
+AND
+DB_DialogPlayers(_Var1, _Var2, _)
+THEN
+GlobalClearFlag("FTJ_LV_RiverDoReadyCheck");
+ReadyCheckStart(_Var2, "FTJ_LV_RiverDoReadyCheck");
+
+IF
+ReadyCheckPassed("FTJ_LV_RiverDoReadyCheck")
+THEN
+GlobalSetFlag("FTJ_LV_BeginLVAssault");
+
+IF
+ObjectFlagSet("LV_RdyForChapter4_MsgBox", (CHARACTERGUID)_Var1, (INTEGER)_Var2)
+THEN
+OpenMessageBox(_Var1, "LV_RdyForChapter4_MsgBox");
+
+IF
+CharacterStatusApplied(CHARACTERGUID_S_GLO_Alexandar_03e6345f-1bd3-403c-80e2-a443a74f6349, "KNOCKED_DOWN", _)
+THEN
+RemoveStatus(CHARACTERGUID_S_GLO_Alexandar_03e6345f-1bd3-403c-80e2-a443a74f6349, "KNOCKED_DOWN");
+CharacterUseItem(CHARACTERGUID_S_GLO_Alexandar_03e6345f-1bd3-403c-80e2-a443a74f6349, ITEMGUID_S_FTJ_LV_AlexandarBed_e026138b-0760-4e98-a558-787f70e0e64a, "");
+CharacterFlushQueue(CHARACTERGUID_S_GLO_Alexandar_03e6345f-1bd3-403c-80e2-a443a74f6349);
+CharacterDie(CHARACTERGUID_S_GLO_Alexandar_03e6345f-1bd3-403c-80e2-a443a74f6349, 1, "DoT");
+
+IF
+CharacterStatusApplied(CHARACTERGUID_S_GLO_Alexandar_03e6345f-1bd3-403c-80e2-a443a74f6349, "CRIPPLED", _)
+THEN
+CharacterDie(CHARACTERGUID_S_GLO_Alexandar_03e6345f-1bd3-403c-80e2-a443a74f6349, 1, "DoT");
+
+IF
+CharacterDied(CHARACTERGUID_S_GLO_Alexandar_03e6345f-1bd3-403c-80e2-a443a74f6349)
+AND
+GetRegion(CHARACTERGUID_S_GLO_Alexandar_03e6345f-1bd3-403c-80e2-a443a74f6349, _Var1)
+AND
+_Var1 == "LV_HoE_Main"
+THEN
+GlobalSetFlag("FTJ_LV_AlexandarKilledOnLV");
+NOT DB_QuestDef_State("LV_Main", "AlexandarCaptive");
+NOT DB_QuestDef_UpdateEvent("LV_Main", "AlexandarCaptive", "QuestUpdate_LV_Main_AlexandarCaptive");
+
+IF
+GlobalFlagSet("FTJ_LV_AlexandarKilledOnLV")
+AND
+DB_IsPlayer(_Var1)
+THEN
+UserSetFlag(_Var1, "QuestUpdate_CORE_Chapter3_LV_AlexandarDead");
+
+IF
+ObjectFlagSet("LV_KnowsShipHeadScar", (CHARACTERGUID)_Var1, _)
+THEN
+PartySetFlag(_Var1, "QuestUpdate_LV_Main_InfoShip");
+
+IF
+GlobalFlagSet("LV_ShipHead_Awake")
+AND
+DB_IsPlayer(_Var1)
+THEN
+Proc_ShakeCameraForTime(_Var1, 3000);
+PartySetFlag(_Var1, "QuestUpdate_LV_Main_UsedSongBook");
+
+IF
+GlobalFlagSet("LV_ShipHead_Awake")
+THEN
+ItemSetStoryItem(ITEMGUID_S_LV_DallisTome_f7119f0d-035e-4dfb-a91e-de06a52c62bc, 0);
+PlayAnimation(ITEMGUID_S_LV_ShipHead_01cbf5c6-6d95-4397-8680-b29f0e5eac58, "Dialog_Start", "LV_LoopAfterDialogStart");
+
+IF
+ObjectFlagSet("LV_ShipAwoken_Autosave", ITEMGUID_S_LV_ShipHead_01cbf5c6-6d95-4397-8680-b29f0e5eac58, _)
+THEN
+AutoSave();
+
+IF
+ObjectFlagSet("LV_StartShipSpline", (CHARACTERGUID)_Var1, _)
+THEN
+StartCameraSpline(SPLINEGUID_CameraSpline_LV_Hoe_Main_01_78ffeafd-e5ba-4540-b9dd-a5d25b6edf21, _Var1, 0.25, 1, 1, 0);
+
+IF
+GlobalFlagSet("LV_ShipHead_Awake")
+AND
+DB_IsPlayer(_Var1)
+AND
+CharacterCanSee(_Var1, ITEMGUID_S_LV_ShipHead_01cbf5c6-6d95-4397-8680-b29f0e5eac58, 1)
+AND
+QRY_SpeakerIsAvailable(_Var1)
+THEN
+StartCameraSpline(SPLINEGUID_CameraSpline_LV_Hoe_Main_01_78ffeafd-e5ba-4540-b9dd-a5d25b6edf21, _Var1, 0, 1, 1, 0);
+
+IF
+GlobalFlagSet("GLO_ShipFreed")
+AND
+DB_IsPlayer(_Var1)
+THEN
+PartySetFlag(_Var1, "QuestUpdate_LV_Main_FreeShip");
+
+IF
+GlobalFlagSet("GLO_ShipSubjugated")
+AND
+DB_IsPlayer(_Var1)
+THEN
+PartySetFlag(_Var1, "QuestUpdate_LV_Main_SubjugateShip");
+
+IF
+CharacterUsedItem((CHARACTERGUID)_Var1, ITEMGUID_S_LV_DallisTome_f7119f0d-035e-4dfb-a91e-de06a52c62bc)
+AND
+GlobalGetFlag("LV_ShipHead_Awake", 0)
+AND
+QRY_SpeakerIsAvailable(ITEMGUID_S_LV_ShipHead_01cbf5c6-6d95-4397-8680-b29f0e5eac58)
+AND
+GetDistanceTo(_Var1, ITEMGUID_S_LV_ShipHead_01cbf5c6-6d95-4397-8680-b29f0e5eac58, _Var2)
+AND
+_Var2 < 9.5
+THEN
+GlobalSetFlag("LV_UsedBookNearShipHead");
+Proc_StartDialog(0, "LV_ShipHead", ITEMGUID_S_LV_ShipHead_01cbf5c6-6d95-4397-8680-b29f0e5eac58, _Var1);
+
+IF
+DialogEnded("LV_ShipHead", (INTEGER)_Var1)
+AND
+DialogGetInvolvedPlayer(_Var1, 1, _Var2)
+AND
+ObjectGetFlag(_Var2, "LV_ShipHead_AttackPlayer", 1)
+AND
+GetPosition(_Var2, _Var3, _Var4, _Var5)
+THEN
+CreateExplosionAtPosition(_Var3, _Var4, _Var5, "Projectile_EnemyFireball", 14);
+ObjectClearFlag(_Var2, "LV_ShipHead_AttackPlayer", 0);
+
+IF
+ItemClosed(S_LV_PrisonDoor_99562d87-267c-4bcc-b930-8e4c5bb34c12)
+THEN
+GlobalClearFlag("LV_PrisonDoorOpen");
+
+IF
+ItemOpened(S_LV_PrisonDoor_99562d87-267c-4bcc-b930-8e4c5bb34c12)
+THEN
+GlobalSetFlag("LV_PrisonDoorOpen");
+
+PROC
+PROC_GLOBAL_DialogStartRequested(CHARACTERGUID_S_GLO_Alexandar_03e6345f-1bd3-403c-80e2-a443a74f6349, (CHARACTERGUID)_Var1)
+THEN
+Proc_LV_CheckPrisonerAlexandarReaction(_Var1);
+
+PROC
+PROC_GLOBAL_DialogStartRequested(CHARACTERGUID_S_GLO_Alexandar_03e6345f-1bd3-403c-80e2-a443a74f6349, (CHARACTERGUID)_Var1)
+AND
+GetDistanceTo(CHARACTERGUID_S_GLO_Alexandar_03e6345f-1bd3-403c-80e2-a443a74f6349, _Var1, _Var2)
+AND
+_Var2 >= 4
+THEN
+ObjectSetFlag(_Var1, "LV_Alexandar_CannotTakeGem");
+
+IF
+DialogEnded("LV_AlexandarInComa", (INTEGER)_Var1)
+AND
+DialogGetInvolvedPlayer(_Var1, 1, _Var2)
+THEN
+ObjectClearFlag(_Var2, "LV_Alexandar_CannotTakeGem");
+
+PROC
+PROC_GLOBAL_DialogStartRequested(CHARACTERGUID_S_GLO_Alexandar_03e6345f-1bd3-403c-80e2-a443a74f6349, (CHARACTERGUID)_Var1)
+AND
+DB_LV_AlexandarInComaCombat(1)
+THEN
+DB_FoundDialog(CHARACTERGUID_S_GLO_Alexandar_03e6345f-1bd3-403c-80e2-a443a74f6349, _Var1);
+NOT DB_LV_AlexandarInComaCombat(1);
+
+IF
+StoryEvent((CHARACTERGUID)_Var1, "LV_PrisonerWatchAlexandar")
+AND
+DB_DialogPlayers(_Var2, _Var1, _)
+AND
+DialogGetInvolvedPlayer(_Var2, 1, _Var1)
+AND
+DialogGetInvolvedNPC(_Var2, 1, CHARACTERGUID_S_GLO_Alexandar_03e6345f-1bd3-403c-80e2-a443a74f6349)
+THEN
+SetStoryEvent(_Var1, "LV_CheckPrisonerAlexandarReaction");
+
+IF
+StoryEvent((CHARACTERGUID)_Var1, "LV_CheckPrisonerAlexandarReaction")
+THEN
+Proc_LV_CheckPrisonerAlexandarReaction(_Var1);
+
+IF
+RequestPickpocket((CHARACTERGUID)_Var1, CHARACTERGUID_S_GLO_Alexandar_03e6345f-1bd3-403c-80e2-a443a74f6349)
+THEN
+Proc_LV_CheckPrisonerAlexandarReaction(_Var1);
+
+IF
+AttackedByObject(CHARACTERGUID_S_GLO_Alexandar_03e6345f-1bd3-403c-80e2-a443a74f6349, (CHARACTERGUID)_Var1, _, _, _)
+AND
+DB_IsPlayer(_Var1)
+THEN
+Proc_LV_CheckPrisonerAlexandarReaction(_Var1);
+
+IF
+AttackedByObject(CHARACTERGUID_S_GLO_Alexandar_03e6345f-1bd3-403c-80e2-a443a74f6349, (CHARACTERGUID)_Var1, _, _, _)
+AND
+DB_IsPlayer(_Var1)
+AND
+ObjectGetFlag(CHARACTERGUID_S_FTJ_LV_MagisterPrisoner_001_80a2e428-d20c-47a6-8d85-451720a87fd4, "LV_SeekerPrisonerPrisonerPersuadedPeaceful", 1)
+THEN
+ProcSetRelationToPlayers(CHARACTERGUID_S_FTJ_LV_MagisterPrisoner_001_80a2e428-d20c-47a6-8d85-451720a87fd4, 0);
+
+PROC
+Proc_LV_CheckPrisonerAlexandarReaction((CHARACTERGUID)_Var1)
+AND
+DB_IsPlayer(_Var1)
+AND
+CharacterCanSee(CHARACTERGUID_S_FTJ_LV_MagisterPrisoner_001_80a2e428-d20c-47a6-8d85-451720a87fd4, _Var1, 1)
+AND
+CharacterIsInCombat(CHARACTERGUID_S_FTJ_LV_MagisterPrisoner_001_80a2e428-d20c-47a6-8d85-451720a87fd4, 0)
+AND
+DB_OnlyOnce("LV_MagisterPrisonerWarningDialog_Once")
+AND
+ObjectGetFlag(CHARACTERGUID_S_FTJ_LV_MagisterPrisoner_001_80a2e428-d20c-47a6-8d85-451720a87fd4, "LV_SeekerPrisonerPrisonerPersuadedPeaceful", 0)
+AND
+GetDistanceTo(CHARACTERGUID_S_GLO_Alexandar_03e6345f-1bd3-403c-80e2-a443a74f6349, _Var1, _Var2)
+AND
+_Var2 < 4
+THEN
+ProcForceStopDialog(CHARACTERGUID_S_FTJ_LV_MagisterPrisoner_001_80a2e428-d20c-47a6-8d85-451720a87fd4);
+ProcForceStopDialog(_Var1);
+Proc_StartDialog(1, "LV_AD_MagisterPrisoner_ProtectAlexandar", CHARACTERGUID_S_FTJ_LV_MagisterPrisoner_001_80a2e428-d20c-47a6-8d85-451720a87fd4);
+ProcSetRelationToPlayers(CHARACTERGUID_S_FTJ_LV_MagisterPrisoner_001_80a2e428-d20c-47a6-8d85-451720a87fd4, 0);
+DB_LV_AlexandarInComaCombat(1);
+
+PROC
+Proc_LV_CheckPrisonerAlexandarReaction((CHARACTERGUID)_Var1)
+AND
+DB_IsPlayer(_Var1)
+AND
+CharacterCanSee(CHARACTERGUID_S_FTJ_LV_MagisterPrisoner_001_80a2e428-d20c-47a6-8d85-451720a87fd4, _Var1, 1)
+AND
+CharacterIsInCombat(CHARACTERGUID_S_FTJ_LV_MagisterPrisoner_001_80a2e428-d20c-47a6-8d85-451720a87fd4, 0)
+AND
+GetDistanceTo(CHARACTERGUID_S_GLO_Alexandar_03e6345f-1bd3-403c-80e2-a443a74f6349, _Var1, _Var2)
+AND
+_Var2 < 4
+AND
+QueryOnlyOnce("LV_MagisterPrisonerWarningDialog_Once")
+THEN
+ProcForceStopDialog(CHARACTERGUID_S_FTJ_LV_MagisterPrisoner_001_80a2e428-d20c-47a6-8d85-451720a87fd4);
+ProcForceStopDialog(_Var1);
+ObjectSetFlag(CHARACTERGUID_S_FTJ_LV_MagisterPrisoner_001_80a2e428-d20c-47a6-8d85-451720a87fd4, "LV_MagisterPrisoner_DoWarningDialog");
+Proc_StartDialog(0, "LV_MagisterPrisoner_001", CHARACTERGUID_S_FTJ_LV_MagisterPrisoner_001_80a2e428-d20c-47a6-8d85-451720a87fd4, _Var1);
+
+PROC
+PROC_GLOBAL_DialogStartRequested(CHARACTERGUID_S_GLO_Alexandar_03e6345f-1bd3-403c-80e2-a443a74f6349, (CHARACTERGUID)_Var1)
+AND
+QRY_SpeakerIsAvailable(CHARACTERGUID_S_GLO_Alexandar_03e6345f-1bd3-403c-80e2-a443a74f6349, 1)
+AND
+QRY_SpeakerIsAvailable(_Var1, 1)
+AND
+DB_InRegion(CHARACTERGUID_S_Player_Ifan_ad9a3327-4456-42a7-9bf4-7ad60cc9e54f, TRIGGERGUID_S_LV_SUB_PrisonCell_2688c887-a5cb-49f0-b122-1d14eb423372)
+AND NOT
+DB_GlobalFlag("LV_Alexandar_COM_Ifan_StartedOnce")
+THEN
+DB_OriginMomentTag("LV_AlexandarInComa", "IFAN", "LV_AlexandarInComa_COM_Ifan");
+DB_OriginMomentTag("LV_AlexandarInComa", "SHAPESHIFT_IFAN", "LV_AlexandarInComa_COM_Ifan");
+
+IF
+ObjectFlagSet("LV_SeekerMerchantHostile", (CHARACTERGUID)_Var1, _)
+THEN
+DB_PreventTradeBetween(CHARACTERGUID_S_LV_HoE_SeekerMerchant_a3d0cdcc-d0b0-464d-9ad7-43b38baed620, _Var1);
+
+IF
+StoryEvent((CHARACTERGUID)_Var1, "LV_SeekerMerchant_DialogStart")
+AND
+GlobalGetFlag("FTJ_LV_StartHoELevel", 0)
+AND
+QueryOnlyOnce("LV_SeekerMerchant_DialogStart_Once")
+THEN
+Proc_StartDialog(0, "LV_SeekerMerchant", CHARACTERGUID_S_LV_HoE_SeekerMerchant_a3d0cdcc-d0b0-464d-9ad7-43b38baed620, _Var1);
+
+IF
+CharacterEnteredTrigger(CHARACTERGUID_S_Player_Ifan_ad9a3327-4456-42a7-9bf4-7ad60cc9e54f, TRIGGERGUID_S_LV_PrisonArea_b3612408-987e-4cfa-8e25-d2a2dd9c9587)
+THEN
+GlobalSetFlag("LV_IfanKnowsAlexandarLives");
+
+IF
+CharacterUsedItem(_, ITEMGUID_S_LV_LadderToSecretHatch_fe0fdf79-95b0-4246-8c44-2e3ac416fd11)
+THEN
+SetVarFloat(ITEMGUID_S_LV_HatchToSecretLadder_427f1754-9d7b-4506-89f5-aa8996ba428f, "MinDistance", 7);
+ProcSetPerceptionDifficulty(ITEMGUID_S_LV_HatchToSecretLadder_427f1754-9d7b-4506-89f5-aa8996ba428f, "Trivial");
+
+IF
+CharacterUsedItem((CHARACTERGUID)_Var1, S_LV_LadderToSecretHatch_fe0fdf79-95b0-4246-8c44-2e3ac416fd11)
+AND
+DB_IsPlayer(_Var1)
+THEN
+LeaveCombat(_Var1);
+
+PROC
+ProcRegionEnded("LV_HoE_Main")
+THEN
+GoalCompleted;
+
+
+EXITSECTION
+NOT DB_IgnoreAssault(CHARACTERGUID_S_GLO_Alexandar_03e6345f-1bd3-403c-80e2-a443a74f6349);
+NOT DB_BlockThreatenedDialog(CHARACTERGUID_S_GLO_Alexandar_03e6345f-1bd3-403c-80e2-a443a74f6349);
+NOT DB_DontCreateMurder(CHARACTERGUID_S_GLO_Alexandar_03e6345f-1bd3-403c-80e2-a443a74f6349);
+SetVarInteger(CHARACTERGUID_S_GLO_Alexandar_03e6345f-1bd3-403c-80e2-a443a74f6349, "bool_CanChickenFlee", 1);
+ENDEXITSECTION
+
+ParentTargetEdge "LadyVengeance"

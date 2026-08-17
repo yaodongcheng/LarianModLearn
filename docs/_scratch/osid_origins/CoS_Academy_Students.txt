@@ -1,0 +1,84 @@
+Version 1
+SubGoalCombiner SGC_AND
+
+INITSECTION
+DB_Ghosts(CHARACTERGUID_S_CoS_Academy_Student_001_Corpse_0ad85669-142e-461c-ae7e-d2f8c553ecde, CHARACTERGUID_S_CoS_Academy_Student_001_87469a19-63c1-443c-a087-0da9d37ef44e, "CoS_Academy_Student_001");
+DB_Ghosts(CHARACTERGUID_S_CoS_Academy_Student_002_Corpse_032bc435-e9fc-45b5-bba3-d2bf145e8918, CHARACTERGUID_S_CoS_Academy_Student_002_9c99d1f3-ddc5-4704-ae00-a643d1171ba0, "CoS_Academy_Student_002");
+DB_Ghosts(CHARACTERGUID_S_CoS_Academy_Student_003_Corpse_ab2ca290-9a7f-43b4-a34e-6e58714a3f23, CHARACTERGUID_S_CoS_Academy_Student_003_6369e925-50cc-4076-bb2b-578f2d1a385e, "CoS_Academy_Student_003");
+DB_Ghosts(CHARACTERGUID_S_CoS_Academy_Student_004_Corpse_57b915ec-4687-49ef-b734-bb22a395c4fd, CHARACTERGUID_S_CoS_Academy_Student_004_91911cdc-3cc0-48ca-be9b-f0c86433f99f, "CoS_Academy_Student_004");
+DB_Ghosts(CHARACTERGUID_S_CoS_Academy_Student_005_Corpse_4000b69b-e478-487c-9f9d-82209bfd329a, CHARACTERGUID_S_CoS_Academy_Student_005_5ba0935e-c87f-4c1c-bbe2-61fe6853880b, "CoS_Academy_Student_005");
+DB_Ghosts(CHARACTERGUID_S_CoS_Academy_Dean_Corpse_f7dab83a-031c-480e-922e-cfd3cdc09f64, CHARACTERGUID_S_CoS_Academy_Dean_53885f50-333a-4df4-9686-80aa55a6b3ff, "CoS_Academy_Dean");
+
+KBSECTION
+IF
+GameBookInterfaceClosed(ITEMGUID_S_CoS_Academy_DeansNotes_d7ee3778-7249-4c10-aa93-09670085a412, (CHARACTERGUID)_Var1)
+AND
+ObjectGetFlag(_Var1, "QuestUpdate_CoS_MissingStudent_Start", 1)
+THEN
+PartySetFlag(_Var1, "QuestUpdate_CoS_MissingStudent_DeansNotes");
+
+PROC
+PROC_LV_HoE_RunePuzzle_Activate("CoS_Academy_KillRoom")
+AND
+DB_IsPlayer(_Var1)
+AND
+ObjectGetFlag(_Var1, "QuestUpdate_CoS_MissingStudent_Start", 1)
+THEN
+PartySetFlag(_Var1, "QuestUpdate_CoS_MissingStudent_OpenDoor");
+
+IF
+GlobalFlagSet("CoS_Academy_StudentsReunited")
+THEN
+PROC_RemoveDialogFromCharacter(CHARACTERGUID_S_CoS_Academy_Student_001_87469a19-63c1-443c-a087-0da9d37ef44e);
+PROC_RemoveDialogFromCharacter(CHARACTERGUID_S_CoS_Academy_Student_002_9c99d1f3-ddc5-4704-ae00-a643d1171ba0);
+DB_Dialogs(CHARACTERGUID_S_CoS_Academy_Student_001_87469a19-63c1-443c-a087-0da9d37ef44e, CHARACTERGUID_S_CoS_Academy_Student_002_9c99d1f3-ddc5-4704-ae00-a643d1171ba0, "CoS_Academy_StudentsReunited");
+
+IF
+CharacterGhostDestroyed(_, CHARACTERGUID_S_CoS_Academy_Student_001_87469a19-63c1-443c-a087-0da9d37ef44e)
+AND
+GlobalGetFlag("CoS_Academy_StudentsReunited", 1)
+THEN
+PROC_RemoveDialogFromCharacter(CHARACTERGUID_S_CoS_Academy_Student_002_9c99d1f3-ddc5-4704-ae00-a643d1171ba0);
+DB_Dialogs(CHARACTERGUID_S_CoS_Academy_Student_002_9c99d1f3-ddc5-4704-ae00-a643d1171ba0, "CoS_Academy_Student_002");
+ObjectSetFlag(CHARACTERGUID_S_CoS_Academy_Student_002_9c99d1f3-ddc5-4704-ae00-a643d1171ba0, "CoS_Academy_PlayerGhostSuckedLover");
+
+IF
+CharacterGhostDestroyed(_, CHARACTERGUID_S_CoS_Academy_Student_001_87469a19-63c1-443c-a087-0da9d37ef44e)
+AND
+GlobalGetFlag("CoS_Academy_StudentsReunited", 1)
+THEN
+PROC_RemoveDialogFromCharacter(CHARACTERGUID_S_CoS_Academy_Student_001_87469a19-63c1-443c-a087-0da9d37ef44e);
+DB_Dialogs(CHARACTERGUID_S_CoS_Academy_Student_001_87469a19-63c1-443c-a087-0da9d37ef44e, "CoS_Academy_Student_001");
+
+IF
+CharacterGhostDestroyed(_, CHARACTERGUID_S_CoS_Academy_Student_001_87469a19-63c1-443c-a087-0da9d37ef44e)
+AND
+DB_IsPlayer(_Var2)
+AND
+ObjectGetFlag(_Var2, "QuestUpdate_CoS_MissingStudent_Start", 1)
+AND
+ObjectGetFlag(_Var2, "QuestUpdate_CoS_MissingStudent_End", 0)
+THEN
+PartySetFlag(_Var2, "QuestUpdate_CoS_MissingStudent_Fail_PurgedQuestGiver");
+
+IF
+CharacterGhostDestroyed(_, CHARACTERGUID_S_CoS_Academy_Student_002_9c99d1f3-ddc5-4704-ae00-a643d1171ba0)
+AND
+DB_IsPlayer(_Var2)
+AND
+ObjectGetFlag(_Var2, "QuestUpdate_CoS_MissingStudent_Start", 1)
+AND
+ObjectGetFlag(_Var2, "QuestUpdate_CoS_MissingStudent_End", 0)
+THEN
+PartySetFlag(_Var2, "QuestUpdate_CoS_MissingStudent_Fail_PurgeMissingStudent");
+
+IF
+ObjectFlagSet("CoS_Academy_DeanRoomMapMarker", (CHARACTERGUID)_Var1, _)
+THEN
+ProcShowMarker(_Var1, "COS_DeansRoom");
+
+
+EXITSECTION
+ENDEXITSECTION
+
+ParentTargetEdge "CoS_Academy"

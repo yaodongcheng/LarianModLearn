@@ -1,0 +1,2046 @@
+Version 1
+SubGoalCombiner SGC_AND
+
+INITSECTION
+DB_OriginMomentTag("ARX_LizardPrincess", "RED PRINCE", "ARX_LizardPrincess_COM_RedPrince");
+DB_ARX_LizardPrincess_Dialogs("ARX_LizardPrincess");
+DB_ARX_LizardPrincess_Dialogs("ARX_LizardPrincess_COM_RedPrince");
+DB_ARX_HorrorSleep_Sunset_Newt("ARX_HorrorSleep_Sunset_Newt");
+DB_ARX_HorrorSleep_Sunset_Newt("ARX_HorrorSleep_Sunset_Newt_COM_RedPrince");
+DB_ARX_HorrorSleep_Sunset_EggAndPrincess(ITEMGUID_S_ARX_HorrorSleep_Sunset_DragonEgg_08648767-508f-866e-2852-2558d0b3b041);
+DB_ARX_HorrorSleep_Sunset_EggAndPrincess(CHARACTERGUID_S_GLO_RedPrincess_050fbbf9-3fc9-40cd-9cbb-43b4b3754a5e);
+ProcTriggerRegisterForPlayers(TRIGGERGUID_S_ARX_HorrorSleep_Sunset_RedPrincess_AD_b033459a-5c51-4dff-bb5d-d86518d8b8fd);
+Proc_PyramidBlockerTriggerAdd(TRIGGERGUID_S_ARX_HorrorSleep_Sunset_67df0f1c-9cf2-46c5-8b28-64376a9b274c);
+SetOnStage(ITEMGUID_S_ARX_HorrorSleep_Sunset_DragonEgg_08648767-508f-866e-2852-2558d0b3b041, 0);
+SetOnStage(ITEMGUID_S_ARX_HorrorSleep_Sunset_DragonEgg_CampFire_6cd6eb80-633b-454f-a96a-bd65af5473f7, 0);
+SetOnStage(ITEMGUID_S_ARX_HorrorSleep_Sunset_DragonEgg_AshPile_c9663fd3-61ff-4a0b-a63f-ae38b6cbba55, 0);
+SetOnStage(ITEMGUID_S_ARX_HorrorSleep_Sunset_DragonEgg_AshPile_000_610fb28b-3b1f-46aa-a0da-87eea9157aa9, 0);
+SetOnStage(ITEMGUID_S_ARX_HorrorSleep_Sunset_DragonEgg_CampFire_000_7d1a1ace-fb68-49ed-9f9b-88438d0fd28d, 0);
+SetOnStage(ITEMGUID_S_ARX_HorrorSleep_Sunset_ExitSeductionScene_000_6f65759f-fd6e-49f2-984d-4f670e50b870, 0);
+SetOnStage(CHARACTERGUID_S_ARX_HorrorSleep_Sunset_Newt_1f46750f-1d62-4676-aaa7-9ec226c96428, 0);
+ProcCharacterDisableAllCrimes(CHARACTERGUID_S_ARX_HorrorSleep_Sunset_Newt_1f46750f-1d62-4676-aaa7-9ec226c96428);
+DB_IgnoreAssault(CHARACTERGUID_S_ARX_HorrorSleep_Sunset_Newt_1f46750f-1d62-4676-aaa7-9ec226c96428);
+DB_ARX_HorrorSleep_Sunset_DragonEgg_StatusToHatch("BURNING");
+DB_ARX_HorrorSleep_Sunset_RedPrincess_CombatLizards(CHARACTERGUID_S_ARX_HorrorSleep_Sunset_LizardDreamer_02_9b8741fb-ee59-41e3-b68f-82c3bea760fe);
+DB_ARX_HorrorSleep_Sunset_RedPrincess_CombatLizards(CHARACTERGUID_S_ARX_HorrorSleep_Sunset_LizardDreamer_01_f60aae58-94f5-4668-8e1f-173970b68a60);
+DB_ARX_HorrorSleep_Sunset_RedPrincess_CombatLizards(CHARACTERGUID_S_ARX_HorrorSleep_Sunset_HunterDreamer_01_68e15ffc-7fb1-4ea0-8d91-ede24744ea06);
+DB_ARX_HorrorSleep_Sunset_RedPrincess_CombatLizards(CHARACTERGUID_S_ARX_HorrorSleep_Sunset_HunterDreamer_02_356d752f-03e4-48ee-88f3-3b72a8db6e2a);
+DB_ARX_HorrorSleep_Sunset_RedPrincess_CombatLizards(CHARACTERGUID_S_ARX_HorrorSleep_Sunset_LizardDreamer_03_8360aa52-e8a9-4934-a6a9-31900ce93f54);
+SetOnStage(CHARACTERGUID_CHARACTERGUID_S_ARX_HorrorSleep_Sunset_HunterDreamer_03_7321874f-8629-43de-985e-d51a721e5387, 0);
+DB_NoLowAttitudeDialog(CHARACTERGUID_S_ARX_HorrorSleep_Sunset_Newt_1f46750f-1d62-4676-aaa7-9ec226c96428);
+DB_NoLowAttitudeDialog(CHARACTERGUID_S_GLO_RedPrincess_050fbbf9-3fc9-40cd-9cbb-43b4b3754a5e);
+DB_OneShotPlayerTrigger(TRIGGERGUID_S_ARX_HorrorSleep_Sunset_AD_AboutOasis_b7819b46-2e1d-4229-9497-f77c1c4531ac);
+DB_OneShotPlayerTrigger(TRIGGERGUID_S_ARX_HorrorSleep_Sunset_AD_AboutPortal_b0a763cd-10c9-4c8e-b78d-6ea5ce41895b);
+DB_RedPrince_COM_AOM_JournalUpdate("QuestUpdate_ARX_LizardConsulate_HorrorSleepSunset_Start", "HorrorSleepSunset_Start");
+DB_RedPrince_COM_AOM_JournalUpdate("QuestUpdate_ARX_LizardConsulate_HorrorSleepSunset_PrincessHostile", "HorrorSleepSunset_PrincessHostile");
+DB_RedPrince_COM_AOM_JournalUpdate("QuestUpdate_ARX_LizardConsulate_HorrorSleepSunset_PrincessDead", "HorrorSleepSunset_PrincessDead");
+DB_RedPrince_COM_AOM_JournalUpdate("QuestUpdate_ARX_LizardConsulate_HorrorSleepSunset_RP_Seduction_TeleportedOut", "HorrorSleepSunset_RP_Seduction_TeleportedOut");
+Proc_RegisterPartyDecisionDialogOutcomes_Fixed("ARX_HorrorSleep_Sunset_PDD_LizardPrincess", "ARX_HorrorSleep_Sunset_PDD_GiveSwornBreaker", "ARX_HorrorSleep_Sunset_PDD_LeaveInSafty", "ARX_HorrorSleep_Sunset_PDD_Kill", "", "");
+DB_Queue_LizardPrincess_PDD("FixedAChosen", "Queue_FixedAChosen");
+DB_Queue_LizardPrincess_PDD("FixedBChosen", "Queue_FixedBChosen");
+SetOnStage(CHARACTERGUID_S_ARX_GodKing_InvisHelper_Sunset_fbbb8e4d-e6b3-474c-b3f6-c2b977bd59a3, 0);
+DB_ARX_HorrorSleep_Sunset_BackToConsulate_Dialogs("ARX_HorrorSleep_Sunset_BackToConsulate");
+DB_ARX_HorrorSleep_Sunset_BackToConsulate_Dialogs("ARX_HorrorSleep_Sunset_Princess_StopPortal_DidntHatchEgg");
+DB_ARX_HorrorSleep_Sunet_Equipment("Breast");
+DB_ARX_HorrorSleep_Sunet_Equipment("Belt");
+DB_ARX_HorrorSleep_Sunet_Equipment("Gloves");
+DB_ARX_HorrorSleep_Sunet_Equipment("Boots");
+DB_ARX_HorrorSleep_Sunet_Equipment("Ring");
+DB_ARX_HorrorSleep_Sunet_Equipment("Ring2");
+DB_ARX_HorrorSleep_Sunet_Equipment("Helmet");
+DB_ARX_HorrorSleep_Sunet_Equipment("Leggings");
+DB_ARX_HorrorSleep_Sunet_Equipment("Shield");
+DB_ARX_HorrorSleep_Sunet_Equipment("Weapon");
+DB_ARX_HorrorSleep_Sunet_Equipment("Amulet");
+
+KBSECTION
+PROC
+ProcRegionStarted("ARX_Main")
+AND
+IsTagged(CHARACTERGUID_S_GLO_RedPrincess_050fbbf9-3fc9-40cd-9cbb-43b4b3754a5e, "NOT_MESSING_AROUND", 0)
+THEN
+SetTag(CHARACTERGUID_S_GLO_RedPrincess_050fbbf9-3fc9-40cd-9cbb-43b4b3754a5e, "NOT_MESSING_AROUND");
+
+PROC
+ProcRegionStarted("ARX_Main")
+AND
+QueryOnlyOnce("ARX_LizardPrincess_IsInARX_")
+THEN
+ProcRemoveAllDialogEntriesForSpeaker(CHARACTERGUID_S_GLO_RedPrincess_050fbbf9-3fc9-40cd-9cbb-43b4b3754a5e);
+DB_Dialogs(CHARACTERGUID_S_GLO_RedPrincess_050fbbf9-3fc9-40cd-9cbb-43b4b3754a5e, "ARX_LizardPrincess");
+SetOnStage(CHARACTERGUID_S_GLO_RedPrincess_050fbbf9-3fc9-40cd-9cbb-43b4b3754a5e, 1);
+CharacterSetImmortal(CHARACTERGUID_S_GLO_RedPrincess_050fbbf9-3fc9-40cd-9cbb-43b4b3754a5e, 0);
+TeleportTo(CHARACTERGUID_S_GLO_RedPrincess_050fbbf9-3fc9-40cd-9cbb-43b4b3754a5e, TRIGGERGUID_S_ARX_HorrorSleep_Sunset_RedPrincess_TeleportLocation_4ffe9e22-a683-46be-ad0e-8f004038bff5);
+SetFaction(CHARACTERGUID_S_GLO_RedPrincess_050fbbf9-3fc9-40cd-9cbb-43b4b3754a5e, "ARX_RedPrincess");
+CharacterLevelUpTo(CHARACTERGUID_S_GLO_RedPrincess_050fbbf9-3fc9-40cd-9cbb-43b4b3754a5e, 18);
+ProcCharacterDisableCrime(CHARACTERGUID_S_GLO_RedPrincess_050fbbf9-3fc9-40cd-9cbb-43b4b3754a5e, "Steal");
+ItemToInventory(ITEMGUID_S_ARX_HorrorSleep_Sunset_RedPrincess_Ring_f8a78bee-770f-48cf-aea3-ec78a8434cad, CHARACTERGUID_S_GLO_RedPrincess_050fbbf9-3fc9-40cd-9cbb-43b4b3754a5e);
+DB_GiveItemToEvent(ITEMGUID_S_ARX_HorrorSleep_Sunset_RedPrincess_Ring_f8a78bee-770f-48cf-aea3-ec78a8434cad, "ARX_LizardPrincess_HorrorSleep_Sunset_GiveRing");
+DB_HasStoryEvent(ITEMGUID_S_ARX_HorrorSleep_Sunset_RedPrincess_Ring_f8a78bee-770f-48cf-aea3-ec78a8434cad, "ARX_LizardPrincess_HorrorSleep_Sunset_HasRing");
+GlobalSetFlag("ARX_LizardPrincess_IsInARX");
+GlobalSetFlag("ARX_LizardPrincess_IsInARX_StartSpotting");
+Proc_GLO_RedPrincess_GhostSetup(CHARACTERGUID_S_GLO_RedPrincess_050fbbf9-3fc9-40cd-9cbb-43b4b3754a5e);
+ProcCharacterDisableCrime(CHARACTERGUID_S_GLO_RedPrincess_050fbbf9-3fc9-40cd-9cbb-43b4b3754a5e, "VandaliseNoOwner");
+
+PROC
+Proc_GLO_RedPrincess_GhostSetup((CHARACTERGUID)_Var1)
+AND
+DB_Ghosts(_Var1, _Var2, _Var3)
+THEN
+NOT DB_Ghosts(_Var1, _Var2, _Var3);
+DestroyGhost(_Var2);
+DB_Ghosts(CHARACTERGUID_S_GLO_RedPrincess_050fbbf9-3fc9-40cd-9cbb-43b4b3754a5e, CHARACTERGUID_S_ARX_LizardPrincess_Ghost_00b34f9f-b905-4a4f-a9b4-d3457da8da25, "ARX_LizardPrincess_Ghost");
+
+PROC
+Proc_GLO_RedPrincess_GhostSetup((CHARACTERGUID)_Var1)
+AND NOT
+DB_Ghosts(_Var1, _, _)
+THEN
+DB_Ghosts(CHARACTERGUID_S_GLO_RedPrincess_050fbbf9-3fc9-40cd-9cbb-43b4b3754a5e, CHARACTERGUID_S_ARX_LizardPrincess_Ghost_00b34f9f-b905-4a4f-a9b4-d3457da8da25, "ARX_LizardPrincess_Ghost");
+
+PROC
+ProcRegionStarted("ARX_Main")
+AND
+GlobalGetFlag("RC_RedPrincessPregnantAfterRC", 1)
+THEN
+SetOnStage(ITEMGUID_S_ARX_HorrorSleep_Sunset_DragonEgg_08648767-508f-866e-2852-2558d0b3b041, 1);
+SetOnStage(ITEMGUID_S_ARX_HorrorSleep_Sunset_DragonEgg_CampFire_6cd6eb80-633b-454f-a96a-bd65af5473f7, 1);
+SetOnStage(ITEMGUID_S_ARX_HorrorSleep_Sunset_DragonEgg_AshPile_c9663fd3-61ff-4a0b-a63f-ae38b6cbba55, 1);
+TriggerRegisterForItems(TRIGGERGUID_S_ARX_HorrorSleep_Sunset_DragonEgg_Box_96466a11-99eb-43bd-b069-329899e0fc48);
+
+PROC
+ProcRegionStarted("ARX_Main")
+AND
+GlobalGetFlag("RC_RedPrincessPregnantAfterRC", 1)
+AND
+DB_IsPlayer(_Var1)
+THEN
+DB_CustomMoveItemResponse(_Var1, ITEMGUID_S_ARX_HorrorSleep_Sunset_DragonEgg_08648767-508f-866e-2852-2558d0b3b041, 0);
+DB_CustomPickupItemResponse(_Var1, ITEMGUID_S_ARX_HorrorSleep_Sunset_DragonEgg_08648767-508f-866e-2852-2558d0b3b041, 0);
+
+IF
+CharacterEnteredTrigger((CHARACTERGUID)_Var1, TRIGGERGUID_S_ARX_HorrorSleep_Sunset_RedPrincess_AD_b033459a-5c51-4dff-bb5d-d86518d8b8fd)
+AND
+HasActiveStatus(_Var1, "SNEAKING", 0)
+AND
+HasActiveStatus(_Var1, "INVISIBLE", 0)
+AND
+QRY_SpeakerIsAvailable(CHARACTERGUID_S_GLO_RedPrincess_050fbbf9-3fc9-40cd-9cbb-43b4b3754a5e)
+THEN
+proc_ARX_RedPrincess_NoticeAndApproachPlayer(_Var1);
+
+PROC
+proc_ARX_RedPrincess_NoticeAndApproachPlayer((CHARACTERGUID)_Var1)
+AND
+IsTagged(_Var1, "RED PRINCE", 1)
+THEN
+ObjectSetFlag(CHARACTERGUID_S_GLO_RedPrincess_050fbbf9-3fc9-40cd-9cbb-43b4b3754a5e, "ARX_LizardPrincess_SawRedPrince");
+
+PROC
+proc_ARX_RedPrincess_NoticeAndApproachPlayer((CHARACTERGUID)_Var1)
+THEN
+CharacterLookAt(CHARACTERGUID_S_GLO_RedPrincess_050fbbf9-3fc9-40cd-9cbb-43b4b3754a5e, _Var1, 0);
+ProcCharacterMoveTo(CHARACTERGUID_S_GLO_RedPrincess_050fbbf9-3fc9-40cd-9cbb-43b4b3754a5e, _Var1, 1, "");
+ProcTriggerUnregisterForPlayers(TRIGGERGUID_S_ARX_HorrorSleep_Sunset_RedPrincess_AD_b033459a-5c51-4dff-bb5d-d86518d8b8fd);
+TriggerUnregisterForCharacter(TRIGGERGUID_S_ARX_HorrorSleep_Sunset_RedPrincess_AD_b033459a-5c51-4dff-bb5d-d86518d8b8fd, CHARACTERGUID_S_Player_RedPrince_a26a1efb-cdc8-4cf3-a7b2-b2f9544add6f);
+
+IF
+DialogStarted("ARX_LizardPrincess", (INTEGER)_Var1)
+AND
+DB_IsPlayer(_Var2)
+AND
+DB_DialogPlayers(_Var1, _Var3, 1)
+AND
+_Var2 != _Var3
+AND
+IsTagged(_Var2, "LIZARD", 1)
+AND
+CharacterCanSee(CHARACTERGUID_S_GLO_RedPrincess_050fbbf9-3fc9-40cd-9cbb-43b4b3754a5e, _Var2, 1)
+THEN
+ObjectSetFlag(_Var3, "ARX_LizardPrincess_PlayerIsWithALizard");
+
+IF
+CharacterCharacterEvent(CHARACTERGUID_S_GLO_RedPrincess_050fbbf9-3fc9-40cd-9cbb-43b4b3754a5e, (CHARACTERGUID)_Var1, "ARX_LizardPrincess_SpottedPlayer")
+AND NOT
+DB_ARX_HorrorSleep_Sunset_PlayerLeavingSunset(_Var1)
+AND NOT
+DB_ARX_LizardPrincess_StartedDialog(1)
+AND
+IsTagged(_Var1, "RED PRINCE", 1)
+THEN
+Proc_StartDialog(0, "ARX_LizardPrincess", CHARACTERGUID_S_GLO_RedPrincess_050fbbf9-3fc9-40cd-9cbb-43b4b3754a5e, _Var1);
+DB_ARX_LizardPrincess_StartedDialog(1);
+
+IF
+CharacterCharacterEvent(CHARACTERGUID_S_GLO_RedPrincess_050fbbf9-3fc9-40cd-9cbb-43b4b3754a5e, (CHARACTERGUID)_Var1, "ARX_LizardPrincess_SpottedPlayer")
+AND NOT
+DB_ARX_LizardPrincess_StartedDialog(1)
+AND
+IsTagged(_Var1, "RED PRINCE", 0)
+AND NOT
+DB_ARX_HorrorSleep_Sunset_PlayerLeavingSunset(CHARACTERGUID_S_Player_RedPrince_a26a1efb-cdc8-4cf3-a7b2-b2f9544add6f)
+AND
+QRY_SpeakerIsAvailableAndInDialogRange(CHARACTERGUID_S_Player_RedPrince_a26a1efb-cdc8-4cf3-a7b2-b2f9544add6f, _Var1)
+THEN
+Proc_StartDialog(0, "ARX_LizardPrincess", CHARACTERGUID_S_GLO_RedPrincess_050fbbf9-3fc9-40cd-9cbb-43b4b3754a5e, CHARACTERGUID_S_Player_RedPrince_a26a1efb-cdc8-4cf3-a7b2-b2f9544add6f);
+DB_ARX_LizardPrincess_StartedDialog(1);
+
+IF
+CharacterCharacterEvent(CHARACTERGUID_S_GLO_RedPrincess_050fbbf9-3fc9-40cd-9cbb-43b4b3754a5e, (CHARACTERGUID)_Var1, "ARX_LizardPrincess_SpottedPlayer")
+AND NOT
+DB_ARX_HorrorSleep_Sunset_PlayerLeavingSunset(_Var1)
+AND NOT
+DB_ARX_LizardPrincess_StartedDialog(1)
+AND
+IsTagged(_Var1, "LIZARD", 1)
+THEN
+Proc_StartDialog(0, "ARX_LizardPrincess", CHARACTERGUID_S_GLO_RedPrincess_050fbbf9-3fc9-40cd-9cbb-43b4b3754a5e, _Var1);
+DB_ARX_LizardPrincess_StartedDialog(1);
+
+IF
+CharacterCharacterEvent(CHARACTERGUID_S_GLO_RedPrincess_050fbbf9-3fc9-40cd-9cbb-43b4b3754a5e, (CHARACTERGUID)_Var1, "ARX_LizardPrincess_SpottedPlayer")
+AND NOT
+DB_ARX_LizardPrincess_StartedDialog(1)
+AND
+IsTagged(_Var1, "LIZARD", 0)
+AND NOT
+DB_InRegion(CHARACTERGUID_S_Player_RedPrince_a26a1efb-cdc8-4cf3-a7b2-b2f9544add6f, TRIGGERGUID_S_ARX_HorrorSleep_Sunset_67df0f1c-9cf2-46c5-8b28-64376a9b274c)
+AND
+DB_IsPlayer(_Var2)
+AND NOT
+DB_ARX_HorrorSleep_Sunset_PlayerLeavingSunset(_Var2)
+AND
+IsTagged(_Var2, "LIZARD", 1)
+AND
+QRY_SpeakerIsAvailableAndInDialogRange(_Var2, _Var1)
+THEN
+Proc_StartDialog(0, "ARX_LizardPrincess", CHARACTERGUID_S_GLO_RedPrincess_050fbbf9-3fc9-40cd-9cbb-43b4b3754a5e, _Var2);
+DB_ARX_LizardPrincess_StartedDialog(1);
+
+IF
+CharacterCharacterEvent(CHARACTERGUID_S_GLO_RedPrincess_050fbbf9-3fc9-40cd-9cbb-43b4b3754a5e, (CHARACTERGUID)_Var1, "ARX_LizardPrincess_SpottedPlayer")
+AND NOT
+DB_ARX_LizardPrincess_StartedDialog(1)
+AND NOT
+DB_ARX_HorrorSleep_Sunset_PlayerLeavingSunset(_Var1)
+THEN
+Proc_StartDialog(0, "ARX_LizardPrincess", CHARACTERGUID_S_GLO_RedPrincess_050fbbf9-3fc9-40cd-9cbb-43b4b3754a5e, _Var1);
+DB_ARX_LizardPrincess_StartedDialog(1);
+
+IF
+CharacterCharacterEvent(CHARACTERGUID_S_GLO_RedPrincess_050fbbf9-3fc9-40cd-9cbb-43b4b3754a5e, (CHARACTERGUID)_Var1, "ARX_LizardPrincess_SpottedPlayer")
+THEN
+ProcClearStoryMove(CHARACTERGUID_S_GLO_RedPrincess_050fbbf9-3fc9-40cd-9cbb-43b4b3754a5e);
+
+IF
+DialogStarted("ARX_LizardPrincess", (INTEGER)_Var1)
+AND
+DB_DialogPlayers(_Var1, _Var2, 1)
+AND
+CharacterIsInPartyWith(CHARACTERGUID_S_Player_RedPrince_a26a1efb-cdc8-4cf3-a7b2-b2f9544add6f, _Var2, 1)
+THEN
+ObjectSetFlag(_Var2, "ARX_LizardPrincess_RedPrinceIsInParty");
+
+IF
+DialogStarted("ARX_LizardPrincess", (INTEGER)_Var1)
+THEN
+GlobalSetFlag("ARX_LizardPrincess_InitialDialogStarted");
+
+IF
+DialogStarted("ARX_LizardPrincess", (INTEGER)_Var1)
+AND
+DB_InRegion(_Var2, TRIGGERGUID_S_ARX_HorrorSleep_Sunset_67df0f1c-9cf2-46c5-8b28-64376a9b274c)
+AND
+_Var2 != CHARACTERGUID_S_Player_RedPrince_a26a1efb-cdc8-4cf3-a7b2-b2f9544add6f
+THEN
+ObjectSetFlag(CHARACTERGUID_S_GLO_RedPrincess_050fbbf9-3fc9-40cd-9cbb-43b4b3754a5e, "ARX_LizardPrincess_MoreThan1PlayerInRegion");
+
+IF
+DialogEnded("ARX_LizardPrincess", (INTEGER)_Var1)
+AND
+ObjectGetFlag(CHARACTERGUID_S_GLO_RedPrincess_050fbbf9-3fc9-40cd-9cbb-43b4b3754a5e, "ARX_LizardPrincess_MoreThan1PlayerInRegion", 1)
+THEN
+ObjectClearFlag(CHARACTERGUID_S_GLO_RedPrincess_050fbbf9-3fc9-40cd-9cbb-43b4b3754a5e, "ARX_LizardPrincess_MoreThan1PlayerInRegion");
+
+IF
+DialogEnded("ARX_LizardPrincess", (INTEGER)_Var1)
+AND
+QueryOnlyOnce("ARX_LizardPrincess_RestartSpottingEvent")
+AND
+DB_DialogPlayers(_Var1, _Var2, 1)
+AND
+ObjectGetFlag(_Var2, "ARX_LizardPrincess_AskedToBringRP", 1)
+THEN
+NOT DB_ARX_LizardPrincess_StartedDialog(1);
+SetStoryEvent(CHARACTERGUID_S_GLO_RedPrincess_050fbbf9-3fc9-40cd-9cbb-43b4b3754a5e, "StartEventOnSight_RestartSpotting");
+SetVarFixedString(CHARACTERGUID_S_GLO_RedPrincess_050fbbf9-3fc9-40cd-9cbb-43b4b3754a5e, "HasTag", "RED PRINCE");
+TriggerRegisterForCharacter(TRIGGERGUID_S_ARX_HorrorSleep_Sunset_RedPrincess_AD_b033459a-5c51-4dff-bb5d-d86518d8b8fd, CHARACTERGUID_S_Player_RedPrince_a26a1efb-cdc8-4cf3-a7b2-b2f9544add6f);
+
+IF
+DialogEnded("ARX_LizardPrincess", (INTEGER)_Var1)
+AND
+DB_DialogPlayers(_Var1, _Var2, _)
+AND
+ObjectGetFlag(_Var2, "ARX_LizardPrincess_RedPrinceIsInParty", 1)
+THEN
+ObjectClearFlag(_Var2, "ARX_LizardPrincess_RedPrinceIsInParty");
+
+IF
+ObjectFlagSet("ARX_LizardPrincess_CastSpell", CHARACTERGUID_S_GLO_RedPrincess_050fbbf9-3fc9-40cd-9cbb-43b4b3754a5e, (INTEGER)_Var1)
+THEN
+PlayAnimation(CHARACTERGUID_S_GLO_RedPrincess_050fbbf9-3fc9-40cd-9cbb-43b4b3754a5e, "skill_cast_target_soul_01_cast");
+PlayEffect(CHARACTERGUID_S_GLO_RedPrincess_050fbbf9-3fc9-40cd-9cbb-43b4b3754a5e, "RS3_FX_GP_ScriptedEvent_ARX_Princess_TeleportPlayer_01");
+
+IF
+ObjectFlagSet("ARX_TheEighth_Punish_LizardPrincess", (GUIDSTRING)_Var1, (INTEGER)_Var2)
+AND
+DB_Queue_LizardPrincess_PDD(_Var3, _Var4)
+AND
+ObjectGetFlag(_Var1, _Var4, 1)
+THEN
+ObjectSetFlag(_Var1, _Var3);
+ObjectClearFlag(_Var1, _Var4);
+
+IF
+ObjectFlagSet("ARX_HorrorSleep_Sunset_AddGodKingToDialog", (GUIDSTRING)_Var1, (INTEGER)_Var2)
+THEN
+SetOnStage(CHARACTERGUID_S_ARX_GodKing_InvisHelper_Sunset_fbbb8e4d-e6b3-474c-b3f6-c2b977bd59a3, 1);
+DialogAddActorAt(_Var2, CHARACTERGUID_S_ARX_GodKing_InvisHelper_Sunset_fbbb8e4d-e6b3-474c-b3f6-c2b977bd59a3, 5);
+
+IF
+ObjectFlagSet("ARX_HorrorSleep_Sunset_AddGodKingToDialog_CoM", (GUIDSTRING)_Var1, (INTEGER)_Var2)
+AND
+QueryOnlyOnce("ARX_HorrorSleep_Sunset_AddGodKingToDialog_OnlyOnceCom")
+THEN
+SetOnStage(CHARACTERGUID_S_ARX_GodKing_InvisHelper_Sunset_fbbb8e4d-e6b3-474c-b3f6-c2b977bd59a3, 1);
+DialogAddActorAt(_Var2, CHARACTERGUID_S_ARX_GodKing_InvisHelper_Sunset_fbbb8e4d-e6b3-474c-b3f6-c2b977bd59a3, 4);
+TeleportTo(CHARACTERGUID_S_ARX_GodKing_InvisHelper_Sunset_fbbb8e4d-e6b3-474c-b3f6-c2b977bd59a3, _Var1);
+
+IF
+ObjectFlagSet("ARX_HorrorSleep_Sunset_AddGodKingToDialog_SetOffStage", (GUIDSTRING)_Var1, (INTEGER)_Var2)
+THEN
+SetOnStage(CHARACTERGUID_S_ARX_GodKing_InvisHelper_Sunset_fbbb8e4d-e6b3-474c-b3f6-c2b977bd59a3, 0);
+
+IF
+ObjectFlagSet("ARX_HorrorSleep_Sunset_AddGodKingToDialog", (GUIDSTRING)_Var1, (INTEGER)_Var2)
+THEN
+TeleportTo(CHARACTERGUID_S_ARX_GodKing_InvisHelper_Sunset_fbbb8e4d-e6b3-474c-b3f6-c2b977bd59a3, _Var1);
+
+IF
+DialogEnded("ARX_HorrorSleep_Sunset_PDD_LizardPrincess", (INTEGER)_Var1)
+THEN
+SetOnStage(CHARACTERGUID_S_ARX_GodKing_InvisHelper_Sunset_fbbb8e4d-e6b3-474c-b3f6-c2b977bd59a3, 0);
+
+IF
+ObjectFlagSet("ARX_HorrorSleep_Sunset_GodKing_ApplyTerror", (GUIDSTRING)_Var1, (INTEGER)_Var2)
+THEN
+ApplyStatus(_Var1, "FEAR", -1, 1);
+
+IF
+ObjectFlagCleared("ARX_HorrorSleep_Sunset_GodKing_ApplyTerror", (GUIDSTRING)_Var1, (INTEGER)_Var2)
+THEN
+RemoveStatus(_Var1, "FEAR");
+
+IF
+DialogEnded((STRING)_Var1, (INTEGER)_Var2)
+AND
+DB_ARX_LizardPrincess_Dialogs(_Var1)
+AND
+DB_DialogPlayers(_Var2, _Var3, _)
+AND
+ObjectGetFlag(_Var3, "ARX_HorrorSleep_Sunset_GodKing_ApplyTerror", 1)
+THEN
+ObjectClearFlag(_Var3, "ARX_HorrorSleep_Sunset_GodKing_ApplyTerror");
+
+IF
+DialogEnded("ARX_LizardPrincess", (INTEGER)_Var1)
+AND
+GlobalGetFlag("ARX_LizardPrincess_IsHostile", 0)
+AND
+DB_IsPlayer(_Var2)
+AND
+ObjectGetFlag(_Var2, "ARX_TheEighth_Punish_LizardPrincess_Queue", 1)
+THEN
+ARX_TheEighth_Punish_LizardPrincess_PunishPlayerForDisobedience(_Var2);
+
+PROC
+ARX_TheEighth_Punish_LizardPrincess_PunishPlayerForDisobedience((CHARACTERGUID)_Var1)
+AND
+QueryOnlyOnce("ARX_TheEighth_Punish_LizardPrincess_AD_OnlyOnce")
+THEN
+StartVoiceBark("ARX_VB_TheEighth_RemoveStatus", _Var1);
+
+PROC
+ARX_TheEighth_Punish_LizardPrincess_PunishPlayerForDisobedience((CHARACTERGUID)_Var1)
+THEN
+ObjectSetFlag(_Var1, "ARX_TheEighth_Punish_LizardPrincess");
+
+IF
+CharacterDied(CHARACTERGUID_S_GLO_RedPrincess_050fbbf9-3fc9-40cd-9cbb-43b4b3754a5e)
+AND
+DB_IsPlayer(_Var1)
+AND
+ObjectGetFlag(_Var1, "ARX_TheEighth_Punish_LizardPrincess", 1)
+AND
+QueryOnlyOnce("ARX_TheEighth_Punish_LizardPrincess_KilledAfterWhileCursed")
+THEN
+ProcObjectTimer(_Var1, "ARX_HorrorSleep_Sunset_GodKingStartDialog", 1000);
+
+PROC
+ProcObjectTimerFinished((GUIDSTRING)_Var1, "ARX_HorrorSleep_Sunset_GodKingStartDialog")
+AND NOT
+QRY_SpeakerIsAvailable(_Var1)
+THEN
+ProcObjectTimer(_Var1, "ARX_HorrorSleep_Sunset_GodKingStartDialog", 5000);
+
+PROC
+ProcObjectTimerFinished((CHARACTERGUID)_Var1, "ARX_HorrorSleep_Sunset_GodKingStartDialog")
+AND
+QRY_SpeakerIsAvailable(_Var1)
+THEN
+SetOnStage(CHARACTERGUID_S_ARX_GodKing_InvisHelper_Sunset_fbbb8e4d-e6b3-474c-b3f6-c2b977bd59a3, 1);
+TeleportTo(CHARACTERGUID_S_ARX_GodKing_InvisHelper_Sunset_fbbb8e4d-e6b3-474c-b3f6-c2b977bd59a3, _Var1);
+Proc_StartDialog(0, "ARX_HorrorSleep_Sunset_GodKing_AfterKilledSadha", CHARACTERGUID_S_ARX_GodKing_InvisHelper_Sunset_fbbb8e4d-e6b3-474c-b3f6-c2b977bd59a3, _Var1);
+DB_ARX_TheEighth_InDialog("ARX_HorrorSleep_Sunset_GodKing_AfterKilledSadha", CHARACTERGUID_S_ARX_GodKing_InvisHelper_Sunset_fbbb8e4d-e6b3-474c-b3f6-c2b977bd59a3, _Var1);
+CharacterSetAnimationOverride(_Var1, "cower");
+
+IF
+DialogEnded("ARX_HorrorSleep_Sunset_GodKing_AfterKilledSadha", _)
+THEN
+SetOnStage(CHARACTERGUID_S_ARX_GodKing_InvisHelper_Sunset_fbbb8e4d-e6b3-474c-b3f6-c2b977bd59a3, 0);
+
+PROC
+ProcOneShotTriggerEntered((CHARACTERGUID)_Var1, TRIGGERGUID_S_ARX_HorrorSleep_Sunset_AD_AboutOasis_b7819b46-2e1d-4229-9497-f77c1c4531ac)
+THEN
+Proc_StartDialog(1, "ARX_HorrorSleep_AD_Sunset_AboutOasis", _Var1);
+
+PROC
+ProcOneShotTriggerEntered((CHARACTERGUID)_Var1, TRIGGERGUID_S_ARX_HorrorSleep_Sunset_AD_AboutPortal_b0a763cd-10c9-4c8e-b78d-6ea5ce41895b)
+THEN
+Proc_StartDialog(1, "ARX_HorrorSleep_AD_Sunset_AboutPortal", _Var1);
+
+IF
+CharacterUsedItem((CHARACTERGUID)_Var1, ITEMGUID_S_ARX_HorrorSleep_Sunset_DragonEgg_08648767-508f-866e-2852-2558d0b3b041)
+AND
+DB_IsPlayer(_Var1)
+AND
+QRY_SpeakerIsAvailable(_Var1)
+THEN
+Proc_StartDialog(0, "ARX_HorrorSleep_Sunset_DragonEgg", ITEMGUID_S_ARX_HorrorSleep_Sunset_DragonEgg_08648767-508f-866e-2852-2558d0b3b041, _Var1);
+
+IF
+DialogEnded("ARX_HorrorSleep_Sunset_DragonEgg", (INTEGER)_Var1)
+AND
+DialogGetInvolvedPlayer(_Var1, 1, _Var2)
+AND
+ObjectGetFlag(_Var2, "ARX_HorrorSleep_Sunset_DragonEgg_PlayerPickup", 1)
+THEN
+ApplyStatus(_Var2, "BURNING", 2, 1);
+ApplyDamage(_Var2, 30, "Fire");
+ObjectClearFlag(_Var2, "ARX_HorrorSleep_Sunset_DragonEgg_PlayerPickup");
+
+IF
+ItemMoved(ITEMGUID_S_ARX_HorrorSleep_Sunset_DragonEgg_08648767-508f-866e-2852-2558d0b3b041)
+AND
+DB_DialogNPCs(_Var1, S_ARX_HorrorSleep_Sunset_DragonEgg_08648767-508f-866e-2852-2558d0b3b041, _)
+THEN
+ProcForceStopDialog(S_ARX_HorrorSleep_Sunset_DragonEgg_08648767-508f-866e-2852-2558d0b3b041);
+
+IF
+CharacterStoleItem((CHARACTERGUID)_Var1, ITEMGUID_S_ARX_HorrorSleep_Sunset_DragonEgg_08648767-508f-866e-2852-2558d0b3b041, (REAL)_Var2, (REAL)_Var3, (REAL)_Var4, (CHARACTERGUID)_Var5, (ITEMGUID)_Var6, _)
+AND
+CharacterIsPlayer(_Var1, 1)
+AND
+ObjectGetFlag(_Var1, "ARX_LizardPrincess_GaveEgg", 0)
+AND
+_Var6 == NULL_00000000-0000-0000-0000-000000000000
+THEN
+CharacterRegisterCrimeWithPosition(_Var1, "ARX_HorrorSleep_Sunset_Egg_Crime", ITEMGUID_S_ARX_HorrorSleep_Sunset_DragonEgg_08648767-508f-866e-2852-2558d0b3b041, _Var5, _Var2, _Var3, _Var4, 0);
+
+IF
+GlobalFlagSet("ARX_LizardPrincess_GaveEgg")
+THEN
+ItemClearOwner(ITEMGUID_S_ARX_HorrorSleep_Sunset_DragonEgg_08648767-508f-866e-2852-2558d0b3b041);
+
+IF
+ItemDestroying(ITEMGUID_S_ARX_HorrorSleep_Sunset_DragonEgg_08648767-508f-866e-2852-2558d0b3b041)
+AND
+GetPosition(ITEMGUID_S_ARX_HorrorSleep_Sunset_DragonEgg_08648767-508f-866e-2852-2558d0b3b041, _Var1, _Var2, _Var3)
+THEN
+PlayEffectAtPosition("RS3_FX_GP_ScriptedEvent_ARX_HatchingDragonEgg_01", _Var1, _Var2, _Var3);
+
+IF
+ItemDestroyed(ITEMGUID_S_ARX_HorrorSleep_Sunset_DragonEgg_08648767-508f-866e-2852-2558d0b3b041)
+AND
+GlobalGetFlag("ARX_HorrorSleep_Sunset_DragonEgg_Hatched", 0)
+THEN
+TeleportTo(CHARACTERGUID_S_ARX_HorrorSleep_Sunset_Newt_1f46750f-1d62-4676-aaa7-9ec226c96428, ITEMGUID_S_ARX_HorrorSleep_Sunset_DragonEgg_08648767-508f-866e-2852-2558d0b3b041);
+SetOnStage(CHARACTERGUID_S_ARX_HorrorSleep_Sunset_Newt_1f46750f-1d62-4676-aaa7-9ec226c96428, 1);
+PlayEffect(CHARACTERGUID_S_ARX_HorrorSleep_Sunset_Newt_1f46750f-1d62-4676-aaa7-9ec226c96428, "RS3_FX_GP_ScriptedEvent_ARX_HatchingDragonEgg_01_Overlay");
+CharacterDie(CHARACTERGUID_S_ARX_HorrorSleep_Sunset_Newt_1f46750f-1d62-4676-aaa7-9ec226c96428, 0, "DoT");
+CreatePuddle(ITEMGUID_S_ARX_HorrorSleep_Sunset_DragonEgg_08648767-508f-866e-2852-2558d0b3b041, "SurfaceBlood", 5, 6, 1, 2, 0.5);
+GlobalSetFlag("ARX_HorrorSleep_Sunset_DragonEgg_Destroyed");
+
+IF
+ItemLeftTrigger(ITEMGUID_S_ARX_HorrorSleep_Sunset_DragonEgg_08648767-508f-866e-2852-2558d0b3b041, TRIGGERGUID_S_ARX_HorrorSleep_Sunset_DragonEgg_Box_96466a11-99eb-43bd-b069-329899e0fc48, (CHARACTERGUID)_Var1)
+THEN
+ItemDestroy(ITEMGUID_S_ARX_HorrorSleep_Sunset_DragonEgg_08648767-508f-866e-2852-2558d0b3b041);
+Proc_StartDialog(1, "ARX_HorrorSleep_AD_Sunset_PlayerMovedDragonEgg", _Var1);
+
+IF
+ItemWentOnStage(ITEMGUID_S_ARX_HorrorSleep_Sunset_DragonEgg_08648767-508f-866e-2852-2558d0b3b041, 1)
+THEN
+ApplyStatus(ITEMGUID_S_ARX_HorrorSleep_Sunset_DragonEgg_08648767-508f-866e-2852-2558d0b3b041, "WARM", -1, 1);
+
+IF
+ItemStatusRemoved(ITEMGUID_S_ARX_HorrorSleep_Sunset_DragonEgg_08648767-508f-866e-2852-2558d0b3b041, "WARM", (CHARACTERGUID)_Var1)
+AND
+DB_IsPlayer(_Var1)
+AND
+GlobalGetFlag("ARX_HorrorSleep_Sunset_DragonEgg_Hatched", 0)
+THEN
+ItemDestroy(ITEMGUID_S_ARX_HorrorSleep_Sunset_DragonEgg_08648767-508f-866e-2852-2558d0b3b041);
+Proc_StartDialog(1, "ARX_HorrorSleep_AD_Sunset_PlayerMovedDragonEgg", _Var1);
+
+IF
+DialogEnded("ARX_HorrorSleep_Sunset_DragonEgg", (INTEGER)_Var1)
+AND
+DialogGetInvolvedPlayer(_Var1, 1, _Var2)
+AND
+ObjectGetFlag(_Var2, "ARX_HorrorSleep_Sunset_DragonEgg_BreakTheEgg", 1)
+THEN
+GlobalSetFlag("ARX_HorrorSleep_Sunset_DragonEgg_Destroyed");
+ItemDestroy(ITEMGUID_S_ARX_HorrorSleep_Sunset_DragonEgg_08648767-508f-866e-2852-2558d0b3b041);
+Proc_StartDialog(1, "ARX_HorrorSleep_AD_Sunset_PlayerMovedDragonEgg", _Var2);
+CharacterRegisterCrime(_Var2, "ARX_HorrorSleep_Sunset_Egg_Crime", ITEMGUID_S_ARX_HorrorSleep_Sunset_DragonEgg_08648767-508f-866e-2852-2558d0b3b041, CHARACTERGUID_S_GLO_RedPrincess_050fbbf9-3fc9-40cd-9cbb-43b4b3754a5e, 0);
+
+IF
+AttackedByObject(ITEMGUID_S_ARX_HorrorSleep_Sunset_DragonEgg_08648767-508f-866e-2852-2558d0b3b041, (CHARACTERGUID)_Var1, (GUIDSTRING)_Var2, (STRING)_Var3, (STRING)_Var4)
+AND
+DB_IsPlayer(_Var1)
+AND
+_Var3 != "Fire"
+AND
+_Var4 != "StatusEnter"
+THEN
+CharacterRegisterCrime(_Var1, "ARX_HorrorSleep_Sunset_Egg_Crime", ITEMGUID_S_ARX_HorrorSleep_Sunset_DragonEgg_08648767-508f-866e-2852-2558d0b3b041, CHARACTERGUID_S_GLO_RedPrincess_050fbbf9-3fc9-40cd-9cbb-43b4b3754a5e, 0);
+
+PROC
+ProcBlockMoveOfItem((CHARACTERGUID)_Var1, ITEMGUID_S_ARX_HorrorSleep_Sunset_DragonEgg_08648767-508f-866e-2852-2558d0b3b041)
+THEN
+Proc_ARX_HorrorSleep_Sunset_PlayerTriedToMoveTheEgg(_Var1);
+
+PROC
+ProcBlockPickupOfItem((CHARACTERGUID)_Var1, ITEMGUID_S_ARX_HorrorSleep_Sunset_DragonEgg_08648767-508f-866e-2852-2558d0b3b041)
+THEN
+Proc_ARX_HorrorSleep_Sunset_PlayerTriedToMoveTheEgg(_Var1);
+
+PROC
+Proc_ARX_HorrorSleep_Sunset_PlayerTriedToMoveTheEgg((CHARACTERGUID)_Var1)
+AND
+IsTagged(_Var1, "LIZARD", 0)
+THEN
+RemoveStatus(_Var1, "SNEAKING");
+ApplyStatus(_Var1, "BURNING", 2, 1);
+ApplyDamage(_Var1, 30, "Fire");
+Proc_ShakeCameraForTime(_Var1, 300);
+Proc_StartDialog(1, "ARX_HorrorSleep_Sunset_AD_PlayerTriedToMoveTheEgg", _Var1);
+
+PROC
+Proc_ARX_HorrorSleep_Sunset_PlayerTriedToMoveTheEgg((CHARACTERGUID)_Var1)
+AND
+ObjectGetFlag(_Var1, "ARX_LizardPrincess_GaveEgg", 0)
+AND
+CharacterCanSee(CHARACTERGUID_S_GLO_RedPrincess_050fbbf9-3fc9-40cd-9cbb-43b4b3754a5e, ITEMGUID_S_ARX_HorrorSleep_Sunset_DragonEgg_08648767-508f-866e-2852-2558d0b3b041, 1)
+THEN
+RemoveStatus(_Var1, "SNEAKING");
+CharacterLookAt(CHARACTERGUID_S_GLO_RedPrincess_050fbbf9-3fc9-40cd-9cbb-43b4b3754a5e, _Var1);
+
+PROC
+Proc_ARX_HorrorSleep_Sunset_PlayerTriedToMoveTheEgg((CHARACTERGUID)_Var1)
+AND
+ObjectGetFlag(_Var1, "ARX_LizardPrincess_GaveEgg", 0)
+AND
+IsTagged(_Var1, "RED PRINCE", 0)
+THEN
+CharacterRegisterCrime(_Var1, "ARX_HorrorSleep_Sunset_Egg_Crime", ITEMGUID_S_ARX_HorrorSleep_Sunset_DragonEgg_08648767-508f-866e-2852-2558d0b3b041, CHARACTERGUID_S_GLO_RedPrincess_050fbbf9-3fc9-40cd-9cbb-43b4b3754a5e, 0);
+
+PROC
+Proc_ARX_HorrorSleep_Sunset_PlayerTriedToMoveTheEgg((CHARACTERGUID)_Var1)
+AND
+IsTagged(_Var1, "LIZARD", 1)
+AND
+CharacterCanSee(CHARACTERGUID_S_GLO_RedPrincess_050fbbf9-3fc9-40cd-9cbb-43b4b3754a5e, ITEMGUID_S_ARX_HorrorSleep_Sunset_DragonEgg_08648767-508f-866e-2852-2558d0b3b041, 0)
+THEN
+ObjectSetFlag(_Var1, "ARX_HorrorSleep_Sunset_DragonEgg_TryingToMove");
+Proc_StartDialog(0, "ARX_HorrorSleep_Sunset_DragonEgg", ITEMGUID_S_ARX_HorrorSleep_Sunset_DragonEgg_08648767-508f-866e-2852-2558d0b3b041, _Var1);
+
+PROC
+Proc_ARX_HorrorSleep_Sunset_PlayerTriedToMoveTheEgg((CHARACTERGUID)_Var1)
+AND
+IsTagged(_Var1, "LIZARD", 1)
+AND
+CharacterCanSee(CHARACTERGUID_S_GLO_RedPrincess_050fbbf9-3fc9-40cd-9cbb-43b4b3754a5e, ITEMGUID_S_ARX_HorrorSleep_Sunset_DragonEgg_08648767-508f-866e-2852-2558d0b3b041, 1)
+AND
+ObjectGetFlag(_Var1, "ARX_LizardPrincess_GaveEgg", 1)
+THEN
+ObjectSetFlag(_Var1, "ARX_HorrorSleep_Sunset_DragonEgg_TryingToMove");
+CharacterLookAt(CHARACTERGUID_S_GLO_RedPrincess_050fbbf9-3fc9-40cd-9cbb-43b4b3754a5e, _Var1);
+Proc_StartDialog(0, "ARX_HorrorSleep_Sunset_DragonEgg", ITEMGUID_S_ARX_HorrorSleep_Sunset_DragonEgg_08648767-508f-866e-2852-2558d0b3b041, _Var1);
+
+PROC
+Proc_ARX_HorrorSleep_Sunset_PlayerTriedToMoveTheEgg((CHARACTERGUID)_Var1)
+AND
+DB_IsPlayer(_Var1)
+AND NOT
+DB_CustomMoveItemResponse(_Var1, ITEMGUID_S_ARX_HorrorSleep_Sunset_DragonEgg_08648767-508f-866e-2852-2558d0b3b041, _)
+THEN
+DB_CustomMoveItemResponse(_Var1, ITEMGUID_S_ARX_HorrorSleep_Sunset_DragonEgg_08648767-508f-866e-2852-2558d0b3b041, 0);
+
+PROC
+Proc_ARX_HorrorSleep_Sunset_PlayerTriedToMoveTheEgg((CHARACTERGUID)_Var1)
+AND
+DB_IsPlayer(_Var1)
+AND NOT
+DB_CustomPickupItemResponse(_Var1, ITEMGUID_S_ARX_HorrorSleep_Sunset_DragonEgg_08648767-508f-866e-2852-2558d0b3b041, _)
+THEN
+DB_CustomPickupItemResponse(_Var1, ITEMGUID_S_ARX_HorrorSleep_Sunset_DragonEgg_08648767-508f-866e-2852-2558d0b3b041, 0);
+
+IF
+CharacterUsedSkillOnZoneWithTarget((CHARACTERGUID)_Var1, ITEMGUID_S_ARX_HorrorSleep_Sunset_DragonEgg_08648767-508f-866e-2852-2558d0b3b041, "Cone_Flamebreath", _, _)
+AND
+IsTagged(_Var1, "RED PRINCE", 0)
+AND
+GlobalGetFlag("ARX_LizardPrincess_GaveEgg", 0)
+AND
+GetPosition(S_ARX_HorrorSleep_Sunset_DragonEgg_08648767-508f-866e-2852-2558d0b3b041, _Var4, _Var5, _Var6)
+THEN
+CharacterRegisterCrimeWithPosition(_Var1, "ARX_HorrorSleep_Sunset_Egg_Crime", ITEMGUID_S_ARX_HorrorSleep_Sunset_DragonEgg_08648767-508f-866e-2852-2558d0b3b041, CHARACTERGUID_S_GLO_RedPrincess_050fbbf9-3fc9-40cd-9cbb-43b4b3754a5e, _Var4, _Var5, _Var6, 0);
+
+IF
+CharacterUsedSkillOnZoneWithTarget((CHARACTERGUID)_Var1, ITEMGUID_S_ARX_HorrorSleep_Sunset_DragonEgg_08648767-508f-866e-2852-2558d0b3b041, "Cone_Flamebreath", _, _)
+THEN
+ObjectSetFlag(_Var1, "ARX_HorrorSleep_Sunset_PlayerHatchedEgg");
+
+IF
+CharacterUsedSkillOnZoneWithTarget((CHARACTERGUID)_Var1, ITEMGUID_S_ARX_HorrorSleep_Sunset_DragonEgg_08648767-508f-866e-2852-2558d0b3b041, "Cone_Flamebreath", _, _)
+AND
+QueryOnlyOnce("ARX_HorrorSleep_Sunset_HatchEgg")
+THEN
+ProcObjectTimerCancel(ITEMGUID_S_ARX_HorrorSleep_Sunset_DragonEgg_08648767-508f-866e-2852-2558d0b3b041, "ARX_HorrorSleep_Sunset_HatchEgg");
+ProcObjectTimer(ITEMGUID_S_ARX_HorrorSleep_Sunset_DragonEgg_08648767-508f-866e-2852-2558d0b3b041, "ARX_HorrorSleep_Sunset_HatchEgg", 1200);
+
+PROC
+ProcObjectTimerFinished(ITEMGUID_S_ARX_HorrorSleep_Sunset_DragonEgg_08648767-508f-866e-2852-2558d0b3b041, "ARX_HorrorSleep_Sunset_HatchEgg")
+AND
+GetPosition(ITEMGUID_S_ARX_HorrorSleep_Sunset_DragonEgg_08648767-508f-866e-2852-2558d0b3b041, _Var1, _Var2, _Var3)
+THEN
+PlayEffectAtPosition("RS3_FX_GP_ScriptedEvent_ARX_HatchingDragonEgg_01", _Var1, _Var2, _Var3);
+
+PROC
+ProcObjectTimerFinished(ITEMGUID_S_ARX_HorrorSleep_Sunset_DragonEgg_08648767-508f-866e-2852-2558d0b3b041, "ARX_HorrorSleep_Sunset_HatchEgg")
+THEN
+Proc_ARX_HorrorSleep_Sunset_HatchEgg();
+
+PROC
+Proc_ARX_HorrorSleep_Sunset_HatchEgg()
+THEN
+GlobalSetFlag("ARX_HorrorSleep_Sunset_DragonEgg_Hatched");
+
+PROC
+Proc_ARX_HorrorSleep_Sunset_HatchEgg()
+THEN
+TeleportTo(CHARACTERGUID_S_ARX_HorrorSleep_Sunset_Newt_1f46750f-1d62-4676-aaa7-9ec226c96428, ITEMGUID_S_ARX_HorrorSleep_Sunset_DragonEgg_08648767-508f-866e-2852-2558d0b3b041);
+SetOnStage(CHARACTERGUID_S_ARX_HorrorSleep_Sunset_Newt_1f46750f-1d62-4676-aaa7-9ec226c96428, 1);
+PlayEffect(CHARACTERGUID_S_ARX_HorrorSleep_Sunset_Newt_1f46750f-1d62-4676-aaa7-9ec226c96428, "RS3_FX_GP_ScriptedEvent_ARX_HatchingDragonEgg_01_Overlay");
+DB_Dialogs(CHARACTERGUID_S_ARX_HorrorSleep_Sunset_Newt_1f46750f-1d62-4676-aaa7-9ec226c96428, "ARX_HorrorSleep_Sunset_Newt");
+PlayEffect(ITEMGUID_S_ARX_HorrorSleep_Sunset_DragonEgg_08648767-508f-866e-2852-2558d0b3b041, "RS3_FX_GP_ScriptedEvent_ARX_HatchingDragonEgg_01");
+SetOnStage(ITEMGUID_S_ARX_HorrorSleep_Sunset_DragonEgg_08648767-508f-866e-2852-2558d0b3b041, 0);
+
+IF
+AttackedByObject(ITEMGUID_S_ARX_HorrorSleep_Sunset_DragonEgg_08648767-508f-866e-2852-2558d0b3b041, (CHARACTERGUID)_Var1, (GUIDSTRING)_Var2, "Fire", (STRING)_Var3)
+AND
+DB_IsPlayer(_Var1)
+AND
+_Var3 != "StatusEnter"
+THEN
+GlobalSetFlag("ARX_HorrorSleep_Sunset_DragonEgg_Hatched");
+ObjectSetFlag(_Var1, "ARX_HorrorSleep_Sunset_PlayerHatchedEgg");
+Proc_ARX_HorrorSleep_Sunset_HatchEgg();
+
+IF
+CharacterCharacterEvent(CHARACTERGUID_S_ARX_HorrorSleep_Sunset_Newt_1f46750f-1d62-4676-aaa7-9ec226c96428, (CHARACTERGUID)_Var1, "ARX_HorrorSleep_Sunset_PlayerHatchedEgg_Spotted")
+THEN
+Proc_StartDialog(0, "ARX_HorrorSleep_Sunset_Newt", CHARACTERGUID_S_ARX_HorrorSleep_Sunset_Newt_1f46750f-1d62-4676-aaa7-9ec226c96428, _Var1);
+
+IF
+DialogStarted("ARX_HorrorSleep_Sunset_Newt", (INTEGER)_Var1)
+AND
+CharacterCanSee(CHARACTERGUID_S_GLO_RedPrincess_050fbbf9-3fc9-40cd-9cbb-43b4b3754a5e, CHARACTERGUID_S_ARX_HorrorSleep_Sunset_Newt_1f46750f-1d62-4676-aaa7-9ec226c96428, 1)
+AND
+QRY_SpeakerIsAvailable(CHARACTERGUID_S_GLO_RedPrincess_050fbbf9-3fc9-40cd-9cbb-43b4b3754a5e)
+THEN
+DialogAddActorAt(_Var1, CHARACTERGUID_S_GLO_RedPrincess_050fbbf9-3fc9-40cd-9cbb-43b4b3754a5e, 3);
+proc_ARX_HorrorSleep_Sunset_Newt_AddPrincessToDialog();
+
+IF
+DialogStarted("ARX_HorrorSleep_Sunset_Newt", (INTEGER)_Var1)
+AND
+DialogGetInvolvedPlayer(_Var1, 1, _Var2)
+AND
+ObjectGetFlag(_Var2, "ARX_LizardPrincess_GaveEgg", 0)
+AND
+QRY_SpeakerIsAvailableAndInDialogRange(CHARACTERGUID_S_Player_RedPrince_a26a1efb-cdc8-4cf3-a7b2-b2f9544add6f, _Var2)
+THEN
+DialogAddActorAt(_Var1, CHARACTERGUID_S_Player_RedPrince_a26a1efb-cdc8-4cf3-a7b2-b2f9544add6f, 4);
+
+IF
+DialogStarted("ARX_HorrorSleep_Sunset_Newt_COM_RedPrince", (INTEGER)_Var1)
+AND
+CharacterCanSee(CHARACTERGUID_S_GLO_RedPrincess_050fbbf9-3fc9-40cd-9cbb-43b4b3754a5e, CHARACTERGUID_S_ARX_HorrorSleep_Sunset_Newt_1f46750f-1d62-4676-aaa7-9ec226c96428, 1)
+AND
+QRY_SpeakerIsAvailable(CHARACTERGUID_S_GLO_RedPrincess_050fbbf9-3fc9-40cd-9cbb-43b4b3754a5e)
+THEN
+DialogAddActorAt(_Var1, CHARACTERGUID_S_GLO_RedPrincess_050fbbf9-3fc9-40cd-9cbb-43b4b3754a5e, 4);
+proc_ARX_HorrorSleep_Sunset_Newt_AddPrincessToDialog();
+
+PROC
+proc_ARX_HorrorSleep_Sunset_Newt_AddPrincessToDialog()
+THEN
+CharacterLookAt(CHARACTERGUID_S_GLO_RedPrincess_050fbbf9-3fc9-40cd-9cbb-43b4b3754a5e, CHARACTERGUID_S_ARX_HorrorSleep_Sunset_Newt_1f46750f-1d62-4676-aaa7-9ec226c96428);
+ObjectSetFlag(CHARACTERGUID_S_ARX_HorrorSleep_Sunset_Newt_1f46750f-1d62-4676-aaa7-9ec226c96428, "ARX_HorrorSleep_Sunset_Newt_MotherIsInDialog");
+
+PROC
+proc_ARX_HorrorSleep_Sunset_Newt_AddPrincessToDialog()
+AND
+HasActiveStatus(CHARACTERGUID_S_GLO_RedPrincess_050fbbf9-3fc9-40cd-9cbb-43b4b3754a5e, "SITTING", 1)
+THEN
+RemoveStatus(CHARACTERGUID_S_GLO_RedPrincess_050fbbf9-3fc9-40cd-9cbb-43b4b3754a5e, "SITTING");
+
+IF
+DialogEnded((STRING)_Var1, (INTEGER)_Var2)
+AND
+DB_ARX_HorrorSleep_Sunset_Newt(_Var1)
+THEN
+ObjectClearFlag(CHARACTERGUID_S_ARX_HorrorSleep_Sunset_Newt_1f46750f-1d62-4676-aaa7-9ec226c96428, "ARX_HorrorSleep_Sunset_Newt_MotherIsInDialog");
+
+IF
+ItemStatusChange(ITEMGUID_S_ARX_HorrorSleep_Sunset_DragonEgg_08648767-508f-866e-2852-2558d0b3b041, (STRING)_Var1, (CHARACTERGUID)_Var2)
+AND
+DB_ARX_HorrorSleep_Sunset_DragonEgg_StatusToHatch(_Var1)
+AND
+DB_IsPlayer(_Var2)
+THEN
+ObjectSetFlag(_Var2, "ARX_HorrorSleep_Sunset_PlayerHatchedEgg");
+
+IF
+ItemStatusRemoved(ITEMGUID_S_ARX_HorrorSleep_Sunset_DragonEgg_08648767-508f-866e-2852-2558d0b3b041, (STRING)_Var1, (GUIDSTRING)_Var2)
+AND
+DB_ARX_HorrorSleep_Sunset_DragonEgg_StatusToHatch(_Var1)
+AND
+DB_IsPlayer(_Var3)
+AND
+ObjectGetFlag(_Var3, "ARX_HorrorSleep_Sunset_PlayerHatchedEgg", 1)
+THEN
+ObjectClearFlag(_Var2, "ARX_HorrorSleep_Sunset_PlayerHatchedEgg");
+
+IF
+ItemDestroyed(ITEMGUID_S_ARX_HorrorSleep_Sunset_DragonEgg_08648767-508f-866e-2852-2558d0b3b041)
+THEN
+ProcObjectTimerCancel(ITEMGUID_S_ARX_HorrorSleep_Sunset_DragonEgg_08648767-508f-866e-2852-2558d0b3b041, "ARX_HorrorSleep_Sunset_HatchEgg");
+
+IF
+ItemStatusRemoved(ITEMGUID_S_ARX_HorrorSleep_Sunset_DragonEgg_08648767-508f-866e-2852-2558d0b3b041, (STRING)_Var1, (GUIDSTRING)_Var2)
+AND
+DB_ARX_HorrorSleep_Sunset_DragonEgg_StatusToHatch(_Var1)
+THEN
+ProcObjectTimerCancel(ITEMGUID_S_ARX_HorrorSleep_Sunset_DragonEgg_08648767-508f-866e-2852-2558d0b3b041, "ARX_HorrorSleep_Sunset_HatchEgg");
+
+IF
+ItemStatusChange(ITEMGUID_S_ARX_HorrorSleep_Sunset_DragonEgg_CampFire_6cd6eb80-633b-454f-a96a-bd65af5473f7, "BURNING", (CHARACTERGUID)_Var1)
+AND
+ObjectIsOnStage(ITEMGUID_S_ARX_HorrorSleep_Sunset_DragonEgg_08648767-508f-866e-2852-2558d0b3b041, 1)
+THEN
+GlobalSetFlag("ARX_HorrorSleep_Sunset_DragonEgg_Hatched");
+TeleportTo(CHARACTERGUID_S_ARX_HorrorSleep_Sunset_Newt_1f46750f-1d62-4676-aaa7-9ec226c96428, ITEMGUID_S_ARX_HorrorSleep_Sunset_DragonEgg_08648767-508f-866e-2852-2558d0b3b041);
+SetOnStage(CHARACTERGUID_S_ARX_HorrorSleep_Sunset_Newt_1f46750f-1d62-4676-aaa7-9ec226c96428, 1);
+PlayEffect(CHARACTERGUID_S_ARX_HorrorSleep_Sunset_Newt_1f46750f-1d62-4676-aaa7-9ec226c96428, "RS3_FX_GP_ScriptedEvent_ARX_HatchingDragonEgg_01_Overlay");
+PlayEffect(ITEMGUID_S_ARX_HorrorSleep_Sunset_DragonEgg_08648767-508f-866e-2852-2558d0b3b041, "RS3_FX_GP_ScriptedEvent_ARX_HatchingDragonEgg_01");
+DB_Dialogs(CHARACTERGUID_S_ARX_HorrorSleep_Sunset_Newt_1f46750f-1d62-4676-aaa7-9ec226c96428, "ARX_HorrorSleep_Sunset_Newt");
+SetOnStage(ITEMGUID_S_ARX_HorrorSleep_Sunset_DragonEgg_08648767-508f-866e-2852-2558d0b3b041, 0);
+Proc_ARX_HorrorSleep_Sunset_PlayerHatchedEgg(_Var1);
+
+PROC
+Proc_ARX_HorrorSleep_Sunset_PlayerHatchedEgg((CHARACTERGUID)_Var1)
+AND
+_Var1 != NULL_00000000-0000-0000-0000-000000000000
+THEN
+ObjectSetFlag(_Var1, "ARX_HorrorSleep_Sunset_PlayerHatchedEgg");
+
+PROC
+Proc_ARX_HorrorSleep_Sunset_PlayerHatchedEgg(NULL_00000000-0000-0000-0000-000000000000)
+AND
+GetDistanceTo(ITEMGUID_S_ARX_HorrorSleep_Sunset_DragonEgg_08648767-508f-866e-2852-2558d0b3b041, CHARACTERGUID_S_Player_RedPrince_a26a1efb-cdc8-4cf3-a7b2-b2f9544add6f, _Var1)
+AND
+_Var1 < 23
+THEN
+ObjectSetFlag(CHARACTERGUID_S_Player_RedPrince_a26a1efb-cdc8-4cf3-a7b2-b2f9544add6f, "ARX_HorrorSleep_Sunset_PlayerHatchedEgg");
+
+PROC
+Proc_ARX_HorrorSleep_Sunset_PlayerHatchedEgg(NULL_00000000-0000-0000-0000-000000000000)
+AND
+ObjectGetFlag(CHARACTERGUID_S_Player_RedPrince_a26a1efb-cdc8-4cf3-a7b2-b2f9544add6f, "ARX_HorrorSleep_Sunset_PlayerHatchedEgg", 0)
+AND
+GetClosestPlayer(ITEMGUID_S_ARX_HorrorSleep_Sunset_DragonEgg_08648767-508f-866e-2852-2558d0b3b041, _Var1, _Var2)
+THEN
+ObjectSetFlag(_Var1, "ARX_HorrorSleep_Sunset_PlayerHatchedEgg");
+
+IF
+DialogStarted("ARX_HorrorSleep_Sunset_DragonEgg", (INTEGER)_Var1)
+AND
+DB_DialogPlayers(_Var1, _Var2, 1)
+AND
+CharacterHasSkill(_Var2, "Cone_Flamebreath", 1)
+THEN
+ObjectSetFlag(_Var2, "ARX_HorrorSleep_Sunset_DragonEgg_HasFireSkill");
+
+IF
+DialogEnded("ARX_HorrorSleep_Sunset_DragonEgg", (INTEGER)_Var1)
+AND
+DB_DialogPlayers(_Var1, _Var2, _)
+AND
+ObjectGetFlag(_Var2, "ARX_HorrorSleep_Sunset_DragonEgg_Hatch", 1)
+THEN
+CharacterUseSkill(_Var2, "Cone_Flamebreath", ITEMGUID_S_ARX_HorrorSleep_Sunset_DragonEgg_08648767-508f-866e-2852-2558d0b3b041, 0, 0, 0);
+
+IF
+ObjectFlagSet("ARX_HorrorSleep_Sunset_Newt_ApproachPlayer", (CHARACTERGUID)_Var1, (INTEGER)_Var2)
+THEN
+ProcCharacterMoveTo(_Var1, CHARACTERGUID_S_ARX_HorrorSleep_Sunset_Newt_1f46750f-1d62-4676-aaa7-9ec226c96428, 0, "ARX_HorrorSleep_Sunset_Newt_PlayerReachedNewt");
+
+IF
+StoryEvent((GUIDSTRING)_Var1, "ARX_HorrorSleep_Sunset_Newt_PlayerReachedNewt")
+THEN
+ObjectSetFlag(_Var1, "ARX_HorrorSleep_Sunset_Newt_PlayerInteractWithNewt");
+
+IF
+ObjectFlagSet("ARX_HorrorSleep_Sunset_Newt_PlayerInteractWithNewt", (CHARACTERGUID)_Var1, (INTEGER)_Var2)
+THEN
+CharacterSetAnimationOverride(_Var1, "Kneel_01_Loop");
+
+IF
+ObjectFlagCleared("ARX_HorrorSleep_Sunset_Newt_PlayerInteractWithNewt", (CHARACTERGUID)_Var1, (INTEGER)_Var2)
+THEN
+CharacterSetAnimationOverride(_Var1, "");
+
+IF
+DialogEnded("ARX_HorrorSleep_Sunset_Newt", (INTEGER)_Var1)
+AND
+DB_DialogPlayers(_Var1, _Var2, _)
+THEN
+ObjectClearFlag(_Var2, "ARX_HorrorSleep_Sunset_Newt_PlayerInteractWithNewt", 0);
+
+IF
+SavegameLoaded((INTEGER)_Var1, (INTEGER)_Var2, (INTEGER)_Var3, (INTEGER)_Var4)
+AND
+QRY_VersionIsOlderThan(_Var1, _Var2, _Var3, _Var4, 3, 6, 3, 0)
+AND
+DB_IsPlayer(_Var5)
+AND
+ObjectGetFlag(_Var5, "ARX_HorrorSleep_Sunset_Newt_PlayerInteractWithNewt", 1)
+AND NOT
+QRY_ARX_HorrorSleep_InSunset_NewtDialogue(_Var5)
+THEN
+ObjectClearFlag(_Var5, "ARX_HorrorSleep_Sunset_Newt_PlayerInteractWithNewt", 0);
+
+QRY
+QRY_ARX_HorrorSleep_InSunset_NewtDialogue((CHARACTERGUID)_Var1)
+AND
+DB_DialogName("ARX_HorrorSleep_Sunset_Newt", _Var2)
+AND
+DB_DialogPlayers(_Var2, _Var1, _)
+THEN
+DB_NOOP(0);
+
+IF
+DialogEnded((STRING)_Var1, (INTEGER)_Var2)
+AND
+DB_ARX_HorrorSleep_Sunset_Newt(_Var1)
+AND
+DB_DialogNPCs(_Var2, _Var3, _)
+AND
+ObjectGetFlag(_Var3, "ARX_HorrorSleep_Sunset_Newt_JoinedParty", 1)
+AND
+DB_DialogPlayers(_Var2, _Var5, 1)
+AND
+GetPosition(_Var3, _Var6, _Var7, _Var8)
+THEN
+PlayAnimation(_Var5, "use_loot");
+PlayEffectAtPosition("RS3_FX_GP_ScriptedEvent_ARX_HatchingDragon_PickUp_01", _Var6, _Var7, _Var8);
+SetOnStage(_Var3, 0);
+
+IF
+ObjectFlagSet("ARX_HorrorSleep_Sunset_Newt_TaughtSkill", (CHARACTERGUID)_Var1, (INTEGER)_Var2)
+THEN
+CharacterAddSkill(_Var1, "Summon_Quest_SummonNewt");
+
+IF
+SkillAdded(CHARACTERGUID_S_Player_RedPrince_a26a1efb-cdc8-4cf3-a7b2-b2f9544add6f, "Summon_Quest_SummonNewt", 1)
+AND NOT
+DB_DialogPlayers(_, CHARACTERGUID_S_Player_RedPrince_a26a1efb-cdc8-4cf3-a7b2-b2f9544add6f, _)
+THEN
+Proc_StartDialog(1, "ARX_AD_GainDragon_RedPrince", CHARACTERGUID_S_Player_RedPrince_a26a1efb-cdc8-4cf3-a7b2-b2f9544add6f);
+
+IF
+SkillAdded(CHARACTERGUID_S_Player_RedPrince_a26a1efb-cdc8-4cf3-a7b2-b2f9544add6f, "Summon_Quest_SummonNewt", 1)
+AND
+DB_DialogPlayers(_Var1, CHARACTERGUID_S_Player_RedPrince_a26a1efb-cdc8-4cf3-a7b2-b2f9544add6f, _)
+THEN
+DB_ARX_RP_LearnedDragonSkillInDialog(_Var1);
+
+IF
+DialogEnded(_, (INTEGER)_Var2)
+AND
+DB_ARX_RP_LearnedDragonSkillInDialog(_Var2)
+THEN
+Proc_StartDialog(1, "ARX_AD_GainDragon_RedPrince", CHARACTERGUID_S_Player_RedPrince_a26a1efb-cdc8-4cf3-a7b2-b2f9544add6f);
+
+IF
+ObjectFlagSet("ARX_HorrorSleep_Sunset_Newt_TaughtSkill", (GUIDSTRING)_Var1, (INTEGER)_Var2)
+THEN
+PlayEffect(_Var1, "RS3_FX_GP_ScriptedEvent_ARX_HorrorSleep_Sunset_Newt_TeachSkill_01");
+
+IF
+ObjectFlagSet("ARX_HorrorSleep_Sunset_Newt_TaughtSkill", (GUIDSTRING)_Var1, (INTEGER)_Var2)
+AND
+GetPosition(CHARACTERGUID_S_ARX_HorrorSleep_Sunset_Newt_1f46750f-1d62-4676-aaa7-9ec226c96428, _Var3, _Var4, _Var5)
+THEN
+PlayEffectAtPosition("RS3_FX_GP_ScriptedEvent_ARX_HorrorSleep_Sunset_Newt_TeachSkill_01", _Var3, _Var4, _Var5);
+PlaySound(CHARACTERGUID_S_ARX_HorrorSleep_Sunset_Newt_1f46750f-1d62-4676-aaa7-9ec226c96428, "Creatures_Dragon_ABC_Skill_Prepare_Fire_01_Start");
+
+IF
+CharacterDying(CHARACTERGUID_S_ARX_HorrorSleep_Sunset_Newt_1f46750f-1d62-4676-aaa7-9ec226c96428)
+THEN
+GlobalSetFlag("ARX_HorrorSleep_Sunset_NewtIsDead");
+
+IF
+GlobalFlagSet("ARX_LizardPrincess_HorrorSleep_Sunet_GotPregnant")
+THEN
+TeleportTo(TRIGGERGUID_S_ARX_HorrorSleep_Sunset_DragonEgg_Box_96466a11-99eb-43bd-b069-329899e0fc48, TRIGGERGUID_S_ARX_HorrorSleep_Sunset_EggLocationTrigger_faaa13a0-f0e5-4e53-ad1b-812cd407977b);
+TeleportTo(ITEMGUID_S_ARX_HorrorSleep_Sunset_DragonEgg_08648767-508f-866e-2852-2558d0b3b041, TRIGGERGUID_S_ARX_HorrorSleep_Sunset_EggLocationTrigger_faaa13a0-f0e5-4e53-ad1b-812cd407977b);
+SetOnStage(ITEMGUID_S_ARX_HorrorSleep_Sunset_DragonEgg_08648767-508f-866e-2852-2558d0b3b041, 1);
+SetOnStage(ITEMGUID_S_ARX_HorrorSleep_Sunset_DragonEgg_AshPile_000_610fb28b-3b1f-46aa-a0da-87eea9157aa9, 1);
+SetOnStage(ITEMGUID_S_ARX_HorrorSleep_Sunset_DragonEgg_CampFire_000_7d1a1ace-fb68-49ed-9f9b-88438d0fd28d, 1);
+TriggerRegisterForItems(TRIGGERGUID_S_ARX_HorrorSleep_Sunset_DragonEgg_Box_96466a11-99eb-43bd-b069-329899e0fc48);
+
+IF
+GlobalFlagSet("ARX_LizardPrincess_HorrorSleep_Sunet_GotPregnant")
+THEN
+SetCombatGroupID(CHARACTERGUID_S_GLO_RedPrincess_050fbbf9-3fc9-40cd-9cbb-43b4b3754a5e, "bcab12cb-50f9-4111-8175-d8ade32debe2");
+
+IF
+CharacterUsedItem(CHARACTERGUID_S_GLO_RedPrincess_050fbbf9-3fc9-40cd-9cbb-43b4b3754a5e, ITEMGUID_S_ARX_HorrorSleep_Sunset_ExitSeductionScene_b7994a38-7de9-417d-979f-ff1d8734c629)
+THEN
+SetCombatGroupID(CHARACTERGUID_S_GLO_RedPrincess_050fbbf9-3fc9-40cd-9cbb-43b4b3754a5e, "069176d1-f41a-47ec-a9f6-c292b36ec48d");
+Transform(CHARACTERGUID_S_GLO_RedPrincess_050fbbf9-3fc9-40cd-9cbb-43b4b3754a5e, "GLO_Lizards_EmpirePrincess_951ab286-ff5f-4e6c-a683-eca2eca689d7", 0, 0);
+
+IF
+CharacterUsedItem((CHARACTERGUID)_Var1, ITEMGUID_S_ARX_HorrorSleep_Sunset_ExitSeductionScene_b7994a38-7de9-417d-979f-ff1d8734c629)
+AND
+DB_ARX_HorrorSleep_Sunset_Seduction_Equipment(_Var1, _Var2, _Var3)
+AND
+ItemIsInCharacterInventory(_Var3, _Var1, 1)
+THEN
+CharacterEquipItem(_Var1, _Var3);
+
+IF
+CharacterUsedItem((CHARACTERGUID)_Var1, ITEMGUID_S_ARX_HorrorSleep_Sunset_ExitSeductionScene_b7994a38-7de9-417d-979f-ff1d8734c629)
+AND
+DB_ARX_HorrorSleep_Sunset_Seduction_Equipment(_Var1, _Var2, _Var3)
+THEN
+NOT DB_ARX_HorrorSleep_Sunset_Seduction_Equipment(_Var1, _Var2, _Var3);
+
+IF
+GlobalFlagSet("ARX_HorrorSleep_Sunset_NewtIsDead")
+AND
+CharacterIsDead(CHARACTERGUID_S_GLO_RedPrincess_050fbbf9-3fc9-40cd-9cbb-43b4b3754a5e, 0)
+THEN
+SetStoryEvent(CHARACTERGUID_S_GLO_RedPrincess_050fbbf9-3fc9-40cd-9cbb-43b4b3754a5e, "StartEventOnSight_RestartSpotting");
+SetVarString(CHARACTERGUID_S_GLO_RedPrincess_050fbbf9-3fc9-40cd-9cbb-43b4b3754a5e, "SpotCharacterEvent", "ARX_HorrorSleep_Sunset_SpottedPlayer_EggDestroyed");
+
+IF
+CharacterCharacterEvent(CHARACTERGUID_S_GLO_RedPrincess_050fbbf9-3fc9-40cd-9cbb-43b4b3754a5e, (CHARACTERGUID)_Var1, "ARX_HorrorSleep_Sunset_SpottedPlayer_EggDestroyed")
+THEN
+GlobalSetFlag("ARX_HorrorSleep_Sunset_DragonEgg_Destroyed");
+Proc_StartDialog(0, "ARX_HorrorSleep_Sunset_Egg_Crime", CHARACTERGUID_S_GLO_RedPrincess_050fbbf9-3fc9-40cd-9cbb-43b4b3754a5e, _Var1);
+
+IF
+CharacterUsedSkill((CHARACTERGUID)_Var1, "Summon_Quest_SummonNewt", _, _)
+AND
+DB_InRegion(_Var1, TRIGGERGUID_S_ARX_HorrorSleep_Sunset_67df0f1c-9cf2-46c5-8b28-64376a9b274c)
+THEN
+Proc_StartDialog(1, "ARX_AD_LizardPrincess_ReactToChild", CHARACTERGUID_S_GLO_RedPrincess_050fbbf9-3fc9-40cd-9cbb-43b4b3754a5e);
+
+IF
+ObjectEnteredCombat(CHARACTERGUID_S_GLO_RedPrincess_050fbbf9-3fc9-40cd-9cbb-43b4b3754a5e, (INTEGER)_Var1)
+AND
+GlobalGetFlag("ARX_LizardPrincess_IsInARX", 1)
+THEN
+ObjectSetFlag(CHARACTERGUID_S_GLO_RedPrincess_050fbbf9-3fc9-40cd-9cbb-43b4b3754a5e, "ARX_AD_LizardPrincess_ReactToChild_InCombat");
+
+IF
+ObjectLeftCombat(CHARACTERGUID_S_GLO_RedPrincess_050fbbf9-3fc9-40cd-9cbb-43b4b3754a5e, (INTEGER)_Var1)
+AND
+GlobalGetFlag("ARX_LizardPrincess_IsInARX", 1)
+THEN
+ObjectClearFlag(CHARACTERGUID_S_GLO_RedPrincess_050fbbf9-3fc9-40cd-9cbb-43b4b3754a5e, "ARX_AD_LizardPrincess_ReactToChild_InCombat");
+
+IF
+DialogEnded((STRING)_Var1, (INTEGER)_Var2)
+AND
+DB_ARX_LizardPrincess_Dialogs(_Var1)
+AND
+GlobalGetFlag("ARX_LizardPrincess_HorrorSleep_Sunet_GotPregnant", 0)
+AND
+GlobalGetFlag("ARX_LizardPrincess_HorrorSleep_SunSet_PlaySeductionScene", 1)
+AND
+DB_DialogPlayers(_Var2, _Var3, _)
+AND
+IsTagged(_Var3, "RED PRINCE", 1)
+THEN
+CharacterDetachFromGroup(_Var3);
+proc_ARX_LizardPrincess_HorrorSleep_SunSet_PlayedSeductionScene(_Var3);
+
+IF
+DialogEnded((STRING)_Var1, (INTEGER)_Var2)
+AND
+DB_ARX_LizardPrincess_Dialogs(_Var1)
+AND
+GlobalGetFlag("ARX_LizardPrincess_HorrorSleep_Sunet_GotPregnant", 0)
+AND
+GlobalGetFlag("ARX_LizardPrincess_HorrorSleep_SunSet_PlaySeductionScene", 1)
+AND
+DB_IsPlayer(_Var3)
+AND
+DB_InRegion(_Var3, S_ARX_HorrorSleep_Sunset_67df0f1c-9cf2-46c5-8b28-64376a9b274c)
+AND
+IsTagged(_Var3, "RED PRINCE", 0)
+THEN
+ObjectSetFlag(_Var3, "QuestUpdate_ARX_LizardConsulate_HorrorSleepSunset_RP_Seduction_TeleportedOut", _Var2);
+Proc_Arx_HorrorSleep_Sunset_BackToReality_InitiateTeleport(_Var3, 1);
+
+IF
+DialogEnded("ARX_LizardPrincess_COM_RedPrince", (INTEGER)_Var1)
+AND
+GlobalGetFlag("ARX_LizardPrincess_HorrorSleep_Sunet_GotPregnant", 0)
+AND
+GlobalGetFlag("ARX_LizardPrincess_HorrorSleep_SunSet_PlaySeductionScene", 1)
+AND
+DB_DialogPlayers(_Var1, _Var2, 2)
+AND
+IsTagged(_Var2, "RED PRINCE", 1)
+THEN
+CharacterDetachFromGroup(_Var2);
+proc_ARX_LizardPrincess_HorrorSleep_SunSet_PlayedSeductionScene(_Var2);
+
+IF
+DialogEnded("ARX_LizardPrincess_COM_RedPrince", (INTEGER)_Var1)
+AND
+GlobalGetFlag("ARX_LizardPrincess_HorrorSleep_Sunet_GotPregnant", 0)
+AND
+GlobalGetFlag("ARX_LizardPrincess_HorrorSleep_SunSet_PlaySeductionScene", 1)
+AND
+DB_DialogPlayers(_Var1, _Var2, _)
+AND
+IsTagged(_Var2, "RED PRINCE", 0)
+THEN
+ObjectSetFlag(_Var2, "QuestUpdate_ARX_LizardConsulate_HorrorSleepSunset_RP_Seduction_TeleportedOut", _Var1);
+Proc_Arx_HorrorSleep_Sunset_BackToReality_InitiateTeleport(_Var2, 1);
+
+PROC
+proc_ARX_LizardPrincess_HorrorSleep_SunSet_PlayedSeductionScene((CHARACTERGUID)_Var1)
+THEN
+SetHasDialog(CHARACTERGUID_S_GLO_RedPrincess_050fbbf9-3fc9-40cd-9cbb-43b4b3754a5e, 0);
+CharacterDetachFromGroup(_Var1);
+ProcCharacterMoveTo(_Var1, TRIGGERGUID_S_ARX_HorrorSleep_Sunset_FromSeductionScene_b5be8a9a-3ce1-44a3-a0de-5aeb761f5a5c, 0, "");
+ProcCharacterMoveTo(CHARACTERGUID_S_GLO_RedPrincess_050fbbf9-3fc9-40cd-9cbb-43b4b3754a5e, TRIGGERGUID_S_ARX_HorrorSleep_Sunset_FromSeductionScene_b5be8a9a-3ce1-44a3-a0de-5aeb761f5a5c, 0, "");
+
+PROC
+proc_ARX_LizardPrincess_HorrorSleep_SunSet_PlayedSeductionScene((CHARACTERGUID)_Var1)
+THEN
+FadeToBlack(_Var1, 2, 0, "HorrorSleep_Sunset_StartSeduction_Sunset_AVATAR");
+ProcObjectTimer(_Var1, "HorrorSleep_Sunset_StartSeduction_Sunset_AVATAR", 3000);
+
+PROC
+ProcObjectTimerFinished((CHARACTERGUID)_Var1, "HorrorSleep_Sunset_StartSeduction_Done")
+THEN
+GlobalSetFlag("ARX_LizardPrincess_HorrorSleep_Sunet_GotPregnant");
+Transform(CHARACTERGUID_S_GLO_RedPrincess_050fbbf9-3fc9-40cd-9cbb-43b4b3754a5e, "GLO_Lizards_EmpirePrincess_Naked_b442058f-2e6c-4d18-8df4-0da4a7367303", 0, 0);
+DB_HideEquippedWeapon(CHARACTERGUID_S_GLO_RedPrincess_050fbbf9-3fc9-40cd-9cbb-43b4b3754a5e);
+DB_HideEquippedShield(CHARACTERGUID_S_GLO_RedPrincess_050fbbf9-3fc9-40cd-9cbb-43b4b3754a5e);
+
+IF
+GlobalFlagSet("ARX_LizardPrincess_GaveEgg")
+AND
+ObjectGetFlag(CHARACTERGUID_S_GLO_RedPrincess_050fbbf9-3fc9-40cd-9cbb-43b4b3754a5e, "ARX_LizardPrincess_HorrorSleep_Sunet_HasEgg", 1)
+AND
+DB_DialogNPCs(_Var1, CHARACTERGUID_S_GLO_RedPrincess_050fbbf9-3fc9-40cd-9cbb-43b4b3754a5e, _)
+AND
+DialogGetInvolvedPlayer(_Var1, 1, _Var3)
+THEN
+ObjectSetFlag(_Var3, "ARX_LizardPrincess_HorrorSleep_Sunet_GiveEgg");
+
+PROC
+ProcObjectTimerFinished((CHARACTERGUID)_Var1, "HorrorSleep_Sunset_StartSeduction_Done")
+THEN
+ProcForceStopDialog(_Var1);
+TeleportTo(_Var1, TRIGGERGUID_S_ARX_HorrorSleep_SunSet_Seduction_RedPrinceT2_249dcf25-7c54-4627-9e78-1392aa302f68);
+TeleportTo(CHARACTERGUID_S_GLO_RedPrincess_050fbbf9-3fc9-40cd-9cbb-43b4b3754a5e, TRIGGERGUID_S_ARX_HorrorSleep_SunSet_Seduction_RePrincessT_3ac75454-d9b0-4543-94fa-c1624abdef51);
+SetHasDialog(CHARACTERGUID_S_GLO_RedPrincess_050fbbf9-3fc9-40cd-9cbb-43b4b3754a5e, 1);
+Proc_StartDialog(0, "ARX_LizardPrincess", CHARACTERGUID_S_GLO_RedPrincess_050fbbf9-3fc9-40cd-9cbb-43b4b3754a5e, _Var1);
+ProcObjectTimer(_Var1, "HorrorSleep_Sunset_StartSeduction_Sunset_FadeIn", 2000);
+
+PROC
+ProcObjectTimerFinished((CHARACTERGUID)_Var1, "HorrorSleep_Sunset_StartSeduction_Done")
+AND
+ObjectGetFlag(_Var1, "ARX_HorrorSleep_Sunset_Seduction_RedPrinceDressup", 1)
+THEN
+CharacterUseItem(CHARACTERGUID_S_GLO_RedPrincess_050fbbf9-3fc9-40cd-9cbb-43b4b3754a5e, ITEMGUID_S_ARX_HorrorSleep_SunSet_Seduction_Bed_f6fd80e6-cbe6-4bde-acb2-ee7817ee230f, "");
+
+PROC
+ProcObjectTimerFinished((CHARACTERGUID)_Var1, "HorrorSleep_Sunset_StartSeduction_Done")
+AND
+ObjectGetFlag(_Var1, "ARX_HorrorSleep_Sunset_Seduction_RedPrinceDressup", 0)
+THEN
+CharacterUseItem(_Var1, ITEMGUID_S_ARX_HorrorSleep_SunSet_Seduction_Bed_f6fd80e6-cbe6-4bde-acb2-ee7817ee230f, "");
+proc_DB_ARX_HorrorSleep_Sunet_Get_Equipment(_Var1);
+
+PROC
+proc_DB_ARX_HorrorSleep_Sunet_Get_Equipment((CHARACTERGUID)_Var1)
+AND
+DB_ARX_HorrorSleep_Sunet_Equipment(_Var2)
+AND
+CharacterGetEquippedItem(_Var1, _Var2, _Var3)
+THEN
+DB_ARX_HorrorSleep_Sunset_Seduction_Equipment(_Var1, _Var2, _Var3);
+CharacterUnequipItem(_Var1, _Var3);
+
+PROC
+ProcObjectTimerFinished((CHARACTERGUID)_Var1, "HorrorSleep_Sunset_StartSeduction_Sunset_FadeIn")
+THEN
+FadeToBlack(_Var1, 3, 1, "HorrorSleep_Sunset_StartSeduction_Sunset_FadeIn");
+
+IF
+ObjectEnteredCombat(CHARACTERGUID_S_GLO_RedPrincess_050fbbf9-3fc9-40cd-9cbb-43b4b3754a5e, _)
+AND
+GlobalGetFlag("ARX_LizardPrincess_HorrorSleep_Sunet_GotPregnant", 1)
+THEN
+Proc_EquipHiddenWeapon(CHARACTERGUID_S_GLO_RedPrincess_050fbbf9-3fc9-40cd-9cbb-43b4b3754a5e);
+Proc_EquipHiddenShield(CHARACTERGUID_S_GLO_RedPrincess_050fbbf9-3fc9-40cd-9cbb-43b4b3754a5e);
+
+IF
+CharacterUsedItem((CHARACTERGUID)_Var1, ITEMGUID_S_ARX_HorrorSleep_Sunset_BackToConsulate_e63f9ee3-59dd-40db-9118-973924ab2bad)
+AND
+CharacterIsInCombat(_Var1, 0)
+THEN
+proc_ARX_HorrorSleep_Sunset_BackToConsulate_UsedPortal(_Var1, ITEMGUID_S_ARX_HorrorSleep_Sunset_BackToConsulate_e63f9ee3-59dd-40db-9118-973924ab2bad);
+
+IF
+CharacterUsedItem((CHARACTERGUID)_Var1, ITEMGUID_S_ARX_HorrorSleep_Sunset_BackToConsulate_e63f9ee3-59dd-40db-9118-973924ab2bad)
+AND
+CharacterIsInCombat(_Var1, 1)
+THEN
+Proc_Arx_HorrorSleep_Sunset_BackToReality_InitiateTeleport(_Var1, 1);
+
+PROC
+proc_ARX_HorrorSleep_Sunset_BackToConsulate_UsedPortal((CHARACTERGUID)_Var1, ITEMGUID_S_ARX_HorrorSleep_Sunset_BackToConsulate_e63f9ee3-59dd-40db-9118-973924ab2bad)
+AND NOT
+DB_ARX_HorrorSleep_Sunset_BackToConsulate_StartDialog(1)
+AND
+CharacterIsDead(CHARACTERGUID_S_GLO_RedPrincess_050fbbf9-3fc9-40cd-9cbb-43b4b3754a5e, 1)
+THEN
+Proc_StartDialog(0, "ARX_HorrorSleep_Sunset_BackToConsulate", ITEMGUID_S_ARX_HorrorSleep_Sunset_BackToConsulate_e63f9ee3-59dd-40db-9118-973924ab2bad, _Var1);
+DB_ARX_HorrorSleep_Sunset_BackToConsulate_StartDialog(1);
+
+PROC
+proc_ARX_HorrorSleep_Sunset_BackToConsulate_UsedPortal((CHARACTERGUID)_Var1, ITEMGUID_S_ARX_HorrorSleep_Sunset_BackToConsulate_e63f9ee3-59dd-40db-9118-973924ab2bad)
+AND NOT
+DB_ARX_HorrorSleep_Sunset_BackToConsulate_StartDialog(1)
+AND
+GlobalGetFlag("ARX_HorrorSleep_Sunset_DragonEgg_Hatched", 1)
+THEN
+Proc_StartDialog(0, "ARX_HorrorSleep_Sunset_BackToConsulate", ITEMGUID_S_ARX_HorrorSleep_Sunset_BackToConsulate_e63f9ee3-59dd-40db-9118-973924ab2bad, _Var1);
+DB_ARX_HorrorSleep_Sunset_BackToConsulate_StartDialog(1);
+
+PROC
+proc_ARX_HorrorSleep_Sunset_BackToConsulate_UsedPortal((CHARACTERGUID)_Var1, ITEMGUID_S_ARX_HorrorSleep_Sunset_BackToConsulate_e63f9ee3-59dd-40db-9118-973924ab2bad)
+AND NOT
+DB_ARX_HorrorSleep_Sunset_BackToConsulate_StartDialog(1)
+AND
+GlobalGetFlag("ARX_LizardPrincess_GaveEgg", 0)
+THEN
+Proc_StartDialog(0, "ARX_HorrorSleep_Sunset_BackToConsulate", ITEMGUID_S_ARX_HorrorSleep_Sunset_BackToConsulate_e63f9ee3-59dd-40db-9118-973924ab2bad, _Var1);
+DB_ARX_HorrorSleep_Sunset_BackToConsulate_StartDialog(1);
+
+PROC
+proc_ARX_HorrorSleep_Sunset_BackToConsulate_UsedPortal((CHARACTERGUID)_Var1, ITEMGUID_S_ARX_HorrorSleep_Sunset_BackToConsulate_e63f9ee3-59dd-40db-9118-973924ab2bad)
+AND NOT
+DB_ARX_HorrorSleep_Sunset_BackToConsulate_StartDialog(1)
+AND
+ItemIsDestroyed(ITEMGUID_S_ARX_HorrorSleep_Sunset_DragonEgg_08648767-508f-866e-2852-2558d0b3b041, 1)
+THEN
+Proc_StartDialog(0, "ARX_HorrorSleep_Sunset_BackToConsulate", ITEMGUID_S_ARX_HorrorSleep_Sunset_BackToConsulate_e63f9ee3-59dd-40db-9118-973924ab2bad, _Var1);
+DB_ARX_HorrorSleep_Sunset_BackToConsulate_StartDialog(1);
+
+PROC
+proc_ARX_HorrorSleep_Sunset_BackToConsulate_UsedPortal((CHARACTERGUID)_Var1, ITEMGUID_S_ARX_HorrorSleep_Sunset_BackToConsulate_e63f9ee3-59dd-40db-9118-973924ab2bad)
+AND NOT
+DB_ARX_HorrorSleep_Sunset_BackToConsulate_StartDialog(1)
+AND
+DB_IsPlayer(_Var2)
+AND
+ObjectGetFlag(_Var2, "ARX_LizardPrincess_GaveEgg", 1)
+AND
+CharactersAreGrouped(_Var2, _Var1, 1)
+THEN
+DB_ARX_HorrorSleep_Sunset_BackToConsulate_StartDialog(1);
+ARX_HorrorSleep_Sunset_BackToConsulate_CheckForPrincess(_Var1);
+
+PROC
+proc_ARX_HorrorSleep_Sunset_BackToConsulate_UsedPortal((CHARACTERGUID)_Var1, ITEMGUID_S_ARX_HorrorSleep_Sunset_BackToConsulate_e63f9ee3-59dd-40db-9118-973924ab2bad)
+AND NOT
+DB_ARX_HorrorSleep_Sunset_BackToConsulate_StartDialog(1)
+THEN
+Proc_StartDialog(0, "ARX_HorrorSleep_Sunset_BackToConsulate", ITEMGUID_S_ARX_HorrorSleep_Sunset_BackToConsulate_e63f9ee3-59dd-40db-9118-973924ab2bad, _Var1);
+
+PROC
+proc_ARX_HorrorSleep_Sunset_BackToConsulate_UsedPortal((CHARACTERGUID)_Var1, ITEMGUID_S_ARX_HorrorSleep_Sunset_BackToConsulate_e63f9ee3-59dd-40db-9118-973924ab2bad)
+AND
+DB_ARX_HorrorSleep_Sunset_BackToConsulate_StartDialog(1)
+THEN
+NOT DB_ARX_HorrorSleep_Sunset_BackToConsulate_StartDialog(1);
+
+PROC
+ARX_HorrorSleep_Sunset_BackToConsulate_CheckForPrincess((CHARACTERGUID)_Var1)
+AND NOT
+QRY_SpeakerIsAvailable(CHARACTERGUID_S_GLO_RedPrincess_050fbbf9-3fc9-40cd-9cbb-43b4b3754a5e)
+THEN
+Proc_StartDialog(0, "ARX_HorrorSleep_Sunset_BackToConsulate", ITEMGUID_S_ARX_HorrorSleep_Sunset_BackToConsulate_e63f9ee3-59dd-40db-9118-973924ab2bad, _Var1);
+
+PROC
+ARX_HorrorSleep_Sunset_BackToConsulate_CheckForPrincess((CHARACTERGUID)_Var1)
+AND
+QRY_SpeakerIsAvailable(CHARACTERGUID_S_GLO_RedPrincess_050fbbf9-3fc9-40cd-9cbb-43b4b3754a5e)
+THEN
+ProcForceStopDialog(CHARACTERGUID_S_GLO_RedPrincess_050fbbf9-3fc9-40cd-9cbb-43b4b3754a5e);
+PlayEffect(CHARACTERGUID_S_GLO_RedPrincess_050fbbf9-3fc9-40cd-9cbb-43b4b3754a5e, "RS3_FX_GP_ScriptedEvent_Teleport_GenericSmoke_01");
+TeleportTo(CHARACTERGUID_S_GLO_RedPrincess_050fbbf9-3fc9-40cd-9cbb-43b4b3754a5e, TRIGGERGUID_S_ARX_HorrorSleep_Sunset_AD_AboutPortal_b0a763cd-10c9-4c8e-b78d-6ea5ce41895b);
+PlayEffect(CHARACTERGUID_S_GLO_RedPrincess_050fbbf9-3fc9-40cd-9cbb-43b4b3754a5e, "RS3_FX_GP_ScriptedEvent_Teleport_GenericSmoke_01");
+Proc_StartDialog(0, "ARX_HorrorSleep_Sunset_Princess_StopPortal_DidntHatchEgg", CHARACTERGUID_S_GLO_RedPrincess_050fbbf9-3fc9-40cd-9cbb-43b4b3754a5e, _Var1);
+
+IF
+DialogStarted("ARX_HorrorSleep_Sunset_Princess_StopPortal_DidntHatchEgg", (INTEGER)_Var1)
+AND
+DB_IsPlayer(_Var2)
+AND
+ObjectGetFlag(_Var2, "ARX_LizardPrincess_GaveEgg", 1)
+AND
+DB_DialogPlayers(_Var1, _Var2, _)
+AND
+QRY_SpeakerIsAvailableAndInDialogRange(_Var2, CHARACTERGUID_S_GLO_RedPrincess_050fbbf9-3fc9-40cd-9cbb-43b4b3754a5e)
+THEN
+DialogAddActor(_Var1, _Var2);
+
+IF
+DialogEnded((STRING)_Var1, (INTEGER)_Var2)
+AND
+DB_ARX_HorrorSleep_Sunset_BackToConsulate_Dialogs(_Var1)
+AND
+DB_DialogPlayers(_Var2, _Var3, _)
+AND
+ObjectGetFlag(_Var3, "ARX_HorrorSleep_Sunset_BackToConsulate_StartTeleport", 1)
+THEN
+Proc_Arx_HorrorSleep_Sunset_BackToReality_InitiateTeleport(_Var3, 1);
+
+PROC
+Proc_Arx_HorrorSleep_Sunset_BackToReality_InitiateTeleport((CHARACTERGUID)_Var1, 1)
+AND
+DB_MovingTo(CHARACTERGUID_S_GLO_RedPrincess_050fbbf9-3fc9-40cd-9cbb-43b4b3754a5e, _Var1, _Var2, _Var3)
+THEN
+CharacterPurgeQueue(CHARACTERGUID_S_GLO_RedPrincess_050fbbf9-3fc9-40cd-9cbb-43b4b3754a5e);
+ProcClearStoryMove(CHARACTERGUID_S_GLO_RedPrincess_050fbbf9-3fc9-40cd-9cbb-43b4b3754a5e);
+
+PROC
+Proc_Arx_HorrorSleep_Sunset_BackToReality_InitiateTeleport((CHARACTERGUID)_Var1, 1)
+AND
+DB_IsPlayer(_Var2)
+AND
+CharactersAreGrouped(_Var2, _Var1, 1)
+THEN
+DB_ARX_HorrorSleep_Sunset_PlayerLeavingSunset(_Var2);
+
+PROC
+Proc_Arx_HorrorSleep_Sunset_BackToReality_InitiateTeleport((CHARACTERGUID)_Var1, 1)
+AND
+DB_DialogPlayers(_Var2, CHARACTERGUID_S_Player_RedPrince_a26a1efb-cdc8-4cf3-a7b2-b2f9544add6f, _)
+AND
+GlobalGetFlag("ARX_LizardPrincess_HorrorSleep_Sunet_GotPregnant", 0)
+AND
+GlobalGetFlag("ARX_LizardPrincess_HorrorSleep_SunSet_PlaySeductionScene", 1)
+THEN
+CharacterDetachFromGroup(CHARACTERGUID_S_Player_RedPrince_a26a1efb-cdc8-4cf3-a7b2-b2f9544add6f);
+NOT DB_ARX_HorrorSleep_Sunset_PlayerLeavingSunset(CHARACTERGUID_S_Player_RedPrince_a26a1efb-cdc8-4cf3-a7b2-b2f9544add6f);
+
+IF
+CharacterUsedItem((CHARACTERGUID)_Var1, ITEMGUID_S_ARX_HorrorSleep_Sunset_ExitSeductionScene_000_6f65759f-fd6e-49f2-984d-4f670e50b870)
+AND
+GetPosition(_Var1, _Var2, _Var3, _Var4)
+THEN
+PlayEffectAtPosition("RS3_FX_GP_ScriptedEvent_Teleport_GenericSmoke_01", _Var2, _Var3, _Var4);
+
+IF
+CharacterUsedItem((CHARACTERGUID)_Var1, ITEMGUID_S_ARX_HorrorSleep_Sunset_ExitSeductionScene_b7994a38-7de9-417d-979f-ff1d8734c629)
+THEN
+PlayEffect(_Var1, "RS3_FX_GP_ScriptedEvent_Teleport_GenericSmoke_01");
+
+IF
+CharacterUsedItem((CHARACTERGUID)_Var1, ITEMGUID_S_ARX_HorrorSleep_Sunset_ExitSeductionScene_b7994a38-7de9-417d-979f-ff1d8734c629)
+AND
+QueryOnlyOnce("S_ARX_HorrorSleep_Sunset_ExitSeductionScene")
+THEN
+SetOnStage(ITEMGUID_S_ARX_HorrorSleep_Sunset_ExitSeductionScene_000_6f65759f-fd6e-49f2-984d-4f670e50b870, 1);
+
+PROC
+Proc_Arx_HorrorSleep_Sunset_BackToReality_InitiateTeleport((CHARACTERGUID)_Var1, 1)
+AND
+QRY_ARX_HorrorSleep_CanClosePortal()
+THEN
+proc_ARX_HorrorSleep_CheckPyramids();
+GlobalSetFlag("ARX_HorrorSleep_Closed");
+
+IF
+StoryEvent(CHARACTERGUID_S_Player_RedPrince_a26a1efb-cdc8-4cf3-a7b2-b2f9544add6f, "HorrorSleep_Sunset_BackToReality_Completed")
+THEN
+proc_ARX_HorrorSleep_CheckPyramids();
+GlobalSetFlag("ARX_HorrorSleep_Closed");
+
+QRY
+QRY_ARX_HorrorSleep_CanClosePortal()
+AND
+DB_IsPlayer(CHARACTERGUID_S_Player_RedPrince_a26a1efb-cdc8-4cf3-a7b2-b2f9544add6f)
+AND
+QuestAccepted(CHARACTERGUID_S_Player_RedPrince_a26a1efb-cdc8-4cf3-a7b2-b2f9544add6f, "FTJ_COM_RedPrince_Princess", 1)
+AND
+QuestIsClosed(CHARACTERGUID_S_Player_RedPrince_a26a1efb-cdc8-4cf3-a7b2-b2f9544add6f, "FTJ_COM_RedPrince_Princess", 1)
+THEN
+DB_NOOP(1);
+
+QRY
+QRY_ARX_HorrorSleep_CanClosePortal()
+AND
+DB_IsPlayer(CHARACTERGUID_S_Player_RedPrince_a26a1efb-cdc8-4cf3-a7b2-b2f9544add6f)
+AND
+QuestAccepted(CHARACTERGUID_S_Player_RedPrince_a26a1efb-cdc8-4cf3-a7b2-b2f9544add6f, "FTJ_OriginRedPrince_Princess", 1)
+AND
+QuestIsClosed(CHARACTERGUID_S_Player_RedPrince_a26a1efb-cdc8-4cf3-a7b2-b2f9544add6f, "FTJ_OriginRedPrince_Princess", 1)
+THEN
+DB_NOOP(1);
+
+QRY
+QRY_ARX_HorrorSleep_CanClosePortal()
+AND
+DB_IsPlayer(CHARACTERGUID_S_Player_RedPrince_a26a1efb-cdc8-4cf3-a7b2-b2f9544add6f)
+AND
+QuestAccepted(CHARACTERGUID_S_Player_RedPrince_a26a1efb-cdc8-4cf3-a7b2-b2f9544add6f, "FTJ_COM_RedPrince_Princess", 0)
+AND
+QuestAccepted(CHARACTERGUID_S_Player_RedPrince_a26a1efb-cdc8-4cf3-a7b2-b2f9544add6f, "FTJ_OriginRedPrince_Princess", 0)
+THEN
+DB_NOOP(1);
+
+QRY
+QRY_ARX_HorrorSleep_CanClosePortal()
+AND NOT
+DB_IsPlayer(CHARACTERGUID_S_Player_RedPrince_a26a1efb-cdc8-4cf3-a7b2-b2f9544add6f)
+THEN
+DB_NOOP(1);
+
+IF
+GlobalFlagSet("ARX_HorrorSleep_Closed")
+AND
+GetPosition(ITEMGUID_S_ARX_LizardConsulate_DoorToHorrorSleep_0453f684-d357-8be0-4b5e-13e6004ed7d5, _Var1, _Var2, _Var3)
+THEN
+PlayEffectAtPosition("RS3_FX_Skills_Polymorph_Soul_TurnInto_Cast_Root_01", _Var1, _Var2, _Var3);
+
+IF
+GlobalFlagSet("ARX_HorrorSleep_Closed")
+THEN
+ClearTag(ITEMGUID_S_ARX_LizardConsulate_DoorToHorrorSleep_0453f684-d357-8be0-4b5e-13e6004ed7d5, "GHOST");
+SetOnStage(ITEMGUID_S_ARX_LizardConsulate_DoorToHorrorSleep_0453f684-d357-8be0-4b5e-13e6004ed7d5, 0);
+
+PROC
+Proc_Arx_HorrorSleep_Sunset_BackToReality_InitiateTeleport((CHARACTERGUID)_Var1, 1)
+AND
+DB_ARX_HorrorSleep_Sunset_PlayerLeavingSunset(_Var2)
+THEN
+ApplyStatus(_Var2, "BLIND", 3, 1);
+
+PROC
+Proc_Arx_HorrorSleep_Sunset_BackToReality_InitiateTeleport((CHARACTERGUID)_Var1, 1)
+AND
+GetUUID(_Var1, _Var2)
+AND
+StringConcatenate("HorrorSleep_Sunset_BackToReality_InitiateTeleport_Timer_", _Var2, _Var3)
+THEN
+DB_Arx_HorrorSleep_InitiateTeleport_BackToReality(_Var1, _Var3);
+PlayEffect(_Var1, "RS3_FX_GP_ScriptedEvent_FJ_RedPrinceO_DarknessFadeIn_01");
+FadeToBlack(_Var1, 2, 0, "ARX_HorrorSleep_Sunset_BackToReality");
+TimerLaunch(_Var3, 4000);
+
+PROC
+Proc_Arx_HorrorSleep_Sunset_BackToReality_InitiateTeleport((CHARACTERGUID)_Var1, 0)
+AND
+GetUUID(_Var1, _Var2)
+AND
+StringConcatenate("HorrorSleep_Sunset_BackToReality_InitiateTeleport_Timer_", _Var2, _Var3)
+THEN
+DB_Arx_HorrorSleep_InitiateTeleport_BackToReality(_Var1, _Var3);
+PlayEffect(_Var1, "RS3_FX_GP_ScriptedEvent_FJ_RedPrinceO_DarknessFadeIn_01");
+TimerLaunch(_Var3, 200);
+
+IF
+TimerFinished((STRING)_Var1)
+AND
+DB_Arx_HorrorSleep_InitiateTeleport_BackToReality(_Var2, _Var1)
+AND
+DB_ARX_HorrorSleep_Sunset_PlayerLeavingSunset(_Var3)
+THEN
+proc_ARX_HorrorSleep_Sunset_BackToReality_Teleport(_Var3, "HorrorSleep_Sunset_BackToReality_Completed");
+
+IF
+TimerFinished((STRING)_Var1)
+AND
+DB_Arx_HorrorSleep_InitiateTeleport_BackToReality(_Var2, _Var1)
+AND NOT
+DB_ARX_HorrorSleep_Sunset_PlayerLeavingSunset(_)
+THEN
+proc_ARX_HorrorSleep_Sunset_BackToReality_Teleport(_Var2, "");
+
+PROC
+proc_ARX_HorrorSleep_Sunset_BackToReality_Teleport((CHARACTERGUID)_Var1, (STRING)_Var2)
+THEN
+CharacterRemoveSummons(_Var1, 0);
+LeaveCombat(_Var1);
+ProcForceStopDialog(_Var1);
+TeleportTo(_Var1, TRIGGERGUID_ARX_HorrorSleep_Sunset_BackToReality_Point_12d36d65-789b-48be-9667-5bf2d0b66b40, _Var2, 1);
+PlayEffect(_Var1, "RS3_FX_GP_ScriptedEvent_Teleport_GenericSmoke_01");
+
+IF
+TimerFinished((STRING)_Var1)
+AND
+DB_Arx_HorrorSleep_InitiateTeleport_BackToReality(_Var2, _Var1)
+THEN
+FadeToBlack(_Var2, 2, 1, "ARX_HorrorSleep_Sunset_BackToReality");
+PlayEffect(_Var2, "RS3_FX_GP_ScriptedEvent_FJ_RedPrinceO_DarknessFadeOut_01");
+
+IF
+TimerFinished((STRING)_Var1)
+AND
+DB_Arx_HorrorSleep_InitiateTeleport_BackToReality(_Var2, _Var1)
+AND
+DB_ARX_HorrorSleep_Sunset_PlayerLeavingSunset(_Var2)
+THEN
+TimerCancel("RC_ARX_VB_HorrorSleep_Sunset_BackToReality");
+TimerLaunch("RC_ARX_VB_HorrorSleep_Sunset_BackToReality", 2000);
+
+IF
+CharacterEnteredTrigger((CHARACTERGUID)_Var1, S_ARX_LizardConsulate_716b7fb5-bc77-473a-a9ad-4de792002624)
+AND
+DB_ARX_HorrorSleep_Sunset_PlayerLeavingSunset(_Var1)
+THEN
+NOT DB_ARX_HorrorSleep_Sunset_PlayerLeavingSunset(_Var1);
+
+IF
+TimerFinished("RC_ARX_VB_HorrorSleep_Sunset_BackToReality")
+AND
+DB_GlobalFlag("ARX_HorrorSleep_Closed")
+AND
+DB_Arx_HorrorSleep_InitiateTeleport_BackToReality(_Var1, _Var2)
+AND NOT
+DB_InRegion(_, TRIGGERGUID_S_ARX_HorrorSleep_Sunset_67df0f1c-9cf2-46c5-8b28-64376a9b274c)
+THEN
+PartySetFlag(_Var1, "QuestUpdate_ARX_LizardConsulate_HorrorSleepSunset_End");
+
+IF
+TimerFinished("RC_ARX_VB_HorrorSleep_Sunset_BackToReality")
+AND
+DB_Arx_HorrorSleep_InitiateTeleport_BackToReality(_Var1, _Var2)
+THEN
+NOT DB_Arx_HorrorSleep_InitiateTeleport_BackToReality(_Var1, _Var2);
+
+IF
+TimerFinished("RC_ARX_VB_HorrorSleep_Sunset_BackToReality")
+AND
+DB_InRegion(_Var1, TRIGGERGUID_S_ARX_LizardConsulate_716b7fb5-bc77-473a-a9ad-4de792002624)
+AND
+QueryOnlyOnce("HorrorSleep_Sunset_BackToReality")
+THEN
+StartVoiceBark("ARX_VB_HorrorSleep_Sunset_BackToReality", _Var1);
+
+IF
+CharacterKilledBy(CHARACTERGUID_S_GLO_RedPrincess_050fbbf9-3fc9-40cd-9cbb-43b4b3754a5e, (CHARACTERGUID)_Var1, (CHARACTERGUID)_Var2)
+AND
+GlobalGetFlag("ARX_LizardPrincess_IsInARX", 1)
+AND
+DB_IsPlayer(_Var1)
+THEN
+PartySetFlag(_Var1, "ARX_HorrorSleep_Sunset_KilledPrincess");
+
+IF
+CharacterDied(CHARACTERGUID_S_GLO_RedPrincess_050fbbf9-3fc9-40cd-9cbb-43b4b3754a5e)
+THEN
+GlobalSetFlag("ARX_HorrorSleep_Sunset_RedPrincess_Dead");
+
+IF
+CharacterDied(CHARACTERGUID_S_GLO_RedPrincess_050fbbf9-3fc9-40cd-9cbb-43b4b3754a5e)
+THEN
+CharacterSetRelationFactionToFaction("ARX_RedPrincess", "Hero", 0);
+CharacterSetRelationFactionToFaction("Hero", "ARX_RedPrincess", 0);
+
+IF
+CharacterRelationChangedTo(CHARACTERGUID_S_GLO_RedPrincess_050fbbf9-3fc9-40cd-9cbb-43b4b3754a5e, (CHARACTERGUID)_Var1, 0)
+AND
+DB_IsPlayer(_Var1)
+THEN
+ObjectSetFlag(_Var1, "QuestUpdate_ARX_LizardConsulate_HorrorSleepSunset_PrincessHostile");
+
+IF
+DB_ARX_HorrorSleep_Sunset_RedPrincess_CombatLizards(_Var1)
+THEN
+SetOnStage(_Var1, 0);
+
+IF
+ObjectEnteredCombat(CHARACTERGUID_S_GLO_RedPrincess_050fbbf9-3fc9-40cd-9cbb-43b4b3754a5e, (INTEGER)_Var1)
+AND
+DB_ARX_HorrorSleep_Sunset_RedPrincess_CombatLizards(_Var2)
+THEN
+Foop(_Var2);
+CharacterSetArmorPercentage(_Var2, 100);
+CharacterSetMagicArmorPercentage(_Var2, 100);
+
+IF
+ObjectLeftCombat(CHARACTERGUID_S_GLO_RedPrincess_050fbbf9-3fc9-40cd-9cbb-43b4b3754a5e, (INTEGER)_Var1)
+AND
+CharacterIsDead(CHARACTERGUID_S_GLO_RedPrincess_050fbbf9-3fc9-40cd-9cbb-43b4b3754a5e, 0)
+AND
+DB_ARX_HorrorSleep_Sunset_RedPrincess_CombatLizards(_Var2)
+THEN
+Poof(_Var2);
+
+IF
+CharacterDied((CHARACTERGUID)_Var1)
+AND
+DB_ARX_HorrorSleep_Sunset_RedPrincess_CombatLizards(_Var1)
+THEN
+NOT DB_ARX_HorrorSleep_Sunset_RedPrincess_CombatLizards(_Var1);
+
+IF
+CharacterResurrected((CHARACTERGUID)_Var1)
+AND
+DB_ARX_HorrorSleep_Sunset_RedPrincess_CombatLizards(_Var1)
+THEN
+ApplyStatus(_Var1, "NECROFIRE", -1, 1);
+
+IF
+ObjectFlagSet("GLO_ReceivedPromiseBreaker", CHARACTERGUID_S_GLO_RedPrincess_050fbbf9-3fc9-40cd-9cbb-43b4b3754a5e, _)
+AND
+DB_CurrentLevel(_Var2)
+AND
+HasActiveStatus(CHARACTERGUID_S_GLO_RedPrincess_050fbbf9-3fc9-40cd-9cbb-43b4b3754a5e, "LYING", 1)
+THEN
+RemoveStatus(CHARACTERGUID_S_GLO_RedPrincess_050fbbf9-3fc9-40cd-9cbb-43b4b3754a5e, "LYING");
+
+PROC
+ProcObjectTimerFinished((CHARACTERGUID)_Var1, "HorrorSleep_Sunset_StartSeduction_Sunset_AVATAR")
+THEN
+ProcForceStopDialog(_Var1);
+TeleportTo(_Var1, TRIGGERGUID_S_ARX_HorrorSleep_SunSet_Seduction_RedPrinceT_7ca76e89-bbe4-42ed-b443-e66364d2af30);
+TeleportTo(CHARACTERGUID_S_GLO_RedPrincess_050fbbf9-3fc9-40cd-9cbb-43b4b3754a5e, TRIGGERGUID_S_ARX_HorrorSleep_SunSet_Seduction_RePrincessT_3ac75454-d9b0-4543-94fa-c1624abdef51);
+SetHasDialog(CHARACTERGUID_S_GLO_RedPrincess_050fbbf9-3fc9-40cd-9cbb-43b4b3754a5e, 1);
+CharacterUseItem(CHARACTERGUID_S_GLO_RedPrincess_050fbbf9-3fc9-40cd-9cbb-43b4b3754a5e, ITEMGUID_S_ARX_HorrorSleep_SunSet_Seduction_Bed_f6fd80e6-cbe6-4bde-acb2-ee7817ee230f, "");
+Proc_StartDialog(0, "ARX_HorrorSleep_Sunset_RedPrincess_SexScene", CHARACTERGUID_S_GLO_RedPrincess_050fbbf9-3fc9-40cd-9cbb-43b4b3754a5e, ITEMGUID_S_HorrorSleep_Sunset_StartSeduction_Sunset_CameraHelper_2bd6c4ed-a39c-4038-919a-e74fe7902daa, _Var1);
+ProcObjectTimer(_Var1, "HorrorSleep_Sunset_StartSeduction_Sunset_AVATAR_FadeIn", 1000);
+TeleportTo(ITEMGUID_S_HorrorSleep_Sunset_StartSeduction_Sunset_CameraHelper_2bd6c4ed-a39c-4038-919a-e74fe7902daa, CHARACTERGUID_S_GLO_RedPrincess_050fbbf9-3fc9-40cd-9cbb-43b4b3754a5e);
+
+PROC
+ProcObjectTimerFinished((CHARACTERGUID)_Var1, "HorrorSleep_Sunset_StartSeduction_Sunset_AVATAR_FadeIn")
+THEN
+FadeToBlack(_Var1, 2, 1, "HorrorSleep_Sunset_StartSeduction_Sunset_AVATAR_FadeIn");
+
+IF
+ObjectFlagSet("ARX_HorrorSleep_Sunset_Seduction_RedPrinceFade", (CHARACTERGUID)_Var1, _)
+THEN
+FadeToBlack(_Var1, 2, 0, "ARX_HorrorSleep_Sunset_Seduction_RedPrinceFade");
+ProcObjectTimer(_Var1, "ARX_HorrorSleep_Sunset_Seduction_RedPrinceFade", 3000);
+
+PROC
+ProcObjectTimerFinished((CHARACTERGUID)_Var1, "ARX_HorrorSleep_Sunset_Seduction_RedPrinceFade")
+THEN
+FadeToBlack(_Var1, 2, 1, "ARX_HorrorSleep_Sunset_Seduction_RedPrinceFade");
+ObjectClearFlag(_Var1, "ARX_HorrorSleep_Sunset_Seduction_RedPrinceFade");
+
+IF
+ObjectFlagSet("ARX_HorrorSleep_Sunset_Seduction_SexDone", (CHARACTERGUID)_Var1, _)
+THEN
+FadeToBlack(_Var1, 2, 0, "ARX_HorrorSleep_Sunset_Seduction_SexDone");
+
+IF
+ObjectFlagSet("ARX_HorrorSleep_Sunset_Seduction_RedPrinceMove", (CHARACTERGUID)_Var1, _)
+THEN
+CharacterMoveTo(_Var1, TRIGGERGUID_S_ARX_HorrorSleep_SunSet_Seduction_RedPrinceT2_249dcf25-7c54-4627-9e78-1392aa302f68, 0, "", 0);
+
+IF
+GlobalFlagSet("HorrorSleep_Sunset_StartSeduction_Sunset_PitchBlack")
+THEN
+TriggerSetAtmosphere(TRIGGERGUID_ATM_ARX_Dreamworld_Sunset_Seduction_530d8b5b-5fbd-4122-a535-da3b1e4dbdf8, "f06b6d0d-57d2-46f3-85bc-7808f7a163ae");
+
+IF
+ObjectFlagSet("HorrorSleep_Sunset_StartSeduction_Sunset_PitchBlack", (CHARACTERGUID)_Var1, _)
+THEN
+DB_S_HorrorSleep_Sunset_StartSeduction_Sunset_InCameraSpline(_Var1);
+StartCameraSpline(SPLINEGUID_S_HorrorSleep_Sunset_StartSeduction_Sunset_CameraHelper_1efa844d-716e-42d6-acee-e0730a26649b, _Var1, 0.5, 0, 1, 0);
+CharacterLookAt(_Var1, CHARACTERGUID_S_GLO_RedPrincess_050fbbf9-3fc9-40cd-9cbb-43b4b3754a5e);
+PlayAnimation(_Var1, "Fidget_Low_01");
+
+IF
+StoryEvent(SPLINEGUID_S_HorrorSleep_Sunset_StartSeduction_Sunset_CameraHelper_1efa844d-716e-42d6-acee-e0730a26649b, "HorrorSleep_Sunset_StartSeduction_Sunset_CameraSplineFinished")
+AND
+DB_S_HorrorSleep_Sunset_StartSeduction_Sunset_InCameraSpline(_Var1)
+THEN
+NOT DB_S_HorrorSleep_Sunset_StartSeduction_Sunset_InCameraSpline(_Var1);
+
+IF
+GlobalFlagSet("HorrorSleep_Sunset_StartSeduction_Sunset_PitchBlack")
+AND
+GetPosition(ITEMGUID_S_ARX_HorrorSleep_Sunset_LizardGodPicture_bf486c7d-16a5-4588-9cc8-f87d2d1c6475, _Var1, _Var2, _Var3)
+THEN
+TeleportTo(ITEMGUID_S_HorrorSleep_Sunset_StartSeduction_Sunset_CameraHelper_2bd6c4ed-a39c-4038-919a-e74fe7902daa, CHARACTERGUID_S_GLO_RedPrincess_050fbbf9-3fc9-40cd-9cbb-43b4b3754a5e);
+ItemMoveToPosition(ITEMGUID_S_HorrorSleep_Sunset_StartSeduction_Sunset_CameraHelper_2bd6c4ed-a39c-4038-919a-e74fe7902daa, _Var1, _Var2, _Var3, 2, 0, "");
+
+IF
+GlobalFlagCleared("HorrorSleep_Sunset_StartSeduction_Sunset_PitchBlack")
+THEN
+TriggerSetAtmosphere(TRIGGERGUID_ATM_ARX_Dreamworld_Sunset_Seduction_530d8b5b-5fbd-4122-a535-da3b1e4dbdf8, "8589e64c-386f-4f6c-a648-3ee882c50aee");
+
+IF
+GlobalFlagCleared("HorrorSleep_Sunset_StartSeduction_Sunset_PitchBlack")
+AND
+DB_S_HorrorSleep_Sunset_StartSeduction_Sunset_InCameraSpline(_Var1)
+THEN
+StopCameraSpline(SPLINEGUID_S_HorrorSleep_Sunset_StartSeduction_Sunset_CameraHelper_1efa844d-716e-42d6-acee-e0730a26649b, _Var1);
+NOT DB_S_HorrorSleep_Sunset_StartSeduction_Sunset_InCameraSpline(_Var1);
+
+IF
+DialogEnded("ARX_HorrorSleep_Sunset_RedPrincess_SexScene", (INTEGER)_Var1)
+AND
+DB_DialogPlayers(_Var1, _Var2, _)
+THEN
+ProcObjectTimer(_Var2, "HorrorSleep_Sunset_StartSeduction_Done", 1000);
+
+PROC
+ProcObjectTimerFinished((CHARACTERGUID)_Var1, "HorrorSleep_Sunset_StartSeduction_Done")
+AND
+GlobalGetFlag("HorrorSleep_Sunset_StartSeduction_Sunset_PitchBlack", 1)
+THEN
+GlobalClearFlag("HorrorSleep_Sunset_StartSeduction_Sunset_PitchBlack");
+
+IF
+DialogEnded("ARX_RedPrincess", (INTEGER)_Var1)
+AND
+DB_DialogPlayers(_Var1, _Var2, 1)
+AND
+ObjectGetFlag(_Var2, "HostileAlignmentAfterDialog", 1)
+THEN
+ObjectSetFlag(_Var2, "QuestUpdate_ARX_LizardConsulate_HorrorSleepSunset_PrincessHostile", _Var1);
+
+IF
+ObjectFlagSet("ARX_LizardPrincess_GaveEgg", (GUIDSTRING)_Var1, (INTEGER)_Var2)
+AND
+ObjectGetFlag(_Var1, "QuestUpdate_ARX_LizardConsulate_HorrorSleepSunset_PrincessGaveEgg", 0)
+THEN
+ObjectSetFlag(_Var1, "QuestUpdate_ARX_LizardConsulate_HorrorSleepSunset_PrincessGaveEgg", _Var2);
+
+IF
+CharacterDied(CHARACTERGUID_S_GLO_RedPrincess_050fbbf9-3fc9-40cd-9cbb-43b4b3754a5e)
+AND
+DB_IsPlayer(_Var1)
+AND
+ObjectGetFlag(_Var1, "QuestUpdate_ARX_LizardConsulate_HorrorSleepSunset_Start", 1)
+THEN
+ObjectSetFlag(_Var1, "QuestUpdate_ARX_LizardConsulate_HorrorSleepSunset_PrincessDead");
+
+IF
+ObjectFlagShared((STRING)_Var1, CHARACTERGUID_S_Player_RedPrince_a26a1efb-cdc8-4cf3-a7b2-b2f9544add6f, _)
+AND
+DB_RedPrince_COM_AOM_JournalUpdate(_Var1, _Var3)
+THEN
+Proc_GLO_RedPrince_COM_AOM_JournalUpdate(_Var3);
+
+IF
+ObjectFlagSet((STRING)_Var1, CHARACTERGUID_S_Player_RedPrince_a26a1efb-cdc8-4cf3-a7b2-b2f9544add6f, (INTEGER)_Var2)
+AND
+DB_RedPrince_COM_AOM_JournalUpdate(_Var1, _Var3)
+THEN
+Proc_GLO_RedPrince_COM_AOM_JournalUpdate(_Var3);
+
+PROC
+Proc_GLO_RedPrince_COM_AOM_JournalUpdate((STRING)_Var1)
+AND
+DB_Avatars(CHARACTERGUID_S_Player_RedPrince_a26a1efb-cdc8-4cf3-a7b2-b2f9544add6f)
+AND
+DB_QuestDef_State("FTJ_OriginRedPrince", _Var1)
+AND
+StringConcatenate("QuestUpdate_FTJ_OriginRedPrince_", _Var1, _Var2)
+THEN
+ObjectSetFlag(CHARACTERGUID_S_Player_RedPrince_a26a1efb-cdc8-4cf3-a7b2-b2f9544add6f, _Var2);
+
+PROC
+Proc_GLO_RedPrince_COM_AOM_JournalUpdate((STRING)_Var1)
+AND NOT
+DB_Avatars(CHARACTERGUID_S_Player_RedPrince_a26a1efb-cdc8-4cf3-a7b2-b2f9544add6f)
+AND
+DB_QuestDef_State("FTJ_COM_RedPrince", _Var1)
+AND
+StringConcatenate("QuestUpdate_FTJ_COM_RedPrince_", _Var1, _Var2)
+THEN
+ObjectSetFlag(CHARACTERGUID_S_Player_RedPrince_a26a1efb-cdc8-4cf3-a7b2-b2f9544add6f, _Var2);
+
+IF
+TextEventSet("S_ARX_HorrorSleep_Sunset_EggLocationTrigger")
+THEN
+TeleportTo(ITEMGUID_S_ARX_HorrorSleep_Sunset_DragonEgg_08648767-508f-866e-2852-2558d0b3b041, TRIGGERGUID_S_ARX_HorrorSleep_Sunset_EggLocationTrigger_faaa13a0-f0e5-4e53-ad1b-812cd407977b);
+
+IF
+TextEventSet("LizardPrincessPregnant")
+THEN
+GlobalSetFlag("RC_RedPrincessPregnantAfterRC");
+SetOnStage(ITEMGUID_S_ARX_HorrorSleep_Sunset_DragonEgg_08648767-508f-866e-2852-2558d0b3b041, 1);
+SetOnStage(ITEMGUID_S_ARX_HorrorSleep_Sunset_DragonEgg_CampFire_6cd6eb80-633b-454f-a96a-bd65af5473f7, 1);
+SetOnStage(ITEMGUID_S_ARX_HorrorSleep_Sunset_DragonEgg_AshPile_c9663fd3-61ff-4a0b-a63f-ae38b6cbba55, 1);
+TriggerRegisterForItems(TRIGGERGUID_S_ARX_HorrorSleep_Sunset_DragonEgg_Box_96466a11-99eb-43bd-b069-329899e0fc48);
+
+IF
+TextEventSet("LizardPrincessPregnant")
+AND
+DB_IsPlayer(_Var1)
+THEN
+DB_CustomMoveItemResponse(_Var1, ITEMGUID_S_ARX_HorrorSleep_Sunset_DragonEgg_08648767-508f-866e-2852-2558d0b3b041, 0);
+DB_CustomPickupItemResponse(_Var1, ITEMGUID_S_ARX_HorrorSleep_Sunset_DragonEgg_08648767-508f-866e-2852-2558d0b3b041, 0);
+
+IF
+GlobalFlagSet("DEBUG_RedPrincessPregnantAfterRC")
+AND
+DB_IsPlayer(_Var1)
+THEN
+DB_CustomMoveItemResponse(_Var1, ITEMGUID_S_ARX_HorrorSleep_Sunset_DragonEgg_08648767-508f-866e-2852-2558d0b3b041, 0);
+DB_CustomPickupItemResponse(_Var1, ITEMGUID_S_ARX_HorrorSleep_Sunset_DragonEgg_08648767-508f-866e-2852-2558d0b3b041, 0);
+
+IF
+GlobalFlagSet("DEBUG_RedPrincessPregnantAfterRC")
+THEN
+GlobalSetFlag("RC_RedPrincessPregnantAfterRC");
+SetOnStage(ITEMGUID_S_ARX_HorrorSleep_Sunset_DragonEgg_08648767-508f-866e-2852-2558d0b3b041, 1);
+SetOnStage(ITEMGUID_S_ARX_HorrorSleep_Sunset_DragonEgg_CampFire_6cd6eb80-633b-454f-a96a-bd65af5473f7, 1);
+SetOnStage(ITEMGUID_S_ARX_HorrorSleep_Sunset_DragonEgg_AshPile_c9663fd3-61ff-4a0b-a63f-ae38b6cbba55, 1);
+TriggerRegisterForItems(TRIGGERGUID_S_ARX_HorrorSleep_Sunset_DragonEgg_Box_96466a11-99eb-43bd-b069-329899e0fc48);
+
+IF
+TextEventSet("PlayerAdd_NewtSkill")
+AND
+DB_IsPlayer(_Var1)
+THEN
+ObjectSetFlag(_Var1, "ARX_HorrorSleep_Sunset_Newt_TaughtSkill");
+
+IF
+TextEventSet("PlayerRemove_NewtSkill")
+AND
+DB_IsPlayer(_Var1)
+AND
+ObjectGetFlag(_Var1, "ARX_HorrorSleep_Sunset_Newt_TaughtSkill", 1)
+THEN
+ObjectClearFlag(_Var1, "ARX_HorrorSleep_Sunset_Newt_TaughtSkill");
+CharacterRemoveSkill(_Var1, "Summon_Quest_SummonNewt");
+
+IF
+TextEventSet("RedPrinceAddToParty")
+AND
+DB_IsPlayer(_Var1)
+THEN
+CharacterAddToParty(CHARACTERGUID_S_Player_RedPrince_a26a1efb-cdc8-4cf3-a7b2-b2f9544add6f, _Var1);
+SetFaction(CHARACTERGUID_S_Player_RedPrince_a26a1efb-cdc8-4cf3-a7b2-b2f9544add6f, "Companion");
+
+IF
+TextEventSet("EggIsDestroyed")
+THEN
+GlobalSetFlag("ARX_HorrorSleep_Sunset_DragonEgg_Destroyed");
+
+IF
+TextEventSet("AddNewtItem")
+AND
+DB_IsPlayer(_Var1)
+THEN
+ItemTemplateAddTo("QUEST_ARX_HorrorSleep_Sunset_Newt_InventoryItem_e1420ec4-92bf-4d0f-bdf0-694f847694cb", _Var1, 1);
+
+IF
+TextEventSet("SpawnFetus")
+THEN
+SetStoryEvent(ITEMGUID_S_ARX_HorrorSleep_Sunset_DragonEgg_08648767-508f-866e-2852-2558d0b3b041, "DEBUG_ARX_HorrorSleep_Sunset_DragonEgg_SpawnedFetus");
+
+IF
+TextEventSet("LevelPrincessUp")
+THEN
+CharacterLevelUpTo(CHARACTERGUID_S_GLO_RedPrincess_050fbbf9-3fc9-40cd-9cbb-43b4b3754a5e, 18);
+
+IF
+TextEventSet("ARX_HorrorSleep_Closed")
+THEN
+GlobalSetFlag("ARX_HorrorSleep_Closed");
+
+IF
+TextEventSet("ARX_HorrorSleep_SexScene_PitchBlack")
+THEN
+TriggerSetAtmosphere(TRIGGERGUID_ATM_ARX_Dreamworld_Sunset_Seduction_530d8b5b-5fbd-4122-a535-da3b1e4dbdf8, "f06b6d0d-57d2-46f3-85bc-7808f7a163ae");
+
+IF
+TextEventSet("ARX_HorrorSleep_SexScene_Normal")
+THEN
+TriggerSetAtmosphere(TRIGGERGUID_ATM_ARX_Dreamworld_Sunset_Seduction_530d8b5b-5fbd-4122-a535-da3b1e4dbdf8, "8589e64c-386f-4f6c-a648-3ee882c50aee");
+
+IF
+TextEventSet("ARX_HorrorSleep_SexScene_AVATARStart")
+THEN
+SetTag(CHARACTERGUID_S_Player_RedPrince_a26a1efb-cdc8-4cf3-a7b2-b2f9544add6f, "AVATAR");
+proc_ARX_LizardPrincess_HorrorSleep_SunSet_PlayedSeductionScene(CHARACTERGUID_S_Player_RedPrince_a26a1efb-cdc8-4cf3-a7b2-b2f9544add6f);
+
+IF
+TextEventSet("ARX_HorrorSleep_RemoveAvatar")
+THEN
+ClearTag(CHARACTERGUID_S_Player_RedPrince_a26a1efb-cdc8-4cf3-a7b2-b2f9544add6f, "AVATAR");
+
+IF
+TextEventSet("ARX_HorrorSleep_PlaySpellEffectOnPrincess")
+THEN
+ObjectSetFlag(CHARACTERGUID_S_GLO_RedPrincess_050fbbf9-3fc9-40cd-9cbb-43b4b3754a5e, "ARX_LizardPrincess_CastSpell");
+ObjectClearFlag(CHARACTERGUID_S_GLO_RedPrincess_050fbbf9-3fc9-40cd-9cbb-43b4b3754a5e, "ARX_LizardPrincess_CastSpell");
+
+IF
+TextEventSet("ARX_HorrorSleep_PlayTeachingSkillEffect")
+AND
+DB_IsPlayer(_Var1)
+AND
+GetPosition(_Var1, _Var2, _Var3, _Var4)
+AND
+RealSum(_Var2, 2, _Var5)
+THEN
+PlayEffect(_Var1, "RS3_FX_GP_ScriptedEvent_ARX_HatchingDragon_PickUp_01");
+PlayEffectAtPosition("RS3_FX_GP_ScriptedEvent_ARX_HatchingDragon_PickUp_01", _Var5, _Var3, _Var4);
+
+IF
+TextEventSet("TestDialog_SexScene")
+THEN
+ProcForceStopDialog(CHARACTERGUID_S_Player_RedPrince_a26a1efb-cdc8-4cf3-a7b2-b2f9544add6f);
+TeleportTo(CHARACTERGUID_S_Player_RedPrince_a26a1efb-cdc8-4cf3-a7b2-b2f9544add6f, TRIGGERGUID_S_ARX_HorrorSleep_SunSet_Seduction_RedPrinceT_7ca76e89-bbe4-42ed-b443-e66364d2af30);
+TeleportTo(CHARACTERGUID_S_GLO_RedPrincess_050fbbf9-3fc9-40cd-9cbb-43b4b3754a5e, TRIGGERGUID_S_ARX_HorrorSleep_SunSet_Seduction_RePrincessT_3ac75454-d9b0-4543-94fa-c1624abdef51);
+SetHasDialog(CHARACTERGUID_S_GLO_RedPrincess_050fbbf9-3fc9-40cd-9cbb-43b4b3754a5e, 1);
+CharacterUseItem(CHARACTERGUID_S_GLO_RedPrincess_050fbbf9-3fc9-40cd-9cbb-43b4b3754a5e, ITEMGUID_S_ARX_HorrorSleep_SunSet_Seduction_Bed_f6fd80e6-cbe6-4bde-acb2-ee7817ee230f, "");
+Proc_StartDialog(0, "ARX_HorrorSleep_Sunset_RedPrincess_SexScene", CHARACTERGUID_S_GLO_RedPrincess_050fbbf9-3fc9-40cd-9cbb-43b4b3754a5e, ITEMGUID_S_HorrorSleep_Sunset_StartSeduction_Sunset_CameraHelper_2bd6c4ed-a39c-4038-919a-e74fe7902daa, CHARACTERGUID_S_Player_RedPrince_a26a1efb-cdc8-4cf3-a7b2-b2f9544add6f);
+TeleportTo(ITEMGUID_S_HorrorSleep_Sunset_StartSeduction_Sunset_CameraHelper_2bd6c4ed-a39c-4038-919a-e74fe7902daa, CHARACTERGUID_S_GLO_RedPrincess_050fbbf9-3fc9-40cd-9cbb-43b4b3754a5e);
+
+IF
+DialogEnded("ARX_LizardPrincess_Ghost", (INTEGER)_Var1)
+AND
+DB_DialogNPCs(_Var1, CHARACTERGUID_S_ARX_LizardPrincess_Ghost_00b34f9f-b905-4a4f-a9b4-d3457da8da25, _)
+AND
+ObjectGetFlag(CHARACTERGUID_S_ARX_LizardPrincess_Ghost_00b34f9f-b905-4a4f-a9b4-d3457da8da25, "ARX_LizardPrincess_Ghost_GodKingVanish", 1)
+AND
+GetPosition(CHARACTERGUID_S_ARX_LizardPrincess_Ghost_00b34f9f-b905-4a4f-a9b4-d3457da8da25, _Var3, _Var4, _Var5)
+THEN
+PlayEffectAtPosition("RS3_FX_GP_ScriptedEvent_ARX_Prison_Windego_Ghost_GodKingVanish_01", _Var3, _Var4, _Var5);
+
+IF
+ObjectFlagSet("ARX_LizardPrincess_Ghost_GodKingVanish", (GUIDSTRING)_Var1, (INTEGER)_Var2)
+THEN
+ApplyStatus(_Var1, "FEAR", -1, 1);
+
+IF
+ObjectFlagSet("ARX_HorrorSleep_Sunset_PlayerStartCombat", (CHARACTERGUID)_Var1, (INTEGER)_Var2)
+AND
+_Var1 != CHARACTERGUID_S_Player_RedPrince_a26a1efb-cdc8-4cf3-a7b2-b2f9544add6f
+THEN
+DB_ARX_HorrorSleep_Sunset_PrincessAttacked(_Var1);
+
+IF
+AttackedByObject((GUIDSTRING)_Var1, (CHARACTERGUID)_Var2, (GUIDSTRING)_Var3, _, _)
+AND
+DB_ARX_HorrorSleep_Sunset_EggAndPrincess(_Var1)
+AND
+DB_IsPlayer(_Var2)
+AND
+_Var2 != CHARACTERGUID_S_Player_RedPrince_a26a1efb-cdc8-4cf3-a7b2-b2f9544add6f
+AND
+CharacterIsInCombat(CHARACTERGUID_S_GLO_RedPrincess_050fbbf9-3fc9-40cd-9cbb-43b4b3754a5e, 0)
+THEN
+DB_ARX_HorrorSleep_Sunset_PrincessAttacked(_Var2);
+
+IF
+CombatStarted((INTEGER)_Var1)
+AND
+DB_CombatCharacters(CHARACTERGUID_S_GLO_RedPrincess_050fbbf9-3fc9-40cd-9cbb-43b4b3754a5e, _Var1)
+AND
+DB_ARX_HorrorSleep_Sunset_PrincessAttacked(_Var2)
+AND
+DB_CombatCharacters(_Var2, _Var1)
+THEN
+NOT DB_ARX_HorrorSleep_Sunset_PrincessAttacked(_Var2);
+DB_ARX_HorrorSleep_Sunset_PrincessAttacked(_Var2, _Var1);
+
+IF
+ObjectEnteredCombat(CHARACTERGUID_S_Player_RedPrince_a26a1efb-cdc8-4cf3-a7b2-b2f9544add6f, (INTEGER)_Var1)
+AND
+DB_CombatCharacters(CHARACTERGUID_S_GLO_RedPrincess_050fbbf9-3fc9-40cd-9cbb-43b4b3754a5e, _Var1)
+AND
+qry__ARX_HorrorSleep_Sunset_RP_CheckIfShouldLeave_TheParty(_Var1)
+THEN
+proc_ARX_HorrorSleep_Sunset_RP_JoinedCombatAgainstSadha(_Var1);
+
+IF
+CombatStarted((INTEGER)_Var1)
+AND
+DB_CombatCharacters(CHARACTERGUID_S_GLO_RedPrincess_050fbbf9-3fc9-40cd-9cbb-43b4b3754a5e, _Var1)
+AND
+DB_CombatCharacters(CHARACTERGUID_S_Player_RedPrince_a26a1efb-cdc8-4cf3-a7b2-b2f9544add6f, _Var1)
+AND
+qry__ARX_HorrorSleep_Sunset_RP_CheckIfShouldLeave_TheParty(_Var1)
+THEN
+proc_ARX_HorrorSleep_Sunset_RP_JoinedCombatAgainstSadha(_Var1);
+
+QRY
+qry__ARX_HorrorSleep_Sunset_RP_CheckIfShouldLeave_TheParty((INTEGER)_Var1)
+AND
+GlobalGetFlag("ARX_HorrorSleep_Sunset_RedPrince_LeftParty", 0)
+AND NOT
+DB_Avatars(CHARACTERGUID_S_Player_RedPrince_a26a1efb-cdc8-4cf3-a7b2-b2f9544add6f)
+AND
+DB_ARX_HorrorSleep_Sunset_PrincessAttacked(_Var2, _Var1)
+THEN
+DB_noop(1);
+
+IF
+ObjectSwitchedCombat((GUIDSTRING)_Var1, (INTEGER)_Var2, (INTEGER)_Var3)
+AND
+DB_ARX_HorrorSleep_Sunset_PrincessAttacked(_Var4, _Var2)
+THEN
+NOT DB_ARX_HorrorSleep_Sunset_PrincessAttacked(_Var4, _Var2);
+DB_ARX_HorrorSleep_Sunset_PrincessAttacked(_Var4, _Var3);
+
+IF
+CombatEnded((INTEGER)_Var1)
+AND
+DB_ARX_HorrorSleep_Sunset_PrincessAttacked(_Var2, _Var1)
+THEN
+NOT DB_ARX_HorrorSleep_Sunset_PrincessAttacked(_Var2, _Var1);
+
+PROC
+proc_ARX_HorrorSleep_Sunset_RP_JoinedCombatAgainstSadha((INTEGER)_Var1)
+THEN
+proc_ARX_HorrorSleep_Sunset_PlayedHatchedTheEgg_RedPrince_Hostile();
+
+PROC
+proc_ARX_HorrorSleep_Sunset_RP_JoinedCombatAgainstSadha((INTEGER)_Var1)
+AND
+DB_CombatCharacters(CHARACTERGUID_S_GLO_RedPrincess_050fbbf9-3fc9-40cd-9cbb-43b4b3754a5e, _Var1)
+AND
+DB_CombatCharacters(CHARACTERGUID_S_Player_RedPrince_a26a1efb-cdc8-4cf3-a7b2-b2f9544add6f, _Var1)
+AND
+DB_IsPlayer(_Var2)
+AND
+DB_CombatCharacters(_Var2, _Var1)
+AND
+_Var2 != CHARACTERGUID_S_Player_RedPrince_a26a1efb-cdc8-4cf3-a7b2-b2f9544add6f
+THEN
+UserSetFlag(_Var2, "QuestUpdate_FTJ_COM_RedPrince_HorrorSleepSunset_PrinceAttack_AttackedSadha");
+
+IF
+ObjectFlagSet("GLO_GivePromiseBreaker", CHARACTERGUID_S_GLO_RedPrincess_050fbbf9-3fc9-40cd-9cbb-43b4b3754a5e, _)
+THEN
+GlobalSetFlag("GLO_RedPrincess_GivenPromiseBreaker");
+
+IF
+DialogEnded("ARX_LizardPrincess_COM_RedPrince", _)
+AND
+DB_GlobalFlag("ARX_LizardPrincess_RedPrinceSidePrincess")
+THEN
+proc_ARX_HorrorSleep_Sunset_PlayedHatchedTheEgg_RedPrince_Hostile();
+
+IF
+DialogEnded("ARX_HorrorSleep_Sunset_Newt_COM_RedPrince", _)
+AND
+DB_GlobalFlag("ARX_HorrorSleep_Sunset_PlayedHatchedTheEgg_RedPrince_Hostile")
+THEN
+proc_ARX_HorrorSleep_Sunset_PlayedHatchedTheEgg_RedPrince_Hostile();
+
+IF
+DialogEnded("ARX_HorrorSleep_Sunset_Newt", _)
+AND
+DB_GlobalFlag("ARX_HorrorSleep_Sunset_PlayedHatchedTheEgg_RedPrince_Hostile")
+THEN
+proc_ARX_HorrorSleep_Sunset_PlayedHatchedTheEgg_RedPrince_Hostile();
+
+PROC
+proc_ARX_HorrorSleep_Sunset_PlayedHatchedTheEgg_RedPrince_Hostile()
+THEN
+GlobalSetFlag("ARX_HorrorSleep_Sunset_RedPrince_LeftParty");
+PROC_Origins_CompanionLeavePermanently(CHARACTERGUID_S_Player_RedPrince_a26a1efb-cdc8-4cf3-a7b2-b2f9544add6f);
+SetFaction(CHARACTERGUID_S_Player_RedPrince_a26a1efb-cdc8-4cf3-a7b2-b2f9544add6f, "ARX_RedPrincess");
+CharacterSetRelationFactionToFaction("ARX_RedPrincess", "Hero", 0);
+CharacterSetRelationFactionToFaction("Hero", "ARX_RedPrincess", 0);
+CharacterSetRelationFactionToFaction("ARX_RedPrincess", "Companion", 0);
+CharacterSetRelationFactionToFaction("Companion", "ARX_RedPrincess", 0);
+Proc_StartDialog(1, "ARX_VB_HorrorSleep_Sunset_RedPrinceLeftParty", S_Player_RedPrince_a26a1efb-cdc8-4cf3-a7b2-b2f9544add6f);
+
+IF
+CharacterDying(CHARACTERGUID_S_GLO_RedPrincess_050fbbf9-3fc9-40cd-9cbb-43b4b3754a5e)
+THEN
+GlobalSetFlag("ARX_RedPrincessKilled");
+
+IF
+GlobalFlagSet("ARX_LizardPrincess_HorrorSleep_Sunet_GotPregnant")
+THEN
+GlobalSetFlag("RC_RedPrincessPregnantAfterRC");
+
+IF
+DB_HostileToPlayerGroup(CHARACTERGUID_S_ARX_HorrorSleep_Sunset_Newt_1f46750f-1d62-4676-aaa7-9ec226c96428, CHARACTERGUID_S_Player_RedPrince_a26a1efb-cdc8-4cf3-a7b2-b2f9544add6f)
+AND NOT
+DB_Avatars(CHARACTERGUID_S_Player_RedPrince_a26a1efb-cdc8-4cf3-a7b2-b2f9544add6f)
+THEN
+UserSetFlag(CHARACTERGUID_S_Player_RedPrince_a26a1efb-cdc8-4cf3-a7b2-b2f9544add6f, "QuestUpdate_FTJ_COM_RedPrince_Princess_EggDragonHostile");
+
+IF
+DB_HostileToPlayerGroup(CHARACTERGUID_S_ARX_HorrorSleep_Sunset_Newt_1f46750f-1d62-4676-aaa7-9ec226c96428, CHARACTERGUID_S_Player_RedPrince_a26a1efb-cdc8-4cf3-a7b2-b2f9544add6f)
+AND
+DB_Avatars(CHARACTERGUID_S_Player_RedPrince_a26a1efb-cdc8-4cf3-a7b2-b2f9544add6f)
+THEN
+ObjectSetFlag(CHARACTERGUID_S_Player_RedPrince_a26a1efb-cdc8-4cf3-a7b2-b2f9544add6f, "QuestUpdate_FTJ_FTJ_OriginRedPrince_Princess_EggDragonHostile");
+
+IF
+SavegameLoaded((INTEGER)_Var1, (INTEGER)_Var2, (INTEGER)_Var3, (INTEGER)_Var4)
+AND
+QRY_VersionIsOlderThan(_Var1, _Var2, _Var3, _Var4, 3, 6, 5, 0)
+THEN
+DB_ARX_HorrorSleep_Sunset_EggAndPrincess(ITEMGUID_S_ARX_HorrorSleep_Sunset_DragonEgg_08648767-508f-866e-2852-2558d0b3b041);
+DB_ARX_HorrorSleep_Sunset_EggAndPrincess(CHARACTERGUID_S_GLO_RedPrincess_050fbbf9-3fc9-40cd-9cbb-43b4b3754a5e);
+
+
+EXITSECTION
+ENDEXITSECTION
+
+ParentTargetEdge "ARX"

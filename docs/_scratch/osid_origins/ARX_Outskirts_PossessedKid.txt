@@ -1,0 +1,506 @@
+Version 1
+SubGoalCombiner SGC_AND
+
+INITSECTION
+SetOnStage(CHARACTERGUID_S_ARX_Outskirts_PossessedKid_BloodDemons_Tiger_4e0ae8f0-e5c2-425c-989e-0f0a450b62e3, 0);
+SetOnStage(CHARACTERGUID_S_ARX_Outskirts_PossessedKid_Ghost_69ab6522-3e19-4c88-acf5-16313f5a19b4, 0);
+DB_GhostIgnoreCower(CHARACTERGUID_S_ARX_Outskirts_PossessedKid_Ghost_69ab6522-3e19-4c88-acf5-16313f5a19b4);
+DB_ARX_PossessedKid_DemonSummons(CHARACTERGUID_S_ARX_Outskirts_PossessedKid_Demon_Summon_000_d82f6dbe-0c63-42dc-9d7e-44845d9159fe);
+DB_ARX_PossessedKid_DemonSummons(CHARACTERGUID_S_ARX_Outskirts_PossessedKid_Demon_Summon_001_da2daf78-5c1c-445f-b79b-ab4d1df5b5aa);
+DB_ARX_PossessedKid_DemonSummons(CHARACTERGUID_S_ARX_Outskirts_PossessedKid_Demon_Summon_002_2696e8a6-f62f-4b10-93e6-32914ebbb735);
+DB_ARX_PossessedKid_SetUp(S_ARX_Outskirts_PossessedKid_Corpse_000_b4c64662-ca17-419e-a47c-4f8becf27373);
+DB_ARX_PossessedKid_SetUp(S_ARX_Outskirts_PossessedKid_Corpse_001_ae1e313e-64dc-4e63-9a13-37aa42001785);
+DB_ARX_PossessedKid_SetUp(S_ARX_Outskirts_PossessedKid_Corpse_002_91767d75-6745-4868-987f-8e1998726b6e);
+DB_ARX_PossessedKid_SetUp(S_ARX_Outskirts_PossessedKid_Backpack_c493a097-ed1c-4e31-a533-9b6c8825ddce);
+DB_ARX_PossessedKid_StartingEntry(0, "HeardAboutKid", "QuestUpdate_ARX_Outskirts_PossessedKid_HeardAboutKid");
+DB_ARX_PossessedKid_StartingEntry(1, "HeardAboutKid", "QuestUpdate_ARX_Outskirts_PossessedKid_HeardAboutKidRCBI");
+DB_ARX_PossessedKid_StartingEntry(0, "FoundKid", "QuestUpdate_ARX_Outskirts_PossessedKid_FoundKid");
+DB_ARX_PossessedKid_StartingEntry(1, "FoundKid", "QuestUpdate_ARX_Outskirts_PossessedKid_FoundKidRCBI");
+DB_ARX_PossessedKid_StartingEntry(0, "LearnedName", "QuestUpdate_ARX_Outskirts_PossessedKid_LearnedName");
+DB_ARX_PossessedKid_StartingEntry(1, "LearnedName", "QuestUpdate_ARX_Outskirts_PossessedKid_LearnedNameRCBI");
+DB_ARX_QuestDef_DeadCharacterUpdates(CHARACTERGUID_S_ARX_Outskirts_PossessedKid_Demon_4e0ae8f0-e5c2-425c-989e-0f0a450b62e3, "QuestUpdate_ARX_Outskirts_PossessedKid_DemonDead");
+DB_ARX_PossessedKid_GirlNameVBConditions("ARX_PossessedKid_ReadSchoolRecords");
+DB_ARX_PossessedKid_GirlNameVBConditions("QuestUpdate_RC_BI_TheVaultKid_TookKid");
+DB_ARX_PossessedKid_FallbackEnemy(CHARACTERGUID_S_ARX_PossessedKid_Fallback_Mage_01_951fa007-6cbb-4242-9c13-390627bd8537);
+DB_ARX_PossessedKid_FallbackEnemy(CHARACTERGUID_S_ARX_PossessedKid_Fallback_Mage_02_c6fed36c-ff36-4063-8971-77ea5fc46d6e);
+DB_ARX_PossessedKid_FallbackEnemy(CHARACTERGUID_S_ARX_PossessedKid_Fallback_Melee_01_abd75ed7-2d6f-44ce-aa74-697810e1c7ef);
+DB_ARX_PossessedKid_FallbackEnemy(CHARACTERGUID_S_ARX_PossessedKid_Fallback_Healer_01_2854905d-5f9f-45a4-a897-938364e158e8);
+DB_ARX_PossessedKid_FallbackEnemy(CHARACTERGUID_S_ARX_PossessedKid_Fallback_Ranger_01_afae34f1-57fc-46a0-9d23-d38d8610e7b5);
+Proc_ARX_Outskirts_PossessedKid_CheckSetUp();
+
+KBSECTION
+IF
+TextEventSet("ArxPossessedKid")
+THEN
+DB_Children(CHARACTERGUID_S_RC_BI_Vault_PosessedPerson_002_1bfd9e78-846f-4f24-82db-6ebb48ddc203);
+ObjectSetFlag(CHARACTERGUID_S_RC_BI_Vault_PosessedPerson_002_1bfd9e78-846f-4f24-82db-6ebb48ddc203, "RC_BI_Vault_002_Join");
+SetOnStage(ITEMGUID_S_ARX_Outskirts_PossessedKid_Demon_Helper_e8aebac4-889d-4a80-b539-0d5a3a65b341, 1);
+SetOnStage(ITEMGUID_S_ARX_Outskirts_PossessedKid_SchoolPage_39e0321b-28e3-4ac5-8b02-a1b37adb0232, 1);
+Proc_ARX_Outskirts_PossessedKid_SetUp(1);
+SetOnStage(S_ARX_Outskirts_PossessedKid_Corpse_000_b4c64662-ca17-419e-a47c-4f8becf27373, 1);
+SetOnStage(S_ARX_Outskirts_PossessedKid_Corpse_001_ae1e313e-64dc-4e63-9a13-37aa42001785, 1);
+SetOnStage(S_ARX_Outskirts_PossessedKid_Corpse_002_91767d75-6745-4868-987f-8e1998726b6e, 1);
+SetOnStage(S_ARX_Outskirts_PossessedKid_Backpack_c493a097-ed1c-4e31-a533-9b6c8825ddce, 1);
+DB_ARX_PossessedKid_StartingEntry(0, "HeardAboutKid", "QuestUpdate_ARX_Outskirts_PossessedKid_HeardAboutKid");
+DB_ARX_PossessedKid_StartingEntry(1, "HeardAboutKid", "QuestUpdate_ARX_Outskirts_PossessedKid_HeardAboutKidRCBI");
+DB_ARX_PossessedKid_StartingEntry(0, "FoundKid", "QuestUpdate_ARX_Outskirts_PossessedKid_FoundKid");
+DB_ARX_PossessedKid_StartingEntry(1, "FoundKid", "QuestUpdate_ARX_Outskirts_PossessedKid_FoundKidRCBI");
+DB_ARX_PossessedKid_StartingEntry(0, "LearnedName", "QuestUpdate_ARX_Outskirts_PossessedKid_LearnedName");
+DB_ARX_PossessedKid_StartingEntry(1, "LearnedName", "QuestUpdate_ARX_Outskirts_PossessedKid_LearnedNameRCBI");
+DB_ARX_QuestDef_DeadCharacterUpdates(CHARACTERGUID_S_ARX_Outskirts_PossessedKid_Demon_4e0ae8f0-e5c2-425c-989e-0f0a450b62e3, "QuestUpdate_ARX_Outskirts_PossessedKid_DemonDead");
+
+IF
+DB_ARX_PossessedKid_DemonSummons(_Var1)
+THEN
+SetOnStage(_Var1, 0);
+
+PROC
+Proc_ARX_Outskirts_PossessedKid_CheckSetUp()
+AND
+ObjectGetFlag(CHARACTERGUID_S_RC_BI_Vault_PosessedPerson_002_1bfd9e78-846f-4f24-82db-6ebb48ddc203, "RC_BI_Vault_002_Join", _Var1)
+THEN
+Proc_ARX_Outskirts_PossessedKid_SetUp(_Var1);
+
+PROC
+Proc_ARX_Outskirts_PossessedKid_SetUp(1)
+THEN
+GlobalSetFlag("ARX_PossessedKid_KidIsInArx");
+PROC_RemoveDialogFromCharacter(CHARACTERGUID_S_RC_BI_Vault_PosessedPerson_002_1bfd9e78-846f-4f24-82db-6ebb48ddc203);
+TeleportTo(CHARACTERGUID_S_RC_BI_Vault_PosessedPerson_002_1bfd9e78-846f-4f24-82db-6ebb48ddc203, TRIGGERGUID_S_ARX_Outskirts_PossessedKid_Point_7e3c62bc-1170-4894-94cb-82b40fff475c);
+SetHasDialog(CHARACTERGUID_S_RC_BI_Vault_PosessedPerson_002_1bfd9e78-846f-4f24-82db-6ebb48ddc203, 1);
+ClearVarObject(CHARACTERGUID_S_RC_BI_Vault_PosessedPerson_002_1bfd9e78-846f-4f24-82db-6ebb48ddc203, "StatusOnInit");
+CharacterSetReactionPriority(CHARACTERGUID_S_RC_BI_Vault_PosessedPerson_002_1bfd9e78-846f-4f24-82db-6ebb48ddc203, "ARX_PossessedKid_InnerFight", 1100);
+ApplyStatus(CHARACTERGUID_S_RC_BI_Vault_PosessedPerson_002_1bfd9e78-846f-4f24-82db-6ebb48ddc203, "POSSESSED", -1, 1);
+ProcTriggerRegisterForPlayers(TRIGGERGUID_S_ARX_Outskirts_PossessedKid_BoxTrigger_77d44bea-ae89-4b3f-937d-2d86cec61e32);
+CharacterTransform(CHARACTERGUID_S_RC_BI_Vault_PosessedPerson_002_1bfd9e78-846f-4f24-82db-6ebb48ddc203, "ARX_QUEST_PossessedKid_Female_Children_c9d454fa-4bf9-4619-9f67-c18357bb1445", 0, 0, 1, 0, 0, 0, 0);
+CharacterSetCanTrade(CHARACTERGUID_S_RC_BI_Vault_PosessedPerson_002_1bfd9e78-846f-4f24-82db-6ebb48ddc203, 0);
+CharacterLevelUpTo(CHARACTERGUID_S_RC_BI_Vault_PosessedPerson_002_1bfd9e78-846f-4f24-82db-6ebb48ddc203, 18);
+DB_Ghosts(CHARACTERGUID_S_RC_BI_Vault_PosessedPerson_002_1bfd9e78-846f-4f24-82db-6ebb48ddc203, CHARACTERGUID_S_ARX_Outskirts_PossessedKid_Ghost_69ab6522-3e19-4c88-acf5-16313f5a19b4, "ARX_Outskirts_PossessedKid_ChildGhost");
+
+PROC
+Proc_ARX_Outskirts_PossessedKid_SetUp(1)
+AND
+HasAppliedStatus(CHARACTERGUID_S_RC_BI_Vault_PosessedPerson_002_1bfd9e78-846f-4f24-82db-6ebb48ddc203, "SLEEPING", 1)
+THEN
+RemoveStatus(CHARACTERGUID_S_RC_BI_Vault_PosessedPerson_002_1bfd9e78-846f-4f24-82db-6ebb48ddc203, "SLEEPING");
+
+PROC
+Proc_ARX_Outskirts_PossessedKid_SetUp(1)
+AND
+DB_ARX_PossessedKid_FallbackEnemy(_Var1)
+THEN
+SetOnStage(_Var1, 0);
+
+PROC
+Proc_ARX_Outskirts_PossessedKid_SetUp(0)
+AND
+DB_ARX_PossessedKid_SetUp(_Var1)
+THEN
+NOT DB_ARX_PossessedKid_SetUp(_Var1);
+SetOnStage(_Var1, 0);
+
+PROC
+Proc_ARX_Outskirts_PossessedKid_SetUp(0)
+AND
+DB_ARX_PossessedKid_StartingEntry(_Var1, _Var2, _Var3)
+THEN
+NOT DB_ARX_PossessedKid_StartingEntry(_Var1, _Var2, _Var3);
+
+PROC
+Proc_ARX_Outskirts_PossessedKid_SetUp(0)
+THEN
+SetOnStage(ITEMGUID_S_ARX_Outskirts_PossessedKid_Demon_Helper_e8aebac4-889d-4a80-b539-0d5a3a65b341, 0);
+SetOnStage(ITEMGUID_S_ARX_Outskirts_PossessedKid_SchoolPage_39e0321b-28e3-4ac5-8b02-a1b37adb0232, 0);
+SetStoryEvent(CHARACTERGUID_S_RC_BI_Vault_PosessedPerson_002_1bfd9e78-846f-4f24-82db-6ebb48ddc203, "ARX_PossessedKid_ClearBlood");
+NOT DB_ARX_QuestDef_DeadCharacterUpdates(CHARACTERGUID_S_ARX_Outskirts_PossessedKid_Demon_4e0ae8f0-e5c2-425c-989e-0f0a450b62e3, "QuestUpdate_ARX_Outskirts_PossessedKid_DemonDead");
+
+IF
+ObjectFlagSet("ARX_Outskirts_PossessedKid_SetUpdate_HeardAboutKid", (CHARACTERGUID)_Var1, _)
+AND
+PartyGetFlag(_Var1, "ARX_Outskirts_PossessedKid_SetUpdate_FoundKid", 0)
+THEN
+Proc_ARX_Outskirts_PossessedKid_StartQuest(_Var1, "HeardAboutKid");
+
+IF
+ObjectFlagSet("ARX_Outskirts_PossessedKid_SetUpdate_FoundKid", (CHARACTERGUID)_Var1, _)
+THEN
+Proc_ARX_Outskirts_PossessedKid_StartQuest(_Var1, "FoundKid");
+
+PROC
+Proc_ARX_Outskirts_PossessedKid_StartQuest((CHARACTERGUID)_Var1, (STRING)_Var2)
+AND
+DB_ARX_PossessedKid_StartingEntry(_Var3, _Var2, _Var4)
+AND
+PartyGetFlag(_Var1, "QuestUpdate_RC_BI_TheVaultKid_TookKid", _Var3)
+THEN
+PartySetFlag(_Var1, _Var4);
+
+PROC
+Proc_ARX_DivineTomb_PoB_CharacterAccepted((CHARACTERGUID)_Var1)
+THEN
+PartySetFlag(_Var1, "QuestUpdate_ARX_Outskirts_PossessedKid_PassedPoB");
+
+IF
+GameBookInterfaceClosed(ITEMGUID_S_ARX_Neighborhood_HouseSchool_SchoolRecords_b5ea393e-c431-8a95-3286-cabfeb9d9518, (CHARACTERGUID)_Var1)
+THEN
+PartySetFlag(_Var1, "ARX_PossessedKid_ReadSchoolRecords");
+
+IF
+GameBookInterfaceClosed(ITEMGUID_S_ARX_Outskirts_PossessedKid_SchoolPage_39e0321b-28e3-4ac5-8b02-a1b37adb0232, (CHARACTERGUID)_Var1)
+AND
+DB_ARX_PossessedKid_GirlNameVBConditions(_Var2)
+AND
+PartyGetFlag(_Var1, _Var2, 1)
+AND
+QueryOnlyOnce("ARX_PossessedKid_LearnedNameVB")
+THEN
+StartVoiceBark("ARX_Outskirts_PossessedKid_VB_MissingKid", _Var1);
+
+IF
+GameBookInterfaceClosed(ITEMGUID_S_ARX_Outskirts_PossessedKid_SchoolPage_39e0321b-28e3-4ac5-8b02-a1b37adb0232, (CHARACTERGUID)_Var1)
+THEN
+PartySetFlag(_Var1, "ARX_PossessedKid_LearnedName");
+
+IF
+GameBookInterfaceClosed(ITEMGUID_S_ARX_Outskirts_PossessedKid_SchoolPage_39e0321b-28e3-4ac5-8b02-a1b37adb0232, (CHARACTERGUID)_Var1)
+AND
+PartyGetFlag(_Var1, "ARX_PossessedKid_KnowAboutDemon", 1)
+AND
+PartyGetFlag(_Var1, "QuestUpdate_RC_BI_TheVaultKid_TookKid", _Var2)
+AND
+DB_ARX_PossessedKid_StartingEntry(_Var2, "LearnedName", _Var3)
+THEN
+PartySetFlag(_Var1, _Var3);
+
+IF
+DialogStartRequested(CHARACTERGUID_S_RC_BI_Vault_PosessedPerson_002_1bfd9e78-846f-4f24-82db-6ebb48ddc203, (GUIDSTRING)_Var1)
+AND NOT
+DB_GlobalFlag("ARX_PossessedKid_DemonReleased")
+AND
+QRY_SpeakerIsAvailable(CHARACTERGUID_S_RC_BI_Vault_PosessedPerson_002_1bfd9e78-846f-4f24-82db-6ebb48ddc203)
+THEN
+DialogRequestStop(_Var1);
+TeleportTo(ITEMGUID_S_ARX_Outskirts_PossessedKid_Demon_Helper_e8aebac4-889d-4a80-b539-0d5a3a65b341, CHARACTERGUID_S_RC_BI_Vault_PosessedPerson_002_1bfd9e78-846f-4f24-82db-6ebb48ddc203);
+Proc_StartDialog(0, "ARX_Outskirts_PossessedKid_Demon", S_ARX_Outskirts_PossessedKid_Demon_Helper_e8aebac4-889d-4a80-b539-0d5a3a65b341, S_RC_BI_Vault_PosessedPerson_002_1bfd9e78-846f-4f24-82db-6ebb48ddc203, _Var1);
+
+IF
+CharacterTeleported(CHARACTERGUID_S_RC_BI_Vault_PosessedPerson_002_1bfd9e78-846f-4f24-82db-6ebb48ddc203, _, _, _, _, _, _, _, _)
+AND NOT
+DB_GlobalFlag("ARX_PossessedKid_DemonReleased")
+THEN
+TeleportTo(ITEMGUID_S_ARX_Outskirts_PossessedKid_Demon_Helper_e8aebac4-889d-4a80-b539-0d5a3a65b341, CHARACTERGUID_S_RC_BI_Vault_PosessedPerson_002_1bfd9e78-846f-4f24-82db-6ebb48ddc203);
+
+IF
+ObjectFlagSet("ARX_PossessedKid_KidSuffer", (GUIDSTRING)_Var1, (INTEGER)_Var2)
+THEN
+ObjectClearFlag(_Var1, "ARX_PossessedKid_KidSuffer", _Var2);
+PlayEffect(_Var1, "RS3_FX_GP_ScriptedEvent_RC_BI_Vault_Parasite_02");
+PlayAnimation(_Var1, "Distress_01");
+
+IF
+ObjectFlagSet("ARX_PossessedKid_WalkToPlayer", (CHARACTERGUID)_Var1, _)
+AND NOT
+DB_ARX_PossessedKid_GoingToAttack(_)
+AND
+GetDistanceTo(CHARACTERGUID_S_RC_BI_Vault_PosessedPerson_002_1bfd9e78-846f-4f24-82db-6ebb48ddc203, _Var1, _Var4)
+AND
+_Var4 < 15
+THEN
+ObjectClearFlag(_Var1, "ARX_PossessedKid_WalkToPlayer");
+DB_ARX_PossessedKid_GoingToAttack(_Var1);
+CharacterMoveTo(CHARACTERGUID_S_RC_BI_Vault_PosessedPerson_002_1bfd9e78-846f-4f24-82db-6ebb48ddc203, _Var1, 0, "ARX_PossessedKid_WalkedToPlayer", 0);
+
+IF
+StoryEvent(CHARACTERGUID_S_RC_BI_Vault_PosessedPerson_002_1bfd9e78-846f-4f24-82db-6ebb48ddc203, "ARX_PossessedKid_WalkedToPlayer")
+AND
+DB_ARX_PossessedKid_GoingToAttack(_Var1)
+THEN
+NOT DB_ARX_PossessedKid_GoingToAttack(_Var1);
+PlayEffect(CHARACTERGUID_S_RC_BI_Vault_PosessedPerson_002_1bfd9e78-846f-4f24-82db-6ebb48ddc203, "RS3_FX_GP_ScriptedEvent_RC_BI_Vault_Parasite_02");
+PlayAnimation(_Var1, "hit");
+PlayEffect(_Var1, "RS3_FX_GP_Combat_Hit_Blood_01_Small");
+PlayAnimation(CHARACTERGUID_S_RC_BI_Vault_PosessedPerson_002_1bfd9e78-846f-4f24-82db-6ebb48ddc203, "Crying_01");
+PartySetFlag(_Var1, "QuestUpdate_ARX_Outskirts_PossessedKid_KidAttack");
+
+IF
+DialogEnded("ARX_Outskirts_PossessedKid_Demon", _)
+AND
+DB_ARX_PossessedKid_GoingToAttack(_Var2)
+THEN
+CharacterPurgeQueue(CHARACTERGUID_S_RC_BI_Vault_PosessedPerson_002_1bfd9e78-846f-4f24-82db-6ebb48ddc203);
+NOT DB_ARX_PossessedKid_GoingToAttack(_Var2);
+
+IF
+ObjectFlagSet("ARX_PossessedKid_DemonPossessed", (CHARACTERGUID)_Var1, _)
+AND
+QueryOnlyOnce("ARX_PossessedKid_ReleaseDemon")
+THEN
+Proc_ARX_PossessedKid_KidIsSaved();
+ApplyStatus(_Var1, "POSSESSED", -1, 1);
+DB_ARX_PossessedKid_PossessedPlayer(_Var1);
+GlobalSetFlag("ARX_PossessedKid_DemonPossessedPlayer");
+
+IF
+DialogEnded("ARX_Outskirts_PossessedKid_Demon", _)
+AND
+DB_ARX_PossessedKid_PossessedPlayer(_Var2)
+AND
+GetPosition(CHARACTERGUID_S_RC_BI_Vault_PosessedPerson_002_1bfd9e78-846f-4f24-82db-6ebb48ddc203, _Var3, _Var4, _Var5)
+THEN
+GlobalSetFlag("ARX_PossessedKid_DemonReleased");
+PlayEffectAtPosition("RS3_FX_GP_ScriptedEvent_RC_BI_Vault_Parasite_01", _Var3, _Var4, _Var5);
+ProcObjectTimer(_Var2, "ARX_PossessedKid_GetPossessed", 1000);
+PartySetFlag(_Var2, "QuestUpdate_ARX_Outskirts_PossessedKid_Possessed");
+
+PROC
+ProcObjectTimerFinished((CHARACTERGUID)_Var1, "ARX_PossessedKid_GetPossessed")
+THEN
+PlayEffect(_Var1, "RS3_FX_GP_ScriptedEvent_RC_BI_Vault_Parasite_02");
+Proc_ARX_PossessedKid_PossessPlayer(_Var1);
+
+PROC
+Proc_ARX_PossessedKid_PossessPlayer((CHARACTERGUID)_Var1)
+AND
+HasAppliedStatus(_Var1, "POSSESSED", 1)
+THEN
+RemoveStatus(_Var1, "POSSESSED");
+
+PROC
+Proc_ARX_PossessedKid_PossessPlayer((CHARACTERGUID)_Var1)
+THEN
+ApplyStatus(_Var1, "MADNESS", -1, 1);
+ApplyStatus(_Var1, "PARASITIC_HEART", -1, 1);
+ProcCheckGameOver();
+
+IF
+CharacterDied((CHARACTERGUID)_Var1)
+AND
+DB_ARX_PossessedKid_PossessedPlayer(_Var1)
+AND
+GetPosition(_Var1, _Var2, _Var3, _Var4)
+THEN
+NOT DB_ARX_PossessedKid_PossessedPlayer(_Var1);
+PlayEffectAtPosition("RS3_FX_GP_ScriptedEvent_RC_BI_Vault_Parasite_01", _Var2, _Var3, _Var4);
+CharacterAppearAtPosition(CHARACTERGUID_S_ARX_Outskirts_PossessedKid_Demon_4e0ae8f0-e5c2-425c-989e-0f0a450b62e3, _Var2, _Var3, _Var4, 1, "");
+PartySetFlag(_Var1, "QuestUpdate_ARX_Outskirts_PossessedKid_DemonOut");
+
+IF
+GlobalFlagSet("ARX_PossessedKid_KnowHerName")
+THEN
+CharacterSetCustomName(CHARACTERGUID_S_RC_BI_Vault_PosessedPerson_002_1bfd9e78-846f-4f24-82db-6ebb48ddc203, "ARX_PossessedKidName");
+CharacterSetCustomName(CHARACTERGUID_S_ARX_Outskirts_PossessedKid_Ghost_69ab6522-3e19-4c88-acf5-16313f5a19b4, "ARX_PossessedKidGhostName");
+
+PROC
+Proc_ARX_PossessedKid_SetKidName()
+AND
+DB_GlobalFlag("ARX_PossessedKid_KnowHerName")
+THEN
+CharacterSetCustomName(CHARACTERGUID_S_RC_BI_Vault_PosessedPerson_002_1bfd9e78-846f-4f24-82db-6ebb48ddc203, "ARX_PossessedKidName");
+
+IF
+AttackedByObject(CHARACTERGUID_S_RC_BI_Vault_PosessedPerson_002_1bfd9e78-846f-4f24-82db-6ebb48ddc203, (CHARACTERGUID)_Var1, _, _, _)
+AND
+DB_IsPlayer(_Var1)
+AND
+QueryOnlyOnce("ARX_PossessedKid_ReleaseDemon")
+THEN
+Proc_ARX_PossessedKid_KidIsDoomed();
+DB_ARX_PossessedKid_DoomedKid(_Var1, "QuestUpdate_ARX_Outskirts_PossessedKid_AttackedKid");
+
+IF
+GlobalFlagSet("ARX_PossessedKid_DemonReleased")
+THEN
+ProcForceStopDialog(CHARACTERGUID_S_RC_BI_Vault_PosessedPerson_002_1bfd9e78-846f-4f24-82db-6ebb48ddc203);
+SetHasDialog(CHARACTERGUID_S_RC_BI_Vault_PosessedPerson_002_1bfd9e78-846f-4f24-82db-6ebb48ddc203, 0);
+
+IF
+DialogEnded("ARX_Outskirts_PossessedKid_Demon", (INTEGER)_Var1)
+AND
+DB_DialogPlayers(_Var1, _Var2, _)
+AND
+UserGetFlag(_Var2, "ARX_PossessedKid_FailedWithName", 1)
+AND
+QueryOnlyOnce("ARX_PossessedKid_ReleaseDemon")
+THEN
+Proc_ARX_PossessedKid_KidIsDoomed();
+DB_ARX_PossessedKid_DoomedKid(_Var2, "QuestUpdate_ARX_Outskirts_PossessedKid_FailedWithName");
+
+IF
+DialogEnded("ARX_Outskirts_PossessedKid_Demon", (INTEGER)_Var1)
+AND
+DB_DialogPlayers(_Var1, _Var2, _)
+AND
+UserGetFlag(_Var2, "ARX_PossessedKid_SavedChild", 1)
+AND
+QueryOnlyOnce("ARX_PossessedKid_ReleaseDemon")
+THEN
+Proc_ARX_PossessedKid_KidIsSaved();
+Proc_ARX_PossessedKid_ReleaseDemon(_Var2);
+PartySetFlag(_Var2, "QuestUpdate_ARX_Outskirts_PossessedKid_DemonReleased");
+
+IF
+DialogEnded("ARX_Outskirts_PossessedKid_Demon", (INTEGER)_Var1)
+AND
+DB_DialogPlayers(_Var1, _Var2, _)
+AND
+UserGetFlag(_Var2, "ARX_PossessedKid_SavedChildWithName", 1)
+AND
+QueryOnlyOnce("ARX_PossessedKid_ReleaseDemon")
+THEN
+Proc_ARX_PossessedKid_KidIsSaved();
+Proc_ARX_PossessedKid_ReleaseDemon(_Var2);
+PartySetFlag(_Var2, "QuestUpdate_ARX_Outskirts_PossessedKid_DemonReleasedWithName");
+
+PROC
+Proc_ARX_PossessedKid_ReleaseDemon((CHARACTERGUID)_Var1)
+AND
+GetPosition(CHARACTERGUID_S_RC_BI_Vault_PosessedPerson_002_1bfd9e78-846f-4f24-82db-6ebb48ddc203, _Var2, _Var3, _Var4)
+THEN
+GlobalSetFlag("ARX_PossessedKid_DemonReleased");
+PlayEffectAtPosition("RS3_FX_GP_ScriptedEvent_RC_BI_Vault_Parasite_01", _Var2, _Var3, _Var4);
+CharacterAppearAtPosition(CHARACTERGUID_S_ARX_Outskirts_PossessedKid_Demon_4e0ae8f0-e5c2-425c-989e-0f0a450b62e3, _Var2, _Var3, _Var4, 1, "");
+CharacterLookAt(CHARACTERGUID_S_ARX_Outskirts_PossessedKid_Demon_4e0ae8f0-e5c2-425c-989e-0f0a450b62e3, _Var1);
+
+PROC
+Proc_ARX_PossessedKid_KidIsDoomed()
+THEN
+SetHasDialog(CHARACTERGUID_S_RC_BI_Vault_PosessedPerson_002_1bfd9e78-846f-4f24-82db-6ebb48ddc203, 0);
+PlayEffect(CHARACTERGUID_S_RC_BI_Vault_PosessedPerson_002_1bfd9e78-846f-4f24-82db-6ebb48ddc203, "RS3_FX_GP_ScriptedEvent_RC_BI_Vault_Parasite_02");
+PlayAnimation(CHARACTERGUID_S_RC_BI_Vault_PosessedPerson_002_1bfd9e78-846f-4f24-82db-6ebb48ddc203, "Distress_01", "");
+ProcObjectTimer(CHARACTERGUID_S_RC_BI_Vault_PosessedPerson_002_1bfd9e78-846f-4f24-82db-6ebb48ddc203, "ARX_PossessedKid_KidDisappear", 1600);
+
+PROC
+ProcObjectTimerFinished(CHARACTERGUID_S_RC_BI_Vault_PosessedPerson_002_1bfd9e78-846f-4f24-82db-6ebb48ddc203, "ARX_PossessedKid_KidDisappear")
+AND
+DB_ARX_PossessedKid_DoomedKid(_Var1, _Var2)
+THEN
+PlayEffect(CHARACTERGUID_S_RC_BI_Vault_PosessedPerson_002_1bfd9e78-846f-4f24-82db-6ebb48ddc203, "RS3_FX_GP_ScriptedEvent_RC_BI_Vault_Parasite_02");
+SetOnStage(CHARACTERGUID_S_RC_BI_Vault_PosessedPerson_002_1bfd9e78-846f-4f24-82db-6ebb48ddc203, 0);
+Proc_ARX_PossessedKid_ReleaseDemon(_Var1);
+PartySetFlag(_Var1, _Var2);
+NOT DB_ARX_PossessedKid_DoomedKid(_Var1, _Var2);
+
+PROC
+Proc_ARX_PossessedKid_KidIsSaved()
+AND
+HasActiveStatus(CHARACTERGUID_S_RC_BI_Vault_PosessedPerson_002_1bfd9e78-846f-4f24-82db-6ebb48ddc203, "SLEEPING", 1)
+THEN
+RemoveStatus(CHARACTERGUID_S_RC_BI_Vault_PosessedPerson_002_1bfd9e78-846f-4f24-82db-6ebb48ddc203, "SLEEPING");
+
+PROC
+Proc_ARX_PossessedKid_KidIsSaved()
+THEN
+GlobalSetFlag("ARX_PossessedKid_KidIsSaved");
+ApplyStatus(CHARACTERGUID_S_RC_BI_Vault_PosessedPerson_002_1bfd9e78-846f-4f24-82db-6ebb48ddc203, "KNOCKED_DOWN", -1, 1);
+RemoveStatus(CHARACTERGUID_S_RC_BI_Vault_PosessedPerson_002_1bfd9e78-846f-4f24-82db-6ebb48ddc203, "POSSESSED");
+Transform(CHARACTERGUID_S_RC_BI_Vault_PosessedPerson_002_1bfd9e78-846f-4f24-82db-6ebb48ddc203, "ARX_QUEST_PossessedKid_Female_Children_c9d454fa-4bf9-4619-9f67-c18357bb1445");
+CharacterTransform(CHARACTERGUID_S_RC_BI_Vault_PosessedPerson_002_1bfd9e78-846f-4f24-82db-6ebb48ddc203, "ARX_QUEST_PossessedKid_Female_Children_Saved_964ffe7d-ef3d-49bd-a0d3-d7a51d818550", 0, 0, 1, 0, 0, 0, 0);
+Proc_ARX_PossessedKid_SetKidName();
+
+IF
+CharacterDied(CHARACTERGUID_S_ARX_Outskirts_PossessedKid_Demon_4e0ae8f0-e5c2-425c-989e-0f0a450b62e3)
+AND
+DB_GlobalFlag("ARX_PossessedKid_KidIsSaved")
+THEN
+ProcDeclareCounter("ARX_PossessedKid_SourceOrbs");
+RemoveHarmfulStatuses(CHARACTERGUID_S_RC_BI_Vault_PosessedPerson_002_1bfd9e78-846f-4f24-82db-6ebb48ddc203);
+DB_Dialogs(CHARACTERGUID_S_RC_BI_Vault_PosessedPerson_002_1bfd9e78-846f-4f24-82db-6ebb48ddc203, "ARX_Outskirts_PossessedKid_SavedChild");
+SetHasDialog(CHARACTERGUID_S_RC_BI_Vault_PosessedPerson_002_1bfd9e78-846f-4f24-82db-6ebb48ddc203, 1);
+CharacterSetCanTrade(CHARACTERGUID_S_RC_BI_Vault_PosessedPerson_002_1bfd9e78-846f-4f24-82db-6ebb48ddc203, 1);
+ProcCharacterEnableCrime(CHARACTERGUID_S_RC_BI_Vault_PosessedPerson_002_1bfd9e78-846f-4f24-82db-6ebb48ddc203, "PickPocketFailed");
+
+IF
+ObjectTurnStarted(CHARACTERGUID_S_ARX_Outskirts_PossessedKid_BloodDemons_Tiger_4e0ae8f0-e5c2-425c-989e-0f0a450b62e3)
+AND
+QueryOnlyOnce("ARX_PossessedKid_SummonsAppear")
+AND
+DB_ARX_PossessedKid_DemonSummons(_Var1)
+THEN
+CharacterAppear(_Var1, 1, "");
+PlayEffect(_Var1, "RS3_FX_GP_ScriptedEvent_RC_BI_Vault_Parasite_01");
+
+IF
+CharacterDied(CHARACTERGUID_S_ARX_Outskirts_PossessedKid_Demon_4e0ae8f0-e5c2-425c-989e-0f0a450b62e3)
+AND
+DB_ARX_PossessedKid_DemonSummons(_Var1)
+AND NOT
+DB_Dead(_Var1)
+AND
+GetPosition(_Var1, _Var2, _Var3, _Var4)
+THEN
+PlayEffectAtPosition("RS3_FX_GP_ScriptedEvent_RC_BI_Vault_Parasite_02", _Var2, _Var3, _Var4);
+SetOnStage(_Var1, 0);
+
+IF
+CharacterDied(CHARACTERGUID_S_ARX_Outskirts_PossessedKid_Demon_4e0ae8f0-e5c2-425c-989e-0f0a450b62e3)
+AND NOT
+DB_GlobalFlag("ARX_PossessedKid_KidIsSaved")
+AND
+GetPosition(CHARACTERGUID_S_ARX_Outskirts_PossessedKid_Demon_4e0ae8f0-e5c2-425c-989e-0f0a450b62e3, _Var1, _Var2, _Var3)
+THEN
+TeleportToPosition(CHARACTERGUID_S_ARX_Outskirts_PossessedKid_Ghost_69ab6522-3e19-4c88-acf5-16313f5a19b4, _Var1, _Var2, _Var3, "", 0);
+SetOnStage(CHARACTERGUID_S_ARX_Outskirts_PossessedKid_Ghost_69ab6522-3e19-4c88-acf5-16313f5a19b4, 1);
+
+IF
+DialogEnded("ARX_Outskirts_PossessedKid_SavedChild", (INTEGER)_Var1)
+AND
+DB_DialogPlayers(_Var1, _Var2, _)
+AND
+ObjectGetFlag(_Var2, "ARX_PossessedKid_SaviourTalkedToKid", 1)
+AND
+GetPosition(CHARACTERGUID_S_RC_BI_Vault_PosessedPerson_002_1bfd9e78-846f-4f24-82db-6ebb48ddc203, _Var4, _Var5, _Var6)
+THEN
+GlobalSetFlag("ARX_PossessedKid_RewardedPlayer");
+SetHasDialog(CHARACTERGUID_S_RC_BI_Vault_PosessedPerson_002_1bfd9e78-846f-4f24-82db-6ebb48ddc203, 0);
+DB_ARX_PossessedKid_ScatterPos(_Var4, _Var5, _Var6);
+DB_ARX_PossessedKid_Saviour(_Var2);
+PlayAnimation(CHARACTERGUID_S_RC_BI_Vault_PosessedPerson_002_1bfd9e78-846f-4f24-82db-6ebb48ddc203, "Pray_01", "ARX_PossessedKid_AnimationFinished");
+TimerLaunch("ARX_PossessedKid_ScatterSourceEffect", 1500);
+
+IF
+TimerFinished("ARX_PossessedKid_ScatterSourceEffect")
+THEN
+PlayEffect(CHARACTERGUID_S_RC_BI_Vault_PosessedPerson_002_1bfd9e78-846f-4f24-82db-6ebb48ddc203, "RS3_FX_GP_ScriptedEvent_Replenish_SourcePoint_01");
+Proc_ARX_PossessedKid_ScatterSourceOrb();
+
+IF
+StoryEvent(CHARACTERGUID_S_RC_BI_Vault_PosessedPerson_002_1bfd9e78-846f-4f24-82db-6ebb48ddc203, "ARX_PossessedKid_AnimationFinished")
+AND
+DB_ARX_PossessedKid_Saviour(_Var1)
+THEN
+NOT DB_ARX_PossessedKid_Saviour(_Var1);
+ProcCharacterDisappearOutOfSight(CHARACTERGUID_S_RC_BI_Vault_PosessedPerson_002_1bfd9e78-846f-4f24-82db-6ebb48ddc203, 90, 1, "", 1);
+PartySetFlag(_Var1, "QuestUpdate_ARX_Outskirts_PossessedKid_GirlSaved");
+
+PROC
+Proc_ARX_PossessedKid_ScatterSourceOrb()
+AND
+DB_ARX_PossessedKid_ScatterPos(_Var1, _Var2, _Var3)
+AND
+CreateItemTemplateAtPosition("ITEMGUID_LOOT_Source_Orb_106a7107-cf36-4331-b5b5-6de71969f370", _Var1, _Var2, _Var3, _Var4)
+THEN
+ItemScatterAt(_Var4, _Var1, _Var2, _Var3);
+ProcIncreaseCounter("ARX_PossessedKid_SourceOrbs");
+
+PROC
+ProcCounterIncreased("ARX_PossessedKid_SourceOrbs", (INTEGER)_Var1)
+AND
+_Var1 >= 8
+AND
+DB_ARX_PossessedKid_ScatterPos(_Var2, _Var3, _Var4)
+THEN
+NOT DB_ARX_PossessedKid_ScatterPos(_Var2, _Var3, _Var4);
+ProcRemoveCounter("ARX_PossessedKid_SourceOrbs");
+
+PROC
+ProcCounterIncreased("ARX_PossessedKid_SourceOrbs", (INTEGER)_Var1)
+AND
+_Var1 < 8
+THEN
+Proc_ARX_PossessedKid_ScatterSourceOrb();
+
+
+EXITSECTION
+ENDEXITSECTION
+
+ParentTargetEdge "ARX"

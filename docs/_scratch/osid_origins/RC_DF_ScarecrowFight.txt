@@ -1,0 +1,167 @@
+Version 1
+SubGoalCombiner SGC_AND
+
+INITSECTION
+DB_Dialogs(CHARACTERGUID_S_RC_DF_Scarecrow_3bda7938-578f-49fc-a655-50b1b24db065, "RC_DF_Scarecrow");
+DB_RC_DF_ScarecrowFight_Scarecrows(CHARACTERGUID_S_RC_DF_Scarecrow_000_88c4581e-30c9-4dc7-a7a8-eec8244e7531, ITEMGUID_S_RC_DF_Scarecrow_Item_000_dbd8706c-0096-4655-9003-d57706a09fe1);
+DB_RC_DF_ScarecrowFight_Scarecrows(CHARACTERGUID_S_RC_DF_Scarecrow_001_6091c03c-1ca2-474b-8f24-9cb0a1fa0b2c, ITEMGUID_S_RC_DF_Scarecrow_Item_001_147c894e-038b-49cd-aef0-63a42ba5712c);
+DB_RC_DF_ScarecrowFight_Scarecrows(CHARACTERGUID_S_RC_DF_Scarecrow_002_8721af9f-91c3-4b4f-a232-a021f96725c1, ITEMGUID_S_RC_DF_Scarecrow_Item_002_62a0bd3c-6e4d-4d36-91e5-efb05cbb082e);
+DB_RC_DF_ScarecrowFight_Scarecrows(CHARACTERGUID_S_RC_DF_Scarecrow_003_3493ef82-7bf6-45fb-a320-87e1466d83c9, ITEMGUID_S_RC_DF_Scarecrow_Item_003_bcb26cba-a179-403b-bc24-5c6f8d1114c6);
+DB_KillCounter_Internal(CHARACTERGUID_S_RC_DF_Scarecrow_000_88c4581e-30c9-4dc7-a7a8-eec8244e7531, "RC_DF_ScarecrowFight");
+DB_KillCounter_Internal(CHARACTERGUID_S_RC_DF_Scarecrow_001_6091c03c-1ca2-474b-8f24-9cb0a1fa0b2c, "RC_DF_ScarecrowFight");
+DB_KillCounter_Internal(CHARACTERGUID_S_RC_DF_Scarecrow_002_8721af9f-91c3-4b4f-a232-a021f96725c1, "RC_DF_ScarecrowFight");
+DB_KillCounter_Internal(CHARACTERGUID_S_RC_DF_Scarecrow_003_3493ef82-7bf6-45fb-a320-87e1466d83c9, "RC_DF_ScarecrowFight");
+DB_KillCounter_Internal(CHARACTERGUID_S_RC_DF_Scarecrow_3bda7938-578f-49fc-a655-50b1b24db065, "RC_DF_ScarecrowFight");
+DB_KillCounter("RC_DF_ScarecrowFight", 5);
+CharacterSetAnimationSetOverride(CHARACTERGUID_S_RC_DF_Scarecrow_3bda7938-578f-49fc-a655-50b1b24db065, "Totem");
+Proc_RC_DF_AddCrittersCrow();
+
+KBSECTION
+IF
+DB_RC_DF_ScarecrowFight_Scarecrows(_Var1, _)
+THEN
+SetOnStage(_Var1, 0);
+
+IF
+ItemDestroyed((ITEMGUID)_Var1)
+AND
+DB_RC_DF_ScarecrowFight_Scarecrows(_Var2, _Var1)
+THEN
+NOT DB_KillCounter_Internal(_Var2, "RC_DF_ScarecrowFight");
+NOT DB_RC_DF_ScarecrowFight_Scarecrows(_Var2, _Var1);
+ProcForceStopDialog(CHARACTERGUID_S_RC_DF_Scarecrow_3bda7938-578f-49fc-a655-50b1b24db065);
+Proc_RC_DF_ScarecrowFight_Start();
+
+IF
+CharacterCharacterEvent(CHARACTERGUID_S_RC_DF_Scarecrow_3bda7938-578f-49fc-a655-50b1b24db065, (CHARACTERGUID)_Var1, "RC_DF_ScarecrowSpottedPlayer")
+THEN
+Proc_StartDialog(1, "RC_DF_AD_ScarecrowCall", CHARACTERGUID_S_RC_DF_Scarecrow_3bda7938-578f-49fc-a655-50b1b24db065, _Var1);
+
+IF
+ObjectFlagSet("RC_DF_Scarecrow_SetSleep", (GUIDSTRING)_Var1, _)
+THEN
+ApplyStatus(_Var1, "SLEEPING", -1, 1);
+
+IF
+ObjectFlagSet("RC_DF_Scarecrow_RemoveSleep", (GUIDSTRING)_Var1, _)
+AND
+HasAppliedStatus(_Var1, "SLEEPING", 1)
+THEN
+RemoveStatus(_Var1, "SLEEPING");
+
+IF
+DialogEnded("RC_DF_Scarecrow", (INTEGER)_Var1)
+AND
+DB_DialogPlayers(_Var1, _Var2, _)
+AND
+ObjectGetFlag(_Var2, "RC_DF_Scarecrow_Succumbed", 1)
+THEN
+CharacterDie(_Var2, 0, "Physical");
+
+IF
+CharacterReceivedDamage(CHARACTERGUID_S_RC_DF_Scarecrow_3bda7938-578f-49fc-a655-50b1b24db065, _, _)
+THEN
+Proc_RC_DF_ScarecrowFight_Start();
+
+IF
+DialogEnded("RC_DF_Scarecrow", _)
+AND
+GlobalGetFlag("RC_DF_ScarecrowFight_Started", 0)
+THEN
+Proc_RC_DF_ScarecrowFight_Start();
+
+PROC
+Proc_RC_DF_ScarecrowFight_Start()
+AND
+GlobalGetFlag("RC_DF_ScarecrowFight_Started", 0)
+AND
+DB_RC_DF_ScarecrowFight_Scarecrows(_Var1, _)
+AND
+GetPosition(_Var1, _Var3, _Var4, _Var5)
+THEN
+PlayEffect(_Var1, "RS3_FX_Char_Animals_Deer_A_VoidTransform_Overlays_01");
+PlayEffectAtPosition("RS3_FX_Char_Animals_Deer_A_VoidTransform_01", _Var3, _Var4, _Var5);
+ProcObjectTimer(_Var1, "RC_DF_Scarecrow_SpawnAnimals", 1100);
+
+PROC
+ProcObjectTimerFinished((CHARACTERGUID)_Var1, "RC_DF_Scarecrow_SpawnAnimals")
+AND
+DB_RC_DF_ScarecrowFight_Scarecrows(_Var1, _Var2)
+THEN
+Poof(_Var2);
+CharacterAppear(_Var1, 1, "");
+
+PROC
+Proc_RC_DF_ScarecrowFight_Start()
+AND
+GlobalGetFlag("RC_DF_ScarecrowFight_Started", 0)
+THEN
+NOT DB_RC_DF_ScarecrowFight_StartAfterDialog(1);
+GlobalSetFlag("RC_DF_ScarecrowFight_Started");
+CharacterSetCustomName(CHARACTERGUID_S_RC_DF_Scarecrow_3bda7938-578f-49fc-a655-50b1b24db065, "RC_DF_UndeadScarecrow");
+SetFaction(CHARACTERGUID_S_RC_DF_Scarecrow_3bda7938-578f-49fc-a655-50b1b24db065, "Evil NPC");
+ApplyStatus(CHARACTERGUID_S_RC_DF_Scarecrow_3bda7938-578f-49fc-a655-50b1b24db065, "QUEST_FEAR_AURA", -1, 1);
+CharacterSetAnimationSetOverride(CHARACTERGUID_S_RC_DF_Scarecrow_3bda7938-578f-49fc-a655-50b1b24db065, "");
+
+PROC
+ReactOnKillCounter("RC_DF_ScarecrowFight")
+AND
+DB_IsPlayer(_Var1)
+AND
+CharacterCanSee(_Var1, CHARACTERGUID_S_RC_DF_Scarecrow_3bda7938-578f-49fc-a655-50b1b24db065, 1)
+AND
+QRY_SpeakerIsAvailable(_Var1)
+AND
+QueryOnlyOnce("RC_DF_VB_ScarecrowFight_FightEnded")
+THEN
+StartVoiceBark("RC_DF_VB_ScarecrowFight_FightEnded", _Var1);
+
+PROC
+Proc_RC_DF_AddCrittersCrow()
+THEN
+DB_RC_DF_CritterCrow(ITEMGUID_S_RC_DF_Critters_Crow_B_002_d9c43a55-c884-4f70-8eb8-9fdcf9c6399c);
+DB_RC_DF_CritterCrow(ITEMGUID_S_RC_DF_Critters_Crow_B_003_355a6027-0ce0-4434-9dbc-dfeab947f39a);
+DB_RC_DF_CritterCrow(ITEMGUID_S_RC_DF_Critters_Crow_B_004_78c7fddb-aade-405d-97e2-eedcb38705d0);
+DB_RC_DF_CritterCrow(ITEMGUID_S_RC_DF_Critters_Crow_B_005_fb2e9ad1-f6c0-4482-aba6-e5ed9a235fc8);
+DB_RC_DF_CritterCrow(ITEMGUID_S_RC_DF_Critters_Crow_B_006_874d7492-c92d-485f-a28b-d0386045a40c);
+DB_RC_DF_CritterCrow(ITEMGUID_S_RC_DF_Critters_Crow_B_007_c152c0c8-9f66-4ad6-b3a3-d36aacce6fea);
+DB_RC_DF_CritterCrow(ITEMGUID_S_RC_DF_Critters_Crow_B_008_f993a938-2dd9-445b-b686-d7061ffc6a3f);
+DB_RC_DF_CritterCrow(ITEMGUID_S_RC_DF_Critters_Crow_B_009_39aa4643-36bf-4683-909d-707d9b03b851);
+
+IF
+GlobalFlagSet("RC_DF_ScarecrowFight_Started")
+AND
+DB_RC_DF_CritterCrow(_Var1)
+THEN
+SetStoryEvent(_Var1, "GLO_FleeingItem_DisableReactions");
+Proc_RC_DF_MakeCrittersCrowFlee(_Var1);
+
+PROC
+Proc_RC_DF_MakeCrittersCrowFlee((ITEMGUID)_Var1)
+AND
+GetVarInteger(_Var1, "State", 1)
+THEN
+PlayAnimation(_Var1, "open", "RC_DF_CritterCrowFled");
+
+PROC
+Proc_RC_DF_MakeCrittersCrowFlee((ITEMGUID)_Var1)
+AND
+GetVarInteger(_Var1, "State", 0)
+THEN
+SetOnStage(_Var1, 0);
+
+IF
+StoryEvent((GUIDSTRING)_Var1, "RC_DF_CritterCrowFled")
+THEN
+SetOnStage(_Var1, 0);
+
+PROC
+ProcRegionEnded("RC_Main")
+THEN
+GoalCompleted;
+
+
+EXITSECTION
+ENDEXITSECTION
+
+ParentTargetEdge "ReapersCoast"

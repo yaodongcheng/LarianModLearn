@@ -1,0 +1,991 @@
+Version 1
+SubGoalCombiner SGC_AND
+
+INITSECTION
+SetOnStage(ITEMGUID_S_FTJ_BoatToShip_001_63914b60-eea0-4d17-8081-898b58ef9cc0, 0);
+SetOnStage(CHARACTERGUID_S_GLO_River_f4931ebe-10b0-43c4-9182-640cf052717e, 0);
+DB_FTJ_FinalBattle_Magister(CHARACTERGUID_S_FTJ_SW_FinalBattleMagister_000_c283e820-0166-4668-8ad4-842085d58de9);
+DB_FTJ_FinalBattle_Magister(CHARACTERGUID_S_FTJ_SW_FinalBattleMagister_001_165f1353-a916-4291-940a-293efbe8f187);
+DB_FTJ_FinalBattle_Magister(CHARACTERGUID_S_FTJ_SW_FinalBattleMagister_002_0b7282f6-a131-4441-a113-8f3ea62fa9e3);
+DB_FTJ_FinalBattle_Magister(CHARACTERGUID_S_FTJ_SW_FinalBattleMagister_003_b5dd6af4-6b34-482e-bc0a-72bd6269aaf5);
+DB_FTJ_FinalBattle_CountVoidwoken(0);
+SetOnStage(CHARACTERGUID_S_FTJ_FinalBattle_Voidwoken_7dcf3cc2-d015-4aff-9949-71fc539fcc73, 0);
+DB_KillCounter_Internal(CHARACTERGUID_S_FTJ_SW_FinalBattleMagister_000_c283e820-0166-4668-8ad4-842085d58de9, "FTJ_FinalBattle");
+DB_KillCounter_Internal(CHARACTERGUID_S_FTJ_SW_FinalBattleMagister_001_165f1353-a916-4291-940a-293efbe8f187, "FTJ_FinalBattle");
+DB_KillCounter_Internal(CHARACTERGUID_S_FTJ_SW_FinalBattleMagister_002_0b7282f6-a131-4441-a113-8f3ea62fa9e3, "FTJ_FinalBattle");
+DB_KillCounter_Internal(CHARACTERGUID_S_FTJ_SW_FinalBattleMagister_003_b5dd6af4-6b34-482e-bc0a-72bd6269aaf5, "FTJ_FinalBattle");
+DB_KillCounter_Internal(CHARACTERGUID_S_FTJ_SW_FinalBattle_Voidwoken_7dcf3cc2-d015-4aff-9949-71fc539fcc73, "FTJ_FinalBattle");
+DB_KillCounter_Internal(CHARACTERGUID_S_FTJ_SW_FinalBattleMagister_Gheist_06082187-829f-43e1-b3bb-f3242a70904d, "FTJ_FinalBattle");
+DB_KillCounter_Internal(CHARACTERGUID_S_GLO_Alexandar_03e6345f-1bd3-403c-80e2-a443a74f6349, "FTJ_FinalBattle");
+DB_KillCounter("FTJ_FinalBattle", 7);
+DB_KillCounter_Internal(CHARACTERGUID_S_FTJ_SW_FinalBattleMagister_000_c283e820-0166-4668-8ad4-842085d58de9, "FTJ_FinalBattle_Fallback");
+DB_KillCounter_Internal(CHARACTERGUID_S_FTJ_SW_FinalBattleMagister_001_165f1353-a916-4291-940a-293efbe8f187, "FTJ_FinalBattle_Fallback");
+DB_KillCounter_Internal(CHARACTERGUID_S_FTJ_SW_FinalBattleMagister_002_0b7282f6-a131-4441-a113-8f3ea62fa9e3, "FTJ_FinalBattle_Fallback");
+DB_KillCounter_Internal(CHARACTERGUID_S_FTJ_SW_FinalBattleMagister_003_b5dd6af4-6b34-482e-bc0a-72bd6269aaf5, "FTJ_FinalBattle_Fallback");
+DB_KillCounter_Internal(CHARACTERGUID_S_FTJ_SW_FinalBattleMagister_Gheist_06082187-829f-43e1-b3bb-f3242a70904d, "FTJ_FinalBattle_Fallback");
+DB_KillCounter_Internal(CHARACTERGUID_S_GLO_Alexandar_03e6345f-1bd3-403c-80e2-a443a74f6349, "FTJ_FinalBattle_Fallback");
+DB_KillCounter("FTJ_FinalBattle_Fallback", 6);
+DB_SceneManager(CHARACTERGUID_S_FTJ_SW_FinalBattleMagister_000_c283e820-0166-4668-8ad4-842085d58de9, "FTJ_FinalBattle");
+DB_SceneManager(CHARACTERGUID_S_FTJ_SW_FinalBattleMagister_001_165f1353-a916-4291-940a-293efbe8f187, "FTJ_FinalBattle");
+DB_SceneManager(CHARACTERGUID_S_FTJ_SW_FinalBattleMagister_002_0b7282f6-a131-4441-a113-8f3ea62fa9e3, "FTJ_FinalBattle");
+DB_SceneManager(CHARACTERGUID_S_FTJ_SW_FinalBattleMagister_003_b5dd6af4-6b34-482e-bc0a-72bd6269aaf5, "FTJ_FinalBattle");
+DB_SceneManager(CHARACTERGUID_S_FTJ_SW_FinalBattle_Voidwoken_7dcf3cc2-d015-4aff-9949-71fc539fcc73, "FTJ_FinalBattle");
+DB_SceneManager(CHARACTERGUID_S_FTJ_SW_FinalBattleMagister_Gheist_06082187-829f-43e1-b3bb-f3242a70904d, "FTJ_FinalBattle");
+DB_SceneManager(CHARACTERGUID_S_GLO_Alexandar_03e6345f-1bd3-403c-80e2-a443a74f6349, "FTJ_FinalBattle");
+DB_DeadEvent(CHARACTERGUID_S_GLO_Alexandar_03e6345f-1bd3-403c-80e2-a443a74f6349, "GLO_AlexandarIsDead");
+DB_SeenDeadNPCPartyFlag(CHARACTERGUID_S_GLO_Alexandar_03e6345f-1bd3-403c-80e2-a443a74f6349, "GLO_SawAlexandarDead");
+ProcTriggerRegisterForPlayers(TRIGGERGUID_S_FTJ_SW_FinalFight_InfiltrationBox_a8d17d54-17ec-4d49-92c6-02eef947dea4);
+DB_FTJ_FinalBattleMagisters(CHARACTERGUID_S_FTJ_SW_FinalBattleMagister_000_c283e820-0166-4668-8ad4-842085d58de9);
+DB_FTJ_FinalBattleMagisters(CHARACTERGUID_S_FTJ_SW_FinalBattleMagister_001_165f1353-a916-4291-940a-293efbe8f187);
+DB_FTJ_FinalBattleMagisters(CHARACTERGUID_S_FTJ_SW_FinalBattleMagister_002_0b7282f6-a131-4441-a113-8f3ea62fa9e3);
+DB_FTJ_FinalBattleMagisters(CHARACTERGUID_S_FTJ_SW_FinalBattleMagister_003_b5dd6af4-6b34-482e-bc0a-72bd6269aaf5);
+DB_FTJ_FinalBattleMagisters(CHARACTERGUID_S_FTJ_SW_FinalBattleMagister_Gheist_06082187-829f-43e1-b3bb-f3242a70904d);
+ProcTriggerRegisterForPlayers(TRIGGERGUID_AiHintTrig_FTJ_FinalBattle_Burrow_9a987d10-c149-4d86-ab30-02c6b1b46c26);
+ProcCharacterDisableCrime(CHARACTERGUID_S_GLO_River_f4931ebe-10b0-43c4-9182-640cf052717e, "ActiveUndead");
+ProcTriggerRegisterForPlayers(TRIGGERGUID_S_FTJ_SW_CallToArms_Warriors_FallbackCombatStart_b1a38fb6-82e6-4c37-bbf3-9158c3855c63);
+ProcTriggerRegisterForPlayers(TRIGGERGUID_S_FTJ_SW_FinalBattle_FallbackSightCheck_6595bab1-fe51-4fa6-a8ea-7b83e83b658f);
+
+KBSECTION
+IF
+CharacterDying(CHARACTERGUID_S_GLO_Alexandar_03e6345f-1bd3-403c-80e2-a443a74f6349)
+THEN
+Proc_StartDialog(1, "FTJ_AD_AlexandarDeathScream", CHARACTERGUID_S_GLO_Alexandar_03e6345f-1bd3-403c-80e2-a443a74f6349);
+
+IF
+CharacterUsedItem((CHARACTERGUID)_Var1, ITEMGUID_S_FTJ_BOOK_AlexandarJournal_000_5c2a4a0e-28bc-4dd1-855b-0fa7f95bb741)
+THEN
+UserSetFlag(_Var1, "FTJ_Hunted_AlexandarHunted");
+
+IF
+DB_FTJ_FinalBattle_Magister(_Var1)
+THEN
+TriggerRegisterForCharacter(TRIGGERGUID_AiHintTrig_FTJ_FinalBattle_Burrow_9a987d10-c149-4d86-ab30-02c6b1b46c26, _Var1);
+
+IF
+StoryEvent((CHARACTERGUID)_Var1, "FTJ_FinalBattle_NotAlexander_SpotCharacter")
+AND
+GlobalGetFlag("FTJ_FinalBattle_Alexander_Initiated", 0)
+AND
+QueryOnlyOnce("FTJ_FinalBattle_Alexander_SpotCharacter")
+THEN
+Proc_FTJ_SW_FinalBattle_CanStartAlexandarDialogue(_Var1);
+
+IF
+StoryEvent((CHARACTERGUID)_Var1, "FTJ_FinalBattle_Alexander_SpotCharacter")
+AND
+GlobalGetFlag("FTJ_FinalBattle_Alexander_Initiated", 0)
+AND
+QueryOnlyOnce("FTJ_FinalBattle_Alexander_SpotCharacter")
+THEN
+Proc_FTJ_SW_FinalBattle_CanStartAlexandarDialogue(_Var1);
+
+PROC
+Proc_FTJ_SW_FinalBattle_CanStartAlexandarDialogue((CHARACTERGUID)_Var1)
+AND
+DB_IsPlayer(_Var1)
+AND
+CharacterCanSee(CHARACTERGUID_S_GLO_Alexandar_03e6345f-1bd3-403c-80e2-a443a74f6349, _Var1, 1)
+AND
+QRY_SpeakerIsAvailable(CHARACTERGUID_S_GLO_Alexandar_03e6345f-1bd3-403c-80e2-a443a74f6349)
+AND
+QRY_SpeakerIsAvailable(_Var1)
+AND
+QueryOnlyOnce("FTJ_FinalBattle_Alexander_Initiated")
+THEN
+GlobalSetFlag("FTJ_FinalBattle_Alexander_StopSpotter");
+GlobalSetFlag("FTJ_FinalBattle_Alexander_Initiated");
+Proc_StartDialog(0, "FTJ_FinalBattle_Alexandar", CHARACTERGUID_S_GLO_Alexandar_03e6345f-1bd3-403c-80e2-a443a74f6349, _Var1);
+DebugText(_Var1, "Proc_StartDialog");
+
+PROC
+Proc_FTJ_SW_FinalBattle_CanStartAlexandarDialogue((CHARACTERGUID)_Var1)
+AND
+GlobalGetFlag("FTJ_FinalBattle_Alexander_Initiated", 0)
+AND
+DB_IsPlayer(_Var2)
+AND
+CharacterCanSee(CHARACTERGUID_S_GLO_Alexandar_03e6345f-1bd3-403c-80e2-a443a74f6349, _Var2, 1)
+AND
+QRY_SpeakerIsAvailable(CHARACTERGUID_S_GLO_Alexandar_03e6345f-1bd3-403c-80e2-a443a74f6349)
+AND
+QRY_SpeakerIsAvailable(_Var2)
+AND
+QueryOnlyOnce("FTJ_FinalBattle_Alexander_Initiated")
+THEN
+GlobalSetFlag("FTJ_FinalBattle_Alexander_StopSpotter");
+GlobalSetFlag("FTJ_FinalBattle_Alexander_Initiated");
+Proc_StartDialog(0, "FTJ_FinalBattle_Alexandar", CHARACTERGUID_S_GLO_Alexandar_03e6345f-1bd3-403c-80e2-a443a74f6349, _Var2);
+DebugText(_Var2, "Proc_StartDialog");
+
+PROC
+Proc_FTJ_SW_FinalBattle_CanStartAlexandarDialogue((CHARACTERGUID)_Var1)
+AND
+GlobalGetFlag("FTJ_FinalBattle_Alexander_Initiated", 0)
+THEN
+Proc_FTJ_FinalBattle_InitiateFight();
+DebugText(_Var1, "Proc_FTJ_FinalBattle_InitiateFight");
+
+IF
+CharacterEnteredTrigger(_, TRIGGERGUID_S_FTJ_SW_CallToArms_Warriors_FallbackCombatStart_b1a38fb6-82e6-4c37-bbf3-9158c3855c63)
+AND NOT
+DB_OnlyOnce("FTJ_FinalBattle_Alexander_Initiated")
+AND NOT
+QRY_FTJ_SW_FinalBattle_CanStartAlexandarDialogue()
+THEN
+Proc_FTJ_FinalBattle_InitiateFight();
+
+QRY
+QRY_FTJ_SW_FinalBattle_CanStartAlexandarDialogue()
+AND
+DB_IsPlayer(_Var1)
+AND
+CharacterCanSee(CHARACTERGUID_S_GLO_Alexandar_03e6345f-1bd3-403c-80e2-a443a74f6349, _Var1, 1)
+AND
+QRY_SpeakerIsAvailable(CHARACTERGUID_S_GLO_Alexandar_03e6345f-1bd3-403c-80e2-a443a74f6349)
+AND
+QRY_SpeakerIsAvailable(_Var1)
+AND
+GlobalGetFlag("FTJ_FinalBattle_Alexander_Initiated", 0)
+AND NOT
+DB_OnlyOnce("FTJ_FinalBattle_Alexander_Initiated")
+AND
+QRY_StartDialog(0, "FTJ_FinalBattle_Alexandar", CHARACTERGUID_S_GLO_Alexandar_03e6345f-1bd3-403c-80e2-a443a74f6349, _Var1)
+THEN
+GlobalSetFlag("FTJ_FinalBattle_Alexander_StopSpotter");
+GlobalSetFlag("FTJ_FinalBattle_Alexander_Initiated");
+DB_OnlyOnce("FTJ_FinalBattle_Alexander_Initiated");
+
+PROC
+Proc_DialogFlagSetup("FTJ_FinalBattle_Alexandar", CHARACTERGUID_S_GLO_Alexandar_03e6345f-1bd3-403c-80e2-a443a74f6349, (GUIDSTRING)_Var1)
+AND
+IsTagged(CHARACTERGUID_S_Player_Ifan_ad9a3327-4456-42a7-9bf4-7ad60cc9e54f, "IFAN", 1)
+AND
+GetDistanceTo(CHARACTERGUID_S_GLO_Alexandar_03e6345f-1bd3-403c-80e2-a443a74f6349, CHARACTERGUID_S_Player_Ifan_ad9a3327-4456-42a7-9bf4-7ad60cc9e54f, _Var2)
+AND
+_Var2 < 20
+AND
+CharacterCanSee(CHARACTERGUID_S_GLO_Alexandar_03e6345f-1bd3-403c-80e2-a443a74f6349, CHARACTERGUID_S_Player_Ifan_ad9a3327-4456-42a7-9bf4-7ad60cc9e54f, 1)
+THEN
+ObjectSetFlag(CHARACTERGUID_S_GLO_Alexandar_03e6345f-1bd3-403c-80e2-a443a74f6349, "FTJ_SW_FinalBattle_IfanPresent");
+
+IF
+GlobalFlagSet("FTJ_FinalBattle_Alexander_InitiateSpotter")
+THEN
+SetCombatGroupID(CHARACTERGUID_S_GLO_Alexandar_03e6345f-1bd3-403c-80e2-a443a74f6349, "");
+
+IF
+DialogEnded("FTJ_FinalBattle_Alexandar", _)
+THEN
+Proc_FTJ_FinalBattle_InitiateFight();
+
+IF
+AttackedByObject((GUIDSTRING)_Var1, (CHARACTERGUID)_Var2, _, _, _)
+AND
+DB_IsPlayer(_Var2)
+AND
+GetFaction(_Var1, "FTJ_FinalBattle")
+THEN
+Proc_FTJ_FinalBattle_InitiateFight();
+
+IF
+ObjectEnteredCombat((GUIDSTRING)_Var1, (INTEGER)_Var2)
+AND
+DB_FTJ_FinalBattleMagisters(_Var1)
+AND
+DB_IsPlayer(_Var3)
+AND
+DB_CombatCharacters(_Var3, _Var2)
+THEN
+Proc_FTJ_FinalBattle_InitiateFight();
+
+PROC
+Proc_FTJ_FinalBattle_InitiateFight()
+AND
+DB_FTJ_FinalBattleMagisters(_Var1)
+THEN
+DialogRequestStop(_Var1);
+
+PROC
+Proc_FTJ_FinalBattle_InitiateFight()
+THEN
+DialogRequestStop(CHARACTERGUID_S_GLO_Alexandar_03e6345f-1bd3-403c-80e2-a443a74f6349);
+
+PROC
+Proc_FTJ_FinalBattle_InitiateFight()
+AND
+DB_FTJ_FinalBattleMagisters(_Var1)
+THEN
+SetFaction(_Var1, "RC_Magister");
+
+PROC
+Proc_FTJ_FinalBattle_InitiateFight()
+THEN
+SetFaction(CHARACTERGUID_S_GLO_Alexandar_03e6345f-1bd3-403c-80e2-a443a74f6349, "RC_Magister");
+SetCombatGroupID(CHARACTERGUID_S_GLO_Alexandar_03e6345f-1bd3-403c-80e2-a443a74f6349, "f07fa968-7e37-4420-9ee8-7fdeab725837");
+CharacterSetRelationFactionToFaction("FTJ_SW_ShelterNPC", "RC_Magister", 0);
+CharacterSetRelationFactionToFaction("RC_Magister", "FTJ_SW_ShelterNPC", 0);
+
+PROC
+Proc_FTJ_FinalBattle_InitiateFight()
+THEN
+TimerLaunch("FTJ_SW_FinalBattle_AtmosTimer_01", 10000);
+
+IF
+TimerFinished("FTJ_SW_FinalBattle_AtmosTimer_01")
+THEN
+TriggerSetAtmosphere(TRIGGERGUID_S_AtmosphereTrigger_FTJ_FinalBattleBeach_d4987042-6d48-4c3d-8ac5-763d0c400902, "0d18531b-7435-4a55-b25c-3e065fea1faf");
+
+IF
+ObjectTurnEnded(CHARACTERGUID_S_GLO_Alexandar_03e6345f-1bd3-403c-80e2-a443a74f6349)
+AND
+GlobalGetFlag("FTJ_AlexandarPhase_1", 1)
+AND
+GlobalGetFlag("FTJ_FinalBattle_VoidwokenAppeared", 0)
+THEN
+Proc_FTJ_FinalBattle_TimeVoidwokenAppearance();
+
+IF
+CharacterDied(CHARACTERGUID_S_GLO_Alexandar_03e6345f-1bd3-403c-80e2-a443a74f6349)
+AND
+GlobalGetFlag("FTJ_FinalBattle_VoidwokenAppeared", 0)
+AND
+DB_FTJ_FinalBattle_Magister(_Var1)
+AND
+DB_CombatCharacters(_Var1, _Var2)
+AND
+CombatGetActiveEntity(_Var2, _Var3)
+AND
+_Var3 != NULL_00000000-0000-0000-0000-000000000000
+AND NOT
+DB_FTJ_FinalBattle_TimeVoidwokenAppearance_Queue(_)
+THEN
+DB_FTJ_FinalBattle_TimeVoidwokenAppearance_Queue(_Var3);
+
+IF
+CharacterDied(CHARACTERGUID_S_GLO_Alexandar_03e6345f-1bd3-403c-80e2-a443a74f6349)
+AND
+GlobalGetFlag("FTJ_FinalBattle_VoidwokenAppeared", 0)
+AND
+DB_CombatCharacters(CHARACTERGUID_S_GLO_Alexandar_03e6345f-1bd3-403c-80e2-a443a74f6349, _Var1)
+AND
+CombatGetActiveEntity(_Var1, NULL_00000000-0000-0000-0000-000000000000)
+AND NOT
+DB_FTJ_FinalBattle_TimeVoidwokenAppearance_Queue(_)
+THEN
+DB_FTJ_FinalBattle_TimeVoidwokenAppearance_Queue(CHARACTERGUID_S_GLO_Alexandar_03e6345f-1bd3-403c-80e2-a443a74f6349);
+Proc_FTJ_FinalBattle_TimeVoidwokenAppearance_Queued();
+
+IF
+ObjectTurnEnded((CHARACTERGUID)_Var1)
+AND
+GlobalGetFlag("FTJ_FinalBattle_VoidwokenAppeared", 0)
+AND
+DB_FTJ_FinalBattle_TimeVoidwokenAppearance_Queue(_Var1)
+THEN
+Proc_FTJ_FinalBattle_TimeVoidwokenAppearance_Queued();
+
+PROC
+Proc_FTJ_FinalBattle_TimeVoidwokenAppearance_Queued()
+AND
+DB_FTJ_FinalBattle_TimeVoidwokenAppearance_Queue(_Var1)
+AND
+DB_CombatCharacters(_Var1, _Var2)
+AND
+CombatGetActiveEntity(_Var2, _Var3)
+AND
+_Var3 != NULL_00000000-0000-0000-0000-000000000000
+THEN
+NOT DB_FTJ_FinalBattle_TimeVoidwokenAppearance_Queue(_Var1);
+SetStoryEvent(_Var3, "onSetOnStage_SpawnAt");
+
+PROC
+Proc_FTJ_FinalBattle_TimeVoidwokenAppearance_Queued()
+AND
+DB_FTJ_FinalBattle_TimeVoidwokenAppearance_Queue(_Var1)
+THEN
+NOT DB_FTJ_FinalBattle_TimeVoidwokenAppearance_Queue(_Var1);
+SetStoryEvent(_Var1, "onSetOnStage_SpawnAt");
+
+PROC
+Proc_FTJ_FinalBattle_TimeVoidwokenAppearance()
+AND
+DB_FTJ_FinalBattle_TimeVoidwokenAppearance(_Var1)
+AND
+_Var1 >= 2
+AND
+DB_CombatCharacters(CHARACTERGUID_S_GLO_Alexandar_03e6345f-1bd3-403c-80e2-a443a74f6349, _Var2)
+AND
+CombatGetActiveEntity(_Var2, _Var3)
+THEN
+SetStoryEvent(_Var3, "onSetOnStage_SpawnAt");
+
+PROC
+Proc_FTJ_FinalBattle_TimeVoidwokenAppearance()
+AND
+DB_FTJ_FinalBattle_TimeVoidwokenAppearance(_Var1)
+AND
+_Var1 <= 2
+AND
+IntegerSum(_Var1, 1, _Var2)
+THEN
+NOT DB_FTJ_FinalBattle_TimeVoidwokenAppearance(_Var1);
+DB_FTJ_FinalBattle_TimeVoidwokenAppearance(_Var2);
+
+PROC
+Proc_FTJ_FinalBattle_TimeVoidwokenAppearance()
+AND NOT
+DB_FTJ_FinalBattle_TimeVoidwokenAppearance(_)
+THEN
+DB_FTJ_FinalBattle_TimeVoidwokenAppearance(1);
+
+IF
+CharacterDying(CHARACTERGUID_S_GLO_Alexandar_03e6345f-1bd3-403c-80e2-a443a74f6349)
+AND
+GetPosition(CHARACTERGUID_S_GLO_Alexandar_03e6345f-1bd3-403c-80e2-a443a74f6349, _Var1, _Var2, _Var3)
+THEN
+PlayEffectAtPosition("RS3_FX_GP_ScriptedEvent_FJ_Worm_Voidwoken_Spawning_01", _Var1, _Var2, _Var3);
+
+IF
+CharacterDying(CHARACTERGUID_S_GLO_Alexandar_03e6345f-1bd3-403c-80e2-a443a74f6349)
+AND
+GlobalGetFlag("FTJ_FinalBattle_VoidwokenAppeared", 0)
+AND
+GlobalGetFlag("FTJ_AlexandarPhase_1", 1)
+AND NOT
+DB_CombatCharacters(CHARACTERGUID_S_GLO_Alexandar_03e6345f-1bd3-403c-80e2-a443a74f6349, _)
+THEN
+DB_FTJ_FinalBattle_TimeVoidwokenAppearance_Fallback();
+
+PROC
+DB_FTJ_FinalBattle_TimeVoidwokenAppearance_Fallback()
+AND
+DB_FTJ_FinalBattle_Magister(_Var1)
+AND
+QueryOnlyOnce("FTJ_FinalBattle_Fallback")
+THEN
+Proc_FTJ_FinalBattle_InitiateFight();
+SetStoryEvent(CHARACTERGUID_S_FTJ_SW_FinalBattle_Voidwoken_7dcf3cc2-d015-4aff-9949-71fc539fcc73, "onSetOnStage_SpawnAtFallback");
+
+IF
+StoryEvent(_, "FTJ_FinalBattle_Voidwoken_StorySpawnAt")
+AND
+QueryOnlyOnce("FTJ_FinalBattle_Voidwoken_StorySpawnAt")
+AND
+GetVarFloat3(CHARACTERGUID_S_FTJ_SW_FinalBattle_Voidwoken_7dcf3cc2-d015-4aff-9949-71fc539fcc73, "appearPos", _Var2, _Var3, _Var4)
+THEN
+CharacterAppearAtPosition(CHARACTERGUID_S_FTJ_SW_FinalBattle_Voidwoken_7dcf3cc2-d015-4aff-9949-71fc539fcc73, _Var2, _Var3, _Var4, 1, "FTJ_FinalBattle_Voidwoken_StoryAppeared");
+TimerLaunch("FTJ_SW_WormAppearSourceFX", 1000);
+
+IF
+StoryEvent(CHARACTERGUID_S_FTJ_SW_FinalBattle_Voidwoken_7dcf3cc2-d015-4aff-9949-71fc539fcc73, "FTJ_FinalBattle_VoidwokenAppearFailed")
+THEN
+TimerLaunch("FTJ_FinalBattle_VoidwokenAppearFailed_Timer", 1000);
+
+IF
+TimerFinished("FTJ_FinalBattle_VoidwokenAppearFailed_Timer")
+THEN
+SetStoryEvent(CHARACTERGUID_S_FTJ_SW_FinalBattle_Voidwoken_7dcf3cc2-d015-4aff-9949-71fc539fcc73, "onSetOnStage_SpawnAtFallback");
+
+IF
+SavegameLoaded((INTEGER)_Var1, (INTEGER)_Var2, (INTEGER)_Var3, (INTEGER)_Var4)
+AND
+QRY_VersionIsOlderThan(_Var1, _Var2, _Var3, _Var4, 3, 5, 1, 0)
+AND
+DB_OnlyOnce("FTJ_FinalBattle_Voidwoken_StorySpawnAt")
+AND
+ObjectIsOnStage(CHARACTERGUID_S_FTJ_SW_FinalBattle_Voidwoken_7dcf3cc2-d015-4aff-9949-71fc539fcc73, 0)
+THEN
+SetStoryEvent(CHARACTERGUID_S_FTJ_SW_FinalBattle_Voidwoken_7dcf3cc2-d015-4aff-9949-71fc539fcc73, "FTJ_FinalBattle_VoidwokenAppearFailed");
+
+IF
+SavegameLoaded((INTEGER)_Var1, (INTEGER)_Var2, (INTEGER)_Var3, (INTEGER)_Var4)
+AND
+QRY_VersionIsOlderThan(_Var1, _Var2, _Var3, _Var4, 3, 5, 1, 0)
+AND
+DB_OnlyOnce("FTJ_FinalBattle_Fallback")
+AND
+ObjectIsOnStage(CHARACTERGUID_S_FTJ_SW_FinalBattle_Voidwoken_7dcf3cc2-d015-4aff-9949-71fc539fcc73, 0)
+THEN
+SetStoryEvent(CHARACTERGUID_S_FTJ_SW_FinalBattle_Voidwoken_7dcf3cc2-d015-4aff-9949-71fc539fcc73, "FTJ_FinalBattle_VoidwokenAppearFailed");
+
+IF
+TimerFinished("FTJ_SW_WormAppearSourceFX")
+AND
+GetPosition(CHARACTERGUID_S_FTJ_SW_FinalBattle_Voidwoken_7dcf3cc2-d015-4aff-9949-71fc539fcc73, _Var1, _Var2, _Var3)
+THEN
+PlayEffectAtPosition("RS3_FX_GP_ScriptedEvent_FJ_Worm_Voidwoken_Spawning_01", _Var1, _Var2, _Var3);
+
+IF
+ObjectLeftCombat(CHARACTERGUID_S_GLO_Alexandar_03e6345f-1bd3-403c-80e2-a443a74f6349, _)
+AND
+DB_FTJ_FinalBattle_TimeVoidwokenAppearance(_Var2)
+THEN
+NOT DB_FTJ_FinalBattle_TimeVoidwokenAppearance(_Var2);
+
+IF
+ObjectEnteredCombat(CHARACTERGUID_S_FTJ_SW_FinalBattle_Voidwoken_7dcf3cc2-d015-4aff-9949-71fc539fcc73, _)
+AND
+QueryOnlyOnce("FTJ_SW_FinalBattle_Voidwoken_JumpToTurn")
+THEN
+JumpToTurn(CHARACTERGUID_S_FTJ_SW_FinalBattle_Voidwoken_7dcf3cc2-d015-4aff-9949-71fc539fcc73);
+
+IF
+ObjectEnteredCombat(CHARACTERGUID_S_FTJ_SW_FinalBattle_Voidwoken_7dcf3cc2-d015-4aff-9949-71fc539fcc73, (INTEGER)_Var1)
+THEN
+Proc_FTJ_FinalBattle_PhaseIIMusic();
+
+IF
+ObjectEnteredCombat((CHARACTERGUID)_Var1, (INTEGER)_Var2)
+AND
+DB_IsPlayer(_Var1)
+AND
+GlobalGetFlag("FTJ_FinalBattle_VoidwokenAppeared", 1)
+THEN
+Proc_FTJ_FinalBattle_PhaseIIMusic();
+
+IF
+SavegameLoaded(_, _, _, _)
+AND
+GlobalGetFlag("FTJ_FinalBattle_VoidwokenAppeared", 1)
+THEN
+Proc_FTJ_FinalBattle_PhaseIIMusic();
+
+PROC
+Proc_FTJ_FinalBattle_PhaseIIMusic()
+AND
+DB_CombatCharacters(CHARACTERGUID_S_FTJ_SW_FinalBattle_Voidwoken_7dcf3cc2-d015-4aff-9949-71fc539fcc73, _Var1)
+AND
+DB_IsPlayer(_Var2)
+AND
+DB_CombatCharacters(_Var2, _Var1)
+THEN
+MusicPlayForPeer(_Var2, "Boss_Fight_Phase_II_Start");
+
+IF
+StoryEvent(CHARACTERGUID_S_FTJ_FinalBattle_Voidwoken_7dcf3cc2-d015-4aff-9949-71fc539fcc73, "FTJ_FinalBattle_VoidwokenAppeared")
+THEN
+GlobalSetFlag("FTJ_FinalBattle_VoidwokenAppeared");
+TriggerSetAtmosphere(TRIGGERGUID_S_AtmosphereTrigger_FTJ_FinalBattleBeach_d4987042-6d48-4c3d-8ac5-763d0c400902, "09edc0f3-c27e-414a-a053-a4c1d2d1271a");
+
+PROC
+Proc_FTJ_FinalBattle_ThreeWayDialog()
+AND
+DB_IsPlayer(_Var1)
+AND
+IsTagged(_Var1, "AVATAR", 1)
+AND
+HasActiveStatus(_Var1, "FROZEN", 0)
+AND
+HasActiveStatus(_Var1, "STUNNED", 0)
+AND
+HasActiveStatus(_Var1, "PETRIFIED", 0)
+AND
+HasActiveStatus(_Var1, "INVISIBLE", 0)
+AND
+HasActiveStatus(_Var1, "SNEAKING", 0)
+AND
+CharacterIsDead(_Var1, 0)
+AND
+GetDistanceTo(CHARACTERGUID_S_FTJ_SW_FinalBattle_Voidwoken_7dcf3cc2-d015-4aff-9949-71fc539fcc73, _Var1, _Var2)
+AND
+_Var2 <= 15
+AND NOT
+DB_FinalBattle_ThreeWayDialog_QueueChar(_)
+THEN
+DB_FinalBattle_ThreeWayDialog_QueueChar(_Var1);
+
+PROC
+Proc_FTJ_FinalBattle_ThreeWayDialog()
+AND NOT
+DB_FinalBattle_ThreeWayDialog_QueueChar(_)
+AND
+DB_IsPlayer(_Var2)
+AND
+HasActiveStatus(_Var2, "FROZEN", 0)
+AND
+HasActiveStatus(_Var2, "STUNNED", 0)
+AND
+HasActiveStatus(_Var2, "PETRIFIED", 0)
+AND
+HasActiveStatus(_Var2, "INVISIBLE", 0)
+AND
+HasActiveStatus(_Var2, "SNEAKING", 0)
+AND
+CharacterIsDead(_Var2, 0)
+AND
+GetDistanceTo(CHARACTERGUID_S_FTJ_SW_FinalBattle_Voidwoken_7dcf3cc2-d015-4aff-9949-71fc539fcc73, _Var2, _Var3)
+AND
+_Var3 <= 15
+AND NOT
+DB_FinalBattle_ThreeWayDialog_QueueChar(_)
+THEN
+DB_FinalBattle_ThreeWayDialog_QueueChar(_Var2);
+
+PROC
+Proc_FTJ_FinalBattle_ThreeWayDialog()
+AND
+HasActiveStatus(CHARACTERGUID_S_GLO_Alexandar_03e6345f-1bd3-403c-80e2-a443a74f6349, "FROZEN", 0)
+AND
+HasActiveStatus(CHARACTERGUID_S_GLO_Alexandar_03e6345f-1bd3-403c-80e2-a443a74f6349, "STUNNED", 0)
+AND
+HasActiveStatus(CHARACTERGUID_S_GLO_Alexandar_03e6345f-1bd3-403c-80e2-a443a74f6349, "PETRIFIED", 0)
+AND
+CharacterIsDead(CHARACTERGUID_S_GLO_Alexandar_03e6345f-1bd3-403c-80e2-a443a74f6349, 0)
+AND
+DB_FinalBattle_ThreeWayDialog_QueueChar(_Var1)
+AND
+StartDialog_Internal("FTJ_FinalBattle", 1, CHARACTERGUID_S_FTJ_SW_FinalBattle_Voidwoken_7dcf3cc2-d015-4aff-9949-71fc539fcc73, _Var1, CHARACTERGUID_S_GLO_Alexandar_03e6345f-1bd3-403c-80e2-a443a74f6349, NULL_00000000-0000-0000-0000-000000000000, NULL_00000000-0000-0000-0000-000000000000, NULL_00000000-0000-0000-0000-000000000000, _)
+THEN
+GlobalSetFlag("FTJ_FinalBattle_ThreeWayDialogStarted");
+ProcSetInvulnerable(_Var1, 1);
+ProcSetInvulnerable(CHARACTERGUID_S_FTJ_SW_FinalBattle_Voidwoken_7dcf3cc2-d015-4aff-9949-71fc539fcc73, 1);
+ProcSetInvulnerable(CHARACTERGUID_S_GLO_Alexandar_03e6345f-1bd3-403c-80e2-a443a74f6349, 1);
+CharacterLookAt(CHARACTERGUID_S_FTJ_SW_FinalBattle_Voidwoken_7dcf3cc2-d015-4aff-9949-71fc539fcc73, _Var1);
+CharacterLookAt(CHARACTERGUID_S_GLO_Alexandar_03e6345f-1bd3-403c-80e2-a443a74f6349, _Var1);
+CharacterLookAt(_Var1, CHARACTERGUID_S_FTJ_SW_FinalBattle_Voidwoken_7dcf3cc2-d015-4aff-9949-71fc539fcc73);
+
+PROC
+Proc_FTJ_FinalBattle_ThreeWayDialog()
+AND
+CharacterIsDead(CHARACTERGUID_S_GLO_Alexandar_03e6345f-1bd3-403c-80e2-a443a74f6349, 1)
+AND
+DB_FinalBattle_ThreeWayDialog_QueueChar(_Var1)
+AND
+StartDialog_Internal("FTJ_FinalBattle", 1, CHARACTERGUID_S_FTJ_SW_FinalBattle_Voidwoken_7dcf3cc2-d015-4aff-9949-71fc539fcc73, _Var1, NULL_00000000-0000-0000-0000-000000000000, NULL_00000000-0000-0000-0000-000000000000, NULL_00000000-0000-0000-0000-000000000000, NULL_00000000-0000-0000-0000-000000000000, _)
+THEN
+GlobalSetFlag("FTJ_FinalBattle_ThreeWayDialogStarted");
+ProcSetInvulnerable(_Var1, 1);
+ProcSetInvulnerable(CHARACTERGUID_S_FTJ_SW_FinalBattle_Voidwoken_7dcf3cc2-d015-4aff-9949-71fc539fcc73, 1);
+CharacterLookAt(CHARACTERGUID_S_FTJ_SW_FinalBattle_Voidwoken_7dcf3cc2-d015-4aff-9949-71fc539fcc73, _Var1);
+CharacterLookAt(_Var1, CHARACTERGUID_S_FTJ_SW_FinalBattle_Voidwoken_7dcf3cc2-d015-4aff-9949-71fc539fcc73);
+
+IF
+StoryEvent(_, "FTJ_FinalBattle_VoidwokenAppeared")
+AND
+GlobalGetFlag("FTJ_FinalBattle_VoidwokenAppeared", 1)
+AND NOT
+DB_FinalBattle_ThreeWayDialog_QueueChar(_)
+THEN
+Proc_FTJ_FinalBattle_ThreeWayDialog();
+
+IF
+ObjectTurnStarted(CHARACTERGUID_S_GLO_Alexandar_03e6345f-1bd3-403c-80e2-a443a74f6349)
+AND
+GlobalGetFlag("FTJ_FinalBattle_VoidwokenAppeared", 1)
+AND NOT
+DB_FinalBattle_ThreeWayDialog_QueueChar(_)
+THEN
+Proc_FTJ_FinalBattle_ThreeWayDialog();
+
+IF
+DialogEnded("FTJ_FinalBattle", _)
+AND
+DB_FinalBattle_ThreeWayDialog_QueueChar(_Var2)
+THEN
+ProcSetInvulnerable(_Var2, 0);
+ProcSetInvulnerable(CHARACTERGUID_S_FTJ_SW_FinalBattle_Voidwoken_7dcf3cc2-d015-4aff-9949-71fc539fcc73, 0);
+ProcSetInvulnerable(CHARACTERGUID_S_GLO_Alexandar_03e6345f-1bd3-403c-80e2-a443a74f6349, 0);
+
+PROC
+ReactOnKillCounter("FTJ_FinalBattle_Fallback")
+AND
+GlobalGetFlag("FTJ_FinalBattle_VoidwokenAppeared", 0)
+AND
+DB_FTJ_FinalBattle_Magister(_Var1)
+AND
+DB_WasInCombat(_Var1, _Var2)
+AND
+DB_IsPlayer(_Var3)
+AND
+DB_WasInCombat(_Var3, _Var2)
+AND
+DB_InRegion(_Var3, TRIGGERGUID_AiHintTrig_FTJ_FinalBattle_Burrow_9a987d10-c149-4d86-ab30-02c6b1b46c26)
+AND
+QueryOnlyOnce("FTJ_FinalBattle_Fallback")
+THEN
+SetStoryEvent(_Var3, "onSetOnStage_SpawnAt");
+
+PROC
+ReactOnKillCounter("FTJ_FinalBattle_Fallback")
+AND
+GlobalGetFlag("FTJ_FinalBattle_VoidwokenAppeared", 0)
+AND
+QueryOnlyOnce("FTJ_FinalBattle_Fallback")
+THEN
+SetStoryEvent(CHARACTERGUID_S_FTJ_SW_FinalBattle_Voidwoken_7dcf3cc2-d015-4aff-9949-71fc539fcc73, "onSetOnStage_SpawnAtFallback");
+
+IF
+ObjectFlagSet("DEBUG_FTJ_RallyingPointSetup_Exter", (CHARACTERGUID)_Var1, _)
+THEN
+ObjectClearFlag(_Var1, "DEBUG_FTJ_RallyingPointSetup_Exter");
+CharacterDie(CHARACTERGUID_S_FTJ_SW_Warrior_SeekerCaptain_1329f018-23e4-4717-9bc8-074b28d04c54, 0, "DoT");
+GlobalSetFlag("FTJ_SW_ExterLeadsCallToArms");
+ObjectSetFlag(_Var1, "DEBUG_FTJ_RallyingPointSetup");
+
+IF
+TextEventSet("asaf")
+THEN
+ObjectSetFlag(CHARACTERGUID_S_Player_Sebille_c8d55eaf-e4eb-466a-8f0d-6a9447b5b24c, "DEBUG_FTJ_RallyingPointSetup");
+
+IF
+ObjectFlagSet("DEBUG_FTJ_RallyingPointSetup", (CHARACTERGUID)_Var1, _)
+THEN
+CharacterDie(CHARACTERGUID_S_FTJ_Florence_c272a37a-85ea-438f-9871-1551ef45d338, 0, "DoT");
+DB_OnlyOnce("FTJ_StartDallisEvent_OneShot");
+DialogRequestStop(CHARACTERGUID_S_GLO_Dallis_69b951dc-55a4-44b8-a2d5-5efedbd7d572);
+GlobalSetFlag("FTJ_ForceStartDallisPurge");
+GlobalSetFlag("FTJ_DallisGhettoEventEnd");
+GlobalSetFlag("FTJ_AlexandarPhase_1");
+ProcCharacterDisableCrime(CHARACTERGUID_S_FTJ_SW_Warrior_SeekerCaptain_1329f018-23e4-4717-9bc8-074b28d04c54, "ActiveUndead");
+ProcCharacterDisableCrime(CHARACTERGUID_S_FTJ_CapturedChild_53d4aa5c-dd91-4e12-9ca8-d66879cc6ffb, "ActiveUndead");
+CharacterTeleportPartiesToTrigger(TRIGGERGUID_S_FTJ_SW_GarethAttackWait_ce65a666-74e4-4903-bbcf-200251975965, "");
+
+IF
+ObjectFlagSet("DEBUG_FTJ_RallyingPointSetup", _, _)
+AND
+DB_IsPlayer(_Var3)
+THEN
+ProcSetHostileToIndivPlayer(CHARACTERGUID_S_GLO_Dallis_69b951dc-55a4-44b8-a2d5-5efedbd7d572, _Var3);
+
+IF
+ObjectFlagSet("DEBUG_FTJ_RallyingPointSetup", (CHARACTERGUID)_Var1, _)
+THEN
+ObjectClearFlag(_Var1, "DEBUG_FTJ_RallyingPointSetup");
+DB_DontFTJ_SW_ForcedIntoCombat(CHARACTERGUID_S_FTJ_SeekerCaptain_1329f018-23e4-4717-9bc8-074b28d04c54);
+
+IF
+CharacterDied(CHARACTERGUID_S_FTJ_SW_Warrior_SeekerCaptain_1329f018-23e4-4717-9bc8-074b28d04c54)
+AND
+DB_GlobalFlag("FTJ_SW_GarethAtShelter")
+AND NOT
+DB_GlobalFlag("FTJ_SW_LeaveCallToArms")
+THEN
+GlobalSetFlag("FTJ_SW_LeaveCallToArms");
+GlobalSetFlag("FTJ_SW_ExterLeadsCallToArms");
+
+IF
+ObjectFlagSet("DEBUG_FTJ_RallyingPointSetup", _, _)
+AND
+DB_FTJ_SW_GarethsWarriors(_Var3, _, _, _)
+THEN
+ObjectSetFlag(_Var3, "FTJ_SW_JoinCallToArms");
+GlobalSetFlag("FTJ_SW_LeaveCallToArms");
+SetCanFight(_Var3, 1);
+SetCanJoinCombat(_Var3, 1);
+
+IF
+TextEventSet("FTJBattle")
+THEN
+CharacterDie(CHARACTERGUID_S_FTJ_Florence_c272a37a-85ea-438f-9871-1551ef45d338, 0, "DoT");
+DB_OnlyOnce("FTJ_StartDallisEvent_OneShot");
+DialogRequestStop(CHARACTERGUID_S_GLO_Dallis_69b951dc-55a4-44b8-a2d5-5efedbd7d572);
+GlobalSetFlag("FTJ_ForceStartDallisPurge");
+GlobalSetFlag("FTJ_DallisGhettoEventEnd");
+GlobalSetFlag("FTJ_AlexandarPhase_1");
+
+IF
+TextEventSet("FTJBattle")
+AND
+DB_IsPlayer(_Var1)
+THEN
+ProcSetHostileToIndivPlayer(CHARACTERGUID_S_GLO_Dallis_69b951dc-55a4-44b8-a2d5-5efedbd7d572, _Var1);
+
+IF
+TextEventSet("ftjwarriors")
+AND
+DB_FTJ_SW_GarethsWarriors(_Var1, _, _, _)
+THEN
+ObjectSetFlag(_Var1, "FTJ_SW_JoinCallToArms");
+GlobalSetFlag("FTJ_SW_LeaveCallToArms");
+SetCanFight(_Var1, 1);
+SetCanJoinCombat(_Var1, 1);
+
+IF
+StoryEvent((CHARACTERGUID)_Var1, "FTJ_GarethStartBoatDialog")
+AND
+DB_FTJ_SW_CallToArmsLeaders(_Var2, _, _Var4)
+THEN
+Proc_StartDialog(0, _Var4, _Var2, _Var1);
+
+IF
+TextEventSet("boattest")
+THEN
+ReactOnKillCounter("FTJ_FinalBattle");
+
+PROC
+ReactOnKillCounter("FTJ_FinalBattle")
+THEN
+GlobalSetFlag("FTJ_FinalBattleOver");
+SetOnStage(ITEMGUID_S_FTJ_BoatToShip_001_63914b60-eea0-4d17-8081-898b58ef9cc0, 1);
+proc_ItemMoveToTrigger(ITEMGUID_S_FTJ_BoatToShip_001_63914b60-eea0-4d17-8081-898b58ef9cc0, TRIGGERGUID_S_FTJ_SW_BoatToLV_Point_8f0f27d3-0bb0-4366-8c3a-d84cbaded309, 5, 1, 1);
+
+PROC
+ReactOnKillCounter("FTJ_FinalBattle")
+AND
+DB_IsPlayer(_Var1)
+AND
+QRY_FTJ_FinalBattle_WasInFight(_Var1)
+AND
+ObjectGetFlag(_Var1, "QuestUpdate_FTJ_Escape_Island_EscapeSeeker", 1)
+THEN
+UserSetFlag(_Var1, "QuestUpdate_FTJ_Escape_FinalBattle");
+
+PROC
+ReactOnKillCounter("FTJ_FinalBattle")
+AND
+DB_IsPlayer(_Var1)
+AND
+QRY_FTJ_FinalBattle_WasInFight(_Var1)
+AND
+ObjectGetFlag(_Var1, "QuestUpdate_FTJ_Escape_Island_EscapeSeeker", 0)
+AND
+ObjectGetFlag(_Var1, "QuestUpdate_FTJ_SW_Shriekers_Know_Shrieker", 1)
+THEN
+UserSetFlag(_Var1, "QuestUpdate_FTJ_Escape_FinalBattleNoSeeker");
+
+PROC
+ReactOnKillCounter("FTJ_FinalBattle")
+AND
+DB_IsPlayer(_Var1)
+AND
+QRY_FTJ_FinalBattle_WasInFight(_Var1)
+AND
+ObjectGetFlag(_Var1, "QuestUpdate_FTJ_Escape_Island_DragonHelp", 1)
+THEN
+UserSetFlag(_Var1, "QuestUpdate_FTJ_Escape_Island_FinalBattleDragon");
+
+QRY
+QRY_FTJ_FinalBattle_WasInFight((CHARACTERGUID)_Var1)
+AND
+DB_WasInCombat(_Var1, _Var2)
+AND
+DB_FTJ_FinalBattle_Magister(_Var3)
+AND
+DB_WasInCombat(_Var3, _Var2)
+THEN
+DB_NOOP(1);
+
+QRY
+QRY_FTJ_FinalBattle_WasInFight((CHARACTERGUID)_Var1)
+AND
+DB_WasInCombat(_Var1, _Var2)
+AND
+DB_WasInCombat(CHARACTERGUID_S_GLO_Alexandar_03e6345f-1bd3-403c-80e2-a443a74f6349, _Var2)
+THEN
+DB_NOOP(1);
+
+QRY
+QRY_FTJ_FinalBattle_AttackStarted((CHARACTERGUID)_Var1)
+AND
+ObjectGetFlag(_Var1, "QuestClose_FTJ_SW_CallToArms_AttackStarted", 1)
+THEN
+DB_NOOP(1);
+
+QRY
+QRY_FTJ_FinalBattle_AttackStarted((CHARACTERGUID)_Var1)
+AND
+ObjectGetFlag(_Var1, "QuestClose_FTJ_SW_CallToArms_AttackStartedExter", 1)
+THEN
+DB_NOOP(1);
+
+IF
+CharacterEnteredTrigger((CHARACTERGUID)_Var1, TRIGGERGUID_S_FTJ_SW_FinalFight_InfiltrationBox_a8d17d54-17ec-4d49-92c6-02eef947dea4)
+AND
+GlobalGetFlag("FTJ_SW_CallToArms_PathIsCleared", 1)
+AND
+GlobalGetFlag("FTJ_SW_CallToArmsReady", 1)
+THEN
+GlobalSetFlag("FTJ_SW_FinalBattle_StartInfiltration");
+
+IF
+GlobalFlagSet("FTJ_SW_FinalBattle_StartInfiltration")
+THEN
+Proc_FTJ_SW_CTA_RecruitedWarriorsStartFollow();
+
+IF
+GlobalFlagSet("FTJ_SW_FinalBattle_StartInfiltration")
+THEN
+Proc_FTJ_SW_PlayGratianasCheeringDialog();
+ProcTriggerUnregisterForPlayers(TRIGGERGUID_S_FTJ_SW_FinalFight_InfiltrationBox_a8d17d54-17ec-4d49-92c6-02eef947dea4);
+Proc_FTJ_InitiateInfiltration();
+
+PROC
+Proc_FTJ_SW_PlayGratianasCheeringDialog()
+AND
+ObjectGetFlag(CHARACTERGUID_S_FTJ_SW_ShelterUndead_f0602373-d2cb-4658-a91b-9d111c928152, "FTJ_SW_JoinCallToArms", 1)
+AND
+CharacterIsDead(CHARACTERGUID_S_FTJ_SW_ShelterUndead_f0602373-d2cb-4658-a91b-9d111c928152, 0)
+AND
+QueryOnlyOnce("FTJ_SW_GratianaCheerOnWarriorsOnce")
+THEN
+SetStoryEvent(CHARACTERGUID_S_FTJ_SW_ShelterUndead_f0602373-d2cb-4658-a91b-9d111c928152, "FTJ_SW_GratianaCheerOnWarriors");
+
+PROC
+Proc_FTJ_InitiateInfiltration()
+THEN
+Proc_StartDialog(1, "FTJ_SW_AD_FinalBattle_ExterInfiltration", CHARACTERGUID_S_FTJ_SW_Warrior_SeekerCaptain_1329f018-23e4-4717-9bc8-074b28d04c54);
+
+PROC
+Proc_FTJ_InitiateInfiltration()
+AND
+GlobalGetFlag("FTJ_SW_ExterLeadsCallToArms", 1)
+THEN
+Proc_StartDialog(1, "FTJ_AD_FinalBattle_GerathInfiltration", CHARACTERGUID_S_FTJ_SW_Warrior_Squire_650e8e08-55a2-4ea6-a9f3-c027e4f8c494);
+
+PROC
+Proc_FTJ_InitiateInfiltration()
+AND
+DB_FTJ_SW_GarethsWarriors(_Var1, _, _, _)
+AND
+ObjectGetFlag(_Var1, "FTJ_SW_JoinCallToArms", 1)
+AND
+CharacterIsDead(_Var1, 0)
+AND NOT
+DB_FTJ_SW_WarriorsRecruited(_Var1, _)
+THEN
+ProcForceStopDialog(_Var1);
+CharacterSetForceUpdate(_Var1, 1);
+CharacterSetReactionPriority(_Var1, "FTJ_FinalBattle_initiateInfiltration", 1700);
+DB_FTJ_FinalBattleInfiltration(_Var1);
+
+IF
+StoryEvent((CHARACTERGUID)_Var1, "FTJ_FinalBattle_ReachedBoat")
+THEN
+SetHasDialog(_Var1, 1);
+SetOnStage(_Var1, 0);
+CharacterSetReactionPriority(_Var1, "FTJ_FinalBattle_initiateInfiltration", 0);
+
+IF
+CharacterDied((CHARACTERGUID)_Var1)
+AND
+DB_FTJ_FinalBattleInfiltration(_Var1)
+THEN
+NOT DB_FTJ_FinalBattleInfiltration(_Var1);
+Proc_FTJ_CheckInfiltrationDone_Dead();
+CharacterSetForceUpdate(_Var1, 0);
+
+PROC
+Proc_FTJ_CheckInfiltrationDone_Dead()
+AND NOT
+DB_FTJ_FinalBattleInfiltration(_)
+AND
+DB_GlobalFlag("FTJ_FinalBattle_AnyoneReachedBoat")
+THEN
+SetOnStage(ITEMGUID_S_FTJ_BoatToShip_Seekers_75a2ae6a-56ad-4e82-902a-a57917ec046b, 0);
+
+IF
+StoryEvent((CHARACTERGUID)_Var1, "FTJ_FinalBattle_ReachedBoat")
+AND
+DB_FTJ_FinalBattleInfiltration(_Var1)
+THEN
+GlobalSetFlag("FTJ_FinalBattle_AnyoneReachedBoat");
+NOT DB_FTJ_FinalBattleInfiltration(_Var1);
+Proc_FTJ_CheckInfiltrationDone();
+CharacterSetForceUpdate(_Var1, 0);
+
+PROC
+Proc_FTJ_CheckInfiltrationDone()
+AND NOT
+DB_FTJ_FinalBattleInfiltration(_)
+THEN
+SetOnStage(ITEMGUID_S_FTJ_BoatToShip_Seekers_75a2ae6a-56ad-4e82-902a-a57917ec046b, 0);
+GlobalSetFlag("FTJ_FinalBattle_InfiltrationDone");
+
+IF
+StoryEvent(CHARACTERGUID_S_FTJ_SW_Warrior_SeekerCaptain_1329f018-23e4-4717-9bc8-074b28d04c54, "FTJ_FinalBattle_ReachedBoat")
+THEN
+GlobalSetFlag("FTJ_FinalBattle_GarethReachedBoat");
+ProcSetFlagOnAll("QuestClose_FTJ_SW_BatteredAndCornered");
+
+IF
+CharacterDied(CHARACTERGUID_S_GLO_Alexandar_03e6345f-1bd3-403c-80e2-a443a74f6349)
+AND
+GlobalGetFlag("FTJ_AlexandarPhase_1", 1)
+THEN
+DB_FTJ_SW_FinalBattle_QueueMagisterAD(1);
+
+IF
+CharacterDied(CHARACTERGUID_S_GLO_Alexandar_03e6345f-1bd3-403c-80e2-a443a74f6349)
+AND
+GetDistanceTo(CHARACTERGUID_S_GLO_Alexandar_03e6345f-1bd3-403c-80e2-a443a74f6349, CHARACTERGUID_S_Player_Ifan_ad9a3327-4456-42a7-9bf4-7ad60cc9e54f, _Var1)
+AND
+_Var1 < 20
+THEN
+Proc_StartDialog(1, "FTJ_SW_AD_IfanKilledAlexandar", CHARACTERGUID_S_Player_Ifan_ad9a3327-4456-42a7-9bf4-7ad60cc9e54f);
+
+PROC
+Proc_ObjectLeftCombat(CHARACTERGUID_S_GLO_Alexandar_03e6345f-1bd3-403c-80e2-a443a74f6349, (INTEGER)_Var1)
+AND
+GlobalGetFlag("FTJ_AlexandarPhase_1", 1)
+AND
+DB_IsPlayer(_Var2)
+AND
+DB_WasInCombat(_Var2, _Var1)
+THEN
+PartySetFlag(_Var2, "FTJ_SW_HelpedKillAlexandar");
+
+PROC
+Proc_ObjectLeftCombat(CHARACTERGUID_S_GLO_Alexandar_03e6345f-1bd3-403c-80e2-a443a74f6349, (INTEGER)_Var1)
+AND
+GlobalGetFlag("FTJ_AlexandarPhase_1", 1)
+AND
+DB_IsPlayer(_Var2)
+AND
+DB_CombatCharacters(_Var2, _Var1)
+THEN
+PartySetFlag(_Var2, "FTJ_SW_HelpedKillAlexandar");
+
+IF
+ObjectTurnStarted((CHARACTERGUID)_Var1)
+AND
+DB_FTJ_SW_FinalBattle_QueueMagisterAD(1)
+AND
+DB_FTJ_FinalBattle_Magister(_Var1)
+AND
+HasActiveStatus(_Var1, "FROZEN", 0)
+AND
+HasActiveStatus(_Var1, "STUNNED", 0)
+AND
+HasActiveStatus(_Var1, "PETRIFIED", 0)
+THEN
+NOT DB_FTJ_SW_FinalBattle_QueueMagisterAD(1);
+Proc_StartDialog(1, "FTJ_SW_AD_FinalBattle_AlexandarDeath", _Var1);
+
+IF
+CharacterDied(CHARACTERGUID_S_GLO_Alexandar_03e6345f-1bd3-403c-80e2-a443a74f6349)
+AND
+DB_FTJ_SW_GarethsWarriors(_Var1, _, _, _)
+AND
+DB_MurderIgnoreFor(_Var1, CHARACTERGUID_S_GLO_Alexandar_03e6345f-1bd3-403c-80e2-a443a74f6349)
+THEN
+NOT DB_MurderIgnoreFor(_Var1, CHARACTERGUID_S_GLO_Alexandar_03e6345f-1bd3-403c-80e2-a443a74f6349);
+NOT DB_AssaultFamilyIgnoreFor(_Var1, CHARACTERGUID_S_GLO_Alexandar_03e6345f-1bd3-403c-80e2-a443a74f6349);
+
+PROC
+ProcRegionEnded("FJ_FortJoy_Main")
+AND
+DB_FTJ_SW_GarethsWarriors(_Var1, _, _, _)
+THEN
+CharacterSetReactionPriority(_Var1, "FTJ_FinalBattle_initiateInfiltration", 0);
+
+PROC
+ProcRegionEnded("FJ_FortJoy_Main")
+THEN
+GoalCompleted;
+
+
+EXITSECTION
+NOT DB_FTJ_FinalBattle_Magister(CHARACTERGUID_S_FTJ_SW_FinalBattleMagister_000_c283e820-0166-4668-8ad4-842085d58de9);
+NOT DB_FTJ_FinalBattle_Magister(CHARACTERGUID_S_FTJ_SW_FinalBattleMagister_001_165f1353-a916-4291-940a-293efbe8f187);
+NOT DB_FTJ_FinalBattle_Magister(CHARACTERGUID_S_FTJ_SW_FinalBattleMagister_002_0b7282f6-a131-4441-a113-8f3ea62fa9e3);
+NOT DB_FTJ_FinalBattle_Magister(CHARACTERGUID_S_FTJ_SW_FinalBattleMagister_003_b5dd6af4-6b34-482e-bc0a-72bd6269aaf5);
+NOT DB_KillCounter_Internal(CHARACTERGUID_S_FTJ_SW_FinalBattleMagister_000_c283e820-0166-4668-8ad4-842085d58de9, "FTJ_FinalBattle");
+NOT DB_KillCounter_Internal(CHARACTERGUID_S_FTJ_SW_FinalBattleMagister_001_165f1353-a916-4291-940a-293efbe8f187, "FTJ_FinalBattle");
+NOT DB_KillCounter_Internal(CHARACTERGUID_S_FTJ_SW_FinalBattleMagister_002_0b7282f6-a131-4441-a113-8f3ea62fa9e3, "FTJ_FinalBattle");
+NOT DB_KillCounter_Internal(CHARACTERGUID_S_FTJ_SW_FinalBattleMagister_003_b5dd6af4-6b34-482e-bc0a-72bd6269aaf5, "FTJ_FinalBattle");
+NOT DB_KillCounter_Internal(CHARACTERGUID_S_FTJ_SW_FinalBattle_Voidwoken_7dcf3cc2-d015-4aff-9949-71fc539fcc73, "FTJ_FinalBattle");
+NOT DB_KillCounter_Internal(CHARACTERGUID_S_FTJ_SW_FinalBattleMagister_Gheist_06082187-829f-43e1-b3bb-f3242a70904d, "FTJ_FinalBattle");
+NOT DB_KillCounter_Internal(CHARACTERGUID_S_GLO_Alexandar_03e6345f-1bd3-403c-80e2-a443a74f6349, "FTJ_FinalBattle");
+ENDEXITSECTION
+
+ParentTargetEdge "FortJoy"

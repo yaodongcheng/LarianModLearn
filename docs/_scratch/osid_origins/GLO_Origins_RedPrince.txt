@@ -1,0 +1,272 @@
+Version 1
+SubGoalCombiner SGC_AND
+
+INITSECTION
+DB_SeenDeadNPCPartyFlag(CHARACTERGUID_S_CoS_Temples_SpyMaster_787c6c4a-6e5a-4044-9616-27e21e5a171e, "CoS_FoundDeadSpyMaster");
+Proc_JDF_CreateCustomFlagsDependency("QuestUpdate_FTJ_COM_RedPrince_ToSallowMan", "QuestUpdate_FTJ_COM_RedPrince_BlackMirror_RedPrince", "QuestUpdate_FTJ_COM_RedPrince_HouseOfShadows_BlackMirror_RedPrince");
+Proc_JDF_CreateCustomFlagsDependency("QuestUpdate_FTJ_OriginRedPrince_ToSallowMan", "QuestUpdate_FTJ_OriginRedPrince_BlackMirror_Pregnant_Warned", "QuestUpdate_FTJ_OriginRedPrince_HouseOfShadows_BlackMirror");
+
+KBSECTION
+PROC
+PROC_GLO_PartyMembers_RecruiteeAvatarBond(CHARACTERGUID_S_Player_RedPrince_a26a1efb-cdc8-4cf3-a7b2-b2f9544add6f, (CHARACTERGUID)_Var1)
+AND NOT
+DB_GlobalFlag("FTJ_LV_SetUp")
+THEN
+ObjectSetFlag(_Var1, "GLO_RedPrince_RecruitedInFortJoy");
+GlobalSetFlag("GLO_RedPrince_WasRecruitedInFortJoy");
+
+PROC
+PROC_GLO_PartyMembers_RecruiteeAvatarBond(CHARACTERGUID_S_Player_RedPrince_a26a1efb-cdc8-4cf3-a7b2-b2f9544add6f, (CHARACTERGUID)_Var1)
+AND
+DB_GlobalFlag("FTJ_LV_SetUp")
+THEN
+ObjectSetFlag(_Var1, "GLO_RedPrince_RecruitedInLV");
+
+IF
+GlobalFlagSet("FTJ_LV_SetUp")
+AND NOT
+DB_GlobalFlag("GLO_RedPrince_WasRecruitedInFortJoy")
+THEN
+GlobalSetFlag("GLO_RedPrince_BaharaFinished");
+
+IF
+DialogStarted("RedPrince_Recruitment", _)
+THEN
+NOT DB_DoNotFace(CHARACTERGUID_S_Player_RedPrince_a26a1efb-cdc8-4cf3-a7b2-b2f9544add6f);
+
+PROC
+PROC_GLO_PartyMembers_Add(CHARACTERGUID_S_Player_RedPrince_a26a1efb-cdc8-4cf3-a7b2-b2f9544add6f, (CHARACTERGUID)_Var1)
+AND
+ObjectGetFlag(_Var1, "QuestAdd_FTJ_COM_RedPrince", 0)
+AND NOT
+DB_GlobalFlag("GLO_RedPrince_WasRecruitedInFortJoy")
+AND NOT
+DB_GlobalFlag("GLO_RedPrince_BaharaFinished")
+THEN
+UserSetFlag(_Var1, "QuestAdd_FTJ_COM_RedPrince");
+UserSetFlag(_Var1, "QuestUpdate_FTJ_COM_RedPrince_Start");
+
+PROC
+PROC_GLO_PartyMembers_Add(CHARACTERGUID_S_Player_RedPrince_a26a1efb-cdc8-4cf3-a7b2-b2f9544add6f, (CHARACTERGUID)_Var1)
+AND
+ObjectGetFlag(_Var1, "QuestAdd_FTJ_COM_RedPrince", 0)
+AND NOT
+DB_GlobalFlag("GLO_RedPrince_WasRecruitedInFortJoy")
+AND
+DB_GlobalFlag("GLO_RedPrince_BaharaFinished")
+THEN
+UserSetFlag(_Var1, "QuestAdd_FTJ_COM_RedPrince");
+UserSetFlag(_Var1, "QuestUpdate_FTJ_COM_RedPrince_Start_AfterBahara");
+
+PROC
+PROC_GLO_PartyMembers_Add(CHARACTERGUID_S_Player_RedPrince_a26a1efb-cdc8-4cf3-a7b2-b2f9544add6f, (CHARACTERGUID)_Var1)
+AND
+DB_GlobalFlag("FTJ_LV_SetUp")
+AND
+ObjectGetFlag(_Var1, "QuestAdd_FTJ_COM_RedPrince", 0)
+AND NOT
+DB_GlobalFlag("GLO_RedPrince_BaharaFinished")
+THEN
+UserSetFlag(_Var1, "QuestAdd_FTJ_COM_RedPrince");
+UserSetFlag(_Var1, "QuestUpdate_FTJ_COM_RedPrince_Start_LV_NoStingtail");
+
+PROC
+PROC_GLO_PartyMembers_Add(CHARACTERGUID_S_Player_RedPrince_a26a1efb-cdc8-4cf3-a7b2-b2f9544add6f, (CHARACTERGUID)_Var1)
+AND
+DB_GlobalFlag("FTJ_LV_SetUp")
+AND
+ObjectGetFlag(_Var1, "QuestAdd_FTJ_COM_RedPrince", 0)
+AND
+DB_GlobalFlag("GLO_RedPrince_BaharaFinished")
+THEN
+UserSetFlag(_Var1, "QuestAdd_FTJ_COM_RedPrince");
+UserSetFlag(_Var1, "QuestUpdate_FTJ_COM_RedPrince_Start_LV_NoBahara");
+
+PROC
+PROC_PrincessPoof((CHARACTERGUID)_Var1)
+AND
+GetRegion(_Var1, _Var2)
+AND
+DB_CurrentLevel(_Var2)
+AND
+GetPosition(_Var1, _Var3, _Var4, _Var5)
+THEN
+PlayEffectAtPosition("RS3_FX_GP_ScriptedEvent_RedPrincess_Teleport_01", _Var3, _Var4, _Var5);
+
+PROC
+PROC_PrincessPoof((CHARACTERGUID)_Var1)
+THEN
+SetOnStage(_Var1, 0);
+
+IF
+DB_DialogNPCs(_Var1, CHARACTERGUID_S_GLO_RedPrincess_050fbbf9-3fc9-40cd-9cbb-43b4b3754a5e, _)
+AND
+DB_DialogPlayers(_Var1, CHARACTERGUID_S_Player_RedPrince_a26a1efb-cdc8-4cf3-a7b2-b2f9544add6f, _)
+AND
+IsTagged(CHARACTERGUID_S_Player_RedPrince_a26a1efb-cdc8-4cf3-a7b2-b2f9544add6f, "RED PRINCE", 1)
+THEN
+GlobalSetFlag("GLO_RPMetRedPrincess");
+
+IF
+DB_DialogNPCs(_Var1, CHARACTERGUID_S_GLO_RedPrincess_050fbbf9-3fc9-40cd-9cbb-43b4b3754a5e, _)
+AND
+DB_DialogPlayers(_Var1, CHARACTERGUID_S_Player_RedPrince_a26a1efb-cdc8-4cf3-a7b2-b2f9544add6f, _)
+AND
+IsTagged(CHARACTERGUID_S_Player_RedPrince_a26a1efb-cdc8-4cf3-a7b2-b2f9544add6f, "RED PRINCE", 1)
+THEN
+GlobalSetFlag("GLO_RPMetRedPrincess");
+
+IF
+ObjectFlagSet("QuestUpdate_FTJ_COM_RedPrince_RedPrincessMate", CHARACTERGUID_S_Player_RedPrince_a26a1efb-cdc8-4cf3-a7b2-b2f9544add6f, _)
+THEN
+PROC_JournalEntries_ClearQuestUpdateEvent("FTJ_COM_RedPrince", "RedPrincessLearnShadowPrince", "QuestUpdate_FTJ_COM_RedPrince_ToSallowMan");
+
+IF
+ObjectFlagSet("QuestUpdate_FTJ_COM_RedPrince_RedPrincessRefused", CHARACTERGUID_S_Player_RedPrince_a26a1efb-cdc8-4cf3-a7b2-b2f9544add6f, _)
+THEN
+PROC_JournalEntries_ClearQuestUpdateEvent("FTJ_COM_RedPrince", "RedPrincessLearnShadowPrince", "QuestUpdate_FTJ_COM_RedPrince_ToSallowMan");
+
+IF
+ObjectFlagSet("QuestUpdate_FTJ_COM_RedPrince_ToRedPrincess", CHARACTERGUID_S_Player_RedPrince_a26a1efb-cdc8-4cf3-a7b2-b2f9544add6f, _)
+THEN
+PROC_JournalEntries_ClearQuestUpdateEvent("FTJ_COM_RedPrince", "RedPrincessLearnShadowPrince", "QuestUpdate_FTJ_COM_RedPrince_ToSallowMan");
+
+IF
+ObjectFlagSet("QuestUpdate_FTJ_OriginRedPrince_RedPrincessMate", CHARACTERGUID_S_Player_RedPrince_a26a1efb-cdc8-4cf3-a7b2-b2f9544add6f, _)
+THEN
+PROC_JournalEntries_ClearQuestUpdateEvent("FTJ_OriginRedPrince", "RedPrincessLearnShadowPrince", "QuestUpdate_FTJ_OriginRedPrince_ToSallowMan");
+
+IF
+ObjectFlagSet("QuestUpdate_FTJ_OriginRedPrince_RedPrincessTryKill", CHARACTERGUID_S_Player_RedPrince_a26a1efb-cdc8-4cf3-a7b2-b2f9544add6f, _)
+THEN
+PROC_JournalEntries_ClearQuestUpdateEvent("FTJ_OriginRedPrince", "RedPrincessLearnShadowPrince", "QuestUpdate_FTJ_OriginRedPrince_ToSallowMan");
+
+IF
+ObjectFlagSet("QuestUpdate_FTJ_OriginRedPrince_ToRedPrincess", CHARACTERGUID_S_Player_RedPrince_a26a1efb-cdc8-4cf3-a7b2-b2f9544add6f, _)
+THEN
+PROC_JournalEntries_ClearQuestUpdateEvent("FTJ_OriginRedPrince", "RedPrincessLearnShadowPrince", "QuestUpdate_FTJ_OriginRedPrince_ToSallowMan");
+
+QRY
+QRY_RC_RCEnd_COM_RedPrinceKnowsOfRedPrincessPlot()
+AND
+UserGetFlag(CHARACTERGUID_S_Player_RedPrince_a26a1efb-cdc8-4cf3-a7b2-b2f9544add6f, "QuestUpdate_FTJ_COM_RedPrince_SpyMasterInvite", 1)
+THEN
+DB_NOOP(1);
+
+QRY
+QRY_RC_RCEnd_COM_RedPrinceKnowsOfRedPrincessPlot()
+AND
+UserGetFlag(CHARACTERGUID_S_Player_RedPrince_a26a1efb-cdc8-4cf3-a7b2-b2f9544add6f, "QuestUpdate_FTJ_COM_RedPrince_ToRedPrincess", 1)
+THEN
+DB_NOOP(1);
+
+QRY
+QRY_RC_RCEnd_COM_RedPrinceKnowsOfRedPrincessPlot()
+AND
+UserGetFlag(CHARACTERGUID_S_Player_RedPrince_a26a1efb-cdc8-4cf3-a7b2-b2f9544add6f, "QuestUpdate_FTJ_COM_RedPrince_RedPrincessRefused", 1)
+THEN
+DB_NOOP(1);
+
+QRY
+QRY_RC_RCEnd_COM_RedPrinceKnowsOfRedPrincessPlot()
+AND
+UserGetFlag(CHARACTERGUID_S_Player_RedPrince_a26a1efb-cdc8-4cf3-a7b2-b2f9544add6f, "QuestUpdate_FTJ_COM_RedPrince_RedPrincessMate", 1)
+THEN
+DB_NOOP(1);
+
+QRY
+QRY_RC_RCEnd_COM_RedPrinceKnowsOfBrahmos()
+AND
+DB_GlobalFlag("GLO_RedPrince_BaharaFinished")
+THEN
+DB_NOOP(1);
+
+QRY
+QRY_RC_RCEnd_COM_RedPrinceKnowsOfBrahmos()
+AND
+UserGetFlag(CHARACTERGUID_S_Player_RedPrince_a26a1efb-cdc8-4cf3-a7b2-b2f9544add6f, "QuestUpdate_FTJ_COM_RedPrince_RC_LizardDreamer", 1)
+THEN
+DB_NOOP(1);
+
+QRY
+QRY_RC_RCEnd_COM_RedPrinceKnowsOfBrahmos()
+AND
+UserGetFlag(CHARACTERGUID_S_Player_RedPrince_a26a1efb-cdc8-4cf3-a7b2-b2f9544add6f, "QuestUpdate_FTJ_COM_RedPrince_RC_PaladinInfo", 1)
+THEN
+DB_NOOP(1);
+
+QRY
+QRY_RC_RCEnd_Avatar_RedPrinceKnowsOfRedPrincessPlot()
+AND
+ObjectGetFlag(CHARACTERGUID_S_Player_RedPrince_a26a1efb-cdc8-4cf3-a7b2-b2f9544add6f, "QuestUpdate_FTJ_OriginRedPrince_SpyMasterInvite", 1)
+THEN
+DB_NOOP(1);
+
+QRY
+QRY_RC_RCEnd_Avatar_RedPrinceKnowsOfRedPrincessPlot()
+AND
+ObjectGetFlag(CHARACTERGUID_S_Player_RedPrince_a26a1efb-cdc8-4cf3-a7b2-b2f9544add6f, "QuestUpdate_FTJ_OriginRedPrince_ToRedPrincess", 1)
+THEN
+DB_NOOP(1);
+
+QRY
+QRY_RC_RCEnd_Avatar_RedPrinceKnowsOfRedPrincessPlot()
+AND
+ObjectGetFlag(CHARACTERGUID_S_Player_RedPrince_a26a1efb-cdc8-4cf3-a7b2-b2f9544add6f, "QuestUpdate_FTJ_OriginRedPrince_RedPrincessTryKill", 1)
+THEN
+DB_NOOP(1);
+
+QRY
+QRY_RC_RCEnd_Avatar_RedPrinceKnowsOfRedPrincessPlot()
+AND
+ObjectGetFlag(CHARACTERGUID_S_Player_RedPrince_a26a1efb-cdc8-4cf3-a7b2-b2f9544add6f, "QuestUpdate_FTJ_OriginRedPrince_RedPrincessMate", 1)
+THEN
+DB_NOOP(1);
+
+QRY
+QRY_RC_RCEnd_Avatar_RedPrinceKnowsOfBrahmos()
+AND
+DB_GlobalFlag("GLO_RedPrince_BaharaFinished")
+THEN
+DB_NOOP(1);
+
+QRY
+QRY_RC_RCEnd_Avatar_RedPrinceKnowsOfBrahmos()
+AND
+ObjectGetFlag(CHARACTERGUID_S_Player_RedPrince_a26a1efb-cdc8-4cf3-a7b2-b2f9544add6f, "QuestUpdate_FTJ_OriginRedPrince_RC_LizardDreamer", 1)
+THEN
+DB_NOOP(1);
+
+QRY
+QRY_RC_RCEnd_Avatar_RedPrinceKnowsOfBrahmos()
+AND
+ObjectGetFlag(CHARACTERGUID_S_Player_RedPrince_a26a1efb-cdc8-4cf3-a7b2-b2f9544add6f, "QuestUpdate_FTJ_OriginRedPrince_RC_PaladinInfo", 1)
+THEN
+DB_NOOP(1);
+
+IF
+SavegameLoaded((INTEGER)_Var1, (INTEGER)_Var2, (INTEGER)_Var3, (INTEGER)_Var4)
+AND
+QRY_VersionIsOlderThan(_Var1, _Var2, _Var3, _Var4, 3, 5, 1, 0)
+THEN
+DB_SeenDeadNPCPartyFlag(CHARACTERGUID_S_CoS_Temples_SpyMaster_787c6c4a-6e5a-4044-9616-27e21e5a171e, "CoS_FoundDeadSpyMaster");
+Proc_JDF_CreateCustomFlagsDependency("QuestUpdate_FTJ_COM_RedPrince_ToSallowMan", "QuestUpdate_FTJ_COM_RedPrince_BlackMirror_RedPrince", "QuestUpdate_FTJ_COM_RedPrince_HouseOfShadows_BlackMirror_RedPrince");
+
+IF
+DialogEnded("RC_FL_RedPrincess_CRD_RedPrince", _)
+AND
+ObjectGetFlag(CHARACTERGUID_S_Player_RedPrince_a26a1efb-cdc8-4cf3-a7b2-b2f9544add6f, "GLO_Companion_Leave", 1)
+AND
+DB_CompanionAvatarBond(CHARACTERGUID_S_Player_RedPrince_a26a1efb-cdc8-4cf3-a7b2-b2f9544add6f, _Var2)
+THEN
+PROC_Origins_CompanionLeavePermanently(CHARACTERGUID_S_Player_RedPrince_a26a1efb-cdc8-4cf3-a7b2-b2f9544add6f);
+DB_CompanionLeaving(CHARACTERGUID_S_Player_RedPrince_a26a1efb-cdc8-4cf3-a7b2-b2f9544add6f, _Var2);
+CharacterMakeStoryNpc(CHARACTERGUID_S_Player_RedPrince_a26a1efb-cdc8-4cf3-a7b2-b2f9544add6f, 1);
+ProcCharacterDisappearOutOfSight(CHARACTERGUID_S_Player_RedPrince_a26a1efb-cdc8-4cf3-a7b2-b2f9544add6f, 0, 1, "GLO_CompanionLeaves_LowRelation", 1);
+Proc_OriginLeft(CHARACTERGUID_S_Player_RedPrince_a26a1efb-cdc8-4cf3-a7b2-b2f9544add6f, "_LowRelation");
+
+
+EXITSECTION
+ENDEXITSECTION
+
+ParentTargetEdge "Start"

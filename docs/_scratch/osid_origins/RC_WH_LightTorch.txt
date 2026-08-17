@@ -1,0 +1,89 @@
+Version 1
+SubGoalCombiner SGC_AND
+
+INITSECTION
+DB_Ghosts(CHARACTERGUID_RC_WH_LightTorch_DeadDwarfCorpse_73df7535-baef-42ab-a57b-f69479a8bd3a, CHARACTERGUID_RC_WH_LightTorch_DeadDwarfGhost_49a4ba83-9aa4-407e-8e06-cd06290b5287, "RC_WH_LightTorch_DwarfGhost");
+SetOnStage(ITEMGUID_RC_WH_LightTorch_Ladder_e3271da7-e209-467e-80ae-b0e9972d3b30, 0);
+SetOnStage(ITEMGUID_RC_WH_LightTorch_Ladder02_b656b4f4-85bb-4f39-94d3-d757e5c41cf7, 0);
+SetOnStage(ITEMGUID_RC_WH_LightTorch_LadderRolledUp_05af8e5c-9570-4f4c-9362-352729126dfa, 1);
+SetOnStage(ITEMGUID_RC_WH_LightTorch_LadderRolledUp_2_e889e649-a9f6-4dd9-bcf3-565626de8a40, 1);
+
+KBSECTION
+IF
+CharacterUsedItem(_, ITEMGUID_RC_WH_LightTorch_LadderRolledUp_05af8e5c-9570-4f4c-9362-352729126dfa)
+AND
+GetPosition(ITEMGUID_RC_WH_LightTorch_Ladder_e3271da7-e209-467e-80ae-b0e9972d3b30, _Var2, _Var3, _Var4)
+THEN
+PlayScaledEffectAtPosition("RS3_FX_GP_ScriptedEvent_Teleport_GenericSmoke_01", 2, _Var2, _Var3, _Var4);
+SetOnStage(ITEMGUID_RC_WH_LightTorch_Ladder_e3271da7-e209-467e-80ae-b0e9972d3b30, 1);
+SetOnStage(ITEMGUID_RC_WH_LightTorch_LadderRolledUp_05af8e5c-9570-4f4c-9362-352729126dfa, 0);
+
+IF
+CharacterUsedItem(_, ITEMGUID_RC_WH_LightTorch_LadderRolledUp_2_e889e649-a9f6-4dd9-bcf3-565626de8a40)
+AND
+GetPosition(ITEMGUID_RC_WH_LightTorch_Ladder02_b656b4f4-85bb-4f39-94d3-d757e5c41cf7, _Var2, _Var3, _Var4)
+THEN
+PlayScaledEffectAtPosition("RS3_FX_GP_ScriptedEvent_Teleport_GenericSmoke_01", 2, _Var2, _Var3, _Var4);
+SetOnStage(ITEMGUID_RC_WH_LightTorch_Ladder02_b656b4f4-85bb-4f39-94d3-d757e5c41cf7, 1);
+SetOnStage(ITEMGUID_RC_WH_LightTorch_LadderRolledUp_2_e889e649-a9f6-4dd9-bcf3-565626de8a40, 0);
+
+IF
+ObjectFlagSet("GLO_GhostVanish", CHARACTERGUID_RC_WH_LightTorch_DeadDwarfGhost_49a4ba83-9aa4-407e-8e06-cd06290b5287, _)
+THEN
+DB_RC_WH_LightTorch_DwarfVanished(1);
+
+IF
+CharacterUsedItem((CHARACTERGUID)_Var1, ITEMGUID_S_RC_WH_LightTorch_Bonfire_60649f98-2d0b-4f3b-b10b-75c6cd620a26)
+AND NOT
+DB_RC_WH_LightTorch_DwarfVanished(_)
+AND
+GetVarInteger(ITEMGUID_S_RC_WH_LightTorch_Bonfire_60649f98-2d0b-4f3b-b10b-75c6cd620a26, "IsStatusOn", 0)
+THEN
+ObjectSetFlag(CHARACTERGUID_RC_WH_LightTorch_DeadDwarfGhost_49a4ba83-9aa4-407e-8e06-cd06290b5287, "RC_WH_LightTorch_FirstTimeDoused");
+
+IF
+CharacterUsedItem((CHARACTERGUID)_Var1, ITEMGUID_S_RC_WH_LightTorch_Bonfire_60649f98-2d0b-4f3b-b10b-75c6cd620a26)
+AND NOT
+DB_RC_WH_LightTorch_DwarfVanished(_)
+AND
+GetVarInteger(ITEMGUID_S_RC_WH_LightTorch_Bonfire_60649f98-2d0b-4f3b-b10b-75c6cd620a26, "IsStatusOn", 1)
+THEN
+ObjectClearFlag(CHARACTERGUID_RC_WH_LightTorch_DeadDwarfGhost_49a4ba83-9aa4-407e-8e06-cd06290b5287, "RC_WH_LightTorch_FirstTimeDoused", 1);
+
+IF
+CharacterUsedItem((CHARACTERGUID)_Var1, ITEMGUID_S_RC_WH_LightTorch_Bonfire_60649f98-2d0b-4f3b-b10b-75c6cd620a26)
+AND NOT
+DB_RC_WH_LightTorch_DwarfVanished(_)
+AND
+CharacterCanSeeGhost(_Var1, CHARACTERGUID_RC_WH_LightTorch_DeadDwarfGhost_49a4ba83-9aa4-407e-8e06-cd06290b5287, 1)
+AND
+GetVarInteger(ITEMGUID_S_RC_WH_LightTorch_Bonfire_60649f98-2d0b-4f3b-b10b-75c6cd620a26, "IsStatusOn", 0)
+THEN
+Proc_StartDialog(0, "RC_WH_LightTorch_DwarfGhostFireReaction", CHARACTERGUID_RC_WH_LightTorch_DeadDwarfGhost_49a4ba83-9aa4-407e-8e06-cd06290b5287, _Var1);
+
+IF
+ObjectFlagSet("RC_WH_LightTorch_GiveSP", (CHARACTERGUID)_Var1, _)
+AND
+DB_IsPlayer(_Var1)
+THEN
+CharacterAddSourcePoints(_Var1, 1);
+
+IF
+DialogRequestFailed("RC_WH_LightTorch_DwarfGhost", (INTEGER)_Var1)
+AND NOT
+DB_RC_WH_LightTorch_DwarfVanished(_)
+AND
+DialogGetInvolvedPlayer(_Var1, 1, _Var3)
+AND
+CharacterCanSeeGhost(_Var3, CHARACTERGUID_RC_WH_LightTorch_DeadDwarfGhost_49a4ba83-9aa4-407e-8e06-cd06290b5287, 1)
+AND
+GetVarInteger(ITEMGUID_S_RC_WH_LightTorch_Bonfire_60649f98-2d0b-4f3b-b10b-75c6cd620a26, "IsStatusOn", 0)
+THEN
+Proc_StartDialog(1, "RC_WH_AD_LightTorch_DousingFire", CHARACTERGUID_RC_WH_LightTorch_DeadDwarfGhost_49a4ba83-9aa4-407e-8e06-cd06290b5287);
+ObjectSetFlag(_Var3, "RC_WH_LightTorch_GiveSP");
+
+
+EXITSECTION
+ENDEXITSECTION
+
+ParentTargetEdge "ReapersCoast"

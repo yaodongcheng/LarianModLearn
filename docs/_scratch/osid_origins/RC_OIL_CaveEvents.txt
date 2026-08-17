@@ -1,0 +1,259 @@
+Version 1
+SubGoalCombiner SGC_AND
+
+INITSECTION
+DB_Ghosts(CHARACTERGUID_S_RC_OIL_Caves_DeadMagister_ccfe833d-e6ac-4d7a-b7e7-a4dd99e882a4, CHARACTERGUID_S_RC_OIL_Caves_DeadMagister_Ghost_9f85da22-1635-492f-9d4a-1c6fcc064857, "RC_OIL_Caves_DeadMagister");
+DB_Ghosts(CHARACTERGUID_S_RC_OIL_DeadRingGrunt_88278575-2518-479f-a3fa-b7f5b965e051, CHARACTERGUID_S_RC_OIL_DeadRingGrunt_Ghost_743ed4fb-be5c-487a-9c6f-d4ff4e37d297, "RC_OIL_DeadRingGrunt");
+DB_OneShot_VoiceBarkTrigger(TRIGGERGUID_S_RC_OIL_VB_Caves_Enter_cfdf3555-41fe-4502-80d3-274a5776b614, "RC_OIL_VB_Caves_Enter");
+DB_OneShotPlayerTrigger(TRIGGERGUID_S_RC_OIL_VB_Cave_BlackRing_0e060e65-ae25-4be5-b50d-2bcdf4de8a23);
+DB_Dialogs(CHARACTERGUID_S_RC_OIL_Cave_Chick_81dfa8b8-a77e-4f1c-9682-915e86fe221e, "RC_OIL_Cave_Chick");
+DB_Dialogs(CHARACTERGUID_S_RC_OIL_Cave_Rat1_fd26879b-7987-4cb0-b187-cfa6bd347955, "RC_OIL_Cave_Rat1");
+DB_Ghosts(CHARACTERGUID_S_RC_OIL_Cave_Chick_81dfa8b8-a77e-4f1c-9682-915e86fe221e, CHARACTERGUID_S_RC_OIL_Cave_Chick_Ghost_a6cc7a00-54e1-429c-99d0-4281c8ed8303, "RC_OIL_Cave_Chick_Ghost");
+DB_Ghosts(CHARACTERGUID_S_RC_OIL_Cave_Canary2_75f20d5f-2a0f-4ed8-a5e4-502d535e9e72, CHARACTERGUID_S_RC_OIL_Cave_Canary2_Ghost_067bcd5d-789c-4b9f-82b9-ed1d229a4bd9, "RC_OIL_Cave_Canary_Ghost2");
+CharacterAddSourcePoints(CHARACTERGUID_S_RC_OIL_OilCavesShrieker_173d044c-ab45-4166-b92b-849afbe465e9, 1);
+DB_FTJ_SW_SourceTotems(CHARACTERGUID_S_RC_OIL_OilCavesShrieker_173d044c-ab45-4166-b92b-849afbe465e9, "RC_OIL_CavesSentinelTimer", "RC_OIL_CavesSentinelSpotted");
+DB_OneShotPlayerTrigger(TRIGGERGUID_S_RC_OIL_Cave_ExplodeMagister_3d58f0ec-5bb6-477c-bf0a-831869d85c94);
+SetOnStage(CHARACTERGUID_S_RC_OIL_Cave_Voidling1_b6f06851-e689-4e35-b4b6-79ce2b0dd8d5, 0);
+CharacterSetAnimationOverride(CHARACTERGUID_S_RC_OIL_Cave_ExplodingMagister_e739392d-9ffe-4516-8b8f-21e65eb585ad, "Lie_Wounded_03_Loop");
+DB_SneakTriggerSpotter(TRIGGERGUID_S_RC_OIL_OneShot_CaveVoidling_f4a75a01-bbb2-4621-bed0-8b7f955865f7, CHARACTERGUID_S_RC_OIL_Cave_ExplodingMagister_e739392d-9ffe-4516-8b8f-21e65eb585ad);
+CharacterSetHitpointsPercentage(CHARACTERGUID_S_RC_OIL_Cave_ExplodingMagister_e739392d-9ffe-4516-8b8f-21e65eb585ad, 36);
+SetCanFight(CHARACTERGUID_S_RC_OIL_Cave_ExplodingMagister_e739392d-9ffe-4516-8b8f-21e65eb585ad, 0);
+SetCanFight(CHARACTERGUID_S_RC_OIL_Cave_Voidling1_b6f06851-e689-4e35-b4b6-79ce2b0dd8d5, 0);
+ProcCharacterDisableAllCrimes(CHARACTERGUID_S_RC_OIL_Cave_ExplodingMagister_e739392d-9ffe-4516-8b8f-21e65eb585ad);
+ProcCharacterDisableAllCrimes(CHARACTERGUID_S_RC_OIL_Cave_Voidling1_b6f06851-e689-4e35-b4b6-79ce2b0dd8d5);
+DB_RC_OIL_Cave_Shakes(TRIGGERGUID_S_RC_OIL_Cave_Shake2_966aad01-521c-442e-a0d1-52f6e3502192, "RC_OIL_AD_CaveGroundShakesGeneric2");
+DB_RC_OIL_CaveEvents_WorkshopCreeps(CHARACTERGUID_S_RC_OIL_Workshop_Spitter1_ff8bd373-c076-4446-83c7-cc169251d2e7);
+DB_RC_OIL_CaveEvents_WorkshopCreeps(CHARACTERGUID_S_RC_OIL_Workshop_Spitter2_41926e48-1e0f-4b74-9a2d-f29b21183e60);
+DB_RC_OIL_CaveEvents_WorkshopCreeps(CHARACTERGUID_S_RC_OIL_Workshop_Spitter3_ff318373-4cfd-42f1-9491-3b824d35abac);
+DB_RC_OIL_CaveEvents_WorkshopCreeps(CHARACTERGUID_S_RC_OIL_Workshop_Spitter4_ef36af9c-8b6a-4e61-86f0-405b342d9ee5);
+DB_RC_OIL_CaveEvents_WorkshopCreeps(CHARACTERGUID_S_RC_OIL_Workshop_Spitter5_f8701acb-6095-49a9-967d-86b054b2ebc9);
+DB_RC_OIL_CaveEntrance_Mines(1, ITEMGUID_S_RC_OIL_Entrance_Mine_1_1_43f9ca5f-2449-4016-b3fb-6121104a50ea);
+DB_RC_OIL_CaveEntrance_Mines(1, ITEMGUID_S_RC_OIL_Entrance_Mine_1_2_4330e37e-5f0b-4fc1-a7c4-0622f920e61d);
+DB_RC_OIL_CaveEntrance_Mines(1, ITEMGUID_S_RC_OIL_Entrance_Mine_1_3_fc0b9d99-7561-474d-a535-41f1814ac64b);
+DB_RC_OIL_CaveEntrance_Mines(1, ITEMGUID_S_RC_OIL_Entrance_Mine_1_4_f95d7289-5d2f-425c-ae71-986d4fb5da0b);
+DB_RC_OIL_CaveEntrance_Mines(2, ITEMGUID_S_RC_OIL_Entrance_Mine_2_1_4e38cca9-bc00-4051-b3ff-16f709647208);
+DB_RC_OIL_CaveEntrance_Mines(2, ITEMGUID_S_RC_OIL_Entrance_Mine_2_2_1e31e4d7-cb93-44d2-b232-45c9429a59a1);
+DB_RC_OIL_CaveEntrance_Mines(2, ITEMGUID_S_RC_OIL_Entrance_Mine_2_3_b245ea6a-1e8c-4665-81a6-0a420349cab9);
+DB_RC_OIL_CaveEntrance_Mines(3, ITEMGUID_S_RC_OIL_Entrance_Mine_3_1_fee9bb65-2d3f-4fef-8b26-28f6b0896cee);
+DB_RC_OIL_CaveEntrance_Mines(3, ITEMGUID_S_RC_OIL_Entrance_Mine_3_2_68aa5d45-d1cd-4bb0-83cf-c72b3b6b638a);
+DB_RC_OIL_CaveEntrance_Mines(3, ITEMGUID_S_RC_OIL_Entrance_Mine_3_3_56327a76-48c1-4256-9e1c-10badcdd8b99);
+DB_RC_OIL_CaveEntrance_Mines(3, ITEMGUID_S_RC_OIL_Entrance_Mine_3_4_799be6a8-ca57-42d1-bdeb-dcb0c96fd838);
+DB_RC_OIL_CaveEntrance_Mines(4, ITEMGUID_S_RC_OIL_Entrance_Mine_4_1_5a219f8d-60b0-45f9-a6a1-0f565302ce0b);
+DB_RC_OIL_CaveEntrance_Mines(4, ITEMGUID_S_RC_OIL_Entrance_Mine_4_3_fe4dc0b3-d949-4550-bd02-77c3c5d18c94);
+DB_RC_OIL_CaveEntrance_Mines(4, ITEMGUID_S_RC_OIL_Entrance_Mine_4_2_292baf2c-42dd-4cc7-8453-18b5e7022489);
+DB_RC_OIL_CaveEntrance_Mines(5, ITEMGUID_S_RC_OIL_Entrance_Mine_5_1_8e31e57f-a368-4662-8c64-f45b06c866c8);
+DB_RC_OIL_CaveEntrance_Mines(5, ITEMGUID_S_RC_OIL_Entrance_Mine_5_2_a5d34b0b-c4e2-4d9d-8bb1-9004b0ace31b);
+DB_RC_OIL_CaveEntrance_Mines(5, ITEMGUID_S_RC_OIL_Entrance_Mine_5_3_294185a5-2d12-4d99-9bc0-50119444d103);
+DB_RC_OIL_CaveEntrance_Mines(5, ITEMGUID_S_RC_OIL_Entrance_Mine_5_4_48af1137-f95a-4413-8fca-1698711a656b);
+DB_RC_OIL_CaveEntrance_Mines(5, ITEMGUID_S_RC_OIL_Entrance_Mine_5_5_4479b981-cd30-4f9a-b3d4-f95710bfa297);
+DB_RC_OIL_CaveEntrance_Mines(6, ITEMGUID_S_RC_OIL_Entrance_Mine_6_1_9d5a7907-8fe5-42be-8bf3-826061727b97);
+DB_RC_OIL_CaveEntrance_Mines(6, ITEMGUID_S_RC_OIL_Entrance_Mine_6_2_91df8659-20d8-40b0-9476-4b5a66fddbfb);
+DB_RC_OIL_CaveEntrance_Plates(1, "RC_OIL_Caves_Entrance_1_On");
+DB_RC_OIL_CaveEntrance_Plates(6, "RC_OIL_Caves_Entrance_7_On");
+DB_RC_OIL_CaveEntrance_Plates(4, "RC_OIL_Caves_Entrance_3_On");
+DB_RC_OIL_CaveEntrance_Plates(5, "RC_OIL_Caves_Entrance_2_On");
+DB_RC_OIL_CaveEntrance_Plates(6, "RC_OIL_Caves_Entrance_6_On");
+ProcDeclareCounter("RC_OIL_CaveEntrance_Traps");
+
+KBSECTION
+PROC
+ProcOneShotTriggerEntered((CHARACTERGUID)_Var1, TRIGGERGUID_S_RC_OIL_VB_Cave_BlackRing_0e060e65-ae25-4be5-b50d-2bcdf4de8a23)
+THEN
+Proc_StartDialog(1, "RC_OIL_VB_Cave_SpotBlackRing", _Var1);
+
+IF
+DialogEnded("RC_OIL_DeadRingGrunt", (INTEGER)_Var1)
+AND
+DialogGetInvolvedPlayer(_Var1, 1, _Var2)
+AND
+UserGetFlag(_Var2, "RC_OIL_VB_Cave_CommentBlackRingGhost", 0)
+THEN
+UserSetFlag(_Var2, "RC_OIL_VB_Cave_CommentBlackRingGhost");
+Proc_StartDialog(1, "RC_OIL_VB_Cave_CommentBlackRingGhost", _Var2);
+
+IF
+DialogEnded("RC_OIL_DeadRingGrunt", (INTEGER)_Var1)
+AND
+DB_DialogPlayers(_Var1, _Var2, 1)
+AND
+PartyGetFlag(_Var2, "RC_OIL_CORE_RD_TheMagistersAreHeretics", 0)
+THEN
+PartySetFlag(_Var2, "RC_OIL_CORE_RD_TheMagistersAreHeretics");
+ProcDefineReflectionDialog("RC_OIL_CORE_RD_TheMagistersAreHeretics", _Var2);
+
+IF
+DB_RC_OIL_CaveEvents_WorkshopCreeps(_Var1)
+THEN
+SetOnStage(_Var1, 0);
+
+PROC
+ProcCharInTriggerSpotted((CHARACTERGUID)_Var1, TRIGGERGUID_S_RC_OIL_OneShot_CaveVoidling_f4a75a01-bbb2-4621-bed0-8b7f955865f7)
+THEN
+Proc_StartDialog(0, "RC_OIL_Cave_ExplodingMagister", CHARACTERGUID_S_RC_OIL_Cave_ExplodingMagister_e739392d-9ffe-4516-8b8f-21e65eb585ad, _Var1);
+
+IF
+DialogEnded("RC_OIL_Cave_ExplodingMagister", (INTEGER)_Var1)
+AND
+DialogGetInvolvedPlayer(_Var1, 1, _Var2)
+THEN
+Proc_RC_OIL_Cave_ExplodingVoidling(_Var2);
+
+IF
+DialogRequestFailed("RC_OIL_Cave_ExplodingMagister", (INTEGER)_Var1)
+AND
+DialogGetInvolvedPlayer(_Var1, 1, _Var2)
+THEN
+Proc_RC_OIL_Cave_ExplodingVoidling(_Var2);
+
+PROC
+Proc_RC_OIL_Cave_ExplodingVoidling((CHARACTERGUID)_Var1)
+AND
+QueryOnlyOnce("RC_OIL_Cave_ExplodingVoidling")
+THEN
+DB_RC_OIL_Cave_ExplodeEventPlayer(_Var1);
+Proc_ShakeCameraForTime(_Var1, 2000);
+CharacterAppear(CHARACTERGUID_S_RC_OIL_Cave_Voidling1_b6f06851-e689-4e35-b4b6-79ce2b0dd8d5, 1, "");
+
+PROC
+Proc_RC_OIL_Cave_ExplodingVoidling((CHARACTERGUID)_Var1)
+AND
+DB_IsPlayer(_Var2)
+AND
+QRY_IsInRange(_Var2, _Var1, 15)
+THEN
+Proc_ShakeCameraForTime(_Var2, 2000);
+
+IF
+CharacterWentOnStage(CHARACTERGUID_S_RC_OIL_Cave_Voidling1_b6f06851-e689-4e35-b4b6-79ce2b0dd8d5, 1)
+THEN
+CharacterUseSkill(CHARACTERGUID_S_RC_OIL_Cave_Voidling1_b6f06851-e689-4e35-b4b6-79ce2b0dd8d5, "Shout_SuicideGreenVoidlingExplosion", CHARACTERGUID_S_RC_OIL_Cave_Voidling1_b6f06851-e689-4e35-b4b6-79ce2b0dd8d5, 1);
+ProcObjectTimer(CHARACTERGUID_S_RC_OIL_Cave_ExplodingMagister_e739392d-9ffe-4516-8b8f-21e65eb585ad, "Timer_RC_OIl_Cave_MagisterExplode", 2900);
+
+PROC
+ProcObjectTimerFinished(CHARACTERGUID_S_RC_OIL_Cave_ExplodingMagister_e739392d-9ffe-4516-8b8f-21e65eb585ad, "Timer_RC_OIl_Cave_MagisterExplode")
+THEN
+CharacterDie(CHARACTERGUID_S_RC_OIL_Cave_ExplodingMagister_e739392d-9ffe-4516-8b8f-21e65eb585ad, 1, "Explode");
+
+IF
+CharacterDied(CHARACTERGUID_S_RC_OIL_Cave_ExplodingMagister_e739392d-9ffe-4516-8b8f-21e65eb585ad)
+AND
+DB_RC_OIL_Cave_ExplodeEventPlayer(_Var1)
+THEN
+StartVoiceBark("RC_OIL_VB_CaveExplodingMole", _Var1);
+
+IF
+CharacterReceivedDamage(CHARACTERGUID_S_RC_OIL_Cave_ExplodingMagister_e739392d-9ffe-4516-8b8f-21e65eb585ad, _, _)
+AND
+GetClosestPlayer(CHARACTERGUID_S_RC_OIL_Cave_ExplodingMagister_e739392d-9ffe-4516-8b8f-21e65eb585ad, _Var3, 15)
+THEN
+Proc_RC_OIL_Cave_ExplodingVoidling(_Var3);
+
+PROC
+ProcOneShotTriggerEntered((CHARACTERGUID)_Var1, TRIGGERGUID_S_RC_OIL_Cave_ExplodeMagister_3d58f0ec-5bb6-477c-bf0a-831869d85c94)
+THEN
+Proc_RC_OIL_Cave_ExplodingVoidling(_Var1);
+
+IF
+CharacterDied(CHARACTERGUID_S_RC_OIL_Cave_ExplodingMagister_e739392d-9ffe-4516-8b8f-21e65eb585ad)
+AND
+DB_RC_OIL_CaveEvents_WorkshopCreeps(_Var1)
+AND
+Random(3000, _Var2)
+THEN
+ProcObjectTimer(_Var1, "Timer_RC_OIL_BossVW", _Var2);
+
+PROC
+ProcObjectTimerFinished((CHARACTERGUID)_Var1, "Timer_RC_OIL_BossVW")
+THEN
+CharacterAppear(_Var1, 1, "");
+
+IF
+CharacterUsedItem((CHARACTERGUID)_Var1, S_RC_OIL_Machine_fd7bb87f-0914-4b65-afb8-b85385538a26)
+AND
+QueryOnlyOnce("RC_OIL_DigMachine")
+AND
+GetPosition(S_RC_OIL_Machine_fd7bb87f-0914-4b65-afb8-b85385538a26, _Var2, _Var3, _Var4)
+THEN
+PlayScaledEffectAtPosition("RS3_FX_GP_Impacts_Sparks_01", 4, _Var2, _Var3, _Var4);
+PlayScaledEffectAtPosition("RS3_FX_GP_ScriptedEvent_Sparkles_01", 4, _Var2, _Var3, _Var4);
+PlaySound(S_RC_OIL_Machine_fd7bb87f-0914-4b65-afb8-b85385538a26, "Items_Doors__TEMP_DOOR_Metal_Big_Shut");
+TimerLaunch("RC_OIL_DigMachine", 6000);
+StartVoiceBark("RC_OIL_VB_DigMachine", _Var1);
+Proc_ShakeCameraForTime(_Var1, 4500);
+
+IF
+TimerFinished("RC_OIL_DigMachine")
+AND
+GetPosition(S_RC_OIL_Machine_fd7bb87f-0914-4b65-afb8-b85385538a26, _Var1, _Var2, _Var3)
+THEN
+ItemSetCanInteract(S_RC_OIL_Machine_fd7bb87f-0914-4b65-afb8-b85385538a26, 0);
+PlayScaledEffectAtPosition("RS3_FX_GP_Impacts_Flare_01", 8, _Var1, _Var2, _Var3);
+PlayScaledEffectAtPosition("RS3_FX_GP_ScriptedEvent_Smoke_01", 3, _Var1, _Var2, _Var3);
+PlaySound(S_RC_OIL_Machine_fd7bb87f-0914-4b65-afb8-b85385538a26, "SE_RC_Blackpits_Digging_Machine_Explosion");
+TimerLaunch("RC_OIL_DigMachineBroken", 1500);
+
+IF
+TimerFinished("RC_OIL_DigMachineBroken")
+AND
+GetClosestAlivePlayer(S_RC_OIL_Machine_fd7bb87f-0914-4b65-afb8-b85385538a26, _Var1, _Var2)
+AND
+_Var2 < 15
+AND
+QRY_SpeakerIsAvailable(_Var1)
+THEN
+CloseUI(_Var1, "Inventory");
+StartVoiceBark("RC_OIL_VB_DigMachineBroken", _Var1);
+
+IF
+DB_RC_OIL_Cave_Shakes(_Var1, _)
+THEN
+DB_OneShotPlayerTrigger(_Var1);
+
+PROC
+ProcOneShotTriggerEntered((CHARACTERGUID)_Var1, (TRIGGERGUID)_Var2)
+AND
+DB_RC_OIL_Cave_Shakes(_Var2, _Var3)
+THEN
+Proc_ShakeCameraForTime(_Var1, 2000);
+Proc_StartDialog(1, _Var3, _Var1);
+
+IF
+ItemDestroyed((ITEMGUID)_Var1)
+AND
+DB_RC_OIL_CaveEntrance_Mines(_Var2, _Var1)
+THEN
+PROC_RC_OIL_CaveEntrance_TrapWentOff(_Var2);
+
+IF
+StoryEvent(_, (STRING)_Var2)
+AND
+DB_RC_OIL_CaveEntrance_Plates(_Var3, _Var2)
+THEN
+PROC_RC_OIL_CaveEntrance_TrapWentOff(_Var3);
+
+PROC
+PROC_RC_OIL_CaveEntrance_TrapWentOff((INTEGER)_Var1)
+AND NOT
+DB_RC_OIL_CaveEntrance_Triggered(_Var1)
+THEN
+DB_RC_OIL_CaveEntrance_Triggered(_Var1);
+ProcIncreaseCounter("RC_OIL_CaveEntrance_Traps");
+
+IF
+DB_GlobalCounter("RC_OIL_CaveEntrance_Traps", 3)
+THEN
+DB_OneShot_VoiceBarkTrigger(TRIGGERGUID_S_RC_OIL_VB_Cave_Entrance_Traps_9948d9bb-916b-43e7-bb03-ac88ef07f5fc, "RC_OIL_VB_Cave_Entrance_Traps");
+
+IF
+CharacterSawCharacter((CHARACTERGUID)_Var1, CHARACTERGUID_S_RC_OIL_OilCavesShrieker_173d044c-ab45-4166-b92b-849afbe465e9)
+AND
+UserGetFlag(_Var1, "RC_OIL_Cave_SawCaveShriker", 0)
+THEN
+UserSetFlag(_Var1, "RC_OIL_Cave_SawCaveShriker");
+Proc_StartDialog(1, "RC_OIL_VB_Cave_Shriker", _Var1);
+
+
+EXITSECTION
+ENDEXITSECTION
+
+ParentTargetEdge "ReapersCoast"

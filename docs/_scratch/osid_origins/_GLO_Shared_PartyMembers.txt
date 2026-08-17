@@ -1,0 +1,959 @@
+Version 1
+SubGoalCombiner SGC_AND
+
+INITSECTION
+DB_Origins_MaxPartySize(4);
+
+KBSECTION
+QRY
+QRY_GLO_PartyMembers_GetInPartyDialogReset((CHARACTERGUID)_Var1)
+THEN
+PROC_GLO_PartyMembers_ResetInPartyDialogs(_Var1);
+
+PROC
+PROC_GLO_PartyMembers_ResetInPartyDialogs((CHARACTERGUID)_Var1)
+AND
+DB_GLO_PartyMembers_InPartyDialog(_Var1, _Var2)
+THEN
+NOT DB_GLO_PartyMembers_InPartyDialog(_Var1, _Var2);
+
+PROC
+PROC_GLO_PartyMembers_SetInpartyDialog((CHARACTERGUID)_Var1, (STRING)_Var2)
+THEN
+ProcRemoveAllDialogEntriesForSpeaker(_Var1);
+
+PROC
+PROC_GLO_PartyMembers_SetInpartyDialog((CHARACTERGUID)_Var1, (STRING)_Var2)
+AND
+_Var2 != ""
+THEN
+DB_Dialogs(_Var1, _Var2);
+
+PROC
+ProcAssignCharacterToPlayer((CHARACTERGUID)_Var1, (CHARACTERGUID)_Var2)
+AND
+CharacterGetReservedUserID(_Var2, _Var3)
+THEN
+CharacterAssignToUser(_Var3, _Var1);
+
+PROC
+Proc_CheckPartyFull()
+AND
+SysCount("DB_IsPlayer", 1, _Var1)
+AND
+_Var1 == 1
+THEN
+GlobalSetFlag("GEN_SoloPlayer");
+
+PROC
+Proc_CheckPartyFull()
+AND
+SysCount("DB_IsPlayer", 1, _Var1)
+AND
+_Var1 != 1
+THEN
+GlobalClearFlag("GEN_SoloPlayer");
+
+PROC
+Proc_CheckPartyFull()
+AND
+SysCount("DB_IsPlayer", 1, _Var1)
+AND
+DB_Origins_MaxPartySize(_Var2)
+AND
+_Var1 == _Var2
+THEN
+GlobalSetFlag("GEN_MaxPlayerCountReached");
+
+PROC
+Proc_CheckPartyFull()
+AND
+SysCount("DB_IsPlayer", 1, _Var1)
+AND
+DB_Origins_MaxPartySize(_Var2)
+AND
+_Var1 < _Var2
+THEN
+GlobalClearFlag("GEN_MaxPlayerCountReached");
+
+IF
+ObjectFlagSet("OriginRemoveFromPartyAfterDialog", (CHARACTERGUID)_Var1, (INTEGER)_Var2)
+THEN
+ObjectClearFlag(_Var1, "OriginRemoveFromPartyAfterDialog", 0);
+DB_GLO_PartyMembers_DismissAfterDialog(_Var2, _Var1);
+
+IF
+DialogEnded(_, (INTEGER)_Var2)
+AND
+DB_GLO_PartyMembers_DismissAfterDialog(_Var2, _Var3)
+AND
+DialogGetInvolvedPlayer(_Var2, 2, _Var4)
+THEN
+NOT DB_GLO_PartyMembers_DismissAfterDialog(_Var2, _Var3);
+PROC_GLO_PartyMembers_Remove(_Var3, _Var4, 0);
+
+IF
+DialogEnded(_, (INTEGER)_Var2)
+AND
+DB_GLO_PartyMembers_RecruitAfterDialog(_Var2, _Var3, _Var4)
+THEN
+PROC_GLO_PartyMembers_CheckAdd(_Var3, _Var4);
+NOT DB_GLO_PartyMembers_RecruitAfterDialog(_Var2, _Var3, _Var4);
+
+PROC
+PROC_GLO_PartyMembers_CheckAdd((CHARACTERGUID)_Var1, (CHARACTERGUID)_Var2)
+AND
+GlobalGetFlag("GEN_MaxPlayerCountReached", 0)
+THEN
+PROC_GLO_PartyMembers_Add(_Var1, _Var2);
+
+QRY
+QRY_GLO_PartyMembers_GetInPartyDialog((CHARACTERGUID)_Var1)
+AND
+IsTagged(_Var1, "AVATAR", 1)
+THEN
+DB_GLO_PartyMembers_InPartyDialog(_Var1, "");
+
+PROC
+Proc_CheckFirstTimeRecruited((CHARACTERGUID)_Var1)
+THEN
+DB_NOOP(1);
+
+PROC
+PROC_GLO_PartyMembers_Add((CHARACTERGUID)_Var1, (CHARACTERGUID)_Var2)
+AND
+QRY_GLO_PartyMembers_GetInPartyDialogReset(_Var1)
+AND
+QRY_GLO_PartyMembers_GetInPartyDialog(_Var1)
+AND
+DB_GLO_PartyMembers_InPartyDialog(_Var1, _Var3)
+AND
+DB_GLO_PartyMembers_DefaultFaction(_Var1, _Var4)
+THEN
+CharacterRecruitCharacter(_Var1, _Var2);
+ProcCharacterDisableAllCrimes(_Var1);
+ProcAssignCharacterToPlayer(_Var1, _Var2);
+ProcRegisterPlayerTriggers(_Var1);
+PROC_GLO_PartyMembers_SetInpartyDialog(_Var1, _Var3);
+SetFaction(_Var1, _Var4);
+DB_IsPlayer(_Var1);
+NOT DB_GLO_PartyMembers_DefaultFaction(_Var1, _Var4);
+CharacterAttachToGroup(_Var1, _Var2);
+Proc_CheckPartyFull();
+Proc_CheckFirstTimeRecruited(_Var1);
+PROC_GLO_PartyMembers_RecruiteeAvatarBond_IfDifferent(_Var1, _Var2);
+Proc_BondedAvatarTutorial(_Var2);
+CharacterSetCorpseLootable(_Var1, 0);
+PROC_GLO_PartyMembers_AddHook(_Var1, _Var2);
+
+PROC
+PROC_GLO_PartyMembers_AddHook((CHARACTERGUID)_Var1, (CHARACTERGUID)_Var2)
+THEN
+DB_NOOP(1);
+
+PROC
+PROC_GLO_PartyMembers_RecruiteeAvatarBond_IfDifferent((CHARACTERGUID)_Var1, (CHARACTERGUID)_Var2)
+AND
+_Var1 != _Var2
+THEN
+PROC_GLO_PartyMembers_RecruiteeAvatarBond(_Var1, _Var2);
+
+PROC
+PROC_GLO_PartyMembers_RecruiteeAvatarBond((CHARACTERGUID)_Var1, (CHARACTERGUID)_Var2)
+THEN
+DB_GLO_PartyMembers_RecruiteeAvatarBond(_Var1, _Var2);
+
+PROC
+PROC_GLO_PartyMembers_ClearRecruiteeBonds((CHARACTERGUID)_Var1)
+AND
+DB_GLO_PartyMembers_RecruiteeAvatarBond(_Var1, _Var2)
+THEN
+NOT DB_GLO_PartyMembers_RecruiteeAvatarBond(_Var1, _Var2);
+
+PROC
+PROC_GLO_PartyMembers_Remove((CHARACTERGUID)_Var1, 1)
+THEN
+PROC_GLO_PartyMembers_Remove(_Var1, NULL_00000000-0000-0000-0000-000000000000, 1);
+
+PROC
+PROC_GLO_PartyMembers_Remove((CHARACTERGUID)_Var1, 0)
+THEN
+DebugBreak("this should not be called for unforced removals of origins!");
+
+PROC
+PROC_GLO_PartyMembers_Remove((CHARACTERGUID)_Var1, (CHARACTERGUID)_Var2, (INTEGER)_Var3)
+THEN
+PROC_GLO_PartyMembers_Remove(_Var1, _Var2, _Var3, 1);
+
+PROC
+PROC_GLO_PartyMembers_Remove((CHARACTERGUID)_Var1, (CHARACTERGUID)_Var2, (INTEGER)_Var3, (INTEGER)_Var4)
+AND
+CharacterGetHostCharacter(_Var5)
+AND
+CharacterGetReservedUserID(_Var5, _Var6)
+AND
+CharacterGetReservedUserID(_Var1, _Var7)
+THEN
+PROC_GLO_PartyMembers_RemoveIfUserHasOtherCharacter(_Var1, _Var2, _Var6, _Var7, _Var3, _Var4);
+Proc_CheckPartyFull();
+
+PROC
+PROC_GLO_PartyMembers_RemoveIfUserHasOtherCharacter((CHARACTERGUID)_Var1, (CHARACTERGUID)_Var2, (INTEGER)_Var3, (INTEGER)_Var4, (INTEGER)_Var5, (INTEGER)_Var6)
+AND
+_Var4 == _Var3
+THEN
+DB_GLO_PartyMember_OriginUserHasOtherCharacter(1);
+
+PROC
+PROC_GLO_PartyMembers_RemoveIfUserHasOtherCharacter((CHARACTERGUID)_Var1, (CHARACTERGUID)_Var2, (INTEGER)_Var3, (INTEGER)_Var4, (INTEGER)_Var5, (INTEGER)_Var6)
+AND
+_Var4 != _Var3
+AND
+DB_IsPlayer(_Var7)
+AND
+_Var7 != _Var1
+AND
+CharacterGetReservedUserID(_Var7, _Var8)
+AND
+_Var8 == _Var4
+THEN
+DB_GLO_PartyMember_OriginUserHasOtherCharacter(1);
+
+PROC
+PROC_GLO_PartyMembers_RemoveIfUserHasOtherCharacter((CHARACTERGUID)_Var1, (CHARACTERGUID)_Var2, (INTEGER)_Var3, (INTEGER)_Var4, 1, (INTEGER)_Var5)
+THEN
+DB_GLO_PartyMember_OriginUserHasOtherCharacter(1);
+
+PROC
+PROC_GLO_PartyMembers_RemoveIfUserHasOtherCharacter((CHARACTERGUID)_Var1, (CHARACTERGUID)_Var2, (INTEGER)_Var3, (INTEGER)_Var4, (INTEGER)_Var5, 1)
+AND
+DB_GLO_PartyMember_OriginUserHasOtherCharacter(1)
+THEN
+PROC_GLO_PartyMembers_TransferStoryItems(_Var1, _Var2);
+
+PROC
+PROC_GLO_PartyMembers_RemoveIfUserHasOtherCharacter((CHARACTERGUID)_Var1, (CHARACTERGUID)_Var2, (INTEGER)_Var3, (INTEGER)_Var4, (INTEGER)_Var5, (INTEGER)_Var6)
+AND
+DB_GLO_PartyMember_OriginUserHasOtherCharacter(1)
+THEN
+CharacterDetachFromGroup(_Var1);
+CharacterRemoveFromParty(_Var1);
+PROC_GLO_PartyMembers_MakeNPC(_Var1);
+CharacterSetCorpseLootable(_Var1, 1);
+
+PROC
+PROC_GLO_PartyMembers_TransferStoryItems((CHARACTERGUID)_Var1, (CHARACTERGUID)_Var2)
+AND NOT
+DB_BlockStoryItemTransfer(_Var1)
+AND
+_Var2 != NULL_00000000-0000-0000-0000-000000000000
+AND
+CharacterGetReservedUserID(_Var2, _Var3)
+AND
+CharacterGetReservedUserID(_Var1, _Var3)
+AND
+CharacterGetGold(_Var1, _Var4)
+AND
+IntegerProduct(_Var4, -1, _Var5)
+THEN
+TransferItemsToCharacter(_Var1, _Var2);
+CharacterAddGold(_Var1, _Var5);
+CharacterAddGold(_Var2, _Var4);
+DB_StoryItemsTransfered(1);
+
+PROC
+PROC_GLO_PartyMembers_TransferStoryItems((CHARACTERGUID)_Var1, _)
+AND NOT
+DB_BlockStoryItemTransfer(_Var1)
+AND NOT
+DB_StoryItemsTransfered(1)
+THEN
+TransferItemsToUser(_Var1);
+
+PROC
+PROC_GLO_PartyMembers_TransferStoryItems(_, _)
+THEN
+NOT DB_StoryItemsTransfered(1);
+
+PROC
+PROC_GLO_PartyMembers_RemoveIfUserHasOtherCharacter((CHARACTERGUID)_Var1, (CHARACTERGUID)_Var2, (INTEGER)_Var3, (INTEGER)_Var4, 1, (INTEGER)_Var5)
+THEN
+CharacterFlushQueue(_Var1);
+
+PROC
+PROC_GLO_PartyMembers_RemoveIfUserHasOtherCharacter((CHARACTERGUID)_Var1, (CHARACTERGUID)_Var2, (INTEGER)_Var3, (INTEGER)_Var4, (INTEGER)_Var5, (INTEGER)_Var6)
+THEN
+NOT DB_GLO_PartyMember_OriginUserHasOtherCharacter(1);
+
+QRY
+QRY_GLO_PartyMembers_UserHasOtherCharacters((CHARACTERGUID)_Var1)
+AND
+CharacterGetReservedUserID(_Var1, _Var2)
+AND
+DB_IsPlayer(_Var3)
+AND
+_Var1 != _Var3
+AND
+CharacterGetReservedUserID(_Var3, _Var2)
+THEN
+DB_NOOP(1);
+
+PROC
+PROC_GLO_PartyMembers_CollectDismissAll()
+AND
+DB_GLO_PartyMembers_CollectDismissAll_Keep(_Var1)
+THEN
+NOT DB_GLO_PartyMembers_CollectDismissAll_Keep(_Var1);
+
+PROC
+PROC_GLO_PartyMembers_CollectDismissAll()
+AND
+DB_GLO_PartyMembers_CollectDismissAll_RecruiteeAvatarBond(_Var1, _Var2)
+THEN
+NOT DB_GLO_PartyMembers_CollectDismissAll_RecruiteeAvatarBond(_Var1, _Var2);
+
+PROC
+PROC_GLO_PartyMembers_CollectDismissAll()
+AND
+DB_GLO_PartyMembers_CollectDismissAll_OriginalOwningUserChar(_Var1, _Var2)
+THEN
+NOT DB_GLO_PartyMembers_CollectDismissAll_OriginalOwningUserChar(_Var1, _Var2);
+
+PROC
+PROC_GLO_PartyMembers_CollectDismissAll()
+AND
+DB_IsPlayer(_Var1)
+AND
+CharacterGetReservedUserID(_Var1, _Var2)
+AND
+IsTagged(_Var1, "AVATAR", _Var3)
+AND
+CharacterIsControlled(_Var1, _Var4)
+THEN
+DB_GLO_PartyMembers_CollectDismissAll_MaybeKeep(_Var2, _Var1, _Var3, _Var4);
+
+PROC
+PROC_GLO_PartyMembers_CollectDismissAll()
+AND
+DB_GLO_PartyMembers_CollectDismissAll_MaybeKeep(_Var1, _Var2, 1, _)
+AND
+DB_GLO_PartyMembers_CollectDismissAll_MaybeKeep(_Var1, _Var4, 0, _Var5)
+THEN
+NOT DB_GLO_PartyMembers_CollectDismissAll_MaybeKeep(_Var1, _Var4, 0, _Var5);
+
+PROC
+PROC_GLO_PartyMembers_CollectDismissAll()
+AND
+DB_GLO_PartyMembers_CollectDismissAll_MaybeKeep(_Var1, _Var2, 0, 1)
+AND
+DB_GLO_PartyMembers_CollectDismissAll_MaybeKeep(_Var1, _Var3, 0, 0)
+THEN
+NOT DB_GLO_PartyMembers_CollectDismissAll_MaybeKeep(_Var1, _Var3, 0, 0);
+
+PROC
+PROC_GLO_PartyMembers_CollectDismissAll()
+AND
+DB_GLO_PartyMembers_CollectDismissAll_MaybeKeep(_Var1, _Var2, _Var3, _Var4)
+THEN
+NOT DB_GLO_PartyMembers_CollectDismissAll_MaybeKeep(_Var1, _Var2, _Var3, _Var4);
+DB_GLO_PartyMembers_CollectDismissAll_Keep(_Var2);
+
+PROC
+PROC_GLO_PartyMembers_CollectDismissAll()
+AND
+DB_IsPlayer(_Var1)
+AND NOT
+DB_GLO_PartyMembers_CollectDismissAll_Keep(_Var1)
+AND
+DB_GLO_PartyMembers_RecruiteeAvatarBond(_Var1, _Var2)
+THEN
+DB_GLO_PartyMembers_CollectDismissAll_RecruiteeAvatarBond(_Var1, _Var2);
+
+PROC
+PROC_GLO_PartyMembers_CollectDismissAll()
+AND
+DB_GLO_PartyMembers_CollectDismissAll_Keep(_Var1)
+AND
+CharacterGetReservedUserID(_Var1, _Var2)
+AND
+DB_IsPlayer(_Var3)
+AND NOT
+DB_GLO_PartyMembers_CollectDismissAll_Keep(_Var3)
+AND
+CharacterGetReservedUserID(_Var3, _Var2)
+THEN
+DB_GLO_PartyMembers_CollectDismissAll_OriginalOwningUserChar(_Var1, _Var3);
+
+PROC
+PROC_GLO_PartyMembers_CollectDismissAll_RestoreCompanionBond((CHARACTERGUID)_Var1)
+AND
+DB_GLO_PartyMembers_CollectDismissAll_RecruiteeAvatarBond(_Var1, _Var2)
+AND
+DB_IsPlayer(_Var1)
+THEN
+PROC_GLO_PartyMembers_ClearRecruiteeBonds(_Var1);
+PROC_GLO_PartyMembers_RecruiteeAvatarBond(_Var1, _Var2);
+
+PROC
+PROC_GLO_PartyMembers_CollectDismissAll_RestoreCompanionBond((CHARACTERGUID)_Var1)
+AND
+DB_GLO_PartyMembers_CollectDismissAll_RecruiteeAvatarBond(_Var1, _Var2)
+THEN
+NOT DB_GLO_PartyMembers_CollectDismissAll_RecruiteeAvatarBond(_Var1, _Var2);
+
+PROC
+PROC_GLO_PartyMembers_CollectDismissAll_FixRejoinedRecruiteeAvatarBonds()
+AND
+DB_GLO_PartyMembers_CollectDismissAll_RecruiteeAvatarBond(_Var1, _)
+THEN
+PROC_GLO_PartyMembers_CollectDismissAll_RestoreCompanionBond(_Var1);
+
+PROC
+PROC_GLO_PartyMembers_Kick((CHARACTERGUID)_Var1, (STRING)_Var2)
+THEN
+DB_PlayerAlignments_BlockFix(_Var1);
+CharacterSetImmortal(_Var1, 1);
+
+PROC
+PROC_GLO_PartyMembers_Kick((CHARACTERGUID)_Var1, (STRING)_Var2)
+AND
+DB_IsPlayer(_Var3)
+AND
+_Var3 != _Var1
+AND
+CharacterIsInPartyWith(_Var3, _Var1, 1)
+AND
+CharacterGetReservedUserID(_Var1, _Var4)
+AND
+CharacterGetReservedUserID(_Var3, _Var5)
+THEN
+PROC_GLO_PartyMembers_Kick_DefinePartyMemberDB(_Var1, _Var4, _Var3, _Var5);
+
+PROC
+PROC_GLO_PartyMembers_Kick_DefinePartyMemberDB((CHARACTERGUID)_Var1, (INTEGER)_Var2, (CHARACTERGUID)_Var3, (INTEGER)_Var4)
+AND
+_Var2 == _Var4
+THEN
+DB_GLO_PartyMembers_Kick_PartyMembers(_Var1, _Var3, 1);
+
+PROC
+PROC_GLO_PartyMembers_Kick_DefinePartyMemberDB((CHARACTERGUID)_Var1, (INTEGER)_Var2, (CHARACTERGUID)_Var3, (INTEGER)_Var4)
+AND
+_Var2 != _Var4
+THEN
+DB_GLO_PartyMembers_Kick_PartyMembers(_Var1, _Var3, 0);
+
+PROC
+PROC_GLO_PartyMembers_Kick((CHARACTERGUID)_Var1, (STRING)_Var2)
+AND
+DB_GLO_PartyMembers_Kick_PartyMembers(_Var1, _Var3, 0)
+AND
+CharacterGetReservedUserID(_Var3, _Var4)
+THEN
+PROC_GLO_PartyMembers_Kick_RemovePlayerMember(_Var1, _Var3, _Var4);
+
+PROC
+PROC_GLO_PartyMembers_Kick_RemovePlayerMember((CHARACTERGUID)_Var1, (CHARACTERGUID)_Var2, (INTEGER)_Var3)
+AND NOT
+DB_GLO_PartyMembers_Kick_PartyMembers_UserLeft(_Var3)
+THEN
+DB_GLO_PartyMembers_Kick_PartyMembers_UserLeft(_Var3);
+LeaveParty(_Var3);
+
+PROC
+PROC_GLO_PartyMembers_Kick_RemovePlayerMember((CHARACTERGUID)_Var1, (CHARACTERGUID)_Var2, (INTEGER)_Var3)
+THEN
+CharacterDetachFromGroup(_Var2);
+
+PROC
+PROC_GLO_PartyMembers_Kick_RemovePlayerMember((CHARACTERGUID)_Var1, (CHARACTERGUID)_Var2, (INTEGER)_Var3)
+AND
+DB_GLO_PartyMembers_Kick_NewParty(_Var1, _Var4)
+THEN
+CharacterAddToParty(_Var2, _Var4);
+
+PROC
+PROC_GLO_PartyMembers_Kick_RemovePlayerMember((CHARACTERGUID)_Var1, (CHARACTERGUID)_Var2, (INTEGER)_Var3)
+AND NOT
+DB_GLO_PartyMembers_Kick_NewParty(_Var1, _)
+THEN
+DB_GLO_PartyMembers_Kick_NewParty(_Var1, _Var2);
+
+PROC
+PROC_GLO_PartyMembers_Kick((CHARACTERGUID)_Var1, (STRING)_Var2)
+AND
+DB_GLO_PartyMembers_Kick_PartyMembers_UserLeft(_Var3)
+THEN
+NOT DB_GLO_PartyMembers_Kick_PartyMembers_UserLeft(_Var3);
+
+PROC
+PROC_GLO_PartyMembers_Kick((CHARACTERGUID)_Var1, (STRING)_Var2)
+AND
+DB_GLO_PartyMembers_Kick_PartyMembers(_Var1, _Var3, 1)
+THEN
+PROC_GLO_PartyMembers_Kick_RemoveAIMember(_Var1, _Var3, _Var2);
+
+PROC
+PROC_GLO_PartyMembers_Kick_RemoveAIMember((CHARACTERGUID)_Var1, (CHARACTERGUID)_Var2, (STRING)_Var3)
+AND NOT
+DB_GLO_PartyMembers_OriginalAlignment(_Var2, _)
+THEN
+DB_GLO_PartyMembers_OriginalAlignment(_Var2, _Var3);
+
+PROC
+PROC_GLO_PartyMembers_Kick_RemoveAIMember((CHARACTERGUID)_Var1, (CHARACTERGUID)_Var2, (STRING)_Var3)
+AND
+DB_GLO_PartyMembers_RecruiteeAvatarBond(_Var2, _Var4)
+THEN
+DB_GLO_PartyMembers_Kick_OldCompanionBond(_Var1, _Var2, _Var4);
+
+PROC
+PROC_GLO_PartyMembers_Kick_RemoveAIMember((CHARACTERGUID)_Var1, (CHARACTERGUID)_Var2, (STRING)_Var3)
+AND NOT
+DB_GLO_PartyMembers_BlockReturnToRecruitmentPosition(_Var2)
+THEN
+DB_GLO_PartyMembers_Kick_BlockedReturnToRecruitmentPosition(_Var1, _Var2);
+DB_GLO_PartyMembers_BlockReturnToRecruitmentPosition(_Var2);
+
+PROC
+PROC_GLO_PartyMembers_Kick_RemoveAIMember((CHARACTERGUID)_Var1, (CHARACTERGUID)_Var2, (STRING)_Var3)
+AND
+GetVarFixedString(_Var2, "currentState", _Var4)
+THEN
+DB_GLO_PartyMembers_Kick_OrigState(_Var1, _Var2, _Var4);
+SetVarFixedString(_Var2, "currentState", "");
+
+PROC
+PROC_GLO_PartyMembers_Kick_RemoveAIMember((CHARACTERGUID)_Var1, (CHARACTERGUID)_Var2, (STRING)_Var3)
+THEN
+PROC_GLO_PartyMembers_MakeNPC(_Var2);
+
+PROC
+PROC_GLO_PartyMembers_MakeNPCHook((CHARACTERGUID)_Var1)
+AND
+DB_GLO_PartyMembers_Kick_PartyMembers(_Var2, _Var1, 1)
+THEN
+DB_GLO_PartyMemebers_KickAvatar_RestoreHeroFactionRelationAfterDeath(_Var1);
+CharacterSetRelationIndivFactionToFaction(_Var1, "Hero", 100);
+CharacterSetRelationFactionToIndivFaction("Hero", _Var1, 100);
+
+PROC
+PROC_GLO_PartyMembers_Kick((CHARACTERGUID)_Var1, (STRING)_Var2)
+THEN
+DB_GLO_PartyMembers_Kicked(_Var1);
+SetTag(_Var1, "BLOCK_RESURRECTION");
+CharacterSetRelationIndivFactionToFaction(_Var1, "Hero", -100);
+CharacterSetRelationFactionToIndivFaction("Hero", _Var1, -100);
+
+PROC
+PROC_GLO_PartyMembers_Kick((CHARACTERGUID)_Var1, (STRING)_Var2)
+AND
+DB_IsPlayer(_Var3)
+AND
+_Var3 != _Var1
+THEN
+CharacterSetRelationIndivFactionToIndivFaction(_Var3, _Var1, -100);
+CharacterSetRelationIndivFactionToIndivFaction(_Var1, _Var3, -100);
+
+PROC
+PROC_GLO_PartyMembers_Kick((CHARACTERGUID)_Var1, (STRING)_Var2)
+AND
+DB_GLO_PartyMembers_Kick_PartyMembers(_Var1, _Var3, 1)
+THEN
+CharacterSetRelationIndivFactionToIndivFaction(_Var1, _Var3, -100);
+CharacterSetRelationIndivFactionToIndivFaction(_Var3, _Var1, -100);
+
+PROC
+PROC_GLO_PartyMembers_Kick((CHARACTERGUID)_Var1, (STRING)_Var2)
+THEN
+SetStoryEvent(_Var1, "GLO_PartyMembers_Kicked");
+
+IF
+CharacterReceivedDamage((CHARACTERGUID)_Var1, _, _)
+AND
+DB_GLO_PartyMembers_Kicked(_Var1)
+AND
+CharacterGetHitpointsPercentage(_Var1, _Var4)
+AND
+_Var4 <= 0
+AND NOT
+DB_GLO_PartyMembers_Kick_PartyMembers_Dying(_Var1)
+THEN
+PROC_GLO_PartyMembers_Kick_PartyMembers_TryDead(_Var1);
+
+PROC
+PROC_GLO_PartyMembers_Kick_PartyMembers_TryDead((CHARACTERGUID)_Var1)
+AND NOT
+QRY_GLO_PartyMembers_Kicked_BlockRestoreAvatarOnDeath(_Var1)
+THEN
+PROC_GLO_PartyMembers_Kick_PartyMembers_Dead(_Var1);
+DB_GLO_PartyMembers_Kick_PartyMembers_Dying(_Var1);
+
+QRY
+QRY_GLO_PartyMembers_Kicked_BlockRestoreAvatarOnDeath((CHARACTERGUID)_Var1)
+AND
+1 == 0
+THEN
+DB_NOOP(1);
+
+PROC
+PROC_GLO_PartyMembers_Kick_PartyMembers_Dead((CHARACTERGUID)_Var1)
+THEN
+PROC_GLO_PartyMembers_Kick_PartyMembers_Restore_Internal(_Var1);
+
+PROC
+PROC_GLO_PartyMembers_Kick_PartyMembers_Restore((CHARACTERGUID)_Var1)
+THEN
+PROC_GLO_PartyMembers_Kick_PartyMembers_Restore_Internal(_Var1);
+
+PROC
+PROC_GLO_PartyMembers_Kick_PartyMembers_Restore_Internal((CHARACTERGUID)_Var1)
+AND
+DB_GLO_PartyMembers_Kick_PartyMembers(_Var1, _, _)
+AND
+DB_GLO_PartyMemebers_KickAvatar_RestoreHeroFactionRelationAfterDeath(_Var4)
+THEN
+NOT DB_GLO_PartyMemebers_KickAvatar_RestoreHeroFactionRelationAfterDeath(_Var4);
+CharacterSetRelationIndivFactionToFaction(_Var4, "Hero", 50);
+CharacterSetRelationFactionToIndivFaction("Hero", _Var4, 50);
+
+PROC
+PROC_GLO_PartyMembers_Kick_PartyMembers_Restore_Internal((CHARACTERGUID)_Var1)
+AND
+DB_GLO_PartyMembers_Kick_PartyMembers(_Var1, _Var2, 1)
+THEN
+PROC_GLO_PartyMembers_Add(_Var2, _Var1);
+
+PROC
+PROC_GLO_PartyMembers_Kick_PartyMembers_Restore_Internal((CHARACTERGUID)_Var1)
+AND
+DB_GLO_PartyMembers_Kick_PartyMembers(_Var1, _Var2, 1)
+THEN
+PROC_GLO_PartyMembers_ClearRecruiteeBonds(_Var2);
+
+PROC
+PROC_GLO_PartyMembers_Kick_PartyMembers_Restore_Internal((CHARACTERGUID)_Var1)
+AND
+DB_GLO_PartyMembers_Kick_OldCompanionBond(_Var1, _Var2, _Var3)
+THEN
+NOT DB_GLO_PartyMembers_Kick_OldCompanionBond(_Var1, _Var2, _Var3);
+PROC_GLO_PartyMembers_RecruiteeAvatarBond(_Var2, _Var3);
+
+PROC
+PROC_GLO_PartyMembers_Kick_PartyMembers_Dead((CHARACTERGUID)_Var1)
+THEN
+CharacterSetImmortal(_Var1, 0);
+CharacterDie(_Var1, 1, "DoT");
+
+IF
+DB_Dead(_Var1)
+AND
+DB_GLO_PartyMembers_Kicked(_Var1)
+THEN
+PROC_GLO_PartyMembers_TryDropBackpackOnDeath(_Var1);
+
+PROC
+PROC_GLO_PartyMembers_TryDropBackpackOnDeath((CHARACTERGUID)_Var1)
+AND NOT
+QRY_GLO_PartyMembers_BlockBackpackOnDeath(_Var1)
+AND
+GetPosition(_Var1, _Var2, _Var3, _Var4)
+AND
+CreateItemTemplateAtPosition("CONT_Humans_Backpack_Merchant_A_360e3e11-c7f8-4281-848a-596e37df884b", _Var2, _Var3, _Var4, _Var5)
+THEN
+MoveAllItemsTo(_Var1, _Var5);
+SetStoryEvent(_Var1, "GLO_PartyMembers_KickedDied");
+
+PROC
+PROC_GLO_PartyMembers_TryDropBackpackOnDeath((CHARACTERGUID)_Var1)
+AND
+QRY_GLO_PartyMembers_UserHasOtherCharacters(_Var1)
+THEN
+NOT DB_IsPlayer(_Var1);
+
+QRY
+QRY_GLO_PartyMembers_BlockBackpackOnDeath((CHARACTERGUID)_Var1)
+AND
+1 == 0
+THEN
+DB_NOOP(0);
+
+IF
+DB_Dead(_Var1)
+AND
+DB_GLO_PartyMembers_Kicked(_Var1)
+AND
+QRY_GLO_PartyMembers_UserHasOtherCharacters(_Var1)
+THEN
+CharacterMakeNPC(_Var1);
+
+IF
+DB_Dead(_Var1)
+AND
+DB_GLO_PartyMembers_Kick_PartyMembers_Dying(_Var1)
+THEN
+NOT DB_GLO_PartyMembers_Kick_PartyMembers_Dying(_Var1);
+PROC_GLO_PartyMembers_Kick_CleanUp(_Var1);
+
+PROC
+PROC_GLO_PartyMembers_Kick_PartyMembers_Restore((CHARACTERGUID)_Var1)
+THEN
+PROC_GLO_PartyMembers_Kick_CleanUp(_Var1);
+
+PROC
+PROC_GLO_PartyMembers_Kick_CleanUp((CHARACTERGUID)_Var1)
+THEN
+CharacterSetImmortal(_Var1, 0);
+
+PROC
+PROC_GLO_PartyMembers_Kick_CleanUp((CHARACTERGUID)_Var1)
+AND
+DB_GLO_PartyMembers_Kick_NewParty(_Var1, _Var2)
+THEN
+NOT DB_GLO_PartyMembers_Kick_NewParty(_Var1, _Var2);
+
+PROC
+PROC_GLO_PartyMembers_Kick_CleanUp((CHARACTERGUID)_Var1)
+AND
+DB_GLO_PartyMembers_Kick_OrigState(_Var1, _Var2, _Var3)
+THEN
+NOT DB_GLO_PartyMembers_Kick_OrigState(_Var1, _Var2, _Var3);
+SetVarFixedString(_Var2, "currentState", _Var3);
+
+PROC
+PROC_GLO_PartyMembers_Kick_CleanUp((CHARACTERGUID)_Var1)
+AND
+DB_GLO_PartyMembers_Kick_BlockedReturnToRecruitmentPosition(_Var1, _Var2)
+THEN
+NOT DB_GLO_PartyMembers_Kick_BlockedReturnToRecruitmentPosition(_Var1, _Var2);
+NOT DB_GLO_PartyMembers_BlockReturnToRecruitmentPosition(_Var2);
+
+PROC
+PROC_GLO_PartyMembers_Kick_CleanUp((CHARACTERGUID)_Var1)
+THEN
+NOT DB_PlayerAlignments_BlockFix(_Var1);
+
+PROC
+PROC_GLO_PartyMembers_Kick_CleanUp((CHARACTERGUID)_Var1)
+AND
+DB_GLO_PartyMembers_Kick_PartyMembers(_Var1, _Var2, _Var3)
+THEN
+NOT DB_GLO_PartyMembers_Kick_PartyMembers(_Var1, _Var2, _Var3);
+
+PROC
+PROC_GLO_PartyMembers_Kick_CleanUp((CHARACTERGUID)_Var1)
+THEN
+NOT DB_GLO_PartyMembers_Kicked(_Var1);
+
+PROC
+PROC_GLO_PartyMembers_TempRemoveAll((INTEGER)_Var1)
+THEN
+PROC_GLO_PartyMembers_CollectDismissAll();
+
+PROC
+PROC_GLO_PartyMembers_TempRemoveAll((INTEGER)_Var1)
+AND
+DB_GLO_PartyMembers_CollectDismissAll_Keep(_Var2)
+AND
+DB_GLO_PartyMembers_RecruiteeAvatarBond(_Var3, _Var2)
+AND NOT
+DB_GLO_PartyMembers_CollectDismissAll_Keep(_Var3)
+THEN
+DB_GLO_PartyMembers_TempRemoved(_Var2, _Var3);
+
+PROC
+PROC_GLO_PartyMembers_TempRemoveAll((INTEGER)_Var1)
+AND
+DB_IsPlayer(_Var2)
+AND NOT
+DB_GLO_PartyMembers_CollectDismissAll_Keep(_Var2)
+THEN
+DB_BlockStoryItemTransfer(_Var2);
+PROC_GLO_PartyMembers_Remove(_Var2, 1);
+ProcForceStopDialog(_Var2);
+
+PROC
+PROC_GLO_PartyMembers_TempRemoveAll(1)
+AND
+DB_GLO_PartyMembers_TempRemoved(_Var1, _Var2)
+THEN
+SetOnStage(_Var2, 0);
+
+PROC
+PROC_GLO_PartyMembers_TempRestore(_)
+THEN
+DB_BlockOwnershipChecks(1);
+
+PROC
+PROC_GLO_PartyMembers_TempRestore((CHARACTERGUID)_Var1)
+AND
+DB_GLO_PartyMembers_CollectDismissAll_OriginalOwningUserChar(_Var1, _Var2)
+AND
+DB_GLO_PartyMembers_TempRemoved(_Var3, _Var2)
+THEN
+NOT DB_BlockStoryItemTransfer(_Var2);
+SetOnStage(_Var2, 1);
+NOT DB_GLO_PartyMembers_TempRemoved(_Var3, _Var2);
+PROC_GLO_PartyMembers_Add(_Var2, _Var1);
+TeleportTo(_Var2, _Var1);
+CharacterAttachToGroup(_Var2, _Var1);
+CharacterResurrect(_Var2);
+ProcForceStopDialog(_Var2);
+PROC_GLO_PartyMembers_CollectDismissAll_RestoreCompanionBond(_Var2);
+
+PROC
+PROC_GLO_PartyMembers_TempRestore(_)
+THEN
+NOT DB_BlockOwnershipChecks(1);
+Proc_ItemEventCheck();
+
+PROC
+PROC_GLO_PartyMembers_TempRestoreAll()
+AND
+DB_GLO_PartyMembers_CollectDismissAll_Keep(_Var1)
+THEN
+PROC_GLO_PartyMembers_TempRestore(_Var1);
+
+IF
+CharacterDied((CHARACTERGUID)_Var1)
+AND
+DB_GLO_PartyMembers_TempRemoved(_Var2, _Var1)
+THEN
+NOT DB_GLO_PartyMembers_TempRemoved(_Var2, _Var1);
+
+IF
+CharacterResurrected((CHARACTERGUID)_Var1)
+AND
+QRY_GLO_PartyMembers_GetInPartyDialogReset(_Var1)
+AND
+QRY_GLO_PartyMembers_GetInPartyDialog(_Var1)
+AND
+DB_GLO_PartyMembers_InPartyDialog(_Var1, _Var2)
+AND
+DB_GLO_PartyMembers_RecruiteeAvatarBond(_Var1, _)
+THEN
+PROC_GLO_PartyMembers_SetInpartyDialog(_Var1, _Var2);
+
+PROC
+PROC_GLO_PartyMembers_MakeNPCHook((CHARACTERGUID)_Var1)
+THEN
+DB_NOOP(1);
+
+PROC
+PROC_GLO_PartyMembers_MakeNPC((CHARACTERGUID)_Var1)
+AND
+GetFaction(_Var1, _Var2)
+AND
+DB_GLO_PartyMembers_OriginalAlignment(_Var1, _Var3)
+THEN
+NOT DB_IsPlayer(_Var1);
+CharacterMakeNPC(_Var1);
+ProcRemovePolymorphs(_Var1);
+ProcCharacterEnableAllCrimes(_Var1);
+ProcUnRegisterPlayerTriggers(_Var1);
+ProcRemoveGenericTimer(_Var1);
+DB_GLO_PartyMembers_DefaultFaction(_Var1, _Var2);
+SetFaction(_Var1, _Var3);
+DB_NoLowAttitudeDialog(_Var1);
+ProcRemoveAllDialogEntriesForSpeaker(_Var1);
+SetHasDialog(_Var1, 0);
+Proc_CheckPartyFull();
+RemoveStatus(_Var1, "FUGITIVE");
+PROC_GLO_PartyMembers_MakeNPCHook(_Var1);
+
+PROC
+PROC_GLO_PartyMembers_MakeNPC((CHARACTERGUID)_Var1)
+AND
+DB_GLO_PartyMembers_RecruiteeAvatarBond(_Var1, _Var2)
+THEN
+NOT DB_GLO_PartyMembers_RecruiteeAvatarBond(_Var1, _Var2);
+
+PROC
+PROC_GLO_PartyMembers_TransferInventoryToPlayer((CHARACTERGUID)_Var1, (CHARACTERGUID)_Var2)
+AND
+GetPosition(_Var2, _Var3, _Var4, _Var5)
+AND
+CreateItemTemplateAtPosition("CONT_Humans_Backpack_Merchant_A_360e3e11-c7f8-4281-848a-596e37df884b", _Var3, _Var4, _Var5, _Var6)
+THEN
+DB_CompanionLeavingBackPack(_Var1, _Var2, _Var6);
+MoveAllItemsTo(_Var1, _Var6);
+ItemToInventory(_Var6, _Var2);
+SetStoryNpcStatus(_Var1);
+OpenMessageBox(_Var2, "GLO_CompanionLeftPermanently");
+
+PROC
+Proc_OriginLeft((CHARACTERGUID)_Var1, (STRING)_Var2)
+AND
+DB_Origins_OriginTag(_Var1, _Var3)
+AND
+StringConcatenate("CompanionLeft_", _Var3, _Var4)
+AND
+StringConcatenate(_Var4, _Var2, _Var5)
+THEN
+GlobalSetFlag(_Var5);
+
+PROC
+Proc_OriginLeft((CHARACTERGUID)_Var1, (STRING)_Var2)
+AND
+DB_QuestDef_State_CompanionLeft(_Var3, _Var4, _Var2)
+AND
+IsTagged(_Var1, _Var3, 1)
+AND
+DB_Avatars(_Var5)
+THEN
+ObjectSetFlag(_Var5, _Var4);
+
+QRY
+QRY_GLO_PartyMembers_IsKickedAvatarNpc((CHARACTERGUID)_Var1)
+AND NOT
+DB_IsPlayer(_Var1)
+AND
+IsTagged(_Var1, "BLOCK_RESURRECTION", 1)
+AND
+DB_TUT_OriginQuestStarts(_Var1, _, _Var3)
+AND
+DB_QuestDef_AddEvent(_Var4, _Var3)
+AND
+QuestAccepted(_Var1, _Var4, 1)
+THEN
+DB_NOOP(1);
+
+IF
+TextEventSet("ResetIsPlayerDB")
+AND
+DB_CurrentLevel("CoS_Main_Ending")
+THEN
+DebugBreak("Do not use ResetIsPlayerDB in this level, it is unsafe. Nothing done.");
+
+QRY
+QRY_GLO_PartyMembers_AnyTempRemoved()
+AND
+DB_GLO_PartyMembers_TempRemoved(_, _)
+THEN
+DB_NOOP(1);
+
+IF
+TextEventSet("ResetIsPlayerDB")
+AND
+QRY_GLO_PartyMembers_AnyTempRemoved()
+THEN
+DebugBreak("Do not use ResetIsPlayerDB while characters have been temporarily removed from the party. Nothing done.");
+
+IF
+TextEventSet("ResetIsPlayerDB")
+AND NOT
+DB_CurrentLevel("CoS_Main_Ending")
+AND NOT
+QRY_GLO_PartyMembers_AnyTempRemoved()
+AND
+DB_IsPlayer(_Var1)
+AND
+CharacterIsPlayer(_Var1, 0)
+THEN
+NOT DB_IsPlayer(_Var1);
+
+
+EXITSECTION
+ENDEXITSECTION
+
+ParentTargetEdge "__Shared_Campaign"

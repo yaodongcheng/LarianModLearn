@@ -1,0 +1,188 @@
+Version 1
+SubGoalCombiner SGC_AND
+
+INITSECTION
+DB_WolfHunt_IfanUpdates("FoundContract", "QuestUpdate_FTJ_COM_Ifan_FoundContract", "QuestUpdate_FTJ_Ifan_DarkFaction_FoundContract");
+
+KBSECTION
+IF
+GameBookInterfaceClosed((ITEMGUID)_Var1, (CHARACTERGUID)_Var2)
+AND NOT
+QRY_IfanHasWolfHunt(_Var2)
+AND
+GetTemplate(_Var1, "GLO_GodwokenAssassinationContract_0b88012c-9b14-409e-b50d-328d6b154781")
+AND
+PartyGetFlag(_Var2, "QuestUpdate_RC_WolfHunt_LearnedRoost", 0)
+AND
+PartyGetFlag(_Var2, "QuestUpdate_RC_WolfHunt_LearnedBaran", 0)
+AND NOT
+QRY_RC_WolfHunt_IfanUpdate(_Var2, "FoundContract")
+THEN
+PartySetFlag(_Var2, "QuestUpdate_RC_WolfHunt_FoundContract", 0);
+
+IF
+ObjectFlagSet("RC_LearnedBaran", (CHARACTERGUID)_Var1, _)
+AND NOT
+QRY_IfanHasWolfHunt(_Var1)
+AND
+PartyGetFlag(_Var1, "QuestUpdate_RC_WolfHunt_LearnedRoost", 0)
+AND
+PartyGetFlag(_Var1, "QuestUpdate_RC_WolfHunt_FoundContract", 0)
+AND NOT
+QRY_RC_WolfHunt_IfanUpdate(_Var1, "RC_LearnedBaran")
+THEN
+PartySetFlag(_Var1, "QuestUpdate_RC_WolfHunt_LearnedBaran");
+
+IF
+GameBookInterfaceClosed(ITEMGUID_S_RC_MIL_DOContract_e0571cdc-625b-4f41-880b-7990d034721e, (CHARACTERGUID)_Var1)
+AND NOT
+QRY_IfanHasWolfHunt(_Var1)
+AND
+PartyGetFlag(_Var1, "QuestUpdate_RC_WolfHunt_LearnedRoost", 0)
+AND
+PartyGetFlag(_Var1, "QuestUpdate_RC_WolfHunt_LearnedBaran", 0)
+AND NOT
+QRY_RC_WolfHunt_IfanUpdate(_Var1, "FoundContract")
+THEN
+PartySetFlag(_Var1, "QuestUpdate_RC_WolfHunt_FoundContract");
+
+IF
+GameBookInterfaceClosed(ITEMGUID_S_RC_DW_RichMerchant_Orders_63caa9e2-e334-430f-ac0d-c73b657b16b6, (CHARACTERGUID)_Var1)
+AND NOT
+QRY_IfanHasWolfHunt(_Var1)
+AND
+PartyGetFlag(_Var1, "QuestUpdate_RC_WolfHunt_LearnedRoost", 0)
+AND
+PartyGetFlag(_Var1, "QuestUpdate_RC_WolfHunt_LearnedBaran", 0)
+AND NOT
+QRY_RC_WolfHunt_IfanUpdate(_Var1, "FoundContract")
+THEN
+PartySetFlag(_Var1, "QuestUpdate_RC_WolfHunt_FoundContract");
+
+QRY
+QRY_RC_WolfHunt_IfanUpdate((CHARACTERGUID)_Var1, (STRING)_Var2)
+AND
+GetDistanceTo(_Var1, CHARACTERGUID_S_Player_Ifan_ad9a3327-4456-42a7-9bf4-7ad60cc9e54f, _Var3)
+AND
+_Var3 <= 10
+AND
+CharacterIsInPartyWith(_Var1, CHARACTERGUID_S_Player_Ifan_ad9a3327-4456-42a7-9bf4-7ad60cc9e54f, 1)
+AND
+IsTagged(CHARACTERGUID_S_Player_Ifan_ad9a3327-4456-42a7-9bf4-7ad60cc9e54f, "AVATAR", 1)
+AND
+DB_WolfHunt_IfanUpdates(_Var2, _, _Var5)
+THEN
+ObjectSetFlag(CHARACTERGUID_S_Player_Ifan_ad9a3327-4456-42a7-9bf4-7ad60cc9e54f, _Var5, 0);
+
+QRY
+QRY_RC_WolfHunt_IfanUpdate((CHARACTERGUID)_Var1, (STRING)_Var2)
+AND
+GetDistanceTo(_Var1, CHARACTERGUID_S_Player_Ifan_ad9a3327-4456-42a7-9bf4-7ad60cc9e54f, _Var3)
+AND
+_Var3 <= 10
+AND
+CharacterIsInPartyWith(_Var1, CHARACTERGUID_S_Player_Ifan_ad9a3327-4456-42a7-9bf4-7ad60cc9e54f, 1)
+AND
+IsTagged(CHARACTERGUID_S_Player_Ifan_ad9a3327-4456-42a7-9bf4-7ad60cc9e54f, "AVATAR", 0)
+AND
+DB_WolfHunt_IfanUpdates(_Var2, _Var4, _)
+THEN
+PartySetFlag(CHARACTERGUID_S_Player_Ifan_ad9a3327-4456-42a7-9bf4-7ad60cc9e54f, _Var4, 0);
+
+QRY
+QRY_IfanHasWolfHunt((CHARACTERGUID)_Var1)
+AND
+CharacterIsInPartyWith(_Var1, CHARACTERGUID_S_Player_Ifan_ad9a3327-4456-42a7-9bf4-7ad60cc9e54f, 1)
+AND
+DB_WolfHunt_IfanUpdates(_, _Var3, _)
+AND
+ObjectGetFlag(CHARACTERGUID_S_Player_Ifan_ad9a3327-4456-42a7-9bf4-7ad60cc9e54f, _Var3, 1)
+THEN
+DB_NOOP(0);
+
+QRY
+QRY_IfanHasWolfHunt((CHARACTERGUID)_Var1)
+AND
+CharacterIsInPartyWith(_Var1, CHARACTERGUID_S_Player_Ifan_ad9a3327-4456-42a7-9bf4-7ad60cc9e54f, 1)
+AND
+DB_WolfHunt_IfanUpdates(_, _, _Var4)
+AND
+ObjectGetFlag(CHARACTERGUID_S_Player_Ifan_ad9a3327-4456-42a7-9bf4-7ad60cc9e54f, _Var4, 1)
+THEN
+DB_NOOP(0);
+
+IF
+GameBookInterfaceClosed(ITEMGUID_S_RC_MIL_DOContract_e0571cdc-625b-4f41-880b-7990d034721e, (CHARACTERGUID)_Var1)
+AND
+QueryOnlyOnce("RC_WolfHunt_DOContract")
+THEN
+StartVoiceBark("RC_VB_WolfHunt_DOContract", _Var1);
+
+IF
+GameBookInterfaceClosed((ITEMGUID)_Var1, (CHARACTERGUID)_Var2)
+AND
+GetTemplate(_Var1, "GLO_GodwokenAssassinationContract_0b88012c-9b14-409e-b50d-328d6b154781")
+AND
+UserGetFlag(_Var2, "QuestUpdate_FTJ_Hunted_LearnedRoost", 0)
+AND
+UserGetFlag(_Var2, "QuestUpdate_FTJ_Hunted_LearnedBaran", 0)
+THEN
+UserSetFlag(_Var2, "QuestUpdate_FTJ_Hunted_FoundContract");
+
+IF
+ObjectFlagSet("RC_LearnedBaran", (CHARACTERGUID)_Var1, _)
+AND
+UserGetFlag(_Var1, "QuestUpdate_FTJ_Hunted_LearnedRoost", 0)
+AND
+UserGetFlag(_Var1, "QuestUpdate_FTJ_Hunted_FoundContract", 0)
+THEN
+UserSetFlag(_Var1, "QuestUpdate_FTJ_Hunted_LearnedBaran");
+
+IF
+ObjectFlagSet("RC_MIL_LearnedRoost", (CHARACTERGUID)_Var1, _)
+AND
+UserGetFlag(_Var1, "QuestUpdate_FTJ_Hunted_LearnedBaran", 0)
+AND
+UserGetFlag(_Var1, "QuestUpdate_FTJ_Hunted_FoundContract", 0)
+THEN
+UserSetFlag(_Var1, "QuestUpdate_FTJ_Hunted_LearnedRoost");
+
+IF
+GameBookInterfaceClosed(ITEMGUID_S_RC_MIL_DOContract_e0571cdc-625b-4f41-880b-7990d034721e, (CHARACTERGUID)_Var1)
+AND
+UserGetFlag(_Var1, "QuestUpdate_FTJ_Hunted_LearnedRoost", 0)
+AND
+UserGetFlag(_Var1, "QuestUpdate_FTJ_Hunted_LearnedBaran", 0)
+THEN
+UserSetFlag(_Var1, "QuestUpdate_FTJ_Hunted_FoundContract");
+
+IF
+GameBookInterfaceClosed(ITEMGUID_S_RC_DW_RichMerchant_Orders_63caa9e2-e334-430f-ac0d-c73b657b16b6, (CHARACTERGUID)_Var1)
+AND
+UserGetFlag(_Var1, "QuestUpdate_FTJ_Hunted_LearnedRoost", 0)
+THEN
+UserSetFlag(_Var1, "QuestUpdate_FTJ_Hunted_FoundContractSawmill");
+
+IF
+ObjectFlagSet("RC_LearnedBaran", CHARACTERGUID_S_Player_Sebille_c8d55eaf-e4eb-466a-8f0d-6a9447b5b24c, _)
+AND
+IsTagged(CHARACTERGUID_S_Player_Sebille_c8d55eaf-e4eb-466a-8f0d-6a9447b5b24c, "AVATAR", 1)
+AND
+ObjectGetFlag(CHARACTERGUID_S_Player_Sebille_c8d55eaf-e4eb-466a-8f0d-6a9447b5b24c, "QuestUpdate_FTJ_OriginSebille_Part2_Find_Roost", 0)
+THEN
+ObjectSetFlag(CHARACTERGUID_S_Player_Sebille_c8d55eaf-e4eb-466a-8f0d-6a9447b5b24c, "QuestUpdate_FTJ_OriginSebille_ConfrontedBaran");
+
+IF
+ObjectFlagSet("RC_LearnedBaran", CHARACTERGUID_S_Player_Sebille_c8d55eaf-e4eb-466a-8f0d-6a9447b5b24c, _)
+AND
+IsTagged(CHARACTERGUID_S_Player_Sebille_c8d55eaf-e4eb-466a-8f0d-6a9447b5b24c, "AVATAR", 1)
+AND
+ObjectGetFlag(CHARACTERGUID_S_Player_Sebille_c8d55eaf-e4eb-466a-8f0d-6a9447b5b24c, "QuestUpdate_FTJ_OriginSebille_Part2_Find_Roost", 1)
+THEN
+ObjectSetFlag(CHARACTERGUID_S_Player_Sebille_c8d55eaf-e4eb-466a-8f0d-6a9447b5b24c, "QuestUpdate_FTJ_OriginSebille_ConfrontedBaranKnow");
+
+
+EXITSECTION
+ENDEXITSECTION
+
+ParentTargetEdge "ReapersCoast"

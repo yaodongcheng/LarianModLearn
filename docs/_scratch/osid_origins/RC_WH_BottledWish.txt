@@ -1,0 +1,612 @@
+Version 1
+SubGoalCombiner SGC_AND
+
+INITSECTION
+DB_Dialogs(CHARACTERGUID_S_RC_WH_Djinn_838283f5-a45f-4892-a4ac-fae2f99d4de0, "RC_WH_BottledWish");
+DB_Dialogs(ITEMGUID_S_RC_WH_DjinnBottle_08a6859f-9e69-414c-89e5-bed50da3137c, "RC_WH_BottledWish_UseBottle");
+DB_RC_WH_DjinnTeam(CHARACTERGUID_S_RC_WH_Djinn_838283f5-a45f-4892-a4ac-fae2f99d4de0);
+DB_OneShotPlayerTrigger(RC_WH_BottledWish_BottleNoticeTrigger_d074f64e-bb5c-46e6-aae3-d8abda3bb93c);
+TriggerRegisterForItems(RC_WH_BottledWish_BottleNoticeTrigger_d074f64e-bb5c-46e6-aae3-d8abda3bb93c);
+DB_HasStoryEvent(ITEMGUID_S_RC_WH_DjinnBottle_08a6859f-9e69-414c-89e5-bed50da3137c, "RC_WH_BottledWish_HasBottle");
+SetOnStage(CHARACTERGUID_S_RC_WH_Djinn_838283f5-a45f-4892-a4ac-fae2f99d4de0, 0);
+SetOnStage(ITEMGUID_RC_WH_BottledWish_DjinnTales_7edffe49-981a-45a8-8755-4b75a619e7b2, 0);
+SetOnStage(ITEMGUID_RC_WH_BottledWish_DjinnsGift_9d02b617-4208-4ab5-8141-ca8a2981d697, 0);
+SetOnStage(ITEMGUID_RC_WH_BottledWish_DjinnsScimitar_1e8171bf-540d-4c72-b530-2f7dc50ac021, 0);
+ApplyStatus(CHARACTERGUID_S_RC_WH_Djinn_838283f5-a45f-4892-a4ac-fae2f99d4de0, "ETHEREAL_SOLES", -1);
+DB_NoLowAttitudeDialog(CHARACTERGUID_S_RC_WH_BottledWish_Djinn_838283f5-a45f-4892-a4ac-fae2f99d4de0);
+DB_CrimeTriggers_GeneralBribeDialog(1, "RC_WH_DijinnItem_Interrogation");
+
+KBSECTION
+IF
+TextEventSet("f-to-e")
+THEN
+Transform(ITEMGUID_S_RC_WH_BottledWish_DjinnBottle_08a6859f-9e69-414c-89e5-bed50da3137c, "Quest_DjinnBottleEmpty_5589bdbc-36dc-4aa2-83f7-ee43e16afd4a", 0);
+
+IF
+TextEventSet("e-to-f")
+THEN
+Transform(ITEMGUID_S_RC_WH_BottledWish_DjinnBottle_08a6859f-9e69-414c-89e5-bed50da3137c, "Quest_Djinn_Bottle_dcb3a695-79d4-4a02-bca4-8503e49ddfa1", 0);
+
+IF
+TextEventSet("dtoc")
+THEN
+Foop(CHARACTERGUID_S_RC_WH_BottledWish_Djinn_838283f5-a45f-4892-a4ac-fae2f99d4de0);
+SetFaction(CHARACTERGUID_S_RC_WH_BottledWish_Djinn_838283f5-a45f-4892-a4ac-fae2f99d4de0, "RC_WH_Djinn");
+
+IF
+TextEventSet("djb")
+AND
+CharacterGetHostCharacter(_Var1)
+THEN
+ItemToInventory(ITEMGUID_S_RC_WH_DjinnBottle_08a6859f-9e69-414c-89e5-bed50da3137c, _Var1);
+DebugText(_Var1, "Added Bottle");
+
+PROC
+ProcOneShotTriggerEntered((CHARACTERGUID)_Var1, RC_WH_BottledWish_BottleNoticeTrigger_d074f64e-bb5c-46e6-aae3-d8abda3bb93c)
+AND
+ObjectIsInTrigger(ITEMGUID_S_RC_WH_DjinnBottle_08a6859f-9e69-414c-89e5-bed50da3137c, RC_WH_BottledWish_BottleNoticeTrigger_d074f64e-bb5c-46e6-aae3-d8abda3bb93c, 1)
+THEN
+StartVoiceBark("RC_WH_VB_BottledWish_PcNoticeBottle", _Var1);
+DB_RC_WH_DjinnBottle(ITEMGUID_S_RC_WH_DjinnBottle_08a6859f-9e69-414c-89e5-bed50da3137c);
+
+IF
+CharacterUsedItem((CHARACTERGUID)_Var1, ITEMGUID_S_RC_WH_BottledWish_DjinnBottle_08a6859f-9e69-414c-89e5-bed50da3137c)
+THEN
+ObjectSetFlag(_Var1, "QuestUpdate_RC_WH_BottledWish_FoundBottle");
+
+IF
+ItemAddedToCharacter(ITEMGUID_S_RC_WH_BottledWish_DjinnBottle_08a6859f-9e69-414c-89e5-bed50da3137c, (CHARACTERGUID)_Var1)
+AND
+DB_IsPlayer(_Var1)
+THEN
+ObjectSetFlag(_Var1, "QuestUpdate_RC_WH_BottledWish_FoundBottle");
+
+IF
+ItemAddedToCharacter(ITEMGUID_S_RC_WH_BottledWish_DjinnBottle_08a6859f-9e69-414c-89e5-bed50da3137c, (CHARACTERGUID)_Var1)
+AND
+DB_IsPlayer(_Var1)
+THEN
+ObjectSetFlag(ITEMGUID_S_RC_WH_BottledWish_DjinnBottle_08a6859f-9e69-414c-89e5-bed50da3137c, "RC_WH_BottledWish_HasBottle");
+ObjectClearFlag(CHARACTERGUID_S_RC_WH_BottledWish_Djinn_838283f5-a45f-4892-a4ac-fae2f99d4de0, "RC_WH_BottledWish_LostBottle");
+
+IF
+ItemRemovedFromCharacter(ITEMGUID_S_RC_WH_BottledWish_DjinnBottle_08a6859f-9e69-414c-89e5-bed50da3137c, (CHARACTERGUID)_Var1)
+AND
+DB_IsPlayer(_Var1)
+THEN
+ObjectClearFlag(ITEMGUID_S_RC_WH_BottledWish_DjinnBottle_08a6859f-9e69-414c-89e5-bed50da3137c, "RC_WH_BottledWish_HasBottle");
+ObjectSetFlag(CHARACTERGUID_S_RC_WH_BottledWish_Djinn_838283f5-a45f-4892-a4ac-fae2f99d4de0, "RC_WH_BottledWish_LostBottle");
+Proc_RC_WH_BottledWish_BottleLostDuringDialog();
+
+PROC
+Proc_RC_WH_BottledWish_BottleLostDuringDialog()
+AND
+DB_DialogNPCs(_, ITEMGUID_S_RC_WH_BottledWish_DjinnBottle_08a6859f-9e69-414c-89e5-bed50da3137c, _)
+THEN
+DialogRequestStop(ITEMGUID_S_RC_WH_BottledWish_DjinnBottle_08a6859f-9e69-414c-89e5-bed50da3137c);
+
+IF
+DialogEnded("RC_WH_BottledWish_UseBottle", (INTEGER)_Var1)
+AND
+DialogGetInvolvedPlayer(_Var1, 1, _Var2)
+AND
+GlobalGetFlag("RC_WH_BottledWish_BottleOpened", 1)
+THEN
+Proc_RC_WH_BottledWish_TryPickup(_Var2);
+TeleportTo(CHARACTERGUID_S_RC_WH_BottledWish_Djinn_838283f5-a45f-4892-a4ac-fae2f99d4de0, _Var2);
+Foop(CHARACTERGUID_S_RC_WH_BottledWish_Djinn_838283f5-a45f-4892-a4ac-fae2f99d4de0);
+Proc_RC_WH_BottledWish_TalkableDjinnAppears(_Var2);
+
+IF
+DialogEnded("RC_WH_BottledWish", (INTEGER)_Var1)
+AND
+ObjectGetFlag(CHARACTERGUID_S_RC_WH_Djinn_838283f5-a45f-4892-a4ac-fae2f99d4de0, "RC_WH_BottledWish_PutBack", 1)
+THEN
+Poof(CHARACTERGUID_S_RC_WH_Djinn_838283f5-a45f-4892-a4ac-fae2f99d4de0);
+GlobalClearFlag("RC_WH_BottledWish_BottleOpened");
+
+IF
+DialogEnded("RC_WH_BottledWish_UseBottle", (INTEGER)_Var1)
+AND
+DialogGetInvolvedPlayer(_Var1, 1, _Var2)
+AND
+GlobalGetFlag("RC_WH_BottledWish_BottleBroken", 1)
+THEN
+TeleportTo(CHARACTERGUID_S_RC_WH_BottledWish_Djinn_838283f5-a45f-4892-a4ac-fae2f99d4de0, _Var2);
+CharacterFlushQueue(CHARACTERGUID_S_RC_WH_BottledWish_Djinn_838283f5-a45f-4892-a4ac-fae2f99d4de0);
+Foop(CHARACTERGUID_S_RC_WH_BottledWish_Djinn_838283f5-a45f-4892-a4ac-fae2f99d4de0);
+ItemRemove(ITEMGUID_S_RC_WH_BottledWish_DjinnBottle_08a6859f-9e69-414c-89e5-bed50da3137c);
+Proc_RC_WH_BottledWish_EnragedDjinnAppears(_Var2);
+
+IF
+CharacterDestroyedItem((CHARACTERGUID)_Var1, ITEMGUID_S_RC_WH_BottledWish_DjinnBottle_08a6859f-9e69-414c-89e5-bed50da3137c)
+AND
+GetTemplate(ITEMGUID_S_RC_WH_BottledWish_DjinnBottle_08a6859f-9e69-414c-89e5-bed50da3137c, "Quest_Djinn_Bottle_dcb3a695-79d4-4a02-bca4-8503e49ddfa1")
+AND
+ObjectGetFlag(CHARACTERGUID_S_RC_WH_BottledWish_Djinn_838283f5-a45f-4892-a4ac-fae2f99d4de0, "RC_WH_BottledWish_DjinnEnraged", 0)
+AND
+GetPosition(ITEMGUID_S_RC_WH_BottledWish_DjinnBottle_08a6859f-9e69-414c-89e5-bed50da3137c, _Var2, _Var3, _Var4)
+THEN
+CharacterAppearAtPosition(CHARACTERGUID_S_RC_WH_BottledWish_Djinn_838283f5-a45f-4892-a4ac-fae2f99d4de0, _Var2, _Var3, _Var4, 0, "");
+PlayEffect(CHARACTERGUID_S_RC_WH_BottledWish_Djinn_838283f5-a45f-4892-a4ac-fae2f99d4de0, "RS3_FX_GP_ScriptedEvent_Teleport_GenericSmoke_01");
+Proc_RC_WH_BottledWish_EnragedDjinnAppears(_Var1);
+
+PROC
+Proc_RC_WH_BottledWish_TryPickup((CHARACTERGUID)_Var1)
+AND
+ItemGetOwner(ITEMGUID_S_RC_WH_BottledWish_DjinnBottle_08a6859f-9e69-414c-89e5-bed50da3137c, _Var2)
+AND NOT
+QryItemInMagicPockets(_Var2, ITEMGUID_S_RC_WH_BottledWish_DjinnBottle_08a6859f-9e69-414c-89e5-bed50da3137c)
+THEN
+CharacterPickupItem(_Var1, ITEMGUID_S_RC_WH_BottledWish_DjinnBottle_08a6859f-9e69-414c-89e5-bed50da3137c, "");
+
+IF
+ItemAddedToContainer(ITEMGUID_S_RC_WH_BottledWish_DjinnBottle_08a6859f-9e69-414c-89e5-bed50da3137c, (ITEMGUID)_Var1)
+THEN
+SetHasDialog(ITEMGUID_S_RC_WH_BottledWish_DjinnBottle_08a6859f-9e69-414c-89e5-bed50da3137c, 0);
+
+IF
+ItemRemovedFromContainer(ITEMGUID_S_RC_WH_BottledWish_DjinnBottle_08a6859f-9e69-414c-89e5-bed50da3137c, (ITEMGUID)_Var1)
+THEN
+SetHasDialog(ITEMGUID_S_RC_WH_BottledWish_DjinnBottle_08a6859f-9e69-414c-89e5-bed50da3137c, 1);
+
+IF
+CharacterUsedItem((CHARACTERGUID)_Var1, ITEMGUID_S_RC_WH_BottledWish_DjinnBottle_08a6859f-9e69-414c-89e5-bed50da3137c)
+AND
+ItemGetOwner(ITEMGUID_S_RC_WH_BottledWish_DjinnBottle_08a6859f-9e69-414c-89e5-bed50da3137c, _Var2)
+AND
+QryTakeItemFromMagicPockets(_Var2, ITEMGUID_S_RC_WH_BottledWish_DjinnBottle_08a6859f-9e69-414c-89e5-bed50da3137c, _Var1)
+THEN
+DB_NOOP(1);
+
+IF
+CharacterWentOnStage(CHARACTERGUID_S_RC_WH_BottledWish_Djinn_838283f5-a45f-4892-a4ac-fae2f99d4de0, 1)
+AND
+DB_IsPlayer(_Var1)
+AND
+QRY_IsInRange(CHARACTERGUID_S_RC_WH_BottledWish_Djinn_838283f5-a45f-4892-a4ac-fae2f99d4de0, _Var1, 35)
+AND
+CharacterGetLevel(_Var1, _Var2)
+THEN
+CharacterLevelUpTo(CHARACTERGUID_S_RC_WH_BottledWish_Djinn_838283f5-a45f-4892-a4ac-fae2f99d4de0, _Var2);
+
+PROC
+Proc_RC_WH_BottledWish_TalkableDjinnAppears((CHARACTERGUID)_Var1)
+AND
+ObjectGetFlag(CHARACTERGUID_S_RC_WH_BottledWish_Djinn_838283f5-a45f-4892-a4ac-fae2f99d4de0, "RC_WH_BottledWish_DjinnEnraged", 0)
+THEN
+Proc_StartDialog(0, "RC_WH_BottledWish", CHARACTERGUID_S_RC_WH_BottledWish_Djinn_838283f5-a45f-4892-a4ac-fae2f99d4de0, _Var1);
+
+PROC
+Proc_RC_WH_BottledWish_TalkableDjinnAppears((CHARACTERGUID)_Var1)
+AND
+ObjectGetFlag(CHARACTERGUID_S_RC_WH_BottledWish_Djinn_838283f5-a45f-4892-a4ac-fae2f99d4de0, "RC_WH_BottledWish_DjinnEnraged", 1)
+THEN
+Proc_RC_WH_BottledWish_EnragedDjinnAppears(_Var1);
+
+PROC
+Proc_RC_WH_BottledWish_EnragedDjinnAppears((CHARACTERGUID)_Var1)
+THEN
+SetFaction(CHARACTERGUID_S_RC_WH_BottledWish_Djinn_838283f5-a45f-4892-a4ac-fae2f99d4de0, "RC_WH_Djinn");
+Proc_StartDialog(1, "RC_WH_AD_BottledWish_DjinnFree", CHARACTERGUID_S_RC_WH_BottledWish_Djinn_838283f5-a45f-4892-a4ac-fae2f99d4de0);
+SetHasDialog(CHARACTERGUID_S_RC_WH_BottledWish_Djinn_838283f5-a45f-4892-a4ac-fae2f99d4de0, 0);
+
+IF
+ObjectFlagSet("RC_WH_BottledWish_PlayerAttacksDjinn", CHARACTERGUID_S_RC_WH_Djinn_838283f5-a45f-4892-a4ac-fae2f99d4de0, (INTEGER)_Var1)
+AND
+DB_DialogPlayers(_Var1, _Var2, _)
+THEN
+Proc_RC_WH_BottledWish_EnragedDjinnAppears(_Var2);
+
+PROC
+Proc_RC_WH_BottledWish_EnragedDjinnAppears((CHARACTERGUID)_Var1)
+AND
+DB_IsPlayer(_Var1)
+THEN
+ObjectSetFlag(_Var1, "QuestUpdate_RC_WH_BottledWish_FightDjinn");
+
+PROC
+Proc_RC_WH_BottledWish_WishGranted()
+THEN
+ProcCharacterDisableAllCrimes(CHARACTERGUID_S_RC_WH_BottledWish_Djinn_838283f5-a45f-4892-a4ac-fae2f99d4de0);
+SetHasDialog(CHARACTERGUID_S_RC_WH_BottledWish_Djinn_838283f5-a45f-4892-a4ac-fae2f99d4de0, 0);
+SetCanFight(CHARACTERGUID_S_RC_WH_BottledWish_Djinn_838283f5-a45f-4892-a4ac-fae2f99d4de0, 0);
+SetScriptFrame(CHARACTERGUID_S_RC_WH_BottledWish_Djinn_838283f5-a45f-4892-a4ac-fae2f99d4de0, "DjinnWishGranted");
+
+IF
+ObjectFlagSet("Djinn_CanVanishAfterWish", CHARACTERGUID_S_RC_WH_BottledWish_Djinn_838283f5-a45f-4892-a4ac-fae2f99d4de0, _)
+THEN
+Poof(CHARACTERGUID_S_RC_WH_BottledWish_Djinn_838283f5-a45f-4892-a4ac-fae2f99d4de0);
+ProcCloseForAll_DjinnFreedom();
+
+PROC
+ProcCloseForAll_DjinnFreedom()
+AND
+DB_RC_WH_BottledWish_QuestFinisher(_Var1)
+THEN
+ObjectSetFlag(_Var1, "QuestUpdate_RC_WH_BottledWish_DjinnFreedom");
+NOT DB_RC_WH_BottledWish_QuestFinisher(_Var1);
+
+IF
+DialogEnded("RC_WH_BottledWish", (INTEGER)_Var1)
+AND
+DialogGetInvolvedPlayer(_Var1, 1, _Var2)
+AND
+ObjectGetFlag(_Var2, "RC_WH_BottledWish_EndPowerGood", 1)
+THEN
+ObjectSetFlag(_Var2, "QuestUpdate_RC_WH_BottledWish_EndPowerGood");
+SetOnStage(ITEMGUID_RC_WH_BottledWish_DjinnsScimitar_1e8171bf-540d-4c72-b530-2f7dc50ac021, 1);
+ItemToInventory(ITEMGUID_RC_WH_BottledWish_DjinnsScimitar_1e8171bf-540d-4c72-b530-2f7dc50ac021, _Var2);
+Proc_RC_WH_BottledWish_WishGranted();
+DB_RC_WH_BottledWish_QuestFinisher(_Var2);
+
+IF
+DialogEnded("RC_WH_BottledWish", (INTEGER)_Var1)
+AND
+DialogGetInvolvedPlayer(_Var1, 1, _Var2)
+AND
+ObjectGetFlag(_Var2, "RC_WH_BottledWish_EndPowerBad", 1)
+THEN
+PlayEffect(_Var2, "RS3_FX_Skills_Air_Lightning_Target_Vertical_01");
+ProcObjectTimer(_Var2, "WH_RC_BottledWish_LightningStrike", 800);
+Proc_RC_WH_BottledWish_WishGranted();
+DB_RC_WH_BottledWish_QuestFinisher(_Var2);
+
+PROC
+ProcObjectTimerFinished((CHARACTERGUID)_Var1, "WH_RC_BottledWish_LightningStrike")
+THEN
+ApplyDamage(_Var1, 150, "Air");
+ApplyStatus(_Var1, "KNOCKED_DOWN", 1);
+ApplyStatus(_Var1, "STUNNED", 6);
+ObjectSetFlag(_Var1, "QuestUpdate_RC_WH_BottledWish_EndPowerBad");
+
+IF
+DialogEnded("RC_WH_BottledWish", (INTEGER)_Var1)
+AND
+DialogGetInvolvedPlayer(_Var1, 1, _Var2)
+AND
+ObjectGetFlag(_Var2, "RC_WH_BottledWish_EndKnowledgeGood", 1)
+THEN
+CharacterGiveReward(_Var2, "ST_SourceSkillBook_Forced");
+ObjectSetFlag(_Var2, "QuestUpdate_RC_WH_BottledWish_EndKnowledgeGood");
+Proc_RC_WH_BottledWish_WishGranted();
+DB_RC_WH_BottledWish_QuestFinisher(_Var2);
+
+IF
+DialogEnded("RC_WH_BottledWish", (INTEGER)_Var1)
+AND
+DialogGetInvolvedPlayer(_Var1, 1, _Var2)
+AND
+ObjectGetFlag(_Var2, "RC_WH_BottledWish_EndKnowledgeBad", 1)
+THEN
+SetOnStage(ITEMGUID_RC_WH_BottledWish_DjinnTales_7edffe49-981a-45a8-8755-4b75a619e7b2, 1);
+ItemToInventory(ITEMGUID_RC_WH_BottledWish_DjinnTales_7edffe49-981a-45a8-8755-4b75a619e7b2, _Var2);
+ObjectSetFlag(_Var2, "QuestUpdate_RC_WH_BottledWish_EndKnowledgeBad");
+Proc_RC_WH_BottledWish_WishGranted();
+DB_RC_WH_BottledWish_QuestFinisher(_Var2);
+
+IF
+DialogEnded("RC_WH_BottledWish", (INTEGER)_Var1)
+AND
+DialogGetInvolvedPlayer(_Var1, 1, _Var2)
+AND
+ObjectGetFlag(_Var2, "RC_WH_BottledWish_EndPurgeGood", 1)
+THEN
+ItemTemplateAddTo("Scroll_Skill_Source_HailStorm_9314d32c-0714-4478-817a-358a498c98dc", _Var2, 1);
+ObjectSetFlag(_Var2, "QuestUpdate_RC_WH_BottledWish_EndPurgeGood");
+Proc_RC_WH_BottledWish_WishGranted();
+DB_RC_WH_BottledWish_QuestFinisher(_Var2);
+
+IF
+DialogEnded("RC_WH_BottledWish", (INTEGER)_Var1)
+AND
+DialogGetInvolvedPlayer(_Var1, 1, _Var2)
+AND
+ObjectGetFlag(_Var2, "RC_WH_BottledWish_EndPurgeBad", 1)
+THEN
+ObjectSetFlag(_Var2, "QuestUpdate_RC_WH_BottledWish_EndPurgeBad");
+ProcObjectTimer(_Var2, "RC_WH_BottledWish_PartyBlind", 100);
+Proc_RC_WH_BottledWish_WishGranted();
+DB_RC_WH_BottledWish_QuestFinisher(_Var2);
+
+PROC
+ProcObjectTimerFinished((CHARACTERGUID)_Var1, "RC_WH_BottledWish_PartyBlind")
+THEN
+PartySetFlag(_Var1, "RC_WH_BottledWish_PartyBlind");
+
+IF
+ObjectFlagSet("RC_WH_BottledWish_PartyBlind", (CHARACTERGUID)_Var1, (INTEGER)_Var2)
+AND
+QRY_IsInRange(CHARACTERGUID_S_RC_WH_Djinn_838283f5-a45f-4892-a4ac-fae2f99d4de0, _Var1, 35)
+THEN
+PlayEffect(_Var1, "RS3_FX_Skills_Voodoo_Decaying_Impact_01");
+ApplyStatus(_Var1, "BLIND", -1, 1);
+ObjectClearFlag(_Var1, "RC_WH_BottledWish_PartyBlind", 0);
+
+IF
+DialogEnded("RC_WH_BottledWish", (INTEGER)_Var1)
+AND
+DialogGetInvolvedPlayer(_Var1, 1, _Var2)
+AND
+ObjectGetFlag(_Var2, "RC_WH_BottledWish_EndRichesGood", 1)
+THEN
+SetOnStage(ITEMGUID_RC_WH_BottledWish_DjinnsGift_9d02b617-4208-4ab5-8141-ca8a2981d697, 1);
+ItemToInventory(ITEMGUID_RC_WH_BottledWish_DjinnsGift_9d02b617-4208-4ab5-8141-ca8a2981d697, _Var2);
+ObjectSetFlag(_Var2, "QuestUpdate_RC_WH_BottledWish_EndRichesGood");
+Proc_RC_WH_BottledWish_WishGranted();
+DB_RC_WH_BottledWish_QuestFinisher(_Var2);
+
+IF
+DialogEnded("RC_WH_BottledWish", (INTEGER)_Var1)
+AND
+DialogGetInvolvedPlayer(_Var1, 1, _Var2)
+AND
+ObjectGetFlag(_Var2, "RC_WH_BottledWish_ContRichesBad", 1)
+THEN
+DebugText(_Var2, "Continue Riches Bad");
+SetOnStage(ITEMGUID_RC_WH_BottledWyeahish_DjinnsGift_9d02b617-4208-4ab5-8141-ca8a2981d697, 1);
+ItemToInventory(ITEMGUID_RC_WH_BottledWish_DjinnsGift_9d02b617-4208-4ab5-8141-ca8a2981d697, _Var2);
+ItemSetOriginalOwner(ITEMGUID_RC_WH_BottledWish_DjinnsGift_9d02b617-4208-4ab5-8141-ca8a2981d697, CHARACTERGUID_S_RC_WH_BottledWish_Djinn_838283f5-a45f-4892-a4ac-fae2f99d4de0);
+ObjectSetFlag(_Var2, "QuestUpdate_RC_WH_BottledWish_ContRichesBad");
+Proc_RC_WH_BottledWish_WishGranted();
+DB_RC_WH_BottledWish_QuestFinisher(_Var2);
+
+IF
+RegionEnded("RC_Main")
+AND
+DB_IsPlayer(_Var1)
+AND
+DB_RestartDjinnCrime(_Var1, _)
+THEN
+ProcStopDjinnCrime(_Var1);
+
+IF
+CharacterDied((CHARACTERGUID)_Var1)
+AND
+DB_RestartDjinnCrime(_Var1, _)
+THEN
+ProcStopDjinnCrime(_Var1);
+
+IF
+RequestTrade((CHARACTERGUID)_Var1, (CHARACTERGUID)_Var2)
+AND
+DB_RestartDjinnCrime(_Var1, _)
+THEN
+DB_RC_WH_Djinn_ItemTransaction(1);
+
+IF
+TradeEnds((CHARACTERGUID)_Var1, (CHARACTERGUID)_Var2)
+AND
+ItemIsInCharacterInventory(ITEMGUID_RC_WH_BottledWish_DjinnsGift_9d02b617-4208-4ab5-8141-ca8a2981d697, _Var2, 1)
+AND
+DB_RestartDjinnCrime(_Var1, _)
+THEN
+ProcStopDjinnCrime(_Var1);
+CharacterRegisterCrime(_Var1, "RC_WH_Djinn_Item_Sold", ITEMGUID_RC_WH_BottledWish_DjinnsGift_9d02b617-4208-4ab5-8141-ca8a2981d697, _Var2, 0);
+NOT DB_RC_WH_Djinn_ItemTransaction(1);
+
+IF
+ItemAddedToCharacter(ITEMGUID_RC_WH_BottledWish_DjinnsGift_9d02b617-4208-4ab5-8141-ca8a2981d697, (CHARACTERGUID)_Var1)
+AND
+DB_IsPlayer(_Var1)
+AND
+ItemGetOriginalOwner(ITEMGUID_RC_WH_BottledWish_DjinnsGift_9d02b617-4208-4ab5-8141-ca8a2981d697, CHARACTERGUID_S_RC_WH_BottledWish_Djinn_838283f5-a45f-4892-a4ac-fae2f99d4de0)
+AND
+CharacterGetLevel(_Var1, _Var2)
+THEN
+Proc_WH_DjinnItem_ClearOldOwner();
+DB_RestartDjinnCrime(_Var1, _Var2);
+
+PROC
+Proc_WH_DjinnItem_ClearOldOwner()
+AND
+DB_RestartDjinnCrime(_Var1, _Var2)
+THEN
+ProcStopDjinnCrime(_Var1);
+
+IF
+ItemRemovedFromCharacter(ITEMGUID_RC_WH_BottledWish_DjinnsGift_9d02b617-4208-4ab5-8141-ca8a2981d697, (CHARACTERGUID)_Var1)
+AND NOT
+DB_RC_WH_Djinn_ItemTransaction(1)
+AND
+DB_RestartDjinnCrime(_Var1, _)
+THEN
+ProcStopDjinnCrime(_Var1);
+
+IF
+DB_RestartDjinnCrime(_Var1, _)
+THEN
+CharacterRegisterCrime(_Var1, "RC_WH_Djinn_Item", ITEMGUID_RC_WH_BottledWish_DjinnsGift_9d02b617-4208-4ab5-8141-ca8a2981d697, NULL_00000000-0000-0000-0000-000000000000, 0);
+
+IF
+CharacterLeveledUp((CHARACTERGUID)_Var1)
+AND
+DB_RestartDjinnCrime(_Var1, _Var2)
+AND
+CharacterGetLevel(_Var1, _Var3)
+AND
+IntegerSubtract(_Var3, _Var2, _Var4)
+AND
+_Var4 >= 2
+THEN
+ProcStopDjinnCrime(_Var1);
+
+IF
+OnCrimeConfrontationDone((INTEGER)_Var1, (CHARACTERGUID)_Var2, (INTEGER)_Var3, _, _, _, _)
+AND
+CrimeGetType(_Var1, "RC_WH_Djinn_Item")
+AND
+DB_RestartDjinnCrime(_Var8, _Var9)
+THEN
+ProcCharacterDisableCrime(_Var2, "RC_WH_Djinn_Item");
+ProcDelayDjinnCrime(_Var8, _Var3);
+
+IF
+OnCrimeConfrontationDone((INTEGER)_Var1, (CHARACTERGUID)_Var2, (INTEGER)_Var3, (CHARACTERGUID)_Var4, _, _, _)
+AND
+CrimeGetType(_Var1, "RC_WH_Djinn_Item_Sold")
+THEN
+CharacterStopCrime(_Var4, "RC_WH_Djinn_Item_Sold", ITEMGUID_RC_WH_BottledWish_DjinnsGift_9d02b617-4208-4ab5-8141-ca8a2981d697);
+
+PROC
+ProcDelayDjinnCrime((CHARACTERGUID)_Var1, 1)
+THEN
+CharacterStopCrime(_Var1, "RC_WH_Djinn_Item", ITEMGUID_RC_WH_BottledWish_DjinnsGift_9d02b617-4208-4ab5-8141-ca8a2981d697);
+ProcObjectTimer(_Var1, "RestartRC_WH_Djinn_Item", 600000);
+
+PROC
+ProcObjectTimerFinished((CHARACTERGUID)_Var1, "RestartRC_WH_Djinn_Item")
+AND
+DB_RestartDjinnCrime(_Var1, _Var2)
+THEN
+CharacterRegisterCrime(_Var1, "RC_WH_Djinn_Item", ITEMGUID_RC_WH_BottledWish_DjinnsGift_9d02b617-4208-4ab5-8141-ca8a2981d697, NULL_00000000-0000-0000-0000-000000000000, 0);
+
+PROC
+ProcStopDjinnCrime((CHARACTERGUID)_Var1)
+AND
+DB_RestartDjinnCrime(_Var1, _Var2)
+THEN
+NOT DB_RestartDjinnCrime(_Var1, _Var2);
+CharacterStopCrime(_Var1, "RC_WH_Djinn_Item", ITEMGUID_RC_WH_BottledWish_DjinnsGift_9d02b617-4208-4ab5-8141-ca8a2981d697);
+
+IF
+ObjectFlagSet("Allow_Arrest", (CHARACTERGUID)_Var1, (INTEGER)_Var2)
+AND
+DB_RestartDjinnCrime(_Var1, _)
+AND
+DB_DialogName("RC_WH_DijinnItem_Interrogation", _Var2)
+THEN
+ProcStopDjinnCrime(_Var1);
+
+IF
+ObjectFlagSet("Resist_Arrest", (CHARACTERGUID)_Var1, (INTEGER)_Var2)
+AND
+DB_RestartDjinnCrime(_Var1, _)
+AND
+DB_DialogName("RC_WH_DijinnItem_Interrogation", _Var2)
+THEN
+ProcStopDjinnCrime(_Var1);
+
+IF
+DialogEnded("RC_WH_DijinnItem_Interrogation", (INTEGER)_Var1)
+AND
+DB_DialogPlayers(_Var1, _Var2, _)
+AND
+ObjectGetFlag(_Var2, "RC_WH_BottledWish_EndRichesBad", 1)
+THEN
+StartVoiceBark("RC_WH_VB_BottledWish_StolenNecklace", _Var2);
+
+IF
+ItemAddedToCharacter(ITEMGUID_S_RC_WH_BottledWish_DjinnBottle_08a6859f-9e69-414c-89e5-bed50da3137c, (CHARACTERGUID)_Var1)
+AND
+GlobalGetFlag("RC_WH_BottledWish_BottleOpened", 1)
+THEN
+Transform(ITEMGUID_S_RC_WH_BottledWish_DjinnBottle_08a6859f-9e69-414c-89e5-bed50da3137c, "Quest_DjinnBottleEmpty_5589bdbc-36dc-4aa2-83f7-ee43e16afd4a", 0);
+
+IF
+GlobalFlagSet("RC_WH_BottledWish_BottleOpened")
+THEN
+Transform(ITEMGUID_S_RC_WH_BottledWish_DjinnBottle_08a6859f-9e69-414c-89e5-bed50da3137c, "Quest_DjinnBottleEmpty_5589bdbc-36dc-4aa2-83f7-ee43e16afd4a", 0);
+
+PROC
+ProcBlockUseOfItem((CHARACTERGUID)_Var1, ITEMGUID_S_RC_WH_BottledWish_DjinnBottle_08a6859f-9e69-414c-89e5-bed50da3137c)
+AND
+GlobalGetFlag("RC_WH_BottledWish_BottleOpened", 1)
+THEN
+DB_CustomUseItemResponse(_Var1, ITEMGUID_S_RC_WH_BottledWish_DjinnBottle_08a6859f-9e69-414c-89e5-bed50da3137c, 0);
+
+IF
+GlobalFlagCleared("RC_WH_BottledWish_BottleOpened")
+THEN
+Transform(ITEMGUID_S_RC_WH_BottledWish_DjinnBottle_08a6859f-9e69-414c-89e5-bed50da3137c, "Quest_Djinn_Bottle_dcb3a695-79d4-4a02-bca4-8503e49ddfa1", 0);
+
+IF
+ItemAddedToCharacter(ITEMGUID_S_RC_WH_BottledWish_DjinnBottle_08a6859f-9e69-414c-89e5-bed50da3137c, (CHARACTERGUID)_Var1)
+AND
+GetTemplate(ITEMGUID_S_RC_WH_BottledWish_DjinnBottle_08a6859f-9e69-414c-89e5-bed50da3137c, "Quest_Djinn_Bottle_dcb3a695-79d4-4a02-bca4-8503e49ddfa1")
+AND NOT
+DB_IsPlayer(_Var1)
+AND
+_Var1 != CHARACTERGUID_S_RC_DW_Tavern_SurpriseDate_ThugLeader_56c58299-cc21-4920-8cb3-d351adda85a6
+THEN
+Transform(ITEMGUID_S_RC_WH_BottledWish_DjinnBottle_08a6859f-9e69-414c-89e5-bed50da3137c, "Quest_DjinnBottleEmpty_5589bdbc-36dc-4aa2-83f7-ee43e16afd4a", 0);
+Proc_RC_WH_DjinnBottleAddedToNpc(_Var1);
+
+PROC
+Proc_RC_WH_DjinnBottleAddedToNpc((CHARACTERGUID)_Var1)
+AND
+DB_IsPlayer(_Var2)
+AND
+ObjectGetFlag(_Var2, "QuestUpdate_RC_WH_BottledWish_FoundBottle", 1)
+THEN
+ObjectSetFlag(_Var2, "QuestUpdate_RC_WH_BottledWish_TransferredBottleToNpc");
+
+PROC
+Proc_RC_WH_DjinnBottleAddedToNpc((CHARACTERGUID)_Var1)
+AND
+IsSpeakerReserved(_Var1, 1)
+THEN
+DB_RC_WH_BottledWish_NPC_DialogEnd(_Var1);
+
+PROC
+Proc_RC_WH_DjinnBottleAddedToNpc((CHARACTERGUID)_Var1)
+AND NOT
+DB_RC_WH_BottledWish_NPC_DialogEnd(_Var1)
+THEN
+ProcObjectTimer(_Var1, "WH_RC_BottledWish_NpcWaitForUseTimer", 4000);
+
+IF
+DialogEnded(_, (INTEGER)_Var2)
+AND
+DialogGetInvolvedNPC(_Var2, 1, _Var3)
+AND
+DB_RC_WH_BottledWish_NPC_DialogEnd(_Var3)
+THEN
+NOT DB_RC_WH_BottledWish_NPC_DialogEnd(_Var3);
+ProcObjectTimer(_Var3, "WH_RC_BottledWish_NpcWaitForUseTimer", 4000);
+
+PROC
+ProcObjectTimerFinished((CHARACTERGUID)_Var1, "WH_RC_BottledWish_NpcWaitForUseTimer")
+THEN
+DialogRequestStop(_Var1);
+SetHasDialog(_Var1, 0);
+PlayAnimation(_Var1, "use_craft");
+Proc_StartDialog(1, "GEB_AD_Noticed_Summon", _Var1);
+ProcObjectTimer(_Var1, "WH_RC_BottledWish_NpcSummonsDjinnTimer", 8000);
+
+PROC
+ProcObjectTimerFinished((CHARACTERGUID)_Var1, "WH_RC_BottledWish_NpcSummonsDjinnTimer")
+THEN
+TeleportTo(CHARACTERGUID_S_RC_WH_BottledWish_Djinn_838283f5-a45f-4892-a4ac-fae2f99d4de0, _Var1);
+SetHasDialog(_Var1, 1);
+Foop(CHARACTERGUID_S_RC_WH_BottledWish_Djinn_838283f5-a45f-4892-a4ac-fae2f99d4de0);
+CharacterLookAt(_Var1, CHARACTERGUID_S_RC_WH_Djinn_838283f5-a45f-4892-a4ac-fae2f99d4de0);
+PlayAnimation(_Var1, "cower");
+Proc_RC_WH_BottledWish_EnragedDjinnAppears(_Var1);
+CharacterSetRelationIndivFactionToFaction(_Var1, "RC_WH_Djinn", 0);
+CharacterSetRelationFactionToIndivFaction("RC_WH_Djinn", _Var1, 0);
+
+IF
+CharacterDying((CHARACTERGUID)_Var1)
+AND
+DB_RC_WH_DjinnTeam(_Var1)
+THEN
+Poof(_Var1);
+
+IF
+CharacterDying(S_RC_WH_BottledWish_Djinn_838283f5-a45f-4892-a4ac-fae2f99d4de0)
+THEN
+ProcCloseForAll_DjinnDied();
+
+PROC
+ProcCloseForAll_DjinnDied()
+AND
+DB_IsPlayer(_Var1)
+THEN
+ObjectSetFlag(_Var1, "QuestUpdate_RC_WH_BottledWish_DjinnDied");
+
+
+EXITSECTION
+ENDEXITSECTION
+
+ParentTargetEdge "ReapersCoast"

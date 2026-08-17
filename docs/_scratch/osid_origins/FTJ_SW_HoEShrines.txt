@@ -1,0 +1,477 @@
+Version 1
+SubGoalCombiner SGC_AND
+
+INITSECTION
+DB_FTJ_HoE_ToPoints(TRIGGERGUID_S_FTJ_SW_TowerShrineHoE_Point_c1f62b46-38c9-43e2-a52e-048726c60076, CHARACTERGUID_S_FTJ_SW_Lucian_TowerShrine_011c4afd-38a9-4412-b6b5-e497ed7704cc);
+DB_FTJ_HoE_ToPoints(TRIGGERGUID_S_FTJ_SW_ShelterShrineHoE_Point_bd705640-26aa-4102-85a6-f2d3ac94d831, CHARACTERGUID_S_FTJ_SW_Lucian_ShelterShrine_7555e91b-7184-4fb5-98a5-cc02fa6a235b);
+DB_FTJ_HoE_ToPoints(TRIGGERGUID_S_FTJ_SW_VoidwokenShrineHoE_Point_8df25722-6724-4fa5-9d0e-a4e93d378cb0, CHARACTERGUID_S_FTJ_SW_Lucian_VoidwokenShrine_c99ea947-1920-4c3c-8253-858796869544);
+DB_FTJ_HoE_ToPoints(TRIGGERGUID_S_FTJ_SW_GarethShrineHoE_Point_f4a1e725-effe-4a82-89c4-c92c47f1643a, CHARACTERGUID_S_FTJ_SW_Lucian_GarethStatue_295b92ad-fd83-4e50-b1d5-f6fbf76e4a04);
+DB_FTJ_SW_BlessShrines(ITEMGUID_S_FTJ_SW_HoEStatue_003_0fa1962b-8e58-4ef8-b4d8-78ebdbc22a13, TRIGGERGUID_S_FTJ_SW_HoEStatue_003_Point_fd6c89ff-5c5d-4e23-b417-62bef0bc0991);
+DB_FTJ_SW_BlessShrines(ITEMGUID_S_FTJ_SW_HoEStatue_002_982bda1f-21cc-45ed-8b5f-763947b3c286, TRIGGERGUID_S_FTJ_SW_HoEStatue_002_Point_1dcd54a9-3c74-4cfc-9281-ee7db9d7c493);
+DB_FTJ_SW_BlessShrines(ITEMGUID_S_FTJ_SW_HoEStatue_001_cdfacbb7-acf8-4c3e-a5a2-bac8a5b0e5a0, TRIGGERGUID_S_FTJ_SW_HoEStatue_001_Point_5916e5df-43b5-4949-ac56-46899b9f8f92);
+DB_FTJ_SW_BlessShrines(CHARACTERGUID_S_GLO_River_f4931ebe-10b0-43c4-9182-640cf052717e, TRIGGERGUID_S_FTJ_SW_RiverJumpTo_Point_d8964eef-17d9-49ba-8aeb-b60bc89b3933);
+DB_FTJ_SW_BlessShrines_Dialogs(ITEMGUID_S_FTJ_SW_HoEStatue_001_cdfacbb7-acf8-4c3e-a5a2-bac8a5b0e5a0, "FTJ_SW_HoEStatue_001");
+DB_FTJ_SW_BlessShrines_Dialogs(ITEMGUID_S_FTJ_SW_HoEStatue_002_982bda1f-21cc-45ed-8b5f-763947b3c286, "FTJ_SW_HoEStatue_002");
+DB_FTJ_SW_BlessShrines_Dialogs(ITEMGUID_S_FTJ_SW_HoEStatue_003_0fa1962b-8e58-4ef8-b4d8-78ebdbc22a13, "FTJ_SW_HoEStatue_003");
+DB_FTJ_SW_HoECombatants(CHARACTERGUID_S_FTJ_SW_HoECombat_Lucian_7b41ee58-976c-4a92-8d46-03702eaa0b9c);
+DB_FTJ_SW_HoECombatants(CHARACTERGUID_S_FTJ_SW_HoECombatant_Amadia_b7af23bb-c113-4a34-ad71-e298abc6d49d);
+DB_FTJ_SW_HoECombatants(CHARACTERGUID_S_FTJ_SW_HoECombatant_Cendelius_fb25dd47-6489-439f-9fad-4250fd126c09);
+DB_FTJ_SW_HoECombatants(CHARACTERGUID_S_FTJ_SW_HoECombatant_Duna_a043d48e-d117-468d-bc3a-eb96337fc0f5);
+DB_FTJ_SW_HoECombatants(CHARACTERGUID_S_FTJ_SW_HoECombatant_Rhalic_fe61e4e4-33b5-4eaf-85c0-24fc63960a5e);
+DB_FTJ_SW_HoECombatants(CHARACTERGUID_S_FTJ_SW_HoECombatant_Vrogir_e84642aa-1524-4f38-b761-10b982e72162);
+DB_FTJ_SW_HoECombatants(CHARACTERGUID_S_FTJ_SW_HoECombatant_Xantezza_2a7e0bd8-02c1-44c2-9346-8f0bd221e71a);
+DB_FTJ_SW_HoECombatants(CHARACTERGUID_S_FTJ_SW_HoECombatant_ZorlStissa_795ae71b-770d-4e6b-9f14-e401a6405584);
+DB_SharedObjectFlags("FTJ_SW_ShrineSendToHoE");
+
+KBSECTION
+IF
+DB_FTJ_HoE_ToPoints(_, _Var2)
+THEN
+CharacterSetImmortal(_Var2, 1);
+ProcSetInvulnerable(_Var2, 1);
+SetTag(_Var2, "ELEMENTAL");
+ApplyStatus(_Var2, "HALL_OF_ECHOES", -1);
+CharacterDisableAllCrimes(_Var2);
+
+IF
+DB_FTJ_SW_HoECombatants(_Var1)
+THEN
+CharacterSetImmortal(_Var1, 1);
+ProcSetInvulnerable(_Var1, 1);
+ApplyStatus(_Var1, "HALL_OF_ECHOES", -1);
+
+IF
+ObjectFlagSet("FTJ_SW_ShrineSendToHoE", (CHARACTERGUID)_Var1, (INTEGER)_Var2)
+AND
+DB_DialogPlayers(_Var2, _Var1, _)
+AND
+DialogGetInvolvedNPC(_Var2, 1, _Var4)
+THEN
+Proc_CharacterFullRestore(_Var1);
+PlayAnimation(_Var1, "Kneel_02");
+PlayEffect(_Var1, "RS3_FX_Skills_Divine_Bless_Impact_01");
+SetStoryEvent(_Var4, "TurnOnNearbyCandles");
+
+IF
+DialogEnded(_, (INTEGER)_Var2)
+AND
+DialogGetInvolvedPlayer(_Var2, 1, _Var3)
+AND
+ObjectGetFlag(_Var3, "FTJ_SW_ShrineSendToHoE", 1)
+AND
+GetRegion(_Var3, _Var4)
+AND
+_Var4 == "FJ_FortJoy_Main"
+AND
+DialogGetInvolvedNPC(_Var2, 1, _Var5)
+AND
+IsTagged(_Var3, "AVATAR", 1)
+AND
+DB_FTJ_HoE_ToPoints(_Var6, _Var7)
+AND
+DB_FTJ_SW_BlessShrines(_Var5, _Var8)
+AND NOT
+DB_FTJ_HoE_ReturnPoints(_Var3, _, _, _)
+THEN
+PROC_BlockWaypointUsage(_Var3);
+DB_FTJ_HoE_ReturnPoints(_Var3, _Var6, _Var8, _Var7);
+NOT DB_FTJ_HoE_ToPoints(_Var6, _Var7);
+Proc_FTJ_SW_HoeStatue_StunCompanions(_Var3, _Var5);
+DB_GLO_HoERespawnPoint(_Var3, _Var6);
+CharacterDetachFromGroup(_Var3);
+TeleportTo(_Var3, _Var6);
+PlayEffect(_Var3, "RS3_FX_GP_ScriptedEvent_HOE_Summoning_01");
+ProcObjectTimer(_Var3, "FTJ_SW_VB_EnteredHoE", 2200);
+UserSetFlag(_Var3, "QuestUpdate_FTJ_Voice_HOEArrive");
+
+PROC
+ProcObjectTimerFinished((CHARACTERGUID)_Var1, "FTJ_SW_VB_EnteredHoE")
+AND
+QRY_SpeakerIsAvailable(_Var1)
+THEN
+StartVoiceBark("FTJ_SW_VB_EnteredHoE", _Var1);
+
+IF
+ObjectWasTagged((CHARACTERGUID)_Var1, "AVATAR")
+AND
+IsTagged(_Var1, "LOHSE", 1)
+AND
+DB_IsPlayer(_Var2)
+AND
+_Var1 != _Var2
+THEN
+ObjectSetFlag(_Var2, "GLO_HasMetLohse");
+
+IF
+DialogStarted(_, (INTEGER)_Var2)
+AND
+DialogGetInvolvedNPC(_Var2, 1, _Var3)
+AND
+_Var3 == CHARACTERGUID_S_Player_Lohse_bb932b13-8ebf-4ab4-aac0-83e6924e4295
+AND
+DialogGetInvolvedPlayer(_Var2, 1, _Var4)
+THEN
+UserSetFlag(_Var4, "GLO_HasMetLohse");
+
+PROC
+PROC_GLO_PartyMembers_Add(CHARACTERGUID_S_Player_Lohse_bb932b13-8ebf-4ab4-aac0-83e6924e4295, (CHARACTERGUID)_Var1)
+THEN
+PartySetFlag(_Var1, "GLO_HasMetLohse");
+
+IF
+DB_FTJ_SW_BlessShrines_Dialogs(_, _Var2)
+THEN
+DB_BlockPolymorphDialog(_Var2);
+
+IF
+CharacterUsedItem((CHARACTERGUID)_Var1, (ITEMGUID)_Var2)
+AND
+DB_FTJ_SW_BlessShrines_Dialogs(_Var2, _Var3)
+THEN
+Proc_FTJ_SW_HoeStatue_CheckForSpeakers(_Var1, _Var2, _Var3);
+
+PROC
+Proc_FTJ_SW_HoeStatue_CheckForSpeakers((CHARACTERGUID)_Var1, (GUIDSTRING)_Var2, (STRING)_Var3)
+AND
+IsTagged(_Var1, "AVATAR", 1)
+AND
+DB_FTJ_SW_BlessShrines_Dialogs(_Var2, _)
+THEN
+Proc_StartDialog(0, _Var3, _Var2, _Var1);
+
+PROC
+Proc_FTJ_SW_HoeStatue_CheckForSpeakers((CHARACTERGUID)_Var1, (GUIDSTRING)_Var2, (STRING)_Var3)
+AND
+IsTagged(_Var1, "AVATAR", 0)
+AND
+CharacterGetReservedUserID(_Var1, _Var4)
+AND
+DB_IsPlayer(_Var5)
+AND
+IsTagged(_Var5, "AVATAR", 1)
+AND
+CharacterGetReservedUserID(_Var5, _Var4)
+AND
+ObjectGetFlag(_Var5, "FTJ_SW_ShrineSendToHoE", 0)
+AND
+QRY_SpeakerIsAvailable(_Var5)
+AND
+QRY_SpeakerIsAvailable(_Var2)
+AND
+GetDistanceTo(_Var5, _Var2, _Var6)
+AND
+_Var6 < 15
+THEN
+Proc_StartDialog(0, _Var3, _Var2, _Var5);
+
+PROC
+Proc_FTJ_SW_HoeStatue_CheckForSpeakers((CHARACTERGUID)_Var1, (GUIDSTRING)_Var2, (STRING)_Var3)
+AND
+IsTagged(_Var1, "AVATAR", 0)
+AND
+QRY_SpeakerIsAvailable(_Var1)
+AND
+QRY_SpeakerIsAvailable(_Var2)
+THEN
+Proc_StartDialog(0, _Var3, _Var2, _Var1);
+
+IF
+DialogEnded(_, (INTEGER)_Var2)
+AND
+DialogGetInvolvedPlayer(_Var2, 1, _Var3)
+AND
+ObjectGetFlag(_Var3, "FTJ_SW_ShrineSendToHoE", 1)
+AND
+DialogGetInvolvedNPC(_Var2, 1, _Var4)
+AND
+IsTagged(_Var3, "AVATAR", 0)
+AND NOT
+DB_FTJ_SW_CompanionHadHoEExperience(_Var3)
+THEN
+DB_FTJ_SW_CompanionHadHoEExperience(_Var3);
+CharacterPurgeQueue(_Var3);
+ApplyStatus(_Var3, "SLEEPING", 15, 1);
+
+IF
+DB_FTJ_SW_CompanionHadHoEExperience(_Var1)
+THEN
+ProcObjectTimer(_Var1, "FTJ_SW_GiveCompanionBless", 15000);
+ObjectSetFlag(_Var1, "FTJ_SW_CompanionHadHoEExperience");
+
+PROC
+ProcObjectTimerFinished((CHARACTERGUID)_Var1, "FTJ_SW_GiveCompanionBless")
+THEN
+CharacterAddSkill(_Var1, "Target_Bless");
+
+PROC
+Proc_FTJ_SW_HoeStatue_StunCompanions((CHARACTERGUID)_Var1, (GUIDSTRING)_Var2)
+AND
+_Var2 != CHARACTERGUID_S_GLO_River_f4931ebe-10b0-43c4-9182-640cf052717e
+AND
+CharacterGetReservedUserID(_Var1, _Var3)
+AND
+DB_IsPlayer(_Var4)
+AND
+CharacterGetReservedUserID(_Var4, _Var3)
+AND
+_Var4 != _Var1
+AND
+GetDistanceTo(_Var4, _Var2, _Var5)
+AND
+_Var5 < 15
+AND
+IsTagged(_Var4, "AVATAR", 0)
+AND
+ObjectGetFlag(_Var4, "FTJ_SW_ShrineSendToHoE", 0)
+THEN
+ObjectSetFlag(_Var1, "FTJ_HOE_HasCompanions");
+ObjectSetFlag(_Var4, "FTJ_SW_ShrineSendToHoE", 0);
+CharacterPurgeQueue(_Var4);
+ApplyStatus(_Var4, "SLEEPING", 15, 1);
+DB_FTJ_SW_CompanionHadHoEExperience(_Var4);
+
+IF
+DB_FTJ_SW_CompanionHadHoEExperience(_Var1)
+AND
+IsTagged(_Var1, "AVATAR", 0)
+AND
+CharacterGetReservedUserID(_Var1, _Var2)
+AND
+DB_IsPlayer(_Var3)
+AND
+IsTagged(_Var3, "AVATAR", 1)
+AND
+ObjectGetFlag(_Var3, "FTJ_SW_ShrineSendToHoE", 0)
+AND
+CharacterGetReservedUserID(_Var3, _Var4)
+AND
+_Var4 == _Var2
+AND NOT
+DB_FTJ_SW_AvatarWasSentGodMandatoryDialog(_Var3)
+THEN
+PROC_MandatoryOneSpeakerDialog("FTJ_SW_GodCallToAvatar", _Var3);
+DB_FTJ_SW_AvatarWasSentGodMandatoryDialog(_Var3);
+
+IF
+DialogEnded(_, (INTEGER)_Var2)
+AND
+DialogGetInvolvedPlayer(_Var2, 1, _Var3)
+AND
+ObjectGetFlag(_Var3, "FTJ_SW_HoEReturnToShrine", 1)
+AND
+DialogGetInvolvedNPC(_Var2, 1, _Var4)
+AND
+DB_FTJ_HoE_ReturnPoints(_Var3, _, _Var6, _Var4)
+THEN
+PROC_UnblockWaypointUsage(_Var3);
+PROC_GLO_LeaveHallOfEchoes(_Var3);
+CharacterDetachFromGroup(_Var3);
+LeaveCombat(_Var3);
+TeleportTo(_Var3, _Var6, "FTJ_DoHoEReturnRD", 1);
+PlayEffect(_Var3, "RS3_FX_GP_ScriptedEvent_HOE_Summoning_01");
+
+IF
+ObjectFlagSet("FTJ_SW_LucienGaveBless", (CHARACTERGUID)_Var1, (INTEGER)_Var2)
+AND
+DialogGetInvolvedNPC(_Var2, 1, _Var3)
+AND
+DB_FTJ_HoE_ReturnPoints(_Var1, _, _, _Var6)
+THEN
+CharacterAddSkill(_Var3, "Target_Bless");
+CharacterUseSkill(_Var3, "Target_Bless", _Var1);
+CharacterAddSkill(_Var1, "Target_Bless");
+UserSetFlag(_Var1, "QuestUpdate_FTJ_Escape_LucianEncounter");
+
+IF
+StoryEvent((CHARACTERGUID)_Var1, "FTJ_DoHoEReturnRD")
+AND
+QueryOnlyOnce("FTJ_SW_HoEReturnToShrine_RD_Once")
+THEN
+ProcObjectTimer(_Var1, "FTJ_DoHoEReturnRD", 1200);
+
+IF
+ObjectFlagSet("GLO_RemovePolymorph", (CHARACTERGUID)_Var1, (INTEGER)_Var2)
+AND
+DialogGetInvolvedNPC(_Var2, 1, _Var3)
+AND
+DB_FTJ_HoE_ReturnPoints(_Var1, _, _, _Var3)
+THEN
+PlayAnimation(_Var3, "skill_blitzbolt_cast");
+PlayEffect(_Var1, "RS3_FX_GP_ScriptedEvent_HOE_Summoning_01");
+
+IF
+DB_FTJ_HoE_ReturnPoints(_, _, _, _Var4)
+THEN
+DB_GLO_CheckSpeakerNumber(_Var4, -1);
+
+IF
+DB_FTJ_HoE_ReturnPoints(_Var1, _, _, _Var4)
+AND
+IsTagged(_Var1, "UNDEAD", 1)
+AND NOT
+DB_Dialogs(_Var4, _)
+THEN
+Transform(_Var4, "QUEST_HoE_Amadia_7a80020b-40b2-42bb-8b30-63fb981340d5", 1);
+DB_Dialogs(_Var4, "FTJ_SW_HoE_UndeadGod");
+
+IF
+DB_FTJ_HoE_ReturnPoints(_Var1, _, _, _Var4)
+AND
+IsTagged(_Var1, "HUMAN", 1)
+AND
+IsTagged(_Var1, "LOHSE", 0)
+AND NOT
+DB_Dialogs(_Var4, _)
+THEN
+Transform(_Var4, "QUEST_HoE_Rhalic_b456c9bb-2eb1-4130-8ea7-4a6185c75b7f", 1);
+DB_Dialogs(_Var4, "FTJ_SW_HoE_Rhalic");
+
+IF
+DB_FTJ_HoE_ReturnPoints(_Var1, _, _, _Var4)
+AND
+IsTagged(_Var1, "LOHSE", 1)
+AND NOT
+DB_Dialogs(_Var4, _)
+THEN
+Transform(_Var4, "QUEST_HoE_Lohse_e4305b97-4ec2-43c2-b2a9-994b1df35636", 1);
+CharacterTransformAppearanceTo(_Var4, _Var1, 1, 1);
+DB_Dialogs(_Var4, "FTJ_SW_HoE_Lohse");
+
+IF
+DB_FTJ_HoE_ReturnPoints(_Var1, _, _, _Var4)
+AND
+IsTagged(_Var1, "LIZARD", 1)
+AND NOT
+DB_Dialogs(_Var4, _)
+THEN
+Transform(_Var4, "QUEST_HoE_ZorlStissa_222c6936-b1d2-479e-af9a-ef26316f3b95", 1);
+DB_Dialogs(_Var4, "FTJ_SW_HoE_ZorlStissa");
+
+IF
+DB_FTJ_HoE_ReturnPoints(_Var1, _, _, _Var4)
+AND
+IsTagged(_Var1, "ELF", 1)
+AND NOT
+DB_Dialogs(_Var4, _)
+THEN
+Transform(_Var4, "QUEST_HoE_TirCendelius_a517d970-44ce-496d-89f0-bd0157a6fdce", 1);
+DB_Dialogs(_Var4, "FTJ_SW_HoE_TirCendelius");
+
+IF
+DB_FTJ_HoE_ReturnPoints(_Var1, _, _, _Var4)
+AND
+IsTagged(_Var1, "DWARF", 1)
+AND NOT
+DB_Dialogs(_Var4, _)
+THEN
+Transform(_Var4, "QUEST_HoE_Duna_71faeb33-7a9a-4cc9-a162-e78d7c122143", 1);
+DB_Dialogs(_Var4, "FTJ_SW_HoE_Duna");
+
+IF
+DB_FTJ_HoE_ReturnPoints(_Var1, _, _, _Var4)
+THEN
+SetCanFight(_Var4, 0);
+SetCanJoinCombat(_Var4, 0);
+CharacterSetImmortal(_Var4, 1);
+ProcSetInvulnerable(_Var4, 1);
+
+IF
+ObjectFlagSet("FTJ_SW_TurnIntoSadha", (GUIDSTRING)_Var1, _)
+THEN
+Transform(_Var1, "CHARACTERGUID_GLO_Lizards_EmpirePrincess_GoddessSpeaker_a3c997dc-2539-4258-ae75-385cdadf2b15", 0);
+
+IF
+ObjectFlagSet("FTJ_SW_TurnIntoSadha", (GUIDSTRING)_Var1, _)
+AND
+GetPosition(_Var1, _Var3, _Var4, _Var5)
+THEN
+PlayEffectAtPosition("RS3_FX_GP_ScriptedEvent_RedPrincess_Teleport_01", _Var3, _Var4, _Var5);
+
+IF
+ObjectFlagCleared("FTJ_SW_TurnIntoSadha", (GUIDSTRING)_Var1, _)
+THEN
+Transform(_Var1, "QUEST_HoE_ZorlStissa_222c6936-b1d2-479e-af9a-ef26316f3b95", 0);
+PROC_LoopEffect("RS3_FX_GP_ScriptedEvent_Gods_01", _Var1, "FTJ_SW_GodsAura_AfterZorlStissa", "FJ_FortJoy_Main", "Dummy_StatusFX");
+
+IF
+ObjectFlagCleared("FTJ_SW_TurnIntoSadha", (GUIDSTRING)_Var1, _)
+AND
+GetPosition(_Var1, _Var3, _Var4, _Var5)
+THEN
+PlayEffectAtPosition("RS3_FX_GP_ScriptedEvent_RedPrincess_Teleport_01", _Var3, _Var4, _Var5);
+
+IF
+AttackedByObject((CHARACTERGUID)_Var1, (CHARACTERGUID)_Var2, (GUIDSTRING)_Var3, _, _)
+AND
+_Var1 != _Var3
+AND
+DB_FTJ_HoE_ReturnPoints(_Var2, _, _, _Var1)
+AND
+QRY_SpeakerIsAvailable(_Var1)
+AND NOT
+DB_FTJ_SW_GodDidAttackedAD(_Var1)
+THEN
+Proc_StartDialog(1, "FTJ_SW_AD_GodAttackedByPlayer", _Var1);
+ProcObjectTimer(_Var1, "FTJ_SW_GodAttackedAD_Timer", 30000);
+DB_FTJ_SW_GodDidAttackedAD(_Var1);
+
+PROC
+ProcObjectTimerFinished((CHARACTERGUID)_Var1, "FTJ_SW_GodAttackedAD_Timer")
+THEN
+NOT DB_FTJ_SW_GodDidAttackedAD(_Var1);
+
+IF
+TextEventSet("rda")
+THEN
+SetTag(CHARACTERGUID_S_Player_RedPrince_a26a1efb-cdc8-4cf3-a7b2-b2f9544add6f, "AVATAR");
+
+IF
+CharacterEnteredTrigger((CHARACTERGUID)_Var1, TRIGGERGUID_S_FTJ_SW_SUB_HallOfEchoes_3451f5d3-5b43-49d7-876b-82f5b7c9b65d)
+AND
+DB_IsPlayer(_Var1)
+AND
+DB_FTJ_SW_HoECombatants(_Var2)
+THEN
+SetCanFight(_Var2, 1);
+SetCanJoinCombat(_Var2, 1);
+
+IF
+CharacterLeftTrigger((CHARACTERGUID)_Var1, TRIGGERGUID_S_FTJ_SW_SUB_HallOfEchoes_3451f5d3-5b43-49d7-876b-82f5b7c9b65d)
+AND
+QRY_AnyRegionActive()
+AND
+DB_IsPlayer(_Var1)
+AND NOT
+QryCheckOtherPlayersInTrigger(_Var1, TRIGGERGUID_S_FTJ_SW_SUB_HallOfEchoes_3451f5d3-5b43-49d7-876b-82f5b7c9b65d)
+AND
+DB_FTJ_SW_HoECombatants(_Var2)
+THEN
+SetCanFight(_Var2, 0);
+SetCanJoinCombat(_Var2, 0);
+
+IF
+CharacterLeftTrigger((CHARACTERGUID)_Var1, TRIGGERGUID_S_FTJ_SW_SUB_HallOfEchoes_3451f5d3-5b43-49d7-876b-82f5b7c9b65d)
+AND
+QRY_AnyRegionActive()
+AND
+DB_IsPlayer(_Var1)
+AND
+QryCheckOtherPlayersInTrigger(_Var1, TRIGGERGUID_S_FTJ_SW_SUB_HallOfEchoes_3451f5d3-5b43-49d7-876b-82f5b7c9b65d)
+AND
+DB_FTJ_SW_HoECombatants(_Var2)
+THEN
+SetCanFight(_Var2, 1);
+SetCanJoinCombat(_Var2, 1);
+
+PROC
+ProcRegionEnded("FJ_FortJoy_Main")
+AND
+DB_GLO_HoERespawnPoint(_Var1, _Var2)
+THEN
+PROC_GLO_LeaveHallOfEchoes(_Var1);
+
+
+EXITSECTION
+ENDEXITSECTION
+
+ParentTargetEdge "FortJoy"

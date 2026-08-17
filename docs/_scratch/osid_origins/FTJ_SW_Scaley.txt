@@ -1,0 +1,342 @@
+Version 1
+SubGoalCombiner SGC_AND
+
+INITSECTION
+SetOnStage(S_FTJ_SW_ShelterClimb_17ff4d89-dea8-48a1-84ae-304f213e4d96, 0);
+TriggerRegisterForCharacter(S_FTJ_SW_HanArriveTrigger_205e7087-5145-43bc-b6e8-9cee0ee9a241, CHARACTERGUID_S_FTJ_CapturedChild_53d4aa5c-dd91-4e12-9ca8-d66879cc6ffb);
+DB_Dialogs(S_FTJ_SW_CheckpointSourcerer_02f6e4f7-587c-41d0-9ac6-89104f9d16ad, "FTJ_SW_CheckpointSourcerer");
+DB_TrespassTrigger(TRIGGERGUID_S_FTJ_SW_ShelterTrespass2_b4ea9412-b2ed-4848-a72d-ca972c1b0e94, TRIGGERGUID_S_FTJ_SW_ForbiddenAreaTo2_Point_3add406a-2e01-45bc-b889-a95623c34799);
+DB_TrespassTrigger(TRIGGERGUID_S_FTJ_SW_ShelterTrespass1_562878c7-1346-404b-9a63-0ce6732405b6, TRIGGERGUID_S_FTJ_SW_ForbiddenAreaTo1_Point_abd5b962-c7ab-46a4-bbfb-7d4c87ebfc76);
+
+KBSECTION
+IF
+DialogEnded("FTJ_ChildTellPlayerOfShelter", (INTEGER)_Var1)
+AND
+DB_DialogPlayers(_Var1, _Var2, 1)
+THEN
+ProcFTJRevealShelter(_Var2);
+
+IF
+ObjectFlagSet("FTJ_SW_ShowShelterMarker", (CHARACTERGUID)_Var1, _)
+THEN
+ProcFTJRevealShelter(_Var1);
+
+IF
+CharacterDied(S_FTJ_SeekerCaptain_1329f018-23e4-4717-9bc8-074b28d04c54)
+THEN
+GlobalSetFlag("FTJ_SW_GarethDead");
+
+IF
+CharacterUsedItem((CHARACTERGUID)_Var1, S_FTJ_SW_ShelterBell_fc3a3906-6f8f-415e-9a66-f668fd77e263)
+THEN
+PlayAnimation(S_FTJ_SW_ShelterBell_fc3a3906-6f8f-415e-9a66-f668fd77e263, "RingBell");
+ProcObjectTimer(ITEMGUID_S_FTJ_SW_ShelterBell_fc3a3906-6f8f-415e-9a66-f668fd77e263, "FTJ_SW_ResetAnimationBell", 2333);
+
+PROC
+ProcObjectTimerFinished(ITEMGUID_S_FTJ_SW_ShelterBell_fc3a3906-6f8f-415e-9a66-f668fd77e263, "FTJ_SW_ResetAnimationBell")
+THEN
+PlayAnimation(ITEMGUID_S_FTJ_SW_ShelterBell_fc3a3906-6f8f-415e-9a66-f668fd77e263, "");
+
+IF
+CharacterUsedItem((CHARACTERGUID)_Var1, S_FTJ_SW_ShelterBell_fc3a3906-6f8f-415e-9a66-f668fd77e263)
+AND NOT
+DB_OnlyOnce("FTJ_SW_CpSourcererUseRolledVines")
+AND
+ObjectGetFlag(S_FTJ_SW_CheckpointSourcerer_02f6e4f7-587c-41d0-9ac6-89104f9d16ad, "FTJ_SW_DropVine", 0)
+AND
+GlobalGetFlag("FTJ_SW_VineDropped", 0)
+AND
+GlobalGetFlag("FTJ_SW_BackVineDropped", 0)
+AND NOT
+DB_FTJ_SW_ShelterBellSpeaker(_)
+AND
+QRY_SpeakerIsAvailable(S_FTJ_SW_CheckpointSourcerer_02f6e4f7-587c-41d0-9ac6-89104f9d16ad)
+AND NOT
+GetVarObject(CHARACTERGUID_S_FTJ_SW_CheckpointSourcerer_02f6e4f7-587c-41d0-9ac6-89104f9d16ad, "Vine", S_FTJ_SW_RolledUpClimb_78e3a5a7-d1cd-474e-84d9-12d27f7e642e)
+THEN
+ProcCharacterDisappearOutOfSight(CHARACTERGUID_S_FTJ_SW_CheckpointSourcerer_02f6e4f7-587c-41d0-9ac6-89104f9d16ad, 50, 0, "FTJ_SW_BaharaDisappearBack", 1);
+
+IF
+CharacterUsedItem((CHARACTERGUID)_Var1, S_FTJ_SW_ShelterBell_fc3a3906-6f8f-415e-9a66-f668fd77e263)
+AND NOT
+QRY_FTJ_SW_BaharaGoingBell()
+AND NOT
+GetVarObject(CHARACTERGUID_S_FTJ_SW_CheckpointSourcerer_02f6e4f7-587c-41d0-9ac6-89104f9d16ad, "Vine", S_FTJ_SW_RolledUpClimb_78e3a5a7-d1cd-474e-84d9-12d27f7e642e)
+AND
+QueryOnlyOnce("FTJ_SW_AD_ShelterBell_Nobody")
+THEN
+ProcObjectTimer(_Var1, "FTJ_SW_ShelterBell_Nobody", 5000);
+TimerLaunch("FTJ_SW_ShelterBell_Nobody", 30000);
+
+IF
+TimerFinished("FTJ_SW_ShelterBell_Nobody")
+THEN
+NOT DB_OnlyOnce("FTJ_SW_ShelterBell_Nobody");
+
+PROC
+ProcObjectTimerFinished((GUIDSTRING)_Var1, "FTJ_SW_ShelterBell_Nobody")
+THEN
+Proc_StartDialog(1, "FTJ_SW_AD_ShelterBell_Nobody", _Var1);
+
+QRY
+QRY_FTJ_SW_BaharaGoingBell()
+AND NOT
+DB_OnlyOnce("FTJ_SW_CpSourcererUseRolledVines")
+AND
+ObjectGetFlag(S_FTJ_SW_CheckpointSourcerer_02f6e4f7-587c-41d0-9ac6-89104f9d16ad, "FTJ_SW_DropVine", 0)
+AND
+GlobalGetFlag("FTJ_SW_VineDropped", 0)
+AND
+GlobalGetFlag("FTJ_SW_BackVineDropped", 0)
+AND NOT
+DB_FTJ_SW_ShelterBellSpeaker(_)
+AND
+QRY_SpeakerIsAvailable(S_FTJ_SW_CheckpointSourcerer_02f6e4f7-587c-41d0-9ac6-89104f9d16ad)
+THEN
+DB_NOOP(1);
+
+IF
+CharacterUsedItem((CHARACTERGUID)_Var1, S_FTJ_SW_ShelterBell_fc3a3906-6f8f-415e-9a66-f668fd77e263)
+AND
+QRY_FTJ_SW_BaharaGoingBell()
+AND
+GetVarObject(CHARACTERGUID_S_FTJ_SW_CheckpointSourcerer_02f6e4f7-587c-41d0-9ac6-89104f9d16ad, "Vine", S_FTJ_SW_RolledUpClimb_78e3a5a7-d1cd-474e-84d9-12d27f7e642e)
+THEN
+SetStoryEvent(CHARACTERGUID_S_FTJ_SW_CheckpointSourcerer_02f6e4f7-587c-41d0-9ac6-89104f9d16ad, "FTJ_SW_BaharaAppearFront");
+
+IF
+CharacterUsedItem((CHARACTERGUID)_Var1, S_FTJ_SW_ShelterBell_fc3a3906-6f8f-415e-9a66-f668fd77e263)
+AND
+QRY_FTJ_SW_BaharaGoingBell()
+THEN
+DB_FTJ_SW_ShelterBellSpeaker(_Var1);
+ObjectSetFlag(CHARACTERGUID_S_FTJ_SW_CheckpointSourcerer_02f6e4f7-587c-41d0-9ac6-89104f9d16ad, "FTJ_SW_BellRung");
+
+IF
+StoryEvent(CHARACTERGUID_S_FTJ_SW_CheckpointSourcerer_02f6e4f7-587c-41d0-9ac6-89104f9d16ad, "FTJ_SW_BaharaDisappearBack")
+THEN
+CharacterAppearOutOfSightTo(CHARACTERGUID_S_FTJ_SW_CheckpointSourcerer_02f6e4f7-587c-41d0-9ac6-89104f9d16ad, S_FTJ_SW_CheckpointSourcererDestination_1f637aae-7455-4d31-a050-88f60aea38b2, 0, 0, "FTJ_SW_BaharaAppearFront");
+
+IF
+StoryEvent(CHARACTERGUID_S_FTJ_SW_CheckpointSourcerer_02f6e4f7-587c-41d0-9ac6-89104f9d16ad, "FTJ_SW_BaharaAppearFront")
+THEN
+ProcCharacterMoveTo(CHARACTERGUID_S_FTJ_SW_CheckpointSourcerer_02f6e4f7-587c-41d0-9ac6-89104f9d16ad, S_FTJ_SW_CheckpointSourcererDestination_1f637aae-7455-4d31-a050-88f60aea38b2, 1, "FTJ_SW_BaharaArriveFront");
+
+IF
+StoryEvent(CHARACTERGUID_S_FTJ_SW_CheckpointSourcerer_02f6e4f7-587c-41d0-9ac6-89104f9d16ad, "FTJ_SW_BaharaArriveFront")
+AND NOT
+DB_OnlyOnce("FTJ_SW_CpSourcererUseRolledVines")
+AND
+ObjectGetFlag(S_FTJ_SW_CheckpointSourcerer_02f6e4f7-587c-41d0-9ac6-89104f9d16ad, "FTJ_SW_DropVine", 0)
+AND
+GlobalGetFlag("FTJ_SW_VineDropped", 0)
+AND
+GlobalGetFlag("FTJ_SW_BackVineDropped", 0)
+AND
+DB_FTJ_SW_ShelterBellSpeaker(_Var1)
+AND
+QRY_SpeakerIsAvailable(S_FTJ_SW_CheckpointSourcerer_02f6e4f7-587c-41d0-9ac6-89104f9d16ad)
+THEN
+SetVarObject(CHARACTERGUID_S_FTJ_SW_CheckpointSourcerer_02f6e4f7-587c-41d0-9ac6-89104f9d16ad, "Vine", S_FTJ_SW_RolledUpClimb_78e3a5a7-d1cd-474e-84d9-12d27f7e642e);
+SetVarObject(CHARACTERGUID_S_FTJ_SW_CheckpointSourcerer_02f6e4f7-587c-41d0-9ac6-89104f9d16ad, "GuardPoint", S_FTJ_SW_CheckpointSourcererDestination_1f637aae-7455-4d31-a050-88f60aea38b2);
+
+IF
+StoryEvent(CHARACTERGUID_S_FTJ_SW_CheckpointSourcerer_02f6e4f7-587c-41d0-9ac6-89104f9d16ad, "FTJ_SW_BaharaArriveFront")
+AND NOT
+DB_OnlyOnce("FTJ_SW_CpSourcererUseRolledVines")
+AND
+ObjectGetFlag(S_FTJ_SW_CheckpointSourcerer_02f6e4f7-587c-41d0-9ac6-89104f9d16ad, "FTJ_SW_DropVine", 0)
+AND
+GlobalGetFlag("FTJ_SW_VineDropped", 0)
+AND
+GlobalGetFlag("FTJ_SW_BackVineDropped", 0)
+AND
+DB_FTJ_SW_ShelterBellSpeaker(_Var1)
+AND
+QRY_SpeakerIsAvailable(S_FTJ_SW_CheckpointSourcerer_02f6e4f7-587c-41d0-9ac6-89104f9d16ad)
+AND
+ObjectIsInTrigger(_Var1, TRIGGERGUID_S_FTJ_SW_CheckpointSourcererSightBox_bb0f0d2c-6c90-49a8-81f0-28c6e53c98d2, 1)
+AND
+HasActiveStatus(_Var1, "INVISIBLE", 0)
+AND
+HasActiveStatus(_Var1, "SNEAKING", 0)
+AND NOT
+QRY_FTJ_SW_BaharaSeeUndead()
+THEN
+Proc_StartDialog(0, "FTJ_SW_CheckpointSourcerer", S_FTJ_SW_CheckpointSourcerer_02f6e4f7-587c-41d0-9ac6-89104f9d16ad, _Var1);
+
+IF
+StoryEvent(CHARACTERGUID_S_FTJ_SW_CheckpointSourcerer_02f6e4f7-587c-41d0-9ac6-89104f9d16ad, "FTJ_SW_BaharaArriveFront")
+AND
+DB_FTJ_SW_ShelterBellSpeaker(_Var1)
+THEN
+NOT DB_FTJ_SW_ShelterBellSpeaker(_Var1);
+
+IF
+CharacterUsedItem(_, FTJ_SW_RolledUpClimb_78e3a5a7-d1cd-474e-84d9-12d27f7e642e)
+AND
+GetPosition(S_FTJ_SW_ShelterClimb_17ff4d89-dea8-48a1-84ae-304f213e4d96, _Var2, _Var3, _Var4)
+THEN
+PlayScaledEffectAtPosition("RS3_FX_GP_ScriptedEvent_Teleport_GenericSmoke_01", 2, _Var2, _Var3, _Var4);
+SetOnStage(S_FTJ_SW_ShelterClimb_17ff4d89-dea8-48a1-84ae-304f213e4d96, 1);
+SetOnStage(FTJ_SW_RolledUpClimb_78e3a5a7-d1cd-474e-84d9-12d27f7e642e, 0);
+GlobalSetFlag("FTJ_SW_VineDropped");
+GlobalSetFlag("FTJ_SW_ShelterAccessible");
+
+IF
+StoryEvent(CHARACTERGUID_S_FTJ_SW_CheckpointSourcerer_02f6e4f7-587c-41d0-9ac6-89104f9d16ad, "FTJ_SW_LeaveFront")
+THEN
+ProcCharacterDisappearOutOfSight(CHARACTERGUID_S_FTJ_SW_CheckpointSourcerer_02f6e4f7-587c-41d0-9ac6-89104f9d16ad, 0, 0, "FTJ_SW_BaharaDisappearFront", 0);
+
+IF
+StoryEvent(CHARACTERGUID_S_FTJ_SW_CheckpointSourcerer_02f6e4f7-587c-41d0-9ac6-89104f9d16ad, "FTJ_SW_BaharaDisappearFront")
+THEN
+CharacterAppearOutOfSightTo(CHARACTERGUID_S_FTJ_SW_CheckpointSourcerer_02f6e4f7-587c-41d0-9ac6-89104f9d16ad, S_FTJ_SW_BaharaBackPoint_bba4b71c-18f1-4f69-8edb-a0789b601f6b, 0, 0, "");
+SetVarObject(CHARACTERGUID_S_FTJ_SW_CheckpointSourcerer_02f6e4f7-587c-41d0-9ac6-89104f9d16ad, "Vine", S_FTJ_RolledUpBackClimb_84febc6f-f0d1-4a90-84a7-a11619ba8896);
+SetVarObject(CHARACTERGUID_S_FTJ_SW_CheckpointSourcerer_02f6e4f7-587c-41d0-9ac6-89104f9d16ad, "GuardPoint", S_FTJ_SW_BaharaBackPoint_bba4b71c-18f1-4f69-8edb-a0789b601f6b);
+
+IF
+DialogEnded("FTJ_SW_CheckpointSourcerer", _)
+AND
+ObjectGetFlag(S_FTJ_SW_CheckpointSourcerer_02f6e4f7-587c-41d0-9ac6-89104f9d16ad, "FTJ_SW_DropVine", 1)
+AND
+QueryOnlyOnce("FTJ_SW_CpSourcererUseRolledVines")
+AND
+GetVarObject(CHARACTERGUID_S_FTJ_SW_CheckpointSourcerer_02f6e4f7-587c-41d0-9ac6-89104f9d16ad, "Vine", _Var2)
+THEN
+CharacterUseItem(S_FTJ_SW_CheckpointSourcerer_02f6e4f7-587c-41d0-9ac6-89104f9d16ad, _Var2, "");
+ObjectClearFlag(S_FTJ_SW_CheckpointSourcerer_02f6e4f7-587c-41d0-9ac6-89104f9d16ad, "FTJ_SW_DropVine", 0);
+
+IF
+CharacterEnteredTrigger(CHARACTERGUID_S_FTJ_CapturedChild_53d4aa5c-dd91-4e12-9ca8-d66879cc6ffb, S_FTJ_SW_HanArriveTrigger_205e7087-5145-43bc-b6e8-9cee0ee9a241)
+AND
+GetVarFixedString(S_FTJ_SW_CheckpointSourcerer_02f6e4f7-587c-41d0-9ac6-89104f9d16ad, "currentState", "State_Waiting")
+THEN
+ObjectSetFlag(CHARACTERGUID_S_FTJ_SW_CheckpointSourcerer_02f6e4f7-587c-41d0-9ac6-89104f9d16ad, "FTJ_SW_HanArrived", 0);
+
+IF
+CharacterUsedItem(_, FTJ_SW_RolledUpClimb_78e3a5a7-d1cd-474e-84d9-12d27f7e642e)
+THEN
+ProcRemoveDBTrespassTrigger(TRIGGERGUID_S_FTJ_SW_ShelterTrespass2_b4ea9412-b2ed-4848-a72d-ca972c1b0e94, TRIGGERGUID_S_FTJ_SW_ForbiddenAreaTo2_Point_3add406a-2e01-45bc-b889-a95623c34799);
+ProcRemoveDBTrespassTrigger(TRIGGERGUID_S_FTJ_SW_ShelterTrespass1_562878c7-1346-404b-9a63-0ce6732405b6, TRIGGERGUID_S_FTJ_SW_ForbiddenAreaTo1_Point_abd5b962-c7ab-46a4-bbfb-7d4c87ebfc76);
+
+IF
+CharacterUsedItem(_, S_FTJ_RolledUpBackClimb_84febc6f-f0d1-4a90-84a7-a11619ba8896)
+THEN
+ProcRemoveDBTrespassTrigger(TRIGGERGUID_S_FTJ_SW_ShelterTrespass2_b4ea9412-b2ed-4848-a72d-ca972c1b0e94, TRIGGERGUID_S_FTJ_SW_ForbiddenAreaTo2_Point_3add406a-2e01-45bc-b889-a95623c34799);
+ProcRemoveDBTrespassTrigger(TRIGGERGUID_S_FTJ_SW_ShelterTrespass1_562878c7-1346-404b-9a63-0ce6732405b6, TRIGGERGUID_S_FTJ_SW_ForbiddenAreaTo1_Point_abd5b962-c7ab-46a4-bbfb-7d4c87ebfc76);
+
+PROC
+ProcBlockUseOfItem((CHARACTERGUID)_Var1, FTJ_SW_RolledUpClimb_78e3a5a7-d1cd-474e-84d9-12d27f7e642e)
+AND
+DB_IsPlayer(_Var1)
+AND NOT
+DB_GlobalFlag("FTJ_SW_ShelterAccessible")
+AND
+CharacterCanSee(CHARACTERGUID_S_FTJ_SW_CheckpointSourcerer_02f6e4f7-587c-41d0-9ac6-89104f9d16ad, _Var1, 1)
+AND
+QRY_StartDialog(0, "FTJ_SW_CheckpointSourcerer", CHARACTERGUID_S_FTJ_SW_CheckpointSourcerer_02f6e4f7-587c-41d0-9ac6-89104f9d16ad, _Var1)
+THEN
+DB_CustomUseItemResponse(_Var1, ITEMGUID_S_FTJ_SW_RolledUpClimb_78e3a5a7-d1cd-474e-84d9-12d27f7e642e, 0);
+GlobalSetFlag("FTJ_SW_ShelterVineInterrupt");
+
+PROC
+ProcBlockUseOfItem((CHARACTERGUID)_Var1, ITEMGUID_S_FTJ_RolledUpBackClimb_84febc6f-f0d1-4a90-84a7-a11619ba8896)
+AND
+DB_IsPlayer(_Var1)
+AND NOT
+DB_GlobalFlag("FTJ_SW_ShelterAccessible")
+AND
+CharacterCanSee(CHARACTERGUID_S_FTJ_SW_CheckpointSourcerer_02f6e4f7-587c-41d0-9ac6-89104f9d16ad, _Var1, 1)
+AND
+QRY_StartDialog(0, "FTJ_SW_CheckpointSourcerer", CHARACTERGUID_S_FTJ_SW_CheckpointSourcerer_02f6e4f7-587c-41d0-9ac6-89104f9d16ad, _Var1)
+THEN
+DB_CustomUseItemResponse(_Var1, ITEMGUID_S_FTJ_RolledUpBackClimb_84febc6f-f0d1-4a90-84a7-a11619ba8896, 0);
+GlobalSetFlag("FTJ_SW_ShelterVineInterrupt");
+
+IF
+DialogEnded("FTJ_SW_CheckpointSourcerer", _)
+THEN
+GlobalClearFlag("FTJ_SW_ShelterVineInterrupt");
+
+QRY
+QRY_FTJ_SW_BaharaSeeUndead()
+AND
+DB_FTJ_SW_ShelterBellSpeaker(_Var1)
+AND
+IsTagged(_Var1, "UNDEAD", 1)
+AND
+IsTagged(_Var1, "VEILED_UNDEAD", 0)
+AND
+CharacterCanSee(CHARACTERGUID_S_FTJ_SW_CheckpointSourcerer_02f6e4f7-587c-41d0-9ac6-89104f9d16ad, _Var1, 1)
+THEN
+Proc_StartDialog(1, "GEB_AD_Noticed_Undead", CHARACTERGUID_S_FTJ_SW_CheckpointSourcerer_02f6e4f7-587c-41d0-9ac6-89104f9d16ad);
+
+QRY
+QRY_FTJ_SW_BaharaSeeUndead()
+AND
+DB_IsPlayer(_Var1)
+AND
+IsTagged(_Var1, "UNDEAD", 1)
+AND
+IsTagged(_Var1, "VEILED_UNDEAD", 0)
+AND
+CharacterCanSee(CHARACTERGUID_S_FTJ_SW_CheckpointSourcerer_02f6e4f7-587c-41d0-9ac6-89104f9d16ad, _Var1, 1)
+THEN
+Proc_StartDialog(1, "GEB_AD_Noticed_Undead", CHARACTERGUID_S_FTJ_SW_CheckpointSourcerer_02f6e4f7-587c-41d0-9ac6-89104f9d16ad);
+
+IF
+DialogStarted("FTJ_SW_CheckpointSourcerer", _)
+AND
+GlobalGetFlag("FTJ_SW_ShelterAccessible", 0)
+THEN
+CharacterSetFightMode(S_FTJ_SW_CheckpointSourcerer_02f6e4f7-587c-41d0-9ac6-89104f9d16ad, 1, 0);
+
+IF
+ObjectFlagSet("FTJ_SW_DropVine", S_FTJ_SW_CheckpointSourcerer_02f6e4f7-587c-41d0-9ac6-89104f9d16ad, _)
+THEN
+CharacterSetFightMode(S_FTJ_SW_CheckpointSourcerer_02f6e4f7-587c-41d0-9ac6-89104f9d16ad, 0, 0);
+
+IF
+DialogEnded("FTJ_SW_CheckpointSourcerer", _)
+AND
+CharacterIsInFightMode(S_FTJ_SW_CheckpointSourcerer_02f6e4f7-587c-41d0-9ac6-89104f9d16ad, 1)
+AND
+ObjectGetFlag(S_FTJ_SW_CheckpointSourcerer_02f6e4f7-587c-41d0-9ac6-89104f9d16ad, "FTJ_SW_DropVine", 1)
+THEN
+CharacterSetFightMode(S_FTJ_SW_CheckpointSourcerer_02f6e4f7-587c-41d0-9ac6-89104f9d16ad, 0, 0);
+
+IF
+CharacterStatusApplied(CHARACTERGUID_S_FTJ_CapturedChild_53d4aa5c-dd91-4e12-9ca8-d66879cc6ffb, (STRING)_Var1, (CHARACTERGUID)_Var2)
+AND
+ObjectGetFlag(CHARACTERGUID_S_FTJ_CapturedChild_53d4aa5c-dd91-4e12-9ca8-d66879cc6ffb, "FTJ_SW_ReachedCamp", 1)
+AND
+GlobalGetFlag("FTJ_SW_HanWasHealed", 0)
+AND
+QRY_IsHealingStatus(_Var1)
+AND
+CharacterIsPartyMember(_Var2, 1)
+THEN
+GlobalSetFlag("FTJ_SW_HanWasHealed");
+ObjectSetFlag(_Var2, "FTJ_SW_HealedHan", 0);
+CharacterSetHitpointsPercentage(CHARACTERGUID_S_FTJ_CapturedChild_53d4aa5c-dd91-4e12-9ca8-d66879cc6ffb, 100);
+DialogRequestStopForDialog("FTJ_SW_AD_SamadelWithHan_003", CHARACTERGUID_S_FTJ_SW_Warrior_ShelterNPC_001_325c2042-b2fb-4b06-872d-123086ca82d4);
+DialogRequestStopForDialog("FTJ_SW_AD_SamadelWithHan_003", CHARACTERGUID_S_FTJ_CapturedChild_53d4aa5c-dd91-4e12-9ca8-d66879cc6ffb);
+
+IF
+ObjectFlagSet("FTJ_SW_AskedHanHeal", (CHARACTERGUID)_Var1, _)
+AND
+GlobalGetFlag("FTJ_SW_HanWasHealed", 0)
+AND
+QryRemoveTaggedLocalItemsFromMagicPockets(_Var1, "HEALING_POTION", 1)
+THEN
+GlobalSetFlag("FTJ_SW_HanWasHealed");
+ObjectSetFlag(_Var1, "FTJ_SW_HealedHan", 0);
+CharacterSetHitpointsPercentage(CHARACTERGUID_S_FTJ_CapturedChild_53d4aa5c-dd91-4e12-9ca8-d66879cc6ffb, 100);
+DialogRequestStopForDialog("FTJ_SW_AD_SamadelWithHan_003", CHARACTERGUID_S_FTJ_SW_Warrior_ShelterNPC_001_325c2042-b2fb-4b06-872d-123086ca82d4);
+
+
+EXITSECTION
+ENDEXITSECTION
+
+ParentTargetEdge "FortJoy"

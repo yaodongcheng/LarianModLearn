@@ -1,0 +1,244 @@
+Version 1
+SubGoalCombiner SGC_AND
+
+INITSECTION
+DB_TUT_LowerDeck_ArrestingMagister(S_TUT_LowerDeck_CrossBowMagister_001_b2ec3611-6484-4168-9039-c092bcdea52d);
+DB_TUT_LowerDeck_ArrestingMagister(S_TUT_LowerDeck_CrossBowMagister_000_c4531ec5-203f-4ff2-95f6-ac14b9cf7994);
+DB_TUT_LowerDeck_WindegoDialogGroup(S_TUT_LowerDeck_CrossBowMagister_001_b2ec3611-6484-4168-9039-c092bcdea52d);
+DB_TUT_LowerDeck_WindegoDialogGroup(S_TUT_LowerDeck_CrossBowMagister_000_c4531ec5-203f-4ff2-95f6-ac14b9cf7994);
+DB_TUT_LowerDeck_WindegoDialogGroup(CHARACTERGUID_S_TUT_LowerDeck_Officer_X_a658e0ea-db65-4be9-82c0-40629a2d0340);
+DB_TUT_LowerDeck_WindegoDialogGroup(CHARACTERGUID_S_GLO_Windego_d783285f-d3be-4cba-8333-db8976cef182);
+DB_OneShotPlayerTrigger(S_TUT_LowerDeck_WindegoInterrogationBox_8e06af80-ac9c-43ea-914e-d7c419325e97);
+PROC_TUT_InitWindegoInterrogation();
+SetHasDialog(CHARACTERGUID_S_TUT_LowerDeck_CrossBowMagister_000_c4531ec5-203f-4ff2-95f6-ac14b9cf7994, 1);
+SetHasDialog(CHARACTERGUID_S_TUT_LowerDeck_CrossBowMagister_001_b2ec3611-6484-4168-9039-c092bcdea52d, 1);
+SetHasDialog(CHARACTERGUID_S_TUT_LowerDeck_Officer_X_a658e0ea-db65-4be9-82c0-40629a2d0340, 1);
+ProcTriggerRegisterForPlayers(TRIGGERGUID_S_TUT_LowerDeck_InterrogationTrigger_0c031789-4b3f-474a-b432-ef7073ef0af3);
+
+KBSECTION
+PROC
+PROC_TUT_InitWindegoInterrogation()
+AND
+DB_TUT_LowerDeck_ArrestingMagister(_Var1)
+THEN
+CharacterLookAt(_Var1, CHARACTERGUID_S_GLO_Windego_d783285f-d3be-4cba-8333-db8976cef182);
+CharacterSetFightMode(_Var1, 1, 1);
+ProcCharacterDisableAllCrimes(_Var1);
+DB_IsNotMessingAround(_Var1);
+DB_SceneManager(_Var1, "TUT_WindegoEvent");
+
+PROC
+PROC_TUT_InitWindegoInterrogation()
+THEN
+ProcRemoveAllDialogEntriesForSpeaker(CHARACTERGUID_S_GLO_Windego_d783285f-d3be-4cba-8333-db8976cef182);
+SetHasDialog(CHARACTERGUID_S_GLO_Windego_d783285f-d3be-4cba-8333-db8976cef182, 1);
+SetHasDialog(CHARACTERGUID_S_TUT_LowerDeck_Officer_X_a658e0ea-db65-4be9-82c0-40629a2d0340, 1);
+ProcCharacterDisableAllCrimes(CHARACTERGUID_S_GLO_Windego_d783285f-d3be-4cba-8333-db8976cef182);
+ProcCharacterDisableAllCrimes(CHARACTERGUID_S_TUT_LowerDeck_Officer_X_a658e0ea-db65-4be9-82c0-40629a2d0340);
+DB_IsNotMessingAround(CHARACTERGUID_S_GLO_Windego_d783285f-d3be-4cba-8333-db8976cef182);
+DB_IsNotMessingAround(CHARACTERGUID_S_TUT_LowerDeck_Officer_X_a658e0ea-db65-4be9-82c0-40629a2d0340);
+CharacterSetImmortal(CHARACTERGUID_S_GLO_Windego_d783285f-d3be-4cba-8333-db8976cef182, 1);
+DB_SceneManager(CHARACTERGUID_S_GLO_Windego_d783285f-d3be-4cba-8333-db8976cef182, "TUT_WindegoEvent");
+DB_SceneManager(CHARACTERGUID_S_TUT_LowerDeck_Officer_X_a658e0ea-db65-4be9-82c0-40629a2d0340, "TUT_WindegoEvent");
+DB_SceneTriggerManager("TUT_WindegoEvent", TRIGGERGUID_S_TUT_WindegoSceneBox_17dc6aa3-f77c-4a07-b7f0-0578bf932447);
+TimerLaunch("TUT_RepeatWindegoInterrogation", 1000);
+
+IF
+CharacterEnteredTrigger((CHARACTERGUID)_Var1, TRIGGERGUID_S_TUT_LowerDeck_InterrogationTrigger_0c031789-4b3f-474a-b432-ef7073ef0af3)
+THEN
+ProcTriggerUnregisterForPlayers(TRIGGERGUID_S_TUT_LowerDeck_InterrogationTrigger_0c031789-4b3f-474a-b432-ef7073ef0af3);
+Proc_StartDialog(1, "TUT_AD_LowerDeck_WindegoInterrogation", CHARACTERGUID_S_GLO_Windego_d783285f-d3be-4cba-8333-db8976cef182, S_TUT_LowerDeck_Officer_X_a658e0ea-db65-4be9-82c0-40629a2d0340);
+
+IF
+TimerFinished("TUT_RepeatWindegoInterrogation")
+AND NOT
+DB_GlobalFlag("TUT_BlockLowerDeckADs")
+THEN
+Proc_StartDialog(1, "TUT_AD_LowerDeck_WindegoInterrogation", CHARACTERGUID_S_GLO_Windego_d783285f-d3be-4cba-8333-db8976cef182, S_TUT_LowerDeck_Officer_X_a658e0ea-db65-4be9-82c0-40629a2d0340);
+
+IF
+TimerFinished("TUT_RepeatWindegoInterrogation")
+AND
+DB_GlobalFlag("TUT_BlockLowerDeckADs")
+THEN
+TimerLaunch("TUT_RepeatWindegoInterrogation", 10000);
+
+IF
+AutomatedDialogEnded("TUT_AD_LowerDeck_WindegoInterrogation", _)
+AND
+CharacterIsDead(S_TUT_LowerDeck_Officer_X_a658e0ea-db65-4be9-82c0-40629a2d0340, 0)
+THEN
+TimerLaunch("TUT_RepeatWindegoInterrogation", 10000);
+
+IF
+AutomatedDialogRequestFailed("TUT_AD_LowerDeck_WindegoInterrogation", _)
+AND
+CharacterIsDead(S_TUT_LowerDeck_Officer_X_a658e0ea-db65-4be9-82c0-40629a2d0340, 0)
+THEN
+TimerLaunch("TUT_RepeatWindegoInterrogation", 5000);
+
+IF
+DialogStarted("TUT_LowerDeck_ExitDoorGuard_001", _)
+THEN
+DB_TUT_LowerDeck_TalkedToSternRoomGuard(1);
+
+PROC
+ProcBlockUseOfItem((CHARACTERGUID)_Var1, S_TUT_LowerDeck_DoorToStairs_a3568413-0821-406c-b8a9-33d3a5c1638f)
+AND
+DB_IsPlayer(_Var1)
+AND NOT
+DB_TUT_LowerDeck_TalkedToSternRoomGuard(1)
+AND
+QRY_SpeakerIsAvailableAndInDialogRange(S_TUT_LowerDeck_ExitDoorGuard_001_bf967ae2-69a9-4791-8f80-ad72236edaf7, _Var1)
+THEN
+DB_CustomUseItemResponse(_Var1, S_TUT_LowerDeck_DoorToStairs_a3568413-0821-406c-b8a9-33d3a5c1638f, 0);
+Proc_StartDialog(0, "TUT_LowerDeck_ExitDoorGuard_001", S_TUT_LowerDeck_ExitDoorGuard_001_bf967ae2-69a9-4791-8f80-ad72236edaf7, _Var1);
+
+IF
+ItemDestroyed(S_TUT_LowerDeck_DoorToStairs_a3568413-0821-406c-b8a9-33d3a5c1638f)
+THEN
+DB_TUT_LowerDeck_DoorToStairsDestroyed(1);
+
+IF
+DialogEnded("TUT_LowerDeck_ExitDoorGuard_001", _)
+AND NOT
+DB_TUT_LowerDeck_TalkedToSternRoomGuard_DoorOpened(1)
+AND NOT
+DB_TUT_LowerDeck_DoorToStairsDestroyed(1)
+THEN
+DB_TUT_LowerDeck_TalkedToSternRoomGuard_DoorOpened(1);
+ItemUnLock(S_TUT_LowerDeck_DoorToStairs_a3568413-0821-406c-b8a9-33d3a5c1638f);
+ItemOpen(S_TUT_LowerDeck_DoorToStairs_a3568413-0821-406c-b8a9-33d3a5c1638f);
+
+IF
+ObjectFlagSet("TUT_WindegoPreparesSource", CHARACTERGUID_S_GLO_Windego_d783285f-d3be-4cba-8333-db8976cef182, _)
+THEN
+PlayAnimation(CHARACTERGUID_S_GLO_Windego_d783285f-d3be-4cba-8333-db8976cef182, "Pray_01");
+
+IF
+DialogStarted("TUT_LowerDeck_WindegoInterrogation", _)
+THEN
+GlobalSetFlag("TUT_WindegoStopAllADs");
+SetHasDialog(CHARACTERGUID_S_TUT_LowerDeck_CrossBowMagister_000_c4531ec5-203f-4ff2-95f6-ac14b9cf7994, 0);
+SetHasDialog(CHARACTERGUID_S_TUT_LowerDeck_CrossBowMagister_001_b2ec3611-6484-4168-9039-c092bcdea52d, 0);
+SetHasDialog(CHARACTERGUID_S_TUT_LowerDeck_Officer_X_a658e0ea-db65-4be9-82c0-40629a2d0340, 0);
+
+IF
+DialogEnded("TUT_LowerDeck_WindegoInterrogation", _)
+THEN
+Proc_SceneOver_Once("TUT_WindegoEvent");
+
+IF
+DialogRequestFailed("TUT_LowerDeck_WindegoInterrogation", _)
+THEN
+Proc_SceneOver_Once("TUT_WindegoEvent");
+
+PROC
+Proc_SceneInterrupted(_, _, "TUT_WindegoEvent", (STRING)_Var3)
+AND
+DB_GLO_GenericSceneManager_LeavingReason(_Var3)
+THEN
+Proc_SceneOver_Once("TUT_WindegoEvent");
+
+PROC
+Proc_SceneInterrupted(_, _, "TUT_WindegoEvent", "Attacked")
+THEN
+Proc_SceneOver_Once("TUT_WindegoEvent");
+
+IF
+ObjectEnteredCombat(CHARACTERGUID_S_GLO_Windego_d783285f-d3be-4cba-8333-db8976cef182, (INTEGER)_Var1)
+THEN
+DB_TUT_LowerDeck_WindegoCombat(_Var1);
+
+IF
+CombatStarted((INTEGER)_Var1)
+AND
+DB_TUT_LowerDeck_WindegoCombat(_Var1)
+THEN
+NOT DB_TUT_LowerDeck_WindegoCombat(_Var1);
+Proc_SceneOver_Once("TUT_WindegoEvent");
+
+IF
+CharacterReceivedDamage(CHARACTERGUID_S_GLO_Windego_d783285f-d3be-4cba-8333-db8976cef182, _, _)
+AND
+CharacterGetHitpointsPercentage(CHARACTERGUID_S_GLO_Windego_d783285f-d3be-4cba-8333-db8976cef182, _Var3)
+AND
+_Var3 <= 70
+AND
+CharacterIsInCombat(CHARACTERGUID_S_GLO_Windego_d783285f-d3be-4cba-8333-db8976cef182, 0)
+THEN
+DB_TUT_Windego_HealthBeforeCasting(_Var3);
+Proc_SceneOver_Once("TUT_WindegoEvent");
+
+PROC
+Proc_SceneOver_Once("TUT_WindegoEvent")
+AND
+QueryOnlyOnce("TUT_WindegoEvent_SceneOver")
+THEN
+Proc_SceneOver("TUT_WindegoEvent");
+
+PROC
+Proc_SceneOver("TUT_WindegoEvent")
+THEN
+PROC_TUT_LowerDeck_WindegoStart();
+
+PROC
+PROC_TUT_LowerDeck_WindegoStart()
+THEN
+SetRelationFactionToPlayers("FTJ_SW_Windego", 0);
+
+PROC
+PROC_TUT_LowerDeck_WindegoStart()
+THEN
+DB_TUT_LowerDeck_WindegoEventStarted(1);
+DB_TUT_LowerDeck_WindegoDialogDone(1);
+PROC_TUT_WindegoBeserk(CHARACTERGUID_S_GLO_Windego_d783285f-d3be-4cba-8333-db8976cef182);
+
+PROC
+ProcOneShotTriggerEntered((CHARACTERGUID)_Var1, S_TUT_LowerDeck_WindegoInterrogationBox_8e06af80-ac9c-43ea-914e-d7c419325e97)
+THEN
+PROC_TUT_LowerDeck_StartWindegoInterrogationDialog(_Var1);
+
+PROC
+PROC_GLOBAL_DialogStartRequested((CHARACTERGUID)_Var1, (CHARACTERGUID)_Var2)
+AND
+DB_TUT_LowerDeck_WindegoDialogGroup(_Var1)
+THEN
+PROC_TUT_LowerDeck_StartWindegoInterrogationDialog(_Var2);
+
+PROC
+PROC_TUT_LowerDeck_StartWindegoInterrogationDialog((CHARACTERGUID)_Var1)
+AND
+QRY_SpeakerIsAvailableAndInDialogRange(CHARACTERGUID_S_TUT_LowerDeck_Officer_X_a658e0ea-db65-4be9-82c0-40629a2d0340, _Var1)
+THEN
+SetVarFixedString(CHARACTERGUID_S_GLO_Windego_d783285f-d3be-4cba-8333-db8976cef182, "currentState", "");
+ProcForceStopDialog(CHARACTERGUID_S_TUT_LowerDeck_Officer_X_a658e0ea-db65-4be9-82c0-40629a2d0340);
+ProcForceStopDialog(CHARACTERGUID_S_GLO_Windego_d783285f-d3be-4cba-8333-db8976cef182);
+Proc_StartDialog(0, "TUT_LowerDeck_WindegoInterrogation", CHARACTERGUID_S_GLO_Windego_d783285f-d3be-4cba-8333-db8976cef182, CHARACTERGUID_S_TUT_LowerDeck_Officer_X_a658e0ea-db65-4be9-82c0-40629a2d0340, _Var1);
+
+PROC
+ProcBlockUseOfItem((CHARACTERGUID)_Var1, S_TUT_LowerDeck_StairsToMiddleDeck_Blocked_57d13139-818c-4853-b238-fbb9454175a8)
+AND
+DB_IsPlayer(_Var1)
+AND NOT
+DB_TUT_WindegoFinishedCastingAnimation(1)
+THEN
+DB_CustomUseItemResponse(_Var1, S_TUT_LowerDeck_StairsToMiddleDeck_Blocked_57d13139-818c-4853-b238-fbb9454175a8, 0);
+Proc_StartDialog(1, "TUT_AD_LowerDeck_SternStairsBlocked", _Var1);
+
+PROC
+ProcRegionEnded("TUT_Tutorial_A")
+THEN
+CharacterSetHitpointsPercentage(CHARACTERGUID_S_GLO_Windego_d783285f-d3be-4cba-8333-db8976cef182, 100);
+CharacterSetImmortal(CHARACTERGUID_S_GLO_Windego_d783285f-d3be-4cba-8333-db8976cef182, 0);
+SetRelationFactionToPlayers("FTJ_SW_Windego", 50);
+GoalCompleted;
+
+
+EXITSECTION
+NOT DB_TUT_LowerDeck_TalkedToSternRoomGuard_DoorOpened(1);
+NOT DB_TUT_LowerDeck_TalkedToSternRoomGuard(1);
+NOT DB_TUT_LowerDeck_DoorToStairsDestroyed(1);
+ENDEXITSECTION
+
+ParentTargetEdge "TUT_LowerDeck"

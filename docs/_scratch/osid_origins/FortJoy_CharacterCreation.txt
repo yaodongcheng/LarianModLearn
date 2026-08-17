@@ -1,0 +1,23 @@
+Version 1
+SubGoalCombiner SGC_AND
+
+INITSECTION
+DB_GLO_FirstLevelAfterCharacterCreation("TUT_Tutorial_A");
+DB_CharacterCreationTransitionInfo("FJ_FortJoy_Main", TRIGGERGUID_StartPoint_001_34d67d87-441c-427d-97bb-4cc506b42fe0, "CS_Drowning");
+DB_CharacterCreationTransitionInfo("TUT_Tutorial_A", TRIGGERGUID_StartPoint_000__000_fe2995bf-aa16-8ce7-33a2-8cb8cf228152, "CS_Intro");
+
+KBSECTION
+PROC
+ProcRemoveOtherOrigins()
+AND
+DB_Origins(_Var1)
+AND
+IsTagged(_Var1, "AVATAR", 0)
+THEN
+DB_OriginNotSelected(_Var1);
+
+
+EXITSECTION
+ENDEXITSECTION
+
+ParentTargetEdge "DOS2ModWrapper"

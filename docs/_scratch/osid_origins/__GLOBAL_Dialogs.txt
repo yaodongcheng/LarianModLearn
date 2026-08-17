@@ -1,0 +1,892 @@
+Version 1
+SubGoalCombiner SGC_AND
+
+INITSECTION
+DB_AnimalFoodVars("FoodTemplate1");
+DB_AnimalFoodVars("FoodTemplate2");
+DB_AnimalFoodVars("FoodTemplate3");
+DB_AnimalFoodVars("FoodTemplate4");
+DB_AnimalFoodVars("FoodTemplate5");
+DB_AnimalFoodVars("FoodTemplate6");
+DB_CustomChildDialog("nullstring");
+
+KBSECTION
+IF
+DB_HasMetCharactersToCheck(_Var1, _Var2)
+THEN
+ProcSetHasMetTag(_Var1, _Var2);
+
+IF
+DB_HasMetCharactersToCheck(_Var1, _Var2)
+THEN
+NOT DB_HasMetCharactersToCheck(_Var1, _Var2);
+
+PROC
+Proc_Dialogs_CharactersHaveMetInThisShape((GUIDSTRING)_Var1, (CHARACTERGUID)_Var2)
+THEN
+SetTag(_Var1, "HasMet");
+
+PROC
+ProcSetHasMetTag((GUIDSTRING)_Var1, (CHARACTERGUID)_Var2)
+AND
+DB_CharacterPolymorphedInto(_Var2, _Var3)
+AND
+DB_HasMet(_Var1, _Var2, _Var3)
+THEN
+Proc_Dialogs_CharactersHaveMetInThisShape(_Var1, _Var2);
+
+PROC
+ProcSetHasMetTag((GUIDSTRING)_Var1, (CHARACTERGUID)_Var2)
+AND NOT
+DB_CharacterPolymorphedInto(_Var2, _)
+AND
+DB_HasMet(_Var1, _Var2, "")
+THEN
+Proc_Dialogs_CharactersHaveMetInThisShape(_Var1, _Var2);
+
+IF
+DialogEnded((STRING)_Var1, (INTEGER)_Var2)
+AND
+DB_DialogNPCs(_Var2, _Var3, _)
+AND
+DB_DialogPlayers(_Var2, _Var5, _)
+THEN
+ProcSetHasMetDBEntry(_Var1, _Var3, _Var5);
+
+PROC
+ProcSetHasMetDBEntry((STRING)_Var1, (GUIDSTRING)_Var2, (CHARACTERGUID)_Var3)
+AND
+DB_CharacterPolymorphedInto(_Var3, _Var4)
+THEN
+DB_HasMet(_Var2, _Var3, _Var4);
+
+PROC
+ProcSetHasMetDBEntry((STRING)_Var1, (GUIDSTRING)_Var2, (CHARACTERGUID)_Var3)
+AND NOT
+DB_CharacterPolymorphedInto(_Var3, _)
+THEN
+DB_HasMet(_Var2, _Var3, "");
+
+IF
+DialogEnded((STRING)_Var1, (INTEGER)_Var2)
+AND
+DB_DialogNPCs(_Var2, _Var3, _)
+THEN
+ClearTag(_Var3, "HasMet");
+
+PROC
+PROC_GLOBAL_DialogStartRequested((GUIDSTRING)_Var1, (GUIDSTRING)_Var2)
+THEN
+PROC_GLO_Origins_CheckTagPriorityDialogs(_Var1, _Var2);
+
+PROC
+PROC_GLO_Origins_CheckTagPriorityDialogs((GUIDSTRING)_Var1, (CHARACTERGUID)_Var2)
+AND
+DB_TagPriorityDialog(_Var1, _Var3, _Var4)
+AND NOT
+DB_GLO_OriginsFoundTagPriorityPlayer(1)
+AND
+IsTagged(_Var2, _Var4, 0)
+AND
+DB_IsPlayer(_Var5)
+AND
+QRY_SpeakerIsAvailableAndInDialogRange(_Var5, _Var2)
+AND
+_Var5 != _Var2
+AND
+CharacterGetReservedUserID(_Var2, _Var6)
+AND
+CharacterGetReservedUserID(_Var5, _Var6)
+AND
+IsTagged(_Var5, _Var4, 1)
+AND
+HasLineOfSight(_Var1, _Var5, 1)
+THEN
+DB_GLO_OriginsFoundTagPriorityPlayer(1);
+ProcForceStopDialog(_Var1);
+Proc_StartDialog(0, _Var3, _Var1, _Var5);
+PROC_GLO_Origins_ClearTaggedPrioritiesForDialog(_Var3);
+
+PROC
+PROC_GLO_Origins_ClearTaggedPrioritiesForDialog((STRING)_Var1)
+AND
+DB_TagPriorityDialog(_Var2, _Var1, _Var3)
+THEN
+NOT DB_TagPriorityDialog(_Var2, _Var1, _Var3);
+
+PROC
+PROC_GLO_Origins_CheckTagPriorityDialogs((GUIDSTRING)_Var1, (GUIDSTRING)_Var2)
+THEN
+NOT DB_GLO_OriginsFoundTagPriorityPlayer(1);
+
+PROC
+Proc_StartDialog((INTEGER)_Var1, (STRING)_Var2, (GUIDSTRING)_Var3)
+AND
+QRY_StartDialog(_Var1, _Var2, _Var3)
+THEN
+DB_NOOP(1);
+
+PROC
+Proc_StartDialog((INTEGER)_Var1, (STRING)_Var2, (GUIDSTRING)_Var3, (GUIDSTRING)_Var4)
+AND NOT
+DB_OriginMomentTag(_Var2, _, _)
+AND NOT
+DB_OriginMomentTag_HighPriority(_Var2, _, _)
+AND NOT
+DB_OriginRecruitmentDialog(_, _Var2)
+AND
+QRY_StartDialog(_Var1, _Var2, _Var3, _Var4)
+THEN
+DB_NOOP(1);
+
+PROC
+Proc_StartDialog((INTEGER)_Var1, (STRING)_Var2, (GUIDSTRING)_Var3, (GUIDSTRING)_Var4, (GUIDSTRING)_Var5)
+AND NOT
+DB_OriginMomentTag_3SP(_Var2, _, _)
+AND NOT
+DB_OriginMomentTag_HighPriority_3SP(_Var2, _, _)
+AND
+QRY_StartDialog(_Var1, _Var2, _Var3, _Var4, _Var5)
+THEN
+DB_NOOP(1);
+
+PROC
+Proc_StartDialog((INTEGER)_Var1, (STRING)_Var2, (GUIDSTRING)_Var3, (GUIDSTRING)_Var4, (GUIDSTRING)_Var5, (GUIDSTRING)_Var6)
+AND
+QRY_StartDialog(_Var1, _Var2, _Var3, _Var4, _Var5, _Var6)
+THEN
+DB_NOOP(1);
+
+PROC
+Proc_StartDialog((INTEGER)_Var1, (STRING)_Var2, (GUIDSTRING)_Var3, (GUIDSTRING)_Var4, (GUIDSTRING)_Var5, (GUIDSTRING)_Var6, (GUIDSTRING)_Var7)
+AND
+QRY_StartDialog(_Var1, _Var2, _Var3, _Var4, _Var5, _Var6, _Var7)
+THEN
+DB_NOOP(1);
+
+PROC
+Proc_StartDialog((INTEGER)_Var1, (STRING)_Var2, (GUIDSTRING)_Var3, (GUIDSTRING)_Var4, (GUIDSTRING)_Var5, (GUIDSTRING)_Var6, (GUIDSTRING)_Var7, (GUIDSTRING)_Var8)
+AND
+QRY_StartDialog(_Var1, _Var2, _Var3, _Var4, _Var5, _Var6, _Var7, _Var8)
+THEN
+DB_NOOP(1);
+
+QRY
+QRY_StartDialog(1, (STRING)_Var1, (GUIDSTRING)_Var2)
+AND
+QRY_SpeakerIsAvailable(_Var2, 1)
+AND
+StartDialog_Internal(_Var1, 0, _Var2, NULL_00000000-0000-0000-0000-000000000000, NULL_00000000-0000-0000-0000-000000000000, NULL_00000000-0000-0000-0000-000000000000, NULL_00000000-0000-0000-0000-000000000000, NULL_00000000-0000-0000-0000-000000000000, 1)
+THEN
+Proc_DialogFlagSetup(_Var1, _Var2);
+
+QRY
+QRY_StartDialog(1, (STRING)_Var1, (GUIDSTRING)_Var2, (GUIDSTRING)_Var3)
+AND
+QRY_SpeakerIsAvailable(_Var2, 1)
+AND
+QRY_SpeakerIsAvailable(_Var3, 1)
+AND
+StartDialog_Internal(_Var1, 0, _Var2, _Var3, NULL_00000000-0000-0000-0000-000000000000, NULL_00000000-0000-0000-0000-000000000000, NULL_00000000-0000-0000-0000-000000000000, NULL_00000000-0000-0000-0000-000000000000, 1)
+THEN
+Proc_DialogFlagSetup(_Var1, _Var2, _Var3);
+
+QRY
+QRY_StartDialog(1, (STRING)_Var1, (GUIDSTRING)_Var2, (GUIDSTRING)_Var3, (GUIDSTRING)_Var4)
+AND
+QRY_SpeakerIsAvailable(_Var2, 1)
+AND
+QRY_SpeakerIsAvailable(_Var3, 1)
+AND
+QRY_SpeakerIsAvailable(_Var4, 1)
+AND
+StartDialog_Internal(_Var1, 0, _Var2, _Var3, _Var4, NULL_00000000-0000-0000-0000-000000000000, NULL_00000000-0000-0000-0000-000000000000, NULL_00000000-0000-0000-0000-000000000000, 1)
+THEN
+Proc_DialogFlagSetup(_Var1, _Var2, _Var3, _Var4);
+
+QRY
+QRY_StartDialog(1, (STRING)_Var1, (GUIDSTRING)_Var2, (GUIDSTRING)_Var3, (GUIDSTRING)_Var4, (GUIDSTRING)_Var5)
+AND
+QRY_SpeakerIsAvailable(_Var2, 1)
+AND
+QRY_SpeakerIsAvailable(_Var3, 1)
+AND
+QRY_SpeakerIsAvailable(_Var4, 1)
+AND
+QRY_SpeakerIsAvailable(_Var5, 1)
+AND
+StartDialog_Internal(_Var1, 0, _Var2, _Var3, _Var4, _Var5, NULL_00000000-0000-0000-0000-000000000000, NULL_00000000-0000-0000-0000-000000000000, 1)
+THEN
+Proc_DialogFlagSetup(_Var1, _Var2, _Var3, _Var4, _Var5);
+
+QRY
+QRY_StartDialog(1, (STRING)_Var1, (GUIDSTRING)_Var2, (GUIDSTRING)_Var3, (GUIDSTRING)_Var4, (GUIDSTRING)_Var5, (GUIDSTRING)_Var6)
+AND
+QRY_SpeakerIsAvailable(_Var2, 1)
+AND
+QRY_SpeakerIsAvailable(_Var3, 1)
+AND
+QRY_SpeakerIsAvailable(_Var4, 1)
+AND
+QRY_SpeakerIsAvailable(_Var5, 1)
+AND
+QRY_SpeakerIsAvailable(_Var6, 1)
+AND
+StartDialog_Internal(_Var1, 0, _Var2, _Var3, _Var4, _Var5, _Var6, NULL_00000000-0000-0000-0000-000000000000, 1)
+THEN
+Proc_DialogFlagSetup(_Var1, _Var2, _Var3, _Var4, _Var5, _Var6, NULL_00000000-0000-0000-0000-000000000000);
+
+QRY
+QRY_StartDialog(1, (STRING)_Var1, (GUIDSTRING)_Var2, (GUIDSTRING)_Var3, (GUIDSTRING)_Var4, (GUIDSTRING)_Var5, (GUIDSTRING)_Var6, (GUIDSTRING)_Var7)
+AND
+QRY_SpeakerIsAvailable(_Var2, 1)
+AND
+QRY_SpeakerIsAvailable(_Var3, 1)
+AND
+QRY_SpeakerIsAvailable(_Var4, 1)
+AND
+QRY_SpeakerIsAvailable(_Var5, 1)
+AND
+QRY_SpeakerIsAvailable(_Var6, 1)
+AND
+QRY_SpeakerIsAvailable(_Var7, 1)
+AND
+StartDialog_Internal(_Var1, 0, _Var2, _Var3, _Var4, _Var5, _Var6, _Var7, 1)
+THEN
+Proc_DialogFlagSetup(_Var1, _Var2, _Var3, _Var4, _Var5, _Var6, _Var7);
+
+QRY
+QRY_StartDialog(0, (STRING)_Var1, (CHARACTERGUID)_Var2)
+AND
+QRY_SpeakerIsAvailable(_Var2)
+AND
+QRY_PrepForInteractiveDialog(_Var2)
+AND
+StartDialog_Internal(_Var1, 1, _Var2, NULL_00000000-0000-0000-0000-000000000000, NULL_00000000-0000-0000-0000-000000000000, NULL_00000000-0000-0000-0000-000000000000, NULL_00000000-0000-0000-0000-000000000000, NULL_00000000-0000-0000-0000-000000000000, 1)
+THEN
+Proc_DialogFlagSetup(_Var1, _Var2);
+CharacterMakeStoryNpc(_Var2, 1);
+ProcItemSetInvulnerableForDialog(_Var2);
+
+QRY
+QRY_StartDialog(0, (STRING)_Var1, (CHARACTERGUID)_Var2, (CHARACTERGUID)_Var3)
+AND
+QRY_SpeakerIsAvailable(_Var2)
+AND
+QRY_SpeakerIsAvailable(_Var3)
+AND
+QRY_PrepForInteractiveDialog(_Var2)
+AND
+QRY_PrepForInteractiveDialog(_Var3)
+AND
+StartDialog_Internal(_Var1, 1, _Var2, _Var3, NULL_00000000-0000-0000-0000-000000000000, NULL_00000000-0000-0000-0000-000000000000, NULL_00000000-0000-0000-0000-000000000000, NULL_00000000-0000-0000-0000-000000000000, 1)
+THEN
+Proc_DialogFlagSetup(_Var1, _Var2, _Var3);
+ProcFaceCharacter(_Var2, _Var3);
+ProcFaceCharacter(_Var3, _Var2);
+ProcItemSetInvulnerableForDialog(_Var2);
+ProcItemSetInvulnerableForDialog(_Var3);
+CharacterMakeStoryNpc(_Var2, 1);
+CharacterMakeStoryNpc(_Var3, 1);
+DB_HasMetCharactersToCheck(_Var2, _Var3);
+
+QRY
+QRY_StartDialog(0, (STRING)_Var1, (CHARACTERGUID)_Var2, (CHARACTERGUID)_Var3, (CHARACTERGUID)_Var4)
+AND
+QRY_SpeakerIsAvailable(_Var2)
+AND
+QRY_SpeakerIsAvailable(_Var3)
+AND
+QRY_SpeakerIsAvailable(_Var4)
+AND
+QRY_PrepForInteractiveDialog(_Var2)
+AND
+QRY_PrepForInteractiveDialog(_Var3)
+AND
+QRY_PrepForInteractiveDialog(_Var4)
+AND
+StartDialog_Internal(_Var1, 1, _Var2, _Var3, _Var4, NULL_00000000-0000-0000-0000-000000000000, NULL_00000000-0000-0000-0000-000000000000, NULL_00000000-0000-0000-0000-000000000000, 1)
+THEN
+Proc_DialogFlagSetup(_Var1, _Var2, _Var3, _Var4);
+ProcFaceCharacter(_Var2, _Var4);
+ProcFaceCharacter(_Var3, _Var4);
+ProcFaceCharacter(_Var4, _Var2);
+ProcItemSetInvulnerableForDialog(_Var2);
+ProcItemSetInvulnerableForDialog(_Var3);
+ProcItemSetInvulnerableForDialog(_Var4);
+CharacterMakeStoryNpc(_Var2, 1);
+CharacterMakeStoryNpc(_Var3, 1);
+CharacterMakeStoryNpc(_Var4, 1);
+DB_HasMetCharactersToCheck(_Var2, _Var3);
+DB_HasMetCharactersToCheck(_Var2, _Var4);
+
+QRY
+QRY_StartDialog(0, (STRING)_Var1, (CHARACTERGUID)_Var2, (CHARACTERGUID)_Var3, (CHARACTERGUID)_Var4, (CHARACTERGUID)_Var5)
+AND
+QRY_SpeakerIsAvailable(_Var2)
+AND
+QRY_SpeakerIsAvailable(_Var3)
+AND
+QRY_SpeakerIsAvailable(_Var4)
+AND
+QRY_SpeakerIsAvailable(_Var5)
+AND
+QRY_PrepForInteractiveDialog(_Var2)
+AND
+QRY_PrepForInteractiveDialog(_Var3)
+AND
+QRY_PrepForInteractiveDialog(_Var4)
+AND
+QRY_PrepForInteractiveDialog(_Var5)
+AND
+StartDialog_Internal(_Var1, 1, _Var2, _Var3, _Var4, _Var5, NULL_00000000-0000-0000-0000-000000000000, NULL_00000000-0000-0000-0000-000000000000, 1)
+THEN
+Proc_DialogFlagSetup(_Var1, _Var2, _Var3, _Var4, _Var5);
+ProcFaceCharacter(_Var2, _Var5);
+ProcFaceCharacter(_Var3, _Var5);
+ProcFaceCharacter(_Var4, _Var5);
+ProcFaceCharacter(_Var5, _Var2);
+ProcItemSetInvulnerableForDialog(_Var2);
+ProcItemSetInvulnerableForDialog(_Var3);
+ProcItemSetInvulnerableForDialog(_Var4);
+ProcItemSetInvulnerableForDialog(_Var5);
+CharacterMakeStoryNpc(_Var2, 1);
+CharacterMakeStoryNpc(_Var3, 1);
+CharacterMakeStoryNpc(_Var4, 1);
+CharacterMakeStoryNpc(_Var5, 1);
+DB_HasMetCharactersToCheck(_Var2, _Var3);
+DB_HasMetCharactersToCheck(_Var2, _Var4);
+DB_HasMetCharactersToCheck(_Var2, _Var5);
+
+QRY
+QRY_StartDialog(0, (STRING)_Var1, (CHARACTERGUID)_Var2, (CHARACTERGUID)_Var3, (CHARACTERGUID)_Var4, (CHARACTERGUID)_Var5, (CHARACTERGUID)_Var6)
+AND
+QRY_SpeakerIsAvailable(_Var2)
+AND
+QRY_SpeakerIsAvailable(_Var3)
+AND
+QRY_SpeakerIsAvailable(_Var4)
+AND
+QRY_SpeakerIsAvailable(_Var5)
+AND
+QRY_SpeakerIsAvailable(_Var6)
+AND
+QRY_PrepForInteractiveDialog(_Var2)
+AND
+QRY_PrepForInteractiveDialog(_Var3)
+AND
+QRY_PrepForInteractiveDialog(_Var4)
+AND
+QRY_PrepForInteractiveDialog(_Var5)
+AND
+QRY_PrepForInteractiveDialog(_Var6)
+AND
+StartDialog_Internal(_Var1, 1, _Var2, _Var3, _Var4, _Var5, _Var6, NULL_00000000-0000-0000-0000-000000000000, 1)
+THEN
+Proc_DialogFlagSetup(_Var1, _Var2, _Var3, _Var4, _Var5, _Var6);
+ProcFaceCharacter(_Var2, _Var6);
+ProcFaceCharacter(_Var3, _Var6);
+ProcFaceCharacter(_Var4, _Var6);
+ProcFaceCharacter(_Var5, _Var6);
+ProcFaceCharacter(_Var6, _Var2);
+ProcItemSetInvulnerableForDialog(_Var2);
+ProcItemSetInvulnerableForDialog(_Var3);
+ProcItemSetInvulnerableForDialog(_Var4);
+ProcItemSetInvulnerableForDialog(_Var5);
+ProcItemSetInvulnerableForDialog(_Var6);
+CharacterMakeStoryNpc(_Var2, 1);
+CharacterMakeStoryNpc(_Var3, 1);
+CharacterMakeStoryNpc(_Var4, 1);
+CharacterMakeStoryNpc(_Var5, 1);
+CharacterMakeStoryNpc(_Var6, 1);
+DB_HasMetCharactersToCheck(_Var2, _Var3);
+DB_HasMetCharactersToCheck(_Var2, _Var4);
+DB_HasMetCharactersToCheck(_Var2, _Var5);
+DB_HasMetCharactersToCheck(_Var2, _Var6);
+
+QRY
+QRY_StartDialog(0, (STRING)_Var1, (CHARACTERGUID)_Var2, (CHARACTERGUID)_Var3, (CHARACTERGUID)_Var4, (CHARACTERGUID)_Var5, (CHARACTERGUID)_Var6, (CHARACTERGUID)_Var7)
+AND
+QRY_SpeakerIsAvailable(_Var2)
+AND
+QRY_SpeakerIsAvailable(_Var3)
+AND
+QRY_SpeakerIsAvailable(_Var4)
+AND
+QRY_SpeakerIsAvailable(_Var5)
+AND
+QRY_SpeakerIsAvailable(_Var6)
+AND
+QRY_SpeakerIsAvailable(_Var7)
+AND
+QRY_PrepForInteractiveDialog(_Var2)
+AND
+QRY_PrepForInteractiveDialog(_Var3)
+AND
+QRY_PrepForInteractiveDialog(_Var4)
+AND
+QRY_PrepForInteractiveDialog(_Var5)
+AND
+QRY_PrepForInteractiveDialog(_Var6)
+AND
+QRY_PrepForInteractiveDialog(_Var7)
+AND
+StartDialog_Internal(_Var1, 1, _Var2, _Var3, _Var4, _Var5, _Var6, _Var7, 1)
+THEN
+Proc_DialogFlagSetup(_Var1, _Var2, _Var3, _Var4, _Var5, _Var6, _Var7);
+ProcFaceCharacter(_Var2, _Var7);
+ProcFaceCharacter(_Var3, _Var7);
+ProcFaceCharacter(_Var4, _Var7);
+ProcFaceCharacter(_Var5, _Var7);
+ProcFaceCharacter(_Var6, _Var7);
+ProcFaceCharacter(_Var7, _Var2);
+ProcItemSetInvulnerableForDialog(_Var2);
+ProcItemSetInvulnerableForDialog(_Var3);
+ProcItemSetInvulnerableForDialog(_Var4);
+ProcItemSetInvulnerableForDialog(_Var5);
+ProcItemSetInvulnerableForDialog(_Var6);
+ProcItemSetInvulnerableForDialog(_Var7);
+CharacterMakeStoryNpc(_Var2, 1);
+CharacterMakeStoryNpc(_Var3, 1);
+CharacterMakeStoryNpc(_Var4, 1);
+CharacterMakeStoryNpc(_Var5, 1);
+CharacterMakeStoryNpc(_Var6, 1);
+CharacterMakeStoryNpc(_Var7, 1);
+DB_HasMetCharactersToCheck(_Var2, _Var3);
+DB_HasMetCharactersToCheck(_Var2, _Var4);
+DB_HasMetCharactersToCheck(_Var2, _Var5);
+DB_HasMetCharactersToCheck(_Var2, _Var6);
+DB_HasMetCharactersToCheck(_Var2, _Var7);
+
+QRY
+QRY_PrepForInteractiveDialog((GUIDSTRING)_Var1)
+THEN
+DialogRequestStop(_Var1);
+
+PROC
+ProcItemSetInvulnerableForDialog((GUIDSTRING)_Var1)
+AND
+ObjectIsItem(_Var1, 1)
+THEN
+SetInvulnerable_UseProcSetInvulnerable(_Var1, 1);
+
+PROC
+Proc_DialogFlagSetup((STRING)_Var1, (GUIDSTRING)_Var2)
+THEN
+DB_NOOP(1);
+
+PROC
+Proc_DialogFlagSetup((STRING)_Var1, (GUIDSTRING)_Var2, (GUIDSTRING)_Var3)
+THEN
+DB_NOOP(1);
+
+PROC
+Proc_DialogFlagSetup((STRING)_Var1, (GUIDSTRING)_Var2, (GUIDSTRING)_Var3, (GUIDSTRING)_Var4)
+THEN
+DB_NOOP(1);
+
+PROC
+Proc_DialogFlagSetup((STRING)_Var1, (GUIDSTRING)_Var2, (GUIDSTRING)_Var3, (GUIDSTRING)_Var4, (GUIDSTRING)_Var5)
+THEN
+DB_NOOP(1);
+
+PROC
+Proc_DialogFlagSetup((STRING)_Var1, (GUIDSTRING)_Var2, (GUIDSTRING)_Var3, (GUIDSTRING)_Var4, (GUIDSTRING)_Var5, (GUIDSTRING)_Var6)
+THEN
+DB_NOOP(1);
+
+PROC
+Proc_DialogFlagSetup((STRING)_Var1, (GUIDSTRING)_Var2, (GUIDSTRING)_Var3, (GUIDSTRING)_Var4, (GUIDSTRING)_Var5, (GUIDSTRING)_Var6, (GUIDSTRING)_Var7)
+THEN
+DB_NOOP(1);
+
+IF
+DialogEnded(_, (INTEGER)_Var2)
+THEN
+DB_MarkedForDelete(_Var2);
+ProcClearDialogFlagsForPlayers(_Var2);
+ProcClearDialogFlagsForNPCs(_Var2);
+
+PROC
+ProcSetAnimalFoodEvents((CHARACTERGUID)_Var1, _)
+THEN
+SetVarInteger(_Var1, "GEN_HasAnimalFood", 0);
+
+PROC
+ProcSetAnimalFoodEvents((CHARACTERGUID)_Var1, (CHARACTERGUID)_Var2)
+AND
+DB_AnimalFoodVars(_Var3)
+AND
+GetVarFixedString(_Var2, _Var3, _Var4)
+AND
+_Var4 != "DONTEAT"
+AND
+QryItemTemplateInMagicPockets(_Var1, _Var4)
+THEN
+SetVarInteger(_Var1, "GEN_HasAnimalFood", 1);
+
+PROC
+ProcGiveAnimalFood((CHARACTERGUID)_Var1, (CHARACTERGUID)_Var2)
+AND
+DB_AnimalFoodVars(_Var3)
+AND
+GetVarFixedString(_Var2, _Var3, _Var4)
+AND
+_Var4 != "DONTEAT"
+AND NOT
+DB_FoodGiven(_Var1)
+AND
+QryRemoveItemTemplateFromMagicPockets(_Var1, _Var4, 1)
+THEN
+DB_FoodGiven(_Var1);
+CharacterAddAttitudeTowardsPlayer(_Var2, _Var1, 5);
+
+PROC
+ProcGiveAnimalFood((CHARACTERGUID)_Var1, (CHARACTERGUID)_Var2)
+THEN
+NOT DB_FoodGiven(_Var1);
+
+IF
+ObjectFlagSet("GEN_PlayerGivesFood", (CHARACTERGUID)_Var1, (INTEGER)_Var2)
+AND
+DB_DialogNPCs(_Var2, _Var3, 1)
+THEN
+ProcGiveAnimalFood(_Var1, _Var3);
+
+PROC
+PROC_GLOBAL_DialogCustomOverride((GUIDSTRING)_Var1, (GUIDSTRING)_Var2)
+THEN
+DB_NOOP(1);
+
+PROC
+SelectAndStartDialog((GUIDSTRING)_Var1, (GUIDSTRING)_Var2)
+THEN
+PROC_GLOBAL_DialogCustomOverride(_Var2, _Var1);
+
+PROC
+PROC_GLOBAL_DialogStartRequested((GUIDSTRING)_Var1, (GUIDSTRING)_Var2)
+THEN
+DB_NOOP(1);
+
+PROC
+SelectAndStartDialog((GUIDSTRING)_Var1, (GUIDSTRING)_Var2)
+AND NOT
+DB_FoundDialog(_Var2, _Var1)
+THEN
+PROC_GLOBAL_DialogStartRequested(_Var2, _Var1);
+
+PROC
+StartHostileDialog((CHARACTERGUID)_Var1, (CHARACTERGUID)_Var2)
+AND
+IsTagged(_Var2, "ANIMAL", 1)
+THEN
+DB_FoundDialog(_Var2, _Var1);
+ProcSetAnimalFoodEvents(_Var1, _Var2);
+Proc_StartDialog(0, "GEB_Default_AnimalHostile", _Var2, _Var1);
+
+PROC
+StartHostileDialog((GUIDSTRING)_Var1, (GUIDSTRING)_Var2)
+AND
+IsTagged(_Var2, "ANIMAL", 0)
+THEN
+StartHostileDialog_1(_Var1, _Var2);
+
+PROC
+StartHostileDialog_1((GUIDSTRING)_Var1, (GUIDSTRING)_Var2)
+AND
+DB_HostileDialog(_Var2, _Var3)
+THEN
+DB_FoundDialog(_Var2, _Var1);
+Proc_StartDialog(0, _Var3, _Var2, _Var1);
+
+PROC
+StartHostileDialog_1((GUIDSTRING)_Var1, (GUIDSTRING)_Var2)
+AND NOT
+DB_FoundDialog(_Var2, _Var1)
+THEN
+DB_FoundDialog(_Var2, _Var1);
+Proc_StartDialog(0, "GEB_Default_Hostile", _Var2, _Var1);
+
+PROC
+SelectAndStartDialog((CHARACTERGUID)_Var1, (CHARACTERGUID)_Var2)
+AND NOT
+DB_FoundDialog(_Var2, _Var1)
+AND
+DB_IsPlayer(_Var1)
+AND
+DB_IsPlayer(_Var2)
+AND
+CharacterGetReservedUserID(_Var1, _Var3)
+AND
+CharacterGetReservedUserID(_Var2, _Var4)
+AND
+_Var3 != _Var4
+THEN
+Proc_StartDialog(1, "GLO_AD_CompanionCantTalk", _Var2);
+DB_FoundDialog(_Var2, _Var1);
+
+PROC
+SelectAndStartDialog((CHARACTERGUID)_Var1, (CHARACTERGUID)_Var2)
+AND NOT
+DB_FoundDialog(_Var2, _Var1)
+AND
+DB_IsPlayer(_Var1)
+AND
+DB_IsPlayer(_Var2)
+AND
+IsTagged(_Var1, "AVATAR", 0)
+AND
+IsTagged(_Var2, "AVATAR", 0)
+AND
+DB_CompanionAvatarBond(_Var2, _Var3)
+AND
+IsTagged(_Var3, "AVATAR", 1)
+AND
+CharacterGetReservedUserID(_Var3, _Var4)
+AND
+CharacterGetReservedUserID(_Var2, _Var4)
+AND
+QRY_SpeakerIsAvailableAndInDialogRange(_Var3, _Var2)
+THEN
+SelectAndStartDialog(_Var3, _Var2);
+MakePlayerActive(_Var3);
+DB_FoundDialog(_Var2, _Var1);
+
+PROC
+SelectAndStartDialog((CHARACTERGUID)_Var1, (CHARACTERGUID)_Var2)
+AND NOT
+DB_FoundDialog(_Var2, _Var1)
+AND
+DB_IsPlayer(_Var1)
+AND
+DB_IsPlayer(_Var2)
+AND
+IsTagged(_Var1, "AVATAR", 0)
+AND
+IsTagged(_Var2, "AVATAR", 0)
+THEN
+Proc_StartDialog(1, "GLO_AD_CompanionCantTalk", _Var2);
+DB_FoundDialog(_Var2, _Var1);
+
+PROC
+SelectAndStartDialog((GUIDSTRING)_Var1, (CHARACTERGUID)_Var2)
+AND NOT
+DB_FoundDialog(_Var2, _Var1)
+AND
+DB_GLO_PartyMembers_RecruiteeAvatarBond(_Var2, _Var3)
+AND
+_Var1 != _Var3
+THEN
+Proc_StartDialog(0, "GLO_NonBondedCompanionDialog", _Var2, _Var1);
+DB_FoundDialog(_Var2, _Var1);
+
+PROC
+SelectAndStartDialog((CHARACTERGUID)_Var1, (CHARACTERGUID)_Var2)
+AND NOT
+DB_FoundDialog(_Var2, _Var1)
+AND
+DB_RelationshipDialogs(_Var2, _Var3)
+AND
+DB_CompanionAvatarBond(_Var2, _Var1)
+AND
+QRY_StartDialog(0, _Var3, _Var2, _Var1)
+THEN
+NOT DB_RelationshipDialogs(_Var2, _Var3);
+DB_FoundDialog(_Var2, _Var1);
+
+PROC
+SelectAndStartDialog((CHARACTERGUID)_Var1, (CHARACTERGUID)_Var2)
+AND
+IsTagged(_Var2, "ANIMAL", 0)
+AND NOT
+DB_FoundDialog(_Var2, _Var1)
+AND
+CharacterGetAttitudeTowardsPlayer(_Var2, _Var1, _Var3)
+AND
+_Var3 <= -45
+AND NOT
+DB_IsPlayer(_Var2)
+AND NOT
+DB_NoLowAttitudeDialog(_Var2)
+THEN
+StartHostileDialog(_Var1, _Var2);
+DB_FoundDialog(_Var2, _Var1);
+
+PROC
+SelectAndStartDialog((CHARACTERGUID)_Var1, (CHARACTERGUID)_Var2)
+AND NOT
+DB_FoundDialog(_Var2, _Var1)
+AND
+CharacterIsInFightMode(_Var1, 1)
+AND NOT
+DB_IsPlayer(_Var2)
+AND NOT
+DB_BlockThreatenedDialog(_Var2)
+AND
+IsTagged(_Var2, "ANIMAL", 0)
+AND NOT
+DB_CombatCharacters(_Var1, _)
+THEN
+StartThreatenedDialog(_Var2, _Var1);
+
+PROC
+StartThreatenedDialog((CHARACTERGUID)_Var1, (GUIDSTRING)_Var2)
+AND
+CharacterCanTrade(_Var1, _Var3)
+THEN
+DB_FoundDialog(_Var1, _Var2);
+Proc_StartDialog(0, "GEB_Warning_Weapons_StartDialog", _Var1, _Var2);
+CharacterSetCanTrade(_Var1, 0);
+DB_CouldTrade(_Var1, _Var3);
+
+IF
+DialogEnded("GEB_Warning_Weapons_StartDialog", (INTEGER)_Var1)
+AND
+DB_DialogNPCs(_Var1, _Var2, 1)
+AND
+DB_CouldTrade(_Var2, _Var3)
+THEN
+NOT DB_CouldTrade(_Var2, _Var3);
+CharacterSetCanTrade(_Var2, _Var3);
+
+PROC
+PROC_GLOBAL_DialogStartRequested_AfterGenerics((GUIDSTRING)_Var1, (GUIDSTRING)_Var2)
+THEN
+DB_NOOP(1);
+
+PROC
+SelectAndStartDialog((GUIDSTRING)_Var1, (GUIDSTRING)_Var2)
+AND NOT
+DB_FoundDialog(_Var2, _Var1)
+THEN
+PROC_GLOBAL_DialogStartRequested_AfterGenerics(_Var2, _Var1);
+
+PROC
+SelectAndStartDialog((GUIDSTRING)_Var1, (GUIDSTRING)_Var2)
+AND NOT
+DB_FoundDialog(_Var2, _Var1)
+THEN
+DB_FoundDialog(_Var2, _Var1);
+NPCDialogStartRequested(_Var2, _Var1);
+
+PROC
+SelectAndStartDialog((GUIDSTRING)_Var1, (GUIDSTRING)_Var2)
+THEN
+NOT DB_FoundDialog(_Var2, _Var1);
+
+IF
+DialogStartRequested((GUIDSTRING)_Var1, (GUIDSTRING)_Var2)
+AND
+QRY_SpeakerIsAvailable(_Var2)
+AND
+QRY_SpeakerIsAvailable(_Var1)
+THEN
+SelectAndStartDialog(_Var2, _Var1);
+
+IF
+CharacterDying((CHARACTERGUID)_Var1)
+THEN
+DialogRequestStop(_Var1);
+
+IF
+CharacterUnlockedTalent((CHARACTERGUID)_Var1, "AnimalEmpathy")
+THEN
+SetTag(_Var1, "PETPAL");
+
+IF
+CharacterLockedTalent((CHARACTERGUID)_Var1, "AnimalEmpathy")
+THEN
+ClearTag(_Var1, "PETPAL");
+
+IF
+DB_IsPlayer(_Var1)
+AND
+CharacterHasTalent(_Var1, "AnimalEmpathy", 1)
+THEN
+SetTag(_Var1, "PETPAL");
+
+IF
+CharacterCreationFinished((CHARACTERGUID)_Var1)
+AND
+_Var1 != NULL_00000000-0000-0000-0000-000000000000
+AND
+CharacterHasTalent(_Var1, "AnimalEmpathy", 0)
+THEN
+ClearTag(_Var1, "PETPAL");
+
+IF
+ChildDialogRequested((STRING)_Var1, (INTEGER)_Var2, (INTEGER)_Var3)
+AND NOT
+DB_CustomChildDialog(_Var1)
+AND
+DB_DialogPlayers(_Var2, _Var4, 1)
+THEN
+ProcStartChildDialog(_Var1, _Var2, _Var3);
+
+PROC
+ProcStartChildDialog((STRING)_Var1, (INTEGER)_Var2, (INTEGER)_Var3)
+THEN
+DB_TargetInstancespeakers(_Var3, 1, NULL_00000000-0000-0000-0000-000000000000);
+DB_TargetInstancespeakers(_Var3, 2, NULL_00000000-0000-0000-0000-000000000000);
+DB_TargetInstancespeakers(_Var3, 3, NULL_00000000-0000-0000-0000-000000000000);
+DB_TargetInstancespeakers(_Var3, 4, NULL_00000000-0000-0000-0000-000000000000);
+
+PROC
+ProcStartChildDialog((STRING)_Var1, (INTEGER)_Var2, (INTEGER)_Var3)
+AND
+DB_DialogNumPlayers(_Var2, _Var4)
+AND
+DB_DialogNumNPCs(_Var2, _Var5)
+AND
+IntegerSum(_Var4, _Var5, _Var6)
+AND
+_Var6 > 4
+THEN
+DebugBreak("too many speakers to fit in the child dialog! Need custom scripting and/or extension on speaker limit");
+
+PROC
+ProcStartChildDialog(_, (INTEGER)_Var2, (INTEGER)_Var3)
+AND
+DB_DialogNPCs(_Var2, _Var4, _Var5)
+THEN
+NOT DB_TargetInstancespeakers(_Var3, _Var5, NULL_00000000-0000-0000-0000-000000000000);
+DB_TargetInstancespeakers(_Var3, _Var5, _Var4);
+
+PROC
+ProcStartChildDialog(_, (INTEGER)_Var2, (INTEGER)_Var3)
+AND
+DB_DialogPlayers(_Var2, _Var4, _Var5)
+AND
+DB_DialogNumNPCs(_Var2, _Var6)
+AND
+IntegerSum(_Var6, _Var5, _Var7)
+THEN
+NOT DB_TargetInstancespeakers(_Var3, _Var7, NULL_00000000-0000-0000-0000-000000000000);
+DB_TargetInstancespeakers(_Var3, _Var7, _Var4);
+
+PROC
+ProcStartChildDialog((STRING)_Var1, (INTEGER)_Var2, (INTEGER)_Var3)
+AND
+DB_TargetInstancespeakers(_Var3, 1, _Var4)
+AND
+DB_TargetInstancespeakers(_Var3, 2, _Var5)
+AND
+DB_TargetInstancespeakers(_Var3, 3, _Var6)
+AND
+DB_TargetInstancespeakers(_Var3, 4, _Var7)
+AND
+DialogStartChildDialog(_Var1, _Var2, _Var3, _Var4, _Var5, _Var6, _Var7, _)
+THEN
+DB_NOOP(1);
+
+PROC
+ProcStartChildDialog((STRING)_Var1, (INTEGER)_Var2, (INTEGER)_Var3)
+AND
+DB_TargetInstancespeakers(_Var3, _Var4, _Var5)
+THEN
+NOT DB_TargetInstancespeakers(_Var3, _Var4, _Var5);
+
+
+EXITSECTION
+ENDEXITSECTION
+

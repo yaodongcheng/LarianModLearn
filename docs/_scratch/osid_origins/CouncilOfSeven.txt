@@ -1,0 +1,27 @@
+Version 1
+SubGoalCombiner SGC_AND
+
+INITSECTION
+DB_CheckLevelStart("CoS_Main");
+
+KBSECTION
+IF
+RegionStarted("CoS_Main")
+THEN
+GoalCompleted;
+Proc_CouncilOfSeven_Init();
+
+IF
+DB_CheckLevelStart("CoS_Main")
+AND
+DB_CurrentLevel("CoS_Main")
+THEN
+GoalCompleted;
+Proc_CouncilOfSeven_Init();
+
+
+EXITSECTION
+NOT DB_CheckLevelStart("CoS_Main");
+ENDEXITSECTION
+
+ParentTargetEdge "Start"

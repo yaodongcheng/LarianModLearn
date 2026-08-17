@@ -1,0 +1,450 @@
+Version 1
+SubGoalCombiner SGC_AND
+
+INITSECTION
+ProcTriggerRegisterForPlayers(TRIGGERGUID_S_ARX_Sewers_TurretRoom_Trig_01cd50d2-9c3a-4252-971d-98235d6dcb52);
+DB_ARX_Sewers_ActivateTurret_Count(0);
+DB_ARX_Sewers_Turret_IsActive(1, 1, "ARX_Sewers_Turret_IsActive_1_1", "ARX_Sewers_Turret_IsActive_0_1");
+DB_ARX_Sewers_Turret_IsActive(2, 1, "ARX_Sewers_Turret_IsActive_1_1", "ARX_Sewers_Turret_IsActive_0_1");
+DB_ARX_Sewers_Turret_IsActive(3, 1, "ARX_Sewers_Turret_IsActive_1_1", "ARX_Sewers_Turret_IsActive_0_1");
+DB_ARX_Sewers_Turret_IsActive(4, 1, "ARX_Sewers_Turret_IsActive_1_5", "ARX_Sewers_Turret_IsActive_0_5");
+DB_ARX_Sewers_Turret_IsActive(5, 1, "ARX_Sewers_Turret_IsActive_1_5", "ARX_Sewers_Turret_IsActive_0_5");
+DB_ARX_Sewers_Turret_IsActive(6, 1, "ARX_Sewers_Turret_IsActive_1_5", "ARX_Sewers_Turret_IsActive_0_5");
+DB_ARX_Sewers_Turret_IsActive(7, 1, "ARX_Sewers_Turret_IsActive_1_6", "ARX_Sewers_Turret_IsActive_0_6");
+DB_ARX_Sewers_Turret_IsActive(8, 1, "ARX_Sewers_Turret_IsActive_1_6", "ARX_Sewers_Turret_IsActive_0_6");
+DB_ARX_Sewers_Turret_IsActive(9, 1, "ARX_Sewers_Turret_IsActive_1_6", "ARX_Sewers_Turret_IsActive_0_6");
+DB_ARX_Sewers_TurretsActive_Doors(ITEMGUID_S_ARX_Sewers_Turret_Door_01_ac47f851-c002-4e74-9e60-84049d1ffe97);
+DB_ARX_Sewers_TurretsActive_Doors(ITEMGUID_S_ARX_Sewers_Turret_Door_02_237e8b9d-f7c6-4896-8423-3f540c6ab37c);
+DB_ARX_Sewers_TurretsActive_Doors(ITEMGUID_S_ARX_Sewers_Turret_Door_03_ef5ddd8a-16b4-48f1-a749-5e6548d10b37);
+DB_ARX_Sewers_Turret_Plates(ITEMGUID_S_ARX_Sewers_PressureRoom_Plate_015_9ea9ae06-6ea3-4edc-9182-e1e88d15139c, 1, "ARX_Sewers_Turret_IsActive_1_6", "ARX_Sewers_Turret_IsActive_0_6");
+DB_ARX_Sewers_Turret_Plates(ITEMGUID_S_ARX_Sewers_PressureRoom_Plate_03_6aa3a95c-bfcc-4533-a0d5-dd74da95a1fa, 1, "ARX_Sewers_Turret_IsActive_1_6", "ARX_Sewers_Turret_IsActive_0_6");
+DB_ARX_Sewers_Turret_Plates(ITEMGUID_S_ARX_Sewers_PressureRoom_Plate_06_31968439-8f41-4410-84a9-f3adc2545818, 1, "ARX_Sewers_Turret_IsActive_1_5", "ARX_Sewers_Turret_IsActive_0_5");
+DB_ARX_Sewers_Turret_Plates(ITEMGUID_S_ARX_Sewers_PressureRoom_Plate_09_a8a98eeb-e1e3-4272-90d9-112f3683b926, 1, "ARX_Sewers_Turret_IsActive_1_5", "ARX_Sewers_Turret_IsActive_0_5");
+DB_ARX_Sewers_Turret_Plates(ITEMGUID_S_ARX_Sewers_PressureRoom_Plate_10_59c5d93b-1f89-4b8e-bb67-0390766162d0, 1, "ARX_Sewers_Turret_IsActive_1_1", "ARX_Sewers_Turret_IsActive_0_1");
+DB_ARX_Sewers_Turret_Plates(ITEMGUID_S_ARX_Sewers_PressureRoom_Plate_12_54468d0b-60ce-4b87-91f7-0f66175a946d, 1, "ARX_Sewers_Turret_IsActive_1_1", "ARX_Sewers_Turret_IsActive_0_1");
+DB_Dialogs(CHARACTERGUID_S_ARX_Sewers_RatStone_Rat_ba574b5c-44c1-4c3f-8160-37776f3a63fb, "ARX_Sewers_RatStone_Rat");
+DB_OneShotPlayerTrigger(TRIGGERGUID_S_ARX_Sewers_SpikedCorridor_RatRunTrigger_3ac7e3f6-8354-4c2a-a027-1a8144c02a9a);
+DB_Dialogs(CHARACTERGUID_S_ARX_Sewers_SpikedCorridor_Rat_bb051dbc-af9b-4ac1-b22f-adc7be40f6df, "ARX_Sewers_SpikedCorridor_Rat");
+DB_OneShotPlayerTrigger(TRIGGERGUID_S_ARX_Sewers_PeacemakersCrates_01_7f81b6af-be76-4cc8-aac6-96c168b06702);
+DB_OneShotPlayerTrigger(TRIGGERGUID_S_ARX_Sewers_PeacemakersCrates_02_1617549f-7fb2-4694-a781-f23f75b98ef5);
+DB_Ghosts(CHARACTERGUID_S_ARX_Sewers_CombatRoom_QsPrisonerGhost_a581bdb9-d2d0-4fb0-8f4e-f30b086aca2d, "ARX_Sewers_CombatRoom_QsPrisonerGhost");
+DB_SecretRegions_OnOpenedDoor(TRIGGERGUID_S_ARX_Sewers_SecretTrigger_ToTheQueen_3b5672e7-0b40-4a44-ac21-5541941a9608, ITEMGUID_S_ARX_Sewers_ToTheQueen_SecretDoor_95b07ea4-38b4-4f02-aa33-2b9499415a23);
+DB_SecretRegions_OnOpenedDoor(TRIGGERGUID_S_ARX_Sewers_SecretTrigger_AmbushRoom_0fc2599a-8553-4768-bc17-e5455c061fc5, ITEMGUID_S_ARX_Sewers_AmbushRoom_SecretDoor_587e6525-44c3-43b6-b79d-6dfda4462576);
+DB_SecretRegions_OnOpenedDoor(TRIGGERGUID_S_ARX_Sewers_SecretTrigger_ThievesGuild_bad39189-8531-46d9-a159-d780daab7cdd, ITEMGUID_S_ARX_Sewers_ThievesGuild_HiddenDoor_2a9ddab3-03d6-4694-b782-d2c53a911834);
+DB_SecretRegions_OnEnteredTrig(TRIGGERGUID_S_ARX_Sewers_SecretTrigger_ThievesGuild_bad39189-8531-46d9-a159-d780daab7cdd, TRIGGERGUID_S_ARX_Sewers_ThievesGuild_78585cd2-5618-47d4-9582-917172bca61a);
+DB_SecretRegions_OnEnteredTrig(TRIGGERGUID_S_ARX_Sewers_SecretTrigger_QsLab_ba64ce21-6f4b-4eed-914c-12ff4cde8baa, TRIGGERGUID_S_ARX_Sewers_QsLab_SecretTrigger_076c36fc-fe0c-4b7c-b2c6-5c5de2a82438);
+DB_SecretRegions_OnEnteredTrig(TRIGGERGUID_S_ARX_MerchantEstate_Cellar_SecretTrigger_24247425-4b11-4e17-9b47-974540a85b06, TRIGGERGUID_S_ARX_MerchantEstate_Cellar_SecretTrigger_EneteredTrig_2a842386-6e72-47cf-b540-954760ea63f7);
+DB_SecretRegions_OnStoryEvent(TRIGGERGUID_S_ARX_Sewers_SecretTrigger_QsLab_ba64ce21-6f4b-4eed-914c-12ff4cde8baa, "ARX_Sewers_MagicDoor_PlayEffect");
+ItemSetCanInteract(ITEMGUID_S_ARX_Sewers_SecretWall_ToQueen_efa4d854-06e9-47be-8ef0-1cf8bd522ad0, 0);
+DB_ARX_QuestDef_DeadCharacterUpdates(CHARACTERGUID_S_ARX_Sewers_TheEmpress_78c95ad2-2d1a-4358-9c9c-77ff9a5fc3c9, "QuestUpdate_RC_ARX_TheImperialDwarves_Queen_IsDead");
+DB_KilledEvent(CHARACTERGUID_S_ARX_Sewers_TheEmpress_78c95ad2-2d1a-4358-9c9c-77ff9a5fc3c9, "QuestUpdate_RC_ARX_TheImperialDwarves_Queen_Assassinate");
+DB_KilledEvent(CHARACTERGUID_S_ARX_Sewers_TheEmpress_78c95ad2-2d1a-4358-9c9c-77ff9a5fc3c9, "QuestUpdate_RC_ARX_TheImperialDwarves_Queen_IsDead");
+ProcTriggerRegisterForPlayers(TRIGGERGUID_S_ARX_Sewers_KidsPrison_Trigger_a3589d5a-4518-46b8-89db-567d6fb5a384);
+TriggerRegisterForItems(TRIGGERGUID_S_ARX_Sewers_KidsPrison_Trigger_a3589d5a-4518-46b8-89db-567d6fb5a384);
+ProcTriggerRegisterForPlayers(TRIGGERGUID_S_ARX_Sewers_456f708b-fbf8-4d93-ae34-78c969c22b2c);
+
+KBSECTION
+IF
+ItemOpened((ITEMGUID)_Var1)
+AND
+DB_ARX_Sewers_TurretsActive_Doors(_Var1)
+AND NOT
+DB_ARX_Sewers_TurretsActive_FirstTime(1)
+AND NOT
+DB_ARX_Sewers_TurretsActive(1)
+THEN
+DB_ARX_Sewers_TurretsActive(1);
+DB_ARX_Sewers_TurretsActive_FirstTime(1);
+Proc_ARX_Sewers_ActivateTurret();
+
+IF
+CharacterEnteredTrigger(_, TRIGGERGUID_S_ARX_Sewers_TurretRoom_Trig_01cd50d2-9c3a-4252-971d-98235d6dcb52)
+AND
+GlobalGetFlag("ARX_Sewers_PreassurePlateRoom_PermaStop", 0)
+AND
+DB_ARX_Sewers_TurretsActive(1)
+THEN
+GlobalClearFlag("ARX_Sewers_PreassurePlateRoom_Stop");
+Proc_ARX_Sewers_ActivateTurret();
+
+IF
+CharacterLeftTrigger(_, TRIGGERGUID_S_ARX_Sewers_TurretRoom_Trig_01cd50d2-9c3a-4252-971d-98235d6dcb52)
+AND
+DB_ARX_Sewers_TurretsActive(1)
+AND NOT
+DB_InRegion(_, TRIGGERGUID_S_ARX_Sewers_TurretRoom_Trig_01cd50d2-9c3a-4252-971d-98235d6dcb52)
+THEN
+GlobalSetFlag("ARX_Sewers_PreassurePlateRoom_Stop");
+NOT DB_ARX_Sewers_ActivateTurret_Timer(1);
+
+PROC
+Proc_ARX_Sewers_ActivateTurret()
+AND NOT
+DB_ARX_Sewers_ActivateTurret_Count(_)
+THEN
+DB_ARX_Sewers_ActivateTurret_Count(0);
+
+PROC
+Proc_ARX_Sewers_ActivateTurret()
+AND
+DB_ARX_Sewers_ActivateTurret_Count(_Var1)
+AND
+IntegerSum(_Var1, 1, _Var2)
+THEN
+NOT DB_ARX_Sewers_ActivateTurret_Count(_Var1);
+DB_ARX_Sewers_ActivateTurret_Count(_Var2);
+
+PROC
+Proc_ARX_Sewers_ActivateTurret()
+AND
+DB_ARX_Sewers_ActivateTurret_Count(_Var1)
+AND
+DB_ARX_Sewers_Turret_IsActive(_Var1, 1, _, _)
+AND
+IntegertoString(_Var1, _Var4)
+AND
+StringConcatenate("ARX_Sewers_ActivateTurret_Initiate_", _Var4, _Var5)
+THEN
+SetStoryEvent(ITEMGUID_S_ARX_Sewers_TurretRoom_Turret_000_7fcf4a6e-13b3-4a5d-8a64-7c53617aceed, _Var5);
+
+PROC
+Proc_ARX_Sewers_ActivateTurret()
+AND NOT
+DB_ARX_Sewers_ActivateTurret_Timer(1)
+THEN
+DB_ARX_Sewers_ActivateTurret_Timer(1);
+TimerLaunch("ARX_Sewers_ActivateTurret_Timer", 200);
+
+IF
+TimerFinished("ARX_Sewers_ActivateTurret_Timer")
+AND
+GlobalGetFlag("ARX_Sewers_PreassurePlateRoom_Stop", 0)
+THEN
+NOT DB_ARX_Sewers_ActivateTurret_Timer(1);
+Proc_ARX_Sewers_ActivateTurret_Timer();
+
+PROC
+Proc_ARX_Sewers_ActivateTurret_Timer()
+AND
+DB_ARX_Sewers_ActivateTurret_Count(_Var1)
+AND
+_Var1 < 10
+THEN
+Proc_ARX_Sewers_ActivateTurret();
+
+PROC
+Proc_ARX_Sewers_ActivateTurret_Timer()
+AND
+DB_ARX_Sewers_ActivateTurret_Count(_Var1)
+AND
+_Var1 >= 9
+THEN
+NOT DB_ARX_Sewers_ActivateTurret_Count(_Var1);
+DB_ARX_Sewers_ActivateTurret_Count(0);
+Proc_ARX_Sewers_ActivateTurret();
+
+IF
+CharacterItemEvent(_, (ITEMGUID)_Var2, (STRING)_Var3)
+AND
+DB_ARX_Sewers_Turret_Plates(_Var2, _, _, _)
+THEN
+Proc_ARX_Sewers_Turret_PlateMatch(_Var2, _Var3);
+
+PROC
+Proc_ARX_Sewers_Turret_PlateMatch((ITEMGUID)_Var1, (STRING)_Var2)
+AND
+DB_ARX_Sewers_Turret_Plates(_Var1, _Var3, _Var2, _Var4)
+THEN
+NOT DB_ARX_Sewers_Turret_Plates(_Var1, _Var3, _Var2, _Var4);
+DB_ARX_Sewers_Turret_Plates(_Var1, 1, _Var2, _Var4);
+
+PROC
+Proc_ARX_Sewers_Turret_PlateMatch((ITEMGUID)_Var1, (STRING)_Var2)
+AND
+DB_ARX_Sewers_Turret_Plates(_Var1, _Var3, _Var4, _Var2)
+THEN
+NOT DB_ARX_Sewers_Turret_Plates(_Var1, _Var3, _Var4, _Var2);
+DB_ARX_Sewers_Turret_Plates(_Var1, 0, _Var4, _Var2);
+
+PROC
+Proc_ARX_Sewers_Turret_PlateMatch((ITEMGUID)_Var1, (STRING)_Var2)
+AND NOT
+DB_ARX_Sewers_Turret_Plates(_, 0, _Var2, _)
+AND
+DB_ARX_Sewers_Turret_IsActive(_Var5, _Var6, _Var2, _Var7)
+THEN
+NOT DB_ARX_Sewers_Turret_IsActive(_Var5, _Var6, _Var2, _Var7);
+DB_ARX_Sewers_Turret_IsActive(_Var5, 1, _Var2, _Var7);
+
+PROC
+Proc_ARX_Sewers_Turret_PlateMatch((ITEMGUID)_Var1, (STRING)_Var2)
+AND
+DB_ARX_Sewers_Turret_IsActive(_Var3, _Var4, _Var5, _Var2)
+THEN
+NOT DB_ARX_Sewers_Turret_IsActive(_Var3, _Var4, _Var5, _Var2);
+DB_ARX_Sewers_Turret_IsActive(_Var3, 0, _Var5, _Var2);
+
+IF
+CharacterItemEvent(_, ITEMGUID_S_ARX_Sewers_PressureRoom_Plate_Door_01_7c461fd3-d6a8-4a96-a256-bacd03488f02, "ARX_Sewers_Turret_IsActive_0_3")
+AND
+GlobalGetFlag("ARX_Sewers_PreassurePlateRoom_Stop", 0)
+THEN
+ItemCloseAndLock(ITEMGUID_S_ARX_Sewers_Turret_Door_01_ac47f851-c002-4e74-9e60-84049d1ffe97, "Null");
+ItemCloseAndLock(ITEMGUID_S_ARX_Sewers_Turret_Door_02_237e8b9d-f7c6-4896-8423-3f540c6ab37c, "Null");
+ItemUnlockAndOpen(ITEMGUID_S_ARX_Sewers_Turret_Door_03_ef5ddd8a-16b4-48f1-a749-5e6548d10b37);
+
+IF
+CharacterItemEvent((CHARACTERGUID)_Var1, ITEMGUID_S_ARX_Sewers_PressureRoom_Plate_Door_01_7c461fd3-d6a8-4a96-a256-bacd03488f02, "ARX_Sewers_Turret_IsActive_0_3")
+AND
+GlobalGetFlag("ARX_Sewers_PreassurePlateRoom_Stop", 0)
+AND
+QueryOnlyOnce("ARX_Sewers_VB_PressureRoom_01")
+THEN
+StartVoiceBark("ARX_Sewers_VB_PressureRoom", _Var1);
+
+IF
+CharacterItemEvent((CHARACTERGUID)_Var1, ITEMGUID_S_ARX_Sewers_PressureRoom_Plate_Door_02_d59e8a2f-def0-4728-bf58-e4c30907488e, "ARX_Sewers_Turret_IsActive_0_6")
+AND
+DB_IsPlayer(_Var1)
+AND
+GlobalGetFlag("ARX_Sewers_PreassurePlateRoom_Stop", 0)
+AND
+QueryOnlyOnce("ARX_Sewers_VB_PressureRoom_02")
+THEN
+StartVoiceBark("ARX_Sewers_VB_PressureRoom", _Var1);
+
+IF
+CharacterItemEvent(_, ITEMGUID_S_ARX_Sewers_PressureRoom_Plate_Door_02_d59e8a2f-def0-4728-bf58-e4c30907488e, "ARX_Sewers_Turret_IsActive_0_6")
+AND
+GlobalGetFlag("ARX_Sewers_PreassurePlateRoom_Stop", 0)
+THEN
+ItemCloseAndLock(ITEMGUID_S_ARX_Sewers_Turret_Door_03_ef5ddd8a-16b4-48f1-a749-5e6548d10b37, "Null");
+ItemUnlockAndOpen(ITEMGUID_S_ARX_Sewers_Turret_Door_01_ac47f851-c002-4e74-9e60-84049d1ffe97);
+ItemUnlockAndOpen(ITEMGUID_S_ARX_Sewers_Turret_Door_02_237e8b9d-f7c6-4896-8423-3f540c6ab37c);
+
+IF
+CharacterItemEvent(_, _, "ARX_Sewers_PreassurePlateRoom_Stop")
+AND
+QueryOnlyOnce("ARX_Sewers_PreassurePlateRoom_Stop")
+THEN
+ItemUnlockAndOpen(ITEMGUID_S_ARX_Sewers_Turret_Door_01_ac47f851-c002-4e74-9e60-84049d1ffe97);
+ItemUnlockAndOpen(ITEMGUID_S_ARX_Sewers_Turret_Door_02_237e8b9d-f7c6-4896-8423-3f540c6ab37c);
+ItemUnlockAndOpen(ITEMGUID_S_ARX_Sewers_Turret_Door_03_ef5ddd8a-16b4-48f1-a749-5e6548d10b37);
+GlobalSetFlag("ARX_Sewers_PreassurePlateRoom_Stop");
+GlobalSetFlag("ARX_Sewers_PreassurePlateRoom_PermaStop");
+TimerCancel("ARX_Sewers_ActivateTurret_Timer");
+
+IF
+CharacterItemEvent(_, _, "ARX_Sewers_SecretWall_ToQueen_Open")
+THEN
+ItemOpen(ITEMGUID_S_ARX_Sewers_SecretWall_ToQueen_efa4d854-06e9-47be-8ef0-1cf8bd522ad0);
+
+IF
+CharacterItemEvent((CHARACTERGUID)_Var1, _, "ARX_Sewers_SecretWall_ToQueen_Open")
+AND
+UserGetFlag(_Var1, "QuestUpdate_RC_ARX_TheImperialDwarves_SuspiciousHole", 1)
+THEN
+UserSetFlag(_Var1, "QuestUpdate_RC_ARX_TheImperialDwarves_SuspiciousHole_Solved");
+
+IF
+CharacterUsedItemFailed((CHARACTERGUID)_Var1, ITEMGUID_S_ARX_Sewers_SecretWall_ToQueen_Button_2e6a038e-e2fb-4478-a2b0-678b982ce6b9)
+AND NOT
+DB_ARX_Sewers_SecretWall_ToQueen_Button_OnlyOnce(_Var1)
+THEN
+DB_ARX_Sewers_SecretWall_ToQueen_Button_OnlyOnce(_Var1);
+StartVoiceBark("ARX_Sewers_VB_SecretWall", _Var1);
+UserSetFlag(_Var1, "QuestUpdate_RC_ARX_TheImperialDwarves_SuspiciousHole");
+
+IF
+CharacterStoppedLockpickingItem((CHARACTERGUID)_Var1, ITEMGUID_S_ARX_Sewers_SecretWall_ToQueen_Button_2e6a038e-e2fb-4478-a2b0-678b982ce6b9)
+AND
+ItemIsLocked(ITEMGUID_S_ARX_Sewers_SecretWall_ToQueen_Button_2e6a038e-e2fb-4478-a2b0-678b982ce6b9, 1)
+AND NOT
+DB_ARX_Sewers_SecretWall_ToQueen_Button_OnlyOnce(_Var1)
+THEN
+DB_ARX_Sewers_SecretWall_ToQueen_Button_OnlyOnce(_Var1);
+StartVoiceBark("ARX_Sewers_VB_SecretWall", _Var1);
+UserSetFlag(_Var1, "QuestUpdate_RC_ARX_TheImperialDwarves_SuspiciousHole");
+
+PROC
+ProcOneShotTriggerEntered(_, TRIGGERGUID_S_ARX_Sewers_SpikedCorridor_RatRunTrigger_3ac7e3f6-8354-4c2a-a027-1a8144c02a9a)
+THEN
+CharacterMoveTo(CHARACTERGUID_S_ARX_Sewers_SpikedCorridor_Rat_bb051dbc-af9b-4ac1-b22f-adc7be40f6df, TRIGGERGUID_S_ARX_Sewers_SpikedCorridor_RatTriggerPoint_57d308ab-38eb-431f-bf77-24748c8bdc7a, 1, "", 0);
+
+PROC
+ProcOneShotTriggerEntered((CHARACTERGUID)_Var1, TRIGGERGUID_S_ARX_Sewers_PeacemakersCrates_01_7f81b6af-be76-4cc8-aac6-96c168b06702)
+THEN
+StartVoiceBark("ARX_Sewers_VB_PeacemakersCrates", _Var1);
+PartySetFlag(_Var1, "ARX_Sewers_Seen_PeacemakersCrates");
+
+PROC
+ProcOneShotTriggerEntered((CHARACTERGUID)_Var1, TRIGGERGUID_S_ARX_Sewers_PeacemakersCrates_02_1617549f-7fb2-4694-a781-f23f75b98ef5)
+THEN
+StartVoiceBark("ARX_Sewers_VB_PeacemakersCrates", _Var1);
+PartySetFlag(_Var1, "ARX_Sewers_Seen_PeacemakersCrates");
+
+IF
+CharacterUsedItem((CHARACTERGUID)_Var1, ITEMGUID_S_ARX_Barracks_MainHall_PassageToPrison_090b8a70-32a6-4033-9f03-190d1c585f50)
+AND
+DB_IsPlayer(_Var1)
+AND NOT
+DB_ARX_Barracks_SecretPassageToPrison_Revealed(_Var1)
+THEN
+ProcShowMarker(_Var1, "ARX_Barracks_SecretPassageToPrison");
+DB_ARX_Barracks_SecretPassageToPrison_Revealed(_Var1);
+
+IF
+CharacterUsedItem((CHARACTERGUID)_Var1, ITEMGUID_TOOL_Ladder_9H_B_001_ARX_Prison_A_000_3dd16489-ca52-8325-24b2-2d9d9b7858a5)
+AND
+DB_IsPlayer(_Var1)
+AND NOT
+DB_ARX_Barracks_SecretPassageToPrison_Revealed(_Var1)
+THEN
+ProcShowMarker(_Var1, "ARX_Barracks_SecretPassageToPrison");
+DB_ARX_Barracks_SecretPassageToPrison_Revealed(_Var1);
+
+IF
+ObjectFlagSet("ARX_Sewers_TheQueen_AssassinationAttempt", (CHARACTERGUID)_Var1, (INTEGER)_Var2)
+THEN
+NOT DB_ARX_QuestDef_DeadCharacterUpdates(CHARACTERGUID_S_ARX_Sewers_TheEmpress_78c95ad2-2d1a-4358-9c9c-77ff9a5fc3c9, "QuestUpdate_RC_ARX_TheImperialDwarves_Queen_IsDead");
+DB_ARX_QuestDef_DeadCharacterUpdates(CHARACTERGUID_S_ARX_Sewers_TheEmpress_78c95ad2-2d1a-4358-9c9c-77ff9a5fc3c9, "QuestUpdate_RC_ARX_TheImperialDwarves_Queen_Assassinate");
+
+IF
+DB_Dead(CHARACTERGUID_S_ARX_Sewers_Q_52f20922-7b22-4d47-90f7-83172f21fe3b)
+AND
+DB_Sees(_Var1, CHARACTERGUID_S_ARX_Sewers_Q_52f20922-7b22-4d47-90f7-83172f21fe3b)
+AND
+DB_IsPlayer(_Var1)
+AND
+PartyGetFlag(_Var1, "QuestUpdate_RC_ARX_TheImperialDwarves_Ros_SaveTheQueen", 0)
+THEN
+ObjectSetFlag(_Var1, "QuestUpdate_RC_ARX_TheImperialDwarves_Sewers_Q_IsDead");
+
+IF
+DB_Dead(CHARACTERGUID_S_ARX_Sewers_Q_52f20922-7b22-4d47-90f7-83172f21fe3b)
+AND
+DB_Sees(_Var1, CHARACTERGUID_S_ARX_Sewers_Q_52f20922-7b22-4d47-90f7-83172f21fe3b)
+AND
+DB_IsPlayer(_Var1)
+AND
+PartyGetFlag(_Var1, "QuestUpdate_RC_ARX_TheImperialDwarves_Ros_SaveTheQueen", 1)
+THEN
+ObjectSetFlag(_Var1, "QuestUpdate_RC_ARX_TheImperialDwarves_Sewers_Q_IsDead_Queen");
+
+IF
+StoryEvent((GUIDSTRING)_Var1, "ARX_Sewers_KidTripwire")
+AND
+DB_IsPlayer(_Var2)
+AND
+_Var1 != _Var2
+AND
+CharacterCanSee(_Var2, _Var1, 1)
+AND
+QueryOnlyOnce("ARX_Sewers_KidTripwire")
+THEN
+StartVoiceBark("ARX_Sewers_VB_KidTripwire", _Var2);
+
+IF
+ItemLeftTrigger(ITEMGUID_S_ARX_Sewers_KidsPrison_Chest_72231a76-0814-423d-a52d-d0dca092f382, TRIGGERGUID_S_ARX_Sewers_KidsPrison_Trigger_a3589d5a-4518-46b8-89db-567d6fb5a384, (CHARACTERGUID)_Var1)
+AND
+QueryOnlyOnce("ARX_Sewers_KidsPrison")
+THEN
+Proc_ARX_Sewers_KidsPrison_Spring(_Var1);
+
+IF
+CharacterUsedItem((CHARACTERGUID)_Var1, ITEMGUID_S_ARX_Sewers_KidsPrison_Chest_72231a76-0814-423d-a52d-d0dca092f382)
+AND
+QueryOnlyOnce("ARX_Sewers_KidsPrison")
+THEN
+Proc_ARX_Sewers_KidsPrison_Spring(_Var1);
+
+IF
+CharacterMovedItem((CHARACTERGUID)_Var1, ITEMGUID_S_ARX_Sewers_KidsPrison_Chest_72231a76-0814-423d-a52d-d0dca092f382)
+AND
+QueryOnlyOnce("ARX_Sewers_KidsPrison")
+THEN
+Proc_ARX_Sewers_KidsPrison_Spring(_Var1);
+
+IF
+CharacterDestroyedItem((CHARACTERGUID)_Var1, ITEMGUID_S_ARX_Sewers_KidsPrison_Chest_72231a76-0814-423d-a52d-d0dca092f382)
+AND
+QueryOnlyOnce("ARX_Sewers_KidsPrison")
+THEN
+Proc_ARX_Sewers_KidsPrison_Spring(_Var1);
+
+PROC
+Proc_ARX_Sewers_KidsPrison_Spring((CHARACTERGUID)_Var1)
+AND
+ItemIsDestroyed(ITEMGUID_S_ARX_Sewers_KidsPrison_Door_15d7f7fa-cca1-46b2-a767-eb0567cb8766, 0)
+THEN
+ItemCloseAndLock(ITEMGUID_S_ARX_Sewers_KidsPrison_Door_15d7f7fa-cca1-46b2-a767-eb0567cb8766, "ARX_Sewers_KidsPrison_Door");
+
+PROC
+Proc_ARX_Sewers_KidsPrison_Spring((CHARACTERGUID)_Var1)
+AND
+ItemIsDestroyed(ITEMGUID_S_ARX_Sewers_KidsPrison_Door_15d7f7fa-cca1-46b2-a767-eb0567cb8766, 0)
+AND
+DB_InRegion(_Var1, TRIGGERGUID_S_ARX_Sewers_KidsPrison_Trigger_a3589d5a-4518-46b8-89db-567d6fb5a384)
+THEN
+ObjectSetFlag(_Var1, "ARX_Sewers_KidsPrison_FellForIt");
+
+PROC
+Proc_ARX_Sewers_KidsPrison_Spring(_)
+THEN
+TriggerUnregisterForItems(TRIGGERGUID_S_ARX_Sewers_KidsPrison_Trigger_a3589d5a-4518-46b8-89db-567d6fb5a384);
+
+PROC
+Proc_ARX_Sewers_KidsPrison_Spring((CHARACTERGUID)_Var1)
+AND
+ItemIsDestroyed(ITEMGUID_S_ARX_Sewers_KidsPrison_Door_15d7f7fa-cca1-46b2-a767-eb0567cb8766, 0)
+THEN
+DB_ARX_Sewers_Queue_VB_KidsPrison(_Var1);
+
+IF
+ItemClosed(ITEMGUID_S_ARX_Sewers_KidsPrison_Door_15d7f7fa-cca1-46b2-a767-eb0567cb8766)
+AND
+DB_ARX_Sewers_Queue_VB_KidsPrison(_Var1)
+THEN
+StartVoiceBark("ARX_Sewers_VB_KidsPrison", _Var1);
+NOT DB_ARX_Sewers_Queue_VB_KidsPrison(_Var1);
+
+IF
+CharacterEnteredTrigger((CHARACTERGUID)_Var1, TRIGGERGUID_S_ARX_Sewers_456f708b-fbf8-4d93-ae34-78c969c22b2c)
+AND
+DB_IsPlayer(_Var1)
+AND
+QueryOnlyOnce("ARX_Sewers_VB_EnteredSewers")
+THEN
+StartVoiceBark("ARX_Sewers_VB_EnteredSewers", _Var1);
+
+IF
+CharacterEnteredTrigger((CHARACTERGUID)_Var1, TRIGGERGUID_S_ARX_Sewers_456f708b-fbf8-4d93-ae34-78c969c22b2c)
+AND
+UserGetFlag(_Var1, "ARX_FindingThievesGuild_QuestStarted", 1)
+THEN
+ObjectSetFlag(_Var1, "QuestUpdate_ARX_FindingThievesGuild_EnteredTheSewers", 0);
+
+PROC
+ProcBlockPickupOfItem((CHARACTERGUID)_Var1, (ITEMGUID)_Var2)
+AND
+GetTemplate(_Var2, "PUZ_Trap_TeddyBear_84625ce6-ed15-46d2-aa7e-73021b1b5257")
+AND
+GetPosition(_Var1, _Var3, _Var4, _Var5)
+THEN
+DB_CustomPickupItemResponse(_Var1, _Var2, 0);
+ItemDragToPosition(_Var2, _Var3, _Var4, _Var5);
+DB_PUZ_Trap_TeddyBear_ExplodeOnArrival(_Var2);
+
+IF
+ItemMoved((ITEMGUID)_Var1)
+AND
+DB_PUZ_Trap_TeddyBear_ExplodeOnArrival(_Var1)
+THEN
+SetStoryEvent(_Var1, "Explode");
+NOT DB_PUZ_Trap_TeddyBear_ExplodeOnArrival(_Var1);
+
+
+EXITSECTION
+ENDEXITSECTION
+
+ParentTargetEdge "ARX"

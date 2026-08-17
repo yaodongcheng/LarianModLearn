@@ -1,0 +1,745 @@
+Version 1
+SubGoalCombiner SGC_AND
+
+INITSECTION
+DB_Ghosts(S_ARX_Prison_SecretPath_DeadEscapingMagister_3aaa404a-5df6-4e64-bcad-89658ec617fc, S_ARX_Prison_SecretPath_DeadEscapingMagister_Ghost_a588ce66-3c83-4539-be1f-627a025a7491, "ARX_Prison_SecretPath_DeadEscapingMagister_Ghost");
+ApplyStatus(S_ARX_Barracks_EscapedMagister_Ghost_a588ce66-3c83-4539-be1f-627a025a7491, "CRIPPLED", -1, 1);
+SetOnStage(ITEMGUID_S_ARX_Barrakcs_Kemms_Journal_76b1083d-e568-4078-a570-e08ac1c3afd4, 0);
+ItemToInventory(ITEMGUID_S_ARX_Barracks_Archives_ToyMakerReport_d6afb020-20d3-4ba1-9650-56a7002d7f9a, CHARACTERGUID_S_ARX_Barracks_EscapedMagister_3aaa404a-5df6-4e64-bcad-89658ec617fc);
+DB_Ghosts(CHARACTERGUID_S_ARX_Barracks_Courtyard_Corpse6_b4b31864-cfd6-45d8-a571-0bb29491a3f4, CHARACTERGUID_S_ARX_Barracks_GhostMagister_22fc5174-da2d-4267-9fe3-2abd6857cd5d, "ARX_Barracks_GhostMagister");
+DB_Dialogs(CHARACTERGUID_S_ARX_Barracks_MainHall_Rat_c7ab563d-8320-4f2a-97f9-3f6db03e41ce, "ARX_Barracks_MainHall_Rat");
+DB_ARX_Barracks_MainHall_SittingBenches(S_FUR_Humans_Citz_Bench_C1_026_7759364c-a6a3-40eb-8aab-2004bc7a5d85);
+DB_ARX_Barracks_MainHall_SittingBenches(S_FUR_Humans_Citz_Bench_C1_027_da3b0dad-3812-4b04-9c56-4cf9560ff4a9);
+DB_Ghosts(S_ARX_Barracks_OfficeQuaters_EncryptionMaker_Corpse_41778277-38d9-4fe7-a6b8-7e79eae9b896, S_ARX_Barracks_OfficeQuaters_EncryptionMaker_0854c8c1-4020-4537-bd89-6c3b9a5fa893, "ARX_Barracks_OfficerQuarters_EncryptionMaker");
+CharacterSetForceSynch(S_ARX_Barracks_OfficeQuaters_EncryptionMaker_Corpse_41778277-38d9-4fe7-a6b8-7e79eae9b896, 1);
+DB_ARX_Barracks_BurntRoom_Mines(PUZ_Trap_Mine_A_001_f99de8fc-8bc8-4dd9-8803-445f4ef60212);
+DB_ARX_Barracks_BurntRoom_Mines(PUZ_Trap_Mine_A_003_4f58d18a-0f6b-4d67-a2b2-df1379d286b2);
+DB_ARX_Barracks_BurntRoom_Mines(PUZ_Trap_Mine_A_004_bfc7f1e2-68d0-4dd3-81cb-0a02ad43b639);
+ProcTriggerRegisterForPlayers(S_ARX_Barracks_BurntRoom_ADAboutBurntRoom_ecb0f72b-add5-4a2d-bad7-a753e998e6cd);
+ItemToInventory(ITEMGUID_S_ARX_Barracks_BackDoor_Key_41c1931e-ec5d-481f-a688-ea266f682091, ITEMGUID_FUR_Humans_Rich_Closet_E_001_69208b2b-718d-466a-aadd-1c72f33cda87);
+ItemToInventory(S_ARX_Barracks_MagisaterMottos_2_76509c65-ee6d-4eaa-b2e4-2eb7764c3ce9, S_FUR_Humans_Citz_Case_B_001_ca6a9a00-a3d5-413e-b220-3d60fe38e00e);
+SetOnStage(S_ARX_Barracks_Encryption_Decoder_b1bf4399-5300-456c-ab7a-9b260b3c525a, 0);
+DB_Ghosts(S_ARX_Barracks_Courtyard_Corpse3_b5095d09-e6e2-418b-990a-5d2e87efb223, S_ARX_Barracks_Courtyard_Corpse3_Ghost_608fdacb-ebe5-4984-bcdd-4564259b467c, "ARX_Barracks_Courtyard_Corpse3_Ghost");
+DB_Ghosts(CHARACTERGUID_S_ARX_Barracks_Courtyard_Corpse2_60305163-5c27-401d-9273-b02e559c6773, S_ARX_Barracks_Courtyard_Corpse2_Ghost_1f683454-5f84-4410-ad6f-33c035b61174, "ARX_Barracks_Courtyard_Corpse2_Ghost");
+DB_ARX_Barracks_CourtYard_BurnedItems(FUR_Humans_Citz_Table_C1_029_7258a7fc-4d1a-47d7-8c30-7230960f0492);
+DB_ARX_Barracks_CourtYard_BurnedItems(FUR_Humans_Citz_Bench_C1_031_3fc840ab-e263-4c23-b609-69aac82a85b1);
+DB_ARX_Barracks_CourtYard_BurnedItems(CONT_Humans_Citz_Crate_A_388_8321f2b0-d5c8-4856-a46b-7a43c05eb5d8);
+DB_ARX_Barracks_CourtYard_BurnedItems(CONT_Humans_Citz_Crate_A_387_dcf996ca-ac7b-4c22-84f2-37b30aa8fcad);
+ItemToInventory(S_ARX_Barracks_ConfiscatedGoods_MagisaterMottos_288034f1-7860-44c4-98d6-98ddd04c4a5e, S_ARX_Barracks_Courtyard_Corpse6_b4b31864-cfd6-45d8-a571-0bb29491a3f4);
+DB_Dialogs(S_ARX_Barrkacks_MainHall_InjuredPaladin_dc70b319-aff7-4a0d-abda-45db9063b2f1, "ARX_Barracks_InjuredPaladin01");
+ApplyStatus(S_ARX_Barrkacks_InjuredPaladin01_dc70b319-aff7-4a0d-abda-45db9063b2f1, "CURSED", -1, 1);
+PROC_LoopEffect("RS3_FX_GP_Status_Bleeding_01", S_ARX_Barrkacks_InjuredPaladin01_dc70b319-aff7-4a0d-abda-45db9063b2f1, "ARX_Barrkacks_InjuredPaladin01_Effect", "ARX_Main", "Dummy_BodyFX");
+DB_GiveItemToEvent(S_ARX_Barracks_InjuredPaladin_Reward_86a980ac-4202-4eea-bd46-de47bd5623df, "ARX_Barracks_InjuredPaladin_Give_Reward");
+DB_HasStoryEvent(S_ARX_Barracks_InjuredPaladin_Reward_86a980ac-4202-4eea-bd46-de47bd5623df, "ARX_Barracks_InjuredPaladin_Has_Reward");
+ItemToInventory(S_ARX_Barracks_InjuredPaladin_Reward_86a980ac-4202-4eea-bd46-de47bd5623df, S_ARX_Barracks_InjuredPaladin01_dc70b319-aff7-4a0d-abda-45db9063b2f1);
+ProcCharacterDisableAllCrimes(S_ARX_Barrkacks_InjuredPaladin01_dc70b319-aff7-4a0d-abda-45db9063b2f1);
+DB_Dialogs(ARX_Barracks_MagisterMottoPlate4_9ff00db9-aa1b-4d66-a748-38a41542fa37, "ARX_Barracks_MagisterMotto4");
+DB_Dialogs(ARX_Barracks_MagisterMottoPlate3_60318d95-15a5-4f2e-bf81-693d86049824, "ARX_Barracks_MagisterMotto3");
+DB_Dialogs(ARX_Barracks_MagisterMottoPlate2_e0935458-604a-490a-b1cd-c3f933300b19, "ARX_Barracks_MagisterMotto2");
+DB_Dialogs(ARX_Barracks_MagisterMottoPlate1_f75218ba-3106-44bf-8833-af1203970809, "ARX_Barracks_MagisterMotto1");
+DB_Ghosts(S_ARX_Barracks_CursingMagister_Ghost_11df1c38-59a5-4f4a-b97a-dc4b13ff9686, "ARX_Barracks_CursingMagister_Ghost");
+DB_HauntedNPC(S_ARX_Barrkacks_InjuredPaladin01_dc70b319-aff7-4a0d-abda-45db9063b2f1, S_ARX_Barracks_CursingMagister_Ghost_11df1c38-59a5-4f4a-b97a-dc4b13ff9686);
+DB_Ghosts(S_ARX_Barracks_OfficerOffice_GhostDeadBody_12c94bbc-7611-43a7-9bc5-e8bc9e525576, S_ARX_Barracks_OfficerOffice_Ghost_4f80b3e7-b288-47b7-866d-2a9ea259844e, "ARX_Barracks_OfficerOffice_Ghost");
+ItemToInventory(S_ARX_Barracks_ConficatedGoods_ChestKey_b23a2feb-9cc1-4d15-b880-74d372519299, S_FUR_Humans_Displaycase_A_010_1c573f31-0c18-4321-9016-6d52720332d1);
+SetOnStage(S_ARX_Barracks_2ndFloor_Cuboard_2685a7e9-2a10-46ab-a6a1-28286b39bfd8, 1);
+ProcTriggerRegisterForPlayers(S_ARX_Barracks_VaultEntered_0790cd06-4e2b-4cc1-b021-46f1dc180357);
+DB_ShovelArea(S_ARX_Barracks_PileBehindBoxTrigger_b86e92de-41ee-4aaf-9182-661050b1a603, "S_ARX_Barracks_PileBehind", S_ARX_Barracks_PileBehind_Pile_7f91a08b-699b-48c8-8afb-1693361d2a0d);
+DB_ShovelRewardItemAppear("S_ARX_Barracks_PileBehind", S_ARX_Barracks_PileBehind_Backpack_e8a5ecd5-bf79-462c-8546-b8094b90fa7e, TRIGGERGUID_S_ARX_Barracks_PileBehind_PointTrigger_b7e1613e-51fa-47cd-9d10-b09130b2f62e);
+LockSecretRegion(TRIGGERGUID_S_ARX_Barracks_2ndFloor_SecretOffice_80630ef6-1b0d-4766-a5b3-87d5b4a04417);
+LockSecretRegion(TRIGGERGUID_S_ARX_Barracks_2ndFloor_Archives_TreasureRoom_320e38f2-03d9-4a52-b9fc-6177e3a5bedf);
+ItemSetCanInteract(ITEMGUID_S_ARX_Barracks_2ndFloor_Archives_MoveableWall_3318c85a-3b53-4222-946b-d683698bbe96, 0);
+ItemToInventory(S_ARX_Barracks_2ndFloor_Archives_ChestKey_cab1e419-3a95-4971-9df0-b93cb64316e2, FUR_Rich_Desk_A_004_e4da64aa-a5e6-4f3f-a444-5ea0e468d84b);
+DB_ARX_Barracks_2ndFloor_Archives_Paintings_Buttons(S_ARX_Aarchives_Puz_Painting_PurityOfMind_0564756c-fca4-4acc-9465-6461aff159a7, S_ARX_Barracks_Archives_Button_PurityOfMind_1_a27c01c9-1243-4b7e-ae09-74ad3c502465);
+DB_ARX_Barracks_2ndFloor_Archives_Paintings_Buttons(S_ARX_Aarchives_Puz_Painting_OrderOfSociety_ba84047c-db98-40a6-b174-fb6cbc64f4d4, S_ARX_Barracks_Archives_Button_OrderOfSociety_2_a4e2388c-c0c8-48e2-beb3-c3183b3d54e1);
+DB_ARX_Barracks_2ndFloor_Archives_Paintings_Buttons(S_ARX_Aarchives_Puz_Painting_DisciplineOfBody_9db74148-ceee-463d-9e02-07f8f709dfb2, S_ARX_Barracks_Archives_Button_DisciplineOfBody_3_e4e4bdcb-a794-49b2-bb77-a9f4bbe5fb46);
+DB_ARX_Barracks_2ndFloor_Archives_Paintings_Buttons(S_ARX_Aarchives_Puz_Painting_LoyaltyOfTheDevine_e89c10f8-65b0-40d4-829c-c84c6d65574e, S_ARX_Barracks_Archives_Button_LoyaltyOfTheDivine_4_a6b3452d-731a-419e-a71b-d9ac5f0f7b7c);
+DB_CustomEvent2DisplayText_Item(S_ARX_Barracks_Archives_Button_PurityOfMind_1_a27c01c9-1243-4b7e-ae09-74ad3c502465, "HiddenPerceptionReveal", "ARX_AD_Barracks_Archives_Button_PerceptionReveal");
+DB_CustomEvent2DisplayText_Item(S_ARX_Barracks_Archives_Button_OrderOfSociety_2_a4e2388c-c0c8-48e2-beb3-c3183b3d54e1, "HiddenPerceptionReveal", "ARX_AD_Barracks_Archives_Button_PerceptionReveal");
+DB_CustomEvent2DisplayText_Item(S_ARX_Barracks_Archives_Button_DisciplineOfBody_3_e4e4bdcb-a794-49b2-bb77-a9f4bbe5fb46, "HiddenPerceptionReveal", "ARX_AD_Barracks_Archives_Button_PerceptionReveal");
+DB_CustomEvent2DisplayText_Item(S_ARX_Barracks_Archives_Button_LoyaltyOfTheDivine_4_a6b3452d-731a-419e-a71b-d9ac5f0f7b7c, "HiddenPerceptionReveal", "ARX_AD_Barracks_Archives_Button_PerceptionReveal");
+DB_ARX_Barracks_2ndFloor_Archives_SurfaceTypes(1, "SurfaceBloodCursed");
+DB_ARX_Barracks_2ndFloor_Archives_SurfaceTypes(2, "SurfaceFire");
+DB_ARX_Barracks_2ndFloor_Archives_SurfaceTypes(3, "SurfaceFireCursed");
+DB_ARX_Barracks_2ndFloor_Archives_SurfaceTypes(4, "SurfacePoison");
+DB_ARX_Barracks_2ndFloor_Archives_SurfaceTypes(5, "SurfacePoisonCursed");
+DB_ARX_Barracks_2ndFloor_Archives_SurfaceTypes(6, "SurfaceWaterElectrifiedCursed");
+DB_ARX_Barracks_2ndFloor_Archives_Geysers(S_ARX_Barracks_Arcvhives_Geysers_e3dd15d5-9417-4333-ad62-3410ee79f608, 0);
+DB_ARX_Barracks_2ndFloor_Archives_Geysers(S_ARX_Barracks_Arcvhives_Geysers_001_3d7c03ff-76c8-4df1-a2a9-b17ba7cab00e, 0);
+DB_ARX_Barracks_2ndFloor_Archives_Geysers(S_ARX_Barracks_Arcvhives_Geysers_002_bd2afd37-26e5-420d-918f-9b843143580c, 0);
+DB_ARX_Barracks_2ndFloor_Archives_Geysers(S_ARX_Barracks_Arcvhives_Geysers_003_e89c94c2-69e7-499d-bbc0-c44f96dfed00, 0);
+DB_ARX_Barracks_2ndFloor_Archives_Geysers(S_ARX_Barracks_Arcvhives_Geysers_004_4f6f4190-3512-42fa-ab16-5af3dd4eac12, 0);
+DB_ARX_Barracks_2ndFloor_Archives_Geysers(S_ARX_Barracks_Arcvhives_Geysers_005_d8f22a3b-301b-4cf8-be9f-2bd6d0c39409, 0);
+DB_ARX_Barracks_2ndFloor_Archives_Geysers(S_ARX_Barracks_Arcvhives_Geysers_006_c7aab17d-5038-4085-bcd3-0472c642e3a7, 0);
+DB_ARX_Barracks_2ndFloor_Archives_Geysers(S_ARX_Barracks_Arcvhives_Geysers_e3dd15d5-9417-4333-ad62-3410ee79f608, 0);
+SetOnStage(ITEMGUID_S_ARX_Barracks_Key_To_SecretMeetingRoom3_3fee5b60-fb00-4baf-87d3-659945dbcb76, 0);
+
+KBSECTION
+IF
+ObjectFlagSet("ARX_Barracks_InjuredPaladin01_GivePotion", (CHARACTERGUID)_Var1, _)
+AND
+QryRemoveTaggedLocalItemsFromMagicPockets(_Var1, "HEALING_POTION", 1)
+THEN
+DB_NOOP(1);
+
+IF
+ObjectFlagSet("ARX_Barracks_InjuredPaladin01_GivePotion", (CHARACTERGUID)_Var1, (INTEGER)_Var2)
+AND
+DialogGetInvolvedNPC(_Var2, 1, _Var3)
+THEN
+ApplyStatus(_Var3, "HEALING", 2, 1);
+
+IF
+CharacterUsedSkillOnTarget((CHARACTERGUID)_Var1, S_ARX_Barrkacks_InjuredPaladin01_dc70b319-aff7-4a0d-abda-45db9063b2f1, "Target_Bless", _, _)
+AND
+DB_IsPlayer(_Var1)
+THEN
+ObjectSetFlag(_Var1, "ARX_Barracks_InjuredPaladin01_HealedWithSpell");
+
+IF
+CharacterUsedSkillOnTarget((CHARACTERGUID)_Var1, S_ARX_Barrkacks_InjuredPaladin01_dc70b319-aff7-4a0d-abda-45db9063b2f1, "Target_FrostyShell", _, _)
+AND
+DB_IsPlayer(_Var1)
+THEN
+ObjectSetFlag(_Var1, "ARX_Barracks_InjuredPaladin01_HealedWithSpell");
+
+IF
+CharacterUsedSkillOnTarget((CHARACTERGUID)_Var1, CHARACTERGUID_S_ARX_Barracks_CursingMagister_Ghost_11df1c38-59a5-4f4a-b97a-dc4b13ff9686, (STRING)_Var2, _, _)
+AND
+DB_SourceVampirism_Skills(_Var2)
+AND
+DB_IsPlayer(_Var1)
+THEN
+ObjectSetFlag(_Var1, "ARX_Barracks_InjuredPaladin01_PlayerThatHealed");
+
+IF
+CharacterStatusRemoved(S_ARX_Barrkacks_InjuredPaladin01_dc70b319-aff7-4a0d-abda-45db9063b2f1, "CURSED", (CHARACTERGUID)_Var1)
+AND
+DB_IsPlayer(_Var1)
+AND
+GlobalGetFlag("ARX_Barracks_CursingMagister_Ghost_Gone", 1)
+THEN
+ObjectSetFlag(_Var1, "ARX_Barracks_InjuredPaladin01_PlayerThatHealed");
+
+IF
+DialogEnded("ARX_Barracks_CursingMagister_Ghost", (INTEGER)_Var1)
+AND
+DB_DialogPlayers(_Var1, _Var2, 1)
+AND
+ObjectGetFlag(_Var2, "ARX_Barracks_InjuredPaladin01_PlayerThatHealed", 1)
+THEN
+GlobalSetFlag("ARX_Barracks_CursingMagister_Ghost_Gone");
+
+IF
+DB_GoneGhosts(S_ARX_Barracks_CursingMagister_Ghost_11df1c38-59a5-4f4a-b97a-dc4b13ff9686)
+AND NOT
+DB_GlobalFlag("ARX_Barracks_CursingMagister_Ghost_Gone")
+THEN
+TimerLaunch("ARX_Barracks_CursingMagister_Ghost_Gone", 2800);
+
+IF
+TimerFinished("ARX_Barracks_CursingMagister_Ghost_Gone")
+THEN
+GlobalSetFlag("ARX_Barracks_CursingMagister_Ghost_Gone");
+
+IF
+GlobalFlagSet("ARX_Barracks_CursingMagister_Ghost_Gone")
+AND
+HasActiveStatus(S_ARX_Barrkacks_InjuredPaladin01_dc70b319-aff7-4a0d-abda-45db9063b2f1, "CURSED", 1)
+THEN
+RemoveStatus(S_ARX_Barrkacks_InjuredPaladin01_dc70b319-aff7-4a0d-abda-45db9063b2f1, "CURSED");
+
+IF
+CharacterStatusRemoved(S_ARX_Barrkacks_InjuredPaladin01_dc70b319-aff7-4a0d-abda-45db9063b2f1, "CURSED", _)
+AND
+GlobalGetFlag("ARX_Barracks_CursingMagister_Ghost_Gone", 1)
+THEN
+ProcCharacterEnableCrime(S_ARX_Barrkacks_InjuredPaladin01_dc70b319-aff7-4a0d-abda-45db9063b2f1, "EmptyPocketNoticed");
+ProcCharacterEnableCrime(S_ARX_Barrkacks_InjuredPaladin01_dc70b319-aff7-4a0d-abda-45db9063b2f1, "PickPocketFailed");
+ProcCharacterEnableCrime(S_ARX_Barrkacks_InjuredPaladin01_dc70b319-aff7-4a0d-abda-45db9063b2f1, "PickPocket");
+ProcCharacterEnableCrime(S_ARX_Barrkacks_InjuredPaladin01_dc70b319-aff7-4a0d-abda-45db9063b2f1, "Assault");
+ObjectSetFlag(S_ARX_Barrkacks_InjuredPaladin01_dc70b319-aff7-4a0d-abda-45db9063b2f1, "ARX_Barracks_InjuredPaladin01_Healed");
+Proc_StartDialog(1, "ARX_AD_Barracks_InjuredPaladin01_ThankPlayer", S_ARX_Barrkacks_InjuredPaladin01_dc70b319-aff7-4a0d-abda-45db9063b2f1);
+
+IF
+ObjectFlagSet("ARX_Barracks_InjuredPaladin01_Healed", S_ARX_Barrkacks_InjuredPaladin01_dc70b319-aff7-4a0d-abda-45db9063b2f1, (INTEGER)_Var1)
+THEN
+ClearVarObject(S_ARX_Barrkacks_InjuredPaladin01_dc70b319-aff7-4a0d-abda-45db9063b2f1, "Seat");
+
+IF
+GlobalFlagSet("ARX_Barracks_CursingMagister_Ghost_Gone")
+AND
+DB_IsPlayer(_Var1)
+AND
+ObjectGetFlag(_Var1, "ARX_Barracks_InjuredPaladin01_PlayerThatHealed", 1)
+AND
+DB_IsPlayer(_Var2)
+AND
+CharacterIsInPartyWith(_Var1, _Var2, 1)
+THEN
+CharacterAddAttitudeTowardsPlayer(S_ARX_Barrkacks_InjuredPaladin01_dc70b319-aff7-4a0d-abda-45db9063b2f1, _Var2, 25);
+
+IF
+CharacterStatusRemoved(S_ARX_Barrkacks_InjuredPaladin01_dc70b319-aff7-4a0d-abda-45db9063b2f1, "CURSED", (CHARACTERGUID)_Var1)
+AND
+DB_IsPlayer(_Var1)
+AND
+GlobalGetFlag("ARX_Barracks_CursingMagister_Ghost_Gone", 0)
+AND
+ObjectGetFlag(S_ARX_Barrkacks_InjuredPaladin01_dc70b319-aff7-4a0d-abda-45db9063b2f1, "ARX_Barracks_InjuredPaladin01_StillCursed", 0)
+THEN
+Proc_StartDialog(1, "ARX_AD_Barracks_InjuredPaladin01_ThankPlayer", S_ARX_Barrkacks_InjuredPaladin01_dc70b319-aff7-4a0d-abda-45db9063b2f1);
+
+IF
+AutomatedDialogEnded("ARX_AD_Barracks_InjuredPaladin01_ThankPlayer", (INTEGER)_Var1)
+THEN
+SetHasDialog(S_ARX_Barrkacks_InjuredPaladin01_dc70b319-aff7-4a0d-abda-45db9063b2f1, 1);
+
+IF
+AutomatedDialogStarted("ARX_AD_Barracks_InjuredPaladin01_ThankPlayer", (INTEGER)_Var1)
+THEN
+SetHasDialog(S_ARX_Barrkacks_InjuredPaladin01_dc70b319-aff7-4a0d-abda-45db9063b2f1, 0);
+
+IF
+AutomatedDialogEnded("ARX_AD_Barracks_InjuredPaladin01_ThankPlayer", (INTEGER)_Var1)
+AND
+GlobalGetFlag("ARX_Barracks_CursingMagister_Ghost_Gone", 0)
+AND
+HasActiveStatus(S_ARX_Barrkacks_InjuredPaladin01_dc70b319-aff7-4a0d-abda-45db9063b2f1, "CURSED", 0)
+THEN
+ApplyStatus(S_ARX_Barrkacks_InjuredPaladin01_dc70b319-aff7-4a0d-abda-45db9063b2f1, "CURSED", -1, 1);
+
+IF
+DialogEnded("ARX_Barracks_InjuredPaladin01", (INTEGER)_Var1)
+AND
+ObjectGetFlag(S_ARX_Barrkacks_InjuredPaladin01_dc70b319-aff7-4a0d-abda-45db9063b2f1, "ARX_Barracks_InjuredPaladin01_StillCursed", 1)
+THEN
+ObjectClearFlag(S_ARX_Barrkacks_InjuredPaladin01_dc70b319-aff7-4a0d-abda-45db9063b2f1, "ARX_Barracks_InjuredPaladin01_StillCursed", 0);
+ApplyStatus(S_ARX_Barrkacks_InjuredPaladin01_dc70b319-aff7-4a0d-abda-45db9063b2f1, "CURSED", -1, 1);
+
+IF
+ObjectFlagSet("ARX_Barracks_InjuredPaladin01_StillCursed", S_ARX_Barrkacks_InjuredPaladin01_dc70b319-aff7-4a0d-abda-45db9063b2f1, _)
+AND
+HasActiveStatus(S_ARX_Barrkacks_InjuredPaladin01_dc70b319-aff7-4a0d-abda-45db9063b2f1, "CURSED", 0)
+AND
+HasActiveStatus(S_ARX_Barrkacks_InjuredPaladin01_dc70b319-aff7-4a0d-abda-45db9063b2f1, "MAGIC_SHELL", 1)
+THEN
+RemoveStatus(S_ARX_Barrkacks_InjuredPaladin01_dc70b319-aff7-4a0d-abda-45db9063b2f1, "MAGIC_SHELL");
+
+IF
+ObjectFlagSet("ARX_Barracks_InjuredPaladin01_StillCursed", S_ARX_Barrkacks_InjuredPaladin01_dc70b319-aff7-4a0d-abda-45db9063b2f1, _)
+AND
+HasActiveStatus(S_ARX_Barrkacks_InjuredPaladin01_dc70b319-aff7-4a0d-abda-45db9063b2f1, "CURSED", 0)
+THEN
+ApplyStatus(S_ARX_Barrkacks_InjuredPaladin01_dc70b319-aff7-4a0d-abda-45db9063b2f1, "CURSED", -1, 1);
+SetHasDialog(S_ARX_Barrkacks_InjuredPaladin01_dc70b319-aff7-4a0d-abda-45db9063b2f1, 1);
+PROC_LoopEffect("RS3_FX_GP_Status_Bleeding_01", S_ARX_Barrkacks_InjuredPaladin01_dc70b319-aff7-4a0d-abda-45db9063b2f1, "ARX_Barrkacks_InjuredPaladin01_Effect", "ARX_Main", "Dummy_BodyFX");
+
+IF
+AutomatedDialogEnded("ARX_AD_Barracks_InjuredPaladin01_ThankPlayer", _)
+AND
+GlobalGetFlag("ARX_Barracks_CursingMagister_Ghost_Gone", 1)
+AND
+DB_IsPlayer(_Var2)
+AND
+ObjectGetFlag(_Var2, "ARX_Barracks_InjuredPaladin01_PlayerThatHealed", 1)
+AND
+QueryOnlyOnce("ARX_AD_Barracks_InjuredPaladin01_ThankPlayer")
+AND
+QRY_SpeakerIsAvailable(_Var2)
+AND
+QRY_SpeakerIsAvailableAndInDialogRange(_Var2, S_ARX_Barrkacks_InjuredPaladin01_dc70b319-aff7-4a0d-abda-45db9063b2f1)
+THEN
+Proc_StartDialog(0, "ARX_Barracks_InjuredPaladin01", S_ARX_Barrkacks_InjuredPaladin01_dc70b319-aff7-4a0d-abda-45db9063b2f1, _Var2);
+
+IF
+DialogEnded("ARX_Barracks_InjuredPaladin01", (INTEGER)_Var1)
+AND
+ObjectGetFlag(S_ARX_Barrkacks_InjuredPaladin01_dc70b319-aff7-4a0d-abda-45db9063b2f1, "ARX_Barracks_InjuredPaladin01_DisappearOutofSight", 1)
+THEN
+SetHasDialog(S_ARX_Barrkacks_InjuredPaladin01_dc70b319-aff7-4a0d-abda-45db9063b2f1, 0);
+ProcCharacterDisappearOutOfSight(S_ARX_Barrkacks_InjuredPaladin01_dc70b319-aff7-4a0d-abda-45db9063b2f1, 90, 0, "", 0);
+
+IF
+DB_PostExecutionDialogsDialogs(_Var1, _)
+THEN
+TriggerRegisterForCharacter(S_ARX_Barracks_MainHall_LayingPaladin_8227fe2c-37df-4934-927a-1ce39709b25f, _Var1);
+
+IF
+CharacterEnteredTrigger((CHARACTERGUID)_Var1, S_ARX_Barracks_MainHall_LayingPaladin_8227fe2c-37df-4934-927a-1ce39709b25f)
+AND
+HasActiveStatus(S_ARX_Barrkacks_InjuredPaladin01_dc70b319-aff7-4a0d-abda-45db9063b2f1, "SITTING", 1)
+THEN
+CharacterLookAt(_Var1, S_ARX_Barrkacks_InjuredPaladin01_dc70b319-aff7-4a0d-abda-45db9063b2f1);
+SetStoryEvent(_Var1, "ARX_Barracks_Saw_PaladinsLying");
+
+IF
+CharacterStatusRemoved(S_ARX_Barrkacks_InjuredPaladin01_dc70b319-aff7-4a0d-abda-45db9063b2f1, "CURSED", _)
+THEN
+PROC_StopLoopEffect(S_ARX_Barrkacks_InjuredPaladin01_dc70b319-aff7-4a0d-abda-45db9063b2f1, "ARX_Barrkacks_InjuredPaladin01_Effect");
+
+IF
+DialogEnded("ARX_Barracks_GhostMagister", (INTEGER)_Var1)
+AND
+DB_DialogPlayers(_Var1, _Var2, 1)
+AND
+ObjectGetFlag(_Var2, "ARX_Barracks_GhostMagister_RevealPaintingPassage", 1)
+THEN
+proc_ARX_Barracks_MainHall_RevealPainting(_Var2);
+
+IF
+DialogEnded("ARX_Barracks_MainHall_Rat", (INTEGER)_Var1)
+AND
+DB_DialogPlayers(_Var1, _Var2, 1)
+AND
+ObjectGetFlag(_Var2, "ARX_Barracks_MainHall_Rat_ShowMarkerToPrison", 1)
+THEN
+ProcShowMarker(_Var2, "RC_ARX_Prison");
+
+PROC
+proc_ARX_Barracks_MainHall_RevealPainting((CHARACTERGUID)_Var1)
+AND
+QueryOnlyOnce("ARX_Barracks_MainHall_RevealPainting")
+THEN
+PartySetFlag(_Var1, "ARX_Barracks_MainHall_PaintingRevealed");
+ProcShowMarker(_Var1, "ARX_Barracks_SecretPassageToPrison");
+SetStoryEvent(S_ARX_Barracks_MainHall_SecretPassageToPrison_090b8a70-32a6-4033-9f03-190d1c585f50, "RevealFromStory");
+SetStoryEvent(_Var1, "HiddenPerceptionReveal");
+
+IF
+CharacterStatusApplied(S_ARX_Barracks_GhostMagister_22fc5174-da2d-4267-9fe3-2abd6857cd5d, "SPIRIT", _)
+AND
+QRY_SpeakerIsAvailable(S_ARX_Barracks_GhostMagister_22fc5174-da2d-4267-9fe3-2abd6857cd5d)
+THEN
+Proc_StartDialog(1, "ARX_AD_Barracks_GhostMagister", S_ARX_Barracks_GhostMagister_22fc5174-da2d-4267-9fe3-2abd6857cd5d);
+
+IF
+CharacterGhostRevealed((CHARACTERGUID)_Var1, S_ARX_Barracks_OfficeQuaters_EncryptionMaker_0854c8c1-4020-4537-bd89-6c3b9a5fa893)
+THEN
+Proc_StartDialog(1, "ARX_AD_Barracks_OfficerQuarters_EncryptionMaker", S_ARX_Barracks_OfficeQuaters_EncryptionMaker_0854c8c1-4020-4537-bd89-6c3b9a5fa893);
+
+IF
+CharacterUsedItem((CHARACTERGUID)_Var1, S_Barracks_BurntRoom_EncryptedHatch_6d5ccd8a-a3e6-48ef-b279-99ce87bc9f11)
+AND
+DB_IsPlayer(_Var1)
+AND
+ItemIsLocked(S_Barracks_BurntRoom_EncryptedHatch_6d5ccd8a-a3e6-48ef-b279-99ce87bc9f11, 1)
+THEN
+Proc_StartDialog(0, "ARX_Barracks_EncryptedDoorToArchives", _Var1);
+
+IF
+DialogEnded("ARX_Barracks_EncryptedDoorToArchives", (INTEGER)_Var1)
+AND
+GlobalGetFlag("ARX_Barracks_EncryptedDoorToArchives_Solved", 1)
+AND
+DialogGetInvolvedPlayer(_Var1, 1, _Var2)
+THEN
+PlaySound(S_Barracks_BurntRoom_EncryptedHatch_6d5ccd8a-a3e6-48ef-b279-99ce87bc9f11, "SE_GEN_HatchUnlock");
+ItemUnLock(S_Barracks_BurntRoom_EncryptedHatch_6d5ccd8a-a3e6-48ef-b279-99ce87bc9f11);
+CharacterLookAt(S_ARX_Barracks_OfficeQuaters_EncryptionMaker_0854c8c1-4020-4537-bd89-6c3b9a5fa893, _Var2);
+Proc_StartDialog(1, "ARX_AD_Barracks_OfficerQuarters_EncryptionMaker", S_ARX_Barracks_OfficeQuaters_EncryptionMaker_0854c8c1-4020-4537-bd89-6c3b9a5fa893);
+
+IF
+AttackedByObject((GUIDSTRING)_Var1, (GUIDSTRING)_Var2, (GUIDSTRING)_Var3, _, _)
+AND
+_Var1 != _Var3
+AND
+DB_ARX_Barracks_BurntRoom_Mines(_Var2)
+AND
+QueryOnlyOnce("ARX_AD_Barracks_BurntRoom_FoundTraps")
+THEN
+Proc_StartDialog(1, "ARX_AD_Barracks_BurntRoom_FoundTraps", _Var1);
+
+IF
+CharacterEnteredTrigger((CHARACTERGUID)_Var1, S_ARX_Barracks_BurntRoom_ADAboutBurntRoom_ecb0f72b-add5-4a2d-bad7-a753e998e6cd)
+AND
+QueryOnlyOnce("ARX_AD_Barracks_BurntRoom")
+THEN
+Proc_StartDialog(1, "ARX_AD_Barracks_BurntRoom", _Var1);
+
+IF
+CharacterUsedItem((CHARACTERGUID)_Var1, S_ARX_Barracks_Vault_LadderBackToSurface_5945b46d-4c2a-48c4-9542-4b51697dc04d)
+AND
+UserGetFlag(_Var1, "ARX_Barracks_PathToArchives_TriedToOpen", 0)
+AND
+QueryOnlyOnce("ARX_Barracks_BurntRoom_EncryptedHatch_UnlockHatch_FromBelow")
+THEN
+SetStoryEvent(S_Barracks_BurntRoom_EncryptedHatch_6d5ccd8a-a3e6-48ef-b279-99ce87bc9f11, "StoryReveal");
+
+IF
+CharacterUsedItem((CHARACTERGUID)_Var1, S_ARX_Barracks_Vault_LadderBackToSurface_5945b46d-4c2a-48c4-9542-4b51697dc04d)
+AND
+GlobalGetFlag("ARX_Barracks_EncryptedDoorToArchives_Solved", 0)
+THEN
+GlobalSetFlag("ARX_Barracks_EncryptedDoorToArchives_Solved");
+PlaySound(_Var1, "SE_GEN_HatchUnlock");
+ItemUnLock(S_Barracks_BurntRoom_EncryptedHatch_6d5ccd8a-a3e6-48ef-b279-99ce87bc9f11);
+
+IF
+GlobalFlagSet("ARX_Barracks_WhiteMagisterVault_KemmAppear")
+THEN
+ItemUnLock(S_Barracks_BurntRoom_EncryptedHatch_6d5ccd8a-a3e6-48ef-b279-99ce87bc9f11);
+GlobalSetFlag("ARX_Barracks_EncryptedDoorToArchives_Solved");
+
+IF
+GameBookInterfaceClosed(ARX_Barracks_ConfiscatedGoods_ListOfSourcerers_93eada38-c53b-47c6-9bfc-dcae82e29ba3, (CHARACTERGUID)_Var1)
+AND
+QueryOnlyOnce("ARX_Barracks_ConfiscatedGoods_ListOfSourcerers")
+THEN
+ProcDefineReflectionDialog("ARX_RD_Barracks_ReadListOfSourcerersShippedToFTJ", _Var1);
+
+IF
+CharacterEnteredTrigger((CHARACTERGUID)_Var1, S_ARX_Barracks_VaultEntered_0790cd06-4e2b-4cc1-b021-46f1dc180357)
+AND
+QueryOnlyOnce("ARX_Barracks_VaultEntered")
+THEN
+StartVoiceBark("ARX_VB_Barracks_EnteredVault", _Var1);
+
+IF
+DB_ARX_Barracks_2ndFloor_Archives_Paintings_Buttons(_Var1, _Var2)
+THEN
+ItemSetCanInteract(_Var2, 0);
+
+IF
+CharacterMovedItem((CHARACTERGUID)_Var1, (ITEMGUID)_Var2)
+AND
+DB_ARX_Barracks_2ndFloor_Archives_Paintings_Buttons(_Var2, _Var3)
+THEN
+Proc_ARX_Barracks_2ndFloor_ArchivesHiddenSwitch_Reveal(_Var1, _Var3);
+
+IF
+ItemAddedToCharacter((ITEMGUID)_Var1, (CHARACTERGUID)_Var2)
+AND
+DB_ARX_Barracks_2ndFloor_Archives_Paintings_Buttons(_Var1, _Var3)
+THEN
+Proc_ARX_Barracks_2ndFloor_ArchivesHiddenSwitch_Reveal(_Var2, _Var3);
+
+IF
+CharacterDestroyedItem((CHARACTERGUID)_Var1, (ITEMGUID)_Var2)
+AND
+DB_ARX_Barracks_2ndFloor_Archives_Paintings_Buttons(_Var2, _Var3)
+THEN
+Proc_ARX_Barracks_2ndFloor_ArchivesHiddenSwitch_Reveal(_Var1, _Var3);
+
+IF
+ItemDestroyed((ITEMGUID)_Var1)
+AND
+DB_ARX_Barracks_2ndFloor_Archives_Paintings_Buttons(_Var1, _Var2)
+AND
+GetClosestAlivePlayer(_Var1, _Var3, _)
+THEN
+Proc_ARX_Barracks_2ndFloor_ArchivesHiddenSwitch_Reveal(_Var3, _Var2);
+
+IF
+CharacterUsedSkillOnTarget((CHARACTERGUID)_Var1, (ITEMGUID)_Var2, _, "teleportation", _)
+AND
+DB_ARX_Barracks_2ndFloor_Archives_Paintings_Buttons(_Var2, _Var5)
+THEN
+Proc_ARX_Barracks_2ndFloor_ArchivesHiddenSwitch_Reveal(_Var1, _Var5);
+
+PROC
+Proc_ARX_Barracks_2ndFloor_ArchivesHiddenSwitch_Reveal((CHARACTERGUID)_Var1, (ITEMGUID)_Var2)
+AND
+GlobalGetFlag("ARX_Barracks_Archives_Button_Puzzle_Solved", 0)
+AND
+QueryOnlyOnce("ARX_AD_Barracks_Archives_PlayerRevealedButtons")
+THEN
+Proc_StartDialog(1, "ARX_AD_Barracks_Archives_PlayerRevealedButtons", _Var1);
+PartySetFlag(_Var1, "ARX_Barracks_Archives_PlayerRevealedButtons");
+
+PROC
+Proc_ARX_Barracks_2ndFloor_ArchivesHiddenSwitch_Reveal((CHARACTERGUID)_Var1, (ITEMGUID)_Var2)
+AND
+GlobalGetFlag("ARX_Barracks_Archives_Button_Puzzle_Solved", 0)
+AND
+GetUUID(_Var2, _Var3)
+AND
+StringConcatenate("ARX_Barracks_Archives_ButtonReveal", _Var3, _Var4)
+AND
+QueryOnlyOnce(_Var4)
+THEN
+SetStoryEvent(_Var2, "RevealFromStory");
+ItemSetCanInteract(_Var2, 1);
+
+IF
+CharacterItemEvent((CHARACTERGUID)_Var1, (ITEMGUID)_Var2, "ARX_Barracks_Archives_Button_PurityOfMind_1")
+THEN
+GlobalSetFlag("ARX_Barracks_Archives_Button_Puzzle_1IsCorrect");
+Proc_StartDialog(1, "ARX_AD_Barracks_Archives_PlayerPressedButton", _Var2, _Var1);
+
+IF
+CharacterItemEvent((CHARACTERGUID)_Var1, (ITEMGUID)_Var2, "ARX_Barracks_Archives_Button_DisciplineOfBody_3")
+AND
+GlobalGetFlag("ARX_Barracks_Archives_Button_Puzzle_1IsCorrect", 1)
+THEN
+GlobalSetFlag("ARX_Barracks_Archives_Button_Puzzle_2IsCorrect");
+Proc_StartDialog(1, "ARX_AD_Barracks_Archives_PlayerPressedButton", _Var2, _Var1);
+
+IF
+CharacterItemEvent((CHARACTERGUID)_Var1, (ITEMGUID)_Var2, "ARX_Barracks_Archives_Button_DisciplineOfBody_3")
+AND
+GlobalGetFlag("ARX_Barracks_Archives_Button_Puzzle_1IsCorrect", 0)
+THEN
+Proc_ARX_Barracks_2ndFloor_ArchivesHiddenSwitch_WRONG(_Var2, _Var1);
+
+IF
+CharacterItemEvent((CHARACTERGUID)_Var1, (ITEMGUID)_Var2, "ARX_Barracks_Archives_Button_OrderOfSociety_2")
+AND
+GlobalGetFlag("ARX_Barracks_Archives_Button_Puzzle_2IsCorrect", 1)
+THEN
+GlobalSetFlag("ARX_Barracks_Archives_Button_Puzzle_3IsCorrect");
+Proc_StartDialog(1, "ARX_AD_Barracks_Archives_PlayerPressedButton", _Var2, _Var1);
+
+IF
+CharacterItemEvent((CHARACTERGUID)_Var1, (ITEMGUID)_Var2, "ARX_Barracks_Archives_Button_OrderOfSociety_2")
+AND
+GlobalGetFlag("ARX_Barracks_Archives_Button_Puzzle_2IsCorrect", 0)
+THEN
+Proc_ARX_Barracks_2ndFloor_ArchivesHiddenSwitch_WRONG(_Var2, _Var1);
+
+IF
+CharacterItemEvent((CHARACTERGUID)_Var1, (ITEMGUID)_Var2, "ARX_Barracks_Archives_Button_LoyaltyOfTheDivine_4")
+AND
+GlobalGetFlag("ARX_Barracks_Archives_Button_Puzzle_3IsCorrect", 1)
+THEN
+GlobalSetFlag("ARX_Barracks_Archives_Button_Puzzle_Solved");
+ItemSetForceSynch(ITEMGUID_S_ARX_Barracks_WhiteMagisterVault_SecretWallPassage_1c0aa312-009b-40ba-a92f-3457f48c53a9, 1);
+ItemOpen(S_ARX_Barracks_2ndFloor_Archives_MoveableWall_3318c85a-3b53-4222-946b-d683698bbe96);
+UnlockSecretRegion(TRIGGERGUID_S_ARX_Barracks_2ndFloor_Archives_TreasureRoom_320e38f2-03d9-4a52-b9fc-6177e3a5bedf);
+Proc_StartDialog(1, "ARX_AD_Barracks_Archives_PlayerPressedButton", _Var2, _Var1);
+
+IF
+CharacterItemEvent((CHARACTERGUID)_Var1, (ITEMGUID)_Var2, "ARX_Barracks_Archives_Button_LoyaltyOfTheDivine_4")
+AND
+GlobalGetFlag("ARX_Barracks_Archives_Button_Puzzle_3IsCorrect", 0)
+THEN
+Proc_ARX_Barracks_2ndFloor_ArchivesHiddenSwitch_WRONG(_Var2, _Var1);
+
+IF
+GlobalFlagSet("ARX_Barracks_Archives_Button_Puzzle_Solved")
+THEN
+ItemUnlockAndOpen(S_ARX_Barracks_2ndFloor_Cuboard_2685a7e9-2a10-46ab-a6a1-28286b39bfd8);
+UnlockSecretRegion(TRIGGERGUID_S_ARX_Barracks_2ndFloor_SecretOffice_80630ef6-1b0d-4766-a5b3-87d5b4a04417);
+
+IF
+CharacterUsedItem((CHARACTERGUID)_Var1, ITEMGUID_S_ARX_Barracks_2ndFloor_SecretWall_2685a7e9-2a10-46ab-a6a1-28286b39bfd8)
+AND
+ItemIsLocked(ITEMGUID_S_ARX_Barracks_2ndFloor_SecretWall_2685a7e9-2a10-46ab-a6a1-28286b39bfd8, 0)
+AND
+DB_IsPlayer(_Var1)
+THEN
+ItemUnlockAndOpen(S_ARX_Barracks_2ndFloor_Cuboard_2685a7e9-2a10-46ab-a6a1-28286b39bfd8);
+UnlockSecretRegion(TRIGGERGUID_S_ARX_Barracks_2ndFloor_SecretOffice_80630ef6-1b0d-4766-a5b3-87d5b4a04417);
+
+IF
+GlobalFlagSet("ARX_Barracks_Archives_Button_Puzzle_Solved")
+AND
+ItemIsOpened(ITEMGUID_S_ARX_Barracks_2ndFloor_Archives_MoveableWall_3318c85a-3b53-4222-946b-d683698bbe96, 1)
+THEN
+ARX_Barracks_2ndFloor_Archives_Paintings_Buttons_DisableButtons();
+
+IF
+ItemOpened(ITEMGUID_S_ARX_Barracks_2ndFloor_Archives_MoveableWall_3318c85a-3b53-4222-946b-d683698bbe96)
+AND
+GlobalGetFlag("ARX_Barracks_Archives_Button_Puzzle_Solved", 1)
+THEN
+ARX_Barracks_2ndFloor_Archives_Paintings_Buttons_DisableButtons();
+
+PROC
+ARX_Barracks_2ndFloor_Archives_Paintings_Buttons_DisableButtons()
+AND
+DB_ARX_Barracks_2ndFloor_Archives_Paintings_Buttons(_, _Var2)
+THEN
+ItemSetCanInteract(_Var2, 0);
+
+IF
+GlobalFlagSet("ARX_Barracks_Archives_Button_Puzzle_Solved")
+AND
+DB_ARX_Barracks_2ndFloor_Archives_Geysers(_Var1, 1)
+THEN
+SetVarInteger(_Var1, "TurretIsOn", 0);
+CreateSurface(_Var1, "SurfaceNone", 10, 1);
+CharacterItemSetEvent(NULL_00000000-0000-0000-0000-000000000000, _Var1, "ARX_Barracks_Archives_TrunGeyserOff");
+
+PROC
+Proc_ARX_Barracks_2ndFloor_ArchivesHiddenSwitch_WRONG((ITEMGUID)_Var1, (CHARACTERGUID)_Var2)
+THEN
+Proc_ShakeCameraForTime(_Var2, 500);
+GlobalClearFlag("ARX_Barracks_Archives_Button_Puzzle_1IsCorrect");
+GlobalClearFlag("ARX_Barracks_Archives_Button_Puzzle_2IsCorrect");
+GlobalClearFlag("ARX_Barracks_Archives_Button_Puzzle_3IsCorrect");
+CharacterItemSetEvent(_Var2, _Var1, "ARX_Barracks_2ndFloor_ArchivesHiddenSwitch_WRONG");
+
+IF
+CharacterItemEvent((CHARACTERGUID)_Var1, (ITEMGUID)_Var2, "ARX_Barracks_2ndFloor_ArchivesHiddenSwitch_WRONG")
+THEN
+Proc_StartDialog(1, "ARX_AD_Barracks_Archives_PlayerPressedButton", _Var2, _Var1);
+GlobalSetFlag("ARX_Archives_Activate_Geyser");
+
+IF
+CharacterItemEvent((CHARACTERGUID)_Var1, (ITEMGUID)_Var2, "ARX_Barracks_2ndFloor_ArchivesHiddenSwitch_WRONG")
+AND
+DB_ARX_Barracks_2ndFloor_Archives_Geysers(_Var3, 1)
+THEN
+SetVarInteger(_Var3, "TurretIsOn", 1);
+ProcObjectTimerCancel(_Var3, "ARX_Barracks_Archives_TrunGeyserOff");
+ProcObjectTimer(_Var3, "ARX_Barracks_Archives_TrunGeyserOff", 5000);
+
+IF
+CharacterItemEvent((CHARACTERGUID)_Var1, (ITEMGUID)_Var2, "ARX_Barracks_2ndFloor_ArchivesHiddenSwitch_WRONG")
+AND
+DB_ARX_Barracks_2ndFloor_Archives_Geysers(_Var3, _Var4)
+AND
+_Var4 == 0
+AND
+GlobalGetFlag("ARX_Archives_Activate_Geyser", 1)
+THEN
+SetStoryEvent(_Var3, "RevealFromStory");
+SetVarInteger(_Var3, "TurretIsOn", 1);
+ProcObjectTimerCancel(_Var3, "ARX_Barracks_Archives_TrunGeyserOff");
+ProcObjectTimer(_Var3, "ARX_Barracks_Archives_TrunGeyserOff", 8000);
+NOT DB_ARX_Barracks_2ndFloor_Archives_Geysers(_Var3, 0);
+DB_ARX_Barracks_2ndFloor_Archives_Geysers(_Var3, 1);
+GlobalClearFlag("ARX_Archives_Activate_Geyser");
+
+PROC
+ProcObjectTimerFinished((GUIDSTRING)_Var1, "ARX_Barracks_Archives_TrunGeyserOff")
+THEN
+SetVarInteger(_Var1, "TurretIsOn", 0);
+
+IF
+CharacterItemEvent((CHARACTERGUID)_Var1, (ITEMGUID)_Var2, "ARX_Barracks_2ndFloor_ArchivesHiddenSwitch_DestroyWall")
+AND
+QueryOnlyOnce("ARX_Barracks_2ndFloor_ArchivesHiddenSwitch_DestroyWall")
+THEN
+ItemUnlockAndOpen(S_ARX_Barracks_2ndFloor_Cuboard_2685a7e9-2a10-46ab-a6a1-28286b39bfd8);
+UnlockSecretRegion(TRIGGERGUID_S_ARX_Barracks_2ndFloor_SecretOffice_80630ef6-1b0d-4766-a5b3-87d5b4a04417);
+
+IF
+StoryEvent(S_ARX_Barracks_Archives_DeathTrap_Trap_9530133b-68c6-4291-942f-914cca22e11f, "fire")
+AND
+QueryOnlyOnce("ARX_Barracks_Archives_DeathTrap")
+THEN
+SetStoryEvent(S_ARX_Barracks_Archives_DeathTrap_Trap_9530133b-68c6-4291-942f-914cca22e11f, "RevealFromStory");
+
+IF
+CharacterUsedItem((CHARACTERGUID)_Var1, S_ARX_Barracks_Archives_WantedPoster_2ad35508-1098-42da-9788-57d37cae063a)
+THEN
+Proc_StartDialog(0, "ARX_Barracks_Archives_WantedPoster", _Var1);
+
+IF
+CharacterEnteredTrigger((CHARACTERGUID)_Var1, S_ARX_Barracks_VaultEntered_0790cd06-4e2b-4cc1-b021-46f1dc180357)
+THEN
+PartySetFlag(_Var1, "QuestUpdate_ARX_HuntingForDallis_FoundVault");
+PartySetFlag(_Var1, "QuestUpdate_ARX_Barracks_GainedAccessToWhiteVault");
+
+IF
+TextEventSet("OpenUI_ARX_Book_UI")
+AND
+DB_IsPlayer(_Var1)
+THEN
+OpenCustomBookUI(_Var1, "ARX_Barracks_OfficerQuarters_EncryptedBook");
+
+IF
+TextEventSet("AddNobleTag")
+AND
+DB_IsPlayer(_Var1)
+THEN
+SetTag(_Var1, "NOBLE");
+
+IF
+TextEventSet("GiveSmallReward")
+AND
+DB_IsPlayer(_Var1)
+THEN
+CharacterGiveReward(_Var1, "RewardSmall");
+
+IF
+TextEventSet("ARX_Barracks_All_PaladinsComeTome")
+AND
+DB_IsPlayer(_Var1)
+AND
+DB_PostExecutionDialogsDialogs(_Var2, _)
+THEN
+CharacterMoveTo(_Var2, _Var1, 1, "", 0);
+
+IF
+TextEventSet("ARX_Barracks2ndFloor_OfficerOffice_SetQsFlags")
+AND
+DB_IsPlayer(_Var1)
+THEN
+ObjectSetFlag(_Var1, "RC_ARX_Sewers_ReadQsOrdersFromD");
+ObjectSetFlag(_Var1, "ARX_Sewers_KnowsAboutQFromWindego");
+
+IF
+TextEventSet("ARX_Barracks_FinishedWhiteMagister")
+AND
+DB_IsPlayer(_Var1)
+THEN
+ObjectSetFlag(_Var1, "ARX_Barracks_PlayerKnows_WhiteMagisterTruth");
+
+IF
+TextEventSet("ARX_Barracks_SolvePuzzle")
+THEN
+proc_ItemMoveToTrigger(S_ARX_Barracks_2ndFloor_Cuboard_2685a7e9-2a10-46ab-a6a1-28286b39bfd8, S_ARX_Barracks_2ndFloor_CuboardMoveTo_af2843e9-d9c9-4cd2-b33c-4ece609c4aa4, 2, 0, 0);
+UnlockSecretRegion(TRIGGERGUID_S_ARX_Barracks_2ndFloor_SecretOffice_80630ef6-1b0d-4766-a5b3-87d5b4a04417);
+
+IF
+TextEventSet("ARX_Barracks_MoveItem")
+THEN
+SetOnStage(S_ARX_Barracks_2ndFloor_Cuboard_2685a7e9-2a10-46ab-a6a1-28286b39bfd8, 1);
+proc_ItemMoveToTrigger(S_ARX_Barracks_2ndFloor_Cuboard_2685a7e9-2a10-46ab-a6a1-28286b39bfd8, S_ARX_Barracks_2ndFloor_CuboardMoveTo_af2843e9-d9c9-4cd2-b33c-4ece609c4aa4, 2, 0, 1);
+
+IF
+TextEventSet("BugFix_DOSTWO_17365")
+AND
+DB_IsPlayer(_Var1)
+THEN
+ObjectSetFlag(_Var1, "ARX_Barracks_InjuredPaladin01_PlayerThatHealed");
+
+IF
+TextEventSet("BugFix_DOSTWO_17365")
+THEN
+GlobalSetFlag("ARX_Barracks_CursingMagister_Ghost_Gone");
+Proc_StartDialog(1, "ARX_AD_Barracks_InjuredPaladin01_ThankPlayer", S_ARX_Barrkacks_InjuredPaladin01_dc70b319-aff7-4a0d-abda-45db9063b2f1);
+
+IF
+DialogStarted("ARX_Barracks_Courtyard_Corpse2_Ghost", _)
+THEN
+CharacterSetFightMode(CHARACTERGUID_S_ARX_Barracks_Courtyard_Corpse2_Ghost_1f683454-5f84-4410-ad6f-33c035b61174, 1, 0);
+
+IF
+DialogEnded("ARX_Barracks_Courtyard_Corpse2_Ghost", _)
+THEN
+CharacterSetFightMode(CHARACTERGUID_S_ARX_Barracks_Courtyard_Corpse2_Ghost_1f683454-5f84-4410-ad6f-33c035b61174, 0, 0);
+
+IF
+GlobalFlagSet("ARX_Barracks_GhostSwing")
+THEN
+PlayAnimation(CHARACTERGUID_S_ARX_Barracks_Courtyard_Corpse2_Ghost_1f683454-5f84-4410-ad6f-33c035b61174, "attack1");
+GlobalClearFlag("ARX_Barracks_GhostSwing");
+
+IF
+SavegameLoaded((INTEGER)_Var1, (INTEGER)_Var2, (INTEGER)_Var3, (INTEGER)_Var4)
+AND
+QRY_VersionIsOlderThan(_Var1, _Var2, _Var3, _Var4, 3, 6, 1, 0)
+AND
+DB_ARX_Barracks_2ndFloor_Archives_Paintings_Buttons(_Var5, _Var6)
+AND
+GetDistanceTo(_Var6, _Var5, _Var7)
+AND
+_Var7 > 1
+AND
+GetUUID(_Var6, _Var8)
+AND
+StringConcatenate("ARX_Barracks_Archives_ButtonReveal", _Var8, _Var9)
+AND
+QueryOnlyOnce(_Var9)
+THEN
+ItemSetCanInteract(_Var6, 1);
+SetStoryEvent(_Var6, "RevealFromStory");
+
+
+EXITSECTION
+ENDEXITSECTION
+
+ParentTargetEdge "ARX"

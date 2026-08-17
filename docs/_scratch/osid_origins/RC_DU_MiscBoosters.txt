@@ -1,0 +1,122 @@
+Version 1
+SubGoalCombiner SGC_AND
+
+INITSECTION
+DB_Ghosts(S_RC_DU_DeadCivilian_f9a4e841-5721-4794-aa75-a6d6de2b8522, S_RC_DU_DeadCivilian_Ghost_56cd8712-dc31-4007-ae42-90aebd597771, "RC_DU_DeadCivilian");
+DB_OneShotPlayerTrigger(S_RC_DU_AD_DeadSourcerer_af227828-dddf-490c-8d9b-8a3ff4aa7933);
+DB_Dialogs(S_RC_DW_GallowsRat_e4781ffd-731c-4aeb-b901-f530e6ae3714, "RC_DW_GallowsRat");
+DB_RC_DU_Abduction(CHARACTERGUID_S_RC_DU_Abduction_Combat1_04d4d854-8474-4c32-887e-43f395508392, 1200);
+DB_RC_DU_Abduction(CHARACTERGUID_S_RC_DU_Abduction_Combat2_bede8cbd-a5c9-4bd0-9e48-43f3b41d5a32, 1600);
+DB_RC_DU_Abduction(CHARACTERGUID_S_RC_DU_Abduction_Combat3_eae4231d-28cc-4c99-833d-6e6680a48675, 2100);
+DB_RC_DU_Abduction(CHARACTERGUID_S_RC_DU_Abduction_Combat4_87ba9148-d75e-4d31-a872-ca4fb6e8b6dd, 2400);
+DB_RC_DU_Abduction(CHARACTERGUID_S_RC_DU_Abduction_Combat5_9c6d0ca3-42e0-4ff9-a60d-6a396103149d, 3000);
+DB_RC_DU_Abduction(CHARACTERGUID_S_RC_DU_Abduction_Combat6_555176fb-7adf-4b60-8549-8cedf209073b, 3400);
+ItemSetForceSynch(ITEMGUID_S_RC_DU_GiantInsect_Abduction_9453a676-5283-4f44-8267-a6cbb3d0decf, 1);
+DB_RC_DU_Abduction_Shadows(ITEMGUID_S_RC_DU_InsectAbduction_Shadow1_c85eaa07-8ed4-4f46-a292-331624eb8cb2);
+DB_RC_DU_Abduction_Shadows(ITEMGUID_S_RC_DU_InsectAbduction_Shadow2_865045ad-da68-4ea3-82ae-5c2f4dc1cb1e);
+DB_RC_DU_Abduction_Shadows(ITEMGUID_S_RC_DU_InsectAbduction_Shadow3_71aaa2a1-b174-485f-806f-6546efbf8502);
+DB_RC_DU_Abduction_Shadows(ITEMGUID_S_RC_DU_InsectAbduction_Shadow4_b45be1bf-9215-4323-86b6-04b2f37c6bfb);
+DB_RC_DU_Abduction_Shadows(ITEMGUID_S_RC_DU_InsectAbduction_Shadow5_3fad61d7-934b-4240-948c-133335af21b9);
+
+KBSECTION
+PROC
+ProcOneShotTriggerEntered((CHARACTERGUID)_Var1, S_RC_DU_AD_DeadCivilian_af227828-dddf-490c-8d9b-8a3ff4aa7933)
+THEN
+Proc_StartDialog(1, "RC_DU_AD_DeadCivilian", _Var1);
+
+IF
+DB_RC_DU_Abduction(_Var1, _)
+THEN
+SetOnStage(_Var1, 0);
+
+IF
+DB_RC_DU_Abduction_Shadows(_Var1)
+THEN
+SetOnStage(_Var1, 0);
+
+IF
+StoryEvent((CHARACTERGUID)_Var1, "RC_DU_AbductionLeaving")
+AND NOT
+QRY_RC_DU_AbductionDrawIntoDialog(_Var1)
+THEN
+PROC_RC_DU_AductionDialogFailed();
+
+PROC
+PROC_RC_DU_AductionDialogFailed()
+THEN
+SetStoryEvent(ITEMGUID_S_RC_DU_GiantInsect_Abduction_9453a676-5283-4f44-8267-a6cbb3d0decf, "RC_DU_Leave");
+ItemSetForceSynch(ITEMGUID_S_RC_DU_GiantInsect_Abduction_9453a676-5283-4f44-8267-a6cbb3d0decf, 0);
+
+QRY
+QRY_RC_DU_AbductionDrawIntoDialog((CHARACTERGUID)_Var1)
+AND
+CharacterIsPolymorphInteractionDisabled(_Var1, 0)
+AND NOT
+QRY_IsSummonOrPartyFollower(_Var1)
+AND
+QRY_StartDialog(1, "RC_DU_AD_NoticedInsectAbduction", _Var1)
+THEN
+SetStoryEvent(ITEMGUID_S_RC_DU_GiantInsect_Abduction_9453a676-5283-4f44-8267-a6cbb3d0decf, "RC_DU_Leave");
+ItemSetForceSynch(ITEMGUID_S_RC_DU_GiantInsect_Abduction_9453a676-5283-4f44-8267-a6cbb3d0decf, 0);
+
+IF
+StoryEvent((GUIDSTRING)_Var1, "RC_DU_AbductionLeaving")
+AND
+DB_RC_DU_Abduction(_Var2, _Var3)
+THEN
+ProcObjectTimer(_Var2, "RC_DU_AbductionHasLeft", _Var3);
+
+IF
+StoryEvent((CHARACTERGUID)_Var1, "RC_DU_AbductionLeaving")
+AND
+DB_IsPlayer(_Var1)
+AND
+GetDistanceTo(_Var1, ITEMGUID_S_RC_DU_GiantInsect_Abduction_9453a676-5283-4f44-8267-a6cbb3d0decf, _Var2)
+AND
+_Var2 <= 30
+THEN
+StartCameraSpline(SPLINEGUID_CameraSpline_RC_InsectAbduct_01_250a57ba-3f36-4544-b968-765428e98a97, _Var1, 0.1, 1, 1, 0);
+
+PROC
+ProcObjectTimerFinished((CHARACTERGUID)_Var1, "RC_DU_AbductionHasLeft")
+AND
+DB_RC_DU_Abduction(_Var1, _Var2)
+THEN
+CharacterAppear(_Var1, 1, "");
+
+IF
+GlobalFlagSet("RC_DU_AbductionEnded")
+THEN
+TimerLaunch("RC_DU_Abduction_ShadowDelay", 1000);
+
+IF
+TimerFinished("RC_DU_Abduction_ShadowDelay")
+AND
+DB_RC_DU_Abduction_Shadows(_Var1)
+AND
+GetPosition(_Var1, _Var2, _Var3, _Var4)
+AND
+RealSum(_Var4, 10, _Var5)
+AND
+RealSum(_Var2, -110, _Var6)
+THEN
+SetOnStage(_Var1, 1);
+ItemMoveToPosition(_Var1, _Var6, _Var3, _Var5, 15, 0, "RC_DU_AbductionShadow_Arrived", 0);
+
+IF
+StoryEvent((GUIDSTRING)_Var1, "RC_DU_AbductionShadow_Arrived")
+THEN
+SetOnStage(_Var1, 0);
+
+PROC
+PROC_RC_DU_AductionDialogFailed()
+AND
+DB_RC_DU_Abduction(_Var1, _)
+THEN
+CharacterAppear(_Var1, 1, "");
+
+
+EXITSECTION
+ENDEXITSECTION
+
+ParentTargetEdge "ReapersCoast"

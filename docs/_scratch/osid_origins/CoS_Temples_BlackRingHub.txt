@@ -1,0 +1,103 @@
+Version 1
+SubGoalCombiner SGC_AND
+
+INITSECTION
+DB_Dialogs(CHARACTERGUID_S_CoS_Temples_BlackRingHub_Captain_7d32e545-6c6c-4a95-90dd-3ed14d3a20de, "CoS_Temples_BlackRingHub_Captain");
+DB_Dialogs(CHARACTERGUID_S_CoS_Temples_BlackRingHub_Alchemist_9ba43a01-adb5-418f-8f66-da36657bc402, "CoS_Temples_BlackRingHub_Alchemist");
+DB_Dialogs(CHARACTERGUID_S_CoS_Temples_BlackRingHub_Quartermaster_a652a830-6202-4589-a5c5-a49154d2a87e, "CoS_Temples_BlackRingHub_Quartermaster");
+DB_Dialogs(CHARACTERGUID_S_CoS_Temples_BlackRingHub_Grunt_001_22e17bb5-887b-49b9-a435-fa3565a2fb43, "CoS_Temples_BlackRingHub_Grunt_001");
+DB_Dialogs(CHARACTERGUID_S_CoS_Temples_BlackRingHub_Grunt_002_bd6234b0-7ecc-4c2d-a07c-4d196f1a0958, "CoS_Temples_BlackRingHub_Grunt_002");
+DB_Ghosts(CHARACTERGUID_S_CoS_Temples_BlackRingHub_SpyMaster_787c6c4a-6e5a-4044-9616-27e21e5a171e, CHARACTERGUID_S_CoS_Temples_BlackRingHub_SpyMaster_Ghost_5f6d5496-b2fd-42a5-933b-906bb8ab2590, "CoS_Temples_BlackRingHub_SpyMaster_Ghost");
+DB_Dialogs(CHARACTERGUID_S_CoS_Temples_BlackRingHub_HighPriest_f649d1cf-1cd5-4751-969b-41bfb5b8043b, "CoS_Temples_BlackRingHub_HighPriest");
+DB_Ghosts(CHARACTERGUID_S_CoS_Temples_BlackRingHub_HighPriest_f649d1cf-1cd5-4751-969b-41bfb5b8043b, CHARACTERGUID_S_CoS_Temples_BlackRingHub_HighPriest_Ghost_2fce6c70-fc3c-4a81-b520-350cb9a5d78a, "CoS_Temples_BlackRingHub_HighPriest_Ghost");
+DB_Dialogs(CHARACTERGUID_S_CoS_Temples_BlackRingHub_Dreamer_001_3307d7f7-b2fe-448e-828d-3cd3cde1cb8c, "CoS_Temples_BlackRingHub_Dreamer_001");
+DB_Dialogs(CHARACTERGUID_S_CoS_Temples_BlackRingHub_Dreamer_002_25bf2b1b-0d49-4be1-946d-837dfd1ccf54, "CoS_Temples_BlackRingHub_Dreamer_002");
+DB_DoNotFace(CHARACTERGUID_S_CoS_Temples_BlackRingHub_Dreamer_001_3307d7f7-b2fe-448e-828d-3cd3cde1cb8c);
+DB_DoNotFace(CHARACTERGUID_S_CoS_Temples_BlackRingHub_Dreamer_002_25bf2b1b-0d49-4be1-946d-837dfd1ccf54);
+DB_DoNotFace(CHARACTERGUID_S_CoS_Temples_BlackRingHub_TormentedMagister_22c649e6-4c75-4dc5-9752-4fee5e82d0f7);
+DB_Dialogs(CHARACTERGUID_S_CoS_Temples_BlackRingHub_Troll_0c148028-84ff-4bdd-957b-5f093b4a7521, "CoS_Temples_BlackRingHub_Troll");
+DB_Dialogs(CHARACTERGUID_S_CoS_Temples_BlackRingHub_TormentedMagister_22c649e6-4c75-4dc5-9752-4fee5e82d0f7, "CoS_Temples_BlackRingHub_TormentedMagister");
+DB_Ghosts(CHARACTERGUID_S_CoS_Temples_BlackRingHub_Troll_0c148028-84ff-4bdd-957b-5f093b4a7521, CHARACTERGUID_S_CoS_Temples_BlackRingHub_Troll_Ghost_d7a439e2-4aaa-4e62-a274-d138c121bb0c, "CoS_Temples_BlackRingHub_Troll_Ghost");
+DB_IsNotMessingAround(CHARACTERGUID_S_CoS_Temples_BlackRingHub_Troll_0c148028-84ff-4bdd-957b-5f093b4a7521);
+DB_DeadEvent(CHARACTERGUID_S_CoS_Temples_BlackRingHub_Captain_7d32e545-6c6c-4a95-90dd-3ed14d3a20de, "CoS_Temples_BlackRingHub_CaptainIsDead");
+DB_DeadEvent(CHARACTERGUID_S_CoS_Temples_BlackRingHub_Dreamer_001_3307d7f7-b2fe-448e-828d-3cd3cde1cb8c, "CoS_Temples_BlackRingHub_Dreamer_001_IsDead");
+DB_RepairTrader(CHARACTERGUID_S_CoS_Temples_BlackRingHub_Quartermaster_a652a830-6202-4589-a5c5-a49154d2a87e, 3);
+ProcCharacterDisableAllCrimes(CHARACTERGUID_S_CoS_Temples_BlackRingHub_TormentedMagister_22c649e6-4c75-4dc5-9752-4fee5e82d0f7);
+
+KBSECTION
+IF
+StoryEvent((CHARACTERGUID)_Var1, "CoS_Temples_BlackRingHub_Captain_StartDialog")
+THEN
+Proc_StartDialog(0, "CoS_Temples_BlackRingHub_Captain", CHARACTERGUID_S_CoS_Temples_BlackRingHub_Captain_7d32e545-6c6c-4a95-90dd-3ed14d3a20de, _Var1);
+
+IF
+DialogEnded("CoS_Temples_BlackRingHub_Captain", (INTEGER)_Var1)
+AND
+DialogGetInvolvedNPC(_Var1, 1, _Var2)
+AND
+DialogGetInvolvedPlayer(_Var1, 1, _Var3)
+AND
+ObjectGetFlag(_Var2, "CoS_Temples_CaptainGoHostile", 1)
+THEN
+CharacterSetRelationFactionToFaction("CoS_Temples_BlackRingHub", "Hero", 0);
+CharacterSetRelationFactionToFaction("Hero", "CoS_Temples_BlackRingHub", 0);
+
+IF
+StoryEvent((CHARACTERGUID)_Var1, "CoS_Temples_BlackRingHub_Troll_StartDialog")
+THEN
+Proc_StartDialog(0, "CoS_Temples_BlackRingHub_Troll", CHARACTERGUID_S_CoS_Temples_BlackRingHub_Troll_0c148028-84ff-4bdd-957b-5f093b4a7521, _Var1);
+
+IF
+GlobalFlagSet("CoS_Temples_BlackRingHub_Troll_WasPersuaded")
+THEN
+CharacterMoveTo(CHARACTERGUID_S_CoS_Temples_BlackRingHub_Troll_0c148028-84ff-4bdd-957b-5f093b4a7521, TRIGGERGUID_S_CoS_Temples_BlackRingHub_Troll_Persuaded_Point_b3321c57-a0a1-4f15-b295-46896ef71584, 0, "", 0);
+SetVarFixedString(CHARACTERGUID_S_CoS_Temples_BlackRingHub_Troll_0c148028-84ff-4bdd-957b-5f093b4a7521, "currentState", "State_Default");
+ItemClearOwner(ITEMGUID_S_CoS_BlackRingCamp_Entrance_6116c3c1-8132-4c31-aa5c-bd453f1b0908);
+
+PROC
+ProcBlockUseOfItem((CHARACTERGUID)_Var1, ITEMGUID_S_CoS_BlackRingCamp_Entrance_6116c3c1-8132-4c31-aa5c-bd453f1b0908)
+AND
+DB_IsPlayer(_Var1)
+AND
+GlobalGetFlag("CoS_Temples_BlackRingHub_Troll_WasPersuaded", 0)
+AND
+CharacterCanSee(CHARACTERGUID_S_CoS_Temples_BlackRingHub_Troll_0c148028-84ff-4bdd-957b-5f093b4a7521, _Var1, 1)
+THEN
+ProcForceStopDialog(CHARACTERGUID_S_CoS_Temples_BlackRingHub_Troll_0c148028-84ff-4bdd-957b-5f093b4a7521);
+CharacterSetRelationIndivFactionToFaction(CHARACTERGUID_S_CoS_Temples_BlackRingHub_Troll_0c148028-84ff-4bdd-957b-5f093b4a7521, "Hero", 0);
+CharacterSetRelationFactionToIndivFaction("Hero", CHARACTERGUID_S_CoS_Temples_BlackRingHub_Troll_0c148028-84ff-4bdd-957b-5f093b4a7521, 0);
+
+IF
+AttackedByObject(CHARACTERGUID_S_CoS_Temples_BlackRingHub_TormentedMagister_22c649e6-4c75-4dc5-9752-4fee5e82d0f7, (CHARACTERGUID)_Var1, _, _, _)
+AND
+CharacterIsPlayer(_Var1, 1)
+AND
+CharacterCanSee(CHARACTERGUID_S_CoS_Temples_BlackRingHub_Dreamer_001_3307d7f7-b2fe-448e-828d-3cd3cde1cb8c, _Var1, 1)
+THEN
+CharacterSetTemporaryHostileRelation(CHARACTERGUID_S_CoS_Temples_BlackRingHub_Dreamer_001_3307d7f7-b2fe-448e-828d-3cd3cde1cb8c, _Var1);
+
+IF
+GlobalFlagSet("CoS_Temples_Elf_BlackRing_AttackBRHub")
+THEN
+CharacterSetRelationFactionToFaction("CoS_Temples_BlackRingHub", "CoS_BlackRing_ElfTemple", 0);
+CharacterSetRelationFactionToFaction("CoS_BlackRing_ElfTemple", "CoS_Temples_BlackRingHub", 0);
+
+IF
+DialogEnded("CoS_Temples_BlackRingHub_HighPriest", (INTEGER)_Var1)
+AND
+DialogGetInvolvedPlayer(_Var1, 1, _Var2)
+AND
+DialogGetInvolvedNPC(_Var1, 1, _Var3)
+THEN
+EnterCombat(_Var3, _Var2);
+
+PROC
+ProcRegionEnded("CoS_Main")
+THEN
+GoalCompleted;
+
+
+EXITSECTION
+ENDEXITSECTION
+
+ParentTargetEdge "CoS_Temples"

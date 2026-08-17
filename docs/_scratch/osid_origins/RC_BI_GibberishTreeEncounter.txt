@@ -1,0 +1,159 @@
+Version 1
+SubGoalCombiner SGC_AND
+
+INITSECTION
+DB_BI_AncestorTree_Wizard(S_RC_BI_AncestorTree_Blackring_001_5c413561-15bf-4cd7-8db6-f69df9bf978d);
+DB_BI_AncestorTree_Wizard(S_RC_BI_AncestorTree_Blackring_002_ce4b11ce-0f4b-487b-a67c-4123134e1b8b);
+DB_BI_AncestorTree_Wizard(S_RC_BI_AncestorTree_Blackring_003_ec71afef-c81f-4c56-b81d-7bc73958478d);
+DB_BI_AncestorTree_Wizard(S_RC_BI_AncestorTree_Blackring_004_f1ca4587-d0e9-415c-a0c9-c0dd0a992748);
+DB_Ghosts(CHARACTERGUID_S_RC_BI_AncestorTree_Blackring_001_5c413561-15bf-4cd7-8db6-f69df9bf978d, CHARACTERGUID_S_RC_BI_AncestorTree_Blackring_Ghost_2da07e30-5fd8-4282-a001-f107bc997e67, "RC_BI_AncestorTree_Blackring_Ghost");
+ProcTriggerRegisterForPlayers(S_RC_BI_AncestorTree_Area_f3e22261-796e-4052-a2b2-8208373648db);
+DB_TrespassTrigger(TRIGGERGUID_S_RC_BI_AncestorTree_Platfom_Area_db5dd411-306d-415c-a9c7-62f7b789fdbf, NULL_00000000-0000-0000-0000-000000000000, "RC_BI_TrespassCrime");
+DB_BI_AncestorTree_Enemy_BlackRing(CHARACTERGUID_S_RC_BI_AncestorTree_Blackring_001_5c413561-15bf-4cd7-8db6-f69df9bf978d);
+DB_BI_AncestorTree_Enemy_BlackRing(CHARACTERGUID_S_RC_BI_AncestorTree_Blackring_002_ce4b11ce-0f4b-487b-a67c-4123134e1b8b);
+DB_BI_AncestorTree_Enemy_BlackRing(CHARACTERGUID_S_RC_BI_AncestorTree_Blackring_003_ec71afef-c81f-4c56-b81d-7bc73958478d);
+DB_BI_AncestorTree_Enemy_BlackRing(CHARACTERGUID_S_RC_BI_AncestorTree_Blackring_004_f1ca4587-d0e9-415c-a0c9-c0dd0a992748);
+DB_BI_AncestorTree_Enemy_BlackRing(CHARACTERGUID_S_RC_BI_AncestorTree_Blackring_005_ffaeae79-c8c7-422b-be80-c0190836b531);
+
+KBSECTION
+IF
+DB_BI_AncestorTree_Enemy_BlackRing(_Var1)
+THEN
+DB_DontCreateMurder(_Var1);
+
+IF
+CharacterEnteredTrigger((CHARACTERGUID)_Var1, TRIGGERGUID_S_RC_BI_BloodIslandRegion_9c0a84b1-314c-4262-b33b-26cfcdfc10ee)
+AND
+DB_IsPlayer(_Var1)
+AND
+QueryOnlyOnce("RC_BI_AncestorTreePromised")
+THEN
+PROC_LoopEffect("RS3_FX_GP_ScriptedEvent_Resurrection_01", CHARACTERGUID_S_RC_BI_AncestorTree_Blackring_005_ffaeae79-c8c7-422b-be80-c0190836b531, "RC_BI_AncestorTreePromised", "RC_Main", "");
+
+IF
+GameBookInterfaceClosed(ITEMGUID_S_RC_BI_AncestorTree_Letter_6d1c5c28-5815-436d-8332-8cd60a93ef9b, (CHARACTERGUID)_Var1)
+THEN
+ObjectSetFlag(_Var1, "QuestUpdate_RC_BI_TheTruth_BlackringLetter");
+
+IF
+CharacterCharacterEvent((CHARACTERGUID)_Var1, (CHARACTERGUID)_Var2, "RC_BI_AncestorTree_BlackringTalk")
+AND
+DB_IsPlayer(_Var2)
+AND
+UserGetFlag(_Var2, "RC_BI_AncestorTree_SawBlackring", 0)
+THEN
+Proc_StartDialog(0, "RC_BI_AncestorTree_Blackring_Warning", S_RC_BI_AncestorTree_Blackring_001_5c413561-15bf-4cd7-8db6-f69df9bf978d, _Var2);
+UserSetFlag(_Var2, "RC_BI_AncestorTree_SawBlackring");
+
+IF
+DialogStarted("RC_BI_AncestorTree_Blackring_Warning", _)
+AND
+DB_BI_AncestorTree_Wizard(_Var2)
+THEN
+CharacterSetReactionPriority(_Var2, "TortureCall", 0);
+Proc_RC_BI_AncestorTree_StopRitual();
+
+IF
+DialogRequestFailed("RC_BI_AncestorTree_Blackring_Warning", _)
+THEN
+CharacterSetRelationFactionToFaction("RC_BI_AncestorTree_Blackring", "Hero", 0);
+CharacterSetRelationFactionToFaction("Hero", "RC_BI_AncestorTree_Blackring", 0);
+Proc_RC_BI_AncestorTree_StopRitual();
+
+IF
+DialogEnded("RC_BI_AncestorTree_Blackring_Warning", _)
+AND
+DB_BI_AncestorTree_Wizard(_Var2)
+THEN
+CharacterSetReactionPriority(_Var2, "TortureCall", 800);
+
+IF
+ObjectEnteredCombat((CHARACTERGUID)_Var1, (INTEGER)_Var2)
+AND
+DB_BI_AncestorTree_Wizard(_Var1)
+AND
+QueryOnlyOnce("RC_BI_GibberishTreeFight")
+THEN
+DialogRequestStop(S_RC_BI_AncestorTree_Blackring_001_5c413561-15bf-4cd7-8db6-f69df9bf978d);
+CharacterResurrect(CHARACTERGUID_S_RC_BI_AncestorTree_Blackring_005_ffaeae79-c8c7-422b-be80-c0190836b531);
+DB_BI_AncestorTree_Enemy_BlackRing(CHARACTERGUID_S_RC_BI_AncestorTree_Blackring_005_ffaeae79-c8c7-422b-be80-c0190836b531);
+CharacterSetCustomName(CHARACTERGUID_S_RC_BI_AncestorTree_Blackring_005_ffaeae79-c8c7-422b-be80-c0190836b531, "RC_BlackRingDestroyer_Undead");
+
+IF
+CharacterResurrected(CHARACTERGUID_S_RC_BI_AncestorTree_Blackring_005_ffaeae79-c8c7-422b-be80-c0190836b531)
+THEN
+ApplyStatus(CHARACTERGUID_S_RC_BI_AncestorTree_Blackring_005_ffaeae79-c8c7-422b-be80-c0190836b531, "QUEST_PROMISE", -1, 1);
+PROC_StopLoopEffect(CHARACTERGUID_S_RC_BI_AncestorTree_Blackring_005_ffaeae79-c8c7-422b-be80-c0190836b531, "RC_BI_AncestorTreePromised");
+PlayEffect(CHARACTERGUID_S_RC_BI_AncestorTree_Blackring_005_ffaeae79-c8c7-422b-be80-c0190836b531, "RS3_FX_GP_ScriptedEvent_Replenish_SourcePoint_01");
+
+IF
+CharacterOnCrimeSensibleActionNotification((CHARACTERGUID)_Var1, _, (INTEGER)_Var3, _, _, _, _, _, _, _)
+AND
+CrimeGetType(_Var3, "RC_BI_TrespassCrime")
+AND
+DB_BI_AncestorTree_Wizard(_Var1)
+THEN
+Proc_RC_BI_AncestorTree_StopRitual();
+
+PROC
+Proc_RC_BI_AncestorTree_StopRitual()
+AND
+DB_BI_AncestorTree_Wizard(_Var1)
+THEN
+ClearScriptframe(_Var1);
+
+IF
+ObjectFlagSet("RC_BI_AncestorTree_BlackRingHostile", (CHARACTERGUID)_Var1, _)
+THEN
+CharacterSetRelationFactionToFaction("RC_BI_AncestorTree_Blackring", "Hero", 0);
+CharacterSetRelationFactionToFaction("Hero", "RC_BI_AncestorTree_Blackring", 0);
+
+IF
+AttackedByObject((CHARACTERGUID)_Var1, (CHARACTERGUID)_Var2, _, _, _)
+AND
+DB_BI_AncestorTree_Wizard(_Var1)
+AND
+DB_IsPlayer(_Var2)
+THEN
+CharacterSetRelationFactionToFaction("RC_BI_AncestorTree_Blackring", "Hero", 0);
+CharacterSetRelationFactionToFaction("Hero", "RC_BI_AncestorTree_Blackring", 0);
+
+IF
+CharacterDied((CHARACTERGUID)_Var1)
+AND
+DB_BI_AncestorTree_Enemy_BlackRing(_Var1)
+THEN
+NOT DB_BI_AncestorTree_Enemy_BlackRing(_Var1);
+Proc_RC_BI_CheckEnemyBlackRingAreDead();
+
+PROC
+Proc_RC_BI_CheckEnemyBlackRingAreDead()
+AND
+QRY_IsEmptyDB("DB_BI_AncestorTree_Enemy_BlackRing", 1)
+THEN
+GlobalSetFlag("RC_BI_EnemyBlackRingAreDead");
+Proc_RC_BI_BlackRingKilled();
+
+IF
+CharacterDied((CHARACTERGUID)_Var1)
+AND
+DB_BI_AncestorTree_Wizard(_Var1)
+AND
+QueryOnlyOnce("RC_BI_AncestorTree_RitualInterrupted")
+THEN
+SetRelationFactionToPlayers("RC_BI_AncestorTree_Blackring", 0);
+CharacterSetReactionPriority(S_RC_BI_AncestorTree_Blackring_001_5c413561-15bf-4cd7-8db6-f69df9bf978d, "TortureCall", 0);
+Proc_RC_BI_AncestorTree_StopRitual();
+
+IF
+RegionEnded("RC_Main")
+THEN
+GoalCompleted;
+
+
+EXITSECTION
+ProcTriggerUnregisterForPlayers(S_RC_BI_AncestorTree_Area_f3e22261-796e-4052-a2b2-8208373648db);
+ProcTriggerUnregisterForPlayers(S_RC_BI_AncestorTree_Platfom_Area_db5dd411-306d-415c-a9c7-62f7b789fdbf);
+ENDEXITSECTION
+
+ParentTargetEdge "ReapersCoast"

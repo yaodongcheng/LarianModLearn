@@ -1,0 +1,89 @@
+Version 1
+SubGoalCombiner SGC_AND
+
+INITSECTION
+ProcTriggerRegisterForPlayers(TRIGGERGUID_S_ARX_Sewers_DwarvenEntrance_700e9c65-2ae6-40dc-a675-37ab7424d710);
+DB_Dialogs(CHARACTERGUID_S_ARX_Sewers_EliteImperialGuard_01_3b854d60-91ed-4ad4-8295-28ba34468e39, "ARX_Sewers_EliteImperialGuard_01");
+DB_Dialogs(CHARACTERGUID_S_ARX_Sewers_EliteImperialGuard_03_b6d45e54-cee9-4e69-9a42-9e383ce803f4, "ARX_Sewers_EliteImperialGuard_03");
+DB_Dialogs(CHARACTERGUID_S_ARX_Sewers_EliteImperialGuard_04_110c12f2-0a0b-404a-8212-8c3a3793f267, "ARX_Sewers_EliteImperialGuard_04");
+DB_Dialogs(CHARACTERGUID_S_ARX_Sewers_EliteImperialGuard_05_92e4175a-6419-4afb-86f0-88915c288e4b, "ARX_Sewers_EliteImperialGuard_05");
+DB_Dialogs(CHARACTERGUID_S_ARX_Sewers_ImperialGuard_01_23f7110a-bbb0-44b0-a13c-a89295646b61, "ARX_Sewers_ImperialGuard_01");
+DB_Dialogs(CHARACTERGUID_S_ARX_Sewers_ImperialGuard_02_b1c2fb4c-ef6f-4805-a3a4-b60fc64e9ddd, "ARX_Sewers_ImperialGuard_02");
+DB_KillCounter_Internal(CHARACTERGUID_S_ARX_Sewers_ImperialGuard_01_23f7110a-bbb0-44b0-a13c-a89295646b61, "ARX_Sewers_TheEmpressRoom");
+DB_KillCounter_Internal(CHARACTERGUID_S_ARX_Sewers_ImperialGuard_02_b1c2fb4c-ef6f-4805-a3a4-b60fc64e9ddd, "ARX_Sewers_TheEmpressRoom");
+DB_KillCounter_Internal(CHARACTERGUID_S_ARX_Sewers_EliteImperialGuard_01_3b854d60-91ed-4ad4-8295-28ba34468e39, "ARX_Sewers_TheEmpressRoom");
+DB_KillCounter_Internal(CHARACTERGUID_S_ARX_Sewers_EliteImperialGuard_04_110c12f2-0a0b-404a-8212-8c3a3793f267, "ARX_Sewers_TheEmpressRoom");
+DB_KillCounter_Internal(CHARACTERGUID_S_ARX_Sewers_EliteImperialGuard_03_b6d45e54-cee9-4e69-9a42-9e383ce803f4, "ARX_Sewers_TheEmpressRoom");
+DB_KillCounter_Internal(CHARACTERGUID_S_ARX_Sewers_EliteImperialGuard_05_92e4175a-6419-4afb-86f0-88915c288e4b, "ARX_Sewers_TheEmpressRoom");
+DB_KillCounter("ARX_Sewers_TheEmpressRoom", 6);
+DB_Dialogs(CHARACTERGUID_S_ARX_Sewers_Rat_90dc8a36-051e-46fe-a77d-45b69cb1805b, "ARX_Sewers_Rat");
+SetOnStage(ITEMGUID_S_ARX_Sewers_EntranceHiddenLadder_14d96291-fed1-4636-ac36-7441611bd7f5, 0);
+
+KBSECTION
+IF
+CharacterEnteredTrigger((CHARACTERGUID)_Var1, TRIGGERGUID_S_ARX_Sewers_DwarvenEntrance_700e9c65-2ae6-40dc-a675-37ab7424d710)
+AND
+DB_IsPlayer(_Var1)
+AND
+PartyGetFlag(_Var1, "QuestUpdate_RC_ARX_TheImperialDwarves_MerchantEstate_ReadGardenNotes", 1)
+THEN
+ObjectSetFlag(_Var1, "QuestUpdate_RC_ARX_TheImperialDwarves_Sewers_EnteredSewers");
+
+PROC
+ReactOnKillCounter("ARX_Sewers_TheEmpressRoom")
+AND
+DB_KillCounter_StoredPlayerInCombat("ARX_Sewers_TheEmpressRoom", _Var1)
+THEN
+UserSetFlag(_Var1, "ARX_Sewers_TheEmpressRoom_DefeatedGuards");
+NOT DB_KillCounter_StoredPlayerInCombat("ARX_Sewers_TheEmpressRoom", _Var1);
+
+IF
+CharacterItemEvent(_, _, "ARX_Sewers_EntranceHiddenLadder_Open")
+THEN
+SetOnStage(ITEMGUID_S_ARX_Sewers_EntranceHiddenLadder_14d96291-fed1-4636-ac36-7441611bd7f5, 1);
+proc_ItemMoveToTrigger(ITEMGUID_S_ARX_Sewers_EntranceHiddenLadder_14d96291-fed1-4636-ac36-7441611bd7f5, TRIGGERGUID_S_ARX_Sewers_EntranceHiddenLadder_Point_988adec0-4f1c-4b08-a5b1-f5dbc3c0811e, 1, 1, 0);
+Proc_RevealLadder(ITEMGUID_S_ARX_Sewers_EntranceHiddenLadder_14d96291-fed1-4636-ac36-7441611bd7f5, "ARX_Sewers_EntranceHiddenLadder_Open");
+
+PROC
+Proc_RevealLadder((ITEMGUID)_Var1, (STRING)_Var2)
+THEN
+DB_RevealLadder(_Var1, _Var2);
+
+IF
+ItemMoved((ITEMGUID)_Var1)
+AND
+DB_RevealLadder(_Var1, _Var2)
+THEN
+PlayEffect(_Var1, "RS3_FX_UI_PerceptionReveal_01_NotLooping");
+NOT DB_RevealLadder(_Var1, _Var2);
+
+IF
+ObjectEnteredCombat((CHARACTERGUID)_Var1, (INTEGER)_Var2)
+AND
+DB_KillCounter_Internal(_Var1, _Var3)
+THEN
+Proc_KillCounter_StorePlayerInCombat(_Var3, _Var2);
+
+PROC
+Proc_KillCounter_StorePlayerInCombat((STRING)_Var1, (INTEGER)_Var2)
+AND
+DB_IsPlayer(_Var3)
+AND
+CombatGetIDForCharacter(_Var3, _Var4)
+AND NOT
+DB_KillCounter_StoredPlayerInCombat(_Var1, _Var3)
+THEN
+DB_KillCounter_StoredPlayerInCombat(_Var1, _Var3);
+
+IF
+GameBookInterfaceClosed(ITEMGUID_S_ARX_MerchantEstate_GardenCorpse_Shady_Note_0117847e-f1bc-45d0-86ea-ae059a0a5d02, (CHARACTERGUID)_Var1)
+AND
+QueryOnlyOnce("QuestUpdate_RC_ARX_TheImperialDwarves_MerchantEstate_ReadGardenNotes")
+THEN
+PartySetFlag(_Var1, "QuestUpdate_RC_ARX_TheImperialDwarves_MerchantEstate_ReadGardenNotes");
+
+
+EXITSECTION
+ENDEXITSECTION
+
+ParentTargetEdge "ARX"

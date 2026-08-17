@@ -1,0 +1,446 @@
+Version 1
+SubGoalCombiner SGC_AND
+
+INITSECTION
+DB_GLO_CharacterAnimation("PlayAnim_attack1", "attack1", 0);
+DB_GLO_CharacterAnimation("PlayAnim_attack2", "attack2", 0);
+DB_GLO_CharacterAnimation("PlayAnim_attack3", "attack3", 0);
+DB_GLO_CharacterAnimation("PlayAnim_attack_ground", "attack_ground", 0);
+DB_GLO_CharacterAnimation("PlayAnim_Loop_thrown_loop", "thrown_loop", 1);
+DB_GLO_CharacterAnimation("PlayAnim_thrown_land", "thrown_land", 0);
+DB_GLO_CharacterAnimation("PlayAnim_knockdown_fall", "knockdown_fall", 0);
+DB_GLO_CharacterAnimation("PlayAnim_Loop_knockdown_loop", "knockdown_loop", 1);
+DB_GLO_CharacterAnimation("PlayAnim_knockdown_getup", "knockdown_getup", 0);
+DB_GLO_CharacterAnimation("PlayAnim_barf", "barf", 0);
+DB_GLO_CharacterAnimation("PlayAnim_die_melee", "die_melee", 0);
+DB_GLO_CharacterAnimation("PlayAnim_die_slash", "die_slash", 0);
+DB_GLO_CharacterAnimation("PlayAnim_die_crush", "die_crush", 0);
+DB_GLO_CharacterAnimation("PlayAnim_die_pierce", "die_pierce", 0);
+DB_GLO_CharacterAnimation("PlayAnim_die_arrow", "die_arrow", 0);
+DB_GLO_CharacterAnimation("PlayAnim_die_dot", "die_dot", 0);
+DB_GLO_CharacterAnimation("PlayAnim_die_incinerate", "die_incinerate", 0);
+DB_GLO_CharacterAnimation("PlayAnim_die_acid", "die_acid", 0);
+DB_GLO_CharacterAnimation("PlayAnim_die_electrocution", "die_electrocution", 0);
+DB_GLO_CharacterAnimation("PlayAnim_die_frozenshatter", "die_frozenshatter", 0);
+DB_GLO_CharacterAnimation("PlayAnim_die_hang", "die_hang", 0);
+DB_GLO_CharacterAnimation("PlayAnim_hit", "hit", 0);
+DB_GLO_CharacterAnimation("PlayAnim_hit_backstab", "hit_backstab", 0);
+DB_GLO_CharacterAnimation("PlayAnim_hit_magic", "hit_magic", 0);
+DB_GLO_CharacterAnimation("PlayAnim_block", "block", 0);
+DB_GLO_CharacterAnimation("PlayAnim_dodge", "dodge", 0);
+DB_GLO_CharacterAnimation("PlayAnim_dodge_backstab", "dodge_backstab", 0);
+DB_GLO_CharacterAnimation("PlayAnim_Loop_idle1", "idle1", 1);
+DB_GLO_CharacterAnimation("PlayAnim_Loop_idle2", "idle2", 1);
+DB_GLO_CharacterAnimation("PlayAnim_Loop_idle3", "idle3", 1);
+DB_GLO_CharacterAnimation("PlayAnim_Loop_walk", "walk", 1);
+DB_GLO_CharacterAnimation("PlayAnim_Loop_sneak", "sneak", 1);
+DB_GLO_CharacterAnimation("PlayAnim_Loop_run", "run", 1);
+DB_GLO_CharacterAnimation("PlayAnim_Loop_still", "still", 1);
+DB_GLO_CharacterAnimation("PlayAnim_Loop_stillsneaking", "stillsneaking", 1);
+DB_GLO_CharacterAnimation("PlayAnim_Loop_stilldiseased", "stilldiseased", 1);
+DB_GLO_CharacterAnimation("PlayAnim_Loop_stillchilled", "stillchilled", 1);
+DB_GLO_CharacterAnimation("PlayAnim_Loop_stillcrippled", "stillcrippled", 1);
+DB_GLO_CharacterAnimation("PlayAnim_Loop_stillblind", "stillblind", 1);
+DB_GLO_CharacterAnimation("PlayAnim_Loop_stilldrunk", "stilldrunk", 1);
+DB_GLO_CharacterAnimation("PlayAnim_Loop_stillelectrified", "stillelectrified", 1);
+DB_GLO_CharacterAnimation("PlayAnim_Loop_walk_wings", "walk_wings", 1);
+DB_GLO_CharacterAnimation("PlayAnim_Loop_run_wings", "run_wings", 1);
+DB_GLO_CharacterAnimation("PlayAnim_Loop_still_wings", "still_wings", 1);
+DB_GLO_CharacterAnimation("PlayAnim_Loop_stillmental", "stillmental", 1);
+DB_GLO_CharacterAnimation("PlayAnim_Loop_cower", "cower", 1);
+DB_GLO_CharacterAnimation("PlayAnim_spawn", "spawn", 0);
+DB_GLO_CharacterAnimation("PlayAnim_polymorphed", "polymorphed", 0);
+DB_GLO_CharacterAnimation("PlayAnim_resurrect", "resurrect", 0);
+DB_GLO_CharacterAnimation("PlayAnim_use_inspect", "use_inspect", 0);
+DB_GLO_CharacterAnimation("PlayAnim_use_activate", "use_activate", 0);
+DB_GLO_CharacterAnimation("PlayAnim_use_loot", "use_loot", 0);
+DB_GLO_CharacterAnimation("PlayAnim_use_eat", "use_eat", 0);
+DB_GLO_CharacterAnimation("PlayAnim_use_drink", "use_drink", 0);
+DB_GLO_CharacterAnimation("PlayAnim_use_craft", "use_craft", 0);
+DB_GLO_CharacterAnimation("PlayAnim_use_dig", "use_dig", 0);
+DB_GLO_CharacterAnimation("PlayAnim_skill_stance_start", "skill_stance_start", 0);
+DB_GLO_CharacterAnimation("PlayAnim_Loop_skill_stance_loop", "skill_stance_loop", 1);
+DB_GLO_CharacterAnimation("PlayAnim_skill_stance_cast", "skill_stance_cast", 0);
+DB_GLO_CharacterAnimation("PlayAnim_skill_prepare_weapon_01_start", "skill_prepare_weapon_01_start", 0);
+DB_GLO_CharacterAnimation("PlayAnim_Loop_skill_prepare_weapon_01_loop", "skill_prepare_weapon_01_loop", 1);
+DB_GLO_CharacterAnimation("PlayAnim_skill_attack_flurry_01_cast", "skill_attack_flurry_01_cast", 0);
+DB_GLO_CharacterAnimation("PlayAnim_skill_attack_precision_01_cast", "skill_attack_precision_01_cast", 0);
+DB_GLO_CharacterAnimation("PlayAnim_skill_attack_power_01_cast", "skill_attack_power_01_cast", 0);
+DB_GLO_CharacterAnimation("PlayAnim_skill_attack_round_01_cast", "skill_attack_round_01_cast", 0);
+DB_GLO_CharacterAnimation("PlayAnim_skill_attack_multi_01_cast", "skill_attack_multi_01_cast", 0);
+DB_GLO_CharacterAnimation("PlayAnim_skill_attack_multi_02_cast", "skill_attack_multi_02_cast", 0);
+DB_GLO_CharacterAnimation("PlayAnim_skill_attack_aoe_01_cast", "skill_attack_aoe_01_cast", 0);
+DB_GLO_CharacterAnimation("PlayAnim_skill_attack_offhand_01_cast", "skill_attack_offhand_01_cast", 0);
+DB_GLO_CharacterAnimation("PlayAnim_skill_attack_stance_01_cast", "skill_attack_stance_01_cast", 0);
+DB_GLO_CharacterAnimation("PlayAnim_skill_attack_projectile_01_cast", "skill_attack_projectile_01_cast", 0);
+DB_GLO_CharacterAnimation("PlayAnim_skill_attack_projectile_02_cast", "skill_attack_projectile_02_cast", 0);
+DB_GLO_CharacterAnimation("PlayAnim_skill_arrow_start", "skill_arrow_start", 0);
+DB_GLO_CharacterAnimation("PlayAnim_Loop_skill_arrow_loop", "skill_arrow_loop", 1);
+DB_GLO_CharacterAnimation("PlayAnim_skill_arrow_cast", "skill_arrow_cast", 0);
+DB_GLO_CharacterAnimation("PlayAnim_skill_rainofarrows_start", "skill_rainofarrows_start", 0);
+DB_GLO_CharacterAnimation("PlayAnim_Loop_skill_rainofarrows_loop", "skill_rainofarrows_loop", 1);
+DB_GLO_CharacterAnimation("PlayAnim_skill_rainofarrows_cast", "skill_rainofarrows_cast", 0);
+DB_GLO_CharacterAnimation("PlayAnim_skill_splittingarrows_start", "skill_splittingarrows_start", 0);
+DB_GLO_CharacterAnimation("PlayAnim_Loop_skill_splittingarrows_loop", "skill_splittingarrows_loop", 1);
+DB_GLO_CharacterAnimation("PlayAnim_skill_splittingarrows_cast", "skill_splittingarrows_cast", 0);
+DB_GLO_CharacterAnimation("PlayAnim_skill_multishot_lvl1_cast", "skill_multishot_lvl1_cast", 0);
+DB_GLO_CharacterAnimation("PlayAnim_skill_multishot_lvl2_cast", "skill_multishot_lvl2_cast", 0);
+DB_GLO_CharacterAnimation("PlayAnim_skill_multishot_lvl3_cast", "skill_multishot_lvl3_cast", 0);
+DB_GLO_CharacterAnimation("PlayAnim_skill_multishot_lvl4_cast", "skill_multishot_lvl4_cast", 0);
+DB_GLO_CharacterAnimation("PlayAnim_skill_multishot_lvl5_cast", "skill_multishot_lvl5_cast", 0);
+DB_GLO_CharacterAnimation("PlayAnim_skill_multishot_lvl6_cast", "skill_multishot_lvl6_cast", 0);
+DB_GLO_CharacterAnimation("PlayAnim_skill_multishot_lvl7_cast", "skill_multishot_lvl7_cast", 0);
+DB_GLO_CharacterAnimation("PlayAnim_skill_multishot_lvl8_cast", "skill_multishot_lvl8_cast", 0);
+DB_GLO_CharacterAnimation("PlayAnim_skill_multishot_lvl9_cast", "skill_multishot_lvl9_cast", 0);
+DB_GLO_CharacterAnimation("PlayAnim_skill_multishot_lvl10_cast", "skill_multishot_lvl10_cast", 0);
+DB_GLO_CharacterAnimation("PlayAnim_skill_flurry_start", "skill_flurry_start", 0);
+DB_GLO_CharacterAnimation("PlayAnim_Loop_skill_flurry_loop", "skill_flurry_loop", 1);
+DB_GLO_CharacterAnimation("PlayAnim_skill_flurry_cast", "skill_flurry_cast", 0);
+DB_GLO_CharacterAnimation("PlayAnim_skill_powerattack_start", "skill_powerattack_start", 0);
+DB_GLO_CharacterAnimation("PlayAnim_Loop_skill_powerattack_loop", "skill_powerattack_loop", 1);
+DB_GLO_CharacterAnimation("PlayAnim_skill_powerattack_cast", "skill_powerattack_cast", 0);
+DB_GLO_CharacterAnimation("PlayAnim_skill_whirlwind_start", "skill_whirlwind_start", 0);
+DB_GLO_CharacterAnimation("PlayAnim_Loop_skill_whirlwind_loop", "skill_whirlwind_loop", 1);
+DB_GLO_CharacterAnimation("PlayAnim_skill_whirlwind_cast", "skill_whirlwind_cast", 0);
+DB_GLO_CharacterAnimation("PlayAnim_skill_fatality_start", "skill_fatality_start", 0);
+DB_GLO_CharacterAnimation("PlayAnim_Loop_skill_fatality_loop", "skill_fatality_loop", 1);
+DB_GLO_CharacterAnimation("PlayAnim_skill_fatality_cast", "skill_fatality_cast", 0);
+DB_GLO_CharacterAnimation("PlayAnim_skill_shadowstrike_start", "skill_shadowstrike_start", 0);
+DB_GLO_CharacterAnimation("PlayAnim_Loop_skill_shadowstrike_loop", "skill_shadowstrike_loop", 1);
+DB_GLO_CharacterAnimation("PlayAnim_skill_shadowstrike_cast", "skill_shadowstrike_cast", 0);
+DB_GLO_CharacterAnimation("PlayAnim_skill_lacerate_start", "skill_lacerate_start", 0);
+DB_GLO_CharacterAnimation("PlayAnim_Loop_skill_lacerate_loop", "skill_lacerate_loop", 1);
+DB_GLO_CharacterAnimation("PlayAnim_skill_lacerate_cast", "skill_lacerate_cast", 0);
+DB_GLO_CharacterAnimation("PlayAnim_emotion_normal", "emotion_normal", 0);
+DB_GLO_CharacterAnimation("PlayAnim_Loop_emotion_normal_looping1", "emotion_normal_looping1", 1);
+DB_GLO_CharacterAnimation("PlayAnim_Loop_emotion_normal_looping2", "emotion_normal_looping2", 1);
+DB_GLO_CharacterAnimation("PlayAnim_Loop_emotion_normal_looping3", "emotion_normal_looping3", 1);
+DB_GLO_CharacterAnimation("PlayAnim_emotion_angry", "emotion_angry", 0);
+DB_GLO_CharacterAnimation("PlayAnim_Loop_emotion_angry_looping1", "emotion_angry_looping1", 1);
+DB_GLO_CharacterAnimation("PlayAnim_Loop_emotion_angry_looping2", "emotion_angry_looping2", 1);
+DB_GLO_CharacterAnimation("PlayAnim_Loop_emotion_angry_looping3", "emotion_angry_looping3", 1);
+DB_GLO_CharacterAnimation("PlayAnim_emotion_boasting_bragging", "emotion_boasting_bragging", 0);
+DB_GLO_CharacterAnimation("PlayAnim_Loop_emotion_boasting_bragging_looping1", "emotion_boasting_bragging_looping1", 1);
+DB_GLO_CharacterAnimation("PlayAnim_Loop_emotion_boasting_bragging_looping2", "emotion_boasting_bragging_looping2", 1);
+DB_GLO_CharacterAnimation("PlayAnim_Loop_emotion_boasting_bragging_looping3", "emotion_boasting_bragging_looping3", 1);
+DB_GLO_CharacterAnimation("PlayAnim_emotion_clueless", "emotion_clueless", 0);
+DB_GLO_CharacterAnimation("PlayAnim_Loop_emotion_clueless_looping1", "emotion_clueless_looping1", 1);
+DB_GLO_CharacterAnimation("PlayAnim_Loop_emotion_clueless_looping2", "emotion_clueless_looping2", 1);
+DB_GLO_CharacterAnimation("PlayAnim_Loop_emotion_clueless_looping3", "emotion_clueless_looping3", 1);
+DB_GLO_CharacterAnimation("PlayAnim_emotion_cower_scared", "emotion_cower_scared", 0);
+DB_GLO_CharacterAnimation("PlayAnim_Loop_emotion_cower_scared_looping1", "emotion_cower_scared_looping1", 1);
+DB_GLO_CharacterAnimation("PlayAnim_Loop_emotion_cower_scared_looping2", "emotion_cower_scared_looping2", 1);
+DB_GLO_CharacterAnimation("PlayAnim_Loop_emotion_cower_scared_looping3", "emotion_cower_scared_looping3", 1);
+DB_GLO_CharacterAnimation("PlayAnim_emotion_greeting", "emotion_greeting", 0);
+DB_GLO_CharacterAnimation("PlayAnim_Loop_emotion_greeting_looping1", "emotion_greeting_looping1", 1);
+DB_GLO_CharacterAnimation("PlayAnim_Loop_emotion_greeting_looping2", "emotion_greeting_looping2", 1);
+DB_GLO_CharacterAnimation("PlayAnim_Loop_emotion_greeting_looping3", "emotion_greeting_looping3", 1);
+DB_GLO_CharacterAnimation("PlayAnim_emotion_happy_cheerful", "emotion_happy_cheerful", 0);
+DB_GLO_CharacterAnimation("PlayAnim_Loop_emotion_happy_cheerful_looping1", "emotion_happy_cheerful_looping1", 1);
+DB_GLO_CharacterAnimation("PlayAnim_Loop_emotion_happy_cheerful_looping2", "emotion_happy_cheerful_looping2", 1);
+DB_GLO_CharacterAnimation("PlayAnim_Loop_emotion_happy_cheerful_looping3", "emotion_happy_cheerful_looping3", 1);
+DB_GLO_CharacterAnimation("PlayAnim_emotion_ignore_dismiss", "emotion_ignore_dismiss", 0);
+DB_GLO_CharacterAnimation("PlayAnim_Loop_emotion_ignore_dismiss_looping1", "emotion_ignore_dismiss_looping1", 1);
+DB_GLO_CharacterAnimation("PlayAnim_Loop_emotion_ignore_dismiss_looping2", "emotion_ignore_dismiss_looping2", 1);
+DB_GLO_CharacterAnimation("PlayAnim_Loop_emotion_ignore_dismiss_looping3", "emotion_ignore_dismiss_looping3", 1);
+DB_GLO_CharacterAnimation("PlayAnim_emotion_panic_distress", "emotion_panic_distress", 0);
+DB_GLO_CharacterAnimation("PlayAnim_Loop_emotion_panic_distress_looping1", "emotion_panic_distress_looping1", 1);
+DB_GLO_CharacterAnimation("PlayAnim_Loop_emotion_panic_distress_looping2", "emotion_panic_distress_looping2", 1);
+DB_GLO_CharacterAnimation("PlayAnim_Loop_emotion_panic_distress_looping3", "emotion_panic_distress_looping3", 1);
+DB_GLO_CharacterAnimation("PlayAnim_emotion_insulting", "emotion_insulting", 0);
+DB_GLO_CharacterAnimation("PlayAnim_Loop_emotion_insulting_looping1", "emotion_insulting_looping1", 1);
+DB_GLO_CharacterAnimation("PlayAnim_Loop_emotion_insulting_looping2", "emotion_insulting_looping2", 1);
+DB_GLO_CharacterAnimation("PlayAnim_Loop_emotion_insulting_looping3", "emotion_insulting_looping3", 1);
+DB_GLO_CharacterAnimation("PlayAnim_emotion_sad", "emotion_sad", 0);
+DB_GLO_CharacterAnimation("PlayAnim_Loop_emotion_sad_looping1", "emotion_sad_looping1", 1);
+DB_GLO_CharacterAnimation("PlayAnim_Loop_emotion_sad_looping2", "emotion_sad_looping2", 1);
+DB_GLO_CharacterAnimation("PlayAnim_Loop_emotion_sad_looping3", "emotion_sad_looping3", 1);
+DB_GLO_CharacterAnimation("PlayAnim_emotion_thankful", "emotion_thankful", 0);
+DB_GLO_CharacterAnimation("PlayAnim_Loop_emotion_thankful_looping1", "emotion_thankful_looping1", 1);
+DB_GLO_CharacterAnimation("PlayAnim_Loop_emotion_thankful_looping2", "emotion_thankful_looping2", 1);
+DB_GLO_CharacterAnimation("PlayAnim_Loop_emotion_thankful_looping3", "emotion_thankful_looping3", 1);
+DB_GLO_CharacterAnimation("PlayAnim_emotion_sly_scheming", "emotion_sly_scheming", 0);
+DB_GLO_CharacterAnimation("PlayAnim_Loop_emotion_sly_scheming_looping1", "emotion_sly_scheming_looping1", 1);
+DB_GLO_CharacterAnimation("PlayAnim_Loop_emotion_sly_scheming_looping2", "emotion_sly_scheming_looping2", 1);
+DB_GLO_CharacterAnimation("PlayAnim_Loop_emotion_sly_scheming_looping3", "emotion_sly_scheming_looping3", 1);
+DB_GLO_CharacterAnimation("PlayAnim_emotion_sarcasm_haughty", "emotion_sarcasm_haughty", 0);
+DB_GLO_CharacterAnimation("PlayAnim_Loop_emotion_sarcasm_haughty_looping1", "emotion_sarcasm_haughty_looping1", 1);
+DB_GLO_CharacterAnimation("PlayAnim_Loop_emotion_sarcasm_haughty_looping2", "emotion_sarcasm_haughty_looping2", 1);
+DB_GLO_CharacterAnimation("PlayAnim_Loop_emotion_sarcasm_haughty_looping3", "emotion_sarcasm_haughty_looping3", 1);
+DB_GLO_CharacterAnimation("PlayAnim_emotion_flirt", "emotion_flirt", 0);
+DB_GLO_CharacterAnimation("PlayAnim_Loop_emotion_flirt_looping1", "emotion_flirt_looping1", 1);
+DB_GLO_CharacterAnimation("PlayAnim_Loop_emotion_flirt_looping2", "emotion_flirt_looping2", 1);
+DB_GLO_CharacterAnimation("PlayAnim_Loop_emotion_flirt_looping3", "emotion_flirt_looping3", 1);
+DB_GLO_CharacterAnimation("PlayAnim_climb_UpAttach", "climb_UpAttach", 0);
+DB_GLO_CharacterAnimation("PlayAnim_Loop_climb_Up", "climb_Up", 1);
+DB_GLO_CharacterAnimation("PlayAnim_climb_UpDetach", "climb_UpDetach", 0);
+DB_GLO_CharacterAnimation("PlayAnim_climb_DownAttach", "climb_DownAttach", 0);
+DB_GLO_CharacterAnimation("PlayAnim_Loop_climb_Down", "climb_Down", 1);
+DB_GLO_CharacterAnimation("PlayAnim_climb_DownDetach", "climb_DownDetach", 0);
+DB_GLO_CharacterAnimation("PlayAnim_cast_target_start", "cast_target_start", 0);
+DB_GLO_CharacterAnimation("PlayAnim_Loop_cast_target_loop", "cast_target_loop", 1);
+DB_GLO_CharacterAnimation("PlayAnim_cast_target_cast", "cast_target_cast", 0);
+DB_GLO_CharacterAnimation("PlayAnim_cast_shout_start", "cast_shout_start", 0);
+DB_GLO_CharacterAnimation("PlayAnim_Loop_cast_shout_loop", "cast_shout_loop", 1);
+DB_GLO_CharacterAnimation("PlayAnim_Activate_01", "Activate_01", 0);
+DB_GLO_CharacterAnimation("PlayAnim_Annoyed_01", "Annoyed_01", 0);
+DB_GLO_CharacterAnimation("PlayAnim_Attention_01", "Attention_01", 0);
+DB_GLO_CharacterAnimation("PlayAnim_Attention_02", "Attention_02", 0);
+DB_GLO_CharacterAnimation("PlayAnim_Attention_03", "Attention_03", 0);
+DB_GLO_CharacterAnimation("PlayAnim_Attentive_01", "Attentive_01", 0);
+DB_GLO_CharacterAnimation("PlayAnim_Beg_01", "Beg_01", 0);
+DB_GLO_CharacterAnimation("PlayAnim_BehindBars_01", "BehindBars_01", 0);
+DB_GLO_CharacterAnimation("PlayAnim_BehindBars_02", "BehindBars_02", 0);
+DB_GLO_CharacterAnimation("PlayAnim_Bellringer_01", "Bellringer_01", 0);
+DB_GLO_CharacterAnimation("PlayAnim_Blacksmith_01", "Blacksmith_01", 0);
+DB_GLO_CharacterAnimation("PlayAnim_Blacksmith_02", "Blacksmith_02", 0);
+DB_GLO_CharacterAnimation("PlayAnim_Bored_01", "Bored_01", 0);
+DB_GLO_CharacterAnimation("PlayAnim_Bored_02", "Bored_02", 0);
+DB_GLO_CharacterAnimation("PlayAnim_Bored_03", "Bored_03", 0);
+DB_GLO_CharacterAnimation("PlayAnim_Bow_01", "Bow_01", 0);
+DB_GLO_CharacterAnimation("PlayAnim_Bow_02", "Bow_02", 0);
+DB_GLO_CharacterAnimation("PlayAnim_Bow_03", "Bow_03", 0);
+DB_GLO_CharacterAnimation("PlayAnim_Bow_04", "Bow_04", 0);
+DB_GLO_CharacterAnimation("PlayAnim_Bow_05", "Bow_05", 0);
+DB_GLO_CharacterAnimation("PlayAnim_Cast_Ritual_01", "Cast_Ritual_01", 0);
+DB_GLO_CharacterAnimation("PlayAnim_Check_Neck_01", "Check_Neck_01", 0);
+DB_GLO_CharacterAnimation("PlayAnim_Cheer_01", "Cheer_01", 0);
+DB_GLO_CharacterAnimation("PlayAnim_Cheer_02", "Cheer_02", 0);
+DB_GLO_CharacterAnimation("PlayAnim_Cheer_03", "Cheer_03", 0);
+DB_GLO_CharacterAnimation("PlayAnim_Chicken_01", "Chicken_01", 0);
+DB_GLO_CharacterAnimation("PlayAnim_Chicken_02", "Chicken_02", 0);
+DB_GLO_CharacterAnimation("PlayAnim_Chicken_03", "Chicken_03", 0);
+DB_GLO_CharacterAnimation("PlayAnim_Chicken_Idle_01", "Chicken_Idle_01", 0);
+DB_GLO_CharacterAnimation("PlayAnim_Chuckle_01", "Chuckle_01", 0);
+DB_GLO_CharacterAnimation("PlayAnim_Chuckle_02", "Chuckle_02", 0);
+DB_GLO_CharacterAnimation("PlayAnim_Clap_01", "Clap_01", 0);
+DB_GLO_CharacterAnimation("PlayAnim_Clap_02", "Clap_02", 0);
+DB_GLO_CharacterAnimation("PlayAnim_Clap_03", "Clap_03", 0);
+DB_GLO_CharacterAnimation("PlayAnim_Clap_04", "Clap_04", 0);
+DB_GLO_CharacterAnimation("PlayAnim_Clean_Floor_01", "Clean_Floor_01", 0);
+DB_GLO_CharacterAnimation("PlayAnim_Clean_Floor_02", "Clean_Floor_02", 0);
+DB_GLO_CharacterAnimation("PlayAnim_Cooking_01", "Cooking_01", 0);
+DB_GLO_CharacterAnimation("PlayAnim_Cower_01", "Cower_01", 0);
+DB_GLO_CharacterAnimation("PlayAnim_Cower_02", "Cower_02", 0);
+DB_GLO_CharacterAnimation("PlayAnim_Crying_01", "Crying_01", 0);
+DB_GLO_CharacterAnimation("PlayAnim_Curtsey_01", "Curtsey_01", 0);
+DB_GLO_CharacterAnimation("PlayAnim_Dance_01", "Dance_01", 0);
+DB_GLO_CharacterAnimation("PlayAnim_Depressed_01", "Depressed_01", 0);
+DB_GLO_CharacterAnimation("PlayAnim_Dust_Off_01", "Dust_Off_01", 0);
+DB_GLO_CharacterAnimation("PlayAnim_Fidget_Book_01", "Fidget_Book_01", 0);
+DB_GLO_CharacterAnimation("PlayAnim_Fidget_Forward_01", "Fidget_Forward_01", 0);
+DB_GLO_CharacterAnimation("PlayAnim_Fidget_Forward_02", "Fidget_Forward_02", 0);
+DB_GLO_CharacterAnimation("PlayAnim_Fidget_High_01", "Fidget_High_01", 0);
+DB_GLO_CharacterAnimation("PlayAnim_Fidget_High_02", "Fidget_High_02", 0);
+DB_GLO_CharacterAnimation("PlayAnim_Fidget_Low_01", "Fidget_Low_01", 0);
+DB_GLO_CharacterAnimation("PlayAnim_Fidget_Low_02", "Fidget_Low_02", 0);
+DB_GLO_CharacterAnimation("PlayAnim_Fidget_Low_03", "Fidget_Low_03", 0);
+DB_GLO_CharacterAnimation("PlayAnim_Flex_01", "Flex_01", 0);
+DB_GLO_CharacterAnimation("PlayAnim_Flirt_01", "Flirt_01", 0);
+DB_GLO_CharacterAnimation("PlayAnim_Fumble_01", "Fumble_01", 0);
+DB_GLO_CharacterAnimation("PlayAnim_Halt_01", "Halt_01", 0);
+DB_GLO_CharacterAnimation("PlayAnim_Ignore_01", "Ignore_01", 0);
+DB_GLO_CharacterAnimation("PlayAnim_Intimidate_01", "Intimidate_01", 0);
+DB_GLO_CharacterAnimation("PlayAnim_Intimidate_02", "Intimidate_02", 0);
+DB_GLO_CharacterAnimation("PlayAnim_Kneel_01", "Kneel_01", 0);
+DB_GLO_CharacterAnimation("PlayAnim_Kneel_02", "Kneel_02", 0);
+DB_GLO_CharacterAnimation("PlayAnim_Laugh_01", "Laugh_01", 0);
+DB_GLO_CharacterAnimation("PlayAnim_Laugh_02", "Laugh_02", 0);
+DB_GLO_CharacterAnimation("PlayAnim_Listen_01", "Listen_01", 0);
+DB_GLO_CharacterAnimation("PlayAnim_LoadingCart_01", "LoadingCart_01", 0);
+DB_GLO_CharacterAnimation("PlayAnim_Look_Down_Long_01", "Look_Down_Long_01", 0);
+DB_GLO_CharacterAnimation("PlayAnim_Look_Down_Short_01", "Look_Down_Short_01", 0);
+DB_GLO_CharacterAnimation("PlayAnim_Look_Left_Long_01", "Look_Left_Long_01", 0);
+DB_GLO_CharacterAnimation("PlayAnim_Look_Left_Short_01", "Look_Left_Short_01", 0);
+DB_GLO_CharacterAnimation("PlayAnim_Look_Right_Long_01", "Look_Right_Long_01", 0);
+DB_GLO_CharacterAnimation("PlayAnim_Look_Right_Short_01", "Look_Right_Short_01", 0);
+DB_GLO_CharacterAnimation("PlayAnim_Look_Up_Long_01", "Look_Up_Long_01", 0);
+DB_GLO_CharacterAnimation("PlayAnim_Look_Up_Short_01", "Look_Up_Short_01", 0);
+DB_GLO_CharacterAnimation("PlayAnim_Look_Up_Short_02", "Look_Up_Short_02", 0);
+DB_GLO_CharacterAnimation("PlayAnim_Mindcontrol_01", "Mindcontrol_01", 0);
+DB_GLO_CharacterAnimation("PlayAnim_Mine_01", "Mine_01", 0);
+DB_GLO_CharacterAnimation("PlayAnim_No_01", "No_01", 0);
+DB_GLO_CharacterAnimation("PlayAnim_No_02", "No_02", 0);
+DB_GLO_CharacterAnimation("PlayAnim_No_03", "No_03", 0);
+DB_GLO_CharacterAnimation("PlayAnim_No_04", "No_04", 0);
+DB_GLO_CharacterAnimation("PlayAnim_No_05", "No_05", 0);
+DB_GLO_CharacterAnimation("PlayAnim_No_06", "No_06", 0);
+DB_GLO_CharacterAnimation("PlayAnim_Perform_01", "Perform_01", 0);
+DB_GLO_CharacterAnimation("PlayAnim_Perform_02", "Perform_02", 0);
+DB_GLO_CharacterAnimation("PlayAnim_Perform_03", "Perform_03", 0);
+DB_GLO_CharacterAnimation("PlayAnim_Pickpocket_01", "Pickpocket_01", 0);
+DB_GLO_CharacterAnimation("PlayAnim_Point_01", "Point_01", 0);
+DB_GLO_CharacterAnimation("PlayAnim_Potion_Rub_01", "Potion_Rub_01", 0);
+DB_GLO_CharacterAnimation("PlayAnim_Pray_01", "Pray_01", 0);
+DB_GLO_CharacterAnimation("PlayAnim_Pst_01", "Pst_01", 0);
+DB_GLO_CharacterAnimation("PlayAnim_Pst_02", "Pst_02", 0);
+DB_GLO_CharacterAnimation("PlayAnim_Pst_03", "Pst_03", 0);
+DB_GLO_CharacterAnimation("PlayAnim_Pst_04", "Pst_04", 0);
+DB_GLO_CharacterAnimation("PlayAnim_Repair_01", "Repair_01", 0);
+DB_GLO_CharacterAnimation("PlayAnim_Revolt_01", "Revolt_01", 0);
+DB_GLO_CharacterAnimation("PlayAnim_Revolt_02", "Revolt_02", 0);
+DB_GLO_CharacterAnimation("PlayAnim_Salute_01", "Salute_01", 0);
+DB_GLO_CharacterAnimation("PlayAnim_Salute_02", "Salute_02", 0);
+DB_GLO_CharacterAnimation("PlayAnim_Salute_03", "Salute_03", 0);
+DB_GLO_CharacterAnimation("PlayAnim_Salute_04", "Salute_04", 0);
+DB_GLO_CharacterAnimation("PlayAnim_Salute_05", "Salute_05", 0);
+DB_GLO_CharacterAnimation("PlayAnim_Salute_06", "Salute_06", 0);
+DB_GLO_CharacterAnimation("PlayAnim_Salute_07", "Salute_07", 0);
+DB_GLO_CharacterAnimation("PlayAnim_Shout_01", "Shout_01", 0);
+DB_GLO_CharacterAnimation("PlayAnim_Shrug_01", "Shrug_01", 0);
+DB_GLO_CharacterAnimation("PlayAnim_Sigh_01", "Sigh_01", 0);
+DB_GLO_CharacterAnimation("PlayAnim_Sooth_01", "Sooth_01", 0);
+DB_GLO_CharacterAnimation("PlayAnim_Sow_02", "Sow_02", 0);
+DB_GLO_CharacterAnimation("PlayAnim_Stand_Read_01", "Stand_Read_01", 0);
+DB_GLO_CharacterAnimation("PlayAnim_Surprise_01", "Surprise_01", 0);
+DB_GLO_CharacterAnimation("PlayAnim_Surprise_02", "Surprise_02", 0);
+DB_GLO_CharacterAnimation("PlayAnim_Tapping_Beer_01", "Tapping_Beer_01", 0);
+DB_GLO_CharacterAnimation("PlayAnim_Tapping_Beer_02", "Tapping_Beer_02", 0);
+DB_GLO_CharacterAnimation("PlayAnim_Taunt_01", "Taunt_01", 0);
+DB_GLO_CharacterAnimation("PlayAnim_Taunt_02", "Taunt_02", 0);
+DB_GLO_CharacterAnimation("PlayAnim_Teleport_01", "Teleport_01", 0);
+DB_GLO_CharacterAnimation("PlayAnim_Think_01", "Think_01", 0);
+DB_GLO_CharacterAnimation("PlayAnim_Think_02", "Think_02", 0);
+DB_GLO_CharacterAnimation("PlayAnim_Throw_Away_01", "Throw_Away_01", 0);
+DB_GLO_CharacterAnimation("PlayAnim_Throw_Up_01", "Throw_Up_01", 0);
+DB_GLO_CharacterAnimation("PlayAnim_Throw_Water_01", "Throw_Water_01", 0);
+DB_GLO_CharacterAnimation("PlayAnim_Tired_01", "Tired_01", 0);
+DB_GLO_CharacterAnimation("PlayAnim_Trader_01", "Trader_01", 0);
+DB_GLO_CharacterAnimation("PlayAnim_Trader_02", "Trader_02", 0);
+DB_GLO_CharacterAnimation("PlayAnim_Trader_03", "Trader_03", 0);
+DB_GLO_CharacterAnimation("PlayAnim_Use_01", "Use_01", 0);
+DB_GLO_CharacterAnimation("PlayAnim_Use_02", "Use_02", 0);
+DB_GLO_CharacterAnimation("PlayAnim_Victory_01", "Victory_01", 0);
+DB_GLO_CharacterAnimation("PlayAnim_Victory_02", "Victory_02", 0);
+DB_GLO_CharacterAnimation("PlayAnim_Warm_Hands_01", "Warm_Hands_01", 0);
+DB_GLO_CharacterAnimation("PlayAnim_Wave_01", "Wave_01", 0);
+DB_GLO_CharacterAnimation("PlayAnim_Wave_02", "Wave_02", 0);
+DB_GLO_CharacterAnimation("PlayAnim_Wave_03", "Wave_03", 0);
+DB_GLO_CharacterAnimation("PlayAnim_WipeTable_01", "WipeTable_01", 0);
+DB_GLO_CharacterAnimation("PlayAnim_Worship_01", "Worship_01", 0);
+DB_GLO_CharacterAnimation("PlayAnim_Yawn_01", "Yawn_01", 0);
+DB_GLO_CharacterAnimation("PlayAnim_Yes_01", "Yes_01", 0);
+DB_GLO_CharacterAnimation("PlayAnim_Yes_02", "Yes_02", 0);
+DB_GLO_CharacterAnimation("PlayAnim_Yes_03", "Yes_03", 0);
+DB_GLO_CharacterAnimation("PlayAnim_Yes_04", "Yes_04", 0);
+DB_GLO_CharacterAnimation("PlayAnim_Yes_05", "Yes_05", 0);
+DB_GLO_CharacterAnimation("PlayAnim_Sit_Angry_01", "Sit_Angry_01", 0);
+DB_GLO_CharacterAnimation("PlayAnim_Sit_Annoyed_01", "Sit_Annoyed_01", 0);
+DB_GLO_CharacterAnimation("PlayAnim_Sit_Bored_01", "Sit_Bored_01", 0);
+DB_GLO_CharacterAnimation("PlayAnim_Sit_Bored_02", "Sit_Bored_02", 0);
+DB_GLO_CharacterAnimation("PlayAnim_Sit_Chuckle_01", "Sit_Chuckle_01", 0);
+DB_GLO_CharacterAnimation("PlayAnim_Sit_Drink_01", "Sit_Drink_01", 0);
+DB_GLO_CharacterAnimation("PlayAnim_Sit_Laugh_01", "Sit_Laugh_01", 0);
+DB_GLO_CharacterAnimation("PlayAnim_Sit_Laugh_02", "Sit_Laugh_02", 0);
+DB_GLO_CharacterAnimation("PlayAnim_Sit_Look_Left_01", "Sit_Look_Left_01", 0);
+DB_GLO_CharacterAnimation("PlayAnim_Sit_Look_Right_01", "Sit_Look_Right_01", 0);
+DB_GLO_CharacterAnimation("PlayAnim_Sit_No_01", "Sit_No_01", 0);
+DB_GLO_CharacterAnimation("PlayAnim_Sit_No_02", "Sit_No_02", 0);
+DB_GLO_CharacterAnimation("PlayAnim_Sit_Praise_01", "Sit_Praise_01", 0);
+DB_GLO_CharacterAnimation("PlayAnim_Sit_Pray_01", "Sit_Pray_01", 0);
+DB_GLO_CharacterAnimation("PlayAnim_Sit_Read_01", "Sit_Read_01", 0);
+DB_GLO_CharacterAnimation("PlayAnim_Sit_Reject_01", "Sit_Reject_01", 0);
+DB_GLO_CharacterAnimation("PlayAnim_Sit_Salute_01", "Sit_Salute_01", 0);
+DB_GLO_CharacterAnimation("PlayAnim_Sit_Sigh_01", "Sit_Sigh_01", 0);
+DB_GLO_CharacterAnimation("PlayAnim_Sit_Surprise_01", "Sit_Surprise_01", 0);
+DB_GLO_CharacterAnimation("PlayAnim_Sit_Tired_01", "Sit_Tired_01", 0);
+DB_GLO_CharacterAnimation("PlayAnim_Sit_Yes_01", "Sit_Yes_01", 0);
+DB_GLO_CharacterAnimation("PlayAnim_Loop_BarStand_01_Loop", "BarStand_01_Loop", 1);
+DB_GLO_CharacterAnimation("PlayAnim_Loop_Lie_Relax_01_Loop", "Lie_Relax_01_Loop", 1);
+DB_GLO_CharacterAnimation("PlayAnim_Loop_Lie_Suffer_01_Loop", "Lie_Suffer_01_Loop", 1);
+DB_GLO_CharacterAnimation("PlayAnim_Loop_Lie_Suffer_02_Loop", "Lie_Suffer_02_Loop", 1);
+DB_GLO_CharacterAnimation("PlayAnim_Loop_Lie_Suffer_03_Loop", "Lie_Suffer_03_Loop", 1);
+DB_GLO_CharacterAnimation("PlayAnim_Loop_Chained_01_Loop", "Chained_01_Loop", 1);
+DB_GLO_CharacterAnimation("PlayAnim_Loop_Cower_03_Loop", "Cower_03_Loop", 1);
+DB_GLO_CharacterAnimation("PlayAnim_Loop_Crucified_01_Loop", "Crucified_01_Loop", 1);
+DB_GLO_CharacterAnimation("PlayAnim_Loop_Dig_01_Loop", "Dig_01_Loop", 1);
+DB_GLO_CharacterAnimation("PlayAnim_Loop_Lie_Dead_01_Loop", "Lie_Dead_01_Loop", 1);
+DB_GLO_CharacterAnimation("PlayAnim_Loop_Lie_Relax_02_Loop", "Lie_Relax_02_Loop", 1);
+DB_GLO_CharacterAnimation("PlayAnim_Loop_Lie_Wounded_01_Loop", "Lie_Wounded_01_Loop", 1);
+DB_GLO_CharacterAnimation("PlayAnim_Loop_Lie_Wounded_02_Loop", "Lie_Wounded_02_Loop", 1);
+DB_GLO_CharacterAnimation("PlayAnim_Loop_Lie_Wounded_03_Loop", "Lie_Wounded_03_Loop", 1);
+DB_GLO_CharacterAnimation("PlayAnim_Loop_Guard_01_Loop", "Guard_01_Loop", 1);
+DB_GLO_CharacterAnimation("PlayAnim_Loop_Hung_01_Loop", "Hung_01_Loop", 1);
+DB_GLO_CharacterAnimation("PlayAnim_Loop_Hung_02_Loop", "Hung_02_Loop", 1);
+DB_GLO_CharacterAnimation("PlayAnim_Loop_Hung_03_Loop", "Hung_03_Loop", 1);
+DB_GLO_CharacterAnimation("PlayAnim_Loop_Injured_01_Loop", "Injured_01_Loop", 1);
+DB_GLO_CharacterAnimation("PlayAnim_Loop_Insane_01_Loop", "Insane_01_Loop", 1);
+DB_GLO_CharacterAnimation("PlayAnim_Loop_Kneel_01_Loop", "Kneel_01_Loop", 1);
+DB_GLO_CharacterAnimation("PlayAnim_Loop_Lie_Tied_Up_01_Loop", "Lie_Tied_Up_01_Loop", 1);
+DB_GLO_CharacterAnimation("PlayAnim_Loop_Lie_Tied_Up_01_End", "Lie_Tied_Up_01_End", 1);
+DB_GLO_CharacterAnimation("PlayAnim_Loop_Rake_01_Loop", "Rake_01_Loop", 1);
+DB_GLO_CharacterAnimation("PlayAnim_Loop_Sing_01_Loop", "Sing_01_Loop", 1);
+DB_GLO_CharacterAnimation("PlayAnim_Loop_Sad_01_Loop", "Sad_01_Loop", 1);
+DB_GLO_CharacterAnimation("PlayAnim_Loop_Search_Book_01_Loop", "Search_Book_01_Loop", 1);
+DB_GLO_CharacterAnimation("PlayAnim_Loop_Sit_Sick_01_Loop", "Sit_Sick_01_Loop", 1);
+DB_GLO_CharacterAnimation("PlayAnim_Loop_Sit_Sleep_01_Loop", "Sit_Sleep_01_Loop", 1);
+DB_GLO_CharacterAnimation("PlayAnim_Loop_Sit_Sleep_02_Loop", "Sit_Sleep_02_Loop", 1);
+DB_GLO_CharacterAnimation("PlayAnim_Loop_Sit_Write_01_Loop", "Sit_Write_01_Loop", 1);
+DB_GLO_CharacterAnimation("PlayAnim_Loop_Sow_01_Loop", "Sow_01_Loop", 1);
+DB_GLO_CharacterAnimation("PlayAnim_Loop_Stand_Drink_01_Loop", "Stand_Drink_01_Loop", 1);
+DB_GLO_CharacterAnimation("PlayAnim_Loop_Stand_Drink_02_Loop", "Stand_Drink_02_Loop", 1);
+DB_GLO_CharacterAnimation("PlayAnim_Loop_Stand_Read_01_Loop", "Stand_Read_01_Loop", 1);
+DB_GLO_CharacterAnimation("PlayAnim_Loop_Stare_01_Loop", "Stare_01_Loop", 1);
+DB_GLO_CharacterAnimation("PlayAnim_Loop_Tied_Up_01_Loop", "Tied_Up_01_Loop", 1);
+DB_GLO_CharacterAnimation("PlayAnim_Loop_Training_2HS_01_Loop", "Training_2HS_01_Loop", 1);
+DB_GLO_CharacterAnimation("PlayAnim_Loop_Training_Bow_01_Loop", "Training_Bow_01_Loop", 1);
+DB_GLO_CharacterAnimation("PlayAnim_skill_cast_throw_arc_02_cast", "skill_cast_throw_arc_02_cast");
+
+KBSECTION
+IF
+ObjectFlagSet((STRING)_Var1, (CHARACTERGUID)_Var2, (INTEGER)_Var3)
+AND
+DB_GLO_CharacterAnimation(_Var1, _Var4, _Var5)
+THEN
+ObjectClearFlag(_Var2, _Var1);
+PROC_GLO_CharacterAnimationStart(_Var2, _Var4, _Var3, _Var5);
+
+PROC
+PROC_GLO_CharacterAnimationStart((CHARACTERGUID)_Var1, (STRING)_Var2, (INTEGER)_Var3, 0)
+AND NOT
+DB_GLO_CharacterAnimationForDialog(_Var1, _)
+THEN
+DB_GLO_CharacterAnimationForDialog(_Var1, _Var3);
+PlayAnimation(_Var1, _Var2, "GLO_CharacterAnimationFinished");
+
+IF
+StoryEvent((CHARACTERGUID)_Var1, "GLO_CharacterAnimationFinished")
+AND
+DB_GLO_CharacterAnimationForDialog(_Var1, _Var2)
+THEN
+NOT DB_GLO_CharacterAnimationForDialog(_Var1, _Var2);
+
+PROC
+PROC_GLO_CharacterAnimationStart((CHARACTERGUID)_Var1, (STRING)_Var2, (INTEGER)_Var3, 1)
+THEN
+CharacterSetAnimationOverride(_Var1, _Var2);
+
+IF
+ObjectFlagSet("PlayAnim_StopLoop", (CHARACTERGUID)_Var1, _)
+THEN
+ObjectClearFlag(_Var1, "PlayAnim_StopLoop");
+CharacterSetAnimationOverride(_Var1, "");
+
+IF
+ObjectFlagSet("PlayAnim_DrawWeapons", (CHARACTERGUID)_Var1, _)
+AND
+HasActiveStatus(_Var1, "SITTING", 1)
+THEN
+RemoveStatus(_Var1, "SITTING");
+
+IF
+ObjectFlagSet("PlayAnim_DrawWeapons", (CHARACTERGUID)_Var1, _)
+THEN
+ObjectClearFlag(_Var1, "PlayAnim_DrawWeapons");
+CharacterSetFightMode(_Var1, 1, 0);
+
+IF
+ObjectFlagSet("PlayAnim_SheathWeapons", (CHARACTERGUID)_Var1, _)
+THEN
+ObjectClearFlag(_Var1, "PlayAnim_SheathWeapons");
+CharacterSetFightMode(_Var1, 0, 0);
+
+
+EXITSECTION
+ENDEXITSECTION
+

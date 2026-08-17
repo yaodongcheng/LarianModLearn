@@ -1,0 +1,735 @@
+Version 1
+SubGoalCombiner SGC_AND
+
+INITSECTION
+DB_QuestDef_State("CORE_Chapter1", "TUT_Start");
+DB_QuestDef_UpdateEvent("CORE_Chapter1", "TUT_Start2", "QuestUpdate_CORE_Chapter1_TUT_Start");
+DB_QuestDef_State("CORE_Chapter1", "TUT_Lore");
+DB_QuestDef_State("CORE_Chapter1", "TUT_FTJ");
+DB_QuestDef_State("CORE_Chapter1", "TUT_Windego");
+DB_QuestDef_State("CORE_Chapter1", "TUT_UpperDeck");
+DB_QuestDef_UpdateEvent("CORE_Chapter1", "TUT_Companions", "TUT_FoughtInRescueCombat");
+DB_QuestDef_State("CORE_Chapter1", "TUT_Escape");
+DB_QuestDef_State("CORE_Chapter2", "FTJ_Start");
+DB_QuestDef_UpdateEvent("CORE_Chapter2", "FTJ_Start2", "QuestUpdate_CORE_Chapter2_FTJ_Start");
+DB_JournalCoreStory_RegionStarted("FJ_FortJoy_Main", "QuestUpdate_CORE_Chapter2_FTJ_Start");
+DB_QuestDef_UpdateEvent("CORE_Chapter2", "FTJ_Paladin", "QuestUpdate_FTJ_Escape_PaladinConflict");
+DB_QuestDef_UpdateEvent("CORE_Chapter2", "FTJ_Windego", "QuestUpdate_FTJ_Hunted_WindegoMet");
+DB_QuestDef_UpdateEvent("CORE_Chapter2", "FTJ_Wand", "FTJ_SW_HasPurgingWand");
+DB_QuestDef_UpdateEvent("CORE_Chapter2", "FTJ_KilledAlexandar", "QuestUpdate_FTJ_Escape_FinalBattle");
+DB_QuestDef_UpdateEvent("CORE_Chapter2", "FTJ_KilledAlexandar", "QuestUpdate_FTJ_Escape_FinalBattleNoSeeker");
+DB_QuestDef_State("CORE_Chapter2", "FTJ_End");
+DB_JournalCoreStory_RegionStarted("LV_HOE_Main", "QuestUpdate_CORE_Chapter2_FTJ_End");
+DB_QuestDef_State("CORE_Chapter3", "LV_Start");
+DB_JournalCoreStory_RegionStarted("LV_HoE_Main", "QuestUpdate_CORE_Chapter3_LV_Start");
+DB_QuestDef_State("CORE_Chapter3", "LV_Attack");
+DB_QuestDef_State("CORE_Chapter3", "LV_Hoe");
+DB_QuestDef_State("CORE_Chapter3", "LV_AlexandarDead");
+DB_QuestDef_UpdateEvent("CORE_Chapter3", "LV_AlexandarCaptive", "QuestUpdate_LV_Main_AlexandarCaptive");
+DB_QuestDef_UpdateEvent("CORE_Chapter3", "LV_End", "QuestUpdate_LV_HoE_Main_EndAct");
+DB_QuestDef_State("CORE_Chapter4", "RC_Start");
+DB_JournalCoreStory_RegionStarted("RC_Main", "QuestUpdate_CORE_Chapter4_RC_Start");
+Proc_GLO_JournalCoreStory_Chapter4_SetUp();
+DB_QuestDef_State("CORE_Chapter5", "COS_Start");
+DB_JournalCoreStory_RegionStarted("COS_Main", "QuestUpdate_CORE_Chapter5_COS_Start");
+DB_QuestDef_State("CORE_Chapter5", "COS_End");
+DB_QuestDef_State("CORE_Chapter5", "COS_End_Sworn");
+DB_QuestDef_State("CORE_Chapter5", "COSLV_Start");
+Proc_GLO_JournalCoreStory_Chapter5_SetUp();
+DB_QuestDef_State("CORE_Chapter6", "ARX_Start");
+DB_JournalCoreStory_RegionStarted("ARX_Main", "QuestUpdate_CORE_Chapter6_ARX_Start");
+Proc_GLO_JournalCoreStory_Chapter6_SetUp();
+DB_QuestDef_State("CORE_Chapter7", "CRYPT_End_PeaceBraccus");
+DB_JournalCoreStory_GlobalFlag("EG_ConvincedBraccus", "QuestUpdate_CORE_Chapter7_CRYPT_End_PeaceBraccus");
+DB_QuestDef_State("CORE_Chapter7", "CRYPT_End_FoughtBraccus");
+DB_JournalCoreStory_GlobalFlag("EndFight_BraccusTransform", "QuestUpdate_CORE_Chapter7_CRYPT_End_FoughtBraccus");
+DB_QuestDef_State("CORE_Chapter7", "CRYPT_End_Sworn");
+DB_JournalCoreStory_GlobalFlag("EG_PromisedFight", "QuestUpdate_CORE_Chapter7_CRYPT_End_Sworn");
+DB_QuestDef_State("CORE_Chapter7", "CRYPT_End_Intro1");
+DB_QuestDef_State("CORE_Chapter7", "CRYPT_End_Intro2");
+DB_QuestDef_State("CORE_Chapter7", "CRYPT_End_Intro3");
+DB_QuestDef_State("CORE_Chapter7", "CRYPT_End_Intro4");
+DB_QuestDef_State("CORE_Chapter7", "CRYPT_End_TakeElected");
+DB_QuestDef_State("CORE_Chapter7", "CRYPT_End_TakeFight");
+DB_QuestDef_State("CORE_Chapter7", "CRYPT_End_TakeFail");
+DB_QuestDef_State("CORE_Chapter7", "CRYPT_End_PurgedGarethDead");
+DB_QuestDef_State("CORE_Chapter7", "CRYPT_End_PurgedGareth");
+DB_QuestDef_State("CORE_Chapter7", "CRYPT_End_TakeSwornWon");
+DB_QuestDef_State("CORE_Chapter7", "CRYPT_End_TakeSwornRefused");
+DB_QuestDef_State("CORE_Chapter7", "CRYPT_End_TakeSwornFail");
+DB_QuestDef_State("CORE_Chapter7", "CRYPT_End_TakePactWon");
+DB_QuestDef_State("CORE_Chapter7", "CRYPT_End_TakePactRefused");
+DB_QuestDef_State("CORE_Chapter7", "CRYPT_End_TakePactFail");
+DB_QuestDef_State("CORE_Chapter7", "CRYPT_End_LohseDoctorReturn");
+DB_QuestDef_State("CORE_Chapter7", "CRYPT_End_Refuse");
+DB_QuestDef_State("CORE_Epilogue", "Endgame1_User");
+DB_QuestDef_State("CORE_Epilogue", "Endgame1_Fane");
+DB_QuestDef_State("CORE_Epilogue", "Endgame2_User");
+DB_QuestDef_State("CORE_Epilogue", "Endgame3_User");
+DB_QuestDef_State("CORE_Epilogue", "Endgame4_Sworn");
+DB_QuestDef_State("CORE_Epilogue", "Endgame5_User");
+DB_QuestDef_State("CORE_Epilogue", "Endgame1_Companion");
+DB_QuestDef_State("CORE_Epilogue", "Endgame2_Companion");
+DB_QuestDef_State("CORE_Epilogue", "Endgame3_Companion");
+DB_QuestDef_State("CORE_Epilogue", "Endgame4_NotSworn");
+DB_QuestDef_State("CORE_Epilogue", "Endgame5_Companion");
+DB_QuestDef_State("CORE_Epilogue", "Endgame3_User_NoLucian");
+DB_QuestDef_State("CORE_Epilogue", "Endgame3_Companion_NoLucian");
+Proc_GLO_JournalCoreStory_ElfStory_SetUp();
+Proc_GLO_JournalCoreStory_DwarfStory_SetUp();
+DB_QuestDef_State("CORE_Aeteran", "Oilcave_Eternal");
+DB_QuestDef_State("CORE_Aeteran", "Oilcave_Dig");
+DB_QuestDef_State("CORE_Aeteran", "DallisGoal");
+DB_JournalCoreStory_ObjectFlag("QuestUpdate_ARX_Barracks_LearnedWhiteMagisterSecret", "QuestUpdate_CORE_Aeteran_DallisGoal");
+DB_QuestDef_State("CORE_Aeteran", "COS_End");
+DB_JournalCoreStory_GlobalFlag("CoS_AotO_QueuePurgeGodObject", "QuestUpdate_CORE_Aeteran_COS_End");
+DB_QuestDef_State("CORE_Aeteran", "Aeteran");
+DB_JournalCoreStory_ObjectFlag("QuestUpdate_RC_OIL_Main_SpeakAeteranDallis", "QuestUpdate_CORE_Aeteran_Aeteran");
+DB_JournalCoreStory_ObjectFlag("QuestUpdate_RC_OIL_Main_MagisterGhost", "QuestUpdate_CORE_Aeteran_Aeteran");
+DB_QuestDef_State("CORE_Aeteran", "Aeteran_Explained");
+DB_JournalCoreStory_ObjectFlag("QuestUpdate_CORE_Chapter4_RC_Aeteran_Explained", "QuestUpdate_CORE_Aeteran_Aeteran_Explained");
+DB_QuestDef_State("CORE_Covenant", "Haunt");
+DB_QuestDef_State("CORE_Covenant", "Zaleskar");
+DB_QuestDef_State("CORE_Covenant", "HelmetDemon");
+DB_QuestDef_State("CORE_Covenant", "Ryker_Book");
+DB_QuestDef_State("CORE_Covenant", "Heroes");
+DB_JournalCoreStory_ObjectFlag("QuestUpdate_RC_GY_MemorialOfHeroes_CombatBurial", "QuestUpdate_CORE_Covenant_Heroes");
+DB_QuestDef_State("CORE_Covenant", "Hannag");
+DB_JournalCoreStory_ObjectFlag("QuestUpdate_RC_BF_CorneredSourcerer_HannagSworn", "QuestUpdate_CORE_Covenant_Hannag");
+DB_QuestDef_State("CORE_Covenant", "Almira");
+DB_QuestDef_State("CORE_Covenant", "WindegoFTJ");
+DB_QuestDef_State("CORE_Covenant", "WindegoCOS");
+DB_QuestDef_State("CORE_Covenant", "Sworn");
+DB_QuestDef_UpdateEvent("CORE_Covenant", "COS_TarquinExplained", "QuestUpdate_CORE_Chapter5_RC_Covenant");
+DB_QuestDef_UpdateEvent("CORE_Covenant", "Kemm", "Set_CORE_Covenant_Kemm");
+DB_QuestDef_UpdateEvent("CORE_Covenant", "Isbeil", "Set_CORE_Covenant_Isbeil");
+DB_QuestDef_State("CORE_Covenant", "Kemm_Know");
+DB_QuestDef_State("CORE_Covenant", "Isbeil_Know");
+DB_QuestDef_State("CORE_Covenant", "Swornbreaker");
+DB_QuestDef_State("CORE_Covenant", "Freed");
+DB_QuestDef_State("CORE_Magisters", "InitialSetup");
+DB_QuestDef_State("CORE_Magisters", "VredemanTutor");
+DB_QuestDef_State("CORE_Magisters", "DallisKnowledge");
+DB_QuestDef_State("CORE_Magisters", "MagisterBraccus");
+DB_QuestDef_State("CORE_Magisters", "VredemanMagisterLetter");
+DB_QuestDef_State("CORE_Magisters", "VredemanKemmLetter");
+DB_QuestDef_State("CORE_Magisters", "PaladinThanks");
+DB_QuestDef_State("CORE_Magisters", "CryptBlock");
+DB_JournalCoreStory_ObjectFlag("FTJ_SW_BraccusArmoryMagister_WhatDoing", "QuestUpdate_CORE_Magisters_MagisterBraccus");
+DB_QuestDef_State("CORE_Magisters", "AlexandarDead");
+DB_QuestDef_State("CORE_Magisters", "AlexandarGone");
+DB_JournalCoreStory_ObjectFlag("QuestUpdate_FTJ_Godwoken_AlexandarGone", "QuestUpdate_CORE_Magisters_AlexandarGone");
+DB_QuestDef_State("CORE_Magisters", "DallisLeader");
+DB_QuestDef_State("CORE_Magisters", "VredemanMet");
+DB_JournalCoreStory_ObjectFlag("QuestUpdate_LV_Main_DallisAssault_Start", "QuestUpdate_CORE_Magisters_VredemanMet");
+DB_QuestDef_State("CORE_Magisters", "VredemanExcavation");
+DB_JournalCoreStory_ObjectFlag("QuestUpdate_RC_OIL_Main_MagisterGhost2", "QuestUpdate_CORE_Magisters_VredemanExcavation");
+DB_QuestDef_State("CORE_Magisters", "VredemanHarbourHint");
+DB_QuestDef_State("CORE_Magisters", "VredemanTruth");
+DB_JournalCoreStory_ObjectFlag("ARX_PlayerKnows_VredemanIsBraccusRex", "QuestUpdate_CORE_Magisters_VredemanTruth");
+DB_QuestDef_State("CORE_Magisters", "MagisterPlan");
+DB_JournalCoreStory_ObjectFlag("QuestUpdate_ARX_HuntingForDallis_DefeatedReimond", "QuestUpdate_CORE_Magisters_MagisterPlan");
+DB_QuestDef_UpdateEvent("CORE_Magisters", "AlexandarMurdered", "QuestUpdate_CORE_Chapter3_LV_AlexandarDead");
+DB_QuestDef_UpdateEvent("CORE_Magisters", "DallisOrigin", "EG_DallisTransform");
+DB_QuestDef_UpdateEvent("CORE_Magisters", "DallisOrigin2", "EG_DallisTransform");
+DB_QuestDef_UpdateEvent("CORE_Magisters", "LucianPlot", "QuestUpdate_EG_LucianEncounter");
+DB_QuestDef_UpdateEvent("CORE_Magisters", "DODesertion", "RC_DW_KnowsOfDeserters");
+PROC_AddMysteryEntries();
+
+KBSECTION
+PROC
+PROC_AddMysteryEntries()
+THEN
+DB_Mystery("CORE_Chapter1");
+DB_Mystery("CORE_Chapter2");
+DB_Mystery("CORE_Chapter3");
+DB_Mystery("CORE_Chapter4");
+DB_Mystery("CORE_Chapter5");
+DB_Mystery("CORE_Chapter6");
+DB_Mystery("CORE_Chapter7");
+DB_Mystery("CORE_Covenant");
+DB_Mystery("CORE_DwarfStory");
+DB_Mystery("CORE_ElfStory");
+DB_Mystery("CORE_Epilogue");
+DB_Mystery("CORE_Magisters");
+DB_Mystery("FTJ_Godwoken");
+DB_Mystery("FTJ_Hunted");
+DB_Mystery("FTJ_Seeker");
+
+IF
+SavegameLoaded((INTEGER)_Var1, (INTEGER)_Var2, (INTEGER)_Var3, (INTEGER)_Var4)
+AND
+QRY_VersionIsOlderThan(_Var1, _Var2, _Var3, _Var4, 3, 5, 1, 0)
+THEN
+PROC_AddMysteryEntries();
+
+IF
+TextEventSet("journalcore")
+AND
+DB_IsPlayer(_Var1)
+AND
+DB_JournalCoreStory_ObjectFlag(_Var2, _)
+THEN
+ObjectSetFlag(_Var1, _Var2);
+
+IF
+SavegameLoaded((INTEGER)_Var1, (INTEGER)_Var2, (INTEGER)_Var3, (INTEGER)_Var4)
+AND
+QRY_VersionIsOlderThan(_Var1, _Var2, _Var3, _Var4, 3, 5, 1, 0)
+THEN
+Proc_GLO_JournalCoreStory_Chapter4_CleanUp();
+Proc_GLO_JournalCoreStory_Chapter4_SetUp();
+Proc_GLO_JournalCoreStory_Chapter5_CleanUp();
+Proc_GLO_JournalCoreStory_Chapter5_SetUp();
+Proc_GLO_JournalCoreStory_Chapter6_SetUp();
+Proc_GLO_JournalCoreStory_ElfStory_SetUp();
+Proc_GLO_JournalCoreStory_DwarfStory_SetUp();
+
+IF
+SavegameLoaded((INTEGER)_Var1, (INTEGER)_Var2, (INTEGER)_Var3, (INTEGER)_Var4)
+AND
+QRY_VersionIsOlderThan(_Var1, _Var2, _Var3, _Var4, 3, 5, 1, 0)
+THEN
+DB_QuestDef_State("CORE_Chapter7", "CRYPT_End_Intro1");
+DB_QuestDef_State("CORE_Chapter7", "CRYPT_End_Intro2");
+DB_QuestDef_State("CORE_Chapter7", "CRYPT_End_Intro3");
+DB_QuestDef_State("CORE_Chapter7", "CRYPT_End_Intro4");
+DB_QuestDef_State("CORE_Epilogue", "Endgame3_User_NoLucian");
+DB_QuestDef_State("CORE_Epilogue", "Endgame3_Companion_NoLucian");
+NOT DB_JournalCoreStory_GlobalFlag("EG_Ending4_GodKing", "QuestUpdate_CORE_Chapter7_CRYPT_End_Sworn");
+DB_JournalCoreStory_GlobalFlag("EG_PromisedFight", "QuestUpdate_CORE_Chapter7_CRYPT_End_Sworn");
+DB_QuestDef_State("CORE_Epilogue", "Endgame1_Fane");
+DB_QuestDef_UpdateEvent("CORE_Covenant", "COS_TarquinExplained", "QuestUpdate_CORE_Chapter5_RC_Covenant");
+DB_QuestDef_UpdateEvent("CORE_Magisters", "DODesertion", "RC_DW_KnowsOfDeserters");
+DB_QuestDef_State("CORE_Magisters", "VredemanHarbourHint");
+
+PROC
+Proc_GLO_JournalCoreStory_Chapter4_CleanUp()
+THEN
+NOT DB_QuestDef_State("CORE_Chapter4", "RC_Mordus");
+NOT DB_JournalCoreStory_ObjectFlag("RC_DW_Meistr_SourceKnowledge_Mordus", "QuestUpdate_CORE_Chapter4_RC_Mordus");
+NOT DB_QuestDef_State("CORE_Chapter4", "RC_Saheila");
+NOT DB_JournalCoreStory_ObjectFlag("RC_DW_Meistr_SourceKnowledge_Saheila", "QuestUpdate_CORE_Chapter4_RC_Saheila");
+NOT DB_QuestDef_State("CORE_Chapter4", "RC_Hannag");
+NOT DB_JournalCoreStory_ObjectFlag("RC_DW_Meistr_SourceKnowledge_Hannag", "QuestUpdate_CORE_Chapter4_RC_Hannag");
+NOT DB_QuestDef_State("CORE_Chapter4", "RC_Jahan");
+NOT DB_JournalCoreStory_ObjectFlag("RC_DW_Meistr_SourceKnowledge_Jahan", "QuestUpdate_CORE_Chapter4_RC_Jahan");
+NOT DB_QuestDef_State("CORE_Chapter4", "RC_Advocate");
+NOT DB_JournalCoreStory_ObjectFlag("RC_DW_Meistr_SourceKnowledge_Advocate", "QuestUpdate_CORE_Chapter4_RC_Advocate");
+NOT DB_QuestDef_State("CORE_Chapter4", "RC_Ryker");
+NOT DB_JournalCoreStory_ObjectFlag("RC_DW_Meistr_SourceKnowledge_Ryker", "QuestUpdate_CORE_Chapter4_RC_Ryker");
+NOT DB_QuestDef_State("CORE_Chapter4", "RC_Almira");
+NOT DB_JournalCoreStory_ObjectFlag("RC_DW_Meistr_SourceKnowledge_Almira", "QuestUpdate_CORE_Chapter4_RC_Almira");
+NOT DB_QuestDef_State("CORE_Chapter4", "RC_EndSuccess");
+NOT DB_QuestDef_State("CORE_Chapter4", "RC_EndFail");
+NOT DB_QuestDef_UpdateEvent("CORE_Chapter4", "RC_Gareth_Helped", "RC_FL_Gareth_ConvincedGarethReturn");
+NOT DB_QuestDef_UpdateEvent("CORE_Chapter4", "RC_Gareth_Helped", "RC_FL_Gareth_SentDownDarkPath");
+
+PROC
+Proc_GLO_JournalCoreStory_Chapter4_SetUp()
+THEN
+DB_QuestDef_UpdateEvent("CORE_Chapter4", "RC_Meistr_Gallows", "QuestUpdate_RC_DW_Meistr_Gallows");
+DB_QuestDef_UpdateEvent("CORE_Chapter4", "RC_Meistr_Helped", "QuestUpdate_RC_DW_Meistr_Rescued");
+DB_QuestDef_UpdateEvent("CORE_Chapter4", "RC_Meistr_FoundVault", "QuestUpdate_RC_DW_Meistr_Cellar");
+DB_QuestDef_UpdateEvent("CORE_Chapter4", "RC_Meistr_FoundVault", "QuestUpdate_RC_DW_Meistr_CellarAlone");
+DB_QuestDef_State("CORE_Chapter4", "RC_God_MetHoE");
+DB_QuestDef_UpdateEvent("CORE_Chapter4", "RC_Source_MentorsNeeded", "RC_DW_Meistr_WeKnowAboutTutorQuest");
+DB_QuestDef_UpdateEvent("CORE_Chapter4", "RC_Source_Mordus", "RC_DW_Meistr_SourceKnowledge_Mordus");
+DB_QuestDef_UpdateEvent("CORE_Chapter4", "RC_Source_Ryker", "RC_DW_Meistr_SourceKnowledge_Ryker");
+DB_QuestDef_UpdateEvent("CORE_Chapter4", "RC_Source_Hannag", "RC_DW_Meistr_SourceKnowledge_Hannag");
+DB_QuestDef_UpdateEvent("CORE_Chapter4", "RC_Source_Saheila", "RC_DW_Meistr_SourceKnowledge_Saheila");
+DB_QuestDef_UpdateEvent("CORE_Chapter4", "RC_Source_Almira", "RC_DW_Meistr_SourceKnowledge_Almira");
+DB_QuestDef_UpdateEvent("CORE_Chapter4", "RC_Source_Jahan", "RC_DW_Meistr_SourceKnowledge_Jahan");
+DB_QuestDef_UpdateEvent("CORE_Chapter4", "RC_Source_Advocate", "RC_DW_Meistr_SourceKnowledge_Advocate");
+DB_QuestDef_UpdateEvent("CORE_Chapter4", "RC_Gareth_Helped", "RC_FL_ChoseJonathanRelease");
+DB_QuestDef_UpdateEvent("CORE_Chapter4", "RC_Gareth_Helped", "RC_FL_KilledJonathanFields");
+DB_QuestDef_UpdateEvent("CORE_Chapter4", "RC_Gareth_Helped", "QuestUpdate_RC_FL_GarethFarm_ConvincedKillJonathan");
+DB_QuestDef_UpdateEvent("CORE_Chapter4", "RC_Gareth_Choice_Pardon", "RC_FL_Gareth_ConvincedGarethReturn");
+DB_QuestDef_UpdateEvent("CORE_Chapter4", "RC_Gareth_Choice_Avenge", "RC_FL_Gareth_SentDownDarkPath");
+DB_QuestDef_UpdateEvent("CORE_Chapter4", "RC_Tarquin_MetGY", "QuestUpdate_RC_GY_Godslayer_Start");
+DB_QuestDef_UpdateEvent("CORE_Chapter4", "RC_Tarquin_Choice_Helped", "QuestUpdate_RC_GY_Godslayer_GaveParts");
+DB_QuestDef_UpdateEvent("CORE_Chapter4", "RC_Tarquin_Choice_NoHelp", "QuestUpdate_RC_GY_Godslayer_NoPartsLeftRC");
+DB_QuestDef_UpdateEvent("CORE_Chapter4", "RC_Almira_GaveTablet", "QuestUpdate_RC_FL_TabletForAlmira_GaveTabletAlmira");
+DB_QuestDef_UpdateEvent("CORE_Chapter4", "RC_Corbin_HelpedToLV", "QuestUpdate_RC_MIL_SavingCorbin_CorbinShip");
+DB_QuestDef_UpdateEvent("CORE_Chapter4", "RC_Jahan_HelpedToLV", "QuestUpdate_FTJ_OriginLohse_JahanLV");
+DB_QuestDef_UpdateEvent("CORE_Chapter4", "RC_Jahan_HelpedToLV", "QuestUpdate_FTJ_COM_Lohse_JahanLV");
+DB_QuestDef_UpdateEvent("CORE_Chapter4", "RC_Reimond_MetDW", "RC_DW_SentByWhiteMagister");
+DB_QuestDef_UpdateEvent("CORE_Chapter4", "RC_Reimond_MetDW", "RC_DW_WhiteMagister_RefusedToShakeHand");
+DB_QuestDef_State("CORE_Chapter4", "RC_Reimond_MetOIL");
+DB_QuestDef_State("CORE_Chapter4", "RC_Reimond_Killed");
+DB_QuestDef_UpdateEvent("CORE_Chapter4", "RC_PossessedKid_HelpedToLV", "QuestUpdate_RC_BI_TheVaultKid_TookKid");
+DB_QuestDef_UpdateEvent("CORE_Chapter4", "RC_Malady_MetBI", "RC_BI_MetMalady");
+DB_QuestDef_UpdateEvent("CORE_Chapter4", "RC_Malady_LearnedDealBI", "RC_BI_LearnRiverHasContract");
+DB_QuestDef_UpdateEvent("CORE_Chapter4", "RC_Malady_LearnedDealBI", "RC_BI_LearnRiverContractDetails");
+DB_QuestDef_UpdateEvent("CORE_Chapter4", "RC_Dallis_LearnedPlanOIL", "QuestUpdate_CORE_Aeteran_Oilcave_Dig");
+DB_QuestDef_UpdateEvent("CORE_Chapter4", "RC_PaladinBridge_Helped", "QuestUpdate_RC_DF_PaladinCheckpoint_Finished");
+DB_QuestDef_UpdateEvent("CORE_Chapter4", "RC_Queen_LearnedPlanDWWC", "QuestUpdate_CORE_Chapter4_RC_Queen_LearnedPlanDWWC");
+DB_QuestDef_UpdateEvent("CORE_Chapter4", "RC_Queen_LearnedPlanDWWC", "QuestUpdate_FTJ_OriginBeast_ToArx");
+DB_QuestDef_UpdateEvent("CORE_Chapter4", "RC_Queen_LearnedPlanDWWC", "QuestUpdate_FTJ_COM_Beast_ToArx");
+DB_QuestDef_UpdateEvent("CORE_Chapter4", "RC_Advocate_Choice_Helped", "QuestUpdate_RC_BI_ThePresence_Reported");
+DB_QuestDef_UpdateEvent("CORE_Chapter4", "RC_Advocate_Choice_Helped", "QuestUpdate_RC_BI_ThePresence_UnexpectedCompletion");
+DB_QuestDef_State("CORE_Chapter4", "RC_Advocate_Choice_Killed");
+DB_QuestDef_State("CORE_Chapter4", "RC_Saheila_Helped");
+DB_QuestDef_UpdateEvent("CORE_Chapter4", "RC_Saheila_Avenge", "QuestUpdate_RC_MIL_AvengingSaheila_DeliveredHand");
+DB_QuestDef_UpdateEvent("CORE_Chapter4", "RC_Saheila_Avenge", "QuestUpdate_RC_MIL_AvengingSaheila_InformedTovah");
+DB_QuestDef_State("CORE_Chapter4", "RC_EndSuccess_1");
+DB_QuestDef_UpdateEvent("CORE_Chapter4", "RC_EndSuccess_2", "QuestUpdate_CORE_Chapter4_RC_EndSuccess_1");
+DB_QuestDef_State("CORE_Chapter4", "RC_EndFail_1");
+DB_QuestDef_UpdateEvent("CORE_Chapter4", "RC_EndFail_2", "QuestUpdate_CORE_Chapter4_RC_EndFail_1");
+DB_QuestDef_UpdateEvent("CORE_Chapter4", "RC_EndBoth_3", "QuestUpdate_CORE_Chapter4_RC_EndSuccess_1");
+DB_QuestDef_UpdateEvent("CORE_Chapter4", "RC_EndBoth_3", "QuestUpdate_CORE_Chapter4_RC_EndFail_1");
+
+PROC
+PROC_RC_DW_Meistr_Completed_DreamSequence((CHARACTERGUID)_Var1)
+THEN
+UserSetFlag(_Var1, "QuestUpdate_CORE_Chapter4_RC_God_MetHoE");
+
+PROC
+Proc_GLO_JournalCoreStory_Chapter4_RC_Reimond_MetOIL_Update()
+AND
+DB_IsPlayer(_Var1)
+AND
+DB_Sees(_Var1, CHARACTERGUID_S_RC_DW_WhiteMagister_b1bdd004-a286-4ad5-9826-a763d672b2a7)
+AND
+PartyGetFlag(_Var1, "QuestUpdate_RC_DF_PaladinCheckpoint_WhiteMagister", 1)
+THEN
+UserSetFlag(_Var1, "QuestUpdate_CORE_Chapter4_RC_Reimond_MetOIL");
+
+IF
+ObjectFlagSet("QuestUpdate_RC_MIL_RescuingSaheila_SaheilaThanks", (GUIDSTRING)_Var1, (INTEGER)_Var2)
+AND
+DB_DialogName(_Var3, _Var2)
+AND
+_Var3 != "RC_MIL_TovahNoSaheila"
+THEN
+ObjectSetFlag(_Var1, "QuestUpdate_CORE_Chapter4_RC_Saheila_Helped");
+
+PROC
+ProcRegionEnded("RC_Main")
+AND
+GlobalGetFlag("RC_DW_River_CoSFallbackTriggered", 0)
+AND
+DB_IsPlayer(_Var1)
+AND
+UserGetFlag(_Var1, "QuestUpdate_CORE_Chapter4_RC_EndSuccess", 0)
+THEN
+UserSetFlag(_Var1, "QuestUpdate_CORE_Chapter4_RC_EndSuccess_1");
+
+PROC
+ProcRegionEnded("RC_Main")
+AND
+GlobalGetFlag("RC_DW_River_CoSFallbackTriggered", 1)
+AND
+DB_IsPlayer(_Var1)
+AND
+UserGetFlag(_Var1, "QuestUpdate_CORE_Chapter4_RC_EndFail", 0)
+THEN
+UserSetFlag(_Var1, "QuestUpdate_CORE_Chapter4_RC_EndFail_1");
+
+PROC
+Proc_GLO_JournalCoreStory_Chapter5_CleanUp()
+THEN
+NOT DB_QuestDef_State("CORE_Chapter5", "COS_Academy");
+NOT DB_QuestDef_State("CORE_Chapter5", "COS_Academy_Sworn");
+NOT DB_JournalCoreStory_EnteredTrigger_Promised(TRIGGERGUID_S_CoS_SUB_Academy_51ddb828-18a6-4b6e-9f5a-e2b2883862e1, "QuestUpdate_CORE_Chapter5_COS_Academy", "QuestUpdate_CORE_Chapter5_COS_Academy_Sworn");
+NOT DB_QuestDef_State("CORE_Chapter5", "COSLV_Start_Sworn");
+NOT DB_JournalCoreStory_GlobalFlag_Promised("CoS_AfterArenaOfTheOne", "QuestUpdate_CORE_Chapter5_COSLV_Start", "QuestUpdate_CORE_Chapter5_COSLV_Start_Sworn");
+NOT DB_QuestDef_State("CORE_Chapter5", "COS_Altar_PrayedOnce");
+NOT DB_JournalCoreStory_GlobalFlag_Promised("QuestUpdate_CORE_Chapter5_COSLV_Start", "QuestUpdate_CORE_Chapter5_COSLV_Start_3_NOTSworn", "QuestUpdate_CORE_Chapter5_COSLV_Start_3_Sworn");
+NOT DB_JournalCoreStory_GlobalFlag_Promised("CoS_AotO_End_LavaCaveIn", "QuestUpdate_CORE_Chapter5_COS_End", "QuestUpdate_CORE_Chapter5_COS_End_Sworn");
+
+PROC
+Proc_GLO_JournalCoreStory_Chapter5_SetUp()
+THEN
+DB_QuestDef_State("CORE_Chapter5", "COS_Landed");
+DB_QuestDef_State("CORE_Chapter5", "COS_Altar_PrayedAll");
+DB_QuestDef_State("CORE_Chapter5", "COS_Alexandar_Killed");
+DB_QuestDef_UpdateEvent("CORE_Chapter5", "COS_SallowMan_Killed", "CoS_SallowManIsDeadQuestUpdater");
+DB_QuestDef_State("CORE_Chapter5", "COS_SpyMaster_Killed");
+DB_QuestDef_State("CORE_Chapter5", "COS_Scion_Killed");
+DB_QuestDef_UpdateEvent("CORE_Chapter5", "COS_Scion_Killed_WDeathfog", "QuestUpdate_CoS_SpyMaster_BombDetonated");
+DB_QuestDef_State("CORE_Chapter5", "COS_Sworn");
+DB_QuestDef_State("CORE_Chapter5", "COS_Windego_MetSworn");
+DB_QuestDef_State("CORE_Chapter5", "COS_Academy_Entered_WCompanion");
+DB_QuestDef_State("CORE_Chapter5", "COS_Academy_Entered_Alone");
+DB_QuestDef_State("CORE_Chapter5", "COS_Arena_Entered");
+DB_JournalCoreStory_ObjectFlag_Promised("QuestUpdate_CoS_ArenaOfTheOne_Phase_1_End", "QuestUpdate_CORE_Chapter5_COS_End", "QuestUpdate_CORE_Chapter5_COS_End_Sworn");
+DB_QuestDef_State("CORE_Chapter5", "COS_GodBattle");
+DB_QuestDef_State("CORE_Chapter5", "COSLV_Start");
+DB_QuestDef_UpdateEvent("CORE_Chapter5", "COSLV_Start_2", "QuestUpdate_CORE_Chapter5_COSLV_Start");
+DB_QuestDef_State("CORE_Chapter5", "COSLV_Start_3_NOTSworn");
+DB_QuestDef_State("CORE_Chapter5", "COSLV_Start_3_Sworn");
+DB_JournalCoreStory_ObjectFlag_Promised("QuestUpdate_CORE_Chapter5_COSLV_Start", "QuestUpdate_CORE_Chapter5_COSLV_Start_3_NOTSworn", "QuestUpdate_CORE_Chapter5_COSLV_Start_3_Sworn");
+DB_QuestDef_UpdateEvent("CORE_Chapter5", "COSLV_Start_4", "QuestUpdate_CORE_Chapter5_COSLV_Start");
+DB_QuestDef_State("CORE_Chapter5", "COSLV_NightSoul");
+DB_QuestDef_State("CORE_Chapter5", "COSLV_DallisToARX");
+DB_QuestDef_UpdateEvent("CORE_Chapter5", "COSLV_End", "QuestUpdate_CORE_Chapter5_COSLV_DallisToARX");
+
+IF
+CharacterUsedItem((CHARACTERGUID)_Var1, ITEMGUID_S_RC_LV_TP_Beach_000_1f46931a-4c58-4055-9b2d-cfdeaddb968e)
+AND
+DB_IsPlayer(_Var1)
+THEN
+UserSetFlag(_Var1, "QuestUpdate_CORE_Chapter5_COS_Landed");
+
+IF
+GlobalFlagSet("CoS_Temples_BlackRingHub_SpyMaster_IsDead")
+AND
+DB_IsPlayer(_Var1)
+THEN
+ObjectSetFlag(_Var1, "QuestUpdate_CORE_Chapter5_COS_SpyMaster_Killed");
+
+IF
+ItemDestroyed(ITEMGUID_S_CoS_HeartOfTheMotherTree_78bd5b87-7927-46ff-8481-34bcd919dd64)
+AND
+DB_GlobalFlag("CoS_HeartOfTheMotherTree_KilledByScion")
+AND
+DB_IsPlayer(_Var1)
+THEN
+ObjectSetFlag(_Var1, "QuestUpdate_CORE_Chapter5_COS_Scion_Killed");
+
+IF
+DialogEnded("CoS_Temples_Windego", (INTEGER)_Var1)
+AND
+DB_DialogPlayers(_Var1, _Var2, _)
+THEN
+UserSetFlag(_Var2, "QuestUpdate_CORE_Chapter5_COS_Windego_MetSworn");
+
+IF
+CharacterEnteredTrigger((CHARACTERGUID)_Var1, TRIGGERGUID_S_CoS_SUB_Academy_51ddb828-18a6-4b6e-9f5a-e2b2883862e1)
+AND
+GlobalGetFlag("GEN_SoloPlayer", 1)
+THEN
+UserSetFlag(_Var1, "QuestUpdate_CORE_Chapter5_COS_Academy_Entered_Alone");
+
+IF
+CharacterEnteredTrigger((CHARACTERGUID)_Var1, TRIGGERGUID_S_CoS_SUB_Academy_51ddb828-18a6-4b6e-9f5a-e2b2883862e1)
+AND
+GlobalGetFlag("GEN_SoloPlayer", 0)
+THEN
+UserSetFlag(_Var1, "QuestUpdate_CORE_Chapter5_COS_Academy_Entered_WCompanion");
+
+IF
+ObjectFlagSet("GLO_Promise_AcceptedPromise", (GUIDSTRING)_Var1, _)
+THEN
+ObjectSetFlag(_Var1, "QuestUpdate_CORE_Chapter5_COS_Sworn");
+
+IF
+CharacterEnteredTrigger((CHARACTERGUID)_Var1, TRIGGERGUID_S_CoS_AotO_SUB_Arena_46aab122-a2f8-42f2-a67b-25062e1a8847)
+AND
+DB_IsPlayer(_Var1)
+THEN
+UserSetFlag(_Var1, "QuestUpdate_CORE_Chapter5_COS_Arena_Entered");
+
+PROC
+PROC_CoS_HoE_LadyVengeanceInit()
+AND
+DB_IsPlayer(_Var1)
+THEN
+ObjectSetFlag(_Var1, "QuestUpdate_CORE_Chapter5_COSLV_Start");
+
+PROC
+ProcRegionEnded("CoS_Main_Ending")
+AND
+DB_IsPlayer(_Var1)
+THEN
+ObjectSetFlag(_Var1, "QuestUpdate_CORE_Chapter5_COSLV_DallisToARX");
+
+IF
+ObjectFlagCleared("CoS_DNotS_Ongoing", (CHARACTERGUID)_Var1, _)
+THEN
+UserSetFlag(_Var1, "QuestUpdate_CORE_Chapter5_COSLV_NightSoul");
+
+PROC
+Proc_GLO_JournalCoreStory_Chapter6_SetUp()
+THEN
+DB_QuestDef_State("CORE_Chapter6", "ARX_EnterCity");
+DB_QuestDef_State("CORE_Chapter6", "ARX_Kraken");
+DB_QuestDef_State("CORE_Chapter6", "ARX_DallisToTomb");
+DB_QuestDef_State("CORE_Chapter6", "ARX_ArhuMissing");
+DB_QuestDef_State("CORE_Chapter6", "ARX_Kemm_VaultFight");
+DB_QuestDef_State("CORE_Chapter6", "ARX_Kemm_ArhuFree");
+DB_QuestDef_UpdateEvent("CORE_Chapter6", "ARX_PoB_AmuletAndScroll", "ARX_HuntingForDallis_OwnBothItems");
+DB_QuestDef_UpdateEvent("CORE_Chapter6", "ARX_Doctor_MadePact", "QuestUpdate_ARX_TheDoctor_Pact_Accepted");
+DB_QuestDef_UpdateEvent("CORE_Chapter6", "ARX_Doctor_Killed", "QuestUpdate_RC_BI_TheTruth_KilledDoctor");
+DB_QuestDef_UpdateEvent("CORE_Chapter6", "ARX_DeathfogStopped", "QuestUpdate_RC_ARX_TheImperialDwarves_Deathfog_ReleasedToSea");
+DB_QuestDef_UpdateEvent("CORE_Chapter6", "ARX_DeathfogStopped", "QuestUpdate_RC_ARX_TheImperialDwarves_Deathfog_DestroyedMachine");
+DB_QuestDef_UpdateEvent("CORE_Chapter6", "ARX_DeathfogUnleashed", "QuestUpdate_RC_ARX_TheImperialDwarves_Deathfog_ReleasedToArx");
+DB_QuestDef_UpdateEvent("CORE_Chapter6", "ARX_Horrorsleep_Entered", "QuestUpdate_ARX_LizardConsulate_HorrorSleep_Enter");
+DB_QuestDef_UpdateEvent("CORE_Chapter6", "ARX_Horrorsleep_SadhaKilled", "QuestUpdate_ARX_LizardConsulate_HorrorSleepSunset_PrincessDead");
+DB_QuestDef_UpdateEvent("CORE_Chapter6", "ARX_Horrorsleep_SadhaNotSworn", "ARX_HorrorSleep_Sunset_PDD_GiveSwornBreaker");
+DB_QuestDef_UpdateEvent("CORE_Chapter6", "ARX_Horrorsleep_SadhaHelped", "ARX_HorrorSleep_Sunset_PDD_LeaveInSafty");
+DB_QuestDef_UpdateEvent("CORE_Chapter6", "ARX_Windego_Killed", "QuestUpdate_ARX_Prison_Windego_FightWindego");
+DB_QuestDef_UpdateEvent("CORE_Chapter6", "ARX_Windego_Freed", "QuestUpdate_ARX_Prison_Windego_WindegoLeft");
+DB_QuestDef_UpdateEvent("CORE_Chapter6", "ARX_Windego_Freed", "QuestUpdate_ARX_Prison_Windego_WindegoLeftKemmVault");
+DB_QuestDef_UpdateEvent("CORE_Chapter6", "ARX_Windego_Freed", "QuestUpdate_ARX_Prison_Windego_GaveSwornBreaker");
+DB_QuestDef_UpdateEvent("CORE_Chapter6", "ARX_PoB_Passed", "QuestUpdate_ARX_HuntingForDallis_PassedPoB");
+DB_QuestDef_UpdateEvent("CORE_Chapter6", "ARX_PoB_Tricked", "QuestUpdate_ARX_HuntingForDallis_TrickedPoB");
+DB_QuestDef_State("CORE_Chapter6", "ARX_Crypt_PuzzleSolved");
+DB_QuestDef_State("CORE_Chapter6", "ARX_Crypt_PuzzleCheated");
+DB_QuestDef_UpdateEvent("CORE_Chapter6", "ARX_DeathRoom_Solved", "QuestUpdate_ARX_HuntingForDallis_DeathRoomCompleted");
+
+IF
+ObjectFlagSet("QuestUpdate_ARX_DisappearanceOfArhu_ArhuPrison_FreedArhu", (CHARACTERGUID)_Var1, (INTEGER)_Var2)
+AND
+DB_DialogName("ARX_KemmVault_Arhu", _Var2)
+THEN
+UserSetFlag(_Var1, "QuestUpdate_CORE_Chapter6_ARX_Kemm_ArhuFree");
+
+IF
+CharacterEnteredTrigger((CHARACTERGUID)_Var1, TRIGGERGUID_S_SUB_Arx_cb6e79c8-f5f8-49d7-8d46-133e2d13349d)
+AND
+DB_IsPlayer(_Var1)
+THEN
+UserSetFlag(_Var1, "QuestUpdate_CORE_Chapter6_ARX_EnterCity");
+
+IF
+DialogEnded("ARX_KemmVault_ArhusPrison_Kemm", (INTEGER)_Var1)
+AND
+DB_DialogPlayers(_Var1, _Var2, _)
+THEN
+UserSetFlag(_Var2, "QuestUpdate_CORE_Chapter6_ARX_Kemm_VaultFight");
+
+PROC
+PROC_ARX_Pipes_Finished()
+AND NOT
+DB_DestroyedItems(S_ARX_Pipes_FieldStatue_9024ba5a-b784-48f8-b289-59a5d1c32948)
+AND
+DB_IsPlayer(_Var1)
+AND
+DB_InRegion(_Var1, TRIGGERGUID_S_ARX_DivineTomb_EmptyCatacombs_SubregionBox_487af5bb-537d-4367-8e50-e3815fc32012)
+THEN
+UserSetFlag(_Var1, "QuestUpdate_CORE_Chapter6_ARX_Crypt_PuzzleSolved");
+
+PROC
+PROC_ARX_Pipes_Finished()
+AND
+DB_DestroyedItems(S_ARX_Pipes_FieldStatue_9024ba5a-b784-48f8-b289-59a5d1c32948)
+AND
+DB_IsPlayer(_Var1)
+AND
+DB_InRegion(_Var1, TRIGGERGUID_S_ARX_DivineTomb_EmptyCatacombs_SubregionBox_487af5bb-537d-4367-8e50-e3815fc32012)
+THEN
+UserSetFlag(_Var1, "QuestUpdate_CORE_Chapter6_ARX_Crypt_PuzzleCheated");
+
+PROC
+Proc_GLO_JournalCoreStory_ElfStory_SetUp()
+THEN
+DB_QuestDef_State("CORE_ElfStory", "TovahStory");
+DB_QuestDef_State("CORE_ElfStory", "ElvenRitual");
+DB_QuestDef_State("CORE_ElfStory", "ScionDeath");
+DB_QuestDef_State("CORE_ElfStory", "ScionMemory");
+DB_QuestDef_State("CORE_ElfStory", "ForestMemory");
+DB_QuestDef_State("CORE_ElfStory", "TreeGone");
+DB_QuestDef_State("CORE_ElfStory", "DeathfogElvenLand");
+DB_QuestDef_State("CORE_ElfStory", "ShadowPrinceTrick");
+DB_QuestDef_State("CORE_ElfStory", "ScionGone");
+DB_QuestDef_State("CORE_ElfStory", "MotherTreeNameless");
+DB_QuestDef_State("CORE_ElfStory", "SaheilaTreeSick");
+DB_QuestDef_State("CORE_ElfStory", "IfanDFJob");
+DB_QuestDef_State("CORE_ElfStory", "AlexandarGenocide");
+DB_QuestDef_State("CORE_ElfStory", "ShadowPrinceThreat");
+DB_QuestDef_State("CORE_ElfStory", "VoidwokenTree");
+DB_QuestDef_State("CORE_ElfStory", "MotherTreeOppressor");
+DB_QuestDef_State("CORE_ElfStory", "MotherTreeWar");
+
+PROC
+Proc_GLO_JournalCoreStory_DwarfStory_SetUp()
+THEN
+DB_QuestDef_UpdateEvent("CORE_DwarfStory", "BeastRebellion", "QuestUpdate_FTJ_OriginBeast_Start_BoatWakeup");
+DB_QuestDef_UpdateEvent("CORE_DwarfStory", "BeastRebellion", "QuestUpdate_FTJ_COM_Beast_ReadOperationDownfall");
+DB_QuestDef_State("CORE_DwarfStory", "InterceptShipment");
+DB_QuestDef_UpdateEvent("CORE_DwarfStory", "QueenOrderDFArx", "QuestUpdate_RC_DW_DwarvenSabotage_FoundEmpressLetter");
+DB_QuestDef_State("CORE_DwarfStory", "LoharDestroyDF");
+DB_QuestDef_State("CORE_DwarfStory", "MordusUndead");
+DB_QuestDef_State("CORE_DwarfStory", "QueenReleaseDF");
+DB_QuestDef_State("CORE_DwarfStory", "DWCriminals");
+DB_QuestDef_State("CORE_DwarfStory", "DFHannag");
+DB_QuestDef_State("CORE_DwarfStory", "HannagWar");
+DB_QuestDef_State("CORE_DwarfStory", "DwarfLuredShip");
+DB_QuestDef_UpdateEvent("CORE_DwarfStory", "IsbeilSworn", "QuestUpdate_CORE_Covenant_Isbeil");
+DB_QuestDef_UpdateEvent("CORE_DwarfStory", "IsbeilManipulate", "QuestUpdate_CORE_Covenant_Isbeil_Know");
+DB_QuestDef_UpdateEvent("CORE_DwarfStory", "BeastIsbeil", "QuestUpdate_FTJ_COM_Beast_IsbeilBR");
+DB_QuestDef_UpdateEvent("CORE_DwarfStory", "BeastIsbeil", "QuestUpdate_FTJ_OriginBeast_IsbeilBR");
+DB_QuestDef_State("CORE_DwarfStory", "BeastIsbeil");
+DB_QuestDef_State("CORE_DwarfStory", "BeastTroubleStart");
+DB_QuestDef_State("CORE_DwarfStory", "QueenInArx");
+DB_QuestDef_UpdateEvent("CORE_DwarfStory", "QueenInArx", "QuestUpdate_RC_ARX_TheImperialDwarves_Ros_SaveTheQueen");
+DB_QuestDef_State("CORE_DwarfStory", "IsbeilDead");
+DB_SeenDeadNPCPartyFlag(CHARACTERGUID_S_ARX_Sewers_Q_52f20922-7b22-4d47-90f7-83172f21fe3b, "QuestUpdate_CORE_DwarfStory_IsbeilDead");
+DB_QuestDef_State("CORE_DwarfStory", "QueenAlive");
+DB_QuestDef_State("CORE_DwarfStory", "QueenDead");
+DB_SeenDeadNPCPartyFlag(CHARACTERGUID_S_ARX_Sewers_TheEmpress_78c95ad2-2d1a-4358-9c9c-77ff9a5fc3c9, "QuestUpdate_CORE_DwarfStory_QueenDead");
+DB_QuestDef_State("CORE_DwarfStory", "DFRelease");
+DB_QuestDef_UpdateEvent("CORE_DwarfStory", "DFRelease", "QuestUpdate_RC_ARX_TheImperialDwarves_Deathfog_ReleasedToArx");
+DB_QuestDef_State("CORE_DwarfStory", "DFSea");
+DB_QuestDef_UpdateEvent("CORE_DwarfStory", "DFSea", "QuestUpdate_RC_ARX_TheImperialDwarves_Deathfog_ReleasedToSea");
+DB_QuestDef_State("CORE_DwarfStory", "DFLeak");
+DB_QuestDef_UpdateEvent("CORE_DwarfStory", "DFLeak", "QuestUpdate_RC_ARX_TheImperialDwarves_Deathfog_DestroyedMachine");
+
+PROC
+ProcRegionStarted((STRING)_Var1)
+AND
+DB_JournalCoreStory_RegionStarted(_Var1, _Var2)
+AND
+DB_IsPlayer(_Var3)
+AND
+UserGetFlag(_Var3, _Var2, 0)
+THEN
+UserSetFlag(_Var3, _Var2);
+
+IF
+GlobalFlagSet((STRING)_Var1)
+AND
+DB_JournalCoreStory_GlobalFlag(_Var1, _Var2)
+AND
+DB_IsPlayer(_Var3)
+AND
+UserGetFlag(_Var3, _Var2, 0)
+THEN
+UserSetFlag(_Var3, _Var2);
+
+IF
+ObjectFlagSet((STRING)_Var1, (CHARACTERGUID)_Var2, _)
+AND
+DB_JournalCoreStory_ObjectFlag(_Var1, _Var4)
+AND
+UserGetFlag(_Var2, _Var4, 0)
+THEN
+UserSetFlag(_Var2, _Var4);
+
+IF
+ObjectFlagSet((STRING)_Var1, (CHARACTERGUID)_Var2, _)
+AND
+DB_JournalCoreStory_ObjectFlag_Promised(_Var1, _Var4, _Var5)
+THEN
+Proc_JournalCoreStory_Promised(_Var2, _Var4, _Var5);
+
+IF
+CharacterEnteredTrigger((CHARACTERGUID)_Var1, (TRIGGERGUID)_Var2)
+AND
+DB_JournalCoreStory_EnteredTrigger_Promised(_Var2, _Var3, _Var4)
+THEN
+Proc_JournalCoreStory_Promised(_Var1, _Var3, _Var4);
+
+IF
+GlobalFlagSet((STRING)_Var1)
+AND
+DB_JournalCoreStory_GlobalFlag_Promised(_Var1, _Var2, _Var3)
+AND
+DB_IsPlayer(_Var4)
+THEN
+Proc_JournalCoreStory_Promised(_Var4, _Var2, _Var3);
+
+PROC
+ProcRegionStarted((STRING)_Var1)
+AND
+DB_JournalCoreStory_RegionStarted_Promised(_Var1, _Var2, _Var3)
+AND
+DB_IsPlayer(_Var4)
+THEN
+Proc_JournalCoreStory_Promised(_Var4, _Var2, _Var3);
+
+PROC
+Proc_JournalCoreStory_Promised((CHARACTERGUID)_Var1, (STRING)_Var2, (STRING)_Var3)
+AND
+UserGetFlag(_Var1, _Var3, 0)
+AND
+IsTagged(_Var1, "AVATAR", 1)
+AND
+IsTagged(_Var1, "PROMISED", 1)
+THEN
+UserSetFlag(_Var1, _Var3);
+
+PROC
+Proc_JournalCoreStory_Promised((CHARACTERGUID)_Var1, (STRING)_Var2, (STRING)_Var3)
+AND
+UserGetFlag(_Var1, _Var3, 0)
+AND
+DB_IsPlayer(_Var4)
+AND
+IsTagged(_Var4, "PROMISED", 1)
+AND
+CharacterGetReservedUserID(_Var1, _Var5)
+AND
+CharacterGetReservedUserID(_Var4, _Var5)
+THEN
+UserSetFlag(_Var4, _Var3);
+
+PROC
+Proc_JournalCoreStory_Promised((CHARACTERGUID)_Var1, (STRING)_Var2, (STRING)_Var3)
+AND
+UserGetFlag(_Var1, _Var3, 0)
+AND
+UserGetFlag(_Var1, _Var2, 0)
+AND
+IsTagged(_Var1, "PROMISED", 0)
+THEN
+UserSetFlag(_Var1, _Var2);
+
+IF
+GameBookInterfaceClosed(ITEMGUID_S_ARX_Barracks_WhiteMagisterVault_ReimondsJournal_aeb8cffd-a213-4279-931c-3f73967efa4f, (CHARACTERGUID)_Var1)
+THEN
+ObjectSetFlag(_Var1, "QuestUpdate_CORE_Magisters_CryptBlock");
+
+IF
+GameBookInterfaceClosed(ITEMGUID_S_ARX_Barracks_WhiteMagisterVault_Evidence1_dfab7a60-37a1-4fda-a1a1-d7cff36f7c05, (CHARACTERGUID)_Var1)
+THEN
+ObjectSetFlag(_Var1, "QuestUpdate_CORE_Magisters_CryptBlock");
+
+IF
+GameBookInterfaceClosed(ITEMGUID_S_ARX_Cathedral_DisapArhu_Journal_794e8f40-6aa5-411f-b4f2-2cbede844908, (CHARACTERGUID)_Var1)
+THEN
+ObjectSetFlag(_Var1, "QuestUpdate_CORE_Magisters_CryptBlock");
+
+IF
+GameBookInterfaceClosed(ITEMGUID_S_ARX_Barracks_VredemanMagisterLetter_cbee8f4b-3a72-45bc-a6aa-b0fa5bf10d8e, (CHARACTERGUID)_Var1)
+THEN
+ObjectSetFlag(_Var1, "QuestUpdate_CORE_Magisters_VredemanMagisterLetter");
+
+IF
+GameBookInterfaceClosed(ITEMGUID_S_ARX_KemmMansion_OwlmasterVredmanKemmLetter_9ff96cd8-8347-4889-bacf-4cc85aa1ef02, (CHARACTERGUID)_Var1)
+THEN
+ObjectSetFlag(_Var1, "QuestUpdate_CORE_Magisters_VredemanKemmLetter");
+
+IF
+ItemTemplateAddedToCharacter(WPN_Godslayer_Sword_2H_A_ff3c1a1b-b96b-454f-85bb-06594f9fd8f9, _, (CHARACTERGUID)_Var2)
+THEN
+UserSetFlag(_Var2, "QuestUpdate_CORE_Covenant_Swornbreaker");
+
+IF
+SavegameLoaded((INTEGER)_Var1, (INTEGER)_Var2, (INTEGER)_Var3, (INTEGER)_Var4)
+AND
+QRY_VersionIsOlderThan(_Var1, _Var2, _Var3, _Var4, 3, 6, 1, 0)
+THEN
+PROC_JournalEntries_ClearQuestUpdateEvent("CORE_Chapter5", "COS_Sworn", "GLO_Promise_AcceptedPromise");
+DB_QuestDef_State("CORE_Chapter5", "COS_Sworn");
+
+QRY
+QRY_GLO_JournalCoreStory_InPromiseAcceptDialog((CHARACTERGUID)_Var1)
+AND
+DB_DialogPlayers(_Var2, _Var1, _)
+AND
+DB_DialogName("CoS_Academy_SentientVoidwoken", _Var2)
+THEN
+DB_NOOP(1);
+
+IF
+SavegameLoaded((INTEGER)_Var1, (INTEGER)_Var2, (INTEGER)_Var3, (INTEGER)_Var4)
+AND
+QRY_VersionIsOlderThan(_Var1, _Var2, _Var3, _Var4, 3, 6, 1, 0)
+AND
+DB_JoinedParty(_Var5)
+AND NOT
+QRY_GLO_JournalCoreStory_InPromiseAcceptDialog(_Var5)
+AND
+ObjectGetFlag(_Var5, "GLO_Promise_AcceptedPromise", 1)
+THEN
+ObjectClearFlag(_Var5, "GLO_Promise_AcceptedPromise");
+ObjectSetFlag(_Var5, "QuestUpdate_CORE_Chapter5_COS_Sworn");
+
+
+EXITSECTION
+ENDEXITSECTION
+
+ParentTargetEdge "Start"

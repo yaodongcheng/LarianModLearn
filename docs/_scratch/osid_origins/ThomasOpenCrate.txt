@@ -1,0 +1,22 @@
+Version 1
+SubGoalCombiner SGC_AND
+
+INITSECTION
+
+KBSECTION
+IF
+TextEventSet("OpenCrate")
+THEN
+TimerCancel("OpenCrateTimer");
+TimerLaunch("OpenCrateTimer", 5000);
+
+IF
+TimerFinished("OpenCrateTimer")
+THEN
+PlayAnimation(ITEMGUID_TheCrate_fd34abe0-9843-488f-b0aa-ed8f9bab5ca8, "open");
+
+
+EXITSECTION
+ENDEXITSECTION
+
+ParentTargetEdge "DOS2ModWrapper"

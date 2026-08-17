@@ -1,0 +1,40 @@
+Version 1
+SubGoalCombiner SGC_AND
+
+INITSECTION
+ProcTriggerRegisterForPlayers(S_RC_LV_OnBoard_3d5b3e43-2126-464e-81d1-3c0b60841276);
+DB_Dialogs(ITEMGUID_S_RC_DW_LV_ShipHead_313e5b21-283a-4d8f-a3b1-0aa23a6cd5f8, "RC_LV_Shiphead");
+Proc_RC_LadyVengeance_Init();
+
+KBSECTION
+PROC
+Proc_RC_LadyVengeance_Init()
+THEN
+GlobalSetFlag("GLO_Region_RC");
+
+PROC
+Proc_RC_LadyVengeance_Init()
+AND
+DB_BlockWaypointUsage(_Var1)
+THEN
+PROC_UnblockWaypointUsage(_Var1);
+
+PROC
+ProcRegionEnded("RC_Main")
+THEN
+GlobalClearFlag("GLO_Region_RC");
+
+QRY
+QRY_RC_LV_AnyPlayerOnBoard()
+AND
+DB_IsPlayer(_Var1)
+AND
+DB_InRegion(_Var1, S_RC_LV_OnBoard_3d5b3e43-2126-464e-81d1-3c0b60841276)
+THEN
+DB_NOOP(1);
+
+
+EXITSECTION
+ENDEXITSECTION
+
+ParentTargetEdge "ReapersCoast"

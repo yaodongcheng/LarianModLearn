@@ -1,0 +1,93 @@
+Version 1
+SubGoalCombiner SGC_AND
+
+INITSECTION
+DB_Dialogs(S_FTJ_BeachPrisoner_001_11cddbdf-40b8-4ce5-8ea8-e5f1ca8ac2e0, "FTJ_BeachPrisoner_001");
+DB_Dialogs(S_FTJ_BeachPrisoner_002_dea028b6-c629-48be-b35e-e776716a8be1, "FTJ_BeachPrisoner_002");
+DB_Dialogs(S_FTJ_BeachPrisoner_003_fea5669a-682c-4c8c-a1b9-d173f2a8b55f, "FTJ_BeachPrisoner_003");
+ItemToInventory(S_FTJ_DrownedPrisonerDiary_6b353df1-b009-4dc1-9a83-5440ed466bc3, CHARACTERGUID_S_FTJ_DrownedPrisoner_d8fa04b9-135a-4e25-9087-773dc3cadb72, 1);
+DB_ItemOwnerShipTriggers("FJ_FortJoy_Main", TRIGGERGUID_S_FTJ_OWNERSHIP_Alcove_57f32c33-12de-494e-b1dd-7c14378dc56d, CHARACTERGUID_S_FTJ_AlcovePrisoner_001_11cddbdf-40b8-4ce5-8ea8-e5f1ca8ac2e0);
+DB_HasStoryEvent(S_FTJ_OlgoKeyToCellar_6901a093-31b1-4da6-8c72-949acc4a4946, "FTJ_HasBeachPrisonerPouch");
+ItemToInventory(ITEMGUID_S_FTJ_BeachPrisoner_001Pouch_4b657205-fa48-464d-9d57-cf4022dc7206, CHARACTERGUID_S_FTJ_BeachPrisoner_001_11cddbdf-40b8-4ce5-8ea8-e5f1ca8ac2e0);
+ProcTriggerRegisterForPlayers(TRIGGERGUID_S_FTJ_FoundAlcoveVB_cf2780db-4b2a-4d31-9f27-48fb5fb6bb00);
+DB_IgnoreAssault(CHARACTERGUID_S_FTJ_AlcoveChild_001_fea5669a-682c-4c8c-a1b9-d173f2a8b55f);
+
+KBSECTION
+IF
+CharacterEnteredTrigger((CHARACTERGUID)_Var1, RC_FTJ_DrownedCorpseReaction_Box_0110bfbc-c045-48c6-a4d9-68faad0553da)
+AND
+QRY_SpeakerIsAvailable(_Var1)
+AND
+QueryOnlyOnce("FTJ_AD_DrownedPrisoner")
+THEN
+StartVoiceBark("FTJ_VB_DrownedPrisoner", _Var1);
+TriggerUnregisterForPlayers(RC_FTJ_DrownedCorpseReaction_Box_0110bfbc-c045-48c6-a4d9-68faad0553da);
+
+IF
+ObjectFlagSet("FTJ_BeachPrisoner_001_GiveGold", (CHARACTERGUID)_Var1, _)
+THEN
+ItemToInventory(ITEMGUID_S_FTJ_BeachPrisoner_001Pouch_4b657205-fa48-464d-9d57-cf4022dc7206, _Var1);
+ObjectSetFlag(_Var1, "GLO_SetTag_VILLAIN");
+
+IF
+CharacterEnteredTrigger((CHARACTERGUID)_Var1, TRIGGERGUID_S_FTJ_FoundAlcoveVB_cf2780db-4b2a-4d31-9f27-48fb5fb6bb00)
+AND
+QRY_SpeakerIsAvailable(_Var1)
+AND
+QueryOnlyOnce("FTJ_FoundAlcoveVB")
+THEN
+StartVoiceBark("FTJ_VB_FoundAlcove", _Var1);
+
+IF
+AttackedByObject(CHARACTERGUID_S_FTJ_AlcoveChild_001_fea5669a-682c-4c8c-a1b9-d173f2a8b55f, _, (GUIDSTRING)_Var2, _, _)
+AND
+CHARACTERGUID_S_FTJ_AlcoveChild_001_fea5669a-682c-4c8c-a1b9-d173f2a8b55f != _Var2
+THEN
+ProcForceStopDialog(CHARACTERGUID_S_FTJ_AlcoveChild_001_fea5669a-682c-4c8c-a1b9-d173f2a8b55f);
+ObjectSetFlag(CHARACTERGUID_S_FTJ_AlcoveChild_001_fea5669a-682c-4c8c-a1b9-d173f2a8b55f, "GEB_FleeOutOfSight");
+
+IF
+AttackedByObject(CHARACTERGUID_S_FTJ_AlcoveChild_001_fea5669a-682c-4c8c-a1b9-d173f2a8b55f, (CHARACTERGUID)_Var1, _, _, _)
+AND
+DB_IsPlayer(_Var1)
+AND
+CharacterCanSee(CHARACTERGUID_S_FTJ_AlcovePrisoner_001_11cddbdf-40b8-4ce5-8ea8-e5f1ca8ac2e0, CHARACTERGUID_S_FTJ_AlcoveChild_001_fea5669a-682c-4c8c-a1b9-d173f2a8b55f, 1)
+THEN
+GlobalSetFlag("FTJ_UnnisSawCoralAttacked");
+Proc_StartDialog(1, "FTJ_AD_AlcovePrisonerSawChildAssault", CHARACTERGUID_S_FTJ_AlcovePrisoner_001_11cddbdf-40b8-4ce5-8ea8-e5f1ca8ac2e0);
+ProcSetHostileToIndivPlayer(CHARACTERGUID_S_FTJ_AlcovePrisoner_001_11cddbdf-40b8-4ce5-8ea8-e5f1ca8ac2e0, _Var1);
+
+IF
+DialogStarted("FTJ_BeachPrisoner_003", _)
+AND
+ObjectGetFlag(CHARACTERGUID_S_FTJ_AlcoveChild_001_fea5669a-682c-4c8c-a1b9-d173f2a8b55f, "FTJ_BeachPrisoner_002_A", 0)
+THEN
+CharacterSetAnimationOverride(CHARACTERGUID_S_FTJ_AlcoveChild_001_fea5669a-682c-4c8c-a1b9-d173f2a8b55f, "stillsneaking");
+
+IF
+DialogEnded("FTJ_BeachPrisoner_003", _)
+THEN
+CharacterSetAnimationOverride(CHARACTERGUID_S_FTJ_AlcoveChild_001_fea5669a-682c-4c8c-a1b9-d173f2a8b55f, "");
+
+IF
+ObjectFlagSet("FTJ_ClorGiveScroll", (GUIDSTRING)_Var1, _)
+THEN
+ItemTemplateAddTo("Scroll_Skill_Water_LightningBolt_31798bd0-aff8-49b4-adec-dbe5c5390f80", _Var1, 1);
+
+IF
+ObjectFlagSet("FTJ_BeachPrisoner_002_A", CHARACTERGUID_S_FTJ_AlcoveChild_001_fea5669a-682c-4c8c-a1b9-d173f2a8b55f, (INTEGER)_Var1)
+AND
+DialogGetInvolvedPlayer(_Var1, 1, _Var2)
+THEN
+PartyAddExperience(_Var2, 1, 1, 5);
+
+PROC
+ProcRegionEnded("FJ_FortJoy_Main")
+THEN
+GoalCompleted;
+
+
+EXITSECTION
+ENDEXITSECTION
+
+ParentTargetEdge "FortJoy"

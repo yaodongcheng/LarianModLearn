@@ -1,0 +1,854 @@
+Version 1
+SubGoalCombiner SGC_AND
+
+INITSECTION
+DB_SharedObjectFlags("GLO_FriendZone_Beast");
+DB_SharedObjectFlags("GLO_FriendZone_Fane");
+DB_SharedObjectFlags("GLO_FriendZone_Ifan");
+DB_SharedObjectFlags("GLO_FriendZone_Lohse");
+DB_SharedObjectFlags("GLO_FriendZone_RedPrince");
+DB_SharedObjectFlags("GLO_FriendZone_Sebille");
+DB_ShapeshiftTag("IFAN", "SHAPESHIFT_IFAN");
+DB_ShapeshiftTag("SEBILLE", "SHAPESHIFT_SEBILLE");
+DB_ShapeshiftTag("LOHSE", "SHAPESHIFT_LOHSE");
+DB_ShapeshiftTag("RED PRINCE", "SHAPESHIFT_RED PRINCE");
+DB_ShapeshiftTag("FANE", "SHAPESHIFT_FANE");
+DB_ShapeshiftTag("BEAST", "SHAPESHIFT_BEAST");
+
+KBSECTION
+IF
+DB_OriginMomentTag_HighPriority(_Var1, _Var2, _Var3)
+THEN
+DB_OriginMomentTag(_Var1, _Var2, _Var3);
+
+PROC
+Proc_StartDialog(0, (STRING)_Var1, (GUIDSTRING)_Var2, (CHARACTERGUID)_Var3)
+AND
+DB_OriginMomentTag_HighPriority(_Var1, _Var4, _Var5)
+AND
+DB_OriginMomentTag(_Var1, _Var4, _Var5)
+AND
+DB_CompanionAvatarBond(_Var6, _Var7)
+AND
+QRY_IsTaggedForOM(_Var6, _Var4, 1)
+AND
+QRY_SameUser(_Var7, _Var6)
+AND
+QRY_SameUser(_Var7, _Var3)
+AND NOT
+QRY_OriginMoment_OutsideCOMTrigger(_Var6, _Var1)
+AND
+QRY_OriginMoments_SpeakerIsAvailableAndInDialogRange(_Var6, _Var3, _Var5)
+AND NOT
+DB_OriginMoment_COMREQ_Denied(_Var6, _Var2)
+AND
+QRY_OriginMomentPolymorphDrop(_Var6, _Var1, _Var4, _Var5)
+AND
+QRY_StartCOMDialog(_Var5, _Var2, _Var6, _Var7)
+THEN
+PROC_OM_MaybePlayCOMTut(_Var7, _Var6);
+DB_OriginMomentStarted(_Var1);
+DB_OriginDialog(_Var6, _Var1);
+
+PROC
+Proc_StartDialog(0, (STRING)_Var1, (GUIDSTRING)_Var2, (CHARACTERGUID)_Var3)
+AND NOT
+DB_OriginMomentStarted(_Var1)
+AND
+DB_OriginMomentTag(_Var1, _Var4, _Var5)
+AND
+QRY_IsTaggedForOM(_Var3, _Var4, 1)
+AND
+IsTagged(_Var3, "AVATAR", 1)
+AND NOT
+QRY_OriginMoment_OutsideCOMTrigger(_Var3, _Var1)
+AND
+QRY_OriginMomentPolymorphDrop(_Var3, _Var1, _Var4, _Var5)
+AND
+QRY_StartDialog(0, _Var1, _Var2, _Var3)
+THEN
+DB_OriginMomentStarted(_Var1);
+PROC_OM_ClearCOM(_Var5);
+
+PROC
+Proc_StartDialog(0, (STRING)_Var1, (GUIDSTRING)_Var2, (CHARACTERGUID)_Var3)
+AND
+DB_OriginMomentTag(_Var1, _Var4, _Var5)
+AND NOT
+DB_OriginMomentStarted(_Var1)
+AND
+QRY_IsTaggedForOM(_Var3, _Var4, 1)
+AND NOT
+QRY_OriginMoment_OutsideCOMTrigger(_Var3, _Var1)
+AND
+DB_CompanionAvatarBond(_Var3, _Var6)
+AND NOT
+DB_OriginMoment_COMREQ_Denied(_Var3, _Var2)
+AND
+QRY_SameUser(_Var6, _Var3)
+AND
+QRY_OriginMomentPolymorphDrop(_Var3, _Var1, _Var4, _Var5)
+AND
+QRY_StartCOMDialog(_Var5, _Var2, _Var3, _Var6)
+THEN
+PROC_OM_MaybePlayCOMTut(_Var6, _Var3);
+DB_OriginMomentStarted(_Var1);
+DB_OriginDialog(_Var3, _Var1);
+
+PROC
+Proc_StartDialog(0, (STRING)_Var1, (GUIDSTRING)_Var2, (CHARACTERGUID)_Var3)
+AND NOT
+DB_OriginMomentStarted(_Var1)
+AND
+DB_OriginMomentTag(_Var1, _Var4, _Var5)
+AND
+DB_CompanionAvatarBond(_Var6, _Var7)
+AND
+QRY_IsTaggedForOM(_Var7, _Var4, 1)
+AND NOT
+QRY_OriginMoment_OutsideCOMTrigger(_Var7, _Var1)
+AND
+QRY_SameUser(_Var7, _Var3)
+AND
+QRY_OriginMoments_SpeakerIsAvailableAndInDialogRange(_Var7, _Var3, _Var5)
+AND
+QRY_OriginMomentPolymorphDrop(_Var7, _Var1, _Var4, _Var5)
+AND
+QRY_StartDialog(0, _Var1, _Var2, _Var7)
+THEN
+PROC_CheckPlayTut(_Var7, "TUT_AOM_Switch");
+DB_OriginMomentStarted(_Var1);
+PROC_OM_ClearCOM(_Var5);
+
+PROC
+Proc_StartDialog(0, (STRING)_Var1, (GUIDSTRING)_Var2, (CHARACTERGUID)_Var3)
+AND NOT
+DB_OriginMomentStarted(_Var1)
+AND
+DB_OriginMomentTag(_Var1, _Var4, _Var5)
+AND
+DB_CompanionAvatarBond(_Var6, _Var7)
+AND
+QRY_IsTaggedForOM(_Var6, _Var4, 1)
+AND
+QRY_SameUser(_Var7, _Var6)
+AND
+QRY_SameUser(_Var7, _Var3)
+AND NOT
+QRY_OriginMoment_OutsideCOMTrigger(_Var6, _Var1)
+AND
+QRY_OriginMoments_SpeakerIsAvailableAndInDialogRange(_Var6, _Var3, _Var5)
+AND NOT
+DB_OriginMoment_COMREQ_Denied(_Var6, _Var2)
+AND
+QRY_OriginMomentPolymorphDrop(_Var6, _Var1, _Var4, _Var5)
+AND
+QRY_StartCOMDialog(_Var5, _Var2, _Var6, _Var7)
+THEN
+PROC_OM_MaybePlayCOMTut(_Var7, _Var6);
+DB_OriginMomentStarted(_Var1);
+DB_OriginDialog(_Var6, _Var1);
+
+PROC
+Proc_StartDialog(0, (STRING)_Var1, (GUIDSTRING)_Var2, (GUIDSTRING)_Var3)
+AND
+DB_OriginMomentTag(_Var1, _Var4, _Var5)
+AND NOT
+DB_OriginMomentStarted(_Var1)
+AND
+QRY_StartDialog(0, _Var1, _Var2, _Var3)
+THEN
+DB_NOOP(1);
+
+IF
+DialogEnded((STRING)_Var1, (INTEGER)_Var2)
+AND
+DB_QueueFriendlyCOM(_Var1)
+AND
+DB_DialogNPCs(_Var2, _Var3, 1)
+AND
+DB_DialogPlayers(_Var2, _Var4, 1)
+AND
+DB_OriginMomentTag(_Var5, _Var6, _Var1)
+AND
+DB_OriginMomentTag(_Var5, _Var7, _Var8)
+AND
+_Var1 != _Var8
+AND
+DB_CompanionAvatarBond(_Var9, _Var10)
+AND
+QRY_IsTaggedForOM(_Var9, _Var7, 1)
+AND
+QRY_SameUser(_Var10, _Var9)
+AND
+QRY_SameUser(_Var10, _Var4)
+AND NOT
+QRY_OriginMoment_OutsideCOMTrigger(_Var9, _Var5)
+AND
+QRY_OriginMoments_SpeakerIsAvailableAndInDialogRange(_Var9, _Var4, _Var8)
+AND NOT
+DB_OriginMoment_COMREQ_Denied(_Var9, _Var3)
+AND
+QRY_OriginMomentPolymorphDrop(_Var9, _Var5, _Var7, _Var8)
+AND
+QRY_StartCOMDialog(_Var8, _Var3, _Var9, _Var10)
+THEN
+PROC_OM_MaybePlayCOMTut(_Var10, _Var9);
+ObjectSetFlag(_Var9, "COMREQ_Request", 0);
+DB_OriginDialog(_Var9, _Var8);
+
+IF
+DialogEnded((STRING)_Var1, (INTEGER)_Var2)
+AND
+DB_QueueFriendlyCOM(_Var1)
+AND
+DB_DialogNPCs(_Var2, _Var3, 1)
+AND
+DB_DialogPlayers(_Var2, _Var4, 1)
+AND
+DB_OriginMomentTag(_Var5, _Var6, _Var1)
+AND
+DB_OriginMomentTag(_Var5, _Var7, _Var8)
+AND
+_Var1 != _Var8
+AND
+DB_Avatars(_Var9)
+AND
+QRY_IsTaggedForOM(_Var9, _Var7, 1)
+AND
+QRY_SameUser(_Var9, _Var4)
+AND NOT
+QRY_OriginMoment_OutsideCOMTrigger(_Var9, _Var5)
+AND
+QRY_OriginMoments_SpeakerIsAvailableAndInDialogRange(_Var9, _Var4, _Var8)
+AND
+QRY_OriginMomentPolymorphDrop(_Var9, _Var5, _Var7, _Var8)
+AND
+QRY_StartDialog(0, _Var5, _Var3, _Var9)
+THEN
+PROC_OM_ClearCOM(_Var8);
+
+IF
+DialogEnded((STRING)_Var1, (INTEGER)_Var2)
+AND
+DB_OriginMomentTag(_Var3, _Var4, _Var1)
+AND
+DB_DialogPlayers(_Var2, _Var5, 1)
+AND
+DB_CompanionAvatarBond(_Var5, _Var6)
+AND
+ObjectGetFlag(_Var5, "COMREQ_Denied", 0)
+THEN
+PROC_OM_ClearCOM(_Var1);
+Proc_COMFinishedOnce(_Var1, _Var6);
+
+PROC
+Proc_COMFinishedOnce((STRING)_Var1, (CHARACTERGUID)_Var2)
+AND NOT
+DB_DialogRequestFailed(_Var1, _)
+AND
+StringConcatenate(_Var1, "_FinishedOnce", _Var4)
+AND
+QueryOnlyOnce(_Var4)
+THEN
+Proc_COMFinished(_Var1, _Var2);
+
+IF
+DialogEnded((STRING)_Var1, (INTEGER)_Var2)
+AND
+DB_OriginMomentTag(_Var3, _Var4, _Var1)
+AND
+DB_DialogNPCs(_Var2, _Var5, 1)
+AND
+DB_DialogPlayers(_Var2, _Var6, 1)
+AND
+ObjectGetFlag(_Var6, "COMREQ_Denied", 1)
+THEN
+DB_OriginMoment_COMREQ_Denied(_Var6, _Var5);
+PROC_OM_ClearCOM(_Var1);
+ObjectClearFlag(_Var6, "COMREQ_Denied", _Var2);
+
+PROC
+Proc_StartDialog(0, (STRING)_Var1, (GUIDSTRING)_Var2, (GUIDSTRING)_Var3)
+AND
+DB_OriginMomentStarted(_Var1)
+THEN
+NOT DB_OriginMomentStarted(_Var1);
+
+IF
+DialogEnded((STRING)_Var1, (INTEGER)_Var2)
+AND
+DB_DialogNPCs(_Var2, _Var3, 1)
+AND
+DB_DialogPlayers(_Var2, _Var4, 1)
+AND
+DB_OriginMomentTag(_Var1, _Var5, _Var6)
+AND NOT
+DB_OriginMoment_COMNeverAfterDialog(_Var6)
+AND
+DB_CompanionAvatarBond(_Var7, _Var8)
+AND
+QRY_IsTaggedForOM(_Var7, _Var5, 1)
+AND
+QRY_SameUser(_Var8, _Var7)
+AND
+QRY_SameUser(_Var8, _Var4)
+AND NOT
+QRY_OriginMoment_OutsideCOMTrigger(_Var7, _Var1)
+AND
+QRY_OriginMoments_SpeakerIsAvailableAndInDialogRange(_Var7, _Var4, _Var6)
+AND NOT
+DB_OriginMoment_COMREQ_Denied(_Var7, _Var3)
+AND
+QRY_OriginMomentPolymorphDrop(_Var7, _Var1, _Var5, _Var6)
+AND
+QRY_StartCOMDialog(_Var6, _Var3, _Var7, _Var8)
+THEN
+PROC_OM_MaybePlayCOMTut(_Var8, _Var7);
+ObjectSetFlag(_Var7, "COMREQ_Request", 0);
+DB_OriginDialog(_Var7, _Var6);
+
+IF
+DB_OriginMomentTag_3SP_HighPriority(_Var1, _Var2, _Var3)
+THEN
+DB_OriginMomentTag_3SP(_Var1, _Var2, _Var3);
+
+PROC
+Proc_StartDialog(0, (STRING)_Var1, (GUIDSTRING)_Var2, (GUIDSTRING)_Var3, (CHARACTERGUID)_Var4)
+AND
+DB_OriginMomentTag_3SP_HighPriority(_Var1, _Var5, _Var6)
+AND
+DB_CompanionAvatarBond(_Var7, _Var8)
+AND
+QRY_IsTaggedForOM(_Var7, _Var5, 1)
+AND
+QRY_SameUser(_Var8, _Var7)
+AND
+QRY_SameUser(_Var8, _Var4)
+AND NOT
+QRY_OriginMoment_OutsideCOMTrigger(_Var7, _Var1)
+AND
+QRY_OriginMoments_SpeakerIsAvailableAndInDialogRange(_Var7, _Var4, _Var6)
+AND NOT
+DB_OriginMoment_COMREQ_Denied(_Var7, _Var2)
+AND NOT
+DB_OriginMoment_COMREQ_Denied(_Var7, _Var3)
+AND
+QRY_OriginMomentPolymorphDrop(_Var7, _Var1, _Var5, _Var6)
+AND
+QRY_StartCOMDialog(_Var6, _Var2, _Var3, _Var7, _Var8)
+THEN
+PROC_OM_MaybePlayCOMTut(_Var8, _Var7);
+DB_OriginMomentStarted(_Var1);
+DB_OriginDialog(_Var7, _Var6);
+
+PROC
+Proc_StartDialog(0, (STRING)_Var1, (GUIDSTRING)_Var2, (GUIDSTRING)_Var3, (CHARACTERGUID)_Var4)
+AND NOT
+DB_OriginMomentStarted(_Var1)
+AND
+DB_OriginMomentTag_3SP(_Var1, _Var5, _Var6)
+AND
+QRY_IsTaggedForOM(_Var4, _Var5, 1)
+AND
+IsTagged(_Var4, "AVATAR", 1)
+AND NOT
+QRY_OriginMoment_OutsideCOMTrigger(_Var4, _Var1)
+AND
+QRY_OriginMomentPolymorphDrop(_Var4, _Var1, _Var5, _Var6)
+AND
+QRY_StartDialog(0, _Var1, _Var2, _Var3, _Var4)
+THEN
+DB_OriginMomentStarted(_Var1);
+PROC_OM_Clear3SPCOM(_Var6);
+
+PROC
+Proc_StartDialog(0, (STRING)_Var1, (GUIDSTRING)_Var2, (GUIDSTRING)_Var3, (CHARACTERGUID)_Var4)
+AND
+DB_OriginMomentTag_3SP(_Var1, _Var5, _Var6)
+AND NOT
+DB_OriginMomentStarted(_Var1)
+AND
+QRY_IsTaggedForOM(_Var4, _Var5, 1)
+AND NOT
+QRY_OriginMoment_OutsideCOMTrigger(_Var4, _Var1)
+AND
+DB_CompanionAvatarBond(_Var4, _Var7)
+AND NOT
+DB_OriginMoment_COMREQ_Denied(_Var4, _Var2)
+AND NOT
+DB_OriginMoment_COMREQ_Denied(_Var4, _Var3)
+AND
+QRY_SameUser(_Var7, _Var4)
+AND
+QRY_OriginMomentPolymorphDrop(_Var4, _Var1, _Var5, _Var6)
+AND
+QRY_StartCOMDialog(_Var6, _Var2, _Var3, _Var4, _Var7)
+THEN
+PROC_OM_MaybePlayCOMTut(_Var7, _Var4);
+DB_OriginMomentStarted(_Var1);
+DB_OriginDialog(_Var4, _Var6);
+
+PROC
+Proc_StartDialog(0, (STRING)_Var1, (GUIDSTRING)_Var2, (GUIDSTRING)_Var3, (CHARACTERGUID)_Var4)
+AND NOT
+DB_OriginMomentStarted(_Var1)
+AND
+DB_OriginMomentTag_3SP(_Var1, _Var5, _Var6)
+AND
+DB_Avatars(_Var7)
+AND
+QRY_IsTaggedForOM(_Var7, _Var5, 1)
+AND
+QRY_SameUser(_Var7, _Var4)
+AND NOT
+QRY_OriginMoment_OutsideCOMTrigger(_Var7, _Var1)
+AND
+QRY_OriginMoments_SpeakerIsAvailableAndInDialogRange(_Var7, _Var4, _Var6)
+AND
+QRY_OriginMomentPolymorphDrop(_Var7, _Var1, _Var5, _Var6)
+AND
+QRY_StartDialog(0, _Var1, _Var2, _Var3, _Var7)
+THEN
+PROC_CheckPlayTut(_Var7, "TUT_AOM_Switch");
+DB_OriginMomentStarted(_Var1);
+PROC_OM_Clear3SPCOM(_Var6);
+
+PROC
+Proc_StartDialog(0, (STRING)_Var1, (GUIDSTRING)_Var2, (GUIDSTRING)_Var3, (CHARACTERGUID)_Var4)
+AND NOT
+DB_OriginMomentStarted(_Var1)
+AND
+DB_OriginMomentTag_3SP(_Var1, _Var5, _Var6)
+AND
+DB_CompanionAvatarBond(_Var7, _Var8)
+AND
+QRY_IsTaggedForOM(_Var7, _Var5, 1)
+AND
+QRY_SameUser(_Var8, _Var7)
+AND
+QRY_SameUser(_Var8, _Var4)
+AND NOT
+QRY_OriginMoment_OutsideCOMTrigger(_Var7, _Var1)
+AND
+QRY_OriginMoments_SpeakerIsAvailableAndInDialogRange(_Var7, _Var4, _Var6)
+AND NOT
+DB_OriginMoment_COMREQ_Denied(_Var7, _Var2)
+AND
+QRY_OriginMomentPolymorphDrop(_Var7, _Var1, _Var5, _Var6)
+AND
+QRY_StartCOMDialog(_Var6, _Var2, _Var3, _Var7, _Var8)
+THEN
+PROC_OM_MaybePlayCOMTut(_Var8, _Var7);
+DB_OriginMomentStarted(_Var1);
+DB_OriginDialog(_Var7, _Var6);
+
+PROC
+Proc_StartDialog(0, (STRING)_Var1, (GUIDSTRING)_Var2, (CHARACTERGUID)_Var3, (CHARACTERGUID)_Var4)
+AND NOT
+DB_OriginMomentStarted(_Var1)
+AND
+DB_OriginMomentTag_3SP(_Var1, _Var5, _Var6)
+AND
+DB_CompanionAvatarBond(_Var7, _Var8)
+AND
+QRY_IsTaggedForOM(_Var7, _Var5, 1)
+AND
+QRY_SameUser(_Var8, _Var7)
+AND
+QRY_SameUser(_Var8, _Var4)
+AND NOT
+QRY_OriginMoment_OutsideCOMTrigger(_Var7, _Var1)
+AND
+QRY_OriginMoments_SpeakerIsAvailableAndInDialogRange(_Var7, _Var3, _Var6)
+AND NOT
+DB_OriginMoment_COMREQ_Denied(_Var7, _Var2)
+AND
+QRY_OriginMomentPolymorphDrop(_Var7, _Var1, _Var5, _Var6)
+AND
+QRY_StartCOMDialog(_Var6, _Var2, _Var3, _Var7, _Var8)
+THEN
+PROC_OM_MaybePlayCOMTut(_Var8, _Var7);
+DB_OriginMomentStarted(_Var1);
+DB_OriginDialog(_Var7, _Var6);
+
+PROC
+Proc_StartDialog(0, (STRING)_Var1, (GUIDSTRING)_Var2, (GUIDSTRING)_Var3, (GUIDSTRING)_Var4)
+AND
+DB_OriginMomentTag_3SP(_Var1, _Var5, _Var6)
+AND NOT
+DB_OriginMomentStarted(_Var1)
+AND
+QRY_StartDialog(0, _Var1, _Var2, _Var3, _Var4)
+THEN
+DB_NOOP(1);
+
+IF
+DialogEnded((STRING)_Var1, (INTEGER)_Var2)
+AND
+DB_OriginMomentTag_3SP(_Var3, _Var4, _Var1)
+AND
+DB_DialogPlayers(_Var2, _Var5, 1)
+AND
+DB_CompanionAvatarBond(_Var5, _Var6)
+AND
+ObjectGetFlag(_Var5, "COMREQ_Denied", 0)
+THEN
+PROC_OM_Clear3SPCOM(_Var1);
+Proc_COMFinishedOnce(_Var1, _Var6);
+
+IF
+DialogEnded((STRING)_Var1, (INTEGER)_Var2)
+AND
+DB_OriginMomentTag_3SP(_Var3, _Var4, _Var1)
+AND
+DB_DialogPlayers(_Var2, _Var5, 1)
+AND
+ObjectGetFlag(_Var5, "COMREQ_Denied", 1)
+AND
+DB_DialogNPCs(_Var2, _Var6, 1)
+AND
+DB_DialogNPCs(_Var2, _Var7, 2)
+THEN
+PROC_OM_Clear3SPCOM(_Var1);
+DB_OriginMoment_COMREQ_Denied(_Var5, _Var6);
+DB_OriginMoment_COMREQ_Denied(_Var5, _Var7);
+ObjectClearFlag(_Var5, "COMREQ_Denied", _Var2);
+
+PROC
+Proc_StartDialog(0, (STRING)_Var1, (GUIDSTRING)_Var2, (GUIDSTRING)_Var3, (GUIDSTRING)_Var4)
+AND
+DB_OriginMomentStarted(_Var1)
+THEN
+NOT DB_OriginMomentStarted(_Var1);
+
+IF
+DialogEnded((STRING)_Var1, (INTEGER)_Var2)
+AND
+DB_OriginMomentTag_3SP(_Var1, _Var3, _Var4)
+AND NOT
+DB_OriginMoment_COMNeverAfterDialog(_Var4)
+AND
+DB_DialogNPCs(_Var2, _Var5, 1)
+AND
+DB_DialogNPCs(_Var2, _Var6, 2)
+AND
+DB_DialogPlayers(_Var2, _Var7, 1)
+AND
+DB_CompanionAvatarBond(_Var8, _Var9)
+AND
+QRY_IsTaggedForOM(_Var8, _Var3, 1)
+AND
+QRY_SameUser(_Var9, _Var8)
+AND
+QRY_SameUser(_Var9, _Var7)
+AND
+QRY_OriginMoments_SpeakerIsAvailableAndInDialogRange(_Var8, _Var7, _Var4)
+AND NOT
+DB_OriginMoment_COMREQ_Denied(_Var8, _Var5)
+AND NOT
+DB_OriginMoment_COMREQ_Denied(_Var8, _Var6)
+AND
+QRY_OriginMomentPolymorphDrop(_Var8, _Var1, _Var3, _Var4)
+AND
+QRY_StartCOMDialog(_Var4, _Var5, _Var6, _Var8, _Var9)
+THEN
+PROC_OM_MaybePlayCOMTut(_Var9, _Var8);
+ObjectSetFlag(_Var8, "COMREQ_Request", 0);
+DB_OriginDialog(_Var8, _Var4);
+
+PROC
+Proc_DialogFlagSetup((STRING)_Var1, (CHARACTERGUID)_Var2, _, _)
+AND
+DB_OriginMomentTag(_Var5, _Var6, _Var1)
+AND
+CharacterCanTrade(_Var2, 1)
+THEN
+CharacterSetCanTrade(_Var2, 0);
+DB_OriginMomentTradeTempDisabled(_Var2);
+
+PROC
+PROC_OM_ClearCOM((STRING)_Var1)
+AND NOT
+DB_DialogRequestFailed(_Var1, _)
+AND
+DB_OriginMomentTag(_Var3, _Var4, _Var1)
+THEN
+NOT DB_OriginMomentTag(_Var3, _Var4, _Var1);
+
+PROC
+PROC_OM_ClearCOM((STRING)_Var1)
+AND NOT
+DB_DialogRequestFailed(_Var1, _)
+AND
+DB_OriginMomentTag_HighPriority(_Var3, _Var4, _Var1)
+THEN
+NOT DB_OriginMomentTag_HighPriority(_Var3, _Var4, _Var1);
+
+PROC
+PROC_OM_ClearCOM((STRING)_Var1)
+AND
+DB_OriginMomentTradeTempDisabled(_Var2)
+THEN
+NOT DB_OriginMomentTradeTempDisabled(_Var2);
+CharacterSetCanTrade(_Var2, 1);
+
+PROC
+Proc_DialogFlagSetup((STRING)_Var1, (CHARACTERGUID)_Var2, _, _, _)
+AND
+DB_OriginMomentTag_3SP(_Var6, _Var7, _Var1)
+AND
+CharacterCanTrade(_Var2, 1)
+THEN
+CharacterSetCanTrade(_Var2, 0);
+DB_OriginMomentTradeTempDisabled(_Var2);
+
+PROC
+PROC_OM_Clear3SPCOM((STRING)_Var1)
+AND NOT
+DB_DialogRequestFailed(_Var1, _)
+AND
+DB_OriginMomentTag_3SP(_Var3, _Var4, _Var1)
+THEN
+NOT DB_OriginMomentTag_3SP(_Var3, _Var4, _Var1);
+
+PROC
+PROC_OM_Clear3SPCOM((STRING)_Var1)
+AND NOT
+DB_DialogRequestFailed(_Var1, _)
+AND
+DB_OriginMomentTag_3SP_HighPriority(_Var3, _Var4, _Var1)
+THEN
+NOT DB_OriginMomentTag_3SP_HighPriority(_Var3, _Var4, _Var1);
+
+PROC
+PROC_OM_Clear3SPCOM((STRING)_Var1)
+AND
+DB_OriginMomentTradeTempDisabled(_Var2)
+THEN
+NOT DB_OriginMomentTradeTempDisabled(_Var2);
+CharacterSetCanTrade(_Var2, 1);
+
+QRY
+QRY_OriginMoments_GetMaxDistance((STRING)_Var1)
+AND
+DB_OriginMoments_MaxDistance(_Var2)
+THEN
+NOT DB_OriginMoments_MaxDistance(_Var2);
+
+QRY
+QRY_OriginMoments_GetMaxDistance((STRING)_Var1)
+AND NOT
+DB_OriginMoment_MaxDistance(_Var1, _)
+THEN
+DB_OriginMoments_MaxDistance(10);
+
+QRY
+QRY_OriginMoments_GetMaxDistance((STRING)_Var1)
+AND
+DB_OriginMoment_MaxDistance(_Var1, _Var2)
+THEN
+DB_OriginMoments_MaxDistance(_Var2);
+
+QRY
+QRY_OriginMoments_SpeakerIsAvailableAndInDialogRange((CHARACTERGUID)_Var1, (CHARACTERGUID)_Var2, (STRING)_Var3)
+AND
+QRY_SpeakerIsAvailable(_Var1)
+AND
+QRY_OriginMoments_GetMaxDistance(_Var3)
+AND
+DB_OriginMoments_MaxDistance(_Var4)
+AND
+GetDistanceTo(_Var1, _Var2, _Var5)
+AND
+_Var5 < _Var4
+THEN
+DB_NOOP(1);
+
+QRY
+QRY_OriginMoment_OutsideCOMTrigger((CHARACTERGUID)_Var1, (STRING)_Var2)
+AND
+DB_OriginDialogTrigger(_Var2, _Var3)
+AND
+ObjectIsInTrigger(_Var1, _Var3, 0)
+THEN
+DB_NOOP(0);
+
+PROC
+PROC_OM_MaybePlayCOMTut((CHARACTERGUID)_Var1, (CHARACTERGUID)_Var2)
+AND
+GetDistanceTo(_Var1, _Var2, _Var3)
+AND
+_Var3 < 10
+THEN
+PROC_CheckPlayTut(_Var1, "TUT_COM");
+
+QRY
+QRY_SameUser((CHARACTERGUID)_Var1, (CHARACTERGUID)_Var2)
+AND
+CharacterGetReservedUserID(_Var1, _Var3)
+AND
+CharacterGetReservedUserID(_Var2, _Var3)
+THEN
+DB_NOOP(1);
+
+QRY
+QRY_IsTaggedForOM((CHARACTERGUID)_Var1, (STRING)_Var2, (INTEGER)_Var3)
+AND
+IsTagged(_Var1, _Var2, _Var3)
+THEN
+DB_NOOP(1);
+
+QRY
+QRY_IsTaggedForOM((CHARACTERGUID)_Var1, (STRING)_Var2, (INTEGER)_Var3)
+AND
+DB_ShapeshiftTag(_Var2, _Var4)
+AND
+IsTagged(_Var1, _Var4, _Var3)
+THEN
+DB_NOOP(1);
+
+QRY
+QRY_OriginMomentPolymorphDrop((CHARACTERGUID)_Var1, (STRING)_Var2, (STRING)_Var3, (STRING)_Var4)
+AND
+IsTagged(_Var1, _Var3, 1)
+THEN
+DB_NOOP(1);
+
+QRY
+QRY_OriginMomentPolymorphDrop((CHARACTERGUID)_Var1, (STRING)_Var2, (STRING)_Var3, (STRING)_Var4)
+AND
+DB_ShapeshiftTag(_Var3, _Var5)
+AND
+IsTagged(_Var1, _Var5, 1)
+AND
+DB_OriginMomentTag(_Var2, _Var5, _Var4)
+THEN
+DB_NOOP(1);
+
+QRY
+QRY_OriginMomentPolymorphDrop((CHARACTERGUID)_Var1, (STRING)_Var2, (STRING)_Var3, (STRING)_Var4)
+AND
+DB_ShapeshiftTag(_Var3, _Var5)
+AND
+IsTagged(_Var1, _Var5, 1)
+AND
+DB_OriginMomentTag_3SP(_Var2, _Var5, _Var4)
+THEN
+DB_NOOP(1);
+
+QRY
+QRY_OriginMomentPolymorphDrop((CHARACTERGUID)_Var1, (STRING)_Var2, (STRING)_Var3, (STRING)_Var4)
+AND
+DB_ShapeshiftTag(_Var3, _Var5)
+AND
+IsTagged(_Var1, _Var5, 1)
+AND NOT
+DB_OriginMomentTag(_Var2, _Var5, _Var4)
+AND NOT
+DB_OriginMomentTag_3SP(_Var2, _Var5, _Var4)
+THEN
+ProcRemovePolymorphs(_Var1);
+PROC_CheckPlayTut(_Var1, "TUT_PolymorphDrop");
+
+QRY
+QRY_StartCOMDialog((STRING)_Var1, (CHARACTERGUID)_Var2, (CHARACTERGUID)_Var3, (CHARACTERGUID)_Var4)
+AND NOT
+QRY_SpeakerIsAvailable(_Var4)
+AND
+QRY_StartDialog(0, _Var1, _Var2, _Var3, NULL_00000000-0000-0000-0000-000000000000)
+THEN
+ObjectSetFlag(_Var3, "AvatarNotPresent");
+
+QRY
+QRY_StartCOMDialog((STRING)_Var1, (CHARACTERGUID)_Var2, (CHARACTERGUID)_Var3, (CHARACTERGUID)_Var4)
+AND
+QRY_SpeakerIsAvailable(_Var4)
+AND
+QRY_OriginMoments_GetMaxDistance(_Var1)
+AND
+DB_OriginMoments_MaxDistance(_Var5)
+AND
+GetDistanceTo(_Var3, _Var4, _Var6)
+AND
+_Var6 > _Var5
+AND
+QRY_StartDialog(0, _Var1, _Var2, _Var3, NULL_00000000-0000-0000-0000-000000000000)
+THEN
+ObjectSetFlag(_Var3, "AvatarNotPresent");
+
+QRY
+QRY_StartCOMDialog((STRING)_Var1, (CHARACTERGUID)_Var2, (CHARACTERGUID)_Var3, (CHARACTERGUID)_Var4)
+AND
+QRY_SpeakerIsAvailable(_Var4)
+AND
+QRY_OriginMoments_GetMaxDistance(_Var1)
+AND
+DB_OriginMoments_MaxDistance(_Var5)
+AND
+GetDistanceTo(_Var3, _Var4, _Var6)
+AND
+_Var6 <= _Var5
+AND
+QRY_StartDialog(0, _Var1, _Var2, _Var3, _Var4)
+THEN
+ObjectClearFlag(_Var3, "AvatarNotPresent");
+MakePlayerActive(_Var4);
+
+QRY
+QRY_StartCOMDialog((STRING)_Var1, (CHARACTERGUID)_Var2, (CHARACTERGUID)_Var3, (CHARACTERGUID)_Var4, (CHARACTERGUID)_Var5)
+AND NOT
+QRY_SpeakerIsAvailable(_Var5)
+AND
+QRY_StartDialog(0, _Var1, _Var2, _Var3, _Var4, NULL_00000000-0000-0000-0000-000000000000)
+THEN
+ObjectSetFlag(_Var4, "AvatarNotPresent");
+
+QRY
+QRY_StartCOMDialog((STRING)_Var1, (CHARACTERGUID)_Var2, (CHARACTERGUID)_Var3, (CHARACTERGUID)_Var4, (CHARACTERGUID)_Var5)
+AND
+QRY_SpeakerIsAvailable(_Var5)
+AND
+QRY_OriginMoments_GetMaxDistance(_Var1)
+AND
+DB_OriginMoments_MaxDistance(_Var6)
+AND
+GetDistanceTo(_Var4, _Var5, _Var7)
+AND
+_Var7 > _Var6
+AND
+QRY_StartDialog(0, _Var1, _Var2, _Var3, _Var4, NULL_00000000-0000-0000-0000-000000000000)
+THEN
+ObjectSetFlag(_Var4, "AvatarNotPresent");
+
+QRY
+QRY_StartCOMDialog((STRING)_Var1, (CHARACTERGUID)_Var2, (CHARACTERGUID)_Var3, (CHARACTERGUID)_Var4, (CHARACTERGUID)_Var5)
+AND
+QRY_SpeakerIsAvailable(_Var5)
+AND
+QRY_OriginMoments_GetMaxDistance(_Var1)
+AND
+DB_OriginMoments_MaxDistance(_Var6)
+AND
+GetDistanceTo(_Var4, _Var5, _Var7)
+AND
+_Var7 <= _Var6
+AND
+QRY_StartDialog(0, _Var1, _Var2, _Var3, _Var4, _Var5)
+THEN
+ObjectClearFlag(_Var4, "AvatarNotPresent");
+MakePlayerActive(_Var5);
+
+PROC
+ProcRegionEnded((STRING)_Var1)
+AND
+DB_OriginMoment_COMREQ_Denied(_Var2, _Var3)
+THEN
+NOT DB_OriginMoment_COMREQ_Denied(_Var2, _Var3);
+DB_OriginMoment_COMREQ_WasDeniedOnce(_Var2, _Var3, _Var1);
+
+
+EXITSECTION
+ENDEXITSECTION
+
+ParentTargetEdge "DOS2ModWrapper"

@@ -1,0 +1,305 @@
+Version 1
+SubGoalCombiner SGC_AND
+
+INITSECTION
+DB_Dialogs(RC_FTJ_BackAlleyDoctor_65e376df-3470-41fd-add2-4411fb61439d, "FTJ_Doctor");
+DB_Dialogs(RC_FTJ_DyingMan_80288510-7e12-4710-90cb-16a1e2d50efc, "FTJ_DyingMan");
+DB_GiveItemToEvent(ITEMGUID_S_FTJ_DyingManCard_9ad3db11-1a93-4cc0-b38b-784d19613ea7, "FTJ_DainCardTo");
+DB_HasStoryEvent(ITEMGUID_S_FTJ_DyingManCard_9ad3db11-1a93-4cc0-b38b-784d19613ea7, "FTJ_HasDainCard");
+ItemToInventory(ITEMGUID_S_FTJ_DyingManCard_9ad3db11-1a93-4cc0-b38b-784d19613ea7, CHARACTERGUID_S_FTJ_DyingMan_80288510-7e12-4710-90cb-16a1e2d50efc);
+CharacterSetHitpointsPercentage(RC_FTJ_DyingMan_80288510-7e12-4710-90cb-16a1e2d50efc, 1);
+ProcCharacterDisableAllCrimes(RC_FTJ_DyingMan_80288510-7e12-4710-90cb-16a1e2d50efc);
+CharacterSetAnimationOverride(RC_FTJ_DyingMan_80288510-7e12-4710-90cb-16a1e2d50efc, "knockdown_loop");
+
+KBSECTION
+IF
+ObjectFlagSet("FTJ_DoctorGaveIngredients", (CHARACTERGUID)_Var1, _)
+THEN
+ItemTemplateAddTo("CON_Herb_Mushroom_A_0106e3c1-bd81-4118-8a28-59c6dc941feb", _Var1, 1);
+ItemTemplateAddTo("CON_Potion_Empty_A_cd6e86ca-e9be-444e-a7df-d295ec6bb578", _Var1, 1);
+CharacterUnlockRecipe(_Var1, "CON_Potion_Empty_A_CON_Herb_Mushroom_A", 1);
+
+IF
+AttackedByObject(RC_FTJ_DyingMan_80288510-7e12-4710-90cb-16a1e2d50efc, (CHARACTERGUID)_Var1, (CHARACTERGUID)_Var2, _, _)
+AND
+CharacterIsInCombat(RC_FTJ_BackAlleyDoctor_65e376df-3470-41fd-add2-4411fb61439d, 0)
+THEN
+DialogRequestStop(RC_FTJ_BackAlleyDoctor_65e376df-3470-41fd-add2-4411fb61439d);
+Proc_StartDialog(1, "FTJ_AD_DoctorGoHostile", RC_FTJ_BackAlleyDoctor_65e376df-3470-41fd-add2-4411fb61439d);
+ProcMakeNPCHostile(RC_FTJ_BackAlleyDoctor_65e376df-3470-41fd-add2-4411fb61439d, _Var2);
+
+IF
+DialogStarted("FTJ_Doctor", (INTEGER)_Var1)
+AND
+DialogGetInvolvedPlayer(_Var1, 1, _Var2)
+AND
+CharacterGetHitpointsPercentage(_Var2, _Var3)
+AND
+_Var3 < 100
+THEN
+GlobalSetFlag("FTJ_DoctorTalkingToInjured");
+
+PROC
+ProcSetMagicPocketsOwnershipFlag((CHARACTERGUID)_Var1, "Has_TaggedItem_ALCOHOL")
+THEN
+ProcSetMagicPocketsOwnershipFlag(_Var1, "FTJ_Doctor_HasBooze");
+
+PROC
+ProcClearMagicPocketsOwnershipFlag((CHARACTERGUID)_Var1, "Has_TaggedItem_ALCOHOL")
+THEN
+ProcClearMagicPocketsOwnershipFlag(_Var1, "FTJ_Doctor_HasBooze");
+
+IF
+ObjectFlagSet("FTJ_Doctor_RemoveBooze", (CHARACTERGUID)_Var1, _)
+AND
+UserRemoveTaggedLocalItems(_Var1, "ALCOHOL", 1, _)
+THEN
+PartyAddExperience(_Var1, 1, 2, 4);
+DB_FTJ_QueueHealInjuredMan(_Var1);
+
+IF
+DialogEnded("FTJ_Doctor", _)
+AND
+DB_FTJ_QueueHealInjuredMan(_Var2)
+AND
+QueryOnlyOnce("FTJ_LesteHealDain_Once")
+THEN
+NOT DB_FTJ_QueueHealInjuredMan(_Var2);
+PartyAddExperience(_Var2, 1, 2, 4);
+SetVarObject(RC_FTJ_BackAlleyDoctor_65e376df-3470-41fd-add2-4411fb61439d, "PlayerToCureDisease", RC_FTJ_DyingMan_80288510-7e12-4710-90cb-16a1e2d50efc);
+SetScriptFrame(RC_FTJ_BackAlleyDoctor_65e376df-3470-41fd-add2-4411fb61439d, "HealDisease");
+
+IF
+DialogEnded("FTJ_Doctor", _)
+THEN
+GlobalClearFlag("FTJ_DoctorTalkingToInjured");
+GlobalClearFlag("FTJ_DoctorTalkingToDiseased");
+GlobalClearFlag("FTJ_DoctorTalkingToPlayerWithMushroom");
+
+IF
+DialogStarted("FTJ_Doctor", (INTEGER)_Var1)
+AND
+DialogGetInvolvedPlayer(_Var1, 1, _Var2)
+AND
+HasActiveStatus(_Var2, "DISEASED", 1)
+THEN
+GlobalSetFlag("FTJ_DoctorTalkingToDiseased");
+
+IF
+DialogEnded("FTJ_GhettoNPC_Human_003", (INTEGER)_Var1)
+AND
+DialogGetInvolvedPlayer(_Var1, 1, _Var2)
+AND
+GlobalGetFlag("FTJ_MonaCured", 0)
+THEN
+ApplyStatus(_Var2, "DISEASED", 60);
+
+IF
+CharacterStatusRemoved(CHARACTERGUID_S_FTJ_GhettoNPC_Human_003_8e83098f-6dd8-445d-a37b-d22be064d334, "DISEASED", (CHARACTERGUID)_Var1)
+AND
+GlobalGetFlag("FTJ_MonaCured", 0)
+AND
+DB_IsPlayer(_Var1)
+THEN
+ProcSetHostileToIndivPlayer(CHARACTERGUID_S_FTJ_GhettoNPC_Human_003_8e83098f-6dd8-445d-a37b-d22be064d334, _Var1);
+GlobalSetFlag("FTJ_MonaCured");
+Proc_StartDialog(1, "FTJ_AD_GhettoNPC_Human_003_GoHostile", CHARACTERGUID_S_FTJ_GhettoNPC_Human_003_8e83098f-6dd8-445d-a37b-d22be064d334);
+
+IF
+CharacterStatusRemoved(CHARACTERGUID_S_FTJ_GhettoNPC_Human_003_8e83098f-6dd8-445d-a37b-d22be064d334, "DISEASED", (CHARACTERGUID)_Var1)
+AND
+_Var1 == NULL_00000000-0000-0000-0000-000000000000
+THEN
+GlobalSetFlag("FTJ_MonaCured");
+
+IF
+SavegameLoaded((INTEGER)_Var1, (INTEGER)_Var2, (INTEGER)_Var3, (INTEGER)_Var4)
+AND
+QRY_VersionIsOlderThan(_Var1, _Var2, _Var3, _Var4, 3, 6, 3, 0)
+AND
+HasActiveStatus(CHARACTERGUID_S_FTJ_GhettoNPC_Human_003_8e83098f-6dd8-445d-a37b-d22be064d334, "DISEASED", 0)
+AND
+GlobalGetFlag("FTJ_MonaCured", 0)
+THEN
+GlobalSetFlag("FTJ_MonaCured");
+
+IF
+CharacterRelationChangedTo(CHARACTERGUID_S_FTJ_DyingMan_80288510-7e12-4710-90cb-16a1e2d50efc, (CHARACTERGUID)_Var1, 0)
+THEN
+SetCanFight(CHARACTERGUID_S_FTJ_DyingMan_80288510-7e12-4710-90cb-16a1e2d50efc, 1);
+SetCanJoinCombat(CHARACTERGUID_S_FTJ_DyingMan_80288510-7e12-4710-90cb-16a1e2d50efc, 1);
+
+IF
+ObjectFlagSet("FTJ_DyingManQ2", (CHARACTERGUID)_Var1, _)
+THEN
+DB_RC_FTJ_DyingManAttemptGoHostile(_Var1);
+ProcCharacterEnableAllCrimes(RC_FTJ_DyingMan_80288510-7e12-4710-90cb-16a1e2d50efc);
+CharacterSetAnimationOverride(RC_FTJ_DyingMan_80288510-7e12-4710-90cb-16a1e2d50efc, "");
+SetCanFight(CHARACTERGUID_S_FTJ_DyingMan_80288510-7e12-4710-90cb-16a1e2d50efc, 1);
+
+IF
+DialogEnded("FTJ_DyingMan", _)
+AND
+DB_RC_FTJ_DyingManAttemptGoHostile(_Var2)
+THEN
+Proc_RC_FTJ_CheckForDoctor(_Var2);
+NOT DB_RC_FTJ_DyingManAttemptGoHostile(_Var2);
+
+PROC
+Proc_RC_FTJ_CheckForDoctor((CHARACTERGUID)_Var1)
+AND
+CharacterIsDead(RC_FTJ_BackAlleyDoctor_65e376df-3470-41fd-add2-4411fb61439d, 0)
+AND
+CharacterIsInCombat(CHARACTERGUID_S_FTJ_BackAlleyDoctor_65e376df-3470-41fd-add2-4411fb61439d, 0)
+AND
+GetDistanceTo(_Var1, RC_FTJ_BackAlleyDoctor_65e376df-3470-41fd-add2-4411fb61439d, _Var2)
+AND
+_Var2 < 10
+AND
+CharacterCanSee(RC_FTJ_BackAlleyDoctor_65e376df-3470-41fd-add2-4411fb61439d, _Var1, 1)
+THEN
+ProcForceStopDialog(CHARACTERGUID_S_FTJ_BackAlleyDoctor_65e376df-3470-41fd-add2-4411fb61439d);
+Proc_StartDialog(0, "FTJ_DoctorIntervenes", RC_FTJ_BackAlleyDoctor_65e376df-3470-41fd-add2-4411fb61439d, _Var1, RC_FTJ_DyingMan_80288510-7e12-4710-90cb-16a1e2d50efc);
+
+PROC
+Proc_RC_FTJ_CheckForDoctor((CHARACTERGUID)_Var1)
+AND
+CharacterIsDead(RC_FTJ_BackAlleyDoctor_65e376df-3470-41fd-add2-4411fb61439d, 1)
+THEN
+CharacterAddAttitudeTowardsPlayer(CHARACTERGUID_S_FTJ_DyingMan_80288510-7e12-4710-90cb-16a1e2d50efc, _Var1, -100);
+
+PROC
+Proc_RC_FTJ_CheckForDoctor((CHARACTERGUID)_Var1)
+AND
+CharacterCanSee(RC_FTJ_BackAlleyDoctor_65e376df-3470-41fd-add2-4411fb61439d, _Var1, 0)
+THEN
+CharacterAddAttitudeTowardsPlayer(CHARACTERGUID_S_FTJ_DyingMan_80288510-7e12-4710-90cb-16a1e2d50efc, _Var1, -100);
+CharacterAddAttitudeTowardsPlayer(CHARACTERGUID_S_FTJ_BackAlleyDoctor_65e376df-3470-41fd-add2-4411fb61439d, _Var1, -100);
+
+PROC
+Proc_RC_FTJ_CheckForDoctor((CHARACTERGUID)_Var1)
+AND
+GetDistanceTo(_Var1, RC_FTJ_BackAlleyDoctor_65e376df-3470-41fd-add2-4411fb61439d, _Var2)
+AND
+_Var2 >= 10
+THEN
+CharacterAddAttitudeTowardsPlayer(CHARACTERGUID_S_FTJ_DyingMan_80288510-7e12-4710-90cb-16a1e2d50efc, _Var1, -100);
+CharacterAddAttitudeTowardsPlayer(CHARACTERGUID_S_FTJ_BackAlleyDoctor_65e376df-3470-41fd-add2-4411fb61439d, _Var1, -100);
+
+IF
+DialogEnded("FTJ_DoctorIntervenes", _)
+THEN
+ProcCharacterDisableAllCrimes(RC_FTJ_DyingMan_80288510-7e12-4710-90cb-16a1e2d50efc);
+CharacterSetAnimationOverride(RC_FTJ_DyingMan_80288510-7e12-4710-90cb-16a1e2d50efc, "knockdown_loop");
+SetCanFight(CHARACTERGUID_S_FTJ_DyingMan_80288510-7e12-4710-90cb-16a1e2d50efc, 0);
+
+IF
+CharacterStatusApplied(CHARACTERGUID_S_FTJ_DyingMan_80288510-7e12-4710-90cb-16a1e2d50efc, (STRING)_Var1, (CHARACTERGUID)_Var2)
+AND
+QRY_IsHealingStatus(_Var1)
+AND
+CharacterIsPartyMember(_Var2, 1)
+AND
+GlobalGetFlag("FTJ_DoctorHealedDyingMan", 0)
+AND
+CharacterIsDead(CHARACTERGUID_S_FTJ_DyingMan_80288510-7e12-4710-90cb-16a1e2d50efc, 0)
+AND NOT
+DB_FTJ_DyingManHasPlayerToThank(_Var2)
+AND
+QueryOnlyOnce("FTJ_DyingManDoThanksForHealing")
+THEN
+SetCanFight(CHARACTERGUID_S_FTJ_DyingMan_80288510-7e12-4710-90cb-16a1e2d50efc, 1);
+SetVarInteger(CHARACTERGUID_S_FTJ_DyingMan_80288510-7e12-4710-90cb-16a1e2d50efc, "bool_CanCower", 1);
+SetVarInteger(CHARACTERGUID_S_FTJ_DyingMan_80288510-7e12-4710-90cb-16a1e2d50efc, "bool_CanFleeWhileCowering", 1);
+SetVarInteger(CHARACTERGUID_S_FTJ_DyingMan_80288510-7e12-4710-90cb-16a1e2d50efc, "FleeFromDangerousSurface", 1);
+CharacterSetAnimationOverride(CHARACTERGUID_S_FTJ_DyingMan_80288510-7e12-4710-90cb-16a1e2d50efc, "");
+PlayAnimation(CHARACTERGUID_S_FTJ_DyingMan_80288510-7e12-4710-90cb-16a1e2d50efc, "knockdown_getup", "FTJ_DyingManDoThanksForHealing");
+GlobalSetFlag("FTJ_DyingManHealedBySpell");
+ProcCharacterEnableAllCrimes(RC_FTJ_DyingMan_80288510-7e12-4710-90cb-16a1e2d50efc);
+
+IF
+CharacterStatusApplied(CHARACTERGUID_S_FTJ_DyingMan_80288510-7e12-4710-90cb-16a1e2d50efc, (STRING)_Var1, (CHARACTERGUID)_Var2)
+AND
+DB_IsPlayer(_Var2)
+AND
+QRY_IsHealingStatus(_Var1)
+AND
+GlobalGetFlag("FTJ_DoctorHealedDyingMan", 0)
+AND
+CharacterIsDead(CHARACTERGUID_S_FTJ_DyingMan_80288510-7e12-4710-90cb-16a1e2d50efc, 0)
+AND NOT
+DB_FTJ_DyingManHasPlayerToThank(_Var2)
+THEN
+ProcForceStopDialog(CHARACTERGUID_S_FTJ_DyingMan_80288510-7e12-4710-90cb-16a1e2d50efc);
+DB_FTJ_DyingManHasPlayerToThank(_Var2);
+ObjectSetFlag(_Var2, "FTJ_PlayerHealedDyingMan", 0);
+PartyAddExperience(_Var2, 1, 2, 4);
+
+IF
+CharacterStatusApplied(CHARACTERGUID_S_FTJ_DyingMan_80288510-7e12-4710-90cb-16a1e2d50efc, (STRING)_Var1, (CHARACTERGUID)_Var2)
+AND NOT
+DB_IsPlayer(_Var2)
+AND
+QRY_IsHealingStatus(_Var1)
+AND
+QRY_IsSummonOrPartyFollower(_Var2)
+AND
+CharacterGetOwner(_Var2, _Var3)
+AND
+DB_IsPlayer(_Var3)
+AND
+GlobalGetFlag("FTJ_DoctorHealedDyingMan", 0)
+AND
+CharacterIsDead(CHARACTERGUID_S_FTJ_DyingMan_80288510-7e12-4710-90cb-16a1e2d50efc, 0)
+AND NOT
+DB_FTJ_DyingManHasPlayerToThank(_Var3)
+THEN
+ProcForceStopDialog(CHARACTERGUID_S_FTJ_DyingMan_80288510-7e12-4710-90cb-16a1e2d50efc);
+DB_FTJ_DyingManHasPlayerToThank(_Var3);
+ObjectSetFlag(_Var3, "FTJ_PlayerHealedDyingMan", 0);
+PartyAddExperience(_Var3, 1, 2, 4);
+
+IF
+StoryEvent(CHARACTERGUID_S_FTJ_DyingMan_80288510-7e12-4710-90cb-16a1e2d50efc, "FTJ_DyingManDoThanksForHealing")
+AND
+DB_FTJ_DyingManHasPlayerToThank(_Var1)
+AND
+QRY_IsAvailableTo(CHARACTERGUID_S_FTJ_DyingMan_80288510-7e12-4710-90cb-16a1e2d50efc, _Var1)
+THEN
+Proc_StartDialog(0, "FTJ_DyingMan", CHARACTERGUID_S_FTJ_DyingMan_80288510-7e12-4710-90cb-16a1e2d50efc, _Var1);
+
+IF
+DialogStarted("FTJ_DyingMan", _)
+AND NOT
+DB_FTJ_MetDyingMan(1)
+THEN
+DB_FTJ_MetDyingMan(1);
+
+IF
+CharacterLeftTrigger((CHARACTERGUID)_Var1, TRIGGERGUID_S_FTJ_SUB_Ghetto_19107918-c6d6-4c93-a377-e8a76c8d0f27)
+AND
+DB_FTJ_MetDyingMan(1)
+AND
+GlobalGetFlag("FTJ_DyingManHealedBySpell", 0)
+AND
+GetClosestPlayer(CHARACTERGUID_S_FTJ_DyingMan_80288510-7e12-4710-90cb-16a1e2d50efc, _Var1, _Var2)
+AND
+_Var2 > 30
+THEN
+CharacterDie(CHARACTERGUID_S_FTJ_DyingMan_80288510-7e12-4710-90cb-16a1e2d50efc, 1, "DoT");
+
+IF
+CharacterDied(CHARACTERGUID_S_FTJ_DyingMan_80288510-7e12-4710-90cb-16a1e2d50efc)
+THEN
+GlobalSetFlag("FTJ_DyingManDied");
+
+PROC
+ProcRegionEnded("FJ_FortJoy_Main")
+THEN
+GoalCompleted;
+
+
+EXITSECTION
+ENDEXITSECTION
+
+ParentTargetEdge "FortJoy"

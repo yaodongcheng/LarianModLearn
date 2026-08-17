@@ -1,0 +1,416 @@
+Version 1
+SubGoalCombiner SGC_AND
+
+INITSECTION
+DB_OriginMomentTag("RC_DU_Caravan_SurvivingDwarf", "BEAST", "RC_DU_Caravan_SurvivingDwarf_COM_Beast");
+DB_OriginMomentTag("RC_DW_TavernBouncer", "BEAST", "RC_DW_TavernBouncer_COM_Beast");
+DB_OriginMomentTag_3SP("RC_DW_UnderTavern_QuestioningAssassin", "BEAST", "RC_DW_UnderTavern_QuestioningAssassin_COM_Beast");
+DB_OriginMomentTag("RC_DW_UnderTavern_DwarfBoss", "BEAST", "RC_DW_UnderTavern_DwarfBoss_COM_Beast");
+DB_KilledEvent(CHARACTERGUID_S_RC_DW_UnderTavern_DwarfBoss_8e58abc6-1010-4e67-97b2-b9686586e784, "RC_DW_KilledLohar");
+DB_OriginMomentTag_HighPriority("RC_WC_BombScientist", "BEAST", "RC_WC_BombScientist_COM_Beast");
+DB_QueueFriendlyCOM("RC_WC_BombScientist_COM_Beast");
+DB_OriginMomentTag("RC_DW_UnderTavern_DwarfBossGuard", "BEAST", "RC_DW_UnderTavern_DwarfBossGuard_COM_Beast");
+DB_OriginMomentTag_3SP("RC_GY_DwarfSiblingGhosts", "BEAST", "RC_GY_DwarfSiblingGhosts_COM_Beast");
+DB_OriginMomentTag("RC_DW_DeadLoharDialogue", "BEAST", "RC_DW_DeadLoharDialogue_COM_Beast");
+DB_OriginMomentTag("RC_DW_UnderTavern_DwarfBossGhost", "BEAST", "RC_DW_UnderTavern_DwarfBossGhost_COM_Beast");
+DB_OriginDialogTrigger("RC_DW_TavernBouncer", TRIGGERGUID_S_RC_BST_NearPapaThrash_b2890393-2aed-4ae3-8010-992dddab8573);
+DB_OriginDialogTrigger("RC_DW_UnderTavern_DwarfBossGhost", TRIGGERGUID_S_RC_BST_NearLohar_db42f3d2-98af-4280-9c5e-aef11a7e2f97);
+DB_OriginDialogTrigger("RC_DW_UnderTavern_DwarfBoss", TRIGGERGUID_S_RC_BST_NearLohar_db42f3d2-98af-4280-9c5e-aef11a7e2f97);
+DB_OriginDialogTrigger("RC_DW_UnderTavern_QuestioningAssassin", TRIGGERGUID_S_RC_BST_NearLohar_db42f3d2-98af-4280-9c5e-aef11a7e2f97);
+UserSetFlag(S_Player_Beast_f25ca124-a4d2-427b-af62-df66df41a978, "QuestUpdate_FTJ_COM_Beast_PreAct2Start", 0);
+
+KBSECTION
+IF
+ObjectFlagSet("RC_DW_KnowsAboutLohar", CHARACTERGUID_S_Player_Beast_f25ca124-a4d2-427b-af62-df66df41a978, _)
+AND
+IsTagged(CHARACTERGUID_S_Player_Beast_f25ca124-a4d2-427b-af62-df66df41a978, "AVATAR", 1)
+THEN
+ObjectSetFlag(CHARACTERGUID_S_Player_Beast_f25ca124-a4d2-427b-af62-df66df41a978, "QuestUpdate_FTJ_OriginBeast_KnowLoharDriftwood", 0);
+
+IF
+ObjectFlagSet("RC_DW_KnowsAboutLohar", CHARACTERGUID_S_Player_Beast_f25ca124-a4d2-427b-af62-df66df41a978, _)
+AND
+IsTagged(CHARACTERGUID_S_Player_Beast_f25ca124-a4d2-427b-af62-df66df41a978, "AVATAR", 0)
+THEN
+UserSetFlag(CHARACTERGUID_S_Player_Beast_f25ca124-a4d2-427b-af62-df66df41a978, "QuestUpdate_FTJ_COM_Beast_KnowLoharDriftwood", 0);
+
+IF
+DialogEnded("RC_DU_Caravan_SurvivingDwarf_COM_Beast", (INTEGER)_Var1)
+AND
+ObjectGetFlag(CHARACTERGUID_S_RC_DU_Caravan_SurvivingDwarf_1c3759c4-284d-46e1-98e0-da880d9f3da8, "RC_DU_Caravan_SurvivingDwarfFlee", 1)
+THEN
+ProcCharacterDisappearOutOfSight(CHARACTERGUID_S_RC_DU_Caravan_SurvivingDwarf_1c3759c4-284d-46e1-98e0-da880d9f3da8, 0, 1, "", 1);
+SetHasDialog(CHARACTERGUID_S_RC_DU_Caravan_SurvivingDwarf_1c3759c4-284d-46e1-98e0-da880d9f3da8, 0);
+
+IF
+ObjectFlagSet("RC_DU_Caravan_SurvivingDwarfFlee", CHARACTERGUID_S_RC_DU_Caravan_SurvivingDwarf_1c3759c4-284d-46e1-98e0-da880d9f3da8, (INTEGER)_Var1)
+AND NOT
+DB_DialogName("RC_DU_Caravan_SurvivingDwarf_COM_Beast", _Var1)
+THEN
+NOT DB_OriginMomentTag("RC_DU_Caravan_SurvivingDwarf", "BEAST", "RC_DU_Caravan_SurvivingDwarf_COM_Beast");
+
+IF
+ObjectFlagSet("RC_DW_TavernBouncer_Cleared", CHARACTERGUID_S_Player_Beast_f25ca124-a4d2-427b-af62-df66df41a978, (INTEGER)_Var1)
+AND NOT
+DB_OriginMomentTradeTempDisabled(S_RC_DW_TavernBouncer_375ff3ff-13c3-4498-b4b8-2c183df7751b)
+THEN
+NOT DB_OriginMomentTag("RC_DW_TavernBouncer", "BEAST", "RC_DW_TavernBouncer_COM_Beast");
+
+IF
+ObjectFlagSet("RC_DW_KilledLohar", CHARACTERGUID_S_Player_Beast_f25ca124-a4d2-427b-af62-df66df41a978, _)
+AND
+IsTagged(CHARACTERGUID_S_Player_Beast_f25ca124-a4d2-427b-af62-df66df41a978, "AVATAR", 1)
+THEN
+ObjectSetFlag(CHARACTERGUID_S_Player_Beast_f25ca124-a4d2-427b-af62-df66df41a978, "QuestUpdate_FTJ_OriginBeast_KilledLohar", 0);
+
+IF
+ObjectFlagSet("RC_DW_KilledLohar", CHARACTERGUID_S_Player_Beast_f25ca124-a4d2-427b-af62-df66df41a978, _)
+AND
+IsTagged(CHARACTERGUID_S_Player_Beast_f25ca124-a4d2-427b-af62-df66df41a978, "AVATAR", 0)
+THEN
+ObjectSetFlag(CHARACTERGUID_S_Player_Beast_f25ca124-a4d2-427b-af62-df66df41a978, "QuestUpdate_FTJ_COM_Beast_KilledLohar", 0);
+
+IF
+DialogStarted("RC_DW_UnderTavern_QuestioningAssassin_COM_Beast", _)
+THEN
+NOT DB_OriginMomentTag("RC_DW_UnderTavern_DwarfBoss", "BEAST", "RC_DW_UnderTavern_DwarfBoss_COM_Beast");
+NOT DB_OriginMomentTag("RC_DW_UnderTavern_DwarfBossGhost", "BEAST", "RC_DW_UnderTavern_DwarfBossGhost_COM_Beast");
+
+IF
+ObjectFlagSet("QuestUpdate_RC_DW_WC_AtaraxianLair_KilledBoss", CHARACTERGUID_S_Player_Beast_f25ca124-a4d2-427b-af62-df66df41a978, _)
+THEN
+NOT DB_OriginMomentTag("RC_DW_UnderTavern_DwarfBoss", "BEAST", "RC_DW_UnderTavern_DwarfBoss_COM_Beast");
+NOT DB_OriginMomentTag_3SP("RC_DW_UnderTavern_QuestioningAssassin", "BEAST", "RC_DW_UnderTavern_QuestioningAssassin_COM_Beast");
+DB_OriginMomentTag("RC_DW_UnderTavern_DwarfBoss", "BEAST", "RC_DW_UnderTavern_DwarfBoss_COM_Beast_2");
+
+IF
+ObjectFlagSet("RC_DW_WC_AskedMordusAboutDeathFogWeapons", CHARACTERGUID_S_Player_Beast_f25ca124-a4d2-427b-af62-df66df41a978, (INTEGER)_Var1)
+AND
+IsTagged(CHARACTERGUID_S_Player_Beast_f25ca124-a4d2-427b-af62-df66df41a978, "AVATAR", 1)
+AND NOT
+DB_RC_WC_BST_BeastHeardOfDeathFog(_Var1)
+THEN
+DB_RC_WC_BST_BeastHeardOfDeathFog(_Var1);
+
+IF
+ObjectFlagSet("QuestUpdate_RC_DW_WC_AtaraxianLair_KnowAboutDeathFogInCave", CHARACTERGUID_S_Player_Beast_f25ca124-a4d2-427b-af62-df66df41a978, (INTEGER)_Var1)
+AND
+IsTagged(CHARACTERGUID_S_Player_Beast_f25ca124-a4d2-427b-af62-df66df41a978, "AVATAR", 1)
+AND NOT
+DB_RC_WC_BST_BeastHeardOfDeathFog(_Var1)
+THEN
+DB_RC_WC_BST_BeastHeardOfDeathFog(_Var1);
+
+IF
+DialogEnded(_, (INTEGER)_Var2)
+AND
+DB_RC_WC_BST_BeastHeardOfDeathFog(_Var2)
+THEN
+TimerLaunch("RC_DW_WC_BeastTellIsbeil_Try", 30000);
+
+IF
+TimerFinished("RC_DW_WC_BeastTellIsbeil_Try")
+AND NOT
+QRY_RC_WC_BST_BeastTellIsbeilFound()
+AND
+DB_RC_WC_BST_BeastTellIsbeilAttemptCounter(_Var1)
+AND
+_Var1 <= 10
+AND
+IntegerSum(_Var1, 1, _Var2)
+THEN
+NOT DB_RC_WC_BST_BeastTellIsbeilAttemptCounter(_Var1);
+DB_RC_WC_BST_BeastTellIsbeilAttemptCounter(_Var2);
+TimerLaunch("RC_DW_WC_BeastTellIsbeil_Try", 30000);
+
+QRY
+QRY_RC_WC_BST_BeastTellIsbeilFound()
+AND
+DB_CompanionAvatarBond(_Var1, CHARACTERGUID_S_Player_Beast_f25ca124-a4d2-427b-af62-df66df41a978)
+AND
+QRY_SpeakerIsAvailableAndInDialogRange(_Var1, CHARACTERGUID_S_Player_Beast_f25ca124-a4d2-427b-af62-df66df41a978)
+AND
+QueryOnlyOnce("RC_DW_WC_BeastTellIsbeil_ARD_Any")
+THEN
+Proc_StartDialog(1, "RC_WC_AD_BeastTellIsbeil", CHARACTERGUID_S_Player_Beast_f25ca124-a4d2-427b-af62-df66df41a978);
+Proc_RelationshipDialog(_Var1, "RC_DW_WC_BeastTellIsbeil_ARD_Any", CHARACTERGUID_S_Player_Beast_f25ca124-a4d2-427b-af62-df66df41a978);
+
+IF
+ObjectFlagSet("RC_DW_BST_BelievedLohar", CHARACTERGUID_S_Player_Beast_f25ca124-a4d2-427b-af62-df66df41a978, _)
+AND
+IsTagged(CHARACTERGUID_S_Player_Beast_f25ca124-a4d2-427b-af62-df66df41a978, "AVATAR", 0)
+THEN
+ObjectSetFlag(CHARACTERGUID_S_RC_DW_UnderTavern_DwarfBoss_8e58abc6-1010-4e67-97b2-b9686586e784, "RC_DW_BST_DoNotDie", 0);
+CharacterSetImmortal(CHARACTERGUID_S_RC_DW_UnderTavern_DwarfBoss_8e58abc6-1010-4e67-97b2-b9686586e784, 1);
+UserSetFlag(CHARACTERGUID_S_Player_Beast_f25ca124-a4d2-427b-af62-df66df41a978, "QuestUpdate_FTJ_COM_Beast_BelievedLohar");
+
+IF
+DialogStarted("RC_DW_UnderTavern_DwarfBossGuard", _)
+THEN
+NOT DB_OriginMomentTag("RC_DW_UnderTavern_DwarfBossGuard", "BEAST", "RC_DW_UnderTavern_DwarfBossGuard_COM_Beast");
+
+IF
+ObjectFlagSet("RC_DW_HasMet_LoharGuard", CHARACTERGUID_S_Player_Beast_f25ca124-a4d2-427b-af62-df66df41a978, 0)
+THEN
+NOT DB_OriginMomentTag("RC_DW_UnderTavern_DwarfBossGuard", "BEAST", "RC_DW_UnderTavern_DwarfBossGuard_COM_Beast");
+
+IF
+ObjectFlagSet("RC_DW_MetDwarfBoss", CHARACTERGUID_S_Player_Beast_f25ca124-a4d2-427b-af62-df66df41a978, 0)
+THEN
+NOT DB_OriginMomentTag("RC_DW_UnderTavern_DwarfBossGuard", "BEAST", "RC_DW_UnderTavern_DwarfBossGuard_COM_Beast");
+
+IF
+ObjectFlagSet("RC_DW_BST_BelievedLohar", CHARACTERGUID_S_Player_Beast_f25ca124-a4d2-427b-af62-df66df41a978, 0)
+THEN
+NOT DB_OriginMomentTag("RC_DW_UnderTavern_DwarfBossGuard", "BEAST", "RC_DW_UnderTavern_DwarfBossGuard_COM_Beast");
+
+IF
+ObjectFlagSet("QuestUpdate_FTJ_COM_Beast_ToArx", CHARACTERGUID_S_Player_Beast_f25ca124-a4d2-427b-af62-df66df41a978, (INTEGER)_Var1)
+THEN
+DB_RC_BST_ToArxUpdate(_Var1);
+
+IF
+DialogEnded(_, (INTEGER)_Var2)
+AND
+DB_RC_BST_ToArxUpdate(_Var2)
+AND NOT
+DB_ReflectionDialogs_Queued(CHARACTERGUID_S_Player_Beast_f25ca124-a4d2-427b-af62-df66df41a978, "RC_DW_WC_RD_LucianDeathfog")
+THEN
+Proc_RelationshipDialog(CHARACTERGUID_S_Player_Beast_f25ca124-a4d2-427b-af62-df66df41a978, "RC_WC_DeathFogToArx_CRD_Beast", CHARACTERGUID_S_Player_Beast_f25ca124-a4d2-427b-af62-df66df41a978);
+
+IF
+DialogEnded(_, (INTEGER)_Var2)
+AND
+DB_RC_BST_ToArxUpdate(_Var2)
+AND
+DB_ReflectionDialogs_Queued(CHARACTERGUID_S_Player_Beast_f25ca124-a4d2-427b-af62-df66df41a978, "RC_DW_WC_RD_LucianDeathfog")
+THEN
+DB_RC_WC_BST_WaitingForLucianDeathFogRD(1);
+
+IF
+DialogEnded("RC_DW_WC_RD_LucianDeathfog", _)
+AND
+DB_RC_WC_BST_WaitingForLucianDeathFogRD(1)
+THEN
+Proc_RelationshipDialog(CHARACTERGUID_S_Player_Beast_f25ca124-a4d2-427b-af62-df66df41a978, "RC_WC_DeathFogToArx_CRD_Beast", CHARACTERGUID_S_Player_Beast_f25ca124-a4d2-427b-af62-df66df41a978);
+
+IF
+CharacterUsedSkillOnTarget((CHARACTERGUID)_Var1, CHARACTERGUID_S_RC_GY_DwarfBrotherGhost_9ae2d561-fdbf-4a12-a99e-0dd76690a6cb, (STRING)_Var2, _, _)
+AND
+DB_SourceVampirism_Skills(_Var2)
+AND
+DB_CompanionAvatarBond(CHARACTERGUID_S_Player_Beast_f25ca124-a4d2-427b-af62-df66df41a978, _Var1)
+AND
+CharacterCanSee(CHARACTERGUID_S_Player_Beast_f25ca124-a4d2-427b-af62-df66df41a978, _Var1, 1)
+THEN
+ChangeAttitude(CHARACTERGUID_S_Player_Beast_f25ca124-a4d2-427b-af62-df66df41a978, _Var1, -10);
+Proc_RelationshipDialog(CHARACTERGUID_S_Player_Beast_f25ca124-a4d2-427b-af62-df66df41a978, "RC_GY_GhostSiblingsConsumed_CRD_Beast", _Var1);
+
+IF
+DialogEnded("RC_GY_DwarfSiblingGhosts_COM_Beast", (INTEGER)_Var1)
+AND
+DB_GlobalFlag("RC_GY_PlayerConsumeGhostSiblings")
+AND
+DialogGetInvolvedPlayer(_Var1, 2, _Var2)
+THEN
+CharacterUseSkill(_Var2, "Target_SourceVampirism", CHARACTERGUID_S_RC_GY_DwarfSisterGhost_b43eae88-66b6-45fb-9765-3a5e0bf509eb, 1, 1, 1);
+CharacterUseSkill(_Var2, "Target_SourceVampirism", CHARACTERGUID_S_RC_GY_DwarfBrotherGhost_9ae2d561-fdbf-4a12-a99e-0dd76690a6cb, 1, 1, 1);
+
+IF
+ObjectFlagSet("QuestUpdate_FTJ_COM_Beast_ToArx", (GUIDSTRING)_Var1, _)
+AND
+ObjectGetFlag(_Var1, "QuestUpdate_FTJ_COM_Beast_ToArx_2", 0)
+THEN
+ObjectSetFlag(_Var1, "QuestUpdate_FTJ_COM_Beast_ToArx_1", 0);
+
+IF
+ObjectFlagSet("QuestUpdate_FTJ_COM_Beast_ToArx_1", (GUIDSTRING)_Var1, _)
+THEN
+ObjectSetFlag(_Var1, "QuestUpdate_FTJ_COM_Beast_ToArx", 0);
+
+IF
+ObjectFlagSet("QuestUpdate_FTJ_COM_Beast_ToArx_2", (GUIDSTRING)_Var1, _)
+THEN
+ObjectSetFlag(_Var1, "QuestUpdate_FTJ_COM_Beast_ToArx", 0);
+
+IF
+ObjectFlagSet("QuestUpdate_FTJ_OriginBeast_ToArx", (GUIDSTRING)_Var1, _)
+AND
+ObjectGetFlag(_Var1, "QuestUpdate_FTJ_OriginBeast_ToArx_2", 0)
+THEN
+ObjectSetFlag(_Var1, "QuestUpdate_FTJ_OriginBeast_ToArx_1", 0);
+
+IF
+ObjectFlagSet("QuestUpdate_FTJ_OriginBeast_ToArx_1", (GUIDSTRING)_Var1, _)
+THEN
+ObjectSetFlag(_Var1, "QuestUpdate_FTJ_OriginBeast_ToArx", 0);
+
+IF
+ObjectFlagSet("QuestUpdate_FTJ_OriginBeast_ToArx_2", (GUIDSTRING)_Var1, _)
+THEN
+ObjectSetFlag(_Var1, "QuestUpdate_FTJ_OriginBeast_ToArx", 0);
+
+IF
+ObjectFlagSet("QuestUpdate_FTJ_OriginBeast_ShipmentDeathFog", (GUIDSTRING)_Var1, _)
+AND
+ObjectGetFlag(_Var1, "QuestUpdate_FTJ_OriginBeast_ShipmentToArx", 1)
+THEN
+ObjectSetFlag(_Var1, "QuestUpdate_FTJ_OriginBeast_ToArx_2", 0);
+
+IF
+ObjectFlagSet("QuestUpdate_FTJ_OriginBeast_ShipmentToArx", (GUIDSTRING)_Var1, _)
+AND
+ObjectGetFlag(_Var1, "QuestUpdate_FTJ_OriginBeast_ShipmentDeathFog", 1)
+THEN
+ObjectSetFlag(_Var1, "QuestUpdate_FTJ_OriginBeast_ToArx_2", 0);
+
+IF
+ObjectFlagSet("QuestUpdate_FTJ_COM_Beast_ShipmentDeathFog", (GUIDSTRING)_Var1, _)
+AND
+ObjectGetFlag(_Var1, "QuestUpdate_FTJ_COM_Beast_ShipmentToArx", 1)
+THEN
+ObjectSetFlag(_Var1, "QuestUpdate_FTJ_COM_Beast_ToArx_2", 0);
+
+IF
+ObjectFlagSet("QuestUpdate_FTJ_COM_Beast_ShipmentToArx", (GUIDSTRING)_Var1, _)
+AND
+ObjectGetFlag(_Var1, "QuestUpdate_FTJ_COM_Beast_ShipmentDeathFog", 1)
+THEN
+ObjectSetFlag(_Var1, "QuestUpdate_FTJ_COM_Beast_ToArx_2", 0);
+
+IF
+GameBookInterfaceClosed(ITEMGUID_S_RC_DW_WC_PeacekeeperManifesto_1d25feb1-d456-4609-a263-9be77b5dd0f2, (CHARACTERGUID)_Var1)
+AND
+QRY_RC_BST_SameUserAsBeast(_Var1)
+THEN
+UserSetFlag(_Var1, "QuestUpdate_FTJ_COM_Beast_ShipmentDeathFog", 0);
+ObjectSetFlag(_Var1, "QuestUpdate_FTJ_OriginBeast_ShipmentDeathFog", 0);
+
+IF
+GameBookInterfaceClosed(ITEMGUID_S_RC_DW_WC_EmpressLetter_ffaa5485-ccc8-4e66-a69b-52316fdc7c82, (CHARACTERGUID)_Var1)
+AND
+QRY_RC_BST_SameUserAsBeast(_Var1)
+THEN
+UserSetFlag(_Var1, "QuestUpdate_FTJ_COM_Beast_ShipmentToArx", 0);
+ObjectSetFlag(_Var1, "QuestUpdate_FTJ_OriginBeast_ShipmentToArx", 0);
+
+QRY
+QRY_RC_BST_SameUserAsBeast(CHARACTERGUID_S_Player_Beast_f25ca124-a4d2-427b-af62-df66df41a978)
+THEN
+DB_NOOP(0);
+
+QRY
+QRY_RC_BST_SameUserAsBeast((CHARACTERGUID)_Var1)
+AND
+DB_CompanionAvatarBond(CHARACTERGUID_S_Player_Beast_f25ca124-a4d2-427b-af62-df66df41a978, _Var1)
+THEN
+DB_NOOP(0);
+
+QRY
+QRY_RC_BST_SameUserAsBeast((CHARACTERGUID)_Var1)
+AND
+DB_CompanionAvatarBond(CHARACTERGUID_S_Player_Beast_f25ca124-a4d2-427b-af62-df66df41a978, _Var2)
+AND
+DB_CompanionAvatarBond(_Var1, _Var2)
+THEN
+DB_NOOP(0);
+
+IF
+ObjectFlagSet("QuestUpdate_FTJ_COM_Beast_ToArx_1", CHARACTERGUID_S_Player_Beast_f25ca124-a4d2-427b-af62-df66df41a978, _)
+AND
+QueryOnlyOnce("Beast_ToArx_CompanionRelationUp20")
+THEN
+ObjectSetFlag(CHARACTERGUID_S_Player_Beast_f25ca124-a4d2-427b-af62-df66df41a978, "CompanionRelationUp20");
+
+IF
+ObjectFlagSet("QuestUpdate_FTJ_COM_Beast_ToArx_2", CHARACTERGUID_S_Player_Beast_f25ca124-a4d2-427b-af62-df66df41a978, _)
+AND
+QueryOnlyOnce("Beast_ToArx_CompanionRelationUp20")
+THEN
+ObjectSetFlag(CHARACTERGUID_S_Player_Beast_f25ca124-a4d2-427b-af62-df66df41a978, "CompanionRelationUp20");
+
+IF
+ObjectFlagSet("QuestUpdate_FTJ_COM_Beast_ToArx_2", CHARACTERGUID_S_Player_Beast_f25ca124-a4d2-427b-af62-df66df41a978, _)
+AND
+DB_CurrentLevel("RC_Main")
+AND
+DB_CompanionAvatarBond(CHARACTERGUID_S_Player_Beast_f25ca124-a4d2-427b-af62-df66df41a978, _Var2)
+AND
+CharacterIsControlled(_Var2, 1)
+THEN
+Proc_RelationshipDialog(CHARACTERGUID_S_Player_Beast_f25ca124-a4d2-427b-af62-df66df41a978, "RC_WC_DeathFogToArx_CRD_Beast", _Var2);
+
+IF
+ObjectFlagSet("QuestUpdate_FTJ_COM_Beast_ToArx_2", CHARACTERGUID_S_Player_Beast_f25ca124-a4d2-427b-af62-df66df41a978, _)
+AND
+DB_CurrentLevel("RC_Main")
+AND
+DB_CompanionAvatarBond(CHARACTERGUID_S_Player_Beast_f25ca124-a4d2-427b-af62-df66df41a978, _Var2)
+AND
+CharacterIsControlled(_Var2, 0)
+AND
+DB_CompanionAvatarBond(_Var3, _Var2)
+AND
+CharacterIsControlled(_Var3, 1)
+THEN
+Proc_RelationshipDialog(CHARACTERGUID_S_Player_Beast_f25ca124-a4d2-427b-af62-df66df41a978, "RC_WC_DeathFogToArx_CRD_Beast", _Var3);
+
+IF
+ObjectFlagSet("RC_WC_BST_AdmittedDeathFog", CHARACTERGUID_S_RC_DW_UnderTavern_DwarfBoss_8e58abc6-1010-4e67-97b2-b9686586e784, (INTEGER)_Var1)
+AND
+DB_DialogPlayers(_Var1, _Var2, _)
+AND
+CharacterGetReservedUserID(_Var2, _Var4)
+AND
+CharacterGetReservedUserID(CHARACTERGUID_S_Player_Beast_f25ca124-a4d2-427b-af62-df66df41a978, _Var4)
+AND
+IsTagged(CHARACTERGUID_S_Player_Beast_f25ca124-a4d2-427b-af62-df66df41a978, "AVATAR", 0)
+THEN
+DB_RC_DW_BST_LoharAdmittedDeathFogDialogue(_Var1);
+
+IF
+ObjectFlagSet("RC_WC_BST_AdmittedDeathFog", CHARACTERGUID_S_RC_DW_UnderTavern_DwarfBoss_8e58abc6-1010-4e67-97b2-b9686586e784, (INTEGER)_Var1)
+THEN
+ObjectClearFlag(CHARACTERGUID_S_RC_DW_UnderTavern_DwarfBoss_8e58abc6-1010-4e67-97b2-b9686586e784, "RC_WC_BST_AdmittedDeathFog", 0);
+
+IF
+DialogEnded(_, (INTEGER)_Var2)
+AND
+DB_RC_DW_BST_LoharAdmittedDeathFogDialogue(_Var2)
+THEN
+Proc_RelationshipDialog(CHARACTERGUID_S_Player_Beast_f25ca124-a4d2-427b-af62-df66df41a978, "RC_WC_LoharAdmittedDeathFog_CRD_Beast", CHARACTERGUID_S_RC_DW_UnderTavern_DwarfBoss_8e58abc6-1010-4e67-97b2-b9686586e784);
+
+IF
+SavegameLoaded((INTEGER)_Var1, (INTEGER)_Var2, (INTEGER)_Var3, (INTEGER)_Var4)
+AND
+QRY_VersionIsOlderThan(_Var1, _Var2, _Var3, _Var4, 3, 6, 0, 1)
+AND
+UserGetFlag(S_Player_Beast_f25ca124-a4d2-427b-af62-df66df41a978, "QuestUpdate_FTJ_COM_Beast_KilledLohar", 0)
+AND
+UserGetFlag(S_Player_Beast_f25ca124-a4d2-427b-af62-df66df41a978, "QuestUpdate_FTJ_COM_Beast_BelievedLohar", 0)
+AND
+UserGetFlag(S_Player_Beast_f25ca124-a4d2-427b-af62-df66df41a978, "QuestUpdate_FTJ_COM_Beast_ShipmentToArx", 0)
+AND
+UserGetFlag(S_Player_Beast_f25ca124-a4d2-427b-af62-df66df41a978, "QuestUpdate_FTJ_COM_Beast_ShipmentDeathFog", 0)
+AND
+UserGetFlag(S_Player_Beast_f25ca124-a4d2-427b-af62-df66df41a978, "QuestUpdate_FTJ_COM_Beast_ToArx_1", 0)
+AND
+UserGetFlag(S_Player_Beast_f25ca124-a4d2-427b-af62-df66df41a978, "QuestUpdate_FTJ_COM_Beast_ToArx_2", 0)
+AND
+UserGetFlag(S_Player_Beast_f25ca124-a4d2-427b-af62-df66df41a978, "QuestUpdate_FTJ_COM_Beast_Act2Start", 0)
+AND
+UserGetFlag(S_Player_Beast_f25ca124-a4d2-427b-af62-df66df41a978, "QuestUpdate_FTJ_COM_Beast_PreAct2Start", 0)
+AND
+UserGetFlag(S_Player_Beast_f25ca124-a4d2-427b-af62-df66df41a978, "QuestUpdate_FTJ_COM_Beast_KnowLoharDriftwood", 0)
+AND
+UserGetFlag(S_Player_Beast_f25ca124-a4d2-427b-af62-df66df41a978, "QuestUpdate_FTJ_COM_Beast_IsbeilQueenEncounter", 0)
+AND
+UserGetFlag(S_Player_Beast_f25ca124-a4d2-427b-af62-df66df41a978, "QuestUpdate_FTJ_COM_Beast_CaravanLohar", 0)
+THEN
+UserSetFlag(S_Player_Beast_f25ca124-a4d2-427b-af62-df66df41a978, "QuestUpdate_FTJ_COM_Beast_PreAct2Start", 0);
+
+
+EXITSECTION
+ENDEXITSECTION
+
+ParentTargetEdge "ReapersCoast"

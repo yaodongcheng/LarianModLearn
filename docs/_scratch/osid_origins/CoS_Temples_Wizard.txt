@@ -1,0 +1,417 @@
+Version 1
+SubGoalCombiner SGC_AND
+
+INITSECTION
+DB_CoS_Temples_Wizard_DoorRunes(ITEMGUID_S_CoS_Temples_Wizard_DoorRune_001_2ae7a940-d564-41f2-af0c-8598fa7bff33);
+DB_CoS_Temples_Wizard_DoorRunes(ITEMGUID_S_CoS_Temples_Wizard_DoorRune_002_fb774451-94dc-4798-93dc-a8a0043abddb);
+DB_CoS_Temples_Wizard_DoorRunes(ITEMGUID_S_CoS_Temples_Wizard_DoorRune_003_ca8243b6-7b9e-4013-872a-8846b1eb1f5c);
+DB_Ghosts(CHARACTERGUID_S_CoS_Temples_Wizard_BlackRing_001_Ghost_55be9026-7f00-4249-bf23-4872dcc4d3e8, "CoS_Temples_Wizard_BlackRing_001_Ghost");
+CharacterLinkGhost(CHARACTERGUID_S_CoS_Temples_Wizard_BlackRing_001_811a0f82-c1dd-4b0d-8748-309248d72bc9, CHARACTERGUID_S_CoS_Temples_Wizard_BlackRing_001_Ghost_55be9026-7f00-4249-bf23-4872dcc4d3e8);
+ProcSetInvulnerable(CHARACTERGUID_S_CoS_Temples_Wizard_KnightOfAmadia_c2cc3cdf-2119-4eae-a7ef-ed77aec013bc, 1);
+CharacterSetImmortal(CHARACTERGUID_S_CoS_Temples_Wizard_KnightOfAmadia_c2cc3cdf-2119-4eae-a7ef-ed77aec013bc, 1);
+ProcCharacterDisableAllCrimes(CHARACTERGUID_S_CoS_Temples_Wizard_KnightOfAmadia_c2cc3cdf-2119-4eae-a7ef-ed77aec013bc);
+DB_Dialogs(CHARACTERGUID_S_CoS_Temples_Wizard_KnightOfAmadia_c2cc3cdf-2119-4eae-a7ef-ed77aec013bc, "CoS_Temples_Wizard_KnightOfAmadia");
+DB_Dialogs(ITEMGUID_S_CoS_Temples_Wizard_Statue_AmadiaShrine_9ef8ad8b-cd81-418b-9baf-5e59cb2d39b2, "CoS_Temples_Wizard_Statue_AmadiaShrine");
+SetHasDialog(CHARACTERGUID_S_CoS_Temples_Wizard_KnightOfAmadia_c2cc3cdf-2119-4eae-a7ef-ed77aec013bc, 0);
+DB_CoS_Temples_AmadiaRegions(TRIGGERGUID_S_CoS_Temples_Wizard_BuffTrigger_2f1a00d8-a3cd-455e-be10-88ae3ecc0b77);
+DB_CoS_Temples_AmadiaBuffs("CoS_Temples_WizardBuff_Haste", "HASTED");
+DB_CoS_Temples_AmadiaBuffs("CoS_Temples_WizardBuff_MagicArmor", "MAGIC_SHELL");
+DB_CoS_Temples_AmadiaBuffs("CoS_Temples_WizardBuff_WingedFeet", "ETHEREAL_SOLES");
+DB_CoS_Temples_AmadiaBuffs("CoS_Temples_WizardBuff_FireImmune", "FIRE_IMMUNITY");
+DB_CoS_Temples_AmadiaBuffs("CoS_Temples_WizardBuff_IceImmune", "WATER_IMMUNITY");
+DB_CoS_Temples_AmadiaBuffs("CoS_Temples_WizardBuff_LightningImmune", "AIR_IMMUNITY");
+DB_HasStoryEvent(ITEMGUID_S_CoS_Temples_Wizard_AmadiaJewel_4e08facd-d84a-40b0-b35e-04d4eb6818e3, "CoS_HasAmadiaKey");
+ProcTriggerRegisterForPlayers(TRIGGERGUID_S_CoS_Temples_Wizard_OuterVB_Box_85e1f29a-bf23-430f-a017-5ece32a4a5d0);
+ProcTriggerRegisterForPlayers(TRIGGERGUID_S_CoS_Temples_Wizard_VB_SanctumPuzzle_Box_f1f08d4e-25a2-4496-b902-3f61b7123af7);
+ProcTriggerRegisterForPlayers(TRIGGERGUID_S_CoS_Temples_Wizard_BuffTrigger_2f1a00d8-a3cd-455e-be10-88ae3ecc0b77);
+ItemSetCanInteract(ITEMGUID_S_CoS_Temples_Wizard_Statue_AmadiaShrine_Door_de956d00-f103-4612-a793-f5f2744e1092, 0);
+SetOnStage(ITEMGUID_S_CoS_Temples_Wizard_Ladder_57f98b4c-4912-498a-85b0-fa21b58efdb2, 0);
+SetOnStage(ITEMGUID_S_CoS_Temples_Wizard_SanctumDoor_003_9961d670-1736-4073-9e84-93d05f4e1a3e, 0);
+SetOnStage(ITEMGUID_S_CoS_Temples_Wizard_SanctumDoor_004_71c3af8b-6961-40c4-a745-6c90909e94a9, 0);
+SetOnStage(ITEMGUID_S_CoS_Temples_Wizard_PortalToSanctum_ee5bbc24-a9c4-4012-a581-e6689b39cae9, 0);
+
+KBSECTION
+IF
+CharacterEnteredTrigger((CHARACTERGUID)_Var1, TRIGGERGUID_S_CoS_Temples_Wizard_OuterVB_Box_85e1f29a-bf23-430f-a017-5ece32a4a5d0)
+AND
+QueryOnlyOnce("CoS_Temples_Wizard_VB_BurningShips_Once")
+THEN
+StartVoiceBark("CoS_Temples_Wizard_VB_BurningShips", _Var1);
+
+IF
+CharacterEnteredTrigger((CHARACTERGUID)_Var1, TRIGGERGUID_S_CoS_SUB_Temples_Wizard_b339683b-fb87-4fe5-93ab-599970df44af)
+AND
+QueryOnlyOnce("CoS_Temples_Wizard_VB_EnteredAmadiaTemple_Once")
+THEN
+ProcObjectTimer(_Var1, "CoS_Temples_Wizard_VB_EnteredAmadiaTemple_Timer", 2500);
+
+PROC
+ProcObjectTimerFinished((CHARACTERGUID)_Var1, "CoS_Temples_Wizard_VB_EnteredAmadiaTemple_Timer")
+THEN
+StartVoiceBark("CoS_Temples_Wizard_VB_EnteredAmadiaTemple", _Var1);
+
+IF
+CharacterEnteredTrigger((CHARACTERGUID)_Var1, TRIGGERGUID_S_CoS_Temples_Wizard_VB_SanctumPuzzle_Box_f1f08d4e-25a2-4496-b902-3f61b7123af7)
+AND
+QueryOnlyOnce("CoS_Temples_Wizard_VB_SanctumPuzzle_Once")
+THEN
+StartVoiceBark("CoS_Temples_Wizard_VB_SanctumPuzzle", _Var1);
+ProcTriggerUnregisterForPlayers(TRIGGERGUID_S_CoS_Temples_Wizard_VB_SanctumPuzzle_Box_f1f08d4e-25a2-4496-b902-3f61b7123af7);
+
+IF
+CharacterEnteredTrigger((CHARACTERGUID)_Var1, TRIGGERGUID_S_CoS_SUB_Temples_Wizard_b339683b-fb87-4fe5-93ab-599970df44af)
+THEN
+PartySetFlag(_Var1, "QuestUpdate_CoS_WizardTemple_Start");
+
+IF
+CharacterUsedItem((CHARACTERGUID)_Var1, ITEMGUID_S_CoS_Temples_Wizard_PortalToTemple_c91cae95-8b2e-40ff-8df2-6e9ecf411555)
+THEN
+ProcObjectTimer(_Var1, "CoS_ToAmadiaTemple", 2500);
+
+PROC
+ProcObjectTimerFinished((GUIDSTRING)_Var1, "CoS_ToAmadiaTemple")
+THEN
+TeleportTo(_Var1, TRIGGERGUID_S_CoS_Temples_Wizard_PortalToTemple_Point_5d0456ec-6911-404d-bf38-87d8b730dae8, "", 1);
+
+IF
+CharacterUsedItem((CHARACTERGUID)_Var1, ITEMGUID_S_CoS_Temples_Wizard_PortalToIsland_0e93ce69-a0a5-4731-b7f8-4274f5da7149)
+THEN
+ProcObjectTimer(_Var1, "CoS_AmadiaTempleToIsland", 2500);
+
+PROC
+ProcObjectTimerFinished((GUIDSTRING)_Var1, "CoS_AmadiaTempleToIsland")
+THEN
+TeleportTo(_Var1, TRIGGERGUID_S_CoS_Temples_Wizard_PortalToIsland_Point_b40e6c91-3132-4228-a229-729034dbd473, "", 1);
+
+IF
+ObjectFlagSet("QuestUpdate_CoS_WizardTemple_HoveringRunes", (GUIDSTRING)_Var1, _)
+AND
+QueryOnlyOnce("QuestUpdate_CoS_WizardTemple_HoveringRunes_AD_Once")
+THEN
+Proc_StartDialog(1, "GLO_AD_ActivatedSwitch", _Var1);
+
+IF
+CharacterUsedItem((CHARACTERGUID)_Var1, ITEMGUID_S_CoS_Temples_Wizard_DoorToMainRune_77a589a9-5a03-4cd3-8344-6c4c06cf1074)
+THEN
+GlobalSetFlag("CoS_Temples_Wizard_OuterSanctumPart_1");
+Proc_ShakeCameraForTime(_Var1, 2000);
+Proc_StartDialog(1, "GLO_AD_ActivatedSwitch", _Var1);
+PartySetFlag(_Var1, "QuestUpdate_CoS_WizardTemple_HoveringRunes");
+
+IF
+GlobalFlagSet("CoS_Temples_Wizard_OuterSanctumPart_1")
+THEN
+ItemDestroy(ITEMGUID_S_CoS_Temples_Wizard_DoorToMainRoom_000_1d450993-4e1d-4d91-a549-21ed967823d6);
+
+IF
+CharacterUsedItem((CHARACTERGUID)_Var1, ITEMGUID_S_CoS_Temples_Wizard_DoorRunesToSanctum_001_59938682-d802-4f8d-a2fd-1c71eb68a16a)
+THEN
+GlobalSetFlag("CoS_Temples_Wizard_OuterSanctumPart_2");
+ItemDestroy(ITEMGUID_S_CoS_Temples_Wizard_DoorToMainRoom_001_e060c40d-0b74-4f1e-aa23-cd8b179744a2);
+Proc_ShakeCameraForTime(_Var1, 2000);
+PartySetFlag(_Var1, "QuestUpdate_CoS_WizardTemple_HoveringRunes");
+
+IF
+CharacterUsedItem((CHARACTERGUID)_Var1, ITEMGUID_S_CoS_Temples_Wizard_DoorRunesToSanctum_002_4fbf7bbf-5210-4e2f-9c25-23872d7b6f46)
+THEN
+SetOnStage(ITEMGUID_S_CoS_Temples_Wizard_PortalToSanctum_ee5bbc24-a9c4-4012-a581-e6689b39cae9, 1);
+PlayEffect(ITEMGUID_S_CoS_Temples_Wizard_PortalToSanctum_ee5bbc24-a9c4-4012-a581-e6689b39cae9, "RS3_FX_Char_Creatures_Shriker_LightningBolt_Impact_01");
+GlobalSetFlag("CoS_Temples_Wizard_OuterSanctumPart_3");
+ProcObjectTimer(_Var1, "CoS_Temples_Wizard_AD_OpenedPortalToSanctum_Timer", 1000);
+TriggerSetAtmosphere(TRIGGERGUID_AtmosphereTrigger_CoS_Temple_Amadia_FirstHalf_30ca8745-961b-4b46-9726-8f3768fbbaa4, "6b647fc9-1f97-4f53-840e-656506d8d19f");
+Proc_ShakeCameraForTime(_Var1, 2000);
+PartySetFlag(_Var1, "QuestUpdate_CoS_WizardTemple_HoveringRunes");
+
+PROC
+ProcObjectTimerFinished((CHARACTERGUID)_Var1, "CoS_Temples_Wizard_AD_OpenedPortalToSanctum_Timer")
+THEN
+Proc_StartDialog(1, "GLO_AD_ActivatedSwitch", _Var1);
+PartySetFlag(_Var1, "QuestUpdate_CoS_WizardTemple_PortalUnlocked");
+
+IF
+ObjectFlagSet((STRING)_Var1, (CHARACTERGUID)_Var2, _)
+AND
+DB_CoS_Temples_AmadiaBuffs(_Var1, _Var4)
+THEN
+ApplyStatus(_Var2, _Var4, -1);
+PlayAnimation(_Var2, "Kneel_02");
+
+IF
+ObjectFlagSet((STRING)_Var1, (CHARACTERGUID)_Var2, _)
+AND
+DB_CoS_Temples_AmadiaBuffs(_Var1, _)
+AND
+DB_CoS_Temples_AmadiaBuffs(_Var5, _)
+AND
+_Var5 != _Var1
+AND
+ObjectGetFlag(_Var2, _Var5, 1)
+THEN
+ObjectClearFlag(_Var2, _Var5, 0);
+
+IF
+CharacterStatusRemoved((CHARACTERGUID)_Var1, (STRING)_Var2, _)
+AND
+DB_CoS_Temples_AmadiaBuffs(_Var4, _Var2)
+AND
+ObjectGetFlag(_Var1, _Var4, 1)
+THEN
+Proc_CoS_Temples_Amadia_CheckStilInTemple(_Var1, _Var4);
+
+IF
+CharacterResurrected((CHARACTERGUID)_Var1)
+AND
+DB_CoS_Temples_AmadiaBuffs(_Var2, _Var3)
+AND
+ObjectGetFlag(_Var1, _Var2, 1)
+THEN
+Proc_CoS_Temples_Amadia_CheckStilInTemple(_Var1, _Var2);
+
+PROC
+ProcRegionEnded("CoS_Main")
+THEN
+GoalCompleted;
+
+IF
+CharacterLeftTrigger((CHARACTERGUID)_Var1, (TRIGGERGUID)_Var2)
+AND
+DB_CoS_Temples_AmadiaRegions(_Var2)
+AND
+DB_CoS_Temples_AmadiaBuffs(_Var3, _Var4)
+AND
+ObjectGetFlag(_Var1, _Var3, 1)
+THEN
+RemoveStatus(_Var1, _Var4);
+
+PROC
+Proc_CoS_Temples_Amadia_CheckStilInTemple((CHARACTERGUID)_Var1, (STRING)_Var2)
+AND
+DB_CoS_Temples_AmadiaRegions(_Var3)
+AND
+DB_InRegion(_Var1, _Var3)
+AND
+DB_CoS_Temples_AmadiaBuffs(_Var2, _Var4)
+AND
+ObjectGetFlag(_Var1, _Var2, 1)
+AND
+HasActiveStatus(_Var1, _Var4, 0)
+THEN
+ApplyStatus(_Var1, _Var4, -1);
+
+IF
+CharacterEnteredTrigger((CHARACTERGUID)_Var1, (TRIGGERGUID)_Var2)
+AND
+DB_CoS_Temples_AmadiaRegions(_Var2)
+AND
+DB_CoS_Temples_AmadiaBuffs(_Var3, _Var4)
+AND
+ObjectGetFlag(_Var1, _Var3, 1)
+THEN
+ApplyStatus(_Var1, _Var4, -1);
+Proc_CoS_Temples_Amadia_CheckStilInTemple(_Var1, _Var3);
+
+IF
+ObjectFlagCleared((STRING)_Var1, (CHARACTERGUID)_Var2, _)
+AND
+DB_CoS_Temples_AmadiaBuffs(_Var1, _Var4)
+THEN
+RemoveStatus(_Var2, _Var4);
+
+IF
+DialogStarted("CoS_Temples_Wizard_Statue_AmadiaShrine", (INTEGER)_Var1)
+AND
+DialogGetInvolvedPlayer(_Var1, 1, _Var2)
+AND
+CharacterGetAbility(_Var2, "Loremaster", _Var3)
+AND
+_Var3 > 0
+THEN
+ObjectSetFlag(_Var2, "CoS_Temples_Wizard_Loremaster");
+
+IF
+DialogStarted("CoS_Temples_Wizard_Statue_AmadiaShrine", (INTEGER)_Var1)
+AND
+DialogGetInvolvedPlayer(_Var1, 1, _Var2)
+AND
+CharacterGetAbility(_Var2, "AirSpecialist", _Var3)
+AND
+_Var3 > 0
+THEN
+ObjectSetFlag(_Var2, "CoS_Temples_Wizard_AirSpecialist");
+
+IF
+DialogStarted("CoS_Temples_Wizard_Statue_AmadiaShrine", (INTEGER)_Var1)
+AND
+DialogGetInvolvedPlayer(_Var1, 1, _Var2)
+AND
+CharacterGetAbility(_Var2, "FireSpecialist", _Var3)
+AND
+_Var3 > 0
+THEN
+ObjectSetFlag(_Var2, "CoS_Temples_Wizard_FireSpecialist");
+
+IF
+DialogStarted("CoS_Temples_Wizard_Statue_AmadiaShrine", (INTEGER)_Var1)
+AND
+DialogGetInvolvedPlayer(_Var1, 1, _Var2)
+AND
+CharacterGetAbility(_Var2, "WaterSpecialist", _Var3)
+AND
+_Var3 > 0
+THEN
+ObjectSetFlag(_Var2, "CoS_Temples_Wizard_WaterSpecialist");
+
+IF
+DialogEnded("CoS_Temples_Wizard_Statue_AmadiaShrine", (INTEGER)_Var1)
+AND
+DialogGetInvolvedPlayer(_Var1, 1, _Var2)
+THEN
+ObjectClearFlag(_Var2, "CoS_Temples_Wizard_Loremaster", 0);
+ObjectClearFlag(_Var2, "CoS_Temples_Wizard_AirSpecialist", 0);
+ObjectClearFlag(_Var2, "CoS_Temples_Wizard_FireSpecialist", 0);
+ObjectClearFlag(_Var2, "CoS_Temples_Wizard_WaterSpecialist", 0);
+
+IF
+CharacterUsedItem((CHARACTERGUID)_Var1, (ITEMGUID)_Var2)
+AND
+DB_CoS_Temples_Wizard_DoorRunes(_Var2)
+THEN
+NOT DB_CoS_Temples_Wizard_DoorRunes(_Var2);
+Proc_CoS_Temples_Wizard_CheckDoorOpen(_Var1);
+Proc_ShakeCameraForTime(_Var1, 2000);
+
+PROC
+Proc_CoS_Temples_Wizard_CheckDoorOpen((CHARACTERGUID)_Var1)
+AND
+SysCount("DB_CoS_Temples_Wizard_DoorRunes", 1, _Var2)
+AND
+_Var2 == 0
+THEN
+GlobalSetFlag("CoS_Temples_Wizard_AmadiaAppear");
+PartySetFlag(_Var1, "QuestUpdate_CoS_WizardTemple_TrapsDisarmed");
+
+IF
+CharacterUsedItem((CHARACTERGUID)_Var1, ITEMGUID_S_CoS_Temples_Wizard_DoorRune_002_fb774451-94dc-4798-93dc-a8a0043abddb)
+AND
+GetPosition(ITEMGUID_S_CoS_Temples_Wizard_SanctumDoor_001_6df96d87-a634-4ff0-b2eb-af454d4eb8ee, _Var2, _Var3, _Var4)
+THEN
+SetOnStage(ITEMGUID_S_CoS_Temples_Wizard_SanctumDoor_001_6df96d87-a634-4ff0-b2eb-af454d4eb8ee, 0);
+SetOnStage(ITEMGUID_S_CoS_Temples_Wizard_SanctumDoor_003_9961d670-1736-4073-9e84-93d05f4e1a3e, 1);
+Proc_ShakeCameraForTime(_Var1, 2000);
+
+IF
+CharacterUsedItem((CHARACTERGUID)_Var1, ITEMGUID_S_CoS_Temples_Wizard_DoorRune_001_2ae7a940-d564-41f2-af0c-8598fa7bff33)
+AND
+GetPosition(ITEMGUID_S_CoS_Temples_Wizard_SanctumDoor_002_da52e0a4-2825-446c-9657-04346159c7bf, _Var2, _Var3, _Var4)
+THEN
+SetOnStage(ITEMGUID_S_CoS_Temples_Wizard_SanctumDoor_002_da52e0a4-2825-446c-9657-04346159c7bf, 0);
+SetOnStage(ITEMGUID_S_CoS_Temples_Wizard_SanctumDoor_004_71c3af8b-6961-40c4-a745-6c90909e94a9, 1);
+Proc_ShakeCameraForTime(_Var1, 2000);
+
+IF
+GlobalFlagSet("CoS_Temples_Wizard_AmadiaAppear")
+THEN
+TimerLaunch("CoS_Temples_Wizard_AmadiaAppear_Timer", 6000);
+ItemDestroy(ITEMGUID_S_CoS_Temples_Wizard_DoorToMainRoom_e060c40d-0b74-4f1e-aa23-cd8b179744a2);
+ItemDestroy(ITEMGUID_S_CoS_Temples_Wizard_SanctumDoor_001_6df96d87-a634-4ff0-b2eb-af454d4eb8ee);
+ItemDestroy(ITEMGUID_S_CoS_Temples_Wizard_SanctumDoor_002_da52e0a4-2825-446c-9657-04346159c7bf);
+ItemDestroy(ITEMGUID_S_CoS_Temples_Wizard_SanctumDoor_003_9961d670-1736-4073-9e84-93d05f4e1a3e);
+ItemDestroy(ITEMGUID_S_CoS_Temples_Wizard_SanctumDoor_004_71c3af8b-6961-40c4-a745-6c90909e94a9);
+SetOnStage(ITEMGUID_S_CoS_Temples_Wizard_AmadiaSphere_Blocker_bdecac5d-a9ec-47a0-9a0b-08a39c8e83d8, 0);
+TriggerSetAtmosphere(TRIGGERGUID_AtmosphereTrigger_CoS_Temple_Amadia_1aa19ace-5c70-492f-8075-13c121e8d296, "6b647fc9-1f97-4f53-840e-656506d8d19f");
+SetStoryEvent(CHARACTERGUID_S_CoS_Temples_Wizard_KnightOfAmadia_c2cc3cdf-2119-4eae-a7ef-ed77aec013bc, "StartEventOnSight_RestartSpotting");
+
+IF
+TimerFinished("CoS_Temples_Wizard_AmadiaAppear_Timer")
+THEN
+ProcSetInvulnerable(CHARACTERGUID_S_CoS_Temples_Wizard_KnightOfAmadia_c2cc3cdf-2119-4eae-a7ef-ed77aec013bc, 0);
+CharacterSetImmortal(CHARACTERGUID_S_CoS_Temples_Wizard_KnightOfAmadia_c2cc3cdf-2119-4eae-a7ef-ed77aec013bc, 0);
+CharacterSetAnimationOverride(CHARACTERGUID_S_CoS_Temples_Wizard_KnightOfAmadia_c2cc3cdf-2119-4eae-a7ef-ed77aec013bc, "");
+ProcCharacterEnableAllCrimes(CHARACTERGUID_S_CoS_Temples_Wizard_KnightOfAmadia_c2cc3cdf-2119-4eae-a7ef-ed77aec013bc);
+SetStoryEvent(CHARACTERGUID_S_CoS_Temples_Wizard_KnightOfAmadia_c2cc3cdf-2119-4eae-a7ef-ed77aec013bc, "CoS_RestoreMoveSpeed");
+
+IF
+StoryEvent((GUIDSTRING)_Var1, "CoS_Temples_Wizard_AmadiaKnightDialogStart")
+THEN
+Proc_StartDialog(0, "CoS_Temples_Wizard_KnightOfAmadia", CHARACTERGUID_S_CoS_Temples_Wizard_KnightOfAmadia_c2cc3cdf-2119-4eae-a7ef-ed77aec013bc, _Var1);
+
+IF
+DialogStarted("CoS_Temples_Wizard_KnightOfAmadia", _)
+AND
+QueryOnlyOnce("CoS_Wizard_TeleportToGround_Once")
+THEN
+PlayAnimation(CHARACTERGUID_S_CoS_Temples_Wizard_KnightOfAmadia_c2cc3cdf-2119-4eae-a7ef-ed77aec013bc, "Teleport_Out_01", "CoS_Wizard_TeleportToGround");
+
+IF
+StoryEvent(CHARACTERGUID_S_CoS_Temples_Wizard_KnightOfAmadia_c2cc3cdf-2119-4eae-a7ef-ed77aec013bc, "CoS_Wizard_TeleportToGround")
+THEN
+TeleportTo(CHARACTERGUID_S_CoS_Temples_Wizard_KnightOfAmadia_c2cc3cdf-2119-4eae-a7ef-ed77aec013bc, TRIGGERGUID_S_CoS_Temples_Wizard_Amadia_DefaultPoint_8c6f14b0-a16b-41e2-941c-edb339588169, "CoS_Wizard_TeleportToGround_Fx", 0);
+
+IF
+StoryEvent(CHARACTERGUID_S_CoS_Temples_Wizard_KnightOfAmadia_c2cc3cdf-2119-4eae-a7ef-ed77aec013bc, "CoS_Wizard_TeleportToGround_Fx")
+THEN
+PlayAnimation(CHARACTERGUID_S_CoS_Temples_Wizard_KnightOfAmadia_c2cc3cdf-2119-4eae-a7ef-ed77aec013bc, "Teleport_In_01", "");
+
+IF
+ObjectFlagSet("CoS_WizardAltar_MapMarker", (CHARACTERGUID)_Var1, _)
+THEN
+ShowMapMarker(_Var1, "CoS_WizardAltar", 1);
+
+IF
+GlobalFlagSet("CoS_Temples_Wizard_AmadiaSecretRoomReveal")
+THEN
+ProcItemLocalMove(ITEMGUID_S_CoS_Temples_Wizard_Statue_AmadiaShrine_9ef8ad8b-cd81-418b-9baf-5e59cb2d39b2, 0, 0, -5.5, 1, 0);
+ItemSetCanInteract(ITEMGUID_S_CoS_Temples_Wizard_Statue_AmadiaShrine_Door_de956d00-f103-4612-a793-f5f2744e1092, 1);
+
+IF
+GlobalFlagSet("CoS_Temples_Wizard_AmadiaSecretRoomReveal")
+AND
+DB_IsPlayer(_Var1)
+AND
+GetDistanceTo(_Var1, ITEMGUID_S_CoS_Temples_Wizard_Statue_AmadiaShrine_9ef8ad8b-cd81-418b-9baf-5e59cb2d39b2, _Var2)
+AND
+_Var2 < 8
+THEN
+Proc_ShakeCameraForTime(_Var1, 3500);
+
+IF
+ObjectFlagSet("CoS_Temples_Wizard_Reward", (CHARACTERGUID)_Var1, _)
+THEN
+CharacterGiveReward(_Var1, "COS_WizardTempleGloves");
+PartySetFlag(_Var1, "QuestUpdate_CoS_WizardTemple_KnightOfAmadia");
+
+IF
+CharacterUsedItem(_, ITEMGUID_S_CoS_Temples_Wizard_LadderRoll_a10a69df-049b-4651-8ed1-c64c55df4366)
+AND
+GetPosition(ITEMGUID_S_CoS_Temples_Wizard_LadderRoll_a10a69df-049b-4651-8ed1-c64c55df4366, _Var2, _Var3, _Var4)
+AND
+GetPosition(ITEMGUID_S_CoS_Temples_Wizard_Ladder_57f98b4c-4912-498a-85b0-fa21b58efdb2, _Var5, _Var6, _Var7)
+THEN
+PlayEffectAtPosition("RS3_FX_GP_ScriptedEvent_Teleport_GenericSmoke_01", _Var2, _Var3, _Var4);
+PlayEffectAtPosition("RS3_FX_GP_ScriptedEvent_Teleport_GenericSmoke_01", _Var5, _Var6, _Var7);
+SetOnStage(ITEMGUID_S_CoS_Temples_Wizard_LadderRoll_a10a69df-049b-4651-8ed1-c64c55df4366, 0);
+SetOnStage(ITEMGUID_S_CoS_Temples_Wizard_Ladder_57f98b4c-4912-498a-85b0-fa21b58efdb2, 1);
+
+IF
+ObjectFlagSet("CoS_Temples_AmadiaKnockdown", (CHARACTERGUID)_Var1, _)
+THEN
+SetStoryEvent(_Var1, "GEN_FallAndLie");
+ApplyStatus(_Var1, "KNOCKED_DOWN", 1, 1);
+
+IF
+DialogEnded("CoS_Temples_Wizard_Altar", (INTEGER)_Var1)
+AND
+DialogGetInvolvedPlayer(_Var1, 1, _Var2)
+AND
+ObjectGetFlag(_Var2, "CoS_Temples_AmadiaKnockdown", 1)
+THEN
+ObjectClearFlag(_Var2, "CoS_Temples_AmadiaKnockdown");
+RemoveStatus(_Var2, "KNOCKED_DOWN");
+CharacterSetAnimationOverride(_Var2, "");
+PlayAnimation(_Var2, "knockdown_getup");
+
+
+EXITSECTION
+ENDEXITSECTION
+
+ParentTargetEdge "CoS_Temples"

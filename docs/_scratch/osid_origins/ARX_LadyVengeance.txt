@@ -1,0 +1,126 @@
+Version 1
+SubGoalCombiner SGC_AND
+
+INITSECTION
+DB_Dialogs(ITEMGUID_S_ARX_LV_HoE_ShipHead_4c82c976-c923-4fca-9955-dc41359007ae, "ARX_LV_HoE_ShipHead");
+Proc_ARX_LadyVengeance_Init();
+DB_ARX_LV_HoE_Triggers(TRIGGERGUID_S_ARX_LV_Top_c45f8ae9-3576-49ae-b7cf-2a00c5a07335);
+DB_ARX_LV_HoE_Triggers(TRIGGERGUID_S_ARX_LV_Bot_6a0f9b76-2e10-428b-a4ed-bcff3786b9bb);
+
+KBSECTION
+PROC
+Proc_ARX_LadyVengeance_Init()
+THEN
+GlobalSetFlag("GLO_Region_Arx");
+
+PROC
+ProcRegionEnded("ARX_Main")
+THEN
+GlobalClearFlag("GLO_Region_Arx");
+
+IF
+GlobalFlagSet("ARX_LV_HoE_WaypointUnlock")
+THEN
+PROC_UnlockWaypointForAll("WAYP_ARX_LadyVengeance");
+
+IF
+DB_ARX_LV_HoE_Triggers(_Var1)
+THEN
+ProcTriggerRegisterForPlayers(_Var1);
+
+IF
+CharacterEnteredTrigger((CHARACTERGUID)_Var1, TRIGGERGUID_S_ARX_LV_Top_c45f8ae9-3576-49ae-b7cf-2a00c5a07335)
+THEN
+PlayEffect(_Var1, "RS3_FX_GP_ScriptedEvent_HOE_Summoning_01");
+
+IF
+CharacterLeftTrigger((CHARACTERGUID)_Var1, TRIGGERGUID_S_ARX_LV_Top_c45f8ae9-3576-49ae-b7cf-2a00c5a07335)
+THEN
+PlayEffect(_Var1, "RS3_FX_GP_ScriptedEvent_HOE_Summoning_01");
+
+PROC
+Proc_ARX_LadyVengeance()
+THEN
+CharacterAppearAt(CHARACTERGUID_S_GLO_River_f4931ebe-10b0-43c4-9182-640cf052717e, TRIGGERGUID_S_ARX_Outskirts_LV_MaladyPoint_167992f7-7a51-41e9-9796-8aa9631b60a4, 0, "");
+
+IF
+ObjectFlagSet("ARX_LV_Almira_GiveSkillbook", (CHARACTERGUID)_Var1, _)
+THEN
+ItemTemplateAddTo("BOOK_Skill_Necromancy_SilencingStare_5b903a84-4fc3-4d1b-998c-b5a11474c152", _Var1, 1);
+
+IF
+DialogEnded("ARX_LV_Almira", _)
+AND
+DB_GlobalFlag("GLO_Almira_ReceivedSwornbreaker")
+AND
+QueryOnlyOnce("Almira_RemovesPromise")
+THEN
+Proc_GLO_Almira_RemovePromise();
+
+IF
+ItemAddedToCharacter(ITEMGUID_S_ARX_Swornbreaker_f7c34bd1-448e-42fc-a504-f79adc2db63c, (CHARACTERGUID)_Var1)
+AND
+DB_IsPlayer(_Var1)
+THEN
+PartySetFlag(_Var1, "QuestUpdate_CoS_BreakerForAlmira_FoundBreaker");
+
+IF
+ObjectFlagSet("ARX_LV_Tarquin_GiveGodslayer", (CHARACTERGUID)_Var1, _)
+THEN
+ItemTemplateAddTo("WPN_Godslayer_Sword_2H_A_ff3c1a1b-b96b-454f-85bb-06594f9fd8f9", _Var1, 1);
+
+IF
+CharacterUsedItem((CHARACTERGUID)_Var1, ITEMGUID_S_ARX_Barracks_WhiteMagisterVault_Book_BraccusRexReveal_c719e9ac-c2fd-425a-83ef-10c22481e36c)
+AND
+DB_IsPlayer(_Var1)
+THEN
+UserSetFlag(_Var1, "ARX_PlayerKnows_VredemanIsBraccusRex");
+
+IF
+ObjectFlagSet("ARX_PlayerKnows_VredemanIsBraccusRex", (CHARACTERGUID)_Var1, _)
+AND NOT
+DB_GlobalFlag("ARX_LV_Tarquin_RewardGodslayer")
+AND NOT
+DB_Dead(CHARACTERGUID_S_GLO_Tarquin_a3d0cdcc-d0b0-464d-9ad7-43b38baed620)
+AND
+GetRegion(CHARACTERGUID_S_GLO_Tarquin_a3d0cdcc-d0b0-464d-9ad7-43b38baed620, "ARX_Main")
+THEN
+UserSetFlag(_Var1, "QuestUpdate_ARX_LV_Godslayer_Start");
+
+IF
+DialogEnded("ARX_DoctorsHouse_Prison_Jahan", _)
+AND
+GlobalGetFlag("ARX_LV_Jahan_BackToLV", 1)
+THEN
+Proc_ARX_LV_Jahan_ToLV();
+
+PROC
+Proc_ARX_LV_Jahan_ToLV()
+THEN
+Poof(CHARACTERGUID_S_ARX_DoctorsHouse_Prison_Jahan_6cb996a6-44f4-4a27-ab09-a45dde64051c);
+TeleportTo(CHARACTERGUID_S_GLO_Jahan_4d222cfd-49c8-41d3-8cb7-2a2b56232633, TRIGGERGUID_S_ARX_LV_Jahan_BackToLV_Point_c912dfb9-8bc8-40d4-9014-91ebb9f87fc8);
+SetVarObject(CHARACTERGUID_S_GLO_Jahan_4d222cfd-49c8-41d3-8cb7-2a2b56232633, "WanderArea", TRIGGERGUID_S_ARX_LV_Jahan_BackToLV_WanderArea_8b0784b9-3811-40da-ba72-cbf3a43071aa);
+Foop(CHARACTERGUID_S_GLO_Jahan_4d222cfd-49c8-41d3-8cb7-2a2b56232633);
+SetHasDialog(CHARACTERGUID_S_GLO_Jahan_4d222cfd-49c8-41d3-8cb7-2a2b56232633, 1);
+
+PROC
+Proc_ARX_LV_Jahan_ToLV()
+THEN
+RemoveStatus(CHARACTERGUID_S_GLO_Jahan_4d222cfd-49c8-41d3-8cb7-2a2b56232633, "CLEAR_MINDED");
+RemoveStatus(CHARACTERGUID_S_GLO_Jahan_4d222cfd-49c8-41d3-8cb7-2a2b56232633, "INVISIBLE");
+
+PROC
+Proc_ARX_LV_Jahan_ToLV()
+THEN
+DB_EG_BoatNPCs(CHARACTERGUID_S_GLO_Jahan_4d222cfd-49c8-41d3-8cb7-2a2b56232633, "EG_Epilogue_Jahan", TRIGGERGUID_S_EG_Epilogue_JahanPoint_5f94b39d-2929-4651-8989-ebac328b9609);
+
+PROC
+ProcRegionEnded("ARX_Main")
+THEN
+GoalCompleted;
+
+
+EXITSECTION
+ENDEXITSECTION
+
+ParentTargetEdge "ARX"

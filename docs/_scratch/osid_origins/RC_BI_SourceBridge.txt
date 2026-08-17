@@ -1,0 +1,87 @@
+Version 1
+SubGoalCombiner SGC_AND
+
+INITSECTION
+DB_BI_SourceBridge(ITEMGUID_S_RC_BI_SourceBridge_Platform_000_de6955bb-a6bd-4b52-b564-bf61fe67357a);
+DB_BI_SourceBridge(ITEMGUID_S_RC_BI_SourceBridge_Platform_001_03de49c6-5d68-4cc4-9e60-d33791b05dc6);
+DB_BI_SourceBridge(ITEMGUID_S_RC_BI_SourceBridge_Platform_002_f627ed89-58d0-4013-8375-0f9f64ed3d61);
+DB_BI_SourceBridge(ITEMGUID_S_RC_BI_SourceBridge_Platform_003_4aa076b9-d014-43ac-b0dc-1cb127b78b83);
+DB_BI_SourceBridge(ITEMGUID_S_RC_BI_SourceBridge_Platform_004_3bb07a9b-2d5a-488a-be2f-4d8ead14dcb2);
+DB_BI_SourceBridge(ITEMGUID_S_RC_BI_SourceBridge_Platform_005_e91228e8-8737-46de-bad3-d31e1e995a8e);
+DB_BI_SourceBridge(ITEMGUID_S_RC_BI_SourceBridge_Platform_006_30e03fb0-1559-4149-8230-9339f981d750);
+DB_BI_SourceBridge(ITEMGUID_S_RC_BI_SourceBridge_Platform_007_51682a61-0263-44f8-84cb-acb014252837);
+DB_BI_SourceBridge(ITEMGUID_S_RC_BI_SourceBridge_Platform_008_32a62e6f-daae-4cc1-9de2-9e01bd768996);
+DB_BI_SourceBridge(ITEMGUID_S_RC_BI_SourceBridge_Platform_009_ec96ceb5-8440-4f6a-89ea-d04e93bcab7f);
+DB_BI_SourceBridge(ITEMGUID_S_RC_BI_SourceBridge_Platform_010_dd8db5dc-69d9-4387-8d5e-b720814276ed);
+ProcTriggerRegisterForPlayers(TRIGGERGUID_S_RC_BI_SourceBridge_Area_7fd4e4e7-0719-4ae0-8d07-7b09d50963a3);
+DB_RC_BI_ArrivedIsland_VB_Triggers(TRIGGERGUID_S_RC_BI_VB_ArrivedIsland_2415c7bf-a5a5-46d1-9e96-b8bd81138308);
+DB_RC_BI_ArrivedIsland_VB_Triggers(TRIGGERGUID_S_RC_BI_VB_ArrivedIsland_Boat_dadbb8f9-04a9-45ae-9c10-217d508e48cc);
+DB_RC_BI_SourceTraps(ITEMGUID_S_RC_BI_SourceBridge_PressurePlate_2_6832c548-f653-4715-a412-4535d0594e56);
+DB_RC_BI_SourceTraps(IITEMGUID_S_RC_BI_SourceBridge_PressurePlate_008_fe3acef8-2f56-40a6-9279-5190969e951e);
+DB_RC_BI_SourceTraps(ITEMGUID_S_RC_BI_SourceBridge_PressurePlate_006_0e664546-437e-4a01-961c-c83bf7b2b78c);
+DB_RC_BI_SourceTraps(ITEMGUID_S_RC_BI_SourceBridge_PressurePlate_007_b0cce9a2-71cf-40e0-bf42-c4b6f701c062);
+
+KBSECTION
+IF
+ItemGhostRevealed((ITEMGUID)_Var1)
+AND
+DB_BI_SourceBridge(_Var1)
+AND
+GetClosestAlivePlayer(_Var1, _Var2, _Var3)
+AND
+_Var3 < 20
+AND
+GlobalGetFlag("RC_BI_BridgeRevealed", 0)
+THEN
+StartVoiceBark("RC_BI_VB_SawSourceBridge", _Var2);
+UserSetFlag(_Var2, "RC_BI_VB_SawSourceBridge");
+GlobalSetFlag("RC_BI_BridgeRevealed");
+
+IF
+ItemGhostRevealed((ITEMGUID)_Var1)
+AND
+DB_BI_SourceBridge(_Var1)
+THEN
+ObjectSetFlag(_Var1, "RC_BI_RevealedPlatform");
+
+IF
+DB_RC_BI_ArrivedIsland_VB_Triggers(_Var1)
+THEN
+ProcTriggerRegisterForPlayers(_Var1);
+
+IF
+CharacterEnteredTrigger((CHARACTERGUID)_Var1, TRIGGERGUID_S_RC_BI_SourceBridge_Area_7fd4e4e7-0719-4ae0-8d07-7b09d50963a3)
+AND
+GlobalGetFlag("RC_BI_BridgeRevealed", 0)
+AND
+UserGetFlag(_Var1, "RC_BI_VB_SawBrokenBridge", 0)
+THEN
+UserSetFlag(_Var1, "RC_BI_VB_SawBrokenBridge");
+StartVoiceBark("RC_BI_VB_BrokenBridge", _Var1);
+
+IF
+CharacterEnteredTrigger((CHARACTERGUID)_Var1, TRIGGERGUID_S_RC_BI_SourceBridge_Area_7fd4e4e7-0719-4ae0-8d07-7b09d50963a3)
+AND
+GlobalGetFlag("RC_BI_BridgeRevealed", 1)
+AND
+UserGetFlag(_Var1, "RC_BI_VB_SawSourceBridge", 0)
+THEN
+StartVoiceBark("RC_BI_VB_SawSourceBridge", _Var1);
+UserSetFlag(_Var1, "RC_BI_VB_SawSourceBridge");
+GlobalSetFlag("RC_BI_BridgeRevealed");
+
+IF
+CharacterEnteredTrigger((CHARACTERGUID)_Var1, (TRIGGERGUID)_Var2)
+AND
+DB_RC_BI_ArrivedIsland_VB_Triggers(_Var2)
+AND
+UserGetFlag(_Var1, "RC_BI_VB_CrossedBridge", 0)
+THEN
+UserSetFlag(_Var1, "RC_BI_VB_CrossedBridge");
+StartVoiceBark("RC_BI_VB_CrossedBridge", _Var1);
+
+
+EXITSECTION
+ENDEXITSECTION
+
+ParentTargetEdge "ReapersCoast"

@@ -1,0 +1,370 @@
+Version 1
+SubGoalCombiner SGC_AND
+
+INITSECTION
+DB_OriginMomentTag("CoS_Temples_BlackRingHub_SpyMaster", "RED PRINCE", "CoS_Temples_BlackRingHub_SpyMaster_COM_RedPrince");
+DB_OriginMomentTag("CoS_Temples_BlackRingHub_SpyMaster_Ghost", "RED PRINCE", "CoS_Temples_BlackRingHub_SpyMaster_Ghost_COM_RedPrince");
+DB_OriginMomentTag("CoS_Temples_SallowManMirror_005", "RED PRINCE", "CoS_Temples_SallowManMirror_005_COM_RedPrince");
+ProcCharacterEnableCrime(CHARACTERGUID_S_GLO_RedPrincess_050fbbf9-3fc9-40cd-9cbb-43b4b3754a5e, "Assault");
+
+KBSECTION
+IF
+GlobalFlagSet("CoS_SpymasterWarnedRedPrince")
+THEN
+GlobalSetFlag("RC_FL_RedPrinceKnowPrincess");
+
+QRY
+QRY_CoS_RedPrinceKnowsPrincess()
+AND
+DB_GlobalFlag("RC_RedPrince_DreamedBrahmos")
+THEN
+DB_NOOP(0);
+
+QRY
+QRY_CoS_RedPrinceKnowsPrincess()
+AND
+DB_GlobalFlag("RC_FL_RedPrinceKnowPrincess")
+THEN
+DB_NOOP(0);
+
+IF
+DialogEnded("COS_Temples_SallowManMirror_005", (INTEGER)_Var1)
+AND
+DB_DialogPlayers(_Var1, CHARACTERGUID_S_Player_RedPrince_a26a1efb-cdc8-4cf3-a7b2-b2f9544add6f, 1)
+AND
+IsTagged(CHARACTERGUID_S_Player_RedPrince_a26a1efb-cdc8-4cf3-a7b2-b2f9544add6f, "AVATAR", 1)
+AND
+IsTagged(CHARACTERGUID_S_Player_RedPrince_a26a1efb-cdc8-4cf3-a7b2-b2f9544add6f, "RED PRINCE", 1)
+THEN
+PROC_COS_BlackMirror_AvatarRedPrinceUpdate();
+
+PROC
+PROC_COS_BlackMirror_AvatarRedPrinceUpdate()
+AND
+DB_GlobalFlag("CoS_SpymasterWarnedRedPrince")
+AND NOT
+DB_GlobalFlag("RC_RedPrincessPregnantAfterRC")
+THEN
+ObjectSetFlag(CHARACTERGUID_S_Player_RedPrince_a26a1efb-cdc8-4cf3-a7b2-b2f9544add6f, "QuestUpdate_FTJ_OriginRedPrince_BlackMirror_NotPregnant_Warned", 0);
+
+IF
+GlobalFlagSet("CoS_RedPrince_SawRedPrincess")
+AND
+DB_CompanionAvatarBond(CHARACTERGUID_S_Player_RedPrince_a26a1efb-cdc8-4cf3-a7b2-b2f9544add6f, _Var1)
+THEN
+UserSetFlag(_Var1, "QuestUpdate_FTJ_COM_RedPrince_BlackMirror_RedPrince");
+
+IF
+GlobalFlagSet("CoS_RedPrince_SawRedPrincess")
+AND
+DB_Avatars(CHARACTERGUID_S_Player_RedPrince_a26a1efb-cdc8-4cf3-a7b2-b2f9544add6f)
+THEN
+ObjectSetFlag(CHARACTERGUID_S_Player_RedPrince_a26a1efb-cdc8-4cf3-a7b2-b2f9544add6f, "QuestUpdate_FTJ_OriginRedPrince_BlackMirror_Pregnant_Warned");
+
+PROC
+PROC_COS_BlackMirror_AvatarRedPrinceUpdate()
+AND NOT
+DB_GlobalFlag("CoS_SpymasterWarnedRedPrince")
+AND NOT
+QRY_CoS_RedPrinceKnowsPrincess()
+AND
+DB_GlobalFlag("RC_RedPrincessPregnantAfterRC")
+THEN
+ObjectSetFlag(CHARACTERGUID_S_Player_RedPrince_a26a1efb-cdc8-4cf3-a7b2-b2f9544add6f, "QuestUpdate_FTJ_OriginRedPrince_BlackMirror_Pregnant", 0);
+
+PROC
+PROC_COS_BlackMirror_AvatarRedPrinceUpdate()
+AND NOT
+DB_GlobalFlag("CoS_SpymasterWarnedRedPrince")
+AND NOT
+QRY_CoS_RedPrinceKnowsPrincess()
+AND NOT
+DB_GlobalFlag("RC_RedPrincessPregnantAfterRC")
+THEN
+ObjectSetFlag(CHARACTERGUID_S_Player_RedPrince_a26a1efb-cdc8-4cf3-a7b2-b2f9544add6f, "QuestUpdate_FTJ_OriginRedPrince_BlackMirror_NotPregnant", 0);
+
+PROC
+PROC_COS_BlackMirror_AvatarRedPrinceUpdate()
+AND NOT
+DB_GlobalFlag("CoS_SpymasterWarnedRedPrince")
+AND
+QRY_CoS_RedPrinceKnowsPrincess()
+AND
+DB_GlobalFlag("RC_RedPrincessPregnantAfterRC")
+THEN
+ObjectSetFlag(CHARACTERGUID_S_Player_RedPrince_a26a1efb-cdc8-4cf3-a7b2-b2f9544add6f, "QuestUpdate_FTJ_OriginRedPrince_BlackMirror_Pregnant_Know", 0);
+
+PROC
+PROC_COS_BlackMirror_AvatarRedPrinceUpdate()
+AND NOT
+DB_GlobalFlag("CoS_SpymasterWarnedRedPrince")
+AND
+QRY_CoS_RedPrinceKnowsPrincess()
+AND NOT
+DB_GlobalFlag("RC_RedPrincessPregnantAfterRC")
+THEN
+ObjectSetFlag(CHARACTERGUID_S_Player_RedPrince_a26a1efb-cdc8-4cf3-a7b2-b2f9544add6f, "QuestUpdate_FTJ_OriginRedPrince_BlackMirror_NotPregnant_Know", 0);
+
+PROC
+Proc_COMFinished("CoS_Temples_SallowManMirror_005_COM_RedPrince", _)
+AND
+IsTagged(CHARACTERGUID_S_Player_RedPrince_a26a1efb-cdc8-4cf3-a7b2-b2f9544add6f, "AVATAR", 0)
+THEN
+PROC_COS_BlackMirror_CompanionRedPrinceUpdate();
+
+PROC
+PROC_COS_BlackMirror_CompanionRedPrinceUpdate()
+AND
+DB_GlobalFlag("CoS_SpymasterWarnedRedPrince")
+AND
+DB_GlobalFlag("RC_RedPrincessPregnantAfterRC")
+THEN
+UserSetFlag(CHARACTERGUID_S_Player_RedPrince_a26a1efb-cdc8-4cf3-a7b2-b2f9544add6f, "QuestUpdate_FTJ_COM_RedPrince_BlackMirror_Pregnant_Warned", 0);
+
+PROC
+PROC_COS_BlackMirror_CompanionRedPrinceUpdate()
+AND
+DB_GlobalFlag("CoS_SpymasterWarnedRedPrince")
+AND NOT
+DB_GlobalFlag("RC_RedPrincessPregnantAfterRC")
+THEN
+ObjectSetFlag(CHARACTERGUID_S_Player_RedPrince_a26a1efb-cdc8-4cf3-a7b2-b2f9544add6f, "QuestUpdate_FTJ_COM_RedPrince_BlackMirror_NotPregnant_Warned", 0);
+
+PROC
+PROC_COS_BlackMirror_CompanionRedPrinceUpdate()
+AND NOT
+DB_GlobalFlag("CoS_SpymasterWarnedRedPrince")
+AND NOT
+QRY_CoS_RedPrinceKnowsPrincess()
+AND
+DB_GlobalFlag("RC_RedPrincessPregnantAfterRC")
+THEN
+ObjectSetFlag(CHARACTERGUID_S_Player_RedPrince_a26a1efb-cdc8-4cf3-a7b2-b2f9544add6f, "QuestUpdate_FTJ_COM_RedPrince_BlackMirror_Pregnant", 0);
+
+PROC
+PROC_COS_BlackMirror_CompanionRedPrinceUpdate()
+AND NOT
+DB_GlobalFlag("CoS_SpymasterWarnedRedPrince")
+AND NOT
+QRY_CoS_RedPrinceKnowsPrincess()
+AND NOT
+DB_GlobalFlag("RC_RedPrincessPregnantAfterRC")
+THEN
+ObjectSetFlag(CHARACTERGUID_S_Player_RedPrince_a26a1efb-cdc8-4cf3-a7b2-b2f9544add6f, "QuestUpdate_FTJ_COM_RedPrince_BlackMirror_NotPregnant", 0);
+
+PROC
+PROC_COS_BlackMirror_CompanionRedPrinceUpdate()
+AND NOT
+DB_GlobalFlag("CoS_SpymasterWarnedRedPrince")
+AND
+QRY_CoS_RedPrinceKnowsPrincess()
+AND
+DB_GlobalFlag("RC_RedPrincessPregnantAfterRC")
+THEN
+ObjectSetFlag(CHARACTERGUID_S_Player_RedPrince_a26a1efb-cdc8-4cf3-a7b2-b2f9544add6f, "QuestUpdate_FTJ_COM_RedPrince_BlackMirror_Pregnant_Know", 0);
+
+PROC
+PROC_COS_BlackMirror_CompanionRedPrinceUpdate()
+AND NOT
+DB_GlobalFlag("CoS_SpymasterWarnedRedPrince")
+AND
+QRY_CoS_RedPrinceKnowsPrincess()
+AND NOT
+DB_GlobalFlag("RC_RedPrincessPregnantAfterRC")
+THEN
+ObjectSetFlag(CHARACTERGUID_S_Player_RedPrince_a26a1efb-cdc8-4cf3-a7b2-b2f9544add6f, "QuestUpdate_FTJ_COM_RedPrince_BlackMirror_NotPregnant_Know", 0);
+
+IF
+DB_DialogNPCs(_Var1, CHARACTERGUID_S_CoS_Temples_SpyMaster_787c6c4a-6e5a-4044-9616-27e21e5a171e, _)
+AND
+DB_DialogPlayers(_Var1, CHARACTERGUID_S_Player_RedPrince_a26a1efb-cdc8-4cf3-a7b2-b2f9544add6f, _)
+AND
+CharacterGetCrimeDialog(CHARACTERGUID_S_CoS_Temples_SpyMaster_787c6c4a-6e5a-4044-9616-27e21e5a171e, _Var4)
+AND
+_Var4 == _Var1
+AND NOT
+DB_CoS_SpymasterDidCrimeDalogAgainstRP(1)
+THEN
+DB_CoS_SpymasterDidCrimeDalogAgainstRP(1);
+
+IF
+DialogEnded(_, (INTEGER)_Var2)
+AND
+DB_DialogNPCs(_Var2, CHARACTERGUID_S_CoS_Temples_SpyMaster_787c6c4a-6e5a-4044-9616-27e21e5a171e, _)
+AND
+DB_DialogPlayers(_Var2, CHARACTERGUID_S_Player_RedPrince_a26a1efb-cdc8-4cf3-a7b2-b2f9544add6f, _)
+AND NOT
+DB_CoS_SpymasterDidCrimeDalogAgainstRP(1)
+THEN
+GlobalSetFlag("CoS_RPMetSpymaster");
+
+IF
+DialogEnded(_, (INTEGER)_Var2)
+AND
+DB_DialogNPCs(_Var2, CHARACTERGUID_S_CoS_Temples_SpyMaster_787c6c4a-6e5a-4044-9616-27e21e5a171e, _)
+AND
+DB_CoS_SpymasterDidCrimeDalogAgainstRP(1)
+THEN
+NOT DB_CoS_SpymasterDidCrimeDalogAgainstRP(1);
+
+IF
+DB_DialogNPCs(_Var1, CHARACTERGUID_S_CoS_Temples_BlackRingHub_SpyMaster_Ghost_5f6d5496-b2fd-42a5-933b-906bb8ab2590, _)
+AND
+DB_DialogPlayers(_Var1, CHARACTERGUID_S_Player_RedPrince_a26a1efb-cdc8-4cf3-a7b2-b2f9544add6f, _)
+THEN
+GlobalSetFlag("CoS_RPMetSpymaster");
+
+PROC
+ProcRegionEnded("CoS_Main")
+AND NOT
+DB_Avatars(CHARACTERGUID_S_Player_RedPrince_a26a1efb-cdc8-4cf3-a7b2-b2f9544add6f)
+AND
+UserGetFlag(CHARACTERGUID_S_Player_RedPrince_a26a1efb-cdc8-4cf3-a7b2-b2f9544add6f, "QuestUpdate_FTJ_COM_RedPrince_ToSallowMan", 0)
+AND
+UserGetFlag(CHARACTERGUID_S_Player_RedPrince_a26a1efb-cdc8-4cf3-a7b2-b2f9544add6f, "QuestUpdate_FTJ_COM_RedPrince_SpyMasterInvite", 1)
+THEN
+UserSetFlag(CHARACTERGUID_S_Player_RedPrince_a26a1efb-cdc8-4cf3-a7b2-b2f9544add6f, "QuestUpdate_FTJ_COM_RedPrince_HouseOfShadows_Close_CoS");
+
+PROC
+ProcRegionEnded("CoS_Main")
+AND NOT
+DB_Avatars(CHARACTERGUID_S_Player_RedPrince_a26a1efb-cdc8-4cf3-a7b2-b2f9544add6f)
+AND
+UserGetFlag(CHARACTERGUID_S_Player_RedPrince_a26a1efb-cdc8-4cf3-a7b2-b2f9544add6f, "QuestUpdate_FTJ_COM_RedPrince_ToSallowMan", 0)
+AND
+UserGetFlag(CHARACTERGUID_S_Player_RedPrince_a26a1efb-cdc8-4cf3-a7b2-b2f9544add6f, "QuestUpdate_FTJ_COM_RedPrince_SpyMasterInvite", 0)
+AND
+UserGetFlag(CHARACTERGUID_S_Player_RedPrince_a26a1efb-cdc8-4cf3-a7b2-b2f9544add6f, "QuestUpdate_FTJ_COM_RedPrince_AssassinKilled", 1)
+THEN
+UserSetFlag(CHARACTERGUID_S_Player_RedPrince_a26a1efb-cdc8-4cf3-a7b2-b2f9544add6f, "QuestUpdate_FTJ_COM_RedPrince_HouseOfShadows_Close_CoS_NoInvite");
+
+PROC
+ProcRegionEnded("CoS_Main")
+AND NOT
+DB_Avatars(CHARACTERGUID_S_Player_RedPrince_a26a1efb-cdc8-4cf3-a7b2-b2f9544add6f)
+AND
+UserGetFlag(CHARACTERGUID_S_Player_RedPrince_a26a1efb-cdc8-4cf3-a7b2-b2f9544add6f, "QuestUpdate_FTJ_COM_RedPrince_ToSallowMan", 0)
+AND
+UserGetFlag(CHARACTERGUID_S_Player_RedPrince_a26a1efb-cdc8-4cf3-a7b2-b2f9544add6f, "QuestUpdate_FTJ_COM_RedPrince_SpyMasterInvite", 0)
+AND
+UserGetFlag(CHARACTERGUID_S_Player_RedPrince_a26a1efb-cdc8-4cf3-a7b2-b2f9544add6f, "QuestUpdate_FTJ_COM_RedPrince_AssassinLetterRead", 1)
+THEN
+UserSetFlag(CHARACTERGUID_S_Player_RedPrince_a26a1efb-cdc8-4cf3-a7b2-b2f9544add6f, "QuestUpdate_FTJ_COM_RedPrince_HouseOfShadows_Close_CoS_NoInvite");
+
+PROC
+ProcRegionEnded("CoS_Main")
+AND NOT
+DB_Avatars(CHARACTERGUID_S_Player_RedPrince_a26a1efb-cdc8-4cf3-a7b2-b2f9544add6f)
+AND
+UserGetFlag(CHARACTERGUID_S_Player_RedPrince_a26a1efb-cdc8-4cf3-a7b2-b2f9544add6f, "QuestUpdate_FTJ_COM_RedPrince_ToSallowMan", 0)
+AND
+UserGetFlag(CHARACTERGUID_S_Player_RedPrince_a26a1efb-cdc8-4cf3-a7b2-b2f9544add6f, "QuestUpdate_FTJ_COM_RedPrince_SpyMasterInvite", 0)
+AND
+UserGetFlag(CHARACTERGUID_S_Player_RedPrince_a26a1efb-cdc8-4cf3-a7b2-b2f9544add6f, "QuestUpdate_FTJ_COM_RedPrince_AssassinKilledShadow", 1)
+THEN
+UserSetFlag(CHARACTERGUID_S_Player_RedPrince_a26a1efb-cdc8-4cf3-a7b2-b2f9544add6f, "QuestUpdate_FTJ_COM_RedPrince_HouseOfShadows_Close_CoS_NoInvite");
+
+PROC
+ProcRegionEnded("CoS_Main")
+AND NOT
+DB_Avatars(CHARACTERGUID_S_Player_RedPrince_a26a1efb-cdc8-4cf3-a7b2-b2f9544add6f)
+AND
+UserGetFlag(CHARACTERGUID_S_Player_RedPrince_a26a1efb-cdc8-4cf3-a7b2-b2f9544add6f, "QuestUpdate_FTJ_COM_RedPrince_ToSallowMan", 0)
+AND
+UserGetFlag(CHARACTERGUID_S_Player_RedPrince_a26a1efb-cdc8-4cf3-a7b2-b2f9544add6f, "QuestUpdate_FTJ_COM_RedPrince_SpyMasterInvite", 0)
+AND
+UserGetFlag(CHARACTERGUID_S_Player_RedPrince_a26a1efb-cdc8-4cf3-a7b2-b2f9544add6f, "QuestUpdate_FTJ_COM_RedPrince_LizardAmbush", 1)
+THEN
+UserSetFlag(CHARACTERGUID_S_Player_RedPrince_a26a1efb-cdc8-4cf3-a7b2-b2f9544add6f, "QuestUpdate_FTJ_COM_RedPrince_HouseOfShadows_Close_CoS_NoInvite");
+
+PROC
+ProcRegionEnded("CoS_Main")
+AND NOT
+DB_Avatars(CHARACTERGUID_S_Player_RedPrince_a26a1efb-cdc8-4cf3-a7b2-b2f9544add6f)
+AND
+UserGetFlag(CHARACTERGUID_S_Player_RedPrince_a26a1efb-cdc8-4cf3-a7b2-b2f9544add6f, "QuestUpdate_FTJ_COM_RedPrince_ToSallowMan", 0)
+THEN
+UserSetFlag(CHARACTERGUID_S_Player_RedPrince_a26a1efb-cdc8-4cf3-a7b2-b2f9544add6f, "QuestUpdate_FTJ_COM_RedPrince_HouseOfShadows_Close");
+
+PROC
+ProcRegionEnded("CoS_Main")
+AND
+DB_Avatars(CHARACTERGUID_S_Player_RedPrince_a26a1efb-cdc8-4cf3-a7b2-b2f9544add6f)
+AND
+ObjectGetFlag(CHARACTERGUID_S_Player_RedPrince_a26a1efb-cdc8-4cf3-a7b2-b2f9544add6f, "QuestUpdate_FTJ_OriginRedPrince_ToSallowMan", 0)
+AND
+ObjectGetFlag(CHARACTERGUID_S_Player_RedPrince_a26a1efb-cdc8-4cf3-a7b2-b2f9544add6f, "QuestUpdate_FTJ_OriginRedPrince_SpyMasterInvite", 1)
+THEN
+ObjectSetFlag(CHARACTERGUID_S_Player_RedPrince_a26a1efb-cdc8-4cf3-a7b2-b2f9544add6f, "QuestUpdate_FTJ_OriginRedPrince_HouseOfShadows_Close_CoS");
+
+PROC
+ProcRegionEnded("CoS_Main")
+AND
+DB_Avatars(CHARACTERGUID_S_Player_RedPrince_a26a1efb-cdc8-4cf3-a7b2-b2f9544add6f)
+AND
+ObjectGetFlag(CHARACTERGUID_S_Player_RedPrince_a26a1efb-cdc8-4cf3-a7b2-b2f9544add6f, "QuestUpdate_FTJ_OriginRedPrince_ToSallowMan", 0)
+AND
+ObjectGetFlag(CHARACTERGUID_S_Player_RedPrince_a26a1efb-cdc8-4cf3-a7b2-b2f9544add6f, "QuestUpdate_FTJ_OriginRedPrince_SpyMasterInvite", 0)
+AND
+ObjectGetFlag(CHARACTERGUID_S_Player_RedPrince_a26a1efb-cdc8-4cf3-a7b2-b2f9544add6f, "QuestUpdate_FTJ_OriginRedPrince_AssassinKilled", 1)
+THEN
+ObjectSetFlag(CHARACTERGUID_S_Player_RedPrince_a26a1efb-cdc8-4cf3-a7b2-b2f9544add6f, "QuestUpdate_FTJ_OriginRedPrince_HouseOfShadows_Close_CoS_NoInvite");
+
+PROC
+ProcRegionEnded("CoS_Main")
+AND
+DB_Avatars(CHARACTERGUID_S_Player_RedPrince_a26a1efb-cdc8-4cf3-a7b2-b2f9544add6f)
+AND
+ObjectGetFlag(CHARACTERGUID_S_Player_RedPrince_a26a1efb-cdc8-4cf3-a7b2-b2f9544add6f, "QuestUpdate_FTJ_OriginRedPrince_ToSallowMan", 0)
+AND
+ObjectGetFlag(CHARACTERGUID_S_Player_RedPrince_a26a1efb-cdc8-4cf3-a7b2-b2f9544add6f, "QuestUpdate_FTJ_OriginRedPrince_SpyMasterInvite", 0)
+AND
+ObjectGetFlag(CHARACTERGUID_S_Player_RedPrince_a26a1efb-cdc8-4cf3-a7b2-b2f9544add6f, "QuestUpdate_FTJ_OriginRedPrince_AssassinLetterRead", 1)
+THEN
+ObjectSetFlag(CHARACTERGUID_S_Player_RedPrince_a26a1efb-cdc8-4cf3-a7b2-b2f9544add6f, "QuestUpdate_FTJ_OriginRedPrince_HouseOfShadows_Close_CoS_NoInvite");
+
+PROC
+ProcRegionEnded("CoS_Main")
+AND
+DB_Avatars(CHARACTERGUID_S_Player_RedPrince_a26a1efb-cdc8-4cf3-a7b2-b2f9544add6f)
+AND
+ObjectGetFlag(CHARACTERGUID_S_Player_RedPrince_a26a1efb-cdc8-4cf3-a7b2-b2f9544add6f, "QuestUpdate_FTJ_OriginRedPrince_ToSallowMan", 0)
+AND
+ObjectGetFlag(CHARACTERGUID_S_Player_RedPrince_a26a1efb-cdc8-4cf3-a7b2-b2f9544add6f, "QuestUpdate_FTJ_OriginRedPrince_SpyMasterInvite", 0)
+AND
+ObjectGetFlag(CHARACTERGUID_S_Player_RedPrince_a26a1efb-cdc8-4cf3-a7b2-b2f9544add6f, "QuestUpdate_FTJ_OriginRedPrince_AssassinKilledShadow", 1)
+THEN
+ObjectSetFlag(CHARACTERGUID_S_Player_RedPrince_a26a1efb-cdc8-4cf3-a7b2-b2f9544add6f, "QuestUpdate_FTJ_OriginRedPrince_HouseOfShadows_Close_CoS_NoInvite");
+
+PROC
+ProcRegionEnded("CoS_Main")
+AND
+DB_Avatars(CHARACTERGUID_S_Player_RedPrince_a26a1efb-cdc8-4cf3-a7b2-b2f9544add6f)
+AND
+ObjectGetFlag(CHARACTERGUID_S_Player_RedPrince_a26a1efb-cdc8-4cf3-a7b2-b2f9544add6f, "QuestUpdate_FTJ_OriginRedPrince_ToSallowMan", 0)
+AND
+ObjectGetFlag(CHARACTERGUID_S_Player_RedPrince_a26a1efb-cdc8-4cf3-a7b2-b2f9544add6f, "QuestUpdate_FTJ_OriginRedPrince_SpyMasterInvite", 0)
+AND
+ObjectGetFlag(CHARACTERGUID_S_Player_RedPrince_a26a1efb-cdc8-4cf3-a7b2-b2f9544add6f, "QuestUpdate_FTJ_OriginRedPrince_LizardAmbush", 1)
+THEN
+ObjectSetFlag(CHARACTERGUID_S_Player_RedPrince_a26a1efb-cdc8-4cf3-a7b2-b2f9544add6f, "QuestUpdate_FTJ_OriginRedPrince_HouseOfShadows_Close_CoS_NoInvite");
+
+PROC
+ProcRegionEnded("CoS_Main")
+AND
+DB_Avatars(CHARACTERGUID_S_Player_RedPrince_a26a1efb-cdc8-4cf3-a7b2-b2f9544add6f)
+AND
+ObjectGetFlag(CHARACTERGUID_S_Player_RedPrince_a26a1efb-cdc8-4cf3-a7b2-b2f9544add6f, "QuestUpdate_FTJ_OriginRedPrince_ToSallowMan", 0)
+THEN
+ObjectSetFlag(CHARACTERGUID_S_Player_RedPrince_a26a1efb-cdc8-4cf3-a7b2-b2f9544add6f, "QuestUpdate_FTJ_OriginRedPrince_HouseOfShadows_Close");
+
+PROC
+ProcRegionEnded("CoS_Main")
+THEN
+ProcCancelOneRelationshipDialog(CHARACTERGUID_S_Player_RedPrince_a26a1efb-cdc8-4cf3-a7b2-b2f9544add6f, "RC_FL_RedPrincess_CRD_RedPrince");
+
+
+EXITSECTION
+ENDEXITSECTION
+
+ParentTargetEdge "CouncilOfSeven"

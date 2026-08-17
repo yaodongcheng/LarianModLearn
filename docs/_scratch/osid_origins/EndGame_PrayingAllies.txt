@@ -1,0 +1,411 @@
+Version 1
+SubGoalCombiner SGC_AND
+
+INITSECTION
+DB_AppearingAllies(CHARACTERGUID_S_GLO_River_f4931ebe-10b0-43c4-9182-640cf052717e, TRIGGERGUID_S_EG_MaladyDestination_fedf586e-0f0b-48ae-b2d4-c686ee713a4a, "MaladyIsSpeaker");
+DB_AppearingAllies(CHARACTERGUID_S_FTJ_SW_Warrior_SeekerCaptain_1329f018-23e4-4717-9bc8-074b28d04c54, TRIGGERGUID_S_EG_GarethDestination_dd172357-8f5e-4692-b5c9-d13689ead257, "GarethIsSpeaker");
+DB_AppearingAllies(CHARACTERGUID_S_GLO_Tarquin_a3d0cdcc-d0b0-464d-9ad7-43b38baed620, TRIGGERGUID_S_EG_TarquinDestination_4f78e018-7e2c-4876-bd06-23f84c4af9ee, "TarquinIsSpeaker");
+DB_AppearingAllies(CHARACTERGUID_S_GLO_Almira_49b466a9-e67f-4e3c-8f66-3636ba7dd54f, TRIGGERGUID_S_EG_AlmiraDestination_0f9b61e5-ae8f-40ac-ac48-f6d516a74608, "AlmiraIsSpeaker");
+ProcTriggerRegisterForPlayers(TRIGGERGUID_S_EG_Allies_6af19c86-ef2d-4dfa-b5a4-f3ddd3f9e685);
+DB_EG_GlobalDialogs("EG_Shipmates");
+ShutdownCrimeSystem();
+Proc_PyramidGlobalBlockerOn();
+ProcCancelAllRelationshipDialogsForAllCompanions();
+PROC_EG_Init();
+GlobalSetFlag("GLO_DisableRelationshipDialogsPermanently");
+GlobalSetFlag("GLO_DisableReflectionsPermanently");
+PROC_EG_CheckSilentMonkGareth();
+
+KBSECTION
+IF
+TextEventSet("StartEG")
+THEN
+ProcTriggerRegisterForPlayers(TRIGGERGUID_S_EG_Allies_6af19c86-ef2d-4dfa-b5a4-f3ddd3f9e685);
+
+PROC
+PROC_EG_Init()
+AND
+GlobalGetFlag("ARX_InitiateGenocide_ToSea", 0)
+AND
+GlobalGetFlag("ARX_InitiateGenocide_Destroy", 0)
+THEN
+GlobalSetFlag("ARX_InitiateGenocide");
+
+PROC
+PROC_EG_Init()
+AND
+DB_IsPlayer(_Var1)
+THEN
+PROC_BlockWaypointUsage(_Var1);
+Proc_ReflectionDialog_CancelForPlayer(_Var1);
+DB_EG_PlayerInEndGame(_Var1);
+
+PROC
+PROC_EG_Init()
+AND
+DB_OriginInPartyDialog(_Var1, _Var2)
+THEN
+NOT DB_OriginInPartyDialog(_Var1, _Var2);
+SetHasDialog(_Var1, 0);
+
+QRY
+QRY_GLO_PartyMembers_GetInPartyDialog((CHARACTERGUID)_Var1)
+AND NOT
+DB_GLO_PartyMembers_InPartyDialog(_Var1, _)
+THEN
+DB_GLO_PartyMembers_InPartyDialog(_Var1, "");
+
+PROC
+PROC_EG_Init()
+THEN
+PROC_EG_MakeUniversalPeace();
+
+PROC
+PROC_EG_MakeUniversalPeace()
+AND
+DB_IsPlayer(_Var1)
+AND
+DB_IsPlayer(_Var2)
+AND
+_Var1 != _Var2
+AND
+CharacterGetReservedUserID(_Var1, _Var3)
+AND
+CharacterGetReservedUserID(_Var2, _Var4)
+AND
+_Var3 != _Var4
+THEN
+MakePeace(_Var1, _Var2, 1);
+
+PROC
+PROC_EG_Init()
+AND
+DB_IsPlayer(_Var1)
+AND NOT
+DB_Avatars(_Var1)
+THEN
+ProcRemoveAllDialogEntriesForSpeaker(_Var1);
+DB_AD_Dialog(_Var1, "GLO_AD_CompanionCantTalk");
+
+IF
+DB_IsPlayer(_Var1)
+AND NOT
+IsTagged(_Var1, "AVATAR", 1)
+THEN
+ProcRemoveAllDialogEntriesForSpeaker(_Var1);
+DB_AD_Dialog(_Var1, "GLO_AD_CompanionCantTalk");
+
+IF
+CharacterEnteredTrigger((CHARACTERGUID)_Var1, TRIGGERGUID_S_EG_Allies_6af19c86-ef2d-4dfa-b5a4-f3ddd3f9e685)
+AND
+DB_AppearingAllies(_Var2, _Var3, _Var4)
+AND NOT
+DB_Dead(_Var2)
+AND
+QRY_EG_ImportantNPCIsAllied(_Var2)
+THEN
+PROC_EG_EntryBoomOnce();
+ProcTriggerUnregisterForPlayers(TRIGGERGUID_S_EG_Allies_6af19c86-ef2d-4dfa-b5a4-f3ddd3f9e685);
+ProcRemoveAllDialogEntriesForSpeaker(_Var2);
+SetHasDialog(_Var2, 0);
+TeleportTo(_Var2, TRIGGERGUID_S_ARX_EndGame_Enter_bd166e2a-7623-490e-94df-78079e7cbacc, "EG_AllyTeleported", 0);
+SetVarFixedString(_Var2, "currentState", "");
+CharacterSetFightMode(_Var2, 0, 0);
+Foop(_Var2, "RS3_FX_GP_ScriptedEvent_ARX_EndingTeleport_01");
+DB_EG_AppearingAllyInEG(_Var2, _Var4);
+SetVarInteger(_Var2, "bool_CanCower", 0);
+SetVarInteger(_Var2, "bool_CanFleeWhileCowering", 0);
+
+PROC
+PROC_EG_EntryBoomOnce()
+AND
+QueryOnlyOnce("EG_BOOMBOOMBOOM")
+THEN
+CharacterSetCustomName(CHARACTERGUID_S_GLO_Braccus_358ba541-0710-43be-8263-87afe1a8d9b5, "GLO_Vredeman");
+PlayEffect(TRIGGERGUID_S_ARX_EndGame_Enter_bd166e2a-7623-490e-94df-78079e7cbacc, "RS3_FX_GP_ScriptedEvent_ARX_Ending_Boom_01");
+PROC_EG_EntryKnockDownPlayers();
+
+PROC
+PROC_EG_EntryKnockDownPlayers()
+AND
+DB_IsPlayer(_Var1)
+AND NOT
+DB_Dead(_Var1)
+THEN
+DB_EG_PlayerKnockedDown(_Var1);
+ApplyStatus(_Var1, "KNOCKED_DOWN", 3, 1);
+
+IF
+StoryEvent((CHARACTERGUID)_Var1, "EG_AllyTeleported")
+AND
+DB_AppearingAllies(_Var1, _Var2, _)
+THEN
+ProcCharacterMoveTo(_Var1, _Var2, 0, "EG_AllyArrived");
+
+IF
+StoryEvent((CHARACTERGUID)_Var1, "EG_AllyArrived")
+AND
+DB_AppearingAllies(_Var1, _Var2, _)
+THEN
+CharacterLookFromTrigger(_Var1, _Var2, 0);
+
+QRY
+QRY_EG_ImportantNPCIsAllied(CHARACTERGUID_S_GLO_River_f4931ebe-10b0-43c4-9182-640cf052717e)
+THEN
+DB_NOOP(0);
+
+QRY
+QRY_EG_ImportantNPCIsAllied(CHARACTERGUID_S_GLO_Jahan_4d222cfd-49c8-41d3-8cb7-2a2b56232633)
+THEN
+DB_NOOP(0);
+
+QRY
+QRY_EG_ImportantNPCIsAllied(CHARACTERGUID_S_FTJ_SW_Warrior_SeekerCaptain_1329f018-23e4-4717-9bc8-074b28d04c54)
+AND
+DB_GlobalFlag("CoS_GarethRevenge_Resolution_Peaceful")
+THEN
+DB_NOOP(0);
+
+QRY
+QRY_EG_ImportantNPCIsAllied(CHARACTERGUID_S_GLO_Tarquin_a3d0cdcc-d0b0-464d-9ad7-43b38baed620)
+THEN
+DB_NOOP(0);
+
+QRY
+QRY_EG_ImportantNPCIsAllied(CHARACTERGUID_S_GLO_Almira_49b466a9-e67f-4e3c-8f66-3636ba7dd54f)
+AND
+DB_GlobalFlag("GLO_Almira_ReceivedSwornbreaker")
+THEN
+DB_NOOP(0);
+
+IF
+CharacterStatusRemoved((CHARACTERGUID)_Var1, "RESTED", _)
+AND
+DB_EG_PlayerKnockedDown(_Var1)
+THEN
+ApplyStatus(_Var1, "KNOCKED_DOWN", 3, 1);
+
+IF
+CharacterStatusRemoved((CHARACTERGUID)_Var1, "KNOCKED_DOWN", _)
+AND
+DB_EG_PlayerKnockedDown(_Var1)
+THEN
+NOT DB_EG_PlayerKnockedDown(_Var1);
+PROC_EG_StartDialogIfAllGottenUp();
+
+PROC
+PROC_EG_StartDialogIfAllGottenUp()
+AND NOT
+DB_EG_PlayerKnockedDown(_)
+AND
+DB_IsPlayer(_Var2)
+THEN
+SetStoryEvent(_Var2, "EG_AllyStartDialog");
+
+IF
+StoryEvent(_, "EG_AllyStartDialog")
+THEN
+TimerLaunch("EG_AllyTeleported_CodeNeedsAFrame", 10);
+
+IF
+TimerFinished("EG_AllyTeleported_CodeNeedsAFrame")
+AND
+DB_EG_AppearingAllyInEG(_Var1, _Var2)
+AND
+DB_Avatars(_Var3)
+AND
+CharacterIsDead(_Var3, 0)
+AND
+QueryOnlyOnce("EG_StartAllyDialog")
+THEN
+ObjectSetFlag(_Var1, _Var2);
+Proc_StartDialog(0, "EG_Shipmates", _Var1, NULL_00000000-0000-0000-0000-000000000000, NULL_00000000-0000-0000-0000-000000000000, NULL_00000000-0000-0000-0000-000000000000, _Var3);
+
+IF
+TimerFinished("EG_AllyTeleported_CodeNeedsAFrame")
+AND
+DB_EG_AppearingAllyInEG(_Var1, _Var2)
+AND
+DB_IsPlayer(_Var3)
+AND
+CharacterIsDead(_Var3, 0)
+AND
+QueryOnlyOnce("EG_StartAllyDialog")
+THEN
+ObjectSetFlag(_Var1, _Var2);
+Proc_StartDialog(0, "EG_Shipmates", _Var1, NULL_00000000-0000-0000-0000-000000000000, NULL_00000000-0000-0000-0000-000000000000, NULL_00000000-0000-0000-0000-000000000000, _Var3);
+
+IF
+DialogStarted("EG_Shipmates", (INTEGER)_Var1)
+THEN
+TimerLaunch("EG_CodeWorkAroundForDialogStart_EG_Shipmates", 100);
+
+IF
+TimerFinished("EG_CodeWorkAroundForDialogStart_EG_Shipmates")
+AND
+DB_DialogName("EG_Shipmates", _Var1)
+AND
+DB_EG_AppearingAllyInEG(CHARACTERGUID_S_FTJ_SW_Warrior_SeekerCaptain_1329f018-23e4-4717-9bc8-074b28d04c54, _)
+AND NOT
+DB_DialogNPCs(_Var1, CHARACTERGUID_S_FTJ_SW_Warrior_SeekerCaptain_1329f018-23e4-4717-9bc8-074b28d04c54, 1)
+THEN
+DialogAddActorAt(_Var1, CHARACTERGUID_S_FTJ_SW_Warrior_SeekerCaptain_1329f018-23e4-4717-9bc8-074b28d04c54, 2);
+
+IF
+TimerFinished("EG_CodeWorkAroundForDialogStart_EG_Shipmates")
+AND
+DB_DialogName("EG_Shipmates", _Var1)
+AND
+DB_EG_AppearingAllyInEG(CHARACTERGUID_S_GLO_Tarquin_a3d0cdcc-d0b0-464d-9ad7-43b38baed620, _)
+AND NOT
+DB_DialogNPCs(_Var1, CHARACTERGUID_S_GLO_Tarquin_a3d0cdcc-d0b0-464d-9ad7-43b38baed620, 1)
+THEN
+DialogAddActorAt(_Var1, CHARACTERGUID_S_GLO_Tarquin_a3d0cdcc-d0b0-464d-9ad7-43b38baed620, 3);
+
+IF
+TimerFinished("EG_CodeWorkAroundForDialogStart_EG_Shipmates")
+AND
+DB_DialogName("EG_Shipmates", _Var1)
+AND
+DB_EG_AppearingAllyInEG(CHARACTERGUID_S_GLO_Almira_49b466a9-e67f-4e3c-8f66-3636ba7dd54f, _)
+AND NOT
+DB_DialogNPCs(_Var1, CHARACTERGUID_S_GLO_Almira_49b466a9-e67f-4e3c-8f66-3636ba7dd54f, 1)
+THEN
+DialogAddActorAt(_Var1, CHARACTERGUID_S_GLO_Almira_49b466a9-e67f-4e3c-8f66-3636ba7dd54f, 4);
+
+IF
+DialogEnded("EG_Shipmates", _)
+AND
+DB_EG_AppearingAllyInEG(_Var2, _)
+AND
+DB_AppearingAllies(_Var2, _Var4, _)
+THEN
+DB_EG_AllyIsPraying(_Var2);
+ProcRemoveAllDialogEntriesForSpeaker(_Var2);
+CharacterPurgeQueue(_Var2);
+CharacterSetAnimationOverride(_Var2, "skill_prepare_totem_01_loop");
+PROC_LoopEffect("RS3_FX_GP_ScriptedEvent_ChanelledSource_01", _Var2, "EG_SourcePrayerEffect", "ARX_Endgame", "");
+CharacterLookFromTrigger(_Var2, _Var4, 0);
+
+IF
+DialogEnded("EG_Shipmates", _)
+THEN
+TimerLaunch("EG_ReveredStatus", 2000);
+PROC_LoopEffect("RS3_FX_GP_ScriptedEvent_ChanelledSourceOrb_01", TRIGGERGUID_S_EG_SourceOrb_2e22ed4d-94d5-4955-8665-ae4327e026eb, "EG_SourcePrayerEffectBall", "ARX_Endgame", "");
+
+IF
+TimerFinished("EG_ReveredStatus")
+AND
+DB_IsPlayer(_Var1)
+THEN
+CharacterAddSourcePoints(_Var1, 3);
+ApplyStatus(_Var1, "QUEST_REVERED", -1);
+ObjectSetFlag(_Var1, "EG_HasQuest_Revered", 0);
+
+IF
+ObjectEnteredCombat((CHARACTERGUID)_Var1, _)
+AND
+DB_EG_AppearingAllyInEG(_Var1, _)
+AND
+QueryOnlyOnce("EG_PrayingAlliesLeave")
+THEN
+PROC_EG_PoofAllies();
+
+IF
+AttackedByObject((CHARACTERGUID)_Var1, _, (GUIDSTRING)_Var3, _, _)
+AND
+_Var1 != _Var3
+AND
+DB_EG_AppearingAllyInEG(_Var1, _)
+AND
+QueryOnlyOnce("EG_PrayingAlliesLeave")
+THEN
+PROC_EG_PoofAllies();
+
+PROC
+PROC_EG_PoofAllies()
+AND
+DB_EG_AppearingAllyInEG(_Var1, _)
+THEN
+PROC_StopLoopEffect(_Var1, "EG_SourcePrayerEffect");
+Poof(_Var1, "RS3_FX_GP_ScriptedEvent_ARX_EndingTeleport_01");
+
+PROC
+PROC_EG_PoofAllies()
+THEN
+PROC_StopLoopEffect(TRIGGERGUID_S_EG_SourceOrb_2e22ed4d-94d5-4955-8665-ae4327e026eb, "EG_SourcePrayerEffectBall");
+
+PROC
+PROC_EG_PoofAllies()
+AND
+DB_IsPlayer(_Var1)
+THEN
+RemoveStatus(_Var1, "QUEST_REVERED");
+
+IF
+CharacterResurrected((CHARACTERGUID)_Var1)
+AND
+ObjectGetFlag(_Var1, "EG_HasQuest_Revered", 1)
+AND NOT
+DB_EG_EpilogueSetupStarted(1)
+THEN
+ApplyStatus(_Var1, "QUEST_REVERED", -1);
+
+IF
+CharacterStatusApplied((CHARACTERGUID)_Var1, "DRAIN", _)
+AND
+HasActiveStatus(_Var1, "QUEST_REVERED", 1)
+THEN
+ProcObjectTimer(_Var1, "EG_RestoreMissingSP", 750);
+
+PROC
+ProcObjectTimerFinished((CHARACTERGUID)_Var1, "EG_RestoreMissingSP")
+AND
+HasActiveStatus(_Var1, "QUEST_REVERED", 1)
+THEN
+CharacterAddSourcePoints(_Var1, 3);
+
+PROC
+PROC_EG_MakePeace((INTEGER)_Var1, (INTEGER)_Var2)
+AND
+DB_IsPlayer(_Var3)
+AND NOT
+DB_EG_MakePeace_Done(1)
+AND
+CharacterGetReservedUserID(_Var3, _Var1)
+AND
+DB_IsPlayer(_Var4)
+AND NOT
+DB_EG_MakePeace_Done(1)
+AND
+CharacterGetReservedUserID(_Var4, _Var2)
+THEN
+DB_EG_MakePeace_Done(1);
+MakePeace(_Var3, _Var4, 1);
+
+PROC
+PROC_EG_MakePeace((INTEGER)_Var1, (INTEGER)_Var2)
+THEN
+NOT DB_EG_MakePeace_Done(1);
+
+IF
+UserMakeWar((INTEGER)_Var1, (INTEGER)_Var2, 1)
+AND NOT
+DB_OnlyOnce("EG_StartFirstFightDialog")
+THEN
+PROC_EG_MakePeace(_Var1, _Var2);
+
+IF
+SavegameLoaded((INTEGER)_Var1, (INTEGER)_Var2, (INTEGER)_Var3, (INTEGER)_Var4)
+AND
+QRY_VersionIsOlderThan(_Var1, _Var2, _Var3, _Var4, 3, 6, 5, 0)
+AND NOT
+DB_OnlyOnce("EG_StartFirstFightDialog")
+THEN
+PROC_EG_MakeUniversalPeace();
+
+
+EXITSECTION
+ENDEXITSECTION
+
+ParentTargetEdge "EndGame"

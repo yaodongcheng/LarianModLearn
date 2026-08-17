@@ -1,0 +1,211 @@
+Version 1
+SubGoalCombiner SGC_AND
+
+INITSECTION
+DB_PosessedPainting(ITEMGUID_S_RC_GY_Painting_Possessed_02_48bfd403-e6ba-47b2-8725-58fab1e2d77a, "RC_GY_AD_Painting_Possessed_02");
+DB_PosessedPainting(ITEMGUID_S_RC_GY_Painting_Possessed_03_53cc5375-1fc0-4b83-a878-0bf9bbf4069b, "RC_GY_AD_Painting_Possessed_03");
+DB_PosessedPainting(ITEMGUID_S_RC_GY_Painting_Possessed_04_d0723027-4dc8-41c9-948c-91e168f6cf0d, "RC_GY_AD_Painting_Possessed_04");
+DB_PosessedPainting(ITEMGUID_S_RC_GY_Painting_Possessed_05_6c89c1b1-59cd-4321-8926-013860296eab, "RC_GY_AD_Painting_Possessed_05");
+DB_PosessedPainting(ITEMGUID_S_RC_GY_Painting_Possessed_06_981fbc69-6674-4701-b047-b96b1e99c32b, "RC_GY_AD_Painting_Possessed_06");
+DB_PosessedPainting(ITEMGUID_S_RC_GY_Painting_Possessed_07_f819d2cf-65d8-42a1-bad9-56ec96919fcd, "RC_GY_AD_Painting_Possessed_07");
+DB_GLO_Attribute_Check_AgainstLevel("RC_GY_RykerHouse_PaintingWithKey", 1, "Wits", "Hard", 2, 11);
+DB_RC_GY_RykerHouse_BedroomPainting(ITEMGUID_S_RC_GY_Painting_Possessed_08_9d860471-0819-4064-9a78-4ce991112985);
+SetOnStage(ITEMGUID_S_RC_GY_RykerHouse_Bedroom_Key_026aae8d-d210-4e36-bc4a-446603944e24, 0);
+DB_RC_GY_VBArtifacts(ITEMGUID_PUZ_Raanaar_HoveringRune_B_000_a4a60aff-7d2e-47ad-945d-c81d3dd35db2);
+DB_RC_GY_VBArtifacts(ITEMGUID_PUZ_Raanaar_Clock_A_000_43fc11e8-cd8f-4299-aed9-ad2968ba8b02);
+DB_RC_GY_VBArtifacts(ITEMGUID_PUZ_Raanaar_HoveringRune_C_000_bd038f57-67b9-42c4-add0-9286832ebf7f);
+DB_RC_GY_VBArtifacts(ITEMGUID_PUZ_Raanaar_HoveringRune_D_000_4c644fe5-8838-4a0e-a667-bcd7373cd058);
+DB_RC_GY_VBArtifacts(ITEMGUID_PUZ_Raanaar_GroundRune_On_B_000_94f74c4a-4d31-47ac-9196-5a95e200b9e9);
+DB_RC_GY_VBArtifacts(ITEMGUID_PUZ_Raanaar_Mirror_A_000_27257459-ac76-48c9-956c-3c7b3b218d21);
+DB_RC_GY_RykerHouse_UpperFloor_Bodyguards(CHARACTERGUID_S_RC_GY_RykersBodyguard_010_3353e5bf-9bac-4c6c-b6d0-5c405c7ec8ff);
+DB_RC_GY_RykerHouse_UpperFloor_Bodyguards(CHARACTERGUID_S_RC_GY_RykersBodyguard_011_e2f77f28-5f85-4395-8c36-330bbdca13b0);
+DB_RC_GY_RykerHouse_BedroomTransit(ITEMGUID_05m_WoodenHouse_A_Stair_Up_C_Item_002_6e1031d4-8c51-4d89-9501-2e647d1472b7);
+DB_RC_GY_RykerHouse_BedroomTransit(ITEMGUID_S_RC_GY_RykerHouse_Hatch_FromBedroom_35feef18-1fb1-4764-8817-9d7ed970ecd1);
+DB_RC_GY_RykerHouse_BedroomOpenOnTeleport(ITEMGUID_S_RC_GY_RykerHouse_Door_ToBedroom_f88cbc1a-8b03-429f-9837-2b6513418a2b);
+DB_RC_GY_RykerHouse_BedroomOpenOnTeleport(ITEMGUID_S_RC_GY_RykerHouse_Door_FromBedroom_ae4d9cb9-f00f-4c3d-b099-611c6f1905f2);
+
+KBSECTION
+IF
+CharacterUsedItem((CHARACTERGUID)_Var1, ITEMGUID_PUZ_Raanaar_Turret_A_002_f1887765-fd65-449b-859c-0b5313606ade)
+AND
+DB_IsPlayer(_Var1)
+THEN
+StartVoiceBark("RC_GY_VB_RykersHouse_Artifacts", _Var1);
+
+IF
+CharacterUsedItem((CHARACTERGUID)_Var1, (ITEMGUID)_Var2)
+AND
+DB_RC_GY_VBArtifacts(_Var2)
+AND
+DB_IsPlayer(_Var1)
+THEN
+ObjectSetFlag(_Var1, "RC_GY_RykersHouse_Trinket");
+StartVoiceBark("RC_GY_VB_RykersHouse_Artifacts", _Var1);
+
+IF
+CharacterUsedItem(_, (ITEMGUID)_Var2)
+AND
+DB_PosessedPainting(_Var2, _Var3)
+THEN
+Proc_StartDialog(1, _Var3, _Var2);
+
+IF
+ItemMoved(ITEMGUID_S_RC_GY_Painting_Possessed_07_f819d2cf-65d8-42a1-bad9-56ec96919fcd)
+THEN
+ObjectSetFlag(ITEMGUID_S_RC_GY_Painting_Possessed_07_f819d2cf-65d8-42a1-bad9-56ec96919fcd, "RC_GY_RykerHouse_WarnPaintingMoved");
+
+PROC
+ProcBlockUseOfItem((CHARACTERGUID)_Var1, ITEMGUID_1m_CastleHouse_A_Stairs_A_000_787d2c32-334c-416c-8b82-cef93e118939)
+AND
+DB_IsPlayer(_Var1)
+AND
+UserGetFlag(_Var1, "RC_GY_RykerHouse_WarnedAboutSecondFloor", 0)
+AND
+ObjectGetFlag(ITEMGUID_S_RC_GY_Painting_Possessed_07_f819d2cf-65d8-42a1-bad9-56ec96919fcd, "RC_GY_RykerHouse_WarnPaintingMoved", 0)
+THEN
+DB_CustomUseItemResponse(_Var1, ITEMGUID_1m_CastleHouse_A_Stairs_A_000_787d2c32-334c-416c-8b82-cef93e118939, 0);
+Proc_StartDialog(0, "RC_GY_RykerHouse_PaintingWarnSecondFloor", ITEMGUID_S_RC_GY_Painting_Possessed_07_f819d2cf-65d8-42a1-bad9-56ec96919fcd, _Var1);
+
+IF
+CharacterUsedItem((CHARACTERGUID)_Var1, (ITEMGUID)_Var2)
+AND
+DB_IsPlayer(_Var1)
+AND
+DB_RC_GY_RykerHouse_BedroomPainting(_Var2)
+THEN
+Proc_StartDialog(0, "RC_GY_RykerHouse_PaintingWithKey", _Var2, _Var1);
+
+IF
+ObjectFlagSet("RC_GY_RykerHouse_BedroomPaintingTimer10", _, (INTEGER)_Var2)
+AND
+DialogGetInvolvedPlayer(_Var2, 1, _Var3)
+AND
+ObjectIsCharacter(_Var3, 1)
+THEN
+Proc_RC_GY_RykerHouse_BedroomIntruder(_Var3, 10000);
+
+IF
+ObjectFlagSet("RC_GY_RykerHouse_BedroomPaintingTimer5", _, (INTEGER)_Var2)
+AND
+DialogGetInvolvedPlayer(_Var2, 1, _Var3)
+AND
+ObjectIsCharacter(_Var3, 1)
+THEN
+Proc_RC_GY_RykerHouse_BedroomIntruder(_Var3, 5000);
+
+PROC
+Proc_RC_GY_RykerHouse_BedroomIntruder((CHARACTERGUID)_Var1, (INTEGER)_Var2)
+AND
+DB_RC_GY_RykerHouse_BedroomPainting(_Var3)
+AND NOT
+DB_ObjectTimer(_Var3, _, "RC_GY_RykerHouse_BedroomPainting_Timer")
+THEN
+DB_RC_GY_RykerHouse_BedroomIntruder(_Var1, _Var2);
+
+IF
+DialogEnded("RC_GY_RykerHouse_PaintingWithKey", _)
+AND
+DB_RC_GY_RykerHouse_BedroomIntruder(_Var2, _Var3)
+AND
+DB_RC_GY_RykerHouse_BedroomPainting(_Var4)
+AND NOT
+DB_ObjectTimer(_Var4, _, "RC_GY_RykerHouse_BedroomPainting_Timer")
+THEN
+DebugText(_Var4, "Timer");
+ProcObjectTimer(_Var4, "RC_GY_RykerHouse_BedroomPainting_Timer", _Var3);
+
+PROC
+ProcObjectTimerFinished((GUIDSTRING)_Var1, "RC_GY_RykerHouse_BedroomPainting_Timer")
+THEN
+DebugText(_Var1, "Finished");
+Proc_RC_GY_RykerHouse_BedroomAlarm();
+ObjectClearFlag(_Var1, "RC_GY_RykerHouse_BedroomPaintingTimer10");
+ObjectClearFlag(_Var1, "RC_GY_RykerHouse_BedroomPaintingTimer5");
+SysClear("DB_RC_GY_RykerHouse_BedroomIntruder", 2);
+
+PROC
+Proc_RC_GY_RykerHouse_BedroomAlarm()
+AND
+DB_RC_GY_RykerHouse_BedroomIntruder(_Var1, _)
+AND
+DB_IsPlayer(_Var3)
+AND
+DB_InRegion(_Var3, TRIGGERGUID_S_RC_GY_SUB_RykerHouse_SecondFloor_0b11d783-9950-4ea8-9d2c-d18026d49025)
+AND
+CharacterIsInPartyWith(_Var3, _Var1, 1)
+AND
+DB_RC_GY_RykerHouse_UpperFloor_Bodyguards(_Var4)
+THEN
+ProcForceStopDialog(_Var4);
+ProcSetHostileToIndivPlayer(_Var4, _Var3);
+EnterCombat(_Var4, _Var3);
+
+IF
+ItemMoved(ITEMGUID_S_RC_GY_Painting_Possessed_08_9d860471-0819-4064-9a78-4ce991112985)
+THEN
+ObjectSetFlag(ITEMGUID_S_RC_GY_Painting_Possessed_08_9d860471-0819-4064-9a78-4ce991112985, "RC_GY_RykerHouse_BedroomPaintingMoved");
+
+IF
+ObjectFlagSet("RC_GY_RykerHouse_BedroomPaintingMoved", ITEMGUID_S_RC_GY_Painting_Possessed_08_9d860471-0819-4064-9a78-4ce991112985, _)
+AND
+ObjectGetFlag(ITEMGUID_S_RC_GY_Painting_Possessed_08_9d860471-0819-4064-9a78-4ce991112985, "RC_GY_RykerHouse_BedroomPaintingDropKey", 0)
+THEN
+ObjectSetFlag(ITEMGUID_S_RC_GY_Painting_Possessed_08_9d860471-0819-4064-9a78-4ce991112985, "RC_GY_RykerHouse_BedroomPaintingDropKey");
+
+IF
+ItemDestroyed(ITEMGUID_S_RC_GY_Painting_Possessed_08_9d860471-0819-4064-9a78-4ce991112985)
+AND
+ObjectGetFlag(ITEMGUID_S_RC_GY_Painting_Possessed_08_9d860471-0819-4064-9a78-4ce991112985, "RC_GY_RykerHouse_BedroomPaintingDropKey", 0)
+THEN
+ObjectSetFlag(ITEMGUID_S_RC_GY_Painting_Possessed_08_9d860471-0819-4064-9a78-4ce991112985, "RC_GY_RykerHouse_BedroomPaintingDropKey");
+
+IF
+ObjectFlagSet("RC_GY_RykerHouse_BedroomPaintingDropKey", ITEMGUID_S_RC_GY_Painting_Possessed_08_9d860471-0819-4064-9a78-4ce991112985, _)
+THEN
+SetOnStage(ITEMGUID_S_RC_GY_RykerHouse_Bedroom_Key_026aae8d-d210-4e36-bc4a-446603944e24, 1);
+
+IF
+ObjectFlagSet("RC_GY_RykerHouse_BedroomPaintingDropKey", ITEMGUID_S_RC_GY_Painting_Possessed_08_9d860471-0819-4064-9a78-4ce991112985, _)
+THEN
+ItemDragToTrigger(ITEMGUID_S_RC_GY_RykerHouse_Bedroom_Key_026aae8d-d210-4e36-bc4a-446603944e24, TRIGGERGUID_S_RC_GY_RykerHouse_Bedroom_Key_DropPoint_038f5eeb-3719-48d7-b394-ee2b9104b87a);
+
+IF
+ItemUnlocked(ITEMGUID_05m_WoodenHouse_A_Stair_Up_C_Item_002_6e1031d4-8c51-4d89-9501-2e647d1472b7, _, _)
+THEN
+ItemUnLock(ITEMGUID_S_RC_GY_RykerHouse_Hatch_FromBedroom_35feef18-1fb1-4764-8817-9d7ed970ecd1);
+
+IF
+ItemUnlocked(ITEMGUID_S_RC_GY_RykerHouse_Hatch_FromBedroom_35feef18-1fb1-4764-8817-9d7ed970ecd1, _, _)
+THEN
+ItemUnLock(ITEMGUID_05m_WoodenHouse_A_Stair_Up_C_Item_002_6e1031d4-8c51-4d89-9501-2e647d1472b7);
+
+PROC
+ProcBlockUseOfItem((CHARACTERGUID)_Var1, (ITEMGUID)_Var2)
+AND
+DB_RC_GY_RykerHouse_BedroomTransit(_Var2)
+AND
+ItemIsLocked(_Var2, 0)
+AND
+DB_RC_GY_RykerHouse_BedroomOpenOnTeleport(_Var3)
+THEN
+ItemOpen(_Var3);
+
+IF
+CharacterDied((CHARACTERGUID)_Var1)
+AND
+DB_RC_GY_RykerHouse_UpperFloor_Bodyguards(_Var1)
+THEN
+NOT DB_RC_GY_RykerHouse_UpperFloor_Bodyguards(_Var1);
+
+
+EXITSECTION
+SysClear("DB_PosessedPainting", 2);
+SysClear("DB_RC_GY_RykerHouse_BedroomPainting", 1);
+SysClear("DB_RC_GY_VBArtifacts", 1);
+SysClear("DB_RC_GY_RykerHouse_BedroomIntruder", 2);
+SysClear("DB_RC_GY_RykerHouse_UpperFloor_Bodyguards", 1);
+SysClear("DB_RC_GY_RykerHouse_BedroomTransit", 1);
+SysClear("DB_RC_GY_RykerHouse_BedroomOpenOnTeleport", 1);
+ENDEXITSECTION
+
+ParentTargetEdge "ReapersCoast"

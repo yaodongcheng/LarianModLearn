@@ -1,0 +1,164 @@
+Version 1
+SubGoalCombiner SGC_AND
+
+INITSECTION
+DB_Dialogs(CHARACTERGUID_S_RC_BI_Vault_PosessedPerson_003_019e266d-2d45-4818-a778-2cebffdcd743, "RC_BI_Vault_Possessed_003");
+
+KBSECTION
+IF
+AttackedByObject(CHARACTERGUID_S_RC_BI_Vault_PosessedPerson_003_019e266d-2d45-4818-a778-2cebffdcd743, (CHARACTERGUID)_Var1, _, _, _)
+AND
+DB_IsPlayer(_Var1)
+AND
+ObjectGetFlag(CHARACTERGUID_S_RC_BI_Vault_PosessedPerson_003_019e266d-2d45-4818-a778-2cebffdcd743, "RC_BI_Vault_ChainsDestroyed", 0)
+AND
+GetPosition(_Var1, _Var5, _Var6, _Var7)
+THEN
+Proc_StartDialog(1, "RC_BI_AD_Vault_Possessed_003_AttackedWhileChained", CHARACTERGUID_S_RC_BI_Vault_PosessedPerson_003_019e266d-2d45-4818-a778-2cebffdcd743);
+
+IF
+CharacterUsedItem((CHARACTERGUID)_Var1, ITEMGUID_S_RC_BI_Vault_Lever_003_83387865-a734-4af1-a435-5af7432bad4b)
+AND
+DB_IsPlayer(_Var1)
+AND NOT
+DB_OnlyOnce("RC_BI_Vault_003_DemonSpoked")
+AND
+ObjectGetFlag(ITEMGUID_S_RC_BI_Vault_Lever_003_83387865-a734-4af1-a435-5af7432bad4b, "RC_BI_Vault_Repaired", 1)
+THEN
+Proc_StartDialog(0, "RC_BI_Vault_Whisper_003", _Var1);
+DB_OnlyOnce("RC_BI_Vault_003_DemonSpoked");
+
+IF
+CharacterEnteredTrigger((CHARACTERGUID)_Var1, TRIGGERGUID_S_RC_BI_Vault_Prison_003_0f989d97-4c51-4fef-9124-3d15a03238c8)
+AND
+CharacterIsDead(CHARACTERGUID_S_RC_BI_Vault_PosessedPerson_003_019e266d-2d45-4818-a778-2cebffdcd743, 0)
+AND
+DB_Dialogs(CHARACTERGUID_S_RC_BI_Vault_PosessedPerson_003_019e266d-2d45-4818-a778-2cebffdcd743, "RC_BI_Vault_Possessed_003")
+AND NOT
+DB_OnlyOnce("RC_BI_Vault_003_DemonSpoked")
+THEN
+Proc_StartDialog(0, "RC_BI_Vault_Possessed_003", CHARACTERGUID_S_RC_BI_Vault_PosessedPerson_003_019e266d-2d45-4818-a778-2cebffdcd743, _Var1);
+DB_OnlyOnce("RC_BI_Vault_003_DemonSpoked");
+
+IF
+ObjectSourcePointAddRequest((CHARACTERGUID)_Var1, (INTEGER)_Var2, (INTEGER)_Var3)
+AND
+DB_IsPlayer(_Var1)
+AND
+DB_InRegion(_Var1, TRIGGERGUID_S_RC_BI_Vault_Prison_003_0f989d97-4c51-4fef-9124-3d15a03238c8)
+AND
+ObjectGetFlag(CHARACTERGUID_S_RC_BI_Vault_PosessedPerson_003_019e266d-2d45-4818-a778-2cebffdcd743, "RC_BI_Vault_ChainsDestroyed", 0)
+AND
+_Var3 == 0
+AND
+ObjectGetFlag(_Var1, "RC_BI_Vault_003_RejectedLizard", 0)
+THEN
+Proc_StartDialog(0, "RC_BI_Vault_Possessed_003", CHARACTERGUID_S_RC_BI_Vault_PosessedPerson_003_019e266d-2d45-4818-a778-2cebffdcd743, _Var1);
+
+IF
+CharacterDied(CHARACTERGUID_S_RC_BI_Vault_PosessedPerson_003_019e266d-2d45-4818-a778-2cebffdcd743)
+AND
+DB_IsPlayer(_Var1)
+THEN
+ObjectSetFlag(_Var1, "QuestUpdate_RC_BI_TheVaults_KilledGodwoken");
+
+IF
+ObjectFlagSet("RC_BI_Vault_ChainsDestroyed", CHARACTERGUID_S_RC_BI_Vault_PosessedPerson_003_019e266d-2d45-4818-a778-2cebffdcd743, (INTEGER)_Var1)
+THEN
+SetCanFight(CHARACTERGUID_S_RC_BI_Vault_PosessedPerson_003_019e266d-2d45-4818-a778-2cebffdcd743, 1);
+SetCanJoinCombat(CHARACTERGUID_S_RC_BI_Vault_PosessedPerson_003_019e266d-2d45-4818-a778-2cebffdcd743, 1);
+ProcSetRelationToPlayers(CHARACTERGUID_S_RC_BI_Vault_PosessedPerson_003_019e266d-2d45-4818-a778-2cebffdcd743, 0);
+
+IF
+ObjectFlagSet("RC_BI_Vault_003_Approach", (CHARACTERGUID)_Var1, (INTEGER)_Var2)
+THEN
+TeleportTo(_Var1, CHARACTERGUID_S_RC_BI_Vault_PosessedPerson_003_019e266d-2d45-4818-a778-2cebffdcd743);
+PlayEffect(_Var1, "RS3_FX_GP_ScriptedEvent_Teleport_GenericSmoke_01");
+
+IF
+ObjectFlagSet("RC_BI_Vault_003_Freeze", (CHARACTERGUID)_Var1, (INTEGER)_Var2)
+THEN
+PlayAnimation(CHARACTERGUID_S_RC_BI_Vault_PosessedPerson_003_019e266d-2d45-4818-a778-2cebffdcd743, "cast_target_start", "RC_BI_Vault_003_PreCast");
+PROC_LoopEffect("RS3_FX_Soul_Prepare_Soul_Root_01", CHARACTERGUID_S_RC_BI_Vault_PosessedPerson_003_019e266d-2d45-4818-a778-2cebffdcd743, "RC_BI_Vault_FreezeCast", "RC_Main", "");
+DB_RC_BI_PlayerFreezed(_Var1);
+
+IF
+StoryEvent(CHARACTERGUID_S_RC_BI_Vault_PosessedPerson_003_019e266d-2d45-4818-a778-2cebffdcd743, "RC_BI_Vault_003_PreCast")
+AND
+DB_RC_BI_PlayerFreezed(_Var1)
+THEN
+PlayAnimation(CHARACTERGUID_S_RC_BI_Vault_PosessedPerson_003_019e266d-2d45-4818-a778-2cebffdcd743, "cast_target_cast", "RC_BI_Vault_003_Cast");
+PROC_StopLoopEffect(CHARACTERGUID_S_RC_BI_Vault_PosessedPerson_003_019e266d-2d45-4818-a778-2cebffdcd743, "RC_BI_Vault_FreezeCast");
+PROC_LoopEffect("RS3_FX_GP_Status_Shackles_of_Pain_01", _Var1, "RC_BI_Vault_Freezed", "RC_Main", "Dummy_NeckFX");
+PROC_LoopBeamEffect("RS3_FX_GP_ScriptedEvent_ChainedDragon_Beam_01", _Var1, CHARACTERGUID_S_RC_BI_Vault_PosessedPerson_003_019e266d-2d45-4818-a778-2cebffdcd743, "Dummy_NeckFX", "Dummy_NeckFX", "RC_BI_Vault_Freezed", "RC_Main");
+PlayEffect(CHARACTERGUID_S_RC_BI_Vault_PosessedPerson_003_019e266d-2d45-4818-a778-2cebffdcd743, "RS3_FX_Skills_Soul_Cast_Soul_Impact_Root_01");
+CharacterSetAnimationOverride(_Var1, "stillmental");
+NOT DB_RC_BI_PlayerFreezed(_Var1);
+
+IF
+ObjectFlagSet("RC_BI_Vault_003_Vampirism", (CHARACTERGUID)_Var1, (INTEGER)_Var2)
+THEN
+PlayEffect(_Var1, "RS3_FX_Skills_Soul_Cast_SpiritVision_Overlay_01");
+PlayEffect(_Var1, "RS3_FX_GP_ScriptedEvent_PuzzlePillars_01");
+PlayAnimation(CHARACTERGUID_S_RC_BI_Vault_PosessedPerson_003_019e266d-2d45-4818-a778-2cebffdcd743, "resurrect");
+PlayAnimation(CHARACTERGUID_S_RC_BI_Vault_PosessedPerson_003_019e266d-2d45-4818-a778-2cebffdcd743, "hit_magic");
+PlayEffect(CHARACTERGUID_S_RC_BI_Vault_PosessedPerson_003_019e266d-2d45-4818-a778-2cebffdcd743, "RS3_FX_GP_ScriptedEvent_Replenish_SourcePoint_01");
+PlayEffect(CHARACTERGUID_S_RC_BI_Vault_PosessedPerson_003_019e266d-2d45-4818-a778-2cebffdcd743, "RS3_FX_Skills_Soul_Cast_SpiritVision_Overlay_01");
+Proc_RemoveSourcePoints(_Var1);
+
+IF
+ObjectFlagSet("RC_BI_Vault_003_Vampirism", (CHARACTERGUID)_Var1, (INTEGER)_Var2)
+AND
+DB_RC_BI_Vault_Pillars(_Var3, CHARACTERGUID_S_RC_BI_Vault_PosessedPerson_003_019e266d-2d45-4818-a778-2cebffdcd743, _, _, _Var6)
+THEN
+Proc_RC_BI_Vault_SetBrokenPillarsUpdate(_Var1, _Var3, _Var6);
+ItemDestroy(_Var3);
+
+IF
+DialogEnded("RC_BI_Vault_Possessed_003", (INTEGER)_Var1)
+AND
+DialogGetInvolvedPlayer(_Var1, 1, _Var2)
+THEN
+PROC_StopLoopEffect(_Var2, "RC_BI_Vault_Freezed");
+PROC_StopLoopBeamEffect(_Var2, "RC_BI_Vault_Freezed");
+CharacterSetAnimationOverride(_Var2, "");
+
+IF
+DialogEnded("RC_BI_Vault_Possessed_003", (INTEGER)_Var1)
+AND
+DialogGetInvolvedPlayer(_Var1, 1, _Var2)
+AND
+ObjectGetFlag(_Var2, "RC_BI_Vault_003_Vampirism", 1)
+THEN
+ProcSetRelationToPlayers(CHARACTERGUID_S_RC_BI_Vault_PosessedPerson_003_019e266d-2d45-4818-a778-2cebffdcd743, 0);
+ProcTriggerUnregisterForPlayers(TRIGGERGUID_S_RC_BI_Vault_Prison_003_0f989d97-4c51-4fef-9124-3d15a03238c8);
+NOT DB_Dialogs(CHARACTERGUID_S_RC_BI_Vault_PosessedPerson_003_019e266d-2d45-4818-a778-2cebffdcd743, "RC_BI_Vault_Possessed_003");
+
+IF
+DialogEnded("RC_BI_Vault_Possessed_003", (INTEGER)_Var1)
+AND
+DialogGetInvolvedPlayer(_Var1, 1, _Var2)
+AND
+ObjectGetFlag(CHARACTERGUID_S_RC_BI_Vault_PosessedPerson_003_019e266d-2d45-4818-a778-2cebffdcd743, "RC_BI_Vault_ChainsDestroyed", 1)
+THEN
+EnterCombat(CHARACTERGUID_S_RC_BI_Vault_PosessedPerson_003_019e266d-2d45-4818-a778-2cebffdcd743, _Var2);
+
+PROC
+Proc_DialogFlagSetup("RC_BI_Vault_Possessed_003", _, (GUIDSTRING)_Var2)
+THEN
+ObjectClearFlag(_Var2, "RC_BI_Vaults_HasSourcePoint");
+
+PROC
+Proc_DialogFlagSetup("RC_BI_Vault_Possessed_003", _, (CHARACTERGUID)_Var2)
+AND
+CharacterGetSourcePoints(_Var2, _Var3)
+AND
+_Var3 > 0
+THEN
+ObjectSetFlag(_Var2, "RC_BI_Vaults_HasSourcePoint");
+
+
+EXITSECTION
+ENDEXITSECTION
+
+ParentTargetEdge "ReapersCoast"

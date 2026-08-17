@@ -1,0 +1,1352 @@
+Version 1
+SubGoalCombiner SGC_AND
+
+INITSECTION
+DB_DialogMoneyTransfer(1, "RC_DW_Tavern_WaiterLivy", 100);
+DB_DialogMoneyTransfer(2, "RC_DW_Tavern_WaiterLivy", 150);
+DB_DialogMoneyTransfer(3, "RC_DW_Tavern_WaiterLivy", 100);
+DB_DialogMoneyTransfer(4, "RC_DW_Tavern_WaiterLivy", 50);
+DB_DeadEvent(CHARACTERGUID_S_RC_DW_Tavern_SurpriseDate_Lizard_09fa09cd-c589-4b3c-b357-6f515d302103, "RC_DW_Tavern_SurpriseDate_Lizard_IsDead");
+DB_Dialogs(CHARACTERGUID_S_RC_DW_Tavern_WaiterLivy_c202f327-07a6-4a72-80e5-b007915b5309, "RC_DW_Tavern_WaiterLivy");
+DB_Dialogs(CHARACTERGUID_S_RC_DW_Tavern_SurpriseDate_Lizard_09fa09cd-c589-4b3c-b357-6f515d302103, "RC_DW_Tavern_SurpriseDate_Lizard");
+DB_Ghosts(CHARACTERGUID_S_RC_DW_Tavern_SurpriseDate_Lizard_09fa09cd-c589-4b3c-b357-6f515d302103, CHARACTERGUID_S_RC_DW_Tavern_SurpriseDate_Lizard_Ghost_f60b17f2-d16e-4c18-b23a-565aaccdc69d, "RC_DW_Tavern_SurpriseDate_Lizard_Ghost");
+DB_KillCounter_Internal(CHARACTERGUID_S_RC_DW_Tavern_SurpriseDate_Thug_01_9ea8f07b-64b1-450b-9d5a-266e53515854, "RC_DW_Tavern_SurpriseDate");
+DB_KillCounter_Internal(CHARACTERGUID_S_RC_DW_Tavern_SurpriseDate_Thug_02_bd2300df-a635-4410-ad6a-3c9b33c972de, "RC_DW_Tavern_SurpriseDate");
+DB_KillCounter_Internal(CHARACTERGUID_S_RC_DW_Tavern_SurpriseDate_Thug_03_547577d9-404e-47b8-b510-1c3920c4b141, "RC_DW_Tavern_SurpriseDate");
+DB_KillCounter_Internal(CHARACTERGUID_S_RC_DW_Tavern_SurpriseDate_Thug_04_b34cc125-eea7-4387-b9fb-910a68bd2573, "RC_DW_Tavern_SurpriseDate");
+DB_KillCounter_Internal(CHARACTERGUID_S_RC_DW_Tavern_SurpriseDate_ThugLeader_56c58299-cc21-4920-8cb3-d351adda85a6, "RC_DW_Tavern_SurpriseDate");
+DB_KillCounter("RC_DW_Tavern_SurpriseDate", 5);
+DB_SurpriseDate_Thieves(CHARACTERGUID_S_RC_DW_Tavern_SurpriseDate_Thug_01_9ea8f07b-64b1-450b-9d5a-266e53515854);
+DB_SurpriseDate_Thieves(CHARACTERGUID_S_RC_DW_Tavern_SurpriseDate_Thug_02_bd2300df-a635-4410-ad6a-3c9b33c972de);
+DB_SurpriseDate_Thieves(CHARACTERGUID_S_RC_DW_Tavern_SurpriseDate_Thug_03_547577d9-404e-47b8-b510-1c3920c4b141);
+DB_SurpriseDate_Thieves(CHARACTERGUID_S_RC_DW_Tavern_SurpriseDate_Thug_04_b34cc125-eea7-4387-b9fb-910a68bd2573);
+DB_SurpriseDate_Thieves(CHARACTERGUID_S_RC_DW_Tavern_SurpriseDate_ThugLeader_56c58299-cc21-4920-8cb3-d351adda85a6);
+SetOnStage(CHARACTERGUID_S_RC_DW_Tavern_SurpriseDate_Lizard_09fa09cd-c589-4b3c-b357-6f515d302103, 0);
+SetOnStage(ITEMGUID_S_RC_DW_SurpriseDate_ThiefBag_3b676562-61d0-439c-84a6-e7f583084579, 0);
+SetOnStage(ITEMGUID_S_RC_DW_SurpriseDate_LizardDagger_8ee1eb3b-cebc-4ba3-b790-bfa1e9415113, 0);
+ProcTriggerRegisterForPlayers(TRIGGERGUID_S_RC_DW_SurpriseDate_SecretEntTrig_0d604dfa-8a14-4e60-a276-da93eb69a5f1);
+ProcTriggerRegisterForPlayers(TRIGGERGUID_S_RC_DW_Tavern_3rdFloor_9b8c2aed-8b35-41e6-9a7d-6cc29f25af8c);
+ProcTriggerRegisterForPlayers(TRIGGERGUID_S_RC_DW_Tavern_WaiterLivyEscaped_7b4819d6-23e7-4419-98ed-f831d1edf999);
+DB_ManualTradeNPC(DB_S_RC_DW_Tavern_WaiterLivy_c202f327-07a6-4a72-80e5-b007915b5309);
+DB_Dialogs(CHARACTERGUID_S_RC_DW_Tavern_Magister_SurpriseDate_01_dc36b6c3-9908-4b8a-8d3f-f262729f71e0, "RC_DW_Tavern_Magister_SurpriseDate_01");
+DB_Dialogs(CHARACTERGUID_S_RC_DW_Tavern_Magister_SurpriseDate_02_dab75366-9ca9-49b1-ad4b-9a79da1d7de6, "RC_DW_Tavern_Magister_SurpriseDate_02");
+DB_RC_DW_SurpriseDate_Magisters(CHARACTERGUID_S_RC_DW_Tavern_Magister_SurpriseDate_01_dc36b6c3-9908-4b8a-8d3f-f262729f71e0);
+DB_RC_DW_SurpriseDate_Magisters(CHARACTERGUID_S_RC_DW_Tavern_Magister_SurpriseDate_02_dab75366-9ca9-49b1-ad4b-9a79da1d7de6);
+SetOnStage(CHARACTERGUID_S_RC_DW_Tavern_SurpriseDate_LizardMale_Dummy_8c605824-803f-4cde-870b-73cd8c7554e1, 0);
+SetOnStage(CHARACTERGUID_S_RC_DW_Tavern_SurpriseDate_LizardMale_Dummy_Ghost_7baca8c9-eb2f-4048-95f9-084693f55681, 0);
+DB_SceneManager(CHARACTERGUID_S_RC_DW_Tavern_SurpriseDate_Thug_01_9ea8f07b-64b1-450b-9d5a-266e53515854, "RC_DW_Tavern_SurpriseDate");
+DB_SceneManager(CHARACTERGUID_S_RC_DW_Tavern_SurpriseDate_Thug_02_bd2300df-a635-4410-ad6a-3c9b33c972de, "RC_DW_Tavern_SurpriseDate");
+DB_SceneManager(CHARACTERGUID_S_RC_DW_Tavern_SurpriseDate_Thug_03_547577d9-404e-47b8-b510-1c3920c4b141, "RC_DW_Tavern_SurpriseDate");
+DB_SceneManager(CHARACTERGUID_S_RC_DW_Tavern_SurpriseDate_Thug_04_b34cc125-eea7-4387-b9fb-910a68bd2573, "RC_DW_Tavern_SurpriseDate");
+DB_SceneManager(CHARACTERGUID_S_RC_DW_Tavern_SurpriseDate_ThugLeader_56c58299-cc21-4920-8cb3-d351adda85a6, "RC_DW_Tavern_SurpriseDate");
+DB_SurpriseDateEquipment("Breast");
+DB_SurpriseDateEquipment("Belt");
+DB_SurpriseDateEquipment("Gloves");
+DB_SurpriseDateEquipment("Boots");
+DB_SurpriseDateEquipment("Ring");
+DB_SurpriseDateEquipment("Ring2");
+DB_SurpriseDateEquipment("Helmet");
+DB_SurpriseDateEquipment("Leggings");
+DB_SurpriseDateEquipment("Shield");
+DB_SurpriseDateEquipment("Weapon");
+DB_SurpriseDateEquipment("Amulet");
+DB_SurpriseDateKeys(ITEMGUID_S_RC_DW_Tavern_SurpriseDate_Key_01_a9691763-77c8-4e68-ac2b-1cb542c911a7);
+DB_SurpriseDateKeys(ITEMGUID_S_RC_DW_Tavern_SurpriseDate_Key_02_9c7a4c4c-151e-4fd6-8172-6be957ed6bd0);
+DB_SurpriseDateKeys(ITEMGUID_S_RC_DW_Tavern_SurpriseDate_Key_03_56184c03-89a1-41c5-8fe0-efc02b9e955f);
+DB_SurpriseDateKeys(ITEMGUID_S_RC_DW_Tavern_SurpriseDate_Key_04_7869e7d6-e28d-461c-85a1-1f311c37b506);
+TriggerRegisterForItems(TRIGGERGUID_S_RC_DW_SurpriseDate_ThiefBag_BoxTrig_d6d654f5-fd49-463e-bfd2-de89040d7165);
+DB_SeenDeadNPCPartyFlag(S_RC_DW_Tavern_WaiterLivy_c202f327-07a6-4a72-80e5-b007915b5309, "RC_DW_SeenDead_Lovrik");
+
+KBSECTION
+PROC
+Proc_DialogFlagSetup("RC_DW_Tavern_WaiterLivy", _, _)
+AND
+DB_IsPlayer(_Var3)
+AND
+IsTagged(_Var3, "ELF", 0)
+THEN
+NOT DB_PreventTradeBetween(DB_S_RC_DW_Tavern_WaiterLivy_c202f327-07a6-4a72-80e5-b007915b5309, _Var3);
+
+PROC
+Proc_DialogFlagSetup("RC_DW_Tavern_WaiterLivy", _, _)
+AND
+DB_IsPlayer(_Var3)
+AND
+IsTagged(_Var3, "ELF", 1)
+THEN
+DB_PreventTradeBetween(DB_S_RC_DW_Tavern_WaiterLivy_c202f327-07a6-4a72-80e5-b007915b5309, _Var3);
+
+IF
+GlobalFlagSet("RC_DW_SurpriseDate_SetGender_Female")
+THEN
+CharacterAppear(CHARACTERGUID_S_RC_DW_Tavern_SurpriseDate_Lizard_09fa09cd-c589-4b3c-b357-6f515d302103, 1, "");
+
+IF
+GlobalFlagSet("RC_DW_SurpriseDate_SetGender_Male")
+THEN
+Transform(CHARACTERGUID_S_RC_DW_Tavern_SurpriseDate_Lizard_09fa09cd-c589-4b3c-b357-6f515d302103, "RC_DW_Tavern_SurpriseDate_LizardMale_9960e965-f862-45eb-b781-e55b6d03b843", 0);
+Transform(CHARACTERGUID_S_RC_DW_Tavern_SurpriseDate_Lizard_Ghost_f60b17f2-d16e-4c18-b23a-565aaccdc69d, "RC_DW_Tavern_SurpriseDate_LizardMale_Ghost_11cfe5b7-2d2e-4dee-b4b6-599b7f9c4915", 0);
+CharacterAppear(CHARACTERGUID_S_RC_DW_Tavern_SurpriseDate_Lizard_09fa09cd-c589-4b3c-b357-6f515d302103, 1, "");
+
+IF
+DB_SurpriseDateKeys(_Var1)
+THEN
+ItemToInventory(_Var1, CHARACTERGUID_S_RC_DW_Tavern_WaiterLivy_c202f327-07a6-4a72-80e5-b007915b5309);
+SetOnStage(_Var1, 0);
+
+IF
+ObjectFlagSet("RC_DW_SurpriseDate_DoorUnlocked", (CHARACTERGUID)_Var1, _)
+THEN
+Proc_RC_DW_SurpriseDate_DoorUnlocked_Key(_Var1);
+ItemClearOwner(ITEMGUID_S_RC_DW_SurpriseDate_TEMPdoor_cb645806-b0c0-46fc-9299-909a5d128155);
+
+PROC
+Proc_RC_DW_SurpriseDate_DoorUnlocked_Key((CHARACTERGUID)_Var1)
+AND
+DB_SurpriseDateKeys_Given(_Var2)
+AND
+ItemIsInUserInventory(_Var2, _Var1, 0, 1)
+THEN
+DB_RC_DW_SurpriseDate_DoorUnlocked_DontGiveKey(_Var1);
+
+PROC
+Proc_RC_DW_SurpriseDate_DoorUnlocked_Key((CHARACTERGUID)_Var1)
+AND
+DB_SurpriseDateKeys(_Var2)
+AND NOT
+DB_RC_DW_SurpriseDate_DoorUnlocked_DontGiveKey(_Var1)
+THEN
+DB_RC_DW_SurpriseDate_DoorUnlocked_DontGiveKey(_Var1);
+NOT DB_SurpriseDateKeys(_Var2);
+DB_SurpriseDateKeys_Given(_Var2);
+SetOnStage(_Var2, 1);
+ItemToInventory(_Var2, _Var1);
+
+IF
+DialogEnded("RC_DW_Tavern_SurpriseDate_Lizard", _)
+THEN
+Proc_RC_DW_Tavern_SurpriseDate_Lizard_CheckDoor();
+
+PROC
+Proc_RC_DW_Tavern_SurpriseDate_Lizard_CheckDoor()
+AND
+DB_IsPlayer(_Var1)
+AND
+ObjectGetFlag(_Var1, "RC_DW_SurpriseDate_SexHappens", 1)
+THEN
+DB_RC_DW_Tavern_SurpriseDate_Lizard_CheckDoor(1);
+
+PROC
+Proc_RC_DW_Tavern_SurpriseDate_Lizard_CheckDoor()
+AND NOT
+DB_RC_DW_Tavern_SurpriseDate_Lizard_CheckDoor(1)
+THEN
+GlobalClearFlag("RC_DW_SurpriseDate_Ongoing");
+
+PROC
+Proc_RC_DW_Tavern_SurpriseDate_Lizard_CheckDoor()
+THEN
+DB_RC_DW_Tavern_SurpriseDate_Lizard_CheckDoor(1);
+
+IF
+DialogStarted("RC_DW_Tavern_SurpriseDate_Lizard", (INTEGER)_Var1)
+AND
+GlobalGetFlag("RC_DW_SurpriseDate_SurpriseInitiated", 0)
+AND
+DB_RC_DW_SurpriseDate_CheckIfAloneIgnore(_Var2)
+THEN
+NOT DB_RC_DW_SurpriseDate_CheckIfAloneIgnore(_Var2);
+
+IF
+DialogStarted("RC_DW_Tavern_SurpriseDate_Lizard", (INTEGER)_Var1)
+AND
+GlobalGetFlag("RC_DW_SurpriseDate_SurpriseInitiated", 0)
+AND
+DialogGetInvolvedPlayer(_Var1, 1, _Var2)
+THEN
+GlobalClearFlag("RC_DW_SurpriseDate_NotAlone");
+DB_RC_DW_SurpriseDate_CheckIfAloneIgnore(_Var2);
+TriggerLaunchIterator(TRIGGERGUID_S_RC_DW_Tavern_3rdFloor_9b8c2aed-8b35-41e6-9a7d-6cc29f25af8c, "RC_DW_SurpriseDate_CheckIfAlone");
+FireOsirisEvents();
+
+IF
+StoryEvent((CHARACTERGUID)_Var1, "RC_DW_SurpriseDate_CheckIfAlone")
+THEN
+Proc_DW_SurpriseDate_CheckIfAlone(_Var1);
+
+PROC
+Proc_DW_SurpriseDate_CheckIfAlone((CHARACTERGUID)_Var1)
+AND NOT
+DB_RC_DW_SurpriseDate_CheckIfAloneIgnore(_Var1)
+AND
+_Var1 != CHARACTERGUID_S_RC_DW_Tavern_SurpriseDate_Lizard_09fa09cd-c589-4b3c-b357-6f515d302103
+AND
+ObjectIsOnStage(_Var1, 1)
+AND
+CharacterIsDead(_Var1, 0)
+AND
+CharacterIsPlayer(_Var1, 1)
+THEN
+GlobalSetFlag("RC_DW_SurpriseDate_NotAlone");
+
+PROC
+Proc_DW_SurpriseDate_CheckIfAlone((CHARACTERGUID)_Var1)
+AND
+GlobalGetFlag("RC_DW_SurpriseDate_NotAlone", 0)
+THEN
+GlobalSetFlag("RC_DW_SurpriseDate_Ongoing");
+ItemCloseAndLock(ITEMGUID_S_RC_DW_SurpriseDate_TEMPdoor_cb645806-b0c0-46fc-9299-909a5d128155, "SurpriseDate");
+
+IF
+CharacterUsedItem((CHARACTERGUID)_Var1, ITEMGUID_05m_WoodenHouse_A_Stair_Up_C_Item_001_5ab7c0a5-ab76-4f58-a405-2add64c11076)
+AND
+ItemIsClosed(ITEMGUID_S_RC_DW_SurpriseDate_TEMPdoor_cb645806-b0c0-46fc-9299-909a5d128155, 1)
+THEN
+ItemUnlockAndOpen(ITEMGUID_S_RC_DW_SurpriseDate_TEMPdoor_cb645806-b0c0-46fc-9299-909a5d128155);
+GlobalClearFlag("RC_DW_SurpriseDate_Ongoing");
+
+IF
+ObjectFlagSet("RC_DW_Tavern_SurpriseDate_Lizard_MoveToSpeaker", (GUIDSTRING)_Var1, _)
+THEN
+CharacterMoveTo(CHARACTERGUID_S_RC_DW_Tavern_SurpriseDate_Lizard_09fa09cd-c589-4b3c-b357-6f515d302103, _Var1, 0, "", 0);
+
+IF
+ObjectFlagSet("RC_DW_SurpriseDate_WeWereGreat", _, _)
+THEN
+SetRelationFactionToPlayers("RC_DW_SurpriseDate_Lizard", 100);
+GlobalSetFlag("RC_DW_SurpriseDate_WeWereGreat_SetRelations");
+
+IF
+ObjectFlagSet("RC_DW_SurpriseDate_SexHappens", (GUIDSTRING)_Var1, _)
+THEN
+ObjectSetFlag(_Var1, "RC_DW_SurpriseDate_SexHappenedWithMe");
+GlobalSetFlag("RC_DW_SurpriseDate_NoMoreSex");
+
+IF
+DialogEnded("RC_DW_Tavern_SurpriseDate_ThugLeader", (INTEGER)_Var1)
+AND
+DB_IsPlayer(_Var2)
+AND
+ObjectGetFlag(_Var2, "RC_DW_SurpriseDate_SexHappens", 1)
+THEN
+DB_SurpriseDate_Queue(_Var2);
+FadeToBlack(_Var2, 2, 0, "RC_DW_SurpriseDate_SexHappens_Fade");
+ObjectClearFlag(_Var2, "RC_DW_SurpriseDate_SexHappens", _Var1);
+
+IF
+DialogEnded("RC_DW_Tavern_SurpriseDate_Lizard", (INTEGER)_Var1)
+AND
+DB_IsPlayer(_Var2)
+AND
+ObjectGetFlag(_Var2, "RC_DW_SurpriseDate_SexHappens", 1)
+THEN
+DB_SurpriseDate_Queue(_Var2);
+FadeToBlack(_Var2, 2, 0, "RC_DW_SurpriseDate_SexHappens_Fade");
+ObjectClearFlag(_Var2, "RC_DW_SurpriseDate_SexHappens", _Var1);
+Proc_SurpriseDate_CheckForOtherCharacters(_Var2);
+
+PROC
+Proc_SurpriseDate_CheckForOtherCharacters((CHARACTERGUID)_Var1)
+AND
+DB_InRegion(_Var2, TRIGGERGUID_S_RC_DW_Tavern_3rdFloor_9b8c2aed-8b35-41e6-9a7d-6cc29f25af8c)
+AND
+_Var2 != _Var1
+AND
+CharacterIsDead(_Var2, 0)
+AND
+CharacterIsInCombat(_Var2, 0)
+THEN
+FadeToBlack(_Var2, 2, 0, "RC_DW_SurpriseDate_SexHappens_Fade");
+
+IF
+FadeOutDone(_, "RC_DW_SurpriseDate_SexHappens_Fade")
+AND
+DB_SurpriseDate_Queue(_Var2)
+AND NOT
+DB_SurpriseDate_Queue_Teleported(_Var2)
+THEN
+DB_SurpriseDate_Queue_Teleported(_Var2);
+TeleportTo(_Var2, ITEMGUID_S_RC_DW_Tavern_SurpriseDate_Bed_2ad3b4bc-9b42-444a-8cbf-6183d9ace466, "RC_DW_SurpriseDate_SexHappens_ToBed", 0);
+
+IF
+FadeOutDone(_, "RC_DW_SurpriseDate_SexHappens_Fade")
+AND
+HasActiveStatus(CHARACTERGUID_S_RC_DW_Tavern_SurpriseDate_Lizard_09fa09cd-c589-4b3c-b357-6f515d302103, "LYING", 0)
+THEN
+TeleportTo(CHARACTERGUID_S_RC_DW_Tavern_SurpriseDate_Lizard_09fa09cd-c589-4b3c-b357-6f515d302103, ITEMGUID_S_RC_DW_Tavern_SurpriseDate_Bed_2ad3b4bc-9b42-444a-8cbf-6183d9ace466, "", 0);
+
+IF
+StoryEvent((CHARACTERGUID)_Var1, "RC_DW_SurpriseDate_SexHappens_ToBed")
+THEN
+Proc_SurpriseDate_SetSurprise(_Var1);
+
+PROC
+Proc_SurpriseDate_SetSurprise((CHARACTERGUID)_Var1)
+AND
+ObjectGetFlag(_Var1, "RC_DW_SurpriseDate_GoAgain", 0)
+AND NOT
+QRY_RC_DW_SurpriseDatePrincess(_Var1)
+AND
+IsTagged(_Var1, "IFAN", 0)
+AND
+ItemIsInCharacterInventory(ITEMGUID_S_RC_DW_SurpriseDate_ThiefBag_3b676562-61d0-439c-84a6-e7f583084579, _Var1, 0)
+THEN
+DB_SceneTriggerManager("RC_DW_Tavern_SurpriseDate", TRIGGERGUID_S_RC_DW_Tavern_3rdFloor_9b8c2aed-8b35-41e6-9a7d-6cc29f25af8c, 1);
+SetOnStage(ITEMGUID_S_RC_DW_SurpriseDate_ThiefBag_3b676562-61d0-439c-84a6-e7f583084579, 1);
+MoveAllItemsTo(_Var1, ITEMGUID_S_RC_DW_SurpriseDate_ThiefBag_3b676562-61d0-439c-84a6-e7f583084579, 1, 1, 0);
+DB_RC_DW_SurpriseDate_ItemsStolenFrom(_Var1);
+
+PROC
+Proc_SurpriseDate_SetSurprise((CHARACTERGUID)_Var1)
+AND
+ObjectGetFlag(_Var1, "RC_DW_SurpriseDate_GoAgain", 0)
+AND NOT
+QRY_RC_DW_SurpriseDatePrincess(_Var1)
+AND
+IsTagged(_Var1, "IFAN", 0)
+AND
+ItemIsInCharacterInventory(ITEMGUID_S_RC_DW_SurpriseDate_ThiefBag_3b676562-61d0-439c-84a6-e7f583084579, _Var1, 1)
+THEN
+DB_SceneTriggerManager("RC_DW_Tavern_SurpriseDate", TRIGGERGUID_S_RC_DW_Tavern_3rdFloor_9b8c2aed-8b35-41e6-9a7d-6cc29f25af8c, 1);
+DB_RC_DW_SurpriseDate_ItemsStolenFrom(_Var1);
+Proc_SurpriseDate_SetSurprise_UnequipFallback(_Var1);
+
+PROC
+Proc_SurpriseDate_SetSurprise((CHARACTERGUID)_Var1)
+AND
+ObjectGetFlag(_Var1, "RC_DW_SurpriseDate_GoAgain", 1)
+THEN
+Proc_SurpriseDate_SetSurprise_UnequipFallback(_Var1);
+
+PROC
+Proc_SurpriseDate_SetSurprise_UnequipFallback((CHARACTERGUID)_Var1)
+AND
+DB_SurpriseDateEquipment(_Var2)
+AND
+CharacterGetEquippedItem(_Var1, _Var2, _Var3)
+THEN
+CharacterUnequipItem(_Var1, _Var3);
+
+PROC
+Proc_SurpriseDate_SetSurprise((CHARACTERGUID)_Var1)
+AND
+ObjectGetFlag(_Var1, "RC_DW_SurpriseDate_GoAgain", 0)
+AND NOT
+QRY_RC_DW_SurpriseDatePrincess(_Var1)
+AND
+IsTagged(_Var1, "IFAN", 1)
+THEN
+Proc_SurpriseDate_SetSurprise_GetEquipment(_Var1);
+DB_SceneTriggerManager("RC_DW_Tavern_SurpriseDate", TRIGGERGUID_S_RC_DW_Tavern_3rdFloor_9b8c2aed-8b35-41e6-9a7d-6cc29f25af8c, 1);
+SetOnStage(ITEMGUID_S_RC_DW_SurpriseDate_ThiefBag_3b676562-61d0-439c-84a6-e7f583084579, 1);
+
+PROC
+Proc_SurpriseDate_SetSurprise_GetEquipment((CHARACTERGUID)_Var1)
+AND
+DB_SurpriseDateEquipment(_Var2)
+AND
+CharacterGetEquippedItem(_Var1, _Var2, _Var3)
+THEN
+NOT DB_SurpriseDateEquipment(_Var2);
+DB_SurpriseDateEquipment(_Var1, _Var2, _Var3);
+
+PROC
+Proc_SurpriseDate_SetSurprise_GetEquipment((CHARACTERGUID)_Var1)
+AND
+ItemIsInCharacterInventory(ITEMGUID_S_RC_DW_SurpriseDate_ThiefBag_3b676562-61d0-439c-84a6-e7f583084579, _Var1, 0)
+THEN
+MoveAllItemsTo(_Var1, ITEMGUID_S_RC_DW_SurpriseDate_ThiefBag_3b676562-61d0-439c-84a6-e7f583084579);
+DB_RC_DW_SurpriseDate_ItemsStolenFrom(_Var1);
+
+PROC
+Proc_SurpriseDate_SetSurprise_GetEquipment((CHARACTERGUID)_Var1)
+AND
+ItemIsInCharacterInventory(ITEMGUID_S_RC_DW_SurpriseDate_ThiefBag_3b676562-61d0-439c-84a6-e7f583084579, _Var1, 1)
+THEN
+Proc_SurpriseDate_SetSurprise_UnequipFallback(_Var1);
+DB_RC_DW_SurpriseDate_ItemsStolenFrom(_Var1);
+
+PROC
+Proc_SurpriseDate_SetSurprise((CHARACTERGUID)_Var1)
+AND
+ObjectGetFlag(_Var1, "RC_DW_SurpriseDate_GoAgain", 0)
+AND
+GlobalGetFlag("RC_DW_SurpriseDate_SetGender_Female", 1)
+AND NOT
+QRY_RC_DW_SurpriseDatePrincess(_Var1)
+THEN
+Transform(CHARACTERGUID_S_RC_DW_Tavern_SurpriseDate_Lizard_09fa09cd-c589-4b3c-b357-6f515d302103, "RC_DW_Tavern_SurpriseDate_Lizard_Naked_c3c843c7-ac7d-46ba-98cb-1a9fb4975fae", 0);
+
+PROC
+Proc_SurpriseDate_SetSurprise((CHARACTERGUID)_Var1)
+AND
+ObjectGetFlag(_Var1, "RC_DW_SurpriseDate_GoAgain", 0)
+AND
+GlobalGetFlag("RC_DW_SurpriseDate_SetGender_Male", 1)
+AND NOT
+QRY_RC_DW_SurpriseDatePrincess(_Var1)
+THEN
+Transform(CHARACTERGUID_S_RC_DW_Tavern_SurpriseDate_Lizard_09fa09cd-c589-4b3c-b357-6f515d302103, "RC_DW_Tavern_SurpriseDate_LizardMale_Naked_22778039-bce6-4cb5-a828-669fa139247f", 0);
+
+PROC
+Proc_SurpriseDate_SetSurprise((CHARACTERGUID)_Var1)
+AND
+DB_CharacterPolymorphedInto(_Var1, _Var2)
+THEN
+ProcRemovePolymorphs(_Var1);
+NOT DB_CharacterPolymorphedInto(_Var1, _Var2);
+
+PROC
+Proc_SurpriseDate_SetSurprise((CHARACTERGUID)_Var1)
+AND
+QRY_RC_DW_SurpriseDatePrincess(_Var1)
+THEN
+Transform(CHARACTERGUID_S_RC_DW_Tavern_SurpriseDate_Lizard_09fa09cd-c589-4b3c-b357-6f515d302103, "GLO_Lizards_EmpirePrincess_Naked_b442058f-2e6c-4d18-8df4-0da4a7367303", 0);
+
+PROC
+Proc_SurpriseDate_SetSurprise((CHARACTERGUID)_Var1)
+AND
+QRY_RC_DW_SurpriseDatePrincess(_Var1)
+AND
+CharacterGetEquippedItem(CHARACTERGUID_S_Player_RedPrince_a26a1efb-cdc8-4cf3-a7b2-b2f9544add6f, "Breast", _Var2)
+THEN
+CharacterUnequipItem(CHARACTERGUID_S_Player_RedPrince_a26a1efb-cdc8-4cf3-a7b2-b2f9544add6f, _Var2);
+
+PROC
+Proc_SurpriseDate_SetSurprise((CHARACTERGUID)_Var1)
+AND
+QRY_RC_DW_SurpriseDatePrincess(_Var1)
+AND
+CharacterGetEquippedItem(CHARACTERGUID_S_Player_RedPrince_a26a1efb-cdc8-4cf3-a7b2-b2f9544add6f, "Leggings", _Var2)
+THEN
+CharacterUnequipItem(CHARACTERGUID_S_Player_RedPrince_a26a1efb-cdc8-4cf3-a7b2-b2f9544add6f, _Var2);
+
+PROC
+Proc_SurpriseDate_SetSurprise((CHARACTERGUID)_Var1)
+AND
+QRY_RC_DW_SurpriseDatePrincess(_Var1)
+AND
+CharacterGetEquippedItem(CHARACTERGUID_S_Player_RedPrince_a26a1efb-cdc8-4cf3-a7b2-b2f9544add6f, "Gloves", _Var2)
+THEN
+CharacterUnequipItem(CHARACTERGUID_S_Player_RedPrince_a26a1efb-cdc8-4cf3-a7b2-b2f9544add6f, _Var2);
+
+PROC
+Proc_SurpriseDate_SetSurprise((CHARACTERGUID)_Var1)
+AND
+QRY_RC_DW_SurpriseDatePrincess(_Var1)
+AND
+CharacterGetEquippedItem(CHARACTERGUID_S_Player_RedPrince_a26a1efb-cdc8-4cf3-a7b2-b2f9544add6f, "Helmet", _Var2)
+THEN
+CharacterUnequipItem(CHARACTERGUID_S_Player_RedPrince_a26a1efb-cdc8-4cf3-a7b2-b2f9544add6f, _Var2);
+
+PROC
+Proc_SurpriseDate_SetSurprise((CHARACTERGUID)_Var1)
+AND
+QRY_RC_DW_SurpriseDatePrincess(_Var1)
+AND
+CharacterGetEquippedWeapon(CHARACTERGUID_S_Player_RedPrince_a26a1efb-cdc8-4cf3-a7b2-b2f9544add6f, _Var2)
+THEN
+CharacterUnequipItem(CHARACTERGUID_S_Player_RedPrince_a26a1efb-cdc8-4cf3-a7b2-b2f9544add6f, _Var2);
+
+PROC
+Proc_SurpriseDate_SetSurprise((CHARACTERGUID)_Var1)
+AND
+QRY_RC_DW_SurpriseDatePrincess(_Var1)
+AND
+CharacterGetEquippedShield(CHARACTERGUID_S_Player_RedPrince_a26a1efb-cdc8-4cf3-a7b2-b2f9544add6f, _Var2)
+THEN
+CharacterUnequipItem(CHARACTERGUID_S_Player_RedPrince_a26a1efb-cdc8-4cf3-a7b2-b2f9544add6f, _Var2);
+
+PROC
+Proc_SurpriseDate_SetSurprise((CHARACTERGUID)_Var1)
+THEN
+CharacterUseItem(_Var1, ITEMGUID_S_RC_DW_Tavern_SurpriseDate_Bed_2ad3b4bc-9b42-444a-8cbf-6183d9ace466, "RC_DW_SurpriseDate_SexHappens_UsedBed");
+ApplyStatus(_Var1, "LUCKY", 300, 1);
+
+PROC
+Proc_SurpriseDate_SetSurprise((CHARACTERGUID)_Var1)
+AND
+HasActiveStatus(CHARACTERGUID_S_RC_DW_Tavern_SurpriseDate_Lizard_09fa09cd-c589-4b3c-b357-6f515d302103, "LYING", 0)
+THEN
+CharacterUseItem(CHARACTERGUID_S_RC_DW_Tavern_SurpriseDate_Lizard_09fa09cd-c589-4b3c-b357-6f515d302103, ITEMGUID_S_RC_DW_Tavern_SurpriseDate_Bed_2ad3b4bc-9b42-444a-8cbf-6183d9ace466, "RC_DW_SurpriseDate_SexHappens_UsedBed");
+
+PROC
+Proc_SurpriseDate_SetSurprise((CHARACTERGUID)_Var1)
+AND NOT
+QRY_RC_DW_SurpriseDatePrincess(_Var1)
+AND NOT
+DB_SurpriseDate_ThievesAppeared(1)
+AND
+DB_SurpriseDate_Thieves(_Var2)
+THEN
+SetOnStage(_Var2, 1);
+DB_SurpriseDate_ThievesAppeared(1);
+
+PROC
+Proc_SurpriseDate_SetSurprise((CHARACTERGUID)_Var1)
+AND
+ObjectGetFlag(_Var1, "RC_DW_SurpriseDate_GoAgain", 0)
+THEN
+DB_SurpriseDate_PyramidBlock(_Var1);
+CharacterEnableWaypointUsage(_Var1, 0);
+
+PROC
+ProcBlockUseOfItem((CHARACTERGUID)_Var1, (ITEMGUID)_Var2)
+AND
+DB_SurpriseDate_PyramidBlock(_Var1)
+AND
+DB_TeleporterPyramid(_Var2)
+AND
+HasActiveStatus(_Var1, "LYING", 1)
+THEN
+RemoveStatus(_Var1, "LYING");
+DB_CustomUseItemResponse(_Var1, _Var2, 0);
+
+PROC
+Proc_SurpriseDate_SetSurprise((CHARACTERGUID)_Var1)
+AND
+DB_InRegion(_Var2, TRIGGERGUID_S_RC_DW_Tavern_3rdFloor_9b8c2aed-8b35-41e6-9a7d-6cc29f25af8c)
+AND
+_Var2 != _Var1
+AND
+CharacterIsDead(_Var2, 0)
+AND
+CharacterIsInCombat(_Var2, 0)
+THEN
+TeleportTo(_Var2, TRIGGERGUID_S_RC_DW_Tavern_SurpriseDate_KickOut_3ff455cd-759b-4b78-ab85-6856e8fc275f);
+FadeToBlack(_Var2, 2, 1, "Placeholder");
+
+PROC
+Proc_SurpriseDate_SetSurprise((CHARACTERGUID)_Var1)
+AND NOT
+QRY_RC_DW_SurpriseDatePrincess(_Var1)
+THEN
+GlobalSetFlag("RC_DW_SurpriseDate_Happened");
+
+IF
+StoryEvent((CHARACTERGUID)_Var1, "RC_DW_SurpriseDate_SexHappens_UsedBed")
+THEN
+FadeToBlack(_Var1, 2, 1, "PlaceHolder");
+GlobalSetFlag("RC_DW_SurpriseDate_SurpriseInitiated");
+
+IF
+StoryEvent((CHARACTERGUID)_Var1, "RC_DW_SurpriseDate_SexHappens_UsedBed")
+AND
+QRY_RC_DW_SurpriseDatePrincess(_Var1)
+THEN
+ProcObjectTimer(_Var1, "RC_DW_SurpriseDate_WakeUpDialog", 1700);
+
+IF
+StoryEvent((CHARACTERGUID)_Var1, "RC_DW_SurpriseDate_SexHappens_UsedBed")
+AND
+GlobalGetFlag("RC_DW_SurpriseDate_DaggerGiven", 0)
+THEN
+SetOnStage(ITEMGUID_S_RC_DW_SurpriseDate_LizardDagger_8ee1eb3b-cebc-4ba3-b790-bfa1e9415113, 1);
+ItemToInventory(ITEMGUID_S_RC_DW_SurpriseDate_LizardDagger_8ee1eb3b-cebc-4ba3-b790-bfa1e9415113, CHARACTERGUID_S_RC_DW_Tavern_SurpriseDate_Lizard_09fa09cd-c589-4b3c-b357-6f515d302103);
+
+PROC
+ProcObjectTimerFinished((CHARACTERGUID)_Var1, "RC_DW_SurpriseDate_WakeUpDialog")
+AND
+QRY_RC_DW_SurpriseDatePrincess(_Var1)
+THEN
+GlobalSetFlag("RC_DW_SurpriseDate_PricessEnding");
+ObjectSetFlag(_Var1, "RC_DW_SurpriseDate_SurpriseResolved", 0);
+ObjectSetFlag(_Var1, "QuestUpdate_RC_DW_SurpriseDate_SurpriseResolved", 0);
+Proc_StartDialog(0, "RC_DW_SurpriseDate_PrincessWakeUp", CHARACTERGUID_S_RC_DW_Tavern_SurpriseDate_Lizard_09fa09cd-c589-4b3c-b357-6f515d302103, _Var1);
+NOT DB_SurpriseDate_PyramidBlock(_Var1);
+CharacterEnableWaypointUsage(_Var1, 1);
+
+IF
+GlobalFlagSet("RC_DW_SurpriseDate_PricessEnding")
+AND NOT
+DB_GlobalFlag("RC_RedPrince_DreamedBrahmos")
+AND
+IsTagged(CHARACTERGUID_S_Player_RedPrince_a26a1efb-cdc8-4cf3-a7b2-b2f9544add6f, "AVATAR", 1)
+THEN
+ObjectSetFlag(CHARACTERGUID_S_Player_RedPrince_a26a1efb-cdc8-4cf3-a7b2-b2f9544add6f, "QuestUpdate_FTJ_OriginRedPrince_SurpriseResolved", 0);
+
+IF
+GlobalFlagSet("RC_DW_SurpriseDate_PricessEnding")
+AND NOT
+DB_GlobalFlag("RC_RedPrince_DreamedBrahmos")
+AND
+IsTagged(CHARACTERGUID_S_Player_RedPrince_a26a1efb-cdc8-4cf3-a7b2-b2f9544add6f, "AVATAR", 0)
+THEN
+UserSetFlag(CHARACTERGUID_S_Player_RedPrince_a26a1efb-cdc8-4cf3-a7b2-b2f9544add6f, "QuestUpdate_FTJ_COM_RedPrince_SurpriseResolved", 0);
+
+IF
+GlobalFlagSet("RC_DW_SurpriseDate_PricessEnding")
+AND
+DB_GlobalFlag("RC_RedPrince_DreamedBrahmos")
+AND
+IsTagged(CHARACTERGUID_S_Player_RedPrince_a26a1efb-cdc8-4cf3-a7b2-b2f9544add6f, "AVATAR", 1)
+THEN
+ObjectSetFlag(CHARACTERGUID_S_Player_RedPrince_a26a1efb-cdc8-4cf3-a7b2-b2f9544add6f, "QuestUpdate_FTJ_OriginRedPrince_SurpriseResolved_Understood", 0);
+
+IF
+GlobalFlagSet("RC_DW_SurpriseDate_PricessEnding")
+AND
+DB_GlobalFlag("RC_RedPrince_DreamedBrahmos")
+AND
+IsTagged(CHARACTERGUID_S_Player_RedPrince_a26a1efb-cdc8-4cf3-a7b2-b2f9544add6f, "AVATAR", 0)
+THEN
+UserSetFlag(CHARACTERGUID_S_Player_RedPrince_a26a1efb-cdc8-4cf3-a7b2-b2f9544add6f, "QuestUpdate_FTJ_COM_RedPrince_SurpriseResolved_Understood", 0);
+
+IF
+DialogEnded("RC_DW_SurpriseDate_PrincessWakeUp", _)
+THEN
+PROC_PrincessPoof(CHARACTERGUID_S_RC_DW_Tavern_SurpriseDate_Lizard_09fa09cd-c589-4b3c-b357-6f515d302103);
+
+QRY
+QRY_RC_DW_SurpriseDatePrincess((CHARACTERGUID)_Var1)
+AND
+IsTagged(_Var1, "RED PRINCE", 1)
+AND NOT
+DB_GlobalFlag("RC_FL_DisabledSurpriseDatePrincess")
+THEN
+DB_NOOP(0);
+
+QRY
+QRY_RC_DW_SurpriseDatePrincess((CHARACTERGUID)_Var1)
+AND
+IsTagged(_Var1, "SHAPESHIFT_RED PRINCE", 1)
+AND NOT
+DB_GlobalFlag("RC_FL_DisabledSurpriseDatePrincess")
+THEN
+DB_NOOP(0);
+
+IF
+ObjectEnteredCombat(CHARACTERGUID_S_RC_DW_Tavern_SurpriseDate_Lizard_09fa09cd-c589-4b3c-b357-6f515d302103, _)
+AND
+ItemIsInCharacterInventory(ITEMGUID_S_RC_DW_SurpriseDate_LizardDagger_8ee1eb3b-cebc-4ba3-b790-bfa1e9415113, CHARACTERGUID_S_RC_DW_Tavern_SurpriseDate_Lizard_09fa09cd-c589-4b3c-b357-6f515d302103, 1)
+THEN
+CharacterEquipItem(CHARACTERGUID_S_RC_DW_Tavern_SurpriseDate_Lizard_09fa09cd-c589-4b3c-b357-6f515d302103, ITEMGUID_S_RC_DW_SurpriseDate_LizardDagger_8ee1eb3b-cebc-4ba3-b790-bfa1e9415113);
+
+IF
+ObjectFlagSet("RC_DW_SurpriseDateGivesDagger", (CHARACTERGUID)_Var1, _)
+AND
+QueryOnlyOnce("RC_DW_SurpriseDateGivesDagger")
+THEN
+GlobalSetFlag("RC_DW_SurpriseDate_DaggerGiven");
+SetOnStage(ITEMGUID_S_RC_DW_SurpriseDate_LizardDagger_8ee1eb3b-cebc-4ba3-b790-bfa1e9415113, 1);
+ItemToInventory(ITEMGUID_S_RC_DW_SurpriseDate_LizardDagger_8ee1eb3b-cebc-4ba3-b790-bfa1e9415113, _Var1);
+CharacterEquipItem(_Var1, ITEMGUID_S_RC_DW_SurpriseDate_LizardDagger_8ee1eb3b-cebc-4ba3-b790-bfa1e9415113);
+
+IF
+DB_SurpriseDate_Thieves(_Var1)
+THEN
+SetOnStage(_Var1, 0);
+
+IF
+CharacterStatusRemoved((CHARACTERGUID)_Var1, "LYING", _)
+AND NOT
+QRY_RC_DW_SurpriseDatePrincess(_Var1)
+AND
+DB_SurpriseDate_Queue(_Var1)
+AND
+ObjectGetFlag(_Var1, "RC_DW_SurpriseDate_SurpriseResolved", 0)
+AND
+ObjectGetFlag(_Var1, "RC_DW_SurpriseDate_WeWereGreat", 1)
+AND
+ObjectGetFlag(_Var1, "QuestUpdate_RC_DW_SurpriseDate_SexHappened_WasGreat", 0)
+THEN
+ObjectSetFlag(_Var1, "QuestUpdate_RC_DW_SurpriseDate_SexHappened_WasGreat");
+CharacterAddAttitudeTowardsPlayer(CHARACTERGUID_S_RC_DW_Tavern_SurpriseDate_Lizard_09fa09cd-c589-4b3c-b357-6f515d302103, _Var1, 50);
+
+IF
+CharacterStatusRemoved((CHARACTERGUID)_Var1, "LYING", _)
+AND NOT
+QRY_RC_DW_SurpriseDatePrincess(_Var1)
+AND
+DB_SurpriseDate_Queue(_Var1)
+AND
+ObjectGetFlag(_Var1, "RC_DW_SurpriseDate_SurpriseResolved", 0)
+AND
+ObjectGetFlag(_Var1, "RC_DW_SurpriseDate_WeWereGreat", 0)
+AND
+ObjectGetFlag(_Var1, "QuestUpdate_RC_DW_SurpriseDate_SexHappened", 0)
+THEN
+ObjectSetFlag(_Var1, "QuestUpdate_RC_DW_SurpriseDate_SexHappened");
+
+IF
+CharacterStatusRemoved((CHARACTERGUID)_Var1, "LYING", _)
+AND NOT
+QRY_RC_DW_SurpriseDatePrincess(_Var1)
+AND
+DB_SurpriseDate_Queue(_Var1)
+AND
+ObjectGetFlag(_Var1, "RC_DW_SurpriseDate_SurpriseResolved", 0)
+AND
+QueryOnlyOnce("RC_DW_Tavern_SurpriseDate_ThugLeader")
+THEN
+Proc_StartDialog(0, "RC_DW_Tavern_SurpriseDate_ThugLeader", CHARACTERGUID_S_RC_DW_Tavern_SurpriseDate_ThugLeader_56c58299-cc21-4920-8cb3-d351adda85a6, CHARACTERGUID_S_RC_DW_Tavern_SurpriseDate_Lizard_09fa09cd-c589-4b3c-b357-6f515d302103, _Var1);
+DB_SurpriseDate_StartDialog(_Var1);
+
+IF
+CharacterStatusRemoved(CHARACTERGUID_S_Player_RedPrince_a26a1efb-cdc8-4cf3-a7b2-b2f9544add6f, "LYING", _)
+AND
+QRY_RC_DW_SurpriseDatePrincess(CHARACTERGUID_S_Player_RedPrince_a26a1efb-cdc8-4cf3-a7b2-b2f9544add6f)
+AND
+DB_SurpriseDate_Queue(CHARACTERGUID_S_Player_RedPrince_a26a1efb-cdc8-4cf3-a7b2-b2f9544add6f)
+THEN
+StartVoiceBark("RC_DW_VB_RedPrince_PostSurpriseDate", CHARACTERGUID_S_Player_RedPrince_a26a1efb-cdc8-4cf3-a7b2-b2f9544add6f);
+
+IF
+DialogStarted("RC_DW_Tavern_SurpriseDate_ThugLeader", (INTEGER)_Var1)
+THEN
+DB_RC_DW_Tavern_SurpriseDate_ThugLeader_Id(_Var1);
+
+IF
+CharacterStatusRemoved((CHARACTERGUID)_Var1, "LYING", _)
+AND
+DB_SurpriseDate_PyramidBlock(_Var1)
+THEN
+NOT DB_SurpriseDate_PyramidBlock(_Var1);
+CharacterEnableWaypointUsage(_Var1, 1);
+
+IF
+CharacterStatusRemoved((CHARACTERGUID)_Var1, "LYING", _)
+AND
+DB_SurpriseDate_Queue(_Var1)
+THEN
+NOT DB_SurpriseDate_Queue(_Var1);
+NOT DB_SurpriseDate_Queue_Teleported(_Var1);
+
+IF
+DialogEnded("RC_DW_Tavern_SurpriseDate_ThugLeader", _)
+AND
+GlobalGetFlag("RC_DW_Tavern_SurpriseDate_GaveLoot", 1)
+THEN
+ItemUnlockAndOpen(ITEMGUID_S_RC_DW_SurpriseDate_TEMPdoor_cb645806-b0c0-46fc-9299-909a5d128155);
+
+IF
+DialogEnded("RC_DW_Tavern_SurpriseDate_ThugLeader", _)
+AND
+GlobalGetFlag("RC_DW_Tavern_SurpriseDate_LeftWithoutLoot", 1)
+THEN
+ItemUnlockAndOpen(ITEMGUID_S_RC_DW_SurpriseDate_TEMPdoor_cb645806-b0c0-46fc-9299-909a5d128155);
+
+IF
+DialogEnded("RC_DW_Tavern_SurpriseDate_ThugLeader", _)
+THEN
+GlobalClearFlag("RC_DW_SurpriseDate_Ongoing");
+
+IF
+DialogEnded("RC_DW_Tavern_SurpriseDate_ThugLeader", _)
+AND
+GlobalGetFlag("RC_DW_SurpriseDate_Lizard_SetHostileAfterDialog", 1)
+THEN
+SetRelationFactionToPlayers("RC_DW_SurpriseDate_Lizard", 0);
+
+IF
+DialogEnded("RC_DW_Tavern_SurpriseDate_ThugLeader", _)
+AND
+GlobalGetFlag("RC_DW_Tavern_SurpriseDate_GaveLoot", 0)
+AND
+GlobalGetFlag("RC_DW_Tavern_SurpriseDate_LeftWithoutLoot", 0)
+AND
+GlobalGetFlag("RC_DW_Tavern_SurpriseDate_KilledThieves", 0)
+THEN
+Proc_RC_DW_Tavern_SurpriseDate_SetHositility();
+
+PROC
+Proc_RC_DW_Tavern_SurpriseDate_SetHositility()
+THEN
+SetRelationFactionToPlayers("RC_DW_SurpriseDate_Thugs", 0);
+
+PROC
+ReactOnKillCounter("RC_DW_Tavern_SurpriseDate")
+THEN
+GlobalSetFlag("RC_DW_Tavern_SurpriseDate_KilledThieves");
+
+PROC
+ReactOnKillCounter("RC_DW_Tavern_SurpriseDate")
+AND
+DB_IsPlayer(_Var1)
+AND
+ObjectGetFlag(_Var1, "RC_DW_SurpriseDate_SexHappenedWithMe", 1)
+THEN
+ObjectSetFlag(_Var1, "QuestUpdate_RC_DW_SurpriseDate_Thugs_Dead");
+
+IF
+GlobalFlagSet("RC_DW_Tavern_SurpriseDate_GaveLoot")
+THEN
+CharacterPickupItem(CHARACTERGUID_S_RC_DW_Tavern_SurpriseDate_ThugLeader_56c58299-cc21-4920-8cb3-d351adda85a6, ITEMGUID_S_RC_DW_SurpriseDate_ThiefBag_3b676562-61d0-439c-84a6-e7f583084579, "RC_DW_SurpriseDate_PickedUp");
+
+IF
+GlobalFlagSet("RC_DW_Tavern_SurpriseDate_LeftWithoutLoot")
+AND
+DB_SurpriseDate_Thieves(_Var1)
+THEN
+ProcCharacterDisappearOutOfSight(_Var1, 0, 0, "RC_DW_Tavern_SurpriseDate_LeftWithoutLoot_Disappeared", 1);
+
+IF
+StoryEvent(CHARACTERGUID_S_RC_DW_Tavern_SurpriseDate_ThugLeader_56c58299-cc21-4920-8cb3-d351adda85a6, "RC_DW_Tavern_SurpriseDate_LeftWithoutLoot_Disappeared")
+AND
+DB_RC_DW_Tavern_SurpriseDate_ThugLeader_Id(_Var1)
+AND
+DialogRemoveActorFromDialog(_Var1, CHARACTERGUID_S_RC_DW_Tavern_SurpriseDate_ThugLeader_56c58299-cc21-4920-8cb3-d351adda85a6, _)
+THEN
+NOT DB_RC_DW_Tavern_SurpriseDate_ThugLeader_Id(_Var1);
+
+IF
+StoryEvent(_, "RC_DW_SurpriseDate_PickedUp")
+AND
+DB_SurpriseDate_Thieves(_Var2)
+THEN
+ProcCharacterDisappearOutOfSight(_Var2, 0, 0, "RC_DW_SurpriseDate_PickedUp_Disappear", 1);
+
+IF
+StoryEvent(_, "RC_DW_SurpriseDate_PickedUp_Disappear")
+AND
+QueryOnlyOnce("RC_DW_SurpriseDate_PickedUp_Disappear_ItemTo")
+THEN
+TeleportTo(ITEMGUID_S_RC_DW_SurpriseDate_ThiefBag_3b676562-61d0-439c-84a6-e7f583084579, TRIGGERGUID_S_RC_DW_SurpriseDate_LootBag_FinalPos_45b0d7e9-b79c-4184-9976-ba288857e3ac);
+InventoryLaunchIterator(ITEMGUID_S_RC_DW_SurpriseDate_ThiefBag_3b676562-61d0-439c-84a6-e7f583084579, "RC_DW_SurpriseDate_ClearOwnerOfStolen", "RC_DW_SurpriseDate_ClearOwnerOfStolen_Complete");
+
+IF
+StoryEvent(CHARACTERGUID_S_RC_DW_Tavern_SurpriseDate_ThugLeader_56c58299-cc21-4920-8cb3-d351adda85a6, "RC_DW_SurpriseDate_PickedUp_Disappear")
+AND
+DB_RC_DW_Tavern_SurpriseDate_ThugLeader_Id(_Var1)
+AND
+DialogRemoveActorFromDialog(_Var1, CHARACTERGUID_S_RC_DW_Tavern_SurpriseDate_ThugLeader_56c58299-cc21-4920-8cb3-d351adda85a6, _)
+THEN
+NOT DB_RC_DW_Tavern_SurpriseDate_ThugLeader_Id(_Var1);
+
+IF
+ObjectFlagSet("RC_DW_LovrikToldUsLivyInKitchen", _, _)
+AND
+CharacterIsDead(CHARACTERGUID_S_RC_DW_Tavern_Chef_de730f5b-6c8e-46b3-aa14-12ad3a535698, 1)
+THEN
+GlobalSetFlag("RC_DW_Tavern_WaiterLivy_InitiateOutofSight");
+
+IF
+CharacterDied(CHARACTERGUID_S_RC_DW_Tavern_Chef_de730f5b-6c8e-46b3-aa14-12ad3a535698)
+AND
+DB_IsPlayer(_Var1)
+AND
+ObjectGetFlag(_Var1, "RC_DW_LovrikToldUsLivyInKitchen", 1)
+AND
+GlobalGetFlag("RC_DW_Tavern_WaiterLivy_InitiateOutofSight", 0)
+THEN
+GlobalSetFlag("RC_DW_Tavern_WaiterLivy_InitiateOutofSight");
+
+IF
+GlobalFlagSet("RC_DW_Tavern_WaiterLivy_IsOutOfSight")
+AND
+CharacterIsDead(CHARACTERGUID_S_RC_DW_Tavern_WaiterLivy_c202f327-07a6-4a72-80e5-b007915b5309, 0)
+AND
+QueryOnlyOnce("RC_DW_Tavern_WaiterLivy_EscapeAfterDialog")
+THEN
+SetHasDialog(CHARACTERGUID_S_RC_DW_Tavern_WaiterLivy_c202f327-07a6-4a72-80e5-b007915b5309, 0);
+ProcCharacterDisappearOutOfSight(CHARACTERGUID_S_RC_DW_Tavern_WaiterLivy_c202f327-07a6-4a72-80e5-b007915b5309, 0, 1, "RC_DW_Tavern_WaiterLivy_Escaped", 0);
+
+IF
+ObjectLeftCombat(CHARACTERGUID_S_RC_DW_Tavern_WaiterLivy_c202f327-07a6-4a72-80e5-b007915b5309, _)
+AND
+GlobalGetFlag("RC_DW_Tavern_WaiterLivy_EscapeAfterDialog", 1)
+AND
+CharacterIsDead(CHARACTERGUID_S_RC_DW_Tavern_WaiterLivy_c202f327-07a6-4a72-80e5-b007915b5309, 0)
+AND
+QueryOnlyOnce("RC_DW_Tavern_WaiterLivy_EscapeAfterDialog")
+THEN
+SetHasDialog(CHARACTERGUID_S_RC_DW_Tavern_WaiterLivy_c202f327-07a6-4a72-80e5-b007915b5309, 0);
+ProcCharacterDisappearOutOfSight(CHARACTERGUID_S_RC_DW_Tavern_WaiterLivy_c202f327-07a6-4a72-80e5-b007915b5309, 0, 1, "RC_DW_Tavern_WaiterLivy_Escaped", 0);
+
+IF
+DialogEnded("RC_DW_Tavern_WaiterLivy", _)
+AND
+GlobalGetFlag("RC_DW_Tavern_WaiterLivy_EscapeAfterDialog", 1)
+AND
+CharacterIsDead(CHARACTERGUID_S_RC_DW_Tavern_WaiterLivy_c202f327-07a6-4a72-80e5-b007915b5309, 0)
+AND
+QueryOnlyOnce("RC_DW_Tavern_WaiterLivy_EscapeAfterDialog")
+THEN
+SetHasDialog(CHARACTERGUID_S_RC_DW_Tavern_WaiterLivy_c202f327-07a6-4a72-80e5-b007915b5309, 0);
+ProcCharacterDisappearOutOfSight(CHARACTERGUID_S_RC_DW_Tavern_WaiterLivy_c202f327-07a6-4a72-80e5-b007915b5309, 0, 1, "RC_DW_Tavern_WaiterLivy_Escaped", 0);
+
+IF
+GlobalFlagSet("RC_DW_Tavern_Chef_AskedAboutLivy")
+AND
+QRY_SpeakerIsAvailable(CHARACTERGUID_S_RC_DW_Tavern_WaiterLivy_c202f327-07a6-4a72-80e5-b007915b5309)
+AND
+CharacterIsDead(CHARACTERGUID_S_RC_DW_Tavern_WaiterLivy_c202f327-07a6-4a72-80e5-b007915b5309, 0)
+AND
+QueryOnlyOnce("RC_DW_Tavern_WaiterLivy_EscapeAfterDialog")
+THEN
+SetHasDialog(CHARACTERGUID_S_RC_DW_Tavern_WaiterLivy_c202f327-07a6-4a72-80e5-b007915b5309, 0);
+ProcCharacterDisappearOutOfSight(CHARACTERGUID_S_RC_DW_Tavern_WaiterLivy_c202f327-07a6-4a72-80e5-b007915b5309, 0, 1, "RC_DW_Tavern_WaiterLivy_Escaped", 0);
+
+IF
+GlobalFlagSet("RC_DW_Tavern_Chef_AskedAboutLivy")
+AND NOT
+QRY_SpeakerIsAvailable(CHARACTERGUID_S_RC_DW_Tavern_WaiterLivy_c202f327-07a6-4a72-80e5-b007915b5309)
+THEN
+GlobalSetFlag("RC_DW_Tavern_WaiterLivy_EscapeAfterDialog");
+
+IF
+CharacterEnteredTrigger((CHARACTERGUID)_Var1, TRIGGERGUID_S_RC_DW_OnwershipTrigger_TavernKitchen_ef3518ba-3eea-411c-b0ad-002880ff2dfe)
+AND
+GlobalGetFlag("RC_DW_Tavern_WaiterLivy_Escaped", 0)
+AND
+PartyGetFlag(_Var1, "RC_DW_LovrikToldUsLivyInKitchen", 1)
+AND
+CharacterIsDead(CHARACTERGUID_S_RC_DW_Tavern_Chef_de730f5b-6c8e-46b3-aa14-12ad3a535698, 1)
+AND
+QRY_SpeakerIsAvailable(CHARACTERGUID_S_RC_DW_Tavern_WaiterLivy_c202f327-07a6-4a72-80e5-b007915b5309)
+AND
+QueryOnlyOnce("RC_DW_Tavern_WaiterLivy_EscapeAfterDialog")
+THEN
+SetHasDialog(CHARACTERGUID_S_RC_DW_Tavern_WaiterLivy_c202f327-07a6-4a72-80e5-b007915b5309, 0);
+ProcCharacterDisappearOutOfSight(CHARACTERGUID_S_RC_DW_Tavern_WaiterLivy_c202f327-07a6-4a72-80e5-b007915b5309, 0, 1, "RC_DW_Tavern_WaiterLivy_Escaped", 0);
+
+IF
+CharacterEnteredTrigger((CHARACTERGUID)_Var1, TRIGGERGUID_S_RC_DW_OnwershipTrigger_TavernKitchen_ef3518ba-3eea-411c-b0ad-002880ff2dfe)
+AND
+GlobalGetFlag("RC_DW_Tavern_WaiterLivy_Escaped", 0)
+AND
+PartyGetFlag(_Var1, "RC_DW_LovrikToldUsLivyInKitchen", 1)
+AND
+CharacterIsDead(CHARACTERGUID_S_RC_DW_Tavern_Chef_de730f5b-6c8e-46b3-aa14-12ad3a535698, 1)
+AND NOT
+QRY_SpeakerIsAvailable(CHARACTERGUID_S_RC_DW_Tavern_WaiterLivy_c202f327-07a6-4a72-80e5-b007915b5309)
+THEN
+GlobalSetFlag("RC_DW_Tavern_WaiterLivy_EscapeAfterDialog");
+
+IF
+StoryEvent((GUIDSTRING)_Var1, "RC_DW_Tavern_WaiterLivy_Escaped")
+THEN
+GlobalSetFlag("RC_DW_Tavern_WaiterLivy_Escaped");
+
+IF
+GlobalFlagSet("RC_DW_Tavern_WaiterLivy_Escaped")
+AND
+DB_InRegion(_Var1, TRIGGERGUID_S_RC_DW_Tavern_WaiterLivyEscaped_7b4819d6-23e7-4419-98ed-f831d1edf999)
+AND
+UserGetFlag(_Var1, "RC_DW_LovrikToldUsLivyInKitchen", 1)
+AND
+CharacterIsDead(CHARACTERGUID_S_RC_DW_Tavern_WaiterLivy_c202f327-07a6-4a72-80e5-b007915b5309, 0)
+AND
+QueryOnlyOnce("RC_DW_VB_WaiterLivy_Escaped")
+THEN
+SetHasDialog(CHARACTERGUID_S_RC_DW_Tavern_WaiterLivy_c202f327-07a6-4a72-80e5-b007915b5309, 1);
+ProcTriggerUnregisterForPlayers(TRIGGERGUID_S_RC_DW_Tavern_WaiterLivyEscaped_7b4819d6-23e7-4419-98ed-f831d1edf999);
+ObjectSetFlag(_Var1, "QuestUpdate_RC_DW_SurpriseDate_Lovrik_Escaped");
+ObjectSetFlag(_Var1, "QuestClose_RC_DW_SurpriseDate");
+StartVoiceBark("RC_DW_VB_WaiterLivy_Escaped", _Var1);
+
+IF
+CharacterEnteredTrigger((CHARACTERGUID)_Var1, TRIGGERGUID_S_RC_DW_Tavern_WaiterLivyEscaped_7b4819d6-23e7-4419-98ed-f831d1edf999)
+AND
+UserGetFlag(_Var1, "RC_DW_LovrikToldUsLivyInKitchen", 1)
+AND
+CharacterIsDead(CHARACTERGUID_S_RC_DW_Tavern_WaiterLivy_c202f327-07a6-4a72-80e5-b007915b5309, 0)
+AND
+GlobalGetFlag("RC_DW_Tavern_WaiterLivy_Escaped", 1)
+AND
+QueryOnlyOnce("RC_DW_VB_WaiterLivy_Escaped")
+THEN
+SetHasDialog(CHARACTERGUID_S_RC_DW_Tavern_WaiterLivy_c202f327-07a6-4a72-80e5-b007915b5309, 1);
+ProcTriggerUnregisterForPlayers(TRIGGERGUID_S_RC_DW_Tavern_WaiterLivyEscaped_7b4819d6-23e7-4419-98ed-f831d1edf999);
+ObjectSetFlag(_Var1, "QuestUpdate_RC_DW_SurpriseDate_Lovrik_Escaped");
+ObjectSetFlag(_Var1, "QuestClose_RC_DW_SurpriseDate");
+StartVoiceBark("RC_DW_VB_WaiterLivy_Escaped", _Var1);
+
+IF
+CharacterEnteredTrigger((CHARACTERGUID)_Var1, TRIGGERGUID_S_RC_DW_Tavern_3rdFloor_9b8c2aed-8b35-41e6-9a7d-6cc29f25af8c)
+AND
+ObjectGetFlag(_Var1, "RC_DW_Tavern_3rdFloor_Knows", 0)
+THEN
+ObjectSetFlag(_Var1, "RC_DW_Tavern_3rdFloor_Knows");
+
+IF
+CharacterEnteredTrigger(_, TRIGGERGUID_S_RC_DW_Tavern_3rdFloor_9b8c2aed-8b35-41e6-9a7d-6cc29f25af8c)
+AND
+DB_DialogNPCs(_Var2, CHARACTERGUID_S_RC_DW_Tavern_SurpriseDate_Lizard_09fa09cd-c589-4b3c-b357-6f515d302103, _Var3)
+AND
+GlobalGetFlag("RC_DW_SurpriseDate_FlirtOngoing", 1)
+THEN
+ProcForceStopDialog(CHARACTERGUID_S_RC_DW_Tavern_SurpriseDate_Lizard_09fa09cd-c589-4b3c-b357-6f515d302103);
+Proc_StartDialog(1, "RC_DW_Tavern_AD_SurpriseDate_LizardInterrupted", CHARACTERGUID_S_RC_DW_Tavern_SurpriseDate_Lizard_09fa09cd-c589-4b3c-b357-6f515d302103);
+
+IF
+DialogEnded("RC_DW_Tavern_SurpriseDate_Lizard", _)
+THEN
+GlobalClearFlag("RC_DW_SurpriseDate_FlirtOngoing");
+
+IF
+CharacterDied(S_RC_DW_Tavern_WaiterLivy_c202f327-07a6-4a72-80e5-b007915b5309)
+THEN
+GlobalSetFlag("RC_DW_Tavern_WaiterLivy_Escaped");
+GlobalSetFlag("RC_DW_Tavern_WaiterLivy_IsDead");
+
+IF
+ObjectFlagSet("RC_DW_SurpriseDate_SurpriseResolved", _, _)
+THEN
+GlobalSetFlag("RC_DW_Tavern_WaiterLivy_InitiateSpotter");
+
+IF
+StoryEvent((GUIDSTRING)_Var1, "RC_DW_Tavern_WaiterLivy_SpottedCharacter")
+AND
+QueryOnlyOnce("RC_DW_Tavern_WaiterLivy_SpottedCharacter")
+THEN
+GlobalClearFlag("RC_DW_Tavern_WaiterLivy_InitiateSpotter");
+GlobalSetFlag("RC_DW_Tavern_WaiterLivy_StopSpotter");
+CharacterMoveTo(CHARACTERGUID_S_RC_DW_Tavern_WaiterLivy_c202f327-07a6-4a72-80e5-b007915b5309, _Var1, 0, "", 0);
+Proc_StartDialog(0, "RC_DW_Tavern_WaiterLivy", CHARACTERGUID_S_RC_DW_Tavern_WaiterLivy_c202f327-07a6-4a72-80e5-b007915b5309, _Var1);
+
+IF
+CharacterStatusApplied(CHARACTERGUID_S_RC_DW_Tavern_SurpriseDate_Lizard_09fa09cd-c589-4b3c-b357-6f515d302103, "LYING", _)
+THEN
+ClearVarObject(CHARACTERGUID_S_RC_DW_Tavern_SurpriseDate_Lizard_09fa09cd-c589-4b3c-b357-6f515d302103, "Seat");
+SetVarObject(CHARACTERGUID_S_RC_DW_Tavern_SurpriseDate_Lizard_09fa09cd-c589-4b3c-b357-6f515d302103, "Seat", ITEMGUID_S_RC_DW_Tavern_SurpriseDate_Bed_2ad3b4bc-9b42-444a-8cbf-6183d9ace466);
+
+IF
+CharacterStatusRemoved(CHARACTERGUID_S_RC_DW_Tavern_SurpriseDate_Lizard_09fa09cd-c589-4b3c-b357-6f515d302103, "LYING", _)
+AND
+GlobalGetFlag("RC_DW_SurpriseDate_WentAgain", 0)
+THEN
+SetVarObject(CHARACTERGUID_S_RC_DW_Tavern_SurpriseDate_Lizard_09fa09cd-c589-4b3c-b357-6f515d302103, "Seat", ITEMGUID_S_RC_DW_SurpriseDate_LizardChair_fbe9d474-2cb5-4382-8700-d98d880e84af);
+SetStoryEvent(CHARACTERGUID_S_RC_DW_Tavern_SurpriseDate_Lizard_09fa09cd-c589-4b3c-b357-6f515d302103, "recheckSit");
+
+IF
+CharacterDied(CHARACTERGUID_S_RC_DW_Tavern_SurpriseDate_Lizard_09fa09cd-c589-4b3c-b357-6f515d302103)
+AND
+DB_IsPlayer(_Var1)
+AND
+ObjectGetFlag(_Var1, "RC_DW_SurpriseDate_SexHappens", 0)
+THEN
+ObjectSetFlag(_Var1, "QuestUpdate_RC_DW_SurpriseDate_Lizard_Dead");
+
+IF
+ObjectFlagSet("RC_DW_SeenDead_Lovrik", (GUIDSTRING)_Var1, _)
+AND
+ObjectGetFlag(_Var1, "QuestUpdate_RC_DW_SurpriseDate_SexHappened", 1)
+THEN
+ObjectSetFlag(_Var1, "QuestUpdate_RC_DW_SurpriseDate_Lovrik_DeathRevenge");
+
+IF
+ObjectFlagSet("RC_DW_SeenDead_Lovrik", (GUIDSTRING)_Var1, _)
+AND
+ObjectGetFlag(_Var1, "QuestUpdate_RC_DW_SurpriseDate_SexHappened_WasGreat", 1)
+THEN
+ObjectSetFlag(_Var1, "QuestUpdate_RC_DW_SurpriseDate_Lovrik_DeathRevenge");
+
+IF
+ObjectFlagSet("QuestUpdate_RC_DW_SurpriseDate_Thugs_Dead", (CHARACTERGUID)_Var1, _)
+AND
+PartyGetFlag(_Var1, "RC_DW_SeenDead_Lovrik", 1)
+THEN
+ObjectSetFlag(_Var1, "QuestUpdate_RC_DW_SurpriseDate_Lovrik_DeathRevenge");
+
+IF
+ObjectFlagSet("QuestUpdate_RC_DW_SurpriseDate_Thugs_GaveLoot", (CHARACTERGUID)_Var1, _)
+AND
+PartyGetFlag(_Var1, "RC_DW_SeenDead_Lovrik", 1)
+THEN
+ObjectSetFlag(_Var1, "QuestUpdate_RC_DW_SurpriseDate_Lovrik_DeathRevenge");
+
+IF
+DB_SceneManager(_Var1, "RC_DW_Tavern_SurpriseDate")
+THEN
+ProcCrimeSetCustomPrimarySensibleAction(_Var1, "Steal", "");
+ProcCrimeSetCustomPrimarySensibleAction(_Var1, "UseForbiddenItem", "");
+ProcCrimeSetCustomPrimarySensibleAction(_Var1, "PickPocketFailed", "");
+
+PROC
+ProcCrimeOnCustomSensibleAction((CHARACTERGUID)_Var1, _, _, _, _, (CHARACTERGUID)_Var6, _, _, _, _)
+AND
+DB_SceneManager(_Var1, "RC_DW_Tavern_SurpriseDate")
+AND
+QueryOnlyOnce("RC_DW_Tavern_SurpriseDate_Interrupt")
+THEN
+Proc_RC_DW_Tavern_SurpriseDate_Interrupt();
+
+PROC
+Proc_SceneInterrupted(_, _, "RC_DW_Tavern_SurpriseDate", "Attacked")
+AND
+QueryOnlyOnce("RC_DW_Tavern_SurpriseDate_Interrupt")
+THEN
+Proc_RC_DW_Tavern_SurpriseDate_Interrupt();
+
+IF
+CharacterEnteredTrigger((CHARACTERGUID)_Var1, TRIGGERGUID_S_RC_DW_Tavern_3rdFloor_9b8c2aed-8b35-41e6-9a7d-6cc29f25af8c)
+AND
+CharacterIsPlayer(_Var1, 1)
+AND
+ObjectGetFlag(_Var1, "RC_DW_SurpriseDate_SexHappenedWithMe", 0)
+AND
+GlobalGetFlag("RC_DW_Tavern_SurpriseDate_GaveLoot", 0)
+AND
+GlobalGetFlag("RC_DW_Tavern_SurpriseDate_KilledThieves", 0)
+AND
+GlobalGetFlag("RC_DW_Tavern_SurpriseDate_LeftWithoutLoot", 0)
+AND
+DB_IsPlayer(_Var2)
+AND
+ObjectGetFlag(_Var2, "RC_DW_SurpriseDate_SexHappenedWithMe", 1)
+AND
+DB_SceneManager(_Var3, "RC_DW_Tavern_SurpriseDate")
+AND
+CharacterIsInCombat(_Var3, 0)
+AND
+QueryOnlyOnce("RC_DW_Tavern_SurpriseDate_Interrupt")
+THEN
+Proc_RC_DW_Tavern_SurpriseDate_Interrupt();
+
+PROC
+Proc_RC_DW_Tavern_SurpriseDate_Interrupt()
+AND NOT
+DB_SurpriseDate_StartDialog(_)
+THEN
+Proc_RC_DW_Tavern_SurpriseDate_SetHositility();
+
+PROC
+Proc_RC_DW_Tavern_SurpriseDate_Interrupt()
+AND
+DB_IsPlayer(_Var1)
+AND
+ObjectGetFlag(_Var1, "RC_DW_SurpriseDate_SexHappenedWithMe", 1)
+THEN
+ObjectSetFlag(_Var1, "RC_DW_SurpriseDate_SurpriseResolved");
+
+PROC
+Proc_RC_DW_Tavern_SurpriseDate_Interrupt()
+AND
+DB_SceneManager(_Var1, "RC_DW_Tavern_SurpriseDate")
+AND
+GlobalGetFlag("RC_DW_Tavern_SurpriseDate_KilledThieves", 0)
+THEN
+DialogRequestStop(_Var1);
+Proc_RC_DW_Tavern_SurpriseDate_SetHositility();
+
+IF
+ObjectFlagSet("RC_DW_SurpriseDate_GoAgain", _, _)
+THEN
+GlobalSetFlag("RC_DW_SurpriseDate_WentAgain");
+
+IF
+ObjectFlagSet("RC_DW_SurpriseDate_YouEscaped", (CHARACTERGUID)_Var1, _)
+THEN
+Proc_RC_DW_SurpriseDate_CheckToClose(_Var1);
+
+IF
+ObjectFlagSet("RC_DW_SurpriseDateYoureAnAss", (CHARACTERGUID)_Var1, _)
+THEN
+Proc_RC_DW_SurpriseDate_CheckToClose(_Var1);
+
+PROC
+Proc_RC_DW_SurpriseDate_CheckToClose(_)
+THEN
+NOT DB_RC_DW_SurpriseDate_Close(0);
+
+PROC
+Proc_RC_DW_SurpriseDate_CheckToClose(_)
+AND
+DB_IsPlayer(_Var2)
+AND
+ObjectGetFlag(_Var2, "RC_DW_SurpriseDateYoureAnAss", 0)
+AND
+ObjectGetFlag(_Var2, "RC_DW_SurpriseDate_YouEscaped", 0)
+THEN
+DB_RC_DW_SurpriseDate_Close(0);
+
+PROC
+Proc_RC_DW_SurpriseDate_CheckToClose((CHARACTERGUID)_Var1)
+AND NOT
+DB_RC_DW_SurpriseDate_Close(0)
+AND
+ObjectGetFlag(_Var1, "RC_DW_SurpriseDateYoureAnAss", 1)
+THEN
+ObjectSetFlag(_Var1, "QuestUpdate_RC_DW_SurpriseDate_Lizard_IamAsshole_CloseJournal");
+
+PROC
+Proc_RC_DW_SurpriseDate_CheckToClose((CHARACTERGUID)_Var1)
+AND
+DB_RC_DW_SurpriseDate_Close(0)
+AND
+ObjectGetFlag(_Var1, "RC_DW_SurpriseDateYoureAnAss", 1)
+THEN
+ObjectSetFlag(_Var1, "QuestUpdate_RC_DW_SurpriseDate_Lizard_IamAsshole");
+
+PROC
+Proc_RC_DW_SurpriseDate_CheckToClose((CHARACTERGUID)_Var1)
+AND NOT
+DB_RC_DW_SurpriseDate_Close(0)
+AND
+ObjectGetFlag(_Var1, "RC_DW_SurpriseDate_YouEscaped", 1)
+THEN
+ObjectSetFlag(_Var1, "QuestUpdate_RC_DW_SurpriseDate_Lizard_Iescaped_CloseJournal");
+
+PROC
+Proc_RC_DW_SurpriseDate_CheckToClose((CHARACTERGUID)_Var1)
+AND
+DB_RC_DW_SurpriseDate_Close(0)
+AND
+ObjectGetFlag(_Var1, "RC_DW_SurpriseDate_YouEscaped", 1)
+THEN
+ObjectSetFlag(_Var1, "QuestUpdate_RC_DW_SurpriseDate_Lizard_Iescaped");
+
+PROC
+Proc_RC_DW_SurpriseDate_CheckToClose((CHARACTERGUID)_Var1)
+AND NOT
+DB_RC_DW_SurpriseDate_Close(0)
+AND
+DB_IsPlayer(_Var2)
+AND
+_Var2 != _Var1
+THEN
+ObjectSetFlag(_Var1, "QuestUpdate_RC_DW_SurpriseDate_Lizard_Failed");
+
+IF
+ObjectFlagSet("RC_DW_Tavern_SurpriseDate_ReEquip", (CHARACTERGUID)_Var1, _)
+THEN
+Proc_SurpriseDate_ReEquip(_Var1);
+
+PROC
+Proc_SurpriseDate_ReEquip((CHARACTERGUID)_Var1)
+THEN
+MoveAllItemsTo(ITEMGUID_S_RC_DW_SurpriseDate_ThiefBag_3b676562-61d0-439c-84a6-e7f583084579, _Var1);
+
+IF
+ItemAddedToCharacter((ITEMGUID)_Var1, (CHARACTERGUID)_Var2)
+AND
+DB_SurpriseDateEquipment(_Var2, _Var3, _Var1)
+THEN
+CharacterEquipItem(_Var2, _Var1);
+NOT DB_SurpriseDateEquipment(_Var2, _Var3, _Var1);
+
+IF
+ObjectLeftCombat((CHARACTERGUID)_Var1, _)
+AND
+DB_SurpriseDate_Thieves(_Var1)
+AND
+CharacterIsDead(_Var1, 0)
+AND
+QueryOnlyOnce("Proc_SurpriseDate_Thieves_LeaveAfterCombat")
+THEN
+Proc_SurpriseDate_Thieves_LeaveAfterCombat();
+
+PROC
+Proc_SurpriseDate_Thieves_LeaveAfterCombat()
+AND
+ItemIsInInventory(ITEMGUID_S_RC_DW_SurpriseDate_ThiefBag_3b676562-61d0-439c-84a6-e7f583084579, 0)
+AND
+DB_SurpriseDate_Thieves(_Var1)
+AND
+CharacterIsDead(_Var1, 0)
+AND
+CharacterIsInCombat(_Var1, 0)
+AND
+CharacterCanSee(_Var1, ITEMGUID_S_RC_DW_SurpriseDate_ThiefBag_3b676562-61d0-439c-84a6-e7f583084579, 1)
+AND NOT
+DB_SurpriseDate_Thieves_LeaveAfterCombat_PickUpBag(_)
+THEN
+DB_SurpriseDate_Thieves_LeaveAfterCombat_PickUpBag(_Var1);
+CharacterPickupItem(_Var1, ITEMGUID_S_RC_DW_SurpriseDate_ThiefBag_3b676562-61d0-439c-84a6-e7f583084579, "pickedUpSurpriseDate_Bag");
+Proc_SurpriseDate_Thieves_LeaveAfterCombat_JournalUpdate();
+
+PROC
+Proc_SurpriseDate_Thieves_LeaveAfterCombat_JournalUpdate()
+AND
+DB_IsPlayer(_Var1)
+AND
+ObjectGetFlag(_Var1, "RC_DW_SurpriseDate_SexHappenedWithMe", 1)
+THEN
+ObjectSetFlag(_Var1, "QuestUpdate_RC_DW_SurpriseDate_Thugs_GaveLoot");
+
+PROC
+Proc_SurpriseDate_Thieves_LeaveAfterCombat()
+AND
+DB_SurpriseDate_Thieves(_Var1)
+AND NOT
+DB_SurpriseDate_Thieves_LeaveAfterCombat_PickUpBag(_Var1)
+THEN
+ProcCharacterDisappearOutOfSight(_Var1, 0, 0, "RC_DW_SurpriseDate_LeaveAfterCombat_Disappeared", 1);
+
+IF
+StoryEvent(_, "RC_DW_SurpriseDate_LeaveAfterCombat_Disappeared")
+AND
+QueryOnlyOnce("RC_DW_SurpriseDate_LeaveAfterCombat_Disappeared_OpenDoor")
+THEN
+ItemUnlockAndOpen(ITEMGUID_S_RC_DW_SurpriseDate_TEMPdoor_cb645806-b0c0-46fc-9299-909a5d128155);
+
+IF
+StoryEvent((CHARACTERGUID)_Var1, "pickedUpSurpriseDate_Bag")
+THEN
+ProcCharacterDisappearOutOfSight(_Var1, 0, 0, "RC_DW_SurpriseDate_LeaveAfterCombat_PickedUp_Disappear", 1);
+
+IF
+StoryEvent(_, "RC_DW_SurpriseDate_LeaveAfterCombat_PickedUp_Disappear")
+AND
+QueryOnlyOnce("RC_DW_SurpriseDate_LeaveAfterCombat_PickedUp_Disappear_ItemTo")
+THEN
+TeleportTo(ITEMGUID_S_RC_DW_SurpriseDate_ThiefBag_3b676562-61d0-439c-84a6-e7f583084579, TRIGGERGUID_S_RC_DW_SurpriseDate_LootBag_FinalPos_45b0d7e9-b79c-4184-9976-ba288857e3ac);
+
+IF
+StoryEvent((ITEMGUID)_Var1, "RC_DW_SurpriseDate_ClearOwnerOfStolen")
+THEN
+ItemClearOwner(_Var1);
+
+IF
+StoryEvent(_, "RC_DW_SurpriseDate_LeaveAfterCombat_PickedUp_Disappear")
+THEN
+Proc_RC_DW_SurpriseDate_SetItemsStolenFrom();
+
+IF
+StoryEvent(_, "RC_DW_SurpriseDate_PickedUp_Disappear")
+THEN
+Proc_RC_DW_SurpriseDate_SetItemsStolenFrom();
+
+PROC
+Proc_RC_DW_SurpriseDate_SetItemsStolenFrom()
+AND
+DB_RC_DW_SurpriseDate_ItemsStolenFrom(_Var1)
+THEN
+NOT DB_RC_DW_SurpriseDate_ItemsStolenFrom(_Var1);
+UserSetFlag(_Var1, "RC_DW_SurpriseDate_StolenFromMe");
+
+PROC
+Proc_RC_DW_SurpriseDate_SetItemsStolenFrom()
+AND
+GlobalGetFlag("RC_DW_SurpriseDate_GotDwarfBossJob", 0)
+THEN
+ItemSetOwner(ITEMGUID_S_RC_DW_SurpriseDate_ThiefBag_3b676562-61d0-439c-84a6-e7f583084579, CHARACTERGUID_S_RC_DW_UnderTavern_DwarfBoss_8e58abc6-1010-4e67-97b2-b9686586e784);
+InventoryLaunchIterator(ITEMGUID_S_RC_DW_SurpriseDate_ThiefBag_3b676562-61d0-439c-84a6-e7f583084579, "RC_DW_SurpriseDate_ClearOwnerOfStolen", "RC_DW_SurpriseDate_ClearOwnerOfStolen_Complete");
+
+PROC
+Proc_RC_DW_SurpriseDate_SetItemsStolenFrom()
+AND
+GlobalGetFlag("RC_DW_SurpriseDate_GotDwarfBossJob", 1)
+THEN
+ItemClearOwner(ITEMGUID_S_RC_DW_SurpriseDate_ThiefBag_3b676562-61d0-439c-84a6-e7f583084579);
+
+IF
+ObjectFlagSet("RC_DW_GotDwarfBossJob", _, _)
+THEN
+ItemClearOwner(ITEMGUID_S_RC_DW_SurpriseDate_ThiefBag_3b676562-61d0-439c-84a6-e7f583084579);
+GlobalSetFlag("RC_DW_SurpriseDate_GotDwarfBossJob");
+
+IF
+TextEventSet("boss")
+AND
+DB_IsPlayer(_Var1)
+THEN
+ObjectSetFlag(_Var1, "RC_DW_GotDwarfBossJob");
+GlobalSetFlag("RC_DW_SurpriseDate_GotDwarfBossJob");
+
+IF
+ItemEnteredTrigger(ITEMGUID_S_RC_DW_SurpriseDate_ThiefBag_3b676562-61d0-439c-84a6-e7f583084579, TRIGGERGUID_S_RC_DW_SurpriseDate_ThiefBag_BoxTrig_d6d654f5-fd49-463e-bfd2-de89040d7165, _)
+THEN
+GlobalSetFlag("RC_DW_SurpriseDate_ItemOnDesk");
+
+IF
+ItemLeftTrigger(ITEMGUID_S_RC_DW_SurpriseDate_ThiefBag_3b676562-61d0-439c-84a6-e7f583084579, TRIGGERGUID_S_RC_DW_SurpriseDate_ThiefBag_BoxTrig_d6d654f5-fd49-463e-bfd2-de89040d7165, _)
+THEN
+GlobalClearFlag("RC_DW_SurpriseDate_ItemOnDesk");
+
+
+EXITSECTION
+ENDEXITSECTION
+
+ParentTargetEdge "ReapersCoast"

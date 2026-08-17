@@ -1,0 +1,246 @@
+Version 1
+SubGoalCombiner SGC_AND
+
+INITSECTION
+DB_CoS_Temples_GodAltars(ITEMGUID_S_CoS_Temples_Elf_Altar_4fb7a143-46e4-4ca5-b620-82de5188b20a, "CoS_Temples_Elf_Altar", "Elf", "CoS_Temples_LunarElf_Sequence", "Moon");
+DB_CoS_Temples_GodAltars(ITEMGUID_S_CoS_Temples_Orc_Altar_67205e75-78e2-48c7-9b28-30fdb0e5650e, "CoS_Temples_Orc_Altar", "Orc", "CoS_Temples_LunarOrc_Sequence", "Sun");
+DB_CoS_Temples_GodAltars(ITEMGUID_S_CoS_Temples_Human_Altar_ab5fc8e8-7861-4709-9fda-d5bb04b11ac0, "CoS_Temples_Human_Altar", "Human", "CoS_Temples_LunarHuman_Sequence", "Sun");
+DB_CoS_Temples_GodAltars(ITEMGUID_S_CoS_Temples_Dwarf_Altar_5c4011fe-70ad-4088-bc20-a2b100436a09, "CoS_Temples_Dwarf_Altar", "Dwarf", "CoS_Temples_LunarDwarf_Sequence", "Moon");
+DB_CoS_Temples_GodAltars(ITEMGUID_S_CoS_Temples_Lizard_Altar_c2becf8c-27b0-4b2e-a221-c8df35766c9c, "CoS_Temples_Lizard_Altar", "Lizard", "CoS_Temples_LunarLizard_Sequence", "Sun");
+DB_CoS_Temples_GodAltars(ITEMGUID_S_CoS_Temples_Imp_StatueToXantezza_27793291-e162-4c85-b3cc-f811f62d53e5, "CoS_Temples_Imp_StatueToXantezza", "Imp", "CoS_Temples_LunarImp_Sequence", "Moon");
+DB_CoS_Temples_GodAltars(ITEMGUID_S_CoS_Temples_Wizard_Altar_013d54ae-d7da-4336-959a-0bdd1493c407, "CoS_Temples_Wizard_Altar", "Wizard", "CoS_Temples_LunarWizard_Sequence", "Moon");
+DB_CoS_Temples_GodAltars_FxObject(ITEMGUID_S_CoS_Temples_Elf_Altar_4fb7a143-46e4-4ca5-b620-82de5188b20a, ITEMGUID_S_CoS_Temples_Elf_Altar_FxHelper_b5a837c1-8fa8-4394-b30c-8a17115b1224);
+DB_CanUseSkillCheck("CoS_Temples_Dwarf_Altar", "Target_Bless", 1);
+DB_CoS_SunMoonEffects("Sun", "RS3_FX_GP_ScriptedEvent_RunePuzzle_Icon_G_01");
+DB_CoS_SunMoonEffects("Moon", "RS3_FX_GP_ScriptedEvent_RunePuzzle_Icon_H_01");
+Proc_CoS_Temples_Achievement_SevenAltars_FillFact();
+
+KBSECTION
+IF
+ObjectFlagSet((STRING)_Var1, (CHARACTERGUID)_Var2, (INTEGER)_Var3)
+AND
+DB_CoS_Temples_Achievement_SevenAltars(_Var4, _Var1)
+AND
+DB_DialogName(_Var4, _Var3)
+THEN
+Proc_ProgressAchievement(_Var2, "DOS2_Quest48");
+
+PROC
+Proc_CoS_Temples_Achievement_SevenAltars_FillFact()
+THEN
+DB_CoS_Temples_Achievement_SevenAltars("CoS_Temples_Elf_Altar", "CoS_Temples_AltarAchievement_Elf");
+DB_CoS_Temples_Achievement_SevenAltars("CoS_Temples_Orc_Altar", "CoS_Temples_AltarAchievement_Orc");
+DB_CoS_Temples_Achievement_SevenAltars("CoS_Temples_Human_Altar", "CoS_Temples_AltarAchievement_Human");
+DB_CoS_Temples_Achievement_SevenAltars("CoS_Temples_Dwarf_Altar", "CoS_Temples_AltarAchievement_Dwarf");
+DB_CoS_Temples_Achievement_SevenAltars("CoS_Temples_Lizard_Altar", "CoS_Temples_AltarAchievement_Lizard");
+DB_CoS_Temples_Achievement_SevenAltars("CoS_Temples_Imp_StatueToXantezza", "CoS_Temples_AltarAchievement_Imp");
+DB_CoS_Temples_Achievement_SevenAltars("CoS_Temples_Wizard_Altar", "CoS_Temples_AltarAchievement_Wizard");
+
+IF
+ObjectFlagSet((STRING)_Var1, (CHARACTERGUID)_Var2, _)
+AND
+DB_IsPlayer(_Var2)
+AND
+DB_CoS_Temples_GodAltars(_, _, _, _Var1, _)
+THEN
+UserSetFlag(_Var2, "QuestUpdate_CoS_Temples_PrayedAltar");
+UserSetFlag(_Var2, "QuestUpdate_CORE_Chapter5_COS_Altar_PrayedOnce");
+
+IF
+DialogEnded((STRING)_Var1, (INTEGER)_Var2)
+AND
+DB_CoS_Temples_GodAltars(_, _Var1, _, _, _)
+AND
+DB_DialogPlayers(_Var2, _Var7, _)
+AND NOT
+QRY_CoS_Temples_AltarLeft(_Var7)
+THEN
+UserSetFlag(_Var7, "QuestUpdate_CoS_Temples_SacrificeAllAltar");
+UserSetFlag(_Var7, "QuestUpdate_CORE_Chapter5_COS_Altar_PrayedAll");
+
+QRY
+QRY_CoS_Temples_AltarLeft((CHARACTERGUID)_Var1)
+AND
+DB_CoS_Temples_GodAltars(_, _, _, _Var5, _)
+AND
+UserGetFlag(_Var1, _Var5, 0)
+THEN
+DB_NOOP(1);
+
+IF
+DB_CoS_Temples_GodAltars(_Var1, _Var2, _, _, _)
+THEN
+DB_Dialogs(_Var1, _Var2);
+
+IF
+ObjectFlagSet("CoS_Temples_GodAltar_SacrificeAccepted", (CHARACTERGUID)_Var1, (INTEGER)_Var2)
+AND
+DialogGetInvolvedPlayer(_Var2, 1, _Var1)
+AND
+DialogGetInvolvedNPC(_Var2, 1, _Var3)
+AND
+DB_CoS_Temples_GodAltars(_Var3, _Var4, _Var5, _, _)
+THEN
+ObjectClearFlag(_Var1, "CoS_Temples_GodAltar_SacrificeAccepted");
+Proc_CoS_Temples_GodAltars_ActivateSacrifice(_Var1, _Var5);
+
+IF
+ObjectFlagSet((STRING)_Var1, (CHARACTERGUID)_Var2, (INTEGER)_Var3)
+AND
+DialogGetInvolvedNPC(_Var3, 1, _Var4)
+AND
+DB_CoS_Temples_GodAltars(_Var4, _, _, _Var1, _Var7)
+AND
+DB_CoS_SunMoonEffects(_Var7, _Var8)
+THEN
+PROC_LoopEffect(_Var8, _Var4, "Altar_LunarSequence", "CoS_Main", "");
+
+PROC
+Proc_CoS_Temples_GodAltars_ActivateSacrifice((CHARACTERGUID)_Var1, "Human")
+THEN
+ApplyStatus(_Var1, "PERMANENT_BLIND", -1, 1);
+GlobalSetFlag("CoS_AotO_Rhalic_Buff");
+
+PROC
+Proc_CoS_Temples_GodAltars_ActivateSacrifice((CHARACTERGUID)_Var1, "Orc")
+THEN
+ApplyStatus(_Var1, "CURSED", -1, 1);
+
+PROC
+Proc_CoS_Temples_GodAltars_ActivateSacrifice((CHARACTERGUID)_Var1, "Wizard")
+THEN
+ObjectSetFlag(_Var1, "RemoveOneSourcePoint");
+GlobalSetFlag("CoS_AotO_Amadia_Buff");
+
+PROC
+Proc_CoS_Temples_GodAltars_ActivateSacrifice((CHARACTERGUID)_Var1, "LIZARD")
+AND
+GetPosition(_Var1, _Var2, _Var3, _Var4)
+THEN
+CharacterMakeStoryNpc(_Var1, 0);
+CreateExplosionAtPosition(_Var2, _Var3, _Var4, "Projectile_TrapFireballMineWithSurface", 16);
+ApplyStatus(_Var1, "BURNING", -1, 1);
+ApplyDamage(_Var1, 100, "Fire");
+CreateSurfaceAtPosition(_Var2, _Var3, _Var4, "SurfaceFire", 3, -1);
+CharacterMakeStoryNpc(_Var1, 1);
+GlobalSetFlag("CoS_AotO_Zorl_Buff");
+
+PROC
+Proc_CoS_Temples_GodAltars_ActivateSacrifice((CHARACTERGUID)_Var1, "Imp")
+THEN
+ObjectSetFlag(_Var1, "CoS_Temples_GodAltar_RenouncedGod");
+
+PROC
+Proc_CoS_Temples_GodAltars_ActivateSacrifice((CHARACTERGUID)_Var1, "Elf")
+THEN
+CharacterPurgeQueue(_Var1);
+CharacterMakeStoryNpc(_Var1, 0);
+CharacterRemoveAttribute(_Var1, "Constitution", 2);
+CharacterSetHitpointsPercentage(_Var1, 3);
+PlayAnimation(_Var1, "hit");
+GlobalSetFlag("CoS_AotO_Tir_Buff");
+CharacterMakeStoryNpc(_Var1, 1);
+
+PROC
+Proc_CoS_Temples_GodAltars_ActivateSacrifice((CHARACTERGUID)_Var1, "Elf")
+AND
+IsTagged(_Var1, "UNDEAD", 0)
+AND
+GetPosition(_Var1, _Var2, _Var3, _Var4)
+THEN
+PlayEffect(_Var1, "RS3_FX_GP_Combat_Hit_Blood_01_Large");
+PlayEffect(_Var1, "RS3_FX_Skills_Voodoo_Cast_Aoe_Voodoo_Blood_Root_01");
+CreateSurfaceAtPosition(_Var2, _Var3, _Var4, "SurfaceBlood", 3, -1);
+
+PROC
+Proc_CoS_Temples_GodAltars_ActivateSacrifice((CHARACTERGUID)_Var1, "Elf")
+AND
+IsTagged(_Var1, "UNDEAD", 1)
+THEN
+PlayEffect(_Var1, "RS3_FX_Skills_Voodoo_Cast_Aoe_Voodoo_Blood_Root_01");
+
+PROC
+Proc_CoS_Temples_GodAltars_ActivateSacrifice((CHARACTERGUID)_Var1, "Dwarf")
+THEN
+CharacterPurgeQueue(_Var1);
+CharacterResetCooldowns(_Var1);
+CharacterUseSkill(_Var1, "Target_Bless", ITEMGUID_S_CoS_Temples_Dwarf_Altar_5c4011fe-70ad-4088-bc20-a2b100436a09, 1);
+GlobalSetFlag("CoS_AotO_Duna_Buff");
+
+IF
+CharacterUsedSkillOnTarget((CHARACTERGUID)_Var1, ITEMGUID_S_CoS_Temples_Dwarf_Altar_5c4011fe-70ad-4088-bc20-a2b100436a09, "Target_Bless", _, _)
+AND
+ObjectGetFlag(_Var1, "QuestUpdate_CoS_Temples_Lunar_Dwarf", 0)
+AND
+QRY_SpeakerIsAvailable(_Var1)
+AND
+QRY_SpeakerIsAvailable(ITEMGUID_S_CoS_Temples_Dwarf_Altar_5c4011fe-70ad-4088-bc20-a2b100436a09)
+THEN
+ObjectSetFlag(_Var1, "CoS_Temples_BlessedAltarOutOfDialog");
+Proc_StartDialog(0, "CoS_Temples_Dwarf_Altar", ITEMGUID_S_CoS_Temples_Dwarf_Altar_5c4011fe-70ad-4088-bc20-a2b100436a09, _Var1);
+
+IF
+DialogStarted("CoS_Temples_Wizard_Altar", (INTEGER)_Var1)
+AND
+DialogGetInvolvedPlayer(_Var1, 1, _Var2)
+AND
+CharacterGetSourcePoints(_Var2, _Var3)
+AND
+_Var3 > 0
+THEN
+ObjectSetFlag(_Var2, "CoS_Temples_Wizard_Altar_HasSourcePoint");
+
+IF
+DialogEnded("CoS_Temples_Wizard_Altar", (INTEGER)_Var1)
+AND
+DialogGetInvolvedPlayer(_Var1, 1, _Var2)
+THEN
+ObjectClearFlag(_Var2, "CoS_Temples_Wizard_Altar_HasSourcePoint");
+
+IF
+ObjectFlagSet("CoS_Temples_AltarWispEffect_On", (ITEMGUID)_Var1, _)
+AND
+DB_CoS_Temples_GodAltars(_Var1, _Var3, _, _, _)
+AND NOT
+DB_CoS_Temples_GodAltars_FxObject(_Var1, _)
+THEN
+DB_CoS_Temples_GodAltars_FxObject(_Var1, _Var1, _Var3);
+
+IF
+ObjectFlagSet("CoS_Temples_AltarWispEffect_On", (ITEMGUID)_Var1, _)
+AND
+DB_CoS_Temples_GodAltars(_Var1, _Var3, _, _, _)
+AND
+DB_CoS_Temples_GodAltars_FxObject(_Var1, _Var7)
+THEN
+DB_CoS_Temples_GodAltars_FxObject(_Var1, _Var7, _Var3);
+
+IF
+DB_CoS_Temples_GodAltars_FxObject(_Var1, _Var2, _)
+THEN
+PROC_LoopEffect("RS3_FX_GP_ScriptedEvent_CoS_Altar_Wisp_01", _Var2, "CoS_Temples_AltarWispEffect", "CoS_Main", "");
+ObjectClearFlag(_Var1, "CoS_Temples_AltarWispEffect_On");
+
+IF
+ObjectFlagSet("CoS_Temples_AltarWispEffect_Off", (ITEMGUID)_Var1, _)
+AND
+DB_CoS_Temples_GodAltars_FxObject(_Var1, _Var3, _Var4)
+THEN
+PROC_StopLoopEffect(_Var3, "CoS_Temples_AltarWispEffect");
+ObjectClearFlag(_Var1, "CoS_Temples_AltarWispEffect_Off");
+NOT DB_CoS_Temples_GodAltars_FxObject(_Var1, _Var3, _Var4);
+
+IF
+DialogEnded((STRING)_Var1, _)
+AND
+DB_CoS_Temples_GodAltars_FxObject(_Var3, _Var4, _Var1)
+THEN
+PROC_StopLoopEffect(_Var4, "CoS_Temples_AltarWispEffect");
+ObjectClearFlag(_Var3, "CoS_Temples_AltarWispEffect_On");
+NOT DB_CoS_Temples_GodAltars_FxObject(_Var3, _Var4, _Var1);
+
+
+EXITSECTION
+ENDEXITSECTION
+
+ParentTargetEdge "CoS_Temples"

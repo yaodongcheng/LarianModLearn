@@ -1,0 +1,62 @@
+Version 1
+SubGoalCombiner SGC_AND
+
+INITSECTION
+
+KBSECTION
+IF
+TextEventSet("ComeToMe")
+THEN
+CharacterMoveTo(Humans_Male_Clothing_000_54f591ef-3ba7-47a2-a241-2f52e415e132, S_Player_Sebille_c8d55eaf-e4eb-466a-8f0d-6a9447b5b24c, 0, "", 0);
+CharacterMoveTo(S_FTJ_GhettoGuard_001_ee5789f4-9320-493f-8fa1-a4ec1b8177f2, S_Player_Sebille_c8d55eaf-e4eb-466a-8f0d-6a9447b5b24c, 0, "", 0);
+CharacterMoveTo(S_FTJ_MagisterSlaver_002_3dc0a0f4-07b6-4066-a99c-1706e33c98e3, S_Player_Sebille_c8d55eaf-e4eb-466a-8f0d-6a9447b5b24c, 0, "", 0);
+
+IF
+TextEventSet("LookAtMe")
+THEN
+CharacterLookAt(Lizards_Male_Clothing_Civilian_B_DONOTUS_000_2ff58993-937c-44d0-a2d9-31d737cd9762, CHARACTERGUID_Player_Ifan_ad9a3327-4456-42a7-9bf4-7ad60cc9e54f);
+CharacterLookAt(Dwarves_Female_Clothing_Civilian_Rich_D_DONOTUS_000_02db549b-4ed1-46f7-a4ad-35ed7c106536, CHARACTERGUID_Player_Ifan_ad9a3327-4456-42a7-9bf4-7ad60cc9e54f);
+CharacterLookAt(Elves_Male_Clothing_Civilian_Normal_B_DONOTUS_001_8a843542-d985-42ff-b1db-cd1a7ad27d4d, CHARACTERGUID_Player_Ifan_ad9a3327-4456-42a7-9bf4-7ad60cc9e54f);
+
+IF
+TextEventSet("InterrogateMe")
+THEN
+Proc_StartDialog(0, "GEB_Interrogation", Humans_Male_Faction_Magisters_Grunt_A_000_d9ac35b2-beac-4aa1-bf4d-4ea54edeaa8e, S_Player_Sebille_c8d55eaf-e4eb-466a-8f0d-6a9447b5b24c);
+
+IF
+TextEventSet("GiveBomb")
+AND
+DB_IsPlayer(_Var1)
+THEN
+ItemTemplateAddTo("GRN_Grenade_Molotov_A_5208b121-64fa-4704-8924-c61c576e1ac5", _Var1, 10);
+
+IF
+TextEventSet("SetSmelly")
+AND
+DB_IsPlayer(_Var1)
+THEN
+ApplyStatus(_Var1, "SMELLY", 10);
+
+IF
+TextEventSet("InitGEB")
+THEN
+DB_Dialogs(CHARACTERGUID_S_GenericBehaviours_WalkingElf_f7128d02-1ebf-4d39-88f9-258e78697769, "Test_GenericBehaviour_LambdaCivilian");
+DB_TrespassTrigger(TRIGGERGUID_S_GenericBehaviours_Trespassing_Box_000_c9a3bb89-630b-4168-b7b1-b11779bc447a, TRIGGERGUID_S_GenericBehaviours_Ancher_Point_000_110b05ea-210d-49ed-aa03-e14ad5419b62);
+
+IF
+DialogEnded("Test_GenericBehaviour_LambdaCivilian", _)
+THEN
+ProcCharacterMoveTo(CHARACTERGUID_S_GenericBehaviours_WalkingElf_f7128d02-1ebf-4d39-88f9-258e78697769, ITEMGUID_S_GenericBehaviours_Bench_000_8bd77331-2ab2-4a31-8dc1-de5c3b11c21b, 1, "");
+
+IF
+TextEventSet("Lowerat")
+AND
+DB_IsPlayer(_Var1)
+THEN
+CharacterAddAttitudeTowardsPlayer(S_FTJ_ShrineWorshipper_bd8a4344-814a-4904-8399-326a5a3f88d1, _Var1, -70);
+
+
+EXITSECTION
+ENDEXITSECTION
+
+ParentTargetEdge "Start"

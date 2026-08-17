@@ -1,0 +1,73 @@
+Version 1
+SubGoalCombiner SGC_AND
+
+INITSECTION
+DB_Dialogs(S_TUT_LowerDeck_GruelServer_849900b9-e78d-47c7-87f3-c8d97f797d36, "TUT_LowerDeck_GruelServer");
+DB_Dialogs(CHARACTERGUID_S_TUT_LowerDeck_DwarvenCarpenter_c0c25bbc-8106-402f-b706-ac20533b0c9a, "TUT_LowerDeck_DwarvenCarpenter");
+DB_Dialogs(CHARACTERGUID_S_TUT_LowerDeck_ExitDoorGuard_001_bf967ae2-69a9-4791-8f80-ad72236edaf7, "TUT_LowerDeck_ExitDoorGuard_001");
+DB_Dialogs(CHARACTERGUID_S_TUT_LowerDeck_MagisterMurderSceneGuard_000_a48a580b-6ba5-4b65-ad71-cc422ccff47b, "TUT_LowerDeck_MagisterMurderSceneGuard_000");
+DB_Dialogs(CHARACTERGUID_S_TUT_LowerDeck_MagisterMurderSceneGuard_001_86f1a553-b197-4777-a716-2f5853767730, "TUT_LowerDeck_MagisterMurderSceneGuard_001");
+DB_Dialogs(CHARACTERGUID_S_TUT_LowerDeck_PrayingMagister_096479c9-a702-4161-a5ba-fb2b3312bf76, "TUT_LowerDeck_PrayingMagister");
+DB_Dialogs(CHARACTERGUID_S_TUT_LowerDeck_Magister_Grunt_Investigator_000_47ab7059-829c-4523-adf2-6cf91fa3b29f, "TUT_LowerDeck_MagisterMurderInvestigator");
+DB_Dialogs(CHARACTERGUID_S_TUT_LowerDeck_SourceHound_Investigator_000_e809d2d7-d64f-4fd6-9407-f22e06ca5ed7, "TUT_LowerDeck_InvestigatorSourceHound");
+DB_Dialogs(S_TUT_Humans_Female_Magister_Priest_000_9d17cf06-6fad-49a8-82de-54518a9bf5df, "TUT_LowerDeck_Humans_Female_Magister_Priest_000");
+DB_Dialogs(CHARACTERGUID_S_TUT_LowerDeck_SherlockMagister_16b46c26-5c0f-4567-84cf-8a1a68134a2e, "TUT_LowerDeck_SherlockMagister");
+DB_Dialogs(S_TUT_LohseSongBoy1_835a993e-1bf1-4e6f-8922-20dd8b99bca4, "TUT_LohseSongBoy1");
+DB_Dialogs(CHARACTERGUID_S_TUT_LohseSongBoy2_2d56d0b1-c7a7-4e60-a495-4ea64ca38f0e, "TUT_LohseSongBoy2");
+DB_Dialogs(CHARACTERGUID_S_TUT_LohseSongGirl1_a681c125-8493-4046-ab1f-6c2201336a22, "TUT_LohseSongGirl1");
+DB_Dialogs(CHARACTERGUID_S_TUT_Sheep_122fdf4d-59df-46ea-8192-93700598b51f, "TUT_Sheep");
+DB_Children(S_TUT_LohseSongBoy1_835a993e-1bf1-4e6f-8922-20dd8b99bca4);
+DB_Children(CHARACTERGUID_S_TUT_LohseSongBoy2_2d56d0b1-c7a7-4e60-a495-4ea64ca38f0e);
+DB_Children(CHARACTERGUID_S_TUT_LohseSongGirl1_a681c125-8493-4046-ab1f-6c2201336a22);
+SetOnStage(ITEMGUID_S_TUT_Lightning_LowerDeck_cbe45c25-9233-4c0c-b4fa-7d39aaf5b9e6, 0);
+DB_TUT_LowerDeck_Child(S_TUT_LowerDeck_LohseSongBoy1_835a993e-1bf1-4e6f-8922-20dd8b99bca4);
+DB_TUT_LowerDeck_Child(CHARACTERGUID_S_TUT_LowerDeck_LohseSongBoy2_2d56d0b1-c7a7-4e60-a495-4ea64ca38f0e);
+DB_TUT_LowerDeck_Child(CHARACTERGUID_S_TUT_LowerDeck_LohseSongGirl1_a681c125-8493-4046-ab1f-6c2201336a22);
+
+KBSECTION
+PROC
+PROC_TUT_InitTutorial()
+AND
+DB_OriginNPCAlignment(_Var1, _Var2)
+AND
+CharacterIsPlayer(_Var1, 0)
+THEN
+SetFaction(_Var1, _Var2);
+
+PROC
+PROC_TUT_InitTutorial()
+AND
+DB_OriginRecruitmentLocation_Region("TUT_Tutorial_A", _Var1, _, _)
+AND
+_Var1 != CHARACTERGUID_S_Player_Fane_02a77f1f-872b-49ca-91ab-32098c443beb
+THEN
+DB_TUT_OriginsToRescue(_Var1);
+
+PROC
+PROC_TUT_InitTutorial()
+THEN
+EnableSendToHomestead(0);
+GoalCompleted;
+
+
+EXITSECTION
+NOT DB_Dialogs(S_TUT_LowerDeck_GruelServer_849900b9-e78d-47c7-87f3-c8d97f797d36, "TUT_LowerDeck_GruelServer");
+NOT DB_Dialogs(CHARACTERGUID_S_TUT_LowerDeck_DwarvenCarpenter_c0c25bbc-8106-402f-b706-ac20533b0c9a, "TUT_LowerDeck_DwarvenCarpenter");
+NOT DB_Dialogs(CHARACTERGUID_S_TUT_LowerDeck_ExitDoorGuard_001_bf967ae2-69a9-4791-8f80-ad72236edaf7, "TUT_LowerDeck_ExitDoorGuard_001");
+NOT DB_Dialogs(CHARACTERGUID_S_TUT_LowerDeck_MagisterMurderSceneGuard_000_a48a580b-6ba5-4b65-ad71-cc422ccff47b, "TUT_LowerDeck_MagisterMurderSceneGuard_000");
+NOT DB_Dialogs(CHARACTERGUID_S_TUT_LowerDeck_MagisterMurderSceneGuard_001_86f1a553-b197-4777-a716-2f5853767730, "TUT_LowerDeck_MagisterMurderSceneGuard_001");
+NOT DB_Dialogs(CHARACTERGUID_S_TUT_LowerDeck_PrayingMagister_096479c9-a702-4161-a5ba-fb2b3312bf76, "TUT_LowerDeck_PrayingMagister");
+NOT DB_Dialogs(CHARACTERGUID_S_TUT_LowerDeck_Magister_Grunt_Investigator_000_47ab7059-829c-4523-adf2-6cf91fa3b29f, "TUT_LowerDeck_MagisterMurderInvestigator");
+NOT DB_Dialogs(CHARACTERGUID_S_TUT_LowerDeck_SourceHound_Investigator_000_e809d2d7-d64f-4fd6-9407-f22e06ca5ed7, "TUT_LowerDeck_InvestigatorSourceHound");
+NOT DB_Dialogs(S_TUT_Humans_Female_Magister_Priest_000_9d17cf06-6fad-49a8-82de-54518a9bf5df, "TUT_LowerDeck_Humans_Female_Magister_Priest_000");
+NOT DB_Dialogs(S_TUT_LohseSongBoy1_835a993e-1bf1-4e6f-8922-20dd8b99bca4, "TUT_LohseSongBoy1");
+NOT DB_Dialogs(CHARACTERGUID_S_TUT_LohseSongBoy2_2d56d0b1-c7a7-4e60-a495-4ea64ca38f0e, "TUT_LohseSongBoy2");
+NOT DB_Dialogs(CHARACTERGUID_S_TUT_LohseSongGirl1_a681c125-8493-4046-ab1f-6c2201336a22, "TUT_LohseSongGirl1");
+NOT DB_Children(S_TUT_LohseSongBoy1_835a993e-1bf1-4e6f-8922-20dd8b99bca4);
+NOT DB_Children(CHARACTERGUID_S_TUT_LohseSongBoy2_2d56d0b1-c7a7-4e60-a495-4ea64ca38f0e);
+NOT DB_TUT_LowerDeck_Child(S_TUT_LowerDeck_LohseSongBoy1_835a993e-1bf1-4e6f-8922-20dd8b99bca4);
+NOT DB_TUT_LowerDeck_Child(CHARACTERGUID_S_TUT_LowerDeck_LohseSongBoy2_2d56d0b1-c7a7-4e60-a495-4ea64ca38f0e);
+NOT DB_TUT_LowerDeck_Child(CHARACTERGUID_S_TUT_LowerDeck_LohseSongGirl1_a681c125-8493-4046-ab1f-6c2201336a22);
+ENDEXITSECTION
+
+ParentTargetEdge "Tutorial_PrisonShip"

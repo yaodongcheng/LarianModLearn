@@ -1,0 +1,283 @@
+Version 1
+SubGoalCombiner SGC_AND
+
+INITSECTION
+DB_CoS_BookUpdates(ITEMGUID_S_CoS_BST_DunaNote_e6be0e8e-1f63-4d0d-8de8-5f9c60320e85, "FTJ_OriginBeast_DunaHat_SetUpdate");
+DB_KilledEvent(CHARACTERGUID_S_CoS_Temples_SpyMaster_787c6c4a-6e5a-4044-9616-27e21e5a171e, "QuestUpdate_FTJ_OriginSebille_SpymasterKilled");
+DB_KilledEvent(CHARACTERGUID_S_CoS_Temples_SpyMaster_787c6c4a-6e5a-4044-9616-27e21e5a171e, "QuestUpdate_FTJ_COM_Sebille_SpymasterKilled");
+DB_KilledEvent(CHARACTERGUID_S_GLO_Alexandar_03e6345f-1bd3-403c-80e2-a443a74f6349, "QuestUpdate_CORE_Chapter5_COS_Alexandar_Killed");
+DB_SeenDeadNPCPartyFlag(CHARACTERGUID_S_GLO_Alexandar_03e6345f-1bd3-403c-80e2-a443a74f6349, "CoS_FoundAlexandarDead");
+DB_SharedQuestLessFlag("CoS_FoundAlexandarDead");
+
+KBSECTION
+IF
+GameBookInterfaceClosed(ITEMGUID_S_CoS_Temples_SallowManMissive_001_2d9b04c1-dfb4-470f-9085-4da2ebf453bd, (CHARACTERGUID)_Var1)
+AND
+Qry_RC_ARX_TheImperialDwarves_Know_DeathfogArx_HasPrerequisite(_Var1)
+THEN
+PartySetFlag(_Var1, "QuestUpdate_RC_ARX_TheImperialDwarves_Know_DeathfogArx");
+
+QRY
+Qry_RC_ARX_TheImperialDwarves_Know_DeathfogArx_HasPrerequisite((CHARACTERGUID)_Var1)
+AND
+PartyGetFlag(_Var1, "QuestUpdate_RC_DW_ShadowOverDriftwood_KnowAboutDeathFogInCave", 1)
+THEN
+DB_NOOP(1);
+
+QRY
+Qry_RC_ARX_TheImperialDwarves_Know_DeathfogArx_HasPrerequisite((CHARACTERGUID)_Var1)
+AND
+PartyGetFlag(_Var1, "QuestUpdate_RC_DW_ShadowOverDriftwood_MordusToldAboutDeathFog", 1)
+THEN
+DB_NOOP(1);
+
+IF
+GameBookInterfaceClosed((ITEMGUID)_Var1, (CHARACTERGUID)_Var2)
+AND
+DB_CoS_BookUpdates(_Var1, _Var3)
+THEN
+ObjectSetFlag(_Var2, _Var3);
+
+IF
+CharacterEnteredTrigger(CHARACTERGUID_S_Player_Ifan_ad9a3327-4456-42a7-9bf4-7ad60cc9e54f, TRIGGERGUID_S_CoS_SUB_Academy_51ddb828-18a6-4b6e-9f5a-e2b2883862e1)
+AND
+IsTagged(CHARACTERGUID_S_Player_Ifan_ad9a3327-4456-42a7-9bf4-7ad60cc9e54f, "AVATAR", 1)
+THEN
+ObjectSetFlag(CHARACTERGUID_S_Player_Ifan_ad9a3327-4456-42a7-9bf4-7ad60cc9e54f, "QuestUpdate_FTJ_Ifan_DarkFaction_EnterAcademy");
+
+IF
+ObjectFlagSet("CoS_Temples_Alexandar_IfanConfrontation", CHARACTERGUID_S_Player_Ifan_ad9a3327-4456-42a7-9bf4-7ad60cc9e54f, _)
+AND
+ObjectGetFlag(CHARACTERGUID_S_Player_Ifan_ad9a3327-4456-42a7-9bf4-7ad60cc9e54f, "RC_BF_IfanLearnedAboutSpymaster", 1)
+THEN
+ObjectSetFlag(CHARACTERGUID_S_Player_Ifan_ad9a3327-4456-42a7-9bf4-7ad60cc9e54f, "QuestUpdate_FTJ_Ifan_DarkFaction_COSAlexandar");
+
+IF
+ObjectFlagSet("CoS_Temples_Alexandar_IfanConfrontation", CHARACTERGUID_S_Player_Ifan_ad9a3327-4456-42a7-9bf4-7ad60cc9e54f, _)
+AND
+ObjectGetFlag(CHARACTERGUID_S_Player_Ifan_ad9a3327-4456-42a7-9bf4-7ad60cc9e54f, "RC_BF_IfanLearnedAboutSpymaster", 0)
+THEN
+ObjectSetFlag(CHARACTERGUID_S_Player_Ifan_ad9a3327-4456-42a7-9bf4-7ad60cc9e54f, "QuestUpdate_FTJ_Ifan_DarkFaction_COSAlexandarNoHannag");
+
+IF
+ObjectFlagSet("CoS_FoundAlexandarDead", CHARACTERGUID_S_Player_Ifan_ad9a3327-4456-42a7-9bf4-7ad60cc9e54f, _)
+AND
+PartyGetFlag(CHARACTERGUID_S_Player_Ifan_ad9a3327-4456-42a7-9bf4-7ad60cc9e54f, "QuestUpdate_CORE_Chapter5_COS_Alexandar_Killed", 0)
+AND
+DB_Avatars(CHARACTERGUID_S_Player_Ifan_ad9a3327-4456-42a7-9bf4-7ad60cc9e54f)
+THEN
+PartySetFlag(CHARACTERGUID_S_Player_Ifan_ad9a3327-4456-42a7-9bf4-7ad60cc9e54f, "QuestUpdate_FTJ_Ifan_DarkFaction_DeadAlexandarCOS");
+
+IF
+ObjectFlagSet("QuestUpdate_CORE_Chapter5_COS_Alexandar_Killed", CHARACTERGUID_S_Player_Ifan_ad9a3327-4456-42a7-9bf4-7ad60cc9e54f, _)
+AND
+PartyGetFlag(CHARACTERGUID_S_Player_Ifan_ad9a3327-4456-42a7-9bf4-7ad60cc9e54f, "QuestUpdate_FTJ_Ifan_DarkFaction_DeadAlexandarCOS", 0)
+AND
+DB_Avatars(CHARACTERGUID_S_Player_Ifan_ad9a3327-4456-42a7-9bf4-7ad60cc9e54f)
+THEN
+PartySetFlag(CHARACTERGUID_S_Player_Ifan_ad9a3327-4456-42a7-9bf4-7ad60cc9e54f, "QuestUpdate_FTJ_Ifan_DarkFaction_KilledAlexandarCOS");
+
+IF
+ObjectFlagShared("QuestUpdate_CORE_Chapter5_COS_Alexandar_Killed", CHARACTERGUID_S_Player_Ifan_ad9a3327-4456-42a7-9bf4-7ad60cc9e54f, 1)
+AND
+PartyGetFlag(CHARACTERGUID_S_Player_Ifan_ad9a3327-4456-42a7-9bf4-7ad60cc9e54f, "QuestUpdate_FTJ_Ifan_DarkFaction_DeadAlexandarCOS", 0)
+AND
+DB_Avatars(CHARACTERGUID_S_Player_Ifan_ad9a3327-4456-42a7-9bf4-7ad60cc9e54f)
+THEN
+PartySetFlag(CHARACTERGUID_S_Player_Ifan_ad9a3327-4456-42a7-9bf4-7ad60cc9e54f, "QuestUpdate_FTJ_Ifan_DarkFaction_KilledAlexandarCOS");
+
+IF
+ObjectFlagSet("CoS_FoundAlexandarDead", CHARACTERGUID_S_Player_Ifan_ad9a3327-4456-42a7-9bf4-7ad60cc9e54f, _)
+AND
+PartyGetFlag(CHARACTERGUID_S_Player_Ifan_ad9a3327-4456-42a7-9bf4-7ad60cc9e54f, "QuestUpdate_CORE_Chapter5_COS_Alexandar_Killed", 0)
+AND NOT
+DB_Avatars(CHARACTERGUID_S_Player_Ifan_ad9a3327-4456-42a7-9bf4-7ad60cc9e54f)
+THEN
+PartySetFlag(CHARACTERGUID_S_Player_Ifan_ad9a3327-4456-42a7-9bf4-7ad60cc9e54f, "QuestUpdate_FTJ_COM_Ifan_DeadAlexandarCOS");
+
+IF
+ObjectFlagSet("QuestUpdate_CORE_Chapter5_COS_Alexandar_Killed", CHARACTERGUID_S_Player_Ifan_ad9a3327-4456-42a7-9bf4-7ad60cc9e54f, _)
+AND
+PartyGetFlag(CHARACTERGUID_S_Player_Ifan_ad9a3327-4456-42a7-9bf4-7ad60cc9e54f, "QuestUpdate_FTJ_COM_Ifan_DeadAlexandarCOS", 0)
+AND NOT
+DB_Avatars(CHARACTERGUID_S_Player_Ifan_ad9a3327-4456-42a7-9bf4-7ad60cc9e54f)
+THEN
+PartySetFlag(CHARACTERGUID_S_Player_Ifan_ad9a3327-4456-42a7-9bf4-7ad60cc9e54f, "QuestUpdate_FTJ_COM_Ifan_KilledAlexandarCOS");
+
+IF
+ObjectFlagShared("QuestUpdate_CORE_Chapter5_COS_Alexandar_Killed", CHARACTERGUID_S_Player_Ifan_ad9a3327-4456-42a7-9bf4-7ad60cc9e54f, 1)
+AND
+PartyGetFlag(CHARACTERGUID_S_Player_Ifan_ad9a3327-4456-42a7-9bf4-7ad60cc9e54f, "QuestUpdate_FTJ_COM_Ifan_DeadAlexandarCOS", 0)
+AND NOT
+DB_Avatars(CHARACTERGUID_S_Player_Ifan_ad9a3327-4456-42a7-9bf4-7ad60cc9e54f)
+THEN
+PartySetFlag(CHARACTERGUID_S_Player_Ifan_ad9a3327-4456-42a7-9bf4-7ad60cc9e54f, "QuestUpdate_FTJ_COM_Ifan_KilledAlexandarCOS");
+
+IF
+ObjectFlagSet("FTJ_OriginBeast_DunaHat_SetUpdate", CHARACTERGUID_S_Player_Beast_f25ca124-a4d2-427b-af62-df66df41a978, _)
+AND
+DB_Avatars(CHARACTERGUID_S_Player_Beast_f25ca124-a4d2-427b-af62-df66df41a978)
+THEN
+ObjectSetFlag(CHARACTERGUID_S_Player_Beast_f25ca124-a4d2-427b-af62-df66df41a978, "QuestUpdate_FTJ_OriginBeast_DunaHat");
+
+PROC
+ProcRegionStarted("Cos_Main")
+AND
+DB_IsPlayer(CHARACTERGUID_S_Player_Sebille_c8d55eaf-e4eb-466a-8f0d-6a9447b5b24c)
+AND
+IsTagged(CHARACTERGUID_S_Player_Sebille_c8d55eaf-e4eb-466a-8f0d-6a9447b5b24c, "AVATAR", 1)
+AND
+ObjectGetFlag(CHARACTERGUID_S_Player_Sebille_c8d55eaf-e4eb-466a-8f0d-6a9447b5b24c, "QuestUpdate_FTJ_OriginSebille_Roost", 0)
+AND NOT
+Qry_FTJ_OriginSebille_COSStart_HasKnowledge()
+THEN
+ObjectSetFlag(CHARACTERGUID_S_Player_Sebille_c8d55eaf-e4eb-466a-8f0d-6a9447b5b24c, "QuestUpdate_FTJ_OriginSebille_COSStart_Nothing");
+
+PROC
+ProcRegionStarted("Cos_Main")
+AND
+DB_IsPlayer(CHARACTERGUID_S_Player_Sebille_c8d55eaf-e4eb-466a-8f0d-6a9447b5b24c)
+AND
+IsTagged(CHARACTERGUID_S_Player_Sebille_c8d55eaf-e4eb-466a-8f0d-6a9447b5b24c, "AVATAR", 1)
+AND
+ObjectGetFlag(CHARACTERGUID_S_Player_Sebille_c8d55eaf-e4eb-466a-8f0d-6a9447b5b24c, "QuestUpdate_FTJ_OriginSebille_Roost", 1)
+AND NOT
+Qry_FTJ_OriginSebille_COSStart_HasKnowledge()
+THEN
+ObjectSetFlag(CHARACTERGUID_S_Player_Sebille_c8d55eaf-e4eb-466a-8f0d-6a9447b5b24c, "QuestUpdate_FTJ_OriginSebille_COSStart_KnowSpy");
+
+PROC
+ProcRegionStarted("Cos_Main")
+AND
+DB_IsPlayer(CHARACTERGUID_S_Player_Sebille_c8d55eaf-e4eb-466a-8f0d-6a9447b5b24c)
+AND
+IsTagged(CHARACTERGUID_S_Player_Sebille_c8d55eaf-e4eb-466a-8f0d-6a9447b5b24c, "AVATAR", 1)
+AND
+ObjectGetFlag(CHARACTERGUID_S_Player_Sebille_c8d55eaf-e4eb-466a-8f0d-6a9447b5b24c, "QuestUpdate_FTJ_OriginSebille_Roost", 0)
+AND
+Qry_FTJ_OriginSebille_COSStart_HasKnowledge()
+THEN
+ObjectSetFlag(CHARACTERGUID_S_Player_Sebille_c8d55eaf-e4eb-466a-8f0d-6a9447b5b24c, "QuestUpdate_FTJ_OriginSebille_COSStart_KnowSpy");
+
+PROC
+ProcRegionStarted("Cos_Main")
+AND
+DB_IsPlayer(CHARACTERGUID_S_Player_Sebille_c8d55eaf-e4eb-466a-8f0d-6a9447b5b24c)
+AND
+IsTagged(CHARACTERGUID_S_Player_Sebille_c8d55eaf-e4eb-466a-8f0d-6a9447b5b24c, "AVATAR", 1)
+AND
+ObjectGetFlag(CHARACTERGUID_S_Player_Sebille_c8d55eaf-e4eb-466a-8f0d-6a9447b5b24c, "QuestUpdate_FTJ_OriginSebille_Roost", 1)
+AND
+Qry_FTJ_OriginSebille_COSStart_HasKnowledge()
+THEN
+ObjectSetFlag(CHARACTERGUID_S_Player_Sebille_c8d55eaf-e4eb-466a-8f0d-6a9447b5b24c, "QuestUpdate_FTJ_OriginSebille_COSStart_KnowSpyMother");
+
+QRY
+Qry_FTJ_OriginSebille_COSStart_HasKnowledge()
+AND
+ObjectGetFlag(CHARACTERGUID_S_Player_Sebille_c8d55eaf-e4eb-466a-8f0d-6a9447b5b24c, "GLO_Sebille_PrimeScionKnowledge", 1)
+THEN
+DB_NOOP(1);
+
+QRY
+Qry_FTJ_OriginSebille_COSStart_HasKnowledge()
+AND
+ObjectGetFlag(CHARACTERGUID_S_Player_Sebille_c8d55eaf-e4eb-466a-8f0d-6a9447b5b24c, "QuestUpdate_FTJ_OriginSebille_TovahPostRoost", 1)
+THEN
+DB_NOOP(1);
+
+QRY
+Qry_FTJ_OriginSebille_COSStart_HasKnowledge()
+AND
+ObjectGetFlag(CHARACTERGUID_S_Player_Sebille_c8d55eaf-e4eb-466a-8f0d-6a9447b5b24c, "QuestUpdate_FTJ_OriginSebille_SaheilaPostRoost", 1)
+THEN
+DB_NOOP(1);
+
+QRY
+Qry_FTJ_OriginSebille_COSStart_HasKnowledge()
+AND
+ObjectGetFlag(CHARACTERGUID_S_Player_Sebille_c8d55eaf-e4eb-466a-8f0d-6a9447b5b24c, "QuestUpdate_FTJ_COM_Sebille_TovahPostRoost", 1)
+THEN
+DB_NOOP(1);
+
+PROC
+ProcRegionStarted("Cos_Main")
+AND
+DB_IsPlayer(CHARACTERGUID_S_Player_Sebille_c8d55eaf-e4eb-466a-8f0d-6a9447b5b24c)
+AND
+IsTagged(CHARACTERGUID_S_Player_Sebille_c8d55eaf-e4eb-466a-8f0d-6a9447b5b24c, "AVATAR", 0)
+AND
+UserGetFlag(CHARACTERGUID_S_Player_Sebille_c8d55eaf-e4eb-466a-8f0d-6a9447b5b24c, "QuestUpdate_FTJ_COM_Sebille_Roost", 0)
+AND NOT
+Qry_FTJ_OriginSebille_COSStart_HasKnowledge()
+THEN
+UserSetFlag(CHARACTERGUID_S_Player_Sebille_c8d55eaf-e4eb-466a-8f0d-6a9447b5b24c, "QuestUpdate_FTJ_COM_Sebille_COSStart_Nothing");
+
+PROC
+ProcRegionStarted("Cos_Main")
+AND
+DB_IsPlayer(CHARACTERGUID_S_Player_Sebille_c8d55eaf-e4eb-466a-8f0d-6a9447b5b24c)
+AND
+IsTagged(CHARACTERGUID_S_Player_Sebille_c8d55eaf-e4eb-466a-8f0d-6a9447b5b24c, "AVATAR", 0)
+AND
+UserGetFlag(CHARACTERGUID_S_Player_Sebille_c8d55eaf-e4eb-466a-8f0d-6a9447b5b24c, "QuestUpdate_FTJ_COM_Sebille_Roost", 1)
+AND NOT
+Qry_FTJ_OriginSebille_COSStart_HasKnowledge()
+THEN
+UserSetFlag(CHARACTERGUID_S_Player_Sebille_c8d55eaf-e4eb-466a-8f0d-6a9447b5b24c, "QuestUpdate_FTJ_COM_Sebille_COSStart_KnowSpy");
+
+PROC
+ProcRegionStarted("Cos_Main")
+AND
+DB_IsPlayer(CHARACTERGUID_S_Player_Sebille_c8d55eaf-e4eb-466a-8f0d-6a9447b5b24c)
+AND
+IsTagged(CHARACTERGUID_S_Player_Sebille_c8d55eaf-e4eb-466a-8f0d-6a9447b5b24c, "AVATAR", 0)
+AND
+UserGetFlag(CHARACTERGUID_S_Player_Sebille_c8d55eaf-e4eb-466a-8f0d-6a9447b5b24c, "QuestUpdate_FTJ_COM_Sebille_Roost", 0)
+AND
+Qry_FTJ_OriginSebille_COSStart_HasKnowledge()
+THEN
+UserSetFlag(CHARACTERGUID_S_Player_Sebille_c8d55eaf-e4eb-466a-8f0d-6a9447b5b24c, "QuestUpdate_FTJ_COM_Sebille_COSStart_KnowMother");
+
+PROC
+ProcRegionStarted("Cos_Main")
+AND
+DB_IsPlayer(CHARACTERGUID_S_Player_Sebille_c8d55eaf-e4eb-466a-8f0d-6a9447b5b24c)
+AND
+IsTagged(CHARACTERGUID_S_Player_Sebille_c8d55eaf-e4eb-466a-8f0d-6a9447b5b24c, "AVATAR", 0)
+AND
+UserGetFlag(CHARACTERGUID_S_Player_Sebille_c8d55eaf-e4eb-466a-8f0d-6a9447b5b24c, "QuestUpdate_FTJ_COM_Sebille_Roost", 1)
+AND
+Qry_FTJ_OriginSebille_COSStart_HasKnowledge()
+THEN
+UserSetFlag(CHARACTERGUID_S_Player_Sebille_c8d55eaf-e4eb-466a-8f0d-6a9447b5b24c, "QuestUpdate_FTJ_COM_Sebille_COSStart_KnowSpyMother");
+
+IF
+GlobalFlagSet("CoS_Temples_SpyMaster_IsDead")
+THEN
+UserSetFlag(CHARACTERGUID_S_Player_Sebille_c8d55eaf-e4eb-466a-8f0d-6a9447b5b24c, "QuestUpdate_FTJ_OriginSebille_SpymasterKilled");
+UserSetFlag(CHARACTERGUID_S_Player_Sebille_c8d55eaf-e4eb-466a-8f0d-6a9447b5b24c, "QuestUpdate_FTJ_COM_Sebille_SpymasterKilled");
+
+PROC
+ProcQuestCategorySet("RC_BI_TheTruth", "QCA_Chapter_05", (CHARACTERGUID)_Var1)
+THEN
+PartySetFlag(_Var1, "QuestUpdate_RC_BI_TheTruth_MoveToNextCategory");
+
+PROC
+ProcQuestCategorySet("RC_WH_BottledWish", "QCA_Chapter_05", (CHARACTERGUID)_Var1)
+THEN
+PartySetFlag(_Var1, "QuestUpdate_RC_WH_BottledWish_MoveToNextCategory");
+
+PROC
+ProcRegionStarted("ARX_Main")
+THEN
+GoalCompleted;
+
+
+EXITSECTION
+NOT DB_KilledEvent(CHARACTERGUID_S_CoS_Temples_SpyMaster_787c6c4a-6e5a-4044-9616-27e21e5a171e, "QuestUpdate_FTJ_OriginSebille_SpymasterKilled");
+NOT DB_KilledEvent(CHARACTERGUID_S_CoS_Temples_SpyMaster_787c6c4a-6e5a-4044-9616-27e21e5a171e, "QuestUpdate_FTJ_COM_Sebille_SpymasterKilled");
+NOT DB_KilledEvent(CHARACTERGUID_S_GLO_Alexandar_03e6345f-1bd3-403c-80e2-a443a74f6349, "QuestUpdate_CORE_Chapter5_COS_Alexandar_Killed");
+ENDEXITSECTION
+
+ParentTargetEdge "CouncilOfSeven"

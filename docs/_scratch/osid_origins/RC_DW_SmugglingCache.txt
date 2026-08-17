@@ -1,0 +1,351 @@
+Version 1
+SubGoalCombiner SGC_AND
+
+INITSECTION
+DB_FishFactory_CellarCreep(CHARACTERGUID_S_RC_DW_FishFactory_Creep_01_Explosive_43b4c6a1-7d91-4bfe-87ad-0a4f903a420a, 1000);
+DB_FishFactory_CellarCreep(CHARACTERGUID_S_RC_DW_FishFactory_Creep_01_e1eaf78a-a444-46f3-bac7-3353771192f8, 1200);
+DB_FishFactory_CellarCreep(CHARACTERGUID_S_RC_DW_FishFactory_Creep_02_ef4f8f41-fcfe-4f77-be03-95846b82c8f4, 1500);
+DB_FishFactory_CellarCreep(CHARACTERGUID_S_RC_DW_FishFactory_Creep_02_Explosive_3772d2f7-fc28-4a48-8716-5c4e22989cae, 1400);
+DB_FishFactory_CellarCreep(CHARACTERGUID_S_RC_DW_FishFactory_Creep_03_8348b9b4-82fe-4214-9251-02a926f025de, 1700);
+DB_FishFactory_CellarCreep(CHARACTERGUID_S_RC_DW_FishFactory_Creep_03_Explosive_d645dacb-6626-407e-81a8-ffca5cd65891, 1500);
+DB_FishFactory_CellarCreep(CHARACTERGUID_S_RC_DW_FishFactory_Creep_04_Explosive_103d4aa2-e618-477e-8dda-3eba5c5f6264, 1900);
+DB_FishFactory_CellarCreep(CHARACTERGUID_S_RC_DW_FishFactory_Creep_05_Explosive_75280a26-a7ba-41ec-8f05-0366b7310b34, 2500);
+DB_FishFactory_CellarCreep(CHARACTERGUID_S_RC_DW_FishFactory_Creep_06_Explosive_0555501d-2132-44bd-8f50-2e03e0d4461c, 2800);
+DB_FishFactory_CellarCreep(CHARACTERGUID_S_RC_DW_FishFactory_Creep_07_Explosive_f082fa9c-5837-4a09-9261-55be773e6670, 3200);
+DB_FishFactory_CellarCreep(CHARACTERGUID_S_RC_DW_FishFactory_Creep_08_Explosive_c4f98683-7a38-40e2-9feb-7b630dce47b6, 4200);
+DB_FishFactory_CellarCreep(CHARACTERGUID_S_RC_DW_FishFactory_Creep_09_Explosive_e90c5400-6e58-402c-8dc6-1c03f6f4bcf8, 4200);
+DB_FishFactory_CellarCreep(CHARACTERGUID_S_RC_DW_FishFactory_Creep_10_Explosive_72f273ae-eef2-4294-93bb-e9f388be8cd1, 4200);
+DB_RC_DW_FishFactoryFakeBarrel(ITEMGUID_S_RC_DW_FishFactorySourceBarrelEmpty1_a7ff7aa7-f789-4703-a0f3-b8d5bd8343f0);
+DB_RC_DW_FishFactoryFakeBarrel(ITEMGUID_S_RC_DW_FishFactorySourceBarrelEmpty2_ad52ec8e-f0ab-4e8e-8f68-36a9ad81f692);
+DB_RC_DW_FishFactoryFakeBarrel(ITEMGUID_S_RC_DW_FishFactorySourceBarrelEmpty3_f3ff87da-8adb-45f8-95e9-abdb1994abab);
+DB_OneShot_VoiceBarkTrigger(TRIGGERGUID_S_RC_DW_OneShot_CacheVB_ecef2368-56da-490e-a900-1e436fe52262, "RC_DW_VB_FishFactory_Cache");
+DB_RC_DW_SmugglingCacheCreepFlag("IFAN", "RC_DW_CellarCreep_Ifan");
+DB_RC_DW_SmugglingCacheCreepFlag("RED_PRINCE", "RC_DW_CellarCreep_RedPrince");
+DB_RC_DW_SmugglingCacheCreepFlag("LOHSE", "RC_DW_CellarCreep_Lohse");
+DB_RC_DW_SmugglingCacheCreepFlag("BEAST", "RC_DW_CellarCreep_Beast");
+DB_RC_DW_SmugglingCacheCreepFlag("SEBILLE", "RC_DW_CellarCreep_Sebille");
+DB_RC_DW_SmugglingCacheCreepFlag("FANE", "RC_DW_CellarCreep_Fane");
+DB_RC_DW_SmugglingCacheCreepFlag("GENERIC", "RC_DW_CellarCreep_Generic");
+DB_RC_DW_HasCacheStoryEvent(ITEMGUID_S_RC_DW_SmugglingCache1_7ef3f7d0-ed34-48e8-abd8-fd07c8ee0d2b, "RC_DW_HasSmugglingCache1");
+DB_RC_DW_HasCacheStoryEvent(ITEMGUID_S_RC_DW_SmugglingCache2_55cce70e-a043-4dea-80af-076655870e50, "RC_DW_HasSmugglingCache2");
+DB_FishFactory_DeadCreep(0);
+DB_RC_DW_FishFactoryOwnerTags("BARBARIAN");
+DB_RC_DW_FishFactoryOwnerTags("VILLIAN");
+DB_RC_DW_FishFactoryOwnerTags("OUTLAW");
+ItemClearOwner(ITEMGUID_S_RC_DW_FishFactoryWayOut1_ab9cdb72-4719-4eca-82c5-644ea2c40ddb);
+ProcTriggerRegisterForPlayers(TRIGGERGUID_S_RC_DW_FishFactoryOwner_Dwarf_2e3f44e2-83e6-4c99-a3e0-475ecbcaafe3);
+TriggerRegisterForItems(TRIGGERGUID_S_RC_DW_FishFactorySmuggleBox_5426adf1-6a2d-445a-bea0-f24cd0d11c34);
+DB_DeadEvent(CHARACTERGUID_S_RC_DW_FishFactory_Owner_74284ca3-3f7d-4a2a-8099-49aa3117ab0d, "RC_DW_Barnes_IsDead");
+Proc_JDF_CreateCustomFlagsDependency("QuestUpdate_RC_DW_TaintedSmuggling_SmugglingCacheFoundBeforeJulian", "RC_DW_QuestFromJulian", "QuestUpdate_RC_DW_TaintedSmuggling_SmugglingCacheReportToMagister");
+
+KBSECTION
+IF
+CharacterEnteredTrigger((CHARACTERGUID)_Var1, TRIGGERGUID_S_RC_DW_FishFactoryOwner_Dwarf_2e3f44e2-83e6-4c99-a3e0-475ecbcaafe3)
+AND
+IsTagged(_Var1, "DWARF", 1)
+AND
+CharacterCanSee(CHARACTERGUID_S_RC_DW_FishFactory_Owner_74284ca3-3f7d-4a2a-8099-49aa3117ab0d, _Var1, 1)
+AND
+QueryOnlyOnce("RC_DW_FishFactoryOwner_Dwarf")
+THEN
+Proc_StartDialog(0, "RC_DW_FishFactoryOwner", CHARACTERGUID_S_RC_DW_FishFactory_Owner_74284ca3-3f7d-4a2a-8099-49aa3117ab0d, _Var1);
+ProcTriggerUnregisterForPlayers(TRIGGERGUID_S_RC_DW_FishFactoryOwner_Dwarf_2e3f44e2-83e6-4c99-a3e0-475ecbcaafe3);
+
+IF
+DialogStarted("RC_DW_FishFactoryOwner", (INTEGER)_Var1)
+AND
+DialogGetInvolvedPlayer(_Var1, 1, _Var2)
+AND
+DB_RC_DW_FishFactoryOwnerTags(_Var3)
+AND
+IsTagged(_Var2, _Var3, 1)
+THEN
+ObjectSetFlag(_Var2, "RC_DW_FishFactoryThreatCond");
+
+IF
+DialogStarted("RC_DW_FishFactoryOwner", (INTEGER)_Var1)
+AND
+DB_DialogPlayers(_Var1, _Var2, 1)
+AND
+IsTagged(_Var2, "DWARF", 1)
+THEN
+ProcTriggerUnregisterForPlayers(TRIGGERGUID_S_RC_DW_FishFactoryOwner_Dwarf_2e3f44e2-83e6-4c99-a3e0-475ecbcaafe3);
+
+IF
+DialogEnded("RC_DW_FishFactoryOwner", (INTEGER)_Var1)
+AND
+DialogGetInvolvedPlayer(_Var1, 1, _Var2)
+AND
+ObjectGetFlag(_Var2, "RC_DW_FishFactoryThreatCond", 1)
+THEN
+ObjectClearFlag(_Var2, "RC_DW_FishFactoryThreatCond", 0);
+
+IF
+ObjectFlagSet("RC_DW_FishFactory_HatchKey", (GUIDSTRING)_Var1, _)
+AND
+ItemIsInCharacterInventory(ITEMGUID_S_RC_DW_FishFactoryHatchKey_31fbd9ab-c4d0-4618-af12-741ada632f71, CHARACTERGUID_S_RC_DW_FishFactory_Owner_74284ca3-3f7d-4a2a-8099-49aa3117ab0d, 1)
+THEN
+ItemToInventory(ITEMGUID_S_RC_DW_FishFactoryHatchKey_31fbd9ab-c4d0-4618-af12-741ada632f71, _Var1);
+
+IF
+ObjectFlagSet("RC_DW_FishFactory_SafeKey", (GUIDSTRING)_Var1, _)
+AND
+ItemIsInCharacterInventory(ITEMGUID_S_RC_DW_FishFactorySkeletonKey_ab3594bc-f64a-41a4-996b-28d80c04b7e9, CHARACTERGUID_S_RC_DW_FishFactory_Owner_74284ca3-3f7d-4a2a-8099-49aa3117ab0d, 1)
+THEN
+ItemToInventory(ITEMGUID_S_RC_DW_FishFactorySkeletonKey_ab3594bc-f64a-41a4-996b-28d80c04b7e9, _Var1);
+ItemClearOwner(ITEMGUID_S_RC_DW_FishFactorySafe_513d05e4-c4d3-4237-849f-8467d05b3df8);
+
+IF
+ObjectFlagSet("RC_DW_FishFactory_SafeKey", (GUIDSTRING)_Var1, _)
+THEN
+ProcTriggerUnregisterForPlayers(TRIGGERGUID_S_RC_DW_FishFactoryOwner_Dwarf_2e3f44e2-83e6-4c99-a3e0-475ecbcaafe3);
+
+IF
+ObjectFlagSet("RC_DW_FishFactoryGold", (CHARACTERGUID)_Var1, _)
+THEN
+CharacterAddGold(_Var1, 100);
+
+IF
+ObjectFlagSet("RC_DW_SmugglingCache_HatchMarker", (CHARACTERGUID)_Var1, _)
+THEN
+ProcShowMarker(_Var1, "RC_DW_FishFactoryHatch");
+
+IF
+CharacterUsedItem((CHARACTERGUID)_Var1, ITEMGUID_S_RC_DW_FishFactoryHatch_50b734ed-4910-4455-b4fb-05213064bc78)
+THEN
+ProcHideMarker(_Var1, "RC_DW_FishFactoryHatch");
+
+IF
+GameBookInterfaceClosed(ITEMGUID_S_RC_DW_FishFactoryOwner_Invoice_38f889c9-9c26-40e1-8352-b4e13d3396b7, (CHARACTERGUID)_Var1)
+AND
+UserGetFlag(_Var1, "RC_ARX_BlackHouseNote", 0)
+THEN
+UserSetFlag(_Var1, "RC_ARX_BlackHouseNote");
+ProcShowMarker(_Var1, "RC_ARX_BlackHouse");
+StartVoiceBark("RC_DW_VB_OwnerBlackHouse", _Var1);
+ObjectSetFlag(_Var1, "QuestUpdate_RC_DW_TaintedSmuggling_SmugglingBuyerLearn");
+
+IF
+CharacterDying(CHARACTERGUID_S_RC_DW_FishFactory_Owner_74284ca3-3f7d-4a2a-8099-49aa3117ab0d)
+THEN
+ItemTemplateAddTo("QUEST_ARX_FishBarrelScroll_d2e74ff6-9e68-4e7c-bfb3-cab1ef9bd14d", CHARACTERGUID_S_RC_DW_FishFactory_Owner_74284ca3-3f7d-4a2a-8099-49aa3117ab0d, 1);
+
+IF
+CharacterUsedItem((CHARACTERGUID)_Var1, ITEMGUID_S_RC_DW_FishFactorySourceBarrel_cb5db6db-4648-8eee-3451-8c1537124f1a)
+AND
+ItemIsLocked(ITEMGUID_S_RC_DW_FishFactorySourceBarrel_cb5db6db-4648-8eee-3451-8c1537124f1a, 1)
+THEN
+Proc_StartDialog(0, "RC_DW_HiddenCache", ITEMGUID_S_RC_DW_FishFactorySourceBarrel_cb5db6db-4648-8eee-3451-8c1537124f1a, _Var1);
+
+IF
+DialogEnded("RC_DW_HiddenCache", (INTEGER)_Var1)
+AND
+DB_GlobalFlag("RC_DW_UnlockContraband")
+AND
+DB_DialogPlayers(_Var1, _Var2, _)
+THEN
+ItemUnLock(ITEMGUID_S_RC_DW_FishFactorySourceBarrel_cb5db6db-4648-8eee-3451-8c1537124f1a);
+CharacterUseItem(_Var2, ITEMGUID_S_RC_DW_FishFactorySourceBarrel_cb5db6db-4648-8eee-3451-8c1537124f1a, "");
+
+IF
+DB_RC_DW_FishFactoryFakeBarrel(_Var1)
+THEN
+DB_Dialogs(_Var1, "RC_DW_HiddenCacheEmpty");
+
+IF
+DB_FishFactory_CellarCreep(_Var1, _)
+THEN
+SetOnStage(_Var1, 0);
+
+IF
+CharacterUsedItem((CHARACTERGUID)_Var1, ITEMGUID_S_RC_DW_FishFactoryHatch_50b734ed-4910-4455-b4fb-05213064bc78)
+AND
+QryItemInMagicPockets(_Var1, ITEMGUID_S_RC_DW_FishFactoryHatchKey_31fbd9ab-c4d0-4618-af12-741ada632f71)
+AND
+QueryOnlyOnce("RC_DW_FishFactory_OpenedCellar")
+THEN
+UserSetFlag(_Var1, "RC_DW_FishFactory_OpenedCellar");
+
+IF
+ItemRemovedFromContainer((ITEMGUID)_Var1, ITEMGUID_S_RC_DW_FishFactorySourceBarrel_cb5db6db-4648-8eee-3451-8c1537124f1a)
+AND
+DB_RC_DW_HasCacheStoryEvent(_Var1, _)
+THEN
+Proc_RC_DW_SmugglingCacheAmbush();
+
+PROC
+Proc_RC_DW_SmugglingCacheAmbush()
+AND
+QueryOnlyOnce("RC_DW_FishCellarAmbush")
+AND
+DB_FishFactory_CellarCreep(_Var1, _Var2)
+THEN
+ProcObjectTimer(_Var1, "RC_DW_HiddenCacheTaken", _Var2);
+
+IF
+ItemDestroyed(ITEMGUID_S_RC_DW_FishFactorySourceBarrel_cb5db6db-4648-8eee-3451-8c1537124f1a)
+THEN
+Proc_RC_DW_SmugglingCacheAmbush();
+
+IF
+ItemLeftTrigger(ITEMGUID_S_RC_DW_FishFactorySourceBarrel_cb5db6db-4648-8eee-3451-8c1537124f1a, TRIGGERGUID_S_RC_DW_FishFactorySmuggleBox_5426adf1-6a2d-445a-bea0-f24cd0d11c34, _)
+THEN
+Proc_RC_DW_SmugglingCacheAmbush();
+TriggerUnregisterForItems(ITEMGUID_S_RC_DW_FishFactorySourceBarrel_cb5db6db-4648-8eee-3451-8c1537124f1a);
+
+PROC
+ProcObjectTimerFinished((CHARACTERGUID)_Var1, "RC_DW_HiddenCacheTaken")
+AND
+GetPosition(_Var1, _Var2, _Var3, _Var4)
+THEN
+CharacterAppear(_Var1, 1, "");
+
+IF
+ObjectFlagSet("RC_DW_FakeCacheUnsealed", (ITEMGUID)_Var1, _)
+THEN
+ItemSetCanInteract(_Var1, 0);
+ItemUnlockAndOpen(_Var1);
+
+IF
+DialogEnded("RC_DW_HiddenCacheEmpty", (INTEGER)_Var1)
+AND
+DialogGetInvolvedNPC(_Var1, 1, _Var2)
+AND
+ObjectGetFlag(_Var2, "RC_DW_FakeCacheUnsealed", 1)
+THEN
+ObjectSetFlag(_Var2, "RC_DW_FakeCacheCreateCloud");
+NOT DB_RC_DW_FishFactoryFakeBarrel(_Var2);
+
+IF
+ItemUnlocked((ITEMGUID)_Var1, (CHARACTERGUID)_Var2, _)
+AND
+DB_RC_DW_FishFactoryFakeBarrel(_Var1)
+THEN
+ObjectSetFlag(_Var1, "RC_DW_FakeCacheUnsealed");
+ObjectSetFlag(_Var1, "RC_DW_FakeCacheCreateCloud");
+
+IF
+ItemDestroying((ITEMGUID)_Var1)
+AND
+DB_RC_DW_FishFactoryFakeBarrel(_Var1)
+AND
+ObjectGetFlag(_Var1, "RC_DW_FakeCacheUnsealed", 0)
+AND
+GetPosition(_Var1, _Var2, _Var3, _Var4)
+THEN
+CreateSurfaceAtPosition(_Var2, _Var3, _Var4, "SurfacePoisonCloud", 3, 10);
+PlayEffectAtPosition("RS3_FX_GP_Projectiles_SlimeBall_Impact_01", _Var2, _Var3, _Var4);
+
+IF
+ObjectTurnStarted((CHARACTERGUID)_Var1)
+AND
+DB_FishFactory_CellarCreep(_Var1, _)
+AND
+GetClosestAlivePlayer(_Var1, _Var3, _)
+AND
+DB_RC_DW_SmugglingCacheCreepFlag(_Var5, _Var6)
+AND
+IsTagged(_Var3, _Var5, 1)
+THEN
+GlobalSetFlag(_Var6);
+Proc_StartDialog(1, "RC_DW_AD_CellarCreep", _Var1);
+
+IF
+CharacterKilledBy((CHARACTERGUID)_Var1, (CHARACTERGUID)_Var2, (CHARACTERGUID)_Var3)
+AND
+DB_FishFactory_CellarCreep(_Var1, _)
+AND
+DB_IsPlayer(_Var2)
+THEN
+PartySetFlag(_Var2, "RC_DW_KilledCacheCreep");
+
+IF
+CharacterDied((CHARACTERGUID)_Var1)
+AND
+DB_FishFactory_CellarCreep(_Var1, _)
+THEN
+Proc_CountHelper("RC_DW_SmugglingCache_CreepCount");
+
+IF
+DB_CountHelper("RC_DW_SmugglingCache_CreepCount", 10)
+THEN
+GlobalSetFlag("RC_DW_SmugglingCacheCreepsDead");
+
+IF
+DB_RC_DW_HasCacheStoryEvent(_Var1, _Var2)
+THEN
+DB_HasStoryEvent(_Var1, _Var2);
+
+IF
+ObjectFlagSet((STRING)_Var1, (CHARACTERGUID)_Var2, _)
+AND
+DB_RC_DW_HasCacheStoryEvent(_, _Var1)
+THEN
+ObjectSetFlag(_Var2, "RC_DW_HasSmugglingCache", 0);
+
+IF
+ObjectFlagCleared((STRING)_Var1, (CHARACTERGUID)_Var2, _)
+AND
+DB_RC_DW_HasCacheStoryEvent(_, _Var1)
+AND NOT
+QRY_RC_DW_HasCache(_Var2)
+THEN
+ObjectClearFlag(_Var2, "RC_DW_HasSmugglingCache", 0);
+
+QRY
+QRY_RC_DW_HasCache((CHARACTERGUID)_Var1)
+AND
+DB_RC_DW_HasCacheStoryEvent(_, _Var3)
+AND
+ObjectGetFlag(_Var1, _Var3, 1)
+THEN
+DB_NOOP(1);
+
+IF
+ObjectFlagSet("RC_DW_HasSmugglingCache", (CHARACTERGUID)_Var1, _)
+AND
+DB_IsPlayer(_Var1)
+THEN
+PROC_RC_DW_SmugglingCacheFound(_Var1);
+
+IF
+ObjectFlagSet("RC_DW_SmugglingCacheFound", (CHARACTERGUID)_Var1, _)
+THEN
+PROC_RC_DW_SmugglingCacheFound(_Var1);
+
+PROC
+PROC_RC_DW_SmugglingCacheFound((CHARACTERGUID)_Var1)
+THEN
+ObjectSetFlag(_Var1, "RC_DW_FishFactory_FoundCache");
+ObjectSetFlag(_Var1, "QuestUpdate_RC_DW_TaintedSmuggling_SmugglingFound");
+
+PROC
+PROC_RC_DW_SmugglingCacheFound((CHARACTERGUID)_Var1)
+AND
+PartyGetFlag(_Var1, "RC_DW_QuestFromJulian", 1)
+AND
+PartyGetFlag(_Var1, "QuestUpdate_RC_DW_TaintedSmuggling_SmugglingCacheFoundBeforeJulian", 0)
+THEN
+ObjectSetFlag(_Var1, "QuestUpdate_RC_DW_TaintedSmuggling_SmugglingCacheFoundAfterJulian");
+
+PROC
+PROC_RC_DW_SmugglingCacheFound((CHARACTERGUID)_Var1)
+AND
+PartyGetFlag(_Var1, "RC_DW_QuestFromJulian", 0)
+AND
+PartyGetFlag(_Var1, "QuestUpdate_RC_DW_TaintedSmuggling_SmugglingCacheFoundAfterJulian", 0)
+THEN
+ObjectSetFlag(_Var1, "QuestUpdate_RC_DW_TaintedSmuggling_SmugglingCacheFoundBeforeJulian");
+
+IF
+ObjectFlagSet("QuestUpdate_RC_DW_TaintedSmuggling_SmugglingFound", (CHARACTERGUID)_Var1, _)
+AND
+QuestAccepted(_Var1, "RC_DW_DwarvenCriminals", 0)
+THEN
+ObjectSetFlag(_Var1, "QuestUpdate_RC_DW_DwarvenCriminals_SmugglingFoundBeforeMagister_MainStartFallback");
+
+
+EXITSECTION
+ENDEXITSECTION
+
+ParentTargetEdge "ReapersCoast"

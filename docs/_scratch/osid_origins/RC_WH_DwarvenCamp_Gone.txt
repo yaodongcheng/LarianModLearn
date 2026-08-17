@@ -1,0 +1,36 @@
+Version 1
+SubGoalCombiner SGC_AND
+
+INITSECTION
+ProcTriggerRegisterForPlayers(TRIGGERGUID_S_RC_WH_DwarvenCamp_CorpseVBtrigger_33cb058b-b1d6-47f6-8bd1-043f9157767e);
+ItemToInventory(ITEMGUID_S_RC_WH_DwarvenCamp_ChestKey_680b6820-eeaf-43eb-a40a-53f7d15a450d, CHARACTERGUID_S_RC_WH_DwarvenCamp_DeadDwarf_2_4b621cd8-4b46-4ddd-a8e0-83bcaa9ee302);
+
+KBSECTION
+IF
+CharacterUsedItem((CHARACTERGUID)_Var1, ITEMGUID_S_RC_WH_DwarvenCamp_Den_5f34496f-9d7f-4cd3-85d3-cba62061b41a)
+AND
+ObjectGetFlag(CHARACTERGUID_S_RC_WH_DwarvenCamp_Warron_3be7c843-8d73-4d0e-be57-637c97a8b3bd, "RC_WH_DwarvenCamp_Left", 1)
+THEN
+Proc_StartDialog(1, "RC_WH_AD_DwarvenCamp_DwarvesGone", _Var1);
+
+IF
+CharacterEnteredTrigger((CHARACTERGUID)_Var1, TRIGGERGUID_S_RC_WH_DwarvenCamp_CorpseVBtrigger_33cb058b-b1d6-47f6-8bd1-043f9157767e)
+AND
+DB_IsPlayer(_Var1)
+THEN
+StartVoiceBark("RC_WH_VB_DwarvenCamp_DeadDwarvesComment", _Var1);
+ProcUnregisterForUser(TRIGGERGUID_S_RC_WH_DwarvenCamp_CorpseVBtrigger_33cb058b-b1d6-47f6-8bd1-043f9157767e, _Var1);
+
+IF
+ObjectFlagSet("RC_WH_DwarvenCamp_MarkWreckerCave", (CHARACTERGUID)_Var1, _)
+AND
+DB_IsPlayer(_Var1)
+THEN
+ObjectClearFlag(_Var1, "RC_WH_DwarvenCamp_MarkWreckerCave", 0);
+ProcShowMarker(_Var1, "RC_DW_WreckersCave");
+
+
+EXITSECTION
+ENDEXITSECTION
+
+ParentTargetEdge "ReapersCoast"

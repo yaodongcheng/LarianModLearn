@@ -1,0 +1,534 @@
+Version 1
+SubGoalCombiner SGC_AND
+
+INITSECTION
+DB_GLO_Promise_RespawnPoints("RC_Main", S_RC_DunesStatue_cbed0dfb-9c94-4d2e-8310-cf6118dc82d1);
+DB_GLO_Promise_RespawnPoints("LV_HoE_Main", S_LV_HoE_Promise_ResurrectionLocation_9017b1f7-cc28-4b63-9d52-512f20a138bf);
+DB_GLO_Promise_MaxResurrectionsBeforeZombieChicken(2);
+DB_GLO_Promise_AcceptPromiseDialog("CoS_Promise_OfferWhenDied");
+DB_GLO_PromiseEighthInvisibleHelper(S_GLO_EighthPromiseHelper_000_9c8c6eb9-84bb-47a6-91cb-4ef33442df06);
+DB_GLO_PromiseEighthInvisibleHelper(S_GLO_EighthPromiseHelper_001_50b02c8d-cf15-448e-954c-e191710b88f2);
+DB_GLO_PromiseEighthInvisibleHelper(S_GLO_EighthPromiseHelper_002_462bcbe6-e420-4540-be99-0ef12ed0b52f);
+DB_GLO_PromiseEighthInvisibleHelper(S_GLO_EighthPromiseHelper_003_2a0b76e0-adf3-4033-928a-83f0ef96e65b);
+DB_GLO_DeadOrder_ID("GLO_ThePromise");
+DB_GLO_Promise_EquipmentSlot("Breast");
+DB_GLO_Promise_EquipmentSlot("Belt");
+DB_GLO_Promise_EquipmentSlot("Gloves");
+DB_GLO_Promise_EquipmentSlot("Leggings");
+DB_GLO_Promise_EquipmentSlot("Boots");
+DB_GLO_Promise_EquipmentSlot("Ring");
+DB_GLO_Promise_EquipmentSlot("Weapon");
+DB_GLO_Promise_EquipmentSlot("Shield");
+DB_GLO_Promise_EquipmentSlot("Helmet");
+DB_GLO_Promise_EquipmentSlot("Ring2");
+DB_GLO_Promise_EquipmentSlot("Amulet");
+DB_HasTemplateItem("WPN_Ataraxians_Scythe_2H_A_3b45c978-5a42-40b5-a7aa-183852616910", "GLO_HasPromiseBreaker");
+DB_GiveTemplateFromPlayerDialogEvent("WPN_Ataraxians_Scythe_2H_A_3b45c978-5a42-40b5-a7aa-183852616910", "GLO_GivePromiseBreaker", "GLO_ReceivedPromiseBreaker");
+DB_OneTimeEventFlag("GLO_Promise_Effect_Prepare");
+DB_OneTimeEventFlag("GLO_Promise_Effect_Accept");
+DB_OneTimeEventFlag("GLO_Promise_Effect_Deny");
+DB_OneTimeEventFlag("GLO_PromiseBreak_Effect_Prepare");
+DB_OneTimeEventFlag("GLO_PromiseBreak_Effect_Accept");
+DB_OneTimeEventFlag("GLO_Promise_Effect_Stop");
+
+KBSECTION
+IF
+ObjectWasTagged((CHARACTERGUID)_Var1, "PROMISED")
+THEN
+DB_GLO_Promise_HasBeenAccepted(_Var1);
+ObjectSetFlag(_Var1, "GLO_Promise_PromiseBound", 0);
+GlobalSetFlag("GLO_Promise_Accepted");
+UserSetFlag(_Var1, "QuestUpdate_FTJ_Hunted_AllySallowMan");
+UserSetFlag(_Var1, "QuestUpdate_CORE_Covenant_Sworn");
+ProcObjectTimer(_Var1, "GLO_Promise_BlessToCurse", 1000);
+
+PROC
+ProcObjectTimerFinished((CHARACTERGUID)_Var1, "GLO_Promise_BlessToCurse")
+AND
+DB_IsPlayer(_Var1)
+THEN
+OpenMessageBox(_Var1, "CoS_Acadamy_PromiseBlessCurse_MessageBox");
+
+IF
+ObjectWasTagged((CHARACTERGUID)_Var1, "PROMISED")
+AND
+CharacterHasSkill(_Var1, "Target_Bless", 1)
+THEN
+CharacterRemoveSkill(_Var1, "Target_Bless");
+
+IF
+ObjectWasTagged((CHARACTERGUID)_Var1, "PROMISED")
+AND
+CharacterHasSkill(_Var1, "Target_Curse", 0)
+THEN
+CharacterAddSkill(_Var1, "Target_Curse");
+
+PROC
+PROC_GLO_AllDead_Notification((CHARACTERGUID)_Var1)
+AND
+CharacterGetReservedUserID(_Var1, _Var2)
+THEN
+PROC_GLO_Promise_CheckUserForPromise(_Var2);
+
+QRY
+QRY_GLO_Promise_GetEighthHelperForDialog((CHARACTERGUID)_Var1)
+AND
+DB_GLO_Promise_EighthInvisibleHelper_InUseForChar(_Var2, _Var1)
+THEN
+TeleportTo(_Var2, _Var1);
+
+QRY
+QRY_GLO_Promise_GetEighthHelperForDialog((CHARACTERGUID)_Var1)
+AND
+DB_GLO_PromiseEighthInvisibleHelper(_Var2)
+AND NOT
+DB_GLO_Promise_EighthInvisibleHelper_InUseForChar(_Var2, _)
+AND NOT
+DB_GLO_Promise_EighthInvisibleHelper_InUseForChar(_, _Var1)
+THEN
+TeleportTo(_Var2, _Var1);
+DB_GLO_Promise_EighthInvisibleHelper_InUseForChar(_Var2, _Var1);
+
+PROC
+PROC_GLO_Promise_CheckQueuedCharsForPromise((CHARACTERGUID)_Var1)
+THEN
+PROC_GLO_DeadOrder_CharacterReset(_Var1, "GLO_ThePromise");
+
+PROC
+PROC_GLO_Promise_CheckQueuedCharsForPromise((CHARACTERGUID)_Var1)
+AND
+CharacterGetReservedUserID(_Var1, _Var2)
+THEN
+PROC_GLO_Promise_CheckUserCharForPromise(_Var2);
+
+PROC
+PROC_GLO_Promise_CheckUserCharForPromise((INTEGER)_Var1)
+AND NOT
+QRY_GLO_DeadOrder_LastStandingEligibleForUser(_Var1, "GLO_ThePromise")
+THEN
+DB_GLO_Promise_NoLastStandingElegibleForUser(1);
+ProcCheckGameOver();
+
+PROC
+PROC_GLO_Promise_CheckUserCharForPromise((INTEGER)_Var1)
+AND NOT
+DB_GLO_Promise_NoLastStandingElegibleForUser(1)
+THEN
+PROC_GLO_Promise_CheckUserForPromise(_Var1);
+
+PROC
+PROC_GLO_Promise_CheckUserCharForPromise((INTEGER)_Var1)
+THEN
+NOT DB_GLO_Promise_NoLastStandingElegibleForUser(1);
+
+PROC
+PROC_GLO_Promise_CheckUserForPromise((INTEGER)_Var1)
+AND
+QRY_GLO_DeadOrder_LastStandingEligibleForUser(_Var1, "GLO_ThePromise")
+AND
+DB_GLO_DeadOrder_LastStandingEligibleForUser(_Var1, _Var2, "GLO_ThePromise")
+AND
+QRY_GLO_Promise_GetEighthHelperForDialog(_Var2)
+AND
+DB_GLO_Promise_EighthInvisibleHelper_InUseForChar(_Var3, _Var2)
+THEN
+PROC_GLO_Promise_StartPromiseDialogForUser(_Var1, _Var2, _Var3);
+
+PROC
+PROC_GLO_Promise_CleanUpPromissumInterruptum((CHARACTERGUID)_Var1)
+AND
+DB_GLO_Promise_EighthInvisibleHelper_InUseForChar(_Var2, _Var1)
+THEN
+NOT DB_GLO_Promise_EighthInvisibleHelper_InUseForChar(_Var2, _Var1);
+
+PROC
+PROC_GLO_Promise_CleanUpPromissumInterruptum((CHARACTERGUID)_Var1)
+THEN
+NOT DB_GLO_Promise_ResurrectedAfterPromise(_Var1);
+SetCanJoinCombat(_Var1, 1);
+PROC_GLO_Promise_CheckQueuedCharsForPromise(_Var1);
+
+PROC
+PROC_GLO_Promise_StartPromiseDialogForUser((INTEGER)_Var1, (CHARACTERGUID)_Var2, (ITEMGUID)_Var3)
+AND
+StartDialog_Internal_NoDeadCheck("CoS_Promise_OfferWhenDied", 1, _Var3, _Var2, NULL_00000000-0000-0000-0000-000000000000, NULL_00000000-0000-0000-0000-000000000000, NULL_00000000-0000-0000-0000-000000000000, NULL_00000000-0000-0000-0000-000000000000, 0)
+THEN
+PROC_GLO_Promise_CleanUpPromissumInterruptum(_Var2);
+
+IF
+DialogRequestFailed("CoS_PromiseOfferWhenDied", (INTEGER)_Var1)
+AND
+DialogGetInvolvedPlayer(_Var1, 1, _Var2)
+THEN
+DebugBreak("Failed to start CoS_PromiseOfferWhenDied, should not happen!");
+PROC_GLO_Promise_CleanUpPromissumInterruptum(_Var2);
+
+IF
+DialogEnded((STRING)_Var1, (INTEGER)_Var2)
+AND
+DB_GLO_Promise_AcceptPromiseDialog(_Var1)
+AND
+DialogGetInvolvedPlayer(_Var2, 1, _Var3)
+THEN
+PROC_GLO_Promise_HandleOfferReply(_Var3);
+
+PROC
+PROC_GLO_Promise_HandleOfferReply((CHARACTERGUID)_Var1)
+AND
+ObjectGetFlag(_Var1, "GLO_Promise_AcceptedPromise", 0)
+THEN
+PROC_GLO_Promise_CheckQueuedCharsForPromise(_Var1);
+
+PROC
+PROC_GLO_Promise_HandleOfferReply((CHARACTERGUID)_Var1)
+AND
+ObjectGetFlag(_Var1, "GLO_Promise_AcceptedPromise", 1)
+THEN
+ObjectClearFlag(_Var1, "GLO_Promise_AcceptedPromise", 0);
+PROC_GLO_Promise_AcceptedPromise(_Var1);
+
+PROC
+PROC_GLO_Promise_AcceptedPromise((CHARACTERGUID)_Var1)
+AND
+IsTagged(_Var1, "PROMISED", 0)
+THEN
+ObjectSetFlag(_Var1, "GLO_Promise_AcceptedFirstTime");
+
+PROC
+PROC_GLO_Promise_AcceptedPromise((CHARACTERGUID)_Var1)
+THEN
+SetTag(_Var1, "PROMISED");
+
+PROC
+PROC_GLO_Promise_AcceptedPromise((CHARACTERGUID)_Var1)
+AND NOT
+DB_Dead(_Var1)
+AND
+QRY_GLO_Promise_GetEighthHelperForDialog(_Var1)
+AND
+DB_GLO_Promise_EighthInvisibleHelper_InUseForChar(_Var2, _Var1)
+THEN
+Proc_StartDialog(0, "CoS_Promise_Accepted", _Var2, _Var1);
+
+PROC
+PROC_GLO_Promise_AcceptedPromise((CHARACTERGUID)_Var1)
+AND
+DB_Dead(_Var1)
+THEN
+DB_GLO_Promise_ResurrectedAfterPromise(_Var1);
+CharacterDetachFromGroup(_Var1);
+SetCanJoinCombat(_Var1, 0);
+CharacterResurrect(_Var1);
+
+PROC
+PROC_GLO_Promise_TransportToWaypoint((CHARACTERGUID)_Var1)
+AND
+GetRegion(_Var1, _Var2)
+AND
+DB_GLO_Promise_RespawnPoints(_Var2, _Var3)
+THEN
+TeleportTo(_Var1, _Var3, "GLO_Promise_AtWaypointAfterResurrect", 0);
+
+PROC
+PROC_GLO_Promise_TransportToWaypoint((CHARACTERGUID)_Var1)
+AND
+GetRegion(_Var1, _Var2)
+AND NOT
+DB_GLO_Promise_RespawnPoints(_Var2, _)
+THEN
+SetStoryEvent(_Var1, "GLO_Promise_AtWaypointAfterResurrect");
+
+IF
+CharacterResurrected((CHARACTERGUID)_Var1)
+AND
+DB_GLO_Promise_ResurrectedAfterPromise(_Var1)
+AND
+QRY_GLO_Promise_GetEighthHelperForDialog(_Var1)
+THEN
+PROC_GLO_Promise_TransportToWaypoint(_Var1);
+
+IF
+StoryEvent((CHARACTERGUID)_Var1, "GLO_Promise_AtWaypointAfterResurrect")
+AND
+DB_GLO_Promise_EighthInvisibleHelper_InUseForChar(_Var2, _Var1)
+THEN
+NOT DB_GLO_Promise_ResurrectedAfterPromise(_Var1);
+PROC_GLO_Promise_AcceptedPromise_UpdateResurrectionsCounter(_Var1);
+PROC_GLO_Promise_StartAfterResurrectionDialog(_Var2, _Var1);
+
+PROC
+PROC_GLO_Promise_StartAfterResurrectionDialog((ITEMGUID)_Var1, (CHARACTERGUID)_Var2)
+AND NOT
+QRY_StartDialog(0, "CoS_Promise_Accepted", _Var1, _Var2)
+THEN
+PROC_GLO_Promise_CleanUpPromissumInterruptum(_Var2);
+
+IF
+DialogEnded("CoS_Promise_Accepted", (INTEGER)_Var1)
+THEN
+PROC_GLO_Promise_AcceptedDialogFinished(_Var1);
+
+IF
+DialogRequestFailed("CoS_Promise_Accepted", (INTEGER)_Var1)
+THEN
+PROC_GLO_Promise_AcceptedDialogFinished(_Var1);
+
+PROC
+PROC_GLO_Promise_AcceptedDialogFinished((INTEGER)_Var1)
+AND
+DB_DialogPlayers(_Var1, _Var2, _)
+AND
+DB_GLO_Promise_EighthInvisibleHelper_InUseForChar(_Var4, _Var2)
+AND
+ObjectGetFlag(_Var2, "GLO_Promise_AcceptedFirstTime", 1)
+THEN
+SetCanJoinCombat(_Var2, 1);
+CharacterGiveReward(_Var2, "RewardBig");
+CharacterAddTalentPoint(_Var2, 2);
+CharacterAddAbilityPoint(_Var2, 2);
+CharacterAddAttributePoint(_Var2, 2);
+
+PROC
+PROC_GLO_Promise_AcceptedDialogFinished((INTEGER)_Var1)
+AND
+DB_DialogPlayers(_Var1, _Var2, _)
+AND
+DB_GLO_Promise_EighthInvisibleHelper_InUseForChar(_Var4, _Var2)
+THEN
+SetCanJoinCombat(_Var2, 1);
+NOT DB_GLO_Promise_EighthInvisibleHelper_InUseForChar(_Var4, _Var2);
+ObjectClearFlag(_Var2, "GLO_Promise_AcceptedFirstTime", 0);
+PROC_GLO_Promise_ZombieChickenCheck(_Var2);
+
+PROC
+PROC_GLO_Promise_AcceptedPromise_MaybeZombieChicken((CHARACTERGUID)_Var1, (STRING)_Var2)
+AND
+DB_GlobalCounter(_Var2, _Var3)
+AND
+DB_GLO_Promise_MaxResurrectionsBeforeZombieChicken(_Var4)
+AND
+_Var3 > _Var4
+THEN
+DB_GLO_Promise_ZombieChicken(_Var1);
+ApplyStatus(_Var1, "ZOMBIE_CHICKEN", -1, 1);
+ObjectSetFlag(_Var1, "GLO_Promise_BecameZombieChicken");
+
+PROC
+PROC_GLO_Promise_AcceptedPromise_MaybeZombieChicken((CHARACTERGUID)_Var1, (STRING)_Var2)
+AND NOT
+DB_GlobalCounter(_Var2, _)
+AND
+DB_GLO_Promise_ZombieChicken(_Var1)
+THEN
+NOT DB_GLO_Promise_ZombieChicken(_Var1);
+RemoveStatus(_Var1, "ZOMBIE_CHICKEN");
+SetVarInteger(_Var1, "CanSpeak", 1);
+
+PROC
+PROC_GLO_Promise_ZombieChickenCheck((CHARACTERGUID)_Var1)
+AND
+GetUUID(_Var1, _Var2)
+AND
+StringConcatenate("GLO_Promise_ResurrectedAtCurrentLevel_", _Var2, _Var3)
+THEN
+PROC_GLO_Promise_AcceptedPromise_MaybeZombieChicken(_Var1, _Var3);
+
+IF
+CharacterStatusAttempt((CHARACTERGUID)_Var1, "ZOMBIE_CHICKEN", _)
+AND
+DB_GLO_Promise_EquipmentSlot(_Var3)
+AND
+CharacterGetEquippedItem(_Var1, _Var3, _Var4)
+THEN
+CharacterUnequipItem(_Var1, _Var4);
+
+IF
+CharacterStatusAttempt((CHARACTERGUID)_Var1, "ZOMBIE_CHICKEN", _)
+THEN
+SetVarInteger(_Var1, "CanSpeak", 0);
+
+IF
+CharacterResurrected((CHARACTERGUID)_Var1)
+AND
+DB_GLO_Promise_ZombieChicken(_Var1)
+THEN
+ApplyStatus(_Var1, "ZOMBIE_CHICKEN", -1, 1);
+SetVarInteger(_Var1, "CanSpeak", 0);
+
+PROC
+PROC_GLO_Promise_AcceptedPromise_UpdateResurrectionsCounter((CHARACTERGUID)_Var1)
+AND
+GetUUID(_Var1, _Var2)
+AND
+StringConcatenate("GLO_Promise_ResurrectedAtCurrentLevel_", _Var2, _Var3)
+THEN
+PROC_GLO_Promise_AcceptedPromise_CountResurrections(_Var1, _Var3);
+
+PROC
+PROC_GLO_Promise_AcceptedPromise_CountResurrections((CHARACTERGUID)_Var1, (STRING)_Var2)
+AND NOT
+DB_GlobalCounter(_Var2, _)
+THEN
+ProcDeclareCounter(_Var2);
+
+PROC
+PROC_GLO_Promise_AcceptedPromise_CountResurrections((CHARACTERGUID)_Var1, (STRING)_Var2)
+AND
+DB_GlobalCounter(_Var2, _Var3)
+AND
+DB_GLO_Promise_MaxResurrectionsBeforeZombieChicken(_Var4)
+AND
+_Var3 <= _Var4
+THEN
+ProcIncreaseCounter(_Var2);
+PROC_GLO_Promise_SetResurrectionCountFlag(_Var1, _Var2, _Var3);
+
+PROC
+PROC_GLO_Promise_SetResurrectionCountFlag((CHARACTERGUID)_Var1, (STRING)_Var2, (INTEGER)_Var3)
+AND
+DB_GLO_Promise_MaxResurrectionsBeforeZombieChicken(_Var4)
+AND
+_Var3 <= _Var4
+AND
+DB_GlobalCounter(_Var2, _Var5)
+AND
+IntegertoString(_Var3, _Var6)
+AND
+IntegertoString(_Var5, _Var7)
+AND
+StringConcatenate("GLO_Promise_TimesResurrectedAtThisLevel_", _Var6, _Var8)
+AND
+StringConcatenate("GLO_Promise_TimesResurrectedAtThisLevel_", _Var7, _Var9)
+THEN
+ObjectClearFlag(_Var1, _Var8, 0);
+ObjectSetFlag(_Var1, _Var9, 0);
+
+IF
+CharacterLeveledUp((CHARACTERGUID)_Var1)
+AND
+DB_IsPlayer(_Var1)
+AND
+GetUUID(_Var1, _Var2)
+AND
+StringConcatenate("GLO_Promise_ResurrectedAtCurrentLevel_", _Var2, _Var3)
+AND
+DB_GlobalCounter(_Var3, _Var4)
+AND
+IntegertoString(_Var4, _Var5)
+AND
+StringConcatenate("GLO_Promise_TimesResurrectedAtThisLevel_", _Var5, _Var6)
+THEN
+ProcRemoveCounter(_Var3);
+ObjectClearFlag(_Var1, _Var6, 0);
+
+QRY
+QRY_GLO_Promise_ResurrectedAsChickenAtTheCurrentLevel((CHARACTERGUID)_Var1)
+AND
+DB_GLO_Promise_ZombieChicken(_Var1)
+AND
+GetUUID(_Var1, _Var2)
+AND
+StringConcatenate("GLO_Promise_ResurrectedAtCurrentLevel_", _Var2, _Var3)
+AND
+DB_GlobalCounter(_Var3, _Var4)
+AND
+DB_GLO_Promise_MaxResurrectionsBeforeZombieChicken(_Var5)
+AND
+_Var4 > _Var5
+THEN
+DB_NOOP(1);
+
+QRY
+QRY_GLO_DeadOrder_Eligible((CHARACTERGUID)_Var1, "GLO_ThePromise")
+AND
+DB_GLO_Promise_HasBeenAccepted(_Var1)
+AND NOT
+QRY_GLO_Promise_ResurrectedAsChickenAtTheCurrentLevel(_Var1)
+THEN
+DB_NOOP(1);
+
+IF
+RegionStarted("ARX_Endgame")
+THEN
+PROC_GLO_DeadOrder_ResetEligibleDeadOrderDB("GLO_ThePromise");
+GoalCompleted;
+
+PROC
+Proc_OneTimeEventFlag((GUIDSTRING)_Var1, "GLO_Promise_Effect_Prepare", _)
+THEN
+Proc_GLO_Promise_Effect_Prepare(_Var1);
+
+PROC
+Proc_OneTimeEventFlag((GUIDSTRING)_Var1, "GLO_Promise_Effect_Accept", _)
+THEN
+Proc_GLO_Promise_Effect_Accept(_Var1);
+
+PROC
+Proc_OneTimeEventFlag((GUIDSTRING)_Var1, "GLO_Promise_Effect_Deny", _)
+THEN
+Proc_GLO_Promise_Effect_Stop(_Var1);
+
+PROC
+Proc_GLO_Promise_Effect_Prepare((GUIDSTRING)_Var1)
+AND
+DB_CurrentLevel(_Var2)
+THEN
+PROC_LoopEffect("RS3_FX_GP_ScriptedEvent_Resurrection_01", _Var1, "FX_GLO_Promise_Prepare", _Var2, "");
+
+PROC
+Proc_GLO_Promise_Effect_Accept((GUIDSTRING)_Var1)
+AND
+DB_CurrentLevel(_Var2)
+THEN
+PlayAnimation(_Var1, "skill_cast_shout_01_cast");
+Proc_GLO_Promise_Effect_Stop(_Var1);
+
+PROC
+Proc_GLO_Promise_Effect_Stop((GUIDSTRING)_Var1)
+THEN
+PROC_StopLoopEffect(_Var1, "FX_GLO_Promise_Prepare");
+
+QRY
+QRY_GLO_Promise_AcceptDialogOngoingFor((CHARACTERGUID)_Var1)
+AND
+DB_DialogName("CoS_Promise_Accepted", _Var2)
+AND
+DB_DialogPlayers(_Var2, _Var1, _)
+THEN
+DB_NOOP(1);
+
+QRY
+QRY_GLO_Promise_AotOJoinCombatDisabled((CHARACTERGUID)_Var1)
+AND
+DB_CoS_AotO_Phase_1_BraccusEventPositions(_, _Var1)
+AND NOT
+DB_CoS_AotO_Phase_2_LowerAreaSpawn(_Var1, _)
+THEN
+DB_NOOP(1);
+
+IF
+SavegameLoaded((INTEGER)_Var1, (INTEGER)_Var2, (INTEGER)_Var3, (INTEGER)_Var4)
+AND
+QRY_VersionIsOlderThan(_Var1, _Var2, _Var3, _Var4, 3, 6, 1, 0)
+AND
+DB_GLO_Promise_EighthInvisibleHelper_InUseForChar(_Var5, _Var6)
+AND NOT
+DB_GLO_Promise_ResurrectedAfterPromise(_Var6)
+AND NOT
+QRY_GLO_Promise_AcceptDialogOngoingFor(_Var6)
+THEN
+NOT DB_GLO_Promise_EighthInvisibleHelper_InUseForChar(_Var5, _Var6);
+PROC_GLO_Promise_TryEnableJoinCombat(_Var6);
+
+PROC
+PROC_GLO_Promise_TryEnableJoinCombat((CHARACTERGUID)_Var1)
+AND NOT
+QRY_GLO_Promise_AotOJoinCombatDisabled(_Var1)
+THEN
+SetCanJoinCombat(_Var1, 1);
+
+
+EXITSECTION
+ENDEXITSECTION
+
+ParentTargetEdge "GLO_ThePromise_Activation"

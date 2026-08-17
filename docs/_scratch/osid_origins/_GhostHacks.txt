@@ -1,0 +1,225 @@
+Version 1
+SubGoalCombiner SGC_AND
+
+INITSECTION
+
+KBSECTION
+IF
+CharacterGhostDestroyed(_, (CHARACTERGUID)_Var2)
+THEN
+DB_GoneGhosts(_Var2);
+ProcRemoveAllDialogEntriesForSpeaker(_Var2);
+
+IF
+CharacterUsedSkillOnTarget((CHARACTERGUID)_Var1, (CHARACTERGUID)_Var2, (STRING)_Var3, _, _)
+AND
+DB_SourceVampirism_Skills(_Var3)
+AND
+DB_Ghosts(_Var2, _)
+AND NOT
+DB_GhostIgnoreCower(_Var2)
+THEN
+CharacterSetAnimationOverride(_Var2, "cower");
+
+IF
+CharacterUsedSkillOnTarget((CHARACTERGUID)_Var1, (CHARACTERGUID)_Var2, (STRING)_Var3, _, _)
+AND
+DB_SourceVampirism_Skills(_Var3)
+AND
+DB_Ghosts(_Var2, _)
+THEN
+DialogRequestStop(_Var2);
+CharacterLookAt(_Var2, _Var1);
+DB_GoneGhosts(_Var2);
+ProcRemoveAllDialogEntriesForSpeaker(_Var2);
+Proc_CharacterVampirisedGhost(_Var1, _Var2);
+
+IF
+CharacterUsedSkillOnTarget((CHARACTERGUID)_Var1, (CHARACTERGUID)_Var2, (STRING)_Var3, _, _)
+AND
+DB_SourceVampirism_Skills(_Var3)
+AND
+DB_Ghosts(_Var2, _Var6, _)
+AND
+CharacterIsDead(_Var2, 1)
+THEN
+ProcRemoveAllDialogEntriesForSpeaker(_Var6);
+SetHasDialog(_Var6, 0);
+DialogRequestStop(_Var6);
+Proc_CharacterVampirisedGhost(_Var1, _Var6);
+
+PROC
+Proc_GhostHacks_GhostPoof((CHARACTERGUID)_Var1)
+AND
+GetPosition(_Var1, _Var2, _Var3, _Var4)
+THEN
+DialogRequestStop(_Var1);
+PlayEffectAtPosition("RS3_FX_GP_ScriptedEvent_GhostDissipate_01", _Var2, _Var3, _Var4);
+SetOnStage(_Var1, 0);
+DB_GoneGhosts(_Var1);
+
+IF
+ObjectFlagSet("GLO_GhostSuck", (CHARACTERGUID)_Var1, (INTEGER)_Var2)
+AND
+DialogGetInvolvedPlayer(_Var2, 1, _Var3)
+THEN
+DB_GhostPoofAfterDialog(_Var1, _Var3, _Var2);
+ObjectClearFlag(_Var1, "GLO_GhostSuck", _Var2);
+
+IF
+ObjectFlagSet("GLO_GhostVanish", (CHARACTERGUID)_Var1, (INTEGER)_Var2)
+THEN
+DB_GhostVanishAfterDialog(_Var1, _Var2);
+ObjectClearFlag(_Var1, "GLO_GhostVanish", _Var2);
+
+IF
+DialogEnded(_, (INTEGER)_Var2)
+AND
+DB_GhostPoofAfterDialog(_Var3, _Var4, _Var2)
+THEN
+SetHasDialog(_Var3, 0);
+CharacterUseSkill(_Var4, "Target_SourceVampirism", _Var3, 1, 1, 1);
+NOT DB_GhostPoofAfterDialog(_Var3, _Var4, _Var2);
+
+IF
+DialogEnded(_, (INTEGER)_Var2)
+AND
+DB_GhostVanishAfterDialog(_Var3, _Var2)
+THEN
+Proc_GhostHacks_GhostPoof(_Var3);
+NOT DB_GhostVanishAfterDialog(_Var3, _Var2);
+
+PROC
+Proc_CharacterVampirisedGhost((CHARACTERGUID)_Var1, (CHARACTERGUID)_Var2)
+THEN
+DB_NOOP(1);
+
+PROC
+Proc_GhostHacks_ChangeGhostDialog((CHARACTERGUID)_Var1, (STRING)_Var2)
+THEN
+ProcRemoveAllDialogEntriesForSpeaker(_Var1);
+DB_Dialogs(_Var1, _Var2);
+
+PROC
+Proc_GhostHacks_DisableGlobalNPCGhost((CHARACTERGUID)_Var1)
+AND
+DB_Ghosts(_Var2, _Var1, _)
+THEN
+DB_GhostHacks_DisabledGhost(_Var1);
+SetOnStage(_Var1, 0);
+CharacterUnlinkGhost(_Var2, _Var1);
+
+PROC
+Proc_GhostHacks_EnableGlobalNPCGhostIfDisabled((CHARACTERGUID)_Var1)
+AND
+DB_GhostHacks_DisabledGhost(_Var1)
+AND
+DB_Ghosts(_Var2, _Var1, _)
+THEN
+NOT DB_GoneGhosts(_Var1);
+NOT DB_GhostHacks_DisabledGhost(_Var1);
+CharacterLinkGhost(_Var2, _Var1);
+SetOnStage(_Var1, 1);
+
+IF
+DB_Ghosts(_Var1, _Var2)
+THEN
+DB_BlockThreatenedDialog(_Var1);
+DB_Dialogs(_Var1, _Var2);
+CharacterSetImmortal(_Var1, 1);
+ProcSetInvulnerable(_Var1, 1);
+
+IF
+DB_Ghosts(_Var1, _Var2, _Var3)
+AND
+CharacterIsDead(_Var1, 0)
+THEN
+SetOnStage(_Var2, 0);
+
+IF
+CharacterResurrected((CHARACTERGUID)_Var1)
+AND
+DB_Ghosts(_Var1, _Var2, _Var3)
+THEN
+DB_Dialogs(_Var2, _Var3);
+
+IF
+DB_Ghosts(_Var1, _Var2, _Var3)
+THEN
+DB_Ghosts(_Var2, _Var3);
+CharacterLinkGhost(_Var1, _Var2);
+CharacterSetImmortal(_Var2, 1);
+DB_GhostDialogs(_Var1, _Var3);
+ProcSetInvulnerable(_Var2, 1);
+
+IF
+CharacterTurnedToGhost(_, (CHARACTERGUID)_Var2)
+THEN
+CharacterSetImmortal(_Var2, 1);
+
+IF
+DB_GhostDialogs(_Var1, _Var2)
+AND NOT
+DB_Ghosts(_Var1, _, _)
+AND
+GetPosition(_Var1, _Var5, _Var6, _Var7)
+AND
+CharacterCreateAtPosition(_Var5, _Var6, _Var7, "S_Template_Ghost_6404b96b-270f-48d9-a75f-5670b09f518f", 0, _Var8)
+THEN
+DB_Ghosts(_Var1, _Var8, _Var2);
+TeleportTo(_Var8, _Var1);
+
+IF
+CharacterTurnedToGhost((CHARACTERGUID)_Var1, (CHARACTERGUID)_Var2)
+AND
+DB_GhostDialogs(_Var1, _Var3)
+THEN
+DB_Ghosts(_Var2, _Var3);
+
+IF
+CharacterGhostRevealed(_, (CHARACTERGUID)_Var2)
+THEN
+ObjectSetFlag(_Var2, "GLO_Ghost_Visible");
+
+IF
+CharacterDied((CHARACTERGUID)_Var1)
+AND
+DB_HauntedNPC(_Var1, _Var2)
+THEN
+Proc_GhostHacks_GhostPoof(_Var2);
+
+IF
+DB_PossessedItem(_Var1, _, _Var3, _)
+THEN
+DB_Dialogs(_Var1, _Var3);
+
+PROC
+Proc_DialogFlagSetup((STRING)_Var1, (ITEMGUID)_Var2, (CHARACTERGUID)_Var3)
+AND
+DB_PossessedItem(_Var2, _Var4, _Var1, _Var5)
+AND
+CharacterCanSeeGhost(_Var3, _Var4, 1)
+THEN
+ObjectSetFlag(_Var3, _Var5, 0);
+
+PROC
+Proc_DialogFlagSetup((STRING)_Var1, (ITEMGUID)_Var2, (CHARACTERGUID)_Var3)
+AND
+DB_PossessedItem(_Var2, _Var4, _Var1, _Var5)
+AND
+CharacterCanSeeGhost(_Var3, _Var4, 0)
+THEN
+ObjectClearFlag(_Var3, _Var5, 0);
+
+IF
+ItemDestroyed((ITEMGUID)_Var1)
+AND
+DB_PossessedItem(_Var1, _Var2, _, _)
+THEN
+SetOnStage(_Var2, 0);
+
+
+EXITSECTION
+ENDEXITSECTION
+
+ParentTargetEdge "Start"

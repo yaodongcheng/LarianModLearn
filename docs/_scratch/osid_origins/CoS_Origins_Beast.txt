@@ -1,0 +1,203 @@
+Version 1
+SubGoalCombiner SGC_AND
+
+INITSECTION
+TriggerRegisterForCharacter(TRIGGERGUID_S_CoS_BeastBicorneAppear_e8059a93-5706-4f09-9a8c-033f13227f7e, CHARACTERGUID_S_Player_Beast_f25ca124-a4d2-427b-af62-df66df41a978);
+SetOnStage(ITEMGUID_S_CoS_BST_BeastBicorneReturned_e6cacb99-5f01-4a9e-83a4-cd0cd0108439, 0);
+SetOnStage(ITEMGUID_S_CoS_BST_DunaNote_e6be0e8e-1f63-4d0d-8de8-5f9c60320e85, 0);
+DB_GiveItemToEventWithClear(ITEMGUID_S_CoS_BST_BeastBicorneReturned_e6cacb99-5f01-4a9e-83a4-cd0cd0108439, "GLO_BST_GiveReturnedBicorne");
+DB_HasStoryEvent(ITEMGUID_S_CoS_Temples_SallowManMissive_001_2d9b04c1-dfb4-470f-9085-4da2ebf453bd, "CoS_BST_HasSpyNotes");
+ObjectSetFlag(CHARACTERGUID_S_Player_Beast_f25ca124-a4d2-427b-af62-df66df41a978, "CoS_BST_AtCoS", 0);
+
+KBSECTION
+IF
+CharacterEnteredTrigger(CHARACTERGUID_S_Player_Beast_f25ca124-a4d2-427b-af62-df66df41a978, TRIGGERGUID_S_CoS_BeastBicorneAppear_e8059a93-5706-4f09-9a8c-033f13227f7e)
+AND
+QueryOnlyOnce("CoS_BST_AD_BicorneReturned")
+THEN
+ItemSetCanPickUp(ITEMGUID_S_CoS_BST_BeastBicorneReturned_e6cacb99-5f01-4a9e-83a4-cd0cd0108439, 0);
+ItemSetCanMove(ITEMGUID_S_CoS_BST_BeastBicorneReturned_e6cacb99-5f01-4a9e-83a4-cd0cd0108439, 0);
+SetOnStage(ITEMGUID_S_CoS_BST_BeastBicorneReturned_e6cacb99-5f01-4a9e-83a4-cd0cd0108439, 1);
+PlayEffect(ITEMGUID_S_CoS_BST_BeastBicorneReturned_e6cacb99-5f01-4a9e-83a4-cd0cd0108439, "RS3_FX_GP_ScriptedEvent_Beast_HatAppear_01");
+TimerLaunch("CoS_BST_AD_BicorneReturned", 3000);
+
+IF
+TimerFinished("CoS_BST_AD_BicorneReturned")
+THEN
+ItemSetCanPickUp(ITEMGUID_S_CoS_BST_BeastBicorneReturned_e6cacb99-5f01-4a9e-83a4-cd0cd0108439, 1);
+ItemSetCanMove(ITEMGUID_S_CoS_BST_BeastBicorneReturned_e6cacb99-5f01-4a9e-83a4-cd0cd0108439, 1);
+
+IF
+TimerFinished("CoS_BST_AD_BicorneReturned")
+AND
+GetDistanceTo(ITEMGUID_S_CoS_BST_BeastBicorneReturned_e6cacb99-5f01-4a9e-83a4-cd0cd0108439, CHARACTERGUID_S_Player_Beast_f25ca124-a4d2-427b-af62-df66df41a978, _Var1)
+AND
+_Var1 <= 5
+THEN
+Proc_StartDialog(1, "CoS_BST_AD_BicorneReturned", CHARACTERGUID_S_Player_Beast_f25ca124-a4d2-427b-af62-df66df41a978);
+
+IF
+ItemAddedToCharacter(ITEMGUID_S_CoS_BST_BeastBicorneReturned_e6cacb99-5f01-4a9e-83a4-cd0cd0108439, (CHARACTERGUID)_Var1)
+AND
+DB_IsPlayer(_Var1)
+AND NOT
+DB_OnlyOnce("CoS_BST_AD_BicorneNote")
+THEN
+SetOnStage(ITEMGUID_S_CoS_BST_DunaNote_e6be0e8e-1f63-4d0d-8de8-5f9c60320e85, 1);
+ItemToInventory(ITEMGUID_S_CoS_BST_DunaNote_e6be0e8e-1f63-4d0d-8de8-5f9c60320e85, _Var1);
+
+IF
+ItemAddedToCharacter(ITEMGUID_S_CoS_BST_BeastBicorneReturned_e6cacb99-5f01-4a9e-83a4-cd0cd0108439, CHARACTERGUID_S_Player_Beast_f25ca124-a4d2-427b-af62-df66df41a978)
+AND
+DB_CompanionAvatarBond(CHARACTERGUID_S_Player_Beast_f25ca124-a4d2-427b-af62-df66df41a978, _Var1)
+AND NOT
+DB_OnlyOnce("CoS_BST_AD_BicorneNote")
+THEN
+CharacterAddAttitudeTowardsPlayer(CHARACTERGUID_S_Player_Beast_f25ca124-a4d2-427b-af62-df66df41a978, _Var1, 10);
+
+IF
+ItemAddedToCharacter(ITEMGUID_S_CoS_BST_BeastBicorneReturned_e6cacb99-5f01-4a9e-83a4-cd0cd0108439, CHARACTERGUID_S_Player_Beast_f25ca124-a4d2-427b-af62-df66df41a978)
+AND
+DB_IsPlayer(CHARACTERGUID_S_Player_Beast_f25ca124-a4d2-427b-af62-df66df41a978)
+AND NOT
+DB_OnlyOnce("CoS_BST_AD_BicorneNote")
+THEN
+StartVoiceBark("CoS_BST_VB_PickedUpBicorne", CHARACTERGUID_S_Player_Beast_f25ca124-a4d2-427b-af62-df66df41a978);
+DB_OnlyOnce("CoS_BST_AD_BicorneNote");
+
+IF
+ItemAddedToCharacter(ITEMGUID_S_CoS_BST_BeastBicorneReturned_e6cacb99-5f01-4a9e-83a4-cd0cd0108439, (CHARACTERGUID)_Var1)
+AND NOT
+DB_OnlyOnce("CoS_BST_AD_BicorneNote")
+AND
+DB_CompanionAvatarBond(CHARACTERGUID_S_Player_Beast_f25ca124-a4d2-427b-af62-df66df41a978, _Var1)
+AND
+QRY_SpeakerIsAvailableAndInDialogRange(_Var1, CHARACTERGUID_S_Player_Beast_f25ca124-a4d2-427b-af62-df66df41a978)
+AND
+QRY_SameUser(_Var1, CHARACTERGUID_S_Player_Beast_f25ca124-a4d2-427b-af62-df66df41a978)
+THEN
+Proc_StartDialog(0, "CoS_BST_BicornePickedUp_COM_Beast", CHARACTERGUID_S_Player_Beast_f25ca124-a4d2-427b-af62-df66df41a978, _Var1);
+DB_OnlyOnce("CoS_BST_AD_BicorneNote");
+
+IF
+ItemAddedToCharacter(ITEMGUID_S_CoS_BST_BeastBicorneReturned_e6cacb99-5f01-4a9e-83a4-cd0cd0108439, (CHARACTERGUID)_Var1)
+AND
+DB_IsPlayer(_Var1)
+AND NOT
+DB_OnlyOnce("CoS_BST_AD_BicorneNote")
+AND
+_Var1 != CHARACTERGUID_S_Player_Beast_f25ca124-a4d2-427b-af62-df66df41a978
+AND
+DB_CompanionAvatarBond(CHARACTERGUID_S_Player_Beast_f25ca124-a4d2-427b-af62-df66df41a978, _Var2)
+AND
+QRY_SpeakerIsAvailableAndInDialogRange(_Var2, _Var1)
+AND
+QRY_SpeakerIsAvailableAndInDialogRange(CHARACTERGUID_S_Player_Beast_f25ca124-a4d2-427b-af62-df66df41a978, _Var1)
+AND
+QRY_SameUser(_Var1, CHARACTERGUID_S_Player_Beast_f25ca124-a4d2-427b-af62-df66df41a978)
+AND
+QRY_SameUser(_Var1, _Var2)
+THEN
+Proc_StartDialog(0, "CoS_BST_BicornePickedUp_3SP_COM_Beast", CHARACTERGUID_S_Player_Beast_f25ca124-a4d2-427b-af62-df66df41a978, _Var1, _Var2);
+DB_OnlyOnce("CoS_BST_AD_BicorneNote");
+
+IF
+ItemAddedToCharacter(ITEMGUID_S_CoS_BST_BeastBicorneReturned_e6cacb99-5f01-4a9e-83a4-cd0cd0108439, (CHARACTERGUID)_Var1)
+AND
+DB_IsPlayer(_Var1)
+AND NOT
+DB_OnlyOnce("CoS_BST_AD_BicorneNote")
+THEN
+StartVoiceBark("CoS_BST_VB_PickedUpBicorne_NoBeast", _Var1);
+DB_OnlyOnce("CoS_BST_AD_BicorneNote");
+
+IF
+GameBookInterfaceClosed(ITEMGUID_S_CoS_Temples_SallowManMissive_001_2d9b04c1-dfb4-470f-9085-4da2ebf453bd, (CHARACTERGUID)_Var1)
+AND
+_Var1 != CHARACTERGUID_S_Player_Beast_f25ca124-a4d2-427b-af62-df66df41a978
+AND
+IsTagged(CHARACTERGUID_S_Player_Beast_f25ca124-a4d2-427b-af62-df66df41a978, "AVATAR", 1)
+AND NOT
+DB_OnlyOnce("CoS_BST_SpyNotes_ARD_Beast")
+THEN
+ObjectSetFlag(_Var1, "CoS_BST_ReadSpyNotes", 0);
+Proc_RelationshipDialog(_Var1, "CoS_BST_SpyNotes_ARD_Any", CHARACTERGUID_S_Player_Beast_f25ca124-a4d2-427b-af62-df66df41a978);
+DB_OnlyOnce("CoS_BST_SpyNotes_ARD_Beast");
+
+IF
+GameBookInterfaceClosed(ITEMGUID_S_CoS_Temples_SallowManMissive_001_2d9b04c1-dfb4-470f-9085-4da2ebf453bd, CHARACTERGUID_S_Player_Beast_f25ca124-a4d2-427b-af62-df66df41a978)
+AND
+IsTagged(CHARACTERGUID_S_Player_Beast_f25ca124-a4d2-427b-af62-df66df41a978, "AVATAR", 1)
+THEN
+ObjectSetFlag(CHARACTERGUID_S_Player_Beast_f25ca124-a4d2-427b-af62-df66df41a978, "QuestUpdate_FTJ_OriginBeast_COSDeathfogLetter");
+
+IF
+GameBookInterfaceClosed(ITEMGUID_S_CoS_Temples_SallowManMissive_001_2d9b04c1-dfb4-470f-9085-4da2ebf453bd, CHARACTERGUID_S_Player_Beast_f25ca124-a4d2-427b-af62-df66df41a978)
+AND
+IsTagged(CHARACTERGUID_S_Player_Beast_f25ca124-a4d2-427b-af62-df66df41a978, "AVATAR", 1)
+AND NOT
+DB_OnlyOnce("CoS_BST_SpyNotes_ARD_Beast")
+AND
+DB_CompanionAvatarBond(_Var1, CHARACTERGUID_S_Player_Beast_f25ca124-a4d2-427b-af62-df66df41a978)
+AND
+QRY_SpeakerIsAvailableAndInDialogRange(_Var1, CHARACTERGUID_S_Player_Beast_f25ca124-a4d2-427b-af62-df66df41a978)
+THEN
+ObjectSetFlag(CHARACTERGUID_S_Player_Beast_f25ca124-a4d2-427b-af62-df66df41a978, "CoS_BST_ReadSpyNotes", 0);
+Proc_RelationshipDialog(_Var1, "CoS_BST_SpyNotes_ARD_Any", CHARACTERGUID_S_Player_Beast_f25ca124-a4d2-427b-af62-df66df41a978);
+DB_OnlyOnce("CoS_BST_SpyNotes_ARD_Beast");
+
+IF
+GameBookInterfaceClosed(ITEMGUID_S_CoS_Temples_SallowManMissive_001_2d9b04c1-dfb4-470f-9085-4da2ebf453bd, CHARACTERGUID_S_Player_Beast_f25ca124-a4d2-427b-af62-df66df41a978)
+AND NOT
+DB_OnlyOnce("CoS_BST_SpyNotes_CRD_Beast")
+AND
+IsTagged(CHARACTERGUID_S_Player_Beast_f25ca124-a4d2-427b-af62-df66df41a978, "AVATAR", 0)
+THEN
+ObjectSetFlag(CHARACTERGUID_S_Player_Beast_f25ca124-a4d2-427b-af62-df66df41a978, "CoS_BST_ReadSpyNotes", 0);
+Proc_RelationshipDialog(CHARACTERGUID_S_Player_Beast_f25ca124-a4d2-427b-af62-df66df41a978, "CoS_BST_SpyNotes_CRD_Beast", CHARACTERGUID_S_Player_Beast_f25ca124-a4d2-427b-af62-df66df41a978);
+DB_OnlyOnce("CoS_BST_SpyNotes_CRD_Beast");
+
+IF
+GameBookInterfaceClosed(ITEMGUID_S_CoS_Temples_SallowManMissive_001_2d9b04c1-dfb4-470f-9085-4da2ebf453bd, (CHARACTERGUID)_Var1)
+AND
+IsTagged(CHARACTERGUID_S_Player_Beast_f25ca124-a4d2-427b-af62-df66df41a978, "AVATAR", 0)
+AND
+DB_CompanionAvatarBond(CHARACTERGUID_S_Player_Beast_f25ca124-a4d2-427b-af62-df66df41a978, _Var1)
+AND NOT
+DB_OnlyOnce("CoS_BST_SpyNotes_CRD_Beast")
+THEN
+ObjectSetFlag(_Var1, "CoS_BST_ReadSpyNotes", 0);
+Proc_RelationshipDialog(CHARACTERGUID_S_Player_Beast_f25ca124-a4d2-427b-af62-df66df41a978, "CoS_BST_SpyNotes_CRD_Beast", _Var1);
+DB_OnlyOnce("CoS_BST_SpyNotes_CRD_Beast");
+UserSetFlag(_Var1, "QuestUpdate_FTJ_COM_Beast_COSDeathfogLetter");
+
+IF
+ItemAddedToCharacter(ITEMGUID_S_CoS_Temples_SallowManMissive_001_2d9b04c1-dfb4-470f-9085-4da2ebf453bd, (CHARACTERGUID)_Var1)
+AND
+_Var1 != CHARACTERGUID_S_Player_Beast_f25ca124-a4d2-427b-af62-df66df41a978
+AND
+DB_IsPlayer(CHARACTERGUID_S_Player_Beast_f25ca124-a4d2-427b-af62-df66df41a978)
+AND NOT
+DB_OnlyOnce("CoS_BST_VB_SpyNotesPickup")
+AND
+QueryOnlyOnce("CoS_BST_VB_SpyNotesPickup")
+THEN
+StartVoiceBark("CoS_BST_VB_SpyNotesPickup", _Var1);
+
+IF
+ItemAddedToCharacter(ITEMGUID_S_CoS_Temples_SallowManMissive_001_2d9b04c1-dfb4-470f-9085-4da2ebf453bd, CHARACTERGUID_S_Player_Beast_f25ca124-a4d2-427b-af62-df66df41a978)
+AND NOT
+DB_OnlyOnce("CoS_BST_VB_SpyNotesPickup")
+THEN
+StartVoiceBark("CoS_BST_VB_SpyNotesPickup_Beast", CHARACTERGUID_S_Player_Beast_f25ca124-a4d2-427b-af62-df66df41a978);
+
+IF
+ItemAddedToCharacter(ITEMGUID_S_CoS_Temples_SallowManMissive_001_2d9b04c1-dfb4-470f-9085-4da2ebf453bd, CHARACTERGUID_S_Player_Beast_f25ca124-a4d2-427b-af62-df66df41a978)
+THEN
+DB_OnlyOnce("CoS_BST_VB_SpyNotesPickup");
+
+
+EXITSECTION
+ENDEXITSECTION
+
+ParentTargetEdge "CouncilOfSeven"

@@ -1,0 +1,26 @@
+Version 1
+SubGoalCombiner SGC_AND
+
+INITSECTION
+PROC_ZZZ_LookAts_Inits();
+
+KBSECTION
+PROC
+PROC_ZZZ_LookAts_Inits()
+AND
+DB_Avatars(_Var1)
+AND
+DB_DoNotFace(_Var1)
+THEN
+NOT DB_DoNotFace(_Var1);
+
+PROC
+PROC_ZZZ_LookAts_Inits()
+THEN
+GoalCompleted;
+
+
+EXITSECTION
+ENDEXITSECTION
+
+ParentTargetEdge "Start"

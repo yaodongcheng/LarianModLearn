@@ -1,0 +1,60 @@
+Version 1
+SubGoalCombiner SGC_AND
+
+INITSECTION
+
+KBSECTION
+IF
+DialogStarted((STRING)_Var1, (INTEGER)_Var2)
+AND
+DB_CanUseSkillCheck(_Var1, _Var3, _Var4)
+AND
+DialogGetInvolvedPlayer(_Var2, 1, _Var5)
+AND
+CharacterHasSkill(_Var5, _Var3, 1)
+AND
+_Var4 > 0
+AND
+HasActiveStatus(_Var5, "SOURCE_MUTED", 0)
+AND
+CharacterGetSourcePoints(_Var5, _Var6)
+AND
+_Var6 >= _Var4
+THEN
+Proc_CanUseSkillCheck_FlagSetUp(_Var5, _Var3, _Var1);
+
+IF
+DialogStarted((STRING)_Var1, (INTEGER)_Var2)
+AND
+DB_CanUseSkillCheck(_Var1, _Var3, _Var4)
+AND
+DialogGetInvolvedPlayer(_Var2, 1, _Var5)
+AND
+CharacterHasSkill(_Var5, _Var3, 1)
+AND
+_Var4 == 0
+THEN
+Proc_CanUseSkillCheck_FlagSetUp(_Var5, _Var3, _Var1);
+
+PROC
+Proc_CanUseSkillCheck_FlagSetUp((CHARACTERGUID)_Var1, (STRING)_Var2, (STRING)_Var3)
+AND
+StringConcatenate("PlayerCanUse_", _Var2, _Var4)
+THEN
+ObjectSetFlag(_Var1, _Var4);
+DB_CanUseSkillCheck_FlagRemover(_Var1, _Var3, _Var4);
+
+IF
+DialogEnded((STRING)_Var1, (INTEGER)_Var2)
+AND
+DialogGetInvolvedPlayer(_Var2, 1, _Var3)
+AND
+DB_CanUseSkillCheck_FlagRemover(_Var3, _Var1, _Var4)
+THEN
+ObjectClearFlag(_Var3, _Var4);
+
+
+EXITSECTION
+ENDEXITSECTION
+
+ParentTargetEdge "Start"

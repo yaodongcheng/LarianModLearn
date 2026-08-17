@@ -1,0 +1,148 @@
+Version 1
+SubGoalCombiner SGC_AND
+
+INITSECTION
+DB_DoNotFace(CHARACTERGUID_S_Player_Beast_f25ca124-a4d2-427b-af62-df66df41a978);
+
+KBSECTION
+PROC
+PROC_GLO_PartyMembers_RecruiteeAvatarBond(CHARACTERGUID_S_Player_Beast_f25ca124-a4d2-427b-af62-df66df41a978, (CHARACTERGUID)_Var1)
+AND NOT
+DB_GlobalFlag("FTJ_LV_SetUp")
+THEN
+ObjectSetFlag(_Var1, "GLO_Beast_RecruitedInFortJoy");
+
+PROC
+PROC_GLO_PartyMembers_RecruiteeAvatarBond(CHARACTERGUID_S_Player_Beast_f25ca124-a4d2-427b-af62-df66df41a978, (CHARACTERGUID)_Var1)
+AND
+DB_GlobalFlag("FTJ_LV_SetUp")
+THEN
+ObjectSetFlag(_Var1, "GLO_Beast_RecruitedInLV");
+
+PROC
+PROC_GLO_PartyMembers_RecruiteeAvatarBond(CHARACTERGUID_S_Player_Beast_f25ca124-a4d2-427b-af62-df66df41a978, (CHARACTERGUID)_Var1)
+AND NOT
+DB_GlobalFlag("FTJ_LV_SetUp")
+AND
+ObjectGetFlag(_Var1, "QuestUpdate_FTJ_COM_Beast_Start", 0)
+THEN
+ObjectSetFlag(_Var1, "QuestAdd_FTJ_COM_Beast");
+ObjectSetFlag(_Var1, "QuestUpdate_FTJ_COM_Beast_Start");
+
+PROC
+PROC_GLO_PartyMembers_RecruiteeAvatarBond(CHARACTERGUID_S_Player_Beast_f25ca124-a4d2-427b-af62-df66df41a978, (CHARACTERGUID)_Var1)
+AND
+DB_GlobalFlag("FTJ_LV_SetUp")
+AND
+ObjectGetFlag(_Var1, "QuestUpdate_FTJ_COM_Beast_Start", 0)
+THEN
+ObjectSetFlag(_Var1, "QuestAdd_FTJ_COM_Beast");
+ObjectSetFlag(_Var1, "QuestUpdate_FTJ_COM_Beast_StartLV");
+
+IF
+GameBookInterfaceClosed(ITEMGUID_S_GLO_BST_OperationDownfall_3757c500-ea7f-4d28-b104-0d200d5fdc74, (CHARACTERGUID)_Var1)
+AND
+DB_CompanionAvatarBond(CHARACTERGUID_S_Player_Beast_f25ca124-a4d2-427b-af62-df66df41a978, _Var1)
+THEN
+Proc_RelationshipDialog(CHARACTERGUID_S_Player_Beast_f25ca124-a4d2-427b-af62-df66df41a978, "FTJ_OperationDownfall_CRD_Beast", _Var1);
+UserSetFlag(_Var1, "QuestUpdate_FTJ_COM_Beast_ReadOperationDownfall");
+
+IF
+ItemAddedToCharacter(ITEMGUID_S_GLO_BST_OperationDownfall_3757c500-ea7f-4d28-b104-0d200d5fdc74, CHARACTERGUID_S_Player_Beast_f25ca124-a4d2-427b-af62-df66df41a978)
+THEN
+ObjectSetFlag(CHARACTERGUID_S_Player_Beast_f25ca124-a4d2-427b-af62-df66df41a978, "GLO_BST_HasOperationDownfall");
+
+IF
+ItemRemovedFromCharacter(ITEMGUID_S_GLO_BST_OperationDownfall_3757c500-ea7f-4d28-b104-0d200d5fdc74, CHARACTERGUID_S_Player_Beast_f25ca124-a4d2-427b-af62-df66df41a978)
+THEN
+ObjectClearFlag(CHARACTERGUID_S_Player_Beast_f25ca124-a4d2-427b-af62-df66df41a978, "GLO_BST_HasOperationDownfall");
+
+IF
+ItemEquipped(ITEMGUID_S_CoS_BST_BeastBicorneReturned_e6cacb99-5f01-4a9e-83a4-cd0cd0108439, CHARACTERGUID_S_Player_Beast_f25ca124-a4d2-427b-af62-df66df41a978)
+AND
+QueryOnlyOnce("CoS_BST_AD_WornReturnedBicorne")
+THEN
+Proc_StartDialog(1, "CoS_BST_AD_WornReturnedBicorne", CHARACTERGUID_S_Player_Beast_f25ca124-a4d2-427b-af62-df66df41a978);
+
+IF
+ItemEquipped(ITEMGUID_S_CoS_BST_BeastBicorneReturned_e6cacb99-5f01-4a9e-83a4-cd0cd0108439, (CHARACTERGUID)_Var1)
+AND
+ITEMGUID_S_CoS_BST_BeastBicorneReturned_e6cacb99-5f01-4a9e-83a4-cd0cd0108439 != _Var1
+THEN
+DB_GLO_BST_WearingBeastHat(_Var1);
+
+IF
+ItemUnEquipped(ITEMGUID_S_CoS_BST_BeastBicorneReturned_e6cacb99-5f01-4a9e-83a4-cd0cd0108439, (CHARACTERGUID)_Var1)
+THEN
+NOT DB_GLO_BST_WearingBeastHat(_Var1);
+
+IF
+DB_Sees(CHARACTERGUID_S_Player_Beast_f25ca124-a4d2-427b-af62-df66df41a978, _Var1)
+AND
+DB_GLO_BST_WearingBeastHat(_Var1)
+AND
+QueryOnlyOnce("CoS_BST_AD_OtherWornReturnedBicorne")
+THEN
+Proc_StartDialog(1, "CoS_BST_AD_OtherWornReturnedBicorne", CHARACTERGUID_S_Player_Beast_f25ca124-a4d2-427b-af62-df66df41a978);
+
+IF
+ItemAddedToCharacter(ITEMGUID_S_CoS_BST_BeastBicorneReturned_e6cacb99-5f01-4a9e-83a4-cd0cd0108439, CHARACTERGUID_S_Player_Beast_f25ca124-a4d2-427b-af62-df66df41a978)
+AND
+IsTagged(CHARACTERGUID_S_Player_Beast_f25ca124-a4d2-427b-af62-df66df41a978, "AVATAR", 1)
+THEN
+ObjectSetFlag(CHARACTERGUID_S_Player_Beast_f25ca124-a4d2-427b-af62-df66df41a978, "QuestUpdate_FTJ_OriginBeast_GotHat", 0);
+
+IF
+ItemAddedToCharacter(ITEMGUID_S_CoS_BST_BeastBicorneReturned_e6cacb99-5f01-4a9e-83a4-cd0cd0108439, CHARACTERGUID_S_Player_Beast_f25ca124-a4d2-427b-af62-df66df41a978)
+AND
+IsTagged(CHARACTERGUID_S_Player_Beast_f25ca124-a4d2-427b-af62-df66df41a978, "AVATAR", 0)
+THEN
+ObjectSetFlag(CHARACTERGUID_S_Player_Beast_f25ca124-a4d2-427b-af62-df66df41a978, "QuestUpdate_FTJ_COM_Beast_GotHat", 0);
+
+IF
+ObjectFlagSet("ARX_KnowsAboutIsbeil", CHARACTERGUID_S_Player_Beast_f25ca124-a4d2-427b-af62-df66df41a978, (INTEGER)_Var1)
+AND
+IsTagged(CHARACTERGUID_S_Player_Beast_f25ca124-a4d2-427b-af62-df66df41a978, "AVATAR", 1)
+THEN
+ObjectSetFlag(CHARACTERGUID_S_Player_Beast_f25ca124-a4d2-427b-af62-df66df41a978, "QuestUpdate_FTJ_OriginBeast_IsbeilBR", _Var1);
+
+IF
+ObjectFlagSet("ARX_KnowsAboutIsbeil", CHARACTERGUID_S_Player_Beast_f25ca124-a4d2-427b-af62-df66df41a978, (INTEGER)_Var1)
+AND
+IsTagged(CHARACTERGUID_S_Player_Beast_f25ca124-a4d2-427b-af62-df66df41a978, "AVATAR", 0)
+THEN
+ObjectSetFlag(CHARACTERGUID_S_Player_Beast_f25ca124-a4d2-427b-af62-df66df41a978, "QuestUpdate_FTJ_COM_Beast_IsbeilBR", _Var1);
+
+IF
+ObjectFlagSet("QuestUpdate_FTJ_COM_Beast_IsbeilBR", CHARACTERGUID_S_Player_Beast_f25ca124-a4d2-427b-af62-df66df41a978, (INTEGER)_Var1)
+THEN
+PartySetFlag(CHARACTERGUID_S_Player_Beast_f25ca124-a4d2-427b-af62-df66df41a978, "ARX_KnowsAboutIsbeil", _Var1);
+
+IF
+ObjectFlagSet("QuestUpdate_FTJ_OriginBeast_IsbeilBR", CHARACTERGUID_S_Player_Beast_f25ca124-a4d2-427b-af62-df66df41a978, (INTEGER)_Var1)
+THEN
+PartySetFlag(CHARACTERGUID_S_Player_Beast_f25ca124-a4d2-427b-af62-df66df41a978, "ARX_KnowsAboutIsbeil", _Var1);
+
+PROC
+ProcRegionStarted("RC_Main")
+AND
+DB_IsPlayer(CHARACTERGUID_S_Player_Beast_f25ca124-a4d2-427b-af62-df66df41a978)
+AND
+IsTagged(CHARACTERGUID_S_Player_Beast_f25ca124-a4d2-427b-af62-df66df41a978, "AVATAR", 1)
+THEN
+ObjectSetFlag(CHARACTERGUID_S_Player_Beast_f25ca124-a4d2-427b-af62-df66df41a978, "QuestUpdate_FTJ_OriginBeast_RC_Start");
+
+IF
+RegionStarted((STRING)_Var1)
+AND
+_Var1 != "TUT_Tutorial_A"
+AND
+QueryOnlyOnce("FTJ_BeastInit")
+THEN
+NOT DB_DoNotFace(CHARACTERGUID_S_Player_Beast_f25ca124-a4d2-427b-af62-df66df41a978);
+
+
+EXITSECTION
+ENDEXITSECTION
+
+ParentTargetEdge "Start"

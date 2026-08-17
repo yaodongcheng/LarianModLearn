@@ -1,0 +1,96 @@
+Version 1
+SubGoalCombiner SGC_AND
+
+INITSECTION
+DB_Dialogs(CHARACTERGUID_S_RC_GY_RykersPet_Cat_7a17693a-e1e5-421b-afe4-0b54b57e5d52, CHARACTERGUID_S_RC_GY_RykersPet_Dog_241b5edc-5d8d-4461-ad76-6af0f62a3790, "RC_GY_RykersPet_DogCatArgue");
+DB_ShovelArea(TRIGGERGUID_S_RC_GY_PUZ_DogDirtpile_BoxTrig_1b08b570-179f-49b7-b4be-e62c76302520, "GY_DogDirtpile", S_RC_GY_PUZ_DogDirtpile_eb6192d5-afe9-4800-9529-baeb450b77fa);
+DB_ShovelRewardItemAppear("GY_DogDirtpile", ITEMGUID_S_RC_GY_DogOwnersLeg_00fd58cd-f5e3-434d-88c0-05245121828d, S_RC_GY_PUZ_DogDirtpile_PointTrig_e022e7a6-a0b3-404f-8b1a-8cdec0f60fc8);
+DB_ShovelRewardItemAppear("GY_DogDirtpile", ITEMGUID_S_RC_GY_RykersPet_DogHelmet_39cad51b-0d77-4a1f-9d2b-3b1a4aceac74, S_RC_GY_PUZ_DogDirtpile_PointTrig_e022e7a6-a0b3-404f-8b1a-8cdec0f60fc8);
+DB_ShovelRewardItemAppear("GY_DogDirtpile", ITEMGUID_S_RC_GY_RykersPet_DogStick_fb058189-4b39-44ac-a1ec-074655fd787a, S_RC_GY_PUZ_DogDirtpile_PointTrig_e022e7a6-a0b3-404f-8b1a-8cdec0f60fc8);
+DB_HasStoryEvent(S_RC_GY_ToyBall_d95c84b9-f5f9-420c-8bfe-7737c3bef73f, "RC_GY_HasCatsToy");
+DB_HasStoryEvent(S_RC_GY_DotsCollar_e6a19d4b-9f5f-4bb3-8d7f-65fd3798fa30, "RC_GY_HasDogsCollar");
+
+KBSECTION
+IF
+CharacterDied(CHARACTERGUID_S_RC_GY_RykersPet_Dog_241b5edc-5d8d-4461-ad76-6af0f62a3790)
+THEN
+ProcRemoveAllDialogEntriesForSpeaker(CHARACTERGUID_S_RC_GY_RykersPet_Cat_7a17693a-e1e5-421b-afe4-0b54b57e5d52);
+DB_Dialogs(CHARACTERGUID_S_RC_GY_RykersPet_Cat_7a17693a-e1e5-421b-afe4-0b54b57e5d52, "RC_GY_RykersPet_CatOnly");
+
+IF
+CharacterDied(CHARACTERGUID_S_RC_GY_RykersPet_Cat_7a17693a-e1e5-421b-afe4-0b54b57e5d52)
+THEN
+ProcRemoveAllDialogEntriesForSpeaker(CHARACTERGUID_S_RC_GY_RykersPet_Dog_241b5edc-5d8d-4461-ad76-6af0f62a3790);
+DB_Dialogs(CHARACTERGUID_S_RC_GY_RykersPet_Dog_241b5edc-5d8d-4461-ad76-6af0f62a3790, "RC_GY_RykersPet_DogOnly");
+
+IF
+CharacterDied(CHARACTERGUID_S_RC_GY_RykersPet_Cat_7a17693a-e1e5-421b-afe4-0b54b57e5d52)
+THEN
+ProcRemoveAllDialogEntriesForSpeaker(CHARACTERGUID_S_RC_GY_RykersPet_Dog_241b5edc-5d8d-4461-ad76-6af0f62a3790);
+DB_Dialogs(CHARACTERGUID_S_RC_GY_RykersPet_Dog_241b5edc-5d8d-4461-ad76-6af0f62a3790, "RC_GY_RykersPet_DogOnly");
+
+IF
+ItemAddedToCharacter(S_RC_GY_ToyBall_d95c84b9-f5f9-420c-8bfe-7737c3bef73f, (CHARACTERGUID)_Var1)
+AND
+DB_IsPlayer(_Var1)
+THEN
+ObjectSetFlag(_Var1, "QuestUpdate_RC_GY_FavoritePet_FindToy");
+
+IF
+ItemAddedToCharacter(S_RC_GY_DotsCollar_e6a19d4b-9f5f-4bb3-8d7f-65fd3798fa30, (CHARACTERGUID)_Var1)
+AND
+DB_IsPlayer(_Var1)
+THEN
+ObjectSetFlag(_Var1, "QuestUpdate_RC_GY_FavoritePet_FindCollar");
+
+IF
+CharacterDied(S_RC_GY_RykersPet_Dog_241b5edc-5d8d-4461-ad76-6af0f62a3790)
+AND
+DB_IsPlayer(_Var1)
+AND
+ObjectGetFlag(_Var1, "QuestUpdate_RC_GY_FavoritePet_MetPets", 1)
+THEN
+ObjectSetFlag(_Var1, "QuestUpdate_RC_GY_FavoritePet_DogDied");
+
+IF
+CharacterDied(S_RC_GY_RykersPet_Dog_241b5edc-5d8d-4461-ad76-6af0f62a3790)
+THEN
+GlobalSetFlag("RC_GY_RykersPets_DogDied");
+
+IF
+CharacterDied(S_RC_GY_RykersPet_Cat_7a17693a-e1e5-421b-afe4-0b54b57e5d52)
+AND
+DB_IsPlayer(_Var1)
+AND
+ObjectGetFlag(_Var1, "QuestUpdate_RC_GY_FavoritePet_MetPets", 1)
+THEN
+ObjectSetFlag(_Var1, "QuestUpdate_RC_GY_FavoritePet_CatDied");
+
+IF
+CharacterDied(S_RC_GY_RykersPet_Cat_7a17693a-e1e5-421b-afe4-0b54b57e5d52)
+THEN
+GlobalSetFlag("RC_GY_RykersPets_CatDied");
+
+IF
+GlobalFlagSet("RC_GY_RykersPets_CatPersuaded")
+THEN
+ProcRemoveAllDialogEntriesForSpeaker(CHARACTERGUID_S_RC_GY_RykersPet_Dog_241b5edc-5d8d-4461-ad76-6af0f62a3790);
+ProcRemoveAllDialogEntriesForSpeaker(CHARACTERGUID_S_RC_GY_RykersPet_Cat_7a17693a-e1e5-421b-afe4-0b54b57e5d52);
+DB_Dialogs(CHARACTERGUID_S_RC_GY_RykersPet_Dog_241b5edc-5d8d-4461-ad76-6af0f62a3790, "RC_GY_RykersPet_DogOnly");
+DB_Dialogs(CHARACTERGUID_S_RC_GY_RykersPet_Cat_7a17693a-e1e5-421b-afe4-0b54b57e5d52, "RC_GY_RykersPet_CatOnly");
+SetStoryEvent(S_RC_GY_RykersCarpet_1b69c50c-91ee-4edd-8055-a43898acc00d, "RevealFromStory");
+
+IF
+GlobalFlagSet("RC_GY_RykersPets_DogPersuaded")
+THEN
+ProcRemoveAllDialogEntriesForSpeaker(CHARACTERGUID_S_RC_GY_RykersPet_Dog_241b5edc-5d8d-4461-ad76-6af0f62a3790);
+ProcRemoveAllDialogEntriesForSpeaker(CHARACTERGUID_S_RC_GY_RykersPet_Cat_7a17693a-e1e5-421b-afe4-0b54b57e5d52);
+DB_Dialogs(CHARACTERGUID_S_RC_GY_RykersPet_Dog_241b5edc-5d8d-4461-ad76-6af0f62a3790, "RC_GY_RykersPet_DogOnly");
+DB_Dialogs(CHARACTERGUID_S_RC_GY_RykersPet_Cat_7a17693a-e1e5-421b-afe4-0b54b57e5d52, "RC_GY_RykersPet_CatOnly");
+SetStoryEvent(ITEMGUID_S_RC_GY_HiddenDiamond_341e7ee4-7100-4043-9921-7dcf2b75ad16, "RevealFromStory");
+
+
+EXITSECTION
+ENDEXITSECTION
+
+ParentTargetEdge "ReapersCoast"

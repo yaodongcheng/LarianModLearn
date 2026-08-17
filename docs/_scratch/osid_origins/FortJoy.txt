@@ -1,0 +1,26 @@
+Version 1
+SubGoalCombiner SGC_AND
+
+INITSECTION
+DB_ItemOwnerShipTriggers("FJ_FortJoy_Main", TRIGGERGUID_S_FTJ_OWNERSHIP_ShrineWorshipper_e709a2e7-f44d-4eb1-bcf5-459ad19f739d, CHARACTERGUID_S_FTJ_ShrineWorshipper_bd8a4344-814a-4904-8399-326a5a3f88d1);
+DB_CheckLevelStart("FJ_FortJoy_Main");
+
+KBSECTION
+IF
+RegionStarted("FJ_FortJoy_Main")
+THEN
+GoalCompleted;
+
+IF
+DB_CheckLevelStart("FJ_FortJoy_Main")
+AND
+DB_CurrentLevel("FJ_FortJoy_Main")
+THEN
+GoalCompleted;
+
+
+EXITSECTION
+NOT DB_CheckLevelStart("FJ_FortJoy_Main");
+ENDEXITSECTION
+
+ParentTargetEdge "Start"

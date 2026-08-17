@@ -1,0 +1,16 @@
+Version 1
+SubGoalCombiner SGC_AND
+
+INITSECTION
+DB_RegionPrison("RC_Main_RC_DW", S_RC_DW_PlayerPrisonCell_f573d120-8287-434d-8087-b81465474042);
+DB_PrisonChest(S_RC_DW_PlayerPrisonCell_f573d120-8287-434d-8087-b81465474042, S_RC_DW_PrisonChest_1bcfff11-39b2-4dc9-b4b0-3af19e7d4f45);
+DB_PrisonEvidenceChest(S_RC_DW_PlayerPrisonCell_f573d120-8287-434d-8087-b81465474042, S_RC_DW_Prison_EvidenceChest_f7409bd4-3673-48b2-a761-8a063734e665);
+DB_PlayerPrison(S_RC_DW_PlayerPrisonCell_f573d120-8287-434d-8087-b81465474042, S_RC_DW_PlayerPrisonDoor_c74fbbf1-7d49-4fd9-8689-b232a683b13b, "EscapedDriftwoodPrison", "EscapedDriftwoodPrisonADs");
+DB_PlayerPrison_Door(S_RC_DW_PlayerPrisonCell_f573d120-8287-434d-8087-b81465474042, S_RC_DW_PrisonDoor_7db4c188-987d-4fc6-b3ff-174e6ebc393b, "RC_DW_PrisonDoor");
+
+KBSECTION
+
+EXITSECTION
+ENDEXITSECTION
+
+ParentTargetEdge "ReapersCoast"

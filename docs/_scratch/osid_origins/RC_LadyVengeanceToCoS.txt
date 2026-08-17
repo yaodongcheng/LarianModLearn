@@ -1,0 +1,21 @@
+Version 1
+SubGoalCombiner SGC_AND
+
+INITSECTION
+
+KBSECTION
+IF
+ObjectFlagSet("RC_DW_KnowCoS", (GUIDSTRING)_Var1, _)
+THEN
+GoalCompleted;
+
+IF
+ObjectFlagSet("RC_PlayerNoTeachersLeft", (GUIDSTRING)_Var1, _)
+THEN
+GoalCompleted;
+
+
+EXITSECTION
+ENDEXITSECTION
+
+ParentTargetEdge "ReapersCoast"

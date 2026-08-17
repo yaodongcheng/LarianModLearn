@@ -1,0 +1,623 @@
+Version 1
+SubGoalCombiner SGC_AND
+
+INITSECTION
+DB_Dialogs(CHARACTERGUID_S_RC_DW_CommonerHuman_01_22c699a0-190b-47fa-adf5-595be7a371c8, "RC_DW_CommonerHuman_01");
+SetHasDialog(CHARACTERGUID_S_RC_DW_Tavern_Patron_01_d248129c-2455-44d3-8895-3b5fa9f89a4a, 1);
+SetHasDialog(CHARACTERGUID_S_RC_DW_Tavern_Patron_02_7500b10e-8817-46d1-bfeb-a6e3bba610f9, 1);
+DB_TrespassTrigger(S_RC_DW_Tavern_RichMerchantTrespassing_29f3058b-7587-430e-ba3f-b13b0ed2f4bb, S_RC_DW_Tavern_RichMerchantTrespassingOutside_31db10df-af74-4177-9570-37a2d8cc5e13, "Trespassing", S_RC_DW_Tavern_MerchantRich_1e1cec76-eab1-4af3-b5f3-b9b18002b8f5);
+DB_DeadEvent(CHARACTERGUID_S_RC_DW_CommonerDwarf_04_84d75e92-e4dd-4e64-894a-f42721e34f0a, "RC_DW_MackIneenDead");
+DB_RC_DW_DwarfCommoner_02_ADs("RC_DW_TraderHunter", 1, CHARACTERGUID_S_RC_DW_TraderHunter_88ea209d-d5e6-465d-bebe-2f10b1fd2861, "RC_DW_AD_CommonerDwarf_TraderHunter");
+DB_RC_DW_DwarfCommoner_02_ADs("RC_DW_TraderFish", 2, CHARACTERGUID_S_RC_DW_TraderFish_81f4cd7e-0c93-4fcb-9aa6-23500e3d2c4d, "RC_DW_AD_CommonerDwarf_TraderFisher");
+DB_RC_DW_DwarfCommoner_02_ADs("RC_DW_TraderGeneral", 2, CHARACTERGUID_S_RC_DW_TraderGeneral_29ca04c1-430a-4ec4-a80d-c4c2af122d2c, "RC_DW_AD_CommonerDwarf_TraderGeneral");
+DB_RC_DW_DwarfCommoner_02_ADs("RC_DW_TraderSkill", 2, CHARACTERGUID_S_RC_DW_TraderSkill_b22c2335-d5b2-46ca-aaaf-2787c4dbc172, "RC_DW_AD_CommonerDwarf_TraderSkill");
+DB_Dialogs(S_RC_DW_SnoozingAdventurer_9ae40dbb-7f3a-466c-a03f-f3c9300d5c6a, "RC_DW_SnoozingAdventurer");
+DB_Dialogs(S_RC_DW_StableDwarf_53404585-14dd-4ba2-9ffd-4c0b81929c50, "RC_DW_StableDwarf");
+DB_RC_DW_WestGateMagisters(S_RC_DW_WestGateGuard1_cd0bb886-04c0-42e0-9938-76410f13719d);
+DB_RC_DW_WestGateMagisters(S_RC_DW_WestGateGuard2_88aa4c74-82cc-49e2-ae64-f7cf8c0c8083);
+DB_Dialogs(S_RC_DW_WestGateGuard1_cd0bb886-04c0-42e0-9938-76410f13719d, "RC_DW_WestGateGuard1");
+DB_Dialogs(S_RC_DW_WestGateGuard2_88aa4c74-82cc-49e2-ae64-f7cf8c0c8083, "RC_DW_WestGateGuard2");
+DB_Dialogs(S_RC_DW_WestGate_SourceHound1_4ce07a7e-a1b0-4748-9f3d-4c5cea6d0c8a, "RC_DW_WestGate_SourceHound1");
+DB_Dialogs(S_RC_DW_WestGate_SourceHound2_923ac0d4-d75b-4774-8339-f1a29cf36023, "RC_DW_WestGate_SourceHound2");
+ProcDeclareCounter("RC_DW_WestGate_Players");
+DB_OneShotPlayerTrigger(S_S_RC_OIL_OneShot_VoidwokenAttack_92bf568f-8f6c-47b6-977b-54cb335105e7);
+DB_OneShotPlayerOnlyTrigger(TRIGGERGUID_S_RC_DW_WestBridge_e96edbc0-7c9a-46ff-a6df-1851cd08cf71);
+TriggerRegisterForItems(TRIGGERGUID_S_RC_DW_Pilgrims_CheeseBox_53561cec-4108-4d21-8753-aeb44202de16);
+DB_RC_DW_PilgrimFood(S_RC_DW_Pilgrims_Cheese_4cce464d-07a5-44b7-a7c4-1a2a0d8c83ea);
+DB_RC_DW_PilgrimFood(S_RC_DW_Pilgrims_Bread_7dbf6675-e022-4591-a7e1-a5076c6d2085);
+DB_Dialogs(CHARACTERGUID_S_RC_DW_Pilgrim_Wife_8b381e7b-3ab7-489c-82c0-20a9defc6fb8, "RC_DW_Pilgrim_Wife");
+DB_Dialogs(CHARACTERGUID_S_RC_DW_Pilgrim_Husband_9afceabd-00b4-4b3d-9113-cd5da37240dc, "RC_DW_Pilgrim_Husband");
+ItemToInventory(S_RC_DW_Tavern_LetterFromKniles_c28f656c-7152-4dc7-8405-31220cbf556b, S_RC_DW_Tavern_Innkeeper_dcb4b072-d7b2-410f-884d-42553937382a);
+DB_QuestDef_State("RC_DW_SnoozingAdventurer", "FoundAdventurerChest");
+DB_QuestDef_State("RC_DW_SnoozingAdventurer", "TalkedAdventurerSleep");
+DB_QuestDef_State("RC_DW_SnoozingAdventurer", "OpenAdventurerChest", -1);
+DB_QuestDef_State("RC_DW_SnoozingAdventurer", "DestroyAdventurerChest", -1);
+DB_QuestDef_State("RC_DW_SnoozingAdventurer", "CloseLeftRC", -1);
+DB_Ghosts(CHARACTERGUID_S_RC_DW_SnoozingAdventurer_9ae40dbb-7f3a-466c-a03f-f3c9300d5c6a, CHARACTERGUID_S_RC_DW_SnoozingAdventurer_Ghost_9de87551-827d-4a0b-af3c-3b5a2a9498e4, "RC_DW_SnoozingAdventurer_Ghost");
+DB_NoLowAttitudeDialog(CHARACTERGUID_S_RC_DW_SnoozingAdventurer_9ae40dbb-7f3a-466c-a03f-f3c9300d5c6a);
+CharacterSetAnimationOverride(CHARACTERGUID_S_RC_DW_SnoozingAdventurer_Ghost_9de87551-827d-4a0b-af3c-3b5a2a9498e4, "stilldrunk");
+PROC_LoopEffect("RS3_FX_GP_Status_Sleeping_01", CHARACTERGUID_S_RC_DW_SnoozingAdventurer_Ghost_9de87551-827d-4a0b-af3c-3b5a2a9498e4, "SleepEffect", "RC_Main", "Dummy_OverheadFX");
+PROC_LoopEffect("RS3_FX_Items_Attachments_MagicLock_01", ITEMGUID_S_RC_DW_SnoozingAdventurerChest_2f6a6bd4-2852-4a31-a553-0f4192bd81fe, "ChestLockEffect", "RC_Main", "");
+DB_CrimeReaction_CustomWarning(CHARACTERGUID_S_RC_DW_SnoozingAdventurer_9ae40dbb-7f3a-466c-a03f-f3c9300d5c6a, "DW_FailSnoozingAdventurer", "RC_DW_Warning_SnoozingAdventurer");
+ItemToInventory(S_RC_DW_Tavern_KnilesStudyBook_4f0a27ca-8697-4f40-a10d-27f09193b577, FUR_Humans_Citz_Desk_B_005_fb34a7e1-ea68-4e30-8b2a-379e9ebda0f4);
+ItemToInventory(S_RC_DW_Tavern_KnilesRoomKey_a2386fec-a5c0-417a-9d85-0ca16a6d4c62, S_RC_DW_Tavern_Innkeeper_dcb4b072-d7b2-410f-884d-42553937382a);
+DB_HasStoryEvent(S_RC_DW_Tavern_KnilesRoomKey_a2386fec-a5c0-417a-9d85-0ca16a6d4c62, "RC_DW_Tavern_Has_KnilesRoomKey");
+DB_GiveItemToEvent(S_RC_DW_Tavern_KnilesRoomKey_a2386fec-a5c0-417a-9d85-0ca16a6d4c62, "RC_DW_Tavern_Give_KnilesRoomKey");
+ItemSetCanInteract(ITEMGUID_S_RC_DW_Pilgrim_Wife_Helper_254ef44d-35c5-49c5-959c-a4d49144fee4, 0);
+ItemSetCanInteract(ITEMGUID_S_RC_DW_Pilgrim_Husband_Helper_3bcf3454-96ae-4d77-813e-5872a5405a70, 0);
+SetOnStage(CHARACTERGUID_S_RC_DW_WestGateGuard1_Ghost_52d9bf7f-9f05-48d6-a3a8-1c9e2f8f313b, 0);
+SetOnStage(CHARACTERGUID_S_RC_DW_WestGateGuard2_Ghost_afb542df-afb1-4336-90f5-f94aa266d78d, 0);
+
+KBSECTION
+PROC
+PROC_GLOBAL_DialogStartRequested(S_RC_DW_Tavern_Patron_01_d248129c-2455-44d3-8895-3b5fa9f89a4a, (GUIDSTRING)_Var1)
+AND NOT
+QRY_SpeakerIsAvailable(S_RC_DW_Tavern_Patron_02_7500b10e-8817-46d1-bfeb-a6e3bba610f9)
+AND NOT
+DB_RC_DW_TavernGossiperDied(S_RC_DW_Tavern_Patron_02_7500b10e-8817-46d1-bfeb-a6e3bba610f9)
+THEN
+Proc_StartDialog(1, "RC_DW_AD_Tavern_GossiperBusy", S_RC_DW_Tavern_Patron_01_d248129c-2455-44d3-8895-3b5fa9f89a4a);
+
+PROC
+PROC_GLOBAL_DialogStartRequested(S_RC_DW_Tavern_Patron_01_d248129c-2455-44d3-8895-3b5fa9f89a4a, (GUIDSTRING)_Var1)
+AND
+QRY_SpeakerIsAvailable(S_RC_DW_Tavern_Patron_02_7500b10e-8817-46d1-bfeb-a6e3bba610f9)
+THEN
+Proc_StartDialog(0, "RC_DW_Tavern_Gossiping", S_RC_DW_Tavern_Patron_01_d248129c-2455-44d3-8895-3b5fa9f89a4a, S_RC_DW_Tavern_Patron_02_7500b10e-8817-46d1-bfeb-a6e3bba610f9, _Var1);
+
+PROC
+PROC_GLOBAL_DialogStartRequested(S_RC_DW_Tavern_Patron_02_7500b10e-8817-46d1-bfeb-a6e3bba610f9, (GUIDSTRING)_Var1)
+AND NOT
+QRY_SpeakerIsAvailable(S_RC_DW_Tavern_Patron_01_d248129c-2455-44d3-8895-3b5fa9f89a4a)
+AND NOT
+DB_RC_DW_TavernGossiperDied(S_RC_DW_Tavern_Patron_01_d248129c-2455-44d3-8895-3b5fa9f89a4a)
+THEN
+Proc_StartDialog(1, "RC_DW_AD_Tavern_GossiperBusy", S_RC_DW_Tavern_Patron_02_7500b10e-8817-46d1-bfeb-a6e3bba610f9);
+
+PROC
+PROC_GLOBAL_DialogStartRequested(S_RC_DW_Tavern_Patron_02_7500b10e-8817-46d1-bfeb-a6e3bba610f9, (GUIDSTRING)_Var1)
+AND
+QRY_SpeakerIsAvailable(S_RC_DW_Tavern_Patron_01_d248129c-2455-44d3-8895-3b5fa9f89a4a)
+THEN
+Proc_StartDialog(0, "RC_DW_Tavern_Gossiping", S_RC_DW_Tavern_Patron_01_d248129c-2455-44d3-8895-3b5fa9f89a4a, S_RC_DW_Tavern_Patron_02_7500b10e-8817-46d1-bfeb-a6e3bba610f9, _Var1);
+
+IF
+CharacterDying(S_RC_DW_Tavern_Patron_01_d248129c-2455-44d3-8895-3b5fa9f89a4a)
+THEN
+DB_RC_DW_TavernGossiperDied(S_RC_DW_Tavern_Patron_01_d248129c-2455-44d3-8895-3b5fa9f89a4a);
+DB_Dialogs(CHARACTERGUID_S_RC_DW_Tavern_Patron_02_7500b10e-8817-46d1-bfeb-a6e3bba610f9, "RC_DW_Tavern_Patron_02");
+
+IF
+CharacterDying(S_RC_DW_Tavern_Patron_02_7500b10e-8817-46d1-bfeb-a6e3bba610f9)
+THEN
+DB_RC_DW_TavernGossiperDied(S_RC_DW_Tavern_Patron_02_7500b10e-8817-46d1-bfeb-a6e3bba610f9);
+DB_Dialogs(CHARACTERGUID_S_RC_DW_Tavern_Patron_01_d248129c-2455-44d3-8895-3b5fa9f89a4a, "RC_DW_Tavern_Patron_01");
+
+IF
+CharacterDied(S_RC_DW_Tavern_Innkeeper_dcb4b072-d7b2-410f-884d-42553937382a)
+THEN
+ProcRemoveDBTrespassTrigger(S_RC_DW_Tavern_Bar_Tresspassing_f9f109ec-4ffc-46d4-b12b-ab4f613c9a82, S_RC_DW_Tavern_Out_Bar_Tresspassing_24db5337-2074-4560-8ec9-bedcd6efffd3, S_RC_DW_Tavern_MerchantRich_1e1cec76-eab1-4af3-b5f3-b9b18002b8f5);
+
+IF
+CharacterLeftTrigger((CHARACTERGUID)_Var1, S_RC_DF_DriftwoodFields_3f20daea-37d9-4305-96cc-eb0317b3965e)
+AND
+QRY_AnyRegionActive()
+AND
+DB_IsPlayer(_Var2)
+AND NOT
+DB_InRegion(_Var2, S_RC_DW_Driftwood_58614853-5507-4f35-90f6-54ab23a021db)
+AND
+GlobalGetFlag("RC_DW_CommonerDwarf_03_SellsBows", 1)
+AND
+QueryOnlyOnce("RC_DW_CommonerDwarf_03_SellsBows")
+THEN
+CharacterSetCustomTradeTreasure(CHARACTERGUID_S_RC_DW_CommonerDwarf_03_6a2b0a63-5146-4217-8af7-91eaf48b0e7f, "DW_CommonerDwarf_Fletcher");
+ProcClearLastTradeTime(CHARACTERGUID_S_RC_DW_CommonerDwarf_03_6a2b0a63-5146-4217-8af7-91eaf48b0e7f);
+ObjectSetFlag(CHARACTERGUID_S_RC_DW_CommonerDwarf_03_6a2b0a63-5146-4217-8af7-91eaf48b0e7f, "RC_DW_CommonerDwarf_03_SellsBow");
+
+IF
+CharacterLeveledUp((CHARACTERGUID)_Var1)
+AND
+DB_IsPlayer(_Var1)
+AND
+GlobalGetFlag("RC_DW_CommonerDwarf_03_SellsBows", 1)
+AND
+QueryOnlyOnce("RC_DW_CommonerDwarf_03_SellsBows")
+THEN
+CharacterSetCustomTradeTreasure(CHARACTERGUID_S_RC_DW_CommonerDwarf_03_6a2b0a63-5146-4217-8af7-91eaf48b0e7f, "DW_CommonerDwarf_Fletcher");
+ProcClearLastTradeTime(CHARACTERGUID_S_RC_DW_CommonerDwarf_03_6a2b0a63-5146-4217-8af7-91eaf48b0e7f);
+ObjectSetFlag(CHARACTERGUID_S_RC_DW_CommonerDwarf_03_6a2b0a63-5146-4217-8af7-91eaf48b0e7f, "RC_DW_CommonerDwarf_03_SellsBow");
+
+IF
+TextEventSet("SellBows")
+THEN
+GlobalSetFlag("RC_DW_CommonerDwarf_03_SellsBows");
+
+IF
+StoryEvent(S_RC_DW_CommonerDwarf_02_08d6c522-8a1f-4ee7-b39b-a355314c0825, (STRING)_Var1)
+AND
+DB_RC_DW_DwarfCommoner_02_ADs(_Var1, _Var2, _Var3, _Var4)
+AND
+Random(10, _Var5)
+AND
+_Var5 >= _Var2
+AND
+QRY_SpeakerIsAvailableAndInDialogRange(_Var3, CHARACTERGUID_S_RC_DW_CommonerDwarf_02_08d6c522-8a1f-4ee7-b39b-a355314c0825)
+AND NOT
+DB_DialogNPCs(_, _Var3, _)
+THEN
+CharacterLookAt(CHARACTERGUID_S_RC_DW_CommonerDwarf_02_08d6c522-8a1f-4ee7-b39b-a355314c0825, _Var3);
+CharacterLookAt(_Var3, CHARACTERGUID_S_RC_DW_CommonerDwarf_02_08d6c522-8a1f-4ee7-b39b-a355314c0825);
+Proc_StartDialog(1, _Var4, CHARACTERGUID_S_RC_DW_CommonerDwarf_02_08d6c522-8a1f-4ee7-b39b-a355314c0825, _Var3);
+
+IF
+ItemOpened(ITEMGUID_S_RC_DW_SnoozingAdventurerChest_2f6a6bd4-2852-4a31-a553-0f4192bd81fe)
+THEN
+DB_OnlyOnce("RC_DW_AD_SnoozingAdventurerChest_Attacked");
+
+IF
+AttackedByObject(ITEMGUID_S_RC_DW_SnoozingAdventurerChest_2f6a6bd4-2852-4a31-a553-0f4192bd81fe, (CHARACTERGUID)_Var1, _, _, _)
+AND
+CharacterGetLevel(_Var1, _Var5)
+AND NOT
+DB_OnlyOnce("RC_DW_AD_SnoozingAdventurerChest_Attacked")
+THEN
+GenerateTreasure(ITEMGUID_S_RC_DW_SnoozingAdventurerChest_2f6a6bd4-2852-4a31-a553-0f4192bd81fe, "RewardMedium", _Var5, _Var1);
+
+IF
+AttackedByObject(ITEMGUID_S_RC_DW_SnoozingAdventurerChest_2f6a6bd4-2852-4a31-a553-0f4192bd81fe, (GUIDSTRING)_Var1, _, _, _)
+AND
+ObjectIsCharacter(_Var1, 1)
+THEN
+DB_RC_DW_AttackedChest(_Var1);
+
+IF
+AttackedByObject(ITEMGUID_S_RC_DW_SnoozingAdventurerChest_2f6a6bd4-2852-4a31-a553-0f4192bd81fe, _, (GUIDSTRING)_Var2, _, _)
+AND
+ITEMGUID_S_RC_DW_SnoozingAdventurerChest_2f6a6bd4-2852-4a31-a553-0f4192bd81fe != _Var2
+AND
+QueryOnlyOnce("RC_DW_AD_SnoozingAdventurerChest_Attacked")
+THEN
+DialogRequestStop(ITEMGUID_S_RC_DW_SnoozingAdventurerChest_2f6a6bd4-2852-4a31-a553-0f4192bd81fe);
+ItemSetCanInteract(ITEMGUID_S_RC_DW_SnoozingAdventurerChest_2f6a6bd4-2852-4a31-a553-0f4192bd81fe, 0);
+Proc_StartDialog(1, "RC_DW_AD_SnoozingAdventurerChest_Attacked", ITEMGUID_S_RC_DW_SnoozingAdventurerChest_2f6a6bd4-2852-4a31-a553-0f4192bd81fe);
+
+IF
+AutomatedDialogEnded("RC_DW_AD_SnoozingAdventurerChest_Attacked", _)
+THEN
+InventoryLaunchIterator(ITEMGUID_S_RC_DW_SnoozingAdventurerChest_2f6a6bd4-2852-4a31-a553-0f4192bd81fe, "RC_DW_IterateSnoozingAdventurerChest", "");
+
+IF
+StoryEvent((ITEMGUID)_Var1, "RC_DW_IterateSnoozingAdventurerChest")
+AND
+GetPosition(ITEMGUID_S_RC_DW_SnoozingAdventurerChest_2f6a6bd4-2852-4a31-a553-0f4192bd81fe, _Var2, _Var3, _Var4)
+THEN
+ItemScatterAt(_Var1, _Var2, _Var3, _Var4);
+
+IF
+AutomatedDialogEnded("RC_DW_AD_SnoozingAdventurerChest_Attacked", _)
+AND
+GetPosition(ITEMGUID_S_RC_DW_SnoozingAdventurerChest_2f6a6bd4-2852-4a31-a553-0f4192bd81fe, _Var2, _Var3, _Var4)
+THEN
+CreateExplosion(S_RC_DW_SnoozingAdventurerChest_2f6a6bd4-2852-4a31-a553-0f4192bd81fe, "Projectile_TrapFireball", 10);
+ItemDestroy(ITEMGUID_S_RC_DW_SnoozingAdventurerChest_2f6a6bd4-2852-4a31-a553-0f4192bd81fe);
+
+IF
+AutomatedDialogEnded("RC_DW_AD_SnoozingAdventurerChest_Attacked", _)
+AND
+DB_RC_DW_AttackedChest(_Var2)
+THEN
+ObjectSetFlag(_Var2, "QuestUpdate_RC_DW_SnoozingAdventurer_DestroyAdventurerChest", 0);
+
+IF
+CharacterDestroyedItem((CHARACTERGUID)_Var1, ITEMGUID_S_RC_DW_SnoozingAdventurerChest_2f6a6bd4-2852-4a31-a553-0f4192bd81fe)
+THEN
+ObjectSetFlag(_Var1, "QuestUpdate_RC_DW_SnoozingAdventurer_DestroyAdventurerChest", 0);
+
+IF
+ItemDestroying(ITEMGUID_S_RC_DW_SnoozingAdventurerChest_2f6a6bd4-2852-4a31-a553-0f4192bd81fe)
+THEN
+GlobalSetFlag("RC_DW_SnoozingAdventurerChestDestroyed");
+
+IF
+CharacterUsedItem((CHARACTERGUID)_Var1, S_RC_DW_SnoozingAdventurerChest_2f6a6bd4-2852-4a31-a553-0f4192bd81fe)
+AND
+ItemIsLocked(ITEMGUID_S_RC_DW_SnoozingAdventurerChest_2f6a6bd4-2852-4a31-a553-0f4192bd81fe, 1)
+THEN
+Proc_StartDialog(0, "RC_DW_SnoozingAdventurerChest", ITEMGUID_S_RC_DW_SnoozingAdventurerChest_2f6a6bd4-2852-4a31-a553-0f4192bd81fe, _Var1);
+
+IF
+DialogEnded("RC_DW_SnoozingAdventurer", (INTEGER)_Var1)
+AND
+DialogGetInvolvedPlayer(_Var1, 1, _Var2)
+AND
+ObjectGetFlag(_Var2, "RC_DW_SnoozingAdventurer_Thief", 1)
+THEN
+RemoveStatus(CHARACTERGUID_S_RC_DW_SnoozingAdventurer_9ae40dbb-7f3a-466c-a03f-f3c9300d5c6a, "LYING");
+CharacterRegisterCrime(_Var2, "DW_FailSnoozingAdventurer", NULL_00000000-0000-0000-0000-000000000000, CHARACTERGUID_S_RC_DW_SnoozingAdventurer_9ae40dbb-7f3a-466c-a03f-f3c9300d5c6a, 0);
+ObjectClearFlag(_Var2, "RC_DW_SnoozingAdventurer_Thief", 0);
+
+IF
+GlobalFlagSet("RC_DW_UnlockSnoozingAdventurerChest")
+THEN
+ItemUnLock(ITEMGUID_S_RC_DW_SnoozingAdventurerChest_2f6a6bd4-2852-4a31-a553-0f4192bd81fe);
+PROC_StopLoopEffect(ITEMGUID_S_RC_DW_SnoozingAdventurerChest_2f6a6bd4-2852-4a31-a553-0f4192bd81fe, "ChestLockEffect");
+
+IF
+ItemUnlocked(S_RC_DW_SnoozingAdventurerChest_2f6a6bd4-2852-4a31-a553-0f4192bd81fe, _, _)
+THEN
+GlobalSetFlag("RC_DW_UnlockSnoozingAdventurerChest");
+
+IF
+SavegameLoaded((INTEGER)_Var1, (INTEGER)_Var2, (INTEGER)_Var3, (INTEGER)_Var4)
+AND
+QRY_VersionIsOlderThan(_Var1, _Var2, _Var3, _Var4, 3, 5, 1, 0)
+AND
+ItemIsLocked(S_RC_DW_SnoozingAdventurerChest_2f6a6bd4-2852-4a31-a553-0f4192bd81fe, 0)
+THEN
+GlobalSetFlag("RC_DW_UnlockSnoozingAdventurerChest");
+
+IF
+ItemDestroying(ITEMGUID_S_RC_DW_SnoozingAdventurerChest_2f6a6bd4-2852-4a31-a553-0f4192bd81fe)
+THEN
+PROC_StopLoopEffect(ITEMGUID_S_RC_DW_SnoozingAdventurerChest_2f6a6bd4-2852-4a31-a553-0f4192bd81fe, "ChestLockEffect");
+
+IF
+ItemAddedToCharacter(ITEMGUID_S_RC_DW_SnoozingAdventurerChest_2f6a6bd4-2852-4a31-a553-0f4192bd81fe, _)
+AND
+GlobalGetFlag("RC_DW_UnlockSnoozingAdventurerChest", 0)
+THEN
+PROC_StopLoopEffect(ITEMGUID_S_RC_DW_SnoozingAdventurerChest_2f6a6bd4-2852-4a31-a553-0f4192bd81fe, "ChestLockEffect");
+
+IF
+ItemDropped(ITEMGUID_S_RC_DW_SnoozingAdventurerChest_2f6a6bd4-2852-4a31-a553-0f4192bd81fe)
+AND
+GlobalGetFlag("RC_DW_UnlockSnoozingAdventurerChest", 0)
+THEN
+PROC_LoopEffect("RS3_FX_Items_Attachments_MagicLock_01", ITEMGUID_S_RC_DW_SnoozingAdventurerChest_2f6a6bd4-2852-4a31-a553-0f4192bd81fe, "ChestLockEffect", "RC_Main", "");
+
+IF
+DialogEnded("RC_DW_SnoozingAdventurer", _)
+AND
+ObjectGetFlag(CHARACTERGUID_S_RC_DW_SnoozingAdventurer_9ae40dbb-7f3a-466c-a03f-f3c9300d5c6a, "RC_DW_SnoozingAdventurerDie", 1)
+THEN
+CharacterDie(CHARACTERGUID_S_RC_DW_SnoozingAdventurer_9ae40dbb-7f3a-466c-a03f-f3c9300d5c6a, 1, "DoT");
+
+IF
+CharacterUsedItem((CHARACTERGUID)_Var1, ITEMGUID_S_RC_DW_SnoozingAdventurerChest_2f6a6bd4-2852-4a31-a553-0f4192bd81fe)
+AND
+ItemIsLocked(S_RC_DW_SnoozingAdventurerChest_2f6a6bd4-2852-4a31-a553-0f4192bd81fe, 0)
+THEN
+PartySetFlag(_Var1, "QuestUpdate_RC_DW_SnoozingAdventurer_OpenAdventurerChest", 0);
+
+PROC
+ProcOneShotTriggerEntered((CHARACTERGUID)_Var1, S_RC_DW_WestBridge_e96edbc0-7c9a-46ff-a6df-1851cd08cf71)
+AND
+CharacterIsDead(CHARACTERGUID_S_RC_DW_WestGate_SourceHound1_4ce07a7e-a1b0-4748-9f3d-4c5cea6d0c8a, 0)
+AND
+QueryOnlyOnce("RC_DW_VB_WestBrigdNoticeHound")
+THEN
+StartVoiceBark("RC_DW_VB_WestBrigdNoticeHound", _Var1);
+
+PROC
+ProcOneShotTriggerEntered((CHARACTERGUID)_Var1, S_RC_DW_WestBridge_e96edbc0-7c9a-46ff-a6df-1851cd08cf71)
+AND
+CharacterIsDead(CHARACTERGUID_S_RC_DW_WestGate_SourceHound2_923ac0d4-d75b-4774-8339-f1a29cf36023, 0)
+AND
+QueryOnlyOnce("RC_DW_VB_WestBrigdNoticeHound")
+THEN
+StartVoiceBark("RC_DW_VB_WestBrigdNoticeHound", _Var1);
+
+PROC
+ProcOneShotTriggerEntered((CHARACTERGUID)_Var1, S_RC_DW_WestBridge_e96edbc0-7c9a-46ff-a6df-1851cd08cf71)
+AND
+QueryOnlyOnce("RC_DW_VB_WestBrigdNoticeHound")
+AND
+GlobalGetFlag("RC_DW_SourceLichPassedCheckPoint", 1)
+THEN
+Proc_StartDialog(1, "RC_DW_AD_WestBridge_LichPassed", _Var1);
+
+IF
+ObjectFlagSet("RC_DW_WestGate_DogStartBarking", (CHARACTERGUID)_Var1, _)
+THEN
+DB_RC_DW_WestGate_RandomTimer(0);
+
+IF
+ObjectFlagSet("RC_DW_WestGate_DogStartBarking", (CHARACTERGUID)_Var1, _)
+AND
+DB_RC_DW_WestGateMagisters(_Var3)
+AND
+QRY_SpeakerIsAvailable(_Var3)
+AND
+CharacterCanSee(_Var3, _Var1, 1)
+AND
+Random(10, _Var4)
+AND
+IntegerProduct(_Var4, 100, _Var5)
+AND
+IntegerSum(_Var5, 2000, _Var6)
+AND
+DB_RC_DW_WestGate_RandomTimer(_Var7)
+AND
+IntegerSum(_Var6, _Var7, _Var8)
+THEN
+NOT DB_RC_DW_WestGate_RandomTimer(_Var7);
+DB_RC_DW_WestGate_RandomTimer(_Var8);
+DialogRequestStop(_Var3);
+CharacterSetReactionPriority(_Var3, "Default", 0);
+CharacterLookAt(_Var3, _Var1);
+ProcObjectTimerCancel(_Var3, "RC_DW_AD_WestGate_StartDialog");
+ProcObjectTimerCancel(_Var3, "RC_DW_AD_WestGate_StartAD");
+ProcObjectTimer(_Var3, "RC_DW_AD_WestGate_StartDialog", 8000);
+ProcObjectTimer(_Var3, "RC_DW_AD_WestGate_StartAD", _Var8);
+
+IF
+ObjectFlagSet("RC_DW_WestGate_DogStartBarking", (CHARACTERGUID)_Var1, _)
+AND
+DB_RC_DW_WestGate_RandomTimer(_Var3)
+THEN
+NOT DB_RC_DW_WestGate_RandomTimer(_Var3);
+
+PROC
+ProcObjectTimerFinished((CHARACTERGUID)_Var1, "RC_DW_AD_WestGate_StartAD")
+AND
+DB_RC_DW_WestGateMagisters(_Var1)
+AND
+QRY_SpeakerIsAvailable(_Var1)
+THEN
+Proc_StartDialog(1, "RC_DW_AD_WestGate_MagisterReactToDog", _Var1);
+
+IF
+ObjectFlagCleared("RC_DW_WestGate_DogStartBarking", (CHARACTERGUID)_Var1, _)
+AND
+DB_RC_DW_WestGateMagisters(_Var3)
+THEN
+CharacterSetReactionPriority(_Var3, "Default", 300);
+ProcObjectTimerCancel(_Var3, "RC_DW_AD_WestGate_StartDialog");
+SetStoryEvent(_Var3, "RC_DW_WestGate_MagisterStopEventOnSight");
+
+PROC
+ProcObjectTimerFinished((CHARACTERGUID)_Var1, "RC_DW_AD_WestGate_StartDialog")
+THEN
+SetStoryEvent(_Var1, "RC_DW_WestGate_MagisterStartEventOnSight");
+
+IF
+CharacterCharacterEvent((CHARACTERGUID)_Var1, (CHARACTERGUID)_Var2, "RC_DW_WestGate_MagisterStartDialog")
+THEN
+proc_RC_DW_WestGate_GetPlayersPartyStartDialog(_Var1, _Var2);
+
+PROC
+proc_RC_DW_WestGate_GetPlayersPartyStartDialog((CHARACTERGUID)_Var1, (CHARACTERGUID)_Var2)
+THEN
+DB_RC_DW_WestGate_MagisterStartDialog_With(_Var2, 0);
+ProcIncreaseCounter("RC_DW_WestGate_Players", 1);
+
+PROC
+proc_RC_DW_WestGate_GetPlayersPartyStartDialog((CHARACTERGUID)_Var1, (CHARACTERGUID)_Var2)
+AND
+DB_IsPlayer(_Var3)
+AND
+_Var3 != _Var2
+AND
+ObjectGetFlag(_Var3, "RC_DW_WestGateLetPlayerPass", 0)
+AND
+CharacterCanSee(_Var1, _Var3, 1)
+AND
+QRY_SpeakerIsAvailable(_Var3)
+AND
+CharacterIsInPartyWith(_Var2, _Var3, 1)
+AND
+DB_GlobalCounter("RC_DW_WestGate_Players", _Var4)
+THEN
+DB_RC_DW_WestGate_MagisterStartDialog_With(_Var3, _Var4);
+ProcIncreaseCounter("RC_DW_WestGate_Players", 1);
+
+PROC
+proc_RC_DW_WestGate_GetPlayersPartyStartDialog((CHARACTERGUID)_Var1, (CHARACTERGUID)_Var2)
+AND
+QRY_SpeakerIsAvailable(_Var1)
+AND
+DB_RC_DW_WestGate_MagisterStartDialog_With(_Var3, 3)
+AND
+DB_RC_DW_WestGate_MagisterStartDialog_With(_Var4, 2)
+AND
+DB_RC_DW_WestGate_MagisterStartDialog_With(_Var5, 1)
+AND
+DB_RC_DW_WestGate_MagisterStartDialog_With(_Var6, 0)
+THEN
+Proc_StartDialog(0, "RC_DW_WestGate_AttackPlayer", _Var1, _Var6, _Var5, _Var4, _Var3);
+
+PROC
+proc_RC_DW_WestGate_GetPlayersPartyStartDialog((CHARACTERGUID)_Var1, (CHARACTERGUID)_Var2)
+AND
+QRY_SpeakerIsAvailable(_Var1)
+AND
+DB_RC_DW_WestGate_MagisterStartDialog_With(_Var3, 2)
+AND
+DB_RC_DW_WestGate_MagisterStartDialog_With(_Var4, 1)
+AND
+DB_RC_DW_WestGate_MagisterStartDialog_With(_Var5, 0)
+THEN
+Proc_StartDialog(0, "RC_DW_WestGate_AttackPlayer", _Var1, _Var5, _Var4, _Var3);
+
+PROC
+proc_RC_DW_WestGate_GetPlayersPartyStartDialog((CHARACTERGUID)_Var1, (CHARACTERGUID)_Var2)
+AND
+QRY_SpeakerIsAvailable(_Var1)
+AND
+DB_RC_DW_WestGate_MagisterStartDialog_With(_Var3, 1)
+AND
+DB_RC_DW_WestGate_MagisterStartDialog_With(_Var4, 0)
+THEN
+Proc_StartDialog(0, "RC_DW_WestGate_AttackPlayer", _Var1, _Var4, _Var3);
+
+PROC
+proc_RC_DW_WestGate_GetPlayersPartyStartDialog((CHARACTERGUID)_Var1, (CHARACTERGUID)_Var2)
+AND
+QRY_SpeakerIsAvailable(_Var1)
+AND
+DB_RC_DW_WestGate_MagisterStartDialog_With(_Var3, 0)
+THEN
+Proc_StartDialog(0, "RC_DW_WestGate_AttackPlayer", _Var1, _Var3);
+
+PROC
+proc_RC_DW_WestGate_GetPlayersPartyStartDialog((CHARACTERGUID)_Var1, (CHARACTERGUID)_Var2)
+AND
+DB_RC_DW_WestGate_MagisterStartDialog_With(_Var3, _Var4)
+THEN
+NOT DB_RC_DW_WestGate_MagisterStartDialog_With(_Var3, _Var4);
+
+PROC
+proc_RC_DW_WestGate_GetPlayersPartyStartDialog((CHARACTERGUID)_Var1, (CHARACTERGUID)_Var2)
+AND
+DB_GlobalCounter("RC_DW_WestGate_Players", _Var3)
+THEN
+NOT DB_GlobalCounter("RC_DW_WestGate_Players", _Var3);
+DB_GlobalCounter("RC_DW_WestGate_Players", 0);
+
+IF
+TextEventSet("Let1PlayerPass")
+AND
+DB_IsPlayer(_Var1)
+AND
+QueryOnlyOnce("Let1PlayerPass")
+THEN
+ObjectSetFlag(_Var1, "RC_DW_WestGateLetPlayerPass");
+
+IF
+ObjectFlagSet("RC_DW_WestGateLetPlayerPass", (GUIDSTRING)_Var1, (INTEGER)_Var2)
+THEN
+ObjectSetFlag(_Var1, "RC_DW_WestGate_MagisterIgnorePlayer");
+
+IF
+ObjectEnteredCombat(CHARACTERGUID_S_RC_DW_WestGate_SourceHound2_923ac0d4-d75b-4774-8339-f1a29cf36023, (INTEGER)_Var1)
+AND
+DB_RC_DW_WestGateMagisters(_Var2)
+AND
+IsSpeakerReserved(_Var2, 1)
+THEN
+DialogRequestStop(_Var2);
+
+IF
+ObjectEnteredCombat(CHARACTERGUID_S_RC_DW_WestGate_SourceHound1_4ce07a7e-a1b0-4748-9f3d-4c5cea6d0c8a, (INTEGER)_Var1)
+AND
+DB_RC_DW_WestGateMagisters(_Var2)
+AND
+IsSpeakerReserved(_Var2, 1)
+THEN
+DialogRequestStop(_Var2);
+
+IF
+CharacterUsedSkillOnTarget(CHARACTERGUID_S_RC_DW_SourceLich_adf5b715-1e96-4e48-88a7-d68a5b6d0351, (CHARACTERGUID)_Var1, "Projectile_Quest_SourceLichKill", _, _)
+THEN
+PROC_RC_DW_SourceLichKilledNPC(_Var1);
+
+PROC
+PROC_RC_DW_SourceLichKilledNPC(CHARACTERGUID_S_RC_DW_WestGateGuard1_cd0bb886-04c0-42e0-9938-76410f13719d)
+THEN
+SetOnStage(CHARACTERGUID_S_RC_DW_WestGateGuard1_Ghost_52d9bf7f-9f05-48d6-a3a8-1c9e2f8f313b, 1);
+DB_Ghosts(CHARACTERGUID_S_RC_DW_WestGateGuard1_cd0bb886-04c0-42e0-9938-76410f13719d, CHARACTERGUID_S_RC_DW_WestGateGuard1_Ghost_52d9bf7f-9f05-48d6-a3a8-1c9e2f8f313b, "RC_DW_WestGateGuard1_Ghost_KilledSourceLich");
+
+PROC
+PROC_RC_DW_SourceLichKilledNPC(CHARACTERGUID_S_RC_DW_WestGateGuard2_88aa4c74-82cc-49e2-ae64-f7cf8c0c8083)
+THEN
+SetOnStage(CHARACTERGUID_S_RC_DW_WestGateGuard2_Ghost_afb542df-afb1-4336-90f5-f94aa266d78d, 1);
+DB_Ghosts(CHARACTERGUID_S_RC_DW_WestGateGuard2_88aa4c74-82cc-49e2-ae64-f7cf8c0c8083, CHARACTERGUID_S_RC_DW_WestGateGuard2_Ghost_afb542df-afb1-4336-90f5-f94aa266d78d, "RC_DW_WestGateGuard2_Ghost_KilledSourceLich");
+
+IF
+DialogEnded("RC_DW_Pilgrim_Husband", (INTEGER)_Var1)
+AND
+DB_DialogPlayers(_Var1, _Var2, _)
+AND
+ObjectGetFlag(_Var2, "QuestUpdate_RC_DW_Meistr_Heist_Meistr", 1)
+AND
+ObjectGetFlag(_Var2, "RC_DW_VB_Piligrim_SourcererDone", 0)
+THEN
+Proc_StartDialog(1, "RC_DW_VB_Piligrim_Sourcerer", _Var2);
+
+IF
+ObjectFlagSet("RC_DW_Pilgrim_Wife_Ruined", _, _)
+AND
+ObjectIsInTrigger(ITEMGUID_S_RC_DW_Pilgrims_Cheese_4cce464d-07a5-44b7-a7c4-1a2a0d8c83ea, TRIGGERGUID_S_RC_DW_Pilgrims_CheeseBox_53561cec-4108-4d21-8753-aeb44202de16, 1)
+THEN
+ItemDestroy(ITEMGUID_S_RC_DW_Pilgrims_Cheese_4cce464d-07a5-44b7-a7c4-1a2a0d8c83ea);
+
+IF
+ItemLeftTrigger((ITEMGUID)_Var1, TRIGGERGUID_S_RC_DW_Pilgrims_CheeseBox_53561cec-4108-4d21-8753-aeb44202de16, _)
+AND
+DB_RC_DW_PilgrimFood(_Var1)
+THEN
+PROC_RC_DW_PilgrimFoodGone(_Var1);
+
+IF
+ItemDestroyed((ITEMGUID)_Var1)
+AND
+DB_RC_DW_PilgrimFood(_Var1)
+THEN
+PROC_RC_DW_PilgrimFoodGone(_Var1);
+
+PROC
+PROC_RC_DW_PilgrimFoodGone((ITEMGUID)_Var1)
+THEN
+NOT DB_RC_DW_PilgrimFood(_Var1);
+
+PROC
+PROC_RC_DW_PilgrimFoodGone(_)
+AND NOT
+DB_RC_DW_PilgrimFood(_)
+THEN
+GlobalSetFlag("RC_DW_Pilgrims_FoodEaten");
+
+IF
+ObjectFlagSet("RC_DW_Pilgrim_EatFood", (GUIDSTRING)_Var1, _)
+AND
+DB_RC_DW_PilgrimFood(_)
+AND
+QueryOnlyOnce("RC_DW_Pilgrim_EatFood")
+THEN
+PlayAnimation(_Var1, "use_eat");
+
+IF
+ObjectFlagSet("RC_DW_Pilgrim_EatFood", (GUIDSTRING)_Var1, _)
+THEN
+NOT DB_OnlyOnce("RC_DW_Pilgrim_EatFood");
+
+IF
+ObjectFlagSet("RC_DW_Pilgrim_EatFood", (CHARACTERGUID)_Var1, _)
+AND
+DB_RC_DW_PilgrimFood(_Var3)
+AND
+GetStatString(_Var3, _Var4)
+AND
+CharacterConsume(_Var1, _Var4, _)
+THEN
+DB_NOOP(1);
+
+IF
+ObjectFlagSet("RC_DW_Pilgrim_EatFood", (GUIDSTRING)_Var1, _)
+AND
+DB_RC_DW_PilgrimFood(_Var3)
+THEN
+SetOnStage(_Var3, 0);
+PROC_RC_DW_PilgrimFoodGone(_Var3);
+
+IF
+CharacterEnteredTrigger((CHARACTERGUID)_Var1, TRIGGERGUID_S_RC_DW_Driftwood_58614853-5507-4f35-90f6-54ab23a021db)
+THEN
+UserSetFlag(_Var1, "RC_DW_DiscoveredDriftwood");
+
+IF
+ItemRemovedFromCharacter(ITEMGUID_S_RC_DW_Tavern_LetterFromKniles_c28f656c-7152-4dc7-8405-31220cbf556b, CHARACTERGUID_S_RC_DW_Tavern_Innkeeper_dcb4b072-d7b2-410f-884d-42553937382a)
+THEN
+ItemSetStoryItem(ITEMGUID_S_RC_DW_Tavern_LetterFromKniles_c28f656c-7152-4dc7-8405-31220cbf556b, 0);
+
+IF
+ItemAddedToCharacter(ITEMGUID_S_RC_DW_Tavern_LetterFromKniles_c28f656c-7152-4dc7-8405-31220cbf556b, CHARACTERGUID_S_RC_DW_Tavern_Innkeeper_dcb4b072-d7b2-410f-884d-42553937382a)
+THEN
+ItemSetStoryItem(ITEMGUID_S_RC_DW_Tavern_LetterFromKniles_c28f656c-7152-4dc7-8405-31220cbf556b, 1);
+
+
+EXITSECTION
+ENDEXITSECTION
+
+ParentTargetEdge "ReapersCoast"

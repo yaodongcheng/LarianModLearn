@@ -1,0 +1,28 @@
+Version 1
+SubGoalCombiner SGC_AND
+
+INITSECTION
+ProcTriggerRegisterForPlayers(TRIGGERGUID_S_RC_DW_WC_PreAmbush_SawBoss_Box_79fb5da3-2bfb-4dbf-83de-bdad73f976d2);
+ProcTriggerRegisterForPlayers(TRIGGERGUID_S_RC_DW_WC_AmbushSpawn_Box_1fce5bfd-e7dd-4a78-9f18-831efd30a19e);
+DB_RC_DW_WC_AmbushAttackInsect(S_RC_DW_WC_AmbushInsect_01_2a1d57f6-22e7-4f2c-86f2-108f7cec8c55, S_RC_DW_WC_AmbushTeleportPoint_01_dca6a05f-c62b-49fd-9e88-e388dbff3e08);
+DB_RC_DW_WC_AmbushAttackInsect(S_RC_DW_WC_AmbushInsect_02_956fb712-0f40-47b5-836e-34e9d56df7e5, TRIGGERGUID_S_RC_DW_WC_AmbushTeleportPoint_02_f1750d4d-adcb-4b90-a4d9-de012b01472e);
+DB_RC_DW_WC_AmbushAttackInsect(S_RC_DW_WC_AmbushInsect_03_eeb1f75e-f413-4c40-8d69-8a085146134e, TRIGGERGUID_S_RC_DW_WC_AmbushTeleportPoint_03_3da431af-3aa0-449a-be40-ae2a4a60b3ed);
+DB_RC_DW_WC_AmbushAttackInsect(S_RC_DW_WC_AmbushInsect_04_adab8bc2-7aaa-4f9b-92ab-f04964695ed2, TRIGGERGUID_S_RC_DW_WC_AmbushTeleportPoint_04_8eba76ec-465e-4c47-9592-5603af6c8179);
+
+KBSECTION
+IF
+DB_RC_DW_WC_AmbushAttackInsect(_Var1, _)
+THEN
+SetOnStage(_Var1, 0);
+
+IF
+CharacterEnteredTrigger((CHARACTERGUID)_Var1, TRIGGERGUID_S_RC_DW_WC_PreAmbush_SawBoss_Box_79fb5da3-2bfb-4dbf-83de-bdad73f976d2)
+THEN
+ProcTriggerUnregisterForPlayers(TRIGGERGUID_S_RC_DW_WC_PreAmbush_SawBoss_Box_79fb5da3-2bfb-4dbf-83de-bdad73f976d2);
+GoalCompleted;
+
+
+EXITSECTION
+ENDEXITSECTION
+
+ParentTargetEdge "RC_DW_WreckersCaveBase"

@@ -1,0 +1,1065 @@
+Version 1
+SubGoalCombiner SGC_AND
+
+INITSECTION
+ProcTriggerRegisterForPlayers(TRIGGERGUID_S_ARX_HorrorSleep_Arena_1b8cf005-392f-434a-a564-ecae6778fab0);
+Proc_PyramidBlockerTriggerAdd(TRIGGERGUID_S_ARX_HorrorSleep_Arena_1b8cf005-392f-434a-a564-ecae6778fab0);
+ProcTriggerRegisterForPlayers(TRIGGERGUID_S_ARX_HorrorSleep_StartDialogTrigger_95af8875-5366-46f6-8682-52e54c071526);
+SetOnStage(CHARACTERGUID_S_ARX_HorrorSleep_Arena_RedPrince_bf40bd4b-4a6e-4e75-adcf-e2caaeba5178, 0);
+ItemSetCanInteract(ITEMGUID_S_ARX_HorrorSleep_Arena_ExitDoor_1980ad94-6796-4b9a-aabf-86a61516f724, 0);
+SetOnStage(ITEMGUID_S_ARX_HorrorSleep_Arena_ExitDoor_Plane_e1490b7b-8231-4547-af68-84b53746416f, 0);
+ProcDeclareCounter("DB_ARX_HorrorSleep_Arena_ResurrectMirrors");
+ProcDeclareCounter("ARX_HorrorSleep_Arena_ResurrectMirrors_DestroyedMirrors");
+DB_ARX_HorrorSleep_Arena_ResurrectEnemy(CHARACTERGUID_S_ARX_HorrorSleep_Arena_Alexander_fc59c20c-cedd-45f3-8ac3-bbd5365977da);
+DB_ARX_HorrorSleep_Arena_ResurrectEnemy(CHARACTERGUID_S_ARX_HorrorSleep_Arena_Malady_9518c754-1654-4e30-bd32-83f04786f4dd);
+DB_ARX_HorrorSleep_Arena_ResurrectEnemy(CHARACTERGUID_S_ARX_HorrorSleep_Arena_Windego_fcfcb4b0-b3fd-48e9-8616-9cdbe89df185);
+DB_ARX_HorrorSleep_Arena_ResurrectEnemy_Statuses(CHARACTERGUID_S_ARX_HorrorSleep_Arena_Alexander_fc59c20c-cedd-45f3-8ac3-bbd5365977da, "WINGS");
+DB_ARX_HorrorSleep_Arena_ResurrectEnemy_Statuses(CHARACTERGUID_S_ARX_HorrorSleep_Arena_Malady_9518c754-1654-4e30-bd32-83f04786f4dd, "VAMPIRISM_AURA");
+DB_ARX_HorrorSleep_Arena_ResurrectEnemy_Statuses(CHARACTERGUID_S_ARX_HorrorSleep_Arena_Windego_fcfcb4b0-b3fd-48e9-8616-9cdbe89df185, "FROST_AURA");
+DB_ARX_HorrorSleep_Arena_ResurrectEnemy_Statuses(CHARACTERGUID_S_ARX_HorrorSleep_Arena_Alexander_fc59c20c-cedd-45f3-8ac3-bbd5365977da, "NIGHTMARISH");
+DB_ARX_HorrorSleep_Arena_ResurrectEnemy_Statuses(CHARACTERGUID_S_ARX_HorrorSleep_Arena_Malady_9518c754-1654-4e30-bd32-83f04786f4dd, "NIGHTMARISH");
+DB_ARX_HorrorSleep_Arena_ResurrectEnemy_Statuses(CHARACTERGUID_S_ARX_HorrorSleep_Arena_Windego_fcfcb4b0-b3fd-48e9-8616-9cdbe89df185, "NIGHTMARISH");
+DB_ARX_HorrorSleep_Arena_ResurrectMirrors(ITEMGUID_S_ARX_HorrorSleep_Mirror_8_36920510-681e-4ec5-96b6-86a1dafabd94);
+DB_ARX_HorrorSleep_Arena_ResurrectMirrors(ITEMGUID_S_ARX_HorrorSleep_Mirror_3_37bf33ca-d197-4e26-984e-9794fdcaa55b);
+DB_ARX_HorrorSleep_Arena_ResurrectMirrors(ITEMGUID_S_ARX_HorrorSleep_Mirror_1_3977bfbe-aa8c-4a6f-920e-397385ebc397);
+DB_ARX_HorrorSleep_Arena_ResurrectMirrors(ITEMGUID_S_ARX_HorrorSleep_Mirror_4_7b89d016-05ca-4893-a680-726b5b9cedfe);
+DB_ARX_HorrorSleep_Arena_ResurrectMirrors(ITEMGUID_S_ARX_HorrorSleep_Mirror_7_f0521a9c-ea88-4bf8-a345-d4d9f7f1cb07);
+DB_ARX_HorrorSleep_Arena_ResurrectMirrors(ITEMGUID_S_ARX_HorrorSleep_Mirror_5_f4f1ddcb-2c0d-46d1-9a96-ea29018584f7);
+DB_ARX_HorrorSleep_Arena_MoveableWalls(ITEMGUID_S_ARX_HorrorSleep_Arena_MoveableWalls_01_1323e24c-6c1a-41a6-acd9-ca80889ee726, TRIGGERGUID_S_ARX_HorrorSleep_Arena_MoveableWalls_01_MoveTo_873bfd98-669f-463b-99cc-bd0907f39471);
+DB_ARX_HorrorSleep_Arena_MoveableWalls(ITEMGUID_S_ARX_HorrorSleep_Arena_MoveableWalls_02_8e23ee6a-b658-402a-9de9-0efce7939c35, TRIGGERGUID_S_ARX_HorrorSleep_Arena_MoveableWalls_02_MoveTo_b8a8e1dc-a9db-4d0d-bfcc-26aabe23005f);
+DB_ARX_HorrorSleep_Arena_MoveableWalls(ITEMGUID_S_ARX_HorrorSleep_Arena_MoveableWalls_03_ab5f1d56-1a1c-43a0-a2ef-3073975c9397, TRIGGERGUID_S_ARX_HorrorSleep_Arena_MoveableWalls_03_MoveTo_39c60b3c-54b4-492b-986a-d54ee8598e17);
+DB_ARX_HorrorSleep_Arena_Chests(ITEMGUID_S_ARX_Horrorsleep_Arena_Chest_01_bb76a97d-1e76-4423-bf6b-1a1d0406436b);
+DB_ARX_HorrorSleep_Arena_Chests(ITEMGUID_S_ARX_Horrorsleep_Arena_Chest_02_9d5a3e25-b52d-4b37-96e4-efbf461dc076);
+DB_ARX_HorrorSleep_Arena_Chests(ITEMGUID_S_ARX_Horrorsleep_Arena_Chest_03_743eecdb-0b4d-4a2c-b11d-8a47a960ae5c);
+DB_ARX_HorrorSleep_Arena_Chests(ITEMGUID_S_CONT_Barrel_A_Blessed_001_e51a0e4e-cdb6-4f86-9214-b22eeff44304);
+DB_ARX_HorrorSleep_Arena_Chests(ITEMGUID_S_CONT_Barrel_A_Blessed_000_0ebb1a2b-6504-421b-b43e-59ae84283aa8);
+DB_ARX_HorrorSleep_Arena_Chests(ITEMGUID_S_CONT_Barrel_A_Cursed_003_2d8f0ae1-74f2-4ef7-8fdb-f8626fb4ebe8);
+DB_ARX_HorrorSleep_Arena_Chests(ITEMGUID_S_CONT_Barrel_A_Cursed_001_6f8b84ce-46e4-496f-b3c7-7e21a1118f57);
+DB_ARX_HorrorSleep_Arena_Chests(ITEMGUID_S_CONT_Barrel_A_Cursed_002_72ae1d40-7c3d-497f-a8d0-066d08109d3a);
+DB_ARX_HorrorSleep_Arena_Chests(ITEMGUID_S_CONT_Barrel_A_Cursed_004_79829b49-2715-4e9a-ab6e-c37ccc57f081);
+DB_ARX_HorrorSleep_Arena_ResurrectMirrors_Destroyed_AtmosphereChange(0, "12f866ca-a2e9-4da2-831c-d7d031638160");
+DB_ARX_HorrorSleep_Arena_ResurrectMirrors_Destroyed_AtmosphereChange(2, "2052f790-d2d7-4cf7-95f0-4de478e98d28");
+DB_ARX_HorrorSleep_Arena_ResurrectMirrors_Destroyed_AtmosphereChange(4, "48f8c648-2bcc-45ad-9083-a2e3863f6908");
+DB_ARX_HorrorSleep_Arena_ResurrectMirrors_Destroyed_SandStorm(0, "RS3_FX_Environment_GroundWind_C");
+DB_ARX_HorrorSleep_Arena_ResurrectMirrors_Destroyed_SandStorm(1, "RS3_FX_GP_ScriptedEvent_ARX_HorrorSleep_Arena_Environment_GroundWind_C");
+DB_ARX_HorrorSleep_Arena_ResurrectMirrors_Destroyed_SandStorm(3, "RS3_FX_GP_ScriptedEvent_ARX_HorrorSleep_Arena_Environment_GroundWind_B");
+DB_ARX_HorrorSleep_Arena_ResurrectMirrors_Destroyed_SandStorm(4, "RS3_FX_GP_ScriptedEvent_ARX_HorrorSleep_Arena_Environment_GroundWind_A");
+
+KBSECTION
+IF
+ObjectEnteredCombat((CHARACTERGUID)_Var1, _)
+AND
+DB_ARX_HorrorSleep_Arena_ResurrectEnemy(_Var1)
+AND
+QueryOnlyOnce("ARX_CombatSave_HorrorsleepArena")
+THEN
+AutoSave();
+
+IF
+DB_ARX_HorrorSleep_Arena_ResurrectMirrors(_Var1)
+AND
+QueryOnlyOnce("DB_ARX_HorrorSleep_Arena_ResurrectMirrors")
+THEN
+TimerLaunch("DB_ARX_HorrorSleep_Arena_ResurrectMirrors_Finished", 200);
+
+IF
+DB_ARX_HorrorSleep_Arena_Chests(_Var1)
+THEN
+SetOnStage(_Var1, 0);
+
+IF
+DB_ARX_HorrorSleep_Arena_ResurrectMirrors(_Var1)
+THEN
+Proc_ARX_HorrorSleep_Arena_ResurrectMirrors_Numbered(_Var1);
+
+PROC
+Proc_ARX_HorrorSleep_Arena_ResurrectMirrors_Numbered((ITEMGUID)_Var1)
+AND
+DB_GlobalCounter("DB_ARX_HorrorSleep_Arena_ResurrectMirrors", _Var2)
+THEN
+DB_ARX_HorrorSleep_Arena_ResurrectMirrors_Numbered(_Var1, _Var2);
+ProcIncreaseCounter("DB_ARX_HorrorSleep_Arena_ResurrectMirrors", 1);
+
+IF
+DB_ARX_HorrorSleep_Arena_ResurrectEnemy(_Var1)
+THEN
+SetOnStage(_Var1, 0);
+
+IF
+AttackedByObject(CHARACTERGUID_S_ARX_HorrorSleep_Arena_Malady_9518c754-1654-4e30-bd32-83f04786f4dd, _, (CHARACTERGUID)_Var2, _, _)
+AND
+DB_IsPlayer(_Var2)
+AND
+QueryOnlyOnce("ARX_HorrorSleep_Arena_MaladyWasAttacked_OnlyOnce")
+THEN
+StartVoiceBark("ARX_HorrorSleep_VB_Arena_AttackMalady", _Var2);
+
+IF
+VoiceBarkFailed("ARX_HorrorSleep_VB_Arena_AttackMalady")
+AND
+DB_OnlyOnce("ARX_HorrorSleep_VB_Arena_AttackMalady")
+THEN
+NOT DB_OnlyOnce("ARX_HorrorSleep_VB_Arena_AttackMalady");
+
+IF
+CharacterLeftTrigger((CHARACTERGUID)_Var1, TRIGGERGUID_S_ARX_HorrorSleep_StartDialogTrigger_95af8875-5366-46f6-8682-52e54c071526)
+AND
+QRY_AnyRegionActive()
+AND
+DB_InRegion(_Var1, TRIGGERGUID_S_ARX_HorrorSleep_Arena_1b8cf005-392f-434a-a564-ecae6778fab0)
+AND
+QueryOnlyOnce("ARX_HorrorSleep_Arena_Alexander_StartDialog")
+THEN
+Foop(S_ARX_HorrorSleep_Arena_Alexander_fc59c20c-cedd-45f3-8ac3-bbd5365977da);
+ProcCharacterMoveTo(S_ARX_HorrorSleep_Arena_Alexander_fc59c20c-cedd-45f3-8ac3-bbd5365977da, _Var1, 0, "");
+
+IF
+CharacterLeftTrigger((CHARACTERGUID)_Var1, TRIGGERGUID_S_ARX_HorrorSleep_Arena_1b8cf005-392f-434a-a564-ecae6778fab0)
+AND
+DB_MovingTo(S_ARX_HorrorSleep_Arena_Alexander_fc59c20c-cedd-45f3-8ac3-bbd5365977da, _Var1, _Var2, _Var3)
+THEN
+ProcClearStoryMove(S_ARX_HorrorSleep_Arena_Alexander_fc59c20c-cedd-45f3-8ac3-bbd5365977da);
+
+IF
+CharacterCharacterEvent(S_ARX_HorrorSleep_Arena_Alexander_fc59c20c-cedd-45f3-8ac3-bbd5365977da, (CHARACTERGUID)_Var1, "ARX_HorrorSleep_Arena_StartDialogWithPlayer")
+THEN
+ProcClearStoryMove(S_ARX_HorrorSleep_Arena_Alexander_fc59c20c-cedd-45f3-8ac3-bbd5365977da);
+Proc_ARX_HorroSleep_StartDialog_RP_Or_Lizard(S_ARX_HorrorSleep_Arena_Alexander_fc59c20c-cedd-45f3-8ac3-bbd5365977da, _Var1, "ARX_HorrorSleep_Arena_StartDialog");
+
+PROC
+Proc_ARX_HorroSleep_StartDialog_RP_Or_Lizard((CHARACTERGUID)_Var1, (CHARACTERGUID)_Var2, (STRING)_Var3)
+AND NOT
+DB_ARX_HorroSleep_StartDialog_RP_Or_Lizard_DialogStarted(1)
+AND
+QRY_SpeakerIsAvailableAndInDialogRange(CHARACTERGUID_S_Player_RedPrince_a26a1efb-cdc8-4cf3-a7b2-b2f9544add6f, _Var1)
+THEN
+Proc_StartDialog(0, _Var3, _Var1, CHARACTERGUID_S_Player_RedPrince_a26a1efb-cdc8-4cf3-a7b2-b2f9544add6f);
+DB_ARX_HorroSleep_StartDialog_RP_Or_Lizard_DialogStarted(1);
+
+PROC
+Proc_ARX_HorroSleep_StartDialog_RP_Or_Lizard((CHARACTERGUID)_Var1, (CHARACTERGUID)_Var2, (STRING)_Var3)
+AND NOT
+DB_ARX_HorroSleep_StartDialog_RP_Or_Lizard_DialogStarted(1)
+AND
+IsTagged(_Var2, "LIZARD", 1)
+AND
+IsTagged(_Var2, "AVATAR", 1)
+THEN
+Proc_StartDialog(0, _Var3, _Var1, _Var2);
+DB_ARX_HorroSleep_StartDialog_RP_Or_Lizard_DialogStarted(1);
+
+PROC
+Proc_ARX_HorroSleep_StartDialog_RP_Or_Lizard((CHARACTERGUID)_Var1, (CHARACTERGUID)_Var2, (STRING)_Var3)
+AND NOT
+DB_ARX_HorroSleep_StartDialog_RP_Or_Lizard_DialogStarted(1)
+AND
+DB_IsPlayer(_Var4)
+AND
+IsTagged(_Var4, "LIZARD", 1)
+AND
+IsTagged(_Var4, "AVATAR", 1)
+AND
+QRY_SpeakerIsAvailableAndInDialogRange(_Var4, _Var1)
+THEN
+Proc_StartDialog(0, _Var3, _Var1, _Var4);
+DB_ARX_HorroSleep_StartDialog_RP_Or_Lizard_DialogStarted(1);
+
+PROC
+Proc_ARX_HorroSleep_StartDialog_RP_Or_Lizard((CHARACTERGUID)_Var1, (CHARACTERGUID)_Var2, (STRING)_Var3)
+AND NOT
+DB_ARX_HorroSleep_StartDialog_RP_Or_Lizard_DialogStarted(1)
+AND
+DB_IsPlayer(_Var4)
+AND
+IsTagged(_Var4, "LIZARD", 1)
+AND
+QRY_SpeakerIsAvailableAndInDialogRange(_Var4, _Var1)
+THEN
+Proc_StartDialog(0, _Var3, _Var1, _Var4);
+DB_ARX_HorroSleep_StartDialog_RP_Or_Lizard_DialogStarted(1);
+
+PROC
+Proc_ARX_HorroSleep_StartDialog_RP_Or_Lizard((CHARACTERGUID)_Var1, (CHARACTERGUID)_Var2, (STRING)_Var3)
+AND NOT
+DB_ARX_HorroSleep_StartDialog_RP_Or_Lizard_DialogStarted(1)
+THEN
+Proc_StartDialog(0, _Var3, _Var1, _Var2);
+DB_ARX_HorroSleep_StartDialog_RP_Or_Lizard_DialogStarted(1);
+
+IF
+DialogStarted("ARX_HorrorSleep_Arena_StartDialog", (INTEGER)_Var1)
+AND
+DB_IsPlayer(_Var2)
+AND NOT
+DB_DialogPlayers(_Var1, _Var2, _)
+AND
+CharacterCanSee(S_ARX_HorrorSleep_Arena_Alexander_fc59c20c-cedd-45f3-8ac3-bbd5365977da, _Var2, 1)
+THEN
+DialogAddActor(_Var1, _Var2);
+
+IF
+DialogStarted("ARX_HorrorSleep_Arena_StartDialog", (INTEGER)_Var1)
+THEN
+CharacterSetFightMode(S_ARX_HorrorSleep_Arena_Alexander_fc59c20c-cedd-45f3-8ac3-bbd5365977da, 1, 1);
+
+IF
+DialogEnded("ARX_HorrorSleep_Arena_StartDialog", (INTEGER)_Var1)
+THEN
+CharacterSetRelationFactionToFaction("ARX_HorrorSleep_Arena", "Hero", 0);
+
+IF
+DialogEnded("ARX_HorrorSleep_Arena_StartDialog", (INTEGER)_Var1)
+AND
+DB_ARX_HorrorSleep_Arena_ResurrectEnemy_Statuses(_Var2, _Var3)
+THEN
+ApplyStatus(_Var2, _Var3, -1);
+
+IF
+DialogEnded("ARX_HorrorSleep_Arena_StartDialog", (INTEGER)_Var1)
+AND
+DB_ARX_HorrorSleep_Arena_ResurrectEnemy(_Var2)
+AND
+ObjectIsOnStage(_Var2, 0)
+AND
+DB_ARX_HorrorSleep_Arena_Chests(_Var3)
+THEN
+Foop(_Var2);
+Foop(_Var3);
+
+IF
+CharacterUsedSkill((CHARACTERGUID)_Var1, "Shout_SpiritVision", _, _)
+AND
+DB_InRegion(_Var1, S_ARX_HorrorSleep_Arena_1b8cf005-392f-434a-a564-ecae6778fab0)
+AND
+DB_ARX_HorrorSleep_Arena_ResurrectMirrors(_Var4)
+AND NOT
+DB_ARX_HorrorSleep_Arena_ResurrectMirrors_Effects(_Var4, _)
+AND
+PlayLoopEffect(_Var4, "RS3_FX_Skills_Soul_Prepare_Soul_ShacklesPain_Root_01_LowVolume", "", _Var6)
+THEN
+DB_ARX_HorrorSleep_Arena_ResurrectMirrors_Effects(_Var4, _Var6);
+
+IF
+CharacterUsedSkill((CHARACTERGUID)_Var1, "Shout_SpiritVision", _, _)
+AND
+DB_InRegion(_Var1, S_ARX_HorrorSleep_Arena_1b8cf005-392f-434a-a564-ecae6778fab0)
+AND NOT
+DB_ARX_HorrorSleep_Arena_ResurrectMirrors_Effects(ITEMGUID_S_ARX_HorrorSleep_Arena_ExitDoor_1980ad94-6796-4b9a-aabf-86a61516f724, _)
+AND
+PlayLoopEffect(ITEMGUID_S_ARX_HorrorSleep_Arena_ExitDoor_1980ad94-6796-4b9a-aabf-86a61516f724, "RS3_FX_GP_ScriptedEvents_ARX_HorrorSleep_Arena_SourceVision_MirrorEffect_01", "", _Var5)
+THEN
+DB_ARX_HorrorSleep_Arena_ResurrectMirrors_Effects(ITEMGUID_S_ARX_HorrorSleep_Arena_ExitDoor_1980ad94-6796-4b9a-aabf-86a61516f724, _Var5);
+
+IF
+GlobalFlagSet("ARX_HorrorSleep_Arena_AllMirrors_Destroyed")
+AND
+DB_ARX_HorrorSleep_Arena_ResurrectMirrors_Effects(ITEMGUID_S_ARX_HorrorSleep_Arena_ExitDoor_1980ad94-6796-4b9a-aabf-86a61516f724, _Var1)
+THEN
+StopLoopEffect(_Var1);
+
+IF
+CharacterUsedItem((CHARACTERGUID)_Var1, (ITEMGUID)_Var2)
+AND
+DB_ARX_HorrorSleep_Arena_ResurrectMirrors(_Var2)
+AND
+DB_GlobalCounter("DB_ARX_HorrorSleep_Arena_ResurrectMirrors", _Var3)
+AND
+_Var3 > 1
+THEN
+ProcDeclareCounter("ARX_HorrorSleep_Arena_ResurrectMirrors_Teleport_TempCounter");
+ARX_HorrorSleep_Arena_ResurrectMirrors_TeleportPlayer(_Var1, _Var2);
+
+IF
+CharacterUsedItem((CHARACTERGUID)_Var1, (ITEMGUID)_Var2)
+AND
+DB_ARX_HorrorSleep_Arena_ResurrectMirrors(_Var2)
+AND
+DB_GlobalCounter("DB_ARX_HorrorSleep_Arena_ResurrectMirrors", 1)
+THEN
+TeleportTo(_Var1, _Var2, "", 0);
+PlayEffect(_Var1, "RS3_FX_GP_ScriptedEvent_Teleport_GenericSmoke_01");
+
+PROC
+ARX_HorrorSleep_Arena_ResurrectMirrors_TeleportPlayer((CHARACTERGUID)_Var1, (ITEMGUID)_Var2)
+AND
+DB_ARX_HorrorSleep_Arena_ResurrectMirrors(_Var3)
+AND
+_Var3 != _Var2
+AND
+DB_GlobalCounter("ARX_HorrorSleep_Arena_ResurrectMirrors_Teleport_TempCounter", _Var4)
+THEN
+DB_ARX_HorrorSleep_Arena_ResurrectMirrors_Numbered_Temp(_Var3, _Var4);
+ProcIncreaseCounter("ARX_HorrorSleep_Arena_ResurrectMirrors_Teleport_TempCounter", 1);
+
+PROC
+ARX_HorrorSleep_Arena_ResurrectMirrors_TeleportPlayer((CHARACTERGUID)_Var1, (ITEMGUID)_Var2)
+AND
+DB_GlobalCounter("ARX_HorrorSleep_Arena_ResurrectMirrors_Teleport_TempCounter", _Var3)
+AND
+Random(_Var3, _Var4)
+AND
+DB_ARX_HorrorSleep_Arena_ResurrectMirrors_Numbered_Temp(_Var5, _Var4)
+THEN
+TeleportTo(_Var1, _Var5, "", 0);
+PlayEffect(_Var1, "RS3_FX_GP_ScriptedEvent_Teleport_GenericSmoke_01");
+
+PROC
+ARX_HorrorSleep_Arena_ResurrectMirrors_TeleportPlayer((CHARACTERGUID)_Var1, (ITEMGUID)_Var2)
+THEN
+ProcRemoveCounter("ARX_HorrorSleep_Arena_ResurrectMirrors_Teleport_TempCounter");
+
+PROC
+ARX_HorrorSleep_Arena_ResurrectMirrors_TeleportPlayer((CHARACTERGUID)_Var1, (ITEMGUID)_Var2)
+AND
+DB_ARX_HorrorSleep_Arena_ResurrectMirrors_Numbered_Temp(_Var3, _Var4)
+THEN
+NOT DB_ARX_HorrorSleep_Arena_ResurrectMirrors_Numbered_Temp(_Var3, _Var4);
+
+IF
+CharacterDying((CHARACTERGUID)_Var1)
+AND
+DB_ARX_HorrorSleep_Arena_ResurrectEnemy(_Var1)
+AND NOT
+DB_CombatCharacters(_Var1, _)
+THEN
+proc_ARX_HorrorSleep_Arena_ResurrectBoss(_Var1);
+
+IF
+CharacterDying((CHARACTERGUID)_Var1)
+AND
+DB_ARX_HorrorSleep_Arena_ResurrectEnemy(_Var1)
+AND
+DB_CombatCharacters(_Var1, _Var2)
+THEN
+Poof(_Var1);
+DB_ARX_HorrorSleep_Arena_ResurrectEnemy_Counter(_Var1, _Var2);
+
+IF
+ObjectSwitchedCombat(_, (INTEGER)_Var2, (INTEGER)_Var3)
+AND
+DB_ARX_HorrorSleep_Arena_ResurrectEnemy_Counter(_Var4, _Var2)
+THEN
+DB_ARX_HorrorSleep_Arena_ResurrectEnemy_Counter(_Var4, _Var3);
+NOT DB_ARX_HorrorSleep_Arena_ResurrectEnemy_Counter(_Var4, _Var2);
+
+IF
+ObjectTurnStarted((CHARACTERGUID)_Var1)
+AND
+DB_ARX_HorrorSleep_Arena_ResurrectEnemy_Counter(_Var2, _Var3)
+AND
+DB_CombatCharacters(_Var1, _Var3)
+AND
+DB_IsPlayer(_Var1)
+THEN
+Proc_ObjectCountHelper(_Var2, "ARX_HorrorSleep_Arena_TimerToResurrect", 1);
+
+IF
+ObjectTurnEnded((CHARACTERGUID)_Var1)
+AND
+DB_ARX_HorrorSleep_Arena_ResurrectEnemy_Counter(_Var2, _Var3)
+AND
+DB_CombatCharacters(_Var1, _Var3)
+AND
+DB_IsPlayer(_Var1)
+AND
+DB_ObjectCountHelper(_Var2, "ARX_HorrorSleep_Arena_TimerToResurrect", _Var4)
+AND
+_Var4 >= 2
+AND
+QueryOnlyOnce("ARX_HorrorSleep_Arena_ResurrectBoss_OnePerTurn")
+THEN
+proc_ARX_HorrorSleep_Arena_ResurrectBoss(_Var2);
+NOT DB_ARX_HorrorSleep_Arena_ResurrectEnemy_Counter(_Var2, _Var3);
+Proc_ObjectCountHelperReset(_Var2, "ARX_HorrorSleep_Arena_TimerToResurrect");
+
+IF
+CombatEnded((INTEGER)_Var1)
+AND
+DB_ARX_HorrorSleep_Arena_ResurrectEnemy_Counter(_Var2, _Var1)
+AND
+GlobalGetFlag("ARX_HorrorSleep_Arena_AllMirrors_Destroyed", 0)
+THEN
+PROC_ARX_HorrorSleep_Arena_ResurrectBoss(_Var2);
+
+IF
+CombatEnded((INTEGER)_Var1)
+AND
+DB_ARX_HorrorSleep_Arena_ResurrectEnemy_Counter(_Var2, _Var1)
+THEN
+NOT DB_ARX_HorrorSleep_Arena_ResurrectEnemy_Counter(_Var2, _Var1);
+Proc_ObjectCountHelperReset(_Var2, "ARX_HorrorSleep_Arena_TimerToResurrect");
+
+PROC
+proc_ARX_HorrorSleep_Arena_ResurrectBoss((CHARACTERGUID)_Var1)
+AND
+DB_GlobalCounter("DB_ARX_HorrorSleep_Arena_ResurrectMirrors", _Var2)
+AND
+Random(_Var2, _Var3)
+AND
+DB_ARX_HorrorSleep_Arena_ResurrectMirrors_Numbered(_Var4, _Var3)
+THEN
+TeleportTo(_Var1, _Var4);
+Foop(_Var1);
+CharacterResurrect(_Var1);
+PlayEffect(_Var4, "RS3_FX_GP_ScriptedEvents_ARX_HorrorSleep_Arena_Resurrect_01");
+DB_ARX_HorrorSleep_Arena_ResurrectMirror_Resurrecting(_Var1, _Var4);
+
+PROC
+proc_ARX_HorrorSleep_Arena_ResurrectBoss((CHARACTERGUID)_Var1)
+AND
+DB_ARX_HorrorSleep_Arena_ResurrectMirror_Resurrecting(_Var1, _Var2)
+THEN
+SetCanFight(_Var2, 1);
+JumpToTurn(_Var2);
+
+IF
+CharacterResurrected((CHARACTERGUID)_Var1)
+AND
+DB_ARX_HorrorSleep_Arena_ResurrectMirror_Resurrecting(_Var1, _Var2)
+THEN
+LeaveCombat(_Var2);
+SetCanFight(_Var2, 0);
+
+IF
+CharacterResurrected((CHARACTERGUID)_Var1)
+AND
+DB_ARX_HorrorSleep_Arena_ResurrectMirror_Resurrecting(_Var1, _Var2)
+AND
+DB_OnlyOnce("ARX_HorrorSleep_Arena_ResurrectBoss_OnePerTurn")
+THEN
+NOT DB_OnlyOnce("ARX_HorrorSleep_Arena_ResurrectBoss_OnePerTurn");
+
+IF
+CharacterResurrected((CHARACTERGUID)_Var1)
+AND
+DB_ARX_HorrorSleep_Arena_ResurrectMirror_Resurrecting(_Var1, _Var2)
+AND
+CharacterIsInCombat(_Var1, 1)
+THEN
+JumpToTurn(_Var1);
+NOT DB_ARX_HorrorSleep_Arena_ResurrectMirror_Resurrecting(_Var1, _Var2);
+
+IF
+CharacterResurrected((CHARACTERGUID)_Var1)
+AND
+DB_ARX_HorrorSleep_Arena_ResurrectMirror_Resurrecting(_Var1, _Var2)
+THEN
+NOT DB_ARX_HorrorSleep_Arena_ResurrectMirror_Resurrecting(_Var1, _Var2);
+
+IF
+CharacterResurrected((CHARACTERGUID)_Var1)
+AND
+DB_ARX_HorrorSleep_Arena_ResurrectEnemy(_Var1)
+THEN
+CharacterSetArmorPercentage(_Var1, 100);
+CharacterSetMagicArmorPercentage(_Var1, 100);
+
+IF
+CharacterResurrected((CHARACTERGUID)_Var1)
+AND
+DB_ARX_HorrorSleep_Arena_ResurrectEnemy_Statuses(_Var1, _Var2)
+THEN
+ApplyStatus(_Var1, _Var2, -1);
+
+IF
+DB_ARX_HorrorSleep_Arena_ResurrectEnemy_Statuses(_Var1, _Var2)
+THEN
+ApplyStatus(_Var1, _Var2, -1);
+
+IF
+CharacterResurrected((CHARACTERGUID)_Var1)
+AND
+DB_ARX_HorrorSleep_Arena_ResurrectEnemy(_Var1)
+AND
+_Var1 != CHARACTERGUID_S_ARX_HorrorSleep_Arena_RedPrince_bf40bd4b-4a6e-4e75-adcf-e2caaeba5178
+THEN
+Proc_StartDialog(1, "ARX_HorrorSleep_AD_Arena_Resurrected_NPC", _Var1);
+
+IF
+ItemDestroying((ITEMGUID)_Var1)
+AND
+DB_ARX_HorrorSleep_Arena_ResurrectMirrors(_Var1)
+AND
+GetPosition(_Var1, _Var2, _Var3, _Var4)
+THEN
+PlayEffectAtPosition("RS3_FX_GP_ScriptedEvents_ARX_HorrorSleep_Arena_MirrorDestroyed_01", _Var2, _Var3, _Var4);
+
+IF
+ItemDestroying((ITEMGUID)_Var1)
+AND
+DB_ARX_HorrorSleep_Arena_ResurrectMirrors(_Var1)
+THEN
+ProcIncreaseCounter("ARX_HorrorSleep_Arena_ResurrectMirrors_DestroyedMirrors", 1);
+ProcRemoveCounter("DB_ARX_HorrorSleep_Arena_ResurrectMirrors");
+ProcDeclareCounter("DB_ARX_HorrorSleep_Arena_ResurrectMirrors");
+Proc_ARX_HorrorSleep_Arena_ResurrectMirrors_Numbered_ResetList(_Var1);
+
+IF
+CharacterDying((CHARACTERGUID)_Var1)
+AND
+DB_ARX_HorrorSleep_Arena_ResurrectEnemy(_Var1)
+AND NOT
+DB_ARX_HorrorSleep_Arena_ResurrectMirrors(_)
+THEN
+Poof(_Var1);
+
+PROC
+Proc_ARX_HorrorSleep_Arena_ResurrectMirrors_Numbered_ResetList((ITEMGUID)_Var1)
+AND
+DB_ARX_HorrorSleep_Arena_ResurrectMirrors(_Var1)
+THEN
+NOT DB_ARX_HorrorSleep_Arena_ResurrectMirrors(_Var1);
+DB_ARX_HorrorSleep_Arena_Destroyed_ResurrectMirrors(_Var1);
+
+PROC
+Proc_ARX_HorrorSleep_Arena_ResurrectMirrors_Numbered_ResetList((ITEMGUID)_Var1)
+AND
+DB_ARX_HorrorSleep_Arena_ResurrectMirrors_Numbered(_Var2, _Var3)
+THEN
+NOT DB_ARX_HorrorSleep_Arena_ResurrectMirrors_Numbered(_Var2, _Var3);
+
+PROC
+Proc_ARX_HorrorSleep_Arena_ResurrectMirrors_Numbered_ResetList((ITEMGUID)_Var1)
+AND
+DB_ARX_HorrorSleep_Arena_ResurrectMirrors(_Var2)
+AND
+DB_GlobalCounter("DB_ARX_HorrorSleep_Arena_ResurrectMirrors", _Var3)
+THEN
+DB_ARX_HorrorSleep_Arena_ResurrectMirrors_Numbered(_Var2, _Var3);
+ProcIncreaseCounter("DB_ARX_HorrorSleep_Arena_ResurrectMirrors", 1);
+
+IF
+ObjectTurnStarted((CHARACTERGUID)_Var1)
+AND
+DB_ARX_HorrorSleep_Arena_ResurrectEnemy(_Var1)
+AND
+_Var1 != CHARACTERGUID_S_ARX_HorrorSleep_Arena_RedPrince_bf40bd4b-4a6e-4e75-adcf-e2caaeba5178
+AND
+GlobalGetFlag("ARX_HorrorSleep_Arena_SummonRedPrince", 1)
+THEN
+Proc_StartDialog(1, "ARX_HorrorSleep_AD_Arena_SummonRedPrince", _Var1);
+ObjectSetFlag(_Var1, "ARX_HorrorSleep_Arena_SummonRedPrince");
+
+IF
+AutomatedDialogEnded("ARX_HorrorSleep_AD_Arena_SummonRedPrince", (INTEGER)_Var1)
+AND
+DialogGetInvolvedNPC(_Var1, 1, _Var2)
+AND
+ObjectGetFlag(_Var2, "ARX_HorrorSleep_Arena_SummonRedPrince", 1)
+AND
+GlobalGetFlag("ARX_HorrorSleep_Arena_SummonRedPrince", 1)
+THEN
+ObjectClearFlag(_Var2, "ARX_HorrorSleep_Arena_SummonRedPrince");
+GlobalClearFlag("ARX_HorrorSleep_Arena_SummonRedPrince");
+EndTurn(_Var2);
+proc_ARX_HorrorSleep_Arena_SummonRedPrince();
+
+IF
+TextEventSet("red")
+THEN
+proc_ARX_HorrorSleep_Arena_SummonRedPrince();
+
+PROC
+proc_ARX_HorrorSleep_Arena_SummonRedPrince()
+AND
+DB_IsPlayer(CHARACTERGUID_S_Player_RedPrince_a26a1efb-cdc8-4cf3-a7b2-b2f9544add6f)
+THEN
+CharacterTransformFromCharacter(CHARACTERGUID_S_ARX_HorrorSleep_Arena_RedPrince_bf40bd4b-4a6e-4e75-adcf-e2caaeba5178, CHARACTERGUID_S_Player_RedPrince_a26a1efb-cdc8-4cf3-a7b2-b2f9544add6f, 0, 0, 1, 1, 1, 0, 0);
+
+PROC
+proc_ARX_HorrorSleep_Arena_SummonRedPrince()
+AND
+DB_GlobalCounter("DB_ARX_HorrorSleep_Arena_ResurrectMirrors", _Var1)
+AND
+Random(_Var1, _Var2)
+AND
+DB_ARX_HorrorSleep_Arena_ResurrectMirrors_Numbered(_Var3, _Var2)
+THEN
+DB_ARX_HorrorSleep_Arena_ResurrectEnemy(S_ARX_HorrorSleep_Arena_RedPrince_bf40bd4b-4a6e-4e75-adcf-e2caaeba5178);
+DB_ARX_HorrorSleep_Arena_ResurrectEnemy_Statuses(S_ARX_HorrorSleep_Arena_RedPrince_bf40bd4b-4a6e-4e75-adcf-e2caaeba5178, "VENOM_COATING");
+DB_ARX_HorrorSleep_Arena_ResurrectEnemy_Statuses(S_ARX_HorrorSleep_Arena_RedPrince_bf40bd4b-4a6e-4e75-adcf-e2caaeba5178, "VENOM_AURA");
+DB_ARX_HorrorSleep_Arena_ResurrectEnemy_Statuses(S_ARX_HorrorSleep_Arena_RedPrince_bf40bd4b-4a6e-4e75-adcf-e2caaeba5178, "NIGHTMARISH");
+TeleportTo(CHARACTERGUID_S_ARX_HorrorSleep_Arena_RedPrince_bf40bd4b-4a6e-4e75-adcf-e2caaeba5178, _Var3);
+Foop(CHARACTERGUID_S_ARX_HorrorSleep_Arena_RedPrince_bf40bd4b-4a6e-4e75-adcf-e2caaeba5178);
+PlayEffect(S_ARX_HorrorSleep_Arena_RedPrince_bf40bd4b-4a6e-4e75-adcf-e2caaeba5178, "RS3_FX_GP_ScriptedEvents_ARX_HorrorSleep_Arena_Resurrect_01");
+Proc_StartDialog(1, "ARX_HorrorSleep_AD_Arena_RedPrince_Summoned", S_ARX_HorrorSleep_Arena_RedPrince_bf40bd4b-4a6e-4e75-adcf-e2caaeba5178);
+GlobalSetFlag("ARX_HorrorSleep_Arena_RedPrinceSummoned");
+
+PROC
+proc_ARX_HorrorSleep_Arena_SummonRedPrince()
+AND
+DB_ARX_HorrorSleep_Arena_ResurrectEnemy(_Var1)
+AND
+DB_CombatCharacters(_Var1, _Var2)
+AND
+QueryOnlyOnce("ARX_HorrorSleep_Arena_RedLizard_JoinCombat")
+THEN
+EnterCombat(CHARACTERGUID_S_ARX_HorrorSleep_Arena_RedPrince_bf40bd4b-4a6e-4e75-adcf-e2caaeba5178, _Var1);
+JumpToTurn(CHARACTERGUID_S_ARX_HorrorSleep_Arena_RedPrince_bf40bd4b-4a6e-4e75-adcf-e2caaeba5178);
+
+IF
+DB_GlobalCounter("ARX_HorrorSleep_Arena_ResurrectMirrors_DestroyedMirrors", _Var1)
+AND
+GlobalGetFlag("ARX_HorrorSleep_Arena_RedPrinceSummoned", 0)
+AND
+_Var1 > 2
+THEN
+GlobalSetFlag("ARX_HorrorSleep_Arena_SummonRedPrince");
+
+IF
+GlobalFlagSet("ARX_HorrorSleep_Arena_AllMirrors_Destroyed")
+AND
+DB_ARX_HorrorSleep_Arena_ResurrectEnemy(_Var1)
+AND
+DB_CombatCharacters(_Var1, _Var2)
+THEN
+DB_ARX_HorrorSleep_Arena_ResurrectEnemy_InCombatWhileMirrorDestroyed(_Var1, _Var2);
+
+IF
+DB_GlobalCounter("ARX_HorrorSleep_Arena_ResurrectMirrors_DestroyedMirrors", _Var1)
+AND
+DB_ARX_HorrorSleep_Arena_ResurrectMirrors_Destroyed_AtmosphereChange(_Var1, _Var2)
+THEN
+TriggerSetAtmosphere(TRIGGERGUID_ATM_ARX_HorrorSleep_Arena_ec1a57c2-7941-47b2-be00-ef7e0a19fd09, _Var2);
+
+IF
+GlobalFlagSet("ARX_HorrorSleep_Arena_AllMirrors_Destroyed")
+AND NOT
+DB_ARX_HorrorSleep_Arena_ResurrectEnemy_InCombatWhileMirrorDestroyed(_, _)
+AND
+DB_ARX_HorrorSleep_Arena_ResurrectMirrors_Destroyed_AtmosphereChange(0, _Var3)
+THEN
+TriggerSetAtmosphere(TRIGGERGUID_ATM_ARX_HorrorSleep_Arena_ec1a57c2-7941-47b2-be00-ef7e0a19fd09, _Var3);
+
+IF
+CombatEnded((INTEGER)_Var1)
+AND
+DB_ARX_HorrorSleep_Arena_ResurrectEnemy_InCombatWhileMirrorDestroyed(_, _Var1)
+AND
+DB_ARX_HorrorSleep_Arena_ResurrectEnemy(_Var3)
+AND
+DB_WasInCombat(_Var3, _Var1)
+AND
+QueryOnlyOnce("ARX_HorrorSleep_Arena_StopATMChange")
+AND
+DB_ARX_HorrorSleep_Arena_ResurrectMirrors_Destroyed_AtmosphereChange(0, _Var4)
+THEN
+TriggerSetAtmosphere(TRIGGERGUID_ATM_ARX_HorrorSleep_Arena_ec1a57c2-7941-47b2-be00-ef7e0a19fd09, _Var4);
+
+IF
+CharacterEnteredTrigger((CHARACTERGUID)_Var1, TRIGGERGUID_S_ARX_HorrorSleep_Arena_1b8cf005-392f-434a-a564-ecae6778fab0)
+AND
+QueryOnlyOnce("ARX_HorrorSleep_Arena_InitSandStormFX")
+AND
+DB_ARX_HorrorSleep_Arena_ResurrectMirrors_Destroyed_SandStorm(0, _Var2)
+AND
+StringConcatenate(_Var2, "HorrorSleep", _Var3)
+THEN
+PROC_LoopEffect(_Var2, ITEMGUID_S_ARX_HorroSleep_Arena_SandStorm_24a2df99-5f27-4b3b-8c6f-abe23d3ec061, _Var3, "ARX_Main", "");
+
+IF
+DB_GlobalCounter("ARX_HorrorSleep_Arena_ResurrectMirrors_DestroyedMirrors", _Var1)
+AND
+DB_ARX_HorrorSleep_Arena_ResurrectMirrors_Destroyed_SandStorm(_Var1, _Var2)
+THEN
+proc_ARX_HorrorSleep_Arena_ResurrectMirrors_Destroyed_SandStorm_TurnOn(_Var1);
+
+PROC
+proc_ARX_HorrorSleep_Arena_ResurrectMirrors_Destroyed_SandStorm_TurnOn((INTEGER)_Var1)
+AND
+DB_ARX_HorrorSleep_Arena_ResurrectMirrors_Destroyed_SandStorm(_Var2, _Var3)
+AND
+_Var2 < _Var1
+AND
+DB_LoopEffect(_Var4, _Var5, _Var6, _Var7, _Var3, _Var8)
+THEN
+PROC_StopLoopEffect(_Var4, _Var6);
+
+PROC
+proc_ARX_HorrorSleep_Arena_ResurrectMirrors_Destroyed_SandStorm_TurnOn((INTEGER)_Var1)
+AND
+DB_ARX_HorrorSleep_Arena_ResurrectMirrors_Destroyed_SandStorm(_Var1, _Var2)
+AND
+StringConcatenate(_Var2, "HorrorSleep", _Var3)
+THEN
+PROC_LoopEffect(_Var2, ITEMGUID_S_ARX_HorroSleep_Arena_SandStorm_24a2df99-5f27-4b3b-8c6f-abe23d3ec061, _Var3, "ARX_Main", "");
+
+IF
+CombatEnded((INTEGER)_Var1)
+AND
+DB_ARX_HorrorSleep_Arena_ResurrectEnemy_InCombatWhileMirrorDestroyed(_Var2, _Var1)
+AND
+DB_WasInCombat(_Var2, _Var1)
+AND
+QueryOnlyOnce("ARX_HorrorSleep_Arena_StopStandStorm")
+AND
+DB_ARX_HorrorSleep_Arena_ResurrectMirrors_Destroyed_SandStorm(_Var3, _Var4)
+AND
+StringConcatenate(_Var4, "HorrorSleep", _Var5)
+THEN
+PROC_StopLoopEffect(ITEMGUID_S_ARX_HorroSleep_Arena_SandStorm_24a2df99-5f27-4b3b-8c6f-abe23d3ec061, _Var5);
+
+IF
+GlobalFlagSet("ARX_HorrorSleep_Arena_AllMirrors_Destroyed")
+AND NOT
+DB_ARX_HorrorSleep_Arena_ResurrectEnemy_InCombatWhileMirrorDestroyed(_, _)
+AND
+DB_ARX_HorrorSleep_Arena_ResurrectMirrors_Destroyed_SandStorm(_Var3, _Var4)
+AND
+StringConcatenate(_Var4, "HorrorSleep", _Var5)
+THEN
+PROC_StopLoopEffect(ITEMGUID_S_ARX_HorroSleep_Arena_SandStorm_24a2df99-5f27-4b3b-8c6f-abe23d3ec061, _Var5);
+
+IF
+GlobalFlagSet("ARX_HorrorSleep_Arena_AllMirrors_Destroyed")
+AND NOT
+DB_ARX_HorrorSleep_Arena_ResurrectEnemy_InCombatWhileMirrorDestroyed(_, _)
+AND
+DB_ARX_HorrorSleep_Arena_ResurrectMirrors_Destroyed_SandStorm(0, _Var3)
+AND
+StringConcatenate(_Var3, "HorrorSleep", _Var4)
+THEN
+PROC_LoopEffect(_Var3, ITEMGUID_S_ARX_HorroSleep_Arena_SandStorm_24a2df99-5f27-4b3b-8c6f-abe23d3ec061, _Var4, "ARX_Main", "");
+
+IF
+CombatEnded((INTEGER)_Var1)
+AND
+DB_ARX_HorrorSleep_Arena_ResurrectEnemy_InCombatWhileMirrorDestroyed(_Var2, _Var1)
+AND
+DB_WasInCombat(_Var2, _Var1)
+THEN
+Proc_Clear_ARX_HorrorSleep_Arena_ResurrectEnemy_InCombatWhileMirrorDestroyed();
+
+PROC
+Proc_Clear_ARX_HorrorSleep_Arena_ResurrectEnemy_InCombatWhileMirrorDestroyed()
+AND
+DB_ARX_HorrorSleep_Arena_ResurrectEnemy_InCombatWhileMirrorDestroyed(_Var1, _Var2)
+AND
+DB_ARX_HorrorSleep_Arena_ResurrectMirrors_Destroyed_SandStorm(0, _Var3)
+AND
+StringConcatenate(_Var3, "HorrorSleep", _Var4)
+THEN
+PROC_LoopEffect(_Var3, ITEMGUID_S_ARX_HorroSleep_Arena_SandStorm_24a2df99-5f27-4b3b-8c6f-abe23d3ec061, _Var4, "ARX_Main", "");
+
+PROC
+Proc_Clear_ARX_HorrorSleep_Arena_ResurrectEnemy_InCombatWhileMirrorDestroyed()
+AND
+DB_ARX_HorrorSleep_Arena_ResurrectEnemy_InCombatWhileMirrorDestroyed(_Var1, _Var2)
+THEN
+NOT DB_ARX_HorrorSleep_Arena_ResurrectEnemy_InCombatWhileMirrorDestroyed(_Var1, _Var2);
+
+IF
+GlobalFlagSet("ARX_HorrorSleep_Arena_AllMirrors_Destroyed")
+AND
+DB_ARX_HorrorSleep_Arena_ResurrectEnemy(_Var1)
+AND
+DB_CombatCharacters(_Var1, _Var2)
+AND NOT
+DB_ARX_HorrorSleep_Arena_RevealDoor_DuringCombat(_Var2)
+THEN
+DB_ARX_HorrorSleep_Arena_RevealDoor_DuringCombat(_Var2);
+
+IF
+GlobalFlagSet("ARX_HorrorSleep_Arena_AllMirrors_Destroyed")
+AND NOT
+DB_ARX_HorrorSleep_Arena_RevealDoor_DuringCombat(_)
+THEN
+proc_ARX_HorrorSleep_Arena_RevealDoor();
+
+IF
+ObjectSwitchedCombat(_, (INTEGER)_Var2, (INTEGER)_Var3)
+AND
+DB_ARX_HorrorSleep_Arena_RevealDoor_DuringCombat(_Var2)
+THEN
+NOT DB_ARX_HorrorSleep_Arena_RevealDoor_DuringCombat(_Var2);
+DB_ARX_HorrorSleep_Arena_RevealDoor_DuringCombat(_Var3);
+
+IF
+CombatEnded((INTEGER)_Var1)
+AND
+DB_ARX_HorrorSleep_Arena_RevealDoor_DuringCombat(_Var1)
+THEN
+NOT DB_ARX_HorrorSleep_Arena_RevealDoor_DuringCombat(_Var1);
+proc_ARX_HorrorSleep_Arena_RevealDoor();
+
+IF
+ObjectTurnStarted((CHARACTERGUID)_Var1)
+AND
+DB_ARX_HorrorSleep_Arena_RevealDoor_DuringCombat(_Var2)
+AND
+DB_CombatCharacters(_Var1, _Var2)
+AND
+DB_IsPlayer(_Var1)
+THEN
+SetCanFight(ITEMGUID_S_ARX_HorrorSleep_Arena_ExitDoor_1980ad94-6796-4b9a-aabf-86a61516f724, 1);
+EnterCombat(ITEMGUID_S_ARX_HorrorSleep_Arena_ExitDoor_1980ad94-6796-4b9a-aabf-86a61516f724, _Var1);
+JumpToTurn(ITEMGUID_S_ARX_HorrorSleep_Arena_ExitDoor_1980ad94-6796-4b9a-aabf-86a61516f724);
+proc_ARX_HorrorSleep_Arena_RevealDoor();
+DB_ARX_HorrorSleep_Arena_RevealDoor_PlayerReact(_Var1);
+
+IF
+ObjectTurnStarted((CHARACTERGUID)_Var1)
+AND
+DB_ARX_HorrorSleep_Arena_RevealDoor_PlayerReact(_Var1)
+THEN
+NOT DB_ARX_HorrorSleep_Arena_RevealDoor_PlayerReact(_Var1);
+StartVoiceBark("ARX_HorrorSleep_Arena_VB_Door_Revealed", _Var1);
+
+PROC
+proc_ARX_HorrorSleep_Arena_RevealDoor()
+AND
+DB_ARX_HorrorSleep_Arena_MoveableWalls(_Var1, _Var2)
+THEN
+PlayEffect(_Var1, "RS3_FX_GP_ScriptedEvent_ARX_Windego_SecretRegion_RockFade_01");
+
+PROC
+proc_ARX_HorrorSleep_Arena_RevealDoor()
+THEN
+TimerLaunch("ARX_HorrorSleep_Arena_RevealDoor_RemoveRock", 1100);
+TimerLaunch("ARX_HorrorSleep_Arena_RevealDoor_CheckForCombat", 3000);
+
+IF
+TimerFinished("ARX_HorrorSleep_Arena_RevealDoor_RemoveRock")
+AND
+DB_ARX_HorrorSleep_Arena_MoveableWalls(_Var1, _Var2)
+THEN
+SetOnStage(_Var1, 0);
+
+IF
+TimerFinished("ARX_HorrorSleep_Arena_RevealDoor_CheckForCombat")
+AND
+DB_ARX_HorrorSleep_Arena_RevealDoor_DuringCombat(_Var1)
+THEN
+NOT DB_ARX_HorrorSleep_Arena_RevealDoor_DuringCombat(_Var1);
+LeaveCombat(ITEMGUID_S_ARX_HorrorSleep_Arena_ExitDoor_1980ad94-6796-4b9a-aabf-86a61516f724);
+SetCanFight(ITEMGUID_S_ARX_HorrorSleep_Arena_ExitDoor_1980ad94-6796-4b9a-aabf-86a61516f724, 0);
+
+PROC
+proc_ARX_HorrorSleep_Arena_RevealDoor()
+THEN
+SetOnStage(ITEMGUID_S_ARX_HorrorSleep_Arena_ExitDoor_Plane_e1490b7b-8231-4547-af68-84b53746416f, 1);
+PlayEffect(ITEMGUID_S_ARX_HorrorSleep_Arena_ExitDoor_1980ad94-6796-4b9a-aabf-86a61516f724, "RS3_FX_UI_PerceptionReveal_01_NotLooping");
+ItemSetCanInteract(ITEMGUID_S_ARX_HorrorSleep_Arena_ExitDoor_1980ad94-6796-4b9a-aabf-86a61516f724, 1);
+
+PROC
+proc_ARX_HorrorSleep_Arena_RevealDoor()
+AND NOT
+DB_ARX_HorrorSleep_Arena_RevealDoor_PlayerReact(_)
+AND
+GetClosestPlayer(ITEMGUID_S_ARX_HorrorSleep_Arena_ExitDoor_1980ad94-6796-4b9a-aabf-86a61516f724, _Var2, _)
+THEN
+StartVoiceBark("ARX_HorrorSleep_Arena_VB_Door_Revealed", _Var2);
+
+IF
+ItemDestroyed((ITEMGUID)_Var1)
+AND
+DB_ARX_HorrorSleep_Arena_Destroyed_ResurrectMirrors(_Var1)
+THEN
+DialogRequestStopForDialog("ARX_HorrorSleep_Arena_StartDialog", CHARACTERGUID_S_ARX_HorrorSleep_Arena_Alexander_fc59c20c-cedd-45f3-8ac3-bbd5365977da);
+
+IF
+ItemDestroying((ITEMGUID)_Var1)
+AND
+DB_ARX_HorrorSleep_Arena_Destroyed_ResurrectMirrors(_Var1)
+AND
+GetPosition(_Var1, _Var2, _Var3, _Var4)
+AND NOT
+DB_ARX_HorrorSleep_Arena_ResurrectMirrors(_)
+THEN
+GlobalSetFlag("ARX_HorrorSleep_Arena_AllMirrors_Destroyed");
+PlayEffectAtPosition("RS3_FX_GP_ScriptedEvent_ARX_HorrorSleep_Arena_LastMirrorBroke_01", _Var2, _Var3, _Var4);
+
+IF
+GlobalFlagSet("ARX_HorrorSleep_Arena_AllMirrors_Destroyed")
+AND
+DB_ARX_HorrorSleep_Arena_ResurrectEnemy(_Var1)
+THEN
+DB_ARX_HorrorSleep_Arena_ResurrectEnemy_Statuses(_Var1, "HASTED");
+PlayEffect(_Var1, "RS3_FX_GP_ScriptedEvent_ARX_HorrorSleep_Arena_SetLastStandBuff_01");
+
+IF
+CharacterDestroyedItem((CHARACTERGUID)_Var1, (ITEMGUID)_Var2)
+AND
+DB_IsPlayer(_Var1)
+AND
+DB_ARX_HorrorSleep_Arena_Destroyed_ResurrectMirrors(_Var2)
+AND NOT
+DB_ARX_HorrorSleep_Arena_ResurrectMirrors(_)
+THEN
+Proc_ShakeCameraForTime(_Var1, 2000);
+Proc_StartDialog(1, "ARX_HorrorSleep_AD_Arena_PlayersDestroyedAllMirrors", _Var1);
+
+IF
+CharacterDestroyedItem((CHARACTERGUID)_Var1, (ITEMGUID)_Var2)
+AND
+DB_IsPlayer(_Var1)
+AND
+DB_ARX_HorrorSleep_Arena_Destroyed_ResurrectMirrors(_Var2)
+AND
+QueryOnlyOnce("ARX_HorrorSleep_AD_Arena_PlayersDestroyedMirror")
+THEN
+Proc_StartDialog(1, "ARX_HorrorSleep_AD_Arena_PlayersDestroyedMirror", _Var1);
+ObjectSetFlag(CHARACTERGUID_S_ARX_HorrorSleep_Arena_Alexander_fc59c20c-cedd-45f3-8ac3-bbd5365977da, "ARX_HorrorSleep_AD_Arena_Alexander_ReactToMirrorDestroy");
+
+IF
+ObjectTurnStarted(CHARACTERGUID_S_ARX_HorrorSleep_Arena_Alexander_fc59c20c-cedd-45f3-8ac3-bbd5365977da)
+AND
+ObjectGetFlag(CHARACTERGUID_S_ARX_HorrorSleep_Arena_Alexander_fc59c20c-cedd-45f3-8ac3-bbd5365977da, "ARX_HorrorSleep_AD_Arena_Alexander_ReactToMirrorDestroy", 1)
+THEN
+Proc_StartDialog(1, "ARX_HorrorSleep_AD_Arena_Alexander_ReactToMirrorDestroy", CHARACTERGUID_S_ARX_HorrorSleep_Arena_Alexander_fc59c20c-cedd-45f3-8ac3-bbd5365977da);
+ObjectClearFlag(CHARACTERGUID_S_ARX_HorrorSleep_Arena_Alexander_fc59c20c-cedd-45f3-8ac3-bbd5365977da, "ARX_HorrorSleep_AD_Arena_Alexander_ReactToMirrorDestroy");
+
+IF
+ObjectTurnStarted((CHARACTERGUID)_Var1)
+AND
+DB_ARX_HorrorSleep_Arena_ResurrectEnemy(_Var1)
+AND
+GlobalGetFlag("ARX_HorrorSleep_Arena_AllMirrors_Destroyed", 1)
+AND
+_Var1 != CHARACTERGUID_S_ARX_HorrorSleep_Arena_RedPrince_bf40bd4b-4a6e-4e75-adcf-e2caaeba5178
+AND
+QueryOnlyOnce("ARX_HorrorSleep_Arena_AllMirrors_Destroyed")
+THEN
+Proc_StartDialog(1, "ARX_HorrorSleep_AD_Arena_Resurrected_NPC", _Var1);
+
+IF
+CombatEnded((INTEGER)_Var1)
+AND
+DB_WasInCombat(CHARACTERGUID_S_ARX_HorrorSleep_Arena_Alexander_fc59c20c-cedd-45f3-8ac3-bbd5365977da, _Var1)
+AND
+DB_IsPlayer(_Var2)
+AND
+DB_WasInCombat(_Var2, _Var1)
+AND
+DB_InRegion(_Var2, TRIGGERGUID_S_ARX_HorrorSleep_Arena_1b8cf005-392f-434a-a564-ecae6778fab0)
+AND
+GlobalGetFlag("ARX_HorrorSleep_Arena_AllMirrors_Destroyed", 1)
+AND
+QueryOnlyOnce("ARX_HorrorSleep_Arena_AllMirrors_Destroyed")
+THEN
+Proc_StartDialog(1, "ARX_HorrorSleep_AD_Arena_PlayerNeedToGetOut", _Var2);
+
+PROC
+ProcBlockUseOfItem((CHARACTERGUID)_Var1, S_ARX_HorrorSleep_Arena_ExitDoor_1980ad94-6796-4b9a-aabf-86a61516f724)
+THEN
+DB_CustomUseItemResponse(_Var1, S_ARX_HorrorSleep_Arena_ExitDoor_1980ad94-6796-4b9a-aabf-86a61516f724, 0);
+Proc_ARX_HorrorSleep_TeleportToWarZone(_Var1, 1);
+
+PROC
+Proc_ARX_HorrorSleep_TeleportToWarZone((CHARACTERGUID)_Var1, 1)
+AND
+ItemIsOpened(S_ARX_HorrorSleep_Arena_ExitDoor_1980ad94-6796-4b9a-aabf-86a61516f724, 0)
+THEN
+ItemOpen(S_ARX_HorrorSleep_Arena_ExitDoor_1980ad94-6796-4b9a-aabf-86a61516f724);
+
+PROC
+Proc_ARX_HorrorSleep_TeleportToWarZone((CHARACTERGUID)_Var1, 1)
+AND
+DB_IsPlayer(_Var2)
+AND
+CharactersAreGrouped(_Var1, _Var2, 1)
+THEN
+ApplyStatus(_Var2, "BLIND", 3, 1);
+
+PROC
+Proc_ARX_HorrorSleep_TeleportToWarZone((CHARACTERGUID)_Var1, 1)
+THEN
+FadeToBlack(_Var1, 2, 0, "ARX_HorrorSleep_TeleportToWarZone");
+ProcObjectTimer(_Var1, "ARX_HorrorSleep_TeleportToWarZone", 3000);
+
+PROC
+Proc_ARX_HorrorSleep_TeleportToWarZone((CHARACTERGUID)_Var1, 0)
+THEN
+ProcObjectTimer(_Var1, "ARX_HorrorSleep_TeleportToWarZone", 200);
+
+PROC
+ProcObjectTimerFinished((CHARACTERGUID)_Var1, "ARX_HorrorSleep_TeleportToWarZone")
+AND
+ItemIsOpened(S_ARX_HorrorSleep_Arena_ExitDoor_1980ad94-6796-4b9a-aabf-86a61516f724, 1)
+THEN
+ItemClose(S_ARX_HorrorSleep_Arena_ExitDoor_1980ad94-6796-4b9a-aabf-86a61516f724);
+
+PROC
+ProcObjectTimerFinished((CHARACTERGUID)_Var1, "ARX_HorrorSleep_TeleportToWarZone")
+THEN
+PlayEffect(_Var1, "RS3_FX_GP_ScriptedEvent_Teleport_GenericSmoke_01");
+TeleportTo(_Var1, TRIGGERGUID_S_ARX_HorrorSleep_TeleportToWarZone_74bf7714-43ab-4e5a-87c8-bcc7f7a827ae, "ARX_HorrorSleep_TeleportToWarZone", 1);
+PlayEffect(_Var1, "RS3_FX_GP_ScriptedEvent_FJ_RedPrinceO_DarknessFadeIn_01");
+FadeToBlack(_Var1, 2, 1, "ARX_HorrorSleep_TeleportToWarZone");
+
+PROC
+ProcObjectTimerFinished((CHARACTERGUID)_Var1, "ARX_HorrorSleep_TeleportToWarZone")
+AND
+DB_IsPlayer(_Var2)
+AND
+CharactersAreGrouped(_Var2, _Var1, 1)
+THEN
+CharacterRemoveSummons(_Var2, 0);
+LeaveCombat(_Var2);
+
+PROC
+ProcObjectTimerFinished((GUIDSTRING)_Var1, "ARX_HorrorSleep_TeleportToWarZone")
+AND
+QueryOnlyOnce("ARX_VB_HorrorSleep_WarZone_Enter")
+THEN
+ProcObjectTimer(_Var1, "ARX_VB_HorrorSleep_WarZone_Enter", 2000);
+
+PROC
+ProcObjectTimerFinished((CHARACTERGUID)_Var1, "ARX_VB_HorrorSleep_WarZone_Enter")
+THEN
+StartVoiceBark("ARX_VB_HorrorSleep_WarZone_Enter", _Var1);
+
+IF
+DialogStarted("ARX_HorrorSleep_Arena_StartDialog", (INTEGER)_Var1)
+AND
+DB_DialogPlayers(_Var1, _Var2, 1)
+THEN
+ObjectSetFlag(_Var2, "QuestUpdate_ARX_LizardConsulate_HorrorSleepArena_Start");
+
+IF
+GlobalFlagSet("ARX_HorrorSleep_Arena_AllMirrors_Destroyed")
+AND
+DB_IsPlayer(_Var1)
+AND
+ObjectGetFlag(_Var1, "QuestUpdate_ARX_LizardConsulate_HorrorSleepArena_Start", 1)
+THEN
+ObjectSetFlag(_Var1, "QuestUpdate_ARX_LizardConsulate_HorrorSleepArena_End");
+
+PROC
+ProcObjectTimerFinished((GUIDSTRING)_Var1, "ARX_HorrorSleep_TeleportToWarZone")
+THEN
+ObjectSetFlag(_Var1, "QuestUpdate_ARX_LizardConsulate_HorrorSleepWarzone_Enter");
+
+IF
+TextEventSet("SummonRedPrince")
+THEN
+TeleportTo(CHARACTERGUID_S_ARX_HorrorSleep_Arena_RedPrince_bf40bd4b-4a6e-4e75-adcf-e2caaeba5178, ITEMGUID_S_ARX_HorrorSleep_Mirror_7_f0521a9c-ea88-4bf8-a345-d4d9f7f1cb07);
+Foop(CHARACTERGUID_S_ARX_HorrorSleep_Arena_RedPrince_bf40bd4b-4a6e-4e75-adcf-e2caaeba5178);
+PlayEffect(S_ARX_HorrorSleep_Arena_RedPrince_bf40bd4b-4a6e-4e75-adcf-e2caaeba5178, "RS3_FX_GP_ScriptedEvents_ARX_HorrorSleep_Arena_Resurrect_01");
+JumpToTurn(CHARACTERGUID_S_ARX_HorrorSleep_Arena_RedPrince_bf40bd4b-4a6e-4e75-adcf-e2caaeba5178);
+Proc_StartDialog(1, "ARX_HorrorSleep_AD_Arena_RedPrince_Summoned", S_ARX_HorrorSleep_Arena_RedPrince_bf40bd4b-4a6e-4e75-adcf-e2caaeba5178);
+
+IF
+TextEventSet("FinishArena")
+THEN
+GlobalSetFlag("ARX_HorrorSleep_Arena_AllMirrors_Destroyed");
+
+IF
+TextEventSet("ComeHere_ARX_Arena")
+AND
+DB_IsPlayer(_Var1)
+AND
+DB_ARX_HorrorSleep_Arena_ResurrectEnemy(_Var2)
+THEN
+CharacterMoveTo(_Var2, _Var1, 1, "", 1);
+
+IF
+TextEventSet("ARENASandStorm")
+THEN
+PROC_LoopEffect("RS3_FX_Environment_GroundWind_A", ITEMGUID_S_ARX_HorroSleep_Arena_SandStorm_24a2df99-5f27-4b3b-8c6f-abe23d3ec061, "S_ARX_HorroSleep_Arena_SandStorm", "ARX_Main", "");
+
+
+EXITSECTION
+ENDEXITSECTION
+
+ParentTargetEdge "ARX"

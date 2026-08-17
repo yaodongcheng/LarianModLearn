@@ -1,0 +1,332 @@
+Version 1
+SubGoalCombiner SGC_AND
+
+INITSECTION
+DB_Dialogs(CHARACTERGUID_S_ARX_Cathedral_Historian_00d65b97-4af5-487a-829d-af4c513899be, "ARX_Loremaster");
+DB_DeadEvent(CHARACTERGUID_S_ARX_Cathedral_Historian_00d65b97-4af5-487a-829d-af4c513899be, "ARX_Cathedral_Historian_IsDead");
+DB_Ghosts(CHARACTERGUID_S_ARX_Loremaster_00d65b97-4af5-487a-829d-af4c513899be, CHARACTERGUID_S_ARX_Loremaster_Ghost_34a16c73-0688-4a15-a2fc-051fcdd93b91, "ARX_Loremaster_Ghost");
+TriggerRegisterForItems(TRIGGERGUID_S_ARX_Loremaster_BookPile_Box_39be3cb8-7c50-4b24-a418-4a560d0e84ad);
+SetOnStage(ITEMGUID_S_ARX_Loremaster_Book_4be50224-5c91-4b3d-bc39-fad5c3fed081, 0);
+SetOnStage(ITEMGUID_S_ARX_Loremaster_HatchStone_8021a3a1-9746-479c-b253-d7b4743a78cb, 0);
+CharacterUseItem(CHARACTERGUID_S_ARX_Loremaster_00d65b97-4af5-487a-829d-af4c513899be, ITEMGUID_S_ARX_Loremaster_Rich_Sofa_6dbd8cc4-c753-4143-87a7-a83d9490ebf4, "");
+Proc_ARX_Loremaster_CrimeSetUp();
+DB_GLO_Attribute_Check_AgainstLevel("ARX_AD_Loremaster_CampfireUseBlocked", 1, "Wits", "Hard", 1, 20);
+DB_GLO_Attribute_Check_AgainstLevel("ARX_AD_Loremaster_CampfireUseBlocked", 2, "Intelligence", "Hard", 1, 20);
+
+KBSECTION
+IF
+TextEventSet("LoreDragBook")
+THEN
+SetOnStage(ITEMGUID_S_ARX_Loremaster_Book_4be50224-5c91-4b3d-bc39-fad5c3fed081, 1);
+ItemDragToTrigger(ITEMGUID_S_ARX_Loremaster_Book_4be50224-5c91-4b3d-bc39-fad5c3fed081, TRIGGERGUID_S_ARX_Loremaster_BookPile_Point_ffbc2940-1219-4402-9635-ed8acb0a55c6);
+
+IF
+TextEventSet("LoremasterUnlockHatch")
+AND
+GetClosestAlivePlayer(CHARACTERGUID_S_ARX_Loremaster_00d65b97-4af5-487a-829d-af4c513899be, _Var1, _)
+THEN
+DB_ARX_Loremaster_OpenUpPassage(_Var1);
+ObjectSetFlag(_Var1, "ARX_Loremaster_ImpressedCranley");
+Proc_ARX_Loremaster_UseBookpile();
+
+PROC
+Proc_ARX_Loremaster_CrimeSetUp()
+THEN
+TriggerClearItemTemplateOwners(TRIGGERGUID_S_ARX_Neighborhood_Loremaster_Ownership_Box_584d435d-d015-447d-8e91-d52cf45fb36e, "BOOK_Book_B_28e77d40-7e26-4471-be15-8aaa2c498b20");
+
+IF
+ItemEnteredTrigger((ITEMGUID)_Var1, TRIGGERGUID_S_ARX_Loremaster_BookPile_Box_39be3cb8-7c50-4b24-a418-4a560d0e84ad, _)
+AND
+IsTagged(_Var1, "BOOK", 1)
+AND
+QueryOnlyOnce("ARX_Loremaster_BookUnlocksHatch")
+THEN
+DB_ARX_Loremaster_BookOnPile(_Var1);
+SetStoryEvent(ITEMGUID_S_ARX_Loremaster_Campfire_000_9eb3d0ff-5f75-4714-baee-d0782e17f7cb, "Snuffed");
+Foop(ITEMGUID_S_ARX_Loremaster_HatchStone_8021a3a1-9746-479c-b253-d7b4743a78cb);
+SetOnStage(ITEMGUID_S_ARX_Loremaster_Campfire_000_9eb3d0ff-5f75-4714-baee-d0782e17f7cb, 0);
+ItemUnLock(ITEMGUID_S_ARX_Loremaster_HatchStone_8021a3a1-9746-479c-b253-d7b4743a78cb);
+GlobalSetFlag("ARX_Loremaster_HatchUnlocked");
+
+IF
+ItemStatusRemoved(ITEMGUID_S_ARX_Loremaster_Campfire_000_9eb3d0ff-5f75-4714-baee-d0782e17f7cb, "BURNING", _)
+AND
+GlobalGetFlag("ARX_Loremaster_HatchUnlocked", 0)
+AND
+HasAppliedStatus(ITEMGUID_S_ARX_Loremaster_Campfire_000_9eb3d0ff-5f75-4714-baee-d0782e17f7cb, "BURNING", 0)
+THEN
+PlayEffect(ITEMGUID_S_ARX_Loremaster_Campfire_000_9eb3d0ff-5f75-4714-baee-d0782e17f7cb, "RS3_FX_GP_ScriptedEvent_Teleport_GenericSmoke_01");
+ApplyStatus(ITEMGUID_S_ARX_Loremaster_Campfire_000_9eb3d0ff-5f75-4714-baee-d0782e17f7cb, "BURNING", -1, 1);
+
+IF
+ItemEnteredTrigger((ITEMGUID)_Var1, TRIGGERGUID_S_ARX_Loremaster_BookPile_Box_39be3cb8-7c50-4b24-a418-4a560d0e84ad, (CHARACTERGUID)_Var2)
+AND
+DB_ARX_Loremaster_BookOnPile(_Var1)
+AND NOT
+DB_Dead(CHARACTERGUID_S_ARX_Loremaster_00d65b97-4af5-487a-829d-af4c513899be)
+AND
+CharacterCanSee(CHARACTERGUID_S_ARX_Loremaster_00d65b97-4af5-487a-829d-af4c513899be, _Var2, 1)
+AND
+CharacterGetCrimeDialog(CHARACTERGUID_S_ARX_Loremaster_00d65b97-4af5-487a-829d-af4c513899be, 0)
+THEN
+Proc_ARX_Loremaster_CheckPlayerMovedBook(_Var2);
+
+PROC
+Proc_ARX_Loremaster_CheckPlayerMovedBook((CHARACTERGUID)_Var1)
+AND
+CharacterIsSummon(_Var1, 1)
+AND
+CharacterGetOwner(_Var1, _Var2)
+AND
+DB_IsPlayer(_Var2)
+AND
+CharacterCanSee(CHARACTERGUID_S_ARX_Loremaster_00d65b97-4af5-487a-829d-af4c513899be, _Var2, 1)
+THEN
+Proc_ARX_Loremaster_PlayerMovedBook(_Var2);
+
+PROC
+Proc_ARX_Loremaster_CheckPlayerMovedBook((CHARACTERGUID)_Var1)
+AND
+DB_IsPlayer(_Var1)
+THEN
+Proc_ARX_Loremaster_PlayerMovedBook(_Var1);
+
+PROC
+Proc_ARX_Loremaster_PlayerMovedBook((CHARACTERGUID)_Var1)
+THEN
+ProcForceStopDialog(CHARACTERGUID_S_ARX_Loremaster_00d65b97-4af5-487a-829d-af4c513899be);
+TriggerUnregisterForItems(TRIGGERGUID_S_ARX_Loremaster_BookPile_Box_39be3cb8-7c50-4b24-a418-4a560d0e84ad);
+GlobalSetFlag("ARX_Loremaster_PlayerUnlockedHatch");
+Proc_StartDialog(0, "ARX_Loremaster", CHARACTERGUID_S_ARX_Loremaster_00d65b97-4af5-487a-829d-af4c513899be, _Var1);
+
+IF
+ItemLeftTrigger((ITEMGUID)_Var1, TRIGGERGUID_S_ARX_Loremaster_BookPile_Box_39be3cb8-7c50-4b24-a418-4a560d0e84ad, _)
+AND
+IsTagged(_Var1, "BOOK", 1)
+THEN
+NOT DB_ARX_Loremaster_BookOnPile(_Var1);
+
+PROC
+ProcBlockUseOfItem((CHARACTERGUID)_Var1, ITEMGUID_S_ARX_Loremaster_Campfire_000_9eb3d0ff-5f75-4714-baee-d0782e17f7cb)
+AND
+DB_IsPlayer(_Var1)
+THEN
+DB_CustomUseItemResponse(_Var1, ITEMGUID_S_ARX_Loremaster_Campfire_000_9eb3d0ff-5f75-4714-baee-d0782e17f7cb, 0);
+Proc_StartDialog(1, "ARX_AD_Loremaster_CampfireUseBlocked", _Var1);
+
+PROC
+ProcBlockUseOfItem((CHARACTERGUID)_Var1, ITEMGUID_S_ARX_Loremaster_HatchStone_8021a3a1-9746-479c-b253-d7b4743a78cb)
+AND
+DB_IsPlayer(_Var1)
+AND
+DB_GlobalFlag("ARX_Loremaster_HatchUnlocked")
+AND
+ObjectGetFlag(_Var1, "ARX_Loremaster_ImpressedCranley", 0)
+AND
+CharacterCanSee(CHARACTERGUID_S_ARX_Loremaster_00d65b97-4af5-487a-829d-af4c513899be, _Var1, 1)
+AND
+QRY_SpeakerIsAvailable(CHARACTERGUID_S_ARX_Loremaster_00d65b97-4af5-487a-829d-af4c513899be)
+THEN
+DB_CustomUseItemResponse(_Var1, ITEMGUID_S_ARX_Loremaster_HatchStone_8021a3a1-9746-479c-b253-d7b4743a78cb, 0);
+GlobalSetFlag("ARX_Loremaster_UnauthorizedPlayerUsingHatch");
+Proc_StartDialog(0, "ARX_Loremaster", CHARACTERGUID_S_ARX_Loremaster_00d65b97-4af5-487a-829d-af4c513899be, _Var1);
+
+IF
+ObjectFlagSet("ARX_Loremaster_AcceptedInvitation", (CHARACTERGUID)_Var1, (INTEGER)_Var2)
+AND
+DB_DialogPlayers(_Var2, _Var1, _)
+THEN
+DB_ARX_Loremaster_OpenUp(1);
+DB_ARX_Loremaster_OpenUpPassage(_Var1);
+ItemClearOwner(ITEMGUID_S_ARX_Loremaster_HatchStone_8021a3a1-9746-479c-b253-d7b4743a78cb);
+
+IF
+ObjectFlagSet("ARX_Loremaster_RemoveHatchOwnership", (GUIDSTRING)_Var1, (INTEGER)_Var2)
+THEN
+ItemClearOwner(ITEMGUID_S_ARX_Loremaster_HatchStone_8021a3a1-9746-479c-b253-d7b4743a78cb);
+
+IF
+DialogEnded("ARX_Loremaster", _)
+AND
+DB_ARX_Loremaster_OpenUp(1)
+AND NOT
+DB_GlobalFlag("ARX_Loremaster_HatchUnlocked")
+THEN
+NOT DB_ARX_Loremaster_OpenUp(1);
+Proc_ARX_Loremaster_UseBookpile();
+
+IF
+DialogEnded("ARX_Loremaster", _)
+AND
+DB_ARX_Loremaster_OpenUp(1)
+AND
+DB_GlobalFlag("ARX_Loremaster_HatchUnlocked")
+THEN
+NOT DB_ARX_Loremaster_OpenUp(1);
+DB_ARX_Loremaster_MovingToHatch(1);
+ProcCharacterMoveTo(CHARACTERGUID_S_ARX_Loremaster_00d65b97-4af5-487a-829d-af4c513899be, TRIGGERGUID_S_ARX_Loremaster_StoneHatch_LoremasterPoint_07606ed7-698e-4bca-9c0d-114423411d5a, 0, "ARX_Loremaster_MovedToHatch");
+
+PROC
+Proc_ARX_Loremaster_UseBookpile()
+THEN
+SetHasDialog(CHARACTERGUID_S_ARX_Loremaster_00d65b97-4af5-487a-829d-af4c513899be, 0);
+ProcCharacterMoveTo(CHARACTERGUID_S_ARX_Loremaster_00d65b97-4af5-487a-829d-af4c513899be, TRIGGERGUID_S_ARX_Loremaster_BookPile_LoremasterPoint_4b611dec-7a58-4dce-9135-6be680998520, 0, "ARX_Loremaster_MovedToBookpile");
+
+IF
+StoryEvent(_, "ARX_Loremaster_MovedToBookpile")
+AND
+GetVarFixedString(CHARACTERGUID_S_ARX_Loremaster_00d65b97-4af5-487a-829d-af4c513899be, "currentState", _Var2)
+THEN
+CharacterSetReactionPriority(CHARACTERGUID_S_ARX_Loremaster_00d65b97-4af5-487a-829d-af4c513899be, _Var2, 0);
+SetVarFixedString(CHARACTERGUID_S_ARX_Loremaster_00d65b97-4af5-487a-829d-af4c513899be, "currentState", "");
+
+IF
+StoryEvent(_, "ARX_Loremaster_MovedToBookpile")
+THEN
+CharacterLookAt(CHARACTERGUID_S_ARX_Loremaster_00d65b97-4af5-487a-829d-af4c513899be, TRIGGERGUID_S_ARX_Loremaster_BookPile_Point_ffbc2940-1219-4402-9635-ed8acb0a55c6);
+PlayAnimation(CHARACTERGUID_S_ARX_Loremaster_00d65b97-4af5-487a-829d-af4c513899be, "use_activate");
+SetOnStage(ITEMGUID_S_ARX_Loremaster_Book_4be50224-5c91-4b3d-bc39-fad5c3fed081, 1);
+ItemDragToTrigger(ITEMGUID_S_ARX_Loremaster_Book_4be50224-5c91-4b3d-bc39-fad5c3fed081, TRIGGERGUID_S_ARX_Loremaster_BookPile_Point_ffbc2940-1219-4402-9635-ed8acb0a55c6);
+ProcObjectTimer(CHARACTERGUID_S_ARX_Loremaster_00d65b97-4af5-487a-829d-af4c513899be, "ARX_Loremaster_PutBookDelay", 1000);
+
+PROC
+ProcObjectTimerFinished(CHARACTERGUID_S_ARX_Loremaster_00d65b97-4af5-487a-829d-af4c513899be, "ARX_Loremaster_PutBookDelay")
+AND
+DB_ARX_Loremaster_OpenUpPassage(_Var1)
+AND
+CharacterCanSee(CHARACTERGUID_S_ARX_Loremaster_00d65b97-4af5-487a-829d-af4c513899be, _Var1, 0)
+THEN
+TriggerUnregisterForItems(TRIGGERGUID_S_ARX_Loremaster_BookPile_Box_39be3cb8-7c50-4b24-a418-4a560d0e84ad);
+SetHasDialog(CHARACTERGUID_S_ARX_Loremaster_00d65b97-4af5-487a-829d-af4c513899be, 1);
+SetVarObject(CHARACTERGUID_S_ARX_Loremaster_00d65b97-4af5-487a-829d-af4c513899be, "ChairUse", ITEMGUID_S_ARX_Loremaster_Rich_Sofa_6dbd8cc4-c753-4143-87a7-a83d9490ebf4);
+SetVarFixedString(CHARACTERGUID_S_ARX_Loremaster_00d65b97-4af5-487a-829d-af4c513899be, "currentState", "State_Default");
+
+PROC
+ProcObjectTimerFinished(CHARACTERGUID_S_ARX_Loremaster_00d65b97-4af5-487a-829d-af4c513899be, "ARX_Loremaster_PutBookDelay")
+AND
+DB_ARX_Loremaster_OpenUpPassage(_Var1)
+AND
+CharacterCanSee(CHARACTERGUID_S_ARX_Loremaster_00d65b97-4af5-487a-829d-af4c513899be, _Var1, 1)
+THEN
+SetHasDialog(CHARACTERGUID_S_ARX_Loremaster_00d65b97-4af5-487a-829d-af4c513899be, 1);
+GlobalSetFlag("ARX_Loremaster_InvitePlayerDown");
+Proc_StartDialog(0, "ARX_Loremaster", CHARACTERGUID_S_ARX_Loremaster_00d65b97-4af5-487a-829d-af4c513899be, _Var1);
+DB_ARX_Loremaster_MovingToHatch(1);
+ProcCharacterMoveTo(CHARACTERGUID_S_ARX_Loremaster_00d65b97-4af5-487a-829d-af4c513899be, TRIGGERGUID_S_ARX_Loremaster_StoneHatch_LoremasterPoint_07606ed7-698e-4bca-9c0d-114423411d5a, 0, "ARX_Loremaster_MovedToHatch");
+
+IF
+DialogRequestFailed("ARX_Loremaster", _)
+THEN
+GlobalClearFlag("ARX_Loremaster_InvitePlayerDown");
+
+IF
+StoryEvent(CHARACTERGUID_S_ARX_Loremaster_00d65b97-4af5-487a-829d-af4c513899be, "ARX_Loremaster_MovedToHatch")
+THEN
+NOT DB_ARX_Loremaster_MovingToHatch(1);
+
+IF
+StoryEvent(CHARACTERGUID_S_ARX_Loremaster_00d65b97-4af5-487a-829d-af4c513899be, "ARX_Loremaster_MovedToHatch")
+AND NOT
+DB_ARX_Loremaster_PlayerDownstairs(1)
+AND
+DB_ARX_Loremaster_OpenUpPassage(_Var1)
+THEN
+SetVarFixedString(CHARACTERGUID_S_ARX_Loremaster_00d65b97-4af5-487a-829d-af4c513899be, "currentState", "");
+ProcObjectTimer(CHARACTERGUID_S_ARX_Loremaster_00d65b97-4af5-487a-829d-af4c513899be, "ARX_Loremaster_DelayBehaviour", 8000);
+CharacterLookAt(CHARACTERGUID_S_ARX_Loremaster_00d65b97-4af5-487a-829d-af4c513899be, _Var1);
+
+PROC
+ProcObjectTimerFinished(CHARACTERGUID_S_ARX_Loremaster_00d65b97-4af5-487a-829d-af4c513899be, "ARX_Loremaster_DelayBehaviour")
+AND NOT
+DB_Dead(CHARACTERGUID_S_ARX_Loremaster_00d65b97-4af5-487a-829d-af4c513899be)
+AND NOT
+DB_GlobalFlag("ARX_Loremaster_IsInCellar")
+THEN
+SetVarFixedString(CHARACTERGUID_S_ARX_Loremaster_00d65b97-4af5-487a-829d-af4c513899be, "currentState", "State_Default");
+
+IF
+StoryEvent(CHARACTERGUID_S_ARX_Loremaster_00d65b97-4af5-487a-829d-af4c513899be, "ARX_Loremaster_MovedToHatch")
+AND
+DB_ARX_Loremaster_PlayerDownstairs(1)
+AND
+DB_ARX_Loremaster_OpenUpPassage(_Var1)
+AND NOT
+DB_Dead(CHARACTERGUID_S_ARX_Loremaster_00d65b97-4af5-487a-829d-af4c513899be)
+THEN
+NOT DB_ARX_Loremaster_OpenUpPassage(_Var1);
+CharacterUseItem(CHARACTERGUID_S_ARX_Loremaster_00d65b97-4af5-487a-829d-af4c513899be, ITEMGUID_S_ARX_Loremaster_HatchStone_8021a3a1-9746-479c-b253-d7b4743a78cb, "ARX_Loremaster_UsedHatch");
+
+IF
+CharacterUsedItem((CHARACTERGUID)_Var1, ITEMGUID_S_ARX_Loremaster_HatchStone_8021a3a1-9746-479c-b253-d7b4743a78cb)
+AND
+DB_IsPlayer(_Var1)
+AND
+DB_ARX_Loremaster_MovingToHatch(1)
+AND
+DB_ARX_Loremaster_OpenUpPassage(_Var2)
+AND
+CharacterGetReservedUserID(_Var1, _Var3)
+AND
+CharacterGetReservedUserID(_Var2, _Var4)
+AND
+_Var3 == _Var4
+THEN
+DB_ARX_Loremaster_PlayerDownstairs(1);
+
+IF
+CharacterUsedItem((CHARACTERGUID)_Var1, ITEMGUID_S_ARX_Loremaster_HatchStone_8021a3a1-9746-479c-b253-d7b4743a78cb)
+AND
+DB_IsPlayer(_Var1)
+AND NOT
+DB_ARX_Loremaster_MovingToHatch(1)
+AND NOT
+DB_Dead(CHARACTERGUID_S_ARX_Loremaster_00d65b97-4af5-487a-829d-af4c513899be)
+AND
+DB_ARX_Loremaster_OpenUpPassage(_Var2)
+AND
+CharacterGetReservedUserID(_Var1, _Var3)
+AND
+CharacterGetReservedUserID(_Var2, _Var4)
+AND
+_Var3 == _Var4
+THEN
+NOT DB_ARX_Loremaster_OpenUpPassage(_Var1);
+CharacterUseItem(CHARACTERGUID_S_ARX_Loremaster_00d65b97-4af5-487a-829d-af4c513899be, ITEMGUID_S_ARX_Loremaster_HatchStone_8021a3a1-9746-479c-b253-d7b4743a78cb, "ARX_Loremaster_UsedHatch");
+
+IF
+StoryEvent(CHARACTERGUID_S_ARX_Loremaster_00d65b97-4af5-487a-829d-af4c513899be, "ARX_Loremaster_UsedHatch")
+AND
+DB_ARX_Loremaster_OpenUpPassage(_Var1)
+THEN
+NOT DB_ARX_Loremaster_OpenUpPassage(_Var1);
+
+IF
+StoryEvent(CHARACTERGUID_S_ARX_Loremaster_00d65b97-4af5-487a-829d-af4c513899be, "ARX_Loremaster_UsedHatch")
+THEN
+NOT DB_ARX_Loremaster_PlayerDownstairs(1);
+
+IF
+StoryEvent(CHARACTERGUID_S_ARX_Loremaster_00d65b97-4af5-487a-829d-af4c513899be, "ARX_Loremaster_UsedHatch")
+THEN
+GlobalSetFlag("ARX_Loremaster_IsInCellar");
+TriggerClearItemOwner(TRIGGERGUID_S_ARX_Cellar_Loremaster_Ownership_Box_ee15e918-d4e2-45c6-b20d-e272665e00d8);
+ProcCharacterMoveTo(CHARACTERGUID_S_ARX_Loremaster_00d65b97-4af5-487a-829d-af4c513899be, TRIGGERGUID_S_ARX_Loremaster_Cellar_LoremasterPoint_9dc649e7-7fa5-42e5-a8bd-f06c27f740ef, 0, "ARX_Loremaster_MoveToNewChair");
+Proc_StartDialog(1, "ARX_AD_Loremaster_ShowCellar", CHARACTERGUID_S_ARX_Loremaster_00d65b97-4af5-487a-829d-af4c513899be);
+SetVarObject(CHARACTERGUID_S_ARX_Loremaster_00d65b97-4af5-487a-829d-af4c513899be, "ChairUse", ITEMGUID_S_ARX_Loremaster_Cellar_Rich_Sofa_52cf36bc-3f64-4632-98d8-baf163016527);
+SetVarFixedString(CHARACTERGUID_S_ARX_Loremaster_00d65b97-4af5-487a-829d-af4c513899be, "currentState", "State_Default");
+SetVarInteger(CHARACTERGUID_S_ARX_Loremaster_00d65b97-4af5-487a-829d-af4c513899be, "CanWander", 1);
+SetVarFixedString(CHARACTERGUID_S_ARX_Loremaster_00d65b97-4af5-487a-829d-af4c513899be, "AnimationStanding", "Attentive_01");
+SetVarObject(CHARACTERGUID_S_ARX_Loremaster_00d65b97-4af5-487a-829d-af4c513899be, "Animation_LookAtTrigger", TRIGGERGUID_S_ARX_Cellar_Loremaster_LookAt_Point_d5876f72-d01f-4922-8916-468dfc71a993);
+
+IF
+ObjectFlagSet("ARX_Loremaster_CustomQuestReward", (CHARACTERGUID)_Var1, (INTEGER)_Var2)
+AND
+DB_DialogPlayers(_Var2, _Var1, _)
+THEN
+DB_GiveQuestRewardAfterDialog(_Var1, "ARX_Loremaster", "QuestReward", _Var2);
+
+
+EXITSECTION
+ENDEXITSECTION
+
+ParentTargetEdge "ARX"

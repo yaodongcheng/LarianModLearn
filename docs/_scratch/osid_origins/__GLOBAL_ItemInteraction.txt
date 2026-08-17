@@ -1,0 +1,42 @@
+Version 1
+SubGoalCombiner SGC_AND
+
+INITSECTION
+
+KBSECTION
+IF
+CharacterUsedItemTemplate((CHARACTERGUID)_Var1, (STRING)_Var2, _)
+AND
+DB_IsPlayer(_Var1)
+AND
+DB_RecipeBook(_Var2, _Var4)
+THEN
+UnlockJournalRecipe(_Var4);
+NOT DB_RecipeBook(_Var2, _Var4);
+
+PROC
+Proc_ItemRotateYduration((ITEMGUID)_Var1, (REAL)_Var2, (INTEGER)_Var3)
+AND
+RealProduct(_Var2, 1000, _Var4)
+AND
+Real(_Var3, _Var5)
+AND
+RealDivide(_Var4, _Var5, _Var6)
+THEN
+ItemRotateY(_Var1, _Var2, _Var6);
+
+PROC
+Proc_ItemRotateToAngleYduration((ITEMGUID)_Var1, (REAL)_Var2, (INTEGER)_Var3)
+AND
+RealProduct(_Var2, 1000, _Var4)
+AND
+Real(_Var3, _Var5)
+AND
+RealDivide(_Var4, _Var5, _Var6)
+THEN
+ItemRotateY(_Var1, _Var2, _Var6);
+
+
+EXITSECTION
+ENDEXITSECTION
+

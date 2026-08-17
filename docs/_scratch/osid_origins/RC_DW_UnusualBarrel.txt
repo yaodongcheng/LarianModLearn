@@ -1,0 +1,779 @@
+Version 1
+SubGoalCombiner SGC_AND
+
+INITSECTION
+DB_Dialogs(CHARACTERGUID_S_RC_DW_FishBarrel_c262ed6e-3edc-48f0-9e5d-35551b47cdbc, "RC_DW_FishBarrel");
+DB_Dialogs(ITEMGUID_S_RC_DW_TinkererBarrel_2c5e384c-61e3-444b-a7ed-eadf6f0509d1, "RC_DW_FishBarrel");
+SetOnStage(CHARACTERGUID_S_RC_DW_FishBarrel_c262ed6e-3edc-48f0-9e5d-35551b47cdbc, 0);
+TriggerRegisterForCharacter(TRIGGERGUID_S_RC_DW_FishBarrelTown_6314e0c5-7bf2-48e3-b631-dd7f73872e2c, CHARACTERGUID_S_RC_DW_FishBarrel_c262ed6e-3edc-48f0-9e5d-35551b47cdbc);
+ProcCharacterDisableAllCrimes(CHARACTERGUID_S_RC_DW_FishBarrel_c262ed6e-3edc-48f0-9e5d-35551b47cdbc);
+ItemTemplateAddTo("UNI_RC_DW_HiddenTinkerer_GRN_Grenade_Molotov_Strong_b2aa7fca-cefe-473a-b90c-91b2cd31cf26", CHARACTERGUID_S_RC_DW_FishBarrel_c262ed6e-3edc-48f0-9e5d-35551b47cdbc, 1);
+DB_Ghosts(CHARACTERGUID_S_RC_DW_FishBarrel_c262ed6e-3edc-48f0-9e5d-35551b47cdbc, CHARACTERGUID_S_RC_DW_FishBarrelGhost_c4ea7978-1134-4725-abfa-7c072f085e4f, "RC_DW_FishBarrelGhost");
+DB_RC_DW_FishBarrel_Patrolmen(CHARACTERGUID_S_RC_DW_FishFactory_Guard1_4e149364-2780-45ac-b0f7-19f3f8b9e1be, "RC_DW_FishFactory_Magister1");
+DB_RC_DW_FishBarrel_Patrolmen(CHARACTERGUID_S_RC_DW_FishFactory_Guard2_eec5c3cf-f6e2-4374-9814-39794ddb0b7a, "RC_DW_FishFactory_Magister2");
+DB_RC_DW_FishBarrel_Patrolmen(CHARACTERGUID_S_RC_DW_FishFactory_Guard3_8d257d1e-2887-40cf-bc3a-e07ef4651d5b, "RC_DW_FishFactory_Magister3");
+SetOnStage(CHARACTERGUID_RC_DW_FIshFactoryHound_2d1b97f3-9263-45f2-87a1-94e863fb6838, 0);
+DB_RC_DW_FishBarrel_DriftwoodSubregions(TRIGGERGUID_S_RC_DW_Tavern_SecondFloor_6ac43f47-707a-4395-b36b-54e60798d16d);
+DB_RC_DW_FishBarrel_DriftwoodSubregions(TRIGGERGUID_S_RC_DW_Tavern_SecondFloor_6ac43f47-707a-4395-b36b-54e60798d16d);
+DB_RC_DW_FishBarrel_DriftwoodSubregions(TRIGGERGUID_S_RC_DW_Arena_35165b0c-6ea3-4108-8abf-4c7b4852e338);
+DB_RC_DW_FishBarrel_DriftwoodSubregions(TRIGGERGUID_S_RC_DW_CaptainCabin_2ba98d4e-b2a7-4e19-bdb4-e4461b9abad2);
+DB_RC_DW_FishBarrel_DriftwoodSubregions(TRIGGERGUID_S_RC_DW_SUB_FishFactoryCellar_696dc517-e0d0-4a1b-bc2f-0d78a8d0589f);
+DB_RC_DW_FishBarrel_DriftwoodSubregions(TRIGGERGUID_S_RC_DW_DreamerDen_65b5feca-a5cb-4ee5-a13a-4c4ca25dee88);
+DB_RC_DW_FishBarrel_DriftwoodSubregions(TRIGGERGUID_S_RC_DW_SUB_Prison_3b4e251d-d68a-453f-857f-f2274d4540ef);
+DB_RC_DW_FishBarrelExplosion("X", 3, "Projectile_Grenade_ArmorPiercing");
+DB_RC_DW_FishBarrelExplosion("Z", 3.2, "Projectile_Grenade_Nailbomb");
+DB_RC_DW_FishBarrelExplosion("X", -3.7, "Projectile_Grenade_ArmorPiercing");
+DB_RC_DW_FishBarrelExplosion("Z", -3.6, "Projectile_Grenade_Nailbomb");
+DB_RC_DW_FishBarrelExplosion("X", 4.1, "Projectile_Grenade_Molotov");
+
+KBSECTION
+IF
+DB_RC_DW_FishBarrel_DriftwoodSubregions(_Var1)
+THEN
+TriggerRegisterForCharacter(_Var1, CHARACTERGUID_S_RC_DW_FishBarrel_c262ed6e-3edc-48f0-9e5d-35551b47cdbc);
+
+IF
+ObjectFlagSet("RC_DW_FishBarrelDialog", (CHARACTERGUID)_Var1, _)
+THEN
+ObjectClearFlag(_Var1, "RC_DW_FishBarrelDialog", 0);
+Proc_StartDialog(0, "RC_DW_FishBarrel", ITEMGUID_S_RC_DW_TinkererBarrel_2c5e384c-61e3-444b-a7ed-eadf6f0509d1, _Var1);
+
+IF
+DialogStarted("RC_DW_FishBarrel", _)
+THEN
+GlobalSetFlag("RC_DW_FishBarrelQuestStarted");
+
+IF
+DialogStarted("RC_DW_FishBarrel", _)
+AND
+QueryOnlyOnce("RC_DW_FishBarrel_ClearIntro")
+AND
+DB_RC_DW_FishBarrel_Patrolmen(_Var2, _)
+THEN
+ProcTriggerUnregisterForPlayers(TRIGGERGUID_S_RC_DW_FishFactory_4a29517d-6369-47be-97d3-bc34e2547bca);
+NOT DB_SneakTriggerSpotter(TRIGGERGUID_S_RC_DW_FishFactory_4a29517d-6369-47be-97d3-bc34e2547bca, _Var2);
+
+IF
+DialogStarted("RC_DW_FishBarrel", _)
+AND NOT
+DB_RC_DW_FishFactoryIntro(1)
+THEN
+Proc_RC_DW_FishFactoryIntroAD();
+ProcTriggerUnregisterForPlayers(TRIGGERGUID_S_RC_DW_OneShot_FishFactoryScene_7caf9d16-fd06-4af1-94ed-16e265dbbaff);
+NOT DB_OneShotPlayerTrigger(TRIGGERGUID_S_RC_DW_OneShot_FishFactoryScene_7caf9d16-fd06-4af1-94ed-16e265dbbaff);
+
+IF
+DialogEnded("RC_DW_FishBarrel", (INTEGER)_Var1)
+AND
+DB_DialogPlayers(_Var1, _Var2, 1)
+AND
+ObjectGetFlag(_Var2, "RC_DW_FishBarrelFollow", 1)
+THEN
+ObjectClearFlag(_Var2, "RC_DW_FishBarrelFollow", 0);
+Proc_RC_DW_FishBarrelTransform();
+DB_RC_DW_UnusualBarrelMaster(_Var2);
+ObjectSetFlag(_Var2, "RC_DW_UnusualBarrel_FollowedBy");
+CharacterAddToPlayerCharacter(CHARACTERGUID_S_RC_DW_FishBarrel_c262ed6e-3edc-48f0-9e5d-35551b47cdbc, _Var2);
+GlobalSetFlag("RC_DW_FishBarrelFollowing");
+
+IF
+ObjectFlagSet("RC_DW_FishBarrelFollow", (CHARACTERGUID)_Var1, (INTEGER)_Var2)
+AND
+QueryOnlyOnce("RC_DW_FishBarrelAutosave")
+THEN
+AutoSave();
+
+IF
+GlobalFlagSet("RC_DW_FishBarrelStop")
+THEN
+GlobalClearFlag("RC_DW_FishBarrelStop");
+Proc_RC_DW_FishBarrel_RemoveFromParty();
+Proc_RC_DW_TinkererTransform();
+
+PROC
+Proc_RC_DW_FishBarrel_RemoveFromParty()
+AND
+DB_RC_DW_UnusualBarrelMaster(_Var1)
+THEN
+ObjectClearFlag(_Var1, "RC_DW_UnusualBarrel_FollowedBy");
+NOT DB_RC_DW_UnusualBarrelMaster(_Var1);
+CharacterRemoveFromPlayerCharacter(CHARACTERGUID_S_RC_DW_FishBarrel_c262ed6e-3edc-48f0-9e5d-35551b47cdbc, _Var1);
+GlobalClearFlag("RC_DW_FishBarrelFollowing");
+
+PROC
+Proc_RC_DW_FishBarrelTransform()
+AND NOT
+DB_RC_DW_TinkererTransformed(1)
+THEN
+DB_RC_DW_TinkererTransformed(1);
+TeleportTo(CHARACTERGUID_S_RC_DW_FishBarrel_c262ed6e-3edc-48f0-9e5d-35551b47cdbc, ITEMGUID_S_RC_DW_TinkererBarrel_2c5e384c-61e3-444b-a7ed-eadf6f0509d1);
+Foop(CHARACTERGUID_S_RC_DW_FishBarrel_c262ed6e-3edc-48f0-9e5d-35551b47cdbc);
+Poof(ITEMGUID_S_RC_DW_TinkererBarrel_2c5e384c-61e3-444b-a7ed-eadf6f0509d1);
+
+PROC
+Proc_RC_DW_TinkererTransform()
+AND
+DB_RC_DW_TinkererTransformed(1)
+THEN
+NOT DB_RC_DW_TinkererTransformed(1);
+TeleportTo(ITEMGUID_S_RC_DW_TinkererBarrel_2c5e384c-61e3-444b-a7ed-eadf6f0509d1, CHARACTERGUID_S_RC_DW_FishBarrel_c262ed6e-3edc-48f0-9e5d-35551b47cdbc);
+Foop(ITEMGUID_S_RC_DW_TinkererBarrel_2c5e384c-61e3-444b-a7ed-eadf6f0509d1);
+Poof(CHARACTERGUID_S_RC_DW_FishBarrel_c262ed6e-3edc-48f0-9e5d-35551b47cdbc);
+
+IF
+ItemDestroyed(ITEMGUID_S_RC_DW_TinkererBarrel_2c5e384c-61e3-444b-a7ed-eadf6f0509d1)
+AND
+GetFaction(CHARACTERGUID_S_RC_DW_FishBarrel_c262ed6e-3edc-48f0-9e5d-35551b47cdbc, _Var1)
+AND
+_Var1 != "Evil NPC"
+THEN
+SetFaction(CHARACTERGUID_S_RC_DW_FishBarrel_c262ed6e-3edc-48f0-9e5d-35551b47cdbc, "Evil NPC");
+
+IF
+ItemDestroyed(ITEMGUID_S_RC_DW_TinkererBarrel_2c5e384c-61e3-444b-a7ed-eadf6f0509d1)
+AND NOT
+DB_Dead(CHARACTERGUID_S_RC_DW_FishBarrel_c262ed6e-3edc-48f0-9e5d-35551b47cdbc)
+AND
+ObjectIsOnStage(CHARACTERGUID_S_RC_DW_FishBarrel_c262ed6e-3edc-48f0-9e5d-35551b47cdbc, 0)
+THEN
+Foop(CHARACTERGUID_S_RC_DW_FishBarrel_c262ed6e-3edc-48f0-9e5d-35551b47cdbc);
+
+IF
+AttackedByObject(CHARACTERGUID_S_RC_DW_FishBarrel_c262ed6e-3edc-48f0-9e5d-35551b47cdbc, (CHARACTERGUID)_Var1, _, _, _)
+AND
+DB_IsPlayer(_Var1)
+AND NOT
+DB_GlobalFlag("RC_DW_FishBarrelFollowing")
+AND NOT
+DB_GlobalFlag("RC_DW_FishBarrelQuestStarted")
+AND
+CharacterGetHitpointsPercentage(CHARACTERGUID_S_RC_DW_FishBarrel_c262ed6e-3edc-48f0-9e5d-35551b47cdbc, _Var5)
+AND
+_Var5 > 50
+THEN
+Proc_StartDialog(0, "RC_DW_FishBarrel", CHARACTERGUID_S_RC_DW_FishBarrel_c262ed6e-3edc-48f0-9e5d-35551b47cdbc, _Var1);
+
+IF
+CharacterReceivedDamage(CHARACTERGUID_S_RC_DW_FishBarrel_c262ed6e-3edc-48f0-9e5d-35551b47cdbc, _, _)
+AND
+CharacterGetHitpointsPercentage(CHARACTERGUID_S_RC_DW_FishBarrel_c262ed6e-3edc-48f0-9e5d-35551b47cdbc, _Var3)
+AND
+_Var3 < 50
+THEN
+Proc_RC_DW_FishBarrel_RemoveFromParty();
+PROC_RC_DW_FishBarrel_Explode();
+
+PROC
+PROC_RC_DW_FishBarrel_Explode()
+AND
+QueryOnlyOnce("RC_DW_FishBarrelExplode")
+THEN
+DialogRequestStop(CHARACTERGUID_S_RC_DW_FishBarrel_c262ed6e-3edc-48f0-9e5d-35551b47cdbc);
+SetFaction(CHARACTERGUID_S_RC_DW_FishBarrel_c262ed6e-3edc-48f0-9e5d-35551b47cdbc, "Evil NPC");
+Proc_StartDialog(1, "RC_DW_AD_FishBarrelExplode", CHARACTERGUID_S_RC_DW_FishBarrel_c262ed6e-3edc-48f0-9e5d-35551b47cdbc);
+
+PROC
+PROC_RC_DW_FishBarrel_Explode()
+AND
+ObjectIsOnStage(CHARACTERGUID_S_RC_DW_FishBarrel_c262ed6e-3edc-48f0-9e5d-35551b47cdbc, 0)
+THEN
+TeleportTo(CHARACTERGUID_S_RC_DW_FishBarrel_c262ed6e-3edc-48f0-9e5d-35551b47cdbc, ITEMGUID_S_RC_DW_TinkererBarrel_2c5e384c-61e3-444b-a7ed-eadf6f0509d1);
+Foop(CHARACTERGUID_S_RC_DW_FishBarrel_c262ed6e-3edc-48f0-9e5d-35551b47cdbc);
+Poof(ITEMGUID_S_RC_DW_TinkererBarrel_2c5e384c-61e3-444b-a7ed-eadf6f0509d1);
+
+IF
+AutomatedDialogEnded("RC_DW_AD_FishBarrelExplode", _)
+AND
+ItemTemplateIsInCharacterInventory(CHARACTERGUID_S_RC_DW_FishBarrel_c262ed6e-3edc-48f0-9e5d-35551b47cdbc, "UNI_RC_DW_HiddenTinkerer_GRN_Grenade_Molotov_Strong_b2aa7fca-cefe-473a-b90c-91b2cd31cf26", _Var2)
+AND
+_Var2 <= 0
+AND
+QueryOnlyOnce("RC_DW_TinkererNadeDialogCheck")
+THEN
+GlobalSetFlag("RC_DW_HidingMagister_FailedToExplode");
+Proc_StartDialog(1, "RC_DW_AD_FishBarrelExplode", CHARACTERGUID_S_RC_DW_FishBarrel_c262ed6e-3edc-48f0-9e5d-35551b47cdbc);
+SetFaction(CHARACTERGUID_S_RC_DW_FishBarrel_c262ed6e-3edc-48f0-9e5d-35551b47cdbc, "Evil NPC");
+
+IF
+AutomatedDialogEnded("RC_DW_AD_FishBarrelExplode", _)
+AND
+ItemTemplateIsInCharacterInventory(CHARACTERGUID_S_RC_DW_FishBarrel_c262ed6e-3edc-48f0-9e5d-35551b47cdbc, "UNI_RC_DW_HiddenTinkerer_GRN_Grenade_Molotov_Strong_b2aa7fca-cefe-473a-b90c-91b2cd31cf26", _Var2)
+AND
+_Var2 > 0
+AND
+QueryOnlyOnce("RC_DW_TinkerUseNade")
+THEN
+ItemTemplateRemoveFrom("UNI_RC_DW_HiddenTinkerer_GRN_Grenade_Molotov_Strong_b2aa7fca-cefe-473a-b90c-91b2cd31cf26", CHARACTERGUID_S_RC_DW_FishBarrel_c262ed6e-3edc-48f0-9e5d-35551b47cdbc, 1);
+PlayAnimation(CHARACTERGUID_S_RC_DW_FishBarrel_c262ed6e-3edc-48f0-9e5d-35551b47cdbc, "Detonate_01", "RC_DW_UnusualBarrelDetonate");
+TimerLaunch("Timer_S_RC_DW_FishBarrel_Explode", 1500);
+
+IF
+StoryEvent(CHARACTERGUID_S_RC_DW_FishBarrel_c262ed6e-3edc-48f0-9e5d-35551b47cdbc, "RC_DW_UnusualBarrelDetonate")
+THEN
+TimerLaunch("Timer_S_RC_DW_FishBarrel_Die", 200);
+
+IF
+StoryEvent(CHARACTERGUID_S_RC_DW_FishBarrel_c262ed6e-3edc-48f0-9e5d-35551b47cdbc, "RC_DW_UnusualBarrelDetonate")
+AND
+GetPosition(CHARACTERGUID_S_RC_DW_FishBarrel_c262ed6e-3edc-48f0-9e5d-35551b47cdbc, _Var1, _Var2, _Var3)
+AND
+DB_RC_DW_FishBarrelExplosion("X", _Var4, _Var5)
+AND
+RealSum(_Var4, _Var1, _Var6)
+THEN
+CreateExplosionAtPosition(_Var6, _Var2, _Var3, _Var5, 12);
+
+IF
+StoryEvent(CHARACTERGUID_S_RC_DW_FishBarrel_c262ed6e-3edc-48f0-9e5d-35551b47cdbc, "RC_DW_UnusualBarrelDetonate")
+AND
+GetPosition(CHARACTERGUID_S_RC_DW_FishBarrel_c262ed6e-3edc-48f0-9e5d-35551b47cdbc, _Var1, _Var2, _Var3)
+THEN
+CreateExplosionAtPosition(_Var1, _Var2, _Var3, "Projectile_Quest_RC_DW_HiddenTinkerer_Grenade_Molotov_Strong", 12);
+
+IF
+StoryEvent(CHARACTERGUID_S_RC_DW_FishBarrel_c262ed6e-3edc-48f0-9e5d-35551b47cdbc, "RC_DW_UnusualBarrelDetonate")
+AND
+GetPosition(CHARACTERGUID_S_RC_DW_FishBarrel_c262ed6e-3edc-48f0-9e5d-35551b47cdbc, _Var1, _Var2, _Var3)
+AND
+DB_RC_DW_FishBarrelExplosion("Z", _Var4, _Var5)
+AND
+RealSum(_Var4, _Var2, _Var6)
+THEN
+CreateExplosionAtPosition(_Var1, _Var6, _Var3, _Var5, 12);
+
+IF
+TimerFinished("Timer_S_RC_DW_FishBarrel_Die")
+THEN
+CharacterDie(CHARACTERGUID_S_RC_DW_FishBarrel_c262ed6e-3edc-48f0-9e5d-35551b47cdbc, 1, "Explode");
+
+IF
+DialogEnded("RC_DW_FishBarrel", _)
+AND
+ObjectGetFlag(ITEMGUID_S_RC_DW_TinkererBarrel_2c5e384c-61e3-444b-a7ed-eadf6f0509d1, "RC_DW_FishBarrel_Hostile", 1)
+THEN
+Proc_RC_DW_FishBarrelTransform();
+SetFaction(CHARACTERGUID_S_RC_DW_FishBarrel_c262ed6e-3edc-48f0-9e5d-35551b47cdbc, "Evil NPC");
+SetHasDialog(CHARACTERGUID_S_RC_DW_FishBarrel_c262ed6e-3edc-48f0-9e5d-35551b47cdbc, 0);
+
+IF
+CharacterDied(CHARACTERGUID_S_RC_DW_FishBarrel_c262ed6e-3edc-48f0-9e5d-35551b47cdbc)
+AND
+DB_RC_DW_UnusualBarrelMaster(_)
+THEN
+Proc_RC_DW_FishBarrel_RemoveFromParty();
+
+IF
+CharacterDied(CHARACTERGUID_S_RC_DW_FishBarrel_c262ed6e-3edc-48f0-9e5d-35551b47cdbc)
+THEN
+GlobalSetFlag("RC_DW_FishBarrel_IsDead");
+GlobalClearFlag("RC_DW_FishBarrel_Escaped");
+
+IF
+CharacterDied(CHARACTERGUID_S_RC_DW_FishBarrel_c262ed6e-3edc-48f0-9e5d-35551b47cdbc)
+AND
+DB_RC_DW_FishBarrel_Patrolmen(_Var1, _)
+THEN
+SetHasDialog(_Var1, 1);
+
+PROC
+Proc_ObjectLeftCombat(CHARACTERGUID_S_RC_DW_FishBarrel_c262ed6e-3edc-48f0-9e5d-35551b47cdbc, _)
+AND
+GetFaction(CHARACTERGUID_S_RC_DW_FishBarrel_c262ed6e-3edc-48f0-9e5d-35551b47cdbc, _Var2)
+AND
+_Var2 != "Evil NPC"
+AND NOT
+DB_RC_DW_UnusualBarrelMaster(_)
+THEN
+SetFaction(CHARACTERGUID_S_RC_DW_FishBarrel_c262ed6e-3edc-48f0-9e5d-35551b47cdbc, "RC_DW_FishBarrel");
+Proc_RC_DW_TinkererTransform();
+
+IF
+CharacterLeftTrigger(CHARACTERGUID_S_RC_DW_FishBarrel_c262ed6e-3edc-48f0-9e5d-35551b47cdbc, TRIGGERGUID_S_RC_DW_FishBarrelTown_6314e0c5-7bf2-48e3-b631-dd7f73872e2c)
+THEN
+ProcObjectTimer(CHARACTERGUID_S_RC_DW_FishBarrel_c262ed6e-3edc-48f0-9e5d-35551b47cdbc, "Timer_RC_DW_TinkerEscapeTimer", 2500);
+
+PROC
+ProcObjectTimerFinished(CHARACTERGUID_S_RC_DW_FishBarrel_c262ed6e-3edc-48f0-9e5d-35551b47cdbc, "Timer_RC_DW_TinkerEscapeTimer")
+AND NOT
+DB_InRegion(CHARACTERGUID_S_RC_DW_FishBarrel_c262ed6e-3edc-48f0-9e5d-35551b47cdbc, TRIGGERGUID_S_RC_DW_FishBarrelTown_6314e0c5-7bf2-48e3-b631-dd7f73872e2c)
+AND
+ObjectIsOnStage(CHARACTERGUID_S_RC_DW_FishBarrel_c262ed6e-3edc-48f0-9e5d-35551b47cdbc, 1)
+THEN
+Proc_StartDialog(1, "RC_DW_AD_LeftTown", CHARACTERGUID_S_RC_DW_FishBarrel_c262ed6e-3edc-48f0-9e5d-35551b47cdbc);
+Proc_RC_DW_FishBarrel_CheckEscape();
+
+PROC
+Proc_RC_DW_FishBarrel_CheckEscape()
+AND
+DB_RC_DW_FishBarrel_DriftwoodSubregions(_Var1)
+AND
+DB_InRegion(CHARACTERGUID_S_RC_DW_FishBarrel_c262ed6e-3edc-48f0-9e5d-35551b47cdbc, _Var1)
+THEN
+DialogRequestStop(CHARACTERGUID_S_RC_DW_FishBarrel_c262ed6e-3edc-48f0-9e5d-35551b47cdbc);
+Proc_StartDialog(1, "RC_DW_AD_Betrayed", CHARACTERGUID_S_RC_DW_FishBarrel_c262ed6e-3edc-48f0-9e5d-35551b47cdbc);
+DB_RC_DW_FishBarrelBetrayed(1);
+Proc_RC_DW_FishBarrelBetrayed();
+
+PROC
+Proc_RC_DW_FishBarrelBetrayed()
+AND
+DB_RC_DW_UnusualBarrelMaster(_Var1)
+THEN
+Proc_RC_DW_FishBarrel_RemoveFromParty();
+SetFaction(CHARACTERGUID_S_RC_DW_FishBarrel_c262ed6e-3edc-48f0-9e5d-35551b47cdbc, "Evil NPC");
+
+PROC
+Proc_RC_DW_FishBarrelBetrayed()
+AND NOT
+DB_RC_DW_UnusualBarrelMaster(_)
+THEN
+SetFaction(CHARACTERGUID_S_RC_DW_FishBarrel_c262ed6e-3edc-48f0-9e5d-35551b47cdbc, "Evil NPC");
+
+PROC
+Proc_RC_DW_FishBarrel_CheckEscape()
+AND NOT
+DB_RC_DW_FishBarrelBetrayed(1)
+AND
+DB_RC_DW_UnusualBarrelMaster(_Var1)
+AND
+QueryOnlyOnce("RC_DW_FishBarrelEscape")
+THEN
+GlobalSetFlag("RC_DW_FishBarrel_IsOutOfTown");
+ProcForceStopDialog(CHARACTERGUID_S_RC_DW_FishBarrel_c262ed6e-3edc-48f0-9e5d-35551b47cdbc);
+Proc_StartDialog(1, "RC_DW_AD_FishBarrelEscaped", CHARACTERGUID_S_RC_DW_FishBarrel_c262ed6e-3edc-48f0-9e5d-35551b47cdbc);
+SetHasDialog(CHARACTERGUID_S_RC_DW_FishBarrel_c262ed6e-3edc-48f0-9e5d-35551b47cdbc, 0);
+Proc_RC_DW_FishBarrel_RemoveFromParty();
+DB_RC_DW_FishBarrelOneShotThanks(_Var1);
+
+IF
+AutomatedDialogEnded("RC_DW_AD_FishBarrelEscaped", _)
+THEN
+Proc_RC_DW_TinkererTransform();
+
+IF
+AutomatedDialogEnded("RC_DW_AD_FishBarrelEscaped", _)
+AND
+DB_RC_DW_FishBarrelOneShotThanks(_Var2)
+THEN
+Proc_RC_DW_FishBarrel_EscapeDialog(_Var2);
+
+PROC
+Proc_RC_DW_FishBarrel_EscapeDialog((CHARACTERGUID)_Var1)
+THEN
+Proc_StartDialog(0, "RC_DW_FishBarrel", ITEMGUID_S_RC_DW_TinkererBarrel_2c5e384c-61e3-444b-a7ed-eadf6f0509d1, _Var1);
+
+IF
+DialogEnded("RC_DW_FishBarrel", _)
+AND
+DB_GlobalFlag("RC_DW_FishBarrelTeleport")
+THEN
+ProcRemoveAllDialogEntriesForSpeaker(ITEMGUID_S_RC_DW_TinkererBarrel_2c5e384c-61e3-444b-a7ed-eadf6f0509d1);
+GlobalSetFlag("RC_DW_FishBarrel_Escaped");
+Proc_RC_DW_FishBarrelEscapeCheck();
+
+PROC
+ProcObjectTimerFinished(ITEMGUID_S_RC_DW_TinkererBarrel_2c5e384c-61e3-444b-a7ed-eadf6f0509d1, "Timer_RC_DW_FishBarrel_Escape")
+THEN
+Proc_RC_DW_FishBarrelEscapeCheck();
+
+PROC
+Proc_RC_DW_FishBarrelEscapeCheck()
+THEN
+NOT DB_RC_DW_FishBarrelIsSeen(1);
+
+PROC
+Proc_RC_DW_FishBarrelEscapeCheck()
+AND
+Qry_IsSeenByPlayer(ITEMGUID_S_RC_DW_TinkererBarrel_2c5e384c-61e3-444b-a7ed-eadf6f0509d1)
+THEN
+DB_RC_DW_FishBarrelIsSeen(1);
+ProcObjectTimer(ITEMGUID_S_RC_DW_TinkererBarrel_2c5e384c-61e3-444b-a7ed-eadf6f0509d1, "Timer_RC_DW_FishBarrel_Escape", 1500);
+
+PROC
+Proc_RC_DW_FishBarrelEscapeCheck()
+AND NOT
+DB_RC_DW_FishBarrelIsSeen(1)
+THEN
+Poof(ITEMGUID_S_RC_DW_TinkererBarrel_2c5e384c-61e3-444b-a7ed-eadf6f0509d1);
+
+IF
+GlobalFlagSet("RC_DW_FishBarrel_Escaped")
+AND
+DB_RC_DW_FishBarrelOneShotThanks(_Var1)
+THEN
+PartySetFlag(_Var1, "QuestUpdate_RC_DW_HidingTinkerer_Tinkerer_Escaped");
+PartySetFlag(_Var1, "GLO_SetTag_HERO");
+
+QRY
+Qry_IsSeenByPlayer((CHARACTERGUID)_Var1)
+AND
+DB_IsPlayer(_Var2)
+AND
+CharacterCanSee(_Var2, _Var1, 1)
+THEN
+DB_NOOP(1);
+
+IF
+CharacterUsedItem((CHARACTERGUID)_Var1, ITEMGUID_S_RC_DW_TinkererBarrel_2c5e384c-61e3-444b-a7ed-eadf6f0509d1)
+THEN
+Proc_StartDialog(1, "RC_DW_AD_FishBarrelLeaving", ITEMGUID_S_RC_DW_TinkererBarrel_2c5e384c-61e3-444b-a7ed-eadf6f0509d1);
+
+IF
+DialogEnded("RC_DW_FishBarrel", (INTEGER)_Var1)
+AND
+GlobalGetFlag("RC_DW_FishBarrelTeleport", 1)
+AND
+DialogGetInvolvedPlayer(_Var1, 1, _Var2)
+THEN
+ObjectSetFlag(_Var2, "QuestUpdate_RC_DW_FunnyMeat_Chest_Escape");
+
+IF
+CharacterDied(CHARACTERGUID_S_RC_DW_FishBarrel_c262ed6e-3edc-48f0-9e5d-35551b47cdbc)
+AND
+DB_IsPlayer(_Var1)
+THEN
+ObjectSetFlag(_Var1, "QuestUpdate_RC_DW_FunnyMeat_Chest_Dead");
+
+IF
+CharacterEnteredTrigger(CHARACTERGUID_S_RC_DW_FishBarrel_c262ed6e-3edc-48f0-9e5d-35551b47cdbc, TRIGGERGUID_S_RC_DW_FishBarrelTown_6314e0c5-7bf2-48e3-b631-dd7f73872e2c)
+AND
+ObjectIsOnStage(CHARACTERGUID_S_RC_DW_FishBarrel_c262ed6e-3edc-48f0-9e5d-35551b47cdbc, 1)
+THEN
+GlobalClearFlag("RC_DW_FishBarrel_IsOutOfTown");
+
+IF
+CharacterDied(CHARACTERGUID_S_RC_DW_FishBarrel_c262ed6e-3edc-48f0-9e5d-35551b47cdbc)
+AND
+DB_RC_DW_FishBarrel_Patrolmen(_Var1, _)
+THEN
+SetHasDialog(_Var1, 1);
+
+IF
+CharacterDied(CHARACTERGUID_S_RC_DW_FishBarrel_c262ed6e-3edc-48f0-9e5d-35551b47cdbc)
+AND
+GlobalGetFlag("RC_DW_FishBarrelFound", 1)
+THEN
+GlobalSetFlag("RC_DW_FishFactory_StopPatrol");
+
+IF
+GlobalFlagSet("RC_DW_FishBarrel_Complete")
+THEN
+GlobalSetFlag("RC_DW_FishFactory_StopPatrol");
+GlobalClearFlag("RC_DW_FishBarrelIgnore");
+
+IF
+DialogEnded((STRING)_Var1, _)
+AND
+DB_Dialogs(_Var3, _Var1)
+AND
+DB_RC_DW_FishBarrel_Patrolmen(_Var3, _)
+AND
+ObjectGetFlag(_Var3, "RC_DW_FishBarrel_Spotted", 1)
+AND NOT
+DB_GlobalFlag("RC_DW_FishBarrel_Escaped")
+THEN
+ObjectClearFlag(_Var3, "RC_DW_FishBarrel_Spotted", 0);
+Proc_RC_DW_FishFactoryChaseBarrel(_Var3);
+Proc_RC_DW_FishBarrelSummonTroops(_Var3);
+
+IF
+ObjectFlagSet("RC_DW_FishBarrel_Spotted", (CHARACTERGUID)_Var1, _)
+AND NOT
+DB_GlobalFlag("RC_DW_FishBarrel_Escaped")
+THEN
+CharacterSetFightMode(_Var1, 1, 1);
+
+IF
+ObjectFlagSet("RC_DW_FishBarrel_Chase", (CHARACTERGUID)_Var1, _)
+THEN
+Proc_RC_DW_FishFactoryChaseBarrel(_Var1);
+
+PROC
+Proc_RC_DW_FishFactoryChaseBarrel((CHARACTERGUID)_Var1)
+AND
+DB_RC_DW_FishBarrel_Patrolmen(_Var1, _)
+THEN
+DialogRequestStop(_Var1);
+SetHasDialog(_Var1, 0);
+ProcCharacterDisableAllCrimes(_Var1);
+ProcCharacterMoveTo(_Var1, CHARACTERGUID_S_RC_DW_FishBarrel_c262ed6e-3edc-48f0-9e5d-35551b47cdbc, 1, "RC_DW_FishBarrelFound");
+
+IF
+StoryEvent((GUIDSTRING)_Var1, "RC_DW_FishBarrelFound")
+THEN
+DialogRequestStop(ITEMGUID_S_RC_DW_TinkererBarrel_2c5e384c-61e3-444b-a7ed-eadf6f0509d1);
+
+IF
+StoryEvent(_, "RC_DW_FishBarrelFound")
+AND
+ObjectIsOnStage(CHARACTERGUID_S_RC_DW_FishBarrel_c262ed6e-3edc-48f0-9e5d-35551b47cdbc, 0)
+THEN
+SetHasDialog(CHARACTERGUID_S_RC_DW_FishBarrel_c262ed6e-3edc-48f0-9e5d-35551b47cdbc, 0);
+TeleportTo(CHARACTERGUID_S_RC_DW_FishBarrel_c262ed6e-3edc-48f0-9e5d-35551b47cdbc, ITEMGUID_S_RC_DW_TinkererBarrel_2c5e384c-61e3-444b-a7ed-eadf6f0509d1);
+Foop(CHARACTERGUID_S_RC_DW_FishBarrel_c262ed6e-3edc-48f0-9e5d-35551b47cdbc);
+Poof(ITEMGUID_S_RC_DW_TinkererBarrel_2c5e384c-61e3-444b-a7ed-eadf6f0509d1);
+
+IF
+StoryEvent((CHARACTERGUID)_Var1, "RC_DW_FishBarrelFound")
+THEN
+ObjectClearFlag(_Var1, "RC_DW_FishBarrel_Chase", 0);
+GlobalSetFlag("RC_DW_FishBarrelFound");
+Proc_StartDialog(1, "RC_DW_AD_FishBarrelChase", _Var1);
+DB_RC_DW_FishFactory_FoundBarrel(_Var1);
+Proc_RC_DW_FishFactoryBustDialogue(_Var1);
+ProcCharacterEnableAllCrimes(_Var1);
+
+IF
+CharacterDied((CHARACTERGUID)_Var1)
+AND
+DB_RC_DW_FishFactory_FoundBarrel(_Var1)
+THEN
+NOT DB_RC_DW_FishFactory_FoundBarrel(_Var1);
+Proc_RC_DW_Unusualbarrel_CheckChasers();
+
+PROC
+Proc_RC_DW_Unusualbarrel_CheckChasers()
+AND NOT
+DB_RC_DW_FishFactory_FoundBarrel(_)
+THEN
+NOT DB_OnlyOnce("RC_DW_FishFactoryBarrelFound");
+GlobalClearFlag("RC_DW_FishBarrelFound");
+
+PROC
+Proc_RC_DW_FishFactoryBustDialogue((CHARACTERGUID)_Var1)
+AND
+DB_RC_DW_UnusualBarrelMaster(_Var2)
+AND
+QRY_IsInRange(_Var2, _Var1, 10)
+AND
+QRY_RC_DW_UnusualBarrelNpcsAvailable(_Var1, _Var2)
+AND
+QueryOnlyOnce("RC_DW_FishFactoryBarrelFound")
+THEN
+Proc_StartDialog(0, "RC_DW_FishFactoryBarrelFound", _Var1, CHARACTERGUID_S_RC_DW_FishBarrel_c262ed6e-3edc-48f0-9e5d-35551b47cdbc, _Var2);
+
+PROC
+Proc_RC_DW_FishFactoryBustDialogue((CHARACTERGUID)_Var1)
+AND
+DB_RC_DW_UnusualBarrelMaster(_Var2)
+AND
+QRY_IsInRange(_Var2, _Var1, 10)
+AND NOT
+QRY_RC_DW_UnusualBarrelNpcsAvailable(_Var1, _Var2)
+THEN
+Proc_RC_DW_FishBarrel_RemoveFromParty();
+SetFaction(CHARACTERGUID_S_RC_DW_FishBarrel_c262ed6e-3edc-48f0-9e5d-35551b47cdbc, "Evil NPC");
+
+QRY
+QRY_RC_DW_UnusualBarrelNpcsAvailable((CHARACTERGUID)_Var1, (CHARACTERGUID)_Var2)
+AND
+QRY_SpeakerIsAvailable(_Var2)
+AND
+QRY_SpeakerIsAvailable(_Var1)
+AND
+QRY_SpeakerIsAvailable(CHARACTERGUID_S_RC_DW_FishBarrel_c262ed6e-3edc-48f0-9e5d-35551b47cdbc)
+THEN
+DB_NOOP(1);
+
+PROC
+Proc_RC_DW_FishFactoryBustDialogue((CHARACTERGUID)_Var1)
+AND
+DB_RC_DW_UnusualBarrelMaster(_Var2)
+AND NOT
+QRY_IsInRange(_Var2, _Var1, 10)
+THEN
+DialogRequestStop(CHARACTERGUID_S_RC_DW_FishBarrel_c262ed6e-3edc-48f0-9e5d-35551b47cdbc);
+Proc_StartDialog(1, "RC_DW_AD_Betrayed", CHARACTERGUID_S_RC_DW_FishBarrel_c262ed6e-3edc-48f0-9e5d-35551b47cdbc);
+Proc_RC_DW_FishBarrel_RemoveFromParty();
+SetFaction(CHARACTERGUID_S_RC_DW_FishBarrel_c262ed6e-3edc-48f0-9e5d-35551b47cdbc, "Evil NPC");
+
+IF
+DialogStarted("RC_DW_FishFactoryBarrelFound", _)
+THEN
+NOT DB_OnlyOnce("RC_DW_FishFactoryBarrelFound");
+
+PROC
+Proc_RC_DW_FishFactoryBustDialogue((CHARACTERGUID)_Var1)
+AND NOT
+DB_RC_DW_UnusualBarrelMaster(_)
+THEN
+Proc_RC_DW_FishBarrel_RemoveFromParty();
+SetFaction(CHARACTERGUID_S_RC_DW_FishBarrel_c262ed6e-3edc-48f0-9e5d-35551b47cdbc, "Evil NPC");
+
+IF
+DialogEnded("RC_DW_FishFactoryBarrelFound", (INTEGER)_Var1)
+AND
+GlobalGetFlag("RC_DW_FishBarrelSidePatrol", 1)
+AND
+DialogGetInvolvedPlayer(_Var1, 1, _Var2)
+THEN
+Proc_RC_DW_FishBarrel_RemoveFromParty();
+UserSetFlag(_Var2, "RC_DW_FishBarrel_InformedPalladin");
+SetFaction(CHARACTERGUID_S_RC_DW_FishBarrel_c262ed6e-3edc-48f0-9e5d-35551b47cdbc, "Evil NPC");
+
+IF
+DialogEnded("RC_DW_FishFactoryBarrelFound", (INTEGER)_Var1)
+AND
+GlobalGetFlag("RC_DW_FishBarrelSideBarrel", 1)
+AND
+DialogGetInvolvedPlayer(_Var1, 1, _Var2)
+AND
+DialogGetInvolvedNPC(_Var1, 1, _Var3)
+THEN
+SetFaction(CHARACTERGUID_S_RC_DW_FishBarrel_c262ed6e-3edc-48f0-9e5d-35551b47cdbc, "RC_DW_BarrelHostile");
+ProcMakeNPCHostile(_Var3, _Var2);
+
+PROC
+Proc_RC_DW_FishBarrelSummonTroops((CHARACTERGUID)_Var1)
+AND
+DB_RC_DW_FishBarrel_Patrolmen(_Var2, _)
+AND
+_Var2 != _Var1
+AND
+CharacterIsDead(_Var2, 0)
+THEN
+DialogRequestStop(_Var2);
+SetHasDialog(_Var2, 0);
+ProcCharacterMoveTo(_Var2, CHARACTERGUID_S_RC_DW_FishBarrel_c262ed6e-3edc-48f0-9e5d-35551b47cdbc, 1, "RC_DW_FishBarrelGuardBackup");
+
+IF
+StoryEvent((CHARACTERGUID)_Var1, "RC_DW_FishBarrelGuardBackup")
+AND
+QueryOnlyOnce("RC_DW_FishBarrelGuardBackup")
+THEN
+TeleportTo(CHARACTERGUID_RC_DW_FIshFactoryHound_2d1b97f3-9263-45f2-87a1-94e863fb6838, CHARACTERGUID_S_RC_DW_FishBarrel_c262ed6e-3edc-48f0-9e5d-35551b47cdbc);
+Foop(CHARACTERGUID_RC_DW_FIshFactoryHound_2d1b97f3-9263-45f2-87a1-94e863fb6838);
+
+IF
+StoryEvent((CHARACTERGUID)_Var1, "RC_DW_FishBarrelGuardBackup")
+AND
+ObjectIsOnStage(CHARACTERGUID_S_RC_DW_FishBarrel_c262ed6e-3edc-48f0-9e5d-35551b47cdbc, 0)
+THEN
+SetStoryEvent(_Var1, "RC_DW_FishBarrelFound");
+
+IF
+CharacterKilledBy(CHARACTERGUID_S_RC_DW_FishBarrel_c262ed6e-3edc-48f0-9e5d-35551b47cdbc, (CHARACTERGUID)_Var1, (CHARACTERGUID)_Var2)
+AND
+DB_IsPlayer(_Var1)
+THEN
+UserSetFlag(_Var1, "RC_DW_FishBarrelKiller");
+
+PROC
+Proc_ObjectLeftCombat((CHARACTERGUID)_Var1, (INTEGER)_Var2)
+AND
+DB_RC_DW_FishBarrel_Patrolmen(_Var1, _Var3)
+AND
+DB_WasInCombat(_Var1, _Var2)
+AND
+DB_WasInCombat(CHARACTERGUID_S_RC_DW_FishBarrel_c262ed6e-3edc-48f0-9e5d-35551b47cdbc, _Var2)
+AND
+CharacterIsDead(CHARACTERGUID_S_RC_DW_FishBarrel_c262ed6e-3edc-48f0-9e5d-35551b47cdbc, 1)
+THEN
+TimerLaunch("Timer_RC_DW_FishBarrelAfterCombat", 1500);
+DB_RC_DW_FishBarrelAfterCombat(_Var1);
+
+IF
+TimerFinished("Timer_RC_DW_FishBarrelAfterCombat")
+AND
+DB_RC_DW_FishBarrelAfterCombat(_Var1)
+AND
+DB_IsPlayer(_Var2)
+AND
+UserGetFlag(_Var2, "RC_DW_FishBarrel_InformedPatrolman", 1)
+AND
+QRY_IsInRange(_Var2, _Var1, 8)
+AND
+QueryOnlyOnce("RC_DW_FishBarrelAfterCombat")
+THEN
+Proc_StartDialog(0, "RC_DW_FishBarrel_Resolved", _Var1, _Var2);
+
+IF
+TimerFinished("Timer_RC_DW_FishBarrelAfterCombat")
+AND
+DB_RC_DW_FishBarrelAfterCombat(_Var1)
+AND
+DB_IsPlayer(_Var2)
+AND
+UserGetFlag(_Var2, "RC_DW_FishBarrelSidePatrol", 1)
+AND
+QRY_IsInRange(_Var2, _Var1, 8)
+AND
+QueryOnlyOnce("RC_DW_FishBarrelAfterCombat")
+THEN
+Proc_StartDialog(0, "RC_DW_FishBarrel_Resolved", _Var1, _Var2);
+
+IF
+ObjectFlagSet("RC_DW_FishBarrelSpottedByMagister", (CHARACTERGUID)_Var1, _)
+AND
+DB_RC_DW_FishBarrel_Patrolmen(_Var1, _)
+THEN
+ObjectClearFlag(_Var1, "RC_DW_FishBarrelSpottedByMagister", 0);
+ObjectSetFlag(_Var1, "RC_DW_FishBarrel_Chase");
+
+IF
+ObjectFlagSet("RC_DW_FishBarrelSpottedByMagister", (CHARACTERGUID)_Var1, _)
+AND NOT
+DB_RC_DW_FishBarrel_Patrolmen(_Var1, _)
+THEN
+ObjectClearFlag(_Var1, "RC_DW_FishBarrelSpottedByMagister", 0);
+Proc_RC_DW_FishBarrel_RemoveFromParty();
+DialogRequestStop(CHARACTERGUID_S_RC_DW_FishBarrel_c262ed6e-3edc-48f0-9e5d-35551b47cdbc);
+SetHasDialog(CHARACTERGUID_S_RC_DW_FishBarrel_c262ed6e-3edc-48f0-9e5d-35551b47cdbc, 0);
+SetFaction(CHARACTERGUID_S_RC_DW_FishBarrel_c262ed6e-3edc-48f0-9e5d-35551b47cdbc, "Evil NPC");
+Proc_StartDialog(1, "RC_DW_AD_Betrayed", CHARACTERGUID_S_RC_DW_FishBarrel_c262ed6e-3edc-48f0-9e5d-35551b47cdbc);
+
+IF
+ObjectFlagSet("RC_DW_FishBarrelSpotCooldown", (CHARACTERGUID)_Var1, _)
+THEN
+CharacterLookAt(_Var1, CHARACTERGUID_S_RC_DW_FishBarrel_c262ed6e-3edc-48f0-9e5d-35551b47cdbc);
+ProcObjectTimer(_Var1, "RC_DW_FishBarrelSpotCooldown", 60000);
+
+PROC
+ProcObjectTimerFinished((GUIDSTRING)_Var1, "RC_DW_FishBarrelSpotCooldown")
+THEN
+ObjectClearFlag(_Var1, "RC_DW_FishBarrelSpotCooldown", 0);
+
+IF
+CharacterDied(CHARACTERGUID_S_RC_DW_FishBarrel_c262ed6e-3edc-48f0-9e5d-35551b47cdbc)
+AND
+GlobalGetFlag("RC_DW_FishBarrel_IsOutOfTown", 1)
+AND
+DB_IsPlayer(_Var1)
+THEN
+ObjectSetFlag(_Var1, "QuestUpdate_RC_DW_HidingTinkerer_Tinkerer_KilledOutside");
+
+IF
+CharacterDied(CHARACTERGUID_S_RC_DW_FishBarrel_c262ed6e-3edc-48f0-9e5d-35551b47cdbc)
+AND
+DB_IsPlayer(_Var1)
+THEN
+ObjectSetFlag(_Var1, "QuestUpdate_RC_DW_HidingTinkerer_Tinkerer_KilledFactory");
+
+IF
+GlobalFlagSet("RC_DW_FishBarrel_Escaped")
+AND
+DB_IsPlayer(_Var1)
+THEN
+ObjectSetFlag(_Var1, "QuestUpdate_RC_DW_HidingTinkerer_Tinkerer_Left");
+
+IF
+ObjectFlagSet("HasMet_RC_DW_HidingTinkerer", (CHARACTERGUID)_Var1, _)
+THEN
+PartySetFlag(_Var1, "QuestUpdate_RC_DW_HidingTinkerer_Tinkerer_Trust");
+
+IF
+ObjectFlagSet("RC_DW_FishBarrel_AskedToTeachYou", (CHARACTERGUID)_Var1, _)
+THEN
+PartySetFlag(_Var1, "QuestUpdate_RC_DW_HidingTinkerer_Tinkerer_Teach");
+
+IF
+ObjectFlagSet("RC_FishBarrel_GiveReward", (GUIDSTRING)_Var1, _)
+THEN
+ItemTemplateAddTo("Scroll_Skill_Source_AcidSpores_7d66da3c-402d-4980-bb2e-d4ea4a5c9fa5", _Var1, 1);
+
+
+EXITSECTION
+TriggerUnregisterForCharacter(TRIGGERGUID_S_RC_DW_FishBarrelTown_6314e0c5-7bf2-48e3-b631-dd7f73872e2c, CHARACTERGUID_S_RC_DW_FishBarrel_c262ed6e-3edc-48f0-9e5d-35551b47cdbc);
+ENDEXITSECTION
+
+ParentTargetEdge "ReapersCoast"

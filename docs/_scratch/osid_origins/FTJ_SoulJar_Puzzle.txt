@@ -1,0 +1,250 @@
+Version 1
+SubGoalCombiner SGC_AND
+
+INITSECTION
+DB_RC_FTJ_FakeSoulJars(RC_FTJ_SoulJarTrap_001_f1048dcf-98bb-4cd1-9de8-c11363bf3f27);
+DB_RC_FTJ_FakeSoulJars(RC_FTJ_SoulJarTrap_002_af88fbb9-143d-4663-8f74-a889bc7686ad);
+DB_RC_FTJ_FakeSoulJars(RC_FTJ_SoulJarTrap_003_a843c58b-25f8-44bd-a0dc-9702f146d357);
+DB_RC_FTJ_FakeSoulJars(RC_FTJ_SoulJarTrap_004_fcea4277-68af-410f-93c8-29693cb13cf7);
+DB_SoulJarTrapSkeletons(S_RC_FTJ_SoulJarTrapSkeleton_001_0375d94c-b588-4a1d-bd62-e8dfbd614df4);
+DB_SoulJarTrapSkeletons(S_RC_FTJ_SoulJarTrapSkeleton_002_a46127af-ff0f-452f-a2e1-260abd2a1001);
+DB_SoulJarTrapSkeletons(S_RC_FTJ_SoulJarTrapSkeleton_003_5ef951b7-a893-4b48-9ee2-7e5d754c6a83);
+DB_SoulJarTrapSkeletons(S_RC_FTJ_SoulJarTrapSkeleton_004_40850e09-8b9f-4b38-8f90-a9499bcb054c);
+DB_SoulJarTrapSkeletons_2(S_RC_FTJ_SoulJarTrapSkeleton_005_b104ee53-94a5-4d2b-a9ed-5345327a4e42);
+DB_SoulJarTrapSkeletons_2(S_RC_FTJ_SoulJarTrapSkeleton_006_20d96b30-c279-4f94-8815-8114e48f261e);
+DB_SoulJarTrapSkeletons_2(S_RC_FTJ_SoulJarTrapSkeleton_007_deffe0d5-11f5-44a9-b50f-497f200ad4f7);
+ProcTriggerRegisterForPlayers(S_RC_FTJ_SoulJarRoomVB_Poly_afba5a07-43bf-4ad8-b33e-418ff0d29bf5);
+ProcTriggerRegisterForPlayers(TRIGGERGUID_S_FTJ_BraccusArmor_Lowerbody_Box_a7fe7da6-1517-4b2b-b925-eac3136efda1);
+Proc_RC_FTJ_SoulJar_Puzzle();
+SetOnStage(ITEMGUID_S_FTJ_SW_BraccusArmor_Lowerbody_3ef7e582-a813-40da-a0d4-17b49ee96712, 0);
+
+KBSECTION
+IF
+ObjectEnteredCombat((CHARACTERGUID)_Var1, _)
+AND
+DB_SoulJarTrapSkeletons(_Var1)
+AND
+QueryOnlyOnce("FTJ_CombatSave_SoulJarChamber1")
+THEN
+AutoSave();
+
+IF
+ObjectEnteredCombat((CHARACTERGUID)_Var1, _)
+AND
+DB_SoulJarTrapSkeletons_2(_Var1)
+AND
+QueryOnlyOnce("FTJ_CombatSave_SoulJarChamber2")
+THEN
+AutoSave();
+
+PROC
+Proc_RC_FTJ_SoulJar_Puzzle()
+AND
+DB_SoulJarTrapSkeletons(_Var1)
+THEN
+SetOnStage(_Var1, 0);
+
+PROC
+Proc_RC_FTJ_SoulJar_Puzzle()
+AND
+DB_SoulJarTrapSkeletons_2(_Var1)
+THEN
+SetOnStage(_Var1, 0);
+
+IF
+CharacterEnteredTrigger((CHARACTERGUID)_Var1, S_RC_FTJ_SoulJarRoomVB_Poly_afba5a07-43bf-4ad8-b33e-418ff0d29bf5)
+AND
+QRY_SpeakerIsAvailable(_Var1)
+AND
+QueryOnlyOnce("FTJ_SoulJarRoomVB")
+THEN
+StartVoiceBark("FTJ_VB_SoulJarRoom", _Var1);
+
+IF
+ItemAddedToCharacter((ITEMGUID)_Var1, (CHARACTERGUID)_Var2)
+AND
+DB_RC_FTJ_FakeSoulJars(_Var1)
+THEN
+Proc_FTJ_SoulJarActivateTrap(_Var1);
+
+IF
+ItemMoved((ITEMGUID)_Var1)
+AND
+DB_RC_FTJ_FakeSoulJars(_Var1)
+THEN
+Proc_FTJ_SoulJarActivateTrap(_Var1);
+
+IF
+ItemDestroying((ITEMGUID)_Var1)
+AND
+DB_RC_FTJ_FakeSoulJars(_Var1)
+THEN
+Proc_FTJ_SoulJarActivateTrap(_Var1);
+
+IF
+CharacterUsedItem(_, (ITEMGUID)_Var2)
+AND
+DB_RC_FTJ_FakeSoulJars(_Var2)
+THEN
+ItemDestroy(_Var2);
+
+PROC
+Proc_FTJ_SoulJarActivateTrap((ITEMGUID)_Var1)
+AND
+_Var1 == RC_FTJ_SoulJarTrap_001_f1048dcf-98bb-4cd1-9de8-c11363bf3f27
+THEN
+CreateExplosion(TRIGGERGUID_S_FTJ_SoulJarTrap001_Point_223f64b1-541f-4532-962e-410162451892, "Projectile_Grenade_PoisonFlask", 3);
+CreateSurface(TRIGGERGUID_S_FTJ_SoulJarTrap001_Point_223f64b1-541f-4532-962e-410162451892, "SurfacePoison", 5, 20);
+PlayEffect(_Var1, "RS3_FX_GP_Impacts_Wand_Void_01");
+
+PROC
+Proc_FTJ_SoulJarActivateTrap((ITEMGUID)_Var1)
+AND
+_Var1 == RC_FTJ_SoulJarTrap_002_af88fbb9-143d-4663-8f74-a889bc7686ad
+THEN
+PlayEffect(_Var1, "RS3_FX_GP_Impacts_Wand_Void_01");
+
+PROC
+Proc_FTJ_SoulJarActivateTrap((ITEMGUID)_Var1)
+AND
+_Var1 == RC_FTJ_SoulJarTrap_002_af88fbb9-143d-4663-8f74-a889bc7686ad
+AND
+DB_SoulJarTrapSkeletons(_Var2)
+THEN
+CharacterAppear(_Var2, 1, "");
+
+PROC
+Proc_FTJ_SoulJarActivateTrap((ITEMGUID)_Var1)
+AND
+_Var1 == RC_FTJ_SoulJarTrap_002_af88fbb9-143d-4663-8f74-a889bc7686ad
+THEN
+CreateExplosion(TRIGGERGUID_S_FTJ_SoulJarTrap002_Point_6e8972f6-7df1-4bf0-8352-aa4ad3748586, "Projectile_Grenade_Terror", 3);
+
+PROC
+Proc_FTJ_SoulJarActivateTrap((ITEMGUID)_Var1)
+AND
+_Var1 == RC_FTJ_SoulJarTrap_003_a843c58b-25f8-44bd-a0dc-9702f146d357
+THEN
+CreateExplosion(TRIGGERGUID_S_FTJ_SoulJarTrap003_Point_839c5872-b72c-4277-967b-96249b994639, "Projectile_Grenade_Ice", 3);
+CreateSurface(RC_FTJ_SoulJarTrap_003_a843c58b-25f8-44bd-a0dc-9702f146d357, "SurfaceWaterFrozen", 20, 30);
+PlayEffect(_Var1, "RS3_FX_GP_Impacts_Wand_Void_01");
+
+PROC
+Proc_FTJ_SoulJarActivateTrap((ITEMGUID)_Var1)
+AND
+_Var1 == RC_FTJ_SoulJarTrap_004_fcea4277-68af-410f-93c8-29693cb13cf7
+THEN
+CreateExplosion(_Var1, "Projectile_Grenade_Nailbomb", 3);
+PlayEffect(_Var1, "RS3_FX_GP_Impacts_Wand_Void_01");
+
+PROC
+Proc_FTJ_SoulJarActivateTrap((ITEMGUID)_Var1)
+AND
+_Var1 == RC_FTJ_SoulJarTrap_004_fcea4277-68af-410f-93c8-29693cb13cf7
+AND
+DB_SoulJarTrapSkeletons_2(_Var2)
+THEN
+CharacterAppear(_Var2, 1, "");
+
+PROC
+Proc_FTJ_SoulJarActivateTrap((ITEMGUID)_Var1)
+THEN
+DisplayText(_Var1, "RC_FTJ_SoulJarTrapRemove");
+ItemSetCanInteract(_Var1, 0);
+
+PROC
+Proc_FTJ_SoulJarActivateTrap((ITEMGUID)_Var1)
+AND
+DB_IsPlayer(_Var2)
+AND
+ItemIsInCharacterInventory(_Var1, _Var2, 1)
+THEN
+ItemRemove(_Var1);
+
+PROC
+Proc_FTJ_SoulJarActivateTrap((ITEMGUID)_Var1)
+AND
+DB_IsPlayer(_Var2)
+AND
+ItemIsInCharacterInventory(_Var1, _Var2, 0)
+THEN
+ItemDestroy(_Var1);
+
+IF
+CharacterEnteredTrigger((CHARACTERGUID)_Var1, TRIGGERGUID_S_FTJ_BraccusArmor_Lowerbody_Box_a7fe7da6-1517-4b2b-b925-eac3136efda1)
+AND
+GlobalGetFlag("FTJ_FoundBraccusArmor_Lowerbody", 0)
+AND
+ObjectGetFlag(_Var1, "FTJ_SpottedBraccusShrine", 0)
+AND
+CharacterIsInCombat(_Var1, 0)
+AND
+CharacterGetAttribute(_Var1, "Wits", _Var2)
+AND
+_Var2 >= 15
+THEN
+ObjectSetFlag(_Var1, "FTJ_SpottedBraccusShrine");
+Proc_StartDialog(1, "FTJ_AD_SpottedBraccusShrine", _Var1);
+
+IF
+CharacterUsedItem((CHARACTERGUID)_Var1, ITEMGUID_S_FTJ_PhylacteryBraccusShrine_001_0ebf6929-3649-4226-8043-52c3892442b4)
+AND
+GlobalGetFlag("FTJ_FoundBraccusArmor_Lowerbody", 0)
+AND
+ObjectGetFlag(_Var1, "FTJ_SpottedBraccusShrine", 0)
+AND
+CharacterGetAttribute(_Var1, "Wits", _Var2)
+AND
+_Var2 >= 15
+THEN
+ObjectSetFlag(_Var1, "FTJ_SpottedBraccusShrine");
+Proc_StartDialog(0, "FTJ_InspectBraccusShrine", ITEMGUID_S_FTJ_PhylacteryBraccusShrine_001_0ebf6929-3649-4226-8043-52c3892442b4, _Var1);
+
+IF
+CharacterUsedItem((CHARACTERGUID)_Var1, ITEMGUID_S_FTJ_PhylacteryBraccusShrine_001_0ebf6929-3649-4226-8043-52c3892442b4)
+AND
+GlobalGetFlag("FTJ_FoundBraccusArmor_Lowerbody", 0)
+AND
+ObjectGetFlag(_Var1, "FTJ_SpottedBraccusShrine", 1)
+THEN
+Proc_StartDialog(0, "FTJ_InspectBraccusShrine", ITEMGUID_S_FTJ_PhylacteryBraccusShrine_001_0ebf6929-3649-4226-8043-52c3892442b4, _Var1);
+
+IF
+GlobalFlagSet("FTJ_SoulJar_DropBraccusPants")
+AND
+GetPosition(ITEMGUID_S_FTJ_SW_BraccusArmor_Lowerbody_3ef7e582-a813-40da-a0d4-17b49ee96712, _Var1, _Var2, _Var3)
+THEN
+PlayEffectAtPosition("RS3_FX_GP_Impacts_Dust_01", _Var1, _Var2, _Var3);
+
+IF
+DialogEnded("FTJ_InspectBraccusShrine", (INTEGER)_Var1)
+AND
+GlobalGetFlag("FTJ_FoundBraccusArmor_Lowerbody", 0)
+AND
+GlobalGetFlag("FTJ_SoulJar_DropBraccusPants", 1)
+THEN
+GlobalSetFlag("FTJ_FoundBraccusArmor_Lowerbody");
+TriggerUnregisterForPlayers(TRIGGERGUID_S_FTJ_BraccusArmor_Lowerbody_Box_a7fe7da6-1517-4b2b-b925-eac3136efda1);
+SetOnStage(ITEMGUID_S_FTJ_SW_BraccusArmor_Lowerbody_3ef7e582-a813-40da-a0d4-17b49ee96712, 1);
+ItemDragToTrigger(ITEMGUID_S_FTJ_SW_BraccusArmor_Lowerbody_3ef7e582-a813-40da-a0d4-17b49ee96712, TRIGGERGUID_S_FTJ_BraccusArmor_Lowerbody_Point_04a9cdf0-cc6a-48d5-9e31-9fe11d54d857);
+
+IF
+CharacterUsedItem((CHARACTERGUID)_Var1, ITEMGUID_S_FTJ_PhylacteryBraccusShrine_001_0ebf6929-3649-4226-8043-52c3892442b4)
+THEN
+StartVoiceBark("FTJ_VB_PhylacteryBraccusShrine_001", _Var1);
+
+IF
+CharacterUsedItem((CHARACTERGUID)_Var1, ITEMGUID_S_FTJ_PhylacteryBraccusShrine_002_cac2147d-4606-41cc-b428-7469f23bb0fd)
+THEN
+StartVoiceBark("FTJ_VB_PhylacteryBraccusShrine_002", _Var1);
+
+PROC
+ProcRegionEnded("FJ_FortJoy_Main")
+THEN
+GoalCompleted;
+
+
+EXITSECTION
+ENDEXITSECTION
+
+ParentTargetEdge "FortJoy"

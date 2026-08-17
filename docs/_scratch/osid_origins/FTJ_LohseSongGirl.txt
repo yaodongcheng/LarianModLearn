@@ -1,0 +1,133 @@
+Version 1
+SubGoalCombiner SGC_AND
+
+INITSECTION
+DB_FTJ_LohseSongGirlCurrentPosition("Beach");
+ProcCharacterEnableAllCrimes(CHARACTERGUID_S_TUT_LowerDeck_LohseSongGirl1_a681c125-8493-4046-ab1f-6c2201336a22);
+ProcCharacterDisableCrime(CHARACTERGUID_S_TUT_LowerDeck_LohseSongGirl1_a681c125-8493-4046-ab1f-6c2201336a22, "Assault");
+
+KBSECTION
+IF
+StoryEvent((ITEMGUID)_Var1, "FTJ_LohseSongGirl1_ItemClearOwner")
+THEN
+ItemClearOwner(_Var1);
+
+IF
+StoryEvent((ITEMGUID)_Var1, "FTJ_LohseSongGirll_DropFromInventory")
+THEN
+ItemDrop(_Var1);
+
+IF
+AttackedByObject(CHARACTERGUID_S_TUT_LowerDeck_LohseSongGirl1_a681c125-8493-4046-ab1f-6c2201336a22, (CHARACTERGUID)_Var1, (GUIDSTRING)_Var2, _, _)
+AND
+CHARACTERGUID_S_TUT_LowerDeck_LohseSongGirl1_a681c125-8493-4046-ab1f-6c2201336a22 != _Var2
+AND
+DB_FTJ_LohseSongGirlCurrentPosition("Beach")
+THEN
+ProcForceStopDialog(CHARACTERGUID_S_TUT_LowerDeck_LohseSongGirl1_a681c125-8493-4046-ab1f-6c2201336a22);
+CharacterFleeOutOfSight(CHARACTERGUID_S_TUT_LowerDeck_LohseSongGirl1_a681c125-8493-4046-ab1f-6c2201336a22, "FTJ_LohseSongGirlLeftCurrentPosition");
+
+IF
+AttackedByObject(CHARACTERGUID_S_TUT_LowerDeck_LohseSongGirl1_a681c125-8493-4046-ab1f-6c2201336a22, (CHARACTERGUID)_Var1, (GUIDSTRING)_Var2, _, _)
+AND
+CHARACTERGUID_S_TUT_LowerDeck_LohseSongGirl1_a681c125-8493-4046-ab1f-6c2201336a22 != _Var2
+AND
+DB_FTJ_LohseSongGirlCurrentPosition("KnilesDungeon")
+THEN
+Proc_StartDialog(1, "FTJ_AD_LohseSongGirl1_KnilesDungeon", CHARACTERGUID_S_TUT_LowerDeck_LohseSongGirl1_a681c125-8493-4046-ab1f-6c2201336a22);
+
+IF
+DB_InRegion(_, TRIGGERGUID_S_FTJ_SUB_PurgingRoom_dee169ab-b638-449e-84c7-df0bac651145)
+AND
+DB_FTJ_LohseSongGirlCurrentPosition("Beach")
+THEN
+ProcForceStopDialog(CHARACTERGUID_S_TUT_LowerDeck_LohseSongGirl1_a681c125-8493-4046-ab1f-6c2201336a22);
+ProcClearStoryMove(CHARACTERGUID_S_TUT_LowerDeck_LohseSongGirl1_a681c125-8493-4046-ab1f-6c2201336a22);
+SetVarFixedString(S_TUT_LowerDeck_LohseSongGirl1_a681c125-8493-4046-ab1f-6c2201336a22, "currentState", "");
+CharacterDisappearOutOfSight(CHARACTERGUID_S_TUT_LowerDeck_LohseSongGirl1_a681c125-8493-4046-ab1f-6c2201336a22, 260, 1, "FTJ_LohseSongGirlLeftCurrentPosition", 1);
+
+IF
+StoryEvent(S_TUT_LowerDeck_LohseSongGirl1_a681c125-8493-4046-ab1f-6c2201336a22, "FTJ_LohseSongGirlLeftCurrentPosition")
+AND
+DB_FTJ_LohseSongGirlCurrentPosition("Beach")
+THEN
+NOT DB_FTJ_LohseSongGirlCurrentPosition("Beach");
+RemoveHarmfulStatuses(CHARACTERGUID_S_TUT_LowerDeck_LohseSongGirl1_a681c125-8493-4046-ab1f-6c2201336a22);
+TeleportTo(CHARACTERGUID_S_TUT_LowerDeck_LohseSongGirl1_a681c125-8493-4046-ab1f-6c2201336a22, TRIGGERGUID_S_FTJ_LohseSongGirl1_KnilesDungeonTrigger_bd628810-04bc-4622-969c-43ceba205d81, "FTJ_LohseSongGirlAtKnilesDungeon", 0);
+
+IF
+StoryEvent(S_TUT_LowerDeck_LohseSongGirl1_a681c125-8493-4046-ab1f-6c2201336a22, "FTJ_LohseSongGirlAtKnilesDungeon")
+THEN
+DB_FTJ_LohseSongGirlCurrentPosition("KnilesDungeon");
+SetVarFixedString(S_TUT_LowerDeck_LohseSongGirl1_a681c125-8493-4046-ab1f-6c2201336a22, "currentState", "State_FortJoyKniles");
+ProcRemoveAllDialogEntriesForSpeaker(S_TUT_LowerDeck_LohseSongGirl1_a681c125-8493-4046-ab1f-6c2201336a22);
+DB_Dialogs(S_TUT_LowerDeck_LohseSongGirl1_a681c125-8493-4046-ab1f-6c2201336a22, "FTJ_LohseSongGirl1_KnilesDungeon");
+SetOnStage(S_TUT_LowerDeck_LohseSongGirl1_a681c125-8493-4046-ab1f-6c2201336a22, 1);
+CharacterSetAnimationOverride(S_TUT_LowerDeck_LohseSongGirl1_a681c125-8493-4046-ab1f-6c2201336a22, "cower");
+
+IF
+CharacterUsedItem((CHARACTERGUID)_Var1, ITEMGUID_S_PipeToTortureRoom_416165c3-fdd2-4c93-bf3d-e7fde182455d)
+AND
+DB_FTJ_LohseSongGirlCurrentPosition("Beach")
+AND
+QueryOnlyOnce("FTJ_LohseSongGirlEscapeKniles")
+THEN
+ProcForceStopDialog(CHARACTERGUID_S_TUT_LowerDeck_LohseSongGirl1_a681c125-8493-4046-ab1f-6c2201336a22);
+SetHasDialog(CHARACTERGUID_S_TUT_LowerDeck_LohseSongGirl1_a681c125-8493-4046-ab1f-6c2201336a22, 0);
+NOT DB_FTJ_LohseSongGirlCurrentPosition("Beach");
+CharacterDisappearOutOfSight(CHARACTERGUID_S_TUT_LowerDeck_LohseSongGirl1_a681c125-8493-4046-ab1f-6c2201336a22, 260, 1, "", 1);
+
+IF
+CharacterUsedItem((CHARACTERGUID)_Var1, ITEMGUID_S_PipeToTortureRoom_416165c3-fdd2-4c93-bf3d-e7fde182455d)
+AND
+DB_FTJ_LohseSongGirlCurrentPosition("KnilesDungeon")
+AND
+QueryOnlyOnce("FTJ_LohseSongGirlEscapeKniles")
+THEN
+PROC_FTJ_LohseSongGirl_FleeFromDungeon();
+
+IF
+CharacterUsedItem((CHARACTERGUID)_Var1, ITEMGUID_S_FTJ_PipeToDunes_a3a28ffe-b5b1-4194-b49a-e70f0bd43d07)
+AND
+DB_FTJ_LohseSongGirlCurrentPosition("KnilesDungeon")
+AND
+QueryOnlyOnce("FTJ_LohseSongGirlEscapeKniles")
+THEN
+PROC_FTJ_LohseSongGirl_FleeFromDungeon();
+
+PROC
+PROC_FTJ_LohseSongGirl_FleeFromDungeon()
+THEN
+SetVarFixedString(S_TUT_LowerDeck_LohseSongGirl1_a681c125-8493-4046-ab1f-6c2201336a22, "currentState", "");
+CharacterSetAnimationOverride(S_TUT_LowerDeck_LohseSongGirl1_a681c125-8493-4046-ab1f-6c2201336a22, "");
+ProcRemoveAllDialogEntriesForSpeaker(S_TUT_LowerDeck_LohseSongGirl1_a681c125-8493-4046-ab1f-6c2201336a22);
+SetHasDialog(S_TUT_LowerDeck_LohseSongGirl1_a681c125-8493-4046-ab1f-6c2201336a22, 0);
+CharacterSetAnimationOverride(S_TUT_LowerDeck_LohseSongGirl1_a681c125-8493-4046-ab1f-6c2201336a22, "");
+CharacterSetForceUpdate(S_TUT_LowerDeck_LohseSongGirl1_a681c125-8493-4046-ab1f-6c2201336a22, 1);
+SetScriptframe(S_TUT_LowerDeck_LohseSongGirl1_a681c125-8493-4046-ab1f-6c2201336a22, "EscapeKnilesDungeon");
+
+IF
+CharacterScriptFrameFinished(S_TUT_LowerDeck_LohseSongGirl1_a681c125-8493-4046-ab1f-6c2201336a22, "EscapeKnilesDungeon")
+THEN
+CharacterSetForceUpdate(S_TUT_LowerDeck_LohseSongGirl1_a681c125-8493-4046-ab1f-6c2201336a22, 0);
+
+IF
+AttackedByObject(CHARACTERGUID_S_TUT_LowerDeck_LohseSongGirl1_a681c125-8493-4046-ab1f-6c2201336a22, (CHARACTERGUID)_Var1, (GUIDSTRING)_Var2, _, _)
+AND
+CHARACTERGUID_S_TUT_LowerDeck_LohseSongGirl1_a681c125-8493-4046-ab1f-6c2201336a22 != _Var2
+AND
+DB_FTJ_LohseSongGirlCurrentPosition("KnilesDungeon")
+THEN
+ProcForceStopDialog(CHARACTERGUID_S_TUT_LowerDeck_LohseSongGirl1_a681c125-8493-4046-ab1f-6c2201336a22);
+CharacterFleeOutOfSight(CHARACTERGUID_S_TUT_LowerDeck_LohseSongGirl1_a681c125-8493-4046-ab1f-6c2201336a22, "");
+
+PROC
+ProcRegionEnded("FJ_FortJoy_Main")
+THEN
+GoalCompleted;
+
+
+EXITSECTION
+ENDEXITSECTION
+
+ParentTargetEdge "FortJoy"

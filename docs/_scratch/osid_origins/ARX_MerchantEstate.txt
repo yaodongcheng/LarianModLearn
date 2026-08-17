@@ -1,0 +1,452 @@
+Version 1
+SubGoalCombiner SGC_AND
+
+INITSECTION
+DB_Dialogs(CHARACTERGUID_S_ARX_MerchantEstate_Guard_FrontDesk_01_09dd0472-b9fd-4a2b-86a4-f082a0b7f800, "ARX_MerchantEstate_Guard_FrontDesk_01");
+DB_ARX_MerchantEstate_FrontDesk_Doors(ITEMGUID_S_ARX_MerchantEstate_TrespassShop_Door02_59c9bef8-94a8-8d11-4c44-cddf088483b2);
+DB_Dialogs(CHARACTERGUID_S_ARX_MerchantEstate_Guard_FrontGate_02_3848a9a0-ddf8-4ab4-ac1d-5c77aa3de3ae, "ARX_MerchantEstate_Guard_FrontGate_02");
+DB_Dialogs(CHARACTERGUID_S_ARX_MerchantEstate_Guard_FrontGate_01_4a21f6c6-693e-45a9-89b3-c3a7130fddb2, "ARX_MerchantEstate_Guard_FrontGate_01");
+DB_Dialogs(CHARACTERGUID_S_ARX_MerchantEstate_Guard_BackGate_01_02f1359f-954f-4c89-a5f9-ac803c47e9fa, "ARX_MerchantEstate_Guard_BackGate_01");
+DB_Dialogs(CHARACTERGUID_S_ARX_MerchantEstate_Guard_BackGate_02_d46fa5f2-ce4d-4e24-b4c4-f5bbff7dcba6, "ARX_MerchantEstate_Guard_BackGate_02");
+DB_Dialogs(CHARACTERGUID_S_ARX_MerchantEstate_Guard_GardenDoor_01_cfeed2b8-dde4-4337-b0dc-f07c9641a7c7, "ARX_MerchantEstate_Guard_GardenDoor_01");
+DB_Dialogs(CHARACTERGUID_S_ARX_MerchantEstate_Guard_SecondFloor_01_e40305c5-3aa5-41ed-9434-9488ef4e7987, "ARX_MerchantEstate_Guard_SecondFloor_01");
+DB_Dialogs(CHARACTERGUID_S_ARX_MerchantEstate_Guard_SecondFloor_02_0efea065-adfb-4343-893d-1a3250de5a6e, "ARX_MerchantEstate_Guard_SecondFloor_02");
+DB_Dialogs(CHARACTERGUID_S_ARX_MerchantEstate_PigPet_e2da1813-f51c-41b8-bbcd-93695edb35c1, "ARX_MerchantEstate_PigPet");
+DB_Dialogs(CHARACTERGUID_S_ARX_MerchantEstate_Trader_16375643-abe6-41bd-ba5a-50475e7057c1, "ARX_MerchantEstate_Trader");
+DB_Dialogs(CHARACTERGUID_S_ARX_MerchantEstate_Aunt_d0c41a18-94ff-49ef-bd5e-1935b7d549a7, "ARX_MerchantEstate_Aunt");
+DB_Dialogs(CHARACTERGUID_S_ARX_MerchantEstate_Servant_01_5213ba3e-2ad9-4c43-926d-6b9bedbd775a, "ARX_MerchantEstate_Servant_01");
+DB_Dialogs(CHARACTERGUID_S_ARX_MerchantEstate_Servant_02_cf990d8a-107a-4fff-b4f9-a57ed892b1a6, "ARX_MerchantEstate_Servant_02");
+DB_Ghosts(CHARACTERGUID_S_ARX_MerchantEstate_Aunt_d0c41a18-94ff-49ef-bd5e-1935b7d549a7, CHARACTERGUID_S_ARX_MerchantEstate_Aunt_Ghost_554bee2c-6370-4c7f-b1f0-e626fc144023, "ARX_MerchantEstate_Aunt_Ghost");
+DB_Ghosts(CHARACTERGUID_S_ARX_MerchantEstate_Guard_GardenDoor_01_cfeed2b8-dde4-4337-b0dc-f07c9641a7c7, CHARACTERGUID_S_ARX_MerchantEstate_Guard_GardenDoor_01_Ghost_99e9529c-b001-4ce3-b216-ea0012db713c, "ARX_MerchantEstate_Guard_GardenDoor_01_Ghost");
+DB_Ghosts(CHARACTERGUID_S_ARX_MerchantEstate_Guard_FrontDesk_01_09dd0472-b9fd-4a2b-86a4-f082a0b7f800, CHARACTERGUID_S_ARX_MerchantEstate_Guard_FrontDesk_01_Ghost_e8bbe846-02a9-466f-956c-9d238677fdc3, "ARX_MerchantEstate_Guard_FrontDesk_01_Ghost");
+DB_Ghosts(CHARACTERGUID_S_ARX_MerchantEstate_Servant_01_5213ba3e-2ad9-4c43-926d-6b9bedbd775a, CHARACTERGUID_S_ARX_MerchantEstate_Servant_01_Ghost_34f255e2-7fce-432e-bf96-e37d77d9a174, "ARX_MerchantEstate_Servant_01_Ghost");
+DB_Ghosts(CHARACTERGUID_S_ARX_MerchantEstate_Servant_02_cf990d8a-107a-4fff-b4f9-a57ed892b1a6, CHARACTERGUID_S_ARX_MerchantEstate_Servant_02_Ghost_7a54a5d3-aa7e-4e49-9202-d5ecd5c10272, "ARX_MerchantEstate_Servant_02_Ghost");
+ProcTriggerRegisterForPlayers(TRIGGERGUID_S_ARX_MerchantEstate_Backroom_e4fe9df7-2c51-429c-9dc0-ef386e44a414);
+ProcTriggerRegisterForPlayers(TRIGGERGUID_S_ARX_MerchantEstate_1stFloor_92eb0017-217d-491f-b03c-61129a87c604);
+DB_HasStoryEvent(ITEMGUID_S_ARX_Sewers_StoneKey_02_f65e886a-d8d4-45d0-8860-a13ffc2d1ab8, "ARX_Sewers_StoneKey_HasKey");
+DB_GiveItemToEvent(ITEMGUID_S_ARX_Sewers_StoneKey_02_f65e886a-d8d4-45d0-8860-a13ffc2d1ab8, "ARX_Sewers_StoneKey_GiveKey");
+ItemToInventory(ITEMGUID_S_ARX_Sewers_StoneKey_02_f65e886a-d8d4-45d0-8860-a13ffc2d1ab8, CHARACTERGUID_S_ARX_MerchantEstate_Merchant_787cf3e2-aa6f-41e7-ab54-f5fb22b944d1, 1, 1);
+ItemToInventory(ITEMGUID_S_ARX_MerchantEstate_TrespassKey_01_cf8312be-84c5-4ddb-8458-8b6a3c15a97e, CHARACTERGUID_S_ARX_MerchantEstate_Guard_FrontDesk_01_09dd0472-b9fd-4a2b-86a4-f082a0b7f800);
+ItemToInventory(ITEMGUID_S_ARX_MerchantEstate_GardenGate_Key_01_f4fb630b-977d-4db1-8eb7-a4e09e674a44, CHARACTERGUID_S_ARX_MerchantEstate_Guard_BackGate_01_02f1359f-954f-4c89-a5f9-ac803c47e9fa);
+ItemToInventory(ITEMGUID_S_ARX_MerchantEstate_WeddingInvitation_DrunkDwarf_c6adffb6-291d-4ab1-a24b-39a671f63aa3, CHARACTERGUID_S_ARX_CitySquare_Pleb_Market_04_ab97a640-7e56-4c85-a736-47340c04a19b, 1);
+DB_HasStoryEvent(ITEMGUID_S_ARX_MerchantEstate_WeddingInvitation_DrunkDwarf_c6adffb6-291d-4ab1-a24b-39a671f63aa3, "ARX_MerchantEstate_HasWeddingInvitation_DrunkDwarf");
+DB_GiveItemToEvent(ITEMGUID_S_ARX_MerchantEstate_WeddingInvitation_DrunkDwarf_c6adffb6-291d-4ab1-a24b-39a671f63aa3, "ARX_MerchantEstate_GiveWeddingInvitation_DrunkDwarf");
+DB_HasStoryEvent(ITEMGUID_S_RC_DW_LoharsWeddingInvitation_b1ceabe0-cf1c-4013-9c87-d05d19b74641, "ARX_MerchantEstate_HasWeddingInvitation");
+DB_ARX_MerchantEstate_Wines(ITEMGUID_S_ARX_MerchantEstate_Cellar_Wine_01_01_e7eb3f59-da8e-40a6-88bb-df7737fd9d9d, "ARX_MerchantEstate_Cellar_Wine_01_0");
+DB_ARX_MerchantEstate_Wines(ITEMGUID_S_ARX_MerchantEstate_Cellar_Wine_01_02_f63975da-cbb7-49ad-801d-10cbd4732824, "ARX_MerchantEstate_Cellar_Wine_01_02");
+DB_ARX_MerchantEstate_Wines(ITEMGUID_S_ARX_MerchantEstate_Cellar_Wine_01_03_a30602cc-0572-41cb-a0c1-0449c31cfc0e, "ARX_MerchantEstate_Cellar_Wine_01_03");
+DB_ARX_MerchantEstate_Wines(ITEMGUID_S_ARX_MerchantEstate_Cellar_Wine_01_04_3a0882e6-7b1f-4012-8463-bbb43ac0f0bd, "ARX_MerchantEstate_Cellar_Wine_01_04");
+DB_ARX_MerchantEstate_Wines(ITEMGUID_S_ARX_MerchantEstate_Cellar_Wine_01_05_c9fbc97e-adaa-49ce-811a-09100c771561, "ARX_MerchantEstate_Cellar_Wine_01_05");
+DB_ARX_MerchantEstate_Wines(ITEMGUID_S_ARX_MerchantEstate_Cellar_Wine_01_06_47a171f8-8458-4646-8a7c-9d59169abe0a, "ARX_MerchantEstate_Cellar_Wine_01_06");
+DB_ARX_MerchantEstate_Wines(ITEMGUID_S_ARX_MerchantEstate_Cellar_Wine_02_01_6753bf98-7a5f-4ba2-8b6a-523b29108161, "ARX_MerchantEstate_Cellar_Wine_02_01");
+DB_ARX_MerchantEstate_Wines(ITEMGUID_S_ARX_MerchantEstate_Cellar_Wine_02_02_b62b697d-dcef-4feb-b4dd-70acdd015ad9, "ARX_MerchantEstate_Cellar_Wine_02_02");
+DB_ARX_MerchantEstate_Wines(ITEMGUID_S_ARX_MerchantEstate_Cellar_Wine_02_03_17c15556-b184-4313-b20a-0d1f6cf09967, "ARX_MerchantEstate_Cellar_Wine_02_03");
+DB_ARX_MerchantEstate_Wines(ITEMGUID_S_ARX_MerchantEstate_Cellar_Wine_02_04_5a16bf8f-b037-4dca-9673-675ab6095dc8, "ARX_MerchantEstate_Cellar_Wine_02_04");
+DB_ARX_MerchantEstate_Wines(ITEMGUID_S_ARX_MerchantEstate_Cellar_Wine_02_05_ffa602da-e959-49ff-8fdc-10d12efadf05, "ARX_MerchantEstate_Cellar_Wine_02_05");
+DB_ARX_MerchantEstate_Wines(ITEMGUID_S_ARX_MerchantEstate_Cellar_Wine_02_06_9e999082-8c42-4576-ab6e-c4f706c33ae7, "ARX_MerchantEstate_Cellar_Wine_02_06");
+DB_ARX_MerchantEstate_Wines(ITEMGUID_S_ARX_MerchantEstate_Cellar_Wine_03_01_95fc74e7-1abd-43b1-b019-4dcb080b7fd7, "ARX_MerchantEstate_Cellar_Wine_03_01");
+DB_ARX_MerchantEstate_Wines(ITEMGUID_S_ARX_MerchantEstate_Cellar_Wine_03_02_fd716b12-8f00-425a-a59d-cb51809e1ed4, "ARX_MerchantEstate_Cellar_Wine_03_02");
+DB_ARX_MerchantEstate_Wines(ITEMGUID_S_ARX_MerchantEstate_Cellar_Wine_03_03_8b688a0a-94e9-4ee5-8c8c-9dad2dcef53c, "ARX_MerchantEstate_Cellar_Wine_03_03");
+DB_ARX_MerchantEstate_Wines(ITEMGUID_S_ARX_MerchantEstate_Cellar_Wine_03_04_a2edbdb6-52e3-45ad-b8ce-de87784184ee, "ARX_MerchantEstate_Cellar_Wine_03_04");
+DB_ARX_MerchantEstate_Wines(ITEMGUID_S_ARX_MerchantEstate_Cellar_Wine_03_05_faaf527a-ef36-47cb-a945-7624b77f4088, "ARX_MerchantEstate_Cellar_Wine_03_05");
+DB_ARX_MerchantEstate_Wines(ITEMGUID_S_ARX_MerchantEstate_Cellar_Wine_03_06_19947d7b-2aff-468f-9d2b-e5ce618365f6, "ARX_MerchantEstate_Cellar_Wine_03_06");
+SetOnStage(ITEMGUID_S_ARX_MerchantEstate_Cellar_SecretLadder_16f8f110-87fb-4b77-9f8d-057e8b25515f, 0);
+DB_Dialogs(ITEMGUID_S_ARX_MerchantEstate_GardenStatue_b9061790-2354-4efb-b622-d10c17380d1c, "ARX_MerchantEstate_GardenStatue");
+DB_OneShotPlayerTrigger(TRIGGERGUID_S_ARX_MerchantEstate_GardenStatue_VBTrig_082e6e7e-d6d6-4110-91b6-fac8da6a30b3);
+DB_IgnoreAssault(CHARACTERGUID_S_ARX_MerchantEstate_PigPet_e2da1813-f51c-41b8-bbcd-93695edb35c1);
+DB_MerchantEstate_SecondFloor_Guard(CHARACTERGUID_S_ARX_MerchantEstate_Guard_SecondFloor_02_0efea065-adfb-4343-893d-1a3250de5a6e);
+DB_MerchantEstate_SecondFloor_Guard(CHARACTERGUID_S_ARX_MerchantEstate_Guard_SecondFloor_01_e40305c5-3aa5-41ed-9434-9488ef4e7987);
+DB_SecretsOfTheDwarves_Know("QuestUpdate_RC_ARX_TheImperialDwarves_Know_DeathfogArx_PreStrike");
+DB_SecretsOfTheDwarves_Know("QuestUpdate_RC_ARX_TheImperialDwarves_Know_DeathfogArx");
+DB_SecretsOfTheDwarves_Know("QuestUpdate_RC_ARX_TheImperialDwarves_Sewers_PeacemakersCrates");
+DB_SecretsOfTheDwarves_Know("QuestUpdate_RC_ARX_TheImperialDwarves_Sewers_MetTheQueenWithQ");
+DB_SecretsOfTheDwarves_Know("QuestUpdate_RC_ARX_TheImperialDwarves_Sewers_ThievesTalkedAboutCrates");
+DB_SecretsOfTheDwarves_Know("QuestUpdate_RC_ARX_TheImperialDwarves_LearnSecretFromMagisterGhost");
+DB_SecretsOfTheDwarves_Know("QuestUpdate_RC_ARX_TheImperialDwarves_Ros_SaveTheQueen");
+DB_ARX_PigPainting(ITEMGUID_S_ARX_MerchantEstate_PigPainting_01_0f4df748-3023-45b3-b8df-04f282fcbf1c);
+DB_ARX_PigPainting(ITEMGUID_S_ARX_MerchantEstate_PigPainting_02_c8b68f6f-28f0-47d6-8b8a-f596aaa93b7f);
+DB_OriginMomentTag("ARX_MerchantEstate_Merchant", "BEAST", "ARX_MerchantEstate_Merchant_COM_Beast");
+DB_OriginMomentTag("ARX_MerchantEstate_Guard_FrontGate_01", "BEAST", "ARX_MerchantEstate_Guard_FrontGate_01_COM_Beast");
+DB_OriginMomentTag("ARX_MerchantEstate_Guard_FrontDesk_01", "BEAST", "ARX_MerchantEstate_Guard_FrontDesk_01_COM_Beast");
+
+KBSECTION
+IF
+CharacterEnteredTrigger((CHARACTERGUID)_Var1, TRIGGERGUID_S_ARX_MerchantEstate_Backroom_e4fe9df7-2c51-429c-9dc0-ef386e44a414)
+THEN
+ObjectSetFlag(_Var1, "ARX_MerchantEstate_Guard_FrontDesk_01_Cleared", 0);
+
+IF
+OnCrimeConfrontationDone((INTEGER)_Var1, CHARACTERGUID_S_ARX_MerchantEstate_Guard_FrontDesk_01_09dd0472-b9fd-4a2b-86a4-f082a0b7f800, 1, (CHARACTERGUID)_Var2, (CHARACTERGUID)_Var3, (CHARACTERGUID)_Var4, (CHARACTERGUID)_Var5)
+AND
+CrimeGetType(_Var1, "UseForbiddenItem")
+AND
+DB_ARX_MerchantEstate_FrontDesk_Doors(_Var6)
+AND
+CrimeGetEvidence(_Var1, 1, _Var6)
+THEN
+Proc_StartDialog(1, "ARX_MerchantEstate_AD_Guard_FrontDesk_01_Crime", CHARACTERGUID_S_ARX_MerchantEstate_Guard_FrontDesk_01_09dd0472-b9fd-4a2b-86a4-f082a0b7f800);
+
+IF
+ObjectFlagSet("ARX_MerchantEstate_Guard_FrontDesk_01_Cleared", (CHARACTERGUID)_Var1, _)
+AND
+DB_IsPlayer(_Var1)
+AND
+QueryOnlyOnce("ARX_MerchantEstate_Guard_FrontDesk_01_Cleared")
+THEN
+ItemClearOwner(ITEMGUID_S_ARX_MerchantEstate_TrespassShop_Door02_59c9bef8-94a8-8d11-4c44-cddf088483b2);
+
+IF
+ObjectFlagSet("ARX_MerchantEstate_Guard_FrontDesk_01_UnlockDoors", (CHARACTERGUID)_Var1, _)
+AND
+QueryOnlyOnce("ARX_MerchantEstate_Guard_FrontDesk_01_UnlockDoors")
+THEN
+PartySetFlag(_Var1, "ARX_MerchantEstate_Guard_FrontDesk_01_Cleared");
+ItemClearOwner(ITEMGUID_S_ARX_MerchantEstate_TrespassShop_Door02_59c9bef8-94a8-8d11-4c44-cddf088483b2);
+ItemUnlockAndOpen(ITEMGUID_S_ARX_MerchantEstate_TrespassShop_Door02_59c9bef8-94a8-8d11-4c44-cddf088483b2);
+GlobalSetFlag("ARX_MerchantEstate_Guard_FrontDesk_01_DoorsUnlocked");
+
+IF
+ItemOpened((ITEMGUID)_Var1)
+AND
+DB_ARX_MerchantEstate_FrontDesk_Doors(_Var1)
+AND
+GlobalGetFlag("ARX_MerchantEstate_Guard_FrontDesk_01_DoorsUnlocked", 0)
+THEN
+GlobalSetFlag("ARX_MerchantEstate_Guard_FrontDesk_01_DoorsUnlocked");
+
+IF
+GlobalFlagSet("ARX_MerchantEstate_Trader_VIPcustomer")
+AND
+DB_IsPlayer(_Var1)
+AND
+QueryOnlyOnce("ARX_MerchantEstate_Trader_VIPcustomer")
+THEN
+CharacterSetCustomTradeTreasure(CHARACTERGUID_S_ARX_MerchantEstate_Trader_16375643-abe6-41bd-ba5a-50475e7057c1, "ARX_MerchantEstate_Trader_VIP");
+GenerateItems(_Var1, CHARACTERGUID_S_ARX_MerchantEstate_Trader_16375643-abe6-41bd-ba5a-50475e7057c1);
+
+IF
+CharacterEnteredTrigger((CHARACTERGUID)_Var1, TRIGGERGUID_S_ARX_MerchantEstate_1stFloor_92eb0017-217d-491f-b03c-61129a87c604)
+THEN
+SetStoryEvent(_Var1, "ARX_MerchantEstate_EnteredStore");
+
+IF
+CharacterUsedItem((CHARACTERGUID)_Var1, ITEMGUID_S_ARX_MerchantEstate_DwarvenBust_9259b212-60fd-4198-96e0-fcbe1187abb9)
+THEN
+StartVoiceBark("ARX_MerchantEstate_VB_DwarvenBust", _Var1);
+
+IF
+ItemDestroyed(ITEMGUID_S_ARX_MerchantEstate_BackGate_a936c700-839e-4a62-afdc-622d4db360f1)
+THEN
+GlobalSetFlag("ARX_MerchantEstate_BackGate_Destroyed");
+
+IF
+CharacterItemEvent(_, _, "ARX_MerchantEstate_Cellar_SecretLadder_LeverUsed")
+AND
+QueryOnlyOnce("ARX_MerchantEstate_Cellar_SecretLadder_Activate")
+THEN
+SetOnStage(ITEMGUID_S_ARX_MerchantEstate_Cellar_SecretLadder_16f8f110-87fb-4b77-9f8d-057e8b25515f, 1);
+proc_ItemMoveToTrigger(ITEMGUID_S_ARX_MerchantEstate_Cellar_SecretLadder_16f8f110-87fb-4b77-9f8d-057e8b25515f, TRIGGERGUID_S_ARX_MerchantEstate_Cellar_SecretLadder_Pos_b7706b01-ab10-46c7-b5fb-ea51b334eef8, 0.5, 1, 0);
+Proc_RevealLadder(ITEMGUID_S_ARX_MerchantEstate_Cellar_SecretLadder_16f8f110-87fb-4b77-9f8d-057e8b25515f, "ARX_MerchantEstate_Cellar_SecretLadder_LeverUsed");
+
+PROC
+ProcBlockCombineItem((CHARACTERGUID)_Var1, (ITEMGUID)_Var2)
+AND
+DB_ARX_MerchantEstate_Wines(_Var2, _)
+THEN
+DB_CustomCombineItemResponse(_Var1, _Var2, 0);
+Proc_ARX_MerchantEstate_Wines_Activate(_Var1, _Var2);
+
+PROC
+ProcBlockUseOfItem((CHARACTERGUID)_Var1, (ITEMGUID)_Var2)
+AND
+DB_ARX_MerchantEstate_Wines(_Var2, _)
+THEN
+DebugText(_Var1, "block use item");
+DB_CustomUseItemResponse(_Var1, _Var2, 0);
+Proc_ARX_MerchantEstate_Wines_Activate(_Var1, _Var2);
+
+PROC
+ProcBlockMoveOfItem((CHARACTERGUID)_Var1, (ITEMGUID)_Var2)
+AND
+DB_ARX_MerchantEstate_Wines(_Var2, _)
+THEN
+DB_CustomMoveItemResponse(_Var1, _Var2, 0);
+Proc_ARX_MerchantEstate_Wines_Activate(_Var1, _Var2);
+
+PROC
+ProcBlockPickupOfItem((CHARACTERGUID)_Var1, (ITEMGUID)_Var2)
+AND
+DB_ARX_MerchantEstate_Wines(_Var2, _)
+THEN
+DB_CustomPickupItemResponse(_Var1, _Var2, 0);
+Proc_ARX_MerchantEstate_Wines_Activate(_Var1, _Var2);
+
+PROC
+Proc_ARX_MerchantEstate_Wines_Activate((CHARACTERGUID)_Var1, (ITEMGUID)_Var2)
+THEN
+PlaySound(_Var2, "Items_Puzzle_PressurePlate");
+PlayEffect(_Var2, "RS3_FX_GP_Combat_CameraShake_B");
+Proc_StartDialog(1, "GLO_AD_PressurePlateActivated", _Var2);
+
+PROC
+Proc_ARX_MerchantEstate_Wines_Activate((CHARACTERGUID)_Var1, ITEMGUID_S_ARX_MerchantEstate_Cellar_Wine_02_04_5a16bf8f-b037-4dca-9673-675ab6095dc8)
+AND
+QueryOnlyOnce("ARX_MerchantEstate_Cellar_SecretLadder")
+THEN
+SetOnStage(ITEMGUID_S_ARX_MerchantEstate_Cellar_SecretLadder_16f8f110-87fb-4b77-9f8d-057e8b25515f, 1);
+proc_ItemMoveToTrigger(ITEMGUID_S_ARX_MerchantEstate_Cellar_SecretLadder_16f8f110-87fb-4b77-9f8d-057e8b25515f, TRIGGERGUID_S_ARX_MerchantEstate_Cellar_SecretLadder_Pos_b7706b01-ab10-46c7-b5fb-ea51b334eef8, 1.5, 1, 0);
+Proc_RevealLadder(ITEMGUID_S_ARX_MerchantEstate_Cellar_SecretLadder_16f8f110-87fb-4b77-9f8d-057e8b25515f, "ARX_MerchantEstate_Cellar_SecretLadder_LeverUsed");
+
+PROC
+Proc_ARX_MerchantEstate_Wines_Activate((CHARACTERGUID)_Var1, (ITEMGUID)_Var2)
+AND NOT
+DB_ARX_MerchantEstate_Wines_TrapActive(1)
+AND
+DB_ARX_MerchantEstate_Wines(_Var2, _)
+AND
+_Var2 != ITEMGUID_S_ARX_MerchantEstate_Cellar_Wine_02_04_5a16bf8f-b037-4dca-9673-675ab6095dc8
+THEN
+DB_ARX_MerchantEstate_Wines_ActivateTrapsCount(0, _Var1, _Var2);
+Proc_ARX_MerchantEstate_Wines_ActivateTraps(_Var1, _Var2);
+DB_ARX_MerchantEstate_Wines_TrapActive(1);
+
+PROC
+Proc_ARX_MerchantEstate_Wines_ActivateTraps((CHARACTERGUID)_Var1, (ITEMGUID)_Var2)
+AND
+DB_ARX_MerchantEstate_Wines_ActivateTrapsCount(_Var3, _Var1, _Var2)
+AND
+IntegerSum(_Var3, 1, _Var4)
+AND
+IntegertoString(_Var4, _Var5)
+AND
+StringConcatenate("ARX_MerchantEstate_Cellar_TrapInitiate_", _Var5, _Var6)
+THEN
+NOT DB_ARX_MerchantEstate_Wines_ActivateTrapsCount(_Var3, _Var1, _Var2);
+DB_ARX_MerchantEstate_Wines_ActivateTrapsCount(_Var4, _Var1, _Var2);
+SetStoryEvent(_Var2, "RevealFromStory");
+CharacterItemSetEvent(_Var1, _Var2, _Var6);
+TimerLaunch("ARX_MerchantEstate_Cellar_TrapInitiate_Timer", 250);
+
+IF
+TimerFinished("ARX_MerchantEstate_Cellar_TrapInitiate_Timer")
+AND
+DB_ARX_MerchantEstate_Wines_ActivateTrapsCount(_Var1, _Var2, _Var3)
+AND
+_Var1 < 21
+THEN
+Proc_ARX_MerchantEstate_Wines_ActivateTraps(_Var2, _Var3);
+
+IF
+TimerFinished("ARX_MerchantEstate_Cellar_TrapInitiate_Timer")
+AND
+DB_ARX_MerchantEstate_Wines_ActivateTrapsCount(_Var1, _Var2, _Var3)
+AND
+_Var1 >= 21
+THEN
+NOT DB_ARX_MerchantEstate_Wines_TrapActive(1);
+NOT DB_ARX_MerchantEstate_Wines_ActivateTrapsCount(_Var1, _Var2, _Var3);
+
+PROC
+ProcOneShotTriggerEntered((CHARACTERGUID)_Var1, TRIGGERGUID_S_ARX_MerchantEstate_GardenStatue_VBTrig_082e6e7e-d6d6-4110-91b6-fac8da6a30b3)
+THEN
+StartVoiceBark("ARX_MerchantEstate_VB_GardenStatue", _Var1);
+
+IF
+AttackedByObject(CHARACTERGUID_S_ARX_MerchantEstate_PigPet_e2da1813-f51c-41b8-bbcd-93695edb35c1, (CHARACTERGUID)_Var1, (CHARACTERGUID)_Var2, _, (STRING)_Var4)
+AND NOT
+QryIgnoreDamageSource(_Var4)
+AND
+CharacterIsPlayer(_Var1, 1)
+AND
+CharacterIsInCombat(CHARACTERGUID_S_ARX_MerchantEstate_PigPet_e2da1813-f51c-41b8-bbcd-93695edb35c1, 0)
+THEN
+Proc_ARX_MerchantEstate_LulabelleCrime(_Var1);
+
+PROC
+Proc_ARX_MerchantEstate_LulabelleCrime((CHARACTERGUID)_Var1)
+AND
+CharacterIsDead(CHARACTERGUID_S_ARX_MerchantEstate_PigPet_e2da1813-f51c-41b8-bbcd-93695edb35c1, 0)
+AND
+CharacterIsInCombat(CHARACTERGUID_S_ARX_MerchantEstate_PigPet_e2da1813-f51c-41b8-bbcd-93695edb35c1, 0)
+THEN
+Proc_StartDialog(1, "GEB_AD_Noticed_AnimalAttackedAnimal", CHARACTERGUID_S_ARX_MerchantEstate_PigPet_e2da1813-f51c-41b8-bbcd-93695edb35c1);
+CharacterAddAttitudeTowardsPlayer(CHARACTERGUID_S_ARX_MerchantEstate_PigPet_e2da1813-f51c-41b8-bbcd-93695edb35c1, _Var1, -20);
+
+PROC
+Proc_ARX_MerchantEstate_LulabelleCrime((CHARACTERGUID)_Var1)
+AND
+CharacterIsDead(CHARACTERGUID_S_ARX_MerchantEstate_Merchant_787cf3e2-aa6f-41e7-ab54-f5fb22b944d1, 0)
+AND
+CharacterIsInCombat(CHARACTERGUID_S_ARX_MerchantEstate_Merchant_787cf3e2-aa6f-41e7-ab54-f5fb22b944d1, 0)
+THEN
+ProcForceStopDialog(CHARACTERGUID_S_ARX_MerchantEstate_Merchant_787cf3e2-aa6f-41e7-ab54-f5fb22b944d1);
+ProcCharacterMoveTo(CHARACTERGUID_S_ARX_MerchantEstate_Merchant_787cf3e2-aa6f-41e7-ab54-f5fb22b944d1, _Var1, 1, "");
+Proc_StartDialog(1, "GEB_AD_Noticed_Assault", CHARACTERGUID_S_ARX_MerchantEstate_Merchant_787cf3e2-aa6f-41e7-ab54-f5fb22b944d1);
+CharacterSetTemporaryHostileRelation(CHARACTERGUID_S_ARX_MerchantEstate_Merchant_787cf3e2-aa6f-41e7-ab54-f5fb22b944d1, _Var1);
+CharacterAddAttitudeTowardsPlayer(CHARACTERGUID_S_ARX_MerchantEstate_Merchant_787cf3e2-aa6f-41e7-ab54-f5fb22b944d1, _Var1, -20);
+
+PROC
+Proc_ARX_MerchantEstate_LulabelleCrime((CHARACTERGUID)_Var1)
+AND
+CharacterIsDead(CHARACTERGUID_S_ARX_MerchantEstate_Merchant_787cf3e2-aa6f-41e7-ab54-f5fb22b944d1, 0)
+AND
+CharacterIsInCombat(CHARACTERGUID_S_ARX_MerchantEstate_Merchant_787cf3e2-aa6f-41e7-ab54-f5fb22b944d1, 1)
+THEN
+Proc_StartDialog(1, "GEB_AD_Noticed_Assault", CHARACTERGUID_S_ARX_MerchantEstate_Merchant_787cf3e2-aa6f-41e7-ab54-f5fb22b944d1);
+CharacterSetTemporaryHostileRelation(CHARACTERGUID_S_ARX_MerchantEstate_Merchant_787cf3e2-aa6f-41e7-ab54-f5fb22b944d1, _Var1);
+
+PROC
+Proc_ARX_MerchantEstate_LulabelleCrime((CHARACTERGUID)_Var1)
+AND
+CharacterIsDead(CHARACTERGUID_S_ARX_MerchantEstate_Merchant_787cf3e2-aa6f-41e7-ab54-f5fb22b944d1, 1)
+AND
+DB_MerchantEstate_SecondFloor_Guard(_Var2)
+AND
+CharacterCanSee(_Var2, _Var1, 1)
+AND
+CharacterIsInCombat(_Var2, 0)
+THEN
+ProcForceStopDialog(_Var2);
+Proc_StartDialog(1, "GEB_AD_Noticed_Assault", _Var2);
+CharacterSetTemporaryHostileRelation(_Var2, _Var1);
+
+IF
+CharacterDied((CHARACTERGUID)_Var1)
+AND
+DB_MerchantEstate_SecondFloor_Guard(_Var1)
+THEN
+NOT DB_MerchantEstate_SecondFloor_Guard(_Var1);
+Proc_ARX_MerchantEstate_LulabelleCrime_CheckIfClear();
+
+IF
+CharacterDied(CHARACTERGUID_S_ARX_MerchantEstate_Merchant_787cf3e2-aa6f-41e7-ab54-f5fb22b944d1)
+THEN
+Proc_ARX_MerchantEstate_LulabelleCrime_CheckIfClear();
+
+PROC
+Proc_ARX_MerchantEstate_LulabelleCrime_CheckIfClear()
+AND NOT
+DB_MerchantEstate_SecondFloor_Guard(_)
+AND
+CharacterIsDead(CHARACTERGUID_S_ARX_MerchantEstate_Merchant_787cf3e2-aa6f-41e7-ab54-f5fb22b944d1, 1)
+THEN
+NOT DB_IgnoreAssault(CHARACTERGUID_S_ARX_MerchantEstate_PigPet_e2da1813-f51c-41b8-bbcd-93695edb35c1);
+
+IF
+ObjectFlagSet("ARX_MerchantEstate_HasWeddingInvitation", (GUIDSTRING)_Var1, _)
+THEN
+ObjectSetFlag(_Var1, "ARX_MerchantEstate_HasWeddingInvitation_Any");
+
+IF
+ObjectFlagSet("ARX_MerchantEstate_HasWeddingInvitation_DrunkDwarf", (GUIDSTRING)_Var1, _)
+THEN
+ObjectSetFlag(_Var1, "ARX_MerchantEstate_HasWeddingInvitation_Any");
+
+IF
+ObjectFlagCleared("ARX_MerchantEstate_HasWeddingInvitation_DrunkDwarf", (GUIDSTRING)_Var1, _)
+AND
+ObjectGetFlag(_Var1, "ARX_MerchantEstate_HasWeddingInvitation", 0)
+THEN
+ObjectClearFlag(_Var1, "ARX_MerchantEstate_HasWeddingInvitation_Any");
+
+IF
+ObjectFlagCleared("ARX_MerchantEstate_HasWeddingInvitation", (GUIDSTRING)_Var1, _)
+AND
+ObjectGetFlag(_Var1, "ARX_MerchantEstate_HasWeddingInvitation_DrunkDwarf", 0)
+THEN
+ObjectClearFlag(_Var1, "ARX_MerchantEstate_HasWeddingInvitation_Any");
+
+IF
+CharacterUsedItem((CHARACTERGUID)_Var1, (ITEMGUID)_Var2)
+AND
+DB_ARX_PigPainting(_Var2)
+THEN
+StartVoiceBark("ARX_MerchantEstate_VB_PigPainting", _Var1);
+
+IF
+CharacterUsedItem((CHARACTERGUID)_Var1, ITEMGUID_S_ARX_MerchantEstate_PigPoems_1a472a72-b566-452c-a8e1-4bc17c652cc5)
+THEN
+UserSetFlag(_Var1, "ARX_MerchantEstate_Used_PigPainting");
+
+IF
+ObjectFlagSet("QuestUpdate_RC_ARX_TheImperialDwarves_Ros_SaveTheQueen", _, _)
+THEN
+ItemClearOwner(ITEMGUID_S_ARX_MerchantEstate_CellarEnt_5fced7d2-67b5-4557-b933-5d9f5e3d4a7f);
+
+IF
+ObjectFlagSet((STRING)_Var1, (CHARACTERGUID)_Var2, _)
+AND
+DB_SecretsOfTheDwarves_Know(_Var1)
+AND
+UserGetFlag(_Var2, "ARX_SecretsOfTheDwarves_Started", 0)
+THEN
+UserSetFlag(_Var2, "ARX_SecretsOfTheDwarves_Started");
+
+IF
+GlobalFlagSet("ARX_MerchantEstate_Merchant_KnowsAboutQsDeath")
+THEN
+NOT DB_OriginMomentTag("ARX_MerchantEstate_Merchant", "BEAST", "ARX_MerchantEstate_Merchant_COM_Beast");
+
+IF
+GlobalFlagSet("ARX_Sewers_TheEmpress_MetTheEmpress")
+THEN
+NOT DB_OriginMomentTag("ARX_MerchantEstate_Merchant", "BEAST", "ARX_MerchantEstate_Merchant_COM_Beast");
+
+IF
+GlobalFlagSet("ARX_MerchantEstate_Merchant_Wetwork_PostDaughterDialog")
+THEN
+NOT DB_OriginMomentTag("ARX_MerchantEstate_Merchant", "BEAST", "ARX_MerchantEstate_Merchant_COM_Beast");
+
+IF
+GlobalFlagCleared("ARX_MerchantEstate_Merchant_Wetwork_PostDaughterDialog")
+AND
+ObjectGetFlag(CHARACTERGUID_S_Player_Beast_f25ca124-a4d2-427b-af62-df66df41a978, "ARX_MerchantEstate_Merchant_HasMet", 0)
+THEN
+DB_OriginMomentTag("ARX_MerchantEstate_Merchant", "BEAST", "ARX_MerchantEstate_Merchant_COM_Beast");
+
+IF
+ObjectFlagSet("ARX_MerchantEstate_Merchant_SetHostileToPlayer", _, _)
+THEN
+NOT DB_OriginMomentTag("ARX_MerchantEstate_Merchant", "BEAST", "ARX_MerchantEstate_Merchant_COM_Beast");
+
+IF
+CharacterCharacterEvent((CHARACTERGUID)_Var1, (CHARACTERGUID)_Var2, "ARX_MerchantEstate_Guard_FrontGate_01_SpottedBeast")
+AND
+QRY_SpeakerIsAvailable(_Var1)
+AND
+QRY_SpeakerIsAvailable(_Var2)
+THEN
+GlobalSetFlag("ARX_MerchantEstate_Guard_FrontGate_01_StopSpotter");
+Proc_StartDialog(0, "ARX_MerchantEstate_Guard_FrontGate_01", _Var1, _Var2);
+
+IF
+DialogStarted("ARX_MerchantEstate_Guard_FrontGate_01_COM_Beast", _)
+THEN
+GlobalSetFlag("ARX_MerchantEstate_Guard_FrontGate_01_StopSpotter");
+
+IF
+GlobalFlagSet("ARX_MerchantEstate_Guard_FrontDesk_01_DoorsUnlocked")
+AND
+DB_OriginMomentTag("ARX_MerchantEstate_Guard_FrontDesk_01", "BEAST", "ARX_MerchantEstate_Guard_FrontDesk_01_COM_Beast")
+THEN
+NOT DB_OriginMomentTag("ARX_MerchantEstate_Guard_FrontDesk_01", "BEAST", "ARX_MerchantEstate_Guard_FrontDesk_01_COM_Beast");
+
+IF
+RegionStarted("ARX_Main")
+AND
+DB_IsPlayer(_Var1)
+AND
+ObjectGetFlag(_Var1, "QuestUpdate_RC_ARX_TheImperialDwarves_LoharStart", 1)
+THEN
+ObjectSetFlag(_Var1, "QuestUpdate_RC_ARX_TheImperialDwarves_LoharStart_EnteredArx");
+
+IF
+DB_ARX_MerchantEstate_Wines(_Var1, _)
+THEN
+ApplyStatus(_Var1, "GROUNDED", -1, 1);
+
+
+EXITSECTION
+ENDEXITSECTION
+
+ParentTargetEdge "ARX"

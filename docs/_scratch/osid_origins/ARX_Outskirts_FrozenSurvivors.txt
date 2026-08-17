@@ -1,0 +1,663 @@
+Version 1
+SubGoalCombiner SGC_AND
+
+INITSECTION
+DB_ARX_Outskirts_Frozen(CHARACTERGUID_S_ARX_Outskirts_FrozenSurvivor_Female_000_f55cd91e-4e89-406b-aa30-fb55a817b8d9, "ARX_Outskirts_Frozen_MotherIsFrozen", "ARX_Outskirts_FrozenSurvivor_Mother", 1000);
+DB_ARX_Outskirts_Frozen(CHARACTERGUID_S_ARX_Outskirts_FrozenSurvivor_Child_000_25f23216-3a8c-40ce-b9c8-0dd901fe157c, "ARX_Outskirts_Frozen_ChildIsFrozen", "ARX_Outskirts_FrozenSurvivor_Child", 1600);
+DB_ARX_Outskirts_Frozen(CHARACTERGUID_S_ARX_Outskirts_FrozenSurvivor_Male_000_eb3d53ba-7fbf-4d04-b2fa-9db02445b2d5, "ARX_Outskirts_Frozen_FatherIsFrozen", "ARX_Outskirts_FrozenSurvivor_Father", 2400);
+DB_Children(CHARACTERGUID_S_ARX_Outskirts_FrozenSurvivor_Child_000_25f23216-3a8c-40ce-b9c8-0dd901fe157c);
+DB_Dialogs(CHARACTERGUID_S_ARX_Outskirts_FrozenSurvivor_Female_000_f55cd91e-4e89-406b-aa30-fb55a817b8d9, "ARX_Outskirts_FrozenSurvivor_Mother");
+DB_Dialogs(CHARACTERGUID_S_ARX_Outskirts_FrozenSurvivor_Child_000_25f23216-3a8c-40ce-b9c8-0dd901fe157c, "ARX_Outskirts_FrozenSurvivor_Child");
+DB_Dialogs(CHARACTERGUID_S_ARX_Outskirts_FrozenSurvivor_Male_000_eb3d53ba-7fbf-4d04-b2fa-9db02445b2d5, "ARX_Outskirts_FrozenSurvivor_Father");
+DB_ARX_Outskirts_Frozen_Parents(CHARACTERGUID_S_ARX_Outskirts_FrozenSurvivor_Female_000_f55cd91e-4e89-406b-aa30-fb55a817b8d9, "ARX_Outskirts_Frozen_MotherIsDead");
+DB_ARX_Outskirts_Frozen_Parents(CHARACTERGUID_S_ARX_Outskirts_FrozenSurvivor_Male_000_eb3d53ba-7fbf-4d04-b2fa-9db02445b2d5, "ARX_Outskirts_Frozen_FatherIsDead");
+DB_ARX_Outskirts_Frozen_LeaveDialog("ARX_Outskirts_Frozen_ParentsDual");
+DB_ARX_Outskirts_Frozen_LeaveDialog("ARX_Outskirts_FrozenSurvivor_Mother");
+DB_ARX_Outskirts_Frozen_LeaveDialog("ARX_Outskirts_FrozenSurvivor_Father");
+DB_ARX_Outskirts_Frozen_Torch(ITEMGUID_S_ARX_Outskirts_FrozenCellar_Torch_000_66df78bc-319b-4aec-a5a6-97b142e53757);
+DB_ARX_Outskirts_Frozen_Torch(ITEMGUID_S_ARX_Outskirts_FrozenCellar_Torch_001_44041e30-14e3-4cca-ac1d-55a8e56c5893);
+DB_ARX_Outskirts_Frozen_Torch(ITEMGUID_S_ARX_Outskirts_FrozenCellar_Torch_004_ff67e834-5b8a-42e0-a5cf-96fcea9e7349);
+DB_ARX_Outskirts_Frozen_Torch(ITEMGUID_S_ARX_Outskirts_FrozenCellar_Torch_002_a8f733dc-61a4-46ce-9930-cae142f0a704);
+DB_ARX_Outskirts_Frozen_Torch(ITEMGUID_S_ARX_Outskirts_FrozenCellar_Torch_003_82b36b23-f44b-4371-b5dc-011ab89f5d61);
+DB_ARX_Outskirts_Frozen_Torch(ITEMGUID_S_ARX_Outskirts_FrozenCellar_Torch_005_84d945c4-d287-40f3-a5b8-f9222c1a70f0);
+DB_ARX_Outskirts_Frozen_Torch(ITEMGUID_S_ARX_Outskirts_FrozenCellar_Torch_006_460d716f-97eb-4dc8-8fce-de1c6827c033);
+DB_ARX_Outskirts_Frozen_Torch(ITEMGUID_S_ARX_Outskirts_FrozenCellar_Torch_007_793e9cba-46d2-423c-998a-978f3f11c3eb);
+DB_ARX_Outskirts_Frozen_Fog(ITEMGUID_S_ARX_FrozenCellar_RS3_FX_GroundFog_B_Dynamic_000_1945fb11-ffb3-4dab-9a77-d7acb83909e2);
+DB_ARX_Outskirts_Frozen_Fog(ITEMGUID_S_ARX_FrozenCellar_RS3_FX_GroundFog_B_Dynamic_001_8e7357ac-5b1d-4554-a789-5432d3489e9d);
+DB_ARX_Outskirts_Frozen_Fog(ITEMGUID_S_ARX_FrozenCellar_RS3_FX_GroundFog_B_Dynamic_002_e3e9f8b1-434f-47df-8919-8df6141d953b);
+DB_ARX_Outskirts_Frozen_Fog(ITEMGUID_S_ARX_FrozenCellar_RS3_FX_GroundFog_B_Dynamic_003_2cbba369-97cd-40bf-9b5d-bc3b9ae3eba5);
+DB_ARX_Outskirts_Frozen_Fog(ITEMGUID_S_ARX_FrozenCellar_RS3_FX_GroundFog_B_Dynamic_004_f159325e-9acb-43bb-825a-cf407b363895);
+DB_HasStoryEvent(ITEMGUID_S_ARX_Outskirts_Frozen_Chest_Key_934e8aba-f7ef-4646-b967-b81c8535633d, "ARX_Outskirts_Frozen_HasChestKey");
+DB_GiveItemToEvent(ITEMGUID_S_ARX_Outskirts_Frozen_Chest_Key_934e8aba-f7ef-4646-b967-b81c8535633d, "ARX_Outskirts_Frozen_GiveChestKey");
+ItemToInventory(ITEMGUID_S_ARX_Outskirts_Frozen_Chest_Key_934e8aba-f7ef-4646-b967-b81c8535633d, CHARACTERGUID_S_ARX_Outskirts_FrozenSurvivor_Female_000_f55cd91e-4e89-406b-aa30-fb55a817b8d9);
+TriggerSetAtmosphere(TRIGGERGUID_S_ATM_ARX_Outskirts_Frozen_Atmosphere_a21dcced-4b75-454b-a5f0-68bcf7ae462f, "4d91aa4c-7a8e-4814-ac8a-a0b4caf58e90");
+Proc_ARX_Outskirts_Frozen_InitialFreeze();
+
+KBSECTION
+PROC
+Proc_ARX_Outskirts_Frozen_InitialFreeze()
+AND
+DB_ARX_Outskirts_Frozen(_Var1, _, _, _)
+THEN
+Proc_ARX_Outskirts_Frozen_FreezeNPC(_Var1);
+
+PROC
+Proc_ARX_Outskirts_Frozen_CheckFreezeNPC()
+AND
+GlobalGetFlag("ARX_FrozenCellar_WarmedUp", 0)
+AND
+GlobalGetFlag("ARX_Outskirts_Frozen_FamilyLeaves", 0)
+AND
+DB_ARX_Outskirts_Frozen(_Var1, _, _, _)
+AND NOT
+DB_Dead(_Var1)
+THEN
+Proc_ARX_Outskirts_Frozen_FreezeNPC(_Var1);
+
+PROC
+Proc_ARX_Outskirts_Frozen_FreezeNPC((CHARACTERGUID)_Var1)
+AND
+HasActiveStatus(_Var1, "FROZEN", 1)
+AND
+GetStatusTurns(_Var1, "FROZEN", _Var2)
+AND
+_Var2 != -1
+THEN
+RemoveStatus(_Var1, "FROZEN");
+
+PROC
+Proc_ARX_Outskirts_Frozen_FreezeNPC((CHARACTERGUID)_Var1)
+AND
+HasActiveStatus(_Var1, "FROZEN", 0)
+THEN
+ApplyStatus(_Var1, "FROZEN", -1, 1);
+Proc_ARX_Outskirts_Frozen_ValidateFreezeNPC(_Var1);
+
+PROC
+Proc_ARX_Outskirts_Frozen_ValidateFreezeNPC((CHARACTERGUID)_Var1)
+AND
+HasActiveStatus(_Var1, "FROZEN", 0)
+THEN
+ProcObjectTimerCancel(_Var1, "ARX_Outskirts_Frozen_ApplyFROZEN");
+ProcObjectTimer(_Var1, "ARX_Outskirts_Frozen_ApplyFROZEN", 1000);
+
+PROC
+ProcObjectTimerFinished((CHARACTERGUID)_Var1, "ARX_Outskirts_Frozen_ApplyFROZEN")
+AND
+HasActiveStatus(_Var1, "FROZEN", 0)
+AND
+GlobalGetFlag("ARX_FrozenCellar_WarmedUp", 0)
+AND
+GlobalGetFlag("ARX_Outskirts_Frozen_FamilyLeaves", 0)
+THEN
+Proc_ARX_Outskirts_Frozen_FreezeNPC(_Var1);
+
+IF
+CharacterStatusApplied((CHARACTERGUID)_Var1, "FROZEN", _)
+AND
+DB_ARX_Outskirts_Frozen(_Var1, _Var3, _, _)
+THEN
+GlobalSetFlag(_Var3);
+SetVarFixedString(_Var1, "currentState", "");
+ProcCharacterDisableAllCrimes(_Var1);
+CharacterSetCanTrade(_Var1, 0);
+Proc_ARX_Outskirts_Frozen_CheckSetSingleDialog(_Var1);
+Proc_ARX_Outskirts_Frozen_CheckDisableCombat(_Var1);
+
+PROC
+Proc_ARX_Outskirts_Frozen_CheckDisableCombat((CHARACTERGUID)_Var1)
+AND
+GetStatusTurns(_Var1, "FROZEN", -1)
+THEN
+SetCanFight(_Var1, 0);
+SetCanJoinCombat(_Var1, 0);
+
+IF
+CharacterEnteredTrigger((CHARACTERGUID)_Var1, TRIGGERGUID_S_ARX_Outskirts_Harbour_CellarWithBoat_SubregionBox_89f6e8ef-440e-4bcf-9542-8e05cad5086e)
+AND
+DB_IsPlayer(_Var1)
+AND
+QueryOnlyOnce("ARX_FrozenCellar_Autosave")
+THEN
+AutoSave();
+Proc_ARX_Outskirts_Frozen_PlayFreezingVB(_Var1, "ARX_FrozenCellar_EnteredVB");
+TriggerRegisterForItems(TRIGGERGUID_S_ARX_Harbour_ItemTrigger_Box_9390ad5f-b311-4685-8458-66b047e17425);
+Proc_ARX_Outskirts_Frozen_ItemTrigger_HACK();
+TriggerSetSoundState(TRIGGERGUID_SoundVolumeTrigger_ARX_Docks_Cellar_Frozen_26b37b6c-11ae-4327-a693-d622d526cbd4, "Amb_ARX_Frozen", "Chilled", 1);
+
+IF
+CharacterEnteredTrigger((CHARACTERGUID)_Var1, TRIGGERGUID_S_ARX_Outskirts_Harbour_CellarWithBoat_SubregionBox_89f6e8ef-440e-4bcf-9542-8e05cad5086e)
+AND NOT
+DB_GlobalFlag("ARX_FrozenCellar_WarmedUp")
+AND
+DB_IsPlayer(_Var1)
+THEN
+ApplyStatus(_Var1, "ARX_QUEST_NODISPLAYNAME_CHILLING", 16);
+
+IF
+CharacterStatusRemoved((CHARACTERGUID)_Var1, "ARX_QUEST_NODISPLAYNAME_CHILLING", _)
+AND NOT
+DB_GlobalFlag("ARX_FrozenCellar_WarmedUp")
+AND
+DB_InRegion(_Var1, TRIGGERGUID_S_ARX_Outskirts_Harbour_CellarWithBoat_SubregionBox_89f6e8ef-440e-4bcf-9542-8e05cad5086e)
+THEN
+GlobalSetFlag("ARX_FrozenCellar_Chilling");
+PlaySound(_Var1, "SE_Arx_FrozenBasement_Chilled_Start");
+SetStoryEvent(_Var1, "ARX_FrozenCellar_SetCHILLED");
+CharacterSetMagicArmorPercentage(_Var1, 0);
+PlayAnimation(_Var1, "hit");
+Proc_ARX_Outskirts_Frozen_PlayFreezingVB(_Var1, "ARX_FrozenCellar_ChilledVB");
+
+IF
+StoryEvent((GUIDSTRING)_Var1, "ARX_FrozenCellar_SetCHILLED")
+THEN
+ApplyStatus(_Var1, "ARX_QUEST_NODISPLAYNAME_FREEZING", 16);
+
+IF
+StoryEvent(_, "ARX_FrozenCellar_SetCHILLED")
+AND
+QueryOnlyOnce("Set_Amb_ARX_Frozen_Frozen")
+THEN
+TriggerSetSoundState(TRIGGERGUID_SoundVolumeTrigger_ARX_Docks_Cellar_Frozen_26b37b6c-11ae-4327-a693-d622d526cbd4, "Amb_ARX_Frozen", "Frozen", 1);
+
+IF
+CharacterStatusRemoved((CHARACTERGUID)_Var1, "ARX_QUEST_NODISPLAYNAME_FREEZING", _)
+AND NOT
+DB_GlobalFlag("ARX_FrozenCellar_WarmedUp")
+AND
+DB_InRegion(_Var1, TRIGGERGUID_S_ARX_Outskirts_Harbour_CellarWithBoat_SubregionBox_89f6e8ef-440e-4bcf-9542-8e05cad5086e)
+THEN
+Proc_ARX_Outskirts_Frozen_ApplyFROZEN(_Var1);
+
+PROC
+Proc_ARX_Outskirts_Frozen_ApplyFROZEN((CHARACTERGUID)_Var1)
+AND
+QueryOnlyOnce("ARX_FrozenCellar_FreezeNPCWithFirstPlayer")
+THEN
+Proc_ARX_Outskirts_Frozen_CheckFreezeNPC();
+
+PROC
+Proc_ARX_Outskirts_Frozen_ApplyFROZEN((CHARACTERGUID)_Var1)
+AND
+HasActiveStatus(_Var1, "CHILLED", 1)
+THEN
+GlobalSetFlag("ARX_FrozenCellar_Freezing");
+CharacterSetMagicArmorPercentage(_Var1, 0);
+PlaySound(_Var1, "SE_Arx_FrozenBasement_Frozen_Start");
+Proc_ARX_Outskirts_Frozen_PlayFreezingVB(_Var1, "ARX_FrozenCellar_FrozenVB");
+ApplyStatus(_Var1, "FROZEN", -1, 1);
+TimerCancel("ARX_Outskirts_Frozen_CheckGameOver");
+TimerLaunch("ARX_Outskirts_Frozen_CheckGameOver", 5000);
+DB_ARX_Frozen_PermanentlyFrozen(_Var1);
+
+IF
+DB_ARX_Frozen_PermanentlyFrozen(_Var1)
+AND
+HasAppliedStatus(_Var1, "FROZEN", 0)
+THEN
+NOT DB_ARX_Frozen_PermanentlyFrozen(_Var1);
+
+IF
+SavegameLoaded(_, _, _, _)
+AND
+DB_ARX_Frozen_PermanentlyFrozen(_Var5)
+AND
+HasAppliedStatus(_Var5, "FROZEN", 0)
+THEN
+NOT DB_ARX_Frozen_PermanentlyFrozen(_Var5);
+
+IF
+TimerFinished("ARX_Outskirts_Frozen_CheckGameOver")
+THEN
+ProcCheckGameOver();
+
+IF
+CharacterLeftTrigger((CHARACTERGUID)_Var1, TRIGGERGUID_S_ARX_Outskirts_Harbour_CellarWithBoat_SubregionBox_89f6e8ef-440e-4bcf-9542-8e05cad5086e)
+AND
+DB_IsPlayer(_Var1)
+AND
+QRY_AnyRegionActive()
+THEN
+Proc_ARX_Outskirts_Frozen_LeftCellar(_Var1);
+
+PROC
+Proc_ARX_Outskirts_Frozen_LeftCellar((CHARACTERGUID)_Var1)
+AND
+HasAppliedStatus(_Var1, "ARX_QUEST_NODISPLAYNAME_CHILLING", 1)
+THEN
+RemoveStatus(_Var1, "ARX_QUEST_NODISPLAYNAME_CHILLING");
+
+PROC
+Proc_ARX_Outskirts_Frozen_LeftCellar((CHARACTERGUID)_Var1)
+AND
+HasAppliedStatus(_Var1, "ARX_QUEST_NODISPLAYNAME_FREEZING", 1)
+THEN
+RemoveStatus(_Var1, "ARX_QUEST_NODISPLAYNAME_FREEZING");
+
+IF
+StoryEvent((CHARACTERGUID)_Var1, "ARX_FrozenCellar_ChilledInfluenceRemoved")
+AND
+DB_ARX_Frozen_PermanentlyFrozen(_Var1)
+AND
+HasAppliedStatus(_Var1, "CHILLED", 0)
+THEN
+ApplyStatus(_Var1, "CHILLED", 6, 1);
+
+IF
+CharacterLeftTrigger((CHARACTERGUID)_Var1, TRIGGERGUID_S_ARX_Outskirts_Harbour_CellarWithBoat_SubregionBox_89f6e8ef-440e-4bcf-9542-8e05cad5086e)
+AND
+DB_IsPlayer(_Var1)
+AND
+QRY_AnyRegionActive()
+AND NOT
+QryCheckOtherPlayersInTrigger(NULL_00000000-0000-0000-0000-000000000000, TRIGGERGUID_S_ARX_Outskirts_Harbour_CellarWithBoat_SubregionBox_89f6e8ef-440e-4bcf-9542-8e05cad5086e)
+THEN
+Proc_ARX_Frozen_ResetOnAllPlayerLeft();
+
+PROC
+Proc_ARX_Frozen_ResetOnAllPlayerLeft()
+AND NOT
+DB_GlobalFlag("ARX_FrozenCellar_WarmedUp")
+AND
+DB_OnlyOnce("Set_Amb_ARX_Frozen_Frozen")
+THEN
+NOT DB_OnlyOnce("Set_Amb_ARX_Frozen_Frozen");
+TriggerSetSoundState(TRIGGERGUID_SoundVolumeTrigger_ARX_Docks_Cellar_Frozen_26b37b6c-11ae-4327-a693-d622d526cbd4, "Amb_ARX_Frozen", "Chilled", 1);
+
+PROC
+Proc_ARX_Frozen_ResetOnAllPlayerLeft()
+THEN
+NOT DB_OnlyOnce("ARX_FrozenCellar_ChilledVB");
+NOT DB_OnlyOnce("ARX_FrozenCellar_FrozenVB");
+NOT DB_OnlyOnce("ARX_FrozenCellar_FreezeNPCWithFirstPlayer");
+GlobalClearFlag("ARX_FrozenCellar_Chilling");
+GlobalClearFlag("ARX_FrozenCellar_Freezing");
+Proc_ARX_Outskirts_Frozen_CheckFamilyLeave();
+Proc_ARX_Outskirts_Frozen_CheckFreezeNPC();
+
+PROC
+Proc_ARX_Outskirts_Frozen_PlayFreezingVB((CHARACTERGUID)_Var1, (STRING)_Var2)
+AND
+QueryOnlyOnce(_Var2)
+THEN
+StartVoiceBark("ARX_Outskirts_Frozen_VB_EnterColdCellar", _Var1);
+
+IF
+CharacterLeftTrigger((CHARACTERGUID)_Var1, TRIGGERGUID_S_ARX_Outskirts_Harbour_CellarWithBoat_SubregionBox_89f6e8ef-440e-4bcf-9542-8e05cad5086e)
+AND
+DB_IsPlayer(_Var1)
+AND
+HasActiveStatus(_Var1, "FROZEN", 1)
+THEN
+RemoveStatus(_Var1, "FROZEN");
+
+IF
+CharacterStatusRemoved((CHARACTERGUID)_Var1, "FROZEN", _)
+AND
+DB_ARX_Frozen_PermanentlyFrozen(_Var1)
+AND
+HasAppliedStatus(_Var1, "CHILLED", 0)
+THEN
+ApplyStatus(_Var1, "CHILLED", 30, 1);
+
+IF
+CharacterStatusRemoved((CHARACTERGUID)_Var1, "FROZEN", _)
+AND
+DB_ARX_Frozen_PermanentlyFrozen(_Var1)
+THEN
+NOT DB_ARX_Frozen_PermanentlyFrozen(_Var1);
+
+IF
+CharacterStatusRemoved((CHARACTERGUID)_Var1, "FROZEN", (GUIDSTRING)_Var2)
+AND
+DB_ARX_Outskirts_Frozen(_Var1, _Var3, _, _)
+THEN
+GlobalClearFlag(_Var3);
+SetVarFixedString(_Var1, "currentState", "State_Default");
+CharacterSetCanTrade(_Var1, 1);
+Proc_ARX_Outskirts_Frozen_SavingFlag(_Var1, _Var2);
+Proc_ARX_Outskirts_Frozen_CheckSetDualDialog(_Var1);
+Proc_ARX_Outskirts_Frozen_CheckKidFlee();
+ProcObjectTimer(_Var1, "ARX_Outskirts_FrozenFamily_Unfrozen", 1000);
+
+PROC
+ProcObjectTimerFinished((CHARACTERGUID)_Var1, "ARX_Outskirts_FrozenFamily_Unfrozen")
+AND
+IsTagged(_Var1, "KID", _Var2)
+THEN
+Proc_ARX_Outskirts_Frozen_EnableCombatAndCrime(_Var1, _Var2);
+
+PROC
+Proc_ARX_Outskirts_Frozen_SavingFlag((CHARACTERGUID)_Var1, (CHARACTERGUID)_Var2)
+AND
+DB_IsPlayer(_Var2)
+AND NOT
+QRY_AreEnemiesInCombatAgainstEachOther(_Var1, _Var2)
+THEN
+CharacterAddAttitudeTowardsPlayer(_Var1, _Var2, 20);
+PartySetFlag(_Var2, "ARX_Outskirts_Frozen_HelpedFamily");
+
+QRY
+QRY_AreEnemiesInCombatAgainstEachOther((CHARACTERGUID)_Var1, (CHARACTERGUID)_Var2)
+AND
+DB_CombatCharacters(_Var1, _Var3)
+AND
+DB_CombatCharacters(_Var2, _Var3)
+AND
+CharacterIsEnemy(_Var1, _Var2, 1)
+THEN
+DB_NOOP(1);
+
+PROC
+Proc_ARX_Outskirts_Frozen_EnableCombatAndCrime((CHARACTERGUID)_Var1, 0)
+THEN
+SetCanFight(_Var1, 1);
+SetCanJoinCombat(_Var1, 1);
+
+PROC
+Proc_ARX_Outskirts_Frozen_EnableCombatAndCrime((CHARACTERGUID)_Var1, 0)
+THEN
+ProcCharacterEnableAllCrimes(_Var1);
+
+PROC
+Proc_ARX_Outskirts_Frozen_EnableCombatAndCrime((CHARACTERGUID)_Var1, 1)
+THEN
+PROC_GLO_Children_EnableKidCrimes(_Var1);
+
+QRY
+QRY_ARX_Outskirts_Frozen_IsSaved((CHARACTERGUID)_Var1)
+AND
+DB_ARX_Outskirts_Frozen(_Var1, _Var2, _, _)
+AND
+GlobalGetFlag(_Var2, 0)
+AND
+CharacterIsDead(_Var1, 0)
+THEN
+DB_NOOP(1);
+
+PROC
+Proc_ARX_Outskirts_Frozen_CheckSetDualDialog((CHARACTERGUID)_Var1)
+AND
+DB_ARX_Outskirts_Frozen_Parents(_Var1, _)
+AND
+CharacterIsDead(_Var1, 0)
+AND
+DB_ARX_Outskirts_Frozen_Parents(_Var3, _)
+AND
+_Var3 != _Var1
+AND
+QRY_ARX_Outskirts_Frozen_IsSaved(_Var3)
+THEN
+Proc_ARX_Outskirts_Frozen_SetDualDialog(_Var1, _Var3);
+
+PROC
+Proc_ARX_Outskirts_Frozen_SetDualDialog((CHARACTERGUID)_Var1, (CHARACTERGUID)_Var2)
+THEN
+DB_ARX_Outskirts_Frozen_HasDualDialog(1);
+PROC_RemoveDialogFromCharacter(CHARACTERGUID_S_ARX_Outskirts_FrozenSurvivor_Female_000_f55cd91e-4e89-406b-aa30-fb55a817b8d9);
+PROC_RemoveDialogFromCharacter(CHARACTERGUID_S_ARX_Outskirts_FrozenSurvivor_Male_000_eb3d53ba-7fbf-4d04-b2fa-9db02445b2d5);
+ProcForceStopDialog(_Var2);
+CharacterLookAt(_Var2, _Var1);
+ProcCharacterMoveTo(_Var2, _Var1, 0, "");
+Proc_StartDialog(1, "ARX_Outskirts_FrozenSurvivor_AD_ReactToOther", _Var2);
+DB_Dialogs(CHARACTERGUID_S_ARX_Outskirts_FrozenSurvivor_Female_000_f55cd91e-4e89-406b-aa30-fb55a817b8d9, CHARACTERGUID_S_ARX_Outskirts_FrozenSurvivor_Male_000_eb3d53ba-7fbf-4d04-b2fa-9db02445b2d5, "ARX_Outskirts_Frozen_ParentsDual");
+
+PROC
+Proc_ARX_Outskirts_Frozen_CheckSetSingleDialog((CHARACTERGUID)_Var1)
+AND
+DB_ARX_Outskirts_Frozen_Parents(_Var1, _)
+AND
+DB_ARX_Outskirts_Frozen_HasDualDialog(1)
+AND NOT
+DB_GlobalFlag("ARX_Outskirts_Frozen_FamilyLeaves")
+THEN
+NOT DB_ARX_Outskirts_Frozen_HasDualDialog(1);
+NOT DB_Dialogs(CHARACTERGUID_S_ARX_Outskirts_FrozenSurvivor_Female_000_f55cd91e-4e89-406b-aa30-fb55a817b8d9, CHARACTERGUID_S_ARX_Outskirts_FrozenSurvivor_Male_000_eb3d53ba-7fbf-4d04-b2fa-9db02445b2d5, "ARX_Outskirts_Frozen_ParentsDual");
+Proc_ARX_Outskirts_Frozen_SetSingleDialog();
+
+PROC
+Proc_ARX_Outskirts_Frozen_SetSingleDialog()
+AND
+DB_ARX_Outskirts_Frozen_Parents(_Var1, _)
+AND
+CharacterIsDead(_Var1, 0)
+AND
+DB_ARX_Outskirts_Frozen(_Var1, _, _Var4, _)
+THEN
+PROC_RemoveDialogFromCharacter(_Var1);
+DB_Dialogs(_Var1, _Var4);
+
+IF
+CharacterDied((CHARACTERGUID)_Var1)
+AND
+DB_ARX_Outskirts_Frozen_Parents(_Var1, _Var2)
+AND
+DB_ARX_Outskirts_Frozen(_Var1, _Var3, _, _)
+THEN
+GlobalSetFlag(_Var2);
+GlobalClearFlag(_Var3);
+Proc_ARX_Outskirts_Frozen_CheckSetSingleDialog(_Var1);
+Proc_ARX_Outskirts_Frozen_CheckKidFlee();
+
+PROC
+Proc_ARX_Outskirts_Frozen_CheckKidFlee()
+AND
+GlobalGetFlag("ARX_Outskirts_Frozen_ChildIsFrozen", 0)
+AND
+GlobalGetFlag("ARX_Outskirts_Frozen_MotherIsDead", 1)
+AND
+GlobalGetFlag("ARX_Outskirts_Frozen_FatherIsDead", 1)
+THEN
+ObjectSetFlag(CHARACTERGUID_S_ARX_Outskirts_FrozenSurvivor_Child_000_25f23216-3a8c-40ce-b9c8-0dd901fe157c, "GEB_DontAppearAfter");
+ProcForceStopDialog(CHARACTERGUID_S_ARX_Outskirts_FrozenSurvivor_Child_000_25f23216-3a8c-40ce-b9c8-0dd901fe157c);
+SetHasDialog(CHARACTERGUID_S_ARX_Outskirts_FrozenSurvivor_Child_000_25f23216-3a8c-40ce-b9c8-0dd901fe157c, 0);
+ProcCharacterMoveTo(CHARACTERGUID_S_ARX_Outskirts_FrozenSurvivor_Child_000_25f23216-3a8c-40ce-b9c8-0dd901fe157c, ITEMGUID_S_ARX_Harbour_FrozenCellar_Ladder_000_e6b15984-85df-4dc7-9103-601ffdd63a60, 1, "ARX_OUT_FrozenSurvivors_KidMovedToLadder");
+
+IF
+StoryEvent((CHARACTERGUID)_Var1, "ARX_OUT_FrozenSurvivors_KidMovedToLadder")
+THEN
+CharacterUseItem(_Var1, ITEMGUID_S_ARX_Harbour_FrozenCellar_Ladder_000_e6b15984-85df-4dc7-9103-601ffdd63a60, "ARX_Outskirts_Frozen_UsedLadder");
+
+PROC
+Proc_ARX_Outskirts_Frozen_CheckFamilyLeave()
+AND
+Qry_ARX_Outskirts_Frozen_FamilyCanLeave()
+AND
+DB_ARX_Outskirts_Frozen(_Var1, _, _, _Var4)
+THEN
+Proc_ARX_Outskirts_Frozen_FamilyMemberLeaves(_Var1, _Var4);
+
+QRY
+Qry_ARX_Outskirts_Frozen_FamilyCanLeave()
+AND
+GlobalGetFlag("ARX_Outskirts_Frozen_FamilyLeaves", 0)
+AND
+GlobalGetFlag("ARX_Outskirts_Frozen_MotherIsFrozen", 0)
+AND
+GlobalGetFlag("ARX_Outskirts_Frozen_ChildIsFrozen", 0)
+AND
+GlobalGetFlag("ARX_Outskirts_Frozen_FatherIsFrozen", 0)
+THEN
+GlobalSetFlag("ARX_Outskirts_Frozen_FamilyLeaves");
+
+IF
+DialogEnded((STRING)_Var1, _)
+AND
+DB_ARX_Outskirts_Frozen_LeaveDialog(_Var1)
+AND
+DB_GlobalFlag("ARX_Outskirts_Frozen_FamilyLeaves")
+AND
+DB_ARX_Outskirts_Frozen(_Var3, _, _, _Var6)
+THEN
+Proc_ARX_Outskirts_Frozen_FamilyMemberLeaves(_Var3, _Var6);
+
+PROC
+Proc_ARX_Outskirts_Frozen_FamilyMemberLeaves((CHARACTERGUID)_Var1, (INTEGER)_Var2)
+AND
+_Var1 != CHARACTERGUID_S_ARX_Outskirts_FrozenSurvivor_Child_000_25f23216-3a8c-40ce-b9c8-0dd901fe157c
+AND NOT
+DB_Dead(_Var1)
+THEN
+ProcForceStopDialog(_Var1);
+SetHasDialog(_Var1, 0);
+ProcObjectTimer(_Var1, "ARX_Outskirts_Frozen_Leave", _Var2);
+
+PROC
+Proc_ARX_Outskirts_Frozen_FamilyMemberLeaves(CHARACTERGUID_S_ARX_Outskirts_FrozenSurvivor_Child_000_25f23216-3a8c-40ce-b9c8-0dd901fe157c, (INTEGER)_Var1)
+AND
+ObjectIsOnStage(CHARACTERGUID_S_ARX_Outskirts_FrozenSurvivor_Child_000_25f23216-3a8c-40ce-b9c8-0dd901fe157c, 0)
+THEN
+ObjectSetFlag(CHARACTERGUID_S_ARX_Outskirts_FrozenSurvivor_Child_000_25f23216-3a8c-40ce-b9c8-0dd901fe157c, "GEB_DontAppearAfter");
+
+PROC
+Proc_ARX_Outskirts_Frozen_FamilyMemberLeaves(CHARACTERGUID_S_ARX_Outskirts_FrozenSurvivor_Child_000_25f23216-3a8c-40ce-b9c8-0dd901fe157c, (INTEGER)_Var1)
+AND
+ObjectIsOnStage(CHARACTERGUID_S_ARX_Outskirts_FrozenSurvivor_Child_000_25f23216-3a8c-40ce-b9c8-0dd901fe157c, 1)
+THEN
+ProcForceStopDialog(CHARACTERGUID_S_ARX_Outskirts_FrozenSurvivor_Child_000_25f23216-3a8c-40ce-b9c8-0dd901fe157c);
+SetHasDialog(CHARACTERGUID_S_ARX_Outskirts_FrozenSurvivor_Child_000_25f23216-3a8c-40ce-b9c8-0dd901fe157c, 0);
+ProcObjectTimer(CHARACTERGUID_S_ARX_Outskirts_FrozenSurvivor_Child_000_25f23216-3a8c-40ce-b9c8-0dd901fe157c, "ARX_Outskirts_Frozen_Leave", _Var1);
+
+PROC
+ProcObjectTimerFinished((CHARACTERGUID)_Var1, "ARX_Outskirts_Frozen_Leave")
+AND NOT
+DB_Dead(_Var1)
+THEN
+ProcCharacterMoveTo(_Var1, ITEMGUID_S_ARX_Harbour_FrozenCellar_Ladder_000_e6b15984-85df-4dc7-9103-601ffdd63a60, 1, "ARX_Outskirts_Frozen_MovedToLadder");
+
+IF
+StoryEvent((CHARACTERGUID)_Var1, "ARX_Outskirts_Frozen_MovedToLadder")
+AND NOT
+DB_Dead(_Var1)
+THEN
+CharacterUseItem(_Var1, ITEMGUID_S_ARX_Harbour_FrozenCellar_Ladder_000_e6b15984-85df-4dc7-9103-601ffdd63a60, "ARX_Outskirts_Frozen_UsedLadder");
+
+IF
+StoryEvent((CHARACTERGUID)_Var1, "ARX_Outskirts_Frozen_UsedLadder")
+THEN
+ProcCharacterDisappearOutOfSightToObject(_Var1, TRIGGERGUID_S_ARX_Outskirts_EscapingPilgrims_RunToTrig_36e17694-f0de-4433-87e0-972516199d0f, 1, "", 1);
+
+IF
+GlobalFlagSet("ARX_FrozenCellar_WarmedUp")
+THEN
+TriggerSetSoundState(TRIGGERGUID_SoundVolumeTrigger_ARX_Docks_Cellar_Frozen_26b37b6c-11ae-4327-a693-d622d526cbd4, "Amb_ARX_Frozen", "Unfrozen", 1);
+
+IF
+ItemStatusChange((ITEMGUID)_Var1, "BURNING", (GUIDSTRING)_Var2)
+AND NOT
+QRY_ARX_Outskirts_Frozen_AnyTorchUnlit()
+THEN
+GlobalSetFlag("ARX_FrozenCellar_WarmedUp");
+TriggerSetAtmosphere(TRIGGERGUID_S_ATM_ARX_Outskirts_Frozen_Atmosphere_a21dcced-4b75-454b-a5f0-68bcf7ae462f, "527981ac-bd8d-4234-8326-eef613faedd2");
+Proc_ARX_Outskirts_Frozen_RemoveFog();
+Proc_ARX_Outskirts_Frozen_CheckSavingFlag(_Var2);
+TriggerLaunchIterator(TRIGGERGUID_S_ARX_Outskirts_Harbour_Frozen_EventTrigger_62c4294c-e203-4bb7-9509-0d6447e6d700, "ARX_Frozen_CharacterInCellar_WarmedUp");
+
+PROC
+Proc_ARX_Outskirts_Frozen_CheckSavingFlag((GUIDSTRING)_Var1)
+AND
+DB_ARX_Outskirts_Frozen(_Var2, _, _, _)
+AND NOT
+DB_Dead(_Var2)
+THEN
+Proc_ARX_Outskirts_Frozen_SavingFlag(_Var2, _Var1);
+
+PROC
+Proc_ARX_Outskirts_Frozen_RemoveFog()
+AND
+DB_ARX_Outskirts_Frozen_Fog(_Var1)
+THEN
+NOT DB_ARX_Outskirts_Frozen_Fog(_Var1);
+SetOnStage(_Var1, 0);
+
+QRY
+QRY_ARX_Outskirts_Frozen_AnyTorchUnlit()
+AND
+DB_ARX_Outskirts_Frozen_Torch(_Var1)
+AND
+HasActiveStatus(_Var1, "BURNING", 0)
+THEN
+DB_NOOP(1);
+
+PROC
+Proc_ARX_Outskirts_Frozen_ItemTrigger_HACK()
+THEN
+TeleportTo(TRIGGERGUID_S_ARX_Harbour_ItemTrigger_Box_9390ad5f-b311-4685-8458-66b047e17425, TRIGGERGUID_S_ARX_Harbour_ItemTrigger_HelperPoint_71c56e13-b8b7-40a1-9be6-0d8b030c0707);
+
+IF
+ItemStatusChange(ITEMGUID_S_ARX_Outskirts_Frozen_Chest_f4de8206-2533-4783-9b3b-86d57a8bf45a, "FROZEN", _)
+THEN
+TriggerRegisterForItems(TRIGGERGUID_S_ARX_Harbour_ItemTrigger_Box_9390ad5f-b311-4685-8458-66b047e17425);
+
+IF
+ItemStatusRemoved(ITEMGUID_S_ARX_Outskirts_Frozen_Chest_f4de8206-2533-4783-9b3b-86d57a8bf45a, "FROZEN", _)
+THEN
+TimerCancel("ARX_Outskirts_Frozen_ChestMovedCheckPos");
+TriggerUnregisterForItems(TRIGGERGUID_S_ARX_Harbour_ItemTrigger_Box_9390ad5f-b311-4685-8458-66b047e17425);
+
+IF
+ItemEnteredTrigger(ITEMGUID_S_ARX_Outskirts_Frozen_Chest_f4de8206-2533-4783-9b3b-86d57a8bf45a, TRIGGERGUID_S_ARX_Harbour_ItemTrigger_Box_9390ad5f-b311-4685-8458-66b047e17425, _)
+THEN
+TimerCancel("ARX_Outskirts_Frozen_ChestMovedCheckPos");
+
+IF
+GlobalFlagSet("ARX_FrozenCellar_WarmedUp")
+AND NOT
+DB_DestroyedItems(ITEMGUID_S_ARX_Outskirts_Frozen_Chest_f4de8206-2533-4783-9b3b-86d57a8bf45a)
+THEN
+Proc_ARX_Outskirts_Frozen_UnFreezeChest(0);
+
+IF
+ItemLeftTrigger(ITEMGUID_S_ARX_Outskirts_Frozen_Chest_f4de8206-2533-4783-9b3b-86d57a8bf45a, TRIGGERGUID_S_ARX_Harbour_ItemTrigger_Box_9390ad5f-b311-4685-8458-66b047e17425, _)
+THEN
+TimerCancel("ARX_Outskirts_Frozen_ChestMovedCheckPos");
+TimerLaunch("ARX_Outskirts_Frozen_ChestMovedCheckPos", 1000);
+
+IF
+TimerFinished("ARX_Outskirts_Frozen_ChestMovedCheckPos")
+AND
+GetPosition(ITEMGUID_S_ARX_Outskirts_Frozen_Chest_f4de8206-2533-4783-9b3b-86d57a8bf45a, _Var1, _Var2, _Var3)
+AND
+PositionIsInTrigger(_Var1, _Var2, _Var3, TRIGGERGUID_S_ARX_Harbour_ItemTrigger_Box_9390ad5f-b311-4685-8458-66b047e17425, _Var4)
+THEN
+TimerLaunch("ARX_Outskirts_Frozen_ChestMovedCheckPos", 1000);
+Proc_ARX_Outskirts_Frozen_UnFreezeChest(_Var4);
+
+PROC
+Proc_ARX_Outskirts_Frozen_UnFreezeChest(0)
+AND
+HasActiveStatus(ITEMGUID_S_ARX_Outskirts_Frozen_Chest_f4de8206-2533-4783-9b3b-86d57a8bf45a, "FROZEN", 1)
+THEN
+RemoveStatus(ITEMGUID_S_ARX_Outskirts_Frozen_Chest_f4de8206-2533-4783-9b3b-86d57a8bf45a, "FROZEN");
+ApplyStatus(ITEMGUID_S_ARX_Outskirts_Frozen_Chest_f4de8206-2533-4783-9b3b-86d57a8bf45a, "WET", 15, 1);
+
+PROC
+Proc_ARX_Outskirts_Frozen_CheckFreezeNPC()
+THEN
+Proc_ARX_Outskirts_Frozen_CheckFreezeChest();
+
+IF
+ItemDropped(ITEMGUID_S_ARX_Outskirts_Frozen_Chest_f4de8206-2533-4783-9b3b-86d57a8bf45a)
+THEN
+Proc_ARX_Outskirts_Frozen_CheckFreezeChest();
+
+PROC
+Proc_ARX_Outskirts_Frozen_CheckFreezeChest()
+AND NOT
+DB_DestroyedItems(ITEMGUID_S_ARX_Outskirts_Frozen_Chest_f4de8206-2533-4783-9b3b-86d57a8bf45a)
+AND
+GlobalGetFlag("ARX_FrozenCellar_WarmedUp", 0)
+AND
+HasActiveStatus(ITEMGUID_S_ARX_Outskirts_Frozen_Chest_f4de8206-2533-4783-9b3b-86d57a8bf45a, "FROZEN", 0)
+AND
+ItemIsInInventory(ITEMGUID_S_ARX_Outskirts_Frozen_Chest_f4de8206-2533-4783-9b3b-86d57a8bf45a, 0)
+AND
+ObjectIsInTrigger(ITEMGUID_S_ARX_Outskirts_Frozen_Chest_f4de8206-2533-4783-9b3b-86d57a8bf45a, TRIGGERGUID_S_ARX_Harbour_ItemTrigger_Box_9390ad5f-b311-4685-8458-66b047e17425, 1)
+THEN
+ApplyStatus(ITEMGUID_S_ARX_Outskirts_Frozen_Chest_f4de8206-2533-4783-9b3b-86d57a8bf45a, "FROZEN", -1, 1);
+
+
+EXITSECTION
+ENDEXITSECTION
+
+ParentTargetEdge "ARX"

@@ -1,0 +1,1316 @@
+Version 1
+SubGoalCombiner SGC_AND
+
+INITSECTION
+DB_RC_DW_VC_Chickens(S_RC_DW_VC_Chicken_001_9053f0be-7d06-4e88-ab20-f411e2e790d0, "RC_DW_VC_Chicken1", "RC_DW_VC_AD_Chicken1", 0, S_RC_DW_VC_Chicken01_DeadTrigger_51b9f0bc-04bf-4f68-9e0d-43058d4a4580);
+DB_RC_DW_VC_Chickens(S_RC_DW_VC_Chicken_002_d8699c1d-3ca1-444b-b985-95de1dc8c708, "RC_DW_VC_Chicken2", "RC_DW_VC_AD_Chicken2", 0, S_RC_DW_VC_Chicken02_DeadTrigger_629dcb32-e251-48b8-8a33-e710dda8c3fc);
+DB_RC_DW_VC_Chickens(S_RC_DW_VC_Chicken_003_bcd34f89-8ff2-4d94-8c30-fe09bdbc1163, "RC_DW_VC_Chicken3", "RC_DW_VC_AD_Chicken3", 0, S_RC_DW_VC_Chicken03_DeadTrigger_72400c76-d222-4996-bef1-b787f449fcc2);
+DB_RC_DW_VC_Chickens(S_RC_DW_VC_Chicken_004_66188471-2b54-4f53-8efa-8278125e2c60, "RC_DW_VC_Chicken4", "RC_DW_VC_AD_Chicken4", 0, S_RC_DW_VC_Chicken04_DeadTrigger_7d824686-06ce-472c-a4ce-cd85300f57b6);
+DB_RC_DW_VC_Chickens(S_RC_DW_VC_Chicken_Scared_81ef9840-7b6e-4d3d-9b60-4c7ed7a286a7, "RC_DW_VC_ChickenScared", "RC_DW_VC_AD_ChickenScared", 0, S_RC_DW_VC_ScaredChicken_DeadTrigger_65e32575-6cd8-44dc-9af3-ded6982d034f);
+DB_OneShotPlayerTrigger(S_RC_DW_VC_HatchTrigger_9cacc4e1-9aae-4347-97b2-0cf0d4c7dc2e);
+DB_HasStoryEvent(S_RC_DW_VC_HelplessEgg_22a95ce1-5b3f-4ba9-8667-62cd2d38daaa, "RC_DW_VC_HasHelplessEgg");
+DB_Ghosts(S_RC_DW_VC_Chicken_Scared_81ef9840-7b6e-4d3d-9b60-4c7ed7a286a7, S_RC_DW_VC_Chicken_Scared_Ghost_1e3a6b3d-84cf-4458-b741-71df3c19614b, "RC_DW_VC_ChickenScared_Ghost");
+SetHasDialog(S_RC_DW_VC_MagicRooster_0e367750-1970-4668-a78c-116f0fff8cc0, 1);
+DB_Dialogs(S_RC_DW_VC_VoidwokenChick_08b71c62-f1bf-41d7-95e3-488d190f018d, "RC_DW_VC_VoidwokenChick");
+SetOnStage(S_RC_DW_VC_VoidwokenChick_08b71c62-f1bf-41d7-95e3-488d190f018d, 0);
+DB_Dialogs(S_RC_DW_VC_CityChicken_01_f4fae5ab-639e-4bad-890e-abc2c86f1293, "RC_DW_VC_CityChicken1");
+DB_Dialogs(S_RC_DW_VC_CityChicken_02_3fd71e16-04bc-4943-9c59-525f709f150a, "RC_DW_VC_CityChicken2");
+DB_ShovelArea(S_RC_DW_VC_CatGraveTrigger_3f162e90-eb5a-428b-8c09-770a4def9e8c, "RC_WC_VC_DiggingUpCatGrave", S_RC_DW_VC_CatGrave_49d3f4d6-0ed2-4f84-88e5-c5933bebca99);
+DB_ShovelRewardItemScatter("RC_WC_VC_DiggingUpCatGrave", CHARACTERGUID_S_RC_DW_VC_CatSkeleton_5f1081e7-c93b-404a-aa49-3717cf12b10f);
+DB_ShovelArea(S_RC_DW_VC_ChickenRewardDigTrigger_d372f610-49e8-4a2d-863a-8a6cae89ff93, "RC_WC_VC_DugChickenReward", S_RC_DW_VC_ReturnEggReward_2d1e494d-d11c-4370-beed-a26c9427d903);
+DB_ShovelRewardItemAppear("RC_WC_VC_DugChickenReward", S_RC_DW_VC_BroughtEggReward_8804b6ed-3fca-4767-b0df-cfc431921625, S_RC_DW_VC_BroughtEggReward_DestTrigger_204241f2-e2c8-434a-affa-52982c8a6cf7);
+TriggerRegisterForCharacter(S_RC_DW_VC_RoosterCheckChickTrigger_33774bdb-125d-4bbf-93fe-542950abba31, S_RC_DW_VC_VoidwokenChick_08b71c62-f1bf-41d7-95e3-488d190f018d);
+SetOnStage(S_RC_DW_VC_MagicRoosterChest_f93a85e3-7588-4e0f-a1af-d1e9c63f6a87, 0);
+DB_RC_DW_VC_TeleportTriggers(S_RC_DW_VC_RoosterTpLocationA_e55fb9e8-b104-4004-aabf-b486cf806cd9, 0);
+DB_RC_DW_VC_TeleportTriggers(S_RC_DW_VC_RoosterTpLocationB_35888442-6c8a-4333-b5ba-a420d92cfa0a, 1);
+DB_RC_DW_VC_TeleportTriggers(S_RC_DW_VC_RoosterTpLocationC_98adfa0c-910c-4f36-8e5a-54db1b26f7e8, 2);
+DB_RC_DW_VC_TeleportTriggers(S_RC_DW_VC_RoosterTpLocationD_b61c6fc6-dcfd-4921-b44c-2a3f0078250f, 3);
+DB_BlockThreatenedDialog(S_RC_DW_VC_VoidwokenChick_08b71c62-f1bf-41d7-95e3-488d190f018d);
+CharacterDisableAllCrimes(S_RC_DW_VC_VoidwokenChick_08b71c62-f1bf-41d7-95e3-488d190f018d);
+CharacterDisableAllCrimes(S_RC_DW_VC_MagicRooster_0e367750-1970-4668-a78c-116f0fff8cc0);
+DB_BlockThreatenedDialog(S_RC_DW_VC_MagicRooster_0e367750-1970-4668-a78c-116f0fff8cc0);
+ItemSetCanInteract(S_RC_DW_VC_HenHouse_PanicChicken_4f5ebd83-b09f-4eb9-bf42-9dfb55dc0b24, 1);
+ItemSetCanInteract(S_RC_DW_VC_HenHouse_CityChicken_5f73cf44-c3a4-4ffd-9ccf-27dae3741ad9, 1);
+DB_RC_DW_VC_CorruptedEggs(S_RC_DW_VC_CorruptedEgg_006_00f6c493-5a90-4802-b9d1-f67950abb75a);
+DB_RC_DW_VC_CorruptedEggs(S_RC_DW_VC_CorruptedEgg_000_af56b59a-f12c-4707-a607-4a23ca645579);
+DB_RC_DW_VC_CorruptedEggs(S_RC_DW_VC_CorruptedEgg_001_39b00143-aa44-4ce9-974c-4c3338e3ca8f);
+DB_RC_DW_VC_CorruptedEggs(S_RC_DW_VC_CorruptedEgg_003_c5979e7c-e425-418c-98de-bcb579c2e86e);
+DB_RC_DW_VC_CorruptedEggs(S_RC_DW_VC_CorruptedEgg_004_6d76f2ce-b43d-4e27-bf74-725cac3fed4b);
+DB_RC_DW_VC_CorruptedEggs(S_RC_DW_VC_CorruptedEgg_002_04342d92-a424-47b0-b2a0-0bfe7d232cab);
+DB_Followers(S_RC_DW_VC_VoidwokenChick_08b71c62-f1bf-41d7-95e3-488d190f018d, "RC_DW_VC_IsOwnerOfChick");
+DB_IgnoreAssault(CHARACTERGUID_S_GLO_VoidwokenChick_08b71c62-f1bf-41d7-95e3-488d190f018d);
+DB_DontCreateMurder(CHARACTERGUID_S_GLO_VoidwokenChick_08b71c62-f1bf-41d7-95e3-488d190f018d);
+Proc_RC_DW_VC_Init();
+
+KBSECTION
+IF
+TextEventSet("rc_dw_vc_getitemtoinventory")
+AND
+CharacterGetHostCharacter(_Var1)
+THEN
+ItemToInventory(ITEMGUID_S_RC_DW_VC_HelplessEgg_22a95ce1-5b3f-4ba9-8667-62cd2d38daaa, _Var1);
+
+IF
+TextEventSet("rc_dw_vc_teleportto")
+THEN
+TeleportTo(ITEMGUID_S_RC_DW_VC_HelplessEgg_22a95ce1-5b3f-4ba9-8667-62cd2d38daaa, TRIGGERGUID_S_RC_DW_VC_HelplessEggLocation_92d4c501-c342-4e25-b08e-32fb7d396ee9, "ThisEventWillNeverTrigger", 0);
+
+IF
+TextEventSet("rc_dw_vc_dragto")
+THEN
+ItemDragToTrigger(ITEMGUID_S_RC_DW_VC_HelplessEgg_22a95ce1-5b3f-4ba9-8667-62cd2d38daaa, TRIGGERGUID_S_RC_DW_VC_HelplessEggLocation_92d4c501-c342-4e25-b08e-32fb7d396ee9);
+
+IF
+StoryEvent(ITEMGUID_S_RC_DW_VC_HelplessEgg_22a95ce1-5b3f-4ba9-8667-62cd2d38daaa, "ThisEventWillNeverTrigger")
+THEN
+DebugBreak("ThisEventWillNeverTrigger has triggered, DOSTWO-9488 is fixed!");
+
+IF
+TextEventSet("rc_dw_vc_dropteleport")
+AND
+CharacterGetHostCharacter(_Var1)
+THEN
+ItemToInventory(ITEMGUID_S_RC_DW_VC_HelplessEgg_22a95ce1-5b3f-4ba9-8667-62cd2d38daaa, _Var1);
+ItemDrop(ITEMGUID_S_RC_DW_VC_HelplessEgg_22a95ce1-5b3f-4ba9-8667-62cd2d38daaa);
+TeleportTo(ITEMGUID_S_RC_DW_VC_HelplessEgg_22a95ce1-5b3f-4ba9-8667-62cd2d38daaa, TRIGGERGUID_S_RC_DW_VC_HelplessEggLocation_92d4c501-c342-4e25-b08e-32fb7d396ee9);
+
+IF
+TextEventSet("rc_dw_vc_dropdrag")
+AND
+CharacterGetHostCharacter(_Var1)
+THEN
+ItemToInventory(ITEMGUID_S_RC_DW_VC_HelplessEgg_22a95ce1-5b3f-4ba9-8667-62cd2d38daaa, _Var1);
+ItemDrop(ITEMGUID_S_RC_DW_VC_HelplessEgg_22a95ce1-5b3f-4ba9-8667-62cd2d38daaa);
+ItemDragToTrigger(ITEMGUID_S_RC_DW_VC_HelplessEgg_22a95ce1-5b3f-4ba9-8667-62cd2d38daaa, TRIGGERGUID_S_RC_DW_VC_HelplessEggLocation_92d4c501-c342-4e25-b08e-32fb7d396ee9);
+
+IF
+TextEventSet("rc_dw_vc_transform_peeper")
+AND
+ObjectIsOnStage(S_RC_DW_VC_VoidwokenChick_08b71c62-f1bf-41d7-95e3-488d190f018d, 0)
+THEN
+SetOnStage(S_RC_DW_VC_VoidwokenChick_08b71c62-f1bf-41d7-95e3-488d190f018d, 1);
+
+IF
+TextEventSet("rc_dw_vc_transform_peeper")
+AND
+CharacterGetHostCharacter(_Var1)
+THEN
+TeleportTo(S_RC_DW_VC_VoidwokenChick_08b71c62-f1bf-41d7-95e3-488d190f018d, _Var1);
+Transform(S_RC_DW_VC_VoidwokenChick_08b71c62-f1bf-41d7-95e3-488d190f018d, "QUEST_RC_DW_VC_SmallInsect_f01630e8-de8f-471a-9c36-007d4f50186e", 0, 1);
+
+IF
+TextEventSet("chickorama")
+AND
+ObjectIsOnStage(S_RC_DW_VC_VoidwokenChick_08b71c62-f1bf-41d7-95e3-488d190f018d, 0)
+THEN
+SetOnStage(S_RC_DW_VC_VoidwokenChick_08b71c62-f1bf-41d7-95e3-488d190f018d, 1);
+
+IF
+TextEventSet("chickorama")
+AND
+CharacterGetHostCharacter(_Var1)
+THEN
+TeleportTo(S_RC_DW_VC_VoidwokenChick_08b71c62-f1bf-41d7-95e3-488d190f018d, _Var1);
+ObjectSetFlag(_Var1, "RC_DW_VC_DontKillPeeper");
+Proc_RC_DW_VC_PuttingDownPeeper(_Var1);
+
+IF
+ItemAddedToCharacter(ITEMGUID_S_RC_DW_VC_HelplessEgg_22a95ce1-5b3f-4ba9-8667-62cd2d38daaa, _)
+AND
+DB_RC_DW_VC_DebugDropAndMove(1)
+THEN
+NOT DB_RC_DW_VC_DebugDropAndMove(1);
+ItemDrop(ITEMGUID_S_RC_DW_VC_HelplessEgg_22a95ce1-5b3f-4ba9-8667-62cd2d38daaa);
+
+PROC
+PROC_RC_DW_VC_DebugAddEggToInventoryIfNeededAndDropIt((CHARACTERGUID)_Var1)
+AND
+ItemIsInCharacterInventory(ITEMGUID_S_RC_DW_VC_HelplessEgg_22a95ce1-5b3f-4ba9-8667-62cd2d38daaa, _Var1, 0)
+THEN
+DB_RC_DW_VC_DebugDropAndMove(1);
+ItemToInventory(ITEMGUID_S_RC_DW_VC_HelplessEgg_22a95ce1-5b3f-4ba9-8667-62cd2d38daaa, _Var1);
+
+PROC
+PROC_RC_DW_VC_DebugAddEggToInventoryIfNeededAndDropIt((CHARACTERGUID)_Var1)
+AND
+ItemIsInCharacterInventory(ITEMGUID_S_RC_DW_VC_HelplessEgg_22a95ce1-5b3f-4ba9-8667-62cd2d38daaa, _Var1, 1)
+THEN
+ItemDrop(ITEMGUID_S_RC_DW_VC_HelplessEgg_22a95ce1-5b3f-4ba9-8667-62cd2d38daaa);
+
+IF
+TextEventSet("rc_dw_vc_droppedteleport")
+AND
+CharacterGetHostCharacter(_Var1)
+THEN
+DB_RC_DW_VC_DebugDroppedTeleport(1);
+PROC_RC_DW_VC_DebugAddEggToInventoryIfNeededAndDropIt(_Var1);
+
+IF
+ItemDropped(ITEMGUID_S_RC_DW_VC_HelplessEgg_22a95ce1-5b3f-4ba9-8667-62cd2d38daaa)
+AND
+DB_RC_DW_VC_DebugDroppedTeleport(1)
+THEN
+NOT DB_RC_DW_VC_DebugDroppedTeleport(1);
+TeleportTo(ITEMGUID_S_RC_DW_VC_HelplessEgg_22a95ce1-5b3f-4ba9-8667-62cd2d38daaa, TRIGGERGUID_S_RC_DW_VC_HelplessEggLocation_92d4c501-c342-4e25-b08e-32fb7d396ee9);
+
+IF
+TextEventSet("rc_dw_vc_droppeddrag")
+AND
+CharacterGetHostCharacter(_Var1)
+AND
+GetPosition(TRIGGERGUID_S_RC_DW_VC_HelplessEggLocation_92d4c501-c342-4e25-b08e-32fb7d396ee9, _Var2, _Var3, _Var4)
+THEN
+DB_RC_DW_VC_DebugDroppedDrag(1);
+PROC_RC_DW_VC_DebugAddEggToInventoryIfNeededAndDropIt(_Var1);
+
+IF
+ItemDropped(ITEMGUID_S_RC_DW_VC_HelplessEgg_22a95ce1-5b3f-4ba9-8667-62cd2d38daaa)
+AND
+DB_RC_DW_VC_DebugDroppedDrag(1)
+THEN
+NOT DB_RC_DW_VC_DebugDroppedDrag(1);
+ItemDragToTrigger(ITEMGUID_S_RC_DW_VC_HelplessEgg_22a95ce1-5b3f-4ba9-8667-62cd2d38daaa, TRIGGERGUID_S_RC_DW_VC_HelplessEggLocation_92d4c501-c342-4e25-b08e-32fb7d396ee9);
+
+IF
+TextEventSet("rc_dw_vc_movedteleport")
+AND
+CharacterGetHostCharacter(_Var1)
+THEN
+DB_RC_DW_VC_DebugMovedTeleport(1);
+PROC_RC_DW_VC_DebugAddEggToInventoryIfNeededAndDropIt(_Var1);
+
+IF
+ItemMoved(ITEMGUID_S_RC_DW_VC_HelplessEgg_22a95ce1-5b3f-4ba9-8667-62cd2d38daaa)
+AND
+DB_RC_DW_VC_DebugMovedTeleport(1)
+THEN
+NOT DB_RC_DW_VC_DebugMovedTeleport(1);
+TeleportTo(ITEMGUID_S_RC_DW_VC_HelplessEgg_22a95ce1-5b3f-4ba9-8667-62cd2d38daaa, TRIGGERGUID_S_RC_DW_VC_HelplessEggLocation_92d4c501-c342-4e25-b08e-32fb7d396ee9);
+
+IF
+TextEventSet("rc_dw_vc_moveddrag")
+AND
+CharacterGetHostCharacter(_Var1)
+THEN
+DB_RC_DW_VC_DebugMovedDrag(1);
+PROC_RC_DW_VC_DebugAddEggToInventoryIfNeededAndDropIt(_Var1);
+
+IF
+ItemMoved(ITEMGUID_S_RC_DW_VC_HelplessEgg_22a95ce1-5b3f-4ba9-8667-62cd2d38daaa)
+AND
+DB_RC_DW_VC_DebugMovedDrag(1)
+THEN
+NOT DB_RC_DW_VC_DebugMovedDrag(1);
+ItemDragToTrigger(ITEMGUID_S_RC_DW_VC_HelplessEgg_22a95ce1-5b3f-4ba9-8667-62cd2d38daaa, TRIGGERGUID_S_RC_DW_VC_HelplessEggLocation_92d4c501-c342-4e25-b08e-32fb7d396ee9);
+
+PROC
+Proc_RC_DW_VC_Init()
+AND
+DB_RC_DW_VC_Chickens(_Var1, _Var2, _, _, _)
+THEN
+DB_Dialogs(_Var1, _Var2);
+
+PROC
+Proc_RC_DW_VC_Init()
+AND
+DB_RC_DW_VC_CorruptedEggs(_Var1)
+THEN
+SetCombatGroupID(_Var1, "RC_DW_VC_HatchedVoidwoken");
+DB_IgnoreAssault(_Var1);
+DB_DontCreateMurder(_Var1);
+
+PROC
+Proc_RC_DW_VC_Init()
+THEN
+SetOnStage(S_RC_DW_VC_EggThiefVoidwoken_059fbb9c-0967-481c-a732-faacf13ab9a6, 0);
+SetCombatGroupID(CHARACTERGUID_S_RC_DW_VC_EggThiefVoidwoken_059fbb9c-0967-481c-a732-faacf13ab9a6, "RC_DW_VC_HatchedVoidwoken");
+
+PROC
+Proc_RC_DW_VC_Init()
+AND
+SysCount("DB_RC_DW_VC_CorruptedEggs", 1, _Var1)
+THEN
+ProcDeclareCounter("RC_DW_VC_CorruptedEggs");
+ProcIncreaseCounter("RC_DW_VC_CorruptedEggs", _Var1);
+
+IF
+SavegameLoaded((INTEGER)_Var1, (INTEGER)_Var2, (INTEGER)_Var3, (INTEGER)_Var4)
+AND
+QRY_VersionIsOlderThan(_Var1, _Var2, _Var3, _Var4, 3, 6, 2, 0)
+AND
+DB_CurrentLevel("RC_Main")
+AND
+DB_RC_DW_VC_CorruptedEggs(_Var5)
+THEN
+DB_IgnoreAssault(_Var5);
+DB_DontCreateMurder(_Var5);
+
+PROC
+PROC_RC_DW_VC_CancelVoidEggAssaultCrime((INTEGER)_Var1)
+AND NOT
+DB_RC_DW_VC_VoidlingEggAssaultCrime_Cancelled(_Var1)
+AND
+DB_Crime_PlayerAttacked(_Var1, _Var2, _Var3)
+THEN
+DB_RC_DW_VC_VoidlingEggAssaultCrime_Cancelled(_Var1);
+NOT DB_Crime_PlayerAttacked(_Var1, _Var2, _Var3);
+CharacterStopCrimeWithID(_Var2, _Var1);
+
+IF
+SavegameLoaded((INTEGER)_Var1, (INTEGER)_Var2, (INTEGER)_Var3, (INTEGER)_Var4)
+AND
+QRY_VersionIsOlderThan(_Var1, _Var2, _Var3, _Var4, 3, 6, 2, 0)
+AND
+DB_CurrentLevel("RC_Main")
+AND
+DB_RC_DW_VC_CorruptedEggs(_Var5)
+AND
+DB_Crime_PlayerAttacked(_Var6, _, _Var5)
+THEN
+PROC_RC_DW_VC_CancelVoidEggAssaultCrime(_Var6);
+
+IF
+DB_Dead(S_RC_DW_VC_Chicken_Scared_81ef9840-7b6e-4d3d-9b60-4c7ed7a286a7)
+THEN
+GlobalSetFlag("RC_DW_VC_ScaredChickenDead");
+
+IF
+DB_Dead(_Var1)
+AND
+DB_RC_DW_VC_Chickens(_Var1, _Var2, _Var3, 1, _Var4)
+AND
+GlobalGetFlag("RC_DW_VC_ReturnedEggGone", 0)
+AND
+GlobalGetFlag("RC_DW_VC_HelplessEggHatches", 0)
+AND
+DB_RC_DW_VC_DroppingEgg(_Var1, _)
+THEN
+GlobalSetFlag("RC_DW_VC_ReturnedEggGone");
+
+IF
+DB_Dead(_Var1)
+AND
+DB_RC_DW_VC_Chickens(_Var1, _Var2, _Var3, 1, _Var4)
+AND
+GlobalGetFlag("RC_DW_VC_ReturnedEggGone", 0)
+AND
+GlobalGetFlag("RC_DW_VC_HelplessEggHatches", 0)
+THEN
+Proc_RC_DW_VC_SetNewBroodChicken();
+
+IF
+DB_Dead(_Var1)
+AND
+DB_RC_DW_VC_Chickens(_Var1, _Var2, _Var3, 1, _Var4)
+AND
+GlobalGetFlag("RC_DW_VC_ReturnedEggGone", 1)
+THEN
+GlobalSetFlag("RC_DW_VC_ChickensAreUpset");
+
+IF
+DB_Dead(_Var1)
+AND
+DB_RC_DW_VC_Chickens(_Var1, _Var2, _Var3, 1, _Var4)
+THEN
+NOT DB_RC_DW_VC_Chickens(_Var1, _Var2, _Var3, 1, _Var4);
+DB_RC_DW_VC_Chickens(_Var1, _Var2, _Var3, 0, _Var4);
+
+PROC
+Proc_RC_DW_VC_SetNewBroodChicken()
+AND
+GlobalGetFlag("RC_DW_VC_EggWasReturned", 1)
+AND
+DB_RC_DW_VC_Chickens(_Var1, _Var2, _Var3, 0, _Var4)
+AND NOT
+DB_Dead(_Var1)
+AND NOT
+DB_RC_DW_VC_DoneOnce(1)
+THEN
+DB_RC_DW_VC_DoneOnce(1);
+NOT DB_RC_DW_VC_Chickens(_Var1, _Var2, _Var3, 0, _Var4);
+DB_RC_DW_VC_Chickens(_Var1, _Var2, _Var3, 1, _Var4);
+DB_RC_DW_VC_DroppingEgg(_Var1, "0_GoingToEggAsNewHatchingChicken");
+ProcCharacterMoveTo(_Var1, TRIGGERGUID_S_RC_DW_VC_HelplessEggLocation_92d4c501-c342-4e25-b08e-32fb7d396ee9, 0, "RC_DW_VC_ChickenWalkToEgg");
+CharacterSetReactionPriority(_Var1, "DefaultWanderInTrigger", 0);
+
+PROC
+Proc_RC_DW_VC_SetNewBroodChicken()
+AND
+DB_RC_DW_VC_DoneOnce(_Var1)
+THEN
+NOT DB_RC_DW_VC_DoneOnce(_Var1);
+
+PROC
+ProcOneShotTriggerEntered((CHARACTERGUID)_Var1, S_RC_DW_VC_HatchTrigger_9cacc4e1-9aae-4347-97b2-0cf0d4c7dc2e)
+THEN
+Proc_RC_DW_VC_PlayerFoundEggs(_Var1);
+
+PROC
+Proc_RC_DW_VC_PlayerFoundEggs((CHARACTERGUID)_Var1)
+AND
+DB_IsPlayer(_Var1)
+AND
+QueryOnlyOnce("RC_DW_VC_VoidlingsHatch")
+THEN
+GlobalSetFlag("RC_DW_VC_HatchVoidWoken");
+Proc_RC_DW_VC_StartQuestSafely(_Var1);
+
+QRY
+QRY_RC_DW_VoidwokenChicks_CanStartQuest()
+AND
+GlobalGetFlag("RC_DW_VC_MargeGhostGone", 0)
+THEN
+DB_NOOP(1);
+
+QRY
+QRY_RC_DW_VoidwokenChicks_CanStartQuest()
+AND
+GlobalGetFlag("RC_DW_VC_AllChickensAreDead", 0)
+THEN
+DB_NOOP(1);
+
+PROC
+Proc_RC_DW_VC_StartQuestSafely((CHARACTERGUID)_Var1)
+AND
+QRY_RC_DW_VoidwokenChicks_CanStartQuest()
+THEN
+PartySetFlag(_Var1, "QuestUpdate_RC_DW_VoidwokenChicks_StartFoundEggs");
+Proc_StartDialog(1, "RC_DW_VC_AD_PlayerHelplessEggReaction", _Var1);
+
+PROC
+Proc_RC_DW_VC_PlayerFoundEggs((CHARACTERGUID)_Var1)
+AND
+GlobalGetFlag("RC_DW_VC_EggBrokenByAttack", 1)
+AND
+PartyGetFlag(_Var1, "QuestUpdate_RC_DW_VoidwokenChicks_StartFoundEggs", 1)
+THEN
+PartySetFlag(_Var1, "QuestUpdate_RC_DW_VoidwokenChicks_EggDestroyedByAttack");
+
+IF
+ItemDestroyed((ITEMGUID)_Var1)
+AND
+DB_RC_DW_VC_CorruptedEggs(_Var1)
+THEN
+NOT DB_RC_DW_VC_CorruptedEggs(_Var1);
+
+IF
+AttackedByObject((GUIDSTRING)_Var1, (CHARACTERGUID)_Var2, (GUIDSTRING)_Var3, _, _)
+AND
+_Var1 != _Var3
+AND
+DB_RC_DW_VC_CorruptedEggs(_Var1)
+THEN
+Proc_RC_DW_VC_PlayerFoundEggs(_Var2);
+Proc_SetEggsHostile();
+
+IF
+GlobalFlagSet("RC_DW_VC_HatchVoidWoken")
+THEN
+Proc_SetEggsHostile();
+
+IF
+ObjectFlagSet("GEN_Voidegg_Hatching", (GUIDSTRING)_Var1, _)
+AND
+DB_RC_DW_VC_CorruptedEggs(_Var1)
+THEN
+Proc_SetEggsHostile();
+
+PROC
+Proc_SetEggsHostile()
+AND
+DB_RC_DW_VC_CorruptedEggs(_Var1)
+AND NOT
+GetFaction(_Var1, "Evil NPC")
+THEN
+SetFaction(_Var1, "Evil NPC");
+
+IF
+StoryEvent((GUIDSTRING)_Var1, "RC_DW_VC_HatchlingHatched")
+THEN
+SetCombatGroupID(_Var1, "RC_DW_VC_HatchedVoidwoken");
+
+IF
+StoryEvent((CHARACTERGUID)_Var1, "RC_DW_VC_HatchlingHatched")
+AND
+CharacterIsInCombat(_Var1, 0)
+THEN
+Proc_RC_DW_VC_EngageClosestPlayerInCombat(_Var1);
+
+PROC
+Proc_RC_DW_VC_EngageClosestPlayerInCombat((CHARACTERGUID)_Var1)
+AND
+GetClosestAlivePlayer(_Var1, _Var2, _Var3)
+AND
+_Var3 <= 15
+THEN
+ProcForceStopDialog(_Var2);
+EnterCombat(_Var1, _Var2);
+
+IF
+CharacterDied((CHARACTERGUID)_Var1)
+AND
+DB_RC_DW_VC_CorruptedEggs(_Var1)
+THEN
+DB_RC_DW_VC_CorruptedEggHatched(1);
+ProcDecreaseCounter("RC_DW_VC_CorruptedEggs");
+
+IF
+DB_GlobalCounter("RC_DW_VC_CorruptedEggs", 3)
+AND
+DB_RC_DW_VC_CorruptedEggHatched(1)
+THEN
+CharacterAppear(S_RC_DW_VC_EggThiefVoidwoken_059fbb9c-0967-481c-a732-faacf13ab9a6, 1, "");
+
+IF
+ItemAddedToCharacter(S_RC_DW_VC_HelplessEgg_22a95ce1-5b3f-4ba9-8667-62cd2d38daaa, (CHARACTERGUID)_Var1)
+AND
+DB_IsPlayer(_Var1)
+AND
+PartyGetFlag(_Var1, "QuestUpdate_RC_DW_VoidwokenChicks_PickedUpHelplessEgg", 0)
+THEN
+GlobalSetFlag("RC_DW_VC_HatchVoidWoken");
+PartySetFlag(_Var1, "QuestUpdate_RC_DW_VoidwokenChicks_PickedUpHelplessEgg");
+Proc_RC_DW_VC_StartQuestSafely(_Var1);
+
+IF
+CharacterUsedItem((CHARACTERGUID)_Var1, S_RC_DW_VC_HelplessEgg_22a95ce1-5b3f-4ba9-8667-62cd2d38daaa)
+THEN
+GlobalSetFlag("RC_DW_VC_EggDestroyed");
+PartySetFlag(_Var1, "QuestUpdate_RC_DW_VoidwokenChicks_HelplessEggBecameFood");
+ObjectSetFlag(_Var1, "RC_DW_VC_AteTheEgg");
+
+IF
+ObjectFlagSet("RC_DW_VC_AteTheEgg", (GUIDSTRING)_Var1, _)
+THEN
+Proc_StartDialog(1, "RC_DW_VC_AD_PlayerHelplessEggReaction", _Var1);
+
+IF
+ItemDestroyed(S_RC_DW_VC_HelplessEgg_22a95ce1-5b3f-4ba9-8667-62cd2d38daaa)
+THEN
+GlobalSetFlag("RC_DW_VC_EggBrokenByAttack");
+GlobalSetFlag("RC_DW_VC_EggDestroyed");
+Proc_RC_DW_VC_EggDestroyedByAttackJournal();
+
+PROC
+Proc_RC_DW_VC_EggDestroyedByAttackJournal()
+AND
+DB_IsPlayer(_Var1)
+AND
+PartyGetFlag(_Var1, "QuestUpdate_RC_DW_VoidwokenChicks_StartFoundEggs", 1)
+THEN
+PartySetFlag(_Var1, "QuestUpdate_RC_DW_VoidwokenChicks_EggDestroyedByAttack");
+
+IF
+AttackedByObject(S_RC_DW_VC_HelplessEgg_22a95ce1-5b3f-4ba9-8667-62cd2d38daaa, _, (GUIDSTRING)_Var2, _, _)
+AND
+S_RC_DW_VC_HelplessEgg_22a95ce1-5b3f-4ba9-8667-62cd2d38daaa != _Var2
+AND
+GlobalGetFlag("RC_DW_VC_EggDestroyed", 0)
+THEN
+ObjectSetFlag(S_RC_DW_VC_HelplessEgg_22a95ce1-5b3f-4ba9-8667-62cd2d38daaa, "RC_DW_VC_EggAttacked");
+Proc_StartDialog(1, "RC_DW_VC_AD_HelplessEgg", S_RC_DW_VC_HelplessEgg_22a95ce1-5b3f-4ba9-8667-62cd2d38daaa);
+
+IF
+DialogEnded((STRING)_Var1, (INTEGER)_Var2)
+AND
+DB_RC_DW_VC_Chickens(_Var3, _Var1, _, _, _)
+AND
+ObjectGetFlag(_Var3, "RC_DW_VC_GaveEgg", 1)
+THEN
+GlobalClearFlag("RC_DW_VC_ChickensAreUpset");
+ObjectClearFlag(_Var3, "RC_DW_VC_GaveEgg", 0);
+SetVarInteger(S_RC_DW_VC_HelplessEgg_22a95ce1-5b3f-4ba9-8667-62cd2d38daaa, "Bool_PlayAD", 0);
+Proc_RC_DW_VC_ChickenReactionAD();
+Proc_RC_DW_VC_SetCalmedDownBehaviours();
+
+PROC
+Proc_RC_DW_VC_SetCalmedDownBehaviours()
+AND
+DB_RC_DW_VC_Chickens(_Var1, _, _, _, _)
+AND
+_Var1 != S_RC_DW_VC_Chicken_Scared_81ef9840-7b6e-4d3d-9b60-4c7ed7a286a7
+THEN
+SetVarInteger(_Var1, "Run", 0);
+SetVarFloat(_Var1, "WanderDurationMax", 10);
+
+PROC
+Proc_RC_DW_VC_SetCalmedDownBehaviours()
+AND
+DB_RC_DW_VC_Chickens(_Var1, _Var2, _Var3, _Var4, _Var5)
+AND
+CharacterIsDead(_Var1, 0)
+AND
+ObjectGetFlag(_Var1, "RC_DW_VC_ChickenOnBroodDuty", 1)
+AND NOT
+DB_RC_DW_VC_DoneOnce(1)
+THEN
+DB_RC_DW_VC_DoneOnce(1);
+NOT DB_RC_DW_VC_Chickens(_Var1, _Var2, _Var3, _Var4, _Var5);
+DB_RC_DW_VC_Chickens(_Var1, _Var2, _Var3, 1, _Var5);
+SetVisible(ITEMGUID_S_RC_DW_VC_HelplessEgg_22a95ce1-5b3f-4ba9-8667-62cd2d38daaa, 0);
+ItemToInventory(S_RC_DW_VC_HelplessEgg_22a95ce1-5b3f-4ba9-8667-62cd2d38daaa, _Var1);
+DB_RC_DW_VC_DroppingEgg(_Var1, "0_GoingToEggAfterDialog");
+ProcCharacterMoveTo(_Var1, TRIGGERGUID_S_RC_DW_VC_HelplessEggLocation_92d4c501-c342-4e25-b08e-32fb7d396ee9, 0, "RC_DW_VC_ChickenWalkToEgg");
+ItemSetOwner(S_RC_DW_VC_HelplessEgg_22a95ce1-5b3f-4ba9-8667-62cd2d38daaa, _Var1);
+DB_IsNotMessingAround(_Var1);
+DB_CrimeReaction_DoNotWarn(_Var1);
+TriggerRegisterForItems(TRIGGERGUID_S_RC_DW_VC_NestArea_425c31d0-77d0-4020-a9e4-2d8a338f609f);
+DB_RC_DW_VC_NestAreaTriggerInstalled(1);
+
+PROC
+Proc_RC_DW_VC_SetCalmedDownBehaviours()
+AND
+DB_RC_DW_VC_Chickens(_Var1, _, _, _, _)
+AND
+CharacterIsDead(_Var1, 0)
+AND
+ObjectGetFlag(_Var1, "RC_DW_VC_ChickenOnBroodDuty", 1)
+AND
+_Var1 != S_RC_DW_VC_Chicken_Scared_81ef9840-7b6e-4d3d-9b60-4c7ed7a286a7
+THEN
+CharacterSetReactionPriority(_Var1, "DefaultWanderInTrigger", 0);
+
+PROC
+Proc_RC_DW_VC_SetCalmedDownBehaviours()
+AND
+DB_RC_DW_VC_DoneOnce(_Var1)
+THEN
+NOT DB_RC_DW_VC_DoneOnce(_Var1);
+
+IF
+ObjectFlagSet("RC_DW_VC_DropEggForGhostChicken", (CHARACTERGUID)_Var1, _)
+AND
+QryTakeItemFromMagicPockets(_Var1, S_RC_DW_VC_HelplessEgg_22a95ce1-5b3f-4ba9-8667-62cd2d38daaa, _Var1)
+AND
+GetDistanceTo(_Var1, TRIGGERGUID_S_RC_DW_VC_NestArea_425c31d0-77d0-4020-a9e4-2d8a338f609f, _Var3)
+AND
+_Var3 <= 8
+THEN
+PartySetFlag(_Var1, "QuestUpdate_RC_DW_VoidwokenChicks_ReturnedHelplessEgg");
+ItemDrop(S_RC_DW_VC_HelplessEgg_22a95ce1-5b3f-4ba9-8667-62cd2d38daaa);
+DB_RC_DW_VC_DroppingEggToNest(1);
+
+IF
+ItemRemovedFromCharacter(S_RC_DW_VC_HelplessEgg_22a95ce1-5b3f-4ba9-8667-62cd2d38daaa, _)
+AND
+DB_RC_DW_VC_DroppingEggToNest(1)
+THEN
+NOT DB_RC_DW_VC_DroppingEggToNest(1);
+ItemDragToTrigger(S_RC_DW_VC_HelplessEgg_22a95ce1-5b3f-4ba9-8667-62cd2d38daaa, TRIGGERGUID_S_RC_DW_VC_HelplessEggLocation_92d4c501-c342-4e25-b08e-32fb7d396ee9);
+TriggerRegisterForItems(TRIGGERGUID_S_RC_DW_VC_NestArea_425c31d0-77d0-4020-a9e4-2d8a338f609f);
+DB_RC_DW_VC_NestAreaTriggerInstalled(1);
+
+IF
+ObjectFlagSet("RC_DW_VC_DropEggForGhostChicken", (GUIDSTRING)_Var1, _)
+THEN
+ObjectClearFlag(_Var1, "RC_DW_VC_DropEggForGhostChicken");
+
+PROC
+Proc_RC_DW_VC_SetPanicBehaviours()
+AND
+DB_RC_DW_VC_Chickens(_Var1, _, _, _, _)
+AND
+_Var1 != S_RC_DW_VC_Chicken_Scared_81ef9840-7b6e-4d3d-9b60-4c7ed7a286a7
+THEN
+SetVarInteger(_Var1, "Run", 1);
+SetVarFloat(_Var1, "WanderDurationMax", 5);
+
+PROC
+Proc_RC_DW_VC_SetPanicBehaviours()
+AND
+DB_RC_DW_VC_Chickens(_Var1, _Var2, _Var3, _Var4, _Var5)
+AND
+CharacterIsDead(_Var1, 0)
+AND
+_Var1 != S_RC_DW_VC_Chicken_Scared_81ef9840-7b6e-4d3d-9b60-4c7ed7a286a7
+THEN
+CharacterSetReactionPriority(_Var1, "DefaultWanderInTrigger", 200);
+Proc_RC_DW_VC_ClearGuardPos(_Var1);
+NOT DB_RC_DW_VC_Chickens(_Var1, _Var2, _Var3, _Var4, _Var5);
+DB_RC_DW_VC_Chickens(_Var1, _Var2, _Var3, 0, _Var5);
+
+IF
+GlobalFlagSet("RC_DW_VC_ChickensAreUpset")
+AND
+GlobalGetFlag("RC_DW_VC_ChickensKnowEggBecameFood", 0)
+AND
+GlobalGetFlag("RC_DW_VC_ChickensKnowEggIsDestroyed", 0)
+THEN
+Proc_RC_DW_VC_SetPanicBehaviours();
+
+IF
+GlobalFlagSet("RC_DW_VC_EggDestroyed")
+AND
+GlobalGetFlag("RC_DW_VC_EggWasReturned", 1)
+AND
+DB_RC_DW_VC_Chickens(_Var1, _, _, 1, _)
+THEN
+GlobalSetFlag("RC_DW_VC_ReturnedEggGone");
+
+IF
+ItemLeftTrigger(S_RC_DW_VC_HelplessEgg_22a95ce1-5b3f-4ba9-8667-62cd2d38daaa, S_RC_DW_VC_NestArea_425c31d0-77d0-4020-a9e4-2d8a338f609f, _)
+THEN
+GlobalSetFlag("RC_DW_VC_ReturnedEggGone");
+
+IF
+ItemEnteredTrigger(S_RC_DW_VC_HelplessEgg_22a95ce1-5b3f-4ba9-8667-62cd2d38daaa, S_RC_DW_VC_NestArea_425c31d0-77d0-4020-a9e4-2d8a338f609f, _)
+AND
+DB_GlobalFlag("RC_DW_VC_EggWasReturned")
+THEN
+GlobalClearFlag("RC_DW_VC_ReturnedEggGone");
+GlobalClearFlag("RC_DW_VC_EggWasReturned");
+GlobalSetFlag("RC_DW_VC_EggWasReturned");
+
+IF
+ItemEnteredTrigger(S_RC_DW_VC_HelplessEgg_22a95ce1-5b3f-4ba9-8667-62cd2d38daaa, S_RC_DW_VC_NestArea_425c31d0-77d0-4020-a9e4-2d8a338f609f, _)
+AND
+DB_RC_DW_VC_Chickens(_Var2, _Var3, _Var4, 1, _Var5)
+THEN
+ItemSetOwner(S_RC_DW_VC_HelplessEgg_22a95ce1-5b3f-4ba9-8667-62cd2d38daaa, _Var2);
+
+IF
+GlobalFlagSet("RC_DW_VC_ChickensAreUpset")
+AND
+DB_RC_DW_VC_Chickens(_Var1, _Var2, _Var3, 1, _Var4)
+THEN
+GlobalClearFlag("RC_DW_VC_ReturnedEggGone");
+Proc_RC_DW_VC_CleanUpStealBackEgg();
+
+IF
+GlobalFlagSet("RC_DW_VC_HelplessEggHatches")
+THEN
+Proc_RC_DW_VC_CleanUpStealBackEgg();
+
+IF
+DB_Dead(_Var1)
+AND
+DB_RC_DW_VC_Chickens(_Var1, _Var2, _Var3, 1, _Var4)
+AND
+GlobalGetFlag("RC_DW_VC_ReturnedEggGone", 1)
+THEN
+GlobalSetFlag("RC_DW_VC_ChickensAreUpset");
+
+PROC
+Proc_RC_DW_VC_CleanUpStealBackEgg()
+AND
+DB_RC_DW_VC_Chickens(_Var1, _Var2, _Var3, 1, _Var4)
+THEN
+GlobalClearFlag("RC_DW_VC_ReturnedEggGone");
+ObjectClearFlag(_Var1, "RC_DW_VC_ChickenOnBroodDuty", 0);
+NOT DB_IsNotMessingAround(_Var1);
+NOT DB_CrimeReaction_DoNotWarn(_Var1);
+
+PROC
+Proc_RC_DW_VC_CleanUpStealBackEgg()
+AND
+DB_RC_DW_VC_NestAreaTriggerInstalled(1)
+THEN
+TriggerUnregisterForItems(S_RC_DW_VC_NestArea_425c31d0-77d0-4020-a9e4-2d8a338f609f);
+NOT DB_RC_DW_VC_NestAreaTriggerInstalled(1);
+
+IF
+StoryEvent((CHARACTERGUID)_Var1, "RC_DW_VC_ChickenWalkToEgg")
+AND
+DB_RC_DW_VC_DroppingEgg(_Var1, "0_GoingToEggAfterDialog")
+THEN
+NOT DB_RC_DW_VC_DroppingEgg(_Var1, "0_GoingToEggAfterDialog");
+DB_RC_DW_VC_DroppingEgg(_Var1, "2_Teleport");
+TeleportTo(ITEMGUID_S_RC_DW_VC_HelplessEgg_22a95ce1-5b3f-4ba9-8667-62cd2d38daaa, TRIGGERGUID_S_RC_DW_VC_HelplessEggLocation_92d4c501-c342-4e25-b08e-32fb7d396ee9);
+Proc_RC_DW_VC_SetGuardPos(_Var1);
+SetVisible(ITEMGUID_S_RC_DW_VC_HelplessEgg_22a95ce1-5b3f-4ba9-8667-62cd2d38daaa, 1);
+NOT DB_RC_DW_VC_DroppingEgg(_Var1, "2_Teleport");
+Proc_RC_DW_VC_SetGuardPos(_Var1);
+
+IF
+StoryEvent((CHARACTERGUID)_Var1, "RC_DW_VC_ChickenWalkToEgg")
+AND
+DB_RC_DW_VC_DroppingEgg(_Var1, "0_GoingToEggAsNewHatchingChicken")
+THEN
+NOT DB_RC_DW_VC_DroppingEgg(_Var1, "0_GoingToEggAsNewHatchingChicken");
+Proc_RC_DW_VC_SetGuardPos(_Var1);
+
+PROC
+Proc_RC_DW_VC_SetGuardPos((CHARACTERGUID)_Var1)
+AND
+GetPosition(_Var1, _Var2, _Var3, _Var4)
+THEN
+SetVarFloat3(_Var1, "GuardPoint", _Var2, _Var3, _Var4);
+CharacterSetReactionPriority(_Var1, "GuardDefaultPosition", 10000);
+
+PROC
+Proc_RC_DW_VC_ClearGuardPos((CHARACTERGUID)_Var1)
+THEN
+CharacterSetReactionPriority(_Var1, "GuardDefaultPosition", 0);
+
+IF
+ItemAddedToCharacter(ITEMGUID_S_RC_DW_VC_HelplessEgg_22a95ce1-5b3f-4ba9-8667-62cd2d38daaa, (CHARACTERGUID)_Var1)
+AND
+DB_RC_DW_VC_DroppingEgg(_Var2, _Var3)
+AND
+DB_IsPlayer(_Var1)
+THEN
+NOT DB_RC_DW_VC_DroppingEgg(_Var2, _Var3);
+CharacterPurgeQueue(_Var2);
+ProcClearStoryMove(_Var2);
+GlobalSetFlag("RC_DW_VC_ChickensAreUpset");
+
+IF
+CharacterDied((CHARACTERGUID)_Var1)
+AND
+DB_RC_DW_VC_DroppingEgg(_Var1, _Var2)
+THEN
+SetVisible(ITEMGUID_S_RC_DW_VC_HelplessEgg_22a95ce1-5b3f-4ba9-8667-62cd2d38daaa, 1);
+NOT DB_RC_DW_VC_DroppingEgg(_Var1, _Var2);
+
+IF
+GlobalFlagSet("RC_DW_VC_ChickensAreUpset")
+THEN
+Proc_RC_DW_VC_ChickenReactionAD();
+
+IF
+DialogEnded((STRING)_Var1, (INTEGER)_Var2)
+AND
+DB_RC_DW_VC_Chickens(_, _Var1, _, _, _)
+AND
+DialogGetInvolvedPlayer(_Var2, 1, _Var7)
+AND
+ObjectGetFlag(_Var7, "RC_DW_VC_ChickensBecomeHostileTowardsPlayer", 1)
+AND
+DB_RC_DW_VC_Chickens(_Var8, _, _, _, _)
+AND
+CharacterIsDead(_Var8, 0)
+THEN
+SetCanFight(_Var8, 1);
+ProcMakeNPCHostile(_Var7, _Var8);
+
+IF
+GlobalFlagSet("RC_DW_VC_HelplessEggHatches")
+THEN
+SetCanFight(S_RC_DW_VC_VoidwokenChick_08b71c62-f1bf-41d7-95e3-488d190f018d, 1);
+SetOnStage(S_RC_DW_VC_VoidwokenChick_08b71c62-f1bf-41d7-95e3-488d190f018d, 1);
+SetOnStage(S_RC_DW_VC_HelplessEgg_22a95ce1-5b3f-4ba9-8667-62cd2d38daaa, 0);
+Proc_RC_DW_VC_HelplessEggHatches();
+
+PROC
+Proc_RC_DW_VC_HelplessEggHatches()
+AND
+DB_RC_DW_VC_Chickens(_Var1, _, _, _, _Var5)
+AND NOT
+DB_Dead(_Var1)
+THEN
+TeleportTo(_Var1, _Var5);
+CharacterLookFromTrigger(_Var1, _Var5, 1);
+CharacterDie(_Var1, 0, "DoT");
+CreateSurface(_Var1, "SurfaceBlood", 1, -1);
+
+IF
+ObjectFlagSet("RC_DW_VC_IsImprinted", S_RC_DW_VC_VoidwokenChick_08b71c62-f1bf-41d7-95e3-488d190f018d, _)
+THEN
+SetCanFight(S_RC_DW_VC_VoidwokenChick_08b71c62-f1bf-41d7-95e3-488d190f018d, 0);
+
+IF
+DB_Dead(S_RC_DW_VC_VoidwokenChick_08b71c62-f1bf-41d7-95e3-488d190f018d)
+THEN
+GlobalSetFlag("RC_DW_VC_VoidwokenChickDead");
+GlobalClearFlag("RC_DW_VC_ChickNearRooster");
+
+IF
+DB_Dead(S_RC_DW_VC_VoidwokenChick_08b71c62-f1bf-41d7-95e3-488d190f018d)
+AND
+DB_IsPlayer(_Var1)
+AND
+GlobalGetFlag("RC_DW_VC_HelplessEggHatches", 1)
+THEN
+PartySetFlag(_Var1, "QuestUpdate_RC_DW_VoidwokenChicks_CloseChickDead");
+
+IF
+DB_Dead(S_RC_DW_VC_MagicRooster_0e367750-1970-4668-a78c-116f0fff8cc0)
+THEN
+GlobalSetFlag("RC_DW_VC_MagicRoosterDead");
+TriggerUnregisterForCharacter(S_RC_DW_VC_RoosterCheckChickTrigger_33774bdb-125d-4bbf-93fe-542950abba31, S_RC_DW_VC_VoidwokenChick_08b71c62-f1bf-41d7-95e3-488d190f018d);
+GlobalClearFlag("RC_DW_VC_ChickNearRooster");
+
+IF
+DB_Dead(S_RC_DW_VC_VoidwokenChick_08b71c62-f1bf-41d7-95e3-488d190f018d)
+AND
+DB_IsPlayer(_Var1)
+AND
+GlobalGetFlag("RC_DW_VC_HelplessEggHatches", 1)
+THEN
+PartySetFlag(_Var1, "QuestUpdate_RC_DW_VoidwokenChicks_CloseChickDead");
+
+IF
+DB_Dead(S_RC_DW_VC_MagicRooster_0e367750-1970-4668-a78c-116f0fff8cc0)
+AND
+DB_Sees(_Var1, S_RC_DW_VC_MagicRooster_0e367750-1970-4668-a78c-116f0fff8cc0)
+AND
+ObjectGetFlag(_Var1, "QuestUpdate_RC_DW_VoidwokenChicks_KnowsAboutRooster", 1)
+THEN
+PartySetFlag(_Var1, "QuestUpdate_RC_DW_VoidwokenChicks_CloseRoosterDead");
+
+IF
+ObjectFlagSet("QuestUpdate_RC_DW_VoidwokenChicks_KnowsAboutRooster", (CHARACTERGUID)_Var1, _)
+AND
+CharacterIsDead(S_RC_DW_VC_MagicRooster_0e367750-1970-4668-a78c-116f0fff8cc0, 1)
+THEN
+PartySetFlag(_Var1, "QuestUpdate_RC_DW_VoidwokenChicks_CloseRoosterDead");
+
+IF
+CharacterEnteredTrigger((CHARACTERGUID)_Var1, S_RC_DW_VC_RoosterCheckChickTrigger_33774bdb-125d-4bbf-93fe-542950abba31)
+THEN
+GlobalSetFlag("RC_DW_VC_ChickNearRooster");
+
+IF
+CharacterLeftTrigger((CHARACTERGUID)_Var1, S_RC_DW_VC_RoosterCheckChickTrigger_33774bdb-125d-4bbf-93fe-542950abba31)
+THEN
+GlobalClearFlag("RC_DW_VC_ChickNearRooster");
+
+PROC
+PROC_GLOBAL_DialogStartRequested(S_RC_DW_VC_MagicRooster_0e367750-1970-4668-a78c-116f0fff8cc0, (CHARACTERGUID)_Var1)
+THEN
+Proc_RC_DW_VC_TripleDialog_RoosterChick(S_RC_DW_VC_MagicRooster_0e367750-1970-4668-a78c-116f0fff8cc0, S_RC_DW_VC_VoidwokenChick_08b71c62-f1bf-41d7-95e3-488d190f018d, _Var1);
+
+PROC
+Proc_RC_DW_VC_TripleDialog_RoosterChick((CHARACTERGUID)_Var1, (CHARACTERGUID)_Var2, (CHARACTERGUID)_Var3)
+AND
+GlobalGetFlag("RC_DW_VC_ChickNearRooster", 1)
+AND
+GlobalGetFlag("RC_DW_VC_VoidwokenChickBroughtToRooster", 0)
+THEN
+DB_RC_DW_VC_CheckedOnce(1);
+Proc_StartDialog(0, "RC_DW_VC_TripleDialog_RoosterChick", _Var1, _Var2, _Var3);
+ProcFaceEachother(_Var1, _Var2);
+
+PROC
+Proc_RC_DW_VC_TripleDialog_RoosterChick((CHARACTERGUID)_Var1, (CHARACTERGUID)_Var2, (CHARACTERGUID)_Var3)
+AND NOT
+DB_RC_DW_VC_CheckedOnce(1)
+THEN
+Proc_StartDialog(0, "RC_DW_VC_MagicRooster", _Var1, _Var3);
+
+PROC
+Proc_RC_DW_VC_TripleDialog_RoosterChick((CHARACTERGUID)_Var1, (CHARACTERGUID)_Var2, (CHARACTERGUID)_Var3)
+AND
+DB_RC_DW_VC_CheckedOnce(_Var4)
+THEN
+NOT DB_RC_DW_VC_CheckedOnce(_Var4);
+
+IF
+DialogStarted("RC_DW_VC_TripleDialog_RoosterChick", (INTEGER)_Var1)
+AND
+DB_DialogPlayers(_Var1, _Var2, _)
+THEN
+CharacterMoveTo(S_RC_DW_VC_VoidwokenChick_08b71c62-f1bf-41d7-95e3-488d190f018d, _Var2, 1, "", 0);
+
+IF
+GlobalFlagSet("RC_DW_VC_VoidwokenChickBroughtToRooster")
+THEN
+TriggerUnregisterForCharacter(S_RC_DW_VC_RoosterCheckChickTrigger_33774bdb-125d-4bbf-93fe-542950abba31, S_RC_DW_VC_VoidwokenChick_08b71c62-f1bf-41d7-95e3-488d190f018d);
+GlobalClearFlag("RC_DW_VC_ChickNearRooster");
+ObjectClearFlag(S_RC_DW_VC_VoidwokenChick_08b71c62-f1bf-41d7-95e3-488d190f018d, "RC_DW_VC_IsImprinted", 0);
+
+IF
+GlobalFlagSet("RC_DW_VC_VoidwokenChickBroughtToRooster")
+AND
+DB_IsPlayer(_Var1)
+AND
+ObjectGetFlag(_Var1, "RC_DW_VC_IsOwnerOfChick", 1)
+THEN
+ObjectClearFlag(_Var1, "RC_DW_VC_IsOwnerOfChick", 0);
+
+IF
+ObjectFlagSet("RC_DW_VC_RoosterLookAtPlayer", (GUIDSTRING)_Var1, _)
+THEN
+ObjectClearFlag(_Var1, "RC_DW_VC_RoosterLookAtPlayer", 0);
+ProcFaceEachother(_Var1, S_RC_DW_VC_MagicRooster_0e367750-1970-4668-a78c-116f0fff8cc0);
+
+IF
+DialogEnded("RC_DW_VC_TripleDialog_RoosterChick", (INTEGER)_Var1)
+AND
+DB_DialogPlayers(_Var1, _Var2, _)
+THEN
+Proc_RC_DW_VC_PuttingDownPeeper(_Var2);
+
+PROC
+Proc_RC_DW_VC_PuttingDownPeeper((CHARACTERGUID)_Var1)
+AND
+ObjectGetFlag(_Var1, "RC_DW_VC_KillPeeper", 1)
+THEN
+CharacterDie(S_RC_DW_VC_VoidwokenChick_08b71c62-f1bf-41d7-95e3-488d190f018d, 1, "DoT");
+Foop(S_RC_DW_VC_MagicRoosterChest_f93a85e3-7588-4e0f-a1af-d1e9c63f6a87);
+
+PROC
+Proc_RC_DW_VC_TransformPeeper()
+AND
+GetPosition(S_RC_DW_VC_VoidwokenChick_08b71c62-f1bf-41d7-95e3-488d190f018d, _Var1, _Var2, _Var3)
+THEN
+PlayEffectAtPosition("RS3_FX_GP_Combat_CorpseExplosion_Blood_01_Medium", _Var1, _Var2, _Var3);
+Transform(S_RC_DW_VC_VoidwokenChick_08b71c62-f1bf-41d7-95e3-488d190f018d, "QUEST_RC_DW_VC_SmallInsect_f01630e8-de8f-471a-9c36-007d4f50186e", 0, 1);
+ClearTag(S_RC_DW_VC_VoidwokenChick_08b71c62-f1bf-41d7-95e3-488d190f018d, "CHICKEN");
+SetTag(S_RC_DW_VC_VoidwokenChick_08b71c62-f1bf-41d7-95e3-488d190f018d, "VOIDSECT");
+
+PROC
+Proc_RC_DW_VC_PuttingDownPeeper((CHARACTERGUID)_Var1)
+AND
+ObjectGetFlag(_Var1, "RC_DW_VC_DontKillPeeper", 1)
+THEN
+Poof(CHARACTERGUID_S_RC_DW_VC_MagicRooster_0e367750-1970-4668-a78c-116f0fff8cc0);
+Proc_RC_DW_VC_TransformPeeper();
+Proc_RC_DW_VC_TurnChickHostile();
+DB_VC_RoosterFightSpawnCounter(0);
+
+IF
+DB_VC_RoosterFightSpawnCounter(_Var1)
+AND
+_Var1 < 10
+AND
+IntegerSum(_Var1, 1, _Var2)
+THEN
+NOT DB_VC_RoosterFightSpawnCounter(_Var1);
+DB_VC_RoosterFightSpawnCounter(_Var2);
+Proc_RC_DW_VC_SpawnPeeperTNGHelper();
+
+PROC
+Proc_RC_DW_VC_SpawnPeeperTNGHelper()
+AND
+GetRandomPositionInTrigger(TRIGGERGUID_S_RC_DW_VC_RoosterCheckChickTrigger_33774bdb-125d-4bbf-93fe-542950abba31, _Var1, _Var2, _Var3)
+AND
+CharacterCreateAtPosition(_Var1, _Var2, _Var3, "QUEST_RC_DW_VoidwokenChick_99e5c092-1cd2-4e35-91eb-b8e89fb02c5e", 1, _Var4)
+THEN
+SetCanFight(_Var4, 1);
+SetCanJoinCombat(_Var4, 1);
+SetFaction(_Var4, "Evil NPC");
+
+IF
+DB_VC_RoosterFightSpawnCounter(10)
+THEN
+NOT DB_VC_RoosterFightSpawnCounter(10);
+
+IF
+AttackedByObject(S_RC_DW_VC_VoidwokenChick_08b71c62-f1bf-41d7-95e3-488d190f018d, (GUIDSTRING)_Var1, (CHARACTERGUID)_Var2, _, _)
+AND
+S_RC_DW_VC_VoidwokenChick_08b71c62-f1bf-41d7-95e3-488d190f018d != _Var2
+THEN
+Proc_RC_DW_VC_OnChickAttacked(_Var2);
+
+PROC
+Proc_RC_DW_VC_OnChickAttacked((CHARACTERGUID)_Var1)
+AND
+CharacterIsInCombat(S_RC_DW_VC_VoidwokenChick_08b71c62-f1bf-41d7-95e3-488d190f018d, 0)
+AND
+ObjectGetFlag(S_RC_DW_VC_VoidwokenChick_08b71c62-f1bf-41d7-95e3-488d190f018d, "RC_DW_VC_IsImprinted", 1)
+THEN
+ObjectSetFlag(S_RC_DW_VC_VoidwokenChick_08b71c62-f1bf-41d7-95e3-488d190f018d, "RC_DW_VC_ChickGainedDamage");
+SetStoryEvent(_Var1, "RC_DW_VC_ChickFleeFrom");
+
+PROC
+Proc_RC_DW_VC_OnChickAttacked((CHARACTERGUID)_Var1)
+AND
+CharacterIsInCombat(S_RC_DW_VC_VoidwokenChick_08b71c62-f1bf-41d7-95e3-488d190f018d, 0)
+AND
+GlobalGetFlag("RC_DW_VC_VoidwokenChickBroughtToRooster", 1)
+AND
+CharacterIsDead(S_RC_DW_VC_MagicRooster_0e367750-1970-4668-a78c-116f0fff8cc0, 0)
+THEN
+ObjectSetFlag(S_RC_DW_VC_VoidwokenChick_08b71c62-f1bf-41d7-95e3-488d190f018d, "RC_DW_VC_ChickGainedDamage");
+SetStoryEvent(_Var1, "RC_DW_VC_ChickFleeFrom");
+
+PROC
+Proc_RC_DW_VC_OnChickAttacked((CHARACTERGUID)_Var1)
+AND
+CharacterIsInCombat(S_RC_DW_VC_VoidwokenChick_08b71c62-f1bf-41d7-95e3-488d190f018d, 0)
+AND
+ObjectGetFlag(S_RC_DW_VC_VoidwokenChick_08b71c62-f1bf-41d7-95e3-488d190f018d, "RC_DW_VC_IsImprinted", 0)
+AND
+GlobalGetFlag("RC_DW_VC_VoidwokenChickBroughtToRooster", 0)
+AND
+CharacterIsDead(S_RC_DW_VC_MagicRooster_0e367750-1970-4668-a78c-116f0fff8cc0, 0)
+THEN
+SetStoryEvent(S_RC_DW_VC_VoidwokenChick_08b71c62-f1bf-41d7-95e3-488d190f018d, "RC_DW_VC_TurnHostileBeforeImprint");
+Proc_RC_DW_VC_TurnChickHostile();
+
+IF
+DB_Dead(S_RC_DW_VC_MagicRooster_0e367750-1970-4668-a78c-116f0fff8cc0)
+AND
+GlobalGetFlag("RC_DW_VC_VoidwokenChickBroughtToRooster", 1)
+AND
+CharacterIsDead(S_RC_DW_VC_VoidwokenChick_08b71c62-f1bf-41d7-95e3-488d190f018d, 0)
+THEN
+Proc_RC_DW_VC_TurnChickHostile();
+
+PROC
+Proc_RC_DW_VC_TurnChickHostile()
+AND
+CharacterIsDead(S_RC_DW_VC_VoidwokenChick_08b71c62-f1bf-41d7-95e3-488d190f018d, 0)
+THEN
+ObjectSetFlag(S_RC_DW_VC_VoidwokenChick_08b71c62-f1bf-41d7-95e3-488d190f018d, "RC_DW_VC_ChickIsHostile");
+DialogRequestStop(S_RC_DW_VC_VoidwokenChick_08b71c62-f1bf-41d7-95e3-488d190f018d);
+SetFaction(S_RC_DW_VC_VoidwokenChick_08b71c62-f1bf-41d7-95e3-488d190f018d, "Evil NPC");
+SetCanFight(S_RC_DW_VC_VoidwokenChick_08b71c62-f1bf-41d7-95e3-488d190f018d, 1);
+TimerLaunch("RC_DW_VC_ChickHostile", 500);
+
+IF
+TimerFinished("RC_DW_VC_ChickHostile")
+AND NOT
+DB_Dead(S_RC_DW_VC_VoidwokenChick_08b71c62-f1bf-41d7-95e3-488d190f018d)
+THEN
+Proc_StartDialog(1, "RC_DW_VC_AD_VoidwokenChick", S_RC_DW_VC_VoidwokenChick_08b71c62-f1bf-41d7-95e3-488d190f018d);
+
+IF
+CharacterResurrected((CHARACTERGUID)_Var1)
+AND
+ObjectGetFlag(_Var1, "RC_DW_VC_PeepersMother", 1)
+THEN
+SetStoryEvent(S_RC_DW_VC_VoidwokenChick_08b71c62-f1bf-41d7-95e3-488d190f018d, "RC_DW_VC_MotherRez");
+
+IF
+ObjectFlagSet("RC_DW_VC_PeepersMother", (CHARACTERGUID)_Var1, _)
+THEN
+CharacterSetRelationIndivFactionToIndivFaction(_Var1, S_RC_DW_VC_VoidwokenChick_08b71c62-f1bf-41d7-95e3-488d190f018d, 100);
+CharacterSetRelationIndivFactionToIndivFaction(S_RC_DW_VC_VoidwokenChick_08b71c62-f1bf-41d7-95e3-488d190f018d, _Var1, 100);
+
+IF
+DialogStarted(_, (INTEGER)_Var2)
+AND
+DialogGetInvolvedNPC(_Var2, 1, S_RC_DW_VC_MagicRooster_0e367750-1970-4668-a78c-116f0fff8cc0)
+THEN
+ObjectSetFlag(S_RC_DW_VC_MagicRooster_0e367750-1970-4668-a78c-116f0fff8cc0, "RC_DW_VC_InDialog");
+
+IF
+DialogEnded(_, (INTEGER)_Var2)
+AND
+DialogGetInvolvedNPC(_Var2, 1, S_RC_DW_VC_MagicRooster_0e367750-1970-4668-a78c-116f0fff8cc0)
+THEN
+ObjectClearFlag(S_RC_DW_VC_MagicRooster_0e367750-1970-4668-a78c-116f0fff8cc0, "RC_DW_VC_InDialog", 0);
+
+IF
+AttackedByObject(S_RC_DW_VC_MagicRooster_0e367750-1970-4668-a78c-116f0fff8cc0, (CHARACTERGUID)_Var1, _, _, _)
+AND
+DB_IsPlayer(_Var1)
+AND
+CharacterIsDead(S_RC_DW_VC_MagicRooster_0e367750-1970-4668-a78c-116f0fff8cc0, 0)
+AND
+ObjectGetFlag(S_RC_DW_VC_MagicRooster_0e367750-1970-4668-a78c-116f0fff8cc0, "RC_DW_VC_InDialog", 0)
+AND
+QRY_SpeakerIsAvailableAndInDialogRange(_Var1, S_RC_DW_VC_MagicRooster_0e367750-1970-4668-a78c-116f0fff8cc0)
+THEN
+Proc_RC_DW_VC_StartDialogToTeleport(_Var1);
+
+PROC
+Proc_RC_DW_VC_StartDialogToTeleport((CHARACTERGUID)_Var1)
+THEN
+ObjectSetFlag(_Var1, "RC_DW_VC_PlayerAttackedRoosterOrChick");
+DialogRequestStop(_Var1);
+Proc_StartDialog(0, "RC_DW_VC_MagicRooster", S_RC_DW_VC_MagicRooster_0e367750-1970-4668-a78c-116f0fff8cc0, _Var1);
+
+IF
+DialogEnded("RC_DW_VC_MagicRooster", (INTEGER)_Var1)
+AND
+DialogGetInvolvedPlayer(_Var1, 1, _Var2)
+AND
+ObjectGetFlag(_Var2, "RC_DW_VC_TeleportPlayer", 1)
+AND
+Random(4, _Var3)
+THEN
+ObjectClearFlag(_Var2, "RC_DW_VC_TeleportPlayer", 0);
+Proc_RC_DW_VC_RoosterRandomTpPlayer(_Var2, _Var3);
+
+PROC
+Proc_RC_DW_VC_RoosterRandomTpPlayer((CHARACTERGUID)_Var1, (INTEGER)_Var2)
+AND
+DB_RC_DW_VC_TeleportTriggers(_Var3, _Var2)
+AND
+GetPosition(_Var1, _Var4, _Var5, _Var6)
+THEN
+PlayEffectAtPosition("RS3_FX_GP_ScriptedEvent_Teleport_GenericSmoke_01", _Var4, _Var5, _Var6);
+CharacterDetachFromGroup(_Var1);
+SetVisible(_Var1, 0);
+TeleportTo(_Var1, _Var3);
+CharacterLookFromTrigger(_Var1, _Var3, 1);
+DB_RC_DW_VC_TeleportedPlayer(_Var1);
+TimerLaunch("RC_DW_VC_RoosterTeleporter", 250);
+
+IF
+TimerFinished("RC_DW_VC_RoosterTeleporter")
+AND
+DB_RC_DW_VC_TeleportedPlayer(_Var1)
+THEN
+SetVisible(_Var1, 1);
+PlayEffect(_Var1, "RS3_FX_GP_ScriptedEvent_Teleport_GenericSmoke_01");
+ApplyStatus(_Var1, "KNOCKED_DOWN", 1, 1);
+DB_RC_DW_VC_TeleportedPlayerAD(_Var1);
+NOT DB_RC_DW_VC_TeleportedPlayer(_Var1);
+TimerLaunch("RC_DW_VC_RoosterTeleportAD", 2000);
+
+IF
+TimerFinished("RC_DW_VC_RoosterTeleportAD")
+AND
+DB_RC_DW_VC_TeleportedPlayerAD(_Var1)
+THEN
+Proc_RC_DW_VC_PlayerTeleportedAD(_Var1);
+
+PROC
+Proc_RC_DW_VC_PlayerTeleportedAD((CHARACTERGUID)_Var1)
+AND NOT
+DB_DialogPlayers(_, _Var1, _)
+THEN
+Proc_StartDialog(1, "RC_DW_VC_AD_PlayerGotTeleported", _Var1);
+
+PROC
+Proc_RC_DW_VC_PlayerTeleportedAD((CHARACTERGUID)_Var1)
+THEN
+NOT DB_RC_DW_VC_TeleportedPlayerAD(_Var1);
+
+IF
+StoryEvent(S_RC_DW_VC_VoidwokenChick_08b71c62-f1bf-41d7-95e3-488d190f018d, "RC_DW_VC_PeeperPlayAD")
+AND NOT
+DB_DialogNPCs(_, S_RC_DW_VC_VoidwokenChick_08b71c62-f1bf-41d7-95e3-488d190f018d, _)
+THEN
+Proc_StartDialog(1, "RC_DW_VC_AD_VoidwokenChick", S_RC_DW_VC_VoidwokenChick_08b71c62-f1bf-41d7-95e3-488d190f018d);
+
+IF
+GlobalFlagSet("RC_DW_VC_ChickensKnowEggIsDestroyed")
+THEN
+GlobalSetFlag("RC_DW_VC_ChickensAreUpset");
+
+IF
+GlobalFlagSet("RC_DW_VC_ChickensKnowEggBecameFood")
+THEN
+GlobalSetFlag("RC_DW_VC_ChickensAreUpset");
+
+IF
+GlobalFlagSet("RC_DW_VC_ChickensKnowEggIsDestroyed")
+AND
+ObjectGetFlag(S_RC_DW_VC_Chicken_Scared_Ghost_1e3a6b3d-84cf-4458-b741-71df3c19614b, "GLO_GhostSuck", 0)
+THEN
+ObjectSetFlag(S_RC_DW_VC_Chicken_Scared_Ghost_1e3a6b3d-84cf-4458-b741-71df3c19614b, "RC_DW_VC_SpiritChickenGreeving");
+
+IF
+GlobalFlagSet("RC_DW_VC_ChickensKnowEggBecameFood")
+AND
+ObjectGetFlag(S_RC_DW_VC_Chicken_Scared_Ghost_1e3a6b3d-84cf-4458-b741-71df3c19614b, "GLO_GhostSuck", 0)
+THEN
+ObjectSetFlag(S_RC_DW_VC_Chicken_Scared_Ghost_1e3a6b3d-84cf-4458-b741-71df3c19614b, "RC_DW_VC_SpiritChickenGreeving");
+
+PROC
+Proc_RC_DW_VC_ChickenReactionAD()
+AND
+DB_RC_DW_VC_Chickens(_Var1, _, _Var3, _, _)
+AND
+CharacterIsDead(_Var1, 0)
+THEN
+Proc_StartDialog(1, _Var3, _Var1);
+
+IF
+ObjectFlagSet("RC_DW_VC_EggRewardLocation", (CHARACTERGUID)_Var1, _)
+THEN
+TriggerRegisterForCharacter(S_RC_DW_VC_ChickenRewardDigTrigger_d372f610-49e8-4a2d-863a-8a6cae89ff93, _Var1);
+ProcShowMarker(_Var1, "RC_DW_VC_EggRewardMarker");
+
+IF
+CharacterEnteredTrigger((CHARACTERGUID)_Var1, S_RC_DW_VC_ChickenRewardDigTrigger_d372f610-49e8-4a2d-863a-8a6cae89ff93)
+THEN
+TriggerUnregisterForCharacter(S_RC_DW_VC_ChickenRewardDigTrigger_d372f610-49e8-4a2d-863a-8a6cae89ff93, _Var1);
+ProcHideMarker(_Var1, "RC_DW_VC_EggRewardMarker");
+
+IF
+ObjectFlagSet("QuestUpdate_RC_DW_VoidwokenChicks_KnowsAboutRooster", (CHARACTERGUID)_Var1, _)
+THEN
+TriggerRegisterForCharacter(S_RC_DW_VC_CityChickensWanderTrigger_72a38ef2-dbab-468b-a9c2-436c0dd8f66c, _Var1);
+
+IF
+CharacterEnteredTrigger((CHARACTERGUID)_Var1, S_RC_DW_VC_ChickenRewardDigTrigger_d372f610-49e8-4a2d-863a-8a6cae89ff93)
+THEN
+TriggerUnregisterForCharacter(S_RC_DW_VC_ChickenRewardDigTrigger_d372f610-49e8-4a2d-863a-8a6cae89ff93, _Var1);
+ProcHideMarker(_Var1, "RC_DW_VC_CityChickensMarker");
+
+IF
+DB_Dead(_Var1)
+AND
+DB_RC_DW_VC_Chickens(_Var1, _, _, _, _)
+AND NOT
+QRY_RC_DW_VC_AnyAliveChickens()
+THEN
+GlobalSetFlag("RC_DW_VC_AllChickensAreDead");
+
+QRY
+QRY_RC_DW_VC_AnyAliveChickens()
+AND
+DB_RC_DW_VC_Chickens(_Var1, _, _, _, _)
+AND NOT
+DB_Dead(_Var1)
+THEN
+DB_NOOP(1);
+
+IF
+DB_GoneGhosts(CHARACTERGUID_S_RC_DW_VC_Chicken_Scared_Ghost_1e3a6b3d-84cf-4458-b741-71df3c19614b)
+THEN
+GlobalSetFlag("RC_DW_VC_MargeGhostGone");
+
+IF
+GlobalFlagSet("RC_DW_VC_MargeGhostGone")
+AND
+GlobalGetFlag("RC_DW_VC_AllChickensAreDead", 1)
+AND
+GlobalGetFlag("RC_DW_VC_EggWasReturned", 0)
+AND
+GlobalGetFlag("RC_DW_VC_ChickensAreUpset", 0)
+THEN
+Proc_RC_DW_VC_EndQuestSafely();
+
+IF
+GlobalFlagSet("RC_DW_VC_AllChickensAreDead")
+AND
+GlobalGetFlag("RC_DW_VC_MargeGhostGone", 1)
+AND
+GlobalGetFlag("RC_DW_VC_EggWasReturned", 0)
+AND
+GlobalGetFlag("RC_DW_VC_ChickensAreUpset", 0)
+THEN
+Proc_RC_DW_VC_EndQuestSafely();
+
+PROC
+Proc_RC_DW_VC_EndQuestSafely()
+AND
+DB_IsPlayer(_Var1)
+AND
+ObjectGetFlag(_Var1, "QuestUpdate_RC_DW_VoidwokenChicks_StartTalkedToChickens", 1)
+AND
+GlobalGetFlag("RC_DW_VC_AllChickensAreDead", 1)
+THEN
+PartySetFlag(_Var1, "QuestUpdate_RC_DW_VoidwokenChicks_CloseNoOneLeft");
+
+PROC
+Proc_RC_DW_VC_EndQuestSafely()
+AND
+DB_IsPlayer(_Var1)
+AND
+ObjectGetFlag(_Var1, "QuestUpdate_RC_DW_VoidwokenChicks_StartFoundEggs", 1)
+AND
+GlobalGetFlag("RC_DW_VC_AllChickensAreDead", 1)
+THEN
+PartySetFlag(_Var1, "QuestUpdate_RC_DW_VoidwokenChicks_CloseNoOneLeft");
+
+PROC
+Proc_RC_DW_VC_EndQuestSafely()
+AND
+GlobalGetFlag("RC_DW_VC_EggDestroyed", 0)
+THEN
+SetVarInteger(S_RC_DW_VC_HelplessEgg_22a95ce1-5b3f-4ba9-8667-62cd2d38daaa, "Bool_PlayAD", 0);
+
+IF
+SavegameLoaded((INTEGER)_Var1, (INTEGER)_Var2, (INTEGER)_Var3, (INTEGER)_Var4)
+AND
+QRY_VersionIsOlderThan(_Var1, _Var2, _Var3, _Var4, 3, 6, 1, 0)
+AND
+DB_GlobalFlag("RC_DW_VC_ChickensAreUpset")
+AND
+DB_GlobalFlag("RC_DW_VC_HelplessEggHatches")
+THEN
+GlobalClearFlag("RC_DW_VC_ChickensAreUpset");
+
+
+EXITSECTION
+ENDEXITSECTION
+
+ParentTargetEdge "ReapersCoast"

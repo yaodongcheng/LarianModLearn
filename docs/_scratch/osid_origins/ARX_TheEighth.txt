@@ -1,0 +1,218 @@
+Version 1
+SubGoalCombiner SGC_AND
+
+INITSECTION
+DB_ARX_TheEighth_Punishments("ARX_TheEighth_Punish_Deathfog", "PERMANENTLY_CURSED");
+DB_ARX_TheEighth_Punishments("ARX_TheEighth_Punish_LizardPrincess", "MARKED");
+DB_ARX_TheEighth(CHARACTERGUID_S_ARX_GodKing_InvisHelper_01_01f3e972-6a2d-4587-87c2-2c4c2e68b5e0);
+DB_ARX_TheEighth(CHARACTERGUID_S_ARX_GodKing_InvisHelper_02_6d2bb33b-f9aa-432f-8765-f592672f967d);
+DB_ARX_TheEighth(CHARACTERGUID_S_ARX_GodKing_InvisHelper_03_fc9f8d6f-02f3-4c20-b188-f8c3b09c1426);
+DB_ARX_TheEighth(CHARACTERGUID_S_ARX_GodKing_InvisHelper_04_125bae7d-eaaf-4e0f-bbe3-a52aaf1f4a5a);
+DB_ARX_KemmVault_GodKingHelper(ITEMGUID_S_ARX_KemmVault_GodKingHelper_01_195362e3-a5c7-418f-81ca-5048b01cc6f9);
+DB_ARX_KemmVault_GodKingHelper(ITEMGUID_S_ARX_KemmVault_GodKingHelper_02_4c2a2218-7a26-4c19-a8da-10cd5505fb5d);
+DB_ARX_KemmVault_GodKingHelper(ITEMGUID_S_ARX_KemmVault_GodKingHelper_03_9bf80598-456d-4dc0-9972-96ea309dcc4a);
+DB_ARX_KemmVault_GodKingHelper(ITEMGUID_S_ARX_KemmVault_GodKingHelper_04_b4c90af7-8b48-4b86-bd5e-b3a56789cc4e);
+
+KBSECTION
+IF
+DB_ARX_TheEighth(_Var1)
+THEN
+SetVisible(_Var1, 0);
+ProcSetInvulnerable(_Var1, 1);
+CharacterSetImmortal(_Var1, 1);
+
+IF
+CharacterStatusRemoved((CHARACTERGUID)_Var1, (STRING)_Var2, (CHARACTERGUID)_Var3)
+AND
+DB_ARX_TheEighth_Punishments(_Var4, _Var2)
+AND
+ObjectGetFlag(_Var1, _Var4, 1)
+AND
+CharacterIsAlly(_Var3, _Var1, 1)
+AND NOT
+DB_DialogPlayers(_, _Var1, _)
+THEN
+StartVoiceBark("ARX_VB_TheEighth_RemoveStatus", _Var1);
+
+IF
+SavegameLoaded((INTEGER)_Var1, (INTEGER)_Var2, (INTEGER)_Var3, (INTEGER)_Var4)
+AND
+QRY_VersionIsOlderThan(_Var1, _Var2, _Var3, _Var4, 3, 6, 0, 4)
+AND
+DB_JoinedParty(_Var5)
+AND
+DB_ARX_TheEighth_Punishments(_Var6, _Var7)
+AND
+ObjectGetFlag(_Var5, _Var6, 1)
+THEN
+RemoveStatus(_Var5, _Var7);
+ObjectClearFlag(_Var5, _Var6, 0);
+ObjectSetFlag(_Var5, _Var6, 0);
+
+IF
+CharacterLeftTrigger((CHARACTERGUID)_Var1, TRIGGERGUID_S_ARX_Sewers_QueensFloor_c2ac0f3b-cea2-4c74-a3bf-2b4e82a54b85)
+AND
+IsTagged(_Var1, "PROMISED", 1)
+AND
+ObjectGetFlag(_Var1, "ARX_TheEighth_Sewers_TalkedToSpeaker", 1)
+AND
+ObjectGetFlag(_Var1, "ARX_TheEighth_Punish_Deathfog", 0)
+AND
+GlobalGetFlag("ARX_InitiateGenocide", 0)
+AND
+QRY_AnyRegionActive()
+AND
+DB_ARX_TheEighth(_Var2)
+AND
+QRY_SpeakerIsAvailable(_Var2)
+THEN
+TeleportTo(_Var2, _Var1, "", 0);
+Proc_StartDialog(0, "ARX_Sewers_TheEighth", _Var2, _Var1);
+
+PROC
+ReactOnKillCounter("ARX_Sewers_QUnamsked")
+AND
+GlobalGetFlag("ARX_InitiateGenocide", 0)
+AND
+DB_InRegion(_Var1, TRIGGERGUID_S_ARX_Sewers_QueensFloor_c2ac0f3b-cea2-4c74-a3bf-2b4e82a54b85)
+AND
+IsTagged(_Var1, "PROMISED", 1)
+THEN
+Proc_ARX_TheEighth_InitiateDialog(_Var1, "ARX_Sewers_TheEighth");
+
+IF
+DialogEnded("ARX_Sewers_TheEighth", _)
+AND
+DB_ARX_Sewers_QUnmasked_PromisedInteraction(_Var2)
+AND
+DB_CompanionAvatarBond(CHARACTERGUID_S_Player_Ifan_ad9a3327-4456-42a7-9bf4-7ad60cc9e54f, _Var2)
+THEN
+Proc_RelationshipDialog(CHARACTERGUID_S_Player_Ifan_ad9a3327-4456-42a7-9bf4-7ad60cc9e54f, "ARX_Sewers_TheEighth_ARD_Ifan", _Var2);
+
+IF
+ObjectFlagSet("ARX_Sewers_TheEighth_Pain", (CHARACTERGUID)_Var1, _)
+THEN
+CharacterMakeStoryNpc(_Var1, 0);
+PlayEffect(_Var1, "RS3_FX_GP_ScriptedEvent_MakePromise_End_01");
+CharacterSetHitpointsPercentage(_Var1, 10);
+CharacterSetAnimationOverride(_Var1, "stillcrippled");
+CharacterMakeStoryNpc(_Var1, 1);
+
+IF
+CharacterEnteredTrigger((CHARACTERGUID)_Var1, TRIGGERGUID_S_ARX_KemmVault_SecondFloor_EighthInteraction_b1555297-83e9-4fb0-bb39-e3894bcd18d6)
+AND
+QueryOnlyOnce("ARX_KemmVault_SecondFloor_EighthInteraction")
+THEN
+Proc_ARX_KemmVault_TheEighth_CheckPromised(_Var1);
+
+PROC
+Proc_ARX_KemmVault_TheEighth_CheckPromised(_)
+AND
+DB_InRegion(_Var2, TRIGGERGUID_S_ARX_KemmVault_SecondFloor_c3c87da9-f9ae-4954-9402-6906b1c23d86)
+AND
+IsTagged(_Var2, "PROMISED", 1)
+AND
+IsTagged(_Var2, "AVATAR", 1)
+THEN
+Proc_ARX_TheEighth_InitiateDialog(_Var2, "ARX_KemmVault_TheEighth");
+DB_ARX_KemmVault_TheEighth_DoDialog(_Var2);
+
+PROC
+Proc_ARX_KemmVault_TheEighth_CheckPromised(_)
+AND
+DB_InRegion(_Var2, TRIGGERGUID_S_ARX_KemmVault_SecondFloor_c3c87da9-f9ae-4954-9402-6906b1c23d86)
+AND
+IsTagged(_Var2, "PROMISED", 1)
+AND NOT
+DB_ARX_KemmVault_TheEighth_DoDialog(_Var2)
+THEN
+Proc_ARX_TheEighth_InitiateDialog(_Var2, "ARX_KemmVault_TheEighth");
+DB_ARX_KemmVault_TheEighth_DoDialog(_Var2);
+
+PROC
+Proc_ARX_KemmVault_TheEighth_CheckPromised((CHARACTERGUID)_Var1)
+AND
+DB_InRegion(_Var2, TRIGGERGUID_S_ARX_KemmVault_SecondFloor_c3c87da9-f9ae-4954-9402-6906b1c23d86)
+AND
+IsTagged(_Var2, "PROMISED", 1)
+AND
+DB_ARX_KemmVault_TheEighth_DoDialog(_Var2)
+AND
+CharacterGetReservedUserID(_Var2, _Var3)
+AND NOT
+CharacterGetReservedUserID(_Var1, _Var3)
+THEN
+Proc_ARX_TheEighth_InitiateDialog(_Var2, "ARX_KemmVault_TheEighth");
+DB_ARX_KemmVault_TheEighth_DoDialog(_Var2);
+
+PROC
+Proc_ARX_KemmVault_TheEighth_CheckPromised((CHARACTERGUID)_Var1)
+AND NOT
+DB_ARX_KemmVault_TheEighth_DoDialog(_)
+THEN
+Proc_ARX_TheEighth_InitiateDialog(_Var1, "ARX_KemmVault_TheEighth");
+
+PROC
+Proc_ARX_TheEighth_InitiateDialog((CHARACTERGUID)_Var1, "ARX_Sewers_TheEighth")
+AND
+DB_ARX_TheEighth(_Var2)
+AND
+QRY_SpeakerIsAvailable(_Var2)
+AND NOT
+DB_ARX_TheEighth_InDialog(_, _, _Var1)
+THEN
+TeleportTo(_Var2, _Var1, "", 0);
+Proc_StartDialog(0, "ARX_Sewers_TheEighth", _Var2, _Var1);
+DB_ARX_TheEighth_InDialog("ARX_Sewers_TheEighth", _Var2, _Var1);
+CharacterSetAnimationOverride(_Var1, "cower");
+
+PROC
+Proc_ARX_TheEighth_InitiateDialog((CHARACTERGUID)_Var1, "ARX_KemmVault_TheEighth")
+AND
+DB_ARX_TheEighth(_Var2)
+AND
+QRY_SpeakerIsAvailable(_Var2)
+AND
+DB_ARX_KemmVault_GodKingHelper(_Var3)
+AND
+QRY_SpeakerIsAvailable(_Var3)
+AND NOT
+DB_ARX_TheEighth_InDialog(_, _, _Var1)
+THEN
+TeleportTo(_Var2, _Var1, "", 0);
+Proc_StartDialog(0, "ARX_KemmVault_TheEighth", _Var2, _Var1, _Var3);
+DB_ARX_TheEighth_InDialog("ARX_KemmVault_TheEighth", _Var2, _Var1);
+CharacterSetAnimationOverride(_Var1, "cower");
+
+IF
+DialogStarted((STRING)_Var1, (INTEGER)_Var2)
+AND
+DB_ARX_TheEighth_InDialog(_Var1, _, _Var4)
+AND
+DB_DialogPlayers(_Var2, _Var4, _)
+THEN
+DB_ARX_TheEighth_InDialog_Id(_Var4, _Var2);
+
+PROC
+Proc_ARX_TheEighth_InitiateDialog((CHARACTERGUID)_Var1, "ARX_Sewers_TheEighth")
+AND
+DB_ARX_TheEighth_InDialog(_, _, _Var1)
+THEN
+DB_ARX_Sewers_QUnmasked_PromisedInteraction(_Var1);
+
+IF
+DialogEnded(_, (INTEGER)_Var2)
+AND
+DB_ARX_TheEighth_InDialog_Id(_Var3, _Var2)
+AND
+DB_ARX_TheEighth_InDialog(_Var4, _Var5, _Var3)
+THEN
+CharacterSetAnimationOverride(_Var3, "");
+NOT DB_ARX_TheEighth_InDialog(_Var4, _Var5, _Var3);
+NOT DB_ARX_TheEighth_InDialog_Id(_Var3, _Var2);
+
+
+EXITSECTION
+ENDEXITSECTION
+
+ParentTargetEdge "ARX"

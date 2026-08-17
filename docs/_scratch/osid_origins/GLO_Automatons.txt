@@ -1,0 +1,51 @@
+Version 1
+SubGoalCombiner SGC_AND
+
+INITSECTION
+
+KBSECTION
+IF
+StoryEvent((GUIDSTRING)_Var1, "CreateCapacitorLink")
+AND NOT
+DB_AutomatonCapacitors(_, _Var1)
+AND
+GetPosition(_Var1, _Var3, _Var4, _Var5)
+AND
+CreateItemTemplateAtPosition("QUEST_CoS_RaanaarCapacitor_1d838f3b-dc81-45e3-855d-4adc7d127042", _Var3, _Var4, _Var5, _Var6)
+THEN
+ItemToInventory(_Var6, _Var1);
+DB_AutomatonCapacitors(_Var6, _Var1);
+
+IF
+DB_AutomatonCapacitors(_Var1, _)
+THEN
+ItemSetStoryItem(_Var1, 1);
+
+IF
+ItemRemovedFromCharacter((ITEMGUID)_Var1, (CHARACTERGUID)_Var2)
+AND
+DB_AutomatonCapacitors(_Var1, _Var2)
+AND
+CharacterIsDead(_Var2, 0)
+THEN
+CharacterDie(_Var2, 1, "DoT");
+
+IF
+ItemRemovedFromCharacter((ITEMGUID)_Var1, (CHARACTERGUID)_Var2)
+AND
+DB_AutomatonCapacitors(_Var1, _Var2)
+THEN
+ItemSetStoryItem(_Var1, 0);
+
+PROC
+ProcRegionEnded(_)
+AND
+DB_AutomatonCapacitors(_Var2, _Var3)
+THEN
+NOT DB_AutomatonCapacitors(_Var2, _Var3);
+
+
+EXITSECTION
+ENDEXITSECTION
+
+ParentTargetEdge "Start"

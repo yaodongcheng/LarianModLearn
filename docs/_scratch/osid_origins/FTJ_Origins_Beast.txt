@@ -1,0 +1,68 @@
+Version 1
+SubGoalCombiner SGC_AND
+
+INITSECTION
+DB_OriginMomentTag("FTJ_DoubtingPriest", "BEAST", "FTJ_DoubtingPriest_COM_Beast");
+DB_OriginMomentTag("FTJ_ArenaDwarf", "BEAST", "FTJ_ArenaDwarf_COM_Beast");
+DB_OriginMomentTag("FTJ_GhettoDwarf_001", "BEAST", "FTJ_GhettoDwarf_001_COM_Beast");
+DB_OriginMomentTag_3SP("FTJ_SW_CollarRemovingSeeker", "BEAST", "FTJ_SW_CollarRemovingSeeker_COM_Beast");
+DB_HasStoryEvent(ITEMGUID_S_FTJ_ChapelUpperFloorDoorKey_2_144ece86-8427-466d-b87c-722ad238e268, "FTJ_HasUpperFloorDoorKey_2");
+DB_GiveItemToEventWithClear(ITEMGUID_S_FTJ_ChapelUpperFloorDoorKey_2_144ece86-8427-466d-b87c-722ad238e268, "FTJ_GiveUpperFloorDoorKey_2");
+PROC_FTJ_BST_StartUpdate();
+PROC_FTJ_BST_RemoveBeastHat();
+DB_OrphanFlagForwarding("FTJ_BST_TalkedToPriest");
+
+KBSECTION
+PROC
+PROC_FTJ_BST_StartUpdate()
+AND
+IsTagged(CHARACTERGUID_S_Player_Beast_f25ca124-a4d2-427b-af62-df66df41a978, "AVATAR", 1)
+THEN
+ObjectSetFlag(CHARACTERGUID_S_Player_Beast_f25ca124-a4d2-427b-af62-df66df41a978, "QuestUpdate_FTJ_OriginBeast_WashedAshore");
+
+IF
+ObjectFlagSet("LV_BST_ToldDriftwood", CHARACTERGUID_S_Player_Beast_f25ca124-a4d2-427b-af62-df66df41a978, (INTEGER)_Var1)
+AND NOT
+DB_FTJ_LV_BeastLearnedDriftwoodDestinationDialog(_Var1)
+THEN
+DB_FTJ_LV_BeastLearnedDriftwoodDestinationDialog(_Var1);
+
+IF
+ObjectFlagSet("LV_BST_ToldDriftwood", CHARACTERGUID_S_Player_Beast_f25ca124-a4d2-427b-af62-df66df41a978, (INTEGER)_Var1)
+AND NOT
+DB_FTJ_LV_BeastLearnedDriftwoodDestinationDialog(_Var1)
+THEN
+DB_FTJ_LV_BeastLearnedDriftwoodDestinationDialog(_Var1);
+
+IF
+DialogEnded(_, (INTEGER)_Var2)
+AND
+DB_FTJ_LV_BeastLearnedDriftwoodDestinationDialog(_Var2)
+AND
+DB_DialogPlayers(_Var2, _Var3, 1)
+THEN
+NOT DB_FTJ_LV_BeastLearnedDriftwoodDestinationDialog(_Var2);
+StartVoiceBark("FTJ_LV_BST_ToDriftwood", _Var3);
+
+PROC
+PROC_FTJ_BST_RemoveBeastHat()
+THEN
+ItemRemove(ITEMGUID_S_GLO_BST_Bicorne_83a05248-597a-4c05-a87c-b2529b21ea7b);
+
+PROC
+PROC_FTJ_BST_RemoveBeastHat()
+AND
+DB_GlobalFlag("FTJ_BST_BeastEndedTutWithHat")
+THEN
+ObjectSetFlag(CHARACTERGUID_S_Player_Beast_f25ca124-a4d2-427b-af62-df66df41a978, "QuestUpdate_FTJ_OriginBeast_LostHat");
+
+IF
+ObjectFlagSet("FTJ_BST_GiveOneCoin", (CHARACTERGUID)_Var1, _)
+THEN
+CharacterAddGold(_Var1, 1);
+
+
+EXITSECTION
+ENDEXITSECTION
+
+ParentTargetEdge "FortJoy"

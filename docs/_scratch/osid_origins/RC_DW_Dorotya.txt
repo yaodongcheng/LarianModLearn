@@ -1,0 +1,353 @@
+Version 1
+SubGoalCombiner SGC_AND
+
+INITSECTION
+DB_Dialogs(RC_DW_UnderTavern_Dorotya_6fa62a51-5ac2-4b51-b3a8-0d7bf8e4b069, "RC_DW_UnderTavern_Dorotya");
+SetOnStage(CHARACTERGUID_S_RC_DW_Dorotya_UnderTavern_Spiderform_878d311d-a68d-4965-afe3-621a9430a6fa, 0);
+DB_RC_DW_DorotyaForm(CHARACTERGUID_S_RC_DW_UnderTavern_Dorotya_6fa62a51-5ac2-4b51-b3a8-0d7bf8e4b069);
+DB_RC_DW_DorotyaForm(CHARACTERGUID_S_RC_DW_Dorotya_UnderTavern_Spiderform_878d311d-a68d-4965-afe3-621a9430a6fa);
+ItemTemplateAddTo("Quest_Resurrection_Idol_6b70e6e1-855e-4295-b79b-d87ebd6bd4af", CHARACTERGUID_S_RC_DW_UnderTavern_Dorotya_6fa62a51-5ac2-4b51-b3a8-0d7bf8e4b069, 1);
+DB_SharedObjectFlags("RC_DW_Dorotya_Mask");
+DB_SharedObjectFlags("RC_DW_UT_Dorotya_CameAlone");
+DB_SharedObjectFlags("RC_DW_UT_Dorotya_WaitingForMe");
+DB_SharedObjectFlags("RC_DW_UT_Dorotya_Quiz_Outcome_Knowledge");
+DB_SharedObjectFlags("RC_DW_UT_Dorotya_Quiz_Outcome_Money");
+DB_SharedObjectFlags("RC_DW_UT_Dorotya_Quiz_Outcome_Power");
+DB_SharedObjectFlags("RC_DW_UT_Dorotya_Quiz_Outcome_Strength");
+DB_SharedObjectFlags("RC_DW_UT_Dorotya_Quiz_Outcome_EndlessLife");
+DB_SharedObjectFlags("RC_DW_UT_Dorotya_RefusedDeal");
+DB_SharedObjectFlags("RC_DW_UT_Dorotya_Quiz_ReceiveReward");
+DB_SharedObjectFlags("RC_DW_UT_Dorotya_Stoodup");
+DB_SharedObjectFlags("RC_DW_Dorotya_UserKissed");
+
+KBSECTION
+IF
+CharacterDied((CHARACTERGUID)_Var1)
+AND
+DB_RC_DW_DorotyaForm(_Var1)
+AND
+ItemTemplateIsInCharacterInventory(_Var1, "Quest_Resurrection_Idol_6b70e6e1-855e-4295-b79b-d87ebd6bd4af", 1)
+THEN
+ProcObjectTimer(_Var1, "ResurrectionIdol", 1000);
+
+IF
+CharacterDied((CHARACTERGUID)_Var1)
+AND
+DB_RC_DW_DorotyaForm(_Var1)
+AND
+ItemTemplateIsInCharacterInventory(_Var1, "Quest_Resurrection_Idol_6b70e6e1-855e-4295-b79b-d87ebd6bd4af", 0)
+AND
+DB_IsPlayer(_Var2)
+AND
+ObjectGetFlag(_Var2, "QuestAdd_RC_DW_SpidersKiss", 1)
+THEN
+ObjectSetFlag(_Var2, "QuestUpdate_RC_DW_SpidersKiss_SpiderDead");
+
+IF
+CharacterResurrected((CHARACTERGUID)_Var1)
+AND
+DB_RC_DW_DorotyaForm(_Var1)
+THEN
+Proc_StartDialog(1, "RC_DW_AD_UnderTavern_Dorotya_Resurrects", _Var1);
+
+IF
+ObjectFlagSet("RC_DW_UT_Dorotya_WaitingForMe", (GUIDSTRING)_Var1, _)
+THEN
+DB_RC_DW_Dorotya_WaitingFor(_Var1);
+
+IF
+DialogEnded("RC_DW_UnderTavern_Dorotya", _)
+AND
+DB_RC_DW_Dorotya_WaitingFor(_Var2)
+THEN
+ProcCharacterDisableAllCrimes(CHARACTERGUID_S_RC_DW_UnderTavern_Dorotya_6fa62a51-5ac2-4b51-b3a8-0d7bf8e4b069);
+ProcCharacterEnableCrime(CHARACTERGUID_S_RC_DW_UnderTavern_Dorotya_6fa62a51-5ac2-4b51-b3a8-0d7bf8e4b069, "Assault");
+ObjectSetFlag(_Var2, "QuestAdd_RC_DW_SpidersKiss");
+ObjectSetFlag(_Var2, "QuestUpdate_RC_DW_SpidersKiss_Start");
+ObjectClearFlag(_Var2, "RC_DW_UT_Dorotya_Stoodup", 0);
+ProcRemoveAllDialogEntriesForSpeaker(CHARACTERGUID_S_RC_DW_UnderTavern_Dorotya_6fa62a51-5ac2-4b51-b3a8-0d7bf8e4b069);
+SetHasDialog(CHARACTERGUID_S_RC_DW_UnderTavern_Dorotya_6fa62a51-5ac2-4b51-b3a8-0d7bf8e4b069, 0);
+ProcCharacterMoveTo(CHARACTERGUID_S_RC_DW_UnderTavern_Dorotya_6fa62a51-5ac2-4b51-b3a8-0d7bf8e4b069, TRIGGERGUID_S_RC_DW_UT_Dorotya_KissSpot_fd0080f1-517b-4faf-beff-0e87b9616e2c, 0, "Dorotya_AtKissSpot");
+SetVarInteger(CHARACTERGUID_S_RC_DW_UnderTavern_Dorotya_6fa62a51-5ac2-4b51-b3a8-0d7bf8e4b069, "AtBar", 0);
+
+IF
+StoryEvent(CHARACTERGUID_S_RC_DW_UnderTavern_Dorotya_6fa62a51-5ac2-4b51-b3a8-0d7bf8e4b069, "Dorotya_AtKissSpot")
+THEN
+ProcTriggerRegisterForPlayers(TRIGGERGUID_S_RC_DW_UT_Dorotya_KissArea_362d76d9-fc04-447f-ae54-8826216e9ad3);
+CharacterLookFromTrigger(CHARACTERGUID_S_RC_DW_UnderTavern_Dorotya_6fa62a51-5ac2-4b51-b3a8-0d7bf8e4b069, TRIGGERGUID_S_RC_DW_UT_Dorotya_KissSpot_fd0080f1-517b-4faf-beff-0e87b9616e2c, 0);
+DB_Dialogs(CHARACTERGUID_S_RC_DW_UnderTavern_Dorotya_6fa62a51-5ac2-4b51-b3a8-0d7bf8e4b069, "RC_DW_UnderTavern_Dorotya_Kiss");
+TimerLaunch("Dorotya_AtKissSpot_Timeout", 60000);
+
+IF
+ObjectLeftCombat((GUIDSTRING)_Var1, _)
+AND
+DB_RC_DW_DorotyaForm(_Var1)
+AND
+DB_RC_DW_Dorotya_WaitingFor(_Var3)
+THEN
+NOT DB_RC_DW_Dorotya_WaitingFor(_Var3);
+ObjectClearFlag(_Var3, "RC_DW_UT_Dorotya_WaitingForMe", 0);
+ObjectSetFlag(_Var3, "RC_DW_UT_Dorotya_Stoodup", 0);
+
+IF
+ObjectLeftCombat(CHARACTERGUID_S_RC_DW_Dorotya_UnderTavern_Spiderform_878d311d-a68d-4965-afe3-621a9430a6fa, _)
+AND
+CharacterIsDead(CHARACTERGUID_S_RC_DW_Dorotya_UnderTavern_Spiderform_878d311d-a68d-4965-afe3-621a9430a6fa, 0)
+THEN
+Poof(CHARACTERGUID_S_RC_DW_Dorotya_UnderTavern_Spiderform_878d311d-a68d-4965-afe3-621a9430a6fa);
+TeleportTo(CHARACTERGUID_S_RC_DW_UnderTavern_Dorotya_6fa62a51-5ac2-4b51-b3a8-0d7bf8e4b069, CHARACTERGUID_S_RC_DW_Dorotya_UnderTavern_Spiderform_878d311d-a68d-4965-afe3-621a9430a6fa);
+Foop(CHARACTERGUID_S_RC_DW_UnderTavern_Dorotya_6fa62a51-5ac2-4b51-b3a8-0d7bf8e4b069);
+MoveAllItemsTo(CHARACTERGUID_S_RC_DW_Dorotya_UnderTavern_Spiderform_878d311d-a68d-4965-afe3-621a9430a6fa, CHARACTERGUID_S_RC_DW_UnderTavern_Dorotya_6fa62a51-5ac2-4b51-b3a8-0d7bf8e4b069);
+
+IF
+ObjectLeftCombat((CHARACTERGUID)_Var1, _)
+AND
+DB_RC_DW_DorotyaForm(_Var1)
+AND
+CharacterIsDead(_Var1, 0)
+THEN
+ProcRemoveAllDialogEntriesForSpeaker(CHARACTERGUID_S_RC_DW_UnderTavern_Dorotya_6fa62a51-5ac2-4b51-b3a8-0d7bf8e4b069);
+SetHasDialog(CHARACTERGUID_S_RC_DW_UnderTavern_Dorotya_6fa62a51-5ac2-4b51-b3a8-0d7bf8e4b069, 0);
+ProcCharacterMoveTo(CHARACTERGUID_S_RC_DW_UnderTavern_Dorotya_6fa62a51-5ac2-4b51-b3a8-0d7bf8e4b069, TRIGGERGUID_S_RC_DW_UT_Dorotya_BarSpot_4180d1e6-5de9-4aa7-b8d8-cfafc66247eb, 0, "Dorotya_BackAtBar");
+
+IF
+TimerFinished("Dorotya_AtKissSpot_Timeout")
+AND
+DB_RC_DW_Dorotya_WaitingFor(_Var1)
+THEN
+NOT DB_RC_DW_Dorotya_WaitingFor(_Var1);
+ObjectClearFlag(_Var1, "RC_DW_UT_Dorotya_WaitingForMe", 0);
+ProcRemoveAllDialogEntriesForSpeaker(CHARACTERGUID_S_RC_DW_UnderTavern_Dorotya_6fa62a51-5ac2-4b51-b3a8-0d7bf8e4b069);
+SetHasDialog(CHARACTERGUID_S_RC_DW_UnderTavern_Dorotya_6fa62a51-5ac2-4b51-b3a8-0d7bf8e4b069, 0);
+ProcCharacterMoveTo(CHARACTERGUID_S_RC_DW_UnderTavern_Dorotya_6fa62a51-5ac2-4b51-b3a8-0d7bf8e4b069, TRIGGERGUID_S_RC_DW_UT_Dorotya_BarSpot_4180d1e6-5de9-4aa7-b8d8-cfafc66247eb, 0, "Dorotya_BackAtBar");
+ObjectSetFlag(_Var1, "RC_DW_UT_Dorotya_Stoodup", 0);
+
+IF
+StoryEvent(CHARACTERGUID_S_RC_DW_UnderTavern_Dorotya_6fa62a51-5ac2-4b51-b3a8-0d7bf8e4b069, "Dorotya_BackAtBar")
+THEN
+ProcTriggerRegisterForPlayers(TRIGGERGUID_S_RC_DW_UT_Dorotya_KissArea_362d76d9-fc04-447f-ae54-8826216e9ad3);
+CharacterLookFromTrigger(CHARACTERGUID_S_RC_DW_UnderTavern_Dorotya_6fa62a51-5ac2-4b51-b3a8-0d7bf8e4b069, TRIGGERGUID_S_RC_DW_UT_Dorotya_BarSpot_4180d1e6-5de9-4aa7-b8d8-cfafc66247eb, 0);
+DB_Dialogs(CHARACTERGUID_S_RC_DW_UnderTavern_Dorotya_6fa62a51-5ac2-4b51-b3a8-0d7bf8e4b069, "RC_DW_UnderTavern_Dorotya");
+SetVarInteger(CHARACTERGUID_S_RC_DW_UnderTavern_Dorotya_6fa62a51-5ac2-4b51-b3a8-0d7bf8e4b069, "AtBar", 1);
+ProcCharacterEnableAllCrimes(CHARACTERGUID_S_RC_DW_UnderTavern_Dorotya_6fa62a51-5ac2-4b51-b3a8-0d7bf8e4b069);
+
+IF
+DialogStarted("RC_DW_UnderTavern_Dorotya_Kiss", (INTEGER)_Var1)
+AND
+DB_DialogPlayers(_Var1, _Var2, 1)
+AND
+DB_RC_DW_Dorotya_WaitingFor(_Var2)
+THEN
+TimerCancel("Dorotya_AtKissSpot_Timeout");
+
+IF
+DialogEnded("RC_DW_UnderTavern_Dorotya_Kiss", _)
+AND NOT
+DB_GlobalFlag("RC_DW_UT_Dorotya_Kisses")
+THEN
+TimerLaunch("Dorotya_AtKissSpot_Timeout", 60000);
+
+PROC
+PROC_GLOBAL_DialogStartRequested(CHARACTERGUID_S_RC_DW_UnderTavern_Dorotya_6fa62a51-5ac2-4b51-b3a8-0d7bf8e4b069, (GUIDSTRING)_Var1)
+AND
+DB_RC_DW_Dorotya_WaitingFor(_Var1)
+AND
+DB_InRegion(_Var2, TRIGGERGUID_S_RC_DW_UT_Dorotya_KissArea_362d76d9-fc04-447f-ae54-8826216e9ad3)
+AND
+_Var1 != _Var2
+THEN
+DB_RC_DW_Dorotya_NotAlone(_Var1);
+
+PROC
+PROC_GLOBAL_DialogStartRequested(CHARACTERGUID_S_RC_DW_UnderTavern_Dorotya_6fa62a51-5ac2-4b51-b3a8-0d7bf8e4b069, (GUIDSTRING)_Var1)
+AND
+DB_RC_DW_Dorotya_WaitingFor(_Var1)
+AND NOT
+DB_RC_DW_Dorotya_NotAlone(_Var1)
+THEN
+ObjectSetFlag(_Var1, "RC_DW_UT_Dorotya_CameAlone", 0);
+
+PROC
+PROC_GLOBAL_DialogStartRequested(CHARACTERGUID_S_RC_DW_UnderTavern_Dorotya_6fa62a51-5ac2-4b51-b3a8-0d7bf8e4b069, (GUIDSTRING)_Var1)
+AND
+DB_RC_DW_Dorotya_WaitingFor(_Var1)
+AND
+DB_RC_DW_Dorotya_NotAlone(_Var1)
+THEN
+ObjectClearFlag(_Var1, "RC_DW_UT_Dorotya_CameAlone", 0);
+NOT DB_RC_DW_Dorotya_NotAlone(_Var1);
+
+IF
+GlobalFlagSet("RC_DW_UT_Dorotya_Turn")
+AND
+DB_RC_DW_Dorotya_WaitingFor(_Var1)
+THEN
+Poof(CHARACTERGUID_S_RC_DW_UnderTavern_Dorotya_6fa62a51-5ac2-4b51-b3a8-0d7bf8e4b069);
+TeleportTo(CHARACTERGUID_S_RC_DW_Dorotya_UnderTavern_Spiderform_878d311d-a68d-4965-afe3-621a9430a6fa, CHARACTERGUID_S_RC_DW_UnderTavern_Dorotya_6fa62a51-5ac2-4b51-b3a8-0d7bf8e4b069);
+CharacterLookAt(CHARACTERGUID_S_RC_DW_Dorotya_UnderTavern_Spiderform_878d311d-a68d-4965-afe3-621a9430a6fa, _Var1);
+Foop(CHARACTERGUID_S_RC_DW_Dorotya_UnderTavern_Spiderform_878d311d-a68d-4965-afe3-621a9430a6fa);
+ProcCharacterMoveTo(CHARACTERGUID_S_RC_DW_Dorotya_UnderTavern_Spiderform_878d311d-a68d-4965-afe3-621a9430a6fa, _Var1, 0, "");
+GlobalClearFlag("RC_DW_UT_Dorotya_Turn");
+MoveAllItemsTo(CHARACTERGUID_S_RC_DW_UnderTavern_Dorotya_6fa62a51-5ac2-4b51-b3a8-0d7bf8e4b069, CHARACTERGUID_S_RC_DW_Dorotya_UnderTavern_Spiderform_878d311d-a68d-4965-afe3-621a9430a6fa);
+
+IF
+GlobalFlagSet("RC_DW_UT_Dorotya_Turn")
+AND
+DB_DialogNPCs(_Var1, CHARACTERGUID_S_RC_DW_UnderTavern_Dorotya_6fa62a51-5ac2-4b51-b3a8-0d7bf8e4b069, 1)
+THEN
+DialogAddActorAt(_Var1, CHARACTERGUID_S_RC_DW_Dorotya_UnderTavern_Spiderform_878d311d-a68d-4965-afe3-621a9430a6fa, 2);
+
+IF
+GlobalFlagSet("RC_DW_UT_Dorotya_Kisses")
+AND
+DB_RC_DW_Dorotya_WaitingFor(_Var1)
+THEN
+CharacterLookAt(CHARACTERGUID_S_RC_DW_Dorotya_UnderTavern_Spiderform_878d311d-a68d-4965-afe3-621a9430a6fa, _Var1);
+PlayAnimation(CHARACTERGUID_S_RC_DW_Dorotya_UnderTavern_Spiderform_878d311d-a68d-4965-afe3-621a9430a6fa, "Bite", "Spidrotya_AttackDone");
+TimerLaunch("SpidrotyaKnocksPlayerDown", 500);
+ObjectSetFlag(_Var1, "QuestUpdate_RC_DW_SpidersKiss_Completed");
+ObjectSetFlag(_Var1, "QuestClose_RC_DW_SpidersKiss");
+
+IF
+TimerFinished("SpidrotyaKnocksPlayerDown")
+AND
+DB_RC_DW_Dorotya_WaitingFor(_Var1)
+THEN
+SetStoryEvent(_Var1, "GEN_FallAndGetUp");
+
+IF
+StoryEvent(CHARACTERGUID_S_RC_DW_Dorotya_UnderTavern_Spiderform_878d311d-a68d-4965-afe3-621a9430a6fa, "Spidrotya_AttackDone")
+AND
+DB_RC_DW_Dorotya_WaitingFor(_Var1)
+THEN
+Poof(CHARACTERGUID_S_RC_DW_Dorotya_UnderTavern_Spiderform_878d311d-a68d-4965-afe3-621a9430a6fa);
+TeleportTo(CHARACTERGUID_S_RC_DW_UnderTavern_Dorotya_6fa62a51-5ac2-4b51-b3a8-0d7bf8e4b069, CHARACTERGUID_S_RC_DW_Dorotya_UnderTavern_Spiderform_878d311d-a68d-4965-afe3-621a9430a6fa);
+CharacterLookAt(CHARACTERGUID_S_RC_DW_UnderTavern_Dorotya_6fa62a51-5ac2-4b51-b3a8-0d7bf8e4b069, _Var1);
+Foop(CHARACTERGUID_S_RC_DW_UnderTavern_Dorotya_6fa62a51-5ac2-4b51-b3a8-0d7bf8e4b069);
+MoveAllItemsTo(CHARACTERGUID_S_RC_DW_Dorotya_UnderTavern_Spiderform_878d311d-a68d-4965-afe3-621a9430a6fa, CHARACTERGUID_S_RC_DW_UnderTavern_Dorotya_6fa62a51-5ac2-4b51-b3a8-0d7bf8e4b069);
+
+IF
+ItemAddedToCharacter((ITEMGUID)_Var1, CHARACTERGUID_S_RC_DW_UnderTavern_Dorotya_6fa62a51-5ac2-4b51-b3a8-0d7bf8e4b069)
+AND
+GetTemplate(_Var1, "WPN_Lizards_Dagger_1H_A_2f7e5bf9-fd51-4747-8b20-9f1c9b5a2fd3")
+THEN
+CharacterEquipItem(CHARACTERGUID_S_RC_DW_UnderTavern_Dorotya_6fa62a51-5ac2-4b51-b3a8-0d7bf8e4b069, _Var1);
+
+IF
+ItemTemplateAddedToCharacter(WPN_Dummy_For_Equipment_28e00823-2ba4-43bb-be10-e4d6d89e179f, (ITEMGUID)_Var1, CHARACTERGUID_S_RC_DW_UnderTavern_Dorotya_Spiderform_878d311d-a68d-4965-afe3-621a9430a6fa)
+THEN
+CharacterEquipItem(CHARACTERGUID_S_RC_DW_UnderTavern_Dorotya_Spiderform_878d311d-a68d-4965-afe3-621a9430a6fa, _Var1);
+
+IF
+DialogEnded("RC_DW_UnderTavern_Dorotya_Kiss", _)
+AND
+DB_GlobalFlag("RC_DW_UT_Dorotya_Kisses")
+AND
+DB_RC_DW_Dorotya_WaitingFor(_Var2)
+THEN
+GlobalClearFlag("RC_DW_UT_Dorotya_Kisses");
+NOT DB_RC_DW_Dorotya_WaitingFor(_Var2);
+ObjectClearFlag(_Var2, "RC_DW_UT_Dorotya_WaitingForMe", 0);
+ProcRemoveAllDialogEntriesForSpeaker(CHARACTERGUID_S_RC_DW_UnderTavern_Dorotya_6fa62a51-5ac2-4b51-b3a8-0d7bf8e4b069);
+SetHasDialog(CHARACTERGUID_S_RC_DW_UnderTavern_Dorotya_6fa62a51-5ac2-4b51-b3a8-0d7bf8e4b069, 0);
+ProcCharacterMoveTo(CHARACTERGUID_S_RC_DW_UnderTavern_Dorotya_6fa62a51-5ac2-4b51-b3a8-0d7bf8e4b069, TRIGGERGUID_S_RC_DW_UT_Dorotya_BarSpot_4180d1e6-5de9-4aa7-b8d8-cfafc66247eb, 0, "Dorotya_BackAtBar");
+OpenMessageBox(_Var2, "RC_DW_Dorotya_TalentReceived");
+
+IF
+ObjectFlagSet("RC_DW_UT_Dorotya_Quiz_ReceiveReward", (CHARACTERGUID)_Var1, _)
+AND
+ObjectGetFlag(_Var1, "RC_DW_UT_Dorotya_Quiz_Outcome_Strength", 1)
+THEN
+CharacterAddTalent(_Var1, "Quest_SpidersKiss_Str");
+
+IF
+ObjectFlagSet("RC_DW_UT_Dorotya_Quiz_ReceiveReward", (CHARACTERGUID)_Var1, _)
+AND
+ObjectGetFlag(_Var1, "RC_DW_UT_Dorotya_Quiz_Outcome_Knowledge", 1)
+THEN
+CharacterAddTalent(_Var1, "Quest_SpidersKiss_Int");
+
+IF
+ObjectFlagSet("RC_DW_UT_Dorotya_Quiz_ReceiveReward", (CHARACTERGUID)_Var1, _)
+AND
+ObjectGetFlag(_Var1, "RC_DW_UT_Dorotya_Quiz_Outcome_Power", 1)
+THEN
+CharacterAddTalent(_Var1, "Quest_SpidersKiss_Per");
+
+IF
+ObjectFlagSet("RC_DW_UT_Dorotya_Quiz_ReceiveReward", (CHARACTERGUID)_Var1, _)
+AND
+ObjectGetFlag(_Var1, "RC_DW_UT_Dorotya_Quiz_Outcome_EndlessLife", 1)
+THEN
+CharacterAddTalent(_Var1, "Quest_SpidersKiss_Null");
+ItemTemplateAddTo("Quest_Resurrection_Idol_6b70e6e1-855e-4295-b79b-d87ebd6bd4af", _Var1, 1);
+
+IF
+ObjectFlagSet("RC_DW_UT_Dorotya_Quiz_ReceiveReward", (CHARACTERGUID)_Var1, _)
+AND
+ObjectGetFlag(_Var1, "RC_DW_UT_Dorotya_Quiz_Outcome_Money", 1)
+THEN
+CharacterAddTalent(_Var1, "Quest_SpidersKiss_Null");
+CharacterAddGold(_Var1, 2000);
+
+IF
+ObjectFlagSet("RC_DW_UT_Dorotya_Quiz_ReceiveReward", (CHARACTERGUID)_Var1, _)
+AND
+ObjectGetFlag(_Var1, "RC_DW_UT_Dorotya_Quiz_Outcome_Love", 1)
+THEN
+CharacterAddTalent(_Var1, "Quest_SpidersKiss_Null");
+Proc_Dorotya_BoostRelationships(_Var1);
+
+PROC
+Proc_Dorotya_BoostRelationships((CHARACTERGUID)_Var1)
+AND
+DB_CompanionAvatarBond(_Var2, _Var1)
+AND
+CharacterGetAttitudeTowardsPlayer(_Var2, _Var1, _Var3)
+AND
+IntegerSum(_Var3, 40, _Var4)
+THEN
+DB_SetCompanionAttitude(_Var2, _Var1, _Var4);
+
+IF
+ObjectEnteredCombat(CHARACTERGUID_S_RC_DW_UnderTavern_Dorotya_6fa62a51-5ac2-4b51-b3a8-0d7bf8e4b069, _)
+AND
+DB_RC_DW_Dorotya_WaitingFor(_Var2)
+THEN
+TimerCancel("Dorotya_AtKissSpot_Timeout");
+
+IF
+CharacterReceivedDamage(CHARACTERGUID_S_RC_DW_UnderTavern_Dorotya_6fa62a51-5ac2-4b51-b3a8-0d7bf8e4b069, _, _)
+AND
+CharacterGetHitpointsPercentage(CHARACTERGUID_S_RC_DW_UnderTavern_Dorotya_6fa62a51-5ac2-4b51-b3a8-0d7bf8e4b069, _Var3)
+AND
+_Var3 < 50
+AND
+CharacterIsDead(CHARACTERGUID_S_RC_DW_Dorotya_UnderTavern_Spiderform_878d311d-a68d-4965-afe3-621a9430a6fa, 0)
+THEN
+Poof(CHARACTERGUID_S_RC_DW_UnderTavern_Dorotya_6fa62a51-5ac2-4b51-b3a8-0d7bf8e4b069);
+TeleportTo(CHARACTERGUID_S_RC_DW_Dorotya_UnderTavern_Spiderform_878d311d-a68d-4965-afe3-621a9430a6fa, CHARACTERGUID_S_RC_DW_UnderTavern_Dorotya_6fa62a51-5ac2-4b51-b3a8-0d7bf8e4b069);
+Foop(CHARACTERGUID_S_RC_DW_Dorotya_UnderTavern_Spiderform_878d311d-a68d-4965-afe3-621a9430a6fa);
+SetFaction(CHARACTERGUID_S_RC_DW_Dorotya_UnderTavern_Spiderform_878d311d-a68d-4965-afe3-621a9430a6fa, "Evil NPC");
+MoveAllItemsTo(CHARACTERGUID_S_RC_DW_UnderTavern_Dorotya_6fa62a51-5ac2-4b51-b3a8-0d7bf8e4b069, CHARACTERGUID_S_RC_DW_Dorotya_UnderTavern_Spiderform_878d311d-a68d-4965-afe3-621a9430a6fa);
+
+IF
+CharacterDied(CHARACTERGUID_S_RC_DW_UnderTavern_Dorotya_6fa62a51-5ac2-4b51-b3a8-0d7bf8e4b069)
+THEN
+GlobalSetFlag("RC_DW_UT_DorotyaDied");
+
+IF
+CharacterDied(CHARACTERGUID_S_RC_DW_Dorotya_UnderTavern_Spiderform_878d311d-a68d-4965-afe3-621a9430a6fa)
+THEN
+GlobalSetFlag("RC_DW_UT_DorotyaDied");
+
+IF
+ObjectFlagSet("RC_DW_UnderTavern_Dorotya_Kiss_Kissed", _, _)
+THEN
+GlobalSetFlag("RC_DW_DorotyaKissed");
+
+
+EXITSECTION
+ENDEXITSECTION
+
+ParentTargetEdge "ReapersCoast"

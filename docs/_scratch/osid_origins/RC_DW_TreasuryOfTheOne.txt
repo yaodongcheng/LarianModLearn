@@ -1,0 +1,163 @@
+Version 1
+SubGoalCombiner SGC_AND
+
+INITSECTION
+ApplyStatus(ITEMGUID_S_RC_DW_TotO_DoorStart_f93d2ae9-2d4b-44c2-8ae6-8691ba1f1695, "PETRIFIED", -1);
+ProcSetInvulnerable(ITEMGUID_S_RC_DW_TotO_BrokenPipe_12ca5c05-d397-401f-b302-76ac5a5031c6, 1);
+ItemToInventory(ITEMGUID_S_RC_DW_TotO_Key_7936be78-a874-4d22-8f75-2ae2662ad896, CHARACTERGUID_S_RC_DW_ArenaMaster_8a1c0600-aca0-479b-8044-a36d011ccff7);
+ProcSetInvulnerable(ITEMGUID_FUR_Brew_Pipe1m_A_003_589044ec-291c-43dd-872f-948015a4e9d9, 1);
+ProcTriggerRegisterForPlayers(TRIGGERGUID_RC_DW_TotO_BoxTrig_1f769558-39a1-42cd-bafa-e471d4bcf31d);
+
+KBSECTION
+IF
+CharacterItemEvent((CHARACTERGUID)_Var1, _, "RC_DW_TotO_LeverFailed")
+THEN
+StartVoiceBark("RC_ARX_VB_KemmVault_SecretEntrance_Lever_Failure", _Var1);
+
+IF
+CharacterItemEvent((CHARACTERGUID)_Var1, _, "RC_DW_TotO_LeverSuccess")
+AND
+QueryOnlyOnce("RC_DW_TotO_LeverSuccess")
+THEN
+Proc_DW_TreasuryOfTheOne_SetBrokenPipe();
+
+PROC
+Proc_DW_TreasuryOfTheOne_SetBrokenPipe()
+THEN
+GlobalSetFlag("RC_DW_TotO_BrokenPipeTransformed");
+PlayEffect(TRIGGERGUID_S_RC_DW_TotO_PressureEffectPoint_a16e2ae4-bcd8-4898-9d65-7b321c7cd8c4, "RS3_FX_GP_ScriptedEvent_DW_TreasuryOfTheOne_SetBrokenPipe_01");
+Transform(ITEMGUID_S_RC_DW_TotO_BrokenPipe_12ca5c05-d397-401f-b302-76ac5a5031c6, "FUR_Brew_Pipe1m_A_Dynamic_0a966a66-6e7d-4b05-8446-03b6b5b9920c", 1, 1, 1);
+ProcSetInvulnerable(ITEMGUID_S_RC_DW_TotO_BrokenPipe_12ca5c05-d397-401f-b302-76ac5a5031c6, 0);
+
+PROC
+Proc_DW_TreasuryOfTheOne_SetBrokenPipe()
+THEN
+PROC_LoopEffect("RS3_FX_GP_ScriptedEvent_Brew_Pipe_UnderPressure_01", TRIGGERGUID_S_RC_DW_TotO_PressureEffectPoint_a16e2ae4-bcd8-4898-9d65-7b321c7cd8c4, "RC_DW_TotO_PressureEffectPoint", "RC_Main", "");
+
+PROC
+Proc_DW_TreasuryOfTheOne_SetBrokenPipe()
+THEN
+ApplyStatus(ITEMGUID_S_RC_DW_TotO_BrokenPipe_12ca5c05-d397-401f-b302-76ac5a5031c6, "PETRIFIED", -1);
+
+IF
+ItemStatusRemoved(ITEMGUID_S_RC_DW_TotO_BrokenPipe_12ca5c05-d397-401f-b302-76ac5a5031c6, "PETRIFIED", _)
+AND
+GlobalGetFlag("RC_DW_TotO_BrokenPipeTransformed", 1)
+THEN
+ItemDestroy(ITEMGUID_S_RC_DW_TotO_BrokenPipe_12ca5c05-d397-401f-b302-76ac5a5031c6);
+
+IF
+ItemDestroying(ITEMGUID_S_RC_DW_TotO_BrokenPipe_12ca5c05-d397-401f-b302-76ac5a5031c6)
+AND
+QueryOnlyOnce("Proc_DW_TreasuryOfTheOne_DestroyBrokenPipe")
+THEN
+Proc_DW_TreasuryOfTheOne_DestroyBrokenPipe();
+
+IF
+ItemDestroyed(ITEMGUID_S_RC_DW_TotO_BrokenPipe_12ca5c05-d397-401f-b302-76ac5a5031c6)
+AND
+QueryOnlyOnce("Proc_DW_TreasuryOfTheOne_DestroyBrokenPipe")
+THEN
+Proc_DW_TreasuryOfTheOne_DestroyBrokenPipe();
+
+PROC
+Proc_DW_TreasuryOfTheOne_DestroyBrokenPipe()
+THEN
+CreateExplosion(TRIGGERGUID_S_RC_DW_TotO_PressureEffectPoint_a16e2ae4-bcd8-4898-9d65-7b321c7cd8c4, "Projectile_Grenade_Nailbomb", 12);
+
+PROC
+Proc_DW_TreasuryOfTheOne_DestroyBrokenPipe()
+THEN
+PROC_StopLoopEffect(TRIGGERGUID_S_RC_DW_TotO_PressureEffectPoint_a16e2ae4-bcd8-4898-9d65-7b321c7cd8c4, "RC_DW_TotO_PressureEffectPoint");
+
+PROC
+Proc_DW_TreasuryOfTheOne_DestroyBrokenPipe()
+THEN
+SetStoryEvent(ITEMGUID_S_RC_DW_TotO_BrokenPipe_12ca5c05-d397-401f-b302-76ac5a5031c6, "RC_DW_TotO_TurnOff_FirstPipes");
+GlobalSetFlag("RC_DW_TotO_TurnedOff_FirstPipes");
+
+PROC
+Proc_DW_TreasuryOfTheOne_DestroyBrokenPipe()
+THEN
+SetStoryEvent(ITEMGUID_S_RC_DW_TotO_Furnace_a9f1a8e6-ad43-4760-9eae-bc1eb8520138, "RC_DW_TotO_TurnOn_BrokenPipe");
+
+IF
+CharacterUsedItem(_, ITEMGUID_S_RC_DW_TotO_FurnaceLever_741a59fb-6f18-4afe-bbd8-e28892c26e10)
+THEN
+Proc_RC_DW_TotO_TurnFurnace();
+
+PROC
+Proc_RC_DW_TotO_TurnFurnace()
+THEN
+NOT DB_RC_DW_TotO_TurnedOffFurnace_Set(1);
+
+PROC
+Proc_RC_DW_TotO_TurnFurnace()
+AND
+GlobalGetFlag("RC_DW_TotO_TurnedOffFurnace", 0)
+THEN
+SetStoryEvent(ITEMGUID_S_RC_DW_TotO_Furnace_a9f1a8e6-ad43-4760-9eae-bc1eb8520138, "RC_DW_TotO_TurnOff_FirstPipes");
+SetStoryEvent(ITEMGUID_S_RC_DW_TotO_Furnace_a9f1a8e6-ad43-4760-9eae-bc1eb8520138, "RC_DW_TotO_TurnOff_AllPipes");
+GlobalSetFlag("RC_DW_TotO_TurnedOffFurnace");
+PlaySound(ITEMGUID_S_RC_DW_TotO_Furnace_a9f1a8e6-ad43-4760-9eae-bc1eb8520138, "RS3_FX_GP_ScriptedEvent_Brew_Pipe_Turn_Petrify_01");
+DB_RC_DW_TotO_TurnedOffFurnace_Set(1);
+
+PROC
+Proc_RC_DW_TotO_TurnFurnace()
+AND
+GlobalGetFlag("RC_DW_TotO_TurnedOffFurnace", 1)
+AND NOT
+DB_RC_DW_TotO_TurnedOffFurnace_Set(1)
+THEN
+SetStoryEvent(ITEMGUID_S_RC_DW_TotO_Furnace_a9f1a8e6-ad43-4760-9eae-bc1eb8520138, "RC_DW_TotO_TurnOn_FirstPipes");
+SetStoryEvent(ITEMGUID_S_RC_DW_TotO_Furnace_a9f1a8e6-ad43-4760-9eae-bc1eb8520138, "RC_DW_TotO_TurnOn_AllPipes");
+SetStoryEvent(ITEMGUID_S_RC_DW_TotO_Furnace_a9f1a8e6-ad43-4760-9eae-bc1eb8520138, "RC_DW_TotO_TurnOn_BrokenPipe");
+PlaySound(ITEMGUID_S_RC_DW_TotO_Furnace_a9f1a8e6-ad43-4760-9eae-bc1eb8520138, "RS3_FX_GP_ScriptedEvent_Brew_Pipe_Up_Petrify_01");
+GlobalClearFlag("RC_DW_TotO_TurnedOffFurnace");
+
+IF
+ObjectFlagSet("RC_DW_ArenaMaster_GiveKeyToTotO", (GUIDSTRING)_Var1, _)
+THEN
+ItemToInventory(ITEMGUID_S_RC_DW_TotO_Key_7936be78-a874-4d22-8f75-2ae2662ad896, _Var1);
+
+IF
+TextEventSet("toto")
+AND
+DB_IsPlayer(_Var1)
+THEN
+TeleportTo(_Var1, TRIGGERGUID_S_RC_DW_TotO_Start_f8659c42-b11a-4988-a099-8ac2b9d00079);
+
+IF
+ItemRemovedFromCharacter(ITEMGUID_S_RC_DW_TotO_Key_7936be78-a874-4d22-8f75-2ae2662ad896, CHARACTERGUID_S_RC_DW_ArenaMaster_8a1c0600-aca0-479b-8044-a36d011ccff7)
+THEN
+GlobalSetFlag("RC_DW_TotO_KeyStolen");
+
+IF
+ItemAddedToCharacter(ITEMGUID_S_RC_DW_TotO_Key_7936be78-a874-4d22-8f75-2ae2662ad896, CHARACTERGUID_S_RC_DW_ArenaMaster_8a1c0600-aca0-479b-8044-a36d011ccff7)
+THEN
+GlobalClearFlag("RC_DW_TotO_KeyStolen");
+
+IF
+TextEventSet("Proc_DW_TreasuryOfTheOne_SetBrokenPipe")
+THEN
+Proc_DW_TreasuryOfTheOne_SetBrokenPipe();
+
+IF
+CharacterEnteredTrigger((CHARACTERGUID)_Var1, TRIGGERGUID_RC_DW_TotO_BoxTrig_1f769558-39a1-42cd-bafa-e471d4bcf31d)
+THEN
+ObjectSetFlag(_Var1, "QuestUpdate_RC_DW_Arena_Treasury_Entered");
+
+IF
+ItemAddedToCharacter(ITEMGUID_S_RC_DW_Arena_COSKey_a3414d54-9448-4404-998b-55f9a55f727d, _)
+AND
+QueryOnlyOnce("QuestUpdate_RC_DW_Arena_Treasury_Looted")
+AND
+DB_IsPlayer(_Var2)
+THEN
+ObjectSetFlag(_Var2, "QuestUpdate_RC_DW_Arena_Treasury_Looted");
+
+
+EXITSECTION
+ENDEXITSECTION
+
+ParentTargetEdge "ReapersCoast"

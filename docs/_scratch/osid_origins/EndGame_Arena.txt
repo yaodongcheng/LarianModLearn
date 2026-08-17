@@ -1,0 +1,280 @@
+Version 1
+SubGoalCombiner SGC_AND
+
+INITSECTION
+DB_EG_ArenaStarts(TRIGGERGUID_S_EG_ArenaStart_1_9d30cedc-d7b4-44cf-9207-46a02d2927cf);
+DB_EG_ArenaStarts(TRIGGERGUID_S_EG_ArenaStart_2_f6c14945-41ca-4f14-8dea-84d740169b32);
+DB_EG_ArenaStarts(TRIGGERGUID_S_EG_ArenaStart_3_5abb73f6-e0f9-4670-96b1-501d3ecc2777);
+DB_EG_ArenaStarts(TRIGGERGUID_S_EG_ArenaStart_4_80673adb-9d7b-49ba-992d-c2d9a61ace9e);
+DB_EG_GlobalDialogs("EG_Arena");
+
+KBSECTION
+PROC
+PROC_EG_LaunchFinalArena()
+AND
+DB_IsPlayer(_Var1)
+THEN
+ProcForceStopDialog(_Var1);
+
+PROC
+PROC_EG_LaunchFinalArena()
+AND
+DB_EG_DivinityCompetitor(_Var1)
+AND
+DB_EG_DivinityCompetitor(_Var2)
+AND
+_Var1 != _Var2
+AND
+CharacterIsInPartyWith(_Var1, _Var2, 1)
+AND
+CharacterGetReservedUserID(_Var2, _Var3)
+THEN
+LeaveParty(_Var3);
+
+PROC
+PROC_EG_LaunchFinalArena()
+AND
+DB_EG_DivinityCompetitor(_Var1)
+AND
+DB_EG_ArenaStarts(_Var2)
+AND NOT
+DB_EG_DivinityCompetitorTeleported(_Var1)
+THEN
+PlayEffect(_Var1, "RS3_FX_GP_ScriptedEvent_HOE_Summoning_01");
+TeleportTo(_Var1, _Var2, "EG_DivinityCompetitorEnteredArena", 1);
+ProcSetInvulnerable(_Var1, 0);
+RemoveHarmfulStatuses(_Var1);
+NOT DB_EG_ArenaStarts(_Var2);
+DB_EG_DivinityCompetitorTeleported(_Var1);
+
+PROC
+PROC_EG_LaunchFinalArena()
+AND
+DB_IsPlayer(_Var1)
+AND NOT
+DB_EG_DivinityCompetitor(_Var1)
+AND
+DB_EG_ArenaStarts(_Var2)
+AND NOT
+QRY_EG_IsInPartyWithCharacterInArena(_Var1)
+THEN
+PlayEffect(_Var1, "RS3_FX_GP_ScriptedEvent_HOE_Summoning_01");
+TeleportTo(_Var1, _Var2, "EG_DivinityCompetitorEnteredArena", 1);
+RemoveHarmfulStatuses(_Var1);
+ProcSetInvulnerable(_Var1, 0);
+NOT DB_EG_ArenaStarts(_Var2);
+DB_EG_DivinityCompetitorTeleported(_Var1);
+SetInArena(_Var1, 1);
+
+IF
+DB_EG_DivinityCompetitorTeleported(_Var1)
+AND
+DB_IsPlayer(_Var2)
+AND
+_Var1 != _Var2
+AND
+CharacterIsInPartyWith(_Var1, _Var2, 1)
+THEN
+TeleportTo(_Var2, _Var1);
+
+QRY
+QRY_EG_IsInPartyWithCharacterInArena((CHARACTERGUID)_Var1)
+AND
+DB_IsPlayer(_Var2)
+AND
+CharacterIsInPartyWith(_Var1, _Var2, 1)
+AND
+DB_EG_DivinityCompetitorTeleported(_Var2)
+THEN
+DB_NOOP(0);
+
+IF
+StoryEvent((CHARACTERGUID)_Var1, "EG_DivinityCompetitorEnteredArena")
+AND
+DB_IsPlayer(_Var1)
+AND
+QueryOnlyOnce("EG_DivinityCompetitorEnteredArena")
+THEN
+Proc_StartDialog(0, "EG_Arena", _Var1);
+
+IF
+DialogEnded("EG_Arena", _)
+AND
+DB_EG_DivinityCompetitor(_Var2)
+THEN
+SetInArena(_Var2, 1);
+
+IF
+DialogEnded("EG_Arena", _)
+AND
+DB_IsPlayer(_Var2)
+THEN
+SetInArena(_Var2, 1);
+
+IF
+DialogEnded("EG_Arena", _)
+AND
+DB_IsPlayer(_Var2)
+AND
+DB_EG_DivinityCompetitor(_Var3)
+AND
+CharacterIsInPartyWith(_Var2, _Var3, 0)
+THEN
+PROC_EG_MakeArenaHostile(_Var2, _Var3);
+
+IF
+DialogEnded("EG_Arena", _)
+AND
+DB_EG_DivinityCompetitor(_Var2)
+AND
+DB_EG_DivinityCompetitor(_Var3)
+AND
+_Var2 != _Var3
+THEN
+PROC_EG_MakeArenaHostile(_Var2, _Var3);
+
+IF
+DialogEnded("EG_Arena", _)
+AND
+DB_EG_DivinityCompetitor(_Var2)
+THEN
+SetTag(_Var2, "ASCENDANT");
+ApplyStatus(_Var2, "ASCENDANT", -1, 1);
+
+IF
+DialogEnded("EG_Arena", _)
+AND
+DB_EG_DivinityCompetitor(_Var2)
+AND NOT
+DB_IsPlayer(_Var2)
+THEN
+CharacterAddPreferredAiTargetTag(_Var2, "ASCENDANT");
+
+PROC
+PROC_EG_MakeArenaHostile((CHARACTERGUID)_Var1, (CHARACTERGUID)_Var2)
+AND
+DB_IsPlayer(_Var1)
+AND
+DB_IsPlayer(_Var2)
+THEN
+MakeWar(_Var1, _Var2, 1);
+
+PROC
+PROC_EG_MakeArenaHostile((CHARACTERGUID)_Var1, (CHARACTERGUID)_Var2)
+THEN
+CharacterSetRelationIndivFactionToIndivFaction(_Var1, _Var2, 0);
+CharacterSetRelationIndivFactionToIndivFaction(_Var2, _Var1, 0);
+
+PROC
+PROC_EG_MakeArenaHostile((CHARACTERGUID)_Var1, (CHARACTERGUID)_Var2)
+THEN
+EnterCombat(_Var1, _Var2);
+
+IF
+CharacterResurrected((CHARACTERGUID)_Var1)
+AND
+DB_EG_DivinityCompetitor(_Var1)
+AND NOT
+DB_EG_MakingTheChoice(_)
+THEN
+ApplyStatus(_Var1, "ASCENDANT", -1, 1);
+
+IF
+CharacterDied((CHARACTERGUID)_Var1)
+AND
+DB_EG_DivinityCompetitor(_Var1)
+AND NOT
+QRY_EG_MultipleDivinityCompetitorsAlive()
+THEN
+PROC_EG_ArenaEnded();
+
+QRY
+QRY_EG_MultipleDivinityCompetitorsAlive()
+AND
+DB_EG_DivinityCompetitor(_Var1)
+AND
+CharacterIsDead(_Var1, 0)
+AND
+DB_EG_DivinityCompetitor(_Var2)
+AND
+_Var1 != _Var2
+AND
+CharacterIsDead(_Var2, 0)
+THEN
+DB_NOOP(0);
+
+QRY
+QRY_EG_AnyLivingDivinityCompetitors()
+AND
+DB_EG_DivinityCompetitor(_Var1)
+AND
+CharacterIsDead(_Var1, 0)
+THEN
+DB_NOOP(0);
+
+PROC
+PROC_EG_ArenaEnded()
+AND
+QRY_EG_AnyLivingDivinityCompetitors()
+AND
+DB_EG_DivinityCompetitor(_Var1)
+AND
+CharacterIsDead(_Var1, 0)
+THEN
+UserSetFlag(_Var1, "QuestUpdate_CORE_Chapter7_CRYPT_End_TakeFight");
+PROC_EG_MakeTheChoice(_Var1);
+
+PROC
+PROC_EG_ArenaEnded()
+AND
+DB_EG_DivinityCompetitor(_Var1)
+AND
+CharacterIsDead(_Var1, 1)
+THEN
+UserSetFlag(_Var1, "QuestUpdate_CORE_Chapter7_CRYPT_End_TakeFail");
+
+PROC
+PROC_EG_ArenaEnded()
+AND
+DB_EG_DivinityCompetitor(_Var1)
+THEN
+ClearTag(_Var1, "ASCENDANT");
+RemoveStatus(_Var1, "ASCENDANT");
+
+PROC
+PROC_EG_ArenaEnded()
+AND NOT
+QRY_EG_AnyLivingDivinityCompetitors()
+AND
+DB_IsPlayer(_Var1)
+AND
+CharacterIsDead(_Var1, 0)
+AND NOT
+DB_EG_MakingTheChoice(_)
+THEN
+GlobalSetFlag("EG_Ending4_GodKing");
+PROC_EG_MakeTheChoice(_Var1);
+
+IF
+SavegameLoaded((INTEGER)_Var1, (INTEGER)_Var2, (INTEGER)_Var3, (INTEGER)_Var4)
+AND
+QRY_VersionIsOlderThan(_Var1, _Var2, _Var3, _Var4, 3, 6, 5, 0)
+AND
+DB_OnlyOnce("EG_DivinityCompetitorEnteredArena")
+AND NOT
+QRY_EG_AnyLivingDivinityCompetitors()
+AND
+DB_IsPlayer(_Var5)
+AND
+CharacterIsDead(_Var5, 0)
+AND NOT
+DB_EG_MakingTheChoice(_)
+THEN
+GlobalSetFlag("EG_Ending4_GodKing");
+PROC_EG_MakeTheChoice(_Var5);
+
+
+EXITSECTION
+ENDEXITSECTION
+
+ParentTargetEdge "EndGame"

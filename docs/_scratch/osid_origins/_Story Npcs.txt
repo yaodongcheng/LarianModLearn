@@ -1,0 +1,51 @@
+Version 1
+SubGoalCombiner SGC_AND
+
+INITSECTION
+
+KBSECTION
+PROC
+SetStoryNpc((CHARACTERGUID)_Var1, (INTEGER)_Var2)
+THEN
+CharacterMakeStoryNpc(_Var1, _Var2);
+
+PROC
+SetStoryNpc((CHARACTERGUID)_Var1, 0)
+THEN
+NOT DB_IsStoryNpc(_Var1);
+
+PROC
+SetStoryNpc((CHARACTERGUID)_Var1, 1)
+THEN
+DB_IsStoryNpc(_Var1);
+
+PROC
+MakeAttackable((CHARACTERGUID)_Var1, (CHARACTERGUID)_Var2)
+THEN
+SetStoryNpc(_Var2, 0);
+CharacterSetTemporaryHostileRelation(_Var2, _Var1);
+CharacterAddAttitudeTowardsPlayer(_Var2, _Var1, -100);
+
+PROC
+SetStoryNpc((CHARACTERGUID)_Var1)
+THEN
+SetStoryNpc(_Var1, 1);
+
+PROC
+SetStoryNpcStatus((CHARACTERGUID)_Var1)
+AND
+DB_IsStoryNpc(_Var1)
+THEN
+CharacterMakeStoryNpc(_Var1, 1);
+
+PROC
+SetStoryNpcStatus((CHARACTERGUID)_Var1)
+AND NOT
+DB_IsStoryNpc(_Var1)
+THEN
+CharacterMakeStoryNpc(_Var1, 0);
+
+
+EXITSECTION
+ENDEXITSECTION
+

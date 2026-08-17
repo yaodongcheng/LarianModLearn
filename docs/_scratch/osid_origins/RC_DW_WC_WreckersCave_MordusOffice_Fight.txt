@@ -1,0 +1,61 @@
+Version 1
+SubGoalCombiner SGC_AND
+
+INITSECTION
+DB_RC_WC_MO_Crab(S_RC_WC_MordusOffice_Crab_A_000_69c9f61c-2d97-4421-8c8d-a0f1ba67ea4e);
+DB_RC_WC_MO_Crab(CHARACTERGUID_S_RC_WC_MordusOffice_Crab_A_001_97fbcac9-9c45-42aa-b6ea-d1be82dce61f);
+DB_RC_WC_MO_Crab(CHARACTERGUID_S_RC_WC_MordusOffice_Crab_A_003_ad370a6c-c873-4610-86d1-d275232ad69d);
+DB_RC_WC_MO_Crab(CHARACTERGUID_S_RC_WC_MordusOffice_Crab_A_004_ed612ccd-801a-4a4e-9447-81bca6a45ba4);
+SetOnStage(CHARACTERGUID_S_RC_WC_MordusOffice_Crab_A_004_ed612ccd-801a-4a4e-9447-81bca6a45ba4, 0);
+
+KBSECTION
+IF
+DB_RC_WC_MO_Crab(_Var1)
+THEN
+TriggerRegisterForCharacter(TRIGGERGUID_S_RC_WC_MordusOffice_ShipWreckInside_b35c1d42-0264-4893-a118-48c74657abc5, _Var1);
+TriggerRegisterForCharacter(TRIGGERGUID_S_RC_WC_MO_WaterPool_000_8edc8957-cf9b-4660-9dec-d6e0c1037d54, CHARACTERGUID_S_RC_WC_MordusOffice_Shark_cd9732b8-f89a-4326-af93-d28d7a8435aa);
+TriggerRegisterForCharacter(TRIGGERGUID_S_RC_WC_MO_WaterPool_001_5282d7e0-22f4-4f61-a949-3ad39621c0e2, CHARACTERGUID_S_RC_WC_MordusOffice_Shark_cd9732b8-f89a-4326-af93-d28d7a8435aa);
+SetOnStage(_Var1, 0);
+
+IF
+CharacterEnteredTrigger((CHARACTERGUID)_Var1, TRIGGERGUID_S_RC_WC_MordusOffice_ShipWreckInside_b35c1d42-0264-4893-a118-48c74657abc5)
+AND
+DB_RC_WC_MO_Crab(_Var1)
+THEN
+SetFaction(_Var1, "RC_WC_MO_Crab");
+
+IF
+CharacterLeftTrigger((CHARACTERGUID)_Var1, TRIGGERGUID_S_RC_WC_MordusOffice_ShipWreckInside_b35c1d42-0264-4893-a118-48c74657abc5)
+AND
+DB_RC_WC_MO_Crab(_Var1)
+THEN
+SetFaction(_Var1, "RC_WC_MO_CrabOutsideSharkReach");
+
+IF
+CharacterLeftTrigger(CHARACTERGUID_S_RC_WC_MordusOffice_Shark_cd9732b8-f89a-4326-af93-d28d7a8435aa, TRIGGERGUID_S_RC_WC_MO_WaterPool_000_8edc8957-cf9b-4660-9dec-d6e0c1037d54)
+AND
+ObjectIsOnStage(CHARACTERGUID_S_RC_WC_MordusOffice_Shark_cd9732b8-f89a-4326-af93-d28d7a8435aa, 1)
+AND
+ObjectIsInTrigger(CHARACTERGUID_S_RC_WC_MordusOffice_Shark_cd9732b8-f89a-4326-af93-d28d7a8435aa, TRIGGERGUID_S_RC_WC_MO_WaterPool_001_5282d7e0-22f4-4f61-a949-3ad39621c0e2, 0)
+THEN
+CharacterDie(CHARACTERGUID_S_RC_WC_MordusOffice_Shark_cd9732b8-f89a-4326-af93-d28d7a8435aa, 1, "DoT");
+
+IF
+CharacterLeftTrigger(CHARACTERGUID_S_RC_WC_MordusOffice_Shark_cd9732b8-f89a-4326-af93-d28d7a8435aa, TRIGGERGUID_S_RC_WC_MO_WaterPool_001_5282d7e0-22f4-4f61-a949-3ad39621c0e2)
+AND
+ObjectIsOnStage(CHARACTERGUID_S_RC_WC_MordusOffice_Shark_cd9732b8-f89a-4326-af93-d28d7a8435aa, 1)
+AND
+ObjectIsInTrigger(CHARACTERGUID_S_RC_WC_MordusOffice_Shark_cd9732b8-f89a-4326-af93-d28d7a8435aa, TRIGGERGUID_S_RC_WC_MO_WaterPool_000_8edc8957-cf9b-4660-9dec-d6e0c1037d54, 0)
+THEN
+CharacterDie(CHARACTERGUID_S_RC_WC_MordusOffice_Shark_cd9732b8-f89a-4326-af93-d28d7a8435aa, 1, "DoT");
+
+PROC
+ProcRegionEnded("RC_Main")
+THEN
+GoalCompleted;
+
+
+EXITSECTION
+ENDEXITSECTION
+
+ParentTargetEdge "RC_DW_WreckersCaveBase"

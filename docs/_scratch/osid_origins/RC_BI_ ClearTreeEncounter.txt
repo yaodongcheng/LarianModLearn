@@ -1,0 +1,63 @@
+Version 1
+SubGoalCombiner SGC_AND
+
+INITSECTION
+TriggerRegisterForCharacter(TRIGGERGUID_S_RC_BI_AncestorTree_Area_f3e22261-796e-4052-a2b2-8208373648db, CHARACTERGUID_S_GLO_Advocate_bfa3e903-78ab-46aa-9a95-54fb956eb2b3);
+
+KBSECTION
+IF
+CharacterUsedItem((CHARACTERGUID)_Var1, S_RC_BI_AncestorTree_Aura_01d9c207-be2f-49d2-9845-4899545959bb)
+THEN
+Proc_StartDialog(0, "RC_BI_AncestorTree", S_RC_BI_AncestorTree_Aura_01d9c207-be2f-49d2-9845-4899545959bb, _Var1);
+
+IF
+DialogStarted("RC_BI_AncestorTree", (INTEGER)_Var1)
+AND
+DialogGetInvolvedPlayer(_Var1, 1, _Var2)
+AND NOT
+DB_Dead(S_GLO_Advocate_bfa3e903-78ab-46aa-9a95-54fb956eb2b3)
+AND
+DB_InRegion(CHARACTERGUID_S_GLO_Advocate_bfa3e903-78ab-46aa-9a95-54fb956eb2b3, TRIGGERGUID_S_RC_BI_AncestorTree_Area_f3e22261-796e-4052-a2b2-8208373648db)
+THEN
+DialogRequestStop(S_RC_BI_AncestorTree_Aura_01d9c207-be2f-49d2-9845-4899545959bb);
+DialogRequestStop(S_GLO_Advocate_bfa3e903-78ab-46aa-9a95-54fb956eb2b3);
+ObjectSetFlag(_Var2, "RC_BI_AncestorTree_SpeakWithInterrupted");
+Proc_StartDialog(0, "RC_BI_LizardDemonLeader", S_GLO_Advocate_bfa3e903-78ab-46aa-9a95-54fb956eb2b3, _Var2);
+
+IF
+DB_HasMetCharactersToCheck(CHARACTERGUID_S_GLO_Advocate_bfa3e903-78ab-46aa-9a95-54fb956eb2b3, _Var1)
+AND
+UserGetFlag(_Var1, "RC_BI_LizardDemonLeader_HasMet", 0)
+THEN
+UserSetFlag(_Var1, "RC_BI_LizardDemonLeader_HasMet");
+
+IF
+TextEventSet("advocleartree")
+THEN
+PROC_StopLoopEffect(CHARACTERGUID_S_RC_BI_AncestorTree_Blackring_005_ffaeae79-c8c7-422b-be80-c0190836b531, "RC_BI_AncestorTreePromised");
+Proc_RC_BI_DebugSetupClearTree();
+
+PROC
+Proc_RC_BI_DebugSetupClearTree()
+AND
+DB_BI_AncestorTree_Wizard(_Var1)
+THEN
+CharacterDie(_Var1, 1, "DoT");
+
+PROC
+Proc_RC_BI_DebugSetupClearTree()
+THEN
+Proc_RC_BI_BlackRingKilled();
+
+IF
+TextEventSet("advocleartreeaggro")
+AND
+DB_IsPlayer(_Var1)
+THEN
+ProcSetFactionHostileToIndivPlayer("RC_BI_TheMan", _Var1);
+
+
+EXITSECTION
+ENDEXITSECTION
+
+ParentTargetEdge "ReapersCoast"

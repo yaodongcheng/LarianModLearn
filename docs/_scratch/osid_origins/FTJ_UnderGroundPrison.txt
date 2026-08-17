@@ -1,0 +1,355 @@
+Version 1
+SubGoalCombiner SGC_AND
+
+INITSECTION
+DB_Dialogs(CHARACTERGUID_S_FTJ_TorturedSeeker_8d839534-a039-4b5c-bfa6-6b88da149eb2, "FTJ_TorturedSeeker");
+DB_Dialogs(S_FTJ_CellarPurged_002_652ac6e3-9778-42d3-81d1-35d88ffb2e8d, "FTJ_CellarPurged_002");
+ItemToInventory(ITEMGUID_S_FTJ_Pendant_ff19447e-f74d-4781-8343-2c23add6b1e0, ITEMGUID_S_FTJ_PrisonSkeleton_001_a0807e2a-99b9-8dc9-19c5-7a053ea07b18);
+DB_Dialogs(ITEMGUID_S_FTJ_AstarteShrine_fceee19d-145c-8a40-28fb-536fab281adc, "FTJ_AstarteShrine");
+DB_Dialogs(CHARACTERGUID_S_FTJ_OlgoCellarMagister_001_402470db-ad49-4de7-8a60-7f69c8e5d26e, "FTJ_GhettoBossCellarMagister_001");
+DB_Dialogs(CHARACTERGUID_S_FTJ_Prison_JahanApprentice_dfc90c79-036d-4030-aaf5-85c2194673e3, "FTJ_Prison_JahanApprentice");
+ProcTriggerRegisterForPlayers(TRIGGERGUID_S_FTJ_TunnelMonsterVB_Poly_29da73aa-fe28-4a64-8f0b-5ccb66351ca0);
+SetOnStage(ITEMGUID_S_FTJ_PrincessPaper_002_eac20e39-2a08-4f63-8652-a1f4b4098369, 0);
+SetOnStage(ITEMGUID_S_FTJ_PrincessPaper_001_2dc42dab-fb66-4747-bc37-54eb96a8cbe9, 0);
+SetOnStage(ITEMGUID_S_FTJ_PrincessPaper_003_c9156d93-516e-417e-8470-cf81cf0e61e0, 0);
+DB_KillCounter_Internal(CHARACTERGUID_S_FTJ_TunnelMonster_001_82175071-b3b2-4e7f-945e-f14413ba7d16, "FTJ_TunnelMonsters");
+DB_KillCounter_Internal(CHARACTERGUID_S_FTJ_TunnelMonster_002_bcf48455-9fc7-41cc-99d6-e55a75802ce8, "FTJ_TunnelMonsters");
+DB_KillCounter_Internal(CHARACTERGUID_S_FTJ_TunnelMonster_003_bb9a44f9-7aa3-4bde-be62-9f721e94f500, "FTJ_TunnelMonsters");
+DB_KillCounter_Internal(CHARACTERGUID_S_FTJ_TunnelMonster_004_e7c4ffca-83fa-41ee-8182-00892f5e7b14, "FTJ_TunnelMonsters");
+DB_KillCounter("FTJ_TunnelMonsters", 4);
+DB_FTJ_TunnelMonsters(RC_FTJ_TunnelMonster_001_82175071-b3b2-4e7f-945e-f14413ba7d16);
+DB_FTJ_TunnelMonsters(RC_FTJ_TunnelMonster_002_bcf48455-9fc7-41cc-99d6-e55a75802ce8);
+DB_FTJ_TunnelMonsters(RC_FTJ_TunnelMonster_003_bb9a44f9-7aa3-4bde-be62-9f721e94f500);
+DB_FTJ_TunnelMonsters(RC_FTJ_TunnelMonster_004_e7c4ffca-83fa-41ee-8182-00892f5e7b14);
+DB_FTJ_TunnelMonsters(S_FTJ_TunnelMonster_FriendlySlug_1ad7c488-ed1e-43a2-8e03-f4786dea792a);
+DB_ExplorationZones(TRIGGERGUID_S_FTJ_XP_AbandonedPrisonCell_af44d1ab-dd59-4831-88e4-2f5b51eb82f2, 1, 3, 5);
+DB_Dialogs(CHARACTERGUID_S_FTJ_TunnelMonster_FriendlySlug_1ad7c488-ed1e-43a2-8e03-f4786dea792a, "FTJ_TunnelMonster_FriendlySlug");
+DB_Dialogs(S_FTJ_TunnelMonster_001_82175071-b3b2-4e7f-945e-f14413ba7d16, "FTJ_FireSlug01");
+DB_Dialogs(S_FTJ_TunnelMonster_003_bb9a44f9-7aa3-4bde-be62-9f721e94f500, "FTJ_FireSlug03");
+DB_Dialogs(S_FTJ_TunnelMonster_004_e7c4ffca-83fa-41ee-8182-00892f5e7b14, "FTJ_FireSlug04");
+DB_Dialogs(RC_FTJ_TunnelMonster_002_bcf48455-9fc7-41cc-99d6-e55a75802ce8, "FTJ_TunnelMonster");
+DB_FTJ_PrisonMainFloorToPrisonPortals(ITEMGUID_S_FTJ_PrisonDoorToMainFloor_6580f16f-62b2-81c1-2050-d2d59de4f09c);
+DB_FTJ_PrisonMainFloorToPrisonPortals(ITEMGUID_S_FTJ_StairsToPrisonFloor_290b85aa-0be9-8096-4434-2facda63dbc5);
+DB_Dialogs(CHARACTERGUID_S_FTJ_CollaredPrisoner_5bec83d5-d441-4491-980f-798ddf38d08d, "FTJ_CollaredPrisoner");
+CharacterDisableCrime(CHARACTERGUID_S_FTJ_CollaredPrisoner_5bec83d5-d441-4491-980f-798ddf38d08d, "UseForbiddenItem");
+CharacterDisableCrime(CHARACTERGUID_S_FTJ_CollaredPrisoner_5bec83d5-d441-4491-980f-798ddf38d08d, "Vandalise");
+CharacterDisableCrime(CHARACTERGUID_S_FTJ_CollaredPrisoner_5bec83d5-d441-4491-980f-798ddf38d08d, "VandaliseNoOwner");
+CharacterDisableCrime(CHARACTERGUID_S_FTJ_CollaredPrisoner_5bec83d5-d441-4491-980f-798ddf38d08d, "ItemDestroy");
+CharacterSetHitpointsPercentage(CHARACTERGUID_S_FTJ_TorturedSeeker_8d839534-a039-4b5c-bfa6-6b88da149eb2, 12);
+DB_SceneManager(CHARACTERGUID_S_FTJ_OlgoCellarMagister_001_402470db-ad49-4de7-8a60-7f69c8e5d26e, "FTJ_HoundMasterScene");
+DB_SceneManager(CHARACTERGUID_S_FTJ_InjuredMagister_8a0cd6fb-18f2-46ca-8a04-88d3c4d3caf8, "FTJ_HoundMasterScene");
+CharacterSetCanTrade(CHARACTERGUID_S_FTJ_OlgoCellarMagister_001_402470db-ad49-4de7-8a60-7f69c8e5d26e, 0);
+SetVarInteger(CHARACTERGUID_S_FTJ_TorturedSeeker_8d839534-a039-4b5c-bfa6-6b88da149eb2, "bool_CanChickenFlee", 0);
+
+KBSECTION
+IF
+StoryEvent((CHARACTERGUID)_Var1, "RC_FTJ_OlgoCellarMagisterDialogStart")
+AND
+QueryOnlyOnce("FTJ_GhettoBossCellarMagister_001_Once")
+THEN
+Proc_StartDialog(0, "FTJ_GhettoBossCellarMagister_001", RC_FTJ_OlgoCellarMagister_001_402470db-ad49-4de7-8a60-7f69c8e5d26e, _Var1);
+
+IF
+DialogStarted("FTJ_GhettoBossCellarMagister_001", _)
+THEN
+DB_OnlyOnce("FTJ_GhettoBossCellarMagister_001_Once");
+
+PROC
+Proc_SceneInterrupted((GUIDSTRING)_Var1, (CHARACTERGUID)_Var2, "FTJ_HoundMasterScene", "Attacked")
+THEN
+ProcForceStopDialog(_Var1);
+Proc_Ftj_HoundMasterGoHostile();
+
+PROC
+Proc_SceneInterrupted((GUIDSTRING)_Var1, (CHARACTERGUID)_Var2, "FTJ_HoundMasterScene", "PlayerTeleportInDialog")
+THEN
+ProcForceStopDialog(_Var1);
+Proc_Ftj_HoundMasterGoHostile();
+
+IF
+DialogEnded("FTJ_GhettoBossCellarMagister_001", _)
+THEN
+Proc_Ftj_HoundMasterGoHostile();
+
+PROC
+Proc_Ftj_HoundMasterGoHostile()
+THEN
+Proc_SceneOver("FTJ_HoundMasterScene");
+
+IF
+ObjectEnteredCombat((GUIDSTRING)_Var1, _)
+AND
+DB_FTJ_Prison_MagisterToComeToCell(_Var1)
+AND
+DB_FTJ_Prison_MagisterToComeToCell(_Var3)
+AND
+IsSpeakerReserved(_Var3, 1)
+THEN
+ProcForceStopDialog(_Var3);
+
+PROC
+Proc_Ftj_HoundMasterGoHostile()
+AND
+DB_IsPlayer(_Var1)
+AND
+DB_FTJ_Prison_MagisterToComeToCell(_Var2)
+THEN
+ProcSetHostileToIndivPlayer(_Var2, _Var1);
+
+IF
+StoryEvent((CHARACTERGUID)_Var1, "CRIME_SetCrimeInvestigationPos")
+AND
+DB_FTJ_Prison_MagisterToComeToCell(_Var1)
+AND
+DB_IsPlayer(_Var2)
+THEN
+ProcSetHostileToIndivPlayer(_Var1, _Var2);
+
+PROC
+ProcCrimeTeleportCharacterToPrison((CHARACTERGUID)_Var1, S_FortJoy_PlayerPrisonCell_5eec6152-28bc-4555-b476-1a3bc2db02e5)
+AND
+ObjectGetFlag(_Var1, "FTJ_RemoveSourceCollar", 1)
+AND
+QueryOnlyOnce("FTJ_VB_CollarlessImprisoned_Once")
+THEN
+ProcObjectTimer(_Var1, "FTJ_VB_CollarlessImprisoned_Timer", 1500);
+
+PROC
+ProcObjectTimerFinished((CHARACTERGUID)_Var1, "FTJ_VB_CollarlessImprisoned_Timer")
+THEN
+StartVoiceBark("FTJ_VB_CollarlessImprisoned", _Var1);
+
+IF
+DB_PlayerEscapedPrison(_Var1, "EscapedFortJoyPrison", _)
+AND
+QueryOnlyOnce("FTJ_VB_EscapedPrison_Once")
+THEN
+StartVoiceBark("FTJ_VB_EscapedPrison", _Var1);
+
+IF
+AttackedByObject((CHARACTERGUID)_Var1, (CHARACTERGUID)_Var2, (CHARACTERGUID)_Var3, _, _)
+AND
+_Var1 != _Var3
+AND
+DB_FTJ_TunnelMonsters(_Var1)
+AND
+CharacterIsInCombat(_Var3, 0)
+THEN
+ProcSetHostileToIndivPlayer(_Var1, _Var3);
+Proc_StartDialog(1, "FTJ_AD_TunnelMonster_Attacked", _Var1);
+
+IF
+CharacterUsedItem((CHARACTERGUID)_Var1, ITEMGUID_S_FTJ_HatchToFTJUnderGround_001_2368c7c7-8d2a-437e-a344-4c8ac5e63946)
+AND
+DB_IsPlayer(_Var1)
+AND
+ObjectGetFlag(_Var1, "QuestUpdate_FTJ_Escape_AmyroSaved", 1)
+THEN
+ObjectSetFlag(_Var1, "QuestUpdate_FTJ_Escape_EnterUnderground");
+
+IF
+CharacterUsedItem((CHARACTERGUID)_Var1, ITEMGUID_S_FTJ_HatchToFTJUnderGround_001_2368c7c7-8d2a-437e-a344-4c8ac5e63946)
+AND
+DB_IsPlayer(_Var1)
+AND
+ObjectGetFlag(_Var1, "QuestUpdate_FTJ_Escape_Free_Own", 0)
+AND
+ObjectGetFlag(_Var1, "QuestUpdate_FTJ_Escape_AmyroSaved", 0)
+AND
+ObjectGetFlag(_Var1, "QuestUpdate_FTJ_Escape_DivineStatue_Passage", 0)
+AND
+ObjectGetFlag(_Var1, "QuestUpdate_FTJ_Escape_Yarrow_KeyUsed", 0)
+AND
+ObjectGetFlag(_Var1, "IsInPrison", 0)
+THEN
+UserSetFlag(_Var1, "QuestUpdate_FTJ_Escape_Free_Own");
+
+IF
+CharacterUsedItem(_, ITEMGUID_S_FTJ_LadderToSaheilaHatch_2d94f837-ee2e-8fb7-1cf0-b112bf029c71)
+AND NOT
+DB_Once("FTJ_RevealHatchToUnderground_BackDoor")
+THEN
+DB_Once("FTJ_RevealHatchToUnderground_BackDoor");
+SetOnStage(S_FTJ_DirtPile_008_fe17ca0b-c376-40ff-8463-493d9d7677d6, 0);
+SetOnStage(ITEMGUID_S_FTJ_HatchToFTJUnderGround_001_2368c7c7-8d2a-437e-a344-4c8ac5e63946, 1);
+PlayEffect(RC_FTJ_HatchToFTJUnderGround_001_2368c7c7-8d2a-437e-a344-4c8ac5e63946, "RS3_FX_GP_Impacts_Dust_01");
+
+IF
+CharacterUsedItem(_, ITEMGUID_S_FTJ_HatchToFTJUnderGround_001_2368c7c7-8d2a-437e-a344-4c8ac5e63946)
+AND NOT
+DB_Once("FTJ_RevealHatchToUnderground_BackDoor")
+THEN
+DB_Once("FTJ_RevealHatchToUnderground_BackDoor");
+
+IF
+StoryEvent((CHARACTERGUID)_Var1, "FTJ_TunnelMonsterDialogStart")
+AND
+QueryOnlyOnce("FTJ_PrincessOozeDialog_Once")
+THEN
+Proc_StartDialog(0, "FTJ_TunnelMonster", RC_FTJ_TunnelMonster_002_bcf48455-9fc7-41cc-99d6-e55a75802ce8, _Var1);
+
+IF
+ObjectFlagSet("FTJ_TunnelMonsterPersuadeSuccess", (CHARACTERGUID)_Var1, _)
+THEN
+PartyAddExperience(_Var1, 1, 4, 6);
+
+IF
+ObjectFlagSet("FTJ_PrincessLetter_001_To", (CHARACTERGUID)_Var1, _)
+THEN
+SetOnStage(ITEMGUID_S_FTJ_PrincessPaper_001_2dc42dab-fb66-4747-bc37-54eb96a8cbe9, 1);
+ItemToInventory(ITEMGUID_S_FTJ_PrincessPaper_001_2dc42dab-fb66-4747-bc37-54eb96a8cbe9, _Var1);
+
+IF
+ObjectFlagSet("FTJ_PrincessLetter_002_To", (CHARACTERGUID)_Var1, _)
+THEN
+SetOnStage(ITEMGUID_S_FTJ_PrincessPaper_002_eac20e39-2a08-4f63-8652-a1f4b4098369, 1);
+ItemToInventory(ITEMGUID_S_FTJ_PrincessPaper_002_eac20e39-2a08-4f63-8652-a1f4b4098369, _Var1);
+
+IF
+ObjectFlagSet("FTJ_PrincessLetter_003_To", (CHARACTERGUID)_Var1, _)
+THEN
+SetOnStage(ITEMGUID_S_FTJ_PrincessPaper_003_c9156d93-516e-417e-8470-cf81cf0e61e0, 1);
+ItemToInventory(ITEMGUID_S_FTJ_PrincessPaper_003_c9156d93-516e-417e-8470-cf81cf0e61e0, _Var1);
+
+IF
+ObjectFlagSet("FactionHostileToIndivPlayerAfterDialog", (CHARACTERGUID)_Var1, (INTEGER)_Var2)
+AND
+DialogGetInvolvedNPC(_Var2, 1, S_FTJ_TunnelMonster_002_bcf48455-9fc7-41cc-99d6-e55a75802ce8)
+THEN
+SetRelationFactionToPlayers("FTJ_TunnelMonster", 0);
+
+PROC
+ReactOnKillCounter("FTJ_TunnelMonsters")
+AND
+GetClosestAlivePlayer(RC_FTJ_TunnelMonster_001_82175071-b3b2-4e7f-945e-f14413ba7d16, _Var1, _)
+THEN
+StartVoiceBark("FTJ_VB_PlayerReflectionTunnelMonsters", _Var1);
+
+PROC
+ProcCheckCounter((INTEGER)_Var1, "FTJ_TunnelMonsters")
+AND
+DB_KillCounter("FTJ_TunnelMonsters", _Var2)
+AND
+_Var1 == _Var2
+THEN
+CharacterSetRelationFactionToFaction("FTJ_TunnelMonster", "Hero", 100);
+CharacterSetRelationFactionToFaction("Hero", "FTJ_TunnelMonster", 100);
+
+IF
+CharacterEnteredTrigger((CHARACTERGUID)_Var1, TRIGGERGUID_S_FTJ_TunnelMonsterVB_Poly_29da73aa-fe28-4a64-8f0b-5ccb66351ca0)
+AND
+CharacterIsDead(CHARACTERGUID_S_FTJ_TunnelMonster_001_82175071-b3b2-4e7f-945e-f14413ba7d16, 0)
+AND
+QueryOnlyOnce("FTJ_VB_TunnelMonsterHear")
+THEN
+StartVoiceBark("FTJ_VB_TunnelMonsters", _Var1);
+
+IF
+CharacterDied(CHARACTERGUID_S_FTJ_TunnelMonster_002_bcf48455-9fc7-41cc-99d6-e55a75802ce8)
+THEN
+GlobalSetFlag("FTJ_FirePrincessDied");
+
+IF
+CharacterKilledBy(CHARACTERGUID_S_FTJ_TunnelMonster_002_bcf48455-9fc7-41cc-99d6-e55a75802ce8, (CHARACTERGUID)_Var1, (CHARACTERGUID)_Var2)
+AND
+DB_IsPlayer(_Var1)
+THEN
+UserSetFlag(_Var1, "FTJ_KilledFirePrincess");
+
+IF
+CharacterDying(CHARACTERGUID_S_FTJ_TunnelMonster_002_bcf48455-9fc7-41cc-99d6-e55a75802ce8)
+AND
+DB_CombatCharacters(CHARACTERGUID_S_FTJ_TunnelMonster_002_bcf48455-9fc7-41cc-99d6-e55a75802ce8, _Var1)
+AND
+DB_CombatCharacters(_Var2, _Var1)
+AND
+DB_IsPlayer(_Var2)
+THEN
+UserSetFlag(_Var2, "FTJ_KilledFirePrincess");
+
+IF
+StoryEvent((GUIDSTRING)_Var1, "FTJ_SW_SpottedFriendlySlug")
+THEN
+Proc_StartDialog(0, "FTJ_TunnelMonster_FriendlySlug", CHARACTERGUID_S_FTJ_TunnelMonster_FriendlySlug_1ad7c488-ed1e-43a2-8e03-f4786dea792a, _Var1);
+
+IF
+CharacterStatusApplied((CHARACTERGUID)_Var1, "WET", (CHARACTERGUID)_Var2)
+AND
+DB_FTJ_TunnelMonsters(_Var1)
+AND
+CharacterIsInCombat(_Var2, 0)
+AND
+HasActiveStatus(_Var1, "WET", 1)
+THEN
+ProcSetHostileToIndivPlayer(_Var1, _Var2);
+Proc_StartDialog(1, "FTJ_AD_TunnelMonster_Attacked", _Var1);
+
+PROC
+ProcBlockUseOfItem((CHARACTERGUID)_Var1, ITEMGUID_S_FTJ_PrisonDoorToMainFloor_6580f16f-62b2-81c1-2050-d2d59de4f09c)
+AND
+DB_IsPlayer(_Var1)
+AND
+ItemIsLocked(ITEMGUID_S_FTJ_PrisonDoorToMainFloor_6580f16f-62b2-81c1-2050-d2d59de4f09c, 1)
+AND NOT
+DB_GlobalFlag("FTJ_DonePrisonFloorRD")
+AND
+ItemIsInPartyInventory(S_FTJ_UndergroundKey_4e0e10a1-27ff-4459-89e0-d9664738aae1, _Var1, 0, 1)
+THEN
+DB_CustomUseItemResponse(_Var1, ITEMGUID_S_FTJ_PrisonDoorToMainFloor_6580f16f-62b2-81c1-2050-d2d59de4f09c, 0);
+
+PROC
+ProcBlockUseOfItem((CHARACTERGUID)_Var1, ITEMGUID_S_FTJ_PrisonDoorToMainFloor_6580f16f-62b2-81c1-2050-d2d59de4f09c)
+AND
+ItemIsInPartyInventory(ITEMGUID_S_FTJ_UndergroundKey_4e0e10a1-27ff-4459-89e0-d9664738aae1, _Var1, 1, 1)
+AND NOT
+DB_GlobalFlag("FTJ_DonePrisonFloorRD")
+THEN
+ItemUnLock(ITEMGUID_S_FTJ_PrisonDoorToMainFloor_6580f16f-62b2-81c1-2050-d2d59de4f09c);
+GlobalSetFlag("FTJ_DonePrisonFloorRD");
+ProcDefineReflectionDialog("FTJ_RD_DoorToMainFloor", _Var1);
+ProcStartReflectionDialog(_Var1, "FTJ_RD_DoorToMainFloor");
+
+IF
+ItemUnlocked(ITEMGUID_S_FTJ_PrisonDoorToMainFloor_6580f16f-62b2-81c1-2050-d2d59de4f09c, (CHARACTERGUID)_Var1, _)
+AND NOT
+DB_GlobalFlag("FTJ_DonePrisonFloorRD")
+THEN
+GlobalSetFlag("FTJ_DonePrisonFloorRD");
+ProcDefineReflectionDialog("FTJ_RD_DoorToMainFloor", _Var1);
+ProcStartReflectionDialog(_Var1, "FTJ_RD_DoorToMainFloor");
+
+IF
+CharacterUsedItem((CHARACTERGUID)_Var1, (ITEMGUID)_Var2)
+AND
+DB_FTJ_PrisonMainFloorToPrisonPortals(_Var2)
+AND
+ItemIsLocked(_Var2, 0)
+AND
+GlobalGetFlag("FTJ_DonePrisonFloorRD", 0)
+THEN
+GlobalSetFlag("FTJ_DonePrisonFloorRD");
+
+IF
+StoryEvent((CHARACTERGUID)_Var1, "FTJ_ClearStairsRD")
+THEN
+ProcCancelReflectionDialog("FTJ_RD_DoorToMainFloor");
+
+IF
+StoryEvent((ITEMGUID)_Var1, "unlocked")
+AND
+DB_FTJ_PrisonMainFloorToPrisonPortals(_Var1)
+AND
+DB_FTJ_PrisonMainFloorToPrisonPortals(_Var2)
+THEN
+ItemUnLock(_Var2);
+
+PROC
+ProcRegionEnded("FJ_FortJoy_Main")
+THEN
+GoalCompleted;
+
+
+EXITSECTION
+ENDEXITSECTION
+
+ParentTargetEdge "FortJoy"

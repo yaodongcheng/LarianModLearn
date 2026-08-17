@@ -1,0 +1,270 @@
+Version 1
+SubGoalCombiner SGC_AND
+
+INITSECTION
+DB_StatusSoundStopEvent("FROZEN", "Status_Frozen_End");
+DB_StatusSoundStopEvent("BURNING", "Status_Fire_End");
+DB_StatusSoundStopEvent("ACID", "Status_Acid_End");
+DB_StatusSoundStopEvent("BLEEDING", "Status_Bleeding_End");
+DB_StatusSoundStopEvent("HOLY_FIRE", "Status_HolyFire_End");
+DB_StatusSoundStopEvent("NECROFIRE", "Status_NecroFire_End");
+DB_StatusSoundStopEvent("STUNNED", "Status_Stunned_End");
+DB_SurfaceSoundStartEvent("FROZEN", "Surf_Ice_ST_Start");
+DB_SurfaceSoundStartEvent("BURNING", "Surf_Fire_ST_Start");
+DB_SurfaceSoundStartEvent("ACID", "Surf_Poison_ST_Start");
+DB_SurfaceSoundStartEvent("BLEEDING", "Surf_Blood_Elect_ST_Start");
+DB_SurfaceSoundStartEvent("HOLY_FIRE", "Surf_Fire_Blessed_Start");
+DB_SurfaceSoundStartEvent("NECROFIRE", "Surf_Fire_Cursed_Start");
+DB_SurfaceSoundStartEvent("STUNNED", "Surf_Water_Elect_ST_Start");
+DB_SurfaceSoundStopEvent("FROZEN", "Surf_Ice_ST_Stop");
+DB_SurfaceSoundStopEvent("BURNING", "Surf_Fire_ST_Stop");
+DB_SurfaceSoundStopEvent("ACID", "Surf_Poison_ST_Stop");
+DB_SurfaceSoundStopEvent("BLEEDING", "Surf_Blood_Elect_ST_Stop");
+DB_SurfaceSoundStopEvent("HOLY_FIRE", "Surf_Fire_Blessed_Stop");
+DB_SurfaceSoundStopEvent("NECROFIRE", "Surf_Fire_Cursed_Stop");
+DB_SurfaceSoundStopEvent("STUNNED", "Surf_Water_Elect_ST_Stop");
+
+KBSECTION
+IF
+TextEventSet("ARX_Dwarves_ComeToMe")
+AND
+DB_IsPlayer(_Var1)
+AND
+GetPosition(_Var1, _Var2, _Var3, _Var4)
+THEN
+CharacterMoveToPosition(S_ARX_MerchantEstate_Guard_FrontGate_02_3848a9a0-ddf8-4ab4-ac1d-5c77aa3de3ae, _Var2, _Var3, _Var4, 1, "");
+
+IF
+TextEventSet("PaintingToDwarf")
+THEN
+ItemToInventory(ITEMGUID_S_ARX_CS_RedPainting_c05abd86-d5dc-4e5e-8d11-c0389c3cf046, S_ARX_MerchantEstate_Guard_FrontGate_02_3848a9a0-ddf8-4ab4-ac1d-5c77aa3de3ae);
+SetStoryEvent(S_ARX_MerchantEstate_Guard_FrontGate_02_3848a9a0-ddf8-4ab4-ac1d-5c77aa3de3ae, "ARX_CS_Trader_Painting_01_PaintingAddedToInv");
+
+IF
+TextEventSet("StartInvestigation")
+AND
+GetClosestAlivePlayer(S_ARX_MerchantEstate_Trader_16375643-abe6-41bd-ba5a-50475e7057c1, _Var1, _)
+THEN
+Proc_StartDialog(0, "GEB_Interrogation", S_ARX_MerchantEstate_Trader_16375643-abe6-41bd-ba5a-50475e7057c1, _Var1);
+
+IF
+TextEventSet("AddSourceVamp")
+AND
+DB_IsPlayer(_Var1)
+THEN
+ObjectSetFlag(_Var1, "GLO_HasSourceVampirism");
+CharacterAddSkill(_Var1, "Target_SourceVampirism");
+
+IF
+TextEventSet("wa")
+THEN
+CharacterMoveTo(S_ARX_CS_Trader_Painting_01_fc339e1e-f87f-41f1-ac62-f67e38dc0c32, S_Player_Ifan_ad9a3327-4456-42a7-9bf4-7ad60cc9e54f, 1, "", 1);
+
+IF
+TextEventSet("FTJ_castSkill")
+AND
+DB_IsPlayer(_Var1)
+THEN
+CharacterUseSkill(S_FTJ_SW_NecromancerTower_Turrent_001_64f9c8ce-fdf8-4ea5-9588-aab956ad3308, "Projectile_TrapFireballNoIgnite", _Var1);
+
+IF
+TextEventSet("KillUndead1")
+THEN
+CharacterDie(S_FTJ_SW_GuardUndead1_416ab3e9-0547-4dd3-b3b8-8b36f75707c1, 1, "DoT");
+ObjectSetFlag(S_FTJ_SW_GuardUndead1_416ab3e9-0547-4dd3-b3b8-8b36f75707c1, "FTJ_SW_NecromancerToewr_UndeadDead");
+
+IF
+TextEventSet("Test_StartPersuationDialog")
+AND
+DB_IsPlayer(_Var1)
+THEN
+Proc_StartDialog(0, "Dani_PersuationTest", S_RC_ARX_Barracks_Battlemage_342b305c-5eb6-4d2d-a14b-8e50d77b6387, _Var1);
+
+IF
+TextEventSet("Test_Play_AnimationPuzObj_Use_Activate_01")
+THEN
+PlayAnimation(S_ARX_Prison_WindegoPillar1_72e321f4-2cda-476a-bbe6-9839bbb97d84, "Use_Activate_01");
+
+IF
+TextEventSet("Test_Play_AnimationPuzObj_Use_Activate_02")
+THEN
+PlayAnimation(S_ARX_Prison_WindegoPillar1_72e321f4-2cda-476a-bbe6-9839bbb97d84, "Use_Activate_02");
+
+IF
+TextEventSet("Test_Play_AnimationPuzObj_Still_01")
+THEN
+PlayAnimation(S_ARX_Prison_WindegoPillar1_72e321f4-2cda-476a-bbe6-9839bbb97d84, "Still_01");
+
+IF
+TextEventSet("Test_Play_AnimationPuzObj_Open_01")
+THEN
+PlayAnimation(S_ARX_Prison_WindegoPillar1_72e321f4-2cda-476a-bbe6-9839bbb97d84, "Open_01");
+
+IF
+TextEventSet("Test_Play_AnimationPuzObj_Open_02")
+THEN
+PlayAnimation(S_ARX_Prison_WindegoPillar1_72e321f4-2cda-476a-bbe6-9839bbb97d84, "Open_02");
+
+IF
+TextEventSet("Test_Play_AnimationPuzObj_Close_02")
+THEN
+PlayAnimation(S_ARX_Prison_WindegoPillar1_72e321f4-2cda-476a-bbe6-9839bbb97d84, "Close_02");
+
+IF
+TextEventSet("Test_Play_AnimationPuzObj_Close_01")
+THEN
+PlayAnimation(S_ARX_Prison_WindegoPillar1_72e321f4-2cda-476a-bbe6-9839bbb97d84, "Close_01");
+
+IF
+TextEventSet("Barracks_Archives_MoveWall")
+THEN
+proc_ItemMoveToTrigger(S_ARX_Barracks_2ndFloor_Archives_MoveableWall_3318c85a-3b53-4222-946b-d683698bbe96, S_ARX_Barracks_2ndFloor_Archives_WallMoveTo_97d0d735-bdc2-4002-b785-7306bafb13d8, 2, 0, 0);
+
+IF
+TextEventSet("Barracks_Archives_SolvePuzzle")
+THEN
+GlobalSetFlag("ARX_Barracks_Archives_Button_Puzzle_Solved");
+
+IF
+TextEventSet("S_LV_DallisSlidingDoor_Move")
+THEN
+ProcItemLocalMove(ITEMGUID_S_LV_DallisSlidingDoor_36a929e6-3f8f-4f82-9bff-03f639b8d6f5, 0, -5.8, 0, 1, 0);
+
+IF
+TextEventSet("RC_DW_CarverReports")
+THEN
+GlobalSetFlag("RC_DW_CarverReports");
+
+IF
+TextEventSet("RC_DW_CarverTea")
+THEN
+GlobalSetFlag("RC_DW_CarverTea");
+
+IF
+TextEventSet("RC_DW_CarverSupplies")
+THEN
+GlobalSetFlag("RC_DW_CarverSupplies");
+
+IF
+TextEventSet("TestSkilCast_EnemyTotemWood")
+AND
+GetPosition(CHARACTERGUID_S_RC_DW_Checkpoint_Magister_2_87a2ef8c-979e-4a64-aaef-46d319beb384, _Var1, _Var2, _Var3)
+AND
+RealSum(_Var3, 3, _Var4)
+THEN
+CharacterUseSkillAtPosition(CHARACTERGUID_S_RC_DW_Checkpoint_Magister_2_87a2ef8c-979e-4a64-aaef-46d319beb384, "Projectile_EnemyTotemWood", _Var1, _Var2, _Var4, 0, 1);
+
+IF
+TextEventSet("TestFXQueen1")
+AND
+GetPosition(ITEMGUID_S_ARX_Sewers_QsLab_QueensPrison_ExplodingDoor_00bc700c-dfc6-49e9-b61d-8bc88cab40f3, _Var1, _Var2, _Var3)
+THEN
+CharacterSetFightMode(CHARACTERGUID_S_ARX_Sewers_TheEmpress_78c95ad2-2d1a-4358-9c9c-77ff9a5fc3c9, 1, 1);
+PlayEffectAtPosition("RS3_FX_GP_Impacts_Grenade_Tremor_01", _Var1, _Var2, _Var3);
+PlayEffectAtPosition("RS3_FX_Poof_Wood_01", _Var1, _Var2, _Var3);
+
+IF
+TextEventSet("TestFXQueen2")
+AND
+GetPosition(ITEMGUID_S_ARX_Sewers_QsLab_QueensPrison_ExplodingDoor_00bc700c-dfc6-49e9-b61d-8bc88cab40f3, _Var1, _Var2, _Var3)
+THEN
+CharacterSetFightMode(CHARACTERGUID_S_ARX_Sewers_TheEmpress_78c95ad2-2d1a-4358-9c9c-77ff9a5fc3c9, 1, 1);
+PlayEffectAtPosition("RS3_FX_GP_Impacts_Grenade_Tremor_01", _Var1, _Var2, _Var3);
+PlayEffectAtPosition("RS3_FX_GP_Combat_Hit_Wood_01_Large", _Var1, _Var2, _Var3);
+
+IF
+TextEventSet("TestFXQueen3")
+AND
+GetPosition(ITEMGUID_S_ARX_Sewers_QsLab_QueensPrison_ExplodingDoor_00bc700c-dfc6-49e9-b61d-8bc88cab40f3, _Var1, _Var2, _Var3)
+THEN
+CharacterSetFightMode(CHARACTERGUID_S_ARX_Sewers_TheEmpress_78c95ad2-2d1a-4358-9c9c-77ff9a5fc3c9, 1, 1);
+PlayEffectAtPosition("RS3_FX_GP_Impacts_Grenade_Tremor_01", _Var1, _Var2, _Var3);
+PlayEffectAtPosition("RS3_FX_GP_Combat_CorpseExplosion_Wood_01_Medium", _Var1, _Var2, _Var3);
+ItemDestroy(ITEMGUID_S_ARX_Sewers_QsLab_QueensPrison_ExplodingDoor_00bc700c-dfc6-49e9-b61d-8bc88cab40f3);
+Proc_ARX_Sewers_QsLab_QueenPrison_ExplodingDoor_KnockedDown();
+
+IF
+TextEventSet("TestSound")
+AND
+DB_IsPlayer(_Var1)
+AND
+CharacterIsDead(_Var1, 0)
+AND
+GetTextEventParamString(1, _Var2)
+THEN
+PlaySound(_Var1, _Var2);
+
+IF
+TextEventSet("TestValveAnim")
+AND
+GetTextEventParamString(1, _Var1)
+THEN
+PlayAnimation(ITEMGUID_PUZ_Lever_Valve_A_000_93516966-c9fb-4ea0-b3f5-b5876f3b5a55, _Var1);
+
+IF
+TextEventSet("TestValveOpen")
+THEN
+PlayAnimation(ITEMGUID_PUZ_Lever_Valve_A_000_93516966-c9fb-4ea0-b3f5-b5876f3b5a55, "Full_Open");
+
+IF
+TextEventSet("TestValveClose")
+THEN
+PlayAnimation(ITEMGUID_PUZ_Lever_Valve_A_000_93516966-c9fb-4ea0-b3f5-b5876f3b5a55, "Close_01");
+
+IF
+TextEventSet("SpyMasterDie")
+THEN
+CharacterDie(CHARACTERGUID_S_CoS_Temples_SpyMaster_787c6c4a-6e5a-4044-9616-27e21e5a171e, 0, "DoT");
+
+IF
+TextEventSet("RC_LV_RiverBackOnLV_AddFlag")
+AND
+DB_IsPlayer(_Var1)
+THEN
+ObjectSetFlag(_Var1, "RC_DW_KnowCos");
+ObjectSetFlag(ITEMGUID_S_RC_DW_LV_ShipHead_313e5b21-283a-4d8f-a3b1-0aa23a6cd5f8, "RC_LV_ShipHeadFetchMalady");
+
+IF
+TextEventSet("RC_LV_RiverBackOnLV")
+THEN
+GlobalSetFlag("RC_BI_RiverInCamp");
+SetOnStage(CHARACTERGUID_S_GLO_River_f4931ebe-10b0-43c4-9182-640cf052717e, 1);
+PROC_RC_LV_FetchByWarowl(CHARACTERGUID_S_GLO_River_f4931ebe-10b0-43c4-9182-640cf052717e, TRIGGERGUID_S_RC_LV_MaladySummonedByShipheadPoint_9f57fd9c-e87a-4f4e-a9a2-86e1cf6cf1db, "RC_LV_RiverBackOnLV");
+
+IF
+TextEventSet("KillSibbile")
+THEN
+CharacterDie(CHARACTERGUID_S_Player_Sebille_c8d55eaf-e4eb-466a-8f0d-6a9447b5b24c, 0, "DoT");
+
+IF
+TextEventSet("KillRedPrince")
+THEN
+CharacterDie(CHARACTERGUID_S_Player_RedPrince_a26a1efb-cdc8-4cf3-a7b2-b2f9544add6f, 0, "DoT");
+
+IF
+TextEventSet("ARX_CitySquare_AD_TownCrier")
+THEN
+Proc_StartDialog(1, "ARX_CitySquare_AD_TownCrier", CHARACTERGUID_S_ARX_CitySquare_TownCrier_aec02305-c86a-4358-a7e0-efb04f389fec);
+
+IF
+TextEventSet("ARX_PrincessOffStage")
+THEN
+SetOnStage(CHARACTERGUID_S_GLO_RedPrincess_050fbbf9-3fc9-40cd-9cbb-43b4b3754a5e, 0);
+
+IF
+TextEventSet("ARX_PrincessOnStage")
+THEN
+SetOnStage(CHARACTERGUID_S_GLO_RedPrincess_050fbbf9-3fc9-40cd-9cbb-43b4b3754a5e, 1);
+
+IF
+TextEventSet("BarracksARX_MoveToAndTalk")
+AND
+CharacterGetHostCharacter(_Var1)
+THEN
+CharacterMoveToAndTalk(S_RC_ARX_Barracks_PrisonersWife_8dc43bf7-827f-440a-9de5-c2a2eb0bc719, _Var1, "RC_ARX_Barracks_PrisonersWife", 0, "RC_ARX_Barracks_PrisonersWife_Ended", 1, 5);
+
+
+EXITSECTION
+ENDEXITSECTION
+
+ParentTargetEdge "DOS2ModWrapper"

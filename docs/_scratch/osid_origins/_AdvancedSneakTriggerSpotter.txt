@@ -1,0 +1,92 @@
+Version 1
+SubGoalCombiner SGC_AND
+
+INITSECTION
+DB_SneakTriggerVars(1, "SpottedTrigger");
+DB_SneakTriggerVars(2, "SpottedTrigger1");
+DB_SneakTriggerVars(3, "SpottedTrigger2");
+DB_SneakTriggerVars(4, "SpottedTrigger3");
+
+KBSECTION
+IF
+DB_AdvancedSneakTriggerSpotter(_Var1, _Var2)
+THEN
+ProcSetSneakyTriggerVar(_Var2, _Var1);
+
+PROC
+ProcSetSneakyTriggerVar((CHARACTERGUID)_Var1, (TRIGGERGUID)_Var2)
+AND NOT
+DB_SneakyTriggersCounter(_Var1, _)
+THEN
+DB_SneakyTriggersCounter(_Var1, 0);
+
+PROC
+ProcSetSneakyTriggerVar((CHARACTERGUID)_Var1, (TRIGGERGUID)_Var2)
+AND
+DB_SneakyTriggersCounter(_Var1, _Var3)
+AND
+IntegerSum(_Var3, 1, _Var4)
+AND
+DB_SneakTriggerVars(_Var4, _Var5)
+THEN
+DB_SneakyTriggersCounter(_Var1, _Var4);
+NOT DB_SneakyTriggersCounter(_Var1, _Var3);
+SetVarObject(_Var1, _Var5, _Var2);
+ProcTriggerRegisterForPlayers(_Var2);
+
+IF
+StoryEvent((CHARACTERGUID)_Var1, "GLO_AdvancedSpotterSneaker")
+AND
+GetVarObject(_Var1, "SpottedDude", _Var2)
+THEN
+ProcCharSpottedByChar(_Var2, _Var1);
+ProcReceiveActivatedTriggers(_Var1, _Var2);
+ProcLockSpotting(_Var1);
+
+PROC
+ProcReceiveActivatedTriggers((CHARACTERGUID)_Var1, (CHARACTERGUID)_Var2)
+AND
+DB_AdvancedSneakTriggerSpotter(_Var3, _Var1)
+AND
+DB_InRegion(_Var2, _Var3)
+THEN
+ProcCharInTriggerSpotted(_Var2, _Var3);
+ProcCharInTriggerSpottedByChar(_Var2, _Var3, _Var1);
+
+PROC
+ProcCharSpottedByChar((CHARACTERGUID)_Var1, (CHARACTERGUID)_Var2)
+THEN
+DB_NOOP(1);
+
+PROC
+ProcLockSpotting((CHARACTERGUID)_Var1)
+THEN
+SetVarInteger(_Var1, "SpottedCounter", 1);
+
+PROC
+ProcCleanUpAdvancedSneakTriggers((CHARACTERGUID)_Var1)
+AND
+DB_AdvancedSneakTriggerSpotter(_Var2, _Var1)
+THEN
+NOT DB_AdvancedSneakTriggerSpotter(_Var2, _Var1);
+SetVarInteger(_Var1, "SpottedCounter", 1);
+
+PROC
+ProcTriggerUnregisterForPlayers((TRIGGERGUID)_Var1)
+AND
+DB_AdvancedSneakTriggerSpotter(_Var1, _Var2)
+THEN
+NOT DB_AdvancedSneakTriggerSpotter(_Var1, _Var2);
+
+IF
+DB_SpotterGroup(_Var1, _Var2)
+AND
+DB_IsPlayer(_Var3)
+THEN
+SetVarInteger(_Var3, _Var2, 0);
+SetVarFixedString(_Var1, "SpotterGroup", _Var2);
+
+
+EXITSECTION
+ENDEXITSECTION
+

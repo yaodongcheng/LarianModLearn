@@ -1,0 +1,44 @@
+Version 1
+SubGoalCombiner SGC_AND
+
+INITSECTION
+
+KBSECTION
+IF
+DB_Subregion(_Var1, _, _)
+THEN
+ProcTriggerRegisterForPlayers(_Var1);
+
+IF
+DB_SubregionMarker(_Var1, _, _)
+THEN
+ProcTriggerRegisterForPlayers(_Var1);
+
+IF
+CharacterEnteredTrigger((CHARACTERGUID)_Var1, (TRIGGERGUID)_Var2)
+AND
+DB_Subregion(_Var2, _Var3, _Var4)
+THEN
+CharacterEnteredSubRegion(_Var1, _Var3);
+ProcCheckSetRegionMarker(_Var3, _Var4, _Var1);
+
+IF
+CharacterEnteredTrigger((CHARACTERGUID)_Var1, (TRIGGERGUID)_Var2)
+AND
+DB_SubregionMarker(_Var2, _Var3, _Var4)
+THEN
+CharacterEnteredSubRegion(_Var1, _Var3);
+ProcCheckSetRegionMarker(_Var4, 1, _Var1);
+
+PROC
+ProcCheckSetRegionMarker((STRING)_Var1, 1, (CHARACTERGUID)_Var2)
+AND
+DB_IsPlayer(_Var2)
+THEN
+ProcShowMarker(_Var2, _Var1);
+
+
+EXITSECTION
+ENDEXITSECTION
+
+ParentTargetEdge "__Start"

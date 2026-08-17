@@ -1,0 +1,259 @@
+Version 1
+SubGoalCombiner SGC_AND
+
+INITSECTION
+DB_RC_MIL_ElfTestDialogs(S_RC_MIL_ElfTestBrazier_3d442415-2fb7-4e94-9091-1d80c843a0c1, "RC_MIL_ElfTestBrazier");
+DB_RC_MIL_ElfTestDialogs(S_RC_MIL_AutumnHero_2a9a4d1d-c6fb-4048-8978-354d1234f9e5, "RC_MIL_AutumnHero");
+DB_RC_MIL_ElfTestDialogs(S_RC_MIL_SpringHero_33ea9525-1c7e-475d-8e9e-57d850ed5c2a, "RC_MIL_SpringHero");
+DB_RC_MIL_ElfTestDialogs(S_RC_MIL_SummerHero_996d1808-c83b-433b-b8ae-72778d60674c, "RC_MIL_SummerHero");
+DB_RC_MIL_ElfTestDialogs(S_RC_MIL_WinterHero_d8bf2750-e094-4531-adb8-a10ac454ed62, "RC_MIL_WinterHero");
+DB_RC_MIL_ElfTestFlags("RC_MIL_SummerSurfaceDone", 0);
+DB_RC_MIL_ElfTestFlags("RC_MIL_WinterSurfaceDone", 0);
+DB_RC_MIL_ElfTestFlags("RC_MIL_AutumnSurfaceDone", 0);
+DB_RC_MIL_ElfTestFlags("RC_MIL_SpringSurfaceDone", 0);
+DB_RC_MIL_ElfTestWarriors(S_RC_MIL_ElfSkeletonA_377a0093-0f41-49ca-a3e0-b9c671f23ed7);
+DB_RC_MIL_ElfTestWarriors(S_RC_MIL_ElfSkeletonB_c8b5ffdb-9ec2-4af1-b887-83d0e7c8a443);
+DB_RC_MIL_ElfTestWarriors(S_RC_MIL_ElfSkeletonC_ec8cfcb5-5504-4d03-b643-9d4865a62599);
+DB_RC_MIL_ElfTestWarriors(S_RC_MIL_ElfSkeletonD_5af0a2d5-427c-4b14-9d23-b9d7438f49ed);
+DB_KillCounter("RC_MIL_ElfTest", 4);
+ProcTriggerRegisterForPlayers(S_RC_MIL_ElfTestArena_1a94f45b-2e6e-4036-a8e0-2d85b84dfa9c);
+DB_QuestDef_AddEvent("RC_MIL_ElfTest", "RC_MIL_EncounteredElfTest");
+DB_QuestDef_UpdateEvent("RC_MIL_ElfTest", "EncounteredElfTest", "RC_MIL_EncounteredElfTest");
+DB_QuestDef_UpdateEvent("RC_MIL_ElfTest", "SolvedElfTest", "RC_MIL_SolvedElfTest");
+DB_QuestDef_UpdateEvent("RC_MIL_ElfTest", "CompletedElfTest", "RC_MIL_CompletedElfTest");
+DB_QuestDef_UpdateEvent("RC_MIL_ElfTest", "FailedElfTest", "RC_MIL_FailedElfTest");
+DB_QuestDef_CloseEvent("RC_MIL_ElfTest", "RC_MIL_CompletedElfTest");
+DB_QuestDef_CloseEvent("RC_MIL_ElfTest", "RC_MIL_FailedElfTest");
+DB_QuestDef_State("RC_MIL_ElfTest", "CloseLeftRC", -1);
+SetOnStage(S_RC_MIL_ElfRewardChest_03159aad-c7c2-44a8-83b8-d3924ac312ec, 0);
+SetOnStage(ITEMGUID_S_RC_MIL_PhoenixHeart_8fd978de-2124-496b-8d57-ccbfda310390, 0);
+
+KBSECTION
+IF
+ObjectEnteredCombat((CHARACTERGUID)_Var1, _)
+AND
+DB_RC_MIL_ElfTestWarriors(_Var1)
+AND
+QueryOnlyOnce("RC_MIL_CombatSave_ElvenTest")
+THEN
+AutoSave();
+
+IF
+DB_RC_MIL_ElfTestDialogs(_Var1, _Var2)
+THEN
+DB_Dialogs(_Var1, _Var2);
+
+IF
+DB_RC_MIL_ElfTestWarriors(_Var1)
+THEN
+SetOnStage(_Var1, 0);
+DB_KillCounter_Internal(_Var1, "RC_MIL_ElfTest");
+
+IF
+CharacterUsedItem((CHARACTERGUID)_Var1, S_RC_MIL_ElfTestBrazier_3d442415-2fb7-4e94-9091-1d80c843a0c1)
+THEN
+CharacterItemSetEvent(_Var1, S_RC_MIL_ElfTestBrazier_3d442415-2fb7-4e94-9091-1d80c843a0c1, "RC_MIL_TalkedToBrazier");
+
+IF
+DialogEnded("RC_MIL_ElfTestBrazier", (INTEGER)_Var1)
+AND
+DialogGetInvolvedPlayer(_Var1, 1, _Var2)
+THEN
+CharacterItemSetEvent(_Var2, S_RC_MIL_ElfTestBrazier_3d442415-2fb7-4e94-9091-1d80c843a0c1, "RC_MIL_StoppedTalkingToBrazier");
+
+IF
+ItemStatusRemoved(S_RC_MIL_ElfTestBrazier_3d442415-2fb7-4e94-9091-1d80c843a0c1, "BURNING", _)
+THEN
+DialogRequestStop(S_RC_MIL_ElfTestBrazier_3d442415-2fb7-4e94-9091-1d80c843a0c1);
+
+IF
+GlobalFlagSet((STRING)_Var1)
+AND
+DB_RC_MIL_ElfTestFlags(_Var1, 0)
+THEN
+NOT DB_RC_MIL_ElfTestFlags(_Var1, 0);
+DB_RC_MIL_ElfTestFlags(_Var1, 1);
+Proc_RC_MIL_CheckTestDone();
+
+IF
+GlobalFlagCleared((STRING)_Var1)
+AND
+DB_RC_MIL_ElfTestFlags(_Var1, 1)
+THEN
+NOT DB_RC_MIL_ElfTestFlags(_Var1, 1);
+DB_RC_MIL_ElfTestFlags(_Var1, 0);
+
+IF
+DialogEnded((STRING)_Var1, (INTEGER)_Var2)
+AND
+DB_RC_MIL_ElfTestDialogs(_, _Var1)
+AND
+GlobalGetFlag("RC_MIL_ElfTestOver", 0)
+AND
+DialogGetInvolvedPlayer(_Var2, 1, _Var4)
+AND
+PartyGetFlag(_Var4, "RC_MIL_VB_ElfTestElfComment", 0)
+THEN
+PartySetFlag(_Var4, "RC_MIL_VB_ElfTestElfComment", 0);
+StartVoiceBark("RC_MIL_VB_ElfTestElfComment", _Var4);
+
+IF
+CharacterEnteredTrigger((CHARACTERGUID)_Var1, S_RC_MIL_ElfTestArena_1a94f45b-2e6e-4036-a8e0-2d85b84dfa9c)
+AND
+PartyGetFlag(_Var1, "RC_MIL_VB_ElfTest", 0)
+THEN
+PartySetFlag(_Var1, "RC_MIL_VB_ElfTest", 0);
+StartVoiceBark("RC_MIL_VB_ElfTest", _Var1);
+
+IF
+CharacterEnteredTrigger((CHARACTERGUID)_Var1, S_RC_MIL_ElfTestArena_1a94f45b-2e6e-4036-a8e0-2d85b84dfa9c)
+THEN
+UserSetFlag(_Var1, "RC_MIL_EncounteredElfTest");
+
+PROC
+Proc_RC_MIL_CheckTestDone()
+AND NOT
+DB_RC_MIL_ElfTestFlags(_, 0)
+AND
+GlobalGetFlag("RC_MIL_ElfTestOver", 0)
+THEN
+GlobalSetFlag("RC_MIL_ElfTestOver");
+ObjectClearFlag(ITEMGUID_S_RC_MIL_ElfTestBrazier_3d442415-2fb7-4e94-9091-1d80c843a0c1, "RC_MIL_FoundVictor", 0);
+
+IF
+GlobalFlagSet("RC_MIL_ElfTestOver")
+AND
+DB_InRegion(_Var1, S_RC_MIL_ElfTestArena_1a94f45b-2e6e-4036-a8e0-2d85b84dfa9c)
+THEN
+UserSetFlag(_Var1, "RC_MIL_SolvedElfTest");
+
+IF
+StoryEvent((CHARACTERGUID)_Var1, "RC_MIL_BrazierFoundTalkTo")
+THEN
+Proc_StartDialog(0, "RC_MIL_ElfTestBrazier", ITEMGUID_S_RC_MIL_ElfTestBrazier_3d442415-2fb7-4e94-9091-1d80c843a0c1, _Var1);
+UserSetFlag(_Var1, "RC_MIL_SolvedElfTest", 0);
+
+IF
+DialogEnded("RC_MIL_ElfTestBrazier", _)
+AND
+ObjectGetFlag(ITEMGUID_S_RC_MIL_ElfTestBrazier_3d442415-2fb7-4e94-9091-1d80c843a0c1, "RC_MIL_FoundVictor", 1)
+AND
+QueryOnlyOnce("RC_MIL_ElfTestSetup")
+THEN
+Proc_RC_MIL_TestSetup();
+
+PROC
+Proc_RC_MIL_TestSetup()
+AND
+DB_RC_MIL_ElfTestWarriors(_Var1)
+THEN
+CharacterAppear(_Var1, 1, "RC_MIL_ElvenChallengerAppeared");
+CreateSurface(_Var1, "SurfaceNone", 2, 0);
+
+PROC
+Proc_RC_MIL_TestSetup()
+AND
+DB_RC_MIL_ElfTestDialogs(_Var1, _)
+THEN
+CreateSurface(_Var1, "SurfaceNone", 7, 0);
+
+PROC
+ReactOnKillCounter("RC_MIL_ElfTest")
+THEN
+SetOnStage(S_RC_MIL_ElfRewardChest_03159aad-c7c2-44a8-83b8-d3924ac312ec, 1);
+SetOnStage(ITEMGUID_S_RC_MIL_PhoenixHeart_8fd978de-2124-496b-8d57-ccbfda310390, 1);
+PlayEffect(S_RC_MIL_ElfRewardChest_03159aad-c7c2-44a8-83b8-d3924ac312ec, "RS3_FX_GP_ScriptedEvent_Teleport_GenericSmoke_01");
+PlayEffect(ITEMGUID_S_RC_MIL_PhoenixHeart_8fd978de-2124-496b-8d57-ccbfda310390, "RS3_FX_GP_ScriptedEvent_BurningHistorian_Reignite_01");
+
+PROC
+ReactOnKillCounter("RC_MIL_ElfTest")
+THEN
+GlobalSetFlag("RC_MIL_ElfChallengersDead");
+ObjectClearFlag(ITEMGUID_S_RC_MIL_ElfTestBrazier_3d442415-2fb7-4e94-9091-1d80c843a0c1, "RC_MIL_FoundVictor", 0);
+
+PROC
+ReactOnKillCounter("RC_MIL_ElfTest")
+AND
+DB_CounterCombatID("RC_MIL_ElfTest", _Var1)
+AND
+DB_IsPlayer(_Var2)
+AND
+DB_WasInCombat(_Var2, _Var1)
+THEN
+UserSetFlag(_Var2, "RC_MIL_CompletedElfTest");
+
+PROC
+Proc_ObjectLeftCombat((CHARACTERGUID)_Var1, _)
+AND
+DB_RC_MIL_ElfTestWarriors(_Var1)
+AND
+CharacterIsDead(_Var1, 0)
+AND
+DB_RC_MIL_ElfTestWarriors(_Var3)
+AND NOT
+DB_CombatCharacters(_Var3, _)
+THEN
+PROC_RC_MIL_CombatTrialFailed();
+
+PROC
+PROC_RC_MIL_CombatTrialFailed()
+AND
+DB_RC_MIL_ElfTestWarriors(_Var1)
+AND
+DB_WasInCombat(_Var1, _Var2)
+AND
+DB_WasInCombat(_Var3, _Var2)
+AND
+DB_IsPlayer(_Var3)
+THEN
+UserSetFlag(_Var3, "RC_MIL_FailedElfTest", 0);
+
+PROC
+PROC_RC_MIL_CombatTrialFailed()
+AND
+DB_RC_MIL_ElfTestWarriors(_Var1)
+AND
+DB_WasInCombat(_Var1, _Var2)
+AND
+DB_CombatCharacters(_Var3, _Var2)
+AND
+DB_IsPlayer(_Var3)
+THEN
+UserSetFlag(_Var3, "RC_MIL_FailedElfTest", 0);
+
+PROC
+PROC_RC_MIL_CombatTrialFailed()
+AND
+DB_RC_MIL_ElfTestWarriors(_Var1)
+AND
+GetPosition(_Var1, _Var2, _Var3, _Var4)
+THEN
+SetOnStage(_Var1, 0);
+PlayEffectAtPosition("RS3_FX_Char_Animals_Frog_A_Impact_Summon_Poison_01", _Var2, _Var3, _Var4);
+
+IF
+CharacterDied((CHARACTERGUID)_Var1)
+AND
+DB_RC_MIL_ElfTestWarriors(_Var1)
+THEN
+PlayEffect(_Var1, "RS3_FX_GP_Combat_Death_Totem_Fade_01");
+ProcObjectTimer(_Var1, "RC_MIL_DisappearChallenger", 2000);
+
+PROC
+ProcObjectTimerFinished((GUIDSTRING)_Var1, "RC_MIL_DisappearChallenger")
+AND
+GetPosition(_Var1, _Var2, _Var3, _Var4)
+THEN
+SetOnStage(_Var1, 0);
+PlayEffectAtPosition("RS3_FX_Char_Animals_Frog_A_Impact_Summon_Poison_01", _Var2, _Var3, _Var4);
+
+PROC
+PROC_RC_MIL_CombatTrialFailed()
+THEN
+GlobalSetFlag("RC_MIL_ElfTestFailed");
+
+
+EXITSECTION
+ENDEXITSECTION
+
+ParentTargetEdge "ReapersCoast"

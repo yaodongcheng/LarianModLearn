@@ -1,0 +1,431 @@
+Version 1
+SubGoalCombiner SGC_AND
+
+INITSECTION
+DB_ARX_Barracks_WhiteMagisterVault_Evidence(S_ARX_Barracks_WhiteMagisterVault_Evidence1_dfab7a60-37a1-4fda-a1a1-d7cff36f7c05, S_ARX_Barracks_WhiteMagisterVault_EvidenceContainer1_fbfb66cf-505f-4e0a-a68a-b7a760c209ac);
+DB_ARX_Barracks_WhiteMagisterVault_Evidence(S_ARX_Barracks_WhiteMagisterVault_Evidence2_01d59fd6-b7a0-4a1d-a16c-46f28980fc23, S_ARX_Barracks_WhiteMagisterVault_EvidenceContainer2_c5d2726a-fe71-4287-a7f4-3a2d0c15e390);
+DB_ARX_Barracks_WhiteMagisterVault_Evidence(S_ARX_Barracks_WhiteMagisterVault_Evidence3_9225011f-3bf0-4948-a947-f0059980577d, S_ARX_Barracks_WhiteMagisterVault_EvidenceContainer3_86463879-0c92-4249-a543-f500a6035d12);
+DB_ARX_Barracks_WhiteMagisterVault_BurntEvidence(S_ARX_Barracks_WhiteMagisterVault_EvidenceContainer1_fbfb66cf-505f-4e0a-a68a-b7a760c209ac, S_ARX_Barracks_WhiteMagisterVault_Evidence1_Burned_d504a4f6-2730-4b14-bf30-22fab0071e67);
+DB_ARX_Barracks_WhiteMagisterVault_BurntEvidence(S_ARX_Barracks_WhiteMagisterVault_EvidenceContainer2_c5d2726a-fe71-4287-a7f4-3a2d0c15e390, S_ARX_Barracks_WhiteMagisterVault_Evidence2_Burned_6d09c7e6-9cde-4bb6-a500-8cdc4a2e1153);
+DB_ARX_Barracks_WhiteMagisterVault_BurntEvidence(S_ARX_Barracks_WhiteMagisterVault_EvidenceContainer3_86463879-0c92-4249-a543-f500a6035d12, S_ARX_Barracks_WhiteMagisterVault_Evidence3_Burned_9b1dcbea-fa77-43c5-901e-41cb16e20d11);
+SetOnStage(S_ARX_Barracks_WhiteMagisterVault_Evidence1_Burned_d504a4f6-2730-4b14-bf30-22fab0071e67, 0);
+SetOnStage(S_ARX_Barracks_WhiteMagisterVault_Evidence2_Burned_6d09c7e6-9cde-4bb6-a500-8cdc4a2e1153, 0);
+SetOnStage(S_ARX_Barracks_WhiteMagisterVault_Evidence3_Burned_9b1dcbea-fa77-43c5-901e-41cb16e20d11, 0);
+ItemSetCanInteract(ITEMGUID_S_ARX_Barracks_WhiteMagisterVault_SecretWallPassage_1c0aa312-009b-40ba-a92f-3457f48c53a9, 0);
+DB_ARX_Barracks_WhiteMagisterVault_Gheists(S_ARX_Barracks_WhiteMagisterVault_Gheist1_bf45ee01-e395-4169-9013-4dd96e422e07);
+DB_ARX_Barracks_WhiteMagisterVault_Gheists(S_ARX_Barracks_WhiteMagisterVault_Gheist2_99366040-3f84-4fbb-ac32-b26fe0378ae8);
+DB_ARX_Barracks_WhiteMagisterVault_Gheists(S_ARX_Barracks_WhiteMagisterVault_Gheist3_1a3dd9ea-1c4c-440e-82bf-0e9ca9ac6e30);
+DB_Ghosts(S_ARX_Barracks_WhiteMagisterVault_MagisterCorpse5_a87ede6d-0477-45ba-9fe6-986454acdacc, S_ARX_Barracks_WhiteMagisterVault_MagisterCorpse5_Ghost_f35de200-ac3f-4e4f-9f57-d3790d4624d2, "ARX_Barracks_WhiteMagisterVault_MagisterCorpse5_Ghost");
+DB_Ghosts(S_ARX_Barracks_WhiteMagisterVault_MagisterCorpse1_42da85cd-56cf-4485-81a1-c1cda52916a9, S_ARX_Barracks_WhiteMagisterVault_MagisterCorpse1_Ghost_6575823e-ae67-4203-9560-2169f981c5f1, "ARX_Barracks_WhiteMagisterVault_MagisterCorpse1_Ghost");
+ProcTriggerRegisterForPlayers(S_ARX_Barracks_WhiteMagisterVault_RegionTrigger_c03d300b-0c04-425e-8af0-8644cb5a1c15);
+ProcTriggerRegisterForPlayers(TRIGGERGUID_S_ARX_Barracks_2ndFloor_Archives_TreasureRoom_320e38f2-03d9-4a52-b9fc-6177e3a5bedf);
+ItemSetCanInteract(S_ARX_Barracks_WhiteMagisterVault_ToArchives_3345cde5-07ef-4361-b9fb-388d623b1aac, 0);
+
+KBSECTION
+IF
+DB_ARX_Barracks_WhiteMagisterVault_Evidence(_Var1, _Var2)
+THEN
+ItemToInventory(_Var1, _Var2);
+
+PROC
+ProcRegionStarted("ARX_Main")
+AND
+GlobalGetFlag("RC_DW_DwarvenSabotage_GaveLetterToMagister", 1)
+AND
+GetInventoryOwner(S_RC_DW_WC_EmpressLetter_ffaa5485-ccc8-4e66-a69b-52316fdc7c82, _Var1)
+AND NOT
+DB_IsPlayer(_Var1)
+THEN
+TeleportTo(S_RC_DW_WC_EmpressLetter_ffaa5485-ccc8-4e66-a69b-52316fdc7c82, S_ARX_Barracks_RC_DW_WC_EmpressLetter_Trigger_04ff12ac-8c91-46ef-8f67-851782329ec5);
+
+IF
+DB_ARX_Barracks_WhiteMagisterVault_Gheists(_Var1)
+THEN
+DB_DontCreateMurder(_Var1);
+
+PROC
+ProcRegionStarted("ARX_Main")
+AND
+CharacterIsDead(S_RC_DW_WhiteMagister_b1bdd004-a286-4ad5-9826-a763d672b2a7, 1)
+AND
+QueryOnlyOnce("ARX_Barracks_WhiteMagisterVault_ResurrectWhiteMagister")
+THEN
+GlobalSetFlag("ARX_Barracks_WhiteMagisterVault_WhiteMagisterWasDeadInRC");
+DB_Ghosts(S_ARX_Barracks_WhiteMagisterVault_WhiteMagisterGhost_93f45e9f-1ec5-4b6c-8733-4f4b9a54c2cd, "ARX_Barracks_WhiteMagisterVault_WhiteMagisterGhost");
+CharacterSetForceSynch(S_RC_DW_WhiteMagister_b1bdd004-a286-4ad5-9826-a763d672b2a7, 1);
+
+PROC
+ProcRegionStarted("ARX_Main")
+AND
+CharacterIsDead(S_RC_DW_WhiteMagister_b1bdd004-a286-4ad5-9826-a763d672b2a7, 1)
+THEN
+SetRelationFactionToPlayers("ARX_Barracks_WhiteMagister", 0);
+
+PROC
+ProcRegionStarted("ARX_Main")
+AND
+CharacterIsDead(S_RC_DW_WhiteMagister_b1bdd004-a286-4ad5-9826-a763d672b2a7, 0)
+AND
+QueryOnlyOnce("ARX_Barracks_WhiteMagisterVault_WhiteMagister_SetUp")
+THEN
+CharacterLevelUpTo(CHARACTERGUID_S_RC_DW_WhiteMagister_b1bdd004-a286-4ad5-9826-a763d672b2a7, 18);
+SetOnStage(S_RC_DW_WhiteMagister_b1bdd004-a286-4ad5-9826-a763d672b2a7, 1);
+CharacterSetCanTrade(S_RC_DW_WhiteMagister_b1bdd004-a286-4ad5-9826-a763d672b2a7, 0);
+ItemToInventory(S_ARX_Barracks_WhiteMagisterVault_ReimondsJournal_aeb8cffd-a213-4279-931c-3f73967efa4f, S_RC_DW_WhiteMagister_b1bdd004-a286-4ad5-9826-a763d672b2a7);
+DB_Ghosts(S_RC_DW_WhiteMagister_b1bdd004-a286-4ad5-9826-a763d672b2a7, S_ARX_Barracks_WhiteMagisterVault_WhiteMagisterGhost_93f45e9f-1ec5-4b6c-8733-4f4b9a54c2cd, "ARX_Barracks_WhiteMagisterVault_WhiteMagisterGhost");
+ProcRemoveAllDialogEntriesForSpeaker(S_RC_DW_WhiteMagister_b1bdd004-a286-4ad5-9826-a763d672b2a7);
+DB_Dialogs(S_RC_DW_WhiteMagister_b1bdd004-a286-4ad5-9826-a763d672b2a7, "ARX_Barracks_WhiteMagisterVault_WhiteMagister");
+DB_DontCreateMurder(S_RC_DW_WhiteMagister_b1bdd004-a286-4ad5-9826-a763d672b2a7);
+TeleportTo(S_RC_DW_WhiteMagister_b1bdd004-a286-4ad5-9826-a763d672b2a7, swsws_f0c8f785-d51c-4b26-ad48-e42fad1e7f14);
+SetFaction(S_RC_DW_WhiteMagister_b1bdd004-a286-4ad5-9826-a763d672b2a7, "ARX_Barracks_WhiteMagister");
+ProcCharacterDisableAllCrimes(S_RC_DW_WhiteMagister_b1bdd004-a286-4ad5-9826-a763d672b2a7);
+DB_CrimeReaction_DoNotInterrogate(S_RC_DW_WhiteMagister_b1bdd004-a286-4ad5-9826-a763d672b2a7);
+GlobalSetFlag("ARX_Barracks_WhiteMagister_IsInARX");
+GlobalSetFlag("ARX_Barracks_WhiteMagister_StartOnSightScript");
+
+IF
+TextEventSet("ARX_Barracks_WhiteMagisterVault_WhiteMagister_IsInARX")
+THEN
+GlobalClearFlag("ARX_Barracks_WhiteMagister_IsInARX");
+GlobalSetFlag("ARX_Barracks_WhiteMagister_IsInARX");
+
+IF
+ObjectFlagSet("ARX_Barracks_WhiteMagisterVault_WhiteMagister_CheckGrenades", (CHARACTERGUID)_Var1, (INTEGER)_Var2)
+AND
+CharacterGetItemTemplateCount(_Var1, "GRN_Grenade_Molotov_A_5208b121-64fa-4704-8924-c61c576e1ac5", _Var3)
+AND
+_Var3 > 0
+THEN
+ObjectSetFlag(_Var1, "ARX_Barracks_WhiteMagisterVault_WhiteMagister_HasGrenades");
+
+IF
+CharacterMovedItem((CHARACTERGUID)_Var1, (ITEMGUID)_Var2)
+AND
+DB_ARX_Barracks_WhiteMagisterVault_Evidence(_, _Var2)
+AND
+DB_IsPlayer(_Var1)
+THEN
+ObjectSetFlag(_Var2, "ARX_Barracks_WhiteMagisterVault_EvidenceContainterMoved");
+
+IF
+ObjectEnteredCombat((CHARACTERGUID)_Var1, _)
+AND
+DB_ARX_Barracks_WhiteMagisterVault_Gheists(_Var1)
+AND
+QueryOnlyOnce("ARX_CombatSave_Reimond")
+THEN
+AutoSave();
+
+IF
+AttackedByObject((CHARACTERGUID)_Var1, (CHARACTERGUID)_Var2, (GUIDSTRING)_Var3, _, _)
+AND
+DB_ARX_Barracks_WhiteMagisterVault_Gheists(_Var1)
+AND
+DB_IsPlayer(_Var2)
+AND
+CharacterIsInCombat(_Var1, 0)
+AND
+CharacterIsDead(S_RC_DW_WhiteMagister_b1bdd004-a286-4ad5-9826-a763d672b2a7, 0)
+THEN
+SetStoryEvent(_Var2, "ARX_Barracks_WhiteMagisterVault_PlayerAttacked");
+CharacterLookAt(_Var1, _Var2);
+CharacterLookAt(S_RC_DW_WhiteMagister_b1bdd004-a286-4ad5-9826-a763d672b2a7, _Var1);
+
+IF
+AttackedByObject(S_RC_DW_WhiteMagister_b1bdd004-a286-4ad5-9826-a763d672b2a7, (CHARACTERGUID)_Var1, (GUIDSTRING)_Var2, _, _)
+AND
+DB_IsPlayer(_Var1)
+AND
+CharacterIsInCombat(S_RC_DW_WhiteMagister_b1bdd004-a286-4ad5-9826-a763d672b2a7, 0)
+AND
+CharacterIsDead(S_RC_DW_WhiteMagister_b1bdd004-a286-4ad5-9826-a763d672b2a7, 0)
+THEN
+SetStoryEvent(_Var1, "ARX_Barracks_WhiteMagisterVault_PlayerAttacked");
+
+IF
+AttackedByObject((CHARACTERGUID)_Var1, (CHARACTERGUID)_Var2, (GUIDSTRING)_Var3, _, _)
+AND
+DB_ARX_Barracks_WhiteMagisterVault_Gheists(_Var1)
+AND
+DB_IsPlayer(_Var2)
+AND
+CharacterIsInCombat(_Var1, 0)
+AND
+CharacterIsDead(S_RC_DW_WhiteMagister_b1bdd004-a286-4ad5-9826-a763d672b2a7, 1)
+THEN
+CharacterSetRelationIndivFactionToIndivFaction(_Var1, _Var2, 0);
+CharacterSetRelationIndivFactionToIndivFaction(_Var2, _Var1, 0);
+
+IF
+CharacterMovedItem((CHARACTERGUID)_Var1, S_ARX_Barracks_WhiteMagisterVault_SecretLightSource_4be966f0-9bea-4cdc-9fd7-edae2e0763f2)
+AND
+GlobalGetFlag("S_ARX_Barracks_WhiteMagisterVault_SecretPassageIsOpen", 0)
+THEN
+SetStoryEvent(S_ARX_Barracks_WhiteMagisterVault_SecretPressurePlate_034cffee-0691-476e-89ab-1253af3e9a24, "RevealFromStory");
+
+IF
+CharacterItemEvent((CHARACTERGUID)_Var1, S_ARX_Barracks_WhiteMagisterVault_SecretPressurePlate_034cffee-0691-476e-89ab-1253af3e9a24, "S_ARX_Barracks_WhiteMagisterVault_MoveSecretWall")
+AND
+GlobalGetFlag("S_ARX_Barracks_WhiteMagisterVault_SecretPassageIsOpen", 0)
+AND
+DB_IsPlayer(_Var2)
+AND
+ObjectIsInTrigger(_Var2, S_ARX_Barracks_WhiteMagisterVault_RegionTrigger_c03d300b-0c04-425e-8af0-8644cb5a1c15, 1)
+AND
+QueryOnlyOnce("S_ARX_Barracks_WhiteMagisterVault_MoveSecretWall")
+THEN
+SetStoryEvent(S_ARX_Barracks_WhiteMagisterVault_SecretPressurePlate_034cffee-0691-476e-89ab-1253af3e9a24, "RevealFromStory");
+ItemOpen(ITEMGUID_S_ARX_Barracks_WhiteMagisterVault_SecretWallPassage_1c0aa312-009b-40ba-a92f-3457f48c53a9);
+ItemSetCanInteract(S_ARX_Barracks_WhiteMagisterVault_ToArchives_3345cde5-07ef-4361-b9fb-388d623b1aac, 1);
+GlobalSetFlag("S_ARX_Barracks_WhiteMagisterVault_SecretPassageIsOpen");
+
+IF
+CharacterUsedItem((CHARACTERGUID)_Var1, S_ARX_Barracks_2ndFloor_Archives_To2ndFloorVault_37aad082-c021-4f96-b28a-513fe6a882bf)
+THEN
+ItemSetForceSynch(ITEMGUID_S_ARX_Barracks_WhiteMagisterVault_SecretWallPassage_1c0aa312-009b-40ba-a92f-3457f48c53a9, 0);
+
+IF
+CharacterUsedItem((CHARACTERGUID)_Var1, S_ARX_Barracks_2ndFloor_Archives_To2ndFloorVault_37aad082-c021-4f96-b28a-513fe6a882bf)
+AND
+GlobalGetFlag("S_ARX_Barracks_WhiteMagisterVault_SecretPassageIsOpen", 0)
+AND
+ItemIsLocked(S_ARX_Barracks_2ndFloor_Archives_To2ndFloorVault_37aad082-c021-4f96-b28a-513fe6a882bf, 0)
+THEN
+SetStoryEvent(S_ARX_Barracks_WhiteMagisterVault_SecretPressurePlate_034cffee-0691-476e-89ab-1253af3e9a24, "RevealFromStory");
+ItemOpen(ITEMGUID_S_ARX_Barracks_WhiteMagisterVault_SecretWallPassage_1c0aa312-009b-40ba-a92f-3457f48c53a9);
+ItemSetCanInteract(S_ARX_Barracks_WhiteMagisterVault_ToArchives_3345cde5-07ef-4361-b9fb-388d623b1aac, 1);
+GlobalSetFlag("S_ARX_Barracks_WhiteMagisterVault_SecretPassageIsOpen");
+
+IF
+CharacterEnteredTrigger((CHARACTERGUID)_Var1, TRIGGERGUID_S_ARX_Barracks_2ndFloor_Archives_TreasureRoom_320e38f2-03d9-4a52-b9fc-6177e3a5bedf)
+AND
+DB_IsPlayer(_Var1)
+THEN
+UnlockSecretRegion(TRIGGERGUID_S_ARX_Barracks_2ndFloor_Archives_TreasureRoom_320e38f2-03d9-4a52-b9fc-6177e3a5bedf);
+
+IF
+ObjectFlagSet("ARX_Barracks_WhiteMagisterVault_EvidenceContainer_Burnt", (GUIDSTRING)_Var1, (INTEGER)_Var2)
+AND
+DB_ARX_Barracks_WhiteMagisterVault_Evidence(_Var3, _Var1)
+AND
+DB_ARX_Barracks_WhiteMagisterVault_BurntEvidence(_Var1, _Var4)
+AND
+GetInventoryOwner(_Var3, _Var1)
+THEN
+SetOnStage(_Var3, 0);
+SetOnStage(_Var4, 1);
+
+IF
+ObjectFlagSet("ARX_Barracks_WhiteMagisterVault_EvidenceContainer_Burnt", (GUIDSTRING)_Var1, (INTEGER)_Var2)
+AND NOT
+DB_GlobalFlag("ARX_Barracks_WhiteMagisterVault_EvidenceContainer_Burnt")
+THEN
+GlobalSetFlag("ARX_Barracks_WhiteMagisterVault_EvidenceContainer_Burnt");
+
+IF
+GameBookInterfaceClosed(S_ARX_Barracks_WhiteMagisterVault_ReimondsJournal_aeb8cffd-a213-4279-931c-3f73967efa4f, (CHARACTERGUID)_Var1)
+THEN
+UserSetFlag(_Var1, "ARX_Barracks_PlayerKnows_WhiteMagisterTruth");
+
+IF
+ObjectFlagSet("ARX_Barracks_PlayerKnows_WhiteMagisterTruth", (CHARACTERGUID)_Var1, _)
+THEN
+UserSetFlag(_Var1, "QuestUpdate_ARX_Barracks_LearnedWhiteMagisterSecret");
+PartySetFlag(_Var1, "QuestUpdate_ARX_HuntingForDallis_DefeatedReimond");
+UserSetFlag(_Var1, "QuestUpdate_CORE_Chapter6_ARX_DallisToTomb");
+
+IF
+GameBookInterfaceClosed(S_ARX_Barracks_WhiteMagisterVault_ReimondsJournal_aeb8cffd-a213-4279-931c-3f73967efa4f, (CHARACTERGUID)_Var1)
+AND NOT
+QRY_ARX_KemmIsDeadOrUnspeakable()
+THEN
+UserSetFlag(_Var1, "QuestUpdate_ARX_Barracks_ReportedKemm");
+
+IF
+GameBookInterfaceClosed(S_ARX_Barracks_WhiteMagisterVault_ReimondsJournal_aeb8cffd-a213-4279-931c-3f73967efa4f, (CHARACTERGUID)_Var1)
+AND
+QRY_ARX_KemmIsDeadOrUnspeakable()
+AND
+UserGetFlag(_Var1, "QuestUpdate_ARX_Barracks_ReportedKemm", 0)
+THEN
+UserSetFlag(_Var1, "QuestUpdate_ARX_Barracks_ReportedKemmDead");
+
+IF
+ObjectFlagSet("ARX_Kemm_Party_SawKemmDead", (CHARACTERGUID)_Var1, _)
+AND
+DB_IsPlayer(_Var1)
+AND
+QuestAccepted(_Var1, "ARX_Barracks", 1)
+AND
+ObjectGetFlag(_Var1, "QuestUpdate_ARX_Barracks_ReportedKemm", 0)
+AND
+ObjectGetFlag(_Var1, "QuestUpdate_ARX_Barracks_LearnedWhiteMagisterSecret", 1)
+THEN
+UserSetFlag(_Var1, "QuestUpdate_ARX_Barracks_ReportedKemmDead");
+
+IF
+ObjectFlagSet("ARX_Kemm_Party_SawKemmDead", (CHARACTERGUID)_Var1, _)
+AND
+DB_IsPlayer(_Var1)
+AND
+ObjectGetFlag(_Var1, "ARX_KnowsAbout_KemmInvestigation", 1)
+THEN
+UserSetFlag(_Var1, "QuestUpdate_ARX_HuntingForDallis_KemmAtBarracks_Dead");
+
+IF
+ObjectFlagSet("ARX_KnowsAbout_KemmInvestigation", (CHARACTERGUID)_Var1, _)
+AND
+ObjectGetFlag(_Var1, "ARX_Kemm_Party_SawKemmDead", 1)
+THEN
+UserSetFlag(_Var1, "QuestUpdate_ARX_HuntingForDallis_KemmAtBarracks_Dead");
+
+IF
+ObjectFlagSet("QuestUpdate_ARX_Barracks_LearnedWhiteMagisterSecret", (CHARACTERGUID)_Var1, _)
+AND
+ObjectGetFlag(_Var1, "ARX_Kemm_Party_SawKemmDead", 1)
+THEN
+UserSetFlag(_Var1, "QuestUpdate_ARX_Barracks_ReportedKemmDead");
+
+QRY
+QRY_ARX_KemmIsDeadOrUnspeakable()
+AND
+DB_Dead(CHARACTERGUID_S_ARX_Kemm_3e6ead7d-dd35-4f9d-985e-af2de0d76d28)
+THEN
+DB_NOOP(1);
+
+QRY
+QRY_ARX_KemmIsDeadOrUnspeakable()
+AND
+DB_GlobalFlag("ARX_Cathedral_DisapArhu_KemmAppeared")
+THEN
+DB_NOOP(1);
+
+QRY
+QRY_ARX_KemmIsDeadOrUnspeakable()
+AND
+DB_GlobalFlag("ARX_KemmVault_ArhusPrison_KemmAppeared")
+THEN
+DB_NOOP(1);
+
+QRY
+QRY_ARX_KemmIsDeadOrUnspeakable()
+AND
+ObjectIsOnStage(CHARACTERGUID_S_ARX_Kemm_3e6ead7d-dd35-4f9d-985e-af2de0d76d28, 0)
+THEN
+DB_NOOP(1);
+
+QRY
+QRY_ARX_KemmIsDeadOrUnspeakable()
+AND
+DB_GlobalFlag("ARX_InitiateGenocide")
+THEN
+DB_NOOP(1);
+
+IF
+CharacterEnteredTrigger((CHARACTERGUID)_Var1, S_ARX_Barracks_WhiteMagisterVault_RegionTrigger_c03d300b-0c04-425e-8af0-8644cb5a1c15)
+THEN
+UserSetFlag(_Var1, "QuestUpdate_ARX_Barracks_VisitedHQ");
+
+IF
+CharacterEnteredTrigger((CHARACTERGUID)_Var1, S_ARX_Barracks_WhiteMagisterVault_RegionTrigger_c03d300b-0c04-425e-8af0-8644cb5a1c15)
+AND
+DB_IsPlayer(_Var1)
+AND
+QueryOnlyOnce("ARX_AD_Barracks_WhiteMagisterVault_EnteredVault")
+THEN
+Proc_StartDialog(1, "ARX_AD_Barracks_WhiteMagisterVault_EnteredVault", _Var1);
+
+IF
+CharacterCharacterEvent(S_RC_DW_WhiteMagister_b1bdd004-a286-4ad5-9826-a763d672b2a7, (CHARACTERGUID)_Var1, "ARX_Barracks_WhiteMagisterVault_WhiteMagister_SpottedPlayer")
+AND NOT
+QRY_IsSummonOrPartyFollower(_Var1)
+THEN
+DialogRequestStop(_Var1);
+Proc_StartDialog(0, "ARX_Barracks_WhiteMagisterVault_WhiteMagister", S_RC_DW_WhiteMagister_b1bdd004-a286-4ad5-9826-a763d672b2a7, _Var1);
+
+IF
+DialogStarted("ARX_Barracks_WhiteMagisterVault_WhiteMagister", (INTEGER)_Var1)
+THEN
+DB_ARX_Barracks_WhiteMagisterVault_WhiteMagister(_Var1);
+
+IF
+DialogStarted("ARX_Barracks_WhiteMagisterVault_WhiteMagister", (INTEGER)_Var1)
+AND
+DB_IsPlayer(_Var2)
+AND NOT
+DB_DialogPlayers(_Var1, _Var2, _)
+AND
+CharacterCanSee(S_RC_DW_WhiteMagister_b1bdd004-a286-4ad5-9826-a763d672b2a7, _Var2, 1)
+AND
+QRY_SpeakerIsAvailable(_Var2)
+THEN
+DialogAddActor(_Var1, _Var2);
+
+IF
+DialogEnded("ARX_Barracks_WhiteMagisterVault_WhiteMagister", (INTEGER)_Var1)
+AND
+DB_ARX_Barracks_WhiteMagisterVault_WhiteMagister(_Var1)
+THEN
+NOT DB_ARX_Barracks_WhiteMagisterVault_WhiteMagister(_Var1);
+
+IF
+CharacterStoleItem((CHARACTERGUID)_Var1, (ITEMGUID)_Var2, (REAL)_Var3, (REAL)_Var4, (REAL)_Var5, (CHARACTERGUID)_Var6, (ITEMGUID)_Var7, _)
+AND
+DB_ARX_Barracks_WhiteMagisterVault_WhiteMagister(_Var9)
+AND
+CharacterCanSee(S_RC_DW_WhiteMagister_b1bdd004-a286-4ad5-9826-a763d672b2a7, _Var1, 1)
+THEN
+ProcForceStopDialog(S_RC_DW_WhiteMagister_b1bdd004-a286-4ad5-9826-a763d672b2a7);
+Proc_StartDialog(1, "GEB_AD_AttackHelp", S_RC_DW_WhiteMagister_b1bdd004-a286-4ad5-9826-a763d672b2a7);
+
+IF
+CharacterMovedItem((CHARACTERGUID)_Var1, (ITEMGUID)_Var2)
+AND
+DB_ARX_Barracks_WhiteMagisterVault_WhiteMagister(_Var3)
+AND
+CharacterCanSee(S_RC_DW_WhiteMagister_b1bdd004-a286-4ad5-9826-a763d672b2a7, _Var1, 1)
+THEN
+ProcForceStopDialog(S_RC_DW_WhiteMagister_b1bdd004-a286-4ad5-9826-a763d672b2a7);
+Proc_StartDialog(1, "GEB_AD_AttackHelp", S_RC_DW_WhiteMagister_b1bdd004-a286-4ad5-9826-a763d672b2a7);
+
+IF
+CharacterCharacterEvent(S_RC_DW_WhiteMagister_b1bdd004-a286-4ad5-9826-a763d672b2a7, (CHARACTERGUID)_Var1, "ARX_Barracks_WhiteMagisterVault_WhiteMagister_SpottedPlayer")
+AND
+QRY_IsSummonOrPartyFollower(_Var1)
+AND
+CharacterGetOwner(_Var1, _Var2)
+THEN
+CharacterSetRelationIndivFactionToIndivFaction(S_RC_DW_WhiteMagister_b1bdd004-a286-4ad5-9826-a763d672b2a7, _Var2, 0);
+CharacterSetRelationIndivFactionToIndivFaction(_Var2, S_RC_DW_WhiteMagister_b1bdd004-a286-4ad5-9826-a763d672b2a7, 0);
+SetStoryEvent(_Var2, "ARX_Barracks_WhiteMagisterVault_PlayerAttacked");
+
+IF
+DialogEnded("ARX_Barracks_WhiteMagisterVault_WhiteMagister", (INTEGER)_Var1)
+AND
+DialogGetInvolvedNPC(_Var1, 1, _Var2)
+AND
+DialogGetInvolvedPlayer(_Var1, 1, _Var3)
+THEN
+UserSetFlag(_Var3, "ARX_Barracks_WhiteMagisterVault_WhiteMagister");
+CharacterSetRelationIndivFactionToIndivFaction(_Var2, _Var3, 0);
+CharacterSetRelationIndivFactionToIndivFaction(_Var3, _Var2, 0);
+
+IF
+TextEventSet("StelFromReimond")
+AND
+DB_IsPlayer(_Var1)
+THEN
+MoveAllItemsTo(CHARACTERGUID_S_RC_DW_WhiteMagister_b1bdd004-a286-4ad5-9826-a763d672b2a7, _Var1);
+
+IF
+ObjectFlagSet("ARX_Barracks_WhiteMagisterVault_CastSuicideSkill", CHARACTERGUID_S_RC_DW_WhiteMagister_b1bdd004-a286-4ad5-9826-a763d672b2a7, _)
+AND
+GetPosition(CHARACTERGUID_S_RC_DW_WhiteMagister_b1bdd004-a286-4ad5-9826-a763d672b2a7, _Var2, _Var3, _Var4)
+THEN
+CharacterUseSkillAtPosition(CHARACTERGUID_S_RC_DW_WhiteMagister_b1bdd004-a286-4ad5-9826-a763d672b2a7, "Projectile_Grenade_Molotov", _Var2, _Var3, _Var4, 0, 1);
+
+
+EXITSECTION
+ENDEXITSECTION
+
+ParentTargetEdge "ARX"

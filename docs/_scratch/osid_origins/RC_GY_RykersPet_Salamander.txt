@@ -1,0 +1,67 @@
+Version 1
+SubGoalCombiner SGC_AND
+
+INITSECTION
+DB_Dialogs(CHARACTERGUID_S_RC_GY_RykersPet_Salamander_5abdaa64-16e3-4e58-b276-a82b5d3d5ec9, "RC_GY_RykersPet_Salamander");
+
+KBSECTION
+IF
+CharacterDied(CHARACTERGUID_S_RC_GY_RykersPet_Salamander_5abdaa64-16e3-4e58-b276-a82b5d3d5ec9)
+AND
+DB_IsPlayer(_Var1)
+AND
+ObjectGetFlag(_Var1, "RC_GY_RykersPet_Salamander_Talked", 1)
+THEN
+ObjectSetFlag(_Var1, "QuestUpdate_RC_GY_LizardSpeakingLizard_SalamanderDead");
+
+IF
+DialogStarted("RC_GY_RykersPet_Salamander", (INTEGER)_Var1)
+AND
+DialogGetInvolvedPlayer(_Var1, 1, _Var2)
+THEN
+ObjectSetFlag(_Var2, "RC_GY_RykersPet_Salamander_Talked");
+
+IF
+DialogStarted("RC_GY_EternalFire_Chest", _)
+AND
+HasActiveStatus(ITEMGUID_S_RC_GY_EternalFireChest_a40e8bb7-b4c4-401b-80b7-34a450edb34e, "BURNING", 1)
+THEN
+ObjectSetFlag(ITEMGUID_S_RC_GY_EternalFireChest_a40e8bb7-b4c4-401b-80b7-34a450edb34e, "RC_GY_EternalFireChestBurning");
+
+IF
+DialogEnded("RC_GY_EternalFire_Chest", _)
+THEN
+ObjectClearFlag(ITEMGUID_S_RC_GY_EternalFireChest_a40e8bb7-b4c4-401b-80b7-34a450edb34e, "RC_GY_EternalFireChestBurning", 0);
+
+IF
+CharacterUsedItem((CHARACTERGUID)_Var1, ITEMGUID_S_RC_GY_EternalFireChest_a40e8bb7-b4c4-401b-80b7-34a450edb34e)
+AND
+GlobalGetFlag("RC_GY_EternalFireChestOpened", 0)
+AND
+ItemIsLocked(ITEMGUID_S_RC_GY_EternalFireChest_a40e8bb7-b4c4-401b-80b7-34a450edb34e, 1)
+THEN
+Proc_StartDialog(0, "RC_GY_EternalFire_Chest", ITEMGUID_S_RC_GY_EternalFireChest_a40e8bb7-b4c4-401b-80b7-34a450edb34e, _Var1);
+
+IF
+ObjectFlagSet("RC_GY_EternalFire_OpenedChest", (CHARACTERGUID)_Var1, _)
+THEN
+ItemUnLock(ITEMGUID_S_RC_GY_EternalFireChest_a40e8bb7-b4c4-401b-80b7-34a450edb34e);
+GlobalSetFlag("RC_GY_EternalFireChestOpened");
+
+IF
+ItemDestroyed(ITEMGUID_S_RC_GY_EternalFireChest_a40e8bb7-b4c4-401b-80b7-34a450edb34e)
+THEN
+GlobalSetFlag("RC_GY_EternalFireChestOpened");
+
+IF
+ItemDestroyed(ITEMGUID_S_RC_GY_EternalFireChest_a40e8bb7-b4c4-401b-80b7-34a450edb34e)
+AND
+DB_IsPlayer(_Var1)
+THEN
+ObjectSetFlag(_Var1, "QuestUpdate_RC_GY_LizardSpeakingLizard_ChestOpened");
+
+
+EXITSECTION
+ENDEXITSECTION
+
+ParentTargetEdge "ReapersCoast"

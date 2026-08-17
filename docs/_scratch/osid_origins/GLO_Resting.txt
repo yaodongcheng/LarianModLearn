@@ -1,0 +1,18 @@
+Version 1
+SubGoalCombiner SGC_AND
+
+INITSECTION
+DB_RestTemplates("FUR_Humans_Camping_Sleepingbag_B_4d7216c9-c21e-4ab0-b98e-97d744798912", "STORY_PartyRest", 10, 17);
+
+KBSECTION
+IF
+CharacterUsedItemTemplate((CHARACTERGUID)_Var1, (STRING)_Var2, _)
+AND
+DB_RestTemplates(_Var2, _Var4, _Var5, _Var6)
+THEN
+UserRest(_Var1, _Var4, _Var5, _Var6);
+
+
+EXITSECTION
+ENDEXITSECTION
+

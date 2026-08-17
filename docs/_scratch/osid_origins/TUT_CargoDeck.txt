@@ -1,0 +1,1220 @@
+Version 1
+SubGoalCombiner SGC_AND
+
+INITSECTION
+DB_AutoSaveTrigger(TRIGGERGUID_S_TUT_CargoDeck_AutoSave_eaad798a-aead-4f62-b321-3fdf4b8aebf7);
+DB_AutoSaveTrigger(TRIGGERGUID_S_TUT_CargoDeck_AutoSave_CharacterCreation_1e515f82-bab7-4b8a-9fbd-e9c58387b95a);
+DB_TutorialInfo("TUT_Exit", "TUT_CAT_General", "TUT_Exit_Title", 0, 0, -1, 2, 0, 0);
+DB_TutorialInfo("TUT_CombineCrafting", "TUT_CAT_Inventory", "TUT_CombineCrafting_Title", 0, 0, -1, 2, 0, 0);
+DB_TutorialInfo("TUT_Bed", "TUT_CAT_Exploring", "TUT_Bed_Title", 0, 0, -1, 2, 0, 0);
+DB_TutorialInfo("TUT_PressurePlatePuzzle", "TUT_CAT_Exploring", "TUT_PressurePlatePuzzle_Title", 0, 0, -1, 2, 0, 0);
+DB_TutorialInfo("TUT_CraftingRecipe", "TUT_CAT_Inventory", "TUT_CraftingRecipe_Title", 0, 0, -1, 2, 0, 0);
+DB_TutorialInfo("TUT_Locked_UseKey", "TUT_CAT_Exploring", "TUT_Locked_UseKey_Title", 0, 0, -1, 2, 0, 0);
+DB_TutorialInfo("TUT_SurfaceOil", "TUT_CAT_Combat", "TUT_SurfaceOil_Title", 0, 0, -1, 2, 0, 0);
+DB_TutorialInfo("TUT_ActiveSearch_Controller", "TUT_CAT_Exploring", "TUT_ActiveSearch_Controller_Title", 2, 0, -1, 2, 0, 0);
+DB_TutorialInfo("TUT_SelectionActiveSearch_Controller", "TUT_CAT_Exploring", "TUT_SelectionActiveSearch_Controller_Title", 2, 0, -1, 2, 0, 0);
+DB_TutorialInfo("TUT_Drag", "TUT_CAT_Exploring", "TUT_Drag_Title", 0, 0, -1, 2, 0, 0);
+DB_TutorialInfo("TUT_ScrollLightning", "TUT_CAT_Combat", "TUT_ScrollLightning_Title", 0, 0, -1, 1, 0, 0);
+DB_TutorialInfo("TUT_Locked_UseLockpick", "TUT_CAT_Exploring", "TUT_Locked_UseLockpick_Title", 0, 0, -1, 1, 0, 0);
+DB_TutorialInfo("TUT_SurfacePoison", "TUT_CAT_Combat", "TUT_SurfacePoison_Title", 0, 0, -1, 1, 0, 0);
+DB_TutorialInfo("TUT_Locked_PressurePlate", "TUT_CAT_Exploring", "TUT_Locked_PressurePlate_Title", 0, 0, -1, 1, 0, 0);
+DB_S_TUT_CargoDeck_PressurePlate(ITEMGUID_S_TUT_CargoDeck_SecurityRoomOne_PressurePlateOne_34fc1380-4bf7-490b-b41f-3443681b6ab9, "S_TUT_CargoDeck_SecurityRoomOne_PressurePlateOne_On", "TUT_CargoDeck_SecurityRoomOne", 1, "ON");
+DB_S_TUT_CargoDeck_PressurePlate(ITEMGUID_S_TUT_CargoDeck_SecurityRoomOne_PressurePlateTwo_d164d340-90ca-4ac2-9d34-a198c767b31f, "S_TUT_CargoDeck_SecurityRoomOne_PressurePlateTwo_On", "TUT_CargoDeck_SecurityRoomOne", 2, "ON");
+DB_S_TUT_CargoDeck_PressurePlate(ITEMGUID_S_TUT_CargoDeck_SecurityRoomOne_PressurePlateOne_34fc1380-4bf7-490b-b41f-3443681b6ab9, "S_TUT_CargoDeck_SecurityRoomOne_PressurePlateOne_Off", "TUT_CargoDeck_SecurityRoomOne", 1, "OFF");
+DB_S_TUT_CargoDeck_PressurePlate(ITEMGUID_S_TUT_CargoDeck_SecurityRoomOne_PressurePlateTwo_d164d340-90ca-4ac2-9d34-a198c767b31f, "S_TUT_CargoDeck_SecurityRoomOne_PressurePlateTwo_Off", "TUT_CargoDeck_SecurityRoomOne", 2, "OFF");
+DB_S_TUT_CargoDeck_PressurePlate_Door(ITEMGUID_S_TUT_CargoDeck_SecurityRoomOne_Door_edce67b3-65cc-48fd-9534-88894b2766a3, "TUT_CargoDeck_SecurityRoomOne");
+ProcTriggerRegisterForPlayers(TRIGGERGUID_S_TUT_CargoDeck_UnrulyPrisoner_Trigger_6284e421-8805-4dc3-9aed-74abb0bd3ba4);
+ProcTriggerRegisterForPlayers(TRIGGERGUID_S_TUT_CargoDeck_SecurityRoomOne_ActiveSearchTutorial_2df469ff-37d5-41bb-9777-fdafac7795a1);
+ProcTriggerRegisterForPlayers(TRIGGERGUID_S_TUT_CargoDeck_AnimalPen_SelectionTutorial_da34033c-0f5f-4f38-9813-b21ea50e15ce);
+ProcTriggerRegisterForPlayers(TRIGGERGUID_S_TUT_CargoDeck_CollaringRoom_DragTutorial_bf65754b-3196-477f-bb20-64e4c9ad6107);
+ProcTriggerRegisterForPlayers(TRIGGERGUID_S_TUT_CargoDeck_AnimalPen_Enter_2beb0727-e580-4a8d-bc05-fcb086ffe28d);
+ProcTriggerRegisterForPlayers(TRIGGERGUID_S_TUT_CargoDeck_MedicalBay_OozeTutorial_40341ee0-2ec6-474c-a7f4-1747ac0df273);
+CharacterSetHitpointsPercentage(CHARACTERGUID_TUT_CargoDeck_Humans_Male_Magister_Grunt_000_a06e61dd-58c6-4119-99be-716c3a4fc1ef, 50);
+DB_Dialogs(CHARACTERGUID_TUT_CargoDeck_Humans_Male_Magister_Grunt_000_a06e61dd-58c6-4119-99be-716c3a4fc1ef, "TUT_CargoDeck_MagisterGuard");
+DB_Dialogs(CHARACTERGUID_S_TUT_CargoHold_UnrulyPrisoner_d7a61dc6-a249-4e97-9914-53ea24e320ae, "TUT_CargoDeck_UnrulyPrisoner");
+CharacterUseItem(CHARACTERGUID_TUT_CargoDeck_Humans_Male_Magister_Grunt_000_a06e61dd-58c6-4119-99be-716c3a4fc1ef, ITEMGUID_S_TUT_CargoDeck_Isolation_Stool_b9a1020c-c1ce-470e-bcb9-fb5483a50d57, "TUT_CargoDeck_Isolation_MagisterSit");
+ProcCharacterDisableCrime(CHARACTERGUID_TUT_CargoDeck_Humans_Male_Magister_Grunt_000_a06e61dd-58c6-4119-99be-716c3a4fc1ef, "IncapacitatedAssault");
+ProcCharacterDisableCrime(CHARACTERGUID_TUT_CargoDeck_Humans_Male_Magister_Grunt_000_a06e61dd-58c6-4119-99be-716c3a4fc1ef, "UseForbiddenItem");
+DB_TUT_CargoDeck_Isolation_Levers(ITEMGUID_S_TUT_CargoDeck_Isolation_Lever001_11901fdb-3115-4811-bb93-9b5ca408800c, ITEMGUID_S_TUT_CargoDeck_Isolation_CageDoor_000_2584e8a5-1fbe-4848-a368-55aeff1a2435);
+DB_TUT_CargoDeck_Isolation_Levers(ITEMGUID_S_TUT_CargoDeck_Isolation_Lever002_e1efd6ba-1fa8-4155-a7a2-e74314317988, ITEMGUID_S_TUT_CargoDeck_Isolation_CageDoor_fe5ef326-6be6-48f3-a5da-32b106e91c1c);
+ApplyDamage(ITEMGUID_S_TUT_CargoDeck_MedicalBay_Door_fb7ac9d0-d334-4778-8a0a-d0bf266e120c, 24, "Physical");
+DB_Tutorial_CargoDeck_MedicalBay_Ingredients(CON_Herb_Mushroom_A_0106e3c1-bd81-4118-8a28-59c6dc941feb, "Mushroom");
+DB_Tutorial_CargoDeck_MedicalBay_Ingredients(CON_Potion_A_Empty_cd6e86ca-e9be-444e-a7df-d295ec6bb578, "Bottle");
+DB_TUT_LowerDeck_WindegoExplosionPoints(TRIGGERGUID_S_TUT_CargoDeck_CollaringRoom_Explosion_000_280aabfa-a0c9-4680-a6b8-fef908266483, "Projectile_EnemyFireball", 0);
+DB_TUT_LowerDeck_WindegoExplosionPoints(TRIGGERGUID_S_TUT_CargoDeck_CollaringRoom_Explosion_001_6ddb3bef-b02a-4f9d-a635-97312a8a8a45, "Projectile_EnemyFireball", 0);
+DB_TUT_LowerDeck_WindegoExplosionPoints(TRIGGERGUID_S_TUT_CargoDeck_CollaringRoom_Explosion_002_45c7bb3a-e7ae-421d-8f85-d867dc6112fd, "Projectile_EnemyFireball", 0);
+DB_TUT_LowerDeck_WindegoExplosionPoints(TRIGGERGUID_S_TUT_CargoDeck_CollaringRoom_Explosion_003_d06252d0-7755-4115-b4ba-65a6c729831c, "Projectile_EnemyFireball", 0);
+DB_TUT_LowerDeck_WindegoExplosionPoints(TRIGGERGUID_S_TUT_CargoDeck_AnimalPen_Explosion_000_00a692b3-faae-4a72-964f-796d198a858f, "Projectile_EnemyFireball", 0);
+DB_TUT_LowerDeck_WindegoExplosionPoints(TRIGGERGUID_S_TUT_CargoDeck_AnimalPen_Explosion_001_b5e2b079-5228-4064-b504-ae5c47607b13, "Projectile_EnemyFireball", 0);
+DB_TUT_LowerDeck_WindegoExplosionPoints(TRIGGERGUID_S_TUT_CargoDeck_AnimalPen_Explosion_002_641f7d43-4856-421d-a222-41085906dbd5, "Projectile_EnemyFireball", 0);
+DB_TUT_LowerDeck_WindegoExplosionPoints(TRIGGERGUID_S_TUT_CargoDeck_SecurityRoom_Explosion_000_15875ce1-25b5-4027-83d4-34c598669b7d, "Projectile_EnemyFireball", 0);
+DB_TUT_LowerDeck_WindegoExplosionPoints(TRIGGERGUID_S_TUT_CargoDeck_SecurityRoom_Explosion_001_a9565cd5-f2eb-4ea0-b0ca-030fc01936fb, "Projectile_EnemyFireball", 0);
+DB_TUT_LowerDeck_WindegoExplosionPoints(TRIGGERGUID_S_TUT_CargoDeck_Isolation_Explosion_000_8d2aae4e-e70b-43cd-b70e-955440fe28d6, "Projectile_EnemyFireball", 0);
+DB_TUT_LowerDeck_WindegoExplosionPoints(TRIGGERGUID_S_TUT_CargoDeck_Isolation_Explosion_001_74dce1d1-e6eb-434b-a2d5-67d9b0e9c34e, "Projectile_EnemyFireball", 0);
+DB_TUT_LowerDeck_WindegoExplosionPoints(TRIGGERGUID_S_TUT_CargoDeck_Isolation_Explosion_002_468124eb-e71a-4bfc-99e7-60030da9644a, "Projectile_EnemyFireball", 0);
+DB_TUT_LowerDeck_WindegoExplosionPoints(TRIGGERGUID_S_TUT_CargoDeck_Isolation_Explosion_003_95a6c23e-8891-4ad3-b012-b2affd35c45c, "Projectile_EnemyFireball", 0);
+DB_TUT_LowerDeck_WindegoExplosionPoints(TRIGGERGUID_S_TUT_CargoDeck_MedicalBay_Explosion_000_7df353a6-8108-49d9-945c-61b765cb26fb, "Projectile_EnemyFireball", 0);
+DB_TUT_LowerDeck_WindegoExplosionPoints(TRIGGERGUID_S_TUT_CargoDeck_MedicalBay_Explosion_001_62d50ce9-f585-4eb1-ad10-301b66ade272, "Projectile_EnemyFireball", 0);
+DB_TUT_LowerDeck_WindegoExplosionPoints(TRIGGERGUID_S_TUT_CargoDeck_MedicalBay_Explosion_002_e147fd92-d83f-4c4b-af0b-d324d6dccd6b, "Projectile_EnemyFireball", 0);
+DB_TUT_LowerDeck_WindegoExplosionPoints(TRIGGERGUID_S_TUT_CargoDeck_SecurityRoomTwo_Explosion_000_bfc7d1bb-2928-43b8-8191-0b0045bc960b, "Projectile_EnemyFireball", 0);
+DB_TUT_LowerDeck_WindegoExplosionPoints(TRIGGERGUID_S_TUT_CargoDeck_SecurityRoomTwo_Explosion_001_8be37be4-e1c9-498e-81a7-d3bf9d152d73, "Projectile_EnemyFireball", 0);
+DB_TUT_CargoDeck_WindegoDeaths(CHARACTERGUID_Animals_Sheep_C_000_0d51df41-eacd-46da-aeba-ee5080093fbe);
+DB_TUT_CargoDeck_WindegoDeaths(CHARACTERGUID_TUT_CargoDeck_Humans_Male_Magister_Grunt_000_a06e61dd-58c6-4119-99be-716c3a4fc1ef);
+DB_TUT_CargoDeck_WindegoDeaths(CHARACTERGUID_S_TUT_CargoHold_UnrulyPrisoner_d7a61dc6-a249-4e97-9914-53ea24e320ae);
+DB_TUT_LowerDeck_WindegoDestroyItems(S_CONT_Humans_Citz_Barrel_A_024_8c1a8734-1b8c-408c-9bd0-9b471f8f46a4);
+SetOnStage(ITEMGUID_S_TUT_CargoDeck_WindegoWave_f5035f0a-62dc-460a-84be-c178c9ad2e2e, 0);
+SetOnStage(ITEMGUID_S_TUT_Lightning_CargoDeck_6bea4a63-d9a5-416b-bd36-04e963529fac, 0);
+DB_TutorialSprayHelper(ITEMGUID_S_TUT_SplashHelper_Cargo_Left_1_af3fe50a-2d9f-409f-a097-d5807ba4855e, "Cargo", "Side", "Left", 1);
+DB_TutorialSprayHelper(ITEMGUID_S_TUT_SplashHelper_Cargo_Left_2_f109f6a0-a78a-43a1-8c27-a3c32fa8a6d1, "Cargo", "Side", "Left", 2);
+DB_TutorialSprayHelper(ITEMGUID_S_TUT_SplashHelper_Cargo_Left_3_ed167866-0245-41d3-88f2-6205c70a3384, "Cargo", "Side", "Left", 3);
+DB_TutorialSprayHelper(ITEMGUID_S_TUT_SplashHelper_Cargo_Right_1_a3225544-0325-43ad-bccf-3b1816b047d0, "Cargo", "Side", "Right", 1);
+DB_TutorialSprayHelper(ITEMGUID_S_TUT_SplashHelper_Cargo_Right_2_125efe84-3845-4e7e-8b15-4a11199b9365, "Cargo", "Side", "Right", 2);
+DB_TutorialSprayHelper(ITEMGUID_S_TUT_SplashHelper_Cargo_Right_3_7ea174a8-a5b7-4462-b3f2-dd64bc8127ca, "Cargo", "Side", "Right", 3);
+DB_TutorialSprayHelper(ITEMGUID_S_TUT_SplashHelper_Cargo_Right_4_21df258f-8f5e-48a4-8283-ed378dd55ab1, "Cargo", "Side", "Right", 4);
+DB_TUT_Splashes_TotalLength("Cargo", 10);
+
+KBSECTION
+IF
+SavegameLoaded((INTEGER)_Var1, (INTEGER)_Var2, (INTEGER)_Var3, (INTEGER)_Var4)
+AND
+QRY_VersionIsOlderThan(_Var1, _Var2, _Var3, _Var4, 3, 6, 0, 1)
+THEN
+ProcTriggerUnregisterForPlayers(TRIGGERGUID_S_TUT_CargoDeck_Tutorial_MessageTrigger_588feed5-aebe-401b-94ed-10221b6879e0);
+
+PROC
+ProcBlockUseOfItem((CHARACTERGUID)_Var1, ITEMGUID_S_TUT_CargoDeck_LadderToLowerDeck_dd528659-9b95-40ca-89c3-043b0373c613)
+AND
+CharacterGetReservedUserID(_Var1, _Var2)
+AND NOT
+DB_TUT_CargoDeck_AgreedToLeave(_Var2)
+THEN
+OpenMessageBoxYesNo(_Var1, "TUT_SureWantLeaveTutDeck");
+DB_CustomUseItemResponse(_Var1, ITEMGUID_S_TUT_CargoDeck_LadderToLowerDeck_dd528659-9b95-40ca-89c3-043b0373c613, 0);
+
+IF
+MessageBoxYesNoClosed((CHARACTERGUID)_Var1, "TUT_SureWantLeaveTutDeck", 1)
+AND
+CharacterGetReservedUserID(_Var1, _Var2)
+AND NOT
+DB_TUT_CargoDeck_AgreedToLeave(_Var2)
+THEN
+DB_TUT_CargoDeck_AgreedToLeave(_Var2);
+CharacterUseItem(_Var1, ITEMGUID_S_TUT_CargoDeck_LadderToLowerDeck_dd528659-9b95-40ca-89c3-043b0373c613, "");
+
+IF
+CharacterEnteredTrigger((CHARACTERGUID)_Var1, TRIGGERGUID_S_TUT_CargoDeck_AnimalPen_Enter_2beb0727-e580-4a8d-bc05-fcb086ffe28d)
+AND
+QueryOnlyOnce("TUT_CargoDeck_AnimalPen_Entry")
+THEN
+StartVoiceBark("TUT_VB_CargoDeck_AnimalPen_Entry", _Var1);
+
+IF
+CharacterUsedItem((CHARACTERGUID)_Var1, ITEMGUID_S_TUT_CargoDeck_AnimalPen_DoorToSecurity_b4a7964b-e773-4de2-a340-b157e1a8f89a)
+AND
+DB_IsPlayer(_Var1)
+AND
+ObjectIsItem(ITEMGUID_S_TUT_CargoDeck_AnimalPen_DoorToSecurity_b4a7964b-e773-4de2-a340-b157e1a8f89a, 1)
+AND
+ItemIsLocked(ITEMGUID_S_TUT_CargoDeck_AnimalPen_DoorToSecurity_b4a7964b-e773-4de2-a340-b157e1a8f89a, 1)
+THEN
+PROC_CheckPlayTut(_Var1, "TUT_Locked_UseKey");
+
+IF
+CharacterEnteredTrigger((CHARACTERGUID)_Var1, TRIGGERGUID_S_TUT_CargoDeck_SecurityRoomOne_ActiveSearchTutorial_2df469ff-37d5-41bb-9777-fdafac7795a1)
+AND
+QueryOnlyOnce("TUT_CargoDeck_SecurityRoom_ActiveSearch")
+THEN
+PROC_CheckPlayTut(_Var1, "TUT_ActiveSearch_Controller");
+
+IF
+CharacterUsedItem((CHARACTERGUID)_Var1, ITEMGUID_S_TUT_CargoDeck_SecurityRoomOne_Door_edce67b3-65cc-48fd-9534-88894b2766a3)
+AND
+DB_IsPlayer(_Var1)
+AND
+ObjectIsItem(ITEMGUID_S_TUT_CargoDeck_SecurityRoomOne_Door_edce67b3-65cc-48fd-9534-88894b2766a3, 1)
+AND
+ItemIsLocked(ITEMGUID_S_TUT_CargoDeck_SecurityRoomOne_Door_edce67b3-65cc-48fd-9534-88894b2766a3, 1)
+AND NOT
+DB_TUT_CargoDeck_PressurePlateDoor_Opened(1)
+THEN
+PROC_CheckPlayTut(_Var1, "TUT_Locked_PressurePlate");
+
+IF
+CharacterItemEvent((CHARACTERGUID)_Var1, (ITEMGUID)_Var2, (STRING)_Var3)
+AND
+DB_S_TUT_CargoDeck_PressurePlate(_Var2, _Var3, _Var4, _Var5, _Var6)
+AND
+DB_S_TUT_CargoDeck_PressurePlate(_Var2, _Var7, _Var4, _Var5, _Var8)
+AND
+_Var3 != _Var7
+AND
+_Var6 != _Var8
+THEN
+NOT DB_S_TUT_CargoDeck_PressurePlate_Used(_Var4, _Var5, _Var8);
+DB_S_TUT_CargoDeck_PressurePlate_Used(_Var4, _Var5, _Var6);
+
+IF
+DB_S_TUT_CargoDeck_PressurePlate_Used(_Var1, _Var2, "ON")
+AND
+DB_S_TUT_CargoDeck_PressurePlate_Used(_Var1, 1, "ON")
+AND
+DB_S_TUT_CargoDeck_PressurePlate_Used(_Var1, 2, "ON")
+AND
+DB_S_TUT_CargoDeck_PressurePlate_Door(_Var3, _Var1)
+THEN
+DB_TUT_CargoDeck_PressurePlateDoor_Opened(1);
+ItemUnlockAndOpen(_Var3);
+PROC_TUT_CargoDeck_SecurityRoom_AutosaveEnable();
+
+PROC
+PROC_TUT_CargoDeck_SecurityRoom_AutosaveEnable()
+AND
+QueryOnlyOnce("TUT_CargoDeck_SecurityRoom_AutoSaveEnable")
+THEN
+DB_AutoSaveTrigger(TRIGGERGUID_S_TUT_LowerDeck_AutoSave_88dbb8e6-47d3-4d6c-adb4-6c5039bd5a09);
+
+IF
+DB_S_TUT_CargoDeck_PressurePlate_Used(_Var1, _Var2, "OFF")
+AND
+DB_S_TUT_CargoDeck_PressurePlate_Door(_Var3, _Var1)
+THEN
+ItemCloseAndLock(_Var3, "");
+
+QRY
+QRY_TUT_CargoDeck_PrisonDoorOpenOrOpening()
+AND
+ItemIsOpened(ITEMGUID_S_TUT_CargoDeck_Isolation_CageDoor_fe5ef326-6be6-48f3-a5da-32b106e91c1c, 1)
+THEN
+DB_NOOP(1);
+
+QRY
+QRY_TUT_CargoDeck_PrisonDoorOpenOrOpening()
+AND
+DoorIsOpening(ITEMGUID_S_TUT_CargoDeck_Isolation_CageDoor_fe5ef326-6be6-48f3-a5da-32b106e91c1c, 1)
+THEN
+DB_NOOP(1);
+
+IF
+StoryEvent(CHARACTERGUID_TUT_CargoDeck_Humans_Male_Magister_Grunt_000_a06e61dd-58c6-4119-99be-716c3a4fc1ef, "TUT_CargoDeck_Isolation_MagisterSit")
+THEN
+ApplyStatus(CHARACTERGUID_TUT_CargoDeck_Humans_Male_Magister_Grunt_000_a06e61dd-58c6-4119-99be-716c3a4fc1ef, "SLEEPING", -1, 1);
+
+PROC
+PROC_GLOBAL_DialogStartRequested(CHARACTERGUID_TUT_CargoDeck_Humans_Male_Magister_Grunt_000_a06e61dd-58c6-4119-99be-716c3a4fc1ef, (GUIDSTRING)_Var1)
+AND
+HasActiveStatus(CHARACTERGUID_TUT_CargoDeck_Humans_Male_Magister_Grunt_000_a06e61dd-58c6-4119-99be-716c3a4fc1ef, "SLEEPING", 1)
+THEN
+RemoveStatus(CHARACTERGUID_TUT_CargoDeck_Humans_Male_Magister_Grunt_000_a06e61dd-58c6-4119-99be-716c3a4fc1ef, "SLEEPING");
+
+IF
+DialogStarted("TUT_CargoDeck_MagisterGuard", _)
+AND
+ObjectGetFlag(CHARACTERGUID_TUT_CargoDeck_Humans_Male_Magister_Grunt_000_a06e61dd-58c6-4119-99be-716c3a4fc1ef, "TUT_CargoDeck_Isolation_GuardAwakens", 0)
+THEN
+DB_TUT_CargoDeck_Isolation_LeverInteraction("TUT_CargoDeck_Isolation_GuardInteractionComplete");
+
+IF
+DialogEnded("TUT_CargoDeck_MagisterGuard", _)
+AND
+ObjectGetFlag(CHARACTERGUID_TUT_CargoDeck_Humans_Male_Magister_Grunt_000_a06e61dd-58c6-4119-99be-716c3a4fc1ef, "TUT_CargoDeck_Isolation_GuardAwakens", 0)
+THEN
+NOT DB_TUT_CargoDeck_Isolation_LeverInteraction("TUT_CargoDeck_Isolation_GuardInteractionComplete");
+
+PROC
+ProcBlockUseOfItem((CHARACTERGUID)_Var1, (ITEMGUID)_Var2)
+AND
+DB_IsPlayer(_Var1)
+AND
+DB_TUT_CargoDeck_Isolation_Levers(_Var2, _Var3)
+AND NOT
+DB_TUT_CargoDeck_Isolation_LeverInteraction("TUT_CargoDeck_Isolation_GuardInteractionComplete")
+THEN
+PROC_TUT_CargoDeck_LeverPulledGuardSleeping(_Var2, _Var1);
+
+PROC
+PROC_TUT_CargoDeck_LeverPulledGuardSleeping((ITEMGUID)_Var1, (CHARACTERGUID)_Var2)
+AND
+QRY_SpeakerIsAvailable(CHARACTERGUID_TUT_CargoDeck_Humans_Male_Magister_Grunt_000_a06e61dd-58c6-4119-99be-716c3a4fc1ef)
+AND NOT
+DB_TUT_CargoHold_Isolation_LeverPulled(_, _)
+AND
+CharacterCanSee(CHARACTERGUID_TUT_CargoDeck_Humans_Male_Magister_Grunt_000_a06e61dd-58c6-4119-99be-716c3a4fc1ef, _Var2, 1)
+THEN
+DB_CustomUseItemResponse(_Var2, _Var1, 0);
+DB_TUT_CargoHold_Isolation_LeverPulled(_Var1, _Var2);
+PROC_TUT_CargoHold_CheckLeverlPulled(_Var2);
+ObjectSetFlag(CHARACTERGUID_TUT_CargoDeck_Humans_Male_Magister_Grunt_000_a06e61dd-58c6-4119-99be-716c3a4fc1ef, "TUT_CargoDeck_Isolation_Guard_LeverWake");
+RemoveStatus(CHARACTERGUID_TUT_CargoDeck_Humans_Male_Magister_Grunt_000_a06e61dd-58c6-4119-99be-716c3a4fc1ef, "SLEEPING");
+
+IF
+CharacterStatusRemoved(CHARACTERGUID_TUT_CargoDeck_Humans_Male_Magister_Grunt_000_a06e61dd-58c6-4119-99be-716c3a4fc1ef, "SLEEPING", _)
+AND
+DB_TUT_CargoHold_Isolation_LeverPulled(_Var2, _Var3)
+AND NOT
+DB_TUT_CargoDeck_Isolation_Prisoner("TUT_CargoDeck_Isolation_Prisoner_Attacked")
+THEN
+NOT DB_TUT_CargoHold_Isolation_LeverPulled(_Var2, _Var3);
+PROC_TUT_CargoDeck_TryStartLeverDialog(_Var3);
+
+PROC
+PROC_TUT_CargoHold_CheckLeverlPulled((CHARACTERGUID)_Var1)
+AND
+DB_TUT_CargoHold_Isolation_LeverPulled(ITEMGUID_S_TUT_CargoDeck_Isolation_Lever002_e1efd6ba-1fa8-4155-a7a2-e74314317988, _Var1)
+THEN
+ObjectSetFlag(CHARACTERGUID_TUT_CargoDeck_Humans_Male_Magister_Grunt_000_a06e61dd-58c6-4119-99be-716c3a4fc1ef, "TUT_CargoHold_Isolation_PlayerCloseToLever");
+
+PROC
+PROC_TUT_CargoDeck_TryStartLeverDialog((CHARACTERGUID)_Var1)
+AND
+QRY_SpeakerIsAvailable(CHARACTERGUID_TUT_CargoDeck_Humans_Male_Magister_Grunt_000_a06e61dd-58c6-4119-99be-716c3a4fc1ef)
+AND
+CharacterCanSee(CHARACTERGUID_TUT_CargoDeck_Humans_Male_Magister_Grunt_000_a06e61dd-58c6-4119-99be-716c3a4fc1ef, _Var1, 1)
+THEN
+ProcForceStopDialog(CHARACTERGUID_TUT_CargoDeck_Humans_Male_Magister_Grunt_000_a06e61dd-58c6-4119-99be-716c3a4fc1ef);
+Proc_StartDialog(0, "TUT_CargoDeck_MagisterGuard", CHARACTERGUID_TUT_CargoDeck_Humans_Male_Magister_Grunt_000_a06e61dd-58c6-4119-99be-716c3a4fc1ef, _Var1);
+
+IF
+DialogEnded("TUT_CargoDeck_MagisterGuard", _)
+THEN
+ObjectClearFlag(CHARACTERGUID_TUT_CargoDeck_Humans_Male_Magister_Grunt_000_a06e61dd-58c6-4119-99be-716c3a4fc1ef, "TUT_CargoHold_Isolation_PlayerCloseToLever");
+
+IF
+DialogEnded("TUT_CargoDeck_MagisterGuard", _)
+THEN
+PROC_TUT_CargoDeck_TryGuardBackToSleep();
+
+PROC
+PROC_TUT_CargoDeck_TryGuardBackToSleep()
+AND
+HasActiveStatus(CHARACTERGUID_TUT_CargoDeck_Humans_Male_Magister_Grunt_000_a06e61dd-58c6-4119-99be-716c3a4fc1ef, "SITTING", 1)
+AND
+ObjectGetFlag(CHARACTERGUID_TUT_CargoDeck_Humans_Male_Magister_Grunt_000_a06e61dd-58c6-4119-99be-716c3a4fc1ef, "TUT_CargoDeck_Isolation_GuardAwakens", 0)
+THEN
+ApplyStatus(CHARACTERGUID_TUT_CargoDeck_Humans_Male_Magister_Grunt_000_a06e61dd-58c6-4119-99be-716c3a4fc1ef, "SLEEPING", -1, 1);
+
+IF
+CharacterEnteredTrigger((CHARACTERGUID)_Var1, TRIGGERGUID_S_TUT_CargoDeck_UnrulyPrisoner_Trigger_6284e421-8805-4dc3-9aed-74abb0bd3ba4)
+AND
+QueryOnlyOnce("TUT_CargoDeck_PrisonerCall")
+THEN
+Proc_StartDialog(1, "TUT_AD_CargoDeck_UnrulyPrisoners", CHARACTERGUID_S_TUT_CargoHold_UnrulyPrisoner_d7a61dc6-a249-4e97-9914-53ea24e320ae);
+
+IF
+DialogEnded("TUT_CargoDeck_MagisterGuard", _)
+AND
+ObjectGetFlag(CHARACTERGUID_TUT_CargoDeck_Humans_Male_Magister_Grunt_000_a06e61dd-58c6-4119-99be-716c3a4fc1ef, "TUT_CargoDeck_Isolation_GuardAwakens", 1)
+THEN
+DB_TUT_CargoDeck_Isolation_LeverInteraction("TUT_CargoDeck_Isolation_GuardInteractionComplete");
+
+IF
+DB_Dead(CHARACTERGUID_TUT_CargoDeck_Humans_Male_Magister_Grunt_000_a06e61dd-58c6-4119-99be-716c3a4fc1ef)
+THEN
+DB_TUT_CargoDeck_Isolation_LeverInteraction("TUT_CargoDeck_Isolation_GuardInteractionComplete");
+
+IF
+CharacterUsedItem((CHARACTERGUID)_Var1, (ITEMGUID)_Var2)
+AND
+DB_TUT_CargoDeck_Isolation_Levers(_Var2, _Var3)
+AND
+DB_TUT_CargoDeck_Isolation_LeverInteraction("TUT_CargoDeck_Isolation_GuardInteractionComplete")
+AND
+ItemIsLocked(_Var3, 1)
+THEN
+ItemUnlockAndOpen(_Var3);
+DB_TUT_CargoDeck_Isolation_SecondPull(_Var2, _Var1);
+
+IF
+DB_TUT_CargoDeck_Isolation_SecondPull(ITEMGUID_S_TUT_CargoDeck_Isolation_Lever002_e1efd6ba-1fa8-4155-a7a2-e74314317988, _Var1)
+AND
+DB_IsPlayer(_Var1)
+THEN
+ObjectSetFlag(_Var1, "TUT_Cargodeck_Isolation_PrisonBreak");
+
+IF
+CharacterStatusRemoved(CHARACTERGUID_TUT_CargoDeck_Humans_Male_Magister_Grunt_000_a06e61dd-58c6-4119-99be-716c3a4fc1ef, "SITTING", _)
+AND
+ObjectGetFlag(CHARACTERGUID_TUT_CargoDeck_Humans_Male_Magister_Grunt_000_a06e61dd-58c6-4119-99be-716c3a4fc1ef, "TUT_CargoDeck_Isolation_GuardLeavesPrisoner", 0)
+AND
+ObjectGetFlag(CHARACTERGUID_TUT_CargoDeck_Humans_Male_Magister_Grunt_000_a06e61dd-58c6-4119-99be-716c3a4fc1ef, "TUT_CargoDeck_Isolation_GuardReleasesPrisoner", 0)
+AND
+ObjectGetFlag(CHARACTERGUID_TUT_CargoDeck_Humans_Male_Magister_Grunt_000_a06e61dd-58c6-4119-99be-716c3a4fc1ef, "TUT_CargoDeck_Isolation_GuardFlee", 0)
+AND
+DB_IsPlayer(_Var2)
+THEN
+RemoveStatus(CHARACTERGUID_TUT_CargoDeck_Humans_Male_Magister_Grunt_000_a06e61dd-58c6-4119-99be-716c3a4fc1ef, "SLEEPING");
+ObjectSetFlag(CHARACTERGUID_TUT_CargoDeck_Humans_Male_Magister_Grunt_000_a06e61dd-58c6-4119-99be-716c3a4fc1ef, "TUT_CargoDeck_Isolation_MagisterWakes");
+CharacterLookAt(CHARACTERGUID_TUT_CargoDeck_Humans_Male_Magister_Grunt_000_a06e61dd-58c6-4119-99be-716c3a4fc1ef, _Var2);
+TimerLaunch("TUT_CargoDeck_Isolation_MagisterHostile", 3000);
+DB_TUT_CargoDeck_Isolation_Magister("TUT_CargoDeck_Isolation_Magister_ChairPulled");
+
+IF
+DialogEnded("TUT_CargoDeck_MagisterGuard", _)
+AND
+DB_TUT_CargoDeck_Isolation_Magister("TUT_CargoDeck_Isolation_Magister_ChairPulled")
+THEN
+Proc_StartDialog(1, "TUT_AD_CargoDeck_MagisterGuard", CHARACTERGUID_TUT_CargoDeck_Humans_Male_Magister_Grunt_000_a06e61dd-58c6-4119-99be-716c3a4fc1ef);
+SetRelationIndivFactionToPlayers(CHARACTERGUID_TUT_CargoDeck_Humans_Male_Magister_Grunt_000_a06e61dd-58c6-4119-99be-716c3a4fc1ef, -100);
+DB_TUT_CargoDeck_Isolation_LeverInteraction("TUT_CargoDeck_Isolation_GuardInteractionComplete");
+
+IF
+TimerFinished("TUT_CargoDeck_Isolation_MagisterHostile")
+AND
+DB_IsPlayer(_Var1)
+THEN
+Proc_StartDialog(1, "TUT_AD_CargoDeck_MagisterGuard", CHARACTERGUID_TUT_CargoDeck_Humans_Male_Magister_Grunt_000_a06e61dd-58c6-4119-99be-716c3a4fc1ef);
+SetRelationIndivFactionToPlayers(CHARACTERGUID_TUT_CargoDeck_Humans_Male_Magister_Grunt_000_a06e61dd-58c6-4119-99be-716c3a4fc1ef, -100);
+DB_TUT_CargoDeck_Isolation_LeverInteraction("TUT_CargoDeck_Isolation_GuardInteractionComplete");
+
+IF
+ItemUnlocked(ITEMGUID_S_TUT_CargoDeck_Isolation_CageDoor_fe5ef326-6be6-48f3-a5da-32b106e91c1c, (CHARACTERGUID)_Var1, _)
+AND NOT
+DB_Dead(CHARACTERGUID_S_TUT_CargoHold_UnrulyPrisoner_d7a61dc6-a249-4e97-9914-53ea24e320ae)
+AND
+ObjectGetFlag(CHARACTERGUID_TUT_CargoDeck_Humans_Male_Magister_Grunt_000_a06e61dd-58c6-4119-99be-716c3a4fc1ef, "TUT_CargoDeck_Isolation_GuardReleasesPrisoner", 0)
+THEN
+ObjectSetFlag(_Var1, "TUT_Cargodeck_Isolation_PrisonBreak");
+
+IF
+ItemUnlocked(ITEMGUID_S_TUT_CargoDeck_Isolation_CageDoor_fe5ef326-6be6-48f3-a5da-32b106e91c1c, (CHARACTERGUID)_Var1, _)
+AND NOT
+QRY_TUT_CargoDeck_PrisonDoorOpenOrOpening()
+THEN
+SetRelationIndivFactionToPlayers(CHARACTERGUID_S_TUT_CargoHold_UnrulyPrisoner_d7a61dc6-a249-4e97-9914-53ea24e320ae, 100);
+ItemOpen(ITEMGUID_S_TUT_CargoDeck_Isolation_CageDoor_fe5ef326-6be6-48f3-a5da-32b106e91c1c);
+
+IF
+ObjectEnteredCombat(CHARACTERGUID_TUT_CargoDeck_Humans_Male_Magister_Grunt_000_a06e61dd-58c6-4119-99be-716c3a4fc1ef, _)
+AND NOT
+DB_Dead(CHARACTERGUID_S_TUT_CargoHold_UnrulyPrisoner_d7a61dc6-a249-4e97-9914-53ea24e320ae)
+AND
+ObjectGetFlag(CHARACTERGUID_TUT_CargoDeck_Humans_Male_Magister_Grunt_000_a06e61dd-58c6-4119-99be-716c3a4fc1ef, "TUT_CargoDeck_Isolation_GuardLeavesPrisoner", 0)
+THEN
+ProcForceStopDialog(CHARACTERGUID_S_TUT_CargoHold_UnrulyPrisoner_d7a61dc6-a249-4e97-9914-53ea24e320ae);
+
+IF
+ObjectFlagSet("TUT_Cargodeck_Isolation_PrisonBreak", (CHARACTERGUID)_Var1, _)
+AND NOT
+DB_Dead(CHARACTERGUID_TUT_CargoDeck_Humans_Male_Magister_Grunt_000_a06e61dd-58c6-4119-99be-716c3a4fc1ef)
+AND
+ObjectGetFlag(CHARACTERGUID_TUT_CargoDeck_Humans_Male_Magister_Grunt_000_a06e61dd-58c6-4119-99be-716c3a4fc1ef, "TUT_CargoDeck_Isolation_GuardLeavesPrisoner", 0)
+AND
+ObjectGetFlag(CHARACTERGUID_TUT_CargoDeck_Humans_Male_Magister_Grunt_000_a06e61dd-58c6-4119-99be-716c3a4fc1ef, "TUT_CargoDeck_Isolation_GuardReleasesPrisoner", 0)
+AND
+ObjectGetFlag(CHARACTERGUID_TUT_CargoDeck_Humans_Male_Magister_Grunt_000_a06e61dd-58c6-4119-99be-716c3a4fc1ef, "TUT_CargoDeck_Isolation_GuardFlee", 0)
+AND NOT
+DB_TUT_CargoDeck_Isolation_Prisoner("TUT_CargoDeck_Isolation_Prisoner_Attacked")
+AND
+GetPosition(TRIGGERGUID_S_TUT_CargoDeck_Isolation_GuardStandUp_07105ef4-4e7a-4027-bf30-70bc6efb3c91, _Var3, _Var4, _Var5)
+THEN
+ObjectSetFlag(CHARACTERGUID_TUT_CargoDeck_Humans_Male_Magister_Grunt_000_a06e61dd-58c6-4119-99be-716c3a4fc1ef, "TUT_CargoDeck_Isolation_Magister_Prisonbreak");
+RemoveStatus(CHARACTERGUID_TUT_CargoDeck_Humans_Male_Magister_Grunt_000_a06e61dd-58c6-4119-99be-716c3a4fc1ef, "SITTING");
+SetRelationIndivFactionToPlayers(CHARACTERGUID_S_TUT_CargoHold_UnrulyPrisoner_d7a61dc6-a249-4e97-9914-53ea24e320ae, 100);
+ProcForceStopDialog(CHARACTERGUID_S_TUT_CargoHold_UnrulyPrisoner_d7a61dc6-a249-4e97-9914-53ea24e320ae);
+ProcMakeNPCHostile(CHARACTERGUID_S_TUT_CargoHold_UnrulyPrisoner_d7a61dc6-a249-4e97-9914-53ea24e320ae, CHARACTERGUID_TUT_CargoDeck_Humans_Male_Magister_Grunt_000_a06e61dd-58c6-4119-99be-716c3a4fc1ef);
+GlobalSetFlag("TUT_CargoDeck_PrisonerFreed");
+PROC_TUT_CargoDeck_PrisonBreakOut(_Var1);
+
+PROC
+PROC_TUT_CargoDeck_PrisonBreakOut((CHARACTERGUID)_Var1)
+AND
+QRY_SpeakerIsAvailable(_Var1)
+THEN
+ProcForceStopDialog(CHARACTERGUID_TUT_CargoDeck_Humans_Male_Magister_Grunt_000_a06e61dd-58c6-4119-99be-716c3a4fc1ef);
+
+IF
+ObjectFlagSet("TUT_Cargodeck_Isolation_PrisonBreak", (CHARACTERGUID)_Var1, _)
+AND
+ItemIsLocked(ITEMGUID_S_TUT_CargoDeck_Isolation_CageDoor_fe5ef326-6be6-48f3-a5da-32b106e91c1c, 1)
+THEN
+CharacterUseItem(_Var1, ITEMGUID_S_TUT_CargoDeck_Isolation_Lever002_e1efd6ba-1fa8-4155-a7a2-e74314317988, "TUT_CargoDeck_Isolation_LeverPull");
+ItemUnlockAndOpen(ITEMGUID_S_TUT_CargoDeck_Isolation_CageDoor_fe5ef326-6be6-48f3-a5da-32b106e91c1c);
+DB_TUT_CargoDeck_Isolation_SecondPull(ITEMGUID_S_TUT_CargoDeck_Isolation_Lever002_e1efd6ba-1fa8-4155-a7a2-e74314317988, _Var1);
+
+IF
+DialogEnded("TUT_CargoDeck_MagisterGuard", (INTEGER)_Var1)
+AND
+DB_DialogPlayers(_Var1, _Var2, _)
+AND
+ObjectGetFlag(_Var2, "TUT_CargoDeck_Isolation_MagisterHostile", 1)
+THEN
+SetRelationIndivFactionToPlayers(CHARACTERGUID_TUT_CargoDeck_Humans_Male_Magister_Grunt_000_a06e61dd-58c6-4119-99be-716c3a4fc1ef, -100);
+DB_TUT_CargoDeck_Isolation_LeverInteraction("TUT_CargoDeck_Isolation_GuardInteractionComplete");
+
+IF
+DialogEnded("TUT_CargoDeck_MagisterGuard", _)
+AND
+ObjectGetFlag(CHARACTERGUID_TUT_CargoDeck_Humans_Male_Magister_Grunt_000_a06e61dd-58c6-4119-99be-716c3a4fc1ef, "TUT_CargoDeck_Isolation_GuardLeavesPrisoner", 1)
+THEN
+SetHasDialog(CHARACTERGUID_TUT_CargoDeck_Humans_Male_Magister_Grunt_000_a06e61dd-58c6-4119-99be-716c3a4fc1ef, 0);
+SetVarInteger(CHARACTERGUID_TUT_CargoDeck_Humans_Male_Magister_Grunt_000_a06e61dd-58c6-4119-99be-716c3a4fc1ef, "ForceSynchWhileMoving", 1);
+ProcStateManagerCharacterMoveTo(CHARACTERGUID_TUT_CargoDeck_Humans_Male_Magister_Grunt_000_a06e61dd-58c6-4119-99be-716c3a4fc1ef, TRIGGERGUID_TeleportTrigger_001_ed6cbd10-1893-4768-87d4-53aaf995dbfe, 0, 2, "TUT_CargoDeck_Isolation_GuardLeaves", "");
+
+IF
+ItemOpened(ITEMGUID_S_TUT_CargoDeck_Isolation_CageDoor_fe5ef326-6be6-48f3-a5da-32b106e91c1c)
+AND NOT
+DB_Dead(CHARACTERGUID_TUT_CargoDeck_Humans_Male_Magister_Grunt_000_a06e61dd-58c6-4119-99be-716c3a4fc1ef)
+AND
+ObjectGetFlag(CHARACTERGUID_TUT_CargoDeck_Humans_Male_Magister_Grunt_000_a06e61dd-58c6-4119-99be-716c3a4fc1ef, "TUT_CargoDeck_Isolation_GuardLeavesPrisoner", 1)
+AND
+GetDistanceTo(CHARACTERGUID_TUT_CargoDeck_Humans_Male_Magister_Grunt_000_a06e61dd-58c6-4119-99be-716c3a4fc1ef, ITEMGUID_S_TUT_CargoDeck_Isolation_Lever002_e1efd6ba-1fa8-4155-a7a2-e74314317988, _Var1)
+AND
+_Var1 <= 18
+THEN
+DB_TUT_CargoDeck_Isolation_GuardLeavesPrisoner("DB_TUT_CargoDeck_Isolation_PrisonerReleasedNearGuard");
+CharacterLookAt(CHARACTERGUID_TUT_CargoDeck_Humans_Male_Magister_Grunt_000_a06e61dd-58c6-4119-99be-716c3a4fc1ef, ITEMGUID_S_TUT_CargoDeck_Isolation_CageDoor_fe5ef326-6be6-48f3-a5da-32b106e91c1c);
+SetRelationIndivFactionToPlayers(CHARACTERGUID_TUT_CargoDeck_Humans_Male_Magister_Grunt_000_a06e61dd-58c6-4119-99be-716c3a4fc1ef, -100);
+SetRelationIndivFactionToPlayers(CHARACTERGUID_S_TUT_CargoHold_UnrulyPrisoner_d7a61dc6-a249-4e97-9914-53ea24e320ae, 100);
+ProcMakeNPCHostile(CHARACTERGUID_TUT_CargoDeck_Humans_Male_Magister_Grunt_000_a06e61dd-58c6-4119-99be-716c3a4fc1ef, CHARACTERGUID_S_TUT_CargoHold_UnrulyPrisoner_d7a61dc6-a249-4e97-9914-53ea24e320ae);
+
+IF
+ObjectLeftCombat(CHARACTERGUID_S_TUT_CargoHold_UnrulyPrisoner_d7a61dc6-a249-4e97-9914-53ea24e320ae, (INTEGER)_Var1)
+AND
+DB_Dead(CHARACTERGUID_TUT_CargoDeck_Humans_Male_Magister_Grunt_000_a06e61dd-58c6-4119-99be-716c3a4fc1ef)
+AND NOT
+DB_Dead(CHARACTERGUID_S_TUT_CargoHold_UnrulyPrisoner_d7a61dc6-a249-4e97-9914-53ea24e320ae)
+AND
+DB_TUT_CargoDeck_Isolation_GuardLeavesPrisoner("DB_TUT_CargoDeck_Isolation_PrisonerReleasedNearGuard")
+AND
+QRY_GetClosestAvailableCharacterTo(CHARACTERGUID_S_TUT_CargoHold_UnrulyPrisoner_d7a61dc6-a249-4e97-9914-53ea24e320ae, 1)
+AND
+DB_ClosestAvailableCharacterTo(_Var2, CHARACTERGUID_S_TUT_CargoHold_UnrulyPrisoner_d7a61dc6-a249-4e97-9914-53ea24e320ae, _)
+AND
+QueryOnlyOnce("TUT_CargoDeck_Isolation_MagisterLeave_DeathBetrayalCheck")
+THEN
+ProcForceStopDialog(CHARACTERGUID_S_TUT_CargoHold_UnrulyPrisoner_d7a61dc6-a249-4e97-9914-53ea24e320ae);
+Proc_StartDialog(0, "TUT_CargoDeck_UnrulyPrisoner", CHARACTERGUID_S_TUT_CargoHold_UnrulyPrisoner_d7a61dc6-a249-4e97-9914-53ea24e320ae, _Var2);
+
+IF
+DialogEnded("TUT_CargoDeck_MagisterGuard", _)
+AND
+ObjectGetFlag(CHARACTERGUID_TUT_CargoDeck_Humans_Male_Magister_Grunt_000_a06e61dd-58c6-4119-99be-716c3a4fc1ef, "TUT_CargoDeck_Isolation_GuardReleasesPrisoner", 1)
+THEN
+DB_TUT_CargoDeck_Isolation_MagisterEscort("DB_TUT_CargoDeck_Isolation_MagisterEscort_Active");
+SetHasDialog(CHARACTERGUID_TUT_CargoDeck_Humans_Male_Magister_Grunt_000_a06e61dd-58c6-4119-99be-716c3a4fc1ef, 0);
+SetVarInteger(CHARACTERGUID_TUT_CargoDeck_Humans_Male_Magister_Grunt_000_a06e61dd-58c6-4119-99be-716c3a4fc1ef, "ForceSynchWhileMoving", 1);
+ProcStateManagerCharacterMoveTo(CHARACTERGUID_TUT_CargoDeck_Humans_Male_Magister_Grunt_000_a06e61dd-58c6-4119-99be-716c3a4fc1ef, ITEMGUID_S_TUT_CargoDeck_Isolation_Lever002_e1efd6ba-1fa8-4155-a7a2-e74314317988, 0, 2, "TUT_CargoDeck_Isolation_Magister_LeverPulling", "");
+
+IF
+StoryEvent(CHARACTERGUID_TUT_CargoDeck_Humans_Male_Magister_Grunt_000_a06e61dd-58c6-4119-99be-716c3a4fc1ef, "TUT_CargoDeck_Isolation_Magister_LeverPulling")
+AND
+QueryOnlyOnce("TUT_CargoDeck_Isolation_PullLever")
+THEN
+PROC_TUT_CargoDeck_GuardOpenCageIfClosed();
+TimerLaunch("TUT_CargoDeck_Isolation_PrisonerRelease", 3000);
+
+PROC
+PROC_TUT_CargoDeck_GuardOpenCageIfClosed()
+AND NOT
+QRY_TUT_CargoDeck_PrisonDoorOpenOrOpening()
+THEN
+CharacterUseItem(CHARACTERGUID_TUT_CargoDeck_Humans_Male_Magister_Grunt_000_a06e61dd-58c6-4119-99be-716c3a4fc1ef, ITEMGUID_S_TUT_CargoDeck_Isolation_Lever002_e1efd6ba-1fa8-4155-a7a2-e74314317988, "TUT_CargoDeck_Isolation_LeverPull");
+
+IF
+AttackedByObject(CHARACTERGUID_TUT_CargoDeck_Humans_Male_Magister_Grunt_000_a06e61dd-58c6-4119-99be-716c3a4fc1ef, (CHARACTERGUID)_Var1, (CHARACTERGUID)_Var1, _, _)
+AND
+DB_IsPlayer(_Var1)
+AND
+DB_TUT_CargoDeck_Isolation_MagisterEscort("DB_TUT_CargoDeck_Isolation_MagisterEscort_Active")
+AND
+QRY_TUT_CargoDeck_PrisonDoorOpenOrOpening()
+THEN
+SetRelationIndivFactionToPlayers(CHARACTERGUID_S_TUT_CargoHold_UnrulyPrisoner_d7a61dc6-a249-4e97-9914-53ea24e320ae, 100);
+GlobalSetFlag("TUT_CargoDeck_PrisonerFreed");
+
+IF
+StoryEvent(CHARACTERGUID_TUT_CargoDeck_Humans_Male_Magister_Grunt_000_a06e61dd-58c6-4119-99be-716c3a4fc1ef, "TUT_CargoDeck_Isolation_LeverPull")
+THEN
+Proc_StartDialog(1, "TUT_AD_CargoDeck_Isolation_MagisterPrisonerFree", CHARACTERGUID_TUT_CargoDeck_Humans_Male_Magister_Grunt_000_a06e61dd-58c6-4119-99be-716c3a4fc1ef);
+
+IF
+TimerFinished("TUT_CargoDeck_Isolation_PrisonerRelease")
+THEN
+ProcForceStopDialog(CHARACTERGUID_S_TUT_CargoHold_UnrulyPrisoner_d7a61dc6-a249-4e97-9914-53ea24e320ae);
+SetHasDialog(CHARACTERGUID_S_TUT_CargoHold_UnrulyPrisoner_d7a61dc6-a249-4e97-9914-53ea24e320ae, 0);
+SetVarInteger(CHARACTERGUID_TUT_CargoDeck_Humans_Male_Magister_Grunt_000_a06e61dd-58c6-4119-99be-716c3a4fc1ef, "ForceSynchWhileMoving", 1);
+SetVarInteger(CHARACTERGUID_S_TUT_CargoHold_UnrulyPrisoner_d7a61dc6-a249-4e97-9914-53ea24e320ae, "ForceSynchWhileMoving", 1);
+SetVarInteger(CHARACTERGUID_TUT_CargoDeck_Humans_Male_Magister_Grunt_000_a06e61dd-58c6-4119-99be-716c3a4fc1ef, "ForceSynchWhileMoving", 1);
+ProcStateManagerCharacterMoveTo(CHARACTERGUID_TUT_CargoDeck_Humans_Male_Magister_Grunt_000_a06e61dd-58c6-4119-99be-716c3a4fc1ef, TRIGGERGUID_S_TUT_CargoDeck_Isolation_GuardWaypoint_b1cc8648-1401-45d4-91f0-0e304e25f2d2, 0, 2, "TUT_CargoDeck_Isolation_GuardMovedUpstairs", "");
+SetVarInteger(CHARACTERGUID_S_TUT_CargoHold_UnrulyPrisoner_d7a61dc6-a249-4e97-9914-53ea24e320ae, "ForceSynchWhileMoving", 1);
+ProcStateManagerCharacterMoveTo(CHARACTERGUID_S_TUT_CargoHold_UnrulyPrisoner_d7a61dc6-a249-4e97-9914-53ea24e320ae, TRIGGERGUID_S_TUT_CargoDeck_Isolation_PrisonerWaypoint_60d4360f-82b3-497a-8842-a3590f926d7e, 0, 2, "TUT_CargoDeck_Isolation_PrisonerMovedToStairs", "");
+
+IF
+ItemOpened(ITEMGUID_S_TUT_CargoDeck_Isolation_CageDoor_fe5ef326-6be6-48f3-a5da-32b106e91c1c)
+AND NOT
+DB_Dead(CHARACTERGUID_S_TUT_CargoHold_UnrulyPrisoner_d7a61dc6-a249-4e97-9914-53ea24e320ae)
+THEN
+ProcForceStopDialog(CHARACTERGUID_S_TUT_CargoHold_UnrulyPrisoner_d7a61dc6-a249-4e97-9914-53ea24e320ae);
+SetHasDialog(CHARACTERGUID_S_TUT_CargoHold_UnrulyPrisoner_d7a61dc6-a249-4e97-9914-53ea24e320ae, 0);
+
+IF
+StoryEvent(CHARACTERGUID_TUT_CargoDeck_Humans_Male_Magister_Grunt_000_a06e61dd-58c6-4119-99be-716c3a4fc1ef, "TUT_CargoDeck_Isolation_GuardMovedUpstairs")
+THEN
+Proc_StartDialog(1, "TUT_AD_CargoDeck_MagisterGuardCallToPrisoner", CHARACTERGUID_TUT_CargoDeck_Humans_Male_Magister_Grunt_000_a06e61dd-58c6-4119-99be-716c3a4fc1ef, CHARACTERGUID_S_TUT_CargoHold_UnrulyPrisoner_d7a61dc6-a249-4e97-9914-53ea24e320ae);
+TimerLaunch("TUT_CargoDeck_Isolation_PrisonerAttack", 3500);
+
+IF
+TimerFinished("TUT_CargoDeck_Isolation_PrisonerAttack")
+AND
+DB_IsPlayer(_Var1)
+THEN
+DB_TUT_CargoDeck_Isolation_Betrayal("TUT_CargoDeck_Isolation_Betrayal_MagisterKilled");
+CharacterUseSkill(CHARACTERGUID_S_TUT_CargoHold_UnrulyPrisoner_d7a61dc6-a249-4e97-9914-53ea24e320ae, "Projectile_Quest_Fireball_Tutorial", CHARACTERGUID_TUT_CargoDeck_Humans_Male_Magister_Grunt_000_a06e61dd-58c6-4119-99be-716c3a4fc1ef, 0, 0, 0);
+SetRelationIndivFactionToPlayers(CHARACTERGUID_S_TUT_CargoHold_UnrulyPrisoner_d7a61dc6-a249-4e97-9914-53ea24e320ae, -100);
+ProcForceStopDialog(CHARACTERGUID_TUT_CargoDeck_Humans_Male_Magister_Grunt_000_a06e61dd-58c6-4119-99be-716c3a4fc1ef);
+ProcForceStopDialog(CHARACTERGUID_S_TUT_CargoHold_UnrulyPrisoner_d7a61dc6-a249-4e97-9914-53ea24e320ae);
+ProcMakeNPCHostile(CHARACTERGUID_TUT_CargoDeck_Humans_Male_Magister_Grunt_000_a06e61dd-58c6-4119-99be-716c3a4fc1ef, CHARACTERGUID_S_TUT_CargoHold_UnrulyPrisoner_d7a61dc6-a249-4e97-9914-53ea24e320ae);
+
+IF
+AutomatedDialogEnded("TUT_AD_CargoDeck_UnrulyPrisonerBetrayal", _)
+AND
+DB_IsPlayer(_Var2)
+THEN
+CharacterLookAt(CHARACTERGUID_S_TUT_CargoHold_UnrulyPrisoner_d7a61dc6-a249-4e97-9914-53ea24e320ae, _Var2);
+Proc_StartDialog(1, "TUT_AD_CargoDeck_UnrulyPrisonerRemorse", CHARACTERGUID_S_TUT_CargoHold_UnrulyPrisoner_d7a61dc6-a249-4e97-9914-53ea24e320ae);
+
+IF
+DB_Dead(CHARACTERGUID_TUT_CargoDeck_Humans_Male_Magister_Grunt_000_a06e61dd-58c6-4119-99be-716c3a4fc1ef)
+AND
+DB_TUT_CargoDeck_Isolation_Betrayal("TUT_CargoDeck_Isolation_Betrayal_MagisterKilled")
+THEN
+Proc_StartDialog(1, "TUT_AD_CargoDeck_UnrulyPrisonerBetrayal", CHARACTERGUID_S_TUT_CargoHold_UnrulyPrisoner_d7a61dc6-a249-4e97-9914-53ea24e320ae);
+ObjectSetFlag(CHARACTERGUID_S_TUT_CargoHold_UnrulyPrisoner_d7a61dc6-a249-4e97-9914-53ea24e320ae, "TUT_CargoDeck_Isolation_PrisonerKilledMagister");
+
+IF
+StoryEvent(CHARACTERGUID_S_TUT_CargoHold_UnrulyPrisoner_d7a61dc6-a249-4e97-9914-53ea24e320ae, "TUT_CargoDeck_Isolation_PrisonerLeaves")
+AND
+GetPosition(TRIGGERGUID_S_TUT_LowerDeck_HemwarAppear_688ee95a-1e39-4b0f-84fa-fe9ab692a2bb, _Var1, _Var2, _Var3)
+THEN
+DB_TUT_CargoDeck_Isolation_MoveToWindego("TUT_CargoDeck_Isolation_MoveToWindego_Complete");
+SetOnStage(CHARACTERGUID_S_TUT_CargoHold_UnrulyPrisoner_d7a61dc6-a249-4e97-9914-53ea24e320ae, 1);
+SetFaction(CHARACTERGUID_S_TUT_CargoHold_UnrulyPrisoner_d7a61dc6-a249-4e97-9914-53ea24e320ae, "FTJ_SW_Windego");
+TeleportToPosition(CHARACTERGUID_S_TUT_CargoHold_UnrulyPrisoner_d7a61dc6-a249-4e97-9914-53ea24e320ae, _Var1, _Var2, _Var3, "TUT_CargoDeck_Isolation_PrisonerWentUp", 0);
+SetVarFixedString(CHARACTERGUID_S_TUT_CargoHold_UnrulyPrisoner_d7a61dc6-a249-4e97-9914-53ea24e320ae, "currentState", "");
+CharacterLookAt(CHARACTERGUID_S_TUT_CargoHold_UnrulyPrisoner_d7a61dc6-a249-4e97-9914-53ea24e320ae, CHARACTERGUID_S_TUT_LowerDeck_CrossBowMagister_000_c4531ec5-203f-4ff2-95f6-ac14b9cf7994);
+
+IF
+StoryEvent(CHARACTERGUID_TUT_CargoDeck_Humans_Male_Magister_Grunt_000_a06e61dd-58c6-4119-99be-716c3a4fc1ef, "TUT_CargoDeck_Isolation_GuardLeaves")
+AND
+GetPosition(TRIGGERGUID_S_TUT_TopDeck_MagisterRennartSpawn_1703f9de-4f8d-42b5-b348-b33fa6d9b715, _Var1, _Var2, _Var3)
+THEN
+NOT DB_TUT_CargoDeck_WindegoDeaths(CHARACTERGUID_TUT_CargoDeck_Humans_Male_Magister_Grunt_000_a06e61dd-58c6-4119-99be-716c3a4fc1ef);
+ObjectSetFlag(CHARACTERGUID_TUT_CargoDeck_Humans_Male_Magister_Grunt_000_a06e61dd-58c6-4119-99be-716c3a4fc1ef, "TUT_CargoDeck_Isolation_GuardWentAway");
+CharacterAppearAtPosition(CHARACTERGUID_TUT_CargoDeck_Humans_Male_Magister_Grunt_000_a06e61dd-58c6-4119-99be-716c3a4fc1ef, _Var1, _Var2, _Var3, 0, "TUT_CargoDeck_Isolation_GuardWentUp");
+
+IF
+FadeOutDone(_, "TUT_LowerDeck_BlackOutAfterWindego")
+AND
+ObjectGetFlag(CHARACTERGUID_TUT_CargoDeck_Humans_Male_Magister_Grunt_000_a06e61dd-58c6-4119-99be-716c3a4fc1ef, "TUT_CargoDeck_Isolation_GuardWentAway", 1)
+AND
+GetPosition(TRIGGERGUID_S_TUT_TopDeck_MagisterRennartSpawn_1703f9de-4f8d-42b5-b348-b33fa6d9b715, _Var2, _Var3, _Var4)
+THEN
+CharacterAppearAtPosition(CHARACTERGUID_TUT_CargoDeck_Humans_Male_Magister_Grunt_000_a06e61dd-58c6-4119-99be-716c3a4fc1ef, _Var2, _Var3, _Var4, 0, "TUT_CargoDeck_Isolation_GuardWentUp");
+CharacterDie(CHARACTERGUID_TUT_CargoDeck_Humans_Male_Magister_Grunt_000_a06e61dd-58c6-4119-99be-716c3a4fc1ef, 1, "Physical");
+
+IF
+DB_Dead(CHARACTERGUID_TUT_CargoDeck_Humans_Male_Magister_Grunt_000_a06e61dd-58c6-4119-99be-716c3a4fc1ef)
+AND
+DB_IsPlayer(_Var1)
+AND
+DB_Sees(_Var1, CHARACTERGUID_TUT_CargoDeck_Humans_Male_Magister_Grunt_000_a06e61dd-58c6-4119-99be-716c3a4fc1ef)
+THEN
+ObjectSetFlag(_Var1, "TUT_CargoDeck_Isolation_MagisterKilled");
+
+IF
+DB_Dead(CHARACTERGUID_TUT_CargoDeck_Humans_Male_Magister_Grunt_000_a06e61dd-58c6-4119-99be-716c3a4fc1ef)
+AND
+ObjectGetFlag(CHARACTERGUID_TUT_CargoDeck_Humans_Male_Magister_Grunt_000_a06e61dd-58c6-4119-99be-716c3a4fc1ef, "TUT_CargoDeck_Isolation_GuardAwakens", 0)
+AND
+DB_IsPlayer(_Var1)
+THEN
+PartySetFlag(_Var1, "TUT_CargoHold_Isolation_MagisterMurderedByPlayer");
+
+IF
+DB_Dead(CHARACTERGUID_TUT_CargoDeck_Humans_Male_Magister_Grunt_000_a06e61dd-58c6-4119-99be-716c3a4fc1ef)
+AND
+ObjectGetFlag(CHARACTERGUID_TUT_CargoDeck_Humans_Male_Magister_Grunt_000_a06e61dd-58c6-4119-99be-716c3a4fc1ef, "TUT_CargoDeck_Isolation_GuardAwakens", 1)
+AND
+DB_IsPlayer(_Var1)
+THEN
+PartySetFlag(_Var1, "TUT_CargoHold_Isolation_MagisterDeathSelfDefense");
+
+IF
+DB_Dead(CHARACTERGUID_TUT_CargoDeck_Humans_Male_Magister_Grunt_000_a06e61dd-58c6-4119-99be-716c3a4fc1ef)
+AND
+ObjectGetFlag(CHARACTERGUID_S_TUT_CargoHold_UnrulyPrisoner_d7a61dc6-a249-4e97-9914-53ea24e320ae, "TUT_CargoDeck_Isolation_PrisonerKilledMagister", 1)
+AND
+DB_IsPlayer(_Var1)
+THEN
+PartySetFlag(_Var1, "TUT_CargoHold_Isolation_MagisterKilledBeforePlayer");
+
+IF
+DB_Dead(CHARACTERGUID_TUT_CargoDeck_Humans_Male_Magister_Grunt_000_a06e61dd-58c6-4119-99be-716c3a4fc1ef)
+AND
+DB_IsPlayer(_Var1)
+AND
+DB_Sees(_Var1, CHARACTERGUID_TUT_CargoDeck_Humans_Male_Magister_Grunt_000_a06e61dd-58c6-4119-99be-716c3a4fc1ef)
+AND
+QueryOnlyOnce("TUT_CargoDeck_Isolation_MagisterDeath")
+THEN
+ProcObjectTimer(_Var1, "TUT_CargoDeck_Isolation_MagisterDeath", 3000);
+
+PROC
+ProcObjectTimerFinished((CHARACTERGUID)_Var1, "TUT_CargoDeck_Isolation_MagisterDeath")
+THEN
+StartVoiceBark("TUT_VB_CargoDeck_Isolation_MagisterDeath", _Var1);
+
+IF
+DB_Sees(CHARACTERGUID_S_TUT_CargoHold_UnrulyPrisoner_d7a61dc6-a249-4e97-9914-53ea24e320ae, _Var1)
+AND
+DB_IsPlayer(_Var1)
+AND NOT
+DB_TUT_CargoDeck_Isolation_MoveToWindego("TUT_CargoDeck_Isolation_MoveToWindego_Complete")
+AND
+GlobalGetFlag("TUT_CargoDeck_PrisonerFreed", 1)
+AND
+DB_TUT_CargoDeck_Isolation_PrisonerDialogTimer("TUT_CargoDeck_Isolation_PrisonerDialogTimer_Active")
+AND NOT
+DB_TUT_CargoDeck_Isolation_PrisonerDialog("TUT_CargoDeck_Isolation_PrisonerDialog_Triggered")
+AND
+QRY_SpeakerIsAvailableAndInDialogRange(_Var1, CHARACTERGUID_S_TUT_CargoHold_UnrulyPrisoner_d7a61dc6-a249-4e97-9914-53ea24e320ae)
+THEN
+DB_TUT_CargoDeck_Isolation_PrisonerDialog("TUT_CargoDeck_Isolation_PrisonerDialog_Triggered");
+DB_TUT_CargoDeck_Isolation_PrisonerDialogTimer("TUT_CargoDeck_Isolation_PrisonerDialogTimer_Inactive");
+Proc_StartDialog(0, "TUT_CargoDeck_UnrulyPrisoner", CHARACTERGUID_S_TUT_CargoHold_UnrulyPrisoner_d7a61dc6-a249-4e97-9914-53ea24e320ae, _Var1);
+
+IF
+TimerFinished("TUT_CargoDeck_Isolation_PrisonerResolutionDialog")
+AND NOT
+DB_TUT_CargoDeck_Isolation_PrisonerDialogTimer("TUT_CargoDeck_Isolation_PrisonerDialogTimer_Inactive")
+THEN
+SetHasDialog(CHARACTERGUID_S_TUT_CargoHold_UnrulyPrisoner_d7a61dc6-a249-4e97-9914-53ea24e320ae, 0);
+SetVarInteger(CHARACTERGUID_S_TUT_CargoHold_UnrulyPrisoner_d7a61dc6-a249-4e97-9914-53ea24e320ae, "ForceSynchWhileMoving", 1);
+ProcStateManagerCharacterMoveTo(CHARACTERGUID_S_TUT_CargoHold_UnrulyPrisoner_d7a61dc6-a249-4e97-9914-53ea24e320ae, TRIGGERGUID_TeleportTrigger_001_ed6cbd10-1893-4768-87d4-53aaf995dbfe, 0, 2, "TUT_CargoDeck_Isolation_PrisonerLeaves", "");
+
+IF
+DialogEnded("TUT_CargoDeck_UnrulyPrisoner", _)
+AND
+DB_IsPlayer(_Var2)
+AND
+GlobalGetFlag("TUT_CargoDeck_PrisonerFreed", 1)
+AND
+PartyGetFlag(_Var2, "TUT_CargoDeck_Isolation_Hemwar_Betrayal", 1)
+AND
+DB_Dead(CHARACTERGUID_TUT_CargoDeck_Humans_Male_Magister_Grunt_000_a06e61dd-58c6-4119-99be-716c3a4fc1ef)
+THEN
+SetRelationIndivFactionToPlayers(CHARACTERGUID_S_TUT_CargoHold_UnrulyPrisoner_d7a61dc6-a249-4e97-9914-53ea24e320ae, -100);
+
+IF
+DialogEnded("TUT_CargoDeck_UnrulyPrisoner", _)
+AND
+DB_IsPlayer(_Var2)
+AND
+GlobalGetFlag("TUT_CargoDeck_PrisonerFreed", 1)
+AND
+PartyGetFlag(_Var2, "TUT_CargoDeck_Isolation_Hemwar_Betrayal", 1)
+AND
+QRY_TUT_CargoDeck_GuardGone()
+THEN
+SetRelationIndivFactionToPlayers(CHARACTERGUID_S_TUT_CargoHold_UnrulyPrisoner_d7a61dc6-a249-4e97-9914-53ea24e320ae, -100);
+
+IF
+ItemOpened(ITEMGUID_S_TUT_CargoDeck_Isolation_CageDoor_fe5ef326-6be6-48f3-a5da-32b106e91c1c)
+AND
+QRY_TUT_CargoDeck_GuardGone()
+AND NOT
+DB_TUT_CargoDeck_Isolation_Prisoner("TUT_CargoDeck_Isolation_Prisoner_Attacked")
+THEN
+GlobalSetFlag("TUT_CargoDeck_PrisonerFreed");
+DB_TUT_CargoDeck_Isolation_PrisonerDialogTimer("TUT_CargoDeck_Isolation_PrisonerDialogTimer_Active");
+TimerLaunch("TUT_CargoDeck_Isolation_PrisonerResolutionDialog", 10000);
+
+IF
+CharacterKilledBy(CHARACTERGUID_S_TUT_CargoHold_UnrulyPrisoner_d7a61dc6-a249-4e97-9914-53ea24e320ae, (CHARACTERGUID)_Var1, (CHARACTERGUID)_Var1)
+AND
+DB_IsPlayer(_Var1)
+AND
+DB_Sees(_Var1, CHARACTERGUID_S_TUT_CargoHold_UnrulyPrisoner_d7a61dc6-a249-4e97-9914-53ea24e320ae)
+THEN
+ObjectSetFlag(_Var1, "TUT_CargoDeck_Isolation_PrisonerKilled");
+TimerLaunch("TUT_CargoDeck_Isolation_PrisonerDeath", 2000);
+
+IF
+TimerFinished("TUT_CargoDeck_Isolation_PrisonerDeath")
+AND
+DB_IsPlayer(_Var1)
+AND
+PartyGetFlag(_Var1, "TUT_CargoDeck_Isolation_Hemwar_Betrayal", 1)
+AND
+QueryOnlyOnce("TUT_VB_CargoDeck_Isolation_PrisonerDeath")
+THEN
+StartVoiceBark("TUT_VB_CargoDeck_Isolation_PrisonerDeath", _Var1);
+
+QRY
+QRY_TUT_CargoDeck_GuardGone()
+AND
+DB_Dead(CHARACTERGUID_TUT_CargoDeck_Humans_Male_Magister_Grunt_000_a06e61dd-58c6-4119-99be-716c3a4fc1ef)
+THEN
+DB_NOOP(1);
+
+QRY
+QRY_TUT_CargoDeck_GuardGone()
+AND
+ObjectGetFlag(CHARACTERGUID_TUT_CargoDeck_Humans_Male_Magister_Grunt_000_a06e61dd-58c6-4119-99be-716c3a4fc1ef, "TUT_CargoDeck_Isolation_GuardLeavesPrisoner", 1)
+THEN
+DB_NOOP(1);
+
+IF
+ObjectLeftCombat(CHARACTERGUID_S_TUT_CargoHold_UnrulyPrisoner_d7a61dc6-a249-4e97-9914-53ea24e320ae, _)
+AND NOT
+DB_Dead(CHARACTERGUID_S_TUT_CargoHold_UnrulyPrisoner_d7a61dc6-a249-4e97-9914-53ea24e320ae)
+AND
+QRY_TUT_CargoDeck_GuardGone()
+THEN
+PROC_TUT_PrisonerFreeGuardGone();
+
+PROC
+PROC_TUT_PrisonerFreeGuardGone()
+AND
+GlobalGetFlag("TUT_CargoDeck_PrisonerFreed", 1)
+AND
+ObjectGetFlag(CHARACTERGUID_S_TUT_CargoHold_UnrulyPrisoner_d7a61dc6-a249-4e97-9914-53ea24e320ae, "TUT_CargoDeck_Isolation_PrisonerKilledMagister", 0)
+THEN
+NOT DB_TUT_CargoDeck_Isolation_PrisonerDialogTimer("TUT_CargoDeck_Isolation_PrisonerDialogTimer_Inactive");
+DB_TUT_CargoDeck_Isolation_PrisonerDialogTimer("TUT_CargoDeck_Isolation_PrisonerDialogTimer_Active");
+TimerLaunch("TUT_CargoDeck_Isolation_PrisonerResolutionDialog", 10000);
+
+PROC
+PROC_TUT_PrisonerFreeGuardGone()
+AND
+ObjectGetFlag(CHARACTERGUID_S_TUT_CargoHold_UnrulyPrisoner_d7a61dc6-a249-4e97-9914-53ea24e320ae, "TUT_CargoDeck_Isolation_PrisonerKilledMagister", 1)
+THEN
+SetHasDialog(CHARACTERGUID_S_TUT_CargoHold_UnrulyPrisoner_d7a61dc6-a249-4e97-9914-53ea24e320ae, 0);
+SetVarInteger(CHARACTERGUID_S_TUT_CargoHold_UnrulyPrisoner_d7a61dc6-a249-4e97-9914-53ea24e320ae, "ForceSynchWhileMoving", 1);
+ProcStateManagerCharacterMoveTo(CHARACTERGUID_S_TUT_CargoHold_UnrulyPrisoner_d7a61dc6-a249-4e97-9914-53ea24e320ae, TRIGGERGUID_TeleportTrigger_001_ed6cbd10-1893-4768-87d4-53aaf995dbfe, 0, 2, "TUT_CargoDeck_Isolation_PrisonerLeaves", "");
+
+QRY
+QRY_TUT_CargoDeck_PrisonerEscapeState()
+AND
+ObjectGetFlag(CHARACTERGUID_TUT_CargoDeck_Humans_Male_Magister_Grunt_000_a06e61dd-58c6-4119-99be-716c3a4fc1ef, "TUT_CargoDeck_Isolation_GuardReleasesPrisoner", 1)
+AND
+ItemIsLocked(ITEMGUID_S_TUT_CargoDeck_Isolation_CageDoor_fe5ef326-6be6-48f3-a5da-32b106e91c1c, 0)
+THEN
+DB_NOOP(1);
+
+QRY
+QRY_TUT_CargoDeck_PrisonerEscapeState()
+AND
+GlobalGetFlag("TUT_CargoDeck_PrisonerFreed", 1)
+THEN
+DB_NOOP(1);
+
+IF
+ObjectLeftCombat(CHARACTERGUID_TUT_CargoDeck_Humans_Male_Magister_Grunt_000_a06e61dd-58c6-4119-99be-716c3a4fc1ef, _)
+AND
+QRY_TUT_CargoDeck_PrisonerEscapeState()
+AND NOT
+DB_Dead(CHARACTERGUID_TUT_CargoDeck_Humans_Male_Magister_Grunt_000_a06e61dd-58c6-4119-99be-716c3a4fc1ef)
+THEN
+PROC_TUT_PrisonerDeadGuardAlone();
+
+PROC
+PROC_TUT_PrisonerDeadGuardAlone()
+AND NOT
+DB_Dead(CHARACTERGUID_S_TUT_CargoHold_UnrulyPrisoner_d7a61dc6-a249-4e97-9914-53ea24e320ae)
+THEN
+ProcForceStopDialog(CHARACTERGUID_TUT_CargoDeck_Humans_Male_Magister_Grunt_000_a06e61dd-58c6-4119-99be-716c3a4fc1ef);
+ProcForceStopDialog(CHARACTERGUID_S_TUT_CargoHold_UnrulyPrisoner_d7a61dc6-a249-4e97-9914-53ea24e320ae);
+ProcMakeNPCHostile(CHARACTERGUID_S_TUT_CargoHold_UnrulyPrisoner_d7a61dc6-a249-4e97-9914-53ea24e320ae, CHARACTERGUID_TUT_CargoDeck_Humans_Male_Magister_Grunt_000_a06e61dd-58c6-4119-99be-716c3a4fc1ef);
+
+PROC
+PROC_TUT_PrisonerDeadGuardAlone()
+AND
+DB_Dead(CHARACTERGUID_S_TUT_CargoHold_UnrulyPrisoner_d7a61dc6-a249-4e97-9914-53ea24e320ae)
+THEN
+SetHasDialog(CHARACTERGUID_TUT_CargoDeck_Humans_Male_Magister_Grunt_000_a06e61dd-58c6-4119-99be-716c3a4fc1ef, 0);
+SetVarInteger(CHARACTERGUID_TUT_CargoDeck_Humans_Male_Magister_Grunt_000_a06e61dd-58c6-4119-99be-716c3a4fc1ef, "ForceSynchWhileMoving", 1);
+ProcStateManagerCharacterMoveTo(CHARACTERGUID_TUT_CargoDeck_Humans_Male_Magister_Grunt_000_a06e61dd-58c6-4119-99be-716c3a4fc1ef, TRIGGERGUID_TeleportTrigger_001_ed6cbd10-1893-4768-87d4-53aaf995dbfe, 0, 2, "TUT_CargoDeck_Isolation_GuardLeaves", "");
+
+IF
+AttackedByObject(CHARACTERGUID_S_TUT_CargoHold_UnrulyPrisoner_d7a61dc6-a249-4e97-9914-53ea24e320ae, (CHARACTERGUID)_Var1, (CHARACTERGUID)_Var1, _, _)
+AND
+ItemIsOpened(ITEMGUID_S_TUT_CargoDeck_Isolation_CageDoor_fe5ef326-6be6-48f3-a5da-32b106e91c1c, 1)
+AND
+DB_IsPlayer(_Var1)
+AND
+CharacterIsEnemy(CHARACTERGUID_S_TUT_CargoHold_UnrulyPrisoner_d7a61dc6-a249-4e97-9914-53ea24e320ae, _Var1, 0)
+AND
+CombatGetIDForCharacter(_Var1, _Var4)
+THEN
+ProcWarnPlayerOfAttack(CHARACTERGUID_S_TUT_CargoHold_UnrulyPrisoner_d7a61dc6-a249-4e97-9914-53ea24e320ae, _Var1, _Var4);
+
+IF
+AttackedByObject(CHARACTERGUID_S_TUT_CargoHold_UnrulyPrisoner_d7a61dc6-a249-4e97-9914-53ea24e320ae, (CHARACTERGUID)_Var1, (CHARACTERGUID)_Var1, _, _)
+AND
+DB_IsPlayer(_Var1)
+AND
+GlobalGetFlag("TUT_CargoDeck_PrisonerFreed", 0)
+AND
+ObjectGetFlag(CHARACTERGUID_TUT_CargoDeck_Humans_Male_Magister_Grunt_000_a06e61dd-58c6-4119-99be-716c3a4fc1ef, "TUT_CargoDeck_Isolation_GuardAwakens", 0)
+THEN
+PROC_TUT_CargoDeck_MakeGuardAndPrisonerHostileToPlayer(_Var1);
+
+IF
+AttackedByObject(CHARACTERGUID_S_TUT_CargoHold_UnrulyPrisoner_d7a61dc6-a249-4e97-9914-53ea24e320ae, (CHARACTERGUID)_Var1, (CHARACTERGUID)_Var1, _, _)
+AND
+DB_IsPlayer(_Var1)
+AND
+ObjectGetFlag(CHARACTERGUID_TUT_CargoDeck_Humans_Male_Magister_Grunt_000_a06e61dd-58c6-4119-99be-716c3a4fc1ef, "TUT_CargoDeck_Isolation_GuardReleasesPrisoner", 1)
+THEN
+PROC_TUT_CargoDeck_MakeGuardAndPrisonerHostileToPlayer(_Var1);
+
+PROC
+PROC_TUT_CargoDeck_MakeGuardAndPrisonerHostileToPlayer((CHARACTERGUID)_Var1)
+THEN
+DB_TUT_CargoDeck_Isolation_Prisoner("TUT_CargoDeck_Isolation_Prisoner_Attacked");
+RemoveStatus(CHARACTERGUID_TUT_CargoDeck_Humans_Male_Magister_Grunt_000_a06e61dd-58c6-4119-99be-716c3a4fc1ef, "SLEEPING");
+Proc_StartDialog(1, "TUT_AD_CargoDeck_MagisterGuard", CHARACTERGUID_TUT_CargoDeck_Humans_Male_Magister_Grunt_000_a06e61dd-58c6-4119-99be-716c3a4fc1ef);
+SetRelationIndivFactionToPlayers(CHARACTERGUID_TUT_CargoDeck_Humans_Male_Magister_Grunt_000_a06e61dd-58c6-4119-99be-716c3a4fc1ef, -100);
+SetRelationIndivFactionToPlayers(CHARACTERGUID_S_TUT_CargoHold_UnrulyPrisoner_d7a61dc6-a249-4e97-9914-53ea24e320ae, -100);
+
+IF
+CharacterItemEvent((CHARACTERGUID)_Var1, ITEMGUID_S_TUT_CargoDeck_SecurityRoomTwo_DoorLever_c5e2b0d1-4b06-4e4b-92a3-3b1dc9796f46, "TUT_CargoDeck_SecurityRoomTwo_DoorOpen")
+THEN
+ItemUnlockAndOpen(ITEMGUID_S_TUT_CargoDeck_SecurityRoomTwo_Door_3bcaf90b-2439-458a-a5fd-3cac478af9a6);
+
+IF
+CharacterUsedItem((CHARACTERGUID)_Var1, ITEMGUID_S_TUT_CargoDeck_MedicalBay_Bed_9b6d7758-8bbe-4e3f-b6a2-8c4a771a53d8)
+THEN
+PROC_CheckPlayTut(_Var1, "TUT_Bed");
+
+IF
+CharacterEnteredTrigger((CHARACTERGUID)_Var1, TRIGGERGUID_S_TUT_CargoDeck_AnimalPen_SelectionTutorial_da34033c-0f5f-4f38-9813-b21ea50e15ce)
+THEN
+PROC_CheckPlayTut(_Var1, "TUT_SelectionActiveSearch_Controller");
+
+IF
+ItemTemplateAddedToCharacter((GUIDSTRING)_Var1, (ITEMGUID)_Var2, (CHARACTERGUID)_Var3)
+AND
+DB_IsPlayer(_Var3)
+AND
+DB_Tutorial_CargoDeck_MedicalBay_Ingredients(_Var1, _Var4)
+AND
+StringConcatenate("S_TUT_CargoDeck_Ingredient_", _Var4, _Var5)
+AND NOT
+DB_HasStoryEvent(_Var2, _Var5)
+THEN
+DB_HasStoryEvent(_Var2, _Var5);
+
+IF
+DB_HasStoryEvent(_Var1, _Var2)
+AND
+DB_IsPlayer(_Var3)
+AND
+DB_HasStoryEvent(_Var1, "S_TUT_CargoDeck_Ingredient_Bottle")
+AND
+DB_HasStoryEvent(_Var4, _Var5)
+AND
+_Var4 != _Var1
+AND
+DB_HasStoryEvent(_Var4, "S_TUT_CargoDeck_Ingredient_Mushroom")
+THEN
+PROC_CheckPlayTut(_Var3, "TUT_CombineCrafting");
+
+IF
+ItemAddedToCharacter(ITEMGUID_BOOK_RCP_Potions_000_2eff05cc-e359-4612-90ca-d67bcd52b00d, (CHARACTERGUID)_Var1)
+AND
+DB_IsPlayer(_Var1)
+AND NOT
+DB_TUT_CargoDeck_MedicalBay_Tutorial(1)
+THEN
+PROC_CheckPlayTut(_Var1, "TUT_CraftingRecipe");
+
+IF
+GameBookInterfaceClosed(ITEMGUID_BOOK_RCP_Potions_000_2eff05cc-e359-4612-90ca-d67bcd52b00d, (CHARACTERGUID)_Var1)
+AND
+QueryOnlyOnce("TUT_CargoDeck_TutorialRecipeUsed")
+THEN
+DB_TUT_CargoDeck_MedicalBay_Tutorial(1);
+
+IF
+DB_DestroyedItems(ITEMGUID_S_TUT_CargoDeck_MedicalBay_Door_fb7ac9d0-d334-4778-8a0a-d0bf266e120c)
+THEN
+ProcTriggerRegisterForPlayers(TRIGGERGUID_S_TUT_CargoDeck_MedicalBay_Voicebark_3ee55543-1146-47b6-a66c-288003ead701);
+
+IF
+CharacterEnteredTrigger((CHARACTERGUID)_Var1, TRIGGERGUID_S_TUT_CargoDeck_MedicalBay_Voicebark_3ee55543-1146-47b6-a66c-288003ead701)
+AND
+DB_IsPlayer(_Var1)
+AND
+QueryOnlyOnce("TUT_CargoDeck_MedicalBay_DoorBust")
+THEN
+StartVoiceBark("TUT_VB_CargoDeck_MedicalBay_DoorBust", _Var1);
+
+IF
+CharacterUsedItem((CHARACTERGUID)_Var1, ITEMGUID_S_TUT_CargoDeck_MedicalBay_Door_fb7ac9d0-d334-4778-8a0a-d0bf266e120c)
+AND
+DB_IsPlayer(_Var1)
+AND
+ObjectIsItem(ITEMGUID_S_TUT_CargoDeck_MedicalBay_Door_fb7ac9d0-d334-4778-8a0a-d0bf266e120c, 1)
+AND
+ItemIsLocked(ITEMGUID_S_TUT_CargoDeck_MedicalBay_Door_fb7ac9d0-d334-4778-8a0a-d0bf266e120c, 1)
+THEN
+PROC_CheckPlayTut(_Var1, "TUT_WoodenDoor");
+
+IF
+ItemAddedToCharacter(ITEMGUID_Scroll_Skill_Water_LightningBolt_000_aabc538c-b76f-4395-9634-f08cff2a1017, (CHARACTERGUID)_Var1)
+AND
+DB_InitialTutorialsShown(1)
+AND
+DB_IsPlayer(_Var1)
+THEN
+PROC_CheckPlayTut(_Var1, "TUT_ScrollLightning");
+
+IF
+CharacterMovedItem((CHARACTERGUID)_Var1, ITEMGUID_S_TUT_CargoDeck_CollaringRoom_Crate_b17df732-9c8d-47b8-9b0a-ed8f4aee5f27)
+THEN
+DB_TUT_CargoDeck_CollaringRoom_Crate("TUT_CargoDeck_CollaringRoom_Crate_Moved");
+
+IF
+ItemAddedToCharacter(ITEMGUID_S_TUT_CargoDeck_CollaringRoom_Crate_b17df732-9c8d-47b8-9b0a-ed8f4aee5f27, (CHARACTERGUID)_Var1)
+THEN
+DB_TUT_CargoDeck_CollaringRoom_Crate("TUT_CargoDeck_CollaringRoom_Crate_Looted");
+
+IF
+ItemDestroying(ITEMGUID_S_TUT_CargoDeck_CollaringRoom_Crate_b17df732-9c8d-47b8-9b0a-ed8f4aee5f27)
+THEN
+DB_TUT_CargoDeck_CollaringRoom_Crate("TUT_CargoDeck_CollaringRoom_Crate_Destroyed");
+
+IF
+CharacterEnteredTrigger((CHARACTERGUID)_Var1, TRIGGERGUID_S_TUT_CargoDeck_CollaringRoom_DragTutorial_bf65754b-3196-477f-bb20-64e4c9ad6107)
+AND NOT
+DB_TUT_CargoDeck_CollaringRoom_Crate("TUT_CargoDeck_CollaringRoom_Crate_Moved")
+AND NOT
+DB_TUT_CargoDeck_CollaringRoom_Crate("TUT_CargoDeck_CollaringRoom_Crate_Looted")
+AND NOT
+DB_TUT_CargoDeck_CollaringRoom_Crate("TUT_CargoDeck_CollaringRoom_Crate_Destroyed")
+THEN
+PROC_CheckPlayTut(_Var1, "TUT_Drag");
+DB_InitialTutorialsShown(1);
+
+IF
+CharacterStatusApplied((CHARACTERGUID)_Var1, "SLOWED", _)
+AND
+GetSurfaceGroundAt(_Var1, "SurfaceOil")
+THEN
+PROC_CheckPlayTutWithDelay(_Var1, "TUT_SurfaceOil", 1000);
+
+IF
+CharacterEnteredTrigger((CHARACTERGUID)_Var1, TRIGGERGUID_S_TUT_CargoDeck_MedicalBay_OozeTutorial_40341ee0-2ec6-474c-a7f4-1747ac0df273)
+AND
+QueryOnlyOnce("TUT_CargoDeck_MedicalBay_OozeTutorial")
+THEN
+DB_TUT_CargoDeck_MedicalBay_PoisonTutorial("TUT_CargoDeck_MedicalBay_PoisonTutorial_Cleared");
+PROC_CheckPlayTut(_Var1, "TUT_SurfacePoison");
+
+IF
+CharacterUsedItem((CHARACTERGUID)_Var1, ITEMGUID_S_TUT_CargoDeck_Isolation_Door_477d97e2-3461-4ae5-ae66-8a68cd153fbf)
+AND
+ObjectIsItem(ITEMGUID_S_TUT_CargoDeck_Isolation_Door_477d97e2-3461-4ae5-ae66-8a68cd153fbf, 1)
+AND
+ItemIsInPartyInventory(ITEMGUID_S_TUT_Cargohold_MedicalBay_Key_6a20cfde-e99c-4394-8111-8ab219dc307d, _Var1, 0, 0)
+AND
+ItemIsLocked(ITEMGUID_S_TUT_CargoDeck_Isolation_Door_477d97e2-3461-4ae5-ae66-8a68cd153fbf, 1)
+AND
+ObjectGetFlag(CHARACTERGUID_TUT_CargoDeck_Humans_Male_Magister_Grunt_000_a06e61dd-58c6-4119-99be-716c3a4fc1ef, "TUT_CargoDeck_Isolation_GuardLeaving", 1)
+THEN
+PROC_CheckPlayTut(_Var1, "TUT_Locked_UseLockpick");
+
+IF
+CharacterItemEvent((CHARACTERGUID)_Var1, (ITEMGUID)_Var2, (STRING)_Var3)
+AND
+_Var1 != NULL_00000000-0000-0000-0000-000000000000
+AND
+QueryOnlyOnce("TUT_CargoDeck_SecurityRoom_VoiceBark")
+AND
+DB_S_TUT_CargoDeck_PressurePlate(_Var2, _Var3, _Var4, _Var5, "ON")
+AND
+QRY_SpeakerIsAvailable(_Var1)
+THEN
+StartVoiceBark("TUT_VB_CargoDeck_SecurityRoom_PressurePlate", _Var1);
+
+IF
+ItemOpened(ITEMGUID_S_TUT_CargoDeck_SecurityRoomTwo_Door_3bcaf90b-2439-458a-a5fd-3cac478af9a6)
+THEN
+ProcTriggerRegisterForPlayers(TRIGGERGUID_S_TUt_CargoDeck_CollaringRom_TutorialComplete_9e6969fa-8c7e-4c50-940b-a7694ed7aca1);
+
+IF
+CharacterEnteredTrigger((CHARACTERGUID)_Var1, TRIGGERGUID_S_TUt_CargoDeck_CollaringRom_TutorialComplete_9e6969fa-8c7e-4c50-940b-a7694ed7aca1)
+AND
+DB_DestroyedItems(ITEMGUID_S_TUT_CargoDeck_MedicalBay_Door_fb7ac9d0-d334-4778-8a0a-d0bf266e120c)
+AND
+QueryOnlyOnce("TUT_CargoDeck_SecurityRoomII_VoiceBark")
+AND
+DB_IsPlayer(_Var1)
+THEN
+StartVoiceBark("TUT_VB_CargoDeck_SecurityRoomII_Exit", _Var1);
+
+IF
+FadeOutDone(_, "TUT_LowerDeck_BlackOutAfterWindego")
+THEN
+DB_TUT_CameraShakeTrigger(TRIGGERGUID_S_TUT_ShakeTrigger28_386da647-6e57-4610-958e-c45669742e5a, "");
+DB_TUT_CameraShakeTrigger(TRIGGERGUID_S_TUT_ShakeTrigger29_a9a551d0-6e64-46ac-bbb3-61c39b8c29e9, "");
+DB_TUT_CameraShakeTrigger(TRIGGERGUID_S_TUT_ShakeTrigger30_ce55188b-e639-415a-8551-1dc3fce0705e, "");
+DB_TUT_CameraShakeTrigger(TRIGGERGUID_S_TUT_ShakeTrigger31_092ff68f-d308-4ae1-941f-3ca0aa2cc5bf, "");
+DB_TUT_CameraShakeTrigger(TRIGGERGUID_S_TUT_ShakeTrigger32_1da72d1d-abff-439d-bced-56afdb9074c4, "");
+
+IF
+TimerFinished("TUT_LowerDeck_WindegoExplosionPeopleEffects")
+AND
+DB_TUT_CargoDeck_WindegoDeaths(_Var1)
+THEN
+CharacterDie(_Var1, 1, "Explode");
+
+PROC
+PROC_TUT_Windego_KnockDown_LowerDeck()
+AND
+GetPosition(TRIGGERGUID_S_TUT_CargoDeck_Isolation_WindegoWave_b5f935df-40ff-4486-aace-d321db2a6e5c, _Var1, _Var2, _Var3)
+THEN
+PlayEffectAtPosition("RS3_FX_Skills_Void_EtherealStorm_Impact_01", _Var1, _Var2, _Var3);
+
+IF
+TimerFinished("TUT_WindegoAnimationDelay")
+AND
+GetPosition(TRIGGERGUID_S_TUT_CargoDeck_Isolation_WindegoWave_b5f935df-40ff-4486-aace-d321db2a6e5c, _Var1, _Var2, _Var3)
+THEN
+PlayEffectAtPosition("RS3_FX_Skills_Void_Divine_Cast_Shout_Root_01", _Var1, _Var2, _Var3);
+TeleportTo(ITEMGUID_S_TUT_CargoDeck_WindegoWave_f5035f0a-62dc-460a-84be-c178c9ad2e2e, TRIGGERGUID_S_TUT_CargoDeck_Isolation_WindegoWave_b5f935df-40ff-4486-aace-d321db2a6e5c);
+SetOnStage(ITEMGUID_S_TUT_CargoDeck_WindegoWave_f5035f0a-62dc-460a-84be-c178c9ad2e2e, 1);
+ItemSetForceSynch(ITEMGUID_S_TUT_CargoDeck_WindegoWave_f5035f0a-62dc-460a-84be-c178c9ad2e2e, 1);
+
+IF
+ItemWentOnStage(ITEMGUID_S_TUT_CargoDeck_WindegoWave_f5035f0a-62dc-460a-84be-c178c9ad2e2e, 1)
+THEN
+ItemMoveToTrigger(ITEMGUID_S_TUT_CargoDeck_WindegoWave_f5035f0a-62dc-460a-84be-c178c9ad2e2e, TRIGGERGUID_S_TUT_CargoDeck_Windego_wave_trigger_1a8282e4-c226-4eb0-ad23-985e06741b8c, 10, 1, 0);
+TimerLaunch("TUT_StopWindegoWave", 10000);
+
+IF
+TimerFinished("TUT_StopWindegoWave")
+THEN
+ItemSetForceSynch(ITEMGUID_S_TUT_CargoDeck_WindegoWave_f5035f0a-62dc-460a-84be-c178c9ad2e2e, 0);
+SetOnStage(ITEMGUID_S_TUT_CargoDeck_WindegoWave_f5035f0a-62dc-460a-84be-c178c9ad2e2e, 0);
+
+PROC
+PROC_TUT_SummonTheKraken()
+THEN
+TimerLaunch("TUT_CargoDeck_BreakTimer", 5000);
+
+IF
+TimerFinished("TUT_CargoDeck_BreakTimer")
+THEN
+DB_TUT_Splashes_Triggers(TRIGGERGUID_S_TUT_Splashes_Box_Cargo_cf28a7f4-75d6-49c4-9369-24361a2ba6cb, "TUT_Splashes_Tick_Bottom", "Cargo");
+DB_TUT_Splashes_Wave_Timer("Cargo", "Right", "TUT_Splashes_SideWave_Bottom_Right", 0);
+DB_TUT_Splashes_Wave_Timer("Cargo", "Left", "TUT_Splashes_SideWave_Bottom_Left", 0);
+DB_TUT_Splashes_Wave_Timer("Cargo", "Right", "TUT_Splashes_FrontalWave_Bottom_Right", 1);
+DB_TUT_Splashes_Wave_Timer("Cargo", "Left", "TUT_Splashes_FrontalWave_Bottom_Left", 1);
+SetOnStage(ITEMGUID_S_TUT_Lightning_CargoDeck_6bea4a63-d9a5-416b-bd36-04e963529fac, 1);
+
+IF
+SavegameLoaded((INTEGER)_Var1, (INTEGER)_Var2, (INTEGER)_Var3, (INTEGER)_Var4)
+AND
+QRY_VersionIsOlderThan(_Var1, _Var2, _Var3, _Var4, 3, 5, 1, 0)
+AND NOT
+DB_Dead(CHARACTERGUID_S_TUT_CargoHold_UnrulyPrisoner_d7a61dc6-a249-4e97-9914-53ea24e320ae)
+AND NOT
+QRY_SpeakerIsAvailable(CHARACTERGUID_S_TUT_CargoHold_UnrulyPrisoner_d7a61dc6-a249-4e97-9914-53ea24e320ae)
+AND
+CharacterIsInCombat(CHARACTERGUID_S_TUT_CargoHold_UnrulyPrisoner_d7a61dc6-a249-4e97-9914-53ea24e320ae, 0)
+AND
+ObjectGetFlag(CHARACTERGUID_TUT_CargoDeck_Humans_Male_Magister_Grunt_000_a06e61dd-58c6-4119-99be-716c3a4fc1ef, "TUT_CargoDeck_Isolation_GuardLeavesPrisoner", 0)
+THEN
+PROC_TUT_CargoDeck_PrisonerStopDialog();
+
+PROC
+PROC_TUT_CargoDeck_PrisonerStopDialog()
+AND NOT
+DB_Dead(CHARACTERGUID_TUT_CargoDeck_Humans_Male_Magister_Grunt_000_a06e61dd-58c6-4119-99be-716c3a4fc1ef)
+AND
+CharacterIsInCombat(CHARACTERGUID_TUT_CargoDeck_Humans_Male_Magister_Grunt_000_a06e61dd-58c6-4119-99be-716c3a4fc1ef, 1)
+THEN
+ProcForceStopDialog(CHARACTERGUID_S_TUT_CargoHold_UnrulyPrisoner_d7a61dc6-a249-4e97-9914-53ea24e320ae);
+
+PROC
+PROC_TUT_CargoDeck_PrisonerStopDialog()
+AND
+DB_Dead(CHARACTERGUID_TUT_CargoDeck_Humans_Male_Magister_Grunt_000_a06e61dd-58c6-4119-99be-716c3a4fc1ef)
+AND
+DB_IsPlayer(_Var1)
+AND
+PartyGetFlag(_Var1, "TUT_CargoDeck_Isolation_Hemwar_Betrayal", 0)
+AND
+DB_DialogName("TUT_CargoDeck_UnrulyPrisoner", _Var2)
+AND
+DB_DialogPlayers(_Var2, _Var1, _)
+THEN
+ProcForceStopDialog(CHARACTERGUID_S_TUT_CargoHold_UnrulyPrisoner_d7a61dc6-a249-4e97-9914-53ea24e320ae);
+PROC_TUT_CargoDeck_PrisonerSecondBetrayalApproach(_Var1);
+
+PROC
+PROC_TUT_CargoDeck_PrisonerSecondBetrayalApproach((CHARACTERGUID)_Var1)
+AND
+GlobalGetFlag("TUT_CargoDeck_PrisonerFreed", 1)
+THEN
+DB_TUT_CargoDeck_Isolation_PrisonerDialog("TUT_CargoDeck_Isolation_PrisonerDialog_Triggered");
+DB_TUT_CargoDeck_Isolation_PrisonerDialogTimer("TUT_CargoDeck_Isolation_PrisonerDialogTimer_Inactive");
+Proc_StartDialog(0, "TUT_CargoDeck_UnrulyPrisoner", CHARACTERGUID_S_TUT_CargoHold_UnrulyPrisoner_d7a61dc6-a249-4e97-9914-53ea24e320ae, _Var1);
+
+IF
+SavegameLoaded((INTEGER)_Var1, (INTEGER)_Var2, (INTEGER)_Var3, (INTEGER)_Var4)
+AND
+QRY_VersionIsOlderThan(_Var1, _Var2, _Var3, _Var4, 3, 5, 1, 0)
+AND
+ItemIsOpened(ITEMGUID_S_TUT_CargoDeck_Isolation_CageDoor_fe5ef326-6be6-48f3-a5da-32b106e91c1c, 1)
+AND NOT
+DB_Dead(CHARACTERGUID_TUT_CargoDeck_Humans_Male_Magister_Grunt_000_a06e61dd-58c6-4119-99be-716c3a4fc1ef)
+AND
+ObjectGetFlag(CHARACTERGUID_TUT_CargoDeck_Humans_Male_Magister_Grunt_000_a06e61dd-58c6-4119-99be-716c3a4fc1ef, "TUT_CargoDeck_Isolation_GuardLeavesPrisoner", 1)
+AND
+GetDistanceTo(CHARACTERGUID_TUT_CargoDeck_Humans_Male_Magister_Grunt_000_a06e61dd-58c6-4119-99be-716c3a4fc1ef, ITEMGUID_S_TUT_CargoDeck_Isolation_Lever002_e1efd6ba-1fa8-4155-a7a2-e74314317988, _Var5)
+AND
+_Var5 <= 18
+THEN
+DB_TUT_CargoDeck_Isolation_GuardLeavesPrisoner("DB_TUT_CargoDeck_Isolation_PrisonerReleasedNearGuard");
+CharacterLookAt(CHARACTERGUID_TUT_CargoDeck_Humans_Male_Magister_Grunt_000_a06e61dd-58c6-4119-99be-716c3a4fc1ef, ITEMGUID_S_TUT_CargoDeck_Isolation_CageDoor_fe5ef326-6be6-48f3-a5da-32b106e91c1c);
+SetRelationIndivFactionToPlayers(CHARACTERGUID_TUT_CargoDeck_Humans_Male_Magister_Grunt_000_a06e61dd-58c6-4119-99be-716c3a4fc1ef, -100);
+SetRelationIndivFactionToPlayers(CHARACTERGUID_S_TUT_CargoHold_UnrulyPrisoner_d7a61dc6-a249-4e97-9914-53ea24e320ae, 100);
+ProcMakeNPCHostile(CHARACTERGUID_TUT_CargoDeck_Humans_Male_Magister_Grunt_000_a06e61dd-58c6-4119-99be-716c3a4fc1ef, CHARACTERGUID_S_TUT_CargoHold_UnrulyPrisoner_d7a61dc6-a249-4e97-9914-53ea24e320ae);
+
+IF
+SavegameLoaded((INTEGER)_Var1, (INTEGER)_Var2, (INTEGER)_Var3, (INTEGER)_Var4)
+AND
+QRY_VersionIsOlderThan(_Var1, _Var2, _Var3, _Var4, 3, 5, 1, 0)
+AND
+DB_Dead(CHARACTERGUID_S_TUT_CargoHold_UnrulyPrisoner_d7a61dc6-a249-4e97-9914-53ea24e320ae)
+AND
+CharacterIsInCombat(CHARACTERGUID_TUT_CargoDeck_Humans_Male_Magister_Grunt_000_a06e61dd-58c6-4119-99be-716c3a4fc1ef, 0)
+AND
+QRY_TUT_CargoDeck_PrisonerEscapeState()
+AND NOT
+DB_Dead(CHARACTERGUID_TUT_CargoDeck_Humans_Male_Magister_Grunt_000_a06e61dd-58c6-4119-99be-716c3a4fc1ef)
+THEN
+PROC_TUT_PrisonerDeadGuardAlone();
+
+IF
+SavegameLoaded((INTEGER)_Var1, (INTEGER)_Var2, (INTEGER)_Var3, (INTEGER)_Var4)
+AND
+QRY_VersionIsOlderThan(_Var1, _Var2, _Var3, _Var4, 3, 6, 1, 0)
+AND
+ObjectGetFlag(CHARACTERGUID_TUT_CargoDeck_Humans_Male_Magister_Grunt_000_a06e61dd-58c6-4119-99be-716c3a4fc1ef, "TUT_CargoDeck_Isolation_GuardLeaving", 1)
+THEN
+RemoveStatus(CHARACTERGUID_TUT_CargoDeck_Humans_Male_Magister_Grunt_000_a06e61dd-58c6-4119-99be-716c3a4fc1ef, "SLEEPING");
+
+PROC
+ProcRegionEnded("TUT_Tutorial_A")
+THEN
+GoalCompleted;
+
+
+EXITSECTION
+ENDEXITSECTION
+
+ParentTargetEdge "Tutorial_PrisonShip"

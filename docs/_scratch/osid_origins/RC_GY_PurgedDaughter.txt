@@ -1,0 +1,552 @@
+Version 1
+SubGoalCombiner SGC_AND
+
+INITSECTION
+DB_RC_GY_PurgedDaughter_Clones(CHARACTERGUID_S_RC_GY_PurgedDaughter_ClonePoison_7c7c2f9e-c438-495c-bb71-ecdc551b21c5, "RS3_FX_Char_Creatures_VoidWoken_Grunt_Anguish_01", "RS3_FX_Char_Creatures_VoidWoken_Grunt_Anguish_Hands_01");
+DB_RC_GY_PurgedDaughter_Clones(CHARACTERGUID_S_RC_GY_PurgedDaughter_CloneIce_cb9314cf-3a24-4edf-ab89-e82c1cb31428, "RS3_FX_Char_Creatures_VoidWoken_Grunt_Despair_01", "RS3_FX_Char_Creatures_VoidWoken_Grunt_Despair_Hands_01");
+DB_RC_GY_PurgedDaughter_Clones(CHARACTERGUID_S_RC_GY_PurgedDaughter_CloneWarrior_62c96c68-4053-4c9c-8d85-1652a0aea44c, "RS3_FX_Char_Creatures_VoidWoken_Grunt_Fury_01", "RS3_FX_Char_Creatures_VoidWoken_Grunt_Fury_Hands_01");
+DB_RC_GY_PurgedDaughter_Clones(CHARACTERGUID_S_RC_GY_PurgedDaughter_CloneRogue_23595e3e-4501-4d4c-a609-d09701c308eb, "RS3_FX_Char_Creatures_VoidWoken_Grunt_Fear_01", "RS3_FX_Char_Creatures_VoidWoken_Grunt_Fear_Hands_01");
+SetOnStage(CHARACTERGUID_S_RC_GY_PurgedDaughter_ClonePoison_7c7c2f9e-c438-495c-bb71-ecdc551b21c5, 0);
+SetOnStage(CHARACTERGUID_S_RC_GY_PurgedDaughter_CloneIce_cb9314cf-3a24-4edf-ab89-e82c1cb31428, 0);
+SetOnStage(CHARACTERGUID_S_RC_GY_PurgedDaughter_CloneWarrior_62c96c68-4053-4c9c-8d85-1652a0aea44c, 0);
+SetOnStage(CHARACTERGUID_S_RC_GY_PurgedDaughter_CloneRogue_23595e3e-4501-4d4c-a609-d09701c308eb, 0);
+ProcTriggerRegisterForPlayers(TRIGGERGUID_S_RC_GY_PurgedDaughter_House_df3de883-553c-4de1-ab7d-7f990c29f6a1);
+ProcTriggerRegisterForPlayers(TRIGGERGUID_S_RC_GY_PurgedDaughter_Basement_8059a36e-6ce9-402a-970f-2e3ee98e0ea5);
+DB_Dialogs(CHARACTERGUID_S_RC_GY_PurgedDaughter_Father_0850c066-28ee-4179-9d0a-9ceaff05bd15, "RC_GY_PurgedDaughter_Father");
+DB_Dialogs(CHARACTERGUID_S_RC_GY_PurgedDaughter_70f3182f-3c18-4504-9691-332d9dec7964, "");
+DB_Ghosts(CHARACTERGUID_S_RC_GY_PurgedDaughter_70f3182f-3c18-4504-9691-332d9dec7964, CHARACTERGUID_S_RC_GY_PurgedDaughter_Ghost_e2942af9-57ca-47c8-aef4-e38b6f726fd9, "RC_GY_PurgedDaughter_Ghost");
+DB_NoLowAttitudeDialog(CHARACTERGUID_S_RC_GY_PurgedDaughter_70f3182f-3c18-4504-9691-332d9dec7964);
+ProcCharacterDisableAllCrimes(CHARACTERGUID_S_RC_GY_PurgedDaughter_70f3182f-3c18-4504-9691-332d9dec7964);
+DB_SneakTriggerSpotter(TRIGGERGUID_S_RC_GY_PurgedDaughter_SpotSneakerTrigger_93ec6646-f031-4e51-94ae-74c00397799a, CHARACTERGUID_S_RC_GY_PurgedDaughter_70f3182f-3c18-4504-9691-332d9dec7964);
+PROC_LoopEffect("RS3_FX_GP_Status_HoECollar_01", CHARACTERGUID_S_RC_GY_PurgedDaughter_70f3182f-3c18-4504-9691-332d9dec7964, "RC_GY_PurgedDaughter_SourceCollar", "RC_Main", "Dummy_NeckFX");
+ApplyStatus(CHARACTERGUID_S_RC_GY_PurgedDaughter_70f3182f-3c18-4504-9691-332d9dec7964, "SOURCE_MUTED", -1, 1);
+CharacterSetCanTrade(CHARACTERGUID_S_RC_GY_PurgedDaughter_Father_0850c066-28ee-4179-9d0a-9ceaff05bd15, 0);
+ItemToInventory(ITEMGUID_S_RC_GY_PurgedDaughter_CellarKey_cb9c498a-92ef-4813-9aae-7cc3f54cad72, CHARACTERGUID_S_RC_GY_PurgedDaughter_Father_0850c066-28ee-4179-9d0a-9ceaff05bd15);
+DB_RC_GY_PurgedDaughter_HouseDoors(ITEMGUID_S_RC_GY_PurgedDaughter_FrontDoor_5f0382bf-9aea-430e-958c-1661b7d5bed2);
+DB_RC_GY_PurgedDaughter_HouseDoors(ITEMGUID_S_RC_GY_PurgedDaughter_BackDoor_5dd18cf7-67fd-4b70-876f-575c3c6f0ed3);
+DB_GLO_Attribute_Check_AgainstSpeaker("RC_GY_PurgedDaughter", 1, "Memory", "Easy", 3, 1);
+DB_GLO_Attribute_Check_AgainstSpeaker("RC_GY_PurgedDaughter", 2, "Wits", "Easy", 3, 1);
+DB_GLO_Attribute_Check_AgainstSpeaker("RC_GY_PurgedDaughter", 3, "Intelligence", "Easy", 3, 1);
+SetOnStage(ITEMGUID_S_RC_GY_PurgedDaughter_Grave_6c773e2c-fca7-4453-a6e6-013117494ad4, 0);
+Proc_RC_GY_PurgedDaughter_CellarCorpseLie();
+
+KBSECTION
+IF
+TextEventSet("pdref")
+AND
+DB_RC_GY_PurgedDaughter_Clones(_Var1, _, _)
+THEN
+Foop(_Var1);
+ApplyStatus(_Var1, "ETHEREAL_SOLES", -1);
+
+IF
+TextEventSet("daughterOperate")
+AND
+DB_IsPlayer(_Var1)
+AND
+QueryOnlyOnce("DaughterOperateDebug")
+THEN
+CharacterSetHitpointsPercentage(CHARACTERGUID_S_RC_GY_PurgedDaughter_70f3182f-3c18-4504-9691-332d9dec7964, 100);
+PartySetFlag(_Var1, "RC_GY_PurgedDaughter_DecidedToOperate", 1);
+SetCanFight(CHARACTERGUID_S_RC_GY_PurgedDaughter_70f3182f-3c18-4504-9691-332d9dec7964, 1);
+SetCanJoinCombat(CHARACTERGUID_S_RC_GY_PurgedDaughter_70f3182f-3c18-4504-9691-332d9dec7964, 1);
+ApplyDamage(CHARACTERGUID_S_RC_GY_PurgedDaughter_70f3182f-3c18-4504-9691-332d9dec7964, 400, "Physical");
+Proc_RC_GY_PurgedDaughter_CheckForSurgery();
+
+IF
+TextEventSet("fatherToCellar")
+AND
+DB_IsPlayer(_Var1)
+THEN
+ItemUnlockAndOpen(ITEMGUID_S_RC_GY_PurgedDaughter_FrontDoor_5f0382bf-9aea-430e-958c-1661b7d5bed2);
+ObjectSetFlag(CHARACTERGUID_S_RC_GY_PurgedDaughter_Father_0850c066-28ee-4179-9d0a-9ceaff05bd15, "RC_GY_PurgedDaughter_FatherJoinInCellar");
+ObjectSetFlag(CHARACTERGUID_S_RC_GY_PurgedDaughter_Father_0850c066-28ee-4179-9d0a-9ceaff05bd15, "RC_GY_PurgedDaughter_FatherIsInCellar");
+PartySetFlag(_Var1, "QuestUpdate_RC_GY_PurgedDaughter_HealerProblem");
+PartySetFlag(_Var1, "QuestUpdate_RC_GY_PurgedDaughter_HealerGaveQuest");
+TeleportTo(CHARACTERGUID_S_RC_GY_PurgedDaughter_Father_0850c066-28ee-4179-9d0a-9ceaff05bd15, TRIGGERGUID_S_RC_GY_PurgedDaughter_FatherCellarPoint_c164db7a-6c14-44f1-a981-2ca89ee956b0);
+CharacterSetReactionPriority(CHARACTERGUID_S_RC_GY_PurgedDaughter_Father_0850c066-28ee-4179-9d0a-9ceaff05bd15, "HealerWandering", 0);
+CharacterSetReactionPriority(CHARACTERGUID_S_RC_GY_PurgedDaughter_Father_0850c066-28ee-4179-9d0a-9ceaff05bd15, "HealerCellarWaiting", 400);
+
+PROC
+Proc_RC_GY_PurgedDaughter_CellarCorpseLie()
+THEN
+CharacterUseItem(CHARACTERGUID_S_RC_GY_PurgedDaughter_CellarCorpse_898a8f7f-34ae-4d10-89b0-eace8a7320c5, ITEMGUID_S_RC_GY_PurgedDaughter_CorpseBed_18845ca2-9a42-472d-a969-560527827d90, "RC_GY_PurgedDaughter_CellarCorpseOnBed");
+
+IF
+StoryEvent(CHARACTERGUID_S_RC_GY_PurgedDaughter_CellarCorpse_898a8f7f-34ae-4d10-89b0-eace8a7320c5, "RC_GY_PurgedDaughter_CellarCorpseOnBed")
+THEN
+CharacterDie(CHARACTERGUID_S_RC_GY_PurgedDaughter_CellarCorpse_898a8f7f-34ae-4d10-89b0-eace8a7320c5, 0, "Physical");
+
+IF
+DialogEnded("RC_GY_PurgedDaughter_Father", (INTEGER)_Var1)
+AND
+DialogGetInvolvedPlayer(_Var1, 1, _Var2)
+AND
+ObjectGetFlag(CHARACTERGUID_S_RC_GY_PurgedDaughter_Father_0850c066-28ee-4179-9d0a-9ceaff05bd15, "RC_GY_PurgedDaughter_FatherJoinInCellar", 1)
+AND
+DB_RC_GY_PurgedDaughter_HouseDoors(_Var3)
+AND
+QueryOnlyOnce("RC_GY_PurgedDaughter_FatherGivesKeyToPlayer")
+THEN
+ItemToInventory(ITEMGUID_S_RC_GY_PurgedDaughter_CellarKey_cb9c498a-92ef-4813-9aae-7cc3f54cad72, _Var2);
+ItemClearOwner(ITEMGUID_S_RC_GY_PurgedDaughter_Hatch_60e52d23-4817-4d0c-9d7c-b82c8cb0fcf1);
+ItemClearOwner(_Var3);
+PartySetFlag(_Var2, "QuestUpdate_RC_GY_PurgedDaughter_HealerGaveQuest");
+
+IF
+ItemRemovedFromCharacter(ITEMGUID_S_RC_GY_PurgedDaughter_CellarKey_cb9c498a-92ef-4813-9aae-7cc3f54cad72, CHARACTERGUID_S_RC_GY_PurgedDaughter_Father_0850c066-28ee-4179-9d0a-9ceaff05bd15)
+AND
+ObjectGetFlag(CHARACTERGUID_S_RC_GY_PurgedDaughter_Father_0850c066-28ee-4179-9d0a-9ceaff05bd15, "RC_GY_PurgedDaughter_FatherJoinInCellar", 0)
+THEN
+ObjectSetFlag(CHARACTERGUID_S_RC_GY_PurgedDaughter_Father_0850c066-28ee-4179-9d0a-9ceaff05bd15, "RC_GY_PurgedDaughter_FatherHasNoKey");
+
+IF
+DialogEnded("RC_GY_PurgedDaughter_Father", (INTEGER)_Var1)
+AND
+ObjectGetFlag(CHARACTERGUID_S_RC_GY_PurgedDaughter_Father_0850c066-28ee-4179-9d0a-9ceaff05bd15, "RC_GY_PurgedDaughter_FatherJoinInCellar", 1)
+AND
+DB_RC_GY_PurgedDaughter_HouseDoors(_Var2)
+AND
+ItemIsLocked(_Var2, 0)
+AND
+QueryOnlyOnce("RC_GY_PurgedDaughter_FatherRunToCellar")
+THEN
+DialogRequestStop(CHARACTERGUID_S_RC_GY_PurgedDaughter_Father_0850c066-28ee-4179-9d0a-9ceaff05bd15);
+ProcCharacterMoveTo(CHARACTERGUID_S_RC_GY_PurgedDaughter_Father_0850c066-28ee-4179-9d0a-9ceaff05bd15, ITEMGUID_S_RC_GY_PurgedDaughter_Hatch_60e52d23-4817-4d0c-9d7c-b82c8cb0fcf1, 1, "RC_GY_PurgedDaughter_FatherGotToHatch");
+
+IF
+ItemUnlocked((ITEMGUID)_Var1, (CHARACTERGUID)_Var2, _)
+AND
+ObjectGetFlag(CHARACTERGUID_S_RC_GY_PurgedDaughter_Father_0850c066-28ee-4179-9d0a-9ceaff05bd15, "RC_GY_PurgedDaughter_FatherJoinInCellar", 1)
+AND
+DB_RC_GY_PurgedDaughter_HouseDoors(_Var1)
+AND
+QueryOnlyOnce("RC_GY_PurgedDaughter_FatherRunToCellar")
+THEN
+DialogRequestStop(CHARACTERGUID_S_RC_GY_PurgedDaughter_Father_0850c066-28ee-4179-9d0a-9ceaff05bd15);
+ProcCharacterMoveTo(CHARACTERGUID_S_RC_GY_PurgedDaughter_Father_0850c066-28ee-4179-9d0a-9ceaff05bd15, ITEMGUID_S_RC_GY_PurgedDaughter_Hatch_60e52d23-4817-4d0c-9d7c-b82c8cb0fcf1, 1, "RC_GY_PurgedDaughter_FatherGotToHatch");
+
+IF
+StoryEvent(CHARACTERGUID_S_RC_GY_PurgedDaughter_Father_0850c066-28ee-4179-9d0a-9ceaff05bd15, "RC_GY_PurgedDaughter_FatherGotToHatch")
+THEN
+ItemUnLock(ITEMGUID_S_RC_GY_PurgedDaughter_Hatch_60e52d23-4817-4d0c-9d7c-b82c8cb0fcf1);
+CharacterUseItem(CHARACTERGUID_S_RC_GY_PurgedDaughter_Father_0850c066-28ee-4179-9d0a-9ceaff05bd15, ITEMGUID_S_RC_GY_PurgedDaughter_Hatch_60e52d23-4817-4d0c-9d7c-b82c8cb0fcf1, "RC_GY_PurgedDaughter_FatherEnteredCellar");
+ObjectSetFlag(CHARACTERGUID_S_RC_GY_PurgedDaughter_Father_0850c066-28ee-4179-9d0a-9ceaff05bd15, "RC_GY_PurgedDaughter_FatherIsInCellar");
+
+IF
+StoryEvent(CHARACTERGUID_S_RC_GY_PurgedDaughter_Father_0850c066-28ee-4179-9d0a-9ceaff05bd15, "RC_GY_PurgedDaughter_FatherEnteredCellar")
+THEN
+ProcCharacterMoveTo(CHARACTERGUID_S_RC_GY_PurgedDaughter_Father_0850c066-28ee-4179-9d0a-9ceaff05bd15, TRIGGERGUID_S_RC_GY_PurgedDaughter_FatherCellarPoint_c164db7a-6c14-44f1-a981-2ca89ee956b0, 1, "");
+CharacterSetReactionPriority(CHARACTERGUID_S_RC_GY_PurgedDaughter_Father_0850c066-28ee-4179-9d0a-9ceaff05bd15, "HealerWandering", 0);
+CharacterSetReactionPriority(CHARACTERGUID_S_RC_GY_PurgedDaughter_Father_0850c066-28ee-4179-9d0a-9ceaff05bd15, "HealerCellarWaiting", 400);
+
+PROC
+ProcCharInTriggerSpotted((CHARACTERGUID)_Var1, TRIGGERGUID_S_RC_GY_PurgedDaughter_SpotSneakerTrigger_93ec6646-f031-4e51-94ae-74c00397799a)
+THEN
+Proc_RC_GY_PurgedDaughter_ThreeWayDialog(_Var1);
+
+PROC
+PROC_GLOBAL_DialogStartRequested(CHARACTERGUID_S_RC_GY_PurgedDaughter_70f3182f-3c18-4504-9691-332d9dec7964, (CHARACTERGUID)_Var1)
+AND
+GlobalGetFlag("RC_GY_PurgedDaughter_GirlLives", 0)
+THEN
+Proc_RC_GY_PurgedDaughter_ThreeWayDialog(_Var1);
+
+PROC
+Proc_RC_GY_PurgedDaughter_ThreeWayDialog((CHARACTERGUID)_Var1)
+AND
+ObjectGetFlag(CHARACTERGUID_S_RC_GY_PurgedDaughter_Father_0850c066-28ee-4179-9d0a-9ceaff05bd15, "RC_GY_PurgedDaughter_FatherJoinInCellar", 1)
+AND
+QRY_SpeakerIsAvailable(CHARACTERGUID_S_RC_GY_PurgedDaughter_Father_0850c066-28ee-4179-9d0a-9ceaff05bd15, 0)
+AND
+QRY_IsInRange(CHARACTERGUID_S_RC_GY_PurgedDaughter_Father_0850c066-28ee-4179-9d0a-9ceaff05bd15, _Var1, 20)
+THEN
+Proc_StartDialog(0, "RC_GY_PurgedDaughter", CHARACTERGUID_S_RC_GY_PurgedDaughter_70f3182f-3c18-4504-9691-332d9dec7964, CHARACTERGUID_S_RC_GY_PurgedDaughter_Father_0850c066-28ee-4179-9d0a-9ceaff05bd15, _Var1);
+GlobalSetFlag("RC_GY_PurgedDaughter_DialogWithHealerPresent");
+
+PROC
+Proc_RC_GY_PurgedDaughter_ThreeWayDialog((CHARACTERGUID)_Var1)
+THEN
+Proc_StartDialog(0, "RC_GY_PurgedDaughter", CHARACTERGUID_S_RC_GY_PurgedDaughter_70f3182f-3c18-4504-9691-332d9dec7964, NULL_00000000-0000-0000-0000-000000000000, _Var1);
+
+IF
+DialogEnded("RC_GY_PurgedDaughter", (INTEGER)_Var1)
+AND
+DB_GlobalFlag("RC_GY_PurgedDaughter_DialogWithHealerPresent")
+THEN
+GlobalClearFlag("RC_GY_PurgedDaughter_DialogWithHealerPresent");
+
+IF
+AttackedByObject(CHARACTERGUID_S_RC_GY_PurgedDaughter_70f3182f-3c18-4504-9691-332d9dec7964, (GUIDSTRING)_Var1, (GUIDSTRING)_Var2, _, _)
+AND
+_Var2 != CHARACTERGUID_S_RC_GY_PurgedDaughter_70f3182f-3c18-4504-9691-332d9dec7964
+AND
+QueryOnlyOnce("RC_GY_PurgedDaughter_DoAttackFlow")
+THEN
+SetStoryEvent(CHARACTERGUID_S_RC_GY_PurgedDaughter_70f3182f-3c18-4504-9691-332d9dec7964, "RC_GY_PurgedDaughter_AttackFlow");
+ObjectSetFlag(CHARACTERGUID_S_RC_GY_PurgedDaughter_70f3182f-3c18-4504-9691-332d9dec7964, "RC_GY_PurgedDaughter_Attack");
+Proc_RC_GY_PurgedDaughter_AttackFlow();
+
+IF
+DialogEnded("RC_GY_PurgedDaughter", (INTEGER)_Var1)
+AND
+ObjectGetFlag(CHARACTERGUID_S_RC_GY_PurgedDaughter_70f3182f-3c18-4504-9691-332d9dec7964, "RC_GY_PurgedDaughter_Attack", 1)
+AND
+QueryOnlyOnce("RC_GY_PurgedDaughter_DoAttackFlow")
+THEN
+Proc_RC_GY_PurgedDaughter_AttackFlow();
+
+PROC
+Proc_RC_GY_PurgedDaughter_AttackFlow()
+THEN
+SetHasDialog(CHARACTERGUID_S_RC_GY_PurgedDaughter_70f3182f-3c18-4504-9691-332d9dec7964, 0);
+CharacterSetAnimationOverride(CHARACTERGUID_S_RC_GY_PurgedDaughter_70f3182f-3c18-4504-9691-332d9dec7964, "");
+PlayAnimation(CHARACTERGUID_S_RC_GY_PurgedDaughter_70f3182f-3c18-4504-9691-332d9dec7964, "stillmental", "RC_GY_PurgedDaughter_EngageCombat");
+PlayEffect(CHARACTERGUID_S_RC_GY_PurgedDaughter_70f3182f-3c18-4504-9691-332d9dec7964, "RS3_FX_Char_Animals_Crocodile_A_ScalePortation_Disappear_01");
+
+IF
+StoryEvent(CHARACTERGUID_S_RC_GY_PurgedDaughter_70f3182f-3c18-4504-9691-332d9dec7964, "RC_GY_PurgedDaughter_EngageCombat")
+THEN
+SetRelationFactionToPlayers("RC_GY_PurgedDaughter", 0);
+ItemTemplateAddTo("RC_FTJ_Amulet_BrokenSourceCollar_6a906795-b26f-47fd-90ab-ed1916f5b18f", CHARACTERGUID_S_RC_GY_PurgedDaughter_70f3182f-3c18-4504-9691-332d9dec7964, 1);
+PROC_StopLoopEffect(CHARACTERGUID_S_RC_GY_PurgedDaughter_70f3182f-3c18-4504-9691-332d9dec7964, "RC_GY_PurgedDaughter_SourceCollar");
+RemoveStatus(CHARACTERGUID_S_RC_GY_PurgedDaughter_70f3182f-3c18-4504-9691-332d9dec7964, "SOURCE_MUTED");
+
+IF
+StoryEvent(CHARACTERGUID_S_RC_GY_PurgedDaughter_70f3182f-3c18-4504-9691-332d9dec7964, "RC_GY_PurgedDaughter_EngageCombat")
+AND
+DB_RC_GY_PurgedDaughter_Clones(_Var1, _Var2, _Var3)
+THEN
+Foop(_Var1);
+ApplyStatus(_Var1, "ETHEREAL_SOLES", -1);
+PROC_LoopEffect(_Var2, _Var1, "RC_GY_PurgedDaughter_CloneDummyFX", "RC_Main", "Dummy_StatusFX");
+PROC_LoopEffect(_Var3, _Var1, "RC_GY_PurgedDaughter_CloneLHandFX", "RC_Main", "Dummy_L_HandFX");
+PROC_LoopEffect(_Var3, _Var1, "RC_GY_PurgedDaughter_CloneRHandFX", "RC_Main", "Dummy_R_HandFX");
+
+IF
+CharacterDying((CHARACTERGUID)_Var1)
+AND
+DB_RC_GY_PurgedDaughter_Clones(_Var1, _Var2, _Var3)
+THEN
+PROC_StopLoopEffect(_Var1, "RC_GY_PurgedDaughter_CloneDummyFX");
+PROC_StopLoopEffect(_Var1, "RC_GY_PurgedDaughter_CloneLHandFX");
+PROC_StopLoopEffect(_Var1, "RC_GY_PurgedDaughter_CloneRHandFX");
+NOT DB_RC_GY_PurgedDaughter_Clones(_Var1, _Var2, _Var3);
+Poof(_Var1);
+
+IF
+CharacterDied(CHARACTERGUID_S_RC_GY_PurgedDaughter_Father_0850c066-28ee-4179-9d0a-9ceaff05bd15)
+AND
+DB_IsPlayer(_Var1)
+THEN
+PartySetFlag(_Var1, "QuestUpdate_RC_GY_PurgedDaughter_HealerDied");
+
+IF
+CharacterDied(CHARACTERGUID_S_RC_GY_PurgedDaughter_70f3182f-3c18-4504-9691-332d9dec7964)
+AND
+DB_RC_GY_PurgedDaughter_Clones(_Var1, _, _)
+THEN
+PlayEffect(_Var1, "RS3_FX_Skills_Fire_Haste_Impact_Root_01");
+ApplyStatus(_Var1, "ENRAGED", -1, 1);
+ApplyStatus(_Var1, "HASTED", -1, 1);
+
+IF
+CharacterStatusApplied((CHARACTERGUID)_Var1, "ENRAGED", _)
+AND
+DB_RC_GY_PurgedDaughter_Clones(_Var1, _, _)
+AND
+QueryOnlyOnce("RC_GY_PurgedDaughter_CloneAD")
+THEN
+Proc_StartDialog(1, "RC_GY_AD_PurgedDaughter_CloneFree", _Var1);
+
+IF
+CharacterDied(CHARACTERGUID_S_RC_GY_PurgedDaughter_70f3182f-3c18-4504-9691-332d9dec7964)
+AND
+ObjectGetFlag(CHARACTERGUID_S_RC_GY_PurgedDaughter_Father_0850c066-28ee-4179-9d0a-9ceaff05bd15, "RC_GY_PurgedDaughter_FatherJoinInCellar", 0)
+AND
+DB_InRegion(_Var1, TRIGGERGUID_S_RC_GY_PurgedDaughter_Basement_8059a36e-6ce9-402a-970f-2e3ee98e0ea5)
+THEN
+PartySetFlag(_Var1, "QuestUpdate_RC_GY_PurgedDaughter_KilledDaughter");
+ProcTriggerRegisterForPlayers(TRIGGERGUID_S_RC_GY_PurgedDaughter_LeaveTrigger_3ff7b102-6cbe-4942-ad5a-4c48d516410b);
+
+IF
+CharacterDied(CHARACTERGUID_S_RC_GY_PurgedDaughter_70f3182f-3c18-4504-9691-332d9dec7964)
+AND
+ObjectGetFlag(CHARACTERGUID_S_RC_GY_PurgedDaughter_Father_0850c066-28ee-4179-9d0a-9ceaff05bd15, "RC_GY_PurgedDaughter_FatherJoinInCellar", 1)
+AND
+DB_InRegion(_Var1, TRIGGERGUID_S_RC_GY_PurgedDaughter_Basement_8059a36e-6ce9-402a-970f-2e3ee98e0ea5)
+THEN
+PartySetFlag(_Var1, "QuestUpdate_RC_GY_PurgedDaughter_KilledDaughterHealer");
+CharacterAddAttitudeTowardsPlayer(CHARACTERGUID_S_RC_GY_PurgedDaughter_Father_0850c066-28ee-4179-9d0a-9ceaff05bd15, _Var1, -20);
+ProcTriggerRegisterForPlayers(TRIGGERGUID_S_RC_GY_PurgedDaughter_LeaveTrigger_3ff7b102-6cbe-4942-ad5a-4c48d516410b);
+
+IF
+ObjectTurnEnded(CHARACTERGUID_S_RC_GY_PurgedDaughter_70f3182f-3c18-4504-9691-332d9dec7964)
+AND
+DB_IsPlayer(_Var1)
+AND
+ObjectGetFlag(_Var1, "RC_GY_PurgedDaughter_PlayerIsDoctor", 1)
+AND
+CombatGetIDForCharacter(CHARACTERGUID_S_RC_GY_PurgedDaughter_70f3182f-3c18-4504-9691-332d9dec7964, _Var2)
+AND
+CombatGetIDForCharacter(_Var1, _Var2)
+AND
+QueryOnlyOnce("RC_GY_PurgedDaughter_CombatPlan")
+THEN
+StartVoiceBark("RC_GY_VB_PurgedDaughter_OperationCombat", _Var1);
+
+IF
+CharacterReceivedDamage(CHARACTERGUID_S_RC_GY_PurgedDaughter_70f3182f-3c18-4504-9691-332d9dec7964, _, _)
+AND
+ObjectGetFlag(CHARACTERGUID_S_RC_GY_PurgedDaughter_70f3182f-3c18-4504-9691-332d9dec7964, "RC_GY_PurgedDaughter_ReadyForOperation", 0)
+AND
+DB_IsPlayer(_Var3)
+AND
+PartyGetFlag(_Var3, "RC_GY_PurgedDaughter_DecidedToOperate", 1)
+THEN
+Proc_RC_GY_PurgedDaughter_CheckForSurgery();
+
+PROC
+Proc_RC_GY_PurgedDaughter_CheckForSurgery()
+AND
+CharacterGetHitpointsPercentage(CHARACTERGUID_S_RC_GY_PurgedDaughter_70f3182f-3c18-4504-9691-332d9dec7964, _Var1)
+AND
+_Var1 <= 50
+AND
+QueryOnlyOnce("RC_GY_PurgedDaughter_GirlIsReady")
+THEN
+ApplyStatus(CHARACTERGUID_S_RC_GY_PurgedDaughter_70f3182f-3c18-4504-9691-332d9dec7964, "KNOCKED_DOWN", -1, 1);
+Proc_RC_GY_PurgedDaughter_KnockedOut();
+
+IF
+ObjectFlagSet("RC_GY_PurgedDaughter_ReadyForOperation", CHARACTERGUID_S_RC_GY_PurgedDaughter_70f3182f-3c18-4504-9691-332d9dec7964, _)
+AND
+DB_RC_GY_PurgedDaughter_Clones(_Var2, _, _)
+THEN
+Poof(_Var2);
+
+PROC
+Proc_RC_GY_PurgedDaughter_KnockedOut()
+THEN
+ObjectSetFlag(CHARACTERGUID_S_RC_GY_PurgedDaughter_70f3182f-3c18-4504-9691-332d9dec7964, "GLO_BlockRegenAfterCombat");
+SetTag(CHARACTERGUID_S_RC_GY_PurgedDaughter_70f3182f-3c18-4504-9691-332d9dec7964, "NO_ARMOR_REGEN");
+SetStoryEvent(CHARACTERGUID_S_RC_GY_PurgedDaughter_70f3182f-3c18-4504-9691-332d9dec7964, "ClearPeaceReturn");
+CharacterSetAnimationOverride(CHARACTERGUID_S_RC_GY_PurgedDaughter_70f3182f-3c18-4504-9691-332d9dec7964, "knockdown_loop");
+SetCanFight(CHARACTERGUID_S_RC_GY_PurgedDaughter_70f3182f-3c18-4504-9691-332d9dec7964, 0);
+SetCanJoinCombat(CHARACTERGUID_S_RC_GY_PurgedDaughter_70f3182f-3c18-4504-9691-332d9dec7964, 0);
+ProcCleanUpSneakTrigger(TRIGGERGUID_S_RC_GY_PurgedDaughter_SpotSneakerTrigger_93ec6646-f031-4e51-94ae-74c00397799a);
+SetRelationFactionToPlayers("RC_GY_PurgedDaughter", 50);
+SetVarFixedString(CHARACTERGUID_S_RC_GY_PurgedDaughter_70f3182f-3c18-4504-9691-332d9dec7964, "currentState", "State_AfterCombat");
+ObjectSetFlag(CHARACTERGUID_S_RC_GY_PurgedDaughter_70f3182f-3c18-4504-9691-332d9dec7964, "RC_GY_PurgedDaughter_ReadyForOperation");
+ProcObjectTimer(CHARACTERGUID_S_RC_GY_PurgedDaughter_70f3182f-3c18-4504-9691-332d9dec7964, "RC_GY_PurgedDaughter_StartOperationDialog", 2000);
+SetHasDialog(CHARACTERGUID_S_RC_GY_PurgedDaughter_70f3182f-3c18-4504-9691-332d9dec7964, 1);
+
+PROC
+ProcObjectTimerFinished(CHARACTERGUID_S_RC_GY_PurgedDaughter_70f3182f-3c18-4504-9691-332d9dec7964, "RC_GY_PurgedDaughter_StartOperationDialog")
+AND
+DB_IsPlayer(_Var1)
+AND
+ObjectGetFlag(_Var1, "RC_GY_PurgedDaughter_PlayerIsDoctor", 1)
+AND
+QRY_SpeakerIsAvailableAndInDialogRange(CHARACTERGUID_S_RC_GY_PurgedDaughter_70f3182f-3c18-4504-9691-332d9dec7964, _Var1)
+THEN
+Proc_RC_GY_PurgedDaughter_ThreeWayDialog(_Var1);
+
+IF
+GlobalFlagSet("RC_GY_PurgedDaughter_GirlDies")
+THEN
+CharacterDie(CHARACTERGUID_S_RC_GY_PurgedDaughter_70f3182f-3c18-4504-9691-332d9dec7964, 0, "DoT");
+
+IF
+DialogEnded("RC_GY_PurgedDaughter", (INTEGER)_Var1)
+AND
+DialogGetInvolvedPlayer(_Var1, 1, _Var2)
+AND
+GlobalGetFlag("RC_GY_PurgedDaughter_GirlLives", 1)
+THEN
+ObjectSetFlag(_Var2, "RC_GY_PurgedDaughter_UnlockGrenadeRecipe");
+ProcRemoveAllDialogEntriesForSpeaker(CHARACTERGUID_S_RC_GY_PurgedDaughter_70f3182f-3c18-4504-9691-332d9dec7964);
+DB_Dialogs(CHARACTERGUID_S_RC_GY_PurgedDaughter_70f3182f-3c18-4504-9691-332d9dec7964, "RC_GY_PurgedDaughter_Treated");
+ProcTriggerRegisterForPlayers(TRIGGERGUID_S_RC_GY_PurgedDaughter_LeaveTrigger_3ff7b102-6cbe-4942-ad5a-4c48d516410b);
+Proc_RC_GY_PurgedDaughter_FatherDoExamine();
+
+IF
+DialogEnded("RC_GY_PurgedDaughter_Father", (INTEGER)_Var1)
+THEN
+Proc_RC_GY_PurgedDaughter_FatherDoExamine();
+
+PROC
+Proc_RC_GY_PurgedDaughter_FatherDoExamine()
+AND
+GlobalGetFlag("RC_GY_PurgedDaughter_GirlLives", 1)
+AND
+ObjectGetFlag(CHARACTERGUID_S_RC_GY_PurgedDaughter_Father_0850c066-28ee-4179-9d0a-9ceaff05bd15, "RC_GY_PurgedDaughter_FatherJoinInCellar", 1)
+AND
+ObjectGetFlag(CHARACTERGUID_S_RC_GY_PurgedDaughter_Father_0850c066-28ee-4179-9d0a-9ceaff05bd15, "RC_GY_PurgedDaughter_FatherStartExamine", 0)
+THEN
+ObjectSetFlag(CHARACTERGUID_S_RC_GY_PurgedDaughter_Father_0850c066-28ee-4179-9d0a-9ceaff05bd15, "RC_GY_PurgedDaughter_FatherStartExamine");
+
+PROC
+Proc_RC_GY_PurgedDaughter_FatherDoExamine()
+AND
+ObjectGetFlag(CHARACTERGUID_S_RC_GY_PurgedDaughter_Father_0850c066-28ee-4179-9d0a-9ceaff05bd15, "RC_GY_PurgedDaughter_FatherStartExamine", 1)
+AND
+QueryOnlyOnce("RC_GY_PurgedDaughter_FatherDoExamine")
+THEN
+ItemClearOwner(ITEMGUID_S_RC_GY_PurgedDaughter_Hatch_60e52d23-4817-4d0c-9d7c-b82c8cb0fcf1);
+ItemClearOwner(ITEMGUID_S_RC_GY_PurgedDaughter_FrontDoor_5f0382bf-9aea-430e-958c-1661b7d5bed2);
+CharacterPurgeQueue(CHARACTERGUID_S_RC_GY_PurgedDaughter_Father_0850c066-28ee-4179-9d0a-9ceaff05bd15);
+SetScriptframe(CHARACTERGUID_S_RC_GY_PurgedDaughter_Father_0850c066-28ee-4179-9d0a-9ceaff05bd15, "HealerExamine");
+
+IF
+StoryEvent(CHARACTERGUID_S_RC_GY_PurgedDaughter_Father_0850c066-28ee-4179-9d0a-9ceaff05bd15, "HealerHasSaidAD")
+THEN
+PROC_RC_GY_PurgedDaughter_FatherSwapDialog(CHARACTERGUID_S_RC_GY_PurgedDaughter_Father_0850c066-28ee-4179-9d0a-9ceaff05bd15);
+
+PROC
+PROC_RC_GY_PurgedDaughter_FatherSwapDialog((CHARACTERGUID)_Var1)
+AND
+DB_Dialogs(_Var1, "RC_GY_PurgedDaughter_Father")
+THEN
+ProcRemoveAllDialogEntriesForSpeaker(_Var1);
+DB_Dialogs(_Var1, "RC_GY_PurgedDaughter_FatherTrader");
+CharacterSetCanTrade(_Var1, 1);
+
+IF
+ObjectFlagSet("RC_GY_PurgedDaughter_UnlockGrenadeRecipe", (CHARACTERGUID)_Var1, _)
+THEN
+CharacterUnlockRecipe(_Var1, "GRN_Ingredient_Round_Empty_MindMaggots", 1);
+
+IF
+CharacterLeftTrigger((CHARACTERGUID)_Var1, TRIGGERGUID_S_RC_GY_PurgedDaughter_LeaveTrigger_3ff7b102-6cbe-4942-ad5a-4c48d516410b)
+AND
+QRY_AnyRegionActive()
+AND NOT
+DB_InRegion(_, TRIGGERGUID_S_RC_GY_PurgedDaughter_Basement_8059a36e-6ce9-402a-970f-2e3ee98e0ea5)
+AND NOT
+DB_InRegion(_, TRIGGERGUID_S_RC_GY_PurgedDaughter_House_df3de883-553c-4de1-ab7d-7f990c29f6a1)
+AND NOT
+DB_InRegion(_, TRIGGERGUID_S_RC_GY_SUB_Graveyard_59ac9cef-edf4-492f-906c-fbde552e68d3)
+THEN
+Proc_RC_GY_PurgedDaughter_AfterEffects(_Var1);
+ProcTriggerUnregisterForPlayers(TRIGGERGUID_S_RC_GY_PurgedDaughter_LeaveTrigger_3ff7b102-6cbe-4942-ad5a-4c48d516410b);
+
+PROC
+Proc_RC_GY_PurgedDaughter_AfterEffects((CHARACTERGUID)_Var1)
+AND
+PartyGetFlag(_Var1, "QuestUpdate_RC_GY_PurgedDaughter_HealerDied", 1)
+AND
+PartyGetFlag(_Var1, "QuestUpdate_RC_GY_PurgedDaughter_OperationSuccessful", 1)
+THEN
+SetOnStage(CHARACTERGUID_S_RC_GY_PurgedDaughter_70f3182f-3c18-4504-9691-332d9dec7964, 0);
+
+PROC
+Proc_RC_GY_PurgedDaughter_AfterEffects((CHARACTERGUID)_Var1)
+AND
+PartyGetFlag(_Var1, "QuestUpdate_RC_GY_PurgedDaughter_HealerDied", 0)
+AND
+PartyGetFlag(_Var1, "QuestUpdate_RC_GY_PurgedDaughter_OperationSuccessful", 1)
+THEN
+Proc_RC_GY_PurgedDaughter_DaughterLives();
+Proc_RC_GY_PurgedDaughter_FatherMoveOutOfCellar();
+
+PROC
+Proc_RC_GY_PurgedDaughter_AfterEffects((CHARACTERGUID)_Var1)
+AND
+PartyGetFlag(_Var1, "QuestUpdate_RC_GY_PurgedDaughter_KilledDaughterHealer", 1)
+THEN
+Proc_RC_GY_PurgedDaughter_DaughterDied();
+Proc_RC_GY_PurgedDaughter_FatherMoveOutOfCellar();
+
+IF
+ObjectFlagSet("QuestUpdate_RC_GY_PurgedDaughter_ToldHealerOfLife", (CHARACTERGUID)_Var1, _)
+THEN
+CharacterAddAttitudeTowardsPlayer(CHARACTERGUID_S_RC_GY_PurgedDaughter_Father_0850c066-28ee-4179-9d0a-9ceaff05bd15, _Var1, 50);
+
+IF
+ObjectFlagSet("QuestUpdate_RC_GY_PurgedDaughter_ToldHealerOfDeath", (CHARACTERGUID)_Var1, _)
+THEN
+CharacterAddAttitudeTowardsPlayer(CHARACTERGUID_S_RC_GY_PurgedDaughter_Father_0850c066-28ee-4179-9d0a-9ceaff05bd15, _Var1, -50);
+CharacterSetReactionPriority(CHARACTERGUID_S_RC_GY_PurgedDaughter_Father_0850c066-28ee-4179-9d0a-9ceaff05bd15, "HealerWandering", 0);
+CharacterSetReactionPriority(CHARACTERGUID_S_RC_GY_PurgedDaughter_Father_0850c066-28ee-4179-9d0a-9ceaff05bd15, "HealerSit", 600);
+
+PROC
+Proc_RC_GY_PurgedDaughter_DaughterDied()
+THEN
+CharacterUnlinkGhost(CHARACTERGUID_S_RC_GY_PurgedDaughter_70f3182f-3c18-4504-9691-332d9dec7964, CHARACTERGUID_S_RC_GY_PurgedDaughter_Ghost_e2942af9-57ca-47c8-aef4-e38b6f726fd9);
+SetOnStage(CHARACTERGUID_S_RC_GY_PurgedDaughter_70f3182f-3c18-4504-9691-332d9dec7964, 0);
+SetOnStage(ITEMGUID_S_RC_GY_PurgedDaughter_Grave_6c773e2c-fca7-4453-a6e6-013117494ad4, 1);
+TeleportTo(CHARACTERGUID_S_RC_GY_PurgedDaughter_Ghost_e2942af9-57ca-47c8-aef4-e38b6f726fd9, TRIGGERGUID_S_RC_GY_PurgedDaughter_GhostPoint_62b1abb7-e160-4e94-8ae9-cbf349c292f3);
+ObjectSetFlag(CHARACTERGUID_S_RC_GY_PurgedDaughter_70f3182f-3c18-4504-9691-332d9dec7964, "RC_GY_PurgedDaughter_GhostAtGraveyard");
+
+PROC
+Proc_RC_GY_PurgedDaughter_DaughterLives()
+THEN
+ClearTag(CHARACTERGUID_S_RC_GY_PurgedDaughter_70f3182f-3c18-4504-9691-332d9dec7964, "NO_ARMOR_REGEN");
+ObjectClearFlag(CHARACTERGUID_S_RC_GY_PurgedDaughter_70f3182f-3c18-4504-9691-332d9dec7964, "GLO_BlockRegenAfterCombat");
+SetCanFight(CHARACTERGUID_S_RC_GY_PurgedDaughter_70f3182f-3c18-4504-9691-332d9dec7964, 1);
+SetCanJoinCombat(CHARACTERGUID_S_RC_GY_PurgedDaughter_70f3182f-3c18-4504-9691-332d9dec7964, 1);
+NOT DB_NoLowAttitudeDialog(CHARACTERGUID_S_RC_GY_PurgedDaughter_70f3182f-3c18-4504-9691-332d9dec7964);
+ProcCharacterEnableAllCrimes(CHARACTERGUID_S_RC_GY_PurgedDaughter_70f3182f-3c18-4504-9691-332d9dec7964);
+ObjectSetFlag(CHARACTERGUID_S_RC_GY_PurgedDaughter_70f3182f-3c18-4504-9691-332d9dec7964, "RC_GY_PurgedDaughter_GettingWell");
+SetVarFixedString(CHARACTERGUID_S_RC_GY_PurgedDaughter_70f3182f-3c18-4504-9691-332d9dec7964, "currentState", "State_PostQuest");
+CharacterUseItem(CHARACTERGUID_S_RC_GY_PurgedDaughter_70f3182f-3c18-4504-9691-332d9dec7964, ITEMGUID_S_RC_GY_PurgedDaughter_Bed_27b8d750-6a50-443c-a5a7-a0839fa8e98a, "");
+TeleportTo(CHARACTERGUID_S_RC_GY_PurgedDaughter_CellarCorpse_898a8f7f-34ae-4d10-89b0-eace8a7320c5, TRIGGERGUID_S_RC_GY_PurgedDaughter_FatherCellarPoint_c164db7a-6c14-44f1-a981-2ca89ee956b0);
+SetOnStage(CHARACTERGUID_S_RC_GY_PurgedDaughter_CellarCorpse_898a8f7f-34ae-4d10-89b0-eace8a7320c5, 0);
+ApplyStatus(ITEMGUID_S_RC_GY_PurgedDaughter_Torch_a05971f3-2ca1-46ed-a2b5-62001d6a440d, "BURNING", -1);
+CreateSurface(TRIGGERGUID_S_RC_GY_PurgedDaughter_FatherCellarPoint_c164db7a-6c14-44f1-a981-2ca89ee956b0, "SurfaceNone", 20, 1);
+
+PROC
+Proc_RC_GY_PurgedDaughter_FatherMoveOutOfCellar()
+AND
+ObjectGetFlag(CHARACTERGUID_S_RC_GY_PurgedDaughter_Father_0850c066-28ee-4179-9d0a-9ceaff05bd15, "RC_GY_PurgedDaughter_FatherIsInCellar", 1)
+THEN
+CharacterSetReactionPriority(CHARACTERGUID_S_RC_GY_PurgedDaughter_Father_0850c066-28ee-4179-9d0a-9ceaff05bd15, "HealerCellarWaiting", 0);
+ProcCharacterMoveTo(CHARACTERGUID_S_RC_GY_PurgedDaughter_Father_0850c066-28ee-4179-9d0a-9ceaff05bd15, ITEMGUID_S_RC_GY_PurgedDaughter_Ladder_7e3a004f-b129-82dd-3512-4562dbc87f19, 0, "");
+CharacterUseItem(CHARACTERGUID_S_RC_GY_PurgedDaughter_Father_0850c066-28ee-4179-9d0a-9ceaff05bd15, ITEMGUID_S_RC_GY_PurgedDaughter_Ladder_7e3a004f-b129-82dd-3512-4562dbc87f19, "RC_GY_PurgedDaughter_FatherEnteredHouse");
+
+IF
+StoryEvent(CHARACTERGUID_S_RC_GY_PurgedDaughter_Father_0850c066-28ee-4179-9d0a-9ceaff05bd15, "RC_GY_PurgedDaughter_FatherEnteredHouse")
+THEN
+ObjectClearFlag(CHARACTERGUID_S_RC_GY_PurgedDaughter_Father_0850c066-28ee-4179-9d0a-9ceaff05bd15, "RC_GY_PurgedDaughter_FatherIsInCellar", 0);
+CharacterSetReactionPriority(CHARACTERGUID_S_RC_GY_PurgedDaughter_Father_0850c066-28ee-4179-9d0a-9ceaff05bd15, "HealerSit", 600);
+PROC_RC_GY_PurgedDaughter_FatherSwapDialog(CHARACTERGUID_S_RC_GY_PurgedDaughter_Father_0850c066-28ee-4179-9d0a-9ceaff05bd15);
+
+IF
+DialogEnded("RC_GY_PurgedDaughter_FatherTrader", (INTEGER)_Var1)
+AND
+DialogGetInvolvedPlayer(_Var1, 1, _Var2)
+AND
+ObjectGetFlag(_Var2, "RC_GY_PurgedDaughter_HealerServices", 1)
+AND
+QRY_IsInRange(_Var2, CHARACTERGUID_S_RC_GY_PurgedDaughter_Father_0850c066-28ee-4179-9d0a-9ceaff05bd15, 10)
+THEN
+CharacterPurgeQueue(S_RC_GY_PurgedDaughter_Father_0850c066-28ee-4179-9d0a-9ceaff05bd15);
+CharacterUseSkill(CHARACTERGUID_S_RC_GY_PurgedDaughter_Father_0850c066-28ee-4179-9d0a-9ceaff05bd15, "Target_FirstAidEnemy", _Var2, 1);
+ObjectClearFlag(_Var2, "RC_GY_PurgedDaughter_HealerServices", 0);
+
+IF
+CharacterEnteredTrigger((CHARACTERGUID)_Var1, TRIGGERGUID_S_RC_GY_PurgedDaughter_Basement_8059a36e-6ce9-402a-970f-2e3ee98e0ea5)
+AND
+DB_IsPlayer(_Var1)
+THEN
+PartySetFlag(_Var1, "QuestUpdate_RC_GY_PurgedDaughter_EnterCellar");
+
+IF
+SavegameLoaded((INTEGER)_Var1, (INTEGER)_Var2, (INTEGER)_Var3, (INTEGER)_Var4)
+AND
+QRY_VersionIsOlderThan(_Var1, _Var2, _Var3, _Var4, 3, 6, 1, 0)
+AND
+DB_IsPlayer(_Var5)
+AND
+PartyGetFlag(_Var5, "QuestUpdate_RC_GY_PurgedDaughter_KilledDaughterHealer", 1)
+THEN
+PROC_RC_GY_PurgedDaughter_FatherSwapDialog(CHARACTERGUID_S_RC_GY_PurgedDaughter_Father_0850c066-28ee-4179-9d0a-9ceaff05bd15);
+
+
+EXITSECTION
+NOT DB_RC_GY_PurgedDaughter_HouseDoors(ITEMGUID_S_RC_GY_PurgedDaughter_FrontDoor_5f0382bf-9aea-430e-958c-1661b7d5bed2);
+NOT DB_RC_GY_PurgedDaughter_HouseDoors(ITEMGUID_S_RC_GY_PurgedDaughter_BackDoor_5dd18cf7-67fd-4b70-876f-575c3c6f0ed3);
+ENDEXITSECTION
+
+ParentTargetEdge "ReapersCoast"

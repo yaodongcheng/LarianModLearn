@@ -1,0 +1,498 @@
+Version 1
+SubGoalCombiner SGC_AND
+
+INITSECTION
+DB_GLO_Promise_SelftTestHero(CHARACTERGUID_S_Player_Sebille_c8d55eaf-e4eb-466a-8f0d-6a9447b5b24c);
+DB_GLO_Promise_SelftTestHero(CHARACTERGUID_S_Player_Lohse_bb932b13-8ebf-4ab4-aac0-83e6924e4295);
+DB_GLO_Promise_SelftTestHero(CHARACTERGUID_S_Player_RedPrince_a26a1efb-cdc8-4cf3-a7b2-b2f9544add6f);
+DB_GLO_Promise_SelftTestHero(CHARACTERGUID_S_Player_Ifan_ad9a3327-4456-42a7-9bf4-7ad60cc9e54f);
+DB_GLO_Promise_SelfTestThreeAvatars(CHARACTERGUID_S_Player_Sebille_c8d55eaf-e4eb-466a-8f0d-6a9447b5b24c);
+DB_GLO_Promise_SelfTestThreeAvatars(CHARACTERGUID_S_Player_RedPrince_a26a1efb-cdc8-4cf3-a7b2-b2f9544add6f);
+DB_GLO_Promise_SelfTestThreeAvatars(CHARACTERGUID_S_Player_Ifan_ad9a3327-4456-42a7-9bf4-7ad60cc9e54f);
+
+KBSECTION
+IF
+TextEventSet("promise_reset_flags")
+AND
+CharacterGetHostCharacter(_Var1)
+THEN
+ClearTag(_Var1, "PROMISED");
+ObjectClearFlag(_Var1, "GLO_Promise_TimesResurrectedAtThisLevel_1", 0);
+ObjectClearFlag(_Var1, "GLO_Promise_TimesResurrectedAtThisLevel_2", 0);
+ObjectClearFlag(_Var1, "GLO_Promise_TimesResurrectedAtThisLevel_3", 0);
+ObjectClearFlag(_Var1, "GLO_Promise_PromiseBreaker", 0);
+NOT DB_GLO_Promise_ZombieChicken(_Var1);
+
+IF
+TextEventSet("promise_sebille_accept_dialog")
+THEN
+DB_GLO_Promise_AcceptPromiseDialog("GLO_SebilleNeedle");
+ObjectSetFlag(CHARACTERGUID_S_Player_Sebille_c8d55eaf-e4eb-466a-8f0d-6a9447b5b24c, "GLO_Promise_AcceptedPromise");
+
+IF
+TextEventSet("promise_offer_reply_accept")
+AND
+CharacterGetHostCharacter(_Var1)
+THEN
+ObjectSetFlag(_Var1, "GLO_Promise_AcceptedPromise");
+PROC_GLO_Promise_HandleOfferReply(_Var1);
+
+IF
+TextEventSet("promise_offer_reply_reject")
+AND
+CharacterGetHostCharacter(_Var1)
+THEN
+PROC_GLO_Promise_HandleOfferReply(_Var1);
+
+IF
+TextEventSet("promise_accepted")
+AND
+CharacterGetHostCharacter(_Var1)
+AND
+CharacterGetReservedUserID(_Var1, _Var2)
+THEN
+PROC_GLO_Promise_AcceptedPromise(_Var1);
+
+IF
+TextEventSet("promise_broken")
+AND
+CharacterGetHostCharacter(_Var1)
+THEN
+PROC_GLO_Promise_Broken(_Var1, 1);
+
+IF
+TextEventSet("promise_relieved")
+AND
+CharacterGetHostCharacter(_Var1)
+THEN
+PROC_GLO_Promise_Broken(_Var1, 0);
+
+IF
+TextEventSet("resurrect_all")
+AND
+CharacterGetHostCharacter(_Var1)
+THEN
+PROC_GLO_PromiseSelfTest_ResurrectAllHeroes(_Var1, "");
+
+IF
+TextEventSet("kill_all")
+AND
+CharacterGetHostCharacter(_Var1)
+THEN
+PROC_GLO_PromiseSelfTest_KillAllHeroes(_Var1, "");
+
+IF
+TextEventSet("promise_selftest")
+THEN
+PROC_GLO_PromiseSelfTest_RunAll();
+
+PROC
+PROC_GLO_PromiseSelfTest_RunAll()
+THEN
+PROC_GLO_PromiseSelfTest_LastStandingEligible();
+
+PROC
+PROC_GLO_PromiseSelfTest_LastStandingEligible()
+AND
+CharacterGetHostCharacter(_Var1)
+AND
+CharacterGetReservedUserID(_Var1, _Var2)
+AND
+QRY_GLO_DeadOrder_LastStandingEligibleForUser(_Var2, "GLO_ThePromise")
+THEN
+DebugBreak("QRY_GLO_Promise_LastStandingEligibleForUser() returns true even though everyone is alive");
+
+PROC
+PROC_GLO_PromiseSelfTest_LastStandingEligible()
+AND
+CharacterGetHostCharacter(_Var1)
+AND
+CharacterGetReservedUserID(_Var1, _Var2)
+AND
+DB_GLO_DeadOrder_LastStandingEligibleOrderForUser(_, _, "GLO_ThePromise")
+THEN
+DebugBreak("DB_GLO_DeadOrder_LastStandingEligibleOrderForUser(_,_,GLO_Promise) set even though everyone is alive");
+
+PROC
+PROC_GLO_PromiseSelfTest_LastStandingEligible()
+THEN
+PROC_GLO_PromiseSelfTest_LastStandingEligibleNoAvatars("PROC_GLO_PromiseSelfTest_LastStandingEligibleNoAvatars_Finished");
+
+IF
+StoryEvent((GUIDSTRING)_Var1, "PROC_GLO_PromiseSelfTest_LastStandingEligibleNoAvatars_Finished")
+THEN
+PROC_GLO_PromiseSelfTest_LastStandingEligibleOneAvatar("PROC_GLO_PromiseSelfTest_LastStandingEligibleOneAvatar_Finished");
+
+IF
+StoryEvent((GUIDSTRING)_Var1, "PROC_GLO_PromiseSelfTest_LastStandingEligibleOneAvatar_Finished")
+THEN
+PROC_GLO_PromiseSelfTest_LastStandingEligibleThreeAvatars("PROC_GLO_PromiseSelfTest_LastStandingEligibleThreeAvatars_Finished");
+
+PROC
+PROC_GLO_PromiseSelfTest_LastStandingEligibleNoAvatars((STRING)_Var1)
+AND
+CharacterGetHostCharacter(_Var2)
+THEN
+DB_PROC_GLO_PromiseSelfTest_LastStandingEligibleNoAvatars_FinishEvent(_Var1);
+PROC_GLO_PromiseSelfTest_KillAllHeroes(_Var2, "PROC_GLO_PromiseSelfTest_LastStandingEligibleNoAvatars_AllDead1");
+
+IF
+StoryEvent((CHARACTERGUID)_Var1, "PROC_GLO_PromiseSelfTest_LastStandingEligibleNoAvatars_AllDead1")
+AND
+CharacterGetReservedUserID(_Var1, _Var2)
+AND
+QRY_GLO_DeadOrder_LastStandingEligibleForUser(_Var2, "GLO_ThePromise")
+THEN
+DebugBreak("QRY_GLO_Promise_LastStandingEligibleForUser() returns true even though no PROMISED died");
+
+IF
+StoryEvent((CHARACTERGUID)_Var1, "PROC_GLO_PromiseSelfTest_LastStandingEligibleNoAvatars_AllDead1")
+AND
+CharacterGetReservedUserID(_Var1, _Var2)
+AND
+DB_GLO_DeadOrder_LastStandingEligibleOrderForUser(_, _, "GLO_ThePromise")
+THEN
+DebugBreak("DB_GLO_Promise_LastStandingEligibleOrderForUser(_,_) is set even though no PROMISED died");
+
+IF
+StoryEvent((CHARACTERGUID)_Var1, "PROC_GLO_PromiseSelfTest_LastStandingEligibleNoAvatars_AllDead1")
+AND
+DB_PROC_GLO_PromiseSelfTest_LastStandingEligibleNoAvatars_FinishEvent(_Var2)
+THEN
+NOT DB_PROC_GLO_PromiseSelfTest_LastStandingEligibleNoAvatars_FinishEvent(_Var2);
+PROC_GLO_PromiseSelfTest_ResurrectAllHeroes(_Var1, _Var2);
+
+PROC
+PROC_GLO_PromiseSelfTest_LastStandingEligibleOneAvatar((STRING)_Var1)
+AND
+CharacterGetHostCharacter(_Var2)
+THEN
+DB_PROC_GLO_PromiseSelfTest_LastStandingEligibleOneAvatar_FinishEvent(_Var1);
+SetTag(CHARACTERGUID_S_Player_Lohse_bb932b13-8ebf-4ab4-aac0-83e6924e4295, "PROMISED");
+PROC_GLO_PromiseSelfTest_KillAllHeroes(_Var2, "PROC_GLO_PromiseSelfTest_LastStandingEligibleNoAvatars_AllDead2");
+
+IF
+StoryEvent((CHARACTERGUID)_Var1, "PROC_GLO_PromiseSelfTest_LastStandingEligibleNoAvatars_AllDead2")
+AND
+CharacterGetReservedUserID(_Var1, _Var2)
+AND NOT
+QRY_GLO_DeadOrder_LastStandingEligibleForUser(_Var2, "GLO_ThePromise")
+THEN
+DebugBreak("QRY_GLO_DeadOrder_LastStandingEligibleForUser(,GLO_Promise) returns false even though one PROMISED died");
+
+IF
+StoryEvent((CHARACTERGUID)_Var1, "PROC_GLO_PromiseSelfTest_LastStandingEligibleNoAvatars_AllDead2")
+AND
+CharacterGetReservedUserID(_Var1, _Var2)
+AND
+QRY_GLO_DeadOrder_LastStandingEligibleForUser(_Var2, "GLO_ThePromise")
+AND
+SysCount("DB_GLO_DeadOrder_EligibleDeadOrder", 3, _Var3)
+AND
+_Var3 != 1
+THEN
+DebugBreak("Either no or more than one DB_GLO_DeadOrder_EligibleDeadOrder(GLO_Promise) entries even though exactly one PROMISED died");
+
+IF
+StoryEvent((CHARACTERGUID)_Var1, "PROC_GLO_PromiseSelfTest_LastStandingEligibleNoAvatars_AllDead2")
+AND
+CharacterGetReservedUserID(_Var1, _Var2)
+AND
+QRY_GLO_DeadOrder_LastStandingEligibleForUser(_Var2, "GLO_ThePromise")
+AND NOT
+DB_GLO_DeadOrder_LastStandingEligibleForUser(_Var2, CHARACTERGUID_S_Player_Lohse_bb932b13-8ebf-4ab4-aac0-83e6924e4295, "GLO_ThePromise")
+THEN
+DebugBreak("DB_GLO_DeadOrder_LastStandingEligibleForUser(_UserID,Lohse,GLO_Promise) not set even though Lohse died as PROMISED. We shall remember her forever. Amen.");
+
+IF
+StoryEvent((CHARACTERGUID)_Var1, "PROC_GLO_PromiseSelfTest_LastStandingEligibleNoAvatars_AllDead2")
+AND
+DB_PROC_GLO_PromiseSelfTest_LastStandingEligibleOneAvatar_FinishEvent(_Var2)
+THEN
+ClearTag(CHARACTERGUID_S_Player_Lohse_bb932b13-8ebf-4ab4-aac0-83e6924e4295, "PROMISED");
+NOT DB_PROC_GLO_PromiseSelfTest_LastStandingEligibleOneAvatar_FinishEvent(_Var2);
+PROC_GLO_PromiseSelfTest_ResurrectAllHeroes(_Var1, _Var2);
+
+PROC
+PROC_GLO_PromiseSelfTest_LastStandingEligibleThreeAvatars((STRING)_Var1)
+AND
+DB_GLO_Promise_SelfTestThreeAvatars(_Var2)
+THEN
+SetTag(_Var2, "PROMISED");
+
+PROC
+PROC_GLO_PromiseSelfTest_LastStandingEligibleThreeAvatars((STRING)_Var1)
+AND
+CharacterGetHostCharacter(_Var2)
+THEN
+DB_PROC_GLO_PromiseSelfTest_LastStandingEligibleOneAvatar_FinishEvent(_Var1);
+PROC_GLO_PromiseSelfTest_KillAllHeroes(_Var2, "PROC_GLO_PromiseSelfTest_LastStandingEligibleNoAvatars_AllDead3");
+
+IF
+CharacterDied((CHARACTERGUID)_Var1)
+AND
+DB_PROC_GLO_PromiseSelfTest_LastStandingEligibleOneAvatar_FinishEvent(_)
+AND
+IsTagged(_Var1, "PROMISED", 1)
+AND
+DB_PROC_GLO_PromiseSelfTest_LastStandingEligibleOneAvatar_LastDied(_Var3)
+THEN
+NOT DB_PROC_GLO_PromiseSelfTest_LastStandingEligibleOneAvatar_LastDied(_Var3);
+
+IF
+CharacterDied((CHARACTERGUID)_Var1)
+AND
+DB_PROC_GLO_PromiseSelfTest_LastStandingEligibleOneAvatar_FinishEvent(_)
+AND
+IsTagged(_Var1, "PROMISED", 1)
+THEN
+DB_PROC_GLO_PromiseSelfTest_LastStandingEligibleOneAvatar_LastDied(_Var1);
+
+IF
+StoryEvent((CHARACTERGUID)_Var1, "PROC_GLO_PromiseSelfTest_LastStandingEligibleNoAvatars_AllDead3")
+AND
+CharacterGetReservedUserID(_Var1, _Var2)
+AND NOT
+QRY_GLO_DeadOrder_LastStandingEligibleForUser(_Var2, "GLO_ThePromise")
+THEN
+DebugBreak("QRY_GLO_Promise_LastStandingEligibleForUser() returns false even though three PROMISED died");
+
+IF
+StoryEvent((CHARACTERGUID)_Var1, "PROC_GLO_PromiseSelfTest_LastStandingEligibleNoAvatars_AllDead3")
+AND
+CharacterGetReservedUserID(_Var1, _Var2)
+AND
+QRY_GLO_DeadOrder_LastStandingEligibleForUser(_Var2, "GLO_ThePromise")
+AND
+SysCount("DB_GLO_DeadOrder_EligibleDeadOrder", 3, _Var3)
+AND
+_Var3 != 3
+THEN
+DebugBreak("Not exactly 3 DB_GLO_DeadOrder_EligibleDeadOrder(GLO_Promise) entries even though exactly three PROMISED died");
+
+IF
+StoryEvent((CHARACTERGUID)_Var1, "PROC_GLO_PromiseSelfTest_LastStandingEligibleNoAvatars_AllDead3")
+AND
+CharacterGetReservedUserID(_Var1, _Var2)
+AND
+QRY_GLO_DeadOrder_LastStandingEligibleForUser(_Var2, "GLO_ThePromise")
+AND
+DB_GLO_Promise_SelfTestThreeAvatars(_Var3)
+AND NOT
+DB_GLO_DeadOrder_EligibleDeadOrder(_Var3, _, "GLO_ThePromise")
+THEN
+DebugBreak("DB_GLO_DeadOrder_EligibleDeadOrder(_Avatar,_,GLO_Promise) not set even though that character died as PROMISED.");
+
+IF
+StoryEvent((CHARACTERGUID)_Var1, "PROC_GLO_PromiseSelfTest_LastStandingEligibleNoAvatars_AllDead3")
+AND
+CharacterGetReservedUserID(_Var1, _Var2)
+AND
+QRY_GLO_DeadOrder_LastStandingEligibleForUser(_Var2, "GLO_ThePromise")
+AND
+DB_GLO_Promise_SelftTestHero(_Var3)
+AND NOT
+DB_GLO_Promise_SelfTestThreeAvatars(_Var3)
+AND
+DB_GLO_DeadOrder_EligibleDeadOrder(_Var3, _, "GLO_ThePromise")
+THEN
+DebugBreak("DB_GLO_DeadOrder_EligibleDeadOrder(_Char,_,GLO_Promise) set even though that character did not die as a PROMISED this time.");
+
+IF
+StoryEvent((CHARACTERGUID)_Var1, "PROC_GLO_PromiseSelfTest_LastStandingEligibleNoAvatars_AllDead3")
+AND
+CharacterGetReservedUserID(_Var1, _Var2)
+AND
+QRY_GLO_DeadOrder_LastStandingEligibleForUser(_Var2, "GLO_ThePromise")
+AND
+DB_PROC_GLO_PromiseSelfTest_LastStandingEligibleOneAvatar_LastDied(_Var3)
+AND NOT
+DB_GLO_DeadOrder_LastStandingEligibleForUser(_Var2, _Var3, "GLO_ThePromise")
+THEN
+DebugBreak("DB_GLO_DeadOrder_LastStandingEligibleForUser(_UserID,_LastDied,GLO_Promise) not set even though that character did die last as PROMISED.");
+
+IF
+StoryEvent((CHARACTERGUID)_Var1, "PROC_GLO_PromiseSelfTest_LastStandingEligibleNoAvatars_AllDead3")
+AND
+CharacterGetReservedUserID(_Var1, _Var2)
+AND
+QRY_GLO_DeadOrder_LastStandingEligibleForUser(_Var2, "GLO_ThePromise")
+AND
+DB_GLO_DeadOrder_LastStandingEligibleForUser(_Var2, _Var3, "GLO_ThePromise")
+AND NOT
+DB_PROC_GLO_PromiseSelfTest_LastStandingEligibleOneAvatar_LastDied(_Var3)
+THEN
+DebugBreak("DB_GLO_DeadOrder_LastStandingEligibleForUser(_UserID,_Char,GLO_Promise) set even though that character did not die last as PROMISED.");
+
+IF
+StoryEvent((CHARACTERGUID)_Var1, "PROC_GLO_PromiseSelfTest_LastStandingEligibleNoAvatars_AllDead3")
+AND
+DB_GLO_Promise_SelfTestThreeAvatars(_Var2)
+THEN
+ClearTag(_Var2, "PROMISED");
+
+IF
+StoryEvent((CHARACTERGUID)_Var1, "PROC_GLO_PromiseSelfTest_LastStandingEligibleNoAvatars_AllDead3")
+AND
+DB_PROC_GLO_PromiseSelfTest_LastStandingEligibleOneAvatar_FinishEvent(_Var2)
+THEN
+NOT DB_PROC_GLO_PromiseSelfTest_LastStandingEligibleOneAvatar_FinishEvent(_Var2);
+PROC_GLO_PromiseSelfTest_ResurrectAllHeroes(_Var1, _Var2);
+
+PROC
+PROC_GLO_PromiseSelfTest_KillAllHeroes((GUIDSTRING)_Var1, (STRING)_Var2)
+THEN
+ProcDeclareCounter("PROC_GLO_PromiseSelfTest_KillAllHeroes_Died");
+DB_PROC_GLO_PromiseSelfTest_KillAllHeroes_FinishEvent(_Var1, _Var2);
+
+PROC
+PROC_GLO_PromiseSelfTest_KillAllHeroes((GUIDSTRING)_Var1, (STRING)_Var2)
+AND
+DB_GLO_Promise_SelftTestHero(_Var3)
+AND NOT
+DB_Dead(_Var3)
+THEN
+CharacterDie(_Var3, 0, "DoT");
+ProcIncreaseCounter("PROC_GLO_PromiseSelfTest_KillAllHeroes_Died");
+DB_PROC_GLO_PromiseSelfTest_KillAllHeroes_Killed_One_Character(1);
+
+PROC
+PROC_GLO_PromiseSelfTest_KillAllHeroes((GUIDSTRING)_Var1, (STRING)_Var2)
+AND NOT
+DB_PROC_GLO_PromiseSelfTest_KillAllHeroes_Killed_One_Character(1)
+THEN
+NOT DB_PROC_GLO_PromiseSelfTest_KillAllHeroes_FinishEvent(_Var1, _Var2);
+SetStoryEvent(_Var1, _Var2);
+
+IF
+CharacterDied((CHARACTERGUID)_Var1)
+AND
+DB_GlobalCounter("PROC_GLO_PromiseSelfTest_KillAllHeroes_Died", _)
+THEN
+ProcDecreaseCounter("PROC_GLO_PromiseSelfTest_KillAllHeroes_Died");
+
+IF
+DB_GlobalCounter("PROC_GLO_PromiseSelfTest_KillAllHeroes_Died", _Var1)
+AND
+DB_PROC_GLO_PromiseSelfTest_KillAllHeroes_Killed_One_Character(1)
+AND
+_Var1 == 0
+AND
+DB_PROC_GLO_PromiseSelfTest_KillAllHeroes_FinishEvent(_Var2, _Var3)
+THEN
+NOT DB_PROC_GLO_PromiseSelfTest_KillAllHeroes_Killed_One_Character(1);
+NOT DB_PROC_GLO_PromiseSelfTest_KillAllHeroes_FinishEvent(_Var2, _Var3);
+ProcRemoveCounter("PROC_GLO_PromiseSelfTest_LastStandingEligibleNoAvatars_Died");
+SetStoryEvent(_Var2, _Var3);
+
+PROC
+PROC_GLO_PromiseSelfTest_ResurrectAllHeroes((GUIDSTRING)_Var1, (STRING)_Var2)
+THEN
+ProcDeclareCounter("PROC_GLO_PromiseSelfTest_ResurrectAllHeroes_Resurrected");
+DB_PROC_GLO_PromiseSelfTest_ResurrectAllHeroes_FinishEvent(_Var1, _Var2);
+
+PROC
+PROC_GLO_PromiseSelfTest_ResurrectAllHeroes((GUIDSTRING)_Var1, (STRING)_Var2)
+AND
+DB_GLO_Promise_SelftTestHero(_Var3)
+AND
+DB_Dead(_Var3)
+THEN
+CharacterResurrect(_Var3);
+ProcIncreaseCounter("PROC_GLO_PromiseSelfTest_ResurrectAllHeroes_Resurrected");
+DB_PROC_GLO_PromiseSelfTest_ResurrectAllHeroes_Resurrected_One(1);
+
+PROC
+PROC_GLO_PromiseSelfTest_ResurrectAllHeroes((GUIDSTRING)_Var1, (STRING)_Var2)
+AND NOT
+DB_PROC_GLO_PromiseSelfTest_ResurrectAllHeroes_Resurrected_One(1)
+THEN
+SetStoryEvent(_Var1, _Var2);
+
+IF
+CharacterResurrected(_)
+AND
+DB_GlobalCounter("PROC_GLO_PromiseSelfTest_ResurrectAllHeroes_Resurrected", _)
+THEN
+ProcDecreaseCounter("PROC_GLO_PromiseSelfTest_ResurrectAllHeroes_Resurrected");
+
+IF
+DB_GlobalCounter("PROC_GLO_PromiseSelfTest_ResurrectAllHeroes_Resurrected", _Var1)
+AND
+DB_PROC_GLO_PromiseSelfTest_ResurrectAllHeroes_Resurrected_One(1)
+AND
+_Var1 == 0
+AND
+DB_PROC_GLO_PromiseSelfTest_ResurrectAllHeroes_FinishEvent(_Var2, _Var3)
+THEN
+ProcObjectTimer(_Var2, "DB_PROC_GLO_PromiseSelfTest_ResurrectAllHeroes_FinishEvent", 500);
+
+PROC
+ProcObjectTimerFinished((GUIDSTRING)_Var1, "DB_PROC_GLO_PromiseSelfTest_ResurrectAllHeroes_FinishEvent")
+AND
+DB_PROC_GLO_PromiseSelfTest_ResurrectAllHeroes_FinishEvent(_Var1, _Var2)
+THEN
+NOT DB_PROC_GLO_PromiseSelfTest_ResurrectAllHeroes_Resurrected_One(1);
+NOT DB_PROC_GLO_PromiseSelfTest_ResurrectAllHeroes_FinishEvent(_Var1, _Var2);
+ProcRemoveCounter("PROC_GLO_PromiseSelfTest_ResurrectAllHeroes_Resurrected");
+SetStoryEvent(_Var1, _Var2);
+
+IF
+TextEventSet("prmseff")
+AND
+GetTextEventParamInteger(1, 1)
+AND
+CharacterGetHostCharacter(_Var1)
+THEN
+Proc_GLO_Promise_Effect_Prepare(_Var1);
+
+IF
+TextEventSet("prmseff")
+AND
+GetTextEventParamInteger(1, 2)
+AND
+CharacterGetHostCharacter(_Var1)
+THEN
+Proc_GLO_Promise_Effect_Accept(_Var1);
+
+IF
+TextEventSet("brkeff")
+AND
+GetTextEventParamInteger(1, 1)
+AND
+CharacterGetHostCharacter(_Var1)
+THEN
+Proc_GLO_PromiseBreak_Effect_Prepare(_Var1);
+
+IF
+TextEventSet("brkeff")
+AND
+GetTextEventParamInteger(1, 2)
+AND
+CharacterGetHostCharacter(_Var1)
+THEN
+Proc_GLO_PromiseBreak_Effect_Accept(_Var1);
+
+IF
+TextEventSet("prmsstop")
+AND
+CharacterGetHostCharacter(_Var1)
+THEN
+Proc_GLO_Promise_Effect_Stop(_Var1);
+Proc_GLO_PromiseBreak_Effect_Stop(_Var1);
+
+IF
+TextEventSet("prmsfull")
+AND
+DB_IsPlayer(_Var1)
+THEN
+CharacterRecruitCharacter(_Var1, CHARACTERGUID_S_Player_Fane_02a77f1f-872b-49ca-91ab-32098c443beb);
+SetTag(CHARACTERGUID_S_Player_Fane_02a77f1f-872b-49ca-91ab-32098c443beb, "AVATAR");
+CharacterAddSkill(CHARACTERGUID_S_Player_Fane_02a77f1f-872b-49ca-91ab-32098c443beb, "Shout_Quest_PromiseBreak");
+TeleportTo(CHARACTERGUID_S_Player_Fane_02a77f1f-872b-49ca-91ab-32098c443beb, TRIGGERGUID_S_CoS_Academy_MainEntrance_Point_71c8beb7-1859-40ff-ba9e-06d7b58c9fe0);
+
+
+EXITSECTION
+ENDEXITSECTION
+
+ParentTargetEdge "GLO_ThePromise_Activation"

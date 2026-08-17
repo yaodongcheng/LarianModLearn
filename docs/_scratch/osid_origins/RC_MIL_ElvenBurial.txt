@@ -1,0 +1,413 @@
+Version 1
+SubGoalCombiner SGC_AND
+
+INITSECTION
+DB_Ghosts(CHARACTERGUID_S_RC_MIL_SariasGhost_09a853c2-cd62-4f7b-9e36-160b455ccaed, "RC_MIL_SariasGhost");
+DB_ScorePersuasion_Dialog("RC_MIL_SariasRitual", 5);
+DB_RC_MIL_RitualParticipants(CHARACTERGUID_S_RC_MIL_Tovah_69c31947-b004-44aa-b856-2a9a96ff218a);
+DB_RC_MIL_RitualParticipants(CHARACTERGUID_S_RC_MIL_ElvenTank_21cf95b4-c4a7-4a54-9beb-71a9ba711aba);
+DB_RC_MIL_RitualParticipants(CHARACTERGUID_S_RC_MIL_ElfShaman_ce67ffa8-7919-4ec3-8440-23ed94b7cf5b);
+DB_RC_MIL_RitualParticipants(CHARACTERGUID_S_RC_MIL_ElvenTank2_55dc1982-2f24-4ece-a592-ad3dda6272cb);
+CharacterSetHitpointsPercentage(CHARACTERGUID_S_RC_MIL_ElvenTank_21cf95b4-c4a7-4a54-9beb-71a9ba711aba, 80);
+CharacterSetHitpointsPercentage(CHARACTERGUID_S_RC_MIL_ElvenTank2_55dc1982-2f24-4ece-a592-ad3dda6272cb, 80);
+DB_QuestDef_State("RC_MIL_ElvenBurial", "ArriveCamp", 1);
+DB_QuestDef_State("RC_MIL_ElvenBurial", "JoinRitual", 1);
+DB_QuestDef_State("RC_MIL_ElvenBurial", "DidnotParticipate", -1);
+DB_QuestDef_UpdateEvent("RC_MIL_ElvenBurial", "AllowedCamp", "RC_MIL_AllowedInCamp");
+DB_QuestDef_UpdateEvent("RC_MIL_ElvenBurial", "PerformedRitual_Well", "RC_MIL_PerformedRitual_Well");
+DB_QuestDef_UpdateEvent("RC_MIL_ElvenBurial", "PerformedRitual_Mediocre", "RC_MIL_PerformedRitual_Mediocre");
+DB_QuestDef_UpdateEvent("RC_MIL_ElvenBurial", "PerformedRitual_Poorly", "RC_MIL_PerformedRitual_Poorly");
+DB_QuestDef_CloseEvent("RC_MIL_ElvenBurial", "RC_MIL_PerformedRitual_Well");
+DB_QuestDef_CloseEvent("RC_MIL_ElvenBurial", "RC_MIL_PerformedRitual_Mediocre");
+DB_QuestDef_CloseEvent("RC_MIL_ElvenBurial", "RC_MIL_PerformedRitual_Poorly");
+DB_QuestDef_CloseEvent("RC_MIL_ElvenBurial", "RC_MIL_ElvenBurial_Close");
+DB_QuestDef_State("RC_MIL_ElvenBurial", "TovahDead", -1);
+DB_PossessedItem(ITEMGUID_S_RC_MIL_AncestorTree_ElfSiteTree_32ebb430-26c5-46ec-a9f0-97625f68cd26, ITEMGUID_S_RC_MIL_AncestorTree_ElfSiteTree_Ghost_b4472ca3-0c21-4dda-ba79-96b36a46fb9e, "RC_MIL_AncestorTree_ElfSiteTree", "RC_MIL_AncestorTree_SeeAura");
+CharacterEquipItem(CHARACTERGUID_S_GLO_Tovah_69c31947-b004-44aa-b856-2a9a96ff218a, S_RC_MIL_SaheilaRewardSpear_590b4847-e424-45fc-b7b2-a9a2606b6888);
+
+KBSECTION
+QRY
+QRY_CrimeBribes_DisableBribe((INTEGER)_Var1, (CHARACTERGUID)_Var2, (CHARACTERGUID)_Var3, (STRING)_Var4)
+AND
+IsTagged(_Var2, "TRADIONAL_ELF", 1)
+THEN
+DB_NOOP(1);
+
+IF
+StoryEvent((GUIDSTRING)_Var1, "RC_MIL_StartSariasRitual")
+AND
+GlobalGetFlag("RC_MIL_SariasRitualStarted", 0)
+AND NOT
+QRY_RC_MIL_TovahAddress_FarFromCorpse()
+AND NOT
+QRY_RC_MIL_TovahAddressesSebille(_Var1)
+AND NOT
+QRY_StartDialog(0, "RC_MIL_SariasRitual", CHARACTERGUID_S_RC_MIL_Tovah_69c31947-b004-44aa-b856-2a9a96ff218a, ITEMGUID_S_RC_MIL_SariasCorpse_37211be0-ea49-4689-a517-1f7aa7d0bf27, _Var1)
+THEN
+ObjectSetFlag(CHARACTERGUID_S_RC_MIL_Tovah_69c31947-b004-44aa-b856-2a9a96ff218a, "RestartSpotting", 0);
+
+QRY
+QRY_RC_MIL_TovahAddress_FarFromCorpse()
+AND
+GetDistanceTo(CHARACTERGUID_S_GLO_Tovah_69c31947-b004-44aa-b856-2a9a96ff218a, TRIGGERGUID_S_RC_MIL_SariasCorpseStartTrigger_a3be0dfb-47fd-48c3-8992-27c7b68c4057, _Var1)
+AND
+_Var1 > 4
+THEN
+ObjectSetFlag(CHARACTERGUID_S_RC_MIL_Tovah_69c31947-b004-44aa-b856-2a9a96ff218a, "RestartSpotting", 0);
+
+IF
+DialogEnded("RC_MIL_TovahWithSaheila", _)
+AND
+GlobalGetFlag("RC_MIL_SariasRitualStarted", 0)
+THEN
+Proc_StartDialog(1, "RC_MIL_AD_BurySarias", CHARACTERGUID_S_GLO_Tovah_69c31947-b004-44aa-b856-2a9a96ff218a);
+
+QRY
+QRY_RC_MIL_TovahAddressesSebille((CHARACTERGUID)_Var1)
+AND
+CharacterIsInPartyWith(_Var1, CHARACTERGUID_S_Player_Sebille_c8d55eaf-e4eb-466a-8f0d-6a9447b5b24c, 1)
+AND
+IsTagged(CHARACTERGUID_S_Player_Sebille_c8d55eaf-e4eb-466a-8f0d-6a9447b5b24c, "SEBILLE", 1)
+AND
+CharacterCanSee(CHARACTERGUID_S_GLO_Tovah_69c31947-b004-44aa-b856-2a9a96ff218a, CHARACTERGUID_S_Player_Sebille_c8d55eaf-e4eb-466a-8f0d-6a9447b5b24c, 1)
+AND
+QRY_StartDialog(0, "RC_MIL_SariasRitual", CHARACTERGUID_S_GLO_Tovah_69c31947-b004-44aa-b856-2a9a96ff218a, ITEMGUID_S_RC_MIL_SariasCorpse_37211be0-ea49-4689-a517-1f7aa7d0bf27, CHARACTERGUID_S_Player_Sebille_c8d55eaf-e4eb-466a-8f0d-6a9447b5b24c)
+THEN
+DB_NOOP(1);
+
+PROC
+Proc_DialogFlagSetup("RC_MIL_SariasRitual", _, _, _)
+THEN
+GlobalSetFlag("RC_MIL_SariasRitualStarted");
+
+PROC
+Proc_DialogFlagSetup("RC_MIL_AD_SariasRitual", _)
+THEN
+GlobalSetFlag("RC_MIL_SariasRitualStarted");
+
+IF
+GlobalFlagSet("RC_MIL_ElvenPrayer")
+AND
+DB_RC_MIL_RitualParticipants(_Var1)
+AND
+QRY_RC_MIL_DoRitualEvent(_Var1)
+THEN
+CharacterLookAt(_Var1, ITEMGUID_S_RC_MIL_SariasCorpse_37211be0-ea49-4689-a517-1f7aa7d0bf27);
+PlayAnimation(_Var1, "Pray_01");
+
+IF
+GlobalFlagSet("RC_MIL_ElvesBleed")
+THEN
+ProcCharacterMoveTo(CHARACTERGUID_S_RC_MIL_Tovah_69c31947-b004-44aa-b856-2a9a96ff218a, ITEMGUID_S_RC_MIL_SariasCorpse_37211be0-ea49-4689-a517-1f7aa7d0bf27, 0, "RC_MIL_BleedSarias");
+
+IF
+StoryEvent(CHARACTERGUID_S_RC_MIL_Tovah_69c31947-b004-44aa-b856-2a9a96ff218a, "RC_MIL_BleedSarias")
+THEN
+CreatePuddle(ITEMGUID_S_RC_MIL_SariasCorpse_37211be0-ea49-4689-a517-1f7aa7d0bf27, "SurfaceBlood", 10, 25, 2, 5, 0.2);
+
+IF
+StoryEvent((CHARACTERGUID)_Var1, "RC_MIL_BleedSarias")
+THEN
+CharacterLookAt(_Var1, ITEMGUID_S_RC_MIL_SariasCorpse_37211be0-ea49-4689-a517-1f7aa7d0bf27);
+PlayAnimation(_Var1, "Fidget_Low_02");
+PlayEffect(ITEMGUID_S_RC_MIL_SariasCorpse_37211be0-ea49-4689-a517-1f7aa7d0bf27, "RS3_FX_GP_Combat_Hit_Blood_01_Small");
+
+IF
+GlobalFlagSet("RC_MIL_ElvesEat")
+AND
+DB_RC_MIL_RitualParticipants(_Var1)
+AND
+QRY_RC_MIL_DoRitualEvent(_Var1)
+THEN
+CharacterPurgeQueue(_Var1);
+ProcCharacterMoveTo(_Var1, ITEMGUID_S_RC_MIL_SariasCorpse_37211be0-ea49-4689-a517-1f7aa7d0bf27, 0, "RC_MIL_EatSarias");
+
+IF
+StoryEvent((CHARACTERGUID)_Var1, "RC_MIL_EatSarias")
+AND
+Random(500, _Var2)
+AND
+IntegerSum(_Var2, 2500, _Var3)
+THEN
+CharacterPurgeQueue(_Var1);
+CharacterLookAt(_Var1, ITEMGUID_S_RC_MIL_SariasCorpse_37211be0-ea49-4689-a517-1f7aa7d0bf27);
+PlayAnimation(_Var1, "use_loot");
+ProcObjectTimer(_Var1, "RC_MIL_EatSarias", _Var3);
+
+PROC
+ProcObjectTimerFinished((CHARACTERGUID)_Var1, "RC_MIL_EatSarias")
+THEN
+ProcClearStoryMove(_Var1);
+PlayAnimation(_Var1, "use_eat");
+PlayEffect(_Var1, "RS3_FX_GP_Combat_Hit_Blood_01_Medium");
+
+IF
+GlobalFlagSet("RC_MIL_BurySarias")
+THEN
+CharacterMoveItemToTrigger(CHARACTERGUID_S_RC_MIL_Tovah_69c31947-b004-44aa-b856-2a9a96ff218a, ITEMGUID_S_RC_MIL_SariasCorpse_37211be0-ea49-4689-a517-1f7aa7d0bf27, TRIGGERGUID_S_RC_MIL_SariasBuriedTrigger_349f907c-4c7a-46d3-b4f1-9078ac829234, 1, "RC_MIL_SariasCorpseBuried");
+
+IF
+StoryEvent(_, "RC_MIL_SariasCorpseBuried")
+THEN
+ItemSetCanMove(ITEMGUID_S_RC_MIL_SariasCorpse_37211be0-ea49-4689-a517-1f7aa7d0bf27, 0);
+
+QRY
+QRY_RC_MIL_DoRitualEvent((CHARACTERGUID)_Var1)
+AND
+QRY_SpeakerIsAvailable(_Var1)
+THEN
+DB_NOOP(1);
+
+QRY
+QRY_RC_MIL_DoRitualEvent(CHARACTERGUID_S_RC_MIL_Tovah_69c31947-b004-44aa-b856-2a9a96ff218a)
+THEN
+DB_NOOP(1);
+
+IF
+ObjectFlagSet("RC_MIL_ElvesBleed", (CHARACTERGUID)_Var1, _)
+THEN
+CharacterPurgeQueue(_Var1);
+CharacterMoveTo(_Var1, ITEMGUID_S_RC_MIL_SariasCorpse_37211be0-ea49-4689-a517-1f7aa7d0bf27, 0, "RC_MIL_BleedSarias", 0);
+
+IF
+DialogEnded("RC_MIL_SariasRitual", (INTEGER)_Var1)
+AND
+DialogGetInvolvedPlayer(_Var1, 1, _Var2)
+THEN
+CharacterPurgeQueue(_Var2);
+ProcObjectTimerCancel(_Var2, "RC_MIL_EatSarias");
+
+IF
+ObjectFlagSet("RC_MIL_ElvenPrayer", (GUIDSTRING)_Var1, _)
+THEN
+PlayAnimation(_Var1, "Pray_01");
+
+IF
+ObjectFlagSet("RC_MIL_ElvesEat", (CHARACTERGUID)_Var1, _)
+THEN
+CharacterMoveTo(_Var1, ITEMGUID_S_RC_MIL_SariasCorpse_37211be0-ea49-4689-a517-1f7aa7d0bf27, 0, "RC_MIL_EatSarias", 0);
+
+IF
+DialogEnded("RC_MIL_SariasRitual", (INTEGER)_Var1)
+AND
+DialogGetInvolvedPlayer(_Var1, 1, _Var2)
+THEN
+CharacterPurgeQueue(_Var2);
+
+IF
+DialogEnded("RC_MIL_SariasRitual", _)
+THEN
+PROC_RC_MIL_AfterRitualDialogs();
+
+IF
+AutomatedDialogEnded("RC_MIL_AD_BurySarias", _)
+THEN
+PROC_RC_MIL_AfterRitualDialogs();
+
+PROC
+PROC_RC_MIL_AfterRitualDialogs()
+AND
+GlobalGetFlag("RC_MIL_TovahElvesCanLeave", 0)
+THEN
+DB_Dialogs(S_RC_MIL_ElfShaman_ce67ffa8-7919-4ec3-8440-23ed94b7cf5b, "RC_MIL_ElfShaman");
+DB_Dialogs(S_RC_MIL_ElvenTank_21cf95b4-c4a7-4a54-9beb-71a9ba711aba, "RC_MIL_ElvenTank");
+DB_Dialogs(CHARACTERGUID_S_RC_MIL_ElvenTank2_55dc1982-2f24-4ece-a592-ad3dda6272cb, "RC_MIL_ElvenTank2");
+
+PROC
+PROC_RC_MIL_AfterRitualDialogs()
+AND
+GlobalGetFlag("RC_MIL_SaheilaDeadAtMillStart", 0)
+AND
+GlobalGetFlag("RC_MIL_TovahElvesCanLeave", 0)
+AND
+GlobalGetFlag("RC_MIL_SaheilaIsAtCamp", 0)
+THEN
+DB_Dialogs(CHARACTERGUID_S_RC_MIL_Tovah_69c31947-b004-44aa-b856-2a9a96ff218a, "RC_MIL_TovahWithSaheila");
+
+PROC
+PROC_RC_MIL_AfterRitualDialogs()
+AND
+GlobalGetFlag("RC_MIL_SaheilaDeadAtMillStart", 1)
+AND
+GlobalGetFlag("RC_MIL_TovahElvesCanLeave", 0)
+THEN
+DB_Dialogs(CHARACTERGUID_S_RC_MIL_Tovah_69c31947-b004-44aa-b856-2a9a96ff218a, "RC_MIL_TovahNoSaheila");
+
+IF
+DialogEnded("RC_MIL_SariasRitual", (INTEGER)_Var1)
+AND
+DialogGetInvolvedPlayer(_Var1, 1, _Var2)
+AND
+ObjectGetFlag(_Var2, "RC_MIL_ElvesEat", 1)
+AND
+QRY_RC_MIL_CanEatCorpse(_Var2)
+AND
+CharacterConsume(_Var2, "CON_BodyPart_Heal", _)
+THEN
+DB_NOOP(1);
+
+IF
+DialogEnded("RC_MIL_SariasRitual", (INTEGER)_Var1)
+AND
+DialogGetInvolvedPlayer(_Var1, 1, _Var2)
+AND
+ObjectGetFlag(_Var2, "RC_MIL_ElvesEat", 1)
+AND NOT
+QRY_RC_MIL_CanEatCorpse(_Var2)
+AND
+CharacterConsume(_Var2, "CON_BodyPart_Harm", _)
+THEN
+DB_NOOP(1);
+
+QRY
+QRY_RC_MIL_CanEatCorpse((GUIDSTRING)_Var1)
+AND
+IsTagged(_Var1, "ELF", 1)
+THEN
+DB_NOOP(1);
+
+QRY
+QRY_RC_MIL_CanEatCorpse((GUIDSTRING)_Var1)
+AND
+IsTagged(_Var1, "UNDEAD", 1)
+THEN
+DB_NOOP(1);
+
+IF
+ObjectFlagSet("RC_MIL_AllowedInCamp", (GUIDSTRING)_Var1, _)
+AND
+GlobalGetFlag("RC_MIL_BurySarias", 1)
+THEN
+ObjectSetFlag(_Var1, "RC_MIL_ElvenBurial_Close");
+
+IF
+GlobalFlagSet("RC_MIL_BurySarias")
+THEN
+DialogRequestStop(CHARACTERGUID_S_RC_MIL_SariasGhost_09a853c2-cd62-4f7b-9e36-160b455ccaed);
+DB_DoNotFace(CHARACTERGUID_S_RC_MIL_SariasGhost_09a853c2-cd62-4f7b-9e36-160b455ccaed);
+SetOnStage(S_RC_MIL_SariasGraveBlocker_d2d8ec58-5d34-48a0-bfa9-8bc065d0d428, 0);
+SetOnStage(CHARACTERGUID_S_RC_MIL_SariasGhost_09a853c2-cd62-4f7b-9e36-160b455ccaed, 0);
+TeleportTo(CHARACTERGUID_S_RC_MIL_SariasGhost_09a853c2-cd62-4f7b-9e36-160b455ccaed, S_RC_MIL_SariasGhostTrigger_259f08d1-dfa8-45c5-9dc4-26f0d87ad199, "", 0);
+CharacterLookFromTrigger(CHARACTERGUID_S_RC_MIL_SariasGhost_09a853c2-cd62-4f7b-9e36-160b455ccaed, S_RC_MIL_SariasGhostTrigger_259f08d1-dfa8-45c5-9dc4-26f0d87ad199, 1);
+TimerLaunch("RC_MIL_SariasAtTreeSpot", 300);
+
+IF
+TimerFinished("RC_MIL_SariasAtTreeSpot")
+THEN
+CharacterAppear(CHARACTERGUID_S_RC_MIL_SariasGhost_09a853c2-cd62-4f7b-9e36-160b455ccaed, 1, "");
+
+IF
+CharacterDied(CHARACTERGUID_S_GLO_Tovah_69c31947-b004-44aa-b856-2a9a96ff218a)
+THEN
+ProcSetFlagOnAll("QuestUpdate_RC_MIL_ElvenBurial_TovahDead");
+
+IF
+ItemRemovedFromCharacter(S_RC_MIL_SaheilaRewardSpear_590b4847-e424-45fc-b7b2-a9a2606b6888, CHARACTERGUID_S_GLO_Tovah_69c31947-b004-44aa-b856-2a9a96ff218a)
+AND
+CharacterIsDead(CHARACTERGUID_S_GLO_Tovah_69c31947-b004-44aa-b856-2a9a96ff218a, 0)
+AND
+GetItemForItemTemplateInInventory(CHARACTERGUID_S_GLO_Tovah_69c31947-b004-44aa-b856-2a9a96ff218a, "WPN_Elves_Staff_2H_A_30f84930-88f0-48dd-8ab7-1bb6fe0b7437", _Var1)
+AND
+QueryOnlyOnce("RC_MIL_TovahEquipStaff")
+THEN
+CharacterEquipItem(CHARACTERGUID_S_GLO_Tovah_69c31947-b004-44aa-b856-2a9a96ff218a, _Var1);
+
+IF
+GlobalFlagSet("RC_MIL_BurySarias")
+AND
+GetItemForItemTemplateInInventory(CHARACTERGUID_S_GLO_Tovah_69c31947-b004-44aa-b856-2a9a96ff218a, "WPN_Elves_Staff_2H_A_30f84930-88f0-48dd-8ab7-1bb6fe0b7437", _Var1)
+AND
+QueryOnlyOnce("RC_MIL_TovahEquipStaff")
+THEN
+CharacterEquipItem(CHARACTERGUID_S_GLO_Tovah_69c31947-b004-44aa-b856-2a9a96ff218a, _Var1);
+
+IF
+ObjectEnteredCombat(CHARACTERGUID_S_GLO_Tovah_69c31947-b004-44aa-b856-2a9a96ff218a, _)
+AND
+CharacterGetEquippedWeapon(CHARACTERGUID_S_GLO_Tovah_69c31947-b004-44aa-b856-2a9a96ff218a, S_RC_MIL_SaheilaRewardSpear_590b4847-e424-45fc-b7b2-a9a2606b6888)
+AND
+GetItemForItemTemplateInInventory(CHARACTERGUID_S_GLO_Tovah_69c31947-b004-44aa-b856-2a9a96ff218a, "WPN_Elves_Staff_2H_A_30f84930-88f0-48dd-8ab7-1bb6fe0b7437", _Var2)
+THEN
+CharacterEquipItem(CHARACTERGUID_S_GLO_Tovah_69c31947-b004-44aa-b856-2a9a96ff218a, _Var2);
+
+IF
+CharacterDied(CHARACTERGUID_S_GLO_Tovah_69c31947-b004-44aa-b856-2a9a96ff218a)
+AND
+CharacterGetEquippedWeapon(CHARACTERGUID_S_GLO_Tovah_69c31947-b004-44aa-b856-2a9a96ff218a, S_RC_MIL_SaheilaRewardSpear_590b4847-e424-45fc-b7b2-a9a2606b6888)
+THEN
+CharacterUnequipItem(CHARACTERGUID_S_GLO_Tovah_69c31947-b004-44aa-b856-2a9a96ff218a, S_RC_MIL_SaheilaRewardSpear_590b4847-e424-45fc-b7b2-a9a2606b6888);
+
+IF
+ObjectEnteredCombat((CHARACTERGUID)_Var1, _)
+AND
+DB_RC_MIL_RitualParticipants(_Var1)
+AND
+DB_RC_MIL_RitualParticipants(_Var3)
+AND
+CharacterCanSee(_Var3, _Var1, 1)
+THEN
+ProcForceStopDialog(_Var3);
+
+IF
+CharacterDying(CHARACTERGUID_S_GLO_Tovah_69c31947-b004-44aa-b856-2a9a96ff218a)
+AND
+CharacterCanSee(CHARACTERGUID_S_RC_MIL_ElfShaman_ce67ffa8-7919-4ec3-8440-23ed94b7cf5b, CHARACTERGUID_S_GLO_Tovah_69c31947-b004-44aa-b856-2a9a96ff218a, 1)
+AND
+QueryOnlyOnce("RC_MIL_AD_TovahDying")
+THEN
+CharacterLookAt(CHARACTERGUID_S_RC_MIL_ElfShaman_ce67ffa8-7919-4ec3-8440-23ed94b7cf5b, CHARACTERGUID_S_GLO_Tovah_69c31947-b004-44aa-b856-2a9a96ff218a);
+Proc_StartDialog(1, "RC_MIL_AD_TovahDying", CHARACTERGUID_S_RC_MIL_ElfShaman_ce67ffa8-7919-4ec3-8440-23ed94b7cf5b);
+
+IF
+CharacterDying(CHARACTERGUID_S_GLO_Tovah_69c31947-b004-44aa-b856-2a9a96ff218a)
+AND
+DB_CombatCharacters(CHARACTERGUID_S_GLO_Tovah_69c31947-b004-44aa-b856-2a9a96ff218a, _Var1)
+AND
+DB_CombatCharacters(CHARACTERGUID_S_RC_MIL_ElfShaman_ce67ffa8-7919-4ec3-8440-23ed94b7cf5b, _Var1)
+AND
+QueryOnlyOnce("RC_MIL_AD_TovahDying")
+THEN
+CharacterLookAt(CHARACTERGUID_S_RC_MIL_ElfShaman_ce67ffa8-7919-4ec3-8440-23ed94b7cf5b, CHARACTERGUID_S_GLO_Tovah_69c31947-b004-44aa-b856-2a9a96ff218a);
+Proc_StartDialog(1, "RC_MIL_AD_TovahDying", CHARACTERGUID_S_RC_MIL_ElfShaman_ce67ffa8-7919-4ec3-8440-23ed94b7cf5b);
+
+IF
+DB_OnlyOnce("RC_MIL_FreeSaheila")
+AND NOT
+DB_GlobalFlag("RC_MIL_SariasRitualStarted")
+AND
+QRY_SpeakerIsAvailable(CHARACTERGUID_S_GLO_Tovah_69c31947-b004-44aa-b856-2a9a96ff218a)
+THEN
+Proc_StartDialog(1, "RC_MIL_AD_BurySarias", CHARACTERGUID_S_GLO_Tovah_69c31947-b004-44aa-b856-2a9a96ff218a);
+SetHasDialog(CHARACTERGUID_S_GLO_Tovah_69c31947-b004-44aa-b856-2a9a96ff218a, 0);
+
+IF
+ObjectLeftCombat(CHARACTERGUID_S_GLO_Tovah_69c31947-b004-44aa-b856-2a9a96ff218a, _)
+AND
+DB_OnlyOnce("RC_MIL_FreeSaheila")
+AND NOT
+DB_GlobalFlag("RC_MIL_SariasRitualStarted")
+AND
+QRY_SpeakerIsAvailable(CHARACTERGUID_S_GLO_Tovah_69c31947-b004-44aa-b856-2a9a96ff218a)
+THEN
+Proc_StartDialog(1, "RC_MIL_AD_BurySarias", CHARACTERGUID_S_GLO_Tovah_69c31947-b004-44aa-b856-2a9a96ff218a);
+SetHasDialog(CHARACTERGUID_S_GLO_Tovah_69c31947-b004-44aa-b856-2a9a96ff218a, 0);
+
+IF
+DialogEnded(_, (INTEGER)_Var2)
+AND
+DB_DialogNPCs(_, CHARACTERGUID_S_GLO_Tovah_69c31947-b004-44aa-b856-2a9a96ff218a, _)
+AND
+DB_OnlyOnce("RC_MIL_FreeSaheila")
+AND NOT
+DB_GlobalFlag("RC_MIL_SariasRitualStarted")
+AND
+QRY_SpeakerIsAvailable(CHARACTERGUID_S_GLO_Tovah_69c31947-b004-44aa-b856-2a9a96ff218a)
+THEN
+Proc_StartDialog(1, "RC_MIL_AD_BurySarias", CHARACTERGUID_S_GLO_Tovah_69c31947-b004-44aa-b856-2a9a96ff218a);
+SetHasDialog(CHARACTERGUID_S_GLO_Tovah_69c31947-b004-44aa-b856-2a9a96ff218a, 0);
+
+
+EXITSECTION
+ENDEXITSECTION
+
+ParentTargetEdge "ReapersCoast"

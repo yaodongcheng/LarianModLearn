@@ -1,0 +1,500 @@
+Version 1
+SubGoalCombiner SGC_AND
+
+INITSECTION
+PROC_Shared_CharacterCreation_Init();
+
+KBSECTION
+PROC
+PROC_Shared_CharacterCreation_Init()
+AND NOT
+DB_CharacterCreationDummy(_)
+THEN
+DB_CharacterCreationDummy(S_GLO_CharacterCreationDummy_001_da072fe7-fdd5-42ae-9139-8bd4b9fca406);
+DB_CharacterCreationDummy(S_GLO_CharacterCreationDummy_002_361dacdc-4135-4d3f-a9a2-3cad46ca246a);
+DB_CharacterCreationDummy(S_GLO_CharacterCreationDummy_003_dded8c22-b28e-45c1-a074-eb0954602c8a);
+DB_CharacterCreationDummy(S_GLO_CharacterCreationDummy_004_5f93cae7-6c10-4da1-b9a5-0efafc168c8e);
+
+PROC
+PROC_Shared_CharacterCreation_Init()
+AND NOT
+DB_GenericOrigins(_)
+THEN
+DB_GenericOrigins(S_Player_GenericOrigin_7b6c1f26-fe4e-40bd-a5d0-e6ff58cef4fe);
+DB_GenericOrigins(S_Player_GenericOrigin2_c451954c-73bf-46ce-a1d1-caa9bbdc3cfd);
+DB_GenericOrigins(S_Player_GenericOrigin3_41a06985-7851-4c29-8a78-398ccb313f39);
+DB_GenericOrigins(S_Player_GenericOrigin4_41a594ed-b768-4289-9f17-59f701cc6910);
+DB_OriginNPCAlignment(S_Player_GenericOrigin_7b6c1f26-fe4e-40bd-a5d0-e6ff58cef4fe, "Generic_Companions_1");
+DB_OriginNPCAlignment(S_Player_GenericOrigin2_c451954c-73bf-46ce-a1d1-caa9bbdc3cfd, "Generic_Companions_2");
+DB_OriginNPCAlignment(S_Player_GenericOrigin3_41a06985-7851-4c29-8a78-398ccb313f39, "Generic_Companions_3");
+DB_OriginNPCAlignment(S_Player_GenericOrigin4_41a594ed-b768-4289-9f17-59f701cc6910, "Generic_Companions_4");
+
+PROC
+PROC_Shared_CharacterCreation_Init()
+AND
+DB_GenericOrigins(_Var1)
+THEN
+SetTag(_Var1, "GENERIC");
+SetTag(_Var1, "REALLY_GENERIC");
+
+PROC
+PROC_CheckRemoveOtherOrigins()
+AND NOT
+DB_InCharacterCreation(1)
+AND
+QueryOnlyOnce("SetupNonSelectedOrigins")
+THEN
+ProcRemoveOtherOrigins();
+
+PROC
+ProcRemoveOtherOrigins()
+AND
+DB_Origins(_Var1)
+AND
+IsTagged(_Var1, "AVATAR", 0)
+THEN
+PROC_GLO_PartyMembers_Remove(_Var1, 1);
+
+PROC
+ProcRemoveOtherOrigins()
+AND
+DB_GenericOrigins(_Var1)
+AND
+IsTagged(_Var1, "AVATAR", 0)
+THEN
+CharacterMakeNPC(_Var1);
+SetOnStage(_Var1, 0);
+
+IF
+RegionStarted((STRING)_Var1)
+AND
+IsGameLevel(_Var1, 0)
+AND
+IsCharacterCreationLevel(_Var1, 0)
+AND
+DB_CharacterCreationDummy(_Var2)
+AND
+_Var2 != CHARACTERGUID_S_GLO_CharacterCreationDummy_001_da072fe7-fdd5-42ae-9139-8bd4b9fca406
+THEN
+TeleportTo(_Var2, CHARACTERGUID_S_GLO_CharacterCreationDummy_001_da072fe7-fdd5-42ae-9139-8bd4b9fca406);
+CharacterMakePlayer(_Var2);
+
+IF
+CharacterCreationStarted(_)
+THEN
+PROC_Shared_CharacterCreationStarted();
+
+PROC
+PROC_Shared_CharacterCreationStarted()
+AND
+CharacterGetHostCharacter(_Var1)
+AND
+CharacterGetReservedUserID(_Var1, _Var2)
+AND
+GetUserProfileID(_Var2, _Var3)
+THEN
+ProcAssignDummyToUser(CHARACTERGUID_S_GLO_CharacterCreationDummy_001_da072fe7-fdd5-42ae-9139-8bd4b9fca406, _Var3);
+
+PROC
+PROC_Shared_CharacterCreationStarted()
+AND
+DB_AssignedDummyForUser(_, CHARACTERGUID_S_GLO_CharacterCreationDummy_001_da072fe7-fdd5-42ae-9139-8bd4b9fca406)
+THEN
+DB_InCharacterCreation(1);
+
+PROC
+PROC_Shared_CharacterCreationStarted()
+AND NOT
+DB_InCharacterCreation(1)
+THEN
+DB_InCharacterCreation(0);
+
+IF
+DB_InCharacterCreation(1)
+THEN
+PROC_SetupOriginCharacters(CHARACTERGUID_S_GLO_CharacterCreationDummy_001_da072fe7-fdd5-42ae-9139-8bd4b9fca406);
+
+PROC
+PROC_SetupOriginCharacters((GUIDSTRING)_Var1)
+AND
+DB_GenericOrigins(_Var2)
+THEN
+SetOnStage(_Var2, 1);
+TeleportTo(_Var2, _Var1);
+CharacterMakePlayer(_Var2, NULL_00000000-0000-0000-0000-000000000000);
+
+PROC
+PROC_SetupOriginCharacters((GUIDSTRING)_Var1)
+AND
+DB_Origins(_Var2)
+THEN
+TeleportTo(_Var2, _Var1);
+CharacterMakePlayer(_Var2, NULL_00000000-0000-0000-0000-000000000000);
+
+PROC
+PROC_SetupOriginCharacters((GUIDSTRING)_Var1)
+AND
+DB_CharacterCreationDummy(_Var2)
+AND
+_Var2 != CHARACTERGUID_S_GLO_CharacterCreationDummy_001_da072fe7-fdd5-42ae-9139-8bd4b9fca406
+THEN
+TeleportTo(_Var2, CHARACTERGUID_S_GLO_CharacterCreationDummy_001_da072fe7-fdd5-42ae-9139-8bd4b9fca406);
+
+IF
+DB_InCharacterCreation(1)
+THEN
+IterateUsers("_CCUserSetup");
+
+IF
+UserEvent((INTEGER)_Var1, "_CCUserSetup")
+AND
+GetUserProfileID(_Var1, _Var2)
+AND
+DB_CharacterCreationDummy(_Var3)
+AND NOT
+DB_AssignedDummyForUser(_, _Var3)
+AND NOT
+DB_AssignedDummyForUser(_Var2, _)
+THEN
+ProcAssignDummyToUser(_Var3, _Var2);
+
+IF
+UserEvent((INTEGER)_Var1, "_CCUserSetup")
+AND
+GetUserProfileID(_Var1, _Var2)
+AND
+DB_AssignedDummyForUser(_Var2, _Var3)
+THEN
+PROC_CheckModSwitchInLobby(_Var3);
+CharacterAssignToUser(_Var1, _Var3);
+MakePlayerActive(_Var3);
+
+PROC
+PROC_CheckModSwitchInLobby((CHARACTERGUID)_Var1)
+AND
+CharacterIsPlayer(_Var1, 0)
+THEN
+CharacterMakePlayer(_Var1);
+PROC_AddDummyToCC(_Var1);
+
+PROC
+PROC_AddDummyToCC((CHARACTERGUID)_Var1)
+AND
+CharacterAddToCharacterCreation(_Var1, 0, _)
+THEN
+DB_Noop(1);
+
+PROC
+ProcRemovePreviousSelectedCharacter((STRING)_Var1)
+AND
+DB_SelectedCC(_Var2, _Var1)
+THEN
+ClearTag(_Var2, "AVATAR");
+NOT DB_IsPlayer(_Var2);
+ProcUnRegisterPlayerTriggers(_Var2);
+NOT DB_SelectedCC(_Var2, _Var1);
+
+PROC
+ProcSetSelectedCharCreationPlayer((CHARACTERGUID)_Var1, (STRING)_Var2)
+THEN
+ProcRemovePreviousSelectedCharacter(_Var2);
+SetTag(_Var1, "AVATAR");
+DB_IsPlayer(_Var1);
+ProcRegisterPlayerTriggers(_Var1);
+DB_SelectedCC(_Var1, _Var2);
+
+PROC
+ProcRemovePreviousDummy((STRING)_Var1)
+AND
+DB_AssignedDummyForUser(_Var1, _Var2)
+THEN
+NOT DB_AssignedDummyForUser(_Var1, _Var2);
+DB_AvailableDummy(_Var2);
+
+PROC
+ProcAssignDummyToUser((CHARACTERGUID)_Var1, (STRING)_Var2)
+AND NOT
+DB_AvailableDummy(_Var1)
+THEN
+CharacterMakePlayer(_Var1, NULL_00000000-0000-0000-0000-000000000000);
+
+PROC
+ProcAssignDummyToUser((CHARACTERGUID)_Var1, (STRING)_Var2)
+AND NOT
+DB_AvailableDummy(_Var1)
+AND
+CharacterAddToCharacterCreation(_Var1, 0, 1)
+THEN
+DB_AssignedDummyForUser(_Var2, _Var1);
+
+PROC
+ProcAssignDummyToUser((CHARACTERGUID)_Var1, (STRING)_Var2)
+AND
+DB_AvailableDummy(_Var1)
+THEN
+DB_AssignedDummyForUser(_Var2, _Var1);
+
+PROC
+ProcAssignDummyToUser((CHARACTERGUID)_Var1, (STRING)_Var2)
+THEN
+NOT DB_AvailableDummy(_Var1);
+
+IF
+CharacterSelectedInCharCreation((CHARACTERGUID)_Var1, (INTEGER)_Var2)
+AND
+GetUserProfileID(_Var2, _Var3)
+THEN
+ProcSetSelectedCharCreationPlayer(_Var1, _Var3);
+
+IF
+CharacterCreationFinished(NULL_00000000-0000-0000-0000-000000000000)
+AND
+DB_CharacterCreationDummy(_Var1)
+THEN
+PROC_RemoveCCDummy(_Var1);
+
+PROC
+PROC_RemoveCCDummy((CHARACTERGUID)_Var1)
+THEN
+CharacterMakeNPC(_Var1);
+SetOnStage(_Var1, 0);
+NOT DB_IsPlayer(_Var1);
+
+IF
+UserDisconnected((INTEGER)_Var1, _, (STRING)_Var3)
+AND
+DB_InCharacterCreation(1)
+THEN
+ProcRemovePreviousSelectedCharacter(_Var3);
+ProcRemovePreviousDummy(_Var3);
+
+IF
+UserConnected(_, _, (STRING)_Var3)
+AND
+DB_InCharacterCreation(1)
+AND
+DB_CharacterCreationDummy(_Var4)
+AND NOT
+DB_AssignedDummyForUser(_, _Var4)
+AND NOT
+DB_AssignedDummyForUser(_Var3, _)
+THEN
+ProcAssignDummyToUser(_Var4, _Var3);
+
+IF
+UserConnected((INTEGER)_Var1, _, (STRING)_Var3)
+AND
+DB_InCharacterCreation(1)
+AND
+DB_AssignedDummyForUser(_Var3, _Var4)
+THEN
+CharacterAssignToUser(_Var1, _Var4);
+MakePlayerActive(_Var4);
+
+IF
+CharacterCreationFinished(NULL_00000000-0000-0000-0000-000000000000)
+AND
+DB_InCharacterCreation(1)
+AND
+DB_GLO_FirstLevelAfterCharacterCreation(_Var1)
+AND
+DB_CharacterCreationTransitionInfo(_Var1, _Var2, _Var3)
+AND
+DB_IsPlayer(_Var4)
+AND
+IsTagged(_Var4, "AVATAR", 1)
+THEN
+NOT DB_DoNotFace(_Var4);
+ProcMovePartyToStart(_Var4, _Var2, _Var3);
+
+IF
+CharacterCreationFinished(NULL_00000000-0000-0000-0000-000000000000)
+AND
+DB_InCharacterCreation(1)
+AND
+DB_IsPlayer(_Var1)
+THEN
+SonyRealtimeMultiplayerEvent(_Var1, "BLOCK");
+
+IF
+CharacterCreationFinished(NULL_00000000-0000-0000-0000-000000000000)
+AND
+DB_InCharacterCreation(1)
+THEN
+NOT DB_InCharacterCreation(1);
+PROC_CheckRemoveOtherOrigins();
+
+PROC
+ProcMovePartyToStart((CHARACTERGUID)_Var1, (TRIGGERGUID)_Var2, (STRING)_Var3)
+THEN
+NOT DB_AlreadyTeleported(1);
+
+PROC
+ProcMovePartyToStart((CHARACTERGUID)_Var1, (TRIGGERGUID)_Var2, (STRING)_Var3)
+AND
+DB_TeleportedToStartCharacters(_Var4)
+AND
+CharacterIsInPartyWith(_Var4, _Var1, 1)
+THEN
+DB_AlreadyTeleported(1);
+
+PROC
+ProcMovePartyToStart((CHARACTERGUID)_Var1, (TRIGGERGUID)_Var2, (STRING)_Var3)
+AND NOT
+DB_AlreadyTeleported(1)
+THEN
+DB_TeleportedToStartCharacters(_Var1);
+PROC_GLO_CharacterCreationTeleportWithOptionalMovie(_Var1, _Var2, _Var3);
+
+PROC
+PROC_GLO_CharacterCreationTeleportWithOptionalMovie((CHARACTERGUID)_Var1, (TRIGGERGUID)_Var2, (STRING)_Var3)
+AND
+_Var3 != ""
+THEN
+CharacterTeleportPartiesToTriggerWithMovie(_Var2, "", _Var3);
+
+PROC
+PROC_GLO_CharacterCreationTeleportWithOptionalMovie((CHARACTERGUID)_Var1, (TRIGGERGUID)_Var2, (STRING)_Var3)
+AND
+_Var3 == ""
+THEN
+CharacterTeleportPartiesToTrigger(_Var2, "");
+
+PROC
+PROC_Shared_CharacterCreationFinished()
+THEN
+DB_NOOP(1);
+
+IF
+CharacterCreationFinished(_)
+THEN
+PROC_Shared_CharacterCreationFinished();
+GoalCompleted;
+
+PROC
+PROC_SelectRandomStartOrigin()
+AND
+SysCount("DB_Origins", 1, _Var1)
+AND
+_Var1 > 0
+AND
+Random(_Var1, _Var2)
+THEN
+DB_SelectedStartOrigin(_Var2);
+
+PROC
+PROC_SelectRandomStartOrigin()
+THEN
+DB_RandomOriginCounter(0);
+
+PROC
+PROC_SelectRandomStartOrigin()
+AND
+DB_Origins(_Var1)
+THEN
+CharacterPurgeQueue(_Var1);
+
+PROC
+PROC_SelectRandomStartOrigin()
+AND
+DB_SelectedStartOrigin(_Var1)
+AND
+DB_Origins(_Var2)
+AND
+DB_RandomOriginCounter(_Var3)
+THEN
+PROC_TrySelectRandomStartOrigin(_Var3, _Var1, _Var2);
+
+PROC
+PROC_TrySelectRandomStartOrigin((INTEGER)_Var1, (INTEGER)_Var2, (CHARACTERGUID)_Var3)
+AND
+_Var1 == _Var2
+THEN
+SetOnStage(_Var3, 1);
+CharacterMakePlayer(_Var3, NULL_00000000-0000-0000-0000-000000000000);
+DB_IsPlayer(_Var3);
+SetTag(_Var3, "AVATAR");
+CharacterPurgeQueue(_Var3);
+TeleportTo(_Var3, CHARACTERGUID_S_GLO_CharacterCreationDummy_001_da072fe7-fdd5-42ae-9139-8bd4b9fca406, "ChosenPlayerTeleported", 1);
+DB_ChosenOriginWaitingForTeleport(_Var3);
+MakePlayerActive(_Var3);
+ProcSetupGenericOrigin(_Var3);
+
+PROC
+ProcSetupGenericOrigin((CHARACTERGUID)_Var1)
+THEN
+DB_NOOP(1);
+
+IF
+StoryEvent((CHARACTERGUID)_Var1, "ChosenPlayerTeleported")
+AND
+DB_ChosenOriginWaitingForTeleport(_Var1)
+THEN
+NOT DB_ChosenOriginWaitingForTeleport(_Var1);
+
+PROC
+PROC_TrySelectRandomStartOrigin((INTEGER)_Var1, (INTEGER)_Var2, (CHARACTERGUID)_Var3)
+AND
+IntegerSum(1, _Var1, _Var4)
+AND
+DB_RandomOriginCounter(_Var5)
+THEN
+NOT DB_RandomOriginCounter(_Var5);
+DB_RandomOriginCounter(_Var4);
+
+PROC
+PROC_SelectRandomStartOrigin()
+AND
+DB_RandomOriginCounter(_Var1)
+THEN
+NOT DB_RandomOriginCounter(_Var1);
+
+PROC
+PROC_SelectRandomStartOrigin()
+AND NOT
+DB_IsPlayer(_)
+THEN
+PROC_TrySelectRandomStartOrigin(0, 0, CHARACTERGUID_S_GLO_CharacterCreationDummy_001_da072fe7-fdd5-42ae-9139-8bd4b9fca406);
+
+PROC
+PROC_Z_Shared_GameModeStarted("Campaign", 1)
+THEN
+DB_InCharacterCreation(0);
+
+IF
+RegionStarted((STRING)_Var1)
+AND
+IsGameLevel(_Var1, 1)
+THEN
+DB_InCharacterCreation(0);
+
+IF
+DB_InCharacterCreation(0)
+AND
+DB_CharacterCreationDummy(_Var1)
+AND
+DB_CurrentLevel(_)
+THEN
+PROC_RemoveCCDummy(_Var1);
+
+IF
+DB_InCharacterCreation(0)
+AND
+DB_CurrentLevel(_)
+THEN
+PROC_SelectRandomStartOrigin();
+PROC_CheckRemoveOtherOrigins();
+
+IF
+DB_InCharacterCreation(0)
+AND
+DB_CurrentLevel(_)
+THEN
+GoalCompleted;
+PROC_Shared_CharacterCreationFinished();
+
+
+EXITSECTION
+ENDEXITSECTION
+
+ParentTargetEdge "Z_Shared_Campaign_At_End"

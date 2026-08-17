@@ -1,0 +1,207 @@
+Version 1
+SubGoalCombiner SGC_AND
+
+INITSECTION
+TriggerRegisterForCharacter(TRIGGERGUID_S_RC_DW_TavernBard_Highground_0cf13953-676f-47e1-a94b-f0f5c75125cc, CHARACTERGUID_S_RC_DW_Tavern_Bard_928d216f-b498-4035-b869-063f015826f6);
+DB_Dialogs(CHARACTERGUID_S_RC_DW_Tavern_Bard_928d216f-b498-4035-b869-063f015826f6, "RC_DW_Tavern_Bard");
+DB_Dialogs(CHARACTERGUID_S_RC_DW_Tavern_MusicEnthusiast_02_5a46af31-b6b2-4f27-98c4-9e0cbb8b0931, "RC_DW_Tavern_MusicEnthusiast_02");
+DB_Dialogs(CHARACTERGUID_S_RC_DW_Tavern_MusicEnthusiast_80b79b89-2119-42c5-9e43-732169effe8e, "RC_DW_Tavern_MusicEnthusiast_01");
+DB_DialogMoneyTransfer(1, "RC_DW_Tavern_Bard", 20);
+DB_DialogMoneyTransfer(2, "RC_DW_Tavern_Bard", 10);
+DB_BardSong_RaceTag("HUMAN");
+DB_BardSong_RaceTag("DWARF");
+DB_BardSong_RaceTag("ELF");
+DB_BardSong_RaceTag("LIZARD");
+DB_BardSong_ComposeOptionFlags("RC_DW_BardSong_Composition_A_A");
+DB_BardSong_ComposeOptionFlags("RC_DW_BardSong_Composition_A_B");
+DB_BardSong_ComposeOptionFlags("RC_DW_BardSong_Composition_B_A");
+DB_BardSong_ComposeOptionFlags("RC_DW_BardSong_Composition_B_B");
+DB_BardSong_ComposeOptionFlags("RC_DW_BardSong_Composition_C_A");
+DB_BardSong_ComposeOptionFlags("RC_DW_BardSong_Composition_C_B");
+DB_DeadEvent(CHARACTERGUID_S_RC_DW_Tavern_Bard_928d216f-b498-4035-b869-063f015826f6, "RC_DW_Tavern_Bard_IsDead");
+
+KBSECTION
+IF
+ObjectFlagSet((STRING)_Var1, (CHARACTERGUID)_Var2, (INTEGER)_Var3)
+AND
+DB_BardSong_ComposeOptionFlags(_Var1)
+THEN
+Proc_BardSong_SetCompose(_Var1, _Var2);
+ObjectClearFlag(_Var2, _Var1, _Var3);
+
+PROC
+Proc_BardSong_SetCompose((STRING)_Var1, (CHARACTERGUID)_Var2)
+AND
+DB_BardSong_RaceTag(_Var3)
+AND
+IsTagged(_Var2, _Var3, 1)
+AND
+StringConcatenate("_", _Var3, _Var4)
+THEN
+Proc_BardSong_SetCompose_1(_Var1, _Var4);
+
+PROC
+Proc_BardSong_SetCompose_1((STRING)_Var1, (STRING)_Var2)
+AND
+StringConcatenate(_Var1, _Var2, _Var3)
+THEN
+GlobalSetFlag(_Var3);
+DB_RC_DW_currentBardComposition(_Var3);
+
+IF
+DialogEnded("RC_DW_Tavern_Bard", _)
+THEN
+Proc_RC_DW_Tavern_Bard_CheckIfToCompose();
+
+PROC
+Proc_RC_DW_Tavern_Bard_CheckIfToCompose()
+AND
+DB_IsPlayer(_Var1)
+AND
+ObjectGetFlag(_Var1, "RC_DW_BardSong_ComposeInitiate", 1)
+AND
+IsTagged(_Var1, "LOHSE", 0)
+AND
+DB_BardSong_RaceTag(_Var2)
+AND
+IsTagged(_Var1, _Var2, 1)
+THEN
+Proc_BardSong_SetSong(_Var2);
+ObjectClearFlag(_Var1, "RC_DW_BardSong_ComposeInitiate", 0);
+
+PROC
+Proc_RC_DW_Tavern_Bard_CheckIfToCompose()
+AND
+DB_IsPlayer(_Var1)
+AND
+ObjectGetFlag(_Var1, "RC_DW_BardSong_ComposeInitiate", 1)
+AND
+IsTagged(_Var1, "LOHSE", 1)
+THEN
+Proc_BardSong_SetSong("LOHSE");
+ObjectClearFlag(_Var1, "RC_DW_BardSong_ComposeInitiate", 0);
+
+PROC
+Proc_BardSong_SetSong((STRING)_Var1)
+AND
+StringConcatenate("RC_DW_BardSong_InitiateComposition_", _Var1, _Var2)
+THEN
+GlobalSetFlag(_Var2);
+DB_RC_DW_currentBardSong(_Var2);
+
+PROC
+Proc_BardSong_SetSong(_)
+AND
+DB_RC_DW_currentBardSong(_Var2)
+AND NOT
+DB_RC_DW_BardSong_Selected(_Var2)
+THEN
+DB_RC_DW_BardSong_Selected(_Var2);
+
+PROC
+Proc_BardSong_SetSong((STRING)_Var1)
+AND
+StringConcatenate("RC_DW_BardSong_CreatedFor_", _Var1, _Var2)
+THEN
+GlobalSetFlag(_Var2);
+GlobalSetFlag("RC_DW_BardSong_SongCreated");
+
+PROC
+Proc_BardSong_SetSong(_)
+THEN
+CharacterLookAt(CHARACTERGUID_S_RC_DW_Tavern_Bard_928d216f-b498-4035-b869-063f015826f6, TRIGGERGUID_S_RC_DW_Tavern_Bard_LookAtPoint_eca6222b-c1a7-4e2a-a985-fc6bdcbfe20e);
+
+PROC
+Proc_BardSong_SetSong(_)
+THEN
+SetHasDialog(CHARACTERGUID_S_RC_DW_Tavern_Bard_928d216f-b498-4035-b869-063f015826f6, 0);
+CharacterLookAt(CHARACTERGUID_S_RC_DW_Tavern_Bard_928d216f-b498-4035-b869-063f015826f6, TRIGGERGUID_S_RC_DW_Tavern_Bard_LookAtPoint_eca6222b-c1a7-4e2a-a985-fc6bdcbfe20e);
+Proc_StartDialog(1, "RC_DW_AD_BardSong", CHARACTERGUID_S_RC_DW_Tavern_Bard_928d216f-b498-4035-b869-063f015826f6);
+GlobalSetFlag("RC_DW_BardSong_NoDialog");
+
+IF
+AutomatedDialogEnded("RC_DW_AD_BardSong", _)
+AND
+GlobalGetFlag("RC_DW_BardSong_NoDialog", 1)
+THEN
+SetHasDialog(CHARACTERGUID_S_RC_DW_Tavern_Bard_928d216f-b498-4035-b869-063f015826f6, 1);
+GlobalClearFlag("RC_DW_BardSong_NoDialog");
+
+IF
+GlobalFlagSet("RC_DW_Bard_ClearPreviousSong")
+AND NOT
+DB_RC_DW_currentBardSong(_)
+THEN
+GlobalClearFlag("RC_DW_Bard_ClearPreviousSong");
+
+IF
+GlobalFlagSet("RC_DW_Bard_ClearPreviousSong")
+AND
+DB_RC_DW_currentBardSong(_Var1)
+THEN
+GlobalClearFlag(_Var1);
+NOT DB_RC_DW_currentBardSong(_Var1);
+GlobalClearFlag("RC_DW_Bard_ClearPreviousSong");
+
+IF
+GlobalFlagSet("RC_DW_Bard_ClearPreviousChoices")
+THEN
+GlobalClearFlag("RC_DW_Bard_ClearPreviousChoices");
+
+IF
+GlobalFlagSet("RC_DW_Bard_ClearPreviousChoices")
+AND
+DB_RC_DW_currentBardComposition(_Var1)
+THEN
+GlobalClearFlag(_Var1);
+NOT DB_RC_DW_currentBardComposition(_Var1);
+GlobalClearFlag("RC_DW_Bard_ClearPreviousChoices");
+
+IF
+ObjectFlagSet("RC_DW_Tavern_Bard_CheckComposition", (GUIDSTRING)_Var1, (INTEGER)_Var2)
+AND
+DB_RC_DW_BardSong_Selected(_Var3)
+AND
+DB_BardSong_RaceTag(_Var4)
+AND
+IsTagged(_Var1, _Var4, 1)
+AND
+StringContains(_Var3, _Var4, 1)
+THEN
+ObjectSetFlag(_Var1, "RC_DW_Tavern_Bard_ComposedTag");
+
+IF
+DialogEnded("RC_DW_Tavern_Bard", _)
+AND
+DB_IsPlayer(_Var2)
+THEN
+ObjectClearFlag(_Var2, "RC_DW_Tavern_Bard_CheckComposition", 0);
+ObjectClearFlag(_Var2, "RC_DW_Tavern_Bard_ComposedTag", 0);
+
+IF
+AutomatedDialogStarted("RC_DW_AD_BardSong", _)
+THEN
+CharacterSetAnimationOverride(CHARACTERGUID_S_RC_DW_Tavern_Bard_928d216f-b498-4035-b869-063f015826f6, "Sing_01_Loop");
+
+IF
+AutomatedDialogEnded("RC_DW_AD_BardSong", _)
+THEN
+CharacterSetAnimationOverride(CHARACTERGUID_S_RC_DW_Tavern_Bard_928d216f-b498-4035-b869-063f015826f6, "");
+
+IF
+ObjectEnteredCombat(CHARACTERGUID_S_RC_DW_Tavern_Bard_928d216f-b498-4035-b869-063f015826f6, _)
+THEN
+CharacterSetAnimationOverride(CHARACTERGUID_S_RC_DW_Tavern_Bard_928d216f-b498-4035-b869-063f015826f6, "");
+
+IF
+SavegameLoaded((INTEGER)_Var1, (INTEGER)_Var2, (INTEGER)_Var3, (INTEGER)_Var4)
+AND
+QRY_VersionIsOlderThan(_Var1, _Var2, _Var3, _Var4, 3, 6, 1, 0)
+THEN
+NOT DB_BardSong_RaceTag("UNDEAD");
+
+
+EXITSECTION
+ENDEXITSECTION
+
+ParentTargetEdge "ReapersCoast"

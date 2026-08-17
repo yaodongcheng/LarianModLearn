@@ -1,0 +1,58 @@
+Version 1
+SubGoalCombiner SGC_AND
+
+INITSECTION
+
+KBSECTION
+PROC
+ProcSetupGenericOrigin(S_Player_GenericOrigin_7b6c1f26-fe4e-40bd-a5d0-e6ff58cef4fe)
+AND
+Random(7, _Var1)
+AND
+DB_UndeadRacePresets(_Var1, _Var2)
+THEN
+CharacterApplyRacePreset(CHARACTERGUID_S_Player_GenericOrigin_7b6c1f26-fe4e-40bd-a5d0-e6ff58cef4fe, _Var2);
+ObjectSetFlag(CHARACTERGUID_S_Player_GenericOrigin_7b6c1f26-fe4e-40bd-a5d0-e6ff58cef4fe, "DEBUG_UndeadPresetDelay");
+DB_DEBUG_ClassPresetDelay(S_Player_GenericOrigin_7b6c1f26-fe4e-40bd-a5d0-e6ff58cef4fe);
+
+PROC
+ProcSetupGenericOrigin(S_Player_GenericOrigin_7b6c1f26-fe4e-40bd-a5d0-e6ff58cef4fe)
+AND NOT
+DB_DEBUG_ClassPresetDelay(S_Player_GenericOrigin_7b6c1f26-fe4e-40bd-a5d0-e6ff58cef4fe)
+THEN
+DB_ApplyPreset(S_Player_GenericOrigin_7b6c1f26-fe4e-40bd-a5d0-e6ff58cef4fe, "Conjurer");
+
+IF
+ObjectTransformed((CHARACTERGUID)_Var1, _)
+AND
+DB_DEBUG_ClassPresetDelay(_Var1)
+THEN
+NOT DB_DEBUG_ClassPresetDelay(_Var1);
+DB_ApplyPreset(_Var1, "Conjurer");
+ProcMarkUndeadOrigin(_Var1);
+DB_RestartUndeadCrime(_Var1);
+PROC_DOS_CharacterCreation_ClearOriginalRaceTags(_Var1);
+PROC_GLO_SetOriginalRaceTag(_Var1);
+
+PROC
+PROC_DOS_CharacterCreation_ClearOriginalRaceTags((CHARACTERGUID)_Var1)
+AND
+DB_Shapeshifting_OriginalRaces(_, _Var3)
+THEN
+ClearTag(_Var1, _Var3);
+
+IF
+TextEventSet("applyundeadpreset")
+AND
+CharacterGetHostCharacter(_Var1)
+AND
+DB_UndeadRacePresets(0, _Var2)
+THEN
+DB_DEBUG_ClassPresetDelay(_Var1);
+CharacterApplyRacePreset(_Var1, _Var2);
+
+
+EXITSECTION
+ENDEXITSECTION
+
+ParentTargetEdge "Z_Shared_Campaign_At_End"

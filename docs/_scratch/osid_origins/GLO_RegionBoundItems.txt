@@ -1,0 +1,31 @@
+Version 1
+SubGoalCombiner SGC_AND
+
+INITSECTION
+
+KBSECTION
+PROC
+ProcRegionEnded((STRING)_Var1)
+AND
+DB_RegionBoundItem(_Var2, _Var1)
+AND
+ItemIsContainer(_Var2, 1)
+AND
+DB_IsPlayer(_Var3)
+AND
+ItemIsInCharacterInventory(_Var2, _Var3, 1)
+THEN
+MoveAllItemsTo(_Var2, _Var3);
+
+PROC
+ProcRegionEnded((STRING)_Var1)
+AND
+DB_RegionBoundItem(_Var2, _Var1)
+THEN
+ItemRemove(_Var2);
+
+
+EXITSECTION
+ENDEXITSECTION
+
+ParentTargetEdge "DOS2ModWrapper"

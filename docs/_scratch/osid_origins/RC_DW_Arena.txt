@@ -1,0 +1,962 @@
+Version 1
+SubGoalCombiner SGC_AND
+
+INITSECTION
+DB_Dialogs(CHARACTERGUID_S_RC_DW_Tavern_ArenaChamp_aa7f67da-aece-4487-83cf-96f10a018ed1, "RC_DW_Arena_Champion");
+DB_Dialogs(RC_DW_ArenaMaster_8a1c0600-aca0-479b-8044-a36d011ccff7, "RC_DW_ArenaMaster");
+DB_Dialogs(CHARACTERGUID_S_RC_DW_UnderTavern_Voidwoken_13bb467b-de20-4726-8afd-757705352361, "RC_DW_UnderTavern_Voidwoken");
+DB_DeadEvent(CHARACTERGUID_S_RC_DW_Tavern_ArenaChamp_aa7f67da-aece-4487-83cf-96f10a018ed1, "RC_DW_Murga_IsDead");
+DB_Arena_DisableLastManStanding("DriftwoodTrial");
+DB_ArenaMaster_SetFlags("DriftwoodTrial", "Arena_DriftwoodTrial_User", "User", TRIGGERGUID_S_RC_DW_Arena_35165b0c-6ea3-4108-8abf-4c7b4852e338);
+DB_ArenaMaster_SetFlags("DriftwoodTrial", "Arena_DriftwoodTrial_Party", "Party", TRIGGERGUID_S_RC_DW_Arena_35165b0c-6ea3-4108-8abf-4c7b4852e338);
+DB_ArenaMaster_SetFlags("DriftwoodTrial", "Arena_DriftwoodTrial_Single", "Single", TRIGGERGUID_S_RC_DW_Arena_35165b0c-6ea3-4108-8abf-4c7b4852e338);
+DB_ArenaMaster(CHARACTERGUID_S_RC_DW_ArenaMaster_8a1c0600-aca0-479b-8044-a36d011ccff7, "RC_DW_ArenaMaster", "DriftwoodTrial", TRIGGERGUID_S_RC_DW_ArenaMaster_FnlPos_02858901-3e40-4a11-a724-4a289bbecff6);
+DB_ArenaPresets_Player("DriftwoodTrial", "Arena_TeamA", TRIGGERGUID_S_RC_DW_ArenaTrial_PlayerPos_1dfeaf2c-322c-4000-9525-e1c758d29348);
+DB_ArenaPresets_Mobs("DriftwoodTrial", CHARACTERGUID_S_RC_DW_ArenaTrial_Archer_a2766c17-61de-4089-9fc7-f1bbe4234c7f, TRIGGERGUID_S_RC_DW_ArenaTrial_MobPos_01_054e26ce-5879-4972-9085-635dd6c08f17);
+DB_ArenaPresets_Mobs("DriftwoodTrial", CHARACTERGUID_S_RC_DW_ArenaTrial_Knight_6bb27978-0e50-45f6-bf4a-d4bad1c26730, TRIGGERGUID_S_RC_DW_ArenaTrial_MobPos_02_59d817ab-731f-4d37-a483-36f3e05b7608);
+DB_ArenaPresets_Mobs("DriftwoodTrial", CHARACTERGUID_S_RC_DW_ArenaTrial_Mage_a2b1c3f5-857c-40c0-a93f-584afee6866e, TRIGGERGUID_S_RC_DW_ArenaTrial_MobPos_03_5469c517-830b-4560-beef-2c02e7785ef9);
+DB_ArenaPresets_Mobs("DriftwoodTrial", CHARACTERGUID_S_RC_DW_ArenaTrial_Rogue_d6fad21f-2d32-4269-a599-625acc568bb4, TRIGGERGUID_S_RC_DW_ArenaTrial_MobPos_04_ae7ce71a-d723-4e5a-9c43-81dd4d835d7d);
+DB_ArenaPresets_Mobs("DriftwoodTrial", CHARACTERGUID_S_RC_DW_ArenaTrial_Tank_6200751e-b592-406f-a184-c163b395e7f1, TRIGGERGUID_S_RC_DW_ArenaTrial_MobPos_05_8c8bdd40-a413-49d5-9dd5-8538c453ef1a);
+DB_ArenaMaster_WinFlags("DriftwoodTrial", "Arena_Driftwood_WonTrial", "Arena_Driftwood_LostTrial");
+DB_ArenaMaster_SetFlags("DriftwoodMurga", "Arena_DriftwoodMurga_User", "User", TRIGGERGUID_S_RC_DW_Arena_35165b0c-6ea3-4108-8abf-4c7b4852e338);
+DB_ArenaMaster_SetFlags("DriftwoodMurga", "Arena_DriftwoodMurga_Party", "Party", TRIGGERGUID_S_RC_DW_Arena_35165b0c-6ea3-4108-8abf-4c7b4852e338);
+DB_ArenaMaster_SetFlags("DriftwoodMurga", "Arena_DriftwoodMurga_Single", "Single", TRIGGERGUID_S_RC_DW_Arena_35165b0c-6ea3-4108-8abf-4c7b4852e338);
+DB_ArenaMaster(CHARACTERGUID_S_RC_DW_ArenaMaster_8a1c0600-aca0-479b-8044-a36d011ccff7, "RC_DW_ArenaMaster", "DriftwoodMurga", TRIGGERGUID_S_RC_DW_ArenaMaster_FnlPos_02858901-3e40-4a11-a724-4a289bbecff6);
+DB_ArenaPresets_Player("DriftwoodMurga", "Arena_TeamA", TRIGGERGUID_S_RC_DW_Arena_StartA_b78d7cc5-e889-4624-a75e-963cad782953);
+DB_ArenaPresets_Mobs("DriftwoodMurga", CHARACTERGUID_S_RC_DW_Tavern_ArenaChamp_aa7f67da-aece-4487-83cf-96f10a018ed1, TRIGGERGUID_S_RC_DW_Arena_StartB_e722e1da-2d01-49e4-89c2-4a073024049d);
+DB_ArenaMaster_WinFlags("DriftwoodMurga", "Arena_Driftwood_ChampionArenaWon", "Arena_Driftwood_ChampionArenaLost");
+DB_ArenaMaster_SetFlags("DriftwoodVoidwoken", "Arena_DriftwoodVoidwoken_User", "User", TRIGGERGUID_S_RC_DW_Arena_35165b0c-6ea3-4108-8abf-4c7b4852e338);
+DB_ArenaMaster_SetFlags("DriftwoodVoidwoken", "Arena_DriftwoodVoidwoken_Party", "Party", TRIGGERGUID_S_RC_DW_Arena_35165b0c-6ea3-4108-8abf-4c7b4852e338);
+DB_ArenaMaster_SetFlags("DriftwoodVoidwoken", "Arena_DriftwoodVoidwoken_Single", "Single", TRIGGERGUID_S_RC_DW_Arena_35165b0c-6ea3-4108-8abf-4c7b4852e338);
+DB_ArenaMaster(CHARACTERGUID_S_RC_DW_ArenaMaster_8a1c0600-aca0-479b-8044-a36d011ccff7, "RC_DW_ArenaMaster", "DriftwoodVoidwoken", TRIGGERGUID_S_RC_DW_ArenaMaster_FnlPos_02858901-3e40-4a11-a724-4a289bbecff6);
+DB_ArenaPresets_Player("DriftwoodVoidwoken", "Arena_TeamA", TRIGGERGUID_S_RC_DW_Arena_StartA_b78d7cc5-e889-4624-a75e-963cad782953);
+DB_ArenaPresets_Mobs("DriftwoodVoidwoken", CHARACTERGUID_S_RC_DW_UnderTavern_Voidwoken_13bb467b-de20-4726-8afd-757705352361, TRIGGERGUID_S_RC_DW_Arena_StartB_e722e1da-2d01-49e4-89c2-4a073024049d);
+DB_ArenaMaster_WinFlags("DriftwoodVoidwoken", "Arena_Driftwood_ChampionArenaWon", "Arena_Driftwood_ChampionArenaLost");
+DB_Arena_FightToTheDeath("DriftwoodVoidwoken");
+DB_Arena_FightToTheDeath("DriftwoodMurga");
+DB_ArenaMaster_SetFlags("DriftwoodPvp", "Arena_Driftwood_Pvp", "PVP", TRIGGERGUID_S_RC_DW_Arena_35165b0c-6ea3-4108-8abf-4c7b4852e338);
+DB_ArenaMaster(CHARACTERGUID_S_RC_DW_ArenaMaster_8a1c0600-aca0-479b-8044-a36d011ccff7, "RC_DW_ArenaMaster", "DriftwoodPvp", TRIGGERGUID_S_RC_DW_ArenaMaster_FnlPos_02858901-3e40-4a11-a724-4a289bbecff6);
+DB_ArenaPresets_Player("DriftwoodPvp", "Arena_TeamA", TRIGGERGUID_S_RC_DW_Arena_StartA_b78d7cc5-e889-4624-a75e-963cad782953);
+DB_ArenaPresets_Player("DriftwoodPvp", "Arena_TeamB", TRIGGERGUID_S_RC_DW_Arena_StartB_e722e1da-2d01-49e4-89c2-4a073024049d);
+DB_ArenaMaster_WinFlags("DriftwoodPvp", "Arena_Driftwood_ChampionArenaWon_PVP", "Arena_Driftwood_ChampionArenaLost_PVP");
+DB_ArenaMaster_WinFlags("DriftwoodPvp", "Arena_Driftwood_ChampionArenaWon", "Arena_Driftwood_ChampionArenaLost");
+DB_ArenaChampionTag("DriftwoodPvp", "CHAMPION_DW");
+DB_ArenaChampionTag("DriftwoodVoidwoken", "CHAMPION_DW");
+DB_ArenaChampionTag("DriftwoodMurga", "CHAMPION_DW");
+ProcTriggerRegisterForPlayers(TRIGGERGUID_S_RC_DW_UnderTavern_ArenaBox_a26a17b9-a2b3-4ffd-aa95-3745fd0a9931);
+ProcTriggerRegisterForPlayers(TRIGGERGUID_S_RC_DW_VoidwokenSight_Trigger_909882e4-0c68-4c23-a177-3969fe712d97);
+DB_Arena_ReviveCharAfter(CHARACTERGUID_S_RC_DW_Tavern_ArenaChamp_aa7f67da-aece-4487-83cf-96f10a018ed1);
+DB_DeadEvent(CHARACTERGUID_S_RC_DW_UnderTavern_Voidwoken_13bb467b-de20-4726-8afd-757705352361, "RC_DW_UnderTavern_Voidwoken_IsDead");
+SetOnStage(CHARACTERGUID_S_RC_DW_UnderTavern_Voidwoken_13bb467b-de20-4726-8afd-757705352361, 0);
+Proc_PyramidBlockerTriggerAdd(TRIGGERGUID_S_RC_DW_UnderTavern_ArenaBox_a26a17b9-a2b3-4ffd-aa95-3745fd0a9931);
+
+KBSECTION
+IF
+ObjectEnteredCombat((CHARACTERGUID)_Var1, _)
+AND
+DB_ArenaPresets_Mobs(_, _Var1, _)
+AND
+QueryOnlyOnce("RC_DW_CombatSave_Arena1")
+THEN
+AutoSave();
+
+IF
+DB_ArenaPresets_Mobs("DriftwoodTrial", _Var1, _)
+THEN
+SetOnStage(_Var1, 0);
+
+PROC
+Proc_Arena_SetMobsOffStage("DriftwoodTrial")
+AND
+DB_ArenaPresets_Mobs("DriftwoodTrial", _Var1, _Var2)
+THEN
+NOT DB_ArenaPresets_Mobs("DriftwoodTrial", _Var1, _Var2);
+SetOnStage(_Var1, 0);
+
+PROC
+Proc_Arena_SetMobsOffStage("DriftwoodMurga")
+AND
+DB_ArenaPresets_Mobs("DriftwoodMurga", CHARACTERGUID_S_RC_DW_Tavern_ArenaChamp_aa7f67da-aece-4487-83cf-96f10a018ed1, _Var1)
+AND
+CharacterIsDead(CHARACTERGUID_S_RC_DW_Tavern_ArenaChamp_aa7f67da-aece-4487-83cf-96f10a018ed1, 1)
+THEN
+NOT DB_ArenaPresets_Mobs("DriftwoodMurga", CHARACTERGUID_S_RC_DW_Tavern_ArenaChamp_aa7f67da-aece-4487-83cf-96f10a018ed1, _Var1);
+SetOnStage(CHARACTERGUID_S_RC_DW_Tavern_ArenaChamp_aa7f67da-aece-4487-83cf-96f10a018ed1, 0);
+
+PROC
+Proc_Arena_Initiate((INTEGER)_Var1)
+AND
+DB_Arena_PlayerParticipants("DriftwoodTrial", _Var1, _, _)
+AND
+GlobalGetFlag("Arena_Driftwood_TrialInitiated", 0)
+THEN
+GlobalSetFlag("Arena_Driftwood_TrialInitiated");
+
+PROC
+Proc_Arena_Initiate((INTEGER)_Var1)
+AND
+DB_Arena_PlayerParticipants("DriftwoodMurga", _Var1, _, _)
+AND
+GlobalGetFlag("Arena_Driftwood_ChampionInitiated", 0)
+THEN
+GlobalSetFlag("Arena_Driftwood_ChampionInitiated");
+GlobalSetFlag("Arena_Driftwood_ChampionInitiated_Murga");
+
+PROC
+Proc_Arena_Initiate((INTEGER)_Var1)
+AND
+DB_Arena_PlayerParticipants("DriftwoodVoidwoken", _Var1, _, _)
+AND
+GlobalGetFlag("Arena_Driftwood_ChampionInitiated", 0)
+THEN
+GlobalSetFlag("Arena_Driftwood_ChampionInitiated");
+GlobalSetFlag("Arena_Driftwood_ChampionInitiated_Voidwoken");
+
+PROC
+Proc_Arena_Initiate((INTEGER)_Var1)
+AND
+DB_Arena_PlayerParticipants("DriftwoodPvp", _Var1, _, _)
+AND
+GlobalGetFlag("Arena_Driftwood_PvpInitiated", 0)
+THEN
+GlobalSetFlag("Arena_Driftwood_PvpInitiated");
+
+PROC
+Proc_Arena_Initiate((INTEGER)_Var1)
+AND
+DB_Arena_MobParticipants(_, CHARACTERGUID_S_RC_DW_UnderTavern_Voidwoken_13bb467b-de20-4726-8afd-757705352361, _, _)
+AND NOT
+DB_Arena_MobIsAlreadyInArena(CHARACTERGUID_S_RC_DW_UnderTavern_Voidwoken_13bb467b-de20-4726-8afd-757705352361)
+THEN
+DB_Arena_MobIsAlreadyInArena(CHARACTERGUID_S_RC_DW_UnderTavern_Voidwoken_13bb467b-de20-4726-8afd-757705352361);
+
+IF
+GlobalFlagSet("Arena_OnGoing")
+THEN
+PROC_RemoveDialogFromCharacter(CHARACTERGUID_S_RC_DW_Tavern_ArenaChamp_aa7f67da-aece-4487-83cf-96f10a018ed1);
+DB_AD_Dialog(CHARACTERGUID_S_RC_DW_Tavern_ArenaChamp_aa7f67da-aece-4487-83cf-96f10a018ed1, "RC_DW_AD_Arena_Champion");
+
+IF
+GlobalFlagCleared("Arena_OnGoing")
+THEN
+PROC_RemoveDialogFromCharacter(CHARACTERGUID_S_RC_DW_Tavern_ArenaChamp_aa7f67da-aece-4487-83cf-96f10a018ed1);
+ProcRemoveNPCADs(CHARACTERGUID_S_RC_DW_Tavern_ArenaChamp_aa7f67da-aece-4487-83cf-96f10a018ed1);
+DB_Dialogs(CHARACTERGUID_S_RC_DW_Tavern_ArenaChamp_aa7f67da-aece-4487-83cf-96f10a018ed1, "RC_DW_Arena_Champion");
+
+IF
+ObjectWasTagged((CHARACTERGUID)_Var1, "CHAMPION_DW")
+THEN
+CharacterAddAttitudeTowardsPlayer(CHARACTERGUID_S_RC_DW_Tavern_ArenaChamp_aa7f67da-aece-4487-83cf-96f10a018ed1, _Var1, 25);
+CharacterAddAttitudeTowardsPlayer(CHARACTERGUID_S_RC_DW_ArenaMaster_8a1c0600-aca0-479b-8044-a36d011ccff7, _Var1, 25);
+
+IF
+StoryEvent((CHARACTERGUID)_Var1, "Arena_CharacterTeleportedOutOfArena")
+AND
+GlobalGetFlag("Arena_Driftwood_TrialInitiated", 1)
+AND
+QueryOnlyOnce("Arena_CharacterTeleportedOutOfArena_DriftwoodTrial_Timer")
+THEN
+DB_RC_DW_ArenaCharacterTeleported(_Var1);
+TimerLaunch("Arena_CharacterTeleportedOutOfArena_DriftwoodTrial_Timer", 500);
+
+IF
+TimerFinished("Arena_CharacterTeleportedOutOfArena_DriftwoodTrial_Timer")
+AND
+DB_RC_DW_ArenaCharacterTeleported(_Var1)
+AND
+QRY_SpeakerIsAvailable(CHARACTERGUID_S_RC_DW_Tavern_ArenaChamp_aa7f67da-aece-4487-83cf-96f10a018ed1)
+AND
+IsTagged(_Var1, "AVATAR", 1)
+AND
+UserGetFlag(_Var1, "Arena_Driftwood_WonTrial", 1)
+AND
+QueryOnlyOnce("RC_DW_Tavern_ArenaChamp_Congrat")
+THEN
+GlobalSetFlag("RC_DW_ArenaChamp_CongratDialog");
+Proc_StartDialog(0, "RC_DW_Arena_Champion", CHARACTERGUID_S_RC_DW_Tavern_ArenaChamp_aa7f67da-aece-4487-83cf-96f10a018ed1, _Var1);
+NOT DB_RC_DW_ArenaCharacterTeleported(_Var1);
+
+IF
+TimerFinished("Arena_CharacterTeleportedOutOfArena_DriftwoodTrial_Timer")
+AND
+DB_RC_DW_ArenaCharacterTeleported(_Var1)
+AND
+QRY_SpeakerIsAvailable(CHARACTERGUID_S_RC_DW_Tavern_ArenaChamp_aa7f67da-aece-4487-83cf-96f10a018ed1)
+AND
+IsTagged(_Var1, "AVATAR", 1)
+AND
+UserGetFlag(_Var1, "Arena_Driftwood_WonTrial", 0)
+AND
+QueryOnlyOnce("RC_DW_Tavern_ArenaChamp_Congrat")
+THEN
+GlobalSetFlag("RC_DW_ArenaChamp_CongratDialog");
+Proc_StartDialog(0, "RC_DW_Arena_Champion", CHARACTERGUID_S_RC_DW_Tavern_ArenaChamp_aa7f67da-aece-4487-83cf-96f10a018ed1, _Var1);
+NOT DB_RC_DW_ArenaCharacterTeleported(_Var1);
+
+IF
+GlobalFlagSet("Arena_Driftwood_TrialInitiated")
+AND
+QRY_SpeakerIsAvailable(CHARACTERGUID_S_RC_DW_Tavern_ArenaChamp_aa7f67da-aece-4487-83cf-96f10a018ed1)
+THEN
+ProcCharacterMoveTo(CHARACTERGUID_S_RC_DW_Tavern_ArenaChamp_aa7f67da-aece-4487-83cf-96f10a018ed1, TRIGGERGUID_S_RC_DW_UnderTavern_ArenaChamp_SpectatePos_73c8b2d4-ec83-47b6-a708-426037322993, 0, "");
+ClearVarObject(CHARACTERGUID_S_RC_DW_Tavern_ArenaChamp_aa7f67da-aece-4487-83cf-96f10a018ed1, "Seat");
+DB_Queue("Arena_Driftwood_TrialInitiated_MurgaPos");
+
+IF
+GlobalFlagSet("RC_DW_Arena_Champion_DisappearOutOfSight")
+AND
+CharacterConsume(CHARACTERGUID_S_RC_DW_Tavern_ArenaChamp_aa7f67da-aece-4487-83cf-96f10a018ed1, "CON_Potion_Invisible_A", _)
+THEN
+DB_NOOP(1);
+TimerLaunch("RC_DW_Arena_Champion_DisappearOutOfSightTimer", 10000);
+
+IF
+TimerFinished("RC_DW_Arena_Champion_DisappearOutOfSightTimer")
+THEN
+SetOnStage(CHARACTERGUID_S_RC_DW_Tavern_ArenaChamp_aa7f67da-aece-4487-83cf-96f10a018ed1, 0);
+
+IF
+DialogEnded("RC_DW_Arena_Champion", _)
+AND
+GlobalGetFlag("RC_DW_Arena_Champion_DisappearOutOfSight", 1)
+THEN
+TimerCancel("RC_DW_Arena_Champion_DisappearOutOfSightTimer");
+SetOnStage(CHARACTERGUID_S_RC_DW_Tavern_ArenaChamp_aa7f67da-aece-4487-83cf-96f10a018ed1, 0);
+GlobalClearFlag("RC_DW_Arena_Champion_DisappearOutOfSight");
+RemoveStatus(CHARACTERGUID_S_RC_DW_Tavern_ArenaChamp_aa7f67da-aece-4487-83cf-96f10a018ed1, "INVISIBLE");
+Transform(CHARACTERGUID_S_RC_DW_Tavern_ArenaChamp_aa7f67da-aece-4487-83cf-96f10a018ed1, "RC_DW_Tavern_ArenaChamp_InArena_e799fdfb-1834-47ba-a9bd-8bd41f09e559", 0);
+NOT DB_Queue("Arena_Driftwood_TrialInitiated_MurgaPos");
+
+IF
+DialogEnded("RC_DW_UnderTavern_Voidwoken", _)
+AND
+CharacterIsDead(CHARACTERGUID_S_RC_DW_Tavern_ArenaChamp_aa7f67da-aece-4487-83cf-96f10a018ed1, 0)
+AND
+GlobalGetFlag("RC_DW_UnderTavern_Voidwoken_MurgaInvisible", 1)
+AND
+GlobalGetFlag("Arena_OnGoing", 1)
+AND
+HasActiveStatus(CHARACTERGUID_S_RC_DW_Tavern_ArenaChamp_aa7f67da-aece-4487-83cf-96f10a018ed1, "INVISIBLE", 0)
+AND
+CharacterConsume(CHARACTERGUID_S_RC_DW_Tavern_ArenaChamp_aa7f67da-aece-4487-83cf-96f10a018ed1, "CON_Potion_Invisible_A", _)
+THEN
+DB_NOOP(1);
+
+IF
+DialogEnded("RC_DW_Arena_Champion", _)
+AND
+GlobalGetFlag("RC_DW_Arena_Champion_DisappearOutOfSight", 0)
+AND
+GlobalGetFlag("RC_DW_Arena_Champion_PostArena", 0)
+AND
+DB_Queue("Arena_Driftwood_TrialInitiated_MurgaPos")
+THEN
+SetVarObject(CHARACTERGUID_S_RC_DW_Tavern_ArenaChamp_aa7f67da-aece-4487-83cf-96f10a018ed1, "Seat", ITEMGUID_S_RC_DW_UnderTavern_TEMPMurgaChair_31f876dd-519b-47b4-a5f5-27a8b96774ab);
+NOT DB_Queue("Arena_Driftwood_TrialInitiated_MurgaPos");
+
+IF
+StoryEvent((CHARACTERGUID)_Var1, "Arena_CharacterTeleportedOutOfArena")
+AND
+UserGetFlag(_Var1, "Arena_Driftwood_ChampionArenaWon", 1)
+AND
+QueryOnlyOnce("Arena_CharacterTeleportedOutOfArena_ChampionArenaWon")
+THEN
+Proc_RC_DW_ArenaMaster_CongratChampion_Timer(_Var1);
+
+PROC
+Proc_RC_DW_ArenaMaster_CongratChampion_Timer((CHARACTERGUID)_Var1)
+AND
+QueryOnlyOnce("RC_DW_ArenaMaster_CongratChampion_Timer")
+THEN
+TimerLaunch("Arena_CharacterTeleportedOutOfArena_ChampionTimer", 800);
+
+PROC
+Proc_RC_DW_ArenaMaster_CongratChampion_Timer((CHARACTERGUID)_Var1)
+THEN
+DB_RC_DW_ArenaCharacterTeleported_ChampionCongrat(_Var1);
+
+IF
+TimerFinished("Arena_CharacterTeleportedOutOfArena_ChampionTimer")
+THEN
+Proc_RC_DW_ArenaMaster_CongratChampion_Dialog();
+
+PROC
+Proc_RC_DW_ArenaMaster_CongratChampion_Dialog()
+AND
+QRY_SpeakerIsAvailable(CHARACTERGUID_S_RC_DW_ArenaMaster_8a1c0600-aca0-479b-8044-a36d011ccff7)
+AND
+DB_IsPlayer(_Var1)
+AND
+IsTagged(_Var1, "CHAMPION_DW", 1)
+AND
+QueryOnlyOnce("RC_DW_ArenaMaster_CongratChampion_Dialog")
+THEN
+ObjectSetFlag(_Var1, "RC_DW_ArenaMaster_CongratChampion", 0);
+Proc_StartDialog(0, "RC_DW_ArenaMaster", CHARACTERGUID_S_RC_DW_ArenaMaster_8a1c0600-aca0-479b-8044-a36d011ccff7, _Var1);
+
+PROC
+Proc_RC_DW_ArenaMaster_CongratChampion_Dialog()
+AND
+DB_RC_DW_ArenaCharacterTeleported_ChampionCongrat(_Var1)
+THEN
+NOT DB_RC_DW_ArenaCharacterTeleported_ChampionCongrat(_Var1);
+
+IF
+GlobalFlagSet("Arena_Driftwood_TrialInitiated")
+AND
+GlobalGetFlag("RC_DW_UnderTavern_DrugArenaFighters", 1)
+AND
+DB_ArenaPresets_Mobs("DriftwoodTrial", _Var1, _)
+THEN
+ApplyStatus(_Var1, "QUEST_DRUGGED", -1);
+GlobalClearFlag("RC_DW_UnderTavern_DrugArenaFighters");
+
+IF
+GlobalFlagSet("Arena_Driftwood_ChampionInitiated")
+AND
+GlobalGetFlag("RC_DW_UnderTavern_DrugArenaFighters", 1)
+THEN
+ApplyStatus(CHARACTERGUID_S_RC_DW_Tavern_ArenaChamp_aa7f67da-aece-4487-83cf-96f10a018ed1, "QUEST_DRUGGED", -1);
+GlobalClearFlag("RC_DW_UnderTavern_DrugArenaFighters");
+
+IF
+TextEventSet("voidwokenjump")
+AND
+DB_IsPlayer(_Var1)
+THEN
+GlobalSetFlag("Arena_Driftwood_TrialInitiated");
+ObjectSetFlag(_Var1, "Arena_Driftwood_WonTrial");
+ObjectSetFlag(_Var1, "Arnea_PlayerHasAvatar");
+ObjectSetFlag(_Var1, "RC_DW_MurgaReadyToFight");
+TeleportTo(_Var1, CHARACTERGUID_S_RC_DW_ArenaMaster_8a1c0600-aca0-479b-8044-a36d011ccff7);
+
+IF
+GlobalFlagSet("Arena_Driftwood_ChampionInitiated")
+THEN
+DB_DW_ChampionArenaFight_TurnCount(0);
+
+IF
+CharacterDying(CHARACTERGUID_S_RC_DW_Tavern_ArenaChamp_aa7f67da-aece-4487-83cf-96f10a018ed1)
+AND
+GlobalGetFlag("Arena_Driftwood_ChampionInitiated", 1)
+AND
+ObjectGetFlag(CHARACTERGUID_S_RC_DW_UnderTavern_Voidwoken_13bb467b-de20-4726-8afd-757705352361, "RC_DW_Tavern_Voidwoken_JoinedArena", 0)
+THEN
+Proc_DW_ChampionArenaFight_InitiateVoidwokenEvent();
+
+IF
+GlobalFlagSet("Arena_Driftwood_ChampionInitiated")
+AND NOT
+DB_Arena_CharIsAlive("Arena_TeamB", CHARACTERGUID_S_RC_DW_UnderTavern_Voidwoken_13bb467b-de20-4726-8afd-757705352361)
+THEN
+DB_Arena_CharIsAlive("Arena_TeamB", CHARACTERGUID_S_RC_DW_UnderTavern_Voidwoken_13bb467b-de20-4726-8afd-757705352361);
+
+IF
+ObjectTurnEnded(CHARACTERGUID_S_RC_DW_Tavern_ArenaChamp_aa7f67da-aece-4487-83cf-96f10a018ed1)
+AND
+DB_DW_ChampionArenaFight_TurnCount(_)
+THEN
+Proc_DW_ChampionArenaFight_TurnCounter();
+
+PROC
+Proc_DW_ChampionArenaFight_TurnCounter()
+AND
+DB_DW_ChampionArenaFight_TurnCount(_Var1)
+AND
+_Var1 >= 1
+THEN
+Proc_DW_ChampionArenaFight_InitiateVoidwokenEvent();
+NOT DB_DW_ChampionArenaFight_TurnCount(_Var1);
+
+PROC
+Proc_DW_ChampionArenaFight_TurnCounter()
+AND
+DB_DW_ChampionArenaFight_TurnCount(_Var1)
+AND
+_Var1 < 1
+AND
+IntegerSum(_Var1, 1, _Var2)
+THEN
+NOT DB_DW_ChampionArenaFight_TurnCount(_Var1);
+DB_DW_ChampionArenaFight_TurnCount(_Var2);
+
+PROC
+Proc_DW_ChampionArenaFight_InitiateVoidwokenEvent()
+AND
+ObjectGetFlag(CHARACTERGUID_S_RC_DW_UnderTavern_Voidwoken_13bb467b-de20-4726-8afd-757705352361, "RC_DW_Tavern_Voidwoken_JoinedArena", 0)
+AND
+CharacterIsDead(CHARACTERGUID_S_RC_DW_UnderTavern_Voidwoken_13bb467b-de20-4726-8afd-757705352361, 0)
+AND
+DB_Arena_CharIsAlive(_, _Var2)
+THEN
+SetInArena(ITEMGUID_S_RC_DW_UnderTavern_Voidwoken_ObjHelper_c0e93fcf-4dae-48e8-a278-66393b206708, 1);
+SetFaction(ITEMGUID_S_RC_DW_UnderTavern_Voidwoken_ObjHelper_c0e93fcf-4dae-48e8-a278-66393b206708, "Arena_TeamC");
+EnterCombat(ITEMGUID_S_RC_DW_UnderTavern_Voidwoken_ObjHelper_c0e93fcf-4dae-48e8-a278-66393b206708, _Var2);
+
+IF
+ObjectEnteredCombat(ITEMGUID_S_RC_DW_UnderTavern_Voidwoken_ObjHelper_c0e93fcf-4dae-48e8-a278-66393b206708, _)
+AND
+ObjectGetFlag(CHARACTERGUID_S_RC_DW_UnderTavern_Voidwoken_13bb467b-de20-4726-8afd-757705352361, "RC_DW_Tavern_Voidwoken_JoinedArena", 0)
+AND
+CharacterIsDead(CHARACTERGUID_S_RC_DW_UnderTavern_Voidwoken_13bb467b-de20-4726-8afd-757705352361, 0)
+THEN
+JumpToTurn(ITEMGUID_S_RC_DW_UnderTavern_Voidwoken_ObjHelper_c0e93fcf-4dae-48e8-a278-66393b206708);
+PlayAnimation(ITEMGUID_S_RC_DW_UnderTavern_Voidwoken_Obj_062d7696-0e95-4b8a-83e3-6a936860f193, "breakout", "breakoutHappened");
+ItemDestroy(ITEMGUID_S_RC_DW_Arena_VoidwokenGrating_057dd1a1-ab07-ce00-df9e-1572b4bc2ee6);
+TimerLaunch("breakoutMoveCamera", 4000);
+
+IF
+TimerFinished("breakoutMoveCamera")
+THEN
+ItemMoveToTrigger(ITEMGUID_S_RC_DW_UnderTavern_Voidwoken_ObjHelper_c0e93fcf-4dae-48e8-a278-66393b206708, TRIGGERGUID_S_RC_DW_UnderTavern_Voidwoken_Obj_BreakoutPoint_f6c825c0-9a11-4f1f-960d-f28eebcb1284, 0.5, 0.5, 0);
+
+IF
+TextEventSet("breakout")
+AND
+DB_IsPlayer(_Var1)
+THEN
+TeleportTo(_Var1, ITEMGUID_S_RC_DW_UnderTavern_Voidwoken_Obj_062d7696-0e95-4b8a-83e3-6a936860f193);
+TimerLaunch("debug_breakout", 4000);
+
+IF
+TimerFinished("debug_breakout")
+THEN
+PlayAnimation(ITEMGUID_S_RC_DW_UnderTavern_Voidwoken_Obj_062d7696-0e95-4b8a-83e3-6a936860f193, "breakout", "breakoutHappened");
+ItemDestroy(ITEMGUID_S_RC_DW_Arena_VoidwokenGrating_057dd1a1-ab07-ce00-df9e-1572b4bc2ee6);
+TimerLaunch("breakoutMoveCamera", 3000);
+
+IF
+StoryEvent(_, "breakoutHappened")
+THEN
+PlayEffect(ITEMGUID_S_RC_DW_UnderTavern_Voidwoken_Obj_062d7696-0e95-4b8a-83e3-6a936860f193, "RS3_FX_GP_ScriptedEvent_DW_ArenaVoidwoken_Disappear_Overlay_01");
+PlayEffect(TRIGGERGUID_S_RC_DW_UnderTavern_Voidwoken_Obj_BreakoutPoint_f6c825c0-9a11-4f1f-960d-f28eebcb1284, "RS3_FX_GP_ScriptedEvent_DW_ArenaVoidwoken_Disappear_01");
+ItemMoveToTrigger(ITEMGUID_S_RC_DW_UnderTavern_Voidwoken_ObjHelper_c0e93fcf-4dae-48e8-a278-66393b206708, TRIGGERGUID_S_RC_DW_Arena_Voidwoken_AppearPoint_2e80d564-6d54-486c-ac7d-76624e449f78, 3, 2.5, 0);
+DB_RC_DW_UnderTavern_Voidwoken_ObjHelper_Move(1);
+
+IF
+ItemMoved(ITEMGUID_S_RC_DW_UnderTavern_Voidwoken_ObjHelper_c0e93fcf-4dae-48e8-a278-66393b206708)
+AND
+DB_RC_DW_UnderTavern_Voidwoken_ObjHelper_Move(1)
+AND
+GetPosition(TRIGGERGUID_S_RC_DW_Arena_Voidwoken_AppearPoint_2e80d564-6d54-486c-ac7d-76624e449f78, _Var1, _Var2, _Var3)
+THEN
+SetOnStage(ITEMGUID_S_RC_DW_UnderTavern_Voidwoken_Obj_062d7696-0e95-4b8a-83e3-6a936860f193, 0);
+PlayEffectAtPosition("RS3_FX_GP_ScriptedEvent_DW_ArenaVoidwoken_Appear_01", _Var1, _Var2, _Var3);
+CharacterAppearAt(CHARACTERGUID_S_RC_DW_UnderTavern_Voidwoken_13bb467b-de20-4726-8afd-757705352361, TRIGGERGUID_S_RC_DW_Arena_Voidwoken_AppearPoint_2e80d564-6d54-486c-ac7d-76624e449f78, 0, "usedDiveIntoArena");
+PlayEffect(CHARACTERGUID_S_RC_DW_UnderTavern_Voidwoken_13bb467b-de20-4726-8afd-757705352361, "RS3_FX_GP_ScriptedEvent_DW_ArenaVoidwoken_Appear_Overlay_01");
+ObjectSetFlag(CHARACTERGUID_S_RC_DW_UnderTavern_Voidwoken_13bb467b-de20-4726-8afd-757705352361, "RC_DW_Tavern_Voidwoken_JoinedArena");
+SetInArena(CHARACTERGUID_S_RC_DW_UnderTavern_Voidwoken_13bb467b-de20-4726-8afd-757705352361, 1);
+SetFaction(CHARACTERGUID_S_RC_DW_UnderTavern_Voidwoken_13bb467b-de20-4726-8afd-757705352361, "Arena_TeamC");
+DB_Arena_CharIsAlive("Arena_TeamA", CHARACTERGUID_S_RC_DW_UnderTavern_Voidwoken_13bb467b-de20-4726-8afd-757705352361);
+DB_Arena_CharIsAlive("Arena_TeamB", CHARACTERGUID_S_RC_DW_UnderTavern_Voidwoken_13bb467b-de20-4726-8afd-757705352361);
+DB_Arena_MobIsAlreadyInArena(CHARACTERGUID_S_RC_DW_UnderTavern_Voidwoken_13bb467b-de20-4726-8afd-757705352361);
+
+IF
+ObjectEnteredCombat(CHARACTERGUID_S_RC_DW_UnderTavern_Voidwoken_13bb467b-de20-4726-8afd-757705352361, _)
+AND
+IsInArena(CHARACTERGUID_S_RC_DW_UnderTavern_Voidwoken_13bb467b-de20-4726-8afd-757705352361, 1)
+AND
+QueryOnlyOnce("RC_DW_UnderTavern_Voidwoken_JumpToTurn")
+THEN
+SetOnStage(ITEMGUID_S_RC_DW_UnderTavern_Voidwoken_ObjHelper_c0e93fcf-4dae-48e8-a278-66393b206708, 0);
+JumpToTurn(CHARACTERGUID_S_RC_DW_UnderTavern_Voidwoken_13bb467b-de20-4726-8afd-757705352361);
+
+PROC
+Proc_Arena_CheckWinCondition()
+AND
+GlobalGetFlag("Arena_Driftwood_ChampionInitiated", 1)
+AND
+CharacterIsDead(CHARACTERGUID_S_RC_DW_UnderTavern_Voidwoken_13bb467b-de20-4726-8afd-757705352361, 0)
+THEN
+Proc_DriftwoodArena_CheckWinCondition();
+
+PROC
+Proc_DriftwoodArena_CheckWinCondition()
+THEN
+NOT DB_DriftwoodArena_CheckWinCondition_PlayerIsAlive(1);
+NOT DB_DriftwoodArena_CheckWinCondition_PlayersAliveOutOfArena(1);
+
+PROC
+Proc_DriftwoodArena_CheckWinCondition()
+AND
+DB_Arena_CharIsAlive("Arena_TeamA", _Var1)
+AND
+DB_IsPlayer(_Var1)
+THEN
+DB_DriftwoodArena_CheckWinCondition_PlayerIsAlive(1);
+
+PROC
+Proc_DriftwoodArena_CheckWinCondition()
+AND NOT
+DB_DriftwoodArena_CheckWinCondition_PlayerIsAlive(1)
+THEN
+DB_DriftwoodArena_CheckWinCondition_PlayersAliveOutOfArena(1);
+GlobalSetFlag("RC_DW_Arena_Voidwoken_FrenzyMode");
+
+IF
+GlobalFlagSet("RC_DW_Arena_Voidwoken_FrenzyMode")
+AND
+CharacterIsDead(CHARACTERGUID_S_RC_DW_Tavern_ArenaChamp_aa7f67da-aece-4487-83cf-96f10a018ed1, 1)
+AND NOT
+DB_DriftwoodArena_CheckWinCondition_PlayerIsAlive(1)
+THEN
+SetInArena(CHARACTERGUID_S_RC_DW_UnderTavern_Voidwoken_13bb467b-de20-4726-8afd-757705352361, 0);
+
+IF
+CharacterDied(CHARACTERGUID_S_RC_DW_Tavern_ArenaChamp_aa7f67da-aece-4487-83cf-96f10a018ed1)
+AND
+GlobalGetFlag("RC_DW_Arena_Voidwoken_FrenzyMode", 1)
+AND NOT
+DB_DriftwoodArena_CheckWinCondition_PlayerIsAlive(1)
+THEN
+SetInArena(CHARACTERGUID_S_RC_DW_UnderTavern_Voidwoken_13bb467b-de20-4726-8afd-757705352361, 0);
+
+IF
+CharacterDied(CHARACTERGUID_S_RC_DW_UnderTavern_Voidwoken_13bb467b-de20-4726-8afd-757705352361)
+THEN
+NOT DB_Arena_FightToTheDeath("DriftwoodVoidwoken");
+NOT DB_Arena_FightToTheDeath("DriftwoodMurga");
+
+IF
+CharacterDied(CHARACTERGUID_S_RC_DW_UnderTavern_Voidwoken_13bb467b-de20-4726-8afd-757705352361)
+AND
+GlobalGetFlag("RC_DW_Arena_Voidwoken_FrenzyMode", 1)
+THEN
+GlobalClearFlag("RC_DW_Arena_Voidwoken_FrenzyMode");
+
+IF
+TextEventSet("dwarena")
+AND
+DB_IsPlayer(_Var1)
+THEN
+GlobalSetFlag("Arena_Driftwood_ChampionInitiated");
+GlobalSetFlag("Arena_Driftwood_TrialInitiated");
+UserSetFlag(_Var1, "RC_DW_MurgaReadyToFight");
+CharacterTeleportPartiesToTrigger(TRIGGERGUID_S_RC_DW_ArenaMaster_FnlPos_02858901-3e40-4a11-a724-4a289bbecff6, "");
+
+IF
+CharacterEnteredTrigger((CHARACTERGUID)_Var1, TRIGGERGUID_S_RC_DW_Arena_35165b0c-6ea3-4108-8abf-4c7b4852e338)
+THEN
+ObjectSetFlag(_Var1, "QuestAdd_RC_DW_Arena", 0);
+ObjectSetFlag(_Var1, "QuestUpdate_RC_DW_Arena_ArenaFound", 0);
+
+IF
+ObjectFlagSet("Arena_Driftwood_LostTrial", (GUIDSTRING)_Var1, _)
+THEN
+ObjectSetFlag(_Var1, "QuestUpdate_RC_DW_Arena_ArenaTrial_Lost", 0);
+
+IF
+GlobalFlagSet("Arena_Driftwood_ChampionInitiated")
+AND
+DB_IsPlayer(_Var1)
+AND
+UserGetFlag(_Var1, "RC_DW_MurgaReadyToFight", 1)
+THEN
+PartySetFlag(_Var1, "QuestUpdate_RC_DW_Arena_Murga_Fight");
+
+IF
+ObjectWasTagged((CHARACTERGUID)_Var1, "CHAMPION_DW")
+THEN
+ObjectSetFlag(_Var1, "RC_DW_Arena_WasChampion");
+
+IF
+ObjectFlagSet("Arena_Driftwood_ChampionArenaLost", (CHARACTERGUID)_Var1, _)
+AND
+ObjectGetFlag(_Var1, "RC_DW_Arena_WasChampion", 0)
+THEN
+Proc_Arena_Driftwood_ChampionArenaLost_Check(_Var1);
+ClearTag(_Var1, "CHAMPION_DW");
+
+PROC
+Proc_Arena_Driftwood_ChampionArenaLost_Check((CHARACTERGUID)_Var1)
+THEN
+NOT DB_Arena_Driftwood_ChampionArenaLost_Check(1);
+
+PROC
+Proc_Arena_Driftwood_ChampionArenaLost_Check(_)
+AND
+DB_IsPlayer(_Var2)
+AND
+IsTagged(_Var2, "CHAMPION_DW", 1)
+THEN
+DB_Arena_Driftwood_ChampionArenaLost_Check(1);
+
+PROC
+Proc_Arena_Driftwood_ChampionArenaLost_Check((CHARACTERGUID)_Var1)
+AND NOT
+DB_Arena_Driftwood_ChampionArenaLost_Check(1)
+THEN
+ObjectSetFlag(_Var1, "QuestUpdate_RC_DW_Arena_ArenaChampion_Lost");
+
+IF
+ObjectFlagSet("Arena_Driftwood_ChampionArenaLost", (GUIDSTRING)_Var1, _)
+AND
+ObjectGetFlag(_Var1, "RC_DW_Arena_WasChampion", 1)
+THEN
+ObjectSetFlag(_Var1, "QuestUpdate_RC_DW_Arena_ArenaChampion_Lost_HadTitle", 0);
+ClearTag(_Var1, "CHAMPION_DW");
+
+IF
+ObjectFlagSet("Arena_Driftwood_ChampionArenaWon", (CHARACTERGUID)_Var1, _)
+THEN
+Proc_RC_DW_Arena_CloseJournal(_Var1);
+
+PROC
+Proc_RC_DW_Arena_CloseJournal((CHARACTERGUID)_Var1)
+AND
+GlobalGetFlag("Arena_Driftwood_ChampionInitiated_Voidwoken", 1)
+THEN
+ObjectSetFlag(_Var1, "QuestUpdate_RC_DW_Arena_RoundTwoWon_VoidwokenAlone", 0);
+
+PROC
+Proc_RC_DW_Arena_CloseJournal((CHARACTERGUID)_Var1)
+AND
+GlobalGetFlag("Arena_Driftwood_ChampionInitiated_Voidwoken", 0)
+THEN
+ObjectSetFlag(_Var1, "QuestUpdate_RC_DW_Arena_RoundTwoWon_MurgaVoidwoken", 0);
+
+IF
+ObjectFlagSet("RC_DW_Arena_ArenaChampion", (GUIDSTRING)_Var1, _)
+THEN
+ObjectSetFlag(_Var1, "QuestUpdate_RC_DW_Arena_ArenaChampion", 0);
+
+PROC
+Proc_Arena_Initiate((INTEGER)_Var1)
+AND
+GlobalGetFlag("RC_DW_Arena_AcceptedBlindfolds", 1)
+AND
+DB_Arena_PlayerParticipants("DriftwoodTrial", _Var1, _Var2, _)
+THEN
+ObjectSetFlag(_Var2, "QuestUpdate_RC_DW_Arena_Arena_BlindfoldStarted");
+Proc_RC_DW_Arena_EquipBlindfolds(_Var2);
+
+PROC
+Proc_Arena_Initiate((INTEGER)_Var1)
+AND
+GlobalGetFlag("RC_DW_Arena_AcceptedBlindfolds", 0)
+AND
+DB_Arena_PlayerParticipants("DriftwoodTrial", _Var1, _Var2, _)
+THEN
+GlobalSetFlag("RC_DW_Arena_BlindfoldChallengeFailed");
+
+PROC
+Proc_RC_DW_Arena_EquipBlindfolds((CHARACTERGUID)_Var1)
+AND
+CharacterGetEquippedItem(_Var1, "Helmet", _Var2)
+AND NOT
+DB_RC_DW_Arena_EquipBlindfolds_PreviousHelmet(_Var1, _)
+THEN
+DB_RC_DW_Arena_EquipBlindfolds_PreviousHelmet(_Var1, _Var2);
+
+PROC
+Proc_RC_DW_Arena_EquipBlindfolds((CHARACTERGUID)_Var1)
+AND NOT
+GetItemForItemTemplateInInventory(_Var1, "EQ_Clothing_UNIQUE_Blindfolds_A_60884e3d-45cb-4849-b35e-d24064386b9f", _)
+THEN
+ItemTemplateAddTo("EQ_Clothing_UNIQUE_Blindfolds_A_60884e3d-45cb-4849-b35e-d24064386b9f", _Var1, 1);
+
+PROC
+Proc_RC_DW_Arena_EquipBlindfolds((CHARACTERGUID)_Var1)
+AND
+GetItemForItemTemplateInInventory(_Var1, "EQ_Clothing_UNIQUE_Blindfolds_A_60884e3d-45cb-4849-b35e-d24064386b9f", _Var2)
+THEN
+CharacterEquipItem(_Var1, _Var2);
+
+IF
+ItemTemplateUnEquipped("EQ_Clothing_UNIQUE_Blindfolds_A_60884e3d-45cb-4849-b35e-d24064386b9f", (CHARACTERGUID)_Var1)
+AND
+DB_Arena_PlayerParticipants("DriftwoodTrial", _, _Var1, _)
+THEN
+GlobalSetFlag("RC_DW_Arena_BlindfoldChallengeFailed");
+GlobalClearFlag("RC_DW_Arena_AcceptedBlindfolds");
+ObjectSetFlag(_Var1, "QuestUpdate_RC_DW_Arena_Arena_BlindfoldRemoved");
+
+IF
+ObjectFlagSet("Arena_Driftwood_WonTrial", (CHARACTERGUID)_Var1, _)
+AND
+GlobalGetFlag("RC_DW_Arena_BlindfoldChallengeFailed", 0)
+AND
+GlobalGetFlag("RC_DW_Arena_AcceptedBlindfolds", 1)
+THEN
+ObjectSetFlag(_Var1, "QuestUpdate_RC_DW_Arena_Arena_BlindfoldWon");
+UserSetFlag(_Var1, "RC_DW_Arena_BlindfoldChallengeCompleted");
+GlobalClearFlag("RC_DW_Arena_AcceptedBlindfolds");
+
+IF
+StoryEvent((CHARACTERGUID)_Var1, "Arena_CharacterTeleportedOutOfArena")
+AND
+GlobalGetFlag("Arena_Driftwood_TrialInitiated", 1)
+THEN
+Proc_Arena_Driftwood_RemoveBlindfold(_Var1);
+
+PROC
+Proc_Arena_Driftwood_RemoveBlindfold((CHARACTERGUID)_Var1)
+AND
+CharacterIsDead(_Var1, 0)
+AND
+GetItemForItemTemplateInInventory(_Var1, "EQ_Clothing_UNIQUE_Blindfolds_A_60884e3d-45cb-4849-b35e-d24064386b9f", _Var2)
+AND
+CharacterGetEquippedItem(_Var1, "Helmet", _Var2)
+AND NOT
+DB_RC_DW_Arena_EquipBlindfolds_PreviousHelmet(_Var1, _)
+THEN
+CharacterUnequipItem(_Var1, _Var2);
+CharacterLookAt(_Var1, TRIGGERGUID_S_RC_DW_UnderTavern_ArenaChamp_SpectatePos_73c8b2d4-ec83-47b6-a708-426037322993);
+
+PROC
+Proc_Arena_Driftwood_RemoveBlindfold((CHARACTERGUID)_Var1)
+AND
+CharacterIsDead(_Var1, 0)
+AND
+GetItemForItemTemplateInInventory(_Var1, "EQ_Clothing_UNIQUE_Blindfolds_A_60884e3d-45cb-4849-b35e-d24064386b9f", _Var2)
+AND
+CharacterGetEquippedItem(_Var1, "Helmet", _Var2)
+THEN
+CharacterUnequipItem(_Var1, _Var2);
+CharacterLookAt(_Var1, TRIGGERGUID_S_RC_DW_UnderTavern_ArenaChamp_SpectatePos_73c8b2d4-ec83-47b6-a708-426037322993);
+
+PROC
+Proc_Arena_Driftwood_RemoveBlindfold((CHARACTERGUID)_Var1)
+AND
+CharacterIsDead(_Var1, 0)
+AND
+DB_RC_DW_Arena_EquipBlindfolds_PreviousHelmet(_Var1, _Var2)
+AND
+ItemIsInCharacterInventory(_Var2, _Var1, 1)
+THEN
+CharacterEquipItem(_Var1, _Var2);
+NOT DB_RC_DW_Arena_EquipBlindfolds_PreviousHelmet(_Var1, _Var2);
+CharacterLookAt(_Var1, TRIGGERGUID_S_RC_DW_UnderTavern_ArenaChamp_SpectatePos_73c8b2d4-ec83-47b6-a708-426037322993);
+
+PROC
+Proc_Arena_Driftwood_RemoveBlindfold((CHARACTERGUID)_Var1)
+AND
+CharacterIsDead(_Var1, 1)
+THEN
+DB_DW_Arena_QueueUnequippeBlindfolds(_Var1);
+
+IF
+CharacterResurrected((CHARACTERGUID)_Var1)
+AND
+DB_DW_Arena_QueueUnequippeBlindfolds(_Var1)
+THEN
+Proc_Arena_Driftwood_RemoveBlindfold(_Var1);
+NOT DB_DW_Arena_QueueUnequippeBlindfolds(_Var1);
+
+PROC
+Proc_Arena_SetUp_LastManStanding_1()
+AND
+DB_Arena_LastManStandingTeams(_Var1, _, _)
+AND
+DB_Arena_PlayerParticipants(_Var4, _, _Var1, _)
+AND
+DB_Arena_FightToTheDeath(_Var4)
+THEN
+NOT DB_Arena_FightToTheDeath(_Var4);
+
+IF
+TextEventSet("arenadw")
+AND
+DB_IsPlayer(_Var1)
+THEN
+TeleportTo(_Var1, CHARACTERGUID_S_RC_DW_ArenaMaster_8a1c0600-aca0-479b-8044-a36d011ccff7);
+GlobalSetFlag("Arena_Driftwood_TrialInitiated");
+UserSetFlag(_Var1, "Arena_Driftwood_WonTrial");
+UserSetFlag(_Var1, "RC_DW_MurgaReadyToFight");
+
+IF
+CharacterEnteredTrigger((CHARACTERGUID)_Var1, TRIGGERGUID_S_RC_DW_VoidwokenSight_Trigger_909882e4-0c68-4c23-a177-3969fe712d97)
+AND
+CharacterIsDead(CHARACTERGUID_S_RC_DW_UnderTavern_Voidwoken_13bb467b-de20-4726-8afd-757705352361, 0)
+AND
+QRY_SpeakerIsAvailable(_Var1)
+AND
+QueryOnlyOnce("RC_DW_UnderTavern_Voidwoken_Trig")
+THEN
+StartVoiceBark("RC_DW_VB_Arena_VoidwokenCage_Nearby", _Var1);
+
+IF
+CharacterUsedItem((CHARACTERGUID)_Var1, ITEMGUID_S_RC_DW_UnderTavern_VoidwokenCage_5be43306-e9cc-46b8-91f8-ef919ec4b3b5)
+AND
+CharacterIsDead(CHARACTERGUID_S_RC_DW_UnderTavern_Voidwoken_13bb467b-de20-4726-8afd-757705352361, 0)
+AND
+GlobalGetFlag("Arena_OnGoing", 0)
+THEN
+StartVoiceBark("RC_DW_VB_Arena_VoidwokenCage_Interact", _Var1);
+ItemSetCanInteract(ITEMGUID_S_RC_DW_UnderTavern_VoidwokenCage_5be43306-e9cc-46b8-91f8-ef919ec4b3b5, 0);
+
+IF
+AutomatedDialogEnded("RC_DW_VB_Arena_VoidwokenCage_Interact", _)
+AND
+GlobalGetFlag("Arena_OnGoing", 0)
+THEN
+ItemSetCanInteract(ITEMGUID_S_RC_DW_UnderTavern_VoidwokenCage_5be43306-e9cc-46b8-91f8-ef919ec4b3b5, 1);
+
+IF
+GlobalFlagSet("Arena_OnGoing")
+THEN
+ItemSetCanInteract(ITEMGUID_S_RC_DW_UnderTavern_VoidwokenCage_5be43306-e9cc-46b8-91f8-ef919ec4b3b5, 0);
+
+IF
+GlobalFlagCleared("Arena_OnGoing")
+THEN
+ItemSetCanInteract(ITEMGUID_S_RC_DW_UnderTavern_VoidwokenCage_5be43306-e9cc-46b8-91f8-ef919ec4b3b5, 1);
+
+PROC
+Proc_Arena_Win_TeleportOut()
+AND
+DB_Arena_PreviousLocation(CHARACTERGUID_S_RC_DW_Tavern_ArenaChamp_aa7f67da-aece-4487-83cf-96f10a018ed1, _Var1, _Var2, _Var3)
+THEN
+CharacterResurrect(CHARACTERGUID_S_RC_DW_Tavern_ArenaChamp_aa7f67da-aece-4487-83cf-96f10a018ed1);
+SetInArena(CHARACTERGUID_S_RC_DW_Tavern_ArenaChamp_aa7f67da-aece-4487-83cf-96f10a018ed1, 0);
+CharacterSetSpectating(CHARACTERGUID_S_RC_DW_Tavern_ArenaChamp_aa7f67da-aece-4487-83cf-96f10a018ed1, 0);
+TeleportTo(CHARACTERGUID_S_RC_DW_Tavern_ArenaChamp_aa7f67da-aece-4487-83cf-96f10a018ed1, ITEMGUID_S_RC_DW_UnderTavern_MurgaFinal_86a25549-18bf-420e-b813-14cc4796f34f);
+GlobalSetFlag("RC_DW_Arena_Champion_PostArena");
+SetOnStage(CHARACTERGUID_S_RC_DW_Tavern_ArenaChamp_aa7f67da-aece-4487-83cf-96f10a018ed1, 1);
+SetVarObject(CHARACTERGUID_S_RC_DW_Tavern_ArenaChamp_aa7f67da-aece-4487-83cf-96f10a018ed1, "Seat", ITEMGUID_S_RC_DW_UnderTavern_MurgaFinal_86a25549-18bf-420e-b813-14cc4796f34f);
+NOT DB_Arena_PreviousLocation(CHARACTERGUID_S_RC_DW_Tavern_ArenaChamp_aa7f67da-aece-4487-83cf-96f10a018ed1, _Var1, _Var2, _Var3);
+ProcRemoveAllDialogEntriesForSpeaker(CHARACTERGUID_S_RC_DW_Tavern_ArenaChamp_aa7f67da-aece-4487-83cf-96f10a018ed1);
+DB_Dialogs(CHARACTERGUID_S_RC_DW_Tavern_ArenaChamp_aa7f67da-aece-4487-83cf-96f10a018ed1, "RC_DW_Arena_Champion");
+
+IF
+GlobalFlagSet("RC_DW_Arena_Champion_PostArena")
+THEN
+ProcRemoveAllDialogEntriesForSpeaker(CHARACTERGUID_S_RC_DW_Tavern_ArenaChamp_aa7f67da-aece-4487-83cf-96f10a018ed1);
+DB_Dialogs(CHARACTERGUID_S_RC_DW_Tavern_ArenaChamp_aa7f67da-aece-4487-83cf-96f10a018ed1, "RC_DW_Arena_Champion");
+
+IF
+GlobalFlagSet("RC_DW_Arena_Champion_PostArena")
+AND
+DB_IsPlayer(_Var1)
+AND
+ObjectGetFlag(_Var1, "Arena_Driftwood_ChampionArenaWon", 1)
+THEN
+ChangeAttitude(CHARACTERGUID_S_RC_DW_Tavern_ArenaChamp_aa7f67da-aece-4487-83cf-96f10a018ed1, _Var1, 50);
+
+IF
+GlobalFlagSet("RC_DW_Arena_Champion_PostArena")
+AND
+DB_IsPlayer(_Var1)
+AND
+ObjectGetFlag(_Var1, "Arena_Driftwood_ChampionArenaLost", 1)
+THEN
+ChangeAttitude(CHARACTERGUID_S_RC_DW_Tavern_ArenaChamp_aa7f67da-aece-4487-83cf-96f10a018ed1, _Var1, 0);
+
+IF
+StoryEvent(CHARACTERGUID_S_RC_DW_UnderTavern_Voidwoken_13bb467b-de20-4726-8afd-757705352361, "usedDiveIntoArena")
+THEN
+Proc_RC_DW_UnderTavern_Voidwoken_DiveDialog();
+
+PROC
+Proc_RC_DW_UnderTavern_Voidwoken_DiveDialog()
+THEN
+DB_RC_DW_UnderTavern_Voidwoken_DiveDialog_Count(2);
+DB_RC_DW_UnderTavern_Voidwoken_DiveDialog_Speaker(3, NULL_00000000-0000-0000-0000-000000000000);
+DB_RC_DW_UnderTavern_Voidwoken_DiveDialog_Speaker(4, NULL_00000000-0000-0000-0000-000000000000);
+DB_RC_DW_UnderTavern_Voidwoken_DiveDialog_Speaker(5, NULL_00000000-0000-0000-0000-000000000000);
+DB_RC_DW_UnderTavern_Voidwoken_DiveDialog_Speaker(6, NULL_00000000-0000-0000-0000-000000000000);
+
+PROC
+Proc_RC_DW_UnderTavern_Voidwoken_DiveDialog()
+AND
+DB_IsPlayer(_Var1)
+AND
+DB_Arena_CharIsAlive(_, _Var1)
+AND
+IsTagged(_Var1, "AVATAR", 1)
+AND
+DB_RC_DW_UnderTavern_Voidwoken_DiveDialog_Speaker(3, NULL_00000000-0000-0000-0000-000000000000)
+THEN
+NOT DB_RC_DW_UnderTavern_Voidwoken_DiveDialog_Speaker(3, NULL_00000000-0000-0000-0000-000000000000);
+DB_RC_DW_UnderTavern_Voidwoken_DiveDialog_Speaker(3, _Var1);
+NOT DB_RC_DW_UnderTavern_Voidwoken_DiveDialog_Count(2);
+DB_RC_DW_UnderTavern_Voidwoken_DiveDialog_Count(3);
+
+PROC
+Proc_RC_DW_UnderTavern_Voidwoken_DiveDialog()
+AND
+DB_IsPlayer(_Var1)
+AND
+DB_Arena_CharIsAlive(_, _Var1)
+AND NOT
+DB_RC_DW_UnderTavern_Voidwoken_DiveDialog_Speaker(_, _Var1)
+AND
+DB_RC_DW_UnderTavern_Voidwoken_DiveDialog_Count(_Var4)
+AND
+IntegerSum(_Var4, 1, _Var5)
+THEN
+DB_RC_DW_UnderTavern_Voidwoken_DiveDialog_Speaker(_Var5, _Var1);
+NOT DB_RC_DW_UnderTavern_Voidwoken_DiveDialog_Speaker(_Var5, NULL_00000000-0000-0000-0000-000000000000);
+NOT DB_RC_DW_UnderTavern_Voidwoken_DiveDialog_Count(_Var4);
+DB_RC_DW_UnderTavern_Voidwoken_DiveDialog_Count(_Var5);
+
+PROC
+Proc_RC_DW_UnderTavern_Voidwoken_DiveDialog()
+AND
+CharacterIsDead(CHARACTERGUID_S_RC_DW_Tavern_ArenaChamp_aa7f67da-aece-4487-83cf-96f10a018ed1, 0)
+AND
+HasActiveStatus(CHARACTERGUID_S_RC_DW_Tavern_ArenaChamp_aa7f67da-aece-4487-83cf-96f10a018ed1, "CHICKEN", 0)
+AND
+HasActiveStatus(CHARACTERGUID_S_RC_DW_Tavern_ArenaChamp_aa7f67da-aece-4487-83cf-96f10a018ed1, "PETRIFIED", 0)
+AND
+HasActiveStatus(CHARACTERGUID_S_RC_DW_Tavern_ArenaChamp_aa7f67da-aece-4487-83cf-96f10a018ed1, "FROZEN", 0)
+AND
+HasActiveStatus(CHARACTERGUID_S_RC_DW_Tavern_ArenaChamp_aa7f67da-aece-4487-83cf-96f10a018ed1, "STUNNED", 0)
+THEN
+GlobalSetFlag("RC_DW_Murga_IsAvailable");
+
+PROC
+Proc_RC_DW_UnderTavern_Voidwoken_DiveDialog()
+AND
+GlobalGetFlag("RC_DW_Murga_IsAvailable", 1)
+AND
+DB_RC_DW_UnderTavern_Voidwoken_DiveDialog_Speaker(3, _Var1)
+AND
+DB_RC_DW_UnderTavern_Voidwoken_DiveDialog_Speaker(4, _Var2)
+AND
+DB_RC_DW_UnderTavern_Voidwoken_DiveDialog_Speaker(5, _Var3)
+AND
+DB_RC_DW_UnderTavern_Voidwoken_DiveDialog_Speaker(6, _Var4)
+AND
+StartDialog_Internal("RC_DW_UnderTavern_Voidwoken", 1, CHARACTERGUID_S_RC_DW_UnderTavern_Voidwoken_13bb467b-de20-4726-8afd-757705352361, CHARACTERGUID_S_RC_DW_Tavern_ArenaChamp_aa7f67da-aece-4487-83cf-96f10a018ed1, _Var1, _Var2, _Var3, _Var4, _)
+THEN
+SetStoryEvent(CHARACTERGUID_S_RC_DW_UnderTavern_Voidwoken_13bb467b-de20-4726-8afd-757705352361, "SetCombatTimeout");
+
+PROC
+Proc_RC_DW_UnderTavern_Voidwoken_DiveDialog()
+AND
+GlobalGetFlag("RC_DW_Murga_IsAvailable", 0)
+AND
+DB_RC_DW_UnderTavern_Voidwoken_DiveDialog_Speaker(3, _Var1)
+AND
+DB_RC_DW_UnderTavern_Voidwoken_DiveDialog_Speaker(4, _Var2)
+AND
+DB_RC_DW_UnderTavern_Voidwoken_DiveDialog_Speaker(5, _Var3)
+AND
+DB_RC_DW_UnderTavern_Voidwoken_DiveDialog_Speaker(6, _Var4)
+AND
+StartDialog_Internal("RC_DW_UnderTavern_Voidwoken", 1, CHARACTERGUID_S_RC_DW_UnderTavern_Voidwoken_13bb467b-de20-4726-8afd-757705352361, NULL_00000000-0000-0000-0000-000000000000, _Var1, _Var2, _Var3, _Var4, _)
+THEN
+SetStoryEvent(CHARACTERGUID_S_RC_DW_UnderTavern_Voidwoken_13bb467b-de20-4726-8afd-757705352361, "SetCombatTimeout");
+
+IF
+GlobalFlagSet("RC_DW_UnderTavern_Voidwoken_MurgaInvisible")
+AND
+CharacterConsume(CHARACTERGUID_S_RC_DW_Tavern_ArenaChamp_aa7f67da-aece-4487-83cf-96f10a018ed1, "CON_Potion_Invisible_A", _)
+THEN
+DB_NOOP(1);
+
+IF
+CharacterDied(CHARACTERGUID_S_RC_DW_Tavern_ArenaChamp_aa7f67da-aece-4487-83cf-96f10a018ed1)
+AND
+GlobalGetFlag("Arena_Driftwood_ChampionInitiated", 0)
+AND
+DB_IsPlayer(_Var1)
+THEN
+UserSetFlag(_Var1, "QuestUpdate_RC_DW_Arena_Murga_Dead");
+
+
+EXITSECTION
+ENDEXITSECTION
+
+ParentTargetEdge "ReapersCoast"

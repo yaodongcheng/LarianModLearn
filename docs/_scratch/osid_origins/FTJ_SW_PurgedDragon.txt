@@ -1,0 +1,514 @@
+Version 1
+SubGoalCombiner SGC_AND
+
+INITSECTION
+CharacterSetForceSynch(CHARACTERGUID_S_FTJ_SW_PurgedDragon_c099caa6-1938-4b4f-9365-d0881c611e71, 1);
+ItemSetForceSynch(ITEMGUID_S_FTJ_SW_PurgedDragonBones1_4ae7db6c-ba52-438d-8501-314045b887a0, 1);
+ItemSetForceSynch(ITEMGUID_S_FTJ_SW_PurgedDragonBones2_ba0ccc47-374c-4946-888e-b479b1610c46, 1);
+DB_Dialogs(CHARACTERGUID_S_FTJ_SW_PurgedDragon_c099caa6-1938-4b4f-9365-d0881c611e71, "FTJ_SW_PurgedDragon");
+ApplyStatus(CHARACTERGUID_S_FTJ_SW_PurgedDragon_c099caa6-1938-4b4f-9365-d0881c611e71, "STORY_ENCHAINED", -1, 1);
+CharacterSetAnimationSetOverride(CHARACTERGUID_S_FTJ_SW_PurgedDragon_c099caa6-1938-4b4f-9365-d0881c611e71, "Custom_Slane");
+CharacterSetAnimationOverride(CHARACTERGUID_S_FTJ_SW_PurgedDragon_c099caa6-1938-4b4f-9365-d0881c611e71, "knockdown_loop");
+DB_FTJ_SW_PurgedDragonPillar(ITEMGUID_S_FTJ_SW_PurgedDragonBones1_4ae7db6c-ba52-438d-8501-314045b887a0, "FTJ_SW_PurgedDragon_Chains1");
+DB_FTJ_SW_PurgedDragonPillar(ITEMGUID_S_FTJ_SW_PurgedDragonBones2_ba0ccc47-374c-4946-888e-b479b1610c46, "FTJ_SW_PurgedDragon_Chains2");
+DB_BlockThreatenedDialog(CHARACTERGUID_S_FTJ_SW_PurgedDragon_c099caa6-1938-4b4f-9365-d0881c611e71);
+DB_OneShot_VoiceBarkTrigger(TRIGGERGUID_S_FTJ_SW_PurgedDragonVB_e02dde5e-ff8d-41d9-b97d-dd0997dfc7ee, "FTJ_SW_VB_PurgedDragon");
+DB_OneShot_VoiceBarkTrigger(TRIGGERGUID_S_FTJ_SW_PurgedDragonBlizzardVB_5f71df80-3059-40b8-8ded-3344b81c11fc, "FTJ_SW_VB_PurgedDragonBlizzard");
+DB_OneShotPlayerTrigger(TRIGGERGUID_S_FTJ_SW_PurgedDragonFX_1558cedf-fe5d-4a63-a113-b585f6b876f9);
+ProcCharacterDisableAllCrimes(CHARACTERGUID_S_FTJ_SW_PurgedDragon_c099caa6-1938-4b4f-9365-d0881c611e71);
+SetCanFight(CHARACTERGUID_S_FTJ_SW_PurgedDragon_c099caa6-1938-4b4f-9365-d0881c611e71, 0);
+DB_HasStoryEvent(ITEMGUID_S_FTJ_SW_WitchPurgingWand_10c04dcc-ee41-4bb2-b6b5-fd9920119180, "CharacterHasItem_WitchPurgeWand");
+DB_GiveItemToEvent(ITEMGUID_S_FTJ_SW_WitchPurgingWand_10c04dcc-ee41-4bb2-b6b5-fd9920119180, "FTJ_SW_WitchPurgeWand");
+DB_Dialogs(CHARACTERGUID_S_FTJ_SW_Witch_4014aee0-56f1-47e0-a8eb-89c4b5a1da83, "FTJ_SW_Witch");
+DB_IsNotMessingAround(CHARACTERGUID_S_FTJ_SW_Witch_4014aee0-56f1-47e0-a8eb-89c4b5a1da83);
+DB_OneShot_VoiceBarkTrigger(TRIGGERGUID_S_FTJ_SW_OneShot_WitchCave_b8bbb600-aa5c-4b8a-9b27-6f1f7d8fbd77, "FTJ_SW_VB_WitchCave");
+DB_SneakTriggerSpotter(TRIGGERGUID_S_FTJ_SW_OneShot_Witch_325ccfb3-ff96-4c8d-b916-a34f31ba52e8, CHARACTERGUID_S_FTJ_SW_Witch_4014aee0-56f1-47e0-a8eb-89c4b5a1da83);
+DB_SeenDeadNPCPartyFlag(CHARACTERGUID_S_FTJ_SW_Witch_4014aee0-56f1-47e0-a8eb-89c4b5a1da83, "FTJ_SW_SawWitchDead");
+DB_FTJ_SW_WitchCreeps(S_FTJ_SW_Witch_Beetle_01_e973d472-f53a-4dee-be60-cd335f3dad7d);
+DB_FTJ_SW_WitchCreeps(CHARACTERGUID_S_FTJ_SW_Witch_Beetle_02_ea698437-fdcc-470f-8f9e-e7640c438690);
+DB_FTJ_SW_WitchCreeps(CHARACTERGUID_S_FTJ_SW_Witch_Beetle_03_a70281cd-a226-434b-b6a6-98ddedd42575);
+DB_FTJ_SW_WitchCreeps(CHARACTERGUID_S_FTJ_SW_Witch_BloodZombie_02_9d512d08-5e51-45ec-b06e-ff90fea7f6de);
+DB_FTJ_SW_WitchCreeps(CHARACTERGUID_S_FTJ_SW_Witch_BloodZombie_03_5549433c-5dec-4701-9733-8fb06009dfff);
+DB_FTJ_SW_WitchCreeps(CHARACTERGUID_S_FTJ_SW_Witch_BloodZombie_04_b714cbca-6c44-4d4d-918c-50269f773584);
+SetOnStage(CHARACTERGUID_S_FTJ_SW_Witch_Zombie_daa5de44-d3b9-47c3-aed5-9969ca29ce61, 0);
+CharacterSetCanTrade(CHARACTERGUID_S_FTJ_SW_PurgedDragon_c099caa6-1938-4b4f-9365-d0881c611e71, 0);
+
+KBSECTION
+IF
+DB_FTJ_SW_PurgedDragonPillar(_Var1, _)
+THEN
+DB_Dialogs(_Var1, "FTJ_SW_PurgedDragonPillar");
+
+PROC
+ProcOneShotTriggerEntered(_, TRIGGERGUID_S_FTJ_SW_PurgedDragonFX_1558cedf-fe5d-4a63-a113-b585f6b876f9)
+AND
+DB_FTJ_SW_PurgedDragonPillar(_Var2, _Var3)
+THEN
+PROC_LoopEffect("RS3_FX_GP_Status_Shackles_of_Pain_01", _Var2, _Var3, "FJ_FortJoy_Main", "");
+PROC_LoopEffect("RS3_FX_GP_ScriptedEvent_FTJ_Purged_Dragon_Aura_01", _Var2, _Var3, "FJ_FortJoy_Main", "");
+PROC_LoopBeamEffect("RS3_FX_GP_ScriptedEvent_ChainedDragon_Beam_01", _Var2, CHARACTERGUID_S_FTJ_SW_PurgedDragon_c099caa6-1938-4b4f-9365-d0881c611e71, "", "Neck_07_Bone", "FTJ_SW_PurgedDragon_Chains", "FJ_FortJoy_Main");
+
+PROC
+ProcOneShotTriggerEntered(_, TRIGGERGUID_S_FTJ_SW_PurgedDragonFX_1558cedf-fe5d-4a63-a113-b585f6b876f9)
+THEN
+PROC_LoopEffect("RS3_FX_GP_ScriptedEvent_ChainedDragon_Chain_01", CHARACTERGUID_S_FTJ_SW_PurgedDragon_c099caa6-1938-4b4f-9365-d0881c611e71, "FTJ_SW_PurgedDragon_Chains", "FJ_FortJoy_Main", "Neck_07_Bone");
+PROC_LoopEffect("RS3_FX_GP_ScriptedEvent_ChainedDragon_Chain_02", CHARACTERGUID_S_FTJ_SW_PurgedDragon_c099caa6-1938-4b4f-9365-d0881c611e71, "FTJ_SW_PurgedDragon_Chains", "FJ_FortJoy_Main", "Dummy_CastFX");
+PROC_LoopEffect("RS3_FX_GP_ScriptedEvent_FTJ_Purged_Dragon_Aura_01", CHARACTERGUID_S_FTJ_SW_PurgedDragon_c099caa6-1938-4b4f-9365-d0881c611e71, "FTJ_SW_PurgedDragon_Chains", "FJ_FortJoy_Main", "");
+
+IF
+DialogStarted("FTJ_SW_PurgedDragonPillar", (INTEGER)_Var1)
+AND
+DB_DialogPlayers(_Var1, _Var2, 1)
+THEN
+PartySetFlag(_Var2, "QuestUpdate_FTJ_SW_PurgedDragon_SlaneInvulnerable");
+
+IF
+ItemDestroying((ITEMGUID)_Var1)
+AND
+DB_FTJ_SW_PurgedDragonPillar(_Var1, _Var2)
+AND
+GetPosition(_Var1, _Var3, _Var4, _Var5)
+THEN
+PlayScaledEffectAtPosition("RS3_FX_GP_ScriptedEvent_BreakingShackles_01", 0.7, _Var3, _Var4, _Var5);
+PROC_StopLoopEffect(_Var1, _Var2);
+PROC_StopLoopBeamEffect(_Var1, "FTJ_SW_PurgedDragon_Chains");
+NOT DB_FTJ_SW_PurgedDragonPillar(_Var1, _Var2);
+Proc_FTJ_SW_PurgedDragonPillarCheck();
+
+PROC
+Proc_FTJ_SW_PurgedDragonPillarCheck()
+AND NOT
+DB_FTJ_SW_PurgedDragonPillar(_, _)
+THEN
+RemoveStatus(CHARACTERGUID_S_FTJ_SW_PurgedDragon_c099caa6-1938-4b4f-9365-d0881c611e71, "STORY_ENCHAINED");
+ProcCharacterEnableAllCrimes(CHARACTERGUID_S_FTJ_SW_PurgedDragon_c099caa6-1938-4b4f-9365-d0881c611e71);
+SetCanFight(CHARACTERGUID_S_FTJ_SW_PurgedDragon_c099caa6-1938-4b4f-9365-d0881c611e71, 1);
+GlobalSetFlag("FTJ_SW_PurgedDragon_Free");
+
+IF
+GlobalFlagSet("FTJ_SW_PurgedDragon_Free")
+AND
+GetPosition(HARACTERGUID_S_FTJ_SW_PurgedDragon_c099caa6-1938-4b4f-9365-d0881c611e71, _Var1, _Var2, _Var3)
+THEN
+PlayScaledEffectAtPosition("RS3_FX_GP_ScriptedEvent_BreakingShackles_01", 3, _Var1, _Var2, _Var3);
+PROC_StopLoopEffect(CHARACTERGUID_S_FTJ_SW_PurgedDragon_c099caa6-1938-4b4f-9365-d0881c611e71, "FTJ_SW_PurgedDragon_Chains");
+CharacterSetAnimationOverride(CHARACTERGUID_S_FTJ_SW_PurgedDragon_c099caa6-1938-4b4f-9365-d0881c611e71, "");
+PlayAnimation(CHARACTERGUID_S_FTJ_SW_PurgedDragon_c099caa6-1938-4b4f-9365-d0881c611e71, "transition_ko_to_crippled");
+RemoveStatus(CHARACTERGUID_S_FTJ_SW_PurgedDragon_c099caa6-1938-4b4f-9365-d0881c611e71, "STORY_ENCHAINED");
+
+PROC
+Proc_FTJ_SW_PurgedDragonPillarCheck()
+AND NOT
+DB_FTJ_SW_PurgedDragonPillar(_, _)
+AND NOT
+DB_OnlyOnce("FTJ_SW_PurgedDragonBreak")
+THEN
+Proc_StartDialog(1, "FTJ_SW_PurgedDragon_KnockDown", CHARACTERGUID_S_FTJ_SW_PurgedDragon_c099caa6-1938-4b4f-9365-d0881c611e71);
+
+PROC
+Proc_FTJ_SW_PurgedDragonPillarCheck()
+AND NOT
+DB_FTJ_SW_PurgedDragonPillar(_, _)
+AND
+DB_IsPlayer(_Var3)
+AND
+QRY_IsInRange(_Var3, CHARACTERGUID_S_FTJ_SW_PurgedDragon_c099caa6-1938-4b4f-9365-d0881c611e71, 7)
+THEN
+ApplyStatus(_Var3, "KNOCKED_DOWN", 1, 1);
+PlayEffect(_Var3, "RS3_FX_GP_ScriptedEvent_CameraShake_Intense_01");
+
+IF
+AutomatedDialogEnded("FTJ_SW_PurgedDragon_KnockDown", _)
+THEN
+Proc_StartDialog(1, "FTJ_SW_AD_PurgedDragonSecondPillar", CHARACTERGUID_S_FTJ_SW_PurgedDragon_c099caa6-1938-4b4f-9365-d0881c611e71);
+
+PROC
+Proc_FTJ_SW_PurgedDragon_StopFX()
+AND
+DB_FTJ_SW_PurgedDragonPillar(_Var1, _)
+AND
+Random(3000, _Var3)
+THEN
+ProcObjectTimer(_Var1, "Timer_FTJ_SW_PurgedDragonFxStop", _Var3);
+
+PROC
+ProcObjectTimerFinished((CHARACTERGUID)_Var1, "Timer_FTJ_SW_PurgedDragonFxStop")
+AND
+DB_FTJ_SW_PurgedDragonPillar(_Var1, _Var2)
+THEN
+NOT DB_FTJ_SW_PurgedDragonPillar(_Var1, _Var2);
+PROC_StopLoopBeamEffect(_Var1, "FTJ_SW_PurgedDragon_Chains");
+PROC_StopLoopEffect(_Var1, _Var2);
+PlayEffect(_Var1, "RS3_FX_GP_ScriptedEvent_BreakingShackles_01");
+
+PROC
+Proc_FTJ_SW_PurgedDragon_StopFX()
+THEN
+PlayEffect(CHARACTERGUID_S_FTJ_SW_PurgedDragon_c099caa6-1938-4b4f-9365-d0881c611e71, "RS3_FX_GP_ScriptedEvent_BreakingShackles_01");
+PROC_StopLoopEffect(CHARACTERGUID_S_FTJ_SW_PurgedDragon_c099caa6-1938-4b4f-9365-d0881c611e71, "FTJ_SW_PurgedDragon_Chains");
+
+IF
+AttackedByObject(CHARACTERGUID_S_FTJ_SW_PurgedDragon_c099caa6-1938-4b4f-9365-d0881c611e71, (CHARACTERGUID)_Var1, _, _, _)
+AND
+DB_IsPlayer(_Var1)
+AND NOT
+DB_GlobalFlag("FTJ_SW_PurgedDragon_Free")
+THEN
+PartySetFlag(_Var1, "QuestUpdate_FTJ_SW_PurgedDragon_SlaneInvulnerable");
+
+IF
+AttackedByObject(CHARACTERGUID_S_FTJ_SW_PurgedDragon_c099caa6-1938-4b4f-9365-d0881c611e71, (CHARACTERGUID)_Var1, _, _, _)
+AND
+DB_IsPlayer(_Var1)
+AND
+DB_GlobalFlag("FTJ_SW_PurgedDragon_Free")
+THEN
+Proc_StartDialog(1, "FTJ_SW_AD_PurgedDragonAttacked", CHARACTERGUID_S_FTJ_SW_PurgedDragon_c099caa6-1938-4b4f-9365-d0881c611e71);
+
+IF
+AttackedByObject(CHARACTERGUID_S_FTJ_SW_PurgedDragon_c099caa6-1938-4b4f-9365-d0881c611e71, (CHARACTERGUID)_Var1, (GUIDSTRING)_Var2, _, _)
+AND
+CHARACTERGUID_S_FTJ_SW_PurgedDragon_c099caa6-1938-4b4f-9365-d0881c611e71 != _Var2
+AND NOT
+DB_GlobalFlag("FTJ_SW_PurgedDragon_Petrify")
+AND
+DB_GlobalFlag("FTJ_SW_PurgedDragon_Free")
+THEN
+Proc_CountHelper("FTJ_SW_PurgedDragonBreak");
+
+IF
+DB_CountHelper("FTJ_SW_PurgedDragonBreak", 3)
+AND
+QueryOnlyOnce("FTJ_SW_PurgedDragonBreak")
+THEN
+SetCanFight(CHARACTERGUID_S_FTJ_SW_PurgedDragon_c099caa6-1938-4b4f-9365-d0881c611e71, 1);
+CharacterEnableAllCrimes(CHARACTERGUID_S_FTJ_SW_PurgedDragon_c099caa6-1938-4b4f-9365-d0881c611e71);
+DB_BlockThreatenedDialog(CHARACTERGUID_S_FTJ_SW_PurgedDragon_c099caa6-1938-4b4f-9365-d0881c611e71);
+PlayAnimation(CHARACTERGUID_S_FTJ_SW_PurgedDragon_c099caa6-1938-4b4f-9365-d0881c611e71, "cast_ground_cast", "FTJ_SW_PurgedDragonBreak");
+ProcSetRelationToPlayers(CHARACTERGUID_S_FTJ_SW_PurgedDragon_c099caa6-1938-4b4f-9365-d0881c611e71, 0);
+
+IF
+StoryEvent(CHARACTERGUID_S_FTJ_SW_PurgedDragon_c099caa6-1938-4b4f-9365-d0881c611e71, "FTJ_SW_PurgedDragonBreak")
+THEN
+CharacterSetAnimationSetOverride(CHARACTERGUID_S_FTJ_SW_PurgedDragon_c099caa6-1938-4b4f-9365-d0881c611e71, "");
+
+IF
+CharacterDied(CHARACTERGUID_S_FTJ_SW_PurgedDragon_c099caa6-1938-4b4f-9365-d0881c611e71)
+THEN
+Proc_FTJ_SW_PurgedDragon_StopFX();
+
+IF
+CharacterDied(CHARACTERGUID_S_FTJ_SW_PurgedDragon_c099caa6-1938-4b4f-9365-d0881c611e71)
+AND
+GetClosestAlivePlayer(CHARACTERGUID_S_FTJ_SW_PurgedDragon_c099caa6-1938-4b4f-9365-d0881c611e71, _Var1, _)
+AND
+QRY_IsInRange(_Var1, CHARACTERGUID_S_FTJ_SW_PurgedDragon_c099caa6-1938-4b4f-9365-d0881c611e71, 15)
+THEN
+StartVoiceBark("FTJ_SW_VB_PurgedDragonDead", _Var1);
+
+IF
+GlobalFlagSet("FTJ_SW_PurgedDragon_Hostile")
+THEN
+ProcSetRelationToPlayers(CHARACTERGUID_S_FTJ_SW_PurgedDragon_c099caa6-1938-4b4f-9365-d0881c611e71, 0);
+
+IF
+DialogEnded("FTJ_SW_PurgedDragon", (INTEGER)_Var1)
+AND
+GlobalGetFlag("FTJ_SW_PurgedDragon_Hostile", 1)
+AND
+DB_DialogPlayers(_Var1, _Var2, 1)
+THEN
+CharacterSetAnimationSetOverride(CHARACTERGUID_S_FTJ_SW_PurgedDragon_c099caa6-1938-4b4f-9365-d0881c611e71, "");
+Proc_StartDialog(1, "FTJ_SW_AD_PurgedDragonAttack", CHARACTERGUID_S_FTJ_SW_PurgedDragon_c099caa6-1938-4b4f-9365-d0881c611e71);
+
+IF
+DialogEnded("FTJ_SW_PurgedDragon", (INTEGER)_Var1)
+AND
+ObjectGetFlag(CHARACTERGUID_S_FTJ_SW_PurgedDragon_c099caa6-1938-4b4f-9365-d0881c611e71, "FTJ_SW_WitchPurgeWand", 1)
+AND
+DB_DialogPlayers(_Var1, _Var2, 1)
+THEN
+ProcCharacterDisableAllCrimes(CHARACTERGUID_S_FTJ_SW_PurgedDragon_c099caa6-1938-4b4f-9365-d0881c611e71);
+PROC_LoopEffect("RS3_FX_GP_Status_BlindingRadiance_01", CHARACTERGUID_S_FTJ_SW_PurgedDragon_c099caa6-1938-4b4f-9365-d0881c611e71, "FTJ_SW_PurgedTransform", "FJ_FortJoy_Main", "");
+SetHasDialog(CHARACTERGUID_S_FTJ_SW_PurgedDragon_c099caa6-1938-4b4f-9365-d0881c611e71, 0);
+ProcRemoveAllDialogEntriesForSpeaker(CHARACTERGUID_S_FTJ_SW_PurgedDragon_c099caa6-1938-4b4f-9365-d0881c611e71);
+ItemRemove(ITEMGUID_S_FTJ_SW_WitchPurgingWand_10c04dcc-ee41-4bb2-b6b5-fd9920119180);
+CharacterSetAnimationSetOverride(CHARACTERGUID_S_FTJ_SW_PurgedDragon_c099caa6-1938-4b4f-9365-d0881c611e71, "");
+CharacterSetAnimationOverride(CHARACTERGUID_S_FTJ_SW_PurgedDragon_c099caa6-1938-4b4f-9365-d0881c611e71, "");
+PlayAnimation(CHARACTERGUID_S_FTJ_SW_PurgedDragon_c099caa6-1938-4b4f-9365-d0881c611e71, "transform_to_lizard");
+TimerLaunch("Timer_FTJ_SW_PurgedDragonTransform", 2000);
+TimerLaunch("Timer_FTJ_SW_PurgedDragonTransformFX", 4000);
+DB_FTJ_SW_PurgedDragonFriendPlayer(_Var2);
+DB_FTJ_SW_PurgedDragonTransformed(1);
+
+IF
+TimerFinished("Timer_FTJ_SW_PurgedDragonTransform")
+AND
+GetPosition(CHARACTERGUID_S_FTJ_SW_PurgedDragon_c099caa6-1938-4b4f-9365-d0881c611e71, _Var1, _Var2, _Var3)
+THEN
+PlayScaledEffectAtPosition("RS3_FX_Skills_Air_Wind_Shout_01", 2, _Var1, _Var2, _Var3);
+Transform(CHARACTERGUID_S_FTJ_SW_PurgedDragon_c099caa6-1938-4b4f-9365-d0881c611e71, "FTJ_SW_Lizards_Dragon_Knight_f6947a49-6562-4173-8465-a3b47d7a84ee", 1);
+PlayAnimation(CHARACTERGUID_S_FTJ_SW_PurgedDragon_c099caa6-1938-4b4f-9365-d0881c611e71, "transform_from_dragon");
+
+IF
+TimerFinished("Timer_FTJ_SW_PurgedDragonTransformFX")
+AND
+DB_FTJ_SW_PurgedDragonFriendPlayer(_Var1)
+THEN
+DB_Dialogs(CHARACTERGUID_S_FTJ_SW_PurgedDragon_c099caa6-1938-4b4f-9365-d0881c611e71, "FTJ_SW_LizardDragon");
+Proc_StartDialog(0, "FTJ_SW_LizardDragon", CHARACTERGUID_S_FTJ_SW_PurgedDragon_c099caa6-1938-4b4f-9365-d0881c611e71, _Var1);
+PROC_StopLoopEffect(CHARACTERGUID_S_FTJ_SW_PurgedDragon_c099caa6-1938-4b4f-9365-d0881c611e71, "FTJ_SW_PurgedTransform");
+
+IF
+DialogEnded("FTJ_SW_LizardDragon", _)
+AND
+GlobalGetFlag("FTJ_SW_PurgedDragonTransformBack", 1)
+AND
+GetPosition(CHARACTERGUID_S_FTJ_SW_PurgedDragon_c099caa6-1938-4b4f-9365-d0881c611e71, _Var2, _Var3, _Var4)
+THEN
+NOT DB_FTJ_SW_PurgedDragonTransformed(1);
+PlayScaledEffectAtPosition("RS3_FX_Skills_Air_Wind_Shout_01", 2.5, _Var2, _Var3, _Var4);
+SetHasDialog(CHARACTERGUID_S_FTJ_SW_PurgedDragon_c099caa6-1938-4b4f-9365-d0881c611e71, 0);
+PlayAnimation(CHARACTERGUID_S_FTJ_SW_PurgedDragon_c099caa6-1938-4b4f-9365-d0881c611e71, "transform_to_dragon");
+TimerLaunch("Timer_PurgedDragonTransfromBack", 1600);
+GlobalSetFlag("FTJ_SW_PurgedDragonSaved");
+
+IF
+TimerFinished("Timer_PurgedDragonTransfromBack")
+THEN
+Transform(CHARACTERGUID_S_FTJ_SW_PurgedDragon_c099caa6-1938-4b4f-9365-d0881c611e71, "GLO_PurgedDragon_c1927c49-e7c7-42e8-9a61-2ebe6ba835f5", 1);
+TimerLaunch("Timer_PurgedDragonTransfromBack3", 100);
+
+IF
+TimerFinished("Timer_PurgedDragonTransfromBack3")
+THEN
+TeleportTo(ITEMGUID_S_FTJ_GLO_PurgedDragon_FlyoffSoundEvent_eb857918-0708-48da-8882-1ee55a9c942f, CHARACTERGUID_S_FTJ_SW_PurgedDragon_c099caa6-1938-4b4f-9365-d0881c611e71);
+PlayAnimation(CHARACTERGUID_S_FTJ_SW_PurgedDragon_c099caa6-1938-4b4f-9365-d0881c611e71, "transform_and_fly");
+PlaySound(ITEMGUID_S_FTJ_GLO_PurgedDragon_FlyoffSoundEvent_eb857918-0708-48da-8882-1ee55a9c942f, "Creatures_Dragon_ABC_Custom_Transform_From_Lizard_And_Fly_Out_01");
+TimerLaunch("Timer_PurgedDragonTransfromBack2", 3800);
+
+IF
+TimerFinished("Timer_PurgedDragonTransfromBack2")
+THEN
+SetOnStage(CHARACTERGUID_S_FTJ_SW_PurgedDragon_c099caa6-1938-4b4f-9365-d0881c611e71, 0);
+
+IF
+ObjectEnteredCombat(CHARACTERGUID_S_FTJ_SW_PurgedDragon_c099caa6-1938-4b4f-9365-d0881c611e71, _)
+AND
+DB_FTJ_SW_PurgedDragonTransformed(1)
+THEN
+NOT DB_FTJ_SW_PurgedDragonTransformed(1);
+Transform(CHARACTERGUID_S_FTJ_SW_PurgedDragon_c099caa6-1938-4b4f-9365-d0881c611e71, "GLO_PurgedDragon_c1927c49-e7c7-42e8-9a61-2ebe6ba835f5", 1);
+CharacterSetAnimationSetOverride(CHARACTERGUID_S_FTJ_SW_PurgedDragon_c099caa6-1938-4b4f-9365-d0881c611e71, "Custom_Slane");
+CharacterSetAnimationOverride(CHARACTERGUID_S_FTJ_SW_PurgedDragon_c099caa6-1938-4b4f-9365-d0881c611e71, "");
+
+IF
+DB_FTJ_SW_WitchCreeps(_Var1)
+THEN
+SetOnStage(_Var1, 0);
+
+PROC
+ProcCharInTriggerSpotted((CHARACTERGUID)_Var1, TRIGGERGUID_S_FTJ_SW_OneShot_Witch_325ccfb3-ff96-4c8d-b916-a34f31ba52e8)
+AND
+QRY_IsAvailableTo(CHARACTERGUID_S_FTJ_SW_Witch_4014aee0-56f1-47e0-a8eb-89c4b5a1da83, _Var1)
+THEN
+Proc_StartDialog(0, "FTJ_SW_Witch", CHARACTERGUID_S_FTJ_SW_Witch_4014aee0-56f1-47e0-a8eb-89c4b5a1da83, _Var1);
+
+IF
+DialogStarted("FTJ_SW_Witch", _)
+THEN
+ProcCleanUpSneakTrigger(TRIGGERGUID_S_FTJ_SW_OneShot_Witch_325ccfb3-ff96-4c8d-b916-a34f31ba52e8);
+ProcTriggerUnregisterForPlayers(TRIGGERGUID_S_FTJ_SW_OneShot_Witch_325ccfb3-ff96-4c8d-b916-a34f31ba52e8);
+
+IF
+ItemAddedToCharacter(ITEMGUID_S_FTJ_SW_WitchPurgingWand_10c04dcc-ee41-4bb2-b6b5-fd9920119180, CHARACTERGUID_S_FTJ_SW_Witch_4014aee0-56f1-47e0-a8eb-89c4b5a1da83)
+THEN
+GlobalSetFlag("FTJ_SW_WitchHasPurgingWand");
+
+IF
+ItemRemovedFromCharacter(ITEMGUID_S_FTJ_SW_WitchPurgingWand_10c04dcc-ee41-4bb2-b6b5-fd9920119180, CHARACTERGUID_S_FTJ_SW_Witch_4014aee0-56f1-47e0-a8eb-89c4b5a1da83)
+THEN
+GlobalClearFlag("FTJ_SW_WitchHasPurgingWand");
+
+IF
+ObjectFlagSet("FTJ_SW_WitchGiveWand", (GUIDSTRING)_Var1, _)
+THEN
+ItemToInventory(ITEMGUID_S_FTJ_SW_WitchPurgingWand_10c04dcc-ee41-4bb2-b6b5-fd9920119180, _Var1);
+
+IF
+DialogEnded("FTJ_SW_Witch", _)
+THEN
+SetFaction(CHARACTERGUID_S_FTJ_SW_Witch_4014aee0-56f1-47e0-a8eb-89c4b5a1da83, "Evil NPC");
+
+IF
+GlobalFlagSet("FTJ_SW_WitchSpawn")
+AND
+DB_FTJ_SW_WitchCreeps(_Var1)
+THEN
+PlayEffect(_Var1, "RS3_FX_GP_ScriptedEvent_Bloodied_Appear_01");
+CharacterAppear(_Var1, 1, "");
+
+IF
+GlobalFlagSet("FTJ_SW_WitchSpawn")
+AND
+GetDistanceTo(CHARACTERGUID_S_FTJ_SW_Witch_4014aee0-56f1-47e0-a8eb-89c4b5a1da83, CHARACTERGUID_S_FTJ_SW_MedatCorpse_31f57b16-e616-4d15-9dd7-c317bf038ebd, _Var1)
+AND
+_Var1 < 23
+AND NOT
+DB_GlobalFlag("FTJ_SW_Witch_CorpseExploded")
+THEN
+CharacterAppearAt(CHARACTERGUID_S_FTJ_SW_WitchZombie_daa5de44-d3b9-47c3-aed5-9969ca29ce61, CHARACTERGUID_S_FTJ_SW_MedatCorpse_31f57b16-e616-4d15-9dd7-c317bf038ebd, 0, "");
+PlayEffect(CHARACTERGUID_S_FTJ_SW_MedatCorpse_31f57b16-e616-4d15-9dd7-c317bf038ebd, "RS3_FX_GP_ScriptedEvent_Bloodied_Appear_01");
+
+IF
+GlobalFlagSet("FTJ_SW_WitchSpawn")
+THEN
+SetOnStage(CHARACTERGUID_S_FTJ_SW_MedatCorpse_31f57b16-e616-4d15-9dd7-c317bf038ebd, 0);
+
+IF
+ObjectEnteredCombat(CHARACTERGUID_S_FTJ_SW_Witch_4014aee0-56f1-47e0-a8eb-89c4b5a1da83, _)
+AND
+QueryOnlyOnce("FTJ_SW_WitchCombat")
+THEN
+SetScriptFrame(CHARACTERGUID_S_FTJ_SW_Witch_4014aee0-56f1-47e0-a8eb-89c4b5a1da83, "CombatInit");
+
+IF
+ObjectFlagSet("FTJ_SW_WitchBreath", (CHARACTERGUID)_Var1, _)
+THEN
+CharacterSetHitpointsPercentage(_Var1, 10);
+ApplyStatus(_Var1, "DISEASED", 30, 1);
+
+IF
+AttackedByObject(CHARACTERGUID_S_FTJ_SW_Witch_4014aee0-56f1-47e0-a8eb-89c4b5a1da83, (CHARACTERGUID)_Var1, _, _, _)
+AND
+DB_IsPlayer(_Var1)
+AND
+QueryOnlyOnce("FTJ_SW_WitchCombat")
+THEN
+SetScriptFrame(CHARACTERGUID_S_FTJ_SW_Witch_4014aee0-56f1-47e0-a8eb-89c4b5a1da83, "CombatInit");
+SetFaction(CHARACTERGUID_S_FTJ_SW_Witch_4014aee0-56f1-47e0-a8eb-89c4b5a1da83, "Evil NPC");
+ProcTriggerUnregisterForPlayers(TRIGGERGUID_S_FTJ_SW_OneShot_Witch_325ccfb3-ff96-4c8d-b916-a34f31ba52e8);
+
+IF
+CharacterDied(CHARACTERGUID_S_FTJ_SW_Witch_4014aee0-56f1-47e0-a8eb-89c4b5a1da83)
+THEN
+GlobalSetFlag("FTJ_SW_RadekaDead");
+
+IF
+CharacterUsedSkillOnTarget(_, CHARACTERGUID_S_FTJ_SW_MedatCorpse_31f57b16-e616-4d15-9dd7-c317bf038ebd, "Target_BloatedCorpse", _, _)
+THEN
+GlobalSetFlag("FTJ_SW_Witch_CorpseExploded");
+
+IF
+ObjectFlagSet("FTJ_SW_PurgedDragonAddChained", (GUIDSTRING)_Var1, _)
+THEN
+ObjectSetFlag(_Var1, "QuestAdd_FTJ_SW_PurgedDragon");
+ObjectSetFlag(_Var1, "QuestUpdate_FTJ_SW_PurgedDragon_MetDragon");
+
+IF
+ObjectFlagSet("FTJ_SW_PurgedDragonAddInfo", (CHARACTERGUID)_Var1, _)
+THEN
+ObjectSetFlag(_Var1, "QuestAdd_FTJ_SW_PurgedDragon");
+ObjectSetFlag(_Var1, "QuestUpdate_FTJ_SW_PurgedDragon_DragonInfo");
+
+IF
+CharacterDied(CHARACTERGUID_S_FTJ_SW_PurgedDragon_c099caa6-1938-4b4f-9365-d0881c611e71)
+AND
+DB_IsPlayer(_Var1)
+THEN
+ObjectSetFlag(_Var1, "QuestUpdate_FTJ_SW_PurgedDragon_DragonDead");
+
+IF
+GlobalFlagSet("FTJ_SW_PurgedDragon_Free")
+AND
+DB_IsPlayer(_Var1)
+AND
+ObjectGetFlag(_Var1, "QuestAdd_FTJ_SW_PurgedDragon", 1)
+THEN
+ObjectSetFlag(_Var1, "QuestUpdate_FTJ_SW_PurgedDragon_UnchainedDragon");
+
+IF
+ObjectFlagSet("FTJ_SW_PurgedDragon_Statue", (CHARACTERGUID)_Var1, _)
+THEN
+ObjectSetFlag(_Var1, "QuestUpdate_FTJ_SW_PurgedDragon_Statue");
+ObjectSetFlag(_Var1, "QuestClose_FTJ_SW_PurgedDragon");
+
+IF
+CharacterDied(CHARACTERGUID_S_FTJ_SW_Witch_4014aee0-56f1-47e0-a8eb-89c4b5a1da83)
+AND
+DB_IsPlayer(_Var1)
+AND
+ObjectGetFlag(_Var1, "QuestUpdate_FTJ_SW_PurgedDragon_MetWitch", 1)
+THEN
+ObjectSetFlag(_Var1, "QuestUpdate_FTJ_SW_PurgedDragon_KilledWitch");
+
+IF
+CharacterDied(CHARACTERGUID_S_FTJ_SW_Witch_4014aee0-56f1-47e0-a8eb-89c4b5a1da83)
+AND
+DB_IsPlayer(_Var1)
+AND
+ObjectGetFlag(_Var1, "QuestUpdate_FTJ_SW_PurgedDragon_MetDragon", 1)
+THEN
+ObjectSetFlag(_Var1, "QuestUpdate_FTJ_SW_PurgedDragon_KilledWitch");
+
+PROC
+ProcRegionEnded("FJ_FortJoy_Main")
+AND
+DB_IsPlayer(_Var1)
+AND
+QuestAccepted(_Var1, "FTJ_SW_PurgedDragon", 1)
+AND
+QuestIsClosed(_Var1, "FTJ_SW_PurgedDragon", 0)
+THEN
+proc_Check_FTJ_SW_PurgedDragon_ActEnd_Close(_Var1);
+
+PROC
+proc_Check_FTJ_SW_PurgedDragon_ActEnd_Close((CHARACTERGUID)_Var1)
+AND
+UserGetFlag(_Var1, "QuestUpdate_FTJ_SW_PurgedDragon_UnpurgedDragon", 1)
+THEN
+ProcSetQuestNPCFlag("FTJ_SW_PurgedDragon", "QuestUpdate_FTJ_SW_PurgedDragon_UnpurgedDragon");
+ObjectSetFlag(_Var1, "QuestUpdate_FTJ_SW_PurgedDragon_NoHelp");
+
+PROC
+proc_Check_FTJ_SW_PurgedDragon_ActEnd_Close((CHARACTERGUID)_Var1)
+AND
+UserGetFlag(_Var1, "QuestUpdate_FTJ_SW_PurgedDragon_UnpurgedDragon", 0)
+THEN
+ObjectSetFlag(_Var1, "QuestUpdate_FTJ_SW_PurgedDragon_ActEnd");
+
+IF
+SavegameLoaded((INTEGER)_Var1, (INTEGER)_Var2, (INTEGER)_Var3, (INTEGER)_Var4)
+AND
+QRY_VersionIsOlderThan(_Var1, _Var2, _Var3, _Var4, 3, 6, 2, 0)
+THEN
+DB_SeenDeadNPCPartyFlag(CHARACTERGUID_S_FTJ_SW_Witch_4014aee0-56f1-47e0-a8eb-89c4b5a1da83, "FTJ_SW_SawWitchDead");
+
+IF
+SavegameLoaded((INTEGER)_Var1, (INTEGER)_Var2, (INTEGER)_Var3, (INTEGER)_Var4)
+AND
+QRY_VersionIsOlderThan(_Var1, _Var2, _Var3, _Var4, 3, 6, 2, 0)
+AND
+DB_Dead(S_FTJ_SW_Witch_4014aee0-56f1-47e0-a8eb-89c4b5a1da83)
+AND
+DB_IsPlayer(_Var5)
+THEN
+PartySetFlag(_Var5, "FTJ_SW_SawWitchDead", 0);
+
+IF
+TextEventSet("Timer_PurgedDragonTransfromBack")
+THEN
+TimerLaunch("Timer_PurgedDragonTransfromBack", 2000);
+
+PROC
+ProcRegionEnded("FJ_FortJoy_Main")
+THEN
+CharacterSetForceSynch(CHARACTERGUID_S_FTJ_SW_PurgedDragon_c099caa6-1938-4b4f-9365-d0881c611e71, 0);
+ItemSetForceSynch(ITEMGUID_S_FTJ_SW_PurgedDragonBones1_4ae7db6c-ba52-438d-8501-314045b887a0, 0);
+ItemSetForceSynch(ITEMGUID_S_FTJ_SW_PurgedDragonBones2_ba0ccc47-374c-4946-888e-b479b1610c46, 0);
+
+
+EXITSECTION
+ENDEXITSECTION
+
+ParentTargetEdge "FortJoy"

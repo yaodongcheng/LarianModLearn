@@ -1,0 +1,1344 @@
+Version 1
+SubGoalCombiner SGC_AND
+
+INITSECTION
+DB_Dialogs(CHARACTERGUID_S_GLO_DLC_SquirrelWizard_9183620e-c7d1-4762-b7c6-512045da9325, "DLC_SquirrelKnight");
+DB_Ghosts(CHARACTERGUID_S_GLO_DLC_SquirrelWizard_9183620e-c7d1-4762-b7c6-512045da9325, CHARACTERGUID_S_GLO_DLC_SquirrelWizard_Ghost_7044e6f2-cc71-4a18-bd5f-c7fb3d4fdbc7, "DLC_SquirrelKnight");
+DB_IgnoreAssault(CHARACTERGUID_S_GLO_SquirrelKnight_9183620e-c7d1-4762-b7c6-512045da9325);
+SetOnStage(CHARACTERGUID_S_GLO_DLC_SquirrelWizard_9183620e-c7d1-4762-b7c6-512045da9325, 0);
+ObjectSetFlag(CHARACTERGUID_S_GLO_DLC_SquirrelWizard_Ghost_7044e6f2-cc71-4a18-bd5f-c7fb3d4fdbc7, "DLC_SquirrelKnight_IsGhost");
+ObjectSetFlag(CHARACTERGUID_S_GLO_SquirrelKnight_9183620e-c7d1-4762-b7c6-512045da9325, "GLO_IgnoredBySourceTotems");
+ProcCharacterDisableAllCrimes(CHARACTERGUID_S_GLO_SquirrelKnight_9183620e-c7d1-4762-b7c6-512045da9325);
+DB_SquirrelWizard_ReflectionDialogs("FTJ_SW_HoEReturnToShrine", "DLC_SquirrelKnight_PlayerMetGod", "CharacterFlag");
+DB_SquirrelWizard_ReflectionDialogs("LV_HoE_Main", "DLC_SquirrelKnight_EnteredLV", "Region");
+DB_SquirrelWizard_ReflectionDialogs("RC_Main", "DLC_SquirrelKnight_EnteredRC", "Region");
+DB_SquirrelWizard_ReflectionDialogs("RC_DW_Meistr_Dream_Visit1", "DLC_SquirrelKnight_PlayerMetGod_RC", "CharacterFlag");
+DB_SquirrelWizard_ReflectionDialogs("CoS_Main", "DLC_SquirrelKnight_EnteredCoS", "Region");
+DB_SquirrelWizard_ReflectionDialogs("QuestUpdate_CoS_ArenaOfTheOne_End", "DLC_SquirrelKnight_DNotS", "CharacterFlag");
+DB_SquirrelWizard_ReflectionDialogs("Arx_Main", "DLC_SquirrelKnight_EnteredArx", "Region");
+DB_SquirrelWizard_ReflectionDialogs("ARX_EnteredArx", "DLC_SquirrelKnight_EnteredArx_City", "CharacterFlag");
+DB_SquirrelWizard_ReflectionDialogs("Arx_Endgame", "DLC_SquirrelKnight_EnteredEndgame", "Region");
+DB_SquirrelWizard_RecipeUnlock("FTJ_SW_HoEReturnToShrine", "CharacterFlag", "DLC_SquirrelWizard_RecipeUnlock_001", "DLC_SquirrelWizard_RecipeLearn_001", "SKILLBOOK_Air_Windwalker");
+DB_SquirrelWizard_RecipeUnlock("RC_Main", "Region", "DLC_SquirrelWizard_RecipeUnlock_002", "DLC_SquirrelWizard_RecipeLearn_002", "SKILLBOOK_Fire_Fireblood");
+DB_SquirrelWizard_RecipeUnlock("CoS_Main", "Region", "DLC_SquirrelWizard_RecipeUnlock_003", "DLC_SquirrelWizard_RecipeLearn_003", "SKILLBOOK_Water_VampiricHungerAura_A");
+DB_SquirrelWizard_RecipeUnlock("CoS_Main", "Region", "DLC_SquirrelWizard_RecipeUnlock_003", "DLC_SquirrelWizard_RecipeLearn_003", "SKILLBOOK_Water_VampiricHungerAura_B");
+DB_SquirrelWizard_RecipeUnlock("CoS_Main", "Region", "DLC_SquirrelWizard_RecipeUnlock_003", "DLC_SquirrelWizard_RecipeLearn_003", "SKILLBOOK_Water_VampiricHungerAura_C");
+DB_SquirrelWizard_RecipeUnlock("ARX_EnteredArx", "CharacterFlag", "DLC_SquirrelWizard_RecipeUnlock_004", "DLC_SquirrelWizard_RecipeLearn_004", "SKILLBOOK_Water_BloodStorm_A");
+DB_SquirrelWizard_RecipeUnlock("ARX_EnteredArx", "CharacterFlag", "DLC_SquirrelWizard_RecipeUnlock_004", "DLC_SquirrelWizard_RecipeLearn_004", "SKILLBOOK_Water_BloodStorm_B");
+DB_SquirrelWizard_RecipeUnlock("ARX_EnteredArx", "CharacterFlag", "DLC_SquirrelWizard_RecipeUnlock_004", "DLC_SquirrelWizard_RecipeLearn_004", "SKILLBOOK_Water_BloodStorm_C");
+DB_DLC_SquirrelWizard_Flags_DoNotTransfer("NULL");
+DB_DLC_SquirrelKnight_RecruitPositions("FJ_FortJoy_Main", TRIGGERGUID_S_DLC_SquirrelKnight_RecruitPosition_Shelter_924c4ad1-9924-4435-b05b-3ff9ff7013e1);
+DB_DLC_SquirrelKnight_RecruitPositions("LV_HoE_Main", TRIGGERGUID_S_DLC_SquirrelKnight_RecruitPosition_LV_b9b5f5bd-f888-4116-8235-ee0efc711bfe);
+DB_DLC_SquirrelKnight_RecruitPositions("RC_Main", TRIGGERGUID_S_DLC_SquirrelKnight_RecruitPosition_LV_b9b5f5bd-f888-4116-8235-ee0efc711bfe);
+DB_DLC_SquirrelKnight_RecruitPositions("CoS_Main", TRIGGERGUID_S_DLC_SquirrelKnight_RecruitPosition_LV_b9b5f5bd-f888-4116-8235-ee0efc711bfe);
+DB_DLC_SquirrelKnight_RecruitPositions("CoS_Main_Ending", TRIGGERGUID_S_DLC_SquirrelKnight_RecruitPosition_LV_b9b5f5bd-f888-4116-8235-ee0efc711bfe);
+DB_DLC_SquirrelKnight_RecruitPositions("Arx_Main", TRIGGERGUID_S_DLC_SquirrelKnight_RecruitPosition_LV_b9b5f5bd-f888-4116-8235-ee0efc711bfe);
+DB_DLC_SquirrelKnight_RecruitPositions("Arx_Endgame", TRIGGERGUID_S_DLC_SquirrelKnight_RecruitPosition_EG_RecruitPosition_14d819f0-29a9-45ff-bf6f-24124293c1cd);
+DB_Followers(CHARACTERGUID_S_GLO_DLC_SquirrelKnight_9183620e-c7d1-4762-b7c6-512045da9325, "DLC_SquirrelKnight_OwnerFlag");
+DB_Followers(CHARACTERGUID_S_GLO_DLC_SquirrelKnight_Ghost_7044e6f2-cc71-4a18-bd5f-c7fb3d4fdbc7, "DLC_SquirrelKnight_Ghost_OwnerFlag");
+DB_SquirrelWizard_AutomatedDialogs("DLC_SquirrelKnight_AD_BlackCat", "FTJ_VB_BlackCat", "DialogEnd");
+DB_SquirrelWizard_AutomatedDialogs("DLC_SquirrelKnight_AD_EnterImpTemple", "CoS_Temples_Imp_VB_EnteredPocketRealm", "DialogEnd");
+DB_SquirrelWizard_AutomatedDialogs("DLC_SquirrelKnight_AD_EnteredShelter", "DLC_SquirrelKnight_FTJ_EnteredShelter", "CharacterFlag");
+DB_SquirrelWizard_AutomatedDialogs("DLC_SquirrelKnight_AD_ReturnedToLvFromHoE", "LV_HoE_PlayerReturnedToLvFromHoE", "CharacterFlag");
+DB_SquirrelWizard_AutomatedDialogs("DLC_SquirrelKnight_AD_AotO", "CoS_AotO_VB_AwakenInRubble", "DialogEnd");
+DB_SquirrelWizard_AutomatedDialogs("DLC_SquirrelKnight_AD_LVSkeletonCat", "LV_SkeletonCat", "DialogEnd");
+DB_SquirrelWizard_AutomatedDialogs("DLC_SquirrelKnight_AD_FtjEnteredHoE", "FTJ_SW_VB_EnteredHoE", "DialogEnd");
+DB_SquirrelWizard_AutomatedDialogs("DLC_SquirrelKnight_AD_BeforeEndGameBattle", "EG_ShipMates", "DialogEnd");
+DB_SquirrelWizard_AutomatedDialogs("DLC_SquirrelKnight_AD_ArxLoremaster", "ARX_Loremaster", "DialogEnd");
+DB_SquirrelWizard_AutomatedDialogs("DLC_SquirrelKnight_AD_ArxSquirrels", "ARX_Outskirts_Squirrel_000", "PetPalDialogEnd");
+DB_SquirrelWizard_AutomatedDialogs("DLC_SquirrelKnight_AD_ArxSquirrels", "ARX_Outskirts_Squirrel_001", "PetPalDialogEnd");
+DB_SquirrelWizard_AutomatedDialogs("DLC_SquirrelKnight_AD_ArxSquirrels", "ARX_Outskirts_Squirrel_002", "PetPalDialogEnd");
+DB_SquirrelWizard_AutomatedDialogs("DLC_SquirrelKnight_AD_PeeperJoined", "RC_DW_VC_IsOwnerOfChick", "CharacterFlag");
+DB_SquirrelWizard_AutomatedDialogs("DLC_SquirrelKnight_AD_SawConsulateLizardRespawn", "DLC_SquirrelKnight_SawConsulateLizardRespawn", "CharacterFlag");
+DB_SquirrelWizard_AutomatedDialogs("DLC_SquirrelKnight_AD_DeathFogReleasedToArx", "QuestUpdate_RC_ARX_TheImperialDwarves_Deathfog_ReleasedToArx", "CharacterFlag");
+DB_SquirrelWizard_AutomatedDialogs("DLC_SquirrelKnight_AD_SavedArx", "QuestUpdate_RC_ARX_TheImperialDwarves_Deathfog_ReleasedToSea", "CharacterFlag");
+DB_SquirrelWizard_AutomatedDialogs("DLC_SquirrelKnight_AD_SavedArx", "QuestUpdate_RC_ARX_TheImperialDwarves_Deathfog_DestroyedMachine", "CharacterFlag");
+DB_SquirrelWizard_AutomatedDialogs("DLC_SquirrelKnight_AD_LeftFortJoy", TRIGGERGUID_S_FTJ_DallisEventAutoEnd_Poly_c66c0ceb-84d0-42f2-af77-854d178a58d5);
+DB_SquirrelWizard_AutomatedDialogs("DLC_SquirrelKnight_AD_EnteredMargsBridge", TRIGGERGUID_S_RC_DF_Troll_Bridge_FieldsWest_ControlBox_dec3e360-4f07-4c8b-936b-47ee164c6d27);
+DB_SquirrelWizard_AutomatedDialogs("DLC_SquirrelKnight_AD_EnterEternalTemple", "RC_OIL_VB_TombComment", "DialogEnd");
+DB_SquirrelWizard_AutomatedDialogs("DLC_SquirrelKnight_AD_EnterSawMill", TRIGGERGUID_S_RC_MIL_REGION_SawMill_2fb470b0-2430-4a16-a1f6-1439a679759e);
+DB_SquirrelWizard_AutomatedDialogs("DLC_SquirrelKnight_AD_ExploreBloodIsland", TRIGGERGUID_S_DLC_SquirrelKnight_BIVoiceBark_Trigger_be8d0f8a-e317-439b-8f56-db85e8880393);
+DB_SquirrelWizard_AutomatedDialogs("DLC_SquirrelKnight_AD_CombatWithFtjVwBoss", CHARACTERGUID_S_FTJ_SW_VWBoss_VoidWoken_112f8c17-ea77-4658-ac72-239154772fb8);
+DB_SquirrelWizard_AutomatedDialogs("DLC_SquirrelKnight_AD_EnterAcademyLibrary", TRIGGERGUID_S_CoS_SUB_Academy_Library_bb3fbf51-7449-4dd9-b230-d5692c517e6e);
+DB_SquirrelWizard_AutomatedDialogs("DLC_SquirrelKnight_AD_ExploreElfTemple", TRIGGERGUID_S_DLC_SquirrelKnight_ElfTempleVoiceBark_Trigger_8128358a-8eec-4a8c-85f9-a6aaeb65e9bd);
+DB_SharedObjectFlags("DLC_SquirrelKnight_Dismissed");
+
+KBSECTION
+IF
+SavegameLoaded(_, _, _, _)
+AND NOT
+DB_SirLoraSwitchUnlock(1)
+AND
+IsSwitch(1)
+THEN
+DB_SirLoraSwitchUnlock(1);
+
+PROC
+PROC_Shared_CharacterCreationFinished()
+AND
+IsSwitch(1)
+THEN
+DB_SirLoraSwitchUnlock(1);
+
+QRY
+QRY_CharacterHasDLC((CHARACTERGUID)_Var1, "DLC Squirrel", 1)
+AND
+DB_SirLoraSwitchUnlock(1)
+THEN
+DB_Noop(1);
+
+QRY
+QRY_CharacterHasDLC((CHARACTERGUID)_Var1, (STRING)_Var2, (INTEGER)_Var3)
+AND
+CharacterHasDLC(_Var1, _Var2, _Var3)
+THEN
+DB_Noop(1);
+
+PROC
+Proc_DialogFlagSetup("DLC_SquirrelKnight", _, (GUIDSTRING)_Var2)
+THEN
+ObjectClearFlag(_Var2, "DLC_SquirrelKnight_HasDLC");
+
+PROC
+Proc_DialogFlagSetup("DLC_SquirrelKnight", _, (GUIDSTRING)_Var2)
+AND
+QRY_CharacterHasDLC(_Var2, "DLC Squirrel", 1)
+THEN
+ObjectSetFlag(_Var2, "DLC_SquirrelKnight_HasDLC");
+
+PROC
+Proc_CheckTransferSquirrelTo((CHARACTERGUID)_Var1)
+AND
+DB_DLC_SquirrelWizard_PlayerBond(_Var2, _Var3)
+AND
+_Var3 != _Var1
+THEN
+Proc_TransferSquirrelTo(_Var2, _Var1);
+
+PROC
+Proc_TransferSquirrelTo((CHARACTERGUID)_Var1, (CHARACTERGUID)_Var2)
+AND
+DB_DLC_SquirrelWizard_PlayerBond(_Var1, _Var3)
+AND
+ObjectGetFlag(_Var3, "DLC_SquirrelKnight_Dismissed", 1)
+THEN
+ObjectShareFlag(_Var2, "DLC_SquirrelKnight_Dismissed");
+
+PROC
+Proc_TransferSquirrelTo((CHARACTERGUID)_Var1, _)
+AND
+DB_DLC_SquirrelWizard_PlayerBond(_Var1, _Var3)
+AND
+DB_Followers(_Var1, _Var4)
+THEN
+ObjectClearFlag(_Var3, _Var4);
+ClearTag(_Var3, "SQUIRRELKNIGHT_PLAYER");
+NOT DB_DLC_SquirrelWizard_PlayerBond(_Var1, _Var3);
+ObjectClearFlag(_Var3, "DLC_SquirrelKnight_Dismissed");
+
+PROC
+Proc_TransferSquirrelTo((CHARACTERGUID)_Var1, (CHARACTERGUID)_Var2)
+AND
+DB_Followers(_Var1, _)
+THEN
+SetTag(_Var2, "SQUIRRELKNIGHT_PLAYER");
+DB_DLC_SquirrelWizard_PlayerBond(_Var1, _Var2);
+Proc_LetSquirrelFollowNewOwner(_Var1, _Var2);
+Proc_SquirrelFoop(_Var1);
+
+PROC
+Proc_LetSquirrelFollowNewOwner((CHARACTERGUID)_Var1, (CHARACTERGUID)_Var2)
+AND NOT
+DB_DLC_SquirrelWizard_FollowPaused("Dismissed")
+AND
+DB_Followers(_Var1, _Var3)
+THEN
+ObjectSetFlag(_Var2, _Var3);
+Proc_SquirrelTeleportToOwner(_Var1, _Var2);
+
+PROC
+Proc_SquirrelTeleportToOwner((CHARACTERGUID)_Var1, (CHARACTERGUID)_Var2)
+AND
+GetDistanceTo(_Var1, _Var2, _Var3)
+AND
+_Var3 > 4
+THEN
+ProcForceStopDialog(_Var1);
+TeleportTo(_Var1, _Var2, "", 0);
+
+PROC
+Proc_SquirrelFoop((CHARACTERGUID)_Var1)
+AND
+ObjectIsOnStage(_Var1, 0)
+THEN
+Foop(_Var1);
+
+IF
+RegionStarted("FJ_FortJoy_Main")
+AND
+GlobalGetFlag("GLO_DLC_SquirrelWizard_Activated", 0)
+THEN
+Proc_DLC_TrySpawn_SquirrelWizard();
+
+IF
+SavegameLoaded(_, _, _, _)
+AND NOT
+DB_CurrentLevel("TUT_Tutorial_A")
+AND
+GlobalGetFlag("GLO_DLC_SquirrelWizard_Activated", 0)
+THEN
+Proc_DLC_TrySpawn_SquirrelWizard();
+
+IF
+UserConnected(_, _, _)
+AND NOT
+DB_CurrentLevel("TUT_Tutorial_A")
+AND
+DB_CurrentLevel(_Var4)
+AND
+IsGameLevel(_Var4, 1)
+AND
+GlobalGetFlag("GLO_DLC_SquirrelWizard_Activated", 0)
+THEN
+Proc_DLC_TrySpawn_SquirrelWizard();
+
+IF
+DLCUpdated("DLC Squirrel", _, 1)
+AND NOT
+DB_CurrentLevel("TUT_Tutorial_A")
+AND
+DB_CurrentLevel(_Var2)
+AND
+IsGameLevel(_Var2, 1)
+AND
+GlobalGetFlag("GLO_DLC_SquirrelWizard_Activated", 0)
+THEN
+Proc_DLC_TrySpawn_SquirrelWizard();
+
+IF
+TextEventSet("DLC_SquirrelKnight")
+AND
+DB_IsPlayer(_Var1)
+AND
+IsTagged(_Var1, "AVATAR", 1)
+AND NOT
+DB_DLC_SquirrelWizard_PlayerBond(_, _)
+THEN
+Proc_DLC_SquirrelWizardSpawn(_Var1);
+
+IF
+UserConnected(_, _, _)
+AND
+DB_DLC_SquirrelWizard_PlayerBond(_Var4, _)
+AND
+ObjectIsOnStage(_Var4, 0)
+THEN
+Proc_DLC_TryRespawn_SquirrelWizard();
+
+IF
+SavegameLoaded(_, _, _, _)
+AND
+DB_DLC_SquirrelWizard_PlayerBond(_Var5, _)
+AND
+ObjectIsOnStage(_Var5, 0)
+THEN
+Proc_DLC_TryRespawn_SquirrelWizard();
+
+IF
+DB_DLC_SquirrelWizard_PlayerBond(_, _Var2)
+AND NOT
+DB_IsPlayer(_Var2)
+THEN
+Proc_DLC_TryReassign_SquirrelWizard();
+
+IF
+SavegameLoaded(_, _, _, _)
+AND
+DB_DLC_SquirrelWizard_PlayerBond(_, _)
+THEN
+Proc_DLC_TryDeSpawn_SquirrelWizard();
+
+IF
+UserDisconnected(_, _, _)
+AND
+DB_DLC_SquirrelWizard_PlayerBond(_, _)
+THEN
+Proc_DLC_TryDeSpawn_SquirrelWizard();
+
+PROC
+Proc_DLC_TrySpawn_SquirrelWizard()
+AND
+CharacterGetHostCharacter(_Var1)
+AND
+QRY_CharacterHasDLC(_Var1, "DLC Squirrel", 1)
+AND NOT
+DB_DLC_SquirrelWizard_PlayerBond(_, _)
+THEN
+Proc_DLC_SquirrelWizardSpawn(_Var1);
+
+PROC
+Proc_DLC_TrySpawn_SquirrelWizard()
+AND
+GlobalGetFlag("GLO_DLC_SquirrelWizard_Activated", 0)
+AND
+DB_IsPlayer(_Var1)
+AND
+QRY_CharacterHasDLC(_Var1, "DLC Squirrel", 1)
+AND NOT
+DB_DLC_SquirrelWizard_PlayerBond(_, _)
+THEN
+Proc_DLC_SquirrelWizardSpawn(_Var1);
+
+PROC
+Proc_DLC_SquirrelWizardSpawn((CHARACTERGUID)_Var1)
+THEN
+ObjectSetFlag(_Var1, "DLC_SquirrelKnight_Dismissed");
+SetVarInteger(CHARACTERGUID_S_GLO_DLC_SquirrelWizard_9183620e-c7d1-4762-b7c6-512045da9325, "PauseFollowWhileHidden", 1);
+SetTag(_Var1, "SQUIRRELKNIGHT_PLAYER");
+GlobalSetFlag("GLO_DLC_SquirrelWizard_Activated");
+DB_DLC_SquirrelWizard_PlayerBond(CHARACTERGUID_S_GLO_DLC_SquirrelWizard_9183620e-c7d1-4762-b7c6-512045da9325, _Var1);
+SetOnStage(CHARACTERGUID_S_GLO_DLC_SquirrelWizard_9183620e-c7d1-4762-b7c6-512045da9325, 1);
+SetStoryEvent(S_GLO_SquirrelKnight_9183620e-c7d1-4762-b7c6-512045da9325, "StartEventOnSight_RestartSpotting");
+
+PROC
+Proc_DLC_SquirrelWizardSpawn((CHARACTERGUID)_Var1)
+AND
+DB_CurrentLevel("FJ_FortJoy_Main")
+AND
+ObjectGetFlag(_Var1, "QuestUpdate_FTJ_Escape_EnterDunes", 1)
+THEN
+TeleportTo(CHARACTERGUID_S_GLO_DLC_SquirrelWizard_9183620e-c7d1-4762-b7c6-512045da9325, TRIGGERGUID_S_DLC_SquirrelKnight_RecruitPosition_Shelter_924c4ad1-9924-4435-b05b-3ff9ff7013e1, "", 0);
+
+PROC
+Proc_DLC_SquirrelWizardSpawn((CHARACTERGUID)_Var1)
+AND NOT
+DB_CurrentLevel("FJ_FortJoy_Main")
+AND
+DB_CurrentLevel(_Var2)
+AND
+DB_DLC_SquirrelKnight_RecruitPositions(_Var2, _Var3)
+THEN
+TeleportTo(CHARACTERGUID_S_GLO_DLC_SquirrelWizard_9183620e-c7d1-4762-b7c6-512045da9325, _Var3, "", 0);
+
+PROC
+Proc_DLC_SquirrelWizardSpawn((CHARACTERGUID)_Var1)
+AND
+DB_CurrentLevel("FJ_FortJoy_Main")
+AND
+ObjectGetFlag(_Var1, "QuestUpdate_FTJ_Escape_EnterDunes", 0)
+THEN
+TeleportTo(CHARACTERGUID_S_GLO_DLC_SquirrelWizard_9183620e-c7d1-4762-b7c6-512045da9325, TRIGGERGUID_S_FTJ_DLC_SquirrelWizard_SpawnPoint_2fd623f7-34f5-470d-bce3-3aa60ce50c3b, "", 0);
+CharacterLookFromTrigger(CHARACTERGUID_S_GLO_DLC_SquirrelKnight_9183620e-c7d1-4762-b7c6-512045da9325, TRIGGERGUID_S_FTJ_DLC_SquirrelWizard_SpawnPoint_2fd623f7-34f5-470d-bce3-3aa60ce50c3b, 1);
+
+PROC
+Proc_DLC_TryDeSpawn_SquirrelWizard()
+AND
+DB_DLC_SquirrelWizard_PlayerBond(_Var1, _Var2)
+AND
+QRY_CharacterHasDLC(_Var2, "DLC Squirrel", 1)
+THEN
+DB_DLC_SquirrelPotentialCandidate(_Var2);
+
+PROC
+Proc_DLC_TryDeSpawn_SquirrelWizard()
+AND NOT
+DB_DLC_SquirrelPotentialCandidate(_)
+AND
+CharacterGetHostCharacter(_Var2)
+AND
+QRY_CharacterHasDLC(_Var2, "DLC Squirrel", 1)
+THEN
+DB_DLC_SquirrelPotentialCandidate(_Var2);
+
+PROC
+Proc_DLC_TryDeSpawn_SquirrelWizard()
+AND
+DB_IsPlayer(_Var1)
+AND NOT
+DB_DLC_SquirrelPotentialCandidate(_)
+AND
+QRY_CharacterHasDLC(_Var1, "DLC Squirrel", 1)
+THEN
+DB_DLC_SquirrelPotentialCandidate(_Var1);
+
+PROC
+Proc_DLC_TryDeSpawn_SquirrelWizard()
+AND NOT
+DB_DLC_SquirrelPotentialCandidate(_)
+AND
+DB_DLC_SquirrelWizard_PlayerBond(_Var2, _Var3)
+AND
+DB_Followers(_Var2, _Var4)
+THEN
+ObjectClearFlag(_Var3, _Var4);
+ProcForceStopDialog(_Var2);
+Poof(_Var2);
+
+PROC
+Proc_DLC_TryDeSpawn_SquirrelWizard()
+AND
+DB_DLC_SquirrelPotentialCandidate(_Var1)
+AND
+DB_DLC_SquirrelWizard_PlayerBond(_Var2, _Var3)
+AND
+_Var3 != _Var1
+THEN
+Proc_TransferSquirrelTo(_Var2, _Var1);
+
+PROC
+Proc_DLC_TryDeSpawn_SquirrelWizard()
+AND
+DB_DLC_SquirrelPotentialCandidate(_Var1)
+THEN
+NOT DB_DLC_SquirrelPotentialCandidate(_Var1);
+
+PROC
+Proc_DLC_TryRespawn_SquirrelWizard()
+AND
+DB_DLC_SquirrelWizard_PlayerBond(_Var1, _Var2)
+AND
+QRY_CharacterHasDLC(_Var2, "DLC Squirrel", 1)
+THEN
+DB_DLC_SquirrelPotentialCandidate(_Var2);
+
+PROC
+Proc_DLC_TryRespawn_SquirrelWizard()
+AND NOT
+DB_DLC_SquirrelPotentialCandidate(_)
+AND
+CharacterGetHostCharacter(_Var2)
+AND
+QRY_CharacterHasDLC(_Var2, "DLC Squirrel", 1)
+THEN
+DB_DLC_SquirrelPotentialCandidate(_Var2);
+
+PROC
+Proc_DLC_TryRespawn_SquirrelWizard()
+AND
+DB_IsPlayer(_Var1)
+AND NOT
+DB_DLC_SquirrelPotentialCandidate(_)
+AND
+QRY_CharacterHasDLC(_Var1, "DLC Squirrel", 1)
+THEN
+DB_DLC_SquirrelPotentialCandidate(_Var1);
+
+PROC
+Proc_DLC_TryRespawn_SquirrelWizard()
+AND
+DB_DLC_SquirrelPotentialCandidate(_Var1)
+AND
+DB_DLC_SquirrelWizard_PlayerBond(_Var2, _Var1)
+THEN
+Foop(_Var2);
+Proc_SetFollowerFlag(_Var2, _Var1);
+
+PROC
+Proc_SetFollowerFlag((CHARACTERGUID)_Var1, (CHARACTERGUID)_Var2)
+AND
+DB_Followers(_Var1, _Var3)
+AND
+ObjectGetFlag(_Var2, "DLC_SquirrelKnight_Dismissed", 0)
+THEN
+ObjectSetFlag(_Var2, _Var3);
+
+PROC
+Proc_DLC_TryRespawn_SquirrelWizard()
+AND
+DB_DLC_SquirrelPotentialCandidate(_Var1)
+AND
+DB_DLC_SquirrelWizard_PlayerBond(_Var2, _Var3)
+AND
+_Var3 != _Var1
+THEN
+Proc_TransferSquirrelTo(_Var2, _Var1);
+
+PROC
+Proc_DLC_TryRespawn_SquirrelWizard()
+AND
+DB_DLC_SquirrelPotentialCandidate(_Var1)
+THEN
+NOT DB_DLC_SquirrelPotentialCandidate(_Var1);
+
+PROC
+Proc_DLC_TryReassign_SquirrelWizard()
+AND
+DB_DLC_SquirrelWizard_PlayerBond(_, _Var2)
+AND
+QRY_CharacterHasDLC(_Var2, "DLC Squirrel", 1)
+AND
+CharacterGetReservedUserID(_Var2, _Var3)
+AND
+DB_IsPlayer(_Var4)
+AND
+CharacterGetReservedUserID(_Var4, _Var3)
+THEN
+DB_DLC_SquirrelPotentialCandidate(_Var4);
+
+PROC
+Proc_DLC_TryReassign_SquirrelWizard()
+AND NOT
+DB_DLC_SquirrelPotentialCandidate(_)
+AND
+CharacterGetHostCharacter(_Var2)
+AND
+DB_IsPlayer(_Var2)
+AND
+QRY_CharacterHasDLC(_Var2, "DLC Squirrel", 1)
+THEN
+DB_DLC_SquirrelPotentialCandidate(_Var2);
+
+PROC
+Proc_DLC_TryReassign_SquirrelWizard()
+AND
+DB_IsPlayer(_Var1)
+AND NOT
+DB_DLC_SquirrelPotentialCandidate(_)
+AND
+QRY_CharacterHasDLC(_Var1, "DLC Squirrel", 1)
+THEN
+DB_DLC_SquirrelPotentialCandidate(_Var1);
+
+PROC
+Proc_DLC_TryReassign_SquirrelWizard()
+AND
+DB_DLC_SquirrelPotentialCandidate(_Var1)
+AND
+DB_DLC_SquirrelWizard_PlayerBond(_Var2, _Var3)
+AND
+_Var3 != _Var1
+THEN
+Proc_TransferSquirrelTo(_Var2, _Var1);
+
+PROC
+Proc_DLC_TryReassign_SquirrelWizard()
+AND NOT
+DB_DLC_SquirrelPotentialCandidate(_)
+AND
+DB_DLC_SquirrelWizard_PlayerBond(_Var2, _)
+THEN
+ProcForceStopDialog(_Var2);
+Poof(_Var2);
+
+PROC
+Proc_DLC_TryReassign_SquirrelWizard()
+AND
+DB_DLC_SquirrelPotentialCandidate(_Var1)
+THEN
+NOT DB_DLC_SquirrelPotentialCandidate(_Var1);
+
+IF
+DialogEnded("DLC_SquirrelKnight", (INTEGER)_Var1)
+AND
+DialogGetInvolvedPlayer(_Var1, 1, _Var2)
+AND
+DB_DLC_SquirrelWizard_PlayerBond(CHARACTERGUID_S_GLO_DLC_SquirrelWizard_9183620e-c7d1-4762-b7c6-512045da9325, _Var2)
+THEN
+ObjectSetFlag(_Var2, "DLC_SquirrelKnight_OwnerFlag");
+
+IF
+StoryEvent((GUIDSTRING)_Var1, "DLC_SquirrelKnight_StartDialogOnSight")
+THEN
+Proc_StartDialog(0, "DLC_SquirrelKnight", CHARACTERGUID_S_GLO_DLC_SquirrelKnight_9183620e-c7d1-4762-b7c6-512045da9325, _Var1);
+ObjectClearFlag(_Var1, "DLC_SquirrelKnight_Dismissed");
+ObjectSetFlag(CHARACTERGUID_S_GLO_SquirrelKnight_9183620e-c7d1-4762-b7c6-512045da9325, "DLC_SquirrelKnight_HasMetOwner");
+
+IF
+CharacterDied(CHARACTERGUID_S_GLO_DLC_SquirrelWizard_9183620e-c7d1-4762-b7c6-512045da9325)
+AND
+DB_DLC_SquirrelWizard_PlayerBond(CHARACTERGUID_S_GLO_DLC_SquirrelWizard_9183620e-c7d1-4762-b7c6-512045da9325, _Var1)
+THEN
+NOT DB_DLC_SquirrelWizard_PlayerBond(CHARACTERGUID_S_GLO_DLC_SquirrelWizard_9183620e-c7d1-4762-b7c6-512045da9325, _Var1);
+DB_DLC_SquirrelWizard_PlayerBond(CHARACTERGUID_S_GLO_DLC_SquirrelWizard_Ghost_7044e6f2-cc71-4a18-bd5f-c7fb3d4fdbc7, _Var1);
+ObjectSetFlag(_Var1, "DLC_SquirrelKnight_Ghost_OwnerFlag");
+TeleportTo(CHARACTERGUID_S_GLO_DLC_SquirrelKnight_Ghost_7044e6f2-cc71-4a18-bd5f-c7fb3d4fdbc7, CHARACTERGUID_S_GLO_DLC_SquirrelKnight_9183620e-c7d1-4762-b7c6-512045da9325);
+DB_Dialogs(CHARACTERGUID_S_GLO_DLC_SquirrelWizard_Ghost_7044e6f2-cc71-4a18-bd5f-c7fb3d4fdbc7, "DLC_SquirrelKnight");
+
+IF
+ObjectFlagSet((STRING)_Var1, CHARACTERGUID_S_GLO_DLC_SquirrelWizard_9183620e-c7d1-4762-b7c6-512045da9325, _)
+AND
+CharacterIsDead(CHARACTERGUID_S_GLO_DLC_SquirrelWizard_9183620e-c7d1-4762-b7c6-512045da9325, 0)
+AND NOT
+DB_DLC_SquirrelWizard_Flags_DoNotTransfer(_Var1)
+THEN
+ObjectSetFlag(CHARACTERGUID_S_GLO_DLC_SquirrelWizard_Ghost_7044e6f2-cc71-4a18-bd5f-c7fb3d4fdbc7, _Var1);
+
+IF
+CharacterEnteredRegion((CHARACTERGUID)_Var1, _)
+AND
+ObjectGetFlag(_Var1, "DLC_SquirrelKnight_Dismissed", 0)
+AND
+DB_DLC_SquirrelWizard_PlayerBond(_Var3, _Var1)
+THEN
+TeleportTo(_Var3, _Var1, "", 0);
+
+IF
+CharacterEnteredRegion((CHARACTERGUID)_Var1, (STRING)_Var2)
+AND
+DB_DLC_SquirrelWizard_PlayerBond(_Var3, _Var1)
+AND
+ObjectGetFlag(_Var1, "DLC_SquirrelKnight_Dismissed", 1)
+AND
+DB_DLC_SquirrelKnight_RecruitPositions(_Var2, _Var4)
+THEN
+TeleportTo(_Var3, _Var4, "", 0);
+
+IF
+RegionStarted((STRING)_Var1)
+AND
+_Var1 != "FJ_FortJoy_Main"
+AND
+DB_DLC_SquirrelWizard_PlayerBond(_Var2, _)
+AND
+ObjectGetFlag(_Var2, "DLC_SquirrelKnight_HasMetOwner", 0)
+AND
+GetVarInteger(_Var2, "StopSpotting", 1)
+THEN
+SetStoryEvent(CHARACTERGUID_S_GLO_SquirrelKnight_9183620e-c7d1-4762-b7c6-512045da9325, "StartEventOnSight_RestartSpotting");
+
+IF
+UserConnected(_, _, _)
+AND NOT
+DB_CurrentLevel("FJ_FortJoy_Main")
+AND
+DB_DLC_SquirrelWizard_PlayerBond(_Var4, _)
+AND
+ObjectGetFlag(_Var4, "DLC_SquirrelKnight_HasMetOwner", 0)
+AND
+GetVarInteger(_Var4, "StopSpotting", 1)
+THEN
+SetStoryEvent(CHARACTERGUID_S_GLO_SquirrelKnight_9183620e-c7d1-4762-b7c6-512045da9325, "StartEventOnSight_RestartSpotting");
+
+IF
+DialogStarted("CoS_AotO_IntroductionDialog", _)
+AND
+DB_DLC_SquirrelWizard_PlayerBond(_, _Var3)
+THEN
+Proc_DLC_SquirrelWizard_PauseFollow(_Var3, "Dismissed");
+TeleportTo(S_GLO_SquirrelKnight_9183620e-c7d1-4762-b7c6-512045da9325, StartPoint_002_c89e9b54-a56e-4a41-a95c-01900589425a);
+
+IF
+CharacterEnteredTrigger((CHARACTERGUID)_Var1, S_CoS_SUB_AotO_Sanctum_feb62fde-e701-403c-9f09-b42d6ffc8140)
+AND
+DB_DLC_SquirrelWizard_PlayerBond(_, _Var1)
+THEN
+Proc_DLC_SquirrelWizard_ResumeFollow(_Var1);
+
+PROC
+Proc_CoS_AotO_PhaseTwoInit()
+AND
+DB_DLC_SquirrelWizard_PlayerBond(_, _Var2)
+THEN
+Proc_DLC_SquirrelWizard_ResumeFollow(_Var2);
+
+PROC
+PROC_EG_Epilogue_Start()
+THEN
+GlobalSetFlag("DLC_SquirrelKnight_EpilogueStarted");
+
+IF
+ObjectFlagSet("QuestUpdate_LV_HoE_Main_ReturnToLV", (CHARACTERGUID)_Var1, _)
+AND
+DB_DLC_SquirrelWizard_PlayerBond(_, _Var1)
+THEN
+ProcObjectTimer(_Var1, "LV_HoE_PlayerReturnedToLvFromHoE_Timer", 12000);
+
+PROC
+ProcObjectTimerFinished((GUIDSTRING)_Var1, "LV_HoE_PlayerReturnedToLvFromHoE_Timer")
+THEN
+ObjectSetFlag(_Var1, "LV_HoE_PlayerReturnedToLvFromHoE");
+
+IF
+CharacterEnteredTrigger((CHARACTERGUID)_Var1, TRIGGERGUID_S_FTJ_SW_SUB_Shelter_51c3953f-c756-472d-a7ca-dc2a6232b386)
+AND
+DB_SquirrelWizard_AutomatedDialogs("DLC_SquirrelKnight_AD_EnteredShelter", "DLC_SquirrelKnight_FTJ_EnteredShelter", "CharacterFlag")
+AND
+DB_DLC_SquirrelWizard_PlayerBond(_, _Var1)
+THEN
+ProcObjectTimer(_Var1, "DLC_SquirrelKnight_FTJ_EnteredShelter_Timer", 5000);
+
+PROC
+ProcObjectTimerFinished((CHARACTERGUID)_Var1, "DLC_SquirrelKnight_FTJ_EnteredShelter_Timer")
+AND
+DB_InRegion(_Var1, TRIGGERGUID_S_FTJ_SW_SUB_Shelter_51c3953f-c756-472d-a7ca-dc2a6232b386)
+THEN
+ObjectSetFlag(_Var1, "DLC_SquirrelKnight_FTJ_EnteredShelter");
+
+IF
+RegionStarted("RC_Main")
+AND
+DB_DLC_SquirrelWizard_PlayerBond(_, _)
+THEN
+ProcTriggerRegisterForPlayers(TRIGGERGUID_S_DLC_SquirrelKnight_BIVoiceBark_Trigger_be8d0f8a-e317-439b-8f56-db85e8880393);
+
+IF
+RegionStarted("CoS_Main")
+AND
+DB_DLC_SquirrelWizard_PlayerBond(_, _)
+THEN
+ProcTriggerRegisterForPlayers(TRIGGERGUID_S_DLC_SquirrelKnight_ElfTempleVoiceBark_Trigger_8128358a-8eec-4a8c-85f9-a6aaeb65e9bd);
+
+IF
+CharacterResurrected((CHARACTERGUID)_Var1)
+AND
+DB_ARX_LizardConsulate_InfernalLizards(_Var1, _)
+THEN
+ProcObjectTimer(_Var1, "DLC_SquirrelKnight_SawConsulateLizardRespawn_Timer", 150);
+DB_DLC_SquirrelKnight_SawConsulateLizardRespawn(_Var1);
+
+PROC
+ProcObjectTimerFinished((CHARACTERGUID)_Var1, "DLC_SquirrelKnight_SawConsulateLizardRespawn_Timer")
+AND
+DB_DLC_SquirrelKnight_SawConsulateLizardRespawn(_Var1)
+AND
+DB_DLC_SquirrelWizard_PlayerBond(_Var2, _Var3)
+AND
+ObjectIsCharacter(_Var2, 1)
+AND
+CharacterCanSee(_Var2, _Var1, 1)
+THEN
+ObjectSetFlag(_Var3, "DLC_SquirrelKnight_SawConsulateLizardRespawn");
+
+PROC
+ProcObjectTimerFinished((CHARACTERGUID)_Var1, "DLC_SquirrelKnight_SawConsulateLizardRespawn_Timer")
+AND
+DB_DLC_SquirrelKnight_SawConsulateLizardRespawn(_Var1)
+AND
+DB_DLC_SquirrelWizard_PlayerBond(_, _Var3)
+AND
+CharacterCanSee(_Var3, _Var1, 1)
+THEN
+ObjectSetFlag(_Var3, "DLC_SquirrelKnight_SawConsulateLizardRespawn");
+
+PROC
+ProcObjectTimerFinished((CHARACTERGUID)_Var1, "DLC_SquirrelKnight_SawConsulateLizardRespawn_Timer")
+AND
+DB_DLC_SquirrelKnight_SawConsulateLizardRespawn(_Var1)
+THEN
+NOT DB_DLC_SquirrelKnight_SawConsulateLizardRespawn(_Var1);
+
+IF
+CharacterEnteredTrigger((CHARACTERGUID)_Var1, TRIGGERGUID_S_RC_DW_Tavern_3rdFloor_9b8c2aed-8b35-41e6-9a7d-6cc29f25af8c)
+AND
+DB_DLC_SquirrelWizard_PlayerBond(_, _Var1)
+AND
+DB_GlobalFlag("RC_DW_SurpriseDate_Ongoing")
+AND NOT
+DB_GlobalFlag("DLC_SquirrelKnight_IsDismissed")
+THEN
+Proc_DLC_SquirrelWizard_PauseFollow(_Var1, "Dismissed");
+
+IF
+CharacterLeftTrigger((CHARACTERGUID)_Var1, TRIGGERGUID_S_RC_DW_Tavern_3rdFloor_9b8c2aed-8b35-41e6-9a7d-6cc29f25af8c)
+AND
+DB_DLC_SquirrelWizard_PlayerBond(_, _Var1)
+AND
+DB_DLC_SquirrelWizard_FollowPaused("Dismissed")
+AND NOT
+DB_GlobalFlag("DLC_SquirrelKnight_IsDismissed")
+THEN
+Proc_DLC_SquirrelWizard_ResumeFollow(_Var1);
+
+IF
+StoryEvent((CHARACTERGUID)_Var1, "CoS_HoE_LadyVengeance_DNotSRoom")
+AND
+DB_DLC_SquirrelWizard_PlayerBond(_, _Var1)
+AND
+DB_Followers(_Var3, _Var4)
+AND
+ObjectGetFlag(_Var1, _Var4, 1)
+THEN
+Proc_DLC_SquirrelWizard_PauseFollow(_Var1, "Dismissed");
+
+IF
+ObjectFlagCleared("CoS_DNotS_Ongoing", (CHARACTERGUID)_Var1, _)
+AND
+DB_DLC_SquirrelWizard_PlayerBond(_, _Var1)
+THEN
+Proc_DLC_SquirrelWizard_ResumeFollow(_Var1);
+
+IF
+DB_DLC_SquirrelWizard_FollowPaused("Dismissed")
+AND
+DB_DLC_SquirrelWizard_FollowPaused("Assaulted")
+THEN
+NOT DB_DLC_SquirrelWizard_FollowPaused("Assaulted");
+
+IF
+ObjectFlagSet("DLC_SquirrelKnight_ReactToAssault", (CHARACTERGUID)_Var1, _)
+AND NOT
+DB_DLC_SquirrelWizard_FollowPaused("Dismissed")
+AND NOT
+DB_DLC_SquirrelWizard_FollowPaused("Assaulted")
+AND
+DB_DLC_SquirrelWizard_PlayerBond(_Var1, _Var3)
+AND
+DB_Followers(_Var1, _Var4)
+AND
+ObjectGetFlag(_Var3, _Var4, 1)
+THEN
+Proc_DLC_SquirrelWizard_PauseFollow(_Var3, "Assaulted");
+
+IF
+ObjectFlagCleared("DLC_SquirrelKnight_ReactToAssault", (CHARACTERGUID)_Var1, _)
+AND
+DB_DLC_SquirrelWizard_PlayerBond(_Var1, _Var3)
+AND NOT
+DB_DLC_SquirrelWizard_FollowPaused("Dismissed")
+AND
+DB_DLC_SquirrelWizard_FollowPaused("Assaulted")
+THEN
+Proc_DLC_SquirrelWizard_ResumeFollow(_Var3);
+
+PROC
+Proc_DLC_SquirrelWizard_PauseFollow(_, (STRING)_Var2)
+THEN
+DB_DLC_SquirrelWizard_FollowPaused(_Var2);
+
+PROC
+Proc_DLC_SquirrelWizard_PauseFollow((CHARACTERGUID)_Var1, _)
+AND
+DB_DLC_SquirrelWizard_PlayerBond(_Var3, _Var1)
+AND
+DB_Followers(_Var3, _Var4)
+THEN
+ObjectClearFlag(_Var1, _Var4);
+
+PROC
+Proc_DLC_SquirrelWizard_ResumeFollow((CHARACTERGUID)_Var1)
+AND
+ObjectGetFlag(_Var1, "DLC_SquirrelKnight_Dismissed", 0)
+AND
+DB_DLC_SquirrelWizard_PlayerBond(_Var2, _Var1)
+AND
+DB_Followers(_Var2, _Var3)
+THEN
+ObjectSetFlag(_Var1, _Var3);
+
+PROC
+Proc_DLC_SquirrelWizard_ResumeFollow(_)
+THEN
+NOT DB_DLC_SquirrelWizard_FollowPaused("Dismissed");
+
+IF
+GlobalFlagSet((STRING)_Var1)
+AND
+DB_DLC_SquirrelWizard_PlayerBond(_, _)
+AND
+DB_SquirrelWizard_ReflectionDialogs(_Var1, _Var4, "GlobalFlag")
+THEN
+Proc_SquirrelWizard_QueueReflectionDialog(_Var4);
+
+IF
+RegionStarted((STRING)_Var1)
+AND
+DB_DLC_SquirrelWizard_PlayerBond(_, _)
+AND
+DB_SquirrelWizard_ReflectionDialogs(_Var1, _Var4, "Region")
+THEN
+Proc_SquirrelWizard_QueueReflectionDialog(_Var4);
+
+IF
+ObjectFlagSet((STRING)_Var1, (CHARACTERGUID)_Var2, _)
+AND
+DB_DLC_SquirrelWizard_PlayerBond(_, _Var2)
+AND
+DB_SquirrelWizard_ReflectionDialogs(_Var1, _Var5, "CharacterFlag")
+THEN
+Proc_SquirrelWizard_QueueReflectionDialog(_Var5);
+
+IF
+ObjectFlagSet((STRING)_Var1, (CHARACTERGUID)_Var2, _)
+AND
+DB_DLC_SquirrelWizard_PlayerBond(_Var2, _)
+AND
+DB_SquirrelWizard_ReflectionDialogs(_Var1, _Var5, "CharacterFlag")
+THEN
+Proc_SquirrelWizard_QueueReflectionDialog(_Var5);
+
+PROC
+Proc_SquirrelWizard_QueueReflectionDialog((STRING)_Var1)
+AND
+DB_SquirrelWizard_QueuedReflectionDialog(_Var2)
+AND
+_Var1 != _Var2
+THEN
+NOT DB_SquirrelWizard_QueuedReflectionDialog(_Var2);
+
+PROC
+Proc_SquirrelWizard_QueueReflectionDialog((STRING)_Var1)
+AND
+DB_SquirrelWizard_ReflectionDialogs(_Var2, _Var1, _)
+AND
+DB_DLC_SquirrelWizard_PlayerBond(_Var4, _Var5)
+AND
+ObjectGetFlag(_Var5, "DLC_SquirrelKnight_Dismissed", 0)
+AND
+IsTagged(_Var5, "PETPAL", 1)
+THEN
+Proc_StartDialog(1, "DLC_SquirrelKnight_AD_Discovery", _Var4);
+
+PROC
+Proc_SquirrelWizard_QueueReflectionDialog((STRING)_Var1)
+AND
+DB_SquirrelWizard_ReflectionDialogs(_Var2, _Var1, _Var3)
+AND
+DB_DLC_SquirrelWizard_PlayerBond(_Var4, _Var5)
+AND
+ObjectGetFlag(_Var5, "DLC_SquirrelKnight_Dismissed", 0)
+THEN
+NOT DB_SquirrelWizard_ReflectionDialogs(_Var2, _Var1, _Var3);
+ApplyStatus(_Var4, "REFLECTION_SQUIRREL", -1, 1);
+DB_SquirrelWizard_QueuedReflectionDialog(_Var1);
+
+PROC
+PROC_GLOBAL_DialogStartRequested((CHARACTERGUID)_Var1, (CHARACTERGUID)_Var2)
+AND
+DB_DLC_SquirrelWizard_PlayerBond(_Var1, _Var2)
+AND
+DB_SquirrelWizard_QueuedReflectionDialog(_Var3)
+THEN
+Proc_StartDialog(0, _Var3, _Var1, _Var2);
+
+IF
+CharacterDied((CHARACTERGUID)_Var1)
+AND
+DB_DLC_SquirrelWizard_PlayerBond(_Var1, _)
+AND
+DB_SquirrelWizard_QueuedReflectionDialog(_Var3)
+THEN
+Proc_SquirrelWizard_ClearReflectionDialog(_Var3);
+
+IF
+DialogStarted((STRING)_Var1, _)
+AND
+DB_SquirrelWizard_QueuedReflectionDialog(_Var1)
+THEN
+Proc_SquirrelWizard_ClearReflectionDialog(_Var1);
+
+PROC
+Proc_SquirrelWizard_ClearReflectionDialog((STRING)_Var1)
+AND
+DB_DLC_SquirrelWizard_PlayerBond(_Var2, _)
+THEN
+NOT DB_SquirrelWizard_QueuedReflectionDialog(_Var1);
+RemoveStatus(_Var2, "REFLECTION_SQUIRREL");
+
+IF
+ObjectFlagSet((STRING)_Var1, (CHARACTERGUID)_Var2, _)
+AND
+DB_SquirrelWizard_RecipeUnlock(_Var1, "CharacterFlag", _Var4, _, _)
+AND
+DB_DLC_SquirrelWizard_PlayerBond(_Var7, _Var2)
+THEN
+ObjectSetFlag(_Var7, _Var4);
+
+IF
+RegionStarted((STRING)_Var1)
+AND
+DB_SquirrelWizard_RecipeUnlock(_Var1, "Region", _Var2, _, _)
+AND
+DB_DLC_SquirrelWizard_PlayerBond(_Var5, _Var6)
+THEN
+ObjectSetFlag(_Var5, _Var2);
+
+IF
+ObjectFlagSet((STRING)_Var1, (CHARACTERGUID)_Var2, _)
+AND
+DB_SquirrelWizard_RecipeUnlock(_, _, _, _Var1, _Var7)
+THEN
+CharacterUnlockRecipe(_Var2, _Var7, 1);
+
+IF
+GlobalFlagSet((STRING)_Var1)
+AND
+DB_DLC_SquirrelWizard_PlayerBond(_Var2, _)
+AND
+ObjectIsCharacter(_Var2, 1)
+AND
+DB_SquirrelWizard_AutomatedDialogs(_Var4, _Var1, "GlobalFlag")
+THEN
+Proc_DLC_SquirrelKnight_StartAD(_Var2, _Var4);
+
+IF
+RegionStarted((STRING)_Var1)
+AND
+DB_DLC_SquirrelWizard_PlayerBond(_Var2, _)
+AND
+ObjectIsCharacter(_Var2, 1)
+AND
+DB_SquirrelWizard_AutomatedDialogs(_Var4, _Var1, "Region")
+THEN
+Proc_DLC_SquirrelKnight_StartAD(_Var2, _Var4);
+
+IF
+ObjectFlagSet((STRING)_Var1, (CHARACTERGUID)_Var2, _)
+AND
+DB_DLC_SquirrelWizard_PlayerBond(_Var4, _Var5)
+AND
+ObjectIsCharacter(_Var4, 1)
+AND
+DB_SquirrelWizard_AutomatedDialogs(_Var6, _Var1, "CharacterFlag")
+THEN
+Proc_DLC_SquirrelKnight_StartAD(_Var4, _Var6);
+
+IF
+ObjectFlagSet((STRING)_Var1, (CHARACTERGUID)_Var2, _)
+AND
+DB_DLC_SquirrelWizard_PlayerBond(_Var2, _)
+AND
+DB_SquirrelWizard_AutomatedDialogs(_Var5, _Var1, "CharacterFlag")
+THEN
+Proc_DLC_SquirrelKnight_StartAD(_Var2, _Var5);
+
+IF
+DialogEnded((STRING)_Var1, (INTEGER)_Var2)
+AND
+DialogGetInvolvedPlayer(_Var2, 1, _Var3)
+AND
+DB_DLC_SquirrelWizard_PlayerBond(_Var4, _Var3)
+AND
+ObjectIsCharacter(_Var4, 1)
+AND
+DB_SquirrelWizard_AutomatedDialogs(_Var5, _Var1, "DialogEnd")
+THEN
+Proc_DLC_SquirrelKnight_StartAD(_Var4, _Var5);
+
+IF
+DialogEnded((STRING)_Var1, (INTEGER)_Var2)
+AND
+DialogGetInvolvedPlayer(_Var2, 1, _Var3)
+AND
+DB_DLC_SquirrelWizard_PlayerBond(_Var4, _Var3)
+AND
+IsTagged(_Var3, "PETPAL", 1)
+AND
+ObjectIsCharacter(_Var4, 1)
+AND
+DB_SquirrelWizard_AutomatedDialogs(_Var5, _Var1, "PetPalDialogEnd")
+THEN
+Proc_DLC_SquirrelKnight_StartAD(_Var4, _Var5);
+
+IF
+AutomatedDialogEnded((STRING)_Var1, (INTEGER)_Var2)
+AND
+DialogGetInvolvedPlayer(_Var2, 1, _Var3)
+AND
+DB_DLC_SquirrelWizard_PlayerBond(_Var4, _Var3)
+AND
+ObjectIsCharacter(_Var4, 1)
+AND
+DB_SquirrelWizard_AutomatedDialogs(_Var5, _Var1, "DialogEnd")
+THEN
+Proc_DLC_SquirrelKnight_StartAD(_Var4, _Var5);
+
+IF
+VoiceBarkEnded((STRING)_Var1, (INTEGER)_Var2)
+AND
+DialogGetInvolvedPlayer(_Var2, 1, _Var3)
+AND
+DB_DLC_SquirrelWizard_PlayerBond(_Var4, _Var3)
+AND
+ObjectIsCharacter(_Var4, 1)
+AND
+DB_SquirrelWizard_AutomatedDialogs(_Var5, _Var1, "DialogEnd")
+THEN
+Proc_DLC_SquirrelKnight_StartAD(_Var4, _Var5);
+
+IF
+CharacterEnteredTrigger((CHARACTERGUID)_Var1, (TRIGGERGUID)_Var2)
+AND
+DB_DLC_SquirrelWizard_PlayerBond(_Var3, _Var1)
+AND
+ObjectIsCharacter(_Var3, 1)
+AND
+DB_SquirrelWizard_AutomatedDialogs(_Var4, _Var2)
+AND
+ObjectIsCharacter(_Var2, 0)
+AND
+ObjectIsItem(_Var2, 0)
+THEN
+Proc_DLC_SquirrelKnight_StartAD(_Var3, _Var4);
+
+IF
+DB_CombatCharacters(_Var1, _Var2)
+AND
+DB_CombatCharacters(_Var3, _Var2)
+AND
+DB_DLC_SquirrelWizard_PlayerBond(_Var4, _Var1)
+AND
+ObjectIsCharacter(_Var4, 1)
+AND
+DB_SquirrelWizard_AutomatedDialogs(_Var5, _Var3)
+AND
+ObjectIsCharacter(_Var3, 1)
+THEN
+Proc_DLC_SquirrelKnight_StartAD(_Var4, _Var5);
+
+PROC
+Proc_DLC_SquirrelKnight_StartAD((CHARACTERGUID)_Var1, (STRING)_Var2)
+AND
+DB_DLC_SquirrelWizard_PlayerBond(_Var1, _Var3)
+AND
+IsTagged(_Var3, "PETPAL", 1)
+AND
+ObjectGetFlag(_Var3, "DLC_SquirrelKnight_Dismissed", 0)
+AND
+DB_SquirrelWizard_AutomatedDialogs(_Var2, _Var4, _Var5)
+AND
+QRY_SpeakerIsAvailable(_Var1)
+THEN
+ProcObjectTimer(_Var1, "DLC_SquirrelKnight_StartDialogDelay", 1000);
+DB_DLC_SquirrelKnight_StartDialogDelay(_Var2);
+Proc_DLC_SquirrelKnight_ClearAD(_Var2);
+
+PROC
+Proc_DLC_SquirrelKnight_StartAD((CHARACTERGUID)_Var1, (STRING)_Var2)
+AND
+DB_DLC_SquirrelWizard_PlayerBond(_Var1, _Var3)
+AND
+IsTagged(_Var3, "PETPAL", 1)
+AND
+ObjectGetFlag(_Var3, "DLC_SquirrelKnight_Dismissed", 0)
+AND
+DB_SquirrelWizard_AutomatedDialogs(_Var2, _Var4)
+AND
+QRY_SpeakerIsAvailable(_Var1)
+THEN
+ProcObjectTimer(_Var1, "DLC_SquirrelKnight_StartDialogDelay", 1000);
+DB_DLC_SquirrelKnight_StartDialogDelay(_Var2);
+Proc_DLC_SquirrelKnight_ClearAD(_Var2);
+
+PROC
+ProcObjectTimerFinished((GUIDSTRING)_Var1, "DLC_SquirrelKnight_StartDialogDelay")
+AND
+DB_DLC_SquirrelKnight_StartDialogDelay(_Var2)
+AND
+QRY_SpeakerIsAvailable(_Var1)
+THEN
+Proc_StartDialog(1, _Var2, _Var1);
+NOT DB_DLC_SquirrelKnight_StartDialogDelay(_Var2);
+
+PROC
+Proc_DLC_SquirrelKnight_ClearAD((STRING)_Var1)
+AND
+DB_SquirrelWizard_AutomatedDialogs(_Var1, _Var2)
+THEN
+NOT DB_SquirrelWizard_AutomatedDialogs(_Var1, _Var2);
+
+PROC
+Proc_DLC_SquirrelKnight_ClearAD((STRING)_Var1)
+AND
+DB_SquirrelWizard_AutomatedDialogs(_Var1, _Var2, _Var3)
+THEN
+NOT DB_SquirrelWizard_AutomatedDialogs(_Var1, _Var2, _Var3);
+
+IF
+DialogEnded("DLC_SquirrelKnight", (INTEGER)_Var1)
+AND
+DialogGetInvolvedPlayer(_Var1, 1, _Var2)
+AND
+ObjectGetFlag(_Var2, "DLC_SquirrelKnight_Dismissed", 1)
+AND
+DB_DLC_SquirrelWizard_PlayerBond(_Var3, _Var2)
+AND
+ObjectIsCharacter(_Var3, 1)
+THEN
+Proc_DLC_SquirrelKnightDismiss(_Var3, _Var2);
+
+PROC
+Proc_DLC_SquirrelKnightDismiss((CHARACTERGUID)_Var1, (CHARACTERGUID)_Var2)
+THEN
+GlobalSetFlag("DLC_SquirrelKnight_IsDismissed");
+Proc_DLC_SquirrelWizard_PauseFollow(_Var2, "Dismissed");
+Proc_Check_DLC_SquirrelWizard_ReturnToRecruitPos(_Var1, _Var2);
+
+PROC
+Proc_Check_DLC_SquirrelWizard_ReturnToRecruitPos((CHARACTERGUID)_Var1, (CHARACTERGUID)_Var2)
+AND
+ObjectIsOnStage(_Var1, 1)
+THEN
+SetHasDialog(_Var1, 0);
+Proc_DLC_SquirrelWizard_ReturnToRecruitPos(_Var1, _Var2);
+
+PROC
+Proc_Check_DLC_SquirrelWizard_ReturnToRecruitPos((CHARACTERGUID)_Var1, (CHARACTERGUID)_Var2)
+AND
+ObjectIsOnStage(_Var1, 0)
+AND
+DB_DLC_SquirrelKnight_RecruitPositions_Current(_, _Var4)
+THEN
+TeleportTo(_Var1, _Var4, "", 0);
+
+PROC
+Proc_DLC_SquirrelWizard_ReturnToRecruitPos((CHARACTERGUID)_Var1, (CHARACTERGUID)_Var2)
+AND
+DB_DLC_SquirrelKnight_RecruitPositions_Current(_, _Var4)
+AND
+GetDistanceTo(_Var1, _Var4, _Var5)
+AND
+_Var5 > 18
+THEN
+CharacterDisappearOutOfSightToObject(_Var1, _Var2, 1, "DLC_SquirrelKnight_AppearAtRecruitPoint", 0);
+
+PROC
+Proc_DLC_SquirrelWizard_ReturnToRecruitPos((CHARACTERGUID)_Var1, (CHARACTERGUID)_Var2)
+AND
+DB_DLC_SquirrelKnight_RecruitPositions_Current(_, _Var4)
+AND
+GetDistanceTo(_Var1, _Var4, _Var5)
+AND
+_Var5 <= 18
+THEN
+CharacterMoveTo(_Var1, _Var4, 0, "DLC_SquirrelKnight_AppearAtRecruitPoint", 0);
+
+IF
+StoryEvent((CHARACTERGUID)_Var1, "DLC_SquirrelKnight_AppearAtRecruitPoint")
+AND
+DB_DLC_SquirrelWizard_PlayerBond(_Var1, _)
+AND
+DB_DLC_SquirrelKnight_RecruitPositions_Current(_, _Var4)
+THEN
+TeleportTo(_Var1, _Var4, "", 0);
+SetHasDialog(_Var1, 1);
+SetOnStage(_Var1, 1);
+
+IF
+RegionStarted((STRING)_Var1)
+AND
+DB_DLC_SquirrelKnight_RecruitPositions(_Var1, _)
+AND
+DB_DLC_SquirrelKnight_RecruitPositions_Current(_Var3, _Var4)
+AND
+_Var1 != _Var3
+THEN
+NOT DB_DLC_SquirrelKnight_RecruitPositions_Current(_Var3, _Var4);
+
+IF
+RegionStarted((STRING)_Var1)
+AND NOT
+DB_DLC_SquirrelKnight_RecruitPositions_Current(_Var1, _)
+AND
+DB_DLC_SquirrelKnight_RecruitPositions(_Var1, _Var3)
+THEN
+DB_DLC_SquirrelKnight_RecruitPositions_Current(_Var1, _Var3);
+
+IF
+ObjectFlagCleared("DLC_SquirrelKnight_Dismissed", (CHARACTERGUID)_Var1, (INTEGER)_Var2)
+THEN
+Proc_CheckRehireOfSquirrel(_Var1, _Var2);
+
+PROC
+Proc_CheckRehireOfSquirrel((CHARACTERGUID)_Var1, (INTEGER)_Var2)
+AND
+DB_DialogPlayers(_Var2, _Var1, _)
+AND
+DB_DialogName("DLC_SquirrelKnight", _Var2)
+THEN
+GlobalClearFlag("DLC_SquirrelKnight_IsDismissed");
+Proc_CheckTransferSquirrelTo(_Var1);
+ObjectClearFlag(_Var1, "DLC_SquirrelKnight_Dismissed");
+Proc_DLC_SquirrelWizard_ResumeFollow(_Var1);
+
+IF
+ObjectFlagSet("DLC_SquirrelKnight_Hire", (CHARACTERGUID)_Var1, (INTEGER)_Var2)
+THEN
+ObjectClearFlag(_Var1, "DLC_SquirrelKnight_Hire");
+Proc_CheckRehireOfSquirrel(_Var1, _Var2);
+
+IF
+DialogEnded("DLC_SquirrelKnight_EnteredEndgame", (INTEGER)_Var1)
+AND
+DB_DLC_SquirrelWizard_PlayerBond(_Var2, _Var3)
+AND
+ObjectGetFlag(_Var2, "DLC_SquirrelKnight_Endgame_RunOff", 1)
+THEN
+NOT DB_DLC_SquirrelKnight_RecruitPositions_Current("Arx_Endgame", TRIGGERGUID_S_DLC_SquirrelKnight_RecruitPosition_EG_RecruitPosition_14d819f0-29a9-45ff-bf6f-24124293c1cd);
+DB_DLC_SquirrelKnight_RecruitPositions_Current("Arx_Endgame", TRIGGERGUID_S_DLC_SquirrelKnight_RecruitPosition_Epilogue_RecruitPosition_0dd28cee-91a9-4c83-a706-ef7a30b76587);
+ObjectSetFlag(_Var3, "DLC_SquirrelKnight_Dismissed");
+Proc_DLC_SquirrelKnightDismiss(_Var2, _Var3);
+
+PROC
+PROC_EG_Epilogue_Start()
+AND
+DB_DLC_SquirrelWizard_PlayerBond(_Var1, _)
+THEN
+PROC_RemoveDialogFromCharacter(_Var1);
+DB_Dialogs(_Var1, "DLC_SquirrelKnight_Epilogue");
+
+PROC
+PROC_EG_StartFirstFightDialog(_)
+AND
+DB_DLC_SquirrelWizard_PlayerBond(_Var2, _Var3)
+THEN
+ObjectSetFlag(_Var2, "DLC_SquirrelKnight_Endgame_RunOff");
+ProcForceStopDialog(_Var2);
+ObjectSetFlag(_Var3, "DLC_SquirrelKnight_Dismissed");
+NOT DB_DLC_SquirrelKnight_RecruitPositions_Current("Arx_Endgame", TRIGGERGUID_S_DLC_SquirrelKnight_RecruitPosition_EG_RecruitPosition_14d819f0-29a9-45ff-bf6f-24124293c1cd);
+DB_DLC_SquirrelKnight_RecruitPositions_Current("Arx_Endgame", TRIGGERGUID_S_DLC_SquirrelKnight_RecruitPosition_Epilogue_RecruitPosition_0dd28cee-91a9-4c83-a706-ef7a30b76587);
+Proc_DLC_SquirrelKnightDismiss(_Var2, _Var3);
+
+PROC
+PROC_EG_Epilogue_Start()
+THEN
+SetFaction(CHARACTERGUID_S_GLO_SquirrelKnight_9183620e-c7d1-4762-b7c6-512045da9325, "Good NPC");
+
+IF
+SavegameLoaded((INTEGER)_Var1, (INTEGER)_Var2, (INTEGER)_Var3, (INTEGER)_Var4)
+AND
+QRY_VersionIsOlderThan(_Var1, _Var2, _Var3, _Var4, 3, 6, 2, 0)
+AND
+DB_GlobalFlag("DLC_SquirrelKnight_EpilogueStarted")
+THEN
+SetFaction(CHARACTERGUID_S_GLO_SquirrelKnight_9183620e-c7d1-4762-b7c6-512045da9325, "Good NPC");
+
+IF
+GlobalFlagSet("DLC_SquirrelKnight_EpilogueStarted")
+AND
+DB_DLC_SquirrelKnight_RecruitPositions_Current(_Var1, _Var2)
+THEN
+NOT DB_DLC_SquirrelKnight_RecruitPositions_Current(_Var1, _Var2);
+DB_DLC_SquirrelKnight_RecruitPositions_Current("Arx_Endgame", TRIGGERGUID_S_DLC_SquirrelKnight_RecruitPosition_Epilogue_RecruitPosition_0dd28cee-91a9-4c83-a706-ef7a30b76587);
+
+IF
+GlobalFlagSet("DLC_SquirrelKnight_EpilogueStarted")
+AND
+DB_DLC_SquirrelWizard_PlayerBond(_Var1, _Var2)
+AND
+ObjectGetFlag(_Var2, "DLC_SquirrelKnight_Dismissed", 1)
+THEN
+TeleportTo(_Var1, TRIGGERGUID_S_DLC_SquirrelKnight_RecruitPosition_Epilogue_RecruitPosition_0dd28cee-91a9-4c83-a706-ef7a30b76587);
+
+IF
+DB_Illusionist(_Var1, _Var2)
+AND
+DB_DLC_SquirrelWizard_PlayerBond(_Var3, _Var1)
+THEN
+Proc_DLC_SquirrelWizard_PauseFollow(_Var1, "Dismissed");
+
+PROC
+Proc_HomesteadTeleportAfterMirror((CHARACTERGUID)_Var1, _, _)
+AND
+DB_DLC_SquirrelWizard_PlayerBond(_Var4, _Var1)
+THEN
+Proc_DLC_SquirrelWizard_ResumeFollow(_Var1);
+
+IF
+SavegameLoaded((INTEGER)_Var1, (INTEGER)_Var2, (INTEGER)_Var3, (INTEGER)_Var4)
+AND
+QRY_VersionIsOlderThan(_Var1, _Var2, _Var3, _Var4, 3, 6, 2, 0)
+THEN
+ObjectSetFlag(CHARACTERGUID_S_GLO_SquirrelKnight_9183620e-c7d1-4762-b7c6-512045da9325, "GLO_IgnoredBySourceTotems");
+
+IF
+SavegameLoaded((INTEGER)_Var1, (INTEGER)_Var2, (INTEGER)_Var3, (INTEGER)_Var4)
+AND
+QRY_VersionIsOlderThan(_Var1, _Var2, _Var3, _Var4, 3, 6, 2, 0)
+THEN
+ProcCharacterDisableAllCrimes(CHARACTERGUID_S_GLO_SquirrelKnight_9183620e-c7d1-4762-b7c6-512045da9325);
+
+
+EXITSECTION
+ENDEXITSECTION
+
+ParentTargetEdge "DOS2ModWrapper"

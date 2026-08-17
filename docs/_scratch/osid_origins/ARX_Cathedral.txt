@@ -1,0 +1,469 @@
+Version 1
+SubGoalCombiner SGC_AND
+
+INITSECTION
+DB_Dialogs(CHARACTERGUID_S_ARX_Cathedral_Cook_5a99d97e-b0ef-48c4-8585-fde01182f8af, "ARX_Cathedral_Cook");
+DB_Dialogs(CHARACTERGUID_S_ARX_Cathedral_PrayingPaladin_f9c38de2-bb0d-462d-b16a-09f7ff7bbecd, "ARX_Cathedral_PrayingPaladin");
+DB_Dialogs(CHARACTERGUID_S_ARX_Cathedral_RunningPilgrim_66b7ac6c-4eb8-4260-b5d5-3f57dc40ad26, "ARX_Cathedral_RunningPilgrim");
+TriggerRegisterForCharacter(TRIGGERGUID_S_ARX_Cathedral_RunningPilgrim_Box_b9d59e00-c032-48a1-9fe4-343cab0f56b6, CHARACTERGUID_S_ARX_Cathedral_RunningPilgrim_66b7ac6c-4eb8-4260-b5d5-3f57dc40ad26);
+TriggerRegisterForCharacter(TRIGGERGUID_S_ARX_Cathedral_DivineTomb_PoB_Room_Box_6c22bc88-0738-4688-8cf6-5a68b7d2faa7, CHARACTERGUID_S_ARX_Cathedral_RunningPilgrim_66b7ac6c-4eb8-4260-b5d5-3f57dc40ad26);
+ProcTriggerRegisterForPlayers(TRIGGERGUID_S_ARX_Cathedral_RunningPilgrim_Start_Box_390a4ddf-8771-4cbe-9d22-793c6350ba6d);
+DB_Ghosts(CHARACTERGUID_S_ARX_Cathedral_RunningPilgrim_66b7ac6c-4eb8-4260-b5d5-3f57dc40ad26, CHARACTERGUID_S_ARX_Cathedral_RunningPilgrim_Ghost_7479c574-8c12-4e03-8e02-acea415c0e53, "ARX_Cathedral_RunningPilgrimGhost");
+ProcCharacterDisableAllCrimes(CHARACTERGUID_S_ARX_Cathedral_RunningPilgrim_66b7ac6c-4eb8-4260-b5d5-3f57dc40ad26);
+DB_Dialogs(CHARACTERGUID_S_ARX_Cathedral_Child_000_b6d94943-6f5a-40e4-98f4-cd803e0b14c4, "ARX_Cathedral_Child_000");
+DB_Dialogs(CHARACTERGUID_S_ARX_Cathedral_Child_001_ce83e0f2-6c52-4c6a-882a-6e3b3b876399, "ARX_Cathedral_Child_001");
+DB_Dialogs(CHARACTERGUID_S_ARX_Cathedral_Child_002_fa5908c3-1957-457d-8e86-d260dbea8a02, "ARX_Cathedral_Child_002");
+DB_Dialogs(CHARACTERGUID_S_ARX_Cathedral_Child_003_1c6bde40-5a93-4641-b18b-8ee53176c548, "ARX_Cathedral_Child_003");
+DB_ARX_Cathedral_Children(CHARACTERGUID_S_ARX_Cathedral_Child_000_b6d94943-6f5a-40e4-98f4-cd803e0b14c4);
+DB_ARX_Cathedral_Children(CHARACTERGUID_S_ARX_Cathedral_Child_001_ce83e0f2-6c52-4c6a-882a-6e3b3b876399);
+DB_ARX_Cathedral_Children(CHARACTERGUID_S_ARX_Cathedral_Child_002_fa5908c3-1957-457d-8e86-d260dbea8a02);
+DB_ARX_Cathedral_Children(CHARACTERGUID_S_ARX_Cathedral_Child_003_1c6bde40-5a93-4641-b18b-8ee53176c548);
+DB_ARX_Cathedral_Children(CHARACTERGUID_S_ARX_CathedralDistrict_PlayingChild_000_29168ade-d9a5-4867-a0d0-ec03565046a0);
+DB_ARX_Cathedral_Children(CHARACTERGUID_S_ARX_CathedralDistrict_PlayingChild_001_940d9a1e-de23-4be4-a299-c51124a14d52);
+DB_Children(S_ARX_Cathedral_Child_000_b6d94943-6f5a-40e4-98f4-cd803e0b14c4);
+DB_Children(CHARACTERGUID_S_ARX_Cathedral_Child_001_ce83e0f2-6c52-4c6a-882a-6e3b3b876399);
+DB_Children(CHARACTERGUID_S_ARX_Cathedral_Child_002_fa5908c3-1957-457d-8e86-d260dbea8a02);
+DB_Children(CHARACTERGUID_S_ARX_Cathedral_Child_003_1c6bde40-5a93-4641-b18b-8ee53176c548);
+DB_Dialogs(CHARACTERGUID_S_ARX_CathedralDistrict_PlayingChild_000_29168ade-d9a5-4867-a0d0-ec03565046a0, "ARX_CathedralDistrict_PlayingChild_000");
+DB_Dialogs(CHARACTERGUID_S_ARX_CathedralDistrict_PlayingChild_001_940d9a1e-de23-4be4-a299-c51124a14d52, "ARX_CathedralDistrict_PlayingChild_001");
+DB_ARX_Cathedral_EndlessPrayer_Pilgrims(CHARACTERGUID_S_RC_ARX_Cathedral_EndlessPrayer_Pilgrim_01_fbd85da3-869c-41fe-ab66-ff5a340eac14);
+DB_ARX_Cathedral_EndlessPrayer_Pilgrims(CHARACTERGUID_S_RC_ARX_Cathedral_EndlessPrayer_Pilgrim_02_d83ad289-402e-4724-bf54-a8e9786743e2);
+DB_ARX_Cathedral_EndlessPrayer_Pilgrims(CHARACTERGUID_S_RC_ARX_Cathedral_EndlessPrayer_Pilgrim_03_bc5b5990-8312-4859-a098-1294df7f14bf);
+DB_ARX_Cathedral_EndlessPrayer_Pilgrims(CHARACTERGUID_S_RC_ARX_Cathedral_EndlessPrayer_Pilgrim_04_fe620d2a-911b-4cd5-9235-125a3f13d19e);
+DB_ARX_Cathedral_EndlessPrayer_Pilgrims(CHARACTERGUID_S_RC_ARX_Cathedral_EndlessPrayer_Pilgrim_05_506b5ca6-a220-4885-991e-e7ef74eff43b);
+DB_ARX_Cathedral_EndlessPrayer_Pilgrims(CHARACTERGUID_S_RC_ARX_Cathedral_EndlessPrayer_Pilgrim_06_93e5183d-79f5-4be6-9bc2-49baa4cfd6e0);
+DB_ARX_Cathedral_EndlessPrayer_Pilgrims(CHARACTERGUID_S_RC_ARX_Cathedral_EndlessPrayer_Pilgrim_07_03356ddc-cec6-4711-9330-73951d9e0ae0);
+DB_ARX_Cathedral_EndlessPrayer_Pilgrims(CHARACTERGUID_S_RC_ARX_Cathedral_EndlessPrayer_Pilgrim_08_9b29c5c9-4e6b-4e65-969d-049ce0110d57);
+DB_ARX_Cathedral_EndlessPrayer_Pilgrims(CHARACTERGUID_S_RC_ARX_Cathedral_EndlessPrayer_Pilgrim_09_121efa2f-3cc6-4b30-ab89-352b8df0c33c);
+DB_ARX_Cathedral_EndlessPrayer_Pilgrims(CHARACTERGUID_S_RC_ARX_Cathedral_EndlessPrayer_Priest_01_6666ac20-6290-4f81-994f-15e717364669);
+DB_ARX_Cathedral_EndlessPrayer_Pilgrims(CHARACTERGUID_S_RC_ARX_Cathedral_EndlessPrayer_Priest_02_e517d4d9-4833-4505-97ed-ff818d2ba74e);
+Proc_ARX_Cathedral_EndlessPrayer_Setup();
+DB_Dialogs(CHARACTERGUID_S_ARX_Cathedral_Pilgrim_000_11441aa0-b063-427f-86b8-f606bf1a6ddd, "ARX_Cathedral_Pilgrim_000");
+DB_Dialogs(CHARACTERGUID_S_ARX_Cathedral_Pilgrim_001_444586ca-24e8-4cb6-bdbd-ce92ae5d0dd6, "ARX_Cathedral_Pilgrim_001");
+DB_Dialogs(CHARACTERGUID_S_ARX_Cathedral_Pilgrim_002_e684a854-42ed-461b-bb10-a1989f25a07c, "ARX_Cathedral_Pilgrim_002");
+DB_Dialogs(CHARACTERGUID_S_ARX_Cathedral_Pilgrim_003_da656e53-ff52-4b34-a72f-db25083cf7b2, "ARX_Cathedral_Pilgrim_003");
+DB_Dialogs(CHARACTERGUID_S_ARX_Cathedral_Pilgrim_004_de52039a-f2c4-4f44-aa8e-7dca920a0c83, "ARX_Cathedral_Pilgrim_004");
+DB_Dialogs(CHARACTERGUID_S_ARX_Cathedral_Pilgrim_005_bad00586-6c32-4409-bd9b-114f981e7009, "ARX_Cathedral_Pilgrim_005");
+DB_Dialogs(CHARACTERGUID_S_ARX_Cathedral_Pilgrim_006_d9a9d3c0-5c39-4382-93bc-6e5f93df966d, "ARX_Cathedral_Pilgrim_006");
+DB_Dialogs(CHARACTERGUID_S_ARX_Cathedral_Pilgrim_007_5fc17ed2-c2f5-4597-b1d6-5649e3be6114, "ARX_Cathedral_Pilgrim_007");
+DB_Dialogs(CHARACTERGUID_S_ARX_Cathedral_Pilgrim_008_38239fc0-7a9b-4df0-8cb6-0e9b9e209697, "ARX_Cathedral_Pilgrim_008");
+DB_Dialogs(CHARACTERGUID_S_ARX_Cathedral_Pilgrim_009_edcdbd10-f4ea-4821-a341-3d61cb08d47c, "ARX_Cathedral_Pilgrim_009");
+DB_Dialogs(CHARACTERGUID_S_ARX_Cathedral_Pilgrim_010_be217f3a-0e4e-40b6-a012-404e6a40ee45, "ARX_Cathedral_Pilgrim_010");
+DB_Dialogs(CHARACTERGUID_S_ARX_Cathedral_Pilgrim_011_d835664e-6a2c-47d6-9ac3-11c30fea1b14, "ARX_Cathedral_Pilgrim_011");
+DB_Dialogs(CHARACTERGUID_S_ARX_Cathedral_Pilgrim_012_bd9adc19-818a-412b-a2b8-3f21d8056282, "ARX_Cathedral_Pilgrim_012");
+DB_Dialogs(CHARACTERGUID_S_ARX_Cathedral_Pilgrim_013_d2fc7c34-ed9b-4732-94de-ef09df4e5e4c, "ARX_Cathedral_Pilgrim_013");
+DB_Dialogs(CHARACTERGUID_S_ARX_Cathedral_Pilgrim_014_f152324f-9bdf-4b1e-bb63-49c98482d933, "ARX_Cathedral_ProMagisterPilgrim");
+DB_Dialogs(CHARACTERGUID_S_ARX_Cathedral_LucianChapel_Pilgrim_000_1f151b65-6a44-41ca-9adb-4fb38c311e24, "ARX_Cathedral_LucianChapel_Pilgrim_000");
+DB_Dialogs(CHARACTERGUID_S_ARX_Cathedral_LucianChapel_Pilgrim_001_a2926fe9-2bf3-4fe9-af62-122198b169d9, "ARX_Cathedral_LucianChapel_Pilgrim_001");
+DB_Dialogs(CHARACTERGUID_S_ARX_Cathedral_Scribe_000_04acc980-3445-4ab9-a61a-309388983eb3, "ARX_Cathedral_Scribe_000");
+DB_Dialogs(CHARACTERGUID_S_ARX_Cathedral_Scribe_001_99ffae8b-2155-4dba-ba5c-cc6489bb19e4, "ARX_Cathedral_Scribe_001");
+DB_Dialogs(CHARACTERGUID_S_ARX_Cathedral_Scribe_002_07e3dae2-62f8-457d-a4a2-da7d76eb16b1, "ARX_Cathedral_Scribe_002");
+DB_Dialogs(CHARACTERGUID_S_ARX_Cathedral_Scribe_003_b28245b5-c38c-4b10-9353-53dfbc998e43, "ARX_Cathedral_Scribe_003");
+DB_Dialogs(CHARACTERGUID_S_ARX_Cathedral_Scribe_004_0c4dced1-939e-4212-b0c9-ac909484b491, "ARX_Cathedral_Scribe_004");
+DB_Dialogs(CHARACTERGUID_S_ARX_Cathedral_Scribe_005_8c9758e4-e874-4bdb-8f04-d7cf51a5a723, "ARX_Cathedral_Scribe_005");
+DB_Dialogs(CHARACTERGUID_S_ARX_Cathedral_Scribe_006_470e3b7a-3e72-43ff-a573-e52e6732ef91, "ARX_Cathedral_Scribe_006");
+DB_Dialogs(CHARACTERGUID_S_ARX_Cathedral_Priest_000_7b087714-7ba2-4431-994e-9dc2385e7cf9, "ARX_Cathedral_Priest_000");
+DB_Dialogs(CHARACTERGUID_S_ARX_Cathedral_Priest_001_49aa9784-05d7-40da-b0c8-18bb32d0ef93, "ARX_Cathedral_Priest_001");
+DB_Dialogs(CHARACTERGUID_S_ARX_Cathedral_Priest_002_f9f74eee-6aec-4112-8b05-c03f3de768b8, "ARX_Cathedral_Priest_002");
+DB_Dialogs(CHARACTERGUID_S_ARX_Cathedral_EndlessPrayer_IntroPriest_db1f6d66-3ff0-4352-852e-a06187879dcb, "ARX_Cathedral_EndlessPrayer_IntroPriest");
+DB_Dialogs(CHARACTERGUID_S_ARX_Cathedral_LucianChapel_Priest_000_aec2d5e2-e976-46d8-adf9-5e88b4fe414e, "ARX_Cathedral_LucianChapel_Priest_000");
+DB_Dialogs(CHARACTERGUID_S_ARX_Cathedral_PrayingPilgrim_000_dd243718-4eef-4eb6-b893-8219aa4a0cda, "ARX_Cathedral_PrayingPilgrim_000");
+DB_Dialogs(CHARACTERGUID_S_ARX_Cathedral_PrayingPilgrim_001_cf583b66-947b-4216-9658-6fb35c15a0a8, "ARX_Cathedral_PrayingPilgrim_001");
+DB_Dialogs(CHARACTERGUID_S_ARX_Cathedral_PrayingPilgrim_002_ea02bff1-c936-4331-a7ff-f260c0cbd3f0, "ARX_Cathedral_PrayingPilgrim_002");
+DB_Dialogs(CHARACTERGUID_S_ARX_Cathedral_Checkpoint_Paladin_000_e3a50e1e-842a-4590-b19f-f819cd0ba755, CHARACTERGUID_S_ARX_Cathedral_Checkpoint_Paladin_001_c6477766-46d0-4879-b868-be0f0ae5b142, "ARX_Cathedral_PaladinCheckpoint_Dual");
+DB_ARX_Cathedral_Checkpoint_Paladins(CHARACTERGUID_S_ARX_Cathedral_Checkpoint_Paladin_000_e3a50e1e-842a-4590-b19f-f819cd0ba755, "ARX_Cathedral_PaladinCheckpoint_000");
+DB_ARX_Cathedral_Checkpoint_Paladins(CHARACTERGUID_S_ARX_Cathedral_Checkpoint_Paladin_001_c6477766-46d0-4879-b868-be0f0ae5b142, "ARX_Cathedral_PaladinCheckpoint_001");
+TriggerRegisterForCharacter(TRIGGERGUID_S_ARX_Cathedral_Checkpoint_Box_90d6f79d-a7d4-4d63-86e0-ed3207a71b7a, CHARACTERGUID_S_ARX_Cathedral_Checkpoint_Paladin_000_e3a50e1e-842a-4590-b19f-f819cd0ba755);
+TriggerRegisterForCharacter(TRIGGERGUID_S_ARX_Cathedral_Checkpoint_Box_90d6f79d-a7d4-4d63-86e0-ed3207a71b7a, CHARACTERGUID_S_ARX_Cathedral_Checkpoint_Paladin_001_c6477766-46d0-4879-b868-be0f0ae5b142);
+DB_ARX_Cathedral_InteractiveAD(ITEMGUID_S_ARX_Cathedral_ChapelStatue_000_dc952927-a24c-4dd8-b267-45c32cbc032f, "ARX_AD_Cathedral_ChapelStatue_000");
+DB_ARX_Cathedral_InteractiveAD(ITEMGUID_S_ARX_Cathedral_DivineStatue_000_2ff7fed5-08e8-ca28-cfcd-b0e8937b76c9, "ARX_AD_Cathedral_DivineStatue_000");
+DB_ARX_Cathedral_InteractiveAD(ITEMGUID_S_ARX_Cathedral_GodsPainting_Rhalic_86216a30-1c8e-4afa-9be2-e3b294c14546, "ARX_AD_Cathedral_GodsPainting_Rhalic");
+DB_ARX_Cathedral_InteractiveAD(ITEMGUID_S_ARX_Cathedral_GodsPainting_Vrogir_a635afb0-cbe0-4e31-ade0-bab985bd50a4, "ARX_AD_Cathedral_GodsPainting_Vrogir");
+DB_ARX_Cathedral_InteractiveAD(ITEMGUID_S_ARX_Cathedral_GodsPainting_Amadia_2c56c98a-8e16-49c0-a90c-cbe813dda1cb, "ARX_AD_Cathedral_GodsPainting_Amadia");
+DB_ARX_Cathedral_InteractiveAD(ITEMGUID_S_ARX_Cathedral_GodsPainting_ZorlStissa_950db3cb-dc6f-4180-aabe-c1cfdf7a75c2, "ARX_AD_Cathedral_GodsPainting_ZorlStissa");
+DB_ARX_Cathedral_InteractiveAD(ITEMGUID_S_ARX_Cathedral_GodsPainting_Xantezza_54798a50-a499-4b0c-8ca9-b9e7092176e1, "ARX_AD_Cathedral_GodsPainting_Xantezza");
+DB_ARX_Cathedral_InteractiveAD(ITEMGUID_S_ARX_Cathedral_GodsPainting_Duna_17b78de6-2089-4852-85b6-7fdbb0772c2d, "ARX_AD_Cathedral_GodsPainting_Duna");
+DB_ARX_Cathedral_InteractiveAD(ITEMGUID_S_ARX_Cathedral_GodsPainting_TirC_bd0c857c-41d9-4d8f-955b-d9e2be43132b, "ARX_AD_Cathedral_GodsPainting_TirCendelius");
+DB_ARX_Cathedral_InteractiveAD(ITEMGUID_S_ARX_Cathedral_Painting_Church_J_000_dadd271d-772f-4d85-b1ef-17d8d8259355, "ARX_AD_Cathedral_Painting_Church_000");
+DB_ARX_Cathedral_InteractiveAD(ITEMGUID_S_ARX_Cathedral_Painting_Church_I_001_a7f60b4f-7b77-4ca8-8dd1-2b1e82b21327, "ARX_AD_Cathedral_Painting_Church_001");
+DB_ARX_Cathedral_InteractiveAD(ITEMGUID_S_ARX_Cathedral_Painting_Church_H_002_c87a6c0e-0e8a-4691-88d9-d15ae607059e, "ARX_AD_Cathedral_Painting_Church_002");
+DB_ARX_Cathedral_InteractiveAD(ITEMGUID_S_ARX_Cathedral_Painting_Church_F_003_35c09009-2d7a-40e2-a8b8-12508107f3bf, "ARX_AD_Cathedral_Painting_Church_003");
+DB_ARX_Cathedral_InteractiveAD(ITEMGUID_S_ARX_Cathedral_Painting_Church_E_004_c351077b-0784-4876-8af9-e697799efa44, "ARX_AD_Cathedral_Painting_Church_004");
+DB_ARX_Cathedral_InteractiveAD(ITEMGUID_S_Cathedral_Statue_Alexander_A_000_32cfb313-fbf7-4173-bbae-4f80664c0085, "ARX_AD_Cathedral_AlexandarStatue_000");
+DB_Arx_Cathedral_Scrib(CHARACTERGUID_S_ARX_Cathedral_Scribe_004_0c4dced1-939e-4212-b0c9-ac909484b491, ITEMGUID_S_ARX_Cathedral_Scribe_004_Desk_88c4b3a4-8ef6-47f1-875e-bf45e62b5522, "S_ARX_Cathedral_Scribe_004_Effect", 0);
+DB_Arx_Cathedral_Scrib(CHARACTERGUID_S_ARX_Cathedral_Scribe_003_b28245b5-c38c-4b10-9353-53dfbc998e43, ITEMGUID_S_ARX_Cathedral_Scribe_003_Desk_61c6105c-0da0-4391-9072-8e221e528543, "S_ARX_Cathedral_Scribe_003_Effect", 0);
+DB_Arx_Cathedral_Scrib(CHARACTERGUID_S_ARX_Cathedral_Scribe_005_8c9758e4-e874-4bdb-8f04-d7cf51a5a723, ITEMGUID_S_ARX_Cathedral_Scribe_005_Desk_bb4823c2-54bb-40ff-aa80-6c6988222600, "S_ARX_Cathedral_Scribe_005_Effect", 0);
+DB_Arx_Cathedral_Scrib(CHARACTERGUID_S_ARX_Cathedral_Scribe_002_07e3dae2-62f8-457d-a4a2-da7d76eb16b1, ITEMGUID_S_ARX_Cathedral_Scribe_002_Desk_6ec547f2-6a5b-449d-87b3-9f35ab796b53, "S_ARX_Cathedral_Scribe_002_Effect", 0);
+DB_Arx_Cathedral_Scrib(CHARACTERGUID_S_ARX_Cathedral_Scribe_001_99ffae8b-2155-4dba-ba5c-cc6489bb19e4, ITEMGUID_S_ARX_Cathedral_Scribe_001_Desk_d815d602-1fc2-4e06-8d3d-2552ecbe2d4c, "S_ARX_Cathedral_Scribe_001_Effect", 0);
+DB_Arx_Cathedral_Scrib(CHARACTERGUID_S_ARX_Cathedral_Scribe_000_04acc980-3445-4ab9-a61a-309388983eb3, ITEMGUID_S_ARX_Cathedral_Scribe_000_Desk_4c96febf-8e65-468f-8192-cad63264b5a3, "S_ARX_Cathedral_Scribe_000_Effect", 0);
+DB_Arx_Cathedral_Scrib(CHARACTERGUID_S_ARX_Cathedral_Scribe_006_470e3b7a-3e72-43ff-a573-e52e6732ef91, ITEMGUID_S_ARX_Cathedral_Scribe_006_Desk_5937301e-c1f7-4b66-8de3-9d3c3bbacfa7, "S_ARX_Cathedral_Scribe_006_Effect", 0);
+Proc_Arx_Cathedral_PilgrimDangerousSurface_Patch2Fix();
+
+KBSECTION
+PROC
+Proc_ARX_Cathedral_EndlessPrayer_Setup()
+AND
+DB_ARX_Cathedral_EndlessPrayer_Pilgrims(_Var1)
+THEN
+DB_DoNotFace(_Var1);
+DB_Dialogs(_Var1, "ARX_Cathedral_EndlessPrayer_Chanters");
+
+IF
+SavegameLoaded((INTEGER)_Var1, (INTEGER)_Var2, (INTEGER)_Var3, (INTEGER)_Var4)
+AND
+QRY_VersionIsOlderThan(_Var1, _Var2, _Var3, _Var4, 3, 6, 2, 0)
+THEN
+Proc_Arx_Cathedral_PilgrimDangerousSurface_Patch2Fix();
+
+PROC
+Proc_Arx_Cathedral_PilgrimDangerousSurface_Patch2Fix()
+THEN
+DB_ARX_Cathedral_PilgrimDangerousSurface_Patch2Fix(CHARACTERGUID_S_ARX_Cathedral_LucianChapel_Priest_000_aec2d5e2-e976-46d8-adf9-5e88b4fe414e);
+DB_ARX_Cathedral_PilgrimDangerousSurface_Patch2Fix(CHARACTERGUID_S_ARX_Cathedral_LucianChapel_Pilgrim_000_1f151b65-6a44-41ca-9adb-4fb38c311e24);
+DB_ARX_Cathedral_PilgrimDangerousSurface_Patch2Fix(CHARACTERGUID_S_ARX_Cathedral_LucianChapel_Pilgrim_001_a2926fe9-2bf3-4fe9-af62-122198b169d9);
+DB_ARX_Cathedral_PilgrimDangerousSurface_Patch2Fix(CHARACTERGUID_S_ARX_Cathedral_PrayingPilgrim_002_ea02bff1-c936-4331-a7ff-f260c0cbd3f0);
+DB_ARX_Cathedral_PilgrimDangerousSurface_Patch2Fix(CHARACTERGUID_S_ARX_Cathedral_PrayingPilgrim_000_dd243718-4eef-4eb6-b893-8219aa4a0cda);
+DB_ARX_Cathedral_PilgrimDangerousSurface_Patch2Fix(CHARACTERGUID_S_ARX_Cathedral_PrayingPilgrim_001_cf583b66-947b-4216-9658-6fb35c15a0a8);
+DB_ARX_Cathedral_PilgrimDangerousSurface_Patch2Fix(CHARACTERGUID_S_ARX_Cathedral_Pilgrim_001_444586ca-24e8-4cb6-bdbd-ce92ae5d0dd6);
+DB_ARX_Cathedral_PilgrimDangerousSurface_Patch2Fix(CHARACTERGUID_S_ARX_Cathedral_Pilgrim_000_11441aa0-b063-427f-86b8-f606bf1a6ddd);
+DB_ARX_Cathedral_PilgrimDangerousSurface_Patch2Fix(CHARACTERGUID_S_ARX_Cathedral_Pilgrim_009_edcdbd10-f4ea-4821-a341-3d61cb08d47c);
+DB_ARX_Cathedral_PilgrimDangerousSurface_Patch2Fix(CHARACTERGUID_S_ARX_Cathedral_Priest_000_7b087714-7ba2-4431-994e-9dc2385e7cf9);
+DB_ARX_Cathedral_PilgrimDangerousSurface_Patch2Fix(CHARACTERGUID_S_ARX_Cathedral_PrayingPaladin_f9c38de2-bb0d-462d-b16a-09f7ff7bbecd);
+
+PROC
+Proc_Arx_Cathedral_PilgrimDangerousSurface_Patch2Fix()
+AND
+DB_ARX_Cathedral_PilgrimDangerousSurface_Patch2Fix(_Var1)
+AND NOT
+DB_Dead(_Var1)
+THEN
+CharacterSetReactionPriority(_Var1, "MoveAwayFromSurface", 1200);
+
+PROC
+Proc_Arx_Cathedral_PilgrimDangerousSurface_Patch2Fix()
+AND
+DB_ARX_Cathedral_PilgrimDangerousSurface_Patch2Fix(_Var1)
+THEN
+NOT DB_ARX_Cathedral_PilgrimDangerousSurface_Patch2Fix(_Var1);
+
+IF
+ObjectFlagSet("RC_DW_Guard_Paladin_MansionInside_04_Curse", (GUIDSTRING)_Var1, _)
+THEN
+ApplyStatus(_Var1, "CURSED", 50, 1);
+PlayEffect(_Var1, "RS3_FX_Skills_Voodoo_Target_Ground_01");
+
+IF
+ObjectFlagSet("RC_DW_Guard_Paladin_MansionInside_04_Bless", (GUIDSTRING)_Var1, _)
+THEN
+ApplyStatus(_Var1, "BLESSED", 50, 1);
+PlayEffect(_Var1, "RS3_FX_Skills_Divine_Bless_Impact_01");
+
+IF
+CharacterStatusRemoved(CHARACTERGUID_S_ARX_Cathedral_PrayingPaladin_f9c38de2-bb0d-462d-b16a-09f7ff7bbecd, "CURSED", _)
+THEN
+ObjectClearFlag(CHARACTERGUID_S_ARX_Cathedral_PrayingPaladin_f9c38de2-bb0d-462d-b16a-09f7ff7bbecd, "RC_DW_Guard_Paladin_MansionInside_04_Curse");
+
+IF
+CharacterEnteredTrigger((CHARACTERGUID)_Var1, TRIGGERGUID_S_ARX_Cathedral_RunningPilgrim_Start_Box_390a4ddf-8771-4cbe-9d22-793c6350ba6d)
+AND
+DB_IsPlayer(_Var1)
+AND NOT
+Query_IsPlayerHiding(_Var1)
+THEN
+Proc_ARX_Cathedral_StartRunningPilgrimEvent(_Var1);
+
+IF
+StoryEvent((CHARACTERGUID)_Var1, "BecameVisible")
+AND
+DB_InRegion(_Var1, TRIGGERGUID_S_ARX_Cathedral_DivineTomb_PoB_Room_Box_6c22bc88-0738-4688-8cf6-5a68b7d2faa7)
+AND
+Query_CharacterIsAliveAndNotInCombat(_Var1)
+THEN
+Proc_ARX_Cathedral_StartRunningPilgrimEvent(_Var1);
+
+PROC
+Proc_ARX_Cathedral_StartRunningPilgrimEvent((CHARACTERGUID)_Var1)
+AND NOT
+DB_Dead(CHARACTERGUID_S_ARX_Cathedral_RunningPilgrim_66b7ac6c-4eb8-4260-b5d5-3f57dc40ad26)
+AND
+ObjectIsInTrigger(CHARACTERGUID_S_ARX_Cathedral_RunningPilgrim_66b7ac6c-4eb8-4260-b5d5-3f57dc40ad26, TRIGGERGUID_S_ARX_Cathedral_RunningPilgrim_Box_b9d59e00-c032-48a1-9fe4-343cab0f56b6, 1)
+AND NOT
+DB_InRegion(CHARACTERGUID_S_ARX_Cathedral_RunningPilgrim_66b7ac6c-4eb8-4260-b5d5-3f57dc40ad26, TRIGGERGUID_S_ARX_Cathedral_DivineTomb_PoB_Room_Box_6c22bc88-0738-4688-8cf6-5a68b7d2faa7)
+AND
+QueryOnlyOnce("ARX_Cathedral_StartRunningPilgrim")
+THEN
+ProcForceStopDialog(CHARACTERGUID_S_ARX_Cathedral_RunningPilgrim_66b7ac6c-4eb8-4260-b5d5-3f57dc40ad26);
+GlobalSetFlag("ARX_Cathedral_RunningPilgrim_MiniTrespass");
+Proc_StartDialog(0, "ARX_Cathedral_RunningPilgrim", CHARACTERGUID_S_ARX_Cathedral_RunningPilgrim_66b7ac6c-4eb8-4260-b5d5-3f57dc40ad26, _Var1);
+ProcCharacterMoveTo(CHARACTERGUID_S_ARX_Cathedral_RunningPilgrim_66b7ac6c-4eb8-4260-b5d5-3f57dc40ad26, ITEMGUID_S_ARX_Cathedral_DivineTomb_PoB_Door_313635ac-5ab3-4906-8dcf-21296bf8ba04, 1, "ARX_Cathedral_RunningPilgrim_ReachedDoor");
+
+IF
+CharacterLeftTrigger(CHARACTERGUID_S_ARX_Cathedral_RunningPilgrim_66b7ac6c-4eb8-4260-b5d5-3f57dc40ad26, TRIGGERGUID_S_ARX_Cathedral_RunningPilgrim_Box_b9d59e00-c032-48a1-9fe4-343cab0f56b6)
+THEN
+GlobalClearFlag("ARX_Cathedral_RunningPilgrim_WaitingAtDoor");
+
+IF
+CharacterEnteredTrigger((CHARACTERGUID)_Var1, TRIGGERGUID_S_ARX_Cathedral_RunningPilgrim_Box_b9d59e00-c032-48a1-9fe4-343cab0f56b6)
+AND
+DB_IsPlayer(_Var1)
+AND
+CharacterIsDead(CHARACTERGUID_S_ARX_Cathedral_RunningPilgrim_66b7ac6c-4eb8-4260-b5d5-3f57dc40ad26, 1)
+THEN
+Proc_ARX_DivineTomb_PoB_CheckResetLocks();
+
+IF
+StoryEvent(CHARACTERGUID_S_ARX_Cathedral_RunningPilgrim_66b7ac6c-4eb8-4260-b5d5-3f57dc40ad26, "ARX_Cathedral_RunningPilgrim_ReachedDoor")
+AND
+DB_DialogNPCs(_, CHARACTERGUID_S_ARX_Cathedral_RunningPilgrim_66b7ac6c-4eb8-4260-b5d5-3f57dc40ad26, _)
+THEN
+GlobalSetFlag("ARX_Cathedral_RunningPilgrim_WaitingAtDoor");
+
+IF
+StoryEvent(CHARACTERGUID_S_ARX_Cathedral_RunningPilgrim_66b7ac6c-4eb8-4260-b5d5-3f57dc40ad26, "ARX_Cathedral_RunningPilgrim_ReachedDoor")
+AND
+DB_DialogNPCs(_Var1, CHARACTERGUID_S_ARX_Cathedral_RunningPilgrim_66b7ac6c-4eb8-4260-b5d5-3f57dc40ad26, _)
+AND
+DB_DialogPlayers(_Var1, _Var3, _)
+THEN
+CharacterLookAt(CHARACTERGUID_S_ARX_Cathedral_RunningPilgrim_66b7ac6c-4eb8-4260-b5d5-3f57dc40ad26, _Var3);
+
+IF
+StoryEvent(CHARACTERGUID_S_ARX_Cathedral_RunningPilgrim_66b7ac6c-4eb8-4260-b5d5-3f57dc40ad26, "ARX_Cathedral_RunningPilgrim_ReachedDoor")
+THEN
+Proc_ARX_DivineTomb_PoB_CheckResetLocks();
+Proc_ARX_Cathedral_RunningPilgrim_DoorChecks();
+
+PROC
+Proc_ARX_Cathedral_RunningPilgrim_DoorChecks()
+AND
+IsSpeakerReserved(CHARACTERGUID_S_ARX_Cathedral_RunningPilgrim_66b7ac6c-4eb8-4260-b5d5-3f57dc40ad26, 0)
+AND
+ItemIsOpened(ITEMGUID_S_ARX_Cathedral_DivineTomb_PoB_Door_313635ac-5ab3-4906-8dcf-21296bf8ba04, 1)
+THEN
+GlobalClearFlag("ARX_Cathedral_RunningPilgrim_WaitingAtDoor");
+Proc_StartDialog(1, "ARX_AD_Cathedral_RunningPilgrim", CHARACTERGUID_S_ARX_Cathedral_RunningPilgrim_66b7ac6c-4eb8-4260-b5d5-3f57dc40ad26);
+SetHasDialog(CHARACTERGUID_S_ARX_Cathedral_RunningPilgrim_66b7ac6c-4eb8-4260-b5d5-3f57dc40ad26, 0);
+ProcCharacterMoveTo(CHARACTERGUID_S_ARX_Cathedral_RunningPilgrim_66b7ac6c-4eb8-4260-b5d5-3f57dc40ad26, TRIGGERGUID_S_ARX_Cathedral_RunningPilgrim_Die_Point_4b5452db-8836-4c8b-accb-57723771830b, 1, "ARX_Cathedral_RunningPilgrim_ReachedStatue");
+
+PROC
+Proc_ARX_Cathedral_RunningPilgrim_DoorChecks()
+AND NOT
+DB_DialogNPCs(_, CHARACTERGUID_S_ARX_Cathedral_RunningPilgrim_66b7ac6c-4eb8-4260-b5d5-3f57dc40ad26, _)
+AND
+ItemIsOpened(ITEMGUID_S_ARX_Cathedral_DivineTomb_PoB_Door_313635ac-5ab3-4906-8dcf-21296bf8ba04, 0)
+THEN
+GlobalSetFlag("ARX_Cathedral_RunningPilgrim_WaitingAtDoor");
+
+IF
+DialogEnded("ARX_Cathedral_RunningPilgrim", _)
+AND
+GlobalGetFlag("ARX_Cathedral_RunningPilgrim_WaitingAtDoor", 1)
+THEN
+Proc_ARX_DivineTomb_PoB_CheckResetLocks();
+Proc_ARX_Cathedral_RunningPilgrim_DoorChecks();
+
+IF
+ItemOpened(ITEMGUID_S_ARX_Cathedral_DivineTomb_PoB_Door_313635ac-5ab3-4906-8dcf-21296bf8ba04)
+AND
+GlobalGetFlag("ARX_Cathedral_RunningPilgrim_WaitingAtDoor", 1)
+THEN
+Proc_ARX_Cathedral_RunningPilgrim_DoorChecks();
+
+IF
+DialogEnded("ARX_Cathedral_RunningPilgrim", _)
+AND
+GlobalGetFlag("ARX_Cathedral_RunningPilgrim_MiniTrespass", 1)
+THEN
+GlobalClearFlag("ARX_Cathedral_RunningPilgrim_MiniTrespass");
+
+IF
+CharacterLeftTrigger(CHARACTERGUID_S_ARX_Cathedral_RunningPilgrim_66b7ac6c-4eb8-4260-b5d5-3f57dc40ad26, TRIGGERGUID_S_ARX_Cathedral_RunningPilgrim_Box_b9d59e00-c032-48a1-9fe4-343cab0f56b6)
+AND
+DB_InRegion(CHARACTERGUID_S_ARX_Cathedral_RunningPilgrim_66b7ac6c-4eb8-4260-b5d5-3f57dc40ad26, TRIGGERGUID_S_ARX_Cathedral_DivineTomb_PoB_Room_Box_6c22bc88-0738-4688-8cf6-5a68b7d2faa7)
+THEN
+Proc_ARX_DivineTomb_PoB_CloseDoor(CHARACTERGUID_S_ARX_Cathedral_RunningPilgrim_66b7ac6c-4eb8-4260-b5d5-3f57dc40ad26);
+
+IF
+StoryEvent(CHARACTERGUID_S_ARX_Cathedral_RunningPilgrim_66b7ac6c-4eb8-4260-b5d5-3f57dc40ad26, "ARX_Cathedral_RunningPilgrim_ReachedStatue")
+THEN
+Proc_ARX_Cathedral_RunningPilgrim_EndEvent();
+
+PROC
+Proc_ARX_Cathedral_RunningPilgrim_EndEvent()
+THEN
+CharacterLookAt(CHARACTERGUID_S_ARX_Cathedral_RunningPilgrim_66b7ac6c-4eb8-4260-b5d5-3f57dc40ad26, ITEMGUID_S_ARX_Cathedral_DivineTomb_PoB_LucianStatue_f6ea9ac6-851d-c9f2-c82e-1867f4c3e461);
+PlayAnimation(CHARACTERGUID_S_ARX_Cathedral_RunningPilgrim_66b7ac6c-4eb8-4260-b5d5-3f57dc40ad26, "Worship_01");
+ProcObjectTimer(CHARACTERGUID_S_ARX_Cathedral_RunningPilgrim_66b7ac6c-4eb8-4260-b5d5-3f57dc40ad26, "ARX_Cathedral_RunningPilgrim_Die", 4000);
+
+PROC
+ProcObjectTimerFinished(CHARACTERGUID_S_ARX_Cathedral_RunningPilgrim_66b7ac6c-4eb8-4260-b5d5-3f57dc40ad26, "ARX_Cathedral_RunningPilgrim_Die")
+AND NOT
+DB_Dead(CHARACTERGUID_S_ARX_Cathedral_RunningPilgrim_66b7ac6c-4eb8-4260-b5d5-3f57dc40ad26)
+THEN
+TriggerRegisterForPlayers(TRIGGERGUID_S_ARX_Cathedral_RunningPilgrim_Box_b9d59e00-c032-48a1-9fe4-343cab0f56b6);
+PlayEffect(CHARACTERGUID_S_ARX_Cathedral_RunningPilgrim_66b7ac6c-4eb8-4260-b5d5-3f57dc40ad26, "RS3_FX_Skills_Voodoo_Target_Ground_01");
+CharacterDie(CHARACTERGUID_S_ARX_Cathedral_RunningPilgrim_66b7ac6c-4eb8-4260-b5d5-3f57dc40ad26, 1, "Physical");
+Proc_ARX_Cathedral_RunningPilgrim_ReactToDeath();
+TimerLaunch("ARX_Cathedral_RunningPilgim_ReopenDoor", 3000);
+
+PROC
+Proc_ARX_Cathedral_RunningPilgrim_ReactToDeath()
+AND
+DB_IsPlayer(_Var1)
+AND
+DB_InRegion(_Var1, TRIGGERGUID_S_ARX_Cathedral_RunningPilgrim_Start_Box_390a4ddf-8771-4cbe-9d22-793c6350ba6d)
+THEN
+UserSetFlag(_Var1, "ARX_Cathedral_HeardPilgrimDie");
+Proc_ARX_Cathedral_RunningPilgrim_ReactToDeathVB(_Var1);
+
+PROC
+Proc_ARX_Cathedral_RunningPilgrim_ReactToDeathVB((CHARACTERGUID)_Var1)
+AND
+QueryOnlyOnce("ARX_Cathedral_RunningPilgrim_ReactToDeathVB")
+THEN
+StartVoiceBark("ARX_VB_Cathedral_RunningPilgrimDeath", _Var1);
+
+IF
+TimerFinished("ARX_Cathedral_RunningPilgim_ReopenDoor")
+THEN
+Proc_ARX_DivineTomb_PoB_CheckResetLocks();
+
+PROC
+Proc_ARX_Cathedral_RunningPilgrim_ReactToDeath()
+THEN
+ProcTriggerUnregisterForPlayers(TRIGGERGUID_S_ARX_Cathedral_RunningPilgrim_Start_Box_390a4ddf-8771-4cbe-9d22-793c6350ba6d);
+NOT DB_OnlyOnce("ARX_Cathedral_StartRunningPilgrim");
+
+IF
+ObjectFlagSet("ARX_Cathedral_RunningPilgrimGhost_SetWarm", (GUIDSTRING)_Var1, _)
+THEN
+ObjectClearFlag(_Var1, "ARX_Cathedral_RunningPilgrimGhost_SetWarm");
+ApplyStatus(_Var1, "WARM", 2, 1);
+
+IF
+CharacterCharacterEvent(CHARACTERGUID_S_ARX_Cathedral_EndlessPrayer_IntroPriest_db1f6d66-3ff0-4352-852e-a06187879dcb, (CHARACTERGUID)_Var1, "ARX_Cathedral_EndlessPrayer_IntroPriestSpotted")
+AND
+UserGetFlag(_Var1, "ARX_Cathedral_EndlessPrayer_IntroPriestSpotted", 0)
+THEN
+Proc_StartDialog(0, "ARX_Cathedral_EndlessPrayer_IntroPriest", CHARACTERGUID_S_ARX_Cathedral_EndlessPrayer_IntroPriest_db1f6d66-3ff0-4352-852e-a06187879dcb, _Var1);
+
+IF
+CharacterCharacterEvent(CHARACTERGUID_S_ARX_Cathedral_EndlessPrayer_IntroPriest_db1f6d66-3ff0-4352-852e-a06187879dcb, (CHARACTERGUID)_Var1, "ARX_Cathedral_EndlessPrayer_IntroPriestSpotted")
+THEN
+ObjectSetFlag(CHARACTERGUID_S_ARX_Cathedral_EndlessPrayer_IntroPriest_db1f6d66-3ff0-4352-852e-a06187879dcb, "ARX_Cathedral_EndlessPrayer_IntroPriest_StartSpot");
+
+IF
+DialogStarted("ARX_Cathedral_EndlessPrayer_IntroPriest", (INTEGER)_Var1)
+AND
+DB_DialogPlayers(_Var1, _Var2, _)
+THEN
+UserSetFlag(_Var2, "ARX_Cathedral_EndlessPrayer_IntroPriestSpotted");
+
+IF
+CharacterCharacterEvent((CHARACTERGUID)_Var1, (CHARACTERGUID)_Var2, "ARX_Cathedral_PaladinCheckpoint_Spotted")
+AND
+UserGetFlag(_Var2, "ARX_Cathedral_Checkpoint_Spotted", 0)
+AND NOT
+DB_Dead(CHARACTERGUID_S_ARX_Cathedral_Checkpoint_Paladin_000_e3a50e1e-842a-4590-b19f-f819cd0ba755)
+AND NOT
+DB_Dead(CHARACTERGUID_S_ARX_Cathedral_Checkpoint_Paladin_001_c6477766-46d0-4879-b868-be0f0ae5b142)
+THEN
+UserSetFlag(_Var2, "ARX_Cathedral_Checkpoint_Spotted");
+Proc_StartDialog(0, "ARX_Cathedral_PaladinCheckpoint_Dual", CHARACTERGUID_S_ARX_Cathedral_Checkpoint_Paladin_000_e3a50e1e-842a-4590-b19f-f819cd0ba755, CHARACTERGUID_S_ARX_Cathedral_Checkpoint_Paladin_001_c6477766-46d0-4879-b868-be0f0ae5b142, _Var2);
+
+IF
+CharacterCharacterEvent((CHARACTERGUID)_Var1, (CHARACTERGUID)_Var2, "ARX_Cathedral_PaladinCheckpoint_Spotted")
+AND
+UserGetFlag(_Var2, "ARX_Cathedral_Checkpoint_Spotted", 0)
+AND
+DB_ARX_Cathedral_Checkpoint_Paladins(_Var3, _)
+AND
+_Var3 != _Var1
+AND
+DB_Dead(_Var3)
+AND
+DB_ARX_Cathedral_Checkpoint_Paladins(_Var1, _Var5)
+THEN
+UserSetFlag(_Var2, "ARX_Cathedral_Checkpoint_Spotted");
+Proc_StartDialog(0, _Var5, _Var1, _Var2);
+
+IF
+CharacterCharacterEvent((CHARACTERGUID)_Var1, (CHARACTERGUID)_Var2, "ARX_Cathedral_PaladinCheckpoint_Spotted")
+THEN
+ObjectSetFlag(_Var1, "ARX_Cathedral_Checkpoint_StartSpot");
+
+IF
+CharacterDied((CHARACTERGUID)_Var1)
+AND
+DB_ARX_Cathedral_Checkpoint_Paladins(_Var1, _Var2)
+AND
+DB_ARX_Cathedral_Checkpoint_Paladins(_Var3, _Var4)
+AND
+_Var3 != _Var1
+THEN
+NOT DB_Dialogs(CHARACTERGUID_S_ARX_Cathedral_Checkpoint_Paladin_000_e3a50e1e-842a-4590-b19f-f819cd0ba755, CHARACTERGUID_S_ARX_Cathedral_Checkpoint_Paladin_001_c6477766-46d0-4879-b868-be0f0ae5b142, "ARX_Cathedral_PaladinCheckpoint_Dual");
+PROC_RemoveDialogFromCharacter(_Var3);
+DB_Dialogs(_Var3, _Var4);
+ObjectSetFlag(_Var3, "ARX_Cathedral_Checkpoint_StartSpot");
+
+IF
+CharacterUsedItem((CHARACTERGUID)_Var1, (ITEMGUID)_Var2)
+AND
+DB_ARX_Cathedral_InteractiveAD(_Var2, _Var3)
+THEN
+Proc_StartDialog(1, _Var3, _Var1);
+
+IF
+CharacterStatusApplied((CHARACTERGUID)_Var1, "SITTING", _)
+AND
+DB_Arx_Cathedral_Scrib(_Var1, _Var3, _Var4, 0)
+THEN
+PROC_LoopEffect("RS3_FX_GP_ScriptedEvent_ARX_Cathedral_GodsBook_01", _Var3, _Var4, "ARX_Main", "");
+NOT DB_Arx_Cathedral_Scrib(_Var1, _Var3, _Var4, 0);
+DB_Arx_Cathedral_Scrib(_Var1, _Var3, _Var4, 1);
+
+IF
+CharacterStatusRemoved((CHARACTERGUID)_Var1, "SITTING", _)
+AND
+DB_Arx_Cathedral_Scrib(_Var1, _Var3, _Var4, 1)
+THEN
+PROC_StopLoopEffect(_Var3, _Var4);
+NOT DB_Arx_Cathedral_Scrib(_Var1, _Var3, _Var4, 1);
+DB_Arx_Cathedral_Scrib(_Var1, _Var3, _Var4, 0);
+
+IF
+AttackedByObject((CHARACTERGUID)_Var1, _, (GUIDSTRING)_Var3, _, _)
+AND
+_Var1 != _Var3
+AND
+DB_ARX_Cathedral_Children(_Var1)
+AND
+ObjectGetFlag(_Var1, "GEB_FleeOutOfSight", 0)
+THEN
+Proc_StartDialog(1, "GEB_AD_CallForHelp", _Var1);
+Proc_ARX_Cathedral_Children_CheckSight(_Var1);
+
+PROC
+Proc_ARX_Cathedral_Children_CheckSight((CHARACTERGUID)_Var1)
+AND
+DB_ARX_Cathedral_Children(_Var2)
+AND
+_Var2 != _Var1
+AND
+ObjectGetFlag(_Var2, "GEB_FleeOutOfSight", 0)
+AND
+CharacterCanSee(_Var2, _Var1, 1)
+THEN
+ObjectSetFlag(_Var1, "GEB_FleeOutOfSight");
+Proc_ARX_Cathedral_Children_CheckSight(_Var2);
+
+IF
+ObjectFlagSet("ARX_ArhuAppt_ShowMarker", (CHARACTERGUID)_Var1, _)
+THEN
+ProcShowMarker(_Var1, "ARX_Cathedral_ArhusApartment");
+
+
+EXITSECTION
+ENDEXITSECTION
+
+ParentTargetEdge "ARX"

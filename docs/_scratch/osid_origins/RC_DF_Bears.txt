@@ -1,0 +1,293 @@
+Version 1
+SubGoalCombiner SGC_AND
+
+INITSECTION
+DB_RC_DF_Bear(CHARACTERGUID_S_RC_DF_Bear_000_549586fc-3b50-402b-bf00-4389890f66e2);
+DB_RC_DF_Bear(CHARACTERGUID_S_RC_DF_Bear_001_759e95f0-4f86-48bc-bf24-025f1cdf0b90);
+DB_Dialogs(CHARACTERGUID_S_RC_DF_Bear_000_549586fc-3b50-402b-bf00-4389890f66e2, "RC_DF_Bear_000");
+DB_Dialogs(CHARACTERGUID_S_RC_DF_Bear_001_759e95f0-4f86-48bc-bf24-025f1cdf0b90, "RC_DF_Bear_001");
+DB_OneShotPlayerTrigger(TRIGGERGUID_S_RC_DF_Bears_SpotBox_d237ad85-f176-4ea3-aea5-27eba6284bbe);
+DB_Ghosts(CHARACTERGUID_S_RC_DF_Bear_DeadSourcerer_000_9e591955-b590-42ff-adc8-80df06c0b1af, CHARACTERGUID_S_RC_DF_Bear_DeadSourcerer_Ghost_000_692af522-be6b-4746-8e39-fed0089a9767, "RC_DF_Bear_DeadSourcererGhost");
+DB_RC_DF_Beehive(ITEMGUID_S_RC_DF_Bears_Beehive_A_000_7133c85f-aaa5-4aff-bd30-717079a27ef3);
+DB_RC_DF_Beehive(ITEMGUID_S_RC_DF_Bears_Beehive_A_001_06dee3bb-a58b-424c-a801-d60585901b9c);
+DB_RC_DF_Beehive(ITEMGUID_S_RC_DF_Bears_Beehive_A_002_6a65ef59-1705-4c4f-900f-48dd32a8c2e3);
+DB_RC_DF_Beehive(ITEMGUID_S_RC_DF_Bears_Beehive_A_003_84cd8158-68ec-4dd8-bd6f-3ff9550296ed);
+DB_RC_DF_Beehive(ITEMGUID_S_RC_DF_Bears_Beehive_A_004_603dfe8d-c484-4f9f-a2f3-0bd9ece21bb5);
+DB_RC_DF_Beehive(ITEMGUID_S_RC_DF_Bears_Beehive_A_005_09bfb725-7a34-4256-b37f-00ceb2f8906e);
+Proc_RC_DF_Bear_SetupCrimes();
+
+KBSECTION
+IF
+TextEventSet("BearTF")
+AND
+QueryOnlyOnce("RC_DF_BearsTransform")
+AND
+DB_RC_DF_Bear(_Var1)
+THEN
+Transform(_Var1, "Animals_Bear_A_Voidwoken_a0f68491-6af5-4190-9c45-c4559d29c08f", 1);
+SetFaction(_Var1, "Evil NPC");
+
+IF
+GameStarted("RC_Main", _)
+AND
+DB_Ghosts(CHARACTERGUID_S_RC_DF_Bear_DeadSourcerer_Ghost_000_692af522-be6b-4746-8e39-fed0089a9767, _)
+AND NOT
+DB_RC_DF_Bear_DeadSourcererCollar(CHARACTERGUID_S_RC_DF_Bear_DeadSourcerer_000_9e591955-b590-42ff-adc8-80df06c0b1af)
+THEN
+DB_RC_DF_Bear_DeadSourcererCollar(CHARACTERGUID_S_RC_DF_Bear_DeadSourcerer_000_9e591955-b590-42ff-adc8-80df06c0b1af);
+PROC_LoopEffect("RS3_FX_GP_Status_HoECollar_01", CHARACTERGUID_S_RC_DF_Bear_DeadSourcerer_000_9e591955-b590-42ff-adc8-80df06c0b1af, "RC_DW_WC_SourceCollar", "RC_Main", "Dummy_NeckFX");
+
+PROC
+Proc_RC_DF_Bear_SetupCrimes()
+AND
+DB_RC_DF_Bear(_Var1)
+THEN
+ProcCrimeSetCustomPrimarySensibleAction(_Var1, "SummonAttackAnimal", "RC_DF_Bear_CustomCrimeReaction");
+ProcCrimeSetCustomSecondarySensibleAction(_Var1, "SummonAttackAnimal", "RC_DF_Bear_CustomCrimeReaction");
+DB_CrimeReaction_CustomWarning(_Var1, "SummonAttackAnimal", "RC_DF_AD_Bear_Warning");
+ProcCrimeSetCustomPrimarySensibleAction(_Var1, "AttackAnimal", "RC_DF_Bear_CustomCrimeReaction");
+ProcCrimeSetCustomSecondarySensibleAction(_Var1, "AttackAnimal", "RC_DF_Bear_CustomCrimeReaction");
+DB_CrimeReaction_CustomWarning(_Var1, "AttackAnimal", "RC_DF_AD_Bear_Warning");
+DB_CrimeWarningIsAD("RC_DF_AD_Bear_Warning");
+DB_DontCreateMurder(_Var1);
+
+IF
+CharacterCharacterEvent((CHARACTERGUID)_Var1, (CHARACTERGUID)_Var2, "RC_DF_Bear_WarnClosePlayer")
+AND
+DB_RC_DF_Bear(_Var1)
+AND
+Random(10000, _Var3)
+AND
+IntegerSum(_Var3, 15000, _Var4)
+THEN
+CharacterLookAt(_Var1, _Var2);
+Proc_StartDialog(1, "RC_DF_AD_Bear_Warning", _Var1);
+ProcObjectTimer(_Var1, "RC_DF_Bear_RestartSpotting", _Var4);
+
+PROC
+ProcObjectTimerFinished((GUIDSTRING)_Var1, "RC_DF_Bear_RestartSpotting")
+AND
+GlobalGetFlag("RC_DF_BearsTransformed", 0)
+THEN
+ObjectSetFlag(_Var1, "RC_DF_Bear_RestartSpotting");
+
+PROC
+ProcOneShotTriggerEntered((CHARACTERGUID)_Var1, TRIGGERGUID_S_RC_DF_Bears_SpotBox_d237ad85-f176-4ea3-aea5-27eba6284bbe)
+THEN
+Proc_StartDialog(1, "RC_DF_AD_Bear_Noticed", _Var1);
+
+PROC
+ProcBlockUseOfItem((CHARACTERGUID)_Var1, (ITEMGUID)_Var2)
+AND
+DB_RC_DF_Beehive(_Var2)
+AND
+Qry_RC_DF_BearCanSee(_Var1)
+THEN
+DB_CustomUseItemResponse(_Var1, _Var2, 0);
+Proc_RC_DF_Bears_GiveHiveDialog(_Var1);
+
+PROC
+Proc_RC_DF_Bears_GiveHiveDialog((CHARACTERGUID)_Var1)
+AND
+Qry_RC_DF_GetClosestBear(_Var1)
+AND
+DB_RC_DF_Bear_ClosestBear(_Var2, _Var3)
+THEN
+NOT DB_RC_DF_Bear_ClosestBear(_Var2, _Var3);
+Proc_StartDialog(0, "RC_BF_Bear_TouchedHive", _Var2, _Var1);
+
+PROC
+Proc_RC_DF_Bears_GiveHiveDialog((CHARACTERGUID)_Var1)
+THEN
+Proc_RC_DF_Bear_SetHostile();
+
+IF
+CharacterReceivedDamage((CHARACTERGUID)_Var1, _, _)
+AND
+DB_RC_DF_Bear(_Var1)
+THEN
+Proc_RC_DF_Bear_SetHostile();
+
+QRY
+Qry_RC_DF_BearCanSee((CHARACTERGUID)_Var1)
+AND
+DB_RC_DF_Bear(_Var2)
+AND
+CharacterCanSee(_Var2, _Var1, 1)
+THEN
+DB_NOOP(1);
+
+QRY
+Qry_RC_DF_GetClosestBear((CHARACTERGUID)_Var1)
+AND
+DB_RC_DF_Bear(_Var2)
+AND
+GetDistanceTo(_Var2, _Var1, _Var3)
+THEN
+DB_RC_DF_Bear_ClosestBear(_Var2, _Var3);
+
+QRY
+Qry_RC_DF_GetClosestBear((CHARACTERGUID)_Var1)
+AND
+DB_RC_DF_Bear_ClosestBear(_Var2, _Var3)
+AND
+DB_RC_DF_Bear_ClosestBear(_Var4, _Var5)
+AND
+_Var2 != _Var4
+AND
+_Var3 <= _Var5
+THEN
+NOT DB_RC_DF_Bear_ClosestBear(_Var4, _Var5);
+
+QRY
+Qry_RC_DF_GetClosestBear((CHARACTERGUID)_Var1)
+AND
+DB_RC_DF_Bear_ClosestBear(_Var2, _Var3)
+AND
+DB_RC_DF_Bear_ClosestBear(_Var4, _Var5)
+AND
+_Var2 != _Var4
+AND
+_Var3 > _Var5
+THEN
+NOT DB_RC_DF_Bear_ClosestBear(_Var2, _Var3);
+
+PROC
+Proc_RC_DF_Bear_SetHostile()
+AND
+GlobalGetFlag("RC_DF_BearsTransformed", 0)
+AND
+DB_RC_DF_Bear(_Var1)
+THEN
+SetFaction(_Var1, "Evil NPC");
+
+IF
+StoryEvent(_, "RC_DF_Bear_TransformIntoVW")
+THEN
+Proc_RC_DF_Bear_StartTransform();
+
+PROC
+Proc_RC_DF_Bear_StartTransform()
+AND
+GlobalGetFlag("RC_DF_BearsTransformed", 0)
+THEN
+Proc_RC_DF_Bear_Transform();
+
+PROC
+Proc_RC_DF_Bear_Transform()
+AND
+DB_RC_DF_Bear(_Var1)
+AND
+GetPosition(_Var1, _Var2, _Var3, _Var4)
+THEN
+PROC_RemoveDialogFromCharacter(_Var1);
+SetStoryEvent(_Var1, "RC_DF_Bear_ChangeStatAndAddSkills");
+PlayEffect(_Var1, "RS3_FX_Char_Animals_Bear_A_VoidTransform_Overlays_01");
+PlayEffectAtPosition("RS3_FX_Char_Animals_Bear_A_VoidTransform_01", _Var2, _Var3, _Var4);
+
+PROC
+Proc_RC_DF_Bear_Transform()
+AND
+GlobalGetFlag("RC_DF_BearsTransformed", 0)
+THEN
+GlobalSetFlag("RC_DF_BearsTransformed");
+TimerLaunch("RC_DF_Bears_Transforms", 1100);
+TimerLaunch("RC_DF_Bears_TransformsAD", 200);
+
+IF
+TimerFinished("RC_DF_Bears_TransformsAD")
+AND
+DB_RC_DF_Bear(_Var1)
+THEN
+Proc_StartDialog(1, "RC_DF_AD_Bear_Transform", _Var1);
+
+IF
+TimerFinished("RC_DF_Bears_Transforms")
+AND
+DB_RC_DF_Bear(_Var1)
+THEN
+NOT DB_RC_DF_Bear(_Var1);
+DB_RC_DF_VoidBear(_Var1);
+Transform(_Var1, "QUEST_RC_BF_TheBears_Bear_A_Voidwoken_87bd467b-5eb3-4d79-aac5-fcc35785fa1a", 1);
+TriggerSetAtmosphere(TRIGGERGUID_AtmosphereTrigger_RC_DriftwoodFields_72187165-71fe-4977-8b72-e48db9b8a00f, "4b41cfe5-35bc-4473-b50c-59301e38ef9f");
+SetFaction(_Var1, "Evil NPC");
+CharacterAddSourcePoints(_Var1, 3);
+
+IF
+TimerFinished("RC_DF_Bears_Transforms")
+THEN
+Proc_RC_DF_Bear_CastSkill();
+
+PROC
+Proc_RC_DF_Bear_CastSkill()
+AND
+DB_RC_DF_VoidBear(_Var1)
+AND NOT
+DB_Dead(_Var1)
+AND
+GetClosestAlivePlayer(_Var1, _Var2, _Var3)
+AND
+_Var3 < 10
+AND
+QueryOnlyOnce("RC_DF_Bear_CastSkill_EnemyEarthquake")
+THEN
+JumpToTurn(_Var1);
+CharacterUseSkill(_Var1, "Quake_EnemyEarthquake", _Var2, 1);
+
+PROC
+Proc_RC_DF_Bear_Transform()
+AND
+DB_RC_DF_Beehive(_Var1)
+THEN
+ItemClearOwner(_Var1);
+NOT DB_RC_DF_Beehive(_Var1);
+
+IF
+CharacterDied((CHARACTERGUID)_Var1)
+AND
+DB_RC_DF_Bear(_Var1)
+THEN
+NOT DB_RC_DF_Bear(_Var1);
+
+IF
+CharacterDied(CHARACTERGUID_S_RC_DF_Bear_000_549586fc-3b50-402b-bf00-4389890f66e2)
+AND
+DB_RC_DF_Beehive(_Var1)
+AND
+CharacterIsDead(CHARACTERGUID_S_RC_DF_Bear_001_759e95f0-4f86-48bc-bf24-025f1cdf0b90, 0)
+AND
+IsTagged(CHARACTERGUID_S_RC_DF_Bear_001_759e95f0-4f86-48bc-bf24-025f1cdf0b90, "VOIDWOKEN", 0)
+THEN
+ItemSetOwner(_Var1, CHARACTERGUID_S_RC_DF_Bear_001_759e95f0-4f86-48bc-bf24-025f1cdf0b90);
+
+IF
+CharacterDied(CHARACTERGUID_S_RC_DF_Bear_000_549586fc-3b50-402b-bf00-4389890f66e2)
+AND
+CharacterIsDead(CHARACTERGUID_S_RC_DF_Bear_001_759e95f0-4f86-48bc-bf24-025f1cdf0b90, 1)
+THEN
+Proc_RC_DF_Bear_PrepCloseQuest();
+
+IF
+CharacterDied(CHARACTERGUID_S_RC_DF_Bear_001_759e95f0-4f86-48bc-bf24-025f1cdf0b90)
+AND
+CharacterIsDead(CHARACTERGUID_S_RC_DF_Bear_000_549586fc-3b50-402b-bf00-4389890f66e2, 1)
+THEN
+Proc_RC_DF_Bear_PrepCloseQuest();
+
+PROC
+Proc_RC_DF_Bear_PrepCloseQuest()
+THEN
+TriggerSetAtmosphere(TRIGGERGUID_AtmosphereTrigger_RC_DriftwoodFields_72187165-71fe-4977-8b72-e48db9b8a00f, "d6fc4e50-31c2-45cf-8ec5-b5d655b216af");
+DB_RC_DF_BearDead(CHARACTERGUID_S_RC_DF_Bear_000_549586fc-3b50-402b-bf00-4389890f66e2);
+DB_RC_DF_BearDead(CHARACTERGUID_S_RC_DF_Bear_001_759e95f0-4f86-48bc-bf24-025f1cdf0b90);
+
+PROC
+ProcRegionEnded("RC_Main")
+THEN
+GoalCompleted;
+
+
+EXITSECTION
+ENDEXITSECTION
+
+ParentTargetEdge "ReapersCoast"

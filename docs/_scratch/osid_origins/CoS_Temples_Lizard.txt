@@ -1,0 +1,428 @@
+Version 1
+SubGoalCombiner SGC_AND
+
+INITSECTION
+DB_Dialogs(CHARACTERGUID_S_CoS_Temples_BlackRingHub_SpyMaster_787c6c4a-6e5a-4044-9616-27e21e5a171e, "CoS_Temples_BlackRingHub_SpyMaster");
+DB_DeadEvent(CHARACTERGUID_S_CoS_Temples_BlackRingHub_SpyMaster_787c6c4a-6e5a-4044-9616-27e21e5a171e, "CoS_Temples_BlackRingHub_SpyMaster_IsDead");
+DB_CoS_Temples_SpyMaster_Guard(CHARACTERGUID_S_CoS_Temples_SpyMaster_Bodyguard_001_a9a89e88-4783-4c0f-ac88-f27cc8b638b0);
+DB_CoS_Temples_SpyMaster_Guard(CHARACTERGUID_S_CoS_Temples_SpyMaster_Bodyguard_002_dd755dbc-df17-400a-8c95-b745001bb5b8);
+DB_CoS_Temples_SpyMaster_Guard(CHARACTERGUID_S_CoS_Temples_SpyMaster_Bodyguard_003_4d3f1c42-93da-46da-8b59-14e1bdf14026);
+DB_CoS_Temples_SpyMaster_Guard(CHARACTERGUID_S_CoS_Temples_SpyMaster_Bodyguard_004_16c64da2-69b0-42c0-95c6-788013f4730c);
+DB_CoS_Temples_SpyMaster_Guard(CHARACTERGUID_S_CoS_Temples_SpyMaster_Bodyguard_005_c8e7ff95-7382-4586-b8a3-fee65fdefcdd);
+DB_Ghosts(CHARACTERGUID_S_CoS_Temple_Spymaster_DeadBR_001_63dab2b3-cf1f-4cb9-abd1-d8f1b82a7b7a, CHARACTERGUID_S_CoS_Temple_Spymaster_DeadBR_001_Ghost_de09f426-94e9-45e5-8232-6ce21ebabb22, "CoS_Temple_Spymaster_DeadBR_001_Ghost");
+SetOnStage(ITEMGUID_S_CoS_SpymastersHeart_2f901da0-e630-4654-a71e-af1a661839d4, 0);
+SetOnStage(ITEMGUID_S_CoS_SpyMaster_Reward_4f38ec10-b355-4ac1-9557-515f6101d8ff, 0);
+DB_DeadEvent(CHARACTERGUID_S_CoS_Temples_SpyMaster_787c6c4a-6e5a-4044-9616-27e21e5a171e, "CoS_Temples_SpyMaster_IsDead");
+DB_CoS_SpyMasterDialogs("CoS_Temples_BlackRingHub_SpyMaster");
+DB_CoS_SpyMasterDialogs("CoS_Temples_SpyMaster_SebilleWithAvatar");
+DB_PreventTradeBetween(CHARACTERGUID_S_CoS_Temples_SpyMaster_787c6c4a-6e5a-4044-9616-27e21e5a171e, CHARACTERGUID_S_Player_Sebille_c8d55eaf-e4eb-466a-8f0d-6a9447b5b24c);
+DB_NoLowAttitudeDialog(CHARACTERGUID_S_CoS_Temples_SpyMaster_787c6c4a-6e5a-4044-9616-27e21e5a171e);
+
+KBSECTION
+IF
+DB_CoS_SpyMasterDialogs(_Var1)
+THEN
+DB_Crime_DoNotStopDialog(_Var1);
+
+IF
+SavegameLoaded((INTEGER)_Var1, (INTEGER)_Var2, (INTEGER)_Var3, (INTEGER)_Var4)
+AND
+QRY_VersionIsOlderThan(_Var1, _Var2, _Var3, _Var4, 3, 6, 1, 0)
+AND
+DB_CoS_SpyMasterDialogs(_Var5)
+THEN
+DB_Crime_DoNotStopDialog(_Var5);
+
+IF
+CharacterItemEvent((CHARACTERGUID)_Var1, ITEMGUID_S_CoS_Temples_Lizard_DeadPriest_Limb_ff426b0d-5283-492e-abb0-2b3c791f803b, "GLO_AteBodyPart")
+THEN
+Proc_StartDialog(0, "CoS_Temples_Lizard_DeadPriest_Limb", _Var1);
+
+IF
+CharacterItemEvent((CHARACTERGUID)_Var1, ITEMGUID_S_CoS_SpymastersHeart_2f901da0-e630-4654-a71e-af1a661839d4, "GLO_AteBodyPart")
+THEN
+Proc_StartDialog(0, "CoS_Temples_SpyMaster_Limb", _Var1);
+
+IF
+CharacterUsedItem((CHARACTERGUID)_Var1, ITEMGUID_S_CoS_SpymastersHeart_2f901da0-e630-4654-a71e-af1a661839d4)
+THEN
+PartySetFlag(_Var1, "CoS_Temples_AteSpyMasterLimb");
+
+IF
+ItemRemovedFromCharacter(ITEMGUID_S_CoS_Temples_BlackRingHub_SpyMaster_Diary_f953697f-4065-4198-9ae4-9be7d5121336, CHARACTERGUID_S_CoS_Temples_SpyMaster_787c6c4a-6e5a-4044-9616-27e21e5a171e)
+THEN
+ItemSetStoryItem(ITEMGUID_S_CoS_Temples_BlackRingHub_SpyMaster_Diary_f953697f-4065-4198-9ae4-9be7d5121336, 0);
+
+IF
+AttackedByObject((CHARACTERGUID)_Var1, (CHARACTERGUID)_Var2, _, _, _)
+AND
+DB_CoS_Temples_SpyMaster_Guard(_Var1)
+AND
+Qry_CoS_Temples_SpyMaster_GoHostile(_Var1, _Var2)
+THEN
+DB_NOOP(1);
+
+IF
+CharacterStatusRemoved((CHARACTERGUID)_Var1, "INVISIBLE", (CHARACTERGUID)_Var2)
+AND
+DB_CoS_Temples_SpyMaster_Guard(_Var1)
+AND
+Qry_CoS_Temples_SpyMaster_GoHostile(_Var1, _Var2)
+THEN
+DB_NOOP(1);
+
+QRY
+Qry_CoS_Temples_SpyMaster_GoHostile((CHARACTERGUID)_Var1, (CHARACTERGUID)_Var2)
+AND
+CharacterIsPlayer(_Var2, 1)
+AND
+DB_CoS_Temples_SpyMaster_Guard(_Var1)
+THEN
+Proc_CoS_Temples_SpyMaster_GoHostile();
+
+QRY
+Qry_CoS_Temples_SpyMaster_GoHostile((CHARACTERGUID)_Var1, (CHARACTERGUID)_Var2)
+AND
+CharacterIsPlayer(_Var2, 0)
+AND
+DB_CoS_Temples_SpyMaster_Guard(_Var1)
+AND
+CharacterIsInCombat(_Var1, 0)
+THEN
+ApplyStatus(_Var1, "INVISIBLE", -1);
+
+PROC
+Proc_CoS_Temples_SpyMaster_GoHostile()
+THEN
+ProcForceStopDialog(CHARACTERGUID_S_CoS_Temples_SpyMaster_787c6c4a-6e5a-4044-9616-27e21e5a171e);
+CharacterSetRelationFactionToFaction("CoS_SpyMaster", "Hero", 0);
+CharacterSetRelationFactionToFaction("Hero", "CoS_SpyMaster", 0);
+
+IF
+CharacterDying(CHARACTERGUID_S_CoS_Temples_SpyMaster_787c6c4a-6e5a-4044-9616-27e21e5a171e)
+THEN
+SetOnStage(ITEMGUID_S_CoS_SpymastersHeart_2f901da0-e630-4654-a71e-af1a661839d4, 1);
+ItemToInventory(ITEMGUID_S_CoS_SpymastersHeart_2f901da0-e630-4654-a71e-af1a661839d4, CHARACTERGUID_S_CoS_Temples_SpyMaster_787c6c4a-6e5a-4044-9616-27e21e5a171e);
+
+IF
+ObjectFlagSet("CoS_Spymaster_GiveDeathFog", (GUIDSTRING)_Var1, _)
+THEN
+ItemTemplateAddTo("Quest_CoS_DeathFogContainer_fde25676-eb06-4990-931c-c269d067ec24", _Var1, 1);
+
+IF
+DialogEnded("CoS_Temples_BlackRingHub_SpyMaster", (INTEGER)_Var1)
+AND
+DialogGetInvolvedPlayer(_Var1, 1, _Var2)
+AND
+ObjectGetFlag(_Var2, "QuestUpdate_CoS_SpyMaster_End_SpyMaster", 1)
+THEN
+SetHasDialog(CHARACTERGUID_S_CoS_Temples_SpyMaster_787c6c4a-6e5a-4044-9616-27e21e5a171e, 0);
+CharacterDisappearOutOfSight(CHARACTERGUID_S_CoS_Temples_SpyMaster_787c6c4a-6e5a-4044-9616-27e21e5a171e, 0, 0, "", 0);
+TriggerClearItemOwner(TRIGGERGUID_S_CoS_Temples_Ownership_SpyMaster_459d5ee0-4f49-4ebc-827c-8626356d70f2);
+GlobalSetFlag("CoS_SpyMasterLeft");
+Foop(ITEMGUID_S_CoS_SpyMaster_Reward_4f38ec10-b355-4ac1-9557-515f6101d8ff);
+
+IF
+DialogEnded("CoS_Temples_BlackRingHub_SpyMaster", (INTEGER)_Var1)
+AND
+DialogGetInvolvedPlayer(_Var1, 1, _Var2)
+AND
+ObjectGetFlag(_Var2, "QuestUpdate_CoS_SpyMaster_BombDetonated", 1)
+THEN
+Proc_CoS_SpyMaster_NukeTheElfTemple();
+
+IF
+DialogEnded("CoS_Temples_BlackRingHub_SpyMaster", (INTEGER)_Var1)
+AND
+DialogGetInvolvedPlayer(_Var1, 1, _Var2)
+AND
+ObjectGetFlag(_Var2, "QuestUpdate_CoS_SpyMaster_End_SpyMaster", 1)
+AND
+DB_CoS_Temples_SpyMaster_Guard(_Var3)
+THEN
+CharacterDisappearOutOfSight(_Var3, 0, 0, "", 0);
+
+IF
+DialogEnded("CoS_Temples_BlackRingHub_SpyMaster", (INTEGER)_Var1)
+AND
+DialogGetInvolvedPlayer(_Var1, 1, _Var2)
+AND
+ObjectGetFlag(_Var2, "QuestUpdate_CoS_SpyMaster_End_SpyMaster", 1)
+AND
+DB_Dialogs(CHARACTERGUID_S_Player_Sebille_c8d55eaf-e4eb-466a-8f0d-6a9447b5b24c, "CoS_Sebille_Charmed")
+THEN
+SetHasDialog(CHARACTERGUID_S_Player_Sebille_c8d55eaf-e4eb-466a-8f0d-6a9447b5b24c, 0);
+CharacterFollowCharacter(CHARACTERGUID_S_Player_Sebille_c8d55eaf-e4eb-466a-8f0d-6a9447b5b24c, CHARACTERGUID_S_CoS_Temples_SpyMaster_787c6c4a-6e5a-4044-9616-27e21e5a171e);
+
+IF
+CharacterWentOnStage(CHARACTERGUID_S_CoS_Temples_SpyMaster_787c6c4a-6e5a-4044-9616-27e21e5a171e, 0)
+AND
+DB_Dialogs(CHARACTERGUID_S_Player_Sebille_c8d55eaf-e4eb-466a-8f0d-6a9447b5b24c, "CoS_Sebille_Charmed")
+THEN
+Poof(CHARACTERGUID_S_Player_Sebille_c8d55eaf-e4eb-466a-8f0d-6a9447b5b24c);
+
+IF
+SavegameLoaded((INTEGER)_Var1, (INTEGER)_Var2, (INTEGER)_Var3, (INTEGER)_Var4)
+AND
+QRY_VersionIsOlderThan(_Var1, _Var2, _Var3, _Var4, 3, 6, 3, 0)
+AND
+DB_Dialogs(CHARACTERGUID_S_Player_Sebille_c8d55eaf-e4eb-466a-8f0d-6a9447b5b24c, "CoS_Sebille_Charmed")
+AND
+ObjectIsOnStage(CHARACTERGUID_S_CoS_Temples_SpyMaster_787c6c4a-6e5a-4044-9616-27e21e5a171e, 0)
+THEN
+SetOnStage(CHARACTERGUID_S_Player_Sebille_c8d55eaf-e4eb-466a-8f0d-6a9447b5b24c, 0);
+DB_BUGFIX_Marker(CHARACTERGUID_S_Player_Sebille_c8d55eaf-e4eb-466a-8f0d-6a9447b5b24c, "DOS2EE-7682");
+
+IF
+DialogStarted("CoS_Temples_BlackRingHub_SpyMaster_COM_RedPrince", _)
+THEN
+NOT DB_OriginMomentTag("CoS_Temples_BlackRingHub_SpyMaster_Ghost", "RED PRINCE", "CoS_Temples_BlackRingHub_SpyMaster_Ghost_COM_RedPrince");
+ObjectSetFlag(CHARACTERGUID_S_Player_RedPrince_a26a1efb-cdc8-4cf3-a7b2-b2f9544add6f, "CoS_Temples_SpyMaster_COM_RedPrince_Completed");
+
+IF
+DialogEnded("CoS_Temples_SpyMaster_SebilleWithAvatar", _)
+AND
+GlobalGetFlag("CoS_SpyMaster_RedPrinceBetraySebille", 0)
+AND
+GlobalGetFlag("CoS_SpyMaster_ControlsSebille_Surrendered", 0)
+THEN
+Proc_CoS_Temples_SpyMaster_GoHostile();
+
+IF
+StoryEvent((GUIDSTRING)_Var1, "CoS_SpyMasterSpotSebille")
+AND
+QueryOnlyOnce("CoS_SpyMasterSpotSebille_Once")
+THEN
+Proc_StartDialog(0, "CoS_Temples_BlackRingHub_SpyMaster", CHARACTERGUID_S_CoS_Temples_SpyMaster_787c6c4a-6e5a-4044-9616-27e21e5a171e, _Var1);
+
+IF
+DialogEnded((STRING)_Var1, _)
+AND
+DB_CoS_SpyMasterDialogs(_Var1)
+AND
+GlobalGetFlag("CoS_SpyMaster_ControlsSebille", 1)
+AND
+DB_CompanionAvatarBond(CHARACTERGUID_S_Player_Sebille_c8d55eaf-e4eb-466a-8f0d-6a9447b5b24c, _Var3)
+THEN
+Proc_CoS_Temples_SpyMaster_GoHostile();
+ProcCancelAllRelationshipDialogs(CHARACTERGUID_S_Player_Sebille_c8d55eaf-e4eb-466a-8f0d-6a9447b5b24c);
+PROC_LoopEffect("RS3_FX_GP_Status_SebilleControlled_01", CHARACTERGUID_S_Player_Sebille_c8d55eaf-e4eb-466a-8f0d-6a9447b5b24c, "CoS_SpyMaster_Sebille_Charmed", "CoS_Main", "Dummy_StatusFX");
+PROC_Origins_CompanionLeavePermanently(CHARACTERGUID_S_Player_Sebille_c8d55eaf-e4eb-466a-8f0d-6a9447b5b24c);
+SetVarFixedString(CHARACTERGUID_S_Player_Sebille_c8d55eaf-e4eb-466a-8f0d-6a9447b5b24c, "currentState", "");
+SetHasDialog(CHARACTERGUID_S_Player_Sebille_c8d55eaf-e4eb-466a-8f0d-6a9447b5b24c, 0);
+SetFaction(CHARACTERGUID_S_Player_Sebille_c8d55eaf-e4eb-466a-8f0d-6a9447b5b24c, "CoS_SpyMaster");
+SetRelationIndivFactionToPlayers(CHARACTERGUID_S_Player_Sebille_c8d55eaf-e4eb-466a-8f0d-6a9447b5b24c, 0);
+ObjectSetFlag(_Var3, "QuestUpdate_FTJ_COM_Sebille_SpymasterPossessed");
+ObjectSetFlag(_Var3, "QuestClose_FTJ_COM_Sebille");
+CharacterSetFollowCharacter(CHARACTERGUID_S_Player_Sebille_c8d55eaf-e4eb-466a-8f0d-6a9447b5b24c, CHARACTERGUID_S_CoS_Temples_SpyMaster_787c6c4a-6e5a-4044-9616-27e21e5a171e);
+DB_Dialogs(CHARACTERGUID_S_Player_Sebille_c8d55eaf-e4eb-466a-8f0d-6a9447b5b24c, "CoS_Sebille_Charmed");
+
+IF
+DialogEnded((STRING)_Var1, _)
+AND
+DB_CoS_SpyMasterDialogs(_Var1)
+AND
+QRY_CoS_SpyMasterControlsSebille()
+AND
+DB_CoS_Academy_SwornCompanionsDialogs(CHARACTERGUID_S_Player_Sebille_c8d55eaf-e4eb-466a-8f0d-6a9447b5b24c, "CoS_Academy_SwornSebille", "UNDEAD_SEBILLE")
+THEN
+NOT DB_CoS_Academy_SwornCompanionsDialogs(CHARACTERGUID_S_Player_Sebille_c8d55eaf-e4eb-466a-8f0d-6a9447b5b24c, "CoS_Academy_SwornSebille", "UNDEAD_SEBILLE");
+
+QRY
+QRY_CoS_SpyMasterControlsSebille()
+AND
+DB_GlobalFlag("CoS_SpyMaster_ControlsSebille")
+THEN
+DB_NOOP(1);
+
+QRY
+QRY_CoS_SpyMasterControlsSebille()
+AND
+DB_GlobalFlag("CoS_SpyMaster_ControlsSebille_Surrendered")
+THEN
+DB_NOOP(1);
+
+QRY
+QRY_CoS_SpyMasterControlsSebille()
+AND
+DB_GlobalFlag("CoS_SpyMaster_RedPrinceBetraySebille")
+THEN
+DB_NOOP(1);
+
+IF
+DialogEnded((STRING)_Var1, _)
+AND
+DB_CoS_SpyMasterDialogs(_Var1)
+AND
+GlobalGetFlag("CoS_SpyMaster_ControlsSebille_Surrendered", 1)
+AND
+DB_CompanionAvatarBond(CHARACTERGUID_S_Player_Sebille_c8d55eaf-e4eb-466a-8f0d-6a9447b5b24c, _Var3)
+THEN
+ProcCancelAllRelationshipDialogs(CHARACTERGUID_S_Player_Sebille_c8d55eaf-e4eb-466a-8f0d-6a9447b5b24c);
+PROC_LoopEffect("RS3_FX_GP_Status_SebilleControlled_01", CHARACTERGUID_S_Player_Sebille_c8d55eaf-e4eb-466a-8f0d-6a9447b5b24c, "CoS_SpyMaster_Sebille_Charmed", "CoS_Main", "Dummy_StatusFX");
+PROC_Origins_CompanionLeavePermanently(CHARACTERGUID_S_Player_Sebille_c8d55eaf-e4eb-466a-8f0d-6a9447b5b24c);
+SetVarFixedString(CHARACTERGUID_S_Player_Sebille_c8d55eaf-e4eb-466a-8f0d-6a9447b5b24c, "currentState", "");
+SetHasDialog(CHARACTERGUID_S_Player_Sebille_c8d55eaf-e4eb-466a-8f0d-6a9447b5b24c, 0);
+SetRelationIndivFactionToPlayers(CHARACTERGUID_S_Player_Sebille_c8d55eaf-e4eb-466a-8f0d-6a9447b5b24c, 50);
+CharacterSetRelationIndivFactionToIndivFaction(CHARACTERGUID_S_Player_Sebille_c8d55eaf-e4eb-466a-8f0d-6a9447b5b24c, CHARACTERGUID_S_ARX_DoctorsHouse_TheDoctor_83083470-c543-45b3-ac8a-108df0daca8d, 100);
+ObjectSetFlag(_Var3, "QuestUpdate_FTJ_COM_Sebille_SpymasterPossessed");
+ObjectSetFlag(_Var3, "QuestClose_FTJ_COM_Sebille");
+CharacterSetFollowCharacter(CHARACTERGUID_S_Player_Sebille_c8d55eaf-e4eb-466a-8f0d-6a9447b5b24c, CHARACTERGUID_S_CoS_Temples_SpyMaster_787c6c4a-6e5a-4044-9616-27e21e5a171e);
+DB_Dialogs(CHARACTERGUID_S_Player_Sebille_c8d55eaf-e4eb-466a-8f0d-6a9447b5b24c, "CoS_Sebille_Charmed");
+SetFaction(CHARACTERGUID_S_Player_Sebille_c8d55eaf-e4eb-466a-8f0d-6a9447b5b24c, "CoS_SpyMaster");
+
+IF
+DialogEnded((STRING)_Var1, _)
+AND
+DB_CoS_SpyMasterDialogs(_Var1)
+AND
+GlobalGetFlag("CoS_SpyMaster_RedPrinceBetraySebille", 1)
+AND
+DB_CompanionAvatarBond(CHARACTERGUID_S_Player_Sebille_c8d55eaf-e4eb-466a-8f0d-6a9447b5b24c, _Var3)
+THEN
+ProcCancelAllRelationshipDialogs(CHARACTERGUID_S_Player_Sebille_c8d55eaf-e4eb-466a-8f0d-6a9447b5b24c);
+PROC_LoopEffect("RS3_FX_GP_Status_SebilleControlled_01", CHARACTERGUID_S_Player_Sebille_c8d55eaf-e4eb-466a-8f0d-6a9447b5b24c, "CoS_SpyMaster_Sebille_Charmed", "CoS_Main", "Dummy_StatusFX");
+PROC_Origins_CompanionLeavePermanently(CHARACTERGUID_S_Player_Sebille_c8d55eaf-e4eb-466a-8f0d-6a9447b5b24c);
+SetVarFixedString(CHARACTERGUID_S_Player_Sebille_c8d55eaf-e4eb-466a-8f0d-6a9447b5b24c, "currentState", "");
+SetHasDialog(CHARACTERGUID_S_Player_Sebille_c8d55eaf-e4eb-466a-8f0d-6a9447b5b24c, 0);
+ObjectSetFlag(_Var3, "QuestUpdate_FTJ_COM_Sebille_SpymasterPossessed");
+ObjectSetFlag(_Var3, "QuestClose_FTJ_COM_Sebille");
+TimerLaunch("CoS_SpyMaster_RedPrinceBetraySebille", 1000);
+ProcCancelAllRelationshipDialogs(CHARACTERGUID_S_Player_Sebille_c8d55eaf-e4eb-466a-8f0d-6a9447b5b24c);
+CharacterSetFollowCharacter(CHARACTERGUID_S_Player_Sebille_c8d55eaf-e4eb-466a-8f0d-6a9447b5b24c, CHARACTERGUID_S_CoS_Temples_SpyMaster_787c6c4a-6e5a-4044-9616-27e21e5a171e);
+DB_Dialogs(CHARACTERGUID_S_Player_Sebille_c8d55eaf-e4eb-466a-8f0d-6a9447b5b24c, "CoS_Sebille_Charmed");
+SetFaction(CHARACTERGUID_S_Player_Sebille_c8d55eaf-e4eb-466a-8f0d-6a9447b5b24c, "CoS_SpyMaster");
+
+PROC
+Proc_CoS_ArenaOfTheOne_Start_FadeOut()
+AND
+GlobalGetFlag("CoS_SpyMaster_ControlsSebille", 1)
+THEN
+CharacterDieImmediate(CHARACTERGUID_S_Player_Sebille_c8d55eaf-e4eb-466a-8f0d-6a9447b5b24c, 0, "DoT");
+
+PROC
+Proc_CoS_ArenaOfTheOne_Start_FadeOut()
+AND
+GlobalGetFlag("CoS_SpyMaster_ControlsSebille_Surrendered", 1)
+THEN
+CharacterDieImmediate(CHARACTERGUID_S_Player_Sebille_c8d55eaf-e4eb-466a-8f0d-6a9447b5b24c, 0, "DoT");
+
+PROC
+Proc_CoS_ArenaOfTheOne_Start_FadeOut()
+AND
+GlobalGetFlag("CoS_SpyMaster_RedPrinceBetraySebille", 1)
+THEN
+CharacterDieImmediate(CHARACTERGUID_S_Player_Sebille_c8d55eaf-e4eb-466a-8f0d-6a9447b5b24c, 0, "DoT");
+
+IF
+TimerFinished("CoS_SpyMaster_RedPrinceBetraySebille")
+THEN
+Proc_StartDialog(0, "CoS_Temples_BlackRingHub_SpyMaster", CHARACTERGUID_S_CoS_Temples_SpyMaster_787c6c4a-6e5a-4044-9616-27e21e5a171e, CHARACTERGUID_S_Player_RedPrince_a26a1efb-cdc8-4cf3-a7b2-b2f9544add6f);
+
+IF
+GlobalFlagSet("CoS_SpyMaster_Muted")
+AND
+GetPosition(CHARACTERGUID_S_CoS_Temples_SpyMaster_787c6c4a-6e5a-4044-9616-27e21e5a171e, _Var1, _Var2, _Var3)
+AND
+RealSum(_Var2, 2, _Var4)
+THEN
+PlayAnimation(CHARACTERGUID_S_CoS_Temples_SpyMaster_787c6c4a-6e5a-4044-9616-27e21e5a171e, "hit");
+PlayEffectAtPosition("RS3_FX_GP_Combat_Hit_Blood_01_Large", _Var1, _Var4, _Var3);
+ApplyStatus(CHARACTERGUID_S_CoS_Temples_SpyMaster_787c6c4a-6e5a-4044-9616-27e21e5a171e, "MUTED", -1, 1);
+ApplyStatus(CHARACTERGUID_S_CoS_Temples_SpyMaster_787c6c4a-6e5a-4044-9616-27e21e5a171e, "BLEEDING", 6, 1);
+NOT DB_OriginMomentTag("CoS_Temples_BlackRingHub_SpyMaster", "RED PRINCE", "CoS_Temples_BlackRingHub_SpyMaster_COM_RedPrince");
+
+IF
+DialogEnded("CoS_Temples_BlackRingHub_SpyMaster", _)
+AND
+GlobalGetFlag("CoS_SpyMaster_Muted", 1)
+THEN
+Proc_CoS_Temples_SpyMaster_GoHostile();
+
+IF
+TextEventSet("nukeelves")
+THEN
+Proc_CoS_SpyMaster_NukeTheElfTemple();
+
+PROC
+Proc_CoS_SpyMaster_NukeTheElfTemple()
+THEN
+GlobalSetFlag("CoS_MotherTree_BombDetonated");
+CreatePuddle(TRIGGERGUID_S_CoS_SUB_Temples_Elf_b3f134d0-e320-4bec-802c-6a093d291363, "SurfaceDeathfogCloud", 10000, 10500, 90, 100, 0.2);
+CreatePuddle(TRIGGERGUID_S_CoS_Temples_Elf_DeathFog_Point_000_c0b39dc2-b882-4bbc-9daf-34f6a588856a, "SurfaceDeathfogCloud", 1000, 1050, 90, 100, 0.2);
+CreatePuddle(TRIGGERGUID_S_CoS_Temples_Elf_DeathFog_Point_001_084aaf15-5eca-40b2-93d6-0b2ce978ff45, "SurfaceDeathfogCloud", 1000, 1050, 90, 100, 0.2);
+CreatePuddle(TRIGGERGUID_S_CoS_Temples_Elf_DeathFog_Point_002_656d003a-cefb-4049-b616-3bc8250f057a, "SurfaceDeathfogCloud", 1000, 1050, 90, 100, 0.2);
+CreatePuddle(TRIGGERGUID_S_CoS_Temples_Elf_DeathFog_Point_003_a58b86c6-dc82-46cb-85d8-cb4ec68a438c, "SurfaceDeathfogCloud", 1000, 1050, 90, 100, 0.2);
+CreatePuddle(TRIGGERGUID_S_CoS_SUB_Temples_HeartOfTheMotherTree_835b82d7-62a7-4388-a2dd-9628ab0075f8, "SurfaceDeathfogCloud", 4000, 4050, 90, 100, 0.2);
+ItemDestroy(ITEMGUID_S_CoS_HeartOfTheMotherTree_78bd5b87-7927-46ff-8481-34bcd919dd64);
+ProcForceStopDialog(CHARACTERGUID_S_CoS_Temples_Elf_Merchant_002_3b0c1af8-cacb-424d-8e2a-3f51aa92bee6);
+SetHasDialog(CHARACTERGUID_S_CoS_Temples_Elf_Merchant_002_3b0c1af8-cacb-424d-8e2a-3f51aa92bee6, 0);
+ProcCharacterDisappearOutOfSight(CHARACTERGUID_S_CoS_Temples_Elf_Merchant_002_3b0c1af8-cacb-424d-8e2a-3f51aa92bee6, 0, 0, "", 0);
+ObjectSetFlag(CHARACTERGUID_S_Player_Sebille_c8d55eaf-e4eb-466a-8f0d-6a9447b5b24c, "QuestUpdate_FTJ_OriginSebille_KilledMotherTree");
+
+PROC
+Proc_CoS_SpyMaster_NukeTheElfTemple()
+AND
+ObjectGetFlag(CHARACTERGUID_S_Player_Sebille_c8d55eaf-e4eb-466a-8f0d-6a9447b5b24c, "QuestUpdate_FTJ_COM_Sebille_SaheilaWantsKill", 1)
+THEN
+ObjectSetFlag(CHARACTERGUID_S_Player_Sebille_c8d55eaf-e4eb-466a-8f0d-6a9447b5b24c, "QuestUpdate_FTJ_COM_Sebille_KilledMotherTree_DeathFog");
+
+PROC
+Proc_CoS_SpyMaster_NukeTheElfTemple()
+AND
+DB_IsPlayer(_Var1)
+THEN
+Proc_ShakeCameraForTime(_Var1, 6500);
+
+IF
+CharacterEnteredTrigger(CHARACTERGUID_S_Player_Sebille_c8d55eaf-e4eb-466a-8f0d-6a9447b5b24c, TRIGGERGUID_S_CoS_SUB_Temples_Lizard_0a009ed0-61f5-4670-9d26-1417ebf02922)
+AND
+IsTagged(CHARACTERGUID_S_Player_Sebille_c8d55eaf-e4eb-466a-8f0d-6a9447b5b24c, "AVATAR", 0)
+AND
+CharacterIsDead(CHARACTERGUID_S_CoS_Temples_SpyMaster_787c6c4a-6e5a-4044-9616-27e21e5a171e, 0)
+AND
+ObjectIsOnStage(CHARACTERGUID_S_CoS_Temples_SpyMaster_787c6c4a-6e5a-4044-9616-27e21e5a171e, 1)
+THEN
+Proc_CoS_SpyMaster_CompanionSebille_WarningDialog();
+
+PROC
+Proc_CoS_SpyMaster_CompanionSebille_WarningDialog()
+AND
+DB_GLO_PartyMembers_RecruiteeAvatarBond(CHARACTERGUID_S_Player_Sebille_c8d55eaf-e4eb-466a-8f0d-6a9447b5b24c, _Var1)
+AND
+QRY_IsAvailableTo(CHARACTERGUID_S_Player_Sebille_c8d55eaf-e4eb-466a-8f0d-6a9447b5b24c, _Var1)
+AND
+QueryOnlyOnce("CoS_SpyMaster_CompanionSebille_WarningDialog_Once")
+THEN
+ObjectSetFlag(CHARACTERGUID_S_Player_Sebille_c8d55eaf-e4eb-466a-8f0d-6a9447b5b24c, "CoS_SpyMaster_CompanionSebille_Warning_WithAvatar");
+Proc_StartDialog(0, "CoS_SpyMaster_CompanionSebille_Warning", CHARACTERGUID_S_Player_Sebille_c8d55eaf-e4eb-466a-8f0d-6a9447b5b24c, _Var1);
+
+PROC
+Proc_CoS_SpyMaster_CompanionSebille_WarningDialog()
+AND
+QueryOnlyOnce("CoS_SpyMaster_CompanionSebille_WarningDialog_Once")
+THEN
+Proc_StartDialog(0, "CoS_SpyMaster_CompanionSebille_Warning", CHARACTERGUID_S_Player_Sebille_c8d55eaf-e4eb-466a-8f0d-6a9447b5b24c);
+
+IF
+ObjectFlagSet("CoS_SpyMaster_SebilleMoveTo", (CHARACTERGUID)_Var1, _)
+THEN
+CharacterMoveTo(_Var1, CHARACTERGUID_S_CoS_Temples_SpyMaster_787c6c4a-6e5a-4044-9616-27e21e5a171e, 1, "", 0);
+ObjectClearFlag(_Var1, "CoS_SpyMaster_SebilleMoveTo");
+
+IF
+CharacterSawCharacter((CHARACTERGUID)_Var1, CHARACTERGUID_S_CoS_Temples_SpyMaster_787c6c4a-6e5a-4044-9616-27e21e5a171e)
+AND NOT
+DB_Dead(CHARACTERGUID_S_CoS_Temples_SpyMaster_787c6c4a-6e5a-4044-9616-27e21e5a171e)
+AND
+DB_IsPlayer(_Var1)
+AND
+ObjectGetFlag(_Var1, "CoS_SpyMaster_SpotSpyMaster", 0)
+THEN
+PartySetFlag(_Var1, "CoS_SpyMaster_SpotSpyMaster");
+
+
+EXITSECTION
+ENDEXITSECTION
+
+ParentTargetEdge "CoS_Temples"

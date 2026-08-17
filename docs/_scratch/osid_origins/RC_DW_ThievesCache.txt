@@ -1,0 +1,221 @@
+Version 1
+SubGoalCombiner SGC_AND
+
+INITSECTION
+DB_IsNotMessingAround(S_RC_DW_Gardener_Overseer_95a3ef01-dbc0-44a2-ba17-922ddc1bd3de);
+DB_IsNotMessingAround(S_RC_DW_Human_Gardener_Addict_000_faf9467d-7f43-47ce-8bf4-3ac213deb768);
+DB_IsNotMessingAround(S_RC_DW_Human_Gardener_Addict_001_603d0ca9-650b-48b6-993b-453c28f9238c);
+DB_IsNotMessingAround(S_RC_DW_Human_Gardener_Addict_002_063d7dfc-e5de-4495-a749-9a4443a156f2);
+DB_Dialogs(CHARACTERGUID_S_RC_DW_Gardener_Overseer_95a3ef01-dbc0-44a2-ba17-922ddc1bd3de, "RC_DW_ThievesCache_Overseer");
+DB_Dialogs(CHARACTERGUID_S_RC_DW_Gardener_Druid_786900c9-336b-40c2-878b-de2cd3c88135, "RC_DW_ThievesCache_Druid");
+DB_Dialogs(CHARACTERGUID_S_RC_DW_Human_Gardener_Addict_000_faf9467d-7f43-47ce-8bf4-3ac213deb768, "RC_DW_ThievesCache_Addict");
+DB_Dialogs(CHARACTERGUID_S_RC_DW_Human_Gardener_Addict_001_603d0ca9-650b-48b6-993b-453c28f9238c, "RC_DW_ThievesCache_Addict2");
+DB_Dialogs(CHARACTERGUID_S_RC_DW_Human_Gardener_Addict_002_063d7dfc-e5de-4495-a749-9a4443a156f2, "RC_DW_ThievesCache_Addict3");
+DB_Ghosts(S_RC_DW_ThievesCache_MobVictim_000_73b79d85-9c7d-46f2-b8cf-003abe768e59, S_RC_DW_ThievesCache_MobVictim_000_Ghost_521501a6-e777-4b7b-8397-1ef81639cf03, "RC_DW_ThievesCache_MobVictimGhost");
+SetOnStage(S_RC_DW_ThievesCache_MobVictim_000_Ghost_521501a6-e777-4b7b-8397-1ef81639cf03, 0);
+DB_ShovelArea(S_RC_DW_ThievesCache_Grave_BoxTrig_2a69009a-8d69-42f0-ada2-155c9f369aaf, "RC_DW_ThievesCache_Grave", S_RC_DW_ThievesCache_Grave_d7a9508e-4d67-4a24-a575-a611eb4bf013);
+SetOnStage(S_RC_DW_ThievesCache_MobVictim_000_73b79d85-9c7d-46f2-b8cf-003abe768e59, 0);
+DB_SneakTriggerSpotter(TRIGGERGUID_S_RC_DW_ThievesCache_Overseer_TalkBox_fda31140-97a9-4295-acda-9582f8d6a7e1, CHARACTERGUID_S_RC_DW_Human_Gardener_Addict_002_063d7dfc-e5de-4495-a749-9a4443a156f2);
+DB_SneakTriggerSpotter(TRIGGERGUID_S_RC_DW_ThievesCache_Overseer_CombatBox_2203e619-65f9-451b-8c8a-5697da4e8d28, CHARACTERGUID_S_RC_DW_Gardener_Overseer_95a3ef01-dbc0-44a2-ba17-922ddc1bd3de);
+CrimeAreaSetTensionModifier(TRIGGERGUID_S_RC_DW_CrimeAreaTrigger_ThievesCache_79b78188-79c3-4ed4-a413-6a3afaf569e0, 4);
+DB_RC_DW_ThievesCache_Addict(S_RC_DW_Human_Gardener_Addict_000_faf9467d-7f43-47ce-8bf4-3ac213deb768);
+DB_RC_DW_ThievesCache_Addict(S_RC_DW_Human_Gardener_Addict_001_603d0ca9-650b-48b6-993b-453c28f9238c);
+DB_RC_DW_ThievesCache_Addict(S_RC_DW_Human_Gardener_Addict_002_063d7dfc-e5de-4495-a749-9a4443a156f2);
+DB_RC_DW_ThievesCache_Addict_Action("Rake_01_Loop", "RC_DW_ThievesCache_Raking");
+DB_RC_DW_ThievesCache_Addict_Action("Fidget_Low_01", "RC_DW_ThievesCache_Fidgeting");
+DB_RC_DW_ThievesCache_Addict_Action("Fidget_Low_02", "RC_DW_ThievesCache_Fidgeting");
+DB_RC_DW_ThievesCache_Addict_Action("Fidget_Low_03", "RC_DW_ThievesCache_Fidgeting");
+DB_RC_DW_ThievesCache_Addict_Action("Stare_01_Loop", "RC_DW_ThievesCache_StaringAhead");
+DB_RC_DW_ThievesCache_Addict_Action("Insane_01_Loop", "RC_DW_ThievesCache_Breakdown");
+DB_RC_DW_ThievesCache_Addict_Action("Look_Down_Long_01", "RC_DW_ThievesCache_StaringDown");
+ItemTemplateAddTo("GRN_Grenade_Molotov_A_5208b121-64fa-4704-8924-c61c576e1ac5", ITEMGUID_S_RC_DW_ThievesCache_SunkenCrate_b6b69039-075c-4842-b5eb-9d2b29f262c2, 2);
+ItemTemplateAddTo("GRN_Grenade_Nailbomb_A_c2dac4cd-724b-4179-b72b-84e0d9ffa7a1", ITEMGUID_S_RC_DW_ThievesCache_SunkenCrate_b6b69039-075c-4842-b5eb-9d2b29f262c2, 2);
+ItemTemplateAddTo("GRN_Grenade_Molotov_A_5208b121-64fa-4704-8924-c61c576e1ac5", ITEMGUID_S_RC_DW_ThievesCache_SunkenCrate_b6b69039-075c-4842-b5eb-9d2b29f262c2, 1);
+ItemTemplateAddTo("GRN_Grenade_Flashbang_A_a71888d9-9d3f-4004-96c3-bbc1a158c3f6", ITEMGUID_S_RC_DW_ThievesCache_RockCrate_8e91934f-9953-48e1-a2b3-62d802bdaf9f, 1);
+PROC_RC_DW_ThievesCache_CustomCrimeInit();
+
+KBSECTION
+IF
+TextEventSet("rc_dw_tc_reset")
+AND
+CharacterGetHostCharacter(_Var1)
+THEN
+PartyClearFlag(_Var1, "RC_DW_ThievesCache_OverseerPersuaded", 0);
+PartyClearFlag(_Var1, "RC_DW_ThievesCace_OverseerMadeHostilePreviously", 0);
+PartyClearFlag(_Var1, "RC_DW_ThievesCache_OverseerWarned", 0);
+
+IF
+TextEventSet("rc_dw_tc_canlie")
+AND
+CharacterGetHostCharacter(_Var1)
+THEN
+ObjectSetFlag(_Var1, "RC_DW_GotDwarfBossJob");
+
+PROC
+ProcCharInTriggerSpotted((CHARACTERGUID)_Var1, TRIGGERGUID_S_RC_DW_ThievesCache_Overseer_TalkBox_fda31140-97a9-4295-acda-9582f8d6a7e1)
+AND
+QRY_SpeakerIsAvailable(CHARACTERGUID_S_RC_DW_Gardener_Overseer_95a3ef01-dbc0-44a2-ba17-922ddc1bd3de, 1)
+AND
+ObjectGetFlag(_Var1, "RC_DW_ThievesCache_OverseerPersuaded", 0)
+AND
+ObjectGetFlag(_Var1, "RC_DW_ThievesCache_OverseerWarned", 0)
+THEN
+Proc_StartDialog(0, "RC_DW_ThievesCache_Overseer", CHARACTERGUID_S_RC_DW_Gardener_Overseer_95a3ef01-dbc0-44a2-ba17-922ddc1bd3de, _Var1);
+
+IF
+ObjectFlagSet("RC_DW_ThievesCache_OverseerWarned", (CHARACTERGUID)_Var1, _)
+AND
+DB_IsPlayer(_Var3)
+AND
+ObjectGetFlag(_Var3, "RC_DW_ThievesCache_OverseerWarned", 0)
+AND
+GetDistanceTo(_Var1, _Var3, _Var4)
+AND
+_Var4 <= 6
+THEN
+ObjectSetFlag(_Var3, "RC_DW_ThievesCache_OverseerWarned");
+
+IF
+ObjectFlagSet("RC_DW_ThievesCache_OverseerDecline", (CHARACTERGUID)_Var1, _)
+THEN
+CharacterAddAttitudeTowardsPlayer(S_RC_DW_Gardener_Overseer_95a3ef01-dbc0-44a2-ba17-922ddc1bd3de, _Var1, -15);
+ObjectClearFlag(_Var1, "RC_DW_ThievesCache_OverseerDecline", 0);
+
+PROC
+Proc_RC_DW_ThievesCache_OverseerGoHostile((CHARACTERGUID)_Var1)
+THEN
+SetStoryEvent(CHARACTERGUID_S_RC_DW_Gardener_Overseer_95a3ef01-dbc0-44a2-ba17-922ddc1bd3de, "RC_DW_GoHostile");
+ObjectSetFlag(_Var1, "RC_DW_ThievesCace_OverseerMadeHostilePreviously");
+ProcForceStopDialog(CHARACTERGUID_S_RC_DW_Gardener_Overseer_95a3ef01-dbc0-44a2-ba17-922ddc1bd3de);
+
+PROC
+ProcCharInTriggerSpotted((CHARACTERGUID)_Var1, TRIGGERGUID_S_RC_DW_ThievesCache_Overseer_CombatBox_2203e619-65f9-451b-8c8a-5697da4e8d28)
+AND
+ObjectGetFlag(_Var1, "RC_DW_ThievesCache_OverseerPersuaded", 0)
+THEN
+Proc_RC_DW_ThievesCache_OverseerGoHostile(_Var1);
+
+IF
+DialogEnded("RC_DW_ThievesCache_Overseer", (INTEGER)_Var1)
+AND
+DialogGetInvolvedPlayer(_Var1, 1, _Var2)
+AND
+ObjectGetFlag(_Var2, "RC_DW_ThievesCache_OverseerHostileAfterDialog", 1)
+THEN
+Proc_RC_DW_ThievesCache_OverseerGoHostile(_Var2);
+
+IF
+StoryEvent((CHARACTERGUID)_Var1, (STRING)_Var2)
+AND
+DB_RC_DW_ThievesCache_Addict(_Var1)
+AND
+DB_RC_DW_ThievesCache_Addict_Action(_Var2, _Var3)
+THEN
+DB_RC_ThievesCache_AddictAction(_Var1, _Var3);
+ObjectSetFlag(_Var1, _Var3);
+Proc_StartDialog(1, "RC_DW_AD_ThievesCache_Addict_Tending", _Var1);
+
+IF
+AutomatedDialogEnded("RC_DW_AD_ThievesCache_Addict_Tending", (INTEGER)_Var1)
+AND
+DialogGetInvolvedNPC(_Var1, 1, _Var2)
+AND
+DB_RC_ThievesCache_AddictAction(_Var2, _Var3)
+THEN
+ObjectClearFlag(_Var2, _Var3, 0);
+
+PROC
+ProcShovelRewards((CHARACTERGUID)_Var1, "RC_DW_ThievesCache_Grave")
+AND
+GetPosition(S_RC_DW_ThievesCache_Grave_d7a9508e-4d67-4a24-a575-a611eb4bf013, _Var2, _Var3, _Var4)
+THEN
+TeleportTo(S_RC_DW_ThievesCache_MobVictim_000_Ghost_521501a6-e777-4b7b-8397-1ef81639cf03, S_RC_DW_ThievesCache_Grave_d7a9508e-4d67-4a24-a575-a611eb4bf013);
+SetOnStage(S_RC_DW_ThievesCache_MobVictim_000_Ghost_521501a6-e777-4b7b-8397-1ef81639cf03, 1);
+PlayEffectAtPosition("RS3_FX_GP_ScriptedEvent_Teleport_GenericSmoke_01", _Var2, _Var3, _Var4);
+SetOnStage(S_RC_DW_ThievesCache_MobVictim_000_73b79d85-9c7d-46f2-b8cf-003abe768e59, 1);
+
+PROC
+ProcShovelRewards((CHARACTERGUID)_Var1, "RC_DW_ThievesCache_Grave")
+AND
+DB_IsPlayer(_Var2)
+AND
+QRY_SpeakerIsAvailableAndInDialogRange(_Var1, _Var2)
+AND
+QueryOnlyOnce("RC_DW_ThievesCache_Grave_Comment")
+THEN
+Proc_StartDialog(1, "RC_DW_AD_ThievesCache_DigUpMobVictim", _Var2);
+
+IF
+DB_Dead(CHARACTERGUID_S_RC_DW_Gardener_Overseer_95a3ef01-dbc0-44a2-ba17-922ddc1bd3de)
+AND
+DB_Dead(CHARACTERGUID_S_RC_DW_Gardener_Druid_786900c9-336b-40c2-878b-de2cd3c88135)
+AND
+DB_RC_DW_ThievesCache_Addict(_Var1)
+AND NOT
+DB_Dead(_Var1)
+THEN
+SetHasDialog(_Var1, 0);
+LeaveCombat(_Var1);
+CharacterSetReactionPriority(_Var1, "GetDrudanaeBeforeLeaving", 1100);
+CharacterSetReactionPriority(_Var1, "Leave", 1000);
+
+PROC
+PROC_RC_DW_ThievesCache_CustomCrimeInit()
+AND
+DB_RC_DW_ThievesCache_Addict(_Var1)
+THEN
+ProcCharacterDisableAllCrimes(_Var1);
+
+IF
+CharacterReceivedDamage((CHARACTERGUID)_Var1, _, _)
+AND
+DB_RC_DW_ThievesCache_Addict(_Var1)
+THEN
+SetStoryEvent(CHARACTERGUID_S_RC_DW_Gardener_Overseer_95a3ef01-dbc0-44a2-ba17-922ddc1bd3de, "RC_DW_GoHostile");
+
+PROC
+Proc_RC_DW_ThievesCache_CleanUpTalkBox()
+THEN
+ProcTriggerUnregisterForPlayers(TRIGGERGUID_S_RC_DW_ThievesCache_Overseer_TalkBox_fda31140-97a9-4295-acda-9582f8d6a7e1);
+ProcCleanUpSneakTrigger(CHARACTERGUID_S_RC_DW_Human_Gardener_Addict_002_063d7dfc-e5de-4495-a749-9a4443a156f2);
+
+PROC
+Proc_RC_DW_ThievesCache_CleanUpCombatBox()
+THEN
+ProcTriggerUnregisterForPlayers(TRIGGERGUID_S_RC_DW_ThievesCache_Overseer_CombatBox_2203e619-65f9-451b-8c8a-5697da4e8d28);
+ProcCleanUpSneakTrigger(CHARACTERGUID_S_RC_DW_Gardener_Overseer_95a3ef01-dbc0-44a2-ba17-922ddc1bd3de);
+
+PROC
+ProcRegionEnded("RC_Main")
+THEN
+Proc_RC_DW_ThievesCache_CleanUpTalkBox();
+Proc_RC_DW_ThievesCache_CleanUpCombatBox();
+NOT DB_OnlyOnce("RC_DW_ThievesCache_Grave_Comment");
+GoalCompleted;
+
+
+EXITSECTION
+NOT DB_IsNotMessingAround(S_RC_DW_Gardener_Overseer_95a3ef01-dbc0-44a2-ba17-922ddc1bd3de);
+NOT DB_IsNotMessingAround(S_RC_DW_Human_Gardener_Addict_000_faf9467d-7f43-47ce-8bf4-3ac213deb768);
+NOT DB_IsNotMessingAround(S_RC_DW_Human_Gardener_Addict_001_603d0ca9-650b-48b6-993b-453c28f9238c);
+NOT DB_IsNotMessingAround(S_RC_DW_Human_Gardener_Addict_002_063d7dfc-e5de-4495-a749-9a4443a156f2);
+NOT DB_Dialogs(CHARACTERGUID_S_RC_DW_Gardener_Overseer_95a3ef01-dbc0-44a2-ba17-922ddc1bd3de, "RC_DW_ThievesCache_Overseer");
+NOT DB_Dialogs(CHARACTERGUID_S_RC_DW_Human_Gardener_Addict_000_faf9467d-7f43-47ce-8bf4-3ac213deb768, "RC_DW_ThievesCache_Addict");
+NOT DB_Dialogs(CHARACTERGUID_S_RC_DW_Human_Gardener_Addict_001_603d0ca9-650b-48b6-993b-453c28f9238c, "RC_DW_ThievesCache_Addict");
+NOT DB_Dialogs(CHARACTERGUID_S_RC_DW_Human_Gardener_Addict_002_063d7dfc-e5de-4495-a749-9a4443a156f2, "RC_DW_ThievesCache_Addict");
+NOT DB_Ghosts(S_RC_DW_ThievesCache_MobVictim_000_73b79d85-9c7d-46f2-b8cf-003abe768e59, S_RC_DW_ThievesCache_MobVictim_000_Ghost_521501a6-e777-4b7b-8397-1ef81639cf03, "RC_DW_ThievesCache_MobVictimGhost");
+NOT DB_ShovelArea(S_RC_DW_ThievesCache_Grave_BoxTrig_2a69009a-8d69-42f0-ada2-155c9f369aaf, "RC_DW_ThievesCache_Grave", S_RC_DW_ThievesCache_Grave_d7a9508e-4d67-4a24-a575-a611eb4bf013);
+NOT DB_ShovelRewardCharacterAppear("RC_DW_ThievesCache_Grave", S_RC_DW_ThievesCache_MobVictim_000_Ghost_521501a6-e777-4b7b-8397-1ef81639cf03);
+NOT DB_RC_DW_ThievesCache_Addict(S_RC_DW_Human_Gardener_Addict_000_faf9467d-7f43-47ce-8bf4-3ac213deb768);
+NOT DB_RC_DW_ThievesCache_Addict(S_RC_DW_Human_Gardener_Addict_001_603d0ca9-650b-48b6-993b-453c28f9238c);
+NOT DB_RC_DW_ThievesCache_Addict(S_RC_DW_Human_Gardener_Addict_002_063d7dfc-e5de-4495-a749-9a4443a156f2);
+NOT DB_RC_DW_ThievesCache_Addict_Action("Rake_01_Loop", "RC_DW_ThievesCache_Raking");
+NOT DB_RC_DW_ThievesCache_Addict_Action("Fidget_Low_01", "RC_DW_ThievesCache_Fidgeting");
+NOT DB_RC_DW_ThievesCache_Addict_Action("Fidget_Low_02", "RC_DW_ThievesCache_Fidgeting");
+NOT DB_RC_DW_ThievesCache_Addict_Action("Fidget_Low_03", "RC_DW_ThievesCache_Fidgeting");
+NOT DB_RC_DW_ThievesCache_Addict_Action("Stare_01_Loop", "RC_DW_ThievesCache_StaringAhead");
+NOT DB_RC_DW_ThievesCache_Addict_Action("Insane_01_Loop", "RC_DW_ThievesCache_Breakdown");
+NOT DB_RC_DW_ThievesCache_Addict_Action("Look_Down_Long_01", "RC_DW_ThievesCache_StaringDown");
+ENDEXITSECTION
+
+ParentTargetEdge "ReapersCoast"

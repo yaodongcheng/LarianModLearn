@@ -1,0 +1,39 @@
+Version 1
+SubGoalCombiner SGC_AND
+
+INITSECTION
+DB_Ghosts(CHARACTERGUID_S_RC_BI_Druid_121a1be4-24af-4e4e-ae9f-c679b2982e50, S_RC_BI_Druid_Ghost_702eda68-de52-47ee-bdba-b763c2053322, "RC_BI_Druid_Ghost");
+DB_ShovelArea(TRIGGERGUID_S_RC_BI_DruidSecret_Area_d076dcf7-957e-4fe7-8c4b-1cdff937caf4, "RC_BI_DruidSecret", ITEMGUID_S_RC_BI_DruidSecret_Pile_3f88bd4b-2c38-4c6d-8ff5-506818369250);
+DB_ShovelRewardItemAppear("RC_BI_DruidSecret", ITEMGUID_S_RC_BI_DruidSecret_Package_5c96cc52-c332-40e3-b7fd-0838b68c803d, TRIGGERGUID_S_RC_BI_DruidSecret_Point_4749d42d-4a10-484f-8dd7-42ed591428dd);
+CharacterSetAnimationOverride(S_RC_BI_Druid_Ghost_702eda68-de52-47ee-bdba-b763c2053322, "Insane_01_Loop");
+
+KBSECTION
+IF
+GameBookInterfaceClosed(ITEMGUID_S_RC_BI_Archive_Document_Sourcerer_30534651-6c6d-492e-bd45-aadb5e830100, (CHARACTERGUID)_Var1)
+THEN
+PartySetFlag(_Var1, "QuestUpdate_RC_BI_Druid_ArchiveInfo");
+
+IF
+ObjectFlagSet("QuestUpdate_RC_BI_Druid_Rewarded", (CHARACTERGUID)_Var1, _)
+THEN
+AddSecret(_Var1, "RC_BI_DruidsSecret");
+
+PROC
+Proc_RC_BI_BlackRingKilled()
+THEN
+ObjectSetFlag(S_RC_BI_Druid_Ghost_702eda68-de52-47ee-bdba-b763c2053322, "RC_BI_BlackRingKilled");
+CharacterSetAnimationOverride(S_RC_BI_Druid_Ghost_702eda68-de52-47ee-bdba-b763c2053322, "");
+CharacterMoveTo(S_RC_BI_Druid_Ghost_702eda68-de52-47ee-bdba-b763c2053322, TRIGGERGUID_S_RC_BI_DruidPoint_e22e7f2b-2c7a-40dd-b8ce-dd9262f16817, 0, "", 0);
+
+PROC
+ProcShovelRewards(_, "RC_BI_DruidSecret")
+AND
+DB_IsPlayer(_Var2)
+THEN
+ProcHideMarker(_Var2, "RC_BI_DruidsSecretStuff");
+
+
+EXITSECTION
+ENDEXITSECTION
+
+ParentTargetEdge "ReapersCoast"

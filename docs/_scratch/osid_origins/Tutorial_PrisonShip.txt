@@ -1,0 +1,27 @@
+Version 1
+SubGoalCombiner SGC_AND
+
+INITSECTION
+DB_CheckLevelStart("TUT_Tutorial_A");
+
+KBSECTION
+IF
+RegionStarted("TUT_Tutorial_A")
+THEN
+GoalCompleted;
+PROC_TUT_InitTutorial();
+
+IF
+DB_CheckLevelStart("TUT_Tutorial_A")
+AND
+DB_CurrentLevel("TUT_Tutorial_A")
+THEN
+GoalCompleted;
+PROC_TUT_InitTutorial();
+
+
+EXITSECTION
+NOT DB_CheckLevelStart("TUT_Tutorial_A");
+ENDEXITSECTION
+
+ParentTargetEdge "Start"

@@ -1,0 +1,405 @@
+Version 1
+SubGoalCombiner SGC_AND
+
+INITSECTION
+DB_Dialogs(ITEMGUID_S_RC_OIL_Puzzle_Pillar_00be5d56-d1bb-43a7-8f89-42e90eaa4d94, "RC_OIL_PuzzlePillar");
+ProcTriggerRegisterForPlayers(TRIGGERGUID_S_RC_OIL_PuzzleRoom_eac67aec-2f41-4519-a94e-66fe1d3dfa6a);
+DB_OneShotPlayerTrigger(TRIGGERGUID_S_RC_OIL_OneShot_PuzzleRoom_5fe4cda8-4827-4adb-964b-a52811a4edbe);
+DB_OneShotPlayerTrigger(TRIGGERGUID_RC_OIL_OneShot_TombComment_f5b65610-8140-4c76-b51e-d51b46c6bf17);
+DB_OIL_Puzzle_LatestLit(0);
+DB_RC_OIL_Puzzle_LatestUser(NULL_00000000-0000-0000-0000-000000000000);
+DB_OIL_Puzzle_Horns(ITEMGUID_S_RC_OIL_Cave_WizardStatue_16179abc-fdd3-453b-9f13-6116176df1e4, 1);
+DB_OIL_Puzzle_Horns(ITEMGUID_S_RC_OIL_Cave_ElfStatue_709cf916-4749-4010-8282-78e56c2283b3, 2);
+DB_OIL_Puzzle_Horns(ITEMGUID_S_RC_OIL_Cave_DwarvenStatue_544065f2-e886-4882-94ae-43aba37fc117, 3);
+DB_OIL_Puzzle_Horns(ITEMGUID_S_RC_OIL_Cave_LizardStatue_94905f3d-fc92-4246-8d98-049c937a0708, 4);
+DB_OIL_Puzzle_Horns(ITEMGUID_S_RC_OIL_Cave_ImpStatue_b07bd19b-bb12-4000-8ce6-e502dbc571fe, 5);
+DB_OIL_Puzzle_Horns(ITEMGUID_S_RC_OIL_Cave_OrcStatue_e51e63ef-5f44-4237-960f-88efe702bdd2, 6);
+DB_OIL_Puzzle_Horns(ITEMGUID_S_RC_OIL_Cave_HumanStatue_de08b287-3dd5-4114-8234-0fd8ec8909a2, 7);
+DB_OIL_Puzzle_Horns_Statues(ITEMGUID_S_RC_OIL_Cave_WizardStatue_16179abc-fdd3-453b-9f13-6116176df1e4, "RC_OIL_VB_Wizard");
+DB_OIL_Puzzle_Horns_Statues(ITEMGUID_S_RC_OIL_Cave_ElfStatue_709cf916-4749-4010-8282-78e56c2283b3, "RC_OIL_VB_Elf");
+DB_OIL_Puzzle_Horns_Statues(ITEMGUID_S_RC_OIL_Cave_DwarvenStatue_544065f2-e886-4882-94ae-43aba37fc117, "RC_OIL_VB_Dwarf");
+DB_OIL_Puzzle_Horns_Statues(ITEMGUID_S_RC_OIL_Cave_LizardStatue_94905f3d-fc92-4246-8d98-049c937a0708, "RC_OIL_VB_Lizard");
+DB_OIL_Puzzle_Horns_Statues(ITEMGUID_S_RC_OIL_Cave_ImpStatue_b07bd19b-bb12-4000-8ce6-e502dbc571fe, "RC_OIL_VB_Imp");
+DB_OIL_Puzzle_Horns_Statues(ITEMGUID_S_RC_OIL_Cave_OrcStatue_e51e63ef-5f44-4237-960f-88efe702bdd2, "RC_OIL_VB_Orc");
+DB_OIL_Puzzle_Horns_Statues(ITEMGUID_S_RC_OIL_Cave_HumanStatue_de08b287-3dd5-4114-8234-0fd8ec8909a2, "RC_OIL_VB_Human");
+DB_OIL_TombFx(ITEMGUID_S_RC_OIL_Cave_WizardStatue_16179abc-fdd3-453b-9f13-6116176df1e4, TRIGGERGUID_S_RC_OIL_Cave_WizardStatue_FX_6b57b91e-c740-443a-8fc2-5c1a6084e46f);
+DB_OIL_TombFx(ITEMGUID_S_RC_OIL_Cave_ElfStatue_709cf916-4749-4010-8282-78e56c2283b3, TRIGGERGUID_S_RC_OIL_Cave_ElfStatue_FX_240330ae-c7db-4cd9-8ca2-fd40022c882d);
+DB_OIL_TombFx(ITEMGUID_S_RC_OIL_Cave_DwarvenStatue_544065f2-e886-4882-94ae-43aba37fc117, TRIGGERGUID_S_RC_OIL_Cave_DwarfStatue_FX_9cc3cf71-f7e8-4b8f-b369-cead83865157);
+DB_OIL_TombFx(ITEMGUID_S_RC_OIL_Cave_LizardStatue_94905f3d-fc92-4246-8d98-049c937a0708, TRIGGERGUID_S_RC_OIL_Cave_LizardStatue_FX_aff29411-a021-45ba-b31a-eb83953b5968);
+DB_OIL_TombFx(ITEMGUID_S_RC_OIL_Cave_ImpStatue_b07bd19b-bb12-4000-8ce6-e502dbc571fe, TRIGGERGUID_S_RC_OIL_Cave_ImpStatue_FX_55f8a49b-127c-4cfb-bb44-8676530122a8);
+DB_OIL_TombFx(ITEMGUID_S_RC_OIL_Cave_OrcStatue_e51e63ef-5f44-4237-960f-88efe702bdd2, TRIGGERGUID_S_RC_OIL_Cave_OrcStatue_FX_0aaa8406-10f9-437a-97ba-d038bb71981d);
+DB_OIL_TombFx(ITEMGUID_S_RC_OIL_Cave_HumanStatue_de08b287-3dd5-4114-8234-0fd8ec8909a2, TRIGGERGUID_S_RC_OIL_Cave_HumanStatue_FX_c16caeae-8dec-442d-adf3-e7b4d2d3f337);
+DB_OIL_PuzzleStatuePillar(ITEMGUID_S_RC_OIL_Cave_HumanStatue_de08b287-3dd5-4114-8234-0fd8ec8909a2, TRIGGERGUID_S_RC_OIL_Cave_HumanStatue_Point_07b53116-66f4-435b-8d08-32ecbbecc8c5, 100);
+DB_OIL_PuzzleStatuePillar(ITEMGUID_S_RC_OIL_Cave_ImpStatue_b07bd19b-bb12-4000-8ce6-e502dbc571fe, TRIGGERGUID_S_RC_OIL_Cave_ImpStatue_Point_f7ea1ceb-ee1a-41cf-9b94-44875715543d, 1000);
+DB_OIL_PuzzleStatuePillar(ITEMGUID_S_RC_OIL_Cave_OrcStatue_e51e63ef-5f44-4237-960f-88efe702bdd2, TRIGGERGUID_S_RC_OIL_Cave_OrcStatue_Point_00bc1569-ab59-465a-bd28-cff208c61046, 1900);
+DB_OIL_PuzzleStatuePillar(ITEMGUID_S_RC_OIL_Cave_WizardStatue_16179abc-fdd3-453b-9f13-6116176df1e4, TRIGGERGUID_S_RC_OIL_Cave_WizardStatue_Point_d868e39b-b922-4762-a98b-f13029a662bc, 2800);
+DB_OIL_PuzzleStatuePillar(ITEMGUID_S_RC_OIL_Cave_LizardStatue_94905f3d-fc92-4246-8d98-049c937a0708, TRIGGERGUID_S_RC_OIL_Cave_LizardStatue_Point_5ea00ffa-b12d-4167-af57-421d7c7c2813, 3700);
+DB_OIL_PuzzleStatuePillar(ITEMGUID_S_RC_OIL_Cave_DwarvenStatue_544065f2-e886-4882-94ae-43aba37fc117, TRIGGERGUID_S_RC_OIL_Cave_DwarvenStatue_Point_49400365-faeb-45b8-ae27-4ec11288ddd1, 4600);
+DB_OIL_PuzzleStatuePillar(ITEMGUID_S_RC_OIL_Cave_ElfStatue_709cf916-4749-4010-8282-78e56c2283b3, TRIGGERGUID_S_RC_OIL_Cave_ElfStatue_Point_515796d7-3942-40dc-869c-21deccbc338f, 5500);
+DB_RC_OIL_Tomb_Pillars(ITEMGUID_S_RC_OIL_Tomb_Pillar_1_ce10f8be-39ef-4d14-9784-a0c063006bc6, TRIGGERGUID_S_RC_OIL_Tomb_PillarPoint_1_142ee685-1009-40d7-b728-d14a5eb318ee, 1800);
+DB_RC_OIL_Tomb_Pillars(ITEMGUID_S_RC_OIL_Tomb_Pillar_2_7c572809-dec6-c160-c747-7006358f6854, TRIGGERGUID_S_RC_OIL_Tomb_PillarPoint_2_687a8f1f-d86a-49d6-9e2c-19a097fe07dc, 2500);
+DB_RC_OIL_Tomb_Pillars(ITEMGUID_S_RC_OIL_Tomb_Pillar_3_f9a219da-dc33-c4d2-bce9-15c934e00352, TRIGGERGUID_S_RC_OIL_Tomb_PillarPoint_3_d5c4c72b-a623-44e9-8a37-727292bffd7f, 3200);
+DB_RC_OIL_Tomb_Pillars(ITEMGUID_S_RC_OIL_Tomb_Pillar_4_397700ce-a19a-c55e-e81c-e8f3501f92b5, TRIGGERGUID_S_RC_OIL_Tomb_PillarPoint_4_23155397-5908-4170-ac3f-a176da108163, 3900);
+DB_RC_OIL_Tomb_Pillars(ITEMGUID_S_RC_OIL_Tomb_Pillar_5_acc5c8da-370c-cc1c-c1aa-5a5c909b1d38, TRIGGERGUID_S_RC_OIL_Tomb_PillarPoint_5_00c7eb98-2d6c-460a-a924-843f88e18709, 4600);
+DB_RC_OIL_Tomb_Pillars(ITEMGUID_S_RC_OIL_Tomb_Pillar_6_7c9790eb-dd95-ccdd-b98a-2212718206cf, TRIGGERGUID_S_RC_OIL_Tomb_PillarPoint_6_342c0464-0952-44fc-9a2d-c7c1e1cc5bcc, 6300);
+DB_RC_OIL_Tomb_Pillars(ITEMGUID_S_RC_OIL_Tomb_Pillar_7_8015706f-726e-c647-d1fe-8ecda8855e38, TRIGGERGUID_S_RC_OIL_Tomb_PillarPoint_7_123696eb-9441-475d-a58c-dbc36741c8f7, 7000);
+DB_RC_OIL_Tomb_Pillars(ITEMGUID_S_RC_OIL_Tomb_Pillar_8_c357c4b7-2353-c7e1-b8e4-bde17bfa0a30, TRIGGERGUID_S_RC_OIL_Tomb_PillarPoint_8_e8f02236-b7fa-48f7-b440-b5d39b61d2f6, 7700);
+DB_RC_OIL_Tomb_Pillars(ITEMGUID_S_RC_OIL_Tomb_Pillar_9_53a3b397-f1d2-c516-bc2b-0e7e725739ce, TRIGGERGUID_S_RC_OIL_Tomb_PillarPoint_9_bca568ff-572c-4dba-9c45-9c67dce1b18b, 8400);
+DB_RC_OIL_Tomb_PillarFX(ITEMGUID_S_RC_OIL_Tomb_Pillar_1_ce10f8be-39ef-4d14-9784-a0c063006bc6, TRIGGERGUID_S_RC_OIL_Tomb_PillarFX_1_16ee5164-60d2-4c1f-889c-56d313eb4933);
+DB_RC_OIL_Tomb_PillarFX(ITEMGUID_S_RC_OIL_Tomb_Pillar_2_7c572809-dec6-c160-c747-7006358f6854, TRIGGERGUID_S_RC_OIL_Tomb_PillarFX_2_ee354097-af65-446e-ad5f-034dd45f4ae6);
+DB_RC_OIL_Tomb_PillarFX(ITEMGUID_S_RC_OIL_Tomb_Pillar_3_f9a219da-dc33-c4d2-bce9-15c934e00352, TRIGGERGUID_S_RC_OIL_Tomb_PillarFX_3_109d1f6b-6cee-47e9-b6e5-0edce1e054bf);
+DB_RC_OIL_Tomb_PillarFX(ITEMGUID_S_RC_OIL_Tomb_Pillar_4_397700ce-a19a-c55e-e81c-e8f3501f92b5, TRIGGERGUID_S_RC_OIL_Tomb_PillarFX_4_da0398d6-d060-4fd1-bfe2-7b50e24b5a43);
+DB_RC_OIL_Tomb_PillarFX(ITEMGUID_S_RC_OIL_Tomb_Pillar_5_acc5c8da-370c-cc1c-c1aa-5a5c909b1d38, TRIGGERGUID_S_RC_OIL_Tomb_PillarFX_5_79e92c57-59e2-4a5e-b69c-c804c230ba98);
+DB_RC_OIL_Tomb_PillarFX(ITEMGUID_S_RC_OIL_Tomb_Pillar_6_7c9790eb-dd95-ccdd-b98a-2212718206cf, TRIGGERGUID_S_RC_OIL_Tomb_PillarFX_6_dd2ddc6c-cd28-420f-9807-a1f3de7ee129);
+DB_RC_OIL_Tomb_PillarFX(ITEMGUID_S_RC_OIL_Tomb_Pillar_7_8015706f-726e-c647-d1fe-8ecda8855e38, TRIGGERGUID_S_RC_OIL_Tomb_PillarFX_7_5314829a-f5c0-418f-89c9-2969c54b075b);
+DB_RC_OIL_Tomb_PillarFX(ITEMGUID_S_RC_OIL_Tomb_Pillar_8_c357c4b7-2353-c7e1-b8e4-bde17bfa0a30, TRIGGERGUID_S_RC_OIL_Tomb_PillarFX_8_f14e1f0c-e7b6-4cae-a749-18e108121cce);
+DB_RC_OIL_Tomb_PillarFX(ITEMGUID_S_RC_OIL_Tomb_Pillar_9_53a3b397-f1d2-c516-bc2b-0e7e725739ce, TRIGGERGUID_S_RC_OIL_Tomb_PillarFX_9_7a4cb3b9-aed0-4ba7-ba40-eb4e87872f5a);
+
+KBSECTION
+IF
+TextEventSet("tstcello")
+THEN
+MusicPlayGeneral("Theme_06_Short_Cello_stinger_01");
+
+IF
+TextEventSet("tstbans")
+THEN
+MusicPlayGeneral("Theme_06_Short_Bansuri_stinger_01");
+
+IF
+TextEventSet("tsttamb")
+THEN
+MusicPlayGeneral("Theme_06_Short_Tambura_stinger_01");
+
+IF
+TextEventSet("tstud")
+THEN
+MusicPlayGeneral("Theme_06_Short_Ud_stinger_01");
+
+IF
+CharacterUsedItem((CHARACTERGUID)_Var1, ITEMGUID_S_RC_OIL_Cave_WizardStatue_16179abc-fdd3-453b-9f13-6116176df1e4)
+THEN
+MusicPlayGeneral("Theme_06_Short_Cello_stinger_01");
+
+IF
+TextEventSet("oil_puzzle_solve")
+THEN
+DB_OIL_Puzzle_Solved(1);
+Proc_RC_OIL_PuzzleEnd();
+
+PROC
+ProcOneShotTriggerEntered((CHARACTERGUID)_Var1, RC_OIL_OneShot_TombComment_f5b65610-8140-4c76-b51e-d51b46c6bf17)
+THEN
+StartVoiceBark("RC_OIL_VB_TombComment", _Var1);
+
+PROC
+ProcOneShotTriggerEntered((CHARACTERGUID)_Var1, S_RC_OIL_OneShot_PuzzleRoom_5fe4cda8-4827-4adb-964b-a52811a4edbe)
+AND
+DB_RC_OIL_Tomb_PillarFX(_, _Var3)
+THEN
+PROC_LoopEffect("RS3_FX_GP_ScriptedEvent_SourcePillar_01", _Var3, "RC_OIL_Tomb_SourcePillarTemp", "RC_Main", "");
+
+PROC
+ProcOneShotTriggerEntered((CHARACTERGUID)_Var1, S_RC_OIL_OneShot_PuzzleRoom_5fe4cda8-4827-4adb-964b-a52811a4edbe)
+THEN
+Proc_ShakeCameraForTime(_Var1, 1500);
+
+PROC
+ProcOneShotTriggerEntered((CHARACTERGUID)_Var1, S_RC_OIL_OneShot_PuzzleRoom_5fe4cda8-4827-4adb-964b-a52811a4edbe)
+AND
+DB_RC_OIL_Tomb_Pillars(_Var2, _, _Var4)
+AND
+IntegerSubtract(_Var4, 1000, _Var5)
+THEN
+ProcObjectTimer(_Var2, "Timer_RC_OIL_Tomb_PillarOn", _Var4);
+ProcObjectTimer(_Var2, "Timer_RC_OIL_Tomb_PillarFXOn", _Var5);
+
+PROC
+ProcObjectTimerFinished((ITEMGUID)_Var1, "Timer_RC_OIL_Tomb_PillarOn")
+AND
+DB_RC_OIL_Tomb_Pillars(_Var1, _Var2, _)
+THEN
+PROC_LoopEffect("RS3_FX_GP_ScriptedEvent_SourcePillar_01", _Var2, "RC_OIL_TemplePillarFX", "RC_Main", "");
+
+PROC
+ProcObjectTimerFinished((ITEMGUID)_Var1, "Timer_RC_OIL_Tomb_PillarOn")
+AND
+DB_RC_OIL_Tomb_Pillars(_Var1, _Var2, _)
+THEN
+ItemMoveToTrigger(_Var1, _Var2, 2.5, 1.1, 0);
+PlayEffect(_Var1, "RS3_FX_GP_ScriptedEvent_PuzzlePillars_01");
+ProcObjectTimer(_Var1, "Timer_RC_OIL_Tomb_PillarGlow", 2500);
+
+IF
+DB_OIL_Puzzle_Horns(_Var1, _)
+THEN
+DB_OIL_Puzzle_UnlitHorns(_Var1);
+
+IF
+CharacterUsedItem(_, (ITEMGUID)_Var2)
+AND NOT
+DB_OIL_Puzzle_Solved(1)
+AND
+DB_OIL_Puzzle_Horns_Statues(_Var2, _)
+AND
+DB_OIL_TombFx(_Var2, _Var4)
+THEN
+ItemSetCanInteract(_Var2, 0);
+
+IF
+CharacterUsedItem((CHARACTERGUID)_Var1, (ITEMGUID)_Var2)
+AND NOT
+DB_OIL_Puzzle_Solved(1)
+AND
+DB_OIL_Puzzle_Horns(_Var2, _)
+AND NOT
+DB_OIL_Puzzle_LitHorns(_Var2, _)
+AND
+DB_OIL_Puzzle_LatestLit(_Var5)
+AND
+IntegerSum(_Var5, 1, _Var6)
+AND
+DB_RC_OIL_Puzzle_LatestUser(_Var7)
+THEN
+PROC_LoopEffect("RS3_FX_GP_ScriptedEvent_RC_AeternanTomb_ActivatePillar_01", _Var2, "RC_OIL_Puzzle_PillarFX", "RC_Main", "");
+DB_OIL_Puzzle_LitHorns(_Var2, _Var6);
+NOT DB_OIL_Puzzle_LatestLit(_Var5);
+DB_OIL_Puzzle_LatestLit(_Var6);
+NOT DB_OIL_Puzzle_UnlitHorns(_Var2);
+NOT DB_RC_OIL_Puzzle_LatestUser(_Var7);
+DB_RC_OIL_Puzzle_LatestUser(_Var1);
+Proc_RC_OIL_TryCheckPuzzle();
+
+IF
+CharacterUsedItem((CHARACTERGUID)_Var1, (ITEMGUID)_Var2)
+AND
+DB_OIL_Puzzle_Horns_Statues(_Var2, _Var3)
+THEN
+StartVoiceBark(_Var3, _Var1);
+
+IF
+DialogStarted("RC_OIL_PuzzlePillar", _)
+THEN
+PROC_LoopEffect("RS3_FX_GP_ScriptedEvent_SourcePillar_01", ITEMGUID_S_RC_OIL_Puzzle_Pillar_00be5d56-d1bb-43a7-8f89-42e90eaa4d94, "RC_OIL_Puzzle_MainPillarFX", "RC_Main", "");
+
+IF
+DialogEnded("RC_OIL_PuzzlePillar", _)
+THEN
+PROC_StopLoopEffect(ITEMGUID_S_RC_OIL_Puzzle_Pillar_00be5d56-d1bb-43a7-8f89-42e90eaa4d94, "RC_OIL_Puzzle_MainPillarFX");
+
+IF
+DialogEnded("RC_OIL_PuzzlePillar", (INTEGER)_Var1)
+AND
+GlobalGetFlag("RC_OIL_Puzzle_Info", 1)
+AND
+DB_DialogPlayers(_Var1, _Var2, 1)
+AND
+QueryOnlyOnce("RC_OIL_PuzzlePillarInfo")
+THEN
+Proc_StartDialog(1, "RC_OIL_AD_PuzzlePillarInfoDialog", _Var2);
+
+PROC
+Proc_RC_OIL_TryCheckPuzzle()
+AND NOT
+DB_OIL_Puzzle_UnlitHorns(_)
+THEN
+Proc_RC_OIL_CheckPuzzle();
+
+PROC
+Proc_RC_OIL_CheckPuzzle()
+AND
+DB_OIL_Puzzle_LitHorns(ITEMGUID_S_RC_OIL_Cave_WizardStatue_16179abc-fdd3-453b-9f13-6116176df1e4, 1)
+AND
+DB_OIL_Puzzle_LitHorns(ITEMGUID_S_RC_OIL_Cave_ElfStatue_709cf916-4749-4010-8282-78e56c2283b3, 2)
+AND
+DB_OIL_Puzzle_LitHorns(ITEMGUID_S_RC_OIL_Cave_DwarvenStatue_544065f2-e886-4882-94ae-43aba37fc117, 3)
+AND
+DB_OIL_Puzzle_LitHorns(ITEMGUID_S_RC_OIL_Cave_LizardStatue_94905f3d-fc92-4246-8d98-049c937a0708, 4)
+AND
+DB_OIL_Puzzle_LitHorns(ITEMGUID_S_RC_OIL_Cave_ImpStatue_b07bd19b-bb12-4000-8ce6-e502dbc571fe, 5)
+AND
+DB_OIL_Puzzle_LitHorns(ITEMGUID_S_RC_OIL_Cave_OrcStatue_e51e63ef-5f44-4237-960f-88efe702bdd2, 6)
+AND
+DB_OIL_Puzzle_LitHorns(ITEMGUID_S_RC_OIL_Cave_HumanStatue_de08b287-3dd5-4114-8234-0fd8ec8909a2, 7)
+THEN
+DB_OIL_Puzzle_Solved(1);
+Proc_RC_OIL_PuzzleEnd();
+
+PROC
+Proc_RC_OIL_CheckPuzzle()
+AND NOT
+DB_OIL_Puzzle_Solved(1)
+AND
+DB_RC_OIL_Puzzle_LatestUser(_Var1)
+THEN
+ProcObjectTimer(_Var1, "Timer_RC_OIL_PuzzleResetAD", 2000);
+Proc_RC_OIL_ResetPuzzle();
+
+PROC
+Proc_RC_OIL_ResetPuzzle()
+AND
+DB_OIL_Puzzle_LitHorns(_Var1, _Var2)
+THEN
+ItemSetCanInteract(_Var1, 1);
+NOT DB_OIL_Puzzle_LitHorns(_Var1, _Var2);
+
+PROC
+ProcObjectTimerFinished((CHARACTERGUID)_Var1, "Timer_RC_OIL_PuzzleResetAD")
+THEN
+Proc_StartDialog(1, "RC_OIL_AD_PuzzleWrongSolution", _Var1);
+
+PROC
+Proc_RC_OIL_ResetPuzzle()
+AND
+GetPosition(ITEMGUID_S_RC_OIL_Puzzle_Pillar_00be5d56-d1bb-43a7-8f89-42e90eaa4d94, _Var1, _Var2, _Var3)
+THEN
+PlayScaledEffectAtPosition("RS3_FX_GP_ScriptedEvent_Source_Absorb_01", 3.5, _Var1, _Var2, _Var3);
+
+PROC
+Proc_RC_OIL_ResetPuzzle()
+AND
+DB_OIL_Puzzle_Horns_Statues(_Var1, _)
+AND
+Random(2500, _Var3)
+THEN
+ProcObjectTimer(_Var1, "RC_OIL_Puzzle_ResetFX", _Var3);
+PROC_StopLoopEffect(_Var1, "RC_OIL_Puzzle_PillarFX");
+
+PROC
+ProcObjectTimerFinished((GUIDSTRING)_Var1, "RC_OIL_Puzzle_ResetFX")
+THEN
+PlayEffect(_Var1, "RS3_FX_GP_ScriptedEvent_SourceJar_Break_01");
+
+PROC
+Proc_RC_OIL_ResetPuzzle()
+AND
+DB_OIL_Puzzle_Horns(_Var1, _)
+AND NOT
+DB_OIL_Puzzle_UnlitHorns(_Var1)
+THEN
+DB_OIL_Puzzle_UnlitHorns(_Var1);
+
+PROC
+Proc_RC_OIL_ResetPuzzle()
+AND
+DB_OIL_Puzzle_LatestLit(_Var1)
+AND
+DB_RC_OIL_Puzzle_LatestUser(_Var2)
+THEN
+NOT DB_OIL_Puzzle_LatestLit(_Var1);
+DB_OIL_Puzzle_LatestLit(0);
+NOT DB_RC_OIL_Puzzle_LatestUser(_Var2);
+DB_RC_OIL_Puzzle_LatestUser(NULL_00000000-0000-0000-0000-000000000000);
+
+PROC
+Proc_RC_OIL_PuzzleEnd()
+AND
+DB_RC_OIL_Puzzle_LatestUser(_Var1)
+THEN
+PartySetFlag(_Var1, "QuestUpdate_RC_OIL_Main_PuzzleSolve");
+ProcGiveXPReward("RC_OIL_Puzzle", _Var1);
+TimerLaunch("Timer_RC_OIL_Puzzle_End", 8200);
+
+PROC
+Proc_RC_OIL_PuzzleEnd()
+AND
+DB_OIL_PuzzleStatuePillar(_Var1, _, _Var3)
+THEN
+ProcObjectTimer(_Var1, "Timer_RC_OIL_PuzzleMovePillar", _Var3);
+
+PROC
+ProcObjectTimerFinished((ITEMGUID)_Var1, "Timer_RC_OIL_PuzzleMovePillar")
+AND
+DB_OIL_PuzzleStatuePillar(_Var1, _Var2, _)
+AND
+GetPosition(_Var1, _Var4, _Var5, _Var6)
+THEN
+ItemSetCanInteract(_Var1, 0);
+ProcObjectTimer(_Var1, "Timer_RC_OIL_PuzzlePillarFade", 1100);
+PlayEffect(_Var1, "RS3_FX_GP_ScriptedEvent_RC_AeternanTomb_DestroyPillar_Overlay_01");
+PlayScaledEffectAtPosition("RS3_FX_GP_ScriptedEvent_RC_AeternanTomb_DestroyPillar_01", 1, _Var4, _Var5, _Var6);
+
+PROC
+ProcObjectTimerFinished((GUIDSTRING)_Var1, "Timer_RC_OIL_PuzzlePillarFade")
+THEN
+SetOnStage(_Var1, 0);
+
+PROC
+ProcObjectTimerFinished(ITEMGUID_S_RC_OIL_Cave_ElfStatue_709cf916-4749-4010-8282-78e56c2283b3, "Timer_RC_OIL_PuzzleMovePillar")
+THEN
+Proc_RC_OIL_PuzzleComment("RC_OIL_AD_PuzzleDone");
+
+PROC
+Proc_RC_OIL_PuzzleEnd()
+AND
+GetPosition(ITEMGUID_S_RC_OIL_Puzzle_Pillar_00be5d56-d1bb-43a7-8f89-42e90eaa4d94, _Var1, _Var2, _Var3)
+THEN
+PlayScaledEffectAtPosition("RS3_FX_GP_ScriptedEvent_Source_Absorb_01", 4.5, _Var1, _Var2, _Var3);
+ItemSetCanInteract(ITEMGUID_S_RC_OIL_Puzzle_Pillar_00be5d56-d1bb-43a7-8f89-42e90eaa4d94, 0);
+
+PROC
+Proc_RC_OIL_PuzzleEnd()
+AND
+DB_RC_OIL_Puzzle_LatestUser(_Var1)
+AND
+DB_OIL_Puzzle_LatestLit(_Var2)
+THEN
+NOT DB_OIL_Puzzle_LatestLit(_Var2);
+NOT DB_RC_OIL_Puzzle_LatestUser(_Var1);
+
+IF
+TimerFinished("Timer_RC_OIL_Puzzle_End")
+THEN
+PlayEffect(ITEMGUID_S_RC_OIL_Puzzle_MagicWall_48c672f0-e977-4b6a-8c47-0f394b00d40f, "RS3_FX_GP_ScriptedEvent_RC_AeternanTomb_DestroyPillar_Overlay_01");
+TimerLaunch("Timer_RC_OIL_Puzzle_End2", 1000);
+PlayEffect(ITEMGUID_RC_OIL_Puzzle_Sarcofagus1_7644f7e9-1358-4433-9800-e7d1363290ec, "RS3_FX_GP_ScriptedEvent_RC_AeternanTomb_ActivateSarcophagus_01");
+
+IF
+TimerFinished("Timer_RC_OIL_Puzzle_End2")
+THEN
+SetOnStage(ITEMGUID_S_RC_OIL_Puzzle_MagicWall_48c672f0-e977-4b6a-8c47-0f394b00d40f, 0);
+
+IF
+GlobalFlagSet("RC_OIL_Puzzle_Reset")
+THEN
+GlobalClearFlag("RC_OIL_Puzzle_Reset");
+Proc_RC_OIL_ResetPuzzle();
+
+PROC
+ProcOneShotTriggerEntered((CHARACTERGUID)_Var1, S_RC_OIL_OneShot_PuzzleRoom_5fe4cda8-4827-4adb-964b-a52811a4edbe)
+THEN
+StartVoiceBark("RC_OIL_VB_PuzzleRoomComment", _Var1);
+
+IF
+GameBookInterfaceClosed(RC_OIL_Puzzle_Diay_97710657-e96b-42b8-ab78-91ad8dc91fe8, (CHARACTERGUID)_Var1)
+AND
+QueryOnlyOnce("RC_OIL_Puzzle_SkeletonDiaryComment")
+THEN
+CloseUI(_Var1, "Inventory");
+Proc_StartDialog(1, "RC_OIL_AD_PuzzleDiaryComments", _Var1);
+
+IF
+CharacterUsedItem((CHARACTERGUID)_Var1, ITEMGUID_S_RC_OIL_Puzzle_MagicWall_48c672f0-e977-4b6a-8c47-0f394b00d40f)
+THEN
+Proc_StartDialog(1, "RC_OIL_AD_MagicWallSoloGeneric", _Var1);
+
+PROC
+Proc_RC_OIL_PuzzleComment((STRING)_Var1)
+AND
+DB_InRegion(_Var2, S_RC_OIL_PuzzleRoom_eac67aec-2f41-4519-a94e-66fe1d3dfa6a)
+AND
+QueryOnlyOnce("RC_OIL_PuzzleRoomComment")
+THEN
+Proc_StartDialog(1, _Var1, _Var2);
+
+PROC
+Proc_RC_OIL_PuzzleComment(_)
+THEN
+NOT DB_OnlyOnce("RC_OIL_PuzzleRoomComment");
+
+
+EXITSECTION
+ProcTriggerUnregisterForPlayers(S_RC_OIL_PuzzleRoom_eac67aec-2f41-4519-a94e-66fe1d3dfa6a);
+ENDEXITSECTION
+
+ParentTargetEdge "ReapersCoast"

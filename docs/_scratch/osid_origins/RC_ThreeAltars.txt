@@ -1,0 +1,386 @@
+Version 1
+SubGoalCombiner SGC_AND
+
+INITSECTION
+DB_Dialogs(ITEMGUID_S_RC_DF_ThreeAltars_BeetleAltar_fc34069e-e4c3-403d-9e27-6361a86b4a4e, "RC_ThreeAltars");
+DB_Dialogs(ITEMGUID_S_RC_MIL_ThreeAltars_DeerAltar_ade1c767-9901-455d-a1e1-4c99e30710e4, "RC_ThreeAltars");
+DB_Dialogs(ITEMGUID_S_RC_BF_ThreeAltars_WolfAltar_0b4505eb-7e2b-40d6-b6c3-eed66f8de0ea, "RC_ThreeAltars");
+DB_RC_ThreeAltars(ITEMGUID_S_RC_DF_ThreeAltars_BeetleAltar_fc34069e-e4c3-403d-9e27-6361a86b4a4e, "RC_ThreeAltars_VisitedBeetle");
+DB_RC_ThreeAltars(ITEMGUID_S_RC_MIL_ThreeAltars_DeerAltar_ade1c767-9901-455d-a1e1-4c99e30710e4, "RC_ThreeAltars_VisitedDeer");
+DB_RC_ThreeAltars(ITEMGUID_S_RC_BF_ThreeAltars_WolfAltar_0b4505eb-7e2b-40d6-b6c3-eed66f8de0ea, "RC_ThreeAltars_VisitedWolf");
+Proc_RC_ThreeAltars_SetUpAltars();
+DB_Dialogs(CHARACTERGUID_S_RC_BF_Altar_Werewolf_000_8fe2d805-39b6-42ad-a5ef-bc0b9d647466, "RC_BF_ThreeAltars_Wolf");
+DB_DoNotFace(CHARACTERGUID_S_RC_BF_Altar_Werewolf_000_8fe2d805-39b6-42ad-a5ef-bc0b9d647466);
+DB_RC_BF_Altar_Wolf(CHARACTERGUID_S_RC_BF_Altar_Werewolf_000_8fe2d805-39b6-42ad-a5ef-bc0b9d647466);
+DB_RC_BF_Altar_Wolf(CHARACTERGUID_S_RC_BF_Altar_Wolf_Black_000_d3f23369-9e96-47f8-bf1c-4b2307537552);
+DB_RC_BF_Altar_Wolf(CHARACTERGUID_S_RC_BF_Altar_Wolf_Black_001_0d22cb95-db90-4678-b6c7-ce528ed672d1);
+DB_RC_BF_Altar_Wolf(CHARACTERGUID_S_RC_BF_Altar_Wolf_Black_002_8a34ce03-d69f-46d9-aa6b-b8d31b022d6a);
+DB_RC_BF_Altar_Wolf(CHARACTERGUID_S_RC_BF_Altar_Wolf_Black_003_3f7d0a8e-be6b-4259-9d98-95b3dc29c7a0);
+DB_RC_BF_Altar_Wolf(CHARACTERGUID_S_RC_BF_Altar_Wolf_Black_004_0fea5dc4-2b31-426c-adbf-f1eaaf4ef588);
+DB_KillCounter("RC_ThreeAltars_WolfFight", 6);
+DB_CrimeWarningIsAD("RC_BF_AD_ThreeAltars_WolfAttack");
+ProcTriggerRegisterForPlayers(TRIGGERGUID_S_RC_BF_ThreeAltars_SpotWolf_Box_f37f1de1-9b38-49f0-99ba-908f301192ac);
+DB_RC_MIL_Altar_Deer(CHARACTERGUID_S_RC_MIL_Altar_Deer_Void_000_7cce0a94-e072-4f19-9c04-0eaf2cdd1358, "");
+DB_RC_MIL_Altar_Deer(CHARACTERGUID_S_RC_MIL_Altar_Deer_000_6007bb7b-9d8c-49ba-a431-47ce82387fc1, "RC_MIL_ThreeAltars_SavedDeers");
+DB_RC_MIL_Altar_Deer(CHARACTERGUID_S_RC_MIL_Altar_Deer_001_a4002c4f-eb36-4e8d-9c73-ee1d2778897e, "RC_MIL_ThreeAltars_SavedDeers_001");
+DB_RC_MIL_Altar_Deer(CHARACTERGUID_S_RC_MIL_Altar_Deer_002_ff53f004-dbaa-4343-bdf8-e1366fce5ef6, "RC_MIL_ThreeAltars_SavedDeers_002");
+DB_KillCounter("RC_ThreeAltars_DeerFight", 4);
+ProcTriggerRegisterForPlayers(TRIGGERGUID_S_RC_MIL_ThreeAltars_DeerDialog_Box_8730a786-0a8d-4b2f-9be3-bc22bc1220c1);
+
+KBSECTION
+IF
+TextEventSet("KillAltarWolf")
+AND
+DB_RC_BF_Altar_Wolf(_Var1)
+AND NOT
+DB_Dead(_Var1)
+THEN
+CharacterDie(_Var1, 1, "Physical");
+
+IF
+TextEventSet("KillAltarDeer")
+AND
+DB_RC_MIL_Altar_Deer(_Var1, _)
+AND NOT
+DB_Dead(_Var1)
+THEN
+CharacterDie(_Var1, 1, "Physical");
+
+IF
+TextEventSet("BecameZombieChicken")
+AND
+DB_IsPlayer(_Var1)
+THEN
+SetTag(_Var1, "PROMISED");
+ObjectSetFlag(_Var1, "GLO_Promise_BecameZombieChicken");
+
+PROC
+Proc_RC_ThreeAltars_SetUpAltars()
+THEN
+ObjectSetFlag(ITEMGUID_RC_DF_ThreeAltars_BeetleAltar_fc34069e-e4c3-403d-9e27-6361a86b4a4e, "RC_ThreeAltars_BeetleAltar");
+ObjectSetFlag(ITEMGUID_RC_MIL_ThreeAltars_DeerAltar_ade1c767-9901-455d-a1e1-4c99e30710e4, "RC_ThreeAltars_DeerAltar");
+ObjectSetFlag(ITEMGUID_RC_BF_ThreeAltars_WolfAltar_0b4505eb-7e2b-40d6-b6c3-eed66f8de0ea, "RC_ThreeAltars_WolfAltar");
+
+IF
+DB_RC_BF_Altar_Wolf(_Var1)
+THEN
+DB_KillCounter_Internal(_Var1, "RC_ThreeAltars_WolfFight");
+DB_DontCreateMurder(_Var1);
+
+IF
+DB_RC_BF_Altar_Wolf(_Var1)
+AND
+_Var1 != CHARACTERGUID_S_RC_BF_Altar_Werewolf_000_8fe2d805-39b6-42ad-a5ef-bc0b9d647466
+THEN
+SetOnStage(_Var1, 0);
+
+PROC
+Proc_RC_MIL_ThreeAltars_DeerCombat_SetUp()
+AND
+QueryOnlyOnce("RC_MIL_ThreeAltars_DeerCombat_SetUp")
+AND
+DB_RC_MIL_Altar_Deer(_Var1, _)
+THEN
+DB_KillCounter_Internal(_Var1, "RC_ThreeAltars_DeerFight");
+DB_KillCounter("RC_ThreeAltars_DeerFight", 4);
+DB_DontCreateMurder(_Var1);
+Proc_RC_MIL_ThreeAltars_DeerCombat_SetUpTransform(_Var1);
+
+PROC
+Proc_RC_MIL_ThreeAltars_DeerCombat_SetUpTransform((CHARACTERGUID)_Var1)
+AND
+_Var1 != CHARACTERGUID_S_RC_MIL_Altar_Deer_Void_000_7cce0a94-e072-4f19-9c04-0eaf2cdd1358
+AND
+GetPosition(_Var1, _Var2, _Var3, _Var4)
+THEN
+PlayEffect(_Var1, "RS3_FX_Char_Animals_Deer_A_VoidTransform_Overlays_01");
+PlayEffectAtPosition("RS3_FX_Char_Animals_Deer_A_VoidTransform_01", _Var2, _Var3, _Var4);
+ProcObjectTimer(_Var1, "RC_MIL_ThreeAltars_SwapDeerModel", 1100);
+
+PROC
+ProcObjectTimerFinished((CHARACTERGUID)_Var1, "RC_MIL_ThreeAltars_SwapDeerModel")
+AND NOT
+DB_Dead(_Var1)
+THEN
+SetFaction(_Var1, "Evil NPC");
+Transform(_Var1, "Animals_Deer_A_Void_A 4ac54c7d-1cf3-4adb-868a-9291c56e7afe", 1);
+
+IF
+DB_RC_MIL_Altar_Deer(_Var1, _)
+THEN
+DB_DoNotFace(_Var1);
+
+IF
+CharacterEnteredTrigger((CHARACTERGUID)_Var1, TRIGGERGUID_S_RC_BF_ThreeAltars_SpotWolf_Box_f37f1de1-9b38-49f0-99ba-908f301192ac)
+AND NOT
+DB_Dead(CHARACTERGUID_S_RC_BF_Altar_Werewolf_000_8fe2d805-39b6-42ad-a5ef-bc0b9d647466)
+THEN
+ProcTriggerUnregisterForPlayers(TRIGGERGUID_S_RC_BF_ThreeAltars_SpotWolf_Box_f37f1de1-9b38-49f0-99ba-908f301192ac);
+StartVoiceBark("RC_BF_VB_ThreeAltars_SpotVoidwolf", _Var1);
+
+IF
+CharacterCharacterEvent(CHARACTERGUID_S_RC_BF_Altar_Werewolf_000_8fe2d805-39b6-42ad-a5ef-bc0b9d647466, (CHARACTERGUID)_Var1, "RC_BF_ThreeAltars_VoidwolfSpottedPlayer")
+THEN
+Proc_StartDialog(0, "RC_BF_ThreeAltars_Wolf", CHARACTERGUID_S_RC_BF_Altar_Werewolf_000_8fe2d805-39b6-42ad-a5ef-bc0b9d647466, _Var1);
+ObjectSetFlag(CHARACTERGUID_S_RC_BF_Altar_Werewolf_000_8fe2d805-39b6-42ad-a5ef-bc0b9d647466, "RC_BF_ThreeAltars_VoidwolfStopSpot");
+
+IF
+ObjectFlagSet("RC_BF_ThreeAltars_HostileWolf", CHARACTERGUID_S_RC_BF_Altar_Werewolf_000_8fe2d805-39b6-42ad-a5ef-bc0b9d647466, _)
+THEN
+SetFaction(CHARACTERGUID_S_RC_BF_Altar_Werewolf_000_8fe2d805-39b6-42ad-a5ef-bc0b9d647466, "Evil NPC");
+
+IF
+CombatStarted((INTEGER)_Var1)
+AND
+DB_CombatCharacters(CHARACTERGUID_S_RC_BF_Altar_Werewolf_000_8fe2d805-39b6-42ad-a5ef-bc0b9d647466, _Var1)
+AND
+GlobalGetFlag("RC_BF_ThreeAltars_WolfCombatStarted", 0)
+THEN
+ObjectSetFlag(CHARACTERGUID_S_RC_BF_Altar_Werewolf_000_8fe2d805-39b6-42ad-a5ef-bc0b9d647466, "RC_BF_ThreeAltars_VoidwolfStopSpot");
+GlobalSetFlag("RC_BF_ThreeAltars_WolfCombatStarted");
+SetFaction(CHARACTERGUID_S_RC_BF_Altar_Werewolf_000_8fe2d805-39b6-42ad-a5ef-bc0b9d647466, "Evil NPC");
+SetHasDialog(CHARACTERGUID_S_RC_BF_Altar_Werewolf_000_8fe2d805-39b6-42ad-a5ef-bc0b9d647466, 0);
+Proc_RC_BF_ThreeAltars_StartWolf();
+
+PROC
+Proc_RC_BF_ThreeAltars_StartWolf()
+AND
+DB_RC_BF_Altar_Wolf(_Var1)
+AND
+_Var1 != CHARACTERGUID_S_RC_BF_Altar_Werewolf_000_8fe2d805-39b6-42ad-a5ef-bc0b9d647466
+THEN
+CharacterAppear(_Var1, 1, "");
+
+PROC
+ReactOnKillCounter("RC_ThreeAltars_WolfFight")
+THEN
+ItemClearOwner(ITEMGUID_S_RC_BF_ThreeAltars_WolfAltar_0b4505eb-7e2b-40d6-b6c3-eed66f8de0ea);
+
+IF
+CharacterDied(CHARACTERGUID_S_RC_BF_Altar_Werewolf_000_8fe2d805-39b6-42ad-a5ef-bc0b9d647466)
+AND
+DB_RC_BF_Altar_Wolf(_Var1)
+AND
+_Var1 != CHARACTERGUID_S_RC_BF_Altar_Werewolf_000_8fe2d805-39b6-42ad-a5ef-bc0b9d647466
+AND
+_Var1 != CHARACTERGUID_S_RC_BF_Altar_Wolf_Black_000_d3f23369-9e96-47f8-bf1c-4b2307537552
+AND NOT
+DB_Dead(_Var1)
+THEN
+SetStoryEvent(_Var1, "RC_BF_Altar_BlackWolf_ChangeArchetype");
+
+IF
+CharacterEnteredTrigger((CHARACTERGUID)_Var1, TRIGGERGUID_S_RC_MIL_ThreeAltars_DeerDialog_Box_8730a786-0a8d-4b2f-9be3-bc22bc1220c1)
+AND NOT
+DB_Dead(CHARACTERGUID_S_RC_MIL_Altar_Deer_Void_000_7cce0a94-e072-4f19-9c04-0eaf2cdd1358)
+THEN
+ProcTriggerUnregisterForPlayers(TRIGGERGUID_S_RC_MIL_ThreeAltars_DeerDialog_Box_8730a786-0a8d-4b2f-9be3-bc22bc1220c1);
+Proc_StartDialog(0, "RC_MIL_ThreeAltars_DeersPrayer", CHARACTERGUID_S_RC_MIL_Altar_Deer_Void_000_7cce0a94-e072-4f19-9c04-0eaf2cdd1358, CHARACTERGUID_S_RC_MIL_Altar_Deer_000_6007bb7b-9d8c-49ba-a431-47ce82387fc1, CHARACTERGUID_S_RC_MIL_Altar_Deer_001_a4002c4f-eb36-4e8d-9c73-ee1d2778897e, CHARACTERGUID_S_RC_MIL_Altar_Deer_002_ff53f004-dbaa-4343-bdf8-e1366fce5ef6, ITEMGUID_S_RC_MIL_ThreeAltars_DeerAltar_ade1c767-9901-455d-a1e1-4c99e30710e4, _Var1);
+Proc_RC_MIL_ThreeAltars_DeersLookAtAltar();
+
+IF
+CharacterEnteredTrigger((CHARACTERGUID)_Var1, TRIGGERGUID_S_RC_MIL_ThreeAltars_DeerDialog_Box_8730a786-0a8d-4b2f-9be3-bc22bc1220c1)
+AND
+Qry_RC_MIL_ThreeAltars_AnyDeerDead()
+THEN
+SetFaction(CHARACTERGUID_S_RC_MIL_Altar_Deer_Void_000_7cce0a94-e072-4f19-9c04-0eaf2cdd1358, "Evil NPC");
+Proc_RC_MIL_ThreeAltars_DeerCombat_SetUp();
+
+QRY
+Qry_RC_MIL_ThreeAltars_AnyDeerDead()
+AND
+DB_Dead(CHARACTERGUID_S_RC_MIL_Altar_Deer_000_6007bb7b-9d8c-49ba-a431-47ce82387fc1)
+THEN
+DB_NOOP(1);
+
+QRY
+Qry_RC_MIL_ThreeAltars_AnyDeerDead()
+AND
+DB_Dead(CHARACTERGUID_S_RC_MIL_Altar_Deer_001_a4002c4f-eb36-4e8d-9c73-ee1d2778897e)
+THEN
+DB_NOOP(1);
+
+QRY
+Qry_RC_MIL_ThreeAltars_AnyDeerDead()
+AND
+DB_Dead(CHARACTERGUID_S_RC_MIL_Altar_Deer_002_ff53f004-dbaa-4343-bdf8-e1366fce5ef6)
+THEN
+DB_NOOP(1);
+
+PROC
+Proc_RC_MIL_ThreeAltars_DeersLookAtAltar()
+AND
+DB_RC_MIL_Altar_Deer(_Var1, _)
+THEN
+CharacterLookAt(_Var1, ITEMGUID_S_RC_MIL_ThreeAltars_DeerAltar_ade1c767-9901-455d-a1e1-4c99e30710e4);
+
+IF
+DialogStarted("RC_MIL_ThreeAltars_DeersPrayer", _)
+THEN
+SetFaction(CHARACTERGUID_S_RC_MIL_Altar_Deer_Void_000_7cce0a94-e072-4f19-9c04-0eaf2cdd1358, "Evil NPC");
+
+IF
+ObjectFlagSet("RC_MIL_ThreeAltars_CrashedDeerRitual", _, _)
+THEN
+DB_RC_MIL_Altar_DeerRitualCrashed(1);
+
+IF
+DialogEnded("RC_MIL_ThreeAltars_DeersPrayer", (INTEGER)_Var1)
+AND NOT
+DB_RC_MIL_Altar_DeerRitualCrashed(1)
+AND
+DB_RC_MIL_Altar_Deer(_Var2, _)
+THEN
+Proc_RC_MIL_ThreeAltars_DeerCombat_SetUp();
+
+IF
+GlobalFlagSet("RC_MIL_ThreeAltars_DeersTransform")
+THEN
+Proc_RC_MIL_ThreeAltars_DeerCombat_SetUp();
+
+IF
+DialogEnded("RC_MIL_ThreeAltars_DeersPrayer", (INTEGER)_Var1)
+AND
+DB_RC_MIL_Altar_DeerRitualCrashed(1)
+AND
+DB_DialogPlayers(_Var1, _Var2, _)
+AND
+DB_RC_MIL_Altar_Deer(_Var4, _Var5)
+AND
+_Var4 != CHARACTERGUID_S_RC_MIL_Altar_Deer_Void_000_7cce0a94-e072-4f19-9c04-0eaf2cdd1358
+THEN
+DB_Dialogs(_Var4, _Var5);
+DB_KillCounter_Internal(CHARACTERGUID_S_RC_MIL_Altar_Deer_Void_000_7cce0a94-e072-4f19-9c04-0eaf2cdd1358, "RC_ThreeAltars_DeerFight");
+DB_KillCounter("RC_ThreeAltars_DeerFight", 1);
+NOT DB_DoNotFace(_Var4);
+CharacterSetRelationIndivFactionToIndivFaction(_Var2, _Var4, 100);
+CharacterSetRelationIndivFactionToIndivFaction(_Var4, _Var2, 100);
+CharacterSetTemporaryHostileRelation(CHARACTERGUID_S_RC_MIL_Altar_Deer_Void_000_7cce0a94-e072-4f19-9c04-0eaf2cdd1358, _Var4);
+
+IF
+CombatStarted((INTEGER)_Var1)
+AND
+Qry_RC_MIL_ThreeAltars_AnyDeerIsInCombat(_Var1)
+AND NOT
+DB_RC_MIL_Altar_DeerRitualCrashed(1)
+AND
+DB_RC_MIL_Altar_Deer(_Var2, _)
+THEN
+Proc_RC_MIL_ThreeAltars_DeerCombat_SetUp();
+
+QRY
+Qry_RC_MIL_ThreeAltars_AnyDeerIsInCombat((INTEGER)_Var1)
+AND
+DB_RC_MIL_Altar_Deer(_Var2, _)
+AND
+DB_CombatCharacters(_Var2, _Var1)
+THEN
+DB_NOOP(1);
+
+PROC
+ReactOnKillCounter("RC_ThreeAltars_DeerFight")
+THEN
+ItemSetCanInteract(ITEMGUID_S_RC_MIL_ThreeAltars_DeerAltar_ade1c767-9901-455d-a1e1-4c99e30710e4, 1);
+NOT DB_RC_MIL_Altar_DeerRitualCrashed(1);
+
+IF
+DB_Dead(_Var1)
+AND
+DB_RC_MIL_Altar_Deer(_Var1, _Var2)
+THEN
+NOT DB_RC_MIL_Altar_Deer(_Var1, _Var2);
+
+IF
+ObjectFlagSet("RC_ThreeAltars_SetVisitedFlag", (GUIDSTRING)_Var1, (INTEGER)_Var2)
+AND
+DB_DialogNPCs(_Var2, _Var3, 1)
+AND
+DB_RC_ThreeAltars(_Var3, _Var4)
+THEN
+ObjectSetFlag(_Var1, _Var4);
+
+IF
+ObjectFlagSet("RC_ThreeAltars_SetVisitedFlag", (GUIDSTRING)_Var1, (INTEGER)_Var2)
+THEN
+ObjectClearFlag(_Var1, "RC_ThreeAltars_SetVisitedFlag");
+
+IF
+ObjectFlagSet("RC_ThreeAltars_SetTemptedByPromise", (CHARACTERGUID)_Var1, (INTEGER)_Var2)
+THEN
+ObjectClearFlag(_Var1, "RC_ThreeAltars_SetTemptedByPromise");
+Proc_RC_ThreeAltars_CountRefusedPromise(_Var1);
+
+IF
+ObjectFlagSet("RC_ThreeAltars_AddOneSourcePoint", (CHARACTERGUID)_Var1, _)
+THEN
+CharacterAddSourcePoints(_Var1, 1);
+ObjectClearFlag(_Var1, "RC_ThreeAltars_AddOneSourcePoint");
+
+IF
+ObjectFlagSet("RC_ThreeAltars_FillSourcePoints", (CHARACTERGUID)_Var1, _)
+THEN
+CharacterAddSourcePoints(_Var1, 3);
+ObjectClearFlag(_Var1, "RC_ThreeAltars_FillSourcePoints");
+
+IF
+ObjectFlagSet("RC_ThreeAltars_SetVisitedFlag", (CHARACTERGUID)_Var1, (INTEGER)_Var2)
+AND
+IsTagged(_Var1, "UNDEAD", 0)
+THEN
+Proc_RC_ThreeAltars_CountVisit(_Var1);
+
+PROC
+Proc_RC_ThreeAltars_CountVisit((CHARACTERGUID)_Var1)
+AND
+DB_ThreeAltars_Visit(_Var1, _Var2, _Var3)
+AND
+IntegerSum(_Var2, 1, _Var4)
+AND
+IntegertoString(_Var4, _Var5)
+AND
+StringConcatenate("RC_ThreeAltars_Visit_", _Var5, _Var6)
+THEN
+NOT DB_ThreeAltars_Visits(_Var1, _Var2, _Var3);
+ObjectClearFlag(_Var1, _Var3);
+DB_ThreeAltars_Visit(_Var1, _Var4, _Var6);
+ObjectSetFlag(_Var1, _Var6);
+
+PROC
+Proc_RC_ThreeAltars_CountVisit((CHARACTERGUID)_Var1)
+AND NOT
+DB_ThreeAltars_Visit(_Var1, _, _)
+THEN
+ObjectSetFlag(_Var1, "QuestUpdate_RC_ThreeAltars_LivingFirst");
+DB_ThreeAltars_Visit(_Var1, 2, "RC_ThreeAltars_Visit_2");
+ObjectSetFlag(_Var1, "RC_ThreeAltars_Visit_2");
+
+PROC
+Proc_RC_ThreeAltars_CountRefusedPromise((CHARACTERGUID)_Var1)
+AND
+DB_ThreeAltars_RefusedPromise(_Var1, _Var2, _Var3)
+AND
+IntegerSum(_Var2, 1, _Var4)
+AND
+IntegertoString(_Var4, _Var5)
+AND
+StringConcatenate("RC_ThreeAltars_Refused_", _Var5, _Var6)
+THEN
+NOT DB_ThreeAltars_RefusedPromise(_Var1, _Var2, _Var3);
+ObjectClearFlag(_Var1, _Var3);
+DB_ThreeAltars_RefusedPromise(_Var1, _Var4, _Var6);
+ObjectSetFlag(_Var1, _Var6);
+
+PROC
+Proc_RC_ThreeAltars_CountRefusedPromise((CHARACTERGUID)_Var1)
+AND NOT
+DB_ThreeAltars_RefusedPromise(_Var1, _, _)
+THEN
+ObjectSetFlag(_Var1, "QuestUpdate_RC_ThreeAltars_UndeadRefusedFirst");
+DB_ThreeAltars_RefusedPromise(_Var1, 2, "RC_ThreeAltars_Refused_2");
+ObjectSetFlag(_Var1, "RC_ThreeAltars_Refused_2");
+
+
+EXITSECTION
+ENDEXITSECTION
+
+ParentTargetEdge "ReapersCoast"

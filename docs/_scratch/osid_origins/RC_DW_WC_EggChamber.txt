@@ -1,0 +1,41 @@
+Version 1
+SubGoalCombiner SGC_AND
+
+INITSECTION
+DB_RC_DW_WC_EggChamberEnemy(S_NAT_Voideggs_Big_A_014_696f6010-bbdf-429c-a3b4-57bd76dc8df4);
+DB_RC_DW_WC_EggChamberEnemy(S_NAT_Voideggs_Big_A_015_7786fee9-c989-4520-8650-a9ee81a7ed10);
+DB_RC_DW_WC_EggChamberEnemy(S_NAT_Voideggs_Big_A_017_860ba686-9083-44d4-875a-9d863c4fc7a3);
+DB_RC_DW_WC_EggChamberEnemy(S_NAT_Voideggs_Big_A_018_93f74569-ec35-4453-bd19-4eb9ba5e9903);
+DB_RC_DW_WC_EggChamberEnemy(S_NAT_Voideggs_Big_A_020_5a14aa35-f277-40fa-aa0c-13ddf6808570);
+DB_RC_DW_WC_EggChamberEnemy(S_NAT_Voideggs_Big_A_025_28523381-3a65-47ac-98b0-ec960f9c4144);
+DB_RC_DW_WC_EggChamberEnemy(S_Creatures_VampireBat_A_000_0819d46d-a3ce-4214-8c42-f4d20c76d01b);
+DB_RC_DW_WC_EggChamberEnemy(S_Creatures_VampireBat_A_001_1af2c6b2-9479-43d8-8938-cf7019202d65);
+DB_RC_DW_WC_EggChamberEnemy(S_Creatures_VampireBat_A_002_c19ac6db-960d-496b-bcb9-2f16e521134c);
+
+KBSECTION
+IF
+DB_Dead(_Var1)
+AND
+DB_RC_DW_WC_EggChamberEnemy(_Var1)
+THEN
+NOT DB_RC_DW_WC_EggChamberEnemy(_Var1);
+PROC_RC_DW_WC_EggChamberCheckEnemiesLeft();
+
+PROC
+PROC_RC_DW_WC_EggChamberCheckEnemiesLeft()
+AND NOT
+DB_RC_DW_WC_EggChamberEnemy(_)
+THEN
+GlobalSetFlag("RC_DW_WC_EggChamberCleared");
+
+IF
+StoryEvent((CHARACTERGUID)_Var1, "RC_DW_WC_EggChamberHatchling")
+THEN
+GlobalClearFlag("RC_DW_WC_EggChamberCleared");
+DB_RC_DW_WC_EggChamberEnemy(_Var1);
+
+
+EXITSECTION
+ENDEXITSECTION
+
+ParentTargetEdge "RC_DW_WreckersCaveBase"

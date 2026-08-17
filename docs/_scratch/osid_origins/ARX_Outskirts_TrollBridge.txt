@@ -1,0 +1,226 @@
+Version 1
+SubGoalCombiner SGC_AND
+
+INITSECTION
+DB_Dialogs(CHARACTERGUID_S_ARX_Troll_Bridge_WatchingPilgrim_466542fb-ff59-443b-b7d3-f6f183494ad3, "ARX_Troll_Bridge_WatchingPilgrim");
+Proc_ARX_SetUpGrog();
+
+KBSECTION
+PROC
+Proc_ARX_SetUpGrog()
+AND NOT
+DB_Dead(CHARACTERGUID_S_GLO_Troll_Grog_9671dad5-258d-4174-84c0-0141502b2938)
+AND
+GetPosition(TRIGGERGUID_S_ARX_Troll_Grog_Point_2695f0db-2b9c-4466-8c80-774e7f6251d3, _Var1, _Var2, _Var3)
+THEN
+ObjectSetFlag(CHARACTERGUID_S_GLO_Troll_Grog_9671dad5-258d-4174-84c0-0141502b2938, "ARX_Troll_IsInArx");
+ObjectClearFlag(CHARACTERGUID_S_GLO_Troll_Grog_9671dad5-258d-4174-84c0-0141502b2938, "RC_DF_Troll_GrogAtMargsBridge");
+TeleportTo(CHARACTERGUID_S_GLO_Troll_Grog_9671dad5-258d-4174-84c0-0141502b2938, TRIGGERGUID_S_ARX_Troll_Grog_Point_2695f0db-2b9c-4466-8c80-774e7f6251d3);
+SetVarObject(CHARACTERGUID_S_GLO_Troll_Grog_9671dad5-258d-4174-84c0-0141502b2938, "DefaultPointTrigger", TRIGGERGUID_S_ARX_Troll_Grog_Point_2695f0db-2b9c-4466-8c80-774e7f6251d3);
+SetVarObject(CHARACTERGUID_S_GLO_Troll_Grog_9671dad5-258d-4174-84c0-0141502b2938, "WanderTrigger", TRIGGERGUID_S_ARX_Troll_Grog_WanderBox_b0fbc7ed-b9ff-4516-9680-e4ebb66f1d95);
+SetVarInteger(CHARACTERGUID_S_GLO_Troll_Grog_9671dad5-258d-4174-84c0-0141502b2938, "CanWander", 1);
+SetVarFloat(CHARACTERGUID_S_GLO_Troll_Grog_9671dad5-258d-4174-84c0-0141502b2938, "WanderTimerMin", 0.5);
+SetVarFloat(CHARACTERGUID_S_GLO_Troll_Grog_9671dad5-258d-4174-84c0-0141502b2938, "WanderTimerMax", 1.5);
+SetVarObject(CHARACTERGUID_S_GLO_Troll_Grog_9671dad5-258d-4174-84c0-0141502b2938, "SpotTrigger", TRIGGERGUID_S_ARX_Troll_Bridge_SpotBox_1ead6799-7bad-48cc-9a18-0e8c6bcc471e);
+ObjectSetFlag(CHARACTERGUID_S_GLO_Troll_Grog_9671dad5-258d-4174-84c0-0141502b2938, "RC_DF_Troll_GrogRestartSpot");
+PROC_RemoveDialogFromCharacter(CHARACTERGUID_S_GLO_Troll_Grog_9671dad5-258d-4174-84c0-0141502b2938);
+DB_Dialogs(CHARACTERGUID_S_GLO_Troll_Grog_9671dad5-258d-4174-84c0-0141502b2938, "ARX_Troll_Grog");
+SetVarFloat3(CHARACTERGUID_S_GLO_Troll_Grog_9671dad5-258d-4174-84c0-0141502b2938, "NPCOrgPos", _Var1, _Var2, _Var3);
+SetVarFloat3(CHARACTERGUID_S_GLO_Troll_Grog_9671dad5-258d-4174-84c0-0141502b2938, "DefaultPoint", _Var1, _Var2, _Var3);
+ProcTriggerRegisterForPlayers(TRIGGERGUID_S_ARX_Troll_Bridge_TrespassBox_403d6f8d-a73c-40a7-bc1c-2d8fa3374f51);
+ProcTriggerRegisterForPlayers(TRIGGERGUID_S_ARX_Troll_Bridge_ControlBox_e98b68d2-50ca-40e3-8994-97ca5e97ce62);
+ProcTriggerRegisterForPlayers(TRIGGERGUID_S_ARX_Troll_Bridge_CampBox_50751b70-7a30-4d13-8783-79ec46bd2a40);
+ProcTriggerRegisterForPlayers(TRIGGERGUID_S_ARX_Troll_Bridge_HarbourBox_31ef443b-24de-4905-8c1f-0124fe3d31df);
+TriggerRegisterForCharacter(TRIGGERGUID_S_ARX_Troll_Bridge_ControlBox_e98b68d2-50ca-40e3-8994-97ca5e97ce62, CHARACTERGUID_S_GLO_Troll_Grog_9671dad5-258d-4174-84c0-0141502b2938);
+DB_ARX_Troll_Trespass("ARX_Troll_CameFromCamp", TRIGGERGUID_S_ARX_Troll_Bridge_CampPoint_efa211a3-c8fd-428e-9c4f-65e07a1af59a);
+DB_ARX_Troll_Trespass("ARX_Troll_CameFromHarbour", TRIGGERGUID_S_ARX_Troll_Bridge_HarbourPoint_b2fdf53f-2cb1-4943-ae4b-a3e282f336d1);
+DB_ARX_Troll_Trigger(TRIGGERGUID_S_ARX_Troll_Bridge_ControlBox_e98b68d2-50ca-40e3-8994-97ca5e97ce62, TRIGGERGUID_S_ARX_Troll_Bridge_CampBox_50751b70-7a30-4d13-8783-79ec46bd2a40, "ARX_Troll_CameFromCamp");
+DB_ARX_Troll_Trigger(TRIGGERGUID_S_ARX_Troll_Bridge_ControlBox_e98b68d2-50ca-40e3-8994-97ca5e97ce62, TRIGGERGUID_S_ARX_Troll_Bridge_HarbourBox_31ef443b-24de-4905-8c1f-0124fe3d31df, "ARX_Troll_CameFromHarbour");
+DB_DeadEvent(CHARACTERGUID_S_GLO_Troll_Grog_9671dad5-258d-4174-84c0-0141502b2938, "ARX_Troll_Grog_IsDead");
+DB_KilledEvent(CHARACTERGUID_S_GLO_Troll_Grog_9671dad5-258d-4174-84c0-0141502b2938, "ARX_Troll_Grog_KilledGrog");
+
+PROC
+Proc_ARX_SetUpGrog()
+AND
+DB_Dead(CHARACTERGUID_S_GLO_Troll_Grog_9671dad5-258d-4174-84c0-0141502b2938)
+THEN
+SetOnStage(CHARACTERGUID_S_ARX_Troll_Bridge_WatchingPilgrim_466542fb-ff59-443b-b7d3-f6f183494ad3, 0);
+SetOnStage(ITEMGUID_S_ARX_Troll_Bridge_Barricade_124b545f-21b5-4925-badd-03f7c192af65, 0);
+SetOnStage(ITEMGUID_S_ARX_Troll_Grog_Bag_50663ec0-7b97-4e99-a281-7a295cb6f51f, 0);
+
+IF
+CharacterDied(CHARACTERGUID_S_GLO_Troll_Grog_9671dad5-258d-4174-84c0-0141502b2938)
+THEN
+ProcTriggerUnregisterForPlayers(TRIGGERGUID_S_ARX_Troll_Bridge_TrespassBox_403d6f8d-a73c-40a7-bc1c-2d8fa3374f51);
+ProcTriggerUnregisterForPlayers(TRIGGERGUID_S_ARX_Troll_Bridge_ControlBox_e98b68d2-50ca-40e3-8994-97ca5e97ce62);
+ProcTriggerUnregisterForPlayers(TRIGGERGUID_S_ARX_Troll_Bridge_CampBox_50751b70-7a30-4d13-8783-79ec46bd2a40);
+ProcTriggerUnregisterForPlayers(TRIGGERGUID_S_ARX_Troll_Bridge_HarbourBox_31ef443b-24de-4905-8c1f-0124fe3d31df);
+TriggerUnregisterForCharacter(TRIGGERGUID_S_ARX_Troll_Bridge_ControlBox_e98b68d2-50ca-40e3-8994-97ca5e97ce62, CHARACTERGUID_S_GLO_Troll_Grog_9671dad5-258d-4174-84c0-0141502b2938);
+ObjectSetFlag(CHARACTERGUID_S_GLO_Troll_Grog_9671dad5-258d-4174-84c0-0141502b2938, "RC_DF_Troll_GrogStopSpot");
+NOT DB_ARX_Troll_Trespass("ARX_Troll_CameFromCamp", TRIGGERGUID_S_ARX_Troll_Bridge_CampPoint_efa211a3-c8fd-428e-9c4f-65e07a1af59a);
+NOT DB_ARX_Troll_Trespass("ARX_Troll_CameFromHarbour", TRIGGERGUID_S_ARX_Troll_Bridge_HarbourPoint_b2fdf53f-2cb1-4943-ae4b-a3e282f336d1);
+NOT DB_ARX_Troll_Trigger(TRIGGERGUID_S_ARX_Troll_Bridge_ControlBox_e98b68d2-50ca-40e3-8994-97ca5e97ce62, TRIGGERGUID_S_ARX_Troll_Bridge_CampBox_50751b70-7a30-4d13-8783-79ec46bd2a40, "ARX_Troll_CameFromCamp");
+NOT DB_ARX_Troll_Trigger(TRIGGERGUID_S_ARX_Troll_Bridge_ControlBox_e98b68d2-50ca-40e3-8994-97ca5e97ce62, TRIGGERGUID_S_ARX_Troll_Bridge_HarbourBox_31ef443b-24de-4905-8c1f-0124fe3d31df, "ARX_Troll_CameFromHarbour");
+
+IF
+ObjectFlagSet("RC_DF_Troll_LearnGrogsSkill", (CHARACTERGUID)_Var1, (INTEGER)_Var2)
+AND
+DB_DialogPlayers(_Var2, _Var1, _)
+THEN
+CharacterAddSkill(_Var1, "Shout_ReactiveArmor");
+
+IF
+CharacterLeftTrigger(CHARACTERGUID_S_GLO_Troll_Grog_9671dad5-258d-4174-84c0-0141502b2938, TRIGGERGUID_S_ARX_Troll_Bridge_ControlBox_e98b68d2-50ca-40e3-8994-97ca5e97ce62)
+THEN
+ObjectSetFlag(CHARACTERGUID_S_GLO_Troll_Grog_9671dad5-258d-4174-84c0-0141502b2938, "RC_DF_Troll_NotOnBridge");
+
+PROC
+ProcBlockPickupOfItem((CHARACTERGUID)_Var1, ITEMGUID_S_ARX_Troll_Grog_Bag_50663ec0-7b97-4e99-a281-7a295cb6f51f)
+AND NOT
+DB_Dead(CHARACTERGUID_S_GLO_Troll_Grog_9671dad5-258d-4174-84c0-0141502b2938)
+AND
+CharacterCanSee(CHARACTERGUID_S_GLO_Troll_Grog_9671dad5-258d-4174-84c0-0141502b2938, _Var1, 1)
+THEN
+DB_CustomPickupItemResponse(_Var1, ITEMGUID_S_ARX_Troll_Grog_Bag_50663ec0-7b97-4e99-a281-7a295cb6f51f, 0);
+ProcForceStopDialog(CHARACTERGUID_S_GLO_Troll_Grog_9671dad5-258d-4174-84c0-0141502b2938);
+CharacterSetTemporaryHostileRelation(CHARACTERGUID_S_GLO_Troll_Grog_9671dad5-258d-4174-84c0-0141502b2938, _Var1);
+Proc_StartDialog(1, "CMB_AD_CombatFallback", CHARACTERGUID_S_GLO_Troll_Grog_9671dad5-258d-4174-84c0-0141502b2938);
+
+PROC
+ProcBlockMoveOfItem((CHARACTERGUID)_Var1, ITEMGUID_S_ARX_Troll_Grog_Bag_50663ec0-7b97-4e99-a281-7a295cb6f51f)
+AND NOT
+DB_Dead(CHARACTERGUID_S_GLO_Troll_Grog_9671dad5-258d-4174-84c0-0141502b2938)
+AND
+CharacterCanSee(CHARACTERGUID_S_GLO_Troll_Grog_9671dad5-258d-4174-84c0-0141502b2938, _Var1, 1)
+THEN
+DB_CustomMoveItemResponse(_Var1, ITEMGUID_S_ARX_Troll_Grog_Bag_50663ec0-7b97-4e99-a281-7a295cb6f51f, 0);
+ProcForceStopDialog(CHARACTERGUID_S_GLO_Troll_Grog_9671dad5-258d-4174-84c0-0141502b2938);
+CharacterSetTemporaryHostileRelation(CHARACTERGUID_S_GLO_Troll_Grog_9671dad5-258d-4174-84c0-0141502b2938, _Var1);
+Proc_StartDialog(1, "CMB_AD_CombatFallback", CHARACTERGUID_S_GLO_Troll_Grog_9671dad5-258d-4174-84c0-0141502b2938);
+
+PROC
+ProcBlockUseOfItem((CHARACTERGUID)_Var1, ITEMGUID_S_ARX_Troll_Grog_Bag_50663ec0-7b97-4e99-a281-7a295cb6f51f)
+AND NOT
+DB_Dead(CHARACTERGUID_S_GLO_Troll_Grog_9671dad5-258d-4174-84c0-0141502b2938)
+AND
+CharacterCanSee(CHARACTERGUID_S_GLO_Troll_Grog_9671dad5-258d-4174-84c0-0141502b2938, _Var1, 1)
+THEN
+DB_CustomUseItemResponse(_Var1, ITEMGUID_S_ARX_Troll_Grog_Bag_50663ec0-7b97-4e99-a281-7a295cb6f51f, 0);
+ProcForceStopDialog(CHARACTERGUID_S_GLO_Troll_Grog_9671dad5-258d-4174-84c0-0141502b2938);
+CharacterSetTemporaryHostileRelation(CHARACTERGUID_S_GLO_Troll_Grog_9671dad5-258d-4174-84c0-0141502b2938, _Var1);
+Proc_StartDialog(1, "CMB_AD_CombatFallback", CHARACTERGUID_S_GLO_Troll_Grog_9671dad5-258d-4174-84c0-0141502b2938);
+
+IF
+CharacterCharacterEvent(CHARACTERGUID_S_GLO_Troll_Grog_9671dad5-258d-4174-84c0-0141502b2938, (CHARACTERGUID)_Var1, "RC_DF_Troll_GrogSpotPlayer")
+AND NOT
+DB_Dead(CHARACTERGUID_S_GLO_Troll_Grog_9671dad5-258d-4174-84c0-0141502b2938)
+AND
+UserGetFlag(_Var1, "ARX_Troll_Act3GrogFriendly", 0)
+THEN
+Proc_ARX_Troll_StartDialog(_Var1);
+
+IF
+CharacterCharacterEvent(CHARACTERGUID_S_GLO_Troll_Grog_9671dad5-258d-4174-84c0-0141502b2938, (CHARACTERGUID)_Var1, "RC_DF_Troll_GrogSpotPlayer")
+AND NOT
+DB_Dead(CHARACTERGUID_S_GLO_Troll_Grog_9671dad5-258d-4174-84c0-0141502b2938)
+THEN
+ObjectSetFlag(CHARACTERGUID_S_GLO_Troll_Grog_9671dad5-258d-4174-84c0-0141502b2938, "RC_DF_Troll_GrogRestartSpot");
+
+PROC
+Proc_ARX_Troll_StartDialog((CHARACTERGUID)_Var1)
+AND
+ObjectGetFlag(CHARACTERGUID_S_GLO_Troll_Grog_9671dad5-258d-4174-84c0-0141502b2938, "RC_DF_Troll_NotOnBridge", 0)
+AND
+IsSpeakerReserved(CHARACTERGUID_S_GLO_Troll_Grog_9671dad5-258d-4174-84c0-0141502b2938, 0)
+THEN
+Proc_StartDialog(0, "ARX_Troll_Grog", CHARACTERGUID_S_GLO_Troll_Grog_9671dad5-258d-4174-84c0-0141502b2938, _Var1);
+
+IF
+CharacterEnteredTrigger((CHARACTERGUID)_Var1, (TRIGGERGUID)_Var2)
+AND
+DB_ARX_Troll_Trigger(_Var2, _Var3, _Var4)
+AND
+DB_InRegion(_Var1, _Var3)
+THEN
+ObjectSetFlag(_Var1, _Var4);
+
+IF
+CharacterLeftTrigger((CHARACTERGUID)_Var1, (TRIGGERGUID)_Var2)
+AND
+DB_ARX_Troll_Trigger(_Var2, _Var3, _)
+AND
+DB_InRegion(_Var1, _Var3)
+THEN
+Proc_ARX_Troll_ClearFlag(_Var1);
+
+PROC
+Proc_ARX_Troll_ClearFlag((CHARACTERGUID)_Var1)
+AND
+DB_ARX_Troll_Trigger(_Var2, _, _Var4)
+THEN
+ObjectClearFlag(_Var1, _Var4);
+
+IF
+CharacterEnteredTrigger((CHARACTERGUID)_Var1, TRIGGERGUID_S_ARX_Troll_Bridge_TrespassBox_403d6f8d-a73c-40a7-bc1c-2d8fa3374f51)
+AND NOT
+DB_Dead(CHARACTERGUID_S_GLO_Troll_Grog_9671dad5-258d-4174-84c0-0141502b2938)
+AND NOT
+Query_IsPlayerHiding(_Var1)
+AND
+UserGetFlag(_Var1, "ARX_Troll_Act3GrogFriendly", 0)
+THEN
+ProcForceStopDialog(CHARACTERGUID_S_GLO_Troll_Grog_9671dad5-258d-4174-84c0-0141502b2938);
+CharacterSetTemporaryHostileRelation(CHARACTERGUID_S_GLO_Troll_Grog_9671dad5-258d-4174-84c0-0141502b2938, _Var1);
+
+IF
+ObjectFlagSet("RC_DF_Troll_TeleportPlayerOut", (CHARACTERGUID)_Var1, (INTEGER)_Var2)
+THEN
+Proc_ARX_Troll_SetTeleportAfterDialog(_Var1, _Var2);
+
+PROC
+Proc_ARX_Troll_SetTeleportAfterDialog((CHARACTERGUID)_Var1, (INTEGER)_Var2)
+AND
+DB_ARX_Troll_Trespass(_Var3, _Var4)
+AND
+ObjectGetFlag(_Var1, _Var3, 1)
+THEN
+DB_ARX_Troll_TeleportPlayerAfterDialog(_Var1, _Var2, _Var4);
+
+PROC
+Proc_ARX_Troll_SetTeleportAfterDialog((CHARACTERGUID)_Var1, (INTEGER)_Var2)
+AND NOT
+DB_ARX_Troll_TeleportPlayerAfterDialog(_Var1, _Var2, _)
+THEN
+DB_ARX_Troll_TeleportPlayerAfterDialog(_Var1, _Var2, TRIGGERGUID_S_ARX_Troll_Bridge_CampPoint_efa211a3-c8fd-428e-9c4f-65e07a1af59a);
+
+PROC
+Proc_ARX_Troll_SetTeleportAfterDialog((CHARACTERGUID)_Var1, (INTEGER)_Var2)
+THEN
+ObjectClearFlag(_Var1, "RC_DF_Troll_TeleportPlayerOut");
+
+IF
+DialogEnded(_, (INTEGER)_Var2)
+AND
+DB_ARX_Troll_TeleportPlayerAfterDialog(_Var3, _Var2, _Var4)
+THEN
+NOT DB_ARX_Troll_TeleportPlayerAfterDialog(_Var3, _Var2, _Var4);
+TeleportTo(_Var3, _Var4, "", 1);
+
+IF
+CharacterDied(CHARACTERGUID_S_GLO_Troll_Grog_9671dad5-258d-4174-84c0-0141502b2938)
+AND NOT
+DB_Dead(CHARACTERGUID_S_ARX_Troll_Bridge_WatchingPilgrim_466542fb-ff59-443b-b7d3-f6f183494ad3)
+AND
+GetPosition(CHARACTERGUID_S_GLO_Troll_Grog_9671dad5-258d-4174-84c0-0141502b2938, _Var1, _Var2, _Var3)
+THEN
+ProcCharacterMoveTo(CHARACTERGUID_S_ARX_Troll_Bridge_WatchingPilgrim_466542fb-ff59-443b-b7d3-f6f183494ad3, CHARACTERGUID_S_GLO_Troll_Grog_9671dad5-258d-4174-84c0-0141502b2938, 0, "");
+ClearVarObject(CHARACTERGUID_S_ARX_Troll_Bridge_WatchingPilgrim_466542fb-ff59-443b-b7d3-f6f183494ad3, "WanderTrigger");
+SetVarInteger(CHARACTERGUID_S_ARX_Troll_Bridge_WatchingPilgrim_466542fb-ff59-443b-b7d3-f6f183494ad3, "ReturnToDefaultPosition", 0);
+SetVarFloat3(CHARACTERGUID_S_ARX_Troll_Bridge_WatchingPilgrim_466542fb-ff59-443b-b7d3-f6f183494ad3, "DefaultPoint", _Var1, _Var2, _Var3);
+SetVarFixedString(CHARACTERGUID_S_ARX_Troll_Bridge_WatchingPilgrim_466542fb-ff59-443b-b7d3-f6f183494ad3, "AnimationStanding", "Sigh_01");
+
+
+EXITSECTION
+ENDEXITSECTION
+
+ParentTargetEdge "ARX"

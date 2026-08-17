@@ -1,0 +1,922 @@
+Version 1
+SubGoalCombiner SGC_AND
+
+INITSECTION
+
+KBSECTION
+PROC
+ProcCheckDefaultQuestAdd((STRING)_Var1)
+AND NOT
+DB_QuestDef_AddEvent(_Var1, _)
+AND
+StringConcatenate("QuestAdd_", _Var1, _Var3)
+THEN
+DB_QuestDef_AddEvent(_Var1, _Var3);
+
+PROC
+ProcCheckDefaultQuestClose((STRING)_Var1)
+AND NOT
+DB_QuestDef_CloseEvent(_Var1, _)
+AND
+StringConcatenate("QuestClose_", _Var1, _Var3)
+THEN
+DB_QuestDef_CloseEvent(_Var1, _Var3);
+
+IF
+DB_QuestDef_State(_Var1, _Var2, 1)
+AND
+StringConcatenate("QuestUpdate_", _Var1, _Var3)
+AND
+StringConcatenate(_Var3, "_", _Var4)
+AND
+StringConcatenate(_Var4, _Var2, _Var5)
+THEN
+DB_QuestDef_AddEvent(_Var1, _Var5);
+DB_QuestDef_State(_Var1, _Var2);
+
+IF
+DB_QuestDef_State(_Var1, _Var2, -1)
+AND
+StringConcatenate("QuestUpdate_", _Var1, _Var3)
+AND
+StringConcatenate(_Var3, "_", _Var4)
+AND
+StringConcatenate(_Var4, _Var2, _Var5)
+THEN
+DB_QuestDef_CloseEvent(_Var1, _Var5);
+DB_QuestDef_State(_Var1, _Var2);
+
+IF
+DB_QuestDef_State(_Var1, _Var2)
+AND NOT
+DB_QuestDef_UpdateEvent(_Var1, _Var2, _)
+AND
+StringConcatenate("QuestUpdate_", _Var1, _Var4)
+AND
+StringConcatenate(_Var4, "_", _Var5)
+AND
+StringConcatenate(_Var5, _Var2, _Var6)
+THEN
+ProcCheckDefaultQuestAdd(_Var1);
+ProcCheckDefaultQuestClose(_Var1);
+DB_QuestDef_UpdateEvent(_Var1, _Var2, _Var6);
+
+IF
+ObjectFlagSet((STRING)_Var1, (CHARACTERGUID)_Var2, _)
+AND
+DB_QuestDef_AddEvent(_Var4, _Var1)
+AND
+DB_IsPlayer(_Var2)
+THEN
+QuestAdd(_Var2, _Var4);
+DB_ActivatedQuests(_Var4);
+ProcSetQuestNPCFlag(_Var4, _Var1);
+ProcCheckMigrateQuestAddFlag(_Var2, _Var4, _Var1);
+
+PROC
+ProcCheckMigrateQuestAddFlag((CHARACTERGUID)_Var1, (STRING)_Var2, (STRING)_Var3)
+AND NOT
+DB_QuestDef_UpdateEvent(_Var2, _, _Var3)
+THEN
+ProcMigrateQuestFlag(_Var1, _Var2, _Var3);
+
+IF
+ObjectFlagSet((STRING)_Var1, (CHARACTERGUID)_Var2, _)
+AND
+DB_QuestDef_UpdateEvent(_Var4, _Var5, _Var1)
+AND
+DB_IsPlayer(_Var2)
+AND
+QuestIsClosed(_Var2, _Var4, 0)
+THEN
+QuestUpdate(_Var2, _Var4, _Var5);
+ProcActivateMystery(_Var4, _Var5);
+ProcMigrateQuestFlag(_Var2, _Var4, _Var1);
+ProcSetQuestNPCFlag(_Var4, _Var1);
+
+PROC
+ProcActivateMystery((STRING)_Var1, (STRING)_Var2)
+AND
+DB_Mystery(_Var1)
+THEN
+DB_ActivatedQuests(_Var1);
+
+IF
+ObjectFlagSet((STRING)_Var1, (CHARACTERGUID)_Var2, _)
+AND
+DB_QuestDef_CloseEvent(_Var4, _Var1)
+AND
+DB_IsPlayer(_Var2)
+THEN
+QuestClose(_Var2, _Var4);
+ProcMigrateQuestFlag(_Var2, _Var4, _Var1);
+ProcSetQuestNPCFlag(_Var4, _Var1);
+
+PROC
+ProcSetQuestNPCFlag((STRING)_Var1, (STRING)_Var2)
+AND
+DB_QuestNPC(_Var1, _Var3)
+THEN
+ObjectSetFlag(_Var3, _Var2, 0);
+
+IF
+CharacterMadePlayer((CHARACTERGUID)_Var1)
+THEN
+DB_JournalIgnoreReservedChanged(_Var1);
+
+IF
+CharacterReservedUserIDChanged((CHARACTERGUID)_Var1, _, (INTEGER)_Var3)
+AND
+DB_IsPlayer(_Var1)
+AND NOT
+DB_JournalIgnoreReservedChanged(_Var1)
+THEN
+ProcMigrateQuestsForUser(_Var3, _Var1);
+
+IF
+CharacterReservedUserIDChanged((CHARACTERGUID)_Var1, _, _)
+THEN
+NOT DB_JournalIgnoreReservedChanged(_Var1);
+
+IF
+CharacterJoinedParty((CHARACTERGUID)_Var1)
+AND
+DB_IsPlayer(_Var1)
+AND
+DB_ActivatedQuests(_Var2)
+THEN
+ProcMigrateQuest(_Var1, _Var2);
+
+IF
+CharacterJoinedParty((CHARACTERGUID)_Var1)
+AND
+DB_IsPlayer(_Var1)
+THEN
+ProcShareQuestsWithParty(_Var1);
+
+PROC
+ProcShareQuestsWithParty((CHARACTERGUID)_Var1)
+AND
+DB_IsPlayer(_Var2)
+AND NOT
+DB_MigratedNewPartyFlags(1)
+AND
+_Var2 != _Var1
+AND
+CharacterIsInPartyWith(_Var2, _Var1, 1)
+AND
+DB_ActivatedQuests(_Var3)
+AND
+DB_SharedQuestFlag(_Var2, _Var3, _Var4)
+THEN
+DB_MigratedNewPartyFlags(1);
+ProcShareQuestflagWith(_Var2, _Var3, _Var4, _Var1);
+
+PROC
+ProcShareQuestsWithParty((CHARACTERGUID)_Var1)
+AND
+DB_SharedQuestlessFlag(_Var2)
+AND
+PartyGetFlag(_Var1, _Var2, 1)
+THEN
+PartySetFlag(_Var1, _Var2);
+
+PROC
+ProcShareQuestsWithParty((CHARACTERGUID)_Var1)
+AND
+DB_SharedQuestlessUserFlag(_Var2)
+AND
+UserGetFlag(_Var1, _Var2, 1)
+THEN
+UserSetFlag(_Var1, _Var2);
+
+PROC
+ProcShareQuestsWithParty((CHARACTERGUID)_Var1)
+THEN
+NOT DB_MigratedNewPartyFlags(1);
+
+IF
+CharacterJoinedParty((CHARACTERGUID)_Var1)
+AND
+DB_IsPlayer(_Var1)
+AND
+CharacterGetReservedUserID(_Var1, _Var2)
+THEN
+ProcMigrateQuestsForUser(_Var2, _Var1);
+
+IF
+SavegameLoaded(_, _, _, _)
+AND
+DB_IsPlayer(_Var5)
+AND
+CharacterGetReservedUserID(_Var5, _Var6)
+THEN
+ProcMigrateQuestsForUser(_Var6, _Var5);
+ProcShareQuestsWithParty(_Var5);
+
+PROC
+ProcMigrateQuestsForUser((INTEGER)_Var1, (CHARACTERGUID)_Var2)
+AND
+DB_IsPlayer(_Var3)
+AND
+CharacterGetReservedUserID(_Var3, _Var1)
+AND
+DB_ActivatedQuests(_Var4)
+AND
+QuestGetBroadcastLevel(_Var4, _Var5)
+AND
+_Var5 != "Character"
+AND
+DB_PrivateQuestFlag(_Var3, _Var4, _Var6)
+THEN
+ProcShareQuestflagWith(_Var3, _Var4, _Var6, _Var2);
+
+IF
+QuestShared((CHARACTERGUID)_Var1, "", 1)
+AND
+DB_IsPlayer(_Var1)
+AND
+DB_ActivatedQuests(_Var2)
+THEN
+ProcMigrateQuest(_Var1, _Var2);
+
+IF
+QuestShared((CHARACTERGUID)_Var1, (STRING)_Var2, 1)
+AND
+_Var2 != ""
+THEN
+ProcMigrateQuestFlagsFor(_Var1, _Var2);
+
+PROC
+ProcMigrateQuest((CHARACTERGUID)_Var1, (STRING)_Var2)
+AND
+QuestAccepted(_Var1, _Var2, 1)
+AND
+QuestIsShared(_Var1, _Var2, 1)
+THEN
+ProcMigrateQuestFlagsFor(_Var1, _Var2);
+
+PROC
+ProcMigrateQuestFlagsFor((CHARACTERGUID)_Var1, (STRING)_Var2)
+AND
+DB_PrivateQuestFlag(_Var1, _Var2, _Var3)
+THEN
+DB_SharedQuestFlag(_Var1, _Var2, _Var3);
+NOT DB_PrivateQuestFlag(_Var1, _Var2, _Var3);
+
+PROC
+ProcMigrateQuestFlagsFor((CHARACTERGUID)_Var1, (STRING)_Var2)
+AND
+DB_SharedQuestFlag(_Var1, _Var2, _Var3)
+THEN
+ProcShareQuestFlag(_Var1, _Var2, _Var3);
+
+PROC
+ProcShareQuestFlag((CHARACTERGUID)_Var1, (STRING)_Var2, (STRING)_Var3)
+AND
+DB_IsPlayer(_Var4)
+AND
+_Var4 != _Var1
+AND
+CharacterIsInPartyWith(_Var4, _Var1, 1)
+AND
+ObjectGetFlag(_Var4, _Var3, 0)
+THEN
+ProcShareQuestflagWith(_Var1, _Var2, _Var3, _Var4);
+
+PROC
+ProcShareQuestflagWith((CHARACTERGUID)_Var1, (STRING)_Var2, (STRING)_Var3, (CHARACTERGUID)_Var4)
+THEN
+ProcStoreFlagState(_Var4, _Var3);
+ProcShareQuestUpdate(_Var1, _Var2, _Var3, _Var4);
+ObjectShareFlag(_Var4, _Var3);
+ProcStoreSharedQuestFlag(_Var1, _Var2, _Var3, _Var4);
+ProcVerifyFlagState(_Var1, _Var4, _Var3);
+
+PROC
+ProcStoreSharedQuestFlag((CHARACTERGUID)_Var1, (STRING)_Var2, (STRING)_Var3, (CHARACTERGUID)_Var4)
+AND
+DB_SharedQuestFlag(_Var1, _Var2, _Var3)
+THEN
+DB_SharedQuestFlag(_Var4, _Var2, _Var3);
+
+PROC
+ProcStoreSharedQuestFlag((CHARACTERGUID)_Var1, (STRING)_Var2, (STRING)_Var3, (CHARACTERGUID)_Var4)
+AND
+DB_PrivateQuestFlag(_Var1, _Var2, _Var3)
+THEN
+DB_PrivateQuestFlag(_Var4, _Var2, _Var3);
+
+PROC
+ProcShareQuestUpdate((CHARACTERGUID)_Var1, (STRING)_Var2, (STRING)_Var3, (CHARACTERGUID)_Var4)
+AND
+QRY_ShouldShareQuest(_Var1, _Var4, _Var2)
+THEN
+ProcActivateSharedQuest(_Var4, _Var2);
+ProcMigrateQuestFlagsFor(_Var4, _Var2);
+
+IF
+MysteryUnlocked((CHARACTERGUID)_Var1, (STRING)_Var2)
+AND
+DB_MysterPrefixed(_Var3, _Var2)
+THEN
+DB_MyseryUnlocked(_Var1, _Var3);
+
+IF
+DB_Mystery(_Var1)
+AND
+StringConcatenate("MST_", _Var1, _Var2)
+THEN
+DB_MysterPrefixed(_Var1, _Var2);
+
+QRY
+QRY_ShouldShareQuest((CHARACTERGUID)_Var1, (CHARACTERGUID)_Var2, (STRING)_Var3)
+AND
+DB_Mystery(_Var3)
+AND NOT
+DB_MyseryUnlocked(_Var2, _Var3)
+THEN
+DB_MyseryUnlocked(_Var2, _Var3);
+DB_Noop(1);
+
+QRY
+QRY_ShouldShareQuest((CHARACTERGUID)_Var1, (CHARACTERGUID)_Var2, (STRING)_Var3)
+AND NOT
+DB_Mystery(_Var3)
+AND
+QuestAccepted(_Var1, _Var3, 1)
+AND
+QuestAccepted(_Var2, _Var3, 0)
+THEN
+DB_Noop(1);
+
+PROC
+ProcActivateSharedQuest((CHARACTERGUID)_Var1, (STRING)_Var2)
+AND NOT
+DB_Mystery(_Var2)
+THEN
+QuestAdd(_Var1, _Var2);
+
+PROC
+ProcShareQuestUpdate((CHARACTERGUID)_Var1, (STRING)_Var2, (STRING)_Var3, (CHARACTERGUID)_Var4)
+AND
+DB_QuestDef_UpdateEvent(_Var2, _Var5, _Var3)
+AND
+QRY_CanShareUpdate(_Var1, _Var2, _Var5)
+THEN
+QuestReceiveSharedUpdate(_Var1, _Var4, _Var2, _Var5);
+
+QRY
+QRY_CanShareUpdate((CHARACTERGUID)_Var1, (STRING)_Var2, (STRING)_Var3)
+AND
+DB_Mystery(_Var2)
+THEN
+DB_Noop(1);
+
+QRY
+QRY_CanShareUpdate((CHARACTERGUID)_Var1, (STRING)_Var2, (STRING)_Var3)
+AND NOT
+DB_Mystery(_Var2)
+AND
+QuestHasUpdate(_Var1, _Var2, _Var3, 1)
+THEN
+DB_Noop(1);
+
+PROC
+ProcShareQuestUpdate((CHARACTERGUID)_Var1, (STRING)_Var2, (STRING)_Var3, (CHARACTERGUID)_Var4)
+AND
+DB_QuestDef_CloseEvent(_Var2, _Var3)
+THEN
+QuestClose(_Var4, _Var2);
+
+PROC
+ProcMigrateQuestFlag((CHARACTERGUID)_Var1, (STRING)_Var2, (STRING)_Var3)
+AND
+QuestIsShared(_Var1, _Var2, 0)
+THEN
+DB_PrivateQuestFlag(_Var1, _Var2, _Var3);
+ProcSharePrivateFlags(_Var1, _Var2, _Var3);
+
+PROC
+ProcMigrateQuestFlag((CHARACTERGUID)_Var1, (STRING)_Var2, (STRING)_Var3)
+AND
+QuestIsShared(_Var1, _Var2, 1)
+THEN
+DB_SharedQuestFlag(_Var1, _Var2, _Var3);
+ProcShareQuestFlag(_Var1, _Var2, _Var3);
+
+PROC
+ProcSharePrivateFlags((CHARACTERGUID)_Var1, (STRING)_Var2, (STRING)_Var3)
+AND
+QuestGetBroadcastLevel(_Var2, "User")
+AND
+CharacterGetReservedUserID(_Var1, _Var4)
+AND
+DB_IsPlayer(_Var5)
+AND
+_Var5 != _Var1
+AND
+CharacterGetReservedUserID(_Var5, _Var4)
+THEN
+DB_PrivateQuestFlag(_Var5, _Var2, _Var3);
+ProcShareQuestFlagWith(_Var1, _Var2, _Var3, _Var5);
+
+PROC
+ProcStoreFlagState((CHARACTERGUID)_Var1, (STRING)_Var2)
+AND
+ObjectGetFlag(_Var1, _Var2, _Var3)
+THEN
+DB_TargetQuestFlagState(_Var1, _Var2, _Var3);
+
+PROC
+ProcVerifyFlagState((CHARACTERGUID)_Var1, (CHARACTERGUID)_Var2, (STRING)_Var3)
+AND
+ObjectGetFlag(_Var1, _Var3, 0)
+AND
+DB_TargetQuestFlagState(_Var2, _Var3, 0)
+THEN
+ObjectClearFlag(_Var2, _Var3, 0);
+
+PROC
+ProcVerifyFlagState((CHARACTERGUID)_Var1, (CHARACTERGUID)_Var2, (STRING)_Var3)
+AND
+ObjectGetFlag(_Var1, _Var3, 1)
+AND
+DB_HasStoryEvent(_Var4, _Var3)
+AND NOT
+QryItemInMagicPockets(_Var2, _Var4)
+THEN
+ObjectClearFlag(_Var2, _Var3, 0);
+
+PROC
+ProcVerifyFlagState((CHARACTERGUID)_Var1, (CHARACTERGUID)_Var2, (STRING)_Var3)
+AND
+ObjectGetFlag(_Var1, _Var3, 1)
+AND
+DB_HasTemplateItem(_Var4, _Var3)
+AND NOT
+QryItemTemplateInMagicPockets(_Var2, _Var4)
+THEN
+ObjectClearFlag(_Var2, _Var3, 0);
+
+PROC
+ProcVerifyFlagState(_, (CHARACTERGUID)_Var2, (STRING)_Var3)
+AND
+DB_TargetQuestFlagState(_Var2, _Var3, _Var4)
+THEN
+NOT DB_TargetQuestFlagState(_Var2, _Var3, _Var4);
+
+PROC
+ProcSetFlagOnAll((STRING)_Var1)
+AND
+DB_IsPlayer(_Var2)
+THEN
+ObjectSetFlag(_Var2, _Var1);
+
+PROC
+ProcRegionEnded((STRING)_Var1)
+AND
+DB_QuestDef_CloseAtRegionEnded(_Var2, _Var3, _Var1)
+AND
+DB_IsPlayer(_Var4)
+AND
+QuestAccepted(_Var4, _Var2, 1)
+THEN
+ObjectSetFlag(_Var4, _Var3);
+QuestArchive(_Var4, _Var2, 1);
+
+PROC
+ProcRegionEnded((STRING)_Var1)
+AND
+DB_QuestDef_CloseAtRegionEnded_Conditions_FalseGlobalFlag_TrueObjFlag(_Var2, _Var3, _Var1, _Var4, _Var5)
+AND
+GlobalGetFlag(_Var4, 0)
+AND
+DB_IsPlayer(_Var6)
+AND
+QuestAccepted(_Var6, _Var2, 1)
+AND
+UserGetFlag(_Var6, _Var5, 1)
+AND
+ObjectGetFlag(_Var6, _Var3, 0)
+THEN
+ObjectSetFlag(_Var6, _Var3);
+QuestArchive(_Var6, _Var2, 1);
+
+PROC
+ProcRegionEnded((STRING)_Var1)
+AND
+DB_QuestDef_CloseAtRegionEnded_Conditions_FalseGlobalFlag_FalseObjFlag(_Var2, _Var3, _Var1, _Var4, _Var5)
+AND
+GlobalGetFlag(_Var4, 0)
+AND
+DB_IsPlayer(_Var6)
+AND
+QuestAccepted(_Var6, _Var2, 1)
+AND
+UserGetFlag(_Var6, _Var5, 0)
+AND
+ObjectGetFlag(_Var6, _Var3, 0)
+THEN
+ObjectSetFlag(_Var6, _Var3);
+QuestArchive(_Var6, _Var2, 1);
+
+PROC
+ProcRegionEnded((STRING)_Var1)
+AND
+DB_QuestDef_CloseAtRegionEnded_Conditions_TrueGlobalFlag_FalseUserFlag(_Var2, _Var3, _Var1, _Var4, _Var5)
+AND
+GlobalGetFlag(_Var4, 1)
+AND
+DB_IsPlayer(_Var6)
+AND
+QuestAccepted(_Var6, _Var2, 1)
+AND
+UserGetFlag(_Var6, _Var5, 0)
+AND
+ObjectGetFlag(_Var6, _Var3, 0)
+THEN
+ObjectSetFlag(_Var6, _Var3);
+QuestArchive(_Var6, _Var2, 1);
+
+PROC
+ProcRegionEnded((STRING)_Var1)
+AND
+DB_QuestDef_CloseAtRegionEnded_Condition_FalseGlobalFlag_OrClose(_Var2, _Var3, _Var1, _Var4)
+AND
+DB_IsPlayer(_Var5)
+AND
+QuestAccepted(_Var5, _Var2, 1)
+AND
+GlobalGetFlag(_Var4, 0)
+THEN
+ObjectSetFlag(_Var5, _Var3);
+QuestArchive(_Var5, _Var2, 1);
+
+PROC
+ProcRegionEnded((STRING)_Var1)
+AND
+DB_QuestDef_CloseAtRegionEnded_Condition_FalseGlobalFlag_OrClose(_Var2, _Var3, _Var1, _Var4)
+AND
+DB_IsPlayer(_Var5)
+AND
+QuestAccepted(_Var5, _Var2, 1)
+AND
+GlobalGetFlag(_Var4, 1)
+THEN
+QuestClose(_Var5, _Var2);
+QuestArchive(_Var5, _Var2, 1);
+
+PROC
+ProcRegionEnded((STRING)_Var1)
+AND
+DB_QuestDef_CloseAtRegionEnded_Condition_FalseGlobalFlag(_Var2, _Var3, _Var1, _Var4)
+AND
+DB_IsPlayer(_Var5)
+AND
+QuestAccepted(_Var5, _Var2, 1)
+AND
+GlobalGetFlag(_Var4, 0)
+THEN
+ObjectSetFlag(_Var5, _Var3);
+QuestArchive(_Var5, _Var2, 1);
+
+PROC
+ProcRegionEnded((STRING)_Var1)
+AND
+DB_QuestDef_CloseAtRegionEnded_Condition_TrueGlobalFlag(_Var2, _Var3, _Var1, _Var4)
+AND
+DB_IsPlayer(_Var5)
+AND
+QuestAccepted(_Var5, _Var2, 1)
+AND
+GlobalGetFlag(_Var4, 1)
+THEN
+ObjectSetFlag(_Var5, _Var3);
+QuestArchive(_Var5, _Var2, 1);
+
+PROC
+ProcRegionEnded((STRING)_Var1)
+AND
+DB_QuestDef_CloseAtRegionEnded_Conditions_FalseObjFlag(_Var2, _Var3, _Var1, _Var4)
+AND
+DB_IsPlayer(_Var5)
+AND
+QuestAccepted(_Var5, _Var2, 1)
+AND
+UserGetFlag(_Var5, _Var4, 0)
+AND
+ObjectGetFlag(_Var5, _Var3, 0)
+THEN
+ObjectSetFlag(_Var5, _Var3);
+QuestArchive(_Var5, _Var2, 1);
+
+PROC
+ProcRegionEnded((STRING)_Var1)
+AND
+DB_QuestDef_CloseAtRegionEnded_Conditions_FalseObjFlag_OrClose(_Var2, _Var3, _Var1, _Var4)
+AND
+DB_IsPlayer(_Var5)
+AND
+QuestAccepted(_Var5, _Var2, 1)
+AND
+UserGetFlag(_Var5, _Var4, 0)
+AND
+ObjectGetFlag(_Var5, _Var3, 0)
+THEN
+ObjectSetFlag(_Var5, _Var3);
+QuestArchive(_Var5, _Var2, 1);
+
+PROC
+ProcRegionEnded((STRING)_Var1)
+AND
+DB_QuestDef_CloseAtRegionEnded_Conditions_FalseObjFlag_OrClose(_Var2, _Var3, _Var1, _Var4)
+AND
+DB_IsPlayer(_Var5)
+AND
+QuestAccepted(_Var5, _Var2, 1)
+AND
+UserGetFlag(_Var5, _Var4, 1)
+THEN
+QuestClose(_Var5, _Var2);
+QuestArchive(_Var5, _Var2, 1);
+
+PROC
+ProcRegionEnded((STRING)_Var1)
+AND
+DB_QuestDef_CloseAtRegionEnded_Conditions_TrueObjFlag(_Var2, _Var3, _Var1, _Var4)
+AND
+DB_IsPlayer(_Var5)
+AND
+QuestAccepted(_Var5, _Var2, 1)
+AND
+UserGetFlag(_Var5, _Var4, 1)
+AND
+ObjectGetFlag(_Var5, _Var3, 0)
+THEN
+ObjectSetFlag(_Var5, _Var3);
+QuestArchive(_Var5, _Var2, 1);
+
+PROC
+ProcRegionEnded((STRING)_Var1)
+AND
+DB_QuestDef_CloseAtRegionEnded_Conditions_FalseObjFlag_TrueObjFlag(_Var2, _Var3, _Var1, _Var4, _Var5)
+AND
+DB_IsPlayer(_Var6)
+AND
+QuestAccepted(_Var6, _Var2, 1)
+AND
+UserGetFlag(_Var6, _Var4, 0)
+AND
+UserGetFlag(_Var6, _Var5, 1)
+AND
+ObjectGetFlag(_Var6, _Var3, 0)
+THEN
+ObjectSetFlag(_Var6, _Var3);
+QuestArchive(_Var6, _Var2, 1);
+
+PROC
+ProcRegionEnded((STRING)_Var1)
+AND
+DB_QuestDef_CloseAtRegionEnded_Conditions_FalseObjFlag_FalseObjFlag(_Var2, _Var3, _Var1, _Var4, _Var5)
+AND
+DB_IsPlayer(_Var6)
+AND
+QuestAccepted(_Var6, _Var2, 1)
+AND
+UserGetFlag(_Var6, _Var4, 0)
+AND
+UserGetFlag(_Var6, _Var5, 0)
+AND
+ObjectGetFlag(_Var6, _Var3, 0)
+THEN
+ObjectSetFlag(_Var6, _Var3);
+QuestArchive(_Var6, _Var2, 1);
+
+PROC
+ProcRegionStarted((STRING)_Var1)
+AND
+DB_RegionQuestCategory(_Var1, _Var2)
+AND
+DB_RegionQuestCategory_Swapped(_Var3)
+THEN
+ProcQuestSetCategory(_Var3, _Var2);
+
+PROC
+ProcQuestSetCategory((STRING)_Var1, (STRING)_Var2)
+AND
+DB_IsPlayer(_Var3)
+AND
+QuestIsClosed(_Var3, _Var1, 0)
+THEN
+QuestSetCategory(_Var1, _Var2);
+ProcQuestCategorySet(_Var1, _Var2, _Var3);
+
+PROC
+ProcQuestCategorySet((STRING)_Var1, (STRING)_Var2, (CHARACTERGUID)_Var3)
+THEN
+DB_NOOP(1);
+
+IF
+ObjectFlagSet((STRING)_Var1, (CHARACTERGUID)_Var2, (INTEGER)_Var3)
+AND
+DB_IsPlayer(_Var2)
+AND
+DB_QuestDef_QuestReward(_Var4, _Var5, _Var1)
+AND
+QuestAccepted(_Var2, _Var4, 1)
+AND
+_Var3 != 0
+THEN
+DB_GiveQuestRewardAfterDialog(_Var2, _Var4, _Var5, _Var3);
+
+IF
+DialogEnded(_, (INTEGER)_Var2)
+AND
+DB_GiveQuestRewardAfterDialog(_Var3, _Var4, _Var5, _Var2)
+THEN
+ProcGiveQuestReward(_Var3, _Var4, _Var5);
+NOT DB_GiveQuestRewardAfterDialog(_Var3, _Var4, _Var5, _Var2);
+
+PROC
+ProcGiveQuestReward((CHARACTERGUID)_Var1, (STRING)_Var2, (STRING)_Var3)
+AND NOT
+DB_QuestRewardGiven(_Var1, _Var2, _Var3)
+THEN
+CharacterGiveQuestReward(_Var1, _Var2, _Var3);
+ProcMarkPartyAsGivenReward(_Var1, _Var2, _Var3);
+
+PROC
+ProcMarkPartyAsGivenReward((CHARACTERGUID)_Var1, (STRING)_Var2, (STRING)_Var3)
+AND
+DB_IsPlayer(_Var4)
+AND
+CharacterIsInPartyWith(_Var1, _Var4, 1)
+THEN
+DB_QuestRewardGiven(_Var4, _Var2, _Var3);
+
+PROC
+Proc_JDF_CreateDependency((STRING)_Var1, (STRING)_Var2, (STRING)_Var3)
+AND
+StringConcatenate(_Var1, "_", _Var4)
+AND
+StringConcatenate("QuestUpdate_", _Var4, _Var5)
+AND
+StringConcatenate("JDF_", _Var4, _Var6)
+AND
+StringConcatenate(_Var6, _Var2, _Var7)
+AND
+StringConcatenate(_Var5, _Var2, _Var8)
+AND
+StringConcatenate(_Var6, _Var3, _Var9)
+AND
+StringConcatenate(_Var5, _Var3, _Var10)
+THEN
+DB_JDF_QuestLinkedFlag(_Var7, _Var8);
+DB_JDF_QuestLinkedFlag(_Var9, _Var10);
+DB_JDF_Dependencies(_Var7, _Var9);
+
+PROC
+Proc_JDF_CreateCustomFlagsDependency((STRING)_Var1, (STRING)_Var2, (STRING)_Var3, (STRING)_Var4)
+THEN
+DB_JDF_QuestLinkedFlag(_Var1, _Var2);
+DB_JDF_QuestLinkedFlag(_Var3, _Var4);
+DB_JDF_Dependencies(_Var1, _Var3);
+
+PROC
+Proc_JDF_CreateCustomFlagsDependency((STRING)_Var1, (STRING)_Var2, (STRING)_Var3)
+THEN
+Proc_JDF_CreateCustomFlagsDependency(_Var1, _Var1, _Var2, _Var3);
+
+IF
+DB_JDF_QuestLinkedFlag(_Var1, _)
+AND NOT
+DB_QuestDef_UpdateEvent(_, _, _Var1)
+THEN
+DB_SharedQuestLessFlag(_Var1);
+
+QRY
+QRY_JDF_PremiseMet((GUIDSTRING)_Var1, (STRING)_Var2)
+AND
+DB_JDF_Dependencies(_Var3, _Var2)
+AND
+ObjectGetFlag(_Var1, _Var3, 1)
+THEN
+DB_NOOP(1);
+
+QRY
+QRY_JDF_PremiseMet((GUIDSTRING)_Var1, (STRING)_Var2)
+AND NOT
+DB_JDF_Dependencies(_, _Var2)
+THEN
+DB_NOOP(1);
+
+PROC
+Proc_JDF_CheckDependencies((GUIDSTRING)_Var1, (STRING)_Var2)
+AND
+ObjectGetFlag(_Var1, _Var2, 1)
+AND
+QRY_JDF_PremiseMet(_Var1, _Var2)
+THEN
+Proc_JDF_DependenciesMet(_Var1, _Var2);
+
+PROC
+Proc_JDF_DependenciesMet((GUIDSTRING)_Var1, (STRING)_Var2)
+AND
+DB_JDF_QuestLinkedFlag(_Var2, _Var3)
+THEN
+ObjectSetFlag(_Var1, _Var3);
+
+PROC
+Proc_JDF_DependenciesMet((GUIDSTRING)_Var1, (STRING)_Var2)
+AND
+DB_JDF_Dependencies(_Var2, _Var3)
+THEN
+Proc_JDF_CheckDependencies(_Var1, _Var3);
+
+IF
+ObjectFlagSet((STRING)_Var1, (GUIDSTRING)_Var2, _)
+AND
+DB_JDF_QuestLinkedFlag(_Var1, _)
+THEN
+Proc_JDF_CheckDependencies(_Var2, _Var1);
+
+IF
+ObjectFlagShared((STRING)_Var1, (GUIDSTRING)_Var2, _)
+AND
+DB_JDF_QuestLinkedFlag(_Var1, _)
+THEN
+Proc_JDF_CheckDependencies(_Var2, _Var1);
+
+IF
+DB_JDF_Dependencies(_Var1, _Var2)
+THEN
+SysClear("DB_JDF_CyclicCheck", 1);
+Proc_JDF_CycleProtection(_Var1);
+
+PROC
+Proc_JDF_CycleProtection((STRING)_Var1)
+AND
+DB_JDF_Dependencies(_Var1, _Var2)
+AND
+DB_JDF_CyclicCheck(_Var1)
+AND
+StringConcatenate("CRITICAL: Cyclic dependency in JDF found including flag: ", _Var1, _Var3)
+THEN
+DebugBreak(_Var3);
+
+PROC
+Proc_JDF_CycleProtection((STRING)_Var1)
+AND
+DB_JDF_Dependencies(_Var1, _Var2)
+AND NOT
+DB_JDF_CyclicCheck(_Var1)
+THEN
+DB_JDF_CyclicCheck(_Var1);
+Proc_JDF_CycleProtection(_Var2);
+
+PROC
+PROC_JournalEntries_ClearQuestState((STRING)_Var1, (STRING)_Var2)
+THEN
+PROC_JournalEntries_ClearQuestUpdateEvent(_Var1, _Var2, "");
+
+PROC
+PROC_JournalEntries_ClearQuestUpdateEvent((STRING)_Var1, (STRING)_Var2, (STRING)_Var3)
+AND
+DB_QuestDef_State(_Var1, _Var2, _Var4)
+THEN
+NOT DB_QuestDef_State(_Var1, _Var2, _Var4);
+
+PROC
+PROC_JournalEntries_ClearQuestUpdateEvent((STRING)_Var1, (STRING)_Var2, (STRING)_Var3)
+AND
+DB_QuestDef_State(_Var1, _Var2)
+THEN
+NOT DB_QuestDef_State(_Var1, _Var2);
+
+PROC
+PROC_JournalEntries_ClearQuestUpdateEvent((STRING)_Var1, (STRING)_Var2, (STRING)_Var3)
+AND
+_Var3 != ""
+THEN
+NOT DB_QuestDef_CloseEvent(_Var1, _Var3);
+NOT DB_QuestDef_AddEvent(_Var1, _Var3);
+NOT DB_QuestDef_UpdateEvent(_Var1, _Var2, _Var3);
+
+PROC
+PROC_JournalEntries_ClearQuestUpdateEvent((STRING)_Var1, (STRING)_Var2, (STRING)_Var3)
+AND
+StringConcatenate("QuestUpdate_", _Var1, _Var4)
+AND
+StringConcatenate(_Var4, "_", _Var5)
+AND
+StringConcatenate(_Var5, _Var2, _Var6)
+THEN
+NOT DB_QuestDef_CloseEvent(_Var1, _Var6);
+NOT DB_QuestDef_AddEvent(_Var1, _Var6);
+NOT DB_QuestDef_UpdateEvent(_Var1, _Var2, _Var6);
+
+
+EXITSECTION
+ENDEXITSECTION
+

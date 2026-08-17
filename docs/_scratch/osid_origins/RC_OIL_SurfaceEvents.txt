@@ -1,0 +1,55 @@
+Version 1
+SubGoalCombiner SGC_AND
+
+INITSECTION
+DB_Dialogs(S_RC_OIL_DogProphet_8a485ec0-3f85-4263-b447-638386667df6, "RC_OIL_ProphetDog");
+DB_Dialogs(S_S_RC_OIL_Camp_Magister_02_67a46b4f-81c3-46fb-be58-bbd682518509, "RC_OIL_GateGuard_02");
+DB_Dialogs(CHARACTERGUID_S_RC_OIL_QuarterMistress_adcb2913-f55c-4650-a2b1-086bd3c01df9, "RC_OIL_QuarterMistress");
+DB_Dialogs(CHARACTERGUID_S_RC_OIL_BeachTurtle_569c5ea0-2615-495f-834b-6662ba5f6c3b, "RC_OIL_BeachTurtle");
+CharacterSetReactionPriority(CHARACTERGUID_S_RC_OIL_BeachTurtle_569c5ea0-2615-495f-834b-6662ba5f6c3b, "Wandering", 0);
+DB_TrespassTrigger(TRIGGERGUID_S_RC_OIL_CaveApproachTrespass_ee0b979a-7ac8-42f8-9cec-1d1451f6eddc, TRIGGERGUID_S_RC_OIL_CaveApproachTrespass_Out_87b35170-e1a1-4008-b3ae-b1ccb82ed66f);
+
+KBSECTION
+IF
+ObjectFlagSet("RC_OIL_Quatermistress_Attitude", (CHARACTERGUID)_Var1, _)
+THEN
+CharacterAddAttitudeTowardsPlayer(CHARACTERGUID_S_RC_OIL_QuarterMistress_adcb2913-f55c-4650-a2b1-086bd3c01df9, _Var1, 35);
+
+IF
+GlobalFlagSet("RC_OIL_ExplosionHappened")
+THEN
+ProcCharacterMoveTo(CHARACTERGUID_S_RC_OIL_QuarterMistress_adcb2913-f55c-4650-a2b1-086bd3c01df9, S_RC_OIL_TP_CaveEntrance_8033cbc1-ec92-48d2-8719-20b827004b8e, 1, "RC_OIL_QuarterMistressDisappear");
+PROC_RemoveDialogFromCharacter(CHARACTERGUID_S_RC_OIL_QuarterMistress_adcb2913-f55c-4650-a2b1-086bd3c01df9);
+
+IF
+StoryEvent(CHARACTERGUID_S_RC_OIL_QuarterMistress_adcb2913-f55c-4650-a2b1-086bd3c01df9, "RC_OIL_QuarterMistressDisappear")
+THEN
+SetOnStage(CHARACTERGUID_S_RC_OIL_QuarterMistress_adcb2913-f55c-4650-a2b1-086bd3c01df9, 0);
+
+IF
+ObjectFlagSet("RC_OIL_ProphetDog_Licked", (GUIDSTRING)_Var1, _)
+THEN
+ApplyStatus(_Var1, "DISEASED", -1, 1);
+
+IF
+DialogEnded("RC_OIL_BeachTurtle", _)
+AND
+QueryOnlyOnce("RC_OIL_MoveBeachTurtle")
+THEN
+CharacterSetReactionPriority(CHARACTERGUID_S_RC_OIL_BeachTurtle_569c5ea0-2615-495f-834b-6662ba5f6c3b, "Wandering", 300);
+
+IF
+ObjectFlagSet("QuestUpdate_RC_GY_RykersContract_GotRykersQuest", (GUIDSTRING)_Var1, _)
+THEN
+ObjectSetFlag(_Var1, "QuestUpdate_RC_OIL_Main_Ryker");
+
+IF
+StoryEvent((GUIDSTRING)_Var1, "RC_OIL_QuarterMistress_Warning")
+THEN
+Proc_StartDialog(0, "RC_OIL_QuarterMistress_Warning", CHARACTERGUID_S_RC_OIL_QuarterMistress_adcb2913-f55c-4650-a2b1-086bd3c01df9, _Var1);
+
+
+EXITSECTION
+ENDEXITSECTION
+
+ParentTargetEdge "ReapersCoast"

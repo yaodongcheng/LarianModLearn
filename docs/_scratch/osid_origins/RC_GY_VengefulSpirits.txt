@@ -1,0 +1,371 @@
+Version 1
+SubGoalCombiner SGC_AND
+
+INITSECTION
+DB_Ghosts(CHARACTERGUID_S_RC_GY_VengefulSpirits_DowagerGhost_01b023e7-c079-4d45-a7d8-b88e44135569, "RC_GY_VengefulSpirits_DowagerGhost");
+DB_RC_GY_VengefulSpirits_WallButtons(ITEMGUID_S_RC_GY_VengefulSpirits_Button01_12ccc2b6-565b-45a8-9c05-d3fd0e3c2675, "RC_GY_VengefulSpirits_Button01Pressed");
+DB_RC_GY_VengefulSpirits_WallButtons(ITEMGUID_S_RC_GY_VengefulSpirits_Button02_305f8f94-554f-44cb-ad73-2666b29c1336, "RC_GY_VengefulSpirits_Button02Pressed");
+ProcTriggerRegisterForPlayers(TRIGGERGUID_S_RC_GY_VengefulSpirits_PlayerWallBox_f77cc8db-00d2-475c-92ee-46bdf874a53b);
+ProcTriggerRegisterForPlayers(TRIGGERGUID_S_RC_GY_VengefulSpirits_Treasury_19cc53ef-72c1-4d01-b8af-a60cfe6af7ed);
+DB_GY_VengefulSpirits_SmokesOnPipes(ITEMGUID_S_RC_GY_FX_VengefulSpirits_Smoke_01_96220053-36ca-4fa5-81f0-e1311c8c0448);
+DB_GY_VengefulSpirits_SmokesOnPipes(ITEMGUID_S_RC_GY_FX_VengefulSpirits_Smoke_02_a9ee981e-becb-4c73-8927-80cb5137f224);
+DB_GY_VengefulSpirits_SmokesOnPipes(ITEMGUID_S_RC_GY_FX_VengefulSpirits_Smoke_03_eafe9e97-9d74-44c4-ba03-2c606fcbf575);
+DB_GY_VengefulSpirits_SmokesOnPipes(ITEMGUID_S_RC_GY_FX_VengefulSpirits_Smoke_04_ca0e4ec3-3bfb-4fdc-991b-b8c230618c73);
+DB_GY_VengefulSpirits_SmokesOnPipes(ITEMGUID_S_RC_GY_FX_VengefulSpirits_Smoke_05_92432bc5-e43d-4845-b6a4-02b8e7354bc1);
+DB_GY_VengefulSpirits_Levers(ITEMGUID_S_RC_GY_VengefulSpirits_Lever01_bd7f4d15-1452-4868-902d-e03fe31f551c, "SurfaceOil", "Projectile_Grenade_Taser", "SurfaceBloodElectrifiedCursed");
+DB_GY_VengefulSpirits_Levers(ITEMGUID_S_RC_GY_VengefulSpirits_Lever02_ad842ea4-63f1-44be-87cc-cc6639369693, "SurfaceWater", "SurfacePoison", "SurfacePoisonCursed");
+DB_GY_VengefulSpirits_Levers(ITEMGUID_S_RC_GY_VengefulSpirits_Lever03_198f826b-3317-410b-81e6-c2f9f9aee2b7, "SurfaceBlood", "SurfaceFire", "SurfaceFireCursed");
+DB_GY_VengefulSpirits_LeversNum(0);
+DB_GY_VengefulSpirits_PlateLocked(1);
+SetOnStage(ITEMGUID_S_RC_GY_VengefulSpirits_TreasuryHatch_cd72c405-b1a9-4d28-bb62-6bcdbd7a69e9, 0);
+DB_OneShotPlayerTrigger(TRIGGERGUID_S_RC_GY_VengefulSpirits_PressuPlate_Box_ef7d1c1b-9392-4024-a581-4934941d83dd);
+
+KBSECTION
+IF
+CharacterUsedItem((CHARACTERGUID)_Var1, ITEMGUID_S_RC_GY_VengefulSpirits_TreasureNote_6e61a829-5b9e-4e94-ada4-502984f618ce)
+THEN
+PartySetFlag(_Var1, "QuestUpdate_RC_GY_Godslayer_FoundNote");
+
+IF
+DB_GY_VengefulSpirits_SmokesOnPipes(_Var1)
+THEN
+SetOnStage(_Var1, 0);
+
+PROC
+Proc_RC_GY_VengefulSpirits_SecretPlate_UnPressed()
+AND
+DB_GY_VengefulSpirits_SmokesOnPipes(_Var1)
+THEN
+SetOnStage(_Var1, 0);
+
+PROC
+Proc_RC_GY_VengefulSpirits_SecretPlate_Pressed()
+AND
+DB_GY_VengefulSpirits_SmokesOnPipes(_Var1)
+THEN
+SetOnStage(_Var1, 1);
+
+IF
+CharacterUsedItem((CHARACTERGUID)_Var1, ITEMGUID_S_RC_GY_VengefulSpirits_TombEntranceDoor_9cc2c824-c0be-4d95-9056-a1baee548646)
+AND
+ItemIsLocked(ITEMGUID_S_RC_GY_VengefulSpirits_TombEntranceDoor_9cc2c824-c0be-4d95-9056-a1baee548646, 0)
+AND
+QueryOnlyOnce("RC_GY_VengefulSpirits_EnteredTomb")
+THEN
+StartVoiceBark("RC_GY_VengefulSpirits_VB_EnteredTomb", _Var1);
+
+IF
+CharacterEnteredTrigger((CHARACTERGUID)_Var1, TRIGGERGUID_S_RC_GY_VengefulSpirits_Treasury_19cc53ef-72c1-4d01-b8af-a60cfe6af7ed)
+AND
+QueryOnlyOnce("RC_GY_VengefulSpirits_EnteredTreasury")
+THEN
+StartVoiceBark("RC_GY_VengefulSpirits_VB_EnteredTreasury", _Var1);
+
+PROC
+ProcOneShotTriggerEntered((CHARACTERGUID)_Var1, TRIGGERGUID_S_RC_GY_VengefulSpirits_PressuPlate_Box_ef7d1c1b-9392-4024-a581-4934941d83dd)
+THEN
+StartVoiceBark("RC_GY_VengefulSpirits_VB_SteppedOnPlate", _Var1);
+
+IF
+CharacterUsedItem((CHARACTERGUID)_Var1, (ITEMGUID)_Var2)
+AND NOT
+DB_GY_VengefulSpirits_PuzzleSolved(_)
+AND NOT
+DB_GY_VengefulSpirits_PlateLocked(_)
+AND
+DB_GY_VengefulSpirits_Levers(_Var2, _, _, _)
+THEN
+StartVoiceBark("RC_GY_VengefulSpirits_VB_LeverUsed", _Var1);
+
+IF
+CharacterUsedItem((CHARACTERGUID)_Var1, (ITEMGUID)_Var2)
+AND NOT
+DB_GY_VengefulSpirits_PuzzleSolved(_)
+AND
+DB_GY_VengefulSpirits_PlateLocked(_)
+AND
+DB_GY_VengefulSpirits_Levers(_Var2, _, _, _)
+THEN
+StartVoiceBark("RC_GY_VengefulSpirits_VB_LockedLeverUsed", _Var1);
+
+IF
+CharacterUsedItem((CHARACTERGUID)_Var1, (ITEMGUID)_Var2)
+AND
+DB_GY_VengefulSpirits_PuzzleSolved(_)
+AND
+DB_GY_VengefulSpirits_Levers(_Var2, _, _, _)
+THEN
+StartVoiceBark("RC_GY_VengefulSpirits_VB_SolvedLeverUsed", _Var1);
+
+IF
+CharacterUsedItem((CHARACTERGUID)_Var1, ITEMGUID_S_RC_GY_VengefulSpirits_MovingTomb_413fe398-d55e-4246-b8f7-c48e83080dce)
+AND NOT
+DB_GY_VengefulSpirits_PuzzleSolved(_)
+THEN
+StartVoiceBark("RC_GY_VengefulSpirits_VB_MovingTomb", _Var1);
+
+IF
+CharacterItemEvent((CHARACTERGUID)_Var1, (ITEMGUID)_Var2, (STRING)_Var3)
+AND
+DB_RC_GY_VengefulSpirits_WallButtons(_Var2, _Var3)
+AND
+QueryOnlyOnce("RC_GY_VengefulSpirits_OneButtonPressed")
+THEN
+StartVoiceBark("RC_GY_VengefulSpirits_VB_OneButtonPressed", _Var1);
+
+PROC
+Proc_RC_GY_VengefulSpirits_CheckForButtons((CHARACTERGUID)_Var1)
+AND
+SysCount("DB_RC_GY_VengefulSpirits_UsedButtons", 1, 2)
+AND
+QueryOnlyOnce("RC_GY_VengefulSpirits_WallMoved")
+THEN
+StartVoiceBark("RC_GY_VengefulSpirits_VB_WallMoved", _Var1);
+
+IF
+CharacterItemEvent((CHARACTERGUID)_Var1, (ITEMGUID)_Var2, (STRING)_Var3)
+AND
+DB_RC_GY_VengefulSpirits_WallButtons(_Var2, _Var3)
+AND NOT
+DB_RC_GY_VengefulSpirits_UsedButtons(_Var2)
+THEN
+DB_RC_GY_VengefulSpirits_UsedButtons(_Var2);
+Proc_RC_GY_VengefulSpirits_CheckForButtons(_Var1);
+
+PROC
+Proc_RC_GY_VengefulSpirits_CheckForButtons((CHARACTERGUID)_Var1)
+AND
+SysCount("DB_RC_GY_VengefulSpirits_UsedButtons", 1, 2)
+AND NOT
+DB_RC_GY_VengefulSpirits_WallMoved(_)
+THEN
+proc_ItemMoveToTrigger(ITEMGUID_S_RC_GY_VengefulSpirits_MovingWall_8b93cfcc-2019-48dd-98b5-06a6c22e7fe4, TRIGGERGUID_S_RC_GY_VengefulSpirits_WallPoint_9ce65d2a-51dc-43ee-b580-f36197a94dbe, 1, 1, 0);
+Proc_ShakeCameraForTime(_Var1, 500);
+Proc_RC_GY_VengefulSpirits_CleanupButtons();
+DB_RC_GY_VengefulSpirits_WallMoved(1);
+
+PROC
+Proc_RC_GY_VengefulSpirits_CheckForButtons((CHARACTERGUID)_Var1)
+AND
+SysCount("DB_RC_GY_VengefulSpirits_UsedButtons", 1, 2)
+AND
+DB_RC_GY_VengefulSpirits_WallMoved(1)
+THEN
+proc_ItemMoveToTrigger(ITEMGUID_S_RC_GY_VengefulSpirits_MovingWall_8b93cfcc-2019-48dd-98b5-06a6c22e7fe4, TRIGGERGUID_S_RC_GY_VengefulSpirits_WallPointStart_43e71a8e-b13d-4663-b10d-c37f14d803b9, 1, 1, 0);
+Proc_ShakeCameraForTime(_Var1, 500);
+Proc_RC_GY_VengefulSpirits_CleanupButtons();
+NOT DB_RC_GY_VengefulSpirits_WallMoved(1);
+
+PROC
+Proc_RC_GY_VengefulSpirits_CleanupButtons()
+AND
+DB_RC_GY_VengefulSpirits_UsedButtons(_Var1)
+THEN
+NOT DB_RC_GY_VengefulSpirits_UsedButtons(_Var1);
+
+IF
+ItemMoved(ITEMGUID_S_RC_GY_VengefulSpirits_MovingWall_8b93cfcc-2019-48dd-98b5-06a6c22e7fe4)
+AND
+DB_IsPlayer(_Var1)
+AND
+DB_InRegion(_Var1, TRIGGERGUID_S_RC_GY_VengefulSpirits_PlayerWallBox_f77cc8db-00d2-475c-92ee-46bdf874a53b)
+THEN
+TeleportTo(_Var1, TRIGGERGUID_S_RC_GY_VengefulSpirits_PlayerWallPoint_7885398b-69b2-411f-bf66-72dc78d93cfa);
+
+IF
+DB_GY_VengefulSpirits_PuzzleSolved(_)
+AND
+DB_GY_VengefulSpirits_PlayerUsedLever(_Var2)
+AND
+QueryOnlyOnce("RC_GY_VengefulSpirits_PuzzleResult")
+THEN
+SetOnStage(ITEMGUID_S_RC_GY_VengefulSpirits_TreasuryHatch_cd72c405-b1a9-4d28-bb62-6bcdbd7a69e9, 1);
+PlayEffect(ITEMGUID_S_RC_GY_VengefulSpirits_TreasuryHatch_cd72c405-b1a9-4d28-bb62-6bcdbd7a69e9, "RS3_FX_GP_ScriptedEvent_Teleport_GenericSmoke_01");
+ItemUnlockAndOpen(ITEMGUID_S_RC_GY_VengefulSpirits_GrateDoor_24f218b6-a589-47a6-abe3-8f4447ca5253);
+proc_ItemMoveToTrigger(ITEMGUID_S_RC_GY_VengefulSpirits_MovingTomb_413fe398-d55e-4246-b8f7-c48e83080dce, TRIGGERGUID_S_RC_GY_VengefulSpirits_TombPoint_5d31d609-3da1-4f2c-bb8c-40eb7d52107c, 1, 1, 0);
+Proc_ShakeCameraForTime(_Var2, 500);
+ItemSetCanInteract(ITEMGUID_S_RC_GY_VengefulSpirits_MovingTomb_413fe398-d55e-4246-b8f7-c48e83080dce, 0);
+StartVoiceBark("RC_GY_VengefulSpirits_VB_TreasuryDoorOpened", _Var2);
+GlobalSetFlag("RC_GY_VengefulSpirits_LeverLock");
+NOT DB_GY_VengefulSpirits_PlayerUsedLever(_Var2);
+
+IF
+DB_GY_VengefulSpirits_PuzzleSolved(_)
+AND
+DB_GY_VengefulSpirits_Levers(_Var2, _, _, _)
+THEN
+PROC_StopLoopEffect(_Var2, "RC_GY_VengefulSpirits_LeversWork");
+
+IF
+CharacterItemEvent((CHARACTERGUID)_Var1, ITEMGUID_S_RC_GY_VengefulSpirits_PressurePlate_9d876f70-53c8-48cd-b15c-75cf1a5161c4, "RC_GY_VengefulSpirits_SecretPlate_UnPressed")
+THEN
+Proc_RC_GY_VengefulSpirits_SecretPlate_UnPressed();
+
+IF
+CharacterItemEvent((CHARACTERGUID)_Var1, ITEMGUID_S_RC_GY_VengefulSpirits_PressurePlate_9d876f70-53c8-48cd-b15c-75cf1a5161c4, "RC_GY_VengefulSpirits_SecretPlate_Pressed")
+THEN
+Proc_RC_GY_VengefulSpirits_SecretPlate_Pressed();
+
+PROC
+Proc_RC_GY_VengefulSpirits_SecretPlate_UnPressed()
+AND
+DB_GY_VengefulSpirits_Levers(_Var1, _, _, _)
+THEN
+PROC_StopLoopEffect(_Var1, "RC_GY_VengefulSpirits_LeversWork");
+
+PROC
+Proc_RC_GY_VengefulSpirits_SecretPlate_UnPressed()
+THEN
+ItemUnlockAndOpen(ITEMGUID_S_RC_GY_VengefulSpirits_GrateDoor_24f218b6-a589-47a6-abe3-8f4447ca5253);
+
+PROC
+Proc_RC_GY_VengefulSpirits_SecretPlate_UnPressed()
+AND NOT
+DB_GY_VengefulSpirits_PuzzleSolved(_)
+THEN
+DB_GY_VengefulSpirits_PlateLocked(1);
+GlobalSetFlag("RC_GY_VengefulSpirits_LeverLock");
+
+PROC
+Proc_RC_GY_VengefulSpirits_SecretPlate_Pressed()
+AND NOT
+DB_GY_VengefulSpirits_PuzzleSolved(_)
+AND
+DB_GY_VengefulSpirits_Levers(_Var2, _, _, _)
+THEN
+PROC_LoopEffect("RS3_FX_Environment_Fire_Green_01", _Var2, "RC_GY_VengefulSpirits_LeversWork", "RC_Main", "Bone_PUZ_Lever_Wall_C_Lever");
+
+PROC
+Proc_RC_GY_VengefulSpirits_SecretPlate_Pressed()
+AND NOT
+DB_GY_VengefulSpirits_PuzzleSolved(_)
+THEN
+NOT DB_GY_VengefulSpirits_PlateLocked(1);
+ItemCloseAndLock(ITEMGUID_S_RC_GY_VengefulSpirits_GrateDoor_24f218b6-a589-47a6-abe3-8f4447ca5253, "NO_KEY");
+GlobalSetFlag("RC_GY_VengefulSpirits_LeverUnLock");
+
+IF
+CharacterUsedItem((CHARACTERGUID)_Var1, (ITEMGUID)_Var2)
+AND
+DB_GY_VengefulSpirits_Levers(_Var2, _, _, _)
+THEN
+Proc_RC_GY_VengefulSpirits_Lever_Puzzle(_Var1, _Var2);
+
+PROC
+Proc_RC_GY_VengefulSpirits_Lever_Puzzle((CHARACTERGUID)_Var1, (ITEMGUID)_Var2)
+AND NOT
+DB_GY_VengefulSpirits_PuzzleSolved(_)
+AND NOT
+DB_GY_VengefulSpirits_PlateLocked(_)
+AND
+DB_GY_VengefulSpirits_LeversNum(_Var5)
+AND
+IntegerSum(_Var5, 1, _Var6)
+THEN
+DB_GY_VengefulSpirits_UsedLevers(_Var2, _Var6);
+NOT DB_GY_VengefulSpirits_LeversNum(_Var5);
+DB_GY_VengefulSpirits_LeversNum(_Var6);
+Proc_GY_VengefulSpirits_LeverDamage(_Var2);
+Proc_GY_VengefulSpirits_CheckLevers(_Var1, _Var2);
+
+PROC
+Proc_GY_VengefulSpirits_CheckLevers((CHARACTERGUID)_Var1, (ITEMGUID)_Var2)
+AND
+SysCount("DB_GY_VengefulSpirits_UsedLevers", 2, 3)
+AND
+DB_GY_VengefulSpirits_UsedLevers(ITEMGUID_S_RC_GY_VengefulSpirits_Lever01_bd7f4d15-1452-4868-902d-e03fe31f551c, 2)
+AND
+DB_GY_VengefulSpirits_UsedLevers(ITEMGUID_S_RC_GY_VengefulSpirits_Lever02_ad842ea4-63f1-44be-87cc-cc6639369693, 1)
+AND
+DB_GY_VengefulSpirits_UsedLevers(ITEMGUID_S_RC_GY_VengefulSpirits_Lever03_198f826b-3317-410b-81e6-c2f9f9aee2b7, 3)
+THEN
+DB_GY_VengefulSpirits_PuzzleSolved(1);
+DB_GY_VengefulSpirits_PlayerUsedLever(_Var1);
+CreateSurface(ITEMGUID_S_RC_GY_VengefulSpirits_PressurePlate_9d876f70-53c8-48cd-b15c-75cf1a5161c4, "SurfaceNone", 9, -1);
+CreateSurface(ITEMGUID_S_RC_GY_VengefulSpirits_PressurePlate_9d876f70-53c8-48cd-b15c-75cf1a5161c4, "SurfaceFireBlessed", 9, -1);
+
+PROC
+Proc_GY_VengefulSpirits_CheckLevers((CHARACTERGUID)_Var1, (ITEMGUID)_Var2)
+AND
+SysCount("DB_GY_VengefulSpirits_UsedLevers", 2, 3)
+AND NOT
+DB_GY_VengefulSpirits_PuzzleSolved(1)
+THEN
+Proc_GY_VengefulSpirits_ResetLevers();
+StartVoiceBark("RC_GY_VengefulSpirits_VB_WrongCombo", _Var1);
+
+PROC
+Proc_GY_VengefulSpirits_ResetLevers()
+AND
+DB_GY_VengefulSpirits_UsedLevers(_Var1, _Var2)
+THEN
+NOT DB_GY_VengefulSpirits_UsedLevers(_Var1, _Var2);
+
+PROC
+Proc_GY_VengefulSpirits_ResetLevers()
+AND
+DB_GY_VengefulSpirits_LeversNum(_Var1)
+THEN
+NOT DB_GY_VengefulSpirits_LeversNum(_Var1);
+DB_GY_VengefulSpirits_LeversNum(0);
+
+PROC
+Proc_GY_VengefulSpirits_LeverDamage((ITEMGUID)_Var1)
+AND
+DB_GY_VengefulSpirits_LeversNum(_Var2)
+AND
+_Var2 == 1
+AND
+DB_GY_VengefulSpirits_Levers(_Var1, _Var3, _, _)
+THEN
+CreateSurface(ITEMGUID_S_RC_GY_VengefulSpirits_PressurePlate_9d876f70-53c8-48cd-b15c-75cf1a5161c4, "SurfaceNone", 9, -1);
+CreateSurface(ITEMGUID_S_RC_GY_VengefulSpirits_PressurePlate_9d876f70-53c8-48cd-b15c-75cf1a5161c4, _Var3, 9, -1);
+
+PROC
+Proc_GY_VengefulSpirits_LeverDamage((ITEMGUID)_Var1)
+AND
+DB_GY_VengefulSpirits_LeversNum(_Var2)
+AND
+_Var2 == 2
+AND
+DB_GY_VengefulSpirits_Levers(_Var1, _, _Var4, _)
+AND
+_Var1 != ITEMGUID_S_RC_GY_VengefulSpirits_Lever01_bd7f4d15-1452-4868-902d-e03fe31f551c
+THEN
+CreateSurface(ITEMGUID_S_RC_GY_VengefulSpirits_PressurePlate_9d876f70-53c8-48cd-b15c-75cf1a5161c4, _Var4, 9, -1);
+
+PROC
+Proc_GY_VengefulSpirits_LeverDamage((ITEMGUID)_Var1)
+AND
+DB_GY_VengefulSpirits_LeversNum(_Var2)
+AND
+_Var2 == 2
+AND
+DB_GY_VengefulSpirits_Levers(_Var1, _, _Var4, _)
+AND
+_Var1 == ITEMGUID_S_RC_GY_VengefulSpirits_Lever01_bd7f4d15-1452-4868-902d-e03fe31f551c
+THEN
+CreateExplosion(ITEMGUID_S_RC_GY_VengefulSpirits_PressurePlate_9d876f70-53c8-48cd-b15c-75cf1a5161c4, _Var4, 12);
+
+PROC
+Proc_GY_VengefulSpirits_LeverDamage((ITEMGUID)_Var1)
+AND
+DB_GY_VengefulSpirits_LeversNum(_Var2)
+AND
+_Var2 == 3
+AND
+DB_GY_VengefulSpirits_Levers(_Var1, _, _, _Var5)
+THEN
+CreateSurface(ITEMGUID_S_RC_GY_VengefulSpirits_PressurePlate_9d876f70-53c8-48cd-b15c-75cf1a5161c4, _Var5, 9, -1);
+
+
+EXITSECTION
+NOT DB_GY_VengefulSpirits_SmokesOnPipes(ITEMGUID_S_RC_GY_FX_VengefulSpirits_Smoke_01_96220053-36ca-4fa5-81f0-e1311c8c0448);
+NOT DB_GY_VengefulSpirits_SmokesOnPipes(ITEMGUID_S_RC_GY_FX_VengefulSpirits_Smoke_02_a9ee981e-becb-4c73-8927-80cb5137f224);
+NOT DB_GY_VengefulSpirits_SmokesOnPipes(ITEMGUID_S_RC_GY_FX_VengefulSpirits_Smoke_03_eafe9e97-9d74-44c4-ba03-2c606fcbf575);
+NOT DB_GY_VengefulSpirits_SmokesOnPipes(ITEMGUID_S_RC_GY_FX_VengefulSpirits_Smoke_04_ca0e4ec3-3bfb-4fdc-991b-b8c230618c73);
+NOT DB_GY_VengefulSpirits_SmokesOnPipes(ITEMGUID_S_RC_GY_FX_VengefulSpirits_Smoke_05_92432bc5-e43d-4845-b6a4-02b8e7354bc1);
+NOT DB_GY_VengefulSpirits_SmokesOnPipes(ITEMGUID_S_RC_GY_FX_VengefulSpirits_Smoke_06_0b029b1d-3f2a-428b-a2eb-a110459ac2bb);
+ENDEXITSECTION
+
+ParentTargetEdge "ReapersCoast"

@@ -1,0 +1,17 @@
+Version 1
+SubGoalCombiner SGC_AND
+
+INITSECTION
+
+KBSECTION
+IF
+GameBookInterfaceClosed(RC_OIL_AlchemistDiary_f2b493aa-7656-4b8e-b02d-89d6435070d9, (CHARACTERGUID)_Var1)
+THEN
+GlobalSetFlag("QuestAdd_GLO_HouseOfOctaves");
+GlobalSetFlag("QuestUpdate_GLO_HouseOfOctaves_OilAlchemist");
+
+
+EXITSECTION
+ENDEXITSECTION
+
+ParentTargetEdge "Start"

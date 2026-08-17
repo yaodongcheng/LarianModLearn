@@ -1,0 +1,123 @@
+Version 1
+SubGoalCombiner SGC_AND
+
+INITSECTION
+DB_LV_HoE_MirrorPuzzle_Generator(ITEMGUID_S_CoS_Academy_DeanRoomGenerator_7f162414-86a9-496d-bb65-f9f1504a2266, ITEMGUID_S_CoS_Academy_Mirror_001_6e766eff-3c6b-4bb1-a5f3-b9a885412869);
+DB_CoS_Academy_ConductorPuzzle_Lights("CoS_Academy_Teachers", ITEMGUID_S_CoS_Academy_Light_Teachers_001_40972110-e5ba-4afe-a025-b92d414af3c6);
+DB_CoS_Academy_ConductorPuzzle_Lights("CoS_Academy_Teachers", ITEMGUID_S_CoS_Academy_Light_Teachers_002_00c4f43b-47a4-47e8-bf2c-34a92eb866fc);
+DB_CoS_Academy_ConductorPuzzle_Lights("CoS_Academy_Teachers", ITEMGUID_S_CoS_Academy_Light_Teachers_002_0d6be4f2-e044-4d73-85dd-864eb64c3bae);
+DB_CoS_Academy_ConductorPuzzle_Lights("CoS_Academy_Teachers", ITEMGUID_S_CoS_Academy_Light_Teachers_003_a0ce25b3-48c7-4bbb-9325-4593b6a94731);
+DB_CoS_Academy_ConductorPuzzle_Lights("CoS_Academy_DoorToForbiddenLibrary", ITEMGUID_S_CoS_Academy_Light_Library_000_0757fb36-14b9-411a-8863-713c24fa5677);
+DB_CoS_Academy_ConductorPuzzle_Lights("CoS_Academy_DoorToForbiddenLibrary", ITEMGUID_S_CoS_Academy_Light_Library_001_21679fb6-0514-4531-8bba-8a6b68cac21d);
+DB_CoS_Academy_ConductorPuzzle_Lights("CoS_Academy_DoorToForbiddenLibrary", ITEMGUID_S_CoS_Academy_Light_Library_002_bc9da194-cc8e-48c7-a059-0277150e4f73);
+DB_CoS_Academy_ConductorPuzzle_Lights("CoS_Academy_DoorToForbiddenLibrary", ITEMGUID_S_CoS_Academy_Light_Library_001_a5e09fcd-e4e1-4fee-9679-a5bed2970156);
+DB_CoS_Academy_ConductorPuzzle("CoS_Academy_TempleDoor", 3);
+DB_CoS_Academy_ConductorPuzzle_Conductor("CoS_Academy_TempleDoor", ITEMGUID_S_CoS_Academy_TempleConductor_001_6defef25-d734-4fea-b281-25a8f6db2f6a);
+DB_CoS_Academy_ConductorPuzzle_Conductor("CoS_Academy_TempleDoor", ITEMGUID_S_CoS_Academy_TempleConductor_002_72816d96-05df-4a4f-be3c-60b47713c3a0);
+DB_CoS_Academy_ConductorPuzzle_Conductor("CoS_Academy_TempleDoor", ITEMGUID_S_CoS_Academy_TempleConductor_003_26ef4bc9-793e-4112-b520-b59dbae4460f);
+DB_CoS_Academy_ConductorPuzzle_Lever("CoS_Academy_TempleDoor", ITEMGUID_S_CoS_Academy_TempleDoor_Lever_079dce1c-43f5-46c1-ad3a-13ae1a6b476a);
+DB_CoS_Academy_ConductorPuzzle_Lights("CoS_Academy_TempleDoor", ITEMGUID_S_CoS_Academy_Light_MainHall_000_d00d3f31-7c75-429c-932c-cbfea6395cf4);
+DB_CoS_Academy_ConductorPuzzle_Lights("CoS_Academy_TempleDoor", ITEMGUID_S_CoS_Academy_Light_MainHall_001_7d37b1aa-2acc-4a6e-8a12-e5658c0e3907);
+DB_CoS_Academy_ConductorPuzzle_Lights("CoS_Academy_TempleDoor", ITEMGUID_S_CoS_Academy_Light_MainHall_002_613e87c6-3ca0-4c1d-85ca-9278037f5ec1);
+DB_CoS_Academy_ConductorPuzzle_Lights("CoS_Academy_TempleDoor", ITEMGUID_S_CoS_Academy_Light_MainHall_003_bd657b9d-a65a-40e7-98c4-387e655ddb20);
+DB_CoS_Academy_ConductorPuzzle_Lights("CoS_Academy_TempleDoor", ITEMGUID_S_CoS_Academy_Light_MainHall_004_c6c94539-6acb-49b1-9a8e-b5a7e3012278);
+DB_CoS_Academy_ConductorPuzzle_Lights("CoS_Academy_TempleDoor", ITEMGUID_S_CoS_Academy_Light_MainHall_005_7d37b1aa-2acc-4a6e-8a12-e5658c0e3907);
+
+KBSECTION
+IF
+DB_CoS_Academy_ConductorPuzzle(_Var1, _)
+THEN
+ProcDeclareCounter(_Var1);
+
+IF
+DB_CoS_Academy_ConductorPuzzle_Lights(_, _Var2)
+THEN
+SetOnStage(_Var2, 0);
+
+IF
+ItemStatusRemoved((ITEMGUID)_Var1, "STUNNED", _)
+AND
+HasActiveStatus(_Var1, "STUNNED", 0)
+AND
+DB_CoS_Academy_ConductorPuzzle_Conductor(_Var3, _Var1)
+AND
+DB_GlobalCounter(_Var3, _Var4)
+AND
+_Var4 > 0
+THEN
+ProcDecreaseCounter(_Var3, 1);
+
+IF
+ItemStatusChange((ITEMGUID)_Var1, "STUNNED", _)
+AND
+DB_CoS_Academy_ConductorPuzzle_Conductor(_Var3, _Var1)
+AND
+DB_GlobalCounter(_Var3, _Var4)
+AND
+DB_CoS_Academy_ConductorPuzzle(_Var3, _Var5)
+AND
+_Var4 < _Var5
+THEN
+ProcIncreaseCounter(_Var3, 1);
+
+IF
+DB_GlobalCounter(_Var1, _Var2)
+AND
+DB_CoS_Academy_ConductorPuzzle(_Var1, _Var3)
+AND
+_Var2 == _Var3
+THEN
+Proc_CoS_Academy_ConductorPuzzle_SuccessEvent(_Var1);
+
+IF
+DB_GlobalCounter(_Var1, _Var2)
+AND
+DB_CoS_Academy_ConductorPuzzle(_Var1, _Var3)
+AND
+_Var2 != _Var3
+THEN
+Proc_CoS_Academy_ConductorPuzzle_FailEvent(_Var1);
+
+PROC
+Proc_CoS_Academy_ConductorPuzzle_SuccessEvent((STRING)_Var1)
+AND
+DB_CoS_Academy_ConductorPuzzle_Lever(_Var1, _Var2)
+THEN
+SetStoryEvent(_Var2, "LeverUnblock");
+ApplyStatus(_Var2, "STUNNED", 1, 1);
+
+PROC
+Proc_CoS_Academy_ConductorPuzzle_FailEvent((STRING)_Var1)
+AND
+DB_CoS_Academy_ConductorPuzzle_Lever(_Var1, _Var2)
+THEN
+SetStoryEvent(_Var2, "LeverBlock");
+
+PROC
+Proc_CoS_Academy_ConductorPuzzle_LightsOn((STRING)_Var1)
+AND
+DB_CoS_Academy_ConductorPuzzle_Lights(_Var1, _Var2)
+THEN
+SetOnStage(_Var2, 1);
+
+IF
+CharacterItemEvent(_, ITEMGUID_S_CoS_Academy_TempleDoor_Lever_079dce1c-43f5-46c1-ad3a-13ae1a6b476a, "CoS_Academy_TempleDoor_LeverSuccess")
+THEN
+ItemDestroy(ITEMGUID_S_CoS_Academy_TempleDoor_b7f74a2a-5fff-489d-85c4-a2da853ef308);
+ItemDestroy(ITEMGUID_S_CoS_Academy_TempleSideBlocker_001_f1e31a8c-44c2-4f28-9c6b-1340270a64fa);
+ItemDestroy(ITEMGUID_S_CoS_Academy_TempleSideBlocker_002_4a5a42a9-2729-4e2d-9677-a1a5fcadd2f1);
+NOT DB_CoS_Academy_ConductorPuzzle("CoS_Academy_TempleDoor", 3);
+
+IF
+CharacterItemEvent(_, ITEMGUID_S_CoS_Academy_TempleDoor_Lever_079dce1c-43f5-46c1-ad3a-13ae1a6b476a, "CoS_Academy_TempleDoor_LeverSuccess")
+AND
+DB_IsPlayer(_Var2)
+THEN
+PartySetFlag(_Var2, "QuestUpdate_CoS_Academy_EnteredTemple");
+Proc_CoS_Academy_ConductorPuzzle_LightsOn("CoS_Academy_TempleDoor");
+
+
+EXITSECTION
+ENDEXITSECTION
+
+ParentTargetEdge "CoS_Academy"

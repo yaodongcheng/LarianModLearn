@@ -1,0 +1,36 @@
+Version 1
+SubGoalCombiner SGC_AND
+
+INITSECTION
+DB_SupernaturalBeing(CHARACTERGUID_S_GLO_Jahan_4d222cfd-49c8-41d3-8cb7-2a2b56232633);
+
+KBSECTION
+IF
+DB_HasMet(_Var1, _Var2, _Var3)
+AND
+DB_SupernaturalBeing(_Var1)
+AND
+DB_PolymorphStatuses(_Var4, _)
+AND
+_Var4 != _Var3
+AND NOT
+DB_HasMet(_Var1, _Var2, _Var4)
+THEN
+DB_HasMet(_Var1, _Var2, _Var4);
+
+IF
+DB_HasMet(_Var1, _Var2, _Var3)
+AND
+DB_SupernaturalBeing(_Var1)
+AND
+_Var3 != ""
+AND NOT
+DB_HasMet(_Var1, _Var2, "")
+THEN
+DB_HasMet(_Var1, _Var2, "");
+
+
+EXITSECTION
+ENDEXITSECTION
+
+ParentTargetEdge "Start"

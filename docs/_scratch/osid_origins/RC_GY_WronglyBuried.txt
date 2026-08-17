@@ -1,0 +1,153 @@
+Version 1
+SubGoalCombiner SGC_AND
+
+INITSECTION
+DB_Dialogs(CHARACTERGUID_S_RC_GY_WronglyBuried_Skelly_c22432fd-e272-4f16-b09a-1afd09d01ad8, "RC_GY_WronglyBuried_Skelly");
+ProcCharacterDisableCrime(CHARACTERGUID_S_RC_GY_WronglyBuried_Skelly_c22432fd-e272-4f16-b09a-1afd09d01ad8, "Assault");
+DB_ShovelArea(TRIGGERGUID_S_RC_GY_WronglyBuried_ShovelArea_68354148-e06d-4103-8d56-c45826c6198e, "RC_GY_WronglyBuried_Pile", ITEMGUID_S_RC_GY_WronglyBuried_DirtPile_47366b82-e4dd-410c-b65c-ab1d5c1dc4a3);
+DB_ShovelRewardCharacterAppear("RC_GY_WronglyBuried_Pile", CHARACTERGUID_S_RC_GY_WronglyBuried_Skelly_c22432fd-e272-4f16-b09a-1afd09d01ad8);
+SetOnStage(ITEMGUID_S_RC_GY_WronglyBuried_SkillbookReward_7b0c6f70-7be0-4bf8-a0bf-466eb50d237d, 0);
+ApplyStatus(CHARACTERGUID_S_RC_GY_WronglyBuried_Skelly_c22432fd-e272-4f16-b09a-1afd09d01ad8, "EXISTENTIAL_AURA", -1, 1);
+CharacterSetCanTrade(CHARACTERGUID_S_RC_GY_WronglyBuried_Skelly_c22432fd-e272-4f16-b09a-1afd09d01ad8, 0);
+CharacterSetImmortal(CHARACTERGUID_S_RC_GY_WronglyBuried_Skelly_c22432fd-e272-4f16-b09a-1afd09d01ad8, 1);
+ProcTriggerRegisterForPlayers(TRIGGERGUID_S_RC_GY_WronglyBuried_BoxTrigger_e74981ad-019d-4d94-ba6d-a8dae7653733);
+DB_RC_GY_WronglyBuried_ExistentialBook(ITEMGUID_S_RC_GY_WronglyBuried_ExistentialBook_1_26fe1dfa-1df6-4525-834a-3f88ced05feb, "QuestUpdate_RC_GY_WronglyBuried_ReadBook_1");
+DB_RC_GY_WronglyBuried_ExistentialBook(ITEMGUID_S_RC_GY_WronglyBuried_ExistentialBook_2_7043db03-2726-47c7-913a-135400f19f3d, "QuestUpdate_RC_GY_WronglyBuried_ReadBook_2");
+DB_RC_GY_WronglyBuried_ExistentialBook(ITEMGUID_S_RC_GY_WronglyBuried_ExistentialBook_3_ca37542d-a7ef-4bad-aa46-d96f969beb44, "QuestUpdate_RC_GY_WronglyBuried_ReadBook_3");
+
+KBSECTION
+IF
+ObjectFlagSet((STRING)_Var1, (CHARACTERGUID)_Var2, _)
+AND
+DB_IsPlayer(_Var2)
+AND
+DB_RC_GY_WronglyBuried_ExistentialBook(_, _Var1)
+AND
+PartyGetFlag(_Var2, "QuestUpdate_RC_GY_WronglyBuried_ReadBook_1", 1)
+AND
+PartyGetFlag(_Var2, "QuestUpdate_RC_GY_WronglyBuried_ReadBook_2", 1)
+AND
+PartyGetFlag(_Var2, "QuestUpdate_RC_GY_WronglyBuried_ReadBook_3", 1)
+THEN
+PartySetFlag(_Var2, "QuestUpdate_RC_GY_WronglyBuried_ReadBook_All");
+
+IF
+CharacterUsedItem((CHARACTERGUID)_Var1, (ITEMGUID)_Var2)
+AND
+DB_RC_GY_WronglyBuried_ExistentialBook(_Var2, _Var3)
+THEN
+PartySetFlag(_Var1, _Var3);
+
+IF
+StoryEvent(ITEMGUID_S_RC_GY_WronglyBuried_DirtPile_47366b82-e4dd-410c-b65c-ab1d5c1dc4a3, "StoryReveal")
+AND
+DB_IsPlayer(_Var1)
+AND
+DB_InRegion(_Var1, TRIGGERGUID_S_RC_GY_WronglyBuried_BoxTrigger_e74981ad-019d-4d94-ba6d-a8dae7653733)
+THEN
+SetVarInteger(ITEMGUID_S_RC_GY_WronglyBuried_DirtPile_47366b82-e4dd-410c-b65c-ab1d5c1dc4a3, "Bool_PlayAD", 1);
+PartySetFlag(_Var1, "QuestUpdate_RC_GY_WronglyBuried_SeenGrave");
+ProcTriggerUnregisterForPlayers(TRIGGERGUID_S_RC_GY_WronglyBuried_BoxTrigger_e74981ad-019d-4d94-ba6d-a8dae7653733);
+
+IF
+CharacterEnteredTrigger((CHARACTERGUID)_Var1, TRIGGERGUID_S_RC_GY_WronglyBuried_ShovelArea_68354148-e06d-4103-8d56-c45826c6198e)
+AND
+GetVarInteger(ITEMGUID_S_RC_GY_WronglyBuried_DirtPile_47366b82-e4dd-410c-b65c-ab1d5c1dc4a3, "Bool_PlayAD", 1)
+AND
+CharacterCanSee(_Var1, CHARACTERGUID_S_RC_GY_WronglyBuried_Skelly_c22432fd-e272-4f16-b09a-1afd09d01ad8, 0)
+AND
+ObjectGetFlag(ITEMGUID_S_RC_GY_WronglyBuried_DirtPile_47366b82-e4dd-410c-b65c-ab1d5c1dc4a3, "RC_GY_WronglyBuried_AgreedToHelp", 0)
+THEN
+Proc_StartDialog(0, "RC_GY_WronglyBuried_Grave", ITEMGUID_S_RC_GY_WronglyBuried_DirtPile_47366b82-e4dd-410c-b65c-ab1d5c1dc4a3, _Var1);
+
+IF
+CharacterItemEvent((CHARACTERGUID)_Var1, ITEMGUID_S_RC_GY_WronglyBuried_DirtPile_47366b82-e4dd-410c-b65c-ab1d5c1dc4a3, "clearedMound")
+THEN
+ProcObjectTimer(_Var1, "RC_GY_WronglyBuried_DugUpDialogTimer", 500);
+
+IF
+CharacterWentOnStage(CHARACTERGUID_S_RC_GY_WronglyBuried_Skelly_c22432fd-e272-4f16-b09a-1afd09d01ad8, 1)
+AND
+DB_DialogNPCs(_Var1, ITEMGUID_S_RC_GY_WronglyBuried_DirtPile_47366b82-e4dd-410c-b65c-ab1d5c1dc4a3, 1)
+THEN
+DialogRequestStop(ITEMGUID_S_RC_GY_WronglyBuried_DirtPile_47366b82-e4dd-410c-b65c-ab1d5c1dc4a3);
+
+IF
+CharacterWentOnStage(CHARACTERGUID_S_RC_GY_WronglyBuried_Skelly_c22432fd-e272-4f16-b09a-1afd09d01ad8, 1)
+THEN
+PlaySound(CHARACTERGUID_S_RC_GY_WronglyBuried_Skelly_c22432fd-e272-4f16-b09a-1afd09d01ad8, "SE_RC_GY_WronglyBuried_Skelly_Appear");
+
+PROC
+ProcObjectTimerFinished((CHARACTERGUID)_Var1, "RC_GY_WronglyBuried_DugUpDialogTimer")
+AND
+DB_IsPlayer(_Var1)
+THEN
+Proc_StartDialog(0, "RC_GY_WronglyBuried_Skelly", CHARACTERGUID_S_RC_GY_WronglyBuried_Skelly_c22432fd-e272-4f16-b09a-1afd09d01ad8, _Var1);
+SetVarInteger(ITEMGUID_S_RC_GY_WronglyBuried_DirtPile_47366b82-e4dd-410c-b65c-ab1d5c1dc4a3, "Bool_PlayAD", 0);
+PartySetFlag(_Var1, "QuestUpdate_RC_GY_WronglyBuried_DugUpGrave");
+ProcTriggerUnregisterForPlayers(TRIGGERGUID_S_RC_GY_WronglyBuried_ShovelArea_68354148-e06d-4103-8d56-c45826c6198e);
+
+IF
+StoryEvent(CHARACTERGUID_S_RC_GY_WronglyBuried_Skelly_c22432fd-e272-4f16-b09a-1afd09d01ad8, "Skelly_GoingToSit")
+AND
+CharacterCanTrade(S_RC_GY_WronglyBuried_Skelly_c22432fd-e272-4f16-b09a-1afd09d01ad8, 0)
+THEN
+CharacterSetCanTrade(CHARACTERGUID_S_RC_GY_WronglyBuried_Skelly_c22432fd-e272-4f16-b09a-1afd09d01ad8, 1);
+
+IF
+DialogEnded("RC_GY_WronglyBuried_Skelly", (INTEGER)_Var1)
+AND
+ObjectGetFlag(CHARACTERGUID_S_RC_GY_WronglyBuried_Skelly_c22432fd-e272-4f16-b09a-1afd09d01ad8, "RC_GY_WronglyBuried_SkellyDie", 1)
+THEN
+ProcObjectTimer(CHARACTERGUID_S_RC_GY_WronglyBuried_Skelly_c22432fd-e272-4f16-b09a-1afd09d01ad8, "RC_GY_WronglyBuried_TimeToDie", 800);
+SetHasDialog(CHARACTERGUID_S_RC_GY_WronglyBuried_Skelly_c22432fd-e272-4f16-b09a-1afd09d01ad8, 0);
+
+PROC
+ProcObjectTimerFinished(CHARACTERGUID_S_RC_GY_WronglyBuried_Skelly_c22432fd-e272-4f16-b09a-1afd09d01ad8, "RC_GY_WronglyBuried_TimeToDie")
+AND
+GetPosition(CHARACTERGUID_S_RC_GY_WronglyBuried_Skelly_c22432fd-e272-4f16-b09a-1afd09d01ad8, _Var1, _Var2, _Var3)
+THEN
+CharacterSetImmortal(CHARACTERGUID_S_RC_GY_WronglyBuried_Skelly_c22432fd-e272-4f16-b09a-1afd09d01ad8, 0);
+CharacterDie(CHARACTERGUID_S_RC_GY_WronglyBuried_Skelly_c22432fd-e272-4f16-b09a-1afd09d01ad8, 0, "Explode");
+SetOnStage(ITEMGUID_S_RC_GY_WronglyBuried_SkillbookReward_7b0c6f70-7be0-4bf8-a0bf-466eb50d237d, 1);
+ItemScatterAt(ITEMGUID_S_RC_GY_WronglyBuried_SkillbookReward_7b0c6f70-7be0-4bf8-a0bf-466eb50d237d, _Var1, _Var2, _Var3);
+
+PROC
+ProcObjectTimerFinished(CHARACTERGUID_S_RC_GY_WronglyBuried_Skelly_c22432fd-e272-4f16-b09a-1afd09d01ad8, "RC_GY_WronglyBuried_TimeToDie")
+AND
+DB_IsPlayer(_Var1)
+THEN
+PartySetFlag(_Var1, "QuestUpdate_RC_GY_WronglyBuried_SkellyExploded");
+
+IF
+DialogEnded("RC_GY_WronglyBuried_Skelly", (INTEGER)_Var1)
+AND
+DialogGetInvolvedPlayer(_Var1, 1, _Var2)
+AND
+ObjectGetFlag(_Var2, "RC_GY_WronglyBuried_PlayerExplode", 1)
+THEN
+ProcObjectTimer(_Var2, "RC_GY_WronglyBuried_PlayerTimeToDie", 500);
+
+PROC
+ProcObjectTimerFinished((CHARACTERGUID)_Var1, "RC_GY_WronglyBuried_PlayerTimeToDie")
+AND
+ObjectGetFlag(_Var1, "RC_GY_WronglyBuried_PlayerExplode", 1)
+THEN
+ObjectClearFlag(_Var1, "RC_GY_WronglyBuried_PlayerExplode", 0);
+PartySetFlag(_Var1, "QuestUpdate_RC_GY_WronglyBuried_PlayerExploded");
+CharacterDie(_Var1, 0, "Explode");
+
+IF
+SavegameLoaded((INTEGER)_Var1, (INTEGER)_Var2, (INTEGER)_Var3, (INTEGER)_Var4)
+AND
+QRY_VersionIsOlderThan(_Var1, _Var2, _Var3, _Var4, 3, 6, 3, 0)
+AND
+CharacterCanFight(S_RC_GY_WronglyBuried_Skelly_c22432fd-e272-4f16-b09a-1afd09d01ad8, 1)
+THEN
+SetCanFight(S_RC_GY_WronglyBuried_Skelly_c22432fd-e272-4f16-b09a-1afd09d01ad8, 0);
+
+
+EXITSECTION
+ENDEXITSECTION
+
+ParentTargetEdge "ReapersCoast"

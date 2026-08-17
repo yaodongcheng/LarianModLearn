@@ -1,0 +1,122 @@
+Version 1
+SubGoalCombiner SGC_AND
+
+INITSECTION
+DB_Tutorial_WeaponRecipe("WPN_CraftedAxe_1H", "LOOT_WoodenStick_A_LOOT_PieceOfRock_A", "Fighter");
+DB_Tutorial_WeaponRecipe("WPN_Common_Mace_1H_A", "LOOT_WoodenBranch_A_PiecesOfRock", "Fighter");
+DB_Tutorial_WeaponRecipe("WPN_Mace_2H", "LOOT_WoodenBranch_A_PiecesOfRock", "Fighter");
+DB_Tutorial_WeaponRecipe("WPN_CraftedStaff_Air", "LOOT_WoodenBranch_A_HAR_Shell", "Mage");
+DB_Tutorial_WeaponRecipe("WPN_CraftedSword_1H", "LOOT_WoodenStick_A_Dagger", "Fighter");
+DB_Tutorial_WeaponRecipe("WPN_CraftedSword_1H", "LOOT_WoodenStick_A_Knife", "Fighter");
+DB_Tutorial_WeaponRecipe("WPN_CraftedMace_2H", "LOOT_WoodenBranch_A_LOOT_Scraps_Cloth_A", "Fighter");
+DB_Tutorial_WeaponRecipe("WPN_CraftedSword_2H", "LOOT_WoodenStick_A_Dagger", "Fighter");
+DB_Tutorial_WeaponRecipe("WPN_CraftedSword_2H", "LOOT_WoodenStick_A_Knife", "Fighter");
+DB_Tutorial_WeaponRecipe("WPN_CraftedBow", "LOOT_WoodenStick_A_LOOT_String_Bow_A", "Ranger");
+DB_Tutorial_WeaponRecipe("WPN_CraftedDagger", "LOOT_MetalShard_A_LOOT_Scraps_Cloth_A", "Rogue");
+DB_Tutorial_WeaponRecipe("WPN_CraftedWand_Fire", "LOOT_WoodenStick_A_LOOT_Skull_Bird_A", "Mage");
+DB_Tutorial_WeaponRecipe("WPN_CraftedStaff_Fire", "LOOT_WoodenBranch_A_HAR_Shell", "Mage");
+DB_Tutorial_WeaponRecipe("WPN_CraftedCrossbow", "LOOT_WoodenStick_A_LOOT_WoodenBranch_A", "Ranger");
+DB_Tutorial_WeaponRecipe("WPN_CraftedWand_Poison", "LOOT_WoodenStick_A_LOOT_Skull_Human_A", "Mage");
+DB_Tutorial_WeaponRecipe("WPN_CraftedStaff_Poison", "LOOT_WoodenBranch_A_HAR_Shell", "Mage");
+DB_Tutorial_WeaponRecipe("WPN_Pitchfork", "LOOT_WoodenBranch_A_LOOT_MetalShard_A", "Fighter");
+DB_Tutorial_ExtraRecipes("Fighter", "CON_Potion_Empty_A_CON_Nature_Mushroom_Amadouvier_A");
+DB_Tutorial_ExtraRecipes("Fighter", "LOOT_Rope_A_LOOT_Rope_A");
+DB_Tutorial_ExtraRecipes("Fighter", "ITEM_EmptyBottle_Oil");
+DB_Tutorial_ExtraRecipes("Fighter", "ITEM_BottleWithOil_GRN_Ingredient_Fuse_A");
+DB_Tutorial_ExtraRecipes("Rogue", "CON_Potion_Empty_A_CON_Nature_Mushroom_Chanterelle_A");
+DB_Tutorial_ExtraRecipes("Rogue", "GRN_Ingredient_Flask_Empty_A_Poison");
+DB_Tutorial_ExtraRecipes("Rogue", "Poison_Knife");
+DB_Tutorial_ExtraRecipes("Rogue", "Poison_Dagger");
+DB_Tutorial_ExtraRecipes("Ranger", "CON_Potion_Empty_A_CON_Nature_Mushroom_Boletus_A");
+DB_Tutorial_ExtraRecipes("Ranger", "LOOT_Essence_Fire_A_WPN_ArrowHead_A");
+DB_Tutorial_ExtraRecipes("Ranger", "ArrowShaft_WPN_ArrowHead_Fire_A");
+DB_Tutorial_ExtraRecipes("Mage", "CON_Potion_Empty_A_CON_Nature_Mushroom_Calocera_A");
+DB_Tutorial_ExtraRecipes("Mage", "BOOK_Paper_Sheet_A_LOOT_Essence_Water_A_FOOD_FishA");
+DB_Tutorial_ExtraRecipes("Mage", "LOOT_Needle_Thread_A_LOOT_Scraps_Cloth_A_TOOL_Pouch_Dust_Pixie_A");
+DB_Tutorial_UndeadRecipe("CON_Potion_Empty_A_CON_Herb_Mushroom_C");
+DB_Tutorial_UndeadRecipe("CON_Potion_Empty_A_CONT_Barrel_Ooze");
+DB_Tutorial_UndeadRecipe("Poison_Food");
+DB_Tutorial_UndeadRecipe("Poison_Drinks");
+DB_Tutorial_ClawfingerRecipe("LOOT_ClawFinger_A_Food");
+DB_Tutorial_ClawfingerRecipe("LOOT_ClawFinger_A_Drinks");
+DB_Tutorial_ClawfingerRecipe("LOOT_ClawFinger_A_POTION_Minor_Healing_Potion");
+
+KBSECTION
+PROC
+Proc_TUT_StartGame()
+AND
+DB_IsPlayer(_Var1)
+AND
+CharacterGetEquippedWeapon(_Var1, _Var2)
+THEN
+PROC_TUT_WeaponRecipes_UnlockIfBasicWeapon(_Var2, _Var1, 1);
+
+IF
+ItemAddedToCharacter((ITEMGUID)_Var1, (CHARACTERGUID)_Var2)
+AND
+DB_IsPlayer(_Var2)
+THEN
+PROC_TUT_WeaponRecipes_UnlockIfBasicWeapon(_Var1, _Var2, 0);
+
+IF
+ItemAddedToCharacter((ITEMGUID)_Var1, (CHARACTERGUID)_Var2)
+AND
+DB_IsPlayer(_Var2)
+AND
+GetStatString(_Var1, "LOOT_ClawFinger_A")
+AND
+DB_Tutorial_ClawfingerRecipe(_Var3)
+THEN
+CharacterUnlockRecipe(_Var2, _Var3, 1);
+
+PROC
+Proc_TUT_StartGame()
+AND
+DB_IsPlayer(_Var1)
+AND
+IsTagged(_Var1, "UNDEAD", 1)
+AND
+DB_Tutorial_UndeadRecipe(_Var2)
+THEN
+CharacterUnlockRecipe(_Var1, _Var2, 0);
+
+PROC
+PROC_GLO_PartyMembers_RecruiteeAvatarBond((CHARACTERGUID)_Var1, (CHARACTERGUID)_Var2)
+AND
+IsTagged(_Var1, "UNDEAD", 1)
+AND
+DB_Tutorial_UndeadRecipe(_Var3)
+THEN
+CharacterUnlockRecipe(_Var1, _Var3, 1);
+
+PROC
+PROC_TUT_WeaponRecipes_UnlockIfBasicWeapon((ITEMGUID)_Var1, (CHARACTERGUID)_Var2, (INTEGER)_Var3)
+AND
+DB_Negate(_Var3, _Var4)
+AND
+GetStatString(_Var1, _Var5)
+AND
+DB_Tutorial_WeaponRecipe(_Var5, _Var6, _Var7)
+THEN
+CharacterUnlockRecipe(_Var2, _Var6, _Var4);
+PROC_TUT_WeaponRecipes_UnlockExtraRecipesIfStartWeapon(_Var2, _Var5, _Var3);
+
+PROC
+PROC_TUT_WeaponRecipes_UnlockExtraRecipesIfStartWeapon((CHARACTERGUID)_Var1, (STRING)_Var2, 1)
+AND
+DB_Tutorial_WeaponRecipe(_Var2, _, _Var4)
+AND
+DB_Tutorial_ExtraRecipes(_Var4, _Var5)
+THEN
+CharacterUnlockRecipe(_Var1, _Var5, 0);
+
+PROC
+Proc_TUT_StartGame()
+THEN
+Proc_TUT_PlayerWeaponRecipesRecorded();
+
+
+EXITSECTION
+ENDEXITSECTION
+
+ParentTargetEdge "Tutorial_PrisonShip"

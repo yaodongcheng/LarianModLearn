@@ -1,0 +1,818 @@
+Version 1
+SubGoalCombiner SGC_AND
+
+INITSECTION
+DB_RC_DW_WC_AmbushTargetBox(S_RC_DW_WC_AmbushTeleportPoint_01_dca6a05f-c62b-49fd-9e88-e388dbff3e08, S_RC_DW_WC_AmbushTeleportBox_01_1259835f-b0db-43dd-9110-4ea0b38b1fa4);
+DB_RC_DW_WC_AmbushTargetBox(S_RC_DW_WC_AmbushTeleportPoint_02_f1750d4d-adcb-4b90-a4d9-de012b01472e, S_RC_DW_WC_AmbushTeleportBox_02_be58d275-c504-4687-ae73-f268b7521135);
+DB_RC_DW_WC_AmbushTargetBox(S_RC_DW_WC_AmbushTeleportPoint_03_3da431af-3aa0-449a-be40-ae2a4a60b3ed, S_RC_DW_WC_AmbushTeleportBox_03_cb20cf8b-5b41-40f5-a0dc-54688af105d8);
+DB_RC_DW_WC_AmbushTargetBox(S_RC_DW_WC_AmbushTeleportPoint_04_8eba76ec-465e-4c47-9592-5603af6c8179, S_RC_DW_WC_AmbushTeleportBox_04_f7bfd9ec-6e68-4f3a-b8e6-53b14be3a4c6);
+DB_RC_DW_WC_AmbushUnburrowingHelper(S_RC_DW_WC_AmbushInsect_01_2a1d57f6-22e7-4f2c-86f2-108f7cec8c55, S_RC_DW_WC_AmbushInsect_Helper_01_43c2ffd3-96fb-4bd4-9435-33cf12e44b16);
+DB_RC_DW_WC_AmbushUnburrowingHelper(CHARACTERGUID_S_RC_DW_WC_AmbushInsect_02_956fb712-0f40-47b5-836e-34e9d56df7e5, ITEMGUID_S_RC_DW_WC_AmbushInsect_Helper_02_c433b805-6818-4375-9781-4a22bae9f57a);
+DB_RC_DW_WC_AmbushUnburrowingHelper(CHARACTERGUID_S_RC_DW_WC_AmbushInsect_03_eeb1f75e-f413-4c40-8d69-8a085146134e, ITEMGUID_S_RC_DW_WC_AmbushInsect_Helper_03_f01614a6-0543-4639-bd26-3cbe41f0e2a8);
+DB_RC_DW_WC_AmbushUnburrowingHelper(CHARACTERGUID_S_RC_DW_WC_AmbushInsect_04_adab8bc2-7aaa-4f9b-92ab-f04964695ed2, ITEMGUID_S_RC_DW_WC_AmbushInsect_Helper_04_2f67f87d-5826-4f27-b5ea-ce130bfdf29c);
+DB_RC_DW_WC_AmbushBurrowingHelper(S_RC_DW_WC_AmbushInsect_01_2a1d57f6-22e7-4f2c-86f2-108f7cec8c55, S_RC_DW_WC_AmbushInsect_BurrowHelper_01_e8e6fb87-125b-4cee-a59b-8babc97274c8);
+DB_RC_DW_WC_AmbushBurrowingHelper(CHARACTERGUID_S_RC_DW_WC_AmbushInsect_02_956fb712-0f40-47b5-836e-34e9d56df7e5, S_RC_DW_WC_AmbushInsect_BurrowHelper_02_7b2da4b5-dd0a-4ed3-928f-9636a47aeb83);
+DB_RC_DW_WC_AmbushBurrowingHelper(CHARACTERGUID_S_RC_DW_WC_AmbushInsect_03_eeb1f75e-f413-4c40-8d69-8a085146134e, S_RC_DW_WC_AmbushInsect_BurrowHelper_03_e9a80050-c572-4b67-a3a3-9819d210ae22);
+DB_RC_DW_WC_AmbushBurrowingHelper(CHARACTERGUID_S_RC_DW_WC_AmbushInsect_04_adab8bc2-7aaa-4f9b-92ab-f04964695ed2, S_RC_DW_WC_AmbushInsect_BurrowHelper_04_ca2deaf3-aee9-4aec-9f51-6116dab897d4);
+DB_RC_DW_WC_AmbushFinalBurrowingHelper(S_RC_DW_WC_AmbushInsect_01_2a1d57f6-22e7-4f2c-86f2-108f7cec8c55, ITEMGUID_S_RC_DW_WC_AmbushInsect_FinalBurrowHelper_01_e5fa3b09-7013-46b4-9547-8178a373d33f);
+DB_RC_DW_WC_AmbushFinalBurrowingHelper(CHARACTERGUID_S_RC_DW_WC_AmbushInsect_02_956fb712-0f40-47b5-836e-34e9d56df7e5, ITEMGUID_S_RC_DW_WC_AmbushInsect_FinalBurrowHelper_02_3409b0d3-9bdc-48d0-928b-fe83f564987f);
+DB_RC_DW_WC_AmbushFinalBurrowingHelper(CHARACTERGUID_S_RC_DW_WC_AmbushInsect_03_eeb1f75e-f413-4c40-8d69-8a085146134e, ITEMGUID_S_RC_DW_WC_AmbushInsect_FinalBurrowHelper_03_9c2770c2-1fd8-4682-9ba1-6c772a655245);
+DB_RC_DW_WC_AmbushFinalBurrowingHelper(CHARACTERGUID_S_RC_DW_WC_AmbushInsect_04_adab8bc2-7aaa-4f9b-92ab-f04964695ed2, ITEMGUID_S_RC_DW_WC_AmbushInsect_FinalBurrowHelper_04_da53feb3-70de-4783-8aa0-dde575399eda);
+ProcDeclareCounter("RC_DW_WC_Ambush_NumPlayerToFind");
+ProcDecreaseCounter("RC_DW_WC_Ambush_NumPlayerToFind");
+
+KBSECTION
+IF
+CharacterStatusApplied((CHARACTERGUID)_Var1, (STRING)_Var2, _)
+AND
+DB_IsPlayer(_Var1)
+AND
+DB_RC_DW_WC_AmbushPair(_, _Var1)
+AND NOT
+DB_RC_DW_WC_Incapacitated(_Var1)
+AND
+CharacterIsIncapacitated(_Var1, 1)
+AND
+IsTagged(_Var1, "AI_IGNORED_TARGET", 0)
+THEN
+DB_RC_DW_WC_Incapacitated(_Var1);
+SetTag(_Var1, "AI_IGNORED_TARGET");
+
+IF
+CharacterStatusRemoved((CHARACTERGUID)_Var1, (STRING)_Var2, _)
+AND
+DB_RC_DW_WC_Incapacitated(_Var1)
+AND
+CharacterIsIncapacitated(_Var1, 0)
+THEN
+ClearTag(_Var1, "AI_IGNORED_TARGET");
+
+PROC
+PROC_RC_DW_WC_MaybeSpawnAmbushInsectForPlayer((CHARACTERGUID)_Var1)
+AND
+DB_RC_DW_WC_AmbushAttackInsect(_Var2, _)
+AND NOT
+DB_RC_DW_WC_AmbushPair(_, _Var1)
+AND NOT
+DB_RC_DW_WC_AmbushPair(_Var2, _)
+AND
+DB_RC_DW_WC_AmbushUnburrowingHelper(_Var2, _Var6)
+THEN
+DB_RC_DW_WC_AmbushPair(_Var2, _Var1);
+SetVarObject(_Var2, "Abductee", _Var1);
+ProcObjectTimer(_Var2, "RC_DW_WC_FailedToEnterCombat", 10000);
+PROC_RC_DW_WC_BurrowGiantInsect(_Var2, _Var6, "RC_DW_WC_InsectSpawn", "Unburrow");
+Proc_ShakeCameraForTime(_Var1, 1000);
+
+IF
+CharacterEnteredTrigger((CHARACTERGUID)_Var1, TRIGGERGUID_S_RC_DW_WC_AmbushSpawn_Box_1fce5bfd-e7dd-4a78-9f18-831efd30a19e)
+AND
+DB_IsPlayer(_Var1)
+AND
+GlobalGetFlag("RC_DW_WC_BossElderIsDead", 0)
+AND
+GlobalGetFlag("RC_DW_WC_BossFight_BossFlee", 0)
+THEN
+PROC_RC_DW_WC_MaybeSpawnAmbushInsectForPlayer(_Var1);
+
+IF
+ObjectEnteredCombat((CHARACTERGUID)_Var1, (INTEGER)_Var2)
+AND NOT
+DB_RC_DW_WC_AmbushSpawnOnlyOne(1)
+AND
+DB_RC_DW_WC_AmbushPair(_Var3, _)
+AND
+DB_CombatCharacters(_Var3, _Var2)
+AND
+DB_IsPlayer(_Var1)
+AND NOT
+DB_RC_DW_WC_AmbushPair(_, _Var1)
+THEN
+DB_RC_DW_WC_AmbushSpawnOnlyOne(1);
+PROC_RC_DW_WC_MaybeSpawnAmbushInsectForPlayer(_Var1);
+
+IF
+ObjectEnteredCombat((CHARACTERGUID)_Var1, (INTEGER)_Var2)
+AND
+DB_RC_DW_WC_AmbushSpawnOnlyOne(1)
+THEN
+NOT DB_RC_DW_WC_AmbushSpawnOnlyOne(1);
+
+IF
+StoryEvent((GUIDSTRING)_Var1, "RC_DW_WC_InsectSpawn")
+AND
+DB_IsPlayer(_Var2)
+AND
+CharacterCanSee(_Var2, _Var1, 1)
+THEN
+ObjectSetFlag(_Var2, "RC_DW_WC_SawInsectSpawn");
+
+PROC
+PROC_RC_DW_WC_AmbushFailed_ResetInsectForPlayer((CHARACTERGUID)_Var1, (CHARACTERGUID)_Var2)
+THEN
+PROC_RC_DW_WC_Ambush_DetachIfAttached_InsectPlayer(_Var1, _Var2, 1);
+
+PROC
+PROC_RC_DW_WC_AmbushFailed_ResetInsectForPlayer((CHARACTERGUID)_Var1, (CHARACTERGUID)_Var2)
+AND
+DB_RC_DW_WC_AmbushBurrowingHelper(_Var1, _Var3)
+THEN
+PROC_RC_DW_WC_BurrowGiantInsect(_Var1, _Var3, "RC_DW_WC_BurrowBecauseAmbushFailed", "Burrow");
+NOT DB_RC_DW_WC_AmbushPair(_Var1, _Var2);
+
+PROC
+PROC_RC_DW_WC_AmbushFailed_ResetInsectForPlayer((CHARACTERGUID)_Var1, (CHARACTERGUID)_Var2)
+AND
+DB_RC_DW_WC_AmbushSucces(_Var1, _Var2, _Var3)
+THEN
+NOT DB_RC_DW_WC_AmbushSucces(_Var1, _Var2, _Var3);
+
+IF
+StoryEvent((CHARACTERGUID)_Var1, "RC_DW_WC_AbducteeDied")
+AND
+DB_RC_DW_WC_AmbushPair(_Var1, _Var2)
+THEN
+PROC_RC_DW_WC_AmbushFailed_ResetInsectForPlayer(_Var1, _Var2);
+
+IF
+StoryEvent((CHARACTERGUID)_Var1, "RC_DW_WC_AbducteeMissing")
+AND
+DB_RC_DW_WC_AmbushPair(_Var1, _Var2)
+THEN
+PROC_RC_DW_WC_AmbushFailed_ResetInsectForPlayer(_Var1, _Var2);
+
+PROC
+PROC_RC_DW_WC_AmbushFailed_ResetPlayer_InsectDead((CHARACTERGUID)_Var1, (CHARACTERGUID)_Var2)
+AND
+DB_RC_DW_WC_AmbushSucces(_Var2, _Var1, _Var3)
+THEN
+NOT DB_RC_DW_WC_AmbushSucces(_Var2, _Var1, _Var3);
+
+PROC
+PROC_RC_DW_WC_AmbushFailed_ResetPlayer_InsectDead((CHARACTERGUID)_Var1, (CHARACTERGUID)_Var2)
+AND
+DB_RC_DW_WC_Ambush_PlayerInsectAttached(_Var1, _Var2)
+THEN
+PROC_RC_DW_WC_Ambush_DetachIfAttached_InsectPlayer(_Var2, _Var1, 1);
+TeleportTo(_Var1, _Var2, "", 0);
+ApplyStatus(_Var1, "KNOCKED_DOWN", 1, 1);
+
+PROC
+PROC_RC_DW_WC_AmbushFailed_ResetPlayer_InsectDead((CHARACTERGUID)_Var1, (CHARACTERGUID)_Var2)
+AND
+DB_RC_DW_WC_AmbushAttackInsect(_Var2, _Var3)
+THEN
+NOT DB_RC_DW_WC_AmbushAttackInsect(_Var2, _Var3);
+NOT DB_RC_DW_WC_AmbushPair(_Var2, _Var1);
+PROC_RC_DW_WC_MaybeSpawnAmbushInsectForPlayer(_Var1);
+
+IF
+StoryEvent((CHARACTERGUID)_Var1, "RC_DW_WC_AbductorDied")
+AND
+DB_RC_DW_WC_AmbushPair(_Var1, _Var2)
+THEN
+PROC_RC_DW_WC_AmbushFailed_ResetPlayer_InsectDead(_Var2, _Var1);
+
+IF
+TextEventSet("wc_ambushknockdown")
+AND
+DB_RC_DW_WC_Ambush_PlayerInsectAttached(_Var1, _Var2)
+THEN
+ApplyStatus(_Var2, "KNOCKED_DOWN", 1, -1);
+
+PROC
+PROC_RC_DW_WC_AmbushFailed_ResetPlayer_InsectIncapacitated((CHARACTERGUID)_Var1, (CHARACTERGUID)_Var2)
+AND
+DB_RC_DW_WC_Ambush_PlayerInsectAttached(_Var1, _Var2)
+THEN
+PROC_RC_DW_WC_Ambush_DetachIfAttached_InsectPlayer(_Var2, _Var1, 1);
+TeleportTo(_Var1, _Var2, "", 0);
+PlayAnimation(_Var1, "knockdown_getup");
+
+IF
+StoryEvent((CHARACTERGUID)_Var1, "RC_DW_WC_AbductorIncapacitated")
+AND
+DB_RC_DW_WC_AmbushPair(_Var1, _Var2)
+THEN
+PROC_RC_DW_WC_AmbushFailed_ResetPlayer_InsectIncapacitated(_Var2, _Var1);
+
+QRY
+QRY_RC_DW_WC_Ambush_OnlyOnePartnerInCombat((CHARACTERGUID)_Var1, (CHARACTERGUID)_Var2)
+AND
+DB_CombatCharacters(_Var1, _Var3)
+AND NOT
+DB_CombatCharacters(_Var2, _Var3)
+THEN
+DB_NOOP(1);
+
+QRY
+QRY_RC_DW_WC_Ambush_OnlyOnePartnerInCombat((CHARACTERGUID)_Var1, (CHARACTERGUID)_Var2)
+AND
+DB_CombatCharacters(_Var2, _Var3)
+AND NOT
+DB_CombatCharacters(_Var1, _Var3)
+THEN
+DB_NOOP(1);
+
+IF
+CombatStarted((INTEGER)_Var1)
+AND
+DB_RC_DW_WC_AmbushPair(_Var2, _Var3)
+AND
+DB_CombatCharacters(_Var2, _Var1)
+AND
+DB_CombatCharacters(_Var3, _Var1)
+THEN
+ProcObjectTimerCancel(_Var2, "RC_DW_WC_FailedToEnterCombat");
+DB_RC_DW_WC_AmbushSucces(_Var2, _Var3, _Var1);
+
+IF
+CombatStarted((INTEGER)_Var1)
+AND
+DB_RC_DW_WC_AmbushPair(_Var2, _Var3)
+AND NOT
+DB_RC_DW_WC_Ambush_PlayerInsectAttached(_Var3, _Var2)
+AND
+QRY_RC_DW_WC_Ambush_OnlyOnePartnerInCombat(_Var2, _Var3)
+THEN
+ProcObjectTimerCancel(_Var2, "RC_DW_WC_FailedToEnterCombat");
+PROC_RC_DW_WC_AmbushFailed_ResetInsectForPlayer(_Var2, _Var3);
+
+IF
+ObjectLeftCombat(_, (INTEGER)_Var2)
+AND
+DB_RC_DW_WC_AmbushPair(_Var3, _Var4)
+AND NOT
+DB_RC_DW_WC_Ambush_PlayerInsectAttached(_Var4, _Var3)
+AND
+QRY_RC_DW_WC_Ambush_OnlyOnePartnerInCombat(_Var3, _Var4)
+THEN
+ProcObjectTimerCancel(_Var3, "RC_DW_WC_FailedToEnterCombat");
+PROC_RC_DW_WC_AmbushFailed_ResetInsectForPlayer(_Var3, _Var4);
+
+IF
+ObjectReadyInCombat((CHARACTERGUID)_Var1, (INTEGER)_Var2)
+AND
+DB_RC_DW_WC_AmbushPair(_Var1, _Var3)
+AND
+DB_CombatCharacters(_Var3, _Var2)
+THEN
+DB_RC_DW_WC_AmbushSucces(_Var1, _Var3, _Var2);
+ProcObjectTimerCancel(_Var1, "RC_DW_WC_FailedToEnterCombat");
+
+PROC
+ProcObjectTimerFinished((CHARACTERGUID)_Var1, "RC_DW_WC_FailedToEnterCombat")
+AND
+DB_RC_DW_WC_AmbushPair(_Var1, _Var2)
+AND NOT
+DB_RC_DW_WC_AmbushSucces(_Var1, _Var2, _)
+THEN
+PROC_RC_DW_WC_AmbushFailed_ResetInsectForPlayer(_Var1, _Var2);
+
+PROC
+PROC_RC_DW_WC_RecordCaptureWitnesses((CHARACTERGUID)_Var1)
+AND
+DB_IsPlayer(_Var2)
+AND
+CharacterCanSee(_Var2, _Var1, 1)
+THEN
+ObjectSetFlag(_Var2, "RC_DW_WC_SawInsectAbduction");
+
+IF
+DB_RC_DW_WC_AmbushSucces(_Var1, _Var2, _)
+THEN
+ObjectSetFlag(_Var2, "RC_DW_WC_BeingAbducted");
+
+IF
+StoryEvent((CHARACTERGUID)_Var1, "RC_DW_WC_Ambush_GrabVoiceBark")
+AND
+DB_RC_DW_WC_AmbushPair(_Var2, _Var1)
+THEN
+CharacterLookAt(_Var1, _Var2, 1);
+ProcObjectTimer(_Var1, "RC_DW_WC_Ambush_GrabVoiceBarkTimer", 100);
+
+PROC
+ProcObjectTimerFinished((GUIDSTRING)_Var1, "RC_DW_WC_Ambush_GrabVoiceBarkTimer")
+THEN
+Proc_StartDialog(1, "RC_DW_WC_AD_DuringCapture", _Var1);
+
+IF
+StoryEvent((CHARACTERGUID)_Var1, "DB_RC_DW_WC_Ambush_Contact")
+AND
+DB_RC_DW_WC_AmbushPair(_Var1, _Var2)
+AND
+IsTagged(_Var2, "AI_IGNORED_TARGET", 0)
+THEN
+SetTag(_Var2, "AI_IGNORED_TARGET");
+
+IF
+StoryEvent((CHARACTERGUID)_Var1, "DB_RC_DW_WC_Ambush_Contact")
+AND
+DB_RC_DW_WC_AmbushPair(_Var1, _Var2)
+THEN
+NOT DB_RC_DW_WC_Incapacitated(_Var2);
+DB_RC_DW_WC_Ambush_PlayerInsectAttached(_Var2, _Var1);
+ApplyStatus(_Var1, "CARRYCOCOON", -1, 1);
+CharacterSetDetached(_Var2, 1);
+CharacterFreeze(_Var2);
+DB_BlockWaypointUsage(_Var2);
+EndTurn(_Var1);
+SetScriptframe(_Var1, "FinishGrab");
+
+IF
+TextEventSet("wc_removestatus")
+AND
+DB_IsPlayer(_Var1)
+THEN
+RemoveStatus(_Var1, "FROZEN");
+RemoveStatus(_Var1, "STUNNED");
+RemoveStatus(_Var1, "SLEEPING");
+RemoveStatus(_Var1, "PETRIFIED");
+RemoveStatus(_Var1, "KNOCKED_DOWN");
+
+PROC
+PROC_RC_DW_WC_Ambush_DetachIfAttached_InsectPlayer((CHARACTERGUID)_Var1, (CHARACTERGUID)_Var2, (INTEGER)_Var3)
+AND
+DB_RC_DW_WC_Ambush_PlayerInsectAttached(_Var2, _Var1)
+THEN
+NOT DB_RC_DW_WC_Ambush_PlayerInsectAttached(_Var2, _Var1);
+RemoveStatus(_Var1, "CARRYCOCOON");
+SetVarInteger(_Var1, "bool_Grabbed", 0);
+CharacterSetDetached(_Var2, 0);
+CreateSurface(_Var2, "SurfaceWeb", 1.5, 1);
+ClearTag(_Var2, "AI_IGNORED_TARGET");
+
+PROC
+PROC_RC_DW_WC_Ambush_DetachIfAttached_InsectPlayer((CHARACTERGUID)_Var1, (CHARACTERGUID)_Var2, 1)
+THEN
+CharacterUnfreeze(_Var2);
+NOT DB_BlockWaypointUsage(_Var2);
+
+IF
+StoryEvent((CHARACTERGUID)_Var1, "DB_RC_DW_WC_Ambush_Pull")
+AND
+DB_RC_DW_WC_AmbushPair(_Var1, _Var2)
+THEN
+SetFaction(_Var1, "Neutral");
+SetCanJoinCombat(_Var1, 0);
+PROC_RC_DW_WC_RecordCaptureWitnesses(_Var1);
+DialogRequestStop(_Var2);
+CharacterPurgeQueue(_Var2);
+RemoveStatus(_Var2, "RESTED");
+CharacterDetachFromGroup(_Var2);
+Proc_ShakeCameraForTime(_Var2, 4000);
+DB_RC_DW_WC_AmbushLeavingCombat(_Var1);
+
+IF
+ObjectLeftCombat((CHARACTERGUID)_Var1, _)
+AND
+DB_RC_DW_WC_AmbushLeavingCombat(_Var1)
+THEN
+ProcObjectTimer(_Var1, "RC_DW_WC_EndOfSheatheAnimation", 2000);
+
+PROC
+ProcObjectTimerFinished((CHARACTERGUID)_Var1, "RC_DW_WC_EndOfSheatheAnimation")
+AND
+DB_RC_DW_WC_AmbushLeavingCombat(_Var1)
+AND
+DB_RC_DW_WC_AmbushBurrowingHelper(_Var1, _Var2)
+THEN
+NOT DB_RC_DW_WC_AmbushLeavingCombat(_Var1);
+PROC_RC_DW_WC_BurrowGiantInsect(_Var1, _Var2, "DB_RC_DW_WC_Ambush_Grabbed", "Burrow");
+
+IF
+StoryEvent((CHARACTERGUID)_Var1, "DB_RC_DW_WC_Ambush_Grabbed")
+AND
+DB_RC_DW_WC_AmbushPair(_Var1, _Var2)
+AND
+DB_RC_DW_WC_AmbushAttackInsect(_Var1, _Var3)
+AND
+DB_RC_DW_WC_AmbushTargetBox(_Var3, _Var4)
+AND
+DB_RC_DW_WC_AmbushUnburrowingHelper(_Var1, _Var5)
+THEN
+TeleportTo(_Var1, _Var3);
+TeleportTo(_Var2, _Var3);
+ObjectSetFlag(_Var2, "QuestUpdate_RC_DW_WC_AtaraxianLair_GotDraggedUnderground");
+DB_RC_DW_WC_AtaraxianLair_GotDraggedUnderground(_Var2);
+ObjectClearFlag(_Var2, "RC_DW_WC_BeingAbducted", 0);
+ObjectSetFlag(_Var2, "RC_DW_WC_HaveBeenAbductedBefore");
+TriggerRegisterForCharacter(_Var4, _Var2);
+PROC_RC_DW_WC_BurrowGiantInsect(_Var1, _Var5, "DB_RC_DW_WC_Ambush_AtDestination", "Unburrow");
+
+IF
+StoryEvent((CHARACTERGUID)_Var1, "DB_RC_DW_WC_Ambush_AtDestination")
+AND
+DB_RC_DW_WC_AmbushPair(_Var1, _Var2)
+THEN
+NOT DB_RC_DW_WC_Ambush_Pull_Done(_Var1);
+PROC_RC_DW_WC_Ambush_DetachIfAttached_InsectPlayer(_Var1, _Var2, 0);
+TeleportTo(_Var2, _Var1, "RC_DW_WC_AmbushPlayerAtDestinationWithInsect", 0);
+
+IF
+StoryEvent((CHARACTERGUID)_Var1, "DB_RC_DW_WC_Ambush_AtDestination")
+AND
+DB_RC_DW_WC_AmbushPair(_Var1, _Var2)
+AND
+CharacterIsInCombat(_Var2, 1)
+THEN
+LeaveCombat(_Var2);
+
+IF
+StoryEvent((CHARACTERGUID)_Var1, "RC_DW_WC_AmbushPlayerAtDestinationWithInsect")
+AND
+DB_RC_DW_WC_AmbushPair(_Var2, _Var1)
+AND
+DB_RC_DW_WC_AmbushFinalBurrowingHelper(_Var2, _Var3)
+THEN
+CharacterSetAnimationOverride(_Var1, "knockdown_loop");
+PROC_RC_DW_WC_BurrowGiantInsect(_Var2, _Var3, "DB_RC_DW_WC_Ambush_FinalBurrow", "Burrow");
+DB_RC_DW_WC_AmbushArrivedAtDestination(_Var1);
+
+IF
+StoryEvent((CHARACTERGUID)_Var1, "DB_RC_DW_WC_Ambush_FinalBurrow")
+AND
+DB_RC_DW_WC_AmbushPair(_Var1, _Var2)
+AND
+DB_RC_DW_WC_AmbushAttackInsect(_Var1, _Var3)
+THEN
+NOT DB_RC_DW_WC_AmbushPair(_Var1, _Var2);
+NOT DB_RC_DW_WC_AmbushAttackInsect(_Var1, _Var3);
+ProcObjectTimer(_Var2, "RC_DW_WC_Ambush_GetUp", 2000);
+PROC_RC_DW_WC_CheckIfAllAmbushInsectsGone();
+
+PROC
+ProcObjectTimerFinished(_, "RC_DW_WC_Ambush_GetUp")
+AND
+QueryOnlyOnce("RC_DW_WC_Ambush_GetUp_AutoSave")
+THEN
+DB_AutoSaveTrigger(TRIGGERGUID_S_RC_DW_WC_Autosave_Lookout_1e063737-a814-4597-811e-7fecb9baf40b);
+
+QRY
+QRY_RC_DW_WC_AmbushAttackInsectsLeft()
+AND
+DB_RC_DW_WC_AmbushAttackInsect(_, _)
+THEN
+DB_NOOP(1);
+
+PROC
+PROC_RC_DW_WC_CheckIfAllAmbushInsectsGone()
+AND NOT
+QRY_RC_DW_WC_AmbushAttackInsectsLeft()
+THEN
+GlobalSetFlag("RC_DW_WC_AllAmbushInsectsGone");
+
+PROC
+ProcObjectTimerFinished((CHARACTERGUID)_Var1, "RC_DW_WC_Ambush_GetUp")
+THEN
+CharacterSetAnimationOverride(_Var1, "");
+CharacterUnfreeze(_Var1);
+NOT DB_BlockWaypointUsage(_Var1);
+PlayAnimation(_Var1, "knockdown_getup");
+PROC_RC_DW_WC_Ambush_AfterKidnap(_Var1);
+
+IF
+CharacterLeftTrigger((CHARACTERGUID)_Var1, (TRIGGERGUID)_Var2)
+AND
+DB_RC_DW_WC_AmbushTargetBox(_, _Var2)
+THEN
+TriggerUnregisterForCharacter(_Var2, _Var1);
+PROC_RC_DW_WC_MaybeExitAbductionAreaAD(_Var1, _Var2);
+
+PROC
+PROC_RC_DW_WC_MaybeExitAbductionAreaAD((CHARACTERGUID)_Var1, (TRIGGERGUID)_Var2)
+AND NOT
+DB_RC_DW_WC_Found(_, _Var1)
+AND NOT
+DB_RC_DW_WC_Found(_Var1, _)
+THEN
+Proc_StartDialog(1, "RC_DW_WC_AD_ExitAbductionArea", _Var1);
+
+IF
+TextEventSet("wc_meetup")
+AND
+DB_RC_DW_WC_DebugPlayerTeleported(_Var1, _Var2)
+THEN
+NOT DB_RC_DW_WC_DebugPlayerTeleported(_Var1, _Var2);
+
+IF
+TextEventSet("wc_meetup")
+AND
+DB_RC_DW_WC_Found(_Var1, _Var2)
+THEN
+NOT DB_RC_DW_WC_Found(_Var1, _Var2);
+
+IF
+TextEventSet("wc_meetup")
+AND
+DB_RC_DW_WC_AmbushArrivedAtDestination(_Var1)
+THEN
+NOT DB_RC_DW_WC_AmbushArrivedAtDestination(_Var1);
+NOT DB_RC_DW_WC_AtaraxianLair_GotDraggedUnderground(_Var1);
+
+IF
+TextEventSet("wc_meetup")
+AND
+DB_IsPlayer(_Var1)
+THEN
+ObjectClearFlag(_Var1, "RC_DW_WC_Ambush_MetFriendAfter", 0);
+
+IF
+TextEventSet("wc_meetup")
+THEN
+ProcDeclareCounter("RC_DW_WC_Ambush_NumPlayerToFind");
+PROC_RC_DW_WC_DebugClearPlayersLeftToFind(0);
+NOT DB_OnlyOnce("RC_DW_WC_CountPlayers");
+
+PROC
+PROC_RC_DW_WC_DebugClearPlayersLeftToFind((INTEGER)_Var1)
+AND
+_Var1 <= 3
+AND
+IntegertoString(_Var1, _Var2)
+AND
+StringConcatenate("RC_DW_WC_Ambush_PlayerLeftToFind_", _Var2, _Var3)
+AND
+IntegerSum(_Var1, 1, _Var4)
+THEN
+GlobalClearFlag(_Var3);
+PROC_RC_DW_WC_DebugClearPlayersLeftToFind(_Var4);
+
+IF
+TextEventSet("wc_meetup")
+AND
+DB_IsPlayer(_Var1)
+AND
+DB_RC_DW_WC_AmbushAttackInsect(_, _Var3)
+AND NOT
+DB_RC_DW_WC_DebugPlayerTeleported(_Var1, _)
+AND NOT
+DB_RC_DW_WC_DebugPlayerTeleported(_, _Var3)
+THEN
+DB_RC_DW_WC_DebugPlayerTeleported(_Var1, _Var3);
+DB_RC_DW_WC_AtaraxianLair_GotDraggedUnderground(_Var1);
+DB_RC_DW_WC_AmbushArrivedAtDestination(_Var1);
+TeleportTo(_Var1, _Var3);
+PROC_RC_DW_WC_Ambush_AfterKidnap(_Var1);
+
+PROC
+PROC_RC_DW_WC_Ambush_AfterKidnap((CHARACTERGUID)_Var1)
+AND
+DB_IsPlayer(_Var2)
+AND
+_Var2 != _Var1
+THEN
+GlobalSetFlag("RC_DW_WC_Ambush_MultiplePC");
+
+PROC
+PROC_RC_DW_WC_Ambush_AfterKidnap((CHARACTERGUID)_Var1)
+THEN
+StartVoiceBark("RC_DW_WC_VB_AfterKidnap", _Var1);
+
+PROC
+PROC_RC_DW_WC_Ambush_AfterKidnap((CHARACTERGUID)_Var1)
+AND
+QueryOnlyOnce("RC_DW_WC_CountPlayers")
+THEN
+PROC_RC_DW_WC_CountPlayers();
+
+PROC
+PROC_RC_DW_WC_CountPlayers()
+AND
+DB_IsPlayer(_Var1)
+THEN
+ProcIncreaseCounter("RC_DW_WC_Ambush_NumPlayerToFind");
+
+PROC
+PROC_RC_DW_WC_CountPlayers()
+THEN
+ProcDecreaseCounter("RC_DW_WC_Ambush_NumPlayerToFind");
+
+IF
+CharacterSawCharacter((CHARACTERGUID)_Var1, (CHARACTERGUID)_Var2)
+AND
+DB_RC_DW_WC_AmbushArrivedAtDestination(_)
+AND
+DB_RC_DW_WC_AtaraxianLair_GotDraggedUnderground(_Var1)
+AND
+DB_IsPlayer(_Var2)
+AND NOT
+DB_RC_DW_WC_Found(_Var2, _Var1)
+AND
+GlobalGetFlag("RC_DW_WC_BossElderIsDead", 0)
+AND
+GlobalGetFlag("RC_DW_WC_BossFight_BossFlee", 0)
+AND
+QRY_SpeakerIsAvailableAndInDialogRange(_Var1, _Var2)
+AND
+QRY_SpeakerIsAvailable(_Var1, 0)
+THEN
+DB_RC_DW_WC_Found(_Var1, _Var2);
+DB_RC_DW_WC_Found(_Var2, _Var1);
+PROC_RC_DW_WC_Ambush_MarkFoundPlayers(_Var1, _Var2);
+PROC_RC_DW_WC_Ambush_CheckNumPlayerLeft(_Var1, _Var2);
+
+PROC
+PROC_RC_DW_WC_Ambush_MarkFoundPlayers((CHARACTERGUID)_Var1, (CHARACTERGUID)_Var2)
+AND
+DB_RC_DW_WC_Found(_Var2, _Var3)
+THEN
+DB_RC_DW_WC_Found(_Var3, _Var1);
+DB_RC_DW_WC_Found(_Var1, _Var3);
+
+PROC
+PROC_RC_DW_WC_Ambush_MarkFoundPlayers((CHARACTERGUID)_Var1, (CHARACTERGUID)_Var2)
+AND
+DB_RC_DW_WC_Found(_Var1, _Var3)
+THEN
+DB_RC_DW_WC_Found(_Var3, _Var2);
+DB_RC_DW_WC_Found(_Var2, _Var3);
+
+PROC
+PROC_RC_DW_WC_Ambush_CheckNumPlayerLeft((CHARACTERGUID)_Var1, (CHARACTERGUID)_Var2)
+AND
+ObjectGetFlag(_Var1, "RC_DW_WC_Ambush_MetFriendAfter", 0)
+THEN
+ProcDecreaseCounter("RC_DW_WC_Ambush_NumPlayerToFind");
+ObjectSetFlag(_Var1, "RC_DW_WC_Ambush_MetFriendAfter");
+DB_RC_DW_WC_Ambush_Counted_MetFriendAfter(1);
+
+PROC
+PROC_RC_DW_WC_Ambush_CheckNumPlayerLeft((CHARACTERGUID)_Var1, (CHARACTERGUID)_Var2)
+AND NOT
+DB_RC_DW_WC_Ambush_Counted_MetFriendAfter(1)
+AND
+ObjectGetFlag(_Var2, "RC_DW_WC_Ambush_MetFriendAfter", 0)
+THEN
+ProcDecreaseCounter("RC_DW_WC_Ambush_NumPlayerToFind");
+ObjectSetFlag(_Var2, "RC_DW_WC_Ambush_MetFriendAfter");
+
+PROC
+PROC_RC_DW_WC_Ambush_CheckNumPlayerLeft((CHARACTERGUID)_Var1, (CHARACTERGUID)_Var2)
+AND
+DB_GlobalCounter("RC_DW_WC_Ambush_NumPlayerToFind", _Var3)
+AND
+IntegertoString(_Var3, _Var4)
+AND
+StringConcatenate("RC_DW_WC_Ambush_PlayerLeftToFind_", _Var4, _Var5)
+THEN
+NOT DB_RC_DW_WC_Ambush_Counted_MetFriendAfter(1);
+GlobalSetFlag(_Var5);
+DB_RC_DW_WC_VB_AfterKidnapReunion(_Var5);
+Proc_StartDialog(1, "RC_DW_WC_VB_AfterKidnapReunion", _Var1, _Var2);
+
+QRY
+QRY_RC_DW_WC_Ambush_AbductedPlayerLeftInCave()
+AND
+DB_InRegion(_Var1, TRIGGERGUID_S_RC_DW_WreckersCave_Box_759f16fa-f59d-4686-b052-b598f2f2410a)
+AND
+DB_RC_DW_WC_AmbushArrivedAtDestination(_Var1)
+THEN
+DB_NOOP(1);
+
+IF
+CharacterLeftTrigger((CHARACTERGUID)_Var1, TRIGGERGUID_S_RC_DW_WreckersCave_Box_759f16fa-f59d-4686-b052-b598f2f2410a)
+AND NOT
+QRY_RC_DW_WC_Ambush_AbductedPlayerLeftInCave()
+THEN
+PROC_RC_DW_WC_Ambush_StopLookingForPlayers();
+
+IF
+AutomatedDialogEnded("RC_DW_WC_VB_AfterKidnapReunion", _)
+AND
+GlobalGetFlag("RC_DW_WC_Ambush_PlayerLeftToFind_0", 1)
+THEN
+PROC_RC_DW_WC_Ambush_StopLookingForPlayers();
+
+IF
+AutomatedDialogRequestFailed("RC_DW_WC_VB_AfterKidnapReunion", _)
+AND
+GlobalGetFlag("RC_DW_WC_Ambush_PlayerLeftToFind_0", 1)
+THEN
+PROC_RC_DW_WC_Ambush_StopLookingForPlayers();
+
+IF
+GlobalFlagSet("RC_DW_WC_BossElderIsDead")
+THEN
+PROC_RC_DW_WC_Ambush_StopLookingForPlayers();
+
+IF
+GlobalFlagSet("RC_DW_WC_BossFight_BossFlee")
+THEN
+PROC_RC_DW_WC_Ambush_StopLookingForPlayers();
+
+PROC
+PROC_RC_DW_WC_Ambush_StopLookingForPlayers()
+AND
+DB_RC_DW_WC_VB_AfterKidnapReunion(_Var1)
+THEN
+NOT DB_RC_DW_WC_VB_AfterKidnapReunion(_Var1);
+GlobalClearFlag(_Var1);
+
+PROC
+PROC_RC_DW_WC_Ambush_StopLookingForPlayers()
+AND
+DB_IsPlayer(_Var1)
+THEN
+ObjectClearFlag(_Var1, "RC_DW_WC_HaveBeenAbductedBefore", 0);
+ObjectClearFlag(_Var1, "RC_DW_WC_BeingAbducted", 0);
+ObjectClearFlag(_Var1, "RC_DW_WC_SawInsectAbduction", 0);
+
+IF
+ObjectEnteredCombat((CHARACTERGUID)_Var1, (INTEGER)_Var2)
+AND
+DB_RC_DW_WC_AmbushPair(_Var1, _Var3)
+THEN
+DB_RC_DW_WC_AmbushCombat(_Var2);
+
+IF
+DB_RC_DW_WC_AmbushArrivedAtDestination(_Var1)
+AND
+DB_RC_DW_WC_AmbushCombat(_Var2)
+AND
+DB_CombatCharacters(_Var1, _Var2)
+THEN
+DB_RC_DW_WC_AmbushPlayerAbductedInCombat(_Var1, _Var2);
+
+IF
+CombatEnded((INTEGER)_Var1)
+AND
+DB_RC_DW_WC_AmbushCombat(_Var1)
+AND NOT
+DB_RC_DW_WC_AmbushAfterKidnapLeftBehindVBStarted(_Var1)
+AND
+DB_IsPlayer(_Var2)
+AND
+DB_WasInCombat(_Var2, _Var3)
+AND NOT
+DB_RC_DW_WC_AmbushPlayerAbductedInCombat(_Var2, _Var1)
+AND
+ObjectGetFlag(_Var2, "RC_DW_WC_SawInsectAbduction", 1)
+THEN
+DB_RC_DW_WC_AmbushAfterKidnapLeftBehindVBStarted(_Var1);
+StartVoiceBark("RC_DW_WC_VB_AfterAbductionLeftBehind", _Var2);
+
+IF
+CombatEnded((INTEGER)_Var1)
+AND
+DB_RC_DW_WC_AmbushCombat(_Var1)
+THEN
+PROC_RC_DW_WC_CleanUpAmbushCombatInfo(_Var1);
+
+PROC
+PROC_RC_DW_WC_CleanUpAmbushCombatInfo((INTEGER)_Var1)
+THEN
+NOT DB_RC_DW_WC_AmbushCombat(_Var1);
+NOT DB_RC_DW_WC_AmbushAfterKidnapLeftBehindVBStarted(_Var1);
+
+PROC
+PROC_RC_DW_WC_CleanUpAmbushCombatInfo((INTEGER)_Var1)
+AND
+DB_RC_DW_WC_AmbushPlayerAbductedInCombat(_Var2, _Var1)
+THEN
+NOT DB_RC_DW_WC_AmbushPlayerAbductedInCombat(_Var2, _Var1);
+
+IF
+StoryEvent(_, "DB_RC_DW_WC_Ambush_FinalBurrow")
+AND
+QueryOnlyOnce("RC_WC_TunnelFallbackEntraceShow")
+AND
+DB_BidirShovelPileTunnel("RC_WC_TunnelFallback", _, _, _, _, _, _)
+THEN
+SetOnStage(ITEMGUID_S_RC_WC_PUZ_SandWhitepile_Tunnel_9b191cb5-53cb-4a40-bc54-b5789ca21710, 1);
+
+IF
+DB_Dead(_Var1)
+AND
+DB_RC_DW_WC_AmbushAttackInsect(_Var1, _)
+AND
+DB_BidirShovelPileTunnel("RC_WC_TunnelFallback", _, _, _, _, _, _)
+THEN
+SetOnStage(ITEMGUID_S_RC_WC_PUZ_SandWhitepile_Tunnel_9b191cb5-53cb-4a40-bc54-b5789ca21710, 1);
+
+PROC
+PROC_RC_DW_WC_AmbushFailed_ResetPlayer_InsectDead((CHARACTERGUID)_Var1, (CHARACTERGUID)_Var2)
+AND
+QueryOnlyOnce("RC_WC_TunnelFallbackEntraceShow")
+AND
+DB_BidirShovelPileTunnel("RC_WC_TunnelFallback", _, _, _, _, _, _)
+THEN
+SetOnStage(ITEMGUID_S_RC_WC_PUZ_SandWhitepile_Tunnel_9b191cb5-53cb-4a40-bc54-b5789ca21710, 1);
+
+PROC
+ProcRegionEnded("RC_Main")
+AND
+DB_RC_DW_WC_Ambush_PlayerInsectAttached(_Var1, _Var2)
+THEN
+PROC_RC_DW_WC_Ambush_DetachIfAttached_InsectPlayer(_Var2, _Var1, 1);
+
+PROC
+ProcRegionEnded("RC_Main")
+THEN
+GoalCompleted;
+
+
+EXITSECTION
+ENDEXITSECTION
+
+ParentTargetEdge "RC_DW_WreckersCave_AmbushBase"

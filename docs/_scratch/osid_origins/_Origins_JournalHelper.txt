@@ -1,0 +1,115 @@
+Version 1
+SubGoalCombiner SGC_AND
+
+INITSECTION
+
+KBSECTION
+IF
+ObjectFlagSet((STRING)_Var1, (CHARACTERGUID)_Var2, _)
+AND
+DB_CompanionUpdateObjectFlag(_Var4, _Var5, _Var1)
+AND
+DB_OriginID(_Var6, _Var4)
+AND NOT
+DB_Avatars(_Var6)
+AND
+DB_CompanionAvatarBond(_Var6, _Var2)
+THEN
+UserSetFlag(_Var2, _Var5);
+
+IF
+GlobalFlagSet((STRING)_Var1)
+AND
+DB_CompanionUpdateGlobalFlag(_Var2, _Var3, _Var1)
+AND
+DB_OriginID(_Var4, _Var2)
+AND NOT
+DB_Avatars(_Var4)
+AND
+DB_CompanionAvatarBond(_Var4, _Var5)
+THEN
+UserSetFlag(_Var5, _Var3);
+
+PROC
+ProcRegionStarted((STRING)_Var1)
+AND
+DB_CompanionUpdateRegionStart(_Var2, _Var3, _Var1)
+AND
+DB_OriginID(_Var4, _Var2)
+AND NOT
+DB_Avatars(_Var4)
+AND
+DB_CompanionAvatarBond(_Var4, _Var5)
+THEN
+UserSetFlag(_Var5, _Var3);
+
+PROC
+ProcRegionStarted((STRING)_Var1)
+AND
+DB_CompanionUpdateRegionStart_ObjFlag_ObjFlag(_Var2, _Var1, _Var3, _Var4, _Var5, _Var6, _Var7)
+AND
+DB_OriginID(_Var8, _Var2)
+AND NOT
+DB_Avatars(_Var8)
+AND
+DB_CompanionAvatarBond(_Var8, _Var9)
+AND
+UserGetFlag(_Var8, _Var4, _Var5)
+AND
+UserGetFlag(_Var8, _Var6, _Var7)
+THEN
+UserSetFlag(_Var9, _Var3);
+
+IF
+ObjectFlagSet((STRING)_Var1, (CHARACTERGUID)_Var2, _)
+AND
+DB_Avatars(_Var2)
+AND
+DB_AvatarUpdateObjectFlag(_Var4, _Var5, _Var1)
+AND
+DB_OriginID(_Var2, _Var4)
+THEN
+ObjectSetFlag(_Var2, _Var5);
+
+IF
+GlobalFlagSet((STRING)_Var1)
+AND
+DB_AvatarUpdateGlobalFlag(_Var2, _Var3, _Var1)
+AND
+DB_OriginID(_Var4, _Var2)
+AND
+DB_Avatars(_Var4)
+THEN
+ObjectSetFlag(_Var4, _Var3);
+
+PROC
+ProcRegionStarted((STRING)_Var1)
+AND
+DB_Avatars(_Var2)
+AND
+DB_OriginID(_Var2, _Var3)
+AND
+DB_AvatarUpdateRegionStart(_Var3, _Var4, _Var1)
+THEN
+ObjectSetFlag(_Var2, _Var4);
+
+PROC
+ProcRegionStarted((STRING)_Var1)
+AND
+DB_Avatars(_Var2)
+AND
+DB_OriginID(_Var2, _Var3)
+AND
+DB_AvatarUpdateRegionStart_ObjFlag_ObjFlag(_Var3, _Var1, _Var4, _Var5, _Var6, _Var7, _Var8)
+AND
+ObjectGetFlag(_Var2, _Var5, _Var6)
+AND
+ObjectGetFlag(_Var2, _Var7, _Var8)
+THEN
+UserSetFlag(_Var2, _Var4);
+
+
+EXITSECTION
+ENDEXITSECTION
+
+ParentTargetEdge "DOS2ModWrapper"

@@ -1,0 +1,652 @@
+Version 1
+SubGoalCombiner SGC_AND
+
+INITSECTION
+DB_ARX_DemonAmbush(CHARACTERGUID_S_ARX_DemonAmbush1_cfd1a537-df32-46fc-9878-2c4181fd3c14, "ARX_Demon1Spotted", "ARX_DemonAmbush_Demon1Spotted");
+DB_ARX_DemonAmbush(CHARACTERGUID_S_ARX_DemonAmbush2_3dad22a2-0c6f-4f34-bfeb-b83c64e23832, "ARX_Demon2Spotted", "ARX_DemonAmbush_Demon2Spotted");
+DB_ARX_DemonAmbush(CHARACTERGUID_S_ARX_DemonAmbush3_a9cdf6c2-43f1-48eb-a976-9337f6bd36d2, "ARX_Demon3Spotted", "ARX_DemonAmbush_Demon3Spotted");
+DB_ARX_DemonAmbush(CHARACTERGUID_S_ARX_DemonAmbush4_55da9d21-9eaf-445b-82b0-aae2c85aac96, "ARX_Demon4Spotted", "");
+DB_ARX_DemonAmbushPosts(CHARACTERGUID_S_ARX_DemonAmbush1_cfd1a537-df32-46fc-9878-2c4181fd3c14, SPLINEGUID_S_ARX_DemonPatrol1_2977a2a9-780f-4c16-9935-3059e04f0dc8);
+DB_ARX_DemonAmbushPosts(CHARACTERGUID_S_ARX_DemonAmbush2_3dad22a2-0c6f-4f34-bfeb-b83c64e23832, SPLINEGUID_S_ARX_DemonPatrol2_09cf75c5-5699-4497-89df-93374afe9fb4);
+DB_ARX_DemonAmbushPosts(CHARACTERGUID_S_ARX_DemonAmbush3_a9cdf6c2-43f1-48eb-a976-9337f6bd36d2, SPLINEGUID_S_ARX_DemonPatrol3_fdfda4f4-40c6-4c9e-b926-d2ce8492d815);
+DB_ARX_DemonAmbushRelocate(S_ARX_DemonPatrol1_2977a2a9-780f-4c16-9935-3059e04f0dc8, CHARACTERGUID_S_ARX_DemonAmbush1_cfd1a537-df32-46fc-9878-2c4181fd3c14, TRIGGERGUID_S_ARX_DemonAmbush_Respawn1_1_78312926-9ee2-4dfd-a14f-ad7ce22199c4);
+DB_ARX_DemonAmbushRelocate(S_ARX_DemonPatrol1_2977a2a9-780f-4c16-9935-3059e04f0dc8, CHARACTERGUID_S_ARX_DemonAmbush2_3dad22a2-0c6f-4f34-bfeb-b83c64e23832, TRIGGERGUID_S_ARX_DemonAmbush_Respawn1_2_7e327f64-213f-4c94-ac1f-2e2d3fb1dd3e);
+DB_ARX_DemonAmbushRelocate(S_ARX_DemonPatrol1_2977a2a9-780f-4c16-9935-3059e04f0dc8, CHARACTERGUID_S_ARX_DemonAmbush3_a9cdf6c2-43f1-48eb-a976-9337f6bd36d2, TRIGGERGUID_S_ARX_DemonAmbush_Respawn1_3_a18a80fd-2eef-461b-9f90-bd44b087a7f7);
+DB_ARX_DemonAmbushRelocate(S_ARX_DemonPatrol1_2977a2a9-780f-4c16-9935-3059e04f0dc8, CHARACTERGUID_S_ARX_DemonAmbush4_55da9d21-9eaf-445b-82b0-aae2c85aac96, TRIGGERGUID_S_ARX_DemonAmbush_Respawn1_4_28ccb3dd-18d1-4373-afe4-9db7d463ea24);
+DB_ARX_DemonAmbushRelocate(SPLINEGUID_S_ARX_DemonPatrol2_09cf75c5-5699-4497-89df-93374afe9fb4, CHARACTERGUID_S_ARX_DemonAmbush1_cfd1a537-df32-46fc-9878-2c4181fd3c14, TRIGGERGUID_S_ARX_DemonAmbush_Respawn2_1_bc24a11f-bad7-4092-b882-b7d6a3816e24);
+DB_ARX_DemonAmbushRelocate(SPLINEGUID_S_ARX_DemonPatrol2_09cf75c5-5699-4497-89df-93374afe9fb4, CHARACTERGUID_S_ARX_DemonAmbush2_3dad22a2-0c6f-4f34-bfeb-b83c64e23832, TRIGGERGUID_S_ARX_DemonAmbush_Respawn2_2_12990258-afd4-498e-b0f4-de1a6a771776);
+DB_ARX_DemonAmbushRelocate(SPLINEGUID_S_ARX_DemonPatrol2_09cf75c5-5699-4497-89df-93374afe9fb4, CHARACTERGUID_S_ARX_DemonAmbush3_a9cdf6c2-43f1-48eb-a976-9337f6bd36d2, TRIGGERGUID_S_ARX_DemonAmbush_Respawn2_3_2582826f-2def-45cb-bf33-9a9e914a8a4f);
+DB_ARX_DemonAmbushRelocate(SPLINEGUID_S_ARX_DemonPatrol2_09cf75c5-5699-4497-89df-93374afe9fb4, CHARACTERGUID_S_ARX_DemonAmbush4_55da9d21-9eaf-445b-82b0-aae2c85aac96, TRIGGERGUID_S_ARX_DemonAmbush_Respawn2_4_127d2579-54e1-4f85-8568-e8ec50325fee);
+DB_ARX_DemonAmbushRelocate(SPLINEGUID_S_ARX_DemonPatrol3_fdfda4f4-40c6-4c9e-b926-d2ce8492d815, CHARACTERGUID_S_ARX_DemonAmbush1_cfd1a537-df32-46fc-9878-2c4181fd3c14, TRIGGERGUID_S_ARX_DemonAmbush_Respawn3_1_81e2c0d9-0e8e-4d29-b61d-e8705649bda2);
+DB_ARX_DemonAmbushRelocate(SPLINEGUID_S_ARX_DemonPatrol3_fdfda4f4-40c6-4c9e-b926-d2ce8492d815, CHARACTERGUID_S_ARX_DemonAmbush2_3dad22a2-0c6f-4f34-bfeb-b83c64e23832, TRIGGERGUID_S_ARX_DemonAmbush_Respawn3_2_f508d6cb-4d4f-4e7f-971e-457e4c58f8f1);
+DB_ARX_DemonAmbushRelocate(SPLINEGUID_S_ARX_DemonPatrol3_fdfda4f4-40c6-4c9e-b926-d2ce8492d815, CHARACTERGUID_S_ARX_DemonAmbush3_a9cdf6c2-43f1-48eb-a976-9337f6bd36d2, TRIGGERGUID_S_ARX_DemonAmbush_Respawn3_3_6fe4ee6a-9ef7-458f-b598-1d68c5d50049);
+DB_ARX_DemonAmbushRelocate(SPLINEGUID_S_ARX_DemonPatrol3_fdfda4f4-40c6-4c9e-b926-d2ce8492d815, CHARACTERGUID_S_ARX_DemonAmbush4_55da9d21-9eaf-445b-82b0-aae2c85aac96, TRIGGERGUID_S_ARX_DemonAmbush_Respawn3_4_04f6fd48-3a07-4260-acb4-247239298fcd);
+SetOnStage(CHARACTERGUID_S_ARX_DemonAmbush4_55da9d21-9eaf-445b-82b0-aae2c85aac96, 0);
+SetOnStage(CHARACTERGUID_S_ARX_DemonAmbush5_32432d65-85d3-4ad6-bfc7-7ce9ed1caa06, 0);
+SetOnStage(CHARACTERGUID_S_ARX_DemonAmbush6_a25898de-df3b-46c7-94d7-8401ffd57f76, 0);
+DB_QuestDef_State("ARX_DemonAmbush", "FightDemons");
+DB_QuestDef_State("ARX_DemonAmbush", "BlackRing");
+DB_QuestDef_State("ARX_DemonAmbush", "DallisSent");
+DB_QuestDef_State("ARX_DemonAmbush", "CloseLeftARX", -1);
+DB_ARX_DemonAmbush_Demon(CHARACTERGUID_S_ARX_DemonAmbush1_cfd1a537-df32-46fc-9878-2c4181fd3c14);
+DB_ARX_DemonAmbush_Demon(CHARACTERGUID_S_ARX_DemonAmbush2_3dad22a2-0c6f-4f34-bfeb-b83c64e23832);
+DB_ARX_DemonAmbush_Demon(CHARACTERGUID_S_ARX_DemonAmbush3_a9cdf6c2-43f1-48eb-a976-9337f6bd36d2);
+DB_ARX_DemonAmbush_Demon(CHARACTERGUID_S_ARX_DemonAmbush4_55da9d21-9eaf-445b-82b0-aae2c85aac96);
+DB_ARX_DemonAmbush_Demon(CHARACTERGUID_S_ARX_DemonAmbush5_32432d65-85d3-4ad6-bfc7-7ce9ed1caa06);
+DB_ARX_DemonAmbush_Demon(CHARACTERGUID_S_ARX_DemonAmbush6_a25898de-df3b-46c7-94d7-8401ffd57f76);
+DB_ARX_DemonAmbushSpotFlags("ARX_DemonAmbush_Demon1Spotter_LearnedAboutSecret");
+DB_ARX_DemonAmbushSpotFlags("ARX_DemonAmbush_Demon2Spotter_LearnedAboutSecret");
+DB_ARX_DemonAmbushSpotFlags("ARX_DemonAmbush_Demon3Spotter_LearnedAboutSecret");
+DB_ARX_DemonAmbush_SetHostileFlags("QuestUpdate_RC_BF_ThePresence_FoundOutDemonsName");
+DB_ARX_DemonAmbush_SetHostileFlags("GLO_Lohse_KnowDemonName");
+DB_ARX_DemonAmbush_SetHostileFlags("JDF_RC_BF_ThePresence_KilledLizardDemon");
+
+KBSECTION
+IF
+StoryEvent((GUIDSTRING)_Var1, "ARX_DemonAmbush_Transform")
+AND
+GetVarFixedString(_Var1, "Template", _Var2)
+THEN
+PlayEffect(_Var1, "RS3_FX_Char_Creature_Demons_Ambush_Impact_01");
+Transform(_Var1, _Var2, 0, 1);
+
+IF
+DB_ARX_DemonAmbush_Demon(_Var1)
+AND
+CharacterGetEquippedWeapon(_Var1, _Var2)
+THEN
+CharacterUnequipItem(_Var1, _Var2);
+DB_ARX_DemonAmbush_DemonWeapon(_Var1, _Var2);
+
+IF
+DB_ARX_DemonAmbush(_Var1, _, _Var3)
+AND
+_Var3 != ""
+THEN
+ProcCharacterDisableAllCrimes(_Var1);
+DB_Dialogs(_Var1, _Var3);
+ProcCharacterDisableCrime(_Var1, "Assault");
+ProcCharacterDisableCrime(_Var1, "TeleportPlayerDialog");
+DB_NoLowAttitudeDialog(_Var1);
+DB_IgnoreAssault(_Var1);
+
+IF
+CharacterWentOnStage((CHARACTERGUID)_Var1, 1)
+AND
+DB_ARX_DemonAmbush(_Var1, _, _)
+THEN
+NOT DB_ARX_DemonAmbushOffStage(_Var1);
+
+IF
+CharacterWentOnStage((CHARACTERGUID)_Var1, 0)
+AND
+DB_ARX_DemonAmbush(_Var1, _, _)
+THEN
+DB_ARX_DemonAmbushOffStage(_Var1);
+
+IF
+StoryEvent((GUIDSTRING)_Var1, (STRING)_Var2)
+AND
+DB_ARX_DemonAmbush(_Var3, _Var2, _Var4)
+THEN
+Proc_StartDialog(0, _Var4, _Var3, _Var1);
+
+PROC
+Proc_DialogFlagSetup((STRING)_Var1, (CHARACTERGUID)_Var2, (GUIDSTRING)_Var3)
+AND
+DB_ARX_DemonAmbush(_Var2, _, _Var1)
+AND
+DB_ARX_DemonAmbushPosts(_Var2, _Var5)
+AND
+ObjectGetFlag(_Var3, "ARX_DemonAmbush_DemonsAreHostile", 1)
+THEN
+Proc_ARX_ReinforceDemon(_Var5);
+
+PROC
+Proc_ARX_ReinforceDemon((SPLINEGUID)_Var1)
+AND
+DB_ARX_DemonAmbush(_Var2, _Var3, _Var4)
+AND
+CharacterIsDead(_Var2, 1)
+THEN
+NOT DB_ARX_DemonAmbush(_Var2, _Var3, _Var4);
+
+PROC
+Proc_ARX_ReinforceDemon((SPLINEGUID)_Var1)
+AND
+DB_ARX_DemonAmbushRelocate(_Var1, _Var2, _)
+AND NOT
+DB_ARX_DemonAmbushPosts(_Var2, _Var1)
+AND
+GetPosition(_Var2, _Var4, _Var5, _Var6)
+AND
+CharacterIsDead(_Var2, 0)
+AND NOT
+DB_ARX_DemonAmbushOffStage(_Var2)
+THEN
+PlayEffectAtPosition("RS3_FX_GP_ScriptedEvent_Teleport_GenericSmoke_02", _Var4, _Var5, _Var6);
+
+PROC
+Proc_ARX_ReinforceDemon((SPLINEGUID)_Var1)
+AND
+DB_ARX_DemonAmbushRelocate(_Var1, _Var2, _Var3)
+AND NOT
+DB_ARX_DemonAmbushPosts(_Var2, _Var1)
+AND
+CharacterIsDead(_Var2, 0)
+THEN
+SetStoryEvent(_Var2, "StopPatrol");
+TeleportTo(_Var2, _Var3);
+PlayEffect(_Var2, "RS3_FX_GP_ScriptedEvent_Teleport_GenericSmoke_02");
+SetOnStage(_Var2, 1);
+SetHasDialog(_Var2, 0);
+CharacterSetReactionPriority(_Var2, "WaitCombat", 200);
+SetStoryEvent(_Var2, "StopSpotting");
+SetCombatGroupID(_Var2, "e1c612c6-a2f3-4fb9-acfa-4ebe0319e866");
+
+IF
+ObjectEnteredCombat((CHARACTERGUID)_Var1, _)
+AND
+DB_ARX_DemonAmbush(_Var1, _, _Var4)
+AND
+DB_ARX_DemonAmbushPosts(_Var1, _Var5)
+AND
+DB_ARX_DemonAmbush(_Var6, _, _)
+AND
+_Var6 != _Var1
+AND
+CharacterIsInCombat(_Var6, 0)
+THEN
+Proc_ARX_ReinforceDemon(_Var5);
+
+IF
+ObjectEnteredCombat((CHARACTERGUID)_Var1, _)
+AND
+DB_ARX_DemonAmbush(_Var1, _, _)
+AND
+DB_ARX_DemonAmbush(_Var5, _, _)
+AND
+_Var5 != _Var1
+AND
+CharacterIsInCombat(_Var5, 0)
+THEN
+EnterCombat(_Var5, _Var1);
+
+IF
+ObjectEnteredCombat((CHARACTERGUID)_Var1, _)
+AND
+DB_ARX_DemonAmbush_DemonWeapon(_Var1, _Var3)
+THEN
+CharacterEquipItem(_Var1, _Var3);
+
+PROC
+Proc_ARX_ReinforceDemon((SPLINEGUID)_Var1)
+AND
+DB_ARX_DemonAmbushPosts(_Var2, _Var1)
+THEN
+NOT DB_ARX_DemonAmbushPosts(_Var2, _Var1);
+ClearVarObject(_Var2, "SplineGUID");
+
+IF
+DialogEnded((STRING)_Var1, (INTEGER)_Var2)
+AND
+DB_ARX_DemonAmbush(_Var3, _, _Var1)
+AND
+DialogGetInvolvedPlayer(_Var2, 1, _Var5)
+AND
+ObjectGetFlag(_Var5, "ARX_DemonAmbush_DemonsAreHostile", 1)
+AND
+DB_ARX_DemonAmbush(_Var6, _, _)
+THEN
+SetFaction(_Var6, "ARX_DemonAmbush");
+
+IF
+AttackedByObject((CHARACTERGUID)_Var1, (CHARACTERGUID)_Var2, _, _, _)
+AND
+DB_ARX_DemonAmbushPosts(_Var1, _Var6)
+AND
+DB_IsPlayer(_Var2)
+AND
+CharacterIsInCombat(_Var1, 0)
+AND
+UserGetFlag(_Var2, "ARX_DemonAmbush_DemonsAreHostile", 0)
+AND
+DB_ARX_DemonAmbush(_Var1, _, _Var8)
+THEN
+UserSetFlag(_Var2, "ARX_DemonAmbush_DemonsAreHostile");
+UserSetFlag(_Var2, "ARX_DemonAmbush_HostileFromAssault");
+
+IF
+CharacterPickpocketFailed((CHARACTERGUID)_Var1, (CHARACTERGUID)_Var2)
+AND
+DB_ARX_DemonAmbushPosts(_Var2, _Var3)
+AND
+DB_IsPlayer(_Var1)
+AND
+CharacterIsInCombat(_Var2, 0)
+AND
+UserGetFlag(_Var1, "ARX_DemonAmbush_DemonsAreHostile", 0)
+AND
+DB_ARX_DemonAmbush(_Var2, _, _Var5)
+THEN
+UserSetFlag(_Var1, "ARX_DemonAmbush_DemonsAreHostile");
+UserSetFlag(_Var1, "ARX_DemonAmbush_HostileFromAssault");
+
+IF
+CharacterReceivedDamage((CHARACTERGUID)_Var1, _, _)
+AND
+DB_ARX_DemonAmbush(_Var1, _, _)
+AND
+CharacterGetHitpointsPercentage(_Var1, _Var6)
+AND
+_Var6 <= 25
+THEN
+GlobalSetFlag("ARX_DemonsWounded");
+
+IF
+CharacterReceivedDamage((CHARACTERGUID)_Var1, _, _)
+AND
+DB_ARX_DemonAmbush(_Var1, _, _)
+THEN
+PROC_ARX_CalculateDemonHP();
+
+PROC
+PROC_ARX_CalculateDemonHP()
+AND
+DB_ARX_DemonAmbush_HPCounter(_Var1)
+THEN
+NOT DB_ARX_DemonAmbush_HPCounter(_Var1);
+
+PROC
+PROC_ARX_CalculateDemonHP()
+AND
+DB_ARX_DemonAmbush_DemonCounter(_Var1)
+THEN
+NOT DB_ARX_DemonAmbush_DemonCounter(_Var1);
+
+PROC
+PROC_ARX_CalculateDemonHP()
+THEN
+DB_ARX_DemonAmbush_DemonCounter(0);
+DB_ARX_DemonAmbush_HPCounter(0);
+
+PROC
+PROC_ARX_CalculateDemonHP()
+AND
+DB_ARX_DemonAmbush(_Var1, _, _)
+THEN
+PROC_ARX_AddDemon(_Var1);
+
+PROC
+PROC_ARX_AddDemon((CHARACTERGUID)_Var1)
+AND
+CharacterGetHitpointsPercentage(_Var1, _Var2)
+AND
+DB_ARX_DemonAmbush_DemonCounter(_Var3)
+AND
+IntegerSum(_Var3, 1, _Var4)
+AND
+DB_ARX_DemonAmbush_HPCounter(_Var5)
+AND
+RealSum(_Var2, _Var5, _Var6)
+THEN
+NOT DB_ARX_DemonAmbush_DemonCounter(_Var3);
+NOT DB_ARX_DemonAmbush_HPCounter(_Var5);
+DB_ARX_DemonAmbush_DemonCounter(_Var4);
+DB_ARX_DemonAmbush_HPCounter(_Var6);
+
+PROC
+PROC_ARX_CalculateDemonHP()
+AND
+DB_ARX_DemonAmbush_DemonCounter(_Var1)
+AND
+DB_ARX_DemonAmbush_HPCounter(_Var2)
+AND
+Real(_Var1, _Var3)
+AND
+RealDivide(_Var2, _Var3, _Var4)
+AND
+_Var4 <= 50
+THEN
+GlobalSetFlag("ARX_DemonsWounded");
+
+IF
+AutomatedDialogEnded("ARX_AD_DemonsRetreat", _)
+AND
+DB_ARX_DemonAmbush(_Var2, _, _)
+AND
+CharacterIsDead(_Var2, 0)
+AND
+GetPosition(_Var2, _Var5, _Var6, _Var7)
+THEN
+SetScriptFrame(_Var2, "TeleportOut");
+
+IF
+AutomatedDialogEnded("ARX_AD_DemonsRetreat", _)
+AND
+DB_ARX_DemonAmbush(_Var2, _Var3, _Var4)
+AND
+CharacterIsDead(_Var2, 1)
+THEN
+NOT DB_ARX_DemonAmbush(_Var2, _Var3, _Var4);
+
+IF
+AutomatedDialogEnded("ARX_AD_DemonsRetreat", _)
+AND
+GlobalGetFlag("ARX_DemonsFledOnce", 1)
+AND
+GlobalGetFlag("ARX_DemonsFledTwice", 1)
+THEN
+DB_ARX_DemonAmbush(CHARACTERGUID_S_ARX_DemonAmbush6_a25898de-df3b-46c7-94d7-8401ffd57f76, "ARX_Demon6Spotted", "");
+DB_ARX_DemonAmbushRelocate(S_ARX_DemonPatrol1_2977a2a9-780f-4c16-9935-3059e04f0dc8, CHARACTERGUID_S_ARX_DemonAmbush6_a25898de-df3b-46c7-94d7-8401ffd57f76, TRIGGERGUID_S_ARX_DemonAmbush_Respawn1_6_d95c9eaa-34f5-42ba-8b7a-9aa5c07c80af);
+DB_ARX_DemonAmbushRelocate(SPLINEGUID_S_ARX_DemonPatrol2_09cf75c5-5699-4497-89df-93374afe9fb4, CHARACTERGUID_S_ARX_DemonAmbush6_a25898de-df3b-46c7-94d7-8401ffd57f76, TRIGGERGUID_S_ARX_DemonAmbush_Respawn2_6_6efdc2f6-5fd1-49cc-be25-eb377559387b);
+DB_ARX_DemonAmbushRelocate(SPLINEGUID_S_ARX_DemonPatrol3_fdfda4f4-40c6-4c9e-b926-d2ce8492d815, CHARACTERGUID_S_ARX_DemonAmbush6_a25898de-df3b-46c7-94d7-8401ffd57f76, TRIGGERGUID_S_ARX_DemonAmbush_Respawn3_6_790c7cf5-f100-4ef5-aa54-eba9ac1397d4);
+
+IF
+AutomatedDialogEnded("ARX_AD_DemonsRetreat", _)
+AND
+GlobalGetFlag("ARX_DemonsFledOnce", 1)
+AND
+GlobalGetFlag("ARX_DemonsFledTwice", 0)
+THEN
+DB_ARX_DemonAmbush(CHARACTERGUID_S_ARX_DemonAmbush5_32432d65-85d3-4ad6-bfc7-7ce9ed1caa06, "ARX_Demon5Spotted", "");
+DB_ARX_DemonAmbushRelocate(S_ARX_DemonPatrol1_2977a2a9-780f-4c16-9935-3059e04f0dc8, CHARACTERGUID_S_ARX_DemonAmbush5_32432d65-85d3-4ad6-bfc7-7ce9ed1caa06, TRIGGERGUID_S_ARX_DemonAmbush_Respawn1_5_c0718663-903c-4e59-8ca1-1e73109257c1);
+DB_ARX_DemonAmbushRelocate(SPLINEGUID_S_ARX_DemonPatrol2_09cf75c5-5699-4497-89df-93374afe9fb4, CHARACTERGUID_S_ARX_DemonAmbush5_32432d65-85d3-4ad6-bfc7-7ce9ed1caa06, TRIGGERGUID_S_ARX_DemonAmbush_Respawn2_5_8a6e31f2-11d3-4ec5-8de8-af57e2ca7e06);
+DB_ARX_DemonAmbushRelocate(SPLINEGUID_S_ARX_DemonPatrol3_fdfda4f4-40c6-4c9e-b926-d2ce8492d815, CHARACTERGUID_S_ARX_DemonAmbush5_32432d65-85d3-4ad6-bfc7-7ce9ed1caa06, TRIGGERGUID_S_ARX_DemonAmbush_Respawn3_5_4e72a6ba-1126-4427-ae43-b213cfbc5135);
+
+IF
+AutomatedDialogEnded("ARX_AD_DemonsRetreat", _)
+AND
+DB_ARX_DemonAmbushPosts(_Var2, _Var3)
+AND
+CharacterIsDead(_Var2, 1)
+THEN
+NOT DB_ARX_DemonAmbushPosts(_Var2, _Var3);
+PROC_ARX_FindNewDemon(_Var3);
+
+PROC
+PROC_ARX_FindNewDemon((SPLINEGUID)_Var1)
+AND
+DB_ARX_DemonAmbush(_Var2, _, _)
+AND
+CharacterIsDead(_Var2, 0)
+AND NOT
+DB_ARX_DemonAmbushPosts(_Var2, _)
+AND NOT
+DB_ARX_DemonAmbushPosts(_, _Var1)
+THEN
+DB_ARX_DemonAmbushPosts(_Var2, _Var1);
+
+IF
+StoryEvent((CHARACTERGUID)_Var1, "ARX_DemonVanish")
+AND
+DB_ARX_DemonAmbush(_Var1, _, _)
+THEN
+SetFaction(_Var1, "ARX_DemonsHuman");
+LeaveCombat(_Var1);
+SetOnStage(_Var1, 0);
+
+IF
+StoryEvent((CHARACTERGUID)_Var1, "ARX_DemonVanish")
+AND
+DB_ARX_DemonAmbushPosts(_Var1, _Var2)
+AND
+DB_ARX_DemonAmbushRelocate(_Var2, _Var1, _Var3)
+THEN
+TeleportTo(_Var1, _Var3);
+SetVarObject(_Var1, "SplineGUID", _Var2);
+SetStoryEvent(_Var1, "ARX_DemonRelocate");
+
+IF
+AutomatedDialogStarted("ARX_AD_DemonsFailRetreat", _)
+AND
+DB_ARX_DemonAmbush(_Var2, _, _)
+THEN
+CharacterSetReactionPriority(_Var2, "Retreat", 0);
+
+IF
+StoryEvent(_, "ARX_DemonRelocate")
+AND
+DB_ARX_DemonAmbush_Demon(_Var2)
+THEN
+CharacterSetHitpointsPercentage(_Var2, 100);
+CharacterSetArmorPercentage(_Var2, 100);
+CharacterSetMagicArmorPercentage(_Var2, 100);
+RemoveHarmfulStatuses(_Var2);
+
+IF
+ObjectLeftCombat((CHARACTERGUID)_Var1, _)
+AND
+DB_ARX_DemonAmbush_DemonWeapon(_Var1, _Var3)
+THEN
+CharacterUnequipItem(_Var1, _Var3);
+
+IF
+AttackedByObject((CHARACTERGUID)_Var1, (GUIDSTRING)_Var2, (GUIDSTRING)_Var3, _, _)
+AND
+_Var1 != _Var3
+AND
+DB_ARX_DemonAmbush(_Var1, _, _)
+AND
+DB_ARX_DemonAmbush(_Var8, _, _)
+AND NOT
+DB_DialogNPCs(_, _Var8, _)
+THEN
+ProcForceStopDialog(_Var8);
+
+IF
+CharacterPickpocketFailed((CHARACTERGUID)_Var1, (CHARACTERGUID)_Var2)
+AND
+DB_ARX_DemonAmbush(_Var2, _, _)
+AND
+DB_ARX_DemonAmbush(_Var5, _, _)
+AND NOT
+DB_DialogNPCs(_, _Var5, _)
+THEN
+ProcForceStopDialog(_Var5);
+
+PROC
+ProcRegionStarted("ARX_Main")
+AND
+DB_IsPlayer(_Var1)
+THEN
+proc_ARX_DemonAmbush_DemonsAreHostile_CheckFlags(_Var1);
+
+IF
+ObjectFlagSet((STRING)_Var1, (GUIDSTRING)_Var2, (INTEGER)_Var3)
+AND
+DB_ARX_DemonAmbush_SetHostileFlags(_Var1)
+THEN
+ObjectSetFlag(_Var2, "ARX_DemonAmbush_DemonsAreHostile");
+
+IF
+ObjectFlagSet("QuestUpdate_ARX_TheDoctor_TheDoctor_IsDead", (GUIDSTRING)_Var1, (INTEGER)_Var2)
+THEN
+ObjectSetFlag(_Var1, "ARX_DemonAmbush_DemonsAreHostile");
+ObjectSetFlag(_Var1, "ARX_DemonAmbush_HostileFromAssault");
+
+PROC
+proc_ARX_DemonAmbush_DemonsAreHostile_CheckFlags((CHARACTERGUID)_Var1)
+AND
+DB_ARX_DemonAmbush_SetHostileFlags(_Var2)
+AND
+PartyGetFlag(_Var1, _Var2, 1)
+THEN
+ObjectSetFlag(_Var1, "ARX_DemonAmbush_DemonsAreHostile");
+
+IF
+DialogEnded((STRING)_Var1, (INTEGER)_Var2)
+AND
+DB_ARX_DemonAmbush(_Var3, _, _Var1)
+AND
+DB_ARX_DemonAmbushSpotFlags(_Var5)
+AND
+ObjectGetFlag(_Var3, _Var5, 1)
+THEN
+Poof(_Var3);
+
+IF
+GlobalFlagSet("ARX_InitiateGenocide")
+AND
+DB_ARX_DemonAmbush(_Var1, _, _)
+THEN
+ProcForceStopDialog(_Var1);
+Poof(_Var1);
+
+IF
+TextEventSet("Set_DemonAmbush_Flags_HelpedThelizard")
+AND
+DB_IsPlayer(_Var1)
+THEN
+UserSetFlag(_Var1, "QuestUpdate_RC_BI_ThePresence_Reported");
+
+IF
+TextEventSet("Set_DemonAmbush_Flags_KnowstheDemon")
+AND
+DB_IsPlayer(_Var1)
+THEN
+UserSetFlag(_Var1, "QuestUpdate_RC_BF_ThePresence_FoundOutDemonsName");
+
+IF
+TextEventSet("Set_DemonAmbush_Flags_KnowstheDemon")
+THEN
+PartySetFlag(CHARACTERGUID_S_Player_Lohse_bb932b13-8ebf-4ab4-aac0-83e6924e4295, "GLO_Lohse_KnowDemonName");
+
+IF
+TextEventSet("ARX_Set_DemonAmbush")
+THEN
+GlobalSetFlag("ARX_Main_Demon_Ambush_Set");
+
+IF
+ObjectFlagSet("ARX_TheDoctor_HasInvitation", (GUIDSTRING)_Var1, _)
+THEN
+ObjectClearFlag(_Var1, "ARX_DemonAmbush_DemonsAreHostile");
+
+IF
+TextEventSet("dmnhstl")
+AND
+DB_IsPlayer(_Var1)
+THEN
+ObjectSetFlag(_Var1, "ARX_DemonAmbush_DemonsAreHostile", 0);
+
+IF
+TextEventSet("dmnpct")
+AND
+DB_IsPlayer(_Var1)
+THEN
+ObjectSetFlag(_Var1, "ARX_TheDoctor_UserAcceptedThePact", 0);
+
+IF
+ObjectFlagSet("ARX_TheDoctor_UserAcceptedThePact", (GUIDSTRING)_Var1, _)
+THEN
+ObjectClearFlag(_Var1, "ARX_DemonAmbush_DemonsAreHostile", 0);
+
+IF
+CharacterDied(CHARACTERGUID_S_ARX_DoctorsHouse_TheDoctor_83083470-c543-45b3-ac8a-108df0daca8d)
+THEN
+GlobalSetFlag("ARX_DemonSpotStop");
+
+IF
+CharacterDied(CHARACTERGUID_S_ARX_DoctorsHouse_TheDoctor_83083470-c543-45b3-ac8a-108df0daca8d)
+AND
+DB_ARX_DemonAmbush_Demon(_Var1)
+AND
+QRY_SpeakerIsAvailable(_Var1)
+THEN
+ProcCharacterDisappearOutOfSight(_Var1, 0, 0, "", 0);
+
+IF
+DialogEnded((STRING)_Var1, (INTEGER)_Var2)
+AND
+DB_ARX_DemonAmbush(_Var3, _, _Var1)
+AND
+DialogGetInvolvedPlayer(_Var2, 1, _Var5)
+AND
+ObjectGetFlag(_Var5, "ARX_DemonAmbush_DemonsAreHostile", 0)
+AND
+CharacterIsDead(CHARACTERGUID_S_ARX_DoctorsHouse_TheDoctor_83083470-c543-45b3-ac8a-108df0daca8d, 1)
+AND
+DB_ARX_DemonAmbush_Demon(_Var6)
+AND
+QRY_SpeakerIsAvailable(_Var6)
+THEN
+ProcCharacterDisappearOutOfSight(_Var6, 0, 0, "", 0);
+
+IF
+ObjectLeftCombat((CHARACTERGUID)_Var1, _)
+AND
+CharacterIsDead(CHARACTERGUID_S_ARX_DoctorsHouse_TheDoctor_83083470-c543-45b3-ac8a-108df0daca8d, 1)
+AND
+DB_ARX_DemonAmbush_Demon(_Var1)
+AND
+QRY_SpeakerIsAvailable(_Var1)
+THEN
+ProcCharacterDisappearOutOfSight(_Var1, 0, 0, "", 0);
+
+IF
+ObjectEnteredCombat((CHARACTERGUID)_Var1, (INTEGER)_Var2)
+AND
+DB_IsPlayer(_Var1)
+AND
+DB_ARX_DemonAmbush_Demon(_Var3)
+AND
+CombatGetIDForCharacter(_Var3, _Var2)
+AND NOT
+DB_ARX_DemonAmbush_SetPreferredTarget(_Var1)
+THEN
+DB_ARX_DemonAmbush_SetPreferredTarget(_Var1);
+SetTag(_Var1, "AI_PREFERRED_TARGET");
+
+IF
+ObjectEnteredCombat((CHARACTERGUID)_Var1, (INTEGER)_Var2)
+AND
+DB_ARX_DemonAmbush_Demon(_Var1)
+AND
+DB_IsPlayer(_Var3)
+AND
+CombatGetIDForCharacter(_Var3, _Var2)
+AND NOT
+DB_ARX_DemonAmbush_SetPreferredTarget(_Var3)
+THEN
+DB_ARX_DemonAmbush_SetPreferredTarget(_Var3);
+SetTag(_Var3, "AI_PREFERRED_TARGET");
+
+IF
+CombatStarted((INTEGER)_Var1)
+AND
+DB_IsPlayer(_Var2)
+AND
+CombatGetIDForCharacter(_Var2, _Var1)
+AND
+DB_ARX_DemonAmbush_Demon(_Var3)
+AND
+CombatGetIDForCharacter(_Var3, _Var1)
+AND NOT
+DB_ARX_DemonAmbush_SetPreferredTarget(_Var2)
+THEN
+DB_ARX_DemonAmbush_SetPreferredTarget(_Var2);
+SetTag(_Var2, "AI_PREFERRED_TARGET");
+
+IF
+ObjectLeftCombat((CHARACTERGUID)_Var1, _)
+AND
+DB_ARX_DemonAmbush_SetPreferredTarget(_Var1)
+AND
+CharacterIsInCombat(_Var1, 0)
+THEN
+NOT DB_ARX_DemonAmbush_SetPreferredTarget(_Var1);
+ClearTag(_Var1, "AI_PREFERRED_TARGET");
+
+IF
+TextEventSet("giff")
+AND
+DB_IsPlayer(_Var1)
+THEN
+SetOnStage(ITEMGUID_S_ARX_DemonAmbush_Letter_936f5864-b789-432e-be72-a49148035f8c, 1);
+ItemToInventory(ITEMGUID_S_ARX_DemonAmbush_Letter_936f5864-b789-432e-be72-a49148035f8c, _Var1, 1, 1);
+
+
+EXITSECTION
+ENDEXITSECTION
+
+ParentTargetEdge "ARX"

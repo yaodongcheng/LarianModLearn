@@ -1,0 +1,123 @@
+Version 1
+SubGoalCombiner SGC_AND
+
+INITSECTION
+DB_Ghosts(CHARACTERGUID_S_LV_HoE_Gareth_Ghost_090693be-27c3-45ce-81a7-46f3271bc10f, "LV_HoE_Gareth_Ghost");
+
+KBSECTION
+IF
+TimerFinished("FTJ_LV_SendPlayersToHoE")
+THEN
+TeleportTo(CHARACTERGUID_S_GLO_River_f4931ebe-10b0-43c4-9182-640cf052717e, TRIGGERGUID_S_LV_HoE_RiverHoEDefault_Point_39e8ff8b-d350-40a5-a415-7541149771e4, "StartEventOnSight_RestartSpotting", 0);
+CharacterFlushQueue(CHARACTERGUID_S_GLO_River_f4931ebe-10b0-43c4-9182-640cf052717e);
+LeaveCombat(CHARACTERGUID_S_GLO_River_f4931ebe-10b0-43c4-9182-640cf052717e);
+SetOnStage(CHARACTERGUID_S_GLO_Dallis_69b951dc-55a4-44b8-a2d5-5efedbd7d572, 0);
+SetOnStage(CHARACTERGUID_S_GLO_Braccus_358ba541-0710-43be-8263-87afe1a8d9b5, 0);
+
+IF
+TimerFinished("FTJ_LV_SendPlayersToHoE")
+THEN
+GlobalSetFlag("LV_HoE_DeadSeekeersTransform");
+GlobalClearFlag("LV_HoE_DeadSeekeersTransform");
+
+IF
+TimerFinished("FTJ_LV_SendPlayersToHoE")
+AND
+DB_LV_ShipAssault_SeekerPoints_Once(_Var1)
+AND
+_Var1 != CHARACTERGUID_S_FTJ_SW_Warrior_SeekerCaptain_1329f018-23e4-4717-9bc8-074b28d04c54
+THEN
+PROC_LV_HoE_SendSeekerToHoE(_Var1, TRIGGERGUID_S_LV_ShipAssaultSeeker_Point_007_4ec573a8-9467-45eb-9bc7-869f8f3895c5);
+
+PROC
+PROC_LV_HoE_SendSeekerToHoE((CHARACTERGUID)_Var1, (TRIGGERGUID)_Var2)
+THEN
+TeleportTo(_Var1, _Var2);
+CharacterFlushQueue(_Var1);
+SetCombatGroupID(_Var1, "");
+LeaveCombat(_Var1);
+SetVarFixedString(_Var1, "currentState", "State_InHoE");
+SetVarObject(_Var1, "LV_HoE_DefaultPoint", _Var2);
+
+PROC
+PROC_LV_HoE_SendSeekerToHoE((CHARACTERGUID)_Var1, (TRIGGERGUID)_Var2)
+THEN
+SetOnStage(_Var1, 0);
+
+PROC
+PROC_LV_HoE_SendSeekerToHoE(CHARACTERGUID_S_FTJ_SW_Warrior_SeekerCaptain_1329f018-23e4-4717-9bc8-074b28d04c54, (TRIGGERGUID)_Var1)
+THEN
+TeleportTo(CHARACTERGUID_S_FTJ_SW_Warrior_SeekerCaptain_1329f018-23e4-4717-9bc8-074b28d04c54, TRIGGERGUID_S_LV_HoE_GarethHoEDefault_Point_df71cb0e-5913-498b-8b3c-a9c838cb3318);
+SetOnStage(CHARACTERGUID_S_FTJ_SW_Warrior_SeekerCaptain_1329f018-23e4-4717-9bc8-074b28d04c54, 1);
+SetVarObject(CHARACTERGUID_S_FTJ_SW_Warrior_SeekerCaptain_1329f018-23e4-4717-9bc8-074b28d04c54, "LV_HoE_DefaultPoint", TRIGGERGUID_S_LV_HoE_GarethHoEDefault_Point_df71cb0e-5913-498b-8b3c-a9c838cb3318);
+
+IF
+TimerFinished("FTJ_LV_SendPlayersToHoE")
+AND
+CharacterIsDead(CHARACTERGUID_S_FTJ_SW_Warrior_SeekerCaptain_1329f018-23e4-4717-9bc8-074b28d04c54, 0)
+THEN
+PROC_LV_HoE_SendSeekerToHoE(CHARACTERGUID_S_FTJ_SW_Warrior_SeekerCaptain_1329f018-23e4-4717-9bc8-074b28d04c54, TRIGGERGUID_S_LV_HoE_GarethHoEDefault_Point_df71cb0e-5913-498b-8b3c-a9c838cb3318);
+
+IF
+TimerFinished("FTJ_LV_SendPlayersToHoE")
+AND
+CharacterIsDead(CHARACTERGUID_S_FTJ_SW_Warrior_SeekerCaptain_1329f018-23e4-4717-9bc8-074b28d04c54, 1)
+AND
+CharacterGetLevel(CHARACTERGUID_S_FTJ_SW_Warrior_SeekerCaptain_1329f018-23e4-4717-9bc8-074b28d04c54, _Var1)
+THEN
+CharacterLinkGhost(CHARACTERGUID_S_FTJ_SW_Warrior_SeekerCaptain_1329f018-23e4-4717-9bc8-074b28d04c54, CHARACTERGUID_S_LV_HoE_Gareth_Ghost_090693be-27c3-45ce-81a7-46f3271bc10f);
+CharacterLevelUpTo(CHARACTERGUID_S_LV_HoE_Gareth_Ghost_090693be-27c3-45ce-81a7-46f3271bc10f, _Var1);
+
+IF
+TimerFinished("FTJ_LV_SendPlayersToHoE")
+AND
+GetRegion(CHARACTERGUID_S_FTJ_SW_Warrior_SeekerCaptain_1329f018-23e4-4717-9bc8-074b28d04c54, _Var1)
+AND
+_Var1 == "LV_HoE_Main"
+AND
+CharacterIsDead(CHARACTERGUID_S_FTJ_SW_Warrior_SeekerCaptain_1329f018-23e4-4717-9bc8-074b28d04c54, 1)
+THEN
+SetOnStage(CHARACTERGUID_S_LV_HoE_Gareth_Ghost_090693be-27c3-45ce-81a7-46f3271bc10f, 1);
+
+IF
+TimerFinished("FTJ_LV_SendPlayersToHoE")
+THEN
+SetOnStage(CHARACTERGUID_S_LV_Seeker_001_03ddfad1-bfd7-4a8b-83c8-643e16616e65, 0);
+SetOnStage(CHARACTERGUID_S_LV_Seeker_002_c7fec918-570a-4d9a-9009-c310f8d97826, 0);
+RemoveStatus(CHARACTERGUID_S_FTJ_LV_MagisterPrisoner_001_80a2e428-d20c-47a6-8d85-451720a87fd4, "SITTING");
+SetOnStage(CHARACTERGUID_S_FTJ_LV_MagisterPrisoner_001_80a2e428-d20c-47a6-8d85-451720a87fd4, 0);
+RemoveStatus(CHARACTERGUID_S_GLO_Alexandar_03e6345f-1bd3-403c-80e2-a443a74f6349, "LYING");
+SetOnStage(CHARACTERGUID_S_GLO_Alexandar_03e6345f-1bd3-403c-80e2-a443a74f6349, 0);
+SetOnStage(CHARACTERGUID_S_LV_SkeletonCat_27467b0f-55a1-448e-bd29-1370d6407a5e, 0);
+SetOnStage(CHARACTERGUID_S_LV_Rat_001_84fa44bf-b963-4f84-8776-719ac0a0d361, 0);
+SetOnStage(CHARACTERGUID_S_LV_SecretCabin_Gheist_01_fe577de0-0c2e-409e-b0fc-0361beb980b7, 0);
+SetOnStage(CHARACTERGUID_S_LV_SecretCabin_Gheist_02_fb0cbbf3-0dbf-4d3d-b7d3-60e723701a49, 0);
+ItemUnLock(ITEMGUID_S_LV_PrisonDoor_99562d87-267c-4bcc-b930-8e4c5bb34c12);
+ItemOpen(ITEMGUID_S_LV_PrisonDoor_99562d87-267c-4bcc-b930-8e4c5bb34c12);
+
+IF
+TimerFinished("FTJ_LV_SendPlayersToHoE")
+AND
+CharacterIsDead(CHARACTERGUID_S_LV_SilentMonkRunner_001_9a8dc57f-a369-465a-b957-2dd84bb7324f, 0)
+THEN
+TeleportTo(CHARACTERGUID_S_LV_SilentMonkRunner_001_9a8dc57f-a369-465a-b957-2dd84bb7324f, TRIGGERGUID_S_LV_HoE_SilentmonkRunnerPoint_001_6207758a-aab8-44a1-a424-eba88424fbdb);
+SetVarObject(CHARACTERGUID_S_LV_SilentMonkRunner_001_9a8dc57f-a369-465a-b957-2dd84bb7324f, "DefaultPointTrigger", TRIGGERGUID_S_LV_HoE_SilentmonkRunnerPoint_001_6207758a-aab8-44a1-a424-eba88424fbdb);
+
+IF
+TimerFinished("FTJ_LV_SendPlayersToHoE")
+AND
+CharacterIsDead(CHARACTERGUID_S_LV_SilentMonkRunner_002_c6bd6c05-f2a9-4aa9-89e8-13bdae797555, 0)
+THEN
+TeleportTo(CHARACTERGUID_S_LV_SilentMonkRunner_002_c6bd6c05-f2a9-4aa9-89e8-13bdae797555, TRIGGERGUID_S_LV_HoE_SilentmonkRunnerPoint_002_b37beb8f-d7f5-454c-a0d1-5666df4777ad);
+SetVarObject(CHARACTERGUID_S_LV_SilentMonkRunner_002_c6bd6c05-f2a9-4aa9-89e8-13bdae797555, "DefaultPointTrigger", TRIGGERGUID_S_LV_HoE_SilentmonkRunnerPoint_002_b37beb8f-d7f5-454c-a0d1-5666df4777ad);
+
+PROC
+ProcRegionEnded("LV_HoE_Main")
+THEN
+GoalCompleted;
+
+
+EXITSECTION
+ENDEXITSECTION
+
+ParentTargetEdge "LadyVengeance"

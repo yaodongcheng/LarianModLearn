@@ -1,0 +1,29 @@
+Version 1
+SubGoalCombiner SGC_AND
+
+INITSECTION
+DB_Ghosts(CHARACTERGUID_S_RC_GY_Lizards_Ghost_2_e3bb7003-53c7-42a4-b04a-8ab4bb89fc44, "RC_GY_Lizards_Ghost_2");
+
+KBSECTION
+IF
+GlobalFlagSet("RC_GY_EternalFire_Renew")
+THEN
+Proc_RC_GY_EternalFire();
+GlobalClearFlag("RC_GY_EternalFire_Renew");
+
+PROC
+Proc_RC_GY_EternalFire()
+THEN
+PlayEffect(ITEMGUID_S_RC_GY_DragonBreath1_f8680504-f22f-4dbd-af13-34f49398e6ae, "RS3_FX_GP_ScriptedEvent_FlameBreath_01");
+PlayEffect(ITEMGUID_S_RC_GY_DragonBreath2_5086a8dd-372c-483e-9334-5ad79f5dd455, "RS3_FX_GP_ScriptedEvent_FlameBreath_01");
+
+PROC
+ProcRegionEnded("RC_Main")
+THEN
+GoalCompleted;
+
+
+EXITSECTION
+ENDEXITSECTION
+
+ParentTargetEdge "ReapersCoast"

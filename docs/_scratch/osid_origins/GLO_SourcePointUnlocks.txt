@@ -1,0 +1,141 @@
+Version 1
+SubGoalCombiner SGC_AND
+
+INITSECTION
+DB_GLO_SourcePointUnlockDialog("RC_GY_Ryker", "RC_DW_Meistr_SourceKnowledge_Ryker");
+DB_GLO_SourcePointUnlockBlock("RC_DW_Meistr_SourceKnowledge_Ryker", "RC_GY_RykersContract_Ritual_Unavailable");
+DB_GLO_SourcePointUnlockDialog("RC_BF_DemonHunter", "RC_DW_Meistr_SourceKnowledge_Jahan");
+DB_GLO_SourcePointUnlockBlock("RC_DW_Meistr_SourceKnowledge_Jahan", "RC_BF_DemonHunter_Ritual_Unavailable");
+DB_GLO_SourcePointUnlockDialog("RC_BI_LizardDemonLeader", "RC_DW_Meistr_SourceKnowledge_Advocate");
+DB_GLO_SourcePointUnlockBlock("RC_DW_Meistr_SourceKnowledge_Advocate", "RC_BI_Advocate_Ritual_Unavailable");
+DB_GLO_SourcePointUnlockDialog("RC_DW_WC_BossFight_Mordus", "RC_DW_Meistr_SourceKnowledge_Mordus");
+DB_GLO_SourcePointUnlockDialog("RC_FL_Almira", "RC_DW_Meistr_SourceKnowledge_Almira");
+DB_GLO_SourcePointUnlockDialog("RC_MIL_Saheila", "RC_DW_Meistr_SourceKnowledge_Saheila");
+DB_GLO_SourcePointUnlockDialog("RC_MIL_SaheilaTovahReward", "RC_DW_Meistr_SourceKnowledge_Saheila");
+DB_GLO_SourcePointUnlockDialog("RC_BF_CorneredSourcerer_Sourcerer", "RC_DW_Meistr_SourceKnowledge_Hannag");
+DB_OneTimeEventFlag("GLO_SourcePointBackupReward");
+DB_GLO_SourcePointSecondaryReward(CHARACTERGUID_S_GLO_Almira_49b466a9-e67f-4e3c-8f66-3636ba7dd54f, "BOOK_Skill_Necromancy_BlackShroud_b12a442a-cc2f-4387-995e-7ce14826fa55");
+DB_GLO_SourcePointSecondaryReward(CHARACTERGUID_S_GLO_Saheila_fcacdf08-b05f-4333-b0e0-ddf29c13d8e0, "BOOK_Skill_Ranger_Farsight_682663f1-f19f-47e6-be8e-df344533d949");
+DB_GLO_SourcePointSecondaryReward(CHARACTERGUID_S_RC_GY_Ryker_522b8095-b539-4a82-84f3-bf8e5a74dfe4, "BOOK_Skill_Necromancy_GraspOfTheStarved_880d084e-20aa-4a50-9a4c-294d46399ed6");
+DB_GLO_SourcePointSecondaryReward(CHARACTERGUID_S_RC_DW_WC_BossFight_Skeleton_Mordus_d46ade3f-f786-4fcc-975c-361a106f2853, "BOOK_Skill_Polymorph_ShedSkin_cac0c495-916e-490e-8f86-105783eb17fa");
+DB_GLO_SourcePointSecondaryReward(CHARACTERGUID_S_GLO_Jahan_4d222cfd-49c8-41d3-8cb7-2a2b56232633, "BOOK_Skill_Summoning_InnerDemon_7c1d4c29-5e16-4fc3-8ee0-afe771fbd367");
+DB_GLO_SourcePointSecondaryReward(CHARACTERGUID_S_GLO_Advocate_bfa3e903-78ab-46aa-9a95-54fb956eb2b3, "ITEMGUID_BOOK_Skill_Fire_InfectiousFlame_7be51ea9-2722-405e-9978-f87bda5e60b8");
+
+KBSECTION
+PROC
+Proc_DialogFlagSetup((STRING)_Var1, (GUIDSTRING)_Var2)
+THEN
+Proc_GLO_SPAvailabilityFlagSetup(_Var1, _Var2, NULL_00000000-0000-0000-0000-000000000000, NULL_00000000-0000-0000-0000-000000000000, NULL_00000000-0000-0000-0000-000000000000, NULL_00000000-0000-0000-0000-000000000000, NULL_00000000-0000-0000-0000-000000000000);
+
+PROC
+Proc_DialogFlagSetup((STRING)_Var1, (GUIDSTRING)_Var2, (GUIDSTRING)_Var3)
+THEN
+Proc_GLO_SPAvailabilityFlagSetup(_Var1, _Var2, _Var3, NULL_00000000-0000-0000-0000-000000000000, NULL_00000000-0000-0000-0000-000000000000, NULL_00000000-0000-0000-0000-000000000000, NULL_00000000-0000-0000-0000-000000000000);
+
+PROC
+Proc_DialogFlagSetup((STRING)_Var1, (GUIDSTRING)_Var2, (GUIDSTRING)_Var3, (GUIDSTRING)_Var4)
+THEN
+Proc_GLO_SPAvailabilityFlagSetup(_Var1, _Var2, _Var3, _Var4, NULL_00000000-0000-0000-0000-000000000000, NULL_00000000-0000-0000-0000-000000000000, NULL_00000000-0000-0000-0000-000000000000);
+
+PROC
+Proc_DialogFlagSetup((STRING)_Var1, (GUIDSTRING)_Var2, (GUIDSTRING)_Var3, (GUIDSTRING)_Var4, (GUIDSTRING)_Var5)
+THEN
+Proc_GLO_SPAvailabilityFlagSetup(_Var1, _Var2, _Var3, _Var4, _Var5, NULL_00000000-0000-0000-0000-000000000000, NULL_00000000-0000-0000-0000-000000000000);
+
+PROC
+Proc_DialogFlagSetup((STRING)_Var1, (GUIDSTRING)_Var2, (GUIDSTRING)_Var3, (GUIDSTRING)_Var4, (GUIDSTRING)_Var5, (GUIDSTRING)_Var6)
+THEN
+Proc_GLO_SPAvailabilityFlagSetup(_Var1, _Var2, _Var3, _Var4, _Var5, _Var6, NULL_00000000-0000-0000-0000-000000000000);
+
+PROC
+Proc_DialogFlagSetup((STRING)_Var1, (GUIDSTRING)_Var2, (GUIDSTRING)_Var3, (GUIDSTRING)_Var4, (GUIDSTRING)_Var5, (GUIDSTRING)_Var6, (GUIDSTRING)_Var7)
+THEN
+Proc_GLO_SPAvailabilityFlagSetup(_Var1, _Var2, _Var3, _Var4, _Var5, _Var6, _Var7);
+
+PROC
+Proc_GLO_SPAvailabilityFlagSetup((STRING)_Var1, (GUIDSTRING)_Var2, (GUIDSTRING)_Var3, (GUIDSTRING)_Var4, (GUIDSTRING)_Var5, (GUIDSTRING)_Var6, (GUIDSTRING)_Var7)
+AND
+DB_GLO_SourcePointUnlockDialog(_Var1, _Var8)
+THEN
+Proc_GLO_CheckSPAvailability(_Var2, _Var8);
+Proc_GLO_CheckSPAvailability(_Var3, _Var8);
+Proc_GLO_CheckSPAvailability(_Var4, _Var8);
+Proc_GLO_CheckSPAvailability(_Var5, _Var8);
+Proc_GLO_CheckSPAvailability(_Var6, _Var8);
+Proc_GLO_CheckSPAvailability(_Var7, _Var8);
+
+PROC
+Proc_GLO_CheckSPAvailability((CHARACTERGUID)_Var1, (STRING)_Var2)
+AND
+DB_IsPlayer(_Var1)
+THEN
+ObjectSetFlag(_Var1, "GLO_SPUnlockAvailable");
+
+PROC
+Proc_GLO_CheckSPAvailability((CHARACTERGUID)_Var1, (STRING)_Var2)
+AND
+DB_IsPlayer(_Var1)
+AND NOT
+QRY_GLO_PartyMembersCanGetSP(_Var1, _Var2)
+THEN
+ObjectClearFlag(_Var1, "GLO_SPUnlockAvailable");
+ObjectSetFlag(_Var1, "GLO_SPUnlockUnavailable");
+
+QRY
+QRY_GLO_PartyMembersCanGetSP((CHARACTERGUID)_Var1, (STRING)_Var2)
+AND
+StringConcatenate(_Var2, "_Learned", _Var3)
+AND
+DB_IsPlayer(_Var4)
+AND
+CharacterIsInPartyWith(_Var1, _Var4, 1)
+AND
+ObjectGetFlag(_Var4, _Var3, 0)
+AND
+ObjectGetFlag(_Var4, "GLO_Has3MaxMP", 0)
+THEN
+DB_NOOP(1);
+
+PROC
+Proc_GLO_CheckSPAvailability((CHARACTERGUID)_Var1, (STRING)_Var2)
+AND
+DB_IsPlayer(_Var1)
+AND
+DB_GLO_SourcePointUnlockBlock(_Var2, _Var3)
+AND
+DB_GlobalFlag(_Var3)
+THEN
+ObjectClearFlag(_Var1, "GLO_SPUnlockAvailable");
+ObjectClearFlag(_Var1, "GLO_SPUnlockUnavailable");
+ObjectSetFlag(_Var1, "GLO_SPUnlockBlocked");
+
+IF
+DialogEnded((STRING)_Var1, (INTEGER)_Var2)
+AND
+DB_GLO_SourcePointUnlockDialog(_Var1, _Var3)
+AND
+DB_DialogPlayers(_Var2, _Var4, _)
+THEN
+ObjectClearFlag(_Var4, "GLO_SPUnlockAvailable");
+ObjectClearFlag(_Var4, "GLO_SPUnlockUnavailable");
+ObjectClearFlag(_Var4, "GLO_SPUnlockBlocked");
+
+PROC
+Proc_OneTimeEventFlag((CHARACTERGUID)_Var1, "GLO_SourcePointBackupReward", (INTEGER)_Var2)
+AND
+DB_IsPlayer(_Var1)
+AND
+DB_DialogNPCs(_Var2, _Var3, 1)
+AND
+DB_GLO_SourcePointSecondaryReward(_Var3, _Var4)
+THEN
+ItemTemplateAddTo(_Var4, _Var1, 1);
+
+
+EXITSECTION
+SysClear("DB_GLO_SourcePointUnlockDialog", 2);
+SysClear("DB_GLO_SourcePointUnlockBlock", 2);
+NOT DB_OneTimeEventFlag("GLO_SourcePointBackupReward");
+ENDEXITSECTION
+
+ParentTargetEdge "ReapersCoast"

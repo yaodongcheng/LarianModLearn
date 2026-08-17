@@ -1,0 +1,84 @@
+Version 1
+SubGoalCombiner SGC_AND
+
+INITSECTION
+DB_FTJ_SW_Voidwoken(CHARACTERGUID_S_FTJ_SW_GreatVoidwoken_112f8c17-ea77-4658-ac72-239154772fb8);
+ProcTriggerRegisterForPlayers(TRIGGERGUID_S_FTJ_SW_VWBoss_VisionTrig_e8fe8681-509e-4bdd-b953-12f344c28f65);
+DB_FTJ_SW_TauntDatabases("FTJ_Voidwoken_Boss_Face_Beast", CHARACTERGUID_S_Player_Beast_f25ca124-a4d2-427b-af62-df66df41a978);
+DB_FTJ_SW_TauntDatabases("FTJ_Voidwoken_Boss_Face_Ifan", CHARACTERGUID_S_Player_Ifan_ad9a3327-4456-42a7-9bf4-7ad60cc9e54f);
+DB_FTJ_SW_TauntDatabases("FTJ_Voidwoken_Boss_Face_Lohse", CHARACTERGUID_S_Player_Lohse_bb932b13-8ebf-4ab4-aac0-83e6924e4295);
+DB_FTJ_SW_TauntDatabases("FTJ_Voidwoken_Boss_Face_Sebille", CHARACTERGUID_S_Player_Sebille_c8d55eaf-e4eb-466a-8f0d-6a9447b5b24c);
+DB_FTJ_SW_TauntDatabases("FTJ_Voidwoken_Boss_Face_Fane", CHARACTERGUID_S_Player_Fane_02a77f1f-872b-49ca-91ab-32098c443beb);
+DB_FTJ_SW_TauntDatabases("FTJ_Voidwoken_Boss_Face_RedPrince", CHARACTERGUID_S_Player_RedPrince_a26a1efb-cdc8-4cf3-a7b2-b2f9544add6f);
+
+KBSECTION
+IF
+ObjectFlagSet((STRING)_Var1, (CHARACTERGUID)_Var2, _)
+AND
+DB_FTJ_SW_TauntDatabases(_Var1, _Var4)
+THEN
+CharacterLookAt(_Var2, _Var4);
+ObjectClearFlag(_Var2, _Var1, 0);
+
+IF
+CharacterEnteredTrigger((CHARACTERGUID)_Var1, TRIGGERGUID_S_FTJ_SW_VWBoss_VisionTrig_e8fe8681-509e-4bdd-b953-12f344c28f65)
+THEN
+SetFaction(CHARACTERGUID_S_FTJ_SW_VWBoss_VoidWoken_112f8c17-ea77-4658-ac72-239154772fb8, "Evil NPC");
+
+IF
+AttackedByObject(CHARACTERGUID_S_FTJ_SW_VWBoss_VoidWoken_112f8c17-ea77-4658-ac72-239154772fb8, (GUIDSTRING)_Var1, (GUIDSTRING)_Var2, _, _)
+AND
+CHARACTERGUID_S_FTJ_SW_VWBoss_VoidWoken_112f8c17-ea77-4658-ac72-239154772fb8 != _Var2
+AND NOT
+GetFaction(CHARACTERGUID_S_FTJ_SW_VWBoss_VoidWoken_112f8c17-ea77-4658-ac72-239154772fb8, "Evil NPC")
+THEN
+SetFaction(CHARACTERGUID_S_FTJ_SW_VWBoss_VoidWoken_112f8c17-ea77-4658-ac72-239154772fb8, "Evil NPC");
+
+IF
+AutomatedDialogEnded("FTJ_SW_AD_VoidwokenCombatComment", (INTEGER)_Var1)
+AND
+DB_DialogNPCs(_Var1, _Var2, 1)
+AND
+DB_IsPlayer(_Var3)
+AND
+CharacterCanSee(_Var3, _Var2, 1)
+THEN
+DB_FTJ_SW_SawVoidwokenSpeak(_Var3);
+ObjectSetFlag(_Var3, "FTJ_SW_HeardVoidWokenSpeak", 0);
+
+IF
+AutomatedDialogEnded("FTJ_SW_AD_VoidwokenCombatComment", (INTEGER)_Var1)
+AND
+DB_DialogNPCs(_Var1, _Var2, 1)
+AND
+DB_IsPlayer(_Var3)
+AND
+DB_CombatCharacters(_Var2, _Var4)
+AND
+DB_CombatCharacters(_Var3, _Var4)
+THEN
+DB_FTJ_SW_SawVoidwokenSpeak(_Var3);
+ObjectSetFlag(_Var3, "FTJ_SW_HeardVoidWokenSpeak", 0);
+
+PROC
+Proc_ObjectLeftCombat((CHARACTERGUID)_Var1, _)
+AND
+DB_FTJ_SW_SawVoidwokenSpeak(_Var1)
+AND
+QueryOnlyOnce("FTJ_SW_RD_VoidwokenReflection")
+THEN
+ProcDefineReflectionDialog("FTJ_SW_RD_VoidwokenReflection", _Var1);
+
+PROC
+Proc_ObjectLeftCombat((CHARACTERGUID)_Var1, _)
+AND
+DB_FTJ_SW_SawVoidwokenSpeak(_Var1)
+THEN
+ObjectSetFlag(_Var1, "QuestUpdate_FTJ_Godwoken_VWTalk");
+UserSetFlag(_Var1, "QuestUpdate_FTJ_Voice_VWTalk");
+
+
+EXITSECTION
+ENDEXITSECTION
+
+ParentTargetEdge "FortJoy"

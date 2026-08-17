@@ -1,0 +1,1197 @@
+Version 1
+SubGoalCombiner SGC_AND
+
+INITSECTION
+DB_Dialogs(S_ARX_Prison_ToWindegoGuard1_e58ded34-c56c-4959-9c7b-159529273705, "ARX_Prison_ToWindegoGuard1");
+ItemToInventory(S_ARX_PlayerPrisonDoor_ToWindego_Key1_8e584ad8-bca8-486b-8444-8de4cf9ac067, S_ARX_Prison_ToWindegoGuard1_e58ded34-c56c-4959-9c7b-159529273705);
+DB_Dialogs(S_ARX_Prison_ToWindegoGuard2_9b70b655-d8f4-4690-9da5-39c364ed3c77, "ARX_Prison_ToWindegoGuard2");
+ItemSetOwner(S_ARX_PlayerPrisonDoor_ToWindego_1e4c49e5-15d3-47ef-9965-fad3e43cd1b7, S_ARX_Prison_ToWindegoGuard1_e58ded34-c56c-4959-9c7b-159529273705);
+DB_ARX_Prison_ToWindegoGuard(S_ARX_Prison_ToWindegoGuard1_e58ded34-c56c-4959-9c7b-159529273705);
+DB_ARX_Prison_ToWindegoGuard(S_ARX_Prison_ToWindegoGuard2_9b70b655-d8f4-4690-9da5-39c364ed3c77);
+DB_Dialogs(S_ARX_Prison_WindegoCell_Paladin_383eb4a6-4c76-4d97-82ea-089f96e5e366, "ARX_Prison_WindegoCell_Paladin");
+ObjectSetFlag(S_ARX_Prison_WindegoCell_Paladin_383eb4a6-4c76-4d97-82ea-089f96e5e366, "ARX_Prison_WindegoCell_Paladin");
+DB_Dialogs(S_ARX_Prison_WindegoCell_Paladin_Guard1_36c0b27a-f0fb-4a14-bbb2-719a5fed418c, "ARX_Prison_WindegoCell_Paladin_Guard1");
+DB_Dialogs(S_ARX_Prison_WindegoCell_Paladin_Guard2_b2e2ebb4-5c01-410e-998a-9ddf00e69513, "ARX_Prison_WindegoCell_Paladin_Guard2");
+DB_ARX_Prison_Windego_PaladinGuards(S_ARX_Prison_WindegoCell_Paladin_383eb4a6-4c76-4d97-82ea-089f96e5e366);
+DB_ARX_Prison_Windego_PaladinGuards(S_ARX_Prison_WindegoCell_Paladin_Guard1_36c0b27a-f0fb-4a14-bbb2-719a5fed418c);
+DB_ARX_Prison_Windego_PaladinGuards(S_ARX_Prison_WindegoCell_Paladin_Guard2_b2e2ebb4-5c01-410e-998a-9ddf00e69513);
+CharacterAddGold(S_ARX_Prison_WindegoCell_Paladin_383eb4a6-4c76-4d97-82ea-089f96e5e366, 155);
+DB_TrespassTrigger(S_ARX_Prison_WindegoCell_PaladinOnwerShipTirgger_2848eaf9-39a0-4052-9f07-cf666e0a19c4, ARX_Prison_WindegoTresspassing_021f40a2-d394-4cb3-9fd4-3ec52105e1a0, "ARX_Prison_Windego_Trespassing_NearPuzzle", S_ARX_Prison_WindegoCell_Paladin_383eb4a6-4c76-4d97-82ea-089f96e5e366);
+DB_TrespassTrigger(S_ARX_Prison_WayToWindego_Tresspassing_2392a136-41d1-479e-b3a6-90c3514baa7e, S_ARX_Prison_WayToWindego_Tresspassing_OutTrigger_4db124fa-1083-44b7-8321-b87afbfe11f9);
+ProcDeclareCounter("ARX_Barracks_Prison_Windego_MachineSourcePoints");
+DB_ARX_Barracks_Prison_Windego_Machine(S_ARX_Barracks_Prison_Windego_CellGenerator_aa32299f-d394-4cec-9dd7-c8dfae0daed1, 2, "OverHeat");
+DB_ARX_Barracks_Prison_Windego_Machine(S_ARX_Barracks_Prison_Windego_CellGenerator_aa32299f-d394-4cec-9dd7-c8dfae0daed1, 4, "Explode");
+DB_ARX_Prison_WindegoPuzzle_Runes(ITEMGUID_S_ARX_Barracks_Prison_Windego_MachineRune_1_7e520bc8-ed11-45ca-8fe2-12ffca764339, "On", "PUZ_Raanaar_GroundRune_Off_B_cfe5b13a-1883-4ac7-8e28-2d1ab0a7687c", 1);
+DB_ARX_Prison_WindegoPuzzle_Runes(ITEMGUID_S_ARX_Barracks_Prison_Windego_MachineRune_2_943cf2d7-cec8-481d-afea-256fbdf68bdb, "On", "PUZ_Raanaar_GroundRune_Off_B_cfe5b13a-1883-4ac7-8e28-2d1ab0a7687c", 2);
+DB_ARX_Prison_WindegoPuzzle_Runes(ITEMGUID_S_ARX_Barracks_Prison_Windego_MachineRune_3_79769ab1-4f6f-45bd-9dc7-7ac50191da47, "On", "PUZ_Raanaar_GroundRune_Off_B_cfe5b13a-1883-4ac7-8e28-2d1ab0a7687c", 3);
+DB_ARX_Prison_WindegoPuzzle_Runes(ITEMGUID_S_ARX_Barracks_Prison_Windego_MachineRune_4_5dc90cef-2251-42cb-8c81-2e332c7947c0, "On", "PUZ_Raanaar_GroundRune_Off_B_cfe5b13a-1883-4ac7-8e28-2d1ab0a7687c", 4);
+DB_ARX_Prison_PuzzleBarriarWalls(S_PUZ_Quest_Wall_Magic_A_WithPhysics_000_10e89b34-49ad-477f-b2e5-dd59900f5301);
+DB_ARX_Prison_PuzzleBarriarWalls(S_PUZ_Quest_Wall_Magic_A_WithPhysics_001_78a117d6-722e-4c8c-886d-de7fa1330bb1);
+DB_ARX_Prison_PuzzleBarriarWalls(S_PUZ_Quest_Wall_Magic_A_WithPhysics_002_d90872b8-72a9-4ff1-a958-932bbd61dbed);
+DB_ARX_Prison_PuzzleBarriarWalls(S_PUZ_Quest_Wall_Magic_A_WithPhysics_003_df31458b-cc98-49a1-bd98-82ab3cdd10dc);
+DB_ARX_Prison_PuzzleBarriarWalls(S_PUZ_Quest_Wall_Magic_A_WithPhysics_004_23380c5f-bbe3-4780-b3d2-c2906eb1a84e);
+ProcTriggerRegisterForPlayers(S_ARX_Prison_WindegosCell_23bfdf1c-6617-4d76-9557-7e766aaca53b);
+ProcTriggerRegisterForPlayers(S_ARX_Prison_WindegoCell_SecretPassageEntered_041e1045-2c7f-4101-a16b-f24ccffc3590);
+ProcTriggerRegisterForPlayers(TRIGGERGUID_S_ARX_Prison_WindegoCell_SecretPassageEntered_02_1f04d0fb-84c0-4db4-8c05-179211581a08);
+DB_ARX_Prison_WindegoCell_SecretPassageEntered_Trigger(S_ARX_Prison_WindegoCell_SecretPassageEntered_041e1045-2c7f-4101-a16b-f24ccffc3590);
+DB_ARX_Prison_WindegoCell_SecretPassageEntered_Trigger(TRIGGERGUID_S_ARX_Prison_WindegoCell_SecretPassageEntered_02_1f04d0fb-84c0-4db4-8c05-179211581a08);
+ProcTriggerRegisterForPlayers(TRIGGERGUID_S_ARX_Prison_WindegosPrisonCell_BlockTeleport_1460d0ae-3117-41fb-9f43-681a58b1eac6);
+Proc_RegisterPartyDecisionDialogOutcomes_Fixed("ARX_Prison_PDD_WhatToDoWithWindego", "ARX_Prison_Windego_Chosen_Spare", "ARX_Prison_Windego_Chosen_Kill", "ARX_Prison_Windego_Chosen_GiveSwornBreaker", "", "");
+Proc_RegisterPartyDecisionDialogOutcomes_Fixed("ARX_Prison_PDD_Windego_SecondSwornbreaker", "ARX_Prison_Windego_Second_Give", "ARX_Prison_Windego_Second_DontGive", "", "", "");
+LockSecretRegion(TRIGGERGUID_S_ARX_Prison_WindeoCell_ToBarracks_SecretRegion_0e386e3c-1713-43fd-a7b1-10998be4156c);
+ProcTriggerRegisterForPlayers(TRIGGERGUID_S_ARX_Prison_WindeoCell_ToBarracks_SecretRegion_0e386e3c-1713-43fd-a7b1-10998be4156c);
+SetVisible(ITEMGUID_S_ARX_Barracks_WindeoCell_ToPrison_Ladder_463b685b-9612-42b6-8c44-0811ebbe8919, 0);
+
+KBSECTION
+PROC
+ProcRegionStarted("ARX_Main")
+AND
+CharacterIsDead(S_FTJ_SW_EscapedPrisoner_d783285f-d3be-4cba-8333-db8976cef182, 1)
+AND
+QueryOnlyOnce("ARX_Prison_Windego_RessurectIfDead")
+THEN
+CharacterResurrect(S_FTJ_SW_EscapedPrisoner_d783285f-d3be-4cba-8333-db8976cef182);
+NOT DB_Dead(S_FTJ_SW_EscapedPrisoner_d783285f-d3be-4cba-8333-db8976cef182);
+ObjectSetFlag(S_FTJ_SW_EscapedPrisoner_d783285f-d3be-4cba-8333-db8976cef182, "ARX_Prison_Windego_SheWasDead");
+
+PROC
+ProcRegionStarted("ARX_Main")
+AND
+QueryOnlyOnce("ARX_Prison_Windego_SetUpWindego")
+THEN
+SetOnStage(S_FTJ_SW_EscapedPrisoner_d783285f-d3be-4cba-8333-db8976cef182, 1);
+TeleportTo(S_FTJ_SW_EscapedPrisoner_d783285f-d3be-4cba-8333-db8976cef182, ARX_Prison_WindegosPrisonCell_73e42cc2-40b0-4ce0-b553-63413c0ca475);
+ProcRemoveAllDialogEntriesForSpeaker(S_FTJ_SW_EscapedPrisoner_d783285f-d3be-4cba-8333-db8976cef182);
+DB_NoLowAttitudeDialog(S_FTJ_SW_EscapedPrisoner_d783285f-d3be-4cba-8333-db8976cef182);
+DB_Dialogs(S_FTJ_SW_EscapedPrisoner_d783285f-d3be-4cba-8333-db8976cef182, "ARX_Prison_Windego");
+Transform(S_FTJ_SW_EscapedPrisoner_d783285f-d3be-4cba-8333-db8976cef182, "UNIQUE_Windego_Undead_6d42f147-f097-4a9d-9cc0-ab6e53213c5b", 0, 0, 1);
+
+IF
+ObjectTransformed(CHARACTERGUID_S_GLO_Windego_d783285f-d3be-4cba-8333-db8976cef182, UNIQUE_Windego_Undead_6d42f147-f097-4a9d-9cc0-ab6e53213c5b)
+THEN
+CharacterLevelUpTo(S_FTJ_SW_EscapedPrisoner_d783285f-d3be-4cba-8333-db8976cef182, 17);
+ProcCharacterDisableAllCrimes(S_FTJ_SW_EscapedPrisoner_d783285f-d3be-4cba-8333-db8976cef182);
+ObjectSetFlag(S_FTJ_SW_EscapedPrisoner_d783285f-d3be-4cba-8333-db8976cef182, "ARX_Prison_FTJ_EscapedPrisoner_IsInARX");
+SetTag(S_FTJ_SW_EscapedPrisoner_d783285f-d3be-4cba-8333-db8976cef182, "BLOCK_PICKPOCKET");
+ApplyStatus(S_GLO_Windego_WindegoGhost_d309b284-43c9-4d68-830c-fcf393aa6288, "FEAR", -1);
+ItemTemplateAddTo("LOOT_Source_Orb_106a7107-cf36-4331-b5b5-6de71969f370", S_GLO_Windego_WindegoGhost_d309b284-43c9-4d68-830c-fcf393aa6288, 2);
+proc_ARX_Prison_Windego_SetUpWindego_GhostSetUp(S_GLO_Windego_WindegoGhost_d309b284-43c9-4d68-830c-fcf393aa6288);
+ItemToInventory(S_GLO_Windego_2SP_SourceOrb1_010c950c-7621-4883-bdb5-9d349b13e3da, S_GLO_Windego_d783285f-d3be-4cba-8333-db8976cef182);
+ItemToInventory(S_GLO_Windego_2SP_SourceOrb2_b916a156-aa29-4532-8270-c8f70991dcac, S_GLO_Windego_d783285f-d3be-4cba-8333-db8976cef182);
+ProcSetInvulnerable(S_FTJ_SW_EscapedPrisoner_d783285f-d3be-4cba-8333-db8976cef182, 1);
+ProcRemoveSourceCollar(S_FTJ_SW_EscapedPrisoner_d783285f-d3be-4cba-8333-db8976cef182);
+ApplyStatus(S_FTJ_SW_EscapedPrisoner_d783285f-d3be-4cba-8333-db8976cef182, "GROUNDED", -1, 1);
+SetFaction(S_FTJ_SW_EscapedPrisoner_d783285f-d3be-4cba-8333-db8976cef182, "ARX_Windego");
+DB_HideEquippedWeapon(S_GLO_Windego_d783285f-d3be-4cba-8333-db8976cef182);
+DB_HideEquippedShield(S_GLO_Windego_d783285f-d3be-4cba-8333-db8976cef182);
+
+IF
+ObjectEnteredCombat(S_GLO_Windego_d783285f-d3be-4cba-8333-db8976cef182, _)
+AND
+DB_HideEquippedWeapon(S_GLO_Windego_d783285f-d3be-4cba-8333-db8976cef182)
+THEN
+Proc_EquipHiddenWeapon(S_GLO_Windego_d783285f-d3be-4cba-8333-db8976cef182);
+Proc_EquipHiddenShield(S_GLO_Windego_d783285f-d3be-4cba-8333-db8976cef182);
+
+PROC
+proc_ARX_Prison_Windego_SetUpWindego_GhostSetUp((CHARACTERGUID)_Var1)
+AND
+DB_Ghosts(_Var1, _Var2, _Var3)
+THEN
+DestroyGhost(_Var2);
+NOT DB_Ghosts(_Var1, _Var2, _Var3);
+
+PROC
+proc_ARX_Prison_Windego_SetUpWindego_GhostSetUp((CHARACTERGUID)_Var1)
+THEN
+DB_Ghosts(S_GLO_Windego_d783285f-d3be-4cba-8333-db8976cef182, S_GLO_Windego_WindegoGhost_d309b284-43c9-4d68-830c-fcf393aa6288, "ARX_Prison_Windego_Ghost");
+
+IF
+ObjectFlagSet("ARX_Prison_FTJ_EscapedPrisoner_IsInARX", S_FTJ_SW_EscapedPrisoner_d783285f-d3be-4cba-8333-db8976cef182, (INTEGER)_Var1)
+THEN
+SetVarInteger(S_FTJ_SW_EscapedPrisoner_d783285f-d3be-4cba-8333-db8976cef182, "FleeFromDangerousSurface", 0);
+SetCanFight(S_FTJ_SW_EscapedPrisoner_d783285f-d3be-4cba-8333-db8976cef182, 0);
+
+IF
+CharacterUsedSkillOnTarget((CHARACTERGUID)_Var1, S_ARX_Barracks_Prison_Windego_CellGenerator_aa32299f-d394-4cec-9dd7-c8dfae0daed1, (STRING)_Var2, _, _)
+AND
+DB_SourceVampirism_Skills(_Var2)
+AND
+DB_TrespassTrigger(_Var5, _, "ARX_Prison_Windego_Trespassing_NearPuzzle", _Var7)
+THEN
+DB_PlayerTrespassing(_Var1, _Var5);
+CharacterRegisterCrime(_Var1, "ARX_Prison_Windego_Trespassing_NearPuzzle", _Var5, _Var7, 0);
+
+PROC
+proc_ARX_Barracks_Prison_Windego_CellGenerator_CalculateSP((CHARACTERGUID)_Var1)
+THEN
+ObjectClearFlag(_Var1, "ARX_Barracks_Prison_Windego_PlayerHaveSourcePoints", 0);
+ObjectClearFlag(_Var1, "ARX_Barracks_Prison_Windego_PlayerHaveSourcePoints_1", 0);
+ObjectClearFlag(_Var1, "ARX_Barracks_Prison_Windego_PlayerHaveSourcePoints_2", 0);
+ObjectClearFlag(_Var1, "ARX_Barracks_Prison_Windego_PlayerHaveSourcePoints_3", 0);
+
+PROC
+proc_ARX_Barracks_Prison_Windego_CellGenerator_CalculateSP((CHARACTERGUID)_Var1)
+AND
+CharacterGetSourcePoints(_Var1, _Var2)
+AND
+_Var2 > 0
+THEN
+ObjectSetFlag(_Var1, "ARX_Barracks_Prison_Windego_PlayerHaveSourcePoints", 0);
+
+PROC
+proc_ARX_Barracks_Prison_Windego_CellGenerator_CalculateSP((CHARACTERGUID)_Var1)
+AND
+CharacterGetSourcePoints(_Var1, _Var2)
+AND
+_Var2 >= 1
+THEN
+ObjectSetFlag(_Var1, "ARX_Barracks_Prison_Windego_PlayerHaveSourcePoints_1", 0);
+
+PROC
+proc_ARX_Barracks_Prison_Windego_CellGenerator_CalculateSP((CHARACTERGUID)_Var1)
+AND
+CharacterGetSourcePoints(_Var1, _Var2)
+AND
+_Var2 >= 2
+THEN
+ObjectSetFlag(_Var1, "ARX_Barracks_Prison_Windego_PlayerHaveSourcePoints_2", 0);
+
+PROC
+proc_ARX_Barracks_Prison_Windego_CellGenerator_CalculateSP((CHARACTERGUID)_Var1)
+AND
+CharacterGetSourcePoints(_Var1, _Var2)
+AND
+_Var2 >= 3
+THEN
+ObjectSetFlag(_Var1, "ARX_Barracks_Prison_Windego_PlayerHaveSourcePoints_3", 0);
+
+IF
+CharacterUsedItem((CHARACTERGUID)_Var1, S_ARX_Barracks_Prison_Windego_CellGenerator_aa32299f-d394-4cec-9dd7-c8dfae0daed1)
+AND
+CharacterIsInCombat(_Var1, 0)
+THEN
+Proc_StartDialog(0, "ARX_Barracks_Prison_Windego_CellDevice", S_ARX_Barracks_Prison_Windego_CellGenerator_aa32299f-d394-4cec-9dd7-c8dfae0daed1, _Var1);
+proc_ARX_Barracks_Prison_Windego_CellGenerator_CalculateSP(_Var1);
+
+IF
+CharacterUsedItem((CHARACTERGUID)_Var1, S_ARX_Barracks_Prison_Windego_CellGenerator_aa32299f-d394-4cec-9dd7-c8dfae0daed1)
+AND
+CharacterIsInCombat(_Var1, 1)
+AND
+QRY_SpeakerIsAvailable(_Var1, 1)
+AND
+StartDialog_Internal("ARX_Barracks_Prison_Windego_CellDevice", 1, S_ARX_Barracks_Prison_Windego_CellGenerator_aa32299f-d394-4cec-9dd7-c8dfae0daed1, _Var1, NULL_00000000-0000-0000-0000-000000000000, NULL_00000000-0000-0000-0000-000000000000, NULL_00000000-0000-0000-0000-000000000000, NULL_00000000-0000-0000-0000-000000000000, 1)
+THEN
+DB_Noop(1);
+proc_ARX_Barracks_Prison_Windego_CellGenerator_CalculateSP(_Var1);
+
+IF
+DialogEnded("ARX_Barracks_Prison_Windego_CellDevice", (INTEGER)_Var1)
+AND
+DialogGetInvolvedPlayer(_Var1, 1, _Var2)
+AND
+ObjectGetFlag(_Var2, "ARX_Barracks_Prison_Windego_PlayerHaveSourcePoints", 1)
+THEN
+ObjectClearFlag(_Var2, "ARX_Barracks_Prison_Windego_PlayerHaveSourcePoints", 0);
+ObjectClearFlag(_Var2, "ARX_Barracks_Prison_Windego_PlayerHaveSourcePoints_1", 0);
+ObjectClearFlag(_Var2, "ARX_Barracks_Prison_Windego_PlayerHaveSourcePoints_2", 0);
+ObjectClearFlag(_Var2, "ARX_Barracks_Prison_Windego_PlayerHaveSourcePoints_3", 0);
+
+IF
+ObjectFlagSet("ARX_Barracks_Prison_Windego_PlayerGiveSourcePoints_1", (CHARACTERGUID)_Var1, _)
+THEN
+Proc_ARX_Barracks_Prison_Windego_PlayerGiveSourcePoints_ToMachine(_Var1, 1);
+ObjectClearFlag(_Var1, "ARX_Barracks_Prison_Windego_PlayerGiveSourcePoints_1", 0);
+
+IF
+ObjectFlagSet("ARX_Barracks_Prison_Windego_PlayerGiveSourcePoints_2", (CHARACTERGUID)_Var1, _)
+THEN
+Proc_ARX_Barracks_Prison_Windego_PlayerGiveSourcePoints_ToMachine(_Var1, 2);
+ObjectClearFlag(_Var1, "ARX_Barracks_Prison_Windego_PlayerGiveSourcePoints_2", 0);
+
+IF
+ObjectFlagSet("ARX_Barracks_Prison_Windego_PlayerGiveSourcePoints_3", (CHARACTERGUID)_Var1, _)
+THEN
+Proc_ARX_Barracks_Prison_Windego_PlayerGiveSourcePoints_ToMachine(_Var1, 3);
+ObjectClearFlag(_Var1, "ARX_Barracks_Prison_Windego_PlayerGiveSourcePoints_3", 0);
+
+PROC
+Proc_ARX_Barracks_Prison_Windego_PlayerGiveSourcePoints_ToMachine((CHARACTERGUID)_Var1, (INTEGER)_Var2)
+AND
+IntegerProduct(-1, _Var2, _Var3)
+THEN
+CharacterAddSourcePoints(_Var1, _Var3);
+ProcIncreaseCounter("ARX_Barracks_Prison_Windego_MachineSourcePoints", _Var2);
+Proc_ARX_Prison_WindegoCell_SourceMachinePlayEffect(S_ARX_Barracks_Prison_Windego_CellGenerator_aa32299f-d394-4cec-9dd7-c8dfae0daed1, "RS3_FX_GP_ScriptedEvent_ARX_Prison_Windego_SourceAddedToDevice_01");
+Proc_ShakeCameraForTime(_Var1, 200);
+proc_ARX_Barracks_Prison_Windego_CellGenerator_CalculateSP(_Var1);
+
+IF
+CharacterUsedSkillOnTarget((CHARACTERGUID)_Var1, S_ARX_Barracks_Prison_Windego_CellGenerator_aa32299f-d394-4cec-9dd7-c8dfae0daed1, "Target_Item_ReplenishSource", _, _)
+THEN
+ProcObjectTimer(_Var1, "ARX_Prison_WindegoCell_CastReplanishSource", 1000);
+
+PROC
+ProcObjectTimerFinished((CHARACTERGUID)_Var1, "ARX_Prison_WindegoCell_CastReplanishSource")
+AND
+DB_GlobalCounter("ARX_Barracks_Prison_Windego_MachineSourcePoints", _Var2)
+AND
+DB_ARX_Barracks_Prison_Windego_Machine(_Var3, _Var4, "Explode")
+AND
+IntegerSubtract(_Var4, 1, _Var5)
+AND
+_Var2 == _Var5
+THEN
+DB_ARX_Prison_Windego_PlayerOpenedCell(_Var1);
+ObjectSetFlag(_Var1, "QuestUpdate_ARX_Prison_Windego_PuzzleSolved");
+GlobalSetFlag("ARX_Prison_WindegoCell_PuzzleSolved");
+Proc_ARX_Prison_Windego_PaladinGuards_Hostile(_Var1);
+
+PROC
+ProcObjectTimerFinished((CHARACTERGUID)_Var1, "ARX_Prison_WindegoCell_CastReplanishSource")
+AND
+DB_GlobalCounter("ARX_Barracks_Prison_Windego_MachineSourcePoints", _Var2)
+AND
+DB_ARX_Barracks_Prison_Windego_Machine(_Var3, _Var4, "Explode")
+AND
+_Var2 < _Var4
+THEN
+CharacterRegisterCrime(_Var1, "UseForbiddenItem", S_ARX_Barracks_Prison_Windego_CellGenerator_aa32299f-d394-4cec-9dd7-c8dfae0daed1, NULL_00000000-0000-0000-0000-000000000000, 0);
+
+PROC
+ProcObjectTimerFinished((CHARACTERGUID)_Var1, "ARX_Prison_WindegoCell_CastReplanishSource")
+THEN
+ProcIncreaseCounter("ARX_Barracks_Prison_Windego_MachineSourcePoints", 1);
+Proc_ARX_Prison_WindegoCell_SourceMachinePlayEffect(S_ARX_Barracks_Prison_Windego_CellGenerator_aa32299f-d394-4cec-9dd7-c8dfae0daed1, "RS3_FX_GP_ScriptedEvent_ARX_Prison_Windego_SourceAddedToDevice_01");
+Proc_ShakeCameraForTime(_Var1, 200);
+
+PROC
+Proc_ARX_Prison_Windego_PaladinGuards_Hostile((CHARACTERGUID)_Var1)
+AND
+DB_ARX_Prison_Windego_PaladinGuards(_Var2)
+AND NOT
+DB_Dead(_Var2)
+AND
+ObjectIsOnStage(_Var2, 1)
+THEN
+ProcForceStopDialog(_Var2);
+ProcMakeNPCHostile(_Var2, _Var1);
+
+IF
+ObjectSourcePointAddRequest(S_ARX_Barracks_Prison_Windego_CellGenerator_aa32299f-d394-4cec-9dd7-c8dfae0daed1, (INTEGER)_Var1, (INTEGER)_Var2)
+THEN
+ProcIncreaseCounter("ARX_Barracks_Prison_Windego_MachineSourcePoints", _Var1);
+Proc_ARX_Prison_WindegoCell_SourceMachinePlayEffect(S_ARX_Barracks_Prison_Windego_CellGenerator_aa32299f-d394-4cec-9dd7-c8dfae0daed1, "RS3_FX_GP_ScriptedEvent_ARX_Prison_Windego_SourceAddedToDevice_01");
+Proc_CameraShakeAroundCharacter(S_ARX_Barracks_Prison_Windego_CellGenerator_aa32299f-d394-4cec-9dd7-c8dfae0daed1, 25, 4);
+
+IF
+DB_GlobalCounter("ARX_Barracks_Prison_Windego_MachineSourcePoints", _Var1)
+AND
+DB_ARX_Barracks_Prison_Windego_Machine(_Var2, _Var3, "OverHeat")
+AND
+_Var1 >= _Var3
+AND
+QueryOnlyOnce("ARX_Barracks_Prison_Windego_Machine_IsOverHitting")
+THEN
+PROC_LoopEffect("RS3_FX_GP_ScriptedEvent_Raanaar_Lamp_A_Overheat_01", _Var2, "ARX_Barracks_Prison_Windego_Machine_IsOverHitting", "ARX_Main", "Dummy_LTS_Raanaar_Lamp_A");
+Proc_ARX_Prison_WindegoCell_SourceMachinePlayEffect(_Var2, "RS3_FX_GP_ScriptedEvent_ARX_Prison_Windego_SourceMachine_Hit_01");
+ObjectSetFlag(_Var2, "ARX_Barracks_Prison_Windego_Machine_IsOverHitting");
+
+IF
+DB_GlobalCounter("ARX_Barracks_Prison_Windego_MachineSourcePoints", _Var1)
+AND
+DB_ARX_Barracks_Prison_Windego_Machine(_Var2, _Var3, "Explode")
+AND
+_Var1 >= _Var3
+AND
+QueryOnlyOnce("ARX_Barracks_Prison_Windego_Machine_Exploded")
+THEN
+PROC_LoopEffect("RS3_FX_GP_ScriptedEvent_Raanaar_Lamp_A_Exploded_01", _Var2, "ARX_Barracks_Prison_Windego_Machine_Exploded", "ARX_Main", "Dummy_LTS_Raanaar_Lamp_A");
+PROC_StopLoopEffect(_Var2, "ARX_Barracks_Prison_Windego_Machine_IsOverHitting");
+Proc_ARX_Prison_WindegoCell_SourceMachinePlayEffect(_Var2, "RS3_FX_GP_ScriptedEvent_ARX_Prison_Windego_SourceMachine_Hit_01");
+ObjectSetFlag(_Var2, "ARX_Barracks_Prison_Windego_Machine_Exploded");
+
+IF
+DB_GlobalCounter("ARX_Barracks_Prison_Windego_MachineSourcePoints", 2)
+THEN
+ObjectSetFlag(S_ARX_Barracks_Prison_Windego_CellGenerator_aa32299f-d394-4cec-9dd7-c8dfae0daed1, "ARX_Barracks_Prison_Windego_Machine_Needs2SP");
+
+IF
+DB_GlobalCounter("ARX_Barracks_Prison_Windego_MachineSourcePoints", 3)
+THEN
+ObjectSetFlag(S_ARX_Barracks_Prison_Windego_CellGenerator_aa32299f-d394-4cec-9dd7-c8dfae0daed1, "ARX_Barracks_Prison_Windego_Machine_Needs1SP");
+
+IF
+DB_GlobalCounter("ARX_Barracks_Prison_Windego_MachineSourcePoints", _Var1)
+AND
+DB_ARX_Prison_WindegoPuzzle_Runes(_Var2, "On", _Var3, _Var4)
+AND
+_Var4 <= _Var1
+THEN
+Transform(_Var2, _Var3);
+NOT DB_ARX_Prison_WindegoPuzzle_Runes(_Var2, "On", _Var3, _Var4);
+DB_ARX_Prison_WindegoPuzzle_Runes(_Var2, "Off", _Var3, _Var4);
+
+PROC
+Proc_ARX_Prison_WindegoCell_SourceMachinePlayEffect((ITEMGUID)_Var1, (STRING)_Var2)
+AND
+GetPosition(_Var1, _Var3, _Var4, _Var5)
+AND
+RealSum(_Var4, 1.5, _Var6)
+THEN
+PlayEffectAtPosition(_Var2, _Var3, _Var6, _Var5);
+
+IF
+DialogEnded("ARX_Barracks_Prison_Windego_CellDevice", (INTEGER)_Var1)
+AND
+DialogGetInvolvedPlayer(_Var1, 1, _Var2)
+AND
+ObjectGetFlag(_Var2, "ARX_Prison_Windego_PlayerOpenedCell", 1)
+AND
+QueryOnlyOnce("ARX_Prison_Windego_PlayerOpenedCell")
+THEN
+Proc_ARX_Prison_Windego_PaladinGuards_Hostile(_Var2);
+GlobalSetFlag("ARX_Prison_WindegoCell_PuzzleSolved");
+DB_ARX_Prison_Windego_PlayerOpenedCell(_Var2);
+ObjectSetFlag(_Var2, "QuestUpdate_ARX_Prison_Windego_PuzzleSolved");
+
+IF
+GlobalFlagSet("ARX_Prison_WindegoCell_PuzzleSolved")
+AND
+DB_ARX_Prison_PuzzleBarriarWalls(_Var1)
+THEN
+SetOnStage(_Var1, 0);
+
+IF
+GlobalFlagSet("ARX_Prison_WindegoCell_PuzzleSolved")
+THEN
+ProcForceStopDialog(S_FTJ_SW_EscapedPrisoner_d783285f-d3be-4cba-8333-db8976cef182);
+ProcCharacterEnableAllCrimes(S_FTJ_SW_EscapedPrisoner_d783285f-d3be-4cba-8333-db8976cef182);
+ProcCharacterMoveTo(S_FTJ_SW_EscapedPrisoner_d783285f-d3be-4cba-8333-db8976cef182, S_ARX_Prison_WindegoCell_OutOfCellPoint_61dc0970-0800-4194-b77a-5832d1e1d374, 0, "ARX_Prison_WindegoCell_WindegoLeftCell");
+SetVarInteger(S_FTJ_SW_EscapedPrisoner_d783285f-d3be-4cba-8333-db8976cef182, "FleeFromDangerousSurface", 1);
+SetCanFight(S_FTJ_SW_EscapedPrisoner_d783285f-d3be-4cba-8333-db8976cef182, 1);
+ClearTag(S_FTJ_SW_EscapedPrisoner_d783285f-d3be-4cba-8333-db8976cef182, "BLOCK_PICKPOCKET");
+ProcSetInvulnerable(S_FTJ_SW_EscapedPrisoner_d783285f-d3be-4cba-8333-db8976cef182, 0);
+RemoveStatus(S_FTJ_SW_EscapedPrisoner_d783285f-d3be-4cba-8333-db8976cef182, "GROUNDED");
+
+IF
+StoryEvent((CHARACTERGUID)_Var1, "ARX_Prison_WindegoCell_WindegoLeftCell")
+AND NOT
+DB_ARX_Prison_Windego_PlayerOpenedCell(_)
+THEN
+Proc_ARX_Prison_WindegoCell_WindegoLeftCell(_Var1);
+
+IF
+StoryEvent((CHARACTERGUID)_Var1, "ARX_Prison_WindegoCell_WindegoLeftCell")
+AND
+DB_ARX_Prison_Windego_PlayerOpenedCell(_Var2)
+AND
+CharacterIsInCombat(_Var2, 0)
+THEN
+Proc_ARX_Prison_WindegoCell_WindegoLeftCell(_Var1);
+
+IF
+StoryEvent((CHARACTERGUID)_Var1, "ARX_Prison_WindegoCell_WindegoLeftCell")
+AND
+DB_ARX_Prison_Windego_PlayerOpenedCell(_Var2)
+AND
+CharacterIsInCombat(_Var2, 1)
+AND
+CombatGetIDForCharacter(_Var2, _Var3)
+THEN
+ProcSetRelationToPlayers(_Var1, 100);
+Proc_StartDialog(1, "ARX_AD_Prison_Windego", S_FTJ_SW_EscapedPrisoner_d783285f-d3be-4cba-8333-db8976cef182);
+DB_ARX_Prison_WindegoCell_WindegoLeftCell_StartDialogAfterCombat(_Var1, _Var3);
+
+IF
+CombatEnded((INTEGER)_Var1)
+AND
+DB_ARX_Prison_WindegoCell_WindegoLeftCell_StartDialogAfterCombat(_Var2, _Var1)
+THEN
+ProcSetRelationToPlayers(_Var2, 50);
+NOT DB_ARX_Prison_WindegoCell_WindegoLeftCell_StartDialogAfterCombat(_Var2, _Var1);
+Proc_ARX_Prison_WindegoCell_WindegoLeftCell(_Var2);
+
+PROC
+Proc_ARX_Prison_WindegoCell_WindegoLeftCell((CHARACTERGUID)_Var1)
+AND
+DB_ARX_Prison_Windego_PlayerOpenedCell(_Var2)
+AND
+CharacterCanSee(_Var1, _Var2, 1)
+AND
+QRY_SpeakerIsAvailable(_Var2)
+THEN
+Proc_StartDialog(0, "ARX_Prison_Windego", _Var1, _Var2);
+
+PROC
+Proc_ARX_Prison_WindegoCell_WindegoLeftCell((CHARACTERGUID)_Var1)
+AND
+DB_ARX_Prison_Windego_PlayerOpenedCell(_Var2)
+AND
+CharacterCanSee(_Var1, _Var2, 0)
+AND
+QRY_GetClosestAvailableCharacterTo(_Var1, 1)
+AND
+DB_ClosestAvailableCharacterTo(_Var3, _Var1, _)
+THEN
+Proc_StartDialog(0, "ARX_Prison_Windego", _Var1, _Var3);
+
+PROC
+Proc_ARX_Prison_WindegoCell_WindegoLeftCell((CHARACTERGUID)_Var1)
+AND NOT
+DB_ARX_Prison_Windego_PlayerOpenedCell(_)
+AND
+QRY_GetClosestAvailableCharacterTo(_Var1, 1)
+AND
+DB_ClosestAvailableCharacterTo(_Var3, _Var1, _)
+THEN
+Proc_StartDialog(0, "ARX_Prison_Windego", _Var1, _Var3);
+
+IF
+CharacterUsedSkillAtPosition((CHARACTERGUID)_Var1, (REAL)_Var2, (REAL)_Var3, (REAL)_Var4, (STRING)_Var5, "jump", _)
+AND
+PositionIsInTrigger(_Var2, _Var3, _Var4, TRIGGERGUID_S_ARX_Prison_WindegosPrisonCell_BlockTeleport_1460d0ae-3117-41fb-9f43-681a58b1eac6, 1)
+AND
+GetPosition(_Var1, _Var7, _Var8, _Var9)
+THEN
+Proc_Update_DB_ARX_Prison_WindegosPrisonCell_BlockTeleport(_Var1, _Var7, _Var8, _Var9);
+
+PROC
+Proc_Update_DB_ARX_Prison_WindegosPrisonCell_BlockTeleport((CHARACTERGUID)_Var1, (REAL)_Var2, (REAL)_Var3, (REAL)_Var4)
+AND
+DB_ARX_Prison_WindegosPrisonCell_BlockTeleport(_Var1, _Var2, _Var3, _Var4)
+THEN
+NOT DB_ARX_Prison_WindegosPrisonCell_BlockTeleport(_Var1, _Var2, _Var3, _Var4);
+
+PROC
+Proc_Update_DB_ARX_Prison_WindegosPrisonCell_BlockTeleport((CHARACTERGUID)_Var1, (REAL)_Var2, (REAL)_Var3, (REAL)_Var4)
+THEN
+DB_ARX_Prison_WindegosPrisonCell_BlockTeleport(_Var1, _Var2, _Var3, _Var4);
+
+IF
+CharacterEnteredTrigger((CHARACTERGUID)_Var1, TRIGGERGUID_S_ARX_Prison_WindegosPrisonCell_BlockTeleport_1460d0ae-3117-41fb-9f43-681a58b1eac6)
+AND NOT
+DB_ARX_Prison_WindegosPrisonCell_BlockTeleport(_Var1, _, _, _)
+THEN
+TeleportTo(_Var1, TRIGGERGUID_S_ARX_Prison_WindegoCell_OutOfCellPoint_61dc0970-0800-4194-b77a-5832d1e1d374);
+PlayEffect(_Var1, "RS3_FX_Char_Creatures_Shriker_LightningBolt_Impact_01");
+PlayEffect(TRIGGERGUID_S_ARX_Prison_WindegosPrisonCell_BlockTeleport_Effect_302bc9b1-410b-45de-84da-34cfb0f25481, "RS3_FX_GP_Combat_Hit_MagicalArmor_01");
+ProcObjectTimer(_Var1, "ARX_Prison_WindegosPrisonCell_BlockTeleport", 10);
+
+IF
+CharacterEnteredTrigger((CHARACTERGUID)_Var1, TRIGGERGUID_S_ARX_Prison_WindegosPrisonCell_BlockTeleport_1460d0ae-3117-41fb-9f43-681a58b1eac6)
+AND
+DB_ARX_Prison_WindegosPrisonCell_BlockTeleport(_Var1, _Var2, _Var3, _Var4)
+THEN
+NOT DB_ARX_Prison_WindegosPrisonCell_BlockTeleport(_Var1, _Var2, _Var3, _Var4);
+TeleportToPosition(_Var1, _Var2, _Var3, _Var4, "", 0);
+PlayEffect(_Var1, "RS3_FX_Char_Creatures_Shriker_LightningBolt_Impact_01");
+PlayEffect(TRIGGERGUID_S_ARX_Prison_WindegosPrisonCell_BlockTeleport_Effect_302bc9b1-410b-45de-84da-34cfb0f25481, "RS3_FX_GP_Combat_Hit_MagicalArmor_01");
+ProcObjectTimer(_Var1, "ARX_Prison_WindegosPrisonCell_BlockTeleport", 10);
+
+PROC
+ProcObjectTimerFinished((GUIDSTRING)_Var1, "ARX_Prison_WindegosPrisonCell_BlockTeleport")
+THEN
+ApplyStatus(_Var1, "KNOCKED_DOWN", 4, 1);
+
+IF
+GlobalFlagSet("ARX_Prison_WindegoCell_PuzzleSolved")
+AND
+DB_ARX_Prison_WindegosPrisonCell_BlockTeleport(_Var1, _Var2, _Var3, _Var4)
+THEN
+NOT DB_ARX_Prison_WindegosPrisonCell_BlockTeleport(_Var1, _Var2, _Var3, _Var4);
+
+IF
+GlobalFlagSet("ARX_Prison_WindegoCell_PuzzleSolved")
+THEN
+ProcTriggerUnregisterForPlayers(TRIGGERGUID_S_ARX_Prison_WindegosPrisonCell_BlockTeleport_1460d0ae-3117-41fb-9f43-681a58b1eac6);
+
+IF
+ObjectEnteredCombat((CHARACTERGUID)_Var1, (INTEGER)_Var2)
+AND
+DB_ARX_Prison_Windego_PaladinGuards(_Var1)
+AND
+DB_ARX_Prison_Windego_PaladinGuards(_Var3)
+AND
+DB_DialogNPCs(_Var4, _Var3, _)
+AND NOT
+DB_AutomatedDialog(_Var4)
+THEN
+ObjectSetFlag(_Var3, "ARX_Prison_WindegoCell_DialogInterrupted");
+ProcForceStopDialog(_Var3);
+
+IF
+ObjectFlagSet("ARX_Prison_WindegoCell_DialogInterrupted", (GUIDSTRING)_Var1, _)
+AND
+ObjectGetFlag(_Var1, "ARX_Prison_WindegoCell_PaladinLeave", 1)
+THEN
+ObjectClearFlag(_Var1, "ARX_Prison_WindegoCell_PaladinLeave");
+
+IF
+ObjectLeftCombat((CHARACTERGUID)_Var1, (INTEGER)_Var2)
+AND
+DB_ARX_Prison_Windego_PaladinGuards(_Var1)
+AND
+ObjectGetFlag(_Var1, "ARX_Prison_WindegoCell_DialogInterrupted", 1)
+THEN
+ObjectClearFlag(_Var1, "ARX_Prison_WindegoCell_DialogInterrupted");
+
+IF
+DialogEnded("ARX_Prison_WindegoCell_Paladin", (INTEGER)_Var1)
+AND
+DialogGetInvolvedNPC(_Var1, 1, _Var2)
+THEN
+proc_ARX_Prison_WindegoCell_Paladin_Leave(_Var2);
+
+IF
+DialogEnded("ARX_Prison_Windego_Trespassing_NearPuzzle", (INTEGER)_Var1)
+AND
+DialogGetInvolvedNPC(_Var1, 1, _Var2)
+THEN
+proc_ARX_Prison_WindegoCell_Paladin_Leave(_Var2);
+
+PROC
+proc_ARX_Prison_WindegoCell_Paladin_Leave((CHARACTERGUID)_Var1)
+AND
+ObjectGetFlag(_Var1, "ARX_Prison_WindegoCell_PaladinLeave", 1)
+THEN
+SetHasDialog(_Var1, 0);
+TriggerClearItemOwner(S_ARX_Prison_WindegoCell_PaladinOnwerShipTirgger_2848eaf9-39a0-4052-9f07-cf666e0a19c4);
+Proc_StartDialog(1, "ARX_AD_Prison_WindegoCell_Paladin_Leave", _Var1);
+ProcRemoveDBTrespassTrigger(S_ARX_Prison_WayToWindego_Tresspassing_2392a136-41d1-479e-b3a6-90c3514baa7e, S_ARX_Prison_WayToWindego_Tresspassing_OutTrigger_4db124fa-1083-44b7-8321-b87afbfe11f9);
+
+IF
+DialogEnded("ARX_Prison_Windego_Trespassing_NearPuzzle", (INTEGER)_Var1)
+AND
+DialogGetInvolvedNPC(_Var1, 1, _Var2)
+AND
+ObjectGetFlag(_Var2, "ARX_Prison_WindegoCell_PaladinLeave", 1)
+AND
+DB_DialogPlayers(_Var1, _Var3, _)
+THEN
+CharacterStopCrime(_Var3, "ARX_Prison_Windego_Trespassing_NearPuzzle", NULL_00000000-0000-0000-0000-000000000000);
+
+IF
+AutomatedDialogStarted("ARX_AD_Prison_WindegoCell_Paladin_Leave", (INTEGER)_Var1)
+AND
+DB_ARX_Prison_Windego_PaladinGuards(_Var2)
+AND
+_Var2 != S_ARX_Prison_WindegoCell_Paladin_383eb4a6-4c76-4d97-82ea-089f96e5e366
+THEN
+SetHasDialog(_Var2, 0);
+CharacterLookAt(_Var2, S_ARX_Prison_WindegoCell_Paladin_383eb4a6-4c76-4d97-82ea-089f96e5e366);
+ProcForceStopDialog(_Var2);
+
+IF
+AutomatedDialogEnded("ARX_AD_Prison_WindegoCell_Paladin_Leave", (INTEGER)_Var1)
+AND NOT
+qry_ARX_Prison_WindegoCell_DialogInterrupted()
+AND
+DB_ARX_Prison_Windego_PaladinGuards(_Var2)
+AND
+CharacterIsDead(_Var2, 0)
+THEN
+SetHasDialog(_Var2, 0);
+ProcCharacterMoveTo(_Var2, S_RC_ARX_Prison_Ent_b9c27482-6226-4f8a-9164-2ad8fad5fb19, 0, "ARX_Prison_WindegoCell_Paladin_Disappeared");
+ProcForceStopDialog(_Var2);
+
+IF
+AutomatedDialogEnded("ARX_AD_Prison_WindegoCell_Paladin_Leave", (INTEGER)_Var1)
+AND
+qry_ARX_Prison_WindegoCell_DialogInterrupted()
+AND
+DB_ARX_Prison_Windego_PaladinGuards(_Var2)
+AND
+CharacterIsDead(_Var2, 0)
+THEN
+SetHasDialog(_Var2, 1);
+
+QRY
+qry_ARX_Prison_WindegoCell_DialogInterrupted()
+AND
+DB_ARX_Prison_Windego_PaladinGuards(_Var1)
+AND
+ObjectGetFlag(_Var1, "ARX_Prison_WindegoCell_DialogInterrupted", 1)
+THEN
+DB_Noop(1);
+
+IF
+AutomatedDialogEnded("ARX_AD_Prison_WindegoCell_Paladin_Leave", (INTEGER)_Var1)
+THEN
+ItemUnLock(S_ARX_PlayerPrisonDoor_ToWindego_1e4c49e5-15d3-47ef-9965-fad3e43cd1b7);
+
+IF
+StoryEvent((GUIDSTRING)_Var1, "ARX_Prison_WindegoCell_Paladin_Disappeared")
+THEN
+SetOnStage(_Var1, 0);
+
+IF
+StoryEvent((GUIDSTRING)_Var1, "ARX_Prison_WindegoCell_Paladin_Disappeared")
+THEN
+ObjectSetFlag(S_FTJ_SW_EscapedPrisoner_d783285f-d3be-4cba-8333-db8976cef182, "ARX_Prison_WindegoCell_Paladin_Disappeared");
+
+IF
+TextEventSet("SetAnimation")
+THEN
+CharacterSetAnimationOverride(S_FTJ_SW_EscapedPrisoner_d783285f-d3be-4cba-8333-db8976cef182, "BehindBars_01");
+
+IF
+CharacterDied(S_ARX_Prison_WindegoCell_Paladin_383eb4a6-4c76-4d97-82ea-089f96e5e366)
+THEN
+ObjectSetFlag(S_FTJ_SW_EscapedPrisoner_d783285f-d3be-4cba-8333-db8976cef182, "ARX_Prison_WindegoCell_Paladin_Disappeared");
+ARX_Prison_Windego_PaladinGuards_Leave();
+
+PROC
+ARX_Prison_Windego_PaladinGuards_Leave()
+AND
+DB_ARX_Prison_Windego_PaladinGuards(_Var1)
+AND
+CharacterIsDead(_Var1, 0)
+AND
+CharacterIsInCombat(_Var1, 0)
+THEN
+ProcCharacterDisappearOutOfSight(_Var1, 0, 0, "ARX_Prison_WindegoCell_Paladin_Disappeared", 1);
+
+PROC
+ARX_Prison_Windego_PaladinGuards_Leave()
+AND
+DB_ARX_Prison_Windego_PaladinGuards(_Var1)
+AND
+CharacterIsDead(_Var1, 0)
+AND
+CharacterIsInCombat(_Var1, 1)
+AND
+DB_CombatCharacters(_Var1, _Var2)
+THEN
+DB_ARX_Prison_Windego_PaladinGuards_Leave_AfterCombat(_Var1, _Var2);
+
+IF
+CombatEnded((INTEGER)_Var1)
+AND
+DB_ARX_Prison_Windego_PaladinGuards_Leave_AfterCombat(_Var2, _Var1)
+AND
+CharacterIsDead(_Var2, 0)
+THEN
+ProcCharacterDisappearOutOfSight(_Var2, 180, 0, "ARX_Prison_WindegoCell_Paladin_Disappeared", 1);
+
+IF
+ObjectEnteredCombat(S_ARX_Prison_WindegoCell_Paladin_383eb4a6-4c76-4d97-82ea-089f96e5e366, (INTEGER)_Var1)
+AND
+CombatGetInvolvedPlayer(_Var1, 1, _Var2)
+AND
+DB_IsPlayer(_Var2)
+AND
+CharacterCanSee(S_FTJ_SW_EscapedPrisoner_d783285f-d3be-4cba-8333-db8976cef182, S_ARX_Prison_WindegoCell_Paladin_383eb4a6-4c76-4d97-82ea-089f96e5e366, 1)
+THEN
+ObjectSetFlag(S_FTJ_SW_EscapedPrisoner_d783285f-d3be-4cba-8333-db8976cef182, "ARX_Prison_WindegoCell_WindegoSawCombatStart");
+Proc_StartDialog(1, "ARX_AD_Prison_Windego", S_FTJ_SW_EscapedPrisoner_d783285f-d3be-4cba-8333-db8976cef182);
+
+IF
+ObjectFlagSet("ARX_Prison_WindegoCell_Paladin_Disappeared", S_FTJ_SW_EscapedPrisoner_d783285f-d3be-4cba-8333-db8976cef182, _)
+THEN
+Proc_StartDialog(1, "ARX_AD_Prison_Windego", S_FTJ_SW_EscapedPrisoner_d783285f-d3be-4cba-8333-db8976cef182);
+
+IF
+GlobalFlagSet("ARX_Prison_WindegoCell_PuzzleSolved")
+THEN
+Proc_StartDialog(1, "ARX_AD_Prison_Windego", S_FTJ_SW_EscapedPrisoner_d783285f-d3be-4cba-8333-db8976cef182);
+
+IF
+DialogEnded("ARX_Prison_Windego", (INTEGER)_Var1)
+AND
+DialogGetInvolvedNPC(_Var1, 1, S_FTJ_SW_EscapedPrisoner_d783285f-d3be-4cba-8333-db8976cef182)
+AND
+ObjectGetFlag(S_FTJ_SW_EscapedPrisoner_d783285f-d3be-4cba-8333-db8976cef182, "ARX_Prison_WindegoEscaped", 1)
+AND
+GlobalGetFlag("ARX_Prison_Windego_DiedSwornbreaker", 0)
+AND
+QueryOnlyOnce("ARX_Prison_WindegoEscaped_Obj")
+THEN
+Poof(S_FTJ_SW_EscapedPrisoner_d783285f-d3be-4cba-8333-db8976cef182);
+GlobalSetFlag("ARX_Prison_WindegoEscaped");
+Proc_ARX_PrisonWindegoPoofRatIfAlive();
+
+IF
+DialogEnded("ARX_Prison_Windego", (INTEGER)_Var1)
+AND
+GlobalGetFlag("ARX_Prison_Windego_DiedSwornbreaker", 1)
+THEN
+CharacterDieImmediate(d783285f-d3be-4cba-8333-CHARACTERGUID_S_GLO_Windego_d783285f-d3be-4cba-8333-db8976cef182, 1, "DoT");
+
+IF
+DialogEnded("ARX_Prison_Windego", (INTEGER)_Var1)
+AND
+DialogGetInvolvedPlayer(_Var1, 1, _Var2)
+AND
+ObjectGetFlag(_Var2, "ARX_Prison_Windego_PlayerGavePromiseBreaker", 1)
+THEN
+StartVoiceBark("ARX_Prison_VB_Windego_PlayerGavePromiseBreaker", _Var2);
+
+IF
+DialogEnded("ARX_Prison_Windego", (INTEGER)_Var1)
+AND
+DialogGetInvolvedNPC(_Var1, 1, S_FTJ_SW_EscapedPrisoner_d783285f-d3be-4cba-8333-db8976cef182)
+AND
+DialogGetInvolvedPlayer(_Var1, 1, _Var2)
+AND
+ObjectGetFlag(S_FTJ_SW_EscapedPrisoner_d783285f-d3be-4cba-8333-db8976cef182, "ARX_Prison_Windego_FightPlayer", 1)
+THEN
+ProcMakeNPCHostile(S_FTJ_SW_EscapedPrisoner_d783285f-d3be-4cba-8333-db8976cef182, _Var2);
+DB_ARX_Prison_WindeogoDisappearAfterCombat(S_FTJ_SW_EscapedPrisoner_d783285f-d3be-4cba-8333-db8976cef182);
+
+IF
+ObjectEnteredCombat(S_FTJ_SW_EscapedPrisoner_d783285f-d3be-4cba-8333-db8976cef182, (INTEGER)_Var1)
+AND
+DB_ARX_Prison_WindeogoDisappearAfterCombat(S_FTJ_SW_EscapedPrisoner_d783285f-d3be-4cba-8333-db8976cef182)
+THEN
+DB_ARX_Prison_WindeogoDisappearAfterCombat(S_FTJ_SW_EscapedPrisoner_d783285f-d3be-4cba-8333-db8976cef182, _Var1);
+NOT DB_ARX_Prison_WindeogoDisappearAfterCombat(S_FTJ_SW_EscapedPrisoner_d783285f-d3be-4cba-8333-db8976cef182);
+
+IF
+ObjectSwitchedCombat(S_FTJ_SW_EscapedPrisoner_d783285f-d3be-4cba-8333-db8976cef182, (INTEGER)_Var1, (INTEGER)_Var2)
+AND
+DB_ARX_Prison_WindeogoDisappearAfterCombat(S_FTJ_SW_EscapedPrisoner_d783285f-d3be-4cba-8333-db8976cef182, _Var1)
+THEN
+NOT DB_ARX_Prison_WindeogoDisappearAfterCombat(S_FTJ_SW_EscapedPrisoner_d783285f-d3be-4cba-8333-db8976cef182, _Var1);
+DB_ARX_Prison_WindeogoDisappearAfterCombat(S_FTJ_SW_EscapedPrisoner_d783285f-d3be-4cba-8333-db8976cef182, _Var2);
+
+IF
+CombatEnded((INTEGER)_Var1)
+AND
+DB_ARX_Prison_WindeogoDisappearAfterCombat(S_FTJ_SW_EscapedPrisoner_d783285f-d3be-4cba-8333-db8976cef182, _Var1)
+THEN
+NOT DB_ARX_Prison_WindeogoDisappearAfterCombat(S_FTJ_SW_EscapedPrisoner_d783285f-d3be-4cba-8333-db8976cef182, _Var1);
+
+IF
+ObjectLeftCombat(S_FTJ_SW_EscapedPrisoner_d783285f-d3be-4cba-8333-db8976cef182, (INTEGER)_Var1)
+AND
+DB_ARX_Prison_WindeogoDisappearAfterCombat(S_FTJ_SW_EscapedPrisoner_d783285f-d3be-4cba-8333-db8976cef182, _Var1)
+AND
+CharacterIsDead(S_FTJ_SW_EscapedPrisoner_d783285f-d3be-4cba-8333-db8976cef182, 0)
+THEN
+NOT DB_ARX_Prison_WindeogoDisappearAfterCombat(S_FTJ_SW_EscapedPrisoner_d783285f-d3be-4cba-8333-db8976cef182, _Var1);
+ObjectSetFlag(S_FTJ_SW_EscapedPrisoner_d783285f-d3be-4cba-8333-db8976cef182, "ARX_Prison_WindegoEscaped");
+Proc_StartDialog(1, "ARX_AD_Prison_Windego_PostFight", S_FTJ_SW_EscapedPrisoner_d783285f-d3be-4cba-8333-db8976cef182);
+
+IF
+GlobalFlagSet("ARX_Prison_WindegoEscaped")
+AND
+DB_ARX_Prison_WindeogoDisappearAfterCombat(S_FTJ_SW_EscapedPrisoner_d783285f-d3be-4cba-8333-db8976cef182)
+THEN
+NOT DB_ARX_Prison_WindeogoDisappearAfterCombat(S_FTJ_SW_EscapedPrisoner_d783285f-d3be-4cba-8333-db8976cef182);
+
+IF
+AutomatedDialogEnded("ARX_AD_Prison_Windego_PostFight", _)
+THEN
+Poof(S_FTJ_SW_EscapedPrisoner_d783285f-d3be-4cba-8333-db8976cef182);
+Proc_ARX_PrisonWindegoPoofRatIfAlive();
+GlobalSetFlag("ARX_Prison_WindegoEscaped");
+
+PROC
+Proc_ARX_PrisonWindegoPoofRatIfAlive()
+AND
+CharacterIsDead(S_ARX_Barracks_MainHall_Rat_c7ab563d-8320-4f2a-97f9-3f6db03e41ce, 0)
+THEN
+Poof(S_ARX_Barracks_MainHall_Rat_c7ab563d-8320-4f2a-97f9-3f6db03e41ce);
+
+PROC
+Proc_GLO_PromiseBreak_Effect_Accept(S_FTJ_SW_EscapedPrisoner_d783285f-d3be-4cba-8333-db8976cef182)
+AND
+DB_CurrentLevel(_Var1)
+THEN
+ProcObjectTimer(S_FTJ_SW_EscapedPrisoner_d783285f-d3be-4cba-8333-db8976cef182, "S_FTJ_SW_EscapedPrisoner_PlayDeath", 1500);
+
+PROC
+ProcObjectTimerFinished(S_FTJ_SW_EscapedPrisoner_d783285f-d3be-4cba-8333-db8976cef182, "S_FTJ_SW_EscapedPrisoner_PlayDeath")
+THEN
+CharacterSetAnimationOverride(S_FTJ_SW_EscapedPrisoner_d783285f-d3be-4cba-8333-db8976cef182, "die_crush");
+GlobalSetFlag("ARX_Prison_Windego_DiedSwornbreaker");
+
+IF
+CharacterEnteredTrigger((CHARACTERGUID)_Var1, (TRIGGERGUID)_Var2)
+AND
+DB_ARX_Prison_WindegoCell_SecretPassageEntered_Trigger(_Var2)
+AND
+CharacterCanSee(S_ARX_Prison_WindegoCell_Paladin_383eb4a6-4c76-4d97-82ea-089f96e5e366, _Var1, 1)
+AND
+QueryOnlyOnce("ARX_Prison_WindegoCell_PlayerUsedSceretPassage")
+THEN
+CharacterLookAt(S_ARX_Prison_WindegoCell_Paladin_383eb4a6-4c76-4d97-82ea-089f96e5e366, _Var1);
+Proc_StartDialog(1, "ARX_AD_Prison_WindegoCell_Paladin", S_ARX_Prison_WindegoCell_Paladin_383eb4a6-4c76-4d97-82ea-089f96e5e366);
+
+IF
+CharacterDied(S_ARX_Prison_ToWindegoGuard1_e58ded34-c56c-4959-9c7b-159529273705)
+AND
+CharacterIsDead(S_ARX_Prison_ToWindegoGuard2_9b70b655-d8f4-4690-9da5-39c364ed3c77, 0)
+THEN
+ItemSetOwner(S_ARX_PlayerPrisonDoor_ToWindego_1e4c49e5-15d3-47ef-9965-fad3e43cd1b7, S_ARX_Prison_ToWindegoGuard2_9b70b655-d8f4-4690-9da5-39c364ed3c77);
+
+IF
+DialogEnded("ARX_Prison_ToWindegoGuard1", (INTEGER)_Var1)
+AND
+DialogGetInvolvedPlayer(_Var1, 1, _Var2)
+AND
+ObjectGetFlag(_Var2, "ARX_Prison_ToWindegoGuard1_PersuasionSuccuss", 1)
+THEN
+ItemUnlockAndOpen(S_ARX_PlayerPrisonDoor_ToWindego_1e4c49e5-15d3-47ef-9965-fad3e43cd1b7);
+ItemClearOwner(S_ARX_PlayerPrisonDoor_ToWindego_1e4c49e5-15d3-47ef-9965-fad3e43cd1b7);
+ProcRemoveDBTrespassTrigger(S_ARX_Prison_WayToWindego_Tresspassing_2392a136-41d1-479e-b3a6-90c3514baa7e, S_ARX_Prison_WayToWindego_Tresspassing_OutTrigger_4db124fa-1083-44b7-8321-b87afbfe11f9);
+
+IF
+ObjectEnteredCombat(S_ARX_Prison_WindegoCell_Paladin_383eb4a6-4c76-4d97-82ea-089f96e5e366, (INTEGER)_Var1)
+AND
+CombatGetInvolvedPlayer(_Var1, 1, _Var2)
+AND
+DB_IsPlayer(_Var2)
+AND
+DB_ARX_Prison_ToWindegoGuard(_Var3)
+AND
+CharacterIsDead(_Var3, 0)
+THEN
+DialogRequestStop(_Var3);
+ProcCharacterMoveTo(_Var3, S_ARX_Prison_WindegoCell_Paladin_383eb4a6-4c76-4d97-82ea-089f96e5e366, 1, "ARX_AD_Prison_ToWindegoGuard_RunToHelp");
+DB_ARX_Prison_WindegoCell_Paladin_GuardsToHelp(_Var3, _Var1);
+SetHasDialog(_Var3, 0);
+
+IF
+ObjectEnteredCombat(S_ARX_Prison_WindegoCell_Paladin_383eb4a6-4c76-4d97-82ea-089f96e5e366, (INTEGER)_Var1)
+AND
+CombatGetInvolvedPlayer(_Var1, 1, _Var2)
+AND
+DB_IsPlayer(_Var2)
+AND
+DB_ARX_Prison_ToWindegoGuard(_Var3)
+AND
+CharacterIsDead(_Var3, 0)
+AND
+QueryOnlyOnce("ARX_AD_Prison_ToWindegoGuard_RunToHelp")
+THEN
+ItemUnlockAndOpen(S_ARX_PlayerPrisonDoor_ToWindego_1e4c49e5-15d3-47ef-9965-fad3e43cd1b7);
+Proc_StartDialog(1, "ARX_AD_Prison_ToWindegoGuard_RunToHelp", _Var3);
+
+IF
+CombatEnded((INTEGER)_Var1)
+AND
+DB_ARX_Prison_WindegoCell_Paladin_GuardsToHelp(_Var2, _Var1)
+AND
+DB_MovingTo(_Var2, _Var3, _Var4, _Var1)
+THEN
+ProcClearStoryMove(_Var2);
+
+IF
+StoryEvent((GUIDSTRING)_Var1, "ARX_AD_Prison_ToWindegoGuard_RunToHelp")
+THEN
+SetHasDialog(_Var1, 1);
+
+IF
+ObjectEnteredCombat(S_ARX_Prison_WindegoCell_Paladin_383eb4a6-4c76-4d97-82ea-089f96e5e366, (INTEGER)_Var1)
+AND
+QueryOnlyOnce("ARX_Prison_SourceMuteImpact")
+AND
+DB_IsPlayer(_Var2)
+AND
+QRY_IsInRange(_Var2, ITEMGUID_S_ARX_Barracks_Prison_Windego_CellGenerator_aa32299f-d394-4cec-9dd7-c8dfae0daed1, 25)
+THEN
+ApplyStatus(_Var2, "SOURCE_MUTED", 24, 1);
+
+IF
+DB_OnlyOnce("ARX_Prison_SourceMuteImpact")
+AND
+GetPosition(ITEMGUID_S_ARX_Barracks_Prison_Windego_CellGenerator_aa32299f-d394-4cec-9dd7-c8dfae0daed1, _Var1, _Var2, _Var3)
+THEN
+PlayScaledEffectAtPosition("RS3_FX_GP_Impacts_Air_LightningBolt_Vertical_01", 4, _Var1, _Var2, _Var3);
+
+IF
+CharacterUsedItem((CHARACTERGUID)_Var1, ITEMGUID_S_ARX_Prison_WindeoCell_ToBarracks_SecretDoor_Lever_abd4bcbc-0f7e-4807-ad5a-01ff9711491d)
+AND
+QueryOnlyOnce("ARX_Prison_WindeoCell_ToBarracks_SecretDoor_RevealFromStory")
+THEN
+SetStoryEvent(ITEMGUID_S_ARX_Prison_WindeoCell_ToBarracks_SecretDoor_db79594a-e95f-4e31-abb9-bca50a120526, "RevealFromStory");
+
+IF
+CharacterUsedItem((CHARACTERGUID)_Var1, ITEMGUID_S_ARX_Prison_WindeoCell_ToBarracks_SecretDoor_Lever_abd4bcbc-0f7e-4807-ad5a-01ff9711491d)
+THEN
+ItemUnLock(ITEMGUID_S_ARX_Prison_WindeoCell_ToBarracks_SecretDoor_db79594a-e95f-4e31-abb9-bca50a120526);
+ItemOpen(ITEMGUID_S_ARX_Prison_WindeoCell_ToBarracks_SecretDoor_db79594a-e95f-4e31-abb9-bca50a120526);
+
+IF
+CharacterUsedItem((CHARACTERGUID)_Var1, ITEMGUID_S_ARX_Prison_WindeoCell_ToBarracks_SecretDoor_db79594a-e95f-4e31-abb9-bca50a120526)
+THEN
+ARX_Prison_WindeoCell_ToBarracks_SecretRegion_Unlock();
+
+IF
+CharacterEnteredTrigger((CHARACTERGUID)_Var1, TRIGGERGUID_S_ARX_Prison_WindeoCell_ToBarracks_SecretRegion_0e386e3c-1713-43fd-a7b1-10998be4156c)
+AND
+DB_IsPlayer(_Var1)
+THEN
+ARX_Prison_WindeoCell_ToBarracks_SecretRegion_Unlock();
+
+PROC
+ARX_Prison_WindeoCell_ToBarracks_SecretRegion_Unlock()
+THEN
+UnlockSecretRegion(TRIGGERGUID_S_ARX_Prison_WindeoCell_ToBarracks_SecretRegion_0e386e3c-1713-43fd-a7b1-10998be4156c);
+PlayEffect(ITEMGUID_S_ARX_Prison_WindeoCell_ToBarracks_HidingStone_3db00448-5a68-457d-84ab-c19ace3082d4, "RS3_FX_GP_ScriptedEvent_ARX_Windego_SecretRegion_RockFade_01");
+PlayEffect(ITEMGUID_S_ARX_Prison_WindeoCell_ToBarracks_HidingStone_000_1e9291ec-b9c3-49fb-a509-2ce9ae285692, "RS3_FX_GP_ScriptedEvent_ARX_Windego_SecretRegion_RockFade_01");
+TimerCancel("ARX_ARX_Prison_WindeoCell_ToBarracks_RemoveRocks");
+TimerLaunch("ARX_ARX_Prison_WindeoCell_ToBarracks_RemoveRocks", 900);
+
+IF
+TimerFinished("ARX_ARX_Prison_WindeoCell_ToBarracks_RemoveRocks")
+THEN
+SetOnStage(ITEMGUID_S_ARX_Prison_WindeoCell_ToBarracks_HidingStone_3db00448-5a68-457d-84ab-c19ace3082d4, 0);
+SetOnStage(ITEMGUID_S_ARX_Prison_WindeoCell_ToBarracks_HidingStone_000_1e9291ec-b9c3-49fb-a509-2ce9ae285692, 0);
+
+IF
+CharacterUsedItem((CHARACTERGUID)_Var1, ITEMGUID_S_ARX_Barracks_WindeoCell_ToPrison_Lever_a97d05ce-225f-4752-a33f-035b6d7fde72)
+THEN
+SetVisible(ITEMGUID_S_ARX_Barracks_WindeoCell_ToPrison_Ladder_463b685b-9612-42b6-8c44-0811ebbe8919, 1);
+proc_ItemMoveToTrigger(ITEMGUID_S_ARX_Barracks_WindeoCell_ToPrison_Ladder_463b685b-9612-42b6-8c44-0811ebbe8919, TRIGGERGUID_S_ARX_Barracks_WindeoCell_ToPrison_Ladder_OpenT_7820ffb5-7aff-4bd1-9e07-3140f85746d0, 1, 1.1, 0);
+
+IF
+CharacterUsedItem((CHARACTERGUID)_Var1, ITEMGUID_S_ARX_Prison_WindeoCell_ToBarracks_Hatch_c0c697d1-6aa4-4651-beb0-abbd3ce1957f)
+AND
+QueryOnlyOnce("ARX_Barracks_WindeoCell_ToPrison_Ladder")
+THEN
+SetVisible(ITEMGUID_S_ARX_Barracks_WindeoCell_ToPrison_Ladder_463b685b-9612-42b6-8c44-0811ebbe8919, 1);
+proc_ItemMoveToTrigger(ITEMGUID_S_ARX_Barracks_WindeoCell_ToPrison_Ladder_463b685b-9612-42b6-8c44-0811ebbe8919, TRIGGERGUID_S_ARX_Barracks_WindeoCell_ToPrison_Ladder_OpenT_7820ffb5-7aff-4bd1-9e07-3140f85746d0, 1, 1.1, 0);
+
+IF
+CharacterUsedItem((CHARACTERGUID)_Var1, ITEMGUID_S_ARX_Prison_WindeoCell_ToBarracks_Hatch_c0c697d1-6aa4-4651-beb0-abbd3ce1957f)
+THEN
+PartySetFlag(_Var1, "QuestUpdate_ARX_HuntingForDallis_FoundVault");
+ProcUnregisterForUser(S_ARX_Barracks_VaultEntered_0790cd06-4e2b-4cc1-b021-46f1dc180357, _Var1);
+
+IF
+CharacterEnteredTrigger((CHARACTERGUID)_Var1, S_ARX_Prison_WindegosCell_23bfdf1c-6617-4d76-9557-7e766aaca53b)
+THEN
+ObjectSetFlag(_Var1, "QuestUpdate_ARX_Prison_Windego_EnteredTheRoom");
+
+IF
+DialogEnded("ARX_Prison_Windego", (INTEGER)_Var1)
+AND
+DB_DialogPlayers(_Var1, _Var2, _)
+THEN
+PartySetFlag(_Var2, "QuestUpdate_ARX_Prison_Windego_TalkedToWindego");
+
+IF
+DialogEnded("ARX_Prison_WindegoCell_Paladin", (INTEGER)_Var1)
+AND
+DialogGetInvolvedNPC(_Var1, 1, _Var2)
+AND
+ObjectGetFlag(_Var2, "ARX_Prison_WindegoCell_PaladinLeave", 1)
+AND
+DB_DialogPlayers(_Var1, _Var3, _)
+THEN
+ObjectSetFlag(_Var3, "QuestUpdate_ARX_Prison_Windego_PaladinLeft");
+
+IF
+DialogEnded("ARX_Prison_Windego_Trespassing_NearPuzzle", (INTEGER)_Var1)
+AND
+DialogGetInvolvedNPC(_Var1, 1, _Var2)
+AND
+ObjectGetFlag(_Var2, "ARX_Prison_WindegoCell_PaladinLeave", 1)
+AND
+DB_DialogPlayers(_Var1, _Var3, _)
+THEN
+ObjectSetFlag(_Var3, "QuestUpdate_ARX_Prison_Windego_PaladinLeft");
+
+IF
+CharacterKilledBy(CHARACTERGUID_S_ARX_Prison_WindegoCell_Paladin_383eb4a6-4c76-4d97-82ea-089f96e5e366, (CHARACTERGUID)_Var1, (CHARACTERGUID)_Var2)
+AND
+DB_IsPlayer(_Var1)
+AND
+DB_IsPlayer(_Var2)
+THEN
+ObjectSetFlag(_Var2, "QuestUpdate_ARX_Prison_Windego_PaladinKilled");
+
+IF
+CharacterDied(CHARACTERGUID_S_ARX_Prison_WindegoCell_Paladin_383eb4a6-4c76-4d97-82ea-089f96e5e366)
+AND
+DB_IsPlayer(_Var1)
+THEN
+ObjectSetFlag(_Var1, "QuestUpdate_ARX_Prison_Windego_PaladinLeft");
+
+IF
+TextEventSet("ARX_Prison_Remove_SourcePoints")
+AND
+DB_IsPlayer(_Var1)
+THEN
+CharacterAddSourcePoints(_Var1, -1);
+
+IF
+TextEventSet("ARX_Prison_ADD_SourcePoints")
+AND
+DB_IsPlayer(_Var1)
+THEN
+CharacterAddSourcePoints(_Var1, 1);
+
+IF
+TextEventSet("WindegoDebug_ReadNotes")
+AND
+DB_IsPlayer(_Var1)
+THEN
+UserSetFlag(_Var1, "ARX_Prison_WindegoCell_Paladin_ReadRecords");
+
+IF
+TextEventSet("WindegoDebug_MetWindego")
+AND
+DB_IsPlayer(_Var1)
+THEN
+UserSetFlag(_Var1, "FTJ_SW_HasMet_EscapedPrisoner");
+
+IF
+TextEventSet("WindegoDebug_Effect_Exploded")
+THEN
+PROC_LoopEffect("RS3_FX_GP_ScriptedEvent_Raanaar_Lamp_A_Exploded_01", S_ARX_Barracks_Prison_Windego_CellGenerator_aa32299f-d394-4cec-9dd7-c8dfae0daed1, "ARX_Barracks_Prison_Windego_Machine_Exploded", "ARX_Main", "Dummy_LTS_Raanaar_Lamp_A");
+Proc_ARX_Prison_WindegoCell_SourceMachinePlayEffect(S_ARX_Barracks_Prison_Windego_CellGenerator_aa32299f-d394-4cec-9dd7-c8dfae0daed1, "RS3_FX_GP_ScriptedEvent_ARX_Prison_Windego_SourceMachine_Hit_01");
+
+IF
+TextEventSet("WindegoDebug_Effect_OverHeat")
+THEN
+PROC_LoopEffect("RS3_FX_GP_ScriptedEvent_Raanaar_Lamp_A_Overheat_01", S_ARX_Barracks_Prison_Windego_CellGenerator_aa32299f-d394-4cec-9dd7-c8dfae0daed1, "ARX_Barracks_Prison_Windego_Machine_IsOverHitting", "ARX_Main", "Dummy_LTS_Raanaar_Lamp_A");
+Proc_ARX_Prison_WindegoCell_SourceMachinePlayEffect(S_ARX_Barracks_Prison_Windego_CellGenerator_aa32299f-d394-4cec-9dd7-c8dfae0daed1, "RS3_FX_GP_ScriptedEvent_ARX_Prison_Windego_SourceMachine_Hit_01");
+
+IF
+TextEventSet("WindegoStat_VB")
+AND
+DB_IsPlayer(_Var1)
+THEN
+StartVoiceBark("ARX_Prison_VB_Windego_PlayerGavePromiseBreaker", _Var1);
+
+IF
+TextEventSet("WindegoAdd_SourcePoints")
+AND
+DB_IsPlayer(_Var1)
+THEN
+Proc_ARX_Barracks_Prison_Windego_PlayerGiveSourcePoints_ToMachine(_Var1, 1);
+
+IF
+TextEventSet("WindegoTestGoneEffect")
+AND
+DB_IsPlayer(_Var1)
+AND
+GetPosition(_Var1, _Var2, _Var3, _Var4)
+THEN
+PlayEffectAtPosition("RS3_FX_GP_ScriptedEvent_ARX_Prison_Windego_Ghost_GodKingVanish_01", _Var2, _Var3, _Var4);
+
+IF
+TextEventSet("windesc")
+THEN
+ProcSetInvulnerable(S_FTJ_SW_EscapedPrisoner_d783285f-d3be-4cba-8333-db8976cef182, 0);
+GlobalSetFlag("ARX_Prison_WindegoEscaped");
+
+IF
+ObjectFlagSet("ARX_Prison_Windego_WindegoLeft_SetFlag", (GUIDSTRING)_Var1, _)
+AND
+CharacterIsDead(CHARACTERGUID_S_ARX_Kemm_3e6ead7d-dd35-4f9d-985e-af2de0d76d28, 1)
+THEN
+ObjectSetFlag(_Var1, "QuestUpdate_ARX_Prison_Windego_WindegoLeft");
+
+IF
+ObjectFlagSet("ARX_Prison_Windego_WindegoLeft_SetFlag", (GUIDSTRING)_Var1, _)
+AND
+CharacterIsDead(CHARACTERGUID_S_ARX_Kemm_3e6ead7d-dd35-4f9d-985e-af2de0d76d28, 0)
+THEN
+ObjectSetFlag(_Var1, "QuestUpdate_ARX_Prison_Windego_WindegoLeftKemmVault");
+
+IF
+GlobalFlagSet("ARX_Prison_WindegoEscaped")
+AND
+CharacterIsDead(CHARACTERGUID_S_ARX_Kemm_3e6ead7d-dd35-4f9d-985e-af2de0d76d28, 0)
+AND
+QueryOnlyOnce("ARX_Prison_WindegoEscaped_Glo")
+THEN
+ObjectClearFlag(S_FTJ_SW_EscapedPrisoner_d783285f-d3be-4cba-8333-db8976cef182, "ARX_Prison_Windego_FightPlayer");
+ObjectClearFlag(S_FTJ_SW_EscapedPrisoner_d783285f-d3be-4cba-8333-db8976cef182, "ARX_Prison_WindegoEscaped");
+Foop(S_FTJ_SW_EscapedPrisoner_d783285f-d3be-4cba-8333-db8976cef182);
+TeleportTo(S_FTJ_SW_EscapedPrisoner_d783285f-d3be-4cba-8333-db8976cef182, TRIGGERGUID_S_ARX_KemmVault_WindegoDeathPoint_224191d9-347f-497f-9db7-5a3bb6419635);
+Proc_ARX_KemmVault_WindegoEvent();
+
+IF
+AttackedByObject(CHARACTERGUID_S_GLO_Windego_d783285f-d3be-4cba-8333-db8976cef182, (CHARACTERGUID)_Var1, _, _, (STRING)_Var4)
+AND NOT
+DB_DialogNPCs(_, CHARACTERGUID_S_GLO_Windego_d783285f-d3be-4cba-8333-db8976cef182, _)
+AND
+DB_IsPlayer(_Var1)
+AND NOT
+QryIgnoreDamageSource(_Var4)
+AND
+GlobalGetFlag("ARX_KemmVault_Windego_Wounded", 1)
+THEN
+Proc_StartDialog(1, "ARX_AD_Prison_Windego_AttackedWhileCrippled", CHARACTERGUID_S_GLO_Windego_d783285f-d3be-4cba-8333-db8976cef182);
+
+IF
+CharacterPickpocketFailed((CHARACTERGUID)_Var1, CHARACTERGUID_S_GLO_Windego_d783285f-d3be-4cba-8333-db8976cef182)
+AND NOT
+DB_DialogNPCs(_, CHARACTERGUID_S_GLO_Windego_d783285f-d3be-4cba-8333-db8976cef182, _)
+AND
+DB_IsPlayer(_Var1)
+THEN
+Proc_StartDialog(1, "ARX_AD_Prison_Windego_AttackedWhileCrippled", CHARACTERGUID_S_GLO_Windego_d783285f-d3be-4cba-8333-db8976cef182);
+
+PROC
+Proc_ARX_KemmVault_WindegoEvent()
+AND
+GlobalGetFlag("ARX_KemmVault_ArhusPrison_KemmAppeared", 0)
+THEN
+CharacterLookAt(CHARACTERGUID_S_GLO_Windego_d783285f-d3be-4cba-8333-db8976cef182, TRIGGERGUID_S_ARX_KemmVault_Windego_LookAt_dce8fd08-d3b0-408e-9dd4-71f4af245c88);
+SetVarFixedString(CHARACTERGUID_S_GLO_Windego_d783285f-d3be-4cba-8333-db8976cef182, "currentState", "State_ARX_KemmVault_Wounded");
+ApplyStatus(CHARACTERGUID_S_GLO_Windego_d783285f-d3be-4cba-8333-db8976cef182, "CRIPPLED", -1, 1);
+GlobalSetFlag("ARX_KemmVault_Windego_Wounded");
+DB_DoNotFace(CHARACTERGUID_S_GLO_Windego_d783285f-d3be-4cba-8333-db8976cef182);
+SetCanFight(CHARACTERGUID_S_GLO_Windego_d783285f-d3be-4cba-8333-db8976cef182, 0);
+ProcCharacterDisableAllCrimes(CHARACTERGUID_S_GLO_Windego_d783285f-d3be-4cba-8333-db8976cef182);
+
+PROC
+Proc_ARX_KemmVault_WindegoEvent()
+AND
+GlobalGetFlag("ARX_KemmVault_ArhusPrison_KemmAppeared", 0)
+AND
+GetVarFloat(CHARACTERGUID_S_GLO_Windego_d783285f-d3be-4cba-8333-db8976cef182, "maxVitality", _Var1)
+AND
+RealDivide(_Var1, 8.5, _Var2)
+AND
+Integer(_Var2, _Var3)
+THEN
+ApplyDamage(CHARACTERGUID_S_GLO_Windego_d783285f-d3be-4cba-8333-db8976cef182, _Var3, "Physical");
+
+IF
+DialogStartRequested(CHARACTERGUID_S_GLO_Windego_d783285f-d3be-4cba-8333-db8976cef182, _)
+AND
+GlobalGetFlag("ARX_KemmVault_Windego_Wounded", 1)
+THEN
+CharacterSetAnimationOverride(CHARACTERGUID_S_GLO_Windego_d783285f-d3be-4cba-8333-db8976cef182, "Lie_Wounded_03_Loop");
+
+IF
+DialogStartRequested(CHARACTERGUID_S_GLO_Windego_d783285f-d3be-4cba-8333-db8976cef182, _)
+AND
+GlobalGetFlag("ARX_KemmVault_Windego_Wounded", 1)
+AND
+GlobalGetFlag("ARX_KemmVault_ArhusPrison_KemmAppeared", 0)
+AND
+QueryOnlyOnce("ARX_KemmVault_ArhusPrison_SetKemm_FromWindego")
+THEN
+Proc_ARX_KemmVault_ArhusPrison_SetKemm();
+
+IF
+CharacterDied(CHARACTERGUID_S_GLO_Windego_d783285f-d3be-4cba-8333-db8976cef182)
+THEN
+GlobalClearFlag("ARX_KemmVault_Windego_Wounded");
+
+IF
+DialogEnded("ARX_Prison_Windego_Ghost", (INTEGER)_Var1)
+AND
+DialogGetInvolvedNPC(_Var1, 1, S_GLO_Windego_WindegoGhost_d309b284-43c9-4d68-830c-fcf393aa6288)
+AND
+ObjectGetFlag(S_GLO_Windego_WindegoGhost_d309b284-43c9-4d68-830c-fcf393aa6288, "ARX_Prison_Windego_Ghost_GodKingVanish", 1)
+AND
+GetPosition(S_GLO_Windego_WindegoGhost_d309b284-43c9-4d68-830c-fcf393aa6288, _Var2, _Var3, _Var4)
+THEN
+PlayEffectAtPosition("RS3_FX_GP_ScriptedEvent_ARX_Prison_Windego_Ghost_GodKingVanish_01", _Var2, _Var3, _Var4);
+
+
+EXITSECTION
+ENDEXITSECTION
+
+ParentTargetEdge "ARX"

@@ -1,0 +1,31 @@
+Version 1
+SubGoalCombiner SGC_AND
+
+INITSECTION
+DB_Ghosts(S_RC_BI_MassGrave_Priest_6e24d7d2-396e-4459-9987-df2d4b2cf427, "RC_BI_MassGrave_Ghost");
+DB_RC_BI_MassGrave(S_RC_BI_MassGrave_Pile_20_ed54a0f5-32fa-4827-96d2-caa8c6d23a78, "RC_BI_MassGrave_Corpse_1");
+DB_RC_BI_MassGrave(S_RC_BI_MassGrave_Pile_21_bbfac810-a6f9-4ffc-a8f0-3842cad03107, "RC_BI_MassGrave_Corpse_2");
+DB_RC_BI_MassGrave(S_RC_BI_MassGrave_Pile_01_edc39683-b309-4aab-9313-ac0c5414022d, "RC_BI_MassGrave_Corpse_3");
+ProcTriggerRegisterForPlayers(TRIGGERGUID_S_RC_BI_MassGrave_Area_971ea0b3-12a5-49a5-aa3c-4f267c0a992a);
+
+KBSECTION
+IF
+CharacterEnteredTrigger((CHARACTERGUID)_Var1, TRIGGERGUID_S_RC_BI_MassGrave_Area_971ea0b3-12a5-49a5-aa3c-4f267c0a992a)
+AND
+UserGetFlag(_Var1, "RC_BI_MassGraveDiscovered", 0)
+THEN
+UserSetFlag(_Var1, "RC_BI_MassGraveDiscovered");
+StartVoiceBark("RC_BI_VB_MassGrave", _Var1);
+
+IF
+CharacterUsedItem((CHARACTERGUID)_Var1, (ITEMGUID)_Var2)
+AND
+DB_RC_BI_MassGrave(_Var2, _Var3)
+THEN
+Proc_StartDialog(0, _Var3, _Var2, _Var1);
+
+
+EXITSECTION
+ENDEXITSECTION
+
+ParentTargetEdge "ReapersCoast"

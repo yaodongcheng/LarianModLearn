@@ -1,0 +1,26 @@
+Version 1
+SubGoalCombiner SGC_AND
+
+INITSECTION
+DB_CheckLevelStart("LV_HoE_Main");
+
+KBSECTION
+IF
+RegionStarted("LV_HoE_Main")
+THEN
+ActivatePersistentLevelTemplate(0652932d-5550-496e-a53a-d9e6f90729af);
+GoalCompleted;
+
+IF
+DB_CheckLevelStart("LV_HoE_Main")
+AND
+DB_CurrentLevel("LV_HoE_Main")
+THEN
+GoalCompleted;
+
+
+EXITSECTION
+NOT DB_CheckLevelStart("LV_HoE_Main");
+ENDEXITSECTION
+
+ParentTargetEdge "Start"

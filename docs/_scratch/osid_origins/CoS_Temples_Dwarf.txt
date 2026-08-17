@@ -1,0 +1,171 @@
+Version 1
+SubGoalCombiner SGC_AND
+
+INITSECTION
+DB_Ghosts(CHARACTERGUID_S_CoS_Temples_Dwarf_KnightOfDuna_d1fafe6d-ccd5-4056-9294-db5fb89366a5, CHARACTERGUID_S_CoS_Temples_Dwarf_KnightOfDuna_Ghost_6de0b387-a8f5-471b-9906-12d91724770c, "CoS_Temples_Dwarf_KnightOfDuna_Ghost");
+DB_Dialogs(CHARACTERGUID_S_CoS_Temples_Dwarf_KnightOfDuna_d1fafe6d-ccd5-4056-9294-db5fb89366a5, "CoS_Temples_Dwarf_KnightOfDuna");
+DB_Dialogs(CHARACTERGUID_S_CoS_Temples_TheWatcher_4ddc3ade-c951-4928-b4c9-5e530df0b25d, "CoS_Temples_TheWatcher");
+DB_Dialogs(ITEMGUID_S_CoS_Temples_Dwarf_TurretWarningStatue_f674964e-183e-45c6-ab1b-2f951ebf770a, "CoS_Temples_Dwarf_DunaBust");
+DB_IsNotMessingAround(CHARACTERGUID_S_CoS_Temples_TheWatcher_4ddc3ade-c951-4928-b4c9-5e530df0b25d);
+DB_DeadEvent(CHARACTERGUID_S_CoS_Temples_Dwarf_KnightOfDuna_d1fafe6d-ccd5-4056-9294-db5fb89366a5, "CoS_KnightOfDuna_Dead");
+DB_SeenDeadNPCPartyFlag(CHARACTERGUID_S_CoS_Temples_TheWatcher_4ddc3ade-c951-4928-b4c9-5e530df0b25d, "QuestUpdate_CoS_TheWatcher_WatcherDead");
+ProcTriggerRegisterForPlayers(TRIGGERGUID_S_CoS_Temples_WatcherBR_VB_Box_25b43185-8a4a-43c7-aac3-c0131f88642d);
+ProcCharacterDisableAllCrimes(CHARACTERGUID_S_CoS_Temples_Dwarf_KnightOfDuna_d1fafe6d-ccd5-4056-9294-db5fb89366a5);
+ApplyStatus(CHARACTERGUID_S_CoS_Temples_Dwarf_KnightOfDuna_d1fafe6d-ccd5-4056-9294-db5fb89366a5, "CURSED", -1, 1);
+DB_CoS_Temples_DefenderAiHints(CHARACTERGUID_QUEST_CoS_Temples_StoneDefender_01_e222160c-4293-41d7-a2a2-cf6bd8987c33, TRIGGERGUID_AIHintArea_KnightOfDuna_Entrance_01_dc0e0f11-b3b7-4cc9-b184-75466085acff);
+DB_CoS_Temples_DefenderAiHints(CHARACTERGUID_QUEST_CoS_Temples_StoneDefender_02_d2bbe035-f578-46f3-a689-582ce6c156cd, TRIGGERGUID_AIHintArea_KnightOfDuna_Entrance_02_4273186e-8828-48ce-8c3e-c73405a14c6e);
+DB_CoS_Temples_DefenderAiHints(CHARACTERGUID_QUEST_CoS_Temples_StoneDefender_03_f3184cb2-051a-4274-a461-e53134b278bd, TRIGGERGUID_AIHintArea_KnightOfDuna_Entrance_03_4f54cf4c-b6bc-41b5-9593-84a9b8686de2);
+DB_CoS_Temples_DefenderAiHints(CHARACTERGUID_QUEST_CoS_Temples_StoneDefender_04_296c08f2-e1ca-4a9e-833f-b1d8a7addc3b, TRIGGERGUID_AIHintArea_KnightOfDuna_Entrance_04_ff8eb6fb-b07d-4ba9-bfc1-8ea116b0fabc);
+DB_CoS_Temples_DefenderAiHints(CHARACTERGUID_QUEST_CoS_Temples_StoneDefender_05_9636f044-5190-470d-9d5f-f501cf8720f6, TRIGGERGUID_AIHintArea_KnightOfDuna_Entrance_05_966ca66d-8f02-4040-8cc4-49cce579790c);
+DB_CoS_Temples_DefenderAiHints(CHARACTERGUID_QUEST_CoS_Temples_StoneDefender_06_3ee62657-9a9f-408c-b312-ef99d3b1bd4d, TRIGGERGUID_AIHintArea_KnightOfDuna_Entrance_06_e6cba2e8-01c4-4ceb-bab7-4e8d465cd473);
+DB_CoS_Temples_DefenderAiHints(CHARACTERGUID_QUEST_CoS_Temples_StoneDefender_07_1c9fd462-d760-472f-8c3a-414cd9d467ca, TRIGGERGUID_AIHintArea_KnightOfDuna_Entrance_07_8a81cb93-91c2-48db-8a49-3836f10f21f6);
+DB_CoS_Temples_DefenderAiHints(CHARACTERGUID_QUEST_CoS_Temples_StoneDefender_08_0daf6abe-7018-42f5-bd80-48b577c14d28, TRIGGERGUID_AIHintArea_KnightOfDuna_Entrance_08_e7a0a725-a152-45d9-8b62-0a5c46f44f5a);
+DB_CoS_Temples_DefenderAiHints(CHARACTERGUID_QUEST_CoS_Temples_StoneDefender_09_1906879e-df28-406a-bab0-dbbea1cd2b0d, TRIGGERGUID_AIHintArea_KnightOfDuna_Entrance_09_1e73c87a-8dab-4324-ab8b-ec8b13ec3351);
+DB_CoS_Temples_DefenderAiHints(CHARACTERGUID_QUEST_CoS_Temples_StoneDefender_10_1b6b4f3d-d735-49da-8425-8834880159c9, TRIGGERGUID_AIHintArea_KnightOfDuna_Entrance_10_6abca218-9d9f-4a0b-8c85-473f7fa842f4);
+DB_CoS_Temples_DefenderAiHints(CHARACTERGUID_QUEST_CoS_Temples_StoneDefender_11_b05596e6-506f-4b30-ada2-ef2b39223895, TRIGGERGUID_AIHintArea_KnightOfDuna_Entrance_11_6f70798f-0c15-47b5-86e6-3526753d65ee);
+DB_CoS_Temples_DefenderAiHints(CHARACTERGUID_QUEST_CoS_Temples_StoneDefender_Boss_01_56b41037-ec61-46f3-a80c-f53bdc3bbea0, TRIGGERGUID_AIHintArea_KnightOfDuna_01_3863f960-a1a3-4d6f-b9e6-96b8520747b4);
+DB_CoS_Temples_DefenderAiHints(CHARACTERGUID_QUEST_CoS_Temples_StoneDefender_Boss_02_cb81a9df-fdc4-4e81-80b3-5ead882d30a9, TRIGGERGUID_AIHintArea_KnightOfDuna_02_ea3b78fe-718b-4324-8bbc-cfee0aa081bb);
+DB_CoS_Temples_DefenderAiHints(CHARACTERGUID_QUEST_CoS_Temples_StoneDefender_Boss_03_992ca709-fc1a-4cc5-a592-4622dae59bc6, TRIGGERGUID_AIHintArea_KnightOfDuna_03_03d33287-faca-4bc5-8d1f-70cd23919e62);
+DB_CoS_Temples_DefenderAiHints(CHARACTERGUID_QUEST_CoS_Temples_StoneDefender_Boss_04_56786802-41fe-4750-921e-effc17c0e201, TRIGGERGUID_AIHintArea_KnightOfDuna_04_04d39653-6d33-490b-bcdf-faf4b6fcd64b);
+DB_CoS_Temples_DefenderAiHints(CHARACTERGUID_QUEST_CoS_Temples_StoneDefender_Boss_05_99134538-3ddf-4e9f-b6d2-fc416d7298f6, TRIGGERGUID_AIHintArea_KnightOfDuna_05_82982b50-d47e-49a5-a42a-7900b04a8441);
+DB_CoS_Temples_DefenderAiHints(CHARACTERGUID_QUEST_CoS_Temples_StoneDefender_Boss_06_67d9da67-e4d2-42f6-bb59-0b97767fd3e5, TRIGGERGUID_AIHintArea_KnightOfDuna_06_d0082c3b-fa97-4801-8077-b8a1c9922cd2);
+DB_CoS_Temples_DefenderAiHints(CHARACTERGUID_QUEST_CoS_Temples_StoneDefender_Boss_07_03c50dad-34c5-4512-bda8-b9e758885637, TRIGGERGUID_AIHintArea_KnightOfDuna_07_3f1377d1-358b-4f1c-88c8-043296a26b40);
+DB_CoS_Temples_DefenderAiHints(CHARACTERGUID_QUEST_CoS_Temples_StoneDefender_Boss_08_c8743af9-1424-46f2-b88b-50241f242c44, TRIGGERGUID_AIHintArea_KnightOfDuna_08_3733df73-5b0c-41a4-894e-6bc7fba4aa25);
+DB_CoS_Temples_DefenderAiHints(CHARACTERGUID_QUEST_CoS_Temples_StoneDefender_Boss_09_de3235d2-cff0-4ed9-8961-6a82cf42cbb9, TRIGGERGUID_AIHintArea_KnightOfDuna_09_43df533f-74bc-4231-a557-667e2efe6283);
+CharacterSetFightMode(CHARACTERGUID_S_CoS_Temples_TheWatcher_4ddc3ade-c951-4928-b4c9-5e530df0b25d, 1, 1);
+
+KBSECTION
+IF
+DialogEnded("CoS_Temples_Dwarf_KnightOfDuna", _)
+THEN
+SetFaction(CHARACTERGUID_S_CoS_Temples_Dwarf_KnightOfDuna_d1fafe6d-ccd5-4056-9294-db5fb89366a5, "Evil NPC");
+
+IF
+AttackedByObject(CHARACTERGUID_S_CoS_Temples_Dwarf_KnightOfDuna_d1fafe6d-ccd5-4056-9294-db5fb89366a5, (CHARACTERGUID)_Var1, _, _, _)
+AND
+DB_IsPlayer(_Var1)
+AND
+CharacterIsEnemy(_Var1, CHARACTERGUID_S_CoS_Temples_Dwarf_KnightOfDuna_d1fafe6d-ccd5-4056-9294-db5fb89366a5, 0)
+THEN
+SetFaction(CHARACTERGUID_S_CoS_Temples_Dwarf_KnightOfDuna_d1fafe6d-ccd5-4056-9294-db5fb89366a5, "Evil NPC");
+
+IF
+AttackedByObject((GUIDSTRING)_Var1, (GUIDSTRING)_Var2, (GUIDSTRING)_Var3, _, _)
+AND
+_Var1 != _Var3
+AND
+GetTemplate(_Var2, _Var6)
+AND
+_Var6 == "QUEST_CoS_Temples_StoneDefender_087c16e8-5d37-4f02-aa1b-1f54002787e0"
+THEN
+ApplyStatus(_Var1, "SLOWED", 2, 1);
+
+IF
+StoryEvent((CHARACTERGUID)_Var1, "StoneDefender_AttackedObject")
+AND
+QueryOnlyOnce("CoS_Temples_VB_StoneDefenders_Once")
+THEN
+StartVoiceBark("CoS_Temples_VB_StoneDefenders", _Var1);
+
+IF
+DB_CoS_Temples_DefenderAiHints(_Var1, _)
+AND
+ObjectIsCharacter(_Var1, 1)
+THEN
+DB_IgnoreAssault(_Var1);
+
+IF
+CharacterTeleported((CHARACTERGUID)_Var1, _, _, _, _, (REAL)_Var6, (REAL)_Var7, (REAL)_Var8, _)
+AND
+DB_CoS_Temples_DefenderAiHints(_Var1, _Var10)
+THEN
+TeleportTo(_Var10, _Var1);
+
+IF
+CharacterDied((CHARACTERGUID)_Var1)
+AND
+DB_CoS_Temples_DefenderAiHints(_Var1, _Var2)
+THEN
+TeleportTo(_Var2, ITEMGUID_S_CoS_DwarfTemple_HintTrigger_Helper_171bdc9d-dd1f-49eb-94d0-0482aca9fb02);
+NOT DB_CoS_Temples_DefenderAiHints(_Var1, _Var2);
+
+IF
+GlobalFlagSet("CoS_KnightOfDuna_Dead")
+AND
+DB_IsPlayer(_Var1)
+AND
+ObjectGetFlag(_Var1, "QuestUpdate_CoS_TheWatcher_Start", 1)
+THEN
+ObjectSetFlag(_Var1, "QuestUpdate_CoS_TheWatcher_KnightKilled");
+
+IF
+CharacterEnteredTrigger((CHARACTERGUID)_Var1, TRIGGERGUID_S_CoS_Temples_WatcherBR_VB_Box_25b43185-8a4a-43c7-aac3-c0131f88642d)
+AND
+QRY_SpeakerIsAvailable(_Var1)
+AND
+QueryOnlyOnce("CoS_Temples_WatcherBR_VB_Once")
+THEN
+StartVoiceBark("CoS_Temples_VB_KilledBRNearWatcher", _Var1);
+ProcTriggerUnregisterForPlayers(TRIGGERGUID_S_CoS_Temples_WatcherBR_VB_Box_25b43185-8a4a-43c7-aac3-c0131f88642d);
+
+IF
+ObjectFlagSet("QuestUpdate_CoS_TheWatcher_End", _, (INTEGER)_Var2)
+AND
+DialogGetInvolvedPlayer(_Var2, 1, _Var3)
+AND
+QueryOnlyOnce("CoS_TheWatcher_Reward_Once")
+THEN
+ItemTemplateAddTo("Quest_CoS_ARM_WatcherAmulet_584d45a0-2914-462e-a912-79b821082cc6", _Var3, 1);
+
+IF
+ObjectFlagSet("CoS_Temples_Dwarf_KnightOfDuna_KillSelf", CHARACTERGUID_S_CoS_Temples_Dwarf_KnightOfDuna_d1fafe6d-ccd5-4056-9294-db5fb89366a5, _)
+THEN
+RemoveStatus(CHARACTERGUID_S_CoS_Temples_Dwarf_KnightOfDuna_d1fafe6d-ccd5-4056-9294-db5fb89366a5, "SITTING");
+PlayAnimation(CHARACTERGUID_S_CoS_Temples_Dwarf_KnightOfDuna_d1fafe6d-ccd5-4056-9294-db5fb89366a5, "skill_cast_self_voodoo_01_cast", "CoS_Temples_Dwarf_KnightOfDuna_KillSelf");
+ObjectSetFlag(CHARACTERGUID_S_CoS_Temples_Dwarf_KnightOfDuna_Ghost_6de0b387-a8f5-471b-9906-12d91724770c, "CoS_Temples_Dwarf_KnightOfDuna_KillSelf");
+
+IF
+StoryEvent(CHARACTERGUID_S_CoS_Temples_Dwarf_KnightOfDuna_d1fafe6d-ccd5-4056-9294-db5fb89366a5, "CoS_Temples_Dwarf_KnightOfDuna_KillSelf")
+THEN
+PlayEffect(CHARACTERGUID_S_CoS_Temples_Dwarf_KnightOfDuna_d1fafe6d-ccd5-4056-9294-db5fb89366a5, "RS3_FX_GP_Combat_Hit_Blood_01_Large");
+CharacterSetAnimationOverride(CHARACTERGUID_S_CoS_Temples_Dwarf_KnightOfDuna_d1fafe6d-ccd5-4056-9294-db5fb89366a5, "Injured_01_Loop");
+
+IF
+StoryEvent((GUIDSTRING)_Var1, "CoS_Temples_Dwarf_KnightOfDuna_StartDialog")
+THEN
+Proc_StartDialog(0, "CoS_Temples_Dwarf_KnightOfDuna", CHARACTERGUID_S_CoS_Temples_Dwarf_KnightOfDuna_d1fafe6d-ccd5-4056-9294-db5fb89366a5, _Var1);
+
+IF
+AttackedByObject((CHARACTERGUID)_Var1, (CHARACTERGUID)_Var2, _, _, _)
+AND
+CharacterIsEnemy(_Var2, CHARACTERGUID_S_CoS_Temples_Dwarf_KnightOfDuna_d1fafe6d-ccd5-4056-9294-db5fb89366a5, 0)
+AND
+GetTemplate(_Var1, _Var6)
+AND
+_Var6 == "QUEST_CoS_Temples_StoneDefender_087c16e8-5d37-4f02-aa1b-1f54002787e0"
+AND
+DB_IsPlayer(_Var2)
+AND
+CharacterCanSee(CHARACTERGUID_S_CoS_Temples_Dwarf_KnightOfDuna_d1fafe6d-ccd5-4056-9294-db5fb89366a5, _Var1, 1)
+AND
+CharacterCanSee(_Var1, _Var2, 1)
+THEN
+SetFaction(CHARACTERGUID_S_CoS_Temples_Dwarf_KnightOfDuna_d1fafe6d-ccd5-4056-9294-db5fb89366a5, "Evil NPC");
+ProcForceStopDialog(CHARACTERGUID_S_CoS_Temples_Dwarf_KnightOfDuna_d1fafe6d-ccd5-4056-9294-db5fb89366a5);
+EnterCombat(CHARACTERGUID_S_CoS_Temples_Dwarf_KnightOfDuna_d1fafe6d-ccd5-4056-9294-db5fb89366a5, _Var2);
+
+IF
+TextEventSet("fleshsac")
+THEN
+CharacterAddSkill(CHARACTERGUID_S_Player_Beast_f25ca124-a4d2-427b-af62-df66df41a978, "Shout_FleshSacrifice");
+
+PROC
+ProcRegionEnded("CoS_Main")
+THEN
+GoalCompleted;
+
+
+EXITSECTION
+ENDEXITSECTION
+
+ParentTargetEdge "CoS_Temples"

@@ -1,0 +1,317 @@
+Version 1
+SubGoalCombiner SGC_AND
+
+INITSECTION
+
+KBSECTION
+IF
+ItemSendToHomesteadEvent((CHARACTERGUID)_Var1, (ITEMGUID)_Var2)
+AND
+CharacterGetReservedUserID(_Var1, _Var3)
+AND
+GetUserProfileID(_Var3, _Var4)
+AND
+DB_GLO_LVHub_PlayerChests_Client(_Var4, _Var5)
+THEN
+ItemToInventory(_Var2, _Var5, -1, 1, 0);
+
+IF
+ItemSendToHomesteadEvent((CHARACTERGUID)_Var1, (ITEMGUID)_Var2)
+AND
+CharacterGetReservedUserID(_Var1, _Var3)
+AND
+CharacterGetHostCharacter(_Var4)
+AND
+CharacterGetReservedUserID(_Var4, _Var3)
+AND
+DB_GLO_LVHub_PlayerChests_Host(_Var5)
+THEN
+ItemToInventory(_Var2, _Var5, -1, 1, 0);
+
+PROC
+PROC_GLO_LVHub_PlayerChests_InitOnce()
+AND
+DB_GLO_LVHub_PlayerChests_Chest(_Var1)
+AND NOT
+DB_GLO_LVHub_PlayerChests_Host(_)
+THEN
+DB_GLO_LVHub_PlayerChests_Host(_Var1);
+
+PROC
+PROC_GLO_LVHub_PlayerChests_InitOnce()
+AND
+DB_GLO_LVHub_PlayerChests_Chest(_Var1)
+AND NOT
+DB_GLO_LVHub_PlayerChests_Host(_Var1)
+THEN
+SetOnStage(_Var1, 0);
+
+PROC
+PROC_GLO_LVHub_PlayerChests_InitOnce()
+THEN
+PROC_GLO_LVHub_PlayerChests_Init();
+
+PROC
+PROC_GLO_LVHub_PlayerChests_Init()
+THEN
+DB_GLO_LVHub_PlayerChests_InitialAssignment(1);
+
+IF
+SavegameLoaded(_, _, _, _)
+THEN
+PROC_GLO_LVHub_PlayerChests_Init();
+
+PROC
+PROC_GLO_LVHub_PlayerChests_Init()
+AND
+DB_GlobalCounter("GLO_LVHub_Playerchests_Init_UserCount", _Var1)
+THEN
+NOT DB_GlobalCounter("GLO_LVHub_Playerchests_Init_UserCount", _Var1);
+
+PROC
+PROC_GLO_LVHub_PlayerChests_Init()
+AND
+DB_GLO_LVHub_PlayerChests_Client(_Var1, _Var2)
+THEN
+PROC_GLO_LVHub_PlayerChests_HostUserAssignChest(_Var2);
+
+PROC
+PROC_GLO_LVHub_PlayerChests_Init()
+AND
+GetUserCount(_Var1)
+THEN
+DB_GlobalCounter("GLO_LVHub_Playerchests_Init_Pass1UserCount", _Var1);
+IterateUsers("GLO_LVHub_PlayerChests_Init_Pass1");
+
+IF
+UserEvent((INTEGER)_Var1, "GLO_LVHub_PlayerChests_Init_Pass1")
+AND
+CharacterGetHostCharacter(_Var2)
+AND NOT
+CharacterGetReservedUserID(_Var2, _Var1)
+THEN
+PROC_GLO_LVHub_PlayerChests_UserFindAndAssignChest(_Var1);
+ProcDecreaseCounter("GLO_LVHub_Playerchests_Init_Pass1UserCount");
+
+IF
+DB_GlobalCounter("GLO_LVHub_Playerchests_Init_Pass1UserCount", 1)
+THEN
+NOT DB_GlobalCounter("GLO_LVHub_Playerchests_Init_Pass1UserCount", 1);
+PROC_LVHub_UserChests_InitialAssignmentDone();
+
+IF
+CharacterReservedUserIDChanged((CHARACTERGUID)_Var1, _, (INTEGER)_Var3)
+AND
+DB_GLO_LVHub_PlayerChests_InitialAssignment(1)
+THEN
+DB_GLO_LVHub_PlayerChests_UserChangeDuringInit(1);
+
+PROC
+PROC_LVHub_UserChests_InitialAssignmentDone()
+THEN
+NOT DB_GLO_LVHub_PlayerChests_InitialAssignment(1);
+
+PROC
+PROC_LVHub_UserChests_InitialAssignmentDone()
+AND
+DB_GLO_LVHub_PlayerChests_UserChangeDuringInit(1)
+THEN
+NOT DB_GLO_LVHub_PlayerChests_UserChangeDuringInit(1);
+PROC_GLO_LVHub_PlayerChests_Init();
+
+IF
+CharacterReservedUserIDChanged((CHARACTERGUID)_Var1, _, (INTEGER)_Var3)
+THEN
+PROC_GLO_LVHub_PlayerChests_Init();
+
+QRY
+QRY_GLO_LVHub_GetUserChest((STRING)_Var1)
+AND
+DB_GLO_LVHub_GetUserChestResult(_Var2)
+THEN
+NOT DB_GLO_LVHub_GetUserChestResult(_Var2);
+
+QRY
+QRY_GLO_LVHub_GetUserChest((STRING)_Var1)
+AND
+DB_GLO_LVHub_PlayerChests_Client(_Var1, _Var2)
+THEN
+DB_GLO_LVHub_GetUserChestResult(_Var2);
+
+QRY
+QRY_GLO_LVHub_GetUserChest((STRING)_Var1)
+AND
+DB_GLO_LVHub_PlayerChests_HostSecondary(_Var1, _Var2)
+THEN
+DB_GLO_LVHub_GetUserChestResult(_Var2);
+
+QRY
+QRY_GLO_LVHub_GetUserChest((STRING)_Var1)
+AND
+DB_GLO_LVHub_PlayerChests_Chest(_Var2)
+AND NOT
+DB_GLO_LVHub_GetUserChestResult(_)
+AND NOT
+DB_GLO_LVHub_PlayerChests_Client(_, _Var2)
+AND NOT
+DB_GLO_LVHub_PlayerChests_Host(_Var2)
+AND NOT
+DB_GLO_LVHub_PlayerChests_HostSecondary(_, _Var2)
+AND NOT
+DB_GLO_LVHub_GetUserChestResult(_)
+THEN
+DB_GLO_LVHub_GetUserChestResult(_Var2);
+
+QRY
+QRY_GLO_LVHub_GetUserChest((STRING)_Var1)
+AND
+DB_GLO_LVHub_PlayerChests_HostSecondary(_Var2, _Var3)
+AND NOT
+DB_GLO_LVHub_GetUserChestResult(_)
+THEN
+DB_GLO_LVHub_GetUserChestResult(_Var3);
+
+PROC
+PROC_GLO_LVHub_PlayerChests_UserAssignChest((INTEGER)_Var1, (ITEMGUID)_Var2)
+AND
+CharacterGetHostCharacter(_Var3)
+AND
+CharacterGetReservedUserID(_Var3, _Var1)
+THEN
+PROC_GLO_LVHub_PlayerChests_HostUserAssignChest(_Var2);
+
+PROC
+PROC_GLO_LVHub_PlayerChests_HostUserAssignChest((ITEMGUID)_Var1)
+AND NOT
+DB_GLO_LVHub_PlayerChests_Client(_, _Var1)
+THEN
+DebugBreak("Assigning a chest not owned by anyone to the host?");
+
+PROC
+PROC_GLO_LVHub_PlayerChests_HostUserAssignChest((ITEMGUID)_Var1)
+AND
+DB_GLO_LVHub_PlayerChests_Client(_Var2, _Var1)
+THEN
+NOT DB_GLO_LVHub_PlayerChests_Client(_Var2, _Var1);
+DB_GLO_LVHub_PlayerChests_HostSecondary(_Var2, _Var1);
+
+PROC
+PROC_GLO_LVHub_PlayerChests_UserAssignChest((INTEGER)_Var1, (ITEMGUID)_Var2)
+AND
+CharacterGetHostCharacter(_Var3)
+AND NOT
+CharacterGetReservedUserID(_Var3, _Var1)
+THEN
+PROC_GLO_LVHub_PlayerChests_ClientUserAssignChest(_Var1, _Var2);
+
+PROC
+PROC_GLO_LVHub_PlayerChests_ClientUserAssignChest((INTEGER)_Var1, (ITEMGUID)_Var2)
+AND
+DB_GLO_LVHub_PlayerChests_Client(_Var3, _Var2)
+THEN
+NOT DB_GLO_LVHub_PlayerChests_Client(_Var3, _Var2);
+
+PROC
+PROC_GLO_LVHub_PlayerChests_ClientUserAssignChest((INTEGER)_Var1, (ITEMGUID)_Var2)
+AND
+DB_GLO_LVHub_PlayerChests_HostSecondary(_Var3, _Var2)
+THEN
+NOT DB_GLO_LVHub_PlayerChests_HostSecondary(_Var3, _Var2);
+
+PROC
+PROC_GLO_LVHub_PlayerChests_ClientUserAssignChest((INTEGER)_Var1, (ITEMGUID)_Var2)
+AND
+ObjectIsOnStage(_Var2, 0)
+THEN
+Foop(_Var2);
+
+PROC
+PROC_GLO_LVHub_PlayerChests_ClientUserAssignChest((INTEGER)_Var1, (ITEMGUID)_Var2)
+AND
+GetUserProfileID(_Var1, _Var3)
+THEN
+DB_GLO_LVHub_PlayerChests_Client(_Var3, _Var2);
+
+PROC
+PROC_GLO_LVHub_PlayerChests_UserFindAndAssignChest((INTEGER)_Var1)
+AND
+GetUserProfileID(_Var1, _Var2)
+AND
+QRY_GLO_LVHub_GetUserChest(_Var2)
+AND
+DB_GLO_LVHub_GetUserChestResult(_Var3)
+THEN
+NOT DB_GLO_LVHub_GetUserChestResult(_Var3);
+PROC_GLO_LVHub_PlayerChests_UserAssignChest(_Var1, _Var3);
+
+QRY
+QRY_GLO_LVHub_PlayerChests_PlayerCanAccessChest((CHARACTERGUID)_Var1, (ITEMGUID)_Var2)
+AND
+CharacterGetReservedUserID(_Var1, _Var3)
+AND
+GetUserProfileID(_Var3, _Var4)
+AND
+DB_GLO_LVHub_PlayerChests_Client(_Var4, _Var2)
+THEN
+DB_NOOP(1);
+
+QRY
+QRY_GLO_LVHub_PlayerChests_HostCanAccessChest((ITEMGUID)_Var1)
+AND
+DB_GLO_LVHub_PlayerChests_Host(_Var1)
+THEN
+DB_NOOP(1);
+
+QRY
+QRY_GLO_LVHub_PlayerChests_HostCanAccessChest((ITEMGUID)_Var1)
+AND
+DB_GLO_LVHub_PlayerChests_HostSecondary(_, _Var1)
+THEN
+DB_NOOP(1);
+
+QRY
+QRY_GLO_LVHub_PlayerChests_PlayerCanAccessChest((CHARACTERGUID)_Var1, (ITEMGUID)_Var2)
+AND
+CharacterGetReservedUserID(_Var1, _Var3)
+AND
+CharacterGetHostCharacter(_Var4)
+AND
+CharacterGetReservedUserID(_Var4, _Var3)
+AND
+QRY_GLO_LVHub_PlayerChests_HostCanAccessChest(_Var2)
+THEN
+DB_NOOP(1);
+
+PROC
+ProcBlockUseOfItem((CHARACTERGUID)_Var1, (ITEMGUID)_Var2)
+AND
+DB_GLO_LVHub_PlayerChests_Chest(_Var2)
+AND NOT
+QRY_GLO_LVHub_PlayerChests_PlayerCanAccessChest(_Var1, _Var2)
+THEN
+DB_CustomUseItemResponse(_Var1, _Var2, 0);
+Proc_StartDialog(1, "GLO_AD_CannotUseNow", _Var1);
+
+QRY
+QRY_GLO_LVHub_PlayerChests_PlayerHasChest((CHARACTERGUID)_Var1)
+AND
+DB_GLO_LVHub_PlayerChests_Chest(_Var2)
+AND
+QRY_GLO_LVHub_PlayerChests_PlayerCanAccessChest(_Var1, _Var2)
+THEN
+DB_NOOP(0);
+
+PROC
+ProcSetHomesteadKeyState((CHARACTERGUID)_Var1)
+AND NOT
+DB_BlockWaypointUsage(_Var1)
+AND
+QRY_GLO_LVHub_PlayerChests_PlayerHasChest(_Var1)
+THEN
+PROC_CheckPlayTut(_Var1, "TUT_StorageChest");
+
+
+EXITSECTION
+ENDEXITSECTION
+
+ParentTargetEdge "__Shared_Campaign"

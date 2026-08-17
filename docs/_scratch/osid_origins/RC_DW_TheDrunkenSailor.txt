@@ -1,0 +1,315 @@
+Version 1
+SubGoalCombiner SGC_AND
+
+INITSECTION
+DB_Dialogs(CHARACTERGUID_S_RC_DW_DS_BoatCaptain_15fdd032-5704-44f0-9c72-329bfcb04acc, "RC_DW_DS_CaptainAliveDialogue");
+DB_Ghosts(CHARACTERGUID_S_RC_DW_DS_BoatCaptain_15fdd032-5704-44f0-9c72-329bfcb04acc, CHARACTERGUID_S_RC_DW_DS_GhostOfCaptain_ce59b418-7bbe-42af-b485-0664a234a0cb, "RC_DW_DS_GhostTripleDialogue");
+DB_Ghosts(CHARACTERGUID_S_RC_DW_DS_GhostOfStubbs_579dac71-803e-4b11-941b-22d7118a8236, "RC_DW_DS_FirstMateGhost");
+DB_HasStoryEvent(S_RC_DW_DS_CaptainsCompass_6bd3bc80-92c5-459e-871c-6a46780497d2, "RC_DW_DS_HasCaptainsCompass");
+ItemToInventory(S_RC_DW_DS_CaptainKey_cdcde4f1-5c7d-4176-aab1-2cb21a903126, CHARACTERGUID_S_RC_DW_DS_BoatCaptain_15fdd032-5704-44f0-9c72-329bfcb04acc);
+ProcTriggerRegisterForPlayers(S_RC_DW_DS_CaptainsRoomTrigger_5dce3342-7c64-4e88-b1ea-28c4c33f5d02);
+DB_DoNotFace(S_RC_DW_DS_BoatCaptain_15fdd032-5704-44f0-9c72-329bfcb04acc);
+DB_DoNotFace(S_RC_DW_DS_GhostOfStubbs_579dac71-803e-4b11-941b-22d7118a8236);
+DB_RC_DW_DS_ShipContainersOpened(S_RC_DW_DS_ShipContainer1_3c92fba4-db4a-4f4c-a528-d165851aecf5, 0);
+DB_RC_DW_DS_ShipContainersOpened(S_RC_DW_DS_ShipContainer2_1f754778-8cdf-42ad-9179-36ef906b0cb7, 0);
+DB_RC_DW_DS_ShipContainersOpened(S_RC_DW_DS_ShipContainer3_eb03edfd-9909-4469-b220-39ce3bf443b1, 0);
+DB_RC_DW_DS_ShipContainersOpened(S_RC_DW_DS_ShipContainer4_d4b57894-0df7-4e96-8f65-26fd77542cd9, 0);
+ProcTriggerRegisterForPlayers(S_RC_DW_DS_ShipwreckTrigger_d77e9d9e-cbd4-49e6-8458-9a103e7a3bf3);
+DB_DeadEvent(CHARACTERGUID_S_RC_DW_DS_BoatCaptain_15fdd032-5704-44f0-9c72-329bfcb04acc, "RC_DW_BoatCaptain_IsDead");
+Proc_JDF_CreateCustomFlagsDependency("QuestUpdate_RC_DW_TheDrunkenSailor_GotLocationOfCompass", "JDF_QuestUpdate_RC_DW_TheDrunkenSailor_FoundCompass", "QuestUpdate_RC_DW_TheDrunkenSailor_FoundCompass");
+Proc_JDF_CreateCustomFlagsDependency("QuestUpdate_RC_DW_TheDrunkenSailor_GotLocationOfCompass", "JDF_QuestUpdate_RC_DW_TheDrunkenSailor_CompassGone", "QuestUpdate_RC_DW_TheDrunkenSailor_CompassGone");
+
+KBSECTION
+IF
+CharacterEnteredTrigger((CHARACTERGUID)_Var1, S_RC_DW_DS_CaptainsRoomTrigger_5dce3342-7c64-4e88-b1ea-28c4c33f5d02)
+AND
+QueryOnlyOnce("RC_DW_DS_EnteredRoomFirstTime")
+THEN
+Proc_StartDialog(1, "RC_DW_DS_AD_PlayerWalkingInCaptainsRoom", _Var1);
+
+IF
+CharacterEnteredTrigger((CHARACTERGUID)_Var1, S_RC_DW_DS_CaptainsRoomTrigger_5dce3342-7c64-4e88-b1ea-28c4c33f5d02)
+THEN
+DB_RC_DW_DS_CharsInTrigger(_Var1);
+
+IF
+CharacterLeftTrigger((CHARACTERGUID)_Var1, S_RC_DW_DS_CaptainsRoomTrigger_5dce3342-7c64-4e88-b1ea-28c4c33f5d02)
+THEN
+NOT DB_RC_DW_DS_CharsInTrigger(_Var1);
+
+IF
+DB_Dead(CHARACTERGUID_S_RC_DW_DS_BoatCaptain_15fdd032-5704-44f0-9c72-329bfcb04acc)
+THEN
+GlobalSetFlag("RC_DW_DS_TheCaptainIsDead");
+Proc_RC_DW_DS_OnCaptainDeath();
+ProcRemoveAllDialogEntriesForSpeaker(CHARACTERGUID_S_RC_DW_DS_GhostOfCaptain_ce59b418-7bbe-42af-b485-0664a234a0cb);
+SetHasDialog(CHARACTERGUID_S_RC_DW_DS_GhostOfCaptain_ce59b418-7bbe-42af-b485-0664a234a0cb, 1);
+
+PROC
+Proc_RC_DW_DS_OnCaptainDeath()
+AND
+GlobalGetFlag("RC_DW_DS_BellNoLongerRings", 0)
+THEN
+DialogRequestStop(CHARACTERGUID_S_RC_DW_DS_GhostOfStubbs_579dac71-803e-4b11-941b-22d7118a8236);
+PROC_RemoveDialogFromCharacter(CHARACTERGUID_S_RC_DW_DS_GhostOfStubbs_579dac71-803e-4b11-941b-22d7118a8236);
+PROC_RemoveDialogFromCharacter(CHARACTERGUID_S_RC_DW_DS_GhostOfCaptain_ce59b418-7bbe-42af-b485-0664a234a0cb);
+SetHasDialog(CHARACTERGUID_S_RC_DW_DS_GhostOfStubbs_579dac71-803e-4b11-941b-22d7118a8236, 1);
+SetHasDialog(CHARACTERGUID_S_RC_DW_DS_GhostOfCaptain_ce59b418-7bbe-42af-b485-0664a234a0cb, 1);
+
+IF
+DB_Sees(_Var1, CHARACTERGUID_S_RC_DW_DS_BoatCaptain_15fdd032-5704-44f0-9c72-329bfcb04acc)
+AND
+DB_Dead(CHARACTERGUID_S_RC_DW_DS_BoatCaptain_15fdd032-5704-44f0-9c72-329bfcb04acc)
+AND
+QuestAccepted(_Var1, "RC_DW_TheDrunkenSailor", 1)
+THEN
+PartySetFlag(_Var1, "QuestUpdate_RC_DW_TheDrunkenSailor_CaptainDead");
+
+IF
+CharacterUsedItem((CHARACTERGUID)_Var1, S_RC_DW_DS_CaptainsDiary_3226cdc4-023a-4920-89c1-1e2477a4da1a)
+THEN
+ProcShowMarker(_Var1, "RC_DW_DS_ShipwreckLocation");
+
+IF
+ObjectFlagSet("RC_DW_DS_HasCaptainsCompass", (CHARACTERGUID)_Var1, _)
+AND
+DB_IsPlayer(_Var1)
+THEN
+Proc_RC_DW_DS_OnGetCompass(_Var1);
+
+PROC
+Proc_RC_DW_DS_OnGetCompass((CHARACTERGUID)_Var1)
+THEN
+ProcHideMarker(_Var1, "RC_DW_DS_ShipwreckLocation");
+
+PROC
+PROC_GLOBAL_DialogStartRequested(CHARACTERGUID_S_RC_DW_DS_GhostOfCaptain_ce59b418-7bbe-42af-b485-0664a234a0cb, (GUIDSTRING)_Var1)
+THEN
+ObjectSetFlag(_Var1, "RC_DW_DS_TalkedToGhostCaptainFirst");
+
+IF
+ObjectFlagSet("RC_DW_DS_TalkedToGhostCaptainFirst", (CHARACTERGUID)_Var1, _)
+THEN
+Proc_RC_DW_DS_OnTalkingToGhostCaptain(CHARACTERGUID_S_RC_DW_DS_GhostOfCaptain_ce59b418-7bbe-42af-b485-0664a234a0cb, _Var1);
+
+PROC
+Proc_RC_DW_DS_OnTalkingToGhostCaptain((CHARACTERGUID)_Var1, (CHARACTERGUID)_Var2)
+AND
+GlobalGetFlag("RC_DW_DS_BellNoLongerRings", 0)
+THEN
+Proc_StartDialog(0, "RC_DW_DS_GhostTripleDialogue", _Var1, CHARACTERGUID_S_RC_DW_DS_GhostOfStubbs_579dac71-803e-4b11-941b-22d7118a8236, _Var2);
+
+PROC
+Proc_RC_DW_DS_OnTalkingToGhostCaptain((CHARACTERGUID)_Var1, (CHARACTERGUID)_Var2)
+AND
+GlobalGetFlag("RC_DW_DS_BellNoLongerRings", 1)
+THEN
+Proc_StartDialog(0, "RC_DW_DS_GhostTripleDialogue", _Var1, NULL_00000000-0000-0000-0000-000000000000, _Var2);
+
+PROC
+PROC_GLOBAL_DialogStartRequested(CHARACTERGUID_S_RC_DW_DS_GhostOfStubbs_579dac71-803e-4b11-941b-22d7118a8236, (CHARACTERGUID)_Var1)
+AND
+GlobalGetFlag("RC_DW_DS_TheCaptainIsDead", 1)
+AND
+UserGetFlag(_Var1, "RC_DW_DS_CanSeeCaptain", 0)
+THEN
+Proc_StartDialog(0, "RC_DW_DS_FirstMateGhost", CHARACTERGUID_S_RC_DW_DS_GhostOfStubbs_579dac71-803e-4b11-941b-22d7118a8236, _Var1);
+
+PROC
+PROC_GLOBAL_DialogStartRequested(CHARACTERGUID_S_RC_DW_DS_GhostOfStubbs_579dac71-803e-4b11-941b-22d7118a8236, (CHARACTERGUID)_Var1)
+AND
+GlobalGetFlag("RC_DW_DS_TheCaptainIsDead", 1)
+AND NOT
+DB_GoneGhosts(CHARACTERGUID_S_RC_DW_DS_GhostOfCaptain_ce59b418-7bbe-42af-b485-0664a234a0cb)
+AND
+UserGetFlag(_Var1, "RC_DW_DS_CanSeeCaptain", 1)
+THEN
+ObjectSetFlag(_Var1, "RC_DW_DS_TalkedToBellGhostFirst");
+
+IF
+ObjectFlagSet("RC_DW_DS_TalkedToBellGhostFirst", (CHARACTERGUID)_Var1, _)
+THEN
+Proc_RC_DW_DS_OnTalkingToBellGhost(CHARACTERGUID_S_RC_DW_DS_GhostOfStubbs_579dac71-803e-4b11-941b-22d7118a8236, _Var1);
+
+PROC
+Proc_RC_DW_DS_OnTalkingToBellGhost((CHARACTERGUID)_Var1, (CHARACTERGUID)_Var2)
+THEN
+Proc_StartDialog(0, "RC_DW_DS_GhostTripleDialogue", CHARACTERGUID_S_RC_DW_DS_GhostOfCaptain_ce59b418-7bbe-42af-b485-0664a234a0cb, _Var1, _Var2);
+
+IF
+DialogEnded("RC_DW_DS_GhostTripleDialogue", (INTEGER)_Var1)
+AND
+DB_DialogPlayers(_Var1, _Var2, _)
+THEN
+ObjectClearFlag(_Var2, "RC_DW_DS_TalkedToBellGhostFirst");
+ObjectClearFlag(_Var2, "RC_DW_DS_TalkedToGhostCaptainFirst");
+
+IF
+DialogRequestFailed("RC_DW_DS_GhostTripleDialogue", (INTEGER)_Var1)
+AND
+DB_DialogPlayers(_Var1, _Var2, _)
+THEN
+ObjectClearFlag(_Var2, "RC_DW_DS_TalkedToBellGhostFirst");
+ObjectClearFlag(_Var2, "RC_DW_DS_TalkedToGhostCaptainFirst");
+
+IF
+ObjectFlagSet("RC_DW_DS_LookAtCaptain", (CHARACTERGUID)_Var1, _)
+THEN
+ObjectClearFlag(_Var1, "RC_DW_DS_LookAtCaptain", 0);
+CharacterLookAt(_Var1, S_RC_DW_DS_BoatCaptain_15fdd032-5704-44f0-9c72-329bfcb04acc, 0);
+
+IF
+ObjectFlagSet("RC_DW_DS_PlayBellAnimation", CHARACTERGUID_S_RC_DW_DS_GhostOfStubbs_579dac71-803e-4b11-941b-22d7118a8236, _)
+THEN
+ObjectClearFlag(CHARACTERGUID_S_RC_DW_DS_GhostOfStubbs_579dac71-803e-4b11-941b-22d7118a8236, "RC_DW_DS_PlayBellAnimation", 0);
+PlayAnimation(CHARACTERGUID_S_RC_DW_DS_GhostOfStubbs_579dac71-803e-4b11-941b-22d7118a8236, "Bellringer_01");
+
+IF
+ObjectFlagSet("RC_DW_DS_PlayCryAnimation", (CHARACTERGUID)_Var1, _)
+THEN
+ObjectClearFlag(_Var1, "RC_DW_DS_PlayCryAnimation", 0);
+PlayAnimation(_Var1, "Crying_01");
+
+IF
+DB_GoneGhosts(CHARACTERGUID_S_RC_DW_DS_GhostOfStubbs_579dac71-803e-4b11-941b-22d7118a8236)
+THEN
+GlobalSetFlag("RC_DW_DS_BellNoLongerRings");
+
+IF
+DB_GoneGhosts(CHARACTERGUID_S_RC_DW_DS_GhostOfCaptain_ce59b418-7bbe-42af-b485-0664a234a0cb)
+THEN
+GlobalSetFlag("RC_DW_DS_CaptainToHoE");
+SetHasDialog(CHARACTERGUID_S_RC_DW_DS_GhostOfStubbs_579dac71-803e-4b11-941b-22d7118a8236, 0);
+
+IF
+AutomatedDialogEnded("RC_DW_DS_AD_FirstMate", _)
+AND
+DB_GoneGhosts(CHARACTERGUID_S_RC_DW_DS_GhostOfCaptain_ce59b418-7bbe-42af-b485-0664a234a0cb)
+THEN
+Proc_GhostHacks_GhostPoof(CHARACTERGUID_S_RC_DW_DS_GhostOfStubbs_579dac71-803e-4b11-941b-22d7118a8236);
+
+IF
+CharacterUsedItem((CHARACTERGUID)_Var1, (ITEMGUID)_Var2)
+AND
+DB_RC_DW_DS_ShipContainersOpened(_Var2, _Var3)
+AND
+DB_IsPlayer(_Var1)
+THEN
+NOT DB_RC_DW_DS_ShipContainersOpened(_Var2, _Var3);
+DB_RC_DW_DS_ShipContainersOpened(_Var2, 1);
+Proc_RC_DW_DS_CheckIfAllContainersAreOpened(_Var1);
+
+PROC
+Proc_RC_DW_DS_CheckIfAllContainersAreOpened((CHARACTERGUID)_Var1)
+AND
+PartyGetFlag(_Var1, "RC_DW_DS_PlayerKnowsOfSourceWeapons", 1)
+AND NOT
+QRY_RC_DW_DS_AnyUnopenedContainers()
+AND
+QueryOnlyOnce("RC_DW_DS_CheckedAllShipContainers")
+THEN
+Proc_StartDialog(1, "RC_DW_DS_AD_PlayerNoSourceWeapons", _Var1);
+
+QRY
+QRY_RC_DW_DS_AnyUnopenedContainers()
+AND
+DB_RC_DW_DS_ShipContainersOpened(_, 0)
+THEN
+DB_NOOP(1);
+
+IF
+CharacterEnteredTrigger((CHARACTERGUID)_Var1, S_RC_DW_DS_ShipwreckTrigger_d77e9d9e-cbd4-49e6-8458-9a103e7a3bf3)
+AND
+QRY_OncePerUserAndNearbyPlayers(_Var1, "RC_DW_DS_AD_PlayerEnteringShip")
+THEN
+Proc_StartDialog(1, "RC_DW_DS_AD_PlayerEnteringShip", _Var1);
+
+IF
+ItemAddedToCharacter(ITEMGUID_S_RC_DW_DS_CaptainsCompass_6bd3bc80-92c5-459e-871c-6a46780497d2, (CHARACTERGUID)_Var1)
+AND
+DB_IsPlayer(_Var1)
+THEN
+PartySetFlag(_Var1, "JDF_QuestUpdate_RC_DW_TheDrunkenSailor_FoundCompass");
+
+IF
+CharacterEnteredTrigger((CHARACTERGUID)_Var1, S_RC_DW_DS_ShipwreckTrigger_d77e9d9e-cbd4-49e6-8458-9a103e7a3bf3)
+AND
+ObjectIsInTrigger(ITEMGUID_S_RC_DW_DS_CaptainsCompass_6bd3bc80-92c5-459e-871c-6a46780497d2, TRIGGERGUID_S_RC_DW_DS_SunkenShipCompleteBox_d4cdb105-d0a4-44c3-be1f-d773622946ce, 0)
+AND
+PartyGetFlag(_Var1, "JDF_QuestUpdate_RC_DW_TheDrunkenSailor_FoundCompass", 0)
+THEN
+PartySetFlag(_Var1, "JDF_QuestUpdate_RC_DW_TheDrunkenSailor_CompassGone");
+
+IF
+DB_RC_DW_DS_CharsInTrigger(_Var1)
+AND
+GlobalGetFlag("RC_DW_DS_TheCaptainIsDead", 1)
+AND
+ObjectGetFlag(_Var1, "RC_DW_DS_CanSeeCaptain", 0)
+AND
+HasActiveStatus(_Var1, "SPIRIT_VISION", 1)
+THEN
+PartySetFlag(_Var1, "RC_DW_DS_CanSeeCaptain");
+
+IF
+GlobalFlagSet("RC_DW_DS_TheCaptainIsDead")
+AND
+DB_RC_DW_DS_CharsInTrigger(_Var1)
+AND
+ObjectGetFlag(_Var1, "RC_DW_DS_CanSeeCaptain", 0)
+AND
+HasActiveStatus(_Var1, "SPIRIT_VISION", 1)
+THEN
+PartySetFlag(_Var1, "RC_DW_DS_CanSeeCaptain");
+
+IF
+CharacterUsedSkillInTrigger((CHARACTERGUID)_Var1, "Shout_SpiritVision", _, _, S_RC_DW_DS_CaptainsRoomTrigger_5dce3342-7c64-4e88-b1ea-28c4c33f5d02)
+AND
+GlobalGetFlag("RC_DW_DS_TheCaptainIsDead", 1)
+AND
+ObjectGetFlag(_Var1, "RC_DW_DS_CanSeeCaptain", 0)
+THEN
+PartySetFlag(_Var1, "RC_DW_DS_CanSeeCaptain");
+
+IF
+CharacterUsedSkillInTrigger((CHARACTERGUID)_Var1, "Shout_SpiritVision", _, _, S_RC_DW_DS_CaptainsRoomTrigger_5dce3342-7c64-4e88-b1ea-28c4c33f5d02)
+AND
+DB_GoneGhosts(CHARACTERGUID_S_RC_DW_DS_GhostOfCaptain_ce59b418-7bbe-42af-b485-0664a234a0cb)
+AND
+PartyGetFlag(_Var1, "QuestUpdate_RC_DW_TheDrunkenSailor_GotLocationOfCompass", 0)
+THEN
+PartySetFlag(_Var1, "QuestUpdate_RC_DW_TheDrunkenSailor_CaptainDeadNoGhost");
+
+IF
+ObjectFlagSet("RC_DW_TheDrunkenSailor_SourceSuckedCaptainsGhost", (CHARACTERGUID)_Var1, _)
+AND
+PartyGetFlag(_Var1, "QuestUpdate_RC_DW_TheDrunkenSailor_GotLocationOfCompass", 0)
+THEN
+PartySetFlag(_Var1, "QuestUpdate_RC_DW_TheDrunkenSailor_SourceSuckedCaptainsGhost");
+
+IF
+ObjectFlagShared("RC_DW_TheDrunkenSailor_SourceSuckedCaptainsGhost", (CHARACTERGUID)_Var1, _)
+AND
+PartyGetFlag(_Var1, "QuestUpdate_RC_DW_TheDrunkenSailor_GotLocationOfCompass", 0)
+THEN
+PartySetFlag(_Var1, "QuestUpdate_RC_DW_TheDrunkenSailor_SourceSuckedCaptainsGhost");
+
+IF
+ObjectFlagSet("RC_DW_TheDrunkenSailor_CaptainGhostLeft", (CHARACTERGUID)_Var1, _)
+AND
+PartyGetFlag(_Var1, "QuestUpdate_RC_DW_TheDrunkenSailor_GotLocationOfCompass", 0)
+THEN
+PartySetFlag(_Var1, "QuestUpdate_RC_DW_TheDrunkenSailor_CaptainGhostLeft");
+
+IF
+ObjectFlagShared("RC_DW_TheDrunkenSailor_CaptainGhostLeft", (CHARACTERGUID)_Var1, _)
+AND
+PartyGetFlag(_Var1, "QuestUpdate_RC_DW_TheDrunkenSailor_GotLocationOfCompass", 0)
+THEN
+PartySetFlag(_Var1, "QuestUpdate_RC_DW_TheDrunkenSailor_CaptainGhostLeft");
+
+
+EXITSECTION
+ENDEXITSECTION
+
+ParentTargetEdge "ReapersCoast"

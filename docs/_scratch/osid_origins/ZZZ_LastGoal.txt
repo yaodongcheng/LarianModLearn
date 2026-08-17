@@ -1,0 +1,98 @@
+Version 1
+SubGoalCombiner SGC_AND
+
+INITSECTION
+
+KBSECTION
+PROC
+ProcClearAutomatedDialog((INTEGER)_Var1)
+THEN
+ProcClearDialogPlayers(_Var1);
+ProcClearDialogNPCs(_Var1);
+ProcClearDialogCounts(_Var1);
+NOT DB_AutomatedDialog(_Var1);
+
+IF
+VoiceBarkEnded(_, (INTEGER)_Var2)
+THEN
+NOT DB_AutomatedDialogIsVB(_Var2);
+ProcClearAutomatedDialog(_Var2);
+
+IF
+AutomatedDialogEnded(_, (INTEGER)_Var2)
+AND NOT
+DB_AutomatedDialogIsVB(_Var2)
+THEN
+ProcClearAutomatedDialog(_Var2);
+
+IF
+AutomatedDialogEnded((STRING)_Var1, (INTEGER)_Var2)
+THEN
+NOT DB_DialogName(_Var1, _Var2);
+NOT DB_DialogRequestFailed(_Var1, _Var2);
+
+IF
+DialogEnded((STRING)_Var1, (INTEGER)_Var2)
+THEN
+ProcClearDialogPlayers(_Var2);
+ProcClearDialogNPCs(_Var2);
+ProcClearDialogCounts(_Var2);
+NOT DB_DialogName(_Var1, _Var2);
+NOT DB_MarkedForDelete(_Var2);
+NOT DB_DialogRequestFailed(_Var1, _Var2);
+
+IF
+DialogActorLeft((STRING)_Var1, (INTEGER)_Var2, (GUIDSTRING)_Var3)
+AND
+DB_DialogPlayers(_Var2, _Var3, _Var4)
+THEN
+NOT DB_DialogPlayers(_Var2, _Var3, _Var4);
+ProcClearPlayerIfNotInOtherDialog(_Var2, _Var3);
+
+IF
+DialogActorLeft((STRING)_Var1, (INTEGER)_Var2, (GUIDSTRING)_Var3)
+AND
+DB_DialogNPCs(_Var2, _Var3, _Var4)
+THEN
+NOT DB_DialogNPCs(_Var2, _Var3, _Var4);
+ProcClearNPCIfNotInOtherDialog(_Var2, _Var3);
+
+IF
+DialogActorLeft((STRING)_Var1, (INTEGER)_Var2, (GUIDSTRING)_Var3)
+THEN
+ProcSetNumberOfInvolvedActors(_Var2);
+
+PROC
+ProcClearDialogPlayers((INTEGER)_Var1)
+AND
+DB_DialogPlayers(_Var1, _Var2, _Var3)
+THEN
+NOT DB_DialogPlayers(_Var1, _Var2, _Var3);
+
+PROC
+ProcClearDialogNPCs((INTEGER)_Var1)
+AND
+DB_DialogNPCs(_Var1, _Var2, _Var3)
+THEN
+NOT DB_DialogNPCs(_Var1, _Var2, _Var3);
+
+PROC
+ProcClearDialogCounts((INTEGER)_Var1)
+AND
+DB_DialogNumPlayers(_Var1, _Var2)
+AND
+DB_DialogNumNPCs(_Var1, _Var3)
+THEN
+NOT DB_DialogNumPlayers(_Var1, _Var2);
+NOT DB_DialogNumNPCs(_Var1, _Var3);
+
+IF
+CharacterCreationFinished(_)
+THEN
+NOT DB_InCharacterCreation(1);
+NotifyCharacterCreationFinished();
+
+
+EXITSECTION
+ENDEXITSECTION
+

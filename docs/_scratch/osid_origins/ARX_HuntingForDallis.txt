@@ -1,0 +1,44 @@
+Version 1
+SubGoalCombiner SGC_AND
+
+INITSECTION
+
+KBSECTION
+PROC
+ProcRegionStarted("ARX_Main")
+AND
+DB_IsPlayer(_Var1)
+THEN
+PartySetFlag(_Var1, "QuestUpdate_ARX_HuntingForDallis_LVCrashed");
+
+IF
+CharacterEnteredTrigger((CHARACTERGUID)_Var1, TRIGGERGUID_S_RC_ARX_Barracks_881c1f7e-2771-4859-8730-0823aadc0e74)
+AND
+DB_IsPlayer(_Var1)
+THEN
+PartySetFlag(_Var1, "QuestUpdate_ARX_Barracks_FoundBarracks");
+
+IF
+CharacterUsedItem((CHARACTERGUID)_Var1, ITEMGUID_S_ARX_Barracks_Intel_Arhu_Kemm_ba41d8ae-1142-4e0f-9e95-1899043668ac)
+THEN
+PartySetFlag(_Var1, "QuestUpdate_ARX_HuntingForDallis_ArhuIsCathedralKeeper");
+
+IF
+CharacterEnteredTrigger((CHARACTERGUID)_Var1, TRIGGERGUID_S_ARX_DivineTomb_EmptyCatacombs_SubregionBox_487af5bb-537d-4367-8e50-e3815fc32012)
+AND
+ObjectGetFlag(_Var1, "ARX_Cathedral_DivineTomb_PoB_PartyMemberAccepted", 1)
+THEN
+PartySetFlag(_Var1, "QuestUpdate_ARX_HuntingForDallis_PassedPoB");
+
+IF
+CharacterEnteredTrigger((CHARACTERGUID)_Var1, TRIGGERGUID_S_ARX_DivineTomb_EmptyCatacombs_SubregionBox_487af5bb-537d-4367-8e50-e3815fc32012)
+AND
+ObjectGetFlag(_Var1, "ARX_DivineTomb_BypassedPathOfBlood", 1)
+THEN
+PartySetFlag(_Var1, "QuestUpdate_ARX_HuntingForDallis_TrickedPoB");
+
+
+EXITSECTION
+ENDEXITSECTION
+
+ParentTargetEdge "ARX"

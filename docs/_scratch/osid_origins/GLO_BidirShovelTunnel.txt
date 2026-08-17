@@ -1,0 +1,72 @@
+Version 1
+SubGoalCombiner SGC_AND
+
+INITSECTION
+
+KBSECTION
+IF
+DB_BidirShovelPileTunnel(_Var1, _Var2, _Var3, _Var4, _Var5, _Var6, _Var7)
+AND
+StringConcatenate(_Var1, "___side1", _Var8)
+AND
+StringConcatenate(_Var1, "___side2", _Var9)
+THEN
+DB_BidirShovelTunnelExit(_Var1, _Var8);
+DB_BidirShovelTunnelExit(_Var1, _Var9);
+DB_ShovelArea(_Var2, _Var8, _Var3);
+DB_ShovelArea(_Var5, _Var9, _Var6);
+DB_ShovelRewardItemSpawn(_Var8, _Var4);
+DB_ShovelRewardItemSpawn(_Var9, _Var7);
+
+PROC
+ProcBidirShovelTunnelOpenedOnSide(_, _, _)
+THEN
+DB_NOOP(1);
+
+PROC
+ProcShovelRewards((CHARACTERGUID)_Var1, (STRING)_Var2)
+AND
+DB_BidirShovelTunnelExit(_Var3, _Var2)
+AND
+StringContains(_Var2, "__side1", 1)
+THEN
+ProcBidirShovelTunnelOpenedOnSide(_Var1, _Var3, 1);
+
+PROC
+ProcShovelRewards((CHARACTERGUID)_Var1, (STRING)_Var2)
+AND
+DB_BidirShovelTunnelExit(_Var3, _Var2)
+AND
+StringContains(_Var2, "__side2", 1)
+THEN
+ProcBidirShovelTunnelOpenedOnSide(_Var1, _Var3, 2);
+
+PROC
+PROC_ShovelTunnelOpenUpOtherSide((CHARACTERGUID)_Var1, (STRING)_Var2)
+AND
+DB_BidirShovelTunnelExit(_Var2, _Var3)
+AND
+DB_ShovelArea(_Var4, _Var3, _Var5)
+AND NOT
+DB_Shovelling_Mound(_, _Var5)
+THEN
+NOT DB_BidirShovelTunnelExit(_Var2, _Var3);
+SetOnStage(_Var5, 0);
+NOT DB_ShovelArea(_Var4, _Var3, _Var5);
+ProcShovelRewards(_Var1, _Var3);
+
+PROC
+ProcShovelRewards((CHARACTERGUID)_Var1, (STRING)_Var2)
+AND
+DB_BidirShovelTunnelExit(_Var3, _Var2)
+AND
+DB_BidirShovelPileTunnel(_Var3, _Var4, _Var5, _Var6, _Var7, _Var8, _Var9)
+THEN
+NOT DB_BidirShovelTunnelExit(_Var3, _Var2);
+PROC_ShovelTunnelOpenUpOtherSide(_Var1, _Var3);
+NOT DB_BidirShovelPileTunnel(_Var3, _Var4, _Var5, _Var6, _Var7, _Var8, _Var9);
+
+
+EXITSECTION
+ENDEXITSECTION
+

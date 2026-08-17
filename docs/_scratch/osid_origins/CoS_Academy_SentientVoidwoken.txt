@@ -1,0 +1,50 @@
+Version 1
+SubGoalCombiner SGC_AND
+
+INITSECTION
+DB_Dialogs(CHARACTERGUID_S_CoS_Academy_SentientVoidwoken_001_1f1f40cc-4d58-4b0d-a359-4bd3d5c00a1a, "CoS_Academy_SentientVoidwoken");
+DB_TagPriorityDialog(CHARACTERGUID_S_CoS_Academy_SentientVoidwoken_001_1f1f40cc-4d58-4b0d-a359-4bd3d5c00a1a, "CoS_Academy_SentientVoidwoken", "FANE");
+DB_TagPriorityDialog(CHARACTERGUID_S_CoS_Academy_SentientVoidwoken_001_1f1f40cc-4d58-4b0d-a359-4bd3d5c00a1a, "CoS_Academy_SentientVoidwoken", "SHAPESHIFT_FANE");
+DB_TagPriorityDialog(CHARACTERGUID_S_CoS_Academy_SentientVoidwoken_001_1f1f40cc-4d58-4b0d-a359-4bd3d5c00a1a, "CoS_Academy_SentientVoidwoken", "UNDEAD");
+DB_GLO_Promise_AcceptPromiseDialog("CoS_Academy_SentientVoidwoken");
+DB_IsNotMessingAround(CHARACTERGUID_S_CoS_Academy_SentientVoidwoken_001_1f1f40cc-4d58-4b0d-a359-4bd3d5c00a1a);
+
+KBSECTION
+IF
+StoryEvent((CHARACTERGUID)_Var1, "CoS_Academy_SentientVoidwoken_DialogStart")
+THEN
+PROC_GLOBAL_DialogStartRequested(CHARACTERGUID_S_CoS_Academy_SentientVoidwoken_001_1f1f40cc-4d58-4b0d-a359-4bd3d5c00a1a, _Var1);
+
+IF
+StoryEvent((CHARACTERGUID)_Var1, "CoS_Academy_SentientVoidwoken_DialogStart")
+AND
+IsSpeakerReserved(_Var1, 0)
+AND
+IsSpeakerReserved(CHARACTERGUID_S_CoS_Academy_SentientVoidwoken_001_1f1f40cc-4d58-4b0d-a359-4bd3d5c00a1a, 0)
+THEN
+Proc_StartDialog(0, "CoS_Academy_SentientVoidwoken", CHARACTERGUID_S_CoS_Academy_SentientVoidwoken_001_1f1f40cc-4d58-4b0d-a359-4bd3d5c00a1a, _Var1);
+
+IF
+DialogEnded("CoS_Academy_SentientVoidwoken", (INTEGER)_Var1)
+AND
+DialogGetInvolvedPlayer(_Var1, 1, _Var2)
+THEN
+ProcDefineReflectionDialog("CoS_Academy_RD_SentientVoidwoken", _Var2);
+
+IF
+AttackedByObject(CHARACTERGUID_S_CoS_Academy_SentientVoidwoken_001_1f1f40cc-4d58-4b0d-a359-4bd3d5c00a1a, (CHARACTERGUID)_Var1, _, _, _)
+AND
+DB_IsPlayer(_Var1)
+THEN
+SetFaction(CHARACTERGUID_S_CoS_Academy_SentientVoidwoken_001_1f1f40cc-4d58-4b0d-a359-4bd3d5c00a1a, "Evil NPC");
+
+PROC
+ProcRegionEnded("CoS_Main")
+THEN
+GoalCompleted;
+
+
+EXITSECTION
+ENDEXITSECTION
+
+ParentTargetEdge "CoS_Academy"

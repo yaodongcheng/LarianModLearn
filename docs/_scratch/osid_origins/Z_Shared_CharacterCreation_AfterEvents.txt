@@ -1,0 +1,48 @@
+Version 1
+SubGoalCombiner SGC_AND
+
+INITSECTION
+
+KBSECTION
+IF
+UserDisconnected((INTEGER)_Var1, _, (STRING)_Var3)
+AND NOT
+DB_InCharacterCreation(1)
+AND
+DB_SelectedCC(_Var4, _Var3)
+THEN
+PROC_GLO_PartyMembers_Remove(_Var4, 1);
+ClearTag(_Var4, "AVATAR");
+NOT DB_Avatars(_Var4);
+NOT DB_IsPlayer(_Var4);
+ProcUnRegisterPlayerTriggers(_Var4);
+NOT DB_SelectedCC(_Var4, _Var3);
+PROC_RemoveIfGenericOrigin(_Var4);
+
+PROC
+PROC_RemoveIfGenericOrigin((CHARACTERGUID)_Var1)
+AND
+DB_GenericOrigins(_Var1)
+THEN
+SetOnStage(_Var1, 0);
+
+IF
+RegionStarted(_)
+AND
+DB_ChosenOriginWaitingForTeleport(_Var2)
+THEN
+NOT DB_ChosenOriginWaitingForTeleport(_Var2);
+CharacterPurgeQueue(_Var2);
+
+IF
+RegionStarted((STRING)_Var1)
+AND
+IsGameLevel(_Var1, 1)
+THEN
+GoalCompleted;
+
+
+EXITSECTION
+ENDEXITSECTION
+
+ParentTargetEdge "Z_Shared_Campaign_At_End"

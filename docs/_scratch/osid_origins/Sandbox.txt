@@ -1,0 +1,25 @@
+Version 1
+SubGoalCombiner SGC_AND
+
+INITSECTION
+DB_CheckLevelStart("_TMPL_Sandbox");
+
+KBSECTION
+IF
+RegionStarted("_TMPL_Sandbox")
+THEN
+GoalCompleted;
+
+IF
+DB_CheckLevelStart("_TMPL_Sandbox")
+AND
+DB_CurrentLevel("_TMPL_Sandbox")
+THEN
+GoalCompleted;
+
+
+EXITSECTION
+NOT DB_CheckLevelStart("_TMPL_Sandbox");
+ENDEXITSECTION
+
+ParentTargetEdge "__Start"

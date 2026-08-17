@@ -1,0 +1,88 @@
+Version 1
+SubGoalCombiner SGC_AND
+
+INITSECTION
+
+KBSECTION
+PROC
+ProcClearPreviousCombat((GUIDSTRING)_Var1)
+AND
+DB_WasInCombat(_Var1, _Var2)
+THEN
+NOT DB_WasInCombat(_Var1, _Var2);
+
+PROC
+ProcRegionEnded(_)
+AND
+DB_WasInCombat(_Var2, _Var3)
+THEN
+NOT DB_WasInCombat(_Var2, _Var3);
+
+PROC
+ProcAddToCharacterCombatList((CHARACTERGUID)_Var1, (INTEGER)_Var2)
+AND
+DB_CombatCharacters(_Var1, _Var3)
+THEN
+NOT DB_CombatCharacters(_Var1, _Var3);
+
+PROC
+ProcAddToCharacterCombatList((CHARACTERGUID)_Var1, (INTEGER)_Var2)
+AND
+ObjectIsCharacter(_Var1, 1)
+THEN
+DB_CombatCharacters(_Var1, _Var2);
+
+IF
+ObjectEnteredCombat((GUIDSTRING)_Var1, (INTEGER)_Var2)
+THEN
+ProcClearPreviousCombat(_Var1);
+DB_CombatObjects(_Var1, _Var2);
+ProcAddToCharacterCombatList(_Var1, _Var2);
+
+IF
+ObjectSwitchedCombat((GUIDSTRING)_Var1, (INTEGER)_Var2, (INTEGER)_Var3)
+THEN
+NOT DB_CombatObjects(_Var1, _Var2);
+DB_CombatObjects(_Var1, _Var3);
+ProcAddToCharacterCombatList(_Var1, _Var3);
+
+PROC
+Proc_ObjectLeftCombat((GUIDSTRING)_Var1, (INTEGER)_Var2)
+THEN
+DB_NOOP(1);
+
+IF
+ObjectLeftCombat((CHARACTERGUID)_Var1, (INTEGER)_Var2)
+THEN
+DB_WasInCombat(_Var1, _Var2);
+NOT DB_CombatObjects(_Var1, _Var2);
+NOT DB_CombatCharacters(_Var1, _Var2);
+Proc_ObjectLeftCombat(_Var1, _Var2);
+
+IF
+FleeCombat((CHARACTERGUID)_Var1)
+AND
+DB_IsPlayer(_Var1)
+AND NOT
+DB_BlockWaypointUsage(_Var1)
+THEN
+PROC_OpenWaypointUIForFlee(_Var1, "", NULL_00000000-0000-0000-0000-000000000000);
+
+QRY
+QRY_GLO_IsOrWasInCombat((GUIDSTRING)_Var1, (INTEGER)_Var2)
+AND
+DB_CombatObjects(_Var1, _Var2)
+THEN
+DB_NOOP(1);
+
+QRY
+QRY_GLO_IsOrWasInCombat((GUIDSTRING)_Var1, (INTEGER)_Var2)
+AND
+DB_WasInCombat(_Var1, _Var2)
+THEN
+DB_NOOP(1);
+
+
+EXITSECTION
+ENDEXITSECTION
+

@@ -1,0 +1,33 @@
+Version 1
+SubGoalCombiner SGC_AND
+
+INITSECTION
+
+KBSECTION
+IF
+CharacterUsedItem((CHARACTERGUID)_Var1, ITEMGUID_S_RC_WH_SeaGodStatue_Sign_425bc0cd-6e9b-4329-a3a0-4ad03e5c071f)
+AND NOT
+DB_RC_WH_VB_SeaGodStatue_Comment(_)
+THEN
+DB_RC_WH_VB_SeaGodStatue_Comment(_Var1);
+StartVoiceBark("RC_WH_VB_SeaGodStatue_Comment", _Var1);
+
+IF
+VoiceBarkFailed("RC_WH_VB_SeaGodStatue_Comment")
+AND
+DB_RC_WH_VB_SeaGodStatue_Comment(_Var1)
+THEN
+NOT DB_RC_WH_VB_SeaGodStatue_Comment(_Var1);
+
+IF
+VoiceBarkEnded("RC_WH_VB_SeaGodStatue_Comment", (INTEGER)_Var1)
+AND
+DB_RC_WH_VB_SeaGodStatue_Comment(_Var2)
+THEN
+NOT DB_RC_WH_VB_SeaGodStatue_Comment(_Var2);
+
+
+EXITSECTION
+ENDEXITSECTION
+
+ParentTargetEdge "ReapersCoast"

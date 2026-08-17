@@ -1,0 +1,210 @@
+Version 1
+SubGoalCombiner SGC_AND
+
+INITSECTION
+ProcTriggerRegisterForPlayers(TRIGGERGUID_S_RC_GY_VoidwokenAncestorTree_Source_cc16b06e-b3e1-4986-ad3f-bf18ade3146f);
+DB_RC_GY_VoidwokenAncestorTreeCreep(CHARACTERGUID_S_RC_GY_VoidwokenAncestorTree_Creep1_87ea43b4-fe9c-408d-bdd5-7428940c649c);
+DB_RC_GY_VoidwokenAncestorTreeCreep(CHARACTERGUID_S_RC_GY_VoidwokenAncestorTree_Creep2_883a493c-57f4-4193-b2fd-2d9c4e2fef1f);
+DB_RC_GY_VoidwokenAncestorTreeCreep(CHARACTERGUID_S_RC_GY_VoidwokenAncestorTree_Creep3_484253f6-8eab-4320-8c1a-5eba5d6e588e);
+DB_RC_GY_VoidwokenAncestorTreeCreep(CHARACTERGUID_S_RC_GY_VoidwokenAncestorTree_Creep4_b9e66755-fb5e-41f8-88a8-b4dd783bf907);
+DB_RC_GY_ElvenGhosts(CHARACTERGUID_S_RC_GY_Elves_Ghost_1_0fda9638-3893-484a-9a33-77c808d2d02f);
+DB_RC_GY_ElvenGhosts(CHARACTERGUID_S_RC_GY_Elves_Ghost_2_164de383-77c3-4110-8bf5-78bf236d1de8);
+DB_RC_GY_ElvenGhosts(CHARACTERGUID_S_RC_GY_Elves_Ghost_3_7c48f986-e2ea-4bd0-b5c1-a5b2059a07f0);
+ItemSetCanInteract(S_RC_GY_VoidwokenAncestorTree_Table_3a4a528f-5a09-4847-a322-795ae9b8a1ce, 0);
+ItemSetCanInteract(S_RC_GY_VoidwokenAncestorTree_Table2_bf03437c-c706-4ec7-94c2-0f70d05f0951, 0);
+SetCanFight(S_RC_GY_VoidwokenAncestorTree_Ghost_e3e5e53f-e167-4b35-bd53-d11b4332db76, 0);
+SetCanJoinCombat(S_RC_GY_VoidwokenAncestorTree_Ghost_e3e5e53f-e167-4b35-bd53-d11b4332db76, 0);
+
+KBSECTION
+IF
+CharacterUsedItem((CHARACTERGUID)_Var1, ITEMGUID_S_RC_GY_VoidwokenAncestorTree_Top_8c2a1a25-f0dc-4c3b-9194-ce7f4656f177)
+THEN
+Proc_StartDialog(0, "RC_GY_VoidwokenAncestorTree", ITEMGUID_S_RC_GY_VoidwokenAncestorTree_Top_8c2a1a25-f0dc-4c3b-9194-ce7f4656f177, _Var1);
+
+IF
+CharacterUsedItem((CHARACTERGUID)_Var1, ITEMGUID_S_RC_GY_AncestorTree_Root_43a15da1-ad5a-463f-ba67-73aa996c941a)
+THEN
+Proc_StartDialog(0, "RC_GY_VoidwokenAncestorTree", ITEMGUID_S_RC_GY_AncestorTree_Root_43a15da1-ad5a-463f-ba67-73aa996c941a, _Var1);
+
+IF
+GameBookInterfaceClosed(ITEMGUID_S_RC_BI_AncestorTree_Letter_6d1c5c28-5815-436d-8332-8cd60a93ef9b, (CHARACTERGUID)_Var1)
+THEN
+UserSetFlag(_Var1, "RC_BI_Read_AncestorTree_Letter");
+
+IF
+DB_RC_GY_VoidwokenAncestorTreeCreep(_Var1)
+THEN
+SetCanFight(_Var1, 0);
+SetCanJoinCombat(_Var1, 0);
+ApplyStatus(_Var1, "SUMMONING_ABILITY", -1, 1);
+
+IF
+DB_RC_GY_ElvenGhosts(_Var1)
+AND
+GlobalGetFlag("RC_GY_VoidwokenAncestorTree_Destroyed", 0)
+AND
+GetPosition(_Var1, _Var2, _Var3, _Var4)
+THEN
+PROC_LoopEffect("RS3_FX_GP_Status_Cursed_01", _Var1, "RC_GY_VoidwokenAncestorTree_GhostEffect_1", "RC_Main", "");
+CharacterSetAnimationOverride(_Var1, "Kneel_01_Loop");
+
+IF
+GlobalFlagSet("RC_GY_VoidwokenAncestorTree_Destroyed")
+AND
+DB_RC_GY_ElvenGhosts(_Var1)
+THEN
+PROC_StopLoopEffect(_Var1, "RC_GY_VoidwokenAncestorTree_GhostEffect_1");
+CharacterSetAnimationOverride(_Var1, "");
+
+IF
+SkillCast((CHARACTERGUID)_Var1, (STRING)_Var2, _, _)
+AND
+DB_InRegion(_Var1, TRIGGERGUID_S_RC_GY_VoidwokenAncestorTree_Source_cc16b06e-b3e1-4986-ad3f-bf18ade3146f)
+AND
+GlobalGetFlag("RC_GY_VoidwokenAncestorTree_Destroyed", 0)
+AND
+IsSourceSkill(_Var2, 1)
+THEN
+Proc_StartDialog(1, "RC_GY_AD_VoidwokenAncestorTreeDrag", ITEMGUID_S_RC_GY_VoidwokenAncestorTree_Table_3a4a528f-5a09-4847-a322-795ae9b8a1ce);
+DB_RC_GY_VoidwokenAncestorTreeDragged(_Var1);
+DialogRequestStop(_Var1);
+ApplyStatus(_Var1, "KNOCKED_DOWN", -1, 1);
+PlayEffect(_Var1, "RS3_FX_Skills_Soul_Cast_SpiritVision_Overlay_01");
+
+IF
+AutomatedDialogEnded("RC_GY_AD_VoidwokenAncestorTreeDrag", _)
+THEN
+TimerLaunch("Timer_RC_GY_VodiwokenAncestorTreeDrag", 2300);
+
+IF
+AutomatedDialogEnded("RC_GY_AD_VoidwokenAncestorTreeDrag", _)
+AND
+DB_RC_GY_VoidwokenAncestorTreeDragged(_Var2)
+THEN
+PlayEffect(_Var2, "RS3_FX_Skills_Source_Fear_HitEffect_01");
+
+IF
+AutomatedDialogRequestFailed("RC_GY_AD_VoidwokenAncestorTreeDrag", _)
+THEN
+TimerLaunch("Timer_RC_GY_VodiwokenAncestorTreeDrag", 2300);
+
+IF
+AutomatedDialogRequestFailed("RC_GY_AD_VoidwokenAncestorTreeDrag", _)
+AND
+DB_RC_GY_VoidwokenAncestorTreeDragged(_Var2)
+THEN
+PlayEffect(_Var2, "RS3_FX_Skills_Source_Fear_HitEffect_01");
+
+IF
+TimerFinished("Timer_RC_GY_VodiwokenAncestorTreeDrag")
+AND
+DB_RC_GY_VoidwokenAncestorTreeDragged(_Var1)
+THEN
+ProcObjectTimer(_Var1, "RC_GY_PlayerDragged", 3);
+
+PROC
+ProcObjectTimerFinished((CHARACTERGUID)_Var1, "RC_GY_PlayerDragged")
+THEN
+CharacterDetachFromGroup(_Var1);
+TeleportTo(_Var1, S_RC_GY_VoidwokenAncestorTree_Table2_bf03437c-c706-4ec7-94c2-0f70d05f0951, "RC_GY_VoidwokenAncestorTreeDragged", 0);
+
+IF
+StoryEvent((CHARACTERGUID)_Var1, "RC_GY_VoidwokenAncestorTreeDragged")
+THEN
+RemoveStatus(_Var1, "KNOCKED_DOWN");
+
+IF
+StoryEvent((CHARACTERGUID)_Var1, "RC_GY_VoidwokenAncestorTreeDragged")
+AND
+QueryOnlyOnce("RC_GY_VoidwokenAncestorTreeDialogue")
+THEN
+PROC_LoopEffect("RS3_FX_GP_ScriptedEvent_VoidwokenAncestorTree_PrepareBlood_01", S_RC_GY_VoidwokenAncestorTree_Table_3a4a528f-5a09-4847-a322-795ae9b8a1ce, "RC_GY_VoidwokenAncestorTree_TreeEffect", "RC_Main", "");
+ItemSetCanInteract(S_RC_GY_VoidwokenAncestorTree_Table_3a4a528f-5a09-4847-a322-795ae9b8a1ce, 1);
+SetStoryEvent(S_RC_GY_VoidwokenAncestorTree_Table_3a4a528f-5a09-4847-a322-795ae9b8a1ce, "RevealFromStory");
+Proc_StartDialog(0, "RC_GY_VoidwokenAncestorTree_BeforeFight", S_RC_GY_VoidwokenAncestorTree_Ghost_e3e5e53f-e167-4b35-bd53-d11b4332db76, _Var1);
+
+IF
+CharacterReceivedDamage(S_RC_GY_VoidwokenAncestorTree_Ghost_e3e5e53f-e167-4b35-bd53-d11b4332db76, _, _)
+THEN
+DialogRequestStop(S_RC_GY_VoidwokenAncestorTree_Ghost_e3e5e53f-e167-4b35-bd53-d11b4332db76);
+
+IF
+CharacterReceivedDamage((CHARACTERGUID)_Var1, _, _)
+AND
+DB_RC_GY_VoidwokenAncestorTreeCreep(_Var1)
+THEN
+DialogRequestStop(S_RC_GY_VoidwokenAncestorTree_Ghost_e3e5e53f-e167-4b35-bd53-d11b4332db76);
+
+IF
+DialogEnded("RC_GY_VoidwokenAncestorTree_BeforeFight", (INTEGER)_Var1)
+AND
+DialogGetInvolvedPlayer(_Var1, 1, _Var2)
+THEN
+SetCanFight(S_RC_GY_VoidwokenAncestorTree_Ghost_e3e5e53f-e167-4b35-bd53-d11b4332db76, 1);
+SetCanJoinCombat(S_RC_GY_VoidwokenAncestorTree_Ghost_e3e5e53f-e167-4b35-bd53-d11b4332db76, 1);
+EnterCombat(S_RC_GY_VoidwokenAncestorTree_Ghost_e3e5e53f-e167-4b35-bd53-d11b4332db76, _Var2);
+
+IF
+DialogEnded("RC_GY_VoidwokenAncestorTree_BeforeFight", _)
+AND
+DB_RC_GY_VoidwokenAncestorTreeCreep(_Var2)
+THEN
+SetCanFight(_Var2, 1);
+SetCanJoinCombat(_Var2, 1);
+
+IF
+TextEventSet("elf_scion")
+AND
+DB_RC_GY_VoidwokenAncestorTreeCreep(_Var1)
+THEN
+SetCanFight(_Var1, 1);
+SetCanJoinCombat(_Var1, 1);
+
+IF
+TextEventSet("elf_scion")
+THEN
+SetCanFight(S_RC_GY_VoidwokenAncestorTree_Ghost_e3e5e53f-e167-4b35-bd53-d11b4332db76, 1);
+SetCanJoinCombat(S_RC_GY_VoidwokenAncestorTree_Ghost_e3e5e53f-e167-4b35-bd53-d11b4332db76, 1);
+
+IF
+ObjectFlagSet("RC_GY_AncientTreeSpawnCreep", (CHARACTERGUID)_Var1, _)
+THEN
+DB_RC_GY_VoidwokenAncestorTreeCreep(_Var1);
+SetCanFight(_Var1, 1);
+SetCanJoinCombat(_Var1, 1);
+ApplyStatus(_Var1, "SUMMONING_ABILITY", -1, 1);
+
+IF
+CharacterDied(S_RC_GY_VoidwokenAncestorTree_Ghost_e3e5e53f-e167-4b35-bd53-d11b4332db76)
+AND
+DB_RC_GY_VoidwokenAncestorTreeCreep(_Var1)
+THEN
+CharacterDie(_Var1, 0, "Explode");
+
+IF
+CharacterDied(S_RC_GY_VoidwokenAncestorTree_Ghost_e3e5e53f-e167-4b35-bd53-d11b4332db76)
+THEN
+PROC_LoopEffect("RS3_FX_GP_ScriptedEvent_VoidwokenAncestorTree_PrepareBlood_01", S_RC_GY_VoidwokenAncestorTree_Table2_bf03437c-c706-4ec7-94c2-0f70d05f0951, "RC_GY_VoidwokenAncestorTree_TreeEffect", "RC_Main", "");
+ItemSetCanInteract(S_RC_GY_VoidwokenAncestorTree_Table2_bf03437c-c706-4ec7-94c2-0f70d05f0951, 1);
+SetStoryEvent(S_RC_GY_VoidwokenAncestorTree_Table2_bf03437c-c706-4ec7-94c2-0f70d05f0951, "RevealFromStory");
+GlobalSetFlag("RC_GY_VoidwokenAncestorTree_Destroyed");
+ItemDestroy(ITEMGUID_S_RC_GY_AncestorTree_Root_Ghost_e9470678-9d4d-4fbe-9000-f65aa9579a68);
+ItemDestroy(ITEMGUID_S_RC_GY_VoidwokenAncestorTree_Top_Ghost_c6f292e2-ac13-431d-9a92-7ddf48cd23a0);
+
+IF
+DialogEnded("RC_GY_VoidwokenAncestorTree", (INTEGER)_Var1)
+AND
+DialogGetInvolvedPlayer(_Var1, 1, _Var2)
+AND
+ObjectGetFlag(_Var2, "RC_GY_VoidwokenTreeSpirit_ToldStory", 1)
+AND
+ObjectGetFlag(_Var2, "RC_GY_VoidwokenTreeSpirit_ToldStory_RD", 0)
+THEN
+ProcDefineReflectionDialog("RC_GY_RD_VoidwokenAncestorTree", _Var2);
+PartySetFlag(_Var2, "RC_GY_VoidwokenTreeSpirit_ToldStory_RD");
+
+
+EXITSECTION
+ENDEXITSECTION
+
+ParentTargetEdge "ReapersCoast"

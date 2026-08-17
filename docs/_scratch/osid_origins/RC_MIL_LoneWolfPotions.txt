@@ -1,0 +1,37 @@
+Version 1
+SubGoalCombiner SGC_AND
+
+INITSECTION
+
+KBSECTION
+IF
+DB_RC_MIL_LoneWolves(_Var1, _)
+THEN
+SetTagPriceModifier(_Var1, "HEALING_POTION", 2);
+
+IF
+ObjectFlagSet("RC_MIL_DwarfWolfM_GotPotions", (GUIDSTRING)_Var1, _)
+THEN
+DB_MIL_GotDwarfWolfPotions(_Var1);
+InventoryLaunchTagIterator(CHARACTERGUID_S_RC_MIL_DwarfWolfM_9e42d7db-c8d3-4ef3-889b-99f78f95d715, "HEALING_POTION", "", "RC_MIL_TransferHealingPotion", "RC_MIL_TransferredHealingPotions");
+
+IF
+StoryEvent((ITEMGUID)_Var1, "RC_MIL_TransferHealingPotion")
+AND
+DB_MIL_GotDwarfWolfPotions(_Var2)
+THEN
+ItemToInventory(_Var1, _Var2, -1);
+
+IF
+GlobalFlagSet("RC_MIL_TransferredHealingPotions")
+AND
+DB_MIL_GotDwarfWolfPotions(_Var1)
+THEN
+NOT DB_MIL_GotDwarfWolfPotions(_Var1);
+GlobalClearFlag("RC_MIL_TransferredHealingPotions");
+
+
+EXITSECTION
+ENDEXITSECTION
+
+ParentTargetEdge "ReapersCoast"

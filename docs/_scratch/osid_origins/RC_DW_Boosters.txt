@@ -1,0 +1,126 @@
+Version 1
+SubGoalCombiner SGC_AND
+
+INITSECTION
+ItemToInventory(ITEMGUID_S_RC_DW_Docks_DrownedSourcerer_4e4704d1-3190-4667-b6aa-55c9e59583a2, CHARACTERGUID_S_RC_DW_DrownedSourcerer_Corpse_cd81fcc1-7306-4bd0-bd68-bd7df15db801);
+SetOnStage(CHARACTERGUID_S_RC_DW_DrownedSourcerer_Corpse_cd81fcc1-7306-4bd0-bd68-bd7df15db801, 0);
+DB_DW_PaladinWounded(S_RC_DW_PaladinWounded_01_7e96b989-6698-4f07-85c4-679a3b94760a);
+DB_DW_PaladinWounded(S_RC_DW_PaladinWounded_02_d8def838-bba5-46ec-bb57-6098b7a5a487);
+SetOnStage(S_RC_DW_FoodTraderApple_fcc9d667-5fff-4afd-84a7-95a432a3f485, 0);
+DB_KnowsAboutTrig(TRIGGERGUID_S_RC_DW_DreamerDen_65b5feca-a5cb-4ee5-a13a-4c4ca25dee88, "RC_DW_KnowsAbout_DreamerDen");
+DB_KnowsAboutTrig(TRIGGERGUID_S_RC_DW_Arena_35165b0c-6ea3-4108-8abf-4c7b4852e338, "RC_DW_KnowsAbout_Arena");
+DB_KnowsAboutTrig(TRIGGERGUID_S_RC_DW_Undertavern_41caf09c-8ddd-461f-a892-a085009b648b, "RC_DW_KnownsAbout_Undertavern");
+DB_ShovelArea(S_RC_DW_UnderTavern_Entrence_PileBoxTrig_0d20e8eb-961b-4613-ba15-fcf5eefd3fe4, "RC_DW_UnderTavernEntrence", S_RC_DW_UnderTavern_Entrence_Dirtpile_A_001_9fecbb62-ff64-4a1e-987d-e806fd27f27c);
+DB_ShovelRewardItemAppear("RC_DW_UnderTavernEntrence", S_RC_DW_UnderTavern_Entrence_SmallGoldBag_d6279eb3-d692-40be-95d0-02bfe4d5ff33, S_RC_DW_UnderTavern_Entrence_PointT_6216745a-2488-4919-846e-e0a86fbe73c9);
+
+KBSECTION
+IF
+ObjectFlagSet("RC_DW_Butler_Polish", (GUIDSTRING)_Var1, _)
+THEN
+ApplyStatus(_Var1, "CLEAN", 10, 1);
+
+IF
+TradeGenerationStarted(S_RC_DW_TraderGeneral_7fc52789-495e-4f9c-9b62-760f533a032f)
+THEN
+DB_DW_TraderGeneralInitiateTradeGeneration(1);
+
+IF
+ItemTemplateAddedToCharacter(_, (ITEMGUID)_Var2, S_RC_DW_TraderGeneral_7fc52789-495e-4f9c-9b62-760f533a032f)
+AND
+DB_DW_TraderGeneralInitiateTradeGeneration(1)
+THEN
+ItemSetDurability(_Var2, 1);
+
+IF
+TradeGenerationEnded(S_RC_DW_TraderGeneral_7fc52789-495e-4f9c-9b62-760f533a032f)
+THEN
+NOT DB_DW_TraderGeneralInitiateTradeGeneration(1);
+
+IF
+GameBookInterfaceClosed(S_RC_DW_Docks_DrownedSourcerer_4e4704d1-3190-4667-b6aa-55c9e59583a2, (CHARACTERGUID)_Var1)
+AND
+QueryOnlyOnce("RC_DW_VB_DrownedSourcerer")
+THEN
+UserSetFlag(_Var1, "RC_DW_VB_DrownedSourcerer_ReadJournal");
+StartVoiceBark("RC_DW_VB_DrownedSourcerer", _Var1);
+
+IF
+ItemAddedToCharacter(S_RC_DW_Docks_DrownedSourcerer_4e4704d1-3190-4667-b6aa-55c9e59583a2, CHARACTERGUID_S_RC_DW_DrownedSourcerer_Corpse_cd81fcc1-7306-4bd0-bd68-bd7df15db801)
+THEN
+DB_ShovelArea(TRIGGERGUID_S_RC_DW_DirtPile_001_BoxTrig_8154e408-8b53-427d-bb6d-d503eb4175f1, "DW_DocksDirtPile", S_RC_DW_DirtPile_001_4c588eca-e8bb-4d11-8693-e8a6489e7a0b);
+DB_ShovelRewardItemAppear("DW_DocksDirtPile", CHARACTERGUID_S_RC_DW_DrownedSourcerer_Corpse_cd81fcc1-7306-4bd0-bd68-bd7df15db801, S_RC_DW_DirtPile_001_Trig_0c736755-9b04-43f4-8060-33ff5f6a22d4);
+
+IF
+CharacterStatusApplied((CHARACTERGUID)_Var1, "SPIRIT_VISION", _)
+AND
+CharacterCanSee(_Var1, CHARACTERGUID_S_RC_DW_DrownedSourcerer_Corpse_cd81fcc1-7306-4bd0-bd68-bd7df15db801, 1)
+AND
+QueryOnlyOnce("RC_DW_VB_DrownedSourcerer_SpiritVision")
+THEN
+StartVoiceBark("RC_DW_VB_DrownedSourcerer_SpiritVision", _Var1);
+
+IF
+DialogEnded("RC_DW_FishFactory_Worker_04", _)
+THEN
+Proc_StartDialog(1, "RC_DW_AD_FishFactory_Worker_04", S_RC_DW_FishFactory_Worker_04_864b0421-7c39-4861-8799-04c23d28466f);
+
+IF
+ObjectFlagSet("RC_DW_MansionYard_Paladin_01_Drink", (CHARACTERGUID)_Var1, _)
+AND
+CharacterConsume(_Var1, "CON_Drink_Mug_Beer_A", _Var3)
+THEN
+ObjectClearFlag(_Var1, "RC_DW_MansionYard_Paladin_01_Drink", 0);
+DB_NOOP(1);
+
+IF
+ObjectFlagSet("RC_DW_TraderFish_AteFish", (CHARACTERGUID)_Var1, _)
+THEN
+SetStoryNpc(_Var1, 0);
+
+IF
+ObjectFlagSet("RC_DW_TraderFish_AteFish", (CHARACTERGUID)_Var1, (INTEGER)_Var2)
+AND
+CharacterConsume(_Var1, "FOOD_FishB_Voidwoken", _)
+THEN
+CreateSurface(_Var1, "SurfaceBloodCursed", 1, 5);
+PlayEffect(_Var1, "RS3_FX_GP_Combat_Hit_Blood_01_Large");
+DB_RC_DW_CharacterEatingFish(_Var1);
+
+IF
+CharacterStatusApplied((CHARACTERGUID)_Var1, "DISEASED", _)
+AND
+DB_RC_DW_CharacterEatingFish(_Var1)
+THEN
+SetStoryNpc(_Var1, 1);
+NOT DB_RC_DW_CharacterEatingFish(_Var1);
+
+IF
+ObjectFlagSet("RC_DW_TraderFish_TookFish", (GUIDSTRING)_Var1, (INTEGER)_Var2)
+THEN
+ItemTemplateAddTo("CON_Food_Voidwoken_Fish_B_ea14f970-ac06-463a-a6f2-7a5fb9a268ac", _Var1, 1);
+
+IF
+CharacterEnteredTrigger((CHARACTERGUID)_Var1, (TRIGGERGUID)_Var2)
+AND
+DB_KnowsAboutTrig(_Var2, _Var3)
+AND
+DB_IsPlayer(_Var1)
+THEN
+UserSetFlag(_Var1, _Var3);
+
+IF
+ObjectFlagSet("RC_DW_ArenaFan_SetFriend", (GUIDSTRING)_Var1, _)
+THEN
+SetFaction(CHARACTERGUID_S_RC_DW_Tavern_ArenaFan_58f292b9-90d2-4e6b-918b-e172a6bc3c84, "RC_DW_ArenaFan");
+SetRelationFactionToPlayers("RC_DW_ArenaFan", 100);
+
+IF
+ObjectFlagCleared("RC_DW_ArenaFan_SetFriend", (GUIDSTRING)_Var1, _)
+THEN
+SetFaction(CHARACTERGUID_S_RC_DW_Tavern_ArenaFan_58f292b9-90d2-4e6b-918b-e172a6bc3c84, "RC_DW_Civilian");
+
+
+EXITSECTION
+ENDEXITSECTION
+
+ParentTargetEdge "ReapersCoast"

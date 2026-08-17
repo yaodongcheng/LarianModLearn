@@ -1,0 +1,109 @@
+Version 1
+SubGoalCombiner SGC_AND
+
+INITSECTION
+DB_Dialogs(S_FTJ_BlackCat_4bff6ccc-5889-4c90-bcb1-572f1c29d830, "FTJ_BlackCat");
+SetOnStage(S_FTJ_BlackCat_4bff6ccc-5889-4c90-bcb1-572f1c29d830, 0);
+ProcTriggerRegisterForPlayers(S_FTJ_BlackCatStartEvent_Poly_35fc2591-68a3-4a5d-8bfb-2205446d5f66);
+ProcCharacterDisableAllCrimes(CHARACTERGUID_S_FTJ_BlackCat_4bff6ccc-5889-4c90-bcb1-572f1c29d830);
+ProcCharacterEnableCrime(CHARACTERGUID_S_FTJ_BlackCat_4bff6ccc-5889-4c90-bcb1-572f1c29d830, "Assault");
+
+KBSECTION
+IF
+CharacterEnteredTrigger((CHARACTERGUID)_Var1, S_FTJ_BlackCatStartEvent_Poly_35fc2591-68a3-4a5d-8bfb-2205446d5f66)
+AND
+QueryOnlyOnce("FTJ_BlackCat_Start")
+THEN
+ObjectSetFlag(_Var1, "FTJ_StartBlackCatEvent");
+
+IF
+GlobalFlagSet("FTJ_BlackCatLeave")
+AND
+CharacterIsDead(CHARACTERGUID_S_FTJ_BlackCat_4bff6ccc-5889-4c90-bcb1-572f1c29d830, 0)
+THEN
+ProcCharacterDisappearOutOfSight(CHARACTERGUID_S_FTJ_BlackCat_4bff6ccc-5889-4c90-bcb1-572f1c29d830, 1, 1, "", 0);
+SetHasDialog(CHARACTERGUID_S_FTJ_BlackCat_4bff6ccc-5889-4c90-bcb1-572f1c29d830, 0);
+
+IF
+CharacterKilledBy(CHARACTERGUID_S_FTJ_BlackCat_4bff6ccc-5889-4c90-bcb1-572f1c29d830, (CHARACTERGUID)_Var1, (CHARACTERGUID)_Var2)
+AND
+DB_IsPlayer(_Var1)
+AND
+CharacterCanSee(_Var2, CHARACTERGUID_S_FTJ_BlackCat_4bff6ccc-5889-4c90-bcb1-572f1c29d830, 1)
+AND
+QueryOnlyOnce("FTJ_VB_BlackCatDead")
+THEN
+SetTag(_Var1, "KilledBlackCat");
+StartVoiceBark("FTJ_VB_BlackCatDead_KilledByPlayer", _Var2);
+
+IF
+CharacterKilledBy(CHARACTERGUID_S_FTJ_BlackCat_4bff6ccc-5889-4c90-bcb1-572f1c29d830, (CHARACTERGUID)_Var1, (CHARACTERGUID)_Var2)
+AND
+IsTagged(_Var1, "MAGISTER", 1)
+AND
+GetVarObject(CHARACTERGUID_S_FTJ_BlackCat_4bff6ccc-5889-4c90-bcb1-572f1c29d830, "TargetPlayer", _Var3)
+AND
+CharacterCanSee(_Var3, _Var2, 1)
+AND
+QueryOnlyOnce("FTJ_VB_BlackCatDead")
+THEN
+SetTag(_Var1, "KilledBlackCat");
+StartVoiceBark("FTJ_VB_BlackCatDead_KilledByMagister", _Var3);
+
+IF
+CharacterDied(CHARACTERGUID_S_FTJ_BlackCat_4bff6ccc-5889-4c90-bcb1-572f1c29d830)
+AND
+DB_IsPlayer(_Var1)
+AND
+ObjectGetFlag(_Var1, "FTJ_StartBlackCatEvent", 1)
+AND
+CharacterCanSee(_Var1, CHARACTERGUID_S_FTJ_BlackCat_4bff6ccc-5889-4c90-bcb1-572f1c29d830, 1)
+AND
+QueryOnlyOnce("FTJ_VB_BlackCatDead")
+THEN
+StartVoiceBark("FTJ_VB_BlackCatDead", _Var1);
+
+IF
+StoryEvent((CHARACTERGUID)_Var1, "FTJ_StartBlackCatThanksDialog")
+THEN
+Proc_StartDialog(0, "FTJ_BlackCat_ThanksPlayer", CHARACTERGUID_S_FTJ_BlackCat_4bff6ccc-5889-4c90-bcb1-572f1c29d830, _Var1);
+PartySetFlag(_Var1, "QuestUpdate_FTJ_Escape_BlackCat_Saved");
+
+IF
+DialogEnded("FTJ_BlackCat_ThanksPlayer", (INTEGER)_Var1)
+AND
+DialogGetInvolvedPlayer(_Var1, 1, _Var2)
+THEN
+CharacterAddSkill(_Var2, "Summon_Cat");
+GlobalSetFlag("FTJ_BlackCatLeave");
+
+PROC
+Proc_FTJ_BlackCatTeleportCheck((CHARACTERGUID)_Var1, (ITEMGUID)_Var2)
+AND
+GetVarObject(CHARACTERGUID_S_FTJ_BlackCat_4bff6ccc-5889-4c90-bcb1-572f1c29d830, "TargetPlayer", _Var3)
+AND
+_Var3 == _Var1
+AND
+IsSpeakerReserved(CHARACTERGUID_S_FTJ_BlackCat_4bff6ccc-5889-4c90-bcb1-572f1c29d830, 0)
+AND
+GetDistanceTo(_Var2, CHARACTERGUID_S_FTJ_BlackCat_4bff6ccc-5889-4c90-bcb1-572f1c29d830, _Var4)
+AND
+_Var4 < 16
+THEN
+TeleportTo(CHARACTERGUID_S_FTJ_BlackCat_4bff6ccc-5889-4c90-bcb1-572f1c29d830, _Var1);
+
+PROC
+ProcRegionEnded("FJ_FortJoy_Main")
+THEN
+GoalCompleted;
+
+IF
+GlobalFlagSet("FTJ_BlackCatLeave")
+THEN
+CharacterSetForceUpdate(CHARACTERGUID_S_FTJ_BlackCat_4bff6ccc-5889-4c90-bcb1-572f1c29d830, 0);
+
+
+EXITSECTION
+ENDEXITSECTION
+
+ParentTargetEdge "FortJoy"

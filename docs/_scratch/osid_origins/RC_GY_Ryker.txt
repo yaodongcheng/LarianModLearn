@@ -1,0 +1,234 @@
+Version 1
+SubGoalCombiner SGC_AND
+
+INITSECTION
+ProcTriggerRegisterForPlayers(TRIGGERGUID_S_RC_GY_RykersRoomArea_5ff7ebd2-30d1-4df9-8196-07432752b3e8);
+TriggerRegisterForCharacter(TRIGGERGUID_S_RC_GY_RykersRoomArea_5ff7ebd2-30d1-4df9-8196-07432752b3e8, CHARACTERGUID_S_RC_GY_Ryker_522b8095-b539-4a82-84f3-bf8e5a74dfe4);
+DB_Dialogs(CHARACTERGUID_S_RC_GY_Ryker_522b8095-b539-4a82-84f3-bf8e5a74dfe4, "RC_GY_Ryker");
+DB_Ghosts(CHARACTERGUID_S_RC_GY_Ryker_522b8095-b539-4a82-84f3-bf8e5a74dfe4, CHARACTERGUID_S_RC_GY_RykerGhost_bc364b87-401f-4f24-a9e2-43eda1e90d7a, "RC_GY_RykerGhost");
+DB_DeadEvent(CHARACTERGUID_S_RC_GY_Ryker_522b8095-b539-4a82-84f3-bf8e5a74dfe4, "RC_GY_RykerDead");
+DB_KilledEvent(CHARACTERGUID_S_RC_GY_Ryker_522b8095-b539-4a82-84f3-bf8e5a74dfe4, "RC_GY_RykerKiller");
+SetOnStage(ITEMGUID_S_RC_GY_RykersSecretChamber_Hatch_e2f19559-8a6c-479b-8454-189a1dac255a, 0);
+SetOnStage(ITEMGUID_S_RC_GY_RykersCarpetRolled_7543a9fc-c34a-4fcc-a4da-6289203145b9, 0);
+SetOnStage(ITEMGUID_S_RC_GY_RykersCarpet_1b69c50c-91ee-4edd-8055-a43898acc00d, 1);
+DB_CrimeReaction_CustomWarning(CHARACTERGUID_S_RC_GY_Ryker_522b8095-b539-4a82-84f3-bf8e5a74dfe4, "Assault", "RC_GY_Ryker");
+DB_CrimeReaction_CustomWarning(CHARACTERGUID_S_RC_GY_Ryker_522b8095-b539-4a82-84f3-bf8e5a74dfe4, "Trespassing", "RC_GY_Ryker_TrespassingWarning");
+DB_RC_GY_RykerHouse_TalkingDoors(ITEMGUID_S_RC_GY_RykerHouse_TalkingDoor_001_33aec338-67f0-498f-9832-1790febd7136);
+DB_RC_GY_RykerHouse_TalkingDoors(ITEMGUID_S_RC_GY_RykerHouse_TalkingDoor_002_c704db5e-d663-440f-8622-e9d3dfbe6759);
+DB_RC_GY_RykerHouse_TalkingDoors_EffectPoints(TRIGGERGUID_S_RC_GY_RykerHouse_GargoyleEffectTrigger_000_c6e7edcf-bf0a-453e-a9e5-acaf570fa6e5);
+DB_RC_GY_RykerHouse_TalkingDoors_EffectPoints(TRIGGERGUID_S_RC_GY_RykerHouse_GargoyleEffectTrigger_001_e30c612d-fdc1-499f-b24c-57b9ab1b0c7b);
+DB_RC_GY_RykerHouse_TalkingDoors_EffectPoints(TRIGGERGUID_S_RC_GY_RykerHouse_GargoyleEffectTrigger_002_d0653a18-9ef2-4ba3-881d-dae8faa96361);
+DB_OneShotUser_VoicebarkTrigger(TRIGGERGUID_S_RC_GY_RykersSecretChamber_VB_f73dc7d4-a360-42b9-8b19-3367b46fc844, "RC_GY_VB_DiscoverRykersSecretChamber");
+DB_OneShotUser_VoicebarkTrigger(TRIGGERGUID_S_RC_GY_RykersSecretChamber_LabVB_64d7dc99-ca92-442a-ab1e-90690b3d38c8, "RC_GY_VB_RykersSecretChamber_Lab");
+DB_OneShotUser_VoicebarkTrigger(TRIGGERGUID_S_RC_GY_XP_RykersSecretChamber_Library_127bc331-2aea-4e31-8713-13838371af89, "RC_GY_VB_RykersSecretChamber_Library");
+ApplyStatus(ITEMGUID_FUR_Humans_Citz_LongestTable_Poor_A1_002_6ee19fe1-a772-46d5-a207-0bb9e4d83b60, "FROZEN", -1);
+
+KBSECTION
+IF
+ObjectFlagSet("RC_GY_RykerKiller", (CHARACTERGUID)_Var1, _)
+AND
+DB_IsPlayer(_Var1)
+THEN
+Proc_RC_GY_KilledRyker(_Var1);
+
+IF
+CharacterStatusAttempt(CHARACTERGUID_S_RC_GY_Ryker_522b8095-b539-4a82-84f3-bf8e5a74dfe4, "FORTIFIED", _)
+AND
+GetVarInteger(CHARACTERGUID_S_RC_GY_Ryker_522b8095-b539-4a82-84f3-bf8e5a74dfe4, "FortifiedArmorPercentageDecrease", _Var2)
+AND
+Real(_Var2, _Var3)
+AND
+CharacterGetArmorPercentage(CHARACTERGUID_S_RC_GY_Ryker_522b8095-b539-4a82-84f3-bf8e5a74dfe4, _Var4)
+AND
+RealSubtract(_Var4, _Var3, _Var5)
+THEN
+RemoveStatus(CHARACTERGUID_S_RC_GY_Ryker_522b8095-b539-4a82-84f3-bf8e5a74dfe4, "FORTIFIED");
+CharacterSetArmorPercentage(CHARACTERGUID_S_RC_GY_Ryker_522b8095-b539-4a82-84f3-bf8e5a74dfe4, _Var5);
+
+IF
+CharacterStatusAttempt(CHARACTERGUID_S_RC_GY_Ryker_522b8095-b539-4a82-84f3-bf8e5a74dfe4, "FORTIFIED", (CHARACTERGUID)_Var1)
+AND
+DB_IsPlayer(_Var1)
+THEN
+Proc_StartDialog(1, "RC_GY_AD_RykerWeakness", CHARACTERGUID_S_RC_GY_Ryker_522b8095-b539-4a82-84f3-bf8e5a74dfe4);
+ProcSetHostileToIndivPlayer(CHARACTERGUID_S_RC_GY_Ryker_522b8095-b539-4a82-84f3-bf8e5a74dfe4, _Var1);
+
+IF
+AutomatedDialogStarted("RC_GY_AD_RykerWeakness", _)
+THEN
+ObjectSetFlag(CHARACTERGUID_S_RC_GY_Ryker_522b8095-b539-4a82-84f3-bf8e5a74dfe4, "RC_GY_RykerSaidWeaknessAD");
+
+PROC
+ProcBlockUseOfItem((CHARACTERGUID)_Var1, (ITEMGUID)_Var2)
+AND
+DB_RC_GY_RykerHouse_TalkingDoors(_Var2)
+AND
+DB_IsPlayer(_Var1)
+AND
+GlobalGetFlag("RC_GY_RykerHouse_TalkingDoorsUnlocked", 0)
+THEN
+DB_CustomUseItemResponse(_Var1, _Var2, 0);
+Proc_StartDialog(0, "RC_GY_RykerHouse_TalkingDoors", _Var2, _Var1);
+
+IF
+DialogEnded("RC_GY_RykerHouse_TalkingSkull", (INTEGER)_Var1)
+AND
+GlobalGetFlag("RC_GY_RykerHouse_UnlockDoors", 1)
+THEN
+Proc_RC_GY_RykerHouse_UnlockTalkingDoors();
+
+IF
+DialogEnded("RC_GY_RykerHouse_TalkingDoors", (INTEGER)_Var1)
+AND
+GlobalGetFlag("RC_GY_RykerHouse_UnlockDoors", 1)
+AND
+DialogGetInvolvedNPC(_Var1, 1, _Var2)
+AND
+ObjectIsItem(_Var2, 1)
+AND
+DB_RC_GY_RykerHouse_TalkingDoors(_Var2)
+THEN
+Proc_RC_GY_RykerHouse_PlayEffectOnUnlockDoors();
+Proc_RC_GY_RykerHouse_UnlockTalkingDoors();
+ItemOpen(_Var2);
+
+PROC
+Proc_RC_GY_RykerHouse_PlayEffectOnUnlockDoors()
+AND NOT
+DB_GlobalFlag("RC_GY_RykerHouse_TalkingDoorsUnlocked")
+AND
+DB_RC_GY_RykerHouse_TalkingDoors_EffectPoints(_Var1)
+THEN
+PlayEffect(_Var1, "RS3_FX_GP_Impacts_Air_LightningBolt_Vertical_01");
+
+PROC
+Proc_RC_GY_RykerHouse_UnlockTalkingDoors()
+AND NOT
+DB_GlobalFlag("RC_GY_RykerHouse_TalkingDoorsUnlocked")
+AND
+DB_RC_GY_RykerHouse_TalkingDoors(_Var1)
+THEN
+ItemUnLock(_Var1);
+
+PROC
+Proc_RC_GY_RykerHouse_UnlockTalkingDoors()
+THEN
+GlobalSetFlag("RC_GY_RykerHouse_TalkingDoorsUnlocked");
+
+PROC
+ProcBlockUseOfItem((CHARACTERGUID)_Var1, ITEMGUID_05m_WoodenHouse_A_Stairs_B_Item_000_292d8187-a1a5-4ffe-ab0e-886556800518)
+AND
+DB_IsPlayer(_Var1)
+AND
+GlobalGetFlag("RC_GY_RykerHouse_TalkingDoorsUnlocked", 0)
+THEN
+DB_CustomUseItemResponse(_Var1, ITEMGUID_05m_WoodenHouse_A_Stairs_B_Item_000_292d8187-a1a5-4ffe-ab0e-886556800518, 0);
+Proc_StartDialog(0, "RC_GY_RykerHouse_TalkingSkull", ITEMGUID_S_RC_GY_RykerHouse_TalkingSkull_f6daa14d-0b30-4230-b5b5-2fde57e1889e, _Var1);
+
+IF
+CharacterUsedItem((CHARACTERGUID)_Var1, ITEMGUID_05m_WoodenHouse_A_Stairs_B_Item_000_292d8187-a1a5-4ffe-ab0e-886556800518)
+AND
+DB_IsPlayer(_Var1)
+THEN
+DB_RC_GY_RykerHouse_SneakerFromCellar(_Var1);
+
+IF
+DialogEnded("RC_GY_RykerHouse_TalkingSkull", (INTEGER)_Var1)
+AND
+DialogGetInvolvedPlayer(_Var1, 1, _Var2)
+AND
+ObjectIsCharacter(_Var2, 1)
+AND
+DB_IsPlayer(_Var2)
+AND
+ObjectGetFlag(_Var2, "RC_GY_RykerHouse_CellarIntruderTeleport", 1)
+THEN
+ObjectClearFlag(_Var2, "RC_GY_RykerHouse_CellarIntruderTeleport", 0);
+TeleportTo(_Var2, TRIGGERGUID_S_RC_GY_TP_RykerHouse_CellarIntruder_cbcf602c-ad62-4e9e-820b-7f2ea4bf2f64);
+SysClear("DB_RC_GY_RykerHouse_SneakerFromCellar", 1);
+
+IF
+DialogEnded("RC_GY_RykerHouse_TalkingSkull", (INTEGER)_Var1)
+AND
+GlobalGetFlag("RC_GY_RykerHouse_TalkingDoorsUnlocked", 1)
+AND
+DialogGetInvolvedPlayer(_Var1, 1, _Var2)
+AND
+ObjectIsCharacter(_Var2, 1)
+AND
+DB_IsPlayer(_Var2)
+THEN
+TeleportTo(_Var2, TRIGGERGUID_S_RC_GY_TP_RykerHouse_1_FromCellar_ca690e95-3afe-4b01-9e5e-faf8002d9e6d);
+
+IF
+GlobalFlagSet("RC_GY_RykerDead")
+AND
+GlobalGetFlag("RC_GY_RykerHouse_TalkingDoorsUnlocked", 0)
+THEN
+Proc_RC_GY_RykerHouse_UnlockTalkingDoors();
+
+PROC
+Proc_RC_GY_RykersBodyguardAttacked((CHARACTERGUID)_Var1, (CHARACTERGUID)_Var2)
+AND
+DB_IsPlayer(_Var2)
+AND
+CharacterIsInCombat(CHARACTERGUID_S_RC_GY_Ryker_522b8095-b539-4a82-84f3-bf8e5a74dfe4, 0)
+AND
+CharacterCanSee(CHARACTERGUID_S_RC_GY_Ryker_522b8095-b539-4a82-84f3-bf8e5a74dfe4, _Var2, 1)
+THEN
+Proc_StartDialog(1, "RC_GY_AD_Ryker_OnBodyguardAttacked", CHARACTERGUID_S_RC_GY_Ryker_522b8095-b539-4a82-84f3-bf8e5a74dfe4);
+
+IF
+CharacterEnteredTrigger((CHARACTERGUID)_Var1, TRIGGERGUID_S_RC_GY_SUB_RykerHouse_GroundFloor_f685aad8-a811-4d5c-9e90-81e5a66456cc)
+THEN
+ProcShowMarker(_Var1, "RC_GY_RykerHouse");
+
+IF
+CharacterEnteredTrigger((CHARACTERGUID)_Var1, TRIGGERGUID_S_RC_GY_SUB_RykerHouse_GroundFloor_f685aad8-a811-4d5c-9e90-81e5a66456cc)
+AND
+UserGetFlag(_Var1, "RC_GY_DiscoveredRykerHouse", 0)
+AND
+QRY_IsEmptyDB("DB_RC_GY_RykerHouse_SneakerFromCellar", 1)
+THEN
+UserSetFlag(_Var1, "RC_GY_DiscoveredRykerHouse");
+StartVoiceBark("RC_GY_VB_DiscoverRykerHouse", _Var1);
+
+IF
+CharacterEnteredTrigger((CHARACTERGUID)_Var1, TRIGGERGUID_S_RC_GY_SUB_RykerHouse_GroundFloor_f685aad8-a811-4d5c-9e90-81e5a66456cc)
+AND
+UserGetFlag(_Var1, "RC_GY_DiscoveredRykerHouse", 0)
+AND
+DB_RC_GY_RykerHouse_SneakerFromCellar(_Var2)
+AND
+CharacterIsInPartyWith(_Var1, _Var2, 0)
+THEN
+UserSetFlag(_Var1, "RC_GY_DiscoveredRykerHouse");
+StartVoiceBark("RC_GY_VB_DiscoverRykerHouse", _Var1);
+
+IF
+CharacterEnteredTrigger((CHARACTERGUID)_Var1, TRIGGERGUID_S_RC_GY_SUB_RykerHouse_GroundFloor_f685aad8-a811-4d5c-9e90-81e5a66456cc)
+AND
+UserGetFlag(_Var1, "RC_GY_DiscoveredRykerHouse", 0)
+AND
+DB_RC_GY_RykerHouse_SneakerFromCellar(_Var2)
+AND
+CharacterIsInPartyWith(_Var1, _Var2, 1)
+THEN
+UserSetFlag(_Var1, "RC_GY_DiscoveredRykerHouse");
+StartVoiceBark("RC_GY_VB_RykersHouseEnteredFromBasement", _Var1);
+
+IF
+CharacterEnteredTrigger((CHARACTERGUID)_Var1, TRIGGERGUID_S_RC_GY_SUB_Graveyard_59ac9cef-edf4-492f-906c-fbde552e68d3)
+AND
+UserGetFlag(_Var1, "RC_GY_DiscoveredGraveyard", 0)
+THEN
+UserSetFlag(_Var1, "RC_GY_DiscoveredGraveyard");
+StartVoiceBark("RC_GY_VB_DiscoverGraveyard", _Var1);
+
+
+EXITSECTION
+SysClear("DB_RC_GY_RykerHouse_TalkingDoors", 1);
+SysClear("DB_RC_GY_RykerHouse_TalkingDoors_EffectPoints", 1);
+ENDEXITSECTION
+
+ParentTargetEdge "ReapersCoast"

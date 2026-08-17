@@ -1,0 +1,168 @@
+Version 1
+SubGoalCombiner SGC_AND
+
+INITSECTION
+DB_Subregion(TRIGGERGUID_S_CoS_SUB_Temples_LVTopDeck_f9679914-8348-4083-9171-1f62bd020ef0, "LV_HoE_SUB_LadyVengeance", 0);
+DB_Dialogs(ITEMGUID_S_CoS_LV_ShipHead_4129f1cd-a8d4-4439-837d-2fc686216cc5, "CoS_LV_ShipHead");
+ProcTriggerRegisterForPlayers(TRIGGERGUID_S_CoS_LV_TarquinAlmiraDialogStart_Box_c8c61662-d96f-4685-b8c8-818bd2fd843f);
+Proc_CoS_LadyVengenace_Init();
+DB_HasStoryEvent(ITEMGUID_S_CoS_Temples_PromiseBreaker_Blade_ad5823d0-2b93-413b-af20-39f72fff3140, "CoS_PromiseBreaker_HasBlade");
+DB_HasStoryEvent(ITEMGUID_S_CoS_Temples_PromiseBreaker_Shaft_ede5be02-9cc9-4c3e-b9c7-0ff9bd50f2e9, "CoS_PromiseBreaker_HasShaft");
+DB_GiveItemToEvent(ITEMGUID_S_CoS_Temples_PromiseBreaker_Blade_ad5823d0-2b93-413b-af20-39f72fff3140, "CoS_PromiseBreaker_GiveBlade");
+DB_GiveItemToEvent(ITEMGUID_S_CoS_Temples_PromiseBreaker_Shaft_ede5be02-9cc9-4c3e-b9c7-0ff9bd50f2e9, "CoS_PromiseBreaker_GiveShaft");
+
+KBSECTION
+PROC
+Proc_CoS_LadyVengenace_Init()
+THEN
+GlobalSetFlag("GLO_Region_CoS");
+
+PROC
+ProcRegionEnded("CoS_Main")
+THEN
+GlobalClearFlag("GLO_Region_CoS");
+
+IF
+StoryEvent((CHARACTERGUID)_Var1, "CoS_LV_RiverStartDialog")
+AND NOT
+QRY_CoS_LV_Act2mIntro_TryLohse()
+AND NOT
+QRY_CoS_LV_Act2mIntro_TryAnyAvatar()
+THEN
+DialogRequestStop(_Var1);
+ProcFaceEachother(_Var1, CHARACTERGUID_S_GLO_River_f4931ebe-10b0-43c4-9182-640cf052717e);
+Proc_StartDialog(0, "CoS_LV_River", CHARACTERGUID_S_GLO_River_f4931ebe-10b0-43c4-9182-640cf052717e, _Var1);
+
+QRY
+QRY_CoS_LV_Act2mIntro_TryLohse()
+AND
+DB_Avatars(CHARACTERGUID_S_Player_Lohse_bb932b13-8ebf-4ab4-aac0-83e6924e4295)
+AND
+QRY_SpeakerIsAvailableAndInDialogRange(CHARACTERGUID_S_Player_Lohse_bb932b13-8ebf-4ab4-aac0-83e6924e4295, CHARACTERGUID_S_GLO_River_f4931ebe-10b0-43c4-9182-640cf052717e)
+AND
+QRY_StartDialog(0, "CoS_LV_River", CHARACTERGUID_S_GLO_River_f4931ebe-10b0-43c4-9182-640cf052717e, CHARACTERGUID_S_Player_Lohse_bb932b13-8ebf-4ab4-aac0-83e6924e4295)
+THEN
+DB_NoOp(1);
+
+QRY
+QRY_CoS_LV_Act2mIntro_TryAnyAvatar()
+AND
+DB_Avatars(_Var1)
+AND
+QRY_SpeakerIsAvailableAndInDialogRange(_Var1, CHARACTERGUID_S_GLO_River_f4931ebe-10b0-43c4-9182-640cf052717e)
+AND
+QRY_StartDialog(0, "CoS_LV_River", CHARACTERGUID_S_GLO_River_f4931ebe-10b0-43c4-9182-640cf052717e, _Var1)
+THEN
+DB_NoOp(1);
+
+IF
+TextEventSet("JahanCoS")
+AND
+DB_GLO_LevelTraveler("CoS_Main", CHARACTERGUID_S_GLO_Jahan_4d222cfd-49c8-41d3-8cb7-2a2b56232633, _Var1, _Var2, _, _, 0)
+THEN
+TeleportTo(CHARACTERGUID_S_GLO_Jahan_4d222cfd-49c8-41d3-8cb7-2a2b56232633, _Var1);
+ProcRemoveAllDialogEntriesForSpeaker(CHARACTERGUID_S_GLO_Jahan_4d222cfd-49c8-41d3-8cb7-2a2b56232633);
+DB_Dialogs(CHARACTERGUID_S_GLO_Jahan_4d222cfd-49c8-41d3-8cb7-2a2b56232633, _Var2);
+
+IF
+CharacterEnteredTrigger((CHARACTERGUID)_Var1, TRIGGERGUID_S_CoS_LV_TarquinAlmiraDialogStart_Box_c8c61662-d96f-4685-b8c8-818bd2fd843f)
+AND
+DB_IsPlayer(_Var1)
+AND
+QRY_IsAvailableTo(_Var1, CHARACTERGUID_S_GLO_Almira_49b466a9-e67f-4e3c-8f66-3636ba7dd54f)
+AND
+QueryOnlyOnce("CoS_LV_TarquinAlmiraDialogStart_Once")
+THEN
+Proc_StartDialog(0, "CoS_LV_Almira", CHARACTERGUID_S_GLO_Almira_49b466a9-e67f-4e3c-8f66-3636ba7dd54f, _Var1);
+
+IF
+CharacterEnteredTrigger((CHARACTERGUID)_Var1, TRIGGERGUID_S_CoS_LV_TarquinAlmiraDialogStart_Box_c8c61662-d96f-4685-b8c8-818bd2fd843f)
+AND
+DB_IsPlayer(_Var1)
+AND
+QRY_IsAvailableTo(_Var1, CHARACTERGUID_S_GLO_Tarquin_a3d0cdcc-d0b0-464d-9ad7-43b38baed620)
+AND
+QueryOnlyOnce("CoS_LV_TarquinAlmiraDialogStart_Once")
+THEN
+Proc_StartDialog(0, "CoS_LV_Tarquin", CHARACTERGUID_S_GLO_Tarquin_a3d0cdcc-d0b0-464d-9ad7-43b38baed620, _Var1);
+
+IF
+DialogStarted("CoS_LV_Tarquin", _)
+AND
+QueryOnlyOnce("CoS_LV_TarquinAlmiraDialogStart_Once")
+THEN
+DB_NOOP(1);
+
+IF
+DialogStarted("CoS_LV_Almira", _)
+AND
+QueryOnlyOnce("CoS_LV_TarquinAlmiraDialogStart_Once")
+THEN
+DB_NOOP(1);
+
+IF
+ItemAddedToCharacter(ITEMGUID_S_CoS_Temples_PromiseBreaker_Blade_ad5823d0-2b93-413b-af20-39f72fff3140, (CHARACTERGUID)_Var1)
+AND
+DB_IsPlayer(_Var1)
+AND
+PartyGetFlag(_Var1, "QuestUpdate_CoS_BreakerForAlmira_FoundBlade", 0)
+THEN
+PartySetFlag(_Var1, "QuestUpdate_CoS_BreakerForAlmira_FoundBlade");
+Proc_CoS_PromiseBreaker_CheckForParts(_Var1);
+
+IF
+ItemAddedToCharacter(ITEMGUID_S_CoS_Temples_PromiseBreaker_Shaft_ede5be02-9cc9-4c3e-b9c7-0ff9bd50f2e9, (CHARACTERGUID)_Var1)
+AND
+DB_IsPlayer(_Var1)
+AND
+PartyGetFlag(_Var1, "QuestUpdate_CoS_BreakerForAlmira_FoundShaft", 0)
+THEN
+PartySetFlag(_Var1, "QuestUpdate_CoS_BreakerForAlmira_FoundShaft");
+Proc_CoS_PromiseBreaker_CheckForParts(_Var1);
+
+PROC
+Proc_CoS_PromiseBreaker_CheckForParts((CHARACTERGUID)_Var1)
+AND
+QryItemInMagicPockets(_Var1, ITEMGUID_S_CoS_Temples_PromiseBreaker_Blade_ad5823d0-2b93-413b-af20-39f72fff3140)
+AND
+QryItemInMagicPockets(_Var1, ITEMGUID_S_CoS_Temples_PromiseBreaker_Shaft_ede5be02-9cc9-4c3e-b9c7-0ff9bd50f2e9)
+THEN
+PartySetFlag(_Var1, "QuestUpdate_CoS_BreakerForAlmira_HaveBothParts");
+
+IF
+ItemTemplateCombinedWithItemTemplate("QUEST_Ataraxians_Scythe_2H_A_Blade_e2a186e1-7772-4f10-96e2-fb6329e25d69", "QUEST_Ataraxians_Scythe_2H_A_Shaft_398998dd-7776-4fc4-98dd-d9f0f8fc4e0b", "QUEST_AtaraxianTablet_PromiseInfo_23edac9b-2517-4fd0-a068-6bc9e60d1bbc", _, _, (CHARACTERGUID)_Var3, (ITEMGUID)_Var4)
+AND
+DB_IsPlayer(_Var3)
+AND
+PartyGetFlag(_Var3, "QuestUpdate_CoS_BreakerForAlmira_GotTabletBack", 1)
+THEN
+PartySetFlag(_Var3, "QuestUpdate_CoS_BreakerForAlmira_CraftedBreaker");
+
+IF
+ObjectFlagSet("CoS_LV_Almira_GiveSkillbook", (CHARACTERGUID)_Var1, _)
+THEN
+ItemTemplateAddTo("BOOK_Skill_Water_BloodStorm_4fd6849b-b2cb-416b-9094-05c55d56c88e", _Var1, 1);
+
+IF
+DialogEnded("CoS_LV_Almira", _)
+AND
+DB_GlobalFlag("GLO_Almira_ReceivedSwornbreaker")
+AND
+QueryOnlyOnce("Almira_RemovesPromise")
+THEN
+Proc_GLO_Almira_RemovePromise();
+
+PROC
+Proc_GLO_Almira_RemovePromise()
+THEN
+ObjectSetFlag(CHARACTERGUID_S_GLO_Almira_49b466a9-e67f-4e3c-8f66-3636ba7dd54f, "GLO_PromiseBreaker_UseSkill");
+Proc_RemoveItemFromTemplate(CHARACTERGUID_S_GLO_Almira_49b466a9-e67f-4e3c-8f66-3636ba7dd54f, "QUEST_AtaraxianTablet_PromiseInfo_23edac9b-2517-4fd0-a068-6bc9e60d1bbc", "");
+Proc_RemoveItemFromTemplate(CHARACTERGUID_S_GLO_Almira_49b466a9-e67f-4e3c-8f66-3636ba7dd54f, "ITEMGUID_QUEST_Ataraxians_Scythe_2H_A_Blade_e2a186e1-7772-4f10-96e2-fb6329e25d69", "");
+Proc_RemoveItemFromTemplate(CHARACTERGUID_S_GLO_Almira_49b466a9-e67f-4e3c-8f66-3636ba7dd54f, "ITEMGUID_QUEST_Ataraxians_Scythe_2H_A_Shaft_398998dd-7776-4fc4-98dd-d9f0f8fc4e0b", "");
+Proc_RemoveItemFromTemplate(CHARACTERGUID_S_GLO_Almira_49b466a9-e67f-4e3c-8f66-3636ba7dd54f, "WPN_Ataraxians_Scythe_2H_A_3b45c978-5a42-40b5-a7aa-183852616910", "");
+
+
+EXITSECTION
+ENDEXITSECTION
+
+ParentTargetEdge "CouncilOfSeven"

@@ -1,0 +1,16 @@
+Version 1
+SubGoalCombiner SGC_AND
+
+INITSECTION
+
+KBSECTION
+IF
+CharacterUsedSkillAtPosition((CHARACTERGUID)_Var1, (REAL)_Var2, (REAL)_Var3, (REAL)_Var4, "Jump_EnemyDrillwormBurrow", _, _)
+THEN
+SetVarFloat3(_Var1, "SkillTargetPos_Jump_EnemyDrillwormBurrow", _Var2, _Var3, _Var4);
+
+
+EXITSECTION
+ENDEXITSECTION
+
+ParentTargetEdge "Start"

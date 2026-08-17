@@ -1,0 +1,64 @@
+Version 1
+SubGoalCombiner SGC_AND
+
+INITSECTION
+DB_LV_HoE_PuzzleMirrors(ITEMGUID_S_CoS_Academy_Mirror_001_6e766eff-3c6b-4bb1-a5f3-b9a885412869, 2);
+DB_LV_HoE_PuzzleMirrors(ITEMGUID_S_CoS_Academy_Mirror_002_97d47235-fb5a-44af-99d5-0ffac199fb35, 2);
+DB_LV_HoE_PuzzleMirrors(ITEMGUID_S_CoS_Academy_Mirror_008_37876301-3095-4a9a-b677-e681dcd63111, 4);
+DB_LV_HoE_MirrorPuzzle_Generator(ITEMGUID_S_CoS_Academy_GeneratorToMirror_001_35acc7ea-615c-4d40-956a-c007a8e11a28, ITEMGUID_S_CoS_Academy_GeneratorToMirror_002_32a4882e-410b-48eb-a1f7-bb3a5fdcea77);
+DB_LV_HoE_MirrorPuzzle_Generator(ITEMGUID_S_CoS_Academy_GeneratorToMirror_002_32a4882e-410b-48eb-a1f7-bb3a5fdcea77, ITEMGUID_S_CoS_Academy_Mirror_008_37876301-3095-4a9a-b677-e681dcd63111);
+DB_LV_HoE_MirrorPuzzle_Activators(ITEMGUID_S_CoS_Academy_Mirror_002_97d47235-fb5a-44af-99d5-0ffac199fb35, ITEMGUID_S_CoS_Academy_Mirror_001_6e766eff-3c6b-4bb1-a5f3-b9a885412869, 3);
+DB_LV_HoE_MirrorPuzzle_Activators(ITEMGUID_S_CoS_Academy_GeneratorToMirror_001_35acc7ea-615c-4d40-956a-c007a8e11a28, ITEMGUID_S_CoS_Academy_Mirror_002_97d47235-fb5a-44af-99d5-0ffac199fb35, 1);
+DB_LV_HoE_MirrorPuzzle_Activators(ITEMGUID_S_CoS_Academy_GeneratorToDoor_001_d3ca1d7a-558f-4331-8fc1-6cd094920caa, ITEMGUID_S_CoS_Academy_Mirror_008_37876301-3095-4a9a-b677-e681dcd63111, 3);
+DB_LV_HoE_MirrorPuzzle_Activators(ITEMGUID_S_CoS_Academy_Mirror_007_85c656a0-57f5-4b77-bee8-272af19754ff, ITEMGUID_S_CoS_Academy_Mirror_004_6d8dfab2-052b-4df0-9fb9-3ca127a0509b, 4);
+DB_LV_HoE_MirrorPuzzle_Target(ITEMGUID_S_CoS_Academy_GeneratorToMirror_001_35acc7ea-615c-4d40-956a-c007a8e11a28, NULL_00000000-0000-0000-0000-000000000000);
+DB_LV_HoE_MirrorPuzzle_Target(ITEMGUID_S_CoS_Academy_GeneratorToMirror_002_32a4882e-410b-48eb-a1f7-bb3a5fdcea77, NULL_00000000-0000-0000-0000-000000000000);
+DB_LV_HoE_MirrorPuzzle_Target(ITEMGUID_S_CoS_Academy_GeneratorToDoor_001_d3ca1d7a-558f-4331-8fc1-6cd094920caa, NULL_00000000-0000-0000-0000-000000000000);
+ItemSetForceSynch(ITEMGUID_S_CoS_Academy_TempleConductor_002_72816d96-05df-4a4f-be3c-60b47713c3a0, 1);
+DB_Ghosts(CHARACTERGUID_S_CoS_Academy_ArenaMaster_Corpse_ac1c19b8-4c10-4eb5-b06c-328ad15fd410, CHARACTERGUID_S_CoS_Academy_ArenaMaster_867de1f7-0987-4a61-b311-eca8fa679ea2, "CoS_Academy_ArenaMaster");
+
+KBSECTION
+IF
+ItemStatusChange(ITEMGUID_S_CoS_Academy_GeneratorToDoor_001_d3ca1d7a-558f-4331-8fc1-6cd094920caa, "STUNNED", _)
+THEN
+ApplyStatus(ITEMGUID_S_CoS_Academy_GeneratorToDoor_002_a94f2a0e-61c0-4fdb-9672-6c48a934b66e, "STUNNED", -1);
+
+IF
+ItemStatusChange(ITEMGUID_S_CoS_Academy_GeneratorToDoor_002_a94f2a0e-61c0-4fdb-9672-6c48a934b66e, "STUNNED", _)
+THEN
+PROC_LoopBeamEffect("RS3_FX_GP_Beams_Ataraxian_Blue_01", ITEMGUID_S_CoS_Academy_GeneratorToDoor_002_a94f2a0e-61c0-4fdb-9672-6c48a934b66e, ITEMGUID_S_CoS_Academy_TempleConductor_002_72816d96-05df-4a4f-be3c-60b47713c3a0, "Dummy_fx", "Dummy_fx", "LV_HoE_MirrorPuzzle", "__ANY__");
+ApplyStatus(ITEMGUID_S_CoS_Academy_TempleConductor_002_72816d96-05df-4a4f-be3c-60b47713c3a0, "STUNNED", -1);
+
+IF
+ItemStatusRemoved(ITEMGUID_S_CoS_Academy_GeneratorToDoor_001_d3ca1d7a-558f-4331-8fc1-6cd094920caa, "STUNNED", _)
+THEN
+RemoveStatus(ITEMGUID_S_CoS_Academy_GeneratorToDoor_002_a94f2a0e-61c0-4fdb-9672-6c48a934b66e, "STUNNED");
+
+IF
+ItemStatusRemoved(ITEMGUID_S_CoS_Academy_GeneratorToDoor_002_a94f2a0e-61c0-4fdb-9672-6c48a934b66e, "STUNNED", _)
+THEN
+RemoveStatus(ITEMGUID_S_CoS_Academy_TempleConductor_002_72816d96-05df-4a4f-be3c-60b47713c3a0, "STUNNED");
+PROC_StopLoopBeamEffect(ITEMGUID_S_CoS_Academy_GeneratorToDoor_002_a94f2a0e-61c0-4fdb-9672-6c48a934b66e, "LV_HoE_MirrorPuzzle");
+
+IF
+GameBookInterfaceClosed(ITEMGUID_S_CoS_Academy_BOOK_SecretOfTheGods_a0124703-7928-4dd1-ab26-b13b3d130775, (CHARACTERGUID)_Var1)
+AND
+QueryOnlyOnce("CoS_Academy_BOOK_SecretOfTheGods_RD_Once")
+THEN
+ProcDefineReflectionDialog("CoS_Academy_RD_SecretOfTheGods", _Var1);
+
+IF
+GameBookInterfaceClosed(ITEMGUID_S_CoS_Academy_BOOK_SecretOfTheGods_a0124703-7928-4dd1-ab26-b13b3d130775, (CHARACTERGUID)_Var1)
+THEN
+PartySetFlag(_Var1, "CoS_Academy_KnowsSecretOfTheGods");
+
+PROC
+ProcRegionEnded("CoS_Main")
+THEN
+GoalCompleted;
+
+
+EXITSECTION
+ENDEXITSECTION
+
+ParentTargetEdge "CoS_Academy"

@@ -1,0 +1,540 @@
+Version 1
+SubGoalCombiner SGC_AND
+
+INITSECTION
+DB_Dialogs(RC_FTJ_ScentlessDog_086dbd6e-d911-4996-a23d-06d2ac1344ca, "FTJ_StrayDog");
+DB_Dialogs(RC_FTJ_PrisonSourceHound_001_89158247-ee74-41c8-8c69-641c4ab0b69d, "FTJ_PrisonSourceHound_001");
+DB_Dialogs(RC_FTJ_PrisonSourceHound_002_d77ae4b8-f357-4ee1-beef-ea992857487b, "FTJ_PrisonSourceHound_002");
+DB_Dialogs(RC_FTJ_PrisonSourceHound_003_07ab270c-ffa9-4339-bdca-4acbbdad44ea, "FTJ_PrisonSourceHound_003");
+DB_Dialogs(RC_FTJ_PrisonSourceHound_004_3ea9afc1-0e32-475f-a651-3f6f75be6bb8, "FTJ_PrisonSourceHound_004");
+DB_Dialogs(CHARACTERGUID_S_FTJ_CapturedDog_d526390b-7920-48d8-81d2-420d92dd2d15, "FTJ_CapturedDog");
+ProcTriggerRegisterForPlayers(RC_FTJ_SourceHoundHostile_Box_baf70a0e-6cb4-4757-8232-ec1263579853);
+ProcTriggerRegisterForPlayers(TRIGGERGUID_S_FTJ_HearHoundsBarkingVB_Poly_444a8442-b2d6-4ac2-b344-61221647134d);
+SetOnStage(FTJ_DogKey_74c755d0-801d-4c04-874e-5e901e938703, 0);
+DB_HasStoryEvent(ITEMGUID_S_RC_FTJ_HoundMasterBall_3a45ae00-2ae0-468c-8854-a1787b9b5b6e, "FTJ_HasHoundMasterBall");
+DB_GiveItemToEvent(ITEMGUID_S_RC_FTJ_HoundMasterBall_3a45ae00-2ae0-468c-8854-a1787b9b5b6e, "FTJ_HoundMasterBallGive");
+DB_SeenDeadNPCPartyFlag(CHARACTERGUID_S_FTJ_PrisonSourceHound_002_d77ae4b8-f357-4ee1-beef-ea992857487b, "FTJ_KnowsEmmyIsDead");
+Proc_FTJ_ScentlessDog_Init();
+Proc_RegisterPartyDecisionDialogOutcomes_Fixed("FTJ_PDD_CapturedDog", "FTJ_PDD_CapturedDog_Live", "FTJ_PDD_CapturedDog_Die", "", "", "");
+
+KBSECTION
+PROC
+Proc_FTJ_ScentlessDog_Init()
+THEN
+ItemToInventory(ITEMGUID_S_RC_FTJ_HoundMasterBall_3a45ae00-2ae0-468c-8854-a1787b9b5b6e, CHARACTERGUID_RC_FTJ_OlgoCellarMagister_001_402470db-ad49-4de7-8a60-7f69c8e5d26e);
+
+IF
+DialogStarted("FTJ_StrayDog", _)
+AND NOT
+DB_Dead(CHARACTERGUID_S_FTJ_BlackCat_4bff6ccc-5889-4c90-bcb1-572f1c29d830)
+AND
+GetDistanceTo(CHARACTERGUID_S_FTJ_ScentlessDog_086dbd6e-d911-4996-a23d-06d2ac1344ca, CHARACTERGUID_S_FTJ_BlackCat_4bff6ccc-5889-4c90-bcb1-572f1c29d830, _Var2)
+AND
+_Var2 < 6
+THEN
+ObjectSetFlag(CHARACTERGUID_S_FTJ_ScentlessDog_086dbd6e-d911-4996-a23d-06d2ac1344ca, "FTJ_ReactToBlackCat");
+
+IF
+ObjectFlagSet("FTJ_GiveMeatToDog", (CHARACTERGUID)_Var1, _)
+THEN
+DB_FTJ_StrayDogCatchNextItemRemoved(1);
+
+IF
+ObjectFlagSet("FTJ_GiveMeatToDog", (CHARACTERGUID)_Var1, _)
+AND
+QueryOnlyOnce("FTJ_RemoveMeatOneShot")
+AND
+UserTransferTaggedLocalItems(_Var1, CHARACTERGUID_S_FTJ_ScentlessDog_086dbd6e-d911-4996-a23d-06d2ac1344ca, "MEAT", 1, _)
+THEN
+DB_NOOP(1);
+
+IF
+ObjectFlagSet("FTJ_GiveFishToDog", (CHARACTERGUID)_Var1, _)
+THEN
+DB_FTJ_StrayDogCatchNextItemRemoved(1);
+
+IF
+ObjectFlagSet("FTJ_GiveFishToDog", (CHARACTERGUID)_Var1, _)
+AND
+QueryOnlyOnce("FTJ_RemoveFishOneShot")
+AND
+UserTransferTaggedLocalItems(_Var1, CHARACTERGUID_S_FTJ_ScentlessDog_086dbd6e-d911-4996-a23d-06d2ac1344ca, "FISH", 1, _)
+THEN
+DB_NOOP(1);
+
+IF
+ItemAddedToCharacter((ITEMGUID)_Var1, CHARACTERGUID_S_FTJ_ScentlessDog_086dbd6e-d911-4996-a23d-06d2ac1344ca)
+AND
+DB_FTJ_StrayDogCatchNextItemRemoved(1)
+AND
+IsTagged(_Var1, "POISONED", 1)
+THEN
+ObjectSetFlag(CHARACTERGUID_S_FTJ_ScentlessDog_086dbd6e-d911-4996-a23d-06d2ac1344ca, "FTJ_DogAtePoisonedFood");
+
+IF
+ItemAddedToCharacter((ITEMGUID)_Var1, CHARACTERGUID_S_FTJ_ScentlessDog_086dbd6e-d911-4996-a23d-06d2ac1344ca)
+AND
+DB_FTJ_StrayDogCatchNextItemRemoved(1)
+THEN
+CharacterUseItem(CHARACTERGUID_S_FTJ_ScentlessDog_086dbd6e-d911-4996-a23d-06d2ac1344ca, _Var1, "");
+NOT DB_FTJ_StrayDogCatchNextItemRemoved(1);
+
+IF
+DialogEnded("FTJ_StrayDog", _)
+AND
+ObjectGetFlag(CHARACTERGUID_S_FTJ_ScentlessDog_086dbd6e-d911-4996-a23d-06d2ac1344ca, "FTJ_DogAtePoisonedFood", 1)
+THEN
+ApplyStatus(CHARACTERGUID_S_FTJ_ScentlessDog_086dbd6e-d911-4996-a23d-06d2ac1344ca, "POISONED", -1);
+TimerLaunch("FTJ_BuddyAtePoisonedFood", 1250);
+SetHasDialog(CHARACTERGUID_S_FTJ_ScentlessDog_086dbd6e-d911-4996-a23d-06d2ac1344ca, 0);
+
+IF
+CharacterUsedItem(CHARACTERGUID_S_FTJ_ScentlessDog_086dbd6e-d911-4996-a23d-06d2ac1344ca, (ITEMGUID)_Var1)
+AND NOT
+DB_DialogNPCs(_, CHARACTERGUID_S_FTJ_ScentlessDog_086dbd6e-d911-4996-a23d-06d2ac1344ca, _)
+AND
+IsTagged(_Var1, "POISONED", 1)
+THEN
+TimerLaunch("FTJ_BuddyAtePoisonedFood", 2250);
+SetHasDialog(CHARACTERGUID_S_FTJ_ScentlessDog_086dbd6e-d911-4996-a23d-06d2ac1344ca, 0);
+
+IF
+TimerFinished("FTJ_BuddyAtePoisonedFood")
+THEN
+CharacterDie(CHARACTERGUID_S_FTJ_ScentlessDog_086dbd6e-d911-4996-a23d-06d2ac1344ca, 0, "DoT");
+CreateSurface(CHARACTERGUID_S_FTJ_ScentlessDog_086dbd6e-d911-4996-a23d-06d2ac1344ca, "SurfacePoison", 2, -1);
+
+IF
+StoryEvent(RC_FTJ_ScentlessDog_086dbd6e-d911-4996-a23d-06d2ac1344ca, "FTJ_GiveFishToDog")
+AND
+QueryOnlyOnce("FTJ_DogDigUpKeyStart")
+THEN
+PlayAnimation(RC_FTJ_ScentlessDog_086dbd6e-d911-4996-a23d-06d2ac1344ca, "use_eat", "FTJ_DogMoveToKey");
+GlobalSetFlag("FTJ_DogHasBeenFed");
+SetHasDialog(RC_FTJ_ScentlessDog_086dbd6e-d911-4996-a23d-06d2ac1344ca, 0);
+
+IF
+StoryEvent(RC_FTJ_ScentlessDog_086dbd6e-d911-4996-a23d-06d2ac1344ca, "FTJ_GiveMeatToDog")
+AND
+QueryOnlyOnce("FTJ_DogDigUpKeyStart")
+THEN
+PlayAnimation(RC_FTJ_ScentlessDog_086dbd6e-d911-4996-a23d-06d2ac1344ca, "use_eat", "FTJ_DogMoveToKey");
+GlobalSetFlag("FTJ_DogHasBeenFed");
+SetHasDialog(RC_FTJ_ScentlessDog_086dbd6e-d911-4996-a23d-06d2ac1344ca, 0);
+
+IF
+StoryEvent(RC_FTJ_ScentlessDog_086dbd6e-d911-4996-a23d-06d2ac1344ca, "FTJ_DogMoveToKey")
+THEN
+CharacterPurgeQueue(CHARACTERGUID_S_FTJ_ScentlessDog_086dbd6e-d911-4996-a23d-06d2ac1344ca);
+Proc_StartDialog(1, "FTJ_AD_StrayDog", CHARACTERGUID_S_FTJ_ScentlessDog_086dbd6e-d911-4996-a23d-06d2ac1344ca);
+ProcCharacterMoveTo(RC_FTJ_ScentlessDog_086dbd6e-d911-4996-a23d-06d2ac1344ca, RC_FTJ_DogKey_Point_53240ac4-d6a9-410d-bb5b-dd072f680c30, 1, "FTJ_DogDig");
+IterateParties("FTJ_StrayDogShowedUserKey");
+
+IF
+StoryEvent((CHARACTERGUID)_Var1, "FTJ_StrayDogShowedUserKey")
+AND
+CharacterCanSee(CHARACTERGUID_S_FTJ_ScentlessDog_086dbd6e-d911-4996-a23d-06d2ac1344ca, _Var1, 1)
+THEN
+UserSetFlag(_Var1, "FTJ_StrayDogShowedUserKey");
+
+IF
+DialogEnded("FTJ_StrayDog", _)
+AND
+GlobalGetFlag("FTJ_DogHasBeenFed", 1)
+AND
+ObjectGetFlag(CHARACTERGUID_S_FTJ_ScentlessDog_086dbd6e-d911-4996-a23d-06d2ac1344ca, "FTJ_DogAtePoisonedFood", 0)
+AND
+QueryOnlyOnce("FTJ_DogDigUpKeyStart")
+THEN
+ProcCharacterMoveTo(RC_FTJ_ScentlessDog_086dbd6e-d911-4996-a23d-06d2ac1344ca, RC_FTJ_DogKey_Point_53240ac4-d6a9-410d-bb5b-dd072f680c30, 1, "FTJ_DogDig");
+SetHasDialog(RC_FTJ_ScentlessDog_086dbd6e-d911-4996-a23d-06d2ac1344ca, 0);
+
+IF
+StoryEvent(RC_FTJ_ScentlessDog_086dbd6e-d911-4996-a23d-06d2ac1344ca, "FTJ_DogDig")
+AND NOT
+DB_Shovelling_Mound(_, RC_FTJ_DirtMound_007_c10b0200-9375-4f75-9dd2-93d8af0553f7)
+THEN
+PlayAnimation(RC_FTJ_ScentlessDog_086dbd6e-d911-4996-a23d-06d2ac1344ca, "use_inspect", "FTJ_DogKeyAppear");
+GlobalSetFlag("FTJ_DogShowsKey");
+SetHasDialog(RC_FTJ_ScentlessDog_086dbd6e-d911-4996-a23d-06d2ac1344ca, 0);
+
+IF
+StoryEvent(RC_FTJ_ScentlessDog_086dbd6e-d911-4996-a23d-06d2ac1344ca, "FTJ_DogDig")
+THEN
+TimerLaunch("FTJ_DogBark", 1000);
+
+IF
+StoryEvent(RC_FTJ_ScentlessDog_086dbd6e-d911-4996-a23d-06d2ac1344ca, "FTJ_DogKeyAppear")
+AND
+DB_ShovelArea(_, _, RC_FTJ_DirtMound_007_c10b0200-9375-4f75-9dd2-93d8af0553f7)
+AND
+QueryOnlyOnce("FTJ_KeyDugUpOneShot")
+THEN
+ObjectSetFlag(CHARACTERGUID_S_FTJ_ScentlessDog_086dbd6e-d911-4996-a23d-06d2ac1344ca, "FTJ_StrayDogDugUpKey");
+SetOnStage(FTJ_DogKey_74c755d0-801d-4c04-874e-5e901e938703, 1);
+ItemDragToTrigger(FTJ_DogKey_74c755d0-801d-4c04-874e-5e901e938703, RC_FTJ_DogKeyDrag_Point_55fc7f60-8358-42c1-923b-1fcc1e5eb283);
+SetHasDialog(RC_FTJ_ScentlessDog_086dbd6e-d911-4996-a23d-06d2ac1344ca, 1);
+ItemRemove(RC_FTJ_DirtMound_007_c10b0200-9375-4f75-9dd2-93d8af0553f7);
+
+IF
+CharacterDied(RC_FTJ_ScentlessDog_086dbd6e-d911-4996-a23d-06d2ac1344ca)
+THEN
+GlobalSetFlag("RC_FTJ_ScentlessDogDead");
+
+IF
+TimerFinished("FTJ_DogBark")
+THEN
+SetHasDialog(CHARACTERGUID_S_FTJ_ScentlessDog_086dbd6e-d911-4996-a23d-06d2ac1344ca, 1);
+CharacterLookAt(RC_FTJ_ScentlessDog_086dbd6e-d911-4996-a23d-06d2ac1344ca, FTJ_DogKey_74c755d0-801d-4c04-874e-5e901e938703);
+PlayAnimation(RC_FTJ_ScentlessDog_086dbd6e-d911-4996-a23d-06d2ac1344ca, "cast_shout_cast", "");
+
+PROC
+PROC_GLOBAL_DialogStartRequested(CHARACTERGUID_S_FTJ_ScentlessDog_086dbd6e-d911-4996-a23d-06d2ac1344ca, (GUIDSTRING)_Var1)
+THEN
+ObjectClearFlag(_Var1, "FTJ_HasLimbForDog", 0);
+NOT DB_OnlyOnce("FTJ_HasLimbForDog");
+
+PROC
+PROC_GLOBAL_DialogStartRequested(CHARACTERGUID_S_FTJ_ScentlessDog_086dbd6e-d911-4996-a23d-06d2ac1344ca, (GUIDSTRING)_Var1)
+AND
+DB_FTJ_CorpseItemForBuddy(_Var2)
+THEN
+NOT DB_FTJ_CorpseItemForBuddy(_Var2);
+
+PROC
+PROC_GLOBAL_DialogStartRequested(CHARACTERGUID_S_FTJ_ScentlessDog_086dbd6e-d911-4996-a23d-06d2ac1344ca, (CHARACTERGUID)_Var1)
+AND
+DB_HasTaggedItem(_Var1, _Var2, "BODYPART", _)
+AND
+_Var2 != ITEMGUID_S_FTJ_FlorenceLeg_09d02979-2749-4f1d-b1b7-5d2ddcfd6aa9
+AND
+QueryOnlyOnce("FTJ_HasLimbForDog")
+THEN
+ObjectSetFlag(_Var1, "FTJ_HasLimbForDog", 0);
+DB_FTJ_CorpseItemForBuddy(_Var2);
+
+IF
+ObjectFlagSet("FTJ_CorpseToDog", (GUIDSTRING)_Var1, _)
+AND
+DB_FTJ_CorpseItemForBuddy(_Var3)
+THEN
+ItemRemove(_Var3);
+
+IF
+CharacterEnteredTrigger((CHARACTERGUID)_Var1, TRIGGERGUID_S_FTJ_HearHoundsBarkingVB_Poly_444a8442-b2d6-4ac2-b344-61221647134d)
+AND
+QRY_SpeakerIsAvailable(_Var1)
+AND
+CharacterIsDead(CHARACTERGUID_S_FTJ_PrisonSourceHound_002_d77ae4b8-f357-4ee1-beef-ea992857487b, 0)
+AND
+QueryOnlyOnce("FTJ_PlayerHearDogsBarking")
+THEN
+StartVoiceBark("FTJ_VB_HearDogsBarking", _Var1);
+ProcTriggerUnregisterForPlayers(TRIGGERGUID_S_FTJ_HearHoundsBarkingVB_Poly_444a8442-b2d6-4ac2-b344-61221647134d);
+
+IF
+StoryEvent(_, "FTJ_HoundMasterDogDialogStart")
+AND
+QueryOnlyOnce("RC_FTJ_QRY_PetPalPlayer")
+THEN
+Proc_RC_FTJ_QRY_PetPalPlayer();
+
+PROC
+Proc_RC_FTJ_QRY_PetPalPlayer()
+AND
+DB_IsPlayer(_Var1)
+AND
+IsTagged(_Var1, "PETPAL", 1)
+AND
+CharacterCanSee(RC_FTJ_PrisonSourceHound_002_d77ae4b8-f357-4ee1-beef-ea992857487b, _Var1, 1)
+AND
+GetDistanceTo(RC_FTJ_PrisonSourceHound_002_d77ae4b8-f357-4ee1-beef-ea992857487b, _Var1, _Var2)
+AND
+_Var2 < 14
+AND
+QRY_SpeakerIsAvailable(_Var1)
+AND
+QRY_SpeakerIsAvailable(RC_FTJ_PrisonSourceHound_001_89158247-ee74-41c8-8c69-641c4ab0b69d)
+AND
+QRY_SpeakerIsAvailable(RC_FTJ_PrisonSourceHound_002_d77ae4b8-f357-4ee1-beef-ea992857487b)
+AND
+QueryOnlyOnce("RC_FTJ_SourceHoundDialogStart")
+THEN
+Proc_StartDialog(0, "FTJ_PrisonSourceHounds", RC_FTJ_PrisonSourceHound_002_d77ae4b8-f357-4ee1-beef-ea992857487b, RC_FTJ_PrisonSourceHound_001_89158247-ee74-41c8-8c69-641c4ab0b69d, _Var1);
+
+PROC
+Proc_RC_FTJ_QRY_PetPalPlayer()
+AND NOT
+DB_OnlyOnce("RC_FTJ_SourceHoundDialogStart")
+AND
+GetClosestAlivePlayer(RC_FTJ_PrisonSourceHound_002_d77ae4b8-f357-4ee1-beef-ea992857487b, _Var1, _)
+AND
+CharacterCanSee(RC_FTJ_PrisonSourceHound_002_d77ae4b8-f357-4ee1-beef-ea992857487b, _Var1, 1)
+AND
+QRY_SpeakerIsAvailable(_Var1)
+AND
+QRY_SpeakerIsAvailable(RC_FTJ_PrisonSourceHound_001_89158247-ee74-41c8-8c69-641c4ab0b69d)
+AND
+QRY_SpeakerIsAvailable(RC_FTJ_PrisonSourceHound_002_d77ae4b8-f357-4ee1-beef-ea992857487b)
+AND
+QueryOnlyOnce("RC_FTJ_SourceHoundDialogStart")
+THEN
+Proc_StartDialog(0, "FTJ_PrisonSourceHounds", RC_FTJ_PrisonSourceHound_002_d77ae4b8-f357-4ee1-beef-ea992857487b, RC_FTJ_PrisonSourceHound_001_89158247-ee74-41c8-8c69-641c4ab0b69d, _Var1);
+
+PROC
+Proc_RC_FTJ_QRY_PetPalPlayer()
+AND NOT
+DB_OnlyOnce("RC_FTJ_SourceHoundDialogStart")
+AND
+DB_IsPlayer(_Var1)
+AND
+CharacterCanSee(RC_FTJ_PrisonSourceHound_002_d77ae4b8-f357-4ee1-beef-ea992857487b, _Var1, 1)
+AND
+QRY_SpeakerIsAvailable(_Var1)
+AND
+QRY_SpeakerIsAvailable(RC_FTJ_PrisonSourceHound_001_89158247-ee74-41c8-8c69-641c4ab0b69d)
+AND
+QRY_SpeakerIsAvailable(RC_FTJ_PrisonSourceHound_002_d77ae4b8-f357-4ee1-beef-ea992857487b)
+AND
+QueryOnlyOnce("RC_FTJ_SourceHoundDialogStart")
+THEN
+Proc_StartDialog(0, "FTJ_PrisonSourceHounds", RC_FTJ_PrisonSourceHound_002_d77ae4b8-f357-4ee1-beef-ea992857487b, RC_FTJ_PrisonSourceHound_001_89158247-ee74-41c8-8c69-641c4ab0b69d, _Var1);
+
+PROC
+Proc_RC_FTJ_QRY_PetPalPlayer()
+AND NOT
+DB_OnlyOnce("RC_FTJ_SourceHoundDialogStart")
+THEN
+ProcSetRelationToPlayers(CHARACTERGUID_S_FTJ_PrisonSourceHound_001_89158247-ee74-41c8-8c69-641c4ab0b69d, 0);
+ProcSetRelationToPlayers(CHARACTERGUID_S_FTJ_PrisonSourceHound_002_d77ae4b8-f357-4ee1-beef-ea992857487b, 0);
+ProcSetRelationToPlayers(CHARACTERGUID_S_FTJ_PrisonSourceHound_003_07ab270c-ffa9-4339-bdca-4acbbdad44ea, 0);
+ProcSetRelationToPlayers(CHARACTERGUID_S_FTJ_PrisonSourceHound_004_3ea9afc1-0e32-475f-a651-3f6f75be6bb8, 0);
+
+IF
+DialogEnded("FTJ_PrisonSourceHounds", _)
+AND
+GlobalGetFlag("RC_FTJ_SourceHoundsGoHostile", 1)
+THEN
+ProcSetRelationToPlayers(CHARACTERGUID_S_FTJ_PrisonSourceHound_001_89158247-ee74-41c8-8c69-641c4ab0b69d, 0);
+ProcSetRelationToPlayers(CHARACTERGUID_S_FTJ_PrisonSourceHound_002_d77ae4b8-f357-4ee1-beef-ea992857487b, 0);
+ProcSetRelationToPlayers(CHARACTERGUID_S_FTJ_PrisonSourceHound_003_07ab270c-ffa9-4339-bdca-4acbbdad44ea, 0);
+ProcSetRelationToPlayers(CHARACTERGUID_S_FTJ_PrisonSourceHound_004_3ea9afc1-0e32-475f-a651-3f6f75be6bb8, 0);
+
+IF
+DialogEnded("FTJ_PrisonSourceHounds", (INTEGER)_Var1)
+AND
+GlobalGetFlag("RC_FTJ_SourceHoundsGoHostile", 0)
+AND
+DialogGetInvolvedPlayer(_Var1, 1, _Var2)
+THEN
+ProcTriggerUnregisterForPlayers(RC_FTJ_SourceHoundHostile_Box_baf70a0e-6cb4-4757-8232-ec1263579853);
+PartyAddExperience(_Var2, 1, 4, 7);
+ObjectSetFlag(_Var2, "QuestUpdate_FTJ_SourceHounds_End_Peaceful");
+
+IF
+CharacterDied(CHARACTERGUID_S_FTJ_PrisonSourceHound_002_d77ae4b8-f357-4ee1-beef-ea992857487b)
+AND
+DB_IsPlayer(_Var1)
+AND
+ObjectGetFlag(_Var1, "QuestUpdate_FTJ_SourceHounds_Start", 1)
+THEN
+ObjectSetFlag(_Var1, "QuestUpdate_FTJ_SourceHounds_End_EmmyDead");
+
+IF
+ObjectFlagSet("QuestUpdate_FTJ_SourceHounds_Start", (CHARACTERGUID)_Var1, _)
+AND
+DB_GlobalFlag("FTJ_EmmieIsDead")
+THEN
+ObjectSetFlag(_Var1, "QuestUpdate_FTJ_SourceHounds_End_EmmyDead");
+
+IF
+DialogEnded("FTJ_PrisonSourceHounds", (INTEGER)_Var1)
+AND
+DialogGetInvolvedPlayer(_Var1, 1, _Var2)
+AND
+ObjectGetFlag(_Var2, "FTJ_ToldEmmieAboutBuddy", 1)
+AND
+GlobalGetFlag("RC_FTJ_SourceHoundsGoHostile", 0)
+THEN
+PartySetFlag(_Var2, "QuestUpdate_FTJ_SourceHounds_End_Peaceful");
+
+IF
+DialogEnded("FTJ_PrisonSourceHounds", (INTEGER)_Var1)
+AND
+DialogGetInvolvedPlayer(_Var1, 1, _Var2)
+AND
+ObjectGetFlag(_Var2, "FTJ_ToldEmmieAboutBuddy", 1)
+AND
+GlobalGetFlag("RC_FTJ_SourceHoundsGoHostile", 1)
+THEN
+PartySetFlag(_Var2, "QuestUpdate_FTJ_SourceHounds_End_EmmyDead");
+
+IF
+CharacterEnteredTrigger((CHARACTERGUID)_Var1, RC_FTJ_SourceHoundHostile_Box_baf70a0e-6cb4-4757-8232-ec1263579853)
+THEN
+ProcForceStopDialog(RC_FTJ_PrisonSourceHound_001_89158247-ee74-41c8-8c69-641c4ab0b69d);
+ProcForceStopDialog(RC_FTJ_PrisonSourceHound_002_d77ae4b8-f357-4ee1-beef-ea992857487b);
+ProcSetRelationToPlayers(CHARACTERGUID_S_FTJ_PrisonSourceHound_001_89158247-ee74-41c8-8c69-641c4ab0b69d, 0);
+ProcSetRelationToPlayers(CHARACTERGUID_S_FTJ_PrisonSourceHound_002_d77ae4b8-f357-4ee1-beef-ea992857487b, 0);
+ProcSetRelationToPlayers(CHARACTERGUID_S_FTJ_PrisonSourceHound_003_07ab270c-ffa9-4339-bdca-4acbbdad44ea, 0);
+ProcSetRelationToPlayers(CHARACTERGUID_S_FTJ_PrisonSourceHound_004_3ea9afc1-0e32-475f-a651-3f6f75be6bb8, 0);
+
+IF
+ObjectFlagSet("FTJ_GiveBallToHounds", (GUIDSTRING)_Var1, (INTEGER)_Var2)
+AND
+DialogGetInvolvedPlayer(_Var2, 1, _Var1)
+AND
+GetPosition(_Var1, _Var3, _Var4, _Var5)
+AND
+RealSum(_Var4, 0.5, _Var6)
+THEN
+PlayAnimation(_Var1, "Throw_Away_01");
+TeleportToPosition(ITEMGUID_S_RC_FTJ_HoundMasterBall_3a45ae00-2ae0-468c-8854-a1787b9b5b6e, _Var3, _Var6, _Var5, "", 1);
+ItemDragToTrigger(ITEMGUID_S_RC_FTJ_HoundMasterBall_3a45ae00-2ae0-468c-8854-a1787b9b5b6e, TRIGGERGUID_S_RC_FTJ_BallThrow_Point_03b540a0-23e9-483e-9219-669da4e6d548);
+CharacterMoveTo(CHARACTERGUID_RC_FTJ_PrisonSourceHound_001_89158247-ee74-41c8-8c69-641c4ab0b69d, TRIGGERGUID_S_RC_FTJ_BallThrow_Point_03b540a0-23e9-483e-9219-669da4e6d548, 1, "FTJ_PickUpBall", 0);
+
+IF
+StoryEvent((GUIDSTRING)_Var1, "FTJ_PickUpBall")
+THEN
+PlayAnimation(CHARACTERGUID_RC_FTJ_PrisonSourceHound_001_89158247-ee74-41c8-8c69-641c4ab0b69d, "use_inspect", "");
+ItemToInventory(ITEMGUID_S_RC_FTJ_HoundMasterBall_3a45ae00-2ae0-468c-8854-a1787b9b5b6e, _Var1);
+
+IF
+CharacterDied(CHARACTERGUID_S_FTJ_PrisonSourceHound_002_d77ae4b8-f357-4ee1-beef-ea992857487b)
+THEN
+GlobalSetFlag("FTJ_EmmieIsDead");
+
+IF
+GlobalFlagSet("FTJ_CapturedDogFreed")
+THEN
+SetVarInteger(CHARACTERGUID_S_FTJ_CapturedDog_d526390b-7920-48d8-81d2-420d92dd2d15, "bool_CanChickenFlee", 1);
+
+IF
+StoryEvent((CHARACTERGUID)_Var1, "FTJ_CapturedDogFreedDialogStart")
+AND
+IsTagged(_Var1, "PETPAL", 1)
+AND
+QueryOnlyOnce("FTJ_CapturedDogFreedDialog_Start")
+THEN
+Proc_FTJ_StartBertieFreedDialog(_Var1);
+
+IF
+StoryEvent((CHARACTERGUID)_Var1, "FTJ_CapturedDogFreedDialogStart")
+AND
+DB_IsPlayer(_Var2)
+AND
+IsTagged(_Var2, "PETPAL", 1)
+AND
+DB_InRegion(_Var2, TRIGGERGUID_S_FTJ_SUB_HoundMasterRoom_7c5ed6fd-2a36-4ff0-8bbc-d0b2d5ddfd88)
+AND
+QRY_SpeakerIsAvailable(_Var2)
+AND
+QueryOnlyOnce("FTJ_CapturedDogFreedDialog_Start")
+THEN
+Proc_FTJ_StartBertieFreedDialog(_Var2);
+
+IF
+StoryEvent((CHARACTERGUID)_Var1, "FTJ_CapturedDogFreedDialogStart")
+AND
+QueryOnlyOnce("FTJ_CapturedDogFreedDialog_Start")
+THEN
+Proc_FTJ_StartBertieFreedDialog(_Var1);
+DebugText(_Var1, "Block 3");
+
+IF
+DialogStarted("FTJ_PDD_CapturedDog", _)
+THEN
+SetHasDialog(CHARACTERGUID_S_FTJ_CapturedDog_d526390b-7920-48d8-81d2-420d92dd2d15, 0);
+GlobalSetFlag("FTJ_CapturedDogLeave");
+
+IF
+DialogStarted("FTJ_PDD_CapturedDog", _)
+AND NOT
+DB_OnlyOnce("FTJ_CapturedDogFreedDialog_Start")
+THEN
+DB_OnlyOnce("FTJ_CapturedDogFreedDialog_Start");
+
+PROC
+Proc_FTJ_StartBertieFreedDialog((CHARACTERGUID)_Var1)
+THEN
+Proc_StartDialog(0, "FTJ_CapturedDog", CHARACTERGUID_S_FTJ_CapturedDog_d526390b-7920-48d8-81d2-420d92dd2d15, _Var1);
+CharacterMoveTo(CHARACTERGUID_S_FTJ_CapturedDog_d526390b-7920-48d8-81d2-420d92dd2d15, _Var1, 0, "", 0);
+PartyAddExperience(_Var1, 1, 4, 5);
+GlobalSetFlag("FTJ_CapturedDogLeave");
+
+IF
+DialogEnded("FTJ_CapturedDog", (INTEGER)_Var1)
+AND
+DialogGetInvolvedPlayer(_Var1, 1, _Var2)
+AND
+ObjectGetFlag(_Var2, "FTJ_MercyKillDog", 1)
+THEN
+DB_NPC_CrimeAttitude_DoNotChange(CHARACTERGUID_S_FTJ_CapturedDog_d526390b-7920-48d8-81d2-420d92dd2d15, "AttackAnimal");
+CharacterAttack(_Var2, CHARACTERGUID_S_FTJ_CapturedDog_d526390b-7920-48d8-81d2-420d92dd2d15);
+
+IF
+AttackedByObject(CHARACTERGUID_S_FTJ_CapturedDog_d526390b-7920-48d8-81d2-420d92dd2d15, (CHARACTERGUID)_Var1, (GUIDSTRING)_Var2, _, _)
+AND
+CHARACTERGUID_S_FTJ_CapturedDog_d526390b-7920-48d8-81d2-420d92dd2d15 != _Var2
+AND
+ObjectGetFlag(_Var1, "FTJ_MercyKillDog", 1)
+THEN
+CharacterDie(CHARACTERGUID_S_FTJ_CapturedDog_d526390b-7920-48d8-81d2-420d92dd2d15, 0, "DoT");
+
+IF
+DialogEnded("FTJ_CapturedDog", (INTEGER)_Var1)
+AND
+GlobalGetFlag("FTJ_CapturedDogGoHostile", 1)
+AND
+DialogGetInvolvedPlayer(_Var1, 1, _Var2)
+THEN
+SetCanFight(CHARACTERGUID_S_FTJ_CapturedDog_d526390b-7920-48d8-81d2-420d92dd2d15, 1);
+EnterCombat(_Var2, CHARACTERGUID_S_FTJ_CapturedDog_d526390b-7920-48d8-81d2-420d92dd2d15);
+CharacterSetRelationFactionToFaction("FTJ_Bertie", "Hero", 0);
+CharacterSetRelationFactionToFaction("Hero", "FTJ_Bertie", 0);
+
+IF
+ObjectFlagSet("FTJ_CapturedDogPersuaded", (CHARACTERGUID)_Var1, _)
+THEN
+PartyAddExperience(_Var1, 1, 4, 7);
+
+IF
+CharacterUsedItem((CHARACTERGUID)_Var1, ITEMGUID_S_FTJ_HoundMasterBook_76a40202-3611-494b-968e-995101a7cdf7)
+THEN
+UserSetFlag(_Var1, "FTJ_LearnedAboutSourceHoundOrigins");
+
+PROC
+Proc_FTJ_ScentlessDog_Init()
+THEN
+SetTag(S_FTJ_CapturedDog_d526390b-7920-48d8-81d2-420d92dd2d15, "IGNOREVANDALISE");
+
+IF
+SavegameLoaded((INTEGER)_Var1, (INTEGER)_Var2, (INTEGER)_Var3, (INTEGER)_Var4)
+AND
+QRY_VersionIsOlderThan(_Var1, _Var2, _Var3, _Var4, 3, 6, 1, 0)
+AND
+IsTagged(S_FTJ_CapturedDog_d526390b-7920-48d8-81d2-420d92dd2d15, "IGNOREVANDALISE", 0)
+THEN
+SetTag(S_FTJ_CapturedDog_d526390b-7920-48d8-81d2-420d92dd2d15, "IGNOREVANDALISE");
+
+IF
+CharacterUsedSkillOnTarget((CHARACTERGUID)_Var1, CHARACTERGUID_S_FTJ_CapturedDog_d526390b-7920-48d8-81d2-420d92dd2d15, _, "Teleportation", _)
+AND
+GlobalGetFlag("FTJ_CapturedDogLeave", 0)
+THEN
+DB_IgnoreAssault(CHARACTERGUID_S_FTJ_CapturedDog_d526390b-7920-48d8-81d2-420d92dd2d15);
+
+IF
+AttackedByObject(CHARACTERGUID_S_FTJ_CapturedDog_d526390b-7920-48d8-81d2-420d92dd2d15, (CHARACTERGUID)_Var1, _, _, _)
+AND
+DB_IsPlayer(_Var1)
+AND
+DB_IgnoreAssault(CHARACTERGUID_S_FTJ_CapturedDog_d526390b-7920-48d8-81d2-420d92dd2d15)
+THEN
+NOT DB_IgnoreAssault(CHARACTERGUID_S_FTJ_CapturedDog_d526390b-7920-48d8-81d2-420d92dd2d15);
+
+
+EXITSECTION
+ENDEXITSECTION
+
+ParentTargetEdge "FortJoy"

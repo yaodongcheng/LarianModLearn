@@ -1,0 +1,224 @@
+Version 1
+SubGoalCombiner SGC_AND
+
+INITSECTION
+
+KBSECTION
+IF
+SavegameLoaded(_, _, _, _)
+AND
+DB_IsPlayer(_Var5)
+AND
+DB_CharacterCreationDummy(_Var5)
+THEN
+NOT DB_IsPlayer(_Var5);
+CharacterRemoveFromParty(_Var5);
+CharacterMakeNPC(_Var5);
+SetOnStage(_Var5, 0);
+
+IF
+SavegameLoaded(_, _, _, _)
+AND
+GlobalGetFlag("GLO_ShipFreed", 1)
+AND
+GlobalGetFlag("GLO_ShipSubjugated", 1)
+THEN
+GlobalClearFlag("GLO_ShipSubjugated");
+
+IF
+SavegameLoaded(_, _, _, _)
+AND
+DB_IsPlayer(_Var5)
+AND NOT
+DB_DialogPlayers(_, _Var5, _)
+AND
+IsSpeakerReserved(_Var5, 1)
+AND
+DialogStartCrimeDialog(0, "NONEXISTENTDIALOG", 1, _Var5, NULL_00000000-0000-0000-0000-000000000000, NULL_00000000-0000-0000-0000-000000000000, NULL_00000000-0000-0000-0000-000000000000, NULL_00000000-0000-0000-0000-000000000000, _)
+THEN
+ProcClearPlayerIfNotInOtherDialog(-1, _Var5);
+DB_BUGFIX_Marker(_Var5, "DOS2EE-7779");
+
+IF
+SavegameLoaded(_, _, _, _)
+AND
+DB_RC_DB_Meistr_Dream_Occupied(_Var5, _Var6, _Var7, _Var8, _Var9)
+AND NOT
+DB_InRegion(_Var6, S_RC_DW_Meistr_DreamScene_f206d532-488e-469f-bb2a-5fb4270aa438)
+THEN
+NOT DB_RC_DB_Meistr_Dream_Occupied(_Var5, _Var6, _Var7, _Var8, _Var9);
+PROC_RC_DW_Meistr_Completed_DreamSequence(_Var6);
+DB_BUGFIX_Marker(_Var6, "DOSTWO-24247");
+
+IF
+SavegameLoaded(_, _, _, _)
+AND
+DB_Avatars(_Var5)
+AND
+DB_CompanionAvatarBond(_Var5, _)
+AND
+DB_OriginInPartyDialog(_Var5, _Var7)
+THEN
+ClearTag(_Var5, "AVATAR");
+NOT DB_Avatars(_Var5);
+NOT DB_GLO_PartyMembers_InPartyDialog(_Var5, "");
+PROC_GLO_PartyMembers_SetInpartyDialog(_Var5, _Var7);
+DB_BUGFIX_Marker(_Var5, "DOSTWO-22497");
+
+IF
+SavegameLoaded((INTEGER)_Var1, (INTEGER)_Var2, (INTEGER)_Var3, (INTEGER)_Var4)
+AND
+QRY_VersionIsOlderThan(_Var1, _Var2, _Var3, _Var4, 3, 5, 1, 0)
+AND
+DB_IsPlayer(_Var5)
+AND
+UserGetFlag(_Var5, "QuestUpdate_CORE_Chapter1_TUT_Start", 0)
+AND
+GetRegion(_Var5, "FJ_FortJoy_Main")
+THEN
+UserSetFlag(_Var5, "QuestUpdate_CORE_Chapter1_TUT_Start");
+UserSetFlag(_Var5, "QuestUpdate_CORE_Chapter1_TUT_Lore");
+UserSetFlag(_Var5, "QuestUpdate_CORE_Chapter1_TUT_FTJ");
+UserSetFlag(_Var5, "QuestUpdate_CORE_Magisters_InitialSetup");
+PartySetFlag(_Var5, "QuestUpdate_TUT_ShipMurder_WakeUp");
+
+IF
+SavegameLoaded((INTEGER)_Var1, (INTEGER)_Var2, (INTEGER)_Var3, (INTEGER)_Var4)
+AND
+QRY_VersionIsOlderThan(_Var1, _Var2, _Var3, _Var4, 3, 5, 1, 0)
+AND
+DB_IsPlayer(_Var5)
+AND
+DB_GLO_SourceCollars_OncePerNPC(_Var5)
+AND
+IsTagged(_Var5, "AVATAR", 1)
+AND
+ObjectGetFlag(_Var5, "QuestUpdate_RC_FTJ_SourceCollar_StartSourceCollar", 0)
+AND
+GetRegion(_Var5, "FJ_FortJoy_Main")
+THEN
+ObjectSetFlag(_Var5, "QuestUpdate_RC_FTJ_SourceCollar_StartSourceCollar");
+
+IF
+SavegameLoaded((INTEGER)_Var1, (INTEGER)_Var2, (INTEGER)_Var3, (INTEGER)_Var4)
+AND
+QRY_VersionIsOlderThan(_Var1, _Var2, _Var3, _Var4, 3, 5, 1, 0)
+AND
+DB_TUT_OriginQuestStarts(_Var5, _Var6, _Var7)
+AND
+ObjectGetFlag(_Var5, _Var6, 0)
+AND
+IsTagged(_Var5, "AVATAR", 1)
+AND
+GetRegion(_Var5, "FJ_FortJoy_Main")
+THEN
+ObjectSetFlag(_Var5, _Var6);
+ObjectSetFlag(_Var5, _Var7);
+
+IF
+RegionStarted("ARX_Main")
+THEN
+SetOnStage(TOOL_Ladder_Brick_6H_B_003_76dc728b-82d3-4d6c-b482-878d23fa1e1c, 0);
+
+IF
+SavegameLoaded((INTEGER)_Var1, (INTEGER)_Var2, (INTEGER)_Var3, (INTEGER)_Var4)
+AND
+QRY_VersionIsOlderThan(_Var1, _Var2, _Var3, _Var4, 3, 6, 1, 0)
+AND
+DB_CurrentLevel("ARX_Main")
+THEN
+SetOnStage(TOOL_Ladder_Brick_6H_B_003_76dc728b-82d3-4d6c-b482-878d23fa1e1c, 0);
+
+QRY
+QRY_Patching_CurrentLevelAnyOf((STRING)_Var1, (STRING)_Var2, (STRING)_Var3)
+AND
+DB_CurrentLevel(_Var3)
+THEN
+DB_NOOP(1);
+
+QRY
+QRY_Patching_CurrentLevelAnyOf((STRING)_Var1, (STRING)_Var2, (STRING)_Var3)
+AND
+QRY_Patching_CurrentLevelAnyOf(_Var1, _Var2)
+THEN
+DB_NOOP(1);
+
+QRY
+QRY_Patching_CurrentLevelAnyOf((STRING)_Var1, (STRING)_Var2)
+AND
+DB_CurrentLevel(_Var2)
+THEN
+DB_NOOP(1);
+
+QRY
+QRY_Patching_CurrentLevelAnyOf((STRING)_Var1, (STRING)_Var2)
+AND
+QRY_Patching_CurrentLevelAnyOf(_Var1)
+THEN
+DB_NOOP(1);
+
+QRY
+QRY_Patching_CurrentLevelAnyOf((STRING)_Var1)
+AND
+DB_CurrentLevel(_Var1)
+THEN
+DB_NOOP(1);
+
+IF
+SavegameLoaded((INTEGER)_Var1, (INTEGER)_Var2, (INTEGER)_Var3, (INTEGER)_Var4)
+AND
+QRY_VersionIsOlderThan(_Var1, _Var2, _Var3, _Var4, 3, 6, 1, 0)
+AND NOT
+DB_CurrentLevel("FJ_FortJoy_Main")
+AND
+DB_FTJ_SW_GarethsWarriors(_Var5, _, _, _)
+THEN
+CharacterSetReactionPriority(_Var5, "FTJ_FinalBattle_initiateInfiltration", 0);
+
+IF
+SavegameLoaded((INTEGER)_Var1, (INTEGER)_Var2, (INTEGER)_Var3, (INTEGER)_Var4)
+AND
+QRY_VersionIsOlderThan(_Var1, _Var2, _Var3, _Var4, 3, 6, 1, 0)
+AND NOT
+DB_CurrentLevel("FJ_FortJoy_Main")
+AND
+DB_FTJ_SW_GarethsWarriors(_Var5, _, _, _)
+AND
+DB_Dialogs(_Var5, _)
+THEN
+SetHasDialog(_Var5, 1);
+
+IF
+SavegameLoaded((INTEGER)_Var1, (INTEGER)_Var2, (INTEGER)_Var3, (INTEGER)_Var4)
+AND
+QRY_VersionIsOlderThan(_Var1, _Var2, _Var3, _Var4, 3, 6, 1, 0)
+AND NOT
+DB_CurrentLevel("FJ_FortJoy_Main")
+AND
+DB_FTJ_SW_GarethsWarriors(_Var5, _, _, _)
+AND
+DB_AD_Dialog(_Var5, _)
+THEN
+SetHasDialog(_Var5, 1);
+
+IF
+SavegameLoaded((INTEGER)_Var1, (INTEGER)_Var2, (INTEGER)_Var3, (INTEGER)_Var4)
+AND
+QRY_VersionIsOlderThan(_Var1, _Var2, _Var3, _Var4, 3, 6, 1, 0)
+THEN
+DB_CrimeTriggers_GeneralBribeDialog(1, "GEB_Warning_Theft");
+DB_CrimeTriggers_GeneralBribeDialog(1, "GEB_Warning_UseForbiddenItem");
+
+IF
+SavegameLoaded((INTEGER)_Var1, (INTEGER)_Var2, (INTEGER)_Var3, (INTEGER)_Var4)
+AND
+QRY_VersionIsOlderThan(_Var1, _Var2, _Var3, _Var4, 3, 6, 3, 0)
+THEN
+SetTag(S_GLO_Tarquin_a3d0cdcc-d0b0-464d-9ad7-43b38baed620, "CIVILIAN");
+SetTag(S_GLO_Tarquin_a3d0cdcc-d0b0-464d-9ad7-43b38baed620, "BADASSCIVILIAN");
+
+
+EXITSECTION
+ENDEXITSECTION
+
+ParentTargetEdge "Start"

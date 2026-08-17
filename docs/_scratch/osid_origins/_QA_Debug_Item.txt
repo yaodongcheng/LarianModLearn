@@ -1,0 +1,305 @@
+Version 1
+SubGoalCombiner SGC_AND
+
+INITSECTION
+DB_QA_DebugFlags("QA_Debug_Act2", "RC_Main");
+DB_QA_PartyPreset("RC_Main", "2.0_QA_IfanPrinceLohseSebille_lvl9");
+DB_QA_RegionLevel("RC_Main", "RC_Main", StartPoint_000_e30fe0c4-9b40-4040-9670-e8edd53a34ce);
+DB_QA_AddQuestThroughFlag("RC_Main", "TUT_ShipMurder", "QuestUpdate_TUT_ShipMurder_WakeUp", NULL_00000000-0000-0000-0000-000000000000);
+DB_QA_AddQuest("RC_Main", "RC_FTJ_SourceCollar", CHARACTERGUID_S_Player_Ifan_ad9a3327-4456-42a7-9bf4-7ad60cc9e54f);
+DB_QA_AddQuest("RC_Main", "RC_FTJ_SourceCollar", CHARACTERGUID_S_Player_Sebille_c8d55eaf-e4eb-466a-8f0d-6a9447b5b24c);
+DB_QA_AddQuest("RC_Main", "RC_FTJ_SourceCollar", CHARACTERGUID_S_Player_Lohse_bb932b13-8ebf-4ab4-aac0-83e6924e4295);
+DB_QA_AddQuest("RC_Main", "RC_FTJ_SourceCollar", CHARACTERGUID_S_Player_RedPrince_a26a1efb-cdc8-4cf3-a7b2-b2f9544add6f);
+DB_QA_AddQuest("RC_Main", "RC_FTJ_SourceCollar", CHARACTERGUID_S_Player_Beast_f25ca124-a4d2-427b-af62-df66df41a978);
+DB_QA_AddQuest("RC_Main", "RC_FTJ_SourceCollar", CHARACTERGUID_S_Player_Fane_02a77f1f-872b-49ca-91ab-32098c443beb);
+DB_QA_UpdateQuest("RC_Main", "TUT_ShipMurder", "Failed");
+DB_QA_CloseQuestThroughFlag("RC_Main", "RC_FTJ_SourceCollar", "QuestUpdate_RC_FTJ_SourceCollar_EndSourceCollar", CHARACTERGUID_S_Player_Ifan_ad9a3327-4456-42a7-9bf4-7ad60cc9e54f);
+DB_QA_CloseQuestThroughFlag("RC_Main", "RC_FTJ_SourceCollar", "QuestUpdate_RC_FTJ_SourceCollar_EndSourceCollar", CHARACTERGUID_S_Player_Sebille_c8d55eaf-e4eb-466a-8f0d-6a9447b5b24c);
+DB_QA_CloseQuestThroughFlag("RC_Main", "RC_FTJ_SourceCollar", "QuestUpdate_RC_FTJ_SourceCollar_EndSourceCollar", CHARACTERGUID_S_Player_Lohse_bb932b13-8ebf-4ab4-aac0-83e6924e4295);
+DB_QA_CloseQuestThroughFlag("RC_Main", "RC_FTJ_SourceCollar", "QuestUpdate_RC_FTJ_SourceCollar_EndSourceCollar", CHARACTERGUID_S_Player_RedPrince_a26a1efb-cdc8-4cf3-a7b2-b2f9544add6f);
+DB_QA_CloseQuestThroughFlag("RC_Main", "RC_FTJ_SourceCollar", "QuestUpdate_RC_FTJ_SourceCollar_EndSourceCollar", CHARACTERGUID_S_Player_Beast_f25ca124-a4d2-427b-af62-df66df41a978);
+DB_QA_CloseQuestThroughFlag("RC_Main", "RC_FTJ_SourceCollar", "QuestUpdate_RC_FTJ_SourceCollar_EndSourceCollar", CHARACTERGUID_S_Player_Fane_02a77f1f-872b-49ca-91ab-32098c443beb);
+DB_QA_CloseQuest("RC_Main", "");
+DB_QA_DefaultPartyAttitude("RC_Main", 0);
+DB_QA_DefaultPartyAttitudeForCharacter("RC_Main", NULL_00000000-0000-0000-0000-000000000000, 0);
+DB_QA_NumSourceslots("RC_Main", 1);
+DB_QA_CloseStoryGoals("RC_Main", "Fortjoy");
+
+KBSECTION
+IF
+CharacterUsedItemTemplate((CHARACTERGUID)_Var1, "GLO_QA_Debug_Item_6dce3a97-e7b2-4a6d-a0d6-009237669bab", _)
+THEN
+Proc_StartDialog(0, "GEN_QA_Debug_Item", _Var1);
+
+IF
+ObjectFlagSet((STRING)_Var1, (CHARACTERGUID)_Var2, _)
+AND
+DB_QA_DebugFlags(_Var1, _Var4)
+AND
+CharacterGetReservedUserID(_Var2, _Var5)
+THEN
+DB_QA_DebugUser(_Var5);
+ObjectClearFlag(_Var2, _Var1);
+ProcQASetupRegion(_Var4);
+
+IF
+GameStarted((STRING)_Var1, _)
+AND
+DB_PerformLevelLoad(_Var3)
+AND
+DB_QA_RegionLevel(_Var3, _Var1, _)
+THEN
+NOT DB_PerformLevelLoad(_Var3);
+ProcQASetupRegion(_Var3);
+
+PROC
+ProcQASetupRegion((STRING)_Var1)
+AND
+DB_QA_RegionLevel(_Var1, _Var2, _)
+AND NOT
+DB_CurrentLevel(_Var2)
+THEN
+DB_PerformLevelLoad(_Var1);
+
+PROC
+ProcQASetupRegion((STRING)_Var1)
+THEN
+ProcQASetupStoryGoals(_Var1);
+
+PROC
+ProcQASetupRegion((STRING)_Var1)
+AND NOT
+DB_PerformLevelLoad(_Var1)
+AND
+DB_QA_PartyPreset(_Var1, _Var2)
+THEN
+ProcQALoadPartyPreset(_Var1);
+
+PROC
+ProcQASetupRegion((STRING)_Var1)
+AND NOT
+DB_PerformLevelLoad(_Var1)
+THEN
+ProcDoDebugSetup(_Var1);
+
+PROC
+ProcQASetupRegion((STRING)_Var1)
+AND
+DB_PerformLevelLoad(_Var1)
+AND
+DB_QA_RegionLevel(_Var1, _Var2, _Var3)
+THEN
+CharacterTeleportPartiesToTrigger(_Var3, "QA_Teleport");
+
+PROC
+ProcQASetupRegion((STRING)_Var1)
+THEN
+ProcQASetupJournal(_Var1);
+ProcQASetupPartyAttitude(_Var1);
+ProcQASetupSourceSlots(_Var1);
+
+PROC
+ProcQALoadPartyPreset((STRING)_Var1)
+AND
+DB_QA_RegionLevel(_Var1, _, _Var3)
+AND
+DB_QA_PartyPreset(_Var1, _Var4)
+THEN
+LoadPartyPreset(_Var4, _Var3);
+
+PROC
+ProcQALoadPartyPreset((STRING)_Var1)
+AND NOT
+DB_QA_RegionLevel(_Var1, _, _)
+AND
+DB_QA_PartyPreset(_Var1, _Var4)
+THEN
+LoadPartyPreset(_Var4, NULL_00000000-0000-0000-0000-000000000000);
+
+PROC
+ProcQALoadPartyPreset(_)
+THEN
+FireOsirisEvents();
+
+PROC
+ProcQALoadPartyPreset(_)
+AND
+DB_IsPlayer(_Var2)
+THEN
+ItemTemplateRemoveFrom("GLO_Debug_Item_bcf8f28d-9ed1-43c0-bfc6-284aff5a6d19", _Var2, 666);
+
+PROC
+ProcQALoadPartyPreset(_)
+AND
+CharacterGetHostCharacter(_Var2)
+THEN
+ItemTemplateAddTo("GLO_QA_Debug_Item_6dce3a97-e7b2-4a6d-a0d6-009237669bab", _Var2, 1);
+
+PROC
+ProcQALoadPartyPreset(_)
+THEN
+NOT DB_QA_DEBUG_AssignedHost(1);
+
+PROC
+ProcQALoadPartyPreset(_)
+AND
+DB_QA_DebugUser(_Var2)
+THEN
+NOT DB_QA_DebugUser(_Var2);
+
+IF
+CharacterLoadedInPreset((CHARACTERGUID)_Var1)
+AND
+DB_QA_DebugUser(_Var2)
+AND NOT
+DB_QA_DEBUG_AssignedHost(1)
+THEN
+DB_QA_DEBUG_AssignedHost(1);
+CharacterAssignToUser(_Var2, _Var1);
+
+PROC
+ProcQASetupPartyAttitude((STRING)_Var1)
+AND
+DB_QA_DefaultPartyAttitude(_Var1, _Var2)
+AND
+CharacterGetHostCharacter(_Var3)
+AND
+DB_CompanionAvatarBond(_Var4, _Var3)
+THEN
+ProcQASetAttitudeTowards(_Var4, _Var3, _Var2);
+
+PROC
+ProcQASetupPartyAttitude((STRING)_Var1)
+AND
+CharacterGetHostCharacter(_Var2)
+AND
+DB_CompanionAvatarBond(_Var3, _Var2)
+AND
+DB_QA_DefaultPartyAttitudeForCharacter(_Var1, _Var3, _Var4)
+THEN
+ProcQASetAttitudeTowards(_Var3, _Var2, _Var4);
+
+PROC
+ProcQASetAttitudeTowards((CHARACTERGUID)_Var1, (CHARACTERGUID)_Var2, (INTEGER)_Var3)
+AND
+CharacterGetAttitudeTowardsPlayer(_Var1, _Var2, _Var4)
+AND
+IntegerSubtract(_Var3, _Var4, _Var5)
+AND
+_Var5 != 0
+THEN
+CharacterAddAttitudeTowardsPlayer(_Var1, _Var2, _Var5);
+
+PROC
+ProcQASetupJournal((STRING)_Var1)
+AND
+DB_QA_AddQuestThroughFlag(_Var1, _Var2, _Var3, _Var4)
+AND
+QuestGetBroadcastLevel(_Var2, _Var5)
+THEN
+ProcQASetQuestFlag(_Var3, _Var5, _Var4);
+
+PROC
+ProcQASetupJournal((STRING)_Var1)
+AND
+DB_QA_AddQuest(_Var1, _Var2, _Var3)
+AND
+QuestGetBroadcastLevel(_Var2, _Var4)
+AND
+StringConcatenate("QuestAdd_", _Var2, _Var5)
+THEN
+ProcQASetQuestFlag(_Var5, _Var4, _Var3);
+
+PROC
+ProcQASetupJournal((STRING)_Var1)
+AND
+DB_QA_UpdateQuestThroughFlag(_Var1, _Var2, _Var3, _Var4)
+AND
+QuestGetBroadcastLevel(_Var2, _Var5)
+THEN
+ProcQASetQuestFlag(_Var3, _Var5, _Var4);
+
+PROC
+ProcQASetupJournal((STRING)_Var1)
+AND
+DB_QA_UpdateQuest(_Var1, _Var2, _Var3)
+AND
+QuestGetBroadcastLevel(_Var2, _Var4)
+AND
+StringConcatenate("QuestUpdate_", _Var2, _Var5)
+AND
+StringConcatenate(_Var5, "_", _Var6)
+AND
+StringConcatenate(_Var6, _Var3, _Var7)
+THEN
+ProcQASetQuestFlag(_Var7, _Var4, NULL_00000000-0000-0000-0000-000000000000);
+
+PROC
+ProcQASetupJournal((STRING)_Var1)
+AND
+DB_QA_CloseQuestThroughFlag(_Var1, _Var2, _Var3, _Var4)
+AND
+QuestGetBroadcastLevel(_Var2, _Var5)
+THEN
+ProcQASetQuestFlag(_Var3, _Var5, _Var4);
+
+PROC
+ProcQASetupJournal((STRING)_Var1)
+AND
+DB_QA_CloseQuest(_Var1, _Var2)
+AND
+QuestGetBroadcastLevel(_Var2, _Var3)
+AND
+StringConcatenate("QuestClose_", _Var2, _Var4)
+THEN
+ProcQASetQuestFlag(_Var4, _Var3, NULL_00000000-0000-0000-0000-000000000000);
+
+PROC
+ProcQASetQuestFlag((STRING)_Var1, "Character", NULL_00000000-0000-0000-0000-000000000000)
+THEN
+DebugBreak("Setting a Character quest flag on NULL!");
+
+PROC
+ProcQASetQuestFlag((STRING)_Var1, "Character", (CHARACTERGUID)_Var2)
+AND
+_Var2 != NULL_00000000-0000-0000-0000-000000000000
+THEN
+ObjectSetFlag(_Var2, _Var1);
+
+PROC
+ProcQASetQuestFlag((STRING)_Var1, "User", _)
+AND
+CharacterGetHostCharacter(_Var3)
+THEN
+UserSetFlag(_Var3, _Var1);
+
+PROC
+ProcQASetQuestFlag((STRING)_Var1, "Party", _)
+AND
+CharacterGetHostCharacter(_Var3)
+THEN
+PartySetFlag(_Var3, _Var1);
+
+PROC
+ProcQASetupSourceSlots((STRING)_Var1)
+AND
+DB_QA_NumSourceslots(_Var1, _Var2)
+AND
+DB_IsPlayer(_Var3)
+THEN
+CharacterOverrideMaxSourcePoints(_Var3, _Var2);
+
+PROC
+ProcQASetupStoryGoals((STRING)_Var1)
+AND
+DB_QA_CloseStoryGoals(_Var1, _Var2)
+AND NOT
+SysIsCompleted(_Var2)
+THEN
+SysCompleteGoal(_Var2);
+
+
+EXITSECTION
+ENDEXITSECTION
+
+ParentTargetEdge "DOS2ModWrapper"

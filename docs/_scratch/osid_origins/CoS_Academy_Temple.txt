@@ -1,0 +1,368 @@
+Version 1
+SubGoalCombiner SGC_AND
+
+INITSECTION
+DB_Dialogs(CHARACTERGUID_S_CoS_Academy_TempleAutomation_681a2c86-0ff0-4622-a6fc-1ee085d38178, "CoS_Academy_TempleAutomation");
+DB_CoS_Academy_SwornCompanionsDialogs(CHARACTERGUID_S_Player_Lohse_bb932b13-8ebf-4ab4-aac0-83e6924e4295, "CoS_Academy_SwornLohse", "UNDEAD_LOHSE");
+DB_CoS_Academy_SwornCompanionsDialogs(CHARACTERGUID_S_Player_Beast_f25ca124-a4d2-427b-af62-df66df41a978, "CoS_Academy_SwornBeast", "UNDEAD_BEAST");
+DB_CoS_Academy_SwornCompanionsDialogs(CHARACTERGUID_S_Player_Ifan_ad9a3327-4456-42a7-9bf4-7ad60cc9e54f, "CoS_Academy_SwornIfan", "UNDEAD_IFAN");
+DB_CoS_Academy_SwornCompanionsDialogs(CHARACTERGUID_S_Player_Sebille_c8d55eaf-e4eb-466a-8f0d-6a9447b5b24c, "CoS_Academy_SwornSebille", "UNDEAD_SEBILLE");
+DB_CoS_Academy_SwornCompanionsDialogs(CHARACTERGUID_S_Player_Fane_02a77f1f-872b-49ca-91ab-32098c443beb, "CoS_Academy_SwornFane", "");
+DB_CoS_Academy_SwornCompanionsDialogs(CHARACTERGUID_S_Player_RedPrince_a26a1efb-cdc8-4cf3-a7b2-b2f9544add6f, "CoS_Academy_SwornRedPrince", "UNDEAD_RED_PRINCE");
+DB_CoS_Academy_TempleCompanionPoints(TRIGGERGUID_S_CoS_Academy_Temple_CompanionPoint_000_b1087c45-c8fb-477b-9be9-9bb983608c41);
+DB_CoS_Academy_TempleCompanionPoints(TRIGGERGUID_S_CoS_Academy_Temple_CompanionPoint_001_4c68fb46-8dca-40f6-bff7-fcdf7c3143ba);
+DB_CoS_Academy_TempleCompanionPoints(TRIGGERGUID_S_CoS_Academy_Temple_CompanionPoint_002_f611fea4-06b0-4672-b3d5-ab925db8537b);
+DB_CoS_Academy_TempleCompanionPoints(TRIGGERGUID_S_CoS_Academy_Temple_CompanionPoint_003_792b8b28-8650-42b5-a200-70c36f836b49);
+DB_CoS_Academy_TempleCompanionPoints(TRIGGERGUID_S_CoS_Academy_Temple_CompanionPoint_004_b3957293-7e5d-4de3-a393-150cba754a19);
+DB_CoS_Academy_TempleCompanionPoints(TRIGGERGUID_S_CoS_Academy_Temple_CompanionPoint_005_2a2fa1cf-6f08-4420-bd7a-e332ad84013f);
+DB_CoS_Academy_TempleCompanionPoints(TRIGGERGUID_S_CoS_Academy_Temple_CompanionPoint_006_a30bcde5-712b-4052-984a-8af2b6240a08);
+DB_NoLowAttitudeDialog(CHARACTERGUID_S_CoS_Academy_TempleAutomation_681a2c86-0ff0-4622-a6fc-1ee085d38178);
+DB_CoS_AotO_SwornCompanionsDeathTemplate(CHARACTERGUID_S_Player_Lohse_bb932b13-8ebf-4ab4-aac0-83e6924e4295, "Humans_Hero_Female_Undead_3bd0693d-0b0a-4f6d-93e2-aea9be654bee", "LOHSE");
+DB_CoS_AotO_SwornCompanionsDeathTemplate(CHARACTERGUID_S_Player_Beast_f25ca124-a4d2-427b-af62-df66df41a978, "Dwarves_Hero_Male_Undead_726442a5-6856-4b0d-91ed-5d2f003b8a0c", "BEAST");
+DB_CoS_AotO_SwornCompanionsDeathTemplate(CHARACTERGUID_S_Player_Ifan_ad9a3327-4456-42a7-9bf4-7ad60cc9e54f, "Humans_Hero_Male_Undead 5ab5d036-4606-4265-962e-c2e4d2d2408b", "IFAN");
+DB_CoS_AotO_SwornCompanionsDeathTemplate(CHARACTERGUID_S_Player_Sebille_c8d55eaf-e4eb-466a-8f0d-6a9447b5b24c, "Elves_Hero_Female_Undead 7f366172-9fd1-45df-8719-a6d14cb534b3", "SEBILLE");
+DB_CoS_AotO_SwornCompanionsDeathTemplate(CHARACTERGUID_S_Player_RedPrince_a26a1efb-cdc8-4cf3-a7b2-b2f9544add6f, "Lizards_Hero_Male_Undead_57b70554-36bf-4b86-b9aa-8f7cc3944153", "RED PRINCE");
+
+KBSECTION
+IF
+StoryEvent(CHARACTERGUID_S_GLO_Alexandar_03e6345f-1bd3-403c-80e2-a443a74f6349, "CoS_AlexandarAppearInTemple")
+THEN
+TeleportTo(CHARACTERGUID_S_GLO_Alexandar_03e6345f-1bd3-403c-80e2-a443a74f6349, TRIGGERGUID_S_CoS_Academy_Alexandar_Point_d0553326-249f-4f94-b6a6-ff4c1d2fe64c);
+SetOnStage(CHARACTERGUID_S_GLO_Alexandar_03e6345f-1bd3-403c-80e2-a443a74f6349, 1);
+DB_Dialogs(CHARACTERGUID_S_GLO_Alexandar_03e6345f-1bd3-403c-80e2-a443a74f6349, "CoS_Academy_Alexandar");
+SetVarFixedString(CHARACTERGUID_S_GLO_Alexandar_03e6345f-1bd3-403c-80e2-a443a74f6349, "currentState", "State_CoS_InAcademy");
+CharacterLevelUpTo(CHARACTERGUID_S_GLO_Alexandar_03e6345f-1bd3-403c-80e2-a443a74f6349, 17);
+
+IF
+StoryEvent(CHARACTERGUID_S_GLO_Alexandar_03e6345f-1bd3-403c-80e2-a443a74f6349, "CoS_AlexandarAppearInTemple")
+AND
+DB_OriginMomentTag("CoS_Temples_Alexandar", "IFAN", "CoS_Temples_Alexandar_COM_Ifan")
+THEN
+NOT DB_OriginMomentTag("CoS_Temples_Alexandar", "IFAN", "CoS_Temples_Alexandar_COM_Ifan");
+DB_OriginMomentTag("CoS_Academy_Alexandar", "IFAN", "CoS_Temples_Alexandar_COM_Ifan");
+
+IF
+ObjectFlagSet("CoS_Academy_PlayerPersuadeAlexandar", (CHARACTERGUID)_Var1, _)
+THEN
+PartySetFlag(_Var1, "QuestUpdate_CoS_Academy_ConvincedAlexandar");
+
+IF
+CharacterDied(CHARACTERGUID_S_CoS_Academy_TempleAutomation_681a2c86-0ff0-4622-a6fc-1ee085d38178)
+THEN
+ProcObjectTimer(CHARACTERGUID_S_CoS_Academy_TempleAutomation_681a2c86-0ff0-4622-a6fc-1ee085d38178, "CoS_Academy_TempleAutomation_Respawn", 10000);
+
+PROC
+ProcObjectTimerFinished(CHARACTERGUID_S_CoS_Academy_TempleAutomation_681a2c86-0ff0-4622-a6fc-1ee085d38178, "CoS_Academy_TempleAutomation_Respawn")
+AND
+GetPosition(CHARACTERGUID_S_CoS_Academy_TempleAutomation_681a2c86-0ff0-4622-a6fc-1ee085d38178, _Var1, _Var2, _Var3)
+THEN
+CreateExplosionAtPosition(_Var1, _Var2, _Var3, "Projectile_EnemyLightningBolt", 17);
+CharacterResurrect(CHARACTERGUID_S_CoS_Academy_TempleAutomation_681a2c86-0ff0-4622-a6fc-1ee085d38178);
+NOT DB_Dead(CHARACTERGUID_S_CoS_Academy_TempleAutomation_681a2c86-0ff0-4622-a6fc-1ee085d38178);
+DB_Dialogs(CHARACTERGUID_S_CoS_Academy_TempleAutomation_681a2c86-0ff0-4622-a6fc-1ee085d38178, "CoS_Academy_TempleAutomation");
+
+IF
+DialogStarted("CoS_Academy_TempleAutomation", _)
+THEN
+Proc_CoS_Academy_TempleProgressionCheck();
+
+PROC
+Proc_CoS_Academy_TempleProgressionCheck()
+THEN
+ProcDeclareCounter("CoS_Academy_AvatarCount");
+ProcDeclareCounter("CoS_Academy_ReadyAvatars");
+
+PROC
+Proc_CoS_Academy_TempleProgressionCheck()
+AND
+DB_IsPlayer(_Var1)
+AND
+IsTagged(_Var1, "AVATAR", 1)
+AND
+IsTagged(_Var1, "BLOCK_RESURRECTION", 0)
+THEN
+ProcIncreaseCounter("CoS_Academy_AvatarCount", 1);
+
+PROC
+Proc_CoS_Academy_TempleProgressionCheck()
+AND
+DB_IsPlayer(_Var1)
+AND
+IsTagged(_Var1, "AVATAR", 1)
+AND
+IsTagged(_Var1, "BLOCK_RESURRECTION", 0)
+AND
+CharacterIsDead(_Var1, 0)
+AND
+CharacterHasSkill(_Var1, "Target_SourceVampirism", 1)
+AND
+CharacterHasSkill(_Var1, "Shout_SpiritVision", 1)
+AND
+QRY_CoS_Academy_TempleProgressionCheck_BlessOrCurse(_Var1)
+THEN
+ProcIncreaseCounter("CoS_Academy_ReadyAvatars", 1);
+
+QRY
+QRY_CoS_Academy_TempleProgressionCheck_BlessOrCurse((CHARACTERGUID)_Var1)
+AND
+CharacterHasSkill(_Var1, "Target_Bless", 0)
+AND
+CharacterHasSkill(_Var1, "Target_Curse", 1)
+THEN
+DB_NOOP(1);
+
+QRY
+QRY_CoS_Academy_TempleProgressionCheck_BlessOrCurse((CHARACTERGUID)_Var1)
+AND
+CharacterHasSkill(_Var1, "Target_Bless", 1)
+AND
+CharacterHasSkill(_Var1, "Target_Curse", 0)
+THEN
+DB_NOOP(1);
+
+QRY
+QRY_CoS_Academy_TempleProgressionCheck_BlessOrCurse((CHARACTERGUID)_Var1)
+AND
+CharacterHasSkill(_Var1, "Target_Bless", 1)
+AND
+CharacterHasSkill(_Var1, "Target_Curse", 1)
+THEN
+DB_NOOP(1);
+
+PROC
+Proc_CoS_Academy_TempleProgressionCheck()
+AND
+DB_GlobalCounter("CoS_Academy_AvatarCount", _Var1)
+AND
+DB_GlobalCounter("CoS_Academy_ReadyAvatars", _Var2)
+AND
+_Var2 >= _Var1
+THEN
+GlobalSetFlag("CoS_Academy_CanProgressToCoS");
+
+PROC
+Proc_CoS_Academy_TempleProgressionCheck()
+THEN
+ProcRemoveCounter("CoS_Academy_AvatarCount");
+ProcRemoveCounter("CoS_Academy_ReadyAvatars");
+
+IF
+DialogEnded("CoS_Academy_TempleAutomation", _)
+THEN
+GlobalClearFlag("CoS_Academy_CanProgressToCoS");
+
+IF
+DialogEnded("CoS_Academy_TempleAutomation", (INTEGER)_Var1)
+AND
+GlobalGetFlag("CoS_ArenaOfTheOne_Start_FadeOut", 1)
+AND
+DialogGetInvolvedPlayer(_Var1, 1, _Var2)
+THEN
+ReadyCheckStart(_Var2, "CoS_ReadyCheck_ArenaOfTheOne_Start");
+
+IF
+ReadyCheckPassed("CoS_ReadyCheck_ArenaOfTheOne_Start")
+THEN
+Proc_CoS_ArenaOfTheOne_Start_FadeOut();
+
+PROC
+Proc_CoS_ArenaOfTheOne_Start_FadeOut()
+AND
+DB_IsPlayer(_Var1)
+THEN
+CharacterLookAt(_Var1, CHARACTERGUID_S_CoS_Academy_TempleAutomation_681a2c86-0ff0-4622-a6fc-1ee085d38178);
+CharacterFreeze(_Var1);
+ObjectSetFlag(_Var1, "QuestUpdate_CoS_Academy_End");
+
+PROC
+Proc_CoS_ArenaOfTheOne_Start_FadeOut()
+THEN
+Proc_CharacterFullRestore(CHARACTERGUID_S_CoS_Academy_TempleAutomation_681a2c86-0ff0-4622-a6fc-1ee085d38178);
+PROC_LoopEffect("RS3_FX_GP_ScriptedEvent_HOE_Channel_Spell_Prepare_01", CHARACTERGUID_S_CoS_Academy_TempleAutomation_681a2c86-0ff0-4622-a6fc-1ee085d38178, "CoS_Academy_TempleAutomation_LoopEffect", "CoS_Main", "");
+PlayAnimation(CHARACTERGUID_S_CoS_Academy_TempleAutomation_681a2c86-0ff0-4622-a6fc-1ee085d38178, "cast_target_cast", "CoS_Academy_TempleAutomation_CastEffect");
+
+IF
+StoryEvent(CHARACTERGUID_S_CoS_Academy_TempleAutomation_681a2c86-0ff0-4622-a6fc-1ee085d38178, "CoS_Academy_TempleAutomation_CastEffect")
+THEN
+PlayEffect(CHARACTERGUID_S_CoS_Academy_TempleAutomation_681a2c86-0ff0-4622-a6fc-1ee085d38178, "RS3_FX_GP_ScriptedEvent_HOE_Channel_Spell_Cast_01");
+PROC_StopLoopEffect(CHARACTERGUID_S_CoS_Academy_TempleAutomation_681a2c86-0ff0-4622-a6fc-1ee085d38178, "CoS_Academy_TempleAutomation_LoopEffect");
+TimerLaunch("CoS_AotO_Init", 4000);
+
+IF
+StoryEvent(CHARACTERGUID_S_CoS_Academy_TempleAutomation_681a2c86-0ff0-4622-a6fc-1ee085d38178, "CoS_Academy_TempleAutomation_CastEffect")
+AND
+DB_IsPlayer(_Var1)
+THEN
+PlayAnimation(_Var1, "stillblind");
+PlayEffect(_Var1, "RS3_FX_GP_ScriptedEvent_HOE_Summoning_01");
+FadeToBlack(_Var1, 1.3, 0, "CoS_AotO_Init_FadeOut");
+
+IF
+StoryEvent(CHARACTERGUID_S_CoS_Academy_TempleAutomation_681a2c86-0ff0-4622-a6fc-1ee085d38178, "CoS_Academy_TempleAutomation_CastEffect")
+THEN
+PlayAnimation(CHARACTERGUID_S_GLO_Alexandar_03e6345f-1bd3-403c-80e2-a443a74f6349, "stillblind");
+PlayEffect(CHARACTERGUID_S_GLO_Alexandar_03e6345f-1bd3-403c-80e2-a443a74f6349, "RS3_FX_GP_ScriptedEvent_HOE_Summoning_01");
+
+IF
+TimerFinished("CoS_AotO_Init")
+THEN
+PlayEffect(CHARACTERGUID_S_GLO_Alexandar_03e6345f-1bd3-403c-80e2-a443a74f6349, "RS3_FX_GP_ScriptedEvent_HOE_Summoning_01");
+
+IF
+FadeOutDone(_, "CoS_AotO_Init_FadeOut")
+AND
+QueryOnlyOnce("Proc_CoS_Academy_Temple_Exit_Once")
+THEN
+Proc_CoS_Academy_Temple_Exit();
+
+PROC
+Proc_CoS_Academy_Temple_Exit()
+AND
+DB_IsPlayer(_Var1)
+THEN
+CharacterUnfreeze(_Var1);
+
+PROC
+Proc_CoS_Academy_Temple_Exit()
+THEN
+DB_CoS_AotO_PhaseOneInit(1);
+CharacterTeleportPartiesToTrigger(TRIGGERGUID_S_CoS_AotO_SpawnPoint_Player_001_b35a1fb2-9c3a-40f8-a687-22f776eba5a1, "");
+TimerLaunch("CoS_AotO_Init_FadeIn", 2000);
+
+IF
+TimerFinished("CoS_AotO_Init_FadeIn")
+AND
+DB_IsPlayer(_Var1)
+THEN
+FadeToBlack(_Var1, 1.5, 1, "Placeholder");
+
+IF
+CharacterEnteredTrigger((CHARACTERGUID)_Var1, TRIGGERGUID_S_CoS_SUB_Academy_51ddb828-18a6-4b6e-9f5a-e2b2883862e1)
+AND
+DB_IsPlayer(_Var1)
+AND
+QueryOnlyOnce("CoS_DeadCompanionsAppearInTemple_Once")
+AND
+DB_CoS_Academy_SwornCompanionsDialogs(_Var2, _, _)
+AND NOT
+DB_IsPlayer(_Var2)
+AND
+CharacterIsDead(_Var2, 1)
+AND NOT
+DB_CoS_SwornExCompanion(_Var2)
+THEN
+DB_NoLowAttitudeDialog(_Var2);
+DB_CoS_SwornExCompanion(_Var2);
+DB_CoS_EnterAcademy_HasDoneEvent(_Var2);
+NOT DB_CoS_DeadCompanionsAppearInTemple_Queue(_Var2);
+NOT DB_Dead(_Var2);
+SetStoryEvent(_Var2, "CoS_CompanionAppearAtTemple");
+
+IF
+StoryEvent((CHARACTERGUID)_Var1, "CoS_CompanionAppearAtTemple")
+AND
+DB_CoS_Academy_TempleCompanionPoints(_Var2)
+AND NOT
+DB_CoS_Academy_TempleCompanionPoints(_Var1, _)
+AND
+DB_OriginEquipmentSet(_Var1, _Var4)
+THEN
+DB_CoS_Academy_TempleCompanionPoints(_Var1, _Var2);
+NOT DB_CoS_Academy_TempleCompanionPoints(_Var2);
+SetOnStage(_Var1, 1);
+Proc_CharacterFullRestore(_Var1);
+TeleportTo(_Var1, _Var2);
+DB_IsNotMessingAround(_Var1);
+SetFaction(_Var1, "CoS_ExCompanion");
+SetHasDialog(_Var1, 1);
+CharacterLookAt(_Var1, CHARACTERGUID_S_CoS_Academy_TempleAutomation_681a2c86-0ff0-4622-a6fc-1ee085d38178);
+ProcObjectTimer(_Var1, "CoS_CompanionAppearAtTemple_SwornCheck_Timer", 2000);
+SetVarFixedString(_Var1, "currentState", "State_InAcademy");
+PROC_StopLoopEffect(_Var1, "EnterAcademy_ExclamationMark");
+Proc_RemoveWeapons(_Var1);
+CharacterApplyHenchmanPreset(_Var1, _Var4);
+
+PROC
+ProcObjectTimerFinished((CHARACTERGUID)_Var1, "CoS_CompanionAppearAtTemple_SwornCheck_Timer")
+AND
+DB_CoS_SwornExCompanion(_Var1)
+AND
+DB_CoS_Academy_SwornCompanionsDialogs(_Var1, _Var2, _)
+AND
+DB_OriginEquipmentSet(_Var1, _Var4)
+THEN
+Proc_RemoveWeapons(_Var1);
+CharacterLevelUpTo(_Var1, 17);
+CharacterApplyHenchmanPreset(_Var1, _Var4);
+CharacterSetArmorPercentage(_Var1, 100);
+CharacterSetMagicArmorPercentage(_Var1, 100);
+PROC_RemoveDialogFromCharacter(_Var1);
+ProcRemoveAllDialogEntriesForSpeaker(_Var1);
+DB_Dialogs(_Var1, _Var2);
+
+PROC
+ProcObjectTimerFinished((CHARACTERGUID)_Var1, "CoS_CompanionAppearAtTemple_SwornCheck_Timer")
+AND
+DB_CoS_SwornExCompanion(_Var1)
+AND
+DB_CoS_Academy_SwornCompanionsDialogs(_Var1, _, _Var3)
+AND
+_Var3 != ""
+THEN
+ApplyStatus(_Var1, _Var3, -1, 1);
+CharacterAddTalent(_Var1, "Zombie");
+
+PROC
+ProcObjectTimerFinished((CHARACTERGUID)_Var1, "CoS_CompanionAppearAtTemple_SwornCheck_Timer")
+AND
+DB_CoS_SwornExCompanion(_Var1)
+AND
+CharacterHasSkill(_Var1, "Target_Bless", 1)
+THEN
+CharacterRemoveSkill(_Var1, "Target_Bless");
+
+PROC
+ProcObjectTimerFinished((CHARACTERGUID)_Var1, "CoS_CompanionAppearAtTemple_SwornCheck_Timer")
+AND
+DB_CoS_SwornExCompanion(_Var1)
+THEN
+CharacterAddSkill(_Var1, "Target_Curse");
+
+IF
+TextEventSet("fadetest")
+AND
+CharacterGetHostCharacter(_Var1)
+THEN
+FadeToBlack(_Var1, 3, 0, "Placeholder");
+
+IF
+CharacterDying((CHARACTERGUID)_Var1)
+AND
+DB_CoS_SwornExCompanion(_Var1)
+AND NOT
+DB_IsPlayer(_Var1)
+AND
+DB_CoS_AotO_SwornCompanionsDeathTemplate(_Var1, _Var2, _Var3)
+THEN
+Transform(_Var1, _Var2, 0, 0);
+CharacterSetCustomName(_Var1, _Var3);
+
+IF
+SavegameLoaded((INTEGER)_Var1, (INTEGER)_Var2, (INTEGER)_Var3, (INTEGER)_Var4)
+AND
+GetFaction(S_GLO_Academy_TempleAutomation_681a2c86-0ff0-4622-a6fc-1ee085d38178, _Var5)
+AND
+_Var5 != "CoS_EternalArbiter"
+THEN
+SetFaction(S_GLO_Academy_TempleAutomation_681a2c86-0ff0-4622-a6fc-1ee085d38178, "CoS_EternalArbiter");
+
+PROC
+ProcRegionEnded("CoS_Main")
+THEN
+GoalCompleted;
+
+
+EXITSECTION
+ENDEXITSECTION
+
+ParentTargetEdge "CoS_Academy"

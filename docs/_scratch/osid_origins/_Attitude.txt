@@ -1,0 +1,43 @@
+Version 1
+SubGoalCombiner SGC_AND
+
+INITSECTION
+
+KBSECTION
+PROC
+ProcMakeNPCHostile((CHARACTERGUID)_Var1, (CHARACTERGUID)_Var2)
+AND
+CharacterIsDead(_Var2, 0)
+AND
+CharacterIsPlayer(_Var1, 1)
+AND
+CharacterIsPlayer(_Var2, 0)
+THEN
+CharacterSetTemporaryHostileRelation(_Var2, _Var1);
+
+PROC
+ProcMakeNPCHostile((CHARACTERGUID)_Var1, (CHARACTERGUID)_Var2)
+AND
+CharacterIsDead(_Var1, 0)
+AND
+CharacterIsPlayer(_Var2, 1)
+THEN
+CharacterSetTemporaryHostileRelation(_Var1, _Var2);
+
+PROC
+ProcMakeNPCHostile((CHARACTERGUID)_Var1, (CHARACTERGUID)_Var2)
+AND
+CharacterIsDead(_Var1, 0)
+AND
+CharacterIsDead(_Var2, 0)
+AND
+CharacterIsPlayer(_Var1, 0)
+AND
+CharacterIsPlayer(_Var2, 0)
+THEN
+CharacterSetTemporaryHostileRelation(_Var1, _Var2);
+
+
+EXITSECTION
+ENDEXITSECTION
+

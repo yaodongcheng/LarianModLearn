@@ -1,0 +1,717 @@
+Version 1
+SubGoalCombiner SGC_AND
+
+INITSECTION
+ProcTriggerRegisterForPlayers(TRIGGERGUID_S_FTJ_SW_DeadMagistersVB_Box_001_b914b42f-cec5-4961-be80-afc9242f8237);
+ProcTriggerRegisterForPlayers(TRIGGERGUID_S_FTJ_SW_DeadMagistersVB_Box_002_dd53a41c-c9c0-4c97-a6c8-2ab0143066b7);
+DB_OneShotPlayerTrigger(TRIGGERGUID_S_FTJ_SW_VBNoxiousBulbs_5564b53d-1db8-437a-84bf-fd11b7d01fbe);
+DB_FTJ_SW_DeadMagisterVBTriggers(TRIGGERGUID_S_FTJ_SW_DeadMagistersVB_Box_001_b914b42f-cec5-4961-be80-afc9242f8237);
+DB_FTJ_SW_DeadMagisterVBTriggers(TRIGGERGUID_S_FTJ_SW_DeadMagistersVB_Box_002_dd53a41c-c9c0-4c97-a6c8-2ab0143066b7);
+ItemToInventory(ITEMGUID_S_FTJ_MagisterHead_001_6933c5b0-01e7-4e0d-890b-738db9ae726e, CHARACTERGUID_S_FTJ_SW_DeadMagister03_58193ad3-3983-435a-8ba0-d0708835e80f);
+DB_FTJ_SW_BuildUpSkeletons(CHARACTERGUID_S_FTJ_SwampBuildup_A_Undead_Melee_01_8b70b76c-24f8-4b3c-aae8-3c78c93ab2bb, "A");
+DB_FTJ_SW_BuildUpSkeletons(CHARACTERGUID_S_FTJ_SwampBuildup_A_Undead_Pyro_01_7dee6a3d-ef4f-4281-a311-a65d483e13d1, "A");
+DB_FTJ_SW_BuildUpSkeletons(CHARACTERGUID_S_FTJ_SwampBuildup_A_Undead_Assassin_a54a04a3-8507-4a37-a8b6-068fd0ec8146, "A");
+DB_FTJ_SW_BuildUpSkeletons(CHARACTERGUID_S_FTJ_SwampBuildup_B_Undead_Melee_01_e45ec44b-4033-4994-b6a4-f236dea40561, "B");
+DB_FTJ_SW_BuildUpSkeletons(CHARACTERGUID_S_FTJ_SwampBuildup_B_Undead_Ranger_01_1195a59b-ba51-4662-afa7-7602b224cfc8, "B");
+DB_FTJ_SW_BuildUpSkeletons(CHARACTERGUID_S_FTJ_SwampBuildup_B_Undead_Sword_9ee2fb19-5483-42a5-9037-c8147e9695fd, "B");
+DB_FTJ_SW_BuildUpSkeletons(CHARACTERGUID_S_FTJ_SwampBuildup_B_Undead_Ranger_02_5468e7d7-8f83-4245-94fc-7303c11612b5, "B");
+DB_FTJ_SW_BuildUpSkeletonSpotTriggers(TRIGGERGUID_S_FTJ_SwampBuildup_A_SpotTrigger_be7795c4-fea2-4fa2-a5ed-4a534da1f1d5, "A");
+DB_FTJ_SW_BuildUpSkeletonSpotTriggers(TRIGGERGUID_S_FTJ_SwampBuildup_B_SpotTrigger_d476b43c-25d9-48d5-8a9e-d3cd84a24ac5, "B");
+DB_ShovelArea(TRIGGERGUID_S_FTJ_SW_ForestTreasureBox_46fe05c4-05c3-43fc-901b-da33606f1cd4, "FTJ_SW_ForestTreasure", ITEMGUID_S_FTJ_SW_ForestTreasurePile_6c13562c-ec52-4c39-a6e9-7bd93f9fdd31);
+DB_ShovelArea(TRIGGERGUID_S_FTJ_SW_SandTreasureBox_9462d9b4-a2b4-49be-9ce3-4bda0e8d7d53, "FTJ_SW_SandTreasure", ITEMGUID_S_FTJ_SW_SandTreasurePile_39ae27d8-fb45-47f8-9aca-6bec059c5328);
+DB_ShovelRewardItemAppear("FTJ_SW_ForestTreasure", CHARACTERGUID_S_FTJ_SW_ForestTreasureSkeleton_28392863-cd9e-4ece-89ba-ec3d8f92939f, S_FTJ_SW_ForestTreasurePoint_3d348227-04cd-49e3-9f45-0a911ee995ec);
+DB_ShovelRewardItemAppear("FTJ_SW_SandTreasure", CHARACTERGUID_S_FTJ_SW_SandTreasureSkeleton_be856ce8-b489-41da-9234-4a39d0115a74, TRIGGERGUID_S_FTJ_SW_SandTreasurePoint_ba5da53c-2633-450a-8cb3-da7ead5ceae3);
+ItemTemplateAddTo("LOOT_Copper_Ring_A_2df11137-ad29-414a-85b9-1a6eb952b488", CHARACTERGUID_S_FTJ_SW_ForestRuinTreasureSkeleton_61dda000-2891-47fe-8af3-9a66d2f2d696, 1);
+DB_Dialogs(ITEMGUID_S_FTJ_SW_ExplodingHead1_ddcb8dee-c545-412c-920f-7bfa30826f7e, "FTJ_SW_ExplodingHead4");
+DB_Dialogs(ITEMGUID_S_FTJ_SW_ExplodingHead2_acf12b07-8dee-48ae-8149-11652dcd9ab0, "FTJ_SW_ExplodingHead4");
+DB_Dialogs(ITEMGUID_S_FTJ_SW_ExplodingHead3_34b91559-3a5a-4fae-bed0-eaa59bbcbdca, "FTJ_SW_ExplodingHead3");
+DB_Dialogs(ITEMGUID_S_FTJ_SW_ExplodingHead4_573670df-e029-483f-9853-ce6a501a1088, "FTJ_SW_ExplodingHead4");
+DB_FTJ_SW_ExplodingHeads(ITEMGUID_S_FTJ_SW_ExplodingHead1_ddcb8dee-c545-412c-920f-7bfa30826f7e, ITEMGUID_S_FTJ_SW_ExplodingHeadPole1_cb77d5e3-b83c-441f-8c81-654fa42b7891, 800);
+DB_FTJ_SW_ExplodingHeads(ITEMGUID_S_FTJ_SW_ExplodingHead2_acf12b07-8dee-48ae-8149-11652dcd9ab0, ITEMGUID_S_FTJ_SW_ExplodingHeadPole2_add05a1b-ae72-401c-a353-78df5995fa98, 1000);
+DB_FTJ_SW_ExplodingHeads(ITEMGUID_S_FTJ_SW_ExplodingHead3_34b91559-3a5a-4fae-bed0-eaa59bbcbdca, ITEMGUID_S_FTJ_SW_ExplodingHeadPole3_709e76ed-9739-4b58-9e0c-e2594757b667, 1200);
+DB_FTJ_SW_ExplodingHeads(ITEMGUID_S_FTJ_SW_ExplodingHead4_573670df-e029-483f-9853-ce6a501a1088, ITEMGUID_S_FTJ_SW_ExplodingHeadPole4_6398ab88-9c38-4ae0-9e60-fdc77b52b9fd, 1400);
+ItemSetCanInteract(S_FTJ_SW_Crucifix_A_001_dbe0a893-6497-466c-aca2-4b5e2c1f107b, 0);
+ItemSetCanInteract(S_FTJ_SW_Crucifix_A_002_1b9b3f78-2650-4ffb-873d-27e2d885f7c8, 0);
+ItemSetCanInteract(S_FTJ_SW_Crucifix_A_003_65a452c6-d305-400c-8c77-43d62b9bbc43, 0);
+DB_OneShotPlayerTrigger(TRIGGERGUID_S_FTJ_SW_RepeatingPlantsComment_be592fe8-cc11-46b3-a992-ae160153942d);
+DB_ShovelArea(TRIGGERGUID_S_FTJ_SW_ShelterBackBox1_c4f2ed03-656c-4c68-a05b-7232d99b594f, "FTJ_SW_ShelterBack", ITEMGUID_S_FTJ_SW_ShelterBackPile1_e5883470-7a5f-4394-9461-deac461ed5aa);
+DB_ShovelRewardItemScatter("FTJ_SW_ShelterBack", ITEMGUID_S_FTJ_SW_Loot_Ring1_c700a793-a556-4c79-bffe-b7dec77f6a25);
+DB_ShovelRewardItemScatter("FTJ_SW_ShelterBack", S_FTJ_SW_Loot_SalamanderGloves_ae7e21ef-fe20-4492-bc4a-156f3926b3e7);
+DB_ShovelRewardItemScatter("FTJ_SW_ShelterBack", ITEMGUID_S_FTJ_SW_Loot_SalamanderHelmet_4845db7c-fa59-46b2-9b21-d853d6c54070);
+DB_Dialogs(CHARACTERGUID_S_FTJ_SW_ShelterBackSquirrel_7650a5e1-49fb-4b55-a23c-88c73b7ba39a, "FTJ_SW_ShelterBackSquirrel");
+DB_ExplorationZones(TRIGGERGUID_S_FTJ_SW_XP_TeleportTower_6f99fbe8-fad1-43d0-9691-aa8740a98ec8, 1, 5, 5);
+DB_DialogMoneyTransfer(1, "FTJ_SW_DryWell", 15);
+DB_DialogMoneyTransfer(2, "FTJ_SW_DryWell", 80);
+DB_DialogMoneyTransfer(3, "FTJ_SW_DryWell", 150);
+DB_FTJ_SW_WellReward("FTJ_SW_SmallWishWell", "FTJ_SW_WellSmall");
+DB_FTJ_SW_WellReward("FTJ_SW_MediumWishWell", "FTJ_SW_WellMedium");
+DB_FTJ_SW_WellReward("FTJ_SW_BigWishWell", "FTJ_SW_WellLarge");
+DB_Dialogs(ITEMGUID_S_FTJ_SW_DryWell_0dc33cae-760e-4edf-b73c-3e9f3d6e64c1, "FTJ_SW_DryWell");
+DB_Dialogs(CHARACTERGUID_S_FTJ_SW_SeekerNearSourceTotem_302a752b-d9fa-4e00-b214-f722dc4fa8d6, "FTJ_SW_SeekerNearSourceTotem");
+ProcTriggerRegisterForPlayers(TRIGGERGUID_FTJ_SW_ApproachTotem_Box_76243167-06ba-48a5-a4fa-b855c4a1d42b);
+DB_KillCounter_Internal(CHARACTERGUID_S_FTJ_SW_ShelterBackSalamander1_26d2a05f-bd32-408c-adab-c01767271bbf, "FTJ_SW_ShelterSalamanders");
+DB_KillCounter_Internal(CHARACTERGUID_S_FTJ_SW_ShelterBackSalamander2_e3812c55-7530-4d74-b79b-e8f3c91558a4, "FTJ_SW_ShelterSalamanders");
+DB_KillCounter_Internal(CHARACTERGUID_S_FTJ_SW_ShelterBackSalamander3_62ac9493-260e-40bf-a615-5cdf475208d9, "FTJ_SW_ShelterSalamanders");
+DB_KillCounter("FTJ_SW_ShelterSalamanders", 3);
+DB_FTJ_SW_Voidwoken(CHARACTERGUID_S_FTJ_SW_ShelterBackSalamander1_26d2a05f-bd32-408c-adab-c01767271bbf);
+DB_FTJ_SW_Voidwoken(CHARACTERGUID_S_FTJ_SW_ShelterBackSalamander2_e3812c55-7530-4d74-b79b-e8f3c91558a4);
+DB_FTJ_SW_Voidwoken(CHARACTERGUID_S_FTJ_SW_ShelterBackSalamander3_62ac9493-260e-40bf-a615-5cdf475208d9);
+ItemToInventory(ITEMGUID_S_FTJ_SW_BraccusArmor_Legs_0a4896d2-df6d-4c0c-bd79-60315fb77a96, CHARACTERGUID_S_Lizards_Male_Skeleton_A_001_37f75a24-4bbe-423c-8508-f3f3435096f8);
+DB_Dialogs(CHARACTERGUID_S_FTJ_SW_ShelterBackSalamander1_26d2a05f-bd32-408c-adab-c01767271bbf, "FTJ_SW_ShelterSalamander1");
+DB_Dialogs(CHARACTERGUID_S_FTJ_SW_ShelterBackSalamander3_62ac9493-260e-40bf-a615-5cdf475208d9, "FTJ_SW_ShelterSalamander3");
+ItemToInventory(S_FTJ_SW_Limb_ExplodingHeads_f5bf3a78-bf33-4edf-8dd2-b9b5e9daac05, S_FTJ_SW_ExplodingHeadChest_f53a2e15-5a5e-4750-9b5b-b103409107ae);
+ItemToInventory(S_FTJ_SW_MagisterOrders_1ea1d33a-368a-4a76-9da0-7c39e9899803, FTJ_SW_DeadMagister01_c5ca74a5-142e-482a-988a-e30c75caeb84);
+DB_Dialogs(S_FTJ_SW_MourningSourceHound_98524dba-8bd6-4eb1-9916-bb318be8f185, "FTJ_SW_MourningSourceHound");
+DB_Dialogs(CHARACTERGUID_S_FTJ_SW_RatFamiliar_936ed252-a64a-4cd3-b631-669dc0017fb7, "FTJ_SW_RatFamiliar");
+DB_Dialogs(CHARACTERGUID_S_FTJ_SW_VaultRat_2d61ad7a-8b6f-4bd1-b4e0-9473ce2a876f, "FTJ_SW_VaultRat");
+DB_Dialogs(CHARACTERGUID_S_FTJ_SW_MazeInsideRat_4d27841e-cbe7-4240-b7d7-b40ce922665a, "FTJ_SW_MazeInsideRat");
+DB_Dialogs(CHARACTERGUID_S_FTJ_SW_MazeOutsideRat_a8b53e17-07f1-43fb-832c-93c9ff9fb25d, "FTJ_SW_MazeOutsideRat");
+DB_Dialogs(CHARACTERGUID_S_FTJ_SW_ShockedRat_d6bc5ce2-1d7f-48c0-94a1-82a47738b502, "FTJ_SW_ShockedRat");
+DB_Dialogs(CHARACTERGUID_S_FTJ_SW_OrphanBearCub_43cde75c-d783-4014-bb4d-4bedd5c7d83a, "FTJ_SW_OrphanBearCub");
+SetOnStage(CHARACTERGUID_S_FTJ_SW_MazeOutsideRat_002_ba5f8759-0fd8-4cf4-8b22-9928f444d71b, 0);
+DB_Dialogs(CHARACTERGUID_S_FTJ_SW_MazeOutsideRat_002_ba5f8759-0fd8-4cf4-8b22-9928f444d71b, "FTJ_SW_MazeOutsideRat2");
+DB_Dialogs(CHARACTERGUID_S_FTJ_SW_SeekerAtCrucified_c89bdc64-bcb5-42eb-979b-3566bc01129f, "FTJ_SW_SeekerAtCrucified");
+DB_FTJ_SW_SourceTotems(CHARACTERGUID_S_FTJ_SW_FB_Silentmonk_SourceTotem_000_82bb2bd5-10f3-4b35-b472-10896e4bc519, "FTJ_SW_FB_DetectedByTotem_000", "S_FTJ_SW_FB_SourceTotem_000_Spotted");
+DB_FTJ_SW_SourceTotems(CHARACTERGUID_S_FTJ_SW_FB_Silentmonk_SourceTotem_001_ac3e4362-5823-4af7-ad9d-bf92e00b752e, "FTJ_SW_FB_DetectedByTotem_001", "S_FTJ_SW_FB_SourceTotem_001_Spotted");
+DB_FTJ_SW_SourceTotems(CHARACTERGUID_S_FTJ_SW_FB_Silentmonk_SourceTotem_002_b4398dd0-9059-41f6-b6fb-6be6308732dc, "FTJ_SW_FB_DetectedByTotem_002", "S_FTJ_SW_FB_SourceTotem_002_Spotted");
+DB_FTJ_SW_SourceTotems(CHARACTERGUID_S_FTJ_SW_FB_Silentmonk_SourceTotem_003_2dc065a4-e0ad-4dac-9e31-bec0bb1e9e33, "FTJ_SW_FB_DetectedByTotem_003", "S_FTJ_SW_FB_SourceTotem_003_Spotted");
+DB_FTJ_SW_SourceTotems(CHARACTERGUID_S_FTJ_SW_FB_Silentmonk_SourceTotem_004_aaf5b56f-53f9-4f55-a4de-34d743bca4ce, "FTJ_SW_FB_DetectedByTotem_003", "S_FTJ_SW_FB_SourceTotem_004_Spotted");
+DB_FTJ_SW_SourceTotems(CHARACTERGUID_S_FTJ_SW_Castle_Silentmonk_SourceTotem_000_a45ec3fd-0e97-48e4-9b62-0a0d9ce60ef7, "FTJ_SW_Castle_DetectedByTotem_000", "S_FTJ_SW_Castle_SourceTotem_000_Spotted");
+DB_IsSign(S_FTJ_SW_Banner_BaC_5493139a-385b-4e7b-9f7e-bd34d6ff9fd7, "FTJ_SW_AD_SwampSigns", "FTJ_SW_Banner_BaC");
+DB_IsSign(S_FTJ_SW_Banner_BaC_f743b58a-a6c8-4012-b7fb-8abeb6ea7b0d, "FTJ_SW_AD_SwampSigns", "FTJ_SW_Banner_BaC");
+DB_FTJ_SW_SourceTotems_FrontGate(CHARACTERGUID_S_FTJ_SW_FB_Silentmonk_SourceTotem_000_82bb2bd5-10f3-4b35-b472-10896e4bc519, 1);
+DB_FTJ_SW_SourceTotems_FrontGate(CHARACTERGUID_S_FTJ_SW_FB_Silentmonk_SourceTotem_001_ac3e4362-5823-4af7-ad9d-bf92e00b752e, 1);
+
+KBSECTION
+IF
+CharacterEnteredTrigger((CHARACTERGUID)_Var1, TRIGGERGUID_S_FTJ_SW_DeadMagistersVB_Box_001_b914b42f-cec5-4961-be80-afc9242f8237)
+AND
+QRY_SpeakerIsAvailable(_Var1)
+AND
+QueryOnlyOnce("FTJ_SW_DeadMagisterVB_001")
+THEN
+StartVoiceBark("FTJ_SW_VB_DeadMagister_001", _Var1);
+
+IF
+CharacterEnteredTrigger((CHARACTERGUID)_Var1, TRIGGERGUID_S_FTJ_SW_DeadMagistersVB_Box_002_dd53a41c-c9c0-4c97-a6c8-2ab0143066b7)
+AND
+QRY_SpeakerIsAvailable(_Var1)
+AND
+QueryOnlyOnce("FTJ_SW_DeadMagisterVB_002")
+THEN
+StartVoiceBark("FTJ_SW_VB_DeadMagister_002", _Var1);
+
+IF
+StoryEvent((CHARACTERGUID)_Var1, "FTJ_SW_SwampBuildUpSkeletonDialog_A")
+AND
+UserGetFlag(_Var1, "FTJ_SW_MetBuildupSkeletons", 1)
+THEN
+PROC_FTJ_SW_BuildUpSkeletons_DialogEnd("A");
+PROC_FTJ_SW_BuildUpSkeletons_Hostile(_Var1);
+
+IF
+StoryEvent((CHARACTERGUID)_Var1, "FTJ_SW_SwampBuildUpSkeletonDialog_B")
+AND
+UserGetFlag(_Var1, "FTJ_SW_MetBuildupSkeletons", 1)
+THEN
+PROC_FTJ_SW_BuildUpSkeletons_DialogEnd("B");
+PROC_FTJ_SW_BuildUpSkeletons_Hostile(_Var1);
+
+IF
+StoryEvent((CHARACTERGUID)_Var1, "FTJ_SW_SwampBuildUpSkeletonDialog_A")
+AND
+UserGetFlag(_Var1, "FTJ_SW_MetBuildupSkeletons", 0)
+THEN
+Proc_StartDialog(0, "FTJ_SW_SwampBuildUpSkeleton_A", CHARACTERGUID_S_FTJ_SwampBuildup_A_Undead_Pyro_01_7dee6a3d-ef4f-4281-a311-a65d483e13d1, _Var1);
+UserSetFlag(_Var1, "FTJ_SW_MetBuildupSkeletons", 0);
+
+IF
+StoryEvent((CHARACTERGUID)_Var1, "FTJ_SW_SwampBuildUpSkeletonDialog_B")
+AND
+UserGetFlag(_Var1, "FTJ_SW_MetBuildupSkeletons", 0)
+THEN
+Proc_StartDialog(0, "FTJ_SW_SwampBuildUpSkeleton_B", CHARACTERGUID_S_FTJ_SwampBuildup_B_Undead_Ranger_01_1195a59b-ba51-4662-afa7-7602b224cfc8, _Var1);
+UserSetFlag(_Var1, "FTJ_SW_MetBuildupSkeletons", 0);
+
+IF
+DialogStarted("FTJ_SW_SwampBuildUpSkeleton_A", (INTEGER)_Var1)
+AND
+DialogGetInvolvedPlayer(_Var1, 1, _Var2)
+THEN
+PROC_FTJ_SW_BuildUpSkeletons_Hostile(_Var2, "B");
+
+IF
+DialogEnded("FTJ_SW_SwampBuildUpSkeleton_A", (INTEGER)_Var1)
+AND
+DialogGetInvolvedPlayer(_Var1, 1, _Var2)
+THEN
+PROC_FTJ_SW_BuildUpSkeletons_DialogEnd("A");
+PROC_FTJ_SW_BuildUpSkeletons_Hostile(_Var2, "A");
+
+IF
+DialogStarted("FTJ_SW_SwampBuildUpSkeleton_B", (INTEGER)_Var1)
+AND
+DialogGetInvolvedPlayer(_Var1, 1, _Var2)
+THEN
+PROC_FTJ_SW_BuildUpSkeletons_Hostile(_Var2, "A");
+
+IF
+DialogEnded("FTJ_SW_SwampBuildUpSkeleton_B", (INTEGER)_Var1)
+AND
+DialogGetInvolvedPlayer(_Var1, 1, _Var2)
+THEN
+PROC_FTJ_SW_BuildUpSkeletons_DialogEnd("B");
+PROC_FTJ_SW_BuildUpSkeletons_Hostile(_Var2, "B");
+
+IF
+AttackedByObject((CHARACTERGUID)_Var1, (CHARACTERGUID)_Var2, _, _, _)
+AND
+DB_IsPlayer(_Var2)
+AND
+DB_FTJ_SW_BuildUpSkeletons(_Var1, _Var6)
+THEN
+PROC_FTJ_SW_BuildUpSkeletons_Hostile(_Var2, _Var6);
+PROC_FTJ_SW_BuildUpSkeletons_DialogEnd(_Var6);
+
+PROC
+PROC_FTJ_SW_BuildUpSkeletons_DialogEnd((STRING)_Var1)
+AND
+DB_FTJ_SW_BuildUpSkeletons(_Var2, _Var1)
+THEN
+DialogRequestStop(_Var2);
+
+PROC
+PROC_FTJ_SW_BuildUpSkeletons_Hostile((CHARACTERGUID)_Var1)
+AND
+DB_FTJ_SW_BuildUpSkeletons(_, _Var3)
+THEN
+PROC_FTJ_SW_BuildUpSkeletons_Hostile(_Var1, _Var3);
+
+PROC
+PROC_FTJ_SW_BuildUpSkeletons_Hostile((CHARACTERGUID)_Var1, "A")
+THEN
+CharacterSetRelationIndivFactionToFaction(_Var1, "FTJ_SW_BuildupSkeletons_A", 0);
+CharacterSetRelationFactionToIndivFaction("FTJ_SW_BuildupSkeletons_A", _Var1, 0);
+
+PROC
+PROC_FTJ_SW_BuildUpSkeletons_Hostile((CHARACTERGUID)_Var1, "B")
+THEN
+CharacterSetRelationIndivFactionToFaction(_Var1, "FTJ_SW_BuildupSkeletons_B", 0);
+CharacterSetRelationFactionToIndivFaction("FTJ_SW_BuildupSkeletons_B", _Var1, 0);
+
+IF
+DB_FTJ_SW_BuildUpSkeletons(_Var1, _Var2)
+AND
+DB_FTJ_SW_BuildUpSkeletonSpotTriggers(_Var3, _Var2)
+THEN
+DB_SneakTriggerSpotter(_Var3, _Var1);
+
+PROC
+ProcCharInTriggerSpotted((CHARACTERGUID)_Var1, (TRIGGERGUID)_Var2)
+AND
+DB_FTJ_SW_BuildUpSkeletonSpotTriggers(_Var2, _Var3)
+AND
+DB_IsPlayer(_Var1)
+AND
+IsSpeakerReserved(_Var1, 0)
+THEN
+PROC_FTJ_SW_BuildUpSkeletons_DialogEnd(_Var3);
+PROC_FTJ_SW_BuildUpSkeletons_Hostile(_Var1, _Var3);
+
+IF
+DB_CombatCharacters(_Var1, _Var2)
+AND
+DB_IsPlayer(_Var1)
+AND
+DB_CombatCharacters(_Var3, _Var2)
+AND
+DB_FTJ_SW_BuildUpSkeletons(_Var3, _)
+THEN
+PROC_FTJ_SW_BuildUpSkeletons_Hostile(_Var1);
+UserSetFlag(_Var1, "FTJ_SW_MetBuildupSkeletons", 0);
+
+IF
+ObjectLeftCombat((CHARACTERGUID)_Var1, _)
+AND
+DB_FTJ_SW_BuildUpSkeletons(_Var1, _Var3)
+AND
+DB_FTJ_SW_BuildUpSkeletonSpotTriggers(_Var4, _Var3)
+THEN
+DB_SneakTriggerSpotter(_Var4, _Var1);
+SetStoryEvent(_Var1, "RestartSpotting");
+
+IF
+ObjectLeftCombat(CHARACTERGUID_S_FTJ_SwampBuildup_A_Undead_Terra_01_7dee6a3d-ef4f-4281-a311-a65d483e13d1, _)
+THEN
+SetStoryEvent(CHARACTERGUID_S_FTJ_SwampBuildup_A_Undead_Terra_01_7dee6a3d-ef4f-4281-a311-a65d483e13d1, "StartEventOnSight_RestartSpotting");
+
+IF
+ObjectLeftCombat(CHARACTERGUID_S_FTJ_SwampBuildup_B_Undead_Ranger_01_1195a59b-ba51-4662-afa7-7602b224cfc8, _)
+THEN
+SetStoryEvent(CHARACTERGUID_S_FTJ_SwampBuildup_B_Undead_Ranger_01_1195a59b-ba51-4662-afa7-7602b224cfc8, "StartEventOnSight_RestartSpotting");
+
+IF
+DialogEnded("FTJ_SW_SeekerNearSourceTotem", _)
+AND
+ObjectGetFlag(CHARACTERGUID_S_FTJ_SW_SeekerNearSourceTotem_302a752b-d9fa-4e00-b214-f722dc4fa8d6, "FTJ_SW_ToldTarleneGarethAtShelter", 1)
+THEN
+SetHasDialog(CHARACTERGUID_S_FTJ_SW_SeekerNearSourceTotem_302a752b-d9fa-4e00-b214-f722dc4fa8d6, 0);
+ProcCharacterDisappearOutOfSight(CHARACTERGUID_S_FTJ_SW_SeekerNearSourceTotem_302a752b-d9fa-4e00-b214-f722dc4fa8d6, 270, 0, "", 0);
+GlobalSetFlag("FTJ_SW_ToldTarleneGarethAtShelter");
+
+IF
+GlobalFlagSet("FTJ_SW_ToldTarleneGarethAtShelter")
+THEN
+SetFaction(CHARACTERGUID_S_FTJ_SW_SeekerNearSourceTotem_302a752b-d9fa-4e00-b214-f722dc4fa8d6, "FTJ_SW_ShelterNPC");
+
+IF
+TextEventSet("Tarleneleave")
+THEN
+ObjectSetFlag(CHARACTERGUID_S_FTJ_SW_SeekerNearSourceTotem_302a752b-d9fa-4e00-b214-f722dc4fa8d6, "FTJ_SW_ToldTarleneGarethAtShelter");
+
+IF
+CharacterDied(S_FTJ_SW_Castle_Silentmonk_SourceTotem_000_a45ec3fd-0e97-48e4-9b62-0a0d9ce60ef7)
+THEN
+GlobalSetFlag("FTJ_SW_SourceTotem_000_Dead");
+
+IF
+CharacterDied(S_FTJ_SW_Castle_Silentmonk_SourceTotem_000_a45ec3fd-0e97-48e4-9b62-0a0d9ce60ef7)
+AND
+GlobalGetFlag("FTJ_SW_CorneredPaladin_AllMagistersAreDead", 1)
+THEN
+ObjectSetFlag(CHARACTERGUID_S_FTJ_SW_SeekerNearSourceTotem_302a752b-d9fa-4e00-b214-f722dc4fa8d6, "FTJ_SW_ToldTarleneGarethAtShelter");
+
+IF
+CharacterDied(S_FTJ_SW_Castle_Silentmonk_SourceTotem_000_a45ec3fd-0e97-48e4-9b62-0a0d9ce60ef7)
+AND
+GlobalGetFlag("FTJ_SW_CorneredPaladin_AllMagistersAreDead", 0)
+AND
+GlobalGetFlag("FTJ_SW_CorneringMagistersLeave", 0)
+THEN
+SetVarObject(CHARACTERGUID_S_FTJ_SW_SeekerNearSourceTotem_302a752b-d9fa-4e00-b214-f722dc4fa8d6, "DefaultPointTrigger", TRIGGERGUID_S_FTJ_SW_SeekerNearSourceTotem_AfterTotem_1361fb65-9ba3-4f09-92e7-f0bd7f32d133);
+SetCombatGroupID(CHARACTERGUID_S_FTJ_SW_SeekerNearSourceTotem_302a752b-d9fa-4e00-b214-f722dc4fa8d6, "aa1ef0d1-5912-40e7-a447-319a71b40d00");
+
+IF
+CharacterDied(S_FTJ_SW_Castle_Silentmonk_SourceTotem_000_a45ec3fd-0e97-48e4-9b62-0a0d9ce60ef7)
+AND
+GlobalGetFlag("FTJ_SW_CorneredPaladin_AllMagistersAreDead", 0)
+AND NOT
+QRY_FTJ_SW_OutsideMagistersAround()
+THEN
+SetVarObject(CHARACTERGUID_S_FTJ_SW_SeekerNearSourceTotem_302a752b-d9fa-4e00-b214-f722dc4fa8d6, "DefaultPointTrigger", TRIGGERGUID_S_FTJ_SW_SeekerNearSourceTotem_AfterTotem_1361fb65-9ba3-4f09-92e7-f0bd7f32d133);
+SetCombatGroupID(CHARACTERGUID_S_FTJ_SW_SeekerNearSourceTotem_302a752b-d9fa-4e00-b214-f722dc4fa8d6, "d1347a3b-c7ec-4111-b6c0-a5c7c4389732");
+
+PROC
+PROC_FTJ_SW_MagisterDead((CHARACTERGUID)_Var1)
+AND
+DB_FTJ_SW_OutsideMagisters(_Var1)
+AND
+GlobalGetFlag("FTJ_SW_CorneredPaladin_AllMagistersAreDead", 0)
+AND NOT
+QRY_FTJ_SW_OutsideMagistersAround()
+AND
+CharacterIsDead(CHARACTERGUID_S_FTJ_SW_Castle_Silentmonk_SourceTotem_000_a45ec3fd-0e97-48e4-9b62-0a0d9ce60ef7, 1)
+THEN
+SetVarObject(CHARACTERGUID_S_FTJ_SW_SeekerNearSourceTotem_302a752b-d9fa-4e00-b214-f722dc4fa8d6, "DefaultPointTrigger", TRIGGERGUID_S_FTJ_SW_SeekerNearSourceTotem_AfterTotem_1361fb65-9ba3-4f09-92e7-f0bd7f32d133);
+SetCombatGroupID(CHARACTERGUID_S_FTJ_SW_SeekerNearSourceTotem_302a752b-d9fa-4e00-b214-f722dc4fa8d6, "d1347a3b-c7ec-4111-b6c0-a5c7c4389732");
+
+QRY
+QRY_FTJ_SW_OutsideMagistersAround()
+AND
+DB_FTJ_SW_OutsideMagisters(_Var1)
+AND
+CharacterIsDead(_Var1, 0)
+THEN
+DB_NOOP(1);
+
+IF
+GlobalFlagSet("FTJ_SW_CorneredPaladin_AllMagistersAreDead")
+AND
+CharacterIsDead(CHARACTERGUID_S_FTJ_SW_Castle_Silentmonk_SourceTotem_000_a45ec3fd-0e97-48e4-9b62-0a0d9ce60ef7, 1)
+THEN
+ObjectSetFlag(CHARACTERGUID_S_FTJ_SW_SeekerNearSourceTotem_302a752b-d9fa-4e00-b214-f722dc4fa8d6, "FTJ_SW_ToldTarleneGarethAtShelter", 0);
+
+IF
+GlobalFlagSet("FTJ_SW_CorneredPaladin_AllMagistersAreDead")
+AND
+CharacterIsDead(CHARACTERGUID_S_FTJ_SW_Castle_Silentmonk_SourceTotem_000_a45ec3fd-0e97-48e4-9b62-0a0d9ce60ef7, 1)
+AND
+IsSpeakerReserved(CHARACTERGUID_S_FTJ_SW_SeekerNearSourceTotem_302a752b-d9fa-4e00-b214-f722dc4fa8d6, 0)
+THEN
+SetHasDialog(CHARACTERGUID_S_FTJ_SW_SeekerNearSourceTotem_302a752b-d9fa-4e00-b214-f722dc4fa8d6, 0);
+ProcCharacterDisappearOutOfSight(CHARACTERGUID_S_FTJ_SW_SeekerNearSourceTotem_302a752b-d9fa-4e00-b214-f722dc4fa8d6, 270, 0, "", 0);
+
+PROC
+ProcOneShotTriggerEntered((CHARACTERGUID)_Var1, TRIGGERGUID_S_FTJ_SW_RepeatingPlantsComment_be592fe8-cc11-46b3-a992-ae160153942d)
+THEN
+Proc_StartDialog(1, "FTJ_SW_AD_RepeatingPlantsComment", _Var1);
+
+PROC
+ProcOneShotTriggerEntered((CHARACTERGUID)_Var1, TRIGGERGUID_S_FTJ_SW_VBNoxiousBulbs_5564b53d-1db8-437a-84bf-fd11b7d01fbe)
+THEN
+StartVoiceBark("FTJ_SW_VB_NoxiousBulbs", _Var1);
+
+IF
+ObjectFlagSet("FTJ_SW_SmallWishWell", (CHARACTERGUID)_Var1, _)
+AND
+DB_DialogMoneyTransfer(1, "FTJ_SW_DryWell", _Var3)
+AND
+IntegerProduct(-1, _Var3, _Var4)
+THEN
+ProcAddGoldToMagicPockets(_Var1, _Var4);
+
+IF
+ObjectFlagSet("FTJ_SW_MediumWishWell", (CHARACTERGUID)_Var1, _)
+AND
+DB_DialogMoneyTransfer(2, "FTJ_SW_DryWell", _Var3)
+AND
+IntegerProduct(-1, _Var3, _Var4)
+THEN
+ProcAddGoldToMagicPockets(_Var1, _Var4);
+
+IF
+ObjectFlagSet("FTJ_SW_BigWishWell", (CHARACTERGUID)_Var1, _)
+AND
+DB_DialogMoneyTransfer(3, "FTJ_SW_DryWell", _Var3)
+AND
+IntegerProduct(-1, _Var3, _Var4)
+THEN
+ProcAddGoldToMagicPockets(_Var1, _Var4);
+
+IF
+ObjectFlagSet((STRING)_Var1, (CHARACTERGUID)_Var2, _)
+AND
+DB_FTJ_SW_WellReward(_Var1, _Var4)
+THEN
+CharacterGiveReward(_Var2, _Var4);
+
+IF
+ObjectEnteredCombat((CHARACTERGUID)_Var1, _)
+AND
+DB_FTJ_SW_Voidwoken(_Var1)
+AND
+QueryOnlyOnce("FTJ_SW_CombatSave_Salamander")
+THEN
+AutoSave();
+
+PROC
+ReactOnKillCounter("FTJ_SW_ShelterSalamanders")
+THEN
+GlobalSetFlag("FTJ_SW_SalamandersDead");
+
+IF
+StoryEvent((GUIDSTRING)_Var1, "FTJ_SW_SpottedSalamander1")
+AND
+QRY_SpeakerIsAvailable(CHARACTERGUID_S_FTJ_SW_ShelterBackSalamander1_26d2a05f-bd32-408c-adab-c01767271bbf)
+AND
+QueryOnlyOnce("FTJ_SW_ShelterSalamanders")
+THEN
+Proc_StartDialog(0, "FTJ_SW_ShelterSalamander1", CHARACTERGUID_S_FTJ_SW_ShelterBackSalamander1_26d2a05f-bd32-408c-adab-c01767271bbf, _Var1);
+
+IF
+StoryEvent((GUIDSTRING)_Var1, "FTJ_SW_SpottedSalamander3")
+AND
+QRY_SpeakerIsAvailable(CHARACTERGUID_S_FTJ_SW_ShelterBackSalamander3_62ac9493-260e-40bf-a615-5cdf475208d9)
+AND
+QueryOnlyOnce("FTJ_SW_ShelterSalamanders")
+THEN
+Proc_StartDialog(0, "FTJ_SW_ShelterSalamander3", CHARACTERGUID_S_FTJ_SW_ShelterBackSalamander3_62ac9493-260e-40bf-a615-5cdf475208d9, _Var1);
+
+QRY
+QRY_StartDialog(0, "FTJ_SW_ShelterSalamander1", _, _)
+THEN
+DB_OnlyOnce("FTJ_SW_ShelterSalamanders");
+
+QRY
+QRY_StartDialog(0, "FTJ_SW_ShelterSalamander3", _, _)
+THEN
+DB_OnlyOnce("FTJ_SW_ShelterSalamanders");
+
+IF
+DialogEnded("FTJ_SW_ShelterSalamander1", _)
+THEN
+PROC_ShelterSalamandersAttack();
+
+IF
+DialogEnded("FTJ_SW_ShelterSalamander3", _)
+THEN
+PROC_ShelterSalamandersAttack();
+
+IF
+StoryEvent((GUIDSTRING)_Var1, "FTJ_SW_SpottedSalamander2")
+THEN
+PROC_ShelterSalamandersAttack();
+
+IF
+AttackedByObject((CHARACTERGUID)_Var1, _, (GUIDSTRING)_Var3, _, _)
+AND
+_Var1 != _Var3
+AND
+DB_KillCounter_Internal(_Var1, "FTJ_SW_ShelterSalamanders")
+THEN
+PROC_ShelterSalamandersAttack();
+
+PROC
+PROC_ShelterSalamandersAttack()
+AND NOT
+DB_OnlyOnce("FTJ_SW_ShelterSalamanderAttack")
+AND
+DB_KillCounter_Internal(_Var1, "FTJ_SW_ShelterSalamanders")
+THEN
+DialogRequestStop(_Var1);
+SetFaction(_Var1, "Evil NPC");
+
+PROC
+PROC_ShelterSalamandersAttack()
+THEN
+DB_OnlyOnce("FTJ_SW_ShelterSalamanders");
+DB_OnlyOnce("FTJ_SW_ShelterSalamandersAttack");
+
+IF
+ObjectTurnStarted((GUIDSTRING)_Var1)
+AND
+DB_KillCounter_Internal(_Var1, "FTJ_SW_ShelterSalamanders")
+AND
+CharacterIsDead(_Var1, 0)
+AND
+HasActiveStatus(_Var1, "MUTED", 0)
+AND
+Random(100, _Var2)
+AND
+_Var2 > 80
+THEN
+Proc_StartDialog(1, "FTJ_SW_AD_VWSalamanderComment", _Var1);
+
+IF
+ObjectFlagSet("FT_SW_AteEarKnowsGargoyleMaze", (CHARACTERGUID)_Var1, _)
+AND
+CharacterConsume(_Var1, "CON_BodyPart_Heal", _)
+THEN
+DB_NOOP(1);
+
+PROC
+Proc_DialogFlagSetup("FTJ_SW_Limb_ExplodingHeads", (CHARACTERGUID)_Var1)
+AND
+CharacterHasSkill(_Var1, "Target_BurnMyEyes", 1)
+THEN
+ObjectSetFlag(_Var1, "FTJ_SW_HasBurnMyEyes", 0);
+
+IF
+ItemOpened(ITEMGUID_S_FTJ_SW_ExplodingHeadChest_f53a2e15-5a5e-4750-9b5b-b103409107ae)
+THEN
+ObjectSetFlag(ITEMGUID_S_FTJ_SW_ExplodingHeadChest_f53a2e15-5a5e-4750-9b5b-b103409107ae, "FTJ_SW_BeenOpened", 0);
+
+IF
+ItemAddedToCharacter(ITEMGUID_S_FTJ_SW_ExplodingHeadChest_f53a2e15-5a5e-4750-9b5b-b103409107ae, _)
+THEN
+ObjectSetFlag(ITEMGUID_S_FTJ_SW_ExplodingHeadChest_f53a2e15-5a5e-4750-9b5b-b103409107ae, "FTJ_SW_BeenOpened", 0);
+
+IF
+ObjectFlagSet("FTJ_SW_BeenOpened", ITEMGUID_S_FTJ_SW_ExplodingHeadChest_f53a2e15-5a5e-4750-9b5b-b103409107ae, _)
+AND
+DB_FTJ_SW_ExplodingHeads(_Var2, _, _Var4)
+THEN
+DialogRequestStop(_Var2);
+ItemSetCanInteract(_Var2, 0);
+ProcRemoveAllDialogEntriesForSpeaker(_Var2);
+ProcObjectTimer(_Var2, "FTJ_SW_Explode", _Var4);
+Proc_StartDialog(1, "FTJ_SW_AD_ExplodingHeadScream", _Var2);
+
+PROC
+ProcObjectTimerFinished((GUIDSTRING)_Var1, "FTJ_SW_Explode")
+AND
+DB_FTJ_SW_ExplodingHeads(_Var1, _Var2, _)
+AND
+GetPosition(_Var1, _Var4, _Var5, _Var6)
+THEN
+SetOnStage(_Var1, 0);
+SetOnStage(_Var2, 0);
+CreateExplosionAtPosition(_Var4, _Var5, _Var6, "Projectile_TrapFireball", 11);
+
+IF
+ObjectFlagSet("FTJ_LucianGhost_Knockdown", (CHARACTERGUID)_Var1, _)
+THEN
+PlayAnimation(_Var1, "knockdown_fall", "FTJ_LucianGhost_KnockdownAnimLoop");
+
+IF
+StoryEvent((CHARACTERGUID)_Var1, "FTJ_LucianGhost_KnockdownAnimLoop")
+THEN
+CharacterSetAnimationOverride(_Var1, "knockdown_loop");
+
+IF
+ObjectFlagCleared("FTJ_LucianGhost_Knockdown", (CHARACTERGUID)_Var1, _)
+THEN
+CharacterSetAnimationOverride(_Var1, "");
+PlayAnimation(_Var1, "knockdown_getup");
+
+IF
+DialogEnded("FTJ_SW_LucianGhost", _)
+AND
+DB_IsPlayer(_Var2)
+AND
+ObjectGetFlag(_Var2, "FTJ_LucianGhost_Knockdown", 1)
+THEN
+ObjectClearFlag(_Var2, "FTJ_LucianGhost_Knockdown", 0);
+
+IF
+CharacterSawCharacter((CHARACTERGUID)_Var1, S_FTJ_SW_DeadBearMom_5d1bbd6b-5b65-4634-abc9-d681ff30e39f)
+AND
+DB_IsPlayer(_Var1)
+THEN
+ObjectSetFlag(_Var1, "FTJ_SW_SawDeadBearMom", 0);
+
+IF
+CharacterUsedSkillOnTarget((CHARACTERGUID)_Var1, CHARACTERGUID_S_FTJ_SW_MazeInsideRat_4d27841e-cbe7-4240-b7d7-b40ce922665a, _, _, _)
+THEN
+CharacterDie(CHARACTERGUID_S_FTJ_SW_MazeInsideRat_4d27841e-cbe7-4240-b7d7-b40ce922665a, 0, "DoT");
+ProcObjectTimer(_Var1, "FTJ_SW_InsideRatDied", 4000);
+
+PROC
+ProcObjectTimerFinished((CHARACTERGUID)_Var1, "FTJ_SW_InsideRatDied")
+AND
+ObjectGetFlag(_Var1, "FTJ_SW_ToldLyingRatYes", 1)
+THEN
+StartVoiceBark("FTJ_SW_VB_InsideRatDied", _Var1);
+
+IF
+ObjectFlagSet("FTJ_SW_ToldLyingRatYes", (GUIDSTRING)_Var1, _)
+THEN
+CharacterSetReactionPriority(CHARACTERGUID_S_FTJ_SW_MazeInsideRat_4d27841e-cbe7-4240-b7d7-b40ce922665a, "FleeFromPlayer", 0);
+CharacterSetReactionPriority(CHARACTERGUID_S_FTJ_SW_MazeInsideRat_4d27841e-cbe7-4240-b7d7-b40ce922665a, "WanderAbout", 0);
+
+IF
+ObjectFlagSet("FTJ_SW_ToldRattusVerrusYes", (GUIDSTRING)_Var1, _)
+THEN
+CharacterSetReactionPriority(CHARACTERGUID_S_FTJ_SW_MazeOutsideRat_a8b53e17-07f1-43fb-832c-93c9ff9fb25d, "FleeFromPlayer", 0);
+CharacterSetReactionPriority(CHARACTERGUID_S_FTJ_SW_MazeOutsideRat_a8b53e17-07f1-43fb-832c-93c9ff9fb25d, "WanderAbout", 0);
+
+IF
+CharacterUsedSkillOnTarget((CHARACTERGUID)_Var1, CHARACTERGUID_S_FTJ_SW_MazeOutsideRat_a8b53e17-07f1-43fb-832c-93c9ff9fb25d, _, _, _)
+THEN
+ObjectSetFlag(_Var1, "FTJ_SW_UsedMagicOnRattusVerrus", 0);
+ObjectSetFlag(CHARACTERGUID_S_FTJ_SW_MazeOutsideRat_a8b53e17-07f1-43fb-832c-93c9ff9fb25d, "FTJ_SW_GotMagic", 0);
+CharacterSetReactionPriority(CHARACTERGUID_S_FTJ_SW_MazeOutsideRat_a8b53e17-07f1-43fb-832c-93c9ff9fb25d, "FleeFromPlayer", 100);
+CharacterSetReactionPriority(CHARACTERGUID_S_FTJ_SW_MazeOutsideRat_a8b53e17-07f1-43fb-832c-93c9ff9fb25d, "WanderAbout", 50);
+
+IF
+GameBookInterfaceClosed(S_FTJ_SW_MagisterOrders_1ea1d33a-368a-4a76-9da0-7c39e9899803, (CHARACTERGUID)_Var1)
+THEN
+ProcFTJRevealShelter(_Var1);
+
+IF
+CharacterEnteredTrigger((CHARACTERGUID)_Var1, TRIGGERGUID_FTJ_SW_ApproachTotem_Box_76243167-06ba-48a5-a4fa-b855c4a1d42b)
+AND
+DB_IsPlayer(_Var1)
+AND
+UserGetFlag(_Var1, "FTJ_SW_SawSourceTotem", 0)
+THEN
+StartVoiceBark("FTJ_SW_VB_ApproachTotem", _Var1);
+UserSetFlag(_Var1, "FTJ_SW_HasSeenShrieker");
+UserSetFlag(_Var1, "QuestUpdate_FTJ_SW_Shriekers_SawShrieker");
+
+IF
+CharacterSawCharacter((CHARACTERGUID)_Var1, (CHARACTERGUID)_Var2)
+AND
+DB_FTJ_SW_SourceTotems(_Var2, _, _)
+AND
+_Var2 != CHARACTERGUID_S_FTJ_SW_Castle_Silentmonk_SourceTotem_000_a45ec3fd-0e97-48e4-9b62-0a0d9ce60ef7
+AND
+DB_IsPlayer(_Var1)
+AND
+GetRegion(_Var1, _Var5)
+AND
+_Var5 == "FJ_FortJoy_Main"
+AND
+QueryOnlyOnce("FTJ_SW_SeeAnotherSourceTotem")
+THEN
+StartVoiceBark("FTJ_SW_VB_ApproachTotem", _Var1);
+UserSetFlag(_Var1, "QuestUpdate_FTJ_SW_Shriekers_SawShrieker");
+UserSetFlag(_Var1, "FTJ_SW_HasSeenShrieker");
+
+IF
+DialogEnded("FTJ_SW_MourningSourceHound", _)
+AND
+ObjectGetFlag(CHARACTERGUID_S_FTJ_SW_MourningSourceHound_98524dba-8bd6-4eb1-9916-bb318be8f185, "FTJ_SW_DogHostile", 1)
+THEN
+SetRelationFactionToPlayers("FTJ_SW_MourningSourceHound", 0);
+
+PROC
+ProcFTJRevealShelter((CHARACTERGUID)_Var1)
+THEN
+ProcShowMarker(_Var1, "FTJ_SW_Shelter");
+UserSetFlag(_Var1, "QuestUpdate_FTJ_Escape_FoundShelter");
+
+IF
+CharacterCharacterEvent((CHARACTERGUID)_Var1, (CHARACTERGUID)_Var2, "SourceVampirised")
+AND
+DB_FTJ_SW_SourceTotems_FrontGate(_Var2, _)
+AND
+DB_IsPlayer(_Var4)
+THEN
+Proc_FTJ_SW_SourceTotems_FrontGateVampirised(_Var1, _Var2);
+
+PROC
+Proc_FTJ_SW_SourceTotems_FrontGateVampirised((CHARACTERGUID)_Var1, (CHARACTERGUID)_Var2)
+AND
+DB_FTJ_SW_SourceTotems_FrontGate(_Var2, 1)
+THEN
+NOT DB_FTJ_SW_SourceTotems_FrontGate(_Var2, 1);
+DB_FTJ_SW_SourceTotems_FrontGate(_Var2, 0);
+
+PROC
+Proc_FTJ_SW_SourceTotems_FrontGateVampirised((CHARACTERGUID)_Var1, _)
+AND NOT
+DB_FTJ_SW_SourceTotems_FrontGate(_, 1)
+THEN
+UserSetFlag(_Var1, "QuestUpdate_FTJ_SW_CallToArms_SourceTotemDestroy");
+UserSetFlag(_Var1, "QuestUpdate_FTJ_SW_Shriekers_Destroy_Shrieker");
+
+IF
+ObjectFlagSet("QuestUpdate_FTJ_SW_Shriekers_Destroy_Shrieker", (CHARACTERGUID)_Var1, _)
+AND
+DB_IsPlayer(_Var1)
+AND
+ObjectGetFlag(_Var1, "QuestUpdate_FTJ_SW_Shriekers_Know_Shrieker", 1)
+AND
+ObjectGetFlag(_Var1, "QuestUpdate_FTJ_Escape_Island_EscapeSeeker", 0)
+THEN
+UserSetFlag(_Var1, "QuestUpdate_FTJ_Escape_Island_Destroy_Shrieker");
+
+IF
+ObjectFlagSet("QuestUpdate_FTJ_SW_Shriekers_Destroy_Shrieker", (CHARACTERGUID)_Var1, _)
+AND
+DB_IsPlayer(_Var1)
+AND
+ObjectGetFlag(_Var1, "QuestUpdate_FTJ_SW_Shriekers_Know_Shrieker", 1)
+AND
+ObjectGetFlag(_Var1, "QuestUpdate_FTJ_Escape_Island_EscapeSeeker", 1)
+THEN
+UserSetFlag(_Var1, "QuestClose_FTJ_Escape_Island_SUBC");
+
+IF
+ObjectFlagSet("QuestUpdate_FTJ_SW_Shriekers_Destroy_Shrieker", (CHARACTERGUID)_Var1, _)
+AND
+DB_IsPlayer(_Var1)
+AND
+UserGetFlag(_Var1, "FTJ_SW_HasSeenShrieker", 1)
+AND
+ObjectGetFlag(_Var1, "QuestUpdate_FTJ_Escape_Island_EscapeSeeker", 0)
+THEN
+UserSetFlag(_Var1, "QuestUpdate_FTJ_Escape_Island_Destroy_Shrieker");
+
+IF
+ObjectFlagSet("QuestUpdate_FTJ_SW_Shriekers_Destroy_Shrieker", (CHARACTERGUID)_Var1, _)
+AND
+DB_IsPlayer(_Var1)
+AND
+UserGetFlag(_Var1, "FTJ_SW_HasSeenShrieker", 1)
+AND
+ObjectGetFlag(_Var1, "QuestUpdate_FTJ_Escape_Island_EscapeSeeker", 1)
+THEN
+UserSetFlag(_Var1, "QuestClose_FTJ_Escape_Island_SUBC");
+
+
+EXITSECTION
+ENDEXITSECTION
+
+ParentTargetEdge "FortJoy"

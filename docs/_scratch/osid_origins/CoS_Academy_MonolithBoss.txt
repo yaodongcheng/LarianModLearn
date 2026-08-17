@@ -1,0 +1,176 @@
+Version 1
+SubGoalCombiner SGC_AND
+
+INITSECTION
+DB_LV_HoE_PuzzleMirrors(ITEMGUID_S_LV_HoE_BossMirror_001_319857d8-3b53-4577-9abc-b413a2e7023d, 3);
+DB_LV_HoE_PuzzleMirrors(ITEMGUID_S_LV_HoE_BossMirror_002_1344bcff-a26e-40ea-963d-2be2d24a3d13, 4);
+DB_LV_HoE_PuzzleMirrors(ITEMGUID_S_LV_HoE_BossMirror_003_8373367e-f3be-4f3b-bd1b-cbef9f03db05, 4);
+DB_LV_HoE_PuzzleMirrors(ITEMGUID_S_LV_HoE_BossMirror_004_14bc86f4-1584-4184-8e19-9829656b1f35, 3);
+DB_LV_HoE_MirrorPuzzle_Generator(ITEMGUID_S_LV_HoE_BossMirrorPowersource_001_0ff8b7a2-7581-4418-a4e0-03b12f05ed6e, ITEMGUID_S_LV_HoE_BossMirror_001_319857d8-3b53-4577-9abc-b413a2e7023d);
+DB_LV_HoE_MirrorPuzzle_Activators(ITEMGUID_S_LV_HoE_BossMirror_002_1344bcff-a26e-40ea-963d-2be2d24a3d13, ITEMGUID_S_LV_HoE_BossMirror_001_319857d8-3b53-4577-9abc-b413a2e7023d, 4);
+DB_LV_HoE_MirrorPuzzle_Activators(ITEMGUID_S_LV_HoE_BossMirror_003_8373367e-f3be-4f3b-bd1b-cbef9f03db05, ITEMGUID_S_LV_HoE_BossMirror_002_1344bcff-a26e-40ea-963d-2be2d24a3d13, 2);
+DB_LV_HoE_MirrorPuzzle_Activators(ITEMGUID_S_LV_HoE_BossMirror_004_14bc86f4-1584-4184-8e19-9829656b1f35, ITEMGUID_S_LV_HoE_BossMirror_003_8373367e-f3be-4f3b-bd1b-cbef9f03db05, 1);
+DB_LV_HoE_MirrorPuzzle_Activators(CHARACTERGUID_S_CoS_MonolithBoss_Char_c963ad5d-72f7-4c0e-8f08-910ffe11a0a3, ITEMGUID_S_LV_HoE_BossMirror_004_14bc86f4-1584-4184-8e19-9829656b1f35, 4);
+DB_LV_HoE_MonolithBossChars(S_LV_HoE_MonolithBoss_Char_c963ad5d-72f7-4c0e-8f08-910ffe11a0a3);
+DB_LV_HoE_MonolithBossChars(CHARACTERGUID_S_LV_HoE_BossAutomation_001_95e541c2-9b4f-49a9-91d7-2e6875a8721d);
+DB_LV_HoE_MonolithBossChars(CHARACTERGUID_S_LV_HoE_BossAutomation_002_79e728db-4a6c-4b4f-a39b-630c924ba5d9);
+DB_LV_HoE_MonolithBossChars(CHARACTERGUID_S_LV_HoE_BossAutomation_003_028a43db-1718-4125-b7c7-f05a517ed0d2);
+DB_Subregion(TRIGGERGUID_S_LV_HoE_SUB_MonolithBossRoom_92065793-c0de-4946-9e64-6758b816e79d, "CoS_SUB_Academy_DeansRoom", 0);
+DB_AmbushTrigger(TRIGGERGUID_S_LV_HoE_MonolithHostility_Box_3cb3a926-5167-4915-ae69-299587ca4747, ITEMGUID_S_CoS_MonolithBoss_Ambush_Helper_0383e4e7-cd6c-428d-be36-a31ede0952ff);
+DB_CoS_Academy_AutomatonBoss_ChainHelpers(ITEMGUID_S_CoS_Academy_AutomatonBoss_ChainHelper_000_1ea6e290-692c-43c7-933e-497be16a9b93);
+DB_CoS_Academy_AutomatonBoss_ChainHelpers(ITEMGUID_S_CoS_Academy_AutomatonBoss_ChainHelper_001_88199b59-7a91-4449-a4c3-eacda83120df);
+DB_CoS_Academy_AutomatonBoss_ChainHelpers(ITEMGUID_S_CoS_Academy_AutomatonBoss_ChainHelper_002_8aec075a-7a4f-4f97-800c-d285cbb0299f);
+DB_CoS_Academy_AutomatonBoss_ChainHelpers(ITEMGUID_S_CoS_Academy_AutomatonBoss_ChainHelper_000_416063ee-5358-4bbd-b4f0-2a9765fb973c);
+CharacterSetCanTrade(CHARACTERGUID_S_CoS_MonolithBoss_Char_c963ad5d-72f7-4c0e-8f08-910ffe11a0a3, 0);
+DB_DeadEvent(CHARACTERGUID_S_CoS_MonolithBoss_Char_c963ad5d-72f7-4c0e-8f08-910ffe11a0a3, "CoS_AutomatonBossIsDead");
+ItemSetForceSynch(ITEMGUID_S_CoS_Academy_AutomatonBoss_ChainHelper_000_1ea6e290-692c-43c7-933e-497be16a9b93, 1);
+ItemSetForceSynch(ITEMGUID_S_CoS_Academy_AutomatonBoss_ChainHelper_001_88199b59-7a91-4449-a4c3-eacda83120df, 1);
+ItemSetForceSynch(ITEMGUID_S_CoS_Academy_AutomatonBoss_ChainHelper_002_8aec075a-7a4f-4f97-800c-d285cbb0299f, 1);
+ItemSetForceSynch(ITEMGUID_S_CoS_Academy_AutomatonBoss_ChainHelper_000_416063ee-5358-4bbd-b4f0-2a9765fb973c, 1);
+CharacterSetForceSynch(CHARACTERGUID_S_CoS_MonolithBoss_Char_c963ad5d-72f7-4c0e-8f08-910ffe11a0a3, 1);
+PROC_LV_HoE_MirrorPuzzle_Init();
+
+KBSECTION
+IF
+DB_LV_HoE_MirrorPuzzle_IsActive(_, S_LV_HoE_MonolithBoss_Char_c963ad5d-72f7-4c0e-8f08-910ffe11a0a3)
+THEN
+ApplyStatus(S_LV_HoE_MonolithBoss_Char_c963ad5d-72f7-4c0e-8f08-910ffe11a0a3, "STUNNED", -1, 1);
+ObjectSetFlag(S_LV_HoE_MonolithBoss_Char_c963ad5d-72f7-4c0e-8f08-910ffe11a0a3, "S_LV_MonolithBoss_BurnPhaseStart");
+ObjectSetFlag(S_LV_HoE_MonolithBoss_Char_c963ad5d-72f7-4c0e-8f08-910ffe11a0a3, "LV_MonolithBoss_StunnedByMirror");
+PlayEffect(S_LV_HoE_MonolithBoss_Char_c963ad5d-72f7-4c0e-8f08-910ffe11a0a3, "RS3_FX_Char_Creatures_Shriker_LightningBolt_Impact_01");
+CharacterSetMagicArmorPercentage(CHARACTERGUID_S_CoS_MonolithBoss_Char_c963ad5d-72f7-4c0e-8f08-910ffe11a0a3, 0);
+
+IF
+ItemDestroyed(ITEMGUID_S_LV_HoE_BossMirrorPowersource_001_0ff8b7a2-7581-4418-a4e0-03b12f05ed6e)
+THEN
+RemoveStatus(S_LV_HoE_MonolithBoss_Char_c963ad5d-72f7-4c0e-8f08-910ffe11a0a3, "STUNNED");
+PlayEffect(ITEMGUID_S_CoS_BossMirrorPowersource_001_0ff8b7a2-7581-4418-a4e0-03b12f05ed6e, "RS3_FX_Char_Creatures_Shriker_LightningBolt_Impact_01");
+
+PROC
+PROC_LV_HoE_MirrorPuzzle_CheckActivation()
+AND
+ObjectGetFlag(S_LV_HoE_MonolithBoss_Char_c963ad5d-72f7-4c0e-8f08-910ffe11a0a3, "LV_MonolithBoss_StunnedByMirror", 1)
+AND NOT
+DB_LV_HoE_MirrorPuzzle_IsActive(_, CHARACTERGUID_S_CoS_MonolithBoss_Char_c963ad5d-72f7-4c0e-8f08-910ffe11a0a3)
+THEN
+ObjectClearFlag(CHARACTERGUID_S_CoS_MonolithBoss_Char_c963ad5d-72f7-4c0e-8f08-910ffe11a0a3, "LV_MonolithBoss_StunnedByMirror", 0);
+RemoveStatus(CHARACTERGUID_S_CoS_MonolithBoss_Char_c963ad5d-72f7-4c0e-8f08-910ffe11a0a3, "STUNNED");
+
+IF
+DB_CoS_Academy_AutomatonBoss_ChainHelpers(_Var1)
+THEN
+PROC_LoopBeamEffect("RS3_FX_GP_ScriptedEvent_BeamChains_01", CHARACTERGUID_S_CoS_MonolithBoss_Char_c963ad5d-72f7-4c0e-8f08-910ffe11a0a3, _Var1, "Dummy_BodyFX", "", "CoS_AutomatonBoss", "CoS_Main");
+
+IF
+StoryEvent((GUIDSTRING)_Var1, "CoS_Academy_Monolith_DialogStart")
+THEN
+Proc_StartDialog(0, "CoS_Academy_Monolith", S_LV_HoE_MonolithBoss_Char_c963ad5d-72f7-4c0e-8f08-910ffe11a0a3, _Var1);
+
+IF
+AttackedByObject((GUIDSTRING)_Var1, (CHARACTERGUID)_Var2, _, _, _)
+AND
+DB_LV_HoE_MonolithBossChars(_Var1)
+AND
+DB_IsPlayer(_Var2)
+AND
+QueryOnlyOnce("LV_HoE_MonolithBoss_GoHostile_Once")
+THEN
+PROC_LV_HoE_StartMonolithGoHostile();
+
+PROC
+ProcLaunchAmbush(TRIGGERGUID_S_LV_HoE_MonolithHostility_Box_3cb3a926-5167-4915-ae69-299587ca4747, (CHARACTERGUID)_Var1)
+AND
+QueryOnlyOnce("LV_HoE_MonolithBoss_GoHostile_Once")
+THEN
+PROC_LV_HoE_StartMonolithGoHostile();
+
+IF
+DialogEnded("CoS_Academy_Monolith", (INTEGER)_Var1)
+AND
+GlobalGetFlag("LV_HoE_MonolithDialogHostile", 1)
+AND
+DialogGetInvolvedPlayer(_Var1, 1, _Var2)
+AND
+QueryOnlyOnce("LV_HoE_MonolithBoss_GoHostile_Once")
+THEN
+GlobalClearFlag("LV_HoE_MonolithDialogHostile");
+PROC_LV_HoE_StartMonolithGoHostile();
+EnterCombat(_Var2, CHARACTERGUID_S_CoS_MonolithBoss_Char_c963ad5d-72f7-4c0e-8f08-910ffe11a0a3);
+
+PROC
+PROC_LV_HoE_StartMonolithGoHostile()
+THEN
+ProcForceStopDialog(S_LV_HoE_MonolithBoss_Char_c963ad5d-72f7-4c0e-8f08-910ffe11a0a3);
+ProcSetRelationToPlayers(CHARACTERGUID_S_LV_HoE_BossAutomation_001_95e541c2-9b4f-49a9-91d7-2e6875a8721d, 0);
+ProcSetRelationToPlayers(CHARACTERGUID_S_LV_HoE_BossAutomation_002_79e728db-4a6c-4b4f-a39b-630c924ba5d9, 0);
+ProcSetRelationToPlayers(CHARACTERGUID_S_LV_HoE_BossAutomation_003_028a43db-1718-4125-b7c7-f05a517ed0d2, 0);
+ProcSetRelationToPlayers(CHARACTERGUID_S_CoS_BossAutomation_004_3238298b-05d0-41e4-b368-82aeb643e832, 0);
+SetFaction(S_LV_HoE_MonolithBoss_Char_c963ad5d-72f7-4c0e-8f08-910ffe11a0a3, "Evil NPC");
+
+IF
+ObjectTurnStarted(CHARACTERGUID_S_LV_HoE_MonolithBoss_Char_c963ad5d-72f7-4c0e-8f08-910ffe11a0a3)
+AND
+ObjectGetFlag(CHARACTERGUID_S_LV_HoE_MonolithBoss_Char_c963ad5d-72f7-4c0e-8f08-910ffe11a0a3, "S_LV_MonolithBoss_BurnPhaseStart", 1)
+AND
+HasActiveStatus(CHARACTERGUID_S_LV_HoE_MonolithBoss_Char_c963ad5d-72f7-4c0e-8f08-910ffe11a0a3, "STUNNED", 1)
+AND
+GetClosestAlivePlayer(CHARACTERGUID_S_LV_HoE_MonolithBoss_Char_c963ad5d-72f7-4c0e-8f08-910ffe11a0a3, _Var1, _)
+AND
+QueryOnlyOnce("LV_HoE_AD_MonolithIncapacitated_StartBurnPhaseDialog")
+AND
+StartDialog_Internal("CoS_Academy_MonolithIncapacitated", 1, CHARACTERGUID_S_LV_HoE_MonolithBoss_Char_c963ad5d-72f7-4c0e-8f08-910ffe11a0a3, _Var1, NULL_00000000-0000-0000-0000-000000000000, NULL_00000000-0000-0000-0000-000000000000, NULL_00000000-0000-0000-0000-000000000000, NULL_00000000-0000-0000-0000-000000000000, 1)
+THEN
+JumpToTurn(_Var1);
+Proc_DialogFlagSetup("CoS_Academy_MonolithIncapacitated", CHARACTERGUID_S_LV_HoE_MonolithBoss_Char_c963ad5d-72f7-4c0e-8f08-910ffe11a0a3, _Var1);
+
+IF
+DialogEnded("CoS_Academy_MonolithIncapacitated", _)
+AND
+QueryOnlyOnce("LV_HoE_MonolithIncapacitated_EndBurnPhaseDialog")
+THEN
+GlobalSetFlag("S_LV_MonolithBoss_BurnPhase");
+
+IF
+CharacterEnteredTrigger((CHARACTERGUID)_Var1, TRIGGERGUID_S_LV_HoE_SUB_MonolithBossRoom_92065793-c0de-4946-9e64-6758b816e79d)
+AND
+QueryOnlyOnce("LV_HoE_MonolithBoss_Autosave")
+THEN
+AutoSave();
+
+IF
+CharacterDied(CHARACTERGUID_S_CoS_MonolithBoss_Char_c963ad5d-72f7-4c0e-8f08-910ffe11a0a3)
+AND
+DB_IsPlayer(_Var1)
+THEN
+PartySetFlag(_Var1, "QuestUpdate_CoS_ForbiddenLibrary_DefeatedMonolith");
+
+IF
+CharacterDying(CHARACTERGUID_S_CoS_MonolithBoss_Char_c963ad5d-72f7-4c0e-8f08-910ffe11a0a3)
+THEN
+ItemDestroy(ITEMGUID_S_CoS_BossMirrorPowersource_001_0ff8b7a2-7581-4418-a4e0-03b12f05ed6e);
+
+IF
+CharacterDying(CHARACTERGUID_S_CoS_MonolithBoss_Char_c963ad5d-72f7-4c0e-8f08-910ffe11a0a3)
+THEN
+PROC_StopLoopBeamEffect(CHARACTERGUID_S_CoS_MonolithBoss_Char_c963ad5d-72f7-4c0e-8f08-910ffe11a0a3, "CoS_AutomatonBoss");
+
+IF
+ObjectWasTagged((GUIDSTRING)_Var1, "THE_ONE")
+THEN
+PlayEffect(_Var1, "RS3_FX_GP_ScriptedEvent_CoS_Quest_TheOne_01");
+
+PROC
+ProcRegionEnded("CoS_Main")
+THEN
+GoalCompleted;
+
+
+EXITSECTION
+ItemSetForceSynch(ITEMGUID_S_CoS_Academy_AutomatonBoss_ChainHelper_000_1ea6e290-692c-43c7-933e-497be16a9b93, 0);
+ItemSetForceSynch(ITEMGUID_S_CoS_Academy_AutomatonBoss_ChainHelper_001_88199b59-7a91-4449-a4c3-eacda83120df, 0);
+ItemSetForceSynch(ITEMGUID_S_CoS_Academy_AutomatonBoss_ChainHelper_002_8aec075a-7a4f-4f97-800c-d285cbb0299f, 0);
+ItemSetForceSynch(ITEMGUID_S_CoS_Academy_AutomatonBoss_ChainHelper_000_416063ee-5358-4bbd-b4f0-2a9765fb973c, 0);
+CharacterSetForceSynch(CHARACTERGUID_S_CoS_MonolithBoss_Char_c963ad5d-72f7-4c0e-8f08-910ffe11a0a3, 0);
+ENDEXITSECTION
+
+ParentTargetEdge "CoS_Academy"

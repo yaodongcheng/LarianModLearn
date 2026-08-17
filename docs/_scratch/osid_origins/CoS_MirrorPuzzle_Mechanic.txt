@@ -1,0 +1,306 @@
+Version 1
+SubGoalCombiner SGC_AND
+
+INITSECTION
+DB_LV_HoE_PuzzleMirrors_Positions(1, 45);
+DB_LV_HoE_PuzzleMirrors_Positions(2, 135);
+DB_LV_HoE_PuzzleMirrors_Positions(3, 225);
+DB_LV_HoE_PuzzleMirrors_Positions(4, 315);
+
+KBSECTION
+PROC
+PROC_LV_HoE_MirrorPuzzle_Init()
+AND
+DB_LV_HoE_PuzzleMirrors(_Var1, _Var2)
+AND
+DB_LV_HoE_PuzzleMirrors_Positions(_Var2, _Var3)
+THEN
+ItemRotateY(_Var1, _Var3, 360);
+
+PROC
+PROC_LV_HoE_MirrorPuzzle_Init()
+AND
+DB_LV_HoE_MirrorPuzzle_Target(_, _Var2)
+THEN
+SetOnStage(_Var2, 0);
+
+PROC
+PROC_LV_HoE_MirrorPuzzle_Init()
+THEN
+PROC_LV_HoE_MirrorPuzzle_CheckActivation();
+
+IF
+DB_LV_HoE_PuzzleMirrors(_Var1, _)
+THEN
+ItemSetForceSynch(_Var1, 1);
+
+IF
+DB_LV_HoE_MirrorPuzzle_Target(_Var1, _)
+THEN
+ItemSetForceSynch(_Var1, 1);
+DB_LV_HoE_MirrorPuzzle_TargetIsForceSyncing(_Var1);
+
+IF
+SavegameLoaded((INTEGER)_Var1, (INTEGER)_Var2, (INTEGER)_Var3, (INTEGER)_Var4)
+AND
+QRY_VersionIsOlderThan(_Var1, _Var2, _Var3, _Var4, 3, 6, 1, 0)
+AND
+DB_LV_HoE_MirrorPuzzle_Target(_Var5, _)
+AND NOT
+DB_LV_HoE_MirrorPuzzle_TargetIsForceSyncing(_Var5)
+THEN
+ItemSetForceSynch(_Var5, 1);
+
+PROC
+ProcRegionEnded("CoS_Main")
+AND
+DB_LV_HoE_MirrorPuzzle_Target(_Var1, _)
+THEN
+NOT DB_LV_HoE_MirrorPuzzle_TargetIsForceSyncing(_Var1);
+ItemSetForceSynch(_Var1, 0);
+
+IF
+ItemStatusChange((ITEMGUID)_Var1, "SHOCKED", _)
+AND
+DB_LV_HoE_MirrorPuzzle_Generator(_Var1, _)
+THEN
+RemoveStatus(_Var1, "SHOCKED");
+ApplyStatus(_Var1, "STUNNED", 12);
+
+IF
+ItemStatusChange((ITEMGUID)_Var1, "STUNNED", _)
+AND
+DB_LV_HoE_MirrorPuzzle_Generator(_Var1, _Var3)
+THEN
+DB_LV_HoE_MirrorPuzzle_IsActive(_Var1, _Var3);
+
+IF
+ItemStatusRemoved((ITEMGUID)_Var1, "STUNNED", _)
+AND
+DB_LV_HoE_MirrorPuzzle_Generator(_Var1, _Var3)
+THEN
+NOT DB_LV_HoE_MirrorPuzzle_IsActive(_Var1, _Var3);
+PROC_LV_HoE_MirrorPuzzle_DeactivateMirror(_Var1, _Var3);
+PROC_LV_HoE_MirrorPuzzle_CheckActivation();
+
+IF
+CharacterUsedItem((CHARACTERGUID)_Var1, (ITEMGUID)_Var2)
+AND
+DB_LV_HoE_PuzzleMirrors(_Var2, _)
+THEN
+PROC_LV_HoE_CheckMirrorRotate(_Var2);
+CharacterLookAt(_Var1, _Var2);
+
+PROC
+PROC_LV_HoE_CheckMirrorRotate((ITEMGUID)_Var1)
+AND
+DB_LV_HoE_PuzzleMirrors(_Var1, _Var2)
+AND
+IntegerSum(_Var2, 1, _Var3)
+AND
+_Var3 > 4
+AND NOT
+DB_LV_HoE_PuzzleMirror_Rotating(_Var1)
+THEN
+NOT DB_LV_HoE_PuzzleMirrors(_Var1, _Var2);
+DB_LV_HoE_PuzzleMirrors(_Var1, 1);
+PROC_LV_HoE_MirrorPuzzle_RotateMirror(_Var1);
+
+PROC
+PROC_LV_HoE_CheckMirrorRotate((ITEMGUID)_Var1)
+AND
+DB_LV_HoE_PuzzleMirrors(_Var1, _Var2)
+AND
+IntegerSum(_Var2, 1, _Var3)
+AND
+_Var3 < 5
+AND NOT
+DB_LV_HoE_PuzzleMirror_Rotating(_Var1)
+THEN
+NOT DB_LV_HoE_PuzzleMirrors(_Var1, _Var2);
+DB_LV_HoE_PuzzleMirrors(_Var1, _Var3);
+PROC_LV_HoE_MirrorPuzzle_RotateMirror(_Var1);
+
+PROC
+PROC_LV_HoE_CheckMirrorRotate((ITEMGUID)_Var1)
+AND
+DB_LV_HoE_PuzzleMirrors(_Var1, _)
+THEN
+PROC_StopLoopBeamEffect(_Var1, "LV_HoE_MirrorPuzzle");
+
+PROC
+PROC_LV_HoE_MirrorPuzzle_RotateMirror((ITEMGUID)_Var1)
+THEN
+DB_LV_HoE_PuzzleMirror_Rotating(_Var1);
+ItemRotateY(_Var1, 90, 286);
+ItemSetCanInteract(_Var1, 0);
+ProcObjectTimer(_Var1, "LV_HoE_MirrorRotating", 450);
+
+PROC
+ProcObjectTimerFinished((ITEMGUID)_Var1, "LV_HoE_MirrorRotating")
+AND
+DB_LV_HoE_PuzzleMirrors(_Var1, _Var2)
+AND
+DB_LV_HoE_PuzzleMirror_Rotating(_Var1)
+THEN
+NOT DB_LV_HoE_PuzzleMirror_Rotating(_Var1);
+ItemSetCanInteract(_Var1, 1);
+PROC_LV_HoE_MirrorPuzzle_CheckActivation();
+
+IF
+ItemDestroyed((ITEMGUID)_Var1)
+AND
+DB_LV_HoE_MirrorPuzzle_IsActive(_Var1, _Var2)
+THEN
+PROC_LV_HoE_MirrorPuzzle_DeactivateMirror(_Var1, _Var2);
+PROC_LV_HoE_MirrorPuzzle_CheckActivation();
+PROC_StopLoopBeamEffect(_Var1, "LV_HoE_MirrorPuzzle");
+
+PROC
+PROC_LV_HoE_MirrorPuzzle_CheckActivation()
+AND
+DB_LV_HoE_PuzzleMirrors(_Var1, _Var2)
+AND
+DB_LV_HoE_MirrorPuzzle_Activators(_Var3, _Var1, _Var2)
+AND
+DB_LV_HoE_MirrorPuzzle_IsActive(_, _Var1)
+AND NOT
+DB_LV_HoE_MirrorPuzzle_IsActive(_Var1, _Var3)
+THEN
+DB_LV_HoE_MirrorPuzzle_IsActive(_Var1, _Var3);
+
+IF
+DB_LV_HoE_MirrorPuzzle_IsActive(_Var1, _Var2)
+THEN
+PROC_LoopBeamEffect("RS3_FX_GP_Beams_Ataraxian_Blue_01", _Var1, _Var2, "Dummy_fx", "Dummy_fx", "LV_HoE_MirrorPuzzle", "CoS_Main");
+PROC_LV_HoE_MirrorPuzzle_CheckActivation();
+
+PROC
+PROC_LV_HoE_MirrorPuzzle_CheckActivation()
+AND
+DB_LV_HoE_MirrorPuzzle_IsActive(_Var1, _Var2)
+AND
+DB_LV_HoE_PuzzleMirrors(_Var1, _Var3)
+AND
+DB_LV_HoE_MirrorPuzzle_Activators(_Var2, _Var1, _Var4)
+AND
+_Var3 != _Var4
+AND
+DB_LV_HoE_PuzzleMirrors(_Var5, _)
+AND
+_Var1 != _Var5
+AND NOT
+DB_LV_HoE_MirrorPuzzle_IsActive(_Var5, _Var2)
+THEN
+PROC_LV_HoE_MirrorPuzzle_DeactivateMirror(_Var1, _Var2);
+
+PROC
+PROC_LV_HoE_MirrorPuzzle_DeactivateMirror((ITEMGUID)_Var1, (ITEMGUID)_Var2)
+AND
+DB_LV_HoE_MirrorPuzzle_IsActive(_Var1, _Var2)
+THEN
+NOT DB_LV_HoE_MirrorPuzzle_IsActive(_Var1, _Var2);
+
+PROC
+PROC_LV_HoE_MirrorPuzzle_CheckActivation()
+AND
+DB_LV_HoE_MirrorPuzzle_IsActive(_Var1, _Var2)
+AND
+DB_LV_HoE_PuzzleMirrors(_Var1, _)
+AND
+DB_LV_HoE_MirrorPuzzle_Activators(_Var2, _Var1, _)
+AND NOT
+DB_LV_HoE_MirrorPuzzle_IsActive(_, _Var1)
+AND
+DB_LV_HoE_PuzzleMirrors(_Var6, _)
+AND
+_Var1 != _Var6
+AND NOT
+DB_LV_HoE_MirrorPuzzle_IsActive(_Var6, _Var2)
+THEN
+PROC_LV_HoE_MirrorPuzzle_DeactivateMirror(_Var1, _Var2);
+
+PROC
+PROC_LV_HoE_MirrorPuzzle_DeactivateMirror(_, (ITEMGUID)_Var2)
+THEN
+PROC_StopLoopBeamEffect(_Var2, "LV_HoE_MirrorPuzzle");
+
+PROC
+PROC_LV_HoE_MirrorPuzzle_DeactivateMirror(_, _)
+AND
+DB_LV_HoE_PuzzleMirrors(_Var3, _)
+AND NOT
+DB_LV_HoE_MirrorPuzzle_IsActive(_, _Var3)
+THEN
+PROC_StopLoopBeamEffect(_Var3, "LV_HoE_MirrorPuzzle");
+
+PROC
+PROC_LV_HoE_MirrorPuzzle_DeactivateMirror((ITEMGUID)_Var1, (ITEMGUID)_Var2)
+AND
+DB_LV_HoE_MirrorPuzzle_Generator(_Var1, _Var2)
+AND NOT
+DB_LV_HoE_MirrorPuzzle_IsActive(_Var1, _Var2)
+THEN
+PROC_StopLoopBeamEffect(_Var1, "LV_HoE_MirrorPuzzle");
+
+PROC
+PROC_LV_HoE_MirrorPuzzle_DeactivateMirror((ITEMGUID)_Var1, (ITEMGUID)_Var2)
+AND
+DB_LV_HoE_MirrorPuzzle_Generator(_Var1, _Var2)
+AND NOT
+DB_LV_HoE_MirrorPuzzle_IsActive(_Var1, _Var2)
+AND
+DB_LV_HoE_MirrorPuzzle_Activators(_Var2, _Var3, _)
+AND
+DB_LV_HoE_MirrorPuzzle_IsActive(_Var2, _Var3)
+THEN
+PROC_LV_HoE_MirrorPuzzle_DeactivateMirror(_Var2, _Var3);
+
+IF
+DB_LV_HoE_MirrorPuzzle_IsActive(_, _Var2)
+AND
+DB_LV_HoE_MirrorPuzzle_Target(_Var2, _)
+THEN
+ApplyStatus(_Var2, "STUNNED", -1, 1);
+
+IF
+ItemStatusChange((ITEMGUID)_Var1, "STUNNED", _)
+AND
+DB_LV_HoE_MirrorPuzzle_Target(_Var1, _Var3)
+THEN
+PlayEffect(_Var1, "RS3_FX_Char_Creatures_Shriker_LightningBolt_Impact_01");
+SetOnStage(_Var3, 1);
+CreateSurface(_Var3, "SurfaceNone", 4, 1);
+CreateSurface(_Var1, "SurfaceNone", 2.5, 1);
+
+PROC
+PROC_LV_HoE_MirrorPuzzle_DeactivateMirror(_, (ITEMGUID)_Var2)
+AND
+DB_LV_HoE_MirrorPuzzle_Target(_Var2, _)
+THEN
+RemoveStatus(_Var2, "STUNNED");
+
+IF
+ItemStatusRemoved((ITEMGUID)_Var1, "STUNNED", _)
+AND
+DB_LV_HoE_MirrorPuzzle_Target(_Var1, _Var3)
+AND
+DB_LV_HoE_MirrorPuzzle_Activators(_Var1, _Var4, _)
+AND
+DB_LV_HoE_MirrorPuzzle_Target(_Var6, _Var3)
+AND NOT
+DB_LV_HoE_MirrorPuzzle_IsActive(_, _Var6)
+THEN
+SetOnStage(_Var3, 0);
+RemoveStatus(_Var1, "STUNNED");
+
+PROC
+ProcRegionEnded("CoS_Main")
+THEN
+GoalCompleted;
+
+
+EXITSECTION
+ENDEXITSECTION
+
+ParentTargetEdge "CouncilOfSeven"

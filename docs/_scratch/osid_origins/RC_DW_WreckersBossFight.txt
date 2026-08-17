@@ -1,0 +1,319 @@
+Version 1
+SubGoalCombiner SGC_AND
+
+INITSECTION
+SetVarObject(CHARACTERGUID_S_RC_DW_WC_BossFight_Skeleton_Mordus_d46ade3f-f786-4fcc-975c-361a106f2853, "SpottedTrigger", TRIGGERGUID_S_RC_DW_WC_BossFight_ElderDialog_Box_41cbb421-efb9-4521-baac-fc0c4637fc6a);
+SetOnStage(CHARACTERGUID_S_RC_DW_WC_BossFight_GiantInsect_Boss_5362d05e-1cb2-451f-9f5a-69078100a01b, 0);
+DB_Dialogs(CHARACTERGUID_S_RC_DW_WC_BossFight_Skeleton_Mordus_d46ade3f-f786-4fcc-975c-361a106f2853, "RC_DW_WC_BossFight_ElderAtaraxian");
+DB_Dialogs(CHARACTERGUID_S_RC_DW_WC_BossFight_PossessedSourcerer_Mage_01_7443355b-750f-45b6-9989-f3dedcbde92d, "RC_DW_WC_BossFight_Dwarves_PossessedSourcerer");
+DB_Dialogs(CHARACTERGUID_S_RC_DW_WC_BossFight_PossessedSourcerer_Warrior_01_163d7085-670d-40aa-b602-157b28cada00, "RC_DW_WC_BossFight_Humans_PossessedSourcerer");
+DB_Dialogs(CHARACTERGUID_S_RC_DW_WC_BossFight_PossessedSourcerer_Ranger_02_69b23183-48f6-45cb-afea-c8c8fd4a52ee, "RC_DW_WC_BossFight_Lizards_PossessedSourcerer");
+DB_Dialogs(CHARACTERGUID_S_RC_DW_WC_BossFight_PossessedSourcerer_Ranger_01_a48b8e36-5c99-4ef9-a0c8-b3906fed9eab, "RC_DW_WC_BossFight_Elves_PossessedSourcerer");
+DB_Ghosts(CHARACTERGUID_S_RC_DW_WC_BossFight_PossessedSourcerer_Mage_01_7443355b-750f-45b6-9989-f3dedcbde92d, CHARACTERGUID_S_RC_DW_WC_BossFight_PossessedSourcerer_Mage_01_Ghost_d2925342-9e20-4be5-af78-2f5164d3b539, "RC_DW_WC_BossFight_Dwarves_PossessedSourcerer_Ghost");
+DB_Ghosts(CHARACTERGUID_S_RC_DW_WC_BossFight_PossessedSourcerer_Ranger_02_69b23183-48f6-45cb-afea-c8c8fd4a52ee, CHARACTERGUID_S_RC_DW_WC_BossFight_PossessedSourcerer_Ranger_02_Ghost_2abadf45-6d65-4cdc-a244-d428eed3245c, "RC_DW_WC_BossFight_Lizards_PossessedSourcerer_Ghost");
+DB_Ghosts(CHARACTERGUID_S_RC_DW_WC_BossFight_PossessedSourcerer_Warrior_01_163d7085-670d-40aa-b602-157b28cada00, CHARACTERGUID_S_RC_DW_WC_BossFight_PossessedSourcerer_Warrior_01_Ghost_4ead2a72-2ce6-48c0-8033-7f21993db76c, "RC_DW_WC_BossFight_Humans_PossessedSourcerer_Ghost");
+DB_RC_DW_WC_PossessedSourcerer(CHARACTERGUID_S_RC_DW_WC_BossFight_PossessedSourcerer_Mage_01_7443355b-750f-45b6-9989-f3dedcbde92d);
+DB_RC_DW_WC_PossessedSourcerer(CHARACTERGUID_S_RC_DW_WC_BossFight_PossessedSourcerer_Warrior_01_163d7085-670d-40aa-b602-157b28cada00);
+DB_RC_DW_WC_PossessedSourcerer(CHARACTERGUID_S_RC_DW_WC_BossFight_PossessedSourcerer_Ranger_02_69b23183-48f6-45cb-afea-c8c8fd4a52ee);
+DB_RC_DW_WC_PossessedSourcerer(CHARACTERGUID_S_RC_DW_WC_BossFight_PossessedSourcerer_Ranger_01_a48b8e36-5c99-4ef9-a0c8-b3906fed9eab);
+ItemToInventory(ITEMGUID_QUEST_RC_Amulet_Mordus_000_49de20a2-8ab8-4424-b77e-d871884faaa9, CHARACTERGUID_S_RC_DW_WC_BossFight_Skeleton_Mordus_d46ade3f-f786-4fcc-975c-361a106f2853);
+DB_HasStoryEvent(ITEMGUID_QUEST_RC_Amulet_Mordus_000_49de20a2-8ab8-4424-b77e-d871884faaa9, "RC_DW_HasMordusAmulet");
+DB_GiveItemToEvent(ITEMGUID_QUEST_RC_Amulet_Mordus_000_49de20a2-8ab8-4424-b77e-d871884faaa9, "RC_DW_GiveMordusAmulet");
+ObjectSetFlag(CHARACTERGUID_S_RC_DW_WC_BossFight_Skeleton_Mordus_d46ade3f-f786-4fcc-975c-361a106f2853, "GLO_BlockRegenAfterCombat");
+DB_KilledPartyEvent(CHARACTERGUID_S_RC_DW_WC_BossFight_GiantInsect_Boss_5362d05e-1cb2-451f-9f5a-69078100a01b, "QuestUpdate_RC_DW_WC_AtaraxianLair_KilledBoss");
+
+KBSECTION
+IF
+StoryEvent(CHARACTERGUID_S_RC_DW_WC_BossFight_Skeleton_Mordus_d46ade3f-f786-4fcc-975c-361a106f2853, "GLO_SpotterSneaker")
+AND
+GetVarObject(CHARACTERGUID_S_RC_DW_WC_BossFight_Skeleton_Mordus_d46ade3f-f786-4fcc-975c-361a106f2853, "SpottedDude", _Var1)
+THEN
+ProcForceStopDialog(_Var1);
+Proc_StartDialog(0, "RC_DW_WC_BossFight_ElderAtaraxian", CHARACTERGUID_S_RC_DW_WC_BossFight_Skeleton_Mordus_d46ade3f-f786-4fcc-975c-361a106f2853, _Var1);
+
+IF
+DialogEnded("RC_DW_WC_BossFight_ElderAtaraxian", (INTEGER)_Var1)
+THEN
+Proc_RC_DW_WC_BossFight_Start();
+
+IF
+AttackedByObject(CHARACTERGUID_S_RC_DW_WC_BossFight_Skeleton_Mordus_d46ade3f-f786-4fcc-975c-361a106f2853, (CHARACTERGUID)_Var1, _, _, _)
+AND
+DB_IsPlayer(_Var1)
+THEN
+Proc_RC_DW_WC_BossFight_Start();
+
+IF
+CharacterReceivedDamage(CHARACTERGUID_S_RC_DW_WC_BossFight_Skeleton_Mordus_d46ade3f-f786-4fcc-975c-361a106f2853, _, _)
+THEN
+Proc_RC_DW_WC_BossFight_Start();
+
+IF
+AttackedByObject((CHARACTERGUID)_Var1, (CHARACTERGUID)_Var2, _, _, _)
+AND
+DB_IsPlayer(_Var2)
+AND
+DB_RC_DW_WC_PossessedSourcerer(_Var1)
+THEN
+Proc_RC_DW_WC_BossFight_Start();
+
+IF
+CharacterReceivedDamage((CHARACTERGUID)_Var1, _, _)
+AND
+DB_RC_DW_WC_PossessedSourcerer(_Var1)
+THEN
+Proc_RC_DW_WC_BossFight_Start();
+
+IF
+GlobalFlagSet("RC_DW_WC_BossFight_Started")
+THEN
+DB_RC_DW_WC_BossFightOngoing(1);
+CharacterSetReactionPriority(CHARACTERGUID_S_RC_DW_WC_BossFight_Skeleton_Mordus_d46ade3f-f786-4fcc-975c-361a106f2853, "DefaultWanderInTrigger", 0);
+
+PROC
+Proc_RC_DW_WC_BossFight_Start()
+AND
+QueryOnlyOnce("RC_DW_WC_BossFight_ElderSpawn")
+AND
+GlobalGetFlag("RC_DW_WC_BossFight_Started", 0)
+THEN
+CharacterSetImmortal(CHARACTERGUID_S_RC_DW_WC_BossFight_Skeleton_Mordus_d46ade3f-f786-4fcc-975c-361a106f2853, 1);
+DB_RC_DW_WC_CurrentMordus(S_RC_DW_WC_BossFight_Skeleton_Mordus_d46ade3f-f786-4fcc-975c-361a106f2853);
+ProcForceStopDialog(S_RC_DW_WC_BossFight_Skeleton_Mordus_d46ade3f-f786-4fcc-975c-361a106f2853);
+
+PROC
+Proc_RC_DW_WC_BossFight_Start()
+AND
+GlobalGetFlag("RC_DW_WC_BossFight_Started", 0)
+THEN
+GlobalSetFlag("RC_DW_WC_BossFight_Started");
+SetFaction(CHARACTERGUID_S_RC_DW_WC_BossFight_Skeleton_Mordus_d46ade3f-f786-4fcc-975c-361a106f2853, "Evil NPC");
+
+PROC
+Proc_RC_DW_WC_BossFight_Start()
+AND
+DB_RC_DW_WC_PossessedSourcerer(_Var1)
+THEN
+ProcForceStopDialog(_Var1);
+
+IF
+CharacterDied((CHARACTERGUID)_Var1)
+AND
+DB_RC_DW_WC_PossessedSourcerer(_Var1)
+THEN
+NOT DB_RC_DW_WC_PossessedSourcerer(_Var1);
+
+IF
+AttackedByObject((CHARACTERGUID)_Var1, (CHARACTERGUID)_Var2, _, _, _)
+AND
+DB_RC_DW_WC_BossFightOngoing(1)
+AND
+DB_RC_DW_WC_PossessedSourcerer(_Var2)
+AND
+DB_IsPlayer(_Var1)
+AND
+DB_RC_DW_WC_CurrentMordus(_Var6)
+AND
+CombatGetIDForCharacter(_Var6, _Var7)
+AND
+CombatGetIDForCharacter(_Var1, _Var7)
+AND
+Random(5, _Var8)
+AND
+_Var8 == 0
+THEN
+Proc_StartDialog(1, "RC_DW_WC_AD_BossFight_MordusPlayerHurtByPossessedSourcerer", _Var6);
+
+IF
+StoryEvent(CHARACTERGUID_S_RC_DW_WC_BossFight_Skeleton_Mordus_d46ade3f-f786-4fcc-975c-361a106f2853, "RC_DW_WC_MordusFightTransformationCameraShake")
+THEN
+Proc_CameraShakeAroundCharacter(CHARACTERGUID_S_RC_DW_WC_BossFight_Skeleton_Mordus_d46ade3f-f786-4fcc-975c-361a106f2853, 10, 16);
+
+IF
+StoryEvent(CHARACTERGUID_S_RC_DW_WC_BossFight_Skeleton_Mordus_d46ade3f-f786-4fcc-975c-361a106f2853, "RC_DW_WC_MordusFightTransformation")
+AND
+GetPosition(CHARACTERGUID_S_RC_DW_WC_BossFight_Skeleton_Mordus_d46ade3f-f786-4fcc-975c-361a106f2853, _Var1, _Var2, _Var3)
+AND
+QueryOnlyOnce("RC_DW_WC_MordusFightTransformation")
+THEN
+Poof(CHARACTERGUID_S_RC_DW_WC_BossFight_Skeleton_Mordus_d46ade3f-f786-4fcc-975c-361a106f2853);
+TeleportToPosition(CHARACTERGUID_S_RC_DW_WC_BossFight_GiantInsect_Boss_5362d05e-1cb2-451f-9f5a-69078100a01b, _Var1, _Var2, _Var3, "", 0);
+SetOnStage(CHARACTERGUID_S_RC_DW_WC_BossFight_GiantInsect_Boss_5362d05e-1cb2-451f-9f5a-69078100a01b, 1);
+NOT DB_RC_DW_WC_CurrentMordus(S_RC_DW_WC_BossFight_Skeleton_Mordus_d46ade3f-f786-4fcc-975c-361a106f2853);
+DB_RC_DW_WC_CurrentMordus(S_RC_DW_WC_BossFight_GiantInsect_Boss_5362d05e-1cb2-451f-9f5a-69078100a01b);
+DB_RC_DW_WC_MordusTransforming(1);
+
+IF
+StoryEvent(CHARACTERGUID_S_RC_DW_WC_BossFight_Skeleton_Mordus_d46ade3f-f786-4fcc-975c-361a106f2853, "RC_DW_WC_MordusFightTransformation")
+AND
+DB_CombatCharacters(CHARACTERGUID_S_RC_DW_WC_BossFight_Skeleton_Mordus_d46ade3f-f786-4fcc-975c-361a106f2853, _Var1)
+AND
+DB_IsPlayer(_Var2)
+AND
+DB_CombatCharacters(_Var2, _Var1)
+THEN
+ObjectSetFlag(_Var2, "QuestUpdate_RC_DW_ShadowOverDriftwood_FoundMordus");
+
+IF
+StoryEvent(CHARACTERGUID_S_RC_DW_WC_BossFight_Skeleton_Mordus_d46ade3f-f786-4fcc-975c-361a106f2853, "RC_DW_WC_MordusFightTransformation")
+AND
+DB_IsPlayer(_Var1)
+AND
+DB_InRegion(_Var1, TRIGGERGUID_S_RC_DW_WC_BossFight_Area_Box_ec8d525b-6b89-4737-a069-8067ec3ec14d)
+AND
+ObjectGetFlag(_Var1, "QuestUpdate_RC_DW_ShadowOverDriftwood_FoundMordus", 0)
+THEN
+ObjectSetFlag(_Var1, "QuestUpdate_RC_DW_ShadowOverDriftwood_FoundMordus");
+
+IF
+CombatEnded((INTEGER)_Var1)
+AND
+DB_RC_DW_WC_MordusTransforming(1)
+THEN
+NOT DB_RC_DW_WC_MordusTransforming(1);
+DB_RC_DW_WC_MordusTransform_WaitForNewStart(1);
+
+IF
+ObjectEnteredCombat(S_RC_DW_WC_BossFight_GiantInsect_Boss_5362d05e-1cb2-451f-9f5a-69078100a01b, (INTEGER)_Var1)
+AND
+DB_RC_DW_WC_MordusTransforming(1)
+AND
+QueryOnlyOnce("RC_DW_WC_TransformedMordusEnteredCombat")
+THEN
+NOT DB_RC_DW_WC_MordusTransforming(1);
+JumpToTurn(S_RC_DW_WC_BossFight_GiantInsect_Boss_5362d05e-1cb2-451f-9f5a-69078100a01b);
+
+IF
+CombatStarted((INTEGER)_Var1)
+AND
+DB_RC_DW_WC_MordusTransform_WaitForNewStart(1)
+AND
+DB_CombatCharacters(S_RC_DW_WC_BossFight_GiantInsect_Boss_5362d05e-1cb2-451f-9f5a-69078100a01b, _Var1)
+AND
+QueryOnlyOnce("RC_DW_WC_TransformedMordusEnteredCombat")
+THEN
+NOT DB_RC_DW_WC_MordusTransform_WaitForNewStart(1);
+JumpToTurn(S_RC_DW_WC_BossFight_GiantInsect_Boss_5362d05e-1cb2-451f-9f5a-69078100a01b);
+
+IF
+CharacterDied(CHARACTERGUID_S_RC_DW_WC_BossFight_GiantInsect_Boss_5362d05e-1cb2-451f-9f5a-69078100a01b)
+THEN
+ObjectSetFlag(CHARACTERGUID_S_RC_DW_WC_BossFight_Skeleton_Mordus_d46ade3f-f786-4fcc-975c-361a106f2853, "GLO_BlockRegenAfterCombat");
+SetTag(CHARACTERGUID_S_RC_DW_WC_BossFight_Skeleton_Mordus_d46ade3f-f786-4fcc-975c-361a106f2853, "NO_ARMOR_REGEN");
+GlobalSetFlag("RC_DW_WC_BossElderIsDead");
+
+IF
+CharacterReceivedDamage(CHARACTERGUID_S_RC_DW_WC_BossFight_Skeleton_Mordus_d46ade3f-f786-4fcc-975c-361a106f2853, _, (GUIDSTRING)_Var2)
+AND
+CharacterGetHitpointsPercentage(CHARACTERGUID_S_RC_DW_WC_BossFight_Skeleton_Mordus_d46ade3f-f786-4fcc-975c-361a106f2853, _Var3)
+AND
+_Var3 <= 5
+THEN
+ObjectSetFlag(CHARACTERGUID_S_RC_DW_WC_BossFight_Skeleton_Mordus_d46ade3f-f786-4fcc-975c-361a106f2853, "GLO_BlockRegenAfterCombat");
+SetTag(CHARACTERGUID_S_RC_DW_WC_BossFight_Skeleton_Mordus_d46ade3f-f786-4fcc-975c-361a106f2853, "NO_ARMOR_REGEN");
+GlobalSetFlag("RC_DW_WC_BossElderIsDead");
+PROC_RC_DW_MordusKilledJournalUpdate(_Var2);
+SetFaction(CHARACTERGUID_S_RC_DW_WC_BossFight_Skeleton_Mordus_d46ade3f-f786-4fcc-975c-361a106f2853, "Neutral");
+
+PROC
+PROC_RC_DW_MordusKilledJournalUpdate((GUIDSTRING)_Var1)
+AND
+DB_CombatCharacters(CHARACTERGUID_S_RC_DW_WC_BossFight_Skeleton_Mordus_d46ade3f-f786-4fcc-975c-361a106f2853, _Var2)
+AND
+DB_IsPlayer(_Var3)
+AND
+DB_CombatCharacters(_Var3, _Var2)
+THEN
+PartySetFlag(_Var3, "QuestUpdate_RC_DW_WC_AtaraxianLair_KilledBoss");
+
+PROC
+PROC_RC_DW_MordusKilledJournalUpdate((CHARACTERGUID)_Var1)
+AND
+CharacterIsPlayer(_Var1, 1)
+THEN
+PartySetFlag(_Var1, "QuestUpdate_RC_DW_WC_AtaraxianLair_KilledBoss");
+
+IF
+GlobalFlagSet("RC_DW_WC_BossElderIsDead")
+AND
+DB_RC_DW_WC_PossessedSourcerer(_Var1)
+THEN
+CharacterDie(_Var1, 0, "Explode");
+
+IF
+GlobalFlagSet("RC_DW_WC_BossElderIsDead")
+THEN
+NOT DB_RC_DW_WC_BossFightOngoing(1);
+
+IF
+GlobalFlagSet("RC_DW_WC_BossElderIsDead")
+AND
+DB_RC_DW_WC_CurrentMordus(CHARACTERGUID_S_RC_DW_WC_BossFight_Skeleton_Mordus_d46ade3f-f786-4fcc-975c-361a106f2853)
+THEN
+NOT DB_RC_DW_WC_CurrentMordus(CHARACTERGUID_S_RC_DW_WC_BossFight_Skeleton_Mordus_d46ade3f-f786-4fcc-975c-361a106f2853);
+
+IF
+GlobalFlagSet("RC_DW_WC_BossElderIsDead")
+AND
+DB_RC_DW_WC_CurrentMordus(CHARACTERGUID_S_RC_DW_WC_BossFight_GiantInsect_Boss_5362d05e-1cb2-451f-9f5a-69078100a01b)
+AND
+GetPosition(CHARACTERGUID_S_RC_DW_WC_BossFight_GiantInsect_Boss_5362d05e-1cb2-451f-9f5a-69078100a01b, _Var1, _Var2, _Var3)
+THEN
+Poof(CHARACTERGUID_S_RC_DW_WC_BossFight_GiantInsect_Boss_5362d05e-1cb2-451f-9f5a-69078100a01b);
+CreateSurfaceAtPosition(_Var1, _Var2, _Var3, "SurfaceNone", 2, -1);
+TeleportToPosition(CHARACTERGUID_S_RC_DW_WC_BossFight_Skeleton_Mordus_d46ade3f-f786-4fcc-975c-361a106f2853, _Var1, _Var2, _Var3, "", 0);
+SetOnStage(CHARACTERGUID_S_RC_DW_WC_BossFight_Skeleton_Mordus_d46ade3f-f786-4fcc-975c-361a106f2853, 1);
+NOT DB_RC_DW_WC_CurrentMordus(CHARACTERGUID_S_RC_DW_WC_BossFight_GiantInsect_Boss_5362d05e-1cb2-451f-9f5a-69078100a01b);
+
+IF
+GlobalFlagSet("RC_DW_WC_BossElderIsDead")
+THEN
+SetFaction(CHARACTERGUID_S_RC_DW_WC_BossFight_Skeleton_Mordus_d46ade3f-f786-4fcc-975c-361a106f2853, "Neutral");
+SetCanJoinCombat(CHARACTERGUID_S_RC_DW_WC_BossFight_Skeleton_Mordus_d46ade3f-f786-4fcc-975c-361a106f2853, 0);
+PROC_RemoveDialogFromCharacter(CHARACTERGUID_S_RC_DW_WC_BossFight_Skeleton_Mordus_d46ade3f-f786-4fcc-975c-361a106f2853);
+SetHasDialog(CHARACTERGUID_S_RC_DW_WC_BossFight_Skeleton_Mordus_d46ade3f-f786-4fcc-975c-361a106f2853, 1);
+ProcObjectTimer(CHARACTERGUID_S_RC_DW_WC_BossFight_Skeleton_Mordus_d46ade3f-f786-4fcc-975c-361a106f2853, "RC_DW_WC_RealMordusSpawned", 500);
+PROC_RC_DW_WC_BossFight_EndQuest();
+
+PROC
+PROC_RC_DW_WC_BossFight_EndQuest()
+AND
+QRY_RC_DW_WC_GetMordusCombatID()
+AND
+DB_RC_DW_WC_MordusCombatID(_Var1)
+AND
+IsCombatActive(_Var1, 1)
+THEN
+EndCombat(_Var1);
+
+PROC
+PROC_RC_DW_WC_BossFight_EndQuest()
+AND
+DB_RC_DW_WC_MordusCombatID(_Var1)
+THEN
+NOT DB_RC_DW_WC_MordusCombatID(_Var1);
+
+PROC
+PROC_RC_DW_WC_BossFight_EndQuest()
+THEN
+ProcTriggerRegisterForPlayers(TRIGGERGUID_S_RC_DW_WC_BossFight_Area_Box_ec8d525b-6b89-4737-a069-8067ec3ec14d);
+GoalCompleted;
+
+PROC
+ProcRegionEnded("RC_Main")
+THEN
+GoalCompleted;
+
+
+EXITSECTION
+NOT DB_Dialogs(CHARACTERGUID_S_RC_DW_WC_BossFight_GiantInsect_Boss_5362d05e-1cb2-451f-9f5a-69078100a01b, "RC_DW_WC_BossFight_ElderAtaraxian");
+NOT DB_Dialogs(CHARACTERGUID_S_RC_DW_WC_BossFight_Skeleton_Mordus_d46ade3f-f786-4fcc-975c-361a106f2853, "RC_DW_WC_BossFight_Mordus");
+NOT DB_Dialogs(CHARACTERGUID_S_RC_DW_WC_BossFight_PossessedSourcerer_Mage_01_7443355b-750f-45b6-9989-f3dedcbde92d, "RC_DW_WC_BossFight_Dwarves_PossessedSourcerer");
+NOT DB_Dialogs(CHARACTERGUID_S_RC_DW_WC_BossFight_PossessedSourcerer_Warrior_01_163d7085-670d-40aa-b602-157b28cada00, "RC_DW_WC_BossFight_Humans_PossessedSourcerer");
+NOT DB_Dialogs(CHARACTERGUID_S_RC_DW_WC_BossFight_PossessedSourcerer_Ranger_02_69b23183-48f6-45cb-afea-c8c8fd4a52ee, "RC_DW_WC_BossFight_Lizards_PossessedSourcerer");
+NOT DB_RC_DW_WC_PossessedSourcerer(CHARACTERGUID_S_RC_DW_WC_BossFight_PossessedSourcerer_Mage_01_7443355b-750f-45b6-9989-f3dedcbde92d);
+NOT DB_RC_DW_WC_PossessedSourcerer(CHARACTERGUID_S_RC_DW_WC_BossFight_PossessedSourcerer_Warrior_01_163d7085-670d-40aa-b602-157b28cada00);
+NOT DB_RC_DW_WC_PossessedSourcerer(CHARACTERGUID_S_RC_DW_WC_BossFight_PossessedSourcerer_Ranger_02_69b23183-48f6-45cb-afea-c8c8fd4a52ee);
+ENDEXITSECTION
+
+ParentTargetEdge "RC_DW_WreckersCaveBase"

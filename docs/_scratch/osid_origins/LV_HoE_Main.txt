@@ -1,0 +1,677 @@
+Version 1
+SubGoalCombiner SGC_AND
+
+INITSECTION
+DB_Subregion(TRIGGERGUID_S_LV_HoE_SUB_GodRoom_001_e937bd81-971f-4ae7-9ac9-829c8b61858f, "LV_HoE_SUB_HoE", 0);
+DB_Subregion(TRIGGERGUID_S_LV_HoE_SUB_TreeArea_ebc5ba90-1adf-40c8-aa14-a2a980b99865, "LV_HoE_SUB_TreeArea", 0);
+DB_Subregion(TRIGGERGUID_S_LV_HoE_SUB_LadyVengeanceInHoE_4964e348-3891-4a7b-ba5a-06c965c6ca38, "LV_HoE_SUB_LadyVengeanceInHoE", 0);
+ProcDeclareCounter("LV_HoE_InvolvedPlayerCount");
+ProcDeclareCounter("LV_HoE_PlayersInCavern");
+DB_LV_HoE_DeadGods(CHARACTERGUID_S_LV_HoE_TirCendelius_6c131637-366e-43f1-a005-7b45786e2aa6);
+DB_LV_HoE_DeadGods(CHARACTERGUID_S_LV_HoE_Duna_aedde842-f1bc-4ec5-9c4f-897c4ed5058c);
+DB_LV_HoE_DeadGods(CHARACTERGUID_S_LV_HoE_Rhalic_8bb114d4-47de-413d-80a7-52b3f5e08b28);
+DB_LV_HoE_DeadGods(CHARACTERGUID_S_LV_HoE_Lohse_bfc36e1e-9e18-4dea-811c-3522fb87ce93);
+DB_LV_HoE_DeadGods(CHARACTERGUID_S_LV_HoE_Amadia_2bdb57d7-9a6a-44d0-a839-94ccb04a3106);
+DB_LV_HoE_DeadGods(CHARACTERGUID_S_LV_HoE_ZorlStissa_929bcf83-ac27-4007-95a3-d34edaf8bcbe);
+DB_LV_HoE_DeadGods(CHARACTERGUID_S_LV_HoE_OrcGod_ed633ff7-9e03-4fbb-af50-47196c89cc13);
+DB_Dialogs(CHARACTERGUID_S_LV_HoE_Amadia_2bdb57d7-9a6a-44d0-a839-94ccb04a3106, "LV_HoE_God_Amadia");
+DB_Dialogs(CHARACTERGUID_S_LV_HoE_Duna_aedde842-f1bc-4ec5-9c4f-897c4ed5058c, "LV_HoE_God_Duna");
+DB_Dialogs(CHARACTERGUID_S_LV_HoE_Rhalic_8bb114d4-47de-413d-80a7-52b3f5e08b28, "LV_HoE_God_Rhalic");
+DB_Dialogs(CHARACTERGUID_S_LV_HoE_TirCendelius_6c131637-366e-43f1-a005-7b45786e2aa6, "LV_HoE_God_TirCendelius");
+DB_Dialogs(CHARACTERGUID_S_LV_HoE_ZorlStissa_929bcf83-ac27-4007-95a3-d34edaf8bcbe, "LV_HoE_God_ZorlStissa");
+DB_Dialogs(CHARACTERGUID_S_LV_HoE_OrcGod_ed633ff7-9e03-4fbb-af50-47196c89cc13, "LV_HoE_God_Vrogir");
+DB_Dialogs(CHARACTERGUID_S_LV_HoE_ImpGod_bfc36e1e-9e18-4dea-811c-3522fb87ce93, "LV_HoE_God_Xantezza");
+DB_LV_HoE_GodPlatformHelpers(ITEMGUID_S_LV_HoE_GodPlatformHelper_001_2e85d53c-afb5-4ea1-8432-2b92997e2e35);
+DB_LV_HoE_GodPlatformHelpers(ITEMGUID_S_LV_HoE_GodPlatformHelper_002_7e41d042-67ac-4767-bac8-328b7c139b96);
+DB_LV_HoE_GodPlatformHelpers(ITEMGUID_S_LV_HoE_GodPlatformHelper_003_d6b35b33-24a5-4036-b6b8-7b7004314789);
+DB_LV_HoE_GodPlatformHelpers(ITEMGUID_S_LV_HoE_GodPlatformHelper_004_a9bfcbd9-48f9-4ef0-bb5a-ab4e826426c1);
+DB_LV_HoE_GodPlatformHelpers(ITEMGUID_S_LV_HoE_GodPlatformHelper_005_530d70c6-3745-40d7-8572-630ae8f069e4);
+DB_LV_HoE_GodPlatformHelpers(ITEMGUID_S_LV_HoE_GodPlatformHelper_006_345e9c66-adb2-4af3-8d96-5a7032a3543b);
+DB_LV_HoE_GodPlatformHelpers(ITEMGUID_S_LV_HoE_GodPlatformHelper_007_7c253eb4-cee5-41c8-b47e-44e712d54af6);
+DB_Dialogs(ITEMGUID_S_LV_HoE_ShipHeadInHoE_15132297-e9b6-40ea-ad96-ab6552d3b481, "LV_HoE_ShipHeadInHoE");
+ProcTriggerRegisterForPlayers(TRIGGERGUID_S_LV_HoE_PathToTreeVB_Box_001_753d2745-b70c-41d0-a9db-f109bfd40b50);
+ProcTriggerRegisterForPlayers(TRIGGERGUID_S_LV_HoE_PathToTreeVB_Box_002_275b5ad7-1539-4eb9-8694-450cfa4e5773);
+ProcTriggerRegisterForPlayers(TRIGGERGUID_S_LV_HoE_LowerDeckEmptyVB_Box_987d660e-9747-4e93-aa2a-b5309da173a9);
+ProcTriggerRegisterForPlayers(TRIGGERGUID_S_LV_HoE_MidDeckEmptyVB_Box_ca879256-c7b5-41e4-ac38-eefbb5961904);
+Proc_PyramidBlockerTriggerAdd(TRIGGERGUID_S_LV_HoE_SUB_GodRoom_001_e937bd81-971f-4ae7-9ac9-829c8b61858f);
+DB_LV_Companion_Ghosts(S_Player_RedPrince_a26a1efb-cdc8-4cf3-a7b2-b2f9544add6f, LV_RedPrince_Ghost_14a63143-b1a5-4d7d-8ed8-360f159e8d4d, "LV_RedPrince_Ghost");
+DB_LV_Companion_Ghosts(CHARACTERGUID_S_Player_Ifan_ad9a3327-4456-42a7-9bf4-7ad60cc9e54f, CHARACTERGUID_LV_Ifan_Ghost_8623e194-02bb-4fc9-855c-6f0da8a1c87a, "LV_Ifan_Ghost");
+DB_LV_Companion_Ghosts(CHARACTERGUID_S_Player_Sebille_c8d55eaf-e4eb-466a-8f0d-6a9447b5b24c, CHARACTERGUID_LV_Sebille_Ghost_fe763c4d-0687-40d8-ac0e-97a2e9b1d9b8, "LV_Sebille_Ghost");
+DB_LV_Companion_Ghosts(CHARACTERGUID_S_Player_Lohse_bb932b13-8ebf-4ab4-aac0-83e6924e4295, CHARACTERGUID_LV_Lohse_Ghost_422c4340-f8aa-44f6-9a37-1868659bc2b7, "LV_Lohse_Ghost");
+DB_LV_Companion_Ghosts(CHARACTERGUID_S_Player_Beast_f25ca124-a4d2-427b-af62-df66df41a978, CHARACTERGUID_LV_Beast_Ghost_0b6c190c-305f-4fc5-922c-99f0bb087d3a, "LV_Beast_Ghost");
+DB_LV_Companion_Ghosts(CHARACTERGUID_S_Player_Fane_02a77f1f-872b-49ca-91ab-32098c443beb, CHARACTERGUID_LV_Fane_Ghost_43619c0e-dea6-4d90-b1a7-127e7542a662, "LV_Fane_Ghost");
+
+KBSECTION
+IF
+MovieFinished("CS_LV-Battle_to_HOE")
+AND
+GlobalGetFlag("FTJ_LV_StartHoELevel", 1)
+AND
+QueryOnlyOnce("FTJ_LV_StartHoELevel_SetupAfterMovie")
+THEN
+TimerLaunch("FTJ_LV_SendPlayersToHoE", 500);
+Proc_PyramidBlockerTriggerAdd(TRIGGERGUID_S_LV_SUB_Assault_53da8e16-a89d-4b63-be70-fdf42d0a3ce2);
+
+IF
+MovieFinished("CS_LV-Battle_to_HOE")
+AND
+DB_IsPlayer(_Var1)
+THEN
+FadeToBlack(_Var1, 2, 1, "Placeholder");
+
+IF
+DB_LV_HoE_DeadGods(_Var1)
+THEN
+CharacterSetForceSynch(_Var1, 1);
+CharacterUseItem(_Var1, ITEMGUID_S_LV_HoE_SpiritTree_02bda965-05ae-4be8-8400-2c58a68490a0, "LV_HoE_Gods_SitFinished");
+ApplyStatus(_Var1, "CURSED", -1, 1);
+ProcCharacterDisableAllCrimes(_Var1);
+
+IF
+StoryEvent((CHARACTERGUID)_Var1, "LV_HoE_Gods_SitFinished")
+THEN
+CharacterSetAnimationOverride(_Var1, "Hung_04_Loop");
+CharacterSetForceSynch(_Var1, 0);
+
+IF
+GlobalFlagSet("FTJ_LV_StartHoELevel")
+THEN
+ActivatePersistentLevelTemplate(ce8c7fa1-9f7e-4d22-8902-e0535f0f8f85);
+ItemSetCanInteract(ITEMGUID_S_LV_HoE_SpiritTree_02bda965-05ae-4be8-8400-2c58a68490a0, 0);
+
+IF
+GlobalFlagSet("FTJ_LV_StartHoELevel")
+AND
+DB_LV_HoE_DeadGods(_Var1)
+THEN
+CharacterSetForceSynch(_Var1, 1);
+SetVarInteger(_Var1, "bool_CanCower", 0);
+SetVarInteger(_Var1, "bool_CanFleeWhileCowering", 0);
+SetVarInteger(_Var1, "FleeFromDangerousSurface", 0);
+
+IF
+GlobalFlagSet("FTJ_LV_StartHoELevel")
+AND
+DB_IsPlayer(_Var1)
+THEN
+ProcForceStopDialog(_Var1);
+CharacterRemoveSummons(_Var1, 0);
+ObjectSetFlag(_Var1, "QuestAdd_LV_HoE_Main");
+ObjectSetFlag(_Var1, "QuestUpdate_LV_HoE_Main_Start");
+Proc_CharacterFullRestore(_Var1);
+Proc_PyramidBlockerTriggerAdd(TRIGGERGUID_S_LV_SUB_LowerDeck_fa227b55-06d3-4204-8b3b-abe7d2d51aed);
+Proc_PyramidBlockerTriggerAdd(TRIGGERGUID_S_LV_HoE_SUB_LadyVengeance_Cabin_467af4b3-5383-447c-a53b-5c4c5e87ae9b);
+Proc_PyramidBlockerTriggerAdd(TRIGGERGUID_S_LV_SUB_DallisSecretRoom_608e1902-0ed8-4aa6-99b9-fec2d1e518cd);
+Proc_PyramidBlockerTriggerAdd(TRIGGERGUID_S_LV_SUB_Assault_53da8e16-a89d-4b63-be70-fdf42d0a3ce2);
+
+IF
+GlobalFlagSet("FTJ_LV_StartHoELevel")
+THEN
+PROC_RemoveDialogFromCharacter(CHARACTERGUID_S_GLO_River_f4931ebe-10b0-43c4-9182-640cf052717e);
+DB_Dialogs(CHARACTERGUID_S_GLO_River_f4931ebe-10b0-43c4-9182-640cf052717e, "LV_HoE_River");
+CreateSurface(TRIGGERGUID_S_LV_SUB_LowerDeck_fa227b55-06d3-4204-8b3b-abe7d2d51aed, "SurfaceNone", 150, 1);
+CreateSurface(TRIGGERGUID_S_LV_HoE_SUB_LadyVengeance_Cabin_467af4b3-5383-447c-a53b-5c4c5e87ae9b, "SurfaceNone", 150, 1);
+CreateSurface(TRIGGERGUID_S_LV_MagisterPrisonerWander_Poly_8b97a309-6922-4948-9669-0ef62b319083, "SurfaceNone", 150, 1);
+
+IF
+DB_LV_Companion_Ghosts(_, _Var2, _)
+THEN
+SetOnStage(_Var2, 0);
+
+IF
+GlobalFlagSet("FTJ_LV_StartHoELevel")
+AND
+DB_LV_Companion_Ghosts(_Var1, _Var2, _Var3)
+AND NOT
+DB_IsPlayer(_Var1)
+AND
+GetPosition(_Var2, _Var4, _Var5, _Var6)
+THEN
+TeleportTo(_Var1, TRIGGERGUID_S_LV_DallisStart_Point_72a8b763-8201-44f5-b3c5-af773e267bf7);
+SetOnStage(_Var1, 1);
+DB_Ghosts(_Var1, _Var2, _Var3);
+CharacterSetForceSynch(_Var1, 1);
+CharacterDie(_Var1, 0, "DoT");
+NOT DB_LV_Companion_Ghosts(_Var1, _Var2, _Var3);
+DB_LV_HoE_DiedOnLV(_Var1);
+DB_LV_CompanionGhosts(_Var2, _Var1);
+DB_LV_CompanionGhostOriginalPosition(_Var2, _Var4, _Var5, _Var6);
+Proc_OriginLeft(_Var1, "_DiedInLV");
+
+IF
+DB_Dead(_Var1)
+AND
+DB_LV_CompanionGhosts(_Var2, _Var1)
+AND
+DB_LV_CompanionGhostOriginalPosition(_Var2, _Var3, _Var4, _Var5)
+THEN
+NOT DB_LV_CompanionGhostOriginalPosition(_Var2, _Var3, _Var4, _Var5);
+TeleportToPosition(_Var2, _Var3, _Var4, _Var5, "", 0);
+
+PROC
+ProcRegionEnded("LV_HoE_Main")
+AND
+DB_LV_CompanionGhosts(_Var1, _Var2)
+THEN
+CharacterSetForceSynch(_Var2, 0);
+
+PROC
+ProcRegionEnded("LV_HoE_Main")
+AND
+DB_LV_CompanionGhosts(_Var1, _Var2)
+AND NOT
+DB_GoneGhosts(_Var1)
+THEN
+Proc_GhostHacks_DisableGlobalNPCGhost(_Var1);
+
+IF
+GlobalFlagSet("FTJ_LV_StartHoELevel")
+THEN
+PROC_GLO_PartyMembers_TempRemoveAll(1);
+
+IF
+GlobalFlagSet("FTJ_LV_StartHoELevel")
+AND
+DB_Avatars(_Var1)
+THEN
+CharacterSetReadyCheckBlocked(_Var1, 1);
+DB_GLO_HoERespawnPoint(_Var1, TRIGGERGUID_S_LV_HoE_GodTreeStart_Point_76175c61-128a-45fd-b486-9a6ffbea1110);
+PlayEffect(_Var1, "RS3_FX_GP_Combat_CameraShake_A");
+PlayEffect(_Var1, "RS3_FX_GP_ScriptedEvent_HOE_Summoning_01");
+TeleportTo(_Var1, TRIGGERGUID_S_LV_HoE_GodTreeStart_Point_76175c61-128a-45fd-b486-9a6ffbea1110, "", 0);
+
+IF
+GlobalFlagSet("FTJ_LV_StartHoELevel")
+AND
+DB_IsPlayer(_Var1)
+AND
+DB_Avatars(_Var1)
+THEN
+ProcIncreaseCounter("LV_HoE_InvolvedPlayerCount", 1);
+ProcStartMovie("CS_LV-Battle_to_HOE");
+
+IF
+GlobalFlagSet("FTJ_LV_StartHoELevel")
+THEN
+Proc_LV_HoE_SendNonAvatarUsersToHoE();
+
+PROC
+Proc_LV_HoE_SendNonAvatarUsersToHoE()
+AND
+DB_IsPlayer(_Var1)
+AND NOT
+DB_Avatars(_Var1)
+THEN
+TeleportTo(_Var1, TRIGGERGUID_S_LV_HoE_Cave_Point_001_a8945040-2fd9-4c19-bffe-7972fb84eb83);
+DB_GLO_HoERespawnPoint(_Var1, TRIGGERGUID_S_LV_HoE_Cave_Point_001_a8945040-2fd9-4c19-bffe-7972fb84eb83);
+
+IF
+DB_GlobalCounter("LV_HoE_PlayersInCavern", _Var1)
+AND
+DB_GlobalCounter("LV_HoE_InvolvedPlayerCount", _Var2)
+AND
+_Var1 != 0
+AND
+_Var1 >= _Var2
+THEN
+GlobalSetFlag("LV_HoE_CanLeaveHoE");
+
+IF
+CharacterEnteredTrigger((CHARACTERGUID)_Var1, TRIGGERGUID_S_LV_HoE_SUB_TreeArea_ebc5ba90-1adf-40c8-aa14-a2a980b99865)
+AND
+QueryOnlyOnce("LV_HoE_VB_SpiritTree_Once")
+THEN
+StartVoiceBark("LV_HoE_VB_SpiritTree", _Var1);
+ObjectSetFlag(_Var1, "QuestUpdate_LV_HoE_Main_God_Hanging");
+
+IF
+DialogEnded((STRING)_Var1, (INTEGER)_Var2)
+AND
+DB_LV_HoE_DeadGods(_Var3)
+AND
+DB_Dialogs(_Var3, _Var1)
+AND
+DialogGetInvolvedPlayer(_Var2, 1, _Var4)
+AND
+ObjectGetFlag(_Var3, "LV_HoE_GodBlessed", 0)
+THEN
+ObjectSetFlag(_Var4, "QuestUpdate_LV_HoE_Main_God_Cursed");
+
+IF
+CharacterUsedSkillOnTarget((CHARACTERGUID)_Var1, (CHARACTERGUID)_Var2, "Target_Bless", _, _)
+AND
+DB_LV_HoE_DeadGods(_Var2)
+THEN
+RemoveStatus(_Var2, "CURSED");
+ObjectSetFlag(_Var2, "LV_HoE_GodBlessed");
+PROC_LoopEffect("RS3_FX_GP_Status_Blessed_01", _Var2, "LV_HoE_GodBlessed_LoopFx", "LV_HoE_Main", "");
+Proc_RC_FTJ_Godwoken_SetUpdate(_Var1, "QuestUpdate_FTJ_Godwoken_GodHanged");
+DB_LV_HoE_GodBlessed_StartDialog(_Var1, _Var2);
+ProcObjectTimer(_Var2, "LV_HoE_GodBlessed_StartDialog_Timer", 1300);
+ProcObjectTimer(_Var1, "LV_HoE_GodBlessed_StartDialog_Timer", 2000);
+
+PROC
+Proc_RC_FTJ_Godwoken_SetUpdate((CHARACTERGUID)_Var1, (STRING)_Var2)
+AND
+_Var1 != CHARACTERGUID_S_Player_Lohse_bb932b13-8ebf-4ab4-aac0-83e6924e4295
+THEN
+ObjectSetFlag(_Var1, _Var2);
+
+PROC
+Proc_RC_FTJ_Godwoken_SetUpdate(CHARACTERGUID_S_Player_Lohse_bb932b13-8ebf-4ab4-aac0-83e6924e4295, (STRING)_Var1)
+AND
+StringConcatenate(_Var1, "_Lohse", _Var2)
+THEN
+ObjectSetFlag(CHARACTERGUID_S_Player_Lohse_bb932b13-8ebf-4ab4-aac0-83e6924e4295, _Var2);
+
+PROC
+ProcObjectTimerFinished((GUIDSTRING)_Var1, "LV_HoE_GodBlessed_StartDialog_Timer")
+THEN
+PROC_StopLoopEffect(_Var1, "LV_HoE_GodBlessed_LoopFx");
+
+PROC
+ProcObjectTimerFinished((CHARACTERGUID)_Var1, "LV_HoE_GodBlessed_StartDialog_Timer")
+AND
+DB_LV_HoE_GodBlessed_StartDialog(_Var1, _Var2)
+AND
+IsTagged(_Var1, "LOHSE", 0)
+AND
+QRY_IsAvailableTo(_Var1, _Var2)
+AND
+DB_Dialogs(_Var2, _Var3)
+THEN
+Proc_StartDialog(0, _Var3, _Var2, _Var1);
+
+PROC
+ProcObjectTimerFinished((CHARACTERGUID)_Var1, "LV_HoE_GodBlessed_StartDialog_Timer")
+AND
+DB_LV_HoE_GodBlessed_StartDialog(_Var1, _Var2)
+THEN
+NOT DB_LV_HoE_GodBlessed_StartDialog(_Var1, _Var2);
+
+IF
+CharacterUsedSkillOnTarget((CHARACTERGUID)_Var1, (CHARACTERGUID)_Var2, "Target_Bless", _, _)
+AND
+IsTagged(_Var1, "LOHSE", 1)
+AND
+DB_LV_HoE_DeadGods(_Var2)
+AND
+GetPosition(TRIGGERGUID_S_LV_HoE_Lohse_Point_97ccd9c3-dc9b-4d4e-bc58-ea7ee66721ed, _Var5, _Var6, _Var7)
+AND
+CharacterCreateAtPosition(_Var5, _Var6, _Var7, "QUEST_HoE_Lohse_e4305b97-4ec2-43c2-b2a9-994b1df35636", 1, _Var8)
+THEN
+RemoveStatus(_Var2, "CURSED");
+ProcSetInvulnerable(_Var8, 1);
+CharacterSetImmortal(_Var8, 1);
+ProcCharacterDisableAllCrimes(_Var8);
+PlayEffect(_Var8, "RS3_FX_GP_ScriptedEvent_HOE_Summoning_01");
+CharacterTransformAppearanceTo(_Var8, _Var1, 1, 1);
+ProcObjectTimer(_Var1, "LV_HoE_God_Lohse_Dialog_Timer", 2250);
+TimerLaunch("LV_HoE_Lohse_SetMaterial", 100);
+DB_LV_HoE_LohseGod(_Var8);
+
+IF
+TimerFinished("LV_HoE_Lohse_SetMaterial")
+AND
+DB_LV_HoE_LohseGod(_Var1)
+THEN
+SetStoryEvent(_Var1, "SetMaterialEvent");
+
+PROC
+ProcObjectTimerFinished((CHARACTERGUID)_Var1, "LV_HoE_God_Lohse_Dialog_Timer")
+AND
+DB_LV_HoE_LohseGod(_Var2)
+THEN
+ProcForceStopDialog(_Var1);
+DB_Dialogs(_Var2, "LV_HoE_God_Lohse");
+Proc_StartDialog(0, "LV_HoE_God_Lohse", _Var2, _Var1);
+
+IF
+DialogEnded("LV_HoE_God_Lohse", (INTEGER)_Var1)
+AND
+DialogGetInvolvedPlayer(_Var1, 1, _Var2)
+AND
+ObjectGetFlag(_Var2, "LV_HoE_SendPlayerToLadyVengeance", 1)
+AND
+DB_LV_HoE_LohseGod(_Var3)
+AND
+GetPosition(_Var3, _Var4, _Var5, _Var6)
+THEN
+Proc_LV_HoE_SendPlayerToLadyVengeance(_Var2);
+PlayEffectAtPosition("RS3_FX_GP_ScriptedEvent_HOE_Summoning_01", _Var4, _Var5, _Var6);
+SetOnStage(_Var3, 0);
+PROC_RemoveDialogFromCharacter(_Var3);
+
+IF
+DialogEnded((STRING)_Var1, (INTEGER)_Var2)
+AND
+DB_LV_HoE_DeadGods(_Var3)
+AND
+DB_Dialogs(_Var3, _Var1)
+AND
+DialogGetInvolvedPlayer(_Var2, 1, _Var4)
+AND
+ObjectGetFlag(_Var4, "LV_HoE_SendPlayerToLadyVengeance", 1)
+THEN
+Proc_LV_HoE_SendPlayerToLadyVengeance(_Var4);
+
+PROC
+Proc_LV_HoE_SendPlayerToLadyVengeance((CHARACTERGUID)_Var1)
+THEN
+PlayEffect(_Var1, "RS3_FX_GP_Combat_CameraShake_A");
+CharacterFreeze(_Var1);
+CharacterSetImmortal(_Var1, 1);
+ProcSetInvulnerable(_Var1, 1);
+ProcObjectTimer(_Var1, "LV_HoE_SendPlayerToLadyVengeance_Timer", 2550);
+PlayAnimation(_Var1, "stillblind");
+PlayEffect(_Var1, "RS3_FX_GP_ScriptedEvent_HOE_Summoning_01");
+FadeToBlack(_Var1, 2.5, 0, "Placeholder");
+
+PROC
+ProcObjectTimerFinished((CHARACTERGUID)_Var1, "LV_HoE_SendPlayerToLadyVengeance_Timer")
+THEN
+CharacterSetReadyCheckBlocked(_Var1, 0);
+ObjectSetFlag(_Var1, "QuestUpdate_LV_HoE_Main_ReturnToLV");
+ProcIncreaseCounter("LV_HoE_PlayersInCavern", 1);
+CharacterDetachFromGroup(_Var1);
+TeleportTo(_Var1, TRIGGERGUID_S_LV_HoE_Cave_Point_001_a8945040-2fd9-4c19-bffe-7972fb84eb83, "", 0);
+PROC_GLO_PartyMembers_TempRestore(_Var1);
+CharacterUnfreeze(_Var1);
+CharacterSetImmortal(_Var1, 0);
+ProcSetInvulnerable(_Var1, 0);
+FadeToBlack(_Var1, 2.5, 1, "Placeholder");
+PlayEffect(_Var1, "RS3_FX_GP_ScriptedEvent_HOE_Summoning_01");
+Proc_FixatePartyMembers(_Var1);
+GlobalSetFlag("GLO_Companions_Fixated");
+UserSetFlag(_Var1, "QuestUpdate_CORE_Chapter3_LV_Hoe");
+
+PROC
+Proc_FixatePartyMembers((CHARACTERGUID)_Var1)
+AND
+DB_CompanionAvatarBond(_Var2, _Var1)
+AND
+DB_Companion_FixatedFlag(_Var2, _Var3)
+THEN
+ObjectSetFlag(_Var1, _Var3);
+
+PROC
+Proc_LV_HoE_SendPlayerToLadyVengeance((CHARACTERGUID)_Var1)
+AND
+DB_IsPlayer(_Var1)
+THEN
+DB_GLO_HoERespawnPoint(_Var1, TRIGGERGUID_S_LV_HoE_Cave_Point_001_a8945040-2fd9-4c19-bffe-7972fb84eb83);
+
+PROC
+Proc_LV_HoE_SendPlayerToLadyVengeance((CHARACTERGUID)_Var1)
+AND
+QueryOnlyOnce("LV_HoE_VB_ReturnedToLadyVengeance_Once")
+THEN
+ProcObjectTimer(_Var1, "LV_HoE_VB_ReturnedToLadyVengeance_Timer", 6500);
+
+PROC
+ProcObjectTimerFinished((CHARACTERGUID)_Var1, "LV_HoE_VB_ReturnedToLadyVengeance_Timer")
+THEN
+StartVoiceBark("LV_HoE_VB_ReturnedToLadyVengeance", _Var1);
+
+IF
+CharacterEnteredTrigger((CHARACTERGUID)_Var1, TRIGGERGUID_S_LV_HoE_SUB_LadyVengeance_Cabin_467af4b3-5383-447c-a53b-5c4c5e87ae9b)
+AND
+GlobalGetFlag("FTJ_LV_StartHoELevel", 1)
+THEN
+ObjectSetFlag(_Var1, "QuestUpdate_LV_HoE_Main_EmptyLV");
+
+IF
+GlobalFlagSet("LV_HoE_CanLeaveHoE")
+AND
+DB_IsPlayer(_Var1)
+AND
+IsTagged(_Var1, "AVATAR", 1)
+THEN
+ProcDefineReflectionDialog("LV_HoE_RD_HuntingTheGods", _Var1);
+
+IF
+GlobalFlagSet("LV_HoE_CanLeaveHoE")
+AND
+DB_LV_HoE_DeadGods(_Var1)
+THEN
+CharacterSetForceSynch(_Var1, 0);
+
+IF
+CharacterEnteredTrigger((CHARACTERGUID)_Var1, TRIGGERGUID_S_LV_HoE_LowerDeckEmptyVB_Box_987d660e-9747-4e93-aa2a-b5309da173a9)
+AND
+GlobalGetFlag("FTJ_LV_StartHoELevel", 1)
+AND
+QueryOnlyOnce("LV_HoE_LowerDeckEmptyVB_Box_Once")
+THEN
+StartVoiceBark("LV_HoE_VB_LowerDeckEmpty", _Var1);
+ProcTriggerUnregisterForPlayers(TRIGGERGUID_S_LV_HoE_LowerDeckEmptyVB_Box_987d660e-9747-4e93-aa2a-b5309da173a9);
+
+IF
+CharacterEnteredTrigger((CHARACTERGUID)_Var1, TRIGGERGUID_S_LV_HoE_MidDeckEmptyVB_Box_ca879256-c7b5-41e4-ac38-eefbb5961904)
+AND
+GlobalGetFlag("FTJ_LV_StartHoELevel", 1)
+AND
+QueryOnlyOnce("LV_HoE_MidDeckEmptyVB_Box_Once")
+THEN
+StartVoiceBark("LV_HoE_VB_MidDeckEmpty", _Var1);
+ProcTriggerUnregisterForPlayers(TRIGGERGUID_S_LV_HoE_MidDeckEmptyVB_Box_ca879256-c7b5-41e4-ac38-eefbb5961904);
+
+IF
+TimerFinished("FTJ_LV_SendPlayersToHoE")
+AND
+DB_IsPlayer(_Var1)
+THEN
+PlayEffect(_Var1, "RS3_FX_GP_ScriptedEvent_HOE_Summoning_01");
+
+IF
+TimerFinished("FTJ_LV_SendPlayersToHoE")
+THEN
+TimerLaunch("FTJ_LV_SendPlayersToHoE_Autosave", 1000);
+
+IF
+TimerFinished("FTJ_LV_SendPlayersToHoE_Autosave")
+THEN
+AutoSave();
+
+IF
+TimerFinished("FTJ_LV_SendPlayersToHoE")
+AND
+DB_IsPlayer(_Var1)
+AND
+IsTagged(_Var1, "AVATAR", 1)
+THEN
+ProcObjectTimer(_Var1, "LV_HoE_DoStartDialog", 1500);
+
+PROC
+ProcObjectTimerFinished((CHARACTERGUID)_Var1, "LV_HoE_DoStartDialog")
+THEN
+Proc_StartDialog(0, "LV_HoE_PlayerEnteredHoE", _Var1);
+
+IF
+CharacterEnteredTrigger((CHARACTERGUID)_Var1, TRIGGERGUID_S_LV_HoE_PathToTreeVB_Box_001_753d2745-b70c-41d0-a9db-f109bfd40b50)
+AND
+QueryOnlyOnce("LV_HoE_DoStartVB_Once")
+THEN
+StartVoiceBark("LV_HoE_VB_EnteredHoE", _Var1);
+ProcTriggerUnregisterForPlayers(TRIGGERGUID_S_LV_HoE_PathToTreeVB_Box_001_753d2745-b70c-41d0-a9db-f109bfd40b50);
+
+IF
+CharacterEnteredTrigger((CHARACTERGUID)_Var1, TRIGGERGUID_S_LV_HoE_PathToTreeVB_Box_002_275b5ad7-1539-4eb9-8694-450cfa4e5773)
+AND NOT
+DB_OnlyOnce("LV_HoE_VB_SpiritTree_Once")
+AND
+QueryOnlyOnce("LV_HoE_VB_PathToTree_002_once")
+THEN
+StartVoiceBark("LV_HoE_VB_PathToTree_002", _Var1);
+ProcTriggerUnregisterForPlayers(TRIGGERGUID_S_LV_HoE_PathToTreeVB_Box_002_275b5ad7-1539-4eb9-8694-450cfa4e5773);
+
+IF
+StoryEvent((CHARACTERGUID)_Var1, "FTJ_LV_RiverStartDialog")
+AND
+GlobalGetFlag("FTJ_LV_StartHoELevel", 1)
+THEN
+Proc_StartDialog(0, "LV_HoE_River", CHARACTERGUID_S_GLO_River_f4931ebe-10b0-43c4-9182-640cf052717e, _Var1);
+
+IF
+DialogEnded("LV_HoE_River", (INTEGER)_Var1)
+AND
+GlobalGetFlag("LV_HoE_StartAct2", 1)
+AND
+DB_DialogPlayers(_Var1, _Var2, _)
+THEN
+GlobalClearFlag("LV_HoE_StartAct2");
+ReadyCheckStart(_Var2, "LV_HoE_StartAct2");
+
+IF
+ReadyCheckPassed("LV_HoE_StartAct2")
+THEN
+Proc_StartAct2();
+
+IF
+ReadyCheckFailed("LV_HoE_StartAct2")
+THEN
+GlobalClearFlag("LV_HoE_RiverCastLeaveSpell");
+CharacterSetAnimationOverride(CHARACTERGUID_S_GLO_River_f4931ebe-10b0-43c4-9182-640cf052717e, "");
+
+PROC
+Proc_StartAct2()
+AND
+DB_OriginRecruitmentLocation_Region(_, _Var2, _, _)
+AND NOT
+DB_IsPlayer(_Var2)
+THEN
+Proc_StartAct2_CleanUp(_Var2);
+
+PROC
+Proc_StartAct2()
+AND
+DB_IsPlayer(_Var1)
+THEN
+Proc_StartAct2_CleanUp(_Var1);
+
+PROC
+Proc_StartAct2_CleanUp((CHARACTERGUID)_Var1)
+THEN
+ObjectSetFlag(_Var1, "QuestUpdate_LV_HoE_Main_Meistr");
+ObjectSetFlag(_Var1, "QuestUpdate_LV_HoE_Main_EndAct");
+PROC_GLO_LeaveHallOfEchoes(_Var1);
+CharacterSetRelationIndivFactionToFaction(_Var1, "RC_Magister", 50);
+CharacterSetRelationFactionToIndivFaction("RC_Magister", _Var1, 50);
+
+PROC
+Proc_StartAct2_CleanUp((CHARACTERGUID)_Var1)
+AND
+DB_IsPlayer(_Var1)
+THEN
+Proc_ShakeCameraForTime(_Var1, 2200);
+
+PROC
+Proc_StartAct2()
+THEN
+TimerLaunch("LV_HoE_StartAct2FadeOut_Timer", 2200);
+
+PROC
+Proc_StartAct2()
+AND
+DB_IsPlayer(_Var1)
+THEN
+CharacterFreeze(_Var1);
+FadeToBlack(_Var1, 2, 0, "Placeholder");
+
+IF
+GlobalFlagSet("FTJ_LV_StartHoELevel")
+THEN
+Proc_PyramidGlobalBlockerOn();
+
+PROC
+Proc_StartAct2()
+THEN
+Proc_PyramidGlobalBlockerOff();
+
+IF
+TimerFinished("LV_HoE_StartAct2FadeOut_Timer")
+THEN
+CharacterSetAnimationOverride(CHARACTERGUID_S_GLO_River_f4931ebe-10b0-43c4-9182-640cf052717e, "");
+
+IF
+TimerFinished("LV_HoE_StartAct2FadeOut_Timer")
+AND
+DB_IsPlayer(_Var1)
+THEN
+CharacterUnfreeze(_Var1);
+ProcForceStopDialog(_Var1);
+
+IF
+TimerFinished("LV_HoE_StartAct2FadeOut_Timer")
+THEN
+DB_PlayRC_MainMovie(1);
+CharacterTeleportPartiesToTriggerWithMovie(TRIGGERGUID_StartPoint_000_e30fe0c4-9b40-4040-9670-e8edd53a34ce, "", "CS_BackToRC");
+
+IF
+RegionEnded("LV_HoE_Main")
+AND
+DB_GLO_HoERespawnPoint(_Var1, _)
+THEN
+PROC_GLO_LeaveHallOfEchoes(_Var1);
+
+IF
+GlobalFlagSet("FTJ_LV_BeginLVAssault")
+AND
+DB_OriginRecruitmentLocation_Region(_, _Var2, _, _)
+AND NOT
+DB_IsPlayer(_Var2)
+THEN
+SetOnStage(_Var2, 0);
+
+PROC
+Proc_StartAct2()
+AND
+DB_OriginRecruitmentLocation_Region(_, _Var2, _, _)
+THEN
+SetOnStage(_Var2, 1);
+
+PROC
+ProcRegionEnded("LV_HoE_Main")
+AND
+DB_GLO_HoERespawnPoint(_Var1, _Var2)
+THEN
+PROC_GLO_LeaveHallOfEchoes(_Var1);
+
+IF
+SavegameLoaded((INTEGER)_Var1, (INTEGER)_Var2, (INTEGER)_Var3, (INTEGER)_Var4)
+AND
+QRY_VersionIsOlderThan(_Var1, _Var2, _Var3, _Var4, 3, 6, 4, 0)
+AND
+DB_GlobalFlag("FTJ_LV_StartHoELevel")
+AND
+ObjectIsInTrigger(S_GLO_River_f4931ebe-10b0-43c4-9182-640cf052717e, S_LV_SUB_Assault_53da8e16-a89d-4b63-be70-fdf42d0a3ce2, 1)
+THEN
+TeleportTo(S_GLO_River_f4931ebe-10b0-43c4-9182-640cf052717e, S_LV_HoE_RiverHoEDefault_Point_39e8ff8b-d350-40a5-a415-7541149771e4);
+
+IF
+GlobalFlagSet("FTJ_LV_StartHoELevel")
+THEN
+CharacterSetForceUpdate(S_GLO_River_f4931ebe-10b0-43c4-9182-640cf052717e, 1);
+
+PROC
+ProcRegionEnded("LV_HoE_Main")
+THEN
+CharacterSetForceUpdate(S_GLO_River_f4931ebe-10b0-43c4-9182-640cf052717e, 0);
+
+PROC
+ProcRegionEnded("LV_HoE_Main")
+THEN
+GoalCompleted;
+
+IF
+TextEventSet("LV_HoE_SendPlayerToLadyVengeance")
+AND
+DB_IsPlayer(_Var1)
+THEN
+Proc_LV_HoE_SendPlayerToLadyVengeance(_Var1);
+
+
+EXITSECTION
+ENDEXITSECTION
+
+ParentTargetEdge "LadyVengeance"

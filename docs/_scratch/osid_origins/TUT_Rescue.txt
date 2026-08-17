@@ -1,0 +1,23 @@
+Version 1
+SubGoalCombiner SGC_AND
+
+INITSECTION
+
+KBSECTION
+IF
+TextEventSet("TUT_OriginEscape")
+THEN
+TimerLaunch("TUT_BreakCrate", 0);
+
+IF
+TimerFinished("TUT_BreakCrate")
+AND
+DB_CurrentLevel("TUT_Tutorial_A")
+THEN
+GoalCompleted;
+
+
+EXITSECTION
+ENDEXITSECTION
+
+ParentTargetEdge "Tutorial_PrisonShip"

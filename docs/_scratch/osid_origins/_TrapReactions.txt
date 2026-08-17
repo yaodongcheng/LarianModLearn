@@ -1,0 +1,64 @@
+Version 1
+SubGoalCombiner SGC_AND
+
+INITSECTION
+DB_Event2DisplayText("HiddenPerceptionReveal", "GEN_AD_HiddenPerceptionReveal");
+DB_Event2DisplayText("HiddenTrapReveal", "GEN_AD_HiddenTrapReveal");
+DB_Event2DisplayText("FakePerceptionReveal", "GEN_AD_FakePerceptionReveal");
+DB_Event2DisplayText("AmbushReveal", "GLO_AD_AmbushDetected");
+
+KBSECTION
+IF
+CharacterItemEvent((CHARACTERGUID)_Var1, (ITEMGUID)_Var2, (STRING)_Var3)
+AND NOT
+DB_BlockTextSpam(_Var1)
+AND
+DB_CustomEvent2DisplayText_Item(_Var2, _Var3, _Var4)
+AND
+DB_IsPlayer(_Var1)
+AND
+QRY_SpeakerIsAvailable(_Var1)
+THEN
+Proc_StartDialog(1, _Var4, _Var1);
+DB_BlockTextSpam(_Var1);
+ProcObjectTimer(_Var1, "BlockTextSpam", 5000);
+
+IF
+StoryEvent((CHARACTERGUID)_Var1, (STRING)_Var2)
+AND NOT
+DB_BlockTextSpam(_Var1)
+AND
+DB_IsPlayer(_Var1)
+AND
+DB_CustomEvent2DisplayText(_Var1, _Var2, _Var3)
+AND
+QRY_SpeakerIsAvailable(_Var1)
+THEN
+Proc_StartDialog(1, _Var3, _Var1);
+DB_BlockTextSpam(_Var1);
+ProcObjectTimer(_Var1, "BlockTextSpam", 5000);
+
+IF
+StoryEvent((CHARACTERGUID)_Var1, (STRING)_Var2)
+AND NOT
+DB_BlockTextSpam(_Var1)
+AND
+DB_IsPlayer(_Var1)
+AND
+DB_Event2DisplayText(_Var2, _Var3)
+AND
+QRY_SpeakerIsAvailable(_Var1)
+THEN
+Proc_StartDialog(1, _Var3, _Var1);
+DB_BlockTextSpam(_Var1);
+ProcObjectTimer(_Var1, "BlockTextSpam", 5000);
+
+PROC
+ProcObjectTimerFinished((CHARACTERGUID)_Var1, "BlockTextSpam")
+THEN
+NOT DB_BlockTextSpam(_Var1);
+
+
+EXITSECTION
+ENDEXITSECTION
+

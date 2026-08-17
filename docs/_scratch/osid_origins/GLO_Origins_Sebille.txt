@@ -1,0 +1,841 @@
+Version 1
+SubGoalCombiner SGC_AND
+
+INITSECTION
+SetOnStage(ITEMGUID_S_FTJ_SebilleNeedle_818d574a-5cad-4401-a574-4bff60ab7026, 0);
+DB_DoNotFace(CHARACTERGUID_S_Player_Sebille_c8d55eaf-e4eb-466a-8f0d-6a9447b5b24c);
+DB_OriginMomentTag_HighPriority("RC_MIL_Roost", "SEBILLE", "RC_MIL_Roost_COM_Sebille");
+DB_OriginMomentTag_3SP_HighPriority("RC_MIL_RoostWithSaheila", "SEBILLE", "RC_MIL_RoostWithSaheila_COM_Sebille");
+DB_OriginMomentTag("RC_MIL_TovahNoSaheila", "SEBILLE", "RC_MIL_TovahNoSaheila_COM_Sebille");
+DB_OriginMomentTag("CoS_Temples_Scion", "SEBILLE", "CoS_Temples_Scion_COM_Sebille");
+DB_OriginMomentTag("CoS_Temples_Saheila", "SEBILLE", "CoS_Temples_Saheila_COM_Sebille");
+DB_OriginMomentTag("CoS_Temples_Saheila", "SHAPESHIFT_SEBILLE", "CoS_Temples_Saheila_COM_Sebille");
+DB_OriginMomentTag("ARX_CathedralDistrict_Saheila", "SEBILLE", "ARX_CathedralDistrict_Saheila_COM_Sebille");
+DB_OriginMomentTag("ARX_CathedralDistrict_Saheila", "SHAPESHIFT_SEBILLE", "ARX_CathedralDistrict_Saheila_COM_Sebille");
+DB_OriginMomentTag_HighPriority("CoS_Temples_BlackRingHub_SpyMaster", "SEBILLE", "CoS_Temples_SpyMaster_SebilleWithAvatar");
+DB_GLO_SebilleSongLoopEffects("GLO_Sebille_SingSong_Master", "RS3_FX_GP_ScriptedEvent_Sebille_MasterSing_01", "GLO_Sebille_SingSong_Master");
+DB_GLO_SebilleSongLoopEffects("GLO_Sebille_SingSong", "RS3_FX_GP_ScriptedEvent_Sebille_AvatarSing_01", "GLO_Sebille_SingSong");
+TriggerRegisterForCharacter(TRIGGERGUID_S_RC_SebilleNotReady_c1ddaeba-518f-4552-8194-57eb08795d32, CHARACTERGUID_S_Player_Sebille_c8d55eaf-e4eb-466a-8f0d-6a9447b5b24c);
+
+KBSECTION
+IF
+RegionStarted("FJ_FortJoy_Main")
+AND
+QueryOnlyOnce("FTJ_SebilleInit")
+THEN
+SetOnStage(ITEMGUID_S_FTJ_StingtailLeg_f16f7da1-c4d9-4cc5-b1ad-9c2e0349485d, 0);
+DB_DialogMoneyTransfer(1, "FTJ_GhettoBoss", 50);
+SetOnStage(S_FTJ_GhettoBossHand_ae60cc1b-8cf0-4c62-bc59-46bac6e0ec8c, 0);
+SetOnStage(S_FTJ_SW_IfanHandlerHeart_c3273eac-1093-4573-9d46-73d0445d0c74, 0);
+
+IF
+DialogStarted("Sebille_Recruitment", _)
+THEN
+NOT DB_DoNotFace(CHARACTERGUID_S_Player_Sebille_c8d55eaf-e4eb-466a-8f0d-6a9447b5b24c);
+
+IF
+ObjectFlagSet("FTJ_SebilleRecruit_MoveToPlayer", (CHARACTERGUID)_Var1, _)
+THEN
+CharacterMoveTo(CHARACTERGUID_S_Player_Sebille_c8d55eaf-e4eb-466a-8f0d-6a9447b5b24c, _Var1, 1, "FTJ_SetHostileAnimOverride", 1);
+
+IF
+DialogEnded("Sebille_Recruitment", (INTEGER)_Var1)
+THEN
+ProcObjectTimerCancel(CHARACTERGUID_S_Player_Sebille_c8d55eaf-e4eb-466a-8f0d-6a9447b5b24c, "FTJ_SetHostileAnimOverride");
+CharacterPurgeQueue(CHARACTERGUID_S_Player_Sebille_c8d55eaf-e4eb-466a-8f0d-6a9447b5b24c);
+CharacterSetAnimationOverride(CHARACTERGUID_S_Player_Sebille_c8d55eaf-e4eb-466a-8f0d-6a9447b5b24c, "");
+
+IF
+DialogEnded("Sebille_Recruitment", (INTEGER)_Var1)
+AND
+DialogGetInvolvedPlayer(_Var1, 1, _Var2)
+AND
+ObjectGetFlag(_Var2, "FTJ_SebilleExecutePlayer", 1)
+THEN
+CharacterDie(_Var2, 0, "DoT");
+PlayEffect(_Var2, "RS3_FX_GP_Combat_Hit_Blood_01_Large");
+CreateSurface(_Var2, "SurfaceBlood", 1, -1);
+
+IF
+GameStarted("FJ_FortJoy_Main", _)
+AND
+QueryOnlyOnce("FTJ_SebilleOriginStoryInit")
+AND
+IsTagged(CHARACTERGUID_S_Player_Sebille_c8d55eaf-e4eb-466a-8f0d-6a9447b5b24c, "AVATAR", 1)
+THEN
+SetOnStage(ITEMGUID_S_FTJ_SebilleNeedle_818d574a-5cad-4401-a574-4bff60ab7026, 1);
+ItemToInventory(ITEMGUID_S_FTJ_SebilleNeedle_818d574a-5cad-4401-a574-4bff60ab7026, CHARACTERGUID_S_Player_Sebille_c8d55eaf-e4eb-466a-8f0d-6a9447b5b24c);
+ObjectSetFlag(CHARACTERGUID_S_Player_Sebille_c8d55eaf-e4eb-466a-8f0d-6a9447b5b24c, "QuestUpdate_FTJ_OriginSebille_SebilleWashedAshore");
+
+IF
+CharacterUsedItem(CHARACTERGUID_S_Player_Sebille_c8d55eaf-e4eb-466a-8f0d-6a9447b5b24c, ITEMGUID_S_FTJ_SebilleNeedle_818d574a-5cad-4401-a574-4bff60ab7026)
+THEN
+Proc_StartDialog(0, "GLO_SebilleNeedle", ITEMGUID_S_FTJ_SebilleNeedle_818d574a-5cad-4401-a574-4bff60ab7026, CHARACTERGUID_S_Player_Sebille_c8d55eaf-e4eb-466a-8f0d-6a9447b5b24c);
+
+IF
+CharacterUsedItem((CHARACTERGUID)_Var1, ITEMGUID_S_FTJ_SebilleNeedle_818d574a-5cad-4401-a574-4bff60ab7026)
+AND
+_Var1 != CHARACTERGUID_S_Player_Sebille_c8d55eaf-e4eb-466a-8f0d-6a9447b5b24c
+THEN
+Proc_StartDialog(1, "GLO_AD_ForbiddenItem", _Var1);
+
+PROC
+PROC_GLO_PartyMembers_Add(CHARACTERGUID_S_Player_Sebille_c8d55eaf-e4eb-466a-8f0d-6a9447b5b24c, (CHARACTERGUID)_Var1)
+AND NOT
+DB_GlobalFlag("FTJ_LV_SetUp")
+THEN
+ObjectSetFlag(_Var1, "GLO_Sebille_RecruitedInFortJoy");
+
+PROC
+PROC_GLO_PartyMembers_Add(CHARACTERGUID_S_Player_Sebille_c8d55eaf-e4eb-466a-8f0d-6a9447b5b24c, (CHARACTERGUID)_Var1)
+AND
+DB_GlobalFlag("FTJ_LV_SetUp")
+THEN
+ObjectSetFlag(_Var1, "GLO_Sebille_RecruitedInLV");
+
+PROC
+PROC_GLO_PartyMembers_Add(CHARACTERGUID_S_Player_Sebille_c8d55eaf-e4eb-466a-8f0d-6a9447b5b24c, (CHARACTERGUID)_Var1)
+AND
+ObjectGetFlag(_Var1, "QuestAdd_FTJ_COM_Sebille", 0)
+AND
+ObjectGetFlag(_Var1, "GLO_Sebille_RecruitedInFortJoy", 0)
+THEN
+ObjectSetFlag(_Var1, "QuestAdd_FTJ_COM_Sebille");
+ObjectSetFlag(_Var1, "QuestUpdate_FTJ_COM_Sebille_StartLV");
+
+PROC
+PROC_GLO_PartyMembers_Add(CHARACTERGUID_S_Player_Sebille_c8d55eaf-e4eb-466a-8f0d-6a9447b5b24c, (CHARACTERGUID)_Var1)
+AND
+ObjectGetFlag(_Var1, "QuestAdd_FTJ_COM_Sebille", 0)
+AND NOT
+DB_GlobalFlag("FTJ_LV_SetUp")
+THEN
+ObjectSetFlag(_Var1, "QuestAdd_FTJ_COM_Sebille");
+ObjectSetFlag(_Var1, "QuestUpdate_FTJ_COM_Sebille_Start");
+
+IF
+DB_CompanionAvatarBond(CHARACTERGUID_S_Player_RedPrince_a26a1efb-cdc8-4cf3-a7b2-b2f9544add6f, CHARACTERGUID_S_Player_Sebille_c8d55eaf-e4eb-466a-8f0d-6a9447b5b24c)
+THEN
+ObjectSetFlag(CHARACTERGUID_S_Player_Sebille_c8d55eaf-e4eb-466a-8f0d-6a9447b5b24c, "QuestUpdate_FTJ_OriginSebille_RecruitedRedPrince");
+
+IF
+CharacterDied(CHARACTERGUID_S_FTJ_LizardDreamer_ffb80725-25ff-4174-98cb-60a11612e5c4)
+THEN
+GlobalSetFlag("FTJ_LizardDreamerIsDead");
+
+IF
+CharacterDied(CHARACTERGUID_S_FTJ_LizardDreamer_ffb80725-25ff-4174-98cb-60a11612e5c4)
+AND
+ObjectGetFlag(CHARACTERGUID_S_Player_Sebille_c8d55eaf-e4eb-466a-8f0d-6a9447b5b24c, "QuestUpdate_FTJ_OriginSebille_Start_Dreamer", 1)
+THEN
+ObjectSetFlag(CHARACTERGUID_S_Player_Sebille_c8d55eaf-e4eb-466a-8f0d-6a9447b5b24c, "QuestUpdate_FTJ_OriginSebille_End_Dreamer");
+
+IF
+ObjectFlagSet("GLO_SebilleCutSelf", CHARACTERGUID_S_Player_Sebille_c8d55eaf-e4eb-466a-8f0d-6a9447b5b24c, _)
+THEN
+ObjectClearFlag(CHARACTERGUID_S_Player_Sebille_c8d55eaf-e4eb-466a-8f0d-6a9447b5b24c, "GLO_SebilleCutSelf", 0);
+CreateSurface(CHARACTERGUID_S_Player_Sebille_c8d55eaf-e4eb-466a-8f0d-6a9447b5b24c, "SurfaceBlood", 0.1, -1);
+
+IF
+CharacterDied(CHARACTERGUID_S_FTJ_LizardDreamer_ffb80725-25ff-4174-98cb-60a11612e5c4)
+AND
+IsTagged(CHARACTERGUID_S_Player_Sebille_c8d55eaf-e4eb-466a-8f0d-6a9447b5b24c, "AVATAR", 1)
+THEN
+SetOnStage(ITEMGUID_S_FTJ_StingtailLeg_f16f7da1-c4d9-4cc5-b1ad-9c2e0349485d, 1);
+ItemToInventory(ITEMGUID_S_FTJ_StingtailLeg_f16f7da1-c4d9-4cc5-b1ad-9c2e0349485d, CHARACTERGUID_S_FTJ_LizardDreamer_ffb80725-25ff-4174-98cb-60a11612e5c4);
+
+IF
+ObjectFlagSet("FTJ_SebilleSparedStingtail", CHARACTERGUID_S_Player_Sebille_c8d55eaf-e4eb-466a-8f0d-6a9447b5b24c, _)
+THEN
+ObjectSetFlag(CHARACTERGUID_S_Player_Sebille_c8d55eaf-e4eb-466a-8f0d-6a9447b5b24c, "QuestUpdate_FTJ_OriginSebille_Part2_Start");
+UserSetFlag(CHARACTERGUID_S_Player_Sebille_c8d55eaf-e4eb-466a-8f0d-6a9447b5b24c, "QuestUpdate_FTJ_COM_Sebille_Part2_Start");
+
+IF
+ObjectFlagSet("FTJ_SebilleTortureStingtail", CHARACTERGUID_S_Player_Sebille_c8d55eaf-e4eb-466a-8f0d-6a9447b5b24c, _)
+AND
+CharacterGetHitpointsPercentage(CHARACTERGUID_S_FTJ_LizardDreamer_ffb80725-25ff-4174-98cb-60a11612e5c4, _Var2)
+AND
+RealSubtract(_Var2, 15, _Var3)
+THEN
+CharacterMakeStoryNpc(CHARACTERGUID_S_FTJ_LizardDreamer_ffb80725-25ff-4174-98cb-60a11612e5c4, 0);
+CharacterSetHitpointsPercentage(CHARACTERGUID_S_FTJ_LizardDreamer_ffb80725-25ff-4174-98cb-60a11612e5c4, _Var3);
+PlayEffect(CHARACTERGUID_S_FTJ_LizardDreamer_ffb80725-25ff-4174-98cb-60a11612e5c4, "RS3_FX_GP_Combat_Hit_Blood_01_Large");
+PlayAnimation(CHARACTERGUID_S_FTJ_LizardDreamer_ffb80725-25ff-4174-98cb-60a11612e5c4, "hit");
+CreateSurface(CHARACTERGUID_S_FTJ_LizardDreamer_ffb80725-25ff-4174-98cb-60a11612e5c4, "SurfaceBlood", 0.2, -1);
+ObjectClearFlag(CHARACTERGUID_S_Player_Sebille_c8d55eaf-e4eb-466a-8f0d-6a9447b5b24c, "FTJ_SebilleTortureStingtail", 0);
+CharacterMakeStoryNpc(CHARACTERGUID_S_FTJ_LizardDreamer_ffb80725-25ff-4174-98cb-60a11612e5c4, 1);
+
+IF
+DialogEnded("FTJ_LizardDreamer", _)
+AND
+ObjectGetFlag(CHARACTERGUID_S_Player_Sebille_c8d55eaf-e4eb-466a-8f0d-6a9447b5b24c, "FTJ_SebilleSparedStingtail", 1)
+AND
+QueryOnlyOnce("FTJ_VB_OM_Sebille-StingTail-Alive")
+THEN
+StartVoiceBark("FTJ_VB_OM_Sebille-StingTail-Alive", CHARACTERGUID_S_Player_Sebille_c8d55eaf-e4eb-466a-8f0d-6a9447b5b24c);
+
+IF
+GlobalFlagSet("FTJ_SebilleKillsLizardDreamer")
+THEN
+ObjectSetFlag(CHARACTERGUID_S_Player_Sebille_c8d55eaf-e4eb-466a-8f0d-6a9447b5b24c, "GLO_PathOfBlood_MurderedInnocent");
+
+IF
+DialogEnded("FTJ_LizardDreamer", _)
+AND
+DB_GlobalFlag("FTJ_SebilleKillsLizardDreamer")
+AND
+QueryOnlyOnce("FTJ_VB_OM_Sebille-StingTail-Dead")
+THEN
+StartVoiceBark("FTJ_VB_OM_Sebille-StingTail-Dead", CHARACTERGUID_S_Player_Sebille_c8d55eaf-e4eb-466a-8f0d-6a9447b5b24c);
+
+IF
+DialogEnded("FTJ_LizardDreamer", _)
+AND
+DB_GlobalFlag("FTJ_SebilleKillsLizardDreamer")
+AND
+DB_CompanionAvatarBond(CHARACTERGUID_S_Player_RedPrince_a26a1efb-cdc8-4cf3-a7b2-b2f9544add6f, CHARACTERGUID_S_Player_Sebille_c8d55eaf-e4eb-466a-8f0d-6a9447b5b24c)
+AND
+QueryOnlyOnce("FTJ_LizardDreamer_ARD_RedPrince")
+THEN
+Proc_RelationshipDialog(CHARACTERGUID_S_Player_RedPrince_a26a1efb-cdc8-4cf3-a7b2-b2f9544add6f, "FTJ_LizardDreamer_ARD_RedPrince", CHARACTERGUID_S_Player_Sebille_c8d55eaf-e4eb-466a-8f0d-6a9447b5b24c);
+
+IF
+DialogEnded("FTJ_LizardDreamer", _)
+AND
+DB_CompanionAvatarBond(CHARACTERGUID_S_Player_Ifan_ad9a3327-4456-42a7-9bf4-7ad60cc9e54f, CHARACTERGUID_S_Player_Sebille_c8d55eaf-e4eb-466a-8f0d-6a9447b5b24c)
+AND
+ObjectGetFlag(CHARACTERGUID_S_Player_Sebille_c8d55eaf-e4eb-466a-8f0d-6a9447b5b24c, "FTJ_Stingtail_ToldSebilleAboutLoneWolves", 1)
+AND
+QueryOnlyOnce("FTJ_LizardDreamer_ARD_Ifan")
+THEN
+Proc_RelationshipDialog(CHARACTERGUID_S_Player_Ifan_ad9a3327-4456-42a7-9bf4-7ad60cc9e54f, "FTJ_LizardDreamer_ARD_Ifan", CHARACTERGUID_S_Player_Sebille_c8d55eaf-e4eb-466a-8f0d-6a9447b5b24c);
+
+IF
+DialogEnded("FTJ_LizardDreamer_COM_Sebille", _)
+AND
+ObjectGetFlag(CHARACTERGUID_S_Player_Sebille_c8d55eaf-e4eb-466a-8f0d-6a9447b5b24c, "FTJ_VB_OM_Sebille-StingTail-Dead", 1)
+AND
+QueryOnlyOnce("FTJ_VB_OM_Sebille-StingTail-Dead")
+THEN
+StartVoiceBark("FTJ_VB_OM_Sebille-StingTail-Dead", CHARACTERGUID_S_Player_Sebille_c8d55eaf-e4eb-466a-8f0d-6a9447b5b24c);
+
+PROC
+Proc_COMFinished("FTJ_LizardDreamer_COM_Sebille", (CHARACTERGUID)_Var1)
+THEN
+ObjectSetFlag(CHARACTERGUID_S_Player_Sebille_c8d55eaf-e4eb-466a-8f0d-6a9447b5b24c, "FTJ_LizardDreamer_COM_Sebille_Completed");
+Proc_RelationshipDialog(CHARACTERGUID_S_Player_Sebille_c8d55eaf-e4eb-466a-8f0d-6a9447b5b24c, "FTJ_LizardDreamer_CRD_Sebille", CHARACTERGUID_S_Player_Sebille_c8d55eaf-e4eb-466a-8f0d-6a9447b5b24c);
+GlobalSetFlag("GLO_RedPrince_SebilleKilledStingtail");
+DB_OriginMomentTag("FTJ_GhettoBoss", "SEBILLE", "FTJ_GhettoBoss_COM_Sebille");
+DB_OriginMomentTag("FTJ_GhettoBoss", "SHAPESHIFT_SEBILLE", "FTJ_GhettoBoss_COM_Sebille");
+
+IF
+CharacterUsedItem(CHARACTERGUID_S_Player_Sebille_c8d55eaf-e4eb-466a-8f0d-6a9447b5b24c, ITEMGUID_S_FTJ_StingtailLeg_f16f7da1-c4d9-4cc5-b1ad-9c2e0349485d)
+AND
+IsTagged(CHARACTERGUID_S_Player_Sebille_c8d55eaf-e4eb-466a-8f0d-6a9447b5b24c, "AVATAR", 1)
+THEN
+GlobalSetFlag("FTJ_LizardDreamer_Sebille_Rajjam");
+
+IF
+GlobalFlagSet("FTJ_LizardDreamer_Sebille_Rajjam")
+THEN
+ObjectSetFlag(CHARACTERGUID_S_Player_Sebille_c8d55eaf-e4eb-466a-8f0d-6a9447b5b24c, "QuestUpdate_FTJ_OriginSebille_Part2_Start");
+
+IF
+ObjectFlagSet("FTJ_SebilleHasKilledLizardDreamer", CHARACTERGUID_S_Player_Sebille_c8d55eaf-e4eb-466a-8f0d-6a9447b5b24c, (INTEGER)_Var1)
+THEN
+TeleportTo(ITEMGUID_S_FTJ_LizardDreamer_Helper_a3cb3e38-5e89-4bba-bd3d-1fa075ecd591, CHARACTERGUID_S_FTJ_LizardDreamer_ffb80725-25ff-4174-98cb-60a11612e5c4);
+DB_FTJ_SebilleOrigin_StartStingtailHelper(_Var1);
+PlayEffect(CHARACTERGUID_S_FTJ_LizardDreamer_ffb80725-25ff-4174-98cb-60a11612e5c4, "RS3_FX_GP_Combat_Hit_Blood_01_Large");
+CreateSurface(CHARACTERGUID_S_FTJ_LizardDreamer_ffb80725-25ff-4174-98cb-60a11612e5c4, "SurfaceBlood", 0.2, -1);
+CharacterDie(CHARACTERGUID_S_FTJ_LizardDreamer_ffb80725-25ff-4174-98cb-60a11612e5c4, 1, "DoT");
+
+IF
+DialogEnded("FTJ_LizardDreamer", (INTEGER)_Var1)
+AND
+DB_FTJ_SebilleOrigin_StartStingtailHelper(_Var1)
+THEN
+NOT DB_FTJ_SebilleOrigin_StartStingtailHelper(_Var1);
+Proc_StartDialog(0, "FTJ_LizardDreamer_AfterKilledBySebille", ITEMGUID_S_FTJ_LizardDreamer_Helper_a3cb3e38-5e89-4bba-bd3d-1fa075ecd591, CHARACTERGUID_S_Player_Sebille_c8d55eaf-e4eb-466a-8f0d-6a9447b5b24c);
+
+IF
+DialogEnded("FTJ_LizardDreamer", _)
+AND
+GlobalGetFlag("FTJ_SebilleKillsLizardDreamer", 1)
+AND
+GetPosition(CHARACTERGUID_S_FTJ_LizardDreamer_ffb80725-25ff-4174-98cb-60a11612e5c4, _Var2, _Var3, _Var4)
+AND
+RealSum(_Var3, 1, _Var5)
+AND
+CrimeGetNewID(_Var6)
+THEN
+CharacterRegisterCrimeWithPosition(CHARACTERGUID_S_Player_Sebille_c8d55eaf-e4eb-466a-8f0d-6a9447b5b24c, "Murder", NULL_00000000-0000-0000-0000-000000000000, NULL_00000000-0000-0000-0000-000000000000, _Var2, _Var5, _Var4, _Var6);
+
+IF
+ObjectFlagSet("FTJ_COM_Sebille_KillsStingtail", _, (INTEGER)_Var2)
+AND
+DialogRemoveActorFromDialog(_Var2, CHARACTERGUID_S_FTJ_LizardDreamer_ffb80725-25ff-4174-98cb-60a11612e5c4, _)
+AND
+DB_CompanionAvatarBond(CHARACTERGUID_S_Player_Sebille_c8d55eaf-e4eb-466a-8f0d-6a9447b5b24c, _Var4)
+THEN
+ObjectSetFlag(_Var4, "QuestUpdate_FTJ_COM_Sebille_Stingtail");
+PlayEffect(CHARACTERGUID_S_FTJ_LizardDreamer_ffb80725-25ff-4174-98cb-60a11612e5c4, "RS3_FX_GP_Combat_Hit_Blood_01_Large");
+CreateSurface(CHARACTERGUID_S_FTJ_LizardDreamer_ffb80725-25ff-4174-98cb-60a11612e5c4, "SurfaceBlood", 0.2, -1);
+CharacterDie(CHARACTERGUID_S_FTJ_LizardDreamer_ffb80725-25ff-4174-98cb-60a11612e5c4, 1, "DoT");
+
+IF
+DialogEnded("FTJ_LizardDreamer_COM_Sebille", _)
+AND
+GlobalGetFlag("FTJ_SebilleKillsLizardDreamer", 1)
+AND
+GetPosition(CHARACTERGUID_S_FTJ_LizardDreamer_ffb80725-25ff-4174-98cb-60a11612e5c4, _Var2, _Var3, _Var4)
+AND
+RealSum(_Var3, 1, _Var5)
+AND
+CrimeGetNewID(_Var6)
+THEN
+CharacterRegisterCrimeWithPosition(CHARACTERGUID_S_Player_Sebille_c8d55eaf-e4eb-466a-8f0d-6a9447b5b24c, "Murder", NULL_00000000-0000-0000-0000-000000000000, NULL_00000000-0000-0000-0000-000000000000, _Var2, _Var5, _Var4, _Var6);
+
+PROC
+Proc_COMFinished("FTJ_LizardDreamer_COM_Sebille", CHARACTERGUID_S_Player_Ifan_ad9a3327-4456-42a7-9bf4-7ad60cc9e54f)
+THEN
+Proc_RelationshipDialog(CHARACTERGUID_S_Player_Ifan_ad9a3327-4456-42a7-9bf4-7ad60cc9e54f, "FTJ_LizardDreamer_CRD_Sebille", CHARACTERGUID_S_Player_Sebille_c8d55eaf-e4eb-466a-8f0d-6a9447b5b24c);
+
+PROC
+Proc_COMFinished("FTJ_GhettoBoss_COM_Sebille", (CHARACTERGUID)_Var1)
+THEN
+ObjectSetFlag(_Var1, "QuestUpdate_FTJ_COM_Sebille_Griff");
+DB_OriginMomentTag_HighPriority("FTJ_IfansHandler", "SEBILLE", "FTJ_IfansHandler_COM_Sebille");
+
+IF
+GlobalFlagSet("FTJ_LizardDreamer_Sebille_Rajjam")
+AND
+DB_Avatars(CHARACTERGUID_S_Player_Sebille_c8d55eaf-e4eb-466a-8f0d-6a9447b5b24c)
+THEN
+DB_OriginMomentTag_HighPriority("FTJ_IfansHandler", "SEBILLE", "FTJ_IfansHandler_COM_Sebille");
+
+IF
+DB_Dead(CHARACTERGUID_S_FTJ_GhettoBoss_84758f75-01a3-4cce-9922-f42ffc4afddd)
+THEN
+SetOnStage(S_FTJ_GhettoBossHand_ae60cc1b-8cf0-4c62-bc59-46bac6e0ec8c, 1);
+ItemToInventory(S_FTJ_GhettoBossHand_ae60cc1b-8cf0-4c62-bc59-46bac6e0ec8c, CHARACTERGUID_S_FTJ_GhettoBoss_84758f75-01a3-4cce-9922-f42ffc4afddd);
+
+IF
+ObjectFlagSet("FTJ_SebilleOrigin_GotZaleskarInfo", S_Player_Sebille_c8d55eaf-e4eb-466a-8f0d-6a9447b5b24c, _)
+AND
+IsTagged(S_Player_Sebille_c8d55eaf-e4eb-466a-8f0d-6a9447b5b24c, "AVATAR", 1)
+THEN
+ObjectSetFlag(CHARACTERGUID_S_Player_Sebille_c8d55eaf-e4eb-466a-8f0d-6a9447b5b24c, "QuestUpdate_FTJ_OriginSebille_Part2_Find_Zaleskar");
+
+IF
+CharacterItemEvent(CHARACTERGUID_S_Player_Sebille_c8d55eaf-e4eb-466a-8f0d-6a9447b5b24c, S_FTJ_GhettoBossHand_ae60cc1b-8cf0-4c62-bc59-46bac6e0ec8c, "GLO_AteBodyPart")
+AND
+IsTagged(CHARACTERGUID_S_Player_Sebille_c8d55eaf-e4eb-466a-8f0d-6a9447b5b24c, "AVATAR", 1)
+THEN
+ObjectSetFlag(CHARACTERGUID_S_Player_Sebille_c8d55eaf-e4eb-466a-8f0d-6a9447b5b24c, "FTJ_SebilleOrigin_AteGhettoBossHand");
+ObjectSetFlag(CHARACTERGUID_S_Player_Sebille_c8d55eaf-e4eb-466a-8f0d-6a9447b5b24c, "FTJ_SebilleOrigin_GotZaleskarInfo");
+
+IF
+ObjectFlagSet("FTJ_SW_SebilleZaleskarFindRoost", S_Player_Sebille_c8d55eaf-e4eb-466a-8f0d-6a9447b5b24c, _)
+AND
+IsTagged(S_Player_Sebille_c8d55eaf-e4eb-466a-8f0d-6a9447b5b24c, "AVATAR", 1)
+THEN
+ObjectSetFlag(CHARACTERGUID_S_Player_Sebille_c8d55eaf-e4eb-466a-8f0d-6a9447b5b24c, "QuestUpdate_FTJ_OriginSebille_Part2_Find_Roost");
+UserSetFlag(CHARACTERGUID_S_Player_Sebille_c8d55eaf-e4eb-466a-8f0d-6a9447b5b24c, "QuestUpdate_FTJ_COM_Sebille_Part2_Find_Roost");
+Proc_RelationshipDialog(CHARACTERGUID_S_Player_Ifan_ad9a3327-4456-42a7-9bf4-7ad60cc9e54f, "FTJ_IfansHandler_ARD_Ifan", CHARACTERGUID_S_Player_Sebille_c8d55eaf-e4eb-466a-8f0d-6a9447b5b24c);
+DB_SebilleKnowsAboutRoost(1);
+
+IF
+CharacterItemEvent(CHARACTERGUID_S_Player_Sebille_c8d55eaf-e4eb-466a-8f0d-6a9447b5b24c, S_FTJ_SW_IfanHandlerHeart_c3273eac-1093-4573-9d46-73d0445d0c74, "GLO_AteBodyPart")
+THEN
+ObjectSetFlag(CHARACTERGUID_S_Player_Sebille_c8d55eaf-e4eb-466a-8f0d-6a9447b5b24c, "FTJ_SW_SebilleZaleskarFindRoost");
+DB_SebilleKnowsAboutRoost(1);
+
+IF
+DB_Dead(CHARACTERGUID_S_FTJ_IfanHandler_d0920841-a984-4ea4-92c6-31d236ee2540)
+THEN
+SetOnStage(S_FTJ_SW_IfanHandlerHeart_c3273eac-1093-4573-9d46-73d0445d0c74, 1);
+ItemToInventory(S_FTJ_SW_IfanHandlerHeart_c3273eac-1093-4573-9d46-73d0445d0c74, CHARACTERGUID_S_FTJ_IfanHandler_d0920841-a984-4ea4-92c6-31d236ee2540);
+
+IF
+SavegameLoaded((INTEGER)_Var1, (INTEGER)_Var2, (INTEGER)_Var3, (INTEGER)_Var4)
+AND
+QRY_VersionIsOlderThan(_Var1, _Var2, _Var3, _Var4, 3, 5, 1, 0)
+THEN
+ItemSetStoryItem(S_FTJ_SW_IfanHandlerHeart_c3273eac-1093-4573-9d46-73d0445d0c74, 1);
+
+PROC
+Proc_COMFinished("FTJ_IfansHandler_COM_Sebille", (CHARACTERGUID)_Var1)
+THEN
+ObjectSetFlag(_Var1, "QuestUpdate_FTJ_COM_Sebille_Zaleskar");
+DB_SebilleKnowsAboutRoost(1);
+
+IF
+DB_SebilleKnowsAboutRoost(1)
+THEN
+GlobalSetFlag("GLO_Sebille_KnowsAboutRoost");
+
+PROC
+ProcObjectTimerFinished((CHARACTERGUID)_Var1, "FTJ_DoHoEReturnRD")
+AND
+DB_CompanionAvatarBond(CHARACTERGUID_S_Player_Sebille_c8d55eaf-e4eb-466a-8f0d-6a9447b5b24c, _Var1)
+AND
+CharacterIsDead(CHARACTERGUID_S_Player_Sebille_c8d55eaf-e4eb-466a-8f0d-6a9447b5b24c, 0)
+AND
+CharacterIsInPartyWith(CHARACTERGUID_S_Player_Sebille_c8d55eaf-e4eb-466a-8f0d-6a9447b5b24c, _Var1, 1)
+AND
+GetDistanceTo(CHARACTERGUID_S_Player_Sebille_c8d55eaf-e4eb-466a-8f0d-6a9447b5b24c, _Var1, _Var2)
+AND
+_Var2 < 25
+THEN
+Proc_RelationshipDialog(CHARACTERGUID_S_Player_Sebille_c8d55eaf-e4eb-466a-8f0d-6a9447b5b24c, "FTJ_SW_GiveCompanionBless_CRD_Sebille", _Var1);
+
+IF
+CharacterEnteredTrigger(CHARACTERGUID_S_Player_Sebille_c8d55eaf-e4eb-466a-8f0d-6a9447b5b24c, TRIGGERGUID_S_RC_DU_Dunes_60eb4252-9479-49bf-aaec-4b08dac5e85b)
+AND
+DB_CompanionAvatarBond(CHARACTERGUID_S_Player_Sebille_c8d55eaf-e4eb-466a-8f0d-6a9447b5b24c, _Var1)
+THEN
+Proc_RelationshipDialog(CHARACTERGUID_S_Player_Sebille_c8d55eaf-e4eb-466a-8f0d-6a9447b5b24c, "RC_DU_CRD_Sebille", _Var1);
+
+IF
+ObjectFlagSet("RC_MIL_ShowSawmillMarker", (CHARACTERGUID)_Var1, _)
+AND
+DB_SebilleKnowsAboutRoost(1)
+AND
+DB_CompanionAvatarBond(CHARACTERGUID_S_Player_Sebille_c8d55eaf-e4eb-466a-8f0d-6a9447b5b24c, _Var3)
+THEN
+ObjectSetFlag(_Var3, "QuestUpdate_FTJ_COM_Sebille_Baran");
+Proc_RelationshipDialog(CHARACTERGUID_S_Player_Sebille_c8d55eaf-e4eb-466a-8f0d-6a9447b5b24c, "RC_DW_RichMerchant_CRD_Sebille", _Var1);
+
+IF
+ObjectFlagSet("RC_MIL_ShowSawmillMarker", CHARACTERGUID_S_Player_Ifan_ad9a3327-4456-42a7-9bf4-7ad60cc9e54f, _)
+AND
+DB_SebilleKnowsAboutRoost(1)
+AND
+DB_CompanionAvatarBond(CHARACTERGUID_S_Player_Ifan_ad9a3327-4456-42a7-9bf4-7ad60cc9e54f, CHARACTERGUID_S_Player_Sebille_c8d55eaf-e4eb-466a-8f0d-6a9447b5b24c)
+THEN
+ObjectSetFlag(CHARACTERGUID_S_Player_Sebille_c8d55eaf-e4eb-466a-8f0d-6a9447b5b24c, "QuestUpdate_FTJ_OriginSebille_Baran");
+
+IF
+ObjectFlagSet("RC_MIL_ShowSawmillMarker", CHARACTERGUID_S_Player_Ifan_ad9a3327-4456-42a7-9bf4-7ad60cc9e54f, (INTEGER)_Var1)
+THEN
+DB_RC_DW_Ifan_ShowedSawmillMarker(_Var1);
+
+IF
+DialogEnded(_, (INTEGER)_Var2)
+AND
+DB_RC_DW_Ifan_ShowedSawmillMarker(_Var2)
+AND
+GetDistanceTo(CHARACTERGUID_S_Player_Ifan_ad9a3327-4456-42a7-9bf4-7ad60cc9e54f, CHARACTERGUID_S_Player_Sebille_c8d55eaf-e4eb-466a-8f0d-6a9447b5b24c, _Var3)
+AND
+_Var3 < 30
+THEN
+Proc_StartDialog(1, "RC_DW_RichMerchant_ARD_Ifan", CHARACTERGUID_S_Player_Ifan_ad9a3327-4456-42a7-9bf4-7ad60cc9e54f);
+
+IF
+ObjectFlagSet("RC_MIL_Roost_Attack", _, _)
+THEN
+NOT DB_OriginMomentTag_3SP("RC_MIL_RoostWithSaheila", "IFAN", "RC_MIL_RoostWithSaheila_COM_Ifan");
+NOT DB_OriginMomentTag_3SP("RC_MIL_RoostWithSaheila", "SEBILLE", "RC_MIL_RoostWithSaheila_COM_Sebille");
+NOT DB_OriginMomentTag("RC_MIL_Roost", "IFAN", "RC_MIL_Roost_COM_Ifan");
+NOT DB_OriginMomentTag("RC_MIL_Roost", "SEBILLE", "RC_MIL_Roost_COM_Sebille");
+
+IF
+DB_OriginDialog(CHARACTERGUID_S_Player_Sebille_c8d55eaf-e4eb-466a-8f0d-6a9447b5b24c, "RC_MIL_RoostWithSaheila_COM_Sebille")
+THEN
+NOT DB_OriginDialog(CHARACTERGUID_S_Player_Sebille_c8d55eaf-e4eb-466a-8f0d-6a9447b5b24c, "RC_MIL_RoostWithSaheila_COM_Sebille");
+
+IF
+DB_OriginDialog(CHARACTERGUID_S_Player_Sebille_c8d55eaf-e4eb-466a-8f0d-6a9447b5b24c, "RC_MIL_Roost_COM_Sebille")
+THEN
+NOT DB_OriginDialog(CHARACTERGUID_S_Player_Sebille_c8d55eaf-e4eb-466a-8f0d-6a9447b5b24c, "RC_MIL_Roost_COM_Sebille");
+
+IF
+DB_OriginMoment_COMREQ_Denied(_Var1, CHARACTERGUID_S_RC_MIL_Roost_6fffadfe-b2a8-4e12-a664-ba84c0b0a3a3)
+THEN
+SetStoryEvent(CHARACTERGUID_S_RC_MIL_Roost_6fffadfe-b2a8-4e12-a664-ba84c0b0a3a3, "StartEventOnSight_RestartSpotting");
+
+IF
+GlobalFlagSet("RC_MIL_SaheilaIsAtCamp")
+THEN
+DB_OriginMomentTag_3SP("RC_MIL_SaheilaTovahReward", "SEBILLE", "RC_MIL_SaheilaTovahReward_COM_Sebille");
+DB_OriginMomentTag("RC_MIL_Saheila", "SEBILLE", "RC_MIL_Saheila_COM_Sebille");
+DB_OriginMomentTag("RC_MIL_SaheilaAtCamp", "SEBILLE", "RC_MIL_Saheila_COM_Sebille");
+
+IF
+ObjectFlagSet("RC_MIL_ToldSebilleScion", (GUIDSTRING)_Var1, _)
+THEN
+NOT DB_OriginMomentTag("RC_MIL_Saheila", "SEBILLE", "RC_MIL_Saheila_COM_Sebille");
+NOT DB_OriginMomentTag_3SP("RC_MIL_SaheilaTovahReward", "SEBILLE", "RC_MIL_SaheilaTovahReward_COM_Sebille");
+NOT DB_OriginMomentTag("RC_MIL_SaheilaAtCamp", "SEBILLE", "RC_MIL_Saheila_COM_Sebille");
+
+PROC
+Proc_COMFinished("RC_MIL_SaheilaTovahReward_COM_Sebille", _)
+THEN
+NOT DB_OriginMomentTag("RC_MIL_Saheila", "SEBILLE", "RC_MIL_Saheila_COM_Sebille");
+NOT DB_OriginMomentTag("RC_MIL_SaheilaAtCamp", "SEBILLE", "RC_MIL_Saheila_COM_Sebille");
+
+PROC
+Proc_COMFinished("RC_MIL_Saheila_COM_Sebille", _)
+THEN
+NOT DB_OriginMomentTag_3SP("RC_MIL_SaheilaTovahReward", "SEBILLE", "RC_MIL_SaheilaTovahReward_COM_Sebille");
+
+IF
+ObjectFlagSet("QuestUpdate_FTJ_COM_Sebille_SaheilaPostRoost", _, _)
+THEN
+ObjectSetFlag(CHARACTERGUID_S_Player_Sebille_c8d55eaf-e4eb-466a-8f0d-6a9447b5b24c, "GLO_Sebille_PrimeScionKnowledge");
+
+IF
+ObjectFlagSet("QuestUpdate_FTJ_COM_Sebille_TovahPostRoost", _, _)
+THEN
+ObjectSetFlag(CHARACTERGUID_S_Player_Sebille_c8d55eaf-e4eb-466a-8f0d-6a9447b5b24c, "GLO_Sebille_PrimeScionKnowledge");
+
+IF
+ObjectFlagSet("RC_DW_KnowCos", (CHARACTERGUID)_Var1, _)
+AND
+DB_CurrentLevel("RC_Main")
+AND
+QRY_SameUser(_Var1, CHARACTERGUID_S_Player_Sebille_c8d55eaf-e4eb-466a-8f0d-6a9447b5b24c)
+AND
+IsTagged(CHARACTERGUID_S_Player_Sebille_c8d55eaf-e4eb-466a-8f0d-6a9447b5b24c, "AVATAR", 0)
+AND
+DB_InRegion(CHARACTERGUID_S_Player_Sebille_c8d55eaf-e4eb-466a-8f0d-6a9447b5b24c, TRIGGERGUID_S_RC_SebilleNotReady_c1ddaeba-518f-4552-8194-57eb08795d32)
+AND NOT
+QRY_RC_LV_LeaveLogic_OriginFinished(CHARACTERGUID_S_Player_Sebille_c8d55eaf-e4eb-466a-8f0d-6a9447b5b24c)
+AND
+QueryOnlyOnce("RC_LV_Sebille_NotReadyToLeave")
+THEN
+Proc_RelationshipDialog(CHARACTERGUID_S_Player_Sebille_c8d55eaf-e4eb-466a-8f0d-6a9447b5b24c, "RC_LV_Sebille_NotReadyToLeave", CHARACTERGUID_S_Player_Sebille_c8d55eaf-e4eb-466a-8f0d-6a9447b5b24c);
+
+IF
+CharacterEnteredTrigger(CHARACTERGUID_S_Player_Sebille_c8d55eaf-e4eb-466a-8f0d-6a9447b5b24c, TRIGGERGUID_S_RC_SebilleNotReady_c1ddaeba-518f-4552-8194-57eb08795d32)
+AND
+DB_CurrentLevel("RC_Main")
+AND
+UserGetFlag(CHARACTERGUID_S_Player_Sebille_c8d55eaf-e4eb-466a-8f0d-6a9447b5b24c, "RC_DW_KnowCos", 1)
+AND NOT
+QRY_RC_LV_LeaveLogic_OriginFinished(CHARACTERGUID_S_Player_Sebille_c8d55eaf-e4eb-466a-8f0d-6a9447b5b24c)
+AND
+QueryOnlyOnce("RC_LV_Sebille_NotReadyToLeave")
+THEN
+Proc_RelationshipDialog(CHARACTERGUID_S_Player_Sebille_c8d55eaf-e4eb-466a-8f0d-6a9447b5b24c, "RC_LV_Sebille_NotReadyToLeave", CHARACTERGUID_S_Player_Sebille_c8d55eaf-e4eb-466a-8f0d-6a9447b5b24c);
+
+PROC
+ProcRegionEnded("RC_Main")
+THEN
+ProcCancelOneRelationshipDialog(CHARACTERGUID_S_Player_Sebille_c8d55eaf-e4eb-466a-8f0d-6a9447b5b24c, "RC_LV_Sebille_NotReadyToLeave");
+
+IF
+DB_Chapter(CHARACTERGUID_S_Player_Sebille_c8d55eaf-e4eb-466a-8f0d-6a9447b5b24c, 6)
+AND
+DB_CompanionAvatarBond(CHARACTERGUID_S_Player_Sebille_c8d55eaf-e4eb-466a-8f0d-6a9447b5b24c, _Var1)
+AND
+CharacterIsDead(CHARACTERGUID_S_CoS_Temples_SpyMaster_787c6c4a-6e5a-4044-9616-27e21e5a171e, 0)
+AND NOT
+DB_GlobalFlag("CoS_SpyMasterLeft")
+THEN
+ProcObjectTimer(_Var1, "CoS_LV_StartAct2m_CRD_Sebille", 1000);
+
+PROC
+ProcObjectTimerFinished((CHARACTERGUID)_Var1, "CoS_LV_StartAct2m_CRD_Sebille")
+AND
+ObjectGetFlag(CHARACTERGUID_S_Player_Sebille_c8d55eaf-e4eb-466a-8f0d-6a9447b5b24c, "GLO_Relationship_50Plus", 1)
+THEN
+Proc_RelationshipDialog(CHARACTERGUID_S_Player_Sebille_c8d55eaf-e4eb-466a-8f0d-6a9447b5b24c, "CoS_LV_StartAct2m_GoodRelation_CRD_Sebille", _Var1);
+
+PROC
+ProcObjectTimerFinished((CHARACTERGUID)_Var1, "CoS_LV_StartAct2m_CRD_Sebille")
+AND
+ObjectGetFlag(CHARACTERGUID_S_Player_Sebille_c8d55eaf-e4eb-466a-8f0d-6a9447b5b24c, "GLO_Relationship_50Plus", 0)
+THEN
+Proc_RelationshipDialog(CHARACTERGUID_S_Player_Sebille_c8d55eaf-e4eb-466a-8f0d-6a9447b5b24c, "CoS_LV_StartAct2m_BadRelation_CRD_Sebille", _Var1);
+
+IF
+ObjectFlagSet("GLO_Relationship_50Plus", CHARACTERGUID_S_Player_Sebille_c8d55eaf-e4eb-466a-8f0d-6a9447b5b24c, _)
+AND
+DB_Chapter(CHARACTERGUID_S_Player_Sebille_c8d55eaf-e4eb-466a-8f0d-6a9447b5b24c, 6)
+AND
+DB_CompanionAvatarBond(CHARACTERGUID_S_Player_Sebille_c8d55eaf-e4eb-466a-8f0d-6a9447b5b24c, _Var2)
+AND
+CharacterIsDead(CHARACTERGUID_S_CoS_Temples_SpyMaster_787c6c4a-6e5a-4044-9616-27e21e5a171e, 0)
+AND NOT
+DB_GlobalFlag("CoS_SpyMasterLeft")
+THEN
+Proc_RelationshipDialog(CHARACTERGUID_S_Player_Sebille_c8d55eaf-e4eb-466a-8f0d-6a9447b5b24c, "CoS_LV_StartAct2m_GoodRelation_CRD_Sebille", _Var2);
+
+IF
+DialogEnded("CoS_LV_StartAct2m_GoodRelation_CRD_Sebille", _)
+AND
+DB_CompanionAvatarBond(CHARACTERGUID_S_Player_Sebille_c8d55eaf-e4eb-466a-8f0d-6a9447b5b24c, _Var2)
+THEN
+ObjectSetFlag(_Var2, "GLO_KnowsSebillesControlSong");
+ObjectSetFlag(_Var2, "QuestUpdate_FTJ_COM_Sebille_KnowsScarSong");
+
+IF
+DialogEnded("CoS_LV_StartAct2m_BadRelation_CRD_Sebille", _)
+AND
+DB_CompanionAvatarBond(CHARACTERGUID_S_Player_Sebille_c8d55eaf-e4eb-466a-8f0d-6a9447b5b24c, _Var2)
+THEN
+ObjectSetFlag(_Var2, "QuestUpdate_FTJ_COM_Sebille_AvoidMaster");
+
+IF
+ObjectFlagSet("CoS_CompanionConditionalRejoin", CHARACTERGUID_S_Player_Sebille_c8d55eaf-e4eb-466a-8f0d-6a9447b5b24c, (INTEGER)_Var1)
+AND
+DB_DialogPlayers(_Var1, _Var2, _)
+THEN
+ObjectSetFlag(_Var2, "QuestUpdate_FTJ_COM_Sebille_COS_FaceMaster");
+
+IF
+DialogEnded("Sebille2", _)
+AND
+DB_CompanionAvatarBond(CHARACTERGUID_S_Player_Sebille_c8d55eaf-e4eb-466a-8f0d-6a9447b5b24c, _Var2)
+AND
+DB_RelationshipDialogsFinished(CHARACTERGUID_S_Player_Sebille_c8d55eaf-e4eb-466a-8f0d-6a9447b5b24c, "CoS_LV_StartAct2m_GoodRelation_CRD_Sebille")
+AND
+ObjectGetFlag(_Var2, "GLO_KnowsSebillesControlSong", 0)
+AND
+ObjectGetFlag(CHARACTERGUID_S_Player_Sebille_c8d55eaf-e4eb-466a-8f0d-6a9447b5b24c, "GLO_Relationship_50Plus", 1)
+AND
+CharacterIsDead(CHARACTERGUID_S_CoS_Temples_SpyMaster_787c6c4a-6e5a-4044-9616-27e21e5a171e, 0)
+AND NOT
+DB_GlobalFlag("CoS_SpyMasterLeft")
+THEN
+NOT DB_RelationshipDialogsFinished(CHARACTERGUID_S_Player_Sebille_c8d55eaf-e4eb-466a-8f0d-6a9447b5b24c, "CoS_LV_StartAct2m_GoodRelation_CRD_Sebille");
+Proc_RelationshipDialog(CHARACTERGUID_S_Player_Sebille_c8d55eaf-e4eb-466a-8f0d-6a9447b5b24c, "CoS_LV_StartAct2m_GoodRelation_CRD_Sebille", _Var2);
+
+IF
+GlobalFlagSet("CoS_Temples_Scion_QuestCompleted")
+AND NOT
+DB_GlobalFlag("GLO_SebilleRooted")
+THEN
+DB_OriginMomentTag("CoS_Temples_Scion", "SEBILLE", "CoS_Temples_Scion_COM_Sebille");
+
+IF
+ObjectFlagSet("CoS_Temples_AteSpyMasterLimb", CHARACTERGUID_S_Player_Sebille_c8d55eaf-e4eb-466a-8f0d-6a9447b5b24c, _)
+AND NOT
+DB_GlobalFlag("GLO_SebilleRooted")
+THEN
+DB_OriginMomentTag("CoS_Temples_Scion", "SEBILLE", "CoS_Temples_Scion_COM_Sebille");
+
+IF
+ObjectFlagSet("CoS_HasSpyMasterHeart", CHARACTERGUID_S_Player_Sebille_c8d55eaf-e4eb-466a-8f0d-6a9447b5b24c, _)
+AND NOT
+DB_GlobalFlag("GLO_SebilleRooted")
+THEN
+DB_OriginMomentTag("CoS_Temples_Scion", "SEBILLE", "CoS_Temples_Scion_COM_Sebille");
+
+IF
+ObjectFlagSet("QuestUpdate_CoS_SpyMaster_Saheila", CHARACTERGUID_S_Player_Sebille_c8d55eaf-e4eb-466a-8f0d-6a9447b5b24c, _)
+THEN
+DB_OriginMomentTag("CoS_Temples_HeartOfTheMotherTree", "SEBILLE", "CoS_Temples_HeartOfTheMotherTree_COM_Sebille");
+DB_OriginMomentTag("CoS_Temples_HeartOfTheMotherTree", "SHAPESHIFT_SEBILLE", "CoS_Temples_HeartOfTheMotherTree_COM_Sebille");
+
+IF
+GlobalFlagSet("CoS_HeartOfTheMotherTree_KilledByScion")
+THEN
+DB_OriginMomentTag("CoS_Temples_Saheila", "SEBILLE", "CoS_Temples_Saheila_COM_Sebille");
+DB_OriginMomentTag("CoS_Temples_Saheila", "SHAPESHIFT_SEBILLE", "CoS_Temples_Saheila_COM_Sebille");
+
+IF
+ObjectFlagSet("QuestUpdate_CoS_SpyMaster_Start_MotherTree", CHARACTERGUID_S_Player_Sebille_c8d55eaf-e4eb-466a-8f0d-6a9447b5b24c, _)
+AND
+DB_Avatars(CHARACTERGUID_S_Player_Sebille_c8d55eaf-e4eb-466a-8f0d-6a9447b5b24c)
+THEN
+ObjectSetFlag(CHARACTERGUID_S_Player_Sebille_c8d55eaf-e4eb-466a-8f0d-6a9447b5b24c, "QuestUpdate_FTJ_OriginSebille_MotherScionKillSpymaster");
+
+IF
+ItemDestroyed(ITEMGUID_S_CoS_HeartOfTheMotherTree_78bd5b87-7927-46ff-8481-34bcd919dd64)
+AND
+DB_Avatars(CHARACTERGUID_S_Player_Sebille_c8d55eaf-e4eb-466a-8f0d-6a9447b5b24c)
+THEN
+ObjectSetFlag(CHARACTERGUID_S_Player_Sebille_c8d55eaf-e4eb-466a-8f0d-6a9447b5b24c, "QuestUpdate_FTJ_OriginSebille_MotherTreeDead");
+
+IF
+ItemDestroyed(ITEMGUID_S_CoS_HeartOfTheMotherTree_78bd5b87-7927-46ff-8481-34bcd919dd64)
+AND
+DB_CompanionAvatarBond(CHARACTERGUID_S_Player_Sebille_c8d55eaf-e4eb-466a-8f0d-6a9447b5b24c, _Var1)
+THEN
+ObjectSetFlag(_Var1, "QuestUpdate_FTJ_COM_Sebille_MotherTreeDead");
+
+IF
+ObjectFlagSet("QuestUpdate_RC_MIL_AvengingSaheila_RoostDead", (CHARACTERGUID)_Var1, _)
+THEN
+UserSetFlag(_Var1, "QuestUpdate_FTJ_COM_Sebille_RoostDead");
+PartySetFlag(_Var1, "QuestUpdate_FTJ_OriginSebille_RoostDead");
+
+IF
+CharacterDying(CHARACTERGUID_S_CoS_Temples_SpyMaster_787c6c4a-6e5a-4044-9616-27e21e5a171e)
+AND
+DB_Avatars(CHARACTERGUID_S_Player_Sebille_c8d55eaf-e4eb-466a-8f0d-6a9447b5b24c)
+AND
+DB_CombatCharacters(CHARACTERGUID_S_CoS_Temples_SpyMaster_787c6c4a-6e5a-4044-9616-27e21e5a171e, _Var1)
+AND
+DB_CombatCharacters(CHARACTERGUID_S_Player_Sebille_c8d55eaf-e4eb-466a-8f0d-6a9447b5b24c, _Var1)
+AND
+QueryOnlyOnce("CoS_SpymasterDead_ARD_Any")
+THEN
+PROC_CoS_SpymasterDead_ARD_Any_Start();
+
+IF
+CharacterDying(CHARACTERGUID_S_CoS_Temples_SpyMaster_787c6c4a-6e5a-4044-9616-27e21e5a171e)
+AND
+DB_Avatars(CHARACTERGUID_S_Player_Sebille_c8d55eaf-e4eb-466a-8f0d-6a9447b5b24c)
+AND
+DB_CombatCharacters(CHARACTERGUID_S_CoS_Temples_SpyMaster_787c6c4a-6e5a-4044-9616-27e21e5a171e, _Var1)
+AND
+DB_WasInCombat(CHARACTERGUID_S_Player_Sebille_c8d55eaf-e4eb-466a-8f0d-6a9447b5b24c, _Var1)
+AND
+QueryOnlyOnce("CoS_SpymasterDead_ARD_Any")
+THEN
+PROC_CoS_SpymasterDead_ARD_Any_Start();
+
+IF
+CharacterDying(CHARACTERGUID_S_CoS_Temples_SpyMaster_787c6c4a-6e5a-4044-9616-27e21e5a171e)
+AND
+DB_Avatars(CHARACTERGUID_S_Player_Sebille_c8d55eaf-e4eb-466a-8f0d-6a9447b5b24c)
+AND
+CharacterCanSee(CHARACTERGUID_S_Player_Sebille_c8d55eaf-e4eb-466a-8f0d-6a9447b5b24c, CHARACTERGUID_S_CoS_Temples_SpyMaster_787c6c4a-6e5a-4044-9616-27e21e5a171e, 1)
+AND
+QueryOnlyOnce("CoS_SpymasterDead_ARD_Any")
+THEN
+PROC_CoS_SpymasterDead_ARD_Any_Start();
+
+PROC
+PROC_CoS_SpymasterDead_ARD_Any_Start()
+AND
+DB_CompanionAvatarBond(CHARACTERGUID_S_Player_RedPrince_a26a1efb-cdc8-4cf3-a7b2-b2f9544add6f, CHARACTERGUID_S_Player_Sebille_c8d55eaf-e4eb-466a-8f0d-6a9447b5b24c)
+THEN
+Proc_RelationshipDialog(CHARACTERGUID_S_Player_RedPrince_a26a1efb-cdc8-4cf3-a7b2-b2f9544add6f, "CoS_SpymasterDead_ARD_Any", CHARACTERGUID_S_CoS_Temples_SpyMaster_787c6c4a-6e5a-4044-9616-27e21e5a171e);
+
+PROC
+PROC_CoS_SpymasterDead_ARD_Any_Start()
+AND
+DB_CompanionAvatarBond(_Var1, CHARACTERGUID_S_Player_Sebille_c8d55eaf-e4eb-466a-8f0d-6a9447b5b24c)
+AND NOT
+DB_RelationshipDialog_Queue(CHARACTERGUID_S_Player_RedPrince_a26a1efb-cdc8-4cf3-a7b2-b2f9544add6f, "CoS_SpymasterDead_ARD_Any")
+THEN
+Proc_RelationshipDialog(_Var1, "CoS_SpymasterDead_ARD_Any", CHARACTERGUID_S_CoS_Temples_SpyMaster_787c6c4a-6e5a-4044-9616-27e21e5a171e);
+
+IF
+CharacterDied(CHARACTERGUID_S_CoS_Temples_SpyMaster_787c6c4a-6e5a-4044-9616-27e21e5a171e)
+AND
+GetDistanceTo(CHARACTERGUID_S_CoS_Temples_SpyMaster_787c6c4a-6e5a-4044-9616-27e21e5a171e, CHARACTERGUID_S_Player_Sebille_c8d55eaf-e4eb-466a-8f0d-6a9447b5b24c, _Var1)
+AND
+_Var1 <= 12
+AND NOT
+DB_DialogPlayers(_, CHARACTERGUID_S_Player_Sebille_c8d55eaf-e4eb-466a-8f0d-6a9447b5b24c, _)
+AND NOT
+DB_Dialogs(CHARACTERGUID_S_Player_Sebille_c8d55eaf-e4eb-466a-8f0d-6a9447b5b24c, "CoS_Sebille_Charmed")
+THEN
+Proc_StartDialog(1, "CoS_SpymasterDead_AD_Sebille", CHARACTERGUID_S_Player_Sebille_c8d55eaf-e4eb-466a-8f0d-6a9447b5b24c);
+
+IF
+CharacterDied(CHARACTERGUID_S_CoS_Temples_SpyMaster_787c6c4a-6e5a-4044-9616-27e21e5a171e)
+AND
+GetDistanceTo(CHARACTERGUID_S_CoS_Temples_SpyMaster_787c6c4a-6e5a-4044-9616-27e21e5a171e, CHARACTERGUID_S_Player_Sebille_c8d55eaf-e4eb-466a-8f0d-6a9447b5b24c, _Var1)
+AND
+_Var1 <= 12
+AND
+DB_DialogPlayers(_Var2, CHARACTERGUID_S_Player_Sebille_c8d55eaf-e4eb-466a-8f0d-6a9447b5b24c, _)
+AND NOT
+DB_Dialogs(CHARACTERGUID_S_Player_Sebille_c8d55eaf-e4eb-466a-8f0d-6a9447b5b24c, "CoS_Sebille_Charmed")
+THEN
+DB_GLO_SebillePostDialogueAD(_Var2, "CoS_SpymasterDead_AD_Sebille");
+
+IF
+ItemDestroyed(ITEMGUID_S_CoS_HeartOfTheMotherTree_78bd5b87-7927-46ff-8481-34bcd919dd64)
+AND
+GetDistanceTo(ITEMGUID_S_CoS_HeartOfTheMotherTree_78bd5b87-7927-46ff-8481-34bcd919dd64, CHARACTERGUID_S_Player_Sebille_c8d55eaf-e4eb-466a-8f0d-6a9447b5b24c, _Var1)
+AND
+_Var1 <= 12
+AND NOT
+DB_DialogPlayers(_, CHARACTERGUID_S_Player_Sebille_c8d55eaf-e4eb-466a-8f0d-6a9447b5b24c, _)
+THEN
+Proc_StartDialog(1, "CoS_MotherTreeDead_AD_Sebille", CHARACTERGUID_S_Player_Sebille_c8d55eaf-e4eb-466a-8f0d-6a9447b5b24c);
+
+IF
+ItemDestroyed(ITEMGUID_S_CoS_HeartOfTheMotherTree_78bd5b87-7927-46ff-8481-34bcd919dd64)
+AND
+GetDistanceTo(ITEMGUID_S_CoS_HeartOfTheMotherTree_78bd5b87-7927-46ff-8481-34bcd919dd64, CHARACTERGUID_S_Player_Sebille_c8d55eaf-e4eb-466a-8f0d-6a9447b5b24c, _Var1)
+AND
+_Var1 <= 12
+AND
+DB_DialogPlayers(_Var2, CHARACTERGUID_S_Player_Sebille_c8d55eaf-e4eb-466a-8f0d-6a9447b5b24c, _)
+THEN
+DB_GLO_SebillePostDialogueAD(_Var2, "CoS_MotherTreeDead_AD_Sebille");
+
+IF
+DialogEnded(_, (INTEGER)_Var2)
+AND
+DB_GLO_SebillePostDialogueAD(_Var2, _Var3)
+THEN
+Proc_StartDialog(1, _Var3, CHARACTERGUID_S_Player_Sebille_c8d55eaf-e4eb-466a-8f0d-6a9447b5b24c);
+
+IF
+ObjectFlagSet((STRING)_Var1, (GUIDSTRING)_Var2, (INTEGER)_Var3)
+AND
+DB_GLO_SebilleSongLoopEffects(_Var1, _Var4, _Var5)
+THEN
+DB_GLO_SebilleSongLoopEffectDialog(_Var5, _Var3, _Var2);
+PROC_LoopEffect(_Var4, _Var2, _Var5, "__ANY__", "Dummy_StatusFX");
+
+IF
+ObjectFlagCleared((STRING)_Var1, (GUIDSTRING)_Var2, _)
+AND
+DB_GLO_SebilleSongLoopEffects(_Var1, _, _Var5)
+THEN
+PROC_StopLoopEffect(_Var2, _Var5);
+
+IF
+ObjectFlagCleared((STRING)_Var1, (GUIDSTRING)_Var2, _)
+AND
+DB_GLO_SebilleSongLoopEffects(_Var1, _, _Var5)
+AND
+DB_GLO_SebilleSongLoopEffectDialog(_Var5, _Var6, _Var2)
+THEN
+NOT DB_GLO_SebilleSongLoopEffectDialog(_Var5, _Var6, _Var2);
+
+IF
+DialogEnded(_, (INTEGER)_Var2)
+AND
+DB_GLO_SebilleSongLoopEffectDialog(_Var3, _Var2, _Var4)
+AND
+DB_GLO_SebilleSongLoopEffects(_Var5, _, _Var3)
+THEN
+ObjectClearFlag(_Var4, _Var5, 0);
+
+IF
+ObjectFlagSet("GLO_Sebille_BreakSong", (GUIDSTRING)_Var1, _)
+THEN
+PlayEffect(_Var1, "RS3_FX_GP_ScriptedEvent_Sebille_BreakSong_01", "Dummy_StatusFX");
+ObjectClearFlag(_Var1, "GLO_Sebille_BreakSong", 0);
+
+IF
+ObjectFlagSet("GLO_Sebille_SongSnap", (GUIDSTRING)_Var1, _)
+THEN
+PlayEffect(_Var1, "RS3_FX_GP_ScriptedEvent_Sebille_MasterSnap_01", "Dummy_StatusFX");
+ObjectClearFlag(_Var1, "GLO_Sebille_SongSnap", 0);
+
+IF
+ObjectFlagSet("GLO_Sebille_MemoryEffect", (GUIDSTRING)_Var1, _)
+THEN
+PlayEffect(_Var1, "RS3_FX_GP_ScriptedEvent_Sebille_Memory_01", "Dummy_OverheadFX");
+ObjectClearFlag(_Var1, "RS3_FX_GP_ScriptedEvent_Sebille_Memory_01", 0);
+
+IF
+CharacterUsedItem((CHARACTERGUID)_Var1, ITEMGUID_RC_MIL_SaheilaContract_b48d8e64-7a33-4bdf-811e-e4882ca68164)
+AND
+QRY_SameUser(_Var1, CHARACTERGUID_S_Player_Sebille_c8d55eaf-e4eb-466a-8f0d-6a9447b5b24c)
+THEN
+ObjectSetFlag(CHARACTERGUID_S_Player_Sebille_c8d55eaf-e4eb-466a-8f0d-6a9447b5b24c, "QuestUpdate_FTJ_OriginSebille_Roost", 0);
+ObjectSetFlag(CHARACTERGUID_S_Player_Sebille_c8d55eaf-e4eb-466a-8f0d-6a9447b5b24c, "QuestUpdate_FTJ_COM_Sebille_Roost", 0);
+
+IF
+ObjectFlagSet("Sebille_Wound_Healed", (GUIDSTRING)_Var1, _)
+THEN
+PlayEffect(CHARACTERGUID_S_Player_Sebille_c8d55eaf-e4eb-466a-8f0d-6a9447b5b24c, "RS3_FX_GP_ScriptedEvent_Sebille_HealingTattoo_01");
+
+
+EXITSECTION
+ENDEXITSECTION
+
+ParentTargetEdge "Start"

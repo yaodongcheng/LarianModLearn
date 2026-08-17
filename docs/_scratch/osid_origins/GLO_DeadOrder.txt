@@ -1,0 +1,118 @@
+Version 1
+SubGoalCombiner SGC_AND
+
+INITSECTION
+
+KBSECTION
+IF
+DB_GLO_DeadOrder_ID(_Var1)
+AND
+StringConcatenate("GLO_DeadOrder_EligibleDeadOrder_", _Var1, _Var2)
+THEN
+ProcDeclareCounter(_Var2);
+
+QRY
+QRY_GLO_DeadOrder_Eligible((CHARACTERGUID)_Var1, "DummyForCompileTime")
+THEN
+DB_NOOP(1);
+
+QRY
+QRY_GLO_DeadOrder_LastStandingEligibleForUser((INTEGER)_Var1, (STRING)_Var2)
+AND
+DB_IsPlayer(_Var3)
+AND
+DB_GLO_DeadOrder_EligibleDeadOrder(_Var3, _Var4, _Var2)
+AND
+CharacterGetReservedUserID(_Var3, _Var5)
+AND
+_Var5 == _Var1
+THEN
+PROC_GLO_DeadOrder_SetLastStandingEligibleForUser(_Var1, _Var4, _Var3, _Var2);
+
+PROC
+PROC_GLO_DeadOrder_SetLastStandingEligibleForUser((INTEGER)_Var1, (INTEGER)_Var2, (CHARACTERGUID)_Var3, (STRING)_Var4)
+AND
+DB_GLO_DeadOrder_LastStandingEligibleForUser(_Var1, _Var5, _Var4)
+THEN
+NOT DB_GLO_DeadOrder_LastStandingEligibleForUser(_Var1, _Var5, _Var4);
+
+PROC
+PROC_GLO_DeadOrder_SetLastStandingEligibleForUser((INTEGER)_Var1, (INTEGER)_Var2, (CHARACTERGUID)_Var3, (STRING)_Var4)
+THEN
+DB_GLO_DeadOrder_LastStandingEligibleOrderForUser(_Var1, _Var2, _Var4);
+DB_GLO_DeadOrder_LastStandingEligibleForUser(_Var1, _Var3, _Var4);
+
+PROC
+PROC_GLO_DeadOrder_SetLastStandingEligibleForUser((INTEGER)_Var1, (INTEGER)_Var2, (CHARACTERGUID)_Var3, (STRING)_Var4)
+AND
+DB_GLO_DeadOrder_EligibleDeadOrder(_Var5, _Var6, _Var4)
+AND
+DB_GLO_DeadOrder_LastStandingEligibleOrderForUser(_Var1, _Var7, _Var4)
+AND
+_Var6 > _Var7
+AND
+CharacterGetReservedUserID(_Var5, _Var1)
+AND
+DB_GLO_DeadOrder_LastStandingEligibleForUser(_Var1, _Var8, _Var4)
+THEN
+NOT DB_GLO_DeadOrder_LastStandingEligibleForUser(_Var1, _Var8, _Var4);
+NOT DB_GLO_DeadOrder_LastStandingEligibleOrderForUser(_Var1, _Var7, _Var4);
+DB_GLO_DeadOrder_LastStandingEligibleForUser(_Var1, _Var5, _Var4);
+DB_GLO_DeadOrder_LastStandingEligibleOrderForUser(_Var1, _Var6, _Var4);
+
+PROC
+PROC_GLO_DeadOrder_SetLastStandingEligibleForUser((INTEGER)_Var1, (INTEGER)_Var2, (CHARACTERGUID)_Var3, (STRING)_Var4)
+AND
+DB_GLO_DeadOrder_LastStandingEligibleOrderForUser(_Var1, _Var5, _Var4)
+THEN
+NOT DB_GLO_DeadOrder_LastStandingEligibleOrderForUser(_Var1, _Var5, _Var4);
+
+IF
+CharacterResurrected((CHARACTERGUID)_Var1)
+AND
+DB_GLO_DeadOrder_EligibleDeadOrder(_Var1, _Var2, _Var3)
+THEN
+NOT DB_GLO_DeadOrder_EligibleDeadOrder(_Var1, _Var2, _Var3);
+
+PROC
+PROC_GLO_DeadOrder_CharacterReset((CHARACTERGUID)_Var1, (STRING)_Var2)
+AND
+DB_GLO_DeadOrder_EligibleDeadOrder(_Var1, _Var3, _Var2)
+THEN
+NOT DB_GLO_DeadOrder_EligibleDeadOrder(_Var1, _Var3, _Var2);
+
+IF
+CharacterResurrected((CHARACTERGUID)_Var1)
+AND
+DB_GLO_DeadOrder_ID(_Var2)
+AND NOT
+DB_GLO_DeadOrder_EligibleDeadOrder(_, _, _Var2)
+AND
+StringConcatenate("GLO_DeadOrder_EligibleDeadOrder_", _Var2, _Var5)
+THEN
+ProcDeclareCounter(_Var5);
+PROC_GLO_DeadOrder_ResetEligibleDeadOrderDB(_Var2);
+
+QRY
+QRY_GLO_DeadOrder_AnyEligibleDead((STRING)_Var1)
+AND
+DB_IsPlayer(_Var2)
+AND
+DB_Dead(_Var2)
+AND
+QRY_GLO_DeadOrder_Eligible(_Var2, _Var1)
+THEN
+DB_NOOP(1);
+
+PROC
+PROC_GLO_DeadOrder_ResetEligibleDeadOrderDB((STRING)_Var1)
+AND
+DB_GLO_DeadOrder_EligibleDeadOrder(_Var2, _Var3, _Var1)
+THEN
+NOT DB_GLO_DeadOrder_EligibleDeadOrder(_Var2, _Var3, _Var1);
+
+
+EXITSECTION
+ENDEXITSECTION
+
+ParentTargetEdge "GLO_ThePromise_Activation"

@@ -1,0 +1,726 @@
+Version 1
+SubGoalCombiner SGC_AND
+
+INITSECTION
+ProcTriggerRegisterForPlayers(TRIGGERGUID_S_FTJ_SW_UndeadTowerMaze_Entrance_Trigger_68fc353a-32bc-4e91-b783-75ef62638208);
+ProcTriggerRegisterForPlayers(TRIGGERGUID_S_FTJ_SW_UndeadTowerMaze_PuzzleRoom_Trigger_c3d48527-2ee6-4616-b793-1e4531d73bf0);
+ProcTriggerRegisterForPlayers(TRIGGERGUID_S_FTJ_SW_UndeadTowerMaze_SmallRoom_Trigger_ca39f5d3-11da-4fe4-b088-042f82618751);
+ProcTriggerRegisterForPlayers(TRIGGERGUID_S_FTJ_SW_UndeadTowerMaze_CentralRoom_Trigger_b3557325-5f37-4672-9df9-cd9bbffcf06e);
+ProcTriggerRegisterForPlayers(TRIGGERGUID_S_FTJ_SW_UndeadTowerMaze_CorridorLeft_Trigger_1d32b5c7-ffa5-42ea-9b54-b3636eb5b860);
+ProcTriggerRegisterForPlayers(TRIGGERGUID_S_FTJ_SW_UndeadTowerMaze_CorridorMiddle_Trigger_cf09ee3d-c70b-49c5-911f-a220993f4128);
+ProcTriggerRegisterForPlayers(TRIGGERGUID_S_FTJ_SW_UndeadTowerMaze_CorridorRight_Trigger_e451cf1a-c09e-4d70-8adb-00e8fb14495d);
+ProcTriggerRegisterForPlayers(TRIGGERGUID_S_FTJ_SW_UndeadTowerMaze_PastCentralRoom_Trigger_f514c17a-c61e-433e-aca5-353182f558ea);
+ProcTriggerRegisterForPlayers(TRIGGERGUID_S_FTJ_SW_UndeadTowerMaze_NearBeach_Trigger_93353b30-c15b-4019-a3cc-c5b75d32420a);
+ProcTriggerRegisterForPlayers(TRIGGERGUID_S_FTJ_SW_UndeadTowerMaze_End_Trigger_ead9e8fc-fc7c-4684-8d61-e24b522d014f);
+ProcTriggerRegisterForPlayers(TRIGGERGUID_S_FTJ_SW_UndeadTowerMaze_Outside_Trigger_3af0e734-208b-4f42-80a5-6bb9d4dc353b);
+ProcTriggerRegisterForPlayers(TRIGGERGUID_S_FTJ_SW_UndeadTowerMaze_Maze_2918fc8d-d517-4b89-9e6b-26f4401df42a);
+TriggerRegisterForItems(TRIGGERGUID_S_FTJ_SW_UndeadTowerMaze_Corridors_DoorsPlateTrigger_36380a6f-6591-463a-9b69-2a4ce8d20ddb);
+DB_FTJ_SW_UTM_QuestStarts("FTJ_SW_Maze_EnteredFromStart", "QuestUpdate_FTJ_SW_UndeadTowerMaze_StartMaze");
+DB_FTJ_SW_UTM_QuestStarts("FTJ_SW_Maze_EnteredFromAlternative", "QuestUpdate_FTJ_SW_UndeadTowerMaze_StartMaze");
+DB_FTJ_SW_UTM_QuestStarts("FTJ_SW_Maze_EnteredFromEnd", "QuestUpdate_FTJ_SW_UndeadTowerMaze_StartMaze");
+DB_FTJ_SW_UTM_RoomsAndGargoyles(TRIGGERGUID_S_FTJ_SW_UndeadTowerMaze_Entrance_Trigger_68fc353a-32bc-4e91-b783-75ef62638208, ITEMGUID_S_FTJ_SW_UndeadTowerMaze_Entrance_Gargoyle_5d772f69-6738-4efe-84ab-737a526cf01d);
+DB_FTJ_SW_UTM_RoomsAndGargoyles(TRIGGERGUID_S_FTJ_SW_UndeadTowerMaze_PuzzleRoom_Trigger_c3d48527-2ee6-4616-b793-1e4531d73bf0, ITEMGUID_S_FTJ_SW_UndeadTowerMaze_PuzzleRoom_Gargoyle_97296cc7-4185-477f-a1be-487f917321dd);
+DB_FTJ_SW_UTM_RoomsAndGargoyles(TRIGGERGUID_S_FTJ_SW_UndeadTowerMaze_SmallRoom_Trigger_ca39f5d3-11da-4fe4-b088-042f82618751, ITEMGUID_S_FTJ_SW_UndeadTowerMaze_SmallRoom_Gargoyle_61c31847-9780-4506-9add-5591aaa04d56);
+DB_FTJ_SW_UTM_RoomsAndGargoyles(TRIGGERGUID_S_FTJ_SW_UndeadTowerMaze_CentralRoom_Trigger_b3557325-5f37-4672-9df9-cd9bbffcf06e, ITEMGUID_S_FTJ_SW_UndeadTowerMaze_CentralRoom_Gargoyle_c5fc087c-1e01-40a5-9be6-c6f8bf6cd5ad);
+DB_FTJ_SW_UTM_RoomsAndGargoyles(TRIGGERGUID_S_FTJ_SW_UndeadTowerMaze_CorridorLeft_Trigger_1d32b5c7-ffa5-42ea-9b54-b3636eb5b860, ITEMGUID_S_FTJ_SW_UndeadTowerMaze_CorridorLeft_Gargoyle_6d3ef4ee-7a35-4f5a-a8f4-53bcd21f4da5);
+DB_FTJ_SW_UTM_RoomsAndGargoyles(TRIGGERGUID_S_FTJ_SW_UndeadTowerMaze_CorridorMiddle_Trigger_cf09ee3d-c70b-49c5-911f-a220993f4128, ITEMGUID_S_FTJ_SW_UndeadTowerMaze_CorridorMiddle_Gargoyle_161c12fb-3d58-4e45-a194-5214b773d2ae);
+DB_FTJ_SW_UTM_RoomsAndGargoyles(TRIGGERGUID_S_FTJ_SW_UndeadTowerMaze_CorridorRight_Trigger_e451cf1a-c09e-4d70-8adb-00e8fb14495d, ITEMGUID_S_FTJ_SW_UndeadTowerMaze_CorridorRight_Gargoyle_b7fcc254-4d77-44c7-aabc-e0695aa5d8ad);
+DB_FTJ_SW_UTM_RoomsAndGargoyles(TRIGGERGUID_S_FTJ_SW_UndeadTowerMaze_PastCentralRoom_Trigger_f514c17a-c61e-433e-aca5-353182f558ea, ITEMGUID_S_FTJ_SW_UndeadTowerMaze_PastCentralRoom_Gargoyle_14332aff-c55f-42b7-8220-b3415e4a8af5);
+DB_FTJ_SW_UTM_RoomsAndGargoyles(TRIGGERGUID_S_FTJ_SW_UndeadTowerMaze_NearBeach_Trigger_93353b30-c15b-4019-a3cc-c5b75d32420a, ITEMGUID_S_FTJ_SW_UndeadTowerMaze_NearBeach_Gargoyle_240b07dd-c6d2-4c52-9dc0-fe2e46729ee0);
+DB_FTJ_SW_UTM_RoomsAndGargoyles(TRIGGERGUID_S_FTJ_SW_UndeadTowerMaze_End_Trigger_ead9e8fc-fc7c-4684-8d61-e24b522d014f, ITEMGUID_S_FTJ_SW_UndeadTowerMaze_End_Gargoyle_70501e5c-7809-4e5a-9eff-ae33b9aa2695);
+DB_FTJ_SW_UTM_NumberOfKeyUsed(0);
+DB_FTJ_SW_UTM_ActiveFlag("FTJ_SW_UTM_NumberOfKeyUsed_0");
+GlobalSetFlag("FTJ_SW_UTM_NumberOfKeyUsed_0");
+DB_FTJ_SW_UTM_Key(ITEMGUID_S_FTJ_SW_UndeadTowerMaze_OneUseKey_End_724b9ffc-2792-4228-9201-c11fd95a4307);
+DB_FTJ_SW_UTM_Key(ITEMGUID_S_FTJ_SW_UndeadTowerMaze_OneUseKey_001_de54601a-37e0-436c-8953-824a3d8fe81b);
+DB_FTJ_SW_UTM_Key(ITEMGUID_S_FTJ_SW_UndeadTowerMaze_OneUseKey_Hall_e58094de-02b0-45c4-a10f-f5bdd16f65e5);
+DB_FTJ_SW_UTM_Key(ITEMGUID_S_FTJ_SW_UndeadTowerMaze_OneUseKey_Puzzle_5467927d-08f1-4aa6-964a-d3f2f92117e1);
+DB_FTJ_SW_UTM_Key(ITEMGUID_S_FTJ_SW_UndeadTowerMaze_OneUseKey_Corridor_e5e154f1-b58a-4e76-bf07-9558f4e2d17d);
+DB_FTJ_SW_UTM_Key(ITEMGUID_S_FTJ_SW_UndeadTowerMaze_OneUseKey_Jimfred_f68bb2ba-05ff-46d5-9288-7c0231f30b50);
+ItemToInventory(ITEMGUID_S_FTJ_SW_UndeadTowerMaze_OneUseKey_Jimfred_f68bb2ba-05ff-46d5-9288-7c0231f30b50, CHARACTERGUID_S_FTJ_SW_UndeadTowerMaze_Jimfred_747e9b52-53fa-4d3e-9ef6-1fa7d02e15f6);
+ItemToInventory(ITEMGUID_S_FTJ_SW_UndeadTowerMaze_OneUseKey_End_724b9ffc-2792-4228-9201-c11fd95a4307, CHARACTERGUID_S_FTJ_SW_MazeSkeleton_9b8f24d1-598d-4551-a9f7-2dc4e19b10ad);
+SetOnStage(ITEMGUID_S_FTJ_SW_UndeadTowerMaze_OneUseKey_Hall_e58094de-02b0-45c4-a10f-f5bdd16f65e5, 0);
+SetOnStage(ITEMGUID_S_FTJ_SW_UndeadTowerMaze_OneUseKey_Puzzle_5467927d-08f1-4aa6-964a-d3f2f92117e1, 0);
+SetOnStage(ITEMGUID_S_FTJ_SW_UndeadTowerMaze_OneUseKey_Corridor_e5e154f1-b58a-4e76-bf07-9558f4e2d17d, 0);
+DB_FTJ_SW_UTM_LockedDoors(ITEMGUID_S_FTJ_SW_UndeadTowerMaze_Door_000_38de06b8-aa72-4fc5-a7bc-dd6b07922024);
+DB_FTJ_SW_UTM_LockedDoors(ITEMGUID_S_FTJ_SW_UndeadTowerMaze_Door_001_55d8f860-210a-428e-a7c0-eefb8a9b325a);
+DB_FTJ_SW_UTM_LockedDoors(ITEMGUID_S_FTJ_SW_UndeadTowerMaze_Door_002_e58a897b-9657-4b24-b1a3-5341f65739c4);
+DB_FTJ_SW_UTM_LockedDoors(ITEMGUID_S_FTJ_SW_UndeadTowerMaze_Door_003_81b19250-726a-4f03-8e4c-ec0138f2ee1a);
+DB_FTJ_SW_UTM_LockedDoors(ITEMGUID_S_FTJ_SW_UndeadTowerMaze_Door_004_b3a8a367-6c69-47ff-9ea3-b68ba7001ca6);
+DB_FTJ_SW_UTM_LockedDoors(ITEMGUID_S_FTJ_SW_UndeadTowerMaze_Door_005_762390dc-0d78-45fe-9933-5666b348950f);
+DB_FTJ_SW_UTM_LockedDoors(ITEMGUID_S_FTJ_SW_UndeadTowerMaze_Door_006_1ec27b83-4b46-47a8-96ea-8174f4bf9e86);
+DB_FTJ_SW_UTM_LockedDoors(ITEMGUID_S_FTJ_SW_UndeadTowerMaze_Door_007_c6479957-3814-4fb1-b6fd-76fb11b7f19b);
+DB_FTJ_SW_UTM_LockedDoors(ITEMGUID_S_FTJ_SW_UndeadTowerMaze_Door_008_b122f70f-b42f-4a84-86cc-a4e0a25170d4);
+DB_FTJ_SW_UTM_LockedDoors(ITEMGUID_S_FTJ_SW_UndeadTowerMaze_Door_009_cb1cb72e-8cb7-4d81-b144-2d23608ca143);
+DB_FTJ_SW_UTM_LockedDoors(ITEMGUID_S_FTJ_SW_UndeadTowerMaze_Door_010_6caa98c5-03aa-4e84-949e-f845b96a0396);
+DB_FTJ_SW_UTM_LockedDoors(ITEMGUID_S_FTJ_SW_UndeadTowerMaze_Door_011_436913df-5f73-4970-8d9d-2dcd399cdb43);
+DB_FTJ_SW_UTM_LockedDoors(ITEMGUID_S_FTJ_SW_UndeadTowerMaze_Door_012_1a2e28d9-c00f-4b96-a1b0-fdd80b432d38);
+SetOnStage(ITEMGUID_S_FTJ_SW_UndeadTowerMaze_PuzzleLadder_221fd7c1-18dc-47e2-b37c-1df7cd6c09ac, 0);
+DB_FTJ_SW_UTM_PuzzleItem(ITEMGUID_S_FTJ_SW_UndeadTowerMaze_PuzzleLadder_221fd7c1-18dc-47e2-b37c-1df7cd6c09ac, 0);
+DB_FTJ_SW_UTM_Portals(ITEMGUID_S_FTJ_SW_UndeadTowerMaze_PortalFX_000_105bba75-2eed-40c7-b09c-0fdd78ff2dc0, TRIGGERGUID_S_FTJ_SW_UndeadTowerMaze_TeleportLava_000_0b241eda-26fd-4d19-8e1d-54e23c128987, TRIGGERGUID_S_FTJ_SW_UndeadTowerMaze_TeleportMaze_000_8341ca7d-633e-434b-a885-920157e18ae2, "FTJ_SW_UTM_Teleported_Portal000");
+DB_FTJ_SW_UTM_Portals(ITEMGUID_S_FTJ_SW_UndeadTowerMaze_PortalFX_001_2c85a3dc-d35f-48e3-988a-9f971d0b4484, TRIGGERGUID_S_FTJ_SW_UndeadTowerMaze_TeleportLava_001_148c9296-bb3c-4c07-9547-1e091d56624f, TRIGGERGUID_S_FTJ_SW_UndeadTowerMaze_TeleportMaze_001_6ef39457-bc2c-4873-ae9f-dcbf33dcad05, "FTJ_SW_UTM_Teleported_Portal001");
+DB_FTJ_SW_UTM_Turrets(ITEMGUID_S_FTJ_SW_UndeadTowerMaze_Turret_000_d5de9093-b691-4ad2-a2e0-71e974c456a5);
+DB_FTJ_SW_UTM_Turrets(ITEMGUID_S_FTJ_SW_UndeadTowerMaze_Trret_001_388522fe-251c-49f0-a5ca-4583e0a922ca);
+DB_FTJ_SW_UTM_Turrets(ITEMGUID_S_FTJ_SW_UndeadTowerMaze_Turret_002_2a8b9702-4211-445b-ae98-a0ddcb0ca6b8);
+DB_FTJ_SW_UTM_CorridorDoors(ITEMGUID_S_FTJ_SW_UndeadTowerMaze_Door_000_38de06b8-aa72-4fc5-a7bc-dd6b07922024, 0);
+DB_FTJ_SW_UTM_CorridorDoors(ITEMGUID_S_FTJ_SW_UndeadTowerMaze_Door_001_55d8f860-210a-428e-a7c0-eefb8a9b325a, 0);
+DB_FTJ_SW_UTM_ElfCommentTriggers(TRIGGERGUID_S_FTJ_SW_UndeadTowerMaze_CorridorMiddle_Trigger_cf09ee3d-c70b-49c5-911f-a220993f4128);
+DB_FTJ_SW_UTM_ElfCommentTriggers(TRIGGERGUID_S_FTJ_SW_UndeadTowerMaze_CorridorRight_Trigger_e451cf1a-c09e-4d70-8adb-00e8fb14495d);
+DB_FTJ_SW_UTM_ElfCommentTriggers(TRIGGERGUID_S_FTJ_SW_UndeadTowerMaze_Outside_Trigger_3af0e734-208b-4f42-80a5-6bb9d4dc353b);
+DB_OneShotPlayerTrigger(S_FTJ_SW_BurningProphetBox_5f5de313-3fbf-4a1e-aa7e-0ff3dffc89f5);
+DB_FTJ_SW_UTM_BurningSkeletons(S_FTJ_SW_BurningSkeleton1_0b0d054f-aba2-4fac-b89b-473f59cb085e);
+DB_FTJ_SW_UTM_BurningSkeletons(S_FTJ_SW_BurningSkeleton2_11e95a85-9877-403f-944e-16b2c4e9a4b3);
+DB_FTJ_SW_UTM_BurningSkeletons(S_FTJ_SW_BurningSkeleton3_d53d04be-e7d7-4b37-8b93-2807921fb58a);
+SetOnStage(S_FTJ_SW_UndeadTowerMaze_PortalFX_005_055b5098-4655-4038-a504-737ceb2d30b7, 0);
+SetOnStage(ITEMGUID_S_FTJ_SW_UndeadTowerMaze_PortalFX_003_144432e0-5ee8-4f46-b9c4-7e2e0001d8ea, 0);
+DB_Dialogs(CHARACTERGUID_S_FTJ_SW_BurningProphet_26cc04a7-44b0-4405-8125-0f3149899018, "FTJ_SW_BurningProphet");
+DB_Dialogs(ITEMGUID_S_FTJ_SW_EscapeStatue_b4375b18-0acd-4db2-926d-333cc54d93f6, "FTJ_SW_EscapeStatue");
+
+KBSECTION
+IF
+CharacterEnteredTrigger((CHARACTERGUID)_Var1, TRIGGERGUID_S_FTJ_SW_UndeadTowerMaze_Maze_2918fc8d-d517-4b89-9e6b-26f4401df42a)
+THEN
+UserSetFlag(_Var1, "FTJ_SW_Maze_BeenInsideMaze", 0);
+
+IF
+CharacterEnteredTrigger((CHARACTERGUID)_Var1, TRIGGERGUID_S_FTJ_SW_UndeadTowerMaze_Entrance_Trigger_68fc353a-32bc-4e91-b783-75ef62638208)
+AND
+GlobalGetFlag("FTJ_SW_Maze_OnePlayerHasBeenWarned", 0)
+AND
+UserGetFlag(_Var1, "FTJ_SW_Maze_WarnedByGargoyle", 0)
+AND
+UserGetFlag(_Var1, "FTJ_SW_Maze_BeenInsideMaze", 0)
+AND
+QRY_SpeakerIsAvailable(_Var1)
+THEN
+UserSetFlag(_Var1, "FTJ_SW_Maze_EnteredFromStart");
+Proc_StartDialog(0, "FTJ_SW_Maze_GargoyleWarning", ITEMGUID_S_FTJ_SW_UndeadTowerMaze_Entrance_Gargoyle_5d772f69-6738-4efe-84ab-737a526cf01d, _Var1);
+
+IF
+DialogEnded("FTJ_SW_Maze_GargoyleWarning", (INTEGER)_Var1)
+AND
+DialogGetInvolvedPlayer(_Var1, 1, _Var2)
+AND
+DB_FTJ_SW_UTM_ShowedCursedRing(_Var2)
+AND
+UserGetFlag(_Var2, "FTJ_SW_Maze_EnteredFromStart", 1)
+AND
+UserGetFlag(_Var2, "QuestAdd_FTJ_SW_UndeadTowerMaze", 0)
+THEN
+UserSetFlag(_Var2, "QuestAdd_FTJ_SW_UndeadTowerMaze");
+UserSetFlag(_Var2, "QuestUpdate_FTJ_SW_UndeadTowerMaze_StartMazeTeleported");
+
+IF
+DialogEnded("FTJ_SW_Maze_GargoyleWarning", (INTEGER)_Var1)
+AND
+DialogGetInvolvedPlayer(_Var1, 1, _Var2)
+AND
+DB_FTJ_SW_UTM_QuestStarts(_Var3, _Var4)
+AND
+UserGetFlag(_Var2, _Var3, 1)
+AND
+UserGetFlag(_Var2, "QuestAdd_FTJ_SW_UndeadTowerMaze", 0)
+THEN
+UserSetFlag(_Var2, "QuestAdd_FTJ_SW_UndeadTowerMaze");
+UserSetFlag(_Var2, _Var4);
+
+IF
+SavegameLoaded((INTEGER)_Var1, (INTEGER)_Var2, (INTEGER)_Var3, (INTEGER)_Var4)
+AND
+QRY_VersionIsOlderThan(_Var1, _Var2, _Var3, _Var4, 3, 6, 4, 0)
+AND
+DB_FTJ_SW_UTM_QuestStarts("FTJ_SW_Maze_EnteredFromAlternative", "QuestUpdate_FTJ_SW_UndeadTowerMaze_StartMazeFromAlternative")
+THEN
+SysClear("DB_FTJ_SW_UTM_QuestStarts", 2);
+DB_FTJ_SW_UTM_QuestStarts("FTJ_SW_Maze_EnteredFromStart", "QuestUpdate_FTJ_SW_UndeadTowerMaze_StartMaze");
+DB_FTJ_SW_UTM_QuestStarts("FTJ_SW_Maze_EnteredFromAlternative", "QuestUpdate_FTJ_SW_UndeadTowerMaze_StartMaze");
+DB_FTJ_SW_UTM_QuestStarts("FTJ_SW_Maze_EnteredFromEnd", "QuestUpdate_FTJ_SW_UndeadTowerMaze_StartMaze");
+
+IF
+SavegameLoaded((INTEGER)_Var1, (INTEGER)_Var2, (INTEGER)_Var3, (INTEGER)_Var4)
+AND
+QRY_VersionIsOlderThan(_Var1, _Var2, _Var3, _Var4, 3, 6, 4, 0)
+AND
+DB_IsPlayer(_Var5)
+AND
+UserGetFlag(_Var5, "QuestUpdate_FTJ_SW_UndeadTowerMaze_StartMazeFromAlternative", 1)
+THEN
+UserClearFlag(_Var5, "QuestUpdate_FTJ_SW_UndeadTowerMaze_StartMazeFromAlternative", 0);
+
+IF
+ObjectFlagCleared("QuestUpdate_FTJ_SW_UndeadTowerMaze_StartMazeFromAlternative", (CHARACTERGUID)_Var1, 0)
+AND
+QuestIsClosed(_Var1, "FTJ_SW_UndeadTowerMaze", 0)
+AND
+DB_FTJ_SW_UTM_QuestStarts(_Var2, "QuestUpdate_FTJ_SW_UndeadTowerMaze_StartMaze")
+AND
+UserGetFlag(_Var1, _Var2, 1)
+AND
+UserGetFlag(_Var1, "QuestUpdate_FTJ_SW_UndeadTowerMaze_StartMaze", 0)
+THEN
+UserSetFlag(_Var1, "QuestUpdate_FTJ_SW_UndeadTowerMaze_StartMaze");
+
+IF
+SavegameLoaded((INTEGER)_Var1, (INTEGER)_Var2, (INTEGER)_Var3, (INTEGER)_Var4)
+AND
+QRY_VersionIsOlderThan(_Var1, _Var2, _Var3, _Var4, 3, 6, 4, 0)
+AND
+DB_IsPlayer(_Var5)
+AND
+UserGetFlag(_Var5, "FTJ_SW_Maze_WarnedByGargoyle", 1)
+AND
+GlobalGetFlag("FTJ_SW_Maze_OnePlayerHasBeenWarned", 0)
+THEN
+GlobalSetFlag("FTJ_SW_Maze_OnePlayerHasBeenWarned");
+
+IF
+CharacterEnteredTrigger((CHARACTERGUID)_Var1, (TRIGGERGUID)_Var2)
+AND
+DB_FTJ_SW_UTM_RoomsAndGargoyles(_Var2, _Var3)
+AND
+_Var2 != TRIGGERGUID_S_FTJ_SW_UndeadTowerMaze_Entrance_Trigger_68fc353a-32bc-4e91-b783-75ef62638208
+AND
+_Var2 != TRIGGERGUID_S_FTJ_SW_UndeadTowerMaze_End_Trigger_ead9e8fc-fc7c-4684-8d61-e24b522d014f
+AND
+GlobalGetFlag("FTJ_SW_Maze_OnePlayerHasBeenWarned", 0)
+AND
+UserGetFlag(_Var1, "FTJ_SW_Maze_WarnedByGargoyle", 0)
+AND
+UserGetFlag(_Var1, "FTJ_SW_Maze_EnteredFromStart", 0)
+AND
+QRY_SpeakerIsAvailable(_Var1)
+THEN
+UserSetFlag(_Var1, "FTJ_SW_Maze_EnteredFromAlternative");
+Proc_StartDialog(0, "FTJ_SW_Maze_GargoyleWarning", _Var3, _Var1);
+
+IF
+CharacterEnteredTrigger((CHARACTERGUID)_Var1, TRIGGERGUID_S_FTJ_SW_UndeadTowerMaze_Entrance_Trigger_68fc353a-32bc-4e91-b783-75ef62638208)
+AND
+UserGetFlag(_Var1, "FTJ_SW_Maze_EnteredFromAlternative", 1)
+AND
+UserGetFlag(_Var1, "FTJ_SW_Maze_BeenInsideMaze", 0)
+AND
+GlobalGetFlag("FTJ_SW_UTM_MazeQuestCompleted", 0)
+AND
+QueryOnlyOnce("FTJ_SW_UTM_GargoyleCommentsTrueEntrance")
+THEN
+Proc_StartDialog(0, "FTJ_SW_Maze_GargoyleWarning", ITEMGUID_S_FTJ_SW_UndeadTowerMaze_Entrance_Gargoyle_5d772f69-6738-4efe-84ab-737a526cf01d, _Var1);
+
+IF
+CharacterEnteredTrigger((CHARACTERGUID)_Var1, TRIGGERGUID_S_FTJ_SW_UndeadTowerMaze_End_Trigger_ead9e8fc-fc7c-4684-8d61-e24b522d014f)
+AND
+DB_FTJ_SW_UTM_RoomsAndGargoyles(TRIGGERGUID_S_FTJ_SW_UndeadTowerMaze_End_Trigger_ead9e8fc-fc7c-4684-8d61-e24b522d014f, _Var2)
+AND
+GlobalGetFlag("FTJ_SW_Maze_OnePlayerHasBeenWarned", 0)
+AND
+UserGetFlag(_Var1, "FTJ_SW_Maze_WarnedByGargoyle", 0)
+AND
+UserGetFlag(_Var1, "FTJ_SW_Maze_EnteredFromStart", 0)
+AND
+QRY_SpeakerIsAvailable(_Var1)
+THEN
+UserSetFlag(_Var1, "FTJ_SW_Maze_EnteredFromEnd");
+Proc_StartDialog(0, "FTJ_SW_Maze_GargoyleWarning", _Var2, _Var1);
+
+IF
+CharacterEnteredTrigger((CHARACTERGUID)_Var1, (TRIGGERGUID)_Var2)
+AND
+DB_FTJ_SW_UTM_RoomsAndGargoyles(_Var2, _Var3)
+AND
+_Var2 != TRIGGERGUID_S_FTJ_SW_UndeadTowerMaze_End_Trigger_ead9e8fc-fc7c-4684-8d61-e24b522d014f
+AND
+UserGetFlag(_Var1, "FTJ_SW_Maze_EnteredFromEnd", 1)
+AND
+UserGetFlag(_Var1, "FTJ_SW_Maze_EnteredFromStart", 0)
+AND
+UserGetFlag(_Var1, "FTJ_SW_Maze_EnteredMazeAfterEnd", 0)
+THEN
+UserSetFlag(_Var1, "FTJ_SW_Maze_EnteredMazeAfterEnd");
+
+IF
+CharacterEnteredTrigger((CHARACTERGUID)_Var1, (TRIGGERGUID)_Var2)
+AND
+DB_FTJ_SW_UTM_RoomsAndGargoyles(_Var2, _Var3)
+AND
+GlobalGetFlag("FTJ_SW_Maze_OnePlayerHasBeenWarned", 1)
+AND
+UserGetFlag(_Var1, "FTJ_SW_Maze_WarnedByGargoyle", 0)
+AND
+UserGetFlag(_Var1, "FTJ_SW_Maze_SecondPlayerWarned", 0)
+AND
+UserGetFlag(_Var1, "FTJ_SW_Maze_BeenInsideMaze", 0)
+THEN
+Proc_StartDialog(0, "FTJ_SW_Maze_GargoyleWarning", _Var3, _Var1);
+
+IF
+ObjectFlagSet("FTJ_SW_ShowedCursedRingToGargoyle", (CHARACTERGUID)_Var1, (INTEGER)_Var2)
+AND
+QryTakeItemFromMagicPockets(_Var1, ITEMGUID_S_FTJ_SW_BraccusCurseRing_08732b24-8f87-4ecf-b6e6-4cead56297ae, _Var1)
+THEN
+DB_NOOP(1);
+
+IF
+ObjectFlagSet("FTJ_SW_ShowedCursedRingToGargoyle", (CHARACTERGUID)_Var1, (INTEGER)_Var2)
+THEN
+DB_FTJ_SW_UTM_ShowedCursedRing(_Var1);
+
+IF
+DialogEnded("FTJ_SW_Maze_GargoyleWarning", (INTEGER)_Var1)
+AND
+DialogGetInvolvedPlayer(_Var1, 1, _Var2)
+AND
+DB_FTJ_SW_UTM_ShowedCursedRing(_Var2)
+AND
+UserGetFlag(_Var2, "FTJ_SW_Maze_GotTeleportedByGargoyle", 0)
+AND
+UserGetFlag(_Var2, "FTJ_SW_Maze_EnteredFromEnd", 0)
+THEN
+UserSetFlag(_Var2, "FTJ_SW_Maze_GotTeleportedByGargoyle");
+TeleportTo(_Var2, TRIGGERGUID_S_FTJ_SW_UndeadTowerMaze_TeleportPoint_6afe9788-674d-4f6f-b9df-b4a7e53ea2bf);
+
+IF
+CharacterEnteredTrigger((CHARACTERGUID)_Var1, TRIGGERGUID_S_FTJ_SW_UndeadTowerMaze_SmallRoom_Trigger_ca39f5d3-11da-4fe4-b088-042f82618751)
+AND
+DB_FTJ_SW_UTM_NumberOfKeyUsed(1)
+AND
+QueryOnlyOnce("FTJ_SW_GargoyleSmallRoom")
+AND
+GlobalGetFlag("FTJ_SW_UTM_MazeQuestCompleted", 0)
+THEN
+Proc_StartDialog(0, "FTJ_SW_Maze_GargoyleTaunts", ITEMGUID_S_FTJ_SW_UndeadTowerMaze_SmallRoom_Gargoyle_61c31847-9780-4506-9add-5591aaa04d56, _Var1);
+
+IF
+CharacterUsedItem((CHARACTERGUID)_Var1, (ITEMGUID)_Var2)
+AND
+DB_FTJ_SW_UTM_LockedDoors(_Var2)
+AND
+ItemIsLocked(_Var2, 1)
+AND
+DB_FTJ_SW_UTM_NumberOfKeyUsed(0)
+AND
+GlobalGetFlag("FTJ_SW_UTM_MazeQuestCompleted", 0)
+THEN
+Proc_StartDialog(1, "FTJ_SW_AD_Maze_TryingToOpenLockedDoor", _Var1);
+
+IF
+ItemUnlocked((ITEMGUID)_Var1, (CHARACTERGUID)_Var2, (ITEMGUID)_Var3)
+AND
+DB_FTJ_SW_UTM_Key(_Var3)
+AND
+DB_FTJ_SW_UTM_NumberOfKeyUsed(_Var4)
+AND
+IntegerSum(_Var4, 1, _Var5)
+AND
+DB_FTJ_SW_UTM_ActiveFlag(_Var6)
+AND
+IntegertoString(_Var5, _Var7)
+AND
+StringConcatenate("FTJ_SW_UTM_NumberOfKeyUsed_", _Var7, _Var8)
+THEN
+NOT DB_FTJ_SW_UTM_NumberOfKeyUsed(_Var4);
+DB_FTJ_SW_UTM_NumberOfKeyUsed(_Var5);
+NOT DB_FTJ_SW_UTM_ActiveFlag(_Var6);
+DB_FTJ_SW_UTM_ActiveFlag(_Var8);
+GlobalClearFlag(_Var6);
+GlobalSetFlag(_Var8);
+Proc_CheckQuestUpdateTwoKeysUsed(_Var2);
+
+PROC
+Proc_CheckQuestUpdateTwoKeysUsed((CHARACTERGUID)_Var1)
+AND
+UserGetFlag(_Var1, "FTJ_SW_Maze_WarnedByGargoyle", 1)
+AND
+DB_FTJ_SW_UTM_NumberOfKeyUsed(2)
+AND
+QueryOnlyOnce("FTJ_SW_UTM_MazeQuestUpdateTwoKeys")
+THEN
+UserSetFlag(_Var1, "QuestUpdate_FTJ_SW_UndeadTowerMaze_TwoKeysUsed");
+
+IF
+CharacterItemEvent(_, ITEMGUID_S_FTJ_SW_UndeadTowerMaze_Hall_PressurePlate_eaac144f-7cf3-4abb-80de-8d126ff0ea41, "S_FTJ_SW_UTM_H_PP000_On")
+AND
+GlobalGetFlag("FTJ_SW_UTM_HallKeyPickedUp", 0)
+THEN
+SetOnStage(ITEMGUID_S_FTJ_SW_UndeadTowerMaze_OneUseKey_Hall_e58094de-02b0-45c4-a10f-f5bdd16f65e5, 1);
+PlayEffect(ITEMGUID_S_FTJ_SW_UndeadTowerMaze_OneUseKey_Hall_e58094de-02b0-45c4-a10f-f5bdd16f65e5, "RS3_FX_GP_ScriptedEvent_Teleport_GenericSmoke_01");
+
+IF
+CharacterItemEvent(_, ITEMGUID_S_FTJ_SW_UndeadTowerMaze_Hall_PressurePlate_eaac144f-7cf3-4abb-80de-8d126ff0ea41, "S_FTJ_SW_UTM_H_PP000_Off")
+AND
+GlobalGetFlag("FTJ_SW_UTM_HallKeyPickedUp", 0)
+THEN
+SetOnStage(ITEMGUID_S_FTJ_SW_UndeadTowerMaze_OneUseKey_Hall_e58094de-02b0-45c4-a10f-f5bdd16f65e5, 0);
+
+IF
+ItemAddedToCharacter(ITEMGUID_S_FTJ_SW_UndeadTowerMaze_OneUseKey_Hall_e58094de-02b0-45c4-a10f-f5bdd16f65e5, (CHARACTERGUID)_Var1)
+THEN
+GlobalSetFlag("FTJ_SW_UTM_HallKeyPickedUp");
+
+IF
+ObjectEnteredCombat((CHARACTERGUID)_Var1, _)
+AND
+DB_FTJ_SW_UTM_BurningSkeletons(_Var1)
+AND
+QueryOnlyOnce("FTJ_SW_CombatSave_BurningSkeletons")
+THEN
+AutoSave();
+
+IF
+DB_FTJ_SW_UTM_BurningSkeletons(_Var1)
+THEN
+SetOnStage(_Var1, 0);
+
+PROC
+ProcOneShotTriggerEntered(_, TRIGGERGUID_S_FTJ_SW_BurningProphetBox_5f5de313-3fbf-4a1e-aa7e-0ff3dffc89f5)
+THEN
+SetStoryEvent(CHARACTERGUID_S_FTJ_SW_BurningProphet_26cc04a7-44b0-4405-8125-0f3149899018, "RoomEntered");
+
+IF
+StoryEvent((GUIDSTRING)_Var1, "FTJ_SW_BurningSkeletonAppeared")
+THEN
+ApplyStatus(_Var1, "BURNING", -1);
+
+IF
+GlobalFlagSet("FTJ_SW_ExtinguishedBurningProphet")
+THEN
+SetOnStage(ITEMGUID_S_FTJ_SW_UndeadTowerMaze_PortalFX_003_144432e0-5ee8-4f46-b9c4-7e2e0001d8ea, 1);
+
+IF
+GlobalFlagSet("FTJ_SW_HealedBurningProphet")
+THEN
+SetOnStage(S_FTJ_SW_UndeadTowerMaze_PortalFX_005_055b5098-4655-4038-a504-737ceb2d30b7, 1);
+
+IF
+StoryEvent((GUIDSTRING)_Var1, "FTJ_SW_ProphetTalkToPlayer")
+THEN
+Proc_StartDialog(0, "FTJ_SW_BurningProphet", CHARACTERGUID_S_FTJ_SW_BurningProphet_26cc04a7-44b0-4405-8125-0f3149899018, _Var1);
+
+IF
+DialogEnded("FTJ_SW_BurningProphet", (INTEGER)_Var1)
+AND
+GlobalGetFlag("FTJ_SW_HealedBurningProphet", 1)
+THEN
+Poof(CHARACTERGUID_S_FTJ_SW_BurningProphet_26cc04a7-44b0-4405-8125-0f3149899018);
+GlobalSetFlag("FTJ_SW_UTM_BurningProphetSituationSolved");
+
+IF
+CharacterDied(CHARACTERGUID_S_FTJ_SW_BurningProphet_26cc04a7-44b0-4405-8125-0f3149899018)
+AND
+GlobalGetFlag("FTJ_SW_UTM_BurningProphetSituationSolved", 0)
+THEN
+GlobalSetFlag("FTJ_SW_UTM_BurningProphetSituationSolved");
+
+IF
+ObjectTurnStarted(S_FTJ_SW_BurningSkeleton2_11e95a85-9877-403f-944e-16b2c4e9a4b3)
+AND
+QueryOnlyOnce("FTJ_SW_AD_BurningSkeleton")
+THEN
+Proc_StartDialog(1, "FTJ_SW_AD_BurningSkeleton", CHARACTERGUID_S_FTJ_SW_BurningSkeleton2_11e95a85-9877-403f-944e-16b2c4e9a4b3);
+
+PROC
+ProcOneShotTriggerEntered(_, TRIGGERGUID_S_FTJ_SW_BurningProphetBox_5f5de313-3fbf-4a1e-aa7e-0ff3dffc89f5)
+AND NOT
+QRY_FTJ_SW_UTM_LaunchGargoyleEncouragesPlayer()
+AND
+DB_FTJ_SW_UTM_BurningSkeletons(_Var2)
+THEN
+PlayEffect(_Var2, "RS3_FX_GP_ScriptedEvent_BurningHistorian_Reignite_01");
+CharacterAppear(_Var2, 1, "FTJ_SW_BurningSkeletonAppeared");
+CreatePuddle(_Var2, "SurfaceFire", 10, 120, 3, 5, 0.2);
+
+IF
+DialogEnded("FTJ_SW_Maze_GargoyleEncouragesPlayer", _)
+AND
+DB_FTJ_SW_UTM_BurningSkeletons(_Var2)
+THEN
+PlayEffect(_Var2, "RS3_FX_GP_ScriptedEvent_BurningHistorian_Reignite_01");
+CharacterAppear(_Var2, 1, "FTJ_SW_BurningSkeletonAppeared");
+CreatePuddle(_Var2, "SurfaceFire", 10, 120, 3, 5, 0.2);
+
+QRY
+QRY_FTJ_SW_UTM_LaunchGargoyleEncouragesPlayer()
+AND
+DB_InRegion(_Var1, TRIGGERGUID_S_FTJ_SW_UndeadTowerMaze_CentralRoom_Trigger_b3557325-5f37-4672-9df9-cd9bbffcf06e)
+AND
+GlobalGetFlag("FTJ_SW_UTM_MazeQuestCompleted", 0)
+AND
+UserGetFlag(_Var1, "FTJ_SW_Maze_WarnedByGargoyle", 1)
+AND
+QRY_SpeakerIsAvailable(_Var1)
+AND
+QueryOnlyOnce("FTJ_SW_Maze_GargoyleEncouragesPlayer")
+THEN
+Proc_StartDialog(0, "FTJ_SW_Maze_GargoyleEncouragesPlayer", ITEMGUID_S_FTJ_SW_UndeadTowerMaze_CentralRoom_Gargoyle01_c5fc087c-1e01-40a5-9be6-c6f8bf6cd5ad, _Var1);
+
+IF
+DialogEnded("FTJ_SW_Maze_GargoyleEncouragesPlayer", (INTEGER)_Var1)
+AND
+DB_DialogPlayers(_Var1, _Var2, 1)
+THEN
+UserSetFlag(_Var2, "QuestUpdate_FTJ_SW_UndeadTowerMaze_MazeEncouragement");
+
+IF
+CharacterUsedItem((CHARACTERGUID)_Var1, ITEMGUID_S_FTJ_SW_UndeadTowerMaze_PortalFX_003_144432e0-5ee8-4f46-b9c4-7e2e0001d8ea)
+THEN
+ObjectSetFlag(_Var1, "FTJ_SW_UTM_UsedPortalLeadingToArmor");
+
+IF
+CharacterEnteredTrigger((CHARACTERGUID)_Var1, TRIGGERGUID_S_FTJ_SW_UndeadTowerMaze_PuzzleRoom_Trigger_c3d48527-2ee6-4616-b793-1e4531d73bf0)
+AND
+GlobalGetFlag("FTJ_SW_UTM_PuzzleRoomKeyPickedUp", 0)
+AND
+GlobalGetFlag("FTJ_SW_UTM_PlayerUsedPortal", 0)
+AND
+QueryOnlyOnce("FTJ_SW_UTM_PlayerSeePortal")
+THEN
+StartVoiceBark("FTJ_SW_VB_Maze_SeePortalUpOnWall", _Var1);
+
+IF
+CharacterItemEvent(_, ITEMGUID_S_FTJ_SW_UndeadTowerMaze_PuzzlePlate_000_998d5eed-e5c6-456d-9abf-7ce72ac19e43, "UTM_Puzzle_PP00_On")
+AND
+DB_FTJ_SW_UTM_PuzzleItem(_Var2, _Var3)
+THEN
+NOT DB_FTJ_SW_UTM_PuzzleItem(_Var2, _Var3);
+DB_FTJ_SW_UTM_PuzzleItem(_Var2, 1);
+SetOnStage(_Var2, 1);
+
+IF
+CharacterItemEvent(_, ITEMGUID_S_FTJ_SW_UndeadTowerMaze_PuzzlePlate_000_998d5eed-e5c6-456d-9abf-7ce72ac19e43, "UTM_Puzzle_PP00_Off")
+AND
+DB_FTJ_SW_UTM_PuzzleItem(_Var2, _Var3)
+THEN
+NOT DB_FTJ_SW_UTM_PuzzleItem(_Var2, _Var3);
+DB_FTJ_SW_UTM_PuzzleItem(_Var2, 0);
+SetOnStage(_Var2, 0);
+
+IF
+CharacterItemEvent(_, ITEMGUID_S_FTJ_SW_UndeadTowerMaze_PuzzlePlate_001_99a538b0-07c2-41ec-b683-a419620a9512, "UTM_Puzzle_PP01_On")
+AND
+GlobalGetFlag("FTJ_SW_UTM_PuzzleRoomKeyPickedUp", 0)
+THEN
+SetOnStage(ITEMGUID_S_FTJ_SW_UndeadTowerMaze_OneUseKey_Puzzle_5467927d-08f1-4aa6-964a-d3f2f92117e1, 1);
+PlayEffect(ITEMGUID_S_FTJ_SW_UndeadTowerMaze_OneUseKey_Puzzle_5467927d-08f1-4aa6-964a-d3f2f92117e1, "RS3_FX_GP_ScriptedEvent_Teleport_GenericSmoke_01");
+
+IF
+CharacterItemEvent(_, ITEMGUID_S_FTJ_SW_UndeadTowerMaze_PuzzlePlate_001_99a538b0-07c2-41ec-b683-a419620a9512, "UTM_Puzzle_PP01_Off")
+AND
+GlobalGetFlag("FTJ_SW_UTM_PuzzleRoomKeyPickedUp", 0)
+THEN
+SetOnStage(ITEMGUID_S_FTJ_SW_UndeadTowerMaze_OneUseKey_Puzzle_5467927d-08f1-4aa6-964a-d3f2f92117e1, 0);
+
+IF
+ItemAddedToCharacter(ITEMGUID_S_FTJ_SW_UndeadTowerMaze_OneUseKey_Puzzle_5467927d-08f1-4aa6-964a-d3f2f92117e1, (CHARACTERGUID)_Var1)
+AND
+GlobalGetFlag("FTJ_SW_UTM_PuzzleRoomKeyPickedUp", 0)
+AND
+DB_InRegion(_Var1, TRIGGERGUID_S_FTJ_SW_UndeadTowerMaze_PuzzleRoom_Trigger_c3d48527-2ee6-4616-b793-1e4531d73bf0)
+THEN
+Proc_StartDialog(0, "FTJ_SW_Maze_GargoyleAfterPuzzle", ITEMGUID_S_FTJ_SW_UndeadTowerMaze_PuzzleRoom_Gargoyle_97296cc7-4185-477f-a1be-487f917321dd, _Var1);
+
+IF
+ItemAddedToCharacter(ITEMGUID_S_FTJ_SW_UndeadTowerMaze_OneUseKey_Puzzle_5467927d-08f1-4aa6-964a-d3f2f92117e1, (CHARACTERGUID)_Var1)
+THEN
+GlobalSetFlag("FTJ_SW_UTM_PuzzleRoomKeyPickedUp");
+
+PROC
+ProcBlockUseOfItem((CHARACTERGUID)_Var1, (ITEMGUID)_Var2)
+AND
+DB_FTJ_SW_UTM_Portals(_Var2, _Var3, _, _Var5)
+THEN
+DB_CustomUseItemResponse(_Var1, _Var2, 0);
+DB_FTJ_SW_UTM_PlayerArrivedFrom(_Var1, _Var2);
+GlobalSetFlag("FTJ_SW_UTM_PlayerUsedPortal");
+TeleportTo(_Var1, _Var3, "", 1);
+Proc_FTJ_SW_UTM_PlayVBAfterFirstTeleport(_Var1);
+
+PROC
+ProcBlockUseOfItem((CHARACTERGUID)_Var1, ITEMGUID_S_FTJ_SW_UndeadTowerMaze_Lava_PortalFX_f2d60a2c-22e8-4078-a929-d436dec21763)
+AND
+DB_FTJ_SW_UTM_PlayerArrivedFrom(_Var1, _Var2)
+AND
+DB_FTJ_SW_UTM_Portals(_Var3, _, _Var5, _)
+AND
+_Var3 != _Var2
+THEN
+DB_CustomUseItemResponse(_Var1, ITEMGUID_S_FTJ_SW_UndeadTowerMaze_Lava_PortalFX_f2d60a2c-22e8-4078-a929-d436dec21763, 0);
+NOT DB_FTJ_SW_UTM_PlayerArrivedFrom(_Var1, _Var2);
+TeleportTo(_Var1, _Var5, "FTJ_SW_UTM_TeleportedFromPortal", 1);
+
+IF
+StoryEvent((CHARACTERGUID)_Var1, "FTJ_SW_UTM_TeleportedFromPortal")
+AND
+DB_FTJ_SW_UTM_PlayerArrivedFrom(_Var1, _Var2)
+THEN
+NOT DB_FTJ_SW_UTM_PlayerArrivedFrom(_Var1, _Var2);
+
+PROC
+Proc_FTJ_SW_UTM_PlayVBAfterFirstTeleport((CHARACTERGUID)_Var1)
+AND
+QRY_SpeakerIsAvailable(_Var1)
+AND
+QueryOnlyOnce("FTJ_SW_PlayerTookPortal")
+THEN
+StartVoiceBark("FTJ_SW_VB_Maze_TeleportedToLavaCave", _Var1);
+
+IF
+CharacterItemEvent(_, ITEMGUID_S_FTJ_SW_UndeadTowerMaze_GratingPlate_965528f5-e3a8-43f5-b9c8-ff4607dbdc88, "UTM_CorridorPlate_Doors_On")
+AND
+DB_FTJ_SW_UTM_CorridorDoors(_Var2, 0)
+THEN
+ItemUnlockAndOpen(ITEMGUID_S_BLD_Humans_Prison_Grating_Door_A_004_38de06b8-aa72-4fc5-a7bc-dd6b07922024);
+ItemUnlockAndOpen(ITEMGUID_S_BLD_Humans_Prison_Grating_Door_A_005_55d8f860-210a-428e-a7c0-eefb8a9b325a);
+
+IF
+CharacterItemEvent(_, ITEMGUID_S_FTJ_SW_UndeadTowerMaze_GratingPlate_965528f5-e3a8-43f5-b9c8-ff4607dbdc88, "UTM_CorridorPlate_Doors_Off")
+THEN
+ItemClose(ITEMGUID_S_BLD_Humans_Prison_Grating_Door_A_004_38de06b8-aa72-4fc5-a7bc-dd6b07922024);
+ItemClose(ITEMGUID_S_BLD_Humans_Prison_Grating_Door_A_005_55d8f860-210a-428e-a7c0-eefb8a9b325a);
+
+IF
+CharacterItemEvent(_, ITEMGUID_S_FTJ_SW_UndeadTowerMaze_GratingPlate_965528f5-e3a8-43f5-b9c8-ff4607dbdc88, "UTM_CorridorPlate_Doors_Off")
+AND
+DB_FTJ_SW_UTM_CorridorDoors(_Var2, 0)
+THEN
+ItemLock(_Var2, "Tower_Garden_Door_Key");
+
+IF
+ItemUnlocked((ITEMGUID)_Var1, (CHARACTERGUID)_Var2, (ITEMGUID)_Var3)
+AND
+DB_FTJ_SW_UTM_CorridorDoors(_Var1, _Var4)
+THEN
+NOT DB_FTJ_SW_UTM_CorridorDoors(_Var1, _Var4);
+DB_FTJ_SW_UTM_CorridorDoors(_Var1, 1);
+
+IF
+CharacterItemEvent(_, ITEMGUID_S_FTJ_SW_UndeadTowerMaze_CorridorPlate_Key_aac63f76-21aa-4bbd-9e3a-d4af47fd2a73, "UTM_CorridorPlate_Key_On")
+AND
+GlobalGetFlag("FTJ_SW_UTM_CorridorKeyPickedUp", 0)
+THEN
+SetOnStage(ITEMGUID_S_FTJ_SW_UndeadTowerMaze_OneUseKey_Corridor_e5e154f1-b58a-4e76-bf07-9558f4e2d17d, 1);
+PlayEffect(ITEMGUID_S_FTJ_SW_UndeadTowerMaze_OneUseKey_Corridor_e5e154f1-b58a-4e76-bf07-9558f4e2d17d, "RS3_FX_GP_ScriptedEvent_Teleport_GenericSmoke_01");
+
+IF
+CharacterItemEvent(_, ITEMGUID_S_FTJ_SW_UndeadTowerMaze_CorridorPlate_Key_aac63f76-21aa-4bbd-9e3a-d4af47fd2a73, "UTM_CorridorPlate_Key_Off")
+AND
+GlobalGetFlag("FTJ_SW_UTM_CorridorKeyPickedUp", 0)
+THEN
+SetOnStage(ITEMGUID_S_FTJ_SW_UndeadTowerMaze_OneUseKey_Corridor_e5e154f1-b58a-4e76-bf07-9558f4e2d17d, 0);
+
+IF
+ItemAddedToCharacter(ITEMGUID_S_FTJ_SW_UndeadTowerMaze_OneUseKey_Corridor_e5e154f1-b58a-4e76-bf07-9558f4e2d17d, (CHARACTERGUID)_Var1)
+THEN
+GlobalSetFlag("FTJ_SW_UTM_CorridorKeyPickedUp");
+
+IF
+CharacterEnteredTrigger((CHARACTERGUID)_Var1, (TRIGGERGUID)_Var2)
+AND
+DB_FTJ_SW_UTM_ElfCommentTriggers(_Var2)
+AND
+ObjectGetFlag(_Var1, "FT_SW_AteEarKnowsGargoyleMaze", 1)
+AND
+QRY_SpeakerIsAvailable(_Var1)
+AND
+QueryOnlyOnce("FTJ_SW_UTM_GiveHint")
+THEN
+Proc_StartDialog(1, "FTJ_SW_AD_Maze_ElfHint", _Var1);
+
+IF
+CharacterEnteredTrigger((CHARACTERGUID)_Var1, TRIGGERGUID_S_FTJ_SW_UndeadTowerMaze_EndTrigger_ead9e8fc-fc7c-4684-8d61-e24b522d014f)
+AND
+UserGetFlag(_Var1, "FTJ_SW_Maze_WarnedByGargoyle", 1)
+AND
+UserGetFlag(_Var1, "FTJ_SW_Maze_EnteredFromEnd", 0)
+AND
+QRY_SpeakerIsAvailable(_Var1)
+AND
+QueryOnlyOnce("FTJ_SW_UTM_EndComment")
+THEN
+Proc_StartDialog(0, "FTJ_SW_Maze_GargoyleAtEnd", ITEMGUID_S_FTJ_SW_UndeadTowerMaze_End_Gargoyle_70501e5c-7809-4e5a-9eff-ae33b9aa2695, _Var1);
+
+IF
+CharacterEnteredTrigger((CHARACTERGUID)_Var1, TRIGGERGUID_S_FTJ_SW_UndeadTowerMaze_EndTrigger_ead9e8fc-fc7c-4684-8d61-e24b522d014f)
+AND
+UserGetFlag(_Var1, "FTJ_SW_Maze_WarnedByGargoyle", 1)
+AND
+UserGetFlag(_Var1, "FTJ_SW_Maze_EnteredFromEnd", 1)
+AND
+UserGetFlag(_Var1, "FTJ_SW_Maze_EnteredMazeAfterEnd", 1)
+AND
+QRY_SpeakerIsAvailable(_Var1)
+AND
+QueryOnlyOnce("FTJ_SW_UTM_EndComment")
+THEN
+Proc_StartDialog(0, "FTJ_SW_Maze_GargoyleAtEnd", ITEMGUID_S_FTJ_SW_UndeadTowerMaze_End_Gargoyle_70501e5c-7809-4e5a-9eff-ae33b9aa2695, _Var1);
+
+IF
+CharacterEnteredTrigger((CHARACTERGUID)_Var1, TRIGGERGUID_S_FTJ_SW_UndeadTowerMaze_EndTrigger_ead9e8fc-fc7c-4684-8d61-e24b522d014f)
+AND
+UserGetFlag(_Var1, "FTJ_SW_Maze_WarnedByGargoyle", 0)
+AND
+UserGetFlag(_Var1, "FTJ_SW_Maze_GotTeleportedByGargoyle", 1)
+AND
+UserGetFlag(_Var1, "FTJ_SW_Maze_EnteredFromEnd", 0)
+AND
+QRY_SpeakerIsAvailable(_Var1)
+AND
+QueryOnlyOnce("FTJ_SW_UTM_EndComment")
+THEN
+Proc_StartDialog(0, "FTJ_SW_Maze_GargoyleAtEnd", ITEMGUID_S_FTJ_SW_UndeadTowerMaze_End_Gargoyle_70501e5c-7809-4e5a-9eff-ae33b9aa2695, _Var1);
+
+IF
+CharacterEnteredTrigger((CHARACTERGUID)_Var1, TRIGGERGUID_S_FTJ_SW_UndeadTowerMaze_EndTrigger_ead9e8fc-fc7c-4684-8d61-e24b522d014f)
+AND
+UserGetFlag(_Var1, "FTJ_SW_Maze_WarnedByGargoyle", 0)
+AND
+UserGetFlag(_Var1, "FTJ_SW_Maze_GotTeleportedByGargoyle", 1)
+AND
+UserGetFlag(_Var1, "FTJ_SW_Maze_EnteredFromEnd", 1)
+AND
+UserGetFlag(_Var1, "FTJ_SW_Maze_EnteredMazeAfterEnd", 1)
+AND
+QRY_SpeakerIsAvailable(_Var1)
+AND
+QueryOnlyOnce("FTJ_SW_UTM_EndComment")
+THEN
+Proc_StartDialog(0, "FTJ_SW_Maze_GargoyleAtEnd", ITEMGUID_S_FTJ_SW_UndeadTowerMaze_End_Gargoyle_70501e5c-7809-4e5a-9eff-ae33b9aa2695, _Var1);
+
+IF
+DialogEnded("FTJ_SW_Maze_GargoyleAtEnd", (INTEGER)_Var1)
+AND
+DB_DialogPlayers(_Var1, _Var2, 1)
+THEN
+Proc_FTJ_SW_UTM_QuestClose(_Var2);
+
+PROC
+Proc_FTJ_SW_UTM_QuestClose((CHARACTERGUID)_Var1)
+THEN
+GlobalSetFlag("FTJ_SW_UTM_MazeQuestCompleted");
+UserSetFlag(_Var1, "QuestClose_FTJ_SW_UndeadTowerMaze_EndMaze");
+
+IF
+DialogEnded("FTJ_SW_EscapeStatue", (INTEGER)_Var1)
+AND
+DialogGetInvolvedPlayer(_Var1, 1, _Var2)
+AND
+ObjectGetFlag(_Var2, "FTJ_SW_LeaveMaze", 1)
+AND
+GetPosition(_Var2, _Var3, _Var4, _Var5)
+THEN
+ObjectClearFlag(_Var2, "FTJ_SW_LeaveMaze", 0);
+PlayEffectAtPosition("RS3_FX_GP_ScriptedEvent_Teleport_GenericSmoke_01", _Var3, _Var4, _Var5);
+PlayEffect(_Var2, "RS3_FX_GP_ScriptedEvent_Teleport_GenericSmoke_01");
+TeleportTo(_Var2, S_FTJ_SW_EscapeTrigger_c56fed49-eef9-44cb-83aa-0f4c0de36738, "", 1);
+
+PROC
+ProcBlockUseOfItem((CHARACTERGUID)_Var1, ITEMGUID_FTJ_SW_UndeadTowerMaze_Hatch_A_07b9291e-0c54-40f4-9571-5e47038053df)
+AND NOT
+DB_InRegion(_Var1, TRIGGERGUID_S_FTJ_SW_UndeadTowerMaze_SmallRoom_Trigger_ca39f5d3-11da-4fe4-b088-042f82618751)
+THEN
+ShowError(_Var1, "CannotReach");
+DB_CustomUseItemResponse(_Var1, ITEMGUID_FTJ_SW_UndeadTowerMaze_Hatch_A_07b9291e-0c54-40f4-9571-5e47038053df, 0);
+
+
+EXITSECTION
+ENDEXITSECTION
+
+ParentTargetEdge "FortJoy"

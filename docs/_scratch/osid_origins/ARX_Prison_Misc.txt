@@ -1,0 +1,233 @@
+Version 1
+SubGoalCombiner SGC_AND
+
+INITSECTION
+DB_Ghosts(S_RC_ARX_Prison_TorturedMagister_Ghost_376f7ed3-85df-455e-b650-e2b25568a6e7, "RC_ARX_Barracks_TorturedMagister_Ghost");
+DB_Dialogs(CHARACTERGUID_S_RC_ARX_Prison_Warden_63b53c11-2f0d-40b7-8771-05df0e4f264d, "RC_ARX_Prison_Warden");
+ItemToInventory(S_ARX_PrisonCells_Key_33488677-ea0c-4b0f-8bf6-d51627c5ea0f, CHARACTERGUID_S_RC_ARX_Prison_Warden_63b53c11-2f0d-40b7-8771-05df0e4f264d);
+DB_Dialogs(CHARACTERGUID_S_RC_ARX_Prison_Guard_01_06ccfe8f-07fe-432a-8f69-9e6c153ad7c9, "RC_ARX_Prison_Guard_01");
+DB_Dialogs(CHARACTERGUID_S_RC_ARX_Prison_Guard_02_cd12ddda-06ab-4310-9db5-7a15ae9ddd5b, "RC_ARX_Prison_Guard_02");
+DB_Dialogs(CHARACTERGUID_S_RC_ARX_Prison_Guard_04_488baaed-6298-4155-a7e1-3e0f094da5d9, "RC_ARX_Prison_Guard_04");
+ProcCharacterDisableCrime(S_ARX_Prison_Arhus_Keeper_43570f67-d127-4636-bac4-d898001afb9e, "UseForbiddenItem");
+DB_ARX_Prison_DoorsOnwership_Characters(CHARACTERGUID_S_RC_ARX_Prison_Warden_63b53c11-2f0d-40b7-8771-05df0e4f264d);
+DB_ARX_Prison_DoorsOnwership_Characters(CHARACTERGUID_S_RC_ARX_Prison_Guard_01_06ccfe8f-07fe-432a-8f69-9e6c153ad7c9);
+DB_ARX_Prison_DoorsOnwership_Characters(CHARACTERGUID_S_RC_ARX_Prison_Guard_02_cd12ddda-06ab-4310-9db5-7a15ae9ddd5b);
+DB_ARX_Prison_DoorsOnwership_Characters(CHARACTERGUID_S_RC_ARX_Prison_Guard_04_488baaed-6298-4155-a7e1-3e0f094da5d9);
+DB_ARX_Prison_DoorsOnwership_Characters(CHARACTERGUID_S_ARX_Prison_ToWindegoGuard2_9b70b655-d8f4-4690-9da5-39c364ed3c77);
+DB_ARX_Prison_DoorsOnwership_Characters(CHARACTERGUID_S_ARX_Prison_ToWindegoGuard1_e58ded34-c56c-4959-9c7b-159529273705);
+DB_ARX_Prison_DoorsOnwership_Doors(ITEMGUID_S_ARX_Prison_PlayerCell_Door_3a6d9404-27b0-8dbc-199a-5b83156d3943);
+DB_ARX_Prison_DoorsOnwership_Doors(ITEMGUID_S_BLD_Humans_Prison_Grating_Door_B_000_e1204a91-5dd3-4138-80c2-e254cf955503);
+DB_ARX_Prison_DoorsOnwership_Doors(ITEMGUID_S_BLD_Humans_Prison_Grating_Door_B_002_b149b405-f50a-4341-aea3-ed7fa585872a);
+DB_ARX_Prison_DoorsOnwership_Doors(ITEMGUID_S_BLD_Humans_Prison_Grating_Door_B_003_9f22c602-ff29-4701-8c21-3bbf68e3a095);
+DB_Dialogs(CHARACTERGUID_S_ARX_Prison_Arhus_Keeper_43570f67-d127-4636-bac4-d898001afb9e, "ARX_Prison_Magister_Prisoner");
+DB_Dialogs(S_ARX_Prison_Magister_Prisoner02_c0aa5b34-a755-46b1-bd17-5df848fe2be4, "ARX_Prison_Magister_Prisoner02");
+DB_ARX_Prison_Magister_Prisoners(S_ARX_Prison_Arhus_Keeper_43570f67-d127-4636-bac4-d898001afb9e);
+DB_ARX_Prison_Magister_Prisoners(S_ARX_Prison_Magister_Prisoner02_c0aa5b34-a755-46b1-bd17-5df848fe2be4);
+ProcCharacterDisableAllCrimes(CHARACTERGUID_S_ARX_Prison_Magister_Prisoner02_c0aa5b34-a755-46b1-bd17-5df848fe2be4);
+ProcCharacterDisableAllCrimes(CHARACTERGUID_S_ARX_Prison_Magister_Prisoner01_43570f67-d127-4636-bac4-d898001afb9e);
+ProcCharacterEnableCrime(CHARACTERGUID_S_ARX_Prison_Magister_Prisoner02_c0aa5b34-a755-46b1-bd17-5df848fe2be4, "Assault");
+ProcCharacterEnableCrime(CHARACTERGUID_S_ARX_Prison_Magister_Prisoner01_43570f67-d127-4636-bac4-d898001afb9e, "Assault");
+DB_ARX_Prison_DestructibleGradingCanUse(S_ARX_Prison_SecretPath_FromPlayerPrison_057e7643-c45f-4456-b058-c2c7f2cb4570, "FromPlayerCell");
+DB_ARX_Prison_DestructibleGradingCanUse(S_ARX_Prison_SecretPath_ToPlayerPrison_7235b773-54b2-4085-9d42-f74f0a5bec4d, "ToPlayerCell");
+DB_ARX_Prison_DestructibleGradingCantUse(S_ARX_Prison_SecretPath_FromPlayerPrison_CantUse_3ec7489e-f9d9-4b33-a814-cabd77745bec, "FromPlayerCell");
+DB_ARX_Prison_DestructibleGradingCantUse(S_ARX_Prison_SecretPath_ToPlayerPrison_CantUse_e42c6b0b-94be-47a0-b01f-ab82e32b1cf5, "ToPlayerCell");
+DB_ARX_Prison_DestructibleGradingCantUseDestructivewood(S_ARX_Prison_SecretPath_ToPlayerPrison_CantUse_e42c6b0b-94be-47a0-b01f-ab82e32b1cf5, S_ARX_Prison_SecretPath_ToPlayerPrison_WoodBlock_b9665f3b-5f06-4b6d-af7a-24e42a55b8c8);
+DB_ARX_Prison_DestructibleGradingCantUseDestructivewood(S_ARX_Prison_SecretPath_FromPlayerPrison_CantUse_3ec7489e-f9d9-4b33-a814-cabd77745bec, S_ARX_Prison_SecretPath_FromPlayerPrison_WoodBlock_b9924613-06d1-43fb-ba07-8909f93d35a6);
+DB_QuestDef_State("ARX_MissingPrisoners", "NoticedMissingPrisoners", 1);
+DB_QuestDef_State("ARX_MissingPrisoners", "FoundDeadPrisoners");
+DB_QuestDef_State("ARX_MissingPrisoners", "FoundPrisonerGhost");
+DB_QuestDef_State("ARX_MissingPrisoners", "KnowsMagistersWereInvestigating");
+DB_QuestDef_State("ARX_MissingPrisoners", "PrisonerWereUsedForSource");
+DB_QuestDef_State("ARX_MissingPrisoners", "ReportedTotheWarden", -1);
+DB_QuestDef_State("ARX_MissingPrisoners", "CloseLeftARX", -1);
+DB_QuestDef_CloseEvent("ARX_MissingPrisoners", "ARX_Prison_MissingPrisoners_CloseJournal");
+DB_SeenDeadNPCPartyFlag(CHARACTERGUID_S_RC_ARX_Prison_Warden_63b53c11-2f0d-40b7-8771-05df0e4f264d, "ARX_Parison_SawDeadWarden");
+
+KBSECTION
+IF
+ItemOpened(BLD_Humans_Prison_Grating_Door_B_000_e1204a91-5dd3-4138-80c2-e254cf955503)
+AND
+DB_ARX_Prison_Magister_Prisoners(_Var1)
+AND
+CharacterIsDead(_Var1, 0)
+THEN
+ObjectSetFlag(_Var1, "ARX_Prison_ArhusKeeperFleeWhenPossible");
+ProcForceStopDialog(_Var1);
+
+IF
+ItemDestroyed(BLD_Humans_Prison_Grating_Door_B_000_e1204a91-5dd3-4138-80c2-e254cf955503)
+AND
+DB_ARX_Prison_Magister_Prisoners(_Var1)
+AND
+CharacterIsDead(_Var1, 0)
+THEN
+ObjectSetFlag(_Var1, "ARX_Prison_ArhusKeeperFleeWhenPossible");
+ProcForceStopDialog(_Var1);
+
+IF
+ObjectFlagSet("ARX_Prison_ArhusKeeper_Disapear", (CHARACTERGUID)_Var1, _)
+THEN
+ProcCharacterDisappearOutOfSight(_Var1, 270, 1, "", 0);
+
+IF
+AttackedByObject(S_ARX_Prison_Arhus_Keeper_43570f67-d127-4636-bac4-d898001afb9e, S_ARX_Prison_Magister_Prisoner02_c0aa5b34-a755-46b1-bd17-5df848fe2be4, _, _, _)
+AND
+GlobalGetFlag("ARX_Prison_Magister_Prisoner_ToldAboutWhiteMagisters", 1)
+AND
+CharacterIsInCombat(S_ARX_Prison_Arhus_Keeper_43570f67-d127-4636-bac4-d898001afb9e, 0)
+THEN
+CharacterDie(S_ARX_Prison_Arhus_Keeper_43570f67-d127-4636-bac4-d898001afb9e, 1, "Physical");
+
+IF
+ObjectEnteredCombat(S_ARX_Prison_Magister_Prisoner02_c0aa5b34-a755-46b1-bd17-5df848fe2be4, (INTEGER)_Var1)
+AND
+GlobalGetFlag("ARX_Prison_Magister_Prisoner_ToldAboutWhiteMagisters", 1)
+THEN
+Proc_CharacterSetTemporaryHostileRelation(S_ARX_Prison_Magister_Prisoner02_c0aa5b34-a755-46b1-bd17-5df848fe2be4, S_ARX_Prison_Arhus_Keeper_43570f67-d127-4636-bac4-d898001afb9e);
+
+IF
+ObjectFlagSet("ARX_Prison_Magister_Prisoner_ToldAboutWhiteMagisters", (CHARACTERGUID)_Var1, (INTEGER)_Var2)
+AND
+DB_IsPlayer(_Var1)
+THEN
+ProcShowMarker(_Var1, "ARX_Barracks_Storage");
+
+IF
+CharacterUsedItem((CHARACTERGUID)_Var1, (ITEMGUID)_Var2)
+AND NOT
+DB_ARX_Prison_DestructibleGradingCantUse_PlayedAD(_Var1, _Var2)
+AND
+DB_ARX_Prison_DestructibleGradingCantUse(_Var2, _)
+THEN
+Proc_StartDialog(1, "ARX_AD_Prison_DestructibleGradingCantUse", _Var1);
+DB_ARX_Prison_DestructibleGradingCantUse_PlayedAD(_Var1, _Var2);
+ProcObjectTimer(_Var1, "ARX_AD_Prison_DestructibleGradingCantUse", 4000);
+
+PROC
+ProcObjectTimerFinished((CHARACTERGUID)_Var1, "ARX_AD_Prison_DestructibleGradingCantUse")
+AND
+DB_ARX_Prison_DestructibleGradingCantUse_PlayedAD(_Var1, _Var2)
+THEN
+NOT DB_ARX_Prison_DestructibleGradingCantUse_PlayedAD(_Var1, _Var2);
+
+IF
+DB_ARX_Prison_DestructibleGradingCanUse(_Var1, _Var2)
+THEN
+SetOnStage(_Var1, 0);
+
+IF
+ItemDestroying((ITEMGUID)_Var1)
+AND
+DB_ARX_Prison_DestructibleGradingCantUse(_Var1, _Var2)
+AND
+DB_ARX_Prison_DestructibleGradingCanUse(_Var3, _Var2)
+AND
+DB_ARX_Prison_DestructibleGradingCantUseDestructivewood(_Var1, _Var4)
+THEN
+SetOnStage(_Var1, 0);
+SetOnStage(_Var3, 1);
+SetOnStage(_Var4, 0);
+GlobalSetFlag("ARX_Prison_GratingIsBorken");
+
+IF
+CharacterUsedItem((CHARACTERGUID)_Var1, (ITEMGUID)_Var2)
+AND
+DB_IsPlayer(_Var1)
+AND
+DB_ARX_Prison_DestructibleGradingCanUse(_Var2, _)
+THEN
+ARX_Prison_DestructibleGradingSwapAll();
+
+PROC
+ARX_Prison_DestructibleGradingSwapAll()
+AND
+DB_ARX_Prison_DestructibleGradingCantUse(_Var1, _)
+THEN
+SetOnStage(_Var1, 0);
+
+PROC
+ARX_Prison_DestructibleGradingSwapAll()
+AND
+DB_ARX_Prison_DestructibleGradingCantUseDestructivewood(_Var1, _Var2)
+THEN
+SetOnStage(_Var2, 0);
+
+PROC
+ARX_Prison_DestructibleGradingSwapAll()
+AND
+DB_ARX_Prison_DestructibleGradingCanUse(_Var1, _)
+THEN
+SetOnStage(_Var1, 1);
+
+PROC
+ARX_Prison_DestructibleGrading_Reset()
+AND
+DB_ARX_Prison_DestructibleGradingCanUse(_Var1, _)
+THEN
+SetOnStage(_Var1, 0);
+
+PROC
+ARX_Prison_DestructibleGrading_Reset()
+AND
+DB_ARX_Prison_DestructibleGradingCantUse(_Var1, _)
+THEN
+SetOnStage(_Var1, 1);
+
+IF
+GameBookInterfaceClosed(S_ARX_Sewers_QsResearchNotesInStudy_01_c7c4cc72-ef25-4a3a-91ac-a0465fac1087, (CHARACTERGUID)_Var1)
+THEN
+PartySetFlag(_Var1, "QuestUpdate_ARX_MissingPrisoners_PrisonerWereUsedForSource");
+
+IF
+GameBookInterfaceClosed(S_ARX_Sewers_QsResearchNotesInStudy_01_c7c4cc72-ef25-4a3a-91ac-a0465fac1087, (CHARACTERGUID)_Var1)
+AND
+CharacterIsDead(CHARACTERGUID_S_RC_ARX_Prison_Warden_63b53c11-2f0d-40b7-8771-05df0e4f264d, 1)
+THEN
+PartySetFlag(_Var1, "ARX_Prison_MissingPrisoners_CloseJournal");
+
+IF
+ObjectFlagSet("ARX_Parison_SawDeadWarden", (CHARACTERGUID)_Var1, (INTEGER)_Var2)
+AND
+ObjectGetFlag(_Var1, "QuestUpdate_ARX_MissingPrisoners_PrisonerWereUsedForSource", 1)
+THEN
+PartySetFlag(_Var1, "ARX_Prison_MissingPrisoners_CloseJournal");
+
+IF
+GameBookInterfaceClosed(S_ARX_Prison_MagisterConfesion_983c7492-9656-4d4c-9e73-14ea954f5cc7, (CHARACTERGUID)_Var1)
+THEN
+UserSetFlag(_Var1, "ARX_Prison_MagisterTimot_ReadNotes");
+
+IF
+CharacterDying((CHARACTERGUID)_Var1)
+AND
+DB_ARX_Prison_DoorsOnwership_Characters(_Var1)
+AND
+DB_ARX_Prison_DoorsOnwership_Doors(_Var2)
+AND
+ItemGetOwner(_Var2, NULL_00000000-0000-0000-0000-000000000000)
+THEN
+NOT DB_ARX_Prison_DoorsOnwership_Characters(_Var1);
+Proc_ARX_Prison_SetNewDoorOnwer(_Var2);
+
+PROC
+Proc_ARX_Prison_SetNewDoorOnwer((ITEMGUID)_Var1)
+AND
+DB_ARX_Prison_DoorsOnwership_Characters(_Var2)
+AND
+CharacterIsDead(_Var2, 0)
+AND
+ObjectGetFlag(_Var1, "ARX_Prison_SetNewDoorOnwer", 0)
+THEN
+ObjectSetFlag(_Var1, "ARX_Prison_SetNewDoorOnwer");
+ItemSetOwner(_Var1, _Var2);
+
+PROC
+Proc_ARX_Prison_SetNewDoorOnwer((ITEMGUID)_Var1)
+THEN
+ObjectClearFlag(_Var1, "ARX_Prison_SetNewDoorOnwer");
+
+
+EXITSECTION
+ENDEXITSECTION
+
+ParentTargetEdge "ARX"

@@ -1,0 +1,170 @@
+Version 1
+SubGoalCombiner SGC_AND
+
+INITSECTION
+
+KBSECTION
+IF
+DB_CheckPoint(_Var1, _Var2, _Var3, _Var4, _Var5, _Var6)
+THEN
+DB_CheckPoint(_Var1, _Var2, _Var3, _Var4, _Var5, _Var6, "Trespassing");
+
+IF
+DB_CheckPoint(_Var1, _Var2, _Var3, _Var4, _Var5, _Var6, _Var7)
+THEN
+DB_CheckPoint(_Var1, _Var2, _Var3, _Var4, _Var5, _Var6, _Var7, NULL_00000000-0000-0000-0000-000000000000);
+
+IF
+DB_CheckPoint(_Var1, _Var2, _Var3, _Var4, _Var5, _Var6, _Var7, _Var8)
+THEN
+DB_CheckPoint(_Var1, _Var2, _Var3, _Var4, _Var5, _Var6, _Var7, _Var8, 0);
+
+IF
+DB_CheckPoint(_Var1, _Var2, _Var3, _Var4, _Var5, _, _Var7, _Var8, _Var9)
+THEN
+DB_CheckPointGuard(_Var1, _Var3);
+DB_CheckPointGuard(_Var2, _Var4);
+DB_TrespassTrigger(_Var5, _Var8, _Var7);
+
+IF
+DB_CheckPointGuard(_Var1, _Var2)
+THEN
+DB_SneakTriggerSpotter(_Var2, _Var1);
+
+IF
+ObjectEnteredCombat((CHARACTERGUID)_Var1, _)
+AND
+DB_CheckPointGuard(_Var1, _)
+THEN
+ObjectClearFlag(_Var1, "GLO_CP_WarningSomeone", 0);
+
+IF
+DialogEnded(_, (INTEGER)_Var2)
+AND
+DB_DialogNPCs(_Var2, _Var3, _)
+AND
+DB_CheckPointGuard(_Var3, _)
+THEN
+ObjectClearFlag(_Var3, "GLO_CP_WarningSomeone", 0);
+
+IF
+CharacterLeftTrigger(_, (TRIGGERGUID)_Var2)
+AND
+QRY_AnyRegionActive()
+AND
+DB_CheckPointGuard(_Var3, _Var2)
+AND NOT
+DB_InRegion(_, _Var2)
+THEN
+SetStoryEvent(_Var3, "RestartSpotting");
+DB_SneakTriggerSpotter(_Var2, _Var3);
+
+PROC
+ProcCharInTriggerSpotted((CHARACTERGUID)_Var1, (TRIGGERGUID)_Var2)
+AND
+DB_CheckPoint(_, _Var4, _, _Var2, _, _Var7, _, _, 0)
+AND NOT
+PartyGetFlag(_Var1, _Var7, 1)
+AND
+QRY_SpeakerIsAvailable(_Var4)
+AND
+DB_IsPlayer(_Var1)
+THEN
+ObjectSetFlag(_Var4, "GLO_CP_WarningSomeone", 0);
+PROC_CheckPointDialogue(_Var1, _Var4);
+
+PROC
+ProcCharInTriggerSpotted((CHARACTERGUID)_Var1, (TRIGGERGUID)_Var2)
+AND
+DB_CheckPoint(_, _Var4, _, _Var2, _, _Var7, _, _, 1)
+AND NOT
+UserGetFlag(_Var1, _Var7, 1)
+AND
+QRY_SpeakerIsAvailable(_Var4)
+AND
+DB_IsPlayer(_Var1)
+THEN
+ObjectSetFlag(_Var4, "GLO_CP_WarningSomeone", 0);
+PROC_CheckPointDialogue(_Var1, _Var4);
+
+PROC
+ProcCharInTriggerSpotted((CHARACTERGUID)_Var1, (TRIGGERGUID)_Var2)
+AND
+DB_CheckPoint(_Var3, _, _Var2, _, _, _Var7, _, _, 0)
+AND NOT
+PartyGetFlag(_Var1, _Var7, 1)
+AND
+CharacterIsControlled(_Var1, 1)
+AND
+DB_IsPlayer(_Var1)
+AND
+QRY_SpeakerIsAvailable(_Var3)
+AND
+ObjectGetFlag(_Var3, "GLO_CP_WarningSomeone", 0)
+THEN
+ObjectSetFlag(_Var3, "GLO_CP_WarningSomeone", 0);
+PROC_CheckPointDialogue(_Var1, _Var3);
+
+PROC
+ProcCharInTriggerSpotted((CHARACTERGUID)_Var1, (TRIGGERGUID)_Var2)
+AND
+DB_CheckPoint(_Var3, _, _Var2, _, _, _Var7, _, _, 1)
+AND NOT
+UserGetFlag(_Var1, _Var7, 1)
+AND
+CharacterIsControlled(_Var1, 1)
+AND
+DB_IsPlayer(_Var1)
+AND
+QRY_SpeakerIsAvailable(_Var3)
+AND
+ObjectGetFlag(_Var3, "GLO_CP_WarningSomeone", 0)
+THEN
+ObjectSetFlag(_Var3, "GLO_CP_WarningSomeone", 0);
+PROC_CheckPointDialogue(_Var1, _Var3);
+
+PROC
+PROC_CheckPointDialogue(NULL_00000000-0000-0000-0000-000000000000, NULL_00000000-0000-0000-0000-000000000000)
+THEN
+DB_NOOP(0);
+
+QRY
+QRY_CRIME_BlockRegisterCrime((CHARACTERGUID)_Var1, (STRING)_Var2, (TRIGGERGUID)_Var3, _, _, _)
+AND
+DB_CheckPoint(_, _, _, _, _Var3, _Var11, _Var2, _, 0)
+AND
+PartyGetFlag(_Var1, _Var11, 1)
+THEN
+DB_NOOP(0);
+
+QRY
+QRY_CRIME_BlockRegisterCrime((CHARACTERGUID)_Var1, (STRING)_Var2, (TRIGGERGUID)_Var3, _, _, _)
+AND
+DB_CheckPoint(_, _, _, _, _Var3, _Var11, _Var2, _, 1)
+AND
+UserGetFlag(_Var1, _Var11, 1)
+THEN
+DB_NOOP(0);
+
+IF
+ObjectFlagSet((STRING)_Var1, (CHARACTERGUID)_Var2, _)
+AND
+DB_CheckPoint(_, _, _, _, _Var8, _Var1, _Var9, _, _)
+THEN
+NOT DB_PlayerTrespassing(_Var2, _Var8);
+CharacterStopCrime(_Var2, _Var9, _Var8);
+
+IF
+ObjectFlagCleared((STRING)_Var1, (CHARACTERGUID)_Var2, _)
+AND
+DB_CheckPoint(_, _, _, _, _Var8, _Var1, _Var9, _, _)
+AND
+DB_InRegion(_Var2, _Var8)
+THEN
+ProcCharacterRegisterCrime(_Var2, _Var9, _Var8, NULL_00000000-0000-0000-0000-000000000000, 0, NULL_00000000-0000-0000-0000-000000000000);
+
+
+EXITSECTION
+ENDEXITSECTION
+
+ParentTargetEdge "__Start"

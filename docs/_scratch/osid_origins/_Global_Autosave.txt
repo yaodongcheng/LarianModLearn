@@ -1,0 +1,63 @@
+Version 1
+SubGoalCombiner SGC_AND
+
+INITSECTION
+
+KBSECTION
+IF
+DB_AutoSaveTrigger(_Var1)
+AND NOT
+DB_Subregion(_Var1, _, _)
+THEN
+DB_OneShotPlayerTrigger(_Var1);
+
+IF
+DB_Subregion(_Var1, _, _)
+AND
+DB_OneShotPlayerTrigger(_Var1)
+THEN
+NOT DB_OneShotPlayerTrigger(_Var1);
+
+PROC
+ProcOneShotTriggerEntered(_, (TRIGGERGUID)_Var2)
+AND
+DB_AutoSaveTrigger(_Var2)
+AND
+DB_AutosaveGroup(_Var2, _Var3)
+AND
+DB_AutosaveGroup(_Var4, _Var3)
+AND
+_Var4 != _Var2
+THEN
+NOT DB_AutoSaveTrigger(_Var4);
+NOT DB_OneShotPlayerTrigger(_Var4);
+ProcTriggerUnregisterForPlayers(_Var4);
+
+PROC
+ProcOneShotTriggerEntered(_, (TRIGGERGUID)_Var2)
+AND
+DB_AutoSaveTrigger(_Var2)
+THEN
+NOT DB_AutoSaveTrigger(_Var2);
+AutoSave();
+
+IF
+CharacterEnteredTrigger((CHARACTERGUID)_Var1, (TRIGGERGUID)_Var2)
+AND
+DB_AutoSaveTrigger(_Var2)
+AND NOT
+DB_OneShotPlayerTrigger(_Var2)
+THEN
+NOT DB_AutoSaveTrigger(_Var2);
+AutoSave();
+
+IF
+DB_AutosaveGroup(_Var1, _Var2)
+THEN
+DB_AutoSaveTrigger(_Var1);
+
+
+EXITSECTION
+ENDEXITSECTION
+
+ParentTargetEdge "__Start"

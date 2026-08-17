@@ -1,0 +1,358 @@
+Version 1
+SubGoalCombiner SGC_AND
+
+INITSECTION
+DB_Dialogs(CHARACTERGUID_S_ARX_Neighborhood_HouseSchool_Mother_b58bae11-7146-4682-bd0a-e1428276ba57, "ARX_Neighborhood_HouseSchool_Mother");
+DB_Dialogs(CHARACTERGUID_S_ARX_Neighborhood_HouseSchool_Kid_be1a9a3e-aa0d-45e0-aa24-8da9f8a1c840, "ARX_Neighborhood_HouseSchool_Kid");
+DB_Children(CHARACTERGUID_S_ARX_Neighborhood_HouseSchool_Kid_be1a9a3e-aa0d-45e0-aa24-8da9f8a1c840);
+DB_GiveItemToEvent(ITEMGUID_S_ARX_Neighborhood_HouseSchool_Key2_33cafbcc-3cf4-4b5e-baa1-b3413dd51b37, "ARX_Neighborhood_HouseSchool_Mother_GiveKey");
+DB_HasStoryEvent(ITEMGUID_S_ARX_Neighborhood_HouseSchool_Key2_33cafbcc-3cf4-4b5e-baa1-b3413dd51b37, "ARX_Neighborhood_HouseSchool_Mother_HasKey");
+ItemToInventory(ITEMGUID_S_ARX_Neighborhood_HouseSchool_Key2_33cafbcc-3cf4-4b5e-baa1-b3413dd51b37, CHARACTERGUID_S_ARX_Neighborhood_HouseSchool_Mother_b58bae11-7146-4682-bd0a-e1428276ba57);
+DB_GiveItemToEvent(ITEMGUID_S_ARX_Neighborhood_HouseSchool_Mother_Reward_8e806ec0-1c5d-4498-86c3-ca4569682005, "ARX_Neighborhood_HouseSchool_Mother_GiveReward");
+DB_HasStoryEvent(ITEMGUID_S_ARX_Neighborhood_HouseSchool_Mother_Reward_8e806ec0-1c5d-4498-86c3-ca4569682005, "ARX_Neighborhood_HouseSchool_Mother_HasReward");
+ItemToInventory(ITEMGUID_S_ARX_Neighborhood_HouseSchool_Mother_Reward_8e806ec0-1c5d-4498-86c3-ca4569682005, CHARACTERGUID_S_ARX_Neighborhood_HouseSchool_Mother_b58bae11-7146-4682-bd0a-e1428276ba57);
+DB_ShovelArea(TRIGGERGUID_S_ARX_Neighborhood_PlaygroundTreasure_AreaTrig_d844a3e8-f3d0-4007-ba2f-46d484ef6646, "ARX_Neighborhood_PlaygroundTreasure", ITEMGUID_S_ARX_Neighborhood_PlaygroundTreasure_Mound_6fc3bb36-18b1-492e-8fb8-7256b3fed412);
+DB_ShovelRewardItemAppear("ARX_Neighborhood_PlaygroundTreasure", ITEMGUID_S_ARX_Neighborhood_PlaygroundTreasure_Sword_dce677ea-963c-40da-9d6e-834dddfb6ebd, TRIGGERGUID_S_ARX_Neighborhood_PlaygroundTreasure_PointTrig_40d1144c-85e8-437b-b06a-d0bdd4301602);
+SetTag(ARX_Neighborhood_School_SourcePuppet_12ef3e3e-3ec3-4904-8cbd-f9720d669e30, "SOURCE_PUPPET");
+DB_Dialogs(ARX_Neighborhood_School_SourcePuppet_12ef3e3e-3ec3-4904-8cbd-f9720d669e30, "ARX_Neighborhood_HouseSchool_SourcePuppet");
+DB_ARX_Neighborhood_School_SourcePuppet_Books(S_ARX_Neighborhood_HouseSchool_SourcePuppet_Book1_be73d194-784f-42c0-bfe1-9825980e949a);
+DB_ARX_Neighborhood_School_SourcePuppet_Books(S_ARX_Neighborhood_HouseSchool_SourcePuppet_Book2_9ab455f8-8daf-485a-b24e-5bd291bf8d7c);
+DB_ARX_Neighborhood_School_SourcePuppet_Books(S_ARX_Neighborhood_HouseSchool_SourcePuppet_Book3_fa57291a-de5a-4f56-81b8-cd3511ab94b5);
+DB_ARX_Neighborhood_HouseSchool_Squatter(CHARACTERGUID_ARX_Neighborhood_HouseSchool_Squatter_Priest_f284a46a-7f16-4ab3-8bda-2df2127f2acd);
+DB_ARX_Neighborhood_HouseSchool_Squatter(CHARACTERGUID_ARX_Neighborhood_HouseSchool_Squatter_Junkie_38d54ee7-e0f2-427f-a5f7-a5a77fde9afa);
+DB_ARX_Neighborhood_HouseSchool_Squatter(CHARACTERGUID_ARX_Neighborhood_HouseSchool_Squatter_Thief_72d4ccdd-1ae1-4dec-99b3-80306f3c4b08);
+DB_ARX_Neighborhood_HouseSchool_Squatter(CHARACTERGUID_S_ARX_Neighborhood_HouseSchool_Squater_Junkie_2_b57a19db-6eed-4a02-b56b-c523c9f98793);
+DB_ARX_Neighborhood_HouseSchool_Squatter(CHARACTERGUID_S_ARX_Neighborhood_HouseSchool_Squater_Junkie_3_14139f56-bdeb-4a23-9af7-2141ae7c3b71);
+ProcCharacterDisableCrime(CHARACTERGUID_ARX_Neighborhood_HouseSchool_Squatter_Junkie_38d54ee7-e0f2-427f-a5f7-a5a77fde9afa, "Steal");
+ProcCharacterDisableCrime(CHARACTERGUID_ARX_Neighborhood_HouseSchool_Squatter_Junkie_38d54ee7-e0f2-427f-a5f7-a5a77fde9afa, "UseForbiddenItem");
+ProcCharacterDisableCrime(CHARACTERGUID_ARX_Neighborhood_HouseSchool_Squatter_Junkie_38d54ee7-e0f2-427f-a5f7-a5a77fde9afa, "TeleportPlayerDialog");
+DB_Dialogs(CHARACTERGUID_ARX_Neighborhood_HouseSchool_Squatter_Priest_f284a46a-7f16-4ab3-8bda-2df2127f2acd, "ARX_Neighborhood_HouseSchool_Squatter_Priest");
+DB_Dialogs(CHARACTERGUID_ARX_Neighborhood_HouseSchool_Squatter_Junkie_38d54ee7-e0f2-427f-a5f7-a5a77fde9afa, "ARX_Neighborhood_HouseSchool_Squatter_Junkie");
+DB_Dialogs(CHARACTERGUID_S_ARX_Neighborhood_HouseSchool_Squater_Junkie_2_b57a19db-6eed-4a02-b56b-c523c9f98793, "ARX_Neighborhood_HouseSchool_Squatter_Junkie2");
+DB_Dialogs(CHARACTERGUID_S_ARX_Neighborhood_HouseSchool_Squater_Junkie_3_14139f56-bdeb-4a23-9af7-2141ae7c3b71, "ARX_Neighborhood_HouseSchool_Squatter_Junkie3");
+DB_Dialogs(CHARACTERGUID_S_ARX_Neighborhood_HouseSchool_ConceredParent_8e4dd316-aa43-4f5f-9093-92f0a7f749fe, "ARX_Neighborhood_HouseSchool_ConcernedParent");
+DB_Dialogs(CHARACTERGUID_ARX_Neighborhood_HouseSchool_Squatter_Thief_72d4ccdd-1ae1-4dec-99b3-80306f3c4b08, "ARX_Neighborhood_HouseSchool_Squatter_Thief");
+DB_Children(CHARACTERGUID_ARX_Neighborhood_HouseSchool_Squatter_Thief_72d4ccdd-1ae1-4dec-99b3-80306f3c4b08);
+ProcTriggerRegisterForPlayers(TRIGGERGUID_S_ARX_Neighborhood_HouseSchool_Mother_ReactToPlayer_5192557e-e937-4d0a-8aa9-9b3dae28e2e7);
+DB_OneShotPlayerTrigger(TRIGGERGUID_S_ARX_Neighborhood_HouseSchool_Squat_e292a874-7533-4c21-b535-7f2728f6a7cc);
+DB_ARX_Neighborhood_HouseSchool_JunkieDialogs("ARX_Neighborhood_HouseSchool_Squatter_Junkie");
+DB_ARX_Neighborhood_HouseSchool_JunkieDialogs("ARX_Neighborhood_HouseSchool_Squatter_Junkie2");
+DB_ARX_Neighborhood_HouseSchool_JunkieDialogs("ARX_Neighborhood_HouseSchool_Squatter_Junkie3");
+ItemToInventory(ITEMGUID_S_ARX_Neighborhood_HouseSchool_SourcePuppet_ScrapMetal_8a3d6a61-ac86-4d2a-8a4f-111481f1ec47, CHARACTERGUID_S_ARX_Neighborhood_HouseSchool_SourcePuppet_12ef3e3e-3ec3-4904-8cbd-f9720d669e30);
+ProcTriggerRegisterForPlayers(TRIGGERGUID_ARX_Neighborhood_HouseSchool_SourcePuppet_PlayerIsComing_d43309f0-4668-46bc-9059-15990c329959);
+DB_DoNotFace(S_ARX_Neighborhood_HouseSchool_SourcePuppet_12ef3e3e-3ec3-4904-8cbd-f9720d669e30);
+DB_SeenDeadNPCPartyFlag(CHARACTERGUID_S_ARX_Neighborhood_HouseSchool_Squatter_Priest_f284a46a-7f16-4ab3-8bda-2df2127f2acd, "ARX_Neighborhood_HouseSchool_SawPriestDead");
+DB_KilledEvent(CHARACTERGUID_S_ARX_Neighborhood_HouseSchool_Squatter_Priest_f284a46a-7f16-4ab3-8bda-2df2127f2acd, "ARX_Neighborhood_HouseSchool_KilledPriest");
+DB_KilledEvent(CHARACTERGUID_S_ARX_Neighborhood_HouseSchool_Squatter_Priest_f284a46a-7f16-4ab3-8bda-2df2127f2acd, "QuestUpdate_ARX_Neighborhood_HouseSchool_KilledThePriest");
+
+KBSECTION
+IF
+CharacterEnteredTrigger((CHARACTERGUID)_Var1, TRIGGERGUID_S_ARX_Neighborhood_HouseSchool_Mother_ReactToPlayer_5192557e-e937-4d0a-8aa9-9b3dae28e2e7)
+AND
+QRY_SpeakerIsAvailable(CHARACTERGUID_S_ARX_Neighborhood_HouseSchool_Mother_b58bae11-7146-4682-bd0a-e1428276ba57)
+AND
+QueryOnlyOnce("S_ARX_Neighborhood_HouseSchool_Mother_ReactToPlayer")
+THEN
+CharacterLookAt(CHARACTERGUID_S_ARX_Neighborhood_HouseSchool_Mother_b58bae11-7146-4682-bd0a-e1428276ba57, _Var1);
+Proc_StartDialog(1, "ARX_Neighborhood_HouseSchool_AD_Mother_ReactToPlayer", CHARACTERGUID_S_ARX_Neighborhood_HouseSchool_Mother_b58bae11-7146-4682-bd0a-e1428276ba57);
+
+IF
+GameBookInterfaceClosed(ITEMGUID_S_ARX_Neighborhood_HouseSchool_SchoolRecords_b5ea393e-c431-8a95-3286-cabfeb9d9518, (CHARACTERGUID)_Var1)
+AND
+QueryOnlyOnce("ARX_Neighborhood_HouseSchool_SchoolRecords_PlayerReact")
+THEN
+Proc_StartDialog(1, "ARX_Neighborhood_HouseSchool_AD_SchoolRecords_PlayerReact", _Var1);
+
+IF
+ObjectFlagSet("ARX_Neighborhood_HouseSchool_MotherShowKemmsSecret", (CHARACTERGUID)_Var1, (INTEGER)_Var2)
+THEN
+ProcShowMarker(_Var1, "ARX_KemmsRoom_Secret");
+
+IF
+DB_ARX_Neighborhood_HouseSchool_Squatter(_Var1)
+THEN
+ProcCharacterDisableCrime(_Var1, "Vandalise");
+ProcCharacterDisableCrime(_Var1, "TeleportPlayerDialog");
+
+PROC
+ProcOneShotTriggerEntered((CHARACTERGUID)_Var1, TRIGGERGUID_S_ARX_Neighborhood_HouseSchool_Squat_e292a874-7533-4c21-b535-7f2728f6a7cc)
+THEN
+Proc_StartDialog(1, "ARX_Neighborhood_HouseSchool_AD_ReactToSquat", _Var1);
+
+IF
+ObjectFlagSet("ARX_Neighborhood_HouseSchool_Squatter_Junkie_Give_Drudanae", (CHARACTERGUID)_Var1, (INTEGER)_Var2)
+AND
+QryRemoveTaggedLocalItemsFromMagicPockets(_Var1, "DRUDANAE", 1)
+THEN
+DB_NOOP(1);
+
+IF
+ObjectFlagSet("ARX_Neighborhood_HouseSchool_Squatter_Thief_ToldAboutGuild", (CHARACTERGUID)_Var1, (INTEGER)_Var2)
+THEN
+ProcShowMarker(_Var1, "ARX_Sewers_ThievesGuild_HiddenDoor");
+ProcShowMarker(_Var1, "ARX_Barracks_SecretPassageToPrison");
+
+IF
+CharacterUsedItem((CHARACTERGUID)_Var1, ITEMGUID_S_ARX_Sewers_ThievesGuild_HiddenDoor_2a9ddab3-03d6-4694-b782-d2c53a911834)
+THEN
+ProcHideMarker(_Var1, "ARX_Sewers_ThievesGuild_HiddenDoor");
+
+IF
+DialogEnded("ARX_Neighborhood_HouseSchool_Squatter_Priest", (INTEGER)_Var1)
+AND
+GlobalGetFlag("ARX_Neighborhood_HouseSchool_Squatters_ConvincedToLeave", 1)
+AND
+DialogGetInvolvedPlayer(_Var1, 1, _Var2)
+THEN
+UserSetFlag(_Var2, "ARX_Neighborhood_HouseSchool_Squatters_ConvincedToLeave");
+
+IF
+DialogEnded("ARX_Neighborhood_HouseSchool_Squatter_Priest", (INTEGER)_Var1)
+AND
+GlobalGetFlag("ARX_Neighborhood_HouseSchool_Squatters_ConvincedToLeave", 1)
+THEN
+Proc_StartDialog(1, "ARX_Neighborhood_HouseSchool_AD_Squatter_Priest", CHARACTERGUID_ARX_Neighborhood_HouseSchool_Squater_Priest_f284a46a-7f16-4ab3-8bda-2df2127f2acd);
+SetHasDialog(CHARACTERGUID_ARX_Neighborhood_HouseSchool_Squater_Priest_f284a46a-7f16-4ab3-8bda-2df2127f2acd, 0);
+
+IF
+AutomatedDialogEnded("ARX_Neighborhood_HouseSchool_AD_Squatter_Priest", (INTEGER)_Var1)
+AND
+GlobalGetFlag("ARX_Neighborhood_HouseSchool_Squatters_ConvincedToLeave", 1)
+AND
+DB_ARX_Neighborhood_HouseSchool_Squatter(_Var2)
+THEN
+ProcForceStopDialog(_Var2);
+SetHasDialog(_Var2, 0);
+ProcCharacterDisappearOutOfSight(_Var2, 180, 1, "ARX_Neighborhood_HouseSchool_Squatters_ConvincedToLeave_Disappeared", 1);
+
+IF
+CharacterDied(CHARACTERGUID_S_ARX_Neighborhood_HouseSchool_Squatter_Priest_f284a46a-7f16-4ab3-8bda-2df2127f2acd)
+AND
+CharacterIsDead(CHARACTERGUID_S_ARX_Neighborhood_HouseSchool_Squater_Junkie_38d54ee7-e0f2-427f-a5f7-a5a77fde9afa, 0)
+THEN
+ProcForceStopDialog(CHARACTERGUID_S_ARX_Neighborhood_HouseSchool_Squater_Junkie_38d54ee7-e0f2-427f-a5f7-a5a77fde9afa);
+Proc_StartDialog(1, "ARX_Neighborhood_HouseSchool_AD_Squater_Junkie_ReactToPriestDead", CHARACTERGUID_S_ARX_Neighborhood_HouseSchool_Squater_Junkie_38d54ee7-e0f2-427f-a5f7-a5a77fde9afa);
+
+IF
+CharacterDied(CHARACTERGUID_S_ARX_Neighborhood_HouseSchool_Squatter_Priest_f284a46a-7f16-4ab3-8bda-2df2127f2acd)
+AND
+DB_ARX_Neighborhood_HouseSchool_Squatter(_Var1)
+AND
+CharacterIsDead(_Var1, 0)
+THEN
+ProcForceStopDialog(_Var1);
+SetHasDialog(_Var1, 0);
+ProcCharacterDisappearOutOfSight(_Var1, 180, 1, "ARX_Neighborhood_HouseSchool_Squatters_ConvincedToLeave_Disappeared", 1);
+
+IF
+ObjectFlagSet("ARX_Neighborhood_HouseSchool_SawPriestDead", (CHARACTERGUID)_Var1, _)
+AND
+DB_IsPlayer(_Var1)
+AND
+ObjectGetFlag(_Var1, "ARX_Neighborhood_HouseSchool_KilledPriest", 0)
+THEN
+PartySetFlag(_Var1, "QuestUpdate_ARX_Neighborhood_HouseSchool_PriestIsDead");
+
+IF
+ObjectFlagSet("ARX_Neighborhood_HouseSchool_Squatter_Junkie_RevealMarker", (CHARACTERGUID)_Var1, (INTEGER)_Var2)
+THEN
+ProcShowMarker(_Var1, "ARX_KemmsGarden_Hidden_Drudanae");
+
+IF
+DialogEnded((STRING)_Var1, (INTEGER)_Var2)
+AND
+DB_ARX_Neighborhood_HouseSchool_JunkieDialogs(_Var1)
+AND
+DB_DialogPlayers(_Var2, _Var3, _)
+THEN
+ObjectSetFlag(_Var3, "QuestUpdate_ARX_Neighborhood_HouseSchool_MetHobosInTheSchool");
+
+IF
+DialogEnded("ARX_Neighborhood_HouseSchool_Squatter_Priest", (INTEGER)_Var1)
+AND
+DB_DialogPlayers(_Var1, _Var2, _)
+THEN
+ObjectSetFlag(_Var2, "QuestUpdate_ARX_Neighborhood_HouseSchool_MetPriest");
+
+IF
+DialogEnded("ARX_Neighborhood_HouseSchool_Squatter_Priest", (INTEGER)_Var1)
+AND
+GlobalGetFlag("ARX_Neighborhood_HouseSchool_Squatters_ConvincedToLeave", 1)
+AND
+DB_DialogPlayers(_Var1, _Var2, _)
+THEN
+ObjectSetFlag(_Var2, "QuestUpdate_ARX_Neighborhood_HouseSchool_ConvicedPriestToLeave");
+
+IF
+CharacterDied(CHARACTERGUID_S_ARX_Neighborhood_HouseSchool_Mother_b58bae11-7146-4682-bd0a-e1428276ba57)
+AND
+DB_IsPlayer(_Var1)
+THEN
+ObjectSetFlag(_Var1, "QuestUpdate_ARX_Neighborhood_HouseSchool_KilledMother");
+
+IF
+DialogEnded("ARX_Neighborhood_HouseSchool_Mother", (INTEGER)_Var1)
+AND
+DB_DialogPlayers(_Var1, _Var2, _)
+AND
+ObjectGetFlag(_Var2, "QuestUpdate_ARX_Neighborhood_HouseSchool_ToldMotherPriestLeft", 1)
+AND
+QuestIsClosed(_Var2, "ARX_Neighborhood_HouseSchool", 0)
+THEN
+QuestClose(_Var2, "ARX_Neighborhood_HouseSchool");
+
+IF
+ObjectFlagSet("ARX_CreepyShop_ShowMarker", (CHARACTERGUID)_Var1, (INTEGER)_Var2)
+THEN
+ProcShowMarker(_Var1, "ARX_CreepyShop");
+SetStoryEvent(S_ARX_CreepyShoop_2ndFloorSecretEntrence_052d277d-a139-4e65-a469-0957e188a91b, "RevealFromStory");
+
+IF
+ItemMoved((ITEMGUID)_Var1)
+AND
+DB_ARX_Neighborhood_School_SourcePuppet_Books(_Var1)
+THEN
+ObjectSetFlag(_Var1, "ARX_Neighborhood_HouseSchool_SourcePuppet_BookMoved");
+
+IF
+CharacterUsedItem((CHARACTERGUID)_Var1, S_ARX_CreepyShoop_2ndFloorSecretExit_e50c8f1c-704c-4740-9e32-83d51c35bd50)
+AND
+DB_IsPlayer(_Var1)
+AND
+GetVarInteger(S_ARX_CreepyShoop_2ndFloorSecretEntrence_052d277d-a139-4e65-a469-0957e188a91b, "CurrentIsVisible", 0)
+THEN
+SetStoryEvent(S_ARX_CreepyShoop_2ndFloorSecretEntrence_052d277d-a139-4e65-a469-0957e188a91b, "RevealFromStory");
+
+IF
+AttackedByObject(S_ARX_Neighborhood_HouseSchool_SourcePuppet_12ef3e3e-3ec3-4904-8cbd-f9720d669e30, (CHARACTERGUID)_Var1, (GUIDSTRING)_Var2, _, _)
+AND
+DB_IsPlayer(_Var1)
+THEN
+ObjectSetFlag(_Var1, "ARX_Neighborhood_HouseSchool_SourcePuppet_Attacked");
+
+IF
+AttackedByObject(S_ARX_Neighborhood_HouseSchool_SourcePuppet_12ef3e3e-3ec3-4904-8cbd-f9720d669e30, (CHARACTERGUID)_Var1, (GUIDSTRING)_Var2, _, _)
+AND
+ObjectGetFlag(S_ARX_Neighborhood_HouseSchool_SourcePuppet_12ef3e3e-3ec3-4904-8cbd-f9720d669e30, "ARX_CreepyShop_SourcePuppet_IsOn", 1)
+AND
+DB_IsPlayer(_Var1)
+AND
+QRY_SpeakerIsAvailable(S_ARX_Neighborhood_HouseSchool_SourcePuppet_12ef3e3e-3ec3-4904-8cbd-f9720d669e30)
+AND
+QRY_SpeakerIsAvailableAndInDialogRange(_Var1, S_ARX_Neighborhood_HouseSchool_SourcePuppet_12ef3e3e-3ec3-4904-8cbd-f9720d669e30)
+AND NOT
+DB_ARX_CreepyShop_SourceVamp_Puppet(_Var1, S_ARX_Neighborhood_HouseSchool_SourcePuppet_12ef3e3e-3ec3-4904-8cbd-f9720d669e30)
+THEN
+CharacterSetAnimationSetOverride(S_ARX_Neighborhood_HouseSchool_SourcePuppet_12ef3e3e-3ec3-4904-8cbd-f9720d669e30, "");
+NOT DB_DoNotFace(S_ARX_Neighborhood_HouseSchool_SourcePuppet_12ef3e3e-3ec3-4904-8cbd-f9720d669e30);
+Proc_StartDialog(0, "ARX_Neighborhood_HouseSchool_SourcePuppet", S_ARX_Neighborhood_HouseSchool_SourcePuppet_12ef3e3e-3ec3-4904-8cbd-f9720d669e30, _Var1);
+
+IF
+AttackedByObject(S_ARX_Neighborhood_HouseSchool_SourcePuppet_12ef3e3e-3ec3-4904-8cbd-f9720d669e30, (CHARACTERGUID)_Var1, (GUIDSTRING)_Var2, _, _)
+AND
+ObjectGetFlag(S_ARX_Neighborhood_HouseSchool_SourcePuppet_12ef3e3e-3ec3-4904-8cbd-f9720d669e30, "ARX_CreepyShop_SourcePuppet_IsOn", 1)
+AND
+DB_IsPlayer(_Var1)
+AND
+QRY_SpeakerIsAvailable(S_ARX_Neighborhood_HouseSchool_SourcePuppet_12ef3e3e-3ec3-4904-8cbd-f9720d669e30)
+AND NOT
+QRY_SpeakerIsAvailableAndInDialogRange(_Var1, S_ARX_Neighborhood_HouseSchool_SourcePuppet_12ef3e3e-3ec3-4904-8cbd-f9720d669e30)
+AND NOT
+DB_ARX_CreepyShop_SourceVamp_Puppet(_Var1, S_ARX_Neighborhood_HouseSchool_SourcePuppet_12ef3e3e-3ec3-4904-8cbd-f9720d669e30)
+THEN
+Proc_StartDialog(1, "ARX_Neighborhood_HouseSchool_AD_SourcePuppet_Attacked", S_ARX_Neighborhood_HouseSchool_SourcePuppet_12ef3e3e-3ec3-4904-8cbd-f9720d669e30);
+ObjectClearFlag(_Var1, "ARX_Neighborhood_HouseSchool_SourcePuppet_Attacked");
+
+IF
+DialogEnded("ARX_Neighborhood_HouseSchool_SourcePuppet", (INTEGER)_Var1)
+AND
+DialogGetInvolvedPlayer(_Var1, 1, _Var2)
+AND
+ObjectGetFlag(_Var2, "ARX_Neighborhood_HouseSchool_SourcePuppet_Attacked", 1)
+THEN
+ObjectClearFlag(_Var2, "ARX_Neighborhood_HouseSchool_SourcePuppet_Attacked");
+
+IF
+DialogEnded("ARX_Neighborhood_HouseSchool_SourcePuppet", (INTEGER)_Var1)
+AND
+DialogGetInvolvedNPC(_Var1, 1, S_ARX_Neighborhood_HouseSchool_SourcePuppet_12ef3e3e-3ec3-4904-8cbd-f9720d669e30)
+AND
+ObjectGetFlag(S_ARX_Neighborhood_HouseSchool_SourcePuppet_12ef3e3e-3ec3-4904-8cbd-f9720d669e30, "ARX_CreepyShop_SourcePuppet_IsOn", 1)
+AND
+ObjectGetFlag(S_ARX_Neighborhood_HouseSchool_SourcePuppet_12ef3e3e-3ec3-4904-8cbd-f9720d669e30, "ARX_Neighborhood_HouseSchool_FleeAfterDialog", 1)
+THEN
+ApplyStatus(S_ARX_Neighborhood_HouseSchool_SourcePuppet_12ef3e3e-3ec3-4904-8cbd-f9720d669e30, "INVISIBLE", -1, 1);
+CharacterDisappearOutOfSight(S_ARX_Neighborhood_HouseSchool_SourcePuppet_12ef3e3e-3ec3-4904-8cbd-f9720d669e30, 0, 1, "", 1);
+
+IF
+ObjectFlagSet("ARX_Neighborhood_HouseSchool_Attack", (CHARACTERGUID)_Var1, (INTEGER)_Var2)
+THEN
+CharacterAttack(_Var1, S_ARX_Neighborhood_HouseSchool_SourcePuppet_12ef3e3e-3ec3-4904-8cbd-f9720d669e30);
+
+IF
+AttackedByObject(S_ARX_Neighborhood_HouseSchool_SourcePuppet_12ef3e3e-3ec3-4904-8cbd-f9720d669e30, (CHARACTERGUID)_Var1, (GUIDSTRING)_Var2, _, _)
+AND
+ObjectGetFlag(_Var1, "ARX_Neighborhood_HouseSchool_Attack", 1)
+AND
+DB_IsPlayer(_Var1)
+AND NOT
+DB_ARX_CreepyShop_SourceVamp_Puppet(_Var1, S_ARX_Neighborhood_HouseSchool_SourcePuppet_12ef3e3e-3ec3-4904-8cbd-f9720d669e30)
+THEN
+CharacterSetAnimationSetOverride(S_ARX_Neighborhood_HouseSchool_SourcePuppet_12ef3e3e-3ec3-4904-8cbd-f9720d669e30, "");
+PlayAnimation(S_ARX_Neighborhood_HouseSchool_SourcePuppet_12ef3e3e-3ec3-4904-8cbd-f9720d669e30, "hit");
+NOT DB_DoNotFace(S_ARX_Neighborhood_HouseSchool_SourcePuppet_12ef3e3e-3ec3-4904-8cbd-f9720d669e30);
+CharacterLookAt(S_ARX_Neighborhood_HouseSchool_SourcePuppet_12ef3e3e-3ec3-4904-8cbd-f9720d669e30, _Var1);
+ObjectClearFlag(_Var1, "ARX_Neighborhood_HouseSchool_Attack");
+
+IF
+CharacterDied(S_ARX_Neighborhood_HouseSchool_SourcePuppet_12ef3e3e-3ec3-4904-8cbd-f9720d669e30)
+THEN
+GlobalSetFlag("ARX_Neighborhood_HouseSchool_SourcePuppet_Gone");
+
+IF
+CharacterWentOnStage(S_ARX_Neighborhood_HouseSchool_SourcePuppet_12ef3e3e-3ec3-4904-8cbd-f9720d669e30, 0)
+THEN
+GlobalSetFlag("ARX_Neighborhood_HouseSchool_SourcePuppet_Gone");
+
+IF
+CharacterLeftTrigger((CHARACTERGUID)_Var1, TRIGGERGUID_ARX_Neighborhood_HouseSchool_SourcePuppet_PlayerIsComing_d43309f0-4668-46bc-9059-15990c329959)
+AND
+DB_IsPlayer(_Var1)
+AND NOT
+DB_InRegion(_, TRIGGERGUID_ARX_Neighborhood_HouseSchool_SourcePuppet_PlayerIsComing_d43309f0-4668-46bc-9059-15990c329959)
+AND
+QRY_AnyRegionActive()
+THEN
+SetStoryEvent(S_ARX_Neighborhood_HouseSchool_SourcePuppet_12ef3e3e-3ec3-4904-8cbd-f9720d669e30, "ARX_Neighborhood_HouseSchool_SourcePuppet_NoPlayerNearBy");
+
+IF
+ObjectFlagSet("ARX_Neighborhood_HouseSchool_PuppetWakedUp", (GUIDSTRING)_Var1, (INTEGER)_Var2)
+THEN
+CharacterSetAnimationSetOverride(S_ARX_Neighborhood_HouseSchool_SourcePuppet_12ef3e3e-3ec3-4904-8cbd-f9720d669e30, "");
+PlayAnimation(S_ARX_Neighborhood_HouseSchool_SourcePuppet_12ef3e3e-3ec3-4904-8cbd-f9720d669e30, "Surprise_01");
+NOT DB_DoNotFace(S_ARX_Neighborhood_HouseSchool_SourcePuppet_12ef3e3e-3ec3-4904-8cbd-f9720d669e30);
+CharacterLookAt(S_ARX_Neighborhood_HouseSchool_SourcePuppet_12ef3e3e-3ec3-4904-8cbd-f9720d669e30, _Var1);
+
+IF
+AttackedByObject(CHARACTERGUID_S_ARX_Neighborhood_HouseSchool_Kid_be1a9a3e-aa0d-45e0-aa24-8da9f8a1c840, _, (GUIDSTRING)_Var2, _, _)
+AND
+CHARACTERGUID_S_ARX_Neighborhood_HouseSchool_Kid_be1a9a3e-aa0d-45e0-aa24-8da9f8a1c840 != _Var2
+AND
+ObjectGetFlag(CHARACTERGUID_S_ARX_Neighborhood_HouseSchool_Kid_be1a9a3e-aa0d-45e0-aa24-8da9f8a1c840, "GEB_FleeOutOfSight", 0)
+THEN
+Proc_StartDialog(1, "GEB_AD_CallForHelp", CHARACTERGUID_S_ARX_Neighborhood_HouseSchool_Kid_be1a9a3e-aa0d-45e0-aa24-8da9f8a1c840);
+
+IF
+AttackedByObject(CHARACTERGUID_ARX_Neighborhood_HouseSchool_Squatter_Thief_72d4ccdd-1ae1-4dec-99b3-80306f3c4b08, _, (GUIDSTRING)_Var2, _, _)
+AND
+CHARACTERGUID_ARX_Neighborhood_HouseSchool_Squatter_Thief_72d4ccdd-1ae1-4dec-99b3-80306f3c4b08 != _Var2
+AND
+ObjectGetFlag(CHARACTERGUID_ARX_Neighborhood_HouseSchool_Squatter_Thief_72d4ccdd-1ae1-4dec-99b3-80306f3c4b08, "GEB_FleeOutOfSight", 0)
+THEN
+Proc_StartDialog(1, "GEB_AD_CallForHelp", CHARACTERGUID_ARX_Neighborhood_HouseSchool_Squatter_Thief_72d4ccdd-1ae1-4dec-99b3-80306f3c4b08);
+
+
+EXITSECTION
+ENDEXITSECTION
+
+ParentTargetEdge "ARX"

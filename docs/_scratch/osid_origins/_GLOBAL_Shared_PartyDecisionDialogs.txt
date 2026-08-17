@@ -1,0 +1,349 @@
+Version 1
+SubGoalCombiner SGC_AND
+
+INITSECTION
+DB_PartyDecisionDialog_UltimatumEvent("Ultimatum1", "Optional1Chosen");
+DB_PartyDecisionDialog_UltimatumEvent("Ultimatum2", "Optional2Chosen");
+DB_PartyDecisionDialog_UltimatumEvent("Ultimatum3", "Optional3Chosen");
+DB_PartyDecisionDialog_UltimatumEvent("Ultimatum4", "Optional4Chosen");
+DB_PartyDecisionDialog_UltimatumEvent("Ultimatum5", "Optional5Chosen");
+DB_PartyDecisionDialog_PlayerIdentifier(2, "PDD_Player2");
+DB_PartyDecisionDialog_PlayerIdentifier(3, "PDD_Player3");
+DB_PartyDecisionDialog_PlayerIdentifier(4, "PDD_Player4");
+DB_LoopEffectDisabledInCombat("RS3_FX_UI_Exclamation_Mark_01");
+
+KBSECTION
+IF
+DualDialogRequested((STRING)_Var1, (INTEGER)_Var2, (INTEGER)_Var3)
+AND
+DB_DialogPlayers(_Var2, _Var4, 1)
+THEN
+DB_PartyDecisionDialog_DualDialogInstance(_Var1, _Var2, _Var3);
+ProcStartPartyDecisionDialog(_Var4, _Var1);
+
+PROC
+ProcStartPartyDecisionDialog((CHARACTERGUID)_Var1, (STRING)_Var2)
+AND NOT
+DB_PartyDecisionDialog_Outcome(_Var2, _)
+THEN
+Proc_PartyDecisionDialog_CollectPlayers(_Var1, _Var2);
+Proc_PartyDecisionDialog_Phase1(_Var1, _Var2);
+
+PROC
+Proc_PartyDecisionDialog_CollectPlayers((CHARACTERGUID)_Var1, (STRING)_Var2)
+AND NOT
+DB_PartyDecisionDialog_PlayerCount(_Var2, _)
+THEN
+DB_PartyDecisionDialog_Players(_Var2, _Var1, 1);
+DB_PartyDecisionDialog_PlayerCount(_Var2, 1);
+
+PROC
+Proc_PartyDecisionDialog_CollectPlayers((CHARACTERGUID)_Var1, (STRING)_Var2)
+AND
+DB_IsPlayer(_Var3)
+AND
+_Var3 != _Var1
+AND
+CharacterIsInPartyWith(_Var3, _Var1, 1)
+AND
+CharacterIsPolymorphInteractionDisabled(_Var3, 0)
+AND
+IsTagged(_Var3, "HENCHMAN", 0)
+AND
+IsTagged(_Var3, "AVATAR", 0)
+AND
+QRY_SpeakerIsAvailableAndInDialogRange(_Var3, _Var1)
+AND
+DB_PartyDecisionDialog_PlayerCount(_Var2, _Var4)
+AND
+IntegerSum(_Var4, 1, _Var5)
+AND NOT
+DB_ExcludePlayerForPDD(_Var2, _Var3)
+THEN
+DB_PartyDecisionDialog_Players(_Var2, _Var3, _Var5);
+NOT DB_PartyDecisionDialog_PlayerCount(_Var2, _Var4);
+DB_PartyDecisionDialog_PlayerCount(_Var2, _Var5);
+
+PROC
+Proc_PartyDecisionDialog_CollectPlayers((CHARACTERGUID)_Var1, (STRING)_Var2)
+AND
+DB_IsPlayer(_Var3)
+AND
+_Var3 != _Var1
+AND
+CharacterIsInPartyWith(_Var3, _Var1, 1)
+AND
+IsTagged(_Var3, "AVATAR", 1)
+AND
+QRY_SpeakerIsAvailableAndInDialogRange(_Var3, _Var1)
+AND
+DB_PartyDecisionDialog_PlayerCount(_Var2, _Var4)
+AND
+IntegerSum(_Var4, 1, _Var5)
+AND NOT
+DB_ExcludePlayerForPDD(_Var2, _Var3)
+THEN
+DB_PartyDecisionDialog_Players(_Var2, _Var3, _Var5);
+NOT DB_PartyDecisionDialog_PlayerCount(_Var2, _Var4);
+DB_PartyDecisionDialog_PlayerCount(_Var2, _Var5);
+
+PROC
+Proc_PartyDecisionDialog_CollectPlayers((CHARACTERGUID)_Var1, (STRING)_Var2)
+AND
+DB_PartyDecisionDialog_PlayerCount(_Var2, _Var3)
+THEN
+NOT DB_PartyDecisionDialog_PlayerCount(_Var2, _Var3);
+
+PROC
+Proc_RegisterPartyDecisionDialogOutcomes_Fixed((STRING)_Var1, (STRING)_Var2, (STRING)_Var3, (STRING)_Var4, (STRING)_Var5, (STRING)_Var6)
+THEN
+DB_PartyDecisionDialog_OutcomeEvent(_Var1, "FixedAChosen", _Var2);
+DB_PartyDecisionDialog_OutcomeEvent(_Var1, "FixedBChosen", _Var3);
+DB_PartyDecisionDialog_OutcomeEvent(_Var1, "FixedCChosen", _Var4);
+DB_PartyDecisionDialog_OutcomeEvent(_Var1, "FixedDChosen", _Var5);
+DB_PartyDecisionDialog_OutcomeEvent(_Var1, "FixedEChosen", _Var6);
+
+PROC
+Proc_RegisterPartyDecisionDialogOutcomes_Optional((STRING)_Var1, (STRING)_Var2, (STRING)_Var3, (STRING)_Var4, (STRING)_Var5, (STRING)_Var6)
+THEN
+DB_PartyDecisionDialog_OutcomeEvent(_Var1, "Optional1Chosen", _Var2);
+DB_PartyDecisionDialog_OutcomeEvent(_Var1, "Optional2Chosen", _Var3);
+DB_PartyDecisionDialog_OutcomeEvent(_Var1, "Optional3Chosen", _Var4);
+DB_PartyDecisionDialog_OutcomeEvent(_Var1, "Optional4Chosen", _Var5);
+DB_PartyDecisionDialog_OutcomeEvent(_Var1, "Optional5Chosen", _Var6);
+
+PROC
+Proc_PartyDecisionDialog_Phase2((STRING)_Var1)
+AND
+DB_PartyDecisionDialog_State(_Var1, _Var2, "Phase1")
+AND
+DB_PartyDecisionDialog_DualDialogInstance(_Var1, _Var3, _Var4)
+THEN
+NOT DB_PartyDecisionDialog_State(_Var1, _Var2, "Phase1");
+DB_PartyDecisionDialog_State(_Var1, _Var2, "Phase2");
+SetTag(_Var2, "PDD_Player1");
+Proc_PartyDecisionDialog_DoDialogWithObservers(_Var2, _Var1, _Var3, _Var4);
+
+IF
+ObjectFlagSet((STRING)_Var1, (GUIDSTRING)_Var2, (INTEGER)_Var3)
+AND
+DB_PartyDecisionDialog_OutcomeEvent(_Var4, _Var1, _Var5)
+AND
+DB_PartyDecisionDialog_State(_Var4, _Var6, "Phase1")
+AND
+_Var2 != _Var6
+THEN
+ObjectClearDialogFlag(_Var2, _Var1, _Var3);
+
+IF
+ObjectFlagSet((STRING)_Var1, (CHARACTERGUID)_Var2, (INTEGER)_Var3)
+AND
+DB_PartyDecisionDialog_State(_Var4, _Var2, "Phase2")
+AND
+DB_PartyDecisionDialog_OutcomeEvent(_Var4, _Var1, _Var5)
+THEN
+DB_PartyDecisionDialog_Outcome(_Var4, _Var1);
+ObjectClearDialogFlag(_Var2, _Var1, _Var3);
+ClearTag(_Var2, "PDD_Player1");
+ObjectSetDialogFlag(_Var2, _Var5, _Var3);
+
+IF
+DialogEnded((STRING)_Var1, _)
+AND
+DB_PartyDecisionDialog_State(_Var1, _Var3, "Phase2")
+THEN
+Proc_PartyDecisionDialog_Cleanup(_Var1);
+NOT DB_PartyDecisionDialog_State(_Var1, _Var3, "Phase2");
+
+PROC
+Proc_PartyDecisionDialog_Phase1((CHARACTERGUID)_Var1, (STRING)_Var2)
+THEN
+DB_PartyDecisionDialog_State(_Var2, _Var1, "Phase1");
+DB_PartyDecisionDialog_Phase1_Index(2);
+Proc_PartyDecisionDialog_Phase1_NextPlayer(_Var2, 2);
+
+PROC
+Proc_PartyDecisionDialog_Phase1_NextPlayer((STRING)_Var1, (INTEGER)_Var2)
+THEN
+NOT DB_RanPartyDecisionDialog_Players(_Var1);
+
+PROC
+Proc_PartyDecisionDialog_Phase1_NextPlayer((STRING)_Var1, (INTEGER)_Var2)
+AND
+DB_PartyDecisionDialog_Players(_Var1, _Var3, _Var2)
+AND
+DB_PartyDecisionDialog_PlayerIdentifier(_Var2, _Var4)
+AND
+DB_PartyDecisionDialog_DualDialogInstance(_Var1, _Var5, _Var6)
+AND
+DB_PartyDecisionDialog_Players(_Var1, _Var7, 1)
+THEN
+SetTag(_Var3, _Var4);
+Proc_PartyDecisionDialog_DoDialogWithObservers(_Var3, _Var1, _Var5, 0);
+DB_RanPartyDecisionDialog_Players(_Var1);
+
+PROC
+Proc_PartyDecisionDialog_Phase1_NextPlayer((STRING)_Var1, (INTEGER)_Var2)
+AND NOT
+DB_RanPartyDecisionDialog_Players(_Var1)
+THEN
+NOT DB_PartyDecisionDialog_Phase1_Index(_Var2);
+Proc_PartyDecisionDialog_Phase2(_Var1);
+
+PROC
+Proc_PartyDecisionDialog_Phase1_NextPlayer((STRING)_Var1, _)
+THEN
+NOT DB_RanPartyDecisionDialog_Players(_Var1);
+
+IF
+DialogEnded((STRING)_Var1, (INTEGER)_Var2)
+AND
+DB_PartyDecisionDialog_State(_Var1, _Var3, "Phase1")
+AND
+DB_PartyDecisionDialog_Phase1_Index(_Var4)
+AND
+IntegerSum(_Var4, 1, _Var5)
+AND
+DB_DialogPlayers(_Var2, _Var6, 1)
+AND
+DB_PartyDecisionDialog_PlayerIdentifier(_Var4, _Var7)
+THEN
+ClearTag(_Var6, _Var7);
+NOT DB_PartyDecisionDialog_Phase1_Index(_Var4);
+DB_PartyDecisionDialog_Phase1_Index(_Var5);
+Proc_PartyDecisionDialog_Phase1_NextPlayer(_Var1, _Var5);
+
+IF
+ObjectFlagSet((STRING)_Var1, (CHARACTERGUID)_Var2, _)
+AND
+DB_PartyDecisionDialog_UltimatumEvent(_Var1, _Var4)
+AND
+DB_PartyDecisionDialog_Players(_Var5, _Var2, _Var6)
+THEN
+DB_PartyDecisionDialog_UltimatumSet(_Var5, _Var2, _Var4);
+ObjectClearFlag(_Var2, _Var1, 0);
+
+PROC
+Proc_PartyDecisionDialog_Cleanup((STRING)_Var1)
+AND
+DB_PartyDecisionDialog_OutcomeEvent(_Var1, _Var2, _Var3)
+THEN
+NOT DB_PartyDecisionDialog_OutcomeEvent(_Var1, _Var2, _Var3);
+
+PROC
+Proc_PartyDecisionDialog_Cleanup((STRING)_Var1)
+AND
+DB_PartyDecisionDialog_DualDialogInstance(_Var1, _Var2, _Var3)
+THEN
+NOT DB_PartyDecisionDialog_DualDialogInstance(_Var1, _Var2, _Var3);
+
+PROC
+Proc_PartyDecisionDialog_Cleanup((STRING)_Var1)
+AND
+DB_PartyDecisionDialog_Players(_Var1, _Var2, _Var3)
+THEN
+NOT DB_PartyDecisionDialog_Players(_Var1, _Var2, _Var3);
+
+PROC
+Proc_PartyDecisionDialog_DoDialogWithObservers((CHARACTERGUID)_Var1, (STRING)_Var2, (INTEGER)_Var3, (INTEGER)_Var4)
+THEN
+DB_PartyDecisionDialog_Observer(_Var2, _Var1, 1);
+DB_PartyDecisionDialog_ObserverCount(_Var2, 1);
+
+PROC
+Proc_PartyDecisionDialog_DoDialogWithObservers((CHARACTERGUID)_Var1, (STRING)_Var2, (INTEGER)_Var3, (INTEGER)_Var4)
+AND
+DB_PartyDecisionDialog_Players(_Var2, _Var5, _)
+AND
+_Var5 != _Var1
+AND
+DB_PartyDecisionDialog_ObserverCount(_Var2, _Var7)
+AND
+IntegerSum(_Var7, 1, _Var8)
+THEN
+DB_PartyDecisionDialog_Observer(_Var2, _Var5, _Var8);
+NOT DB_PartyDecisionDialog_ObserverCount(_Var2, _Var7);
+DB_PartyDecisionDialog_ObserverCount(_Var2, _Var8);
+
+PROC
+Proc_PartyDecisionDialog_DoDialogWithObservers((CHARACTERGUID)_Var1, (STRING)_Var2, (INTEGER)_Var3, (INTEGER)_Var4)
+AND
+DB_ReflectionDialog_Players(_Var2, _Var5, _)
+AND
+_Var5 != _Var1
+AND
+DB_PartyDecisionDialog_ObserverCount(_Var2, _Var7)
+AND
+IntegerSum(_Var7, 1, _Var8)
+THEN
+DB_PartyDecisionDialog_Observer(_Var2, _Var5, _Var8);
+NOT DB_PartyDecisionDialog_ObserverCount(_Var2, _Var7);
+DB_PartyDecisionDialog_ObserverCount(_Var2, _Var8);
+
+PROC
+Proc_PartyDecisionDialog_DoDialogWithObservers((CHARACTERGUID)_Var1, (STRING)_Var2, (INTEGER)_Var3, (INTEGER)_Var4)
+AND
+DB_PartyDecisionDialog_ObserverCount(_Var2, 1)
+THEN
+Proc_DoPartyDecisionDialog(_Var2, _Var1, NULL_00000000-0000-0000-0000-000000000000, NULL_00000000-0000-0000-0000-000000000000, NULL_00000000-0000-0000-0000-000000000000, _Var3, _Var4);
+
+PROC
+Proc_PartyDecisionDialog_DoDialogWithObservers((CHARACTERGUID)_Var1, (STRING)_Var2, (INTEGER)_Var3, (INTEGER)_Var4)
+AND
+DB_PartyDecisionDialog_ObserverCount(_Var2, 2)
+AND
+DB_PartyDecisionDialog_Observer(_Var2, _Var5, 2)
+THEN
+Proc_DoPartyDecisionDialog(_Var2, _Var1, _Var5, NULL_00000000-0000-0000-0000-000000000000, NULL_00000000-0000-0000-0000-000000000000, _Var3, _Var4);
+
+PROC
+Proc_PartyDecisionDialog_DoDialogWithObservers((CHARACTERGUID)_Var1, (STRING)_Var2, (INTEGER)_Var3, (INTEGER)_Var4)
+AND
+DB_PartyDecisionDialog_ObserverCount(_Var2, 3)
+AND
+DB_PartyDecisionDialog_Observer(_Var2, _Var5, 2)
+AND
+DB_PartyDecisionDialog_Observer(_Var2, _Var6, 3)
+THEN
+Proc_DoPartyDecisionDialog(_Var2, _Var1, _Var5, _Var6, NULL_00000000-0000-0000-0000-000000000000, _Var3, _Var4);
+
+PROC
+Proc_PartyDecisionDialog_DoDialogWithObservers((CHARACTERGUID)_Var1, (STRING)_Var2, (INTEGER)_Var3, (INTEGER)_Var4)
+AND
+DB_PartyDecisionDialog_ObserverCount(_Var2, _Var5)
+AND
+_Var5 >= 4
+AND
+DB_PartyDecisionDialog_Observer(_Var2, _Var6, 2)
+AND
+DB_PartyDecisionDialog_Observer(_Var2, _Var7, 3)
+AND
+DB_PartyDecisionDialog_Observer(_Var2, _Var8, 4)
+THEN
+Proc_DoPartyDecisionDialog(_Var2, _Var1, _Var6, _Var7, _Var8, _Var3, _Var4);
+
+PROC
+Proc_DoPartyDecisionDialog((STRING)_Var1, (CHARACTERGUID)_Var2, (CHARACTERGUID)_Var3, (CHARACTERGUID)_Var4, (CHARACTERGUID)_Var5, (INTEGER)_Var6, (INTEGER)_Var7)
+AND
+DialogStartPartyDialog(_Var1, _Var6, _Var7, _Var2, _Var3, _Var4, _Var5, 1)
+THEN
+CharacterMakeStoryNpc(_Var2, 1);
+CharacterMakeStoryNpc(_Var3, 1);
+CharacterMakeStoryNpc(_Var4, 1);
+CharacterMakeStoryNpc(_Var5, 1);
+
+PROC
+Proc_PartyDecisionDialog_DoDialogWithObservers((CHARACTERGUID)_Var1, (STRING)_Var2, (INTEGER)_Var3, (INTEGER)_Var4)
+AND
+DB_PartyDecisionDialog_ObserverCount(_Var2, _Var5)
+AND
+DB_PartyDecisionDialog_Observer(_Var2, _Var6, _Var7)
+THEN
+NOT DB_PartyDecisionDialog_ObserverCount(_Var2, _Var5);
+NOT DB_PartyDecisionDialog_Observer(_Var2, _Var6, _Var7);
+
+
+EXITSECTION
+ENDEXITSECTION
+
+ParentTargetEdge "__Shared_Campaign"

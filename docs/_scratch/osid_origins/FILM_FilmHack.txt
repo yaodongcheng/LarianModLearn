@@ -1,0 +1,261 @@
+Version 1
+SubGoalCombiner SGC_AND
+
+INITSECTION
+DB_FILM_Counter(0);
+DB_FILM_Animations(Humans_Male_Armor_Blackring_A_000_69de41ec-ed63-490e-b0e4-177bd15e6a9d, "Dust_Off_01", 5000);
+DB_FILM_MoveTo(Humans_Male_Armor_Blackring_A_000_69de41ec-ed63-490e-b0e4-177bd15e6a9d, EventTrigger_000_40be8387-544d-4365-9f6a-015f9daa675a, 0, 7500);
+DB_FILM_MoveTo(Humans_Male_Armor_Blackring_A_000_69de41ec-ed63-490e-b0e4-177bd15e6a9d, EventTrigger_000_40be8387-544d-4365-9f6a-015f9daa675a, 0, 7500);
+
+KBSECTION
+IF
+TextEventSet("StartFilm")
+AND
+DB_FILM_TimedAnimations(_, _, _Var3)
+THEN
+TimerCancel(_Var3);
+
+IF
+TextEventSet("StartFilm")
+AND
+DB_FILM_Counter(_Var1)
+THEN
+NOT DB_FILM_Counter(_Var1);
+
+IF
+TextEventSet("StartFilm")
+THEN
+DB_FILM_Counter(0);
+
+IF
+TextEventSet("StartFilm")
+AND
+DB_FILM_Animations(_Var1, _Var2, _Var3)
+THEN
+PROC_FILM_AddAnimation(_Var1, _Var2, _Var3);
+
+PROC
+PROC_FILM_AddAnimation((CHARACTERGUID)_Var1, (STRING)_Var2, (INTEGER)_Var3)
+AND
+DB_FILM_Counter(_Var4)
+AND
+IntegerSum(_Var4, 1, _Var5)
+AND
+IntegertoString(_Var4, _Var6)
+AND
+StringConcatenate("FILM_Timer_Animation_", _Var6, _Var7)
+THEN
+DB_FILM_TimedAnimations(_Var1, _Var2, _Var7);
+TimerLaunch(_Var7, _Var3);
+NOT DB_FILM_Counter(_Var4);
+DB_FILM_Counter(_Var5);
+
+IF
+TimerFinished((STRING)_Var1)
+AND
+DB_FILM_TimedAnimations(_Var2, _Var3, _Var1)
+THEN
+PlayAnimation(_Var2, _Var3);
+
+IF
+TextEventSet("StartFilm")
+AND
+DB_FILM_TimedAttacks(_Var1, _Var2, _Var3)
+THEN
+TimerCancel(_Var3);
+
+IF
+TextEventSet("StartFilm")
+AND
+DB_FILM_Counter(_Var1)
+THEN
+NOT DB_FILM_Counter(_Var1);
+
+IF
+TextEventSet("StartFilm")
+THEN
+DB_FILM_Counter(0);
+
+IF
+TextEventSet("StartFilm")
+AND
+DB_FILM_Attacks(_Var1, _Var2, _Var3)
+THEN
+PROC_FILM_AddAttack(_Var1, _Var2, _Var3);
+
+PROC
+PROC_FILM_AddAttack((CHARACTERGUID)_Var1, (GUIDSTRING)_Var2, (INTEGER)_Var3)
+AND
+DB_FILM_Counter(_Var4)
+AND
+IntegerSum(_Var4, 1, _Var5)
+AND
+IntegertoString(_Var4, _Var6)
+AND
+StringConcatenate("FILM_Timer_Attack_", _Var6, _Var7)
+THEN
+DB_FILM_TimedAttacks(_Var1, _Var2, _Var7);
+TimerLaunch(_Var7, _Var3);
+NOT DB_FILM_Counter(_Var4);
+DB_FILM_Counter(_Var5);
+
+IF
+TimerFinished((STRING)_Var1)
+AND
+DB_FILM_TimedAttacks(_Var2, _Var3, _Var1)
+THEN
+CharacterAttack(_Var2, _Var3);
+
+IF
+TextEventSet("StartFilm")
+AND
+DB_FILM_TimedSkills(_Var1, _Var2, _Var3, _Var4)
+THEN
+TimerCancel(_Var4);
+
+IF
+TextEventSet("StartFilm")
+AND
+DB_FILM_Counter(_Var1)
+THEN
+NOT DB_FILM_Counter(_Var1);
+
+IF
+TextEventSet("StartFilm")
+THEN
+DB_FILM_Counter(0);
+
+IF
+TextEventSet("StartFilm")
+AND
+DB_FILM_Skills(_Var1, _Var2, _Var3, _Var4)
+THEN
+PROC_FILM_AddSkill(_Var1, _Var2, _Var3, _Var4);
+
+PROC
+PROC_FILM_AddSkill((CHARACTERGUID)_Var1, (STRING)_Var2, (GUIDSTRING)_Var3, (INTEGER)_Var4)
+AND
+DB_FILM_Counter(_Var5)
+AND
+IntegerSum(_Var5, 1, _Var6)
+AND
+IntegertoString(_Var5, _Var7)
+AND
+StringConcatenate("FILM_Timer_Skill_", _Var7, _Var8)
+THEN
+CharacterAddSkill(_Var1, _Var2);
+DB_FILM_TimedSkills(_Var1, _Var2, _Var3, _Var8);
+TimerLaunch(_Var8, _Var4);
+NOT DB_FILM_Counter(_Var5);
+DB_FILM_Counter(_Var6);
+
+IF
+TimerFinished((STRING)_Var1)
+AND
+DB_FILM_TimedSkills(_Var2, _Var3, _Var4, _Var1)
+THEN
+CharacterUseSkill(_Var2, _Var3, _Var4);
+
+IF
+TextEventSet("StartFilm")
+AND
+DB_FILM_TimedMoveTo(_Var1, _Var2, _Var3, _Var4)
+THEN
+TimerCancel(_Var4);
+
+IF
+TextEventSet("StartFilm")
+AND
+DB_FILM_Counter(_Var1)
+THEN
+NOT DB_FILM_Counter(_Var1);
+
+IF
+TextEventSet("StartFilm")
+THEN
+DB_FILM_Counter(0);
+
+IF
+TextEventSet("StartFilm")
+AND
+DB_FILM_MoveTo(_Var1, _Var2, _Var3, _Var4)
+THEN
+PROC_FILM_AddMove(_Var1, _Var2, _Var3, _Var4);
+
+PROC
+PROC_FILM_AddMove((CHARACTERGUID)_Var1, (GUIDSTRING)_Var2, (INTEGER)_Var3, (INTEGER)_Var4)
+AND
+DB_FILM_Counter(_Var5)
+AND
+IntegerSum(_Var5, 1, _Var6)
+AND
+IntegertoString(_Var5, _Var7)
+AND
+StringConcatenate("FILM_Timer_MoveTo_", _Var7, _Var8)
+THEN
+DB_FILM_TimedMoveTo(_Var1, _Var2, _Var3, _Var8);
+TimerLaunch(_Var8, _Var4);
+NOT DB_FILM_Counter(_Var5);
+DB_FILM_Counter(_Var6);
+
+IF
+TimerFinished((STRING)_Var1)
+AND
+DB_FILM_TimedMoveTo(_Var2, _Var3, _Var4, _Var1)
+THEN
+CharacterMoveTo(_Var2, _Var3, _Var4, "", 0);
+
+IF
+TextEventSet("StartFilm")
+AND
+DB_FILM_TimedEffect(_Var1, _Var2, _Var3)
+THEN
+TimerCancel(_Var3);
+
+IF
+TextEventSet("StartFilm")
+AND
+DB_FILM_Counter(_Var1)
+THEN
+NOT DB_FILM_Counter(_Var1);
+
+IF
+TextEventSet("StartFilm")
+THEN
+DB_FILM_Counter(0);
+
+IF
+TextEventSet("StartFilm")
+AND
+DB_FILM_Effect(_Var1, _Var2, _Var3)
+THEN
+PROC_FILM_AddEffect(_Var1, _Var2, _Var3);
+
+PROC
+PROC_FILM_AddEffect((GUIDSTRING)_Var1, (STRING)_Var2, (INTEGER)_Var3)
+AND
+DB_FILM_Counter(_Var4)
+AND
+IntegerSum(_Var4, 1, _Var5)
+AND
+IntegertoString(_Var4, _Var6)
+AND
+StringConcatenate("FILM_Timer_Effect_", _Var6, _Var7)
+THEN
+DB_FILM_TimedEffect(_Var1, _Var2, _Var7);
+TimerLaunch(_Var7, _Var3);
+NOT DB_FILM_Counter(_Var4);
+DB_FILM_Counter(_Var5);
+
+IF
+TimerFinished((STRING)_Var1)
+AND
+DB_FILM_TimedEffect(_Var2, _Var3, _Var1)
+THEN
+PlayEffect(_Var2, _Var3);
+
+
+EXITSECTION
+ENDEXITSECTION
+
+ParentTargetEdge "DOS2ModWrapper"

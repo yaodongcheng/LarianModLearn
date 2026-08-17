@@ -1,0 +1,779 @@
+Version 1
+SubGoalCombiner SGC_AND
+
+INITSECTION
+DB_Dialogs(CHARACTERGUID_S_RC_DW_UnderTavern_DwarfBoss_8e58abc6-1010-4e67-97b2-b9686586e784, CHARACTERGUID_S_RC_DW_UnderTavern_CapturedAssassin_f3a00aa7-0e48-43e5-b324-329de6d584c2, "RC_DW_UnderTavern_QuestioningAssassin");
+DB_Dialogs(S_RC_DW_UnderTavern_DwarfBossGuard_ec3c854d-f5ef-426a-914e-47ed9147b6f1, "RC_DW_UnderTavern_DwarfBossGuard");
+ItemToInventory(ITEMGUID_S_RC_DW_MagisterReward_LoharKey_f986a4d5-653b-416e-9a1f-5e153ebef28c, CHARACTERGUID_S_RC_DW_UnderTavern_DwarfBoss_8e58abc6-1010-4e67-97b2-b9686586e784);
+DB_HasStoryEvent(ITEMGUID_S_RC_DW_MagisterReward_LoharKey_f986a4d5-653b-416e-9a1f-5e153ebef28c, "RC_DW_HasLoharKey");
+DB_GiveItemToEvent(ITEMGUID_S_RC_DW_MagisterReward_LoharKey_f986a4d5-653b-416e-9a1f-5e153ebef28c, "RC_DW_GiveLoharKey");
+DB_HasStoryEvent(ITEMGUID_S_QUEST_RC_DW_UnderTavern_LoharRewardDagger_4bf0e673-1c23-41ae-8ae5-7f263942c426, "RC_DW_HasLoharDagger");
+DB_GiveItemToEvent(ITEMGUID_S_QUEST_RC_DW_UnderTavern_LoharRewardDagger_4bf0e673-1c23-41ae-8ae5-7f263942c426, "RC_DW_GiveLoharDagger");
+DB_Ghosts(CHARACTERGUID_S_RC_DW_UnderTavern_DwarfBoss_8e58abc6-1010-4e67-97b2-b9686586e784, CHARACTERGUID_S_RC_DW_UnderTavern_DwarfBoss_Ghost_7cb1ebac-b400-44a4-92e6-beaebb5f027c, "RC_DW_UnderTavern_DwarfBossGhost");
+TriggerRegisterForItems(S_RC_DW_AnharPortrait_Box_db78a0a6-09f2-42a1-b98f-6d3dd8b3cb3e);
+DB_RC_DW_DwarfBoss_Thugs(S_RC_DW_LilianThug1_3d063a8a-a0a1-409e-907f-ecfb6741935c, S_RC_DW_Behavior_LilianThug1_06b8724b-d15a-49be-9b50-83dbf300855a, "RC_DW_UnderTavern_DwarfBossThug_01");
+DB_RC_DW_DwarfBoss_Thugs(S_RC_DW_LilianThug2_5443de0f-115b-4581-a92a-fee99ca2a2ad, S_RC_DW_Behavior_LilianThug2_8e0d2a6a-f54a-41be-a2bc-04bfe8533d6d, "RC_DW_UnderTavern_DwarfBossThug_02");
+SetHasDialog(S_RC_DW_LilianThug1_3d063a8a-a0a1-409e-907f-ecfb6741935c, 1);
+SetHasDialog(S_RC_DW_LilianThug2_5443de0f-115b-4581-a92a-fee99ca2a2ad, 1);
+DB_OneShotPlayerTrigger(S_RC_DW_LilianThugs_6d63083c-abe3-4fb4-81f6-bd26b227b406);
+CharacterSetAnimationOverride(S_RC_DW_UnderTavern_CapturedAssassin_f3a00aa7-0e48-43e5-b324-329de6d584c2, "Execution_01_Loop");
+CharacterSetHitpointsPercentage(CHARACTERGUID_S_RC_DW_UnderTavern_CapturedAssassin_f3a00aa7-0e48-43e5-b324-329de6d584c2, 20);
+CreateSurface(CHARACTERGUID_S_RC_DW_UnderTavern_CapturedAssassin_f3a00aa7-0e48-43e5-b324-329de6d584c2, "SurfaceBlood", 0.5, -1);
+TriggerRegisterForCharacter(TRIGGERGUID_S_RC_DW_UnderTavern_OwnershipTrigger_DwarfBoss_c8c5300c-a815-48de-ab73-2e49cffc17ef, S_RC_DW_UnderTavern_CapturedAssassin_f3a00aa7-0e48-43e5-b324-329de6d584c2);
+DB_RC_DW_DwarfBossGroup(S_RC_DW_LilianThug1_3d063a8a-a0a1-409e-907f-ecfb6741935c);
+DB_RC_DW_DwarfBossGroup(S_RC_DW_LilianThug2_5443de0f-115b-4581-a92a-fee99ca2a2ad);
+DB_RC_DW_DwarfBossGroup(S_RC_DW_UnderTavern_DwarfBoss_8e58abc6-1010-4e67-97b2-b9686586e784);
+DB_RC_DW_DwarfBoss_ThugsFinalSeat(S_RC_DW_LilianThug1_3d063a8a-a0a1-409e-907f-ecfb6741935c, S_RC_DW_UnderTavern_LoharThug1Final_18d9b873-fce2-4a14-91de-8fc4270563d3);
+DB_RC_DW_DwarfBoss_ThugsFinalSeat(S_RC_DW_LilianThug2_5443de0f-115b-4581-a92a-fee99ca2a2ad, S_RC_DW_UnderTavern_LoharThug2Final_2dc8bb26-7b72-451f-83b1-464f1e8f3a9b);
+SetOnStage(S_RC_DW_AssassinsGrave_DirtPile_4c15a07b-6bc1-49f1-997a-35a80a9db8ae, 0);
+SetOnStage(ITEMGUID_S_RC_DW_DwarfBoss_Letter_37e51ad5-5586-46f0-ae06-495ea62e67d1, 0);
+SetOnStage(S_RC_DW_Limb_LoharsHead_15bb128a-3557-48a0-add6-1da6a41c6b60, 0);
+CharacterDisableAllCrimes(CHARACTERGUID_S_RC_DW_UnderTavern_CapturedAssassin_f3a00aa7-0e48-43e5-b324-329de6d584c2);
+TriggerRegisterForCharacter(TRIGGERGUID_S_RC_DW_UnderTavern_OwnershipTrigger_DwarfBoss_c8c5300c-a815-48de-ab73-2e49cffc17ef, CHARACTERGUID_S_RC_DW_UnderTavern_CapturedAssassin_f3a00aa7-0e48-43e5-b324-329de6d584c2);
+DB_DeadEvent(CHARACTERGUID_S_RC_DW_UnderTavern_CapturedAssassin_f3a00aa7-0e48-43e5-b324-329de6d584c2, "RC_DW_CapturedAssassinUnavailable");
+DB_DeadEvent(CHARACTERGUID_S_RC_DW_UnderTavern_DwarfBoss_8e58abc6-1010-4e67-97b2-b9686586e784, "RC_DW_LoharDead");
+Proc_JDF_CreateCustomFlagsDependency("RC_DW_QuestFromJulian_InvestigateLoharPremise", "RC_DW_QuestFromJulian", "JDF_QuestUpdate_RC_DW_DwarvenCriminals_ContactLohar", "QuestUpdate_RC_DW_DwarvenCriminals_ContactLohar");
+Proc_JDF_CreateCustomFlagsDependency("RC_DW_QuestFromJulian_InvestigateLoharPremise", "RC_DW_QuestFromJulian", "QuestUpdate_RC_DW_DwarvenCriminals_CargoHint", "QuestUpdate_RC_DW_DwarvenCriminals_CargoHint");
+Proc_JDF_CreateCustomFlagsDependency("RC_DW_QuestFromJulian_InvestigateLoharPremise", "RC_DW_QuestFromJulian", "QuestUpdate_RC_DW_CoverTheTracks_AbandonedHouse_Start", "QuestUpdate_RC_DW_DwarvenCrminals_LoharProblem");
+Proc_JDF_CreateCustomFlagsDependency("RC_DW_QuestFromJulian_InvestigateLoharPremise", "RC_DW_QuestFromJulian", "QuestUpdate_RC_DW_WC_AtaraxianLair_KnowAboutDeathFogInCave", "QuestUpdate_RC_DW_DwarvenCriminals_KnowAboutDeathFogInCave");
+Proc_JDF_CreateCustomFlagsDependency("RC_DW_QuestFromJulian_InvestigateLoharPremise", "RC_DW_QuestFromJulian", "RC_DW_WC_AskedMordusAboutDeathFogWeapons", "QuestUpdate_RC_DW_DwarvenCriminals_KnowDeathfog");
+Proc_JDF_CreateCustomFlagsDependency("RC_DW_QuestFromJulian_InvestigateLoharPremise", "RC_DW_QuestFromJulian", "JDF_QuestUpdate_RC_DW_DwarvenCriminals_FoundWrongLetters", "QuestUpdate_RC_DW_DwarvenCriminals_FoundWrongLetters");
+DB_SharedQuestLessFlag("RC_DW_QuestFromJulian_InvestigateLoharPremise");
+
+KBSECTION
+IF
+TextEventSet("lohar_reset")
+THEN
+ObjectClearFlag(CHARACTERGUID_S_RC_DW_UnderTavern_DwarfBoss_8e58abc6-1010-4e67-97b2-b9686586e784, "RC_DW_DeliverMordusNote", 0);
+ObjectClearFlag(CHARACTERGUID_S_RC_DW_UnderTavern_DwarfBoss_8e58abc6-1010-4e67-97b2-b9686586e784, "RC_DW_GaveMordusAmulet", 0);
+GlobalClearFlag("RC_DW_WC_CapturedDwarfIsAtUnderTavetrn");
+
+IF
+TextEventSet("lohar_reset")
+AND
+DB_IsPlayer(_Var1)
+AND
+DB_QuestDef_State("RC_DW_CoverTheTracks", _Var2)
+AND
+StringConcatenate("QuestUpdate_RC_DW_CoverTheTracks_", _Var2, _Var3)
+THEN
+PartyClearFlag(_Var1, _Var3, 0);
+
+IF
+TextEventSet("lohar_reset")
+AND
+DB_IsPlayer(_Var1)
+THEN
+ObjectClearFlag(_Var1, "QuestAdd_RC_DW_CoverTheTracks", 0);
+ObjectClearFlag(_Var1, "RC_DW_FailedLiliansPersuasion", 0);
+ObjectClearFlag(_Var1, "RC_DW_GotDwarfBossAbandonedHouseJob", 0);
+ObjectClearFlag(_Var1, "RC_DW_GotDwarfBossJob", 0);
+ObjectClearFlag(_Var1, "RC_DW_CoverTheTracks_Completed", 0);
+ObjectClearFlag(_Var1, "QuestUpdate_RC_DW_SurpriseDate_ThugsGaveLoot", 0);
+ObjectClearFlag(_Var1, "RC_DW_DS_LetLilianAssassinGo", 0);
+ObjectClearFlag(_Var1, "RC_DU_ToldLilianAboutCaravan", 0);
+PartyClearFlag(_Var1, "RC_DW_WC_AskedMordusAboutDeathFogWeapons", 0);
+PartyClearFlag(_Var1, "QuestUpdate_RC_DW_CoverTheTracks_AbandonedHouse_NoteRead", 0);
+PartyClearFlag(_Var1, "QuestUpdate_RC_DW_CoverTheTracks_AbandonedHouse_NoteDelivered", 0);
+PartyClearFlag(_Var1, "QuestUpdate_RC_DW_CoverTheTracks_AbandonedHouse_NoteDeliveredSecond", 0);
+PartyClearFlag(_Var1, "RC_DW_MagisterHaveEmpressLetter", 0);
+UserClearFlag(_Var1, "RC_DW_Caravan_Blamed_Dwarf", 0);
+UserClearFlag(_Var1, "RC_DU_WarmaidenToldOfAnhar", 0);
+UserClearFlag(_Var1, "RC_DU_HeardAnharSide", 0);
+
+PROC
+Proc_RC_DW_Debug_GiveItemToPlayer1((ITEMGUID)_Var1)
+AND
+DB_IsPlayer(_Var2)
+AND NOT
+DB_OnlyOncePlayer(1)
+THEN
+DB_OnlyOncePlayer(1);
+ItemToInventory(_Var1, _Var2);
+
+PROC
+Proc_RC_DW_Debug_SetFlagOnPlayer1((STRING)_Var1)
+AND
+DB_IsPlayer(_Var2)
+AND NOT
+DB_OnlyOncePlayer(1)
+THEN
+DB_OnlyOncePlayer(1);
+ObjectSetFlag(_Var2, _Var1);
+
+IF
+TextEventSet("lohar_knowanhar")
+AND
+DB_IsPlayer(_Var1)
+THEN
+ObjectSetFlag(_Var1, "RC_DU_SeenCaraven");
+ObjectSetFlag(_Var1, "RC_DU_HeardAnharSide");
+
+IF
+TextEventSet("lohar_blame")
+AND
+DB_IsPlayer(_Var1)
+THEN
+ObjectSetFlag(_Var1, "RC_DW_Caravan_Blamed_Dwarf");
+
+IF
+TextEventSet("lohar_magletter")
+AND
+DB_IsPlayer(_Var1)
+THEN
+ObjectSetFlag(_Var1, "RC_DW_MagisterHaveEmpressLetter");
+
+IF
+TextEventSet("lohar_getjob1")
+AND
+DB_IsPlayer(_Var1)
+THEN
+ObjectSetFlag(_Var1, "QuestUpdate_RC_DW_CoverTheTracks_AbandonedHouse_Start");
+ObjectSetFlag(_Var1, "RC_DW_GotDwarfBossAbandonedHouseJob");
+
+IF
+TextEventSet("lohar_getjob2")
+AND
+CharacterGetHostCharacter(_Var1)
+THEN
+ObjectSetFlag(_Var1, "QuestUpdate_RC_DW_CoverTheTracks_AbandonedHouse_Start");
+ObjectSetFlag(_Var1, "RC_DW_GotDwarfBossAbandonedHouseJob");
+PartySetFlag(_Var1, "RC_DW_GotDwarfBossJob");
+PartySetFlag(_Var1, "QuestUpdate_RC_DW_CoverTheTracks_AbandonedHouse_NoteRead");
+PartySetFlag(_Var1, "QuestUpdate_RC_DW_CoverTheTracks_AbandonedHouse_NoteDelivered");
+
+IF
+TextEventSet("lohar_getnotes")
+THEN
+Proc_RC_DW_Debug_GiveItemToPlayer1(ITEMGUID_S_RC_DW_MordusNote_77e74451-9fd9-4a84-a92b-48e9d296cee6);
+
+IF
+TextEventSet("lohar_getamulet")
+THEN
+Proc_RC_DW_Debug_GiveItemToPlayer1(QUEST_RC_Amulet_Mordus_000_49de20a2-8ab8-4424-b77e-d871884faaa9);
+
+IF
+TextEventSet("lohar_getletter")
+THEN
+Proc_RC_DW_Debug_GiveItemToPlayer1(ITEMGUID_RC_WC_EmpressLetter_ffaa5485-ccc8-4e66-a69b-52316fdc7c82);
+
+IF
+TextEventSet("lohar_finished")
+AND
+CharacterGetHostCharacter(_Var1)
+THEN
+PROC_RC_DW_LoharFinished(_Var1);
+
+IF
+DB_OnlyOncePlayer(1)
+THEN
+NOT DB_OnlyOncePlayer(1);
+
+IF
+DB_HasMet(CHARACTERGUID_S_RC_DW_UnderTavern_DwarfBoss_8e58abc6-1010-4e67-97b2-b9686586e784, _Var1, _)
+THEN
+ObjectSetFlag(_Var1, "RC_DW_HasMet_DwarfBoss");
+
+IF
+ObjectFlagSet("RC_DW_DeliverMordusNote", CHARACTERGUID_S_RC_DW_UnderTavern_DwarfBoss_8e58abc6-1010-4e67-97b2-b9686586e784, (INTEGER)_Var1)
+AND
+DialogGetInvolvedPlayer(_Var1, 1, _Var2)
+AND
+ItemIsInPartyInventory(ITEMGUID_S_RC_DW_MordusNote_77e74451-9fd9-4a84-a92b-48e9d296cee6, _Var2, 1, 1)
+THEN
+ItemToInventory(ITEMGUID_S_RC_DW_MordusNote_77e74451-9fd9-4a84-a92b-48e9d296cee6, CHARACTERGUID_S_RC_DW_UnderTavern_DwarfBoss_8e58abc6-1010-4e67-97b2-b9686586e784);
+
+IF
+ObjectFlagSet("RC_DW_LoharDecreaseAttitude", (CHARACTERGUID)_Var1, (INTEGER)_Var2)
+THEN
+CharacterAddAttitudeTowardsPlayer(CHARACTERGUID_S_RC_DW_UnderTavern_DwarfBoss_8e58abc6-1010-4e67-97b2-b9686586e784, _Var1, -20);
+ObjectClearFlag(_Var1, "RC_DW_LoharDecreaseAttitude", _Var2);
+
+IF
+ObjectFlagSet("RC_DW_GaveMordusAmulet", CHARACTERGUID_S_RC_DW_UnderTavern_DwarfBoss_8e58abc6-1010-4e67-97b2-b9686586e784, (INTEGER)_Var1)
+AND
+DialogGetInvolvedPlayer(_Var1, 1, _Var2)
+AND
+CharacterIsDead(CHARACTERGUID_S_RC_DW_UnderTavern_DwarfBoss_8e58abc6-1010-4e67-97b2-b9686586e784, 0)
+AND
+QryTakeItemFromMagicPockets(_Var2, QUEST_RC_Amulet_Mordus_000_49de20a2-8ab8-4424-b77e-d871884faaa9, CHARACTERGUID_S_RC_DW_UnderTavern_DwarfBoss_8e58abc6-1010-4e67-97b2-b9686586e784)
+THEN
+PROC_RC_DW_LoharFinished(_Var2);
+
+IF
+ObjectFlagSet("RC_DW_GaveMordusAmulet", CHARACTERGUID_S_RC_DW_UnderTavern_DwarfBoss_8e58abc6-1010-4e67-97b2-b9686586e784, (INTEGER)_Var1)
+AND
+DialogGetInvolvedPlayer(_Var1, 1, _Var2)
+AND
+CharacterIsDead(CHARACTERGUID_S_RC_DW_UnderTavern_DwarfBoss_8e58abc6-1010-4e67-97b2-b9686586e784, 1)
+AND
+QryTakeItemFromMagicPockets(_Var2, QUEST_RC_Amulet_Mordus_000_49de20a2-8ab8-4424-b77e-d871884faaa9, _Var2)
+THEN
+PROC_RC_DW_LoharFinished(_Var2);
+
+PROC
+PROC_RC_DW_LoharFinished((CHARACTERGUID)_Var1)
+THEN
+CharacterGiveReward(_Var1, "RC_DW_Lohar_CoverTheTracks_Completed");
+PartySetFlag(_Var1, "QuestUpdate_RC_DW_CoverTheTracks_ShowedMordusAmuletToLohar");
+PartySetFlag(_Var1, "GLO_SetTag_DWARF-FRIEND");
+GlobalSetFlag("RC_DW_Lohar_DealtWith");
+
+IF
+ObjectFlagSet("RC_WC_HasEmpressLetter", S_RC_DW_UnderTavern_DwarfBoss_8e58abc6-1010-4e67-97b2-b9686586e784, _)
+THEN
+ItemDestroy(RC_WC_EmpressLetter_ffaa5485-ccc8-4e66-a69b-52316fdc7c82);
+
+IF
+DialogStarted("RC_DW_UnderTavern_DwarfBoss", (INTEGER)_Var1)
+AND
+DB_DialogPlayers(_Var1, _Var2, _)
+THEN
+PartySetFlag(_Var2, "JDF_QuestUpdate_RC_DW_DwarvenCriminals_ContactLohar");
+
+IF
+DialogStarted("RC_DW_UnderTavern_QuestioningAssassin", (INTEGER)_Var1)
+AND
+DB_DialogPlayers(_Var1, _Var2, _)
+THEN
+PartySetFlag(_Var2, "JDF_QuestUpdate_RC_DW_DwarvenCriminals_ContactLohar");
+
+IF
+CharacterSawCharacter((CHARACTERGUID)_Var1, CHARACTERGUID_S_RC_DW_UnderTavern_DwarfBoss_8e58abc6-1010-4e67-97b2-b9686586e784)
+AND
+DB_IsPlayer(_Var1)
+AND
+DB_Dead(CHARACTERGUID_S_RC_DW_UnderTavern_DwarfBoss_8e58abc6-1010-4e67-97b2-b9686586e784)
+THEN
+Proc_RC_DW_ShadowOverDriftwood_CheckGive_LoharDead(_Var1);
+
+IF
+CharacterDied(CHARACTERGUID_S_RC_DW_UnderTavern_DwarfBoss_8e58abc6-1010-4e67-97b2-b9686586e784)
+AND
+DB_IsPlayer(_Var1)
+AND
+CharacterCanSee(_Var1, CHARACTERGUID_S_RC_DW_UnderTavern_DwarfBoss_8e58abc6-1010-4e67-97b2-b9686586e784, 1)
+THEN
+Proc_RC_DW_ShadowOverDriftwood_CheckGive_LoharDead(_Var1);
+
+PROC
+Proc_RC_DW_ShadowOverDriftwood_CheckGive_LoharDead((CHARACTERGUID)_Var1)
+AND
+QuestIsClosed(_Var1, "RC_DW_ShadowOverDriftwood", 0)
+AND
+QuestAccepted(_Var1, "RC_DW_ShadowOverDriftwood", 1)
+AND
+PartyGetFlag(_Var1, "QuestUpdate_RC_DW_ShadowOverDriftwood_ShowedMordusAmuletToLohar", 0)
+AND
+PartyGetFlag(_Var1, "QuestUpdate_RC_DW_ShadowOverDriftwood_ShowedMordusAmuletToLoharSecond", 0)
+THEN
+PartySetFlag(_Var1, "QuestUpdate_RC_DW_ShadowOverDriftwood_LoharDead");
+
+PROC
+Proc_RC_DW_ShadowOverDriftwood_CheckGive_LoharDead((CHARACTERGUID)_Var1)
+AND
+QuestAccepted(_Var1, "RC_DW_DwarvenCriminals", 1)
+AND
+PartyGetFlag(_Var1, "RC_DW_AssassinateLohar", 0)
+AND
+PartyGetFlag(_Var1, "QuestUpdate_RC_DW_DwarvenSabotage_FoundEmpressLetter", 0)
+THEN
+PartySetFlag(_Var1, "QuestUpdate_RC_DW_DwarvenCriminals_KilledLoharTooSoon");
+
+IF
+GameBookInterfaceClosed((ITEMGUID)_Var1, (CHARACTERGUID)_Var2)
+AND
+DB_RC_DW_DwarvenCriminals_FoundWrongLetters(_Var1)
+THEN
+PartySetFlag(_Var2, "JDF_QuestUpdate_RC_DW_DwarvenCriminals_FoundWrongLetters");
+
+IF
+DialogEnded("RC_DW_UnderTavern_DwarfBoss", (INTEGER)_Var1)
+AND
+DB_DialogPlayers(_Var1, _Var2, 1)
+AND
+PartyGetFlag(_Var2, "RC_DW_GotDwarfBossHostile", 1)
+THEN
+CharacterSetTemporaryHostileRelation(CHARACTERGUID_S_RC_DW_UnderTavern_DwarfBoss_8e58abc6-1010-4e67-97b2-b9686586e784, _Var2);
+
+IF
+DialogEnded("RC_DW_UnderTavern_DwarfBoss_Beast", (INTEGER)_Var1)
+AND
+DB_DialogPlayers(_Var1, _Var2, 1)
+AND
+PartyGetFlag(_Var2, "RC_DW_GotDwarfBossHostile", 1)
+THEN
+CharacterSetTemporaryHostileRelation(CHARACTERGUID_S_RC_DW_UnderTavern_DwarfBoss_8e58abc6-1010-4e67-97b2-b9686586e784, _Var2);
+
+IF
+CharacterLeftTrigger(CHARACTERGUID_S_RC_DW_UnderTavern_CapturedAssassin_f3a00aa7-0e48-43e5-b324-329de6d584c2, TRIGGERGUID_S_RC_DW_UnderTavern_OwnershipTrigger_DwarfBoss_c8c5300c-a815-48de-ab73-2e49cffc17ef)
+THEN
+GlobalSetFlag("RC_DW_CapturedAssassinUnavailable");
+
+IF
+CharacterEnteredTrigger(CHARACTERGUID_S_RC_DW_UnderTavern_CapturedAssassin_f3a00aa7-0e48-43e5-b324-329de6d584c2, TRIGGERGUID_S_RC_DW_UnderTavern_OwnershipTrigger_DwarfBoss_c8c5300c-a815-48de-ab73-2e49cffc17ef)
+AND NOT
+DB_Dead(CHARACTERGUID_S_RC_DW_UnderTavern_CapturedAssassin_f3a00aa7-0e48-43e5-b324-329de6d584c2)
+THEN
+GlobalClearFlag("RC_DW_CapturedAssassinUnavailable");
+
+PROC
+ProcOneShotTriggerEntered(_, S_RC_DW_LilianThugs_6d63083c-abe3-4fb4-81f6-bd26b227b406)
+AND
+GlobalGetFlag("RC_DW_CoverTheTracks_ThugsSceneCancelled", 0)
+THEN
+CharacterSetReactionPriority(CHARACTERGUID_S_RC_DW_UnderTavern_DwarfBoss_8e58abc6-1010-4e67-97b2-b9686586e784, "RC_DW_DwarfBoss_InterrogatingAssassin", 1000);
+DB_RC_DW_CoverTheTracks_LilianThugsDialog(1);
+
+PROC
+ProcOneShotTriggerEntered(_, S_RC_DW_LilianThugs_6d63083c-abe3-4fb4-81f6-bd26b227b406)
+AND NOT
+DB_RC_DW_CoverTheTracks_LilianThugsDialog(1)
+THEN
+Proc_RC_DW_CoverTheTracks_MoveThugs();
+
+IF
+AutomatedDialogStarted("RC_DW_UnderTavern_AD_DwarfBossAndThugs", _)
+THEN
+DB_RC_DW_CoverTheTracks_LilianThugsDialog(1);
+
+IF
+DB_InRegion(_Var1, TRIGGERGUID_S_RC_DW_UnderTavern_OwnershipTrigger_DwarfBoss_c8c5300c-a815-48de-ab73-2e49cffc17ef)
+AND
+DB_IsPlayer(_Var1)
+AND
+DB_RC_DW_CoverTheTracks_LilianThugsDialog(1)
+AND
+QueryOnlyOnce("RC_DW_UnderTavern_QuestioningAssassin")
+THEN
+CharacterSetReactionPriority(CHARACTERGUID_S_RC_DW_UnderTavern_DwarfBoss_8e58abc6-1010-4e67-97b2-b9686586e784, "RC_DW_DwarfBoss_InterrogatingAssassin", 0);
+PROC_RC_DW_CoverTheTracksTryQuestioningDialog(_Var1);
+
+PROC
+PROC_RC_DW_CoverTheTracksTryQuestioningDialog((CHARACTERGUID)_Var1)
+AND
+QRY_SpeakerIsAvailableAndInDialogRange(S_RC_DW_UnderTavern_CapturedAssassin_f3a00aa7-0e48-43e5-b324-329de6d584c2, S_RC_DW_UnderTavern_DwarfBoss_8e58abc6-1010-4e67-97b2-b9686586e784)
+AND
+QRY_SpeakerIsAvailableAndInDialogRange(S_RC_DW_UnderTavern_CapturedAssassin_f3a00aa7-0e48-43e5-b324-329de6d584c2, _Var1)
+THEN
+DB_RC_DW_CoverTheTracks_QuestioningStarted(1);
+Proc_StartDialog(0, "RC_DW_UnderTavern_QuestioningAssassin", S_RC_DW_UnderTavern_DwarfBoss_8e58abc6-1010-4e67-97b2-b9686586e784, S_RC_DW_UnderTavern_CapturedAssassin_f3a00aa7-0e48-43e5-b324-329de6d584c2, _Var1);
+
+PROC
+PROC_RC_DW_CoverTheTracksTryQuestioningDialog((CHARACTERGUID)_Var1)
+AND NOT
+DB_RC_DW_CoverTheTracks_QuestioningStarted(1)
+THEN
+TimerLaunch("RC_DW_LilianThugsMove", 500);
+PROC_RC_DW_CoverTheTracksAfterQuestioning();
+
+IF
+GlobalFlagSet("RC_DW_Undertavern_MoveLoharThugs")
+AND
+DB_RC_DW_CoverTheTracks_LilianThugsDialog(1)
+THEN
+TimerLaunch("RC_DW_LilianThugsMove", 800);
+
+IF
+DialogEnded("RC_DW_UnderTavern_QuestioningAssassin", _)
+AND NOT
+DB_GlobalFlag("RC_DW_Undertavern_MoveLoharThugs")
+THEN
+TimerLaunch("RC_DW_LilianThugsMove", 0);
+
+IF
+DialogEnded("RC_DW_UnderTavern_QuestioningAssassin_COM_Beast", _)
+AND NOT
+DB_GlobalFlag("RC_DW_Undertavern_MoveLoharThugs")
+THEN
+TimerLaunch("RC_DW_LilianThugsMove", 0);
+
+IF
+DialogEnded("RC_DW_UnderTavern_QuestioningAssassin", (INTEGER)_Var1)
+AND
+DB_DialogPlayers(_Var1, _Var2, _)
+AND
+ObjectGetFlag(_Var2, "RC_DW_HostileLohar", 1)
+THEN
+CharacterSetRelationIndivFactionToIndivFaction(_Var2, CHARACTERGUID_S_RC_DW_UnderTavern_DwarfBoss_8e58abc6-1010-4e67-97b2-b9686586e784, 0);
+CharacterSetRelationIndivFactionToIndivFaction(CHARACTERGUID_S_RC_DW_UnderTavern_DwarfBoss_8e58abc6-1010-4e67-97b2-b9686586e784, _Var2, 0);
+
+IF
+DialogEnded("RC_DW_UnderTavern_QuestioningAssassin", _)
+THEN
+PROC_RC_DW_CoverTheTracksAfterQuestioning();
+
+IF
+DialogEnded("RC_DW_UnderTavern_QuestioningAssassin_COM_Beast", _)
+THEN
+PROC_RC_DW_CoverTheTracksAfterQuestioning();
+
+PROC
+PROC_RC_DW_CoverTheTracksAfterQuestioning()
+THEN
+NOT DB_RC_DW_CoverTheTracks_QuestioningStarted(1);
+DB_OnlyOnce("RC_DW_DwarfBoss_ReactAfterIntro");
+GlobalSetFlag("RC_DW_DwarfBoss_ReactAfterIntro");
+NOT DB_RC_DW_CoverTheTracks_LilianThugsDialog(1);
+NOT DB_Dialogs(CHARACTERGUID_S_RC_DW_UnderTavern_DwarfBoss_8e58abc6-1010-4e67-97b2-b9686586e784, CHARACTERGUID_S_RC_DW_UnderTavern_CapturedAssassin_f3a00aa7-0e48-43e5-b324-329de6d584c2, "RC_DW_UnderTavern_QuestioningAssassin");
+PROC_RemoveDialogFromCharacter(CHARACTERGUID_S_RC_DW_UnderTavern_DwarfBoss_8e58abc6-1010-4e67-97b2-b9686586e784);
+PROC_RemoveDialogFromCharacter(CHARACTERGUID_S_RC_DW_UnderTavern_CapturedAssassin_f3a00aa7-0e48-43e5-b324-329de6d584c2);
+DB_Dialogs(CHARACTERGUID_S_RC_DW_UnderTavern_DwarfBoss_8e58abc6-1010-4e67-97b2-b9686586e784, "RC_DW_UnderTavern_DwarfBoss");
+SetHasDialog(CHARACTERGUID_S_RC_DW_UnderTavern_DwarfBoss_8e58abc6-1010-4e67-97b2-b9686586e784, 1);
+SetHasDialog(CHARACTERGUID_S_RC_DW_UnderTavern_DwarfBoss_8e58abc6-1010-4e67-97b2-b9686586e784, 1);
+DB_Dialogs(CHARACTERGUID_S_RC_DW_UnderTavern_CapturedAssassin_f3a00aa7-0e48-43e5-b324-329de6d584c2, "RC_DW_UnderTavern_CapturedAssassin");
+
+IF
+TimerFinished("RC_DW_LilianThugsMove")
+THEN
+NOT DB_RC_DW_CoverTheTracks_LilianThugsDialog(1);
+Proc_RC_DW_CoverTheTracks_MoveThugs();
+
+PROC
+Proc_RC_DW_CoverTheTracks_MoveThugs()
+AND
+DB_RC_DW_DwarfBoss_Thugs(_Var1, _Var2, _Var3)
+AND
+CharacterIsDead(S_RC_DW_UnderTavern_CapturedAssassin_f3a00aa7-0e48-43e5-b324-329de6d584c2, 0)
+THEN
+CharacterSetReactionPriority(_Var1, "Thug_InterrogateAssassin", 2000);
+
+PROC
+Proc_RC_DW_CoverTheTracks_MoveThugs()
+AND
+DB_RC_DW_DwarfBoss_Thugs(_Var1, _Var2, _Var3)
+THEN
+DB_Dialogs(_Var1, _Var3);
+DialogRequestStop(_Var1);
+SetHasDialog(_Var1, 0);
+ProcCharacterMoveTo(_Var1, _Var2, 0, "RC_DW_LilianThugArrived");
+NOT DB_RC_DW_DwarfBoss_Thugs(_Var1, _Var2, _Var3);
+
+IF
+StoryEvent((CHARACTERGUID)_Var1, "RC_DW_LilianThugArrived")
+THEN
+SetHasDialog(_Var1, 1);
+
+IF
+CharacterLeftTrigger(CHARACTERGUID_S_RC_DW_UnderTavern_CapturedAssassin_f3a00aa7-0e48-43e5-b324-329de6d584c2, TRIGGERGUID_S_RC_DW_UnderTavern_OwnershipTrigger_DwarfBoss_c8c5300c-a815-48de-ab73-2e49cffc17ef)
+AND
+DB_RC_DW_DwarfBoss_Thugs(_Var1, _, _)
+AND NOT
+DB_Dead(_Var1)
+THEN
+CharacterSetReactionPriority(_Var1, "Thug_InterrogateAssassin", 0);
+
+IF
+CharacterLeftTrigger(CHARACTERGUID_S_RC_DW_UnderTavern_CapturedAssassin_f3a00aa7-0e48-43e5-b324-329de6d584c2, TRIGGERGUID_S_RC_DW_UnderTavern_OwnershipTrigger_DwarfBoss_c8c5300c-a815-48de-ab73-2e49cffc17ef)
+THEN
+TriggerUnregisterForCharacter(TRIGGERGUID_S_RC_DW_UnderTavern_OwnershipTrigger_DwarfBoss_c8c5300c-a815-48de-ab73-2e49cffc17ef, CHARACTERGUID_S_RC_DW_UnderTavern_CapturedAssassin_f3a00aa7-0e48-43e5-b324-329de6d584c2);
+
+IF
+ObjectFlagSet("QuestUpdate_RC_DW_WC_AtaraxianLair_KilledBoss", _, _)
+AND
+QueryOnlyOnce("RC_DW_Undertavern_BeatUpAssassin")
+THEN
+DB_RC_DW_BeatUpAssassin(1);
+
+IF
+ObjectFlagSet("QuestUpdate_RC_DW_CoverTheTracks_AbandonedHouse_NoteRead", _, _)
+AND
+QueryOnlyOnce("RC_DW_Undertavern_BeatUpAssassin")
+THEN
+DB_RC_DW_BeatUpAssassin(1);
+
+IF
+DB_RC_DW_BeatUpAssassin(1)
+AND
+DB_OnlyOnce("RC_DW_DwarfBoss_ReactAfterIntro")
+THEN
+SetStoryEvent(CHARACTERGUID_S_RC_DW_UnderTavern_CapturedAssassin_f3a00aa7-0e48-43e5-b324-329de6d584c2, "RC_DW_CapturedAssassinWaitTillPlayersAway");
+
+IF
+GlobalFlagSet("RC_DW_DwarfBoss_ReactAfterIntro")
+AND
+DB_RC_DW_BeatUpAssassin(1)
+THEN
+SetStoryEvent(CHARACTERGUID_S_RC_DW_UnderTavern_CapturedAssassin_f3a00aa7-0e48-43e5-b324-329de6d584c2, "RC_DW_CapturedAssassinWaitTillPlayersAway");
+
+IF
+StoryEvent(S_RC_DW_UnderTavern_CapturedAssassin_f3a00aa7-0e48-43e5-b324-329de6d584c2, "RC_DW_CapturedAssassinPlayersAway")
+AND
+DB_RC_DW_BeatUpAssassin(1)
+THEN
+NOT DB_RC_DW_BeatUpAssassin(1);
+PROC_RC_DW_DwarfBossBeatUpCapturedAssassin();
+
+PROC
+PROC_RC_DW_DwarfBossBeatUpCapturedAssassin()
+AND
+QRY_RC_DW_DwarfBossGroup_AnyAlive()
+AND
+ObjectIsInTrigger(CHARACTERGUID_S_RC_DW_UnderTavern_CapturedAssassin_f3a00aa7-0e48-43e5-b324-329de6d584c2, TRIGGERGUID_S_RC_DW_UnderTavern_OwnershipTrigger_DwarfBoss_c8c5300c-a815-48de-ab73-2e49cffc17ef, 1)
+AND NOT
+DB_Dead(CHARACTERGUID_S_RC_DW_UnderTavern_CapturedAssassin_f3a00aa7-0e48-43e5-b324-329de6d584c2)
+AND
+CharacterGetHitpointsPercentage(CHARACTERGUID_S_RC_DW_UnderTavern_CapturedAssassin_f3a00aa7-0e48-43e5-b324-329de6d584c2, _Var1)
+AND
+_Var1 > 1
+THEN
+NOT DB_RC_DW_BeatUpAssassin(1);
+CharacterSetHitpointsPercentage(CHARACTERGUID_S_RC_DW_UnderTavern_CapturedAssassin_f3a00aa7-0e48-43e5-b324-329de6d584c2, 1);
+CreateSurface(CHARACTERGUID_S_RC_DW_UnderTavern_CapturedAssassin_f3a00aa7-0e48-43e5-b324-329de6d584c2, "SurfaceBlood", 1.5, -1);
+ObjectSetFlag(CHARACTERGUID_S_RC_DW_LilianThug1_3d063a8a-a0a1-409e-907f-ecfb6741935c, "RC_DW_UnderTavern_AfterTorture");
+ObjectSetFlag(CHARACTERGUID_S_RC_DW_LilianThug2_5443de0f-115b-4581-a92a-fee99ca2a2ad, "RC_DW_UnderTavern_AfterTorture");
+ObjectSetFlag(CHARACTERGUID_S_RC_DW_UnderTavern_CapturedAssassin_f3a00aa7-0e48-43e5-b324-329de6d584c2, "RC_DW_UnderTavern_AfterTorture");
+
+IF
+ObjectFlagSet("RC_DW_GaveMordusAmulet", CHARACTERGUID_S_RC_DW_UnderTavern_DwarfBoss_8e58abc6-1010-4e67-97b2-b9686586e784, _)
+THEN
+NOT DB_RC_DW_BeatUpAssassin(1);
+DB_RC_DW_DisappearAssassin(1);
+SetStoryEvent(CHARACTERGUID_S_RC_DW_UnderTavern_CapturedAssassin_f3a00aa7-0e48-43e5-b324-329de6d584c2, "RC_DW_CapturedAssassinWaitTillPlayersAway");
+
+IF
+StoryEvent(S_RC_DW_UnderTavern_CapturedAssassin_f3a00aa7-0e48-43e5-b324-329de6d584c2, "RC_DW_CapturedAssassinPlayersAway")
+AND
+DB_RC_DW_DisappearAssassin(1)
+THEN
+NOT DB_RC_DW_DisappearAssassin(1);
+PROC_RC_DW_MaybeDisappearAssassin();
+
+PROC
+PROC_RC_DW_MaybeDisappearAssassin()
+AND
+QRY_RC_DW_DwarfBossGroup_AnyAlive()
+AND
+ObjectIsInTrigger(CHARACTERGUID_S_RC_DW_UnderTavern_CapturedAssassin_f3a00aa7-0e48-43e5-b324-329de6d584c2, TRIGGERGUID_S_RC_DW_UnderTavern_OwnershipTrigger_DwarfBoss_c8c5300c-a815-48de-ab73-2e49cffc17ef, 1)
+THEN
+PROC_RC_DW_DisappearAssassin();
+
+PROC
+PROC_RC_DW_DisappearAssassin()
+AND NOT
+DB_Dead(CHARACTERGUID_S_RC_DW_UnderTavern_CapturedAssassin_f3a00aa7-0e48-43e5-b324-329de6d584c2)
+THEN
+DialogRequestStop(CHARACTERGUID_S_RC_DW_UnderTavern_CapturedAssassin_f3a00aa7-0e48-43e5-b324-329de6d584c2);
+CharacterDie(CHARACTERGUID_S_RC_DW_UnderTavern_CapturedAssassin_f3a00aa7-0e48-43e5-b324-329de6d584c2, 0, "DoT");
+
+PROC
+PROC_RC_DW_DisappearAssassin()
+THEN
+TeleportTo(CHARACTERGUID_S_RC_DW_UnderTavern_CapturedAssassin_f3a00aa7-0e48-43e5-b324-329de6d584c2, S_RC_DW_LoharAssassinsGrave_ShovelTrigger_4edaf241-7958-4d1e-a9d6-26a82f91fb71);
+SetOnStage(ITEMGUID_S_RC_DW_LoharAssassinsGrave_DirtPile_4c15a07b-6bc1-49f1-997a-35a80a9db8ae, 1);
+DB_ShovelArea(S_RC_DW_LoharAssassinsGrave_ShovelTrigger_4edaf241-7958-4d1e-a9d6-26a82f91fb71, "RC_DW_LoharAssassinsGrave", ITEMGUID_S_RC_DW_LoharAssassinsGrave_DirtPile_4c15a07b-6bc1-49f1-997a-35a80a9db8ae);
+DB_ShovelRewardItemScatter("RC_DW_LoharAssassinsGrave", CHARACTERGUID_S_RC_DW_UnderTavern_CapturedAssassin_f3a00aa7-0e48-43e5-b324-329de6d584c2);
+Proc_RC_DW_CoverTheTracks_MoveThugsToUndertavern();
+PROC_RC_DW_CoverTheTracks_DeadAssassinCleanup();
+
+PROC
+Proc_RC_DW_CoverTheTracks_MoveThugsToUndertavern()
+AND
+DB_RC_DW_DwarfBoss_ThugsFinalSeat(_Var1, _Var2)
+THEN
+SetCombatGroupID(_Var1, "");
+SetVarObject(_Var1, "Seat", _Var2);
+
+QRY
+QRY_RC_DW_DwarfBossGroup_AnyAlive()
+AND
+DB_RC_DW_DwarfBossGroup(_Var1)
+AND
+CharacterIsDead(_Var1, 0)
+THEN
+DB_NOOP(1);
+
+PROC
+PROC_RC_DW_CoverTheTracks_DeadAssassinCleanup()
+THEN
+NOT DB_RC_DW_DisappearAssassin(1);
+NOT DB_RC_DW_WaitForAssassinLostSight(1);
+
+PROC
+PROC_RC_DW_CoverTheTracks_CleanUpIfDwarfBossGroupDead()
+AND NOT
+QRY_RC_DW_DwarfBossGroup_AnyAlive()
+THEN
+PROC_RC_DW_CoverTheTracks_DeadAssassinCleanup();
+
+IF
+DB_RC_DW_DisappearAssassin(1)
+THEN
+PROC_RC_DW_CoverTheTracks_CleanUpIfDwarfBossGroupDead();
+
+IF
+CharacterDied((CHARACTERGUID)_Var1)
+AND
+DB_RC_DW_DisappearAssassin(1)
+AND
+DB_RC_DW_DwarfBossGroup(_Var1)
+THEN
+PROC_RC_DW_CoverTheTracks_CleanUpIfDwarfBossGroupDead();
+
+IF
+CharacterDying(CHARACTERGUID_S_RC_DW_UnderTavern_DwarfBoss_8e58abc6-1010-4e67-97b2-b9686586e784)
+THEN
+GlobalSetFlag("RC_DW_DwarfBossDead");
+PROC_RemoveDialogFromCharacter(CHARACTERGUID_S_RC_DW_UnderTavern_DwarfBoss_8e58abc6-1010-4e67-97b2-b9686586e784);
+SetHasDialog(CHARACTERGUID_S_RC_DW_UnderTavern_DwarfBoss_8e58abc6-1010-4e67-97b2-b9686586e784, 1);
+SetOnStage(S_RC_DW_Limb_LoharsHead_15bb128a-3557-48a0-add6-1da6a41c6b60, 1);
+ItemToInventory(ITEMGUID_S_RC_DW_Limb_LoharsHead_15bb128a-3557-48a0-add6-1da6a41c6b60, CHARACTERGUID_S_RC_DW_UnderTavern_DwarfBoss_8e58abc6-1010-4e67-97b2-b9686586e784);
+
+IF
+CharacterUsedItem((CHARACTERGUID)_Var1, S_RC_DW_Limb_LoharsHead_15bb128a-3557-48a0-add6-1da6a41c6b60)
+THEN
+PartySetFlag(_Var1, "QuestUpdate_RC_DW_DwarvenSabotage_AteLoharsHead");
+
+IF
+StoryEvent((GUIDSTRING)_Var1, "RC_DW_SpotLoharGuard")
+THEN
+Proc_StartDialog(0, "RC_DW_UnderTavern_DwarfBossGuard", CHARACTERGUID_S_RC_DW_UnderTavern_DwarfBossGuard_ec3c854d-f5ef-426a-914e-47ed9147b6f1, _Var1);
+
+PROC
+Proc_DialogFlagSetup(_, CHARACTERGUID_S_RC_DW_UnderTavern_DwarfBoss_8e58abc6-1010-4e67-97b2-b9686586e784, (CHARACTERGUID)_Var2)
+THEN
+UserSetFlag(_Var2, "RC_DW_MetDwarfBoss", 0);
+
+IF
+ObjectWasTagged(CHARACTERGUID_S_RC_DW_UnderTavern_DwarfBoss_8e58abc6-1010-4e67-97b2-b9686586e784, "HasMet")
+THEN
+SetStoryEvent(CHARACTERGUID_S_RC_DW_UnderTavern_DwarfBossGuard_ec3c854d-f5ef-426a-914e-47ed9147b6f1, "RC_DW_LohardGuardStopSpot");
+
+IF
+ObjectEnteredCombat(CHARACTERGUID_S_RC_DW_UnderTavern_DwarfBossGuard_ec3c854d-f5ef-426a-914e-47ed9147b6f1, _)
+THEN
+SetStoryEvent(CHARACTERGUID_S_RC_DW_UnderTavern_DwarfBossGuard_ec3c854d-f5ef-426a-914e-47ed9147b6f1, "RC_DW_LohardGuardStopSpot");
+
+IF
+ItemLeftTrigger(S_RC_DW_AnharPortrait_419bc64a-4593-420e-bc9f-9d1f11b8789a, S_RC_DW_AnharsPortrait_Box_db78a0a6-09f2-42a1-b98f-6d3dd8b3cb3e, _)
+THEN
+ObjectSetFlag(CHARACTERGUID_S_RC_DW_UnderTavern_DwarfBoss_8e58abc6-1010-4e67-97b2-b9686586e784, "RC_DW_AnharPortraitMissing");
+
+IF
+ItemEnteredTrigger(S_RC_DW_AnharPortrait_419bc64a-4593-420e-bc9f-9d1f11b8789a, S_RC_DW_AnharsPortrait_Box_db78a0a6-09f2-42a1-b98f-6d3dd8b3cb3e, _)
+THEN
+ObjectClearFlag(CHARACTERGUID_S_RC_DW_UnderTavern_DwarfBoss_8e58abc6-1010-4e67-97b2-b9686586e784, "RC_DW_AnharPortraitMissing", 0);
+
+IF
+ItemDestroyed(S_RC_DW_AnharPortrait_419bc64a-4593-420e-bc9f-9d1f11b8789a)
+THEN
+ObjectSetFlag(CHARACTERGUID_S_RC_DW_UnderTavern_DwarfBoss_8e58abc6-1010-4e67-97b2-b9686586e784, "RC_DW_AnharPortraitMissing");
+
+IF
+DialogEnded("RC_DW_UnderTavern_DwarfBoss", _)
+AND
+ObjectGetFlag(CHARACTERGUID_S_RC_DW_UnderTavern_DwarfBoss_8e58abc6-1010-4e67-97b2-b9686586e784, "RC_DW_LookAtAnharPortrait", 1)
+THEN
+CharacterSetReactionPriority(S_RC_DW_UnderTavern_DwarfBoss_8e58abc6-1010-4e67-97b2-b9686586e784, "RC_DW_DwarfBoss_LookAtAnharPicture", 400);
+ObjectClearFlag(CHARACTERGUID_S_RC_DW_UnderTavern_DwarfBoss_8e58abc6-1010-4e67-97b2-b9686586e784, "RC_DW_LookAtAnharPortrait", 0);
+
+IF
+DialogEnded("RC_DW_UnderTavern_DwarfBoss_Beast", _)
+AND
+ObjectGetFlag(CHARACTERGUID_S_RC_DW_UnderTavern_DwarfBoss_8e58abc6-1010-4e67-97b2-b9686586e784, "RC_DW_LookAtAnharPortrait", 1)
+THEN
+CharacterSetReactionPriority(S_RC_DW_UnderTavern_DwarfBoss_8e58abc6-1010-4e67-97b2-b9686586e784, "RC_DW_DwarfBoss_LookAtAnharPicture", 400);
+ObjectClearFlag(CHARACTERGUID_S_RC_DW_UnderTavern_DwarfBoss_8e58abc6-1010-4e67-97b2-b9686586e784, "RC_DW_LookAtAnharPortrait", 0);
+
+IF
+StoryEvent(CHARACTERGUID_S_RC_DW_UnderTavern_DwarfBoss_8e58abc6-1010-4e67-97b2-b9686586e784, "RC_DW_LoharDown")
+THEN
+CharacterDisableAllCrimes(CHARACTERGUID_S_RC_DW_UnderTavern_DwarfBoss_8e58abc6-1010-4e67-97b2-b9686586e784);
+CharacterSetAnimationOverride(CHARACTERGUID_S_RC_DW_UnderTavern_DwarfBoss_8e58abc6-1010-4e67-97b2-b9686586e784, "knockdown_loop");
+DB_DoNotFace(CHARACTERGUID_S_RC_DW_UnderTavern_DwarfBoss_8e58abc6-1010-4e67-97b2-b9686586e784);
+
+IF
+StoryEvent((GUIDSTRING)_Var1, "RC_DW_DeadLoharDialogue")
+AND
+QueryOnlyOnce("RC_DW_DeadLoharDialogue")
+THEN
+Proc_StartDialog(0, "RC_DW_DeadLoharDialogue", CHARACTERGUID_S_RC_DW_UnderTavern_DwarfBoss_8e58abc6-1010-4e67-97b2-b9686586e784, _Var1);
+
+IF
+DialogStarted("RC_DW_DeadLoharDialogue_Beast", _)
+THEN
+ApplyStatus(CHARACTERGUID_S_RC_DW_UnderTavern_DwarfBoss_8e58abc6-1010-4e67-97b2-b9686586e784, "LIE_DYING", -1, 1);
+
+IF
+DialogStarted("RC_DW_DeadLoharDialogue", _)
+THEN
+ApplyStatus(CHARACTERGUID_S_RC_DW_UnderTavern_DwarfBoss_8e58abc6-1010-4e67-97b2-b9686586e784, "LIE_DYING", -1, 1);
+
+IF
+DialogEnded("RC_DW_DeadLoharDialogue_COM_Beast", _)
+AND
+ObjectGetFlag(CHARACTERGUID_S_Player_Beast_f25ca124-a4d2-427b-af62-df66df41a978, "RC_DW_LeaveOverLohar", 1)
+AND
+DB_CompanionAvatarBond(CHARACTERGUID_S_Player_Beast_f25ca124-a4d2-427b-af62-df66df41a978, _Var2)
+THEN
+PROC_Origins_CompanionLeavePermanently(CHARACTERGUID_S_Player_Beast_f25ca124-a4d2-427b-af62-df66df41a978);
+DB_CompanionLeaving(CHARACTERGUID_S_Player_Beast_f25ca124-a4d2-427b-af62-df66df41a978, _Var2);
+ProcCharacterDisappearOutOfSight(CHARACTERGUID_S_Player_Beast_f25ca124-a4d2-427b-af62-df66df41a978, 0, 1, "GLO_CompanionLeaves_LowRelation", 1);
+
+IF
+ObjectFlagSet("RC_DW_LoharDie", CHARACTERGUID_S_RC_DW_UnderTavern_DwarfBoss_8e58abc6-1010-4e67-97b2-b9686586e784, (INTEGER)_Var1)
+THEN
+DB_RC_DW_LoharDieDialogue(_Var1);
+
+IF
+ObjectFlagSet("RC_DW_LoharDie", CHARACTERGUID_S_RC_DW_UnderTavern_DwarfBoss_8e58abc6-1010-4e67-97b2-b9686586e784, (INTEGER)_Var1)
+AND
+DB_DialogPlayers(_Var1, _Var2, _)
+THEN
+ObjectSetFlag(_Var2, "GLO_PathOfBlood_MurderedInnocent");
+
+IF
+DialogEnded(_, (INTEGER)_Var2)
+AND
+DB_RC_DW_LoharDieDialogue(_Var2)
+THEN
+RemoveStatus(CHARACTERGUID_S_RC_DW_UnderTavern_DwarfBoss_8e58abc6-1010-4e67-97b2-b9686586e784, "UNCONSCIOUS");
+RemoveStatus(CHARACTERGUID_S_RC_DW_UnderTavern_DwarfBoss_8e58abc6-1010-4e67-97b2-b9686586e784, "LIE_DYING");
+CharacterSetImmortal(CHARACTERGUID_S_RC_DW_UnderTavern_DwarfBoss_8e58abc6-1010-4e67-97b2-b9686586e784, 0);
+NOT DB_RC_DW_LoharDieDialogue(_Var2);
+CharacterDie(CHARACTERGUID_S_RC_DW_UnderTavern_DwarfBoss_8e58abc6-1010-4e67-97b2-b9686586e784, 1, "DoT");
+
+IF
+ObjectFlagSet("RC_DW_LoharSpared", CHARACTERGUID_S_RC_DW_UnderTavern_DwarfBoss_8e58abc6-1010-4e67-97b2-b9686586e784, (INTEGER)_Var1)
+THEN
+DB_RC_DW_LoharSpareDialogue(_Var1);
+
+IF
+DialogEnded(_, (INTEGER)_Var2)
+AND
+DB_RC_DW_LoharSpareDialogue(_Var2)
+THEN
+NOT DB_RC_DW_LoharSpareDialogue(_Var2);
+RemoveStatus(CHARACTERGUID_S_RC_DW_UnderTavern_DwarfBoss_8e58abc6-1010-4e67-97b2-b9686586e784, "LIE_DYING");
+CharacterSetAnimationOverride(CHARACTERGUID_S_RC_DW_UnderTavern_DwarfBoss_8e58abc6-1010-4e67-97b2-b9686586e784, "");
+ProcCharacterDisappearOutOfSight(CHARACTERGUID_S_RC_DW_UnderTavern_DwarfBoss_8e58abc6-1010-4e67-97b2-b9686586e784, 0, 1, "", 1);
+SetHasDialog(CHARACTERGUID_S_RC_DW_UnderTavern_DwarfBoss_8e58abc6-1010-4e67-97b2-b9686586e784, 0);
+
+IF
+TextEventSet("loharstart")
+AND
+DB_IsPlayer(_Var1)
+THEN
+ObjectSetFlag(_Var1, "RC_DW_Lohar_MicheilRos");
+
+IF
+ObjectFlagSet("RC_DW_Lohar_MicheilRos", (GUIDSTRING)_Var1, _)
+THEN
+ProcQuestSetCategory("RC_ARX_TheImperialDwarves", "QCA_Chapter_04");
+ObjectSetFlag(_Var1, "QuestUpdate_RC_ARX_TheImperialDwarves_LoharStart");
+
+IF
+ObjectFlagSet("RC_DW_QuestFromJulian", (GUIDSTRING)_Var1, _)
+THEN
+ObjectSetFlag(_Var1, "RC_DW_QuestFromJulian_InvestigateLoharPremise");
+
+IF
+ObjectFlagShared("RC_DW_QuestFromJulian", (GUIDSTRING)_Var1, _)
+THEN
+ObjectSetFlag(_Var1, "RC_DW_QuestFromJulian_InvestigateLoharPremise");
+
+
+EXITSECTION
+ENDEXITSECTION
+
+ParentTargetEdge "ReapersCoast"

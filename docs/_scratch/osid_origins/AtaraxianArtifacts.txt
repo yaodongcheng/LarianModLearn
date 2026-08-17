@@ -1,0 +1,22 @@
+Version 1
+SubGoalCombiner SGC_AND
+
+INITSECTION
+DB_HasTemplateItem("QUEST_AtaraxianTablet_PromiseInfo_23edac9b-2517-4fd0-a068-6bc9e60d1bbc", "GLO_HasAtaraxianTablet_PromiseInfo");
+
+KBSECTION
+IF
+ItemAddedToCharacter((ITEMGUID)_Var1, (CHARACTERGUID)_Var2)
+AND
+GetItemForItemTemplateInInventory(_Var2, "QUEST_AtaraxianTablet_PromiseInfo_23edac9b-2517-4fd0-a068-6bc9e60d1bbc", _Var1)
+AND NOT
+DB_HasStoryEvent(_Var1, _)
+THEN
+DB_HasStoryEvent(_Var1, "GLO_HasPorimiseInfo");
+DB_GiveItemToEventWithClear(_Var1, "GLO_GivePorimiseInfo");
+
+
+EXITSECTION
+ENDEXITSECTION
+
+ParentTargetEdge "Start"

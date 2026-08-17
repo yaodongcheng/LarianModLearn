@@ -1,0 +1,38 @@
+Version 1
+SubGoalCombiner SGC_AND
+
+INITSECTION
+
+KBSECTION
+IF
+DB_Dead(_Var1)
+THEN
+PROC_GLO_DeadOrder_Record(_Var1);
+
+PROC
+PROC_GLO_DeadOrder_Record((CHARACTERGUID)_Var1)
+AND
+DB_GLO_DeadOrder_ID(_Var2)
+AND
+QRY_GLO_DeadOrder_Eligible(_Var1, _Var2)
+AND
+StringConcatenate("GLO_DeadOrder_EligibleDeadOrder_", _Var2, _Var3)
+AND
+DB_GlobalCounter(_Var3, _Var4)
+THEN
+PROC_GLO_DeadOrder_ClearPreviousOrders(_Var1, _Var2);
+DB_GLO_DeadOrder_EligibleDeadOrder(_Var1, _Var4, _Var2);
+ProcIncreaseCounter(_Var3);
+
+PROC
+PROC_GLO_DeadOrder_ClearPreviousOrders((CHARACTERGUID)_Var1, (STRING)_Var2)
+AND
+DB_GLO_DeadOrder_EligibleDeadOrder(_Var1, _Var3, _Var2)
+THEN
+NOT DB_GLO_DeadOrder_EligibleDeadOrder(_Var1, _Var3, _Var2);
+
+
+EXITSECTION
+ENDEXITSECTION
+
+ParentTargetEdge "GLO_ThePromise_Activation"

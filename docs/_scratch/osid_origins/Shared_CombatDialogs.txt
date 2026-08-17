@@ -1,0 +1,24 @@
+Version 1
+SubGoalCombiner SGC_AND
+
+INITSECTION
+
+KBSECTION
+IF
+ObjectEnteredCombat((GUIDSTRING)_Var1, _)
+AND
+DB_DialogNPCs(_Var3, _Var1, _)
+AND
+DB_DialogName(_Var5, _Var3)
+AND NOT
+DB_CombatDialogs_NoStop(_Var5)
+AND
+DialogGetCategory(_Var3, "Repeated automated NPC Dialog")
+THEN
+ProcForceStopDialog(_Var1);
+
+
+EXITSECTION
+ENDEXITSECTION
+
+ParentTargetEdge "__Shared_Campaign"

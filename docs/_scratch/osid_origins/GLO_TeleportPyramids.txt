@@ -1,0 +1,102 @@
+Version 1
+SubGoalCombiner SGC_AND
+
+INITSECTION
+DB_TeleporterPyramid(ITEMGUID_S_GLO_TeleportPyramid_001_fd45268f-5953-47c4-ba2f-255a05e2ce0e);
+DB_TeleporterPyramid(ITEMGUID_S_GLO_TeleportPyramid_002_34810bdd-1185-468b-a5af-3298d0a861cf);
+DB_TeleporterPyramid(ITEMGUID_S_GLO_TeleportPyramid_003_74f7068e-d388-4ffe-9e68-89406a6049d1);
+DB_TeleporterPyramid(ITEMGUID_S_GLO_TeleportPyramid_004_e90a55e7-973e-4c77-b4b3-65f87808791c);
+DB_TeleporterPyramidFlag(ITEMGUID_S_GLO_TeleportPyramid_001_fd45268f-5953-47c4-ba2f-255a05e2ce0e, "GLO_FoundTeleportPyramid_001");
+DB_TeleporterPyramidFlag(ITEMGUID_S_GLO_TeleportPyramid_002_34810bdd-1185-468b-a5af-3298d0a861cf, "GLO_FoundTeleportPyramid_002");
+DB_TeleporterPyramidFlag(ITEMGUID_S_GLO_TeleportPyramid_003_74f7068e-d388-4ffe-9e68-89406a6049d1, "GLO_FoundTeleportPyramid_003");
+DB_TeleporterPyramidFlag(ITEMGUID_S_GLO_TeleportPyramid_004_e90a55e7-973e-4c77-b4b3-65f87808791c, "GLO_FoundTeleportPyramid_004");
+
+KBSECTION
+IF
+TextEventSet("tp")
+AND
+CharacterGetHostCharacter(_Var1)
+THEN
+ObjectSetFlag(_Var1, "Debug_AddPyramids");
+
+IF
+TextEventSet("blockTP")
+THEN
+Proc_PyramidGlobalBlockerOn();
+
+IF
+TextEventSet("enableTP")
+THEN
+Proc_PyramidGlobalBlockerOff();
+
+IF
+ObjectFlagSet("Debug_AddPyramids", (CHARACTERGUID)_Var1, _)
+AND
+DB_TeleporterPyramid(_Var3)
+THEN
+ItemToInventory(_Var3, _Var1);
+DB_TeleporterPyramidUnlocked(_Var3);
+ObjectClearFlag(_Var1, "Debug_AddPyramids", 0);
+
+IF
+TextEventSet("givepyramids")
+AND
+CharacterGetHostCharacter(_Var1)
+THEN
+TeleportTo(ITEMGUID_S_GLO_TeleportPyramid_001_fd45268f-5953-47c4-ba2f-255a05e2ce0e, _Var1);
+TeleportTo(ITEMGUID_S_GLO_TeleportPyramid_002_34810bdd-1185-468b-a5af-3298d0a861cf, _Var1);
+TeleportTo(ITEMGUID_S_GLO_TeleportPyramid_003_74f7068e-d388-4ffe-9e68-89406a6049d1, _Var1);
+TeleportTo(ITEMGUID_S_GLO_TeleportPyramid_004_e90a55e7-973e-4c77-b4b3-65f87808791c, _Var1);
+
+IF
+ItemAddedToCharacter((ITEMGUID)_Var1, (CHARACTERGUID)_Var2)
+AND
+DB_TeleporterPyramidFlag(_Var1, _Var3)
+AND
+DB_IsPlayer(_Var2)
+AND
+PartyGetFlag(_Var2, _Var3, 0)
+THEN
+PartySetFlag(_Var2, _Var3);
+Proc_IncFoundPyramidsCounterFlag(_Var2);
+StartVoiceBark("GEN_VB_TeleportPyramids", _Var2);
+
+PROC
+Proc_IncFoundPyramidsCounterFlag((CHARACTERGUID)_Var1)
+AND
+PartyGetFlag(_Var1, "GLO_TotalTeleportPyramidsFound_3", 1)
+AND
+PartyGetFlag(_Var1, "GLO_TotalTeleportPyramidsFound_4", 0)
+THEN
+PartySetFlag(_Var1, "GLO_TotalTeleportPyramidsFound_4");
+
+PROC
+Proc_IncFoundPyramidsCounterFlag((CHARACTERGUID)_Var1)
+AND
+PartyGetFlag(_Var1, "GLO_TotalTeleportPyramidsFound_2", 1)
+AND
+PartyGetFlag(_Var1, "GLO_TotalTeleportPyramidsFound_3", 0)
+THEN
+PartySetFlag(_Var1, "GLO_TotalTeleportPyramidsFound_3");
+
+PROC
+Proc_IncFoundPyramidsCounterFlag((CHARACTERGUID)_Var1)
+AND
+PartyGetFlag(_Var1, "GLO_TotalTeleportPyramidsFound_1", 1)
+AND
+PartyGetFlag(_Var1, "GLO_TotalTeleportPyramidsFound_2", 0)
+THEN
+PartySetFlag(_Var1, "GLO_TotalTeleportPyramidsFound_2");
+
+PROC
+Proc_IncFoundPyramidsCounterFlag((CHARACTERGUID)_Var1)
+AND
+PartyGetFlag(_Var1, "GLO_TotalTeleportPyramidsFound_1", 0)
+THEN
+PartySetFlag(_Var1, "GLO_TotalTeleportPyramidsFound_1");
+
+
+EXITSECTION
+ENDEXITSECTION
+
+ParentTargetEdge "Start"

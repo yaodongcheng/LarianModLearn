@@ -1,0 +1,562 @@
+Version 1
+SubGoalCombiner SGC_AND
+
+INITSECTION
+DB_Dialogs(CHARACTERGUID_S_RC_DF_Troll_Marg_33b7d3f0-436a-4520-a073-dd2862122b0e, "RC_DF_Troll_Marg");
+DB_Dialogs(CHARACTERGUID_S_GLO_Troll_Grog_9671dad5-258d-4174-84c0-0141502b2938, "RC_DF_Troll_Grog");
+DB_Ghosts(CHARACTERGUID_S_RC_DF_TrollBridge_Skeleton_8c143f3e-f925-445c-8f60-e243e2c61e56, CHARACTERGUID_S_RC_DF_TrollBridge_Ghost_332856d2-76d2-4f30-a21b-448d748a448a, "RC_DF_Troll_Ghost");
+DB_Ghosts(CHARACTERGUID_S_RC_BF_TrollBridge_DeadTraveler_e74471f3-60bd-4bab-b905-b40ff2d0a536, CHARACTERGUID_S_RC_BF_TrollBridge_DeadTraveler_Ghost_2c53217a-bb29-4c63-bb17-dd5532013c00, "RC_BF_Troll_TravelerGhost");
+DB_CrimeWarningIsAD("RC_DF_AD_Troll_Attack");
+DB_RC_DF_Trolls(CHARACTERGUID_S_RC_DF_Troll_Marg_33b7d3f0-436a-4520-a073-dd2862122b0e, TRIGGERGUID_S_RC_DF_Troll_Bridge_FieldsWest_TrespassBox_125289ae-12b5-40e5-94e7-ce33b9d18f97, "RC_DF_TrollBridge_Marg", "RC_DF_Troll_PaidMarg");
+DB_RC_DF_Trolls(CHARACTERGUID_S_GLO_Troll_Grog_9671dad5-258d-4174-84c0-0141502b2938, TRIGGERGUID_S_RC_DF_Troll_Bridge_WreckedHills_TrespassBox_30d149d4-4b39-4371-82ae-7fc135e99da2, "RC_DF_TrollBridge_Grog", "RC_DF_Troll_PaidGrog");
+DB_RC_DF_Troll_Trespass(TRIGGERGUID_S_RC_DF_Troll_Bridge_FieldsWest_TrespassBox_125289ae-12b5-40e5-94e7-ce33b9d18f97, "RC_DF_Troll_CameFromFields", TRIGGERGUID_S_RC_DF_Troll_Bridge_FieldsWest_FieldPoint_3e63edac-5e2f-4054-b068-089228037295);
+DB_RC_DF_Troll_Trespass(TRIGGERGUID_S_RC_DF_Troll_Bridge_FieldsWest_TrespassBox_125289ae-12b5-40e5-94e7-ce33b9d18f97, "RC_DF_Troll_CameFromForest", TRIGGERGUID_S_RC_DF_Troll_Bridge_FieldsWest_ForestPoint_d299d07b-9d2d-48bf-8eae-43746b8a50a3);
+DB_RC_DF_Troll_Trespass(TRIGGERGUID_S_RC_DF_Troll_Bridge_WreckedHills_TrespassBox_30d149d4-4b39-4371-82ae-7fc135e99da2, "RC_DF_Troll_CameFromHills", TRIGGERGUID_S_RC_DF_Troll_Bridge_WreckedHills_HillPoint_01fa7607-7efa-471e-8929-034800e37581);
+DB_RC_DF_Troll_Trespass(TRIGGERGUID_S_RC_DF_Troll_Bridge_WreckedHills_TrespassBox_30d149d4-4b39-4371-82ae-7fc135e99da2, "RC_DF_Troll_CameFromForest", TRIGGERGUID_S_RC_DF_Troll_Bridge_WreckedHills_ForestPoint_c733c7a4-f4da-4a19-bf2b-fdc7ce6dff31);
+DB_RC_DF_Troll_SpotEvent(CHARACTERGUID_S_RC_DF_Troll_Marg_33b7d3f0-436a-4520-a073-dd2862122b0e, "RC_DF_Troll_MargSpotPlayer", "RC_DF_Troll_MargRestartSpot", TRIGGERGUID_S_RC_DF_Troll_Bridge_FieldsWest_SpotBox_79bc1400-bb45-4ac3-b05e-741caf7dfc88);
+DB_RC_DF_Troll_SpotEvent(CHARACTERGUID_S_GLO_Troll_Grog_9671dad5-258d-4174-84c0-0141502b2938, "RC_DF_Troll_GrogSpotPlayer", "RC_DF_Troll_GrogRestartSpot", TRIGGERGUID_S_RC_DF_Troll_Bridge_WreckedHills_SpotBox_ee51e505-329f-4d01-90ab-0a0ff2406301);
+DB_RC_DF_Troll_PaidFlag(TRIGGERGUID_S_RC_DF_Troll_Bridge_FieldsWest_ControlBox_dec3e360-4f07-4c8b-936b-47ee164c6d27, "RC_DF_Troll_PaidMarg");
+DB_RC_DF_Troll_PaidFlag(TRIGGERGUID_S_RC_DF_Troll_Bridge_WreckedHills_ControlBox_c0d073ff-1eea-4b93-812e-4d9b5e1e2585, "RC_DF_Troll_PaidGrog");
+DB_RC_DF_Troll_Trigger(TRIGGERGUID_S_RC_DF_Troll_Bridge_FieldsWest_ControlBox_dec3e360-4f07-4c8b-936b-47ee164c6d27, TRIGGERGUID_S_RC_DF_Troll_Bridge_FieldsWest_FieldBox_3573bd5a-add2-4348-9e25-b6456df4f678, "RC_DF_Troll_CameFromFields");
+DB_RC_DF_Troll_Trigger(TRIGGERGUID_S_RC_DF_Troll_Bridge_FieldsWest_ControlBox_dec3e360-4f07-4c8b-936b-47ee164c6d27, TRIGGERGUID_S_RC_DF_Troll_Bridge_FieldsWest_ForestBox_223114cc-a411-4ca7-b83e-e8601d5d5192, "RC_DF_Troll_CameFromForest");
+DB_RC_DF_Troll_Trigger(TRIGGERGUID_S_RC_DF_Troll_Bridge_WreckedHills_ControlBox_c0d073ff-1eea-4b93-812e-4d9b5e1e2585, TRIGGERGUID_S_RC_DF_Troll_Bridge_WreckedHills_HillBox_555c5cac-fb2f-49d7-b4c0-21edc1313e4b, "RC_DF_Troll_CameFromHills");
+DB_RC_DF_Troll_Trigger(TRIGGERGUID_S_RC_DF_Troll_Bridge_WreckedHills_ControlBox_c0d073ff-1eea-4b93-812e-4d9b5e1e2585, TRIGGERGUID_S_RC_DF_Troll_Bridge_WreckedHills_ForestBox_779d7eb0-20fa-4500-82d9-f241e9118e8a, "RC_DF_Troll_CameFromForest");
+DB_RC_DF_Troll_DefaultTeleport(TRIGGERGUID_S_RC_DF_Troll_Bridge_FieldsWest_TrespassBox_125289ae-12b5-40e5-94e7-ce33b9d18f97, TRIGGERGUID_S_RC_DF_Troll_Bridge_FieldsWest_FieldPoint_3e63edac-5e2f-4054-b068-089228037295);
+DB_RC_DF_Troll_DefaultTeleport(TRIGGERGUID_S_RC_DF_Troll_Bridge_WreckedHills_TrespassBox_30d149d4-4b39-4371-82ae-7fc135e99da2, TRIGGERGUID_S_RC_DF_Troll_Bridge_WreckedHills_HillPoint_01fa7607-7efa-471e-8929-034800e37581);
+ProcTriggerRegisterForPlayers(TRIGGERGUID_S_RC_DF_Troll_Bridge_WreckedHills_TrespassBox_30d149d4-4b39-4371-82ae-7fc135e99da2);
+ProcTriggerRegisterForPlayers(TRIGGERGUID_S_RC_DF_Troll_Bridge_WreckedHills_ControlBox_c0d073ff-1eea-4b93-812e-4d9b5e1e2585);
+ProcTriggerRegisterForPlayers(TRIGGERGUID_S_RC_DF_Troll_Bridge_WreckedHills_HillBox_555c5cac-fb2f-49d7-b4c0-21edc1313e4b);
+ProcTriggerRegisterForPlayers(TRIGGERGUID_S_RC_DF_Troll_Bridge_WreckedHills_ForestBox_779d7eb0-20fa-4500-82d9-f241e9118e8a);
+ProcTriggerRegisterForPlayers(TRIGGERGUID_S_RC_DF_Troll_Bridge_FieldsWest_TrespassBox_125289ae-12b5-40e5-94e7-ce33b9d18f97);
+ProcTriggerRegisterForPlayers(TRIGGERGUID_S_RC_DF_Troll_Bridge_FieldsWest_ControlBox_dec3e360-4f07-4c8b-936b-47ee164c6d27);
+ProcTriggerRegisterForPlayers(TRIGGERGUID_S_RC_DF_Troll_Bridge_FieldsWest_FieldBox_3573bd5a-add2-4348-9e25-b6456df4f678);
+ProcTriggerRegisterForPlayers(TRIGGERGUID_S_RC_DF_Troll_Bridge_FieldsWest_ForestBox_223114cc-a411-4ca7-b83e-e8601d5d5192);
+ProcTriggerRegisterForPlayers(TRIGGERGUID_S_RC_DF_Troll_Bridge_TreeTrunk_Box_5195308d-d2ae-463c-86f0-e708c1ca0bda);
+TriggerRegisterForCharacter(TRIGGERGUID_S_RC_DF_Troll_Bridge_FieldsWest_ControlBox_dec3e360-4f07-4c8b-936b-47ee164c6d27, CHARACTERGUID_S_RC_DF_Troll_Marg_33b7d3f0-436a-4520-a073-dd2862122b0e);
+TriggerRegisterForCharacter(TRIGGERGUID_S_RC_DF_Troll_Bridge_WreckedHills_ControlBox_c0d073ff-1eea-4b93-812e-4d9b5e1e2585, CHARACTERGUID_S_GLO_Troll_Grog_9671dad5-258d-4174-84c0-0141502b2938);
+DB_DeadEvent(CHARACTERGUID_S_RC_DF_Troll_Marg_33b7d3f0-436a-4520-a073-dd2862122b0e, "RC_DF_Troll_MargIsDead");
+DB_DeadEvent(CHARACTERGUID_S_GLO_Troll_Grog_9671dad5-258d-4174-84c0-0141502b2938, "RC_DF_Troll_GrogIsDead");
+DB_DialogMoneyTransfer(1, "RC_DF_Troll_Marg", 1);
+DB_DialogMoneyTransfer(2, "RC_DF_Troll_Marg", 3);
+DB_DialogMoneyTransfer(3, "RC_DF_Troll_Marg", 14999);
+DB_DialogMoneyTransfer(1, "RC_DF_Troll_Grog", 4999);
+DB_DialogMoneyTransfer(2, "RC_DF_Troll_Grog", 5000);
+DB_DialogMoneyTransfer(3, "RC_DF_Troll_Grog", 15000);
+DB_ItemEvents_TransferFlagToMoneyVarIndex("RC_DF_Troll_PayGrog_Lower", 1);
+DB_ItemEvents_TransferFlagToMoneyVarIndex("RC_DF_Troll_PayGrog_Big", 2);
+DB_ItemEvents_TransferFlagToMoneyVarIndex("RC_DF_Troll_PayGrog_Huge", 3);
+DB_ItemEvents_TransferFlagToMoneyVarIndex("RC_DF_Troll_PayMarg_Small", 1);
+DB_ItemEvents_TransferFlagToMoneyVarIndex("RC_DF_Troll_PayMarg_Big", 2);
+DB_ItemEvents_TransferFlagToMoneyVarIndex("RC_DF_Troll_PayMarg_Huge", 3);
+Proc_RC_DF_Troll_SetupCrimes();
+TeleportTo(CHARACTERGUID_S_GLO_Troll_Grog_9671dad5-258d-4174-84c0-0141502b2938, TRIGGERGUID_S_RC_DF_Troll_Bridge_WreckedHills_Point_e350fab4-6cab-4a47-bd5a-1f55e8900fe4);
+DB_Troll_Journal_MainSub("QuestUpdate_RC_DF_TrollBridge_CompetitionRemoved", "QuestUpdate_RC_DF_TrollBridge_CompetitionRemovedMain", "QuestUpdate_RC_DF_TrollBridge_CompetitionRemovedSub");
+DB_Troll_Journal_MainSub("QuestUpdate_RC_DF_TrollBridge_GrogMoved", "QuestUpdate_RC_DF_TrollBridge_GrogMovedMain", "QuestUpdate_RC_DF_TrollBridge_GrogMovedSub");
+DB_Troll_Journal_MainSub("QuestUpdate_RC_DF_TrollBridge_GrogIsDead", "QuestUpdate_RC_DF_TrollBridge_GrogIsDeadMain", "QuestUpdate_RC_DF_TrollBridge_GrogIsDeadSub");
+
+KBSECTION
+IF
+TextEventSet("TrollGiveVWFlags")
+AND
+DB_IsPlayer(_Var1)
+THEN
+UserSetFlag(_Var1, "FTJ_SW_HeardVoidWokenSpeak");
+UserSetFlag(_Var1, "QuestUpdate_RC_DU_HeroicRescue_KilledVoidwoken");
+UserSetFlag(_Var1, "QuestUpdate_RC_DW_WC_AtaraxianLair_KilledBoss");
+GlobalSetFlag("FTJ_FinalBattle_VoidwokenAppeared");
+
+IF
+ObjectFlagSet("QuestUpdate_RC_DF_TrollBridge_CounterOffer", (CHARACTERGUID)_Var1, _)
+AND
+DB_IsPlayer(_Var1)
+AND
+UserGetFlag(_Var1, "QuestUpdate_RC_DF_TrollBridge_RemoveCompetition", 1)
+THEN
+UserSetFlag(_Var1, "QuestUpdate_RC_DF_TrollBridge_RemoveCompetitionSub");
+
+IF
+ObjectFlagSet((STRING)_Var1, (CHARACTERGUID)_Var2, _)
+AND
+DB_IsPlayer(_Var2)
+AND
+DB_Troll_Journal_MainSub(_Var1, _Var4, _Var5)
+AND
+UserGetFlag(_Var2, "QuestUpdate_RC_DF_TrollBridge_CounterOffer", 0)
+THEN
+UserSetFlag(_Var2, _Var4);
+
+IF
+ObjectFlagSet((STRING)_Var1, (CHARACTERGUID)_Var2, _)
+AND
+DB_IsPlayer(_Var2)
+AND
+DB_Troll_Journal_MainSub(_Var1, _Var4, _Var5)
+AND
+UserGetFlag(_Var2, "QuestUpdate_RC_DF_TrollBridge_CounterOffer", 1)
+THEN
+UserSetFlag(_Var2, _Var5);
+
+IF
+CharacterSawCharacter((CHARACTERGUID)_Var1, CHARACTERGUID_S_RC_DF_Troll_Marg_33b7d3f0-436a-4520-a073-dd2862122b0e)
+AND
+CharacterIsDead(CHARACTERGUID_S_RC_DF_Troll_Marg_33b7d3f0-436a-4520-a073-dd2862122b0e, 1)
+THEN
+UserSetFlag(_Var1, "QuestUpdate_RC_DF_TrollBridge_CompetitionRemoved");
+UserSetFlag(_Var1, "RC_DF_Troll_HeardAboutMarg");
+
+IF
+CharacterDied(CHARACTERGUID_S_RC_DF_Troll_Marg_33b7d3f0-436a-4520-a073-dd2862122b0e)
+AND
+DB_IsPlayer(_Var1)
+AND
+CharacterCanSee(_Var1, CHARACTERGUID_S_RC_DF_Troll_Marg_33b7d3f0-436a-4520-a073-dd2862122b0e, 1)
+THEN
+UserSetFlag(_Var1, "QuestUpdate_RC_DF_TrollBridge_CompetitionRemoved");
+UserSetFlag(_Var1, "RC_DF_Troll_HeardAboutMarg");
+
+IF
+CharacterSawCharacter((CHARACTERGUID)_Var1, CHARACTERGUID_S_GLO_Troll_Grog_9671dad5-258d-4174-84c0-0141502b2938)
+AND
+CharacterIsDead(CHARACTERGUID_S_GLO_Troll_Grog_9671dad5-258d-4174-84c0-0141502b2938, 1)
+THEN
+UserSetFlag(_Var1, "QuestUpdate_RC_DF_TrollBridge_GrogIsDead");
+
+IF
+CharacterDied(CHARACTERGUID_S_GLO_Troll_Grog_9671dad5-258d-4174-84c0-0141502b2938)
+AND
+DB_IsPlayer(_Var1)
+AND
+CharacterCanSee(_Var1, CHARACTERGUID_S_GLO_Troll_Grog_9671dad5-258d-4174-84c0-0141502b2938, 1)
+THEN
+UserSetFlag(_Var1, "QuestUpdate_RC_DF_TrollBridge_GrogIsDead");
+
+IF
+ObjectFlagSet("QuestUpdate_RC_DF_TrollBridge_GrogIsDead", (GUIDSTRING)_Var1, _)
+AND
+ObjectGetFlag(_Var1, "QuestUpdate_RC_DF_TrollBridge_CompetitionRemoved", 1)
+THEN
+ObjectSetFlag(_Var1, "QuestUpdate_RC_DF_TrollBridge_AllDead");
+
+IF
+ObjectFlagSet("QuestUpdate_RC_DF_TrollBridge_CompetitionRemoved", (GUIDSTRING)_Var1, _)
+AND
+ObjectGetFlag(_Var1, "QuestUpdate_RC_DF_TrollBridge_GrogIsDead", 1)
+THEN
+ObjectSetFlag(_Var1, "QuestUpdate_RC_DF_TrollBridge_AllDead");
+
+IF
+CharacterEnteredTrigger((CHARACTERGUID)_Var1, (TRIGGERGUID)_Var2)
+AND
+DB_RC_DF_Troll_Trespass(_Var2, _, _)
+AND
+DB_RC_DF_Trolls(_Var5, _Var2, _, _)
+AND NOT
+Qry_RC_DF_Troll_PlayerPaid(_Var5, _Var1)
+THEN
+ObjectSetFlag(_Var1, "RC_DF_Troll_IsTrespassing");
+
+IF
+CharacterLeftTrigger((CHARACTERGUID)_Var1, (TRIGGERGUID)_Var2)
+AND
+DB_RC_DF_Troll_Trespass(_Var2, _, _)
+AND
+DB_RC_DF_Trolls(_Var5, _Var2, _, _)
+AND NOT
+Qry_RC_DF_Troll_PlayerPaid(_Var5, _Var1)
+THEN
+ObjectClearFlag(_Var1, "RC_DF_Troll_IsTrespassing");
+
+IF
+DialogEnded("RC_DF_Troll_Marg", (INTEGER)_Var1)
+AND
+DB_DialogPlayers(_Var1, _Var2, _)
+THEN
+ObjectClearFlag(_Var2, "RC_DF_Troll_IsTrespassing");
+
+IF
+DialogEnded("RC_DF_Troll_Grog", (INTEGER)_Var1)
+AND
+DB_DialogPlayers(_Var1, _Var2, _)
+THEN
+ObjectClearFlag(_Var2, "RC_DF_Troll_IsTrespassing");
+
+IF
+CharacterEnteredTrigger((CHARACTERGUID)_Var1, TRIGGERGUID_S_RC_DF_Troll_Bridge_TreeTrunk_Box_5195308d-d2ae-463c-86f0-e708c1ca0bda)
+THEN
+Proc_RC_DF_Troll_SeeTreeTrunk(_Var1);
+
+PROC
+Proc_RC_DF_Troll_SeeTreeTrunk((CHARACTERGUID)_Var1)
+AND
+UserGetFlag(_Var1, "RC_DF_Troll_SawTreeTrunk", 0)
+THEN
+Proc_StartDialog(1, "RC_DF_AD_Troll_SpotTrunk", _Var1);
+UserSetFlag(_Var1, "RC_DF_Troll_SawTreeTrunk");
+
+IF
+ObjectFlagSet("RC_DF_Troll_LearnGrogsSkill", (CHARACTERGUID)_Var1, (INTEGER)_Var2)
+AND
+DB_DialogPlayers(_Var2, _Var1, _)
+THEN
+CharacterAddSkill(_Var1, "Shout_ReactiveArmor");
+
+IF
+ObjectFlagSet("QuestUpdate_RC_DF_TrollBridge_GrogMoved", (GUIDSTRING)_Var1, _)
+AND
+QueryOnlyOnce("DB_RC_DF_Troll_MoveGrog")
+THEN
+DB_RC_DF_Troll_MoveGrog(1);
+
+IF
+DialogEnded("RC_DF_Troll_Grog", _)
+AND
+DB_RC_DF_Troll_MoveGrog(1)
+THEN
+NOT DB_RC_DF_Troll_MoveGrog(1);
+Proc_StartDialog(1, "RC_DF_AD_Troll_MoveToBridge", CHARACTERGUID_S_GLO_Troll_Grog_9671dad5-258d-4174-84c0-0141502b2938);
+ObjectSetFlag(CHARACTERGUID_S_GLO_Troll_Grog_9671dad5-258d-4174-84c0-0141502b2938, "RC_DF_Troll_GrogStopSpot");
+CharacterDisableCrime(CHARACTERGUID_S_GLO_Troll_Grog_9671dad5-258d-4174-84c0-0141502b2938, "RC_DF_TrollBridge_Grog");
+Proc_RC_DF_Troll_TransferBridge();
+Proc_RC_DF_Troll_Grog_SetNewOriginalPos();
+SetHasDialog(CHARACTERGUID_S_GLO_Troll_Grog_9671dad5-258d-4174-84c0-0141502b2938, 0);
+ProcCharacterMoveTo(CHARACTERGUID_S_GLO_Troll_Grog_9671dad5-258d-4174-84c0-0141502b2938, TRIGGERGUID_S_RC_DF_Troll_Bridge_FieldsWest_Point_71e752f4-370a-41cc-9fb9-671b2289635b, 0, "RC_DF_Troll_GrogMoved");
+TriggerRegisterForCharacter(TRIGGERGUID_S_RC_DF_Troll_Bridge_FieldsWest_ControlBox_dec3e360-4f07-4c8b-936b-47ee164c6d27, CHARACTERGUID_S_GLO_Troll_Grog_9671dad5-258d-4174-84c0-0141502b2938);
+TriggerUnregisterForCharacter(TRIGGERGUID_S_RC_DF_Troll_Bridge_WreckedHills_ControlBox_c0d073ff-1eea-4b93-812e-4d9b5e1e2585, CHARACTERGUID_S_GLO_Troll_Grog_9671dad5-258d-4174-84c0-0141502b2938);
+
+PROC
+Proc_RC_DF_Troll_Grog_SetNewOriginalPos()
+AND
+GetPosition(TRIGGERGUID_S_RC_DF_Troll_Bridge_FieldsWest_Point_71e752f4-370a-41cc-9fb9-671b2289635b, _Var1, _Var2, _Var3)
+THEN
+SetVarFloat3(CHARACTERGUID_S_GLO_Troll_Grog_9671dad5-258d-4174-84c0-0141502b2938, "NPCOrgPos", _Var1, _Var2, _Var3);
+SetVarFloat3(CHARACTERGUID_S_GLO_Troll_Grog_9671dad5-258d-4174-84c0-0141502b2938, "DefaultPoint", _Var1, _Var2, _Var3);
+SetVarObject(CHARACTERGUID_S_GLO_Troll_Grog_9671dad5-258d-4174-84c0-0141502b2938, "DefaultPointTrigger", TRIGGERGUID_S_RC_DF_Troll_Bridge_FieldsWest_Point_71e752f4-370a-41cc-9fb9-671b2289635b);
+SetVarObject(CHARACTERGUID_S_GLO_Troll_Grog_9671dad5-258d-4174-84c0-0141502b2938, "WanderTrigger", TRIGGERGUID_S_RC_DF_Troll_Bridge_FieldsWest_WanderBox_96689818-ae4d-41e8-9b65-358c88e024c6);
+
+PROC
+Proc_RC_DF_Troll_TransferBridge()
+AND
+DB_RC_DF_Trolls(_, _Var2, _Var3, _Var4)
+AND
+DB_IsPlayer(_Var5)
+THEN
+CharacterStopCrime(_Var5, _Var3, _Var2);
+
+PROC
+Proc_RC_DF_Troll_TransferBridge()
+AND
+DB_RC_DF_Trolls(_Var1, _Var2, _Var3, _Var4)
+THEN
+NOT DB_RC_DF_Trolls(_Var1, _Var2, _Var3, _Var4);
+
+PROC
+Proc_RC_DF_Troll_TransferBridge()
+AND
+DB_RC_DF_Troll_PaidFlag(_Var1, _Var2)
+THEN
+NOT DB_RC_DF_Troll_PaidFlag(_Var1, _Var2);
+
+PROC
+Proc_RC_DF_Troll_TransferBridge()
+AND
+DB_RC_DF_Troll_SpotEvent(_Var1, _Var2, _Var3, _Var4)
+THEN
+NOT DB_RC_DF_Troll_SpotEvent(_Var1, _Var2, _Var3, _Var4);
+
+PROC
+Proc_RC_DF_Troll_TransferBridge()
+THEN
+DB_RC_DF_Trolls(CHARACTERGUID_S_GLO_Troll_Grog_9671dad5-258d-4174-84c0-0141502b2938, TRIGGERGUID_S_RC_DF_Troll_Bridge_FieldsWest_TrespassBox_125289ae-12b5-40e5-94e7-ce33b9d18f97, "RC_DF_TrollBridge_Grog", "RC_DF_Troll_PaidGrog");
+DB_RC_DF_Troll_PaidFlag(TRIGGERGUID_S_RC_DF_Troll_Bridge_FieldsWest_ControlBox_dec3e360-4f07-4c8b-936b-47ee164c6d27, "RC_DF_Troll_PaidGrog");
+DB_RC_DF_Troll_SpotEvent(CHARACTERGUID_S_GLO_Troll_Grog_9671dad5-258d-4174-84c0-0141502b2938, "RC_DF_Troll_GrogSpotPlayer", "RC_DF_Troll_GrogRestartSpot", TRIGGERGUID_S_RC_DF_Troll_Bridge_FieldsWest_SpotBox_79bc1400-bb45-4ac3-b05e-741caf7dfc88);
+TriggerRegisterForCharacter(TRIGGERGUID_S_RC_DF_Troll_Bridge_FieldsWest_SpotBox_79bc1400-bb45-4ac3-b05e-741caf7dfc88, CHARACTERGUID_S_GLO_Troll_Grog_9671dad5-258d-4174-84c0-0141502b2938);
+
+PROC
+Proc_RC_DF_Troll_TransferBridge()
+AND
+DB_IsPlayer(_Var1)
+THEN
+UserClearFlag(_Var1, "RC_DF_Troll_PaidGrog", 0);
+
+PROC
+Proc_RC_DF_Troll_TransferBridge()
+AND
+DB_IsPlayer(_Var1)
+THEN
+ObjectClearFlag(_Var1, "RC_DF_Troll_FailedGrogPersuasion", 0);
+
+IF
+StoryEvent(CHARACTERGUID_S_GLO_Troll_Grog_9671dad5-258d-4174-84c0-0141502b2938, "RC_DF_Troll_GrogMoved")
+THEN
+SetHasDialog(CHARACTERGUID_S_GLO_Troll_Grog_9671dad5-258d-4174-84c0-0141502b2938, 1);
+SetVarObject(CHARACTERGUID_S_GLO_Troll_Grog_9671dad5-258d-4174-84c0-0141502b2938, "WanderTrigger", S_RC_DF_Troll_Bridge_FieldsWest_WanderBox_96689818-ae4d-41e8-9b65-358c88e024c6);
+SetVarObject(CHARACTERGUID_S_GLO_Troll_Grog_9671dad5-258d-4174-84c0-0141502b2938, "SpotTrigger", S_RC_DF_Troll_Bridge_FieldsWest_SpotBox_79bc1400-bb45-4ac3-b05e-741caf7dfc88);
+ObjectSetFlag(CHARACTERGUID_S_GLO_Troll_Grog_9671dad5-258d-4174-84c0-0141502b2938, "RC_DF_Troll_GrogAtMargsBridge");
+ObjectSetFlag(CHARACTERGUID_S_GLO_Troll_Grog_9671dad5-258d-4174-84c0-0141502b2938, "RC_DF_Troll_GrogRestartSpot");
+Proc_RC_DF_Troll_SetupCrimes();
+ObjectClearFlag(CHARACTERGUID_S_GLO_Troll_Grog_9671dad5-258d-4174-84c0-0141502b2938, "RC_DF_Troll_GrogStopSpot");
+
+IF
+CharacterCharacterEvent((CHARACTERGUID)_Var1, (CHARACTERGUID)_Var2, (STRING)_Var3)
+AND
+DB_RC_DF_Troll_SpotEvent(_Var1, _Var3, _Var4, _)
+THEN
+Proc_RC_DF_Troll_StartDialog(_Var1, _Var2, _Var4);
+
+PROC
+Proc_RC_DF_Troll_StartDialog((CHARACTERGUID)_Var1, (CHARACTERGUID)_Var2, (STRING)_Var3)
+AND
+ObjectGetFlag(_Var1, "RC_DF_Troll_NotOnBridge", 0)
+AND NOT
+Qry_RC_DF_Troll_PlayerPaid(_Var1, _Var2)
+AND
+IsSpeakerReserved(_Var1, 0)
+AND
+DB_Dialogs(_Var1, _Var4)
+THEN
+Proc_StartDialog(0, _Var4, _Var1, _Var2);
+
+PROC
+Proc_RC_DF_Troll_StartDialog((CHARACTERGUID)_Var1, (CHARACTERGUID)_Var2, (STRING)_Var3)
+THEN
+ObjectSetFlag(_Var1, _Var3);
+
+QRY
+Qry_RC_DF_Troll_PlayerPaid((CHARACTERGUID)_Var1, (CHARACTERGUID)_Var2)
+AND
+DB_RC_DF_Trolls(_Var1, _, _, _Var5)
+AND
+ObjectGetFlag(_Var2, _Var5, 1)
+THEN
+DB_NOOP(1);
+
+IF
+CharacterLeftTrigger((CHARACTERGUID)_Var1, (TRIGGERGUID)_Var2)
+AND
+DB_RC_DF_Trolls(_Var1, _, _, _Var5)
+AND
+DB_RC_DF_Troll_PaidFlag(_Var2, _Var5)
+THEN
+ObjectSetFlag(_Var1, "RC_DF_Troll_NotOnBridge");
+
+IF
+CharacterEnteredTrigger((CHARACTERGUID)_Var1, (TRIGGERGUID)_Var2)
+AND
+DB_RC_DF_Trolls(_Var1, _, _, _Var5)
+AND
+DB_RC_DF_Troll_PaidFlag(_Var2, _Var5)
+THEN
+ObjectClearFlag(_Var1, "RC_DF_Troll_NotOnBridge");
+
+IF
+ObjectFlagSet("RC_DF_Troll_TeleportPlayerOut", (CHARACTERGUID)_Var1, (INTEGER)_Var2)
+THEN
+Proc_RC_DF_Troll_SetTeleportAfterDialog(_Var1, _Var2);
+
+PROC
+Proc_RC_DF_Troll_SetTeleportAfterDialog((CHARACTERGUID)_Var1, (INTEGER)_Var2)
+AND
+DB_DialogNPCs(_Var2, _Var3, 1)
+AND
+DB_RC_DF_Trolls(_Var3, _Var4, _, _)
+AND
+Qry_RC_DF_Troll_GetTeleportSide(_Var4, _Var1, _Var2)
+THEN
+DB_NOOP(1);
+
+QRY
+Qry_RC_DF_Troll_GetTeleportSide((TRIGGERGUID)_Var1, (CHARACTERGUID)_Var2, (INTEGER)_Var3)
+AND
+DB_RC_DF_Troll_Trespass(_Var1, _Var4, _Var5)
+AND
+ObjectGetFlag(_Var2, _Var4, 1)
+THEN
+DB_RC_DF_Troll_TeleportPlayerAfterDialog(_Var2, _Var3, _Var5);
+
+PROC
+Proc_RC_DF_Troll_SetTeleportAfterDialog((CHARACTERGUID)_Var1, (INTEGER)_Var2)
+AND
+DB_DialogNPCs(_Var2, _Var3, 1)
+AND
+DB_RC_DF_Trolls(_Var3, _Var4, _, _)
+AND NOT
+DB_RC_DF_Troll_TeleportPlayerAfterDialog(_Var1, _Var2, _)
+AND
+DB_RC_DF_Troll_DefaultTeleport(_Var4, _Var8)
+THEN
+DB_RC_DF_Troll_TeleportPlayerAfterDialog(_Var1, _Var2, _Var8);
+
+PROC
+Proc_RC_DF_Troll_SetTeleportAfterDialog((CHARACTERGUID)_Var1, (INTEGER)_Var2)
+THEN
+ObjectClearFlag(_Var1, "RC_DF_Troll_TeleportPlayerOut");
+
+IF
+DialogEnded(_, (INTEGER)_Var2)
+AND
+DB_RC_DF_Troll_TeleportPlayerAfterDialog(_Var3, _Var2, _Var4)
+THEN
+NOT DB_RC_DF_Troll_TeleportPlayerAfterDialog(_Var3, _Var2, _Var4);
+TeleportTo(_Var3, _Var4, "", 1);
+
+IF
+CharacterEnteredTrigger((CHARACTERGUID)_Var1, (TRIGGERGUID)_Var2)
+AND
+DB_RC_DF_Troll_Trigger(_Var2, _Var3, _Var4)
+AND
+DB_InRegion(_Var1, _Var3)
+THEN
+ObjectSetFlag(_Var1, _Var4);
+
+IF
+CharacterLeftTrigger((CHARACTERGUID)_Var1, (TRIGGERGUID)_Var2)
+AND
+DB_RC_DF_Troll_Trigger(_Var2, _Var3, _)
+AND
+DB_InRegion(_Var1, _Var3)
+THEN
+Proc_RC_DF_Troll_CheckIfCrossedBridge(_Var1, _Var2, _Var3);
+Proc_RC_DF_Troll_ClearFlag(_Var1);
+
+PROC
+Proc_RC_DF_Troll_CheckIfCrossedBridge((CHARACTERGUID)_Var1, (TRIGGERGUID)_Var2, (TRIGGERGUID)_Var3)
+AND
+Qry_RC_DF_Troll_CameFromOtherSide(_Var1, _Var2, _Var3)
+AND
+DB_RC_DF_Troll_PaidFlag(_Var2, _Var4)
+AND
+ObjectGetFlag(_Var1, _Var4, 0)
+AND NOT
+Query_IsPlayerHiding(_Var1)
+AND
+DB_RC_DF_Trolls(_Var5, _, _, _Var4)
+THEN
+Proc_CharacterSetTemporaryHostileRelation(_Var5, _Var1);
+
+PROC
+Proc_RC_DF_Troll_CheckIfCrossedBridge((CHARACTERGUID)_Var1, (TRIGGERGUID)_Var2, (TRIGGERGUID)_Var3)
+AND
+Qry_RC_DF_Troll_CameFromOtherSide(_Var1, _Var2, _Var3)
+AND
+DB_RC_DF_Troll_PaidFlag(_Var2, _Var4)
+AND
+ObjectGetFlag(_Var1, _Var4, 1)
+THEN
+ObjectClearFlag(_Var1, _Var4, 0);
+
+PROC
+Proc_RC_DF_Troll_ClearFlag((CHARACTERGUID)_Var1)
+AND
+DB_RC_DF_Troll_Trigger(_Var2, _, _Var4)
+THEN
+ObjectClearFlag(_Var1, _Var4);
+
+QRY
+Qry_RC_DF_Troll_CameFromOtherSide((CHARACTERGUID)_Var1, (TRIGGERGUID)_Var2, (TRIGGERGUID)_Var3)
+AND
+DB_RC_DF_Troll_Trigger(_Var2, _Var4, _Var5)
+AND
+_Var3 != _Var4
+AND
+ObjectGetFlag(_Var1, _Var5, 1)
+THEN
+DB_NOOP(1);
+
+PROC
+Proc_RC_DF_Troll_SetupCrimes()
+AND
+DB_RC_DF_Trolls(_Var1, _Var2, _Var3, _Var4)
+THEN
+ProcCharacterEnableCrime(_Var1, _Var3);
+ProcCharacterEnableCrime(_Var1, "Assault");
+
+IF
+CharacterEnteredTrigger((CHARACTERGUID)_Var1, (TRIGGERGUID)_Var2)
+AND
+DB_RC_DF_Trolls(_Var3, _Var2, _Var4, _Var5)
+AND
+CharacterIsPlayer(_Var1, 1)
+AND
+IsTagged(_Var1, "SUMMON", 0)
+AND
+UserGetFlag(_Var1, _Var5, 0)
+THEN
+CharacterRegisterCrime(_Var1, _Var4, _Var2, _Var3, 0);
+
+IF
+CharacterLeftTrigger((CHARACTERGUID)_Var1, (TRIGGERGUID)_Var2)
+AND
+DB_RC_DF_Trolls(_Var3, _Var2, _Var4, _Var5)
+AND
+CharacterIsPlayer(_Var1, 1)
+THEN
+CharacterStopCrime(_Var1, _Var4, _Var2);
+
+IF
+ObjectFlagSet((STRING)_Var1, (CHARACTERGUID)_Var2, _)
+AND
+DB_RC_DF_Trolls(_Var4, _Var5, _Var6, _Var1)
+THEN
+CharacterStopCrime(_Var2, _Var6, _Var5);
+
+IF
+CharacterSelectedAsBestUnavailableFallbackLead((CHARACTERGUID)_Var1, (STRING)_Var2, (INTEGER)_Var3, (INTEGER)_Var4, (CHARACTERGUID)_Var5, (CHARACTERGUID)_Var6, (CHARACTERGUID)_Var7, (CHARACTERGUID)_Var8)
+AND
+CrimeGetType(_Var3, _Var9)
+AND
+DB_RC_DF_Trolls(_Var10, _Var11, _Var9, _Var12)
+AND NOT
+Qry_RC_DF_Troll_UserPaid(_Var5, _Var6, _Var7, _Var8, _Var12)
+THEN
+ProcCrimeTrespassingCheckDetection(_Var3, _Var1, _Var5);
+ProcCrimeTrespassingCheckDetection(_Var3, _Var1, _Var6);
+ProcCrimeTrespassingCheckDetection(_Var3, _Var1, _Var7);
+ProcCrimeTrespassingCheckDetection(_Var3, _Var1, _Var8);
+ProcCrimeTrespassingStopNPCsDialogAndMakeHostileTo(_Var3, _Var4, _Var1);
+
+QRY
+Qry_RC_DF_Troll_UserPaid((CHARACTERGUID)_Var1, (CHARACTERGUID)_Var2, (CHARACTERGUID)_Var3, (CHARACTERGUID)_Var4, (STRING)_Var5)
+AND NOT
+QRY_CharacterIsNull(_Var1)
+AND
+UserGetFlag(_Var1, _Var5, 1)
+THEN
+DB_NOOP(1);
+
+QRY
+Qry_RC_DF_Troll_UserPaid((CHARACTERGUID)_Var1, (CHARACTERGUID)_Var2, (CHARACTERGUID)_Var3, (CHARACTERGUID)_Var4, (STRING)_Var5)
+AND NOT
+QRY_CharacterIsNull(_Var2)
+AND
+UserGetFlag(_Var2, _Var5, 1)
+THEN
+DB_NOOP(1);
+
+QRY
+Qry_RC_DF_Troll_UserPaid((CHARACTERGUID)_Var1, (CHARACTERGUID)_Var2, (CHARACTERGUID)_Var3, (CHARACTERGUID)_Var4, (STRING)_Var5)
+AND NOT
+QRY_CharacterIsNull(_Var3)
+AND
+UserGetFlag(_Var3, _Var5, 1)
+THEN
+DB_NOOP(1);
+
+QRY
+Qry_RC_DF_Troll_UserPaid((CHARACTERGUID)_Var1, (CHARACTERGUID)_Var2, (CHARACTERGUID)_Var3, (CHARACTERGUID)_Var4, (STRING)_Var5)
+AND NOT
+QRY_CharacterIsNull(_Var4)
+AND
+UserGetFlag(_Var4, _Var5, 1)
+THEN
+DB_NOOP(1);
+
+PROC
+ProcRegionEnded("RC_Main")
+THEN
+GoalCompleted;
+
+
+EXITSECTION
+ENDEXITSECTION
+
+ParentTargetEdge "ReapersCoast"

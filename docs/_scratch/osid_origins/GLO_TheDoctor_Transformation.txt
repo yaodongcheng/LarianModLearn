@@ -1,0 +1,173 @@
+Version 1
+SubGoalCombiner SGC_AND
+
+INITSECTION
+
+KBSECTION
+IF
+GlobalFlagSet("ARX_DoctorsHouse_TheDoctor_TransformInCombat")
+AND
+DB_CurrentLevel("ARX_Main")
+AND
+QRY_TheDoctor_Transformation_CheckForLohse()
+AND
+QueryOnlyOnce("ARX_DoctorsHouse_TheDoctor_TransformInCombat")
+THEN
+Proc_StartDialog(1, "ARX_DoctorsHouse_AD_TheDoctor_TransformInCombat", CHARACTERGUID_S_ARX_DoctorsHouse_TheDoctor_83083470-c543-45b3-ac8a-108df0daca8d);
+
+QRY
+QRY_TheDoctor_Transformation_CheckForLohse()
+AND
+CharacterCanSee(CHARACTERGUID_S_ARX_DoctorsHouse_TheDoctor_83083470-c543-45b3-ac8a-108df0daca8d, CHARACTERGUID_S_Player_Lohse_bb932b13-8ebf-4ab4-aac0-83e6924e4295, 0)
+THEN
+GlobalClearFlag("ARX_TheDoctor_Transformation_LohseNearby");
+
+QRY
+QRY_TheDoctor_Transformation_CheckForLohse()
+AND
+CharacterCanSee(CHARACTERGUID_S_ARX_DoctorsHouse_TheDoctor_83083470-c543-45b3-ac8a-108df0daca8d, CHARACTERGUID_S_Player_Lohse_bb932b13-8ebf-4ab4-aac0-83e6924e4295, 1)
+THEN
+GlobalSetFlag("ARX_TheDoctor_Transformation_LohseNearby");
+
+IF
+GlobalFlagSet("ARX_DoctorsHouse_TheDoctor_TransformInCombat")
+AND NOT
+DB_CurrentLevel("ARX_Main")
+AND
+QueryOnlyOnce("ARX_DoctorsHouse_TheDoctor_TransformInCombat")
+THEN
+PlayAnimation(CHARACTERGUID_S_ARX_DoctorsHouse_TheDoctor_83083470-c543-45b3-ac8a-108df0daca8d, "cast_shout_cast", "");
+Proc_ARX_DoctorsHouse_TheDoctor_Transform();
+
+IF
+AutomatedDialogEnded("ARX_DoctorsHouse_AD_TheDoctor_TransformInCombat", _)
+AND
+GlobalGetFlag("ARX_DoctorsHouse_TheDoctor_Transformed", 0)
+THEN
+PlayAnimation(CHARACTERGUID_S_ARX_DoctorsHouse_TheDoctor_83083470-c543-45b3-ac8a-108df0daca8d, "cast_shout_cast", "");
+Proc_ARX_DoctorsHouse_TheDoctor_Transform();
+
+PROC
+Proc_ARX_DoctorsHouse_TheDoctor_Transform()
+AND
+GetPosition(CHARACTERGUID_S_ARX_DoctorsHouse_TheDoctor_83083470-c543-45b3-ac8a-108df0daca8d, _Var1, _Var2, _Var3)
+AND
+GetRotation(CHARACTERGUID_S_ARX_DoctorsHouse_TheDoctor_83083470-c543-45b3-ac8a-108df0daca8d, _, _Var5, _)
+THEN
+CharacterSetCanTrade(CHARACTERGUID_S_ARX_DoctorsHouse_TheDoctor_83083470-c543-45b3-ac8a-108df0daca8d, 0);
+CharacterSetAnimationOverride(CHARACTERGUID_S_ARX_DoctorsHouse_TheDoctor_83083470-c543-45b3-ac8a-108df0daca8d, "");
+PlayAnimation(CHARACTERGUID_S_ARX_DoctorsHouse_TheDoctor_83083470-c543-45b3-ac8a-108df0daca8d, "cast_shout_cast", "");
+PlayEffect(CHARACTERGUID_S_ARX_DoctorsHouse_TheDoctor_83083470-c543-45b3-ac8a-108df0daca8d, "RS3_FX_Skills_Polymorph_Soul_TurnInto_Cast_Root_01");
+PlayEffect(CHARACTERGUID_S_ARX_DoctorsHouse_TheDoctor_83083470-c543-45b3-ac8a-108df0daca8d, "RS3_FX_Skills_Polymorph_Soul_TurnInto_Cast_Overlay_01");
+PlayEffectAtPositionAndRotation("RS3_FX_Skills_Polymorph_Soul_TurnInto_Human_Cast_Root_01", _Var1, _Var2, _Var3, _Var5);
+TimerLaunch("ARX_DoctorsHouse_TheDoctor_Transform", 1500);
+
+IF
+TimerFinished("ARX_DoctorsHouse_TheDoctor_Transform")
+THEN
+PlayEffect(CHARACTERGUID_S_ARX_DoctorsHouse_TheDoctor_83083470-c543-45b3-ac8a-108df0daca8d, "RS3_FX_GP_Combat_CorpseExplosion_Blood_01_Medium");
+Transform(CHARACTERGUID_S_ARX_DoctorsHouse_TheDoctor_83083470-c543-45b3-ac8a-108df0daca8d, "Creatures_Demon_Caster_A_ONLYUSE_THEDOCTOR_4395e1d2-9c34-48aa-9da0-1d58cceafa2f", 0, 1, 1);
+TimerLaunch("ARX_DoctorsHouse_TheDoctor_TransformedTimer", 1000);
+TimerLaunch("ARX_TheDoctor_AmbushDemons_Appear", 250);
+
+IF
+TimerFinished("ARX_DoctorsHouse_TheDoctor_Transform")
+AND
+CharacterGetGold(CHARACTERGUID_S_ARX_DoctorsHouse_TheDoctor_83083470-c543-45b3-ac8a-108df0daca8d, _Var1)
+AND
+IntegerProduct(_Var1, -1, _Var2)
+THEN
+CharacterAddGold(CHARACTERGUID_S_ARX_DoctorsHouse_TheDoctor_83083470-c543-45b3-ac8a-108df0daca8d, _Var2);
+
+IF
+TimerFinished("ARX_DoctorsHouse_TheDoctor_TransformedTimer")
+THEN
+GlobalSetFlag("ARX_DoctorsHouse_TheDoctor_Transformed");
+
+IF
+GlobalFlagSet("ARX_DoctorsHouse_TheDoctor_Transformed")
+THEN
+ClearVarObject(CHARACTERGUID_S_ARX_DoctorsHouse_TheDoctor_83083470-c543-45b3-ac8a-108df0daca8d, "Seat");
+
+IF
+GlobalFlagSet("ARX_DoctorsHouse_TheDoctor_Transformed")
+AND
+DB_CurrentLevel("ARX_Main")
+THEN
+SetVarObject(CHARACTERGUID_S_ARX_DoctorsHouse_TheDoctor_83083470-c543-45b3-ac8a-108df0daca8d, "SplineGUID", SPLINEGUID_S_ARX_DoctorsHouse_TheDoctor_Spline_1e3b1dc4-4587-4b9b-9ee3-c6eef289b379);
+
+IF
+GlobalFlagSet("ARX_DoctorsHouse_TheDoctor_Transformed")
+AND
+DB_CurrentLevel("ARX_Main")
+AND
+QueryOnlyOnce("ARX_DoctorsHouse_AD_TheDoctor_TransformInCombat_Transformed")
+AND NOT
+DB_GlobalFlag("EG_AppearDoctor")
+AND
+CombatGetIDForCharacter(CHARACTERGUID_S_ARX_DoctorsHouse_TheDoctor_83083470-c543-45b3-ac8a-108df0daca8d, _Var1)
+AND
+CombatGetIDForCharacter(CHARACTERGUID_S_Player_Lohse_bb932b13-8ebf-4ab4-aac0-83e6924e4295, _Var1)
+THEN
+GlobalSetFlag("ARX_TheDoctor_Transformation_LohseNearby");
+Proc_StartDialog(1, "ARX_DoctorsHouse_AD_TheDoctor_TransformInCombat", CHARACTERGUID_S_ARX_DoctorsHouse_TheDoctor_83083470-c543-45b3-ac8a-108df0daca8d);
+
+IF
+GlobalFlagSet("ARX_DoctorsHouse_TheDoctor_Transformed")
+AND NOT
+DB_CurrentLevel("ARX_Main")
+AND
+QueryOnlyOnce("ARX_DoctorsHouse_AD_TheDoctor_TransformInCombat_Transformed")
+AND NOT
+DB_GlobalFlag("EG_AppearDoctor")
+AND
+CombatGetIDForCharacter(CHARACTERGUID_S_ARX_DoctorsHouse_TheDoctor_83083470-c543-45b3-ac8a-108df0daca8d, _Var1)
+AND
+CombatGetIDForCharacter(CHARACTERGUID_S_Player_Lohse_bb932b13-8ebf-4ab4-aac0-83e6924e4295, _Var1)
+THEN
+PlayAnimation(CHARACTERGUID_S_ARX_DoctorsHouse_TheDoctor_83083470-c543-45b3-ac8a-108df0daca8d, "cast_shout_cast", "");
+Proc_ARX_DoctorsHouse_TheDoctor_Transform();
+
+IF
+ObjectEnteredCombat(CHARACTERGUID_S_ARX_DoctorsHouse_TheDoctor_83083470-c543-45b3-ac8a-108df0daca8d, (INTEGER)_Var1)
+AND
+CombatGetIDForCharacter(CHARACTERGUID_S_Player_Lohse_bb932b13-8ebf-4ab4-aac0-83e6924e4295, _Var1)
+AND
+GlobalGetFlag("ARX_TheWeakening_Completed", 0)
+AND
+GlobalGetFlag("ARX_TheDoctor_StartRitual", 0)
+AND NOT
+DB_GlobalFlag("EG_AppearDoctor")
+THEN
+GlobalSetFlag("ARX_TheDoctor_StartRitual");
+CharacterEnableWaypointUsage(CHARACTERGUID_S_Player_Lohse_bb932b13-8ebf-4ab4-aac0-83e6924e4295, 0);
+GlobalSetFlag("ARX_TheDoctor_LohseDisabledWaypoints");
+
+IF
+ObjectEnteredCombat(CHARACTERGUID_S_Player_Lohse_bb932b13-8ebf-4ab4-aac0-83e6924e4295, (INTEGER)_Var1)
+AND
+CombatGetIDForCharacter(CHARACTERGUID_S_ARX_DoctorsHouse_TheDoctor_83083470-c543-45b3-ac8a-108df0daca8d, _Var1)
+AND
+GlobalGetFlag("ARX_TheWeakening_Completed", 0)
+AND
+GlobalGetFlag("ARX_TheDoctor_StartRitual", 0)
+AND NOT
+DB_GlobalFlag("EG_AppearDoctor")
+THEN
+GlobalSetFlag("ARX_TheDoctor_StartRitual");
+CharacterEnableWaypointUsage(CHARACTERGUID_S_Player_Lohse_bb932b13-8ebf-4ab4-aac0-83e6924e4295, 0);
+GlobalSetFlag("ARX_TheDoctor_LohseDisabledWaypoints");
+
+IF
+ObjectLeftCombat(CHARACTERGUID_S_Player_Lohse_bb932b13-8ebf-4ab4-aac0-83e6924e4295, _)
+AND
+GlobalGetFlag("ARX_TheDoctor_LohseDisabledWaypoints", 1)
+THEN
+GlobalClearFlag("ARX_TheDoctor_LohseDisabledWaypoints");
+CharacterEnableWaypointUsage(CHARACTERGUID_S_Player_Lohse_bb932b13-8ebf-4ab4-aac0-83e6924e4295, 1);
+
+
+EXITSECTION
+ENDEXITSECTION
+
+ParentTargetEdge "DOS2ModWrapper"

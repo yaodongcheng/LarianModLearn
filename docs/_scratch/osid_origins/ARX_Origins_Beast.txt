@@ -1,0 +1,144 @@
+Version 1
+SubGoalCombiner SGC_AND
+
+INITSECTION
+DB_OriginMomentTag("ARX_Sewers_TheQueen", "BEAST", "ARX_Sewers_TheQueen_COM_Beast");
+DB_OriginMomentTag_3SP("ARX_Sewers_QueenAndQ_FirstEncounter", "BEAST", "ARX_Sewers_QueenAndQ_FirstEncounter_COM_Beast");
+DB_OriginMoment_COMNeverAfterDialog("ARX_Sewers_TheQueen_COM_Beast");
+
+KBSECTION
+IF
+DialogStarted("ARX_DoctorsHouse_TheDoctor_COM_Lohse", _)
+THEN
+NOT DB_OriginMomentTag_3SP("ARX_DoctorsHouse_TheDoctor", "BEAST", "ARX_DoctorsHouse_TheDoctor_COM_Beast");
+
+IF
+ObjectFlagSet("ARX_TheDoctor_UserAcceptedThePact", CHARACTERGUID_S_Player_Beast_f25ca124-a4d2-427b-af62-df66df41a978, _)
+THEN
+NOT DB_OriginMomentTag_3SP("ARX_DoctorsHouse_TheDoctor", "BEAST", "ARX_DoctorsHouse_TheDoctor_COM_Beast");
+
+IF
+DB_OriginMoment_COMREQ_Denied(CHARACTERGUID_S_Player_Beast_f25ca124-a4d2-427b-af62-df66df41a978, CHARACTERGUID_S_ARX_DoctorsHouse_TheDoctor_83083470-c543-45b3-ac8a-108df0daca8d)
+AND
+DB_CompanionAvatarBond(CHARACTERGUID_S_Player_Beast_f25ca124-a4d2-427b-af62-df66df41a978, _Var1)
+THEN
+Proc_StartDialog(0, "ARX_DoctorsHouse_TheDoctor", CHARACTERGUID_S_ARX_DoctorsHouse_TheDoctor_83083470-c543-45b3-ac8a-108df0daca8d, CHARACTERGUID_S_ARX_DoctorsHouse_Nurse_01_649673eb-79f4-417f-9703-2a640a284f12, _Var1);
+
+IF
+ObjectFlagSet("QuestUpdate_FTJ_COM_Beast_IsbeilBR", CHARACTERGUID_S_Player_Beast_f25ca124-a4d2-427b-af62-df66df41a978, (INTEGER)_Var1)
+AND NOT
+DB_ARX_BST_FoundOutIsbeilBRDialogue(_)
+AND
+ObjectGetFlag(CHARACTERGUID_S_Player_Beast_f25ca124-a4d2-427b-af62-df66df41a978, "QuestUpdate_FTJ_COM_Beast_IsbeilQueenEncounter", 0)
+THEN
+DB_ARX_BST_FoundOutIsbeilBRDialogue(_Var1);
+
+IF
+DialogEnded(_, (INTEGER)_Var2)
+AND
+DB_ARX_BST_FoundOutIsbeilBRDialogue(_Var2)
+AND
+ObjectGetFlag(CHARACTERGUID_S_Player_Beast_f25ca124-a4d2-427b-af62-df66df41a978, "QuestUpdate_FTJ_COM_Beast_IsbeilQueenEncounter", 0)
+THEN
+Proc_RelationshipDialog(CHARACTERGUID_S_Player_Beast_f25ca124-a4d2-427b-af62-df66df41a978, "CoS_BST_IsbeilBR_CRD_Beast", CHARACTERGUID_S_Player_Beast_f25ca124-a4d2-427b-af62-df66df41a978);
+
+IF
+DialogEnded("ARX_Sewers_TheQueen_COM_Beast", _)
+AND
+GlobalGetFlag("ARX_Sewers_TheQueen_InKemmsMansion", 0)
+AND NOT
+DB_ARX_Sewers_TheQueen_AssassinationAttemp(_, _)
+AND
+CharacterIsDead(CHARACTERGUID_S_ARX_Sewers_Q_52f20922-7b22-4d47-90f7-83172f21fe3b, 0)
+THEN
+ProcCharacterMoveTo(CHARACTERGUID_S_ARX_Sewers_TheEmpress_78c95ad2-2d1a-4358-9c9c-77ff9a5fc3c9, CHARACTERGUID_S_ARX_Sewers_Q_52f20922-7b22-4d47-90f7-83172f21fe3b, 1, "");
+
+IF
+DialogEnded("ARX_Sewers_TheQueen_COM_Beast", _)
+AND
+GlobalGetFlag("ARX_Sewers_TheQueen_InKemmsMansion", 0)
+AND NOT
+DB_ARX_Sewers_TheQueen_AssassinationAttemp(_, _)
+AND
+CharacterIsDead(CHARACTERGUID_S_ARX_Sewers_Q_52f20922-7b22-4d47-90f7-83172f21fe3b, 1)
+THEN
+Proc_ARX_Sewers_TheQueen_TeleportToKemmsMansion();
+
+IF
+ObjectFlagSet("QuestUpdate_FTJ_COM_Beast_TurnedAssassinationQueen", CHARACTERGUID_S_Player_Beast_f25ca124-a4d2-427b-af62-df66df41a978, (INTEGER)_Var1)
+THEN
+DB_ARX_Sewers_TheQueen_AssassinationAttemp(CHARACTERGUID_S_Player_Beast_f25ca124-a4d2-427b-af62-df66df41a978, _Var1);
+
+IF
+DialogEnded("ARX_Sewers_TheQueen_COM_Beast", _)
+AND
+ObjectGetFlag(CHARACTERGUID_S_Player_Beast_f25ca124-a4d2-427b-af62-df66df41a978, "QuestUpdate_FTJ_COM_Beast_TurnedAssassinationQueen", 1)
+AND
+DB_CompanionAvatarBond(CHARACTERGUID_S_Player_Beast_f25ca124-a4d2-427b-af62-df66df41a978, _Var2)
+THEN
+DB_ARX_BST_BeastAvatarAtAssassination(_Var2);
+PROC_Origins_CompanionLeavePermanently(CHARACTERGUID_S_Player_Beast_f25ca124-a4d2-427b-af62-df66df41a978);
+SetVarFixedString(CHARACTERGUID_S_Player_Beast_f25ca124-a4d2-427b-af62-df66df41a978, "currentState", "");
+CharacterSetRelationIndivFactionToIndivFaction(CHARACTERGUID_S_Player_Beast_f25ca124-a4d2-427b-af62-df66df41a978, _Var2, 0);
+CharacterSetRelationIndivFactionToIndivFaction(_Var2, CHARACTERGUID_S_Player_Beast_f25ca124-a4d2-427b-af62-df66df41a978, 0);
+
+IF
+DialogEnded("ARX_Sewers_QueenAndQ_FirstEncounter_COM_Beast", _)
+AND
+GlobalGetFlag("ARX_Sewers_QueenAndQ_InitiatePurging", 1)
+THEN
+Proc_ARX_Sewers_QueenAndQ_InitiatePurging_Cast();
+
+IF
+ObjectLeftCombat(CHARACTERGUID_S_Player_Beast_f25ca124-a4d2-427b-af62-df66df41a978, (INTEGER)_Var1)
+AND
+DB_CombatCharacters(CHARACTERGUID_S_ARX_Sewers_TheEmpress_78c95ad2-2d1a-4358-9c9c-77ff9a5fc3c9, _Var1)
+AND
+ObjectGetFlag(CHARACTERGUID_S_Player_Beast_f25ca124-a4d2-427b-af62-df66df41a978, "QuestUpdate_FTJ_COM_Beast_AssassinationAttempt", 1)
+AND
+DB_Dead(CHARACTERGUID_S_ARX_Sewers_TheEmpress_78c95ad2-2d1a-4358-9c9c-77ff9a5fc3c9)
+THEN
+Proc_RelationshipDialog(CHARACTERGUID_S_Player_Beast_f25ca124-a4d2-427b-af62-df66df41a978, "ARX_BST_AfterQueenEncounter_CRD_Beast", CHARACTERGUID_S_Player_Beast_f25ca124-a4d2-427b-af62-df66df41a978);
+
+IF
+ObjectLeftCombat(CHARACTERGUID_S_Player_Beast_f25ca124-a4d2-427b-af62-df66df41a978, (INTEGER)_Var1)
+AND
+DB_WasInCombat(CHARACTERGUID_S_ARX_Sewers_TheEmpress_78c95ad2-2d1a-4358-9c9c-77ff9a5fc3c9, _Var1)
+AND
+ObjectGetFlag(CHARACTERGUID_S_Player_Beast_f25ca124-a4d2-427b-af62-df66df41a978, "QuestUpdate_FTJ_COM_Beast_AssassinationAttempt", 1)
+AND
+DB_Dead(CHARACTERGUID_S_ARX_Sewers_TheEmpress_78c95ad2-2d1a-4358-9c9c-77ff9a5fc3c9)
+THEN
+Proc_RelationshipDialog(CHARACTERGUID_S_Player_Beast_f25ca124-a4d2-427b-af62-df66df41a978, "ARX_BST_AfterQueenEncounter_CRD_Beast", CHARACTERGUID_S_Player_Beast_f25ca124-a4d2-427b-af62-df66df41a978);
+
+IF
+ObjectFlagSet("QuestUpdate_FTJ_COM_Beast_Resolve", CHARACTERGUID_S_Player_Beast_f25ca124-a4d2-427b-af62-df66df41a978, _)
+THEN
+Proc_RelationshipDialog(CHARACTERGUID_S_Player_Beast_f25ca124-a4d2-427b-af62-df66df41a978, "ARX_BST_AfterQueenEncounter_CRD_Beast", CHARACTERGUID_S_Player_Beast_f25ca124-a4d2-427b-af62-df66df41a978);
+
+IF
+ObjectFlagSet("ARX_Sewers_TheQueen_AssassinationAttempt", (GUIDSTRING)_Var1, (INTEGER)_Var2)
+THEN
+ObjectSetFlag(_Var1, "QuestUpdate_FTJ_COM_Beast_AssassinationAttempt", _Var2);
+
+IF
+ObjectFlagSet("QuestUpdate_FTJ_COM_Beast_AssassinationAttempt", (GUIDSTRING)_Var1, (INTEGER)_Var2)
+THEN
+ObjectSetFlag(_Var1, "ARX_Sewers_TheQueen_AssassinationAttempt", _Var2);
+
+IF
+CharacterLeftTrigger(CHARACTERGUID_S_Player_Beast_f25ca124-a4d2-427b-af62-df66df41a978, TRIGGERGUID_S_ARX_TheCrash_CrashSite_e8316fd4-b022-4332-8c7f-bf82b0001521)
+AND
+UserGetFlag(CHARACTERGUID_S_Player_Beast_f25ca124-a4d2-427b-af62-df66df41a978, "RC_DW_Lohar_MicheilRos", 1)
+AND
+QRY_AnyRegionActive()
+AND
+QueryOnlyOnce("ARX_BST_ArxMainStarted_CRD_Beast")
+THEN
+Proc_RelationshipDialog(CHARACTERGUID_S_Player_Beast_f25ca124-a4d2-427b-af62-df66df41a978, "ARX_BST_ArxMainStarted_CRD_Beast", CHARACTERGUID_S_Player_Beast_f25ca124-a4d2-427b-af62-df66df41a978);
+
+
+EXITSECTION
+ENDEXITSECTION
+
+ParentTargetEdge "ARX"

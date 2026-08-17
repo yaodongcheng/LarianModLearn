@@ -1,0 +1,44 @@
+Version 1
+SubGoalCombiner SGC_AND
+
+INITSECTION
+DB_LV_HoE_AmbientSoundTriggers(TRIGGERGUID_S_LV_HoE_AmbientSoundTrigger_BottomDeck_4d7e9834-ba7c-4263-b8f8-fa049dca8506);
+DB_LV_HoE_AmbientSoundTriggers(TRIGGERGUID_S_LV_HoE_AmbientSoundTrigger_MiddleDeck_2353478a-6343-46ea-bef3-1dbf11bc84c7);
+DB_LV_HoE_AmbientSoundTriggers(TRIGGERGUID_S_LV_HoE_AmbientSoundTrigger_SecretRoom_fb39505d-8e8e-4324-844e-106760e46809);
+
+KBSECTION
+IF
+RegionStarted("LV_HoE_Main")
+THEN
+PROC_LV_HoE_PlayEnvironmentalSound();
+
+PROC
+PROC_LV_HoE_PlayEnvironmentalSound()
+AND
+GlobalGetFlag("FTJ_LV_StartHoELevel", 0)
+AND
+DB_LV_HoE_AmbientSoundTriggers(_Var1)
+THEN
+PlaySound(_Var1, "Amb_LV_State_Ocean");
+
+IF
+GlobalFlagSet("FTJ_LV_StartHoELevel")
+AND
+DB_LV_HoE_AmbientSoundTriggers(_Var1)
+THEN
+PlaySound(_Var1, "Amb_LV_State_HoE");
+
+PROC
+PROC_LV_HoE_PlayEnvironmentalSound()
+AND
+GlobalGetFlag("FTJ_LV_StartHoELevel", 1)
+AND
+DB_LV_HoE_AmbientSoundTriggers(_Var1)
+THEN
+PlaySound(_Var1, "Amb_LV_State_HoE");
+
+
+EXITSECTION
+ENDEXITSECTION
+
+ParentTargetEdge "LadyVengeance"

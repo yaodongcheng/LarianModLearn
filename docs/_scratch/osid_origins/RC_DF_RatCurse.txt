@@ -1,0 +1,52 @@
+Version 1
+SubGoalCombiner SGC_AND
+
+INITSECTION
+DB_RC_DF_RatCurse_Counter("RC_DF_RatCurse_WallBox_01", 1);
+DB_RC_DF_RatCurse_Counter("RC_DF_RatCurse_WallBox_02", 2);
+DB_RC_DF_RatCurse_Counter("RC_DF_RatCurse_WallBox_03", 3);
+DB_RC_DF_RatCurse_Counter("RC_DF_RatCurse_WallBox_04", 4);
+ProcDeclareCounter("RC_DF_RatCurse_WallBox_01");
+ProcDeclareCounter("RC_DF_RatCurse_WallBox_02");
+ProcDeclareCounter("RC_DF_RatCurse_WallBox_03");
+ProcDeclareCounter("RC_DF_RatCurse_WallBox_04");
+
+KBSECTION
+IF
+StoryEvent((CHARACTERGUID)_Var1, "RC_DF_RatCurse_RatSpawned")
+AND
+QRY_GetFairRand("RC_DF_RatCurse_TriggerNum", 4)
+AND
+DB_FairRand_ReturnVal(_Var2)
+AND
+DB_RC_DF_RatCurse_Counter(_Var3, _Var2)
+AND
+DB_GlobalCounter(_Var3, _Var4)
+AND
+_Var4 < 5
+AND
+ObjectGetFlag(_Var1, "RC_DF_RatCurse_RatTriggered", 0)
+THEN
+PROC_RC_DF_RatCurse_RatTrigger(_Var1, _Var3);
+
+PROC
+PROC_RC_DF_RatCurse_RatTrigger((CHARACTERGUID)_Var1, (STRING)_Var2)
+THEN
+ObjectSetFlag(_Var1, _Var2);
+ObjectSetFlag(_Var1, "RC_DF_RatCurse_RatTriggered");
+ProcIncreaseCounter(_Var2);
+
+IF
+StoryEvent((CHARACTERGUID)_Var1, "RC_DF_RatCurse_RatDied")
+AND
+DB_RC_DF_RatCurse_Counter(_Var2, _)
+AND
+ObjectGetFlag(_Var1, _Var2, 1)
+THEN
+ProcDecreaseCounter(_Var2);
+
+
+EXITSECTION
+ENDEXITSECTION
+
+ParentTargetEdge "ReapersCoast"

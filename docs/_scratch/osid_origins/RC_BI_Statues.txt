@@ -1,0 +1,635 @@
+Version 1
+SubGoalCombiner SGC_AND
+
+INITSECTION
+ProcDeclareCounter("RC_BI_Vault_Completed");
+AddEntryToCustomBook("RC_BI_Vaults_SongBook_AllTags", "RC_BI_Vaults_SongBook_AllTags");
+DB_BI_Vault_Entrances(S_RC_BI_Vault_Statue_001_f54138c5-5aef-4a00-8ac5-3766c05ca3f6, S_RC_BI_Vault_Hatch_001_5bbc793f-ac42-4691-9410-a0bfb38bbf26);
+DB_BI_Vault_Entrances(S_RC_BI_Vault_Statue_002_faff8047-034e-4fce-8e0e-9840cdd7349b, S_RC_BI_Vault_Hatch_002_b61caa73-eefb-4480-97fa-7e22d5946c1a);
+DB_BI_Vault_Entrances(S_RC_BI_Vault_Statue_003_4c1562f2-349f-49fa-9219-0ed14166b2cb, S_RC_BI_Vault_Hatch_003_03233eb3-647e-4330-876d-fbb137d9cad7);
+DB_BI_Vault_Entrances(ITEMGUID_S_RC_BI_Vault_Statue_004_97cdaa15-e5c7-40a5-8da1-b273e781f2b1, ITEMGUID_S_RC_BI_Vault_Hatch_004_abd8dba1-1b89-49fb-ae89-99d2797accf4);
+DB_BI_Vault_StatueDestroyedUpdate(S_RC_BI_Vault_Statue_001_f54138c5-5aef-4a00-8ac5-3766c05ca3f6, "QuestUpdate_RC_BI_TheVaultAdventurer_OpenSeal");
+DB_BI_Vault_StatueDestroyedUpdate(S_RC_BI_Vault_Statue_002_faff8047-034e-4fce-8e0e-9840cdd7349b, "QuestUpdate_RC_BI_TheVaultKid_OpenSeal");
+DB_BI_Vault_StatueDestroyedUpdate(S_RC_BI_Vault_Statue_003_4c1562f2-349f-49fa-9219-0ed14166b2cb, "QuestUpdate_RC_BI_TheVaultGodwoken_OpenSeal");
+DB_BI_Vault_DoorsLever(S_RC_BI_Vault_Door_001_37c50142-7a81-4614-a2fb-dd9c5202557a, S_RC_BI_Vault_Lever_001_4f43bd22-1613-468b-8a19-41b7500c9cf3, "QUEST_VaultLever_Broken_A_d6d03498-6b62-4232-bb08-4c7d20293399");
+DB_BI_Vault_DoorsLever(S_RC_BI_Vault_Door_002_fbadd1fb-1b06-4b7a-a0bc-0aaeb76965a8, S_RC_BI_Vault_Lever_002_ae44746c-a239-4654-bd5b-fbc7eb204c3f, "QUEST_VaultLever_Broken_B_b63f003a-9f83-4862-b2e3-2315619345e5");
+DB_BI_Vault_DoorsLever(S_RC_BI_Vault_Door_003_af886608-4f0f-4edc-aff2-fafa3d732b72, S_RC_BI_Vault_Lever_003_83387865-a734-4af1-a435-5af7432bad4b, "QUEST_VaultLever_Broken_C_9c2d3731-6413-4d30-b767-40550cc52611");
+DB_BI_Vault_LeverUpdate(S_RC_BI_Vault_Lever_001_4f43bd22-1613-468b-8a19-41b7500c9cf3, "QuestUpdate_RC_BI_TheVaultAdventurer_UsedBrokenLever", "QuestUpdate_RC_BI_TheVaultAdventurer_RepairLever", "QuestUpdate_RC_BI_TheVaultAdventurer_UsedBrokenLever", "QuestUpdate_RC_BI_TheVaultAdventurer_OpenedDoor");
+DB_BI_Vault_LeverUpdate(S_RC_BI_Vault_Lever_002_ae44746c-a239-4654-bd5b-fbc7eb204c3f, "QuestUpdate_RC_BI_TheVaultKid_UsedBrokenLever", "QuestUpdate_RC_BI_TheVaultKid_RepairLever", "QuestUpdate_RC_BI_TheVaultKid_UsedEnchantedLever", "QuestUpdate_RC_BI_TheVaultKid_OpenedDoor");
+DB_BI_Vault_LeverUpdate(S_RC_BI_Vault_Lever_003_83387865-a734-4af1-a435-5af7432bad4b, "QuestUpdate_RC_BI_TheVaultGodwoken_UsedBrokenLever", "QuestUpdate_RC_BI_TheVaultGodwoken_RepairLever", "QuestUpdate_RC_BI_TheVaultGodwoken_UsedEnchantedLever", "QuestUpdate_RC_BI_TheVaultGodwoken_OpenedDoor");
+ItemOpen(ITEMGUID_S_RC_BI_Vault_Door_004_30dea32e-2af9-444e-b48d-447e9aec238f);
+ItemSetCanInteract(ITEMGUID_S_RC_BI_Vault_Door_004_30dea32e-2af9-444e-b48d-447e9aec238f, 0);
+Transform(ITEMGUID_S_RC_BI_Vault_Lever_004_adfbcfb4-7d80-4986-9a0b-0eb334122f36, "QUEST_VaultLever_Repaired_42d170f8-5798-4b8d-994f-b987f522ec52", 1);
+DB_BI_Vault_LeverGhost(S_RC_BI_Vault_Lever_001_4f43bd22-1613-468b-8a19-41b7500c9cf3, S_RC_BI_Vault_Ghost_001_28a0a573-7f60-4516-b68e-537f57e5db84);
+DB_BI_Vault_LeverGhost(S_RC_BI_Vault_Lever_002_ae44746c-a239-4654-bd5b-fbc7eb204c3f, S_RC_BI_Vault_Ghost_002_b5697652-50a0-4db5-a195-9584b56f7c81);
+DB_BI_Vault_LeverGhost(S_RC_BI_Vault_Lever_003_83387865-a734-4af1-a435-5af7432bad4b, S_RC_BI_Vault_Ghost_003_9f9f0a92-4985-4f7d-9102-e6c6dcb381bc);
+DB_BI_Vault_Areas(S_RC_BI_Vault_Area_001_853b8a41-6591-4e2c-a149-9841dc7f8655);
+DB_BI_Vault_Areas(S_RC_BI_Vault_Area_002_58f8c677-8c3a-4bb9-ac19-673d1635f72c);
+DB_BI_Vault_Areas(S_RC_BI_Vault_Area_003_01202eb7-1bf4-4985-a642-2e70fdcd0781);
+DB_BI_Vault_Areas(S_RC_BI_Vault_Area_004_00a88ef6-bc40-4a72-b039-c063075d0833);
+DB_PossessedDemon(CHARACTERGUID_S_RC_BI_Vault_PosessedPerson_001_f0d1f343-fc73-4c09-8d13-ed37bf51ae25, CHARACTERGUID_S_RC_BI_Vault_Demon_001_01c5d4d3-425f-42fd-8200-528b14aafec8);
+DB_PossessedGhost(CHARACTERGUID_S_RC_BI_Vault_PosessedPerson_001_f0d1f343-fc73-4c09-8d13-ed37bf51ae25, CHARACTERGUID_S_RC_BI_Vault_Ghost_001_28a0a573-7f60-4516-b68e-537f57e5db84);
+DB_PossessedGhost(CHARACTERGUID_S_RC_BI_Vault_PosessedPerson_002_1bfd9e78-846f-4f24-82db-6ebb48ddc203, CHARACTERGUID_S_RC_BI_Vault_Ghost_002_b5697652-50a0-4db5-a195-9584b56f7c81);
+DB_PossessedGhost(CHARACTERGUID_S_RC_BI_Vault_PosessedPerson_003_019e266d-2d45-4818-a778-2cebffdcd743, CHARACTERGUID_S_RC_BI_Vault_Ghost_003_9f9f0a92-4985-4f7d-9102-e6c6dcb381bc);
+DB_Ghosts(S_RC_BI_Vault_Ghost_001_28a0a573-7f60-4516-b68e-537f57e5db84, "RC_BI_Vault_Ghost_001");
+DB_Ghosts(S_RC_BI_Vault_Ghost_002_b5697652-50a0-4db5-a195-9584b56f7c81, "RC_BI_Vault_Ghost_002");
+DB_Ghosts(S_RC_BI_Vault_Ghost_003_9f9f0a92-4985-4f7d-9102-e6c6dcb381bc, "RC_BI_Vault_Ghost_003");
+ProcTriggerRegisterForPlayers(TRIGGERGUID_S_RC_BI_Vault_Prison_001_ed3c583a-2c8d-4022-8cc1-07e15849ad2b);
+ProcTriggerRegisterForPlayers(TRIGGERGUID_S_RC_BI_Vault_Prison_002_84d2cd3a-c3e1-42e4-ad67-5a7393baeeea);
+ProcTriggerRegisterForPlayers(TRIGGERGUID_S_RC_BI_Vault_Prison_003_0f989d97-4c51-4fef-9124-3d15a03238c8);
+ProcTriggerRegisterForPlayers(TRIGGERGUID_S_RC_BI_Vault_Prison_004_46f34536-7940-471e-9baa-7689f6e20cb5);
+DB_BI_Vault_VampirismDamage(100);
+DB_Dialogs(CHARACTERGUID_S_RC_BI_Vault_PosessedPerson_002_1bfd9e78-846f-4f24-82db-6ebb48ddc203, "RC_BI_Vault_Possessed_002");
+DB_Dialogs(CHARACTERGUID_S_RC_BI_Vault_PosessedPerson_003_019e266d-2d45-4818-a778-2cebffdcd743, "RC_BI_Vault_Possessed_003");
+DB_Dialogs(CHARACTERGUID_S_RC_BI_Vault_Cat_de900e03-eb64-4515-a2f6-7be33c72f7a1, "RC_BI_Vault_Cat");
+DB_RC_BI_Vault_PillarsDestroyedUpdate(1, "QuestUpdate_RC_BI_TheVaultAdventurer_DestroyedPillars");
+DB_RC_BI_Vault_PillarsDestroyedUpdate(2, "QuestUpdate_RC_BI_TheVaultKid_DestroyedPillars");
+DB_RC_BI_Vault_PillarsDestroyedUpdate(3, "QuestUpdate_RC_BI_TheVaultGodwoken_DestroyedPillars");
+DB_RC_BI_Vault_Pillars(ITEMGUID_S_RC_BI_Vault_001_Pillar_1_64ba83d3-0ce4-4991-8596-19a625e4e359, CHARACTERGUID_S_RC_BI_Vault_PosessedPerson_001_f0d1f343-fc73-4c09-8d13-ed37bf51ae25, CHARACTERGUID_S_RC_BI_Vault_Ghost_001_28a0a573-7f60-4516-b68e-537f57e5db84, "RC_BI_Vault_001_Pillar_1", 1);
+DB_RC_BI_Vault_Pillars(ITEMGUID_S_RC_BI_Vault_001_Pillar_2_2deeae6b-0d16-4d74-8d72-0efbbae537d9, CHARACTERGUID_S_RC_BI_Vault_PosessedPerson_001_f0d1f343-fc73-4c09-8d13-ed37bf51ae25, CHARACTERGUID_S_RC_BI_Vault_Ghost_001_28a0a573-7f60-4516-b68e-537f57e5db84, "RC_BI_Vault_001_Pillar_2", 1);
+DB_RC_BI_Vault_Pillars(ITEMGUID_S_RC_BI_Vault_001_Pillar_3_923d5f19-29dd-4441-9256-53d1c288894f, CHARACTERGUID_S_RC_BI_Vault_PosessedPerson_001_f0d1f343-fc73-4c09-8d13-ed37bf51ae25, CHARACTERGUID_S_RC_BI_Vault_Ghost_001_28a0a573-7f60-4516-b68e-537f57e5db84, "RC_BI_Vault_001_Pillar_3", 1);
+DB_RC_BI_Vault_Pillars(ITEMGUID_S_RC_BI_Vault_001_Pillar_4_8d5000cf-a519-4146-b077-4d078ec8cb74, CHARACTERGUID_S_RC_BI_Vault_PosessedPerson_001_f0d1f343-fc73-4c09-8d13-ed37bf51ae25, CHARACTERGUID_S_RC_BI_Vault_Ghost_001_28a0a573-7f60-4516-b68e-537f57e5db84, "RC_BI_Vault_001_Pillar_4", 1);
+DB_RC_BI_Vault_Pillars_Count(CHARACTERGUID_S_RC_BI_Vault_PosessedPerson_001_f0d1f343-fc73-4c09-8d13-ed37bf51ae25, 4, "RC_BI_Vault_001_Shackled");
+DB_RC_BI_Vault_Pillars(ITEMGUID_S_RC_BI_Vault_002_Pillar_1_26fa2b71-c3c4-4eb9-b75c-5207976a0e21, CHARACTERGUID_S_RC_BI_Vault_PosessedPerson_002_1bfd9e78-846f-4f24-82db-6ebb48ddc203, CHARACTERGUID_S_RC_BI_Vault_Ghost_002_b5697652-50a0-4db5-a195-9584b56f7c81, "RC_BI_Vault_002_Pillar_1", 2);
+DB_RC_BI_Vault_Pillars(ITEMGUID_S_RC_BI_Vault_002_Pillar_2_346fe8b5-ca30-46e5-bebb-cf67eef99f44, CHARACTERGUID_S_RC_BI_Vault_PosessedPerson_002_1bfd9e78-846f-4f24-82db-6ebb48ddc203, CHARACTERGUID_S_RC_BI_Vault_Ghost_002_b5697652-50a0-4db5-a195-9584b56f7c81, "RC_BI_Vault_002_Pillar_2", 2);
+DB_RC_BI_Vault_Pillars(ITEMGUID_S_RC_BI_Vault_002_Pillar_3_51492ff5-576e-40f7-904b-6809fc397dc1, CHARACTERGUID_S_RC_BI_Vault_PosessedPerson_002_1bfd9e78-846f-4f24-82db-6ebb48ddc203, CHARACTERGUID_S_RC_BI_Vault_Ghost_002_b5697652-50a0-4db5-a195-9584b56f7c81, "RC_BI_Vault_002_Pillar_3", 2);
+DB_RC_BI_Vault_Pillars(ITEMGUID_S_RC_BI_Vault_002_Pillar_4_906ef4c9-03b4-4a81-9e8d-6f1bcd3fa66f, CHARACTERGUID_S_RC_BI_Vault_PosessedPerson_002_1bfd9e78-846f-4f24-82db-6ebb48ddc203, CHARACTERGUID_S_RC_BI_Vault_Ghost_002_b5697652-50a0-4db5-a195-9584b56f7c81, "RC_BI_Vault_002_Pillar_4", 2);
+DB_RC_BI_Vault_Pillars_Count(CHARACTERGUID_S_RC_BI_Vault_PosessedPerson_002_1bfd9e78-846f-4f24-82db-6ebb48ddc203, 4, "RC_BI_Vault_002_Shackled");
+DB_RC_BI_Vault_Pillars(ITEMGUID_S_RC_BI_Vault_003_Pillar_1_34266b5f-1db1-4c7d-b5fc-c82d271ca4e4, CHARACTERGUID_S_RC_BI_Vault_PossessedPerson_003_019e266d-2d45-4818-a778-2cebffdcd743, CHARACTERGUID_S_RC_BI_Vault_Ghost_003_9f9f0a92-4985-4f7d-9102-e6c6dcb381bc, "RC_BI_Vault_003_Pillar_1", 3);
+DB_RC_BI_Vault_Pillars(ITEMGUID_S_RC_BI_Vault_003_Pillar_2_8fd41645-db15-4525-99e0-b33d099e81d3, CHARACTERGUID_S_RC_BI_Vault_PossessedPerson_003_019e266d-2d45-4818-a778-2cebffdcd743, CHARACTERGUID_S_RC_BI_Vault_Ghost_003_9f9f0a92-4985-4f7d-9102-e6c6dcb381bc, "RC_BI_Vault_003_Pillar_2", 3);
+DB_RC_BI_Vault_Pillars(ITEMGUID_S_RC_BI_Vault_003_Pillar_3_482cef46-f975-442b-aa9d-3c019693f2f9, CHARACTERGUID_S_RC_BI_Vault_PossessedPerson_003_019e266d-2d45-4818-a778-2cebffdcd743, CHARACTERGUID_S_RC_BI_Vault_Ghost_003_9f9f0a92-4985-4f7d-9102-e6c6dcb381bc, "RC_BI_Vault_003_Pillar_3", 3);
+DB_RC_BI_Vault_Pillars(ITEMGUID_S_RC_BI_Vault_003_Pillar_4_e0596ccb-7343-4aec-8ce5-7909cf21070c, CHARACTERGUID_S_RC_BI_Vault_PossessedPerson_003_019e266d-2d45-4818-a778-2cebffdcd743, CHARACTERGUID_S_RC_BI_Vault_Ghost_003_9f9f0a92-4985-4f7d-9102-e6c6dcb381bc, "RC_BI_Vault_003_Pillar_4", 3);
+DB_RC_BI_Vault_Pillars_Count(CHARACTERGUID_S_RC_BI_Vault_PossessedPerson_003_019e266d-2d45-4818-a778-2cebffdcd743, 4, "RC_BI_Vault_003_Shackled");
+DB_KilledEvent(CHARACTERGUID_S_RC_BI_Vault_PosessedPerson_001_f0d1f343-fc73-4c09-8d13-ed37bf51ae25, "QuestUpdate_RC_BI_TheVaultAdventurer_KilledAdventurer");
+DB_KilledEvent(CHARACTERGUID_S_RC_BI_Vault_Cat_de900e03-eb64-4515-a2f6-7be33c72f7a1, "QuestUpdate_RC_BI_TheVaultKid_KilledCat");
+DB_KilledEvent(CHARACTERGUID_S_RC_BI_Vault_PossessedPerson_003_019e266d-2d45-4818-a778-2cebffdcd743, "QuestUpdate_RC_BI_TheVaultGodwoken_KilledGodwoken");
+DB_Dialogs(ITEMGUID_S_RC_BI_AncientForge_2ede0521-33b0-42f5-b21e-597fd0d34b63, "RC_BI_AncientForge");
+DB_OneShot_VoiceBarkTrigger(TRIGGERGUID_S_RC_BI_VB_Forge_bc44ed50-393b-4207-aa46-b060a61b34de, "RC_BI_VB_AncientForge");
+ProcTriggerRegisterForPlayers(TRIGGERGUID_S_RC_BI_Forge_Journal_0ab08169-35f1-4e77-b389-b1c502e99052);
+DB_RC_BI_Vault_ForgeJournal(1, "QuestUpdate_RC_BI_TheVaults_FoundForgeRecipe");
+DB_RC_BI_Vault_ForgeJournal(0, "QuestUpdate_RC_BI_TheVaults_FoundForgeNoRecipe");
+
+KBSECTION
+IF
+ObjectFlagSet("QuestUpdate_RC_BI_TheVaults_KilledAdventurer", (GUIDSTRING)_Var1, _)
+AND NOT
+DB_OnlyOnce("RC_BI_Vault_001_Completed")
+THEN
+ProcIncreaseCounter("RC_BI_Vault_Completed");
+ObjectSetFlag(_Var1, "RC_BI_Vault_CompletedAtLeastOne");
+DB_OnlyOnce("RC_BI_Vault_001_Completed");
+
+IF
+ObjectFlagSet("QuestUpdate_RC_BI_TheVaults_SavedAdventurer", (GUIDSTRING)_Var1, _)
+AND NOT
+DB_OnlyOnce("RC_BI_Vault_001_Completed")
+THEN
+ProcIncreaseCounter("RC_BI_Vault_Completed");
+ObjectSetFlag(_Var1, "RC_BI_Vault_CompletedAtLeastOne");
+DB_OnlyOnce("RC_BI_Vault_001_Completed");
+
+IF
+ObjectFlagSet("QuestUpdate_RC_BI_TheVaults_TookKid", (GUIDSTRING)_Var1, _)
+AND NOT
+DB_OnlyOnce("RC_BI_Vault_002_Completed")
+THEN
+ProcIncreaseCounter("RC_BI_Vault_Completed");
+ObjectSetFlag(_Var1, "RC_BI_Vault_CompletedAtLeastOne");
+DB_OnlyOnce("RC_BI_Vault_002_Completed");
+
+IF
+ObjectFlagSet("QuestUpdate_RC_BI_TheVaults_KilledGodwoken", (GUIDSTRING)_Var1, _)
+AND NOT
+DB_OnlyOnce("RC_BI_Vault_003_Completed")
+THEN
+ProcIncreaseCounter("RC_BI_Vault_Completed");
+ObjectSetFlag(_Var1, "RC_BI_Vault_CompletedAtLeastOne");
+DB_OnlyOnce("RC_BI_Vault_003_Completed");
+
+IF
+CharacterUsedItem((CHARACTERGUID)_Var1, S_RC_BI_Vault_Statue_001_f54138c5-5aef-4a00-8ac5-3766c05ca3f6)
+THEN
+ProcShowMarker(_Var1, "RC_BI_Vault_001");
+
+IF
+CharacterUsedItem((CHARACTERGUID)_Var1, S_RC_BI_Vault_Statue_002_faff8047-034e-4fce-8e0e-9840cdd7349b)
+THEN
+ProcShowMarker(_Var1, "RC_BI_Vault_002");
+
+IF
+CharacterUsedItem((CHARACTERGUID)_Var1, S_RC_BI_Vault_Statue_003_4c1562f2-349f-49fa-9219-0ed14166b2cb)
+THEN
+ProcShowMarker(_Var1, "RC_BI_Vault_003");
+
+IF
+DB_GlobalCounter("RC_BI_Vault_Completed", 3)
+AND
+DB_IsPlayer(_Var1)
+THEN
+ObjectSetFlag(_Var1, "QuestUpdate_RC_BI_TheVaults_Completed");
+ProcHideMarker(_Var1, "RC_BI_Vault_001");
+ProcHideMarker(_Var1, "RC_BI_Vault_002");
+ProcHideMarker(_Var1, "RC_BI_Vault_003");
+
+IF
+ObjectFlagSet("QuestUpdate_RC_BI_TheVaults_Completed", (CHARACTERGUID)_Var1, _)
+AND
+DB_IsPlayer(_Var1)
+THEN
+ProcGiveQuestReward(_Var1, "RC_BI_TheVaults", "QuestReward");
+
+IF
+DB_RC_BI_Vault_Pillars(_Var1, _, _, _, _)
+THEN
+ItemSetForceSynch(_Var1, 1);
+
+IF
+DB_PossessedGhost(_Var1, _)
+THEN
+CharacterSetForceSynch(_Var1, 1);
+
+PROC
+ProcRegionEnded("RC_Main")
+AND
+DB_RC_BI_Vault_Pillars(_Var1, _, _, _, _)
+THEN
+ItemSetForceSynch(_Var1, 0);
+
+PROC
+ProcRegionEnded("RC_Main")
+AND
+DB_PossessedGhost(_Var1, _)
+AND NOT
+DB_Dead(_Var1)
+THEN
+CharacterSetForceSynch(_Var1, 0);
+
+IF
+CharacterEnteredTrigger((CHARACTERGUID)_Var1, S_RC_BI_BloodIslandRegion_9c0a84b1-314c-4262-b33b-26cfcdfc10ee)
+AND
+DB_IsPlayer(_Var1)
+AND
+ObjectGetFlag(_Var1, "RC_BI_Vault_CompletedAtLeastOne", 1)
+AND
+PartyGetFlag(_Var1, "RC_BI_Vault_CompletedAtLeastOne_RD", 0)
+THEN
+ProcDefineReflectionDialog("RC_BI_RD_Vault_CompletedAtLeastOne", _Var1);
+PartySetFlag(_Var1, "RC_BI_Vault_CompletedAtLeastOne_RD");
+
+IF
+CharacterUsedItem((CHARACTERGUID)_Var1, (ITEMGUID)_Var2)
+AND
+GetTemplate(_Var2, "QUEST_BOOK_RC_BI_Hymn_49ed93f4-ecaf-4119-9066-4067d76ed2ca")
+AND
+IsTagged(_Var1, "SCHOLAR", 1)
+THEN
+OpenCustomBookUI(_Var1, "RC_BI_Vaults_SongBook_AllTags");
+ObjectSetFlag(_Var1, "QuestUpdate_RC_BI_TheVaults_LearnedHymn");
+
+IF
+DB_BI_Vault_Entrances(_Var1, _Var2)
+THEN
+ItemSetCanInteract(_Var2, 0);
+
+IF
+CharacterUsedItem((CHARACTERGUID)_Var1, (ITEMGUID)_Var2)
+AND
+DB_BI_Vault_Entrances(_Var2, _Var3)
+THEN
+Proc_StartDialog(0, "RC_BI_Vault_Statue_Generic", _Var2, _Var1);
+ObjectSetFlag(_Var1, "QuestUpdate_RC_BI_TheVaults_DiscoveredStatues");
+
+IF
+ObjectFlagSet("RC_BI_Vault_Destroy", (ITEMGUID)_Var1, (INTEGER)_Var2)
+AND
+DB_DialogPlayers(_Var2, _Var3, _)
+AND
+DB_BI_Vault_StatueDestroyedUpdate(_Var1, _Var5)
+THEN
+ItemSetCanInteract(_Var1, 0);
+DialogRequestStop(_Var1);
+ProcObjectTimer(_Var1, "Timer_RC_BI_VaultDamage", 1000);
+PartySetFlag(_Var3, _Var5);
+
+PROC
+ProcObjectTimerFinished((ITEMGUID)_Var1, "Timer_RC_BI_VaultDamage")
+AND
+DB_BI_Vault_Entrances(_Var1, _Var2)
+AND
+GetPosition(_Var1, _Var3, _Var4, _Var5)
+THEN
+ItemDestroy(_Var1);
+PlayScaledEffectAtPosition("RS3_FX_GP_Impacts_InfectiousFlame_01", 1.5, _Var3, _Var4, _Var5);
+
+IF
+ItemDestroyed((ITEMGUID)_Var1)
+AND
+DB_BI_Vault_Entrances(_Var1, _Var2)
+THEN
+NOT DB_BI_Vault_Entrances(_Var1, _Var2);
+ItemSetCanInteract(_Var2, 1);
+
+IF
+DialogEnded("RC_BI_Vault_Statue_Generic", (INTEGER)_Var1)
+AND
+DialogGetInvolvedNPC(_Var1, 1, _Var2)
+AND
+DialogGetInvolvedPlayer(_Var1, 1, _Var3)
+AND
+UserGetFlag(_Var3, "RC_BI_Vault_SangSong", 0)
+AND
+ObjectGetFlag(_Var2, "RC_BI_Vault_Destroy", 1)
+THEN
+StartVoiceBark("RC_BI_VB_Vault_Statue_Song", _Var3);
+UserSetFlag(_Var3, "RC_BI_Vault_SangSong");
+
+PROC
+ProcObjectTimerFinished((GUIDSTRING)_Var1, "Timer_RC_BI_VaultDamage")
+AND
+HasActiveStatus(_Var1, "NECROFIRE", 0)
+THEN
+ProcObjectTimerCancel(_Var1, "Timer_RC_BI_VaultDamage");
+
+IF
+DB_BI_Vault_Areas(_Var1)
+THEN
+ProcTriggerRegisterForPlayers(_Var1);
+
+IF
+DB_BI_Vault_DoorsLever(_Var1, _, _)
+THEN
+ItemSetCanInteract(_Var1, 0);
+
+IF
+DB_PossessedDemon(_Var1, _Var2)
+THEN
+SetOnStage(_Var2, 0);
+ProcCharacterDisableAllCrimes(_Var1);
+
+IF
+DialogEnded((STRING)_Var1, (INTEGER)_Var2)
+AND
+DB_Ghosts(_Var3, _Var1)
+AND
+DB_BI_Vault_LeverGhost(_Var4, _Var3)
+AND
+ObjectGetFlag(_Var3, "RC_BI_Vault_Persuaded", 1)
+AND
+ObjectGetFlag(_Var3, "RC_BI_Vault_Opened", 0)
+THEN
+ObjectSetFlag(_Var4, "RC_BI_Vault_Unsealed");
+ObjectSetFlag(_Var3, "RC_BI_Vault_Opened");
+SetHasDialog(_Var3, 0);
+CharacterUseItem(_Var3, _Var4, "RC_BI_Vault_LeverUsed");
+
+IF
+StoryEvent((GUIDSTRING)_Var1, "RC_BI_Vault_LeverUsed")
+THEN
+SetHasDialog(_Var1, 1);
+
+IF
+CharacterEnteredTrigger((CHARACTERGUID)_Var1, S_RC_BI_Vault_Area_001_853b8a41-6591-4e2c-a149-9841dc7f8655)
+THEN
+PartySetFlag(_Var1, "QuestUpdate_RC_BI_TheVaultAdventurer_EnterVault");
+Proc_BI_VaultEnter(_Var1);
+
+IF
+CharacterEnteredTrigger((CHARACTERGUID)_Var1, S_RC_BI_Vault_Area_002_58f8c677-8c3a-4bb9-ac19-673d1635f72c)
+THEN
+PartySetFlag(_Var1, "QuestUpdate_RC_BI_TheVaultKid_EnterVault");
+Proc_BI_VaultEnter(_Var1);
+
+IF
+CharacterEnteredTrigger((CHARACTERGUID)_Var1, S_RC_BI_Vault_Area_003_01202eb7-1bf4-4985-a642-2e70fdcd0781)
+THEN
+PartySetFlag(_Var1, "QuestUpdate_RC_BI_TheVaultGodwoken_EnterVault");
+Proc_BI_VaultEnter(_Var1);
+
+IF
+CharacterEnteredTrigger((CHARACTERGUID)_Var1, S_RC_BI_Vault_Area_004_00a88ef6-bc40-4a72-b039-c063075d0833)
+AND
+UserGetFlag(_Var1, "RC_BI_SawEmptyVault", 0)
+THEN
+UserSetFlag(_Var1, "RC_BI_SawEmptyVault");
+StartVoiceBark("RC_BI_VB_EmptyVault", _Var1);
+
+PROC
+Proc_BI_VaultEnter((CHARACTERGUID)_Var1)
+AND
+UserGetFlag(_Var1, "RC_BI_SawVault", 0)
+AND
+ObjectGetFlag(_Var1, "QuestUpdate_RC_BI_TheVaults_LearnedAboutVaults", 0)
+THEN
+UserSetFlag(_Var1, "RC_BI_SawVault");
+StartVoiceBark("RC_BI_VB_Vault", _Var1);
+ObjectSetFlag(_Var1, "QuestUpdate_RC_BI_TheVaults_DiscoveredRuins");
+
+PROC
+Proc_BI_VaultEnter((CHARACTERGUID)_Var1)
+AND
+UserGetFlag(_Var1, "RC_BI_SawVault", 0)
+AND
+ObjectGetFlag(_Var1, "QuestUpdate_RC_BI_TheVaults_LearnedAboutVaults", 1)
+THEN
+UserSetFlag(_Var1, "RC_BI_SawVault");
+StartVoiceBark("RC_BI_VB_Vault_Seen", _Var1);
+ObjectSetFlag(_Var1, "QuestUpdate_RC_BI_TheVaults_DiscoveredRuins");
+
+IF
+CharacterGhostDestroyed((CHARACTERGUID)_Var1, (CHARACTERGUID)_Var1)
+AND
+DB_BI_Vault_LeverGhost(_Var2, _Var1)
+AND
+DB_BI_Vault_DoorsLever(_Var3, _Var2, _)
+THEN
+PlayEffect(_Var2, "RS3_FX_GP_ScriptedEvent_Source_Absorb_01");
+ObjectSetFlag(_Var2, "RC_BI_Vault_Unsealed");
+
+IF
+CharacterUsedItem((CHARACTERGUID)_Var1, (ITEMGUID)_Var2)
+AND
+DB_BI_Vault_DoorsLever(_Var3, _Var2, _)
+AND
+ObjectGetFlag(_Var1, "RC_BI_Vault_Persuaded", 1)
+THEN
+ItemOpen(_Var3);
+PlayEffect(_Var2, "RS3_FX_GP_ScriptedEvent_Source_Absorb_01");
+
+IF
+CharacterUsedItem((CHARACTERGUID)_Var1, (ITEMGUID)_Var2)
+AND
+DB_BI_Vault_DoorsLever(_Var3, _Var2, _)
+AND
+ObjectGetFlag(_Var1, "RC_BI_Vault_Persuaded", 0)
+THEN
+Proc_RC_BI_Vault_UseLever(_Var3, _Var2, _Var1);
+
+IF
+ItemTemplateCombinedWithItemTemplate((STRING)_Var1, "QUEST_RC_BI_LeverShaft_292e3398-730c-4a74-a48a-ee8adb2f7bce", _, _, _, (CHARACTERGUID)_Var5, _)
+AND
+DB_BI_Vault_DoorsLever(_Var7, _Var8, _Var1)
+AND
+DB_BI_Vault_LeverGhost(_Var8, _Var9)
+AND
+DB_BI_Vault_LeverUpdate(_Var8, _, _Var11, _, _)
+AND
+GetItemForItemTemplateInPartyInventory(_Var5, "QUEST_RC_BI_LeverShaft_292e3398-730c-4a74-a48a-ee8adb2f7bce", _Var14)
+THEN
+PartySetFlag(_Var5, _Var11);
+Transform(_Var8, "QUEST_VaultLever_Repaired_42d170f8-5798-4b8d-994f-b987f522ec52", 1, 0, 1);
+PlayEffect(_Var8, "RS3_FX_GP_ScriptedEvent_Teleport_GenericSmoke_01");
+ObjectSetFlag(_Var8, "RC_BI_Vault_Repaired", 1);
+ObjectSetFlag(_Var9, "RC_BI_Vault_Repaired", 1);
+CloseUI(_Var5, "Crafting");
+
+PROC
+Proc_RC_BI_Vault_UseLever((ITEMGUID)_Var1, (ITEMGUID)_Var2, (CHARACTERGUID)_Var3)
+AND
+ObjectGetFlag(_Var2, "RC_BI_Vault_Repaired", 0)
+AND
+DB_BI_Vault_LeverUpdate(_Var2, _Var4, _, _, _)
+THEN
+Proc_StartDialog(0, "RC_BI_Vault_Lever_Generic", _Var2, _Var3);
+PartySetFlag(_Var3, "QuestUpdate_RC_BI_TheVaults_UsedBrokenLever");
+PartySetFlag(_Var3, _Var4);
+
+IF
+ObjectFlagSet("RC_BI_Vault_Lever_Repair", (ITEMGUID)_Var1, (INTEGER)_Var2)
+AND
+DialogGetInvolvedPlayer(_Var2, 1, _Var3)
+THEN
+DialogRequestStop(_Var3);
+OpenCraftUI(_Var3, _Var1);
+ObjectClearFlag(_Var1, "RC_BI_Vault_Lever_Repair");
+
+PROC
+Proc_RC_BI_Vault_UseLever((ITEMGUID)_Var1, (ITEMGUID)_Var2, (CHARACTERGUID)_Var3)
+AND
+ObjectGetFlag(_Var2, "RC_BI_Vault_Repaired", 1)
+AND
+ObjectGetFlag(_Var2, "RC_BI_Vault_Unsealed", 0)
+AND
+DB_BI_Vault_LeverUpdate(_Var2, _, _, _Var6, _)
+THEN
+SetVarInteger(_Var2, "WantedState", 0);
+PlayEffect(_Var2, "RS3_FX_GP_ScriptedEvent_Source_Absorb_01");
+Proc_StartDialog(1, "RC_BI_AD_Vault_Lever_Enchanted", _Var3);
+PartySetFlag(_Var3, "QuestUpdate_RC_BI_TheVaults_UsedEnchantedLever");
+PartySetFlag(_Var3, _Var6);
+
+PROC
+Proc_RC_BI_Vault_UseLever((ITEMGUID)_Var1, (ITEMGUID)_Var2, (CHARACTERGUID)_Var3)
+AND
+ObjectGetFlag(_Var2, "RC_BI_Vault_Repaired", 1)
+AND
+ObjectGetFlag(_Var2, "RC_BI_Vault_Unsealed", 1)
+AND
+DB_BI_Vault_LeverUpdate(_Var2, _, _, _, _Var7)
+THEN
+ItemOpen(_Var1);
+PartySetFlag(_Var3, _Var7);
+
+IF
+CharacterDied((CHARACTERGUID)_Var1)
+AND
+DB_PossessedGhost(_Var1, _Var2)
+AND
+DB_RC_BI_Vault_Pillars_Count(_Var1, _Var3, _)
+AND
+_Var3 <= 0
+AND
+ObjectGetFlag(_Var1, "RC_BI_DemonReleased", 0)
+THEN
+CharacterSetForceSynch(_Var1, 0);
+ObjectSetFlag(_Var1, "RC_BI_DemonReleased", 1);
+ObjectSetFlag(_Var2, "RC_BI_PossessedDied", 1);
+
+IF
+ObjectFlagSet("RC_BI_DemonReleased", (CHARACTERGUID)_Var1, _)
+AND
+DB_PossessedDemon(_Var1, _Var3)
+AND
+DB_PossessedGhost(_Var1, _Var4)
+THEN
+ProcCharacterDisableAllCrimes(_Var1);
+ObjectSetFlag(_Var4, "RC_BI_DemonReleased");
+PlayEffect(_Var1, "RS3_FX_GP_ScriptedEvent_Teleport_GenericSmoke_01");
+ApplyStatus(_Var1, "KNOCKED_DOWN", 10, 1);
+SetFaction(_Var1, "Good NPC");
+TeleportTo(_Var3, _Var1);
+SetOnStage(_Var3, 1);
+PlayEffect(_Var3, "RS3_FX_GP_ScriptedEvent_Teleport_GenericSmoke_01");
+
+IF
+CharacterDied((CHARACTERGUID)_Var1)
+AND
+DB_PossessedDemon(_Var2, _Var1)
+AND
+DB_PossessedGhost(_Var2, _Var3)
+THEN
+ObjectSetFlag(_Var3, "RC_BI_DemonDied");
+ObjectSetFlag(_Var2, "RC_BI_DemonDied");
+
+IF
+CharacterDied((CHARACTERGUID)_Var1)
+AND
+DB_PossessedGhost(_Var1, _Var2)
+THEN
+ObjectSetFlag(_Var2, "RC_BI_PossessedDied");
+
+PROC
+PROC_RC_BI_DestroyShackles((ITEMGUID)_Var1)
+AND
+DB_RC_BI_Vault_Pillars(_Var1, _Var2, _Var3, _Var4, _Var5)
+AND
+DB_RC_BI_Vault_Pillars_Count(_Var2, _Var6, _Var7)
+AND
+IntegerSubtract(_Var6, 1, _Var8)
+THEN
+ItemSetForceSynch(_Var1, 0);
+NOT DB_RC_BI_Vault_Pillars_Count(_Var2, _Var6, _Var7);
+DB_RC_BI_Vault_Pillars_Count(_Var2, _Var8, _Var7);
+NOT DB_RC_BI_Vault_Pillars(_Var1, _Var2, _Var3, _Var4, _Var5);
+PROC_StopLoopBeamEffect(_Var1, _Var4);
+PROC_StopLoopEffect(_Var1, _Var4);
+PlayEffect(_Var1, "RS3_FX_GP_ScriptedEvent_RC_BI_Vault_PillarDestruction_01");
+PlayEffect(_Var1, "RS3_FX_GP_ScriptedEvent_Source_Absorb_01");
+
+IF
+DB_RC_BI_Vault_Pillars_Count(_Var1, _Var2, _Var3)
+AND
+_Var2 > 0
+THEN
+SetCanFight(_Var1, 0);
+
+IF
+DB_RC_BI_Vault_Pillars_Count(_Var1, _Var2, _Var3)
+AND
+_Var2 > 0
+AND
+HasActiveStatus(_Var1, "QUEST_SOURCECHAIN", 0)
+THEN
+ApplyStatus(_Var1, "QUEST_SOURCECHAIN", -1);
+
+IF
+CharacterGhostDestroyed(_, (CHARACTERGUID)_Var2)
+AND
+DB_RC_BI_Vault_Pillars(_Var3, _Var4, _Var2, _Var5, _Var6)
+THEN
+ItemDestroy(_Var3);
+
+IF
+ItemDestroying((ITEMGUID)_Var1)
+AND
+DB_RC_BI_Vault_Pillars(_Var1, _Var2, _Var3, _Var4, _Var5)
+THEN
+PROC_RC_BI_DestroyShackles(_Var1);
+
+IF
+AttackedByObject((ITEMGUID)_Var1, (CHARACTERGUID)_Var2, _, _, _)
+AND
+DB_RC_BI_Vault_Pillars(_Var1, _, _, _, _Var9)
+AND
+DB_IsPlayer(_Var2)
+AND
+ItemGetHealthPoints(_Var1, _Var10)
+AND
+_Var10 < 1
+THEN
+Proc_RC_BI_Vault_SetBrokenPillarsUpdate(_Var2, _Var1, _Var9);
+
+PROC
+Proc_RC_BI_Vault_SetBrokenPillarsUpdate((CHARACTERGUID)_Var1, (ITEMGUID)_Var2, (INTEGER)_Var3)
+AND NOT
+QRY_RC_BI_Vault_OtherPillarLeft(_Var2, _Var3)
+AND
+DB_RC_BI_Vault_PillarsDestroyedUpdate(_Var3, _Var4)
+THEN
+PartySetFlag(_Var1, _Var4);
+
+QRY
+QRY_RC_BI_Vault_OtherPillarLeft((ITEMGUID)_Var1, (INTEGER)_Var2)
+AND
+DB_RC_BI_Vault_Pillars(_Var3, _, _, _, _Var2)
+AND
+_Var3 != _Var1
+THEN
+DB_NOOP(1);
+
+IF
+DB_RC_BI_Vault_Pillars_Count(_Var1, 0, _Var2)
+THEN
+SetCanFight(_Var1, 1);
+ObjectSetFlag(_Var1, "RC_BI_Vault_ChainsDestroyed");
+RemoveStatus(_Var1, "QUEST_SOURCECHAIN");
+
+IF
+CharacterEnteredTrigger(_, TRIGGERGUID_S_RC_BI_BloodIslandRegion_9c0a84b1-314c-4262-b33b-26cfcdfc10ee)
+AND
+QueryOnlyOnce("RC_BI_VaultFXSetup")
+AND
+DB_RC_BI_Vault_Pillars(_Var2, _Var3, _Var4, _Var5, _Var6)
+AND
+CharacterIsDead(_Var3, 0)
+THEN
+PROC_LoopBeamEffect("RS3_FX_GP_ScriptedEvent_ChainedDragon_Beam_01", _Var2, _Var3, "", "Dummy_NeckFX", _Var5, "RC_Main");
+PROC_LoopEffect("RS3_FX_GP_ScriptedEvent_SourceGlow_Overlay_01", _Var2, _Var5, "RC_Main", "");
+PROC_LoopEffect("RS3_FX_GP_ScriptedEvent_SourcePillar_02", _Var2, _Var5, "RC_Main", "");
+
+IF
+ObjectFlagSet("RC_BI_OpenForge", (CHARACTERGUID)_Var1, _)
+THEN
+ObjectClearFlag(_Var1, "RC_BI_OpenForge");
+OpenCraftUI(_Var1, ITEMGUID_S_RC_BI_AncientForge_2ede0521-33b0-42f5-b21e-597fd0d34b63);
+
+IF
+ItemTemplateCombinedWithItemTemplate((STRING)_Var1, _, _, _, _, (CHARACTERGUID)_Var6, _)
+AND
+_Var1 == "QUEST_RC_BI_AncientForge_71dcfd2d-451b-4408-8ae2-996020de3178"
+THEN
+PROC_LoopEffect("RS3_FX_LTS_Coal_Basket_D_01", TRIGGERGUID_S_RC_BI_AncientForge_Point_e07dffc4-20cc-4b9c-b9e7-ff850099937c, "RC_BI_ForgeFire", "RC_Main", "");
+TimerLaunch("RC_BI_ForgeFired", 5000);
+
+IF
+TimerFinished("RC_BI_ForgeFired")
+THEN
+PROC_StopLoopEffect(TRIGGERGUID_S_RC_BI_AncientForge_Point_e07dffc4-20cc-4b9c-b9e7-ff850099937c, "RC_BI_ForgeFire");
+
+IF
+ItemTemplateCombinedWithItemTemplate(_, _, _, _, _, (CHARACTERGUID)_Var6, (ITEMGUID)_Var7)
+AND
+GetTemplate(_Var7, _Var8)
+AND
+_Var8 == "QUEST_RC_BI_LeverShaft_292e3398-730c-4a74-a48a-ee8adb2f7bce"
+AND
+UserGetFlag(_Var6, "RC_BI_AncientForgeCrafted", 0)
+THEN
+UserSetFlag(_Var6, "RC_BI_AncientForgeCrafted");
+StartVoiceBark("RC_BI_VB_AncientForgeShaft", _Var6);
+
+IF
+CharacterUsedItem((CHARACTERGUID)_Var1, ITEMGUID_S_RC_BI_AncientForge_2ede0521-33b0-42f5-b21e-597fd0d34b63)
+THEN
+ProcShowMarker(_Var1, "RC_BI_AncientForge");
+
+IF
+CharacterEnteredTrigger((CHARACTERGUID)_Var1, TRIGGERGUID_S_RC_BI_Forge_Journal_0ab08169-35f1-4e77-b389-b1c502e99052)
+AND
+DB_IsPlayer(_Var1)
+AND
+UserGetFlag(_Var1, "QuestUpdate_RC_BI_TheVaults_DiscoveredShaftRecipe", _Var2)
+AND
+DB_RC_BI_Vault_ForgeJournal(_Var2, _Var3)
+THEN
+PartySetFlag(_Var1, _Var3);
+
+IF
+DB_BI_Vault_Entrances(ITEMGUID_S_RC_BI_Vault_Statue_004_97cdaa15-e5c7-40a5-8da1-b273e781f2b1, ITEMGUID_S_RC_BI_Vault_Hatch_004_abd8dba1-1b89-49fb-ae89-99d2797accf4)
+THEN
+ItemDestroy(S_RC_BI_Vault_Statue_004_97cdaa15-e5c7-40a5-8da1-b273e781f2b1);
+
+
+EXITSECTION
+ENDEXITSECTION
+
+ParentTargetEdge "ReapersCoast"

@@ -1,0 +1,38 @@
+Version 1
+SubGoalCombiner SGC_AND
+
+INITSECTION
+DB_IsSign(ITEMGUID_S_RC_GY_Statue_DwarvenGodess_01_dd1bbd20-4bdb-4807-a759-6d5cb927f38c, "RC_GY_Statues", "RC_GY_Statue_DwarvenGodess_01");
+DB_IsSign(ITEMGUID_S_RC_GY_Statue_DwarvenGodess_02_d4ae7e2e-f088-4eac-a577-824d165202ee, "RC_GY_Statues", "RC_GY_Statue_DwarvenGodess_02");
+DB_IsSign(ITEMGUID_S_RC_GY_Statue_Fireshrine_e1436944-4b5f-4e04-89e2-af35763b7dc3, "RC_GY_Statues", "RC_GY_Statue_Fireshrine");
+DB_IsSign(ITEMGUID_S_RC_GY_Statue_Knight_01_2f4d6505-3166-4b68-9a03-793f4f9a7d81, "RC_GY_Statues", "RC_GY_Statue_Knight_01");
+DB_IsSign(ITEMGUID_S_RC_GY_Statue_Knight_02_7a9bfa1f-7b9d-4c1c-9447-e0ff542041dd, "RC_GY_Statues", "RC_GY_Statue_Knight_02");
+DB_IsSign(ITEMGUID_S_RC_GY_Statue_Knight_03_fdc9d998-fd8d-4279-a3c2-55df07321192, "RC_GY_Statues", "RC_GY_Statue_Knight_03");
+DB_IsSign(ITEMGUID_S_RC_GY_Statue_King_01_20e3d55b-91fb-43d9-95c8-170799694286, "RC_GY_Statues", "RC_GY_Statue_King_01");
+DB_IsSign(ITEMGUID_S_RC_GY_Statue_King_02_30e31a62-8194-4b66-aeaf-579f0fb59260, "RC_GY_Statues", "RC_GY_Statue_King_02");
+DB_IsSign(ITEMGUID_S_RC_GY_Statue_King_03_217b74dc-abe8-484c-a056-3a7c34044618, "RC_GY_Statues", "RC_GY_Statue_King_03");
+DB_IsSign(ITEMGUID_S_RC_GY_Statue_King_04_3b14fb21-aea1-4c47-9ac3-4dc30a0f29a1, "RC_GY_Statues", "RC_GY_Statue_King_04");
+DB_IsSign(ITEMGUID_S_RC_GY_Statue_King_05_bf99a340-3c19-4f95-ae19-d167cab12a25, "RC_GY_Statues", "RC_GY_Statue_King_05");
+DB_IsSign(ITEMGUID_S_RC_GY_Statue_Waypoint_01_03f32d98-9d7a-484f-a289-be3e27606695, "RC_GY_Statues", "RC_GY_Statue_Waypoint_01");
+DB_IsSign(ITEMGUID_S_RC_GY_Statue_Waypoint_02_70dfe353-ea93-4e9b-9ea1-5eed95d8332b, "RC_GY_Statues", "RC_GY_Statue_Waypoint_02");
+DB_IsSign(ITEMGUID_S_RC_GY_Statue_Waypoint_03_77ecc6d6-5457-4e71-88ac-0d868dc3ef4e, "RC_GY_Statues", "RC_GY_Statue_Waypoint_03");
+DB_IsSign(ITEMGUID_S_RC_GY_Humans_Statue_Monk_A_037_3619dfd0-9f8a-4ffc-8055-24a0e77156a9, "RC_GY_Statues", "RC_GY_Statue_Monk_01");
+DB_IsSign(ITEMGUID_S_RC_GY_Humans_Statue_Angel_C_020_f04452df-7aad-4e63-8acc-16dd918148be, "RC_GY_Statues", "RC_GY_Statue_Angel_020");
+DB_IsSign(ITEMGUID_S_RC_GY_Humans_Statue_Angel_C_018_ce830baa-69b1-487f-84de-1445d553a906, "RC_GY_Statues", "RC_GY_Statue_Angel_018");
+DB_IsSign(ITEMGUID_S_RC_GY_Humans_Statue_Angel_C_019_3ce055af-b24c-4d17-8b0b-cabc84e4cb50, "RC_GY_Statues", "RC_GY_Statue_Angel_019");
+DB_Dialogs(ITEMGUID_Quest_WantedPoster_002_829ee882-5f10-4582-aa48-025f381fcda1, "RC_DW_WantedPoster2");
+DB_Dialogs(ITEMGUID_Quest_WantedPoster_003_e8ed0e7d-9515-496c-8fd5-6ef4188c78de, "RC_DW_WantedPoster3");
+
+KBSECTION
+IF
+CharacterUsedItem(_, ITEMGUID_S_RC_GY_LockedGateLever_48b36323-7672-4fbb-ae02-bf458bfdf09c)
+AND
+ItemIsLocked(ITEMGUID_S_RC_GY_LockedGate_1_e17eb154-cf27-41e0-8a8c-3a7507c2e8db, 1)
+THEN
+ItemUnlockAndOpen(ITEMGUID_S_RC_GY_LockedGate_1_e17eb154-cf27-41e0-8a8c-3a7507c2e8db);
+
+
+EXITSECTION
+ENDEXITSECTION
+
+ParentTargetEdge "ReapersCoast"

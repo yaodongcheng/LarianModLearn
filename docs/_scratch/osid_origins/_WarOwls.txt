@@ -1,0 +1,164 @@
+Version 1
+SubGoalCombiner SGC_AND
+
+INITSECTION
+
+KBSECTION
+IF
+DB_RC_WarOwls(_Var1, _Var2, _, _Var4)
+THEN
+ProcCharacterDisableAllCrimes(_Var1);
+CharacterSetImmortal(_Var1, 1);
+CharacterSetFightMode(_Var1, _Var4, 1);
+SetCanJoinCombat(_Var1, 0);
+SetVarObject(_Var1, "Target", _Var2);
+SetOnStage(_Var1, 0);
+
+PROC
+PROC_RC_DispatchWarOwl((CHARACTERGUID)_Var1)
+AND
+DB_RC_WarOwls(_Var1, _Var2, _, _)
+AND NOT
+QRY_RC_TrySendWarOwl(_Var1)
+THEN
+DB_RC_RegisteredWarOwl(_Var1, _Var2);
+
+IF
+DialogEnded(_, (INTEGER)_Var2)
+AND
+DB_DialogPlayers(_Var2, _Var3, _)
+AND
+DB_RC_RegisteredWarOwl(_Var5, _Var3)
+AND
+QRY_RC_TrySendWarOwl(_Var5)
+THEN
+NOT DB_RC_RegisteredWarOwl(_Var5, _Var3);
+
+PROC
+Proc_ObjectLeftCombat((CHARACTERGUID)_Var1, _)
+AND
+DB_RC_RegisteredWarOwl(_Var3, _Var1)
+AND
+QRY_RC_TrySendWarOwl(_Var3)
+THEN
+NOT DB_RC_RegisteredWarOwl(_Var3, _Var1);
+
+IF
+CharacterResurrected((CHARACTERGUID)_Var1)
+AND
+DB_RC_RegisteredWarOwl(_Var2, _Var1)
+AND
+QRY_RC_TrySendWarOwl(_Var2)
+THEN
+NOT DB_RC_RegisteredWarOwl(_Var2, _Var1);
+
+IF
+CharacterPolymorphedInto((CHARACTERGUID)_Var1, _)
+AND
+DB_RC_RegisteredWarOwl(_Var3, _Var1)
+AND
+QRY_RC_TrySendWarOwl(_Var3)
+THEN
+NOT DB_RC_RegisteredWarOwl(_Var3, _Var1);
+
+QRY
+QRY_RC_TrySendWarOwl((CHARACTERGUID)_Var1)
+AND NOT
+QRY_RC_WarOwl_FailSpecificCheck(_Var1)
+AND
+DB_RC_WarOwls(_Var1, _Var2, _, _)
+AND
+CharacterIsPolymorphInteractionDisabled(_Var2, 0)
+AND
+QRY_SpeakerIsAvailable(_Var2)
+THEN
+PROC_RC_WarOWl_Appear(_Var1, _Var2);
+
+PROC
+PROC_RC_WarOWl_Appear((CHARACTERGUID)_Var1, (GUIDSTRING)_Var2)
+AND
+DB_RC_WarOwls_AppearObject(_Var1, _Var3)
+THEN
+CharacterAppearOutOfSightToObject(_Var1, _Var2, _Var3, 0, "RC_OwlOnStage");
+
+PROC
+PROC_RC_WarOWl_Appear((CHARACTERGUID)_Var1, (GUIDSTRING)_Var2)
+AND
+DB_RC_WarOwls_AppearSpawn(_Var1, _Var3)
+THEN
+TeleportTo(_Var1, _Var3);
+CharacterFlushQueue(_Var1);
+CharacterAppear(_Var1, 1, "RC_OwlOnStage");
+
+PROC
+PROC_RC_WarOWl_Appear((CHARACTERGUID)_Var1, (GUIDSTRING)_Var2)
+AND NOT
+DB_RC_WarOwls_AppearSpawn(_Var1, _)
+AND NOT
+DB_RC_WarOwls_AppearObject(_Var1, _)
+THEN
+CharacterAppearOutOfSightTo(_Var1, _Var2, 0, 0, "RC_OwlOnStage");
+
+IF
+StoryEvent((CHARACTERGUID)_Var1, "RC_OwlOnStage")
+AND
+DB_RC_WarOwls(_Var1, _Var2, _, _)
+THEN
+CharacterMoveTo(_Var1, _Var2, 1, "RC_OwlAtTarget", 0);
+
+IF
+CharacterCharacterEvent((CHARACTERGUID)_Var1, (CHARACTERGUID)_Var2, "RC_OwlStartDialog")
+AND
+DB_RC_WarOwls(_Var1, _Var2, _Var3, _)
+AND
+QRY_SpeakerIsAvailable(_Var2, 1)
+THEN
+DB_RC_WarOwl_DialogStartAttempt(_Var3, _Var1);
+Proc_StartDialog(0, _Var3, _Var1, _Var2);
+
+IF
+DialogRequestFailed((STRING)_Var1, (INTEGER)_Var2)
+AND
+DB_RC_WarOwl_DialogStartAttempt(_Var3, _Var4)
+AND
+DB_DialogNPCs(_Var2, _Var4, 1)
+THEN
+NOT DB_RC_WarOwl_DialogStartAttempt(_Var3, _Var4);
+
+IF
+DialogStarted((STRING)_Var1, (INTEGER)_Var2)
+AND
+DB_RC_WarOwl_DialogStartAttempt(_Var3, _Var4)
+AND
+DB_DialogNPCs(_Var2, _Var4, 1)
+THEN
+SetStoryEvent(_Var4, "RC_OwlStopSpot");
+
+IF
+DialogEnded((STRING)_Var1, (INTEGER)_Var2)
+AND
+DB_RC_WarOwl_DialogStartAttempt(_Var3, _Var4)
+AND
+DB_DialogNPCs(_Var2, _Var4, 1)
+AND
+DB_RC_WarOwls(_Var4, _Var5, _Var3, _)
+THEN
+NOT DB_RC_WarOwl_DialogStartAttempt(_Var3, _Var4);
+CharacterDisappearOutOfSight(_Var4, 0, 1, "", 0);
+
+QRY
+QRY_RC_WarOwl_FailSpecificCheck((CHARACTERGUID)_Var1)
+AND
+DB_RC_WarOwls_Tags(_Var1, _Var2)
+AND
+DB_RC_WarOwls(_Var1, _Var3, _, _)
+AND
+IsTagged(_Var3, _Var2, 0)
+THEN
+DB_NOOP(0);
+
+
+EXITSECTION
+ENDEXITSECTION
+
+ParentTargetEdge "Start"

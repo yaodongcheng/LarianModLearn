@@ -1,0 +1,150 @@
+Version 1
+SubGoalCombiner SGC_AND
+
+INITSECTION
+DB_MoveToTrigger_Materials("STONE");
+DB_MoveToTrigger_Materials("WOOD");
+DB_MoveToTrigger_Materials("METAL");
+DB_CameraShakeAudioEventTrigger(800, 5001);
+DB_DebugCameraShakerParser("500", 500);
+DB_DebugCameraShakerParser("1000", 1000);
+DB_DebugCameraShakerParser("3000", 3000);
+DB_DebugCameraShakerParser("5000", 5000);
+DB_DebugCameraShakerParser("8000", 8000);
+DB_DebugCameraShakerParser("13000", 13000);
+DB_DebugCameraShakerParser("2", 2);
+DB_DebugCameraShakerParser("5", 5);
+DB_DebugCameraShakerParser("1", 1);
+DB_DebugCameraShakerParser("25", 25);
+DB_DebugCameraShakerParser("60", 60);
+
+KBSECTION
+PROC
+proc_ItemMoveToTrigger((ITEMGUID)_Var1, (TRIGGERGUID)_Var2, (REAL)_Var3, (REAL)_Var4, (INTEGER)_Var5)
+THEN
+ItemMoveToTrigger(_Var1, _Var2, _Var3, _Var4, _Var5);
+
+PROC
+Proc_ItemMoveToPosition((ITEMGUID)_Var1, (REAL)_Var2, (REAL)_Var3, (REAL)_Var4, (REAL)_Var5, (REAL)_Var6)
+THEN
+ItemMoveToPosition(_Var1, _Var2, _Var3, _Var4, _Var5, _Var6);
+
+PROC
+Proc_ItemMoveToPosition((ITEMGUID)_Var1, (REAL)_Var2, (REAL)_Var3, (REAL)_Var4, (REAL)_Var5, (REAL)_Var6)
+AND NOT
+DB_MovingItem(_Var1, _)
+AND
+DB_MoveToTrigger_Materials(_Var8)
+AND
+IsTagged(_Var1, _Var8, 1)
+AND
+StringConcatenate("Items_Puzzles_MovingObjects_", _Var8, _Var9)
+AND
+StringConcatenate(_Var9, "_Start", _Var10)
+THEN
+DB_MovingItem(_Var1, _Var8);
+PlaySound(_Var1, _Var10);
+DebugText(_Var1, "PlayEvent_Move_Start");
+
+PROC
+proc_ItemMoveToTrigger((ITEMGUID)_Var1, (TRIGGERGUID)_Var2, (REAL)_Var3, (REAL)_Var4, (INTEGER)_Var5)
+AND NOT
+DB_MovingItem(_Var1, _)
+AND
+DB_MoveToTrigger_Materials(_Var7)
+AND
+IsTagged(_Var1, _Var7, 1)
+AND
+StringConcatenate("Items_Puzzles_MovingObjects_", _Var7, _Var8)
+AND
+StringConcatenate(_Var8, "_Start", _Var9)
+THEN
+DB_MovingItem(_Var1, _Var7);
+PlaySound(_Var1, _Var9);
+DebugText(_Var1, "PlayEvent_Move_Start");
+
+IF
+StoryEvent((ITEMGUID)_Var1, "GEN_ItemMoved")
+AND NOT
+DB_MovingItem(_Var1, _)
+AND
+DB_MoveToTrigger_Materials(_Var3)
+AND
+IsTagged(_Var1, _Var3, 1)
+AND
+StringConcatenate("Items_Puzzles_MovingObjects_", _Var3, _Var4)
+AND
+StringConcatenate(_Var4, "_Start", _Var5)
+THEN
+DB_MovingItem(_Var1, _Var3);
+PlaySound(_Var1, _Var5);
+DebugText(_Var1, "PlayEvent_Move_Start");
+
+IF
+ItemMoved((ITEMGUID)_Var1)
+AND
+DB_MovingItem(_Var1, _Var2)
+AND
+StringConcatenate("Items_Puzzles_MovingObjects_", _Var2, _Var3)
+AND
+StringConcatenate(_Var3, "_Stop", _Var4)
+THEN
+NOT DB_MovingItem(_Var1, _Var2);
+PlaySound(_Var1, _Var4);
+DebugText(_Var1, "PlayEvent_Move_END");
+
+PROC
+ProcObjectTimer((GUIDSTRING)_Var1, "Timer_LoopCameraShakeHelper", (INTEGER)_Var2)
+AND
+DB_CameraShakeAudioEventTrigger(_Var3, _)
+AND
+_Var2 > _Var3
+THEN
+PlaySound(_Var1, "SE_GP_ScriptedEvent_CameraShake_Earth");
+
+PROC
+ProcObjectTimer((GUIDSTRING)_Var1, "Timer_LoopCameraShakeHelper", (INTEGER)_Var2)
+AND
+DB_CameraShakeAudioEventTrigger(_Var3, _Var4)
+AND
+_Var2 > _Var3
+AND
+_Var2 < _Var4
+THEN
+DB_Timer_LoopCameraShakeHelper_StopSound(_Var1);
+
+PROC
+ProcObjectTimerFinished((GUIDSTRING)_Var1, "Timer_LoopCameraShakeHelper")
+AND
+DB_Timer_LoopCameraShakeHelper_StopSound(_Var1)
+THEN
+NOT DB_Timer_LoopCameraShakeHelper_StopSound(_Var1);
+PlaySound(_Var1, "SE_GP_ScriptedEvent_CameraShake_Earth_Stop");
+
+IF
+TextEventSet("TestCameraShakeAudio")
+AND
+GetTextEventParamString(1, _Var1)
+AND
+DB_DebugCameraShakerParser(_Var1, _Var2)
+AND
+DB_IsPlayer(_Var3)
+THEN
+Proc_ShakeCameraForTime(_Var3, _Var2);
+
+IF
+TextEventSet("TestCameraShake_AroundChar_Audio")
+AND
+GetTextEventParamString(1, _Var1)
+AND
+DB_DebugCameraShakerParser(_Var1, _Var2)
+AND
+DB_IsPlayer(_Var3)
+THEN
+Proc_CameraShakeAroundCharacter(_Var3, _Var2, 6);
+
+
+EXITSECTION
+ENDEXITSECTION
+
+ParentTargetEdge "__Start"

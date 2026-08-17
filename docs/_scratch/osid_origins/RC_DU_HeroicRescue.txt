@@ -1,0 +1,660 @@
+Version 1
+SubGoalCombiner SGC_AND
+
+INITSECTION
+ProcTriggerRegisterForPlayers(TRIGGERGUID_S_RC_DW_PreDriftwoodRegion_3dce0f0a-a3a6-4c78-91b0-89dee598d440);
+ProcTriggerRegisterForPlayers(TRIGGERGUID_S_RC_DU_BridgeKeeperHouse_Box_7ed8ecd7-9613-4abe-aae9-3140ccc93e10);
+ProcTriggerRegisterForPlayers(TRIGGERGUID_S_RC_DU_HeroicRescue_ExplodeDoorZone_790cf92c-d164-4ea6-8b0a-d30c0d7629a4);
+DB_OneShotPlayerTrigger(TRIGGERGUID_S_RC_DW_SeenVoidwokenVB_Box_aafa45cf-348c-416f-a19c-cefaa7455426);
+DB_OneShotPlayerTrigger(TRIGGERGUID_S_RC_DU_HeroicRescue_SpawnVW_Box_88b60302-dd6d-4be6-889f-6039c4fabba9);
+DB_OneShotPlayerTrigger(TRIGGERGUID_S_RC_DU_HeroicRescue_MariDialogStartBox_604c6c2e-3afa-4b49-8e69-e974c298e7e6);
+TriggerRegisterForCharacter(TRIGGERGUID_S_RC_DU_BridgeKeeperHouse_Box_7ed8ecd7-9613-4abe-aae9-3140ccc93e10, CHARACTERGUID_S_RC_DU_DrawBridgeHeroicWife_e0988a52-c38e-4b29-849b-4e0efda467cc);
+SetOnStage(CHARACTERGUID_S_RC_DU_HeroicRescue_GiantInsect_Wings_02_00166785-b066-4b72-adae-4fb97dc9795e, 0);
+SetOnStage(CHARACTERGUID_S_RC_DU_HeroicRescue_GiantInsect_NoWings_02_dd96dab0-abe9-43da-a4ec-2c291891bbd2, 0);
+DB_Dialogs(CHARACTERGUID_S_RC_DU_DrawBridgeKeeper_c7808968-e893-43c5-8856-ddc7f871037f, "RC_DU_HeroicRescue_BridgeKeeper");
+DB_Dialogs(CHARACTERGUID_S_RC_DU_DrawBridgeHeroicWife_e0988a52-c38e-4b29-849b-4e0efda467cc, "RC_DU_HeroicRescue_HeroicWife");
+DB_DoNotFace(CHARACTERGUID_S_RC_DU_DrawBridgeKeeper_c7808968-e893-43c5-8856-ddc7f871037f);
+DB_Children(CHARACTERGUID_S_RC_DU_DrawBridgeKeeper_c7808968-e893-43c5-8856-ddc7f871037f);
+DB_Ghosts(CHARACTERGUID_S_RC_DU_DrawBridgeHeroicWife_e0988a52-c38e-4b29-849b-4e0efda467cc, CHARACTERGUID_S_RC_DU_DrawBridgeHeroicWife_Ghost_0572957b-482a-41f1-b1c3-347909dc1725, "RC_DU_HeroicRescue_HeroicWifeGhost");
+DB_RC_DU_HeroicRescue_Characters(CHARACTERGUID_S_RC_DU_DrawBridgeKeeper_c7808968-e893-43c5-8856-ddc7f871037f, "RC_DU_HeroicRescue_BridgeKeeper");
+DB_RC_DU_HeroicRescue_Characters(CHARACTERGUID_S_RC_DU_DrawBridgeHeroicWife_e0988a52-c38e-4b29-849b-4e0efda467cc, "RC_DU_HeroicRescue_HeroicWife");
+DB_RC_DU_HeroicRescue_Voidwoken(CHARACTERGUID_S_RC_DU_HeroicRescue_GiantInsect_NoWings_01_9f5cc975-fbca-4383-aff8-837f527dd950);
+DB_RC_DU_HeroicRescue_Voidwoken(CHARACTERGUID_S_RC_DU_HeroicRescue_GiantInsect_NoWings_03_e131e879-68fb-43f2-ae69-5110bea54905);
+DB_RC_DU_HeroicRescue_Voidwoken(CHARACTERGUID_S_RC_DU_HeroicRescue_GiantInsect_Wings_01_899212c1-3ba7-438d-981f-51ecf75c01a9);
+DB_RC_DU_HeroicRescue_Voidwoken(CHARACTERGUID_S_RC_DU_HeroicRescue_GiantInsect_Wings_02_00166785-b066-4b72-adae-4fb97dc9795e);
+DB_KillCounter_Internal(CHARACTERGUID_S_RC_DU_HeroicRescue_GiantInsect_Wings_01_899212c1-3ba7-438d-981f-51ecf75c01a9, "RC_DU_HeroicRescue_Voidwoken");
+DB_KillCounter_Internal(CHARACTERGUID_S_RC_DU_HeroicRescue_GiantInsect_NoWings_01_9f5cc975-fbca-4383-aff8-837f527dd950, "RC_DU_HeroicRescue_Voidwoken");
+DB_KillCounter_Internal(CHARACTERGUID_S_RC_DU_HeroicRescue_GiantInsect_NoWings_03_e131e879-68fb-43f2-ae69-5110bea54905, "RC_DU_HeroicRescue_Voidwoken");
+DB_KillCounter("RC_DU_HeroicRescue_Voidwoken", 3);
+DB_RC_DU_VWTurnCount(0);
+DB_DeadEvent(CHARACTERGUID_S_RC_DU_DrawBridgeHeroicWife_e0988a52-c38e-4b29-849b-4e0efda467cc, "RC_DU_HeroicWifeDied");
+DB_RC_DU_HeroicRescue_TruePlates(ITEMGUID_S_RC_DU_HeroicRescue_CellarPressurePlate01_53a498d4-a5a1-4288-8b27-7f8ba18e20fc, "RC_DU_HeroicRescue_CellarPlate01_Pressed", "RC_DU_HeroicRescue_CellarPlate01_UnPressed");
+DB_RC_DU_HeroicRescue_TruePlates(ITEMGUID_S_RC_DU_HeroicRescue_CellarPressurePlate02_7e25d3ce-5d7b-4762-ab39-882392585f56, "RC_DU_HeroicRescue_CellarPlate02_Pressed", "RC_DU_HeroicRescue_CellarPlate02_UnPressed");
+DB_RC_DU_HeroicRescue_TruePlates(ITEMGUID_S_RC_DU_HeroicRescue_CellarPressurePlate03_5c608b7d-8a53-4732-b18c-283de6f9ca18, "RC_DU_HeroicRescue_CellarPlate03_Pressed", "RC_DU_HeroicRescue_CellarPlate03_UnPressed");
+ItemClearOwner(ITEMGUID_S_RC_DU_HeroicRescue_House_BackDoor_8bd90b69-9992-44c5-8ba9-fca71932806b);
+ItemClearOwner(ITEMGUID_S_RC_DU_HeroicRescue_House_MiddleDoor_5857dfcf-46ee-4a8d-85ad-578cd6b3060b);
+
+KBSECTION
+IF
+DB_KillCounter_Internal(_Var1, "RC_DU_HeroicRescue_Voidwoken")
+THEN
+TriggerRegisterForCharacter(TRIGGERGUID_S_RC_DU_VoidwokenGiantInsect_WanderBox_bf8e411e-c574-44a8-b6c8-0a94d6f5ea72, _Var1);
+
+IF
+DialogStarted("RC_DU_HeroicRescue_BridgeKeeper", _)
+THEN
+NOT DB_DoNotFace(CHARACTERGUID_S_RC_DU_DrawBridgeKeeper_c7808968-e893-43c5-8856-ddc7f871037f);
+
+IF
+GlobalFlagSet("RC_DU_DrawBridge_VoidwokenAreDead")
+THEN
+NOT DB_DoNotFace(CHARACTERGUID_S_RC_DU_DrawBridgeKeeper_c7808968-e893-43c5-8856-ddc7f871037f);
+
+IF
+AttackedByObject(CHARACTERGUID_S_RC_DU_DrawBridgeKeeper_c7808968-e893-43c5-8856-ddc7f871037f, _, (GUIDSTRING)_Var2, _, _)
+AND
+CHARACTERGUID_S_RC_DU_DrawBridgeKeeper_c7808968-e893-43c5-8856-ddc7f871037f != _Var2
+THEN
+ObjectSetFlag(CHARACTERGUID_S_RC_DU_DrawBridgeKeeper_c7808968-e893-43c5-8856-ddc7f871037f, "GEB_FleeOutOfSight");
+SetVarInteger(CHARACTERGUID_S_RC_DU_DrawBridgeKeeper_c7808968-e893-43c5-8856-ddc7f871037f, "bool_HasJoinedMother", 0);
+ObjectClearFlag(CHARACTERGUID_S_RC_DU_DrawBridgeHeroicWife_e0988a52-c38e-4b29-849b-4e0efda467cc, "RC_DU_HeroicWife_NearHusband");
+
+IF
+ObjectFlagSet("GEB_FleeOutOfSight", CHARACTERGUID_S_RC_DU_DrawBridgeKeeper_c7808968-e893-43c5-8856-ddc7f871037f, _)
+AND
+DB_DialogNPCs(_Var2, CHARACTERGUID_S_RC_DU_DrawBridgeKeeper_c7808968-e893-43c5-8856-ddc7f871037f, _)
+AND
+DB_DialogNPCs(_Var2, CHARACTERGUID_S_RC_DU_DrawBridgeHeroicWife_e0988a52-c38e-4b29-849b-4e0efda467cc, _)
+THEN
+ProcForceStopDialog(CHARACTERGUID_S_RC_DU_DrawBridgeHeroicWife_e0988a52-c38e-4b29-849b-4e0efda467cc);
+
+IF
+ObjectFlagSet("GEB_FleeOutOfSight", CHARACTERGUID_S_RC_DU_DrawBridgeKeeper_c7808968-e893-43c5-8856-ddc7f871037f, _)
+AND
+ObjectGetFlag(CHARACTERGUID_S_RC_DU_DrawBridgeKeeper_c7808968-e893-43c5-8856-ddc7f871037f, "RC_DU_HeroicRescue_InDriftwood", 0)
+AND
+DB_GEB_FledOutOfSight(CHARACTERGUID_S_RC_DU_DrawBridgeKeeper_c7808968-e893-43c5-8856-ddc7f871037f, _Var2, _Var3, _Var4)
+THEN
+NOT DB_GEB_FledOutOfSight(CHARACTERGUID_S_RC_DU_DrawBridgeKeeper_c7808968-e893-43c5-8856-ddc7f871037f, _Var2, _Var3, _Var4);
+
+IF
+ObjectFlagSet("GEB_FleeOutOfSight", CHARACTERGUID_S_RC_DU_DrawBridgeKeeper_c7808968-e893-43c5-8856-ddc7f871037f, _)
+AND
+ObjectGetFlag(CHARACTERGUID_S_RC_DU_DrawBridgeKeeper_c7808968-e893-43c5-8856-ddc7f871037f, "RC_DU_HeroicRescue_InDriftwood", 0)
+AND
+GetPosition(TRIGGERGUID_S_RC_DU_HeroicRescue_BridgeKeeper_Point_7d7b2755-427d-48fa-8162-ae6f3ef03052, _Var2, _Var3, _Var4)
+THEN
+DB_GEB_FledOutOfSight(CHARACTERGUID_S_RC_DU_DrawBridgeKeeper_c7808968-e893-43c5-8856-ddc7f871037f, _Var2, _Var3, _Var4);
+
+PROC
+ProcOneShotTriggerEntered((CHARACTERGUID)_Var1, TRIGGERGUID_S_RC_DW_SeenVoidwokenVB_Box_aafa45cf-348c-416f-a19c-cefaa7455426)
+AND
+GlobalGetFlag("RC_DU_DrawBridge_VoidwokenAreDead", 0)
+THEN
+ProcObjectTimer(_Var1, "RC_DU_VB_SeenVoidwoken", 2500);
+
+PROC
+ProcObjectTimerFinished((CHARACTERGUID)_Var1, "RC_DU_VB_SeenVoidwoken")
+THEN
+StartVoiceBark("RC_DU_VB_SeenVoidwoken", _Var1);
+
+IF
+ObjectEnteredCombat(CHARACTERGUID_S_RC_DU_DrawBridgeHeroicWife_e0988a52-c38e-4b29-849b-4e0efda467cc, (INTEGER)_Var1)
+AND
+DB_RC_DU_HeroicRescue_Voidwoken(_Var2)
+AND
+CombatGetIDForCharacter(_Var2, _Var1)
+THEN
+GlobalSetFlag("RC_DU_HeroicRescue_HeroicWifeIsInCombat");
+
+PROC
+Proc_ObjectLeftCombat(CHARACTERGUID_S_RC_DU_DrawBridgeHeroicWife_e0988a52-c38e-4b29-849b-4e0efda467cc, (INTEGER)_Var1)
+AND
+DB_RC_DU_HeroicRescue_Voidwoken(_Var2)
+AND
+DB_WasInCombat(_Var2, _Var1)
+THEN
+GlobalClearFlag("RC_DU_HeroicRescue_HeroicWifeIsInCombat");
+
+IF
+DialogEnded("RC_DU_HeroicRescue_ReunitedCouple", (INTEGER)_Var1)
+AND
+DB_DialogPlayers(_Var1, _Var2, _)
+THEN
+GlobalSetFlag("RC_DU_HeroicRescue_SurvivorsGoToDriftwood");
+
+IF
+GlobalFlagSet("RC_DU_HeroicWifeDied")
+AND
+DB_IsPlayer(_Var1)
+THEN
+UserSetFlag(_Var1, "QuestUpdate_RC_DU_HeroicRescue_WifeDied");
+GlobalClearFlag("RC_DU_HeroicRescue_HeroicWifeIsInCombat");
+
+PROC
+ProcOneShotTriggerEntered((CHARACTERGUID)_Var1, TRIGGERGUID_S_RC_DU_HeroicRescue_SpawnVW_Box_88b60302-dd6d-4be6-889f-6039c4fabba9)
+AND
+GlobalGetFlag("RC_DU_DrawBridge_VoidwokenAreDead", 0)
+THEN
+CharacterAppear(CHARACTERGUID_S_RC_DU_HeroicRescue_GiantInsect_NoWings_02_dd96dab0-abe9-43da-a4ec-2c291891bbd2, 1, "RC_DU_HeroicRescue_BackyardVW_Spawns");
+Proc_StartDialog(1, "RC_DU_HeroicRescue_VB_SeeVoidwoken", _Var1);
+
+IF
+CharacterDied(CHARACTERGUID_S_RC_DU_HeroicRescue_GiantInsect_NoWings_02_dd96dab0-abe9-43da-a4ec-2c291891bbd2)
+THEN
+GlobalSetFlag("RC_DU_HeroicRescue_BackyardVWIsDead");
+
+IF
+CharacterUsedItem((CHARACTERGUID)_Var1, ITEMGUID_S_RC_DU_HeroicRescue_House_BackDoor_8bd90b69-9992-44c5-8ba9-fca71932806b)
+THEN
+Proc_RC_DU_HeroicRescue_MariUnlocksBackdoor();
+
+PROC
+Proc_RC_DU_HeroicRescue_MariUnlocksBackdoor()
+AND
+GlobalGetFlag("RC_DU_HeroicRescue_BackyardVWIsDead", 1)
+AND
+CharacterIsDead(CHARACTERGUID_S_RC_DU_DrawBridgeHeroicWife_e0988a52-c38e-4b29-849b-4e0efda467cc, 0)
+AND
+DB_InRegion(CHARACTERGUID_S_RC_DU_DrawBridgeHeroicWife_e0988a52-c38e-4b29-849b-4e0efda467cc, TRIGGERGUID_S_RC_DU_BridgeKeeperHouse_Box_7ed8ecd7-9613-4abe-aae9-3140ccc93e10)
+AND
+DB_IsPlayer(_Var1)
+AND NOT
+DB_InRegion(_Var1, TRIGGERGUID_S_RC_DU_BridgeKeeperHouse_Box_7ed8ecd7-9613-4abe-aae9-3140ccc93e10)
+AND
+QueryOnlyOnce("RC+DU_HeroicRescue_BackDoorOpening")
+THEN
+DialogRequestStop(CHARACTERGUID_S_RC_DU_DrawBridgeHeroicWife_e0988a52-c38e-4b29-849b-4e0efda467cc);
+SetStoryEvent(CHARACTERGUID_S_RC_DU_DrawBridgeHeroicWife_e0988a52-c38e-4b29-849b-4e0efda467cc, "RC_DU_HeroicRescue_MariOpensBackdoor");
+GlobalSetFlag("RC_DU_HeroicRescue_OpenDoorForPlayer");
+
+PROC
+ProcOneShotTriggerEntered((CHARACTERGUID)_Var1, TRIGGERGUID_S_RC_DU_HeroicRescue_MariDialogStartBox_604c6c2e-3afa-4b49-8e69-e974c298e7e6)
+AND
+DB_IsPlayer(_Var1)
+AND
+GlobalGetFlag("RC_DU_DrawBridge_VoidwokenAreDead", 0)
+AND
+DB_RC_DU_HeroicRescue_Voidwoken(_Var2)
+AND
+CharacterIsInCombat(_Var2, 0)
+THEN
+Proc_StartDialog(0, "RC_DU_HeroicRescue_HeroicWife", CHARACTERGUID_S_RC_DU_DrawBridgeHeroicWife_e0988a52-c38e-4b29-849b-4e0efda467cc, _Var1);
+
+IF
+ObjectFlagSet("RC_DU_HeroicRescue_AllowedToCraft", (CHARACTERGUID)_Var1, _)
+THEN
+CharacterSetRelationIndivFactionToIndivFaction(CHARACTERGUID_S_RC_DU_DrawBridgeHeroicWife_e0988a52-c38e-4b29-849b-4e0efda467cc, _Var1, 100);
+CharacterSetRelationIndivFactionToIndivFaction(_Var1, CHARACTERGUID_S_RC_DU_DrawBridgeHeroicWife_e0988a52-c38e-4b29-849b-4e0efda467cc, 100);
+TriggerClearItemOwner(TRIGGERGUID_S_RC_DU_BridgeKeeperHouse_Box_7ed8ecd7-9613-4abe-aae9-3140ccc93e10);
+
+IF
+ObjectTurnEnded((CHARACTERGUID)_Var1)
+AND
+DB_RC_DU_HeroicRescue_Voidwoken(_Var1)
+AND NOT
+DB_OnlyOnce("RC_DU_HeroicWifeJoinCombat")
+AND
+DB_RC_DU_VWTurnCount(_Var2)
+AND
+IntegerSum(_Var2, 1, _Var3)
+THEN
+NOT DB_RC_DU_VWTurnCount(_Var2);
+DB_RC_DU_VWTurnCount(_Var3);
+
+IF
+DB_RC_DU_VWTurnCount(2)
+AND
+CharacterIsDead(CHARACTERGUID_S_RC_DU_DrawBridgeHeroicWife_e0988a52-c38e-4b29-849b-4e0efda467cc, 0)
+AND
+DB_InRegion(CHARACTERGUID_S_RC_DU_DrawBridgeHeroicWife_e0988a52-c38e-4b29-849b-4e0efda467cc, TRIGGERGUID_S_RC_DU_BridgeKeeperHouse_Box_7ed8ecd7-9613-4abe-aae9-3140ccc93e10)
+AND
+QueryOnlyOnce("RC_DU_HeroicWifeJoinCombat")
+THEN
+NOT DB_RC_DU_VWTurnCount(2);
+ObjectSetFlag(CHARACTERGUID_S_RC_DU_DrawBridgeHeroicWife_e0988a52-c38e-4b29-849b-4e0efda467cc, "RC_DU_HeroicWife_JoinedPlayerAutomatically");
+SetVarFixedString(CHARACTERGUID_S_RC_DU_DrawBridgeHeroicWife_e0988a52-c38e-4b29-849b-4e0efda467cc, "currentState", "State_JoinCombat");
+
+IF
+ObjectEnteredCombat(CHARACTERGUID_S_RC_DU_DrawBridgeHeroicWife_e0988a52-c38e-4b29-849b-4e0efda467cc, (INTEGER)_Var1)
+AND
+DB_RC_DU_HeroicRescue_Voidwoken(_Var2)
+AND
+DB_CombatCharacters(_Var2, _Var1)
+AND
+DB_IsPlayer(_Var3)
+AND
+DB_CombatCharacters(_Var3, _Var1)
+AND
+DB_CombatCharacters(CHARACTERGUID_S_RC_DU_DrawBridgeHeroicWife_e0988a52-c38e-4b29-849b-4e0efda467cc, _Var1)
+THEN
+CharacterSetRelationIndivFactionToIndivFaction(CHARACTERGUID_S_RC_DU_DrawBridgeHeroicWife_e0988a52-c38e-4b29-849b-4e0efda467cc, _Var3, 100);
+CharacterSetRelationIndivFactionToIndivFaction(_Var3, CHARACTERGUID_S_RC_DU_DrawBridgeHeroicWife_e0988a52-c38e-4b29-849b-4e0efda467cc, 100);
+
+IF
+ObjectEnteredCombat((CHARACTERGUID)_Var1, (INTEGER)_Var2)
+AND
+DB_IsPlayer(_Var1)
+AND
+DB_RC_DU_HeroicRescue_Voidwoken(_Var3)
+AND
+DB_CombatCharacters(_Var3, _Var2)
+AND
+CharacterIsDead(CHARACTERGUID_S_RC_DU_DrawBridgeHeroicWife_e0988a52-c38e-4b29-849b-4e0efda467cc, 0)
+AND
+DB_CombatCharacters(_Var1, _Var2)
+AND
+DB_CombatCharacters(CHARACTERGUID_S_RC_DU_DrawBridgeHeroicWife_e0988a52-c38e-4b29-849b-4e0efda467cc, _Var2)
+THEN
+CharacterSetRelationIndivFactionToIndivFaction(CHARACTERGUID_S_RC_DU_DrawBridgeHeroicWife_e0988a52-c38e-4b29-849b-4e0efda467cc, _Var1, 100);
+CharacterSetRelationIndivFactionToIndivFaction(_Var1, CHARACTERGUID_S_RC_DU_DrawBridgeHeroicWife_e0988a52-c38e-4b29-849b-4e0efda467cc, 100);
+
+IF
+DB_KillCounterDied(_Var1, "RC_DU_HeroicRescue_Voidwoken")
+AND
+DB_KillCounter("RC_DU_HeroicRescue_Voidwoken", _Var2)
+AND
+IntegerSum(_Var2, 1, _Var3)
+AND
+QueryOnlyOnce("RC_DU_HeroicRescue_NewVWSpawns")
+THEN
+CharacterAppear(CHARACTERGUID_S_RC_DU_HeroicRescue_GiantInsect_Wings_02_00166785-b066-4b72-adae-4fb97dc9795e, 1, "");
+DB_KillCounter_Internal(CHARACTERGUID_S_RC_DU_HeroicRescue_GiantInsect_Wings_02_00166785-b066-4b72-adae-4fb97dc9795e, "RC_DU_HeroicRescue_Voidwoken");
+NOT DB_KillCounter("RC_DU_HeroicRescue_Voidwoken", _Var2);
+DB_KillCounter("RC_DU_HeroicRescue_Voidwoken", _Var3);
+
+IF
+CharacterKilledBy((CHARACTERGUID)_Var1, (CHARACTERGUID)_Var2, (CHARACTERGUID)_Var3)
+AND
+DB_RC_DU_HeroicRescue_Voidwoken(_Var1)
+AND
+DB_IsPlayer(_Var2)
+THEN
+UserSetFlag(_Var2, "RC_DU_HeroicRescue_KilledAVoidwoken");
+
+IF
+CharacterDying((CHARACTERGUID)_Var1)
+AND
+DB_RC_DU_HeroicRescue_Voidwoken(_Var1)
+AND
+DB_CombatCharacters(_Var1, _Var2)
+AND
+DB_IsPlayer(_Var3)
+AND
+DB_CombatCharacters(_Var3, _Var2)
+THEN
+UserSetFlag(_Var3, "RC_DU_HeroicRescue_KilledAVoidwoken");
+
+IF
+ObjectTurnStarted(CHARACTERGUID_S_RC_DU_DrawBridgeHeroicWife_e0988a52-c38e-4b29-849b-4e0efda467cc)
+AND
+DB_RC_DU_HeroicRescue_Voidwoken(_Var1)
+AND
+DB_CombatCharacters(_Var1, _Var2)
+AND
+DB_CombatCharacters(CHARACTERGUID_S_RC_DU_DrawBridgeHeroicWife_e0988a52-c38e-4b29-849b-4e0efda467cc, _Var2)
+AND
+QueryOnlyOnce("RC_DU_HeroicWifeCombatAD")
+THEN
+Proc_StartDialog(1, "RC_DU_HeroicRescue_AD_HeroicWifeJoinsFight", CHARACTERGUID_S_RC_DU_DrawBridgeHeroicWife_e0988a52-c38e-4b29-849b-4e0efda467cc);
+
+IF
+CharacterKilledBy(CHARACTERGUID_S_RC_DU_DrawBridgeHeroicWife_e0988a52-c38e-4b29-849b-4e0efda467cc, (CHARACTERGUID)_Var1, (CHARACTERGUID)_Var2)
+AND
+DB_IsPlayer(_Var1)
+THEN
+DB_RC_DU_HeroicWifeKilledByPlayer(1);
+
+IF
+CharacterSawCharacter((CHARACTERGUID)_Var1, CHARACTERGUID_S_RC_DU_DrawBridgeHeroicWife_e0988a52-c38e-4b29-849b-4e0efda467cc)
+AND NOT
+DB_RC_DU_HeroicWifeKilledByPlayer(_)
+AND
+DB_IsPlayer(_Var1)
+AND
+CharacterIsDead(CHARACTERGUID_S_RC_DU_DrawBridgeHeroicWife_e0988a52-c38e-4b29-849b-4e0efda467cc, 1)
+AND
+QueryOnlyOnce("RC_DU_HeroicRescue_DeathOfMari")
+THEN
+StartVoiceBark("RC_DU_HeroicRescue_VB_DeathOfMari", _Var1);
+
+IF
+CharacterDied(CHARACTERGUID_S_RC_DU_DrawBridgeHeroicWife_e0988a52-c38e-4b29-849b-4e0efda467cc)
+AND NOT
+DB_RC_DU_HeroicWifeKilledByPlayer(_)
+AND
+DB_IsPlayer(_Var2)
+AND
+CharacterCanSee(_Var2, CHARACTERGUID_S_RC_DU_DrawBridgeHeroicWife_e0988a52-c38e-4b29-849b-4e0efda467cc, 1)
+AND
+QueryOnlyOnce("RC_DU_HeroicRescue_DeathOfMari")
+THEN
+StartVoiceBark("RC_DU_HeroicRescue_VB_DeathOfMari", _Var2);
+
+PROC
+ReactOnKillCounter("RC_DU_HeroicRescue_Voidwoken")
+THEN
+GlobalSetFlag("RC_DU_DrawBridge_VoidwokenAreDead");
+ProcTriggerUnregisterForPlayers(TRIGGERGUID_S_RC_DW_SeenVoidwokenVB_Box_aafa45cf-348c-416f-a19c-cefaa7455426);
+SetStoryEvent(CHARACTERGUID_S_RC_DU_DrawBridgeHeroicWife_e0988a52-c38e-4b29-849b-4e0efda467cc, "ClearPeaceReturn");
+SetVarFixedString(CHARACTERGUID_S_RC_DU_DrawBridgeKeeper_c7808968-e893-43c5-8856-ddc7f871037f, "currentState", "State_AfterCombat");
+SetVarFixedString(CHARACTERGUID_S_RC_DU_DrawBridgeHeroicWife_e0988a52-c38e-4b29-849b-4e0efda467cc, "currentState", "State_ReachHusband");
+
+PROC
+ReactOnKillCounter("RC_DU_HeroicRescue_Voidwoken")
+AND
+DB_IsPlayer(_Var1)
+AND
+DB_WasInCombat(_Var1, _Var2)
+AND
+DB_RC_DU_HeroicRescue_Voidwoken(_Var3)
+AND
+DB_WasInCombat(_Var3, _Var2)
+THEN
+UserSetFlag(_Var1, "QuestUpdate_RC_DU_HeroicRescue_KilledVoidwoken");
+UserSetFlag(_Var1, "RC_DU_HeroicRescue_KilledAVoidwoken");
+
+PROC
+ReactOnKillCounter("RC_DU_HeroicRescue_Voidwoken")
+AND
+CharacterIsDead(CHARACTERGUID_S_RC_DU_DrawBridgeHeroicWife_e0988a52-c38e-4b29-849b-4e0efda467cc, 0)
+AND
+DB_IsPlayer(_Var1)
+AND
+DB_WasInCombat(_Var1, _Var2)
+AND
+DB_RC_DU_HeroicRescue_Voidwoken(_Var3)
+AND
+DB_WasInCombat(_Var3, _Var2)
+THEN
+UserSetFlag(_Var1, "RC_DU_RescuedHeroicWife");
+
+PROC
+ReactOnKillCounter("RC_DU_HeroicRescue_Voidwoken")
+AND
+CharacterIsDead(CHARACTERGUID_S_RC_DU_DrawBridgeHeroicWife_e0988a52-c38e-4b29-849b-4e0efda467cc, 0)
+AND
+DB_IsPlayer(_Var1)
+AND
+DB_CombatCharacters(_Var1, _Var2)
+AND
+DB_RC_DU_HeroicRescue_Voidwoken(_Var3)
+AND
+DB_WasInCombat(_Var3, _Var2)
+THEN
+UserSetFlag(_Var1, "RC_DU_RescuedHeroicWife");
+
+IF
+ObjectFlagSet("RC_DU_RescuedHeroicWife", (GUIDSTRING)_Var1, _)
+THEN
+ObjectSetFlag(_Var1, "GLO_SetTag_HERO");
+
+IF
+DialogEnded("RC_DU_HeroicRescue_BridgeKeeper", _)
+AND
+CharacterIsDead(CHARACTERGUID_S_RC_DU_DrawBridgeHeroicWife_e0988a52-c38e-4b29-849b-4e0efda467cc, 1)
+AND
+QueryOnlyOnce("RC_DU_BarinLeaveForDriftwood")
+THEN
+GlobalSetFlag("RC_DU_HeroicRescue_SurvivorsGoToDriftwood");
+
+IF
+CharacterLeftTrigger((CHARACTERGUID)_Var1, TRIGGERGUID_S_RC_DW_PreDriftwoodRegion_3dce0f0a-a3a6-4c78-91b0-89dee598d440)
+AND
+QRY_AnyRegionActive()
+AND
+GlobalGetFlag("RC_DU_DrawBridge_VoidwokenAreDead", 1)
+AND NOT
+QryCheckOtherPlayersInTrigger(NULL_00000000-0000-0000-0000-000000000000, TRIGGERGUID_S_RC_DW_PreDriftwoodRegion_3dce0f0a-a3a6-4c78-91b0-89dee598d440)
+THEN
+GlobalSetFlag("RC_DU_HeroicRescue_SurvivorsGoToDriftwood");
+ProcTriggerUnregisterForPlayers(TRIGGERGUID_S_RC_DW_PreDriftwoodRegion_3dce0f0a-a3a6-4c78-91b0-89dee598d440);
+UserSetFlag(_Var1, "QuestUpdate_RC_DU_HeroicRescue_WifeSurvived");
+
+IF
+ObjectFlagSet("RC_DU_HeroicWife_NearHusband", CHARACTERGUID_S_RC_DU_DrawBridgeHeroicWife_e0988a52-c38e-4b29-849b-4e0efda467cc, _)
+AND
+DB_RC_DU_HeroicRescue_Characters(_Var2, _Var3)
+AND
+CharacterIsDead(_Var2, 0)
+THEN
+PROC_RemoveDialogFromCharacter(_Var2);
+NOT DB_Dialogs(_Var2, _Var3);
+DB_Dialogs(CHARACTERGUID_S_RC_DU_DrawBridgeHeroicWife_e0988a52-c38e-4b29-849b-4e0efda467cc, CHARACTERGUID_S_RC_DU_DrawBridgeKeeper_c7808968-e893-43c5-8856-ddc7f871037f, "RC_DU_HeroicRescue_ReunitedCouple");
+
+IF
+ObjectFlagCleared("RC_DU_HeroicWife_NearHusband", CHARACTERGUID_S_RC_DU_DrawBridgeHeroicWife_e0988a52-c38e-4b29-849b-4e0efda467cc, _)
+THEN
+Proc_RC_DU_HeroicRescue_DoubleDialogCleanUp();
+
+IF
+CharacterDied((CHARACTERGUID)_Var1)
+AND
+DB_RC_DU_HeroicRescue_Characters(_Var1, _)
+THEN
+Proc_RC_DU_HeroicRescue_DoubleDialogCleanUp();
+
+IF
+GlobalFlagSet("RC_DU_HeroicRescue_SurvivorsGoToDriftwood")
+THEN
+Proc_RC_DU_HeroicRescue_DoubleDialogCleanUp();
+
+IF
+GlobalFlagSet("RC_DU_HeroicRescue_SurvivorsGoToDriftwood")
+AND
+DB_RC_DU_HeroicRescue_Characters(_Var1, _)
+AND
+CharacterIsDead(_Var1, 0)
+THEN
+CharacterDisappearOutOfSightToObject(_Var1, TRIGGERGUID_S_RC_DW_BridgeKeeperAndWife_Point_12435842-23cc-4744-a9de-094ed770953b, 1, "RC_DU_HeroicCoupleToDriftwood", 1);
+SetHasDialog(_Var1, 0);
+
+IF
+StoryEvent((CHARACTERGUID)_Var1, "RC_DU_HeroicCoupleToDriftwood")
+AND
+DB_RC_DU_HeroicRescue_Characters(_Var1, _)
+THEN
+CharacterAppearOutOfSightToObject(_Var1, TRIGGERGUID_S_RC_DW_BridgeKeeperAndWife_Point_12435842-23cc-4744-a9de-094ed770953b, TRIGGERGUID_S_RC_DU_HeroicRescue_BridgeKeeper_Point_7d7b2755-427d-48fa-8162-ae6f3ef03052, 0, "RC_DU_HeroicCoupleInDriftwood");
+ObjectSetFlag(_Var1, "RC_DU_HeroicRescue_InDriftwood");
+SetHasDialog(_Var1, 1);
+SetFaction(_Var1, "RC_DW_Civilian");
+SetVarFixedString(_Var1, "currentState", "State_InDriftwood");
+GlobalSetFlag("RC_DW_HeroicWifeRescued");
+
+PROC
+Proc_RC_DU_HeroicRescue_DoubleDialogCleanUp()
+AND
+DB_RC_DU_HeroicRescue_Characters(_Var1, _Var2)
+AND
+CharacterIsDead(_Var1, 0)
+THEN
+PROC_RemoveDialogFromCharacter(_Var1);
+NOT DB_Dialogs(CHARACTERGUID_S_RC_DU_DrawBridgeHeroicWife_e0988a52-c38e-4b29-849b-4e0efda467cc, CHARACTERGUID_S_RC_DU_DrawBridgeKeeper_c7808968-e893-43c5-8856-ddc7f871037f, "RC_DU_HeroicRescue_ReunitedCouple");
+DB_Dialogs(_Var1, _Var2);
+
+PROC
+Proc_RC_DU_HeroicRescue_CellarOpenDoor()
+THEN
+ItemUnlockAndOpen(ITEMGUID_S_RC_DU_HeroicRescue_CellarLockedDoor_429d8e22-63ad-4be5-a3b1-66b86003dfb9);
+DB_RC_DU_HeroicRescue_KnowsHowOpenCellar(1);
+
+IF
+AttackedByObject(ITEMGUID_S_RC_DU_HeroicRescue_CellarLockedDoor_429d8e22-63ad-4be5-a3b1-66b86003dfb9, (GUIDSTRING)_Var1, (GUIDSTRING)_Var2, _, _)
+AND
+ITEMGUID_S_RC_DU_HeroicRescue_CellarLockedDoor_429d8e22-63ad-4be5-a3b1-66b86003dfb9 != _Var2
+AND
+QueryOnlyOnce("RC_DU_HeroicRescue_CellarDoorTrapTriggered")
+AND
+GetPosition(_Var1, _Var5, _Var6, _Var7)
+THEN
+CreateExplosionAtPosition(_Var5, _Var6, _Var7, "Projectile_EnemyFireball", 10);
+
+IF
+CharacterUsedItem((CHARACTERGUID)_Var1, ITEMGUID_S_RC_DU_HeroicRescue_CellarLockedDoor_429d8e22-63ad-4be5-a3b1-66b86003dfb9)
+AND
+DB_InRegion(_Var1, TRIGGERGUID_S_RC_DU_HeroicRescue_ExplodeDoorZone_790cf92c-d164-4ea6-8b0a-d30c0d7629a4)
+AND NOT
+DB_RC_DU_HeroicRescue_CellarDoorFinal(_)
+AND
+GetPosition(_Var1, _Var3, _Var4, _Var5)
+THEN
+CreateExplosionAtPosition(_Var3, _Var4, _Var5, "Projectile_EnemyFireball", 10);
+ProcTriggerUnregisterForPlayers(TRIGGERGUID_S_RC_DU_HeroicRescue_ExplodeDoorZone_790cf92c-d164-4ea6-8b0a-d30c0d7629a4);
+
+IF
+CharacterItemEvent((CHARACTERGUID)_Var1, (ITEMGUID)_Var2, (STRING)_Var3)
+AND
+DB_RC_DU_HeroicRescue_TruePlates(_Var2, _, _Var3)
+AND
+DB_RC_DU_HeroicRescue_PressedPlates(_Var2)
+AND NOT
+DB_RC_DU_HeroicRescue_CellarDoorFinal(_)
+AND
+ItemIsLocked(ITEMGUID_S_RC_DU_HeroicRescue_CellarLockedDoor_429d8e22-63ad-4be5-a3b1-66b86003dfb9, 0)
+THEN
+ItemCloseAndLock(ITEMGUID_S_RC_DU_HeroicRescue_CellarLockedDoor_429d8e22-63ad-4be5-a3b1-66b86003dfb9, "");
+
+IF
+CharacterItemEvent((CHARACTERGUID)_Var1, (ITEMGUID)_Var2, (STRING)_Var3)
+AND
+DB_RC_DU_HeroicRescue_TruePlates(_Var2, _, _Var3)
+AND
+DB_RC_DU_HeroicRescue_PressedPlates(_Var2)
+AND
+DB_RC_DU_HeroicRescue_CellarDoorFinal(_)
+THEN
+ItemClose(ITEMGUID_S_RC_DU_HeroicRescue_CellarLockedDoor_429d8e22-63ad-4be5-a3b1-66b86003dfb9);
+
+IF
+CharacterItemEvent((CHARACTERGUID)_Var1, (ITEMGUID)_Var2, (STRING)_Var3)
+AND
+DB_RC_DU_HeroicRescue_TruePlates(_Var2, _Var3, _)
+AND NOT
+DB_RC_DU_HeroicRescue_PressedPlates(_Var2)
+THEN
+DB_RC_DU_HeroicRescue_PressedPlates(_Var2);
+
+IF
+CharacterItemEvent((CHARACTERGUID)_Var1, (ITEMGUID)_Var2, (STRING)_Var3)
+AND
+DB_RC_DU_HeroicRescue_TruePlates(_Var2, _, _Var3)
+AND
+DB_RC_DU_HeroicRescue_PressedPlates(_Var2)
+THEN
+NOT DB_RC_DU_HeroicRescue_PressedPlates(_Var2);
+
+IF
+DB_RC_DU_HeroicRescue_PressedPlates(_Var1)
+AND
+SysCount("DB_RC_DU_HeroicRescue_PressedPlates", 1, 3)
+THEN
+Proc_RC_DU_HeroicRescue_CellarOpenDoor();
+
+IF
+CharacterItemEvent((CHARACTERGUID)_Var1, ITEMGUID_S_RC_DU_HeroicRescue_CellarDoorLever_4227e46b-fbd0-4f2f-927b-6e88d58fd5aa, "RC_DU_HeroicRescue_CellarLeverUsed")
+THEN
+DB_RC_DU_HeroicRescue_CellarDoorFinal(1);
+Proc_RC_DU_HeroicRescue_CellarOpenDoor();
+
+IF
+CharacterItemEvent((CHARACTERGUID)_Var1, ITEMGUID_S_RC_DU_HeroicRescue_CellarLadder_c9b74369-2298-4a26-b9a7-f795998db488, "RC_DU_HeroicRescue_FromCellar")
+THEN
+ItemUnLock(ITEMGUID_RC_DU_HeroicRescue_CellarHatch_dec7a940-a1b4-42aa-8041-08cf14151374);
+
+IF
+CharacterUsedItem((CHARACTERGUID)_Var1, ITEMGUID_S_RC_DU_HeroicRescue_CellarHatch_dec7a940-a1b4-42aa-8041-08cf14151374)
+AND
+PartyGetFlag(_Var1, "RC_DU_HeroicRescue_FromWell", 0)
+AND
+ItemIsLocked(ITEMGUID_S_RC_DU_HeroicRescue_CellarHatch_dec7a940-a1b4-42aa-8041-08cf14151374, 0)
+AND
+QueryOnlyOnce("RC_DU_HeroicResscue_EnteredCellar")
+THEN
+StartVoiceBark("RC_DU_HeroicRescue_VB_EnterCellar", _Var1);
+PartySetFlag(_Var1, "RC_DU_HeroicRescue_FromHouse");
+
+IF
+CharacterUsedItem((CHARACTERGUID)_Var1, ITEMGUID_S_RC_DU_HeroicRescue_Well_248aae23-e4f0-4a39-9dd9-b39daa76a3ff)
+AND
+PartyGetFlag(_Var1, "RC_DU_HeroicRescue_FromHouse", 0)
+AND
+QueryOnlyOnce("RC_DU_HeroicResscue_EnteredCellar")
+THEN
+StartVoiceBark("RC_DU_HeroicRescue_VB_EnterCellar", _Var1);
+PartySetFlag(_Var1, "RC_DU_HeroicRescue_FromWell");
+
+IF
+CharacterUsedItem((CHARACTERGUID)_Var1, ITEMGUID_S_RC_DU_HeroicRescue_CellarLockedDoor_429d8e22-63ad-4be5-a3b1-66b86003dfb9)
+AND
+PartyGetFlag(_Var1, "RC_DU_HeroicRescue_ClickedCellarDoor", 0)
+AND
+ItemIsLocked(ITEMGUID_S_RC_DU_HeroicRescue_CellarLockedDoor_429d8e22-63ad-4be5-a3b1-66b86003dfb9, 1)
+AND NOT
+DB_RC_DU_HeroicRescue_KnowsHowOpenCellar(_)
+THEN
+StartVoiceBark("RC_DU_HeroicRescue_VB_CellarDoor", _Var1);
+
+IF
+TextEventSet("CreatureSoundTestCharacter")
+THEN
+PlaySound(CHARACTERGUID_S_RC_DU_HeroicRescue_GiantInsect_Wings_01_899212c1-3ba7-438d-981f-51ecf75c01a9, "Shrieker");
+
+IF
+TextEventSet("CreatureSoundTestItem")
+THEN
+PlaySound(S_RC_DU_Sound_HeroicRescue_CreatureDistantRoar_34b6f4af-d55f-4ddd-bfca-5032663ac4ad, "Shrieker");
+
+IF
+TextEventSet("CreatureSoundTestVoidwoken")
+THEN
+PlaySound(S_RC_DU_Sound_HeroicRescue_CreatureDistantRoar_34b6f4af-d55f-4ddd-bfca-5032663ac4ad, "Giant_Insect_Distant_Roar_01");
+
+IF
+TextEventSet("CreatureSoundTestVoidwokenSceneLoop")
+THEN
+PlaySound(S_RC_DU_Sound_HeroicRescue_CreatureDistantRoar_34b6f4af-d55f-4ddd-bfca-5032663ac4ad, "Giant_Insect_Abduction_Scene");
+
+IF
+TextEventSet("CreatureSoundTestVoidwokenOnChar")
+AND
+DB_IsPlayer(_Var1)
+THEN
+PlaySound(_Var1, "Giant_Insect_Distant_Roar_02");
+PlaySound(_Var1, "Giant_Insect_Distant_Roar_01");
+
+PROC
+ProcOneShotTriggerEntered((CHARACTERGUID)_Var1, TRIGGERGUID_S_RC_DW_SeenVoidwokenVB_Box_aafa45cf-348c-416f-a19c-cefaa7455426)
+AND
+GlobalGetFlag("RC_DU_DrawBridge_VoidwokenAreDead", 0)
+AND
+QueryOnlyOnce("RC_DU_HeroicRescue_Voidwoken_SoundTirgger1")
+THEN
+DebugText(_Var1, "Giant_Insect_Distant_Roar_01");
+PlaySound(S_RC_DU_Sound_HeroicRescue_CreatureDistantRoar1_34b6f4af-d55f-4ddd-bfca-5032663ac4ad, "Giant_Insect_Distant_Roar_01");
+Proc_ShakeCameraForTime(_Var1, 2000);
+
+IF
+CharacterUsedItem((CHARACTERGUID)_Var1, S_TOOL_Ladder_Nature_12H_A_001_eb47020d-7319-4b1e-bfd8-d9f670423e27)
+AND
+GlobalGetFlag("RC_DU_DrawBridge_VoidwokenAreDead", 0)
+AND
+QueryOnlyOnce("RC_DU_HeroicRescue_Voidwoken_SoundTirgger2")
+THEN
+DebugText(_Var1, "Giant_Insect_Distant_Roar_02");
+PlaySound(S_RC_DU_Sound_HeroicRescue_CreatureDistantRoar2_221e39f2-3bff-4650-8f71-4a67da2286d9, "Giant_Insect_Distant_Roar_02");
+Proc_ShakeCameraForTime(_Var1, 2000);
+
+
+EXITSECTION
+NOT DB_RC_DU_HeroicRescue_Voidwoken(CHARACTERGUID_S_RC_DU_HeroicRescue_GiantInsect_NoWings_01_9f5cc975-fbca-4383-aff8-837f527dd950);
+NOT DB_RC_DU_HeroicRescue_Voidwoken(CHARACTERGUID_S_RC_DU_HeroicRescue_GiantInsect_NoWings_03_e131e879-68fb-43f2-ae69-5110bea54905);
+NOT DB_RC_DU_HeroicRescue_Voidwoken(CHARACTERGUID_S_RC_DU_HeroicRescue_GiantInsect_Wings_01_899212c1-3ba7-438d-981f-51ecf75c01a9);
+NOT DB_RC_DU_HeroicRescue_Voidwoken(CHARACTERGUID_S_RC_DU_HeroicRescue_GiantInsect_Wings_02_00166785-b066-4b72-adae-4fb97dc9795e);
+NOT DB_RC_DU_HeroicRescue_Characters(CHARACTERGUID_S_RC_DU_DrawBridgeKeeper_c7808968-e893-43c5-8856-ddc7f871037f, "RC_DU_HeroicRescue_BridgeKeeper");
+NOT DB_RC_DU_HeroicRescue_Characters(CHARACTERGUID_S_RC_DU_DrawBridgeHeroicWife_e0988a52-c38e-4b29-849b-4e0efda467cc, "RC_DU_HeroicRescue_HeroicWife");
+NOT DB_RC_DU_HeroicRescue_TruePlates(ITEMGUID_S_RC_DU_HeroicRescue_CellarPressurePlate01_53a498d4-a5a1-4288-8b27-7f8ba18e20fc, "RC_DU_HeroicRescue_CellarPlate01_Pressed", "RC_DU_HeroicRescue_CellarPlate01_UnPressed");
+NOT DB_RC_DU_HeroicRescue_TruePlates(ITEMGUID_S_RC_DU_HeroicRescue_CellarPressurePlate02_7e25d3ce-5d7b-4762-ab39-882392585f56, "RC_DU_HeroicRescue_CellarPlate02_Pressed", "RC_DU_HeroicRescue_CellarPlate02_UnPressed");
+NOT DB_RC_DU_HeroicRescue_TruePlates(ITEMGUID_S_RC_DU_HeroicRescue_CellarPressurePlate03_5c608b7d-8a53-4732-b18c-283de6f9ca18, "RC_DU_HeroicRescue_CellarPlate03_Pressed", "RC_DU_HeroicRescue_CellarPlate03_UnPressed");
+ENDEXITSECTION
+
+ParentTargetEdge "ReapersCoast"

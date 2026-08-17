@@ -1,0 +1,51 @@
+Version 1
+SubGoalCombiner SGC_AND
+
+INITSECTION
+DB_Dialogs(CHARACTERGUID_S_RC_GY_Mouse_13f47d39-775a-483c-b35a-34b3a27dd0b3, "RC_GY_Mouse");
+DB_Dialogs(CHARACTERGUID_S_RC_GY_RykersPet_Turtle_20608558-0d40-4296-a76e-b33178efd932, "RC_GY_RykersPet_Turtle");
+DB_OneShotUser_VoicebarkTrigger(TRIGGERGUID_S_RC_GY_Cellar_27f7c373-bee7-40f8-9046-03bfc2e594b6, "RC_GY_VB_Cellars_Generic");
+
+KBSECTION
+IF
+GlobalFlagSet("RC_GY_TurtleLove")
+THEN
+PROC_LoopEffect("RS3_FX_GP_Status_Charmed_01", CHARACTERGUID_S_RC_GY_RykersPet_Turtle_20608558-0d40-4296-a76e-b33178efd932, "RC_GY_Charmed", "RC_Main", "Dummy_OverheadFX");
+PROC_LoopEffect("RS3_FX_GP_Status_Charmed_01", CHARACTERGUID_S_RC_GY_Mouse_13f47d39-775a-483c-b35a-34b3a27dd0b3, "RC_GY_Charmed", "RC_Main", "Dummy_OverheadFX");
+SetVarObject(CHARACTERGUID_S_RC_GY_Mouse_13f47d39-775a-483c-b35a-34b3a27dd0b3, "WanderArea", S_RC_GY_Cellar_Waterfall_d8fb45d4-08b8-48b0-8224-4453fa9d00d9);
+CharacterLookAt(CHARACTERGUID_S_RC_GY_RykersPet_Turtle_20608558-0d40-4296-a76e-b33178efd932, CHARACTERGUID_S_RC_GY_Mouse_13f47d39-775a-483c-b35a-34b3a27dd0b3);
+CharacterLookAt(CHARACTERGUID_S_RC_GY_Mouse_13f47d39-775a-483c-b35a-34b3a27dd0b3, CHARACTERGUID_S_RC_GY_RykersPet_Turtle_20608558-0d40-4296-a76e-b33178efd932);
+
+IF
+ObjectFlagSet("RC_GY_Turtle_QuestFinished", (GUIDSTRING)_Var1, _)
+AND
+ObjectGetFlag(_Var1, "QuestUpdate_RC_GY_TurtleLove_TalkTurtle", 1)
+THEN
+ObjectSetFlag(_Var1, "QuestUpdate_RC_GY_TurtleLove_TurtleSuccess");
+
+IF
+CharacterDied(CHARACTERGUID_S_RC_GY_Mouse_13f47d39-775a-483c-b35a-34b3a27dd0b3)
+THEN
+ProcSetFlagOnAll("QuestUpdate_RC_GY_TurtleLove_MouseDied");
+PROC_StopLoopEffect(CHARACTERGUID_S_RC_GY_Mouse_13f47d39-775a-483c-b35a-34b3a27dd0b3, "RC_GY_Charmed");
+PROC_StopLoopEffect(CHARACTERGUID_S_RC_GY_RykersPet_Turtle_20608558-0d40-4296-a76e-b33178efd932, "RC_GY_Charmed");
+GlobalSetFlag("RC_GY_DeadMouse");
+
+IF
+CharacterDied(CHARACTERGUID_S_RC_GY_RykersPet_Turtle_20608558-0d40-4296-a76e-b33178efd932)
+THEN
+ProcSetFlagOnAll("QuestUpdate_RC_GY_TurtleLove_TurtleDied");
+PROC_StopLoopEffect(CHARACTERGUID_S_RC_GY_Mouse_13f47d39-775a-483c-b35a-34b3a27dd0b3, "RC_GY_Charmed");
+PROC_StopLoopEffect(CHARACTERGUID_S_RC_GY_RykersPet_Turtle_20608558-0d40-4296-a76e-b33178efd932, "RC_GY_Charmed");
+GlobalSetFlag("RC_GY_DeadTurtle");
+
+IF
+RegionEnded("RC_Main")
+THEN
+ProcSetFlagOnAll("QuestUpdate_RC_GY_TurtleLove_QuestFailed");
+
+
+EXITSECTION
+ENDEXITSECTION
+
+ParentTargetEdge "ReapersCoast"

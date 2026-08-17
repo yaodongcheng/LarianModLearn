@@ -1,0 +1,281 @@
+Version 1
+SubGoalCombiner SGC_AND
+
+INITSECTION
+DB_ARX_KemmMansion_CellarTraderTrigger(TRIGGERGUID_S_ARX_KemmMansion_OneShot_ChiefCellar_49e85f5c-2398-4309-b82b-39a345fddef3);
+ProcTriggerRegisterForPlayers(S_RC_DW_KemmVault_Floor01_84095ddf-39b1-49aa-9840-a8bd5f61f965);
+DB_Dialogs(CHARACTERGUID_S_ARX_KemmMansion_Bodyguard_16ce58c4-ff55-4571-ad8f-8c995a75e0e4, "ARX_AntiqueTraders_Bodyguard");
+DB_Dialogs(S_ARX_KM_Trader_Antique_01_ee8eebd2-cb85-41f6-87a6-f540017e8821, "ARX_KM_Trader_Antique_01");
+DB_Dialogs(S_ARX_KM_Trader_Antique_02_b4a87795-0d90-47c0-a77e-7193a368bd72, "ARX_KM_Trader_Antique_02");
+DB_Dialogs(S_ARX_KM_Trader_Antique_03_9f3b3fb5-dfac-4565-a584-93c665be6671, "ARX_KM_Trader_Antique_03");
+DB_ARX_KemmMansion_AntiqueTraderOutside(S_ARX_KM_Trader_Antique_01_ee8eebd2-cb85-41f6-87a6-f540017e8821);
+DB_ARX_KemmMansion_AntiqueTraderOutside(S_ARX_KM_Trader_Antique_02_b4a87795-0d90-47c0-a77e-7193a368bd72);
+DB_ARX_KemmMansion_AntiqueTraderOutside(S_ARX_KM_Trader_Antique_03_9f3b3fb5-dfac-4565-a584-93c665be6671);
+GlobalSetFlag("ARX_AntiqueTraders_ChiefMansion");
+DB_Dialogs(CHARACTERGUID_S_ARX_KemmMansion_ChiefTrader_46ced128-0571-4e0b-ac7b-96279d92072f, "ARX_AntiqueTraders_Chief");
+CharacterSetCanTrade(S_ARX_KemmMansion_ChiefTrader_46ced128-0571-4e0b-ac7b-96279d92072f, 1);
+ProcCharacterDisableCrime(S_ARX_KemmMansion_ChiefTrader_46ced128-0571-4e0b-ac7b-96279d92072f, "Steal");
+ProcCharacterDisableCrime(S_ARX_KemmMansion_ChiefTrader_46ced128-0571-4e0b-ac7b-96279d92072f, "MoveForbiddenItem");
+ProcCharacterDisableCrime(S_ARX_KemmMansion_ChiefTrader_46ced128-0571-4e0b-ac7b-96279d92072f, "UseForbiddenItem");
+ProcCharacterDisableCrime(S_ARX_KemmMansion_ChiefTrader_46ced128-0571-4e0b-ac7b-96279d92072f, "TeleportPlayerDialog");
+ProcCharacterDisableCrime(S_ARX_KemmMansion_Bodyguard_16ce58c4-ff55-4571-ad8f-8c995a75e0e4, "Steal");
+ProcCharacterDisableCrime(S_ARX_KemmMansion_Bodyguard_16ce58c4-ff55-4571-ad8f-8c995a75e0e4, "MoveForbiddenItem");
+ProcCharacterDisableCrime(S_ARX_KemmMansion_Bodyguard_16ce58c4-ff55-4571-ad8f-8c995a75e0e4, "UseForbiddenItem");
+DB_ARX_AntiqueTraders_RequstedItem(S_ARX_AntiqueTraders_UglyPainting_de23c6d9-2fbb-4594-84ff-61e599e996b8);
+DB_ARX_AntiqueTraders_RequstedItem(S_ARX_AntiqueTraders_RustedCup_059478fc-d723-494b-b2dd-644873054582);
+DB_ARX_AntiqueTraders_RequstedItem(S_ARX_AntiqueTraders_Scrolls_e48425b1-fe89-4022-a4b2-68e9e7ac23cf);
+DB_HasStoryEvent(S_ARX_AntiqueTraders_UglyPainting_de23c6d9-2fbb-4594-84ff-61e599e996b8, "ARX_AntiqueTraders_Has_Painting");
+DB_HasStoryEvent(S_ARX_AntiqueTraders_RustedCup_059478fc-d723-494b-b2dd-644873054582, "ARX_AntiqueTraders_Has_Cup");
+DB_HasStoryEvent(S_ARX_AntiqueTraders_Scrolls_e48425b1-fe89-4022-a4b2-68e9e7ac23cf, "ARX_AntiqueTraders_Has_Scrolls");
+DB_ARX_AntiqueTraders_RequstedItem_Flags("ARX_AntiqueTraders_Has_Painting", "QuestUpdate_ARX_AntiqueTraders_GotPainting", "ARX_AntiqueTraders_AppraiserGotPainting", "QuestUpdate_ARX_AntiqueTraders_TradedPainting");
+DB_ARX_AntiqueTraders_RequstedItem_Flags("ARX_AntiqueTraders_Has_Cup", "QuestUpdate_ARX_AntiqueTraders_GotCup", "ARX_AntiqueTraders_AppraiserGotCup", "QuestUpdate_ARX_AntiqueTraders_TradedCup");
+DB_ARX_AntiqueTraders_RequstedItem_Flags("ARX_AntiqueTraders_Has_Scrolls", "QuestUpdate_ARX_AntiqueTraders_GotScrolls", "ARX_AntiqueTraders_AppraiserGotScrolls", "QuestUpdate_ARX_AntiqueTraders_TradedScrolls");
+SetTagPriceModifier(S_ARX_KemmMansion_ChiefTrader_46ced128-0571-4e0b-ac7b-96279d92072f, "ARX_ANTIQUE_ITEM", 2000);
+DB_ARX_KemmMansion_ChiefTrader_AntiqueItems(S_Antique_FUR_Cutlery_Fork_A_006_f0b7bd70-f2bb-445c-8dcf-404392915df4);
+DB_ARX_KemmMansion_ChiefTrader_AntiqueItems(S_Antique_FUR_Poor_Plate_A_006_03cb949b-4c64-4557-ade6-0f9886fd3f69);
+DB_ARX_KemmMansion_ChiefTrader_AntiqueItems(S_Antique_FUR_Cutlery_Knife_A_001_0061c337-f26a-4094-90da-fbb0f789bde6);
+DB_ARX_KemmMansion_ChiefTrader_AntiqueItems(S_Antique_CON_Drink_Mug_A_Empty_007_e6fafedd-dfb6-462e-b7de-be9c047e8d63);
+DB_ARX_KemmMansion_ChiefTrader_AntiqueItems(S_Antique_LOOT_Jar_A_006_6ff80671-7494-4426-967c-01a64d2576af);
+DB_ARX_KemmMansion_ChiefTrader_AntiqueItems(S_Antique_TOOL_Pitchfork_A_000_41034f9a-4a0b-4429-9236-d511d859b810);
+CharacterAddGold(S_ARX_KemmMansion_ChiefTrader_46ced128-0571-4e0b-ac7b-96279d92072f, 21531);
+CharacterSetCanTrade(S_ARX_KemmMansion_ChiefTrader_46ced128-0571-4e0b-ac7b-96279d92072f, 0);
+ItemToInventory(S_ARM_UNIQUE_AntiqueSpecialRing_000_2f155e69-0686-4cb3-999d-36a2e78e67b7, S_ARX_KM_Trader_Antique_01_ee8eebd2-cb85-41f6-87a6-f540017e8821);
+ItemToInventory(S_ARM_UNIQUE_AntiqueSpecialBelt_118644b7-980d-44d9-b8e7-c59f391b9efc, S_ARX_KM_Trader_Antique_02_b4a87795-0d90-47c0-a77e-7193a368bd72);
+DB_ARX_QuestDef_DeadCharacterUpdates(CHARACTERGUID_S_ARX_KemmMansion_ChiefTrader_46ced128-0571-4e0b-ac7b-96279d92072f, "QuestUpdate_ARX_AntiqueTraders_AppriserIsDead");
+
+KBSECTION
+IF
+DB_ARX_KemmMansion_ChiefTrader_AntiqueItems(_Var1)
+AND
+ItemIsInInventory(_Var1, 0)
+THEN
+ItemToInventory(_Var1, S_ARX_KemmMansion_ChiefTrader_46ced128-0571-4e0b-ac7b-96279d92072f);
+
+IF
+CharacterEnteredTrigger((CHARACTERGUID)_Var1, S_RC_DW_KemmVault_Floor01_84095ddf-39b1-49aa-9840-a8bd5f61f965)
+AND
+DB_IsPlayer(_Var1)
+AND
+UserGetFlag(_Var1, "QuestUpdate_ARX_AntiqueTraders_AppriserToldAboutVault", 1)
+AND
+UserGetFlag(_Var1, "ARX_KemmMansion_VB_Celler_LookForVault", 0)
+THEN
+UserSetFlag(_Var1, "ARX_KemmMansion_VB_Celler_LookForVault");
+StartVoiceBark("ARX_KemmMansion_VB_Celler_LookForVault", _Var1);
+
+IF
+ObjectFlagSet((STRING)_Var1, (CHARACTERGUID)_Var2, (INTEGER)_Var3)
+AND
+DB_ARX_AntiqueTraders_RequstedItem_Flags(_Var1, _, _, _)
+AND
+DB_IsPlayer(_Var2)
+THEN
+UserSetFlag(_Var2, "ARX_AntiqueTraders_Has_RequestedItem");
+
+IF
+ObjectFlagCleared((STRING)_Var1, (CHARACTERGUID)_Var2, (INTEGER)_Var3)
+AND
+DB_ARX_AntiqueTraders_RequstedItem_Flags(_Var1, _, _, _)
+AND
+DB_IsPlayer(_Var2)
+AND
+UserGetFlag(_Var2, "ARX_AntiqueTraders_Has_Painting", 0)
+AND
+UserGetFlag(_Var2, "ARX_AntiqueTraders_Has_Cup", 0)
+AND
+UserGetFlag(_Var2, "ARX_AntiqueTraders_Has_Scrolls", 0)
+THEN
+UserClearFlag(_Var2, "ARX_AntiqueTraders_Has_RequestedItem", 0);
+
+IF
+ObjectFlagSet((STRING)_Var1, S_ARX_KemmMansion_ChiefTrader_46ced128-0571-4e0b-ac7b-96279d92072f, (INTEGER)_Var2)
+AND
+DB_ARX_AntiqueTraders_RequstedItem_Flags(_Var1, _, _, _)
+AND
+ObjectGetFlag(S_ARX_KemmMansion_ChiefTrader_46ced128-0571-4e0b-ac7b-96279d92072f, "ARX_AntiqueTraders_Has_Painting", 1)
+AND
+ObjectGetFlag(S_ARX_KemmMansion_ChiefTrader_46ced128-0571-4e0b-ac7b-96279d92072f, "ARX_AntiqueTraders_Has_Cup", 1)
+AND
+ObjectGetFlag(S_ARX_KemmMansion_ChiefTrader_46ced128-0571-4e0b-ac7b-96279d92072f, "ARX_AntiqueTraders_Has_Scrolls", 1)
+THEN
+ObjectSetFlag(S_ARX_KemmMansion_ChiefTrader_46ced128-0571-4e0b-ac7b-96279d92072f, "ARX_AntiqueTraders_Have_All_Items");
+
+IF
+DialogEnded("ARX_AntiqueTraders_Chief", (INTEGER)_Var1)
+AND
+ObjectGetFlag(S_ARX_KemmMansion_ChiefTrader_46ced128-0571-4e0b-ac7b-96279d92072f, "ARX_AntiqueTraders_Have_All_Items", 1)
+THEN
+ProcCharacterDisappearOutOfSight(S_ARX_KemmMansion_ChiefTrader_46ced128-0571-4e0b-ac7b-96279d92072f, 180, 0, "", 0);
+ProcCharacterDisappearOutOfSight(S_ARX_KemmMansion_Bodyguard_16ce58c4-ff55-4571-ad8f-8c995a75e0e4, 180, 0, "", 0);
+ProcCharacterFollowCharacter(S_ARX_KemmMansion_Bodyguard_16ce58c4-ff55-4571-ad8f-8c995a75e0e4, S_ARX_KemmMansion_ChiefTrader_46ced128-0571-4e0b-ac7b-96279d92072f);
+SetHasDialog(S_ARX_KemmMansion_ChiefTrader_46ced128-0571-4e0b-ac7b-96279d92072f, 0);
+SetHasDialog(S_ARX_KemmMansion_Bodyguard_16ce58c4-ff55-4571-ad8f-8c995a75e0e4, 0);
+
+IF
+AttackedByObject(S_ARX_KemmMansion_ChiefTrader_46ced128-0571-4e0b-ac7b-96279d92072f, (CHARACTERGUID)_Var1, (GUIDSTRING)_Var2, _, _)
+AND
+CharacterIsInCombat(S_ARX_KemmMansion_ChiefTrader_46ced128-0571-4e0b-ac7b-96279d92072f, 0)
+AND
+DB_IsPlayer(_Var1)
+AND
+CharacterCanSee(S_ARX_KemmMansion_Bodyguard_16ce58c4-ff55-4571-ad8f-8c995a75e0e4, _Var1, 1)
+THEN
+ProcForceStopDialog(_Var1);
+Proc_CharacterSetTemporaryHostileRelation(S_ARX_KemmMansion_Bodyguard_16ce58c4-ff55-4571-ad8f-8c995a75e0e4, _Var1);
+Proc_StartDialog(1, "ARX_AD_AntiqueTraders_Bodyguard", S_ARX_KemmMansion_Bodyguard_16ce58c4-ff55-4571-ad8f-8c995a75e0e4);
+
+IF
+CharacterDied(S_ARX_KemmMansion_ChiefTrader_46ced128-0571-4e0b-ac7b-96279d92072f)
+AND
+CharacterIsInCombat(S_ARX_KemmMansion_Bodyguard_16ce58c4-ff55-4571-ad8f-8c995a75e0e4, 0)
+THEN
+ProcCharacterDisappearOutOfSight(S_ARX_KemmMansion_Bodyguard_16ce58c4-ff55-4571-ad8f-8c995a75e0e4, 180, 0, "", 0);
+SetHasDialog(S_ARX_KemmMansion_Bodyguard_16ce58c4-ff55-4571-ad8f-8c995a75e0e4, 0);
+
+IF
+CharacterDied(S_ARX_KemmMansion_ChiefTrader_46ced128-0571-4e0b-ac7b-96279d92072f)
+AND
+CharacterIsInCombat(S_ARX_KemmMansion_Bodyguard_16ce58c4-ff55-4571-ad8f-8c995a75e0e4, 1)
+AND
+CombatGetIDForCharacter(S_ARX_KemmMansion_Bodyguard_16ce58c4-ff55-4571-ad8f-8c995a75e0e4, _Var1)
+THEN
+DB_ARX_AntiqueTraders_KemmMansion_Bodyguard_DisappearAfterCombat(_Var1);
+
+IF
+CombatEnded((INTEGER)_Var1)
+AND
+DB_ARX_AntiqueTraders_KemmMansion_Bodyguard_DisappearAfterCombat(_Var1)
+THEN
+ProcCharacterDisappearOutOfSight(S_ARX_KemmMansion_Bodyguard_16ce58c4-ff55-4571-ad8f-8c995a75e0e4, 180, 0, "", 0);
+SetHasDialog(S_ARX_KemmMansion_Bodyguard_16ce58c4-ff55-4571-ad8f-8c995a75e0e4, 0);
+
+IF
+ObjectFlagSet("ARX_AntiqueTraders_SpottedInCellar", (GUIDSTRING)_Var1, (INTEGER)_Var2)
+THEN
+ObjectSetFlag(_Var1, "QuestUpdate_ARX_AntiqueTraders_MetAppriserInCaller");
+
+IF
+ObjectFlagSet((STRING)_Var1, (GUIDSTRING)_Var2, (INTEGER)_Var3)
+AND
+DB_ARX_AntiqueTraders_RequstedItem_Flags(_Var1, _Var4, _, _)
+AND
+ObjectGetFlag(_Var2, "QuestUpdate_ARX_AntiqueTraders_AppriserToldAboutVault", 1)
+THEN
+ObjectSetFlag(_Var2, _Var4);
+
+IF
+ObjectFlagSet("QuestUpdate_ARX_AntiqueTraders_AppriserToldAboutVault", (CHARACTERGUID)_Var1, _)
+AND
+DB_IsPlayer(_Var1)
+AND
+DB_ARX_AntiqueTraders_RequstedItem_Flags(_Var3, _, _, _)
+AND
+ObjectGetFlag(_Var1, _Var3, 1)
+THEN
+DB_ARX_AntiqueTraders_SetHasFlagAfterDialog(_Var1, _Var3);
+
+IF
+DialogEnded("ARX_AntiqueTraders_Chief", (INTEGER)_Var1)
+AND
+DB_DialogPlayers(_Var1, _Var2, _)
+AND
+DB_ARX_AntiqueTraders_SetHasFlagAfterDialog(_Var2, _Var4)
+AND
+DB_ARX_AntiqueTraders_RequstedItem_Flags(_Var4, _Var5, _, _)
+AND
+ObjectGetFlag(_Var2, _Var4, 1)
+THEN
+ObjectSetFlag(_Var2, _Var5);
+
+IF
+ObjectFlagSet((STRING)_Var1, (CHARACTERGUID)_Var2, _)
+AND
+DB_ARX_AntiqueTraders_RequstedItem_Flags(_Var1, _, _, _)
+AND
+PartyGetFlag(_Var2, "ARX_AntiqueTraders_Has_Painting", 1)
+AND
+PartyGetFlag(_Var2, "ARX_AntiqueTraders_Has_Cup", 1)
+AND
+PartyGetFlag(_Var2, "ARX_AntiqueTraders_Has_Scrolls", 1)
+THEN
+PartySetFlag(_Var2, "QuestUpdate_ARX_AntiqueTraders_GotAllTheItems");
+
+IF
+DialogEnded("ARX_AntiqueTraders_Chief", _)
+AND
+DB_ARX_AntiqueTraders_SetHasFlagAfterDialog(_Var2, _Var3)
+THEN
+NOT DB_ARX_AntiqueTraders_SetHasFlagAfterDialog(_Var2, _Var3);
+
+IF
+TextEventSet("ARX_Antique_SpottedInCaller")
+AND
+DB_IsPlayer(_Var1)
+THEN
+ObjectSetFlag(_Var1, "ARX_AntiqueTraders_SpottedInCellar");
+
+IF
+TextEventSet("ARX_Antique_SpottedInCaller")
+AND
+DB_IsPlayer(_Var1)
+THEN
+ItemToInventory(ITEMGUID_S_ARX_AntiqueTraders_RustedCup_059478fc-d723-494b-b2dd-644873054582, _Var1);
+ItemToInventory(ITEMGUID_S_ARX_AntiqueTraders_Scrolls_e48425b1-fe89-4022-a4b2-68e9e7ac23cf, _Var1);
+ItemToInventory(ITEMGUID_S_ARX_AntiqueTraders_UglyPainting_de23c6d9-2fbb-4594-84ff-61e599e996b8, _Var1);
+
+IF
+TradeEnds((CHARACTERGUID)_Var1, CHARACTERGUID_S_ARX_KemmMansion_ChiefTrader_46ced128-0571-4e0b-ac7b-96279d92072f)
+AND
+DB_ARX_AntiqueTraders_RequstedItem_Flags(_Var2, _, _Var4, _)
+AND NOT
+DB_GlobalFlag(_Var4)
+AND
+ObjectGetFlag(CHARACTERGUID_S_ARX_KemmMansion_ChiefTrader_46ced128-0571-4e0b-ac7b-96279d92072f, _Var2, 1)
+THEN
+GlobalSetFlag(_Var4);
+DB_ARX_AntiqueTraders_TradedItem(_Var1, _Var2);
+DB_ARX_AntiqueTraders_CheckTradingUpdates(1);
+
+IF
+DialogEnded("ARX_AntiqueTraders_Chief", _)
+AND
+DB_ARX_AntiqueTraders_CheckTradingUpdates(1)
+AND
+ObjectGetFlag(S_ARX_KemmMansion_ChiefTrader_46ced128-0571-4e0b-ac7b-96279d92072f, "ARX_AntiqueTraders_Have_All_Items", 0)
+AND
+DB_ARX_AntiqueTraders_TradedItem(_Var2, _Var3)
+AND
+DB_ARX_AntiqueTraders_RequstedItem_Flags(_Var3, _, _, _Var6)
+THEN
+PartySetFlag(_Var2, _Var6);
+
+IF
+DialogEnded("ARX_AntiqueTraders_Chief", (INTEGER)_Var1)
+AND
+DB_ARX_AntiqueTraders_CheckTradingUpdates(1)
+AND
+ObjectGetFlag(S_ARX_KemmMansion_ChiefTrader_46ced128-0571-4e0b-ac7b-96279d92072f, "ARX_AntiqueTraders_Have_All_Items", 1)
+AND
+DB_DialogPlayers(_Var1, _Var2, _)
+AND
+ObjectGetFlag(_Var2, "QuestUpdate_ARX_AntiqueTraders_AppriserToldAboutVault", 1)
+THEN
+PartySetFlag(_Var2, "QuestUpdate_ARX_AntiqueTraders_GaveAllTheItems");
+
+IF
+DialogEnded("ARX_AntiqueTraders_Chief", _)
+AND
+DB_ARX_AntiqueTraders_TradedItem(_Var2, _Var3)
+THEN
+NOT DB_ARX_AntiqueTraders_TradedItem(_Var2, _Var3);
+
+IF
+DialogEnded("ARX_AntiqueTraders_Chief", _)
+THEN
+NOT DB_ARX_AntiqueTraders_CheckTradingUpdates(1);
+
+
+EXITSECTION
+ENDEXITSECTION
+
+ParentTargetEdge "ARX"

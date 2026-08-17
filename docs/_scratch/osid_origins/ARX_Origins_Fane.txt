@@ -1,0 +1,61 @@
+Version 1
+SubGoalCombiner SGC_AND
+
+INITSECTION
+DB_RC_WarOwls(CHARACTERGUID_S_ARX_FaneOM_SmallVoidWoken_a2f753bf-bd62-46c5-9768-218e15ebce5d, CHARACTERGUID_S_Player_Fane_02a77f1f-872b-49ca-91ab-32098c443beb, "ARX_MainRoad_FaneOrigin_SmallVoidwoken", 0);
+DB_RC_WarOwls_AppearSpawn(CHARACTERGUID_S_ARX_FaneOM_SmallVoidWoken_a2f753bf-bd62-46c5-9768-218e15ebce5d, TRIGGERGUID_S_ARX_FaneOM_SmallVoidWoken_AppearDirection_fd71fe72-40b9-4349-aa15-e8d1d41e0894);
+
+KBSECTION
+PROC
+ProcRegionStarted("ARX_Main")
+THEN
+SetOnStage(CHARACTERGUID_S_ARX_FaneOM_SmallVoidWoken_a2f753bf-bd62-46c5-9768-218e15ebce5d, 0);
+TriggerRegisterForCharacter(TRIGGERGUID_S_ARX_FaneOM_SmallVoidWoken_Box_8c2772ba-c1bf-4615-b387-8ca38adbd370, CHARACTERGUID_S_Player_Fane_02a77f1f-872b-49ca-91ab-32098c443beb);
+
+IF
+CharacterEnteredTrigger(CHARACTERGUID_S_Player_Fane_02a77f1f-872b-49ca-91ab-32098c443beb, TRIGGERGUID_S_ARX_FaneOM_SmallVoidWoken_Box_8c2772ba-c1bf-4615-b387-8ca38adbd370)
+AND
+GetPosition(CHARACTERGUID_S_ARX_FaneOM_SmallVoidWoken_a2f753bf-bd62-46c5-9768-218e15ebce5d, _Var1, _Var2, _Var3)
+THEN
+TriggerUnregisterForCharacter(TRIGGERGUID_S_ARX_FaneOM_SmallVoidWoken_Box_8c2772ba-c1bf-4615-b387-8ca38adbd370, CHARACTERGUID_S_Player_Fane_02a77f1f-872b-49ca-91ab-32098c443beb);
+PROC_RC_DispatchWarOwl(CHARACTERGUID_S_ARX_FaneOM_SmallVoidWoken_a2f753bf-bd62-46c5-9768-218e15ebce5d);
+
+IF
+DialogEnded("ARX_MainRoad_FaneOrigin_SmallVoidwoken", _)
+THEN
+PROC_OriginFane_ArxSmallVoidWokenFinished();
+
+IF
+DialogRequestFailed("ARX_MainRoad_FaneOrigin_SmallVoidwoken", _)
+THEN
+CharacterDisappearOutOfSightToObject(CHARACTERGUID_S_ARX_FaneOM_SmallVoidWoken_a2f753bf-bd62-46c5-9768-218e15ebce5d, ITEMGUID_S_BLD_Humans_Castle_WaterWell_A_000_a7fc31a7-9752-4709-841c-48e3ff65691c, 1, "", 1);
+
+IF
+DB_OriginMoment_COMREQ_Denied(CHARACTERGUID_S_Player_Fane_02a77f1f-872b-49ca-91ab-32098c443beb, CHARACTERGUID_S_CoS_Academy_SentientVoidwoken_001_1f1f40cc-4d58-4b0d-a359-4bd3d5c00a1a)
+THEN
+CharacterDisappearOutOfSightToObject(CHARACTERGUID_S_ARX_FaneOM_SmallVoidWoken_a2f753bf-bd62-46c5-9768-218e15ebce5d, ITEMGUID_S_BLD_Humans_Castle_WaterWell_A_000_a7fc31a7-9752-4709-841c-48e3ff65691c, 1, "", 1);
+
+PROC
+PROC_OriginFane_ArxSmallVoidWokenFinished()
+AND
+IsTagged(CHARACTERGUID_S_Player_Fane_02a77f1f-872b-49ca-91ab-32098c443beb, "AVATAR", _Var1)
+AND
+DB_OriginsFane_ArxSmallVoidWokenQuestUpdate(_Var1, _Var2)
+THEN
+ObjectSetFlag(CHARACTERGUID_S_Player_Fane_02a77f1f-872b-49ca-91ab-32098c443beb, _Var2);
+
+PROC
+Proc_COMFinished("CoS_Academy_SentientVoidwoken_COM_Fane", (CHARACTERGUID)_Var1)
+THEN
+Proc_StartDialog(0, "CoS_Academy_SentientVoidwoken", CHARACTERGUID_S_CoS_Academy_SentientVoidwoken_001_1f1f40cc-4d58-4b0d-a359-4bd3d5c00a1a, _Var1);
+
+PROC
+Proc_COMFinished("ARX_MainRoad_FaneOrigin_SmallVoidwoken_COM_Fane", (CHARACTERGUID)_Var1)
+THEN
+PROC_OriginFane_ArxSmallVoidWokenFinished();
+
+
+EXITSECTION
+ENDEXITSECTION
+
+ParentTargetEdge "ARX"

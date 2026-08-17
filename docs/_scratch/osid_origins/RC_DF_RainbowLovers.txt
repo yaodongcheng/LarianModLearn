@@ -1,0 +1,104 @@
+Version 1
+SubGoalCombiner SGC_AND
+
+INITSECTION
+DB_Dialogs(CHARACTERGUID_S_RC_DF_RainbowLovers_Lover_000_00205480-514f-4c46-9d47-a85326d60e46, CHARACTERGUID_S_RC_DF_RainbowLovers_Lover_001_32356b36-44ca-4fc2-81b9-dbe82729ad63, "RC_DF_RainbowLovers");
+DB_RC_DF_RainbowLovers(CHARACTERGUID_S_RC_DF_RainbowLovers_Lover_000_00205480-514f-4c46-9d47-a85326d60e46, "RC_DF_RainbowLover_000", "RC_DF_RainbowLover_SuckedGhost_000");
+DB_RC_DF_RainbowLovers(CHARACTERGUID_S_RC_DF_RainbowLovers_Lover_001_32356b36-44ca-4fc2-81b9-dbe82729ad63, "RC_DF_RainbowLover_001", "RC_DF_RainbowLover_SuckedGhost_001");
+DB_Ghosts(CHARACTERGUID_S_RC_DF_RainbowLovers_Lover_000_00205480-514f-4c46-9d47-a85326d60e46, CHARACTERGUID_S_RC_DF_RainbowLovers_LoverGhost_000_f437b0c9-b0aa-43bc-bc26-f69be4a5066b, "RC_DF_RainbowLover_Ghost_000");
+DB_Ghosts(CHARACTERGUID_S_RC_DF_RainbowLovers_Lover_001_32356b36-44ca-4fc2-81b9-dbe82729ad63, CHARACTERGUID_S_RC_DF_RainbowLovers_LoverGhost_001_b9fea77d-66f2-489c-aca0-c2d74b7208f6, "RC_DF_RainbowLover_Ghost_001");
+DB_ShovelArea(TRIGGERGUID_S_RC_FL_RainbowLovers_ForestPile_Box_9e5743d1-163e-47d0-8258-5b70824ab200, "RC_FL_RainbowLovers_RewardChestPile", ITEMGUID_S_RC_FL_RainbowLovers_ForestPile_b1d78e4c-9498-4c02-a244-e4c10200a373);
+DB_ShovelRewardItemAppear("RC_FL_RainbowLovers_RewardChestPile", ITEMGUID_S_RC_FL_RainbowLovers_Chest_2db254c1-9ea5-4507-86b0-2c9aa28b6f08, TRIGGERGUID_S_RC_FL_RainbowLovers_Chest_Point_fe818268-93ad-40e8-a14a-e6d41850beb8);
+
+KBSECTION
+IF
+DB_Dead(_Var1)
+AND
+DB_RC_DF_RainbowLovers(_Var1, _Var2, _)
+AND
+DB_RC_DF_RainbowLovers(_Var4, _Var5, _)
+AND
+_Var4 != _Var1
+AND NOT
+DB_Dead(_Var4)
+THEN
+NOT DB_Dialogs(CHARACTERGUID_S_RC_DF_RainbowLovers_Lover_000_00205480-514f-4c46-9d47-a85326d60e46, CHARACTERGUID_S_RC_DF_RainbowLovers_Lover_001_32356b36-44ca-4fc2-81b9-dbe82729ad63, "RC_DF_RainbowLovers");
+PROC_RemoveDialogFromCharacter(_Var4);
+ClearVarObject(_Var4, "BedUse");
+ClearVarObject(_Var4, "talkTo_NPC");
+SetVarString(_Var4, "talkTo_AD", "");
+SetVarInteger(_Var4, "CanWander", 1);
+SetVarInteger(_Var4, "allow_DoNothing", 1);
+RemoveStatus(_Var4, "LYING");
+SetVarFixedString(_Var4, "AnimationStanding", "Crying_01");
+SetVarString(_Var4, "AD", "RC_DF_AD_RainbowLover_Mourning");
+DB_Dialogs(_Var4, _Var5);
+TriggerSetItemOwner(TRIGGERGUID_S_RC_DF_RainbowLover_Ownership_Box_f192c3b7-6b2a-4d64-b13c-e07e9c539ffd, _Var4);
+
+IF
+DB_Dead(_Var1)
+AND
+DB_RC_DF_RainbowLovers(_Var1, _Var2, _)
+AND
+DB_RC_DF_RainbowLovers(_Var4, _Var5, _Var6)
+AND
+_Var4 != _Var1
+AND
+QRY_RC_DF_RainbowLovers_BothGhostAvailable()
+AND
+DB_Dead(_Var4)
+AND
+DB_Ghosts(_Var1, _Var7, _)
+AND
+DB_Ghosts(_Var4, _Var9, _)
+THEN
+PROC_RemoveDialogFromCharacter(_Var7);
+PROC_RemoveDialogFromCharacter(_Var9);
+DB_Dialogs(CHARACTERGUID_S_RC_DF_RainbowLovers_LoverGhost_000_f437b0c9-b0aa-43bc-bc26-f69be4a5066b, CHARACTERGUID_S_RC_DF_RainbowLovers_LoverGhost_001_b9fea77d-66f2-489c-aca0-c2d74b7208f6, "RC_DF_RainbowLoverGhosts");
+
+QRY
+QRY_RC_DF_RainbowLovers_BothGhostAvailable()
+AND NOT
+DB_GoneGhosts(CHARACTERGUID_S_RC_DF_RainbowLovers_LoverGhost_000_f437b0c9-b0aa-43bc-bc26-f69be4a5066b)
+AND NOT
+DB_GoneGhosts(CHARACTERGUID_S_RC_DF_RainbowLovers_LoverGhost_001_b9fea77d-66f2-489c-aca0-c2d74b7208f6)
+THEN
+DB_NOOP(1);
+
+IF
+CharacterGhostDestroyed((CHARACTERGUID)_Var1, (CHARACTERGUID)_Var2)
+AND
+DB_RC_DF_RainbowLovers(_Var1, _, _Var4)
+THEN
+GlobalSetFlag(_Var4);
+NOT DB_Dialogs(CHARACTERGUID_S_RC_DF_RainbowLovers_LoverGhost_000_f437b0c9-b0aa-43bc-bc26-f69be4a5066b, CHARACTERGUID_S_RC_DF_RainbowLovers_LoverGhost_001_b9fea77d-66f2-489c-aca0-c2d74b7208f6, "RC_DF_RainbowLoverGhosts");
+
+IF
+CharacterGhostDestroyed((CHARACTERGUID)_Var1, _)
+AND
+DB_RC_DF_RainbowLovers(_Var1, _, _)
+AND
+DB_RC_DF_RainbowLovers(_Var5, _, _)
+AND
+DB_Ghosts(_Var5, _Var8, _Var9)
+THEN
+PROC_RemoveDialogFromCharacter(_Var8);
+DB_Dialogs(_Var8, _Var9);
+
+IF
+DialogStarted("RC_DF_RainbowLoverGhosts", _)
+AND
+GetDistanceTo(CHARACTERGUID_S_RC_DF_RainbowLovers_LoverGhost_000_f437b0c9-b0aa-43bc-bc26-f69be4a5066b, CHARACTERGUID_S_RC_DF_RainbowLovers_LoverGhost_001_b9fea77d-66f2-489c-aca0-c2d74b7208f6, _Var2)
+AND
+_Var2 <= 12
+AND
+_Var2 > 2
+THEN
+ProcCharacterMoveTo(CHARACTERGUID_S_RC_DF_RainbowLovers_LoverGhost_000_f437b0c9-b0aa-43bc-bc26-f69be4a5066b, CHARACTERGUID_S_RC_DF_RainbowLovers_LoverGhost_001_b9fea77d-66f2-489c-aca0-c2d74b7208f6, 0, "");
+ProcCharacterMoveTo(CHARACTERGUID_S_RC_DF_RainbowLovers_LoverGhost_001_b9fea77d-66f2-489c-aca0-c2d74b7208f6, CHARACTERGUID_S_RC_DF_RainbowLovers_LoverGhost_000_f437b0c9-b0aa-43bc-bc26-f69be4a5066b, 0, "");
+
+
+EXITSECTION
+ENDEXITSECTION
+
+ParentTargetEdge "ReapersCoast"

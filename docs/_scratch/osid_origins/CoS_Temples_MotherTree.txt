@@ -1,0 +1,397 @@
+Version 1
+SubGoalCombiner SGC_AND
+
+INITSECTION
+DB_Dialogs(CHARACTERGUID_S_CoS_Temples_Scion_f3afdcda-ea9b-40cd-b72c-2008528dec80, "CoS_Temples_Scion");
+DB_Dialogs(ITEMGUID_S_CoS_HeartOfTheMotherTree_78bd5b87-7927-46ff-8481-34bcd919dd64, "CoS_Temples_HeartOfTheMotherTree");
+DB_HasStoryEvent(ITEMGUID_S_CoS_SpymastersHeart_2f901da0-e630-4654-a71e-af1a661839d4, "CoS_HasSpyMasterHeart");
+DB_HasTemplateItem("Quest_CoS_DeathFogContainer_fde25676-eb06-4990-931c-c269d067ec24", "GLO_HasSpyMasterDeathFog");
+DB_DeadEvent(CHARACTERGUID_S_CoS_Temples_Scion_f3afdcda-ea9b-40cd-b72c-2008528dec80, "CoS_Temples_Scion_IsDead");
+SetOnStage(ITEMGUID_S_CoS_HeartOfTheMotherTree_Destruct_ac23f227-bc39-4e68-b34f-05b895de64e9, 0);
+ItemSetForceSynch(ITEMGUID_S_CoS_HeartOfTheMotherTree_78bd5b87-7927-46ff-8481-34bcd919dd64, 1);
+DB_CoS_Temples_MotherTree_Minions(CHARACTERGUID_S_CoS_Temples_Scion_Totem_01_ff1f8ade-c85f-4003-b580-42b40448243a, 1);
+DB_CoS_Temples_MotherTree_Minions(CHARACTERGUID_S_CoS_Temples_Scion_Totem_02_f04a1ecd-44b0-4503-9051-07da7c310ef1, 1);
+DB_CoS_Temples_MotherTree_Minions(CHARACTERGUID_S_CoS_Temples_Scion_Totem_03_8ac2f6e5-5bd2-4625-b1ce-e22a1b3c27b6, 1);
+DB_CoS_Temples_MotherTree_Minions(CHARACTERGUID_S_CoS_Temples_Scion_Totem_04_14ed681d-d9ad-42b8-aa81-dc9a4e84fbae, 1);
+DB_CoS_Temples_MotherTree_Minions(CHARACTERGUID_S_CoS_Temples_Scion_Totem_05_99cd0073-7b41-42dc-be14-3e40dca5ca52, 1);
+DB_CoS_Temples_MotherTree_Minions(CHARACTERGUID_S_CoS_Temples_Scion_Totem_06_b8e35235-1270-4e39-bba3-c786f01fa3f2, 1);
+DB_CoS_Temples_MotherTree_Minions(CHARACTERGUID_S_CoS_Temples_Scion_Totem_07_94f089e4-7548-4365-968e-d6ed51100ba7, 1);
+DB_CoS_Temples_MotherTree_Minions(CHARACTERGUID_S_CoS_Temples_Scion_Totem_08_66194072-8d42-44c1-8446-18fd978b6f4b, 1);
+DB_CoS_Temples_MotherTree_Minions(CHARACTERGUID_S_CoS_Temples_Dryad_01_b53ed2b5-e7f9-4bcb-8795-700cd69648b5, 2);
+DB_CoS_Temples_MotherTree_Minions(CHARACTERGUID_S_CoS_Temples_Dryad_02_93c7ceb1-db06-4c41-8c43-02c1eca4ae65, 2);
+DB_CoS_Temples_MotherTree_Minions(CHARACTERGUID_S_CoS_Temples_Dryad_03_31a04d96-375b-459f-9c97-87d5b3bf8eed, 2);
+DB_CoS_Temples_MotherTree_Phase(1);
+DB_KillCounter("CoS_MotherTree_Phase_1", 4);
+DB_KillCounter("CoS_MotherTree_Phase_2", 3);
+SetOnStage(ITEMGUID_S_CoS_Temples_Elf_ToTheHeart_4ca11f8f-eb74-4406-a4e3-4fb0daefb88b, 0);
+ProcTriggerRegisterForPlayers(TRIGGERGUID_S_CoS_ToMotherTreeReveal_Trigger_44c7274b-e4e9-4285-aa31-2be3c498f675);
+
+KBSECTION
+IF
+CharacterEnteredTrigger((CHARACTERGUID)_Var1, TRIGGERGUID_S_CoS_ToMotherTreeReveal_Trigger_44c7274b-e4e9-4285-aa31-2be3c498f675)
+THEN
+SetOnStage(ITEMGUID_S_CoS_Temples_Elf_ToTheHeart_4ca11f8f-eb74-4406-a4e3-4fb0daefb88b, 1);
+PlayEffect(ITEMGUID_S_CoS_Temples_Elf_ToTheHeart_4ca11f8f-eb74-4406-a4e3-4fb0daefb88b, "RS3_FX_GP_ScriptedEvent_SpiritVision_Ghost_Appear_01");
+
+IF
+CharacterEnteredTrigger((CHARACTERGUID)_Var1, TRIGGERGUID_S_CoS_SUB_Temples_HeartOfTheMotherTree_835b82d7-62a7-4388-a2dd-9628ab0075f8)
+AND
+GlobalGetFlag("CoS_EnteredTheHeartOfTheMotherTree", 0)
+THEN
+GlobalSetFlag("CoS_EnteredTheHeartOfTheMotherTree");
+
+IF
+DialogEnded("CoS_Temples_HeartOfTheMotherTree", (INTEGER)_Var1)
+AND
+DialogGetInvolvedPlayer(_Var1, 1, _Var2)
+AND
+GlobalGetFlag("CoS_HeartOfTheMotherTree_KilledByScion", 1)
+THEN
+ItemDestroy(ITEMGUID_S_CoS_HeartOfTheMotherTree_78bd5b87-7927-46ff-8481-34bcd919dd64);
+PartySetFlag(_Var2, "QuestUpdate_CoS_SpyMaster_ScionKilledTree");
+
+IF
+DialogEnded("CoS_Temples_HeartOfTheMotherTree_COM_Sebille", (INTEGER)_Var1)
+AND
+DialogGetInvolvedPlayer(_Var1, 1, _Var2)
+AND
+GlobalGetFlag("CoS_HeartOfTheMotherTree_KilledByScion", 1)
+THEN
+ItemDestroy(ITEMGUID_S_CoS_HeartOfTheMotherTree_78bd5b87-7927-46ff-8481-34bcd919dd64);
+PartySetFlag(_Var2, "QuestUpdate_CoS_SpyMaster_ScionKilledTree");
+
+IF
+GlobalFlagSet("CoS_Temples_BlackRingHub_SpyMaster_IsDead")
+AND
+DB_IsPlayer(_Var1)
+AND
+ObjectGetFlag(_Var1, "QuestUpdate_CoS_SpyMaster_Start_MotherTree", 1)
+THEN
+ObjectSetFlag(_Var1, "QuestUpdate_CoS_SpyMaster_SpyMasterDead");
+
+IF
+DialogEnded("CoS_Temples_Elf_ElfPriest_003", (INTEGER)_Var1)
+AND
+DialogGetInvolvedPlayer(_Var1, 1, _Var2)
+THEN
+ShowMapMarker(_Var2, "CoS_ToMotherTree", 1);
+
+PROC
+ProcBlockUseOfItem((CHARACTERGUID)_Var1, ITEMGUID_S_CoS_HeartOfTheMotherTree_78bd5b87-7927-46ff-8481-34bcd919dd64)
+AND
+QRY_IsAvailableTo(CHARACTERGUID_S_CoS_Temples_Scion_f3afdcda-ea9b-40cd-b72c-2008528dec80, _Var1)
+THEN
+DB_CustomUseItemResponse(_Var1, ITEMGUID_S_CoS_HeartOfTheMotherTree_78bd5b87-7927-46ff-8481-34bcd919dd64, 0);
+Proc_StartDialog(0, "CoS_Temples_Scion", CHARACTERGUID_S_CoS_Temples_Scion_f3afdcda-ea9b-40cd-b72c-2008528dec80, _Var1);
+
+IF
+ObjectFlagSet("QuestUpdate_CoS_SpyMaster_Start_MotherTree", (GUIDSTRING)_Var1, _)
+AND
+IsTagged(_Var1, "SEBILLE", 1)
+AND
+QueryOnlyOnce("CoS_Temples_SaheilaArrive_Once")
+THEN
+Proc_CoS_Temples_SaheilaArrive();
+
+IF
+GlobalFlagSet("GLO_SpawnCoSSaheila")
+AND
+QueryOnlyOnce("CoS_Temples_SaheilaArrive_Once")
+THEN
+Proc_CoS_Temples_SaheilaArrive();
+
+PROC
+Proc_CoS_Temples_SaheilaArrive()
+AND
+CharacterIsDead(CHARACTERGUID_S_GLO_Saheila_fcacdf08-b05f-4333-b0e0-ddf29c13d8e0, 1)
+THEN
+GlobalSetFlag("CoS_Temples_SaheilaIsDryad");
+
+PROC
+Proc_CoS_Temples_SaheilaArrive()
+AND
+GlobalGetFlag("RC_MIL_SaheilaIsAtCamp", 0)
+THEN
+GlobalSetFlag("CoS_Temples_SaheilaIsDryad");
+
+PROC
+Proc_CoS_Temples_SaheilaArrive()
+THEN
+CharacterResurrect(CHARACTERGUID_S_GLO_Saheila_fcacdf08-b05f-4333-b0e0-ddf29c13d8e0);
+NOT DB_Dead(CHARACTERGUID_S_GLO_Saheila_fcacdf08-b05f-4333-b0e0-ddf29c13d8e0);
+DB_NoLowAttitudeDialog(CHARACTERGUID_S_GLO_Saheila_fcacdf08-b05f-4333-b0e0-ddf29c13d8e0);
+TeleportTo(CHARACTERGUID_S_GLO_Saheila_fcacdf08-b05f-4333-b0e0-ddf29c13d8e0, TRIGGERGUID_S_CoS_Temples_Saheila_Point_bffe230a-d3d7-4db3-ac94-861e0fa9f351);
+Transform(CHARACTERGUID_S_GLO_Saheila_fcacdf08-b05f-4333-b0e0-ddf29c13d8e0, "GLO_Saheila_PostFTJ_10b71425-00b2-4668-b1df-227d254c7ae2", 0, 0);
+Foop(CHARACTERGUID_S_GLO_Saheila_fcacdf08-b05f-4333-b0e0-ddf29c13d8e0);
+SetVarFixedString(CHARACTERGUID_S_GLO_Saheila_fcacdf08-b05f-4333-b0e0-ddf29c13d8e0, "currentState", "State_CoS_Temples_MotherTree");
+PROC_RemoveDialogFromCharacter(CHARACTERGUID_S_GLO_Saheila_fcacdf08-b05f-4333-b0e0-ddf29c13d8e0);
+DB_Dialogs(CHARACTERGUID_S_GLO_Saheila_fcacdf08-b05f-4333-b0e0-ddf29c13d8e0, "CoS_Temples_Saheila");
+CharacterLevelUpTo(CHARACTERGUID_S_GLO_Saheila_fcacdf08-b05f-4333-b0e0-ddf29c13d8e0, 16);
+SetFaction(CHARACTERGUID_S_GLO_Saheila_fcacdf08-b05f-4333-b0e0-ddf29c13d8e0, "CoS_Saheila");
+RemoveStatus(CHARACTERGUID_S_GLO_Saheila_fcacdf08-b05f-4333-b0e0-ddf29c13d8e0, "QUEST_TIEDUP");
+ClearTag(CHARACTERGUID_S_GLO_Saheila_fcacdf08-b05f-4333-b0e0-ddf29c13d8e0, "AI_IGNORED_TARGET");
+CharacterSetAnimationOverride(CHARACTERGUID_S_GLO_Saheila_fcacdf08-b05f-4333-b0e0-ddf29c13d8e0, "");
+GlobalSetFlag("GLO_SaheilaIsInCoS");
+
+PROC
+Proc_CoS_Temples_SaheilaArrive_CheckAttitude()
+AND
+DB_JoinedParty(_Var1)
+AND
+CharacterGetAttitudeTowardsPlayer(CHARACTERGUID_S_GLO_Saheila_fcacdf08-b05f-4333-b0e0-ddf29c13d8e0, _Var1, _Var2)
+AND
+_Var2 < 0
+THEN
+ChangeAttitude(CHARACTERGUID_S_GLO_Saheila_fcacdf08-b05f-4333-b0e0-ddf29c13d8e0, _Var1, 0);
+
+IF
+SavegameLoaded((INTEGER)_Var1, (INTEGER)_Var2, (INTEGER)_Var3, (INTEGER)_Var4)
+AND
+QRY_VersionIsOlderThan(_Var1, _Var2, _Var3, _Var4, 3, 6, 5, 0)
+THEN
+CharacterSetRelationFactionToFaction("CoS_Saheila", "Hero", 100);
+CharacterSetRelationFactionToFaction("Hero", "CoS_Saheila", 100);
+Proc_CoS_Temples_SaheilaArrive_CheckAttitude();
+
+IF
+GlobalFlagSet("CoS_Temples_SaheilaIsDryad")
+THEN
+PROC_LoopEffect("RS3_FX_GP_Status_BarkSkin_01", CHARACTERGUID_S_GLO_Saheila_fcacdf08-b05f-4333-b0e0-ddf29c13d8e0, "CoS_SaheilaBarkSkin", "CoS_Main", "");
+
+IF
+DialogEnded("CoS_Temples_Saheila", _)
+AND
+GlobalGetFlag("CoS_Temples_SaheilaLeave", 1)
+THEN
+SetHasDialog(CHARACTERGUID_S_GLO_Saheila_fcacdf08-b05f-4333-b0e0-ddf29c13d8e0, 0);
+CharacterDisappearOutOfSight(CHARACTERGUID_S_GLO_Saheila_fcacdf08-b05f-4333-b0e0-ddf29c13d8e0, 300, 1, "", 0);
+
+IF
+DialogEnded("CoS_Temples_Saheila_COM_Sebille", _)
+AND
+GlobalGetFlag("CoS_Temples_SaheilaLeave", 1)
+THEN
+SetHasDialog(CHARACTERGUID_S_GLO_Saheila_fcacdf08-b05f-4333-b0e0-ddf29c13d8e0, 0);
+CharacterDisappearOutOfSight(CHARACTERGUID_S_GLO_Saheila_fcacdf08-b05f-4333-b0e0-ddf29c13d8e0, 300, 1, "", 0);
+
+IF
+CharacterEnteredTrigger(CHARACTERGUID_S_Player_Sebille_c8d55eaf-e4eb-466a-8f0d-6a9447b5b24c, TRIGGERGUID_S_CoS_ToMotherTreeReveal_Trigger_44c7274b-e4e9-4285-aa31-2be3c498f675)
+AND
+DB_OnlyOnce("CoS_Temples_SaheilaArrive_Once")
+AND
+QRY_SpeakerIsAvailable(CHARACTERGUID_S_Player_Sebille_c8d55eaf-e4eb-466a-8f0d-6a9447b5b24c)
+AND
+CharacterIsDead(CHARACTERGUID_S_GLO_Saheila_fcacdf08-b05f-4333-b0e0-ddf29c13d8e0, 0)
+AND
+IsSpeakerReserved(CHARACTERGUID_S_GLO_Saheila_fcacdf08-b05f-4333-b0e0-ddf29c13d8e0, 0)
+AND
+QueryOnlyOnce("CoS_MotherTree_SaheilaSebilleDialog_Once")
+THEN
+Proc_StartDialog(0, "CoS_Temples_Saheila", CHARACTERGUID_S_GLO_Saheila_fcacdf08-b05f-4333-b0e0-ddf29c13d8e0, CHARACTERGUID_S_Player_Sebille_c8d55eaf-e4eb-466a-8f0d-6a9447b5b24c);
+
+IF
+GlobalFlagSet("CoS_HeartOfTheMotherTree_Screaming")
+AND
+GetPosition(ITEMGUID_S_CoS_HeartOfTheMotherTree_78bd5b87-7927-46ff-8481-34bcd919dd64, _Var1, _Var2, _Var3)
+THEN
+PlayScaledEffectAtPosition("RS3_FX_GP_ScriptedEvent_GhostTree_Transform_01", 1.5, _Var1, _Var2, _Var3);
+TriggerSetSoundState(TRIGGERGUID_SoundVolumeTrigger_CoS_TreeHeart_8370cf8f-0cfe-4e56-a86a-7dd1cbabe1e4, "CoS_ElfTempleNuked", "Nuked", 1);
+TriggerSetSoundState(TRIGGERGUID_SoundVolumeTrigger_CoS_Temple_Elf_1197cd4e-28c3-407c-99cf-d2ae829f4c05, "CoS_ElfTempleNuked", "Nuked", 1);
+TriggerSetAtmosphere(TRIGGERGUID_AtmosphereTrigger_CoS_TreeHeart_4ec74a5e-d91c-4791-bc9b-9af7ded58f0a, "5b55990f-7abf-48c3-ac2d-615f4d14c022");
+TriggerSetAtmosphere(TRIGGERGUID_AtmosphereTrigger_CoS_AlexandarsBatallion_10ae0a87-4bb7-481d-9f0c-dd632152bc82, "2d85da67-832f-48f1-b6b8-bfef5b17e962");
+
+IF
+GlobalFlagSet("CoS_HeartOfTheMotherTree_Screaming")
+AND
+DB_InRegion(_Var1, TRIGGERGUID_S_CoS_SUB_Temples_HeartOfTheMotherTree_835b82d7-62a7-4388-a2dd-9628ab0075f8)
+THEN
+Proc_ShakeCameraForTime(_Var1, 5000);
+
+IF
+GlobalFlagSet("CoS_SpyMaster_DeathFogPlacedInTree")
+AND
+DB_IsPlayer(_Var1)
+AND
+ObjectGetFlag(_Var1, "QuestUpdate_CoS_SpyMaster_Start_SpyMaster", 1)
+THEN
+ObjectSetFlag(_Var1, "QuestUpdate_CoS_SpyMaster_PlacedDevice");
+ItemTemplateRemoveFromParty("Quest_CoS_DeathFogContainer_fde25676-eb06-4990-931c-c269d067ec24", _Var1, 1);
+
+IF
+ObjectFlagSet("QuestUpdate_CoS_SpyMaster_End_MotherTree", (CHARACTERGUID)_Var1, _)
+AND
+DB_IsPlayer(_Var1)
+AND
+QueryOnlyOnce("CoS_SpyMaster_End_MotherTree_EatHeart")
+THEN
+ItemRemove(ITEMGUID_S_CoS_SpymastersHeart_2f901da0-e630-4654-a71e-af1a661839d4);
+
+IF
+ObjectFlagSet("CoS_ScionEatHeart", (CHARACTERGUID)_Var1, _)
+THEN
+CreateSurface(CHARACTERGUID_S_CoS_Temples_Scion_f3afdcda-ea9b-40cd-b72c-2008528dec80, "SurfaceBlood", 1, -1);
+PlayEffect(CHARACTERGUID_S_CoS_Temples_Scion_f3afdcda-ea9b-40cd-b72c-2008528dec80, "RS3_FX_GP_Combat_Hit_Blood_01_Large");
+PlayAnimation(CHARACTERGUID_S_CoS_Temples_Scion_f3afdcda-ea9b-40cd-b72c-2008528dec80, "use_eat");
+CharacterAddSkill(CHARACTERGUID_S_CoS_Temples_Scion_f3afdcda-ea9b-40cd-b72c-2008528dec80, "Target_DaggersDrawn");
+
+IF
+ObjectFlagSet("CoS_ScionGiveReward", (CHARACTERGUID)_Var1, _)
+THEN
+ItemTemplateAddTo("LOOT_Rune_Rock_Giant_882998c4-2a77-4e86-a01c-9dc55b5030e3", _Var1, 1);
+
+IF
+TextEventSet("destroymothertree")
+THEN
+ItemDestroy(ITEMGUID_S_CoS_HeartOfTheMotherTree_78bd5b87-7927-46ff-8481-34bcd919dd64);
+
+IF
+ItemDestroying(ITEMGUID_S_CoS_HeartOfTheMotherTree_78bd5b87-7927-46ff-8481-34bcd919dd64)
+THEN
+SetOnStage(ITEMGUID_S_CoS_HeartOfTheMotherTree_Destruct_ac23f227-bc39-4e68-b34f-05b895de64e9, 1);
+TriggerSetSoundState(TRIGGERGUID_SoundVolumeTrigger_CoS_TreeHeart_8370cf8f-0cfe-4e56-a86a-7dd1cbabe1e4, "CoS_ElfTempleNuked", "Nuked", 1);
+TriggerSetSoundState(TRIGGERGUID_SoundVolumeTrigger_CoS_Temple_Elf_1197cd4e-28c3-407c-99cf-d2ae829f4c05, "CoS_ElfTempleNuked", "Nuked", 1);
+CharacterDie(CHARACTERGUID_S_CoS_Temples_Scion_f3afdcda-ea9b-40cd-b72c-2008528dec80, 1, "DoT");
+
+IF
+ItemDestroyed(ITEMGUID_S_CoS_HeartOfTheMotherTree_78bd5b87-7927-46ff-8481-34bcd919dd64)
+THEN
+TriggerSetAtmosphere(TRIGGERGUID_AtmosphereTrigger_CoS_TreeHeart_4ec74a5e-d91c-4791-bc9b-9af7ded58f0a, "5b55990f-7abf-48c3-ac2d-615f4d14c022");
+TriggerSetAtmosphere(TRIGGERGUID_AtmosphereTrigger_CoS_AlexandarsBatallion_10ae0a87-4bb7-481d-9f0c-dd632152bc82, "2d85da67-832f-48f1-b6b8-bfef5b17e962");
+GlobalSetFlag("CoS_HeartOfTheMotherTreeDestroyed");
+
+IF
+ItemDestroyed(ITEMGUID_S_CoS_HeartOfTheMotherTree_78bd5b87-7927-46ff-8481-34bcd919dd64)
+AND
+DB_IsPlayer(_Var1)
+THEN
+ProcSetFactionHostileToIndivPlayer("CoS_Temples_Elf", _Var1);
+ProcSetFactionHostileToIndivPlayer("CoS_Temples_ElfScion", _Var1);
+
+IF
+ObjectFlagSet("QuestUpdate_CoS_SpyMaster_PlacedDevice", (CHARACTERGUID)_Var1, _)
+AND
+DB_IsPlayer(_Var1)
+THEN
+ProcSetFactionHostileToIndivPlayer("CoS_Temples_Elf", _Var1);
+ProcSetFactionHostileToIndivPlayer("CoS_Temples_ElfScion", _Var1);
+
+IF
+DialogEnded("CoS_Temples_Scion", (INTEGER)_Var1)
+AND NOT
+DB_DialogPlayers(_Var1, CHARACTERGUID_S_Player_Sebille_c8d55eaf-e4eb-466a-8f0d-6a9447b5b24c, _)
+AND
+QuestIsClosed(CHARACTERGUID_S_Player_Sebille_c8d55eaf-e4eb-466a-8f0d-6a9447b5b24c, "CoS_SpyMaster", 1)
+AND
+GlobalGetFlag("GLO_SebilleRooted", 0)
+AND
+QRY_IsAvailableTo(CHARACTERGUID_S_CoS_Temples_Scion_f3afdcda-ea9b-40cd-b72c-2008528dec80, CHARACTERGUID_S_Player_Sebille_c8d55eaf-e4eb-466a-8f0d-6a9447b5b24c)
+THEN
+Proc_StartDialog(0, "CoS_Temples_Scion", CHARACTERGUID_S_CoS_Temples_Scion_f3afdcda-ea9b-40cd-b72c-2008528dec80, CHARACTERGUID_S_Player_Sebille_c8d55eaf-e4eb-466a-8f0d-6a9447b5b24c);
+
+IF
+GlobalFlagSet("GLO_SebilleRooted")
+THEN
+OpenMessageBox(CHARACTERGUID_S_Player_Sebille_c8d55eaf-e4eb-466a-8f0d-6a9447b5b24c, "CoS_TalentRooted");
+CharacterAddTalent(CHARACTERGUID_S_Player_Sebille_c8d55eaf-e4eb-466a-8f0d-6a9447b5b24c, "Quest_Rooted");
+PlayEffect(CHARACTERGUID_S_Player_Sebille_c8d55eaf-e4eb-466a-8f0d-6a9447b5b24c, "RS3_FX_GP_Status_LevelUp_01");
+ItemClearOwner(ITEMGUID_S_CoS_HeartOfTheMotherTree_78bd5b87-7927-46ff-8481-34bcd919dd64);
+
+IF
+DB_CoS_Temples_MotherTree_Minions(_Var1, _)
+THEN
+SetOnStage(_Var1, 0);
+
+IF
+DB_CoS_Temples_MotherTree_Minions(_Var1, 1)
+THEN
+DB_KillCounter_Internal(_Var1, "CoS_MotherTree_Phase_1");
+
+PROC
+ProcKillCounterReached("CoS_MotherTree_Phase_1")
+AND NOT
+DB_CoS_Temples_MotherTree_Phase(2)
+THEN
+NOT DB_CoS_Temples_MotherTree_Phase(1);
+DB_CoS_Temples_MotherTree_Phase(2);
+
+IF
+DB_CoS_Temples_MotherTree_Phase(2)
+AND
+DB_CoS_Temples_MotherTree_Minions(_Var1, 2)
+THEN
+CharacterAppear(_Var1, 1, "");
+
+IF
+DB_CoS_Temples_MotherTree_Minions(_Var1, 2)
+THEN
+DB_KillCounter_Internal(_Var1, "CoS_MotherTree_Phase_2");
+PROC_LoopEffect("RS3_FX_GP_Status_BarkSkin_01", _Var1, "CoS_MotherTreeDryad", "CoS_Main", "");
+
+PROC
+ProcKillCounterReached("CoS_MotherTree_Phase_2")
+AND NOT
+DB_CoS_Temples_MotherTree_Phase(3)
+THEN
+NOT DB_CoS_Temples_MotherTree_Phase(2);
+DB_CoS_Temples_MotherTree_Phase(3);
+
+IF
+AttackedByObject(CHARACTERGUID_S_CoS_Temples_Scion_f3afdcda-ea9b-40cd-b72c-2008528dec80, _, _, _, _)
+AND
+CharacterGetHitpointsPercentage(CHARACTERGUID_S_CoS_Temples_Scion_f3afdcda-ea9b-40cd-b72c-2008528dec80, _Var5)
+AND
+_Var5 < 75
+AND NOT
+DB_CoS_Temples_MotherTree_Phase(3)
+THEN
+NOT DB_CoS_Temples_MotherTree_Phase(2);
+DB_CoS_Temples_MotherTree_Phase(3);
+
+IF
+DB_CoS_Temples_MotherTree_Phase(3)
+THEN
+SetTag(CHARACTERGUID_S_CoS_Temples_Scion_f3afdcda-ea9b-40cd-b72c-2008528dec80, "AI_CANUSESKILL");
+
+IF
+ObjectEnteredCombat(CHARACTERGUID_S_CoS_Temples_Scion_f3afdcda-ea9b-40cd-b72c-2008528dec80, _)
+AND
+DB_CoS_Temples_MotherTree_Minions(_Var2, _Var3)
+AND
+DB_CoS_Temples_MotherTree_Phase(_Var4)
+AND
+_Var4 >= _Var3
+THEN
+CharacterAppear(_Var2, 1, "");
+
+IF
+ObjectLeftCombat(CHARACTERGUID_S_CoS_Temples_Scion_f3afdcda-ea9b-40cd-b72c-2008528dec80, _)
+AND
+CharacterIsDead(CHARACTERGUID_S_CoS_Temples_Scion_f3afdcda-ea9b-40cd-b72c-2008528dec80, 0)
+AND NOT
+DB_CombatObjects(CHARACTERGUID_S_CoS_Temples_Scion_f3afdcda-ea9b-40cd-b72c-2008528dec80, _)
+AND
+DB_CoS_Temples_MotherTree_Minions(_Var3, _)
+AND
+CharacterIsDead(_Var3, 0)
+THEN
+Poof(_Var3);
+
+IF
+CharacterDied(CHARACTERGUID_S_CoS_Temples_Scion_f3afdcda-ea9b-40cd-b72c-2008528dec80)
+AND
+DB_IsPlayer(_Var1)
+THEN
+ProcSetFactionHostileToIndivPlayer("CoS_Temples_ElfScion", _Var1);
+
+PROC
+ProcRegionEnded("CoS_Main")
+THEN
+GoalCompleted;
+
+
+EXITSECTION
+ItemSetForceSynch(ITEMGUID_S_CoS_HeartOfTheMotherTree_78bd5b87-7927-46ff-8481-34bcd919dd64, 0);
+SetFaction(CHARACTERGUID_S_GLO_Saheila_fcacdf08-b05f-4333-b0e0-ddf29c13d8e0, "ARX_Saheila");
+ENDEXITSECTION
+
+ParentTargetEdge "CoS_Temples"

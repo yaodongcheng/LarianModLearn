@@ -1,0 +1,434 @@
+Version 1
+SubGoalCombiner SGC_AND
+
+INITSECTION
+DB_AppliedZaleskar_Patch(1);
+DB_AppliedZaleskar_Patch(2);
+
+KBSECTION
+QRY
+QRY_DOS2_SavegamePatching_WaypointsShouldBeEnabled((CHARACTERGUID)_Var1)
+AND NOT
+DB_InRegion(_Var1, S_ARX_HorrorSleep_Arena_1b8cf005-392f-434a-a564-ecae6778fab0)
+AND NOT
+DB_InRegion(_Var1, S_RC_DW_Meistr_DreamScene_f206d532-488e-469f-bb2a-5fb4270aa438)
+AND NOT
+DB_CurrentLevel("FJ_FortJoy_Main")
+AND NOT
+DB_CurrentLevel("ARX_EndGame")
+THEN
+DB_NOOP(1);
+
+IF
+SavegameLoaded((INTEGER)_Var1, (INTEGER)_Var2, (INTEGER)_Var3, (INTEGER)_Var4)
+AND
+DB_BlockWaypointUsage(_Var5)
+AND
+QRY_DOS2_SavegamePatching_WaypointsShouldBeEnabled(_Var5)
+THEN
+PROC_UnblockWaypointUsage(_Var5);
+
+QRY
+QRY_DOS2_SavegamePatching_NoWayPointsUnlocked((CHARACTERGUID)_Var1)
+AND NOT
+DB_WaypointUnlocked(_, _Var1)
+THEN
+DB_NOOP(1);
+
+IF
+SavegameLoaded((INTEGER)_Var1, (INTEGER)_Var2, (INTEGER)_Var3, (INTEGER)_Var4)
+AND
+QRY_VersionIsOlderThan(_Var1, _Var2, _Var3, _Var4, 3, 6, 1, 0)
+AND
+DB_IsPlayer(_Var5)
+AND
+QRY_DOS2_SavegamePatching_WaypointsShouldBeEnabled(_Var5)
+AND NOT
+QRY_DOS2_SavegamePatching_NoWayPointsUnlocked(_Var5)
+AND
+DB_HomesteadKeyState(_Var5, 3)
+THEN
+PROC_SetHomesteadKey_Enabled(_Var5);
+
+IF
+SavegameLoaded((INTEGER)_Var1, (INTEGER)_Var2, (INTEGER)_Var3, (INTEGER)_Var4)
+AND
+QRY_VersionIsOlderThan(_Var1, _Var2, _Var3, _Var4, 3, 6, 1, 0)
+AND
+DB_IsPlayer(_Var5)
+THEN
+ObjectClearFlag(_Var5, "OpenWaypointUI", 0);
+
+IF
+SavegameLoaded((INTEGER)_Var1, (INTEGER)_Var2, (INTEGER)_Var3, (INTEGER)_Var4)
+AND
+QRY_VersionIsOlderThan(_Var1, _Var2, _Var3, _Var4, 3, 6, 1, 0)
+AND
+DB_Origins(_Var5)
+AND NOT
+DB_IsPlayer(_Var5)
+THEN
+ObjectClearFlag(_Var5, "OpenWaypointUI", 0);
+
+IF
+SavegameLoaded((INTEGER)_Var1, (INTEGER)_Var2, (INTEGER)_Var3, (INTEGER)_Var4)
+AND
+QRY_VersionIsOlderThan(_Var1, _Var2, _Var3, _Var4, 3, 6, 1, 0)
+AND
+DB_GLO_LVHub_Henchmen_Recruitee(_, _Var6)
+AND NOT
+DB_IsPlayer(_Var6)
+THEN
+ObjectClearFlag(_Var6, "OpenWaypointUI", 0);
+
+IF
+SavegameLoaded((INTEGER)_Var1, (INTEGER)_Var2, (INTEGER)_Var3, (INTEGER)_Var4)
+AND
+QRY_VersionIsOlderThan(_Var1, _Var2, _Var3, _Var4, 3, 6, 1, 0)
+AND
+GetTemplate(S_GLO_Windego_d783285f-d3be-4cba-8333-db8976cef182, "UNIQUE_Windego_Undead_6d42f147-f097-4a9d-9cc0-ab6e53213c5b")
+THEN
+Transform(S_FTJ_SW_EscapedPrisoner_d783285f-d3be-4cba-8333-db8976cef182, "FTJ_Humans_Female_Civilian_6dbce959-1036-4053-a48e-8e42d188554b", 0, 0, 0);
+Transform(S_FTJ_SW_EscapedPrisoner_d783285f-d3be-4cba-8333-db8976cef182, "UNIQUE_Windego_Undead_6d42f147-f097-4a9d-9cc0-ab6e53213c5b", 0, 0, 1);
+
+IF
+SavegameLoaded((INTEGER)_Var1, (INTEGER)_Var2, (INTEGER)_Var3, (INTEGER)_Var4)
+AND
+QRY_VersionIsOlderThan(_Var1, _Var2, _Var3, _Var4, 3, 6, 1, 0)
+AND
+DB_RC_GY_RykerHouse_UpperFloor_Bodyguards(_Var5)
+AND NOT
+DB_Dead(_Var5)
+AND
+CharacterIsInCombat(_Var5, 0)
+THEN
+SetFaction(_Var5, "RC_GY_Ryker_UpperFloor");
+
+IF
+SavegameLoaded((INTEGER)_Var1, (INTEGER)_Var2, (INTEGER)_Var3, (INTEGER)_Var4)
+AND
+QRY_VersionIsOlderThan(_Var1, _Var2, _Var3, _Var4, 3, 6, 1, 0)
+AND
+ObjectGetFlag(S_RC_BF_Mhordkan_840032d5-63a7-44e3-909b-0338621340df, "RC_BF_CapturedDemon_Free", 1)
+AND NOT
+DB_Dead(S_RC_BF_Mhordkan_840032d5-63a7-44e3-909b-0338621340df)
+AND
+ObjectIsOnStage(S_RC_BF_Mhordkan_840032d5-63a7-44e3-909b-0338621340df, 1)
+THEN
+ProcRemoveAllDialogEntriesForSpeaker(CHARACTERGUID_S_RC_BF_Mhordkan_840032d5-63a7-44e3-909b-0338621340df);
+DB_Dialogs(CHARACTERGUID_S_RC_BF_Mhordkan_840032d5-63a7-44e3-909b-0338621340df, "RC_BF_CapturedDemon_Freed");
+SetStoryEvent(S_RC_BF_Mhordkan_840032d5-63a7-44e3-909b-0338621340df, "RC_BF_CapturedDemon_SaveGameFix_3610");
+
+IF
+ObjectFlagSet("QuestUpdate_RC_BI_TheVaultKid_TookKid", (CHARACTERGUID)_Var1, _)
+AND
+DB_IsPlayer(_Var1)
+THEN
+PartySetFlag(_Var1, "QuestUpdate_RC_BI_TheVaults_TookKid");
+
+IF
+SavegameLoaded((INTEGER)_Var1, (INTEGER)_Var2, (INTEGER)_Var3, (INTEGER)_Var4)
+AND
+QRY_VersionIsOlderThan(_Var1, _Var2, _Var3, _Var4, 3, 6, 1, 0)
+AND
+DB_IsPlayer(_Var5)
+AND
+ObjectGetFlag(_Var5, "QuestUpdate_RC_BI_TheVaultKid_TookKid", 1)
+THEN
+PartySetFlag(_Var5, "QuestUpdate_RC_BI_TheVaults_TookKid");
+
+IF
+SavegameLoaded((INTEGER)_Var1, (INTEGER)_Var2, (INTEGER)_Var3, (INTEGER)_Var4)
+AND
+QRY_VersionIsOlderThan(_Var1, _Var2, _Var3, _Var4, 3, 6, 1, 0)
+AND
+DB_IsPlayer(_Var5)
+AND
+DB_IsPlayer(_Var6)
+AND
+_Var5 != _Var6
+AND
+CharacterIsInPartyWith(_Var5, _Var6, 1)
+AND
+DB_WaypointUnlocked(_Var7, _Var5)
+AND NOT
+DB_WaypointUnlocked(_Var7, _Var6)
+THEN
+PROC_WayPoints_ShareWayPointState(_Var5, _Var6);
+
+IF
+SavegameLoaded((INTEGER)_Var1, (INTEGER)_Var2, (INTEGER)_Var3, (INTEGER)_Var4)
+AND
+DB_CurrentLevel(_Var5)
+AND
+DB_WaypointInfo(_Var6, _, _Var8)
+AND
+GetRegion(_Var6, _Var9)
+AND
+_Var9 != _Var5
+THEN
+PROC_LockWaypointForAll(_Var8);
+
+IF
+DB_IsPlayer(_Var1)
+AND
+CharacterIsPlayer(_Var1, 0)
+AND
+GetRegion(_Var1, _Var2)
+AND
+IsGameLevel(_Var2, 1)
+THEN
+DebugBreak("Character added to DB_IsPlayer without them being a player. Please file a JIRA for scripting and say when this happened. Bonus points for an Osirislog!");
+NOT DB_IsPlayer(_Var1);
+
+QRY
+QRY_GLO_PartyMembers_LohseSaheilaMoment(CHARACTERGUID_S_Player_Lohse_bb932b13-8ebf-4ab4-aac0-83e6924e4295)
+AND
+DB_FTJ_InLohseSaheilaEvent(1)
+THEN
+DB_NOOP(1);
+
+PROC
+PROC_GLO_PartyMembers_CleanDBIsPlayer()
+AND
+DB_IsPlayer(_Var1)
+AND NOT
+CharacterIsPlayer(_Var1, 1)
+AND NOT
+QRY_GLO_PartyMembers_LohseSaheilaMoment(_Var1)
+THEN
+DebugBreak("Character in DB_IsPlayer without them being a player. Please file a JIRA for scripting and if you can remember, explain what you did between the previous load and now.");
+NOT DB_IsPlayer(_Var1);
+
+PROC
+PROC_GLO_PartyMembers_CleanDBIsPlayer()
+AND
+DB_IsPlayer(_Var1)
+AND
+QRY_IsSummonOrPartyFollower(_Var1)
+AND NOT
+QRY_GLO_PartyMembers_LohseSaheilaMoment(_Var1)
+THEN
+DebugBreak("Character in DB_IsPlayer is a summon. Please file a JIRA for scripting and if you can remember, explain what you did between the previous load and now.");
+NOT DB_IsPlayer(_Var1);
+
+IF
+DB_IsPlayer(_Var1)
+AND
+QRY_IsSummonOrPartyFollower(_Var1)
+THEN
+NOT DB_IsPlayer(_Var1);
+DebugBreak("Character in DB_IsPlayer is a summon. Please file a bug report.");
+
+IF
+SavegameLoaded((INTEGER)_Var1, (INTEGER)_Var2, (INTEGER)_Var3, (INTEGER)_Var4)
+THEN
+PROC_GLO_PartyMembers_CleanDBIsPlayer();
+
+IF
+SavegameLoaded((INTEGER)_Var1, (INTEGER)_Var2, (INTEGER)_Var3, (INTEGER)_Var4)
+AND
+QRY_VersionIsOlderThan(_Var1, _Var2, _Var3, _Var4, 3, 6, 2, 0)
+AND
+DB_GLO_Attribute_Check_AgainstLevel("RC_GY_RykerHouse_SpiderRoom_Blocked", _Var5, _Var6, _Var7, _Var8, _Var9)
+THEN
+NOT DB_GLO_Attribute_Check_AgainstLevel("RC_GY_RykerHouse_SpiderRoom_Blocked", _Var5, _Var6, _Var7, _Var8, _Var9);
+
+IF
+SavegameLoaded((INTEGER)_Var1, (INTEGER)_Var2, (INTEGER)_Var3, (INTEGER)_Var4)
+AND
+QRY_VersionIsOlderThan(_Var1, _Var2, _Var3, _Var4, 3, 6, 2, 0)
+THEN
+SysClear("DB_RC_GY_RykerHouse_Spider_DoorsStrength", 2);
+DB_GLO_Attribute_Check_AgainstLevel("RC_GY_RykerHouse_SpiderRoom_Blocked", 1, "Strength", "Normal", 2, 11);
+DB_GLO_Attribute_Check_AgainstLevel("RC_GY_RykerHouse_SpiderRoom_Blocked_Hard", 1, "Strength", "Hard", 2, 11);
+SysClear("DB_RC_GY_RykerHouse_Spider_Doors", 3);
+DB_RC_GY_RykerHouse_Spider_Doors(ITEMGUID_S_RC1_GY_RykerHouse_Stairs_ToSpider_1_2cd835f0-e601-415a-a398-b354377feb3c, 1, TRIGGERGUID_S_RC_GY_TP_RykerHouse_ToSpider_1_ea284e39-88a8-4298-91f5-5ab1095e494b, "RC_GY_RykerHouse_SpiderRoom_Blocked");
+DB_RC_GY_RykerHouse_Spider_Doors(ITEMGUID_S_RC_GY_RykerHouse_Stairs_ToSpider_2_0c6172ec-9b11-424c-befc-9d5fbfcc231a, 2, TRIGGERGUID_S_RC_GY_TP_RykerHouse_ToSpider_2_60c3a08a-d98e-4353-8049-98f2cfaabdcd, "RC_GY_RykerHouse_SpiderRoom_Blocked_Hard");
+DB_RC_GY_RykerHouse_Spider_Doors(ITEMGUID_S_RC_GY_RykerHouse_Stairs_ToSpider_3_73991f0b-f29d-46e2-94bb-60db7ea3e610, 3, TRIGGERGUID_S_RC_GY_TP_RykerHouse_ToSpider_3_2bcafc4b-adeb-48a1-a63e-3bb7f1f2c28d, "RC_GY_RykerHouse_SpiderRoom_Blocked_Hard");
+DB_RC_GY_RykerHouse_Spider_Doors(ITEMGUID_S_RC_GY_RykerHouse_Hatch_FromSpider_1_a4bb562f-59e9-4fdd-96de-365433f68c3e, 1, TRIGGERGUID_S_RC_GY_TP_RykerHouse_FromSpider_1_7fd80de0-ac96-4f77-bf23-e9f3d6da1433, "RC_GY_RykerHouse_SpiderRoom_Blocked");
+DB_RC_GY_RykerHouse_Spider_Doors(ITEMGUID_S_RC_GY_RykerHouse_Hatch_FromSpider_2_d6a1a523-5b30-4fc4-b132-ce1297b85264, 2, TRIGGERGUID_S_RC_GY_TP_RykerHouse_FromSpider_2_5c45d1a9-856b-41fd-b622-49bc1e89033f, "RC_GY_RykerHouse_SpiderRoom_Blocked_Hard");
+DB_RC_GY_RykerHouse_Spider_Doors(ITEMGUID_S_RC_GY_RykerHouse_Hatch_FromSpider_3_5f015a44-dc4c-4158-ba5f-65590352c670, 3, TRIGGERGUID_S_RC_GY_TP_RykerHouse_FromSpider_3_2d34b930-afa5-4328-9272-1fcc2d93e144, "RC_GY_RykerHouse_SpiderRoom_Blocked_Hard");
+
+IF
+SavegameLoaded((INTEGER)_Var1, (INTEGER)_Var2, (INTEGER)_Var3, (INTEGER)_Var4)
+AND
+QRY_VersionIsOlderThan(_Var1, _Var2, _Var3, _Var4, 3, 6, 2, 0)
+THEN
+CharacterSetCanSpotSneakers(S_FTJ_SW_Warrior_SeekerCaptain_1329f018-23e4-4717-9bc8-074b28d04c54, 1);
+
+IF
+SavegameLoaded(_, _, _, _)
+AND NOT
+DB_AppliedZaleskar_Patch(1)
+THEN
+PROC_ApplyZaleskarAlignmentPatch();
+
+PROC
+PROC_ApplyZaleskarAlignmentPatch()
+THEN
+DB_AppliedZaleskar_Patch(1);
+
+PROC
+PROC_ApplyZaleskarAlignmentPatch()
+AND
+ObjectExists(S_FTJ_IfanHandler_d0920841-a984-4ea4-92c6-31d236ee2540, 1)
+THEN
+SetFaction(S_FTJ_IfanHandler_d0920841-a984-4ea4-92c6-31d236ee2540, "FTJ_Zaleskar");
+
+QRY
+QRY_GetZaleskarFixAlignment((CHARACTERGUID)_Var1)
+AND
+DB_GLO_PartyMembers_DefaultFaction(_Var1, _Var2)
+THEN
+DB_ZaleskarFixAlignment(_Var1, _Var2);
+
+QRY
+QRY_GetZaleskarFixAlignment((CHARACTERGUID)_Var1)
+AND NOT
+DB_GLO_PartyMembers_DefaultFaction(_Var1, _)
+AND
+GetFaction(_Var1, _Var3)
+THEN
+DB_ZaleskarFixAlignment(_Var1, _Var3);
+
+PROC
+PROC_ApplyZaleskarAlignmentPatch()
+AND
+DB_HostileToPlayerGroup(S_FTJ_IfanHandler_d0920841-a984-4ea4-92c6-31d236ee2540, _Var1)
+AND
+QRY_GetZaleskarFixAlignment(_Var1)
+AND
+DB_ZaleskarFixAlignment(_Var1, _Var2)
+THEN
+NOT DB_ZaleskarFixAlignment(_Var1, _Var2);
+CharacterSetRelationFactionToFaction("FTJ_Zaleskar", _Var2, 0);
+CharacterSetRelationFactionToFaction(_Var2, "FTJ_Zaleskar", 0);
+CharacterSetRelationFactionToFaction("Neutral NPC", _Var2, 50);
+CharacterSetRelationFactionToFaction(_Var2, "Neutral NPC", 50);
+
+IF
+SavegameLoaded(_, _, _, _)
+AND NOT
+DB_AppliedZaleskar_Patch(2)
+THEN
+PROC_ApplyZaleskarAlignmentCombatPatch();
+
+PROC
+PROC_ApplyZaleskarAlignmentCombatPatch()
+THEN
+DB_AppliedZaleskar_Patch(2);
+
+PROC
+PROC_ApplyZaleskarAlignmentCombatPatch()
+AND
+DB_CurrentLevel("LV_HoE_Main")
+AND
+DB_HostileToPlayerGroup(S_FTJ_IfanHandler_d0920841-a984-4ea4-92c6-31d236ee2540, _)
+AND
+DB_CombatCharacters(S_GLO_LV_HenchmenRecruiter_ed64ea06-9060-4b29-88dd-623ab008fae6, _Var2)
+THEN
+LeaveCombat(S_GLO_LV_HenchmenRecruiter_ed64ea06-9060-4b29-88dd-623ab008fae6);
+DB_BUGFIX_Marker(S_GLO_LV_HenchmenRecruiter_ed64ea06-9060-4b29-88dd-623ab008fae6, "DOS2EE-7349");
+
+IF
+SavegameLoaded((INTEGER)_Var1, (INTEGER)_Var2, (INTEGER)_Var3, (INTEGER)_Var4)
+AND
+QRY_VersionIsOlderThan(_Var1, _Var2, _Var3, _Var4, 3, 6, 3, 0)
+AND
+DB_IsPlayer(_Var5)
+AND
+QuestAccepted(_Var5, "FTJ_SW_Illusionist", 1)
+AND
+ObjectGetFlag(_Var5, "QuestUpdate_FTJ_SW_Illusionist_MeetIllusionist", 0)
+AND
+ObjectGetFlag(_Var5, "QuestUpdate_FTJ_SW_Illusionist_Start_FindEntrance", 1)
+AND
+DB_CurrentLevel(_Var6)
+AND
+_Var6 != "FJ_FortJoy_Main"
+THEN
+PartySetFlag(_Var5, "QuestUpdate_FTJ_SW_Illusionist_CloseLeftFortJoyStillSecret");
+
+IF
+SavegameLoaded((INTEGER)_Var1, (INTEGER)_Var2, (INTEGER)_Var3, (INTEGER)_Var4)
+AND
+QRY_VersionIsOlderThan(_Var1, _Var2, _Var3, _Var4, 3, 6, 3, 0)
+AND
+DB_QuestDef_CloseAtRegionEnded_Conditions_FalseObjFlag_TrueObjFlag("FTJ_SW_Illusionist", "QuestUpdate_FTJ_SW_Illusionist_Start_CloseLeftFortJoyDungeon", "FJ_FortJoy_Main", "QuestUpdate_FTJ_SW_Illusionist_MeetIllusionist", "QuestUpdate_FTJ_SW_Illusionist_Start_FindEntrance")
+THEN
+NOT DB_QuestDef_CloseAtRegionEnded_Conditions_FalseObjFlag_TrueObjFlag("FTJ_SW_Illusionist", "QuestUpdate_FTJ_SW_Illusionist_Start_CloseLeftFortJoyDungeon", "FJ_FortJoy_Main", "QuestUpdate_FTJ_SW_Illusionist_MeetIllusionist", "QuestUpdate_FTJ_SW_Illusionist_Start_FindEntrance");
+DB_QuestDef_CloseAtRegionEnded_Conditions_FalseObjFlag_TrueObjFlag("FTJ_SW_Illusionist", "QuestUpdate_FTJ_SW_Illusionist_CloseLeftFortJoyStillSecret", "FJ_FortJoy_Main", "QuestUpdate_FTJ_SW_Illusionist_MeetIllusionist", "QuestUpdate_FTJ_SW_Illusionist_Start_FindEntrance");
+
+PROC
+PROC_GLO_PartyMembers_CleanDBIsPlayer()
+AND
+DB_GlobalFlag("RC_LV_NotAllPlayersOnBoard")
+AND NOT
+QRY_RC_LV_AnyPlayersNotOnBoard()
+THEN
+GlobalClearFlag("RC_LV_NotAllPlayersOnBoard");
+
+QRY
+QRY_RC_LV_AnyPlayersNotOnBoard()
+AND
+DB_IsPlayer(_Var1)
+AND NOT
+DB_InRegion(_Var1, S_RC_LV_OnBoard_3d5b3e43-2126-464e-81d1-3c0b60841276)
+THEN
+DB_NOOP(1);
+
+IF
+SavegameLoaded((INTEGER)_Var1, (INTEGER)_Var2, (INTEGER)_Var3, (INTEGER)_Var4)
+AND
+QRY_VersionIsOlderThan(_Var1, _Var2, _Var3, _Var4, 3, 6, 5, 0)
+AND NOT
+DB_CurrentLevel("TUT_Tutorial_A")
+AND NOT
+DB_CurrentLevel("FJ_FortJoy_Main")
+THEN
+ProcCharacterDisableCrime(S_GLO_Tarquin_a3d0cdcc-d0b0-464d-9ad7-43b38baed620, "ActiveUndead");
+
+IF
+SavegameLoaded((INTEGER)_Var1, (INTEGER)_Var2, (INTEGER)_Var3, (INTEGER)_Var4)
+AND
+QRY_VersionIsOlderThan(_Var1, _Var2, _Var3, _Var4, 3, 6, 5, 0)
+AND
+DB_Crime_WarningCount(_Var5, "ActiveUndead", _Var6, S_GLO_Tarquin_a3d0cdcc-d0b0-464d-9ad7-43b38baed620)
+AND
+DB_CombatCharacters(S_GLO_Tarquin_a3d0cdcc-d0b0-464d-9ad7-43b38baed620, _Var7)
+THEN
+NOT DB_Crime_WarningCount(_Var5, "ActiveUndead", _Var6, S_GLO_Tarquin_a3d0cdcc-d0b0-464d-9ad7-43b38baed620);
+DB_BUGFIX_Marker(_Var6, "DOS2EE-8025");
+EndCombat(_Var7);
+PROC_DOS2EE_8025_FixTarquinPlayerAttitude();
+
+PROC
+PROC_DOS2EE_8025_FixTarquinPlayerAttitude()
+AND
+DB_JoinedParty(_Var1)
+AND
+ObjectExists(_Var1, 1)
+AND
+CharacterGetAttitudeTowardsPlayer(S_GLO_Tarquin_a3d0cdcc-d0b0-464d-9ad7-43b38baed620, _Var1, _Var2)
+AND
+_Var2 < 0
+AND
+IntegerSubtract(0, _Var2, _Var3)
+THEN
+CharacterAddAttitudeTowardsPlayer(S_GLO_Tarquin_a3d0cdcc-d0b0-464d-9ad7-43b38baed620, _Var1, _Var3);
+
+IF
+SavegameLoaded((INTEGER)_Var1, (INTEGER)_Var2, (INTEGER)_Var3, (INTEGER)_Var4)
+AND
+QRY_VersionIsOlderThan(_Var1, _Var2, _Var3, _Var4, 3, 6, 5, 0)
+AND
+DB_BI_AncestorTree_Enemy_BlackRing(_Var5)
+THEN
+DB_DontCreateMurder(_Var5);
+
+
+EXITSECTION
+ENDEXITSECTION
+
+ParentTargetEdge "DOS2ModWrapper"

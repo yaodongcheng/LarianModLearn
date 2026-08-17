@@ -1,0 +1,33 @@
+Version 1
+SubGoalCombiner SGC_AND
+
+INITSECTION
+DB_Dialogs(CHARACTERGUID_S_RC_WC_BombScientist_eb96f108-fd71-43fd-b30f-9da2a7a09949, "RC_WC_BombScientist");
+DB_Ghosts(CHARACTERGUID_S_RC_WC_BombScientist_eb96f108-fd71-43fd-b30f-9da2a7a09949, CHARACTERGUID_S_RC_WC_BombScientist_Ghost_1077afc5-70c5-4c88-ba53-adacddb10e48, "RC_WC_BombScientist_Ghost");
+DB_DoNotFace(CHARACTERGUID_S_RC_WC_BombScientist_eb96f108-fd71-43fd-b30f-9da2a7a09949);
+
+KBSECTION
+IF
+GlobalFlagSet("RC_WC_BeastWreckedDevice")
+THEN
+CharacterLookAt(CHARACTERGUID_S_Player_Beast_f25ca124-a4d2-427b-af62-df66df41a978, ITEMGUID_S_RC_WC_DwarvenPortalDevice_c22ea6a7-bb9a-48f2-9c82-549cb913dfd6, 0);
+CharacterMoveTo(CHARACTERGUID_S_Player_Beast_f25ca124-a4d2-427b-af62-df66df41a978, ITEMGUID_S_RC_WC_DwarvenPortalDevice_c22ea6a7-bb9a-48f2-9c82-549cb913dfd6, 0, "RC_WC_BeastAtDeviceToDestroy", 0);
+
+IF
+StoryEvent(CHARACTERGUID_S_Player_Beast_f25ca124-a4d2-427b-af62-df66df41a978, "RC_WC_BeastAtDeviceToDestroy")
+THEN
+PlayAnimation(CHARACTERGUID_S_Player_Beast_f25ca124-a4d2-427b-af62-df66df41a978, "attack1");
+TimerLaunch("RC_WC_BST_BreakDeathfogDevice", 700);
+
+IF
+TimerFinished("RC_WC_BST_BreakDeathfogDevice")
+THEN
+PlayEffect(ITEMGUID_S_RC_WC_DwarvenPortalDevice_c22ea6a7-bb9a-48f2-9c82-549cb913dfd6, "RS3_FX_GP_ScriptedEvent_Deathfog_DeviceBreak_01");
+SetStoryEvent(ITEMGUID_S_RC_WC_DwarvenPortalDevice_c22ea6a7-bb9a-48f2-9c82-549cb913dfd6, "RC_WC_BST_Break");
+PROC_LoopEffect("RS3_FX_Environment_Smoke_Fire_01", ITEMGUID_S_RC_WC_DwarvenPortalDevice_c22ea6a7-bb9a-48f2-9c82-549cb913dfd6, "RC_WC_BST_BrokeSmoke", "RC_Main", "");
+
+
+EXITSECTION
+ENDEXITSECTION
+
+ParentTargetEdge "RC_DW_WreckersCaveBase"

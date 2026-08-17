@@ -1,0 +1,100 @@
+Version 1
+SubGoalCombiner SGC_AND
+
+INITSECTION
+SetVisible(ITEMGUID_S_ARX_KemmMansion_HiddenFloor_Ent_043a9ce4-6a41-47c0-8a72-de946c9d7a28, 0);
+DB_Dialogs(ITEMGUID_S_ARX_KemmMansion_Attic_BlackringMirror_9206520f-2601-4881-b252-ab772d6800b2, "ARX_KemmMansion_Attic_BlackringMirror");
+ProcTriggerRegisterForPlayers(TRIGGERGUID_S_ARX_KemmMansion_Attic_VBBlackringMirrorTrig_182a08f4-946a-4135-87f9-b2e63452ece9);
+DB_HiddenRevealOnInteraction(ITEMGUID_S_ARX_KemmMansion_KemmBedroom_ChestKeyHatch_90a5709d-aa12-4c25-b59b-d47eb10fca77, ITEMGUID_FUR_Humans_Painting_Tempest_004_1647b87d-bf03-4e76-99e1-05fd471c57c8);
+
+KBSECTION
+IF
+CharacterItemEvent(_, _, "ARX_KemmMansion_HiddenFloor_PressurePlate_On")
+THEN
+SetVisible(ITEMGUID_S_ARX_KemmMansion_HiddenFloor_Ent_043a9ce4-6a41-47c0-8a72-de946c9d7a28, 1);
+proc_ItemMoveToTrigger(ITEMGUID_S_ARX_KemmMansion_HiddenFloor_Ent_043a9ce4-6a41-47c0-8a72-de946c9d7a28, TRIGGERGUID_S_ARX_KemmMansion_HiddenFloor_PointOrig_b20c0e5b-9adf-424a-9b71-a85652e08ff5, 1, 1.1, 0);
+DB_ARX_KemmMansion_HiddenFloor_PressurePlate_On(1);
+
+IF
+ItemMoved(ITEMGUID_S_ARX_KemmMansion_HiddenFloor_Ent_043a9ce4-6a41-47c0-8a72-de946c9d7a28)
+AND
+DB_ARX_KemmMansion_HiddenFloor_PressurePlate_On(1)
+THEN
+SetVisible(ITEMGUID_S_ARX_KemmMansion_HiddenFloor_Ent_043a9ce4-6a41-47c0-8a72-de946c9d7a28, 0);
+
+IF
+CharacterUsedItem((CHARACTERGUID)_Var1, ITEMGUID_S_ARX_KemmMansion_HiddenFloor_Ent_043a9ce4-6a41-47c0-8a72-de946c9d7a28)
+THEN
+ProcHideMarker(_Var1, "ARX_KemmsRoom_Secret");
+
+IF
+CharacterItemEvent(_, _, "ARX_KemmMansion_HiddenFloor_PressurePlate_Off")
+THEN
+SetVisible(ITEMGUID_S_ARX_KemmMansion_HiddenFloor_PressurePlate_8d9d5ee9-2ead-4976-abdd-89a7570f13f1, 1);
+SetVisible(ITEMGUID_S_ARX_KemmMansion_HiddenFloor_Ent_043a9ce4-6a41-47c0-8a72-de946c9d7a28, 1);
+proc_ItemMoveToTrigger(ITEMGUID_S_ARX_KemmMansion_HiddenFloor_Ent_043a9ce4-6a41-47c0-8a72-de946c9d7a28, TRIGGERGUID_S_ARX_KemmMansion_HiddenFloor_PointOpen_417ee086-e36f-4a02-845f-32d2fc3d32c1, 1, 1.1, 0);
+NOT DB_ARX_KemmMansion_HiddenFloor_PressurePlate_On(1);
+
+IF
+CharacterUsedItem((CHARACTERGUID)_Var1, ITEMGUID_S_ARX_KemmMansion_HiddenRoom_Ext_945f8094-297c-4c3d-9593-fad0a85460fd)
+AND
+DB_ARX_KemmMansion_HiddenFloor_PressurePlate_On(1)
+THEN
+ApplyStatus(_Var1, "KNOCKED_DOWN", 1.5, 1);
+
+IF
+CharacterUsedItem((CHARACTERGUID)_Var1, ITEMGUID_S_ARX_KemmMansion_HiddenRoom_Ext_945f8094-297c-4c3d-9593-fad0a85460fd)
+AND
+ObjectIsOnStage(ITEMGUID_S_ARX_KemmMansion_HiddenFloor_Ent_043a9ce4-6a41-47c0-8a72-de946c9d7a28, 0)
+THEN
+ApplyStatus(_Var1, "KNOCKED_DOWN", 1.5, 1);
+
+IF
+GameBookInterfaceClosed(ITEMGUID_S_ARX_KemmMansion_Attic_DalisInvestigation_20789897-dec0-4b79-aa19-64e433fa088b, (CHARACTERGUID)_Var1)
+AND
+QueryOnlyOnce("ARX_KemmMansion_Attic_VB_DalisInvestigation")
+THEN
+StartVoiceBark("ARX_KemmMansion_Attic_VB_DalisInvestigation", _Var1);
+
+IF
+CharacterEnteredTrigger((CHARACTERGUID)_Var1, TRIGGERGUID_S_ARX_KemmMansion_Attic_VBBlackringMirrorTrig_182a08f4-946a-4135-87f9-b2e63452ece9)
+AND
+UserGetFlag(_Var1, "CoS_Temples_EnteredTheSallowMansCamp", 1)
+AND
+QueryOnlyOnce("ARX_KemmMansion_Attic_VB_BlackringMirror")
+THEN
+StartVoiceBark("ARX_KemmMansion_Attic_VB_BlackringMirror", _Var1);
+
+IF
+CharacterEnteredTrigger((CHARACTERGUID)_Var1, TRIGGERGUID_S_ARX_KemmMansion_Attic_VBBlackringMirrorTrig_182a08f4-946a-4135-87f9-b2e63452ece9)
+AND
+UserGetFlag(_Var1, "ARX_KemmMansion_Attic_Knows_BlackringMirror", 0)
+THEN
+UserSetFlag(_Var1, "ARX_KemmMansion_Attic_Knows_BlackringMirror");
+
+IF
+DialogEnded("ARX_KemmMansion_Attic_BlackringMirror", _)
+AND
+GlobalGetFlag("ARX_Kemm_BlackMirror_SallowIsTotallyDead", 1)
+AND
+DB_InRegion(_Var2, TRIGGERGUID_S_ARX_KemmMansion_Attic_VBBlackringMirrorTrig_182a08f4-946a-4135-87f9-b2e63452ece9)
+AND
+UserGetFlag(_Var2, "ARX_KemmMansion_Attic_BlackringMirror_HasMet", 1)
+AND
+QueryOnlyOnce("ARX_KemmMansion_Attic_VB_Sallow")
+THEN
+StartVoiceBark("ARX_KemmMansion_Attic_VB_Sallow", _Var2);
+
+IF
+GameBookInterfaceClosed(ITEMGUID_S_ARX_KemmMansion_KemmJournal_59069499-c2c8-4bf1-a0a7-0185e851f814, (CHARACTERGUID)_Var1)
+AND
+UserGetFlag(_Var1, "QuestUpdate_ARX_KemmVault_KemmVault_AtticLetter", 0)
+THEN
+UserSetFlag(_Var1, "QuestUpdate_ARX_KemmVault_KemmVault_AtticLetter");
+UserSetFlag(_Var1, "QuestUpdate_ARX_KemmVault_KemmVault_AtticLetter_Garden");
+
+
+EXITSECTION
+ENDEXITSECTION
+
+ParentTargetEdge "ARX"

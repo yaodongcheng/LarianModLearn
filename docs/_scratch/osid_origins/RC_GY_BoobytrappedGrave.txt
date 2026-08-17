@@ -1,0 +1,67 @@
+Version 1
+SubGoalCombiner SGC_AND
+
+INITSECTION
+DB_Ghosts(CHARACTERGUID_S_RC_GY_BoobytrappedGrave_Ghost_60deeafd-36c3-4a42-8f21-b9dd4a9ccfad, "RC_GY_BoobytrappedGrave_Ghost");
+SetOnStage(ITEMGUID_S_RC_GY_BoobytrappedGrave_Grenade_321a51cd-2d42-4f2a-9467-63da975b3edd, 0);
+
+KBSECTION
+IF
+DialogEnded("RC_GY_BoobytrappedGrave_Ghost", (INTEGER)_Var1)
+AND
+DialogGetInvolvedPlayer(_Var1, 1, _Var2)
+AND
+ObjectGetFlag(CHARACTERGUID_S_RC_GY_BoobytrappedGrave_Ghost_60deeafd-36c3-4a42-8f21-b9dd4a9ccfad, "RC_GY_BoobytrappedGrave_Reveal", 1)
+AND NOT
+DB_RC_GY_BoobytrappedGrave_Triggered(_)
+THEN
+SetStoryEvent(ITEMGUID_S_RC_GY_BoobytrappedGrave_9146b2ec-e70e-47b5-b2c1-222e40c4b038, "RevealFromStory");
+SetStoryEvent(_Var2, "HiddenTrapReveal");
+
+IF
+CharacterUsedItem((CHARACTERGUID)_Var1, ITEMGUID_S_RC_GY_BoobytrappedGrave_9146b2ec-e70e-47b5-b2c1-222e40c4b038)
+AND NOT
+DB_RC_GY_BoobytrappedGrave_Triggered(_)
+THEN
+DB_RC_GY_BoobytrappedGrave_PlayerTriggered(_Var1);
+Proc_StartDialog(1, "RC_GY_AD_BoobytrappedGrave", ITEMGUID_S_RC_GY_BoobytrappedGrave_9146b2ec-e70e-47b5-b2c1-222e40c4b038);
+
+IF
+ObjectFlagSet("RC_GY_BoobytrappedGrave_StartTrap", ITEMGUID_S_RC_GY_BoobytrappedGrave_9146b2ec-e70e-47b5-b2c1-222e40c4b038, (INTEGER)_Var1)
+AND
+DB_RC_GY_BoobytrappedGrave_PlayerTriggered(_Var2)
+THEN
+SetOnStage(ITEMGUID_S_RC_GY_BoobytrappedGrave_Grenade_321a51cd-2d42-4f2a-9467-63da975b3edd, 1);
+ObjectSetFlag(CHARACTERGUID_S_RC_GY_BoobytrappedGrave_Ghost_60deeafd-36c3-4a42-8f21-b9dd4a9ccfad, "RC_GY_BoobytrappedGrave_Triggered");
+NOT DB_RC_GY_BoobytrappedGrave_PlayerTriggered(_Var2);
+
+IF
+ItemWentOnStage(ITEMGUID_S_RC_GY_BoobytrappedGrave_Grenade_321a51cd-2d42-4f2a-9467-63da975b3edd, 1)
+THEN
+ItemDragToTrigger(ITEMGUID_S_RC_GY_BoobytrappedGrave_Grenade_321a51cd-2d42-4f2a-9467-63da975b3edd, TRIGGERGUID_S_RC_GY_BoobytrappedGrave_TrapPoint_15c0b369-5015-4306-9542-0f985eefdc49);
+DB_RC_GY_BoobytrappedGrave_Triggered(1);
+
+IF
+AttackedByObject((GUIDSTRING)_Var1, ITEMGUID_S_RC_GY_BoobytrappedGrave_Mine_3067639c-de31-4d02-a3c4-5c751036f614, _, _, _)
+THEN
+ObjectSetFlag(_Var1, "RC_GY_BoobytrappedGrave_TrapSprung");
+
+IF
+StoryEvent(ITEMGUID_S_RC_GY_BoobytrappedGrave_Mine_3067639c-de31-4d02-a3c4-5c751036f614, "Mine")
+AND
+ObjectIsOnStage(ITEMGUID_S_RC_GY_BoobytrappedGrave_Grenade_321a51cd-2d42-4f2a-9467-63da975b3edd, 1)
+THEN
+ItemDestroy(ITEMGUID_S_RC_GY_BoobytrappedGrave_Grenade_321a51cd-2d42-4f2a-9467-63da975b3edd);
+CreateExplosion(TRIGGERGUID_S_RC_GY_BoobytrappedGrave_TrapPoint_15c0b369-5015-4306-9542-0f985eefdc49, "Projectile_Grenade_Molotov", 25);
+
+IF
+ItemMoved(ITEMGUID_S_RC_GY_BoobytrappedGrave_Grenade_321a51cd-2d42-4f2a-9467-63da975b3edd)
+THEN
+ItemDestroy(ITEMGUID_S_RC_GY_BoobytrappedGrave_Grenade_321a51cd-2d42-4f2a-9467-63da975b3edd);
+CreateExplosion(TRIGGERGUID_S_RC_GY_BoobytrappedGrave_TrapPoint_15c0b369-5015-4306-9542-0f985eefdc49, "Projectile_Grenade_Molotov", 25);
+
+
+EXITSECTION
+ENDEXITSECTION
+
+ParentTargetEdge "ReapersCoast"

@@ -1,0 +1,466 @@
+Version 1
+SubGoalCombiner SGC_AND
+
+INITSECTION
+DB_ReflectionDialog_PlayerIdentifier(1, "PDD_Player1");
+DB_ReflectionDialog_PlayerIdentifier(2, "PDD_Player2");
+DB_ReflectionDialog_PlayerIdentifier(3, "PDD_Player3");
+DB_ReflectionDialog_PlayerIdentifier(4, "PDD_Player4");
+
+KBSECTION
+IF
+GlobalFlagSet("GLO_DisableReflectionsPermanently")
+THEN
+GoalCompleted;
+
+PROC
+ProcDefineReflectionDialog((STRING)_Var1, (CHARACTERGUID)_Var2)
+AND NOT
+DB_ReflectionDialog_InProgress(_Var1, _)
+AND NOT
+DB_ReflectionDialog_Finished(_Var1)
+AND
+DB_ReflectionDialogs_Queued(_Var4, _Var5)
+THEN
+ProcCancelReflectionDialog(_Var5);
+
+PROC
+ProcDefineReflectionDialog((STRING)_Var1, (CHARACTERGUID)_Var2)
+AND NOT
+DB_ReflectionDialog_InProgress(_Var1, _)
+AND NOT
+DB_ReflectionDialog_Finished(_Var1)
+THEN
+ProcDefineReflectionDialogIfPlayersAvailable(_Var1, _Var2);
+
+PROC
+ProcDefineReflectionDialogIfPlayersAvailable((STRING)_Var1, (CHARACTERGUID)_Var2)
+THEN
+DB_AvailableReflectionDialogPlayerCount(0);
+
+PROC
+ProcDefineReflectionDialogIfPlayersAvailable((STRING)_Var1, (CHARACTERGUID)_Var2)
+AND
+DB_AvailableReflectionDialogPlayer(_Var3)
+THEN
+NOT DB_AvailableReflectionDialogPlayer(_Var3);
+
+PROC
+ProcDefineReflectionDialogIfPlayersAvailable((STRING)_Var1, (CHARACTERGUID)_Var2)
+AND
+DB_Avatars(_Var3)
+AND NOT
+DB_Dead(_Var3)
+AND
+CharacterIsInPartyWith(_Var2, _Var3, 1)
+AND
+GetDistanceTo(_Var3, _Var2, _Var4)
+AND
+_Var4 < 30
+AND
+DB_AvailableReflectionDialogPlayerCount(_Var5)
+AND
+IntegerSum(_Var5, 1, _Var6)
+THEN
+NOT DB_AvailableReflectionDialogPlayerCount(_Var5);
+DB_AvailableReflectionDialogPlayerCount(_Var6);
+DB_AvailableReflectionDialogPlayer(_Var3);
+
+PROC
+ProcDefineReflectionDialogIfPlayersAvailable((STRING)_Var1, (CHARACTERGUID)_Var2)
+AND
+DB_AvailableReflectionDialogPlayer(_Var3)
+AND
+DB_CompanionAvatarBond(_Var4, _Var3)
+AND NOT
+DB_Dead(_Var4)
+AND
+CharacterIsInPartyWith(_Var3, _Var4, 1)
+AND
+CharacterIsPolymorphInteractionDisabled(_Var4, 0)
+AND
+IsTagged(_Var4, "HENCHMAN", 0)
+AND
+GetDistanceTo(_Var4, _Var2, _Var5)
+AND
+_Var5 < 30
+AND
+DB_AvailableReflectionDialogPlayerCount(_Var6)
+AND
+IntegerSum(_Var6, 1, _Var7)
+THEN
+NOT DB_AvailableReflectionDialogPlayerCount(_Var6);
+DB_AvailableReflectionDialogPlayerCount(_Var7);
+DB_AvailableReflectionDialogPlayer(_Var4);
+
+PROC
+ProcDefineReflectionDialogIfPlayersAvailable((STRING)_Var1, (CHARACTERGUID)_Var2)
+AND
+DB_AvailableReflectionDialogPlayerCount(_Var3)
+AND
+_Var3 >= 2
+THEN
+PROC_PeaceTimerLaunch(_Var1, 60000);
+
+PROC
+ProcDefineReflectionDialogIfPlayersAvailable((STRING)_Var1, (CHARACTERGUID)_Var2)
+AND
+DB_AvailableReflectionDialogPlayerCount(_Var3)
+AND
+_Var3 >= 2
+AND
+DB_AvailableReflectionDialogPlayer(_Var4)
+THEN
+PROC_CheckPlayTut(_Var4, "TUT_ReflectionDialog");
+ApplyStatus(_Var4, "REFLECTION", -1);
+SetHasDialog(_Var4, 1);
+DB_ReflectionDialogs_Queued(_Var4, _Var1);
+ProcReflectionSaveDialogState(_Var4);
+
+PROC
+ProcDefineReflectionDialogIfPlayersAvailable(_, _)
+AND
+DB_AvailableReflectionDialogPlayerCount(_Var3)
+THEN
+NOT DB_AvailableReflectionDialogPlayerCount(_Var3);
+
+IF
+CharacterDied((CHARACTERGUID)_Var1)
+AND
+DB_IsPlayer(_Var1)
+AND
+DB_ReflectionDialogs_Queued(_Var1, _Var2)
+THEN
+ProcCancelReflectionDialog(_Var2);
+
+PROC
+ProcCancelReflectionDialog((STRING)_Var1)
+THEN
+TimerCancel(_Var1);
+
+PROC
+ProcCancelReflectionDialog((STRING)_Var1)
+AND
+DB_ReflectionDialogs_Queued(_Var2, _Var1)
+THEN
+ProcRestorePlayerToBeforeReflectionDialog(_Var2, _Var1);
+
+PROC
+ProcRestorePlayerToBeforeReflectionDialog((CHARACTERGUID)_Var1, (STRING)_Var2)
+THEN
+RemoveStatus(_Var1, "REFLECTION");
+NOT DB_ReflectionDialogs_Queued(_Var1, _Var2);
+ProcRestoreSavedDialog(_Var1);
+
+IF
+DialogStarted((STRING)_Var1, _)
+AND
+DB_ReflectionDialogs_Queued(_, _Var1)
+THEN
+ProcCancelReflectionDialog(_Var1);
+
+IF
+TimerFinished((STRING)_Var1)
+AND
+DB_ReflectionDialogs_Queued(_, _Var1)
+THEN
+ProcCancelReflectionDialog(_Var1);
+
+PROC
+PROC_GLOBAL_DialogStartRequested((CHARACTERGUID)_Var1, (CHARACTERGUID)_Var2)
+AND
+DB_ReflectionDialogs_Queued(_Var1, _Var3)
+AND
+DB_ReflectionDialogs_Queued(_Var2, _Var3)
+AND
+IsTagged(_Var2, "AVATAR", 1)
+THEN
+ProcStartReflectionDialog(_Var2, _Var3);
+
+PROC
+ProcReflectionSaveDialogState((CHARACTERGUID)_Var1)
+AND
+DB_Dialogs(_Var1, _Var2)
+THEN
+ProcRemoveAllDialogEntriesForSpeaker(_Var1);
+DB_ReflectionSavedDialog(_Var1, _Var2);
+
+PROC
+ProcRestoreSavedDialog((CHARACTERGUID)_Var1)
+AND NOT
+DB_ReflectionSavedDialog(_Var1, _)
+THEN
+SetHasDialog(_Var1, 0);
+
+PROC
+ProcRestoreSavedDialog((CHARACTERGUID)_Var1)
+AND
+DB_ReflectionSavedDialog(_Var1, _Var2)
+THEN
+DB_Dialogs(_Var1, _Var2);
+NOT DB_ReflectionSavedDialog(_Var1, _Var2);
+
+PROC
+ProcStartReflectionDialog((CHARACTERGUID)_Var1, (STRING)_Var2)
+AND NOT
+DB_ReflectionDialog_InProgress(_Var2, _)
+AND NOT
+DB_ReflectionDialog_Finished(_Var2)
+THEN
+Proc_ReflectionDialog_CollectPlayers(_Var1, _Var2);
+Proc_ReflectionDialog_Phase1(_Var1, _Var2);
+
+PROC
+Proc_ReflectionDialog_CollectPlayers((CHARACTERGUID)_Var1, (STRING)_Var2)
+THEN
+DB_ReflectionDialog_PlayerCount(_Var2, 0);
+
+PROC
+Proc_ReflectionDialog_CollectPlayers((CHARACTERGUID)_Var1, (STRING)_Var2)
+AND
+DB_IsPlayer(_Var3)
+AND
+IsTagged(_Var3, "AVATAR", 1)
+AND
+QRY_ReflectionDialog_ShouldCollect(_Var3, _Var2, _Var1)
+AND
+QRY_SpeakerIsAvailableAndInDialogRange(_Var3, _Var1)
+AND
+DB_ReflectionDialog_PlayerCount(_Var2, _Var4)
+AND
+IntegerSum(_Var4, 1, _Var5)
+THEN
+DB_ReflectionDialog_Players(_Var2, _Var3, _Var5);
+NOT DB_ReflectionDialog_PlayerCount(_Var2, _Var4);
+DB_ReflectionDialog_PlayerCount(_Var2, _Var5);
+
+PROC
+Proc_ReflectionDialog_CollectPlayers((CHARACTERGUID)_Var1, (STRING)_Var2)
+AND
+DB_IsPlayer(_Var3)
+AND
+IsTagged(_Var3, "AVATAR", 0)
+AND
+CharacterIsPolymorphInteractionDisabled(_Var3, 0)
+AND
+IsTagged(_Var3, "HENCHMAN", 0)
+AND
+QRY_ReflectionDialog_ShouldCollect(_Var3, _Var2, _Var1)
+AND
+QRY_SpeakerIsAvailableAndInDialogRange(_Var3, _Var1)
+AND
+DB_ReflectionDialog_PlayerCount(_Var2, _Var4)
+AND
+IntegerSum(_Var4, 1, _Var5)
+AND
+_Var5 <= 4
+THEN
+DB_ReflectionDialog_Players(_Var2, _Var3, _Var5);
+NOT DB_ReflectionDialog_PlayerCount(_Var2, _Var4);
+DB_ReflectionDialog_PlayerCount(_Var2, _Var5);
+
+QRY
+QRY_ReflectionDialog_ShouldCollect((CHARACTERGUID)_Var1, (STRING)_Var2, (CHARACTERGUID)_Var3)
+AND
+DB_GlobalReflectionDialog(_Var2)
+THEN
+DB_NOOP(1);
+
+QRY
+QRY_ReflectionDialog_ShouldCollect((CHARACTERGUID)_Var1, (STRING)_Var2, (CHARACTERGUID)_Var3)
+AND NOT
+DB_GlobalReflectionDialog(_Var2)
+AND
+CharacterIsInPartyWith(_Var1, _Var3, 1)
+THEN
+DB_NOOP(1);
+
+PROC
+Proc_ReflectionDialog_CollectPlayers((CHARACTERGUID)_Var1, (STRING)_Var2)
+AND
+DB_ReflectionDialog_PlayerCount(_Var2, _Var3)
+THEN
+NOT DB_ReflectionDialog_PlayerCount(_Var2, _Var3);
+
+PROC
+Proc_ReflectionDialog_Phase1((GUIDSTRING)_Var1, (STRING)_Var2)
+THEN
+Proc_StartDialog(0, "ReflectionDialogWrapper", _Var1);
+DB_ReflectionWrapperStarted(_Var2, _Var1);
+
+IF
+DialogStarted("ReflectionDialogWrapper", (INTEGER)_Var1)
+AND
+DB_DialogPlayers(_Var1, _Var2, 1)
+AND
+DB_ReflectionWrapperStarted(_Var3, _Var2)
+THEN
+DB_ReflectionDialog_InProgress(_Var3, _Var1);
+DB_ReflectionDialog_Phase1_Index(1);
+Proc_ReflectionDialog_Phase1_NextPlayer(_Var3, 1);
+
+IF
+DialogEnded("ReflectionDialogWrapper", (INTEGER)_Var1)
+AND
+DB_DialogPlayers(_Var1, _Var2, 1)
+AND
+DB_ReflectionWrapperStarted(_Var3, _Var2)
+AND
+DB_ReflectionDialog_Players(_Var3, _Var4, _Var5)
+THEN
+NOT DB_ReflectionDialog_Players(_Var3, _Var4, _Var5);
+Proc_ReflectionDialogDone(_Var3, _Var2);
+
+PROC
+Proc_ReflectionDialogDone((STRING)_Var1, (CHARACTERGUID)_Var2)
+THEN
+DB_NOOP(1);
+
+IF
+DialogEnded("ReflectionDialogWrapper", (INTEGER)_Var1)
+AND
+DB_DialogPlayers(_Var1, _Var2, 1)
+AND
+DB_ReflectionWrapperStarted(_Var3, _Var2)
+THEN
+NOT DB_ReflectionWrapperStarted(_Var3, _Var2);
+
+PROC
+Proc_ReflectionDialog_Phase1_NextPlayer((STRING)_Var1, (INTEGER)_Var2)
+AND NOT
+DB_ReflectionDialog_Players(_Var1, _, _Var2)
+AND
+DB_ReflectionDialog_InProgress(_Var1, _Var4)
+THEN
+NOT DB_ReflectionDialog_Phase1_Index(_Var2);
+NOT DB_ReflectionDialog_InProgress(_Var1, _Var4);
+DB_ReflectionDialog_Finished(_Var1);
+DialogResume(_Var4);
+
+PROC
+ProcCheckLastReflectionPlayer((CHARACTERGUID)_Var1, (STRING)_Var2, (INTEGER)_Var3)
+AND
+IntegerSum(1, _Var3, _Var4)
+AND NOT
+DB_ReflectionDialog_Players(_Var2, _, _Var4)
+THEN
+ObjectSetFlag(_Var1, "GLO_IsLastPlayerInReflectionDialog");
+
+PROC
+ProcCheckLastReflectionPlayer((CHARACTERGUID)_Var1, (STRING)_Var2, (INTEGER)_Var3)
+AND
+IntegerSum(1, _Var3, _Var4)
+AND
+DB_ReflectionDialog_Players(_Var2, _, _Var4)
+THEN
+ObjectClearFlag(_Var1, "GLO_IsLastPlayerInReflectionDialog", 0);
+
+PROC
+Proc_ReflectionDialog_Phase1_NextPlayer((STRING)_Var1, (INTEGER)_Var2)
+AND
+DB_ReflectionDialog_Players(_Var1, _Var3, _Var2)
+AND
+DB_ReflectionDialog_PlayerIdentifier(_Var2, _Var4)
+AND
+DB_ReflectionDialog_InProgress(_Var1, _Var5)
+AND
+DB_ReflectionWrapperStarted(_Var1, _Var6)
+THEN
+ProcCheckLastReflectionPlayer(_Var3, _Var1, _Var2);
+SetTag(_Var3, _Var4);
+Proc_PartyDecisionDialog_DoDialogWithObservers(_Var3, _Var1, _Var5, 0);
+ProcObjectTimer(_Var6, "ReflectionDialogFallbackTimer", 2000);
+
+IF
+DialogStarted((STRING)_Var1, (INTEGER)_Var2)
+AND
+DB_ReflectionWrapperStarted(_Var1, _Var3)
+THEN
+ProcObjectTimerCancel(_Var3, "ReflectionDialogFallbackTimer");
+
+PROC
+ProcObjectTimerFinished((GUIDSTRING)_Var1, "ReflectionDialogFallbackTimer")
+AND
+DB_ReflectionWrapperStarted(_Var2, _Var1)
+AND
+DB_ReflectionDialog_Phase1_Index(_Var3)
+AND
+IntegerSum(_Var3, 1, _Var4)
+AND
+DB_DialogPlayers(_Var5, _Var6, 1)
+AND
+DB_ReflectionDialog_PlayerIdentifier(_Var3, _Var7)
+THEN
+ClearTag(_Var6, _Var7);
+NOT DB_ReflectionDialog_Phase1_Index(_Var3);
+DB_ReflectionDialog_Phase1_Index(_Var4);
+ObjectClearFlag(_Var6, "GLO_IsLastPlayerInReflectionDialog", 0);
+Proc_ReflectionDialog_Phase1_NextPlayer(_Var2, _Var4);
+
+IF
+DialogEnded((STRING)_Var1, (INTEGER)_Var2)
+AND
+DB_ReflectionDialog_InProgress(_Var1, _)
+AND
+DB_ReflectionDialog_Phase1_Index(_Var4)
+AND
+IntegerSum(_Var4, 1, _Var5)
+AND
+DB_DialogPlayers(_Var2, _Var6, 1)
+AND
+DB_ReflectionDialog_PlayerIdentifier(_Var4, _Var7)
+THEN
+ClearTag(_Var6, _Var7);
+NOT DB_ReflectionDialog_Phase1_Index(_Var4);
+DB_ReflectionDialog_Phase1_Index(_Var5);
+ObjectClearFlag(_Var6, "GLO_IsLastPlayerInReflectionDialog", 0);
+Proc_ReflectionDialog_Phase1_NextPlayer(_Var1, _Var5);
+
+PROC
+Proc_ReflectionDialog_CancelForPlayer((CHARACTERGUID)_Var1)
+AND
+DB_ReflectionDialogs_Queued(_Var1, _Var2)
+THEN
+ProcDeclareCounter("ReflectionDialog_CountRemainingQueuedReflectionPlayers");
+
+PROC
+Proc_ReflectionDialog_CancelForPlayer((CHARACTERGUID)_Var1)
+AND
+DB_ReflectionDialogs_Queued(_Var1, _Var2)
+AND
+DB_ReflectionDialogs_Queued(_Var3, _Var2)
+THEN
+ProcIncreaseCounter("ReflectionDialog_CountRemainingQueuedReflectionPlayers");
+
+PROC
+Proc_ReflectionDialog_CancelForPlayer((CHARACTERGUID)_Var1)
+AND
+DB_GlobalCounter("ReflectionDialog_CountRemainingQueuedReflectionPlayers", _Var2)
+AND
+_Var2 <= 2
+AND
+DB_ReflectionDialogs_Queued(_Var1, _Var3)
+THEN
+ProcCancelReflectionDialog(_Var3);
+
+PROC
+Proc_ReflectionDialog_CancelForPlayer((CHARACTERGUID)_Var1)
+AND
+DB_GlobalCounter("ReflectionDialog_CountRemainingQueuedReflectionPlayers", _Var2)
+AND
+_Var2 > 2
+AND
+DB_ReflectionDialogs_Queued(_Var1, _Var3)
+THEN
+ProcRestorePlayerToBeforeReflectionDialog(_Var1, _Var3);
+
+PROC
+Proc_ReflectionDialog_CancelForPlayer((CHARACTERGUID)_Var1)
+THEN
+ProcRemoveCounter("ReflectionDialog_CountRemainingQueuedReflectionPlayers");
+
+
+EXITSECTION
+ENDEXITSECTION
+
+ParentTargetEdge "__Shared_Campaign"

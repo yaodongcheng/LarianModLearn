@@ -1,0 +1,241 @@
+Version 1
+SubGoalCombiner SGC_AND
+
+INITSECTION
+SetHasDialog(CHARACTERGUID_S_RC_DW_WhiteMagister_b1bdd004-a286-4ad5-9826-a763d672b2a7, 1);
+SetHasDialog(CHARACTERGUID_S_RC_DW_Julian_356538aa-90b6-4cc0-89e9-53dc3633e12d, 1);
+DB_RC_DW_LeaveMagister(S_RC_DW_WhiteMagister_b1bdd004-a286-4ad5-9826-a763d672b2a7);
+DB_RC_DW_LeaveMagister(S_RC_DW_WhiteMagister_SilentMonk_001_c09bc858-fd51-4ab1-8e47-6acdbcacc44e);
+DB_RC_DW_LeaveMagister(S_RC_DW_WhiteMagister_SilentMonk_000_112e6755-131d-4eac-8ac9-e07c0a1eca3a);
+DB_Dialogs(CHARACTERGUID_S_RC_DW_WhiteMagister_SilentMonk_000_112e6755-131d-4eac-8ac9-e07c0a1eca3a, "RC_DW_WhiteMagister_Monk0");
+DB_Dialogs(CHARACTERGUID_S_RC_DW_WhiteMagister_SilentMonk_001_c09bc858-fd51-4ab1-8e47-6acdbcacc44e, "RC_DW_WhiteMagister_Monk1");
+DB_DeadEvent(CHARACTERGUID_S_RC_DW_Checkpoint_Magister_1_3137b5cc-f568-4f0b-9239-23accfdf8a5c, "RC_DW_Checkpoint_Magister1_Dead");
+DB_DeadEvent(CHARACTERGUID_S_RC_DW_Checkpoint_Magister_2_87a2ef8c-979e-4a64-aaef-46d319beb384, "RC_DW_Checkpoint_Magister2_Dead");
+DB_Dialogs(CHARACTERGUID_S_RC_DW_Julian_356538aa-90b6-4cc0-89e9-53dc3633e12d, "RC_DW_Julian");
+DB_DialogMoneyTransfer(1, "RC_DW_Julian", 70);
+DB_HasStoryEvent(ITEMGUID_S_RC_DW_JulianKey_7965e448-17ef-400e-8e96-0e90e2f65cdc, "RC_DW_HasJulianKey");
+DB_HasStoryEvent(ITEMGUID_S_RC_DW_WhiteMagisterKey_5d11194f-88f6-4098-a49f-2f180f6ba917, "RC_DW_HasWhiteMagisterKey");
+DB_GiveItemToEvent(ITEMGUID_S_RC_DW_JulianKey_7965e448-17ef-400e-8e96-0e90e2f65cdc, "RC_DW_GiveJulianKey");
+DB_GiveItemToEvent(ITEMGUID_S_RC_DW_WhiteMagisterKey_5d11194f-88f6-4098-a49f-2f180f6ba917, "RC_DW_GiveWhiteMagisterKey");
+ItemToInventory(ITEMGUID_S_RC_DW_WhiteMagisterKey_5d11194f-88f6-4098-a49f-2f180f6ba917, CHARACTERGUID_S_RC_DW_WhiteMagister_b1bdd004-a286-4ad5-9826-a763d672b2a7);
+ItemToInventory(ITEMGUID_S_RC_DW_JulianKey_7965e448-17ef-400e-8e96-0e90e2f65cdc, CHARACTERGUID_S_RC_DW_Julian_356538aa-90b6-4cc0-89e9-53dc3633e12d);
+ObjectSetFlag(CHARACTERGUID_S_RC_DW_Julian_356538aa-90b6-4cc0-89e9-53dc3633e12d, "RC_DW_HasJulianKey");
+ObjectSetFlag(CHARACTERGUID_S_RC_DW_WhiteMagister_b1bdd004-a286-4ad5-9826-a763d672b2a7, "RC_DW_HasWhiteMagisterKey");
+ProcTriggerRegisterForPlayers(S_RC_DW_AssassinateLoharReaction_f6a65a11-da03-4155-b17d-20d1b8acd02a);
+DB_HasStoryEvent(ITEMGUID_S_RC_DW_Limb_LoharsHead_15bb128a-3557-48a0-add6-1da6a41c6b60, "RC_DW_HasLoharHead");
+DB_HasTemplateItem("RC_DW_WritOfPassage_061d8aa5-771b-4b72-8d8f-5f2200d43ab1", "RC_DW_HasWritOfPassage");
+DB_DialogMoneyTransfer(2, "RC_DW_Julian", 100);
+
+KBSECTION
+IF
+DialogEnded("RC_DW_WhiteMagister", _)
+THEN
+PROC_RemoveDialogFromCharacter(S_RC_DW_WhiteMagister_b1bdd004-a286-4ad5-9826-a763d672b2a7);
+ProcCharacterDisableAllCrimes(CHARACTERGUID_S_RC_DW_WhiteMagister_b1bdd004-a286-4ad5-9826-a763d672b2a7);
+ProcCharacterDisableAllCrimes(CHARACTERGUID_S_RC_DW_WhiteMagister_SilentMonk_01_112e6755-131d-4eac-8ac9-e07c0a1eca3a);
+ProcCharacterDisableAllCrimes(CHARACTERGUID_S_RC_DW_WhiteMagister_SilentMonk_02_c09bc858-fd51-4ab1-8e47-6acdbcacc44e);
+Proc_StartDialog(1, "RC_DW_AD_WhiteMagister", CHARACTERGUID_S_RC_DW_WhiteMagister_b1bdd004-a286-4ad5-9826-a763d672b2a7);
+
+IF
+AutomatedDialogRequestFailed("RC_DW_AD_WhiteMagister", _)
+THEN
+Proc_RC_DW_WhiteMagisterLeave();
+
+IF
+AutomatedDialogEnded("RC_DW_AD_WhiteMagister", _)
+THEN
+Proc_RC_DW_WhiteMagisterLeave();
+
+PROC
+Proc_RC_DW_WhiteMagisterLeave()
+AND
+QueryOnlyOnce("RC_DW_WhiteMagisterLeft")
+THEN
+SetHasDialog(S_RC_DW_WhiteMagister_b1bdd004-a286-4ad5-9826-a763d672b2a7, 0);
+SetHasDialog(S_RC_DW_WhiteMagister_SilentMonk_001_c09bc858-fd51-4ab1-8e47-6acdbcacc44e, 0);
+SetHasDialog(S_RC_DW_WhiteMagister_SilentMonk_000_112e6755-131d-4eac-8ac9-e07c0a1eca3a, 0);
+SetVarInteger(CHARACTERGUID_S_RC_DW_WhiteMagister_SilentMonk_000_112e6755-131d-4eac-8ac9-e07c0a1eca3a, "State", 0);
+SetVarInteger(CHARACTERGUID_S_RC_DW_WhiteMagister_SilentMonk_001_c09bc858-fd51-4ab1-8e47-6acdbcacc44e, "State", 0);
+SetVarInteger(CHARACTERGUID_S_RC_DW_Julian_356538aa-90b6-4cc0-89e9-53dc3633e12d, "State", 0);
+PROC_RemoveDialogFromCharacter(S_RC_DW_WhiteMagister_SilentMonk_001_c09bc858-fd51-4ab1-8e47-6acdbcacc44e);
+PROC_RemoveDialogFromCharacter(S_RC_DW_WhiteMagister_SilentMonk_000_112e6755-131d-4eac-8ac9-e07c0a1eca3a);
+ProcCharacterFollowCharacter(S_RC_DW_WhiteMagister_SilentMonk_000_112e6755-131d-4eac-8ac9-e07c0a1eca3a, S_RC_DW_WhiteMagister_b1bdd004-a286-4ad5-9826-a763d672b2a7);
+ProcCharacterFollowCharacter(S_RC_DW_WhiteMagister_SilentMonk_001_c09bc858-fd51-4ab1-8e47-6acdbcacc44e, S_RC_DW_WhiteMagister_b1bdd004-a286-4ad5-9826-a763d672b2a7);
+ProcCharacterMoveTo(S_RC_DW_WhiteMagister_b1bdd004-a286-4ad5-9826-a763d672b2a7, S_RC_DW_WhiteMagister_Leave_496d8ac3-e7e7-4498-b3c6-7452fe6619f6, 0, "RC_DW_ReachedBoat");
+
+IF
+StoryEvent(CHARACTERGUID_S_RC_DW_WhiteMagister_b1bdd004-a286-4ad5-9826-a763d672b2a7, "RC_DW_ReachedBoat")
+THEN
+ProcCharacterStopFollow(CHARACTERGUID_S_RC_DW_WhiteMagister_SilentMonk_000_112e6755-131d-4eac-8ac9-e07c0a1eca3a);
+ProcCharacterStopFollow(CHARACTERGUID_S_RC_DW_WhiteMagister_SilentMonk_001_c09bc858-fd51-4ab1-8e47-6acdbcacc44e);
+ProcCharacterMoveTo(CHARACTERGUID_S_RC_DW_WhiteMagister_SilentMonk_000_112e6755-131d-4eac-8ac9-e07c0a1eca3a, S_RC_DW_WhiteMagister_Leave_496d8ac3-e7e7-4498-b3c6-7452fe6619f6, 0, "RC_DW_ReachedBoat");
+ProcCharacterMoveTo(CHARACTERGUID_S_RC_DW_WhiteMagister_SilentMonk_001_c09bc858-fd51-4ab1-8e47-6acdbcacc44e, S_RC_DW_WhiteMagister_Leave_496d8ac3-e7e7-4498-b3c6-7452fe6619f6, 0, "RC_DW_ReachedBoat");
+GlobalSetFlag("RC_DW_WhiteMagisterLeft");
+
+IF
+StoryEvent((CHARACTERGUID)_Var1, "RC_DW_ReachedBoat")
+THEN
+NOT DB_RC_DW_LeaveMagister(_Var1);
+SetOnStage(_Var1, 0);
+
+IF
+CharacterDied((CHARACTERGUID)_Var1)
+AND
+DB_RC_DW_LeaveMagister(_Var1)
+THEN
+PROC_RC_DW_LeaveMagister_Dead(_Var1);
+
+PROC
+PROC_RC_DW_LeaveMagister_Dead((CHARACTERGUID)_Var1)
+THEN
+NOT DB_RC_DW_LeaveMagister(_Var1);
+
+PROC
+PROC_RC_DW_LeaveMagister_Dead((CHARACTERGUID)_Var1)
+AND NOT
+DB_RC_DW_LeaveMagister(_)
+THEN
+TimerLaunch("RC_DW_WhiteMagister_ShipLeave", 4);
+
+IF
+StoryEvent((GUIDSTRING)_Var1, "RC_DW_ReachedBoat")
+AND NOT
+DB_RC_DW_LeaveMagister(_)
+THEN
+TimerLaunch("RC_DW_WhiteMagister_ShipLeave", 1000);
+
+IF
+TimerFinished("RC_DW_WhiteMagister_ShipLeave")
+THEN
+PlayAnimation(S_RC_DW_Julian_356538aa-90b6-4cc0-89e9-53dc3633e12d, "Sigh_01", "RC_DW_JulienSighed");
+
+IF
+StoryEvent(CHARACTERGUID_S_RC_DW_Julian_356538aa-90b6-4cc0-89e9-53dc3633e12d, "RC_DW_JulienSighed")
+THEN
+Proc_StartDialog(1, "RC_DW_AD_JulianLeft", CHARACTERGUID_S_RC_DW_Julian_356538aa-90b6-4cc0-89e9-53dc3633e12d);
+
+IF
+AutomatedDialogEnded("RC_DW_AD_JulianLeft", _)
+THEN
+SetVarObject(CHARACTERGUID_S_RC_DW_Julian_356538aa-90b6-4cc0-89e9-53dc3633e12d, "Seat", S_RC_DW_JulianChair_2c508c21-b076-44cc-8505-71a8550540df);
+SetVarInteger(CHARACTERGUID_S_RC_DW_Julian_356538aa-90b6-4cc0-89e9-53dc3633e12d, "State", 0);
+
+IF
+TimerFinished("RC_DW_WhiteMagister_ShipLeave")
+THEN
+TimerLaunch("RC_DW_RemoveShip", 8000);
+proc_ItemMoveToTrigger(S_RC_DW_WhiteMagisterBoat_050ed14b-8a9f-40ce-8eca-ffe9673fef92, S_RC_DW_WhiteMagisterShip_Disappear_4b8923e0-1e08-4181-9d96-819db3278abe, 2, 1, 0);
+ItemSetForceSynch(ITEMGUID_S_RC_DW_WhiteMagisterBoat_050ed14b-8a9f-40ce-8eca-ffe9673fef92, 1);
+
+IF
+TimerFinished("RC_DW_RemoveShip")
+THEN
+SetOnStage(ITEMGUID_S_RC_DW_WhiteMagisterBoat_050ed14b-8a9f-40ce-8eca-ffe9673fef92, 0);
+ItemSetForceSynch(ITEMGUID_S_RC_DW_WhiteMagisterBoat_050ed14b-8a9f-40ce-8eca-ffe9673fef92, 0);
+
+PROC
+PROC_GLOBAL_DialogStartRequested(CHARACTERGUID_S_RC_DW_WhiteMagister_b1bdd004-a286-4ad5-9826-a763d672b2a7, (GUIDSTRING)_Var1)
+AND
+GlobalGetFlag("RC_DW_WhiteMagisterLeft", 0)
+AND
+QRY_SpeakerIsAvailableAndInDialogRange(CHARACTERGUID_S_RC_DW_Julian_356538aa-90b6-4cc0-89e9-53dc3633e12d, CHARACTERGUID_S_RC_DW_WhiteMagister_b1bdd004-a286-4ad5-9826-a763d672b2a7)
+THEN
+Proc_StartDialog(0, "RC_DW_WhiteMagister", CHARACTERGUID_S_RC_DW_WhiteMagister_b1bdd004-a286-4ad5-9826-a763d672b2a7, CHARACTERGUID_S_RC_DW_Julian_356538aa-90b6-4cc0-89e9-53dc3633e12d, _Var1);
+
+PROC
+PROC_GLOBAL_DialogStartRequested(CHARACTERGUID_S_RC_DW_WhiteMagister_b1bdd004-a286-4ad5-9826-a763d672b2a7, (GUIDSTRING)_Var1)
+AND
+GlobalGetFlag("RC_DW_WhiteMagisterLeft", 0)
+AND NOT
+QRY_SpeakerIsAvailableAndInDialogRange(CHARACTERGUID_S_RC_DW_Julian_356538aa-90b6-4cc0-89e9-53dc3633e12d, CHARACTERGUID_S_RC_DW_WhiteMagister_b1bdd004-a286-4ad5-9826-a763d672b2a7)
+THEN
+Proc_StartDialog(0, "RC_DW_WhiteMagister", CHARACTERGUID_S_RC_DW_WhiteMagister_b1bdd004-a286-4ad5-9826-a763d672b2a7, NULL_00000000-0000-0000-0000-000000000000, _Var1);
+
+IF
+ObjectFlagSet("RC_DW_WhiteMagister_BlastJulian", CHARACTERGUID_S_RC_DW_Julian_356538aa-90b6-4cc0-89e9-53dc3633e12d, (INTEGER)_Var1)
+THEN
+DB_RC_DW_JulianKnockedDownInDialog(_Var1);
+CharacterLookAt(CHARACTERGUID_S_RC_DW_WhiteMagister_b1bdd004-a286-4ad5-9826-a763d672b2a7, CHARACTERGUID_S_RC_DW_Julian_356538aa-90b6-4cc0-89e9-53dc3633e12d);
+PlayAnimation(CHARACTERGUID_S_RC_DW_WhiteMagister_b1bdd004-a286-4ad5-9826-a763d672b2a7, "skill_silence_cast");
+ApplyStatus(CHARACTERGUID_S_RC_DW_Julian_356538aa-90b6-4cc0-89e9-53dc3633e12d, "KNOCKED_DOWN", 12, 1);
+PlayEffect(CHARACTERGUID_S_RC_DW_Julian_356538aa-90b6-4cc0-89e9-53dc3633e12d, "RS3_FX_Skills_Air_FreeFall_Disappear_01");
+PlayEffect(CHARACTERGUID_S_RC_DW_WhiteMagister_b1bdd004-a286-4ad5-9826-a763d672b2a7, "RS3_FX_Skills_Air_FreeFall_Cast_01");
+
+IF
+DialogEnded(_, (INTEGER)_Var2)
+AND
+DB_RC_DW_JulianKnockedDownInDialog(_Var2)
+THEN
+NOT DB_RC_DW_JulianKnockedDownInDialog(_Var2);
+ObjectClearFlag(CHARACTERGUID_S_RC_DW_Julian_356538aa-90b6-4cc0-89e9-53dc3633e12d, "RC_DW_WhiteMagister_BlastJulian", 0);
+
+IF
+ObjectFlagSet("RC_DW_RewardLoharHead", (CHARACTERGUID)_Var1, _)
+THEN
+CharacterAddGold(_Var1, 70);
+
+IF
+ObjectFlagSet("RC_DW_AssassinateLohar", (CHARACTERGUID)_Var1, _)
+AND
+CharacterIsDead(CHARACTERGUID_S_RC_DW_UnderTavern_DwarfBoss_8e58abc6-1010-4e67-97b2-b9686586e784, 0)
+AND
+DB_InRegion(_Var1, S_RC_DW_AssassinateLoharReaction_f6a65a11-da03-4155-b17d-20d1b8acd02a)
+THEN
+DB_RC_DW_RegisterAssassinateLoharReaction(_Var1);
+
+IF
+CharacterLeftTrigger((CHARACTERGUID)_Var1, S_RC_DW_AssassinateLoharReaction_f6a65a11-da03-4155-b17d-20d1b8acd02a)
+AND
+DB_RC_DW_RegisterAssassinateLoharReaction(_Var1)
+AND
+PartyGetFlag(_Var1, "RC_DW_AssassinateLoharReacted", 0)
+THEN
+ObjectSetFlag(_Var1, "RC_DW_AssassinateLoharReacted", 0);
+StartVoiceBark("RC_DW_VB_AssassinateLoharReaction", _Var1);
+
+IF
+VoiceBarkStarted("RC_DW_VB_AssassinateLoharReaction", (INTEGER)_Var1)
+AND
+DialogGetInvolvedPlayer(_Var1, 1, _Var2)
+THEN
+PartySetFlag(_Var2, "RC_DW_AssassinateLoharReacted", 0);
+
+IF
+ObjectFlagSet("RC_DW_GiveWritOfPassage", (CHARACTERGUID)_Var1, (INTEGER)_Var2)
+THEN
+UserSetFlag(_Var1, "RC_DW_GotWritOfPassage");
+ItemTemplateAddTo("RC_DW_WritOfPassage_061d8aa5-771b-4b72-8d8f-5f2200d43ab1", _Var1, 1);
+
+IF
+ObjectFlagSet("RC_DW_ShowWritOfPassage", (CHARACTERGUID)_Var1, _)
+AND
+ItemTemplateIsInCharacterInventory(_Var1, "RC_DW_WritOfPassage_061d8aa5-771b-4b72-8d8f-5f2200d43ab1", 0)
+AND
+DB_IsPlayer(_Var3)
+AND
+QryTakeItemTemplateFromMagicPockets(_Var3, "RC_DW_WritOfPassage_061d8aa5-771b-4b72-8d8f-5f2200d43ab1", 1, _Var1)
+THEN
+DB_NOOP(1);
+
+IF
+ObjectFlagSet("RC_DW_ShowWritOfPassage", (GUIDSTRING)_Var1, (INTEGER)_Var2)
+THEN
+ObjectClearFlag(_Var1, "RC_DW_ShowWritOfPassage", _Var2);
+
+IF
+ObjectFlagSet("RC_DW_JulianWeaponsReward", (CHARACTERGUID)_Var1, _)
+AND
+DB_DialogMoneyTransfer(2, "RC_DW_Julian", _Var3)
+THEN
+ProcAddGoldToMagicPockets(_Var1, _Var3);
+
+IF
+RegionEnded("RC_Main")
+THEN
+GoalCompleted;
+
+
+EXITSECTION
+ENDEXITSECTION
+
+ParentTargetEdge "ReapersCoast"

@@ -1,0 +1,21 @@
+Version 1
+SubGoalCombiner SGC_AND
+
+INITSECTION
+DB_GLO_LVHub_PlayerChests_Chest(ITEMGUID_S_LVHub_PlayerChest_000_217e353f-6512-4808-aa11-3ec5cc06df49);
+DB_GLO_LVHub_PlayerChests_Chest(ITEMGUID_S_LVHub_PlayerChest_001_18d2f084-cc6e-4890-878c-6c0e1ec3b1f2);
+DB_GLO_LVHub_PlayerChests_Chest(ITEMGUID_S_LVHub_PlayerChest_002_df8ac858-679e-45d8-861a-6439980db2f4);
+DB_GLO_LVHub_PlayerChests_Chest(ITEMGUID_S_LVHub_PlayerChest_003_2ef015b9-79cb-44dd-b895-ab58fe2c8d86);
+PROC_GLO_LVHub_PlayerChests_InitOnce();
+
+KBSECTION
+IF
+RegionStarted("ARX_Endgame")
+THEN
+EnableSendToHomestead(0);
+
+
+EXITSECTION
+ENDEXITSECTION
+
+ParentTargetEdge "GLO_LVHub_LV_HoE_Main"

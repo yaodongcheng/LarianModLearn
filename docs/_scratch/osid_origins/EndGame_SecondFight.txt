@@ -1,0 +1,1790 @@
+Version 1
+SubGoalCombiner SGC_AND
+
+INITSECTION
+DB_EG_PotentialDemonDialogs("EG_LucianDallisNonPurge");
+DB_EG_PotentialDemonDialogs("EG_LucianDallisPurge");
+DB_EG_PotentialDemonDialogs("EG_LucianDallisNonPurge_COM");
+DB_EG_PotentialDemonDialogs("EG_LucianDallisPurge_COM");
+DB_EG_PotentialDemonDialogs("EG_LucianDallisNonPurge_LohsePossessed_COM");
+DB_EG_PotentialDemonDialogs("EG_LucianDallisNonPurge_LohsePossessed");
+DB_EG_PotentialDemonDialogs("EG_LucianDallisPurge_LohsePossessed_COM");
+DB_EG_PotentialDemonDialogs("EG_LucianDallisPurge_LohsePossessed");
+DB_EG_GlobalDialogs("EG_AfterDemon");
+DB_EG_GlobalDialogs("EG_GodKingVictory");
+DB_EG_GlobalDialogs("EG_DemonVictory");
+DB_EG_KrakenSummons_Named("Projectile_Kraken_LaunchUndead_Sallow");
+DB_EG_KrakenSummons_Named("Projectile_Kraken_LaunchUndead_Isbeil");
+DB_EG_KrakenSummons_Named("Projectile_Kraken_LaunchUndead_Kemm");
+PROC_EG_CheckHannagAccepted();
+DB_EG_KrakenSummons_Generic("Projectile_Kraken_LaunchUndead1");
+DB_EG_KrakenSummons_Generic("Projectile_Kraken_LaunchUndead2");
+DB_EG_KrakenSummons_Generic("Projectile_Kraken_LaunchUndead3");
+DB_EG_KrakenSummons_Generic("Projectile_Kraken_LaunchUndead4");
+DB_EG_KrakenSummons_Generic("Projectile_Kraken_LaunchUndead5");
+
+KBSECTION
+IF
+DB_EG_PotentialDemonDialogs(_Var1)
+THEN
+DB_EG_GlobalDialogs(_Var1);
+
+PROC
+PROC_EG_TryStartPostBraccusDialogue()
+AND NOT
+DB_EG_LucianDallisPurge_DialogStarted(1)
+AND NOT
+QRY_EG_SecondFightMembersAlive()
+THEN
+PROC_EG_SetFightParticipantsArena(0);
+
+PROC
+PROC_EG_TryStartPostBraccusDialogue()
+AND NOT
+DB_EG_LucianDallisPurge_DialogStarted(1)
+AND NOT
+QRY_EG_SecondFightMembersAlive()
+AND
+DB_GlobalFlag("EG_ConvincedBraccus")
+AND
+GetClosestAlivePlayer(CHARACTERGUID_S_ARX_EG_Lucian_62d0ca66-b6db-4a10-a457-effe0b64aca0, _Var1, _)
+AND
+IsTagged(_Var1, "PROMISED", 1)
+AND
+QueryOnlyOnce("The Promised won. The Eighth takes over. The End.")
+THEN
+DB_EG_EpilogCanStart(1);
+DB_EG_GodKingVictorSpeaker(_Var1);
+PROC_EG_SpeechAtEndOfCombat("EG_GodKingVictory");
+
+PROC
+PROC_EG_TryStartPostBraccusDialogue()
+AND NOT
+DB_EG_LucianDallisPurge_DialogStarted(1)
+AND NOT
+QRY_EG_SecondFightMembersAlive()
+AND NOT
+QRY_EG_SecondFight_PlayersInCombat()
+AND
+GetClosestAlivePlayer(CHARACTERGUID_S_ARX_EG_Lucian_62d0ca66-b6db-4a10-a457-effe0b64aca0, _Var1, _)
+AND
+IsTagged(_Var1, "PROMISED", 1)
+AND
+QueryOnlyOnce("The Promised won. The Eighth takes over. The End.")
+THEN
+DB_EG_EpilogCanStart(1);
+DB_EG_GodKingVictorSpeaker(_Var1);
+PROC_EG_SpeechAtEndOfCombat("EG_GodKingVictory");
+
+PROC
+PROC_EG_SpeechAtEndOfCombat_Ready("EG_GodKingVictory")
+AND
+DB_EG_GodKingVictorSpeaker(_Var1)
+THEN
+TeleportTo(ITEMGUID_S_GLO_EighthPromiseHelper_000_9c8c6eb9-84bb-47a6-91cb-4ef33442df06, _Var1);
+Proc_StartDialog(0, "EG_GodKingVictory", ITEMGUID_S_GLO_EighthPromiseHelper_000_9c8c6eb9-84bb-47a6-91cb-4ef33442df06, _Var1);
+
+PROC
+PROC_EG_TryStartPostBraccusDialogue()
+AND NOT
+DB_EG_LucianDallisPurge_DialogStarted(1)
+AND NOT
+QRY_EG_SecondFightMembersAlive()
+AND NOT
+QRY_EG_SecondFight_PlayersInCombat()
+AND
+GetClosestAlivePlayer(CHARACTERGUID_S_ARX_EG_Lucian_62d0ca66-b6db-4a10-a457-effe0b64aca0, _Var1, _)
+AND
+IsTagged(_Var1, "PROMISED", 0)
+AND
+CharacterIsPolymorphInteractionDisabled(_Var1, 1)
+THEN
+RemoveStatus(_Var1, "COW");
+RemoveStatus(_Var1, "CHICKEN");
+
+PROC
+PROC_EG_TryStartPostBraccusDialogue()
+AND NOT
+DB_OnlyOnce("EG_PostBraccusDialogueStarted")
+AND NOT
+DB_EG_LucianDallisPurge_DialogStarted(1)
+AND NOT
+QRY_EG_SecondFightMembersAlive()
+AND NOT
+QRY_EG_SecondFight_PlayersInCombat()
+AND
+GetClosestAlivePlayer(CHARACTERGUID_S_ARX_EG_Lucian_62d0ca66-b6db-4a10-a457-effe0b64aca0, _Var1, _)
+AND
+IsTagged(_Var1, "PROMISED", 0)
+THEN
+PROC_EG_StartPostBraccusDialogue(_Var1);
+
+QRY
+QRY_EG_SecondFightMembersAlive()
+AND
+DB_EG_FirstFightParticipants(_Var1)
+AND
+GetFaction(_Var1, "ARX_EG_Lucian")
+AND
+DB_GlobalFlag("EndFight_FightLucian")
+AND NOT
+DB_Dead(_Var1)
+AND NOT
+DB_EG_KnockedOut(_Var1)
+AND
+ObjectIsOnStage(_Var1, 1)
+THEN
+DB_NOOP(0);
+
+QRY
+QRY_EG_SecondFightMembersAlive()
+AND
+DB_EG_FirstFightParticipants(_Var1)
+AND NOT
+GetFaction(_Var1, "ARX_EG_Lucian")
+AND NOT
+DB_Dead(_Var1)
+AND NOT
+DB_EG_KnockedOut(_Var1)
+AND
+ObjectIsOnStage(_Var1, 1)
+THEN
+DB_NOOP(0);
+
+QRY
+QRY_EG_SecondFightMembersAlive()
+AND
+GlobalGetFlag("EG_KrakenAndBraccusAreDead", 0)
+AND NOT
+DB_GlobalFlag("EG_ConvincedBraccus")
+THEN
+DB_NOOP(0);
+
+QRY
+QRY_EG_SecondFightMembersAlive()
+AND
+DB_GlobalFlag("EG_PromisedFight")
+AND
+DB_EG_FirstFightKickedPromisePlayer(_Var1)
+AND NOT
+DB_Dead(_Var1)
+AND
+DB_IsPlayer(_Var2)
+AND NOT
+DB_EG_FirstFightKickedPromisePlayer(_Var2)
+AND NOT
+DB_Dead(_Var2)
+THEN
+DB_NOOP(1);
+
+QRY
+QRY_EG_SecondFightMembersAlive()
+AND
+DB_GlobalFlag("EG_PromisedFight")
+AND
+DB_EG_FirstFightKickedPromisePlayer(_Var1)
+AND NOT
+DB_Dead(_Var1)
+AND
+DB_GLO_PartyMembers_Kick_PartyMembers(_Var1, _Var2, 1)
+AND NOT
+DB_Dead(_Var2)
+THEN
+DB_NOOP(1);
+
+PROC
+Proc_ObjectLeftCombat((CHARACTERGUID)_Var1, _)
+AND
+DB_EG_FirstFightParticipants(_Var1)
+THEN
+PROC_EG_TryStartPostBraccusDialogueIfPromisedHandled();
+
+IF
+DialogEnded("EG_LucianDallisBraccus", _)
+AND NOT
+DB_EG_ImmortalCharacters(_)
+AND
+DB_IsPlayer(_Var3)
+AND
+ObjectGetFlag(_Var3, "ARX_PDD_EndGame_SideLucian_No", 1)
+THEN
+PROC_EG_TryStartPostBraccusDialogueIfPromisedHandled();
+
+IF
+DialogEnded("EG_LucianDallisBraccus", _)
+AND NOT
+DB_EG_ImmortalCharacters(_)
+AND
+DB_Dead(CHARACTERGUID_S_GLO_Braccus_358ba541-0710-43be-8263-87afe1a8d9b5)
+AND
+DB_IsPlayer(_Var3)
+AND
+ObjectGetFlag(_Var3, "ARX_PDD_EndGame_SideLucian_Yes", 1)
+THEN
+PROC_EG_TryStartPostBraccusDialogueIfPromisedHandled();
+
+QRY
+QRY_EG_SecondFight_PlayersInCombat()
+AND
+DB_IsPlayer(_Var1)
+AND
+DB_CombatCharacters(_Var1, _)
+THEN
+PROC_EG_LaunchPostBraccusRetry();
+
+PROC
+PROC_EG_LaunchPostBraccusRetry()
+AND
+QueryOnlyOnce("LaunchPostBraccusRetry")
+THEN
+TimerLaunch("EG_PostBraccusRetry", 500);
+
+IF
+TimerFinished("EG_PostBraccusRetry")
+AND NOT
+DB_EG_EpilogCanStart(1)
+AND NOT
+DB_GlobalFlag("EG_AppearDoctor")
+THEN
+NOT DB_OnlyOnce("LaunchPostBraccusRetry");
+PROC_EG_TryStartPostBraccusDialogueIfPromisedHandled();
+
+PROC
+PROC_EG_StartPostBraccusDialogue(_)
+AND
+DB_IsPlayer(_Var2)
+THEN
+RemoveStatus(_Var2, "PLAY_DEAD");
+
+PROC
+PROC_EG_StartPostBraccusDialogue(_)
+THEN
+RemoveStatus(CHARACTERGUID_S_GLO_Dallis_69b951dc-55a4-44b8-a2d5-5efedbd7d572, "COW");
+RemoveStatus(CHARACTERGUID_S_GLO_Dallis_69b951dc-55a4-44b8-a2d5-5efedbd7d572, "CHICKEN");
+RemoveStatus(CHARACTERGUID_S_ARX_EG_Lucian_62d0ca66-b6db-4a10-a457-effe0b64aca0, "COW");
+RemoveStatus(CHARACTERGUID_S_ARX_EG_Lucian_62d0ca66-b6db-4a10-a457-effe0b64aca0, "CHICKEN");
+
+PROC
+PROC_EG_StartPostBraccusDialogue(_)
+AND
+DB_GlobalFlag("EndFight_FightLucian")
+AND NOT
+QRY_EG_DemonAppear_LohsePossessed()
+AND
+QRY_EG_DemonAppear()
+AND
+DB_EG_DemonDealer(_Var2)
+AND NOT
+DB_CompanionAvatarBond(_Var2, _)
+THEN
+Proc_StartDialog(0, "EG_LucianDallisNonPurge", CHARACTERGUID_S_GLO_Dallis_69b951dc-55a4-44b8-a2d5-5efedbd7d572, CHARACTERGUID_S_ARX_EG_Lucian_62d0ca66-b6db-4a10-a457-effe0b64aca0, CHARACTERGUID_S_ARX_DoctorsHouse_TheDoctor_83083470-c543-45b3-ac8a-108df0daca8d, _Var2);
+
+PROC
+PROC_EG_StartPostBraccusDialogue(_)
+AND
+DB_GlobalFlag("EndFight_FightLucian")
+AND NOT
+QRY_EG_DemonAppear_LohsePossessed()
+AND
+QRY_EG_DemonAppear()
+AND
+DB_EG_DemonDealer(_Var2)
+AND
+DB_CompanionAvatarBond(_Var2, _Var3)
+AND NOT
+QRY_SameUser(_Var2, _Var3)
+THEN
+Proc_StartDialog(0, "EG_LucianDallisNonPurge", CHARACTERGUID_S_GLO_Dallis_69b951dc-55a4-44b8-a2d5-5efedbd7d572, CHARACTERGUID_S_ARX_EG_Lucian_62d0ca66-b6db-4a10-a457-effe0b64aca0, CHARACTERGUID_S_ARX_DoctorsHouse_TheDoctor_83083470-c543-45b3-ac8a-108df0daca8d, _Var2);
+
+PROC
+PROC_EG_StartPostBraccusDialogue(_)
+AND
+DB_GlobalFlag("EndFight_FightLucian")
+AND NOT
+QRY_EG_DemonAppear_LohsePossessed()
+AND
+QRY_EG_DemonAppear()
+AND
+DB_EG_DemonDealer(_Var2)
+AND
+DB_CompanionAvatarBond(_Var2, _Var3)
+AND
+QRY_SameUser(_Var2, _Var3)
+AND NOT
+QRY_SpeakerIsAvailable(_Var3)
+THEN
+Proc_StartDialog(0, "EG_LucianDallisNonPurge", CHARACTERGUID_S_GLO_Dallis_69b951dc-55a4-44b8-a2d5-5efedbd7d572, CHARACTERGUID_S_ARX_EG_Lucian_62d0ca66-b6db-4a10-a457-effe0b64aca0, CHARACTERGUID_S_ARX_DoctorsHouse_TheDoctor_83083470-c543-45b3-ac8a-108df0daca8d, _Var2);
+
+PROC
+PROC_EG_StartPostBraccusDialogue(_)
+AND
+DB_GlobalFlag("EndFight_FightLucian")
+AND NOT
+QRY_EG_DemonAppear_LohsePossessed()
+AND
+QRY_EG_DemonAppear()
+AND
+DB_EG_DemonDealer(_Var2)
+AND
+DB_CompanionAvatarBond(_Var2, _Var3)
+AND
+QRY_SameUser(_Var2, _Var3)
+AND
+QRY_SpeakerIsAvailable(_Var3)
+THEN
+Proc_StartDialog(0, "EG_LucianDallisNonPurge_COM", CHARACTERGUID_S_GLO_Dallis_69b951dc-55a4-44b8-a2d5-5efedbd7d572, CHARACTERGUID_S_ARX_EG_Lucian_62d0ca66-b6db-4a10-a457-effe0b64aca0, CHARACTERGUID_S_ARX_DoctorsHouse_TheDoctor_83083470-c543-45b3-ac8a-108df0daca8d, _Var2, _Var3);
+
+PROC
+PROC_EG_StartPostBraccusDialogue(_)
+AND
+DB_GlobalFlag("EndFight_FightLucian")
+AND
+QRY_EG_DemonAppear_LohsePossessed()
+AND
+DB_ARX_LohseAvatarBondAtPossession(_Var2)
+AND NOT
+DB_Dead(_Var2)
+THEN
+Proc_StartDialog(0, "EG_LucianDallisNonPurge_LohsePossessed_COM", CHARACTERGUID_S_GLO_Dallis_69b951dc-55a4-44b8-a2d5-5efedbd7d572, CHARACTERGUID_S_ARX_EG_Lucian_62d0ca66-b6db-4a10-a457-effe0b64aca0, CHARACTERGUID_S_ARX_DoctorsHouse_TheDoctor_83083470-c543-45b3-ac8a-108df0daca8d, CHARACTERGUID_S_Player_Lohse_bb932b13-8ebf-4ab4-aac0-83e6924e4295, _Var2);
+
+PROC
+PROC_EG_StartPostBraccusDialogue((CHARACTERGUID)_Var1)
+AND
+DB_GlobalFlag("EndFight_FightLucian")
+AND
+QRY_EG_DemonAppear_LohsePossessed()
+AND
+DB_ARX_LohseAvatarBondAtPossession(_Var2)
+AND
+DB_Dead(_Var2)
+AND
+QRY_SpeakerIsAvailable(_Var1)
+THEN
+Proc_StartDialog(0, "EG_LucianDallisNonPurge_LohsePossessed_COM", CHARACTERGUID_S_GLO_Dallis_69b951dc-55a4-44b8-a2d5-5efedbd7d572, CHARACTERGUID_S_ARX_EG_Lucian_62d0ca66-b6db-4a10-a457-effe0b64aca0, CHARACTERGUID_S_ARX_DoctorsHouse_TheDoctor_83083470-c543-45b3-ac8a-108df0daca8d, CHARACTERGUID_S_Player_Lohse_bb932b13-8ebf-4ab4-aac0-83e6924e4295, _Var1);
+
+PROC
+PROC_EG_StartPostBraccusDialogue((CHARACTERGUID)_Var1)
+AND
+DB_GlobalFlag("EndFight_FightLucian")
+AND
+QRY_EG_DemonAppear_LohsePossessed()
+AND
+DB_ARX_LohseAvatarBondAtPossession(_Var2)
+AND
+DB_Dead(_Var2)
+AND NOT
+QRY_SpeakerIsAvailable(_Var1)
+THEN
+PROC_EG_StartPostBraccusDialogue_FindOtherPlayer(_Var1);
+
+PROC
+PROC_EG_StartPostBraccusDialogue((CHARACTERGUID)_Var1)
+AND
+DB_GlobalFlag("EndFight_FightLucian")
+AND
+QRY_EG_DemonAppear_LohsePossessed()
+AND NOT
+DB_ARX_LohseAvatarBondAtPossession(_)
+AND
+QRY_SpeakerIsAvailable(_Var1)
+THEN
+Proc_StartDialog(0, "EG_LucianDallisNonPurge_LohsePossessed", CHARACTERGUID_S_GLO_Dallis_69b951dc-55a4-44b8-a2d5-5efedbd7d572, CHARACTERGUID_S_ARX_EG_Lucian_62d0ca66-b6db-4a10-a457-effe0b64aca0, CHARACTERGUID_S_ARX_DoctorsHouse_TheDoctor_83083470-c543-45b3-ac8a-108df0daca8d, CHARACTERGUID_S_Player_Lohse_bb932b13-8ebf-4ab4-aac0-83e6924e4295, _Var1);
+
+PROC
+PROC_EG_StartPostBraccusDialogue((CHARACTERGUID)_Var1)
+AND
+DB_GlobalFlag("EndFight_FightLucian")
+AND
+QRY_EG_DemonAppear_LohsePossessed()
+AND NOT
+DB_ARX_LohseAvatarBondAtPossession(_)
+AND NOT
+QRY_SpeakerIsAvailable(_Var1)
+THEN
+PROC_EG_StartPostBraccusDialogue_FindOtherPlayer(_Var1);
+
+PROC
+PROC_EG_StartPostBraccusDialogue((CHARACTERGUID)_Var1)
+AND
+DB_GlobalFlag("EndFight_FightLucian")
+AND NOT
+QRY_EG_DemonAppear_LohsePossessed()
+AND NOT
+QRY_EG_DemonAppear()
+AND NOT
+QRY_SpeakerIsAvailable(_Var1)
+THEN
+PROC_EG_StartPostBraccusDialogue_FindOtherPlayer(_Var1);
+
+PROC
+PROC_EG_StartPostBraccusDialogue((CHARACTERGUID)_Var1)
+AND
+DB_GlobalFlag("EndFight_FightLucian")
+AND NOT
+QRY_EG_DemonAppear_LohsePossessed()
+AND NOT
+QRY_EG_DemonAppear()
+AND
+QRY_SpeakerIsAvailable(_Var1)
+THEN
+Proc_StartDialog(0, "EG_LucianDallisNonPurge", CHARACTERGUID_S_GLO_Dallis_69b951dc-55a4-44b8-a2d5-5efedbd7d572, CHARACTERGUID_S_ARX_EG_Lucian_62d0ca66-b6db-4a10-a457-effe0b64aca0, NULL_00000000-0000-0000-0000-000000000000, _Var1);
+
+PROC
+PROC_EG_StartPostBraccusDialogue_FindOtherPlayer((CHARACTERGUID)_Var1)
+AND NOT
+DB_OnlyOnce("EG_PostBraccusDialogueStarted")
+AND
+DB_IsPlayer(_Var2)
+AND
+_Var2 != _Var1
+AND NOT
+DB_OnlyOnce("EG_StartPostBraccusDialogue_OtherPlayer")
+AND
+QRY_SpeakerIsAvailable(_Var2)
+THEN
+DB_OnlyOnce("EG_StartPostBraccusDialogue_OtherPlayer");
+PROC_EG_StartPostBraccusDialogue(_Var2);
+
+PROC
+PROC_EG_StartPostBraccusDialogue_FindOtherPlayer((CHARACTERGUID)_Var1)
+AND NOT
+DB_OnlyOnce("EG_StartPostBraccusDialogue_OtherPlayer")
+AND NOT
+DB_OnlyOnce("EG_PostBraccusDialogueStarted")
+AND
+CharacterIsPolymorphInteractionDisabled(_Var1, 1)
+THEN
+RemoveStatus(_Var1, "COW");
+RemoveStatus(_Var1, "CHICKEN");
+PROC_EG_StartPostBraccusDialogue(_Var1);
+
+PROC
+PROC_EG_StartPostBraccusDialogue(_)
+AND NOT
+DB_GlobalFlag("EndFight_FightLucian")
+AND NOT
+QRY_EG_DemonAppear_LohsePossessed()
+AND
+QRY_EG_DemonAppear()
+AND
+DB_EG_DemonDealer(_Var2)
+AND NOT
+DB_CompanionAvatarBond(_Var2, _)
+THEN
+Proc_StartDialog(0, "EG_LucianDallisPurge", CHARACTERGUID_S_GLO_Dallis_69b951dc-55a4-44b8-a2d5-5efedbd7d572, CHARACTERGUID_S_ARX_EG_Lucian_62d0ca66-b6db-4a10-a457-effe0b64aca0, CHARACTERGUID_S_ARX_DoctorsHouse_TheDoctor_83083470-c543-45b3-ac8a-108df0daca8d, _Var2);
+
+PROC
+PROC_EG_StartPostBraccusDialogue(_)
+AND NOT
+DB_GlobalFlag("EndFight_FightLucian")
+AND NOT
+QRY_EG_DemonAppear_LohsePossessed()
+AND
+QRY_EG_DemonAppear()
+AND
+DB_EG_DemonDealer(_Var2)
+AND
+DB_CompanionAvatarBond(_Var2, _Var3)
+AND NOT
+QRY_SameUser(_Var2, _Var3)
+THEN
+Proc_StartDialog(0, "EG_LucianDallisPurge", CHARACTERGUID_S_GLO_Dallis_69b951dc-55a4-44b8-a2d5-5efedbd7d572, CHARACTERGUID_S_ARX_EG_Lucian_62d0ca66-b6db-4a10-a457-effe0b64aca0, CHARACTERGUID_S_ARX_DoctorsHouse_TheDoctor_83083470-c543-45b3-ac8a-108df0daca8d, _Var2);
+
+PROC
+PROC_EG_StartPostBraccusDialogue(_)
+AND NOT
+DB_GlobalFlag("EndFight_FightLucian")
+AND NOT
+QRY_EG_DemonAppear_LohsePossessed()
+AND
+QRY_EG_DemonAppear()
+AND
+DB_EG_DemonDealer(_Var2)
+AND
+DB_CompanionAvatarBond(_Var2, _Var3)
+AND
+QRY_SameUser(_Var2, _Var3)
+AND NOT
+QRY_SpeakerIsAvailable(_Var3)
+THEN
+Proc_StartDialog(0, "EG_LucianDallisPurge", CHARACTERGUID_S_GLO_Dallis_69b951dc-55a4-44b8-a2d5-5efedbd7d572, CHARACTERGUID_S_ARX_EG_Lucian_62d0ca66-b6db-4a10-a457-effe0b64aca0, CHARACTERGUID_S_ARX_DoctorsHouse_TheDoctor_83083470-c543-45b3-ac8a-108df0daca8d, _Var2);
+
+PROC
+PROC_EG_StartPostBraccusDialogue(_)
+AND NOT
+DB_GlobalFlag("EndFight_FightLucian")
+AND NOT
+QRY_EG_DemonAppear_LohsePossessed()
+AND
+QRY_EG_DemonAppear()
+AND
+DB_EG_DemonDealer(_Var2)
+AND
+DB_CompanionAvatarBond(_Var2, _Var3)
+AND
+QRY_SameUser(_Var2, _Var3)
+AND
+QRY_SpeakerIsAvailable(_Var3)
+THEN
+Proc_StartDialog(0, "EG_LucianDallisPurge_COM", CHARACTERGUID_S_GLO_Dallis_69b951dc-55a4-44b8-a2d5-5efedbd7d572, CHARACTERGUID_S_ARX_EG_Lucian_62d0ca66-b6db-4a10-a457-effe0b64aca0, CHARACTERGUID_S_ARX_DoctorsHouse_TheDoctor_83083470-c543-45b3-ac8a-108df0daca8d, _Var2, _Var3);
+
+PROC
+PROC_EG_StartPostBraccusDialogue(_)
+AND NOT
+DB_GlobalFlag("EndFight_FightLucian")
+AND
+QRY_EG_DemonAppear_LohsePossessed()
+AND
+DB_ARX_LohseAvatarBondAtPossession(_Var2)
+AND NOT
+DB_Dead(_Var2)
+THEN
+Proc_StartDialog(0, "EG_LucianDallisPurge_LohsePossessed_COM", CHARACTERGUID_S_GLO_Dallis_69b951dc-55a4-44b8-a2d5-5efedbd7d572, CHARACTERGUID_S_ARX_EG_Lucian_62d0ca66-b6db-4a10-a457-effe0b64aca0, CHARACTERGUID_S_ARX_DoctorsHouse_TheDoctor_83083470-c543-45b3-ac8a-108df0daca8d, CHARACTERGUID_S_Player_Lohse_bb932b13-8ebf-4ab4-aac0-83e6924e4295, _Var2);
+
+PROC
+PROC_EG_StartPostBraccusDialogue((CHARACTERGUID)_Var1)
+AND NOT
+DB_GlobalFlag("EndFight_FightLucian")
+AND
+QRY_EG_DemonAppear_LohsePossessed()
+AND
+DB_ARX_LohseAvatarBondAtPossession(_Var2)
+AND
+DB_Dead(_Var2)
+AND
+QRY_SpeakerIsAvailable(_Var1)
+THEN
+Proc_StartDialog(0, "EG_LucianDallisPurge_LohsePossessed_COM", CHARACTERGUID_S_GLO_Dallis_69b951dc-55a4-44b8-a2d5-5efedbd7d572, CHARACTERGUID_S_ARX_EG_Lucian_62d0ca66-b6db-4a10-a457-effe0b64aca0, CHARACTERGUID_S_ARX_DoctorsHouse_TheDoctor_83083470-c543-45b3-ac8a-108df0daca8d, CHARACTERGUID_S_Player_Lohse_bb932b13-8ebf-4ab4-aac0-83e6924e4295, _Var1);
+
+PROC
+PROC_EG_StartPostBraccusDialogue((CHARACTERGUID)_Var1)
+AND NOT
+DB_GlobalFlag("EndFight_FightLucian")
+AND
+QRY_EG_DemonAppear_LohsePossessed()
+AND
+DB_ARX_LohseAvatarBondAtPossession(_Var2)
+AND
+DB_Dead(_Var2)
+AND NOT
+QRY_SpeakerIsAvailable(_Var1)
+THEN
+PROC_EG_StartPostBraccusDialogue_FindOtherPlayer(_Var1);
+
+PROC
+PROC_EG_StartPostBraccusDialogue((CHARACTERGUID)_Var1)
+AND NOT
+DB_GlobalFlag("EndFight_FightLucian")
+AND
+QRY_EG_DemonAppear_LohsePossessed()
+AND NOT
+DB_ARX_LohseAvatarBondAtPossession(_)
+AND
+QRY_SpeakerIsAvailable(_Var1)
+THEN
+Proc_StartDialog(0, "EG_LucianDallisPurge_LohsePossessed", CHARACTERGUID_S_GLO_Dallis_69b951dc-55a4-44b8-a2d5-5efedbd7d572, CHARACTERGUID_S_ARX_EG_Lucian_62d0ca66-b6db-4a10-a457-effe0b64aca0, CHARACTERGUID_S_ARX_DoctorsHouse_TheDoctor_83083470-c543-45b3-ac8a-108df0daca8d, CHARACTERGUID_S_Player_Lohse_bb932b13-8ebf-4ab4-aac0-83e6924e4295, _Var1);
+
+PROC
+PROC_EG_StartPostBraccusDialogue((CHARACTERGUID)_Var1)
+AND NOT
+DB_GlobalFlag("EndFight_FightLucian")
+AND
+QRY_EG_DemonAppear_LohsePossessed()
+AND NOT
+DB_ARX_LohseAvatarBondAtPossession(_)
+AND NOT
+QRY_SpeakerIsAvailable(_Var1)
+AND NOT
+DB_EG_WaitForDeadDemonDealer(_)
+THEN
+PROC_EG_StartPostBraccusDialogue_FindOtherPlayer(_Var1);
+
+PROC
+PROC_EG_StartPostBraccusDialogue((CHARACTERGUID)_Var1)
+AND NOT
+DB_GlobalFlag("EndFight_FightLucian")
+AND NOT
+QRY_EG_DemonAppear_LohsePossessed()
+AND NOT
+QRY_EG_DemonAppear()
+AND NOT
+QRY_SpeakerIsAvailable(_Var1)
+THEN
+PROC_EG_StartPostBraccusDialogue_FindOtherPlayer(_Var1);
+
+PROC
+PROC_EG_StartPostBraccusDialogue((CHARACTERGUID)_Var1)
+AND NOT
+DB_GlobalFlag("EndFight_FightLucian")
+AND NOT
+QRY_EG_DemonAppear_LohsePossessed()
+AND NOT
+QRY_EG_DemonAppear()
+AND
+QRY_SpeakerIsAvailable(_Var1)
+THEN
+Proc_StartDialog(0, "EG_LucianDallisPurge", CHARACTERGUID_S_GLO_Dallis_69b951dc-55a4-44b8-a2d5-5efedbd7d572, CHARACTERGUID_S_ARX_EG_Lucian_62d0ca66-b6db-4a10-a457-effe0b64aca0, NULL_00000000-0000-0000-0000-000000000000, _Var1);
+
+IF
+DialogStarted("EG_LucianDallisPurge", _)
+THEN
+DB_EG_LucianDallisPurge_DialogStarted(1);
+
+QRY
+QRY_EG_DemonAppear()
+AND
+DB_GlobalFlag("ARX_TheDoctor_PactSealed")
+AND
+DB_IsPlayer(_Var1)
+AND
+DB_ARX_DoctorsPact_Char(_Var1, _)
+AND
+CharacterIsDead(CHARACTERGUID_S_ARX_DoctorsHouse_TheDoctor_83083470-c543-45b3-ac8a-108df0daca8d, 0)
+THEN
+PROC_EG_RegisterDemonDealer(_Var1);
+
+PROC
+PROC_EG_RegisterDemonDealer((CHARACTERGUID)_Var1)
+AND NOT
+DB_EG_DemonDealer(_)
+AND
+CharacterIsDead(_Var1, 1)
+THEN
+CharacterResurrect(_Var1);
+PlayEffect(_Var1, "RS3_FX_Char_Creature_Demon_Caster_Combat_Resurrect_01");
+DB_EG_WaitForDeadDemonDealer(_Var1);
+
+PROC
+PROC_EG_RegisterDemonDealer((CHARACTERGUID)_Var1)
+AND NOT
+DB_EG_DemonDealer(_)
+THEN
+GlobalSetFlag("EG_DoctorPresent");
+DB_EG_DemonDealer(_Var1);
+TeleportTo(CHARACTERGUID_S_ARX_DoctorsHouse_TheDoctor_83083470-c543-45b3-ac8a-108df0daca8d, CHARACTERGUID_S_ARX_EG_Lucian_62d0ca66-b6db-4a10-a457-effe0b64aca0);
+SetVisible(CHARACTERGUID_S_ARX_DoctorsHouse_TheDoctor_83083470-c543-45b3-ac8a-108df0daca8d, 0);
+
+IF
+CharacterResurrected((CHARACTERGUID)_Var1)
+AND
+DB_EG_WaitForDeadDemonDealer(_Var1)
+THEN
+NOT DB_EG_WaitForDeadDemonDealer(_Var1);
+PROC_EG_StartPostBraccusDialogue(_Var1);
+
+PROC
+PROC_EG_RegisterDemonDealer((CHARACTERGUID)_Var1)
+AND NOT
+DB_EG_DemonDealer(_)
+AND
+CharacterIsPolymorphInteractionDisabled(_Var1, 1)
+THEN
+RemoveStatus(_Var1, "COW");
+RemoveStatus(_Var1, "CHICKEN");
+
+QRY
+QRY_EG_DemonAppear()
+AND
+DB_IsPlayer(CHARACTERGUID_S_Player_Lohse_bb932b13-8ebf-4ab4-aac0-83e6924e4295)
+AND
+CharacterIsDead(CHARACTERGUID_S_ARX_DoctorsHouse_TheDoctor_83083470-c543-45b3-ac8a-108df0daca8d, 0)
+THEN
+PROC_EG_RegisterDemonDealer(CHARACTERGUID_S_Player_Lohse_bb932b13-8ebf-4ab4-aac0-83e6924e4295);
+
+QRY
+QRY_EG_DemonAppear_LohsePossessed()
+AND
+DB_GlobalFlag("ARX_TheDoctor_LohsePossessed")
+THEN
+PROC_EG_SetupPossessedLohse();
+
+PROC
+PROC_EG_SetupPossessedLohse()
+AND NOT
+DB_OnlyOnce("EG_SetupPossessedLohse")
+AND
+DB_ARX_LohseAvatarBondAtPossession(_Var1)
+THEN
+RemoveStatus(_Var1, "COW");
+RemoveStatus(_Var1, "CHICKEN");
+
+PROC
+PROC_EG_SetupPossessedLohse()
+AND NOT
+DB_OnlyOnce("EG_SetupPossessedLohse")
+AND
+DB_Dead(CHARACTERGUID_S_Player_Lohse_bb932b13-8ebf-4ab4-aac0-83e6924e4295)
+THEN
+CharacterResurrect(CHARACTERGUID_S_Player_Lohse_bb932b13-8ebf-4ab4-aac0-83e6924e4295);
+
+PROC
+PROC_EG_SetupPossessedLohse()
+AND NOT
+DB_OnlyOnce("EG_SetupPossessedLohse")
+THEN
+RemoveStatus(CHARACTERGUID_S_ARX_DoctorsHouse_TheDoctor_83083470-c543-45b3-ac8a-108df0daca8d, "INVULNERABLE");
+DB_EG_LohseAppearedWithDoctor(1);
+
+PROC
+PROC_EG_SetupPossessedLohse()
+AND NOT
+DB_OnlyOnce("EG_SetupPossessedLohse")
+THEN
+SetTag(CHARACTERGUID_S_Player_Lohse_bb932b13-8ebf-4ab4-aac0-83e6924e4295, "EG_DOCTORALLY");
+GlobalSetFlag("EG_DoctorPresent");
+TeleportTo(CHARACTERGUID_S_ARX_DoctorsHouse_TheDoctor_83083470-c543-45b3-ac8a-108df0daca8d, CHARACTERGUID_S_ARX_EG_Lucian_62d0ca66-b6db-4a10-a457-effe0b64aca0);
+TeleportTo(CHARACTERGUID_S_Player_Lohse_bb932b13-8ebf-4ab4-aac0-83e6924e4295, CHARACTERGUID_S_ARX_EG_Lucian_62d0ca66-b6db-4a10-a457-effe0b64aca0);
+SetVisible(CHARACTERGUID_S_ARX_DoctorsHouse_TheDoctor_83083470-c543-45b3-ac8a-108df0daca8d, 0);
+SetVisible(CHARACTERGUID_S_Player_Lohse_bb932b13-8ebf-4ab4-aac0-83e6924e4295, 0);
+
+PROC
+PROC_EG_SetupPossessedLohse()
+THEN
+DB_OnlyOnce("EG_SetupPossessedLohse");
+
+IF
+ObjectFlagSet("EG_SidedWithDoctor", (GUIDSTRING)_Var1, _)
+THEN
+ApplyStatus(CHARACTERGUID_S_ARX_DoctorsHouse_TheDoctor_83083470-c543-45b3-ac8a-108df0daca8d, "DEMONIC_LEECH", -1, 1, _Var1);
+SetTag(_Var1, "EG_DOCTORALLY");
+
+IF
+DialogStarted((STRING)_Var1, (INTEGER)_Var2)
+AND
+DB_EG_PotentialDemonDialogs(_Var1)
+THEN
+DB_OnlyOnce("EG_PostBraccusDialogueStarted");
+
+IF
+GlobalFlagSet("EG_AppearDoctor")
+THEN
+TimerLaunch("EG_AppearDoctorDelay", 1000);
+
+IF
+SavegameLoaded((INTEGER)_Var1, (INTEGER)_Var2, (INTEGER)_Var3, (INTEGER)_Var4)
+AND
+QRY_VersionIsOlderThan(_Var1, _Var2, _Var3, _Var4, 3, 6, 1, 0)
+AND
+DB_GlobalFlag("EG_AppearDoctor")
+AND NOT
+DB_Dead(S_ARX_DoctorsHouse_TheDoctor_83083470-c543-45b3-ac8a-108df0daca8d)
+THEN
+PROC_EG_SetFightParticipantsArena(1);
+
+IF
+GlobalFlagSet("EG_AppearDoctor")
+AND
+DB_DialogNPCs(_Var1, CHARACTERGUID_S_ARX_EG_Lucian_62d0ca66-b6db-4a10-a457-effe0b64aca0, _)
+AND
+DB_DialogPlayers(_Var1, _Var3, 1)
+THEN
+TeleportTo(CHARACTERGUID_S_ARX_DoctorsHouse_TheDoctor_83083470-c543-45b3-ac8a-108df0daca8d, _Var3, "EG_DoctorReadyForSummon", 0);
+CharacterLookAt(CHARACTERGUID_S_ARX_DoctorsHouse_TheDoctor_83083470-c543-45b3-ac8a-108df0daca8d, CHARACTERGUID_S_ARX_EG_Lucian_62d0ca66-b6db-4a10-a457-effe0b64aca0);
+CharacterSetCanTrade(CHARACTERGUID_S_ARX_DoctorsHouse_TheDoctor_83083470-c543-45b3-ac8a-108df0daca8d, 0);
+
+IF
+GlobalFlagSet("EG_AppearDoctor")
+AND
+QRY_EG_DemonAppear_LohsePossessed()
+AND
+DB_DialogNPCs(_Var1, CHARACTERGUID_S_ARX_EG_Lucian_62d0ca66-b6db-4a10-a457-effe0b64aca0, _)
+AND
+DB_DialogPlayers(_Var1, _Var3, 1)
+THEN
+TeleportTo(CHARACTERGUID_S_Player_Lohse_bb932b13-8ebf-4ab4-aac0-83e6924e4295, _Var3, "EG_LohseReadyForSummon", 0);
+
+IF
+TimerFinished("EG_AppearDoctorDelay")
+AND
+GetPosition(CHARACTERGUID_S_ARX_DoctorsHouse_TheDoctor_83083470-c543-45b3-ac8a-108df0daca8d, _Var1, _Var2, _Var3)
+THEN
+CreateSurfaceAtPosition(_Var1, _Var2, _Var3, "SurfaceNone", 3, -1);
+
+IF
+TimerFinished("EG_AppearDoctorDelay")
+AND
+DB_DialogNPCs(_Var1, CHARACTERGUID_S_ARX_EG_Lucian_62d0ca66-b6db-4a10-a457-effe0b64aca0, _)
+AND
+DB_DialogPlayers(_Var1, _Var3, 1)
+AND
+GetTemplate(CHARACTERGUID_S_ARX_DoctorsHouse_TheDoctor_83083470-c543-45b3-ac8a-108df0daca8d, "Creatures_Demon_Caster_A_ONLYUSE_THEDOCTOR_4395e1d2-9c34-48aa-9da0-1d58cceafa2f")
+THEN
+SetVisible(CHARACTERGUID_S_ARX_DoctorsHouse_TheDoctor_83083470-c543-45b3-ac8a-108df0daca8d, 1);
+PlayAnimation(CHARACTERGUID_S_ARX_DoctorsHouse_TheDoctor_83083470-c543-45b3-ac8a-108df0daca8d, "spawn");
+SetFaction(CHARACTERGUID_S_ARX_DoctorsHouse_TheDoctor_83083470-c543-45b3-ac8a-108df0daca8d, "EG_TheDoctor");
+CharacterLevelUpTo(CHARACTERGUID_S_ARX_DoctorsHouse_TheDoctor_83083470-c543-45b3-ac8a-108df0daca8d, 20);
+
+IF
+TimerFinished("EG_AppearDoctorDelay")
+AND
+DB_DialogNPCs(_Var1, CHARACTERGUID_S_ARX_EG_Lucian_62d0ca66-b6db-4a10-a457-effe0b64aca0, _)
+AND
+DB_DialogPlayers(_Var1, _Var3, 1)
+AND
+GetTemplate(CHARACTERGUID_S_ARX_DoctorsHouse_TheDoctor_83083470-c543-45b3-ac8a-108df0daca8d, "ARX_Humans_Male_Civilian_9836a1a3-5c1f-4ba4-b5a0-157525f270a0")
+THEN
+CharacterSetCanTrade(CHARACTERGUID_S_ARX_DoctorsHouse_TheDoctor_83083470-c543-45b3-ac8a-108df0daca8d, 0);
+SetVisible(CHARACTERGUID_S_ARX_DoctorsHouse_TheDoctor_83083470-c543-45b3-ac8a-108df0daca8d, 1);
+PlayAnimation(CHARACTERGUID_S_ARX_DoctorsHouse_TheDoctor_83083470-c543-45b3-ac8a-108df0daca8d, "Spawn_02");
+SetFaction(CHARACTERGUID_S_ARX_DoctorsHouse_TheDoctor_83083470-c543-45b3-ac8a-108df0daca8d, "EG_TheDoctor");
+CharacterLevelUpTo(CHARACTERGUID_S_ARX_DoctorsHouse_TheDoctor_83083470-c543-45b3-ac8a-108df0daca8d, 20);
+
+IF
+TimerFinished("EG_AppearDoctorDelay")
+AND
+QRY_EG_DemonAppear_LohsePossessed()
+AND
+GetPosition(CHARACTERGUID_S_Player_Lohse_bb932b13-8ebf-4ab4-aac0-83e6924e4295, _Var1, _Var2, _Var3)
+THEN
+CreateSurfaceAtPosition(_Var1, _Var2, _Var3, "SurfaceNone", 2.5, -1);
+
+IF
+TimerFinished("EG_AppearDoctorDelay")
+AND
+QRY_EG_DemonAppear_LohsePossessed()
+AND
+DB_DialogNPCs(_Var1, CHARACTERGUID_S_ARX_EG_Lucian_62d0ca66-b6db-4a10-a457-effe0b64aca0, _)
+AND
+DB_DialogPlayers(_Var1, _Var3, 1)
+THEN
+CharacterLookAt(CHARACTERGUID_S_Player_Lohse_bb932b13-8ebf-4ab4-aac0-83e6924e4295, CHARACTERGUID_S_ARX_DoctorsHouse_TheDoctor_83083470-c543-45b3-ac8a-108df0daca8d);
+SetVisible(CHARACTERGUID_S_Player_Lohse_bb932b13-8ebf-4ab4-aac0-83e6924e4295, 1);
+PlayAnimation(CHARACTERGUID_S_Player_Lohse_bb932b13-8ebf-4ab4-aac0-83e6924e4295, "Spawn_02");
+SetFaction(CHARACTERGUID_S_Player_Lohse_bb932b13-8ebf-4ab4-aac0-83e6924e4295, "EG_TheDoctor");
+CharacterLevelUpTo(CHARACTERGUID_S_Player_Lohse_bb932b13-8ebf-4ab4-aac0-83e6924e4295, 20);
+
+IF
+GlobalFlagSet("EG_AppearDoctor")
+AND
+QRY_EG_DemonAppear_LohsePossessed()
+AND
+DB_IsPlayer(_Var1)
+THEN
+PartySetFlag(_Var1, "QuestUpdate_CORE_Chapter7_CRYPT_End_LohseDoctorReturn");
+
+IF
+StoryEvent(CHARACTERGUID_S_ARX_DoctorsHouse_TheDoctor_83083470-c543-45b3-ac8a-108df0daca8d, "EG_DoctorReadyForSummon")
+THEN
+CharacterLookAt(CHARACTERGUID_S_ARX_DoctorsHouse_TheDoctor_83083470-c543-45b3-ac8a-108df0daca8d, CHARACTERGUID_S_ARX_EG_Lucian_62d0ca66-b6db-4a10-a457-effe0b64aca0);
+
+IF
+ObjectFlagSet("EG_DoctorKillCharacter", (CHARACTERGUID)_Var1, (INTEGER)_Var2)
+AND
+DB_IsPlayer(_Var1)
+THEN
+ProcSetInvulnerable(_Var1, 0);
+SetTag(_Var1, "BLOCK_RESURRECTION");
+UserSetFlag(_Var1, "QuestUpdate_CORE_Chapter7_CRYPT_End_Refuse");
+NOT DB_EG_DemonDealer(_Var1);
+
+IF
+ObjectFlagSet("EG_DoctorKillCharacter", (CHARACTERGUID)_Var1, (INTEGER)_Var2)
+AND
+DB_IsPlayer(_Var1)
+THEN
+ProcSetInvulnerable(_Var1, 0);
+SetTag(_Var1, "BLOCK_RESURRECTION");
+UserSetFlag(_Var1, "QuestUpdate_CORE_Chapter7_CRYPT_End_Refuse");
+NOT DB_EG_DemonDealer(_Var1);
+
+IF
+ObjectFlagSet("EG_DoctorKillCharacter", (CHARACTERGUID)_Var1, (INTEGER)_Var2)
+AND
+DialogRemoveActorFromDialog(_Var2, _Var1, 1)
+THEN
+CharacterSetImmortal(_Var1, 0);
+PROC_EG_TheDoctorUseExplodeSkill(_Var1);
+
+IF
+ObjectFlagSet("EG_SidedAgainstDoctor", (CHARACTERGUID)_Var1, (INTEGER)_Var2)
+AND
+QRY_EG_DoctorCanExplodePlayer(_Var1)
+THEN
+DB_EG_SidedAgainstDoctor(_Var1, _Var2);
+
+IF
+ObjectFlagSet("EG_SidedAgainstDoctor", (CHARACTERGUID)_Var1, (INTEGER)_Var2)
+AND NOT
+QRY_EG_DoctorCanExplodePlayer(_Var1)
+THEN
+CharacterAddPreferredAiTargetTag(CHARACTERGUID_S_ARX_DoctorsHouse_TheDoctor_83083470-c543-45b3-ac8a-108df0daca8d, "EG_DOCTORALLY");
+
+QRY
+QRY_EG_DoctorCanExplodePlayer((CHARACTERGUID)_Var1)
+AND
+DB_ARX_DoctorsPact_Char(_Var1, _Var2)
+AND
+ItemIsInCharacterInventory(_Var2, CHARACTERGUID_S_ARX_DoctorsHouse_TheDoctor_83083470-c543-45b3-ac8a-108df0daca8d, 1)
+THEN
+DB_NOOP(1);
+
+QRY
+QRY_EG_DoctorCanExplodePlayer(CHARACTERGUID_S_Player_Lohse_bb932b13-8ebf-4ab4-aac0-83e6924e4295)
+THEN
+DB_NOOP(1);
+
+PROC
+PROC_EG_TheDoctorUseExplodeSkill((CHARACTERGUID)_Var1)
+AND
+GetTemplate(CHARACTERGUID_S_ARX_DoctorsHouse_TheDoctor_83083470-c543-45b3-ac8a-108df0daca8d, "ARX_Humans_Male_Civilian_9836a1a3-5c1f-4ba4-b5a0-157525f270a0")
+THEN
+SetIsBoss(_Var1, 0);
+CharacterUseSkill(CHARACTERGUID_S_ARX_DoctorsHouse_TheDoctor_83083470-c543-45b3-ac8a-108df0daca8d, "Target_Quest_ARX_BloodVialKill", _Var1, 1, 1, 1);
+
+PROC
+PROC_EG_TheDoctorUseExplodeSkill((CHARACTERGUID)_Var1)
+AND
+GetTemplate(CHARACTERGUID_S_ARX_DoctorsHouse_TheDoctor_83083470-c543-45b3-ac8a-108df0daca8d, "Creatures_Demon_Caster_A_ONLYUSE_THEDOCTOR_4395e1d2-9c34-48aa-9da0-1d58cceafa2f")
+THEN
+SetIsBoss(_Var1, 0);
+CharacterUseSkill(CHARACTERGUID_S_ARX_DoctorsHouse_TheDoctor_83083470-c543-45b3-ac8a-108df0daca8d, "Target_Quest_ARX_BloodVialKill_Doctor", _Var1, 1, 1, 1);
+
+IF
+DialogEnded(_, (INTEGER)_Var2)
+AND
+DB_EG_SidedAgainstDoctor(_Var3, _Var2)
+THEN
+ProcSetInvulnerable(_Var3, 0);
+SetTag(_Var3, "BLOCK_RESURRECTION");
+UserSetFlag(_Var3, "QuestUpdate_CORE_Chapter7_CRYPT_End_Refuse");
+PROC_EG_TheDoctorUseExplodeSkill(_Var3);
+Proc_EG_KickPlayerIfUserHasOtherChars(_Var3);
+
+PROC
+ProcObjectTimerFinished(CHARACTERGUID_S_GLO_Dallis_69b951dc-55a4-44b8-a2d5-5efedbd7d572, "EG_DoctorPoofed")
+AND
+IsTagged(CHARACTERGUID_S_GLO_Dallis_69b951dc-55a4-44b8-a2d5-5efedbd7d572, "DRAGON", 1)
+AND
+GetPosition(CHARACTERGUID_S_GLO_Dallis_69b951dc-55a4-44b8-a2d5-5efedbd7d572, _Var1, _Var2, _Var3)
+THEN
+PlayScaledEffectAtPosition("RS3_FX_GP_Combat_CorpseExplosion_Blood_01_Huge", 2, _Var1, _Var2, _Var3);
+
+PROC
+ProcObjectTimerFinished((CHARACTERGUID)_Var1, "EG_DoctorPoofed")
+THEN
+CharacterSetImmortal(_Var1, 0);
+SetIsBoss(_Var1, 0);
+CharacterDie(_Var1, 1, "Explode");
+ApplyStatus(_Var1, "EXPLODE", 0, 1);
+
+IF
+ObjectFlagSet("EG_DoctorKillCharacter", (CHARACTERGUID)_Var1, (INTEGER)_Var2)
+AND
+DB_IsPlayer(_Var1)
+THEN
+Proc_EG_KickPlayerIfUserHasOtherChars(_Var1);
+UserSetFlag(_Var1, "QuestUpdate_CORE_Chapter7_CRYPT_End_TakePactRefused");
+
+IF
+CharacterDying((CHARACTERGUID)_Var1)
+AND
+DB_EG_DemonDealer(_Var1)
+THEN
+SetTag(_Var1, "BLOCK_RESURRECTION");
+
+IF
+StoryEvent((CHARACTERGUID)_Var1, "GLO_PartyMembers_Kicked")
+AND
+DB_EG_DemonDealer(_Var1)
+THEN
+CharacterSetRelationIndivFactionToIndivFaction(_Var1, CHARACTERGUID_S_ARX_DoctorsHouse_TheDoctor_83083470-c543-45b3-ac8a-108df0daca8d, 100);
+CharacterSetRelationIndivFactionToIndivFaction(CHARACTERGUID_S_ARX_DoctorsHouse_TheDoctor_83083470-c543-45b3-ac8a-108df0daca8d, _Var1, 100);
+UserSetFlag(_Var1, "CORE_Chapter7_CRYPT_End_TakePactFail", 0);
+
+IF
+ObjectEnteredCombat(CHARACTERGUID_S_ARX_DoctorsHouse_TheDoctor_83083470-c543-45b3-ac8a-108df0daca8d, _)
+AND
+DB_EG_FirstFightParticipants(_Var2)
+AND NOT
+DB_EG_KnockedOut(_Var2)
+AND NOT
+DB_Dead(_Var2)
+AND
+CharacterIsInCombat(_Var2, 0)
+THEN
+EnterCombat(_Var2, CHARACTERGUID_S_ARX_DoctorsHouse_TheDoctor_83083470-c543-45b3-ac8a-108df0daca8d);
+
+IF
+ObjectEnteredCombat(CHARACTERGUID_S_ARX_DoctorsHouse_TheDoctor_83083470-c543-45b3-ac8a-108df0daca8d, _)
+THEN
+PROC_EG_SetFightParticipantsArena(1);
+
+IF
+ObjectEnteredCombat(CHARACTERGUID_S_ARX_DoctorsHouse_TheDoctor_83083470-c543-45b3-ac8a-108df0daca8d, _)
+AND
+DB_IsPlayer(_Var2)
+AND NOT
+DB_Dead(_Var2)
+AND
+CharacterIsInCombat(_Var2, 0)
+THEN
+EnterCombat(_Var2, CHARACTERGUID_S_ARX_DoctorsHouse_TheDoctor_83083470-c543-45b3-ac8a-108df0daca8d);
+
+IF
+DialogEnded("EG_LucianDallisBraccus", (INTEGER)_Var1)
+AND
+DB_DialogPlayers(_Var1, _Var2, 1)
+AND
+DB_GlobalFlag("EG_ConvincedBraccus")
+THEN
+Poof(CHARACTERGUID_S_GLO_Braccus_358ba541-0710-43be-8263-87afe1a8d9b5);
+PROC_EG_StartPostBraccusDialogue(_Var2);
+
+IF
+DialogEnded("EG_BraccusBetrayal", (INTEGER)_Var1)
+AND
+DB_GlobalFlag("EG_ConvincedBraccus")
+THEN
+Poof(CHARACTERGUID_S_GLO_Braccus_358ba541-0710-43be-8263-87afe1a8d9b5);
+NOT DB_EG_FirstFightParticipants(CHARACTERGUID_S_GLO_Braccus_358ba541-0710-43be-8263-87afe1a8d9b5);
+
+IF
+CharacterDied((CHARACTERGUID)_Var1)
+AND
+IsTagged(_Var1, "EG_DOCTORALLY", 1)
+THEN
+DB_DeadDoctorAlly(_Var1);
+SetVarInteger(CHARACTERGUID_S_ARX_DoctorsHouse_TheDoctor_83083470-c543-45b3-ac8a-108df0daca8d, "StayInAiHints", 1);
+SetVarFixedString(CHARACTERGUID_S_ARX_DoctorsHouse_TheDoctor_83083470-c543-45b3-ac8a-108df0daca8d, "AiHint", "AIHINT_EG_DOCTORRESURRECT");
+TeleportTo(TRIGGERGUID_S_EG_DoctorResurrectAiHint_0a9589a3-2fca-4db6-835a-23e66ed4a7fc, _Var1, "", 0);
+
+IF
+CharacterResurrected((CHARACTERGUID)_Var1)
+AND
+DB_DeadDoctorAlly(_Var1)
+THEN
+SetVarInteger(CHARACTERGUID_S_ARX_DoctorsHouse_TheDoctor_83083470-c543-45b3-ac8a-108df0daca8d, "StayInAiHints", 0);
+SetVarFixedString(CHARACTERGUID_S_ARX_DoctorsHouse_TheDoctor_83083470-c543-45b3-ac8a-108df0daca8d, "AiHint", "AiHint_Mage");
+NOT DB_DeadDoctorAlly(_Var1);
+NOT DB_DoctorAlly_WaitedATurn(1);
+
+IF
+DialogEnded("EG_LucianDallisNonPurge_LohsePossessed_COM", _)
+THEN
+ApplyStatus(CHARACTERGUID_S_ARX_DoctorsHouse_TheDoctor_83083470-c543-45b3-ac8a-108df0daca8d, "DEMONIC_LEECH", -1, 1, CHARACTERGUID_S_Player_Lohse_bb932b13-8ebf-4ab4-aac0-83e6924e4295);
+
+IF
+DialogEnded("EG_LucianDallisNonPurge_LohsePossessed", _)
+THEN
+ApplyStatus(CHARACTERGUID_S_ARX_DoctorsHouse_TheDoctor_83083470-c543-45b3-ac8a-108df0daca8d, "DEMONIC_LEECH", -1, 1, CHARACTERGUID_S_Player_Lohse_bb932b13-8ebf-4ab4-aac0-83e6924e4295);
+
+IF
+DialogEnded("EG_LucianDallisPurge_LohsePossessed_COM", _)
+THEN
+ApplyStatus(CHARACTERGUID_S_ARX_DoctorsHouse_TheDoctor_83083470-c543-45b3-ac8a-108df0daca8d, "DEMONIC_LEECH", -1, 1, CHARACTERGUID_S_Player_Lohse_bb932b13-8ebf-4ab4-aac0-83e6924e4295);
+
+IF
+DialogEnded("EG_LucianDallisPurge_LohsePossessed", _)
+THEN
+ApplyStatus(CHARACTERGUID_S_ARX_DoctorsHouse_TheDoctor_83083470-c543-45b3-ac8a-108df0daca8d, "DEMONIC_LEECH", -1, 1, CHARACTERGUID_S_Player_Lohse_bb932b13-8ebf-4ab4-aac0-83e6924e4295);
+
+IF
+CharacterDied((CHARACTERGUID)_Var1)
+AND
+IsTagged(_Var1, "EG_DOCTORALLY", 1)
+THEN
+RemoveStatus(CHARACTERGUID_S_ARX_DoctorsHouse_TheDoctor_83083470-c543-45b3-ac8a-108df0daca8d, "DEMONIC_LEECH");
+
+IF
+CharacterResurrected((CHARACTERGUID)_Var1)
+AND
+IsTagged(_Var1, "EG_DOCTORALLY", 1)
+THEN
+ApplyStatus(CHARACTERGUID_S_ARX_DoctorsHouse_TheDoctor_83083470-c543-45b3-ac8a-108df0daca8d, "DEMONIC_LEECH", -1, 1, _Var1);
+
+QRY
+QRY_GLO_PartyMembers_BlockBackpackOnDeath((CHARACTERGUID)_Var1)
+AND
+IsTagged(_Var1, "EG_DOCTORALLY", 1)
+AND NOT
+DB_Dead(HARACTERGUID_S_ARX_DoctorsHouse_TheDoctor_83083470-c543-45b3-ac8a-108df0daca8d)
+THEN
+DB_NOOP(0);
+
+IF
+CharacterDying(CHARACTERGUID_S_ARX_DoctorsHouse_TheDoctor_83083470-c543-45b3-ac8a-108df0daca8d)
+AND
+DB_EG_DemonDealer(_Var1)
+AND
+DB_Dead(_Var1)
+AND
+DB_GLO_PartyMembers_Kicked(_Var1)
+THEN
+PROC_GLO_PartyMembers_TryDropBackpackOnDeath(_Var1);
+
+IF
+CharacterDied(CHARACTERGUID_S_ARX_DoctorsHouse_TheDoctor_83083470-c543-45b3-ac8a-108df0daca8d)
+AND
+QRY_EG_DemonAppear_LohsePossessed()
+AND
+DB_Dead(CHARACTERGUID_S_Player_Lohse_bb932b13-8ebf-4ab4-aac0-83e6924e4295)
+AND
+DB_GLO_PartyMembers_Kicked(CHARACTERGUID_S_Player_Lohse_bb932b13-8ebf-4ab4-aac0-83e6924e4295)
+THEN
+PROC_GLO_PartyMembers_TryDropBackpackOnDeath(CHARACTERGUID_S_Player_Lohse_bb932b13-8ebf-4ab4-aac0-83e6924e4295);
+
+IF
+DB_Dead(CHARACTERGUID_S_ARX_DoctorsHouse_TheDoctor_83083470-c543-45b3-ac8a-108df0daca8d)
+AND
+DB_EG_DemonDealer(_Var1)
+AND
+DB_Dead(_Var1)
+AND
+DB_IsPlayer(_Var1)
+AND NOT
+QRY_EG_DemonDealer_HasCharactersToReturn(_Var1)
+THEN
+ProcCheckGameOver();
+
+IF
+DB_Dead(CHARACTERGUID_S_ARX_DoctorsHouse_TheDoctor_83083470-c543-45b3-ac8a-108df0daca8d)
+AND
+DB_EG_DemonDealer(_Var1)
+AND
+DB_Dead(_Var1)
+AND
+DB_IsPlayer(_Var1)
+AND
+QRY_EG_DemonDealer_HasCharactersToReturn(_Var1)
+THEN
+PROC_GLO_PartyMembers_Kick_PartyMembers_TryDead(_Var1);
+CharacterMakeNPC(_Var1);
+NOT DB_IsPlayer(_Var1);
+
+QRY
+QRY_EG_DemonDealer_HasCharactersToReturn((CHARACTERGUID)_Var1)
+AND
+DB_GLO_PartyMembers_Kick_PartyMembers(_Var1, _Var2, 1)
+AND NOT
+DB_Dead(_Var2)
+THEN
+DB_NOOP(1);
+
+QRY
+QRY_GLO_PartyMembers_Kicked_BlockRestoreAvatarOnDeath((CHARACTERGUID)_Var1)
+AND
+DB_EG_DemonDealer(_Var1)
+AND NOT
+DB_Dead(CHARACTERGUID_S_ARX_DoctorsHouse_TheDoctor_83083470-c543-45b3-ac8a-108df0daca8d)
+THEN
+CharacterSetImmortal(_Var1, 0);
+CharacterDie(_Var1, 1, "DoT");
+
+IF
+CharacterStatusApplied(CHARACTERGUID_S_ARX_DoctorsHouse_TheDoctor_83083470-c543-45b3-ac8a-108df0daca8d, "DEMONIC_LEECH", (GUIDSTRING)_Var1)
+THEN
+ApplyStatus(_Var1, "DEMONIC_LEECH_SUBJECT", -1, 1);
+
+IF
+ObjectTurnStarted(CHARACTERGUID_S_ARX_DoctorsHouse_TheDoctor_83083470-c543-45b3-ac8a-108df0daca8d)
+AND
+QRY_EG_AnyoneInCombatWithDoctor()
+AND
+DB_DeadDoctorAlly(_Var1)
+AND
+DB_DoctorAlly_WaitedATurn(1)
+THEN
+NOT DB_DoctorAlly_WaitedATurn(1);
+CharacterSetReactionPriority(CHARACTERGUID_S_ARX_DoctorsHouse_TheDoctor_83083470-c543-45b3-ac8a-108df0daca8d, "Resurrect_DemonDealer", 1000);
+SetVarObject(CHARACTERGUID_S_ARX_DoctorsHouse_TheDoctor_83083470-c543-45b3-ac8a-108df0daca8d, "ResurrectTarget", _Var1);
+
+IF
+ObjectTurnStarted(CHARACTERGUID_S_ARX_DoctorsHouse_TheDoctor_83083470-c543-45b3-ac8a-108df0daca8d)
+AND
+QRY_EG_AnyoneInCombatWithDoctor()
+AND
+DB_DeadDoctorAlly(_Var1)
+AND NOT
+DB_DoctorAlly_WaitedATurn(1)
+THEN
+DB_DoctorAlly_WaitedATurn(1);
+
+IF
+ObjectTurnStarted(CHARACTERGUID_S_ARX_DoctorsHouse_TheDoctor_83083470-c543-45b3-ac8a-108df0daca8d)
+AND NOT
+QRY_EG_AnyoneInCombatWithDoctor()
+AND
+DB_EG_DemonDealer(_Var1)
+THEN
+CharacterSetReactionPriority(CHARACTERGUID_S_ARX_DoctorsHouse_TheDoctor_83083470-c543-45b3-ac8a-108df0daca8d, "Resurrect_DemonDealer", 1000);
+SetVarObject(CHARACTERGUID_S_ARX_DoctorsHouse_TheDoctor_83083470-c543-45b3-ac8a-108df0daca8d, "ResurrectTarget", _Var1);
+
+QRY
+QRY_EG_AnyoneInCombatWithDoctor()
+AND
+DB_CombatCharacters(CHARACTERGUID_S_ARX_DoctorsHouse_TheDoctor_83083470-c543-45b3-ac8a-108df0daca8d, _Var1)
+AND
+DB_CombatCharacters(_Var2, _Var1)
+AND
+_Var2 != CHARACTERGUID_S_ARX_DoctorsHouse_TheDoctor_83083470-c543-45b3-ac8a-108df0daca8d
+THEN
+DB_NOOP(1);
+
+IF
+TextEventSet("EG_MakeDemonPact")
+AND
+CharacterGetHostCharacter(_Var1)
+THEN
+GlobalSetFlag("ARX_TheDoctor_PactSealed");
+DB_ARX_DoctorsPact_Char(_Var1, NULL_00000000-0000-0000-0000-000000000000);
+UserSetFlag(_Var1, "ARX_TheDoctor_UserAcceptedThePact", 0);
+
+IF
+DialogEnded((STRING)_Var1, (INTEGER)_Var2)
+AND
+DB_EG_PotentialDemonDialogs(_Var1)
+AND
+DB_DialogPlayers(_Var2, _Var3, _)
+AND
+ObjectGetFlag(_Var3, "EG_SidedWithDoctor", 1)
+AND NOT
+QRY_EG_DemonDealerHasOtherAvatar(_Var3)
+THEN
+PROC_GLO_PartyMembers_Kick(_Var3, "Hero KickedAvatarCompanions");
+PROC_EG_CheckDemonSoleSurvivor();
+
+IF
+DialogEnded((STRING)_Var1, (INTEGER)_Var2)
+AND
+DB_EG_PotentialDemonDialogs(_Var1)
+AND
+DB_DialogPlayers(_Var2, _Var3, _)
+AND
+ObjectGetFlag(_Var3, "EG_SidedWithDoctor", 1)
+AND
+QRY_EG_DemonDealerHasOtherAvatar(_Var3)
+AND
+DB_CompanionAvatarBond(_Var3, _Var5)
+THEN
+DB_EG_DemonDealerAvatar(_Var5);
+
+IF
+DialogEnded((STRING)_Var1, (INTEGER)_Var2)
+AND
+DB_EG_PotentialDemonDialogs(_Var1)
+AND
+DB_DialogPlayers(_Var2, _Var3, _)
+AND
+ObjectGetFlag(_Var3, "EG_SidedWithDoctor", 1)
+AND
+QRY_EG_DemonDealerHasOtherAvatar(_Var3)
+AND
+DB_DemonDealerBackupAvatar(_Var5)
+THEN
+DB_BlockStoryItemTransfer(_Var3);
+DB_GLO_PartyMembers_BlockRecruitmentDialog(_Var3);
+DB_GLO_PartyMembers_BlockReturnToRecruitmentPosition(_Var3);
+PROC_GLO_PartyMembers_Remove(_Var3, _Var5, 0);
+SetRelationIndivFactionToPlayers(_Var3, 0);
+
+QRY
+QRY_EG_DemonDealerHasOtherAvatar((CHARACTERGUID)_Var1)
+AND
+IsTagged(_Var1, "AVATAR", 0)
+AND
+DB_IsPlayer(_Var2)
+AND
+_Var1 != _Var2
+AND
+QRY_SameUser(_Var1, _Var2)
+AND
+IsTagged(_Var2, "AVATAR", 1)
+AND NOT
+DB_Dead(_Var2)
+THEN
+PROC_EG_RegisterDemonDealerBackupAvatar(_Var2);
+
+QRY
+QRY_EG_DemonDealerHasOtherAvatar((CHARACTERGUID)_Var1)
+AND
+IsTagged(_Var1, "AVATAR", 0)
+AND
+DB_IsPlayer(_Var2)
+AND
+_Var1 != _Var2
+AND
+QRY_SameUser(_Var1, _Var2)
+AND
+IsTagged(_Var2, "AVATAR", 1)
+AND
+DB_Dead(_Var2)
+AND
+IsTagged(_Var2, "BLOCK_RESURRECTION", 0)
+THEN
+PROC_EG_RegisterDemonDealerBackupAvatar(_Var2);
+
+PROC
+PROC_EG_RegisterDemonDealerBackupAvatar((CHARACTERGUID)_Var1)
+AND NOT
+DB_DemonDealerBackupAvatar(_)
+THEN
+DB_DemonDealerBackupAvatar(_Var1);
+
+IF
+DialogEnded((STRING)_Var1, (INTEGER)_Var2)
+AND
+DB_EG_PotentialDemonDialogs(_Var1)
+AND
+DB_EG_DemonDealer(_Var3)
+AND
+GetFaction(_Var3, _Var4)
+THEN
+CharacterSetRelationFactionToFaction(_Var4, "ARX_EG_Lucian", 0);
+CharacterSetRelationFactionToFaction("ARX_EG_Lucian", _Var4, 0);
+
+IF
+CharacterDied((CHARACTERGUID)_Var1)
+AND
+DB_EG_DemonDealer(_Var2)
+AND
+DB_IsPlayer(_Var2)
+AND
+DB_IsPlayer(_Var1)
+AND NOT
+DB_Dead(CHARACTERGUID_S_ARX_DoctorsHouse_TheDoctor_83083470-c543-45b3-ac8a-108df0daca8d)
+THEN
+PROC_EG_CheckDemonSoleSurvivor();
+
+IF
+CharacterDied((CHARACTERGUID)_Var1)
+AND
+DB_EG_DemonDealer(_Var2)
+AND
+DB_IsPlayer(_Var2)
+AND
+DB_GLO_PartyMembers_Kick_PartyMembers(_Var2, _Var1, 1)
+AND NOT
+DB_Dead(CHARACTERGUID_S_ARX_DoctorsHouse_TheDoctor_83083470-c543-45b3-ac8a-108df0daca8d)
+THEN
+PROC_EG_CheckDemonSoleSurvivor();
+
+IF
+CharacterDied((CHARACTERGUID)_Var1)
+AND
+DB_EG_DemonDealer(_Var2)
+AND
+DB_IsPlayer(_Var2)
+AND
+DB_GLO_PartyMembers_Kick_PartyMembers(_Var2, _Var1, 1)
+AND NOT
+DB_Dead(CHARACTERGUID_S_ARX_DoctorsHouse_TheDoctor_83083470-c543-45b3-ac8a-108df0daca8d)
+THEN
+NOT DB_GLO_PartyMembers_Kick_PartyMembers(_Var2, _Var1, 1);
+
+PROC
+PROC_EG_CheckDemonSoleSurvivor()
+AND
+DB_EG_DemonDealer(_Var1)
+AND
+DB_IsPlayer(_Var1)
+AND
+CharacterIsDead(_Var1, 0)
+AND NOT
+QRY_EG_NonDemonDealerPlayersAlive()
+THEN
+PROC_EG_SetFightParticipantsArena(0);
+DB_EG_EpilogCanStart(1);
+PROC_EG_SpeechAtEndOfCombat("EG_DemonVictory");
+
+PROC
+PROC_EG_SpeechAtEndOfCombat("EG_DemonVictory")
+THEN
+ProcRemoveAllDialogEntriesForSpeaker(CHARACTERGUID_S_ARX_DoctorsHouse_TheDoctor_83083470-c543-45b3-ac8a-108df0daca8d);
+DB_Dialogs(CHARACTERGUID_S_ARX_DoctorsHouse_TheDoctor_83083470-c543-45b3-ac8a-108df0daca8d, "EG_DemonVictory");
+
+PROC
+PROC_EG_SpeechAtEndOfCombat_Ready("EG_DemonVictory")
+AND
+DB_EG_DemonDealer(_Var1)
+AND
+CharacterIsDead(CHARACTERGUID_S_ARX_DoctorsHouse_TheDoctor_83083470-c543-45b3-ac8a-108df0daca8d, 0)
+THEN
+RemoveStatus(CHARACTERGUID_S_ARX_DoctorsHouse_TheDoctor_83083470-c543-45b3-ac8a-108df0daca8d, "CHICKEN");
+RemoveStatus(CHARACTERGUID_S_ARX_DoctorsHouse_TheDoctor_83083470-c543-45b3-ac8a-108df0daca8d, "COW");
+RemoveStatus(_Var1, "CHICKEN");
+RemoveStatus(_Var1, "COW");
+Proc_StartDialog(0, "EG_DemonVictory", CHARACTERGUID_S_ARX_DoctorsHouse_TheDoctor_83083470-c543-45b3-ac8a-108df0daca8d, _Var1);
+
+IF
+CharacterResurrected((CHARACTERGUID)_Var1)
+AND
+DB_EG_DemonDealer(_Var1)
+AND NOT
+DB_Dead(CHARACTERGUID_S_ARX_DoctorsHouse_TheDoctor_83083470-c543-45b3-ac8a-108df0daca8d)
+AND NOT
+QRY_EG_NonDemonDealerPlayersAlive()
+THEN
+PROC_EG_CheckDemonSoleSurvivor();
+
+QRY
+QRY_EG_NonDemonDealerPlayersAlive()
+AND
+DB_IsPlayer(_Var1)
+AND NOT
+DB_EG_DemonDealer(_Var1)
+AND
+CharacterIsDead(_Var1, 0)
+AND
+HasActiveStatus(_Var1, "DYING", 0)
+THEN
+DB_NOOP(0);
+
+QRY
+QRY_EG_NonDemonDealerPlayersAlive()
+AND
+DB_GLO_PartyMembers_Kick_PartyMembers(_, _Var2, 1)
+AND
+CharacterIsDead(_Var2, 0)
+AND
+HasActiveStatus(_Var2, "DYING", 0)
+THEN
+DB_NOOP(0);
+
+IF
+DB_Dead(CHARACTERGUID_S_ARX_DoctorsHouse_TheDoctor_83083470-c543-45b3-ac8a-108df0daca8d)
+THEN
+SetRelationFactionToPlayers("ARX_EG_Lucian", 50);
+
+IF
+DB_Dead(CHARACTERGUID_S_ARX_DoctorsHouse_TheDoctor_83083470-c543-45b3-ac8a-108df0daca8d)
+AND NOT
+QRY_EG_DemonAppear_LohsePossessed()
+AND
+DB_EG_DemonDealer(_Var1)
+AND
+DB_IsPlayer(_Var1)
+AND
+CharacterIsDead(_Var1, 0)
+AND
+DB_IsPlayer(_Var2)
+AND
+CharacterIsEnemy(_Var1, _Var2, 1)
+THEN
+CharacterSetRelationIndivFactionToIndivFaction(_Var1, _Var2, 50);
+CharacterSetRelationIndivFactionToIndivFaction(_Var2, _Var1, 50);
+
+IF
+DB_Dead(CHARACTERGUID_S_ARX_DoctorsHouse_TheDoctor_83083470-c543-45b3-ac8a-108df0daca8d)
+AND
+DB_EG_DemonDealer(_Var1)
+AND
+DB_IsPlayer(_Var1)
+AND
+DB_Dead(_Var1)
+AND NOT
+QRY_EG_DemonAppear_LohsePossessed()
+THEN
+PROC_GLO_PartyMembers_Kick_PartyMembers_Restore(_Var1);
+
+PROC
+PROC_EG_RestoreCompanionDemonDealer((CHARACTERGUID)_Var1)
+AND
+DB_EG_DemonDealerAvatar(_Var2)
+THEN
+PROC_GLO_PartyMembers_Add(_Var1, _Var2);
+NOT DB_BlockStoryItemTransfer(_Var1);
+NOT DB_GLO_PartyMembers_BlockRecruitmentDialog(_Var1);
+NOT DB_GLO_PartyMembers_BlockReturnToRecruitmentPosition(_Var1);
+
+PROC
+PROC_EG_RestoreCompanionDemonDealer((CHARACTERGUID)_Var1)
+AND NOT
+DB_EG_DemonDealerAvatar(_)
+AND
+DB_DemonDealerBackupAvatar(_Var3)
+THEN
+PROC_GLO_PartyMembers_Add(_Var1, _Var3);
+NOT DB_BlockStoryItemTransfer(_Var1);
+NOT DB_GLO_PartyMembers_BlockRecruitmentDialog(_Var1);
+NOT DB_GLO_PartyMembers_BlockReturnToRecruitmentPosition(_Var1);
+
+IF
+DB_Dead(CHARACTERGUID_S_ARX_DoctorsHouse_TheDoctor_83083470-c543-45b3-ac8a-108df0daca8d)
+AND NOT
+QRY_EG_DemonAppear_LohsePossessed()
+AND
+DB_IsPlayer(_Var1)
+AND NOT
+DB_Dead(_Var1)
+AND
+DB_GlobalFlag("EG_DoctorPresent")
+AND
+QueryOnlyOnce("EG_AfterDemon")
+THEN
+PROC_EG_SetFightParticipantsArena(0);
+PROC_EG_SpeechAtEndOfCombat("EG_AfterDemon");
+
+IF
+DB_Dead(CHARACTERGUID_S_ARX_DoctorsHouse_TheDoctor_83083470-c543-45b3-ac8a-108df0daca8d)
+AND
+DB_Dead(CHARACTERGUID_S_Player_Lohse_bb932b13-8ebf-4ab4-aac0-83e6924e4295)
+AND
+QRY_EG_DemonAppear_LohsePossessed()
+AND
+DB_IsPlayer(_Var1)
+AND NOT
+DB_Dead(_Var1)
+AND
+DB_GlobalFlag("EG_DoctorPresent")
+AND
+QueryOnlyOnce("EG_AfterDemon")
+THEN
+PROC_EG_SetFightParticipantsArena(0);
+PROC_EG_SpeechAtEndOfCombat("EG_AfterDemon");
+
+PROC
+PROC_EG_SpeechAtEndOfCombat_Ready("EG_AfterDemon")
+AND NOT
+QRY_EG_DemonAppear_LohsePossessed()
+AND
+GetClosestAlivePlayer(CHARACTERGUID_S_ARX_DoctorsHouse_TheDoctor_83083470-c543-45b3-ac8a-108df0daca8d, _Var1, _)
+THEN
+RemoveStatus(_Var1, "CHICKEN");
+RemoveStatus(_Var1, "COW");
+RemoveStatus(_Var1, "PLAY_DEAD");
+Proc_StartDialog(0, "EG_AfterDemon", _Var1);
+
+PROC
+PROC_EG_SpeechAtEndOfCombat_Ready("EG_AfterDemon")
+AND
+QRY_EG_DemonAppear_LohsePossessed()
+AND
+DB_ARX_LohseAvatarBondAtPossession(_Var1)
+AND
+QRY_SpeakerIsAvailable(_Var1)
+THEN
+Proc_StartDialog(0, "EG_AfterDemon", _Var1);
+
+PROC
+PROC_EG_SpeechAtEndOfCombat_Ready("EG_AfterDemon")
+AND
+QRY_EG_DemonAppear_LohsePossessed()
+AND
+DB_ARX_LohseAvatarBondAtPossession(_Var1)
+AND NOT
+QRY_SpeakerIsAvailable(_Var1)
+AND
+GetClosestAlivePlayer(CHARACTERGUID_S_ARX_DoctorsHouse_TheDoctor_83083470-c543-45b3-ac8a-108df0daca8d, _Var2, _)
+THEN
+RemoveStatus(_Var2, "CHICKEN");
+RemoveStatus(_Var2, "COW");
+RemoveStatus(_Var2, "PLAY_DEAD");
+Proc_StartDialog(0, "EG_AfterDemon", _Var2);
+
+PROC
+PROC_EG_SpeechAtEndOfCombat_Ready("EG_AfterDemon")
+AND
+QRY_EG_DemonAppear_LohsePossessed()
+AND NOT
+DB_ARX_LohseAvatarBondAtPossession(_)
+AND
+GetClosestAlivePlayer(CHARACTERGUID_S_ARX_DoctorsHouse_TheDoctor_83083470-c543-45b3-ac8a-108df0daca8d, _Var2, _)
+THEN
+RemoveStatus(_Var2, "CHICKEN");
+RemoveStatus(_Var2, "COW");
+RemoveStatus(_Var2, "PLAY_DEAD");
+Proc_StartDialog(0, "EG_AfterDemon", _Var2);
+
+QRY
+QRY_EG_AnyPlayerInCombat()
+AND
+DB_IsPlayer(_Var1)
+AND
+CharacterIsInCombat(_Var1, 1)
+THEN
+DB_NOOP(1);
+
+QRY
+QRY_EG_AnyPlayerPolymorphed()
+AND
+DB_IsPlayer(_Var1)
+AND
+CharacterIsPolymorphInteractionDisabled(_Var1, 1)
+THEN
+DB_NOOP(1);
+
+PROC
+PROC_EG_SpeechAtEndOfCombat((STRING)_Var1)
+AND NOT
+QRY_EG_AnyPlayerInCombat()
+AND NOT
+QRY_EG_AnyPlayerPolymorphed()
+AND
+DB_IsPlayer(_Var2)
+AND NOT
+QRY_SpeakerIsDead(_Var2)
+THEN
+PROC_EG_SpeechAtEndOfCombat_Ready(_Var1);
+DB_EG_SpeechAtEndOfCombat_Processed(_Var1);
+
+PROC
+PROC_EG_SpeechAtEndOfCombat((STRING)_Var1)
+AND NOT
+DB_EG_SpeechAtEndOfCombat_Processed(_Var1)
+THEN
+DB_EG_SpeechAfterCombatEnds(_Var1);
+
+PROC
+PROC_EG_SpeechAtEndOfCombat((STRING)_Var1)
+THEN
+NOT DB_EG_SpeechAtEndOfCombat_Processed(_Var1);
+
+IF
+CombatEnded(_)
+AND
+DB_EG_SpeechAfterCombatEnds(_Var2)
+AND NOT
+QRY_EG_AnyPlayerInCombat()
+AND NOT
+QRY_EG_AnyPlayerPolymorphed()
+AND
+DB_IsPlayer(_Var3)
+AND NOT
+QRY_SpeakerIsDead(_Var3)
+THEN
+NOT DB_EG_SpeechAfterCombatEnds(_Var2);
+PROC_EG_SpeechAtEndOfCombat_Ready(_Var2);
+
+IF
+CharacterStoppedPolymorph((GUIDSTRING)_Var1)
+AND
+DB_IsPlayer(_Var1)
+AND NOT
+QRY_SpeakerIsDead(_Var1)
+AND
+DB_EG_SpeechAfterCombatEnds(_Var2)
+AND NOT
+QRY_EG_AnyPlayerInCombat()
+AND NOT
+QRY_EG_AnyPlayerPolymorphed()
+THEN
+NOT DB_EG_SpeechAfterCombatEnds(_Var2);
+PROC_EG_SpeechAtEndOfCombat_Ready(_Var2);
+
+IF
+CharacterStatusRemoved((GUIDSTRING)_Var1, "PLAY_DEAD", _)
+AND
+DB_IsPlayer(_Var1)
+AND NOT
+QRY_SpeakerIsDead(_Var1)
+AND
+DB_EG_SpeechAfterCombatEnds(_Var3)
+AND NOT
+QRY_EG_AnyPlayerInCombat()
+AND NOT
+QRY_EG_AnyPlayerPolymorphed()
+THEN
+NOT DB_EG_SpeechAfterCombatEnds(_Var3);
+PROC_EG_SpeechAtEndOfCombat_Ready(_Var3);
+
+PROC
+PROC_EG_SpeechAtEndOfCombat_Ready((STRING)_Var1)
+THEN
+DB_NOOP(0);
+
+PROC
+PROC_EG_SpeechAtEndOfCombat_Ready((STRING)_Var1)
+AND
+DB_OnlyOnce("SE_ARX_Endgame_SFX_PostFX_Activate")
+THEN
+proc_SE_ARX_Endgame_SFX_PostFX_Deactivate();
+
+IF
+CharacterDied(CHARACTERGUID_S_ARX_DoctorsHouse_TheDoctor_83083470-c543-45b3-ac8a-108df0daca8d)
+AND
+DB_CurrentLevel("ARX_Endgame")
+AND NOT
+DB_EG_DemonDealer(_)
+AND
+DB_IsPlayer(_Var2)
+AND NOT
+DB_Dead(_Var2)
+AND NOT
+QRY_EG_DemonAppear_LohsePossessed()
+AND
+QueryOnlyOnce("EG_AfterDemon")
+THEN
+Proc_StartDialog(0, "EG_AfterDemon", _Var2);
+
+IF
+DialogEnded("EG_AfterDemon", _)
+THEN
+PROC_EG_ResurrectCharactersForDilemma();
+
+IF
+DialogEnded((STRING)_Var1, _)
+AND
+DB_EG_PotentialDemonDialogs(_Var1)
+AND NOT
+DB_GlobalFlag("EG_AppearDoctor")
+THEN
+PROC_EG_ResurrectCharactersForDilemma();
+
+IF
+ObjectTurnStarted(CHARACTERGUID_S_EndGame_Kraken_ae15de17-4238-4ae0-af43-48cd0f72f8f5)
+THEN
+SetCameraDistanceOverride(25);
+
+IF
+ObjectTurnEnded(CHARACTERGUID_S_EndGame_Kraken_ae15de17-4238-4ae0-af43-48cd0f72f8f5)
+THEN
+SetCameraDistanceOverride(19);
+
+IF
+TextEventSet("EG_AddHannagSpell")
+THEN
+GlobalSetFlag("RC_BF_CorneredSourcerer_SourcererDead");
+GlobalClearFlag("RC_BF_HannagKilledByPlayer");
+
+PROC
+PROC_EG_CheckHannagAccepted()
+AND
+DB_GlobalFlag("RC_BF_CorneredSourcerer_SourcererDead")
+AND NOT
+DB_GlobalFlag("RC_BF_HannagKilledByPlayer")
+AND
+ObjectGetFlag(CHARACTERGUID_S_RC_BF_CorneredSourcerer_Sourcerer_b201a72c-8ead-4bbf-8612-fcd8c0944e52, "CharacterDieAfterDialog", 0)
+THEN
+CharacterAddSkill(CHARACTERGUID_S_EndGame_Kraken_ae15de17-4238-4ae0-af43-48cd0f72f8f5, "Projectile_Kraken_LaunchUndead_Hannag");
+DB_EG_KrakenSummons_Named("Projectile_Kraken_LaunchUndead_Hannag");
+
+IF
+CharacterUsedSkill(CHARACTERGUID_S_EndGame_Kraken_ae15de17-4238-4ae0-af43-48cd0f72f8f5, (STRING)_Var1, _, _)
+AND
+DB_EG_KrakenSummons_Named(_Var1)
+THEN
+NOT DB_EG_KrakenSummons_Named(_Var1);
+CharacterRemoveSkill(CHARACTERGUID_S_EndGame_Kraken_ae15de17-4238-4ae0-af43-48cd0f72f8f5, _Var1);
+PROC_EG_KrakenReplaceSummonSkills();
+
+PROC
+PROC_EG_KrakenReplaceSummonSkills()
+AND NOT
+DB_EG_KrakenSummons_Named(_)
+THEN
+DB_EG_KrakenOutOfSummons(1);
+
+IF
+ObjectTurnStarted(CHARACTERGUID_S_EndGame_Kraken_ae15de17-4238-4ae0-af43-48cd0f72f8f5)
+AND
+DB_EG_KrakenOutOfSummons(1)
+AND
+DB_EG_KrakenSummons_Generic(_Var1)
+THEN
+CharacterAddSkill(CHARACTERGUID_S_EndGame_Kraken_ae15de17-4238-4ae0-af43-48cd0f72f8f5, _Var1);
+
+IF
+ObjectTurnStarted(CHARACTERGUID_S_EndGame_Kraken_ae15de17-4238-4ae0-af43-48cd0f72f8f5)
+THEN
+NOT DB_EG_KrakenOutOfSummons(1);
+
+IF
+TextEventSet("Debug_EG_TryStartPostBraccusDialogue")
+THEN
+PROC_EG_TryStartPostBraccusDialogue();
+
+
+EXITSECTION
+ENDEXITSECTION
+
+ParentTargetEdge "EndGame"

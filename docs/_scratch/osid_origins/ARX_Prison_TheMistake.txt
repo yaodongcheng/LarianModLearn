@@ -1,0 +1,1186 @@
+Version 1
+SubGoalCombiner SGC_AND
+
+INITSECTION
+DB_ARX_Prison_TheMistake_SilentMonks(S_ARX_Prison_Mistake_BlackRing1_6144fe66-7ac8-4034-9f0d-8335efa4ac91);
+DB_ARX_Prison_TheMistake_SilentMonks(S_ARX_Prison_Mistake_BlackRing2_fb59309d-5167-4ad7-97fd-f43122040124);
+DB_ARX_Prison_TheMistake_SilentMonks(S_ARX_Prison_Mistake_BlackRing3_0419d25a-af6e-4ad2-9394-710803f4af0f);
+DB_ARX_Prison_TheMistake_SilentMonks(S_ARX_Prison_Mistake_BlackRing4_026049be-0529-4c39-82dd-245cb2c6b4cc);
+DB_ARX_Prison_TheMistake_SilentMonks_Triggers(S_ARX_Prison_SilentMonkSpot1_6abf0f6f-f086-4232-abff-25a3384eba9a);
+DB_ARX_Prison_TheMistake_SilentMonks_Triggers(S_ARX_Prison_SilentMonkSpot2_5c544901-b276-4e47-ba5d-3909b621564a);
+DB_ARX_Prison_TheMistake_SilentMonks_Triggers(S_ARX_Prison_SilentMonkSpot3_df981576-9cb3-491b-88cf-db62a948e9d0);
+DB_ARX_Prison_TheMistake_SilentMonks_Triggers(S_ARX_Prison_SilentMonkSpot4_f2097faf-cf68-4d06-8d87-3f65a45a6718);
+DB_ARX_Prison_TheMistake_Seals(S_ARX_Prison_TheMistake_BurningSeal01_8d8bd88e-46fb-45a7-ad4f-e29a2ed2dbb4, S_ARX_Prison_TheMistake_SeekerGuard1_7f69298b-6dae-4a08-8a65-e4a8cb4f7b5a);
+DB_ARX_Prison_TheMistake_Seals(S_ARX_Prison_TheMistake_BurningSeal02_84df8eb7-0228-4e24-8c1f-f84f986e67e2, S_ARX_Prison_TheMistake_SeekerGuard2_30e2c335-3d11-42ab-b105-24f2749da5b7);
+DB_ARX_Prison_TheMistake_Seals(S_ARX_Prison_TheMistake_BurningSeal03_88022969-da29-4b33-8fc3-c43dd1e20f16, S_ARX_Prison_TheMistake_SeekerGuard3_ece9948d-4566-42bc-976c-215b2fb60622);
+DB_ARX_Prison_TheMistake_Seals(S_ARX_Prison_TheMistake_BurningSeal04_bf6d1d12-fa45-42d1-aa94-bbc2f852e2e5, S_ARX_Prison_TheMistake_SeekerGuard4_f3acfeec-5487-4140-91aa-5af2d768ca9c);
+DB_ARX_Prison_TheMistake_Seals(S_ARX_Prison_TheMistake_BurningSeal05_92ed3568-7922-499f-90bc-daa79ec8db24, S_ARX_Prison_TheMistake_SeekerGuard5_a0555d1b-f905-4b06-87d0-183de6150efa);
+DB_ARX_Prison_TheMistake_ARX_Crypt_SpawnTriggers(TRIGGERGUID_S_ARX_Prison_TheMistake_Minion_Spawn_ARX_Center_01_c423f4e3-c00e-40b1-ab66-4a9070043323, CHARACTERGUID_S_ARX_Prison_Mistake_BlackRing1_6144fe66-7ac8-4034-9f0d-8335efa4ac91);
+DB_ARX_Prison_TheMistake_ARX_Crypt_SpawnTriggers(TRIGGERGUID_S_ARX_Prison_TheMistake_Minion_Spawn_ARX_Center_02_64d66bcd-3100-4f6b-b949-c3eb9bf0e82f, CHARACTERGUID_S_ARX_Prison_Mistake_BlackRing2_fb59309d-5167-4ad7-97fd-f43122040124);
+DB_ARX_Prison_TheMistake_ARX_Crypt_SpawnTriggers(TRIGGERGUID_S_ARX_Prison_TheMistake_Minion_Spawn_ARX_Center_03_8146cb34-14f2-4953-aab7-2c02b3005406, CHARACTERGUID_S_ARX_Prison_Mistake_BlackRing3_0419d25a-af6e-4ad2-9394-710803f4af0f);
+DB_ARX_Prison_TheMistake_ARX_Crypt_SpawnTriggers(TRIGGERGUID_S_ARX_Prison_TheMistake_Minion_Spawn_ARX_Center_04_2111875f-423c-41c4-b298-2cd83e6ee5b3, CHARACTERGUID_S_ARX_Prison_Mistake_BlackRing4_026049be-0529-4c39-82dd-245cb2c6b4cc);
+DB_ARX_Prison_TheMistake_Seals_DisappearDelayTimer(800);
+DB_ARX_Prison_TheMistake_SilentMonkDoors(S_ARX_Prison_SilentMonkDoor1_31b2a7d9-fd9b-4e0d-95f4-9208be2fbc7a);
+DB_ARX_Prison_TheMistake_SilentMonkDoors(S_ARX_Prison_SilentMonkDoor2_162eaca1-1b53-40d8-8060-42ac087d3d97);
+DB_ARX_Prison_TheMistake_SilentMonkDoors(S_ARX_Prison_SilentMonkDoor3_bca02feb-a5ed-40c1-92c8-f03e10eb5175);
+DB_ARX_Prison_TheMistake_SilentMonkDoors(S_ARX_Prison_SilentMonkDoor4_50b0a31a-ef69-4819-81a1-afc340f5f534);
+PROC_LoopEffect("RS3_FX_GP_Status_HoECollar_01", S_ARX_Prison_TheMistake_5136657b-5d75-409f-814c-0eee4ff3913d, "ARX_Prison_TheMistake_SourceCollar", "ARX_Main", "Dummy_NeckFX");
+ApplyStatus(S_ARX_Prison_TheMistake_5136657b-5d75-409f-814c-0eee4ff3913d, "SOURCE_MUTED", -1, 1);
+CharacterAddSourcePoints(S_ARX_Prison_TheMistake_5136657b-5d75-409f-814c-0eee4ff3913d, 3);
+DB_IgnoreAssault(S_ARX_Prison_TheMistake_5136657b-5d75-409f-814c-0eee4ff3913d);
+ProcCharacterDisableAllCrimes(S_ARX_Prison_TheMistake_5136657b-5d75-409f-814c-0eee4ff3913d);
+DB_Ghosts(S_ARX_Prison_TheMistake_5136657b-5d75-409f-814c-0eee4ff3913d, S_ARX_Prison_TheMistake_Ghost_7ef4cc65-88fd-4820-9a62-64df843a4334, "ARX_Prison_TheMistake_Ghost");
+DB_Dialogs(S_ARX_Prison_TheMistake_5136657b-5d75-409f-814c-0eee4ff3913d, "ARX_Prison_TheMistake");
+DB_Ghosts(S_ARX_Prison_TheMistake_SeekerGuard1_7f69298b-6dae-4a08-8a65-e4a8cb4f7b5a, "ARX_Prison_TheMistake_SeekerGuard1");
+DB_Ghosts(S_ARX_Prison_TheMistake_SeekerGuard2_30e2c335-3d11-42ab-b105-24f2749da5b7, "ARX_Prison_TheMistake_SeekerGuard2");
+DB_Ghosts(S_ARX_Prison_TheMistake_SeekerGuard3_ece9948d-4566-42bc-976c-215b2fb60622, "ARX_Prison_TheMistake_SeekerGuard3");
+DB_Ghosts(S_ARX_Prison_TheMistake_SeekerGuard4_f3acfeec-5487-4140-91aa-5af2d768ca9c, "ARX_Prison_TheMistake_SeekerGuard4");
+DB_Ghosts(S_ARX_Prison_TheMistake_SeekerGuard5_a0555d1b-f905-4b06-87d0-183de6150efa, "ARX_Prison_TheMistake_SeekerGuard5");
+DB_DoNotFace(CHARACTERGUID_S_ARX_Prison_TheMistake_SeekerGuard5_a0555d1b-f905-4b06-87d0-183de6150efa);
+DB_DoNotFace(CHARACTERGUID_S_ARX_Prison_TheMistake_SeekerGuard4_f3acfeec-5487-4140-91aa-5af2d768ca9c);
+DB_DoNotFace(CHARACTERGUID_S_ARX_Prison_TheMistake_SeekerGuard3_ece9948d-4566-42bc-976c-215b2fb60622);
+DB_DoNotFace(CHARACTERGUID_S_ARX_Prison_TheMistake_SeekerGuard2_30e2c335-3d11-42ab-b105-24f2749da5b7);
+ProcTriggerRegisterForPlayers(S_ARX_Prison_TheMistakeTrigger_36773fe5-0673-4668-8e10-b68c3ba811be);
+DB_ARX_Prison_TheMistake_PlayerDidntAct_BodyParts(S_ARX_Prison_TheMistake_CopsePile1_950f7460-9d04-4747-924b-db58cdd00774);
+DB_ARX_Prison_TheMistake_PlayerDidntAct_BodyParts(S_ARX_Prison_TheMistake_CopsePile2_1697f53c-f1d7-4899-970b-4e94b47a846a);
+DB_ARX_Prison_TheMistake_PlayerDidntAct_BodyParts(S_ARX_Prison_TheMistake_CopsePile3_684b3681-e870-4713-9209-e0f28c4fee36);
+DB_ARX_Prison_TheMistake_PlayerDidntAct_BodyParts(S_ARX_Prison_TheMistake_CopsePile4_19530062-ece8-4a63-8338-3bc510e27399);
+DB_ARX_Prison_TheMistake_PlayerDidntAct_BodyParts(S_ARX_Prison_TheMistake_CopsePile5_759195f2-33c5-4d31-aaf0-8b4a245460f5);
+DB_ARX_Prison_TheMistake_PlayerDidntAct_BodyParts(S_ARX_Prison_TheMistake_CopsePile6_9d3ca872-5e59-4af0-9d8e-b9f01cd38631);
+DB_ARX_Prison_TheMistake_SurfaceCreation_Triggers(S_ARX_Prison_TheMistake_SurfaceCreation1_84fd12ad-4fe2-45d8-ba54-f6061ce946c9);
+DB_ARX_Prison_TheMistake_SurfaceCreation_Triggers(S_ARX_Prison_TheMistake_SurfaceCreation2_25a2f77b-030e-4c52-8548-da69b6a85d40);
+DB_ARX_Prison_TheMistake_SurfaceCreation_Triggers(S_ARX_Prison_TheMistake_SurfaceCreation3_1fd28c34-53e2-4c07-946b-3f8b8702aab6);
+DB_ARX_Prison_TheMistake_SurfaceCreation_Triggers(S_ARX_Prison_TheMistake_SurfaceCreation4_6637b7a1-e39b-4c82-9fd1-42667d86485c);
+DB_ARX_Prison_TheMistake_BarredDoor_Planks(S_ARX_Prison_TheMistake_BlockedDoor_01_5bc53246-d861-48fa-ad03-459fcecdcee0);
+DB_ARX_Prison_TheMistake_BarredDoor_Planks(S_ARX_Prison_TheMistake_BlockedDoor_02_1246094e-8726-4d8e-9169-ce5b10e5ee22);
+DB_ARX_Prison_TheMistake_BarredDoor_Planks(S_ARX_Prison_TheMistake_BlockedDoor_04_65c9075e-c82f-4051-9a6f-c7df1f8bffab);
+LockSecretRegion(TRIGGERGUID_S_ARX_Prison_TheMistake_StiarsToTheMistke_SecretTrigger_5965df47-ab81-47b0-b32f-2df94bebe1ae);
+ItemSetCanInteract(ITEMGUID_S_ARX_Prison_PathToTheMistake_BrickLadder_4a31a159-e1bf-87c9-435e-6181a86bd194, 0);
+SetOnStage(ITEMGUID_S_ARX_UNIQUE_Crossbow_Cryotherapy_2946f9f7-cd9c-42a0-9603-6c46508e1ead, 0);
+SetCanFight(S_ARX_Prison_TheMistake_5136657b-5d75-409f-814c-0eee4ff3913d, 0);
+SetCanJoinCombat(S_ARX_Prison_TheMistake_5136657b-5d75-409f-814c-0eee4ff3913d, 0);
+Proc_RegisterPartyDecisionDialogOutcomes_Fixed("ARX_Prison_TheMistake_PDD_WhatToDoWithHim", "ARX_Prison_TheMistake_KillHim", "ARX_Prison_TheMistake_WorkWithHim", "", "", "");
+DB_SecretRegions_OnOpenedDoor(TRIGGERGUID_S_ARX_Prison_TheMistake_StiarsToTheMistke_SecretTrigger_5965df47-ab81-47b0-b32f-2df94bebe1ae, ITEMGUID_ARX_Prison_BlockedPathToMistke_061739ed-b6d2-4563-945a-be2ceee5921a);
+DB_SecretRegions_OnEnteredTrig(TRIGGERGUID_S_ARX_Prison_TheMistake_StiarsToTheMistke_SecretTrigger_5965df47-ab81-47b0-b32f-2df94bebe1ae, TRIGGERGUID_S_ARX_Prison_TheMistake_StiarsToTheMistke_SecretTrigger_5965df47-ab81-47b0-b32f-2df94bebe1ae);
+
+KBSECTION
+IF
+CharacterItemEvent((CHARACTERGUID)_Var1, (ITEMGUID)_Var2, "ARX_Prison_PathToTheMistake_Lever")
+AND
+QueryOnlyOnce("ARX_Prison_PathToTheMistake_Lever")
+THEN
+ItemSetCanInteract(ITEMGUID_S_ARX_Prison_PathToTheMistake_BrickLadder_4a31a159-e1bf-87c9-435e-6181a86bd194, 1);
+proc_ItemMoveToTrigger(ITEMGUID_S_ARX_Prison_PathToTheMistake_BrickLadder_4a31a159-e1bf-87c9-435e-6181a86bd194, TRIGGERGUID_S_ARX_Prison_PathToTheMistake_BrickLadderLocationT_020f9bbe-7b8d-407f-b08d-478a593e8a47, 1, 0, 0);
+ItemUnLock(ITEMGUID_S_ARX_Prison_PathToTheMistake_LockedDoor_2c28b82a-da48-4b75-8557-cd3214d01d88);
+
+IF
+CharacterUsedItem((CHARACTERGUID)_Var1, ITEMGUID_S_ARX_Prison_PathToTheMistake_BrickLadder_4a31a159-e1bf-87c9-435e-6181a86bd194)
+AND
+ItemIsClosed(ITEMGUID_S_ARX_Prison_PathToTheMistake_LockedDoor_2c28b82a-da48-4b75-8557-cd3214d01d88, 1)
+THEN
+ItemOpen(ITEMGUID_S_ARX_Prison_PathToTheMistake_LockedDoor_2c28b82a-da48-4b75-8557-cd3214d01d88);
+
+IF
+DB_ARX_Prison_TheMistake_BarredDoor_Planks(_Var1)
+AND
+DB_IsPlayer(_Var2)
+THEN
+DB_CustomMoveItemResponse(_Var2, _Var1, 0);
+
+PROC
+ProcBlockMoveOfItem((CHARACTERGUID)_Var1, (ITEMGUID)_Var2)
+AND
+DB_ARX_Prison_TheMistake_BarredDoor_Planks(_Var2)
+THEN
+Proc_StartDialog(1, "ARX_AD_Prison_TheMistake_BarredDoor_Planks", _Var1);
+
+PROC
+ProcBlockMoveOfItem((CHARACTERGUID)_Var1, (ITEMGUID)_Var2)
+AND
+DB_ARX_Prison_TheMistake_BarredDoor_Planks(_Var2)
+AND NOT
+DB_CustomMoveItemResponse(_Var1, _Var2, _)
+THEN
+DB_CustomMoveItemResponse(_Var1, _Var2, 0);
+
+IF
+CharacterUsedItem((CHARACTERGUID)_Var1, S_ARX_Prison_TheMistake_BlockedDoor_1f365f35-2bd9-4437-8ff8-17e58b96d4ff)
+AND
+ItemIsLocked(S_ARX_Prison_TheMistake_BlockedDoor_1f365f35-2bd9-4437-8ff8-17e58b96d4ff, 1)
+THEN
+Proc_StartDialog(1, "ARX_AD_Prison_TheMistake_BlockedDoor", _Var1);
+
+IF
+CharacterUsedItem((CHARACTERGUID)_Var1, S_ARX_Prison_TheMistake_StiarsToTheMistke_b8de0237-ae3f-8c80-3b8a-1c1823fe3585)
+AND
+ItemIsLocked(S_ARX_Prison_TheMistake_StiarsToTheMistke_b8de0237-ae3f-8c80-3b8a-1c1823fe3585, 1)
+THEN
+Proc_StartDialog(1, "ARX_AD_Cathedral_DivineTomb_PoB_BlockedDoor", _Var1);
+
+PROC
+ProcBlockLockpickItem((CHARACTERGUID)_Var1, S_ARX_Prison_TheMistake_StiarsToTheMistke_b8de0237-ae3f-8c80-3b8a-1c1823fe3585)
+AND
+ItemIsLocked(S_ARX_Prison_TheMistake_StiarsToTheMistke_b8de0237-ae3f-8c80-3b8a-1c1823fe3585, 1)
+THEN
+DB_CustomLockpickItemResponse(_Var1, S_ARX_Prison_TheMistake_StiarsToTheMistke_b8de0237-ae3f-8c80-3b8a-1c1823fe3585, 0);
+Proc_StartDialog(1, "ARX_AD_Cathedral_DivineTomb_PoB_BlockedDoor", _Var1);
+
+IF
+ItemUnlocked(S_ARX_Prison_TheMistake_StiarsToTheMistke_b8de0237-ae3f-8c80-3b8a-1c1823fe3585, _, _)
+AND
+DB_CustomLockpickItemResponse(_Var3, S_ARX_Prison_TheMistake_StiarsToTheMistke_b8de0237-ae3f-8c80-3b8a-1c1823fe3585, _Var4)
+THEN
+DB_CustomLockpickItemResponse(_Var3, S_ARX_Prison_TheMistake_StiarsToTheMistke_b8de0237-ae3f-8c80-3b8a-1c1823fe3585, _Var4);
+
+IF
+CharacterStartLockpickingItem((CHARACTERGUID)_Var1, S_ARX_Prison_TheMistake_StiarsToTheMistke_b8de0237-ae3f-8c80-3b8a-1c1823fe3585)
+AND
+ItemIsLocked(S_ARX_Prison_TheMistake_StiarsToTheMistke_b8de0237-ae3f-8c80-3b8a-1c1823fe3585, 1)
+THEN
+Proc_StartDialog(1, "ARX_AD_Cathedral_DivineTomb_PoB_BlockedDoor", _Var1);
+
+IF
+ItemDestroyed(ITEMGUID_ARX_Prison_BlockedPathToMistke_061739ed-b6d2-4563-945a-be2ceee5921a)
+THEN
+UnlockSecretRegion(TRIGGERGUID_S_ARX_Prison_TheMistake_StiarsToTheMistke_SecretTrigger_5965df47-ab81-47b0-b32f-2df94bebe1ae);
+
+IF
+CharacterUsedItem((CHARACTERGUID)_Var1, ITEMGUID_BLD_Humans_Dungeon_Stairs_A_5H_4L_B_001_ARX_Prison_A_000_9d9beced-0b97-8ac2-479a-febe84fe75f7)
+THEN
+UnlockSecretRegion(TRIGGERGUID_S_ARX_Prison_TheMistake_StiarsToTheMistke_SecretTrigger_5965df47-ab81-47b0-b32f-2df94bebe1ae);
+
+IF
+ItemDestroyed((ITEMGUID)_Var1)
+AND
+DB_ARX_Prison_TheMistake_BarredDoor_Planks(_Var1)
+THEN
+proc_ARX_Prison_TheMistake_CheckPlanks(_Var1);
+
+PROC
+proc_ARX_Prison_TheMistake_CheckPlanks((ITEMGUID)_Var1)
+AND
+DB_ARX_Prison_TheMistake_BarredDoor_Planks(_Var1)
+THEN
+NOT DB_ARX_Prison_TheMistake_BarredDoor_Planks(_Var1);
+
+PROC
+proc_ARX_Prison_TheMistake_CheckPlanks((ITEMGUID)_Var1)
+AND NOT
+DB_ARX_Prison_TheMistake_BarredDoor_Planks(_)
+THEN
+ItemUnLock(S_ARX_Prison_TheMistake_BlockedDoor_1f365f35-2bd9-4437-8ff8-17e58b96d4ff);
+ItemUnLock(S_ARX_Prison_TheMistake_StiarsToTheMistke_b8de0237-ae3f-8c80-3b8a-1c1823fe3585);
+
+IF
+GameBookInterfaceClosed(S_ARX_Barracks_TheMistakeDoc_25cb673b-2341-4fe4-8775-5b5e0f78b07c, (CHARACTERGUID)_Var1)
+AND
+DB_IsPlayer(_Var1)
+THEN
+UserSetFlag(_Var1, "ARX_Prison_TheMistake_ReadDocument");
+
+IF
+TextEventSet("ARX_Prison_TheMistake_ReadDocument")
+AND
+DB_IsPlayer(_Var1)
+THEN
+UserSetFlag(_Var1, "ARX_Prison_TheMistake_ReadDocument");
+
+IF
+AttackedByObject(S_ARX_Prison_TheMistake_5136657b-5d75-409f-814c-0eee4ff3913d, (CHARACTERGUID)_Var1, _, (STRING)_Var3, _)
+AND
+DB_IsPlayer(_Var1)
+AND
+GlobalGetFlag("ARX_Prison_TheMistake_IsFree", 0)
+AND
+GlobalGetFlag("ARX_Prison_TheMistake_SealsAreBorken", 0)
+AND
+QueryOnlyOnce("ARX_Prison_TheMistake_AttackedByThePlayer")
+THEN
+TriggerSetAtmosphere(S_ATM_ARX_TheMistakeIsFree_GloomTrigger_9ce919b8-1919-46fc-869b-6b4819b903ce, "b18c4375-688f-41a8-a983-3b4535ed12a4");
+TimerLaunch("ARX_Prison_TheMistake_ChangeAtmosphereFinished", 500);
+DB_ARX_Prison_TheMistake_PlayerThatReleasedHer(_Var1);
+ObjectSetFlag(_Var1, "ARX_Prison_TheMistake_AttackedToReleaseHer");
+Proc_ARX_Prison_TheMistake_RemoveSourceCollar();
+
+PROC
+Proc_ARX_Prison_TheMistake_RemoveSourceCollar()
+AND
+QRY_AnyRegionActive()
+AND
+DB_ARX_Prison_TheMistake_Seals(_, _Var2)
+AND
+DB_ARX_Prison_TheMistake_PlayerThatReleasedHer(_Var3)
+THEN
+CharacterLookAt(_Var2, _Var3);
+
+PROC
+Proc_ARX_Prison_TheMistake_RemoveSourceCollar()
+AND
+QRY_AnyRegionActive()
+THEN
+ProcForceStopDialog(S_ARX_Prison_TheMistake_5136657b-5d75-409f-814c-0eee4ff3913d);
+SetHasDialog(S_ARX_Prison_TheMistake_5136657b-5d75-409f-814c-0eee4ff3913d, 0);
+PROC_StopLoopEffect(S_ARX_Prison_TheMistake_5136657b-5d75-409f-814c-0eee4ff3913d, "ARX_Prison_TheMistake_SourceCollar");
+RemoveStatus(S_ARX_Prison_TheMistake_5136657b-5d75-409f-814c-0eee4ff3913d, "SOURCE_MUTED");
+ItemTemplateAddTo("RC_FTJ_Amulet_BrokenSourceCollar_6a906795-b26f-47fd-90ab-ed1916f5b18f", S_ARX_Prison_TheMistake_5136657b-5d75-409f-814c-0eee4ff3913d, 1);
+ItemTemplateDropFromCharacter("RC_FTJ_Amulet_BrokenSourceCollar_6a906795-b26f-47fd-90ab-ed1916f5b18f", S_ARX_Prison_TheMistake_5136657b-5d75-409f-814c-0eee4ff3913d, 1);
+PlayEffect(S_ARX_Prison_TheMistake_5136657b-5d75-409f-814c-0eee4ff3913d, "RS3_FX_GP_ScriptedEvent_HoECollar_Remove_01");
+
+IF
+DB_GoneGhosts(_Var1)
+AND
+_Var1 == S_ARX_Prison_TheMistake_SeekerGuard1_7f69298b-6dae-4a08-8a65-e4a8cb4f7b5a
+AND
+DB_ARX_Prison_TheMistake_Seals(_, _Var3)
+THEN
+SetStoryEvent(_Var3, "ARX_Prison_TheMistake_Seeker_MainGhostIsDead");
+
+IF
+CharacterUsedSkillOnTarget((CHARACTERGUID)_Var1, (CHARACTERGUID)_Var2, (STRING)_Var3, _, _)
+AND
+DB_SourceVampirism_Skills(_Var3)
+AND
+_Var2 != CHARACTERGUID_S_ARX_Prison_TheMistake_SeekerGuard1_7f69298b-6dae-4a08-8a65-e4a8cb4f7b5a
+AND
+DB_ARX_Prison_TheMistake_Seals(_, _Var2)
+THEN
+ProcForceStopDialog(CHARACTERGUID_S_ARX_Prison_TheMistake_SeekerGuard1_7f69298b-6dae-4a08-8a65-e4a8cb4f7b5a);
+SetHasDialog(S_ARX_Prison_TheMistake_SeekerGuard1_7f69298b-6dae-4a08-8a65-e4a8cb4f7b5a, 0);
+Proc_StartDialog(1, "ARX_AD_Prison_TheMistake_SeekerGhost_Vanish", CHARACTERGUID_S_ARX_Prison_TheMistake_SeekerGuard1_7f69298b-6dae-4a08-8a65-e4a8cb4f7b5a);
+
+IF
+CharacterUsedSkillOnTarget((CHARACTERGUID)_Var1, S_ARX_Prison_TheMistake_SeekerGuard1_7f69298b-6dae-4a08-8a65-e4a8cb4f7b5a, (STRING)_Var2, _, _)
+AND
+DB_SourceVampirism_Skills(_Var2)
+AND
+DB_ARX_Prison_TheMistake_Seals(_, _Var6)
+AND NOT
+DB_GoneGhosts(_Var6)
+AND
+QueryOnlyOnce("ARX_AD_Prison_TheMistake_SeekerGhost_Vanish")
+THEN
+ProcForceStopDialog(CHARACTERGUID_S_ARX_Prison_TheMistake_SeekerGuard1_7f69298b-6dae-4a08-8a65-e4a8cb4f7b5a);
+SetHasDialog(S_ARX_Prison_TheMistake_SeekerGuard1_7f69298b-6dae-4a08-8a65-e4a8cb4f7b5a, 0);
+Proc_StartDialog(1, "ARX_AD_Prison_TheMistake_SeekerGhost_Vanish", _Var6);
+DB_ARX_Player_SourceVampedSeeker(_Var1);
+
+IF
+AutomatedDialogEnded("ARX_AD_Prison_TheMistake_SeekerGhost_Vanish", (INTEGER)_Var1)
+AND
+DB_ARX_Prison_TheMistake_Seals(_, _Var3)
+AND NOT
+DB_GoneGhosts(_Var3)
+THEN
+Proc_GhostHacks_GhostPoof(_Var3);
+
+IF
+AutomatedDialogEnded("ARX_AD_Prison_TheMistake_SeekerGhost_Vanish", (INTEGER)_Var1)
+AND
+DB_ARX_Player_SourceVampedSeeker(_Var2)
+THEN
+NOT DB_ARX_Player_SourceVampedSeeker(_Var2);
+PartySetFlag(_Var2, "QuestUpdate_ARX_Prison_TheMistake_SourceVampedSeeker");
+
+IF
+ItemStatusChange((ITEMGUID)_Var1, "BURNING", (CHARACTERGUID)_Var2)
+AND
+DB_ARX_Prison_TheMistake_Seals(_Var1, _)
+AND
+DB_IsPlayer(_Var2)
+THEN
+DB_ARX_Prison_TheMistake_PlayerThatReleasedHer(_Var2);
+
+IF
+ItemStatusChange((ITEMGUID)_Var1, "BURNING", _)
+AND
+DB_ARX_Prison_TheMistake_Seals(_Var1, _Var3)
+AND NOT
+DB_GoneGhosts(_Var3)
+THEN
+ProcObjectTimerCancel(_Var3, "ARX_Prison_TheMistake_CheckSealStatus");
+ProcObjectTimer(_Var3, "ARX_Prison_TheMistake_CheckSealStatus", 300);
+
+PROC
+ProcObjectTimerFinished((CHARACTERGUID)_Var1, "ARX_Prison_TheMistake_CheckSealStatus")
+AND
+GlobalGetFlag("ARX_Prison_TheMistake_SealsAreBorken", 0)
+AND
+DB_ARX_Prison_TheMistake_Seals(_Var2, _Var1)
+AND NOT
+DB_GoneGhosts(_Var1)
+THEN
+DialogRequestStop(CHARACTERGUID_S_ARX_Prison_TheMistake_SeekerGuard1_7f69298b-6dae-4a08-8a65-e4a8cb4f7b5a);
+CharacterUseItem(_Var1, _Var2, "");
+Proc_StartDialog(1, "ARX_AD_Prison_TheMistake_SeekerGhost", CHARACTERGUID_S_ARX_Prison_TheMistake_SeekerGuard1_7f69298b-6dae-4a08-8a65-e4a8cb4f7b5a);
+
+IF
+CharacterUsedItem((CHARACTERGUID)_Var1, (ITEMGUID)_Var2)
+AND
+DB_ARX_Prison_TheMistake_Seals(_Var2, _Var1)
+AND
+DB_ARX_Prison_TheMistake_PlayerThatReleasedHer(_Var3)
+THEN
+NOT DB_ARX_Prison_TheMistake_PlayerThatReleasedHer(_Var3);
+
+IF
+CharacterUsedItem((CHARACTERGUID)_Var1, (ITEMGUID)_Var2)
+AND
+DB_ARX_Prison_TheMistake_Seals(_Var2, _Var1)
+AND NOT
+DB_GoneGhosts(_Var1)
+AND
+ObjectGetFlag(_Var1, "GLO_Ghost_Visible", 0)
+AND
+GetClosestPlayer(_Var1, _Var3, _)
+AND NOT
+DB_DialogPlayers(_, _Var3, _)
+THEN
+Proc_StartDialog(1, "ARX_AD_Prison_TheMistake_SealTurnedOff", _Var3);
+
+IF
+ItemStatusChange((ITEMGUID)_Var1, "BURNING", (GUIDSTRING)_Var2)
+AND
+DB_ARX_Prison_TheMistake_Seals(_Var1, _)
+AND
+HasActiveStatus(S_ARX_Prison_TheMistake_BurningSeal01_8d8bd88e-46fb-45a7-ad4f-e29a2ed2dbb4, "BURNING", 1)
+AND
+HasActiveStatus(S_ARX_Prison_TheMistake_BurningSeal02_84df8eb7-0228-4e24-8c1f-f84f986e67e2, "BURNING", 1)
+AND
+HasActiveStatus(S_ARX_Prison_TheMistake_BurningSeal03_88022969-da29-4b33-8fc3-c43dd1e20f16, "BURNING", 1)
+AND
+HasActiveStatus(S_ARX_Prison_TheMistake_BurningSeal04_bf6d1d12-fa45-42d1-aa94-bbc2f852e2e5, "BURNING", 1)
+AND
+HasActiveStatus(S_ARX_Prison_TheMistake_BurningSeal05_92ed3568-7922-499f-90bc-daa79ec8db24, "BURNING", 1)
+AND
+GlobalGetFlag("ARX_Prison_TheMistake_IsFree", 0)
+AND
+GlobalGetFlag("ARX_Prison_TheMistake_SealsAreBorken", 0)
+AND
+QueryOnlyOnce("ARX_Prison_TheMistake_IsFree")
+THEN
+Proc_ARX_Prison_TheMistake_RemoveSourceCollar();
+TriggerSetAtmosphere(S_ATM_ARX_TheMistakeIsFree_GloomTrigger_9ce919b8-1919-46fc-869b-6b4819b903ce, "b18c4375-688f-41a8-a983-3b4535ed12a4");
+TimerLaunch("ARX_Prison_TheMistake_ChangeAtmosphereFinished", 500);
+
+PROC
+Proc_ARX_Prison_TheMistake_RemoveSourceCollar()
+THEN
+GlobalSetFlag("ARX_Prison_TheMistake_SealsAreBorken");
+
+PROC
+Proc_ARX_Prison_TheMistake_RemoveSourceCollar()
+AND
+CharacterIsDead(S_ARX_Prison_GhostOfGuard_005_7f69298b-6dae-4a08-8a65-e4a8cb4f7b5a, 0)
+THEN
+ProcForceStopDialog(S_ARX_Prison_GhostOfGuard_005_7f69298b-6dae-4a08-8a65-e4a8cb4f7b5a);
+Proc_StartDialog(1, "ARX_AD_Prison_TheMistake_SeekerGhost", CHARACTERGUID_S_ARX_Prison_TheMistake_SeekerGuard1_7f69298b-6dae-4a08-8a65-e4a8cb4f7b5a);
+
+IF
+TimerFinished("ARX_Prison_TheMistake_ChangeAtmosphereFinished")
+THEN
+proc_ARX_Prison_TheMistake_SigilDisappear();
+
+PROC
+proc_ARX_Prison_TheMistake_SigilDisappear()
+AND
+DB_ARX_Prison_TheMistake_PlayerThatReleasedHer(_Var1)
+THEN
+Proc_ShakeCameraForTime(_Var1, 3000);
+
+PROC
+proc_ARX_Prison_TheMistake_SigilDisappear()
+AND
+DB_ARX_Prison_TheMistake_Seals(_Var1, _)
+THEN
+ItemSetCanInteract(_Var1, 0);
+
+PROC
+proc_ARX_Prison_TheMistake_SigilDisappear()
+THEN
+ItemUnLock(S_ARX_Prison_TheMistake_CellDoor_ARX_Prison_A_000_3a941cf2-1bbe-8d08-3b02-96d3fe1fa830);
+ItemOpen(S_ARX_Prison_TheMistake_CellDoor_ARX_Prison_A_000_3a941cf2-1bbe-8d08-3b02-96d3fe1fa830);
+
+PROC
+proc_ARX_Prison_TheMistake_SigilDisappear()
+AND
+DB_ARX_Prison_TheMistake_Seals_DisappearDelayTimer(_Var1)
+THEN
+ProcObjectTimer(S_ARX_Prison_TheMistake_BurningSigil01_8d8bd88e-46fb-45a7-ad4f-e29a2ed2dbb4, "ARX_Prison_TheMistake_SigilDisappear", _Var1);
+
+PROC
+ProcObjectTimerFinished((GUIDSTRING)_Var1, "ARX_Prison_TheMistake_SigilDisappear")
+AND
+DB_ARX_Prison_TheMistake_Seals_DisappearDelayTimer(_Var2)
+THEN
+TimerLaunch("ARX_Prison_TheMistake_SigilDisappearedLast", _Var2);
+TeleportTo(S_ARX_Prison_TheMistake_5136657b-5d75-409f-814c-0eee4ff3913d, ARX_Prison_TheMistake_TeleportOutOfPrison_382ff334-8d51-4600-90d8-c2e515dac105);
+CreateSurface(S_ARX_Prison_TheMistake_5136657b-5d75-409f-814c-0eee4ff3913d, "SurfaceNone", 3, 1);
+Foop(S_ARX_Prison_TheMistake_5136657b-5d75-409f-814c-0eee4ff3913d);
+
+IF
+TimerFinished("ARX_Prison_TheMistake_SigilDisappearedLast")
+THEN
+proc_ARX_Prison_TheMistake_FreeTheMistakeStartDialog();
+
+PROC
+proc_ARX_Prison_TheMistake_StartCombatInPrison()
+THEN
+SetOnStage(FX_Env_Portal_L_000_893f52d3-9a56-4123-8fd7-d4243738b3c1, 0);
+
+PROC
+proc_ARX_Prison_TheMistake_StartCombatInPrison()
+AND
+DB_ARX_Prison_TheMistake_SilentMonkDoors(_Var1)
+THEN
+ItemUnLock(_Var1);
+ItemOpen(_Var1);
+
+PROC
+proc_ARX_Prison_TheMistake_StartCombatInPrison()
+AND
+DB_ARX_Prison_TheMistake_SilentMonks(_Var1)
+AND
+CharacterIsDead(_Var1, 1)
+THEN
+CharacterResurrect(_Var1);
+
+PROC
+proc_ARX_Prison_TheMistake_StartCombatInPrison()
+AND
+DB_ARX_Prison_TheMistake_SilentMonks(_Var1)
+THEN
+ObjectSetFlag(_Var1, "ARX_Prison_TheMistake_SilentMonksMove");
+ApplyStatus(_Var1, "ETHEREAL_SOLES", -1);
+
+PROC
+proc_ARX_Prison_TheMistake_FreeTheMistakeStartDialog()
+THEN
+SetHasDialog(S_ARX_Prison_TheMistake_5136657b-5d75-409f-814c-0eee4ff3913d, 1);
+GlobalSetFlag("ARX_Prison_TheMistake_IsFree");
+SetOnStage(FX_Env_Portal_L_000_893f52d3-9a56-4123-8fd7-d4243738b3c1, 0);
+DB_Dialogs(S_ARX_Prison_TheMistake_5136657b-5d75-409f-814c-0eee4ff3913d, "ARX_Prison_TheMistake");
+SetCanFight(S_ARX_Prison_TheMistake_5136657b-5d75-409f-814c-0eee4ff3913d, 1);
+SetCanJoinCombat(S_ARX_Prison_TheMistake_5136657b-5d75-409f-814c-0eee4ff3913d, 1);
+
+PROC
+proc_ARX_Prison_TheMistake_FreeTheMistakeStartDialog()
+AND
+GetPosition(S_ARX_Prison_TheMistake_5136657b-5d75-409f-814c-0eee4ff3913d, _Var1, _Var2, _Var3)
+THEN
+PlayEffectAtPosition("RS3_FX_GP_ScriptedEvent_ARX_TheMistake_Transform_01", _Var1, _Var2, _Var3);
+Proc_ARX_Prison_TheMistake_Transform_Template();
+
+PROC
+Proc_ARX_Prison_TheMistake_Transform_Template()
+THEN
+Transform(S_ARX_Prison_TheMistake_5136657b-5d75-409f-814c-0eee4ff3913d, "QUEST_ARX_TheMistake_459a48a9-341d-4376-b6ac-31e83357bbdb", 0, 0, 1);
+Proc_EquipHiddenWeapon(S_ARX_Prison_TheMistake_5136657b-5d75-409f-814c-0eee4ff3913d);
+SetIsBoss(S_ARX_Prison_TheMistake_5136657b-5d75-409f-814c-0eee4ff3913d, 1);
+
+PROC
+proc_ARX_Prison_TheMistake_FreeTheMistakeStartDialog()
+AND
+DB_ARX_Prison_TheMistake_PlayerThatReleasedHer(_Var1)
+AND
+QRY_SpeakerIsAvailable(_Var1)
+AND
+QRY_SpeakerIsAvailable(S_ARX_Prison_TheMistake_5136657b-5d75-409f-814c-0eee4ff3913d)
+THEN
+Proc_StartDialog(0, "ARX_Prison_TheMistake", S_ARX_Prison_TheMistake_5136657b-5d75-409f-814c-0eee4ff3913d, _Var1);
+DB_ARX_Prison_TheMistake_StartedDialog(1);
+
+PROC
+proc_ARX_Prison_TheMistake_FreeTheMistakeStartDialog()
+AND
+DB_ARX_Prison_TheMistake_PlayerThatReleasedHer(_Var1)
+AND NOT
+QRY_SpeakerIsAvailable(_Var1)
+AND
+QRY_GetClosestAvailableCharacterTo(S_ARX_Prison_TheMistake_5136657b-5d75-409f-814c-0eee4ff3913d, 1)
+AND
+DB_ClosestAvailableCharacterTo(_Var2, S_ARX_Prison_TheMistake_5136657b-5d75-409f-814c-0eee4ff3913d, _)
+AND
+QRY_SpeakerIsAvailable(S_ARX_Prison_TheMistake_5136657b-5d75-409f-814c-0eee4ff3913d)
+THEN
+Proc_StartDialog(0, "ARX_Prison_TheMistake", S_ARX_Prison_TheMistake_5136657b-5d75-409f-814c-0eee4ff3913d, _Var2);
+DB_ARX_Prison_TheMistake_StartedDialog(1);
+
+PROC
+proc_ARX_Prison_TheMistake_FreeTheMistakeStartDialog()
+AND NOT
+DB_ARX_Prison_TheMistake_PlayerThatReleasedHer(_)
+AND
+QRY_GetClosestAvailableCharacterTo(S_ARX_Prison_TheMistake_5136657b-5d75-409f-814c-0eee4ff3913d, 1)
+AND
+DB_ClosestAvailableCharacterTo(_Var2, S_ARX_Prison_TheMistake_5136657b-5d75-409f-814c-0eee4ff3913d, _)
+AND
+QRY_SpeakerIsAvailable(S_ARX_Prison_TheMistake_5136657b-5d75-409f-814c-0eee4ff3913d)
+THEN
+Proc_StartDialog(0, "ARX_Prison_TheMistake", S_ARX_Prison_TheMistake_5136657b-5d75-409f-814c-0eee4ff3913d, _Var2);
+DB_ARX_Prison_TheMistake_StartedDialog(1);
+
+PROC
+proc_ARX_Prison_TheMistake_FreeTheMistakeStartDialog()
+AND NOT
+DB_ARX_Prison_TheMistake_StartedDialog(1)
+THEN
+ObjectSetFlag(S_ARX_Prison_TheMistake_5136657b-5d75-409f-814c-0eee4ff3913d, "ARX_Prison_TheMistake_StartSpottingPlayer");
+
+IF
+CharacterCharacterEvent((CHARACTERGUID)_Var1, (CHARACTERGUID)_Var2, "ARX_Prison_TheMistake_StartDialog")
+THEN
+ObjectClearFlag(S_ARX_Prison_TheMistake_5136657b-5d75-409f-814c-0eee4ff3913d, "ARX_Prison_TheMistake_StartSpottingPlayer");
+Proc_StartDialog(0, "ARX_Prison_TheMistake", S_ARX_Prison_TheMistake_5136657b-5d75-409f-814c-0eee4ff3913d, _Var2);
+ProcClearStoryMove(S_ARX_Prison_TheMistake_5136657b-5d75-409f-814c-0eee4ff3913d);
+
+PROC
+proc_ARX_Prison_TheMistake_FreeTheMistakeStartDialog()
+AND
+DB_ARX_Prison_TheMistake_Seals(_, _Var2)
+AND NOT
+DB_GoneGhosts(_Var2)
+AND
+QueryOnlyOnce("ARX_Prison_TheMistake_GhostVanishing")
+THEN
+PlaySound(CHARACTERGUID_S_ARX_Prison_TheMistake_5136657b-5d75-409f-814c-0eee4ff3913d, "Skill_Item_MassPurgingDevice_Impact_Source");
+
+PROC
+proc_ARX_Prison_TheMistake_FreeTheMistakeStartDialog()
+AND
+DB_ARX_Prison_TheMistake_Seals(_, _Var2)
+AND NOT
+DB_GoneGhosts(_Var2)
+THEN
+Proc_GhostHacks_GhostPoof(_Var2);
+
+IF
+DialogEnded("ARX_Prison_TheMistake", (INTEGER)_Var1)
+AND
+GlobalGetFlag("ARX_Prison_TheMistake_IsFree", 1)
+THEN
+ObjectSetFlag(S_ARX_Prison_TheMistake_5136657b-5d75-409f-814c-0eee4ff3913d, "ARX_Prison_TheMistake_StopSpotting");
+
+IF
+DialogEnded("ARX_Prison_TheMistake", (INTEGER)_Var1)
+AND
+DB_DialogNPCs(_Var1, S_ARX_Prison_TheMistake_5136657b-5d75-409f-814c-0eee4ff3913d, _)
+AND
+ObjectGetFlag(S_ARX_Prison_TheMistake_5136657b-5d75-409f-814c-0eee4ff3913d, "ARX_TheMistake_StartCombatAfterDialog", 1)
+THEN
+CharacterSetRelationFactionToFaction("ARX_Prison_SilentMonk", "Hero", 0);
+CharacterSetRelationFactionToFaction("Hero", "ARX_Prison_SilentMonk", 0);
+CharacterSetRelationFactionToFaction("ARX_Prison_TheMistake", "Hero", 0);
+CharacterSetRelationFactionToFaction("Hero", "ARX_Prison_TheMistake", 0);
+CharacterSetRelationFactionToFaction("ARX_Prison_TheMistake", "Companion", 0);
+CharacterSetRelationFactionToFaction("Companion", "ARX_Prison_TheMistake", 0);
+
+IF
+DialogEnded("ARX_Prison_TheMistake", (INTEGER)_Var1)
+AND
+DB_DialogNPCs(_Var1, S_ARX_Prison_TheMistake_5136657b-5d75-409f-814c-0eee4ff3913d, _)
+AND
+ObjectGetFlag(S_ARX_Prison_TheMistake_5136657b-5d75-409f-814c-0eee4ff3913d, "ARX_TheMistake_Combat_SetupPrison", 1)
+THEN
+proc_ARX_Prison_TheMistake_StartCombatInPrison();
+
+PROC
+ProcRegionStarted("ARX_Main")
+THEN
+DB_HideEquippedWeapon(S_ARX_Prison_TheMistake_5136657b-5d75-409f-814c-0eee4ff3913d);
+
+PROC
+proc_ARX_Prison_TheMistake_StartCombatInPrison()
+THEN
+AutoSave();
+
+PROC
+proc_ARX_Prison_TheMistake_StartCombatInPrison()
+THEN
+CreateSurface(S_ARX_Prison_TheMistake_5136657b-5d75-409f-814c-0eee4ff3913d, "SurfaceNone", 2, 0);
+
+IF
+CharacterResurrected(S_ARX_Prison_Mistake_BlackRing3_0419d25a-af6e-4ad2-9394-710803f4af0f)
+THEN
+ItemTemplateAddTo("WPN_Arrow_Charming_A_d2740ee3-6f34-459d-b4bc-100c34f5ab7a", 0419d25a-af6e-4ad2-9394-710803f4af0f, 4, 0);
+
+IF
+CharacterResurrected(S_ARX_Prison_Mistake_BlackRing4_026049be-0529-4c39-82dd-245cb2c6b4cc)
+THEN
+ItemTemplateAddTo("ITEMGUID_GRN_Grenade_Ice_A_a16947e3-5f2f-42c7-b05b-7cdaeb204d28", 026049be-0529-4c39-82dd-245cb2c6b4cc, 3, 0);
+SetOnStage(ITEMGUID_S_ARX_UNIQUE_Crossbow_Cryotherapy_2946f9f7-cd9c-42a0-9603-6c46508e1ead, 1);
+ItemToInventory(ITEMGUID_S_ARX_UNIQUE_Crossbow_Cryotherapy_2946f9f7-cd9c-42a0-9603-6c46508e1ead, CHARACTERGUID_S_ARX_Prison_Mistake_BlackRing4_026049be-0529-4c39-82dd-245cb2c6b4cc, 1);
+
+IF
+ObjectEnteredCombat(S_ARX_Prison_TheMistake_5136657b-5d75-409f-814c-0eee4ff3913d, (INTEGER)_Var1)
+AND
+ObjectIsInTrigger(S_ARX_Prison_TheMistake_5136657b-5d75-409f-814c-0eee4ff3913d, S_ARX_UnderPrisonSewers_54fd8e4e-705a-493f-a5f5-45921f5abee7, 1)
+AND
+QueryOnlyOnce("ARX_Prison_TheMistake_FourceStartTurnOnlyOnce")
+THEN
+DB_ARX_Prison_TheMistakeForceStartTurn(S_ARX_Prison_TheMistake_5136657b-5d75-409f-814c-0eee4ff3913d, _Var1);
+
+IF
+ObjectSwitchedCombat(S_ARX_Prison_TheMistake_5136657b-5d75-409f-814c-0eee4ff3913d, (INTEGER)_Var1, (INTEGER)_Var2)
+AND
+DB_ARX_Prison_TheMistakeForceStartTurn(S_ARX_Prison_TheMistake_5136657b-5d75-409f-814c-0eee4ff3913d, _Var1)
+THEN
+NOT DB_ARX_Prison_TheMistakeForceStartTurn(S_ARX_Prison_TheMistake_5136657b-5d75-409f-814c-0eee4ff3913d, _Var1);
+DB_ARX_Prison_TheMistakeForceStartTurn(S_ARX_Prison_TheMistake_5136657b-5d75-409f-814c-0eee4ff3913d, _Var2);
+
+IF
+CombatStarted((INTEGER)_Var1)
+AND
+DB_ARX_Prison_TheMistakeForceStartTurn(_Var2, _Var1)
+THEN
+JumpToTurn(_Var2);
+
+IF
+ObjectFlagSet("ARX_Prison_TheMistake_PaladinExplode", (CHARACTERGUID)_Var1, _)
+THEN
+CharacterDie(_Var1, 0, "Explode");
+
+IF
+CharacterUsedSkillOnTarget((CHARACTERGUID)_Var1, S_ARX_Prison_TheMistake_5136657b-5d75-409f-814c-0eee4ff3913d, (STRING)_Var2, _, _)
+AND
+DB_SourceVampirism_Skills(_Var2)
+AND
+DB_IsPlayer(_Var1)
+AND
+GlobalGetFlag("ARX_Prison_TheMistake_WasSourceVamped", 0)
+AND
+GlobalGetFlag("ARX_Prison_TheMistake_IsFree", 0)
+AND
+CharacterGetMagicArmorPercentage(S_ARX_Prison_TheMistake_5136657b-5d75-409f-814c-0eee4ff3913d, 0)
+THEN
+GlobalSetFlag("ARX_Prison_TheMistake_VampedWhileNotFree");
+
+IF
+CharacterUsedSkillOnTarget((CHARACTERGUID)_Var1, S_ARX_Prison_TheMistake_5136657b-5d75-409f-814c-0eee4ff3913d, (STRING)_Var2, _, _)
+AND
+DB_SourceVampirism_Skills(_Var2)
+AND
+DB_IsPlayer(_Var1)
+AND
+CharacterGetMagicArmorPercentage(S_ARX_Prison_TheMistake_5136657b-5d75-409f-814c-0eee4ff3913d, 0)
+AND
+QueryOnlyOnce("ARX_Prison_TheMistake_WasSourceVamped")
+THEN
+PartySetFlag(_Var1, "QuestUpdate_ARX_Prison_TheMistake_SourceVampedHer");
+GlobalSetFlag("ARX_Prison_TheMistake_WasSourceVamped");
+TimerLaunch("ARX_Prison_TheMistake_WasSourceVamped_WaitForAniamtionToFisnish", 3000);
+DB_IgnoreAssault(S_ARX_Prison_TheMistake_5136657b-5d75-409f-814c-0eee4ff3913d);
+DB_ARX_Prison_TheMistake_PlayerThatVamped(_Var1);
+
+IF
+TimerFinished("ARX_Prison_TheMistake_WasSourceVamped_WaitForAniamtionToFisnish")
+AND
+DB_ARX_Prison_TheMistake_PlayerThatVamped(_Var1)
+THEN
+Proc_StartDialog(1, "ARX_AD_Prison_TheMistake_SourceVampirized", _Var1);
+
+IF
+TimerFinished("ARX_Prison_TheMistake_WasSourceVamped_WaitForAniamtionToFisnish")
+AND
+DB_ARX_Prison_TheMistake_PlayerThatVamped(_Var1)
+AND
+GlobalGetFlag("ARX_Prison_TheMistake_IsFree", 0)
+THEN
+proc_ARX_Prison_TheMistake_SigilDisappear();
+
+IF
+TextEventSet("TheMistake_SourceVamp")
+AND
+DB_IsPlayer(_Var1)
+AND
+QueryOnlyOnce("ARX_Prison_TheMistake_WasSourceVamped")
+THEN
+DB_ARX_Prison_TheMistake_PlayerThatVamped(_Var1);
+GlobalSetFlag("ARX_Prison_TheMistake_WasSourceVamped");
+GlobalSetFlag("ARX_Prison_TheMistake_VampedWhileNotFree");
+
+IF
+CharacterDying(S_ARX_Prison_TheMistake_5136657b-5d75-409f-814c-0eee4ff3913d)
+THEN
+GlobalSetFlag("ARX_Prison_TheMistake_IsDead");
+
+IF
+CharacterDying(S_ARX_Prison_TheMistake_5136657b-5d75-409f-814c-0eee4ff3913d)
+AND
+GlobalGetFlag("ARX_Prison_TheMistake_WasSourceVamped", 0)
+AND
+GetPosition(S_ARX_Prison_TheMistake_5136657b-5d75-409f-814c-0eee4ff3913d, _Var1, _Var2, _Var3)
+THEN
+CharacterDie(S_ARX_Prison_TheMistake_5136657b-5d75-409f-814c-0eee4ff3913d, 0, "Explode");
+PlayEffect(S_ARX_Prison_TheMistake_5136657b-5d75-409f-814c-0eee4ff3913d, "RS3_FX_GP_ScriptedEvent_Teleport_GenericSmoke_02");
+CreateExplosionAtPosition(_Var1, _Var2, _Var3, "Projectile_EnemyFireball", 20);
+
+IF
+CombatEnded((INTEGER)_Var1)
+AND
+GlobalGetFlag("ARX_TheMistake_MistakeIsGone", 0)
+AND
+DB_ARX_Prison_TheMistakeForceStartTurn(_, _Var1)
+AND
+DB_WasInCombat(S_ARX_Prison_TheMistake_5136657b-5d75-409f-814c-0eee4ff3913d, _Var1)
+AND
+DB_IsPlayer(_Var3)
+AND
+DB_WasInCombat(_Var3, _Var1)
+AND
+CharacterIsDead(_Var3, 0)
+AND NOT
+DB_InRegion(_, S_ARX_UnderPrisonSewers_54fd8e4e-705a-493f-a5f5-45921f5abee7)
+AND
+QueryOnlyOnce("ARX_Prison_TheMistake_FledCombat")
+THEN
+PartySetFlag(_Var3, "QuestUpdate_ARX_Prison_TheMistake_FledCombat");
+
+IF
+CombatEnded((INTEGER)_Var1)
+AND
+GlobalGetFlag("ARX_TheMistake_MistakeIsGone", 0)
+AND
+DB_ARX_Prison_TheMistakeForceStartTurn(_, _Var1)
+AND
+DB_WasInCombat(S_ARX_Prison_TheMistake_5136657b-5d75-409f-814c-0eee4ff3913d, _Var1)
+AND
+DB_IsPlayer(_Var3)
+AND
+DB_InRegion(_Var3, S_ARX_UnderPrisonSewers_54fd8e4e-705a-493f-a5f5-45921f5abee7)
+AND
+QueryOnlyOnce("ARX_Prison_TheMistake_Escaping")
+THEN
+GlobalSetFlag("ARX_Prison_TheMistake_Escaping");
+Proc_StartDialog(1, "ARX_AD_Prison_TheMistake", S_ARX_Prison_TheMistake_5136657b-5d75-409f-814c-0eee4ff3913d);
+DB_ARX_Prison_TheMistake_PlayerSaw_MistakeLeaveSewers(_Var3);
+
+IF
+CombatEnded((INTEGER)_Var1)
+AND
+GlobalGetFlag("ARX_TheMistake_MistakeIsGone", 0)
+AND
+DB_ARX_Prison_TheMistakeForceStartTurn(_, _Var1)
+AND
+DB_WasInCombat(S_ARX_Prison_TheMistake_5136657b-5d75-409f-814c-0eee4ff3913d, _Var1)
+AND NOT
+DB_InRegion(_, S_ARX_UnderPrisonSewers_54fd8e4e-705a-493f-a5f5-45921f5abee7)
+AND
+QueryOnlyOnce("ARX_Prison_TheMistake_Escaping")
+THEN
+GlobalSetFlag("ARX_TheMistake_MistakeIsGone");
+proc_ARX_TheMistake_MistakeDisappeared();
+Proc_ARX_Prison_TheMistake_MistakeIsGoneFlee_PrepUpdate(_Var1);
+proc_ARX_Prison_TheMistake_PlayerDidntAct();
+
+IF
+CombatEnded((INTEGER)_Var1)
+AND
+DB_ARX_Prison_TheMistakeForceStartTurn(_Var2, _Var1)
+THEN
+NOT DB_ARX_Prison_TheMistakeForceStartTurn(_Var2, _Var1);
+
+PROC
+Proc_ARX_Prison_TheMistake_MistakeIsGoneFlee_PrepUpdate((INTEGER)_Var1)
+AND
+DB_IsPlayer(_Var2)
+AND
+DB_WasInCombat(_Var2, _Var1)
+THEN
+PartySetFlag(_Var2, "ARX_Prison_TheMistake_MistakeFled_PlayerWasInCombat");
+
+IF
+AutomatedDialogEnded("ARX_AD_Prison_TheMistake", (INTEGER)_Var1)
+AND
+DialogGetInvolvedNPC(_Var1, 1, _Var2)
+AND
+ObjectGetFlag(_Var2, "ARX_TheMistake_DisapearAfterDialog", 1)
+THEN
+LeaveCombat(_Var2);
+GlobalSetFlag("ARX_TheMistake_MistakeIsGone");
+SetOnStage(FX_Env_Portal_L_000_893f52d3-9a56-4123-8fd7-d4243738b3c1, 0);
+proc_ARX_TheMistake_MistakeDisappeared();
+ObjectClearFlag(_Var2, "ARX_TheMistake_DisapearAfterDialog");
+
+PROC
+proc_ARX_TheMistake_MistakeDisappeared()
+AND
+DB_ARX_Prison_TheMistake_PlayerSaw_MistakeLeaveSewers(_Var1)
+THEN
+NOT DB_ARX_Prison_TheMistake_PlayerSaw_MistakeLeaveSewers(_Var1);
+PartySetFlag(_Var1, "QuestUpdate_ARX_Prison_TheMistake_LeftSewers");
+
+PROC
+proc_ARX_TheMistake_MistakeDisappeared()
+THEN
+Poof(S_ARX_Prison_TheMistake_5136657b-5d75-409f-814c-0eee4ff3913d);
+
+PROC
+proc_ARX_TheMistake_MistakeDisappeared()
+AND
+DB_ARX_Prison_TheMistake_ARX_Crypt_SpawnTriggers(_Var1, _Var2)
+AND
+CharacterIsDead(_Var2, 0)
+THEN
+Poof(_Var2);
+
+IF
+DB_ARX_Prison_TheMistake_PlayerDidntAct_BodyParts(_Var1)
+THEN
+SetOnStage(_Var1, 0);
+
+IF
+CharacterEnteredTrigger((CHARACTERGUID)_Var1, S_ARX_Prison_TheMistakeTrigger_36773fe5-0673-4668-8e10-b68c3ba811be)
+AND
+DB_IsPlayer(_Var1)
+AND
+GlobalGetFlag("ARX_Prison_TheMistake_SawTheMistake", 0)
+AND
+CharacterIsDead(S_ARX_Prison_TheMistake_5136657b-5d75-409f-814c-0eee4ff3913d, 0)
+AND
+ObjectIsOnStage(S_ARX_Prison_TheMistake_5136657b-5d75-409f-814c-0eee4ff3913d, 1)
+AND
+QueryOnlyOnce("ARX_Prison_TheMistake_SawTheMistake")
+THEN
+StartVoiceBark("ARX_VB_Prison_TheMistake_SawHer", _Var1);
+GlobalSetFlag("ARX_Prison_TheMistake_SawTheMistake");
+UserSetFlag(_Var1, "QuestUpdate_ARX_Prison_TheMistake_SawTheMistake");
+
+IF
+CharacterLeftTrigger((CHARACTERGUID)_Var1, S_ARX_UnderPrisonSewers_54fd8e4e-705a-493f-a5f5-45921f5abee7)
+AND
+DB_CurrentLevel(_)
+AND
+DB_IsPlayer(_Var1)
+AND NOT
+DB_InRegion(_, S_ARX_UnderPrisonSewers_54fd8e4e-705a-493f-a5f5-45921f5abee7)
+AND
+GlobalGetFlag("ARX_Prison_TheMistake_SawTheMistake", 1)
+AND
+GlobalGetFlag("ARX_Prison_TheMistake_IsFree", 0)
+AND
+GlobalGetFlag("ARX_Prison_TheMistake_AgreedToRelease", 0)
+AND
+GlobalGetFlag("ARX_TheMistake_MistakeIsGone", 0)
+AND
+QueryOnlyOnce("ARX_Prison_TheMistake_DidntReact")
+THEN
+Proc_ARX_Prison_TheMistake_RemoveSourceCollar();
+GlobalSetFlag("ARX_Prison_TheMistake_DidntReact");
+proc_ARX_Prison_TheMistake_PlayerDidntAct();
+UserSetFlag(_Var1, "QuestUpdate_ARX_Prison_TheMistake_DidntReact");
+GlobalSetFlag("ARX_TheMistake_MistakeIsGone");
+
+PROC
+proc_ARX_Prison_TheMistake_PlayerDidntAct()
+AND
+GlobalGetFlag("ARX_Prison_TheMistake_IsFree", 0)
+AND
+QRY_AnyRegionActive()
+AND
+DB_ARX_Prison_TheMistake_SilentMonkDoors(_Var1)
+THEN
+ItemUnLock(_Var1);
+ItemOpen(_Var1);
+
+PROC
+proc_ARX_Prison_TheMistake_PlayerDidntAct()
+AND
+QRY_AnyRegionActive()
+THEN
+DebugText(CHARACTERGUID_S_Player_Sebille_c8d55eaf-e4eb-466a-8f0d-6a9447b5b24c, " I didn't Act");
+SetOnStage(FX_Env_Portal_L_000_893f52d3-9a56-4123-8fd7-d4243738b3c1, 0);
+SetOnStage(S_ARX_Prison_TheMistake_5136657b-5d75-409f-814c-0eee4ff3913d, 0);
+
+PROC
+proc_ARX_Prison_TheMistake_PlayerDidntAct()
+AND
+QRY_AnyRegionActive()
+AND
+DB_ARX_Prison_TheMistake_SilentMonkDoors(_Var1)
+THEN
+ItemUnLock(_Var1);
+ItemOpen(_Var1);
+
+PROC
+proc_ARX_Prison_TheMistake_PlayerDidntAct()
+AND
+QRY_AnyRegionActive()
+AND
+DB_ARX_Prison_TheMistake_Seals(_Var1, _Var2)
+AND NOT
+DB_GoneGhosts(_Var2)
+AND
+_Var2 != S_ARX_Prison_TheMistake_SeekerGuard1_7f69298b-6dae-4a08-8a65-e4a8cb4f7b5a
+THEN
+Proc_GhostHacks_GhostPoof(_Var2);
+
+PROC
+proc_ARX_Prison_TheMistake_PlayerDidntAct()
+AND
+QRY_AnyRegionActive()
+THEN
+ItemUnLock(S_ARX_Prison_TheMistake_CellDoor_ARX_Prison_A_000_3a941cf2-1bbe-8d08-3b02-96d3fe1fa830);
+ItemOpen(S_ARX_Prison_TheMistake_CellDoor_ARX_Prison_A_000_3a941cf2-1bbe-8d08-3b02-96d3fe1fa830);
+
+PROC
+proc_ARX_Prison_TheMistake_PlayerDidntAct()
+AND
+QRY_AnyRegionActive()
+AND
+DB_ARX_Prison_TheMistake_SilentMonks(_Var1)
+THEN
+SetOnStage(_Var1, 0);
+
+PROC
+proc_ARX_Prison_TheMistake_PlayerDidntAct()
+AND
+QRY_AnyRegionActive()
+AND
+DB_ARX_Prison_TheMistake_PlayerDidntAct_BodyParts(_Var1)
+THEN
+SetOnStage(_Var1, 1);
+
+PROC
+proc_ARX_Prison_TheMistake_PlayerDidntAct()
+AND
+QRY_AnyRegionActive()
+AND
+DB_ARX_Prison_TheMistake_SilentMonks_Triggers(_Var1)
+THEN
+CreatePuddle(_Var1, "SurfaceBlood", 260, 300, 10, 15, 0.05);
+
+PROC
+proc_ARX_Prison_TheMistake_PlayerDidntAct()
+AND
+QRY_AnyRegionActive()
+AND
+DB_ARX_Prison_TheMistake_SurfaceCreation_Triggers(_Var1)
+THEN
+CreatePuddle(_Var1, "SurfaceBlood", 260, 300, 10, 15, 0.05);
+
+IF
+CharacterEnteredTrigger((CHARACTERGUID)_Var1, S_ARX_Prison_TheMistakeTrigger_36773fe5-0673-4668-8e10-b68c3ba811be)
+AND
+DB_IsPlayer(_Var1)
+AND
+GlobalGetFlag("ARX_TheMistake_MistakeIsGone", 1)
+AND
+QueryOnlyOnce("ARX_TheMistake_SawThatTheMistakeIsGone")
+THEN
+proc_ARX_Prison_TheMistake_MistakeIsGone_ReturnedToPrison(_Var1);
+
+PROC
+proc_ARX_Prison_TheMistake_MistakeIsGone_ReturnedToPrison((CHARACTERGUID)_Var1)
+AND
+GlobalGetFlag("ARX_Prison_TheMistake_DidntReact", 1)
+THEN
+Proc_StartDialog(1, "ARX_AD_Prison_TheMistake_ReactToMistakeIsGone", _Var1);
+PartySetFlag(_Var1, "QuestUpdate_ARX_Prison_TheMistake_MistakeIsGoneReturnedToPrison");
+
+PROC
+proc_ARX_Prison_TheMistake_MistakeIsGone_ReturnedToPrison((CHARACTERGUID)_Var1)
+AND
+ObjectGetFlag(_Var1, "ARX_Prison_TheMistake_MistakeFled_PlayerWasInCombat", 1)
+THEN
+Proc_StartDialog(1, "ARX_AD_Prison_TheMistake_ReactToMistakeIsGone", _Var1);
+PartySetFlag(_Var1, "QuestUpdate_ARX_Prison_TheMistake_MistakeIsGoneReturnedToPrison");
+
+IF
+GlobalFlagSet("ARX_TheMistake_MistakeIsGone")
+THEN
+ProcTriggerRegisterForPlayers(TRIGGERGUID_S_ARX_TheMistake_EscapedPrison_Appear_48b53d39-9738-4fc8-8dd7-9153c97a49a9);
+
+IF
+CharacterEnteredTrigger((CHARACTERGUID)_Var1, TRIGGERGUID_S_ARX_TheMistake_EscapedPrison_Appear_48b53d39-9738-4fc8-8dd7-9153c97a49a9)
+THEN
+ProcTriggerUnregisterForPlayers(TRIGGERGUID_S_ARX_TheMistake_EscapedPrison_Appear_48b53d39-9738-4fc8-8dd7-9153c97a49a9);
+Proc_ARX_Prison_TheMistake_AppearInCatacombs(_Var1);
+
+PROC
+Proc_ARX_Prison_TheMistake_AppearInCatacombs((CHARACTERGUID)_Var1)
+AND
+GlobalGetFlag("ARX_Prison_TheMistake_IsFree", 0)
+THEN
+GlobalSetFlag("ARX_Prison_TheMistake_IsFree");
+Poof(S_ARX_Prison_TheMistake_5136657b-5d75-409f-814c-0eee4ff3913d);
+
+PROC
+Proc_ARX_Prison_TheMistake_AppearInCatacombs((CHARACTERGUID)_Var1)
+THEN
+SetCanFight(S_ARX_Prison_TheMistake_5136657b-5d75-409f-814c-0eee4ff3913d, 1);
+SetCanJoinCombat(S_ARX_Prison_TheMistake_5136657b-5d75-409f-814c-0eee4ff3913d, 1);
+SetRelationFactionToPlayers("ARX_Prison_TheMistake", 50);
+SetOnStage(S_ARX_Prison_TheMistake_5136657b-5d75-409f-814c-0eee4ff3913d, 1);
+TeleportTo(S_ARX_Prison_TheMistake_5136657b-5d75-409f-814c-0eee4ff3913d, TRIGGERGUID_S_ARX_Prison_TheMistake_Spawn_a2427c6e-1c2b-4ca1-8523-0061bd471b6d);
+ProcCharacterMoveTo(S_ARX_Prison_TheMistake_5136657b-5d75-409f-814c-0eee4ff3913d, _Var1, 1, "");
+ObjectSetFlag(S_ARX_Prison_TheMistake_5136657b-5d75-409f-814c-0eee4ff3913d, "ARX_Prison_TheMistake_StartSpottingPlayer");
+
+IF
+DialogEnded("ARX_Prison_TheMistake", (INTEGER)_Var1)
+AND
+DB_DialogNPCs(_Var1, S_ARX_Prison_TheMistake_5136657b-5d75-409f-814c-0eee4ff3913d, _)
+AND
+ObjectGetFlag(S_ARX_Prison_TheMistake_5136657b-5d75-409f-814c-0eee4ff3913d, "ARX_TheMistake_Combat_SetupCrypt", 1)
+THEN
+Proc_ARX_TheMistake_Crypt_SpawnMinions();
+
+IF
+ObjectFlagSet("ARX_Prison_TheMistake_TurnToAdultInDialog", (GUIDSTRING)_Var1, (INTEGER)_Var2)
+AND
+GetPosition(S_ARX_Prison_TheMistake_5136657b-5d75-409f-814c-0eee4ff3913d, _Var3, _Var4, _Var5)
+THEN
+PlayEffectAtPosition("RS3_FX_GP_ScriptedEvent_ARX_TheMistake_Transform_01", _Var3, _Var4, _Var5);
+Proc_ARX_Prison_TheMistake_Transform_Template();
+
+PROC
+Proc_ARX_TheMistake_Crypt_SpawnMinions()
+AND
+GlobalGetFlag("ARX_Prison_TheMistake_DidntReact", 1)
+AND
+ObjectGetFlag(S_ARX_Prison_TheMistake_5136657b-5d75-409f-814c-0eee4ff3913d, "ARX_Prison_TheMistake_TurnToAdultInDialog", 0)
+AND
+GetPosition(S_ARX_Prison_TheMistake_5136657b-5d75-409f-814c-0eee4ff3913d, _Var1, _Var2, _Var3)
+THEN
+PlayEffectAtPosition("RS3_FX_GP_ScriptedEvent_ARX_TheMistake_Transform_01", _Var1, _Var2, _Var3);
+Proc_ARX_Prison_TheMistake_Transform_Template();
+
+PROC
+Proc_ARX_TheMistake_Crypt_SpawnMinions()
+AND
+DB_ARX_Prison_TheMistake_ARX_Crypt_SpawnTriggers(_Var1, _Var2)
+AND
+CharacterIsDead(_Var2, 1)
+THEN
+CharacterResurrect(_Var2);
+
+PROC
+Proc_ARX_TheMistake_Crypt_SpawnMinions()
+AND
+DB_ARX_Prison_TheMistake_ARX_Crypt_SpawnTriggers(_Var1, _Var2)
+THEN
+Poof(_Var2);
+CharacterAppearAt(_Var2, _Var1, 1, "");
+
+PROC
+Proc_ARX_TheMistake_Crypt_SpawnMinions()
+THEN
+DB_ARX_Cathedral_Catacombs_ATM_RevertAfterCombat(S_ARX_Prison_TheMistake_5136657b-5d75-409f-814c-0eee4ff3913d);
+TriggerSetAtmosphere(TRIGGERGUID_ATM_ARX_Cathedral_Catacombs_1de59f6e-8015-45e3-bb68-de7586f15b00, "b18c4375-688f-41a8-a983-3b4535ed12a4");
+
+IF
+CharacterDying((CHARACTERGUID)_Var1)
+AND
+DB_ARX_Cathedral_Catacombs_ATM_RevertAfterCombat(_Var1)
+AND NOT
+DB_CombatCharacters(_Var1, _)
+THEN
+TriggerSetAtmosphere(TRIGGERGUID_ATM_ARX_Cathedral_Catacombs_1de59f6e-8015-45e3-bb68-de7586f15b00, "527981ac-bd8d-4234-8326-eef613faedd2");
+NOT DB_ARX_Cathedral_Catacombs_ATM_RevertAfterCombat(_Var1);
+
+IF
+CharacterDying((CHARACTERGUID)_Var1)
+AND
+DB_ARX_Cathedral_Catacombs_ATM_RevertAfterCombat(_Var1)
+AND
+DB_CombatCharacters(_Var2, _Var3)
+THEN
+NOT DB_ARX_Cathedral_Catacombs_ATM_RevertAfterCombat(_Var1);
+DB_ARX_Cathedral_Catacombs_ATM_RevertAfterCombat(_Var1, _Var3);
+
+IF
+ObjectSwitchedCombat((GUIDSTRING)_Var1, (INTEGER)_Var2, (INTEGER)_Var3)
+AND
+DB_ARX_Cathedral_Catacombs_ATM_RevertAfterCombat(_Var4, _Var2)
+THEN
+NOT DB_ARX_Cathedral_Catacombs_ATM_RevertAfterCombat(_Var4, _Var2);
+DB_ARX_Cathedral_Catacombs_ATM_RevertAfterCombat(_Var4, _Var3);
+
+IF
+CombatEnded((INTEGER)_Var1)
+AND
+DB_ARX_Cathedral_Catacombs_ATM_RevertAfterCombat(_Var2, _Var1)
+THEN
+NOT DB_ARX_Cathedral_Catacombs_ATM_RevertAfterCombat(_Var2, _Var1);
+TriggerSetAtmosphere(TRIGGERGUID_ATM_ARX_Cathedral_Catacombs_1de59f6e-8015-45e3-bb68-de7586f15b00, "527981ac-bd8d-4234-8326-eef613faedd2");
+
+IF
+DialogEnded("ARX_Prison_TheMistake_Ghost", (INTEGER)_Var1)
+AND
+DB_DialogPlayers(_Var1, _Var2, _)
+AND
+ObjectGetFlag(_Var2, "ARX_Prison_TheMistake_Ghost_GiveReward", 1)
+THEN
+PlayEffect(_Var2, "RS3_FX_GP_Status_LevelUp_01");
+CharacterAddTalentPoint(_Var2, 1);
+CharacterPlayHUDSound(_Var2, "UI_Game_LevelUp");
+
+IF
+DialogEnded("ARX_Prison_TheMistake", (INTEGER)_Var1)
+AND
+DB_DialogNPCs(_Var1, S_ARX_Prison_TheMistake_5136657b-5d75-409f-814c-0eee4ff3913d, _)
+AND
+ObjectGetFlag(S_ARX_Prison_TheMistake_5136657b-5d75-409f-814c-0eee4ff3913d, "ARX_TheMistake_DisapearAfterDialog", 1)
+THEN
+ObjectClearFlag(S_ARX_Prison_TheMistake_5136657b-5d75-409f-814c-0eee4ff3913d, "ARX_TheMistake_DisapearAfterDialog");
+GlobalSetFlag("ARX_Prison_TheMistake_AgreedToRelease");
+SetHasDialog(S_ARX_Prison_TheMistake_5136657b-5d75-409f-814c-0eee4ff3913d, 0);
+Poof(S_ARX_Prison_TheMistake_5136657b-5d75-409f-814c-0eee4ff3913d);
+GlobalSetFlag("ARX_TheMistake_MistakeIsGone");
+
+PROC
+proc_ARX_Prison_TheMistake_SigilDisappear()
+AND
+DB_ARX_Prison_TheMistake_PlayerThatReleasedHer(_Var1)
+THEN
+ObjectSetFlag(_Var1, "QuestUpdate_ARX_Prison_TheMistake_ReleasedHer");
+
+IF
+ObjectFlagSet("ARX_Prison_TheMistake_SourceVisionSeekers_SetUpdate", (CHARACTERGUID)_Var1, _)
+AND NOT
+QRY_ARX_Prison_TheMistake_SourceVisionSeekers_Knows(_Var1)
+THEN
+PartySetFlag(_Var1, "QuestUpdate_ARX_Prison_TheMistake_SourceVisionSeekersNotKnow");
+
+QRY
+QRY_ARX_Prison_TheMistake_SourceVisionSeekers_Knows((CHARACTERGUID)_Var1)
+AND
+PartyGetFlag(_Var1, "QuestUpdate_FTJ_SW_CallToArms_GotCallToArms", 1)
+THEN
+PartySetFlag(_Var1, "QuestUpdate_ARX_Prison_TheMistake_SourceVisionSeekersKnown");
+
+QRY
+QRY_ARX_Prison_TheMistake_SourceVisionSeekers_Knows((CHARACTERGUID)_Var1)
+AND
+PartyGetFlag(_Var1, "QuestUpdate_FTJ_SW_CallToArms_GotCallToArms_Exter", 1)
+THEN
+PartySetFlag(_Var1, "QuestUpdate_ARX_Prison_TheMistake_SourceVisionSeekersKnown");
+
+IF
+TextEventSet("TeleportBlackRing")
+AND
+DB_ARX_Prison_TheMistake_ARX_Crypt_SpawnTriggers(_Var1, _Var2)
+AND
+CharacterIsDead(_Var2, 0)
+THEN
+PlayEffect(_Var2, "RS3_FX_GP_ScriptedEvent_Teleport_GenericSmoke_01");
+TeleportTo(_Var2, _Var1);
+PlayEffect(_Var2, "RS3_FX_GP_ScriptedEvent_Teleport_GenericSmoke_01");
+
+IF
+TextEventSet("TheMistakeIsGone")
+THEN
+proc_ARX_Prison_TheMistake_StartCombatInPrison();
+GlobalSetFlag("ARX_TheMistake_MistakeIsGone");
+SetOnStage(ITEMGUID_S_FX_Env_Portal_L_000_893f52d3-9a56-4123-8fd7-d4243738b3c1, 0);
+proc_ARX_TheMistake_MistakeDisappeared();
+
+IF
+TextEventSet("ARX_Prison_ChangeATM")
+THEN
+TriggerSetAtmosphere(S_ATM_ARX_TheMistakeIsFree_GloomTrigger_9ce919b8-1919-46fc-869b-6b4819b903ce, "b18c4375-688f-41a8-a983-3b4535ed12a4");
+
+
+EXITSECTION
+ENDEXITSECTION
+
+ParentTargetEdge "ARX"

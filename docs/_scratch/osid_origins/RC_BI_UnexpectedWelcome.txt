@@ -1,0 +1,39 @@
+Version 1
+SubGoalCombiner SGC_AND
+
+INITSECTION
+DB_Dialogs(CHARACTERGUID_S_RC_BI_Bridge_Demon_001_a23383ec-d363-4639-af2b-6be7a5e806b9, "RC_BI_Bridge_Demon_001");
+DB_Dialogs(CHARACTERGUID_S_RC_BI_Bridge_Demon_002_d36e8584-9752-4c49-98dc-81fde5cd9964, "RC_BI_Bridge_Demon_002");
+DB_Dialogs(CHARACTERGUID_S_RC_BI_Bridge_Demon_003_ee6b9322-a5a5-4e67-b55f-10380b30aaae, "RC_BI_Bridge_Demon_003");
+DB_BI_BridgeDemons(S_RC_BI_Bridge_Demon_001_a23383ec-d363-4639-af2b-6be7a5e806b9, "RC_BI_Bridge_Demon_001");
+DB_BI_BridgeDemons(S_RC_BI_Bridge_Demon_002_d36e8584-9752-4c49-98dc-81fde5cd9964, "RC_BI_Bridge_Demon_002");
+DB_BI_BridgeDemons(S_RC_BI_Bridge_Demon_003_ee6b9322-a5a5-4e67-b55f-10380b30aaae, "RC_BI_Bridge_Demon_003");
+
+KBSECTION
+IF
+CharacterCharacterEvent((CHARACTERGUID)_Var1, (CHARACTERGUID)_Var2, "RC_BI_Bridge_DemonTalk")
+AND
+DB_IsPlayer(_Var2)
+AND
+QRY_RC_BI_DemonCamp_MetNoMessengers(_Var2)
+AND
+DB_Dialogs(_Var1, _Var3)
+THEN
+Proc_StartDialog(0, _Var3, _Var1, _Var2);
+
+IF
+GameBookInterfaceClosed(ITEMGUID_S_RC_BI_Bridge_Document_6aa92e6c-089a-4877-b382-34c46dfb71b2, (CHARACTERGUID)_Var1)
+THEN
+UserSetFlag(_Var1, "RC_BI_Bridge_ReadDocument");
+ProcShowMarker(_Var1, "RC_BI_Vault_001");
+ProcShowMarker(_Var1, "RC_BI_Vault_002");
+ProcShowMarker(_Var1, "RC_BI_Vault_003");
+ProcShowMarker(_Var1, "RC_BI_Archive");
+ProcShowMarker(_Var1, "RC_BI_AncientForge");
+UserSetFlag(_Var1, "QuestUpdate_RC_BI_TheVaults_LocatedVaults");
+
+
+EXITSECTION
+ENDEXITSECTION
+
+ParentTargetEdge "ReapersCoast"

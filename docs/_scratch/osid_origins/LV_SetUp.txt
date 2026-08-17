@@ -1,0 +1,223 @@
+Version 1
+SubGoalCombiner SGC_AND
+
+INITSECTION
+DB_Dialogs(CHARACTERGUID_S_GLO_River_f4931ebe-10b0-43c4-9182-640cf052717e, "FTJ_SW_River");
+DB_CanUseSkillCheck("FTJ_SW_River", "Target_Bless", 1);
+ItemSetCanInteract(ITEMGUID_S_FTJ_BoatToShip_001_63914b60-eea0-4d17-8081-898b58ef9cc0, 0);
+DB_BlockPolymorphDialog("FTJ_SW_River");
+
+KBSECTION
+PROC
+ReactOnKillCounter("FTJ_FinalBattle")
+THEN
+SetOnStage(ITEMGUID_S_FTJ_BoatToShip_001_63914b60-eea0-4d17-8081-898b58ef9cc0, 1);
+SetOnStage(CHARACTERGUID_S_GLO_River_f4931ebe-10b0-43c4-9182-640cf052717e, 1);
+TimerLaunch("FTJ_SW_RiverAppear_Timer", 4000);
+
+IF
+TimerFinished("FTJ_SW_RiverAppear_Timer")
+AND
+GlobalGetFlag("FTJ_LV_SetUp", 0)
+THEN
+TeleportTo(CHARACTERGUID_S_GLO_River_f4931ebe-10b0-43c4-9182-640cf052717e, TRIGGERGUID_S_FTJ_SW_RiverJumpTo_Point_d8964eef-17d9-49ba-8aeb-b60bc89b3933);
+SetVarFixedString(CHARACTERGUID_S_GLO_River_f4931ebe-10b0-43c4-9182-640cf052717e, "currentState", "State_FTJ_SW_EndOfAct1");
+CreateSurface(TRIGGERGUID_S_FTJ_SW_RiverJumpTo_Point_d8964eef-17d9-49ba-8aeb-b60bc89b3933, "SurfaceNone", 6.5, 1);
+CreateSurface(TRIGGERGUID_S_FTJ_SW_RverDefault_Point_52146de3-d50a-4dcd-9997-3156ba43ac43, "SurfaceNone", 6.5, 1);
+TimerLaunch("FTJ_SW_BoatToLV_Splash_Stop", 300);
+TriggerResetAtmosphere(TRIGGERGUID_S_AtmosphereTrigger_FTJ_FinalBattleBeach_d4987042-6d48-4c3d-8ac5-763d0c400902);
+
+IF
+ObjectFlagSet("FTJ_SW_MaladyMoveToPlayer", (GUIDSTRING)_Var1, _)
+THEN
+ProcCharacterMoveTo(CHARACTERGUID_S_GLO_River_f4931ebe-10b0-43c4-9182-640cf052717e, _Var1, 1, "");
+ObjectClearFlag(_Var1, "FTJ_SW_MaladyMoveToPlayer", 0);
+
+IF
+SavegameLoaded((INTEGER)_Var1, (INTEGER)_Var2, (INTEGER)_Var3, (INTEGER)_Var4)
+AND
+QRY_VersionIsOlderThan(_Var1, _Var2, _Var3, _Var4, 3, 6, 7, 0)
+AND NOT
+DB_BlockPolymorphDialog("FTJ_SW_River")
+THEN
+DB_BlockPolymorphDialog("FTJ_SW_River");
+
+IF
+DialogStarted("FTJ_SW_River", _)
+THEN
+PROC_CheckCanLeaveAct1();
+
+IF
+DialogStarted("FTJ_SW_River", (INTEGER)_Var1)
+AND
+DialogGetInvolvedPlayer(_Var1, 1, _Var2)
+THEN
+ObjectSetFlag(_Var2, "QuestUpdate_FTJ_Escape_MetRiver");
+
+PROC
+PROC_CheckCanLeaveAct1()
+THEN
+ProcDeclareCounter("FTJ_CanLeaveAct1Players");
+
+PROC
+PROC_CheckCanLeaveAct1()
+AND
+DB_IsPlayer(_Var1)
+AND
+IsTagged(_Var1, "AVATAR", 1)
+AND
+ObjectGetFlag(_Var1, "FTJ_SW_HoEReturnToShrine", 1)
+THEN
+ProcIncreaseCounter("FTJ_CanLeaveAct1Players", 1);
+
+PROC
+PROC_CheckCanLeaveAct1()
+AND
+SysCount("DB_Avatars", 1, _Var1)
+AND
+DB_GlobalCounter("FTJ_CanLeaveAct1Players", _Var2)
+AND
+_Var1 == _Var2
+THEN
+GlobalSetFlag("FTJ_SW_PartyCanLeaveAct1");
+
+PROC
+PROC_CheckCanLeaveAct1()
+AND
+SysCount("DB_Avatars", 1, _Var1)
+AND
+DB_GlobalCounter("FTJ_CanLeaveAct1Players", _Var2)
+AND
+_Var1 != _Var2
+THEN
+GlobalClearFlag("FTJ_SW_PartyCanLeaveAct1");
+
+PROC
+PROC_CheckCanLeaveAct1()
+THEN
+ProcRemoveCounter("FTJ_CanLeaveAct1Players");
+
+IF
+ObjectFlagSet("AddSourcePoint", (GUIDSTRING)_Var1, (INTEGER)_Var2)
+AND
+DB_DialogName("FTJ_SW_River", _Var2)
+THEN
+PlayEffect(_Var1, "RS3_FX_GP_ScriptedEvent_Replenish_SourcePoint_01");
+
+IF
+ObjectFlagSet("FTJ_SW_PlayerUseBlessOnRiver", (CHARACTERGUID)_Var1, _)
+THEN
+CharacterUseSkill(_Var1, "Target_Bless", CHARACTERGUID_S_GLO_River_f4931ebe-10b0-43c4-9182-640cf052717e);
+
+IF
+ObjectFlagSet("FTJ_SW_PlayerUseBlessOnSelf", (CHARACTERGUID)_Var1, _)
+THEN
+CharacterUseSkill(_Var1, "Target_Bless", _Var1);
+
+IF
+StoryEvent((CHARACTERGUID)_Var1, "FTJ_RiverStartDialog")
+AND
+QueryOnlyOnce("FTJ_SW_River_StartDialog_Once")
+THEN
+Proc_StartDialog(0, "FTJ_SW_River", CHARACTERGUID_S_GLO_River_f4931ebe-10b0-43c4-9182-640cf052717e, _Var1);
+
+IF
+DialogStarted("FTJ_SW_River", (INTEGER)_Var1)
+THEN
+DB_GLO_AllDialogObjectFlagsShared(_Var1);
+
+PROC
+Proc_FTJ_SW_HoeStatue_StunCompanions((CHARACTERGUID)_Var1, CHARACTERGUID_S_GLO_River_f4931ebe-10b0-43c4-9182-640cf052717e)
+AND
+CharacterGetReservedUserID(_Var1, _Var2)
+AND
+DB_IsPlayer(_Var3)
+AND
+CharacterGetReservedUserID(_Var3, _Var2)
+AND
+_Var3 != _Var1
+AND
+IsTagged(_Var3, "AVATAR", 0)
+AND
+ObjectGetFlag(_Var3, "FTJ_SW_ShrineSendToHoE", 0)
+THEN
+ProcForceStopDialog(_Var3);
+ObjectSetFlag(_Var3, "FTJ_SW_ShrineSendToHoE", 0);
+CharacterPurgeQueue(_Var3);
+ApplyStatus(_Var3, "SLEEPING", 15, 1);
+DB_FTJ_SW_CompanionHadHoEExperience(_Var3);
+
+IF
+GlobalFlagSet("FTJ_LV_RiverSetUp_Debug")
+AND
+CharacterGetHostCharacter(_Var1)
+THEN
+TeleportTo(_Var1, TRIGGERGUID_S_FTJ_SW_RiverJumpTo_Point_d8964eef-17d9-49ba-8aeb-b60bc89b3933);
+ReactOnKillCounter("FTJ_FinalBattle");
+
+IF
+GlobalFlagSet("FTJ_LV_SetUp")
+AND
+DB_IsPlayer(_Var1)
+THEN
+CharacterResurrect(_Var1);
+RemoveStatus(_Var1, "PLAY_DEAD");
+
+IF
+GlobalFlagSet("FTJ_LV_SetUp")
+AND
+DB_IsPlayer(_Var1)
+THEN
+ObjectSetFlag(_Var1, "QuestUpdate_FTJ_Escape_LadyVengeance");
+ObjectSetFlag(_Var1, "QuestUpdate_FTJ_Escape_Island_EscapeLadyVengeance");
+
+IF
+DialogEnded("FTJ_SW_River", _)
+THEN
+ProcClearStoryMove(CHARACTERGUID_S_GLO_River_f4931ebe-10b0-43c4-9182-640cf052717e);
+
+IF
+DialogEnded("FTJ_SW_River", (INTEGER)_Var1)
+AND
+DB_DialogPlayers(_Var1, _Var2, _)
+AND
+GlobalGetFlag("FTJ_LV_PartyToLV", 1)
+THEN
+GlobalClearFlag("FTJ_LV_PartyToLV");
+ReadyCheckStart(_Var2, "FTJ_LV_PartyToLV");
+
+IF
+ReadyCheckPassed("FTJ_LV_PartyToLV")
+THEN
+GlobalSetFlag("FTJ_LV_SetUp");
+
+IF
+GlobalFlagSet("FTJ_LV_SetUp")
+THEN
+CharacterTeleportPartiesToTriggerWithMovie(TRIGGERGUID_S_FTJ_LV_BoatToLV_Point_d54d0088-0784-4e92-b5da-34d8eb1ef4ab, "LV_Main_StartQuest", "CS_FJtoLVmov");
+
+IF
+GlobalFlagSet("FTJ_LV_SetUp")
+AND
+DB_OriginRecruitmentDialog(_Var1, _)
+THEN
+CharacterSetRelationIndivFactionToFaction(_Var1, "RC_Magister", 0);
+CharacterSetRelationFactionToIndivFaction("RC_Magister", _Var1, 0);
+ObjectSetFlag(_Var1, "FTJ_RemoveSourceCollar");
+CharacterAddSkill(_Var1, "Target_Bless");
+
+IF
+StoryEvent((CHARACTERGUID)_Var1, "LV_Main_StartQuest")
+THEN
+PROC_LV_Main_StartQuest(_Var1);
+
+PROC
+ProcRegionEnded("FJ_FortJoy_Main")
+THEN
+GoalCompleted;
+
+
+EXITSECTION
+ENDEXITSECTION
+
+ParentTargetEdge "FortJoy"

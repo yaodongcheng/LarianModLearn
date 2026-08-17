@@ -1,0 +1,196 @@
+Version 1
+SubGoalCombiner SGC_AND
+
+INITSECTION
+DB_LoremasterTrader(CHARACTERGUID_S_CoS_Academy_Butler_eb624925-1fee-471a-9502-bb105dc910ff, 4);
+DB_RepairTrader(CHARACTERGUID_S_CoS_Academy_Butler_eb624925-1fee-471a-9502-bb105dc910ff, 4);
+Proc_CoS_Academy_Main_Init();
+ItemSetForceSynch(ITEMGUID_S_CoS_Temples_SecretEntrance_Cosmetic_a6af995f-82f7-4395-a209-605109a8c645, 1);
+
+KBSECTION
+IF
+StoryEvent((CHARACTERGUID)_Var1, "CoS_Butler_StartDialog")
+AND
+QueryOnlyOnce("CoS_Butler_StartDialog_Once")
+THEN
+Proc_StartDialog(0, "CoS_Academy_Butler", CHARACTERGUID_S_CoS_Academy_Butler_eb624925-1fee-471a-9502-bb105dc910ff, _Var1);
+
+IF
+ObjectFlagSet("CoS_Academy_ButlerMoveToCentralRoom", (CHARACTERGUID)_Var1, _)
+THEN
+ProcCharacterMoveTo(_Var1, TRIGGERGUID_S_CoS_Academy_FollowButler_Point_7efebb72-8347-4372-a780-d8b6a45e3dc9, 0, "");
+ProcCharacterMoveTo(CHARACTERGUID_S_CoS_Academy_Butler_eb624925-1fee-471a-9502-bb105dc910ff, TRIGGERGUID_S_CoS_Academy_Butler_DefaultPoint_e5227e2a-7a5f-4d8e-ad02-d11219107f46, 0, "CoS_Butler_FacePlayer");
+
+IF
+StoryEvent(CHARACTERGUID_S_CoS_Academy_Butler_eb624925-1fee-471a-9502-bb105dc910ff, "CoS_Butler_FacePlayer")
+AND
+DB_DialogNPCs(_Var1, CHARACTERGUID_S_CoS_Academy_Butler_eb624925-1fee-471a-9502-bb105dc910ff, _)
+AND
+DialogGetInvolvedPlayer(_Var1, 1, _Var3)
+THEN
+ProcFaceEachother(CHARACTERGUID_S_CoS_Academy_Butler_eb624925-1fee-471a-9502-bb105dc910ff, _Var3);
+
+IF
+DialogEnded("CoS_Academy_Butler", (INTEGER)_Var1)
+AND
+DialogGetInvolvedPlayer(_Var1, 1, _Var2)
+THEN
+ProcClearStoryMove(_Var2);
+
+IF
+CharacterEnteredTrigger((CHARACTERGUID)_Var1, TRIGGERGUID_S_CoS_SUB_Academy_51ddb828-18a6-4b6e-9f5a-e2b2883862e1)
+THEN
+ObjectSetFlag(_Var1, "QuestUpdate_CoS_Temples_Completed_EnteredAcademy");
+ObjectSetFlag(_Var1, "QuestUpdate_CoS_Academy_Start");
+
+IF
+CharacterEnteredTrigger(CHARACTERGUID_S_Player_Fane_02a77f1f-872b-49ca-91ab-32098c443beb, TRIGGERGUID_S_CoS_SUB_Academy_51ddb828-18a6-4b6e-9f5a-e2b2883862e1)
+AND
+IsTagged(CHARACTERGUID_S_Player_Fane_02a77f1f-872b-49ca-91ab-32098c443beb, "AVATAR", 1)
+THEN
+ObjectSetFlag(CHARACTERGUID_S_Player_Fane_02a77f1f-872b-49ca-91ab-32098c443beb, "QuestUpdate_FTJ_OriginFane_FaneFoundAcademy");
+
+IF
+CharacterUsedItem(_, ITEMGUID_S_CoS_Academy_SecretEntranceLever_55b51e96-c959-498d-80d1-6c975cdbc380)
+AND
+GetPosition(ITEMGUID_S_CoS_Academy_HiddenWallToArmaments_132bfc8f-7419-4121-95c6-98e2d1248458, _Var2, _Var3, _Var4)
+AND
+RealSubtract(_Var3, 10, _Var5)
+AND
+QueryOnlyOnce("CoS_Academy_SecretEntranceLever_Used")
+THEN
+Proc_ItemMoveToPosition(ITEMGUID_S_CoS_Academy_HiddenWallToArmaments_132bfc8f-7419-4121-95c6-98e2d1248458, _Var2, _Var5, _Var4, 1.6, 0);
+TimerLaunch("CoS_Academy_HiddenWallToArmaments_Offstage", 5800);
+
+IF
+CharacterUsedItem(_, ITEMGUID_S_CoS_Academy_HiddenWallToArmaments_132bfc8f-7419-4121-95c6-98e2d1248458)
+AND
+DB_IsPlayer(_Var2)
+AND
+GetDistanceTo(_Var2, ITEMGUID_S_CoS_Academy_HiddenWallToArmaments_132bfc8f-7419-4121-95c6-98e2d1248458, _Var3)
+AND
+_Var3 < 15
+THEN
+Proc_ShakeCameraForTime(_Var2, 5800);
+
+IF
+ItemWentOnStage(ITEMGUID_S_CoS_Temples_SecretTunnel_Hole_eef59dc8-f3f7-40c5-98e7-127b3f85c7d4, 1)
+THEN
+SetOnStage(ITEMGUID_S_CoS_Temples_SecretEntrance_Cosmetic_a6af995f-82f7-4395-a209-605109a8c645, 0);
+
+IF
+TimerFinished("CoS_Academy_HiddenWallToArmaments_Offstage")
+THEN
+SetOnStage(ITEMGUID_S_CoS_Academy_HiddenWallToArmaments_132bfc8f-7419-4121-95c6-98e2d1248458, 0);
+
+PROC
+Proc_CoS_Academy_Main_Init()
+THEN
+PROC_LoopEffect("RS3_FX_Char_Creatures_Raanaar_Automaton_A_Desactivated_01", CHARACTERGUID_S_CoS_Academy_Butler_eb624925-1fee-471a-9502-bb105dc910ff, "CoS_ButlerFx", "CoS_Main", "Dummy_FX");
+
+IF
+CharacterLootedCharacterCorpse((CHARACTERGUID)_Var1, CHARACTERGUID_S_CoS_Academy_Butler_eb624925-1fee-471a-9502-bb105dc910ff)
+AND
+CharacterIsDead(CHARACTERGUID_S_CoS_Academy_Butler_eb624925-1fee-471a-9502-bb105dc910ff, 1)
+AND NOT
+DB_CoS_Academy_UsedSvOnButler(1)
+AND NOT
+DB_OnlyOnce("CoS_Academy_ResButler_Once")
+THEN
+CloseUI(_Var1, "Container");
+Proc_StartDialog(0, "CoS_Academy_Butler_Broken", _Var1);
+CharacterLookAt(_Var1, CHARACTERGUID_S_CoS_Academy_Butler_eb624925-1fee-471a-9502-bb105dc910ff);
+DB_CoS_Academy_InButlerFixDialog(_Var1);
+
+IF
+CharacterUsedSkillOnTarget((CHARACTERGUID)_Var1, CHARACTERGUID_S_CoS_Academy_Butler_eb624925-1fee-471a-9502-bb105dc910ff, (STRING)_Var2, _, _)
+AND
+DB_SourceVampirism_Skills(_Var2)
+THEN
+DB_CoS_Academy_UsedSvOnButler(1);
+PROC_StopLoopEffect(CHARACTERGUID_S_CoS_Academy_Butler_eb624925-1fee-471a-9502-bb105dc910ff, "CoS_ButlerFx");
+Proc_CoS_Academy_StopButlerDialog();
+
+PROC
+Proc_CoS_Academy_StopButlerDialog()
+AND
+DB_CoS_Academy_InButlerFixDialog(_Var1)
+THEN
+ProcForceStopDialog(_Var1);
+
+IF
+DialogEnded("CoS_Academy_Butler_Broken", (INTEGER)_Var1)
+AND
+DialogGetInvolvedPlayer(_Var1, 1, _Var2)
+THEN
+NOT DB_CoS_Academy_InButlerFixDialog(_Var2);
+
+IF
+ItemTemplateAddedToCharacter(QUEST_CoS_RaanaarCapacitor_1d838f3b-dc81-45e3-855d-4adc7d127042, (ITEMGUID)_Var1, CHARACTERGUID_S_CoS_Academy_Butler_eb624925-1fee-471a-9502-bb105dc910ff)
+AND NOT
+DB_CoS_Academy_UsedSvOnButler(1)
+THEN
+PROC_StopLoopEffect(CHARACTERGUID_S_CoS_Academy_Butler_eb624925-1fee-471a-9502-bb105dc910ff, "CoS_ButlerFx");
+Proc_CoS_Academy_Butler_Respawn();
+DB_AutomatonCapacitors(_Var1, CHARACTERGUID_S_CoS_Academy_Butler_eb624925-1fee-471a-9502-bb105dc910ff);
+
+IF
+ItemTemplateAddedToCharacter(QUEST_CoS_RaanaarCapacitor_1d838f3b-dc81-45e3-855d-4adc7d127042, _, CHARACTERGUID_S_CoS_Academy_Butler_eb624925-1fee-471a-9502-bb105dc910ff)
+AND
+DB_DialogPlayers(_, _Var3, _)
+AND
+DB_CoS_Academy_InButlerFixDialog(_Var3)
+THEN
+DialogRequestStopForDialog("CoS_Academy_Butler_Broken", _Var3);
+
+IF
+ObjectFlagSet("CoS_AcademyButlerSendCapacitor", (CHARACTERGUID)_Var1, _)
+THEN
+Proc_CoS_Academy_Butler_Respawn();
+
+IF
+ObjectFlagSet("CoS_AcademyButlerSendCapacitor", (CHARACTERGUID)_Var1, _)
+AND
+QryRemoveItemTemplateFromMagicPockets(_Var1, "QUEST_CoS_RaanaarCapacitor_1d838f3b-dc81-45e3-855d-4adc7d127042", 1)
+THEN
+ItemTemplateAddTo("QUEST_CoS_RaanaarCapacitor_1d838f3b-dc81-45e3-855d-4adc7d127042", CHARACTERGUID_S_CoS_Academy_Butler_eb624925-1fee-471a-9502-bb105dc910ff, 1);
+
+PROC
+Proc_CoS_Academy_Butler_Respawn()
+AND
+GetPosition(CHARACTERGUID_S_CoS_Academy_Butler_eb624925-1fee-471a-9502-bb105dc910ff, _Var1, _Var2, _Var3)
+AND
+QueryOnlyOnce("CoS_Academy_ResButler_Once")
+THEN
+CharacterResurrect(CHARACTERGUID_S_CoS_Academy_Butler_eb624925-1fee-471a-9502-bb105dc910ff);
+CreateExplosionAtPosition(_Var1, _Var2, _Var3, "Projectile_EnemyLightningBolt", 17);
+PROC_RemoveDialogFromCharacter(CHARACTERGUID_S_CoS_Academy_Butler_eb624925-1fee-471a-9502-bb105dc910ff);
+NOT DB_Dead(CHARACTERGUID_S_CoS_Academy_Butler_eb624925-1fee-471a-9502-bb105dc910ff);
+DB_Dialogs(CHARACTERGUID_S_CoS_Academy_Butler_eb624925-1fee-471a-9502-bb105dc910ff, "CoS_Academy_Butler");
+SetStoryEvent(CHARACTERGUID_S_CoS_Academy_Butler_eb624925-1fee-471a-9502-bb105dc910ff, "StartEventOnSight_RestartSpotting");
+
+PROC
+ProcBlockUseOfItem((CHARACTERGUID)_Var1, ITEMGUID_S_CoS_Academy_StairsToLunarPuzzle_6f43a4dd-6ee4-475a-b093-38fab6fed302)
+AND
+GlobalGetFlag("CoS_LunarPuzzle_GateOpened", 0)
+THEN
+DB_CustomUseItemResponse(_Var1, ITEMGUID_S_CoS_Academy_StairsToLunarPuzzle_6f43a4dd-6ee4-475a-b093-38fab6fed302, 0);
+Proc_StartDialog(1, "CoS_Academy_AD_StairsToLunarPuzzleBlocked", _Var1);
+
+IF
+DB_LV_HoE_MirrorPuzzle_IsActive(ITEMGUID_S_CoS_Academy_DeanRoomGenerator_7f162414-86a9-496d-bb65-f9f1504a2266, _)
+AND
+GetClosestAlivePlayer(ITEMGUID_S_CoS_Academy_DeanRoomGenerator_7f162414-86a9-496d-bb65-f9f1504a2266, _Var2, _)
+AND
+QRY_SpeakerIsAvailable(_Var2)
+AND
+QueryOnlyOnce("CoS_Academy_VB_GeneratorActivated_Once")
+THEN
+StartVoiceBark("CoS_Academy_VB_GeneratorActivated", _Var2);
+
+
+EXITSECTION
+ItemSetForceSynch(ITEMGUID_S_CoS_Temples_SecretEntrance_Cosmetic_a6af995f-82f7-4395-a209-605109a8c645, 0);
+ENDEXITSECTION
+
+ParentTargetEdge "CoS_Academy"

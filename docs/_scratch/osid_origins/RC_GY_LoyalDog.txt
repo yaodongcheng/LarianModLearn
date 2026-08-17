@@ -1,0 +1,224 @@
+Version 1
+SubGoalCombiner SGC_AND
+
+INITSECTION
+DB_Dialogs(CHARACTERGUID_S_RC_GY_LoyalDog_46e022c5-f2d4-465c-a5f0-db0e9760fcce, "RC_GY_LoyalDog");
+DB_Dialogs(CHARACTERGUID_S_RC_GY_LoyalDog_Necromancer_e11b3dc2-0297-4d53-9846-2df9ef665ebb, "RC_GY_LoyalDog_Necromancer");
+ProcCrimeSetAllCustomSensibleAction(CHARACTERGUID_S_RC_GY_LoyalDog_46e022c5-f2d4-465c-a5f0-db0e9760fcce, "AttackAnimal", "");
+ProcCharacterDisableAllCrimes(CHARACTERGUID_S_RC_GY_LoyalDog_Necromancer_e11b3dc2-0297-4d53-9846-2df9ef665ebb);
+SetCanFight(CHARACTERGUID_S_RC_GY_LoyalDog_Necromancer_e11b3dc2-0297-4d53-9846-2df9ef665ebb, 0);
+DB_BlockThreatenedDialog(CHARACTERGUID_S_RC_GY_LoyalDog_Necromancer_e11b3dc2-0297-4d53-9846-2df9ef665ebb);
+DB_NoLowAttitudeDialog(CHARACTERGUID_S_RC_GY_LoyalDog_Necromancer_e11b3dc2-0297-4d53-9846-2df9ef665ebb);
+DB_RC_GY_LoyalDog_PetrifiedVictims(CHARACTERGUID_S_RC_GY_LoyalDog_PetrifiedVictim_01_4e154a51-b8d2-4358-8120-a855700d27de);
+DB_RC_GY_LoyalDog_PetrifiedVictims(CHARACTERGUID_S_RC_GY_LoyalDog_PetrifiedVictim_02_8a77709e-cc47-48f4-9fc8-62dc3a57f214);
+DB_RC_GY_LoyalDog_PetrifiedVictims(CHARACTERGUID_S_RC_GY_LoyalDog_PetrifiedVictim_03_3867f393-33a6-4ad2-bfcd-b9d339ddf65b);
+DB_RC_GY_LoyalDog_PetrifiedVictims(CHARACTERGUID_S_RC_GY_LoyalDog_PetrifiedVictim_04_420dce16-0afd-44f0-8726-1904e219907d);
+DB_RC_GY_LoyalDog_PetrifiedVictims(CHARACTERGUID_S_RC_GY_LoyalDog_PetrifiedVictim_05_97c8599a-d749-4c3f-8eed-de8bc378a9cd);
+DB_Ghosts(CHARACTERGUID_S_RC_GY_LoyalDog_46e022c5-f2d4-465c-a5f0-db0e9760fcce, CHARACTERGUID_S_RC_GY_LoyalDog_Ghost_3c3c1167-9c76-444a-96a7-afc4003d9c42, "RC_GY_LoyalDog_Ghost");
+DB_Ghosts(CHARACTERGUID_S_RC_GY_LoyalDog_Necromancer_e11b3dc2-0297-4d53-9846-2df9ef665ebb, CHARACTERGUID_S_RC_GY_LoyalDog_Necromancer_Ghost_db202f3f-6141-49f9-b606-39b7a9f6b8a2, "RC_GY_LoyalDog_Necromancer_Ghost");
+DB_DoNotFace(CHARACTERGUID_S_RC_GY_LoyalDog_Necromancer_e11b3dc2-0297-4d53-9846-2df9ef665ebb);
+DB_SneakTriggerSpotter(TRIGGERGUID_S_RC_GY_LoyalDog_SpotSneakerTrigger_9a8df799-5f87-4892-8497-60f7eabfde3c, CHARACTERGUID_S_RC_GY_LoyalDog_46e022c5-f2d4-465c-a5f0-db0e9760fcce);
+ProcTriggerRegisterForPlayers(TRIGGERGUID_S_RC_GY_LoyalDog_PetrifyBox_e48c1b3a-5df2-4b0a-bbc4-618d7a195d7a);
+DB_OneShotPlayerTrigger(TRIGGERGUID_S_RC_GY_LoyalDog_CryptVBarkTrigger_e1529f81-ba39-4c22-8724-9cb7b715fe5f);
+ApplyStatus(CHARACTERGUID_S_RC_GY_LoyalDog_Necromancer_e11b3dc2-0297-4d53-9846-2df9ef665ebb, "PETRIFIED", -1, 1);
+DB_RC_GY_LoyalDog_TombPetrifies(1);
+
+KBSECTION
+IF
+CharacterUsedItem((CHARACTERGUID)_Var1, ITEMGUID_S_RC_GY_LoyalDog_CryptLever_e28921a1-8fc5-4491-be87-39d7e4dd3a08)
+AND
+ItemIsLocked(ITEMGUID_S_RC_GY_LoyalDog_CryptDoor_98a6960a-7852-4544-bf3a-409b9c044ff4, 1)
+THEN
+ItemUnlockAndOpen(ITEMGUID_S_RC_GY_LoyalDog_CryptDoor_98a6960a-7852-4544-bf3a-409b9c044ff4);
+
+IF
+CharacterUsedItem((CHARACTERGUID)_Var1, S_RC_GY_LoyalDog_CryptStairs_01a35895-fb95-495a-b3ed-f409e6df3240)
+AND
+DB_IsPlayer(_Var1)
+AND NOT
+DB_Dead(S_RC_GY_LoyalDog_46e022c5-f2d4-465c-a5f0-db0e9760fcce)
+AND
+ObjectGetFlag(S_RC_GY_LoyalDog_46e022c5-f2d4-465c-a5f0-db0e9760fcce, "RC_GY_LoyalDog_Attacks", 0)
+THEN
+DialogRequestStop(S_RC_GY_LoyalDog_46e022c5-f2d4-465c-a5f0-db0e9760fcce);
+Proc_StartDialog(0, "RC_GY_LoyalDog", CHARACTERGUID_S_RC_GY_LoyalDog_46e022c5-f2d4-465c-a5f0-db0e9760fcce, _Var1);
+
+PROC
+ProcCharInTriggerSpotted((CHARACTERGUID)_Var1, TRIGGERGUID_S_RC_GY_LoyalDog_SpotSneakerTrigger_9a8df799-5f87-4892-8497-60f7eabfde3c)
+AND
+DB_IsPlayer(_Var1)
+THEN
+Proc_StartDialog(0, "RC_GY_LoyalDog", CHARACTERGUID_S_RC_GY_LoyalDog_46e022c5-f2d4-465c-a5f0-db0e9760fcce, _Var1);
+
+PROC
+ProcBlockLockpickItem((CHARACTERGUID)_Var1, ITEMGUID_S_RC_GY_LoyalDog_CryptDoor_98a6960a-7852-4544-bf3a-409b9c044ff4)
+THEN
+Proc_RC_GY_LoyalDog_Interogation(_Var1);
+
+PROC
+ProcBlockUseOfItem((CHARACTERGUID)_Var1, ITEMGUID_S_RC_GY_LoyalDog_CryptHatch_3e9467f1-9eb6-4b60-b192-4b7ea3db11b9)
+THEN
+Proc_RC_GY_LoyalDog_Interogation(_Var1);
+
+PROC
+ProcBlockUseOfItem((CHARACTERGUID)_Var1, ITEMGUID_S_RC_GY_LoyalDog_CryptDoor_98a6960a-7852-4544-bf3a-409b9c044ff4)
+THEN
+Proc_RC_GY_LoyalDog_Interogation(_Var1);
+
+PROC
+Proc_RC_GY_LoyalDog_Interogation((CHARACTERGUID)_Var1)
+AND
+DB_IsPlayer(_Var1)
+AND
+GlobalGetFlag("RC_GY_LoyalDog_Died", 0)
+AND
+CharacterCanSee(CHARACTERGUID_S_RC_GY_LoyalDog_46e022c5-f2d4-465c-a5f0-db0e9760fcce, _Var1, 1)
+AND
+ObjectGetFlag(S_RC_GY_LoyalDog_46e022c5-f2d4-465c-a5f0-db0e9760fcce, "RC_GY_LoyalDog_Attacks", 0)
+THEN
+DB_CustomLockpickItemResponse(_Var1, ITEMGUID_S_RC_GY_LoyalDog_CryptDoor_98a6960a-7852-4544-bf3a-409b9c044ff4, 0);
+DB_CustomUseItemResponse(_Var1, ITEMGUID_S_RC_GY_LoyalDog_CryptHatch_3e9467f1-9eb6-4b60-b192-4b7ea3db11b9, 0);
+DialogRequestStop(CHARACTERGUID_S_RC_GY_LoyalDog_46e022c5-f2d4-465c-a5f0-db0e9760fcce);
+Proc_StartDialog(0, "RC_GY_LoyalDog", CHARACTERGUID_S_RC_GY_LoyalDog_46e022c5-f2d4-465c-a5f0-db0e9760fcce, _Var1);
+ObjectSetFlag(CHARACTERGUID_S_RC_GY_LoyalDog_46e022c5-f2d4-465c-a5f0-db0e9760fcce, "RC_GY_LoyalDog_Interogation");
+
+PROC
+ProcCrimeOnCustomSensibleAction(CHARACTERGUID_S_RC_GY_LoyalDog_46e022c5-f2d4-465c-a5f0-db0e9760fcce, _, (INTEGER)_Var2, _, _, (CHARACTERGUID)_Var5, _, _, _, _)
+THEN
+ObjectSetFlag(CHARACTERGUID_S_RC_GY_LoyalDog_46e022c5-f2d4-465c-a5f0-db0e9760fcce, "RC_GY_LoyalDog_Interogation");
+UserSetFlag(_Var5, "RC_GY_LoyalDog_SecondWarning");
+Proc_StartDialog(0, "RC_GY_LoyalDog", CHARACTERGUID_S_RC_GY_LoyalDog_46e022c5-f2d4-465c-a5f0-db0e9760fcce, _Var5);
+
+IF
+DialogEnded("RC_GY_LoyalDog", (INTEGER)_Var1)
+AND
+DialogGetInvolvedPlayer(_Var1, 1, _Var2)
+AND
+ObjectGetFlag(CHARACTERGUID_S_RC_GY_LoyalDog_46e022c5-f2d4-465c-a5f0-db0e9760fcce, "RC_GY_LoyalDog_Interogation", 1)
+THEN
+ObjectClearFlag(CHARACTERGUID_S_RC_GY_LoyalDog_46e022c5-f2d4-465c-a5f0-db0e9760fcce, "RC_GY_LoyalDog_Interogation");
+
+IF
+ObjectFlagSet("RC_GY_LoyalDog_Attacks", CHARACTERGUID_S_RC_GY_LoyalDog_46e022c5-f2d4-465c-a5f0-db0e9760fcce, _)
+THEN
+SetFaction(CHARACTERGUID_S_RC_GY_LoyalDog_46e022c5-f2d4-465c-a5f0-db0e9760fcce, "Evil NPC");
+SetHasDialog(CHARACTERGUID_S_RC_GY_LoyalDog_46e022c5-f2d4-465c-a5f0-db0e9760fcce, 0);
+
+IF
+ObjectEnteredCombat(CHARACTERGUID_S_RC_GY_LoyalDog_46e022c5-f2d4-465c-a5f0-db0e9760fcce, _)
+THEN
+PROC_LoopEffect("RS3_FX_Char_Animals_NecroDog_Mouth_01", CHARACTERGUID_S_RC_GY_LoyalDog_46e022c5-f2d4-465c-a5f0-db0e9760fcce, "RC_GY_LoyalDog_Effect", "RC_Main", "Dummy_StatusFX");
+
+IF
+CharacterDied(CHARACTERGUID_S_RC_GY_LoyalDog_46e022c5-f2d4-465c-a5f0-db0e9760fcce)
+THEN
+GlobalSetFlag("RC_GY_LoyalDog_Died");
+PROC_StopLoopEffect(CHARACTERGUID_S_RC_GY_LoyalDog_46e022c5-f2d4-465c-a5f0-db0e9760fcce, "RC_GY_LoyalDog_Effect");
+
+IF
+DB_RC_GY_LoyalDog_PetrifiedVictims(_Var1)
+THEN
+DB_Dialogs(_Var1, "RC_GY_LoyalDog_PetrifiedVictim");
+DB_DoNotFace(_Var1);
+ApplyStatus(_Var1, "PETRIFIED", -1, 1);
+DB_DontCreateMurder(_Var1);
+SetCanFight(_Var1, 0);
+
+IF
+CharacterStatusRemoved((CHARACTERGUID)_Var1, "PETRIFIED", (CHARACTERGUID)_Var2)
+AND
+DB_RC_GY_LoyalDog_PetrifiedVictims(_Var1)
+AND
+DB_IsPlayer(_Var2)
+AND
+GetPosition(_Var1, _Var3, _Var4, _Var5)
+THEN
+PlayEffectAtPosition("RS3_FX_GP_Combat_Death_Petrified_01_Medium", _Var3, _Var4, _Var5);
+CharacterDie(_Var1, 1, "Explode");
+StartVoiceBark("RC_GY_VB_LoyalDog_UnpetrifyingSkeleton", _Var2);
+
+IF
+CharacterUsedItem((CHARACTERGUID)_Var1, ITEMGUID_S_RC_GY_LoyalDog_PetrifyingTomb_76634527-7d60-4459-a444-c99de30a76dc)
+AND
+DB_RC_GY_LoyalDog_TombPetrifies(1)
+AND
+GetPosition(ITEMGUID_S_RC_GY_LoyalDog_PetrifyingTomb_76634527-7d60-4459-a444-c99de30a76dc, _Var2, _Var3, _Var4)
+THEN
+ApplyStatus(_Var1, "PETRIFIED", -1, 1);
+PlayEffect(_Var1, "RS3_FX_Skills_PetrifyingTouch_Impact_Root_01");
+PlayEffectAtPosition("RS3_FX_Skills_Earth_Rock_Impact_01", _Var2, _Var3, _Var4);
+ProcObjectTimer(_Var1, "Timer_RC_GY_TombPetrification", 500);
+
+PROC
+ProcObjectTimerFinished((CHARACTERGUID)_Var1, "Timer_RC_GY_TombPetrification")
+AND
+HasActiveStatus(_Var1, "PETRIFIED", 1)
+THEN
+CloseUI(_Var1, "Container");
+
+IF
+CharacterStatusRemoved(CHARACTERGUID_S_RC_GY_LoyalDog_Necromancer_e11b3dc2-0297-4d53-9846-2df9ef665ebb, "PETRIFIED", (CHARACTERGUID)_Var1)
+AND
+DB_IsPlayer(_Var1)
+THEN
+ProcCharacterEnableAllCrimes(CHARACTERGUID_S_RC_GY_LoyalDog_Necromancer_e11b3dc2-0297-4d53-9846-2df9ef665ebb);
+SetCanFight(CHARACTERGUID_S_RC_GY_LoyalDog_Necromancer_e11b3dc2-0297-4d53-9846-2df9ef665ebb, 1);
+DialogRequestStop(CHARACTERGUID_S_RC_GY_LoyalDog_Necromancer_e11b3dc2-0297-4d53-9846-2df9ef665ebb);
+SetHasDialog(CHARACTERGUID_S_RC_GY_LoyalDog_Necromancer_e11b3dc2-0297-4d53-9846-2df9ef665ebb, 0);
+NOT DB_DoNotFace(CHARACTERGUID_S_RC_GY_LoyalDog_Necromancer_e11b3dc2-0297-4d53-9846-2df9ef665ebb);
+ObjectSetFlag(CHARACTERGUID_S_RC_GY_LoyalDog_Necromancer_e11b3dc2-0297-4d53-9846-2df9ef665ebb, "RC_GY_LoyalDog_Helped");
+ProcObjectTimer(_Var1, "RC_GY_LoyalDog_Necromancer_Unpetrifying", 1500);
+
+PROC
+ProcObjectTimerFinished((GUIDSTRING)_Var1, "RC_GY_LoyalDog_Necromancer_Unpetrifying")
+THEN
+SetHasDialog(CHARACTERGUID_S_RC_GY_LoyalDog_Necromancer_e11b3dc2-0297-4d53-9846-2df9ef665ebb, 1);
+Proc_StartDialog(0, "RC_GY_LoyalDog_Necromancer", CHARACTERGUID_S_RC_GY_LoyalDog_Necromancer_e11b3dc2-0297-4d53-9846-2df9ef665ebb, _Var1);
+
+IF
+ObjectFlagSet("RC_GY_LoyalDog_NecroAttacks", CHARACTERGUID_S_RC_GY_LoyalDog_Necromancer_e11b3dc2-0297-4d53-9846-2df9ef665ebb, _)
+THEN
+SetFaction(CHARACTERGUID_S_RC_GY_LoyalDog_Necromancer_e11b3dc2-0297-4d53-9846-2df9ef665ebb, "Evil NPC");
+
+IF
+CharacterEnteredTrigger((CHARACTERGUID)_Var1, TRIGGERGUID_S_RC_GY_LoyalDog_CryptBox_89124061-1d5f-43c3-af90-9a4393dc9829)
+THEN
+ObjectSetFlag(_Var1, "RC_GY_LoyalDog_WasInCrypt");
+
+PROC
+ProcOneShotTriggerEntered((CHARACTERGUID)_Var1, TRIGGERGUID_S_RC_GY_LoyalDog_CryptVBarkTrigger_e1529f81-ba39-4c22-8724-9cb7b715fe5f)
+THEN
+StartVoiceBark("RC_GY_VB_LoyalDog_EnteredCrypt", _Var1);
+
+PROC
+Proc_ObjectLeftCombat((CHARACTERGUID)_Var1, (INTEGER)_Var2)
+AND
+DB_WasInCombat(CHARACTERGUID_S_RC_GY_LoyalDog_Necromancer_e11b3dc2-0297-4d53-9846-2df9ef665ebb, _Var2)
+AND
+DB_IsPlayer(_Var1)
+AND
+CharacterIsDead(CHARACTERGUID_S_RC_GY_LoyalDog_Necromancer_e11b3dc2-0297-4d53-9846-2df9ef665ebb, 1)
+AND
+QueryOnlyOnce("RC_GY_LoyalDog_NecromancersDeath")
+THEN
+StartVoiceBark("RC_GY_VB_LoyalDog_KilledNecromancer", _Var1);
+UserSetFlag(_Var1, "RC_GY_LoyalDog_NecroKilled");
+
+IF
+SavegameLoaded((INTEGER)_Var1, (INTEGER)_Var2, (INTEGER)_Var3, (INTEGER)_Var4)
+AND
+QRY_VersionIsOlderThan(_Var1, _Var2, _Var3, _Var4, 3, 6, 3, 0)
+AND
+DB_IsPlayer(_Var5)
+AND
+DB_InRegion(_Var5, TRIGGERGUID_S_RC_GY_LoyalDog_CryptBox_89124061-1d5f-43c3-af90-9a4393dc9829)
+AND
+ObjectGetFlag(_Var5, "RC_GY_LoyalDog_WasInCrypt", 0)
+THEN
+ObjectSetFlag(_Var5, "RC_GY_LoyalDog_WasInCrypt");
+
+
+EXITSECTION
+ENDEXITSECTION
+
+ParentTargetEdge "ReapersCoast"

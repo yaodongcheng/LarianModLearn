@@ -1,0 +1,531 @@
+Version 1
+SubGoalCombiner SGC_AND
+
+INITSECTION
+DB_Dialogs(CHARACTERGUID_S_GLO_Almira_49b466a9-e67f-4e3c-8f66-3636ba7dd54f, "RC_FL_Almira");
+DB_Dialogs(CHARACTERGUID_S_GLO_Mihaly_3355517b-0a92-426b-9160-54fa8507adf2, "RC_FL_Mihaly");
+DB_Ghosts(CHARACTERGUID_S_GLO_Almira_49b466a9-e67f-4e3c-8f66-3636ba7dd54f, CHARACTERGUID_RC_FL_Almira_Ghost_8c267afc-aca5-4145-b89f-f02e49344c1a, "RC_FL_Almira_Ghost");
+DB_Ghosts(CHARACTERGUID_S_GLO_Mihaly_3355517b-0a92-426b-9160-54fa8507adf2, CHARACTERGUID_RC_FL_Mihaly_Ghost_3de3ea33-ae38-448f-857d-cbd855e3d7b6, "RC_FL_Mihaly_Ghost");
+DB_Ghosts(CHARACTERGUID_S_RC_FL_BrokenPromises_DeadMagister_01_609b8de7-bf7b-4579-ac22-2e54c1dc098f, CHARACTERGUID_S_RC_FL_BrokenPromises_DeadMagister_01_Ghost_cabeb280-a0ca-4c9e-8838-7c3e3554ecb4, "RC_FL_BrokenPromises_DeadMagister_01_Ghost");
+DB_Ghosts(CHARACTERGUID_S_RC_FL_BrokenPromises_DeadMagister_04_5dfd5445-352a-44fa-87b3-01a7563cc352, CHARACTERGUID_S_RC_FL_BrokenPromises_DeadMagister_04_Ghost_2203b266-001f-461b-808a-3155294cbf15, "RC_FL_BrokenPromises_DeadMagister_04_Ghost");
+DB_Ghosts(CHARACTERGUID_S_RC_FL_BrokenPromises_DeadFarmer_01_5e4d6720-b261-41cc-a699-4d273dfc8fc4, CHARACTERGUID_S_RC_FL_BrokenPromises_DeadFarmer_01_Ghost_c80d1325-4d8d-404c-bf73-e96dd15c94be, "RC_FL_BrokenPromises_DeadFarmer_01_Ghost");
+DB_Ghosts(CHARACTERGUID_S_RC_FL_BrokenPromises_DeadFarmer_04_0f12939e-41b1-4403-97c2-0b42886a1170, CHARACTERGUID_S_RC_FL_BrokenPromises_DeadFarmer_04_Ghost_f680edbc-5599-4ea1-a893-4ddd35a939e6, "RC_FL_BrokenPromises_DeadFarmer_04_Ghost");
+DB_Ghosts(CHARACTERGUID_S_RC_FL_BrokenPromises_DeadFarmer_06_b65b5d45-6da3-4ab7-93a7-9acfae38c62e, CHARACTERGUID_S_RC_FL_BrokenPromises_DeadFarmer_06_Ghost_4dab41ee-b8be-4f96-986c-e0c8d14b9fdc, "RC_FL_BrokenPromises_DeadFarmer_06_Ghost");
+DB_Ghosts(CHARACTERGUID_S_RC_FL_BrokenPromises_DeadFarmer_08_6e7b9800-213f-4020-bcce-4285313122b0, CHARACTERGUID_S_RC_FL_BrokenPromises_DeadFarmer_08_Ghost_db393b62-d576-4092-a86b-00a01fbd846a, "RC_FL_BrokenPromises_DeadFarmer_08_Ghost");
+DB_RC_FL_AlmiraGroup(CHARACTERGUID_S_GLO_Almira_49b466a9-e67f-4e3c-8f66-3636ba7dd54f, "QuestUpdate_RC_FL_BrokenPromises_AlmiraDied");
+DB_RC_FL_AlmiraGroup(CHARACTERGUID_S_GLO_Mihaly_3355517b-0a92-426b-9160-54fa8507adf2, "QuestUpdate_RC_FL_BrokenPromises_MihalyDied");
+DB_RC_FL_AlanMinions(CHARACTERGUID_S_RC_FL_AlanBoss_NPC_01_143d8d41-883e-4498-bc77-1b21954043c2);
+DB_RC_FL_AlanMinions(CHARACTERGUID_S_RC_FL_AlanBoss_NPC_02_d4befb98-3743-4d61-a84a-e5f7014cd410);
+DB_RC_FL_AlanMinions(CHARACTERGUID_S_RC_FL_AlanBoss_NPC_03_b3c6b4b8-266e-44ac-b2b6-f842eb21129a);
+DB_RC_FL_AlanMinions(CHARACTERGUID_S_RC_FL_AlanBoss_NPC_04_2bc702d4-4b39-41db-a033-eced5d793a13);
+DB_DeadEvent(CHARACTERGUID_S_GLO_Almira_49b466a9-e67f-4e3c-8f66-3636ba7dd54f, "RC_FL_AlmiraDead");
+DB_DeadEvent(CHARACTERGUID_S_RC_FL_AlanBoss_ef0adba7-2471-4972-9feb-ceb4c7547141, "RC_FL_AlanBossDead");
+ProcTriggerRegisterForPlayers(TRIGGERGUID_S_S_RC_FL_BrokenPromises_Box_9ba2179f-e23f-48eb-b41c-7cdc10506153);
+ProcCharacterDisableAllCrimes(CHARACTERGUID_S_GLO_Mihaly_3355517b-0a92-426b-9160-54fa8507adf2);
+CharacterSetHitpointsPercentage(CHARACTERGUID_S_GLO_Mihaly_3355517b-0a92-426b-9160-54fa8507adf2, 30);
+CharacterSetAnimationOverride(CHARACTERGUID_S_GLO_Mihaly_3355517b-0a92-426b-9160-54fa8507adf2, "stillcrippled");
+CreatePuddle(CHARACTERGUID_S_GLO_Mihaly_3355517b-0a92-426b-9160-54fa8507adf2, "SurfaceBlood", 4, 8, 4, 8, 1);
+DB_OneShotPlayerTrigger(TRIGGERGUID_S_RC_FL_BrokenPromises_AlmirasHideout_6bbd5c7d-4614-4406-8684-39344257d4fc);
+
+KBSECTION
+IF
+TextEventSet("goAlmira")
+AND
+DB_IsPlayer(_Var1)
+AND
+QueryOnlyOnce("DebugStartAlmiraEscorting")
+THEN
+TeleportTo(CHARACTERGUID_S_GLO_Almira_49b466a9-e67f-4e3c-8f66-3636ba7dd54f, _Var1);
+TeleportTo(CHARACTERGUID_S_GLO_Mihaly_3355517b-0a92-426b-9160-54fa8507adf2, _Var1);
+PartySetFlag(_Var1, "QuestUpdate_RC_FL_BrokenPromises_MetAlmira");
+PartySetFlag(_Var1, "QuestUpdate_RC_FL_BrokenPromises_ClearSurfaces");
+PartySetFlag(_Var1, "QuestUpdate_RC_FL_BrokenPromises_Escort");
+ObjectSetFlag(_Var1, "RC_FL_BrokenPromises_MihalyFollows");
+GlobalSetFlag("RC_FL_BrokenPromises_Escorting");
+ApplyStatus(CHARACTERGUID_S_GLO_Almira_49b466a9-e67f-4e3c-8f66-3636ba7dd54f, "DECAYING_TOUCH", -1, 1);
+ApplyStatus(CHARACTERGUID_S_GLO_Mihaly_3355517b-0a92-426b-9160-54fa8507adf2, "DECAYING_TOUCH", -1, 1);
+
+IF
+TextEventSet("esAlmira")
+AND
+DB_IsPlayer(_Var1)
+AND
+QueryOnlyOnce("DebugStartAlmiraCompleteEscorting")
+THEN
+TeleportTo(CHARACTERGUID_S_GLO_Almira_49b466a9-e67f-4e3c-8f66-3636ba7dd54f, _Var1);
+TeleportTo(CHARACTERGUID_S_GLO_Mihaly_3355517b-0a92-426b-9160-54fa8507adf2, _Var1);
+PartySetFlag(_Var1, "QuestUpdate_RC_FL_BrokenPromises_MetAlmira");
+PartySetFlag(_Var1, "QuestUpdate_RC_FL_BrokenPromises_ClearSurfaces");
+PartySetFlag(_Var1, "QuestUpdate_RC_FL_BrokenPromises_Escort");
+PartySetFlag(_Var1, "QuestUpdate_RC_FL_BrokenPromises_Escaped");
+ObjectSetFlag(CHARACTERGUID_S_GLO_Mihaly_3355517b-0a92-426b-9160-54fa8507adf2, "RC_FL_BrokenPromises_MihalyEscaped");
+SetVarFixedString(CHARACTERGUID_S_GLO_Almira_49b466a9-e67f-4e3c-8f66-3636ba7dd54f, "currentState", "State_PostFarmlands");
+
+IF
+DB_RC_FL_AlmiraGroup(_Var1, _)
+THEN
+TriggerRegisterForCharacter(TRIGGERGUID_S_S_RC_FL_BrokenPromises_Box_9ba2179f-e23f-48eb-b41c-7cdc10506153, _Var1);
+
+IF
+DB_RC_FL_AlanMinions(_Var1)
+THEN
+CharacterDisableCrime(_Var1, "ActiveUndead");
+
+IF
+ObjectEnteredCombat(CHARACTERGUID_S_RC_FL_AlanBoss_ef0adba7-2471-4972-9feb-ceb4c7547141, (INTEGER)_Var1)
+AND
+DB_RC_FL_AlanMinions(_Var2)
+AND NOT
+GetFaction(_Var2, "Evil NPC")
+THEN
+SetFaction(_Var2, "Evil NPC");
+
+IF
+AttackedByObject((CHARACTERGUID)_Var1, (CHARACTERGUID)_Var2, _, _, _)
+AND
+DB_IsPlayer(_Var2)
+AND
+DB_RC_FL_AlanMinions(_Var1)
+AND
+QueryOnlyOnce("RC_FL_TurnAlanMinionsEvil")
+AND
+DB_RC_FL_AlanMinions(_Var6)
+THEN
+SetFaction(_Var6, "Evil NPC");
+Proc_RC_FL_TurnAlanMinionsEvil_EnterCombatCheck(_Var6, _Var2);
+
+PROC
+Proc_RC_FL_TurnAlanMinionsEvil_EnterCombatCheck((CHARACTERGUID)_Var1, (CHARACTERGUID)_Var2)
+AND
+GetDistanceTo(_Var1, _Var2, _Var3)
+AND
+_Var3 < 25
+THEN
+EnterCombat(_Var2, _Var1);
+
+IF
+CharacterReceivedDamage(CHARACTERGUID_S_RC_FL_AlanBoss_ef0adba7-2471-4972-9feb-ceb4c7547141, _, _)
+AND
+CharacterGetHitpointsPercentage(CHARACTERGUID_S_RC_FL_AlanBoss_ef0adba7-2471-4972-9feb-ceb4c7547141, _Var3)
+THEN
+Proc_RC_FL_AlanNextPhase(_Var3);
+
+PROC
+Proc_RC_FL_AlanNextPhase((REAL)_Var1)
+AND
+_Var1 <= 95
+AND
+QueryOnlyOnce("RC_FL_AlanBoss_GetSpells")
+THEN
+CharacterAddSkill(CHARACTERGUID_S_RC_FL_AlanBoss_ef0adba7-2471-4972-9feb-ceb4c7547141, "Target_EnemyGraspOfTheStarved");
+CharacterAddSkill(CHARACTERGUID_S_RC_FL_AlanBoss_ef0adba7-2471-4972-9feb-ceb4c7547141, "Shout_EnemyFear");
+CharacterAddSkill(CHARACTERGUID_S_RC_FL_AlanBoss_ef0adba7-2471-4972-9feb-ceb4c7547141, "Projectile_EnemyFireball");
+
+PROC
+Proc_RC_FL_AlanNextPhase((REAL)_Var1)
+AND
+_Var1 <= 60
+AND
+QueryOnlyOnce("RC_FL_AlanBoss_GetMoreSpells")
+THEN
+TriggerSetAtmosphere(TRIGGERGUID_AtmosphereTrigger_RC_Farmlands_Alan_569bb0c5-1ea9-43d0-b1b1-1ee49c0533db, "9cb2f29e-cd03-421f-885e-a9b7e9299ae6");
+CharacterAddSkill(CHARACTERGUID_S_RC_FL_AlanBoss_ef0adba7-2471-4972-9feb-ceb4c7547141, "ProjectileStrike_EnemyMeteorShower_Alan");
+
+IF
+CharacterSawCharacter((CHARACTERGUID)_Var1, CHARACTERGUID_S_RC_FL_AlanBoss_ef0adba7-2471-4972-9feb-ceb4c7547141)
+AND
+DB_IsPlayer(_Var1)
+AND
+QueryOnlyOnce("RC_FL_VoiceBark_SeenAlanBoss")
+THEN
+StartVoiceBark("RC_FL_VB_SeenAlanBoss", _Var1);
+PartySetFlag(_Var1, "QuestUpdate_RC_FL_BrokenPromises_FoundAlanBoss");
+
+PROC
+Proc_ObjectLeftCombat((CHARACTERGUID)_Var1, (INTEGER)_Var2)
+AND
+DB_WasInCombat(CHARACTERGUID_S_RC_FL_AlanBoss_ef0adba7-2471-4972-9feb-ceb4c7547141, _Var2)
+AND
+DB_IsPlayer(_Var1)
+AND
+CharacterIsDead(CHARACTERGUID_S_RC_FL_AlanBoss_ef0adba7-2471-4972-9feb-ceb4c7547141, 1)
+AND
+QueryOnlyOnce("RC_FL_AlanBossDeath")
+THEN
+StartVoiceBark("RC_FL_VB_AlanBossDeath", _Var1);
+
+IF
+GlobalFlagSet("RC_FL_AlanBossDead")
+AND
+DB_IsPlayer(_Var1)
+THEN
+PartySetFlag(_Var1, "QuestUpdate_RC_FL_BrokenPromises_KilledAlanBoss");
+
+IF
+GlobalFlagSet("RC_FL_AlanBossDead")
+THEN
+TriggerSetAtmosphere(TRIGGERGUID_AtmosphereTrigger_RC_Farmlands_Alan_569bb0c5-1ea9-43d0-b1b1-1ee49c0533db, "06d87eb1-d41d-49e6-805f-54666d4355f2");
+TriggerSetAtmosphere(TRIGGERGUID_AtmosphereTrigger_RC_Farmlands_Rift_71435c4a-b3c4-4e8a-875c-025570863f3d, "06d87eb1-d41d-49e6-805f-54666d4355f2");
+SetVarFixedString(CHARACTERGUID_S_GLO_Almira_49b466a9-e67f-4e3c-8f66-3636ba7dd54f, "currentState", "State_PostFarmlands");
+CharacterSetAnimationOverride(CHARACTERGUID_S_GLO_Mihaly_3355517b-0a92-426b-9160-54fa8507adf2, "");
+TriggerLaunchIterator(TRIGGERGUID_S_RC_FL_AlanAura_d07244f9-2e65-4c06-b811-c647fd5886c0, "CharacterWithAlanAura");
+
+PROC
+ProcOneShotTriggerEntered((CHARACTERGUID)_Var1, TRIGGERGUID_S_RC_FL_BrokenPromises_AlmirasHideout_6bbd5c7d-4614-4406-8684-39344257d4fc)
+THEN
+Proc_StartDialog(0, "RC_FL_Almira", CHARACTERGUID_S_GLO_Almira_49b466a9-e67f-4e3c-8f66-3636ba7dd54f, _Var1);
+Proc_RC_FL_BrokenPromises_AlmiraUnsheathe(_Var1);
+
+PROC
+Proc_RC_FL_BrokenPromises_AlmiraUnsheathe((CHARACTERGUID)_Var1)
+AND
+QueryOnlyOnce("RC_FL_BrokenPromises_FirstDialog")
+THEN
+CharacterSetFightMode(CHARACTERGUID_S_GLO_Almira_49b466a9-e67f-4e3c-8f66-3636ba7dd54f, 1, 0);
+ProcCharacterMoveTo(CHARACTERGUID_S_GLO_Almira_49b466a9-e67f-4e3c-8f66-3636ba7dd54f, _Var1, 0, "");
+
+IF
+ObjectFlagSet("RC_FL_BrokenPromises_AlmraSheathe", CHARACTERGUID_S_GLO_Almira_49b466a9-e67f-4e3c-8f66-3636ba7dd54f, _)
+AND
+QueryOnlyOnce("RC_FL_BrokenPromises_AlmraSheathe")
+THEN
+CharacterSetFightMode(CHARACTERGUID_S_GLO_Almira_49b466a9-e67f-4e3c-8f66-3636ba7dd54f, 0, 0);
+
+IF
+ObjectFlagSet("RC_FL_BrokenPromises_MihalyAlreadyFollows", CHARACTERGUID_S_GLO_Mihaly_3355517b-0a92-426b-9160-54fa8507adf2, _)
+THEN
+SetStoryEvent(CHARACTERGUID_S_GLO_Almira_49b466a9-e67f-4e3c-8f66-3636ba7dd54f, "NearMihaly");
+
+IF
+StoryEvent(CHARACTERGUID_S_GLO_Mihaly_3355517b-0a92-426b-9160-54fa8507adf2, "AlmiraTeleport")
+AND
+CharacterIsInCombat(CHARACTERGUID_S_GLO_Almira_49b466a9-e67f-4e3c-8f66-3636ba7dd54f, 0)
+AND NOT
+QRY_IsInRange(CHARACTERGUID_S_GLO_Almira_49b466a9-e67f-4e3c-8f66-3636ba7dd54f, CHARACTERGUID_S_GLO_Mihaly_3355517b-0a92-426b-9160-54fa8507adf2, 10)
+THEN
+ProcCharacterStopFollow(CHARACTERGUID_S_GLO_Almira_49b466a9-e67f-4e3c-8f66-3636ba7dd54f);
+CharacterUseSkill(CHARACTERGUID_S_GLO_Almira_49b466a9-e67f-4e3c-8f66-3636ba7dd54f, "Shout_EnemyWings", CHARACTERGUID_S_GLO_Almira_49b466a9-e67f-4e3c-8f66-3636ba7dd54f, 1, 1, 1);
+
+IF
+CharacterUsedSkill(CHARACTERGUID_S_GLO_Almira_49b466a9-e67f-4e3c-8f66-3636ba7dd54f, "Shout_EnemyWings", _, _)
+AND
+CharacterIsInCombat(CHARACTERGUID_S_GLO_Almira_49b466a9-e67f-4e3c-8f66-3636ba7dd54f, 0)
+THEN
+TeleportTo(CHARACTERGUID_S_GLO_Almira_49b466a9-e67f-4e3c-8f66-3636ba7dd54f, CHARACTERGUID_S_GLO_Mihaly_3355517b-0a92-426b-9160-54fa8507adf2, "NearMihaly", 1);
+
+IF
+StoryEvent(CHARACTERGUID_S_GLO_Almira_49b466a9-e67f-4e3c-8f66-3636ba7dd54f, "NearMihaly")
+AND
+DB_InRegion(CHARACTERGUID_S_GLO_Almira_49b466a9-e67f-4e3c-8f66-3636ba7dd54f, TRIGGERGUID_S_S_RC_FL_BrokenPromises_Box_9ba2179f-e23f-48eb-b41c-7cdc10506153)
+AND
+DB_InRegion(CHARACTERGUID_S_GLO_Mihaly_3355517b-0a92-426b-9160-54fa8507adf2, TRIGGERGUID_S_S_RC_FL_BrokenPromises_Box_9ba2179f-e23f-48eb-b41c-7cdc10506153)
+THEN
+ProcCharacterFollowCharacter(CHARACTERGUID_S_GLO_Almira_49b466a9-e67f-4e3c-8f66-3636ba7dd54f, CHARACTERGUID_S_GLO_Mihaly_3355517b-0a92-426b-9160-54fa8507adf2);
+
+IF
+StoryEvent(CHARACTERGUID_S_GLO_Almira_49b466a9-e67f-4e3c-8f66-3636ba7dd54f, "NearMihaly")
+AND NOT
+DB_InRegion(CHARACTERGUID_S_GLO_Mihaly_3355517b-0a92-426b-9160-54fa8507adf2, TRIGGERGUID_S_S_RC_FL_BrokenPromises_Box_9ba2179f-e23f-48eb-b41c-7cdc10506153)
+THEN
+ProcCharacterMoveTo(CHARACTERGUID_S_GLO_Almira_49b466a9-e67f-4e3c-8f66-3636ba7dd54f, CHARACTERGUID_S_GLO_Mihaly_3355517b-0a92-426b-9160-54fa8507adf2, 1, "AlmiraFinalPoint");
+
+IF
+CharacterLeftParty((CHARACTERGUID)_Var1)
+AND
+IsTagged(_Var1, "COMPANION", 1)
+AND
+ObjectGetFlag(_Var1, "RC_FL_BrokenPromises_MihalyFollows", 1)
+THEN
+ObjectClearFlag(_Var1, "RC_FL_BrokenPromises_MihalyFollows");
+
+IF
+ObjectFlagCleared("RC_FL_BrokenPromises_MihalyFollows", (CHARACTERGUID)_Var1, _)
+AND
+DB_RC_FL_BrokenPromises_PlayerWithMihaly(_Var1)
+THEN
+ObjectClearFlag(CHARACTERGUID_S_GLO_Mihaly_3355517b-0a92-426b-9160-54fa8507adf2, "RC_FL_BrokenPromises_MihalyAlreadyFollows");
+CharacterRemoveFromPlayerCharacter(CHARACTERGUID_S_GLO_Mihaly_3355517b-0a92-426b-9160-54fa8507adf2, _Var1);
+ProcCharacterStopFollow(CHARACTERGUID_S_GLO_Almira_49b466a9-e67f-4e3c-8f66-3636ba7dd54f);
+NOT DB_RC_FL_BrokenPromises_PlayerWithMihaly(_Var1);
+
+IF
+ObjectFlagSet("RC_FL_BrokenPromises_MihalyFollows", (CHARACTERGUID)_Var1, _)
+THEN
+ObjectSetFlag(CHARACTERGUID_S_GLO_Mihaly_3355517b-0a92-426b-9160-54fa8507adf2, "RC_FL_BrokenPromises_MihalyAlreadyFollows");
+CharacterAddToPlayerCharacter(CHARACTERGUID_S_GLO_Mihaly_3355517b-0a92-426b-9160-54fa8507adf2, _Var1);
+CharacterSetAnimationOverride(CHARACTERGUID_S_GLO_Mihaly_3355517b-0a92-426b-9160-54fa8507adf2, "");
+DB_RC_FL_BrokenPromises_PlayerWithMihaly(_Var1);
+
+IF
+CharacterUsedSkillOnTarget(_, CHARACTERGUID_S_GLO_Mihaly_3355517b-0a92-426b-9160-54fa8507adf2, _, "Teleportation", _)
+AND
+DB_GlobalFlag("RC_FL_BrokenPromises_Escorting")
+AND NOT
+DB_IgnoreAssault(CHARACTERGUID_S_GLO_Mihaly_3355517b-0a92-426b-9160-54fa8507adf2)
+THEN
+DB_IgnoreAssault(CHARACTERGUID_S_GLO_Mihaly_3355517b-0a92-426b-9160-54fa8507adf2);
+
+IF
+AttackedByObject((CHARACTERGUID)_Var1, (CHARACTERGUID)_Var2, _, _, (STRING)_Var5)
+AND
+DB_RC_FL_AlmiraGroup(_Var1, _)
+AND NOT
+QryIgnoreDamageSource(_Var5)
+AND
+DB_IsPlayer(_Var2)
+THEN
+Proc_RC_FL_BrokenPromises_HandleAttack(_Var1, _Var2);
+
+IF
+AttackedByObject(CHARACTERGUID_S_GLO_Almira_49b466a9-e67f-4e3c-8f66-3636ba7dd54f, CHARACTERGUID_S_GLO_Mihaly_3355517b-0a92-426b-9160-54fa8507adf2, _, _, _)
+AND
+DB_RC_FL_BrokenPromises_PlayerWithMihaly(_Var4)
+THEN
+Proc_RC_FL_BrokenPromises_Assault(_Var4);
+
+PROC
+Proc_RC_FL_BrokenPromises_HandleAttack((CHARACTERGUID)_Var1, (CHARACTERGUID)_Var2)
+AND NOT
+DB_IgnoreAssault(_Var1)
+THEN
+Proc_RC_FL_BrokenPromises_Assault(_Var2);
+
+PROC
+Proc_RC_FL_BrokenPromises_HandleAttack((CHARACTERGUID)_Var1, (CHARACTERGUID)_Var2)
+AND
+DB_IgnoreAssault(_Var1)
+THEN
+NOT DB_IgnoreAssault(_Var1);
+
+PROC
+Proc_RC_FL_BrokenPromises_Assault((CHARACTERGUID)_Var1)
+AND NOT
+DB_Crime_Assault(_, _, CHARACTERGUID_S_GLO_Almira_49b466a9-e67f-4e3c-8f66-3636ba7dd54f)
+AND NOT
+DB_CombatCharacters(CHARACTERGUID_S_GLO_Almira_49b466a9-e67f-4e3c-8f66-3636ba7dd54f, _)
+THEN
+ProcCrimeRegisterAssault(_Var1, CHARACTERGUID_S_GLO_Almira_49b466a9-e67f-4e3c-8f66-3636ba7dd54f, 0);
+
+PROC
+Proc_RC_FL_BrokenPromises_Assault((CHARACTERGUID)_Var1)
+AND
+DB_RC_FL_BrokenPromises_PlayerWithMihaly(_Var2)
+THEN
+ObjectClearFlag(_Var2, "RC_FL_BrokenPromises_MihalyFollows");
+
+IF
+CharacterLeftTrigger(CHARACTERGUID_S_GLO_Mihaly_3355517b-0a92-426b-9160-54fa8507adf2, TRIGGERGUID_S_S_RC_FL_BrokenPromises_Box_9ba2179f-e23f-48eb-b41c-7cdc10506153)
+AND
+DB_RC_FL_BrokenPromises_PlayerWithMihaly(_Var1)
+AND
+CharacterIsDead(HARACTERGUID_S_GLO_Mihaly_3355517b-0a92-426b-9160-54fa8507adf2, 0)
+THEN
+ObjectClearFlag(_Var1, "RC_FL_BrokenPromises_MihalyFollows");
+ObjectSetFlag(CHARACTERGUID_S_GLO_Mihaly_3355517b-0a92-426b-9160-54fa8507adf2, "RC_FL_BrokenPromises_MihalyEscaped");
+
+IF
+ObjectFlagSet("RC_FL_BrokenPromises_MihalyEscaped", CHARACTERGUID_S_GLO_Mihaly_3355517b-0a92-426b-9160-54fa8507adf2, _)
+AND
+DB_InRegion(CHARACTERGUID_S_GLO_Almira_49b466a9-e67f-4e3c-8f66-3636ba7dd54f, TRIGGERGUID_S_S_RC_FL_BrokenPromises_Box_9ba2179f-e23f-48eb-b41c-7cdc10506153)
+AND
+QRY_IsInRange(CHARACTERGUID_S_GLO_Almira_49b466a9-e67f-4e3c-8f66-3636ba7dd54f, CHARACTERGUID_S_GLO_Mihaly_3355517b-0a92-426b-9160-54fa8507adf2, 10)
+THEN
+ProcCharacterMoveTo(CHARACTERGUID_S_GLO_Almira_49b466a9-e67f-4e3c-8f66-3636ba7dd54f, CHARACTERGUID_S_GLO_Mihaly_3355517b-0a92-426b-9160-54fa8507adf2, 1, "AlmiraFinalPoint");
+
+IF
+StoryEvent(CHARACTERGUID_S_GLO_Almira_49b466a9-e67f-4e3c-8f66-3636ba7dd54f, "AlmiraFinalPoint")
+THEN
+Proc_RC_FL_AlmiraLeftRegion();
+
+IF
+CharacterLeftTrigger(CHARACTERGUID_S_GLO_Almira_49b466a9-e67f-4e3c-8f66-3636ba7dd54f, TRIGGERGUID_S_S_RC_FL_BrokenPromises_Box_9ba2179f-e23f-48eb-b41c-7cdc10506153)
+THEN
+Proc_RC_FL_AlmiraLeftRegion();
+
+PROC
+Proc_RC_FL_AlmiraLeftRegion()
+AND
+QRY_IsInRange(CHARACTERGUID_S_GLO_Almira_49b466a9-e67f-4e3c-8f66-3636ba7dd54f, CHARACTERGUID_S_GLO_Mihaly_3355517b-0a92-426b-9160-54fa8507adf2, 5)
+AND
+ObjectGetFlag(CHARACTERGUID_S_GLO_Mihaly_3355517b-0a92-426b-9160-54fa8507adf2, "RC_FL_BrokenPromises_MihalyEscaped", 1)
+THEN
+ProcCharacterStopFollow(CHARACTERGUID_S_GLO_Almira_49b466a9-e67f-4e3c-8f66-3636ba7dd54f);
+GlobalClearFlag("RC_FL_BrokenPromises_Escorting");
+
+IF
+GlobalFlagCleared("RC_FL_BrokenPromises_Escorting")
+AND
+DB_IsPlayer(_Var1)
+AND
+PartyGetFlag(_Var1, "QuestUpdate_RC_FL_BrokenPromises_Escort", 1)
+AND
+ObjectGetFlag(CHARACTERGUID_S_GLO_Mihaly_3355517b-0a92-426b-9160-54fa8507adf2, "RC_FL_BrokenPromises_MihalyEscaped", 1)
+THEN
+PartySetFlag(_Var1, "QuestUpdate_RC_FL_BrokenPromises_Escaped");
+Proc_RC_FL_BrokenPromises_FinishEscape(_Var1);
+
+PROC
+Proc_RC_FL_BrokenPromises_FinishEscape((CHARACTERGUID)_Var1)
+AND
+QRY_SpeakerIsAvailableAndInDialogRange(_Var1, CHARACTERGUID_S_GLO_Almira_49b466a9-e67f-4e3c-8f66-3636ba7dd54f)
+AND
+QRY_SpeakerIsAvailableAndInDialogRange(CHARACTERGUID_S_GLO_Mihaly_3355517b-0a92-426b-9160-54fa8507adf2, CHARACTERGUID_S_GLO_Almira_49b466a9-e67f-4e3c-8f66-3636ba7dd54f)
+THEN
+CharacterLookAt(CHARACTERGUID_S_GLO_Almira_49b466a9-e67f-4e3c-8f66-3636ba7dd54f, _Var1);
+Proc_StartDialog(0, "RC_FL_Almira", CHARACTERGUID_S_GLO_Almira_49b466a9-e67f-4e3c-8f66-3636ba7dd54f, _Var1);
+
+IF
+ObjectFlagSet("RC_FL_BrokenPromises_Kiss", (GUIDSTRING)_Var1, _)
+THEN
+PROC_LoopEffect("RS3_FX_GP_ScriptedEvent_RC_Almira_LoveScene_Player_01", _Var1, "RC_FL_BrokenPromises_KissFX", "RC_Main", "Dummy_StatusFX");
+PROC_LoopEffect("RS3_FX_GP_ScriptedEvent_RC_Almira_LoveScene_Almira_01", CHARACTERGUID_S_GLO_Almira_49b466a9-e67f-4e3c-8f66-3636ba7dd54f, "RC_FL_BrokenPromises_AlmiraFX", "RC_Main", "Dummy_BodyFX");
+
+IF
+ObjectFlagCleared("RC_FL_BrokenPromises_Kiss", (GUIDSTRING)_Var1, _)
+THEN
+PROC_StopLoopEffect(_Var1, "RC_FL_BrokenPromises_KissFX");
+PROC_StopLoopEffect(CHARACTERGUID_S_GLO_Almira_49b466a9-e67f-4e3c-8f66-3636ba7dd54f, "RC_FL_BrokenPromises_AlmiraFX");
+
+IF
+CharacterDying((CHARACTERGUID)_Var1)
+AND
+DB_RC_FL_AlmiraGroup(_Var1, _Var2)
+AND
+DB_IsPlayer(_Var3)
+THEN
+TriggerUnregisterForCharacter(TRIGGERGUID_S_S_RC_FL_BrokenPromises_Box_9ba2179f-e23f-48eb-b41c-7cdc10506153, _Var1);
+PartySetFlag(_Var3, _Var2);
+DB_NoLowAttitudeDialog(_Var1);
+
+IF
+CharacterDying((CHARACTERGUID)_Var1)
+AND
+DB_RC_FL_AlmiraGroup(_Var1, _)
+AND
+DB_IsPlayer(_Var3)
+AND
+PartyGetFlag(_Var3, "QuestUpdate_RC_FL_BrokenPromises_Escort", 1)
+THEN
+ObjectClearFlag(_Var3, "RC_FL_BrokenPromises_MihalyFollows");
+
+IF
+ObjectFlagSet("QuestUpdate_RC_FL_BrokenPromises_MihalyDied", (CHARACTERGUID)_Var1, _)
+AND
+QRY_SpeakerIsAvailableAndInDialogRange(_Var1, CHARACTERGUID_S_GLO_Almira_49b466a9-e67f-4e3c-8f66-3636ba7dd54f)
+THEN
+Proc_StartDialog(0, "RC_FL_Almira", CHARACTERGUID_S_GLO_Almira_49b466a9-e67f-4e3c-8f66-3636ba7dd54f, _Var1);
+
+IF
+DialogEnded(_, (INTEGER)_Var2)
+AND
+DB_DialogNPCs(_Var2, CHARACTERGUID_S_GLO_Almira_49b466a9-e67f-4e3c-8f66-3636ba7dd54f, _)
+AND
+DB_DialogPlayers(_Var2, _Var4, _)
+AND
+ObjectGetFlag(_Var4, "RC_FL_Almira_Attack", 1)
+AND
+DB_RC_FL_AlmiraGroup(_Var6, _)
+THEN
+ProcSetRelationToPlayers(_Var6, 0);
+
+IF
+DialogEnded(_, (INTEGER)_Var2)
+AND
+DB_DialogNPCs(_Var2, CHARACTERGUID_S_GLO_Almira_49b466a9-e67f-4e3c-8f66-3636ba7dd54f, _)
+AND
+DB_DialogPlayers(_Var2, _Var4, _)
+AND
+ObjectGetFlag(_Var4, "RC_FL_Almira_Attack", 1)
+AND
+DB_RC_FL_BrokenPromises_PlayerWithMihaly(_Var6)
+AND
+CharacterIsInPartyWith(_Var6, _Var4, 1)
+THEN
+ObjectClearFlag(_Var6, "RC_FL_BrokenPromises_MihalyFollows");
+
+IF
+DialogEnded("RC_FL_Almira", (INTEGER)_Var1)
+AND
+GlobalGetFlag("RC_FL_BrokenPromises_AlmiraToShip", 1)
+AND
+DB_RC_FL_AlmiraGroup(_Var2, _)
+THEN
+ProcCharacterDisappearOutOfSightToObject(_Var2, S_RC_LV_Entrance_5d830273-0215-4be4-96ce-8a1122f01bb0, 0, "RC_LV_ReturnToLVAfterQuest", 1);
+SetHasDialog(_Var2, 0);
+TriggerUnregisterForCharacter(TRIGGERGUID_S_S_RC_FL_BrokenPromises_Box_9ba2179f-e23f-48eb-b41c-7cdc10506153, _Var2);
+
+IF
+CharacterEnteredTrigger((CHARACTERGUID)_Var1, S_RC_LV_OnBoard_3d5b3e43-2126-464e-81d1-3c0b60841276)
+AND
+DB_RC_FL_AlmiraGroup(_Var1, _)
+THEN
+SetHasDialog(_Var1, 1);
+
+IF
+CharacterEnteredTrigger(CHARACTERGUID_S_GLO_Mihaly_3355517b-0a92-426b-9160-54fa8507adf2, S_RC_LV_OnBoard_3d5b3e43-2126-464e-81d1-3c0b60841276)
+THEN
+CharacterSetCustomTradeTreasure(CHARACTERGUID_S_GLO_Mihaly_3355517b-0a92-426b-9160-54fa8507adf2, "RC_FL_Mihaly");
+CharacterSetCanTrade(CHARACTERGUID_S_GLO_Mihaly_3355517b-0a92-426b-9160-54fa8507adf2, 1);
+
+IF
+ObjectFlagSet("GLO_HasAtaraxianTablet_PromiseInfo", (CHARACTERGUID)_Var1, _)
+THEN
+PartySetFlag(_Var1, "QuestUpdate_RC_FL_TabletForAlmira_TabletFound");
+
+IF
+ObjectFlagSet("RC_FL_Almira_GivesRewardForTablet", (CHARACTERGUID)_Var1, _)
+THEN
+ItemTemplateAddTo("QUEST_AlmiraRing_4b9bb633-8762-43fd-89b2-ec6532e1339d", _Var1, 1);
+
+PROC
+ProcRegionEnded("RC_Main")
+AND
+ObjectGetFlag(CHARACTERGUID_S_GLO_Almira_49b466a9-e67f-4e3c-8f66-3636ba7dd54f, "GLO_HasPorimiseInfo", 0)
+AND
+DB_IsPlayer(_Var1)
+AND
+DB_IsPlayer(_Var2)
+AND
+PartyGetFlag(_Var1, "QuestUpdate_RC_FL_TabletForAlmira_TabletQuest", 1)
+AND
+PartyGetFlag(_Var1, "QuestUpdate_RC_FL_TabletForAlmira_GaveTabletAlmira", 0)
+AND
+ObjectGetFlag(_Var2, "GLO_HasAtaraxianTablet_PromiseInfo", 0)
+THEN
+SetOnStage(CHARACTERGUID_S_GLO_Almira_49b466a9-e67f-4e3c-8f66-3636ba7dd54f, 0);
+SetOnStage(CHARACTERGUID_S_GLO_Mihaly_3355517b-0a92-426b-9160-54fa8507adf2, 0);
+GlobalClearFlag("RC_FL_BrokenPromises_AlmiraToShip");
+ObjectSetFlag(_Var1, "QuestUpdate_RC_FL_TabletForAlmira_LeftRegion");
+
+IF
+SavegameLoaded((INTEGER)_Var1, (INTEGER)_Var2, (INTEGER)_Var3, (INTEGER)_Var4)
+AND
+QRY_VersionIsOlderThan(_Var1, _Var2, _Var3, _Var4, 3, 6, 2, 0)
+AND
+DB_InRegion(CHARACTERGUID_S_GLO_Almira_49b466a9-e67f-4e3c-8f66-3636ba7dd54f, TRIGGERGUID_S_S_RC_FL_BrokenPromises_Box_9ba2179f-e23f-48eb-b41c-7cdc10506153)
+AND NOT
+DB_InRegion(CHARACTERGUID_S_GLO_Mihaly_3355517b-0a92-426b-9160-54fa8507adf2, TRIGGERGUID_S_S_RC_FL_BrokenPromises_Box_9ba2179f-e23f-48eb-b41c-7cdc10506153)
+AND
+QRY_IsInRange(CHARACTERGUID_S_GLO_Almira_49b466a9-e67f-4e3c-8f66-3636ba7dd54f, CHARACTERGUID_S_GLO_Mihaly_3355517b-0a92-426b-9160-54fa8507adf2, 10)
+THEN
+ProcCharacterStopFollow(CHARACTERGUID_S_GLO_Almira_49b466a9-e67f-4e3c-8f66-3636ba7dd54f);
+ProcCharacterMoveTo(CHARACTERGUID_S_GLO_Almira_49b466a9-e67f-4e3c-8f66-3636ba7dd54f, CHARACTERGUID_S_GLO_Mihaly_3355517b-0a92-426b-9160-54fa8507adf2, 1, "AlmiraFinalPoint");
+
+IF
+SavegameLoaded((INTEGER)_Var1, (INTEGER)_Var2, (INTEGER)_Var3, (INTEGER)_Var4)
+AND
+QRY_VersionIsOlderThan(_Var1, _Var2, _Var3, _Var4, 3, 6, 2, 0)
+AND
+DB_IsPlayer(_Var5)
+AND
+ObjectGetFlag(_Var5, "RC_DW_Meistr_SourceKnowledge_Almira", 1)
+AND
+ObjectGetFlag(_Var5, "QuestUpdate_RC_FL_BrokenPromises_AcceptedSP", 0)
+THEN
+ObjectSetFlag(_Var5, "QuestUpdate_RC_FL_BrokenPromises_AcceptedSP");
+
+
+EXITSECTION
+ENDEXITSECTION
+
+ParentTargetEdge "ReapersCoast"

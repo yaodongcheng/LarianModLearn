@@ -1,0 +1,959 @@
+Version 1
+SubGoalCombiner SGC_AND
+
+INITSECTION
+DB_AD_Dialog(ITEMGUID_S_ARX_DoctorsHouse_Sign_01_62e034ad-33c2-46e7-8787-15a78d599e43, "ARX_DoctorsHouse_AD_Sign_01");
+DB_AD_Dialog(ITEMGUID_S_ARX_DoctorsHouse_Sign_02_aa5fb312-3af4-4e69-8089-9fa444c3fa56, "ARX_DoctorsHouse_AD_Sign_02");
+DB_Dialogs(CHARACTERGUID_S_ARX_DoctorsHouse_TheDoctor_83083470-c543-45b3-ac8a-108df0daca8d, NULL_00000000-0000-0000-0000-000000000000, "ARX_DoctorsHouse_TheDoctor");
+DB_Dialogs(CHARACTERGUID_S_ARX_DoctorsHouse_WindUpToy_e1bfda93-e66d-44f7-b773-b4a075c6852d, "ARX_DoctorsHouse_WindUpToy");
+DB_Dialogs(CHARACTERGUID_S_ARX_DoctorsHouse_Squirrel_36f7c708-ef9c-4718-ad95-21ccf44beb49, "ARX_DoctorsHouse_Squirrel");
+ProcTriggerRegisterForPlayers(TRIGGERGUID_S_ARX_DoctorsHouse_GroundFloor_6a0dd371-c420-4b93-ba0e-a1aea9531617);
+ProcTriggerRegisterForPlayers(TRIGGERGUID_S_ARX_DoctorsHouse_GroundFloor_DoorTrigger_2c001673-0baa-4a69-8f37-645af97e8a23);
+Proc_CheckLohseInGame();
+DB_ARX_DoctorsHouse_NPCs(CHARACTERGUID_S_ARX_DoctorsHouse_Nurse_01_649673eb-79f4-417f-9703-2a640a284f12);
+DB_ARX_DoctorsHouse_NPCs(CHARACTERGUID_S_ARX_DoctorsHouse_Nurse_02_e8cc0255-7d6e-4f52-81ca-2551e8b445a1);
+DB_ARX_DoctorsHouse_NPCs(CHARACTERGUID_S_ARX_DoctorsHouse_Nurse_03_0933d507-2e69-4d6d-9631-dff702e03744);
+DB_ARX_DoctorsHouse_NPCs(CHARACTERGUID_S_ARX_DoctorsHouse_Nurse_04_6831724d-d355-42ef-be25-5bcc1e9baa52);
+DB_ARX_DoctorsHouse_NPCs(CHARACTERGUID_S_ARX_DoctorsHouse_Nurse_05_708e03a9-50c3-40de-90ed-c5f58a45df84);
+DB_ARX_DoctorsHouse_NPCs(CHARACTERGUID_S_ARX_DoctorsHouse_Nurse_06_88d45ba2-a4ec-45b8-bdcd-92951dbd06ca);
+DB_ARX_DoctorsHouse_NPCs(CHARACTERGUID_S_ARX_DoctorsHouse_TheDoctor_83083470-c543-45b3-ac8a-108df0daca8d);
+DB_ARX_DoctorsPact(ITEMGUID_S_ARX_DoctorsHouse_BloodVial_Beast_7ced4a14-a72e-4ba0-9766-59c0cdb93758, "BEAST");
+DB_ARX_DoctorsPact(ITEMGUID_S_ARX_DoctorsHouse_BloodVial_Generic_88a4bc28-76aa-413a-a36e-f2737a8dadde, "GENERIC");
+DB_ARX_DoctorsPact(ITEMGUID_S_ARX_DoctorsHouse_BloodVial_Ifan_31bae5ef-e798-45d7-a8f0-fb6b72673c61, "IFAN");
+DB_ARX_DoctorsPact(ITEMGUID_S_ARX_DoctorsHouse_BloodVial_Fane_c4b676c0-9501-4647-8d24-9fc99bbcfdc6, "FANE");
+DB_ARX_DoctorsPact(ITEMGUID_S_ARX_DoctorsHouse_BloodVial_Lohse_3d4a27b7-c6d3-4e8f-aafb-bb6383662a81, "LOHSE");
+DB_ARX_DoctorsPact(ITEMGUID_S_ARX_DoctorsHouse_BloodVial_RedPrince_e5769aaa-7a7e-4dc0-addf-254aaae85327, "RED PRINCE");
+DB_ARX_DoctorsPact(ITEMGUID_S_ARX_DoctorsHouse_BloodVial_Sebille_08978358-1fcd-493c-82c2-86a2ae0f0c4e, "SEBILLE");
+DB_ARX_DoctorsPact(ITEMGUID_S_ARX_DoctorsHouse_BloodVial_Beast_7ced4a14-a72e-4ba0-9766-59c0cdb93758, "SHAPESHIFT_BEAST");
+DB_ARX_DoctorsPact(ITEMGUID_S_ARX_DoctorsHouse_BloodVial_Generic_88a4bc28-76aa-413a-a36e-f2737a8dadde, "SHAPESHIFT_GENERIC");
+DB_ARX_DoctorsPact(ITEMGUID_S_ARX_DoctorsHouse_BloodVial_Ifan_31bae5ef-e798-45d7-a8f0-fb6b72673c61, "SHAPESHIFT_IFAN");
+DB_ARX_DoctorsPact(ITEMGUID_S_ARX_DoctorsHouse_BloodVial_Fane_c4b676c0-9501-4647-8d24-9fc99bbcfdc6, "SHAPESHIFT_FANE");
+DB_ARX_DoctorsPact(ITEMGUID_S_ARX_DoctorsHouse_BloodVial_Lohse_3d4a27b7-c6d3-4e8f-aafb-bb6383662a81, "SHAPESHIFT_LOHSE");
+DB_ARX_DoctorsPact(ITEMGUID_S_ARX_DoctorsHouse_BloodVial_RedPrince_e5769aaa-7a7e-4dc0-addf-254aaae85327, "SHAPESHIFT_RED PRINCE");
+DB_ARX_DoctorsPact(ITEMGUID_S_ARX_DoctorsHouse_BloodVial_Sebille_08978358-1fcd-493c-82c2-86a2ae0f0c4e, "SHAPESHIFT_SEBILLE");
+DB_DeadEvent(CHARACTERGUID_S_ARX_DoctorsHouse_TheDoctor_83083470-c543-45b3-ac8a-108df0daca8d, "ARX_TheDoctor_IsDead");
+SetOnStage(CHARACTERGUID_S_ARX_AncestorTree_4ac4637a-158d-4081-80ac-df18ea17d353, 0);
+SetOnStage(ITEMGUID_S_ARX_AncestorTree_GhostMace_d10c4bf0-cc3a-4fb8-9191-3b34fe322c2f, 0);
+DB_ARX_TheDoctor_AmbushDemons(CHARACTERGUID_S_ARX_DoctorsHouse_DoctorsDemon_03_f12c9cc0-0219-46de-9746-3ea5b802cee6, 1);
+DB_ARX_TheDoctor_AmbushDemons(CHARACTERGUID_S_ARX_DoctorsHouse_DoctorsDemon_04_7f2515b5-1482-41d5-8f3d-20304eda0e9e, 2);
+DB_ARX_TheDoctor_AmbushDemons(CHARACTERGUID_S_ARX_DoctorsHouse_DoctorsDemon_02_ba9b8596-ddfa-4199-b4bb-273d010046eb, 3);
+DB_ARX_TheDoctor_AmbushDemons(CHARACTERGUID_S_ARX_DoctorsHouse_DoctorsDemon_01_4ac45868-d71a-4756-8e39-cf7550544c95, 4);
+DB_ARX_TheDoctor_AmbushDemons_Current(1);
+DB_ARX_TheDoctor_Knows("ARX_MerchantEstate_DoctorsNotes_ReadNotes", "ARX_TheDoctor_Knows_CakeIsbeil");
+DB_ARX_TheDoctor_Knows("QuestUpdate_ARX_TheDoctor_Knows_NoDoor", "ARX_TheDoctor_Knows_CakeIsbeil");
+DB_ARX_TheDoctor_Knows("ARX_DoctorsHouse_WindUpToy_KillIsbeil", "ARX_TheDoctor_Knows_CakeIsbeil");
+DB_ARX_TheDoctor_Knows("ARX_TheDoctor_Knows_CakeIsbeil", "ARX_TheDoctor_Knows_BlackringAttacks");
+DB_ARX_TheDoctor_Knows("ARX_TheDoctor_Knows_GardenKemm", "ARX_TheDoctor_Knows_BlackringAttacks");
+DB_ARX_TheDoctor_Knows("ARX_KemmMansion_Garden_ShamblingMound_Possessed", "ARX_TheDoctor_Knows_GardenKemm");
+DB_ShovelArea(TRIGGERGUID_S_ARX_DoctorsHouse_GraveyardTreasure_02_Box_709c29f4-9643-48e2-a9ac-b3c7561ee716, "ARX_DoctorsHouse_GraveyardTreasure_02", ITEMGUID_S_ARX_DoctorsHouse_GraveyardTreasure_02_Pile_e75b89f0-ea05-4cfb-af60-26a440137112);
+DB_ShovelRewardItemAppear("ARX_DoctorsHouse_GraveyardTreasure_02", ITEMGUID_S_ARX_DoctorsHouse_GraveyardTreasure_02_Treasure_d781c28a-cdad-4ce3-8b0a-0b14ef5078ca, TRIGGERGUID_S_ARX_DoctorsHouse_GraveyardTreasure_02_Point_528b9486-3be8-435a-8c2d-6ead20ecbf63);
+DB_ShovelArea(TRIGGERGUID_S_ARX_DoctorsHouse_GraveyardTreasure_01_Box_c5d1d358-7bfe-4c3c-8287-c47473a3988f, "ARX_DoctorsHouse_GraveyardTreasure_01", ITEMGUID_S_ARX_DoctorsHouse_GraveyardTreasure_01_Pile_465e074e-8d2c-4456-9ddb-7c52d5414b2e);
+DB_ShovelRewardItemAppear("ARX_DoctorsHouse_GraveyardTreasure_01", ITEMGUID_S_ARX_DoctorsHouse_GraveyardTreasure_01_Treasure_d545ca75-4a77-46b6-92d9-af391bf3277e, TRIGGERGUID_S_ARX_DoctorsHouse_GraveyardTreasure_01_Point_0e729d8c-584b-4db7-8507-2d694994de3b);
+
+KBSECTION
+PROC
+Proc_CheckLohseInGame()
+AND
+DB_IsPlayer(CHARACTERGUID_S_Player_Lohse_bb932b13-8ebf-4ab4-aac0-83e6924e4295)
+THEN
+GlobalSetFlag("LohseIsAvailable");
+
+PROC
+Proc_CheckLohseInGame()
+AND
+GlobalGetFlag("CompanionLeft_LOHSE_DiedInLV", 0)
+AND
+GlobalGetFlag("CompanionLeft_LOHSE_OpposedInCOS", 0)
+AND
+GlobalGetFlag("CompanionLeft_LOHSE_LowRelation", 0)
+THEN
+GlobalSetFlag("LohseIsAvailable");
+
+PROC
+Proc_CheckLohseInGame()
+AND NOT
+DB_IsPlayer(CHARACTERGUID_S_Player_Lohse_bb932b13-8ebf-4ab4-aac0-83e6924e4295)
+THEN
+GlobalClearFlag("LohseIsAvailable");
+
+PROC
+Proc_CheckLohseInGame()
+AND
+GlobalGetFlag("CompanionLeft_LOHSE_LowRelation", 1)
+THEN
+GlobalClearFlag("LohseIsAvailable");
+
+PROC
+Proc_CheckLohseInGame()
+AND
+GlobalGetFlag("CompanionLeft_LOHSE_OpposedInCOS", 1)
+THEN
+GlobalClearFlag("LohseIsAvailable");
+
+PROC
+Proc_CheckLohseInGame()
+AND
+GlobalGetFlag("CompanionLeft_LOHSE_DiedInLV", 1)
+THEN
+GlobalClearFlag("LohseIsAvailable");
+
+IF
+DB_IsPlayer(CHARACTERGUID_S_Player_Lohse_bb932b13-8ebf-4ab4-aac0-83e6924e4295)
+THEN
+GlobalSetFlag("LohseIsAvailable");
+
+IF
+GlobalFlagSet("LohseIsAvailable")
+THEN
+CharacterSetCanTrade(CHARACTERGUID_S_ARX_DoctorsHouse_TheDoctor_83083470-c543-45b3-ac8a-108df0daca8d, 0);
+
+IF
+GlobalFlagCleared("LohseIsAvailable")
+THEN
+CharacterSetCanTrade(CHARACTERGUID_S_ARX_DoctorsHouse_TheDoctor_83083470-c543-45b3-ac8a-108df0daca8d, 1);
+
+IF
+StoryEvent((CHARACTERGUID)_Var1, "ARX_DoctorsHouse_TheDoctor_SightedChar")
+THEN
+Proc_ARX_DoctorsHouse_TheDoctor_InitiateDialogCheck(_Var1);
+
+PROC
+Proc_ARX_DoctorsHouse_TheDoctor_InitiateDialogCheck((CHARACTERGUID)_Var1)
+AND
+QRY_SpeakerIsAvailable(CHARACTERGUID_S_ARX_DoctorsHouse_TheDoctor_83083470-c543-45b3-ac8a-108df0daca8d)
+AND
+DB_IsPlayer(_Var2)
+AND
+IsTagged(_Var2, "PROMISED", 1)
+AND
+CharacterIsInCombat(_Var2, 0)
+AND
+CharacterCanSee(CHARACTERGUID_S_ARX_DoctorsHouse_TheDoctor_83083470-c543-45b3-ac8a-108df0daca8d, _Var2, 1)
+THEN
+Proc_ARX_DoctorsHouse_TheDoctor_InitiateDialogCheck_Start(_Var2);
+
+PROC
+Proc_ARX_DoctorsHouse_TheDoctor_InitiateDialogCheck((CHARACTERGUID)_Var1)
+AND
+QRY_SpeakerIsAvailable(CHARACTERGUID_S_ARX_DoctorsHouse_TheDoctor_83083470-c543-45b3-ac8a-108df0daca8d)
+AND
+UserGetFlag(CHARACTERGUID_S_Player_Lohse_bb932b13-8ebf-4ab4-aac0-83e6924e4295, "ARX_TheDoctor_UserAcceptedThePact", 0)
+AND
+GlobalGetFlag("ARX_DoctorsHouse_TheDoctor_LohseSightedDialog", 0)
+AND
+CharacterCanSee(CHARACTERGUID_S_ARX_DoctorsHouse_TheDoctor_83083470-c543-45b3-ac8a-108df0daca8d, CHARACTERGUID_S_Player_Lohse_bb932b13-8ebf-4ab4-aac0-83e6924e4295, 1)
+AND
+CharacterIsInCombat(CHARACTERGUID_S_Player_Lohse_bb932b13-8ebf-4ab4-aac0-83e6924e4295, 0)
+THEN
+GlobalSetFlag("ARX_DoctorsHouse_TheDoctor_LohseSightedDialog");
+Proc_ARX_DoctorsHouse_TheDoctor_InitiateDialogCheck_Start(CHARACTERGUID_S_Player_Lohse_bb932b13-8ebf-4ab4-aac0-83e6924e4295);
+
+PROC
+Proc_ARX_DoctorsHouse_TheDoctor_InitiateDialogCheck((CHARACTERGUID)_Var1)
+AND
+QRY_SpeakerIsAvailable(CHARACTERGUID_S_ARX_DoctorsHouse_TheDoctor_83083470-c543-45b3-ac8a-108df0daca8d)
+AND
+UserGetFlag(CHARACTERGUID_S_Player_Lohse_bb932b13-8ebf-4ab4-aac0-83e6924e4295, "ARX_TheDoctor_UserAcceptedThePact", 0)
+AND
+GlobalGetFlag("ARX_DoctorsHouse_TheDoctor_LohseSightedDialog", 0)
+AND
+CharacterCanSee(CHARACTERGUID_S_ARX_DoctorsHouse_TheDoctor_83083470-c543-45b3-ac8a-108df0daca8d, CHARACTERGUID_S_Player_Lohse_bb932b13-8ebf-4ab4-aac0-83e6924e4295, 0)
+AND
+CharactersAreGrouped(_Var1, CHARACTERGUID_S_Player_Lohse_bb932b13-8ebf-4ab4-aac0-83e6924e4295, 1)
+AND
+CharacterIsInCombat(CHARACTERGUID_S_Player_Lohse_bb932b13-8ebf-4ab4-aac0-83e6924e4295, 0)
+THEN
+GlobalSetFlag("ARX_DoctorsHouse_TheDoctor_LohseSightedDialog");
+Proc_ARX_DoctorsHouse_TheDoctor_InitiateDialogCheck_Start(CHARACTERGUID_S_Player_Lohse_bb932b13-8ebf-4ab4-aac0-83e6924e4295);
+
+PROC
+Proc_ARX_DoctorsHouse_TheDoctor_InitiateDialogCheck((CHARACTERGUID)_Var1)
+AND
+QRY_SpeakerIsAvailable(CHARACTERGUID_S_ARX_DoctorsHouse_TheDoctor_83083470-c543-45b3-ac8a-108df0daca8d)
+AND
+UserGetFlag(_Var1, "ARX_DoctorsHouse_TheDoctor_BringMeLohse", 0)
+AND
+UserGetFlag(_Var1, "ARX_TheDoctor_UserAcceptedThePact", 0)
+AND
+IsTagged(_Var1, "AVATAR", 1)
+THEN
+Proc_ARX_DoctorsHouse_TheDoctor_InitiateDialogCheck_Start(_Var1);
+
+PROC
+Proc_ARX_DoctorsHouse_TheDoctor_InitiateDialogCheck((CHARACTERGUID)_Var1)
+AND
+QRY_SpeakerIsAvailable(CHARACTERGUID_S_ARX_DoctorsHouse_TheDoctor_83083470-c543-45b3-ac8a-108df0daca8d)
+AND
+UserGetFlag(_Var1, "ARX_DoctorsHouse_TheDoctor_BringMeLohse", 0)
+AND
+UserGetFlag(_Var1, "ARX_TheDoctor_UserAcceptedThePact", 0)
+AND
+IsTagged(_Var1, "AVATAR", 0)
+AND
+CharacterGetReservedUserID(_Var1, _Var2)
+AND
+DB_IsPlayer(_Var3)
+AND
+IsTagged(_Var3, "AVATAR", 0)
+AND
+CharacterGetReservedUserID(_Var3, _Var2)
+THEN
+Proc_ARX_DoctorsHouse_TheDoctor_InitiateDialogCheck_Start(_Var1);
+
+PROC
+Proc_ARX_DoctorsHouse_TheDoctor_InitiateDialogCheck((CHARACTERGUID)_Var1)
+AND
+QRY_SpeakerIsAvailable(CHARACTERGUID_S_ARX_DoctorsHouse_TheDoctor_83083470-c543-45b3-ac8a-108df0daca8d)
+AND
+UserGetFlag(_Var1, "ARX_DoctorsHouse_TheDoctor_BringMeLohse", 0)
+AND
+UserGetFlag(_Var1, "ARX_TheDoctor_UserAcceptedThePact", 0)
+THEN
+Proc_ARX_DoctorsHouse_TheDoctor_InitiateDialogCheck_Start(_Var1);
+
+PROC
+Proc_ARX_DoctorsHouse_TheDoctor_InitiateDialogCheck_Start((CHARACTERGUID)_Var1)
+THEN
+ProcForceStopDialog(_Var1);
+Proc_StartDialog(0, "ARX_DoctorsHouse_TheDoctor", CHARACTERGUID_S_ARX_DoctorsHouse_TheDoctor_83083470-c543-45b3-ac8a-108df0daca8d, CHARACTERGUID_S_ARX_DoctorsHouse_Nurse_01_649673eb-79f4-417f-9703-2a640a284f12, _Var1);
+DB_ARX_DoctorsHouse_TheDoctor_AddToDialog(_Var1);
+CharacterMoveTo(CHARACTERGUID_S_ARX_DoctorsHouse_TheDoctor_83083470-c543-45b3-ac8a-108df0daca8d, TRIGGERGUID_S_ARX_DoctorsHouse_Doctor_DialogPoint_79838641-b031-43c9-8101-bee136b256cb, 0, "ARX_DoctorsHouse_Doctor_DialogPoint_Reached", 0);
+DB_ARX_DoctorsHouse_TheDoctor_LookAt(_Var1);
+
+IF
+StoryEvent(_, "ARX_DoctorsHouse_Doctor_DialogPoint_Reached")
+AND
+DB_ARX_DoctorsHouse_TheDoctor_LookAt(_Var2)
+THEN
+CharacterLookAt(CHARACTERGUID_S_ARX_DoctorsHouse_TheDoctor_83083470-c543-45b3-ac8a-108df0daca8d, _Var2);
+NOT DB_ARX_DoctorsHouse_TheDoctor_LookAt(_Var2);
+
+IF
+DialogStarted("ARX_DoctorsHouse_TheDoctor", (INTEGER)_Var1)
+AND
+DB_ARX_DoctorsHouse_TheDoctor_AddToDialog(_)
+THEN
+Proc_ARX_DoctorsHouse_TheDoctor_AddToDialog(_Var1);
+
+PROC
+Proc_ARX_DoctorsHouse_TheDoctor_AddToDialog((INTEGER)_Var1)
+AND
+DB_ARX_DoctorsHouse_TheDoctor_AddToDialog(_Var2)
+AND
+DB_IsPlayer(_Var3)
+AND
+_Var3 != _Var2
+AND
+CharacterCanSee(CHARACTERGUID_S_ARX_DoctorsHouse_TheDoctor_83083470-c543-45b3-ac8a-108df0daca8d, _Var3, 1)
+THEN
+ProcForceStopDialog(_Var3);
+DialogAddActor(_Var1, _Var3);
+
+PROC
+Proc_ARX_DoctorsHouse_TheDoctor_AddToDialog((INTEGER)_Var1)
+AND
+DB_ARX_DoctorsHouse_TheDoctor_AddToDialog(_Var2)
+THEN
+NOT DB_ARX_DoctorsHouse_TheDoctor_AddToDialog(_Var2);
+
+IF
+ObjectFlagSet("ARX_DoctorsHouse_TheDoctor_NurseMoveTo", (GUIDSTRING)_Var1, _)
+THEN
+CharacterMoveTo(CHARACTERGUID_S_ARX_DoctorsHouse_Nurse_01_649673eb-79f4-417f-9703-2a640a284f12, _Var1, 0, "ARX_DoctorsHouse_TheDoctor_NurseMoved", 1);
+CharacterLookAt(CHARACTERGUID_S_ARX_DoctorsHouse_Nurse_01_649673eb-79f4-417f-9703-2a640a284f12, _Var1);
+
+IF
+ObjectFlagSet("ARX_DoctorsHouse_TheDoctor_Cut", (GUIDSTRING)_Var1, _)
+THEN
+DB_ARX_DoctorsHouse_TheDoctor_Cut_LookAt(_Var1);
+PlayAnimation(CHARACTERGUID_S_ARX_DoctorsHouse_Nurse_01_649673eb-79f4-417f-9703-2a640a284f12, "Elves_Hero_Female_ABC_Attack_1H_01");
+ApplyDamage(_Var1, 20, "Physical");
+CreatePuddle(_Var1, "SurfaceBlood", 5, 10, 1, 3, 0.02);
+
+IF
+GlobalFlagSet("ARX_TheDoctor_PactSealed")
+THEN
+CharacterSetCanTrade(CHARACTERGUID_S_ARX_DoctorsHouse_TheDoctor_83083470-c543-45b3-ac8a-108df0daca8d, 1);
+CharacterMoveTo(CHARACTERGUID_S_ARX_DoctorsHouse_Nurse_01_649673eb-79f4-417f-9703-2a640a284f12, CHARACTERGUID_S_ARX_DoctorsHouse_TheDoctor_83083470-c543-45b3-ac8a-108df0daca8d, 0, "ARX_DoctorsHouse_TheDoctor_NurseMoved_2", 0);
+
+IF
+StoryEvent(_, "ARX_DoctorsHouse_TheDoctor_NurseMoved_2")
+THEN
+CharacterMoveTo(CHARACTERGUID_S_ARX_DoctorsHouse_Nurse_01_649673eb-79f4-417f-9703-2a640a284f12, TRIGGERGUID_S_ARX_DoctorsHouse_Nurse_01_DialogPoint_249e31ef-2a4d-4021-93fd-a91db12f47b5, 0, "ARX_DoctorsHouse_TheDoctor_NurseMoved_3", 0);
+
+IF
+StoryEvent(_, "ARX_DoctorsHouse_TheDoctor_NurseMoved_2")
+AND
+DB_ARX_DoctorsHouse_TheDoctor_Cut_LookAt(_Var2)
+THEN
+CharacterLookAt(CHARACTERGUID_S_ARX_DoctorsHouse_Nurse_01_649673eb-79f4-417f-9703-2a640a284f12, _Var2);
+
+IF
+ObjectFlagSet("ARX_DoctorsHouse_TheDoctor_TeleportOut", _, _)
+THEN
+CharacterSetAnimationOverride(CHARACTERGUID_S_ARX_DoctorsHouse_TheDoctor_83083470-c543-45b3-ac8a-108df0daca8d, "cast_target_loop");
+
+IF
+DialogEnded("ARX_DoctorsHouse_TheDoctor", _)
+THEN
+Proc_ARX_DoctorsHouse_TheDoctor_PostDialog();
+
+IF
+DialogEnded("ARX_DoctorsHouse_TheDoctor_COM_Lohse", _)
+THEN
+Proc_ARX_DoctorsHouse_TheDoctor_PostDialog();
+
+PROC
+Proc_COMFinished("ARX_DoctorsHouse_TheDoctor_COM_Beast", _)
+THEN
+Proc_ARX_DoctorsHouse_TheDoctor_PostDialog();
+
+PROC
+Proc_ARX_DoctorsHouse_TheDoctor_PostDialog()
+THEN
+CharacterSetAnimationOverride(CHARACTERGUID_S_ARX_DoctorsHouse_TheDoctor_83083470-c543-45b3-ac8a-108df0daca8d, "");
+
+PROC
+Proc_ARX_DoctorsHouse_TheDoctor_PostDialog()
+AND
+GlobalGetFlag("ARX_DoctorsHouse_TheDoctor_HostileAfterDialog", 1)
+AND
+CharacterConsume(CHARACTERGUID_S_ARX_DoctorsHouse_TheDoctor_83083470-c543-45b3-ac8a-108df0daca8d, "Arena_Initiative_1", _)
+THEN
+SetRelationFactionToPlayers("ARX_TheDoctor", 0);
+NOT DB_OriginMomentTag_3SP("ARX_DoctorsHouse_TheDoctor", "BEAST", "ARX_DoctorsHouse_TheDoctor_COM_Beast");
+
+PROC
+Proc_ARX_DoctorsHouse_TheDoctor_PostDialog()
+AND
+DB_IsPlayer(_Var1)
+AND
+ObjectGetFlag(_Var1, "ARX_DoctorsHouse_TheDoctor_TeleportOut", 1)
+THEN
+PlayAnimation(CHARACTERGUID_S_ARX_DoctorsHouse_TheDoctor_83083470-c543-45b3-ac8a-108df0daca8d, "cast_target_cast");
+
+PROC
+Proc_ARX_DoctorsHouse_TheDoctor_PostDialog()
+AND
+DB_IsPlayer(_Var1)
+AND
+UserGetFlag(_Var1, "ARX_DoctorsHouse_TheDoctor_TeleportOut", 1)
+AND
+DB_ARX_DoctorsHouse_NPCs(_Var2)
+AND
+CharacterCanSee(_Var2, _Var1, 1)
+THEN
+DB_ARX_DoctorsHouse_TheDoctor_PostDialogWait(_Var1);
+ObjectClearFlag(_Var1, "ARX_DoctorsHouse_TheDoctor_TeleportOut", 1);
+PlayEffect(_Var1, "RS3_FX_GP_ScriptedEvent_Teleport_GenericSmoke_01");
+TeleportTo(_Var1, TRIGGERGUID_S_RC_ARX_Marker_BlackHouse_b63f99c8-3c48-4ed3-af90-b55f1b99a491);
+ApplyStatus(_Var1, "KNOCKED_DOWN", 1, 1);
+
+PROC
+Proc_ARX_DoctorsHouse_TheDoctor_PostDialog()
+AND NOT
+DB_ARX_DoctorsHouse_TheDoctor_PostDialogWait(_)
+AND
+GlobalGetFlag("ARX_DoctorsHouse_TheDoctor_HostileAfterDialog", 0)
+THEN
+GlobalSetFlag("ARX_DoctorsHouse_TheDoctor_RestartSpotter");
+
+IF
+CharacterStatusApplied((CHARACTERGUID)_Var1, "KNOCKED_DOWN", _)
+AND
+DB_ARX_DoctorsHouse_TheDoctor_PostDialogWait(_Var1)
+AND
+QueryOnlyOnce("ARX_DoctorsHouse_VB_TeleportedOut")
+THEN
+StartVoiceBark("ARX_DoctorsHouse_VB_TeleportedOut", _Var1);
+
+IF
+CharacterStatusApplied((CHARACTERGUID)_Var1, "KNOCKED_DOWN", _)
+AND
+DB_ARX_DoctorsHouse_TheDoctor_PostDialogWait(_Var1)
+THEN
+NOT DB_ARX_DoctorsHouse_TheDoctor_PostDialogWait(_Var1);
+GlobalSetFlag("ARX_DoctorsHouse_TheDoctor_RestartSpotter");
+
+IF
+GlobalFlagSet("ARX_TheDoctor_PactSealed")
+AND
+DB_IsPlayer(_Var1)
+AND
+UserGetFlag(_Var1, "ARX_TheDoctor_UserAcceptedThePact", 0)
+AND
+DB_InRegion(_Var1, TRIGGERGUID_S_ARX_DoctorsHouse_GroundFloor_6a0dd371-c420-4b93-ba0e-a1aea9531617)
+AND
+DB_ARX_DoctorsHouse_NPCs(_Var2)
+AND
+CharacterCanSee(_Var2, _Var1, 1)
+THEN
+PlayEffect(_Var1, "RS3_FX_GP_ScriptedEvent_Teleport_GenericSmoke_01");
+TeleportTo(_Var1, TRIGGERGUID_S_RC_ARX_Marker_BlackHouse_b63f99c8-3c48-4ed3-af90-b55f1b99a491);
+ApplyStatus(_Var1, "KNOCKED_DOWN", 1, 1);
+
+IF
+GlobalFlagSet("ARX_DoctorsHouse_TheDoctor_Transform")
+THEN
+Proc_ARX_DoctorsHouse_TheDoctor_Transform();
+
+IF
+GlobalFlagSet("ARX_DoctorsHouse_TheDoctor_Transformed")
+AND
+DB_IsPlayer(_Var1)
+THEN
+ObjectSetFlag(_Var1, "QuestUpdate_ARX_TheDoctor_Combat_DemonForm");
+
+IF
+CharacterEnteredTrigger((CHARACTERGUID)_Var1, TRIGGERGUID_S_ARX_DoctorsHouse_GroundFloor_6a0dd371-c420-4b93-ba0e-a1aea9531617)
+AND
+ObjectGetFlag(_Var1, "ARX_DoctorsHouse_TheDoctor_Welcomed", 0)
+THEN
+Proc_ARX_DoctorsHouse_TheDoctor_Welcomed(_Var1);
+
+PROC
+Proc_ARX_DoctorsHouse_TheDoctor_Welcomed((CHARACTERGUID)_Var1)
+AND
+ObjectGetFlag(_Var1, "ARX_TheDoctor_HasInvitation", 1)
+THEN
+ObjectSetFlag(_Var1, "ARX_DoctorsHouse_TheDoctor_Welcomed");
+
+PROC
+Proc_ARX_DoctorsHouse_TheDoctor_Welcomed((CHARACTERGUID)_Var1)
+AND
+GlobalGetFlag("CoS_SallowMan_IsDead", 1)
+AND
+ObjectGetFlag(_Var1, "QuestUpdate_RC_BF_ThePresence_ToldDemonsName", 0)
+THEN
+ObjectSetFlag(_Var1, "ARX_DoctorsHouse_TheDoctor_Welcomed");
+
+PROC
+Proc_ARX_DoctorsHouse_TheDoctor_Welcomed((CHARACTERGUID)_Var1)
+AND
+ObjectGetFlag(_Var1, "ARX_DoctorsHouse_Door_UnlockedDoor", 1)
+THEN
+ObjectSetFlag(_Var1, "ARX_DoctorsHouse_TheDoctor_Welcomed");
+
+PROC
+Proc_ARX_DoctorsHouse_TheDoctor_Welcomed((CHARACTERGUID)_Var1)
+AND
+CharacterGetReservedUserID(CHARACTERGUID_S_Player_Lohse_bb932b13-8ebf-4ab4-aac0-83e6924e4295, _Var2)
+AND
+CharacterGetReservedUserID(_Var1, _Var2)
+THEN
+ObjectSetFlag(_Var1, "ARX_DoctorsHouse_TheDoctor_Welcomed");
+
+IF
+DB_ARX_DoctorsPact(_Var1, _)
+THEN
+SetOnStage(_Var1, 0);
+
+IF
+ObjectFlagSet("ARX_DoctorsHouse_TheDoctor_Cut", (CHARACTERGUID)_Var1, _)
+AND
+DB_ARX_DoctorsPact(_Var3, _Var4)
+AND
+IsTagged(_Var1, _Var4, 1)
+THEN
+DB_HasStoryEvent(_Var3, "ARX_TheDoctor_HasBloodVial");
+ItemToInventory(_Var3, CHARACTERGUID_S_ARX_DoctorsHouse_TheDoctor_83083470-c543-45b3-ac8a-108df0daca8d);
+SetOnStage(_Var3, 1);
+DB_ARX_DoctorsPact_Char(_Var1, _Var3);
+SetTag(_Var1, "BLOODBOUND");
+
+IF
+StoryEvent(CHARACTERGUID_S_ARX_DoctorsHouse_TheDoctor_83083470-c543-45b3-ac8a-108df0daca8d, "ARX_DoctorsHouse_TheDoctor_InitiatePossesssDialog")
+AND
+QueryOnlyOnce("ARX_DoctorsHouse_TheDoctor_PossessionDialog")
+AND
+StartDialog_Internal("ARX_DoctorsHouse_TheDoctor_Possession", 1, CHARACTERGUID_S_ARX_DoctorsHouse_TheDoctor_83083470-c543-45b3-ac8a-108df0daca8d, CHARACTERGUID_S_Player_Lohse_bb932b13-8ebf-4ab4-aac0-83e6924e4295, NULL_00000000-0000-0000-0000-000000000000, NULL_00000000-0000-0000-0000-000000000000, NULL_00000000-0000-0000-0000-000000000000, NULL_00000000-0000-0000-0000-000000000000, _)
+THEN
+DB_ARX_TheDoctor_CombatDialog_AddToDialog(1);
+CharacterSetAnimationOverride(CHARACTERGUID_S_Player_Lohse_bb932b13-8ebf-4ab4-aac0-83e6924e4295, "cower");
+
+IF
+ObjectFlagSet("ARX_DoctorsHouse_TheDoctor_Possession_ShowPain", (CHARACTERGUID)_Var1, _)
+THEN
+CharacterSetAnimationOverride(_Var1, "stillcrippled");
+
+IF
+ObjectFlagCleared("ARX_DoctorsHouse_TheDoctor_Possession_ShowPain", (CHARACTERGUID)_Var1, _)
+THEN
+CharacterSetAnimationOverride(_Var1, "");
+
+IF
+CharacterStatusApplied(CHARACTERGUID_S_Player_Lohse_bb932b13-8ebf-4ab4-aac0-83e6924e4295, "DEMONIC_POSSESSION", _)
+THEN
+Proc_ARX_TheDoctor_Possession();
+ObjectSetFlag(CHARACTERGUID_S_Player_Lohse_bb932b13-8ebf-4ab4-aac0-83e6924e4295, "QuestUpdate_ARX_TheWeakening_TheDoctor_Possessed");
+
+IF
+CharacterUsedSkillOnTarget(CHARACTERGUID_S_ARX_DoctorsHouse_TheDoctor_83083470-c543-45b3-ac8a-108df0daca8d, CHARACTERGUID_S_Player_Lohse_bb932b13-8ebf-4ab4-aac0-83e6924e4295, "Target_Quest_DemonicPossession_Kill", _, _)
+THEN
+Proc_ARX_TheDoctor_Possession();
+
+IF
+DialogEnded("ARX_DoctorsHouse_TheDoctor_Possession", _)
+AND
+CharacterGetReservedUserID(CHARACTERGUID_S_Player_Lohse_bb932b13-8ebf-4ab4-aac0-83e6924e4295, _Var2)
+AND
+DB_IsPlayer(_Var3)
+AND
+CharacterGetReservedUserID(_Var3, _Var2)
+AND
+_Var3 != CHARACTERGUID_S_Player_Lohse_bb932b13-8ebf-4ab4-aac0-83e6924e4295
+THEN
+GlobalSetFlag("ARX_TheDoctor_CheckUserCount_MoreThanOneChar");
+
+IF
+DialogEnded("ARX_DoctorsHouse_TheDoctor_Possession", _)
+AND
+GlobalGetFlag("ARX_TheDoctor_CheckUserCount_MoreThanOneChar", 0)
+THEN
+GlobalSetFlag("ARX_TheDoctor_CheckUserCount_NotMoreThanOneChar");
+
+PROC
+Proc_ARX_TheDoctor_Possession()
+AND
+DB_CompanionAvatarBond(CHARACTERGUID_S_Player_Lohse_bb932b13-8ebf-4ab4-aac0-83e6924e4295, _Var1)
+THEN
+ObjectSetFlag(_Var1, "QuestUpdate_FTJ_COM_Lohse_DoctorPossessed");
+
+PROC
+Proc_ARX_TheDoctor_Possession()
+AND
+GetUserCount(1)
+AND
+IsTagged(CHARACTERGUID_S_Player_Lohse_bb932b13-8ebf-4ab4-aac0-83e6924e4295, "AVATAR", 1)
+AND
+HasActiveStatus(CHARACTERGUID_S_Player_Lohse_bb932b13-8ebf-4ab4-aac0-83e6924e4295, "DEMONIC_POSSESSION", 0)
+THEN
+CharacterDie(CHARACTERGUID_S_Player_Lohse_bb932b13-8ebf-4ab4-aac0-83e6924e4295, 1, "Explode");
+
+PROC
+Proc_ARX_TheDoctor_Possession()
+AND
+DB_CompanionAvatarBond(CHARACTERGUID_S_Player_Lohse_bb932b13-8ebf-4ab4-aac0-83e6924e4295, _Var1)
+THEN
+DB_ARX_LohseAvatarBondAtPossession(_Var1);
+
+PROC
+Proc_ARX_TheDoctor_Possession()
+THEN
+GlobalSetFlag("ARX_TheDoctor_LohsePossessed");
+
+PROC
+Proc_ARX_TheDoctor_Possession()
+AND
+DB_CompanionAvatarBond(CHARACTERGUID_S_Player_Lohse_bb932b13-8ebf-4ab4-aac0-83e6924e4295, _Var1)
+AND
+HasActiveStatus(CHARACTERGUID_S_Player_Lohse_bb932b13-8ebf-4ab4-aac0-83e6924e4295, "DEMONIC_POSSESSION", 1)
+THEN
+PROC_Origins_CompanionLeavePermanently(CHARACTERGUID_S_Player_Lohse_bb932b13-8ebf-4ab4-aac0-83e6924e4295);
+SetVarFixedString(CHARACTERGUID_S_Player_Lohse_bb932b13-8ebf-4ab4-aac0-83e6924e4295, "currentState", "");
+SetHasDialog(CHARACTERGUID_S_Player_Lohse_bb932b13-8ebf-4ab4-aac0-83e6924e4295, 0);
+ObjectSetFlag(_Var1, "QuestUpdate_FTJ_COM_Lohse_DoctorPossessed");
+ObjectSetFlag(_Var1, "QuestClose_FTJ_COM_Lohse");
+SetFaction(CHARACTERGUID_S_Player_Lohse_bb932b13-8ebf-4ab4-aac0-83e6924e4295, "ARX_TheDoctor");
+
+PROC
+Proc_ARX_TheDoctor_Possession()
+AND
+GlobalGetFlag("ARX_TheDoctor_CheckUserCount_MoreThanOneChar", 0)
+AND
+QueryOnlyOnce("ARX_Launch_GLO_GameOver")
+THEN
+CharacterDie(CHARACTERGUID_S_Player_Lohse_bb932b13-8ebf-4ab4-aac0-83e6924e4295, 1, "Explode");
+TimerLaunch("ARX_Launch_GLO_GameOver", 2000);
+
+PROC
+Proc_ARX_TheDoctor_Possession()
+AND
+IsTagged(CHARACTERGUID_S_Player_Lohse_bb932b13-8ebf-4ab4-aac0-83e6924e4295, "AVATAR", 1)
+AND
+QueryOnlyOnce("ARX_Launch_GLO_GameOver")
+THEN
+CharacterFreeze(CHARACTERGUID_S_Player_Lohse_bb932b13-8ebf-4ab4-aac0-83e6924e4295);
+TimerLaunch("ARX_Launch_GLO_GameOver", 2000);
+
+IF
+TimerFinished("ARX_Launch_GLO_GameOver")
+THEN
+GlobalSetFlag("GLO_GameOver");
+
+PROC
+Proc_ARX_TheDoctor_Possession()
+THEN
+SetTag(CHARACTERGUID_S_Player_Lohse_bb932b13-8ebf-4ab4-aac0-83e6924e4295, "BLOCK_RESURRECTION");
+ApplyStatus(CHARACTERGUID_S_ARX_DoctorsHouse_TheDoctor_83083470-c543-45b3-ac8a-108df0daca8d, "INVULNERABLE", -1);
+
+IF
+CharacterDied(CHARACTERGUID_S_ARX_DoctorsHouse_TheDoctor_83083470-c543-45b3-ac8a-108df0daca8d)
+AND NOT
+DB_CurrentLevel("ARX_Endgame")
+THEN
+ClearTag(CHARACTERGUID_S_Player_Lohse_bb932b13-8ebf-4ab4-aac0-83e6924e4295, "BLOCK_RESURRECTION");
+
+IF
+StoryEvent(_, "ARX_TheDoctor_CheckUserCount")
+AND
+CharacterGetReservedUserID(CHARACTERGUID_S_Player_Lohse_bb932b13-8ebf-4ab4-aac0-83e6924e4295, _Var2)
+AND
+DB_IsPlayer(_Var3)
+AND
+CharacterGetReservedUserID(_Var3, _Var2)
+AND
+_Var3 != CHARACTERGUID_S_Player_Lohse_bb932b13-8ebf-4ab4-aac0-83e6924e4295
+THEN
+GlobalSetFlag("ARX_TheDoctor_CheckUserCount_MoreThanOneChar");
+
+IF
+StoryEvent(_, "ARX_TheDoctor_CheckUserCount")
+AND
+GlobalGetFlag("ARX_TheDoctor_CheckUserCount_MoreThanOneChar", 0)
+THEN
+GlobalSetFlag("ARX_TheDoctor_CheckUserCount_NotMoreThanOneChar");
+
+IF
+DialogStarted("ARX_DoctorsHouse_TheDoctor_Possession", (INTEGER)_Var1)
+THEN
+DB_ARX_TheDoctor_CombatDialog_AddToDialog_Inst(_Var1);
+
+PROC
+Proc_ARX_TheDoctor_CombatDialog_AddToDialog((INTEGER)_Var1)
+AND
+CombatGetIDForCharacter(CHARACTERGUID_S_ARX_DoctorsHouse_TheDoctor_83083470-c543-45b3-ac8a-108df0daca8d, _Var2)
+AND
+DB_IsPlayer(_Var3)
+AND NOT
+DB_DialogPlayers(_, _Var3, _)
+AND
+CombatGetIDForCharacter(_Var3, _Var2)
+THEN
+DialogAddActor(_Var1, _Var3);
+
+IF
+ObjectEnteredCombat((CHARACTERGUID)_Var1, (INTEGER)_Var2)
+AND
+DB_ARX_TheDoctor_CombatDialog_AddToDialog_Inst(_Var3)
+AND
+CombatGetIDForCharacter(CHARACTERGUID_S_ARX_DoctorsHouse_TheDoctor_83083470-c543-45b3-ac8a-108df0daca8d, _Var2)
+AND NOT
+DB_DialogNPCs(_, _Var1, _)
+AND NOT
+DB_DialogPlayers(_, _Var1, _)
+THEN
+DialogAddActor(_Var3, _Var1);
+
+IF
+DialogEnded("ARX_DoctorsHouse_TheDoctor_Possession", _)
+AND
+DB_ARX_TheDoctor_CombatDialog_AddToDialog_Inst(_Var2)
+THEN
+NOT DB_ARX_TheDoctor_CombatDialog_AddToDialog_Inst(_Var2);
+CharacterSetAnimationOverride(CHARACTERGUID_S_Player_Lohse_bb932b13-8ebf-4ab4-aac0-83e6924e4295, "");
+
+QRY
+QRY_ARX_DoctorNearLohsePlayer()
+AND
+CharacterGetReservedUserID(CHARACTERGUID_S_Player_Lohse_bb932b13-8ebf-4ab4-aac0-83e6924e4295, _Var1)
+AND
+DB_IsPlayer(_Var2)
+AND
+CharacterGetReservedUserID(_Var2, _Var1)
+AND
+GetDistanceTo(_Var2, CHARACTERGUID_S_ARX_DoctorsHouse_TheDoctor_83083470-c543-45b3-ac8a-108df0daca8d, _Var3)
+AND
+_Var3 < 13
+THEN
+DB_NOOP(0);
+
+IF
+GlobalFlagSet("ARX_TheDoctor_IsDead")
+AND
+CharacterIsDead(CHARACTERGUID_S_Player_Lohse_bb932b13-8ebf-4ab4-aac0-83e6924e4295, 0)
+AND
+QRY_ARX_DoctorNearLohsePlayer()
+AND
+DB_CompanionAvatarBond(CHARACTERGUID_S_Player_Lohse_bb932b13-8ebf-4ab4-aac0-83e6924e4295, _Var1)
+THEN
+ObjectSetFlag(_Var1, "QuestUpdate_FTJ_COM_Lohse_DoctorDefeat");
+Proc_RelationshipDialog(CHARACTERGUID_S_Player_Lohse_bb932b13-8ebf-4ab4-aac0-83e6924e4295, "ARX_TheDoctorIsDead_CRD_Lohse", CHARACTERGUID_S_Player_Lohse_bb932b13-8ebf-4ab4-aac0-83e6924e4295);
+
+IF
+GlobalFlagSet("ARX_TheDoctor_IsDead")
+AND
+CharacterIsDead(CHARACTERGUID_S_Player_Lohse_bb932b13-8ebf-4ab4-aac0-83e6924e4295, 1)
+AND
+DB_CompanionAvatarBond(CHARACTERGUID_S_Player_Lohse_bb932b13-8ebf-4ab4-aac0-83e6924e4295, _Var1)
+THEN
+DB_Queue("ARX_TheDoctorIsDead_CRD_Lohse");
+
+IF
+CharacterResurrected(CHARACTERGUID_S_Player_Lohse_bb932b13-8ebf-4ab4-aac0-83e6924e4295)
+AND
+DB_Queue("ARX_TheDoctorIsDead_CRD_Lohse")
+AND
+QRY_ARX_DoctorNearLohsePlayer()
+AND
+DB_CompanionAvatarBond(CHARACTERGUID_S_Player_Lohse_bb932b13-8ebf-4ab4-aac0-83e6924e4295, _Var1)
+THEN
+NOT DB_Queue("ARX_TheDoctorIsDead_CRD_Lohse");
+ObjectSetFlag(_Var1, "QuestUpdate_FTJ_COM_Lohse_DoctorDefeat");
+Proc_RelationshipDialog(CHARACTERGUID_S_Player_Lohse_bb932b13-8ebf-4ab4-aac0-83e6924e4295, "ARX_TheDoctorIsDead_CRD_Lohse", CHARACTERGUID_S_Player_Lohse_bb932b13-8ebf-4ab4-aac0-83e6924e4295);
+
+IF
+GlobalFlagSet("ARX_TheDoctor_IsDead")
+AND
+DB_GlobalFlag("GLO_Lohse_Faced_Doctor")
+AND
+DB_Avatars(CHARACTERGUID_S_Player_Lohse_bb932b13-8ebf-4ab4-aac0-83e6924e4295)
+THEN
+ObjectSetFlag(CHARACTERGUID_S_Player_Lohse_bb932b13-8ebf-4ab4-aac0-83e6924e4295, "QuestUpdate_FTJ_OriginLohse_DoctorDefeat");
+
+IF
+ObjectFlagSet("ARX_DoctorsHouse_TheDoctor_GiveScroll", CHARACTERGUID_S_Player_Lohse_bb932b13-8ebf-4ab4-aac0-83e6924e4295, _)
+THEN
+ObjectSetFlag(CHARACTERGUID_S_Player_Lohse_bb932b13-8ebf-4ab4-aac0-83e6924e4295, "QuestUpdate_FTJ_OriginLohse_DoctorPact");
+
+IF
+DialogStarted("ARX_DoctorsHouse_Door", _)
+AND
+DB_IsPlayer(_Var2)
+AND
+IsTagged(_Var2, "PROMISED", 1)
+THEN
+GlobalSetFlag("ARX_DoctorsHouse_Door_PromisedInGame");
+
+IF
+ObjectFlagSet("ARX_DoctorsHouse_TheDoctor_Banned", (GUIDSTRING)_Var1, _)
+THEN
+ObjectSetFlag(_Var1, "QuestUpdate_ARX_TheDoctor_BannedFromHouse");
+
+IF
+CharacterDied(CHARACTERGUID_S_ARX_DoctorsHouse_TheDoctor_83083470-c543-45b3-ac8a-108df0daca8d)
+AND
+DB_IsPlayer(_Var1)
+THEN
+ObjectSetFlag(_Var1, "QuestUpdate_ARX_TheDoctor_TheDoctor_IsDead");
+
+IF
+CharacterDied(CHARACTERGUID_S_ARX_DoctorsHouse_TheDoctor_83083470-c543-45b3-ac8a-108df0daca8d)
+AND
+DB_CompanionAvatarBond(CHARACTERGUID_S_Player_Lohse_bb932b13-8ebf-4ab4-aac0-83e6924e4295, _Var1)
+THEN
+ObjectSetFlag(_Var1, "QuestUpdate_FTJ_COM_Lohse_DoctorDefeat");
+
+IF
+TextEventSet("tree")
+AND
+DB_IsPlayer(_Var1)
+THEN
+TimerLaunch("ARX_AncestorTree_Appear", 5000);
+DB_ARX_AncestorTree_Appear(_Var1);
+
+IF
+CharacterEnteredTrigger((CHARACTERGUID)_Var1, TRIGGERGUID_S_ARX_Streets_c7f10608-b8ba-4c67-8e25-2074bde47487)
+AND
+GlobalGetFlag("ARX_AncestorTree_Appeared", 0)
+AND
+CharacterIsDead(CHARACTERGUID_S_ARX_DoctorsHouse_TheDoctor_83083470-c543-45b3-ac8a-108df0daca8d, 1)
+AND
+UserGetFlag(_Var1, "QuestUpdate_RC_BI_TheTruth_FoundOutDemonsName", 1)
+AND NOT
+DB_ARX_AncestorTree_Appear(_)
+THEN
+TimerLaunch("ARX_AncestorTree_Appear", 5000);
+DB_ARX_AncestorTree_Appear(_Var1);
+
+IF
+TimerFinished("ARX_AncestorTree_Appear")
+THEN
+Proc_ARX_AncestorTree_Appear();
+
+PROC
+Proc_ARX_AncestorTree_Appear()
+AND
+DB_ARX_AncestorTree_Appear(_Var1)
+AND
+QRY_SpeakerIsAvailable(_Var1)
+AND
+GlobalGetFlag("ARX_AncestorTree_Appeared", 0)
+THEN
+DB_ARX_AncestorTree_AppearedDialog(_Var1);
+GlobalSetFlag("ARX_AncestorTree_Appeared");
+NOT DB_ARX_AncestorTree_Appear(_Var1);
+TeleportTo(CHARACTERGUID_S_ARX_AncestorTree_4ac4637a-158d-4081-80ac-df18ea17d353, _Var1);
+Foop(CHARACTERGUID_S_ARX_AncestorTree_4ac4637a-158d-4081-80ac-df18ea17d353);
+Proc_StartDialog(0, "ARX_AncestorTree", CHARACTERGUID_S_ARX_AncestorTree_4ac4637a-158d-4081-80ac-df18ea17d353, _Var1);
+
+PROC
+Proc_ARX_AncestorTree_Appear()
+AND
+DB_IsPlayer(_Var1)
+AND
+QRY_SpeakerIsAvailable(_Var1)
+AND
+GlobalGetFlag("ARX_AncestorTree_Appeared", 0)
+THEN
+DB_ARX_AncestorTree_AppearedDialog(_Var1);
+TeleportTo(CHARACTERGUID_S_ARX_AncestorTree_4ac4637a-158d-4081-80ac-df18ea17d353, _Var1);
+Foop(CHARACTERGUID_S_ARX_AncestorTree_4ac4637a-158d-4081-80ac-df18ea17d353);
+GlobalSetFlag("ARX_AncestorTree_Appeared");
+Proc_StartDialog(0, "ARX_AncestorTree", CHARACTERGUID_S_ARX_AncestorTree_4ac4637a-158d-4081-80ac-df18ea17d353, _Var1);
+
+PROC
+Proc_ARX_AncestorTree_Appear()
+AND
+GlobalGetFlag("ARX_AncestorTree_Appeared", 0)
+AND
+DB_ARX_AncestorTree_Appear(_Var1)
+THEN
+NOT DB_ARX_AncestorTree_Appear(_Var1);
+GlobalSetFlag("ARX_AncestorTree_AppearWait");
+
+IF
+StoryEvent(_, "ARX_AncestorTree_Appearing")
+AND
+DB_ARX_AncestorTree_AppearedDialog(_Var2)
+THEN
+Proc_StartDialog(0, "ARX_AncestorTree", CHARACTERGUID_S_ARX_AncestorTree_4ac4637a-158d-4081-80ac-df18ea17d353, _Var2);
+
+IF
+ObjectLeftCombat((CHARACTERGUID)_Var1, _)
+AND
+GlobalGetFlag("ARX_AncestorTree_AppearWait", 1)
+AND
+UserGetFlag(_Var1, "QuestUpdate_RC_BI_TheTruth_FoundOutDemonsName", 1)
+AND
+GlobalGetFlag("ARX_AncestorTree_Appeared", 0)
+AND NOT
+DB_ARX_AncestorTree_Appear(_)
+THEN
+DB_ARX_AncestorTree_Appear(_Var1);
+TimerLaunch("ARX_AncestorTree_Appear", 5000);
+GlobalClearFlag("ARX_AncestorTree_AppearWait");
+
+IF
+DialogEnded(_, _)
+AND
+GlobalGetFlag("ARX_AncestorTree_AppearWait", 1)
+AND
+DB_IsPlayer(_Var3)
+AND
+UserGetFlag(_Var3, "QuestUpdate_RC_BI_TheTruth_FoundOutDemonsName", 1)
+AND
+GlobalGetFlag("ARX_AncestorTree_Appeared", 0)
+AND NOT
+DB_ARX_AncestorTree_Appear(_)
+THEN
+DB_ARX_AncestorTree_Appear(_Var3);
+TimerLaunch("ARX_AncestorTree_Appear", 5000);
+GlobalClearFlag("ARX_AncestorTree_AppearWait");
+
+IF
+ObjectFlagSet("ARX_AncestorTree_GiveReward", (GUIDSTRING)_Var1, _)
+THEN
+SetOnStage(ITEMGUID_S_ARX_AncestorTree_GhostMace_d10c4bf0-cc3a-4fb8-9191-3b34fe322c2f, 1);
+ItemToInventory(ITEMGUID_S_ARX_AncestorTree_GhostMace_d10c4bf0-cc3a-4fb8-9191-3b34fe322c2f, _Var1);
+
+IF
+DialogEnded("ARX_AncestorTree", _)
+THEN
+Poof(CHARACTERGUID_S_ARX_AncestorTree_4ac4637a-158d-4081-80ac-df18ea17d353);
+
+IF
+TextEventSet("doctor3")
+THEN
+GlobalSetFlag("ARX_TheWeakening_Completed");
+
+IF
+DB_ARX_TheDoctor_AmbushDemons(_Var1, _)
+THEN
+SetOnStage(_Var1, 0);
+
+IF
+TimerFinished("ARX_TheDoctor_AmbushDemons_Appear")
+AND
+GlobalGetFlag("ARX_TheWeakening_Completed", 0)
+AND NOT
+DB_ARX_TheDoctor_AmbushDemons_Current(5)
+THEN
+Proc_ARX_TheDoctor_AmbushDemons_Appear();
+
+PROC
+Proc_ARX_TheDoctor_AmbushDemons_Appear()
+AND
+DB_ARX_TheDoctor_AmbushDemons_Current(_Var1)
+AND
+DB_ARX_TheDoctor_AmbushDemons(_Var2, _Var1)
+THEN
+CharacterSetFightMode(_Var2, 1, 1);
+CharacterAppear(_Var2, 1, "");
+NOT DB_ARX_TheDoctor_AmbushDemons(_Var2, _Var1);
+
+PROC
+Proc_ARX_TheDoctor_AmbushDemons_Appear()
+AND
+DB_ARX_TheDoctor_AmbushDemons_Current(_Var1)
+AND
+IntegerSum(_Var1, 1, _Var2)
+THEN
+NOT DB_ARX_TheDoctor_AmbushDemons_Current(_Var1);
+DB_ARX_TheDoctor_AmbushDemons_Current(_Var2);
+
+PROC
+Proc_ARX_TheDoctor_AmbushDemons_Appear()
+AND NOT
+DB_ARX_TheDoctor_AmbushDemons_Current(5)
+THEN
+TimerLaunch("ARX_TheDoctor_AmbushDemons_Appear", 250);
+
+PROC
+Proc_ARX_DoctorsHouse_TheDoctor_Transform()
+AND
+GlobalGetFlag("EG_AppearDoctor", 0)
+THEN
+SetRelationFactionToPlayers("ARX_TheDoctor", 0);
+
+IF
+GlobalFlagSet("ARX_DoctorsHouse_WindUpToy_Jump")
+THEN
+CharacterSetFightMode(CHARACTERGUID_S_ARX_DoctorsHouse_WindUpToy_e1bfda93-e66d-44f7-b773-b4a075c6852d, 1, 0);
+GlobalClearFlag("ARX_DoctorsHouse_WindUpToy_Jump");
+
+IF
+DialogEnded("ARX_DoctorsHouse_WindUpToy", _)
+AND
+GlobalGetFlag("ARX_DoctorsHouse_WindUpToy_Explode", 0)
+THEN
+CharacterSetFightMode(CHARACTERGUID_S_ARX_DoctorsHouse_WindUpToy_e1bfda93-e66d-44f7-b773-b4a075c6852d, 0, 0);
+
+IF
+DialogEnded("ARX_DoctorsHouse_WindUpToy", _)
+AND
+GlobalGetFlag("ARX_DoctorsHouse_WindUpToy_Explode", 1)
+THEN
+CharacterDie(CHARACTERGUID_S_ARX_DoctorsHouse_WindUpToy_e1bfda93-e66d-44f7-b773-b4a075c6852d, 1, "DoT");
+
+IF
+ObjectFlagSet((STRING)_Var1, (CHARACTERGUID)_Var2, _)
+AND
+DB_ARX_TheDoctor_Knows(_Var1, _Var4)
+AND
+UserGetFlag(_Var2, _Var4, 0)
+THEN
+ObjectSetFlag(_Var2, _Var4);
+
+IF
+CharacterUsedItem((CHARACTERGUID)_Var1, ITEMGUID_S_ARX_TheDoctor_FishBarrel_7ab5ed36-5556-4055-ab2c-942894de1dd1)
+AND
+UserGetFlag(_Var1, "ARX_TheDoctor_FishBarrel_Used", 0)
+THEN
+UserSetFlag(_Var1, "ARX_TheDoctor_FishBarrel_Used");
+
+
+EXITSECTION
+ENDEXITSECTION
+
+ParentTargetEdge "ARX"

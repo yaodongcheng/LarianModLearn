@@ -1,0 +1,1599 @@
+Version 1
+SubGoalCombiner SGC_AND
+
+INITSECTION
+DB_JobTag("BARBARIAN");
+DB_JobTag("JESTER");
+DB_JobTag("MYSTIC");
+DB_JobTag("NOBLE");
+DB_JobTag("OUTLAW");
+DB_JobTag("SOLDIER");
+DB_JobTag("SCHOLAR");
+DB_JobTag("HERO");
+DB_JobTag("VILLAIN");
+DB_OriginTag("IFAN");
+DB_OriginTag("RED PRINCE");
+DB_OriginTag("SEBILLE");
+DB_OriginTag("BEAST");
+DB_OriginTag("FANE");
+DB_OriginTag("LOHSE");
+DB_OriginTag("GENERIC");
+DB_RaceTag("HUMAN");
+DB_RaceTag("DWARF");
+DB_RaceTag("ELF");
+DB_RaceTag("LIZARD");
+DB_RaceTag("UNDEAD");
+DB_RaceTag("MALE");
+DB_RaceTag("FEMALE");
+DB_StoryTag("KILLER");
+DB_StoryTag("SAMARITAN");
+DB_StoryTag("SAVIOUR");
+DB_StoryTag("THIEF");
+DB_StoryTag("TRAITOR");
+DB_StoryTag("TRUSTWORTHY");
+DB_StoryTag("ELF-FRIEND");
+DB_StoryTag("DWARF-FRIEND");
+DB_StoryTag("HUMAN-FRIEND");
+DB_StoryTag("LIZARD-FRIEND");
+DB_StoryTag("UNDEAD-FRIEND");
+DB_OriginTagFlag("Debug_AddIfanTags", "Ifan");
+DB_OriginTagFlag("Debug_AddBeastTags", "Beast");
+DB_OriginTagFlag("Debug_AddSebilleTags", "Sebille");
+DB_OriginTagFlag("Debug_AddLohseTags", "Lohse");
+DB_OriginTagFlag("Debug_AddPrinceTags", "Prince");
+DB_OriginTagGroup("Ifan", "IFAN");
+DB_OriginTagGroup("Ifan", "NOBLE");
+DB_OriginTagGroup("Ifan", "OUTLAW");
+DB_OriginTagGroup("Ifan", "MALE");
+DB_OriginTagGroup("Beast", "BEAST");
+DB_OriginTagGroup("Beast", "BARBARIAN");
+DB_OriginTagGroup("Beast", "VILLAIN");
+DB_OriginTagGroup("Beast", "MALE");
+DB_OriginTagGroup("Sebille", "SEBILLE");
+DB_OriginTagGroup("Sebille", "OUTLAW");
+DB_OriginTagGroup("Sebille", "FEMALE");
+DB_OriginTagGroup("Lohse", "LOHSE");
+DB_OriginTagGroup("Lohse", "JESTER");
+DB_OriginTagGroup("Lohse", "MYSTIC");
+DB_OriginTagGroup("Lohse", "FEMALE");
+DB_OriginTagGroup("Prince", "RED PRINCE");
+DB_OriginTagGroup("Prince", "NOBLE");
+DB_OriginTagGroup("Prince", "SOLDIER");
+DB_OriginTagGroup("Prince", "MALE");
+DB_DEBUG_TUT_StartTrigger(StartPoint_002__000_c195287d-e87d-8982-2ff6-2b159d38a966);
+DB_DEBUG_TUT_StartTrigger(StartPoint_000__000_fe2995bf-aa16-8ce7-33a2-8cb8cf228152);
+DB_DEBUG_TUT_StartTrigger(StartPoint_003__000_b97d317e-fb2b-815f-34d8-74786df2cdae);
+DB_DEBUG_TUT_StartTrigger(StartPoint_001__000_06873976-bf3c-8249-2074-1733c88957ff);
+DB_DEBUG_LV_SubjugationFlags(0, "GLO_ShipFreed");
+DB_DEBUG_LV_SubjugationFlags(1, "GLO_ShipSubjugated");
+
+KBSECTION
+IF
+CharacterUsedItemTemplate((CHARACTERGUID)_Var1, "GLO_Debug_Item_bcf8f28d-9ed1-43c0-bfc6-284aff5a6d19", _)
+THEN
+Proc_StartDialog(0, "GEN_Debug_Item", _Var1);
+
+IF
+ObjectFlagSet("Debug_GodMode_On", (CHARACTERGUID)_Var1, _)
+AND
+DB_IsPlayer(_Var3)
+THEN
+CharacterSetImmortal(_Var3, 1);
+ProcSetInvulnerable(_Var3, 1);
+
+IF
+ObjectFlagSet("Debug_GodMode_Off", (CHARACTERGUID)_Var1, _)
+AND
+DB_IsPlayer(_Var3)
+THEN
+CharacterSetImmortal(_Var3, 0);
+ProcSetInvulnerable(_Var3, 0);
+
+IF
+TextEventSet("Recruit_All")
+AND
+CharacterGetHostCharacter(_Var1)
+THEN
+ObjectSetFlag(_Var1, "Recruit_Ifan");
+ObjectSetFlag(_Var1, "Recruit_Lohse");
+ObjectSetFlag(_Var1, "Recruit_RedPrince");
+ObjectSetFlag(_Var1, "Recruit_Sebille");
+
+IF
+ObjectFlagSet("Recruit_Ifan", (CHARACTERGUID)_Var1, _)
+THEN
+TeleportTo(CHARACTERGUID_S_Player_Ifan_ad9a3327-4456-42a7-9bf4-7ad60cc9e54f, _Var1);
+PROC_GLO_PartyMembers_Add(CHARACTERGUID_S_Player_Ifan_ad9a3327-4456-42a7-9bf4-7ad60cc9e54f, _Var1);
+ObjectClearFlag(_Var1, "Recruit_Ifan", 0);
+ProcClearStoryMove(CHARACTERGUID_S_Player_Ifan_ad9a3327-4456-42a7-9bf4-7ad60cc9e54f);
+
+IF
+ObjectFlagSet("Recruit_Lohse", (CHARACTERGUID)_Var1, _)
+THEN
+TeleportTo(CHARACTERGUID_S_Player_Lohse_bb932b13-8ebf-4ab4-aac0-83e6924e4295, _Var1);
+PROC_GLO_PartyMembers_Add(CHARACTERGUID_S_Player_Lohse_bb932b13-8ebf-4ab4-aac0-83e6924e4295, _Var1);
+ObjectClearFlag(_Var1, "Recruit_Lohse", 0);
+ProcClearStoryMove(CHARACTERGUID_S_Player_Lohse_bb932b13-8ebf-4ab4-aac0-83e6924e4295);
+
+IF
+ObjectFlagSet("Recruit_RedPrince", (CHARACTERGUID)_Var1, _)
+THEN
+TeleportTo(CHARACTERGUID_S_Player_RedPrince_a26a1efb-cdc8-4cf3-a7b2-b2f9544add6f, _Var1);
+PROC_GLO_PartyMembers_Add(CHARACTERGUID_S_Player_RedPrince_a26a1efb-cdc8-4cf3-a7b2-b2f9544add6f, _Var1);
+ObjectClearFlag(_Var1, "Recruit_RedPrince", 0);
+ProcClearStoryMove(CHARACTERGUID_S_Player_RedPrince_a26a1efb-cdc8-4cf3-a7b2-b2f9544add6f);
+
+IF
+ObjectFlagSet("Recruit_Sebille", (CHARACTERGUID)_Var1, _)
+THEN
+TeleportTo(CHARACTERGUID_S_Player_Sebille_c8d55eaf-e4eb-466a-8f0d-6a9447b5b24c, _Var1);
+PROC_GLO_PartyMembers_Add(CHARACTERGUID_S_Player_Sebille_c8d55eaf-e4eb-466a-8f0d-6a9447b5b24c, _Var1);
+ObjectClearFlag(_Var1, "Recruit_Sebille", 0);
+ProcClearStoryMove(CHARACTERGUID_S_Player_Sebille_c8d55eaf-e4eb-466a-8f0d-6a9447b5b24c);
+
+IF
+ObjectFlagSet("Recruit_Beast", (CHARACTERGUID)_Var1, _)
+THEN
+TeleportTo(CHARACTERGUID_S_Player_Beast_f25ca124-a4d2-427b-af62-df66df41a978, _Var1);
+PROC_GLO_PartyMembers_Add(CHARACTERGUID_S_Player_Beast_f25ca124-a4d2-427b-af62-df66df41a978, _Var1);
+ObjectClearFlag(_Var1, "Recruit_Beast", 0);
+ProcClearStoryMove(CHARACTERGUID_S_Player_Beast_f25ca124-a4d2-427b-af62-df66df41a978);
+
+IF
+ObjectFlagSet("Recruit_Fane", (CHARACTERGUID)_Var1, _)
+THEN
+TeleportTo(CHARACTERGUID_S_Player_Fane_02a77f1f-872b-49ca-91ab-32098c443beb, _Var1);
+PROC_GLO_PartyMembers_Add(CHARACTERGUID_S_Player_Fane_02a77f1f-872b-49ca-91ab-32098c443beb, _Var1);
+ObjectClearFlag(_Var1, "Recruit_Fane", 0);
+ProcClearStoryMove(CHARACTERGUID_S_Player_Fane_02a77f1f-872b-49ca-91ab-32098c443beb);
+
+IF
+ObjectFlagSet("Debug_TutorialTeleport", (CHARACTERGUID)_Var1, _)
+THEN
+ProcForceStopDialog(_Var1);
+CharacterTeleportPartiesToTrigger(StartPoint_000__000_fe2995bf-aa16-8ce7-33a2-8cb8cf228152, "");
+ObjectClearFlag(_Var1, "Debug_TutorialTeleport", 0);
+
+IF
+ObjectFlagSet("Debug_FortJoyBeachTeleport", (CHARACTERGUID)_Var1, _)
+THEN
+ProcForceStopDialog(_Var1);
+CharacterTeleportPartiesToTrigger(TRIGGERGUID_Start_7de91b54-903d-49b0-a1fb-b39da965656c, "");
+ObjectClearFlag(_Var1, "Debug_FortJoyBeachTeleport", 0);
+
+IF
+ObjectFlagSet("Debug_FortJoyPrisonTeleport", (CHARACTERGUID)_Var1, _)
+THEN
+ProcForceStopDialog(_Var1);
+CharacterTeleportPartiesToTrigger(TRIGGERGUID_S_FTJ_PrisonMainEntrance_Point_06379d44-0770-4a28-9c0a-0bf9cb057f6a, "");
+ObjectClearFlag(_Var1, "Debug_FortJoyPrisonTeleport", 0);
+
+IF
+ObjectFlagSet("Debug_RCStartTeleport", (CHARACTERGUID)_Var1, _)
+THEN
+CharacterAddGold(_Var1, 1000);
+ItemTemplateAddTo("TOOL_Shovel_A_41486dd2-3fd5-464e-870e-844120cf0517", _Var1, 1);
+ProcForceStopDialog(_Var1);
+CharacterTeleportPartiesToTrigger(StartPoint_000_e30fe0c4-9b40-4040-9670-e8edd53a34ce, "");
+ObjectClearFlag(_Var1, "Debug_RCStartTeleport", 0);
+
+IF
+ObjectFlagSet("Debug_DriftwoodEntranceTeleport", (CHARACTERGUID)_Var1, _)
+THEN
+CharacterAddGold(_Var1, 1000);
+ItemTemplateAddTo("TOOL_Shovel_A_41486dd2-3fd5-464e-870e-844120cf0517", _Var1, 1);
+ProcForceStopDialog(_Var1);
+CharacterTeleportPartiesToTrigger(TRIGGERGUID_S_RC_Debug_Driftwood_533972a5-6fc4-430d-99bc-7c8a0a451472, "");
+ObjectClearFlag(_Var1, "Debug_DriftwoodEntranceTeleport", 0);
+
+IF
+ObjectFlagSet("Debug_SeaGodStatueTeleport", (CHARACTERGUID)_Var1, _)
+THEN
+ProcForceStopDialog(_Var1);
+CharacterTeleportPartiesToTrigger(TRIGGERGUID_S_RC_WH_SeaGodStatue_DebugTrigger_efa60001-badc-4064-a965-73b7abb24006, "");
+ObjectClearFlag(_Var1, "Debug_SeaGodStatueTeleport", 0);
+
+IF
+ObjectFlagSet("Debug_WreckersCaveEntranceTeleport", (CHARACTERGUID)_Var1, _)
+THEN
+ProcForceStopDialog(_Var1);
+CharacterTeleportPartiesToTrigger(TRIGGERGUID_S_RC_DW_WreckersCave_Lightouse_Exit_13d3a02b-dd14-476f-a90d-d451777bc9b4, "");
+ObjectClearFlag(_Var1, "Debug_WreckersCaveEntranceTeleport", 0);
+
+IF
+ObjectFlagSet("Debug_WreckersCaveFinished", (CHARACTERGUID)_Var1, _)
+THEN
+ProcForceStopDialog(_Var1);
+CharacterTeleportPartiesToTrigger(TRIGGERGUID_S_RC_DW_WreckersCave_Lighthouse_Entrance_656ef34a-314a-4ee7-9a37-4b2139d2f920, "RC_DW_WC_Debug_InitedWreckerCave");
+ObjectClearFlag(_Var1, "Debug_WreckersCaveFinished");
+
+IF
+ObjectFlagSet("Debug_TeleportBombScientist", (CHARACTERGUID)_Var1, _)
+THEN
+ProcForceStopDialog(_Var1);
+CharacterTeleportPartiesToTrigger(TRIGGERGUID_Debug_BombScientist_88794f69-0a80-4fbd-b00a-a8f1654b6e73, "");
+ObjectClearFlag(_Var1, "Debug_TeleportBombScientist");
+
+IF
+StoryEvent((CHARACTERGUID)_Var1, "RC_DW_WC_Debug_InitedWreckerCave")
+THEN
+ProcObjectTimer(_Var1, "RC_DW_WC_Debug_InitedWreckerCave_WaitForRegionStarted", 500);
+
+PROC
+ProcObjectTimerFinished((CHARACTERGUID)_Var1, "RC_DW_WC_Debug_InitedWreckerCave_WaitForRegionStarted")
+THEN
+DB_RC_DW_WC_MordusCombatID(-1);
+GlobalSetFlag("RC_DW_WC_BossElderIsDead");
+PartySetFlag(_Var1, "QuestUpdate_RC_DW_WC_AtaraxianLair_KilledBoss");
+ItemToInventory(ITEMGUID_QUEST_RC_Amulet_Mordus_000_49de20a2-8ab8-4424-b77e-d871884faaa9, _Var1);
+ItemToInventory(ITEMGUID_S_RC_WC_MordusOffice_MordusPouch_f46e0f12-05e3-4bf6-82f6-a2a3b295d739, _Var1);
+CharacterTeleportPartiesToTrigger(TRIGGERGUID_S_RC_DW_Debug_AbandonedHouseSecretRoom_4a3c6715-36f9-4319-a3d8-dd2397f59b94, "");
+
+IF
+ObjectFlagSet("Debug_DF_PaladinCheckpoint", (CHARACTERGUID)_Var1, _)
+THEN
+ProcForceStopDialog(_Var1);
+CharacterTeleportPartiesToTrigger(TRIGGERGUID_DEBUG_PaladinCheckpoint_f51439b8-1f59-44e0-bf5c-e82f9be8b7c5, "");
+ObjectClearFlag(_Var1, "Debug_DF_PaladinCheckpoint", 0);
+ItemTemplateAddTo("TOOL_Shovel_A_41486dd2-3fd5-464e-870e-844120cf0517", _Var1, 1);
+ItemTemplateAddTo("TOOL_LockPick_A_06d0eecb-4271-42a7-bd8c-4cbf24927197", _Var1, 10);
+ItemTemplateAddTo("TOOL_Trap_DisarmToolkit_9fda335e-2220-4ae9-a4c2-2424d5ef5165", _Var1, 10);
+
+IF
+ObjectFlagSet("Debug_ARX_TheWeakening_Completed", (CHARACTERGUID)_Var1, _)
+THEN
+GlobalSetFlag("ARX_TheWeakening_Completed");
+CharacterTeleportPartiesToTrigger(TRIGGERGUID_S_ARX_DoctorsHouse_Corridor_7f99267e-ddbc-4d78-91b7-43f1d83b22c0, "");
+
+IF
+ObjectFlagSet("Debug_ARX_TheWeakening_Failed", (CHARACTERGUID)_Var1, _)
+THEN
+GlobalSetFlag("ARX_TheWeakening_FinalScene_Failed");
+CharacterTeleportPartiesToTrigger(TRIGGERGUID_S_ARX_DoctorsHouse_Corridor_7f99267e-ddbc-4d78-91b7-43f1d83b22c0, "");
+
+IF
+ObjectFlagSet("Debug_AddFishBarrelScroll", (CHARACTERGUID)_Var1, _)
+THEN
+ItemTemplateAddTo("QUEST_ARX_FishBarrelScroll_d2e74ff6-9e68-4e7c-bfb3-cab1ef9bd14d", _Var1, 1);
+ItemTemplateAddTo("CON_Food_Voidwoken_Fish_B_ea14f970-ac06-463a-a6f2-7a5fb9a268ac", _Var1, 1);
+ItemTemplateAddTo("CON_Food_Voidwoken_Fish_D_7be66d14-a96c-4b0f-8650-8cbd3cd26bd0", _Var1, 1);
+
+IF
+ObjectFlagSet("Debug_ARX_PrepPossessedKid", (CHARACTERGUID)_Var1, _)
+THEN
+ObjectClearFlag(_Var1, "Debug_ARX_PrepPossessedKid");
+DB_Children(CHARACTERGUID_S_RC_BI_Vault_PosessedPerson_002_1bfd9e78-846f-4f24-82db-6ebb48ddc203);
+ProcSetInvulnerable(CHARACTERGUID_S_RC_BI_Vault_PosessedPerson_002_1bfd9e78-846f-4f24-82db-6ebb48ddc203, 1);
+ProcCharacterDisableAllCrimes(CHARACTERGUID_S_RC_BI_Vault_PosessedPerson_002_1bfd9e78-846f-4f24-82db-6ebb48ddc203);
+ObjectSetFlag(CHARACTERGUID_S_RC_BI_Vault_PosessedPerson_002_1bfd9e78-846f-4f24-82db-6ebb48ddc203, "RC_BI_Vault_002_Join");
+PartySetFlag(_Var1, "QuestUpdate_RC_BI_TheVaultKid_TookKid");
+PartySetFlag(_Var1, "QuestUpdate_RC_BI_TheVaultKid_KidMet");
+
+IF
+ObjectFlagSet("Debug_ARX_TeleportToHarbour", (CHARACTERGUID)_Var1, _)
+THEN
+ProcForceStopDialog(_Var1);
+CharacterTeleportPartiesToTrigger(TRIGGERGUID_S_ARX_DEBUG_Outskirts_Harbour_d3fd02ea-3b88-404f-9e37-593d5c19cf6e, "");
+ObjectClearFlag(_Var1, "Debug_ARX_TeleportToHarbour", 0);
+
+IF
+ObjectFlagSet("Debug_ARX_TeleportToRuinsBehindPilgrims", (CHARACTERGUID)_Var1, _)
+THEN
+ProcForceStopDialog(_Var1);
+CharacterTeleportPartiesToTrigger(TRIGGERGUID_S_ARX_DEBUG_Outskirts_RuinsBehindPilgrims_72b09fe6-b28b-408a-864b-0568e087e27d, "");
+ObjectClearFlag(_Var1, "Debug_ARX_TeleportToRuinsBehindPilgrims", 0);
+GlobalSetFlag("RC_BF_Mhordkan_Free");
+GlobalSetFlag("RC_BF_Shain_Free");
+Proc_ARX_JahansDemons_SetUp();
+
+IF
+ObjectFlagSet("Debug_TeleportTheBlackHouse", (CHARACTERGUID)_Var1, _)
+THEN
+ProcForceStopDialog(_Var1);
+CharacterTeleportPartiesToTrigger(TRIGGERGUID_S_DEBUG_ARX_BlackHouse_447549cb-dfe4-402b-8113-d70b47d5a6e2, "");
+ObjectClearFlag(_Var1, "Debug_TeleportTheBlackHouse", 0);
+
+IF
+ObjectFlagSet("Debug_TeleportMerchantEstate", (CHARACTERGUID)_Var1, _)
+THEN
+ProcForceStopDialog(_Var1);
+CharacterTeleportPartiesToTrigger(TRIGGERGUID_S_DEBUG_MerchantEstate_476ce54b-717f-4e81-aefe-b936a7608e43, "");
+ObjectClearFlag(_Var1, "Debug_TeleportMerchantEstate", 0);
+
+IF
+ObjectFlagSet("Debug_WeddingInvitation", (CHARACTERGUID)_Var1, _)
+THEN
+ItemToInventory(ITEMGUID_S_RC_DW_LoharsWeddingInvitation_b1ceabe0-cf1c-4013-9c87-d05d19b74641, _Var1);
+
+IF
+ObjectFlagSet("Debug_TeleportDwarvenSewers", (CHARACTERGUID)_Var1, _)
+THEN
+ProcForceStopDialog(_Var1);
+CharacterTeleportPartiesToTrigger(TRIGGERGUID_S_DEBUG_Sewers_ac13d800-8520-4072-9f65-99cd75d62714, "");
+ObjectClearFlag(_Var1, "Debug_ArxEntranceTeleport", 0);
+
+IF
+ObjectFlagSet("Debug_QueenAndQ_SetUpFlags", (CHARACTERGUID)_Var1, _)
+THEN
+SetTag(_Var1, "DWARF_FRIEND");
+ObjectSetFlag(_Var1, "QuestUpdate_CoS_CompanionCulling_End");
+GlobalSetFlag("CoS_Temples_BlackRingHub_SpyMaster_IsDead");
+GlobalSetFlag("RC_GY_RykerDead");
+GlobalSetFlag("CoS_SallowMan_IsDead");
+SetTag(_Var1, "CHAMPION_DW");
+SetTag(_Var1, "CHAMPION_FTJ");
+
+IF
+ObjectFlagSet("Debug_ArxEntranceTeleport", (CHARACTERGUID)_Var1, _)
+THEN
+ProcForceStopDialog(_Var1);
+CharacterTeleportPartiesToTrigger(S_ARX_GateAccess_18f9cd7d-5e03-433a-b09a-3c06574fd103, "");
+ObjectClearFlag(_Var1, "Debug_ArxEntranceTeleport", 0);
+
+IF
+ObjectFlagSet("Debug_ClanWarTeleport", (CHARACTERGUID)_Var1, _)
+THEN
+ProcForceStopDialog(_Var1);
+CharacterTeleportPartiesToTrigger(TRIGGERGUID_S_DEBUG_ClanWar_45d5152e-257d-4c09-9c0e-accd5089c975, "");
+ObjectClearFlag(_Var1, "Debug_ClanWarTeleport", 0);
+
+IF
+ObjectFlagSet("Debug_KemmMansionEntrance", (CHARACTERGUID)_Var1, _)
+THEN
+ProcForceStopDialog(_Var1);
+CharacterTeleportPartiesToTrigger(TRIGGERGUID_S_DEBUG_RC_ARX_KemmMansion_c0fb80d6-2329-4208-8768-840668dff106, "");
+ObjectClearFlag(_Var1, "Debug_KemmMansionEntrance", 0);
+
+IF
+ObjectFlagSet("QuestUpdate_RC_DF_PaladinCheckpoint_Finished_Debug", (CHARACTERGUID)_Var1, _)
+THEN
+UserSetFlag(_Var1, "QuestUpdate_RC_DF_PaladinCheckpoint_Finished");
+Proc_ARX_KemmMansion_SetLetters();
+
+IF
+ObjectFlagSet("Debug_KemmVault", (CHARACTERGUID)_Var1, _)
+THEN
+ProcForceStopDialog(_Var1);
+CharacterTeleportPartiesToTrigger(TRIGGERGUID_S_ARX_KemmVault_SecretEntrance_EntTrig_0e6e3967-a9d2-4240-9daa-a75f450e0142, "");
+ObjectClearFlag(_Var1, "Debug_KemmVault", 0);
+
+IF
+ObjectFlagSet("Debug_TeleportToLizardConsulate", (CHARACTERGUID)_Var1, _)
+THEN
+ProcForceStopDialog(_Var1);
+CharacterTeleportPartiesToTrigger(TRIGGERGUID_S_Debug_TeleportToLizardConsulate_6a6d1c73-3681-459c-b3f5-a8f765aa3ad6, "");
+ObjectClearFlag(_Var1, "Debug_TeleportToLizardConsulate", 0);
+
+IF
+ObjectFlagSet("Debug_TeleportToHorrorSleep_Arena", (CHARACTERGUID)_Var1, _)
+THEN
+ProcForceStopDialog(_Var1);
+CharacterTeleportPartiesToTrigger(TRIGGERGUID_S_RC_ARX_HorrorSleep_StartPoint_ad545a8f-fb39-4ef3-af74-62b56e5ae8d5, "");
+ObjectClearFlag(_Var1, "Debug_TeleportToHorrorSleep_Arena", 0);
+
+IF
+ObjectFlagSet("Debug_TeleportToHorrorSleep_Warzone", (CHARACTERGUID)_Var1, _)
+THEN
+ProcForceStopDialog(_Var1);
+CharacterTeleportPartiesToTrigger(TRIGGERGUID_S_ARX_HorrorSleep_TeleportToWarZone_74bf7714-43ab-4e5a-87c8-bcc7f7a827ae, "");
+ObjectClearFlag(_Var1, "Debug_TeleportToHorrorSleep_Warzone", 0);
+
+IF
+ObjectFlagSet("Debug_TeleportToHorrorSleep_Sunset", (CHARACTERGUID)_Var1, _)
+THEN
+ProcForceStopDialog(_Var1);
+CharacterTeleportPartiesToTrigger(TRIGGERGUID_S_ARX_HorrorSleep_SunSetStart_c62f811c-a9a9-49b2-be96-76a0c2781039, "");
+ObjectClearFlag(_Var1, "Debug_TeleportToHorrorSleep_Sunset", 0);
+
+IF
+ObjectFlagSet("Debug_TeleportToCathedral", (CHARACTERGUID)_Var1, _)
+THEN
+ProcForceStopDialog(_Var1);
+CharacterTeleportPartiesToTrigger(TRIGGERGUID_S_ARX_Cathedral_DebugTeleport_Point_d5bae244-8c23-499a-85ce-3d2cb4fdf8a7, "");
+ObjectClearFlag(_Var1, "Debug_TeleportToCathedral", 0);
+
+IF
+ObjectFlagSet("Debug_TeleportToDTEmptyCatabombs", (CHARACTERGUID)_Var1, _)
+THEN
+ProcForceStopDialog(_Var1);
+CharacterTeleportPartiesToTrigger(TRIGGERGUID_S_ARX_DivineTomb_EmptyCatacombs_Start_TeleportPoint_1147c919-c330-4b62-8545-52928a564db9, "");
+ObjectClearFlag(_Var1, "Debug_TeleportToDTEmptyCatabombs", 0);
+
+IF
+ObjectFlagSet("Debug_TeleportToDTLineOfAnguish", (CHARACTERGUID)_Var1, _)
+THEN
+ProcForceStopDialog(_Var1);
+CharacterTeleportPartiesToTrigger(TRIGGERGUID_S_ARX_DivineTomb_Interlude_Start_TeleportPoint_4eb5c84d-0d42-4ceb-a8c2-038d23815276, "");
+ObjectClearFlag(_Var1, "Debug_TeleportToDTLineOfAnguish", 0);
+
+IF
+ObjectFlagSet("Debug_TeleportToDTDeathRoom", (CHARACTERGUID)_Var1, _)
+THEN
+ProcForceStopDialog(_Var1);
+CharacterTeleportPartiesToTrigger(TRIGGERGUID_S_ARX_DivineTomb_DeathRoom_Start_TeleportPoint_42363ced-6044-42db-ad3b-225ec09ec9b4, "");
+ObjectClearFlag(_Var1, "Debug_TeleportToDTDeathRoom", 0);
+
+IF
+ObjectFlagSet("Debug_ARX_Teleport_LVLocation", (CHARACTERGUID)_Var1, _)
+THEN
+GlobalClearFlag("CoS_GarethRevenge_SceneActive");
+CharacterTeleportPartiesToTrigger(TRIGGERGUID_StartPoint_000__001_ARX_Harbour_Dev_000_ARX_Main_Rework_000_fb573f96-d837-0033-4143-3bf31d88ae49, "");
+ObjectClearFlag(_Var1, "Debug_ARX_Teleport_LVLocation");
+
+IF
+ObjectFlagSet("Debug_ARX_Teleport_HoE", (CHARACTERGUID)_Var1, _)
+THEN
+ProcForceStopDialog(_Var1);
+GlobalClearFlag("CoS_GarethRevenge_SceneActive");
+CharacterTeleportPartiesToTrigger(TRIGGERGUID_S_ARX_LV_DEBUG_HoE_Point_1afb4f44-56c1-4026-9305-b66034a5ddd3, "");
+PROC_GLO_LevelTravelAgency_GetAllStartNPCsForCurrentRegion();
+Proc_ARX_TheCrash_NPCLeave();
+ObjectClearFlag(_Var1, "Debug_ARX_Teleport_HoE");
+
+IF
+ObjectFlagSet("ARX_GarethGoodPath_DebugSetup", (CHARACTERGUID)_Var1, _)
+THEN
+GlobalClearFlag("CoS_GarethRevenge_SceneActive");
+GlobalSetFlag("RC_FL_GarethGaveUpRevenge");
+NOT DB_OnlyOnce("CoS_GarethsRevenge_SendToElfTemple_Once");
+GlobalSetFlag("CoS_GarethRevenge_Resolution_Peaceful");
+PROC_GLO_LevelTravelAgency_GetStartNPCForCurrentRegion(CHARACTERGUID_S_FTJ_SW_Warrior_SeekerCaptain_1329f018-23e4-4717-9bc8-074b28d04c54);
+ObjectClearFlag(_Var1, "ARX_GarethGoodPath_DebugSetup");
+SetStoryEvent(CHARACTERGUID_S_FTJ_SW_Warrior_SeekerCaptain_1329f018-23e4-4717-9bc8-074b28d04c54, "ARX_TheCrash_StartTimer");
+
+IF
+ObjectFlagSet("Debug_ARX_GetTarquin", (CHARACTERGUID)_Var1, _)
+THEN
+PartySetFlag(_Var1, "QuestUpdate_RC_GY_Godslayer_Start");
+PartySetFlag(_Var1, "QuestUpdate_RC_GY_Godslayer_GaveParts");
+UserSetFlag(_Var1, "ARX_PlayerKnows_VredemanIsBraccusRex");
+PROC_GLO_LevelTravelAgency_GetStartNPCForCurrentRegion(CHARACTERGUID_S_GLO_Tarquin_a3d0cdcc-d0b0-464d-9ad7-43b38baed620);
+ObjectClearFlag(_Var1, "Debug_ARX_GetTarquin");
+
+IF
+ObjectFlagSet("Debug_SetUpCrash_Jahan", (CHARACTERGUID)_Var1, _)
+THEN
+PROC_GLO_LevelTravelAgency_GetStartNPCForCurrentRegion(CHARACTERGUID_S_GLO_Jahan_4d222cfd-49c8-41d3-8cb7-2a2b56232633);
+ObjectClearFlag(_Var1, "Debug_SetUpCrash_Jahan");
+ClearVarObject(CHARACTERGUID_S_GLO_Jahan_4d222cfd-49c8-41d3-8cb7-2a2b56232633, "CharToTalkTo");
+ClearVarObject(CHARACTERGUID_S_GLO_Jahan_4d222cfd-49c8-41d3-8cb7-2a2b56232633, "ADDialog");
+GlobalSetFlag("ARX_LV_Jahan_InArx");
+
+IF
+ObjectFlagSet("Debug_ARX_GetAlmira", (CHARACTERGUID)_Var1, _)
+THEN
+PartySetFlag(_Var1, "QuestUpdate_RC_FL_BrokenPromises_Start");
+PartySetFlag(_Var1, "QuestUpdate_RC_FL_BrokenPromises_Escaped");
+PartySetFlag(_Var1, "QuestUpdate_RC_FL_BrokenPromises_AcceptedSP");
+PartySetFlag(_Var1, "QuestUpdate_RC_FL_TabletForAlmira_TabletQuest");
+PartySetFlag(_Var1, "QuestUpdate_RC_FL_TabletForAlmira_GaveTabletAlmira");
+PartySetFlag(_Var1, "QuestUpdate_CoS_BreakerForAlmira_Start");
+PROC_GLO_LevelTravelAgency_GetStartNPCForCurrentRegion(CHARACTERGUID_S_GLO_Almira_49b466a9-e67f-4e3c-8f66-3636ba7dd54f);
+PROC_GLO_LevelTravelAgency_GetStartNPCForCurrentRegion(CHARACTERGUID_S_GLO_Mihaly_3355517b-0a92-426b-9160-54fa8507adf2);
+ObjectClearFlag(_Var1, "Debug_ARX_GetAlmira");
+
+IF
+ObjectFlagSet("Debug_GraveyardTeleport", (CHARACTERGUID)_Var1, _)
+THEN
+ProcForceStopDialog(_Var1);
+CharacterTeleportPartiesToTrigger(TRIGGERGUID_S_RC_GY_GraveyardDebugTeleportTrigger_a95560fd-1570-4bc1-bbae-aa9d614b591a, "");
+ObjectClearFlag(_Var1, "Debug_GraveyardTeleport", 0);
+ItemTemplateAddTo("TOOL_Shovel_A_41486dd2-3fd5-464e-870e-844120cf0517", _Var1, 1);
+ItemTemplateAddTo("TOOL_LockPick_A_06d0eecb-4271-42a7-bd8c-4cbf24927197", _Var1, 10);
+ItemTemplateAddTo("TOOL_Trap_DisarmToolkit_9fda335e-2220-4ae9-a4c2-2424d5ef5165", _Var1, 10);
+
+IF
+ObjectFlagSet("Debug_RC_GY_GetAtaraxianArtifact", (CHARACTERGUID)_Var1, _)
+THEN
+ProcForceStopDialog(_Var1);
+ItemToInventory(ITEMGUID_S_RC_OIL_AtaraxianArtefact_f7f7f0ca-772c-4679-a12a-e06d034eadc9, _Var1);
+
+IF
+ObjectFlagSet("Debug_RC_GY_GetGodslayerShard", (CHARACTERGUID)_Var1, _)
+THEN
+ItemToInventory(ITEMGUID_S_RC_GY_Godslayer_Shard_9cbd4e21-7ae7-4c00-a970-4533dbec90c5, _Var1);
+
+IF
+ObjectFlagSet("Debug_RC_GY_GetGodslayerShaft", (CHARACTERGUID)_Var1, _)
+THEN
+ItemToInventory(ITEMGUID_S_RC_GY_Godslayer_Shaft_d49ff3e6-cd11-4ea2-801a-c9057e14a7c3, _Var1);
+
+IF
+ObjectFlagSet("Debug_RC_GY_GiveLimbs", (GUIDSTRING)_Var1, _)
+THEN
+ItemTemplateAddTo("a32e556f-8c03-48ca-bd29-b78067fd31da", _Var1, 3);
+ItemTemplateAddTo("77a55c40-3a6e-4148-bb7d-5174bb227387", _Var1, 3);
+ItemTemplateAddTo("dc3af1bd-cbea-4042-a663-9be2814f105c", _Var1, 4);
+
+IF
+ObjectFlagSet("Debug_OilFieldEntranceTeleport", (CHARACTERGUID)_Var1, _)
+THEN
+ProcForceStopDialog(_Var1);
+CharacterTeleportPartiesToTrigger(TRIGGERGUID_S_RC_OIL_Debug_Oilfields_b8c9ad6c-108f-4a50-85e2-683c790b1528, "");
+ObjectClearFlag(_Var1, "Debug_OilFieldEntranceTeleport", 0);
+
+IF
+ObjectFlagSet("Debug_OilFieldVoidwokenAttack", (CHARACTERGUID)_Var1, _)
+THEN
+ProcForceStopDialog(_Var1);
+Proc_SetupOilVWAttack(_Var1);
+
+PROC
+Proc_SetupOilVWAttack((CHARACTERGUID)_Var1)
+AND
+GetRegion(_Var1, "RC_Main")
+THEN
+CharacterTeleportPartiesToTrigger(TRIGGERGUID_S_RC_OIL_TP_CaveEntrance_8033cbc1-ec92-48d2-8719-20b827004b8e, "");
+CharacterAddSkill(_Var1, "ProjectileStrike_RainOfArrows");
+UserSetFlag(_Var1, "RC_OIL_InnerField_HelpedSourcererEscape", 0);
+PartySetFlag(_Var1, "RC_OIL_AllowedInOilfields");
+RemoveStatus(CHARACTERGUID_S_RC_OIL_InnerField_Sourcerer_632e47f2-22c3-4342-b3f7-152dd3534f3b, "LYING");
+TeleportTo(CHARACTERGUID_S_RC_OIL_InnerField_Sourcerer_632e47f2-22c3-4342-b3f7-152dd3534f3b, TRIGGERGUID_S_RC_OIL_Innerfield_Sourcerer_ArriveHome_9a4c118c-24f4-4646-95c2-3116c66f7341);
+ObjectClearFlag(_Var1, "Debug_OilFieldVoidwokenAttack", 0);
+GlobalSetFlag("RC_OIL_InnerField_Sourcerer_GotHome");
+GlobalSetFlag("RC_OIL_Innerfield_SourcererRescued");
+Proc_RC_OIL_DoVoidwokenAttack();
+CharacterSetReactionPriority(CHARACTERGUID_S_RC_OIL_InnerField_Sourcerer_632e47f2-22c3-4342-b3f7-152dd3534f3b, "At_Home", 1100);
+ClearVarObject(CHARACTERGUID_S_RC_OIL_InnerField_Sourcerer_632e47f2-22c3-4342-b3f7-152dd3534f3b, "Seat");
+SetCanFight(CHARACTERGUID_S_RC_OIL_InnerField_Sourcerer_632e47f2-22c3-4342-b3f7-152dd3534f3b, 1);
+Proc_SetupOilVWAttackCreep();
+
+PROC
+Proc_SetupOilVWAttack((CHARACTERGUID)_Var1)
+AND
+GetRegion(_Var1, _Var2)
+AND
+_Var2 != "RC_Main"
+THEN
+CharacterTeleportPartiesToTrigger(TRIGGERGUID_S_RC_OIL_TP_CaveEntrance_8033cbc1-ec92-48d2-8719-20b827004b8e, "RC_OIL_DebugVWAttack");
+
+IF
+StoryEvent((CHARACTERGUID)_Var1, "RC_OIL_DebugVWAttack")
+THEN
+Proc_SetupOilVWAttack(_Var1);
+
+PROC
+Proc_SetupOilVWAttackCreep()
+AND
+DB_OIL_VoidwokenAttack_Voidwoken(_Var1, _)
+THEN
+CharacterDie(_Var1, 1, "");
+
+PROC
+Proc_SetupOilVWAttackCreep()
+AND
+DB_OIL_VoidwokenAttack_Magisters(_Var1)
+THEN
+CharacterDie(_Var1, 1, "");
+
+IF
+ObjectFlagSet("Debug_GetWritOfApproval", (GUIDSTRING)_Var1, _)
+THEN
+ItemTemplateAddTo("RC_DW_WritOfPassage_061d8aa5-771b-4b72-8d8f-5f2200d43ab1", _Var1, 1);
+ObjectClearFlag(_Var1, "Debug_GetWritOfApproval", 0);
+
+IF
+ObjectFlagSet("Debug_BloodForestShorelineTeleport", (CHARACTERGUID)_Var1, _)
+THEN
+ProcForceStopDialog(_Var1);
+CharacterTeleportPartiesToTrigger(TRIGGERGUID_S_RC_BF_BloodForestShorelineDebugTP_b9c503de-14fe-4261-b6a4-3b81dfa0ddd2, "");
+ObjectClearFlag(_Var1, "Debug_BloodForestShorelineTeleport", 0);
+
+IF
+ObjectFlagSet("Debug_BloodIslandBeforeBridgeTeleport", (CHARACTERGUID)_Var1, _)
+THEN
+ProcForceStopDialog(_Var1);
+CharacterTeleportPartiesToTrigger(TRIGGERGUID_S_RC_BI_BloodIslandBeforeBridgeDebugTP_eb5cdb7c-58b9-4182-9586-aac48211fc52, "");
+ObjectClearFlag(_Var1, "Debug_BloodIslandBeforeBridgeTeleport", 0);
+
+IF
+ObjectFlagSet("Debug_BloodIslandBridgeTeleport", (CHARACTERGUID)_Var1, _)
+THEN
+ProcForceStopDialog(_Var1);
+CharacterTeleportPartiesToTrigger(TRIGGERGUID_S_RC_BI_BloodIslandBridgeDebugTP_5dcbcc17-1243-45ae-87f5-d6c6ffce2b32, "");
+ObjectClearFlag(_Var1, "Debug_BloodIslandBridgeTeleport", 0);
+
+IF
+ObjectFlagSet("Debug_RC_BI_Vault1", (CHARACTERGUID)_Var1, _)
+THEN
+ProcForceStopDialog(_Var1);
+CharacterTeleportPartiesToTrigger(TRIGGERGUID_S_RC_BI_Vault_EnterPoint_001_5c1f5368-e1bf-4344-857e-c1077d012122, "");
+ObjectClearFlag(_Var1, "Debug_RC_BI_Vault1", 0);
+
+IF
+ObjectFlagSet("Debug_RC_BI_Vault2", (CHARACTERGUID)_Var1, _)
+THEN
+ProcForceStopDialog(_Var1);
+CharacterTeleportPartiesToTrigger(TRIGGERGUID_S_RC_BI_Vault_EnterPoint_002_5c753837-7607-4226-a8da-a4fe4266816a, "");
+ObjectClearFlag(_Var1, "Debug_RC_BI_Vault2", 0);
+
+IF
+ObjectFlagSet("Debug_RC_BI_Vault3", (CHARACTERGUID)_Var1, _)
+THEN
+ProcForceStopDialog(_Var1);
+CharacterTeleportPartiesToTrigger(TRIGGERGUID_S_RC_BI_Vault_EnterPoint_003_52487ae4-f956-4bbb-b492-cf00bf6742f2, "");
+ObjectClearFlag(_Var1, "Debug_RC_BI_Vault3", 0);
+
+IF
+ObjectFlagSet("Debug_FarmlandsEntrance", (CHARACTERGUID)_Var1, _)
+THEN
+ProcForceStopDialog(_Var1);
+CharacterTeleportPartiesToTrigger(TRIGGERGUID_S_RC_FL_DEBUG_FarmlandsStart_a935b119-5c21-4960-ae95-6c042318eccc, "");
+ObjectClearFlag(_Var1, "Debug_FarmlandsEntrance", 0);
+
+IF
+ObjectFlagSet("Debug_FarmlandsDeadJonathan", (GUIDSTRING)_Var1, _)
+THEN
+CharacterDie(CHARACTERGUID_S_GLO_GarethFriend_9372d7fb-dc95-4acf-b455-8a36d610e203, 1, "DoT");
+ObjectSetFlag(_Var1, "Debug_FarmlandsEntrance", 0);
+
+IF
+ObjectFlagSet("Debug_AlmiraAndMihaly", (CHARACTERGUID)_Var1, _)
+THEN
+ProcForceStopDialog(_Var1);
+CharacterTeleportPartiesToTrigger(TRIGGERGUID_S_RC_FL_DEBUG_AlmiraAndMihaly_96284fb7-6402-465f-992d-034a65a1762a, "");
+ObjectClearFlag(_Var1, "Debug_AlmiraAndMihaly", 0);
+
+IF
+ObjectFlagSet("Debug_SawmillEntranceTeleport", (CHARACTERGUID)_Var1, _)
+THEN
+ProcForceStopDialog(_Var1);
+CharacterTeleportPartiesToTrigger(Debug_SawmillEntrance_Point_eb1b0ebc-6eb1-457d-ac75-564bd214ad6a, "");
+ObjectClearFlag(_Var1, "Debug_SawmillEntranceTeleport", 0);
+
+IF
+ObjectFlagSet("Debug_SawmillCentreTeleport", (CHARACTERGUID)_Var1, _)
+THEN
+PartySetFlag(_Var1, "RC_MIL_AllowedInMill", 0);
+ProcForceStopDialog(_Var1);
+CharacterTeleportPartiesToTrigger(TRIGGERGUID_Debug_SawmillHeart_Point_57e9a07b-5503-4cf0-a394-5a4cb947b096, "");
+ObjectClearFlag(_Var1, "Debug_SawmillCentreTeleport", 0);
+
+IF
+ObjectFlagSet("Debug_StartElvenTest", (CHARACTERGUID)_Var1, _)
+THEN
+ProcForceStopDialog(_Var1);
+CharacterTeleportPartiesToTrigger(S_RC_MIL_Debug_ElvenTrial_5949771a-60c1-44a9-8be5-bf287a8441ec, "");
+ObjectClearFlag(_Var1, "Debug_StartElvenTest", 0);
+
+IF
+ObjectFlagSet("Debug_ElvenTrialPuzzleFinished", (CHARACTERGUID)_Var1, _)
+THEN
+ProcForceStopDialog(_Var1);
+CharacterTeleportPartiesToTrigger(S_RC_MIL_Debug_ElvenTrial_5949771a-60c1-44a9-8be5-bf287a8441ec, "Debug_ArrivedElvenTrialComplete");
+ObjectClearFlag(_Var1, "Debug_ElvenTrialPuzzleFinished", 0);
+
+IF
+StoryEvent((GUIDSTRING)_Var1, "Debug_ArrivedElvenTrialComplete")
+THEN
+CreateSurface(CHARACTERGUID_S_RC_MIL_ElfSkeletonSummer_c8b5ffdb-9ec2-4af1-b887-83d0e7c8a443, "SurfaceFireCloud", 4, -1);
+CreateSurface(CHARACTERGUID_S_RC_MIL_ElfSkeletonWinter_377a0093-0f41-49ca-a3e0-b9c671f23ed7, "SurfaceWaterFrozen", 4, -1);
+CreateSurface(CHARACTERGUID_S_RC_MIL_ElfSkeletonSpring_ec8cfcb5-5504-4d03-b643-9d4865a62599, "SurfaceBlood", 4, -1);
+CreateSurface(CHARACTERGUID_S_RC_MIL_ElfSkeletonAutumn_5af0a2d5-427c-4b14-9d23-b9d7438f49ed, "SurfaceWaterCloudElectrified", 4, -1);
+
+PROC
+PROC_RC_MIL_SetupSaheilaDead()
+THEN
+SetOnStage(CHARACTERGUID_S_GLO_Saheila_fcacdf08-b05f-4333-b0e0-ddf29c13d8e0, 0);
+CharacterDieImmediate(CHARACTERGUID_S_GLO_Saheila_fcacdf08-b05f-4333-b0e0-ddf29c13d8e0, 0, "DoT");
+ProcRemoveAllDialogEntriesForSpeaker(CHARACTERGUID_S_RC_MIL_Roost_6fffadfe-b2a8-4e12-a664-ba84c0b0a3a3);
+ProcRemoveAllDialogEntriesForSpeaker(CHARACTERGUID_S_GLO_Tovah_69c31947-b004-44aa-b856-2a9a96ff218a);
+DB_Dead(CHARACTERGUID_S_GLO_Saheila_fcacdf08-b05f-4333-b0e0-ddf29c13d8e0);
+PROC_RC_MIL_SetupSaheilaRescue();
+
+IF
+ObjectFlagSet("Debug_SawmillEntranceTeleport_SaheilaDead", (CHARACTERGUID)_Var1, _)
+THEN
+ProcForceStopDialog(_Var1);
+CharacterTeleportPartiesToTrigger(Debug_SawmillEntrance_Point_eb1b0ebc-6eb1-457d-ac75-564bd214ad6a, "");
+ObjectClearFlag(_Var1, "Debug_SawmillEntranceTeleport_SaheilaDead", 0);
+PROC_RC_MIL_SetupSaheilaDead();
+
+IF
+ObjectFlagSet("Debug_SawmillCentreTeleport_SaheilaDead", (CHARACTERGUID)_Var1, _)
+THEN
+PartySetFlag(_Var1, "RC_MIL_AllowedInMill", 0);
+ProcForceStopDialog(_Var1);
+CharacterTeleportPartiesToTrigger(TRIGGERGUID_Debug_SawmillHeart_Point_57e9a07b-5503-4cf0-a394-5a4cb947b096, "");
+ObjectClearFlag(_Var1, "Debug_SawmillCentreTeleport_SaheilaDead", 0);
+PROC_RC_MIL_SetupSaheilaDead();
+
+IF
+ObjectFlagSet("Debug_RaanaarPuzzle", (CHARACTERGUID)_Var1, _)
+THEN
+ProcForceStopDialog(_Var1);
+CharacterTeleportPartiesToTrigger(TRIGGERGUID_S_RC_OIL_Debug_Tomb_7bfa34f9-29d3-4d06-bdaf-d0b24d13e059, "");
+ObjectClearFlag(_Var1, "Debug_RaanaarPuzzle", 0);
+
+IF
+ObjectFlagSet("Debug_OrphanageEntranceTeleport", (CHARACTERGUID)_Var1, _)
+THEN
+ProcForceStopDialog(_Var1);
+CharacterTeleportPartiesToTrigger(TRIGGERGUID_Debug_Orn_f272684d-d55c-4025-bf76-7f9ef9ef7a49, "");
+ObjectClearFlag(_Var1, "Debug_OrphanageEntranceTeleport", 0);
+
+IF
+ObjectFlagSet("Debug_TeleportToSwamp", (CHARACTERGUID)_Var1, _)
+THEN
+ProcForceStopDialog(_Var1);
+CharacterTeleportPartiesToTrigger(S_FTJ_RaftEscapeDropOff_Point_d3587a39-76d8-40f1-ac4a-8d86c4b85638, "");
+ObjectClearFlag(_Var1, "Debug_TeleportToSwamp", 0);
+
+IF
+ObjectFlagSet("Debug_TeleportToShelter", (CHARACTERGUID)_Var1, _)
+THEN
+ProcForceStopDialog(_Var1);
+CharacterTeleportPartiesToTrigger(S_FTJ_SW_HanArriveTrigger_205e7087-5145-43bc-b6e8-9cee0ee9a241, "");
+ObjectClearFlag(_Var1, "Debug_TeleportToShelter", 0);
+
+IF
+ObjectFlagSet("Debug_HanEpisode", (CHARACTERGUID)_Var1, _)
+THEN
+ProcForceStopDialog(_Var1);
+CharacterTeleportPartiesToTrigger(S_FTJ_RaftEscapeDropOff_Point_d3587a39-76d8-40f1-ac4a-8d86c4b85638, "");
+TeleportTo(CHARACTERGUID_S_FTJ_CapturedChild_53d4aa5c-dd91-4e12-9ca8-d66879cc6ffb, S_FTJ_CapturedChildOffRaft_Point_dc5ea4df-aa90-4f4b-850b-75c73104fafa, "RC_FTJ_TeleportToRaftExit", 1);
+GlobalSetFlag("FTJ_RaftToDunesUsed");
+ProcObjectTimer(_Var1, "FTJ_DoUseBoatVB", 1000);
+ObjectClearFlag(_Var1, "Debug_HanEpisode", 0);
+DB_Dialogs(RC_FTJ_CapturedChild_53d4aa5c-dd91-4e12-9ca8-d66879cc6ffb, "FTJ_KidnappedChild");
+TeleportTo(RC_FTJ_RaftToDunes_4fdd3e34-1988-4933-9413-9be7f063c9e5, RC_FTJ_RaftBeach_Point_cddba465-f616-40e9-9804-0e37af631606);
+ItemSetCanInteract(RC_FTJ_RaftToDunes_4fdd3e34-1988-4933-9413-9be7f063c9e5, 0);
+SetHasDialog(CHARACTERGUID_S_FTJ_CapturedChild_53d4aa5c-dd91-4e12-9ca8-d66879cc6ffb, 0);
+ObjectSetFlag(CHARACTERGUID_S_FTJ_CapturedChild_53d4aa5c-dd91-4e12-9ca8-d66879cc6ffb, "FTJ_SW_ReachedSwamp", 0);
+DB_OnlyOnce("FTJ_ChildSavedDialog");
+
+IF
+ObjectFlagSet("Debug_BatteredAndCornered", (CHARACTERGUID)_Var1, _)
+THEN
+ProcForceStopDialog(_Var1);
+CharacterTeleportPartiesToTrigger(S_FTJ_SW_TeleportToBnC_43d644cd-d99a-43fb-b623-28cbccca4a72, "");
+ObjectClearFlag(_Var1, "Debug_BatteredAndCornered", 0);
+
+IF
+ObjectFlagSet("Debug_NecromancerTower", (CHARACTERGUID)_Var1, _)
+THEN
+ProcForceStopDialog(_Var1);
+CharacterTeleportPartiesToTrigger(S_FTJ_SW_TeleportToNecromancerTower_97f48b34-fdf2-4323-9f85-abae7e5382ff, "");
+ObjectClearFlag(_Var1, "Debug_NecromancerTower", 0);
+
+IF
+ObjectFlagSet("Debug_TeleportGarethToShelter", (CHARACTERGUID)_Var1, _)
+THEN
+DB_DontFTJ_SW_ForcedIntoCombat(CHARACTERGUID_S_FTJ_SeekerCaptain_1329f018-23e4-4717-9bc8-074b28d04c54);
+
+IF
+ObjectFlagSet("Debug_TeleportGarethToShelter", (CHARACTERGUID)_Var1, _)
+THEN
+ProcForceStopDialog(_Var1);
+ObjectSetFlag(CHARACTERGUID_S_FTJ_SeekerCaptain_1329f018-23e4-4717-9bc8-074b28d04c54, "FTJ_SW_AtShelter", 0);
+SetHasDialog(CHARACTERGUID_S_FTJ_SeekerCaptain_1329f018-23e4-4717-9bc8-074b28d04c54, 1);
+GlobalSetFlag("FTJ_SW_GarethAtShelter");
+SetFaction(CHARACTERGUID_S_FTJ_SW_Warrior_SeekerCaptain_1329f018-23e4-4717-9bc8-074b28d04c54, "FTJ_SW_ShelterNPC");
+PROC_RemoveDialogFromCharacter(CHARACTERGUID_S_FTJ_SeekerCaptain_1329f018-23e4-4717-9bc8-074b28d04c54);
+DB_Dialogs(CHARACTERGUID_S_FTJ_SeekerCaptain_1329f018-23e4-4717-9bc8-074b28d04c54, "FTJ_SW_SeekerCaptainShelter");
+TeleportTo(CHARACTERGUID_S_FTJ_SeekerCaptain_1329f018-23e4-4717-9bc8-074b28d04c54, ITEMGUID_S_FTJ_SW_GarethChair_e3164deb-70a5-4423-8098-7b3de61cc9cc);
+SetVarFixedString(CHARACTERGUID_S_FTJ_SeekerCaptain_1329f018-23e4-4717-9bc8-074b28d04c54, "currentState", "State_SW_InCamp");
+ObjectClearFlag(_Var1, "Debug_TeleportGarethToShelter", 0);
+
+IF
+ObjectFlagSet("Debug_TeleportToIllusionist", (CHARACTERGUID)_Var1, _)
+THEN
+TeleportTo(_Var1, TRIGGERGUID_S_FTJ_SW_IllusoryDungeonEntrance_07b04841-05ac-4f52-b853-8b8743f64e65);
+
+IF
+ObjectFlagSet("Debug_HoEStart", (CHARACTERGUID)_Var1, _)
+AND
+CharacterGetHostCharacter(_Var1)
+THEN
+ObjectSetFlag(_Var1, "Recruit_Ifan");
+ObjectSetFlag(_Var1, "Recruit_Lohse");
+ObjectSetFlag(_Var1, "Recruit_RedPrince");
+ObjectSetFlag(_Var1, "Recruit_Sebille");
+CharacterTeleportPartiesToTrigger(TRIGGERGUID_S_FTJ_SW_HoEStatue_003_Point_fd6c89ff-5c5d-4e23-b417-62bef0bc0991, "");
+SetTag(CHARACTERGUID_S_Player_RedPrince_a26a1efb-cdc8-4cf3-a7b2-b2f9544add6f, "AVATAR");
+SetTag(CHARACTERGUID_S_Player_Sebille_c8d55eaf-e4eb-466a-8f0d-6a9447b5b24c, "AVATAR");
+SetTag(CHARACTERGUID_S_Player_Lohse_bb932b13-8ebf-4ab4-aac0-83e6924e4295, "AVATAR");
+SetTag(CHARACTERGUID_S_Player_Ifan_ad9a3327-4456-42a7-9bf4-7ad60cc9e54f, "AVATAR");
+
+IF
+ObjectFlagSet("Debug_TeleportTo_ARX_Barracks", (CHARACTERGUID)_Var1, _)
+THEN
+ProcForceStopDialog(_Var1);
+CharacterTeleportPartiesToTrigger(S_ARX_CS_PainterWanderTrigger_2e98c880-54eb-4676-b17d-546618b4960a, "");
+ObjectClearFlag(_Var1, "Debug_TeleportTo_ARX_Barracks", 0);
+
+IF
+ObjectFlagSet("Debug_Kemm", (CHARACTERGUID)_Var1, _)
+THEN
+ProcForceStopDialog(_Var1);
+TeleportTo(_Var1, CHARACTERGUID_S_RC_ARX_KammMansion_Kemm_3e6ead7d-dd35-4f9d-985e-af2de0d76d28, "", 1);
+ObjectClearFlag(_Var1, "Debug_Kemm", 0);
+
+IF
+ObjectFlagSet("Debug_Thomas", (CHARACTERGUID)_Var1, _)
+THEN
+ProcForceStopDialog(_Var1);
+TeleportTo(_Var1, CHARACTERGUID_S_RC_DW_Thomas_521b3652-cae0-4f71-9ee3-6d9d7fa4acab, "", 1);
+ObjectClearFlag(_Var1, "Debug_Thomas", 0);
+
+IF
+ObjectFlagSet("Debug_ThomasBetrayalProof", (CHARACTERGUID)_Var1, _)
+THEN
+ProcForceStopDialog(_Var1);
+ItemToInventory(ITEMGUID_RC_OIL_GrandmasterArrest_ThomasBetrayalEvidence_35ea585f-9a60-4e0a-84fa-137ec1824dec, _Var1);
+ObjectClearFlag(_Var1, "Debug_ThomasBetrayalProof", 0);
+
+IF
+ObjectFlagSet("Debug_Ryker", (CHARACTERGUID)_Var1, _)
+THEN
+ProcForceStopDialog(_Var1);
+CharacterTeleportPartiesToTrigger(S_RC_DW_Ryker_522b8095-b539-4a82-84f3-bf8e5a74dfe4, "");
+ObjectClearFlag(_Var1, "Debug_Ryker", 0);
+
+IF
+ObjectFlagSet("Debug_Lilian", (CHARACTERGUID)_Var1, _)
+THEN
+ProcForceStopDialog(_Var1);
+CharacterTeleportPartiesToTrigger(S_RC_DW_UnderTavern_DwarfBoss_8e58abc6-1010-4e67-97b2-b9686586e784, "");
+ObjectClearFlag(_Var1, "Debug_Lilian", 0);
+
+IF
+ObjectFlagSet("Debug_Add1000Gold", (CHARACTERGUID)_Var1, _)
+THEN
+CharacterAddGold(_Var1, 1000);
+ObjectClearFlag(_Var1, "Debug_Add1000Gold", 0);
+
+IF
+ObjectFlagSet("Debug_GiveTreasure_Equip", (CHARACTERGUID)_Var1, _)
+THEN
+CharacterGiveReward(_Var1, "Equip");
+ObjectClearFlag(_Var1, "Debug_GiveTreasure_Equip", 0);
+
+IF
+ObjectFlagSet("Debug_AddSourcePoint", (CHARACTERGUID)_Var1, _)
+THEN
+Proc_AddSourcePoint(_Var1);
+ObjectClearFlag(_Var1, "Debug_AddSourcePoint", 0);
+
+IF
+ObjectFlagSet("Debug_AddWithermooreJar", (CHARACTERGUID)_Var1, _)
+THEN
+ItemToInventory(ITEMGUID_S_FTJ_SoulJar_bac29376-28ae-42e0-b4d2-e02c408f4eda, _Var1);
+ObjectClearFlag(_Var1, "Debug_AddWithermooreJar", 0);
+
+IF
+ObjectFlagSet("Debug_GetEmpressLetter", (CHARACTERGUID)_Var1, _)
+THEN
+ItemToInventory(ITEMGUID_RC_WC_EmpressLetter_ffaa5485-ccc8-4e66-a69b-52316fdc7c82, _Var1);
+
+IF
+ObjectFlagSet("Debug_AddImportantSkills", (CHARACTERGUID)_Var1, _)
+THEN
+CharacterAddSkill(_Var1, "Target_Bless");
+CharacterAddSkill(_Var1, "Target_Curse");
+CharacterAddSkill(_Var1, "Shout_SpiritVision");
+CharacterAddSkill(_Var1, "Target_SourceVampirism");
+CharacterAddSkill(_Var1, "Teleportation_FreeFall");
+CharacterAddSkill(_Var1, "Target_Debug_KillCommand");
+ItemTemplateAddTo("TOOL_Shovel_A_41486dd2-3fd5-464e-870e-844120cf0517", _Var1, 1);
+
+IF
+ObjectFlagSet("Debug_ClearTags", (CHARACTERGUID)_Var1, (INTEGER)_Var2)
+THEN
+Proc_DebugClearStoryTags(_Var1);
+Proc_DebugClearJobTags(_Var1);
+Proc_DebugClearRaceTags(_Var1);
+Proc_DebugClearOriginTags(_Var1);
+ObjectClearFlag(_Var1, "Debug_ClearTags", _Var2);
+
+IF
+ObjectFlagSet("Debug_ClearJobTags", (CHARACTERGUID)_Var1, (INTEGER)_Var2)
+THEN
+Proc_DebugClearJobTags(_Var1);
+ObjectClearFlag(_Var1, "Debug_ClearJobTags", _Var2);
+
+IF
+ObjectFlagSet("Debug_ClearRaceGender", (CHARACTERGUID)_Var1, (INTEGER)_Var2)
+THEN
+Proc_DebugClearRaceTags(_Var1);
+ObjectClearFlag(_Var1, "Debug_ClearRaceGender", _Var2);
+
+IF
+ObjectFlagSet("Debug_ClearStoryTags", (CHARACTERGUID)_Var1, (INTEGER)_Var2)
+THEN
+Proc_DebugClearStoryTags(_Var1);
+ObjectClearFlag(_Var1, "Debug_ClearStoryTags", _Var2);
+
+IF
+ObjectFlagSet("Debug_ClearStoryTags", (CHARACTERGUID)_Var1, (INTEGER)_Var2)
+THEN
+Proc_DebugClearStoryTags(_Var1);
+ObjectClearFlag(_Var1, "Debug_ClearOriginTags", _Var2);
+
+PROC
+Proc_DebugClearStoryTags((CHARACTERGUID)_Var1)
+AND
+DB_StoryTag(_Var2)
+AND
+IsTagged(_Var1, _Var2, 1)
+AND
+StringConcatenate("Cleared ", _Var2, _Var3)
+THEN
+DebugText(_Var1, _Var3);
+ClearTag(_Var1, _Var2);
+
+PROC
+Proc_DebugClearJobTags((CHARACTERGUID)_Var1)
+AND
+DB_JobTag(_Var2)
+AND
+IsTagged(_Var1, _Var2, 1)
+AND
+StringConcatenate("Cleared ", _Var2, _Var3)
+THEN
+DebugText(_Var1, _Var3);
+ClearTag(_Var1, _Var2);
+
+PROC
+Proc_DebugClearRaceTags((CHARACTERGUID)_Var1)
+AND
+DB_RaceTag(_Var2)
+AND
+IsTagged(_Var1, _Var2, 1)
+AND
+StringConcatenate("Cleared ", _Var2, _Var3)
+THEN
+DebugText(_Var1, _Var3);
+ClearTag(_Var1, _Var2);
+
+PROC
+Proc_DebugClearOriginTags((CHARACTERGUID)_Var1)
+AND
+DB_OriginTag(_Var2)
+AND
+IsTagged(_Var1, _Var2, 1)
+AND
+StringConcatenate("Cleared ", _Var2, _Var3)
+THEN
+DebugText(_Var1, _Var3);
+ClearTag(_Var1, _Var2);
+
+IF
+ObjectFlagSet("AddTag_AVATAR", (GUIDSTRING)_Var1, _)
+THEN
+SetTag(_Var1, "AVATAR");
+
+IF
+ObjectFlagSet((STRING)_Var1, (GUIDSTRING)_Var2, (INTEGER)_Var3)
+AND
+DB_OriginTagFlag(_Var1, _Var4)
+AND
+DB_OriginTagGroup(_Var4, _Var5)
+THEN
+DebugText(_Var2, _Var5);
+SetTag(_Var2, _Var5);
+ObjectClearFlag(_Var2, _Var1, _Var3);
+
+IF
+ObjectFlagSet("Debug_AddPurgingWand", (CHARACTERGUID)_Var1, _)
+THEN
+ItemTemplateAddTo("WPN_Wand_Purging_2b4412a5-467a-44ae-9d7b-bf39a06794b2", _Var1, 1);
+ObjectClearFlag(_Var1, "Debug_AddPurgingWand", 0);
+
+IF
+ObjectFlagSet("Debug_AddWaterBalloon", (CHARACTERGUID)_Var1, _)
+THEN
+ItemTemplateAddTo("GRN_Grenade_WaterBalloon_A_ee4b83e0-b2dc-4880-a974-af7742e6e960", _Var1, 1);
+ObjectClearFlag(_Var1, "Debug_AddWaterBalloon", 0);
+
+IF
+GlobalFlagSet("GLO_ToggleShroud")
+THEN
+ProcToggleShroud();
+GlobalClearFlag("GLO_ToggleShroud");
+
+PROC
+ProcToggleShroud()
+AND NOT
+DB_DebugShroudOff(1)
+THEN
+DB_DebugShroudOff(1);
+ShroudRender(0);
+DB_DebugToggledShroud(1);
+
+PROC
+ProcToggleShroud()
+AND
+DB_DebugShroudOff(1)
+AND NOT
+DB_DebugToggledShroud(1)
+THEN
+NOT DB_DebugShroudOff(1);
+ShroudRender(1);
+
+PROC
+ProcToggleShroud()
+THEN
+NOT DB_DebugToggledShroud(1);
+
+IF
+ObjectFlagSet("FTJ_LV_Setup_Debug", (CHARACTERGUID)_Var1, _)
+THEN
+GlobalSetFlag("FTJ_SW_ToldTarleneGarethAtShelter");
+CharacterDie(CHARACTERGUID_S_FTJ_Florence_c272a37a-85ea-438f-9871-1551ef45d338, 0, "DoT");
+CharacterSetReactionPriority(CHARACTERGUID_S_GLO_Dallis_69b951dc-55a4-44b8-a2d5-5efedbd7d572, "PurgeCharEnd", 0);
+ReactOnKillCounter("FTJ_FinalBattle");
+TimerCancel("FTJ_SW_RiverAppear_Timer");
+CharacterTeleportPartiesToTrigger(TRIGGERGUID_S_FTJ_LV_BoatToLV_Point_d54d0088-0784-4e92-b5da-34d8eb1ef4ab, "LV_Main_StartQuest");
+GlobalSetFlag("FTJ_LV_SetUp");
+ObjectSetFlag(_Var1, "FTJ_SW_TurnCoatMagister_HasMet");
+ObjectSetFlag(_Var1, "FTJ_DefeatedSeeker_001_Hasmet");
+ObjectSetFlag(_Var1, "FTJ_SW_Klaud_HasMet");
+ObjectSetFlag(_Var1, "QuestAdd_LV_Main");
+ObjectSetFlag(_Var1, "QuestUpdate_LV_Main_Start");
+
+IF
+ObjectFlagSet("LV_HoE_DebugSetup", (GUIDSTRING)_Var1, _)
+THEN
+ObjectSetFlag(_Var1, "FTJ_LV_Setup_Debug");
+GlobalSetFlag("FTJ_LV_StartHoELevel");
+GlobalClearFlag("LV_HoE_LvAssaultActive");
+CharacterSetAnimationOverride(CHARACTERGUID_S_GLO_River_f4931ebe-10b0-43c4-9182-640cf052717e, "");
+
+PROC
+PROC_Debug_Item_SetLVSubjugation()
+AND
+GlobalGetFlag("GLO_ShipFreed", 0)
+AND
+GlobalGetFlag("GLO_ShipSubjugated", 0)
+AND
+Random(2, _Var1)
+AND
+DB_DEBUG_LV_SubjugationFlags(_Var1, _Var2)
+THEN
+GlobalSetFlag(_Var2);
+
+IF
+RegionStarted("RC_Main")
+AND NOT
+DB_TeleporterPyramidUnlocked(ITEMGUID_S_GLO_TeleportPyramid_001_fd45268f-5953-47c4-ba2f-255a05e2ce0e)
+AND
+CharacterGetHostCharacter(_Var1)
+THEN
+ItemToInventory(ITEMGUID_S_GLO_TeleportPyramid_001_fd45268f-5953-47c4-ba2f-255a05e2ce0e, _Var1);
+
+IF
+RegionStarted("RC_Main")
+AND NOT
+DB_TeleporterPyramidUnlocked(ITEMGUID_S_GLO_TeleportPyramid_002_34810bdd-1185-468b-a5af-3298d0a861cf)
+AND
+CharacterGetHostCharacter(_Var1)
+THEN
+ItemToInventory(ITEMGUID_S_GLO_TeleportPyramid_002_34810bdd-1185-468b-a5af-3298d0a861cf, _Var1);
+
+IF
+RegionStarted("RC_Main")
+AND
+CharacterGetHostCharacter(_Var1)
+THEN
+PROC_Debug_Item_SetLVSubjugation();
+
+IF
+RegionStarted("CoS_Main")
+THEN
+PROC_Debug_Item_SetLVSubjugation();
+
+IF
+RegionStarted("CoS_Main_Ending")
+THEN
+PROC_Debug_Item_SetLVSubjugation();
+
+IF
+RegionStarted("ARX_Main")
+THEN
+PROC_Debug_Item_SetLVSubjugation();
+
+IF
+RegionStarted("ARX_Endgame")
+THEN
+PROC_Debug_Item_SetLVSubjugation();
+
+IF
+ObjectFlagSet("CoS_DebugSetup", (CHARACTERGUID)_Var1, _)
+THEN
+CharacterTeleportPartiesToTrigger(S_CoS_LV_RegionStart_8c00afb8-43af-4de7-953a-a7456f996a4c, "");
+ObjectClearFlag(_Var1, "CoS_DebugSetup");
+
+IF
+ObjectFlagSet("CoS_Debug_ToAmadiaTemple", (CHARACTERGUID)_Var1, _)
+THEN
+CharacterTeleportPartiesToTrigger(TRIGGERGUID_S_CoS_Temples_Wizard_PortalToTemple_Point_5d0456ec-6911-404d-bf38-87d8b730dae8, "");
+ObjectClearFlag(_Var1, "CoS_Debug_ToAmadiaTemple");
+
+IF
+ObjectFlagSet("CoS_Debug_ToElfTemple", (CHARACTERGUID)_Var1, _)
+THEN
+CharacterTeleportPartiesToTrigger(TRIGGERGUID_S_CoS_Temples_Elf_Animal_002_TemplePoint_e5f5c3f5-bdf4-47ff-89e8-e65b72e7d2dc, "");
+ObjectClearFlag(_Var1, "CoS_Debug_ToElfTemple");
+
+IF
+ObjectFlagSet("CoS_Debug_ToAcademy", (CHARACTERGUID)_Var1, _)
+THEN
+CharacterTeleportPartiesToTrigger(TRIGGERGUID_S_CoS_Academy_MainEntrance_Point_71c8beb7-1859-40ff-ba9e-06d7b58c9fe0, "");
+ObjectClearFlag(_Var1, "CoS_Debug_ToAcademy");
+
+IF
+ObjectFlagSet("CoS_DelorusSaved_DebugSetup", (CHARACTERGUID)_Var1, _)
+THEN
+GlobalSetFlag("FTJ_InjuredMagisterSaved");
+UserSetFlag(_Var1, "FTJ_PlayerHealedDelorus");
+Proc_CoS_Temples_Delorus_Init();
+
+IF
+ObjectFlagSet("CoS_OilFieldBRSaved_DebugSetup", (CHARACTERGUID)_Var1, _)
+THEN
+PartySetFlag(_Var1, "RC_OIL_Dock_SavedBlackRing");
+Proc_CoS_Temples_Orc_Init();
+
+IF
+ObjectFlagSet("CoS_GarethGoodPath_DebugSetup", (CHARACTERGUID)_Var1, _)
+THEN
+GlobalClearFlag("CoS_GarethRevenge_SceneActive");
+GlobalSetFlag("RC_FL_GarethGaveUpRevenge");
+NOT DB_OnlyOnce("CoS_GarethsRevenge_SendToElfTemple_Once");
+PROC_GLO_LevelTravelAgency_GetStartNPCForCurrentRegion(CHARACTERGUID_S_FTJ_SW_Warrior_SeekerCaptain_1329f018-23e4-4717-9bc8-074b28d04c54);
+
+IF
+ObjectFlagSet("CoS_GarethGoodPath_DebugSetup", (CHARACTERGUID)_Var1, _)
+AND
+DB_CurrentLevel("CoS_Main")
+THEN
+Proc_CoS_GarethsRevenge_Init();
+
+IF
+ObjectFlagSet("CoS_GarethGoodPath_DebugSetup", (CHARACTERGUID)_Var1, _)
+AND
+DB_CurrentLevel("CoS_Main_Ending")
+THEN
+ObjectSetFlag(_Var1, "QuestUpdate_CoS_GarethsRevenge_Start_ElfTemple");
+ObjectSetFlag(_Var1, "QuestUpdate_CoS_GarethsRevenge_SidedGareth");
+ObjectSetFlag(_Var1, "QuestUpdate_CoS_GarethsRevenge_End_ReturnToLV");
+
+IF
+ObjectFlagSet("CoS_SeptaDead_DebugSetup", (CHARACTERGUID)_Var1, _)
+THEN
+GlobalSetFlag("FTJ_SeptaIsDead");
+PartySetFlag(_Var1, "RC_FTJ_Crab_Hasmet");
+
+IF
+ObjectFlagSet("CoS_Debug_ToWatcher", (CHARACTERGUID)_Var1, _)
+THEN
+TeleportTo(_Var1, CHARACTERGUID_S_CoS_Temples_TheWatcher_4ddc3ade-c951-4928-b4c9-5e530df0b25d);
+ObjectClearFlag(_Var1, "CoS_Debug_ToWatcher");
+
+IF
+ObjectFlagSet("Debug_CoS_GetTarquin", (CHARACTERGUID)_Var1, _)
+THEN
+Proc_RC_GY_Godslayer_DebugFinish(_Var1);
+PROC_GLO_LevelTravelAgency_GetStartNPCForCurrentRegion(CHARACTERGUID_S_GLO_Tarquin_a3d0cdcc-d0b0-464d-9ad7-43b38baed620);
+UserSetFlag(_Var1, "GLO_HasMet_Tarquin");
+
+IF
+ObjectFlagSet("Debug_CoS_GetAlmira", (CHARACTERGUID)_Var1, _)
+THEN
+PartySetFlag(_Var1, "QuestUpdate_RC_FL_BrokenPromises_Start");
+PartySetFlag(_Var1, "QuestUpdate_RC_FL_BrokenPromises_Escaped");
+PartySetFlag(_Var1, "QuestUpdate_RC_FL_BrokenPromises_AcceptedSP");
+PartySetFlag(_Var1, "QuestUpdate_RC_FL_TabletForAlmira_TabletQuest");
+PartySetFlag(_Var1, "QuestUpdate_RC_FL_TabletForAlmira_GaveTabletAlmira");
+ItemTemplateAddTo("QUEST_AtaraxianTablet_PromiseInfo_23edac9b-2517-4fd0-a068-6bc9e60d1bbc", CHARACTERGUID_S_GLO_Almira_49b466a9-e67f-4e3c-8f66-3636ba7dd54f, 1);
+PROC_GLO_LevelTravelAgency_GetStartNPCForCurrentRegion(CHARACTERGUID_S_GLO_Almira_49b466a9-e67f-4e3c-8f66-3636ba7dd54f);
+PROC_GLO_LevelTravelAgency_GetStartNPCForCurrentRegion(CHARACTERGUID_S_GLO_Mihaly_3355517b-0a92-426b-9160-54fa8507adf2);
+
+IF
+ObjectFlagSet("Debug_CoS_GetAlmiraUnfinished", (CHARACTERGUID)_Var1, _)
+THEN
+PartySetFlag(_Var1, "QuestUpdate_RC_FL_BrokenPromises_Start");
+PartySetFlag(_Var1, "QuestUpdate_RC_FL_BrokenPromises_Escaped");
+PartySetFlag(_Var1, "QuestUpdate_RC_FL_BrokenPromises_AcceptedSP");
+PartySetFlag(_Var1, "QuestUpdate_RC_FL_TabletForAlmira_TabletQuest");
+ItemTemplateAddTo("QUEST_AtaraxianTablet_PromiseInfo_23edac9b-2517-4fd0-a068-6bc9e60d1bbc", _Var1, 1);
+PROC_GLO_LevelTravelAgency_GetStartNPCForCurrentRegion(CHARACTERGUID_S_GLO_Almira_49b466a9-e67f-4e3c-8f66-3636ba7dd54f);
+PROC_GLO_LevelTravelAgency_GetStartNPCForCurrentRegion(CHARACTERGUID_S_GLO_Mihaly_3355517b-0a92-426b-9160-54fa8507adf2);
+
+IF
+ObjectFlagSet("Debug_CoS_GetPromiseBreakerParts", (CHARACTERGUID)_Var1, _)
+THEN
+ItemToInventory(ITEMGUID_S_CoS_Temples_PromiseBreaker_Blade_ad5823d0-2b93-413b-af20-39f72fff3140, _Var1);
+ItemToInventory(ITEMGUID_S_CoS_Temples_PromiseBreaker_Shaft_ede5be02-9cc9-4c3e-b9c7-0ff9bd50f2e9, _Var1);
+
+IF
+ObjectFlagSet("Debug_CoS_CreateCapacitor", (CHARACTERGUID)_Var1, _)
+THEN
+ItemTemplateAddTo("QUEST_CoS_RaanaarCapacitor_1d838f3b-dc81-45e3-855d-4adc7d127042", _Var1, 1);
+ObjectClearFlag(_Var1, "Debug_CoS_CreateCapacitor");
+
+IF
+GlobalFlagSet("Debug_CoS_AotO_Phase_1")
+AND
+CharacterIsDead(CHARACTERGUID_S_GLO_Alexandar_03e6345f-1bd3-403c-80e2-a443a74f6349, 0)
+THEN
+DB_OnlyOnce("CoS_Temples_AlexandarLeaveToAcademy_Once");
+GlobalSetFlag("CoS_Temples_AlexandarLeaveToAcademy");
+CharacterLevelUpTo(CHARACTERGUID_S_GLO_Alexandar_03e6345f-1bd3-403c-80e2-a443a74f6349, 17);
+
+IF
+GlobalFlagSet("Debug_CoS_AotO_Phase_1")
+AND
+DB_OriginRecruitmentLocation_Region(_, _Var2, _, _)
+AND
+CharacterIsDead(_Var2, 1)
+THEN
+Proc_CharacterFullRestore(_Var2);
+CharacterAddTalent(_Var2, "Zombie");
+NOT DB_Dead(_Var2);
+
+IF
+GlobalFlagSet("Debug_CoS_AotO_Phase_1")
+THEN
+CharacterTeleportPartiesToTrigger(TRIGGERGUID_S_CoS_AotO_SpawnPoint_Player_001_b35a1fb2-9c3a-40f8-a687-22f776eba5a1, "");
+DB_CoS_AotO_PhaseOneInit(1);
+
+IF
+GlobalFlagSet("Debug_CoS_AotO_Phase_1")
+AND
+DB_OriginInitialPreset(_Var1, _Var2)
+AND NOT
+DB_IsPlayer(_Var1)
+AND
+CharacterGetLevel(_Var1, _Var3)
+AND
+_Var3 < 10
+AND
+DB_OriginEquipmentSet(_Var1, _Var4)
+THEN
+Proc_RemoveWeapons(_Var1);
+CharacterLevelUpTo(_Var1, 17);
+CharacterApplyHenchmanPreset(_Var1, _Var4);
+CharacterSetArmorPercentage(_Var1, 100);
+CharacterSetMagicArmorPercentage(_Var1, 100);
+
+IF
+ObjectFlagSet("Debug_CoS_AotOStartPhase2", (CHARACTERGUID)_Var1, _)
+THEN
+CharacterTeleportPartiesToTrigger(TRIGGERGUID_S_CoS_AotO_SpawnPoint_Player_001_b35a1fb2-9c3a-40f8-a687-22f776eba5a1, "");
+
+IF
+ObjectFlagSet("Debug_CoS_AotOStartPhase2", (CHARACTERGUID)_Var1, _)
+AND
+DB_IsPlayer(_Var3)
+AND NOT
+DB_CoS_AotO_Competitors(_Var3)
+THEN
+DB_CoS_AotO_Competitors(_Var3);
+
+IF
+ObjectFlagSet("Debug_CoS_AotOStartPhase2", (CHARACTERGUID)_Var1, _)
+THEN
+ObjectClearFlag(_Var1, "Debug_CoS_AotOStartPhase2");
+SetTag(_Var1, "AVATAR");
+DB_CoS_AotO_PhaseTwoInit(1);
+
+IF
+ObjectFlagSet("Debug_CoS_ToImpPocketRealm", (CHARACTERGUID)_Var1, _)
+THEN
+ObjectClearFlag(_Var1, "Debug_CoS_ToImpPocketRealm");
+TeleportTo(_Var1, TRIGGERGUID_S_CoS_Temples_Waypoint_Imp_Point_2cb11394-785b-47ef-bdf9-f8c9134dde06);
+
+IF
+ObjectFlagSet("Debug_CoS_SaheilaIsScion", (GUIDSTRING)_Var1, _)
+THEN
+CharacterResurrect(CHARACTERGUID_S_GLO_Saheila_fcacdf08-b05f-4333-b0e0-ddf29c13d8e0);
+NOT DB_Dead(CHARACTERGUID_S_GLO_Saheila_fcacdf08-b05f-4333-b0e0-ddf29c13d8e0);
+GlobalSetFlag("RC_MIL_SaheilaIsAtCamp");
+
+IF
+ObjectFlagSet("Debug_CoS_LohseMetJahan", (GUIDSTRING)_Var1, _)
+THEN
+ObjectSetFlag(CHARACTERGUID_S_Player_Lohse_bb932b13-8ebf-4ab4-aac0-83e6924e4295, "GLO_Lohse_MetJahan");
+ObjectClearFlag(_Var1, "Debug_CoS_LohseMetJahan");
+
+IF
+ObjectFlagSet("Debug_CoS_DeniedLohseExcorcism", (GUIDSTRING)_Var1, _)
+THEN
+ObjectSetFlag(_Var1, "GLO_Lohse_DeniedJahanMeeting");
+ObjectClearFlag(_Var1, "Debug_CoS_DeniedLohseExcorcism");
+
+IF
+ObjectFlagSet("Debug_CoS_DarkNightOfTheSoul", (GUIDSTRING)_Var1, _)
+AND
+DB_OriginRecruitmentLocation_Region(_, _Var4, _, _)
+AND NOT
+DB_IsPlayer(_Var4)
+THEN
+ObjectClearFlag(_Var4, "CoS_CompanionReJoinAvatar");
+DB_CoS_AotO_Competitors(_Var4);
+CharacterDie(_Var4, 0, "DoT");
+TeleportTo(_Var4, TRIGGERGUID_S_CoS_AotO_SpawnPoint_Player_001_b35a1fb2-9c3a-40f8-a687-22f776eba5a1);
+
+IF
+ObjectFlagSet("Debug_CoS_DarkNightOfTheSoul", (CHARACTERGUID)_Var1, _)
+THEN
+ObjectClearFlag(_Var1, "Debug_CoS_DarkNightOfTheSoul");
+GlobalSetFlag("CoS_AfterArenaOfTheOne");
+DB_CoS_AfterArenaOfTheOne(1);
+PartySetFlag(_Var1, "QuestUpdate_CoS_ArenaOfTheOne_End");
+CharacterTeleportPartiesToTrigger(TRIGGERGUID_S_CoS_LV_HoE_RegionStart_fda0f33f-8438-4057-bdff-5b3c945bdb20, "");
+
+PROC
+PROC_Debug_FixateCompanions()
+AND
+DB_CompanionAvatarBond(_Var1, _Var2)
+AND
+DB_Companion_FixatedFlag(_Var1, _Var3)
+THEN
+ObjectSetFlag(_Var2, _Var3);
+
+IF
+GlobalFlagSet("EG_Debug_AddJahan")
+THEN
+DB_EG_BoatNPCs(CHARACTERGUID_S_GLO_Jahan_4d222cfd-49c8-41d3-8cb7-2a2b56232633, "EG_Epilogue_Jahan", TRIGGERGUID_S_EG_Epilogue_JahanPoint_5f94b39d-2929-4651-8989-ebac328b9609);
+
+IF
+ObjectFlagSet("EG_ToStairs", (GUIDSTRING)_Var1, _)
+THEN
+ObjectClearFlag(_Var1, "EG_ToStairs");
+CharacterTeleportPartiesToTrigger(TRIGGERGUID_S_ARX_Crypt_LastAutosave_655f136f-a25d-4329-8ee7-5adee39dba2d, "");
+PROC_Debug_FixateCompanions();
+
+IF
+ObjectFlagSet("EG_ToEndgameStart", (GUIDSTRING)_Var1, _)
+THEN
+ObjectClearFlag(_Var1, "EG_ToEndgameStart");
+CharacterTeleportPartiesToTrigger(TRIGGERGUID_S_ARX_EndGame_Enter_bd166e2a-7623-490e-94df-78079e7cbacc, "");
+PROC_Debug_FixateCompanions();
+
+IF
+ObjectFlagSet("EG_ToEpilogue", (GUIDSTRING)_Var1, _)
+THEN
+ObjectClearFlag(_Var1, "EG_ToEpilogue");
+CharacterTeleportPartiesToTrigger(TRIGGERGUID_S_EG_LV_PlayerArrivalTrigger_f0f200ee-ac5f-4ae7-9422-714a8a779365, "Debug_EG_ToEpilogue");
+PROC_Debug_FixateCompanions();
+
+IF
+GlobalFlagSet("EG_ResetCompanions")
+THEN
+GlobalClearFlag("EG_ResetCompanions");
+DB_OriginInPartyDialog(CHARACTERGUID_S_Player_RedPrince_a26a1efb-cdc8-4cf3-a7b2-b2f9544add6f, "RedPrince");
+DB_OriginInPartyDialog(CHARACTERGUID_S_Player_Sebille_c8d55eaf-e4eb-466a-8f0d-6a9447b5b24c, "Sebille");
+DB_OriginInPartyDialog(CHARACTERGUID_S_Player_Lohse_bb932b13-8ebf-4ab4-aac0-83e6924e4295, "Lohse");
+DB_OriginInPartyDialog(CHARACTERGUID_S_Player_Ifan_ad9a3327-4456-42a7-9bf4-7ad60cc9e54f, "Ifan");
+DB_OriginInPartyDialog(CHARACTERGUID_S_Player_Beast_f25ca124-a4d2-427b-af62-df66df41a978, "Beast");
+DB_OriginInPartyDialog(CHARACTERGUID_S_Player_Fane_02a77f1f-872b-49ca-91ab-32098c443beb, "Fane");
+
+IF
+StoryEvent(_, "Debug_EG_ToEpilogue")
+THEN
+PROC_EG_Epilogue_Start();
+
+IF
+ObjectFlagSet("EG_Debug_Gareth_Alive", (GUIDSTRING)_Var1, _)
+THEN
+ObjectClearFlag(_Var1, "EG_Debug_Gareth_Alive");
+CharacterResurrect(CHARACTERGUID_S_FTJ_SW_Warrior_SeekerCaptain_1329f018-23e4-4717-9bc8-074b28d04c54);
+GlobalSetFlag("CoS_GarethRevenge_Resolution_Peaceful");
+
+IF
+ObjectFlagSet("EG_Debug_Gareth_Dead", (GUIDSTRING)_Var1, _)
+THEN
+ObjectClearFlag(_Var1, "EG_Debug_Gareth_Dead");
+CharacterDie(CHARACTERGUID_S_FTJ_SW_Warrior_SeekerCaptain_1329f018-23e4-4717-9bc8-074b28d04c54, 0, "");
+
+IF
+ObjectFlagSet("EG_Debug_Malady_Alive", (GUIDSTRING)_Var1, _)
+THEN
+ObjectClearFlag(_Var1, "EG_Debug_Malady_Alive");
+CharacterResurrect(CHARACTERGUID_S_GLO_River_f4931ebe-10b0-43c4-9182-640cf052717e);
+
+IF
+ObjectFlagSet("EG_Debug_Malady_Dead", (GUIDSTRING)_Var1, _)
+THEN
+ObjectClearFlag(_Var1, "EG_Debug_Malady_Dead");
+CharacterSetImmortal(CHARACTERGUID_S_GLO_River_f4931ebe-10b0-43c4-9182-640cf052717e, 0);
+CharacterDie(CHARACTERGUID_S_GLO_River_f4931ebe-10b0-43c4-9182-640cf052717e, 0, "");
+
+IF
+ObjectFlagSet("EG_Debug_Tarquin_Alive", (GUIDSTRING)_Var1, _)
+THEN
+ObjectClearFlag(_Var1, "EG_Debug_Tarquin_Alive");
+CharacterResurrect(CHARACTERGUID_S_GLO_Tarquin_a3d0cdcc-d0b0-464d-9ad7-43b38baed620);
+
+IF
+ObjectFlagSet("EG_Debug_Tarquin_Dead", (GUIDSTRING)_Var1, _)
+THEN
+ObjectClearFlag(_Var1, "EG_Debug_Tarquin_Dead");
+CharacterDie(CHARACTERGUID_S_GLO_Tarquin_a3d0cdcc-d0b0-464d-9ad7-43b38baed620, 0, "");
+
+IF
+ObjectFlagSet("EG_Debug_Almira_Alive", (GUIDSTRING)_Var1, _)
+THEN
+ObjectClearFlag(_Var1, "EG_Debug_Almira_Alive");
+CharacterResurrect(CHARACTERGUID_S_GLO_Almira_49b466a9-e67f-4e3c-8f66-3636ba7dd54f);
+GlobalSetFlag("GLO_Almira_ReceivedSwornbreaker");
+
+IF
+ObjectFlagSet("EG_Debug_Almira_Dead", (GUIDSTRING)_Var1, _)
+THEN
+ObjectClearFlag(_Var1, "EG_Debug_Almira_Dead");
+CharacterDie(CHARACTERGUID_S_GLO_Almira_49b466a9-e67f-4e3c-8f66-3636ba7dd54f, 0, "");
+
+IF
+ObjectFlagSet("EG_Debug_DealWithDevil", (CHARACTERGUID)_Var1, _)
+THEN
+ItemTemplateAddTo("CON_Vial_Empty_A_bb2cb4c6-4dfe-4778-b2c0-2ca18634bf4b", CHARACTERGUID_S_ARX_DoctorsHouse_TheDoctor_83083470-c543-45b3-ac8a-108df0daca8d, 1, 0);
+ObjectClearFlag(_Var1, "EG_Debug_DealWithDevil");
+GlobalSetFlag("ARX_TheDoctor_PactSealed");
+UserSetFlag(_Var1, "ARX_TheDoctor_UserAcceptedThePact", 0);
+ObjectSetFlag(CHARACTERGUID_S_ARX_DoctorsHouse_TheDoctor_83083470-c543-45b3-ac8a-108df0daca8d, "ARX_TheDoctor_HasBloodVial");
+SetTag(_Var1, "BLOODBOUND");
+
+IF
+ObjectFlagSet("EG_Debug_DealWithDevil", (CHARACTERGUID)_Var1, _)
+AND
+GetItemForItemTemplateInInventory(CHARACTERGUID_S_ARX_DoctorsHouse_TheDoctor_83083470-c543-45b3-ac8a-108df0daca8d, "CON_Vial_Empty_A_bb2cb4c6-4dfe-4778-b2c0-2ca18634bf4b", _Var3)
+THEN
+DB_HasStoryEvent(_Var3, "ARX_TheDoctor_HasBloodVial");
+DB_ARX_DoctorsPact_Char(_Var1, _Var3);
+
+IF
+ObjectFlagSet("EG_Debug_BrokenDealWithDevil", (CHARACTERGUID)_Var1, _)
+THEN
+ObjectClearFlag(_Var1, "EG_Debug_DealWithDevil");
+GlobalSetFlag("ARX_TheDoctor_PactSealed");
+DB_ARX_DoctorsPact_Char(_Var1, NULL_00000000-0000-0000-0000-000000000000);
+UserSetFlag(_Var1, "ARX_TheDoctor_UserAcceptedThePact", 0);
+SetTag(_Var1, "BLOODBOUND");
+
+IF
+ObjectFlagSet("EG_Debug_BrokenDealWithDevil", (CHARACTERGUID)_Var1, _)
+AND
+DB_ARX_DoctorsPact(_Var3, _Var4)
+AND
+IsTagged(_Var1, _Var4, 1)
+THEN
+DB_HasStoryEvent(_Var3, "ARX_TheDoctor_HasBloodVial");
+SetOnStage(_Var3, 1);
+DB_ARX_DoctorsPact_Char(_Var1, _Var3);
+
+IF
+GlobalFlagSet("Debug_DismissAll")
+THEN
+GlobalClearFlag("Debug_DismissAll");
+PROC_LVDismissCompanions_DismissAll();
+
+IF
+ObjectFlagSet("EG_Debug_Comp_Fane_HighRel", (CHARACTERGUID)_Var1, _)
+THEN
+ObjectClearFlag(_Var1, "EG_Debug_Comp_Fane_HighRel");
+DB_SetCompanionAttitude(CHARACTERGUID_S_Player_Fane_02a77f1f-872b-49ca-91ab-32098c443beb, _Var1, 100);
+
+IF
+ObjectFlagSet("EG_Debug_Comp_Fane_LowRel", (CHARACTERGUID)_Var1, _)
+THEN
+ObjectClearFlag(_Var1, "EG_Debug_Comp_Fane_LowRel");
+DB_SetCompanionAttitude(CHARACTERGUID_S_Player_Fane_02a77f1f-872b-49ca-91ab-32098c443beb, _Var1, 0);
+
+IF
+ObjectFlagSet("EG_Debug_Comp_Ifan_HighRel", (CHARACTERGUID)_Var1, _)
+THEN
+ObjectClearFlag(_Var1, "EG_Debug_Comp_Ifan_HighRel");
+DB_SetCompanionAttitude(CHARACTERGUID_S_Player_Ifan_ad9a3327-4456-42a7-9bf4-7ad60cc9e54f, _Var1, 100);
+
+IF
+ObjectFlagSet("EG_Debug_Comp_Ifan_LowRel", (CHARACTERGUID)_Var1, _)
+THEN
+ObjectClearFlag(_Var1, "EG_Debug_Comp_Ifan_LowRel");
+DB_SetCompanionAttitude(CHARACTERGUID_S_Player_Ifan_ad9a3327-4456-42a7-9bf4-7ad60cc9e54f, _Var1, 0);
+
+IF
+ObjectFlagSet("EG_Debug_Comp_Lohse_HighRel", (CHARACTERGUID)_Var1, _)
+THEN
+ObjectClearFlag(_Var1, "EG_Debug_Comp_Lohse_HighRel");
+DB_SetCompanionAttitude(CHARACTERGUID_S_Player_Lohse_bb932b13-8ebf-4ab4-aac0-83e6924e4295, _Var1, 100);
+
+IF
+ObjectFlagSet("EG_Debug_Comp_Lohse_LowRel", (CHARACTERGUID)_Var1, _)
+THEN
+ObjectClearFlag(_Var1, "EG_Debug_Comp_Lohse_LowRel");
+DB_SetCompanionAttitude(CHARACTERGUID_S_Player_Lohse_bb932b13-8ebf-4ab4-aac0-83e6924e4295, _Var1, 0);
+
+IF
+ObjectFlagSet("EG_Debug_Comp_Sebille_HighRel", (CHARACTERGUID)_Var1, _)
+THEN
+ObjectClearFlag(_Var1, "EG_Debug_Comp_Sebille_HighRel");
+DB_SetCompanionAttitude(CHARACTERGUID_S_Player_Sebille_c8d55eaf-e4eb-466a-8f0d-6a9447b5b24c, _Var1, 100);
+
+IF
+ObjectFlagSet("EG_Debug_Comp_Sebille_LowRel", (CHARACTERGUID)_Var1, _)
+THEN
+ObjectClearFlag(_Var1, "EG_Debug_Comp_Sebille_LowRel");
+DB_SetCompanionAttitude(CHARACTERGUID_S_Player_Sebille_c8d55eaf-e4eb-466a-8f0d-6a9447b5b24c, _Var1, 0);
+
+IF
+ObjectFlagSet("EG_Debug_Comp_Beast_HighRel", (CHARACTERGUID)_Var1, _)
+THEN
+ObjectClearFlag(_Var1, "EG_Debug_Comp_Beast_HighRel");
+DB_SetCompanionAttitude(CHARACTERGUID_S_Player_Beast_f25ca124-a4d2-427b-af62-df66df41a978, _Var1, 100);
+
+IF
+ObjectFlagSet("EG_Debug_Comp_Beast_LowRel", (CHARACTERGUID)_Var1, _)
+THEN
+ObjectClearFlag(_Var1, "EG_Debug_Comp_Beast_LowRel");
+DB_SetCompanionAttitude(CHARACTERGUID_S_Player_Beast_f25ca124-a4d2-427b-af62-df66df41a978, _Var1, 0);
+
+IF
+ObjectFlagSet("EG_Debug_Comp_RedPrince_HighRel", (CHARACTERGUID)_Var1, _)
+THEN
+ObjectClearFlag(_Var1, "EG_Debug_Comp_RedPrince_HighRel");
+DB_SetCompanionAttitude(CHARACTERGUID_S_Player_RedPrince_a26a1efb-cdc8-4cf3-a7b2-b2f9544add6f, _Var1, 100);
+
+IF
+ObjectFlagSet("EG_Debug_Comp_RedPrince_LowRel", (CHARACTERGUID)_Var1, _)
+THEN
+ObjectClearFlag(_Var1, "EG_Debug_Comp_RedPrince_LowRel");
+DB_SetCompanionAttitude(CHARACTERGUID_S_Player_RedPrince_a26a1efb-cdc8-4cf3-a7b2-b2f9544add6f, _Var1, 0);
+
+IF
+ObjectFlagSet("EG_Debug_Comp_Fane_MadeChoice", (GUIDSTRING)_Var1, _)
+THEN
+ObjectClearFlag(_Var1, "EG_Debug_Comp_Fane_MadeChoice");
+ObjectSetFlag(CHARACTERGUID_S_Player_Fane_02a77f1f-872b-49ca-91ab-32098c443beb, "EG_TheChoice_MadeIt");
+
+IF
+ObjectFlagSet("EG_Debug_Comp_Ifan_MadeChoice", (GUIDSTRING)_Var1, _)
+THEN
+ObjectClearFlag(_Var1, "EG_Debug_Comp_Ifan_MadeChoice");
+ObjectSetFlag(CHARACTERGUID_S_Player_Ifan_ad9a3327-4456-42a7-9bf4-7ad60cc9e54f, "EG_TheChoice_MadeIt");
+
+IF
+ObjectFlagSet("EG_Debug_Comp_Lohse_MadeChoice", (GUIDSTRING)_Var1, _)
+THEN
+ObjectClearFlag(_Var1, "EG_Debug_Comp_Lohse_MadeChoice");
+ObjectSetFlag(CHARACTERGUID_S_Player_Lohse_bb932b13-8ebf-4ab4-aac0-83e6924e4295, "EG_TheChoice_MadeIt");
+
+IF
+ObjectFlagSet("EG_Debug_Comp_Sebille_MadeChoice", (GUIDSTRING)_Var1, _)
+THEN
+ObjectClearFlag(_Var1, "EG_Debug_Comp_Sebille_MadeChoice");
+ObjectSetFlag(CHARACTERGUID_S_Player_Sebille_c8d55eaf-e4eb-466a-8f0d-6a9447b5b24c, "EG_TheChoice_MadeIt");
+
+IF
+ObjectFlagSet("EG_Debug_Comp_Beast_MadeChoice", (GUIDSTRING)_Var1, _)
+THEN
+ObjectClearFlag(_Var1, "EG_Debug_Comp_Beast_MadeChoice");
+ObjectSetFlag(CHARACTERGUID_S_Player_Beast_f25ca124-a4d2-427b-af62-df66df41a978, "EG_TheChoice_MadeIt");
+
+IF
+ObjectFlagSet("EG_Debug_Comp_RedPrince_MadeChoice", (GUIDSTRING)_Var1, _)
+THEN
+ObjectClearFlag(_Var1, "EG_Debug_Comp_RedPrince_MadeChoice");
+ObjectSetFlag(CHARACTERGUID_S_Player_RedPrince_a26a1efb-cdc8-4cf3-a7b2-b2f9544add6f, "EG_TheChoice_MadeIt");
+
+IF
+TextEventSet("windegomovie")
+AND
+CharacterGetHostCharacter(_Var1)
+THEN
+PlayMovieForDialog(_Var1, "EG_Epilogue_WindegoCutScene", "Windego_Cutscene");
+
+IF
+TextEventSet("narratormovie")
+AND
+CharacterGetHostCharacter(_Var1)
+THEN
+PlayMovieForDialog(_Var1, "EG_Epilogue_NarratorEndScroll", "CS_Epilogue");
+
+
+EXITSECTION
+ENDEXITSECTION
+

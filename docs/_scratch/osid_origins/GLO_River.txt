@@ -1,0 +1,184 @@
+Version 1
+SubGoalCombiner SGC_AND
+
+INITSECTION
+DB_NoLowAttitudeDialog(CHARACTERGUID_S_GLO_Dallis_69b951dc-55a4-44b8-a2d5-5efedbd7d572);
+DB_NoLowAttitudeDialog(CHARACTERGUID_S_GLO_River_f4931ebe-10b0-43c4-9182-640cf052717e);
+
+KBSECTION
+IF
+AttackedByObject(CHARACTERGUID_S_GLO_River_f4931ebe-10b0-43c4-9182-640cf052717e, (CHARACTERGUID)_Var1, _, _, (STRING)_Var4)
+AND NOT
+QryIgnoreDamageSource(_Var4)
+AND
+DB_IsPlayer(_Var1)
+AND
+ObjectGetFlag(CHARACTERGUID_S_GLO_River_f4931ebe-10b0-43c4-9182-640cf052717e, "RC_DU_VL_PlayerAttackedRiver", 0)
+THEN
+Proc_RC_DU_VL_AttackedRiver(_Var1, CHARACTERGUID_S_GLO_River_f4931ebe-10b0-43c4-9182-640cf052717e);
+ObjectSetFlag(_Var1, "RC_DU_VL_AttackedRiverAtLeastOnce");
+
+PROC
+Proc_RC_DU_VL_AttackedRiver((CHARACTERGUID)_Var1, (CHARACTERGUID)_Var2)
+AND
+GetRegion(_Var2, _Var3)
+AND
+_Var3 == "FJ_FortJoy_Main"
+THEN
+CharacterLookAt(_Var2, _Var1);
+DialogRequestStop(_Var2);
+ObjectSetFlag(_Var2, "RC_DU_VL_PlayerAttackedRiver");
+Proc_StartDialog(1, "RC_DU_VL_AD_River", _Var2);
+
+PROC
+Proc_RC_DU_VL_AttackedRiver((CHARACTERGUID)_Var1, (CHARACTERGUID)_Var2)
+AND
+GlobalGetFlag("LV_HoE_LvAssaultActive", 0)
+AND
+GetRegion(_Var2, _Var3)
+AND
+_Var3 == "LV_HoE_Main"
+THEN
+CharacterLookAt(_Var2, _Var1);
+DialogRequestStop(_Var2);
+ObjectSetFlag(_Var2, "RC_DU_VL_PlayerAttackedRiver");
+Proc_StartDialog(1, "RC_DU_VL_AD_River", _Var2);
+
+PROC
+Proc_RC_DU_VL_AttackedRiver((CHARACTERGUID)_Var1, (CHARACTERGUID)_Var2)
+AND
+ObjectGetFlag(_Var2, "RC_DU_VL_TalkedToRiver", 1)
+AND
+GetRegion(_Var2, _Var3)
+AND
+_Var3 == "RC_Main"
+THEN
+CharacterLookAt(_Var2, _Var1);
+DialogRequestStop(_Var2);
+ObjectSetFlag(_Var2, "RC_DU_VL_PlayerAttackedRiver");
+Proc_StartDialog(1, "RC_DU_VL_AD_River", _Var2);
+
+PROC
+Proc_RC_DU_VL_AttackedRiver((CHARACTERGUID)_Var1, (CHARACTERGUID)_Var2)
+AND
+ObjectGetFlag(_Var2, "RC_DU_VL_TalkedToRiver", 0)
+AND
+GetRegion(_Var2, _Var3)
+AND
+_Var3 == "RC_Main"
+THEN
+ObjectSetFlag(_Var2, "RC_DU_VL_PlayerAttackedRiver");
+Proc_RC_DU_VL_StartRiverDialogue(_Var1);
+
+PROC
+Proc_RC_DU_VL_AttackedRiver((CHARACTERGUID)_Var1, (CHARACTERGUID)_Var2)
+AND
+GetRegion(_Var2, _Var3)
+AND
+_Var3 == "CoS_Main_Ending"
+THEN
+CharacterLookAt(_Var2, _Var1);
+DialogRequestStop(_Var2);
+ObjectSetFlag(_Var2, "RC_DU_VL_PlayerAttackedRiver");
+Proc_StartDialog(1, "RC_DU_VL_AD_River", _Var2);
+
+PROC
+Proc_RC_DU_VL_AttackedRiver((CHARACTERGUID)_Var1, (CHARACTERGUID)_Var2)
+AND
+GetRegion(_Var2, _Var3)
+AND
+_Var3 == "ARX_Main"
+THEN
+CharacterLookAt(_Var2, _Var1);
+DialogRequestStop(_Var2);
+ObjectSetFlag(_Var2, "RC_DU_VL_PlayerAttackedRiver");
+Proc_StartDialog(1, "RC_DU_VL_AD_River", _Var2);
+
+IF
+AutomatedDialogStarted("RC_DU_VL_AD_River", _)
+AND NOT
+DB_BlockRiverAttackReaction(1)
+THEN
+DB_GLO_RiverTeleportingAway(1);
+SetCanJoinCombat(CHARACTERGUID_S_GLO_River_f4931ebe-10b0-43c4-9182-640cf052717e, 0);
+SetCanFight(CHARACTERGUID_S_GLO_River_f4931ebe-10b0-43c4-9182-640cf052717e, 0);
+PROC_LoopEffect("RS3_FX_GP_ScriptedEvent_HOE_Channel_Spell_StepA_01", CHARACTERGUID_S_GLO_River_f4931ebe-10b0-43c4-9182-640cf052717e, "GLO_RiverDisappearEffect", "__ANY__", "");
+SetHasDialog(CHARACTERGUID_S_GLO_River_f4931ebe-10b0-43c4-9182-640cf052717e, 0);
+
+IF
+AutomatedDialogEnded("RC_DU_VL_AD_River", _)
+AND NOT
+DB_BlockRiverAttackReaction(1)
+AND
+ObjectGetFlag(CHARACTERGUID_S_GLO_River_f4931ebe-10b0-43c4-9182-640cf052717e, "RC_DU_VL_PlayerAttackedRiver", 1)
+AND
+GetPosition(CHARACTERGUID_S_GLO_River_f4931ebe-10b0-43c4-9182-640cf052717e, _Var2, _Var3, _Var4)
+THEN
+NOT DB_GLO_RiverTeleportingAway(1);
+DB_GLO_RiverTeleportedAway(1);
+PlayEffectAtPosition("RS3_FX_GP_ScriptedEvent_HOE_Summoning_01", _Var2, _Var3, _Var4);
+SetOnStage(CHARACTERGUID_S_GLO_River_f4931ebe-10b0-43c4-9182-640cf052717e, 0);
+PROC_GLO_River_TeleportingAwayCleanUp();
+TimerLaunch("RC_DU_VL_RiverReapear", 60000);
+
+IF
+TimerFinished("RC_DU_VL_RiverReapear")
+THEN
+NOT DB_GLO_RiverTeleportedAway(1);
+CreateSurface(CHARACTERGUID_S_GLO_River_f4931ebe-10b0-43c4-9182-640cf052717e, "SurfaceNone", 3, 1);
+SetOnStage(CHARACTERGUID_S_GLO_River_f4931ebe-10b0-43c4-9182-640cf052717e, 1);
+PlayEffect(CHARACTERGUID_S_GLO_River_f4931ebe-10b0-43c4-9182-640cf052717e, "RS3_FX_GP_ScriptedEvent_HOE_Summoning_01");
+PROC_GLO_River_TeleportedAwayCleanUp();
+
+PROC
+PROC_GLO_River_TeleportingAwayCleanUp()
+THEN
+ObjectClearFlag(CHARACTERGUID_S_GLO_River_f4931ebe-10b0-43c4-9182-640cf052717e, "RC_DU_VL_PlayerAttackedRiver", 0);
+CharacterSetHitpointsPercentage(CHARACTERGUID_S_GLO_River_f4931ebe-10b0-43c4-9182-640cf052717e, 100);
+PROC_StopLoopEffect(CHARACTERGUID_S_GLO_River_f4931ebe-10b0-43c4-9182-640cf052717e, "GLO_RiverDisappearEffect");
+
+PROC
+PROC_GLO_River_TeleportedAwayCleanUp()
+THEN
+SetCanJoinCombat(CHARACTERGUID_S_GLO_River_f4931ebe-10b0-43c4-9182-640cf052717e, 1);
+SetCanFight(CHARACTERGUID_S_GLO_River_f4931ebe-10b0-43c4-9182-640cf052717e, 1);
+SetHasDialog(CHARACTERGUID_S_GLO_River_f4931ebe-10b0-43c4-9182-640cf052717e, 1);
+
+PROC
+PROC_GLO_River_AbortTeleportedAway()
+AND
+DB_GLO_RiverTeleportingAway(1)
+THEN
+NOT DB_GLO_RiverTeleportingAway(1);
+PROC_GLO_River_TeleportingAwayCleanUp();
+
+PROC
+PROC_GLO_River_AbortTeleportedAway()
+AND
+DB_GLO_RiverTeleportedAway(1)
+THEN
+NOT DB_GLO_RiverTeleportedAway(1);
+TimerCancel("RC_DU_VL_RiverReapear");
+PROC_GLO_River_TeleportedAwayCleanUp();
+
+PROC
+ProcRegionEnded(_)
+THEN
+PROC_GLO_River_AbortTeleportedAway();
+
+IF
+GlobalFlagSet("RC_RiverCoughSource")
+THEN
+PlayAnimation(CHARACTERGUID_S_GLO_River_f4931ebe-10b0-43c4-9182-640cf052717e, "barf");
+TimerLaunch("RC_RiverCoughSource", 1000);
+
+IF
+TimerFinished("RC_RiverCoughSource")
+THEN
+CreateSurface(TRIGGERGUID_LV_RiverCoughSource_Point_c210fa21-57d1-4872-8991-11244a2daf86, "SurfaceSource", 0.5, 0);
+
+
+EXITSECTION
+ENDEXITSECTION
+
+ParentTargetEdge "Start"

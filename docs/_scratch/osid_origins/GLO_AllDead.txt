@@ -1,0 +1,210 @@
+Version 1
+SubGoalCombiner SGC_AND
+
+INITSECTION
+DB_GLO_AllDead_UserCountTimerDelay(1, 4000);
+DB_GLO_AllDead_UserCountTimerDelay(2, 6000);
+
+KBSECTION
+PROC
+PROC_GLO_AllDead_Notification((CHARACTERGUID)_Var1)
+THEN
+DB_NOOP(1);
+
+QRY
+QRY_GLO_AllDead_AllUserCharsDead((INTEGER)_Var1)
+AND NOT
+QRY_GLO_AllDead_OneUserCharAlive(_Var1)
+THEN
+DB_NOOP(1);
+
+QRY
+QRY_GLO_AllDead_OneUserCharAlive((INTEGER)_Var1)
+AND
+DB_IsPlayer(_Var2)
+AND
+CharacterGetReservedUserID(_Var2, _Var1)
+AND
+CharacterIsDead(_Var2, 0)
+THEN
+DB_NOOP(1);
+
+IF
+CharacterMadePlayer((CHARACTERGUID)_Var1)
+THEN
+DB_IgnoreReservedChanged(_Var1);
+
+IF
+DB_CharacterCreationDummy(_Var1)
+THEN
+DB_IgnoreReservedChanged(_Var1);
+
+IF
+CharacterReservedUserIDChanged((CHARACTERGUID)_Var1, _, (INTEGER)_Var3)
+AND NOT
+DB_IgnoreReservedChanged(_Var1)
+AND NOT
+DB_Dead(_Var1)
+THEN
+PROC_GLO_AllDead_CheckAllUserCharsDeadForAny();
+
+IF
+CharacterReservedUserIDChanged((CHARACTERGUID)_Var1, _, (INTEGER)_Var3)
+THEN
+NOT DB_IgnoreReservedChanged(_Var1);
+
+IF
+CharacterDied((CHARACTERGUID)_Var1)
+AND
+DB_IsPlayer(_Var1)
+THEN
+PROC_GLO_AllDead_CheckAllUserCharsDead(_Var1);
+
+PROC
+PROC_GLO_AllDead_CheckAllUserCharsDead((CHARACTERGUID)_Var1)
+AND
+DB_GLO_AllDead_QueuedUser(_Var2)
+THEN
+NOT DB_GLO_AllDead_QueuedUser(_Var2);
+
+PROC
+PROC_GLO_AllDead_CheckAllUserCharsDead((CHARACTERGUID)_Var1)
+AND
+CharacterGetReservedUserID(_Var1, _Var2)
+AND
+QRY_GLO_AllDead_AllUserCharsDead(_Var2)
+THEN
+DB_GLO_AllDead_QueuedUser(_Var1);
+DB_GLO_AllDead_TriggerAfterCombat(_Var1);
+
+PROC
+PROC_GLO_AllDead_CheckAllUserCharsDeadForAny()
+AND
+DB_IsPlayer(_Var1)
+AND
+CharacterGetReservedUserID(_Var1, _Var2)
+AND NOT
+DB_GLO_AllDead_CheckAllUserCharsDeadForAny(_Var2)
+THEN
+DB_GLO_AllDead_CheckAllUserCharsDeadForAny(_Var2);
+PROC_GLO_AllDead_CheckAllUserCharsDead(_Var1);
+
+PROC
+PROC_GLO_AllDead_CheckAllUserCharsDeadForAny()
+AND
+DB_GLO_AllDead_CheckAllUserCharsDeadForAny(_Var1)
+THEN
+NOT DB_GLO_AllDead_CheckAllUserCharsDeadForAny(_Var1);
+
+IF
+DB_GLO_AllDead_TriggerAfterCombat(_Var1)
+THEN
+PROC_GLO_AllDead_RecordUserCombats(_Var1);
+
+IF
+DB_GLO_AllDead_TriggerAfterCombat(_Var1)
+AND NOT
+DB_GLO_AllDead_FoundCombatForSignaledUser(_Var1)
+THEN
+NOT DB_GLO_AllDead_TriggerAfterCombat(_Var1);
+PROC_GLO_AllDead_StartTriggerTimer(_Var1);
+
+IF
+DB_GLO_AllDead_TriggerAfterCombat(_Var1)
+THEN
+NOT DB_GLO_AllDead_TriggerAfterCombat(_Var1);
+NOT DB_GLO_AllDead_FoundCombatForSignaledUser(_Var1);
+
+IF
+ObjectSwitchedCombat((CHARACTERGUID)_Var1, (INTEGER)_Var2, (INTEGER)_Var3)
+AND
+DB_Dead(_Var1)
+AND
+DB_IsPlayer(_Var1)
+AND
+DB_GLO_AllDead_WaitTillEndOfCombat(_Var2)
+THEN
+DB_GLO_AllDead_WaitTillEndOfCombat(_Var3);
+
+PROC
+PROC_GLO_AllDead_RecordUserCombats((CHARACTERGUID)_Var1)
+AND
+CharacterGetReservedUserID(_Var1, _Var2)
+AND
+DB_IsPlayer(_Var3)
+AND
+CharacterGetReservedUserID(_Var3, _Var2)
+AND
+DB_WasInCombat(_Var3, _Var4)
+AND
+IsCombatActive(_Var4, 1)
+THEN
+DB_GLO_AllDead_FoundCombatForSignaledUser(_Var1);
+DB_GLO_AllDead_WaitTillEndOfCombat(_Var4);
+
+IF
+CombatEnded((INTEGER)_Var1)
+AND
+DB_GLO_AllDead_WaitTillEndOfCombat(_Var1)
+THEN
+NOT DB_GLO_AllDead_WaitTillEndOfCombat(_Var1);
+PROC_GLO_AllDead_CheckAllUserCharsDeadForAny();
+
+PROC
+PROC_GLO_AllDead_StartTriggerTimer((CHARACTERGUID)_Var1)
+AND NOT
+QRY_GLO_AllDead_UserAllDeadTimerStarted(_Var1)
+AND
+GetUserCount(_Var2)
+AND
+IntegerMax(_Var2, 1, _Var3)
+AND
+IntegerMin(_Var3, 2, _Var4)
+AND
+DB_GLO_AllDead_UserCountTimerDelay(_Var4, _Var5)
+THEN
+DB_GLO_AllDead_TimerStarted(1);
+ProcObjectTimer(_Var1, "GLO_AllDead_WaitToSendNotification", _Var5);
+
+PROC
+PROC_GLO_AllDead_StartTriggerTimer((CHARACTERGUID)_Var1)
+AND NOT
+DB_GLO_AllDead_TimerStarted(1)
+THEN
+NOT DB_GLO_AllDead_QueuedUser(_Var1);
+
+PROC
+PROC_GLO_AllDead_StartTriggerTimer((CHARACTERGUID)_Var1)
+THEN
+NOT DB_GLO_AllDead_TimerStarted(1);
+
+QRY
+QRY_GLO_AllDead_UserAllDeadTimerStarted((CHARACTERGUID)_Var1)
+AND
+CharacterGetReservedUserID(_Var1, _Var2)
+AND
+DB_ObjectTimer(_Var3, _, "GLO_AllDead_WaitToSendNotification")
+AND
+CharacterGetReservedUserID(_Var3, _Var2)
+THEN
+DB_NOOP(1);
+
+PROC
+ProcObjectTimerFinished((CHARACTERGUID)_Var1, "GLO_AllDead_WaitToSendNotification")
+AND
+CharacterGetReservedUserID(_Var1, _Var2)
+AND
+QRY_GLO_AllDead_AllUserCharsDead(_Var2)
+THEN
+PROC_GLO_AllDead_Notification(_Var1);
+
+PROC
+ProcObjectTimerFinished((CHARACTERGUID)_Var1, "GLO_AllDead_WaitToSendNotification")
+THEN
+NOT DB_GLO_AllDead_QueuedUser(_Var1);
+
+
+EXITSECTION
+ENDEXITSECTION
+
+ParentTargetEdge "GLO_ThePromise_Activation"

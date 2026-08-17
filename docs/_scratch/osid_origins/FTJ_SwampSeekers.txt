@@ -1,0 +1,325 @@
+Version 1
+SubGoalCombiner SGC_AND
+
+INITSECTION
+ProcTriggerRegisterForPlayers(TRIGGERGUID_S_FTJ_SW_CrucifiedSeekerVB_Poly_edf15a1d-7b57-42b0-aa11-af5813e3b2ad);
+DB_FTJ_SW_CrucifiedSeekers(CHARACTERGUID_S_FTJ_SW_Crucified1_86255f45-c558-4858-bdcb-2cdf59b43a14);
+DB_FTJ_SW_CrucifiedSeekers(CHARACTERGUID_S_FTJ_SW_Crucified2_d9e8eccb-bf1d-4840-b781-c3164bce6964);
+DB_FTJ_SW_CrucifiedSeekers(CHARACTERGUID_S_FTJ_SW_Crucified3_1553394b-c6a9-42b3-bcaf-1a36d6b2e43c);
+DB_Dialogs(CHARACTERGUID_S_FTJ_SW_Crucified1_86255f45-c558-4858-bdcb-2cdf59b43a14, "FTJ_SW_Crucified1");
+DB_Dialogs(CHARACTERGUID_S_FTJ_SW_Crucified2_d9e8eccb-bf1d-4840-b781-c3164bce6964, "FTJ_SW_Crucified2");
+DB_Dialogs(CHARACTERGUID_S_FTJ_SW_Crucified3_1553394b-c6a9-42b3-bcaf-1a36d6b2e43c, "FTJ_SW_Crucified3");
+DB_FTJ_SW_KerbanRefuse(ITEMGUID_S_FTJ_SW_KerbanPile1_170ff1f8-9779-4c80-90a7-ccb6c0a7e593);
+DB_FTJ_SW_KerbanRefuse(ITEMGUID_S_FTJ_SW_KerbanPile2_6b61e617-338f-4441-8b74-06e07d0289b8);
+DB_FTJ_SW_KerbanRefuse(ITEMGUID_S_FTJ_SW_KerbanPile3_b297c16f-1f6a-45ee-9fa5-81924596907b);
+DB_FTJ_SW_KerbanRefuse(ITEMGUID_S_FTJ_SW_KerbanPile4_b1394659-c6f0-45c0-8405-eec12eeeb5af);
+DB_FTJ_SW_KerbanRefuse(ITEMGUID_S_FTJ_SW_KerbanPile5_f8378026-16f1-40a9-bcfd-95a2d547131d);
+DB_FTJ_SW_HanAndSam(CHARACTERGUID_S_FTJ_CapturedChild_53d4aa5c-dd91-4e12-9ca8-d66879cc6ffb);
+DB_FTJ_SW_HanAndSam(CHARACTERGUID_S_FTJ_SW_ShelterNPC_001_325c2042-b2fb-4b06-872d-123086ca82d4);
+DB_FTJ_SW_DugganAndLeya(CHARACTERGUID_S_FTJ_SW_CollarRemoverFriend_01bd86e1-75ca-46a6-853e-b8dd64c2cd22);
+DB_FTJ_SW_DugganAndLeya(CHARACTERGUID_S_FTJ_SW_CollarRemovingSeeker_437c00b3-6544-44dd-8396-a43848b19a1e);
+ItemToInventory(ITEMGUID_S_FTJ_HarborMagisterNote_2349f0c5-133a-4b91-a6c5-a1de1e0bca69, CHARACTERGUID_S_FTJ_HarbourMagister_001_d6a4e8d9-67bc-4961-95ce-c7016357ea64);
+DB_IsSign(S_FTJ_SW_SwampEnterSign_69acad45-cf04-4624-b6be-0bfde514ad14, "FTJ_SW_AD_SwampSigns", "FTJ_SW_SwampEnterSign");
+TriggerRegisterForCharacter(TRIGGERGUID_S_FTJ_SW_SUB_Shelter_51c3953f-c756-472d-a7ca-dc2a6232b386, CHARACTERGUID_S_FTJ_SW_CollarRemoverFriend_01bd86e1-75ca-46a6-853e-b8dd64c2cd22);
+TriggerRegisterForCharacter(TRIGGERGUID_S_FTJ_SW_SUB_Shelter_51c3953f-c756-472d-a7ca-dc2a6232b386, CHARACTERGUID_S_FTJ_SW_CollarRemovingSeeker_437c00b3-6544-44dd-8396-a43848b19a1e);
+TriggerRegisterForCharacter(TRIGGERGUID_S_FTJ_SW_SUB_Shelter_51c3953f-c756-472d-a7ca-dc2a6232b386, CHARACTERGUID_S_FTJ_CapturedChild_53d4aa5c-dd91-4e12-9ca8-d66879cc6ffb);
+TriggerRegisterForCharacter(TRIGGERGUID_S_FTJ_SW_SUB_Shelter_51c3953f-c756-472d-a7ca-dc2a6232b386, CHARACTERGUID_S_FTJ_SW_Warrior_ShelterNPC_001_325c2042-b2fb-4b06-872d-123086ca82d4);
+DB_OneShotPlayerTrigger(TRIGGERGUID_S_FTJ_SW_AD_SeekerCamp_71620fa0-70e7-4f16-8441-ab87d227ee75);
+ItemToInventory(ITEMGUID_S_FTJ_SW_GarethAmulet_a918d1b4-2ce1-4154-ab73-53fa2439b834, CHARACTERGUID_S_FTJ_SW_Warrior_SeekerCaptain_1329f018-23e4-4717-9bc8-074b28d04c54);
+DB_HasStoryEvent(ITEMGUID_S_FTJ_SW_GarethAmulet_a918d1b4-2ce1-4154-ab73-53fa2439b834, "FTJ_SW_HasGarethAmulet");
+DB_GiveItemToEvent(ITEMGUID_S_FTJ_SW_GarethAmulet_a918d1b4-2ce1-4154-ab73-53fa2439b834, "FTJ_SW_GiveGarethAmulet");
+
+KBSECTION
+IF
+DB_FTJ_SW_CrucifiedSeekers(_Var1)
+THEN
+CharacterSetHitpointsPercentage(_Var1, 10);
+
+IF
+DB_FTJ_SW_CrucifiedSeekers(_Var1)
+THEN
+ProcCharacterDisableAllCrimes(_Var1);
+DB_IgnoreAssault(_Var1);
+DB_DontCreateMurder(_Var1);
+
+IF
+DB_FTJ_SW_KerbanRefuse(_Var1)
+THEN
+ItemSetDurability(_Var1, 0);
+
+IF
+AttackedByObject((CHARACTERGUID)_Var1, (GUIDSTRING)_Var2, (GUIDSTRING)_Var3, _, _)
+AND
+_Var1 != _Var3
+AND
+DB_FTJ_SW_CrucifiedSeekers(_Var1)
+AND
+HasActiveStatus(_Var1, "BURNING", 1)
+AND
+CharacterIsDead(_Var1, 0)
+THEN
+CharacterDie(_Var1, 0, "DoT");
+
+IF
+AttackedByObject((CHARACTERGUID)_Var1, (GUIDSTRING)_Var2, (GUIDSTRING)_Var3, _, _)
+AND
+_Var1 != _Var3
+AND
+DB_FTJ_SW_CrucifiedSeekers(_Var1)
+AND
+HasActiveStatus(_Var1, "BURNING", 0)
+AND
+CharacterIsDead(_Var1, 0)
+THEN
+CharacterDie(_Var1, 0, "Physical");
+
+IF
+CharacterEnteredTrigger((CHARACTERGUID)_Var1, TRIGGERGUID_S_FTJ_SW_CrucifiedSeekerVB_Poly_edf15a1d-7b57-42b0-aa11-af5813e3b2ad)
+AND
+DB_FTJ_SW_CrucifiedSeekers(_Var2)
+AND
+QRY_SpeakerIsAvailable(_Var1)
+AND
+QueryOnlyOnce("FTJ_DoCrucSeekerVB")
+THEN
+StartVoiceBark("FTJ_SW_VB_SawCrucifiedSeekers", _Var1);
+
+IF
+CharacterEnteredTrigger((CHARACTERGUID)_Var1, TRIGGERGUID_S_FTJ_SW_CrucifiedSeekerVB_Poly_edf15a1d-7b57-42b0-aa11-af5813e3b2ad)
+THEN
+UserSetFlag(_Var1, "QuestUpdate_FTJ_Seeker_CrucifiedSeekerMet");
+
+IF
+DialogStarted("FTJ_SW_InjuredSeeker_002", (INTEGER)_Var1)
+AND
+DialogGetInvolvedPlayer(_Var1, 1, _Var2)
+THEN
+UserSetFlag(_Var2, "FTJ_SW_Klaud_HasMet");
+
+IF
+DialogStarted("FTJ_SW_InjuredSeeker_002_Healed", (INTEGER)_Var1)
+AND
+DialogGetInvolvedPlayer(_Var1, 1, _Var2)
+THEN
+UserSetFlag(_Var2, "FTJ_SW_Klaud_HasMet");
+
+IF
+DialogEnded((STRING)_Var1, (INTEGER)_Var2)
+AND
+DB_FTJ_SW_CrucifiedSeekers(_Var3)
+AND
+DB_Dialogs(_Var3, _Var1)
+AND
+DB_DialogPlayers(_Var2, _Var4, 1)
+AND
+QueryOnlyOnce("FTJ_SW_RD_CrucifedSeekers_Once")
+THEN
+ProcDefineReflectionDialog("FTJ_SW_RD_CrucifedSeekers", _Var4);
+
+QRY
+QRY_FTJ_SW_CompletedIsland((CHARACTERGUID)_Var1)
+AND
+ObjectGetFlag(_Var1, "FTJ_RemoveSourceCollar", 1)
+AND
+GlobalGetFlag("FTJ_SW_LeaveCallToArms", 1)
+AND
+GlobalGetFlag("FTJ_SW_GotSupport", 1)
+THEN
+DB_NOOP(1);
+
+IF
+ObjectFlagSet("FTJ_SW_ReachedCamp", CHARACTERGUID_S_FTJ_CapturedChild_53d4aa5c-dd91-4e12-9ca8-d66879cc6ffb, _)
+THEN
+GlobalSetFlag("FTJ_SW_HanAtShelter");
+
+IF
+ObjectFlagSet("FTJ_SW_ReachedCamp", CHARACTERGUID_S_FTJ_CapturedChild_53d4aa5c-dd91-4e12-9ca8-d66879cc6ffb, _)
+AND
+CharacterIsDead(CHARACTERGUID_S_FTJ_SW_ShelterNPC_001_325c2042-b2fb-4b06-872d-123086ca82d4, 0)
+AND
+DB_FTJ_SW_HanAndSam(_Var2)
+AND
+DB_Dialogs(_Var2, _Var3)
+THEN
+DB_FTJ_SW_HanAndSam(_Var2, _Var3);
+
+IF
+ObjectFlagSet("FTJ_SW_ReachedCamp", CHARACTERGUID_S_FTJ_CapturedChild_53d4aa5c-dd91-4e12-9ca8-d66879cc6ffb, _)
+AND
+CharacterIsDead(CHARACTERGUID_S_FTJ_SW_ShelterNPC_001_325c2042-b2fb-4b06-872d-123086ca82d4, 0)
+THEN
+PROC_RemoveDialogFromCharacter(CHARACTERGUID_S_FTJ_CapturedChild_53d4aa5c-dd91-4e12-9ca8-d66879cc6ffb);
+PROC_RemoveDialogFromCharacter(CHARACTERGUID_S_FTJ_SW_ShelterNPC_001_325c2042-b2fb-4b06-872d-123086ca82d4);
+DB_Dialogs(CHARACTERGUID_S_FTJ_SW_ShelterNPC_001_325c2042-b2fb-4b06-872d-123086ca82d4, CHARACTERGUID_S_FTJ_CapturedChild_53d4aa5c-dd91-4e12-9ca8-d66879cc6ffb, "FTJ_SW_SamadelWithHan");
+
+IF
+ObjectFlagSet("GEB_FleeOutOfSight", CHARACTERGUID_S_FTJ_CapturedChild_53d4aa5c-dd91-4e12-9ca8-d66879cc6ffb, _)
+AND
+DB_FTJ_SW_HanAndSam(CHARACTERGUID_S_FTJ_SW_Warrior_ShelterNPC_001_325c2042-b2fb-4b06-872d-123086ca82d4, _Var2)
+THEN
+ObjectSetFlag(CHARACTERGUID_S_FTJ_SW_Warrior_ShelterNPC_001_325c2042-b2fb-4b06-872d-123086ca82d4, "FTJ_SW_HanHasFled");
+ProcRemoveAllDialogEntriesForSpeaker(CHARACTERGUID_S_FTJ_SW_Warrior_ShelterNPC_001_325c2042-b2fb-4b06-872d-123086ca82d4);
+DB_Dialogs(HARACTERGUID_S_FTJ_SW_Warrior_ShelterNPC_001_325c2042-b2fb-4b06-872d-123086ca82d4, _Var2);
+NOT DB_FTJ_SW_HanAndSam(HARACTERGUID_S_FTJ_SW_Warrior_ShelterNPC_001_325c2042-b2fb-4b06-872d-123086ca82d4, _Var2);
+
+IF
+CharacterDying((CHARACTERGUID)_Var1)
+AND
+DB_FTJ_SW_HanAndSam(_Var1, _)
+AND
+DB_FTJ_SW_HanAndSam(_Var3, _Var4)
+THEN
+PROC_RemoveDialogFromCharacter(_Var3);
+DB_Dialogs(_Var3, _Var4);
+NOT DB_FTJ_SW_HanAndSam(_Var3, _Var4);
+
+IF
+CharacterLeftTrigger((CHARACTERGUID)_Var1, TRIGGERGUID_S_FTJ_SW_SUB_Shelter_51c3953f-c756-472d-a7ca-dc2a6232b386)
+AND
+DB_FTJ_SW_HanAndSam(_Var1, _)
+AND
+DB_FTJ_SW_HanAndSam(_Var3, _Var4)
+THEN
+PROC_RemoveDialogFromCharacter(_Var3);
+DB_Dialogs(_Var3, _Var4);
+NOT DB_FTJ_SW_HanAndSam(_Var3, _Var4);
+
+IF
+DialogEnded("FTJ_SW_SamadelWithHan", _)
+AND
+DB_FTJ_SW_HanAndSam(_Var2, _Var3)
+THEN
+PROC_RemoveDialogFromCharacter(_Var2);
+DB_Dialogs(_Var2, _Var3);
+NOT DB_FTJ_SW_HanAndSam(_Var2, _Var3);
+
+IF
+GlobalFlagSet("FTJ_SW_GarethAtShelter")
+AND
+DB_FTJ_SW_HanAndSam(_Var1, _Var2)
+THEN
+PROC_RemoveDialogFromCharacter(_Var1);
+DB_Dialogs(_Var1, _Var2);
+NOT DB_FTJ_SW_HanAndSam(_Var1, _Var2);
+
+IF
+GlobalFlagSet("FTJ_SW_GarethAtShelter")
+THEN
+DialogRequestStopForDialog("FTJ_SW_AD_SamadelWithHan_001", CHARACTERGUID_S_FTJ_CapturedChild_53d4aa5c-dd91-4e12-9ca8-d66879cc6ffb);
+
+IF
+DialogEnded("FTJ_SW_SamadelWithHan", _)
+AND
+GlobalGetFlag("FTJ_SW_GarethAtShelter", 0)
+THEN
+ObjectSetFlag(CHARACTERGUID_S_FTJ_SW_Warrior_ShelterNPC_001_325c2042-b2fb-4b06-872d-123086ca82d4, "FTJ_SW_3WayDialogDone", 0);
+ProcCharacterMoveTo(CHARACTERGUID_S_FTJ_SW_ShelterNPC_001_325c2042-b2fb-4b06-872d-123086ca82d4, TRIGGERGUID_S_FTJ_SW_SamadelCareHan1_82b03ab8-a80a-4a61-8c75-95949e390b6d, 0, "FTJ_SW_SamadelArriveCareHan");
+ProcCharacterFollowCharacter(CHARACTERGUID_S_FTJ_CapturedChild_53d4aa5c-dd91-4e12-9ca8-d66879cc6ffb, CHARACTERGUID_S_FTJ_SW_ShelterNPC_001_325c2042-b2fb-4b06-872d-123086ca82d4);
+SetHasDialog(CHARACTERGUID_S_FTJ_CapturedChild_53d4aa5c-dd91-4e12-9ca8-d66879cc6ffb, 0);
+SetVarString(CHARACTERGUID_S_FTJ_CapturedChild_53d4aa5c-dd91-4e12-9ca8-d66879cc6ffb, "SamadelAD", "FTJ_SW_AD_SamadelWithHan_003");
+
+IF
+StoryEvent(CHARACTERGUID_S_FTJ_SW_ShelterNPC_001_325c2042-b2fb-4b06-872d-123086ca82d4, "FTJ_SW_SamadelArriveCareHan")
+THEN
+CharacterLookAt(CHARACTERGUID_S_FTJ_SW_ShelterNPC_001_325c2042-b2fb-4b06-872d-123086ca82d4, CHARACTERGUID_S_FTJ_CapturedChild_53d4aa5c-dd91-4e12-9ca8-d66879cc6ffb);
+ProcCharacterStopFollow(CHARACTERGUID_S_FTJ_CapturedChild_53d4aa5c-dd91-4e12-9ca8-d66879cc6ffb);
+SetVarFixedString(CHARACTERGUID_S_FTJ_CapturedChild_53d4aa5c-dd91-4e12-9ca8-d66879cc6ffb, "currentState", "State_AtSickBay");
+SetHasDialog(CHARACTERGUID_S_FTJ_CapturedChild_53d4aa5c-dd91-4e12-9ca8-d66879cc6ffb, 1);
+
+IF
+CharacterDying((CHARACTERGUID)_Var1)
+AND
+DB_FTJ_SW_DugganAndLeya(_Var1)
+AND NOT
+DB_Dialogs(_Var1, _)
+THEN
+PROC_RemoveDialogFromCharacter(CHARACTERGUID_S_FTJ_SW_CollarRemoverFriend_01bd86e1-75ca-46a6-853e-b8dd64c2cd22);
+PROC_RemoveDialogFromCharacter(CHARACTERGUID_S_FTJ_SW_CollarRemovingSeeker_437c00b3-6544-44dd-8396-a43848b19a1e);
+DB_Dialogs(CHARACTERGUID_S_FTJ_SW_CollarRemoverFriend_01bd86e1-75ca-46a6-853e-b8dd64c2cd22, "FTJ_SW_CollarRemoverFriend");
+DB_Dialogs(CHARACTERGUID_S_FTJ_SW_CollarRemovingSeeker_437c00b3-6544-44dd-8396-a43848b19a1e, "FTJ_SW_CollarRemovingSeeker_Alone");
+
+IF
+CharacterLeftTrigger((CHARACTERGUID)_Var1, TRIGGERGUID_S_FTJ_SW_SUB_Shelter_51c3953f-c756-472d-a7ca-dc2a6232b386)
+AND
+DB_FTJ_SW_DugganAndLeya(_Var1)
+AND NOT
+DB_Dialogs(_Var1, _)
+THEN
+PROC_RemoveDialogFromCharacter(CHARACTERGUID_S_FTJ_SW_CollarRemoverFriend_01bd86e1-75ca-46a6-853e-b8dd64c2cd22);
+PROC_RemoveDialogFromCharacter(CHARACTERGUID_S_FTJ_SW_CollarRemovingSeeker_437c00b3-6544-44dd-8396-a43848b19a1e);
+DB_Dialogs(CHARACTERGUID_S_FTJ_SW_CollarRemoverFriend_01bd86e1-75ca-46a6-853e-b8dd64c2cd22, "FTJ_SW_CollarRemoverFriend");
+DB_Dialogs(CHARACTERGUID_S_FTJ_SW_CollarRemovingSeeker_437c00b3-6544-44dd-8396-a43848b19a1e, "FTJ_SW_CollarRemovingSeeker_Alone");
+
+IF
+GlobalFlagSet("FTJ_SW_LeaveCallToArms")
+AND
+DB_FTJ_SW_DugganAndLeya(_Var1)
+AND NOT
+DB_Dialogs(_Var1, _)
+THEN
+ProcRemoveAllDialogEntriesForSpeaker(CHARACTERGUID_S_FTJ_SW_CollarRemoverFriend_01bd86e1-75ca-46a6-853e-b8dd64c2cd22);
+ProcRemoveAllDialogEntriesForSpeaker(CHARACTERGUID_S_FTJ_SW_CollarRemovingSeeker_437c00b3-6544-44dd-8396-a43848b19a1e);
+DB_Dialogs(CHARACTERGUID_S_FTJ_SW_CollarRemoverFriend_01bd86e1-75ca-46a6-853e-b8dd64c2cd22, "FTJ_SW_CollarRemoverFriend");
+DB_Dialogs(CHARACTERGUID_S_FTJ_SW_CollarRemovingSeeker_437c00b3-6544-44dd-8396-a43848b19a1e, "FTJ_SW_CollarRemovingSeeker_Alone");
+
+IF
+GlobalFlagSet("FTJ_SW_LeaveCallToArms")
+THEN
+TriggerClearItemOwner(TRIGGERGUID_S_FTJ_SW_OWNERSHIP_EXTER_f7fcebc6-a6c9-48e4-972a-f25381ff1585);
+TriggerClearItemOwner(TRIGGERGUID_S_FTJ_SW_OWNERSHIP_Kerban_18db00f2-fafe-42b4-9739-d59b14484515);
+TriggerClearItemOwner(TRIGGERGUID_S_FTJ_SW_OWNERSHIP_Matis_db7e9969-75b5-43db-a20c-311321238d0c);
+TriggerClearItemOwner(TRIGGERGUID_S_FTJ_SW_OWNERSHIP_Simone_c12d7009-fdb6-4365-b6f8-0d17a0ce92fc);
+
+IF
+CharacterDied(CHARACTERGUID_S_FTJ_SW_CollarRemoverFriend_01bd86e1-75ca-46a6-853e-b8dd64c2cd22)
+AND
+ObjectGetFlag(CHARACTERGUID_S_FTJ_SW_CollarRemoverFriend_01bd86e1-75ca-46a6-853e-b8dd64c2cd22, "FTJ_SW_JoinCallToArms", 0)
+THEN
+GlobalSetFlag("FTJ_SW_DugganDied");
+
+IF
+CharacterDied(CHARACTERGUID_S_FTJ_SW_CollarRemovingSeeker_437c00b3-6544-44dd-8396-a43848b19a1e)
+THEN
+GlobalSetFlag("FTJ_SW_LeyaDied");
+
+IF
+GlobalFlagSet("FTJ_SW_LeaveCallToArms")
+AND
+CharacterIsDead(CHARACTERGUID_S_FTJ_SW_Warrior_SeekerCaptain_1329f018-23e4-4717-9bc8-074b28d04c54, 1)
+THEN
+ObjectSetFlag(CHARACTERGUID_S_FTJ_SW_CollarRemovingSeeker_437c00b3-6544-44dd-8396-a43848b19a1e, "FTJ_SW_KnowGarethDead");
+
+PROC
+ProcOneShotTriggerEntered((CHARACTERGUID)_Var1, TRIGGERGUID_S_FTJ_SW_AD_ShelterBack_c9984ee3-312a-4c20-8fde-b2bd9fc9f2b6)
+THEN
+Proc_StartDialog(1, "FTJ_SW_AD_ShelterBack", _Var1);
+
+PROC
+ProcOneShotTriggerEntered((CHARACTERGUID)_Var1, TRIGGERGUID_S_FTJ_SW_AD_SeekerCamp_71620fa0-70e7-4f16-8441-ab87d227ee75)
+THEN
+Proc_StartDialog(1, "FTJ_SW_AD_SeekerCamp", _Var1);
+
+IF
+ObjectFlagSet("FTJ_SW_HasGarethAmulet", (GUIDSTRING)_Var1, _)
+AND
+ObjectGetFlag(_Var1, "QuestUpdate_RC_FTJ_SourceCollar_MetCollarRemover", 0)
+THEN
+ObjectSetFlag(_Var1, "QuestUpdate_RC_FTJ_SourceCollar_FoundBrokenCollar");
+
+IF
+ObjectFlagSet("FTJ_SW_HasGarethAmulet", (GUIDSTRING)_Var1, _)
+AND
+ObjectGetFlag(_Var1, "QuestUpdate_RC_FTJ_SourceCollar_MetCollarRemover", 1)
+THEN
+ObjectSetFlag(_Var1, "QuestUpdate_RC_FTJ_SourceCollar_ReturnGarethCollar");
+
+PROC
+ProcRegionEnded("FJ_FortJoy_Main")
+THEN
+GoalCompleted;
+
+
+EXITSECTION
+ENDEXITSECTION
+
+ParentTargetEdge "FortJoy"

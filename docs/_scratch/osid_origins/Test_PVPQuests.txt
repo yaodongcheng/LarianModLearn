@@ -1,0 +1,33 @@
+Version 1
+SubGoalCombiner SGC_AND
+
+INITSECTION
+DB_QuestDef_State("Test_PVP_User", "Start", 1);
+DB_QuestDef_State("Test_PVP_User", "Updated");
+DB_QuestDef_State("Test_PVP_User", "Close1", -1);
+DB_QuestDef_State("Test_PVP_User", "Close2", -1);
+DB_QuestNPC("Test_PVP_User", Humans_Male_Armor_Paladin_A_000_eeeec36a-efd2-4292-aca4-845ab5631e98);
+DB_Dialogs(Humans_Male_Armor_Paladin_A_000_eeeec36a-efd2-4292-aca4-845ab5631e98, "Test_PVP_User");
+DB_HasStoryEvent(QUEST_FunnyMeat_000_750a185b-519a-418c-8663-851c086db98d, "QuestUpdate_Test_PVP_User_Updated");
+DB_QuestDef_State("Test_PVP_Party", "Start", 1);
+DB_QuestDef_State("Test_PVP_Party", "Updated");
+DB_QuestDef_State("Test_PVP_Party", "Close1", -1);
+DB_QuestDef_State("Test_PVP_Party", "Close2", -1);
+DB_QuestNPC("Test_PVP_Party", Humans_Male_Clothing_000_54f591ef-3ba7-47a2-a241-2f52e415e132);
+DB_Dialogs(Humans_Male_Clothing_000_54f591ef-3ba7-47a2-a241-2f52e415e132, "Test_PVP_Party");
+DB_HasStoryEvent(CON_Food_Voidwoken_Fish_A_ccab0994-cc3a-4ae6-9b45-2a2263cc677f, "QuestUpdate_Test_PVP_Party_Updated");
+DB_ExplorationZones(Test_Exploration_daf83f95-492e-4a32-9f66-3c527285aaef, 1, 10, 3);
+
+KBSECTION
+IF
+TextEventSet("upd")
+AND
+CharacterGetHostCharacter(_Var1)
+THEN
+QuestUpdate(_Var1, "Test_PVP_User", "Updated");
+
+
+EXITSECTION
+ENDEXITSECTION
+
+ParentTargetEdge "TestLevel_GenericBehaviours"

@@ -1,0 +1,191 @@
+Version 1
+SubGoalCombiner SGC_AND
+
+INITSECTION
+DB_CustomDialogRange(NULL_00000000-0000-0000-0000-000000000000, 10);
+
+KBSECTION
+QRY
+QRY_SpeakerBlockedBycombat((CHARACTERGUID)_Var1, (INTEGER)_Var2)
+AND
+ObjectIsCharacter(_Var1, 1)
+AND
+_Var2 == 0
+AND
+CharacterIsInCombat(_Var1, 1)
+THEN
+DB_NOOP(1);
+
+QRY
+QRY_SpeakerIsAvailable((GUIDSTRING)_Var1)
+AND
+ObjectExists(_Var1, 1)
+AND
+ObjectIsItem(_Var1, 1)
+AND
+QRY_SpeakerIsAvailable(_Var1, 0)
+THEN
+DB_NOOP(1);
+
+QRY
+QRY_SpeakerIsAvailable((GUIDSTRING)_Var1)
+AND
+ObjectIsCharacter(_Var1, 1)
+AND
+QRY_SpeakerIsAvailable(_Var1, 0)
+THEN
+DB_NOOP(1);
+
+QRY
+QRY_SpeakerIsDead((CHARACTERGUID)_Var1)
+AND
+ObjectIsCharacter(_Var1, 1)
+AND
+CharacterIsDeadOrFeign(_Var1, 1)
+THEN
+DB_NOOP(1);
+
+QRY
+QRY_SpeakerIsDead((ITEMGUID)_Var1)
+AND
+ObjectIsItem(_Var1, 1)
+AND
+ItemIsDestroyed(_Var1, 1)
+THEN
+DB_NOOP(1);
+
+QRY
+QRY_HasInteractionDisabled((CHARACTERGUID)_Var1)
+AND
+ObjectIsCharacter(_Var1, 1)
+AND
+CharacterIsPolymorphInteractionDisabled(_Var1, 1)
+THEN
+DB_NOOP(1);
+
+QRY
+QRY_SpeakerIsAvailable((GUIDSTRING)_Var1, (INTEGER)_Var2)
+AND NOT
+QRY_SpeakerIsDead(_Var1)
+AND
+IsSpeakerReserved(_Var1, 0)
+AND NOT
+QRY_HasInteractionDisabled(_Var1)
+AND NOT
+QRY_SpeakerBlockedBycombat(_Var1, _Var2)
+THEN
+DB_NOOP(1);
+
+QRY
+QRY_SpeakerIsAvailable(NULL_00000000-0000-0000-0000-000000000000)
+THEN
+DB_NOOP(1);
+
+QRY
+QRY_CharacterIsNotDisabled((CHARACTERGUID)_Var1)
+AND
+HasActiveStatus(_Var1, "FROZEN", 0)
+AND
+HasActiveStatus(_Var1, "STUNNED", 0)
+AND
+HasActiveStatus(_Var1, "FEAR", 0)
+AND
+HasActiveStatus(_Var1, "PETRIFIED", 0)
+AND
+HasActiveStatus(_Var1, "KNOCKED_DOWN", 0)
+THEN
+DB_NOOP(1);
+
+QRY
+QRY_SpeakerIsAvailableForCombat((CHARACTERGUID)_Var1)
+AND
+CharacterIsDeadOrFeign(_Var1, 0)
+AND
+IsSpeakerReserved(_Var1, 0)
+THEN
+DB_NOOP(1);
+
+QRY
+QRY_SpeakerIsAvailableAndInDialogRange((CHARACTERGUID)_Var1, (CHARACTERGUID)_Var2)
+AND
+DB_CustomDialogRange(_Var2, _Var3)
+AND
+CharacterIsDeadOrFeign(_Var1, 0)
+AND
+IsSpeakerReserved(_Var1, 0)
+AND
+CharacterIsInCombat(_Var1, 0)
+AND
+GetDistanceTo(_Var1, _Var2, _Var4)
+AND
+_Var4 < _Var3
+THEN
+DB_NOOP(1);
+
+QRY
+QRY_SpeakerIsAvailableAndInDialogRange((CHARACTERGUID)_Var1, (CHARACTERGUID)_Var2)
+AND NOT
+DB_CustomDialogRange(_Var2, _)
+AND
+CharacterIsDeadOrFeign(_Var1, 0)
+AND
+IsSpeakerReserved(_Var1, 0)
+AND
+CharacterIsInCombat(_Var1, 0)
+AND
+GetDistanceTo(_Var1, _Var2, _Var4)
+AND
+_Var4 < 10
+THEN
+DB_NOOP(1);
+
+QRY
+Query_IsPlayerHiding((CHARACTERGUID)_Var1)
+AND
+HasActiveStatus(_Var1, "SNEAKING", 1)
+THEN
+DB_NOOP(1);
+
+QRY
+Query_IsPlayerHiding((CHARACTERGUID)_Var1)
+AND
+HasActiveStatus(_Var1, "INVISIBLE", 1)
+THEN
+DB_NOOP(1);
+
+QRY
+QRY_CharacterIsNull((CHARACTERGUID)_Var1)
+AND
+_Var1 == NULL_00000000-0000-0000-0000-000000000000
+THEN
+DB_NOOP(1);
+
+QRY
+QRY_PetPallerInDialogRange((CHARACTERGUID)_Var1)
+AND
+DB_QRYRTN_PetPallerInDialogRange(_Var2)
+THEN
+NOT DB_QRYRTN_PetPallerInDialogRange(_Var2);
+
+QRY
+QRY_PetPallerInDialogRange((CHARACTERGUID)_Var1)
+AND
+DB_IsPlayer(_Var2)
+AND NOT
+DB_QRYRTN_PetPallerInDialogRange(_)
+AND
+CharacterHasTalent(_Var2, "AnimalEmpathy", 1)
+AND
+QRY_SpeakerIsAvailableAndInDialogRange(_Var2, _Var1)
+THEN
+DB_QRYRTN_PetPallerInDialogRange(_Var2);
+
+QRY
+QRY_PetPallerInDialogRange((CHARACTERGUID)_Var1)
+THEN
+DB_NOOP(1);
+
+
+EXITSECTION
+ENDEXITSECTION
+

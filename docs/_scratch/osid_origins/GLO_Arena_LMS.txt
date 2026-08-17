@@ -1,0 +1,562 @@
+Version 1
+SubGoalCombiner SGC_AND
+
+INITSECTION
+DB_LastManStandingTeamList("PVP_1");
+DB_LastManStandingTeamList("PVP_2");
+DB_LastManStandingTeamList("PVP_3");
+DB_LastManStandingTeamList("PVP_4");
+
+KBSECTION
+PROC
+Proc_Arena_CheckWinCondition_CheckForLMS()
+AND
+DB_Arena_PlayerParticipants(_Var1, _Var2, _Var3, _Var4)
+AND
+IsTagged(_Var3, "AVATAR", 1)
+AND
+CharacterGetReservedUserID(_Var3, _Var5)
+AND
+DB_Arena_PlayerParticipants(_Var1, _Var2, _Var6, _Var4)
+AND
+CharacterGetReservedUserID(_Var6, _Var5)
+AND
+CharacterIsDead(_Var6, 0)
+AND
+DB_Arena_PlayerParticipants(_Var1, _Var2, _Var7, _Var4)
+AND
+IsTagged(_Var7, "AVATAR", 1)
+AND
+CharacterGetReservedUserID(_Var7, _Var8)
+AND
+_Var8 != _Var5
+AND
+DB_Arena_PlayerParticipants(_Var1, _Var2, _Var9, _Var4)
+AND
+CharacterGetReservedUserID(_Var9, _Var8)
+AND
+CharacterIsDead(_Var9, 0)
+AND
+GlobalGetFlag("Arena_RequestingLastManStanding", 0)
+THEN
+GlobalSetFlag("Arena_RequestingLastManStanding");
+Proc_Arena_SetUp_LastManStanding_InitiateDialog_1();
+
+PROC
+Proc_Arena_SetUp_LastManStanding_InitiateDialog_1()
+AND
+DB_Arena_PlayerParticipants(_, _, _Var3, _)
+AND
+ObjectGetFlag(_Var3, "Arena_LastManStanding_Accept", 1)
+THEN
+ObjectClearFlag(_Var3, "Arena_LastManStanding_Accept");
+
+PROC
+Proc_Arena_SetUp_LastManStanding_InitiateDialog_1()
+AND
+DB_IsPlayer(_Var1)
+THEN
+UserClearFlag(_Var1, "ArenaLMS_HasAvatar", 0);
+UserClearFlag(_Var1, "ArenaLMS_AvatarIsDead", 0);
+
+PROC
+Proc_Arena_SetUp_LastManStanding_InitiateDialog_1()
+AND
+DB_LastManStanding_InitiateDialog_Count(_Var1)
+THEN
+NOT DB_LastManStanding_InitiateDialog_Count(_Var1);
+
+PROC
+Proc_Arena_SetUp_LastManStanding_InitiateDialog_1()
+THEN
+DB_LastManStanding_InitiateDialog_Count(1);
+
+PROC
+Proc_Arena_SetUp_LastManStanding_InitiateDialog_1()
+AND
+DB_LastManStanding_InitiateDialog_Speaker(_Var1, _Var2)
+THEN
+NOT DB_LastManStanding_InitiateDialog_Speaker(_Var1, _Var2);
+
+PROC
+Proc_Arena_SetUp_LastManStanding_InitiateDialog_1()
+THEN
+DB_LastManStanding_InitiateDialog_Speaker(2, NULL_00000000-0000-0000-0000-000000000000);
+DB_LastManStanding_InitiateDialog_Speaker(3, NULL_00000000-0000-0000-0000-000000000000);
+DB_LastManStanding_InitiateDialog_Speaker(4, NULL_00000000-0000-0000-0000-000000000000);
+DB_LastManStanding_InitiateDialog_Speaker(5, NULL_00000000-0000-0000-0000-000000000000);
+
+PROC
+Proc_Arena_SetUp_LastManStanding_InitiateDialog_1()
+AND
+DB_Arena_PlayerParticipants(_, _, _Var3, _)
+AND
+IsTagged(_Var3, "AVATAR", 1)
+THEN
+UserSetFlag(_Var3, "ArenaLMS_HasAvatar");
+
+PROC
+Proc_Arena_SetUp_LastManStanding_InitiateDialog_1()
+AND
+DB_Arena_PlayerParticipants(_, _, _Var3, _)
+AND
+IsTagged(_Var3, "AVATAR", 1)
+AND
+CharacterIsDead(_Var3, 1)
+THEN
+UserSetFlag(_Var3, "ArenaLMS_AvatarIsDead");
+
+PROC
+Proc_Arena_SetUp_LastManStanding_InitiateDialog_1()
+AND
+DB_Arena_PlayerParticipants(_, _, _Var3, _)
+AND
+CharacterIsDead(_Var3, 0)
+AND
+DB_LastManStanding_InitiateDialog_Count(_Var5)
+AND
+IntegerSum(_Var5, 1, _Var6)
+THEN
+UserClearFlag(_Var3, "ArenaLMS_UserMadeDecision", 0);
+DB_LastManStanding_InitiateDialog_Speaker(_Var6, _Var3);
+NOT DB_LastManStanding_InitiateDialog_Speaker(_Var6, NULL_00000000-0000-0000-0000-000000000000);
+NOT DB_LastManStanding_InitiateDialog_Count(_Var5);
+DB_LastManStanding_InitiateDialog_Count(_Var6);
+
+PROC
+ProcForceLeaveCombat((CHARACTERGUID)_Var1)
+THEN
+LeaveCombat(_Var1);
+
+PROC
+ProcForceLeaveCombat((CHARACTERGUID)_Var1)
+AND
+DB_CombatCharacters(_Var1, _Var2)
+THEN
+NOT DB_CombatCharacters(_Var1, _Var2);
+
+PROC
+ProcForceLeaveCombat((CHARACTERGUID)_Var1)
+AND
+DB_CombatObjects(_Var1, _Var2)
+THEN
+NOT DB_CombatObjects(_Var1, _Var2);
+
+PROC
+Proc_Arena_SetUp_LastManStanding_InitiateDialog_1()
+AND
+DB_Arena_PlayerParticipants(_, _, _Var3, _)
+THEN
+ProcForceLeaveCombat(_Var3);
+
+PROC
+Proc_Arena_SetUp_LastManStanding_InitiateDialog_1()
+AND
+DB_LastManStanding_InitiateDialog_Speaker(_, _Var2)
+THEN
+RemoveStatus(_Var2, "CHARMED");
+RemoveStatus(_Var2, "PLAY_DEAD");
+
+PROC
+Proc_Arena_SetUp_LastManStanding_InitiateDialog_1()
+AND
+DB_Arena_PlayerParticipants(_Var1, _, _, _)
+AND
+DB_ArenaMaster(_Var5, _Var6, _Var1, _)
+AND
+StringConcatenate(_Var6, "_LastManStanding", _Var8)
+AND
+DB_LastManStanding_InitiateDialog_Speaker(2, _Var9)
+AND
+DB_LastManStanding_InitiateDialog_Speaker(3, _Var10)
+AND
+DB_LastManStanding_InitiateDialog_Speaker(4, _Var11)
+AND
+DB_LastManStanding_InitiateDialog_Speaker(5, _Var12)
+AND
+QRY_StartDialog(0, _Var8, _Var5, _Var9, _Var10, _Var11, _Var12)
+THEN
+DB_NOOP(1);
+
+IF
+GlobalFlagSet("Arena_LastManStanding_CheckDialogResults")
+THEN
+Proc_Arena_SetUp_CheckDialogResults();
+GlobalClearFlag("Arena_LastManStanding_CheckDialogResults");
+
+PROC
+Proc_Arena_SetUp_CheckDialogResults()
+THEN
+GlobalClearFlag("Arena_LastManStanding_NoAccept");
+GlobalClearFlag("Arena_LastManStanding_AcceptWinner");
+
+PROC
+Proc_Arena_SetUp_CheckDialogResults()
+AND
+DB_Arena_LastManStanding_AcceptCount(_Var1)
+THEN
+NOT DB_Arena_LastManStanding_AcceptCount(_Var1);
+
+PROC
+Proc_Arena_SetUp_CheckDialogResults()
+THEN
+DB_Arena_LastManStanding_AcceptCount(0);
+
+PROC
+Proc_Arena_SetUp_CheckDialogResults()
+AND
+DB_Arena_PlayerParticipants(_, _, _Var3, _)
+AND
+ObjectGetFlag(_Var3, "Arena_LastManStanding_Accept", 1)
+AND
+DB_Arena_LastManStanding_AcceptCount(_Var5)
+AND
+IntegerSum(_Var5, 1, _Var6)
+THEN
+NOT DB_Arena_LastManStanding_AcceptCount(_Var5);
+DB_Arena_LastManStanding_AcceptCount(_Var6);
+
+PROC
+Proc_Arena_SetUp_CheckDialogResults()
+AND
+DB_Arena_LastManStanding_AcceptCount(0)
+THEN
+GlobalSetFlag("Arena_LastManStanding_NoAccept");
+GlobalClearFlag("Arena_RequestingLastManStanding");
+
+PROC
+Proc_Arena_SetUp_CheckDialogResults()
+AND
+DB_Arena_LastManStanding_AcceptCount(1)
+AND
+DB_Arena_PlayerParticipants(_, _, _Var3, _)
+AND
+ObjectGetFlag(_Var3, "Arena_LastManStanding_Accept", 1)
+THEN
+GlobalSetFlag("Arena_LastManStanding_AcceptWinner");
+GlobalClearFlag("Arena_RequestingLastManStanding");
+
+IF
+DialogEnded((STRING)_Var1, (INTEGER)_Var2)
+AND
+GlobalGetFlag("Arena_RequestingLastManStanding", 1)
+AND
+DB_ArenaMaster(_, _Var4, _Var5, _)
+AND
+StringContains(_Var1, _Var4, 1)
+AND
+DB_Arena_PlayerParticipants(_Var5, _, _, _)
+THEN
+Proc_Arena_SetUp_LastManStanding_1();
+
+IF
+DialogEnded((STRING)_Var1, (INTEGER)_Var2)
+AND
+GlobalGetFlag("Arena_LastManStanding_AcceptWinner", 1)
+AND
+DB_ArenaMaster(_, _Var4, _Var5, _)
+AND
+StringContains(_Var1, _Var4, 1)
+AND
+DB_Arena_PlayerParticipants(_Var5, _, _, _)
+THEN
+Proc_Arena_LastManStanding_SetDialogWinner();
+GlobalClearFlag("Arena_LastManStanding_AcceptWinner");
+
+IF
+DialogEnded((STRING)_Var1, (INTEGER)_Var2)
+AND
+GlobalGetFlag("Arena_LastManStanding_NoAccept", 1)
+AND
+DB_ArenaMaster(_, _Var4, _Var5, _)
+AND
+StringContains(_Var1, _Var4, 1)
+AND
+DB_Arena_PlayerParticipants(_Var5, _, _, _)
+THEN
+Proc_Arena_LastManStanding_SetDialogWinner();
+
+PROC
+Proc_Arena_LastManStanding_SetDialogWinner()
+AND
+DB_Arena_PlayerParticipants(_Var1, _Var2, _Var3, _Var4)
+THEN
+NOT DB_Arena_PlayerParticipants(_Var1, _Var2, _Var3, _Var4);
+DB_Arena_PlayerParticipants(_Var1, _Var2, _Var3, "Arena_TeamB");
+
+PROC
+Proc_Arena_LastManStanding_SetDialogWinner()
+AND
+DB_Arena_PlayerParticipants(_, _, _Var3, _)
+AND
+ObjectGetFlag(_Var3, "Arena_LastManStanding_Accept", 1)
+AND
+CharacterGetReservedUserID(_Var3, _Var5)
+AND
+DB_Arena_PlayerParticipants(_Var6, _Var7, _Var8, _Var9)
+AND
+CharacterGetReservedUserID(_Var8, _Var5)
+THEN
+NOT DB_Arena_PlayerParticipants(_Var6, _Var7, _Var8, _Var9);
+DB_Arena_PlayerParticipants(_Var6, _Var7, _Var8, "Arena_TeamA");
+
+PROC
+Proc_Arena_LastManStanding_SetDialogWinner()
+THEN
+Proc_Arena_Win("Arena_TeamA");
+
+PROC
+Proc_Arena_SetUp_LastManStanding_1()
+AND
+DB_Arena_PlayerParticipants(_, _, _Var3, _)
+AND
+UserGetFlag(_Var3, "Arena_LastManStanding_Accept", 0)
+AND
+CharacterGetReservedUserID(_Var3, _Var5)
+AND
+DB_Arena_PlayerParticipants(_, _, _Var8, _)
+AND
+CharacterGetReservedUserID(_Var8, _Var5)
+THEN
+Proc_Arena_SetUp_LastManStanding_RemoveChar(_Var8);
+
+PROC
+Proc_Arena_SetUp_LastManStanding_RemoveChar((CHARACTERGUID)_Var1)
+AND
+DB_Arena_PlayerParticipants(_, _, _Var1, _)
+AND
+CharacterIsDead(_Var1, 1)
+THEN
+CharacterResurrectCustom(_Var1, "");
+
+PROC
+Proc_Arena_SetUp_LastManStanding_RemoveChar((CHARACTERGUID)_Var1)
+AND
+DB_Arena_PlayerParticipants(_, _, _Var1, _)
+THEN
+RemoveHarmfulStatuses(_Var1);
+
+PROC
+Proc_Arena_SetUp_LastManStanding_RemoveChar((CHARACTERGUID)_Var1)
+AND
+DB_Arena_PlayerParticipants(_Var2, _, _Var1, _)
+AND
+DB_ArenaMaster(_, _, _Var2, _Var7)
+THEN
+FadeToBlack(_Var1, 2, 1, "Placeholder");
+SetInArena(_Var1, 0);
+CharacterSetSpectating(_Var1, 0);
+TeleportTo(_Var1, _Var7);
+
+PROC
+Proc_Arena_SetUp_LastManStanding_RemoveChar((CHARACTERGUID)_Var1)
+AND
+DB_Arena_CharIsAlive(_Var2, _Var1)
+THEN
+NOT DB_Arena_CharIsAlive(_Var2, _Var1);
+
+PROC
+Proc_Arena_SetUp_LastManStanding_RemoveChar((CHARACTERGUID)_Var1)
+AND
+DB_Arena_PlayerParticipants(_Var2, _Var3, _Var1, _Var4)
+THEN
+NOT DB_Arena_PlayerParticipants(_Var2, _Var3, _Var1, _Var4);
+
+PROC
+Proc_Arena_SetUp_LastManStanding_RemoveChar((CHARACTERGUID)_Var1)
+AND
+DB_Arena_PreviousFaction(_Var1, _Var2)
+THEN
+SetFaction(_Var1, _Var2);
+NOT DB_Arena_PreviousFaction(_Var1, _Var2);
+
+PROC
+Proc_Arena_SetUp_LastManStanding_1()
+THEN
+Proc_Arena_SetUp_LastManStanding_2();
+
+PROC
+Proc_Arena_SetUp_LastManStanding_2()
+AND
+DB_Arena_PlayerParticipants(_, _, _Var3, _)
+AND
+CharacterIsDead(_Var3, 0)
+AND
+CharacterGetReservedUserID(_Var3, _Var5)
+AND
+GetUserProfileID(_Var5, _Var6)
+AND
+DB_LastManStandingTeamList(_Var7)
+AND NOT
+DB_Arena_LastManStandingTeams(_, _, _Var7)
+AND NOT
+DB_Arena_LastManStandingTeams(_, _Var6, _)
+AND NOT
+DB_Arena_LastManStandingTeams(_Var3, _, _)
+THEN
+DB_Arena_LastManStandingTeams(_Var3, _Var6, _Var7);
+
+PROC
+Proc_Arena_SetUp_LastManStanding_2()
+AND
+DB_Arena_PlayerParticipants(_, _, _Var3, _)
+AND
+CharacterGetReservedUserID(_Var3, _Var5)
+AND
+GetUserProfileID(_Var5, _Var6)
+AND
+DB_Arena_LastManStandingTeams(_, _Var6, _Var8)
+AND NOT
+DB_Arena_LastManStandingTeams(_Var3, _, _)
+THEN
+DB_Arena_LastManStandingTeams(_Var3, _Var6, _Var8);
+
+PROC
+Proc_Arena_SetUp_LastManStanding_1()
+AND
+DB_Arena_LastManStandingTeams(_Var1, _, _Var3)
+THEN
+SetFaction(_Var1, _Var3);
+
+IF
+CharacterDying((CHARACTERGUID)_Var1)
+AND
+GlobalGetFlag("Arena_RequestingLastManStanding", 1)
+AND
+DB_Arena_LastManStandingTeams(_Var1, _Var2, _Var3)
+THEN
+NOT DB_Arena_LastManStandingTeams(_Var1, _Var2, _Var3);
+Proc_Arena_LastManStanding_CheckWinCondition();
+
+IF
+CharacterResurrected((CHARACTERGUID)_Var1)
+AND
+GlobalGetFlag("Arena_RequestingLastManStanding", 1)
+AND
+CharacterGetReservedUserID(_Var1, _Var2)
+AND
+GetUserProfileID(_Var2, _Var3)
+AND
+DB_Arena_LastManStandingTeams(_, _Var3, _Var5)
+AND NOT
+DB_Arena_LastManStandingTeams(_Var1, _, _)
+THEN
+DB_Arena_LastManStandingTeams(_Var1, _Var3, _Var5);
+
+PROC
+Proc_Arena_LastManStanding_CheckWinCondition()
+THEN
+NOT DB_Arena_LastManStanding_NoWin(1);
+
+PROC
+Proc_Arena_LastManStanding_CheckWinCondition()
+AND
+DB_Arena_LastManStandingTeams(_, _, _Var3)
+AND
+DB_Arena_LastManStandingTeams(_, _, _Var6)
+AND
+_Var3 != _Var6
+THEN
+DB_Arena_LastManStanding_NoWin(1);
+
+PROC
+Proc_Arena_LastManStanding_CheckWinCondition()
+AND NOT
+DB_Arena_LastManStanding_NoWin(1)
+THEN
+Proc_Arena_LastManStanding_SetWinState();
+
+PROC
+Proc_Arena_LastManStanding_SetWinState()
+AND
+DB_Arena_PlayerParticipants(_Var1, _Var2, _Var3, _Var4)
+AND
+CharacterGetReservedUserID(_Var3, _Var5)
+AND
+GetUserProfileID(_Var5, _Var6)
+AND
+DB_Arena_LastManStandingTeams(_, _Var6, _)
+THEN
+NOT DB_Arena_PlayerParticipants(_Var1, _Var2, _Var3, _Var4);
+DB_Arena_PlayerParticipants(_Var1, _Var2, _Var3, "Arena_TeamA");
+
+PROC
+Proc_Arena_LastManStanding_SetWinState()
+AND
+DB_Arena_PlayerParticipants(_Var1, _Var2, _Var3, _Var4)
+AND
+CharacterGetReservedUserID(_Var3, _Var5)
+AND
+GetUserProfileID(_Var5, _Var6)
+AND
+DB_Arena_LastManStandingTeams(_, _Var8, _)
+AND
+_Var6 != _Var8
+THEN
+NOT DB_Arena_PlayerParticipants(_Var1, _Var2, _Var3, _Var4);
+DB_Arena_PlayerParticipants(_Var1, _Var2, _Var3, "Arena_TeamB");
+
+PROC
+Proc_Arena_LastManStanding_SetWinState()
+THEN
+Proc_Arena_Win("Arena_TeamA");
+GlobalClearFlag("Arena_RequestingLastManStanding");
+
+PROC
+Proc_Arena_Clear()
+AND
+DB_IsPlayer(_Var1)
+THEN
+ObjectClearFlag(_Var1, "Arena_LastManStanding_Accept", 0);
+
+IF
+CharacterReservedUserIDChanged((CHARACTERGUID)_Var1, _, (INTEGER)_Var3)
+AND
+GlobalGetFlag("Arena_RequestingLastManStanding", 1)
+THEN
+Proc_Arena_LastManStandingTeams_Reassigned(_Var3, _Var1);
+
+PROC
+Proc_Arena_LastManStandingTeams_Reassigned((INTEGER)_Var1, (CHARACTERGUID)_Var2)
+AND
+GetUserProfileID(_Var1, _Var3)
+AND
+DB_Arena_LastManStandingTeams(_, _Var3, _Var5)
+AND
+DB_Arena_LastManStandingTeams(_Var2, _Var6, _Var7)
+THEN
+NOT DB_Arena_LastManStandingTeams(_Var2, _Var6, _Var7);
+DB_Arena_LastManStandingTeams(_Var2, _Var3, _Var5);
+SetFaction(_Var2, _Var5);
+
+PROC
+Proc_Arena_LastManStandingTeams_Reassigned((INTEGER)_Var1, (CHARACTERGUID)_Var2)
+AND
+DB_Arena_LastManStandingTeams(_Var2, _Var3, _Var4)
+AND
+GetUserProfileID(_Var1, _Var5)
+AND NOT
+DB_Arena_LastManStandingTeams(_, _Var5, _)
+THEN
+NOT DB_Arena_LastManStandingTeams(_Var2, _Var3, _Var4);
+DB_Arena_LastManStandingTeams(_Var2, _Var5, _Var4);
+
+PROC
+Proc_Arena_LastManStandingTeams_Reassigned(_, _)
+AND NOT
+DB_Arena_LastManStandingTeams(_, _, _)
+THEN
+Proc_Arena_CheckWinCondition();
+
+PROC
+Proc_Arena_LastManStandingTeams_Reassigned(_, (CHARACTERGUID)_Var2)
+AND
+DB_Arena_LastManStandingTeams(_Var2, _, _)
+THEN
+Proc_Arena_LastManStanding_CheckWinCondition();
+
+
+EXITSECTION
+ENDEXITSECTION
+
+ParentTargetEdge "__Shared_Campaign"

@@ -1,0 +1,16 @@
+Version 1
+SubGoalCombiner SGC_AND
+
+INITSECTION
+
+KBSECTION
+IF
+ItemDestroyed((ITEMGUID)_Var1)
+THEN
+DB_DestroyedItems(_Var1);
+
+
+EXITSECTION
+ENDEXITSECTION
+
+ParentTargetEdge "DOS2ModWrapper"

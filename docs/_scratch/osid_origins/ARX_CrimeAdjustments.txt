@@ -1,0 +1,16 @@
+Version 1
+SubGoalCombiner SGC_AND
+
+INITSECTION
+DB_RegionPrison("ARX_Main_ARX", S_ARX_Prison_PlayerCell_b3acb686-665e-473e-914a-ba8b7540b0aa);
+DB_PlayerPrison(S_ARX_Prison_PlayerCell_b3acb686-665e-473e-914a-ba8b7540b0aa, TRIGGERGUID_S_ARX_Prison_PlayerCell_Door_Trigger_37f7888b-7f64-46c3-bad6-7be412eb795f, "EscapedARXPrison", "");
+DB_PlayerPrison_Door(S_ARX_Prison_PlayerCell_b3acb686-665e-473e-914a-ba8b7540b0aa, S_ARX_Prison_PlayerCell_Door_3a6d9404-27b0-8dbc-199a-5b83156d3943, "ARX_PrisonCells_Key");
+DB_PrisonChest(S_ARX_Prison_PlayerCell_b3acb686-665e-473e-914a-ba8b7540b0aa, S_ARX_Prison_PlayerEquipmentChest_6edb0ebe-26e9-4a62-824a-0c78b6488b72);
+DB_PrisonEvidenceChest(S_ARX_Prison_PlayerCell_b3acb686-665e-473e-914a-ba8b7540b0aa, S_ARX_Prison_EvidenceChest_700c4038-d639-466e-a50d-5f54976dffaa);
+
+KBSECTION
+
+EXITSECTION
+ENDEXITSECTION
+
+ParentTargetEdge "ARX"

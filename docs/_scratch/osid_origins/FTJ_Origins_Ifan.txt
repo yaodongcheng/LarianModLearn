@@ -1,0 +1,1136 @@
+Version 1
+SubGoalCombiner SGC_AND
+
+INITSECTION
+DB_OriginMomentTag("FTJ_GhettoGuard_004", "IFAN", "FTJ_GhettoGuard_004_COM_Ifan");
+DB_OriginMomentTag("RC_DW_Tavern_RichMerchant", "IFAN", "RC_DW_Tavern_RichMerchant_COM_Ifan");
+DB_OriginMomentTag("RC_WC_BombScientist", "IFAN", "RC_WC_BombScientist_COM_Ifan");
+DB_OriginMomentTag("RC_WC_BombScientist", "SHAPESHIFT_IFAN", "RC_WC_BombScientist_COM_Ifan");
+DB_OriginMomentTag("RC_WC_BombScientist_Ghost", "IFAN", "RC_WC_BombScientist_COM_Ifan");
+DB_OriginMomentTag("RC_WC_BombScientist_Ghost", "SHAPESHIFT_IFAN", "RC_WC_BombScientist_COM_Ifan");
+DB_OriginMomentTag("RC_DF_PaladinCheckpoint_1", "IFAN", "RC_DF_PaladinCheckpoint_COM_Ifan");
+DB_OriginMomentTag("RC_MIL_Roost", "IFAN", "RC_MIL_Roost_COM_Ifan");
+DB_OriginMomentTag_3SP("RC_MIL_RoostWithSaheila", "IFAN", "RC_MIL_RoostWithSaheila_COM_Ifan");
+DB_OriginMomentTag("CoS_Temples_Alexandar", "IFAN", "CoS_Temples_Alexandar_COM_Ifan");
+DB_OriginMomentTag("CoS_Temples_Alexandar_Ghost", "IFAN", "CoS_Temples_Alexandar_COM_Ifan");
+DB_OriginMomentTag("ARX_MerchantEstate_Groom", "IFAN", "ARX_MerchantEstate_Groom_COM_Ifan");
+DB_QueueFriendlyCOM("FTJ_IfansHandler_COM_Sebille");
+DB_OriginDialogTrigger("RC_DW_Tavern_RichMerchant", TRIGGERGUID_S_RC_DW_NearBaran_756988de-4fac-41d1-b18b-1e8bfa4478e8);
+DB_OriginsIfan_NoteReadToAvatarQuestUpdate("OriginsIfan_ReadInTut", "QuestUpdate_FTJ_Ifan_DarkFaction_Start_TUT");
+DB_OriginsIfan_NoteReadToAvatarQuestUpdate("OriginsIfan_ReadBeforeBorris", "QuestUpdate_FTJ_Ifan_DarkFaction_Start_AfterTUT");
+DB_OriginsIfan_NoteReadToAvatarQuestUpdate("OriginsIfan_ReadAfterBorris", "QuestUpdate_FTJ_Ifan_DarkFaction_Start_AfterBorris");
+DB_DialogMoneyTransfer(1, "RC_DW_Ifan_Barracks_Trespass", 25);
+DB_DialogMoneyTransfer(2, "RC_DW_Ifan_Barracks_Trespass", 50);
+DB_DialogMoneyTransfer(3, "RC_DW_Ifan_Barracks_Trespass", 75);
+DB_DialogMoneyTransfer(4, "RC_DW_Ifan_Barracks_Trespass", 100);
+DB_GiveNewItemFromTemplateEvent("CON_Food_Meat_Raw_A_a831f7b3-c6a4-4437-a623-8a3df0d6b2e7", "Ifan_GiveMeat");
+DB_GiveNewItemFromTemplateEvent("CON_Nature_Mushroom_FlyAgaric_A_c09d258c-3a49-482b-83b2-ab970e7ccd55", "Ifan_GiveShroom");
+DB_GiveNewItemFromTemplateEvent("CON_Herb_Drudanae_A_84ce1dfa-12b1-4b37-8907-aa7301f1edbf", "Ifan_GiveCandy");
+DB_NoLowAttitudeDialog(CHARACTERGUID_S_FTJ_IfanHandler_d0920841-a984-4ea4-92c6-31d236ee2540);
+
+KBSECTION
+IF
+RegionStarted("FJ_FortJoy_Main")
+AND
+QueryOnlyOnce("FTJ_IfanInit")
+THEN
+DB_HasStoryEvent(ITEMGUID_S_FTJ_IfanNoteFindZaleskar_2f1b551c-4e27-4964-aaab-0d088dc7f505, "FTJ_HasNoteZaleskar");
+DB_GiveItemToEvent(ITEMGUID_S_FTJ_IfanNoteFindZaleskar_2f1b551c-4e27-4964-aaab-0d088dc7f505, "FTJ_NoteZaleskarTo");
+CharacterAddAttitudeTowardsPlayer(CHARACTERGUID_S_FTJ_FalseSourcerer_d9578eb3-16fc-448c-ab38-577bd02065b3, CHARACTERGUID_S_Player_Ifan_ad9a3327-4456-42a7-9bf4-7ad60cc9e54f, -40);
+DB_ManualTradeNPC(CHARACTERGUID_S_FTJ_FalseSourcerer_d9578eb3-16fc-448c-ab38-577bd02065b3);
+DB_PreventTradeBetween(CHARACTERGUID_S_FTJ_FalseSourcerer_d9578eb3-16fc-448c-ab38-577bd02065b3, CHARACTERGUID_S_Player_Ifan_ad9a3327-4456-42a7-9bf4-7ad60cc9e54f);
+DB_FTJ_IfanExecuteSaheila_CaveDwellers(CHARACTERGUID_S_FTJ_SkepticSoldier_9dc4da24-9cd5-43cc-a01c-6923b59bd066);
+DB_FTJ_IfanExecuteSaheila_CaveDwellers(CHARACTERGUID_S_FTJ_Skeptic_Elf_001_d8902155-d0e3-4dfe-b6dd-d90fd5606f50);
+DB_FTJ_IfanExecuteSaheila_CaveDwellers(CHARACTERGUID_S_FTJ_ImprisonedSkeptic_792c9745-1a8d-4d63-ae4c-33927457730a);
+DB_FTJ_IfanExecuteSaheila_CaveDwellers(CHARACTERGUID_S_FTJ_SkepticChild_001_780631fb-3619-4ed1-b48b-f1ff847d4183);
+DB_FTJ_IfanExecuteSaheila_CaveDwellers(CHARACTERGUID_S_FTJ_SkepticChild_002_7f795cf2-db7f-46b6-aa9c-f9d5eefcc789);
+DB_FTJ_IfanExecuteSaheila_CaveDwellers(CHARACTERGUID_S_FTJ_ShakedownElf_c854185f-ce11-416f-b327-d692a5e3a789);
+Proc_FTJ_Origins_Ifan_Start();
+
+PROC
+Proc_FTJ_Origins_Ifan_Start()
+THEN
+DB_Dialogs(CHARACTERGUID_S_FTJ_IfanHandler_d0920841-a984-4ea4-92c6-31d236ee2540, "FTJ_IfansHandler");
+ItemToInventory(ITEMGUID_S_FTJ_IfanNoteFindZaleskar_2f1b551c-4e27-4964-aaab-0d088dc7f505, CHARACTERGUID_S_FTJ_GhettoGuard_004_d11296d9-833f-4070-9fa7-44ac606aedb8);
+
+PROC
+Proc_FTJ_Origins_Ifan_Start()
+AND
+IsTagged(CHARACTERGUID_S_Player_Ifan_ad9a3327-4456-42a7-9bf4-7ad60cc9e54f, "AVATAR", 1)
+THEN
+ObjectSetFlag(CHARACTERGUID_S_Player_Ifan_ad9a3327-4456-42a7-9bf4-7ad60cc9e54f, "QuestUpdate_FTJ_Ifan_DarkFaction_IfanWashedAshore");
+
+IF
+GameStarted("FJ_FortJoy_Main", _)
+AND
+QueryOnlyOnce("FTJ_IfanStoryInit")
+THEN
+ItemToInventory(ITEMGUID_S_FTJ_IfanNoteFromDarkFaction_51899f0f-6ea2-4522-893b-69ccd87b97fb, CHARACTERGUID_S_Player_Ifan_ad9a3327-4456-42a7-9bf4-7ad60cc9e54f);
+
+IF
+RegionStarted("RC_Main")
+AND
+QueryOnlyOnce("RC_IfanInit")
+THEN
+DB_TriggerSendsSpotEvents(S_RC_DW_IfanKidRunup_50e87963-e07d-4918-ace3-38d6d993ef33);
+DB_Dialogs(CHARACTERGUID_S_RC_DW_IfanKid_3bc80e98-bc51-48db-ad3d-ca57ebfda550, "RC_DW_IfanKid");
+DB_Children(CHARACTERGUID_S_RC_DW_IfanKid_3bc80e98-bc51-48db-ad3d-ca57ebfda550);
+TriggerRegisterForCharacter(TRIGGERGUID_S_RC_WH_IfanExposition_287f653d-2def-4741-b984-68b3a80ed627, CHARACTERGUID_S_Player_Ifan_ad9a3327-4456-42a7-9bf4-7ad60cc9e54f);
+TriggerRegisterForCharacter(TRIGGERGUID_S_RC_DW_UnderTavern_IfanRomance_7a34d1d9-132f-400f-b3d7-23f8e500315f, CHARACTERGUID_S_Player_Ifan_ad9a3327-4456-42a7-9bf4-7ad60cc9e54f);
+
+PROC
+PROC_GLO_PartyMembers_Add(CHARACTERGUID_S_Player_Ifan_ad9a3327-4456-42a7-9bf4-7ad60cc9e54f, (CHARACTERGUID)_Var1)
+AND NOT
+DB_GlobalFlag("FTJ_LV_SetUp")
+THEN
+ObjectSetFlag(_Var1, "GLO_Ifan_RecruitedInFortJoy");
+GlobalSetFlag("GLO_Ifan_RecruitedInFortJoy");
+
+PROC
+PROC_GLO_PartyMembers_Add(CHARACTERGUID_S_Player_Ifan_ad9a3327-4456-42a7-9bf4-7ad60cc9e54f, (CHARACTERGUID)_Var1)
+AND
+DB_OriginRecruitmentLocation(CHARACTERGUID_S_Player_Ifan_ad9a3327-4456-42a7-9bf4-7ad60cc9e54f, TRIGGERGUID_S_FTJ_Origin_IfanDefault_Point_811d43e1-5c27-4d00-aedf-51b629ac9dc8)
+THEN
+NOT DB_OriginRecruitmentLocation_Region("FJ_FortJoy_Main", CHARACTERGUID_S_Player_Ifan_ad9a3327-4456-42a7-9bf4-7ad60cc9e54f, TRIGGERGUID_S_FTJ_Origin_IfanDefault_Point_811d43e1-5c27-4d00-aedf-51b629ac9dc8, "State_FortJoy");
+DB_OriginRecruitmentLocation_Region("FJ_FortJoy_Main", CHARACTERGUID_S_Player_Ifan_ad9a3327-4456-42a7-9bf4-7ad60cc9e54f, TRIGGERGUID_S_FTJ_Origin_IfanDefault_Point2_11d93a5b-a811-458f-bf89-6541676d52e3, "State_FortJoy");
+NOT DB_OriginRecruitmentLocation(CHARACTERGUID_S_Player_Ifan_ad9a3327-4456-42a7-9bf4-7ad60cc9e54f, TRIGGERGUID_S_FTJ_Origin_IfanDefault_Point_811d43e1-5c27-4d00-aedf-51b629ac9dc8);
+DB_OriginRecruitmentLocation(CHARACTERGUID_S_Player_Ifan_ad9a3327-4456-42a7-9bf4-7ad60cc9e54f, TRIGGERGUID_S_FTJ_Origin_IfanDefault_Point2_11d93a5b-a811-458f-bf89-6541676d52e3);
+SetVarObject(CHARACTERGUID_S_Player_Ifan_ad9a3327-4456-42a7-9bf4-7ad60cc9e54f, "FortJoyRecruitmentPoint", TRIGGERGUID_S_FTJ_Origin_IfanDefault_Point2_11d93a5b-a811-458f-bf89-6541676d52e3);
+
+PROC
+PROC_GLO_PartyMembers_Add(CHARACTERGUID_S_Player_Ifan_ad9a3327-4456-42a7-9bf4-7ad60cc9e54f, (CHARACTERGUID)_Var1)
+AND
+DB_GlobalFlag("FTJ_LV_SetUp")
+THEN
+ObjectSetFlag(_Var1, "GLO_Ifan_RecruitedInLV");
+
+PROC
+PROC_GLO_PartyMembers_Add(CHARACTERGUID_S_Player_Ifan_ad9a3327-4456-42a7-9bf4-7ad60cc9e54f, (CHARACTERGUID)_Var1)
+AND
+ObjectGetFlag(_Var1, "QuestAdd_FTJ_COM_Ifan", 0)
+AND
+ObjectGetFlag(_Var1, "GLO_Ifan_RecruitedInFortJoy", 0)
+THEN
+ObjectSetFlag(_Var1, "QuestAdd_FTJ_COM_Ifan");
+ObjectSetFlag(_Var1, "QuestUpdate_FTJ_COM_Ifan_StartLV");
+
+PROC
+PROC_GLO_PartyMembers_Add(CHARACTERGUID_S_Player_Ifan_ad9a3327-4456-42a7-9bf4-7ad60cc9e54f, (CHARACTERGUID)_Var1)
+AND
+ObjectGetFlag(_Var1, "QuestAdd_FTJ_COM_Ifan", 0)
+AND NOT
+DB_GlobalFlag("FTJ_LV_SetUp")
+THEN
+ObjectSetFlag(_Var1, "QuestAdd_FTJ_COM_Ifan");
+ObjectSetFlag(_Var1, "QuestUpdate_FTJ_COM_Ifan_Start");
+
+PROC
+Proc_COMFinished("FTJ_GhettoGuard_004_COM_Ifan", _)
+THEN
+DB_OriginMomentTag_HighPriority("FTJ_IfansHandler", "IFAN", "FTJ_IfansHandler_COM_Ifan");
+
+PROC
+Proc_COMFinished("FTJ_GhettoGuard_004_COM_Ifan", (CHARACTERGUID)_Var1)
+THEN
+ObjectSetFlag(_Var1, "QuestUpdate_FTJ_COM_Ifan_Borris");
+Proc_RelationshipDialog(CHARACTERGUID_S_Player_Ifan_ad9a3327-4456-42a7-9bf4-7ad60cc9e54f, "FTJ_GhettoGuard_004_CRD_Ifan", CHARACTERGUID_S_Player_Ifan_ad9a3327-4456-42a7-9bf4-7ad60cc9e54f);
+
+IF
+CharacterDied(CHARACTERGUID_S_FTJ_ShakedownElf_c854185f-ce11-416f-b327-d692a5e3a789)
+THEN
+Proc_RelationshipDialog(CHARACTERGUID_S_Player_Ifan_ad9a3327-4456-42a7-9bf4-7ad60cc9e54f, "FTJ_ShakedownElf_ARD_Ifan", CHARACTERGUID_S_FTJ_ShakedownElf_c854185f-ce11-416f-b327-d692a5e3a789);
+
+PROC
+Proc_COMFinished("FTJ_IfansHandler_COM_Ifan", (CHARACTERGUID)_Var1)
+THEN
+ObjectSetFlag(_Var1, "QuestUpdate_FTJ_COM_Ifan_Zaleskar");
+Proc_RelationshipDialog(CHARACTERGUID_S_Player_Ifan_ad9a3327-4456-42a7-9bf4-7ad60cc9e54f, "FTJ_IfansHandler_CRD_Ifan", CHARACTERGUID_S_Player_Ifan_ad9a3327-4456-42a7-9bf4-7ad60cc9e54f);
+
+IF
+ObjectFlagSet("FTJ_IfanHandler_GiveSourceBow", CHARACTERGUID_S_Player_Ifan_ad9a3327-4456-42a7-9bf4-7ad60cc9e54f, _)
+THEN
+ItemTemplateAddTo("WPN_UNIQUE_IfansBow_766137bb-5346-42fa-90ce-c8959f2fe925", CHARACTERGUID_S_Player_Ifan_ad9a3327-4456-42a7-9bf4-7ad60cc9e54f, 1);
+ItemTemplateAddTo("WPN_Arrow_Poison_Cloud_A_a1c4934d-1021-40a3-8c2c-42972208ade8", CHARACTERGUID_S_Player_Ifan_ad9a3327-4456-42a7-9bf4-7ad60cc9e54f, 1);
+
+PROC
+PROC_Origins_Ifan_SetNoteReadFlag()
+AND
+DB_CurrentLevel("TUT_Tutorial_A")
+THEN
+ObjectSetFlag(CHARACTERGUID_S_Player_Ifan_ad9a3327-4456-42a7-9bf4-7ad60cc9e54f, "OriginsIfan_ReadInTut");
+
+PROC
+PROC_Origins_Ifan_SetNoteReadFlag()
+AND NOT
+DB_CurrentLevel("TUT_Tutorial_A")
+AND NOT
+DB_HasMet(CHARACTERGUID_S_FTJ_GhettoGuard_004_d11296d9-833f-4070-9fa7-44ac606aedb8, CHARACTERGUID_S_Player_Ifan_ad9a3327-4456-42a7-9bf4-7ad60cc9e54f, _)
+THEN
+ObjectSetFlag(CHARACTERGUID_S_Player_Ifan_ad9a3327-4456-42a7-9bf4-7ad60cc9e54f, "OriginsIfan_ReadBeforeBorris");
+
+PROC
+PROC_Origins_Ifan_SetNoteReadFlag()
+AND
+DB_HasMet(CHARACTERGUID_S_FTJ_GhettoGuard_004_d11296d9-833f-4070-9fa7-44ac606aedb8, CHARACTERGUID_S_Player_Ifan_ad9a3327-4456-42a7-9bf4-7ad60cc9e54f, _)
+THEN
+ObjectSetFlag(CHARACTERGUID_S_Player_Ifan_ad9a3327-4456-42a7-9bf4-7ad60cc9e54f, "OriginsIfan_ReadAfterBorris");
+
+IF
+ObjectFlagSet((STRING)_Var1, CHARACTERGUID_S_Player_Ifan_ad9a3327-4456-42a7-9bf4-7ad60cc9e54f, _)
+AND
+DB_Avatars(CHARACTERGUID_S_Player_Ifan_ad9a3327-4456-42a7-9bf4-7ad60cc9e54f)
+AND
+DB_OriginsIfan_NoteReadToAvatarQuestUpdate(_Var1, _Var3)
+THEN
+ObjectSetFlag(CHARACTERGUID_S_Player_Ifan_ad9a3327-4456-42a7-9bf4-7ad60cc9e54f, "QuestAdd_FTJ_Ifan_DarkFaction");
+ObjectSetFlag(CHARACTERGUID_S_Player_Ifan_ad9a3327-4456-42a7-9bf4-7ad60cc9e54f, _Var3);
+
+IF
+CharacterUsedItem(CHARACTERGUID_S_Player_Ifan_ad9a3327-4456-42a7-9bf4-7ad60cc9e54f, ITEMGUID_S_FTJ_IfanNoteFromDarkFaction_51899f0f-6ea2-4522-893b-69ccd87b97fb)
+AND
+QueryOnlyOnce("FTJ_IfanDarkFactionQuestInitiated")
+THEN
+PROC_Origins_Ifan_SetNoteReadFlag();
+PROC_Origins_Ifan_DarkFactionStartIfAvatar();
+
+PROC
+PROC_Origins_Ifan_DarkFactionStartIfAvatar()
+AND
+DB_Avatars(CHARACTERGUID_S_Player_Ifan_ad9a3327-4456-42a7-9bf4-7ad60cc9e54f)
+THEN
+GlobalSetFlag("FTJ_IfanDarkFactionQuestInitiated");
+
+IF
+GameBookInterfaceClosed(ITEMGUID_S_FTJ_IfanNoteFromDarkFaction_51899f0f-6ea2-4522-893b-69ccd87b97fb, (CHARACTERGUID)_Var1)
+AND
+DB_HighestChapter(CHARACTERGUID_S_Player_Ifan_ad9a3327-4456-42a7-9bf4-7ad60cc9e54f, _Var2)
+AND
+_Var2 < 3
+AND
+DB_CompanionAvatarBond(CHARACTERGUID_S_Player_Ifan_ad9a3327-4456-42a7-9bf4-7ad60cc9e54f, _Var1)
+THEN
+Proc_RelationshipDialog(CHARACTERGUID_S_Player_Ifan_ad9a3327-4456-42a7-9bf4-7ad60cc9e54f, "FTJ_IfanNote_CRD_Ifan", _Var1);
+
+IF
+GameBookInterfaceClosed(ITEMGUID_S_FTJ_IfanNoteFromDarkFaction_51899f0f-6ea2-4522-893b-69ccd87b97fb, (CHARACTERGUID)_Var1)
+AND
+DB_HighestChapter(CHARACTERGUID_S_Player_Ifan_ad9a3327-4456-42a7-9bf4-7ad60cc9e54f, _Var2)
+AND
+_Var2 < 3
+AND
+QRY_SpeakerIsAvailable(CHARACTERGUID_S_Player_Ifan_ad9a3327-4456-42a7-9bf4-7ad60cc9e54f, 1)
+AND
+ObjectGetFlag(CHARACTERGUID_S_Player_Ifan_ad9a3327-4456-42a7-9bf4-7ad60cc9e54f, "FTJ_NoteZaleskarTo", 0)
+AND
+QueryOnlyOnce("FTJ_IfanDFNoteVB_Once")
+THEN
+PROC_Origins_Ifan_SetNoteReadFlag();
+PROC_Origins_Ifan_DarkFactionStartIfAvatar();
+Proc_StartDialog(1, "FTJ_VB_IfanReadsDFNote", CHARACTERGUID_S_Player_Ifan_ad9a3327-4456-42a7-9bf4-7ad60cc9e54f);
+
+IF
+DialogEnded("FTJ_IfanNote_CRD_Ifan", _)
+AND
+DB_HighestChapter(CHARACTERGUID_S_Player_Ifan_ad9a3327-4456-42a7-9bf4-7ad60cc9e54f, 1)
+AND
+DB_CompanionAvatarBond(CHARACTERGUID_S_Player_Ifan_ad9a3327-4456-42a7-9bf4-7ad60cc9e54f, _Var2)
+THEN
+ObjectSetFlag(_Var2, "QuestUpdate_FTJ_COM_Ifan_NoteDarkFaction");
+ObjectSetFlag(_Var2, "GLO_Ifan_ReadContract");
+
+IF
+DialogEnded("FTJ_IfanNote_CRD_Ifan", _)
+AND
+DB_HighestChapter(CHARACTERGUID_S_Player_Ifan_ad9a3327-4456-42a7-9bf4-7ad60cc9e54f, 2)
+AND
+DB_CompanionAvatarBond(CHARACTERGUID_S_Player_Ifan_ad9a3327-4456-42a7-9bf4-7ad60cc9e54f, _Var2)
+THEN
+ObjectSetFlag(_Var2, "QuestUpdate_FTJ_COM_Ifan_NoteDarkFactionAfterFTJ");
+ObjectSetFlag(_Var2, "GLO_Ifan_ReadContract");
+
+IF
+DialogEnded("FTJ_IfanNote_CRD_Ifan", _)
+AND
+DB_CompanionAvatarBond(CHARACTERGUID_S_Player_Ifan_ad9a3327-4456-42a7-9bf4-7ad60cc9e54f, _Var2)
+AND
+ObjectGetFlag(CHARACTERGUID_S_Player_Ifan_ad9a3327-4456-42a7-9bf4-7ad60cc9e54f, "FTJ_NoteZaleskarTo", 0)
+AND
+QueryOnlyOnce("FTJ_IfanDFNoteVB_Once")
+THEN
+PROC_Origins_Ifan_SetNoteReadFlag();
+Proc_StartDialog(1, "FTJ_VB_IfanReadsDFNote", CHARACTERGUID_S_Player_Ifan_ad9a3327-4456-42a7-9bf4-7ad60cc9e54f);
+
+IF
+DialogEnded("Ifan", (INTEGER)_Var1)
+AND
+DB_DialogPlayers(_Var1, _Var2, 2)
+AND
+ObjectGetFlag(_Var2, "GLO_Ifan_ShowContract", 1)
+THEN
+ObjectClearFlag(_Var2, "GLO_Ifan_ShowContract");
+CharacterUseItem(_Var2, ITEMGUID_S_FTJ_IfanNoteFromDarkFaction_51899f0f-6ea2-4522-893b-69ccd87b97fb, "");
+
+IF
+CharacterUsedItem(CHARACTERGUID_S_Player_Ifan_ad9a3327-4456-42a7-9bf4-7ad60cc9e54f, ITEMGUID_S_FTJ_IfanNoteFindZaleskar_2f1b551c-4e27-4964-aaab-0d088dc7f505)
+AND
+DB_Avatars(CHARACTERGUID_S_Player_Ifan_ad9a3327-4456-42a7-9bf4-7ad60cc9e54f)
+AND
+QueryOnlyOnce("FTJ_IfanNoteZaleskar_OneShot")
+THEN
+ObjectSetFlag(CHARACTERGUID_S_Player_Ifan_ad9a3327-4456-42a7-9bf4-7ad60cc9e54f, "QuestUpdate_FTJ_Ifan_DarkFaction_Borris_Note");
+
+IF
+CharacterUsedItem((CHARACTERGUID)_Var1, ITEMGUID_S_FTJ_IfanNoteFindZaleskar_2f1b551c-4e27-4964-aaab-0d088dc7f505)
+AND NOT
+DB_Avatars(CHARACTERGUID_S_Player_Ifan_ad9a3327-4456-42a7-9bf4-7ad60cc9e54f)
+AND
+CharacterIsInPartyWith(_Var1, CHARACTERGUID_S_Player_Ifan_ad9a3327-4456-42a7-9bf4-7ad60cc9e54f, 1)
+AND
+QueryOnlyOnce("FTJ_IfanNoteZaleskar_OneShot")
+THEN
+ObjectSetFlag(CHARACTERGUID_S_Player_Ifan_ad9a3327-4456-42a7-9bf4-7ad60cc9e54f, "QuestUpdate_FTJ_COM_Ifan_Borris");
+DB_OriginMomentTag_HighPriority("FTJ_IfansHandler", "IFAN", "FTJ_IfansHandler_COM_Ifan");
+
+IF
+SavegameLoaded((INTEGER)_Var1, (INTEGER)_Var2, (INTEGER)_Var3, (INTEGER)_Var4)
+AND
+QRY_VersionIsOlderThan(_Var1, _Var2, _Var3, _Var4, 3, 5, 1, 0)
+AND
+DB_OnlyOnce("FTJ_IfanNoteZaleskar_OneShot")
+AND
+ObjectGetFlag(CHARACTERGUID_S_Player_Ifan_ad9a3327-4456-42a7-9bf4-7ad60cc9e54f, "QuestUpdate_FTJ_COM_Ifan_Zaleskar", 0)
+THEN
+DB_OriginMomentTag_HighPriority("FTJ_IfansHandler", "IFAN", "FTJ_IfansHandler_COM_Ifan");
+
+IF
+ObjectFlagSet("QuestUpdate_FTJ_Ifan_DarkFaction_KillOrder", CHARACTERGUID_S_Player_Ifan_ad9a3327-4456-42a7-9bf4-7ad60cc9e54f, _)
+AND
+CharacterIsDead(CHARACTERGUID_S_FTJ_Saheila_fcacdf08-b05f-4333-b0e0-ddf29c13d8e0, 1)
+THEN
+ObjectSetFlag(CHARACTERGUID_S_Player_Ifan_ad9a3327-4456-42a7-9bf4-7ad60cc9e54f, "QuestUpdate_FTJ_Ifan_DarkFaction_SaheilaKilled");
+
+IF
+DB_Sees(CHARACTERGUID_S_Player_Ifan_ad9a3327-4456-42a7-9bf4-7ad60cc9e54f, CHARACTERGUID_S_GLO_Alexandar_03e6345f-1bd3-403c-80e2-a443a74f6349)
+AND
+GetRegion(CHARACTERGUID_S_Player_Ifan_ad9a3327-4456-42a7-9bf4-7ad60cc9e54f, "FJ_FortJoy_Main")
+AND NOT
+DB_FTJ_IfanAlexandarCommentDone(1)
+AND
+ObjectIsInTrigger(CHARACTERGUID_S_Player_Ifan_ad9a3327-4456-42a7-9bf4-7ad60cc9e54f, TRIGGERGUID_S_FTJ_IfanAlexandarVB_66d2ee30-bc08-4973-a037-46f391fbb93f, 1)
+AND
+QRY_SpeakerIsAvailable(CHARACTERGUID_S_Player_Ifan_ad9a3327-4456-42a7-9bf4-7ad60cc9e54f)
+THEN
+DB_FTJ_IfanAlexandarCommentDone(1);
+Proc_StartDialog(1, "FTJ_AD_IfanSawAlexandarAtAtusaEvent", CHARACTERGUID_S_Player_Ifan_ad9a3327-4456-42a7-9bf4-7ad60cc9e54f);
+
+PROC
+Proc_SceneOver("FTJ_DallasStartScene")
+THEN
+DB_FTJ_IfanAlexandarCommentDone(1);
+
+PROC
+Proc_SceneOver("FTJ_DallasStartScene")
+AND
+DB_IsPlayer(CHARACTERGUID_S_Player_Ifan_ad9a3327-4456-42a7-9bf4-7ad60cc9e54f)
+AND
+IsTagged(CHARACTERGUID_S_Player_Ifan_ad9a3327-4456-42a7-9bf4-7ad60cc9e54f, "AVATAR", 1)
+AND
+GlobalGetFlag("FTJ_AlexandarIsDead", 0)
+THEN
+ObjectSetFlag(CHARACTERGUID_S_Player_Ifan_ad9a3327-4456-42a7-9bf4-7ad60cc9e54f, "QuestUpdate_FTJ_Ifan_DarkFaction_Atusa_Event");
+
+IF
+DB_Dead(CHARACTERGUID_S_FTJ_GhettoGuard_004_d11296d9-833f-4070-9fa7-44ac606aedb8)
+THEN
+ObjectSetFlag(CHARACTERGUID_S_Player_Ifan_ad9a3327-4456-42a7-9bf4-7ad60cc9e54f, "FTJ_IfanRecruitment_BorrisDead");
+
+IF
+TextEventSet("saheilaexecute")
+AND
+CharacterGetHostCharacter(_Var1)
+THEN
+ObjectSetFlag(_Var1, "FTJ_AllowSaheilaExecution");
+
+IF
+ObjectFlagSet("FTJ_AllowSaheilaExecution", (CHARACTERGUID)_Var1, (INTEGER)_Var2)
+THEN
+DB_IgnoreAssaultFor(_Var1, CHARACTERGUID_S_FTJ_Saheila_fcacdf08-b05f-4333-b0e0-ddf29c13d8e0);
+DB_FTJ_IfanToldSaheilaDies(_Var2);
+CharacterSetFightMode(_Var1, 1, 0);
+ObjectSetFlag(_Var1, "GLO_PathOfBlood_MurderedInnocent");
+
+IF
+ObjectFlagCleared("FTJ_AllowSaheilaExecution", (CHARACTERGUID)_Var1, _)
+THEN
+NOT DB_IgnoreAssaultFor(_Var1, CHARACTERGUID_S_FTJ_Saheila_fcacdf08-b05f-4333-b0e0-ddf29c13d8e0);
+CharacterSetFightMode(_Var1, 0, 0);
+
+IF
+ObjectFlagCleared("FTJ_AllowSaheilaExecution", (CHARACTERGUID)_Var1, _)
+AND
+DB_FTJ_IfanToldSaheilaDies(_Var3)
+THEN
+NOT DB_FTJ_IfanToldSaheilaDies(_Var3);
+
+IF
+DialogEnded("FTJ_Saheila", (INTEGER)_Var1)
+AND
+DB_FTJ_IfanToldSaheilaDies(_Var1)
+AND
+DialogGetInvolvedPlayer(_Var1, 1, _Var2)
+THEN
+NOT DB_FTJ_IfanToldSaheilaDies(_Var1);
+ProcObjectTimer(_Var2, "FTJ_IfanRemarkKillSaheila", 500);
+
+PROC
+ProcObjectTimerFinished((CHARACTERGUID)_Var1, "FTJ_IfanRemarkKillSaheila")
+AND NOT
+DB_Dead(CHARACTERGUID_S_FTJ_Saheila_fcacdf08-b05f-4333-b0e0-ddf29c13d8e0)
+AND
+CharacterIsInCombat(_Var1, 0)
+AND
+CharacterIsInCombat(CHARACTERGUID_S_FTJ_Saheila_fcacdf08-b05f-4333-b0e0-ddf29c13d8e0, 0)
+THEN
+Proc_StartDialog(1, "FTJ_AD_IfanCanExecuteSaheila", _Var1);
+
+IF
+AttackedByObject(CHARACTERGUID_S_FTJ_Saheila_fcacdf08-b05f-4333-b0e0-ddf29c13d8e0, (CHARACTERGUID)_Var1, _, _, _)
+AND
+ObjectGetFlag(_Var1, "FTJ_AllowSaheilaExecution", 1)
+AND
+CharacterIsInCombat(_Var1, 0)
+AND
+CharacterIsDead(CHARACTERGUID_S_FTJ_Saheila_fcacdf08-b05f-4333-b0e0-ddf29c13d8e0, 0)
+THEN
+Proc_FTJ_IfanExecuteSaheila(_Var1);
+
+PROC
+Proc_FTJ_IfanExecuteSaheila((CHARACTERGUID)_Var1)
+THEN
+Proc_StartDialog(1, "FTJ_AD_IfanExecuteSaheila", _Var1);
+CharacterSetHitpointsPercentage(CHARACTERGUID_S_FTJ_Saheila_fcacdf08-b05f-4333-b0e0-ddf29c13d8e0, 0);
+
+PROC
+Proc_FTJ_IfanExecuteSaheila((CHARACTERGUID)_Var1)
+AND
+DB_FTJ_IfanExecuteSaheila_CaveDwellers(_Var2)
+AND
+CharacterCanSee(_Var2, _Var1, 1)
+THEN
+DB_ManualTradeNPC(_Var2);
+DB_PreventTradeBetween(_Var2, _Var1);
+CharacterAddAttitudeTowardsPlayer(_Var2, _Var1, -50);
+
+IF
+ObjectFlagSet("QuestUpdate_FTJ_Ifan_DarkFaction_Borris_Intimidated", CHARACTERGUID_S_Player_Ifan_ad9a3327-4456-42a7-9bf4-7ad60cc9e54f, _)
+THEN
+ObjectSetFlag(CHARACTERGUID_S_Player_Ifan_ad9a3327-4456-42a7-9bf4-7ad60cc9e54f, "FTJ_IfanDontNeedToKillSaheila");
+
+IF
+ObjectFlagSet("QuestUpdate_FTJ_Ifan_DarkFaction_Borris_Note", CHARACTERGUID_S_Player_Ifan_ad9a3327-4456-42a7-9bf4-7ad60cc9e54f, _)
+THEN
+ObjectSetFlag(CHARACTERGUID_S_Player_Ifan_ad9a3327-4456-42a7-9bf4-7ad60cc9e54f, "FTJ_IfanDontNeedToKillSaheila");
+
+IF
+ObjectFlagSet("QuestUpdate_FTJ_Ifan_DarkFaction_AlexandarInformation", CHARACTERGUID_S_Player_Ifan_ad9a3327-4456-42a7-9bf4-7ad60cc9e54f, _)
+THEN
+ObjectSetFlag(CHARACTERGUID_S_Player_Ifan_ad9a3327-4456-42a7-9bf4-7ad60cc9e54f, "FTJ_IfanDontNeedToKillSaheila");
+
+IF
+ObjectFlagSet("QuestUpdate_FTJ_Ifan_DarkFaction_AlexandarKilled", CHARACTERGUID_S_Player_Ifan_ad9a3327-4456-42a7-9bf4-7ad60cc9e54f, _)
+THEN
+ObjectSetFlag(CHARACTERGUID_S_Player_Ifan_ad9a3327-4456-42a7-9bf4-7ad60cc9e54f, "FTJ_IfanDontNeedToKillSaheila");
+
+IF
+CharacterDied(CHARACTERGUID_S_FTJ_Saheila_fcacdf08-b05f-4333-b0e0-ddf29c13d8e0)
+AND
+ObjectGetFlag(CHARACTERGUID_S_Player_Ifan_ad9a3327-4456-42a7-9bf4-7ad60cc9e54f, "QuestUpdate_FTJ_Ifan_DarkFaction_KillOrder", 1)
+AND
+ObjectGetFlag(CHARACTERGUID_S_Player_Ifan_ad9a3327-4456-42a7-9bf4-7ad60cc9e54f, "FTJ_IfanDontNeedToKillSaheila", 0)
+THEN
+ObjectSetFlag(CHARACTERGUID_S_Player_Ifan_ad9a3327-4456-42a7-9bf4-7ad60cc9e54f, "QuestUpdate_FTJ_Ifan_DarkFaction_SaheilaKilled");
+
+IF
+ObjectFlagSet("FTJ_IfanHandler_GiveRabbitMeat", (GUIDSTRING)_Var1, _)
+THEN
+ItemTemplateAddTo("CON_Food_Meat_RabbitMeat_A_05e559b0-8dec-4265-9466-54ee75d0888b", _Var1, 1);
+
+IF
+CharacterUsedSkill(S_Player_Ifan_ad9a3327-4456-42a7-9bf4-7ad60cc9e54f, "Summon_SoulWolf", _, _)
+THEN
+GlobalSetFlag("Ifan_SummonedWolf");
+
+IF
+CharacterDied(CHARACTERGUID_S_GLO_Alexandar_03e6345f-1bd3-403c-80e2-a443a74f6349)
+THEN
+ObjectSetFlag(CHARACTERGUID_S_Player_Ifan_ad9a3327-4456-42a7-9bf4-7ad60cc9e54f, "QuestUpdate_FTJ_Ifan_DarkFaction_AlexandarKilled");
+ObjectSetFlag(CHARACTERGUID_S_Player_Ifan_ad9a3327-4456-42a7-9bf4-7ad60cc9e54f, "QuestUpdate_FTJ_COM_Ifan_AfterAlexandarFight");
+
+IF
+CharacterDied(CHARACTERGUID_S_GLO_Alexandar_03e6345f-1bd3-403c-80e2-a443a74f6349)
+THEN
+GlobalSetFlag("FTJ_AlexandarIsDead");
+
+IF
+DialogStarted("Ifan", (INTEGER)_Var1)
+AND
+DB_DialogPlayers(_Var1, _Var2, 2)
+THEN
+GlobalClearFlag("GLO_Ifan_HasBooze");
+ProcLaunchMagicPocketIterator(_Var2, "GLO_Ifan_HasBooze", "");
+
+IF
+StoryEvent((GUIDSTRING)_Var1, "GLO_Ifan_HasBooze")
+AND
+IsTagged(_Var1, "ALCOHOL", 1)
+AND
+IsTagged(_Var1, "POISONED", 0)
+THEN
+GlobalSetFlag("GLO_Ifan_HasBooze");
+
+IF
+ObjectFlagSet("GLO_Ifan_GiveBooze", (CHARACTERGUID)_Var1, _)
+THEN
+ObjectClearFlag(_Var1, "GLO_Ifan_GiveBooze");
+ProcLaunchMagicPocketIterator(_Var1, "GLO_Ifan_GiveBooze", "GLO_Ifan_GaveBooze");
+
+IF
+StoryEvent((ITEMGUID)_Var1, "GLO_Ifan_GiveBooze")
+AND
+IsTagged(_Var1, "ALCOHOL", 1)
+AND
+IsTagged(_Var1, "POISONED", 0)
+AND
+QueryOnlyOnce("GLO_Ifan_GiveBooze")
+AND
+GetTemplate(_Var1, _Var2)
+AND
+ItemGetOwner(_Var1, _Var3)
+THEN
+ItemTemplateRemoveFrom(_Var2, _Var3, 1);
+ApplyStatus(CHARACTERGUID_S_Player_Ifan_ad9a3327-4456-42a7-9bf4-7ad60cc9e54f, "DRUNK", 3);
+
+IF
+GlobalFlagSet("GLO_Ifan_GaveBooze")
+THEN
+GlobalClearFlag("GLO_Ifan_GaveBooze");
+NOT DB_OnlyOnce("GLO_Ifan_GiveBooze");
+
+IF
+ObjectFlagSet("GLO_Ifan_PlayerDrinksBooze", (GUIDSTRING)_Var1, _)
+THEN
+ApplyStatus(_Var1, "DRUNK", 3);
+ObjectClearFlag(_Var1, "GLO_Ifan_PlayerDrinksBooze");
+
+IF
+StoryEvent(CHARACTERGUID_S_Player_Ifan_ad9a3327-4456-42a7-9bf4-7ad60cc9e54f, "GLO_CompanionLeaves_LowRelation")
+AND
+ItemIsInCharacterInventory(ITEMGUID_S_FTJ_IfanNoteFindZaleskar_2f1b551c-4e27-4964-aaab-0d088dc7f505, CHARACTERGUID_S_Player_Ifan_ad9a3327-4456-42a7-9bf4-7ad60cc9e54f, 1)
+THEN
+ItemRemove(ITEMGUID_S_FTJ_IfanNoteFindZaleskar_2f1b551c-4e27-4964-aaab-0d088dc7f505);
+
+IF
+StoryEvent(CHARACTERGUID_S_Player_Ifan_ad9a3327-4456-42a7-9bf4-7ad60cc9e54f, "GLO_CompanionLeaves_LowRelation")
+AND
+ItemIsInCharacterInventory(ITEMGUID_S_FTJ_IfanNoteFromDarkFaction_51899f0f-6ea2-4522-893b-69ccd87b97fb, CHARACTERGUID_S_Player_Ifan_ad9a3327-4456-42a7-9bf4-7ad60cc9e54f, 1)
+THEN
+ItemRemove(ITEMGUID_S_FTJ_IfanNoteFromDarkFaction_51899f0f-6ea2-4522-893b-69ccd87b97fb);
+
+PROC
+Proc_DialogFlagSetup("Ifan_Leaving", (GUIDSTRING)_Var1, (CHARACTERGUID)_Var2)
+AND
+ItemIsInPartyInventory(ITEMGUID_S_FTJ_IfanNoteFromDarkFaction_51899f0f-6ea2-4522-893b-69ccd87b97fb, _Var2, 0, 1)
+THEN
+ObjectSetFlag(_Var2, "GLO_Ifan_Leaving_PartyHasContract");
+
+PROC
+Proc_DialogFlagSetup("Ifan_Leaving", (CHARACTERGUID)_Var1, (GUIDSTRING)_Var2)
+AND
+ItemIsInCharacterInventory(ITEMGUID_S_FTJ_IfanNoteFromDarkFaction_51899f0f-6ea2-4522-893b-69ccd87b97fb, _Var1, 1)
+THEN
+ObjectSetFlag(_Var2, "GLO_Ifan_Leaving_IfanHasContract");
+ObjectClearFlag(_Var2, "GLO_Ifan_Leaving_PartyHasContract");
+
+IF
+ObjectFlagSet("GLO_Ifan_Leaving_GiveContract", _, _)
+THEN
+ItemToInventory(ITEMGUID_S_FTJ_IfanNoteFromDarkFaction_51899f0f-6ea2-4522-893b-69ccd87b97fb, CHARACTERGUID_S_Player_Ifan_ad9a3327-4456-42a7-9bf4-7ad60cc9e54f);
+
+IF
+ObjectFlagSet("FTJ_SW_GodwokenKillings", (CHARACTERGUID)_Var1, _)
+AND
+CharacterIsInPartyWith(_Var1, CHARACTERGUID_S_Player_Ifan_ad9a3327-4456-42a7-9bf4-7ad60cc9e54f, 1)
+THEN
+Proc_RelationshipDialog(CHARACTERGUID_S_Player_Ifan_ad9a3327-4456-42a7-9bf4-7ad60cc9e54f, "FTJ_Gareth_CRD_Ifan", CHARACTERGUID_S_Player_Ifan_ad9a3327-4456-42a7-9bf4-7ad60cc9e54f);
+
+IF
+ObjectFlagSet("FTJ_SW_GarethToldGodwokenAreHunted", CHARACTERGUID_S_Player_Ifan_ad9a3327-4456-42a7-9bf4-7ad60cc9e54f, _)
+THEN
+Proc_RelationshipDialog(CHARACTERGUID_S_Player_Ifan_ad9a3327-4456-42a7-9bf4-7ad60cc9e54f, "FTJ_Gareth_CRD_Ifan", CHARACTERGUID_S_Player_Ifan_ad9a3327-4456-42a7-9bf4-7ad60cc9e54f);
+
+IF
+DialogEnded("FTJ_Gareth_CRD_Ifan", _)
+AND
+DB_CompanionAvatarBond(CHARACTERGUID_S_Player_Ifan_ad9a3327-4456-42a7-9bf4-7ad60cc9e54f, _Var2)
+THEN
+UserSetFlag(_Var2, "QuestUpdate_FTJ_COM_Ifan_GarethInfo");
+UserSetFlag(_Var2, "QuestUpdate_FTJ_Hunted_IfanHunted");
+
+IF
+GlobalFlagSet("FTJ_LV_AlexandarKilledOnLV")
+THEN
+NOT DB_CompanionUpdateObjectFlag("IFAN", "QuestUpdate_FTJ_COM_Ifan_AlexandarLV", "QuestUpdate_LV_Main_AlexandarCaptive");
+NOT DB_AvatarUpdateObjectFlag("IFAN", "QuestUpdate_FTJ_Ifan_DarkFaction_AlexandarLV", "QuestUpdate_LV_Main_AlexandarCaptive");
+
+IF
+GlobalFlagSet("FTJ_LV_AlexandarKilledOnLV")
+AND
+DB_Avatars(CHARACTERGUID_S_Player_Ifan_ad9a3327-4456-42a7-9bf4-7ad60cc9e54f)
+THEN
+ObjectSetFlag(CHARACTERGUID_S_Player_Ifan_ad9a3327-4456-42a7-9bf4-7ad60cc9e54f, "QuestUpdate_FTJ_Ifan_DarkFaction_AlexandarKilledLV");
+
+IF
+GlobalFlagSet("FTJ_LV_AlexandarKilledOnLV")
+AND
+DB_CompanionAvatarBond(CHARACTERGUID_S_Player_Ifan_ad9a3327-4456-42a7-9bf4-7ad60cc9e54f, _Var1)
+THEN
+ObjectSetFlag(_Var1, "QuestUpdate_FTJ_COM_Ifan_AlexandarKilledLV");
+
+IF
+RegionStarted("LV_HoE_Main")
+AND NOT
+DB_GlobalFlag("GLO_Ifan_RecruitedInFortJoy")
+AND
+DB_Avatars(_Var1)
+AND
+CharacterGetAttitudeTowardsPlayer(CHARACTERGUID_S_Player_Ifan_ad9a3327-4456-42a7-9bf4-7ad60cc9e54f, _Var1, _Var2)
+AND
+IntegerSubtract(0, _Var2, _Var3)
+AND
+_Var3 != 0
+THEN
+CharacterAddAttitudeTowardsPlayer(CHARACTERGUID_S_Player_Ifan_ad9a3327-4456-42a7-9bf4-7ad60cc9e54f, _Var1, _Var3);
+
+IF
+DB_Chapter(CHARACTERGUID_S_Player_Ifan_ad9a3327-4456-42a7-9bf4-7ad60cc9e54f, 5)
+AND
+DB_CompanionAvatarBond(CHARACTERGUID_S_Player_Ifan_ad9a3327-4456-42a7-9bf4-7ad60cc9e54f, _Var1)
+THEN
+ProcObjectTimer(_Var1, "RC_LV_StartAct2_CRD_Ifan", 1000);
+
+PROC
+ProcObjectTimerFinished((CHARACTERGUID)_Var1, "RC_LV_StartAct2_CRD_Ifan")
+THEN
+Proc_RelationshipDialog(CHARACTERGUID_S_Player_Ifan_ad9a3327-4456-42a7-9bf4-7ad60cc9e54f, "RC_LV_StartAct2_CRD_Ifan", _Var1);
+
+IF
+DB_Chapter(CHARACTERGUID_S_Player_Ifan_ad9a3327-4456-42a7-9bf4-7ad60cc9e54f, 5)
+AND
+DB_Avatars(CHARACTERGUID_S_Player_Ifan_ad9a3327-4456-42a7-9bf4-7ad60cc9e54f)
+THEN
+ObjectSetFlag(CHARACTERGUID_S_Player_Ifan_ad9a3327-4456-42a7-9bf4-7ad60cc9e54f, "QuestUpdate_FTJ_Ifan_DarkFaction_Act2Start");
+
+IF
+DB_Event_CharacterAppearedInSpotTrigger(CHARACTERGUID_S_Player_Ifan_ad9a3327-4456-42a7-9bf4-7ad60cc9e54f, S_RC_DW_IfanKidRunup_50e87963-e07d-4918-ace3-38d6d993ef33)
+AND
+ObjectGetFlag(CHARACTERGUID_S_Player_Ifan_ad9a3327-4456-42a7-9bf4-7ad60cc9e54f, "GLO_Polymorphed", 0)
+THEN
+DialogRequestStop(CHARACTERGUID_S_RC_DW_IfanKid_3bc80e98-bc51-48db-ad3d-ca57ebfda550);
+
+IF
+DB_Event_CharacterAppearedInSpotTrigger(CHARACTERGUID_S_Player_Ifan_ad9a3327-4456-42a7-9bf4-7ad60cc9e54f, S_RC_DW_IfanKidRunup_50e87963-e07d-4918-ace3-38d6d993ef33)
+AND
+ObjectGetFlag(CHARACTERGUID_S_Player_Ifan_ad9a3327-4456-42a7-9bf4-7ad60cc9e54f, "GLO_Polymorphed", 0)
+AND
+QRY_SpeakerIsAvailable(CHARACTERGUID_S_RC_DW_IfanKid_3bc80e98-bc51-48db-ad3d-ca57ebfda550)
+THEN
+ProcTriggerUnregisterForPlayers(S_RC_DW_IfanKidRunup_50e87963-e07d-4918-ace3-38d6d993ef33);
+ProcCharacterMoveTo(CHARACTERGUID_S_RC_DW_IfanKid_3bc80e98-bc51-48db-ad3d-ca57ebfda550, CHARACTERGUID_S_Player_Ifan_ad9a3327-4456-42a7-9bf4-7ad60cc9e54f, 1, "RC_DW_IfanKid");
+
+IF
+StoryEvent(CHARACTERGUID_S_RC_DW_IfanKid_3bc80e98-bc51-48db-ad3d-ca57ebfda550, "RC_DW_IfanKid")
+THEN
+ProcCharacterMoveToAndTalk(CHARACTERGUID_S_RC_DW_IfanKid_3bc80e98-bc51-48db-ad3d-ca57ebfda550, CHARACTERGUID_S_Player_Ifan_ad9a3327-4456-42a7-9bf4-7ad60cc9e54f, "RC_DW_IfanKid", 0, "", 1, 10, 0, 0);
+
+IF
+StoryEvent(CHARACTERGUID_S_RC_DW_IfanKid_3bc80e98-bc51-48db-ad3d-ca57ebfda550, "RC_DW_IfanKid")
+AND
+QRY_SpeakerIsAvailable(CHARACTERGUID_S_RC_DW_IfanKid_3bc80e98-bc51-48db-ad3d-ca57ebfda550)
+THEN
+DB_DWKidWaitingForIfan(1);
+
+IF
+DialogEnded(_, (INTEGER)_Var2)
+AND
+DB_DWKidWaitingForIfan(1)
+AND
+DB_DialogPlayers(_Var2, CHARACTERGUID_S_Player_Ifan_ad9a3327-4456-42a7-9bf4-7ad60cc9e54f, _)
+THEN
+NOT DB_DWKidWaitingForIfan(1);
+ProcCharacterMoveTo(CHARACTERGUID_S_RC_DW_IfanKid_3bc80e98-bc51-48db-ad3d-ca57ebfda550, CHARACTERGUID_S_Player_Ifan_ad9a3327-4456-42a7-9bf4-7ad60cc9e54f, 1, "RC_DW_IfanKid");
+
+IF
+DialogEnded("RC_DW_IfanKid", (INTEGER)_Var1)
+AND
+DB_DialogPlayers(_Var1, CHARACTERGUID_S_Player_Ifan_ad9a3327-4456-42a7-9bf4-7ad60cc9e54f, 1)
+AND
+ObjectGetFlag(CHARACTERGUID_S_Player_Ifan_ad9a3327-4456-42a7-9bf4-7ad60cc9e54f, "GLO_Polymorphed", 0)
+THEN
+SetHasDialog(CHARACTERGUID_S_RC_DW_IfanKid_3bc80e98-bc51-48db-ad3d-ca57ebfda550, 0);
+ProcTriggerUnregisterForPlayers(S_RC_DW_IfanKidRunup_50e87963-e07d-4918-ace3-38d6d993ef33);
+ProcCharacterDisappearOutOfSight(CHARACTERGUID_S_RC_DW_IfanKid_3bc80e98-bc51-48db-ad3d-ca57ebfda550, 0, 1, "", 1);
+ObjectSetFlag(CHARACTERGUID_S_Player_Ifan_ad9a3327-4456-42a7-9bf4-7ad60cc9e54f, "QuestUpdate_FTJ_Ifan_DarkFaction_DWKid");
+
+IF
+DialogEnded("RC_DW_IfanKid", (INTEGER)_Var1)
+AND
+DB_DialogPlayers(_Var1, CHARACTERGUID_S_Player_Ifan_ad9a3327-4456-42a7-9bf4-7ad60cc9e54f, 1)
+AND
+DB_CompanionAvatarBond(CHARACTERGUID_S_Player_Ifan_ad9a3327-4456-42a7-9bf4-7ad60cc9e54f, _Var2)
+AND
+ObjectGetFlag(CHARACTERGUID_S_Player_Ifan_ad9a3327-4456-42a7-9bf4-7ad60cc9e54f, "GLO_Polymorphed", 0)
+THEN
+ObjectSetFlag(_Var2, "QuestUpdate_FTJ_COM_Ifan_DWKid");
+
+IF
+AttackedByObject(CHARACTERGUID_S_RC_DW_IfanKid_3bc80e98-bc51-48db-ad3d-ca57ebfda550, (GUIDSTRING)_Var1, (GUIDSTRING)_Var2, _, _)
+AND
+CHARACTERGUID_S_RC_DW_IfanKid_3bc80e98-bc51-48db-ad3d-ca57ebfda550 != _Var2
+THEN
+DialogRequestStop(CHARACTERGUID_S_RC_DW_IfanKid_3bc80e98-bc51-48db-ad3d-ca57ebfda550);
+ProcCharacterDisappearOutOfSight(CHARACTERGUID_S_RC_DW_IfanKid_3bc80e98-bc51-48db-ad3d-ca57ebfda550, 0, 1, "", 0);
+
+IF
+GlobalFlagSet("GLO_Ifan_SpottedInDW")
+AND NOT
+DB_OnlyOnce("RC_DW_IfanArrestInDriftwoodOriginMoment")
+AND
+QRY_StartDialog(0, "RC_DW_Ifan_Barracks_Trespass", CHARACTERGUID_S_RC_DW_Patrol_Magister_001_1643a994-6159-4132-b2ec-0307a35cf9bc, CHARACTERGUID_S_Player_Ifan_ad9a3327-4456-42a7-9bf4-7ad60cc9e54f)
+THEN
+DB_OnlyOnce("RC_DW_IfanArrestInDriftwoodOriginMoment");
+
+PROC
+Proc_COMFinished("RC_DW_Tavern_RichMerchant_COM_Ifan", (CHARACTERGUID)_Var1)
+THEN
+ObjectSetFlag(_Var1, "QuestUpdate_FTJ_COM_Ifan_LearnedBaran");
+
+IF
+ObjectFlagSet("RC_LearnedBaran", (GUIDSTRING)_Var1, _)
+THEN
+ObjectSetFlag(_Var1, "QuestUpdate_FTJ_Ifan_DarkFaction_LearnedBaran");
+
+IF
+ObjectFlagSet("QuestUpdate_FTJ_Ifan_DarkFaction_MetRoost", CHARACTERGUID_S_Player_Ifan_ad9a3327-4456-42a7-9bf4-7ad60cc9e54f, _)
+THEN
+NOT DB_SeenDeadNPCPartyFlag(CHARACTERGUID_S_RC_MIL_Roost_6fffadfe-b2a8-4e12-a664-ba84c0b0a3a3, "QuestUpdate_FTJ_Ifan_DarkFaction_RoostDead");
+
+IF
+ObjectFlagSet("QuestUpdate_FTJ_COM_Ifan_MetRoost", CHARACTERGUID_S_Player_Ifan_ad9a3327-4456-42a7-9bf4-7ad60cc9e54f, _)
+THEN
+NOT DB_SeenDeadNPCPartyFlag(CHARACTERGUID_S_RC_MIL_Roost_6fffadfe-b2a8-4e12-a664-ba84c0b0a3a3, "QuestUpdate_FTJ_COM_Ifan_RoostDead");
+
+IF
+CharacterEnteredTrigger(CHARACTERGUID_S_Player_Ifan_ad9a3327-4456-42a7-9bf4-7ad60cc9e54f, TRIGGERGUID_S_RC_DW_UnderTavern_IfanRomance_7a34d1d9-132f-400f-b3d7-23f8e500315f)
+AND
+DB_CompanionAvatarBond(CHARACTERGUID_S_Player_Ifan_ad9a3327-4456-42a7-9bf4-7ad60cc9e54f, _Var1)
+AND
+ObjectGetFlag(_Var1, "GLO_FriendZone_Ifan", 0)
+THEN
+Proc_RelationshipDialog(CHARACTERGUID_S_Player_Ifan_ad9a3327-4456-42a7-9bf4-7ad60cc9e54f, "RC_DW_UnderTavern_Romance_CRD_Ifan", _Var1);
+
+IF
+CharacterLeftTrigger(CHARACTERGUID_S_Player_Ifan_ad9a3327-4456-42a7-9bf4-7ad60cc9e54f, TRIGGERGUID_S_RC_DW_UnderTavern_Ownership_940f5177-3697-4fa7-91a3-504f962ba937)
+AND NOT
+DB_RelationshipDialogsFinished(CHARACTERGUID_S_Player_Ifan_ad9a3327-4456-42a7-9bf4-7ad60cc9e54f, "RC_DW_UnderTavern_Romance_CRD_Ifan")
+THEN
+ProcCancelOneRelationshipDialog(CHARACTERGUID_S_Player_Ifan_ad9a3327-4456-42a7-9bf4-7ad60cc9e54f, "RC_DW_UnderTavern_Romance_CRD_Ifan");
+NOT DB_RelationshipDialogsFinished(CHARACTERGUID_S_Player_Ifan_ad9a3327-4456-42a7-9bf4-7ad60cc9e54f, "RC_DW_UnderTavern_Romance_CRD_Ifan");
+
+IF
+DialogEnded("RC_BF_CorneredSourcerer_Sourcerer_CRD_Ifan", _)
+THEN
+TriggerUnregisterForCharacter(TRIGGERGUID_S_RC_DW_UnderTavern_IfanRomance_7a34d1d9-132f-400f-b3d7-23f8e500315f, CHARACTERGUID_S_Player_Ifan_ad9a3327-4456-42a7-9bf4-7ad60cc9e54f);
+
+IF
+ObjectFlagSet("GLO_CompanionWalkToAvatar", (CHARACTERGUID)_Var1, _)
+AND
+DB_CompanionAvatarBond(_Var1, _Var3)
+AND
+GetDistanceTo(_Var1, _Var3, _Var4)
+AND
+_Var4 < 10
+THEN
+CharacterMoveTo(_Var1, _Var3, 0, "", 1);
+ObjectClearFlag(_Var1, "GLO_CompanionWalkToAvatar");
+
+IF
+ObjectFlagSet("GLO_AvatarWalkToCompanion", (CHARACTERGUID)_Var1, _)
+AND
+DB_CompanionAvatarBond(_Var3, _Var1)
+AND
+GetDistanceTo(_Var3, _Var1, _Var4)
+AND
+_Var4 < 10
+THEN
+CharacterMoveTo(_Var1, _Var3, 0, "", 1);
+ObjectClearFlag(_Var1, "GLO_AvatarWalkToCompanion");
+
+IF
+ObjectFlagSet("GLO_Ifan_SpawnDrink", (GUIDSTRING)_Var1, _)
+THEN
+ItemTemplateAddTo("CON_Drink_Mug_A_Beer_2cda275d-2aea-4e57-970a-0cdb9c342b86", _Var1, 1);
+
+IF
+CharacterEnteredTrigger(CHARACTERGUID_S_Player_Ifan_ad9a3327-4456-42a7-9bf4-7ad60cc9e54f, TRIGGERGUID_S_RC_WH_IfanExposition_287f653d-2def-4741-b984-68b3a80ed627)
+AND
+DB_CompanionAvatarBond(_Var1, CHARACTERGUID_S_Player_Ifan_ad9a3327-4456-42a7-9bf4-7ad60cc9e54f)
+AND
+GetDistanceTo(CHARACTERGUID_S_Player_Ifan_ad9a3327-4456-42a7-9bf4-7ad60cc9e54f, _Var1, _Var2)
+AND
+_Var2 < 10
+AND
+QueryOnlyOnce("RC_WH_AD_Ifan_ToldAboutPast")
+THEN
+Proc_StartDialog(1, "RC_WH_AD_Ifan_ToldAboutPast", CHARACTERGUID_S_Player_Ifan_ad9a3327-4456-42a7-9bf4-7ad60cc9e54f);
+
+IF
+CharacterEnteredTrigger(CHARACTERGUID_S_Player_Ifan_ad9a3327-4456-42a7-9bf4-7ad60cc9e54f, TRIGGERGUID_S_RC_WH_IfanExposition_287f653d-2def-4741-b984-68b3a80ed627)
+AND
+DB_CompanionAvatarBond(CHARACTERGUID_S_Player_Ifan_ad9a3327-4456-42a7-9bf4-7ad60cc9e54f, _Var1)
+AND
+GetDistanceTo(CHARACTERGUID_S_Player_Ifan_ad9a3327-4456-42a7-9bf4-7ad60cc9e54f, _Var1, _Var2)
+AND
+_Var2 < 10
+AND
+QueryOnlyOnce("RC_WH_AD_Ifan_ToldAboutPast")
+THEN
+Proc_StartDialog(1, "RC_WH_AD_Ifan_ToldAboutPast", CHARACTERGUID_S_Player_Ifan_ad9a3327-4456-42a7-9bf4-7ad60cc9e54f);
+
+IF
+AutomatedDialogEnded("RC_WH_AD_Ifan_ToldAboutPast", _)
+AND
+DB_CompanionAvatarBond(_Var2, CHARACTERGUID_S_Player_Ifan_ad9a3327-4456-42a7-9bf4-7ad60cc9e54f)
+AND
+QRY_SpeakerIsAvailableAndInDialogRange(_Var2, CHARACTERGUID_S_Player_Ifan_ad9a3327-4456-42a7-9bf4-7ad60cc9e54f)
+AND
+QueryOnlyOnce("RC_WH_IfanTellPast_ARD_Any")
+THEN
+Proc_RelationshipDialog(_Var2, "RC_WH_IfanTellPast_ARD_Any", CHARACTERGUID_S_Player_Ifan_ad9a3327-4456-42a7-9bf4-7ad60cc9e54f);
+
+IF
+AutomatedDialogEnded("RC_WH_AD_Ifan_ToldAboutPast", _)
+AND
+DB_CompanionAvatarBond(CHARACTERGUID_S_Player_Ifan_ad9a3327-4456-42a7-9bf4-7ad60cc9e54f, _Var2)
+THEN
+Proc_RelationshipDialog(CHARACTERGUID_S_Player_Ifan_ad9a3327-4456-42a7-9bf4-7ad60cc9e54f, "RC_WH_TellPast_CRD_Ifan", _Var2);
+
+IF
+DialogEnded("RC_WH_TellPast_CRD_Ifan", (INTEGER)_Var1)
+AND
+DB_DialogPlayers(_Var1, _Var2, 2)
+THEN
+ObjectSetFlag(_Var2, "QuestUpdate_FTJ_COM_Ifan_WreckerHillsConfession");
+
+IF
+DialogEnded("RC_WH_IfanTellPast_ARD_Any", (INTEGER)_Var1)
+THEN
+ObjectSetFlag(CHARACTERGUID_S_Player_Ifan_ad9a3327-4456-42a7-9bf4-7ad60cc9e54f, "QuestUpdate_FTJ_Ifan_DarkFaction_WreckerHillsConfession");
+
+PROC
+Proc_COMFinished("RC_WC_BombScientist_COM_Ifan", (CHARACTERGUID)_Var1)
+AND NOT
+DB_GlobalFlag("GLO_Ifan_LearnedAboutBetrayal")
+THEN
+GlobalSetFlag("GLO_Ifan_LearnedAboutBetrayal");
+
+IF
+GlobalFlagSet("GLO_Ifan_LearnedAboutBetrayal")
+THEN
+DB_OnlyOnce("RC_WH_AD_Ifan_ToldAboutPast");
+ObjectSetFlag(CHARACTERGUID_S_Player_Ifan_ad9a3327-4456-42a7-9bf4-7ad60cc9e54f, "QuestUpdate_FTJ_Ifan_DarkFaction_Tricked");
+UserSetFlag(CHARACTERGUID_S_Player_Ifan_ad9a3327-4456-42a7-9bf4-7ad60cc9e54f, "QuestUpdate_FTJ_COM_Ifan_Tricked");
+Proc_RelationshipDialog(CHARACTERGUID_S_Player_Ifan_ad9a3327-4456-42a7-9bf4-7ad60cc9e54f, "RC_WC_BombScientist_CRD_Ifan", CHARACTERGUID_S_Player_Ifan_ad9a3327-4456-42a7-9bf4-7ad60cc9e54f);
+DB_OriginMomentTag("RC_BF_CorneredSourcerer_Sourcerer_Ghost", "IFAN", "RC_BF_CorneredSourcerer_Sourcerer_COM_Ifan");
+DB_OriginMomentTag("RC_BF_CorneredSourcerer_Sourcerer_Ghost", "SHAPESHIFT_IFAN", "RC_BF_CorneredSourcerer_Sourcerer_COM_Ifan");
+
+IF
+GameBookInterfaceClosed(ITEMGUID_S_RC_WC_BombScientist_HannagLetter_0f80a878-3e67-46bc-8aa1-7dadcd88f7fa, (CHARACTERGUID)_Var1)
+THEN
+UserSetFlag(_Var1, "RC_WC_BombScientist_KnowAboutHannag");
+
+IF
+GlobalFlagSet("GLO_Ifan_LearnedAboutBetrayal")
+AND
+UserGetFlag(CHARACTERGUID_S_Player_Ifan_ad9a3327-4456-42a7-9bf4-7ad60cc9e54f, "RC_BF_Hannag_HasMet", 0)
+THEN
+ObjectSetFlag(CHARACTERGUID_S_Player_Ifan_ad9a3327-4456-42a7-9bf4-7ad60cc9e54f, "QuestUpdate_FTJ_Ifan_DarkFaction_FindHannag");
+UserSetFlag(CHARACTERGUID_S_Player_Ifan_ad9a3327-4456-42a7-9bf4-7ad60cc9e54f, "QuestUpdate_FTJ_COM_Ifan_FindHannag");
+
+IF
+GlobalFlagSet("GLO_Ifan_LearnedAboutBetrayal")
+AND
+UserGetFlag(CHARACTERGUID_S_Player_Ifan_ad9a3327-4456-42a7-9bf4-7ad60cc9e54f, "RC_BF_Hannag_HasMet", 1)
+THEN
+ObjectSetFlag(CHARACTERGUID_S_Player_Ifan_ad9a3327-4456-42a7-9bf4-7ad60cc9e54f, "QuestUpdate_FTJ_Ifan_DarkFaction_FindHannagAlt");
+UserSetFlag(CHARACTERGUID_S_Player_Ifan_ad9a3327-4456-42a7-9bf4-7ad60cc9e54f, "QuestUpdate_FTJ_COM_Ifan_FindHannagAlt");
+
+IF
+ObjectFlagSet("QuestUpdate_FTJ_Ifan_DarkFaction_FindHannag", CHARACTERGUID_S_Player_Ifan_ad9a3327-4456-42a7-9bf4-7ad60cc9e54f, _)
+AND
+ObjectGetFlag(CHARACTERGUID_S_Player_Ifan_ad9a3327-4456-42a7-9bf4-7ad60cc9e54f, "RC_FL_Hannag_UsefulFact", 1)
+THEN
+ObjectSetFlag(CHARACTERGUID_S_Player_Ifan_ad9a3327-4456-42a7-9bf4-7ad60cc9e54f, "QuestUpdate_FTJ_Ifan_DarkFaction_HannaginBF");
+UserSetFlag(CHARACTERGUID_S_Player_Ifan_ad9a3327-4456-42a7-9bf4-7ad60cc9e54f, "QuestUpdate_FTJ_COM_Ifan_HannaginBF");
+
+IF
+ObjectFlagSet("RC_FL_Hannag_UsefulFact", CHARACTERGUID_S_Player_Ifan_ad9a3327-4456-42a7-9bf4-7ad60cc9e54f, _)
+AND
+ObjectGetFlag(CHARACTERGUID_S_Player_Ifan_ad9a3327-4456-42a7-9bf4-7ad60cc9e54f, "QuestUpdate_FTJ_Ifan_DarkFaction_FindHannag", 1)
+THEN
+ObjectSetFlag(CHARACTERGUID_S_Player_Ifan_ad9a3327-4456-42a7-9bf4-7ad60cc9e54f, "QuestUpdate_FTJ_Ifan_DarkFaction_HannaginBF");
+UserSetFlag(CHARACTERGUID_S_Player_Ifan_ad9a3327-4456-42a7-9bf4-7ad60cc9e54f, "QuestUpdate_FTJ_COM_Ifan_HannaginBF");
+
+IF
+DB_Avatars(CHARACTERGUID_S_Player_Ifan_ad9a3327-4456-42a7-9bf4-7ad60cc9e54f)
+THEN
+DB_OriginMomentTag_HighPriority("FTJ_IfansHandler", "IFAN", "FTJ_IfansHandler_COM_Ifan");
+
+PROC
+Proc_COMFinished("RC_DF_PaladinCheckpoint_COM_Ifan", (CHARACTERGUID)_Var1)
+THEN
+ObjectSetFlag(_Var1, "RC_DF_PaladinCheckpoint_COM_Ifan_Happened");
+
+IF
+DB_GlobalFlag("RC_BF_CorneredSourcerer_MagistersDead")
+AND
+DB_GlobalFlag("GLO_Ifan_LearnedAboutBetrayal")
+THEN
+DB_OriginMomentTag("RC_BF_CorneredSourcerer_Sourcerer", "IFAN", "RC_BF_CorneredSourcerer_Sourcerer_COM_Ifan");
+DB_OriginMomentTag("RC_BF_CorneredSourcerer_Sourcerer", "SHAPESHIFT_IFAN", "RC_BF_CorneredSourcerer_Sourcerer_COM_Ifan");
+
+PROC
+Proc_COMFinished("RC_BF_CorneredSourcerer_Sourcerer_COM_Ifan", (CHARACTERGUID)_Var1)
+THEN
+ObjectSetFlag(_Var1, "QuestUpdate_FTJ_COM_Ifan_HannagInfo");
+Proc_RelationshipDialog(CHARACTERGUID_S_Player_Ifan_ad9a3327-4456-42a7-9bf4-7ad60cc9e54f, "RC_BF_CorneredSourcerer_Sourcerer_CRD_Ifan", CHARACTERGUID_S_Player_Ifan_ad9a3327-4456-42a7-9bf4-7ad60cc9e54f);
+
+IF
+GlobalFlagSet("RC_BI_TalkAboutDFhelpingGodKing")
+AND NOT
+DB_Avatars(CHARACTERGUID_S_Player_Ifan_ad9a3327-4456-42a7-9bf4-7ad60cc9e54f)
+THEN
+GlobalClearFlag("RC_BI_TalkAboutDFhelpingGodKing");
+Proc_RelationshipDialog(CHARACTERGUID_S_Player_Ifan_ad9a3327-4456-42a7-9bf4-7ad60cc9e54f, "RC_BI_LizardDemonLeader_CRD_Ifan", CHARACTERGUID_S_GLO_Advocate_bfa3e903-78ab-46aa-9a95-54fb956eb2b3);
+
+IF
+DialogEnded("RC_BI_LizardDemonLeader", _)
+AND
+DB_GlobalFlag("RC_BI_TalkAboutDFhelpingGodKing")
+AND
+GetDistanceTo(CHARACTERGUID_S_Player_Ifan_ad9a3327-4456-42a7-9bf4-7ad60cc9e54f, CHARACTERGUID_S_GLO_Advocate_bfa3e903-78ab-46aa-9a95-54fb956eb2b3, _Var2)
+AND
+_Var2 < 20
+THEN
+TimerLaunch("RC_BI_LizardDemonLeader_ARD_Ifan", 2000);
+
+IF
+TimerFinished("RC_BI_LizardDemonLeader_ARD_Ifan")
+AND
+QRY_StartDialog(0, "RC_BI_LizardDemonLeader_ARD_Ifan", CHARACTERGUID_S_Player_Ifan_ad9a3327-4456-42a7-9bf4-7ad60cc9e54f)
+THEN
+GlobalClearFlag("RC_BI_TalkAboutDFhelpingGodKing");
+
+IF
+ObjectFlagSet("RC_BI_Ifan_UpgradeWolf", (CHARACTERGUID)_Var1, _)
+THEN
+CharacterAddSourcePoints(CHARACTERGUID_S_Player_Ifan_ad9a3327-4456-42a7-9bf4-7ad60cc9e54f, 1);
+CharacterUseSkill(CHARACTERGUID_S_Player_Ifan_ad9a3327-4456-42a7-9bf4-7ad60cc9e54f, "Summon_SoulWolf", CHARACTERGUID_S_Player_Ifan_ad9a3327-4456-42a7-9bf4-7ad60cc9e54f, 1, 1, 1);
+
+IF
+DialogEnded("CoS_Temples_Alexandar_COM_Ifan", _)
+AND
+DB_GlobalFlag("CoS_Alexandar_Murder")
+THEN
+PlayEffect(CHARACTERGUID_S_GLO_Alexandar_03e6345f-1bd3-403c-80e2-a443a74f6349, "RS3_FX_GP_Combat_Hit_Blood_01_Large");
+CreateSurface(CHARACTERGUID_S_GLO_Alexandar_03e6345f-1bd3-403c-80e2-a443a74f6349, "SurfaceBlood", 0.2, -1);
+CharacterDie(CHARACTERGUID_S_GLO_Alexandar_03e6345f-1bd3-403c-80e2-a443a74f6349, 1, "DoT");
+CharacterSetRelationFactionToFaction("CoS_Magister", "Hero", 0);
+CharacterSetRelationFactionToFaction("Hero", "CoS_Magister", 0);
+ObjectSetFlag(CHARACTERGUID_S_Player_Ifan_ad9a3327-4456-42a7-9bf4-7ad60cc9e54f, "GLO_PathOfBlood_MurderedInnocent");
+
+PROC
+Proc_COMFinished("CoS_Temples_Alexandar_COM_Ifan", (CHARACTERGUID)_Var1)
+THEN
+Proc_RelationshipDialog(CHARACTERGUID_S_Player_Ifan_ad9a3327-4456-42a7-9bf4-7ad60cc9e54f, "CoS_Temples_Alexandar_CRD_Ifan", CHARACTERGUID_S_Player_Ifan_ad9a3327-4456-42a7-9bf4-7ad60cc9e54f);
+ObjectSetFlag(_Var1, "QuestUpdate_FTJ_COM_Ifan_COSAlexandar");
+
+IF
+ObjectFlagSet("QuestUpdate_CoS_SpyMaster_BombDetonated", (CHARACTERGUID)_Var1, _)
+AND
+_Var1 != CHARACTERGUID_S_Player_Ifan_ad9a3327-4456-42a7-9bf4-7ad60cc9e54f
+AND NOT
+DB_Avatars(CHARACTERGUID_S_Player_Ifan_ad9a3327-4456-42a7-9bf4-7ad60cc9e54f)
+AND
+QRY_SameUser(_Var1, CHARACTERGUID_S_Player_Ifan_ad9a3327-4456-42a7-9bf4-7ad60cc9e54f)
+AND
+QueryOnlyOnce("Ifanisdisappointedinyouforusingdeathfog.")
+THEN
+ObjectSetFlag(CHARACTERGUID_S_Player_Ifan_ad9a3327-4456-42a7-9bf4-7ad60cc9e54f, "CompanionRelationDown20");
+
+IF
+CharacterDied(CHARACTERGUID_S_Player_Ifan_ad9a3327-4456-42a7-9bf4-7ad60cc9e54f)
+THEN
+GlobalSetFlag("GLO_Ifan_Dead");
+
+IF
+CharacterResurrected(CHARACTERGUID_S_Player_Ifan_ad9a3327-4456-42a7-9bf4-7ad60cc9e54f)
+THEN
+GlobalClearFlag("GLO_Ifan_Dead");
+
+IF
+DB_CompanionAvatarBond(CHARACTERGUID_S_Player_Ifan_ad9a3327-4456-42a7-9bf4-7ad60cc9e54f, _Var1)
+THEN
+PartySetFlag(_Var1, "GLO_Ifan_InParty");
+
+PROC
+Proc_CompanionLeftParty(CHARACTERGUID_S_Player_Ifan_ad9a3327-4456-42a7-9bf4-7ad60cc9e54f, (CHARACTERGUID)_Var1)
+THEN
+PartyClearFlag(_Var1, "GLO_Ifan_InParty", 0);
+
+IF
+CharacterEnteredTrigger(CHARACTERGUID_S_Player_Ifan_ad9a3327-4456-42a7-9bf4-7ad60cc9e54f, TRIGGERGUID_S_SUB_Arx_cb6e79c8-f5f8-49d7-8d46-133e2d13349d)
+AND
+DB_CompanionAvatarBond(CHARACTERGUID_S_Player_Ifan_ad9a3327-4456-42a7-9bf4-7ad60cc9e54f, _Var1)
+THEN
+Proc_RelationshipDialog(CHARACTERGUID_S_Player_Ifan_ad9a3327-4456-42a7-9bf4-7ad60cc9e54f, "ARX_LV_StartAct3_CRD_Ifan", _Var1);
+
+IF
+DialogEnded("ARX_LV_StartAct3_CRD_Ifan", _)
+AND
+DB_GlobalFlag("GLO_Ifan_LeavesPermanently")
+AND
+DB_CompanionAvatarBond(CHARACTERGUID_S_Player_Ifan_ad9a3327-4456-42a7-9bf4-7ad60cc9e54f, _Var2)
+AND
+DB_OriginLeavingDialog(CHARACTERGUID_S_Player_Ifan_ad9a3327-4456-42a7-9bf4-7ad60cc9e54f, _Var3)
+THEN
+PROC_Origins_CompanionLeavePermanently(CHARACTERGUID_S_Player_Ifan_ad9a3327-4456-42a7-9bf4-7ad60cc9e54f);
+Proc_OriginLeft(CHARACTERGUID_S_Player_Ifan_ad9a3327-4456-42a7-9bf4-7ad60cc9e54f, "_LowRelation");
+DB_CompanionLeaving(CHARACTERGUID_S_Player_Ifan_ad9a3327-4456-42a7-9bf4-7ad60cc9e54f, _Var2);
+NOT DB_OriginLeavingDialog(CHARACTERGUID_S_Player_Ifan_ad9a3327-4456-42a7-9bf4-7ad60cc9e54f, _Var3);
+CharacterMakeStoryNpc(CHARACTERGUID_S_Player_Ifan_ad9a3327-4456-42a7-9bf4-7ad60cc9e54f, 1);
+ProcCharacterDisappearOutOfSight(CHARACTERGUID_S_Player_Ifan_ad9a3327-4456-42a7-9bf4-7ad60cc9e54f, 0, 1, "GLO_CompanionLeaves_LowRelation", 1);
+
+PROC
+Proc_COMFinished("ARX_MerchantEstate_Groom_COM_Ifan", (CHARACTERGUID)_Var1)
+THEN
+ObjectSetFlag(_Var1, "ARX_MerchantEstate_Groom_COM_Ifan_Finished");
+Proc_RelationshipDialog(CHARACTERGUID_S_Player_Ifan_ad9a3327-4456-42a7-9bf4-7ad60cc9e54f, "ARX_MerchantEstate_Groom_CRD_Ifan", _Var1);
+
+PROC
+Proc_DialogFlagSetup("ARX_MerchantEstate_Groom", (GUIDSTRING)_Var1, (GUIDSTRING)_Var2)
+AND
+ObjectGetFlag(_Var2, "ARX_MerchantEstate_Groom_COM_Ifan_Finished", 1)
+AND
+GetDistanceTo(_Var2, CHARACTERGUID_S_Player_Ifan_ad9a3327-4456-42a7-9bf4-7ad60cc9e54f, _Var3)
+AND
+_Var3 < 10
+THEN
+ObjectSetFlag(_Var2, "ARX_MerchantEstate_Groom_COM_Ifan_Finished_And_Ifan_Near");
+
+IF
+ObjectFlagSet("ARX_MerchantEstate_Groom_AssassinationQuestStarted", _, _)
+AND
+DB_CompanionAvatarBond(CHARACTERGUID_S_Player_Ifan_ad9a3327-4456-42a7-9bf4-7ad60cc9e54f, _Var3)
+AND
+PartyGetFlag(_Var3, "ARX_MerchantEstate_Groom_AssassinationQuestStarted", 1)
+THEN
+NOT DB_OriginMomentTag("ARX_MerchantEstate_Groom", "IFAN", "ARX_MerchantEstate_Groom_COM_Ifan");
+
+IF
+GlobalFlagSet("ARX_MerchantEstate_Wetwork_InitiatePoisonedEvent")
+THEN
+NOT DB_OriginMomentTag("ARX_MerchantEstate_Groom", "IFAN", "ARX_MerchantEstate_Groom_COM_Ifan");
+
+IF
+GlobalFlagSet("ARX_MerchantEstate_Groom_Wetwork_Disappeared")
+THEN
+NOT DB_OriginMomentTag("ARX_MerchantEstate_Groom", "IFAN", "ARX_MerchantEstate_Groom_COM_Ifan");
+
+IF
+SavegameLoaded((INTEGER)_Var1, (INTEGER)_Var2, (INTEGER)_Var3, (INTEGER)_Var4)
+AND
+QRY_VersionIsOlderThan(_Var1, _Var2, _Var3, _Var4, 3, 6, 1, 0)
+AND
+GlobalGetFlag("ARX_MerchantEstate_Wetwork_InitiatePoisonedEvent", 1)
+THEN
+NOT DB_OriginMomentTag("ARX_MerchantEstate_Groom", "IFAN", "ARX_MerchantEstate_Groom_COM_Ifan");
+
+IF
+SavegameLoaded((INTEGER)_Var1, (INTEGER)_Var2, (INTEGER)_Var3, (INTEGER)_Var4)
+AND
+QRY_VersionIsOlderThan(_Var1, _Var2, _Var3, _Var4, 3, 6, 1, 0)
+AND
+GlobalGetFlag("ARX_MerchantEstate_Groom_Wetwork_Disappeared", 1)
+THEN
+NOT DB_OriginMomentTag("ARX_MerchantEstate_Groom", "IFAN", "ARX_MerchantEstate_Groom_COM_Ifan");
+
+IF
+ObjectFlagSet("ARX_MerchantEstate_Groom_AssassinationQuestStarted", _, _)
+AND
+DB_IsPlayer(_Var3)
+THEN
+ObjectClearFlag(_Var3, "ARX_MerchantEstate_Groom_COM_Ifan_Finished_And_Ifan_Near");
+
+IF
+DialogEnded("LV_Ifan_Ghost", _)
+THEN
+PROC_FTJ_Origins_Ifan_MaybeGhostDisappear();
+
+IF
+DialogEnded("EG_Epilogue_Ifan_Ghost", _)
+THEN
+PROC_FTJ_Origins_Ifan_MaybeGhostDisappear();
+
+PROC
+PROC_FTJ_Origins_Ifan_MaybeGhostDisappear()
+AND
+DB_GlobalFlag("GLO_Ifan_Disappear")
+THEN
+Poof(CHARACTERGUID_LV_Ifan_Ghost_8623e194-02bb-4fc9-855c-6f0da8a1c87a);
+DB_GoneGhosts(CHARACTERGUID_LV_Ifan_Ghost_8623e194-02bb-4fc9-855c-6f0da8a1c87a);
+CharacterUnlinkGhost(CHARACTERGUID_S_Player_Ifan_ad9a3327-4456-42a7-9bf4-7ad60cc9e54f, CHARACTERGUID_LV_Ifan_Ghost_8623e194-02bb-4fc9-855c-6f0da8a1c87a);
+
+IF
+ObjectFlagSet("FTJ_SidedWithBrutes", (GUIDSTRING)_Var1, _)
+THEN
+ObjectSetFlag(_Var1, "GLO_FriendZone_Ifan");
+
+IF
+DialogEnded("EG_Epilogue_Ifan", _)
+AND
+ObjectGetFlag(CHARACTERGUID_S_Player_Ifan_ad9a3327-4456-42a7-9bf4-7ad60cc9e54f, "EG_Ifan_SummonWolf_WalkAway", 1)
+THEN
+ObjectClearFlag(CHARACTERGUID_S_Player_Ifan_ad9a3327-4456-42a7-9bf4-7ad60cc9e54f, "EG_Ifan_SummonWolf_WalkAway");
+CharacterMoveTo(CHARACTERGUID_S_Player_Ifan_ad9a3327-4456-42a7-9bf4-7ad60cc9e54f, TRIGGERGUID_S_EG_Epilogue_IfanStareArSea_e230e356-d37b-4da2-927f-cca593312b16, 0, "EG_Ifan_AtSeastarepoint", 0);
+
+IF
+StoryEvent((CHARACTERGUID)_Var1, "EG_Ifan_AtSeastarepoint")
+THEN
+CharacterLookFromTrigger(_Var1, TRIGGERGUID_S_EG_Epilogue_IfanStareArSea_e230e356-d37b-4da2-927f-cca593312b16, 1);
+CharacterAddSourcePoints(_Var1, 1);
+CharacterUseSkill(_Var1, "Summon_SoulWolf", _Var1, 1, 1, 1);
+
+IF
+SavegameLoaded((INTEGER)_Var1, (INTEGER)_Var2, (INTEGER)_Var3, (INTEGER)_Var4)
+AND
+QRY_VersionIsOlderThan(_Var1, _Var2, _Var3, _Var4, 3, 6, 0, 1)
+AND NOT
+DB_NoLowAttitudeDialog(CHARACTERGUID_S_FTJ_IfanHandler_d0920841-a984-4ea4-92c6-31d236ee2540)
+THEN
+DB_NoLowAttitudeDialog(CHARACTERGUID_S_FTJ_IfanHandler_d0920841-a984-4ea4-92c6-31d236ee2540);
+
+
+EXITSECTION
+ENDEXITSECTION
+
+ParentTargetEdge "Start"

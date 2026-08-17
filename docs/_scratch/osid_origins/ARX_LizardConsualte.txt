@@ -1,0 +1,822 @@
+Version 1
+SubGoalCombiner SGC_AND
+
+INITSECTION
+ProcTriggerRegisterForPlayers(TRIGGERGUID_RC_ARX_LizardConsul_716b7fb5-bc77-473a-a9ad-4de792002624);
+ProcTriggerRegisterForPlayers(TRIGGERGUID_S_ARX_LizardConsulate_Firefighters_React_6818ce80-473c-4879-8d9a-7770f51ac178);
+ProcTriggerRegisterForPlayers(TRIGGERGUID_S_ARX_LizardConsulate_SawVoidwoken_eb6e9fc8-a971-4429-a79c-4a0dc1f2d60f);
+DB_OriginMomentTag("ARX_LizardConsulate_DoorToHorrorSleep", "RED PRINCE", "ARX_LizardConsulate_DoorToHorrorSleep_COM_RedPrince");
+DB_ARX_LizardConsulate_DoorToHorrorSleep("ARX_LizardConsulate_DoorToHorrorSleep");
+DB_ARX_LizardConsulate_DoorToHorrorSleep("ARX_LizardConsulate_DoorToHorrorSleep_COM_RedPrince");
+DB_Dialogs(CHARACTERGUID_S_ARX_LizardConsulate_Priest_7e4b9156-25d5-4f9b-833f-17442ec72523, "ARX_LizardConsulate_Priest");
+DB_Dialogs(CHARACTERGUID_S_ARX_LizardConsulate_Commoner01_6d429134-2f01-41f2-8b32-7d3904a84a2d, "ARX_LizardConsulate_Commoner01");
+DB_Dialogs(CHARACTERGUID_S_ARX_LizardConsulate_Commoner02_582291a5-b785-4eb7-b802-30768eca317e, "ARX_LizardConsulate_Commoner02");
+DB_Dialogs(CHARACTERGUID_S_ARX_LizardConsulate_Paladin_FireFighter2_f064869f-59b8-4671-be11-1ecfd0af228f, "ARX_LizardConsulate_Paladin_FireFighter2");
+DB_Dialogs(CHARACTERGUID_S_ARX_LizardConsulate_Paladin_FireFighter1_9ea2b5d2-0821-4075-93ca-6e774da4bc40, "ARX_LizardConsulate_Paladin_FireFighter1");
+DB_Ghosts(CHARACTERGUID_ARX_Lizard_Consulate_Female_Corpse1_00a590a5-a893-408d-ad69-d20009b83b3d, CHARACTERGUID_ARX_Lizard_Consulate_Female_Corpse1_Ghost_47a47724-bafd-4bc4-a1bd-576412c80f2d, "ARX_LizardConsulate_F_Lizard_Corpse1_Ghost");
+DB_Ghosts(CHARACTERGUID_S_ARX_Lizard_Consulate_Male_Corpse3_fee772b3-ce49-4378-89b5-218bf9ee5652, CHARACTERGUID_S_ARX_Lizard_Consulate_Male_Corpse3_Ghost_bc1a7058-0a47-4462-87b3-d7e6db6a7bc3, "ARX_LizardConsulate_M_Lizard_Corpse3_Ghost");
+DB_Ghosts(CHARACTERGUID_S_ARX_LizardConsulate_F_Lizard_Corpse4_134a4775-f44b-4832-98f5-2304c7d70ad2, CHARACTERGUID_S_ARX_LizardConsulate_F_Lizard_Corpse4_Ghost_ac9caae8-0a42-43f1-a2d1-2df486effd50, "ARX_LizardConsulate_F_Lizard_Corpse4_Ghost");
+DB_Ghosts(CHARACTERGUID_S_ARX_LizardConsulate_Garden_DeadAssassin_462f417b-cc10-4995-9404-f7d43c3febd2, CHARACTERGUID_S_ARX_LizardConsulate_Garden_DeadAssassin_Ghost_434ca14d-aa85-4e7c-8cf2-4da75539f477, "ARX_LizardConsulate_Garden_DeadAssassin_Ghost");
+ItemToInventory(ITEMGUID_S_ARX_LizardConsulate_TrappedHuman_Visa_cacf9494-1de2-49ad-822a-f2daac47db3e, CHARACTERGUID_S_ARX_LizardConsulate_TrappedHuman_77e569b6-d8e4-43ae-bd48-298880cbf1cc);
+DB_ARX_LizardConsulate_EntrencePaladins(CHARACTERGUID_S_ARX_LizardConsulate_Paladin_FireFighter1_9ea2b5d2-0821-4075-93ca-6e774da4bc40);
+DB_ARX_LizardConsulate_EntrencePaladins(CHARACTERGUID_S_ARX_LizardConsulate_Paladin_FireFighter2_f064869f-59b8-4671-be11-1ecfd0af228f);
+DB_ARX_LizardConsulate_InfernalLizards(CHARACTERGUID_S_ARX_LizardConsualte_InfernalLizard_01_ade1bfee-f057-4b1f-8390-33ae025e9ea8, CHARACTERGUID_S_ARX_LizardConsualte_InfernalLizard_01_SpawnHelper_44996e5f-b05e-4cd7-b0d2-c96348a05791);
+DB_ARX_LizardConsulate_InfernalLizards(CHARACTERGUID_S_ARX_LizardConsualte_InfernalLizard_02_c0f3c58e-8d05-4d64-9098-d2f7bb8669d0, CHARACTERGUID_S_ARX_LizardConsualte_InfernalLizard_02_SpawnHelper_ef7b9956-69fc-478a-b18f-38f87ee58fea);
+DB_ARX_LizardConsulate_InfernalLizards(CHARACTERGUID_S_ARX_LizardConsualte_InfernalLizard_03_85bf82a9-de63-4982-8806-bbd1cee3ab37, CHARACTERGUID_S_ARX_LizardConsualte_InfernalLizard_03_SpawnHelper_e6f54bc7-d84a-4810-a1be-7de55916cd56);
+DB_ARX_LizardConsulate_InfernalLizards(CHARACTERGUID_S_ARX_LizardConsualte_InfernalLizard_04_7161c772-d04d-4c6a-b5e4-46568fcbd612, CHARACTERGUID_S_ARX_LizardConsualte_InfernalLizard_04_SpawnHelper_308f7e3d-6c3a-4319-a938-9c6e6d752617);
+DB_ARX_LizardConsulate_InfernalLizards(CHARACTERGUID_S_ARX_LizardConsualte_InfernalLizard_05_7c94819e-89d2-46cf-8ea4-0d0d7e317a75, CHARACTERGUID_S_ARX_LizardConsualte_InfernalLizard_05_SpawnHelper_e742a9dd-05c6-4579-9e39-8b4fb51a451d);
+DB_ARX_LizardConsulate_InfernalLizards_Ambush(TRIGGERGUID_RC_ARX_LizardConsul_716b7fb5-bc77-473a-a9ad-4de792002624, CHARACTERGUID_S_ARX_LizardConsualte_InfernalLizard_01_ade1bfee-f057-4b1f-8390-33ae025e9ea8, "ARX_LizardConsulate_InfernalLizard_Ambush1");
+DB_ARX_LizardConsulate_InfernalLizards_Ambush(TRIGGERGUID_RC_ARX_LizardConsul_716b7fb5-bc77-473a-a9ad-4de792002624, CHARACTERGUID_S_ARX_LizardConsualte_InfernalLizard_02_c0f3c58e-8d05-4d64-9098-d2f7bb8669d0, "ARX_LizardConsulate_InfernalLizard_Ambush1");
+DB_ARX_LizardConsulate_InfernalLizards_Ambush(TRIGGERGUID_S_ARX_LizardConsulate_InfernalLizard_Ambush2_Trigger_3a01e123-cccc-45c6-8b93-7b8a5d9f02d1, CHARACTERGUID_S_ARX_LizardConsualte_InfernalLizard_03_85bf82a9-de63-4982-8806-bbd1cee3ab37, "ARX_LizardConsulate_InfernalLizard_Ambush2");
+DB_ARX_LizardConsulate_InfernalLizards_Ambush(TRIGGERGUID_S_ARX_LizardConsulate_InfernalLizard_Ambush2_Trigger_3a01e123-cccc-45c6-8b93-7b8a5d9f02d1, CHARACTERGUID_S_ARX_LizardConsualte_InfernalLizard_04_7161c772-d04d-4c6a-b5e4-46568fcbd612, "ARX_LizardConsulate_InfernalLizard_Ambush2");
+DB_ARX_LizardConsulate_InfernalLizards_Ambush(TRIGGERGUID_S_ARX_LizardConsulate_InfernalLizard_Ambush2_Trigger_3a01e123-cccc-45c6-8b93-7b8a5d9f02d1, CHARACTERGUID_S_ARX_LizardConsualte_InfernalLizard_05_7c94819e-89d2-46cf-8ea4-0d0d7e317a75, "ARX_LizardConsulate_InfernalLizard_Ambush2");
+ProcTriggerRegisterForPlayers(TRIGGERGUID_S_ARX_LizardConsulate_Garden_e91bc36a-e395-49e0-9ece-2cdee6aa1ecc);
+ProcTriggerRegisterForPlayers(TRIGGERGUID_S_ARX_LizardConsulate_InfernalLizard_Ambush2_Trigger_3a01e123-cccc-45c6-8b93-7b8a5d9f02d1);
+ItemToInventory(ITEMGUID_S_ARX_LizardConsualte_LockedDoor_01_Key_14bca736-30ad-41cb-8ebe-d4fee812f044, CHARACTERGUID_S_ARX_LizardConsulate_M_Lizard_Corpse3_fee772b3-ce49-4378-89b5-218bf9ee5652);
+ItemToInventory(ITEMGUID_S_ARX_LizardConsualte_LockedDoor_Garden_Key_8cb50c0a-a9bf-4178-8bac-8914b816d999, CHARACTERGUID_S_ARX_LizardConsulate_M_Lizard_Corpse4_ddd42332-8d6f-4879-b947-aecff93d3a07);
+DB_ARX_Cathedral_InteractiveAD(ITEMGUID_S_FUR_Humans_Painting_Gods_ZorlStissa_000_d6236531-c064-4166-8220-2ba9859e5cf5, "ARX_AD_Cathedral_GodsPainting_ZorlStissa");
+DB_ARX_Cathedral_InteractiveAD(ITEMGUID_S_ARX_HorrorSleep_Sunset_LizardGodPicture_bf486c7d-16a5-4588-9cc8-f87d2d1c6475, "ARX_AD_Cathedral_GodsPainting_ZorlStissa");
+DB_Dialogs(CHARACTERGUID_S_ARX_BridgeCathedral_Lizard_e8a80940-735b-4aee-812f-e4a59665a608, "ARX_BridgeCathedral_Lizard");
+PROC_LoopEffect("RS3_FX_GP_ScriptedEvent_GhostPainting_Indication_01", TRIGGERGUID_ARX_LizardConsulate_Garden_PortalHint_Effect_6ea2c238-8c82-4aa1-a8af-8b0c0122c441, "ARX_LizardConsulate_Garden_PortalHint", "ARX_Main", "");
+ItemSetForceSynch(ITEMGUID_S_ARX_LizardConsualte_DoorToHorrorSleep_0453f684-d357-8be0-4b5e-13e6004ed7d5, 1);
+
+KBSECTION
+IF
+CharacterEnteredTrigger((CHARACTERGUID)_Var1, TRIGGERGUID_S_ARX_LizardConsulate_Firefighters_React_6818ce80-473c-4879-8d9a-7770f51ac178)
+AND
+DB_IsPlayer(_Var1)
+THEN
+UserSetFlag(_Var1, "ARX_LizardConsulate_PlayerEntered");
+
+IF
+CharacterEnteredTrigger((CHARACTERGUID)_Var1, TRIGGERGUID_S_ARX_LizardConsulate_Firefighters_React_6818ce80-473c-4879-8d9a-7770f51ac178)
+AND
+DB_IsPlayer(_Var1)
+AND
+DB_ARX_LizardConsulate_EntrencePaladins(_Var2)
+AND
+QRY_SpeakerIsAvailable(_Var2)
+AND
+QueryOnlyOnce("ARX_LizardConsulate_PaladinStartDialogOnEntry")
+THEN
+Proc_StartDialog(1, "ARX_LizardConsulate_AD_Paladin_FireFighter_ReactToEnteredTheConsulate", _Var2, _Var1);
+
+IF
+GameBookInterfaceClosed(ITEMGUID_S_ARX_LizardConsulate_TrappedHuman_Visa_cacf9494-1de2-49ad-822a-f2daac47db3e, (CHARACTERGUID)_Var1)
+THEN
+UserSetFlag(_Var1, "ARX_LizardConsulate_TrappedHuman_FoundLetter");
+
+IF
+DialogEnded("ARX_LizardConsulate_Commoner01", (INTEGER)_Var1)
+AND
+DialogGetInvolvedNPC(_Var1, 1, _Var2)
+AND
+ObjectGetFlag(_Var2, "ARX_Lizard_Consulate_Commoner01_Leave", 1)
+THEN
+ClearVarObject(CHARACTERGUID_S_ARX_LizardConsulate_Commoner01_6d429134-2f01-41f2-8b32-7d3904a84a2d, "currentState");
+DialogRequestStop(CHARACTERGUID_S_ARX_Lizard_Consulate_Commoner02_582291a5-b785-4eb7-b802-30768eca317e);
+SetHasDialog(CHARACTERGUID_S_ARX_Lizard_Consulate_Commoner02_582291a5-b785-4eb7-b802-30768eca317e, 0);
+ProcCharacterDisappearOutOfSight(CHARACTERGUID_S_ARX_Lizard_Consulate_Commoner02_582291a5-b785-4eb7-b802-30768eca317e, 90, 0, "", 0);
+SetHasDialog(_Var2, 0);
+ProcCharacterDisappearOutOfSight(_Var2, 90, 0, "", 0);
+
+IF
+DialogEnded("ARX_LizardConsulate_M_Lizard_Corpse3_Ghost", (INTEGER)_Var1)
+AND
+DialogGetInvolvedPlayer(_Var1, 1, _Var2)
+AND
+ObjectGetFlag(_Var2, "ARX_LizardConsulate_DiscoveredThePrincess_DeeperIntoTheConsulate", 1)
+THEN
+proc_ARX_LizardConsulate_RP_React_RedPrincessInConsulate(_Var2);
+
+PROC
+proc_ARX_LizardConsulate_RP_React_RedPrincessInConsulate(CHARACTERGUID_S_Player_RedPrince_a26a1efb-cdc8-4cf3-a7b2-b2f9544add6f)
+AND
+QueryOnlyOnce("ARX_AD_LizardConsulate_RP_RedPrincessInConsulate_OnlyOnce")
+THEN
+Proc_StartDialog(1, "ARX_AD_LizardConsulate_RP_RedPrincessInConsulate", CHARACTERGUID_S_Player_RedPrince_a26a1efb-cdc8-4cf3-a7b2-b2f9544add6f);
+
+PROC
+proc_ARX_LizardConsulate_RP_React_RedPrincessInConsulate((CHARACTERGUID)_Var1)
+AND
+GetDistanceTo(_Var1, CHARACTERGUID_S_Player_RedPrince_a26a1efb-cdc8-4cf3-a7b2-b2f9544add6f, _Var2)
+AND
+_Var2 < 16
+AND
+QueryOnlyOnce("ARX_AD_LizardConsulate_RP_RedPrincessInConsulate_OnlyOnce")
+THEN
+Proc_StartDialog(1, "ARX_AD_LizardConsulate_RP_RedPrincessInConsulate", CHARACTERGUID_S_Player_RedPrince_a26a1efb-cdc8-4cf3-a7b2-b2f9544add6f);
+
+PROC
+proc_ARX_LizardConsulate_RP_React_RedPrincessInConsulate((GUIDSTRING)_Var1)
+AND NOT
+DB_OnlyOnce("ARX_AD_LizardConsulate_RP_RedPrincessInConsulate_OnlyOnce")
+THEN
+ObjectClearFlag(_Var1, "ARX_LizardConsulate_DiscoveredThePrincess_DeeperIntoTheConsulate");
+
+IF
+CharacterEnteredTrigger((CHARACTERGUID)_Var1, TRIGGERGUID_S_ARX_LizardConsulate_Garden_e91bc36a-e395-49e0-9ece-2cdee6aa1ecc)
+AND
+PartyGetFlag(_Var1, "ARX_AD_LizardConsulate_Garden", 0)
+THEN
+PartySetFlag(_Var1, "ARX_AD_LizardConsulate_Garden");
+Proc_StartDialog(1, "ARX_AD_LizardConsulate_Garden", _Var1);
+
+IF
+ItemGhostRevealed(ITEMGUID_S_ARX_LizardConsualte_DoorToHorrorSleep_0453f684-d357-8be0-4b5e-13e6004ed7d5)
+AND
+DB_IsPlayer(_Var1)
+AND
+CharacterCanSeeGhost(_Var1, ITEMGUID_S_ARX_LizardConsualte_DoorToHorrorSleep_0453f684-d357-8be0-4b5e-13e6004ed7d5, 1)
+THEN
+Proc_ARX_LizardConsualte_DoorToHorrorSleep_Revealed(_Var1);
+
+IF
+ItemGhostRevealed(ITEMGUID_S_ARX_LizardConsualte_DoorToHorrorSleep_0453f684-d357-8be0-4b5e-13e6004ed7d5)
+THEN
+ItemSetForceSynch(ITEMGUID_S_ARX_LizardConsualte_DoorToHorrorSleep_0453f684-d357-8be0-4b5e-13e6004ed7d5, 0);
+
+PROC
+Proc_ARX_LizardConsualte_DoorToHorrorSleep_Revealed((CHARACTERGUID)_Var1)
+THEN
+PartySetFlag(_Var1, "QuestUpdate_ARX_LizardConsulate_ConsulateRP");
+
+PROC
+Proc_ARX_LizardConsualte_DoorToHorrorSleep_Revealed((CHARACTERGUID)_Var1)
+AND
+QRY_SpeakerIsAvailable(_Var1)
+AND
+QueryOnlyOnce("ARX_LizardConsualte_DoorToHorrorSleep_Revealed")
+THEN
+StartVoiceBark("ARX_LizardConsualte_VB_DoorToHorrorSleep_Revealed", _Var1);
+
+IF
+ItemGhostRevealed(ITEMGUID_S_ARX_LizardConsulate_DoorToHorrorSleep_0453f684-d357-8be0-4b5e-13e6004ed7d5)
+AND
+PlayLoopEffect(ITEMGUID_S_ARX_LizardConsulate_DoorToHorrorSleep_0453f684-d357-8be0-4b5e-13e6004ed7d5, "RS3_FX_GP_ScriptedEvent_HorrorSleep_Portal_Spirits_01", "", _Var1)
+THEN
+DB_S_ARX_LizardConsulate_DoorToHorrorSleep_Effect(ITEMGUID_S_ARX_LizardConsulate_DoorToHorrorSleep_0453f684-d357-8be0-4b5e-13e6004ed7d5, _Var1);
+
+IF
+GlobalFlagSet("ARX_HorrorSleep_Closed")
+AND
+DB_S_ARX_LizardConsulate_DoorToHorrorSleep_Effect(ITEMGUID_S_ARX_LizardConsulate_DoorToHorrorSleep_0453f684-d357-8be0-4b5e-13e6004ed7d5, _Var1)
+THEN
+StopLoopEffect(_Var1);
+
+IF
+GlobalFlagSet("ARX_HorrorSleep_Closed")
+THEN
+PROC_StopLoopEffect(TRIGGERGUID_ARX_LizardConsulate_Garden_PortalHint_Effect_6ea2c238-8c82-4aa1-a8af-8b0c0122c441, "ARX_LizardConsulate_Garden_PortalHint");
+
+IF
+CharacterUsedItem((CHARACTERGUID)_Var1, ITEMGUID_S_ARX_LizardConsulate_DoorToHorrorSleep_0453f684-d357-8be0-4b5e-13e6004ed7d5)
+AND
+GlobalGetFlag("ARX_HorrorSleep_Closed", 0)
+AND
+CharacterIsInCombat(_Var1, 0)
+THEN
+Proc_StartDialog(0, "ARX_LizardConsulate_DoorToHorrorSleep", ITEMGUID_S_ARX_LizardConsulate_DoorToHorrorSleep_0453f684-d357-8be0-4b5e-13e6004ed7d5, _Var1);
+
+IF
+CharacterUsedItem((CHARACTERGUID)_Var1, ITEMGUID_S_ARX_LizardConsulate_DoorToHorrorSleep_0453f684-d357-8be0-4b5e-13e6004ed7d5)
+AND
+GlobalGetFlag("ARX_HorrorSleep_Closed", 0)
+AND
+CharacterIsInCombat(_Var1, 1)
+THEN
+Proc_Arx_HorrorSleep_InitiateTeleport_CheckDestination(_Var1);
+
+IF
+DialogEnded((STRING)_Var1, (INTEGER)_Var2)
+AND
+DB_ARX_LizardConsulate_DoorToHorrorSleep(_Var1)
+AND
+DB_DialogPlayers(_Var2, _Var3, _)
+AND
+ObjectGetFlag(_Var3, "ARX_LizardConsulate_DoorToHorrorSleep_StartTeleport", 1)
+THEN
+Proc_Arx_HorrorSleep_InitiateTeleport_CheckDestination(_Var3);
+ObjectClearFlag(_Var3, "ARX_LizardConsulate_DoorToHorrorSleep_StartTeleport");
+
+PROC
+Proc_Arx_HorrorSleep_InitiateTeleport_CheckDestination((CHARACTERGUID)_Var1)
+AND
+PartyGetFlag(_Var1, "ARX_LizardPrincess_AskedToBringRP", 1)
+THEN
+Proc_ARX_HorrorSleep_TeleportToSunSet(_Var1, 1);
+
+PROC
+Proc_Arx_HorrorSleep_InitiateTeleport_CheckDestination((CHARACTERGUID)_Var1)
+AND
+PartyGetFlag(_Var1, "ARX_LizardPrincess_AskedToBringRP", 0)
+THEN
+Proc_Arx_HorrorSleep_InitiateTeleport(_Var1);
+
+PROC
+Proc_Arx_HorrorSleep_InitiateTeleport((CHARACTERGUID)_Var1)
+AND
+DB_IsPlayer(_Var2)
+AND
+CharactersAreGrouped(_Var1, _Var2, 1)
+THEN
+ApplyStatus(_Var2, "BLIND", 3, 1);
+
+PROC
+Proc_Arx_HorrorSleep_InitiateTeleport((CHARACTERGUID)_Var1)
+AND
+GetUUID(_Var1, _Var2)
+AND
+StringConcatenate("HorrorSleep_InitiateTeleport_Timer_", _Var2, _Var3)
+THEN
+DB_Arx_HorrorSleep_InitiateTeleport(_Var1, _Var3);
+PlayEffect(_Var1, "RS3_FX_GP_ScriptedEvent_FJ_RedPrinceO_DarknessFadeIn_01");
+FadeToBlack(_Var1, 2, 0, "HorrorSleep_InitiateTeleport");
+TimerLaunch(_Var3, 3000);
+
+IF
+TimerFinished((STRING)_Var1)
+AND
+DB_Arx_HorrorSleep_InitiateTeleport(_Var2, _Var1)
+AND
+DB_IsPlayer(_Var3)
+AND
+CharactersAreGrouped(_Var3, _Var2, 1)
+THEN
+PlayEffect(_Var3, "RS3_FX_GP_ScriptedEvent_Teleport_GenericSmoke_01");
+LeaveCombat(_Var3);
+ProcForceStopDialog(_Var3);
+TeleportTo(_Var3, TRIGGERGUID_S_RC_ARX_HorrorSleep_StartPoint_ad545a8f-fb39-4ef3-af74-62b56e5ae8d5, "TEMP_RC_ARX_HorrorSleep_Closed", 1);
+
+IF
+TimerFinished((STRING)_Var1)
+AND
+DB_Arx_HorrorSleep_InitiateTeleport(_Var2, _Var1)
+AND
+GetPosition(_Var2, _Var3, _Var4, _Var5)
+THEN
+PlayEffectAtPosition("RS3_FX_GP_ScriptedEvent_Teleport_GenericSmoke_01", _Var3, _Var4, _Var5);
+PlayEffect(_Var2, "RS3_FX_GP_ScriptedEvent_FJ_RedPrinceO_DarknessFadeOut_01");
+FadeToBlack(_Var2, 2, 1, "HorrorSleep_InitiateTeleport");
+NOT DB_Arx_HorrorSleep_InitiateTeleport(_Var2, _Var1);
+TimerLaunch("RC_ARX_VB_HorrorSleep_Enter", 2000);
+
+IF
+TimerFinished("RC_ARX_VB_HorrorSleep_Enter")
+AND
+DB_InRegion(_Var1, TRIGGERGUID_S_RC_ARX_HorrorSleep_1b8cf005-392f-434a-a564-ecae6778fab0)
+AND
+QueryOnlyOnce("RC_ARX_VB_HorrorSleep_Enter")
+THEN
+StartVoiceBark("RC_ARX_VB_HorrorSleep_Enter", _Var1);
+
+IF
+CharacterEnteredTrigger((CHARACTERGUID)_Var1, S_ARX_HorrorSleep_Arena_1b8cf005-392f-434a-a564-ecae6778fab0)
+THEN
+PROC_BlockWaypointUsage(_Var1);
+
+IF
+CharacterEnteredTrigger((CHARACTERGUID)_Var1, TRIGGERGUID_S_ARX_LizardConsulate_716b7fb5-bc77-473a-a9ad-4de792002624)
+AND
+DB_BlockWaypointUsage(_Var1)
+THEN
+PROC_UnblockWaypointUsage(_Var1);
+
+IF
+DB_ARX_LizardConsulate_InfernalLizards(_Var1, _)
+THEN
+SetOnStage(_Var1, 0);
+
+IF
+CharacterUsedSkillOnTarget((CHARACTERGUID)_Var1, (CHARACTERGUID)_Var2, "Target_Bless", _, _)
+AND
+DB_IsPlayer(_Var1)
+AND
+DB_ARX_LizardConsulate_InfernalLizards(_Var2, _)
+AND
+CharacterIsDead(_Var2, 0)
+AND
+QueryOnlyOnce("ARX_LizardConsulate_AD_InfernalLizard_ReactToBlessed")
+THEN
+Proc_StartDialog(1, "ARX_LizardConsulate_AD_InfernalLizard_ReactToBlessed", _Var1);
+
+IF
+CharacterEnteredTrigger((CHARACTERGUID)_Var1, (TRIGGERGUID)_Var2)
+AND
+DB_ARX_LizardConsulate_InfernalLizards_Ambush(_Var2, _Var3, _Var4)
+AND
+QueryOnlyOnce(_Var4)
+THEN
+ARX_LizardConsulate_InfernalLizard_Ambush(_Var4);
+
+PROC
+ARX_LizardConsulate_InfernalLizard_Ambush((STRING)_Var1)
+AND
+DB_ARX_LizardConsulate_InfernalLizards_Ambush(_Var2, _Var3, _Var1)
+THEN
+CharacterAppear(_Var3, 1, "");
+
+IF
+CharacterCharacterEvent((CHARACTERGUID)_Var1, (CHARACTERGUID)_Var2, "ARX_LizardConsulate_InfernalLizard_Ressurect")
+AND NOT
+DB_OnlyOnce("ARX_LizardConsulate_InfernalLizard_Ressurect")
+THEN
+DB_ARX_LizardConsulate_InfernalLizard_Ressurect_PlayerReact(_Var1);
+
+IF
+ObjectEnteredCombat((CHARACTERGUID)_Var1, (INTEGER)_Var2)
+AND
+DB_ARX_LizardConsulate_InfernalLizard_Ressurect_PlayerReact(_Var1)
+THEN
+NOT DB_ARX_LizardConsulate_InfernalLizard_Ressurect_PlayerReact(_Var1);
+DB_ARX_LizardConsulate_InfernalLizard_Ressurect_PlayerReact(_Var1, _Var2);
+
+IF
+ObjectTurnStarted((CHARACTERGUID)_Var1)
+AND
+DB_ARX_LizardConsulate_InfernalLizard_Ressurect_PlayerReact(_Var2, _Var3)
+AND
+DB_IsPlayer(_Var1)
+AND
+CombatGetIDForCharacter(_Var1, _Var3)
+AND
+QueryOnlyOnce("ARX_LizardConsulate_InfernalLizard_Ressurect")
+THEN
+Proc_StartDialog(1, "ARX_LizardConsulate_AD_InfernalLizard_Ressurect", _Var1);
+PartySetFlag(_Var1, "QuestUpdate_ARX_LizardConsulate_Consulate_InfernalLizardResurrected");
+NOT DB_ARX_LizardConsulate_InfernalLizard_Ressurect_PlayerReact(_Var2, _Var3);
+
+IF
+ObjectSwitchedCombat((CHARACTERGUID)_Var1, (INTEGER)_Var2, (INTEGER)_Var3)
+AND
+DB_ARX_LizardConsulate_InfernalLizard_Ressurect_PlayerReact(_Var1, _Var2)
+THEN
+NOT DB_ARX_LizardConsulate_InfernalLizard_Ressurect_PlayerReact(_Var1, _Var2);
+DB_ARX_LizardConsulate_InfernalLizard_Ressurect_PlayerReact(_Var1, _Var3);
+
+IF
+CombatEnded((INTEGER)_Var1)
+AND
+DB_ARX_LizardConsulate_InfernalLizard_Ressurect_PlayerReact(_Var2, _Var1)
+THEN
+NOT DB_ARX_LizardConsulate_InfernalLizard_Ressurect_PlayerReact(_Var2, _Var1);
+
+IF
+AutomatedDialogStarted("ARX_LizardConsulate_AD_InfernalLizard_Ressurect", _)
+AND
+DB_ARX_LizardConsulate_InfernalLizard_Ressurect_PlayerReact(_Var2)
+THEN
+NOT DB_ARX_LizardConsulate_InfernalLizard_Ressurect_PlayerReact(_Var2);
+
+IF
+AutomatedDialogStarted("ARX_LizardConsulate_AD_InfernalLizard_Ressurect", _)
+AND
+DB_ARX_LizardConsulate_InfernalLizard_Ressurect_PlayerReact(_Var2, _Var3)
+THEN
+NOT DB_ARX_LizardConsulate_InfernalLizard_Ressurect_PlayerReact(_Var2, _Var3);
+
+IF
+CharacterCharacterEvent((CHARACTERGUID)_Var1, (CHARACTERGUID)_Var2, "ARX_LizardConsulate_InfernalLizard_Ressurect")
+AND
+GetPosition(_Var2, _Var3, _Var4, _Var5)
+THEN
+SetOnStage(_Var1, 1);
+CharacterResurrect(_Var1);
+PlayEffect(_Var1, "RS3_FX_GP_ScriptedEvent_Teleport_GenericSmoke_02");
+PlayEffect(_Var1, "RS3_FX_Skills_Fire_Cast_Shout_Supernova_01");
+CreateSurfaceAtPosition(_Var3, _Var4, _Var5, "SurfaceNone", 3, -1);
+
+IF
+CharacterCharacterEvent((CHARACTERGUID)_Var1, (CHARACTERGUID)_Var2, "ARX_LizardConsulate_InfernalLizard_StartSpawner")
+THEN
+SetOnStage(_Var2, 1);
+
+IF
+StoryEvent((CHARACTERGUID)_Var1, "ARX_InfernalLizard_FoundNewSurface")
+THEN
+CharacterPurgeQueue(_Var1);
+
+IF
+CharacterCharacterEvent((CHARACTERGUID)_Var1, (CHARACTERGUID)_Var2, "ARX_LizardConsulate_InfernalLizard_DieExplode")
+THEN
+SetOnStage(_Var1, 1);
+SetOnStage(_Var2, 0);
+PlayEffect(_Var1, "RS3_FX_GP_ScriptedEvent_ARX_Lizard_Revenant_Death_01", "Dummy_BodyFX");
+
+IF
+CharacterResurrected((CHARACTERGUID)_Var1)
+AND
+DB_ARX_LizardConsulate_InfernalLizards(_Var1, _)
+THEN
+SetStoryEvent(_Var1, "ARX_InfernalLizard_Ressurected");
+ApplyStatus(_Var1, "NECROFIRE", -1, 1);
+
+IF
+CharacterEnteredTrigger((CHARACTERGUID)_Var1, TRIGGERGUID_S_ARX_LizardConsulate_Firefighters_React_6818ce80-473c-4879-8d9a-7770f51ac178)
+AND
+DB_IsPlayer(_Var1)
+THEN
+ObjectSetFlag(_Var1, "QuestUpdate_ARX_LizardConsulate_EnteredTheConsulate");
+
+IF
+GameBookInterfaceClosed(ITEMGUID_S_ARX_LizardConsulate_VisitorRecords_51a20859-a7f8-4708-b5df-9d7fa7761190, (CHARACTERGUID)_Var1)
+AND
+DB_IsPlayer(_Var1)
+THEN
+ObjectSetFlag(_Var1, "QuestUpdate_ARX_LizardConsulate_DiscoveredThePrincessWasHere");
+
+IF
+TimerFinished("RC_ARX_VB_HorrorSleep_Enter")
+AND
+DB_InRegion(_Var1, TRIGGERGUID_S_RC_ARX_HorrorSleep_1b8cf005-392f-434a-a564-ecae6778fab0)
+AND
+ObjectGetFlag(_Var1, "QuestUpdate_ARX_LizardConsulate_HorrorSleep_Enter", 0)
+THEN
+ObjectSetFlag(_Var1, "QuestUpdate_ARX_LizardConsulate_HorrorSleep_Enter");
+
+IF
+GlobalFlagSet("ARX_HorrorSleep_Closed")
+AND
+DB_IsPlayer(_Var1)
+AND
+ObjectGetFlag(_Var1, "QuestUpdate_ARX_LizardConsulate_ConsulateNoRP", 0)
+AND
+ObjectGetFlag(_Var1, "QuestUpdate_ARX_LizardConsulate_EnteredTheConsulate", 1)
+AND
+ObjectGetFlag(_Var1, "QuestUpdate_ARX_LizardConsulate_HorrorSleep_Enter", 0)
+THEN
+ObjectSetFlag(_Var1, "QuestUpdate_ARX_LizardConsulate_ConsulateNoRP");
+
+IF
+GlobalFlagSet("ARX_HorrorSleep_Closed")
+AND NOT
+DB_InRegion(CHARACTERGUID_S_Player_RedPrince_a26a1efb-cdc8-4cf3-a7b2-b2f9544add6f, TRIGGERGUID_S_ARX_HorrorSleep_Sunset_67df0f1c-9cf2-46c5-8b28-64376a9b274c)
+THEN
+proc_ARX_HorrorSleep_Closed_RP_JournalUpdate(CHARACTERGUID_S_Player_RedPrince_a26a1efb-cdc8-4cf3-a7b2-b2f9544add6f);
+
+IF
+GlobalFlagSet("ARX_HorrorSleep_Closed")
+AND
+DB_InRegion(CHARACTERGUID_S_Player_RedPrince_a26a1efb-cdc8-4cf3-a7b2-b2f9544add6f, TRIGGERGUID_S_ARX_HorrorSleep_Sunset_67df0f1c-9cf2-46c5-8b28-64376a9b274c)
+THEN
+DB_ARX_HorrorSleep_Closed_TriggerJournalUpdateOnLeave(CHARACTERGUID_S_Player_RedPrince_a26a1efb-cdc8-4cf3-a7b2-b2f9544add6f, TRIGGERGUID_S_ARX_HorrorSleep_Sunset_67df0f1c-9cf2-46c5-8b28-64376a9b274c);
+
+IF
+DB_WasInRegion(CHARACTERGUID_S_Player_RedPrince_a26a1efb-cdc8-4cf3-a7b2-b2f9544add6f, _Var1)
+AND
+DB_ARX_HorrorSleep_Closed_TriggerJournalUpdateOnLeave(CHARACTERGUID_S_Player_RedPrince_a26a1efb-cdc8-4cf3-a7b2-b2f9544add6f, _Var1)
+THEN
+proc_ARX_HorrorSleep_Closed_RP_JournalUpdate(CHARACTERGUID_S_Player_RedPrince_a26a1efb-cdc8-4cf3-a7b2-b2f9544add6f);
+NOT DB_ARX_HorrorSleep_Closed_TriggerJournalUpdateOnLeave(CHARACTERGUID_S_Player_RedPrince_a26a1efb-cdc8-4cf3-a7b2-b2f9544add6f, _Var1);
+
+PROC
+proc_ARX_HorrorSleep_Closed_RP_JournalUpdate((CHARACTERGUID)_Var1)
+AND
+DB_Avatars(_Var1)
+THEN
+ObjectSetFlag(_Var1, "QuestUpdate_FTJ_OriginRedPrince_CompleteEmpire");
+
+PROC
+proc_ARX_HorrorSleep_Closed_RP_JournalUpdate((CHARACTERGUID)_Var1)
+AND NOT
+DB_Avatars(_Var1)
+THEN
+ObjectSetFlag(_Var1, "QuestUpdate_FTJ_COM_RedPrince_CompleteEmpire");
+
+IF
+GlobalFlagSet("ARX_HorrorSleep_Closed")
+THEN
+proc_ARX_HorrorSleep_CheckForDeadPlayersInRegion(TRIGGERGUID_S_ARX_HorrorSleep_Arena_1b8cf005-392f-434a-a564-ecae6778fab0);
+proc_ARX_HorrorSleep_CheckForDeadPlayersInRegion(TRIGGERGUID_S_ARX_HorrorSleep_WarZone_59391e6d-a22d-4f33-982b-a5b65c023e21);
+proc_ARX_HorrorSleep_CheckForDeadPlayersInRegion(TRIGGERGUID_S_ARX_HorrorSleep_Sunset_67df0f1c-9cf2-46c5-8b28-64376a9b274c);
+
+PROC
+proc_ARX_HorrorSleep_CheckPyramids()
+AND
+DB_TeleporterPyramidUnlocked(_Var1)
+AND
+ItemIsInInventory(_Var1, 0)
+AND
+qry_ARX_HorrorSleep_CheckForPyramidsLeftBehind(_Var1)
+AND
+GetPosition(TRIGGERGUID_ARX_HorrorSleep_Sunset_BackToReality_Point_12d36d65-789b-48be-9667-5bf2d0b66b40, _Var2, _Var3, _Var4)
+AND
+GetPosition(_Var1, _Var5, _Var6, _Var7)
+THEN
+PlayEffectAtPosition("RS3_FX_GP_ScriptedEvent_Teleport_GenericSmoke_01", _Var5, _Var6, _Var7);
+ItemScatterAt(_Var1, _Var2, _Var3, _Var4);
+PlayEffectAtPosition("RS3_FX_GP_ScriptedEvent_Teleport_GenericSmoke_01", _Var2, _Var3, _Var4);
+
+QRY
+qry_ARX_HorrorSleep_CheckForPyramidsLeftBehind((ITEMGUID)_Var1)
+AND
+ObjectIsInTrigger(_Var1, S_ARX_HorrorSleep_Arena_1b8cf005-392f-434a-a564-ecae6778fab0, 1)
+THEN
+DB_Noop(1);
+
+QRY
+qry_ARX_HorrorSleep_CheckForPyramidsLeftBehind((ITEMGUID)_Var1)
+AND
+ObjectIsInTrigger(_Var1, S_ARX_HorrorSleep_WarZone_59391e6d-a22d-4f33-982b-a5b65c023e21, 1)
+THEN
+DB_Noop(1);
+
+QRY
+qry_ARX_HorrorSleep_CheckForPyramidsLeftBehind((ITEMGUID)_Var1)
+AND
+ObjectIsInTrigger(_Var1, S_ARX_HorrorSleep_Sunset_67df0f1c-9cf2-46c5-8b28-64376a9b274c, 1)
+THEN
+DB_Noop(1);
+
+PROC
+ProcObjectTimerFinished((GUIDSTRING)_Var1, "ARX_HorrorSleep_TeleportToWarZone")
+THEN
+ProcObjectTimerCancel(TRIGGERGUID_S_ARX_HorrorSleep_Arena_1b8cf005-392f-434a-a564-ecae6778fab0, "proc_ARX_HorrorSleep_CheckForDeadPlayersInRegion_FrameDelay");
+ProcObjectTimer(TRIGGERGUID_S_ARX_HorrorSleep_Arena_1b8cf005-392f-434a-a564-ecae6778fab0, "proc_ARX_HorrorSleep_CheckForDeadPlayersInRegion_FrameDelay", 100);
+
+PROC
+ProcObjectTimerFinished((GUIDSTRING)_Var1, "ARX_HorrorSleep_TeleportToSunSet")
+THEN
+ProcObjectTimerCancel(TRIGGERGUID_S_ARX_HorrorSleep_WarZone_59391e6d-a22d-4f33-982b-a5b65c023e21, "proc_ARX_HorrorSleep_CheckForDeadPlayersInRegion_FrameDelay");
+ProcObjectTimer(TRIGGERGUID_S_ARX_HorrorSleep_WarZone_59391e6d-a22d-4f33-982b-a5b65c023e21, "proc_ARX_HorrorSleep_CheckForDeadPlayersInRegion_FrameDelay", 100);
+
+IF
+TimerFinished((STRING)_Var1)
+AND
+DB_Arx_HorrorSleep_InitiateTeleport_BackToReality(_Var2, _Var1)
+THEN
+ProcObjectTimerCancel(TRIGGERGUID_S_ARX_HorrorSleep_WarZone_59391e6d-a22d-4f33-982b-a5b65c023e21, "proc_ARX_HorrorSleep_CheckForDeadPlayersInRegion_FrameDelay");
+ProcObjectTimer(TRIGGERGUID_S_ARX_HorrorSleep_Sunset_67df0f1c-9cf2-46c5-8b28-64376a9b274c, "proc_ARX_HorrorSleep_CheckForDeadPlayersInRegion_FrameDelay", 100);
+
+PROC
+ProcObjectTimerFinished((TRIGGERGUID)_Var1, "proc_ARX_HorrorSleep_CheckForDeadPlayersInRegion_FrameDelay")
+THEN
+proc_ARX_HorrorSleep_CheckForDeadPlayersInRegion(_Var1);
+
+IF
+CharacterDied((CHARACTERGUID)_Var1)
+AND
+DB_IsPlayer(_Var1)
+AND
+DB_InRegion(_Var1, TRIGGERGUID_S_ARX_HorrorSleep_Arena_1b8cf005-392f-434a-a564-ecae6778fab0)
+THEN
+proc_ARX_HorrorSleep_CheckForDeadPlayersInRegion(TRIGGERGUID_S_ARX_HorrorSleep_Arena_1b8cf005-392f-434a-a564-ecae6778fab0);
+
+IF
+CharacterDied((CHARACTERGUID)_Var1)
+AND
+DB_IsPlayer(_Var1)
+AND
+DB_InRegion(_Var1, TRIGGERGUID_S_ARX_HorrorSleep_WarZone_59391e6d-a22d-4f33-982b-a5b65c023e21)
+THEN
+proc_ARX_HorrorSleep_CheckForDeadPlayersInRegion(TRIGGERGUID_S_ARX_HorrorSleep_WarZone_59391e6d-a22d-4f33-982b-a5b65c023e21);
+
+IF
+CharacterDied((CHARACTERGUID)_Var1)
+AND
+DB_IsPlayer(_Var1)
+AND
+DB_InRegion(_Var1, TRIGGERGUID_S_ARX_HorrorSleep_Sunset_67df0f1c-9cf2-46c5-8b28-64376a9b274c)
+THEN
+proc_ARX_HorrorSleep_CheckForDeadPlayersInRegion(TRIGGERGUID_S_ARX_HorrorSleep_Sunset_67df0f1c-9cf2-46c5-8b28-64376a9b274c);
+
+PROC
+proc_ARX_HorrorSleep_CheckForDeadPlayersInRegion((TRIGGERGUID)_Var1)
+AND
+DB_InRegion(_Var2, _Var1)
+AND
+CharacterIsDead(_Var2, 0)
+THEN
+DB_ARX_HorrorSleep_PlayersAliveInRegion(_Var2, _Var1);
+
+PROC
+proc_ARX_HorrorSleep_CheckForDeadPlayersInRegion(TRIGGERGUID_S_ARX_HorrorSleep_Arena_1b8cf005-392f-434a-a564-ecae6778fab0)
+AND NOT
+DB_ARX_HorrorSleep_PlayersAliveInRegion(_, TRIGGERGUID_S_ARX_HorrorSleep_Arena_1b8cf005-392f-434a-a564-ecae6778fab0)
+AND
+DB_InRegion(_Var2, TRIGGERGUID_S_ARX_HorrorSleep_Arena_1b8cf005-392f-434a-a564-ecae6778fab0)
+AND
+DB_InRegion(_Var3, TRIGGERGUID_S_ARX_HorrorSleep_WarZone_59391e6d-a22d-4f33-982b-a5b65c023e21)
+AND
+CharacterIsDead(_Var3, 0)
+AND
+ObjectGetFlag(_Var2, "ARX_HorrorSleep_DeadPlayersTeleporting", 0)
+THEN
+ObjectSetFlag(_Var2, "ARX_HorrorSleep_DeadPlayersTeleporting");
+Proc_ARX_HorrorSleep_TeleportToWarZone(_Var2, 0);
+GlobalSetFlag("ARX_HorrorSleep_DeadPlayersTeleported");
+
+PROC
+proc_ARX_HorrorSleep_CheckForDeadPlayersInRegion(TRIGGERGUID_S_ARX_HorrorSleep_WarZone_59391e6d-a22d-4f33-982b-a5b65c023e21)
+AND NOT
+DB_ARX_HorrorSleep_PlayersAliveInRegion(_, TRIGGERGUID_S_ARX_HorrorSleep_WarZone_59391e6d-a22d-4f33-982b-a5b65c023e21)
+AND
+DB_InRegion(_Var2, TRIGGERGUID_S_ARX_HorrorSleep_WarZone_59391e6d-a22d-4f33-982b-a5b65c023e21)
+AND
+DB_InRegion(_Var3, TRIGGERGUID_S_ARX_HorrorSleep_Sunset_67df0f1c-9cf2-46c5-8b28-64376a9b274c)
+AND
+CharacterIsDead(_Var3, 0)
+AND
+ObjectGetFlag(_Var2, "ARX_HorrorSleep_DeadPlayersTeleporting", 0)
+THEN
+ObjectSetFlag(_Var2, "ARX_HorrorSleep_DeadPlayersTeleporting");
+Proc_ARX_HorrorSleep_TeleportToSunSet(_Var2, 0);
+GlobalSetFlag("ARX_HorrorSleep_DeadPlayersTeleported");
+
+PROC
+proc_ARX_HorrorSleep_CheckForDeadPlayersInRegion(TRIGGERGUID_S_ARX_HorrorSleep_Sunset_67df0f1c-9cf2-46c5-8b28-64376a9b274c)
+AND NOT
+DB_ARX_HorrorSleep_PlayersAliveInRegion(_, TRIGGERGUID_S_ARX_HorrorSleep_Sunset_67df0f1c-9cf2-46c5-8b28-64376a9b274c)
+AND NOT
+DB_InRegion(_, TRIGGERGUID_S_ARX_HorrorSleep_WarZone_59391e6d-a22d-4f33-982b-a5b65c023e21)
+AND
+DB_InRegion(_Var3, TRIGGERGUID_S_ARX_HorrorSleep_Sunset_67df0f1c-9cf2-46c5-8b28-64376a9b274c)
+AND
+ObjectGetFlag(_Var3, "ARX_HorrorSleep_DeadPlayersTeleporting", 0)
+THEN
+ObjectSetFlag(_Var3, "ARX_HorrorSleep_DeadPlayersTeleporting");
+Proc_Arx_HorrorSleep_Sunset_BackToReality_InitiateTeleport(_Var3, 0);
+GlobalSetFlag("ARX_HorrorSleep_DeadPlayersTeleported");
+
+PROC
+proc_ARX_HorrorSleep_CheckForDeadPlayersInRegion((TRIGGERGUID)_Var1)
+AND NOT
+DB_ARX_HorrorSleep_PlayersAliveInRegion(_, _Var1)
+AND
+GlobalGetFlag("ARX_HorrorSleep_DeadPlayersTeleported", 0)
+AND
+DB_InRegion(_Var3, _Var1)
+AND
+ObjectGetFlag(_Var3, "ARX_HorrorSleep_DeadPlayersTeleporting", 0)
+THEN
+ObjectSetFlag(_Var3, "ARX_HorrorSleep_DeadPlayersTeleporting");
+Proc_Arx_HorrorSleep_Sunset_BackToReality_InitiateTeleport(_Var3, 0);
+
+PROC
+proc_ARX_HorrorSleep_CheckForDeadPlayersInRegion((TRIGGERGUID)_Var1)
+THEN
+GlobalClearFlag("ARX_HorrorSleep_DeadPlayersTeleported");
+
+PROC
+proc_ARX_HorrorSleep_CheckForDeadPlayersInRegion((TRIGGERGUID)_Var1)
+AND
+DB_IsPlayer(_Var2)
+AND
+ObjectGetFlag(_Var2, "ARX_HorrorSleep_DeadPlayersTeleporting", 1)
+THEN
+ObjectClearFlag(_Var2, "ARX_HorrorSleep_DeadPlayersTeleporting");
+
+PROC
+proc_ARX_HorrorSleep_CheckForDeadPlayersInRegion((TRIGGERGUID)_Var1)
+AND
+DB_ARX_HorrorSleep_PlayersAliveInRegion(_Var2, _Var1)
+THEN
+NOT DB_ARX_HorrorSleep_PlayersAliveInRegion(_Var2, _Var1);
+
+PROC
+proc_ARX_HorrorSleep_CheckForDeadPlayersInRegion(TRIGGERGUID_S_ARX_HorrorSleep_Sunset_67df0f1c-9cf2-46c5-8b28-64376a9b274c)
+AND
+GlobalGetFlag("ARX_HorrorSleep_Closed", 1)
+THEN
+proc_ARX_HorrorSleep_CheckForDeadPlayersInRegion(TRIGGERGUID_S_ARX_HorrorSleep_Arena_1b8cf005-392f-434a-a564-ecae6778fab0);
+proc_ARX_HorrorSleep_CheckForDeadPlayersInRegion(TRIGGERGUID_S_ARX_HorrorSleep_WarZone_59391e6d-a22d-4f33-982b-a5b65c023e21);
+
+IF
+DialogEnded("ARX_LizardConsulate_Paladin_FireFighter1", (INTEGER)_Var1)
+AND
+GlobalGetFlag("ARX_LizardConsulate_PaladinsLeave", 1)
+THEN
+proc_ARX_LizardConsulate_Paladin_FireFighter_Leave();
+
+PROC
+proc_ARX_LizardConsulate_Paladin_FireFighter_Leave()
+AND
+DB_ARX_LizardConsulate_EntrencePaladins(_Var1)
+AND
+CharacterIsDead(_Var1, 0)
+THEN
+ProcForceStopDialog(_Var1);
+SetHasDialog(_Var1, 0);
+ProcCharacterDisappearOutOfSight(_Var1, 0, 0, "", 0);
+
+IF
+ObjectFlagSet("QuestUpdate_ARX_LizardConsulate_BridgeCathedral_Start", (CHARACTERGUID)_Var1, _)
+THEN
+ProcShowMarker(_Var1, "ARX_LizardConsulate");
+
+IF
+CharacterCharacterEvent((CHARACTERGUID)_Var1, (CHARACTERGUID)_Var2, "ARX_LizardConsulate_InfernalLizard_DieExplode")
+AND
+DB_ARX_LizardConsulate_InfernalLizards(_Var1, _)
+THEN
+Proc_ARX_LizardConsulate_InfernalLizards_CheckIfAllDead();
+
+PROC
+Proc_ARX_LizardConsulate_InfernalLizards_CheckIfAllDead()
+THEN
+NOT DB_ARX_LizardConsulate_InfernalLizards_Alive(1);
+
+PROC
+Proc_ARX_LizardConsulate_InfernalLizards_CheckIfAllDead()
+AND
+DB_ARX_LizardConsulate_InfernalLizards(_Var1, _)
+AND
+CharacterIsDead(_Var1, 0)
+THEN
+DB_ARX_LizardConsulate_InfernalLizards_Alive(1);
+
+PROC
+Proc_ARX_LizardConsulate_InfernalLizards_CheckIfAllDead()
+AND
+DB_ARX_LizardConsulate_InfernalLizards(_Var1, _Var2)
+AND
+ObjectGetFlag(_Var2, "ARX_LizardConsulate_InfernalLizard_SpawnerWaitingToSpawn", 1)
+THEN
+DB_ARX_LizardConsulate_InfernalLizards_Alive(1);
+
+PROC
+Proc_ARX_LizardConsulate_InfernalLizards_CheckIfAllDead()
+AND NOT
+DB_ARX_LizardConsulate_InfernalLizards_Alive(1)
+THEN
+GlobalSetFlag("ARX_LizardConsulate_InfernalLizards_Cleared");
+
+PROC
+Proc_ARX_LizardConsulate_InfernalLizards_CheckIfAllDead()
+AND
+GlobalGetFlag("ARX_LizardConsulate_InfernalLizards_Cleared", 1)
+AND
+DB_IsPlayer(_Var1)
+THEN
+ObjectSetFlag(_Var1, "QuestUpdate_ARX_LizardConsulate_KilledAllInfernalLizards");
+
+IF
+ObjectLeftCombat(CHARACTERGUID_S_ARX_BridgeCathedral_Lizard_e8a80940-735b-4aee-812f-e4a59665a608, _)
+AND
+CharacterIsDead(CHARACTERGUID_S_ARX_BridgeCathedral_Lizard_e8a80940-735b-4aee-812f-e4a59665a608, 0)
+AND
+GlobalGetFlag("ARX_BridgeCathedral_Lizard_MoveToConsulet", 1)
+THEN
+ProcCharacterMoveTo(CHARACTERGUID_S_ARX_BridgeCathedral_Lizard_e8a80940-735b-4aee-812f-e4a59665a608, TRIGGERGUID_ARX_BridgeCathedral_Lizard_MoveToTrigger_4f5bc924-69fc-435a-8fbb-d6c74902a8fa, 0, "ARX_BridgeCathedral_Lizard_Reached");
+
+IF
+DialogEnded("ARX_BridgeCathedral_Lizard", _)
+AND
+GlobalGetFlag("ARX_BridgeCathedral_Lizard_MoveToConsulet", 1)
+THEN
+ProcCharacterMoveTo(CHARACTERGUID_S_ARX_BridgeCathedral_Lizard_e8a80940-735b-4aee-812f-e4a59665a608, TRIGGERGUID_ARX_BridgeCathedral_Lizard_MoveToTrigger_4f5bc924-69fc-435a-8fbb-d6c74902a8fa, 0, "ARX_BridgeCathedral_Lizard_Reached");
+
+IF
+StoryEvent(CHARACTERGUID_S_ARX_BridgeCathedral_Lizard_e8a80940-735b-4aee-812f-e4a59665a608, "ARX_BridgeCathedral_Lizard_Reached")
+THEN
+GlobalSetFlag("ARX_BridgeCathedral_Lizard_MovedToConsulet");
+GlobalClearFlag("ARX_BridgeCathedral_Lizard_MoveToConsulet");
+
+IF
+GlobalFlagSet("ARX_LizardConsulate_InfernalLizards_Cleared")
+AND
+GlobalGetFlag("ARX_BridgeCathedral_Lizard_MovedToConsulet", 0)
+AND
+QRY_SpeakerIsAvailable(CHARACTERGUID_S_ARX_BridgeCathedral_Lizard_e8a80940-735b-4aee-812f-e4a59665a608)
+THEN
+ProcCharacterMoveTo(CHARACTERGUID_S_ARX_BridgeCathedral_Lizard_e8a80940-735b-4aee-812f-e4a59665a608, TRIGGERGUID_ARX_BridgeCathedral_Lizard_MoveToTrigger_4f5bc924-69fc-435a-8fbb-d6c74902a8fa, 0, "ARX_BridgeCathedral_Lizard_Reached");
+
+IF
+GlobalFlagSet("ARX_LizardConsulate_InfernalLizards_Cleared")
+AND
+GlobalGetFlag("ARX_BridgeCathedral_Lizard_MovedToConsulet", 0)
+AND NOT
+QRY_SpeakerIsAvailable(CHARACTERGUID_S_ARX_BridgeCathedral_Lizard_e8a80940-735b-4aee-812f-e4a59665a608)
+THEN
+GlobalSetFlag("ARX_BridgeCathedral_Lizard_MoveToConsulet");
+
+IF
+DB_Dead(CHARACTERGUID_S_ARX_BridgeCathedral_Guard_06_fa9d4495-433c-4e21-87e7-f541ca3a18f6)
+AND
+DB_Dead(CHARACTERGUID_S_ARX_BridgeCathedral_Guard_07_744510f5-d178-4dde-b395-3765f537fa3c)
+THEN
+GlobalSetFlag("ARX_BridgeCathedral_Lizard_BothDead");
+
+IF
+StoryEvent((CHARACTERGUID)_Var1, "ARX_LizardConsulate_Priest_SpottedChar")
+AND
+GlobalGetFlag("ARX_LizardConsulate_InfernalLizards_Cleared", 0)
+THEN
+GlobalSetFlag("ARX_LizardConsulate_Priest_ApproachOnce");
+Proc_StartDialog(0, "ARX_LizardConsulate_Priest", CHARACTERGUID_S_ARX_LizardConsulate_Priest_7e4b9156-25d5-4f9b-833f-17442ec72523, _Var1);
+
+IF
+GlobalFlagSet("ARX_LizardConsulate_InfernalLizards_Cleared")
+THEN
+GlobalSetFlag("ARX_LizardConsulate_Priest_StopSpotter");
+
+IF
+DialogStarted("ARX_LizardConsulate_Priest", _)
+THEN
+GlobalSetFlag("ARX_LizardConsulate_Priest_StopSpotter");
+
+
+EXITSECTION
+ENDEXITSECTION
+
+ParentTargetEdge "ARX"

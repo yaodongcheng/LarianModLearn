@@ -1,0 +1,1343 @@
+Version 1
+SubGoalCombiner SGC_AND
+
+INITSECTION
+DB_ArenaMaster(NULL_00000000-0000-0000-0000-000000000000, "NULL", "NULL", NULL_00000000-0000-0000-0000-000000000000);
+DB_ArenaPresets_Mobs("NULL", NULL_00000000-0000-0000-0000-000000000000, NULL_00000000-0000-0000-0000-000000000000);
+DB_ArenaChampionTag("NULL", "NULL");
+DB_ArenaMaster_WinFlags("NULL", "NULL", "NULL");
+DB_ArenaPresets_Player("NULL", "NULL", NULL_00000000-0000-0000-0000-000000000000);
+DB_Arena_DisableLastManStanding("NULL");
+DB_Arena_ReviveCharAfter(NULL_00000000-0000-0000-0000-000000000000);
+DB_ArenaMaster_RingGirl(NULL_00000000-0000-0000-0000-000000000000, "NULL", "NULL", NULL_00000000-0000-0000-0000-000000000000);
+DB_Arena_MobIsAlreadyInArena(NULL_00000000-0000-0000-0000-000000000000);
+DB_Arena_FightToTheDeath("NULL");
+DB_ArenaMaster_SetFlags("NULL", "NULL", "NULL", NULL_00000000-0000-0000-0000-000000000000);
+DB_Arena_NonLethal("NULL");
+DB_VariableTranslatedString("Arena_AvailablePlayer_1", "Arena_AvailablePlayer_1_3b7981f5-c807-44bc-b2cd-a434ba7b6b35");
+DB_VariableTranslatedString("Arena_AvailablePlayer_2", "Arena_AvailablePlayer_2_f3cb5f2b-c0ca-4b36-b671-dd64d481f45d");
+DB_VariableTranslatedString("Arena_AvailablePlayer_3", "Arena_AvailablePlayer_3_ed640a14-91d4-472d-b92b-b042b8011fde");
+DB_VariableTranslatedString("Arena_AvailablePlayer_4", "Arena_AvailablePlayer_4_3f666e1e-7f5e-43e8-8c02-3c61966147d3");
+
+KBSECTION
+IF
+DB_ArenaMaster_RingGirl(_Var1, _, _, _)
+THEN
+CharacterSetImmortal(_Var1, 1);
+SetOnStage(_Var1, 0);
+
+IF
+ObjectFlagSet((STRING)_Var1, (GUIDSTRING)_Var2, (INTEGER)_Var3)
+AND
+DB_Arena_AvailablePlayer(_Var1, _Var4, _)
+THEN
+DebugText(_Var2, _Var1);
+DB_Arena_PvpChallenge(_Var2, _Var4);
+
+IF
+ObjectFlagSet((STRING)_Var1, (CHARACTERGUID)_Var2, (INTEGER)_Var3)
+AND
+DB_ArenaMaster_SetFlags(_Var4, _Var1, _Var5, _Var6)
+THEN
+DB_ArenaMaster_SetUp(_Var3);
+Proc_Arena_CheckAvailableCharacters_1(_Var4, _Var5, _Var6, _Var2, _Var3);
+ObjectClearFlag(_Var2, _Var1, _Var3);
+
+IF
+DialogStarted((STRING)_Var1, (INTEGER)_Var2)
+AND
+DB_ArenaMaster(_, _Var1, _, _)
+AND
+DialogGetInvolvedPlayer(_Var2, 1, _Var6)
+AND
+CharacterGetReservedUserID(_Var6, _Var7)
+AND NOT
+DB_ArenaMaster_CheckOtherPlayers_Initiated(_, _)
+THEN
+DB_ArenaMaster_CheckOtherPlayers_Initiated(_Var7, _Var1);
+Proc_Arena_CheckOtherPlayers(_Var7, _Var1);
+
+IF
+DialogEnded((STRING)_Var1, _)
+AND
+DB_ArenaMaster_CheckOtherPlayers_Initiated(_Var3, _Var1)
+THEN
+NOT DB_ArenaMaster_CheckOtherPlayers_Initiated(_Var3, _Var1);
+
+PROC
+Proc_Arena_CheckOtherPlayers(_, _)
+AND
+DB_IsPlayer(_Var3)
+THEN
+UserClearFlag(_Var3, "Arena_HasAvatar", 0);
+PartyClearFlag(_Var3, "Arena_PartyHasAvatar", 0);
+
+PROC
+Proc_Arena_CheckOtherPlayers(_, _)
+AND
+DB_Arena_CheckOtherPlayers_Count(_Var3)
+THEN
+NOT DB_Arena_CheckOtherPlayers_Count(_Var3);
+
+PROC
+Proc_Arena_CheckOtherPlayers(_, _)
+AND
+DB_Arena_CheckOtherCharacters_Count(_Var3)
+THEN
+NOT DB_Arena_CheckOtherCharacters_Count(_Var3);
+
+PROC
+Proc_Arena_CheckOtherPlayers(_, _)
+THEN
+GlobalClearFlag("ArenaDialog_SinglePlayer");
+GlobalClearFlag("ArenaDialog_SingleCharacter");
+GlobalClearFlag("Arena_AvailablePlayer_1");
+GlobalClearFlag("Arena_AvailablePlayer_2");
+GlobalClearFlag("Arena_AvailablePlayer_3");
+GlobalClearFlag("Arena_AvailablePlayer_4");
+GlobalClearFlag("Arena_ChallengePlayer_1");
+GlobalClearFlag("Arena_ChallengePlayer_2");
+GlobalClearFlag("Arena_ChallengePlayer_3");
+GlobalClearFlag("Arena_ChallengePlayer_4");
+GlobalClearFlag("ArenaDialog_NoOtherAvatars");
+
+PROC
+Proc_Arena_CheckOtherPlayers(_, _)
+AND
+DB_Arena_AvailablePlayer(_Var3, _Var4, _Var5)
+THEN
+NOT DB_Arena_AvailablePlayer(_Var3, _Var4, _Var5);
+DebugText(_Var4, "Proc_Arena_CheckOtherPlayers");
+
+PROC
+Proc_Arena_CheckOtherPlayers(_, _)
+AND
+DB_IsPlayer(_Var3)
+AND
+IsTagged(_Var3, "AVATAR", 1)
+THEN
+UserSetFlag(_Var3, "Arena_HasAvatar");
+PartySetFlag(_Var3, "Arena_PartyHasAvatar");
+
+IF
+GlobalFlagSet("ArenaDialog_SinglePlayer")
+THEN
+DebugText(CHARACTERGUID_S_FTJ_ArenaMaster_4eadc6c7-f934-43ad-bb74-c59358106114, "ArenaDialog_SinglePlayer");
+
+PROC
+Proc_Arena_CheckOtherPlayers(_, _)
+THEN
+DB_Arena_CheckOtherCharacters_Count(0);
+
+PROC
+Proc_Arena_CheckOtherPlayers(_, _)
+AND
+GetUserCount(1)
+THEN
+GlobalSetFlag("ArenaDialog_SinglePlayer");
+
+PROC
+Proc_Arena_CheckOtherPlayers(_, _)
+AND
+GlobalGetFlag("ArenaDialog_SinglePlayer", 0)
+THEN
+DB_Arena_CheckOtherPlayers_Count(0);
+
+PROC
+Proc_Arena_CheckOtherPlayers((INTEGER)_Var1, _)
+AND
+DB_IsPlayer(_Var3)
+AND
+CharacterGetReservedUserID(_Var3, _Var1)
+AND
+DB_Arena_CheckOtherCharacters_Count(_Var4)
+AND
+IntegerSum(_Var4, 1, _Var5)
+THEN
+NOT DB_Arena_CheckOtherCharacters_Count(_Var4);
+DB_Arena_CheckOtherCharacters_Count(_Var5);
+
+PROC
+Proc_Arena_CheckOtherPlayers((INTEGER)_Var1, _)
+AND
+DB_Arena_CheckOtherCharacters_Count(_Var3)
+AND
+_Var3 <= 1
+THEN
+GlobalSetFlag("ArenaDialog_SingleCharacter");
+
+PROC
+Proc_Arena_CheckOtherPlayers((INTEGER)_Var1, _)
+AND
+GlobalGetFlag("ArenaDialog_SinglePlayer", 0)
+AND
+DB_IsPlayer(_Var3)
+AND
+IsTagged(_Var3, "AVATAR", 1)
+AND
+CharacterGetReservedUserID(_Var3, _Var4)
+AND
+_Var4 != _Var1
+AND
+DB_Arena_CheckOtherPlayers_Count(_Var5)
+AND
+IntegerSum(_Var5, 1, _Var6)
+AND
+IntegertoString(_Var6, _Var7)
+AND
+StringConcatenate("Arena_AvailablePlayer_", _Var7, _Var8)
+AND
+StringConcatenate("Arena_ChallengePlayer_", _Var7, _Var9)
+AND NOT
+DB_Arena_AvailablePlayer(_, _, _Var4)
+THEN
+NOT DB_Arena_CheckOtherPlayers_Count(_Var5);
+DB_Arena_CheckOtherPlayers_Count(_Var6);
+GlobalSetFlag(_Var8);
+DB_Arena_AvailablePlayer_SetDialogVar(_Var8, _Var3, _Var4);
+DB_Arena_AvailablePlayer(_Var9, _Var3, _Var4);
+DebugText(_Var3, _Var9);
+
+PROC
+Proc_Arena_CheckOtherPlayers(_, (STRING)_Var2)
+AND
+DB_Arena_AvailablePlayer_SetDialogVar(_Var3, _Var4, _Var5)
+AND
+DB_VariableTranslatedString(_Var3, _Var6)
+AND
+CharacterGetDisplayName(_Var4, _Var7, _Var8)
+THEN
+DialogSetVariableTranslatedString(_Var2, _Var6, _Var7, _Var8);
+NOT DB_Arena_AvailablePlayer_SetDialogVar(_Var3, _Var4, _Var5);
+
+PROC
+Proc_Arena_CheckOtherPlayers(_, _)
+AND NOT
+DB_Arena_AvailablePlayer(_, _, _)
+THEN
+GlobalSetFlag("ArenaDialog_NoOtherAvatars");
+
+PROC
+Proc_Arena_CheckAvailableCharacters_1(_, _, _, _, _)
+THEN
+GlobalClearFlag("Arena_CharNotInRegion");
+GlobalClearFlag("Arena_CharNotAvailable");
+GlobalClearFlag("Arena_StartAfterDialog");
+
+PROC
+Proc_Arena_CheckAvailableCharacters_1(_, "User", (TRIGGERGUID)_Var2, (CHARACTERGUID)_Var3, _)
+AND
+CharacterGetReservedUserID(_Var3, _Var5)
+AND
+DB_IsPlayer(_Var6)
+AND
+CharacterGetReservedUserID(_Var6, _Var5)
+THEN
+Proc_Arena_CheckAvailableCharacters_2(_Var6, _Var2, _Var3);
+
+PROC
+Proc_Arena_CheckAvailableCharacters_1(_, "Party", (TRIGGERGUID)_Var2, (CHARACTERGUID)_Var3, _)
+AND
+DB_IsPlayer(_Var5)
+AND
+CharacterIsInPartyWith(_Var5, _Var3, 1)
+THEN
+Proc_Arena_CheckAvailableCharacters_2(_Var5, _Var2, _Var3);
+
+PROC
+Proc_Arena_CheckAvailableCharacters_1(_, "PVP", (TRIGGERGUID)_Var2, (CHARACTERGUID)_Var3, _)
+AND
+DB_Arena_PvpChallenge(_Var3, _Var5)
+AND
+CharacterGetReservedUserID(_Var5, _Var6)
+AND
+DB_IsPlayer(_Var7)
+AND
+CharacterGetReservedUserID(_Var7, _Var6)
+THEN
+Proc_Arena_CheckAvailableCharacters_2(_Var7, _Var2, _Var3);
+DebugText(_Var7, "Proc_Arena_CheckAvailableCharacters_2");
+
+PROC
+Proc_Arena_CheckAvailableCharacters_1(_, "PVP", (TRIGGERGUID)_Var2, (CHARACTERGUID)_Var3, _)
+AND
+CharacterGetReservedUserID(_Var3, _Var5)
+AND
+DB_IsPlayer(_Var6)
+AND
+CharacterGetReservedUserID(_Var6, _Var5)
+THEN
+Proc_Arena_CheckAvailableCharacters_2(_Var6, _Var2, _Var3);
+
+PROC
+Proc_Arena_CheckAvailableCharacters_2((CHARACTERGUID)_Var1, (TRIGGERGUID)_Var2, _)
+AND
+GlobalGetFlag("Arena_CharNotInRegion", 0)
+AND NOT
+DB_InRegion(_Var1, _Var2)
+AND NOT
+DB_Arena_PlayerParticipants("DriftwoodVoidwoken", _, _Var1, _)
+AND NOT
+DB_Arena_PlayerParticipants("DriftwoodMurga", _, _Var1, _)
+THEN
+GlobalSetFlag("Arena_CharNotInRegion");
+
+PROC
+Proc_Arena_CheckAvailableCharacters_2((CHARACTERGUID)_Var1, (TRIGGERGUID)_Var2, (CHARACTERGUID)_Var3)
+AND
+GlobalGetFlag("Arena_CharNotInRegion", 0)
+AND
+GlobalGetFlag("Arena_CharNotAvailable", 0)
+AND
+_Var1 != _Var3
+AND NOT
+DB_Arena_PlayerParticipants("DriftwoodVoidwoken", _, _Var1, _)
+AND NOT
+DB_Arena_PlayerParticipants("DriftwoodMurga", _, _Var1, _)
+AND NOT
+QRY_SpeakerIsAvailable(_Var1)
+THEN
+GlobalSetFlag("Arena_CharNotAvailable");
+
+PROC
+Proc_Arena_CheckAvailableCharacters_1((STRING)_Var1, (STRING)_Var2, _, (CHARACTERGUID)_Var4, (INTEGER)_Var5)
+AND
+GlobalGetFlag("Arena_CharNotInRegion", 0)
+AND
+GlobalGetFlag("Arena_CharNotAvailable", 0)
+THEN
+Proc_Arena_SetUpTeams(_Var1, _Var2, _Var4, _Var5);
+
+PROC
+Proc_Arena_SetUpTeams((STRING)_Var1, "Single", (CHARACTERGUID)_Var2, (INTEGER)_Var3)
+THEN
+DB_Arena_PlayerParticipants(_Var1, _Var3, _Var2, "Arena_TeamA");
+
+PROC
+Proc_Arena_SetUpTeams((STRING)_Var1, "User", (CHARACTERGUID)_Var2, (INTEGER)_Var3)
+AND
+CharacterGetReservedUserID(_Var2, _Var4)
+AND
+DB_IsPlayer(_Var5)
+AND
+CharacterGetReservedUserID(_Var5, _Var4)
+AND NOT
+DB_Arena_PlayerParticipants("DriftwoodVoidwoken", _, _Var5, _)
+AND NOT
+DB_Arena_PlayerParticipants("DriftwoodMurga", _, _Var5, _)
+THEN
+DB_Arena_PlayerParticipants(_Var1, _Var3, _Var5, "Arena_TeamA");
+
+PROC
+Proc_Arena_SetUpTeams((STRING)_Var1, "Party", (CHARACTERGUID)_Var2, (INTEGER)_Var3)
+AND
+DB_IsPlayer(_Var4)
+AND
+CharacterIsInPartyWith(_Var4, _Var2, 1)
+AND NOT
+DB_Arena_PlayerParticipants("DriftwoodVoidwoken", _, _Var4, _)
+AND NOT
+DB_Arena_PlayerParticipants("DriftwoodMurga", _, _Var4, _)
+THEN
+DB_Arena_PlayerParticipants(_Var1, _Var3, _Var4, "Arena_TeamA");
+
+PROC
+Proc_Arena_SetUpTeams((STRING)_Var1, "PVP", (CHARACTERGUID)_Var2, (INTEGER)_Var3)
+AND
+CharacterGetReservedUserID(_Var2, _Var4)
+AND
+DB_IsPlayer(_Var5)
+AND
+CharacterGetReservedUserID(_Var5, _Var4)
+THEN
+DB_Arena_PlayerParticipants(_Var1, _Var3, _Var5, "Arena_TeamA");
+
+PROC
+Proc_Arena_SetUpTeams((STRING)_Var1, "PVP", (CHARACTERGUID)_Var2, (INTEGER)_Var3)
+AND
+DB_Arena_PvpChallenge(_Var2, _Var4)
+AND
+CharacterGetReservedUserID(_Var4, _Var5)
+AND
+DB_IsPlayer(_Var6)
+AND
+CharacterGetReservedUserID(_Var6, _Var5)
+THEN
+DB_Arena_PlayerParticipants(_Var1, _Var3, _Var6, "Arena_TeamB");
+DebugText(_Var6, "Arena_TeamB");
+
+PROC
+Proc_Arena_SetUpTeams((STRING)_Var1, "PVP", (CHARACTERGUID)_Var2, (INTEGER)_Var3)
+AND NOT
+DB_Arena_PlayerParticipants(_, _Var3, _, "Arena_TeamB")
+THEN
+GlobalClearFlag("Arena_StartAfterDialog");
+DebugText(_Var2, "NO PARTICIPANTS!");
+
+PROC
+Proc_Arena_SetUpTeams(_, _, (CHARACTERGUID)_Var3, (INTEGER)_Var4)
+AND NOT
+DB_Arena_PlayerParticipants(_, _Var4, _, _)
+THEN
+DebugText(_Var3, "NO PARTICIPANTS!");
+
+PROC
+Proc_Arena_SetUpTeams((STRING)_Var1, (STRING)_Var2, (CHARACTERGUID)_Var3, _)
+AND
+_Var2 != "PVP"
+AND
+DB_ArenaPresets_Mobs(_Var1, _Var5, _Var6)
+AND
+CharacterIsDead(_Var5, 1)
+THEN
+DebugText(_Var3, "Mob is dead!");
+
+PROC
+Proc_Arena_SetUpTeams((STRING)_Var1, (STRING)_Var2, (CHARACTERGUID)_Var3, (INTEGER)_Var4)
+AND
+_Var2 != "PVP"
+AND
+DB_ArenaPresets_Mobs(_Var1, _Var5, _Var6)
+AND NOT
+CharacterIsDead(_Var5, 1)
+THEN
+DB_Arena_MobParticipants(_Var4, _Var5, _Var6, "Arena_TeamB");
+
+PROC
+Proc_Arena_SetUpTeams(_, (STRING)_Var2, (CHARACTERGUID)_Var3, (INTEGER)_Var4)
+AND
+_Var2 != "PVP"
+AND NOT
+DB_Arena_MobParticipants(_Var4, _, _, _)
+THEN
+DebugText(_Var3, "NO MOBS!");
+
+PROC
+Proc_Arena_SetUpTeams(_, (STRING)_Var2, (CHARACTERGUID)_Var3, (INTEGER)_Var4)
+AND
+_Var2 != "PVP"
+AND
+GlobalGetFlag("Arena_StartAfterDialog", 0)
+AND
+DB_Arena_PlayerParticipants(_, _Var4, _, _)
+AND
+DB_Arena_MobParticipants(_Var4, _, _, _)
+THEN
+GlobalSetFlag("Arena_StartAfterDialog");
+
+PROC
+Proc_Arena_SetUpTeams(_, "PVP", (CHARACTERGUID)_Var2, (INTEGER)_Var3)
+AND
+GlobalGetFlag("Arena_StartAfterDialog", 0)
+AND
+DB_Arena_PlayerParticipants(_, _Var3, _Var5, "Arena_TeamA")
+AND
+DB_Arena_PlayerParticipants(_, _Var3, _Var7, "Arena_TeamB")
+AND
+CharacterGetReservedUserID(_Var5, _Var8)
+AND
+CharacterGetReservedUserID(_Var7, _Var8)
+THEN
+DB_Arena_PlayerParticipants_SameUser(1);
+DebugText(_Var5, "same user");
+
+PROC
+Proc_Arena_SetUpTeams(_, "PVP", (CHARACTERGUID)_Var2, (INTEGER)_Var3)
+AND NOT
+DB_Arena_PlayerParticipants_SameUser(1)
+AND
+GlobalGetFlag("Arena_StartAfterDialog", 0)
+AND
+DB_Arena_PlayerParticipants(_, _Var3, _, "Arena_TeamA")
+AND
+DB_Arena_PlayerParticipants(_, _Var3, _, "Arena_TeamB")
+THEN
+GlobalSetFlag("Arena_StartAfterDialog");
+
+PROC
+Proc_Arena_SetUpTeams((STRING)_Var1, (STRING)_Var2, (CHARACTERGUID)_Var3, (INTEGER)_Var4)
+AND
+GlobalGetFlag("Arena_StartAfterDialog", 1)
+AND
+DB_ArenaMaster_SetFlags(_Var1, _Var5, _Var2, _)
+AND
+_Var2 == "Pvp"
+AND
+StringConcatenate("Arena_", _Var1, _Var7)
+AND
+StringConcatenate(_Var7, "_PvpInitiated", _Var8)
+THEN
+GlobalSetFlag(_Var8);
+
+PROC
+Proc_Arena_SetUpTeams((STRING)_Var1, (STRING)_Var2, (CHARACTERGUID)_Var3, (INTEGER)_Var4)
+AND
+GlobalGetFlag("Arena_StartAfterDialog", 1)
+AND
+DB_ArenaMaster_SetFlags(_Var1, _Var5, _Var2, _)
+AND
+_Var2 == "Pvp"
+AND
+StringConcatenate("Arena_", _Var1, _Var7)
+AND
+StringConcatenate(_Var7, "_PvpParticipated", _Var8)
+AND
+DB_Arena_PlayerParticipants(_Var1, _Var4, _Var9, _)
+THEN
+UserSetFlag(_Var9, _Var8);
+
+PROC
+Proc_Arena_SetUpTeams((STRING)_Var1, (STRING)_Var2, (CHARACTERGUID)_Var3, _)
+AND
+GlobalGetFlag("Arena_StartAfterDialog", 1)
+AND
+DB_ArenaMaster_SetFlags(_Var1, _Var5, _Var2, _)
+AND
+_Var2 != "Pvp"
+AND
+StringConcatenate("Arena_", _Var1, _Var7)
+AND
+StringConcatenate(_Var7, "_PveInitiated", _Var8)
+THEN
+GlobalSetFlag(_Var8);
+
+PROC
+Proc_Arena_SetUpTeams((STRING)_Var1, (STRING)_Var2, (CHARACTERGUID)_Var3, _)
+AND
+GlobalGetFlag("Arena_StartAfterDialog", 1)
+AND
+DB_ArenaMaster_SetFlags(_Var1, _Var5, _Var2, _)
+AND
+_Var2 != "Pvp"
+AND
+StringConcatenate("Arena_", _Var1, _Var7)
+AND
+StringConcatenate(_Var7, "_PveParticipated", _Var8)
+AND
+DB_Arena_PlayerParticipants(_Var1, _Var9, _Var10, _)
+THEN
+UserSetFlag(_Var10, _Var8);
+
+PROC
+Proc_Arena_SetUpTeams((STRING)_Var1, (STRING)_Var2, (CHARACTERGUID)_Var3, _)
+AND
+GlobalGetFlag("Arena_StartAfterDialog", 1)
+AND
+DB_ArenaMaster_SetFlags(_Var1, _Var5, _Var2, _)
+AND
+_Var2 != "Pvp"
+AND
+StringConcatenate("Arena_", _Var1, _Var7)
+AND
+StringConcatenate(_Var7, "_PveParticipated", _Var8)
+THEN
+GlobalSetFlag(_Var8);
+
+PROC
+Proc_Arena_SetUpTeams(_, _, (CHARACTERGUID)_Var3, _)
+AND
+GlobalGetFlag("Arena_StartAfterDialog", 1)
+THEN
+DialogRequestStop(_Var3);
+
+IF
+DialogEnded(_, (INTEGER)_Var2)
+AND
+DB_ArenaMaster_SetUp(_Var2)
+AND
+GlobalGetFlag("Arena_StartAfterDialog", 1)
+THEN
+Proc_Arena_Initiate(_Var2);
+Proc_Arena_ClearFlagsAndDatabases(_Var2);
+
+PROC
+Proc_Arena_Initiate((INTEGER)_Var1)
+THEN
+GlobalSetFlag("Arena_OnGoing");
+
+PROC
+Proc_Arena_Initiate((INTEGER)_Var1)
+AND
+DB_Arena_PlayerParticipants(_Var2, _Var1, _Var3, _Var4)
+AND
+DB_ArenaPresets_Player(_Var2, _Var4, _Var5)
+AND
+GetFaction(_Var3, _Var6)
+THEN
+DB_Arena_PreviousFaction(_Var3, _Var6);
+DB_Arena_CharIsAlive(_Var4, _Var3);
+TeleportTo(_Var3, _Var5, "", 0);
+SetInArena(_Var3, 1);
+SetFaction(_Var3, _Var4);
+
+PROC
+Proc_Arena_Initiate((INTEGER)_Var1)
+AND
+DB_Arena_MobParticipants(_Var1, _Var2, _Var3, _Var4)
+AND NOT
+DB_Arena_MobIsAlreadyInArena(_Var2)
+AND
+GetFaction(_Var2, _Var5)
+AND
+GetPosition(_Var2, _Var6, _Var7, _Var8)
+THEN
+SetOnStage(_Var2, 1);
+DB_Arena_PreviousFaction(_Var2, _Var5);
+DB_Arena_PreviousLocation(_Var2, _Var6, _Var7, _Var8);
+TeleportTo(_Var2, _Var3);
+
+PROC
+Proc_Arena_Initiate((INTEGER)_Var1)
+AND
+DB_Arena_MobParticipants(_Var1, _Var2, _Var3, _Var4)
+THEN
+DB_Arena_CharIsAlive(_Var4, _Var2);
+SetInArena(_Var2, 1);
+SetFaction(_Var2, _Var4);
+
+IF
+CharacterDying((CHARACTERGUID)_Var1)
+AND
+GlobalGetFlag("Arena_RequestingLastManStanding", 0)
+AND
+DB_Arena_CharIsAlive(_Var2, _Var1)
+AND NOT
+QRY_CharIsAboutToResurrect(_Var1)
+THEN
+NOT DB_Arena_CharIsAlive(_Var2, _Var1);
+DB_Arena_CharWasAlive(_Var2, _Var1);
+Proc_Arena_CheckWinCondition();
+
+IF
+CharacterResurrected((CHARACTERGUID)_Var1)
+AND
+DB_Arena_CharWasAlive(_Var2, _Var1)
+THEN
+DB_Arena_CharIsAlive(_Var2, _Var1);
+NOT DB_Arena_CharWasAlive(_Var2, _Var1);
+
+IF
+DB_Arena_CharIsAlive(_Var1, _Var2)
+AND
+Qry_Arena_InNonLethalArena(_Var2)
+THEN
+CharacterSetImmortal(_Var2, 1);
+
+IF
+CharacterReceivedDamage((CHARACTERGUID)_Var1, _, _)
+AND
+Qry_Arena_InNonLethalArena(_Var1)
+AND
+CharacterGetHitpointsPercentage(_Var1, _Var4)
+AND
+_Var4 < 1
+THEN
+RemoveHarmfulStatuses(_Var1);
+ApplyStatus(_Var1, "UNCONSCIOUS", -1, 1);
+ProcSetInvulnerable(_Var1, 1);
+Proc_GLO_Arena_NonLethal_RemoveTalents(_Var1);
+
+IF
+ObjectTurnStarted((CHARACTERGUID)_Var1)
+AND
+CharacterIsPlayer(_Var1, 1)
+AND
+CharacterGetReservedUserID(_Var1, _Var2)
+AND
+GetCurrentCharacter(_Var2, _Var3)
+AND
+HasActiveStatus(_Var3, "UNCONSCIOUS", 1)
+AND
+_Var1 != _Var3
+AND
+Qry_Arena_InNonLethalArena(_Var3)
+AND
+Qry_Arena_InNonLethalArena(_Var1)
+AND
+DB_CombatCharacters(_Var1, _Var4)
+THEN
+MakePlayerActive(_Var1);
+
+PROC
+Proc_GLO_Arena_NonLethal_RemoveTalents((CHARACTERGUID)_Var1)
+AND
+CharacterHasTalent(_Var1, "Zombie", 1)
+THEN
+CharacterRemoveTalent(_Var1, "Zombie");
+DB_GLO_Arena_NonLethal_RemoveTalents(_Var1, "Zombie");
+
+PROC
+Proc_GLO_Arena_NonLethal_RemoveTalents((CHARACTERGUID)_Var1)
+AND
+CharacterHasTalent(_Var1, "Leech", 1)
+THEN
+CharacterRemoveTalent(_Var1, "Leech");
+DB_GLO_Arena_NonLethal_RemoveTalents(_Var1, "Leech");
+
+IF
+CharacterStatusApplied((CHARACTERGUID)_Var1, "UNCONSCIOUS", _)
+AND
+Qry_Arena_InNonLethalArena(_Var1)
+AND
+DB_Arena_CharIsAlive(_Var3, _Var1)
+THEN
+SetInArena(_Var1, 0);
+SetCanFight(_Var1, 0);
+SetCanJoinCombat(_Var1, 0);
+ObjectSetFlag(_Var1, "GLO_BlockRegenAfterCombat");
+NOT DB_Arena_CharIsAlive(_Var3, _Var1);
+Proc_Arena_CheckWinCondition();
+
+QRY
+Qry_Arena_InNonLethalArena((CHARACTERGUID)_Var1)
+AND
+DB_Arena_CharIsAlive(_, _Var1)
+AND
+DB_ArenaPresets_Mobs(_Var3, _Var1, _)
+AND
+DB_Arena_NonLethal(_Var3)
+THEN
+DB_NOOP(1);
+
+QRY
+Qry_Arena_InNonLethalArena((CHARACTERGUID)_Var1)
+AND
+DB_Arena_CharIsAlive(_, _Var1)
+AND
+DB_Arena_PlayerParticipants(_Var3, _, _Var1, _)
+AND
+DB_Arena_NonLethal(_Var3)
+THEN
+DB_NOOP(1);
+
+PROC
+Proc_Arena_Win_TeleportOut()
+AND
+DB_Arena_NonLethal(_Var1)
+AND
+DB_Arena_PlayerParticipants(_Var1, _, _Var3, _)
+THEN
+Proc_Arena_NonLethalCombatEnded(_Var3);
+
+PROC
+Proc_Arena_Win_TeleportOut()
+AND
+DB_Arena_NonLethal(_Var1)
+AND
+DB_Arena_PreviousLocation(_Var2, _Var3, _Var4, _Var5)
+AND
+DB_ArenaPresets_Mobs(_Var1, _Var2, _)
+THEN
+TeleportToPosition(_Var2, _Var3, _Var4, _Var5, "", 1);
+NOT DB_Arena_PreviousLocation(_Var2, _Var3, _Var4, _Var5);
+Proc_Arena_NonLethalCombatEnded(_Var2);
+
+PROC
+Proc_Arena_NonLethalCombatEnded((CHARACTERGUID)_Var1)
+THEN
+ProcSetInvulnerable(_Var1, 0);
+Proc_GLO_Arena_NonLethal_RestoreTalents(_Var1);
+SetInArena(_Var1, 0);
+ObjectClearFlag(_Var1, "GLO_BlockRegenAfterCombat");
+SetCanFight(_Var1, 1);
+SetCanJoinCombat(_Var1, 1);
+Proc_CharacterFullRestore(_Var1);
+CharacterSetImmortal(_Var1, 0);
+
+PROC
+Proc_GLO_Arena_NonLethal_RestoreTalents((CHARACTERGUID)_Var1)
+AND
+DB_GLO_Arena_NonLethal_RemoveTalents(_Var1, _Var2)
+THEN
+CharacterAddTalent(_Var1, _Var2);
+NOT DB_GLO_Arena_NonLethal_RemoveTalents(_Var1, _Var2);
+
+PROC
+Proc_Arena_CheckWinCondition()
+THEN
+GlobalClearFlag("Arena_RequestingLastManStanding");
+
+PROC
+Proc_Arena_CheckWinCondition()
+AND NOT
+DB_Arena_CharIsAlive("Arena_TeamA", _)
+THEN
+Proc_Arena_Win("Arena_TeamB");
+
+PROC
+Proc_Arena_CheckWinCondition()
+AND NOT
+DB_Arena_CharIsAlive("Arena_TeamB", _)
+AND
+DB_Arena_PlayerParticipants(_Var2, _, _, _)
+AND NOT
+DB_Arena_DisableLastManStanding(_Var2)
+THEN
+Proc_Arena_CheckWinCondition_CheckForLMS();
+
+PROC
+Proc_Arena_CheckWinCondition()
+AND NOT
+DB_Arena_CharIsAlive("Arena_TeamB", _)
+AND
+GlobalGetFlag("Arena_RequestingLastManStanding", 0)
+THEN
+Proc_Arena_Win("Arena_TeamA");
+
+PROC
+Proc_Arena_Win(_)
+AND
+DB_Arena_PlayerParticipants(_, _, _Var4, _)
+THEN
+ProcSetInvulnerable(_Var4, 1);
+
+PROC
+Proc_Arena_Win(_)
+THEN
+Proc_Arena_Win_RingGirl();
+
+PROC
+Proc_Arena_Win(_)
+AND
+DB_Arena_PlayerParticipants(_Var2, _, _, _)
+THEN
+Proc_Arena_SetMobsOffStage(_Var2);
+
+PROC
+Proc_Arena_SetMobsOffStage((STRING)_Var1)
+THEN
+DB_NOOP(1);
+
+PROC
+Proc_Arena_Win((STRING)_Var1)
+AND
+DB_Arena_PlayerParticipants(_Var2, _, _Var4, _Var1)
+AND
+CharacterIsDead(_Var4, 0)
+AND
+DB_ArenaMaster_WinFlags(_Var2, _Var5, _Var6)
+THEN
+UserSetFlag(_Var4, _Var5);
+UserClearFlag(_Var4, _Var6, 0);
+
+PROC
+Proc_Arena_Win((STRING)_Var1)
+AND
+DB_Arena_PlayerParticipants(_Var2, _Var3, _Var4, _Var1)
+AND
+DB_Arena_MobParticipants(_Var3, _, _, _)
+AND
+DB_Avatars(_Var4)
+THEN
+Proc_Arena_SetChampionTag(_Var4, _Var2);
+
+PROC
+Proc_Arena_Win((STRING)_Var1)
+AND
+DB_Arena_PlayerParticipants(_Var2, _Var3, _Var4, _Var1)
+AND NOT
+DB_Arena_MobParticipants(_Var3, _, _, _)
+AND
+DB_Avatars(_Var4)
+AND
+DB_Arena_PlayerParticipants(_Var2, _, _Var9, _)
+AND
+DB_ArenaChampionTag(_Var2, _Var11)
+AND
+IsTagged(_Var9, _Var11, 1)
+THEN
+Proc_Arena_SetChampionTag(_Var4, _Var2);
+
+PROC
+Proc_Arena_SetChampionTag((CHARACTERGUID)_Var1, (STRING)_Var2)
+AND
+DB_ArenaChampionTag(_Var2, _Var3)
+AND
+IsTagged(_Var1, _Var3, 0)
+THEN
+SetTag(_Var1, _Var3);
+
+PROC
+Proc_Arena_SetChampionTag((CHARACTERGUID)_Var1, (STRING)_Var2)
+AND
+DB_ArenaChampionTag(_Var2, _Var3)
+AND
+DB_IsPlayer(_Var4)
+AND
+_Var4 != _Var1
+THEN
+ClearTag(_Var4, _Var3);
+
+PROC
+Proc_Arena_Win((STRING)_Var1)
+AND
+DB_Arena_PlayerParticipants(_Var2, _, _Var4, _Var1)
+AND
+CharacterIsDead(_Var4, 1)
+AND
+DB_ArenaMaster_WinFlags(_Var2, _Var5, _Var6)
+AND
+UserGetFlag(_Var4, _Var5, 0)
+THEN
+UserSetFlag(_Var4, _Var6);
+UserClearFlag(_Var4, _Var5, 0);
+
+PROC
+Proc_Arena_Win((STRING)_Var1)
+AND
+DB_Arena_PlayerParticipants(_Var2, _, _Var4, _Var5)
+AND
+_Var5 != _Var1
+AND
+DB_ArenaMaster_WinFlags(_Var2, _Var6, _Var7)
+THEN
+UserSetFlag(_Var4, _Var7);
+UserClearFlag(_Var4, _Var6, 0);
+
+PROC
+Proc_Arena_Win(_)
+AND
+DB_Arena_PreviousFaction(_Var2, _Var3)
+THEN
+SetFaction(_Var2, _Var3);
+NOT DB_Arena_PreviousFaction(_Var2, _Var3);
+
+PROC
+Proc_Arena_Win(_)
+AND
+GlobalGetFlag("Arnea_RingGirl_NoRingGirl", 1)
+THEN
+Proc_Arena_Win_TeleportOut();
+
+PROC
+Proc_Arena_Win_TeleportOut()
+THEN
+GlobalClearFlag("Arena_RequestingLastManStanding");
+GlobalClearFlag("Arena_LastManStanding_AcceptWinner");
+GlobalClearFlag("Arena_LastManStanding_NoAccept");
+GlobalClearFlag("Arena_LastManStanding_Accept");
+
+PROC
+Proc_Arena_Win_TeleportOut()
+AND
+DB_Arena_PlayerParticipants(_, _, _Var3, _)
+THEN
+CharacterRemoveSummons(_Var3, 1);
+RemoveHarmfulStatuses(_Var3);
+CharacterSetHitpointsPercentage(_Var3, 100);
+ProcSetInvulnerable(_Var3, 0);
+DialogRequestStop(_Var3);
+
+PROC
+Proc_Arena_Win_TeleportOut()
+AND
+DB_Arena_PlayerParticipants(_, _, _Var3, _)
+THEN
+FadeToBlack(_Var3, 2, 1, "Placeholder");
+
+PROC
+Proc_Arena_Win_TeleportOut()
+THEN
+GlobalClearFlag("Arnea_RingGirl_NoRingGirl");
+
+PROC
+Proc_Arena_Win_TeleportOut()
+AND
+DB_Arena_PlayerParticipants(_Var1, _, _Var3, _)
+AND
+DB_ArenaMaster(_, _, _Var1, _Var7)
+THEN
+SetInArena(_Var3, 0);
+CharacterSetSpectating(_Var3, 0);
+TeleportTo(_Var3, _Var7);
+CharacterFlushQueue(_Var3);
+SetStoryEvent(_Var3, "Arena_CharacterTeleportedOutOfArena");
+
+PROC
+Proc_Arena_Win_TeleportOut()
+AND
+DB_Arena_PlayerParticipants(_Var1, _, _Var3, _)
+AND
+CharacterIsDead(_Var3, 1)
+AND NOT
+DB_Arena_FightToTheDeath(_Var1)
+THEN
+CharacterResurrectCustom(_Var3, "");
+
+PROC
+Proc_Arena_Win_TeleportOut()
+AND
+DB_Arena_PreviousLocation(_Var1, _Var2, _Var3, _Var4)
+AND NOT
+DB_Arena_ReviveCharAfter(_Var1)
+THEN
+NOT DB_Arena_PreviousLocation(_Var1, _Var2, _Var3, _Var4);
+
+PROC
+Proc_Arena_Win_TeleportOut()
+THEN
+Proc_Arena_Clear();
+
+PROC
+Proc_Arena_Win_RingGirl()
+AND
+DB_Arena_PlayerParticipants(_Var1, _, _, _)
+AND
+DB_ArenaMaster_RingGirl(_Var5, _Var6, _Var1, _Var7)
+AND
+GlobalGetFlag("Arnea_RingGirl_Initiated", 0)
+THEN
+TeleportTo(_Var5, _Var7);
+Foop(_Var5);
+JumpToTurn(CHARACTERGUID_S_FTJ_RingGirl_Helper_2c6f3151-8d67-4af7-a4b7-e18b7c64ac94);
+GlobalSetFlag("Arnea_RingGirl_Initiated");
+SetInArena(_Var5, 1);
+SetStoryEvent(_Var5, "Arnea_RingGirl_Appeared");
+
+PROC
+Proc_Arena_Win_RingGirl()
+AND
+GlobalGetFlag("Arnea_RingGirl_Initiated", 1)
+AND
+DB_Arena_PlayerParticipants(_, _, _Var3, _)
+THEN
+CharacterSetSpectating(_Var3, 1);
+
+PROC
+Proc_Arena_Win_RingGirl()
+AND
+DB_Arena_PlayerParticipants(_Var1, _, _Var3, _)
+AND NOT
+DB_ArenaMaster_RingGirl(_, _, _Var1, _)
+AND
+DB_Arena_CharIsAlive(_, _Var3)
+THEN
+PlayAnimation(_Var3, "Victory_01");
+FadeToBlack(_Var3, 2, 0, "Placeholder");
+
+PROC
+Proc_Arena_Win_RingGirl()
+AND
+DB_Arena_PlayerParticipants(_Var1, _, _, _)
+AND NOT
+DB_ArenaMaster_RingGirl(_, _, _Var1, _)
+THEN
+TimerLaunch("Arena_PlayingVictoryAnimation", 4000);
+
+IF
+TimerFinished("Arena_PlayingVictoryAnimation")
+THEN
+Proc_Arena_Win_TeleportOut();
+
+IF
+StoryEvent(_, "Arnea_RingGirl_Appeared")
+AND
+DB_Arena_PlayerParticipants(_, _, _Var4, _)
+THEN
+FadeToBlack(_Var4, 2, 0, "Placeholder");
+
+IF
+StoryEvent((CHARACTERGUID)_Var1, "Arnea_RingGirl_Appeared")
+AND
+DB_ArenaMaster_RingGirl(_Var1, _Var2, _, _)
+THEN
+Proc_StartDialog(1, _Var2, _Var1);
+
+IF
+AutomatedDialogEnded((STRING)_Var1, _)
+AND
+DB_ArenaMaster_RingGirl(_Var3, _Var1, _, _)
+AND
+GlobalGetFlag("Arnea_RingGirl_Initiated", 1)
+THEN
+GlobalClearFlag("Arnea_RingGirl_Initiated");
+SetInArena(_Var3, 0);
+Poof(_Var3);
+Proc_Arena_Win_TeleportOut();
+
+IF
+DialogEnded(_, (INTEGER)_Var2)
+AND
+DB_ArenaMaster_SetUp(_Var2)
+AND
+GlobalGetFlag("Arena_StartAfterDialog", 0)
+THEN
+Proc_Arena_ClearFlagsAndDatabases(_Var2);
+
+PROC
+Proc_Arena_ClearFlagsAndDatabases((INTEGER)_Var1)
+THEN
+NOT DB_Arena_PlayerParticipants_SameUser(1);
+GlobalClearFlag("Arena_CharNotInRegion");
+GlobalClearFlag("Arena_CharNotAvailable");
+GlobalClearFlag("Arena_StartAfterDialog");
+NOT DB_ArenaMaster_SetUp(_Var1);
+GlobalClearFlag("Arena_LastManStanding_NoAccept");
+GlobalClearFlag("Arena_LastManStanding_AcceptWinner");
+
+PROC
+Proc_Arena_Clear()
+THEN
+GlobalClearFlag("Arena_OnGoing");
+NOT DB_Arena_PlayerParticipants_SameUser(1);
+
+PROC
+Proc_Arena_Clear()
+AND
+DB_Arena_CharIsAlive(_Var1, _Var2)
+THEN
+NOT DB_Arena_CharIsAlive(_Var1, _Var2);
+
+PROC
+Proc_Arena_Clear()
+AND
+DB_Arena_CharWasAlive(_Var1, _Var2)
+THEN
+NOT DB_Arena_CharWasAlive(_Var1, _Var2);
+
+PROC
+Proc_Arena_Clear()
+AND
+DB_Arena_MobParticipants(_Var1, _Var2, _Var3, _Var4)
+THEN
+NOT DB_Arena_MobParticipants(_Var1, _Var2, _Var3, _Var4);
+
+PROC
+Proc_Arena_Clear()
+AND
+DB_Arena_PlayerParticipants(_Var1, _Var2, _Var3, _Var4)
+THEN
+NOT DB_Arena_PlayerParticipants(_Var1, _Var2, _Var3, _Var4);
+
+PROC
+Proc_Arena_Clear()
+AND
+DB_Arena_LastManStandingTeams(_Var1, _Var2, _Var3)
+THEN
+NOT DB_Arena_LastManStandingTeams(_Var1, _Var2, _Var3);
+
+IF
+DialogEnded((STRING)_Var1, _)
+AND
+DB_ArenaMaster(_, _Var1, _, _)
+THEN
+Proc_Arena_ClearPlayerCheck();
+
+PROC
+Proc_Arena_ClearPlayerCheck()
+AND
+DB_Arena_PvpChallenge(_Var1, _Var2)
+THEN
+NOT DB_Arena_PvpChallenge(_Var1, _Var2);
+
+PROC
+Proc_Arena_ClearPlayerCheck()
+AND
+DB_Arena_AvailablePlayer(_Var1, _Var2, _Var3)
+THEN
+NOT DB_Arena_AvailablePlayer(_Var1, _Var2, _Var3);
+DebugText(_Var2, "Proc_Arena_ClearPlayerCheck");
+
+PROC
+Proc_Arena_ClearPlayerCheck()
+AND
+DB_IsPlayer(_Var1)
+THEN
+ObjectClearFlag(_Var1, "Arena_ChallengePlayer_1");
+ObjectClearFlag(_Var1, "Arena_ChallengePlayer_2");
+ObjectClearFlag(_Var1, "Arena_ChallengePlayer_3");
+ObjectClearFlag(_Var1, "Arena_ChallengePlayer_4");
+
+PROC
+Proc_Arena_ClearPlayerCheck()
+AND
+DB_Arena_CheckOtherPlayers_Count(_Var1)
+THEN
+NOT DB_Arena_CheckOtherPlayers_Count(_Var1);
+
+PROC
+Proc_Arena_ClearPlayerCheck()
+THEN
+GlobalClearFlag("ArenaDialog_SinglePlayer");
+GlobalClearFlag("Arena_AvailablePlayer_1");
+
+PROC
+Proc_Arena_Initiate((INTEGER)_Var1)
+AND
+DB_Arena_PlayerParticipants(_, _Var1, _Var3, _)
+AND
+ObjectGetFlag(_Var3, "Arena_CharacterFoughtInArena", 0)
+THEN
+ObjectSetFlag(_Var3, "Arena_CharacterFoughtInArena");
+
+PROC
+Proc_Arena_Initiate((INTEGER)_Var1)
+AND
+DB_Arena_PlayerParticipants(_Var2, _Var1, _Var3, _)
+AND
+StringConcatenate("Arena_CharacterFoughtIn_", _Var2, _Var5)
+AND
+ObjectGetFlag(_Var3, _Var5, 0)
+THEN
+ObjectSetFlag(_Var3, _Var5);
+
+PROC
+Proc_Arena_Initiate((INTEGER)_Var1)
+AND
+DB_Arena_PlayerParticipants(_Var2, _, _Var4, _)
+AND
+ObjectGetFlag(_Var4, "Arena_CharacterFoughtIn_Driftwood", 0)
+AND
+StringContains(_Var2, "Driftwood", 1)
+THEN
+ObjectSetFlag(_Var4, "Arena_CharacterFoughtIn_Driftwood");
+
+IF
+SavegameLoaded(_, _, _, _)
+AND
+GlobalGetFlag("Arena_OnGoing", 1)
+THEN
+Proc_ArenaSavegameLoaded_CheckForPvpPlayers();
+
+PROC
+Proc_ArenaSavegameLoaded_CheckForPvpPlayers()
+AND
+DB_Arena_PlayerParticipants(_Var1, _Var2, _Var3, _Var4)
+AND
+DB_Arena_PlayerParticipants(_Var1, _Var2, _Var5, _Var6)
+AND
+_Var4 != _Var6
+AND
+_Var3 != _Var5
+AND
+CharacterGetReservedUserID(_Var3, _Var7)
+AND
+CharacterGetReservedUserID(_Var5, _Var7)
+THEN
+Proc_ArenaSavegameLoaded_CheckForPvpPlayers_MergeTeam(_Var3, _Var5);
+
+PROC
+Proc_ArenaSavegameLoaded_CheckForPvpPlayers_MergeTeam((CHARACTERGUID)_Var1, (CHARACTERGUID)_Var2)
+AND
+DB_Arena_PlayerParticipants(_Var3, _Var4, _Var1, _Var5)
+AND
+DB_Arena_PlayerParticipants(_Var3, _Var4, _Var2, _Var6)
+THEN
+NOT DB_Arena_PlayerParticipants(_Var3, _Var4, _Var2, _Var6);
+DB_Arena_PlayerParticipants(_Var3, _Var4, _Var2, _Var5);
+
+PROC
+Proc_ArenaSavegameLoaded_CheckForPvpPlayers_MergeTeam(_, (CHARACTERGUID)_Var2)
+AND
+DB_Arena_PlayerParticipants(_Var3, _Var4, _Var2, _Var5)
+AND
+DB_Arena_CharIsAlive(_Var6, _Var2)
+THEN
+NOT DB_Arena_CharIsAlive(_Var6, _Var2);
+DB_Arena_CharIsAlive(_Var5, _Var2);
+
+PROC
+Proc_ArenaSavegameLoaded_CheckForPvpPlayers()
+AND
+GlobalGetFlag("Arena_RequestingLastManStanding", 1)
+AND
+DB_Arena_PlayerParticipants(_, _, _Var3, _)
+AND
+CharacterGetReservedUserID(_Var3, _Var5)
+THEN
+Proc_Arena_LastManStandingTeams_Reassigned(_Var5, _Var3);
+
+PROC
+Proc_ArenaSavegameLoaded_CheckForPvpPlayers()
+AND
+GlobalGetFlag("Arena_RequestingLastManStanding", 0)
+THEN
+Proc_Arena_CheckWinCondition();
+
+IF
+UserDisconnected((INTEGER)_Var1, _, _)
+AND
+DB_Arena_PlayerParticipants(_, _, _, _)
+THEN
+Proc_ArenaSavegameLoaded_CheckForPvpPlayers();
+
+IF
+ItemTemplateEquipped("EQ_Clothing_UNIQUE_Blindfolds_A_60884e3d-45cb-4849-b35e-d24064386b9f", (CHARACTERGUID)_Var1)
+THEN
+ApplyStatus(_Var1, "PERMANENT_BLIND", -1, 1);
+
+IF
+CharacterStatusRemoved((CHARACTERGUID)_Var1, "PERMANENT_BLIND", _)
+AND
+GetItemForItemTemplateInInventory(_Var1, "EQ_Clothing_UNIQUE_Blindfolds_A_60884e3d-45cb-4849-b35e-d24064386b9f", _Var3)
+AND
+CharacterGetEquippedItem(_Var1, "Helmet", _Var3)
+AND
+HasActiveStatus(_Var1, "PERMANENT_BLIND", 0)
+THEN
+ApplyStatus(_Var1, "PERMANENT_BLIND", -1, 1);
+
+IF
+CharacterResurrected((CHARACTERGUID)_Var1)
+AND
+GetItemForItemTemplateInInventory(_Var1, "EQ_Clothing_UNIQUE_Blindfolds_A_60884e3d-45cb-4849-b35e-d24064386b9f", _Var2)
+AND
+CharacterGetEquippedItem(_Var1, "Helmet", _Var2)
+THEN
+ApplyStatus(_Var1, "PERMANENT_BLIND", -1, 1);
+
+IF
+ItemTemplateUnEquipped("EQ_Clothing_UNIQUE_Blindfolds_A_60884e3d-45cb-4849-b35e-d24064386b9f", (CHARACTERGUID)_Var1)
+THEN
+RemoveStatus(_Var1, "PERMANENT_BLIND");
+
+IF
+CharacterReservedUserIDChanged((CHARACTERGUID)_Var1, _, (INTEGER)_Var3)
+AND
+DB_Arena_PlayerParticipants(_, _, _Var1, _)
+AND
+GlobalGetFlag("Arena_RequestingLastManStanding", 0)
+THEN
+Proc_Arena_PVP_Reassigned(_Var3, _Var1);
+
+PROC
+Proc_Arena_PVP_Reassigned((INTEGER)_Var1, (CHARACTERGUID)_Var2)
+AND
+DB_Arena_PlayerParticipants(_Var3, _Var4, _Var2, _Var5)
+AND
+DB_IsPlayer(_Var6)
+AND
+_Var2 != _Var6
+AND
+CharacterGetReservedUserID(_Var6, _Var1)
+AND
+DB_Arena_PlayerParticipants(_Var3, _Var4, _Var6, _Var7)
+AND
+_Var5 != _Var7
+THEN
+NOT DB_Arena_PlayerParticipants(_Var3, _Var4, _Var2, _Var5);
+DB_Arena_PlayerParticipants(_Var3, _Var4, _Var2, _Var7);
+SetFaction(_Var2, _Var7);
+
+PROC
+Proc_Arena_PVP_Reassigned((INTEGER)_Var1, (CHARACTERGUID)_Var2)
+AND
+DB_Arena_PlayerParticipants(_Var3, _Var4, _Var2, _Var5)
+AND
+DB_Arena_CharIsAlive(_Var6, _Var2)
+AND
+_Var6 != _Var5
+THEN
+NOT DB_Arena_CharIsAlive(_Var6, _Var2);
+DB_Arena_CharIsAlive(_Var5, _Var2);
+
+PROC
+Proc_Arena_PVP_Reassigned(_, _)
+THEN
+Proc_Arena_CheckWinCondition();
+
+
+EXITSECTION
+ENDEXITSECTION
+
+ParentTargetEdge "__Shared_Campaign"

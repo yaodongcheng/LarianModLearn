@@ -1,0 +1,948 @@
+Version 1
+SubGoalCombiner SGC_AND
+
+INITSECTION
+DB_CoS_AotO_PlayerSpawns(TRIGGERGUID_S_CoS_AotO_SpawnPoint_Player_001_b35a1fb2-9c3a-40f8-a687-22f776eba5a1);
+DB_CoS_AotO_PlayerSpawns(TRIGGERGUID_S_CoS_AotO_SpawnPoint_Player_002_a26a99c4-bea7-486e-a19a-72d092ba039d);
+DB_CoS_AotO_PlayerSpawns(TRIGGERGUID_S_CoS_AotO_SpawnPoint_Player_003_085e0ceb-6c1d-48c9-a1e0-02171869e8e4);
+DB_CoS_AotO_PlayerSpawns(TRIGGERGUID_S_CoS_AotO_SpawnPoint_Player_004_75943e5a-c98d-477c-a607-46fcb6d034f6);
+DB_CoS_AotO_PlayerSpawns(TRIGGERGUID_S_CoS_AotO_SpawnPoint_Player_005_f620acbd-c4f9-4f7c-89be-52466569b8d9);
+DB_CoS_AotO_PlayerSpawns(TRIGGERGUID_S_CoS_AotO_SpawnPoint_Player_006_4ca0f156-153c-4243-9cf1-a20fc053ebbe);
+DB_CoS_AotO_PlayerSpawns(TRIGGERGUID_S_CoS_AotO_SpawnPoint_Player_007_41b413ab-0398-45e6-86b3-0ed6ef4a697e);
+DB_CoS_AotO_PlayerSpawns(TRIGGERGUID_S_CoS_AotO_SpawnPoint_Player_008_0f85d8b7-567d-4410-a90c-503b1165a146);
+DB_CoS_AotO_PlayerSpawns(TRIGGERGUID_S_CoS_AotO_SpawnPoint_Player_009_26a4b1fb-2d2c-4efd-b763-cf23c7659670);
+DB_CoS_AotO_PlayerSpawns(TRIGGERGUID_S_CoS_AotO_SpawnPoint_Player_010_6cd8fd93-3556-4789-b0e5-6bc35e07ed1a);
+DB_CoS_AotO_GlobalDialogs("CoS_AotO_IntroductionDialog");
+DB_CoS_AotO_GlobalDialogs("CoS_AotO_AlexandarBeforeCombat");
+DB_CoS_AotO_Defender(CHARACTERGUID_S_CoS_AotO_Defender_001_62739e8c-b3e3-45b7-869b-16f7a571e4c0);
+DB_CoS_AotO_Defender(CHARACTERGUID_S_CoS_AotO_Defender_002_43e5b62e-2847-494e-ba18-24e233b0c58f);
+DB_CoS_AotO_Phase_1_BraccusEventPositions(TRIGGERGUID_S_CoS_AotO_Phase2_SpawnPoint_000_e4c9c6b0-2f16-4168-a3a0-4f6a22083fc7);
+DB_CoS_AotO_Phase_1_BraccusEventPositions(TRIGGERGUID_S_CoS_AotO_Phase2_SpawnPoint_001_c2970f0a-96a2-410e-9424-505f50ca3799);
+DB_CoS_AotO_Phase_1_BraccusEventPositions(TRIGGERGUID_S_CoS_AotO_Phase2_SpawnPoint_002_a11f5974-f810-46b3-9081-1ed6fc13c8a6);
+DB_CoS_AotO_Phase_1_BraccusEventPositions(TRIGGERGUID_S_CoS_AotO_Phase2_SpawnPoint_003_a9ada30a-622d-4b65-a579-a41d20d87d5f);
+DB_CoS_AotO_Phase_1_BraccusEventPositions(TRIGGERGUID_S_CoS_AotO_Phase2_SpawnPoint_004_0c753898-4fef-4c24-889e-0dacbe7c7ee3);
+DB_CoS_AotO_Phase_1_BraccusEventPositions(TRIGGERGUID_S_CoS_AotO_Phase2_SpawnPoint_005_7d4a798a-af8c-4c17-9e45-fbc936920ea8);
+TeleportTo(CHARACTERGUID_S_GLO_Dallis_69b951dc-55a4-44b8-a2d5-5efedbd7d572, TRIGGERGUID_S_CoS_Academy_Dallis_Point_67871896-ab5f-40ba-87bb-58df1b99d55e);
+TeleportTo(CHARACTERGUID_S_GLO_Braccus_358ba541-0710-43be-8263-87afe1a8d9b5, TRIGGERGUID_S_CoS_Academy_Braccus_Point_4437c524-bb81-4944-a27d-3408c2fc0e0b);
+CharacterLevelUpTo(CHARACTERGUID_S_GLO_Dallis_69b951dc-55a4-44b8-a2d5-5efedbd7d572, 17);
+CharacterLevelUpTo(CHARACTERGUID_S_GLO_Braccus_358ba541-0710-43be-8263-87afe1a8d9b5, 17);
+Proc_CharacterFullRestore(CHARACTERGUID_S_GLO_Braccus_358ba541-0710-43be-8263-87afe1a8d9b5);
+Proc_CharacterFullRestore(CHARACTERGUID_S_GLO_Dallis_69b951dc-55a4-44b8-a2d5-5efedbd7d572);
+CharacterLookAt(CHARACTERGUID_S_GLO_Dallis_69b951dc-55a4-44b8-a2d5-5efedbd7d572, ITEMGUID_S_CoS_AotO_GodObject_0ebb2920-fc7f-4c9a-a295-fa08c63df36d);
+CharacterLookAt(CHARACTERGUID_S_GLO_Braccus_358ba541-0710-43be-8263-87afe1a8d9b5, ITEMGUID_S_CoS_AotO_GodObject_0ebb2920-fc7f-4c9a-a295-fa08c63df36d);
+DB_CoS_AotO_P1_FallingRock_Triggers(TRIGGERGUID_S_CoS_AotO_P1_RockFall_Trigger_002_bd47656e-b1e8-4823-b2ed-f49da9a3b9e0);
+DB_CoS_AotO_P1_FallingRock_Triggers(TRIGGERGUID_S_CoS_AotO_P1_RockFall_Trigger_003_5c56f623-55d3-4cdf-98ec-c4ce3c970449);
+DB_CoS_AotO_P1_FallingRock_Triggers(TRIGGERGUID_S_CoS_AotO_P1_RockFall_Trigger_004_7a66aa71-ba74-46f7-8a50-ac97c9de0b81);
+DB_CoS_AotO_P1_FallingRock_Triggers(TRIGGERGUID_S_CoS_AotO_P1_RockFall_Trigger_005_9cbd3fa2-2cf6-48fb-8b03-2053dd19dcfa);
+DB_OneShot_VoiceBarkTrigger(TRIGGERGUID_S_CoS_AotO_WellSpringVB_Trigger_94ca7a6c-1c69-4ec2-8767-02188530df79, "CoS_AotO_VB_WellSpring");
+
+KBSECTION
+IF
+DB_CoS_AotO_PhaseOneInit(1)
+AND
+QueryOnlyOnce("Proc_CoS_AotO_PhaseOneInit_Once")
+THEN
+Proc_CoS_AotO_PhaseOneInit();
+
+IF
+RegionStarted("CoS_Main_Ending")
+AND
+DB_CoS_AotO_PhaseOneInit(1)
+AND
+QueryOnlyOnce("Proc_CoS_AotO_PhaseOneInit_Once")
+THEN
+Proc_CoS_AotO_PhaseOneInit();
+
+IF
+DialogStarted((STRING)_Var1, (INTEGER)_Var2)
+AND
+DB_CoS_AotO_GlobalDialogs(_Var1)
+AND
+DialogGetInvolvedPlayer(_Var2, 1, _Var3)
+AND
+DB_IsPlayer(_Var4)
+AND
+_Var3 != _Var4
+AND
+DB_CoS_AotO_Competitors(_Var4)
+AND
+CharacterIsDead(_Var4, 0)
+THEN
+DialogAddActor(_Var2, _Var4);
+
+IF
+DialogStarted((STRING)_Var1, (INTEGER)_Var2)
+AND
+DB_CoS_AotO_GlobalDialogs(_Var1)
+AND
+DB_CoS_AotO_Competitors(_Var3)
+AND
+CharacterIsDead(_Var3, 0)
+AND
+IsSpeakerReserved(_Var3, 0)
+THEN
+DialogAddActor(_Var2, _Var3);
+
+PROC
+Proc_CoS_AotO_PhaseOneInit()
+THEN
+GlobalSetFlag("CoS_AotO_Active");
+ItemSetForceSynch(ITEMGUID_S_CoS_AotO_GodObject_0ebb2920-fc7f-4c9a-a295-fa08c63df36d, 1);
+
+PROC
+Proc_CoS_AotO_PhaseOneInit()
+AND
+DB_IsPlayer(_Var1)
+AND
+DB_CoS_AotO_PlayerSpawns(_Var2)
+AND NOT
+DB_CoS_AotO_PlayerSpawns(_Var1, _)
+AND NOT
+DB_CoS_AotO_PlayerSpawns(_, _Var2)
+THEN
+CharacterDetachFromGroup(_Var1);
+DB_CoS_AotO_PlayerSpawns(_Var1, _Var2);
+NOT DB_CoS_AotO_PlayerSpawns(_Var2);
+CharacterRemoveSummons(_Var1, 0);
+TeleportTo(_Var1, _Var2);
+DB_CoS_AotO_Competitors(_Var1);
+PartySetFlag(_Var1, "QuestUpdate_CoS_ArenaOfTheOne_Phase_1_Start");
+
+PROC
+Proc_CoS_AotO_PhaseOneInit()
+AND
+GlobalGetFlag("CoS_Temples_AlexandarLeaveToAcademy", 1)
+AND
+CharacterIsDead(CHARACTERGUID_S_GLO_Alexandar_03e6345f-1bd3-403c-80e2-a443a74f6349, 0)
+THEN
+TeleportTo(CHARACTERGUID_S_GLO_Alexandar_03e6345f-1bd3-403c-80e2-a443a74f6349, TRIGGERGUID_S_CoS_AotO_SpawnPoint_Alexandar_89ab92a0-4460-4dab-8981-0041c8a214e6);
+DB_CoS_AotO_Competitors(CHARACTERGUID_S_GLO_Alexandar_03e6345f-1bd3-403c-80e2-a443a74f6349);
+SetVarInteger(CHARACTERGUID_S_GLO_Alexandar_03e6345f-1bd3-403c-80e2-a443a74f6349, "WillNotMoveToGodObject", 1);
+SetVarFixedString(CHARACTERGUID_S_GLO_Alexandar_03e6345f-1bd3-403c-80e2-a443a74f6349, "currentState", "");
+ClearTag(CHARACTERGUID_S_GLO_Alexandar_03e6345f-1bd3-403c-80e2-a443a74f6349, "AI_PREFERRED_TARGET");
+MoveAllItemsTo(ITEMGUID_S_CoS_AotO_AlexandarLootGenerator_cac73f02-35c7-40b0-ba87-6fe9d368d318, CHARACTERGUID_S_GLO_Alexandar_03e6345f-1bd3-403c-80e2-a443a74f6349);
+CharacterAddSourcePoints(CHARACTERGUID_S_GLO_Alexandar_03e6345f-1bd3-403c-80e2-a443a74f6349, 2);
+CharacterSetImmortal(CHARACTERGUID_S_GLO_Alexandar_03e6345f-1bd3-403c-80e2-a443a74f6349, 0);
+ProcSetInvulnerable(CHARACTERGUID_S_GLO_Alexandar_03e6345f-1bd3-403c-80e2-a443a74f6349, 0);
+
+IF
+CharacterDied(CHARACTERGUID_S_GLO_Alexandar_03e6345f-1bd3-403c-80e2-a443a74f6349)
+AND
+GetRegion(CHARACTERGUID_S_GLO_Alexandar_03e6345f-1bd3-403c-80e2-a443a74f6349, _Var1)
+AND
+_Var1 == "CoS_Main_Ending"
+THEN
+GlobalSetFlag("CoS_AlexandarDead");
+CharacterGiveReward(CHARACTERGUID_S_GLO_Alexandar_03e6345f-1bd3-403c-80e2-a443a74f6349, "MiniBoss");
+
+PROC
+Proc_CoS_AotO_PhaseOneInit()
+AND
+DB_OriginRecruitmentLocation_Region(_, _Var2, _, _)
+AND
+CharacterIsDead(_Var2, 0)
+AND
+IsTagged(_Var2, "AVATAR", 0)
+AND NOT
+DB_IsPlayer(_Var2)
+AND
+ObjectGetFlag(_Var2, "CoS_CompanionReJoinAvatar", 0)
+AND
+DB_CoS_AotO_PlayerSpawns(_Var5)
+AND NOT
+DB_CoS_AotO_PlayerSpawns_EnemyCompanions(_Var2, _)
+THEN
+NOT DB_CoS_AotO_PlayerSpawns(_Var5);
+DB_CoS_AotO_PlayerSpawns_EnemyCompanions(_Var2, _Var5);
+TeleportTo(_Var2, _Var5);
+CharacterSetRelationIndivFactionToFaction(_Var2, "Hero", 0);
+CharacterSetRelationFactionToIndivFaction("Hero", _Var2, 0);
+PROC_StopLoopEffect(_Var2, "EnterAcademy_ExclamationMark");
+DB_CoS_AotO_Competitors(_Var2);
+CharacterAddSourcePoints(_Var2, 2);
+
+PROC
+Proc_CoS_AotO_PhaseOneInit()
+THEN
+CharacterSetForceSynch(CHARACTERGUID_S_CoS_Academy_TempleAutomation_681a2c86-0ff0-4622-a6fc-1ee085d38178, 1);
+SetFaction(CHARACTERGUID_S_CoS_Academy_TempleAutomation_681a2c86-0ff0-4622-a6fc-1ee085d38178, "Hero");
+TeleportTo(CHARACTERGUID_S_CoS_Academy_TempleAutomation_681a2c86-0ff0-4622-a6fc-1ee085d38178, TRIGGERGUID_S_CoS_AotO_SpawnPoint_Automoton_41b6c0cd-cd60-4242-937b-50d060ce52d0, "CoS_AotO_AutomotonDialogStart", 0);
+CharacterLookAt(CHARACTERGUID_S_CoS_Academy_TempleAutomation_681a2c86-0ff0-4622-a6fc-1ee085d38178, TRIGGERGUID_S_CoS_AotO_SpawnPoint_Player_001_b35a1fb2-9c3a-40f8-a687-22f776eba5a1);
+DB_CombatCutscene_PrioritizedObject(CHARACTERGUID_S_CoS_Academy_TempleAutomation_681a2c86-0ff0-4622-a6fc-1ee085d38178);
+
+IF
+DB_CoS_AotO_Competitors(_Var1)
+AND NOT
+DB_GlobalFlag("CoS_AfterArenaOfTheOne")
+AND
+_Var1 != CHARACTERGUID_S_GLO_Alexandar_03e6345f-1bd3-403c-80e2-a443a74f6349
+AND NOT
+DB_IsPlayer(_Var1)
+THEN
+CharacterSetCorpseLootable(_Var1, 0);
+
+IF
+DB_CoS_AotO_Competitors(_Var1)
+AND NOT
+DB_GlobalFlag("CoS_AfterArenaOfTheOne")
+AND
+_Var1 != CHARACTERGUID_S_GLO_Alexandar_03e6345f-1bd3-403c-80e2-a443a74f6349
+AND NOT
+DB_IsPlayer(_Var1)
+AND
+DB_CoS_AotO_Competitors(_Var2)
+AND
+_Var1 != _Var2
+THEN
+CharacterSetRelationIndivFactionToIndivFaction(_Var1, _Var2, 0);
+CharacterSetRelationIndivFactionToIndivFaction(_Var2, _Var1, 0);
+
+IF
+DB_CoS_AotO_Competitors(CHARACTERGUID_S_GLO_Alexandar_03e6345f-1bd3-403c-80e2-a443a74f6349)
+AND NOT
+DB_GlobalFlag("CoS_AfterArenaOfTheOne")
+AND
+DB_CoS_AotO_Competitors(_Var1)
+AND
+_Var1 != CHARACTERGUID_S_GLO_Alexandar_03e6345f-1bd3-403c-80e2-a443a74f6349
+AND NOT
+DB_IsPlayer(_Var1)
+THEN
+CharacterSetRelationIndivFactionToIndivFaction(CHARACTERGUID_S_GLO_Alexandar_03e6345f-1bd3-403c-80e2-a443a74f6349, _Var1, 0);
+CharacterSetRelationIndivFactionToIndivFaction(_Var1, CHARACTERGUID_S_GLO_Alexandar_03e6345f-1bd3-403c-80e2-a443a74f6349, 0);
+
+IF
+DB_CoS_AotO_Competitors(CHARACTERGUID_S_GLO_Alexandar_03e6345f-1bd3-403c-80e2-a443a74f6349)
+AND NOT
+DB_GlobalFlag("CoS_AfterArenaOfTheOne")
+AND
+DB_CoS_AotO_Competitors(_Var1)
+AND
+DB_IsPlayer(_Var1)
+AND
+QRY_CoS_AotO_AlexandarHostilityToPlayer(_Var1)
+THEN
+DB_NOOP(1);
+
+QRY
+QRY_CoS_AotO_AlexandarHostilityToPlayer((CHARACTERGUID)_Var1)
+AND
+GlobalGetFlag("CoS_AotO_AlexandarYieldsToPlayer", 0)
+THEN
+CharacterSetRelationIndivFactionToIndivFaction(CHARACTERGUID_S_GLO_Alexandar_03e6345f-1bd3-403c-80e2-a443a74f6349, _Var1, 0);
+CharacterSetRelationIndivFactionToIndivFaction(_Var1, CHARACTERGUID_S_GLO_Alexandar_03e6345f-1bd3-403c-80e2-a443a74f6349, 0);
+
+QRY
+QRY_CoS_AotO_AlexandarHostilityToPlayer((CHARACTERGUID)_Var1)
+AND
+GlobalGetFlag("CoS_AotO_AlexandarYieldsToPlayer", 1)
+AND
+PartyGetFlag(_Var1, "CoS_Academy_PlayerPersuadeAlexandar", 1)
+THEN
+CharacterAddAttitudeTowardsPlayer(CHARACTERGUID_S_GLO_Alexandar_03e6345f-1bd3-403c-80e2-a443a74f6349, _Var1, 50);
+CharacterSetRelationIndivFactionToIndivFaction(CHARACTERGUID_S_GLO_Alexandar_03e6345f-1bd3-403c-80e2-a443a74f6349, _Var1, 100);
+CharacterSetRelationIndivFactionToIndivFaction(_Var1, CHARACTERGUID_S_GLO_Alexandar_03e6345f-1bd3-403c-80e2-a443a74f6349, 100);
+
+IF
+DB_CoS_AotO_Competitors(CHARACTERGUID_S_GLO_Alexandar_03e6345f-1bd3-403c-80e2-a443a74f6349)
+THEN
+PROC_RemoveDialogFromCharacter(CHARACTERGUID_S_GLO_Alexandar_03e6345f-1bd3-403c-80e2-a443a74f6349);
+DB_AD_Dialog(CHARACTERGUID_S_GLO_Alexandar_03e6345f-1bd3-403c-80e2-a443a74f6349, "CoS_AotO_AD_Alexandar");
+
+IF
+DB_CoS_AotO_Competitors(_Var1)
+THEN
+Proc_CharacterFullRestore(_Var1);
+
+IF
+DB_CoS_AotO_Competitors(_Var1)
+AND NOT
+DB_IsPlayer(_Var1)
+AND
+DB_CoS_SwornExCompanion(_Var1)
+AND
+DB_CoS_Academy_SwornCompanionsDialogs(_Var1, _, _Var3)
+AND
+_Var3 != ""
+THEN
+ApplyStatus(_Var1, _Var3, -1, 1);
+
+IF
+DB_CoS_AotO_Competitors(_Var1)
+AND NOT
+DB_IsPlayer(_Var1)
+THEN
+CharacterSetRelationFactionToIndivFaction("Evil NPC", _Var1, 0);
+CharacterSetRelationIndivFactionToFaction(_Var1, "Evil NPC", 0);
+TriggerRegisterForCharacter(TRIGGERGUID_S_CoS_AotO_GodObject_HintTrigger_74913a31-607d-4dc5-8966-f3ac4a8dc495, _Var1);
+TriggerRegisterForCharacter(TRIGGERGUID_S_CoS_SUB_AotO_Sanctum_feb62fde-e701-403c-9f09-b42d6ffc8140, _Var1);
+SetVarFixedString(_Var1, "AiHint", "AiHint_Unique");
+
+IF
+StoryEvent(CHARACTERGUID_S_CoS_Academy_TempleAutomation_681a2c86-0ff0-4622-a6fc-1ee085d38178, "CoS_AotO_AutomotonDialogStart")
+AND
+GetClosestAlivePlayer(CHARACTERGUID_S_CoS_Academy_TempleAutomation_681a2c86-0ff0-4622-a6fc-1ee085d38178, _Var1, _)
+AND
+QueryOnlyOnce("CoS_AotO_AutomotonDialogStart_Once")
+AND
+StartDialog_Internal("CoS_AotO_IntroductionDialog", 1, CHARACTERGUID_S_CoS_Academy_TempleAutomation_681a2c86-0ff0-4622-a6fc-1ee085d38178, _Var1, NULL_00000000-0000-0000-0000-000000000000, ITEMGUID_S_CoS_AotO_GodObject_0ebb2920-fc7f-4c9a-a295-fa08c63df36d, NULL_00000000-0000-0000-0000-000000000000, NULL_00000000-0000-0000-0000-000000000000, 1)
+THEN
+StartCameraSpline(SPLINEGUID_CameraSpline_CoS_01_decd46a5-ac4c-43cd-a0d9-8379ec3ebc16, _Var1, 0.3, 0, 0, 0);
+ProcDisableShroud();
+TimerLaunch("CoS_AotO_InitAlignCamera", 100);
+
+IF
+TimerFinished("CoS_AotO_InitAlignCamera")
+AND
+DB_IsPlayer(_Var1)
+THEN
+StopCameraSpline(SPLINEGUID_CameraSpline_CoS_01_decd46a5-ac4c-43cd-a0d9-8379ec3ebc16, _Var1);
+
+IF
+GlobalFlagSet("CoS_AotO_IntroSpline")
+AND
+DB_IsPlayer(_Var1)
+THEN
+StartCameraSpline(SPLINEGUID_CameraSpline_CoS_01_decd46a5-ac4c-43cd-a0d9-8379ec3ebc16, _Var1, 0, 0, 0, 0);
+
+IF
+DialogEnded("CoS_AotO_IntroductionDialog", _)
+THEN
+Poof(CHARACTERGUID_S_CoS_Academy_TempleAutomation_681a2c86-0ff0-4622-a6fc-1ee085d38178);
+CharacterSetForceSynch(CHARACTERGUID_S_CoS_Academy_TempleAutomation_681a2c86-0ff0-4622-a6fc-1ee085d38178, 0);
+
+IF
+DialogEnded("CoS_AotO_IntroductionDialog", _)
+AND
+DB_IsPlayer(_Var2)
+THEN
+ProcEnableShroud();
+StopCameraSpline(SPLINEGUID_CameraSpline_CoS_01_decd46a5-ac4c-43cd-a0d9-8379ec3ebc16, _Var2);
+
+IF
+DialogEnded("CoS_AotO_IntroductionDialog", _)
+AND
+DB_CoS_AotO_Competitors(_Var2)
+AND
+DB_CoS_AotO_Competitors(_Var3)
+AND
+_Var2 != _Var3
+AND
+CharacterGetRelationToCharacter(_Var2, _Var3, _Var4)
+AND
+_Var4 == 0
+THEN
+EnterCombat(_Var2, _Var3);
+
+IF
+DialogEnded("CoS_AotO_IntroductionDialog", _)
+AND
+DB_CoS_AotO_Competitors(CHARACTERGUID_S_GLO_Alexandar_03e6345f-1bd3-403c-80e2-a443a74f6349)
+AND
+DB_IsPlayer(_Var2)
+AND
+PartyGetFlag(_Var2, "CoS_Academy_PlayerPersuadeAlexandar", 1)
+AND
+QueryOnlyOnce("CoS_AotO_AlexandarIntro_Once")
+THEN
+Proc_CoS_AotO_Start_AlexandarBeforeCombat_Dialog(_Var2);
+CharacterAddToPlayerCharacter(CHARACTERGUID_S_GLO_Alexandar_03e6345f-1bd3-403c-80e2-a443a74f6349, _Var2);
+
+IF
+CharacterDied(CHARACTERGUID_S_GLO_Alexandar_03e6345f-1bd3-403c-80e2-a443a74f6349)
+AND
+CharacterIsPartyFollower(CHARACTERGUID_S_GLO_Alexandar_03e6345f-1bd3-403c-80e2-a443a74f6349, 1)
+AND
+DB_IsPlayer(_Var1)
+THEN
+CharacterRemoveFromPlayerCharacter(CHARACTERGUID_S_GLO_Alexandar_03e6345f-1bd3-403c-80e2-a443a74f6349, _Var1);
+
+IF
+DialogEnded("CoS_AotO_IntroductionDialog", _)
+AND
+DB_CoS_AotO_Competitors(CHARACTERGUID_S_GLO_Alexandar_03e6345f-1bd3-403c-80e2-a443a74f6349)
+AND
+GetClosestAlivePlayer(CHARACTERGUID_S_GLO_Alexandar_03e6345f-1bd3-403c-80e2-a443a74f6349, _Var2, _)
+AND
+QueryOnlyOnce("CoS_AotO_AlexandarIntro_Once")
+THEN
+Proc_CoS_AotO_Start_AlexandarBeforeCombat_Dialog(_Var2);
+
+PROC
+Proc_CoS_AotO_Start_AlexandarBeforeCombat_Dialog((CHARACTERGUID)_Var1)
+AND
+StartDialog_Internal("CoS_AotO_AlexandarBeforeCombat", 1, CHARACTERGUID_S_GLO_Alexandar_03e6345f-1bd3-403c-80e2-a443a74f6349, _Var1, NULL_00000000-0000-0000-0000-000000000000, NULL_00000000-0000-0000-0000-000000000000, NULL_00000000-0000-0000-0000-000000000000, NULL_00000000-0000-0000-0000-000000000000, 1)
+THEN
+DB_CombatCutscene_PrioritizedObject(CHARACTERGUID_S_GLO_Alexandar_03e6345f-1bd3-403c-80e2-a443a74f6349);
+CharacterLookAt(CHARACTERGUID_S_GLO_Alexandar_03e6345f-1bd3-403c-80e2-a443a74f6349, _Var1);
+
+IF
+DialogEnded("CoS_AotO_AlexandarBeforeCombat", _)
+THEN
+Proc_CombatCutscene_PrioritizedObject_Purge();
+
+IF
+DialogEnded("CoS_AotO_AlexandarBeforeCombat", _)
+AND
+GlobalGetFlag("CoS_AotO_AlexandarYieldsToPlayer", 0)
+THEN
+SetVarInteger(CHARACTERGUID_S_GLO_Alexandar_03e6345f-1bd3-403c-80e2-a443a74f6349, "WillNotMoveToGodObject", 0);
+
+IF
+CharacterUsedItem((CHARACTERGUID)_Var1, ITEMGUID_S_CoS_AotO_GodObject_0ebb2920-fc7f-4c9a-a295-fa08c63df36d)
+AND
+DB_CoS_AotO_Competitors(_Var1)
+AND
+GetDistanceTo(_Var1, ITEMGUID_S_CoS_AotO_GodObject_0ebb2920-fc7f-4c9a-a295-fa08c63df36d, _Var2)
+AND
+_Var2 < 8
+AND
+QueryOnlyOnce("CoS_AotO_GodObject_Used_Once")
+THEN
+CharacterSetHitpointsPercentage(_Var1, 100);
+DB_CombatCutscene_PrioritizedObject(_Var1);
+CharacterAddActionPoints(_Var1, 2);
+SetOnStage(ITEMGUID_S_CoS_AotO_DallisSpawnBlocker_85196114-8464-45f2-bfc4-f0e619d55830, 0);
+ObjectSetFlag(_Var1, "CoS_AotO_PlayerUsedTheGodObject");
+PlayAnimation(_Var1, "use_activate");
+TimerLaunch("CoS_AotO_BraccusEvent_Start_DelayTimer", 2200);
+Proc_CoS_AotO_BraccusEvent_Start_CameraSpline();
+
+IF
+AttackedByObject((CHARACTERGUID)_Var1, _, CHARACTERGUID_S_GLO_Braccus_358ba541-0710-43be-8263-87afe1a8d9b5, _, _)
+AND
+DB_CoS_AotO_Competitors(_Var1)
+THEN
+CharacterPurgeQueue(_Var1);
+ApplyStatus(_Var1, "KNOCKED_DOWN", 0.5, 1);
+
+IF
+TimerFinished("CoS_AotO_BraccusEvent_Start_DelayTimer")
+THEN
+GlobalSetFlag("CoS_AotO_BraccusEvent_Start");
+
+PROC
+Proc_CoS_AotO_BraccusEvent_Start_CameraSpline()
+AND
+DB_IsPlayer(_Var1)
+THEN
+StartCameraSpline(SPLINEGUID_CameraSpline_Dallis_01_04352f91-faa2-470b-82fa-af90b11d4c65, _Var1, 0, 0, 0, 0);
+
+IF
+DialogEnded("CoS_AotO_BraccusEvent", (INTEGER)_Var1)
+AND
+DB_IsPlayer(_Var2)
+THEN
+StopCameraSpline(SPLINEGUID_CameraSpline_Dallis_01_04352f91-faa2-470b-82fa-af90b11d4c65, _Var2);
+
+IF
+GlobalFlagSet("CoS_AotO_BraccusEvent_Start")
+AND
+DB_IsPlayer(_Var1)
+THEN
+PartySetFlag(_Var1, "QuestUpdate_CoS_ArenaOfTheOne_Phase_1_DallisAppears");
+
+IF
+GlobalFlagSet("CoS_AotO_BraccusEvent_Start")
+AND
+GetPosition(CHARACTERGUID_S_GLO_Dallis_69b951dc-55a4-44b8-a2d5-5efedbd7d572, _Var1, _Var2, _Var3)
+AND
+CreateItemTemplateAtPosition("WPN_Humans_Crossbow_Purge_2H_A_69ec65a2-3332-482a-9fc1-b1778077b33b", _Var1, _Var2, _Var3, _Var4)
+THEN
+DB_CoS_AotO_MassPurgingDevice(_Var4);
+
+IF
+DB_CoS_AotO_MassPurgingDevice(_Var1)
+THEN
+CharacterEquipItem(CHARACTERGUID_S_GLO_Dallis_69b951dc-55a4-44b8-a2d5-5efedbd7d572, _Var1);
+
+PROC
+Proc_CoS_AotO_DallisAndBraccusLeave()
+AND
+DB_CoS_AotO_MassPurgingDevice(_Var1)
+THEN
+ItemRemove(_Var1);
+
+IF
+GlobalFlagSet("CoS_AotO_BraccusEvent_Start")
+THEN
+SetOnStage(CHARACTERGUID_S_GLO_Braccus_358ba541-0710-43be-8263-87afe1a8d9b5, 1);
+SetOnStage(CHARACTERGUID_S_GLO_Dallis_69b951dc-55a4-44b8-a2d5-5efedbd7d572, 1);
+CharacterSetForceSynch(CHARACTERGUID_S_GLO_Dallis_69b951dc-55a4-44b8-a2d5-5efedbd7d572, 1);
+CharacterSetForceSynch(CHARACTERGUID_S_GLO_Braccus_358ba541-0710-43be-8263-87afe1a8d9b5, 1);
+CharacterFlushQueue(CHARACTERGUID_S_GLO_Dallis_69b951dc-55a4-44b8-a2d5-5efedbd7d572);
+CharacterFlushQueue(CHARACTERGUID_S_GLO_Braccus_358ba541-0710-43be-8263-87afe1a8d9b5);
+PlayAnimation(CHARACTERGUID_S_GLO_Braccus_358ba541-0710-43be-8263-87afe1a8d9b5, "Teleport_In_01");
+ProcDisableShroud();
+
+IF
+CharacterWentOnStage(CHARACTERGUID_S_GLO_Dallis_69b951dc-55a4-44b8-a2d5-5efedbd7d572, 1)
+AND
+GlobalGetFlag("CoS_AotO_Active", 1)
+THEN
+PlayAnimation(CHARACTERGUID_S_GLO_Dallis_69b951dc-55a4-44b8-a2d5-5efedbd7d572, "Teleport_In_01");
+TimerLaunch("CoS_AotO_BraccusEvent_Start_DialogDelay", 800);
+GlobalSetFlag("CoS_AotO_TempleBraccusEvent_SummonSilentMonks");
+
+IF
+GlobalFlagSet("CoS_AotO_TempleBraccusEvent_SummonSilentMonks")
+AND
+DB_CoS_AotO_SilentMonks(_Var1)
+AND
+Random(2000, _Var2)
+THEN
+ProcObjectTimer(_Var1, "CoS_AotO_SilentMonks_Portal_DelayTimer", _Var2);
+
+PROC
+ProcObjectTimerFinished((CHARACTERGUID)_Var1, "CoS_AotO_SilentMonks_Portal_DelayTimer")
+THEN
+SetOnStage(_Var1, 1);
+PlayAnimation(_Var1, "Teleport_In_01", "CoS_AotO_LookAtGodObject");
+
+IF
+StoryEvent((CHARACTERGUID)_Var1, "CoS_AotO_LookAtGodObject")
+THEN
+CharacterLookAt(_Var1, ITEMGUID_S_CoS_AotO_GodObject_0ebb2920-fc7f-4c9a-a295-fa08c63df36d);
+
+IF
+TimerFinished("CoS_AotO_BraccusEvent_Start_DialogDelay")
+AND
+GetClosestAlivePlayer(CHARACTERGUID_S_GLO_Dallis_69b951dc-55a4-44b8-a2d5-5efedbd7d572, _Var1, _)
+AND
+GlobalGetFlag("CoS_AlexandarDead", 0)
+AND
+GlobalGetFlag("CoS_Temples_AlexandarLeaveToAcademy", 1)
+AND
+QRY_SpeakerIsAvailable(_Var1, 1)
+AND
+QueryOnlyOnce("CoS_AotO_StartDallisBraccusDialog_Once")
+AND
+StartDialog_Internal("CoS_AotO_BraccusEvent", 1, CHARACTERGUID_S_GLO_Braccus_358ba541-0710-43be-8263-87afe1a8d9b5, CHARACTERGUID_S_GLO_Dallis_69b951dc-55a4-44b8-a2d5-5efedbd7d572, CHARACTERGUID_S_GLO_Alexandar_03e6345f-1bd3-403c-80e2-a443a74f6349, _Var1, NULL_00000000-0000-0000-0000-000000000000, NULL_00000000-0000-0000-0000-000000000000, 1)
+THEN
+Proc_DialogFlagSetup("CoS_AotO_BraccusEvent", CHARACTERGUID_S_GLO_Braccus_358ba541-0710-43be-8263-87afe1a8d9b5, CHARACTERGUID_S_GLO_Dallis_69b951dc-55a4-44b8-a2d5-5efedbd7d572, CHARACTERGUID_S_GLO_Alexandar_03e6345f-1bd3-403c-80e2-a443a74f6349, _Var1);
+DB_CombatCutscene_PrioritizedObject(CHARACTERGUID_S_GLO_Dallis_69b951dc-55a4-44b8-a2d5-5efedbd7d572);
+
+IF
+TimerFinished("CoS_AotO_BraccusEvent_Start_DialogDelay")
+AND
+GetClosestAlivePlayer(CHARACTERGUID_S_GLO_Dallis_69b951dc-55a4-44b8-a2d5-5efedbd7d572, _Var1, _)
+AND
+QRY_SpeakerIsAvailable(_Var1, 1)
+AND
+QueryOnlyOnce("CoS_AotO_StartDallisBraccusDialog_Once")
+AND
+StartDialog_Internal("CoS_AotO_BraccusEvent", 1, CHARACTERGUID_S_GLO_Braccus_358ba541-0710-43be-8263-87afe1a8d9b5, CHARACTERGUID_S_GLO_Dallis_69b951dc-55a4-44b8-a2d5-5efedbd7d572, NULL_00000000-0000-0000-0000-000000000000, _Var1, NULL_00000000-0000-0000-0000-000000000000, NULL_00000000-0000-0000-0000-000000000000, 1)
+THEN
+Proc_DialogFlagSetup("CoS_AotO_BraccusEvent", CHARACTERGUID_S_GLO_Braccus_358ba541-0710-43be-8263-87afe1a8d9b5, CHARACTERGUID_S_GLO_Dallis_69b951dc-55a4-44b8-a2d5-5efedbd7d572, NULL_00000000-0000-0000-0000-000000000000, _Var1);
+
+IF
+TimerFinished("CoS_AotO_BraccusEvent_Start_DialogDelay")
+AND NOT
+DB_OnlyOnce("CoS_AotO_StartDallisBraccusDialog_Once")
+THEN
+TimerLaunch("CoS_AotO_BraccusEvent_Start_DialogDelay", 1000);
+
+IF
+DialogRequestFailed("CoS_AotO_BraccusEvent", _)
+THEN
+NOT DB_OnlyOnce("CoS_AotO_StartDallisBraccusDialog_Once");
+TimerLaunch("CoS_AotO_BraccusEvent_Start_DialogDelay", 1000);
+
+IF
+TextEventSet("CoS_AotO_RestartBraccusEventTimer")
+THEN
+TimerLaunch("CoS_AotO_BraccusEvent_Start_DialogDelay", 1000);
+
+IF
+DialogStarted("CoS_AotO_BraccusEvent", _)
+AND
+DB_CoS_AotO_Competitors(_Var2)
+AND
+CharacterIsDead(_Var2, 0)
+AND NOT
+DB_InRegion(_Var2, TRIGGERGUID_S_CoS_SUB_AotO_Sanctum_feb62fde-e701-403c-9f09-b42d6ffc8140)
+AND
+DB_CoS_AotO_Phase_1_BraccusEventPositions(_Var3)
+AND NOT
+DB_CoS_AotO_Phase_1_BraccusEventPositions(_, _Var2)
+THEN
+CharacterPurgeQueue(_Var2);
+NOT DB_CoS_AotO_Phase_1_BraccusEventPositions(_Var3);
+DB_CoS_AotO_Phase_1_BraccusEventPositions(_Var3, _Var2);
+TeleportTo(_Var2, _Var3);
+PlayEffect(_Var2, "RS3_FX_GP_ScriptedEvent_HOE_Summoning_01");
+
+IF
+DialogStarted("CoS_AotO_BraccusEvent", _)
+AND
+DB_IsPlayer(_Var2)
+THEN
+ProcHideMarker(_Var2, "CoS_AotO_GodObject");
+
+IF
+DialogStarted("CoS_AotO_BraccusEvent", _)
+AND
+DB_CoS_AotO_Defender(_Var2)
+THEN
+SetCanFight(_Var2, 0);
+SetCanJoinCombat(_Var2, 0);
+
+IF
+DialogStarted("CoS_AotO_BraccusEvent", _)
+AND
+DB_CoS_AotO_Competitors(_Var2)
+THEN
+CharacterUnfreeze(_Var2);
+SetCanFight(_Var2, 0);
+SetCanJoinCombat(_Var2, 0);
+
+IF
+DialogEnded("CoS_AotO_BraccusEvent", _)
+AND
+DB_CoS_AotO_Competitors(_Var2)
+THEN
+CharacterFreeze(_Var2);
+
+IF
+DialogEnded("CoS_AotO_BraccusEvent", _)
+AND
+GlobalGetFlag("CoS_AotO_QueueKillAlexandar", 1)
+THEN
+Proc_CoS_AotO_DallisKillAlexandar();
+
+PROC
+Proc_CoS_AotO_DallisKillAlexandar()
+THEN
+CharacterSetImmortal(CHARACTERGUID_S_GLO_Alexandar_03e6345f-1bd3-403c-80e2-a443a74f6349, 0);
+ProcSetInvulnerable(CHARACTERGUID_S_GLO_Alexandar_03e6345f-1bd3-403c-80e2-a443a74f6349, 0);
+RemoveStatus(CHARACTERGUID_S_GLO_Alexandar_03e6345f-1bd3-403c-80e2-a443a74f6349, "INVULNERABLE");
+RemoveHarmfulStatuses(CHARACTERGUID_S_GLO_Alexandar_03e6345f-1bd3-403c-80e2-a443a74f6349);
+CharacterSetFightMode(CHARACTERGUID_S_GLO_Dallis_69b951dc-55a4-44b8-a2d5-5efedbd7d572, 1, 1);
+CharacterAddSkill(CHARACTERGUID_S_GLO_Dallis_69b951dc-55a4-44b8-a2d5-5efedbd7d572, "Target_Quest_MassPurgingDevice");
+CharacterUseSkill(CHARACTERGUID_S_GLO_Dallis_69b951dc-55a4-44b8-a2d5-5efedbd7d572, "Target_Quest_MassPurgingDevice", CHARACTERGUID_S_GLO_Alexandar_03e6345f-1bd3-403c-80e2-a443a74f6349, 0);
+TimerLaunch("CoS_AotO_AlexandarDie", 3500);
+DB_CombatCutscene_PrioritizedObject(CHARACTERGUID_S_GLO_Dallis_69b951dc-55a4-44b8-a2d5-5efedbd7d572);
+Proc_CoS_MPD_AtmSwap();
+
+PROC
+Proc_CoS_AotO_DallisKillAlexandar()
+AND
+DB_IsPlayer(_Var1)
+THEN
+StartCameraSpline(SPLINEGUID_S_CoS_AotO_AlexandaraPurgingCamera_f71a73d9-987c-45c2-a076-5d2636e10a63, _Var1, 0, 1, 1, 0);
+TimerLaunch("CoS_AotO_AlexandarPurgingCamera_Timer", 4500);
+
+IF
+TimerFinished("CoS_AotO_AlexandarPurgingCamera_Timer")
+AND
+DB_IsPlayer(_Var1)
+THEN
+StopCameraSpline(SPLINEGUID_S_CoS_AotO_AlexandaraPurgingCamera_f71a73d9-987c-45c2-a076-5d2636e10a63, _Var1);
+
+PROC
+Proc_CoS_MPD_AtmSwap()
+THEN
+TimerLaunch("CoS_MPD_AtmSwap", 2200);
+TriggerSetAtmosphere(TRIGGERGUID_ATM_Godmachine_A_68c0617b-5b4d-442a-921d-e2e9c8e5a5e7, "ebc1afd3-299b-4586-a2c5-9246c086f4f2");
+
+IF
+TimerFinished("CoS_MPD_AtmSwap")
+THEN
+TriggerResetAtmosphere(TRIGGERGUID_ATM_Godmachine_A_68c0617b-5b4d-442a-921d-e2e9c8e5a5e7);
+
+IF
+CharacterUsedSkillOnTarget(CHARACTERGUID_S_GLO_Dallis_69b951dc-55a4-44b8-a2d5-5efedbd7d572, CHARACTERGUID_S_GLO_Alexandar_03e6345f-1bd3-403c-80e2-a443a74f6349, "Target_Quest_MassPurgingDevice", _, _)
+THEN
+Proc_CoS_MPD_Cower();
+
+PROC
+Proc_CoS_MPD_Cower()
+AND
+CharacterIsDead(CHARACTERGUID_S_GLO_Alexandar_03e6345f-1bd3-403c-80e2-a443a74f6349, 0)
+THEN
+CharacterSetAnimationOverride(CHARACTERGUID_S_GLO_Alexandar_03e6345f-1bd3-403c-80e2-a443a74f6349, "Cower_03_Loop");
+
+PROC
+Proc_CoS_MPD_Cower()
+AND
+DB_IsPlayer(_Var1)
+THEN
+CharacterSetAnimationOverride(_Var1, "Cower_03_Loop");
+ProcObjectTimer(_Var1, "CoS_MPD_Cower_Timer", 5000);
+
+PROC
+ProcObjectTimerFinished((CHARACTERGUID)_Var1, "CoS_MPD_Cower_Timer")
+THEN
+CharacterSetAnimationOverride(_Var1, "");
+
+IF
+GlobalFlagSet("CoS_AotO_QueueKillAlexandar")
+THEN
+RemoveHarmfulStatuses(CHARACTERGUID_S_GLO_Alexandar_03e6345f-1bd3-403c-80e2-a443a74f6349);
+CharacterMoveTo(CHARACTERGUID_S_GLO_Alexandar_03e6345f-1bd3-403c-80e2-a443a74f6349, TRIGGERGUID_S_CoS_AotO_AlexandarToDallis_Point_ba4dbbd1-8c12-418a-823b-7ae7624f1713, 1, "CoS_AotO_AlexandarToDallis_Lookat", 0);
+
+IF
+StoryEvent(CHARACTERGUID_S_GLO_Alexandar_03e6345f-1bd3-403c-80e2-a443a74f6349, "CoS_AotO_AlexandarToDallis_Lookat")
+THEN
+CharacterLookAt(CHARACTERGUID_S_GLO_Alexandar_03e6345f-1bd3-403c-80e2-a443a74f6349, CHARACTERGUID_S_GLO_Dallis_69b951dc-55a4-44b8-a2d5-5efedbd7d572);
+
+IF
+TimerFinished("CoS_AotO_AlexandarDie")
+THEN
+SetIsBoss(CHARACTERGUID_S_GLO_Alexandar_03e6345f-1bd3-403c-80e2-a443a74f6349, 0);
+CharacterSetAnimationOverride(CHARACTERGUID_S_GLO_Alexandar_03e6345f-1bd3-403c-80e2-a443a74f6349, "");
+CharacterDie(CHARACTERGUID_S_GLO_Alexandar_03e6345f-1bd3-403c-80e2-a443a74f6349, 1, "Explode");
+GlobalSetFlag("CoS_AlexandarKilledByDallis");
+
+IF
+CharacterDied(CHARACTERGUID_S_GLO_Alexandar_03e6345f-1bd3-403c-80e2-a443a74f6349)
+AND
+GlobalGetFlag("CoS_AotO_QueueKillAlexandar", 1)
+AND
+GetClosestAlivePlayer(CHARACTERGUID_S_GLO_Dallis_69b951dc-55a4-44b8-a2d5-5efedbd7d572, _Var1, _)
+AND
+StartDialog_Internal("CoS_AotO_BraccusEvent", 1, CHARACTERGUID_S_GLO_Braccus_358ba541-0710-43be-8263-87afe1a8d9b5, CHARACTERGUID_S_GLO_Dallis_69b951dc-55a4-44b8-a2d5-5efedbd7d572, NULL_00000000-0000-0000-0000-000000000000, _Var1, NULL_00000000-0000-0000-0000-000000000000, NULL_00000000-0000-0000-0000-000000000000, 1)
+THEN
+Proc_DialogFlagSetup("CoS_AotO_BraccusEvent", CHARACTERGUID_S_GLO_Braccus_358ba541-0710-43be-8263-87afe1a8d9b5, CHARACTERGUID_S_GLO_Dallis_69b951dc-55a4-44b8-a2d5-5efedbd7d572, NULL_00000000-0000-0000-0000-000000000000, _Var1);
+
+IF
+DialogEnded("CoS_AotO_BraccusEvent", _)
+AND
+GlobalGetFlag("CoS_AotO_QueuePurgeGodObject", 1)
+THEN
+Proc_CoS_AotO_PurgeGodObject();
+
+PROC
+Proc_CoS_AotO_PurgeGodObject()
+THEN
+DB_CombatCutscene_PrioritizedObject(CHARACTERGUID_S_GLO_Dallis_69b951dc-55a4-44b8-a2d5-5efedbd7d572);
+CharacterSetFightMode(CHARACTERGUID_S_GLO_Dallis_69b951dc-55a4-44b8-a2d5-5efedbd7d572, 1, 1);
+CharacterAddSkill(CHARACTERGUID_S_GLO_Dallis_69b951dc-55a4-44b8-a2d5-5efedbd7d572, "Target_Quest_MassPurgingDevice");
+CharacterUseSkill(CHARACTERGUID_S_GLO_Dallis_69b951dc-55a4-44b8-a2d5-5efedbd7d572, "Target_Quest_MassPurgingDevice", ITEMGUID_S_CoS_AotO_GodObject_0ebb2920-fc7f-4c9a-a295-fa08c63df36d, 0);
+TimerLaunch("CoS_AotO_GodObject_Destroy", 2100);
+TimerLaunch("CoS_AotO_GodObject_Destroy_RestartDialog", 7100);
+DB_CombatCutscene_PrioritizedObject(CHARACTERGUID_S_GLO_Dallis_69b951dc-55a4-44b8-a2d5-5efedbd7d572);
+Proc_CoS_MPD_AtmSwap();
+
+PROC
+Proc_CoS_AotO_PurgeGodObject()
+AND
+DB_IsPlayer(_Var1)
+THEN
+StartCameraSpline(SPLINEGUID_S_CoS_AotO_PurgingCamera_251e8119-dbc1-4a52-a14a-cff7480a0984, _Var1, 0, 1, 1, 0);
+
+IF
+TimerFinished("CoS_AotO_GodObject_Destroy_RestartDialog")
+AND
+DB_IsPlayer(_Var1)
+THEN
+StopCameraSpline(SPLINEGUID_S_CoS_AotO_PurgingCamera_251e8119-dbc1-4a52-a14a-cff7480a0984, _Var1);
+
+IF
+TimerFinished("CoS_AotO_GodObject_Destroy")
+THEN
+ItemSetForceSynch(ITEMGUID_S_CoS_AotO_GodObject_0ebb2920-fc7f-4c9a-a295-fa08c63df36d, 0);
+ItemDestroy(ITEMGUID_S_CoS_AotO_GodObject_0ebb2920-fc7f-4c9a-a295-fa08c63df36d);
+
+IF
+CharacterUsedSkillOnTarget(CHARACTERGUID_S_GLO_Dallis_69b951dc-55a4-44b8-a2d5-5efedbd7d572, ITEMGUID_S_CoS_AotO_GodObject_0ebb2920-fc7f-4c9a-a295-fa08c63df36d, "Target_Quest_MassPurgingDevice", _, _)
+THEN
+Proc_CoS_MPD_Cower();
+DB_CoS_AotO_FallingRockCount(13);
+TimerLaunch("CoS_AotO_SourceLakeLowerDelay", 800);
+
+IF
+TimerFinished("CoS_AotO_SourceLakeLowerDelay")
+AND
+GetPosition(ITEMGUID_S_CoS_AotO_SourcePlane_6b45e33e-a0e1-4ce9-b877-cc32923d71fc, _Var1, _Var2, _Var3)
+AND
+RealSubtract(_Var2, 20, _Var4)
+THEN
+Proc_ItemMoveToPosition(ITEMGUID_S_CoS_AotO_SourcePlane_6b45e33e-a0e1-4ce9-b877-cc32923d71fc, _Var1, _Var4, _Var3, 3, 0);
+
+IF
+TimerFinished("CoS_AotO_GodObject_Destroy_RestartDialog")
+AND
+GetClosestAlivePlayer(CHARACTERGUID_S_GLO_Dallis_69b951dc-55a4-44b8-a2d5-5efedbd7d572, _Var1, _)
+AND
+StartDialog_Internal("CoS_AotO_BraccusEvent", 1, CHARACTERGUID_S_GLO_Braccus_358ba541-0710-43be-8263-87afe1a8d9b5, CHARACTERGUID_S_GLO_Dallis_69b951dc-55a4-44b8-a2d5-5efedbd7d572, NULL_00000000-0000-0000-0000-000000000000, _Var1, NULL_00000000-0000-0000-0000-000000000000, NULL_00000000-0000-0000-0000-000000000000, 1)
+THEN
+Proc_DialogFlagSetup("CoS_AotO_BraccusEvent", CHARACTERGUID_S_GLO_Braccus_358ba541-0710-43be-8263-87afe1a8d9b5, CHARACTERGUID_S_GLO_Dallis_69b951dc-55a4-44b8-a2d5-5efedbd7d572, NULL_00000000-0000-0000-0000-000000000000, _Var1);
+ApplyStatus(CHARACTERGUID_S_GLO_Dallis_69b951dc-55a4-44b8-a2d5-5efedbd7d572, "SOURCE_SURFACE", 1, 1);
+PlayEffect(CHARACTERGUID_S_GLO_Dallis_69b951dc-55a4-44b8-a2d5-5efedbd7d572, "RS3_FX_GP_ScriptedEvent_GodObject_Destroyed_Final_01");
+PlayAnimation(CHARACTERGUID_S_GLO_Dallis_69b951dc-55a4-44b8-a2d5-5efedbd7d572, "skill_cast_shout_01_cast");
+
+IF
+DialogEnded("CoS_AotO_BraccusEvent", _)
+AND
+GlobalGetFlag("CoS_AotO_QueueKillAlexandar", 0)
+AND
+GlobalGetFlag("CoS_AotO_QueuePurgeGodObject", 0)
+THEN
+Proc_CoS_AotO_DallisAndBraccusLeave();
+
+PROC
+Proc_CoS_AotO_DallisAndBraccusLeave()
+THEN
+CharacterSetFightMode(CHARACTERGUID_S_GLO_Dallis_69b951dc-55a4-44b8-a2d5-5efedbd7d572, 0, 1);
+PlayAnimation(CHARACTERGUID_S_GLO_Dallis_69b951dc-55a4-44b8-a2d5-5efedbd7d572, "Teleport_Out_01", "GEN_GoOffStage");
+PlayAnimation(CHARACTERGUID_S_GLO_Braccus_358ba541-0710-43be-8263-87afe1a8d9b5, "Teleport_Out_01", "GEN_GoOffStage");
+CharacterSetForceSynch(CHARACTERGUID_S_GLO_Dallis_69b951dc-55a4-44b8-a2d5-5efedbd7d572, 0);
+CharacterSetForceSynch(CHARACTERGUID_S_GLO_Braccus_358ba541-0710-43be-8263-87afe1a8d9b5, 0);
+ProcEnableShroud();
+
+PROC
+Proc_CoS_AotO_DallisAndBraccusLeave()
+AND
+DB_CoS_AotO_SilentMonks(_Var1)
+THEN
+PlayAnimation(_Var1, "Teleport_Out_01", "GEN_GoOffStage");
+
+PROC
+Proc_CoS_AotO_DallisAndBraccusLeave()
+AND
+DB_IsPlayer(_Var1)
+THEN
+PartySetFlag(_Var1, "QuestUpdate_CoS_ArenaOfTheOne_Phase_1_End");
+
+IF
+StoryEvent(CHARACTERGUID_S_GLO_Dallis_69b951dc-55a4-44b8-a2d5-5efedbd7d572, "GEN_GoOffStage")
+AND
+GlobalGetFlag("CoS_AotO_DallisBraccusEvent_Ended", 1)
+THEN
+Proc_CombatCutscene_PrioritizedObject_Purge();
+
+PROC
+Proc_CoS_AotO_DallisAndBraccusLeave()
+THEN
+GlobalSetFlag("CoS_AotO_DallisBraccusEvent_Ended");
+SetCombatGroupID(CHARACTERGUID_S_GLO_Dallis_69b951dc-55a4-44b8-a2d5-5efedbd7d572, "");
+SetCombatGroupID(CHARACTERGUID_S_GLO_Braccus_358ba541-0710-43be-8263-87afe1a8d9b5, "");
+
+PROC
+Proc_CoS_AotO_DallisAndBraccusLeave()
+AND
+DB_CoS_AotO_Competitors(_Var1)
+THEN
+SetCombatGroupID(_Var1, "");
+
+IF
+GlobalFlagSet("CoS_AotO_DallisBraccusEvent_Ended")
+THEN
+DB_CoS_AotO_FallingRockCount(20);
+
+IF
+DB_CoS_AotO_FallingRockCount(_Var1)
+AND
+DB_CoS_AotO_P1_FallingRock_Triggers(_Var2)
+THEN
+DB_CoS_AotO_P1_FallingRock_Triggers(_Var2, _Var1);
+
+IF
+DB_CoS_AotO_P1_FallingRock_Triggers(_Var1, _Var2)
+AND
+_Var2 >= 1
+AND
+GetRandomPositionInTrigger(_Var1, _Var3, _Var4, _Var5)
+AND
+CreateItemTemplateAtPosition("Quest_CoS_AotO_FallingRock_001_3372c2bf-3fb0-43fe-b2b1-acf48e459940", _Var3, _Var4, _Var5, _Var6)
+AND
+IntegerSubtract(_Var2, 1, _Var7)
+AND
+Random(180, _Var8)
+AND
+Real(_Var8, _Var9)
+THEN
+ItemRotateY(_Var6, _Var9, 300);
+NOT DB_CoS_AotO_P1_FallingRock_Triggers(_Var1, _Var2);
+DB_CoS_AotO_P1_FallingRock_Triggers(_Var1, _Var7);
+
+IF
+DB_CoS_AotO_P1_FallingRock_Triggers(_Var1, _Var2)
+AND
+_Var2 <= 0
+THEN
+NOT DB_CoS_AotO_P1_FallingRock_Triggers(_Var1, _Var2);
+
+IF
+GlobalFlagSet("CoS_AotO_DallisBraccusEvent_Ended")
+THEN
+Proc_CoS_AotO_PhaseTwoInit();
+
+IF
+CharacterDying((CHARACTERGUID)_Var1)
+AND
+DB_CoS_SwornExCompanion(_Var1)
+AND NOT
+DB_IsPlayer(_Var1)
+AND
+DB_CoS_AotO_SwornCompanionsDeathTemplate(_Var1, _Var2, _Var3)
+THEN
+Transform(_Var1, _Var2, 0, 0);
+CharacterSetCustomName(_Var1, _Var3);
+
+IF
+SavegameLoaded((INTEGER)_Var1, (INTEGER)_Var2, (INTEGER)_Var3, (INTEGER)_Var4)
+AND
+QRY_VersionIsOlderThan(_Var1, _Var2, _Var3, _Var4, 3, 6, 0, 1)
+AND NOT
+DB_CoS_AotO_Phase_1_BraccusEventPositions(TRIGGERGUID_S_CoS_AotO_Phase2_SpawnPoint_005_7d4a798a-af8c-4c17-9e45-fbc936920ea8)
+THEN
+DB_CoS_AotO_Phase_1_BraccusEventPositions(TRIGGERGUID_S_CoS_AotO_Phase2_SpawnPoint_005_7d4a798a-af8c-4c17-9e45-fbc936920ea8);
+
+PROC
+Proc_CoS_AotO_PhaseTwoInit()
+AND
+DB_TeleporterPyramid(_Var1)
+AND
+ObjectIsInTrigger(_Var1, S_CoS_AotO_SUB_Arena_46aab122-a2f8-42f2-a67b-25062e1a8847, 1)
+AND NOT
+QRY_CoS_AotO_PhaseTwoInit_PyramidInPlayerInventory(_Var1)
+THEN
+TeleportTo(_Var1, S_CoS_AotO_P2_TeleportTrigger_001_e3d919fb-3dbd-4351-807d-73933f66ea2d);
+
+QRY
+QRY_CoS_AotO_PhaseTwoInit_PyramidInPlayerInventory((ITEMGUID)_Var1)
+AND
+DB_IsPlayer(_Var2)
+AND
+ItemIsInCharacterInventory(_Var1, _Var2, 1)
+THEN
+DB_NOOP(1);
+
+IF
+SavegameLoaded((INTEGER)_Var1, (INTEGER)_Var2, (INTEGER)_Var3, (INTEGER)_Var4)
+AND
+QRY_VersionIsOlderThan(_Var1, _Var2, _Var3, _Var4, 3, 6, 1, 0)
+AND
+DB_GlobalFlag("CoS_AotO_DallisBraccusEvent_Ended")
+AND
+DB_TeleporterPyramid(_Var5)
+AND
+ObjectIsInTrigger(_Var5, S_CoS_AotO_SUB_Arena_46aab122-a2f8-42f2-a67b-25062e1a8847, 1)
+THEN
+TeleportTo(_Var5, S_CoS_AotO_P2_TeleportTrigger_001_e3d919fb-3dbd-4351-807d-73933f66ea2d);
+
+IF
+SavegameLoaded((INTEGER)_Var1, (INTEGER)_Var2, (INTEGER)_Var3, (INTEGER)_Var4)
+AND
+QRY_VersionIsOlderThan(_Var1, _Var2, _Var3, _Var4, 3, 6, 1, 0)
+AND
+DB_GlobalFlag("CoS_AotO_DallisBraccusEvent_Ended")
+AND
+DB_IsPlayer(_Var5)
+AND
+ObjectIsInTrigger(_Var5, S_CoS_AotO_SUB_Arena_46aab122-a2f8-42f2-a67b-25062e1a8847, 1)
+THEN
+TeleportTo(_Var5, S_CoS_AotO_P2_TeleportTrigger_001_e3d919fb-3dbd-4351-807d-73933f66ea2d);
+
+PROC
+ProcRegionEnded("CoS_Main_Ending")
+THEN
+GoalCompleted;
+
+
+EXITSECTION
+ENDEXITSECTION
+
+ParentTargetEdge "CoS_ArenaOfTheOne"

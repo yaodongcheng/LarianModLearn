@@ -1,0 +1,710 @@
+Version 1
+SubGoalCombiner SGC_AND
+
+INITSECTION
+DB_Dialogs(CHARACTERGUID_S_FTJ_SW_IllusionistAtEntrance_e01c3723-872a-454d-a59b-d798b21183cd, "FTJ_SW_IllusionistAtEntrance");
+DB_Dialogs(CHARACTERGUID_S_FTJ_LaughingIllusion_2e275231-d62d-4726-80f8-259e0c2f3308, "FTJ_SW_LaughingIllusion");
+DB_Dialogs(CHARACTERGUID_S_FTJ_SW_IllusionistDungeonRat_4c2f0ebc-59ba-4ea8-9341-7a38c66a88c0, "FTJ_SW_IllusionistDungeonRat");
+DB_Dialogs(CHARACTERGUID_S_FTJ_SW_IllusionistFinal_1a3b44d4-0ba4-4289-b158-a54111b83e1d, "FTJ_SW_IllusionistJar");
+DB_Dialogs(ITEMGUID_S_FTJ_SW_SoulJar_GuardUndead1_46ccad9c-a2fe-4004-89ba-f422528b2860, "FTJ_SW_SoulJar_GuardUndead1");
+DB_Dialogs(ITEMGUID_S_FTJ_SW_SoulJar_GuardUndead2_40aa483c-fa08-4a95-8d30-99539a0c7137, "FTJ_SW_SoulJar_GuardUndead2");
+DB_Dialogs(ITEMGUID_S_FTJ_SW_SoulJar_GuardUndead3_ce0f3ebb-c6bf-41b9-933e-fb021e13dfd8, "FTJ_SW_SoulJar_GuardUndead3");
+DB_Dialogs(ITEMGUID_S_FTJ_SW_SoulJar_ShelterUndead_a11a3798-9382-433a-8a43-73d1d19df474, "FTJ_SW_SoulJar_ShelterUndead");
+DB_Dialogs(ITEMGUID_S_FTJ_SW_SoulJar_Illusionist_8ed6b714-24b1-4f97-a02b-c5b95c2b69aa, "FTJ_SW_SoulJar_Illusionist");
+DB_IgnoreAssault(CHARACTERGUID_S_FTJ_LaughingIllusion_2e275231-d62d-4726-80f8-259e0c2f3308);
+DB_OneShotPlayerTrigger(TRIGGERGUID_S_FTJ_ChestRoomIllusionistAutoStopDialog_Box_a0d8aac6-8ea2-4423-8a4c-e811b619634b);
+DB_OneShotPlayerTrigger(TRIGGERGUID_S_FTJ_EntranceIllusionistSpawn_Poly_b9bbb12d-b695-47b3-b0f2-11126142a710);
+DB_OneShotPlayerTrigger(TRIGGERGUID_S_FTJ_ChestRoomIllusionistSpawn_Poly_38043f55-5dac-493c-8c27-afcb13d91b8d);
+DB_AmbushTrigger(TRIGGERGUID_S_FTJ_SW_IllusionistBossDialog_Poly_55ba1b73-55a6-4e22-b340-1b4469b6a99b, ITEMGUID_S_FTJ_SW_IllusionistAmbushHelper_ad349458-a239-45d4-bddb-4c2f132e9af8);
+DB_OneShotPlayerTrigger(TRIGGERGUID_S_FTJ_SW_OneShot_IllusionistJar_3e18e8cd-0269-4123-8c07-0f86b95506ad);
+DB_OneShot_VoiceBarkTrigger(TRIGGERGUID_S_FTJ_SW_OneShot_IllusionistVault_4695112f-0f33-4da0-87c0-c4d399302d23, "FTJ_SW_VB_IllusionistVault");
+DB_OneShot_VoiceBarkTrigger(TRIGGERGUID_S_FTJ_SW_IllusoryDungeonEntrance_07b04841-05ac-4f52-b853-8b8743f64e65, "FTJ_SW_VB_FoundIllusoryEntrance");
+DB_OneShot_VoiceBarkTrigger(TRIGGERGUID_S_FTJ_IllusionistBridge_Box_001_a7b751e3-ed9a-42e4-aa14-2d2390610139, "FTJ_SW_VB_IllusoryBridge");
+DB_SW_IllusionsCheck(S_FTJ_SW_IllusionistAtEntrance_e01c3723-872a-454d-a59b-d798b21183cd);
+DB_SW_IllusionsCheck(CHARACTERGUID_S_FTJ_LaughingIllusion_2e275231-d62d-4726-80f8-259e0c2f3308);
+DB_SW_IllusionsCheck(CHARACTERGUID_S_FTJ_SW_IllusionistFinal_1a3b44d4-0ba4-4289-b158-a54111b83e1d);
+DB_SW_IllusionistsIllusions(CHARACTERGUID_FTJ_SW_ChestRoomIllusionist_001_d656548b-329c-4ce4-ae61-984feb732503);
+DB_SW_IllusionistsIllusions(CHARACTERGUID_FTJ_SW_ChestRoomIllusionist_002_0e5779db-8418-4be9-9fdf-7f52c38b67bc);
+DB_SW_IllusionistsIllusions(CHARACTERGUID_FTJ_SW_ChestRoomIllusionist_003_f5b0ab9f-f99e-4360-b455-a2f7043349a8);
+DB_SW_IllusionistsIllusions(CHARACTERGUID_S_FTJ_SW_IllusionistAtEntrance_e01c3723-872a-454d-a59b-d798b21183cd);
+DB_SW_IllusionistsIllusions(CHARACTERGUID_S_FTJ_LaughingIllusion_2e275231-d62d-4726-80f8-259e0c2f3308);
+DB_SW_IllusionistsIllusions(CHARACTERGUID_FTJ_SW_IllusionPhase1_001_68a47ec8-ac86-452a-a09a-518338b86b4f);
+DB_SW_IllusionistsIllusions(CHARACTERGUID_FTJ_SW_IllusionPhase1_002_bf948008-5ba1-4573-84ff-4a81912d7848);
+DB_SW_IllusionistsIllusions(CHARACTERGUID_FTJ_SW_IllusionPhase1_003_0ae5c9bb-9992-4764-9118-9f1377ce827d);
+DB_SW_IllusionistsIllusions(CHARACTERGUID_S_FTJ_SW_IllusionPhase2_001_4efa5cda-f2fc-4adb-9dff-66a1a01a16c9);
+DB_SW_IllusionistsIllusions(CHARACTERGUID_S_FTJ_SW_IllusionPhase2_002_7f920fbe-5a22-40b9-9e9c-3989f2fa0aab);
+DB_SW_IllusionistsIllusions(CHARACTERGUID_S_FTJ_SW_IllusionPhase2_003_90b0de69-fb7b-45a9-bc8c-af0fc5b7099e);
+DB_FTJ_SW_ChestRoomIllusions(CHARACTERGUID_S_FTJ_SW_ChestRoomIllusionist_001_d656548b-329c-4ce4-ae61-984feb732503);
+DB_FTJ_SW_ChestRoomIllusions(CHARACTERGUID_S_FTJ_SW_ChestRoomIllusionist_002_0e5779db-8418-4be9-9fdf-7f52c38b67bc);
+DB_FTJ_SW_ChestRoomIllusions(CHARACTERGUID_S_FTJ_SW_ChestRoomIllusionist_003_f5b0ab9f-f99e-4360-b455-a2f7043349a8);
+DB_KillCounter_Internal(CHARACTERGUID_FTJ_SW_ChestRoomIllusionist_001_d656548b-329c-4ce4-ae61-984feb732503, "FTJ_SW_ChestRoomIllusion");
+DB_KillCounter_Internal(CHARACTERGUID_FTJ_SW_ChestRoomIllusionist_002_0e5779db-8418-4be9-9fdf-7f52c38b67bc, "FTJ_SW_ChestRoomIllusion");
+DB_KillCounter_Internal(CHARACTERGUID_FTJ_SW_ChestRoomIllusionist_003_f5b0ab9f-f99e-4360-b455-a2f7043349a8, "FTJ_SW_ChestRoomIllusion");
+DB_KillCounter("FTJ_SW_ChestRoomIllusion", 3);
+DB_FTJ_SW_IllusionistPhase1Illusions(CHARACTERGUID_FTJ_SW_IllusionPhase1_001_68a47ec8-ac86-452a-a09a-518338b86b4f);
+DB_FTJ_SW_IllusionistPhase1Illusions(CHARACTERGUID_FTJ_SW_IllusionPhase1_002_bf948008-5ba1-4573-84ff-4a81912d7848);
+DB_FTJ_SW_IllusionistPhase1Illusions(CHARACTERGUID_FTJ_SW_IllusionPhase1_003_0ae5c9bb-9992-4764-9118-9f1377ce827d);
+DB_FTJ_SW_IllusionistPhase2Illusions(CHARACTERGUID_S_FTJ_SW_IllusionistPhase2Illusion_001_4efa5cda-f2fc-4adb-9dff-66a1a01a16c9);
+DB_FTJ_SW_IllusionistPhase2Illusions(CHARACTERGUID_S_FTJ_SW_IllusionistPhase2Illusion_002_7f920fbe-5a22-40b9-9e9c-3989f2fa0aab);
+DB_FTJ_SW_IllusionistPhase2Illusions(CHARACTERGUID_S_FTJ_SW_IllusionistPhase2Illusion_003_90b0de69-fb7b-45a9-bc8c-af0fc5b7099e);
+ItemToInventory(ITEMGUID_S_FTJ_SW_BraccusCurseRing_08732b24-8f87-4ecf-b6e6-4cead56297ae, CHARACTERGUID_S_FTJ_TrueIllusionist_a3b10150-1871-48a4-9d64-f51c84316b6d);
+SetOnStage(CHARACTERGUID_S_FTJ_TrueIllusionist_a3b10150-1871-48a4-9d64-f51c84316b6d, 0);
+TeleportTo(ITEMGUID_S_FTJ_SW_IllusionistMagicWall_eb3bf192-92f4-4201-b7ac-5ec80448eb86, TRIGGERGUID_S_FTJ_SW_IllusionistBlockingField_6e753259-3fdf-40b3-ab65-4a9136b4244d);
+SetOnStage(ITEMGUID_S_FTJ_SW_IllusionistTrapChest_001_9ebe7612-201b-4609-b888-9d8874987cd6, 0);
+ItemSetForceSynch(ITEMGUID_S_FTJ_SW_IllusionistDungeonEntrance_00b9cf78-d62d-4e6f-a0d5-cc80714da014, 1);
+
+KBSECTION
+IF
+DB_SW_IllusionistsIllusions(_Var1)
+THEN
+DB_SW_IllusionsCheck(_Var1);
+
+IF
+DB_SW_IllusionsCheck(_Var1)
+THEN
+SetOnStage(_Var1, 0);
+
+IF
+CharacterWentOnStage((CHARACTERGUID)_Var1, 1)
+AND
+DB_SW_IllusionsCheck(_Var1)
+THEN
+DB_SW_IllusionOnStage(_Var1);
+
+IF
+CharacterWentOnStage((CHARACTERGUID)_Var1, 0)
+AND
+DB_SW_IllusionsCheck(_Var1)
+THEN
+NOT DB_SW_IllusionOnStage(_Var1);
+
+IF
+CharacterUsedItem(_, ITEMGUID_S_FTJ_SW_IllusionistLever_a2ed196c-8e60-4c55-93ab-c2142e672a2e)
+AND
+QueryOnlyOnce("FTJ_SW_IllusionistLever")
+THEN
+ItemDestroy(ITEMGUID_S_FTJ_SW_IllusionistMagicWall_eb3bf192-92f4-4201-b7ac-5ec80448eb86);
+
+IF
+CharacterEnteredTrigger((CHARACTERGUID)_Var1, TRIGGERGUID_S_FTJ_SUB_IllusionistEntrance_Poly_0f5cf23b-78d6-43d8-8cc7-2c3385b985a1)
+AND
+UserGetFlag(_Var1, "FTJ_SW_IllusionistStart", 0)
+THEN
+UserSetFlag(_Var1, "FTJ_SW_IllusionistStart");
+ObjectSetFlag(_Var1, "QuestAdd_FTJ_SW_Illusionist");
+ObjectSetFlag(_Var1, "QuestUpdate_FTJ_SW_Illusionist_Start_FindEntrance");
+
+PROC
+ProcOneShotTriggerEntered((CHARACTERGUID)_Var1, TRIGGERGUID_S_FTJ_EntranceIllusionistSpawn_Poly_b9bbb12d-b695-47b3-b0f2-11126142a710)
+AND NOT
+DB_FTJ_SW_IllusionistDungeon_JarDestroyed(1)
+THEN
+CharacterAppearCustom(CHARACTERGUID_S_FTJ_SW_IllusionistAtEntrance_e01c3723-872a-454d-a59b-d798b21183cd, "Teleport_In_01", "");
+DB_FTJ_SW_IllusionistAtEntrance_Teleport_In_01(_Var1);
+ProcObjectTimer(CHARACTERGUID_S_FTJ_SW_IllusionistAtEntrance_e01c3723-872a-454d-a59b-d798b21183cd, "S_FTJ_SW_IllusionistAtEntrance_Teleport_In_01", 1300);
+
+PROC
+ProcObjectTimerFinished(CHARACTERGUID_S_FTJ_SW_IllusionistAtEntrance_e01c3723-872a-454d-a59b-d798b21183cd, "S_FTJ_SW_IllusionistAtEntrance_Teleport_In_01")
+AND
+DB_FTJ_SW_IllusionistAtEntrance_Teleport_In_01(_Var1)
+AND
+QRY_SpeakerIsAvailable(_Var1)
+THEN
+Proc_StartDialog(0, "FTJ_SW_IllusionistAtEntrance", CHARACTERGUID_S_FTJ_SW_IllusionistAtEntrance_e01c3723-872a-454d-a59b-d798b21183cd, _Var1);
+NOT DB_FTJ_SW_IllusionistAtEntrance_Teleport_In_01(_Var1);
+
+IF
+ObjectFlagSet("FTJ_SW_RevealIllusion", CHARACTERGUID_S_FTJ_SW_IllusionistAtEntrance_e01c3723-872a-454d-a59b-d798b21183cd, _)
+AND
+QRY_SpeakerIsAvailable(CHARACTERGUID_S_FTJ_SW_IllusionistAtEntrance_e01c3723-872a-454d-a59b-d798b21183cd)
+THEN
+Proc_StartDialog(1, "FTJ_SW_AD_EntranceIllusion", CHARACTERGUID_S_FTJ_SW_IllusionistAtEntrance_e01c3723-872a-454d-a59b-d798b21183cd);
+
+IF
+ObjectFlagSet("FTJ_SW_RevealIllusion", (ITEMGUID)_Var1, _)
+AND
+CharacterCanSee(CHARACTERGUID_S_FTJ_SW_IllusionistAtEntrance_e01c3723-872a-454d-a59b-d798b21183cd, _Var1, 1)
+AND
+_Var1 != CHARACTERGUID_S_FTJ_SW_IllusionistAtEntrance_e01c3723-872a-454d-a59b-d798b21183cd
+AND
+QueryOnlyOnce("FTJ_IllusionistSawPlayer_Use_Trap")
+THEN
+CharacterLookAt(CHARACTERGUID_S_FTJ_SW_IllusionistAtEntrance_e01c3723-872a-454d-a59b-d798b21183cd, _Var1, 0);
+Proc_StartDialog(1, "FTJ_SW_AD_IllusionistSawUseIllusion", CHARACTERGUID_S_FTJ_SW_IllusionistAtEntrance_e01c3723-872a-454d-a59b-d798b21183cd);
+
+IF
+ObjectFlagSet("FTJ_SW_RevealIllusion", (GUIDSTRING)_Var1, _)
+THEN
+ProcObjectTimer(_Var1, "FTJ_SW_RevealIllusion_RemoveMesh", 1500);
+
+PROC
+ProcObjectTimerFinished((GUIDSTRING)_Var1, "FTJ_SW_RevealIllusion_RemoveMesh")
+THEN
+SetStoryEvent(_Var1, "FTJ_SW_RevealIllusion_RemoveMesh");
+
+IF
+CharacterDying((CHARACTERGUID)_Var1)
+AND
+DB_SW_IllusionistsIllusions(_Var1)
+THEN
+PlayEffect(_Var1, "RS3_FX_GP_ScriptedEvent_IllusionDeath_01", "Dummy_Root");
+
+IF
+CharacterDied((CHARACTERGUID)_Var1)
+AND
+DB_SW_IllusionistsIllusions(_Var1)
+THEN
+ProcObjectTimer(_Var1, "FTJ_SW_IllusionDeath_Delay", 3300);
+
+PROC
+ProcObjectTimerFinished((CHARACTERGUID)_Var1, "FTJ_SW_IllusionDeath_Delay")
+THEN
+SetOnStage(_Var1, 0);
+
+PROC
+ProcOneShotTriggerEntered((CHARACTERGUID)_Var1, TRIGGERGUID_S_FTJ_ChestRoomIllusionistSpawn_Poly_38043f55-5dac-493c-8c27-afcb13d91b8d)
+AND NOT
+DB_FTJ_SW_IllusionistDungeon_JarDestroyed(1)
+AND
+QRY_SpeakerIsAvailable(_Var1)
+AND
+CharacterIsDead(CHARACTERGUID_FTJ_TrueIllusionist_a3b10150-1871-48a4-9d64-f51c84316b6d, 0)
+THEN
+CharacterAppearCustom(CHARACTERGUID_FTJ_SW_ChestRoomIllusionist_001_d656548b-329c-4ce4-ae61-984feb732503, "Teleport_In_01", "");
+DB_FTJ_SW_ChestRoomIllusionist_Teleport_In_01(_Var1);
+ProcObjectTimer(CHARACTERGUID_S_FTJ_SW_IllusionistAtEntrance_e01c3723-872a-454d-a59b-d798b21183cd, "S_FTJ_SW_ChestRoomIllusionist_Teleport_In_01", 1300);
+
+PROC
+ProcObjectTimerFinished(CHARACTERGUID_S_FTJ_SW_IllusionistAtEntrance_e01c3723-872a-454d-a59b-d798b21183cd, "S_FTJ_SW_ChestRoomIllusionist_Teleport_In_01")
+AND
+DB_FTJ_SW_ChestRoomIllusionist_Teleport_In_01(_Var1)
+AND NOT
+DB_FTJ_SW_IllusionistDungeon_JarDestroyed(1)
+AND
+CharacterIsDead(CHARACTERGUID_FTJ_TrueIllusionist_a3b10150-1871-48a4-9d64-f51c84316b6d, 0)
+AND
+QRY_SpeakerIsAvailable(_Var1)
+THEN
+NOT DB_FTJ_SW_ChestRoomIllusionist_Teleport_In_01(_Var1);
+ProcForceStopDialog(CHARACTERGUID_S_FTJ_SW_IllusionistAtEntrance_e01c3723-872a-454d-a59b-d798b21183cd);
+Proc_StartDialog(0, "FTJ_SW_IllusionistInChestRoom", CHARACTERGUID_FTJ_SW_ChestRoomIllusionist_001_d656548b-329c-4ce4-ae61-984feb732503, _Var1);
+
+PROC
+ProcOneShotTriggerEntered((CHARACTERGUID)_Var1, TRIGGERGUID_S_FTJ_ChestRoomIllusionistAutoStopDialog_Box_a0d8aac6-8ea2-4423-8a4c-e811b619634b)
+AND NOT
+DB_FTJ_SW_IllusionistDungeon_JarDestroyed(1)
+AND
+CharacterIsDead(CHARACTERGUID_S_FTJ_SW_ChestRoomIllusionist_001_d656548b-329c-4ce4-ae61-984feb732503, 0)
+THEN
+ProcForceStopDialog(CHARACTERGUID_S_FTJ_SW_ChestRoomIllusionist_001_d656548b-329c-4ce4-ae61-984feb732503);
+
+IF
+DialogEnded("FTJ_SW_IllusionistInChestRoom", _)
+AND
+DB_FTJ_SW_ChestRoomIllusions(_Var2)
+AND
+ObjectIsOnStage(_Var2, 0)
+THEN
+CharacterAppearCustom(_Var2, "Teleport_In_01", "");
+
+IF
+DialogEnded("FTJ_SW_IllusionistInChestRoom", _)
+AND
+DB_FTJ_SW_ChestRoomIllusions(_Var2)
+THEN
+ProcSetRelationToPlayers(_Var2, 0);
+
+IF
+DialogEnded("FTJ_SW_IllusionistInChestRoom", _)
+THEN
+ProcSetRelationToPlayers(CHARACTERGUID_S_FTJ_SW_IllusionistAtEntrance_e01c3723-872a-454d-a59b-d798b21183cd, 0);
+
+PROC
+ReactOnKillCounter("FTJ_SW_ChestRoomIllusion")
+AND
+GetPosition(ITEMGUID_S_FTJ_SW_IllusionistTrapChest_001_9ebe7612-201b-4609-b888-9d8874987cd6, _Var1, _Var2, _Var3)
+THEN
+PlayEffectAtPosition("RS3_FX_GP_ScriptedEvent_Teleport_GenericSmoke_01", _Var1, _Var2, _Var3);
+SetOnStage(ITEMGUID_S_FTJ_SW_IllusionistTrapChest_001_9ebe7612-201b-4609-b888-9d8874987cd6, 1);
+
+IF
+CharacterUsedItem((CHARACTERGUID)_Var1, ITEMGUID_S_FTJ_SW_IllusionistTrapChest_001_9ebe7612-201b-4609-b888-9d8874987cd6)
+AND NOT
+DB_FTJ_SW_IllusionistDungeon_JarDestroyed(1)
+AND
+QueryOnlyOnce("FTJ_SW_FoopLaughingIllusion")
+THEN
+CharacterAppearCustom(CHARACTERGUID_S_FTJ_LaughingIllusion_2e275231-d62d-4726-80f8-259e0c2f3308, "Teleport_In_01", "");
+
+IF
+CharacterUsedItem((CHARACTERGUID)_Var1, ITEMGUID_S_FTJ_SW_RiddleStatue_24d4387c-fac7-46ef-88f4-8ba7947279b8)
+AND NOT
+DB_FTJ_SW_BlockSummonAncientIllusionist(1)
+AND
+GlobalGetFlag("FTJ_SW_RiddlePass", 0)
+THEN
+DB_FTJ_SW_BlockSummonAncientIllusionist(1);
+Proc_StartDialog(0, "FTJ_SW_RiddleIllusion", ITEMGUID_S_FTJ_SW_RiddleStatue_24d4387c-fac7-46ef-88f4-8ba7947279b8, _Var1);
+
+IF
+DialogEnded("FTJ_SW_RiddleIllusion", (INTEGER)_Var1)
+THEN
+NOT DB_FTJ_SW_BlockSummonAncientIllusionist(1);
+
+IF
+DialogEnded("FTJ_SW_RiddleIllusion", (INTEGER)_Var1)
+AND
+GlobalGetFlag("FTJ_SW_RiddlePass", 1)
+AND
+DialogGetInvolvedPlayer(_Var1, 1, _Var2)
+THEN
+ItemUnLock(ITEMGUID_S_FTJ_SW_DoorToIllusionistBossRoom_2c7dbfde-855d-4a31-b149-2a459c9a1910);
+ItemOpen(ITEMGUID_S_FTJ_SW_DoorToIllusionistBossRoom_2c7dbfde-855d-4a31-b149-2a459c9a1910);
+PartyAddExperience(_Var2, 1, 6, 7);
+
+IF
+DialogEnded("FTJ_SW_RiddleIllusion", _)
+AND
+GlobalGetFlag("FTJ_SW_RiddleFail", 1)
+AND
+DB_IsPlayer(_Var2)
+AND
+DB_InRegion(_Var2, TRIGGERGUID_S_FTJ_SW_SUB_RiddleRoom_8c4180c8-e234-4993-8edf-945823ef4209)
+THEN
+Proc_ShakeCameraForTime(_Var2, 2000);
+
+IF
+DialogEnded("FTJ_SW_RiddleIllusion", (INTEGER)_Var1)
+AND
+GlobalGetFlag("FTJ_SW_RiddleFail", 1)
+AND
+DialogGetInvolvedPlayer(_Var1, 1, _Var2)
+THEN
+GlobalClearFlag("FTJ_SW_RiddleFail");
+CharacterItemSetEvent(_Var2, ITEMGUID_S_FTJ_SW_RiddleStatue_24d4387c-fac7-46ef-88f4-8ba7947279b8, "FTJ_SW_RiddleIllusion");
+
+IF
+CharacterDying(CHARACTERGUID_S_FTJ_TrueIllusionist_a3b10150-1871-48a4-9d64-f51c84316b6d)
+AND
+DB_SW_IllusionistsIllusions(_Var1)
+AND
+CharacterIsDead(_Var1, 0)
+THEN
+CharacterDie(_Var1, 0, "DoT");
+ItemSetCanInteract(ITEMGUID_S_FTJ_SW_RiddleStatue_24d4387c-fac7-46ef-88f4-8ba7947279b8, 0);
+
+IF
+CharacterDied(CHARACTERGUID_S_FTJ_TrueIllusionist_a3b10150-1871-48a4-9d64-f51c84316b6d)
+AND
+DB_IsPlayer(_Var1)
+AND
+ObjectGetFlag(_Var1, "QuestUpdate_FTJ_SW_Illusionist_Start_FindEntrance", 1)
+THEN
+ObjectSetFlag(_Var1, "QuestUpdate_FTJ_SW_Illusionist_KillIllusionist");
+
+PROC
+ProcLaunchAmbush(TRIGGERGUID_S_FTJ_SW_IllusionistBossDialog_Poly_55ba1b73-55a6-4e22-b340-1b4469b6a99b, (CHARACTERGUID)_Var1)
+AND NOT
+DB_FTJ_SW_IllusionistDungeon_JarDestroyed(1)
+AND
+CharacterIsDead(CHARACTERGUID_FTJ_TrueIllusionist_a3b10150-1871-48a4-9d64-f51c84316b6d, 0)
+THEN
+CharacterAppearCustom(CHARACTERGUID_S_FTJ_TrueIllusionist_a3b10150-1871-48a4-9d64-f51c84316b6d, "Teleport_In_01", "");
+Proc_StartDialog(1, "FTJ_SW_AD_IllusionistBoss", CHARACTERGUID_S_FTJ_SW_IllusionPhase1_002_bf948008-5ba1-4573-84ff-4a81912d7848);
+CharacterSetArmorPercentage(CHARACTERGUID_S_FTJ_TrueIllusionist_a3b10150-1871-48a4-9d64-f51c84316b6d, 100);
+CharacterSetMagicArmorPercentage(CHARACTERGUID_S_FTJ_TrueIllusionist_a3b10150-1871-48a4-9d64-f51c84316b6d, 100);
+ProcSetRelationToPlayers(CHARACTERGUID_S_FTJ_LaughingIllusion_2e275231-d62d-4726-80f8-259e0c2f3308, 0);
+ProcSetRelationToPlayers(CHARACTERGUID_S_FTJ_TrueIllusionist_a3b10150-1871-48a4-9d64-f51c84316b6d, 0);
+
+PROC
+ProcLaunchAmbush(TRIGGERGUID_S_FTJ_SW_IllusionistBossDialog_Poly_55ba1b73-55a6-4e22-b340-1b4469b6a99b, (CHARACTERGUID)_Var1)
+AND NOT
+DB_FTJ_SW_IllusionistDungeon_JarDestroyed(1)
+AND
+DB_FTJ_SW_IllusionistPhase1Illusions(_Var2)
+THEN
+CharacterAppearCustom(_Var2, "Teleport_In_01", "");
+ProcSetRelationToPlayers(_Var2, 0);
+CharacterSetArmorPercentage(_Var2, 100);
+CharacterSetMagicArmorPercentage(_Var2, 100);
+
+PROC
+ProcLaunchAmbush(TRIGGERGUID_S_FTJ_SW_IllusionistBossDialog_Poly_55ba1b73-55a6-4e22-b340-1b4469b6a99b, (CHARACTERGUID)_Var1)
+AND NOT
+DB_FTJ_SW_IllusionistDungeon_JarDestroyed(1)
+AND
+CharacterIsDead(CHARACTERGUID_S_FTJ_TrueIllusionist_a3b10150-1871-48a4-9d64-f51c84316b6d, 0)
+THEN
+CharacterAppearCustom(CHARACTERGUID_S_FTJ_TrueIllusionist_a3b10150-1871-48a4-9d64-f51c84316b6d, "Teleport_In_01", "");
+ProcSetRelationToPlayers(CHARACTERGUID_S_FTJ_TrueIllusionist_a3b10150-1871-48a4-9d64-f51c84316b6d, 0);
+
+IF
+GlobalFlagSet("FTJ_SW_IllusionistStartPhase2")
+AND
+QueryOnlyOnce("FTJ_SW_IllusionistPhase_2")
+AND
+DB_FTJ_SW_IllusionistPhase2Illusions(_Var1)
+AND
+GetPosition(_Var1, _Var2, _Var3, _Var4)
+THEN
+PlayEffectAtPosition("RS3_FX_GP_ScriptedEvent_Trompedoy_Summon_01", _Var2, _Var3, _Var4);
+CharacterAppearCustom(_Var1, "Teleport_In_01", "");
+ProcSetRelationToPlayers(_Var1, 0);
+CharacterSetArmorPercentage(_Var1, 100);
+CharacterSetMagicArmorPercentage(_Var1, 100);
+
+PROC
+ProcOneShotTriggerEntered((CHARACTERGUID)_Var1, TRIGGERGUID_S_FTJ_SW_OneShot_IllusionistJar_3e18e8cd-0269-4123-8c07-0f86b95506ad)
+AND NOT
+DB_FTJ_SW_IllusionistDungeon_JarDestroyed(1)
+THEN
+ProcObjectTimer(_Var1, "Timer_FTJ_SW_IllusionistSoulJar", 200);
+
+PROC
+ProcObjectTimerFinished((CHARACTERGUID)_Var1, "Timer_FTJ_SW_IllusionistSoulJar")
+AND NOT
+DB_FTJ_SW_IllusionistDungeon_JarDestroyed(1)
+THEN
+CharacterAppearCustom(CHARACTERGUID_S_FTJ_SW_IllusionistFinal_1a3b44d4-0ba4-4289-b158-a54111b83e1d, "Teleport_In_01", "");
+ObjectSetFlag(_Var1, "QuestUpdate_FTJ_SW_Illusionist_IllusionistRevive");
+ProcObjectTimer(_Var1, "Timer_FTJ_SW_IllusionistSoulJar_DelayDialog", 400);
+
+PROC
+ProcObjectTimerFinished((GUIDSTRING)_Var1, "Timer_FTJ_SW_IllusionistSoulJar_DelayDialog")
+AND NOT
+DB_FTJ_SW_IllusionistDungeon_JarDestroyed(1)
+AND NOT
+QRY_SpeakerIsAvailable(_Var1)
+THEN
+Proc_StartDialog(1, "FTJ_SW_AD_IllusionistJar", CHARACTERGUID_S_FTJ_SW_IllusionistFinal_1a3b44d4-0ba4-4289-b158-a54111b83e1d);
+
+PROC
+ProcObjectTimerFinished((GUIDSTRING)_Var1, "Timer_FTJ_SW_IllusionistSoulJar_DelayDialog")
+AND NOT
+DB_FTJ_SW_IllusionistDungeon_JarDestroyed(1)
+AND
+QRY_SpeakerIsAvailable(_Var1)
+THEN
+Proc_StartDialog(0, "FTJ_SW_IllusionistJar", CHARACTERGUID_S_FTJ_SW_IllusionistFinal_1a3b44d4-0ba4-4289-b158-a54111b83e1d, _Var1);
+
+IF
+DialogEnded("FTJ_SW_IllusionistJar", _)
+AND
+DB_DialogPlayers(_Var2, _Var3, 1)
+AND
+ObjectGetFlag(_Var3, "FTJ_SW_IllusionistDungeon_DestroySoulJar", 0)
+THEN
+ProcObjectTimer(CHARACTERGUID_S_FTJ_SW_IllusionistFinal_1a3b44d4-0ba4-4289-b158-a54111b83e1d, "Teleport_Out_01", 1900);
+PlayAnimation(CHARACTERGUID_S_FTJ_SW_IllusionistFinal_1a3b44d4-0ba4-4289-b158-a54111b83e1d, "Teleport_Out_01");
+
+IF
+DialogEnded("FTJ_SW_IllusionistJar", _)
+AND
+DB_DialogPlayers(_Var2, _Var3, 1)
+AND
+ObjectGetFlag(_Var3, "FTJ_SW_IllusionistDungeon_DestroySoulJar", 1)
+THEN
+PlayEffect(CHARACTERGUID_S_FTJ_SW_IllusionistFinal_1a3b44d4-0ba4-4289-b158-a54111b83e1d, "RS3_FX_GP_ScriptedEvent_Illusion_Death_01");
+ProcObjectTimer(CHARACTERGUID_S_FTJ_SW_IllusionistFinal_1a3b44d4-0ba4-4289-b158-a54111b83e1d, "RS3_FX_GP_ScriptedEvent_Illusion_Death_01_Poof", 1900);
+
+IF
+AutomatedDialogStarted("FTJ_SW_AD_IllusionistJar", _)
+THEN
+PlayEffect(CHARACTERGUID_S_FTJ_SW_IllusionistFinal_1a3b44d4-0ba4-4289-b158-a54111b83e1d, "RS3_FX_GP_ScriptedEvent_Illusion_Death_01");
+
+IF
+AutomatedDialogEnded("FTJ_SW_AD_IllusionistJar", _)
+THEN
+Poof(CHARACTERGUID_S_FTJ_SW_IllusionistFinal_1a3b44d4-0ba4-4289-b158-a54111b83e1d);
+
+PROC
+ProcObjectTimerFinished((GUIDSTRING)_Var1, "RS3_FX_GP_ScriptedEvent_Illusion_Death_01_Poof")
+THEN
+Poof(_Var1);
+
+PROC
+ProcObjectTimerFinished((GUIDSTRING)_Var1, "Teleport_Out_01")
+THEN
+SetOnStage(_Var1, 0);
+
+IF
+DialogEnded("FTJ_SW_SoulJar_Illusionist", _)
+AND
+ObjectGetFlag(ITEMGUID_S_FTJ_SW_SoulJar_Illusionist_8ed6b714-24b1-4f97-a02b-c5b95c2b69aa, "Absorb_SoulJar", 1)
+THEN
+DB_FTJ_SW_IllusionistDungeon_JarDestroyed(1);
+
+IF
+DialogEnded("FTJ_SW_SoulJar_Illusionist", _)
+AND
+ObjectGetFlag(ITEMGUID_S_FTJ_SW_SoulJar_Illusionist_8ed6b714-24b1-4f97-a02b-c5b95c2b69aa, "Absorb_SoulJar", 1)
+AND
+DB_SW_IllusionsCheck(_Var2)
+AND
+DB_SW_IllusionOnStage(_Var2)
+THEN
+ProcForceStopDialog(_Var2);
+CharacterDie(_Var2, 0, "DoT");
+
+IF
+ItemDestroyed(ITEMGUID_S_FTJ_SW_SoulJar_Illusionist_8ed6b714-24b1-4f97-a02b-c5b95c2b69aa)
+THEN
+DB_FTJ_SW_IllusionistDungeon_JarDestroyed(1);
+
+IF
+ObjectFlagSet("FTJ_SW_IllusionistDungeon_DestroySoulJar", (CHARACTERGUID)_Var1, _)
+AND NOT
+DB_FTJ_SW_IllusionistDungeon_JarDestroyed(1)
+AND
+CharacterCanSee(_Var1, ITEMGUID_S_FTJ_SW_SoulJar_Illusionist_8ed6b714-24b1-4f97-a02b-c5b95c2b69aa, 1)
+THEN
+ItemSetCanInteract(ITEMGUID_S_FTJ_SW_SoulJar_Illusionist_8ed6b714-24b1-4f97-a02b-c5b95c2b69aa, 0);
+ProcForceStopDialog(ITEMGUID_S_FTJ_SW_SoulJar_Illusionist_8ed6b714-24b1-4f97-a02b-c5b95c2b69aa);
+ProcCharacterMoveTo(_Var1, ITEMGUID_S_FTJ_SW_SoulJar_Illusionist_8ed6b714-24b1-4f97-a02b-c5b95c2b69aa, 0, "");
+
+IF
+DialogEnded("FTJ_SW_IllusionistJar", (INTEGER)_Var1)
+AND NOT
+DB_FTJ_SW_IllusionistDungeon_JarDestroyed(1)
+AND
+DB_DialogPlayers(_Var1, _Var2, 1)
+AND
+ObjectGetFlag(_Var2, "FTJ_SW_IllusionistDungeon_DestroySoulJar", 1)
+THEN
+ObjectSetFlag(_Var2, "QuestUpdate_FTJ_SW_Illusionist_DestroyIllusionistJar");
+ItemDestroy(ITEMGUID_S_FTJ_SW_SoulJar_Illusionist_8ed6b714-24b1-4f97-a02b-c5b95c2b69aa);
+
+IF
+ItemDestroyed(ITEMGUID_S_FTJ_SW_SoulJar_Illusionist_8ed6b714-24b1-4f97-a02b-c5b95c2b69aa)
+AND
+ObjectIsOnStage(CHARACTERGUID_S_FTJ_TrueIllusionist_a3b10150-1871-48a4-9d64-f51c84316b6d, 1)
+THEN
+PlayEffect(CHARACTERGUID_S_FTJ_TrueIllusionist_a3b10150-1871-48a4-9d64-f51c84316b6d, "RS3_FX_GP_ScriptedEvent_SourceJar_Death_Impact_01");
+CharacterDie(CHARACTERGUID_S_FTJ_TrueIllusionist_a3b10150-1871-48a4-9d64-f51c84316b6d, 1, "DoT");
+
+IF
+ItemDestroyed(ITEMGUID_S_FTJ_SW_SoulJar_Illusionist_8ed6b714-24b1-4f97-a02b-c5b95c2b69aa)
+AND
+ObjectIsOnStage(CHARACTERGUID_S_FTJ_TrueIllusionist_a3b10150-1871-48a4-9d64-f51c84316b6d, 0)
+THEN
+CharacterAppear(CHARACTERGUID_S_FTJ_TrueIllusionist_a3b10150-1871-48a4-9d64-f51c84316b6d, 1, "FTJ_SW_IllusionistSetToDie");
+
+IF
+StoryEvent(CHARACTERGUID_S_FTJ_TrueIllusionist_a3b10150-1871-48a4-9d64-f51c84316b6d, "FTJ_SW_IllusionistSetToDie")
+THEN
+PlayEffect(CHARACTERGUID_S_FTJ_TrueIllusionist_a3b10150-1871-48a4-9d64-f51c84316b6d, "RS3_FX_GP_ScriptedEvent_SourceJar_Death_Impact_01");
+CharacterDie(CHARACTERGUID_S_FTJ_TrueIllusionist_a3b10150-1871-48a4-9d64-f51c84316b6d, 1, "DoT");
+
+IF
+ItemDestroyed(ITEMGUID_S_FTJ_SW_SoulJar_Illusionist_8ed6b714-24b1-4f97-a02b-c5b95c2b69aa)
+AND
+DB_SW_IllusionsCheck(_Var1)
+AND
+DB_SW_IllusionOnStage(_Var1)
+THEN
+ProcForceStopDialog(_Var1);
+CharacterDie(_Var1, 0, "DoT");
+
+IF
+DialogEnded("FTJ_SW_SoulJar_Illusionist", (INTEGER)_Var1)
+AND
+DialogGetInvolvedNPC(_Var1, 1, ITEMGUID_S_FTJ_SW_SoulJar_Illusionist_8ed6b714-24b1-4f97-a02b-c5b95c2b69aa)
+AND
+DialogGetInvolvedPlayer(_Var1, 1, _Var2)
+AND
+ObjectGetFlag(ITEMGUID_S_FTJ_SW_SoulJar_Illusionist_8ed6b714-24b1-4f97-a02b-c5b95c2b69aa, "Absorb_SoulJar", 1)
+THEN
+ObjectSetFlag(_Var2, "QuestUpdate_FTJ_SW_Illusionist_AbsorbedIllusionistJar");
+
+IF
+DialogEnded("FTJ_SW_SoulJar_Illusionist", (INTEGER)_Var1)
+AND
+DialogGetInvolvedNPC(_Var1, 1, ITEMGUID_S_FTJ_SW_SoulJar_Illusionist_8ed6b714-24b1-4f97-a02b-c5b95c2b69aa)
+AND
+DialogGetInvolvedPlayer(_Var1, 1, _Var2)
+AND
+ObjectGetFlag(ITEMGUID_S_FTJ_SW_SoulJar_Illusionist_8ed6b714-24b1-4f97-a02b-c5b95c2b69aa, "Destroy_SoulJar", 1)
+THEN
+ObjectSetFlag(_Var2, "QuestUpdate_FTJ_SW_Illusionist_DestroyIllusionistJar");
+
+IF
+CharacterDestroyedItem((CHARACTERGUID)_Var1, ITEMGUID_S_FTJ_SW_SoulJar_Illusionist_8ed6b714-24b1-4f97-a02b-c5b95c2b69aa)
+THEN
+ObjectSetFlag(_Var1, "QuestUpdate_FTJ_SW_Illusionist_DestroyIllusionistJar");
+
+IF
+ItemTemplateAddedToCharacter(WPN_Wand_Purging_2b4412a5-467a-44ae-9d7b-bf39a06794b2, _, (CHARACTERGUID)_Var2)
+AND
+DB_IsPlayer(_Var2)
+AND
+UserGetFlag(_Var2, "FTJ_PickedPurgingWand", 0)
+THEN
+UserSetFlag(_Var2, "FTJ_PickedPurgingWand");
+StartVoiceBark("FTJ_SW_VB_PickedPurgingWand", _Var2);
+
+IF
+ItemTemplateAddedToCharacter(WPN_Wand_Purging_Inert_90f4ab1d-0595-4f06-8d0e-89bff5afe26b, _, (CHARACTERGUID)_Var2)
+AND
+DB_IsPlayer(_Var2)
+AND
+UserGetFlag(_Var2, "FTJ_PickedPurgingWandInert", 0)
+THEN
+UserSetFlag(_Var2, "FTJ_PickedPurgingWandInert");
+StartVoiceBark("FTJ_SW_VB_PickedPurgingWandInert", _Var2);
+
+IF
+CharacterUsedItem((CHARACTERGUID)_Var1, ITEMGUID_S_BOOK_FTJ_Map_VaultBlueprint_000_8e83a6bf-2665-4886-aa5d-a67418cb267c)
+AND
+DB_IsPlayer(_Var1)
+THEN
+ProcHideMarker(_Var1, "FTJ_SW_IllusionDungeonHint");
+ProcShowMarker(_Var1, "FTJ_SoulJarVault");
+UserSetFlag(_Var1, "QuestUpdate_FTJ_SW_Illusionist_FoundMap");
+UserSetFlag(_Var1, "QuestUpdate_FTJ_SW_StuckHaunting_FoundMap");
+UserSetFlag(_Var1, "QuestUpdate_FTJ_SW_Necromancers_FoundMap");
+
+IF
+ItemEquipped(ITEMGUID_S_FTJ_SW_BraccusCurseRing_08732b24-8f87-4ecf-b6e6-4cead56297ae, (CHARACTERGUID)_Var1)
+AND
+DB_IsPlayer(_Var1)
+THEN
+Proc_FTJ_ApplyBraccusRingCurse(_Var1);
+
+IF
+ItemAddedToCharacter(ITEMGUID_S_FTJ_SW_BraccusCurseRing_08732b24-8f87-4ecf-b6e6-4cead56297ae, (CHARACTERGUID)_Var1)
+AND
+DB_IsPlayer(_Var1)
+AND
+QRY_SpeakerIsAvailable(_Var1)
+AND
+QueryOnlyOnce("FTJ_BraccusCurseRingDialog_OneShot")
+THEN
+Proc_StartDialog(0, "FTJ_SW_BraccusCurseRing", ITEMGUID_S_FTJ_SW_BraccusCurseRing_08732b24-8f87-4ecf-b6e6-4cead56297ae, _Var1);
+ObjectSetFlag(_Var1, "QuestAdd_FTJ_SW_CursedRing");
+ObjectSetFlag(_Var1, "QuestUpdate_FTJ_SW_CursedRing_Start");
+
+PROC
+Proc_FTJ_ApplyBraccusRingCurse((CHARACTERGUID)_Var1)
+AND
+DB_IsPlayer(_Var1)
+AND
+DB_IsPlayer(_Var2)
+AND
+_Var1 != _Var2
+AND
+ObjectGetFlag(_Var2, "FTJ_SW_HasBraccusRingCurse", 1)
+THEN
+ObjectClearFlag(_Var2, "FTJ_SW_HasBraccusRingCurse", 0);
+
+PROC
+Proc_FTJ_ApplyBraccusRingCurse((CHARACTERGUID)_Var1)
+AND
+ObjectGetFlag(_Var1, "FTJ_SW_HasBraccusRingCurse", 0)
+THEN
+RemoveStatus(_Var1, "BLESSED");
+ApplyStatus(_Var1, "CURSED", -1, 1);
+ObjectSetFlag(_Var1, "FTJ_SW_HasBraccusRingCurse");
+ObjectSetFlag(_Var1, "QuestUpdate_FTJ_SW_CursedRing_CurseApply");
+
+IF
+CharacterStatusAttempt((CHARACTERGUID)_Var1, "BLESSED", _)
+AND
+ObjectGetFlag(_Var1, "FTJ_SW_HasBraccusRingCurse", 1)
+THEN
+CharacterUnequipItem(_Var1, ITEMGUID_S_FTJ_SW_BraccusCurseRing_08732b24-8f87-4ecf-b6e6-4cead56297ae);
+ObjectClearFlag(_Var1, "FTJ_SW_HasBraccusRingCurse", 0);
+
+IF
+CharacterStatusAttempt((CHARACTERGUID)_Var1, "BLESSED", _)
+AND
+CharacterGetEquippedItem(_Var1, "Ring", _Var3)
+AND
+_Var3 == ITEMGUID_S_FTJ_SW_BraccusCurseRing_08732b24-8f87-4ecf-b6e6-4cead56297ae
+AND
+HasActiveStatus(_Var1, "CURSED", 1)
+THEN
+CharacterUnequipItem(_Var1, ITEMGUID_S_FTJ_SW_BraccusCurseRing_08732b24-8f87-4ecf-b6e6-4cead56297ae);
+
+IF
+CharacterStatusAttempt((CHARACTERGUID)_Var1, "BLESSED", _)
+AND
+CharacterGetEquippedItem(_Var1, "Ring2", _Var3)
+AND
+_Var3 == ITEMGUID_S_FTJ_SW_BraccusCurseRing_08732b24-8f87-4ecf-b6e6-4cead56297ae
+AND
+HasActiveStatus(_Var1, "CURSED", 1)
+THEN
+CharacterUnequipItem(_Var1, ITEMGUID_S_FTJ_SW_BraccusCurseRing_08732b24-8f87-4ecf-b6e6-4cead56297ae);
+
+IF
+ObjectFlagSet("FTJ_SW_HasBraccusRingCurse", (GUIDSTRING)_Var1, _)
+THEN
+Proc_StartDialog(1, "FTJ_SW_AD_CurseRingApplied", _Var1);
+
+IF
+ObjectFlagCleared("FTJ_SW_HasBraccusRingCurse", (GUIDSTRING)_Var1, _)
+THEN
+Proc_StartDialog(1, "FTJ_SW_AD_CurseRingRemoved", _Var1);
+RemoveStatus(_Var1, "CURSED");
+ObjectSetFlag(_Var1, "QuestUpdate_FTJ_SW_CursedRing_RemoveCurse");
+
+IF
+ItemUnEquipped(ITEMGUID_S_FTJ_SW_BraccusCurseRing_08732b24-8f87-4ecf-b6e6-4cead56297ae, (CHARACTERGUID)_Var1)
+AND
+ObjectGetFlag(_Var1, "FTJ_SW_HasBraccusRingCurse", 1)
+AND NOT
+DB_FTJ_SW_DidCurseRingUnequipDialog(_Var1)
+THEN
+Proc_StartDialog(1, "FTJ_SW_AD_CurseRingUnequipped", _Var1);
+DB_FTJ_SW_DidCurseRingUnequipDialog(_Var1);
+ObjectSetFlag(_Var1, "QuestUpdate_FTJ_SW_CursedRing_TakeOff");
+
+IF
+CharacterResurrected((CHARACTERGUID)_Var1)
+AND
+ObjectGetFlag(_Var1, "FTJ_SW_HasBraccusRingCurse", 1)
+THEN
+ApplyStatus(_Var1, "CURSED", -1, 1);
+
+IF
+CharacterStatusRemoved((CHARACTERGUID)_Var1, "CURSED", _)
+AND
+HasAppliedStatus(_Var1, "CURSED", 0)
+AND
+HasAppliedStatus(_Var1, "BLESSED", 0)
+AND
+ObjectGetFlag(_Var1, "FTJ_SW_HasBraccusRingCurse", 1)
+THEN
+ApplyStatus(_Var1, "CURSED", -1, 1);
+
+IF
+ObjectFlagSet("FTJ_SW_ShowIllusionistHint", (CHARACTERGUID)_Var1, _)
+THEN
+ProcShowMarker(_Var1, "FTJ_SW_IllusionDungeonHint");
+
+IF
+TextEventSet("FTJ_SW_IllusionistPhase2Illusions_FX")
+AND
+DB_FTJ_SW_IllusionistPhase2Illusions(_Var1)
+AND
+GetPosition(_Var1, _Var2, _Var3, _Var4)
+THEN
+PlayEffectAtPosition("RS3_FX_GP_ScriptedEvent_Trompedoy_Summon_01", _Var2, _Var3, _Var4);
+CharacterAppear(_Var1, 1, "");
+ProcSetRelationToPlayers(_Var1, 0);
+CharacterSetArmorPercentage(_Var1, 100);
+CharacterSetMagicArmorPercentage(_Var1, 100);
+
+IF
+TextEventSet("FTJ_SW_IllusionistTeleport_Out_01")
+THEN
+SetOnStage(CHARACTERGUID_S_FTJ_SW_IllusionistFinal_1a3b44d4-0ba4-4289-b158-a54111b83e1d, 1);
+ProcObjectTimer(CHARACTERGUID_S_FTJ_SW_IllusionistFinal_1a3b44d4-0ba4-4289-b158-a54111b83e1d, "Teleport_Out_01", 1900);
+PlayAnimation(CHARACTERGUID_S_FTJ_SW_IllusionistFinal_1a3b44d4-0ba4-4289-b158-a54111b83e1d, "Teleport_Out_01");
+
+
+EXITSECTION
+ItemSetForceSynch(ITEMGUID_S_FTJ_SW_IllusionistDungeonEntrance_00b9cf78-d62d-4e6f-a0d5-cc80714da014, 0);
+ENDEXITSECTION
+
+ParentTargetEdge "FortJoy"

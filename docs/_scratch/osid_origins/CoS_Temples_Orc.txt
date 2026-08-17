@@ -1,0 +1,368 @@
+Version 1
+SubGoalCombiner SGC_AND
+
+INITSECTION
+DB_Dialogs(CHARACTERGUID_S_CoS_Temples_Orc_PortalMaster_74f2fccd-a0a6-408e-98ff-19ac07418ff2, "CoS_Temples_Orc_PortalMaster");
+DB_Ghosts(CHARACTERGUID_S_CoS_Temples_Orc_PortalMaster_74f2fccd-a0a6-408e-98ff-19ac07418ff2, CHARACTERGUID_S_CoS_Temples_Orc_PortalMaster_Ghost_1eae4e69-d537-47ff-9919-d0d08b71f0ac, "CoS_Temples_Orc_PortalMaster_Ghost");
+DB_Ghosts(CHARACTERGUID_S_CoS_Temples_Orc_OrcPriest_Ghost_001_306dffe6-1fa4-4e0c-a095-db1dbc14bd26, "CoS_Temples_Orc_OrcPriest_Ghost_001");
+DB_Ghosts(CHARACTERGUID_S_CoS_Temples_Orc_OrcPriest_Ghost_002_32104ef4-3083-43af-b490-dd47f60de796, "CoS_Temples_Orc_OrcPriest_Ghost_002");
+DB_Ghosts(CHARACTERGUID_S_CoS_Temples_Orc_KnightOfVrogir_b5f96c11-0cbe-4f99-aef4-22ea11b8ff0a, CHARACTERGUID_S_CoS_Temples_Orc_KnightOfVrogir_Ghost_a336e109-4ed4-4a08-8a9a-f66dc57605a6, "CoS_Temples_Orc_KnightOfVrogir_Ghost");
+DB_IsNotMessingAround(CHARACTERGUID_S_CoS_Temples_Orc_PortalMaster_74f2fccd-a0a6-408e-98ff-19ac07418ff2);
+DB_DeadEvent(CHARACTERGUID_S_CoS_Temples_Orc_CampBlackRing_Captain_1eceaf90-79a6-4d36-9360-975f1464b0e3, "CoS_Temples_Orc_CampBlackRing_Captain_Dead");
+DB_CoS_Temples_Orc_WaterFallComponents(ITEMGUID_S_CoS_Temples_Orc_PortalOverTemple_ab5960ef-c6b9-4999-aa63-3fb4d97d2bbf);
+PROC_LoopEffect("RS3_FX_Environment_Portal_Water_In", ITEMGUID_S_CoS_Temples_Orc_PortalInOcean_227ed03f-69a0-44eb-922a-10863d16cb8a, "PortalInOcean", "CoS_Main", "");
+DB_ShovelArea(TRIGGERGUID_S_CoS_Temples_Orc_DirtMound_Box_001_139755b0-76b5-4aca-b639-7aca08544aee, "S_CoS_Temples_Orc_DirtMound_001", ITEMGUID_S_CoS_Temples_Orc_DirtMound_001_f373d6ba-3b5c-40e4-9fec-27598dc791ad);
+DB_ShovelRewardItemAppear("S_CoS_Temples_Orc_DirtMound_001", ITEMGUID_S_CoS_Temples_Orc_DirtMound_Treasure_001_db0b105b-64e4-439c-b5c9-45107a03cf1d, TRIGGERGUID_S_CoS_Temples_Orc_DirtMound_Box_001_139755b0-76b5-4aca-b639-7aca08544aee);
+DB_AmbushTrigger(TRIGGERGUID_S_CoS_PortalMaster_AmbushTrigger_71bfe70b-900c-4239-9d41-48d9b8350397, ITEMGUID_S_CoS_PortalMaster_AmbushHelper_ea970f81-de9f-459d-a1f0-68c82d65a07d);
+DB_HasStoryEvent(ITEMGUID_S_CoS_Temples_Orc_Key_e650e25f-e3f4-434e-bd2a-da900850e38d, "CoS_Temples_Orc_Lever_HasKey");
+DB_Dialogs(CHARACTERGUID_S_CoS_Temples_Orc_CampBlackRing_Captain_1eceaf90-79a6-4d36-9360-975f1464b0e3, "CoS_Temples_Orc_CampBlackRing_Captain");
+DB_Dialogs(CHARACTERGUID_S_CoS_Temples_Orc_CampBlackRing_001_7b438b65-1122-4fb5-bb5f-fc3a2cf460ea, "CoS_Temples_Orc_CampBlackRing_001");
+DB_Dialogs(CHARACTERGUID_S_CoS_Temples_Orc_CampBlackRing_002_5f1f25ab-9e95-4602-bcf9-2b488c63d2a6, "CoS_Temples_Orc_CampBlackRing_002");
+DB_Dialogs(CHARACTERGUID_S_CoS_Temples_OrcEntranceBR_001_d1734204-2ddf-47f1-aee8-1b6ce55a1a1a, "CoS_Temples_OrcEntranceBR_001");
+DB_Dialogs(CHARACTERGUID_S_CoS_Temples_OrcEntranceBR_002_ab370701-5c09-4f99-b7fe-7ab32818c356, "CoS_Temples_OrcEntranceBR_002");
+DB_Dialogs(ITEMGUID_S_CoS_Temples_Orc_Lever_acbeba06-577f-4b4f-81cd-183383fe703c, "CoS_Temples_Orc_Lever");
+DB_DoNotFace(CHARACTERGUID_S_CoS_Temples_Orc_PortalMaster_74f2fccd-a0a6-408e-98ff-19ac07418ff2);
+DB_CoS_OrcTempleBR(CHARACTERGUID_S_CoS_Temples_Orc_CampBlackRing_Captain_1eceaf90-79a6-4d36-9360-975f1464b0e3);
+DB_CoS_OrcTempleBR(CHARACTERGUID_S_CoS_Temples_Orc_CampBlackRing_001_7b438b65-1122-4fb5-bb5f-fc3a2cf460ea);
+DB_CoS_OrcTempleBR(CHARACTERGUID_S_CoS_Temples_Orc_CampBlackRing_002_5f1f25ab-9e95-4602-bcf9-2b488c63d2a6);
+DB_CoS_OrcTempleBR(CHARACTERGUID_S_CoS_Temples_Orc_PortalMaster_74f2fccd-a0a6-408e-98ff-19ac07418ff2);
+DB_CoS_OrcTempleBR(CHARACTERGUID_S_GLO_OilfieldsDock_BlackRingOfficer_7b338908-1d50-4991-87eb-2cf16e6a0222);
+DB_Ghosts(CHARACTERGUID_S_CoS_Temples_Orc_DeadBR_001_Ghost_e13482c2-f29e-4a6a-9922-be365f25b931, "CoS_Temples_Orc_DeadBR_001_Ghost");
+DB_Ghosts(CHARACTERGUID_S_CoS_Temples_Orc_DeadBR_002_Ghost_5ed92bd8-e785-4521-aca1-5adf5c9008d4, "CoS_Temples_Orc_DeadBR_002_Ghost");
+ProcTriggerRegisterForPlayers(TRIGGERGUID_S_CoS_Temples_Orc_GauntletVB_Box_e7dfcc65-420d-4fd4-af22-5b4819b4af9e);
+SetOnStage(CHARACTERGUID_S_CoS_Temples_Orc_Crocodile_0297686b-c4b4-4b1d-801e-00267516b289, 0);
+DB_Dialogs(CHARACTERGUID_S_CoS_Temples_Orc_Crocodile_0297686b-c4b4-4b1d-801e-00267516b289, "CoS_Temples_Orc_Crocodile");
+DB_GLO_Attribute_Check_AgainstLevel("CoS_Temples_Orc_Lever", 1, "Wits", "Normal", 2, 16);
+DB_GLO_Attribute_Check_AgainstLevel("CoS_Temples_Orc_Lever", 2, "Strength", "Hard", 2, 16);
+CharacterSetRelationFactionToFaction("CoS_BlackRing_OrcTempleEntrance", "Hero", 0);
+CharacterSetRelationFactionToFaction("Hero", "CoS_BlackRing_OrcTempleEntrance", 0);
+DB_CoS_BlackRing_OrcTempleEntrance(CHARACTERGUID_S_CoS_Temples_OrcEntranceBR_001_d1734204-2ddf-47f1-aee8-1b6ce55a1a1a);
+DB_CoS_BlackRing_OrcTempleEntrance(CHARACTERGUID_S_CoS_Temples_OrcEntranceBR_002_ab370701-5c09-4f99-b7fe-7ab32818c356);
+DB_CoS_Temples_Orc_WaterPortlaVBTriggers(TRIGGERGUID_S_CoS_Temples_Orc_PortalVBTrigger_002_7e157145-2c98-4a76-b46b-adf59c928314);
+DB_CoS_Temples_Orc_WaterPortlaVBTriggers(TRIGGERGUID_S_CoS_Temples_Orc_PortalVBTrigger_4f7b2474-9dce-4a3f-86c5-b189fca59cff);
+Proc_CoS_Temples_Orc_Init();
+
+KBSECTION
+IF
+StoryEvent((CHARACTERGUID)_Var1, "CoS_Temples_Orc_CampBlackRing_Captain_StartDialog")
+AND
+QueryOnlyOnce("CoS_Temples_Orc_CampBlackRing_Captain_StartDialog_Once")
+THEN
+Proc_CoS_Temples_CheckOilFieldsOfficerAvailable(_Var1);
+
+IF
+GlobalFlagSet("CoS_Temples_Orc_PersuadedCaptain")
+AND
+DB_AmbushTrigger(TRIGGERGUID_S_CoS_PortalMaster_AmbushTrigger_71bfe70b-900c-4239-9d41-48d9b8350397, ITEMGUID_S_CoS_PortalMaster_AmbushHelper_ea970f81-de9f-459d-a1f0-68c82d65a07d)
+THEN
+NOT DB_AmbushTrigger(TRIGGERGUID_S_CoS_PortalMaster_AmbushTrigger_71bfe70b-900c-4239-9d41-48d9b8350397, ITEMGUID_S_CoS_PortalMaster_AmbushHelper_ea970f81-de9f-459d-a1f0-68c82d65a07d);
+
+IF
+GlobalFlagSet("CoS_Temples_Orc_PersuadedCaptain")
+THEN
+CharacterSetRelationFactionToFaction("CoS_BlackRing_OrcTempleEntrance", "Hero", 50);
+CharacterSetRelationFactionToFaction("Hero", "CoS_BlackRing_OrcTempleEntrance", 50);
+
+IF
+ObjectEnteredCombat(CHARACTERGUID_S_CoS_Temples_Orc_PortalMaster_74f2fccd-a0a6-408e-98ff-19ac07418ff2, _)
+AND
+DB_CoS_BlackRing_OrcTempleEntrance(_Var2)
+AND
+QRY_SpeakerIsAvailable(_Var2)
+THEN
+ProcCharacterMoveTo(_Var2, CHARACTERGUID_S_CoS_Temples_Orc_PortalMaster_74f2fccd-a0a6-408e-98ff-19ac07418ff2, 0, "");
+
+PROC
+ProcLaunchAmbush(TRIGGERGUID_S_CoS_PortalMaster_AmbushTrigger_71bfe70b-900c-4239-9d41-48d9b8350397, (CHARACTERGUID)_Var1)
+THEN
+Proc_CoS_Temples_Orc_CampGoHostile();
+
+PROC
+Proc_CoS_Temples_CheckOilFieldsOfficerAvailable((CHARACTERGUID)_Var1)
+AND
+CharacterIsDead(CHARACTERGUID_S_GLO_OilfieldsDock_BlackRingOfficer_7b338908-1d50-4991-87eb-2cf16e6a0222, 0)
+AND
+GetDistanceTo(CHARACTERGUID_S_GLO_OilfieldsDock_BlackRingOfficer_7b338908-1d50-4991-87eb-2cf16e6a0222, CHARACTERGUID_S_CoS_Temples_Orc_CampBlackRing_Captain_1eceaf90-79a6-4d36-9360-975f1464b0e3, _Var2)
+AND
+_Var2 < 15
+AND
+QueryOnlyOnce("CoS_OilfieldsBR_JoinCaptainDialog_Once")
+THEN
+DialogRequestStop(CHARACTERGUID_S_CoS_Temples_Orc_CampBlackRing_Captain_1eceaf90-79a6-4d36-9360-975f1464b0e3);
+Proc_StartDialog(0, "CoS_Temples_Orc_CampBlackRing_Captain", CHARACTERGUID_S_CoS_Temples_Orc_CampBlackRing_Captain_1eceaf90-79a6-4d36-9360-975f1464b0e3, _Var1, CHARACTERGUID_S_GLO_OilfieldsDock_BlackRingOfficer_7b338908-1d50-4991-87eb-2cf16e6a0222);
+
+PROC
+Proc_CoS_Temples_CheckOilFieldsOfficerAvailable((CHARACTERGUID)_Var1)
+THEN
+Proc_StartDialog(0, "CoS_Temples_Orc_CampBlackRing_Captain", CHARACTERGUID_S_CoS_Temples_Orc_CampBlackRing_Captain_1eceaf90-79a6-4d36-9360-975f1464b0e3, _Var1);
+
+IF
+DialogEnded("CoS_Temples_Orc_CampBlackRing_Captain", (INTEGER)_Var1)
+AND
+DialogGetInvolvedNPC(_Var1, 1, _Var2)
+AND
+ObjectGetFlag(_Var2, "CoS_Temples_CaptainGoHostile", 1)
+THEN
+Proc_CoS_Temples_Orc_CampGoHostile();
+
+PROC
+Proc_CoS_Temples_Orc_CampGoHostile()
+THEN
+CharacterSetRelationFactionToFaction("CoS_BlackRing_OrcCamp", "Hero", 0);
+CharacterSetRelationFactionToFaction("Hero", "CoS_BlackRing_OrcCamp", 0);
+ProcTriggerUnregisterForPlayers(TRIGGERGUID_S_CoS_PortalMaster_AmbushTrigger_71bfe70b-900c-4239-9d41-48d9b8350397);
+
+PROC
+Proc_CoS_Temples_Orc_CampGoHostile()
+AND
+DB_CoS_OrcTempleBR(_Var1)
+THEN
+ProcForceStopDialog(_Var1);
+
+IF
+DialogStarted("CoS_Temples_Orc_PortalMaster", (INTEGER)_Var1)
+AND
+DialogGetInvolvedPlayer(_Var1, 1, _Var2)
+AND
+ObjectGetFlag(_Var2, "CoS_Temples_Orc_KnowsTempleIsFlooded", 1)
+THEN
+ObjectSetFlag(_Var2, "QuestUpdate_CoS_OrcTemple_Info");
+
+IF
+CharacterReceivedDamage(CHARACTERGUID_S_CoS_Temples_Orc_Crocodile_0297686b-c4b4-4b1d-801e-00267516b289, _, (CHARACTERGUID)_Var2)
+AND
+CharacterIsPlayer(_Var2, 1)
+THEN
+ProcSetRelationToPlayers(CHARACTERGUID_S_CoS_Temples_Orc_Crocodile_0297686b-c4b4-4b1d-801e-00267516b289, 0);
+
+IF
+CharacterEnteredTrigger((CHARACTERGUID)_Var1, TRIGGERGUID_S_CoS_Temples_Orc_GauntletVB_Box_e7dfcc65-420d-4fd4-af22-5b4819b4af9e)
+AND
+QRY_SpeakerIsAvailable(_Var1)
+AND
+QueryOnlyOnce("CoS_Temples_Orc_VB_TempleEntered")
+THEN
+StartVoiceBark("CoS_Temples_Orc_VB_TempleEntered", _Var1);
+ProcTriggerUnregisterForPlayers(TRIGGERGUID_S_CoS_Temples_Orc_GauntletVB_Box_e7dfcc65-420d-4fd4-af22-5b4819b4af9e);
+
+IF
+CharacterEnteredTrigger((CHARACTERGUID)_Var1, TRIGGERGUID_S_CoS_SUB_Temples_Orc_Outer_822f3b48-7129-46b4-8de9-260d87f0dd19)
+AND
+ObjectGetFlag(_Var1, "CoS_Temples_Orc_KnowsTempleIsFlooded", 0)
+AND
+GlobalGetFlag("CoS_Temples_Orc_TempleDrained", 0)
+THEN
+PartySetFlag(_Var1, "CoS_Temples_Orc_KnowsTempleIsFlooded");
+PartySetFlag(_Var1, "QuestUpdate_CoS_OrcTemple_Drowned");
+
+IF
+CharacterDied(CHARACTERGUID_S_CoS_Temples_Orc_PortalMaster_74f2fccd-a0a6-408e-98ff-19ac07418ff2)
+THEN
+CharacterSetRelationFactionToFaction("CoS_BlackRing_OrcTempleEntrance", "Hero", 0);
+CharacterSetRelationFactionToFaction("Hero", "CoS_BlackRing_OrcTempleEntrance", 0);
+Proc_CoS_Temples_Orc_DrainTemple();
+
+IF
+AttackedByObject(CHARACTERGUID_S_CoS_Temples_Orc_PortalMaster_74f2fccd-a0a6-408e-98ff-19ac07418ff2, (CHARACTERGUID)_Var1, _, _, _)
+AND
+DB_IsPlayer(_Var1)
+THEN
+ProcSetHostileToIndivPlayer(S_CoS_Temples_Orc_PortalMaster_74f2fccd-a0a6-408e-98ff-19ac07418ff2, _Var1);
+
+PROC
+Proc_CoS_Temples_Orc_DrainTemple()
+THEN
+GlobalSetFlag("CoS_Temples_Orc_TempleDrained");
+
+PROC
+Proc_CoS_Temples_Orc_DrainTemple()
+AND
+DB_CoS_Temples_Orc_WaterFallComponents(_Var1)
+THEN
+ItemDestroy(_Var1);
+PROC_StopLoopEffect(ITEMGUID_S_CoS_Temples_Orc_PortalInOcean_227ed03f-69a0-44eb-922a-10863d16cb8a, "PortalInOcean");
+
+PROC
+Proc_CoS_Temples_Orc_DrainTemple()
+AND
+DB_IsPlayer(_Var1)
+AND
+DB_InRegion(_Var1, TRIGGERGUID_S_CoS_SUB_Temples_Orc_Outer_822f3b48-7129-46b4-8de9-260d87f0dd19)
+AND
+QueryOnlyOnce("CoS_Temples_Orc_DrainTemple_RemoveWater_Once")
+THEN
+Proc_CoS_Temples_Orc_DrainTemple_LowerWater();
+
+IF
+CharacterEnteredTrigger((CHARACTERGUID)_Var1, TRIGGERGUID_S_CoS_SUB_Temples_Orc_Outer_822f3b48-7129-46b4-8de9-260d87f0dd19)
+AND
+GlobalGetFlag("CoS_Temples_Orc_TempleDrained", 1)
+AND
+QueryOnlyOnce("CoS_Temples_Orc_DrainTemple_RemoveWater_Once")
+THEN
+Proc_CoS_Temples_Orc_DrainTemple_LowerWater();
+
+PROC
+Proc_CoS_Temples_Orc_DrainTemple_LowerWater()
+AND
+GetPosition(ITEMGUID_S_CoS_Temples_Orc_PortalOverTemple_WaterPlane_f0eeb211-d7d4-4258-b828-0ea8e41c33fb, _Var1, _Var2, _Var3)
+AND
+RealSubtract(_Var2, 6.9, _Var4)
+THEN
+Proc_ItemMoveToPosition(ITEMGUID_S_CoS_Temples_Orc_PortalOverTemple_WaterPlane_f0eeb211-d7d4-4258-b828-0ea8e41c33fb, _Var1, _Var4, _Var3, 0.4, 0);
+PlaySound(ITEMGUID_S_CoS_Temples_Orc_PortalOverTemple_WaterPlane_f0eeb211-d7d4-4258-b828-0ea8e41c33fb, "SE_CoS_OrcTemple_PortalDrain_Start");
+TimerLaunch("CoS_Temples_Orc_RemoveWaterBlockers", 8000);
+TeleportTo(TRIGGERGUID_S_CoS_Temples_Orc_WetTrigger_a44853a7-0e50-42b9-b23e-e1ab138fcb27, ITEMGUID_S_CoS_DwarfTemple_HintTrigger_Helper_171bdc9d-dd1f-49eb-94d0-0482aca9fb02);
+
+IF
+TimerFinished("CoS_Temples_Orc_RemoveWaterBlockers")
+THEN
+SetOnStage(ITEMGUID_S_CoS_Temples_Orc_WaterPlaneBlocker_001_74ecc180-8d8f-4fd6-84c8-d690b14058cf, 0);
+SetOnStage(ITEMGUID_S_CoS_Temples_Orc_WaterPlaneBlocker_002_6be02af1-65a0-4a1c-bcf2-9101c4308e9f, 0);
+SetOnStage(ITEMGUID_S_CoS_Temples_Orc_WaterPlaneBlocker_003_cef83d81-9c7e-4ab3-99dd-580ffcb359aa, 0);
+SetOnStage(ITEMGUID_S_CoS_Temples_Orc_WaterPlaneBlocker_004_eb0d5604-822f-47ef-a1ce-be3420ee588f, 0);
+SetOnStage(CHARACTERGUID_S_CoS_Temples_Orc_Crocodile_0297686b-c4b4-4b1d-801e-00267516b289, 1);
+PlaySound(ITEMGUID_S_CoS_Temples_Orc_PortalOverTemple_WaterPlane_f0eeb211-d7d4-4258-b828-0ea8e41c33fb, "SE_CoS_OrcTemple_PortalDrain_Stop");
+TriggerSetSoundState(TRIGGERGUID_SoundVolumeTrigger_CoS_Temple_Orc_Entrance_0db54e97-8d74-4b5b-928d-38fdb6106d69, "COS_OrcTemple", "LakeDry", 1);
+
+PROC
+Proc_CoS_Temples_Orc_DrainTemple_LowerWater()
+AND
+DB_CoS_BlackRing_OrcTempleEntrance(_Var1)
+AND
+CharacterIsDead(_Var1, 0)
+THEN
+ProcCharacterDisappearOutOfSight(_Var1, 270, 0, "", 0);
+SetHasDialog(_Var1, 0);
+
+PROC
+Proc_CoS_Temples_Orc_DrainTemple_LowerWater()
+AND
+QRY_IsAvailableTo(CHARACTERGUID_S_CoS_Temples_OrcEntranceBR_001_d1734204-2ddf-47f1-aee8-1b6ce55a1a1a, CHARACTERGUID_S_CoS_Temples_OrcEntranceBR_002_ab370701-5c09-4f99-b7fe-7ab32818c356)
+THEN
+Proc_StartDialog(1, "CoS_Temples_AD_OrcEntranceBR_001_Leave", CHARACTERGUID_S_CoS_Temples_OrcEntranceBR_001_d1734204-2ddf-47f1-aee8-1b6ce55a1a1a, CHARACTERGUID_S_CoS_Temples_OrcEntranceBR_002_ab370701-5c09-4f99-b7fe-7ab32818c356);
+
+IF
+DialogEnded("CoS_Temples_Orc_CampBlackRing_Captain", _)
+AND
+GlobalGetFlag("CoS_Temples_Orc_CampBlackRing_Captain_PersuadeToLeave", 1)
+THEN
+Proc_CoS_Temples_Orc_DrainTemple();
+
+IF
+DialogEnded("CoS_Temples_Orc_CampBlackRing_Captain", _)
+AND
+GlobalGetFlag("CoS_Temples_Orc_CampBlackRing_Captain_PersuadeToLeave", 1)
+AND
+DB_CoS_OrcTempleBR(_Var2)
+AND
+CharacterIsDead(_Var2, 0)
+AND
+GetRegion(_Var2, _Var3)
+AND
+_Var3 == "CoS_Main"
+THEN
+SetHasDialog(_Var2, 0);
+ProcCharacterDisappearOutOfSight(_Var2, 270, 0, "", 0);
+
+PROC
+Proc_CoS_Temples_Orc_DrainTemple()
+AND
+DB_IsPlayer(_Var1)
+AND
+PartyGetFlag(_Var1, "CoS_Temples_Orc_KnowsTempleIsFlooded", 1)
+THEN
+PartySetFlag(_Var1, "QuestUpdate_CoS_OrcTemple_PortalRemoved");
+
+PROC
+Proc_CoS_Temples_Orc_Init()
+AND
+DB_IsPlayer(_Var1)
+AND
+ObjectGetFlag(_Var1, "RC_OIL_Dock_SavedBlackRing", 1)
+AND
+CharacterIsDead(CHARACTERGUID_S_GLO_OilfieldsDock_BlackRing_1_7b338908-1d50-4991-87eb-2cf16e6a0222, 0)
+AND
+QueryOnlyOnce("CoS_SendOilFieldOfficerToOrcTemple")
+THEN
+TeleportTo(CHARACTERGUID_S_GLO_OilfieldsDock_BlackRing_1_7b338908-1d50-4991-87eb-2cf16e6a0222, TRIGGERGUID_S_CoS_Temples_OilfieldsDock_BlackRingOfficer_Point_e06cba34-159a-4ae3-9c9f-67ac348dbbae);
+SetOnStage(CHARACTERGUID_S_GLO_OilfieldsDock_BlackRing_1_7b338908-1d50-4991-87eb-2cf16e6a0222, 1);
+PROC_RemoveDialogFromCharacter(CHARACTERGUID_S_GLO_OilfieldsDock_BlackRing_1_7b338908-1d50-4991-87eb-2cf16e6a0222);
+SetFaction(CHARACTERGUID_S_GLO_OilfieldsDock_BlackRing_1_7b338908-1d50-4991-87eb-2cf16e6a0222, "CoS_BlackRing_OrcCamp");
+DB_Dialogs(CHARACTERGUID_S_GLO_OilfieldsDock_BlackRing_1_7b338908-1d50-4991-87eb-2cf16e6a0222, "CoS_Temples_Oilfields_BlackRingOfficer");
+SetVarFixedString(CHARACTERGUID_S_GLO_OilfieldsDock_BlackRing_1_7b338908-1d50-4991-87eb-2cf16e6a0222, "currentState", "State_CoS");
+
+PROC
+PROC_GLOBAL_DialogStartRequested(CHARACTERGUID_S_CoS_Temples_Orc_CampBlackRing_Captain_1eceaf90-79a6-4d36-9360-975f1464b0e3, (GUIDSTRING)_Var1)
+AND
+CharacterIsDead(CHARACTERGUID_S_GLO_OilfieldsDock_BlackRingOfficer_7b338908-1d50-4991-87eb-2cf16e6a0222, 0)
+AND
+GetDistanceTo(CHARACTERGUID_S_GLO_OilfieldsDock_BlackRingOfficer_7b338908-1d50-4991-87eb-2cf16e6a0222, CHARACTERGUID_S_CoS_Temples_Orc_CampBlackRing_Captain_1eceaf90-79a6-4d36-9360-975f1464b0e3, _Var2)
+AND
+_Var2 < 15
+AND
+QueryOnlyOnce("CoS_OilfieldsBR_JoinCaptainDialog_Once")
+THEN
+DialogRequestStop(CHARACTERGUID_S_CoS_Temples_Orc_CampBlackRing_Captain_1eceaf90-79a6-4d36-9360-975f1464b0e3);
+Proc_StartDialog(0, "CoS_Temples_Orc_CampBlackRing_Captain", CHARACTERGUID_S_CoS_Temples_Orc_CampBlackRing_Captain_1eceaf90-79a6-4d36-9360-975f1464b0e3, _Var1, CHARACTERGUID_S_GLO_OilfieldsDock_BlackRingOfficer_7b338908-1d50-4991-87eb-2cf16e6a0222);
+
+IF
+ObjectFlagSet("CoS_Temples_Oilfields_BlackRingOfficer_MoveToPlayer", (CHARACTERGUID)_Var1, _)
+THEN
+CharacterMoveTo(CHARACTERGUID_S_GLO_OilfieldsDock_BlackRingOfficer_7b338908-1d50-4991-87eb-2cf16e6a0222, _Var1, 1, "", 0);
+
+IF
+GlobalFlagSet("CoS_Temples_Orcs_OpenArmory")
+AND
+GetPosition(ITEMGUID_S_CoS_Temples_Orc_HiddenDoor_79e65b38-54f0-4633-9b00-5bef901c6d12, _Var1, _Var2, _Var3)
+AND
+RealSubtract(_Var2, 12, _Var4)
+THEN
+Proc_ItemMoveToPosition(ITEMGUID_S_CoS_Temples_Orc_HiddenDoor_79e65b38-54f0-4633-9b00-5bef901c6d12, _Var1, _Var4, _Var3, 1.2, 0);
+TimerLaunch("CoS_Temples_Orcs_OpenArmory_Offstage", 9500);
+PlayAnimation(ITEMGUID_S_CoS_Temples_Orc_Lever_acbeba06-577f-4b4f-81cd-183383fe703c, "Lever");
+ItemSetCanInteract(ITEMGUID_S_CoS_Temples_Orc_Lever_acbeba06-577f-4b4f-81cd-183383fe703c, 0);
+
+IF
+GlobalFlagSet("CoS_Temples_Orcs_OpenArmory")
+AND
+DB_IsPlayer(_Var1)
+AND
+GetDistanceTo(_Var1, ITEMGUID_S_CoS_Temples_Orc_HiddenDoor_79e65b38-54f0-4633-9b00-5bef901c6d12, _Var2)
+AND
+_Var2 < 15
+THEN
+Proc_ShakeCameraForTime(_Var1, 5500);
+
+IF
+TimerFinished("CoS_Temples_Orcs_OpenArmory_Offstage")
+THEN
+SetOnStage(ITEMGUID_S_CoS_Temples_Orc_HiddenDoor_79e65b38-54f0-4633-9b00-5bef901c6d12, 0);
+
+IF
+DB_CoS_Temples_Orc_WaterPortlaVBTriggers(_Var1)
+THEN
+ProcTriggerRegisterForPlayers(_Var1);
+
+IF
+CharacterEnteredTrigger((CHARACTERGUID)_Var1, (TRIGGERGUID)_Var2)
+AND
+DB_CoS_Temples_Orc_WaterPortlaVBTriggers(_Var2)
+AND
+QRY_SpeakerIsAvailable(_Var1)
+AND
+CharacterIsDead(CHARACTERGUID_S_CoS_Temples_Orc_PortalMaster_74f2fccd-a0a6-408e-98ff-19ac07418ff2, 0)
+AND NOT
+DB_GlobalFlag("CoS_Temples_Orc_TempleDrained")
+AND NOT
+DB_GlobalFlag("CoS_Temples_Orc_CampBlackRing_Captain_PersuadeToLeave")
+AND
+QRY_OncePerUserAndNearbyPlayers(_Var1, "CoS_Temples_Orc_PortalVB_Once")
+THEN
+StartVoiceBark("CoS_Temples_Orc_VB_WaterPortal", _Var1);
+
+
+EXITSECTION
+ENDEXITSECTION
+
+ParentTargetEdge "CoS_Temples"

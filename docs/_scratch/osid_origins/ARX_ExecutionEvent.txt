@@ -1,0 +1,1071 @@
+Version 1
+SubGoalCombiner SGC_AND
+
+INITSECTION
+SetHasDialog(S_RC_ARX_KammMansion_Kemm_3e6ead7d-dd35-4f9d-985e-af2de0d76d28, 1);
+CharacterSetFightMode(S_RC_ARX_KammMansion_Kemm_3e6ead7d-dd35-4f9d-985e-af2de0d76d28, 1, 1);
+CharacterSetCanTrade(S_RC_ARX_KammMansion_Kemm_3e6ead7d-dd35-4f9d-985e-af2de0d76d28, 0);
+CharacterSetAnimationOverride(RC_Humans_Female_Paladin_000_ccdfda3c-4d67-42a4-a48f-665d71b259d9, "Tied_Up_01_Loop");
+GlobalSetFlag("RC_ARX_Barracks_ExecutionEvent");
+ProcTriggerRegisterForPlayers(S_ARX_Barracks_Execution_RemoveCorpse_77363571-77e2-4d9f-a58b-22bd5aab90de);
+DB_Ghosts(S_RC_ARX_KammMansion_Kemm_3e6ead7d-dd35-4f9d-985e-af2de0d76d28, S_ARX_Kemm_Ghost_4dc40adc-fa79-4bc2-96f0-a9ce8fae8476, "ARX_Kemm_Ghost");
+DB_OneShotPlayerTrigger(TRIGGERGUID_S_RC_ARX_Barracks_Execusion_Event_ae914a91-5a9a-4dd3-916f-482868f5eec4);
+TriggerRegisterForPlayers(TRIGGERGUID_S_RC_ARX_Barracks_WifeStartDialog_a7d6b362-9667-444f-9924-d77991c17068);
+DB_Dialogs(S_RC_ARX_Barracks_PrisonersWife_8dc43bf7-827f-440a-9de5-c2a2eb0bc719, "RC_ARX_Barracks_PrisonersWife");
+SetHasDialog(S_RC_ARX_Barracks_ExecutionPrisoner_ccdfda3c-4d67-42a4-a48f-665d71b259d9, 1);
+DB_AD_Dialog(CHARACTERGUID_S_RC_ARX_Barracks_Paladin_01_e5f429eb-4a2a-484a-b675-03990fb66541, "ARX_AD_Barracks_Paladin_01");
+DB_AD_Dialog(CHARACTERGUID_S_RC_ARX_Barracks_Paladin_03_342b305c-5eb6-4d2d-a14b-8e50d77b6387, "ARX_AD_Barracks_Battlemage");
+DB_AD_Dialog(CHARACTERGUID_S_RC_ARX_Barracks_Paladin_06_cb44540a-5e2b-4b4d-87c0-382bb1528a07, "ARX_AD_Barracks_Paladin_06");
+DB_AD_Dialog(CHARACTERGUID_S_RC_ARX_Barracks_Paladin_02_ec5ee593-00e8-4356-a955-71336fd39e6e, "ARX_AD_Barracks_Paladin_02");
+DB_AD_Dialog(CHARACTERGUID_S_RC_ARX_Barracks_Paladin_07_07343789-f903-4877-8d5f-c69aa52b3999, "ARX_AD_Barracks_Paladin_07");
+DB_AD_Dialog(CHARACTERGUID_S_RC_ARX_Barracks_ExecutionGuard1_f8473850-e68d-464a-92fe-0668c19f79e4, "ARX_AD_Barracks_ExecutionGuard1");
+DB_AD_Dialog(CHARACTERGUID_S_RC_ARX_Barracks_ExecutionGuard2_cd5f4253-d085-440b-8e3b-2a26c4bbc4f8, "ARX_AD_Barracks_ExecutionGuard2");
+DB_AD_Dialog(CHARACTERGUID_S_RC_ARX_Barracks_Paladin_05_c61c595c-48f0-4cb2-bee9-19746af03bae, "RC_ARX_AD_Barracks_Paladin_05");
+DB_AD_Dialog(CHARACTERGUID_S_RC_ARX_Barracks_Paladin_04_7a4c0e5a-607c-4296-b500-762ae00195ba, "RC_ARX_AD_Barracks_Paladin_04");
+DB_PostExecutionDialogsDialogs(CHARACTERGUID_S_RC_ARX_Barracks_Paladin_01_e5f429eb-4a2a-484a-b675-03990fb66541, "RC_ARX_Barracks_Paladin_01");
+DB_PostExecutionDialogsDialogs(CHARACTERGUID_S_RC_ARX_Barracks_Paladin_03_342b305c-5eb6-4d2d-a14b-8e50d77b6387, "RC_ARX_Barracks_Battlemage");
+DB_PostExecutionDialogsDialogs(CHARACTERGUID_S_RC_ARX_Barracks_Paladin_06_cb44540a-5e2b-4b4d-87c0-382bb1528a07, "RC_ARX_Barracks_Paladin_06");
+DB_PostExecutionDialogsDialogs(CHARACTERGUID_S_RC_ARX_Barracks_Paladin_02_ec5ee593-00e8-4356-a955-71336fd39e6e, "RC_ARX_Barracks_Paladin_02");
+DB_PostExecutionDialogsDialogs(CHARACTERGUID_S_RC_ARX_Barracks_Paladin_07_07343789-f903-4877-8d5f-c69aa52b3999, "RC_ARX_Barracks_Paladin_07");
+DB_PostExecutionDialogsDialogs(CHARACTERGUID_S_RC_ARX_Barracks_ExecutionGuard1_f8473850-e68d-464a-92fe-0668c19f79e4, "RC_ARX_Barracks_ExecutionGuard1");
+DB_PostExecutionDialogsDialogs(CHARACTERGUID_S_RC_ARX_Barracks_ExecutionGuard2_cd5f4253-d085-440b-8e3b-2a26c4bbc4f8, "RC_ARX_Barracks_ExecutionGuard2");
+DB_PostExecutionDialogsDialogs(CHARACTERGUID_S_RC_ARX_Barracks_Paladin_05_c61c595c-48f0-4cb2-bee9-19746af03bae, "RC_ARX_Barracks_Paladin_05");
+DB_PostExecutionDialogsDialogs(CHARACTERGUID_S_RC_ARX_Barracks_Paladin_04_7a4c0e5a-607c-4296-b500-762ae00195ba, "RC_ARX_Barracks_Paladin_04");
+DB_Ghosts(S_RC_ARX_Barracks_ExecutionPrisoner_ccdfda3c-4d67-42a4-a48f-665d71b259d9, S_RC_ARX_Barracks_Ghost_ExecutionPrisoner_67284f31-95a7-4043-9ff4-38cf1fe82e14, "RC_ARX_Barracks_Ghost_ExecutionPrisoner");
+DB_RC_ARX_Barracks_ExecutionGuards(CHARACTERGUID_S_RC_ARX_Barracks_ExecutionGuard1_f8473850-e68d-464a-92fe-0668c19f79e4, RC_ARX_Barracks_Execution_GuardCell1_24e4f885-2e3e-489e-8da3-786f6ce4d370);
+DB_RC_ARX_Barracks_ExecutionGuards(CHARACTERGUID_S_RC_ARX_Barracks_ExecutionGuard2_cd5f4253-d085-440b-8e3b-2a26c4bbc4f8, RC_ARX_Barracks_Execution_GuardCell2_469d1c8a-5018-41a7-a844-cd87a76cb94d);
+DB_SceneManager(S_RC_ARX_Barracks_PrisonersWife_8dc43bf7-827f-440a-9de5-c2a2eb0bc719, "RC_ARX_Barracks_ExecutionScene");
+DB_SceneManager(S_RC_ARX_Barracks_Paladin_01_e5f429eb-4a2a-484a-b675-03990fb66541, "RC_ARX_Barracks_ExecutionScene");
+DB_SceneManager(S_RC_ARX_Barracks_Paladin_03_342b305c-5eb6-4d2d-a14b-8e50d77b6387, "RC_ARX_Barracks_ExecutionScene");
+DB_SceneManager(S_RC_ARX_Barracks_Paladin_06_cb44540a-5e2b-4b4d-87c0-382bb1528a07, "RC_ARX_Barracks_ExecutionScene");
+DB_SceneManager(S_RC_ARX_Barracks_Paladin_07_07343789-f903-4877-8d5f-c69aa52b3999, "RC_ARX_Barracks_ExecutionScene");
+DB_SceneManager(S_RC_ARX_Barracks_Paladin_02_ec5ee593-00e8-4356-a955-71336fd39e6e, "RC_ARX_Barracks_ExecutionScene");
+DB_SceneManager(S_RC_ARX_Barracks_ExecutionPrisoner_ccdfda3c-4d67-42a4-a48f-665d71b259d9, "RC_ARX_Barracks_ExecutionScene");
+DB_SceneManager(S_RC_ARX_KammMansion_Kemm_3e6ead7d-dd35-4f9d-985e-af2de0d76d28, "RC_ARX_Barracks_ExecutionScene");
+DB_SceneManager(S_RC_ARX_Barracks_ExecutionGuard2_cd5f4253-d085-440b-8e3b-2a26c4bbc4f8, "RC_ARX_Barracks_ExecutionScene");
+DB_SceneManager(S_RC_ARX_Barracks_ExecutionGuard1_f8473850-e68d-464a-92fe-0668c19f79e4, "RC_ARX_Barracks_ExecutionScene");
+DB_SceneManager(S_RC_ARX_Barracks_Paladin_05_c61c595c-48f0-4cb2-bee9-19746af03bae, "RC_ARX_Barracks_ExecutionScene");
+DB_SceneManager(S_RC_ARX_Barracks_Paladin_04_7a4c0e5a-607c-4296-b500-762ae00195ba, "RC_ARX_Barracks_ExecutionScene");
+ProcCharacterDisableAllCrimes(S_RC_ARX_Barracks_ExecutionPrisoner_ccdfda3c-4d67-42a4-a48f-665d71b259d9);
+ProcCharacterDisableCrime(S_RC_ARX_KammMansion_Kemm_3e6ead7d-dd35-4f9d-985e-af2de0d76d28, "EscapedARXPrison");
+DB_SceneTriggerManager("RC_ARX_Barracks_ExecutionScene", S_RC_ARX_Barracks_Execusion_Event_ae914a91-5a9a-4dd3-916f-482868f5eec4, 0);
+ApplyStatus(S_RC_ARX_Barracks_ExecutionPrisoner_ccdfda3c-4d67-42a4-a48f-665d71b259d9, "QUEST_TIEDUP", -1, 1);
+DB_ItemOwnerShipTriggers("ARX_Main", S_ARX_Barrakcs_KemmsOwnershipTrigger_59c51e46-4fd6-44dc-ab78-c7390c0a84aa, CHARACTERGUID_S_ARX_Kemm_3e6ead7d-dd35-4f9d-985e-af2de0d76d28);
+DB_KilledEvent(CHARACTERGUID_S_ARX_Kemm_3e6ead7d-dd35-4f9d-985e-af2de0d76d28, "ARX_Kemm_KilledKemm");
+
+KBSECTION
+IF
+CharacterDied(S_RC_ARX_Barracks_ExecutionPrisoner_ccdfda3c-4d67-42a4-a48f-665d71b259d9)
+AND
+GlobalGetFlag("RC_ARX_Barracks_ExecutionEvent", 1)
+AND
+DB_IsPlayer(_Var1)
+AND
+UserGetFlag(_Var1, "RC_ARX_Barracks_ExecutionEvent_Witnessed", 1)
+THEN
+PartySetFlag(_Var1, "QuestUpdate_ARX_Barracks_Execution_PaladinExecuted");
+
+IF
+DialogEnded("RC_ARX_Barracks_ExecutionPersuasion", (INTEGER)_Var1)
+AND
+GlobalGetFlag("RC_ARX_Barracks_ConvincedToSpare", 1)
+AND
+DB_DialogPlayers(_Var1, _Var2, _)
+THEN
+PartySetFlag(_Var2, "QuestUpdate_ARX_Barracks_Execution_ConvicedToSpare");
+
+PROC
+Proc_SceneOver("RC_ARX_Barracks_ExecutionScene")
+AND
+GlobalGetFlag("RC_ARX_Barracks_ExecutionSceneInterrupted", 1)
+AND
+DB_IsPlayer(_Var1)
+AND
+UserGetFlag(_Var1, "QuestUpdate_ARX_Barracks_Execution_Start", 1)
+THEN
+PartySetFlag(_Var1, "QuestUpdate_ARX_Barracks_Execution_Interrupted");
+
+PROC
+ProcOneShotTriggerEntered((CHARACTERGUID)_Var1, TRIGGERGUID_S_RC_ARX_Barracks_Execusion_Event_ae914a91-5a9a-4dd3-916f-482868f5eec4)
+AND
+GlobalGetFlag("RC_ARX_Barracks_ExecutionEvent", 1)
+THEN
+ProcForceStopDialog(S_RC_ARX_KammMansion_Kemm_3e6ead7d-dd35-4f9d-985e-af2de0d76d28);
+ProcForceStopDialog(S_RC_ARX_Barracks_ExecutionPrisoner_ccdfda3c-4d67-42a4-a48f-665d71b259d9);
+ObjectSetFlag(S_RC_ARX_KammMansion_Kemm_3e6ead7d-dd35-4f9d-985e-af2de0d76d28, "RC_ARX_Barracks_ExecutionEventStartAD");
+PartySetFlag(_Var1, "RC_ARX_Barracks_ExecutionEvent_Witnessed");
+GlobalClearFlag("RC_ARX_Barrack_Exection_PreEvent_CrowdRespond");
+
+IF
+GlobalFlagSet("RC_ARX_Barracks_ExecutionEvent")
+THEN
+SetStoryEvent(S_RC_ARX_Barracks_WifeStartDialog_a7d6b362-9667-444f-9924-d77991c17068, "ARX_ExecutionEvent_Wife_StartSpotting");
+
+IF
+GlobalFlagSet("RC_ARX_Barracks_ExecutionEvent")
+AND
+CharacterGetEquippedItem(S_RC_ARX_Barracks_ExecutionPrisoner_ccdfda3c-4d67-42a4-a48f-665d71b259d9, "Weapon", _Var1)
+THEN
+CharacterUnequipItem(S_RC_ARX_Barracks_ExecutionPrisoner_ccdfda3c-4d67-42a4-a48f-665d71b259d9, _Var1);
+
+IF
+GlobalFlagSet("RC_ARX_Barracks_ExecutionEvent")
+AND
+CharacterGetEquippedItem(S_RC_ARX_Barracks_ExecutionPrisoner_ccdfda3c-4d67-42a4-a48f-665d71b259d9, "Shield", _Var1)
+THEN
+CharacterUnequipItem(S_RC_ARX_Barracks_ExecutionPrisoner_ccdfda3c-4d67-42a4-a48f-665d71b259d9, _Var1);
+
+IF
+CharacterCharacterEvent((CHARACTERGUID)_Var1, (CHARACTERGUID)_Var2, "ARX_ExecutionEvent_Wife_StartDialog")
+AND
+GlobalGetFlag("RC_ARX_Barracks_ExecutionEvent", 1)
+AND
+UserGetFlag(_Var2, "RC_ARX_Barracks_WifeAskedForHelp", 0)
+THEN
+Proc_StartDialog(0, "RC_ARX_Barracks_PrisonersWife", S_RC_ARX_Barracks_PrisonersWife_8dc43bf7-827f-440a-9de5-c2a2eb0bc719, _Var2);
+
+IF
+DialogEnded("RC_ARX_Barracks_PrisonersWife", (INTEGER)_Var1)
+THEN
+ProcTriggerUnregisterForPlayers(TRIGGERGUID_S_RC_ARX_Barracks_WifeStartDialog_a7d6b362-9667-444f-9924-d77991c17068);
+SetStoryEvent(S_RC_ARX_Barracks_WifeStartDialog_a7d6b362-9667-444f-9924-d77991c17068, "ARX_ExecutionEvent_Wife_StopSpotting");
+
+IF
+GlobalFlagCleared("RC_ARX_Barracks_ExecutionEvent")
+THEN
+SetStoryEvent(S_RC_ARX_Barracks_WifeStartDialog_a7d6b362-9667-444f-9924-d77991c17068, "ARX_ExecutionEvent_Wife_StopSpotting");
+
+IF
+AutomatedDialogEnded("RC_ARX_AD_Kemm_Execution_Accusation", _)
+AND
+GlobalGetFlag("RC_ARX_BarrackExecustion_KemmReadyToKill", 1)
+AND
+GlobalGetFlag("RC_ARX_Barracks_ConvincedToSpare", 0)
+AND
+QueryOnlyOnce("RC_ARX_BarrackExecustion_KeemDoneAccusation")
+THEN
+Proc_StartDialog(1, "RC_ARX_AD_Execution_WifeScream", S_RC_ARX_Barracks_PrisonersWife_8dc43bf7-827f-440a-9de5-c2a2eb0bc719);
+ProcCharacterMoveTo(S_RC_ARX_Barracks_PrisonersWife_8dc43bf7-827f-440a-9de5-c2a2eb0bc719, S_RC_ARX_Barracks_WifeScreamPoint_03ce153d-5d8e-48dc-bcbc-55bb1b42e079, 1, "RC_ARX_Barracks_Execution_WifeScream");
+ProcForceStopDialog(S_RC_ARX_Barracks_PrisonersWife_8dc43bf7-827f-440a-9de5-c2a2eb0bc719);
+SetHasDialog(S_RC_ARX_Barracks_PrisonersWife_8dc43bf7-827f-440a-9de5-c2a2eb0bc719, 0);
+TimerLaunch("RC_ARX_Barracks_Execute_Paladin", 7000);
+
+IF
+DialogEnded("RC_ARX_Barracks_ExecutionPersuasion", (INTEGER)_Var1)
+AND
+GlobalGetFlag("RC_ARX_Barracks_ExecutionEvent", 1)
+AND
+GlobalGetFlag("RC_ARX_Barracks_ExecutionEvent_KillPrisonerNow", 1)
+AND
+CharacterIsDead(S_RC_ARX_Barracks_ExecutionPrisoner_ccdfda3c-4d67-42a4-a48f-665d71b259d9, 0)
+THEN
+TimerCancel("RC_ARX_Barracks_Execute_Paladin");
+CharacterSetArmorPercentage(S_RC_ARX_Barracks_ExecutionPrisoner_ccdfda3c-4d67-42a4-a48f-665d71b259d9, 0);
+CharacterAttack(S_RC_ARX_KammMansion_Kemm_3e6ead7d-dd35-4f9d-985e-af2de0d76d28, S_RC_ARX_Barracks_ExecutionPrisoner_ccdfda3c-4d67-42a4-a48f-665d71b259d9);
+
+IF
+StoryEvent(S_RC_ARX_Barracks_PrisonersWife_8dc43bf7-827f-440a-9de5-c2a2eb0bc719, "RC_ARX_Barracks_Execution_WifeScream")
+THEN
+CharacterLookAt(S_RC_ARX_Barracks_PrisonersWife_8dc43bf7-827f-440a-9de5-c2a2eb0bc719, S_RC_ARX_Barracks_ExecutionPrisoner_ccdfda3c-4d67-42a4-a48f-665d71b259d9);
+SetHasDialog(S_RC_ARX_Barracks_PrisonersWife_8dc43bf7-827f-440a-9de5-c2a2eb0bc719, 1);
+
+IF
+TimerFinished("RC_ARX_Barracks_Execute_Paladin")
+AND
+CharacterIsDead(S_RC_ARX_Barracks_ExecutionPrisoner_ccdfda3c-4d67-42a4-a48f-665d71b259d9, 0)
+AND
+QRY_SpeakerIsAvailable(S_RC_ARX_KammMansion_Kemm_3e6ead7d-dd35-4f9d-985e-af2de0d76d28)
+THEN
+CharacterSetArmorPercentage(S_RC_ARX_Barracks_ExecutionPrisoner_ccdfda3c-4d67-42a4-a48f-665d71b259d9, 0);
+CharacterAttack(S_RC_ARX_KammMansion_Kemm_3e6ead7d-dd35-4f9d-985e-af2de0d76d28, S_RC_ARX_Barracks_ExecutionPrisoner_ccdfda3c-4d67-42a4-a48f-665d71b259d9);
+
+IF
+TimerFinished("RC_ARX_Barracks_Execute_Paladin")
+AND NOT
+QRY_SpeakerIsAvailable(S_RC_ARX_KammMansion_Kemm_3e6ead7d-dd35-4f9d-985e-af2de0d76d28)
+AND
+CharacterIsDead(S_RC_ARX_KammMansion_Kemm_3e6ead7d-dd35-4f9d-985e-af2de0d76d28, 0)
+AND
+CharacterIsDead(S_RC_ARX_Barracks_ExecutionPrisoner_ccdfda3c-4d67-42a4-a48f-665d71b259d9, 0)
+THEN
+TimerLaunch("RC_ARX_Barracks_Execute_Paladin", 2000);
+
+IF
+AttackedByObject(S_RC_ARX_Barracks_ExecutionPrisoner_ccdfda3c-4d67-42a4-a48f-665d71b259d9, S_RC_ARX_KammMansion_Kemm_3e6ead7d-dd35-4f9d-985e-af2de0d76d28, _, (STRING)_Var2, _)
+AND
+DB_SceneManager(S_RC_ARX_Barracks_ExecutionPrisoner_ccdfda3c-4d67-42a4-a48f-665d71b259d9, "RC_ARX_Barracks_ExecutionScene")
+THEN
+NOT DB_SceneManager(S_RC_ARX_Barracks_ExecutionPrisoner_ccdfda3c-4d67-42a4-a48f-665d71b259d9, "RC_ARX_Barracks_ExecutionScene");
+ProcForceStopDialog(S_RC_ARX_Barracks_PrisonersWife_8dc43bf7-827f-440a-9de5-c2a2eb0bc719);
+
+IF
+AttackedByObject(S_RC_ARX_Barracks_ExecutionPrisoner_ccdfda3c-4d67-42a4-a48f-665d71b259d9, S_RC_ARX_KammMansion_Kemm_3e6ead7d-dd35-4f9d-985e-af2de0d76d28, _, (STRING)_Var2, _)
+AND
+CharacterIsDead(S_RC_ARX_Barracks_ExecutionPrisoner_ccdfda3c-4d67-42a4-a48f-665d71b259d9, 0)
+THEN
+CharacterDie(S_RC_ARX_Barracks_ExecutionPrisoner_ccdfda3c-4d67-42a4-a48f-665d71b259d9, 0, "Physical");
+
+IF
+CharacterDied(S_RC_ARX_Barracks_ExecutionPrisoner_ccdfda3c-4d67-42a4-a48f-665d71b259d9)
+AND
+GlobalGetFlag("RC_ARX_Barracks_ConvincedToSpare", 0)
+THEN
+CreatePuddle(S_RC_ARX_Barracks_ExecutionPrisoner_ccdfda3c-4d67-42a4-a48f-665d71b259d9, "SurfaceBlood", 3, 5, 1, 2, 0.05);
+
+IF
+GlobalFlagSet("RC_ARX_Barracks_ConvincedToSpare")
+THEN
+TimerCancel("RC_ARX_Barracks_Execute_Paladin");
+
+PROC
+PROC_GLOBAL_DialogStartRequested(S_RC_ARX_Barracks_ExecutionPrisoner_ccdfda3c-4d67-42a4-a48f-665d71b259d9, (GUIDSTRING)_Var1)
+AND
+ObjectGetFlag(S_RC_ARX_Barracks_ExecutionPrisoner_ccdfda3c-4d67-42a4-a48f-665d71b259d9, "RC_ARX_Barrack_ExecutionPrisoner_DialogBlockedByKemm", 0)
+AND
+GlobalGetFlag("RC_ARX_Barracks_ExecutionEvent", 1)
+THEN
+ObjectSetFlag(S_RC_ARX_Barracks_ExecutionPrisoner_ccdfda3c-4d67-42a4-a48f-665d71b259d9, "RC_ARX_Barrack_ExecutionPrisoner_DialogBlockedByKemm");
+ObjectSetFlag(S_RC_ARX_KammMansion_Kemm_3e6ead7d-dd35-4f9d-985e-af2de0d76d28, "RC_ARX_Barrack_ExecutionPrisoner_DialogBlockedByKemm");
+Proc_StartDialog(0, "RC_ARX_Barracks_ExecutionPersuasion", S_RC_ARX_KammMansion_Kemm_3e6ead7d-dd35-4f9d-985e-af2de0d76d28, S_RC_ARX_Barracks_ExecutionPrisoner_ccdfda3c-4d67-42a4-a48f-665d71b259d9, _Var1);
+
+PROC
+PROC_GLOBAL_DialogStartRequested(S_RC_ARX_Barracks_ExecutionPrisoner_ccdfda3c-4d67-42a4-a48f-665d71b259d9, (GUIDSTRING)_Var1)
+AND
+ObjectGetFlag(S_RC_ARX_Barracks_ExecutionPrisoner_ccdfda3c-4d67-42a4-a48f-665d71b259d9, "RC_ARX_Barrack_ExecutionPrisoner_DialogBlockedByKemm", 1)
+AND
+GlobalGetFlag("RC_ARX_Barracks_ExecutionEvent", 1)
+AND
+GlobalGetFlag("RC_ARX_Barracks_ConvincedToSpare", 0)
+THEN
+Proc_StartDialog(1, "RC_ARX_AD_Kemm_Execution_Accusation", S_RC_ARX_KammMansion_Kemm_3e6ead7d-dd35-4f9d-985e-af2de0d76d28);
+
+IF
+CharacterDying(S_RC_ARX_Barracks_ExecutionPrisoner_ccdfda3c-4d67-42a4-a48f-665d71b259d9)
+AND
+CharacterCanSee(S_RC_ARX_Barracks_PrisonersWife_8dc43bf7-827f-440a-9de5-c2a2eb0bc719, S_RC_ARX_Barracks_ExecutionPrisoner_ccdfda3c-4d67-42a4-a48f-665d71b259d9, 1)
+THEN
+ObjectSetFlag(S_RC_ARX_Barracks_PrisonersWife_8dc43bf7-827f-440a-9de5-c2a2eb0bc719, "RC_ARX_Barracks_SawHusbandDie");
+CharacterLookAt(S_RC_ARX_Barracks_PrisonersWife_8dc43bf7-827f-440a-9de5-c2a2eb0bc719, S_RC_ARX_Barracks_ExecutionPrisoner_ccdfda3c-4d67-42a4-a48f-665d71b259d9);
+Proc_StartDialog(1, "RC_ARX_AD_Execution_WifeScream", S_RC_ARX_Barracks_PrisonersWife_8dc43bf7-827f-440a-9de5-c2a2eb0bc719);
+
+IF
+CharacterDied(S_RC_ARX_Barracks_ExecutionPrisoner_ccdfda3c-4d67-42a4-a48f-665d71b259d9)
+AND
+GlobalGetFlag("RC_ARX_Barracks_ExecutionEvent", 1)
+THEN
+GlobalSetFlag("RC_ARX_Barracks_ExecutionPrisonerDead");
+GlobalSetFlag("RC_ARX_Barracks_ExecutionEndedCorpseStillThere");
+Proc_StartDialog(1, "RC_ARX_AD_Kemm_Execution_Accusation", S_RC_ARX_KammMansion_Kemm_3e6ead7d-dd35-4f9d-985e-af2de0d76d28);
+
+IF
+CharacterDied(S_RC_ARX_Barracks_ExecutionPrisoner_ccdfda3c-4d67-42a4-a48f-665d71b259d9)
+AND
+GlobalGetFlag("RC_ARX_Barracks_ExecutionSceneInterrupted", 1)
+THEN
+GlobalSetFlag("RC_ARX_Barracks_ExecutionPrisonerDead");
+
+IF
+CharacterDied(S_RC_ARX_Barracks_ExecutionPrisoner_ccdfda3c-4d67-42a4-a48f-665d71b259d9)
+AND
+GlobalGetFlag("RC_ARX_Barracks_ExecutionEvent", 1)
+AND
+CharacterIsInCombat(S_RC_ARX_KammMansion_Kemm_3e6ead7d-dd35-4f9d-985e-af2de0d76d28, 0)
+THEN
+CharacterSetFightMode(S_RC_ARX_KammMansion_Kemm_3e6ead7d-dd35-4f9d-985e-af2de0d76d28, 0, 0);
+
+IF
+AutomatedDialogEnded("RC_ARX_AD_Kemm_Execution_Accusation", _)
+AND
+GlobalGetFlag("RC_ARX_Barracks_ExecutionPrisonerDead", 1)
+AND
+QueryOnlyOnce("RC_ARX_BarrackExecustion_KeemKilledPrisoner")
+THEN
+GlobalClearFlag("RC_ARX_Barracks_ExecutionEvent");
+
+PROC
+PROC_GLOBAL_DialogStartRequested(S_RC_ARX_KammMansion_Kemm_3e6ead7d-dd35-4f9d-985e-af2de0d76d28, (GUIDSTRING)_Var1)
+AND
+GlobalGetFlag("RC_ARX_Barracks_ExecutionEvent", 1)
+AND
+GlobalGetFlag("RC_ARX_Barracks_ConvincedToSpare", 0)
+AND
+QRY_SpeakerIsAvailable(S_RC_ARX_Barracks_ExecutionPrisoner_ccdfda3c-4d67-42a4-a48f-665d71b259d9)
+THEN
+Proc_StartDialog(0, "RC_ARX_Barracks_ExecutionPersuasion", S_RC_ARX_KammMansion_Kemm_3e6ead7d-dd35-4f9d-985e-af2de0d76d28, S_RC_ARX_Barracks_ExecutionPrisoner_ccdfda3c-4d67-42a4-a48f-665d71b259d9, _Var1);
+
+PROC
+PROC_GLOBAL_DialogStartRequested(S_RC_ARX_KammMansion_Kemm_3e6ead7d-dd35-4f9d-985e-af2de0d76d28, (GUIDSTRING)_Var1)
+AND
+GlobalGetFlag("RC_ARX_Barracks_ExecutionEvent", 1)
+AND
+GlobalGetFlag("RC_ARX_Barracks_ConvincedToSpare", 0)
+AND NOT
+QRY_SpeakerIsAvailable(S_RC_ARX_Barracks_ExecutionPrisoner_ccdfda3c-4d67-42a4-a48f-665d71b259d9)
+AND
+CharacterIsDead(S_RC_ARX_Barracks_ExecutionPrisoner_ccdfda3c-4d67-42a4-a48f-665d71b259d9, 0)
+AND
+CharacterIsInCombat(S_RC_ARX_Barracks_ExecutionPrisoner_ccdfda3c-4d67-42a4-a48f-665d71b259d9, 0)
+THEN
+ProcForceStopDialog(S_RC_ARX_Barracks_ExecutionPrisoner_ccdfda3c-4d67-42a4-a48f-665d71b259d9);
+Proc_StartDialog(0, "RC_ARX_Barracks_ExecutionPersuasion", S_RC_ARX_KammMansion_Kemm_3e6ead7d-dd35-4f9d-985e-af2de0d76d28, S_RC_ARX_Barracks_ExecutionPrisoner_ccdfda3c-4d67-42a4-a48f-665d71b259d9, _Var1);
+
+IF
+DialogEnded("RC_ARX_Barracks_ExecutionPersuasion", (INTEGER)_Var1)
+AND
+GlobalGetFlag("RC_ARX_Barracks_ConvincedToSpare", 1)
+THEN
+CharacterSetFightMode(S_RC_ARX_KammMansion_Kemm_3e6ead7d-dd35-4f9d-985e-af2de0d76d28, 0, 0);
+Proc_StartDialog(1, "RC_ARX_AD_Kemm_Execution_Accusation", S_RC_ARX_KammMansion_Kemm_3e6ead7d-dd35-4f9d-985e-af2de0d76d28);
+SetHasDialog(S_RC_ARX_KammMansion_Kemm_3e6ead7d-dd35-4f9d-985e-af2de0d76d28, 0);
+PROC_RemoveDialogFromCharacter(S_RC_ARX_Barracks_ExecutionPrisoner_ccdfda3c-4d67-42a4-a48f-665d71b259d9);
+
+IF
+AutomatedDialogEnded("RC_ARX_AD_Kemm_Execution_Accusation", _)
+AND
+GlobalGetFlag("RC_ARX_Barracks_ConvincedToSpare", 1)
+AND
+QueryOnlyOnce("RC_ARX_BarrackExecustion_KemmSaparedPrisoner")
+THEN
+GlobalClearFlag("RC_ARX_Barracks_ExecutionEvent");
+
+IF
+GlobalFlagCleared("RC_ARX_Barracks_ExecutionEvent")
+AND
+DB_SceneManager(_Var1, "RC_ARX_Barracks_ExecutionScene")
+AND
+DB_AD_Dialog(_Var1, _Var2)
+AND NOT
+DB_RC_ARX_Barracks_ExecutionGuards(_Var1, _)
+THEN
+NOT DB_AD_Dialog(_Var1, _Var2);
+
+IF
+GlobalFlagCleared("RC_ARX_Barracks_ExecutionEvent")
+AND
+DB_PostExecutionDialogsDialogs(_Var1, _Var2)
+AND NOT
+DB_RC_ARX_Barracks_ExecutionGuards(_Var1, _)
+THEN
+DB_Dialogs(_Var1, _Var2);
+
+IF
+GlobalFlagSet("ARX_InitiateGenocide")
+AND
+GlobalGetFlag("RC_ARX_Barracks_ExecutionEvent", 1)
+THEN
+GlobalClearFlag("RC_ARX_Barracks_ExecutionEvent");
+
+IF
+GlobalFlagSet("ARX_InitiateGenocide")
+AND
+GlobalGetFlag("ARX_KemmVault_ArhusPrison_KemmAppeared", 0)
+THEN
+ProcCharacterDisappearOutOfSight(S_RC_ARX_KammMansion_Kemm_3e6ead7d-dd35-4f9d-985e-af2de0d76d28, 90, 1, "", 1);
+
+IF
+GlobalFlagCleared("RC_ARX_Barracks_ExecutionEvent")
+AND
+CharacterIsDead(S_RC_ARX_Barracks_ExecutionPrisoner_ccdfda3c-4d67-42a4-a48f-665d71b259d9, 0)
+THEN
+DB_Dialogs(S_RC_ARX_Barracks_ExecutionPrisoner_ccdfda3c-4d67-42a4-a48f-665d71b259d9, "RC_ARX_Barracks_ExecutionPrisoner");
+ObjectClearFlag(S_RC_ARX_Barracks_ExecutionPrisoner_ccdfda3c-4d67-42a4-a48f-665d71b259d9, "RC_ARX_Barrack_ExecutionPrisoner_DialogBlockedByKemm", 0);
+CharacterSetAnimationOverride(RC_Humans_Female_Paladin_000_ccdfda3c-4d67-42a4-a48f-665d71b259d9, "");
+ProcCharacterEnableCrime(S_RC_ARX_Barracks_ExecutionPrisoner_ccdfda3c-4d67-42a4-a48f-665d71b259d9, "ActiveUndead");
+ProcCharacterEnableCrime(S_RC_ARX_Barracks_ExecutionPrisoner_ccdfda3c-4d67-42a4-a48f-665d71b259d9, "Assault");
+ProcCharacterEnableCrime(S_RC_ARX_Barracks_ExecutionPrisoner_ccdfda3c-4d67-42a4-a48f-665d71b259d9, "TeleportPlayerDialog");
+
+IF
+GlobalFlagCleared("RC_ARX_Barracks_ExecutionEvent")
+AND
+CharacterIsDead(S_RC_ARX_Barracks_ExecutionPrisoner_ccdfda3c-4d67-42a4-a48f-665d71b259d9, 0)
+AND
+HasActiveStatus(S_RC_ARX_Barracks_ExecutionPrisoner_ccdfda3c-4d67-42a4-a48f-665d71b259d9, "QUEST_TIEDUP", 1)
+THEN
+RemoveStatus(S_RC_ARX_Barracks_ExecutionPrisoner_ccdfda3c-4d67-42a4-a48f-665d71b259d9, "QUEST_TIEDUP");
+
+IF
+GlobalFlagCleared("RC_ARX_Barracks_ExecutionEvent")
+AND
+GlobalGetFlag("RC_ARX_Barracks_ConvincedToSpare", 1)
+THEN
+ProcCharacterMoveTo(S_RC_ARX_Barracks_ExecutionPrisoner_ccdfda3c-4d67-42a4-a48f-665d71b259d9, S_RC_ARX_Prison_Ext_b92d5e05-d370-4833-85ca-40cb9007f327, 0, "RC_ARX_Barracks_ExecutedPaladinSparedReachedStairs");
+
+IF
+StoryEvent(S_RC_ARX_Barracks_ExecutionPrisoner_ccdfda3c-4d67-42a4-a48f-665d71b259d9, "RC_ARX_Barracks_ExecutedPaladinSparedReachedStairs")
+THEN
+CharacterAppearOutOfSightTo(S_RC_ARX_Barracks_ExecutionPrisoner_ccdfda3c-4d67-42a4-a48f-665d71b259d9, S_RC_ARX_Barracks_Execution_Prisonercell_2338d803-7933-42ab-9d5a-a3e19b46c34a, 0, 0, "");
+GlobalSetFlag("ARX_Barracks_ExecutionPrisoner_InPrison");
+
+IF
+GlobalFlagCleared("RC_ARX_Barracks_ExecutionEvent")
+AND
+GlobalGetFlag("RC_ARX_Barracks_ExecutionSceneInterrupted", 0)
+THEN
+ProcTriggerRegisterForPlayers(TRIGGERGUID_S_RC_ARX_Barracks_WifeStartDialog_a7d6b362-9667-444f-9924-d77991c17068);
+
+IF
+GlobalFlagCleared("RC_ARX_Barracks_ExecutionEvent")
+AND
+CharacterIsDead(S_RC_ARX_Barracks_ExecutionPrisoner_ccdfda3c-4d67-42a4-a48f-665d71b259d9, 1)
+THEN
+CharacterSetAnimationOverride(S_RC_ARX_Barracks_PrisonersWife_8dc43bf7-827f-440a-9de5-c2a2eb0bc719, "emotion_sad_looping1");
+
+IF
+CharacterEnteredTrigger((CHARACTERGUID)_Var1, TRIGGERGUID_S_RC_ARX_Barracks_WifeStartDialog_a7d6b362-9667-444f-9924-d77991c17068)
+AND
+DB_IsPlayer(_Var1)
+AND
+GlobalGetFlag("RC_ARX_Barracks_ExecutionEvent", 0)
+THEN
+CharacterSetAnimationOverride(S_RC_ARX_Barracks_PrisonersWife_8dc43bf7-827f-440a-9de5-c2a2eb0bc719, "");
+ProcTriggerUnregisterForPlayers(TRIGGERGUID_S_RC_ARX_Barracks_WifeStartDialog_a7d6b362-9667-444f-9924-d77991c17068);
+CharacterMoveToAndTalk(S_RC_ARX_Barracks_PrisonersWife_8dc43bf7-827f-440a-9de5-c2a2eb0bc719, _Var1, "RC_ARX_Barracks_PrisonersWife", 0, "RC_ARX_Barracks_PrisonersWife_Ended", 1, 5);
+
+IF
+CharacterMoveToAndTalkFailed(S_RC_ARX_Barracks_PrisonersWife_8dc43bf7-827f-440a-9de5-c2a2eb0bc719, (GUIDSTRING)_Var1, "RC_ARX_Barracks_PrisonersWife_Ended")
+THEN
+TriggerRegisterForPlayers(TRIGGERGUID_S_RC_ARX_Barracks_WifeStartDialog_a7d6b362-9667-444f-9924-d77991c17068);
+
+IF
+DialogEnded("RC_ARX_Barracks_PrisonersWife", (INTEGER)_Var1)
+AND
+GlobalGetFlag("RC_ARX_Barracks_ExecutionEvent", 0)
+AND
+DB_DialogNPCs(_Var1, _Var2, 1)
+AND
+ObjectGetFlag(_Var2, "RC_ARX_Barracks_WifeResumeBehaviour", 1)
+AND
+QueryOnlyOnce("RC_ARX_Barracks_WifeResumeBehaviour")
+THEN
+SetHasDialog(S_RC_ARX_Barracks_PrisonersWife_8dc43bf7-827f-440a-9de5-c2a2eb0bc719, 0);
+ProcCharacterDisappearOutOfSight(S_RC_ARX_Barracks_PrisonersWife_8dc43bf7-827f-440a-9de5-c2a2eb0bc719, 90, 0, "RC_ARX_Barracks_Execution_WifeLeft", 0);
+
+IF
+StoryEvent(S_RC_ARX_Barracks_PrisonersWife_8dc43bf7-827f-440a-9de5-c2a2eb0bc719, "RC_ARX_Barracks_Execution_WifeLeft")
+THEN
+SetHasDialog(S_RC_ARX_Barracks_PrisonersWife_8dc43bf7-827f-440a-9de5-c2a2eb0bc719, 1);
+CharacterAppearOutOfSightTo(S_RC_ARX_Barracks_PrisonersWife_8dc43bf7-827f-440a-9de5-c2a2eb0bc719, S_RC_ARX_Wife_PostExectutionSpot_3fc0e276-1260-43aa-a426-951c11fc99fe, 0, 0, "");
+
+IF
+GlobalFlagCleared("RC_ARX_Barracks_ExecutionEvent")
+AND
+GlobalGetFlag("RC_ARX_Barracks_ExecutionSceneInterrupted", 0)
+THEN
+proc_RC_ARX_Barracks_Execution_KemmLeave();
+Proc_SceneOver("RC_ARX_Barracks_ExecutionScene");
+
+PROC
+proc_RC_ARX_Barracks_Execution_KemmLeave()
+THEN
+ProcCharacterMoveTo(S_RC_ARX_KammMansion_Kemm_3e6ead7d-dd35-4f9d-985e-af2de0d76d28, S_RC_ARX_Kemms_PostExecutionSpot_3a1e3ce3-767c-4ae3-b891-b9b36da45abb, 0, "RC_ARX_Barracks_KemmFinishedExecution");
+SetHasDialog(S_RC_ARX_KammMansion_Kemm_3e6ead7d-dd35-4f9d-985e-af2de0d76d28, 1);
+ProcRemoveAllDialogEntriesForSpeaker(S_RC_ARX_KammMansion_Kemm_3e6ead7d-dd35-4f9d-985e-af2de0d76d28);
+DB_AD_Dialog(S_RC_ARX_KammMansion_Kemm_3e6ead7d-dd35-4f9d-985e-af2de0d76d28, "RC_ARX_AD_Kemm_WalkingHome");
+
+IF
+StoryEvent(S_RC_ARX_KammMansion_Kemm_3e6ead7d-dd35-4f9d-985e-af2de0d76d28, "RC_ARX_Barracks_KemmFinishedExecution")
+THEN
+CharacterSetFightMode(S_RC_ARX_KammMansion_Kemm_3e6ead7d-dd35-4f9d-985e-af2de0d76d28, 0, 0);
+ProcRemoveNPCADs(S_RC_ARX_KammMansion_Kemm_3e6ead7d-dd35-4f9d-985e-af2de0d76d28);
+DB_Dialogs(S_RC_ARX_KammMansion_Kemm_3e6ead7d-dd35-4f9d-985e-af2de0d76d28, "ARX_Kemm");
+ProcCharacterEnableCrime(S_RC_ARX_KammMansion_Kemm_3e6ead7d-dd35-4f9d-985e-af2de0d76d28, "EscapedARXPrison");
+
+IF
+GlobalFlagCleared("RC_ARX_Barracks_ExecutionEvent")
+THEN
+CharacterSetCanTrade(S_RC_ARX_KammMansion_Kemm_3e6ead7d-dd35-4f9d-985e-af2de0d76d28, 1);
+ObjectClearFlag(S_RC_ARX_KammMansion_Kemm_3e6ead7d-dd35-4f9d-985e-af2de0d76d28, "RC_ARX_Barracks_ExecutionEventStartAD");
+
+IF
+GlobalFlagCleared("RC_ARX_Barracks_ExecutionEvent")
+THEN
+TimerLaunch("RC_ARX_Barracks_Guards_Go_ToPrison", 1200);
+
+IF
+TimerFinished("RC_ARX_Barracks_Guards_Go_ToPrison")
+AND
+DB_RC_ARX_Barracks_ExecutionGuards(_Var1, _)
+AND
+DB_AD_Dialog(_Var1, _Var3)
+THEN
+NOT DB_AD_Dialog(_Var1, _Var3);
+
+IF
+TimerFinished("RC_ARX_Barracks_Guards_Go_ToPrison")
+AND
+DB_PostExecutionDialogsDialogs(_Var1, _Var2)
+AND
+DB_RC_ARX_Barracks_ExecutionGuards(_Var3, _)
+THEN
+DB_Dialogs(_Var1, _Var2);
+
+IF
+TimerFinished("RC_ARX_Barracks_Guards_Go_ToPrison")
+AND
+GlobalGetFlag("RC_ARX_Barracks_ExecutionSceneInterrupted", 0)
+AND
+DB_RC_ARX_Barracks_ExecutionGuards(_Var1, _)
+AND
+GlobalGetFlag("RC_ARX_Barracks_ExecutionEndedCorpseStillThere", 0)
+THEN
+Proc_ARX_Barracks_Guards_Go_ToPrison_FollowOrGo(_Var1);
+SetHasDialog(_Var1, 0);
+ProcForceStopDialog(_Var1);
+
+PROC
+Proc_ARX_Barracks_Guards_Go_ToPrison_FollowOrGo((CHARACTERGUID)_Var1)
+AND
+CharacterCanSee(_Var1, S_RC_ARX_Barracks_ExecutionPrisoner_ccdfda3c-4d67-42a4-a48f-665d71b259d9, 1)
+AND
+GlobalGetFlag("ARX_Brracks_Guards_Go_ToPrison_Following", 0)
+THEN
+CharacterFollowCharacter(_Var1, S_RC_ARX_Barracks_ExecutionPrisoner_ccdfda3c-4d67-42a4-a48f-665d71b259d9);
+DB_ARX_Barracks_Guards_Go_ToPrison_Following(_Var1);
+GlobalSetFlag("ARX_Brracks_Guards_Go_ToPrison_Following");
+
+IF
+GlobalFlagSet("ARX_Brracks_Guards_Go_ToPrison_Following")
+AND
+DB_RC_ARX_Barracks_ExecutionGuards(_Var1, _)
+AND NOT
+DB_ARX_Barracks_Guards_Go_ToPrison_Following(_Var1)
+THEN
+ProcCharacterMoveTo(_Var1, S_RC_ARX_Prison_Ext_b92d5e05-d370-4833-85ca-40cb9007f327, 0, "RC_ARX_Barracks_GuardReachedStairs");
+
+IF
+StoryEvent(S_RC_ARX_Barracks_ExecutionPrisoner_ccdfda3c-4d67-42a4-a48f-665d71b259d9, "RC_ARX_Barracks_ExecutedPaladinSparedReachedStairs")
+AND
+DB_ARX_Barracks_Guards_Go_ToPrison_Following(_Var1)
+AND
+GetDistanceTo(_Var1, S_RC_ARX_Prison_Ext_b92d5e05-d370-4833-85ca-40cb9007f327, _Var2)
+THEN
+proc_ARX_Barracks_Guards_Go_ToPrison_GoOrIsAlreadyThere(_Var1, _Var2);
+
+PROC
+proc_ARX_Barracks_Guards_Go_ToPrison_GoOrIsAlreadyThere((CHARACTERGUID)_Var1, (REAL)_Var2)
+AND
+_Var2 < 3
+THEN
+SetStoryEvent(_Var1, "RC_ARX_Barracks_GuardReachedStairs");
+
+PROC
+proc_ARX_Barracks_Guards_Go_ToPrison_GoOrIsAlreadyThere((CHARACTERGUID)_Var1, (REAL)_Var2)
+AND
+_Var2 > 3
+THEN
+ProcCharacterMoveTo(_Var1, S_RC_ARX_Prison_Ext_b92d5e05-d370-4833-85ca-40cb9007f327, 0, "RC_ARX_Barracks_GuardReachedStairs");
+
+PROC
+Proc_ARX_Barracks_Guards_Go_ToPrison_FollowOrGo((CHARACTERGUID)_Var1)
+AND
+CharacterCanSee(_Var1, S_RC_ARX_Barracks_ExecutionPrisoner_ccdfda3c-4d67-42a4-a48f-665d71b259d9, 0)
+THEN
+ProcCharacterMoveTo(_Var1, S_RC_ARX_Prison_Ext_b92d5e05-d370-4833-85ca-40cb9007f327, 0, "RC_ARX_Barracks_GuardReachedStairs");
+
+IF
+TimerFinished("RC_ARX_Barracks_Guards_Go_ToPrison")
+AND
+GlobalGetFlag("RC_ARX_Barracks_ExecutionSceneInterrupted", 0)
+AND
+GlobalGetFlag("RC_ARX_Barracks_ExecutionEndedCorpseStillThere", 1)
+THEN
+SetHasDialog(CHARACTERGUID_S_RC_ARX_Barracks_ExecutionGuard1_f8473850-e68d-464a-92fe-0668c19f79e4, 0);
+ProcForceStopDialog(CHARACTERGUID_S_RC_ARX_Barracks_ExecutionGuard1_f8473850-e68d-464a-92fe-0668c19f79e4);
+ProcCharacterMoveTo(CHARACTERGUID_S_RC_ARX_Barracks_ExecutionGuard1_f8473850-e68d-464a-92fe-0668c19f79e4, S_RC_ARX_Prison_Ext_b92d5e05-d370-4833-85ca-40cb9007f327, 0, "RC_ARX_Barracks_GuardReachedStairs");
+
+IF
+StoryEvent((CHARACTERGUID)_Var1, "RC_ARX_Barracks_GuardReachedStairs")
+AND
+DB_RC_ARX_Barracks_ExecutionGuards(_Var1, _Var2)
+THEN
+SetOnStage(_Var1, 0);
+CharacterAppearOutOfSightTo(_Var1, _Var2, 0, 0, "ARX_Prison_ExecutionGuardAppeared");
+CharacterSetReactionPriority(_Var1, "GuardPosition", 100);
+
+IF
+StoryEvent((CHARACTERGUID)_Var1, "ARX_Prison_ExecutionGuardAppeared")
+AND
+DB_RC_ARX_Barracks_ExecutionGuards(_Var1, _Var2)
+AND
+GlobalGetFlag("RC_ARX_Barracks_ConvincedToSpare", 1)
+THEN
+SetHasDialog(_Var1, 1);
+ItemSetOwner(BLD_Humans_Prison_Grating_Door_B_002_b149b405-f50a-4341-aea3-ed7fa585872a, _Var1);
+ItemCloseAndLock(BLD_Humans_Prison_Grating_Door_B_002_b149b405-f50a-4341-aea3-ed7fa585872a, "ARX_PrisonCells_Key");
+DB_ARX_Prison_DoorsOnwership(_Var1);
+
+IF
+CombatEnded((INTEGER)_Var1)
+AND
+DB_WasInCombat(CHARACTERGUID_S_RC_ARX_Barracks_ExecutionPrisoner_ccdfda3c-4d67-42a4-a48f-665d71b259d9, _Var1)
+AND
+QRY_ARX_KemmIsDeadOrUnspeakable()
+AND
+CharacterIsDead(CHARACTERGUID_S_RC_ARX_Barracks_ExecutionPrisoner_ccdfda3c-4d67-42a4-a48f-665d71b259d9, 0)
+AND NOT
+DB_GlobalFlag("RC_ARX_Barracks_ExecutionEvent")
+AND
+QueryOnlyOnce("ARX_Barracks_CheckIfKemmWasKilledInTheBarracks")
+THEN
+GlobalSetFlag("RC_ARX_Barracks_ConvincedToSpare");
+proc_ARX_Barracks_Execution_KilledPaladins(_Var1);
+
+PROC
+proc_ARX_Barracks_Execution_KilledPaladins((INTEGER)_Var1)
+AND
+DB_IsPlayer(_Var2)
+AND
+DB_WasInCombat(_Var2, _Var1)
+AND
+QRY_SpeakerIsAvailable(_Var2)
+AND
+GetDistanceTo(CHARACTERGUID_S_RC_ARX_Barracks_ExecutionPrisoner_ccdfda3c-4d67-42a4-a48f-665d71b259d9, _Var2, _Var3)
+AND
+_Var3 < 30
+AND
+GlobalGetFlag("RC_ARX_Barracks_Execution_KilledPaladins", 0)
+THEN
+GlobalSetFlag("RC_ARX_Barracks_Execution_KilledPaladins");
+ProcCharacterMoveToAndTalk(CHARACTERGUID_S_RC_ARX_Barracks_ExecutionPrisoner_ccdfda3c-4d67-42a4-a48f-665d71b259d9, _Var2, "RC_ARX_Barracks_ExecutionPrisoner", 0, "RC_ARX_Barracks_Execution_KilledPaladins", 1, 15, 1, 1);
+
+IF
+CharacterMoveToAndTalkFailed(CHARACTERGUID_S_RC_ARX_Barracks_ExecutionPrisoner_ccdfda3c-4d67-42a4-a48f-665d71b259d9, (GUIDSTRING)_Var1, "RC_ARX_Barracks_Execution_KilledPaladins")
+THEN
+SetHasDialog(CHARACTERGUID_S_RC_ARX_Barracks_ExecutionPrisoner_ccdfda3c-4d67-42a4-a48f-665d71b259d9, 0);
+ProcCharacterDisappearOutOfSight(CHARACTERGUID_S_RC_ARX_Barracks_ExecutionPrisoner_ccdfda3c-4d67-42a4-a48f-665d71b259d9, 0, 1, "", 0);
+
+PROC
+proc_ARX_Barracks_Execution_KilledPaladins((INTEGER)_Var1)
+AND
+GlobalGetFlag("RC_ARX_Barracks_Execution_KilledPaladins", 0)
+THEN
+GlobalSetFlag("RC_ARX_Barracks_Execution_KilledPaladins");
+SetHasDialog(CHARACTERGUID_S_RC_ARX_Barracks_ExecutionPrisoner_ccdfda3c-4d67-42a4-a48f-665d71b259d9, 0);
+ProcCharacterDisappearOutOfSight(CHARACTERGUID_S_RC_ARX_Barracks_ExecutionPrisoner_ccdfda3c-4d67-42a4-a48f-665d71b259d9, 0, 1, "", 0);
+
+IF
+DialogEnded("RC_ARX_Barracks_ExecutionPrisoner", (INTEGER)_Var1)
+AND
+DB_GlobalFlag("RC_ARX_Barracks_Execution_KilledPaladins")
+THEN
+SetHasDialog(CHARACTERGUID_S_RC_ARX_Barracks_ExecutionPrisoner_ccdfda3c-4d67-42a4-a48f-665d71b259d9, 0);
+CharacterDisappearOutOfSight(CHARACTERGUID_S_RC_ARX_Barracks_ExecutionPrisoner_ccdfda3c-4d67-42a4-a48f-665d71b259d9, 0, 1, "", 0);
+
+IF
+DialogEnded("RC_ARX_Barracks_ExecutionPrisoner", (INTEGER)_Var1)
+AND
+DB_GlobalFlag("RC_ARX_Barracks_Execution_KilledPaladins")
+AND
+DB_IsPlayer(_Var2)
+THEN
+ObjectSetFlag(_Var2, "QuestUpdate_ARX_Barracks_Execution_KilledAllPaladins");
+
+IF
+CharacterLeftTrigger((CHARACTERGUID)_Var1, S_ARX_Barracks_Execution_RemoveCorpse_77363571-77e2-4d9f-a58b-22bd5aab90de)
+AND
+DB_IsPlayer(_Var1)
+AND NOT
+DB_InRegion(_, S_ARX_Barracks_Execution_RemoveCorpse_77363571-77e2-4d9f-a58b-22bd5aab90de)
+AND
+GlobalGetFlag("RC_ARX_Barracks_ExecutionEndedCorpseStillThere", 1)
+THEN
+GlobalClearFlag("RC_ARX_Barracks_ExecutionEndedCorpseStillThere");
+
+IF
+GlobalFlagCleared("RC_ARX_Barracks_ExecutionEndedCorpseStillThere")
+AND
+QRY_AnyRegionActive()
+THEN
+ProcCharacterMoveTo(CHARACTERGUID_S_RC_ARX_Barracks_ExecutionGuard2_cd5f4253-d085-440b-8e3b-2a26c4bbc4f8, S_RC_ARX_Prison_Ext_b92d5e05-d370-4833-85ca-40cb9007f327, 0, "RC_ARX_Barracks_GuardReachedStairs");
+
+IF
+ItemOpened(ITEMGUID_S_BLD_Humans_Prison_Grating_Door_B_002_b149b405-f50a-4341-aea3-ed7fa585872a)
+AND
+CharacterIsDead(CHARACTERGUID_S_RC_ARX_Barracks_ExecutionPrisoner_ccdfda3c-4d67-42a4-a48f-665d71b259d9, 0)
+AND
+GlobalGetFlag("ARX_Barracks_ExecutionPrisoner_InPrison", 1)
+THEN
+ProcForceStopDialog(CHARACTERGUID_S_RC_ARX_Barracks_ExecutionPrisoner_ccdfda3c-4d67-42a4-a48f-665d71b259d9);
+ObjectSetFlag(CHARACTERGUID_S_RC_ARX_Barracks_ExecutionPrisoner_ccdfda3c-4d67-42a4-a48f-665d71b259d9, "ARX_Prison_ArhusKeeper_Disapear");
+
+IF
+ItemDestroyed(ITEMGUID_S_BLD_Humans_Prison_Grating_Door_B_002_b149b405-f50a-4341-aea3-ed7fa585872a)
+AND
+CharacterIsDead(CHARACTERGUID_S_RC_ARX_Barracks_ExecutionPrisoner_ccdfda3c-4d67-42a4-a48f-665d71b259d9, 0)
+AND
+GlobalGetFlag("ARX_Barracks_ExecutionPrisoner_InPrison", 1)
+THEN
+ProcForceStopDialog(CHARACTERGUID_S_RC_ARX_Barracks_ExecutionPrisoner_ccdfda3c-4d67-42a4-a48f-665d71b259d9);
+ObjectSetFlag(CHARACTERGUID_S_RC_ARX_Barracks_ExecutionPrisoner_ccdfda3c-4d67-42a4-a48f-665d71b259d9, "ARX_Prison_ArhusKeeper_Disapear");
+
+IF
+CharacterStatusApplied(S_ARX_Kemm_3e6ead7d-dd35-4f9d-985e-af2de0d76d28, "HIT", (CHARACTERGUID)_Var1)
+AND
+GlobalGetFlag("RC_ARX_Barracks_ExecutionEvent", 1)
+AND
+DB_IsPlayer(_Var1)
+THEN
+Proc_SceneInterrupted(S_ARX_Kemm_3e6ead7d-dd35-4f9d-985e-af2de0d76d28, _Var1, "RC_ARX_Barracks_ExecutionScene", "Attacked");
+
+IF
+CharacterStatusApplied(S_ARX_Kemm_3e6ead7d-dd35-4f9d-985e-af2de0d76d28, "HIT", (CHARACTERGUID)_Var1)
+AND
+GlobalGetFlag("RC_ARX_Barracks_ExecutionEvent", 1)
+AND NOT
+DB_IsPlayer(_Var1)
+AND
+CharacterIsSummon(_Var1, 1)
+AND
+CharacterGetOwner(_Var1, _Var2)
+AND
+DB_IsPlayer(_Var2)
+THEN
+Proc_SceneInterrupted(S_ARX_Kemm_3e6ead7d-dd35-4f9d-985e-af2de0d76d28, _Var2, "RC_ARX_Barracks_ExecutionScene", "Attacked");
+
+PROC
+Proc_SceneInterrupted((GUIDSTRING)_Var1, (CHARACTERGUID)_Var2, "RC_ARX_Barracks_ExecutionScene", "Attacked")
+AND
+CharacterIsDead(S_RC_ARX_KammMansion_Kemm_3e6ead7d-dd35-4f9d-985e-af2de0d76d28, 0)
+THEN
+ProcForceStopDialog(S_RC_ARX_KammMansion_Kemm_3e6ead7d-dd35-4f9d-985e-af2de0d76d28);
+Proc_StartDialog(1, "RC_ARX_AD_Execution_KemmSceneInterrupted", S_RC_ARX_KammMansion_Kemm_3e6ead7d-dd35-4f9d-985e-af2de0d76d28);
+
+PROC
+Proc_SceneInterrupted((CHARACTERGUID)_Var1, (CHARACTERGUID)_Var2, "RC_ARX_Barracks_ExecutionScene", "Attacked")
+AND
+CharacterIsDead(_Var1, 0)
+THEN
+CharacterSetTemporaryHostileRelation(_Var1, _Var2);
+
+PROC
+Proc_SceneInterrupted((GUIDSTRING)_Var1, (CHARACTERGUID)_Var2, "RC_ARX_Barracks_ExecutionScene", "Attacked")
+AND
+_Var1 != S_RC_ARX_Barracks_ExecutionPrisoner_ccdfda3c-4d67-42a4-a48f-665d71b259d9
+AND
+_Var1 != S_RC_ARX_Barracks_PrisonersWife_8dc43bf7-827f-440a-9de5-c2a2eb0bc719
+THEN
+ProcForceStopDialog(S_RC_ARX_Barracks_PrisonersWife_8dc43bf7-827f-440a-9de5-c2a2eb0bc719);
+ObjectSetFlag(S_RC_ARX_KammMansion_Kemm_3e6ead7d-dd35-4f9d-985e-af2de0d76d28, "RC_ARX_ExecutionSceneInterrupt_Attacked");
+proc_RC_ARX_Barracks_ExecutionSceneClose(1);
+SetRelationIndivFactionToPlayers(S_RC_ARX_Barracks_ExecutionPrisoner_ccdfda3c-4d67-42a4-a48f-665d71b259d9, 100);
+
+PROC
+Proc_SceneInterrupted((CHARACTERGUID)_Var1, (CHARACTERGUID)_Var2, "RC_ARX_Barracks_ExecutionScene", "Attacked")
+AND
+CharacterIsDead(_Var1, 1)
+AND
+DB_SceneManager(_Var3, "RC_ARX_Barracks_ExecutionScene")
+AND
+CharacterIsDead(_Var3, 0)
+AND
+_Var3 != S_RC_ARX_Barracks_ExecutionPrisoner_ccdfda3c-4d67-42a4-a48f-665d71b259d9
+AND
+_Var3 != S_RC_ARX_Barracks_PrisonersWife_8dc43bf7-827f-440a-9de5-c2a2eb0bc719
+THEN
+Proc_CharacterSetTemporaryHostileRelation(_Var3, _Var2);
+
+PROC
+Proc_SceneInterrupted((GUIDSTRING)_Var1, (CHARACTERGUID)_Var2, "RC_ARX_Barracks_ExecutionScene", "Attacked")
+AND
+_Var1 == S_RC_ARX_Barracks_PrisonersWife_8dc43bf7-827f-440a-9de5-c2a2eb0bc719
+THEN
+ProcForceStopDialog(S_RC_ARX_KammMansion_Kemm_3e6ead7d-dd35-4f9d-985e-af2de0d76d28);
+ProcForceStopDialog(S_RC_ARX_Barracks_PrisonersWife_8dc43bf7-827f-440a-9de5-c2a2eb0bc719);
+ObjectSetFlag(S_RC_ARX_KammMansion_Kemm_3e6ead7d-dd35-4f9d-985e-af2de0d76d28, "RC_ARX_ExecutionSceneInterrupt_Attacked");
+Proc_StartDialog(1, "RC_ARX_AD_Execution_KemmSceneInterrupted", S_RC_ARX_KammMansion_Kemm_3e6ead7d-dd35-4f9d-985e-af2de0d76d28);
+CharacterSetTemporaryHostileRelation(S_RC_ARX_KammMansion_Kemm_3e6ead7d-dd35-4f9d-985e-af2de0d76d28, _Var2);
+proc_RC_ARX_Barracks_ExecutionSceneClose(1);
+SetRelationIndivFactionToPlayers(S_RC_ARX_Barracks_ExecutionPrisoner_ccdfda3c-4d67-42a4-a48f-665d71b259d9, 0);
+
+PROC
+Proc_SceneInterrupted((GUIDSTRING)_Var1, (CHARACTERGUID)_Var2, "RC_ARX_Barracks_ExecutionScene", (STRING)_Var3)
+AND
+DB_GLO_GenericSceneManager_LeavingReason(_Var3)
+AND
+_Var1 != S_RC_ARX_Barracks_PrisonersWife_8dc43bf7-827f-440a-9de5-c2a2eb0bc719
+THEN
+ObjectSetFlag(S_RC_ARX_KammMansion_Kemm_3e6ead7d-dd35-4f9d-985e-af2de0d76d28, "RC_ARX_ExecutionSceneInterrupt_Attacked");
+ProcForceStopDialog(S_RC_ARX_KammMansion_Kemm_3e6ead7d-dd35-4f9d-985e-af2de0d76d28);
+Proc_StartDialog(1, "RC_ARX_AD_Execution_KemmSceneInterrupted", S_RC_ARX_KammMansion_Kemm_3e6ead7d-dd35-4f9d-985e-af2de0d76d28);
+proc_RC_ARX_Barracks_ExecutionSceneClose(1);
+
+PROC
+Proc_SceneInterrupted((GUIDSTRING)_Var1, (CHARACTERGUID)_Var2, "RC_ARX_Barracks_ExecutionScene", (STRING)_Var3)
+AND
+DB_GLO_GenericSceneManager_LeavingReason(_Var3)
+AND
+_Var1 != S_RC_ARX_Barracks_PrisonersWife_8dc43bf7-827f-440a-9de5-c2a2eb0bc719
+AND
+DB_IsPlayer(_Var4)
+AND
+CharacterCanSee(S_RC_ARX_KammMansion_Kemm_3e6ead7d-dd35-4f9d-985e-af2de0d76d28, _Var4, 1)
+THEN
+CharacterSetTemporaryHostileRelation(S_RC_ARX_KammMansion_Kemm_3e6ead7d-dd35-4f9d-985e-af2de0d76d28, _Var4);
+
+PROC
+Proc_SceneInterrupted(S_RC_ARX_Barracks_ExecutionPrisoner_ccdfda3c-4d67-42a4-a48f-665d71b259d9, (CHARACTERGUID)_Var1, "RC_ARX_Barracks_ExecutionScene", (STRING)_Var2)
+AND
+DB_GLO_GenericSceneManager_LeavingReason(_Var2)
+THEN
+SetRelationIndivFactionToPlayers(S_RC_ARX_Barracks_ExecutionPrisoner_ccdfda3c-4d67-42a4-a48f-665d71b259d9, 100);
+
+PROC
+proc_RC_ARX_Barracks_ExecutionSceneEveryoneDraw()
+AND
+DB_SceneManager(_Var1, "RC_ARX_Barracks_ExecutionScene")
+AND
+_Var1 != S_RC_ARX_Barracks_ExecutionPrisoner_ccdfda3c-4d67-42a4-a48f-665d71b259d9
+AND
+_Var1 != S_RC_ARX_KammMansion_Kemm_3e6ead7d-dd35-4f9d-985e-af2de0d76d28
+AND
+_Var1 != S_RC_ARX_Barracks_PrisonersWife_8dc43bf7-827f-440a-9de5-c2a2eb0bc719
+THEN
+proc_DrawWeaponforXTime(_Var1, 3000);
+
+PROC
+Proc_SceneInterrupted(S_RC_ARX_Barracks_ExecutionPrisoner_ccdfda3c-4d67-42a4-a48f-665d71b259d9, (CHARACTERGUID)_Var1, "RC_ARX_Barracks_ExecutionScene", "Attacked")
+AND
+ObjectGetFlag(S_RC_ARX_KammMansion_Kemm_3e6ead7d-dd35-4f9d-985e-af2de0d76d28, "RC_ARX_ExecutionSceneInterrupt_PrisonerAttackedOnce", 1)
+THEN
+ProcForceStopDialog(S_RC_ARX_KammMansion_Kemm_3e6ead7d-dd35-4f9d-985e-af2de0d76d28);
+ProcForceStopDialog(S_RC_ARX_Barracks_PrisonersWife_8dc43bf7-827f-440a-9de5-c2a2eb0bc719);
+Proc_StartDialog(1, "RC_ARX_AD_Execution_KemmSceneInterrupted", S_RC_ARX_KammMansion_Kemm_3e6ead7d-dd35-4f9d-985e-af2de0d76d28);
+CharacterSetTemporaryHostileRelation(S_RC_ARX_KammMansion_Kemm_3e6ead7d-dd35-4f9d-985e-af2de0d76d28, _Var1);
+proc_RC_ARX_Barracks_ExecutionSceneClose(1);
+
+PROC
+Proc_SceneInterrupted(S_RC_ARX_Barracks_ExecutionPrisoner_ccdfda3c-4d67-42a4-a48f-665d71b259d9, (CHARACTERGUID)_Var1, "RC_ARX_Barracks_ExecutionScene", "Attacked")
+AND
+CharacterIsPlayer(_Var1, 1)
+AND
+ObjectGetFlag(S_RC_ARX_KammMansion_Kemm_3e6ead7d-dd35-4f9d-985e-af2de0d76d28, "RC_ARX_ExecutionSceneInterrupt_PrisonerAttackedOnce", 0)
+AND
+QRY_SpeakerIsAvailable(S_RC_ARX_KammMansion_Kemm_3e6ead7d-dd35-4f9d-985e-af2de0d76d28)
+THEN
+Proc_StartDialog(1, "RC_ARX_AD_Execution_KemmSceneInterrupted", S_RC_ARX_KammMansion_Kemm_3e6ead7d-dd35-4f9d-985e-af2de0d76d28);
+proc_RC_ARX_Barracks_ExecutionSceneEveryoneDraw();
+
+PROC
+Proc_SceneInterrupted(S_RC_ARX_Barracks_ExecutionPrisoner_ccdfda3c-4d67-42a4-a48f-665d71b259d9, (CHARACTERGUID)_Var1, "RC_ARX_Barracks_ExecutionScene", "Attacked")
+AND
+CharacterIsPlayer(_Var1, 1)
+AND
+ObjectGetFlag(S_RC_ARX_KammMansion_Kemm_3e6ead7d-dd35-4f9d-985e-af2de0d76d28, "RC_ARX_ExecutionSceneInterrupt_PrisonerAttackedOnce", 0)
+AND NOT
+QRY_SpeakerIsAvailable(S_RC_ARX_KammMansion_Kemm_3e6ead7d-dd35-4f9d-985e-af2de0d76d28)
+AND
+DB_SceneManager(_Var2, "RC_ARX_Barracks_ExecutionScene")
+AND
+_Var2 != S_RC_ARX_Barracks_ExecutionPrisoner_ccdfda3c-4d67-42a4-a48f-665d71b259d9
+AND
+_Var2 != S_RC_ARX_Barracks_PrisonersWife_8dc43bf7-827f-440a-9de5-c2a2eb0bc719
+AND
+QRY_SpeakerIsAvailable(_Var2)
+AND
+QueryOnlyOnce("RC_ARX_BarrackExecustion_GaveWarning")
+THEN
+Proc_StartDialog(1, "RC_ARX_AD_Execution_KemmSceneInterrupted", _Var2);
+ObjectSetFlag(S_RC_ARX_KammMansion_Kemm_3e6ead7d-dd35-4f9d-985e-af2de0d76d28, "RC_ARX_ExecutionSceneInterrupt_PrisonerAttackedOnce");
+proc_RC_ARX_Barracks_ExecutionSceneEveryoneDraw();
+
+PROC
+proc_RC_ARX_Barracks_ExecutionSceneClose((INTEGER)_Var1)
+THEN
+GlobalClearFlag("RC_ARX_Barracks_ExecutionEvent");
+TimerCancel("RC_ARX_Barracks_ExecutionScene_CloseScene");
+TimerLaunch("RC_ARX_Barracks_ExecutionScene_CloseScene", 100);
+
+PROC
+proc_RC_ARX_Barracks_ExecutionSceneClose(1)
+THEN
+GlobalSetFlag("RC_ARX_Barracks_ExecutionSceneInterrupted");
+
+IF
+TimerFinished("RC_ARX_Barracks_ExecutionScene_CloseScene")
+THEN
+Proc_SceneOver("RC_ARX_Barracks_ExecutionScene");
+
+IF
+GlobalFlagCleared("RC_ARX_Barracks_ExecutionEvent")
+AND
+GlobalGetFlag("RC_ARX_Barracks_ExecutionSceneInterrupted", 1)
+AND
+CharacterIsInCombat(S_RC_ARX_KammMansion_Kemm_3e6ead7d-dd35-4f9d-985e-af2de0d76d28, 0)
+AND
+CharacterIsDead(S_RC_ARX_Barracks_ExecutionPrisoner_ccdfda3c-4d67-42a4-a48f-665d71b259d9, 0)
+THEN
+CharacterAttack(S_RC_ARX_KammMansion_Kemm_3e6ead7d-dd35-4f9d-985e-af2de0d76d28, S_RC_ARX_Barracks_ExecutionPrisoner_ccdfda3c-4d67-42a4-a48f-665d71b259d9);
+
+IF
+CharacterDied(S_RC_ARX_Barracks_ExecutionPrisoner_ccdfda3c-4d67-42a4-a48f-665d71b259d9)
+AND
+GlobalGetFlag("RC_ARX_Barracks_ExecutionSceneInterrupted", 1)
+AND
+CharacterIsInCombat(S_RC_ARX_KammMansion_Kemm_3e6ead7d-dd35-4f9d-985e-af2de0d76d28, 0)
+THEN
+proc_RC_ARX_Barracks_Execution_KemmLeave();
+
+IF
+ObjectLeftCombat(S_RC_ARX_KammMansion_Kemm_3e6ead7d-dd35-4f9d-985e-af2de0d76d28, (INTEGER)_Var1)
+AND
+CharacterIsDead(S_RC_ARX_KammMansion_Kemm_3e6ead7d-dd35-4f9d-985e-af2de0d76d28, 0)
+AND
+GlobalGetFlag("RC_ARX_Barracks_ExecutionSceneInterrupted", 1)
+AND
+CharacterIsDead(S_RC_ARX_Barracks_ExecutionPrisoner_ccdfda3c-4d67-42a4-a48f-665d71b259d9, 0)
+THEN
+CharacterAttack(S_RC_ARX_KammMansion_Kemm_3e6ead7d-dd35-4f9d-985e-af2de0d76d28, S_RC_ARX_Barracks_ExecutionPrisoner_ccdfda3c-4d67-42a4-a48f-665d71b259d9);
+
+IF
+CharacterDied(S_RC_ARX_Barracks_ExecutionPrisoner_ccdfda3c-4d67-42a4-a48f-665d71b259d9)
+AND
+GlobalGetFlag("RC_ARX_Barracks_ExecutionSceneInterrupted", 1)
+AND
+CharacterIsInCombat(S_RC_ARX_KammMansion_Kemm_3e6ead7d-dd35-4f9d-985e-af2de0d76d28, 1)
+AND
+DB_CombatCharacters(S_RC_ARX_KammMansion_Kemm_3e6ead7d-dd35-4f9d-985e-af2de0d76d28, _Var1)
+THEN
+DB_RC_ARX_Barracks_ExecutionEventLeaveAfterCombat(S_RC_ARX_KammMansion_Kemm_3e6ead7d-dd35-4f9d-985e-af2de0d76d28, _Var1);
+
+IF
+GlobalFlagCleared("RC_ARX_Barracks_ExecutionEvent")
+AND
+GlobalGetFlag("RC_ARX_Barracks_ExecutionSceneInterrupted", 1)
+AND
+CharacterIsInCombat(S_RC_ARX_KammMansion_Kemm_3e6ead7d-dd35-4f9d-985e-af2de0d76d28, 1)
+AND
+DB_CombatCharacters(S_RC_ARX_KammMansion_Kemm_3e6ead7d-dd35-4f9d-985e-af2de0d76d28, _Var1)
+THEN
+DB_RC_ARX_Barracks_ExecutionEventLeaveAfterCombat(S_RC_ARX_KammMansion_Kemm_3e6ead7d-dd35-4f9d-985e-af2de0d76d28, _Var1);
+
+IF
+ObjectSwitchedCombat((GUIDSTRING)_Var1, (INTEGER)_Var2, (INTEGER)_Var3)
+AND
+DB_RC_ARX_Barracks_ExecutionEventLeaveAfterCombat(_Var1, _Var2)
+THEN
+NOT DB_RC_ARX_Barracks_ExecutionEventLeaveAfterCombat(_Var1, _Var2);
+DB_RC_ARX_Barracks_ExecutionEventLeaveAfterCombat(_Var1, _Var3);
+
+IF
+ObjectLeftCombat(S_RC_ARX_KammMansion_Kemm_3e6ead7d-dd35-4f9d-985e-af2de0d76d28, (INTEGER)_Var1)
+AND
+DB_RC_ARX_Barracks_ExecutionEventLeaveAfterCombat(S_RC_ARX_KammMansion_Kemm_3e6ead7d-dd35-4f9d-985e-af2de0d76d28, _Var1)
+THEN
+proc_RC_ARX_Barracks_Execution_KemmLeave();
+
+IF
+TimerFinished("RC_ARX_Barracks_Guards_Go_ToPrison")
+AND
+GlobalGetFlag("RC_ARX_Barracks_ExecutionSceneInterrupted", 1)
+AND
+DB_RC_ARX_Barracks_ExecutionGuards(_Var1, _)
+AND
+CharacterIsInCombat(_Var1, 0)
+THEN
+ProcCharacterMoveTo(_Var1, S_RC_ARX_Prison_Ext_b92d5e05-d370-4833-85ca-40cb9007f327, 0, "RC_ARX_Barracks_GuardReachedStairs");
+
+IF
+TimerFinished("RC_ARX_Barracks_Guards_Go_ToPrison")
+AND
+GlobalGetFlag("RC_ARX_Barracks_ExecutionSceneInterrupted", 1)
+AND
+DB_RC_ARX_Barracks_ExecutionGuards(_Var1, _)
+AND
+CharacterIsInCombat(_Var1, 1)
+AND
+DB_CombatCharacters(_Var1, _Var3)
+THEN
+DB_RC_ARX_Barracks_ExecutionEventLeaveAfterCombat(_Var1, _Var3);
+
+IF
+ObjectLeftCombat((CHARACTERGUID)_Var1, (INTEGER)_Var2)
+AND
+DB_RC_ARX_Barracks_ExecutionGuards(_Var1, _)
+AND
+DB_RC_ARX_Barracks_ExecutionEventLeaveAfterCombat(_Var1, _Var2)
+THEN
+ProcCharacterMoveTo(_Var1, S_RC_ARX_Prison_Ext_b92d5e05-d370-4833-85ca-40cb9007f327, 0, "RC_ARX_Barracks_GuardReachedStairs");
+
+IF
+ObjectLeftCombat((GUIDSTRING)_Var1, (INTEGER)_Var2)
+AND
+DB_RC_ARX_Barracks_ExecutionEventLeaveAfterCombat_Prisoner(_Var1, _Var2)
+THEN
+ProcCharacterMoveTo(S_RC_ARX_Barracks_ExecutionPrisoner_ccdfda3c-4d67-42a4-a48f-665d71b259d9, S_RC_ARX_Prison_Ext_b92d5e05-d370-4833-85ca-40cb9007f327, 0, "RC_ARX_Barracks_ExecutedPaladinSparedReachedStairs");
+
+PROC
+PROC_CRIME_CrimeTriggers_GetSilentWitnessesForCrime((INTEGER)_Var1, (CHARACTERGUID)_Var2, (STRING)_Var3, (GUIDSTRING)_Var4, (CHARACTERGUID)_Var5)
+AND
+IsTagged(_Var5, "PALADIN", 1)
+AND
+_Var5 != S_RC_ARX_Barracks_ExecutionPrisoner_ccdfda3c-4d67-42a4-a48f-665d71b259d9
+THEN
+DB_CRIME_CrimeTriggers_SilentWitnessesForCrime(S_RC_ARX_Barracks_ExecutionPrisoner_ccdfda3c-4d67-42a4-a48f-665d71b259d9);
+
+IF
+SavegameLoaded((INTEGER)_Var1, (INTEGER)_Var2, (INTEGER)_Var3, (INTEGER)_Var4)
+AND
+QRY_VersionIsOlderThan(_Var1, _Var2, _Var3, _Var4, 3, 6, 4, 0)
+AND
+GlobalGetFlag("RC_ARX_Barracks_ExecutionEvent", 1)
+THEN
+ProcCharacterDisableCrime(S_RC_ARX_KammMansion_Kemm_3e6ead7d-dd35-4f9d-985e-af2de0d76d28, "EscapedARXPrison");
+
+IF
+SavegameLoaded((INTEGER)_Var1, (INTEGER)_Var2, (INTEGER)_Var3, (INTEGER)_Var4)
+AND
+QRY_VersionIsOlderThan(_Var1, _Var2, _Var3, _Var4, 3, 6, 4, 0)
+AND
+CharacterIsDead(S_RC_ARX_Barracks_ExecutionPrisoner_ccdfda3c-4d67-42a4-a48f-665d71b259d9, 0)
+THEN
+ProcCharacterDisableAllCrimes(S_RC_ARX_Barracks_ExecutionPrisoner_ccdfda3c-4d67-42a4-a48f-665d71b259d9);
+ProcCharacterEnableCrime(S_RC_ARX_Barracks_ExecutionPrisoner_ccdfda3c-4d67-42a4-a48f-665d71b259d9, "ActiveUndead");
+ProcCharacterEnableCrime(S_RC_ARX_Barracks_ExecutionPrisoner_ccdfda3c-4d67-42a4-a48f-665d71b259d9, "Assault");
+ProcCharacterEnableCrime(S_RC_ARX_Barracks_ExecutionPrisoner_ccdfda3c-4d67-42a4-a48f-665d71b259d9, "TeleportPlayerDialog");
+
+IF
+TextEventSet("ExecutionOver")
+THEN
+proc_RC_ARX_Barracks_ExecutionSceneClose(0);
+
+IF
+TextEventSet("SendKemmToVault")
+THEN
+Proc_ARX_KemmVault_ArhusPrison_SetKemm();
+
+IF
+TextEventSet("StopOverRide")
+THEN
+CharacterSetAnimationOverride(RC_Humans_Female_Paladin_000_ccdfda3c-4d67-42a4-a48f-665d71b259d9, "");
+
+IF
+TextEventSet("ARX_Barracks_SentWarOwls_ActII")
+AND
+DB_IsPlayer(_Var1)
+THEN
+ObjectSetFlag(_Var1, "QuestUpdate_RC_DF_PaladinCheckpoint_Finished");
+
+IF
+TextEventSet("ARX_Barracks_AttackPrisoner")
+THEN
+CharacterAttack(S_RC_ARX_KammMansion_Kemm_3e6ead7d-dd35-4f9d-985e-af2de0d76d28, S_RC_ARX_Barracks_ExecutionPrisoner_ccdfda3c-4d67-42a4-a48f-665d71b259d9);
+
+IF
+TextEventSet("ARX_Prisoner_MoveTo_Me")
+THEN
+CharacterMoveTo(CHARACTERGUID_S_RC_ARX_Barracks_ExecutionPrisoner_ccdfda3c-4d67-42a4-a48f-665d71b259d9, CHARACTERGUID_S_Player_RedPrince_a26a1efb-cdc8-4cf3-a7b2-b2f9544add6f, 1, "", 0);
+
+IF
+TextEventSet("SetKemmGhostIsbeilFlags")
+AND
+DB_IsPlayer(_Var1)
+THEN
+ObjectSetFlag(_Var1, "QuestUpdate_RC_ARX_TheImperialDwarves_Sewers_Q_IsDead");
+UserSetFlag(_Var1, "ARX_Sewers_Q_Ghost_ConsumedIsbeilSource");
+GlobalSetFlag("RC_ARX_Sewers_Q_IsDead");
+
+
+EXITSECTION
+ENDEXITSECTION
+
+ParentTargetEdge "ARX"

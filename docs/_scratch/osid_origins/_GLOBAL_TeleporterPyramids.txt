@@ -1,0 +1,368 @@
+Version 1
+SubGoalCombiner SGC_AND
+
+INITSECTION
+
+KBSECTION
+IF
+DB_TeleporterPyramid(_Var1)
+THEN
+ItemSetForceSynch(_Var1, 1);
+
+IF
+ItemAddedToCharacter((ITEMGUID)_Var1, (CHARACTERGUID)_Var2)
+AND
+DB_TeleporterPyramid(_Var1)
+AND NOT
+DB_TeleporterPyramidUnlocked(_Var1)
+AND
+DB_IsPlayer(_Var2)
+THEN
+DB_TeleporterPyramidUnlocked(_Var1);
+
+IF
+CharacterUsedItem((CHARACTERGUID)_Var1, (ITEMGUID)_Var2)
+AND
+DB_TeleporterPyramid(_Var2)
+AND NOT
+DB_TeleporterPyramidUnlocked(_Var2)
+AND
+DB_IsPlayer(_Var1)
+THEN
+PROC_CheckPlayTut(_Var1, "TUT_PyramidsPickup");
+
+PROC
+Proc_PyramidGlobalBlockerOn()
+THEN
+DB_PyramidUsageBlocked(1);
+
+PROC
+Proc_PyramidGlobalBlockerOn()
+AND
+DB_TeleporterPyramid(_Var1)
+THEN
+DisablePyramid(_Var1);
+
+PROC
+Proc_PyramidGlobalBlockerOff()
+THEN
+NOT DB_PyramidUsageBlocked(1);
+
+PROC
+Proc_PyramidGlobalBlockerOff()
+AND
+DB_TeleporterPyramid(_Var1)
+THEN
+Proc_PyramidCheckEnabled(_Var1);
+
+PROC
+Proc_PyramidBlockerTriggerAdd((TRIGGERGUID)_Var1)
+THEN
+DB_PyramidBlockerTrigger(_Var1);
+TriggerRegisterForItems(_Var1);
+ProcTriggerRegisterForPlayers(_Var1);
+
+PROC
+Proc_PyramidBlockerTriggerRemove((TRIGGERGUID)_Var1)
+THEN
+NOT DB_PyramidBlockerTrigger(_Var1);
+TriggerUnregisterForItems(_Var1);
+ProcTriggerUnregisterForPlayers(_Var1);
+
+PROC
+Proc_PyramidCustomBlockAdd((ITEMGUID)_Var1, (STRING)_Var2)
+THEN
+DisablePyramid(_Var1);
+DB_PyramidCustomBlock(_Var1, _Var2);
+
+PROC
+Proc_PyramidCustomBlockRemove((ITEMGUID)_Var1, (STRING)_Var2)
+THEN
+NOT DB_PyramidCustomBlock(_Var1, _Var2);
+Proc_PyramidCheckEnabled(_Var1);
+
+IF
+CharacterEnteredTrigger((CHARACTERGUID)_Var1, (TRIGGERGUID)_Var2)
+AND
+DB_PyramidBlockerTrigger(_Var2)
+AND
+DB_TeleporterPyramid(_Var3)
+AND
+ItemIsInCharacterInventory(_Var3, _Var1, 1)
+THEN
+Proc_PyramidEnterBlockerTrigger(_Var3, _Var2);
+
+IF
+CharacterLeftTrigger((CHARACTERGUID)_Var1, (TRIGGERGUID)_Var2)
+AND
+DB_PyramidBlockerTrigger(_Var2)
+AND
+DB_TeleporterPyramid(_Var3)
+AND
+ItemIsInCharacterInventory(_Var3, _Var1, 1)
+AND
+DB_PyramidInBlockerTrigger(_Var3, _Var2)
+THEN
+Proc_PyramidLeaveBlockerTrigger(_Var3, _Var2);
+
+IF
+ItemEnteredTrigger((ITEMGUID)_Var1, (TRIGGERGUID)_Var2, _)
+AND
+DB_TeleporterPyramid(_Var1)
+AND
+DB_PyramidBlockerTrigger(_Var2)
+THEN
+Proc_PyramidEnterBlockerTrigger(_Var1, _Var2);
+
+IF
+ItemLeftTrigger((ITEMGUID)_Var1, (TRIGGERGUID)_Var2, _)
+AND
+DB_PyramidInBlockerTrigger(_Var1, _Var2)
+THEN
+Proc_PyramidLeaveBlockerTrigger(_Var1, _Var2);
+
+IF
+ItemEnteredTrigger((ITEMGUID)_Var1, (TRIGGERGUID)_Var2, _)
+AND
+DB_PyramidBlockerTrigger(_Var2)
+AND
+DB_TeleporterPyramid(_Var4)
+AND
+GetInventoryOwner(_Var4, _Var1)
+THEN
+Proc_PyramidEnterBlockerTrigger(_Var4, _Var2);
+
+IF
+ItemLeftTrigger((ITEMGUID)_Var1, (TRIGGERGUID)_Var2, _)
+AND
+DB_PyramidInBlockerTrigger(_Var4, _Var2)
+AND
+GetInventoryOwner(_Var4, _Var1)
+THEN
+Proc_PyramidLeaveBlockerTrigger(_Var4, _Var2);
+
+IF
+ItemAddedToContainer((ITEMGUID)_Var1, _)
+AND
+DB_TeleporterPyramid(_Var1)
+AND
+GetInventoryOwner(_Var1, _Var3)
+AND
+DB_PyramidInBlockerTrigger(_Var1, _Var4)
+AND
+ObjectIsInTrigger(_Var3, _Var4, 0)
+THEN
+Proc_PyramidLeaveBlockerTrigger(_Var1, _Var4);
+
+IF
+ItemAddedToContainer((ITEMGUID)_Var1, _)
+AND
+DB_TeleporterPyramid(_Var1)
+AND
+GetInventoryOwner(_Var1, _Var3)
+AND
+DB_PyramidBlockerTrigger(_Var4)
+AND
+ObjectIsInTrigger(_Var3, _Var4, 1)
+THEN
+Proc_PyramidEnterBlockerTrigger(_Var1, _Var4);
+
+IF
+ItemRemovedFromContainer((ITEMGUID)_Var1, (ITEMGUID)_Var2)
+AND
+DB_TeleporterPyramid(_Var1)
+AND
+DB_PyramidInBlockerTrigger(_Var1, _Var3)
+AND
+ObjectIsInTrigger(_Var2, _Var3, 1)
+THEN
+Proc_PyramidLeaveBlockerTrigger(_Var1, _Var3);
+
+IF
+ItemRemovedFromContainer((ITEMGUID)_Var1, (ITEMGUID)_Var2)
+AND
+DB_TeleporterPyramid(_Var1)
+AND
+DB_PyramidInBlockerTrigger(_Var1, _Var3)
+AND
+GetInventoryOwner(_Var2, _Var4)
+AND
+ObjectIsInTrigger(_Var4, _Var3, 1)
+THEN
+Proc_PyramidLeaveBlockerTrigger(_Var1, _Var3);
+
+IF
+ItemAddedToCharacter((ITEMGUID)_Var1, (CHARACTERGUID)_Var2)
+AND
+DB_TeleporterPyramid(_Var1)
+AND
+DB_PyramidBlockerTrigger(_Var3)
+AND
+ObjectIsInTrigger(_Var2, _Var3, 1)
+THEN
+Proc_PyramidEnterBlockerTrigger(_Var1, _Var3);
+
+IF
+ItemRemovedFromCharacter((ITEMGUID)_Var1, (CHARACTERGUID)_Var2)
+AND
+DB_TeleporterPyramid(_Var1)
+AND
+DB_PyramidBlockerTrigger(_Var3)
+AND
+ObjectIsInTrigger(_Var2, _Var3, 1)
+THEN
+Proc_PyramidLeaveBlockerTrigger(_Var1, _Var3);
+
+PROC
+Proc_PyramidEnterBlockerTrigger((ITEMGUID)_Var1, (TRIGGERGUID)_Var2)
+THEN
+DisablePyramid(_Var1);
+DB_PyramidInBlockerTrigger(_Var1, _Var2);
+
+PROC
+Proc_PyramidLeaveBlockerTrigger((ITEMGUID)_Var1, (TRIGGERGUID)_Var2)
+THEN
+NOT DB_PyramidInBlockerTrigger(_Var1, _Var2);
+Proc_PyramidCheckEnabled(_Var1);
+
+PROC
+Proc_PyramidCheckEnabled((ITEMGUID)_Var1)
+AND NOT
+DB_PyramidUsageBlocked(1)
+AND
+DB_TeleporterPyramid(_Var1)
+AND NOT
+DB_PyramidInBlockerTrigger(_Var1, _)
+AND NOT
+DB_PyramidCustomBlock(_Var1, _)
+THEN
+EnablePyramid(_Var1);
+
+IF
+RegionEnded((STRING)_Var1)
+AND
+DB_TeleporterPyramidUnlocked(_Var2)
+AND
+GetRegion(_Var2, _Var1)
+AND
+GetInventoryOwner(_Var2, _Var3)
+AND NOT
+DB_IsPlayer(_Var3)
+AND
+ItemGetOriginalOwner(_Var2, _Var4)
+THEN
+ItemToInventory(_Var2, _Var4, -1);
+
+IF
+RegionEnded((STRING)_Var1)
+AND
+DB_TeleporterPyramidUnlocked(_Var2)
+AND
+GetRegion(_Var2, _Var1)
+AND NOT
+GetInventoryOwner(_Var2, _)
+AND
+ItemGetOriginalOwner(_Var2, _Var4)
+THEN
+ItemToInventory(_Var2, _Var4, -1);
+
+IF
+CharacterWentOnStage((CHARACTERGUID)_Var1, 0)
+AND NOT
+DB_IsPlayer(_Var1)
+AND
+DB_TeleporterPyramid(_Var2)
+AND
+ItemIsInCharacterInventory(_Var2, _Var1, 1)
+AND
+GetPosition(_Var1, _Var3, _Var4, _Var5)
+THEN
+TeleportToPosition(_Var2, _Var3, _Var4, _Var5, "", 0);
+ItemClearOwner(_Var2);
+
+PROC
+Proc_CompanionLeftParty((CHARACTERGUID)_Var1, (CHARACTERGUID)_Var2)
+AND
+DB_TeleporterPyramid(_Var3)
+AND
+ItemIsInCharacterInventory(_Var3, _Var1, 1)
+THEN
+ItemToInventory(_Var3, _Var2, -1);
+
+IF
+CharacterTeleportToPyramid((CHARACTERGUID)_Var1, (ITEMGUID)_Var2)
+AND
+PyramidEnabled(_Var2)
+AND
+GetPosition(_Var2, _Var3, _Var4, _Var5)
+THEN
+TeleportToPosition(_Var1, _Var3, _Var4, _Var5, "", 1, 1);
+
+IF
+CharacterTeleportToPyramid((CHARACTERGUID)_Var1, (ITEMGUID)_Var2)
+AND NOT
+PyramidEnabled(_Var2)
+THEN
+Proc_StartDialog(1, "GEN_AD_TeleporterPyramidDisabled", _Var1);
+
+PROC
+ProcBlockUseOfItem((CHARACTERGUID)_Var1, (ITEMGUID)_Var2)
+AND
+DB_TeleporterPyramid(_Var2)
+AND
+DB_IsPlayer(_Var1)
+AND NOT
+PyramidEnabled(_Var2)
+THEN
+CloseUI(_Var1, "Inventory");
+ObjectSetFlag(_Var1, "SourcePyramidBlocked");
+Proc_StartDialog(1, "GEN_AD_TeleporterPyramidDisabled", _Var1);
+DB_CustomUseItemResponse(_Var1, _Var2, 0);
+
+PROC
+ProcBlockUseOfItem((CHARACTERGUID)_Var1, (ITEMGUID)_Var2)
+AND
+DB_TeleporterPyramid(_Var2)
+AND
+DB_IsPlayer(_Var1)
+AND
+DB_PyramidBlockerTrigger(_Var3)
+AND
+ObjectIsInTrigger(_Var1, _Var3, 1)
+THEN
+CloseUI(_Var1, "Inventory");
+ObjectSetFlag(_Var1, "SourcePyramidBlocked");
+Proc_StartDialog(1, "GEN_AD_TeleporterPyramidDisabled", _Var1);
+DB_CustomUseItemResponse(_Var1, _Var2, 0);
+
+IF
+ItemAddedToCharacter((ITEMGUID)_Var1, (CHARACTERGUID)_Var2)
+AND
+DB_TeleporterPyramid(_Var1)
+AND
+DB_IsPlayer(_Var2)
+THEN
+PROC_CheckPlayTutWithDelay(_Var2, "TUT_Pyramid", 2000);
+
+PROC
+DisablePyramid((ITEMGUID)_Var1)
+THEN
+SetTag(_Var1, "PYRAMID_DISABLED");
+
+PROC
+EnablePyramid((ITEMGUID)_Var1)
+THEN
+ClearTag(_Var1, "PYRAMID_DISABLED");
+
+QRY
+PyramidEnabled((ITEMGUID)_Var1)
+AND
+IsTagged(_Var1, "PYRAMID_DISABLED", 0)
+THEN
+DB_NOOP(1);
+
+
+EXITSECTION
+ENDEXITSECTION
+
+ParentTargetEdge "__Start"

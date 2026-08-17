@@ -1,0 +1,99 @@
+Version 1
+SubGoalCombiner SGC_AND
+
+INITSECTION
+DB_KillCounter_Internal(CHARACTERGUID_S_ARX_Sewers_CombatRoom_Spider_01_be2ee8d1-1e2c-4d49-9006-b13511d88efb, "ARX_Sewers_CombatRoom");
+DB_KillCounter_Internal(CHARACTERGUID_S_ARX_Sewers_CombatRoom_Spider_02_6aa78db3-f828-44ef-af25-702302a84506, "ARX_Sewers_CombatRoom");
+DB_KillCounter_Internal(CHARACTERGUID_S_ARX_Sewers_CombatRoom_Spider_03_1dba6ede-5303-4a87-9e35-31a0e7da2fa1, "ARX_Sewers_CombatRoom");
+DB_KillCounter_Internal(CHARACTERGUID_S_ARX_Sewers_CombatRoom_Spider_04_fda1a4b2-3477-4704-bafd-039698b80937, "ARX_Sewers_CombatRoom");
+DB_KillCounter("ARX_Sewers_CombatRoom", 4);
+ProcTriggerRegisterForPlayers(TRIGGERGUID_S_ARX_Sewers_CombatRoom_AmbushTrig_b9c66ac4-2812-4b8c-9705-832f31a99c92);
+DB_Sewers_CombatRoom_Cocoons(ITEMGUID_S_ARX_Sewers_CombatRoom_Cocoon_01_3120080b-fa63-4edc-ab73-8db4618f0afc);
+DB_Sewers_CombatRoom_Cocoons(ITEMGUID_S_ARX_Sewers_CombatRoom_Cocoon_02_851b0aee-4845-46f6-9d30-750bc2f42029);
+DB_Sewers_CombatRoom_Cocoons(ITEMGUID_S_ARX_Sewers_CombatRoom_Cocoon_03_7fc3ee6f-cd87-40f1-8199-2f8e281c3bd9);
+DB_Sewers_CombatRoom_Cocoons(ITEMGUID_S_ARX_Sewers_CombatRoom_Cocoon_04_12944f7c-05c6-4237-aae1-06978acf59dd);
+DB_Sewers_CombatRoom_Cocoons(ITEMGUID_S_ARX_Sewers_CombatRoom_Cocoon_05_8b7c02ee-4c8a-464e-a165-0220851e52e8);
+DB_Sewers_CombatRoom_Cocoons(ITEMGUID_S_ARX_Sewers_CombatRoom_Cocoon_06_20d6eaef-1e8d-49d8-8d1b-8b0f1ea11136);
+
+KBSECTION
+IF
+DB_KillCounter_Internal(_Var1, "ARX_Sewers_CombatRoom")
+THEN
+SetOnStage(_Var1, 0);
+
+IF
+ItemClosed((ITEMGUID)_Var1)
+AND
+IsTagged(_Var1, "SEWERS_SPIDERROOM", 1)
+AND
+QueryOnlyOnce("ARX_Sewers_CombatRoom_Appear")
+AND
+DB_KillCounter_Internal(_Var2, "ARX_Sewers_CombatRoom")
+THEN
+CharacterSetAnimationSetOverride(_Var2, "Spawn_02");
+CharacterAppear(_Var2, 1, "");
+proc_ARX_Sewers_CombatRoom_Appear_Autosave();
+
+PROC
+proc_ARX_Sewers_CombatRoom_Appear_Autosave()
+AND
+QueryOnlyOnce("ARX_Sewers_CombatRoom_Appear_Autosave")
+THEN
+AutoSave();
+
+IF
+ObjectEnteredCombat((CHARACTERGUID)_Var1, _)
+AND
+DB_KillCounter_Internal(_Var1, "ARX_Sewers_CombatRoom")
+AND
+CombatGetIDForCharacter(_Var1, _Var3)
+AND
+DB_IsPlayer(_Var4)
+AND
+CombatGetIDForCharacter(_Var4, _Var3)
+AND
+QueryOnlyOnce("ARX_Sewers_VB_CombatRoom")
+THEN
+StartVoiceBark("ARX_Sewers_VB_CombatRoom", _Var4);
+
+IF
+ObjectEnteredCombat((CHARACTERGUID)_Var1, _)
+AND
+DB_KillCounter_Internal(_Var1, "ARX_Sewers_CombatRoom")
+AND
+CombatGetIDForCharacter(_Var1, _Var3)
+AND
+DB_IsPlayer(_Var4)
+AND
+CombatGetIDForCharacter(_Var4, _Var3)
+AND
+QueryOnlyOnce("ARX_Sewers_VB_CombatRoom")
+THEN
+StartVoiceBark("ARX_Sewers_VB_CombatRoom", _Var4);
+
+IF
+CharacterStatusApplied((CHARACTERGUID)_Var1, "INFESTED", _)
+THEN
+SetTag(_Var1, "INFESTED");
+
+IF
+CharacterStatusRemoved((CHARACTERGUID)_Var1, "INFESTED", (GUIDSTRING)_Var2)
+THEN
+ClearTag(_Var1, "INFESTED");
+
+IF
+CharacterStatusRemoved((CHARACTERGUID)_Var1, "INFESTED", (GUIDSTRING)_Var2)
+AND
+_Var2 == NULL_00000000-0000-0000-0000-000000000000
+AND
+GetPosition(_Var1, _Var3, _Var4, _Var5)
+AND
+CharacterCreateAtPosition(_Var3, _Var4, _Var5, "ARX_Sewers_SpiderSpawn_f9919c26-f527-46d4-9b61-05a425ca2c70", 1, _)
+THEN
+DB_NOOP(1);
+
+
+EXITSECTION
+ENDEXITSECTION
+
+ParentTargetEdge "ARX"

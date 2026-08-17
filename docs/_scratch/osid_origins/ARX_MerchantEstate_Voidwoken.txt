@@ -1,0 +1,225 @@
+Version 1
+SubGoalCombiner SGC_AND
+
+INITSECTION
+ProcTriggerRegisterForPlayers(TRIGGERGUID_S_ARX_MerchantEstate_GardenVoidwoken_98cbb5ff-a174-4969-a79d-bee4ca6b7a5e);
+DB_OneShotPlayerTrigger(TRIGGERGUID_S_ARX_MerchantEstate_Garden_VBTrigger_60fe751c-9ef7-407b-89db-81b12da736b9);
+DB_Ghosts(CHARACTERGUID_S_ARX_MerchantEstate_GardenCorpse_02_3881b1ae-adcc-4bce-b0df-50e3816b2e9d, CHARACTERGUID_S_ARX_MerchantEstate_GardenGhost_01_b38f8235-fe07-4e79-acf8-a022c167fea4, "ARX_MerchantEstate_GardenGhost_01");
+DB_Ghosts(CHARACTERGUID_S_ARX_MerchantEstate_GardenCorpse_04_f1cbfe75-673a-40f0-9fd3-a833a6dd7ec8, CHARACTERGUID_S_ARX_MerchantEstate_GardenGhost_02_ced96f24-a5a6-48d2-b4e6-31e343195698, "ARX_MerchantEstate_GardenGhost_02");
+DB_Ghosts(CHARACTERGUID_S_ARX_MerchantEstate_GardenCorpse_08_c4e7ce95-d1c1-4c49-a588-74ec758a15ba, CHARACTERGUID_S_ARX_MerchantEstate_GardenGhost_03_61649f4e-11f9-483b-88c8-434c99e35263, "ARX_MerchantEstate_GardenGhost_03");
+DB_Ghosts(CHARACTERGUID_S_ARX_MerchantEstate_GardenCorpse_03_6ca2a036-4688-4386-8f76-e55a10f456dc, CHARACTERGUID_S_ARX_MerchantEstate_GardenGhost_04_ee5d6528-0d3e-4cef-80bb-4b9ef4782d81, "ARX_MerchantEstate_GardenGhost_04");
+DB_Ghosts(CHARACTERGUID_S_ARX_MerchantEstate_GardenCorpse_07_01826431-a59f-4e66-af49-78b926c41ab0, CHARACTERGUID_S_ARX_MerchantEstate_GardenGhost_05_4e0fc73f-e5c1-4157-9cf7-78c58a9e2723, "ARX_MerchantEstate_GardenGhost_05");
+DB_Ghosts(CHARACTERGUID_S_ARX_MerchantEstate_GardenCorpse_01_13b27da5-8061-42dc-bf42-81ad1d577b94, CHARACTERGUID_S_ARX_MerchantEstate_GardenGhost_06_69c29824-ca18-4b92-98e4-839e680ea8e6, "ARX_MerchantEstate_GardenGhost_06");
+DB_Ghosts(CHARACTERGUID_S_ARX_MerchantEstate_GardenCorpse_06_5d16f776-66cc-4464-bf77-9b3b8d5ed5a8, CHARACTERGUID_S_ARX_MerchantEstate_GardenGhost_07_d4cb1273-6ba9-4113-9d35-2d2d3e12d60a, "ARX_MerchantEstate_GardenGhost_07");
+DB_Ghosts(CHARACTERGUID_S_ARX_MerchantEstate_GardenCorpse_05_935bb8cc-e262-4340-87c3-e0823415afb2, CHARACTERGUID_S_ARX_MerchantEstate_GardenGhost_08_6010ffd2-5244-4ec0-b30f-db1230be6c49, "ARX_MerchantEstate_GardenGhost_08");
+DB_Ghosts(CHARACTERGUID_S_ARX_MerchantEstate_GardenCorpse_Shady_1daddc55-1013-484c-ba36-40a43526bef3, CHARACTERGUID_S_ARX_MerchantEstate_GardenGhost_Shady_e163888e-1533-40c4-846b-5f521f0ccf32, "ARX_MerchantEstate_GardenGhost_Shady");
+ItemToInventory(ITEMGUID_S_ARX_MerchantEstate_GardenCorpse_Shady_Note_0117847e-f1bc-45d0-86ea-ae059a0a5d02, CHARACTERGUID_S_ARX_MerchantEstate_GardenCorpse_Shady_1daddc55-1013-484c-ba36-40a43526bef3);
+ItemToInventory(ITEMGUID_S_ARX_Sewers_StoneKey_01_9aae3443-e181-4f70-a8d4-af0379fd9d17, CHARACTERGUID_S_ARX_MerchantEstate_GardenCorpse_Shady_1daddc55-1013-484c-ba36-40a43526bef3);
+DB_MerchantEstate_Voidwoken(1, TRIGGERGUID_S_ARX_MerchantEstate_Garden_Voidwoken_01_Point_9b1d7c38-635a-4921-ad52-d35f6a01288d, 500);
+DB_MerchantEstate_Voidwoken(2, TRIGGERGUID_S_ARX_MerchantEstate_Garden_Voidwoken_02_Point_8a06236d-1649-4a54-be60-8c13c2d95c3b, 400);
+DB_MerchantEstate_Voidwoken(3, TRIGGERGUID_S_ARX_MerchantEstate_Garden_Voidwoken_03_Point_5b3b1bcf-b111-4f85-972f-81d0bb971f12, 300);
+DB_MerchantEstate_Voidwoken(4, TRIGGERGUID_S_ARX_MerchantEstate_Garden_Voidwoken_04_Point_e04fa369-1661-4679-8ffe-fcc81aa87f5b, 200);
+DB_MerchantEstate_Voidwoken(5, TRIGGERGUID_S_ARX_MerchantEstate_Garden_Voidwoken_05_Point_80cfe5fb-c011-4f44-9015-0913e054c6c2, 100);
+DB_MerchantEstate_Voidwoken(6, TRIGGERGUID_S_ARX_MerchantEstate_Garden_Voidwoken_06_Point_f43810e2-dde3-43f5-9c30-37a28aa37ad6, 0);
+DB_KillCounter("ARX_MerchantEstate_GardenAmbush", 6);
+SetOnStage(ITEMGUID_S_ARX_MerchantEstate_Garden_DoctorsNotes_04efd147-f687-428e-b180-dd325d4833fd, 0);
+DB_ARX_KnowsAboutIsbeilFlags("ARX_KnowsAboutIsbeil");
+DB_ARX_KnowsAboutIsbeilFlags("CoS_Temples_ReadMissiveFromQ");
+DB_ARX_KnowsAboutIsbeilFlags("QuestUpdate_CORE_Covenant_Isbeil");
+
+KBSECTION
+IF
+AttackedByObject(ITEMGUID_S_ARX_MerchantEstate_Garden_VoidwokenObject_Cake_b27ecb29-a133-4ef6-9123-c51c5ec9dd74, (CHARACTERGUID)_Var1, (GUIDSTRING)_Var2, _, _)
+AND
+ITEMGUID_S_ARX_MerchantEstate_Garden_VoidwokenObject_Cake_b27ecb29-a133-4ef6-9123-c51c5ec9dd74 != _Var2
+AND
+GlobalGetFlag("ARX_MerchantEstate_GardenAmbush_Initiated", 0)
+THEN
+DB_MerchantEstate_VoidwokenAmbush_VB(_Var1);
+Proc_MerchantEstate_VoidwokenAmbush_Initiate(_Var1);
+
+IF
+CharacterUsedItem((CHARACTERGUID)_Var1, ITEMGUID_S_ARX_MerchantEstate_Garden_VoidwokenObject_Cake_b27ecb29-a133-4ef6-9123-c51c5ec9dd74)
+AND
+GlobalGetFlag("ARX_MerchantEstate_GardenAmbush_Initiated", 0)
+THEN
+DB_MerchantEstate_VoidwokenAmbush_VB(_Var1);
+Proc_MerchantEstate_VoidwokenAmbush_Initiate(_Var1);
+
+PROC
+Proc_MerchantEstate_VoidwokenAmbush_Initiate(_)
+THEN
+SetOnStage(ITEMGUID_S_ARX_MerchantEstate_Garden_DoctorsNotes_04efd147-f687-428e-b180-dd325d4833fd, 1);
+ItemDestroy(ITEMGUID_S_ARX_MerchantEstate_Garden_VoidwokenObject_Cake_b27ecb29-a133-4ef6-9123-c51c5ec9dd74);
+
+PROC
+Proc_MerchantEstate_VoidwokenAmbush_Initiate((CHARACTERGUID)_Var1)
+THEN
+GlobalSetFlag("ARX_MerchantEstate_GardenAmbush_Initiated");
+PartySetFlag(_Var1, "QuestUpdate_RC_ARX_TheImperialDwarves_DwarvenWedding_Cake");
+
+PROC
+Proc_MerchantEstate_VoidwokenAmbush_Initiate(_)
+THEN
+DB_ARX_MerchantEstate_VoidwokenAmbush_Count(0);
+Proc_MerchantEstate_VoidwokenAmbush();
+
+IF
+TimerFinished("ARX_MerchantEstate_VoidwokenAmbush_Timer")
+THEN
+Proc_MerchantEstate_VoidwokenAmbush();
+
+PROC
+Proc_MerchantEstate_VoidwokenAmbush()
+AND
+DB_ARX_MerchantEstate_VoidwokenAmbush_Count(_Var1)
+AND
+IntegerSum(_Var1, 1, _Var2)
+THEN
+NOT DB_ARX_MerchantEstate_VoidwokenAmbush_Count(_Var1);
+DB_ARX_MerchantEstate_VoidwokenAmbush_Count(_Var2);
+
+PROC
+Proc_MerchantEstate_VoidwokenAmbush()
+AND
+DB_ARX_MerchantEstate_VoidwokenAmbush_Count(_Var1)
+AND
+DB_MerchantEstate_Voidwoken(_Var1, _Var2, _Var3)
+THEN
+SetVarObject(ITEMGUID_S_ARX_MerchantEstate_Garden_InvisHelper_9605d41b-9385-42f5-a5c9-71ddc83e3b08, "TargetTrig", _Var2);
+SetStoryEvent(ITEMGUID_S_ARX_MerchantEstate_Garden_InvisHelper_9605d41b-9385-42f5-a5c9-71ddc83e3b08, "ARX_EnemyLaunchBomber_TheDoctor");
+
+PROC
+Proc_MerchantEstate_VoidwokenAmbush()
+AND
+DB_ARX_MerchantEstate_VoidwokenAmbush_Count(6)
+AND
+DB_MerchantEstate_VoidwokenAmbush_VB(_Var1)
+THEN
+NOT DB_MerchantEstate_VoidwokenAmbush_VB(_Var1);
+StartVoiceBark("ARX_MerchantEstate_VB_VoidwokenAmbush", _Var1);
+
+PROC
+Proc_MerchantEstate_VoidwokenAmbush()
+AND
+DB_ARX_MerchantEstate_VoidwokenAmbush_Count(_Var1)
+AND
+DB_MerchantEstate_Voidwoken(_Var1, _, _Var3)
+AND
+_Var3 > 0
+THEN
+TimerLaunch("ARX_MerchantEstate_VoidwokenAmbush_Timer", _Var3);
+
+IF
+StoryEvent((CHARACTERGUID)_Var1, "ARX_WindUpToy_TheDoctor_Spawned")
+AND NOT
+DB_KillCounter_Internal(_Var1, "ARX_MerchantEstate_GardenAmbush")
+THEN
+DB_KillCounter_Internal(_Var1, "ARX_MerchantEstate_GardenAmbush");
+
+IF
+ObjectEnteredCombat((CHARACTERGUID)_Var1, (INTEGER)_Var2)
+AND
+DB_KillCounter_Internal(_Var1, "ARX_MerchantEstate_GardenAmbush")
+AND
+DB_IsPlayer(_Var3)
+AND NOT
+DB_ARX_MerchantEstate_GardenAmbush(_Var3)
+AND
+CombatGetIDForCharacter(_Var3, _Var2)
+THEN
+DB_ARX_MerchantEstate_GardenAmbush(_Var3);
+
+IF
+GlobalFlagSet("ARX_MerchantEstate_GardenAmbush_Initiated")
+THEN
+ItemCloseAndLock(ITEMGUID_S_ARX_MerchantEstate_BackGate_a936c700-839e-4a62-afdc-622d4db360f1, "ARX_MerchantEstate_TrespassKey");
+ItemCloseAndLock(ITEMGUID_S_ARX_MerchantEstate_GardenDoor_d6915d51-1446-8442-3691-32abecfee01d, "ARX_MerchantEstate_TrespassKey");
+
+PROC
+ReactOnKillCounter("ARX_MerchantEstate_GardenAmbush")
+THEN
+Proc_ARX_MerchantEstate_GardenAmbush_Done();
+GlobalSetFlag("ARX_MerchantEstate_GardenAmbush_Resolved");
+
+PROC
+Proc_ARX_MerchantEstate_GardenAmbush_Done()
+AND
+DB_ARX_MerchantEstate_GardenAmbush(_Var1)
+THEN
+UserSetFlag(_Var1, "ARX_MerchantEstate_Garden_DefeatedVoidwoken");
+NOT DB_ARX_MerchantEstate_GardenAmbush(_Var1);
+
+PROC
+Proc_ARX_MerchantEstate_GardenAmbush_Done()
+THEN
+ItemUnlockAndOpen(ITEMGUID_S_ARX_MerchantEstate_GardenDoor_d6915d51-1446-8442-3691-32abecfee01d);
+
+PROC
+Proc_ARX_MerchantEstate_GardenAmbush_Done()
+AND
+QRY_SpeakerIsAvailable(CHARACTERGUID_S_ARX_MerchantEstate_Guard_GardenDoor_01_cfeed2b8-dde4-4337-b0dc-f07c9641a7c7)
+THEN
+CharacterMoveTo(CHARACTERGUID_S_ARX_MerchantEstate_Guard_GardenDoor_01_cfeed2b8-dde4-4337-b0dc-f07c9641a7c7, TRIGGERGUID_S_ARX_MerchantEstate_Guard_GardenDoor_01_AfterCombat_3d9d4bf9-bcc6-4c39-a185-0e330e6e2db1, 1, "ARX_MerchantEstate_Guard_GardenDoor_01_AfterCombat", 0);
+
+IF
+StoryEvent(CHARACTERGUID_S_ARX_MerchantEstate_Guard_GardenDoor_01_cfeed2b8-dde4-4337-b0dc-f07c9641a7c7, "ARX_MerchantEstate_Guard_GardenDoor_01_AfterCombat")
+THEN
+Proc_ARX_MerchantEstate_Guard_GardenDoor_01_AfterCombat();
+
+PROC
+Proc_ARX_MerchantEstate_Guard_GardenDoor_01_AfterCombat()
+THEN
+GlobalSetFlag("ARX_MerchantEstate_Guard_GardenDoor_01_StartSpotter");
+SetVarObject(CHARACTERGUID_S_ARX_MerchantEstate_Guard_GardenDoor_01_cfeed2b8-dde4-4337-b0dc-f07c9641a7c7, "SplineGUID", SPLINEGUID_S_ARX_MerchantEstate_Guard_GardenDoor_01_PostVoidwoken_956b36a1-d60a-41c4-849a-180d17ed1af4);
+
+IF
+StoryEvent((CHARACTERGUID)_Var1, "ARX_MerchantEstate_Guard_GardenDoor_01_SpottedChar")
+THEN
+GlobalSetFlag("ARX_MerchantEstate_Guard_GardenDoor_01_VoidwokenDialog");
+Proc_StartDialog(0, "ARX_MerchantEstate_Guard_GardenDoor_01", CHARACTERGUID_S_ARX_MerchantEstate_Guard_GardenDoor_01_cfeed2b8-dde4-4337-b0dc-f07c9641a7c7, _Var1);
+GlobalSetFlag("ARX_MerchantEstate_Guard_GardenDoor_01_StopSpotter");
+
+PROC
+ProcOneShotTriggerEntered((CHARACTERGUID)_Var1, TRIGGERGUID_S_ARX_MerchantEstate_Garden_VBTrigger_60fe751c-9ef7-407b-89db-81b12da736b9)
+THEN
+StartVoiceBark("ARX_MerchantEstate_VB_GardenOnSight", _Var1);
+
+IF
+CharacterUsedItem((CHARACTERGUID)_Var1, ITEMGUID_S_ARX_MerchantEstate_GardenCorpse_Shady_Note_0117847e-f1bc-45d0-86ea-ae059a0a5d02)
+THEN
+UserSetFlag(_Var1, "ARX_MerchantEstate_ReadShadyNote");
+
+IF
+GameBookInterfaceClosed(ITEMGUID_S_ARX_MerchantEstate_Garden_DoctorsNotes_04efd147-f687-428e-b180-dd325d4833fd, (CHARACTERGUID)_Var1)
+THEN
+UserSetFlag(_Var1, "ARX_MerchantEstate_DoctorsNotes_ReadNotes");
+ObjectSetFlag(_Var1, "QuestUpdate_ARX_TheDoctor_MerchantEstate_TheCakeNote");
+
+IF
+GameBookInterfaceClosed(ITEMGUID_S_ARX_MerchantEstate_Garden_DoctorsNotes_04efd147-f687-428e-b180-dd325d4833fd, (CHARACTERGUID)_Var1)
+AND
+DB_ARX_KnowsAboutIsbeilFlags(_Var2)
+AND
+UserGetFlag(_Var1, _Var2, 1)
+AND
+UserGetFlag(_Var1, "QuestUpdate_RC_ARX_TheImperialDwarves_DwarvenWedding_Letter", 0)
+THEN
+ObjectSetFlag(_Var1, "QuestUpdate_RC_ARX_TheImperialDwarves_DwarvenWedding_Letter");
+
+IF
+ObjectFlagSet("ARX_MerchantEstate_Guard_GardenDoor_01_HouseMarker", (CHARACTERGUID)_Var1, _)
+THEN
+ProcShowMarker(_Var1, "ARX_TheBlackHouse");
+ObjectSetFlag(_Var1, "QuestUpdate_ARX_TheDoctor_Knows_NoDoor");
+
+IF
+CharacterEnteredTrigger((CHARACTERGUID)_Var1, TRIGGERGUID_S_ARX_MerchantEstate_Garden_013a6e6d-b673-43ce-971d-605899d78691)
+THEN
+UserSetFlag(_Var1, "ARX_MerchantEstate_Entered_Garden");
+
+
+EXITSECTION
+ENDEXITSECTION
+
+ParentTargetEdge "ARX"

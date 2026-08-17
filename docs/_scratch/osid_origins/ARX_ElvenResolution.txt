@@ -1,0 +1,113 @@
+Version 1
+SubGoalCombiner SGC_AND
+
+INITSECTION
+DB_Dialogs(CHARACTERGUID_S_ARX_CathedralDistrict_Elf_01_9e059b2f-9d7d-4034-9a6b-0fbfc7ced2ef, "ARX_CathedralDistrict_Elf_01");
+DB_Dialogs(CHARACTERGUID_S_ARX_CathedralDistrict_Elf_02_e91910b2-0217-4487-bb65-bd08c7cba1b6, "ARX_CathedralDistrict_Elf_02");
+DB_Dialogs(CHARACTERGUID_S_ARX_CathedralDistrict_Elf_03_01902593-c795-411e-b03a-b83516a051ae, "ARX_CathedralDistrict_Elf_03");
+DB_Dialogs(CHARACTERGUID_S_ARX_CathedralDistrict_Elf_04_cc64de27-6fb5-4dba-9f4a-492a553e6e09, "ARX_CathedralDistrict_Elf_04");
+DB_ARX_CathedralDistrict_Elf_HasMets("ARX_CathedralDistrict_Elf_01_HasMet");
+DB_ARX_CathedralDistrict_Elf_HasMets("ARX_CathedralDistrict_Elf_02_HasMet");
+DB_ARX_CathedralDistrict_Elf_HasMets("ARX_CathedralDistrict_Elf_03_HasMet");
+DB_ARX_CathedralDistrict_Elf_HasMets("ARX_CathedralDistrict_Elf_04_HasMet");
+DB_ARX_CathedralDistrict_Elf_HasMets("Arx_Saheila_HasMet");
+Proc_ARX_ElvenResolution_SetUpSaheila();
+
+KBSECTION
+PROC
+Proc_ARX_ElvenResolution_SetUpSaheila()
+AND
+CharacterIsDead(CHARACTERGUID_S_GLO_Saheila_fcacdf08-b05f-4333-b0e0-ddf29c13d8e0, 1)
+THEN
+GlobalSetFlag("Arx_SaheilaIsDryad");
+
+PROC
+Proc_ARX_ElvenResolution_SetUpSaheila()
+THEN
+SetOnStage(CHARACTERGUID_S_GLO_Saheila_fcacdf08-b05f-4333-b0e0-ddf29c13d8e0, 1);
+CharacterResurrect(CHARACTERGUID_S_GLO_Saheila_fcacdf08-b05f-4333-b0e0-ddf29c13d8e0);
+NOT DB_Dead(CHARACTERGUID_S_GLO_Saheila_fcacdf08-b05f-4333-b0e0-ddf29c13d8e0);
+TeleportTo(CHARACTERGUID_S_GLO_Saheila_fcacdf08-b05f-4333-b0e0-ddf29c13d8e0, TRIGGERGUID_S_ARX_CathedralDistrict_SaheilaPoint_33e4c226-1f4c-47a5-8662-4d3843f2fbb5);
+Transform(CHARACTERGUID_S_GLO_Saheila_fcacdf08-b05f-4333-b0e0-ddf29c13d8e0, "GLO_Saheila_PostFTJ_10b71425-00b2-4668-b1df-227d254c7ae2", 0, 0);
+ProcRemoveAllDialogEntriesForSpeaker(CHARACTERGUID_S_GLO_Saheila_fcacdf08-b05f-4333-b0e0-ddf29c13d8e0);
+DB_Dialogs(CHARACTERGUID_S_GLO_Saheila_fcacdf08-b05f-4333-b0e0-ddf29c13d8e0, "ARX_CathedralDistrict_Saheila");
+SetVarFixedString(CHARACTERGUID_S_GLO_Saheila_fcacdf08-b05f-4333-b0e0-ddf29c13d8e0, "currentState", "State_ARX_ElvenResolution");
+CharacterLevelUpTo(CHARACTERGUID_S_GLO_Saheila_fcacdf08-b05f-4333-b0e0-ddf29c13d8e0, 19);
+GlobalSetFlag("ARX_ElvenResolution_SaheilaInArx");
+RemoveStatus(CHARACTERGUID_S_GLO_Saheila_fcacdf08-b05f-4333-b0e0-ddf29c13d8e0, "QUEST_TIEDUP");
+ClearTag(CHARACTERGUID_S_GLO_Saheila_fcacdf08-b05f-4333-b0e0-ddf29c13d8e0, "AI_IGNORED_TARGET");
+CharacterSetAnimationOverride(CHARACTERGUID_S_GLO_Saheila_fcacdf08-b05f-4333-b0e0-ddf29c13d8e0, "");
+
+PROC
+Proc_ARX_ElvenResolution_SetUpSaheila()
+AND
+GlobalGetFlag("CoS_EnteredTheHeartOfTheMotherTree", 0)
+THEN
+ObjectSetFlag(CHARACTERGUID_S_Player_Sebille_c8d55eaf-e4eb-466a-8f0d-6a9447b5b24c, "ARX_Sebille_DisappointedElves");
+
+PROC
+Proc_ARX_ElvenResolution_SetUpSaheila()
+AND
+GlobalGetFlag("CoS_EnteredTheHeartOfTheMotherTree", 1)
+AND
+GlobalGetFlag("GLO_SebilleRooted", 0)
+AND
+GlobalGetFlag("CoS_HeartOfTheMotherTree_KilledByScion", 0)
+AND
+GlobalGetFlag("CoS_MotherTree_BombDetonated", 0)
+THEN
+ObjectSetFlag(CHARACTERGUID_S_Player_Sebille_c8d55eaf-e4eb-466a-8f0d-6a9447b5b24c, "ARX_Sebille_DisappointedElves");
+
+QRY
+Qry_ARX_Check_SaheilaIsDryad()
+AND
+DB_GlobalFlag("CoS_Temples_SaheilaIsDryad")
+THEN
+DB_Noop(1);
+
+QRY
+Qry_ARX_Check_SaheilaIsDryad()
+AND
+DB_GlobalFlag("Arx_SaheilaIsDryad")
+THEN
+DB_Noop(1);
+
+PROC
+Proc_ARX_ElvenResolution_SetUpSaheila()
+AND
+Qry_ARX_Check_SaheilaIsDryad()
+THEN
+PROC_LoopEffect("RS3_FX_GP_Status_BarkSkin_01", CHARACTERGUID_S_GLO_Saheila_fcacdf08-b05f-4333-b0e0-ddf29c13d8e0, "CoS_SaheilaBarkSkin", "ARX_Main", "");
+
+IF
+ObjectFlagSet("ARX_ElvenResolution_GiveReward_RootedSurvived", (GUIDSTRING)_Var1, _)
+THEN
+ItemTemplateAddTo("ARM_UNIQUE_ARX_Amulet_RootedSebille_8e923f74-7217-4031-a5f3-5385e8605da6", _Var1, 1);
+
+IF
+DialogStarted("ARX_CathedralDistrict_Saheila", _)
+AND
+QueryOnlyOnce("S_ARX_CathedralDistrict_Elf_03_ChangeSeat")
+THEN
+SetVarObject(CHARACTERGUID_S_ARX_CathedralDistrict_Elf_03_01902593-c795-411e-b03a-b83516a051ae, "Seat", ITEMGUID_S_ARX_CathedralDistrict_Elf_Seat_03_B_297361a6-023a-4143-89ae-f3d6d62066d0);
+RemoveStatus(CHARACTERGUID_S_ARX_CathedralDistrict_Elf_03_01902593-c795-411e-b03a-b83516a051ae, "SITTING");
+
+IF
+ObjectFlagSet((STRING)_Var1, (CHARACTERGUID)_Var2, _)
+AND
+DB_ARX_CathedralDistrict_Elf_HasMets(_Var1)
+THEN
+UserSetFlag(_Var2, "ARX_CathedralDistrict_HasMetElves");
+
+PROC
+Proc_ARX_ElvenResolution_SetUpSaheila()
+AND
+ObjectGetFlag(CHARACTERGUID_S_Player_Sebille_c8d55eaf-e4eb-466a-8f0d-6a9447b5b24c, "ARX_Sebille_DisappointedElves", 0)
+THEN
+CharacterAddAttitudeTowardsPlayer(CHARACTERGUID_S_ARX_CathedralDistrict_Elf_04_cc64de27-6fb5-4dba-9f4a-492a553e6e09, CHARACTERGUID_S_Player_Sebille_c8d55eaf-e4eb-466a-8f0d-6a9447b5b24c, 100);
+
+
+EXITSECTION
+ENDEXITSECTION
+
+ParentTargetEdge "ARX"

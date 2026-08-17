@@ -1,0 +1,78 @@
+Version 1
+SubGoalCombiner SGC_AND
+
+INITSECTION
+
+KBSECTION
+IF
+DB_Tutorial_PlayerMovementDetectionTrigger(_Var1)
+THEN
+TriggerRegisterForPlayers(_Var1);
+
+IF
+CharacterEnteredTrigger((CHARACTERGUID)_Var1, (TRIGGERGUID)_Var2)
+AND
+DB_Tutorial_PlayerMovementDetectionTrigger(_Var2)
+THEN
+PROC_GLOBAL_TutorialMessages_PlayerMoved(_Var1);
+
+PROC
+PROC_CheckPlayTut((CHARACTERGUID)_Var1, "TUT_Movement")
+THEN
+DB_GlobalTutorialMessages_TUT_Movement_Shown(1);
+PROC_GLOBAL_TutorialMessages_PlayerMoved(_Var1);
+
+PROC
+PROC_GLOBAL_TutorialMessages_PlayerMoved((CHARACTERGUID)_Var1)
+THEN
+DB_GLOBAL_TutorialMessages_MovementTutFinishedFor(_Var1);
+
+PROC
+PROC_GLOBAL_TutorialMessages_PlayerMoved((CHARACTERGUID)_Var1)
+AND
+DB_IsPlayer(_Var2)
+AND NOT
+DB_GLOBAL_TutorialMessages_MovementTutFinishedFor(_Var2)
+THEN
+DB_GLOBAL_TutorialMessages_MovementTutUnfinished(1);
+
+PROC
+PROC_GLOBAL_TutorialMessages_PlayerMoved((CHARACTERGUID)_Var1)
+AND NOT
+DB_GLOBAL_TutorialMessages_MovementTutUnfinished(1)
+AND
+DB_Tutorial_PlayerMovementDetectionTrigger(_Var2)
+THEN
+ProcTriggerUnregisterForPlayers(_Var2);
+NOT DB_Tutorial_PlayerMovementDetectionTrigger(_Var2);
+
+PROC
+PROC_GLOBAL_TutorialMessages_PlayerMoved((CHARACTERGUID)_Var1)
+AND NOT
+DB_GLOBAL_TutorialMessages_MovementTutUnfinished(1)
+AND NOT
+DB_GlobalTutorialMessages_TUT_Movement_Shown(1)
+THEN
+TimerLaunch("TUT_Camera", 10000);
+GoalCompleted;
+
+PROC
+PROC_GLOBAL_TutorialMessages_PlayerMoved((CHARACTERGUID)_Var1)
+THEN
+NOT DB_GLOBAL_TutorialMessages_MovementTutUnfinished(1);
+
+IF
+TutorialBoxClosed(_, (STRING)_Var2)
+AND
+StringContains(_Var2, "TUT_Movement", 1)
+AND NOT
+DB_Tutorial_PlayerCameraTutorialTimerLaunched(1)
+THEN
+DB_Tutorial_PlayerCameraTutorialTimerLaunched(1);
+TimerLaunch("TUT_Camera", 10000);
+GoalCompleted;
+
+
+EXITSECTION
+ENDEXITSECTION
+

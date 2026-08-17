@@ -1,0 +1,438 @@
+Version 1
+SubGoalCombiner SGC_AND
+
+INITSECTION
+DB_ARX_TheDoctor_Messengers(CHARACTERGUID_S_ARX_TheDoctor_Messenger_01_e171e930-2622-4895-957b-756599e97c1f, "ARX_TheDoctor_Messenger_KilledQ", "ARX_TheDoctor_Messenger_01");
+DB_ARX_TheDoctor_Messengers(CHARACTERGUID_S_ARX_TheDoctor_Messenger_02_8399c0fc-8c79-49d1-b789-6ab323ed92a7, "ARX_TheDoctor_Messenger_KilledKemm", "ARX_TheDoctor_Messenger_02");
+ProcTriggerRegisterForPlayers(TRIGGERGUID_S_ARX_Streets_c7f10608-b8ba-4c67-8e25-2074bde47487);
+ProcTriggerRegisterForPlayers(TRIGGERGUID_S_ARX_DoctorsHouse_Nurse_02_Box_c0aa1efc-008e-4516-89df-24540167c1e2);
+DB_Dialogs(CHARACTERGUID_S_ARX_DoctorsHouse_Nurse_01_649673eb-79f4-417f-9703-2a640a284f12, "ARX_DoctorsHouse_Nurse_01");
+DB_Dialogs(CHARACTERGUID_S_ARX_DoctorsHouse_Nurse_02_e8cc0255-7d6e-4f52-81ca-2551e8b445a1, "ARX_DoctorsHouse_Nurse_02");
+DB_Dialogs(CHARACTERGUID_S_ARX_DoctorsHouse_Nurse_03_0933d507-2e69-4d6d-9631-dff702e03744, "ARX_DoctorsHouse_Nurse_03");
+DB_Dialogs(CHARACTERGUID_S_ARX_DoctorsHouse_Nurse_04_6831724d-d355-42ef-be25-5bcc1e9baa52, "ARX_DoctorsHouse_Nurse_04");
+DB_Dialogs(CHARACTERGUID_S_ARX_DoctorsHouse_Nurse_05_708e03a9-50c3-40de-90ed-c5f58a45df84, "ARX_DoctorsHouse_Nurse_05");
+DB_Dialogs(CHARACTERGUID_S_ARX_DoctorsHouse_Nurse_06_88d45ba2-a4ec-45b8-bdcd-92951dbd06ca, "ARX_DoctorsHouse_Nurse_06");
+DB_Ghosts(CHARACTERGUID_S_ARX_DoctorsHouse_Nurse_02_e8cc0255-7d6e-4f52-81ca-2551e8b445a1, CHARACTERGUID_S_ARX_DoctorsHouse_Nurse_02_Ghost_8c246268-aced-4818-8c62-e476fb815d72, "ARX_DoctorsHouse_Nurse_02_Ghost");
+DB_Ghosts(CHARACTERGUID_S_ARX_DoctorsHouse_Nurse_01_649673eb-79f4-417f-9703-2a640a284f12, CHARACTERGUID_S_ARX_DoctorsHouse_Nurse_01_Ghost_80005f91-9df5-4668-8034-fe750c064515, "ARX_DoctorsHouse_Nurse_01_Ghost");
+DB_Ghosts(CHARACTERGUID_S_ARX_DoctorsHouse_SymposiumGhost_01_d40c25af-b651-4cf3-8c5a-528ccb038e44, "ARX_DoctorsHouse_SymposiumGhost_01");
+DB_KilledEvent(CHARACTERGUID_S_ARX_Sewers_Q_52f20922-7b22-4d47-90f7-83172f21fe3b, "ARX_Character_KilledQ");
+DB_KilledEvent(CHARACTERGUID_S_ARX_Kemm_3e6ead7d-dd35-4f9d-985e-af2de0d76d28, "ARX_Character_KilledKemm");
+
+KBSECTION
+IF
+DB_ARX_TheDoctor_Messengers(_Var1, _, _)
+THEN
+SetOnStage(_Var1, 0);
+
+IF
+ObjectFlagSet("ARX_Character_KilledQ", (CHARACTERGUID)_Var1, _)
+AND
+DB_IsPlayer(_Var1)
+AND
+GlobalGetFlag("ARX_DoctorsHouse_TheDoctor_Transformed", 0)
+AND
+GlobalGetFlag("ARX_TheDoctor_PactSealed", 0)
+AND
+IsTagged(_Var1, "PROMISED", 0)
+AND
+UserGetFlag(_Var1, "ARX_TheDoctor_Messenger_KilledKemm", 0)
+AND
+UserGetFlag(_Var1, "ARX_TheDoctor_Messenger_KilledKemm_Resolved", 0)
+AND
+UserGetFlag(_Var1, "QuestUpdate_ARX_TheDoctor_Pact_Declined", 0)
+THEN
+UserSetFlag(_Var1, "ARX_TheDoctor_Messenger_KilledQ");
+UserSetFlag(_Var1, "ARX_TheDoctor_Messanger_CheckSight");
+
+IF
+ObjectFlagSet("ARX_Character_KilledKemm", (CHARACTERGUID)_Var1, _)
+AND
+DB_IsPlayer(_Var1)
+AND
+GlobalGetFlag("ARX_TheDoctor_PactSealed", 0)
+AND
+GlobalGetFlag("ARX_DoctorsHouse_TheDoctor_Transformed", 0)
+AND
+IsTagged(_Var1, "PROMISED", 0)
+AND
+UserGetFlag(_Var1, "ARX_TheDoctor_Messenger_KilledQ", 0)
+AND
+UserGetFlag(_Var1, "ARX_TheDoctor_Messenger_KilledQ_Resolved", 0)
+AND
+UserGetFlag(_Var1, "QuestUpdate_ARX_TheDoctor_Pact_Declined", 0)
+THEN
+UserSetFlag(_Var1, "ARX_TheDoctor_Messenger_KilledKemm");
+UserSetFlag(_Var1, "ARX_TheDoctor_Messanger_CheckSight");
+
+IF
+CharacterDied(CHARACTERGUID_S_ARX_Sewers_Q_52f20922-7b22-4d47-90f7-83172f21fe3b)
+THEN
+NOT DB_OriginMomentTag_3SP("ARX_DoctorsHouse_TheDoctor", "BEAST", "ARX_DoctorsHouse_TheDoctor_COM_Beast");
+
+IF
+CharacterEnteredTrigger((CHARACTERGUID)_Var1, TRIGGERGUID_S_ARX_Streets_c7f10608-b8ba-4c67-8e25-2074bde47487)
+AND
+IsTagged(_Var1, "PROMISED", 0)
+AND
+CharacterIsDead(CHARACTERGUID_S_ARX_DoctorsHouse_TheDoctor_83083470-c543-45b3-ac8a-108df0daca8d, 0)
+AND
+GlobalGetFlag("ARX_DoctorsHouse_TheDoctor_Transformed", 0)
+AND
+GlobalGetFlag("ARX_TheDoctor_PactSealed", 0)
+AND
+DB_ARX_TheDoctor_Messengers(_Var2, _Var3, _)
+AND
+UserGetFlag(_Var1, _Var3, 1)
+AND
+UserGetFlag(_Var1, "QuestUpdate_ARX_TheDoctor_Pact_Declined", 0)
+AND NOT
+DB_ARX_TheDoctor_MessengerOnStage(_Var2)
+THEN
+DB_ARX_TheDoctor_MessengerOnStage(_Var2);
+DB_ARX_TheDoctor_Messengers_Queue(_Var1, _Var2);
+CharacterAppearOutOfSightTo(_Var2, _Var1, 0, 0, "ARX_TheDoctor_Messengers_AppearedOutOfSight");
+
+IF
+StoryEvent((CHARACTERGUID)_Var1, "ARX_TheDoctor_Messengers_AppearedOutOfSight")
+AND
+DB_ARX_TheDoctor_Messengers_Queue(_Var2, _Var1)
+THEN
+ProcCharacterMoveTo(_Var1, _Var2, 1, "");
+NOT DB_ARX_TheDoctor_Messengers_Queue(_Var2, _Var1);
+
+IF
+CharacterCharacterEvent((CHARACTERGUID)_Var1, (CHARACTERGUID)_Var2, "ARX_TheDoctor_Messanger_SightedChar")
+THEN
+Proc_ARX_TheDoctor_Messanger_SightedChar(_Var1, _Var2);
+
+PROC
+Proc_ARX_TheDoctor_Messanger_SightedChar((CHARACTERGUID)_Var1, (CHARACTERGUID)_Var2)
+AND
+CharactersAreGrouped(_Var2, CHARACTERGUID_S_Player_Lohse_bb932b13-8ebf-4ab4-aac0-83e6924e4295, 1)
+AND
+QRY_SpeakerIsAvailable(CHARACTERGUID_S_Player_Lohse_bb932b13-8ebf-4ab4-aac0-83e6924e4295)
+AND NOT
+DB_ARX_TheDoctor_Messengers_DialogStarted(_Var1)
+AND
+DB_ARX_TheDoctor_Messengers(_Var1, _, _Var4)
+AND
+QueryOnlyOnce("ARX_TheDoctor_Messanger_SightedLohse")
+THEN
+ProcCharacterMoveTo(_Var1, CHARACTERGUID_S_Player_Lohse_bb932b13-8ebf-4ab4-aac0-83e6924e4295, 0, "");
+Proc_StartDialog(0, _Var4, _Var1, CHARACTERGUID_S_Player_Lohse_bb932b13-8ebf-4ab4-aac0-83e6924e4295);
+DB_ARX_TheDoctor_Messengers_DialogStarted(_Var1);
+Proc_ARX_TheDoctor_Messengers_Clear(_Var1, _Var2);
+
+PROC
+Proc_ARX_TheDoctor_Messanger_SightedChar((CHARACTERGUID)_Var1, (CHARACTERGUID)_Var2)
+AND
+IsTagged(_Var2, "PROMISED", 0)
+AND NOT
+DB_ARX_TheDoctor_Messengers_DialogStarted(_Var1)
+AND
+QRY_SpeakerIsAvailable(_Var2)
+AND
+DB_ARX_TheDoctor_Messengers(_Var1, _, _Var4)
+THEN
+DB_ARX_TheDoctor_Messengers_DialogStarted(_Var1);
+ProcCharacterMoveTo(_Var1, _Var2, 0, "");
+Proc_StartDialog(0, _Var4, _Var1, _Var2);
+Proc_ARX_TheDoctor_Messengers_Clear(_Var1, _Var2);
+
+PROC
+Proc_ARX_TheDoctor_Messanger_SightedChar((CHARACTERGUID)_Var1, (CHARACTERGUID)_Var2)
+AND NOT
+DB_ARX_TheDoctor_Messengers_DialogStarted(_Var1)
+AND NOT
+QRY_SpeakerIsAvailable(_Var2)
+THEN
+GlobalSetFlag("ARX_TheDoctor_Messanger_RestartSpotter");
+
+PROC
+Proc_ARX_TheDoctor_Messengers_Clear((CHARACTERGUID)_Var1, (CHARACTERGUID)_Var2)
+AND
+CharacterGetReservedUserID(_Var2, _Var3)
+AND
+DB_IsPlayer(_Var4)
+AND
+CharacterGetReservedUserID(_Var4, _Var3)
+AND
+DB_ARX_TheDoctor_Messengers(_Var1, _Var5, _)
+AND
+ObjectGetFlag(_Var4, _Var5, 1)
+AND
+StringConcatenate(_Var5, "_Resolved", _Var7)
+THEN
+ObjectSetFlag(_Var4, _Var7);
+
+PROC
+Proc_ARX_TheDoctor_Messengers_Clear((CHARACTERGUID)_Var1, _)
+AND
+DB_IsPlayer(_Var3)
+AND
+DB_ARX_TheDoctor_Messengers(_Var1, _Var4, _)
+AND
+ObjectGetFlag(_Var3, _Var4, 1)
+THEN
+ObjectClearFlag(_Var3, _Var4);
+ObjectClearFlag(_Var3, "ARX_TheDoctor_Messanger_CheckSight");
+
+IF
+DialogEnded((STRING)_Var1, _)
+AND
+DB_ARX_TheDoctor_Messengers(_Var3, _Var4, _Var1)
+THEN
+ProcCharacterDisappearOutOfSight(_Var3, 0, 0, "", 1);
+NOT DB_ARX_TheDoctor_Messengers(_Var3, _Var4, _Var1);
+
+IF
+ObjectFlagSet("ARX_TheDoctor_Messenger_Marker", (CHARACTERGUID)_Var1, _)
+THEN
+ProcShowMarker(_Var1, "ARX_TheBlackHouse");
+
+IF
+CharacterEnteredTrigger((CHARACTERGUID)_Var1, TRIGGERGUID_S_ARX_DoctorsHouse_Nurse_02_Box_c0aa1efc-008e-4516-89df-24540167c1e2)
+AND
+UserGetFlag(_Var1, "ARX_DoctorsHouse_Nurse_02_CheckedUser", 0)
+THEN
+Proc_ARX_DoctorsHouse_Nurse_02_CheckUser(_Var1);
+
+PROC
+Proc_ARX_DoctorsHouse_Nurse_02_CheckUser((CHARACTERGUID)_Var1)
+AND
+DB_IsPlayer(_Var2)
+AND
+IsTagged(_Var2, "PROMISED", 1)
+AND
+CharactersAreGrouped(_Var2, _Var1, 1)
+AND
+UserGetFlag(_Var1, "ARX_DoctorsHouse_Nurse_02_CheckedUser", 0)
+THEN
+Proc_StartDialog(1, "ARX_DoctorsHouse_AD_Nurse_02", CHARACTERGUID_S_ARX_DoctorsHouse_Nurse_02_e8cc0255-7d6e-4f52-81ca-2551e8b445a1, _Var2);
+UserSetFlag(_Var2, "ARX_DoctorsHouse_Nurse_02_CheckedUser");
+
+PROC
+Proc_ARX_DoctorsHouse_Nurse_02_CheckUser((CHARACTERGUID)_Var1)
+AND
+DB_IsPlayer(_Var2)
+AND
+IsTagged(_Var2, "LOHSE", 1)
+AND
+CharactersAreGrouped(_Var2, _Var1, 1)
+AND
+UserGetFlag(_Var1, "ARX_DoctorsHouse_Nurse_02_CheckedUser", 0)
+THEN
+Proc_StartDialog(1, "ARX_DoctorsHouse_AD_Nurse_02", CHARACTERGUID_S_ARX_DoctorsHouse_Nurse_02_e8cc0255-7d6e-4f52-81ca-2551e8b445a1, _Var2);
+UserSetFlag(_Var2, "ARX_DoctorsHouse_Nurse_02_CheckedUser");
+
+PROC
+Proc_ARX_DoctorsHouse_Nurse_02_CheckUser((CHARACTERGUID)_Var1)
+AND
+UserGetFlag(_Var1, "ARX_DoctorsHouse_Nurse_02_CheckedUser", 0)
+THEN
+Proc_StartDialog(1, "ARX_DoctorsHouse_AD_Nurse_02", CHARACTERGUID_S_ARX_DoctorsHouse_Nurse_02_e8cc0255-7d6e-4f52-81ca-2551e8b445a1, _Var1);
+UserSetFlag(_Var1, "ARX_DoctorsHouse_Nurse_02_CheckedUser");
+
+PROC
+ProcBlockUseOfItem((CHARACTERGUID)_Var1, ITEMGUID_S_ARX_DoctorsHouse_Door_2b6abe01-59e7-4639-a518-18b13826a647)
+AND
+DB_IsPlayer(_Var1)
+AND
+IsSpeakerReserved(ITEMGUID_S_ARX_DoctorsHouse_Door_2b6abe01-59e7-4639-a518-18b13826a647, 1)
+THEN
+DB_CustomUseItemResponse(_Var1, ITEMGUID_S_ARX_DoctorsHouse_Door_2b6abe01-59e7-4639-a518-18b13826a647, 0);
+
+PROC
+ProcBlockUseOfItem((CHARACTERGUID)_Var1, ITEMGUID_S_ARX_DoctorsHouse_Door_2b6abe01-59e7-4639-a518-18b13826a647)
+AND
+IsTagged(_Var1, "DEMON", 0)
+AND
+IsSpeakerReserved(ITEMGUID_S_ARX_DoctorsHouse_Door_2b6abe01-59e7-4639-a518-18b13826a647, 1)
+THEN
+DB_CustomUseItemResponse(_Var1, ITEMGUID_S_ARX_DoctorsHouse_Door_2b6abe01-59e7-4639-a518-18b13826a647, 0);
+
+PROC
+ProcBlockUseOfItem((CHARACTERGUID)_Var1, ITEMGUID_S_ARX_DoctorsHouse_Door_2b6abe01-59e7-4639-a518-18b13826a647)
+AND
+DB_IsPlayer(_Var1)
+AND
+IsSpeakerReserved(ITEMGUID_S_ARX_DoctorsHouse_Door_2b6abe01-59e7-4639-a518-18b13826a647, 0)
+AND NOT
+DB_InRegion(_Var1, TRIGGERGUID_S_ARX_DoctorsHouse_GroundFloor_6a0dd371-c420-4b93-ba0e-a1aea9531617)
+AND
+UserGetFlag(_Var1, "ARX_DoctorsHouse_Door_UnlockedDoor", 0)
+AND
+CharacterIsDead(CHARACTERGUID_S_ARX_DoctorsHouse_TheDoctor_83083470-c543-45b3-ac8a-108df0daca8d, 0)
+THEN
+DB_CustomUseItemResponse(_Var1, ITEMGUID_S_ARX_DoctorsHouse_Door_2b6abe01-59e7-4639-a518-18b13826a647, 0);
+Proc_StartDialog(0, "ARX_DoctorsHouse_Door", ITEMGUID_S_ARX_DoctorsHouse_Door_2b6abe01-59e7-4639-a518-18b13826a647, _Var1);
+
+PROC
+ProcBlockUseOfItem((CHARACTERGUID)_Var1, ITEMGUID_S_ARX_DoctorsHouse_Door_2b6abe01-59e7-4639-a518-18b13826a647)
+AND
+DB_IsPlayer(_Var1)
+AND
+IsSpeakerReserved(ITEMGUID_S_ARX_DoctorsHouse_Door_2b6abe01-59e7-4639-a518-18b13826a647, 0)
+AND NOT
+DB_InRegion(_Var1, TRIGGERGUID_S_ARX_DoctorsHouse_GroundFloor_6a0dd371-c420-4b93-ba0e-a1aea9531617)
+AND
+UserGetFlag(_Var1, "ARX_DoctorsHouse_Door_Banned", 1)
+AND
+CharacterIsDead(CHARACTERGUID_S_ARX_DoctorsHouse_TheDoctor_83083470-c543-45b3-ac8a-108df0daca8d, 0)
+THEN
+DB_CustomUseItemResponse(_Var1, ITEMGUID_S_ARX_DoctorsHouse_Door_2b6abe01-59e7-4639-a518-18b13826a647, 0);
+Proc_StartDialog(0, "ARX_DoctorsHouse_Door", ITEMGUID_S_ARX_DoctorsHouse_Door_2b6abe01-59e7-4639-a518-18b13826a647, _Var1);
+
+PROC
+ProcBlockUseOfItem((CHARACTERGUID)_Var1, ITEMGUID_S_ARX_DoctorsHouse_Door_2b6abe01-59e7-4639-a518-18b13826a647)
+AND
+DB_IsPlayer(_Var1)
+AND
+IsSpeakerReserved(ITEMGUID_S_ARX_DoctorsHouse_Door_2b6abe01-59e7-4639-a518-18b13826a647, 0)
+AND NOT
+DB_InRegion(_Var1, TRIGGERGUID_S_ARX_DoctorsHouse_GroundFloor_6a0dd371-c420-4b93-ba0e-a1aea9531617)
+AND
+UserGetFlag(_Var1, "ARX_DoctorsHouse_TheDoctor_Banned", 1)
+AND
+CharacterIsDead(CHARACTERGUID_S_ARX_DoctorsHouse_TheDoctor_83083470-c543-45b3-ac8a-108df0daca8d, 0)
+THEN
+DB_CustomUseItemResponse(_Var1, ITEMGUID_S_ARX_DoctorsHouse_Door_2b6abe01-59e7-4639-a518-18b13826a647, 0);
+Proc_StartDialog(0, "ARX_DoctorsHouse_Door", ITEMGUID_S_ARX_DoctorsHouse_Door_2b6abe01-59e7-4639-a518-18b13826a647, _Var1);
+
+IF
+ItemClosed(ITEMGUID_S_ARX_DoctorsHouse_Door_2b6abe01-59e7-4639-a518-18b13826a647)
+THEN
+ItemSetCanInteract(ITEMGUID_S_ARX_DoctorsHouse_Door_2b6abe01-59e7-4639-a518-18b13826a647, 1);
+
+IF
+ItemOpened(ITEMGUID_S_ARX_DoctorsHouse_Door_2b6abe01-59e7-4639-a518-18b13826a647)
+THEN
+ItemSetCanInteract(ITEMGUID_S_ARX_DoctorsHouse_Door_2b6abe01-59e7-4639-a518-18b13826a647, 0);
+
+IF
+DialogEnded("ARX_DoctorsHouse_Door", _)
+AND
+GlobalGetFlag("ARX_DoctorHouse_Door_Open", 1)
+THEN
+ItemOpen(ITEMGUID_S_ARX_DoctorsHouse_Door_2b6abe01-59e7-4639-a518-18b13826a647);
+GlobalClearFlag("ARX_DoctorHouse_Door_Open");
+
+IF
+CharacterEnteredTrigger((CHARACTERGUID)_Var1, TRIGGERGUID_S_ARX_DoctorsHouse_GroundFloor_6a0dd371-c420-4b93-ba0e-a1aea9531617)
+THEN
+NOT DB_ARX_DoctorsHouse_DoorCheck_Wait(1);
+Proc_ARX_DoctorsHouse_DoorCheck(_Var1);
+
+IF
+CharacterLeftTrigger((CHARACTERGUID)_Var1, TRIGGERGUID_S_ARX_DoctorsHouse_GroundFloor_6a0dd371-c420-4b93-ba0e-a1aea9531617)
+THEN
+NOT DB_ARX_DoctorsHouse_DoorCheck_Wait(1);
+Proc_ARX_DoctorsHouse_DoorCheck(_Var1);
+
+IF
+CharacterLeftTrigger((CHARACTERGUID)_Var1, TRIGGERGUID_S_ARX_DoctorsHouse_GroundFloor_DoorTrigger_2c001673-0baa-4a69-8f37-645af97e8a23)
+AND
+QRY_AnyRegionActive()
+THEN
+NOT DB_ARX_DoctorsHouse_DoorCheck_Wait(1);
+Proc_ARX_DoctorsHouse_DoorCheck(_Var1);
+
+PROC
+Proc_ARX_DoctorsHouse_DoorCheck((CHARACTERGUID)_Var1)
+AND
+DB_InRegion(_Var1, TRIGGERGUID_S_ARX_DoctorsHouse_GroundFloor_6a0dd371-c420-4b93-ba0e-a1aea9531617)
+AND
+DB_IsPlayer(_Var2)
+AND
+CharactersAreGrouped(_Var1, _Var2, 1)
+AND NOT
+DB_InRegion(_Var2, TRIGGERGUID_S_ARX_DoctorsHouse_GroundFloor_6a0dd371-c420-4b93-ba0e-a1aea9531617)
+THEN
+DB_ARX_DoctorsHouse_DoorCheck_Wait(1);
+
+PROC
+Proc_ARX_DoctorsHouse_DoorCheck((CHARACTERGUID)_Var1)
+AND NOT
+DB_InRegion(_Var1, TRIGGERGUID_S_ARX_DoctorsHouse_GroundFloor_6a0dd371-c420-4b93-ba0e-a1aea9531617)
+AND
+DB_IsPlayer(_Var2)
+AND
+CharactersAreGrouped(_Var1, _Var2, 1)
+AND
+DB_InRegion(_Var2, TRIGGERGUID_S_ARX_DoctorsHouse_GroundFloor_6a0dd371-c420-4b93-ba0e-a1aea9531617)
+THEN
+DB_ARX_DoctorsHouse_DoorCheck_Wait(1);
+
+PROC
+Proc_ARX_DoctorsHouse_DoorCheck((CHARACTERGUID)_Var1)
+AND
+DB_InRegion(_, TRIGGERGUID_S_ARX_DoctorsHouse_GroundFloor_DoorTrigger_2c001673-0baa-4a69-8f37-645af97e8a23)
+THEN
+DB_ARX_DoctorsHouse_DoorCheck_Wait(1);
+
+PROC
+Proc_ARX_DoctorsHouse_DoorCheck((CHARACTERGUID)_Var1)
+AND NOT
+DB_ARX_DoctorsHouse_DoorCheck_Wait(1)
+THEN
+ItemClose(ITEMGUID_S_ARX_DoctorsHouse_Door_2b6abe01-59e7-4639-a518-18b13826a647);
+
+IF
+CharacterEnteredTrigger((CHARACTERGUID)_Var1, TRIGGERGUID_S_ARX_DoctorsHouse_GroundFloor_DoorTrigger_2c001673-0baa-4a69-8f37-645af97e8a23)
+AND
+UserGetFlag(_Var1, "ARX_DoctorsHouse_Door_UnlockedDoor", 0)
+THEN
+NOT DB_ARX_DoctorsHouse_DoorCheck_Close_Wait(1);
+Proc_ARX_DoctorsHouse_DoorCheck_Close(_Var1);
+
+PROC
+Proc_ARX_DoctorsHouse_DoorCheck_Close((CHARACTERGUID)_Var1)
+AND
+DB_InRegion(_Var2, TRIGGERGUID_S_ARX_DoctorsHouse_GroundFloor_DoorTrigger_2c001673-0baa-4a69-8f37-645af97e8a23)
+AND
+_Var2 != _Var1
+THEN
+DB_ARX_DoctorsHouse_DoorCheck_Close_Wait(1);
+
+PROC
+Proc_ARX_DoctorsHouse_DoorCheck_Close((CHARACTERGUID)_Var1)
+AND
+DB_InRegion(_Var1, TRIGGERGUID_S_ARX_DoctorsHouse_GroundFloor_6a0dd371-c420-4b93-ba0e-a1aea9531617)
+THEN
+DB_ARX_DoctorsHouse_DoorCheck_Close_Wait(1);
+
+PROC
+Proc_ARX_DoctorsHouse_DoorCheck_Close((CHARACTERGUID)_Var1)
+AND NOT
+DB_ARX_DoctorsHouse_DoorCheck_Close_Wait(1)
+THEN
+ItemClose(ITEMGUID_S_ARX_DoctorsHouse_Door_2b6abe01-59e7-4639-a518-18b13826a647);
+
+IF
+ObjectFlagSet("ARX_DoctorsHouse_Door_UnlockedDoor", (GUIDSTRING)_Var1, _)
+THEN
+ObjectSetFlag(_Var1, "QuestUpdate_ARX_TheDoctor_Door_Opened");
+
+IF
+ObjectFlagSet("ARX_DoctorsHouse_Door_UnlockedDoor", (CHARACTERGUID)_Var1, _)
+AND
+IsTagged(_Var1, "LOHSE", 1)
+AND
+IsTagged(_Var1, "AVATAR", 1)
+THEN
+DB_ARX_DoctorsHouse_Door_UnlockedDoorLohse(_Var1);
+
+IF
+DialogEnded("ARX_DoctorsHouse_Door", _)
+AND
+DB_ARX_DoctorsHouse_Door_UnlockedDoorLohse(_Var2)
+AND
+QueryOnlyOnce("ARX_DoctorsHouse_VB_LohseEntering")
+THEN
+StartVoiceBark("ARX_DoctorsHouse_VB_LohseEntering", _Var2);
+
+
+EXITSECTION
+ENDEXITSECTION
+
+ParentTargetEdge "ARX"

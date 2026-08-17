@@ -1,0 +1,151 @@
+Version 1
+SubGoalCombiner SGC_AND
+
+INITSECTION
+DB_ShovelRewardItemSpawn("RC_DW_PrisonEscape", S_RC_DW_PrisonEscapeHatch_f5ccee29-6898-4f2d-a491-33a685fae17b);
+DB_ShovelArea(S_RC_DW_PrisonEscapeBox_e30960eb-48a4-4e72-a7bd-77cba7fa9ffd, "RC_DW_PrisonEscape", S_RC_DW_PrisonEscapePile_8704799b-f54c-42df-a941-91561ae6f7fc);
+ItemToInventory(S_RC_DW_PrisonCellKey_7993b1fa-ea91-40a1-8821-355fdad786fa, CHARACTERGUID_S_RC_DW_JailorMagister_000_51bc3b1a-98cd-4c06-9b4a-e171381fbe25);
+DB_Ghosts(S_RC_DW_DeadPrisoner_35a9eb06-c643-4c35-86a1-e1ad06f04da9, S_RC_DW_PrisonerGhost_7c884ac4-c76f-45da-98c7-4ddee9b924e0, "RC_DW_PrisonerGhost");
+DB_Dialogs(CHARACTERGUID_S_RC_DW_JailorMagister_000_51bc3b1a-98cd-4c06-9b4a-e171381fbe25, "RC_DW_JailorMagister");
+DB_Dialogs(S_RC_OIL_MassacreRat_f28e9479-9219-4b26-bb43-57b237303273, "RC_OIL_MassacreRat");
+DB_Ghosts(CHARACTERGUID_S_RC_OIL_MassacreRat_f28e9479-9219-4b26-bb43-57b237303273, CHARACTERGUID_S_RC_OIL_MassacreRat_Ghost_2b18a076-7f36-4a2b-9ceb-514dbd01a724, "RC_OIL_MassacreRat_Ghost");
+DB_Ghosts(CHARACTERGUID_S_RC_DW_PrisonerSourcerer1_7833b7fd-316c-4426-920f-b5190af3af64, CHARACTERGUID_S_RC_DW_PrisonerSourcerer1_Ghost_872b49bb-bc47-4c84-bf81-4a4e24335324, "RC_OIL_PrisonerSourcererGhost1");
+DB_Ghosts(CHARACTERGUID_S_RC_DW_PrisonerSourcerer2_711f2d5b-10eb-4700-87f0-3869dff62453, CHARACTERGUID_S_RC_DW_PrisonerSourcerer2_Ghost_20af6f49-b0b0-413f-a3ed-042575f73128, "RC_OIL_PrisonerSourcererGhost2");
+DB_Ghosts(CHARACTERGUID_S_RC_DW_PrisonerSourcerer3_397bce16-e335-4e69-b817-da9210411766, CHARACTERGUID_S_RC_DW_PrisonerSourcerer3_Ghost_87180010-6723-4a97-932c-9f36c5f4b727, "RC_OIL_PrisonerSourcererGhost3");
+DB_Ghosts(CHARACTERGUID_S_RC_DW_PrisonerSourcerer4_b70551ec-e22f-46ba-90d6-f2feaa6da79a, CHARACTERGUID_S_RC_DW_PrisonerSourcerer4_Ghost_004abfb6-1abe-4891-a31b-1764b238a6ad, "RC_OIL_PrisonerSourcererGhost4");
+DB_OneShotPlayerTrigger(TRIGGERGUID_S_RC_DW_VB_Prison_9986b2ac-89a3-4b33-a8b8-8507175d45c6);
+DB_Dialogs(CHARACTERGUID_S_RC_DW_JailSilentMonk1_9e1b8a83-f888-4f79-bc16-a155d3bff3b2, "RC_DW_JailSilentMonk1");
+DB_Dialogs(CHARACTERGUID_S_RC_DW_JailSilentMonk2_35651190-8036-482b-8a4c-69edd56e6b5b, "RC_DW_JailSilentMonk2");
+DB_RC_DW_JailCombat(CHARACTERGUID_S_GLO_JailorMagister_51bc3b1a-98cd-4c06-9b4a-e171381fbe25);
+DB_RC_DW_JailCombat(CHARACTERGUID_S_RC_DW_JailSilentMonk1_9e1b8a83-f888-4f79-bc16-a155d3bff3b2);
+DB_RC_DW_JailCombat(CHARACTERGUID_S_RC_DW_JailSilentMonk1_9e1b8a83-f888-4f79-bc16-a155d3bff3b2);
+DB_HasStoryEvent(S_RC_DW_PrisonCellKey_7993b1fa-ea91-40a1-8821-355fdad786fa, "RC_DW_HasPrisonCellKey");
+
+KBSECTION
+PROC
+Proc_DialogFlagSetup("RC_DW_JailorMagister", _, (GUIDSTRING)_Var2)
+AND
+ObjectGetFlag(_Var2, "IsInPrison", 1)
+THEN
+CharacterSetCanTrade(CHARACTERGUID_S_RC_DW_JailorMagister_000_51bc3b1a-98cd-4c06-9b4a-e171381fbe25, 0);
+
+PROC
+Proc_DialogFlagSetup("RC_DW_JailorMagister", _, (GUIDSTRING)_Var2)
+AND
+ObjectGetFlag(_Var2, "IsInPrison", 0)
+THEN
+CharacterSetCanTrade(CHARACTERGUID_S_RC_DW_JailorMagister_000_51bc3b1a-98cd-4c06-9b4a-e171381fbe25, 1);
+
+IF
+GlobalFlagSet("RC_DW_RevealPrisonDig")
+THEN
+SetStoryEvent(ITEMGUID_S_RC_DW_PrisonEscapePile_8704799b-f54c-42df-a941-91561ae6f7fc, "StoryReveal");
+
+IF
+StoryEvent(ITEMGUID_S_RC_DW_PrisonEscapePile_8704799b-f54c-42df-a941-91561ae6f7fc, "StoryReveal")
+THEN
+GlobalSetFlag("RC_DW_PrisonEscapeShown");
+
+PROC
+ProcShovelRewards((CHARACTERGUID)_Var1, "RC_DW_PrisonEscape")
+THEN
+SetVarInteger(S_RC_DW_PrisonerGhost_7c884ac4-c76f-45da-98c7-4ddee9b924e0, "State", 0);
+GlobalSetFlag("RC_DW_PrisonEscapeCleared");
+ObjectSetFlag(CHARACTERGUID_S_RC_DW_PrisonerGhost_7c884ac4-c76f-45da-98c7-4ddee9b924e0, "RC_DW_ClearedPrisonEscape");
+
+PROC
+ProcShovelRewards((CHARACTERGUID)_Var1, "RC_DW_PrisonEscape")
+AND
+ObjectGetFlag(CHARACTERGUID_S_RC_DW_JailorMagister_000_51bc3b1a-98cd-4c06-9b4a-e171381fbe25, "RC_DW_JailorMagister_Leave", 0)
+AND
+ObjectGetFlag(CHARACTERGUID_S_RC_DW_JailorMagister_000_51bc3b1a-98cd-4c06-9b4a-e171381fbe25, "RC_DW_JailorMagister_LeaveKey", 0)
+THEN
+Proc_CharacterSetTemporaryHostileRelation(CHARACTERGUID_S_RC_DW_JailorMagister_000_51bc3b1a-98cd-4c06-9b4a-e171381fbe25, _Var1);
+Proc_StartDialog(1, "RC_DW_AD_EscapeAttempt", CHARACTERGUID_S_RC_DW_JailorMagister_000_51bc3b1a-98cd-4c06-9b4a-e171381fbe25);
+
+IF
+DialogEnded("RC_DW_JailorMagister", _)
+AND
+ObjectGetFlag(CHARACTERGUID_S_RC_DW_JailorMagister_000_51bc3b1a-98cd-4c06-9b4a-e171381fbe25, "RC_DW_JailorMagister_Leave", 1)
+THEN
+SetHasDialog(CHARACTERGUID_S_RC_DW_JailorMagister_000_51bc3b1a-98cd-4c06-9b4a-e171381fbe25, 0);
+ProcCharacterDisableAllCrimes(CHARACTERGUID_S_RC_DW_JailorMagister_000_51bc3b1a-98cd-4c06-9b4a-e171381fbe25);
+ProcCharacterMoveTo(CHARACTERGUID_S_RC_DW_JailorMagister_000_51bc3b1a-98cd-4c06-9b4a-e171381fbe25, S_RC_DW_PrisonBottomStairs_90967c4f-a0cb-4780-a811-42acbf4a2c0d, 0, "RC_DW_JailorMagister_Disappear");
+
+IF
+DialogEnded("RC_DW_JailorMagister", (INTEGER)_Var1)
+AND
+ObjectGetFlag(CHARACTERGUID_S_RC_DW_JailorMagister_000_51bc3b1a-98cd-4c06-9b4a-e171381fbe25, "RC_DW_JailorMagister_Leave", 1)
+AND
+DialogGetInvolvedPlayer(_Var1, 1, _Var2)
+AND
+ItemIsInCharacterInventory(S_RC_DW_PrisonCellKey_7993b1fa-ea91-40a1-8821-355fdad786fa, S_RC_DW_JailorMagister_000_51bc3b1a-98cd-4c06-9b4a-e171381fbe25, 1)
+THEN
+ItemToInventory(ITEMGUID_S_RC_DW_PrisonCellKey_7993b1fa-ea91-40a1-8821-355fdad786fa, _Var2);
+
+IF
+DialogEnded("RC_DW_JailorMagister", _)
+AND
+ObjectGetFlag(CHARACTERGUID_S_RC_DW_JailorMagister_000_51bc3b1a-98cd-4c06-9b4a-e171381fbe25, "RC_DW_JailorMagister_LeaveKey", 1)
+AND
+ItemIsInCharacterInventory(S_RC_DW_PrisonCellKey_7993b1fa-ea91-40a1-8821-355fdad786fa, S_RC_DW_JailorMagister_000_51bc3b1a-98cd-4c06-9b4a-e171381fbe25, 1)
+AND
+GetPosition(CHARACTERGUID_S_GLO_JailorMagister_51bc3b1a-98cd-4c06-9b4a-e171381fbe25, _Var2, _Var3, _Var4)
+THEN
+SetHasDialog(CHARACTERGUID_S_RC_DW_JailorMagister_000_51bc3b1a-98cd-4c06-9b4a-e171381fbe25, 0);
+ProcCharacterDisableAllCrimes(CHARACTERGUID_S_RC_DW_JailorMagister_000_51bc3b1a-98cd-4c06-9b4a-e171381fbe25);
+ItemDrop(ITEMGUID_S_RC_DW_PrisonCellKey_7993b1fa-ea91-40a1-8821-355fdad786fa);
+ItemScatterAt(ITEMGUID_S_RC_DW_PrisonCellKey_7993b1fa-ea91-40a1-8821-355fdad786fa, _Var2, _Var3, _Var4);
+ProcCharacterMoveTo(CHARACTERGUID_S_RC_DW_JailorMagister_000_51bc3b1a-98cd-4c06-9b4a-e171381fbe25, S_RC_DW_PrisonBottomStairs_90967c4f-a0cb-4780-a811-42acbf4a2c0d, 0, "RC_DW_JailorMagister_Disappear");
+
+IF
+DialogEnded("RC_DW_JailorMagister", _)
+AND
+ObjectGetFlag(CHARACTERGUID_S_RC_DW_JailorMagister_000_51bc3b1a-98cd-4c06-9b4a-e171381fbe25, "RC_DW_JailorMagister_LeaveKey", 1)
+AND
+ItemIsInCharacterInventory(S_RC_DW_PrisonCellKey_7993b1fa-ea91-40a1-8821-355fdad786fa, S_RC_DW_JailorMagister_000_51bc3b1a-98cd-4c06-9b4a-e171381fbe25, 0)
+THEN
+SetHasDialog(CHARACTERGUID_S_RC_DW_JailorMagister_000_51bc3b1a-98cd-4c06-9b4a-e171381fbe25, 0);
+ProcCharacterDisableAllCrimes(CHARACTERGUID_S_RC_DW_JailorMagister_000_51bc3b1a-98cd-4c06-9b4a-e171381fbe25);
+ProcCharacterMoveTo(CHARACTERGUID_S_RC_DW_JailorMagister_000_51bc3b1a-98cd-4c06-9b4a-e171381fbe25, S_RC_DW_PrisonBottomStairs_90967c4f-a0cb-4780-a811-42acbf4a2c0d, 0, "RC_DW_JailorMagister_Disappear");
+
+IF
+StoryEvent(CHARACTERGUID_S_RC_DW_JailorMagister_000_51bc3b1a-98cd-4c06-9b4a-e171381fbe25, "RC_DW_ArrivedKeyPoint")
+AND
+ItemIsInCharacterInventory(S_RC_DW_PrisonCellKey_7993b1fa-ea91-40a1-8821-355fdad786fa, S_RC_DW_JailorMagister_000_51bc3b1a-98cd-4c06-9b4a-e171381fbe25, 1)
+THEN
+TeleportTo(S_RC_DW_PrisonCellKey_7993b1fa-ea91-40a1-8821-355fdad786fa, S_RC_DW_PrisonKeyTo_13d68395-719b-449e-8fb7-1dcc673c297c);
+ItemClearOwner(ITEMGUID_S_RC_DW_PrisonCellKey_7993b1fa-ea91-40a1-8821-355fdad786fa);
+
+IF
+StoryEvent(CHARACTERGUID_S_RC_DW_JailorMagister_000_51bc3b1a-98cd-4c06-9b4a-e171381fbe25, "RC_DW_ArrivedKeyPoint")
+THEN
+SetHasDialog(CHARACTERGUID_S_RC_DW_JailorMagister_000_51bc3b1a-98cd-4c06-9b4a-e171381fbe25, 0);
+ProcCharacterDisableAllCrimes(CHARACTERGUID_S_RC_DW_JailorMagister_000_51bc3b1a-98cd-4c06-9b4a-e171381fbe25);
+ProcCharacterMoveTo(CHARACTERGUID_S_RC_DW_JailorMagister_000_51bc3b1a-98cd-4c06-9b4a-e171381fbe25, S_RC_DW_PrisonBottomStairs_90967c4f-a0cb-4780-a811-42acbf4a2c0d, 0, "RC_DW_JailorMagister_Disappear");
+
+IF
+StoryEvent(CHARACTERGUID_S_RC_DW_JailorMagister_000_51bc3b1a-98cd-4c06-9b4a-e171381fbe25, "RC_DW_JailorMagister_Disappear")
+THEN
+SetOnStage(CHARACTERGUID_S_RC_DW_JailorMagister_000_51bc3b1a-98cd-4c06-9b4a-e171381fbe25, 0);
+TriggerClearItemOwner(TRIGGERGUID_S_RC_DW_OWNERSHIP_Prison_18619854-b8c2-40e8-b36e-59b9f3e1a050);
+
+PROC
+ProcOneShotTriggerEntered((CHARACTERGUID)_Var1, TRIGGERGUID_S_RC_DW_VB_Prison_9986b2ac-89a3-4b33-a8b8-8507175d45c6)
+THEN
+StartVoiceBark("RC_DW_VB_Prison", _Var1);
+
+IF
+ObjectEnteredCombat((GUIDSTRING)_Var1, _)
+AND
+DB_RC_DW_JailCombat(_Var1)
+AND
+IsSpeakerReserved(_Var1, 1)
+THEN
+ProcForceStopDialog(_Var1);
+
+
+EXITSECTION
+ENDEXITSECTION
+
+ParentTargetEdge "ReapersCoast"

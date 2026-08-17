@@ -1,0 +1,225 @@
+Version 1
+SubGoalCombiner SGC_AND
+
+INITSECTION
+DB_Dialogs(CHARACTERGUID_S_RC_DW_Docks_Fisherman_01_b488bdda-fc52-427e-b3da-da4c8c3bc2b4, "RC_DW_Docks_Fisherman_01");
+DB_DeadEvent(CHARACTERGUID_S_RC_DW_Docks_Fisherman_01_b488bdda-fc52-427e-b3da-da4c8c3bc2b4, "RC_DW_Docks_Fisherman_01_IsDead");
+DB_HasStoryEvent(ITEMGUID_S_RC_DW_Docks_FishermanRing_8b5264f7-daa2-4b69-acf4-cdfcd0356210, "CharacterHas_RC_DW_FishermanRing");
+DB_GiveItemToEvent(ITEMGUID_S_RC_DW_Docks_FishermanRing_8b5264f7-daa2-4b69-acf4-cdfcd0356210, "GiveItemToCharacter_RC_DW_FishermanRing");
+CharacterAddGold(CHARACTERGUID_S_RC_DW_Docks_Fisherman_01_b488bdda-fc52-427e-b3da-da4c8c3bc2b4, 100);
+DB_DialogMoneyTransfer(1, "RC_DW_Docks_FisherMan_01", 100);
+DB_RC_DW_FishermanRingVoidwoken(CHARACTERGUID_S_RC_DW_RingVoidwoken_1_28cab511-8239-4d94-b0ec-84ad7ae3a46d);
+DB_RC_DW_FishermanRingVoidwoken(CHARACTERGUID_S_RC_DW_RingVoidwoken_02_e7ee6c94-eaa1-4d7c-86a3-f1224ee2d5d5);
+DB_RC_DW_FishermanRingVoidwoken(CHARACTERGUID_S_RC_DW_RingVoidwoken_03_65c457b5-9842-49a3-b177-bf6d125cc84c);
+DB_RC_DW_FishermanRingVoidwoken(CHARACTERGUID_S_RC_DW_RingVoidwoken_04_ae5bf582-3eb9-47a2-af35-858e5a22f9fe);
+DB_RC_DW_FishermanRingVoidwoken(CHARACTERGUID_S_RC_DW_RingVoidwoken_05_e88b7dce-d88c-48a0-b584-410b8c4a3f48);
+DB_RC_DW_FishermanRingVoidwoken(CHARACTERGUID_S_RC_DW_RingVoidwoken_06_cb9ed186-97aa-47d3-9de0-bba4ceef5363);
+
+KBSECTION
+IF
+DB_RC_DW_FishermanRingVoidwoken(_Var1)
+THEN
+SetOnStage(_Var1, 0);
+
+IF
+DB_OnlyOnce("RC_DW_Fisherman1_VW")
+THEN
+CharacterAppear(CHARACTERGUID_S_RC_DW_RingVoidwoken_02_e7ee6c94-eaa1-4d7c-86a3-f1224ee2d5d5, 1, "");
+CharacterAppear(CHARACTERGUID_S_RC_DW_RingVoidwoken_03_65c457b5-9842-49a3-b177-bf6d125cc84c, 1, "");
+TimerLaunch("RingVoidwoken_Timer_01", 1100);
+
+IF
+TimerFinished("RingVoidwoken_Timer_01")
+THEN
+GlobalSetFlag("RC_DW_FishermanRing_Cower");
+CharacterAppear(CHARACTERGUID_S_RC_DW_RingVoidwoken_04_ae5bf582-3eb9-47a2-af35-858e5a22f9fe, 1, "");
+CharacterAppear(CHARACTERGUID_S_RC_DW_RingVoidwoken_05_e88b7dce-d88c-48a0-b584-410b8c4a3f48, 1, "");
+CharacterAppear(CHARACTERGUID_S_RC_DW_RingVoidwoken_06_cb9ed186-97aa-47d3-9de0-bba4ceef5363, 1, "");
+CharacterAppear(CHARACTERGUID_S_RC_DW_RingVoidwoken_1_28cab511-8239-4d94-b0ec-84ad7ae3a46d, 1, "");
+TimerLaunch("RingVoidwoken_Timer_02", 3600);
+
+IF
+TimerFinished("RingVoidwoken_Timer_02")
+AND
+DB_RC_DW_FishermanRingVoidwoken(_Var1)
+THEN
+ApplyStatus(_Var1, "WET", 1.5);
+CreateSurface(_Var1, "SurfaceWater", 2, -1);
+
+IF
+DialogEnded("RC_DW_Docks_Fisherman_01", _)
+AND
+GlobalGetFlag("RC_DW_Fisherman1_PickRing", 1)
+AND
+QueryOnlyOnce("RC_DW_Fisherman1_PickRing")
+THEN
+SetHasDialog(CHARACTERGUID_S_RC_DW_Docks_Fisherman_01_b488bdda-fc52-427e-b3da-da4c8c3bc2b4, 0);
+ProcCharacterMoveTo(CHARACTERGUID_S_RC_DW_Docks_Fisherman_01_b488bdda-fc52-427e-b3da-da4c8c3bc2b4, TRIGGERGUID_S_RC_DW_Point_Fisherman1_Ring_013ee4e6-3d15-4d06-a962-1352e0710bcb, 0, "RC_DW_Fisherman1_PickRing");
+
+IF
+StoryEvent(CHARACTERGUID_S_RC_DW_Docks_Fisherman_01_b488bdda-fc52-427e-b3da-da4c8c3bc2b4, "RC_DW_Fisherman1_PickRing")
+AND
+QueryOnlyOnce("RC_DW_Fisherman1_VW")
+THEN
+GlobalSetFlag("RC_DW_Fisherman1_VW");
+TimerLaunch("Timer_RC_DW_Fisherman1_VW_Appeared", 1000);
+
+IF
+TimerFinished("Timer_RC_DW_Fisherman1_VW_Appeared")
+THEN
+ProcCharacterMoveTo(CHARACTERGUID_S_RC_DW_Docks_Fisherman_01_b488bdda-fc52-427e-b3da-da4c8c3bc2b4, TRIGGERGUID_S_RC_DW_Behavior_Fisherman_01_dcc93593-d4a3-4635-8e8b-3f0e59c3396a, 1, "");
+Proc_StartDialog(1, "RC_DW_AD_Fisherman1_Voidwoken", CHARACTERGUID_S_RC_DW_Docks_Fisherman_01_b488bdda-fc52-427e-b3da-da4c8c3bc2b4);
+
+IF
+TimerFinished("Timer_RC_DW_Fisherman1_VW_Appeared")
+AND
+DB_IsPlayer(_Var1)
+THEN
+ObjectSetFlag(_Var1, "QuestUpdate_RC_DW_FishermanRing_VoidwokenLagan");
+
+IF
+CharacterDied(CHARACTERGUID_S_RC_DW_RingVoidwoken_28cab511-8239-4d94-b0ec-84ad7ae3a46d)
+THEN
+SetHasDialog(CHARACTERGUID_S_RC_DW_Docks_Fisherman_01_b488bdda-fc52-427e-b3da-da4c8c3bc2b4, 1);
+
+IF
+ItemAddedToCharacter(ITEMGUID_S_RC_DW_Docks_FishermanRing_8b5264f7-daa2-4b69-acf4-cdfcd0356210, (CHARACTERGUID)_Var1)
+THEN
+PROC_RC_DW_Docks_FishermanRing_Found(_Var1);
+PROC_RC_DW_Docks_FishermanRing_Voidwoken(_Var1);
+
+IF
+ItemSendToHomesteadEvent((CHARACTERGUID)_Var1, ITEMGUID_S_RC_DW_Docks_FishermanRing_8b5264f7-daa2-4b69-acf4-cdfcd0356210)
+THEN
+PROC_RC_DW_Docks_FishermanRing_Found(_Var1);
+PROC_RC_DW_Docks_FishermanRing_Voidwoken(_Var1);
+
+IF
+CharacterMovedItem((CHARACTERGUID)_Var1, ITEMGUID_S_RC_DW_Docks_FishermanRing_8b5264f7-daa2-4b69-acf4-cdfcd0356210)
+THEN
+PROC_RC_DW_Docks_FishermanRing_Voidwoken(_Var1);
+
+IF
+ItemAddedToContainer(ITEMGUID_S_RC_DW_Docks_FishermanRing_8b5264f7-daa2-4b69-acf4-cdfcd0356210, (ITEMGUID)_Var1)
+AND
+DB_IsPlayer(_Var2)
+THEN
+PROC_RC_DW_Docks_FishermanRing_Voidwoken(_Var2);
+
+PROC
+PROC_RC_DW_Docks_FishermanRing_Found((CHARACTERGUID)_Var1)
+AND
+DB_IsPlayer(_Var1)
+AND NOT
+DB_Dead(b488bdda-fc52-427e-b3da-CHARACTERGUID_S_RC_DW_Docks_Fisherman_01_b488bdda-fc52-427e-b3da-da4c8c3bc2b4)
+THEN
+ObjectSetFlag(_Var1, "QuestUpdate_RC_DW_FishermanRing_FoundRing");
+
+PROC
+PROC_RC_DW_Docks_FishermanRing_Voidwoken((CHARACTERGUID)_Var1)
+AND
+DB_IsPlayer(_Var1)
+AND
+ObjectGetFlag(_Var1, "QuestUpdate_RC_DW_FishermanRing_Start", 1)
+AND NOT
+DB_OnlyOnce("RC_DW_Fisherman1_VW")
+THEN
+ObjectSetFlag(_Var1, "QuestUpdate_RC_DW_FishermanRing_VoidwokenPlayer");
+
+PROC
+PROC_RC_DW_Docks_FishermanRing_Voidwoken((CHARACTERGUID)_Var1)
+AND
+DB_IsPlayer(_Var1)
+AND
+ObjectGetFlag(_Var1, "QuestUpdate_RC_DW_FishermanRing_Start", 0)
+AND NOT
+DB_OnlyOnce("RC_DW_Fisherman1_VW")
+THEN
+ObjectSetFlag(_Var1, "QuestUpdate_RC_DW_FishermanRing_VoidwokenNoLagan");
+
+PROC
+PROC_RC_DW_Docks_FishermanRing_Voidwoken((CHARACTERGUID)_Var1)
+AND
+QueryOnlyOnce("RC_DW_Fisherman1_VW")
+THEN
+StartVoiceBark("RC_DW_Dock_Voidwoken", _Var1);
+GlobalSetFlag("RC_DW_Fisherman1_VW");
+
+IF
+CharacterDied(CHARACTERGUID_S_RC_DW_Docks_Fisherman_01_b488bdda-fc52-427e-b3da-da4c8c3bc2b4)
+AND
+DB_IsPlayer(_Var1)
+AND
+ObjectGetFlag(_Var1, "QuestUpdate_RC_DW_FishermanRing_Start", 1)
+THEN
+ObjectSetFlag(_Var1, "QuestUpdate_RC_DW_FishermanRing_LaganDead");
+
+PROC
+ProcRegionEnded("RC_Main")
+AND
+DB_IsPlayer(_Var1)
+AND
+ObjectGetFlag(_Var1, "QuestUpdate_RC_DW_FishermanRing_FoundRing", 1)
+THEN
+ObjectSetFlag(_Var1, "QuestUpdate_RC_DW_FishermanRing_KeptRing");
+
+PROC
+ProcRegionEnded("RC_Main")
+AND
+DB_IsPlayer(_Var1)
+AND
+ObjectGetFlag(_Var1, "QuestUpdate_RC_DW_FishermanRing_Start", 1)
+AND
+ObjectGetFlag(_Var1, "QuestUpdate_RC_DW_FishermanRing_FoundRing", 0)
+THEN
+ObjectSetFlag(_Var1, "QuestUpdate_RC_DW_FishermanRing_Fail");
+
+IF
+ItemAddedToCharacter(ITEMGUID_S_RC_DW_Docks_FishermanRing_8b5264f7-daa2-4b69-acf4-cdfcd0356210, CHARACTERGUID_S_RC_DW_Docks_Fisherman_01_b488bdda-fc52-427e-b3da-da4c8c3bc2b4)
+THEN
+CharacterEquipItem(CHARACTERGUID_S_RC_DW_Docks_Fisherman_01_b488bdda-fc52-427e-b3da-da4c8c3bc2b4, ITEMGUID_S_RC_DW_Docks_FishermanRing_8b5264f7-daa2-4b69-acf4-cdfcd0356210);
+
+IF
+CharacterDying(CHARACTERGUID_S_RC_DW_Docks_Fisherman_01_b488bdda-fc52-427e-b3da-da4c8c3bc2b4)
+THEN
+CharacterUnequipItem(CHARACTERGUID_S_RC_DW_Docks_Fisherman_01_b488bdda-fc52-427e-b3da-da4c8c3bc2b4, ITEMGUID_S_RC_DW_Docks_FishermanRing_8b5264f7-daa2-4b69-acf4-cdfcd0356210);
+
+PROC
+Proc_ObjectLeftCombat((CHARACTERGUID)_Var1, _)
+AND
+DB_RC_DW_FishermanRingVoidwoken(_Var1)
+AND
+CharacterIsDead(_Var1, 0)
+AND
+QueryOnlyOnce("RC_DW_FishermanVoidwokenTurnHostileToNpcs")
+THEN
+CharacterSetRelationFactionToIndivFaction("Evil NPC", CHARACTERGUID_S_RC_DW_Docks_Fisherman_01_b488bdda-fc52-427e-b3da-da4c8c3bc2b4, 0);
+CharacterSetRelationIndivFactionToFaction(CHARACTERGUID_S_RC_DW_Docks_Fisherman_01_b488bdda-fc52-427e-b3da-da4c8c3bc2b4, "Evil NPC", 0);
+
+IF
+ObjectFlagSet("QuestUpdate_RC_DW_FishermanRing_GaveRing", _, _)
+AND
+GlobalGetFlag("RC_DW_FishermanRing_GaveRing", 0)
+THEN
+GlobalSetFlag("RC_DW_FishermanRing_GaveRing");
+
+IF
+CharacterDied((CHARACTERGUID)_Var1)
+AND
+DB_RC_DW_FishermanRingVoidwoken(_Var1)
+THEN
+NOT DB_RC_DW_FishermanRingVoidwoken(_Var1);
+Proc_RC_DW_FishermanRing_CheckResetCower();
+
+PROC
+Proc_RC_DW_FishermanRing_CheckResetCower()
+AND NOT
+DB_RC_DW_FishermanRingVoidwoken(_)
+THEN
+GlobalClearFlag("RC_DW_FishermanRing_Cower");
+
+
+EXITSECTION
+ENDEXITSECTION
+
+ParentTargetEdge "ReapersCoast"

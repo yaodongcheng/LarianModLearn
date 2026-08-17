@@ -1,0 +1,213 @@
+Version 1
+SubGoalCombiner SGC_AND
+
+INITSECTION
+DB_Dialogs(S_RC_MIL_ElvenRangerF_58613267-ab70-408e-8564-9825d9b5383e, "RC_MIL_ElvenRangerF");
+DB_Dialogs(S_RC_MIL_ElvenRangerM_c1b8a0ea-7df4-4970-8c2a-17a26245d4d9, "RC_MIL_ElfGuard");
+DB_HasStoryEvent(S_RC_MIL_LoneWolfMark_5cbae844-93c7-40fe-bf58-547ac6610248, "RC_MIL_HasLoneWolfMark");
+DB_CheckPoint(CHARACTERGUID_S_RC_MIL_GuardWolf1_dd6de19c-bcce-40d3-b4ce-522a735e4fee, CHARACTERGUID_S_RC_MIL_GuardWolf2_c55778a5-fa1f-484d-86d2-dc625d51ca59, TRIGGERGUID_S_RC_MIL_MillEnterTrigger1_9aded9fb-29a1-4f10-8d5d-08990575e4aa, TRIGGERGUID_S_RC_MIL_MillEnterTrigger2_aefd1944-dfb4-4099-9285-051a34130d2f, TRIGGERGUID_S_RC_MIL_MillEnterTrigger3_83f23314-c2ab-4aed-8682-7dcef5b630d0, "RC_MIL_AllowedInMill");
+SetOnStage(CHARACTERGUID_S_RC_MIL_ElvenRangerF_58613267-ab70-408e-8564-9825d9b5383e, 0);
+SetOnStage(CHARACTERGUID_S_RC_MIL_ElvenRangerM_c1b8a0ea-7df4-4970-8c2a-17a26245d4d9, 0);
+DB_AmbushTrigger(TRIGGERGUID_S_RC_MIL_AmbushTrigger_CampEntrance_6b5fb732-2445-4f82-ad44-5ab2c176bad7, ITEMGUID_S_RC_MIL_AmbushHelper_CampEntrance_b11c9fdd-dc79-49e6-8388-44bf0039ac6e);
+DB_RC_MIL_ElfCheckpoint(CHARACTERGUID_S_RC_MIL_ElvenRangerM_c1b8a0ea-7df4-4970-8c2a-17a26245d4d9, TRIGGERGUID_S_RC_MIL_ElfWatcher1Point_6497d39b-f08d-447d-97c5-788a2da19ea7, "RC_MIL_ElvenRangerMappear");
+DB_RC_MIL_ElfCheckpoint(CHARACTERGUID_S_RC_MIL_ElvenRangerF_58613267-ab70-408e-8564-9825d9b5383e, TRIGGERGUID_S_RC_MIL_ElfWatcher2Point_ef377b7d-efb8-4399-b6e7-c1084fff8e23, "RC_MIL_ElvenRangerFAppear");
+DB_OneShotPlayerTrigger(S_RC_MIL_VB_MillApproach1_82ad6895-46ef-4d42-a287-d4f0beb57918);
+DB_OneShotPlayerTrigger(S_RC_MIL_VB_MillApproach2_730846a0-f7ea-448f-b151-9e4093b80627);
+DB_TrespassTrigger(TRIGGERGUID_S_RC_MIL_CampEnterTrigger3_99eafee0-9fe4-4d21-93eb-107123a61925, NULL_00000000-0000-0000-0000-000000000000);
+
+KBSECTION
+PROC
+PROC_CheckPointDialogue((CHARACTERGUID)_Var1, CHARACTERGUID_S_RC_MIL_ElvenRangerM_c1b8a0ea-7df4-4970-8c2a-17a26245d4d9)
+THEN
+Proc_StartDialog(0, "RC_MIL_ElfGuard", S_RC_MIL_ElvenRangerM_c1b8a0ea-7df4-4970-8c2a-17a26245d4d9, _Var1);
+
+PROC
+PROC_CheckPointDialogue((CHARACTERGUID)_Var1, CHARACTERGUID_S_RC_MIL_ElvenRangerF_58613267-ab70-408e-8564-9825d9b5383e)
+THEN
+Proc_StartDialog(0, "RC_MIL_ElfWarning", S_RC_MIL_ElvenRangerF_58613267-ab70-408e-8564-9825d9b5383e, _Var1);
+
+PROC
+PROC_CheckPointDialogue((CHARACTERGUID)_Var1, CHARACTERGUID_S_RC_MIL_GuardWolf2_c55778a5-fa1f-484d-86d2-dc625d51ca59)
+THEN
+Proc_StartDialog(0, "RC_MIL_LastWarning", CHARACTERGUID_S_RC_MIL_GuardWolf2_c55778a5-fa1f-484d-86d2-dc625d51ca59, _Var1);
+
+PROC
+PROC_CheckPointDialogue((CHARACTERGUID)_Var1, CHARACTERGUID_S_RC_MIL_GuardWolf1_dd6de19c-bcce-40d3-b4ce-522a735e4fee)
+AND NOT
+QRY_RC_MIL_IfanCheckpointDialogue(_Var1)
+THEN
+Proc_StartDialog(0, "RC_MIL_LoneWolfGuard", S_RC_MIL_GuardWolf1_dd6de19c-bcce-40d3-b4ce-522a735e4fee, _Var1);
+
+QRY
+QRY_RC_MIL_IfanCheckpointDialogue((CHARACTERGUID)_Var1)
+AND
+CharacterIsInPartyWith(_Var1, CHARACTERGUID_S_Player_Ifan_ad9a3327-4456-42a7-9bf4-7ad60cc9e54f, 1)
+AND
+IsTagged(CHARACTERGUID_S_Player_Ifan_ad9a3327-4456-42a7-9bf4-7ad60cc9e54f, "IFAN", 1)
+AND
+QRY_RC_MIL_WolvesCanSee(CHARACTERGUID_S_Player_Ifan_ad9a3327-4456-42a7-9bf4-7ad60cc9e54f)
+AND
+QRY_StartDialog(0, "RC_MIL_LoneWolfGuard", S_RC_MIL_GuardWolf1_dd6de19c-bcce-40d3-b4ce-522a735e4fee, Player_Ifan_ad9a3327-4456-42a7-9bf4-7ad60cc9e54f)
+THEN
+PROC_RC_MIL_FoundIfanCheckpointDialogue(_Var1);
+
+PROC
+PROC_RC_MIL_FoundIfanCheckpointDialogue((CHARACTERGUID)_Var1)
+AND
+CharacterGetReservedUserID(_Var1, _Var2)
+AND
+CharacterGetReservedUserID(CHARACTERGUID_S_Player_Ifan_ad9a3327-4456-42a7-9bf4-7ad60cc9e54f, _Var2)
+AND
+GetPosition(_Var1, _Var3, _Var4, _Var5)
+THEN
+CharacterMoveToPosition(_Var1, _Var3, _Var4, _Var5, 0, "");
+
+QRY
+QRY_RC_MIL_WolvesCanSee((CHARACTERGUID)_Var1)
+AND
+CharacterCanSee(S_RC_MIL_GuardWolf1_dd6de19c-bcce-40d3-b4ce-522a735e4fee, _Var1, 1)
+THEN
+DB_NOOP(1);
+
+QRY
+QRY_RC_MIL_WolvesCanSee((CHARACTERGUID)_Var1)
+AND
+CharacterCanSee(S_RC_MIL_GuardWolf2_c55778a5-fa1f-484d-86d2-dc625d51ca59, _Var1, 1)
+THEN
+DB_NOOP(1);
+
+PROC
+ProcCharInTriggerSpotted(Player_Ifan_ad9a3327-4456-42a7-9bf4-7ad60cc9e54f, S_RC_MIL_MillEnterTrigger2_aefd1944-dfb4-4099-9285-051a34130d2f)
+AND
+PartyGetFlag(Player_Ifan_ad9a3327-4456-42a7-9bf4-7ad60cc9e54f, "RC_MIL_AllowedInMill", 1)
+AND
+QueryOnlyOnce("RC_MIL_IfanComingThrough")
+AND
+IsTagged(CHARACTERGUID_S_Player_Ifan_ad9a3327-4456-42a7-9bf4-7ad60cc9e54f, "IFAN", 1)
+AND
+QRY_SpeakerIsAvailable(S_RC_MIL_GuardWolf2_c55778a5-fa1f-484d-86d2-dc625d51ca59)
+AND
+QRY_SpeakerIsAvailable(S_RC_MIL_GuardWolf1_dd6de19c-bcce-40d3-b4ce-522a735e4fee)
+THEN
+DialogRequestStop(S_RC_MIL_GuardWolf1_dd6de19c-bcce-40d3-b4ce-522a735e4fee);
+DialogRequestStop(S_RC_MIL_GuardWolf2_c55778a5-fa1f-484d-86d2-dc625d51ca59);
+ProcFaceEachother(S_RC_MIL_GuardWolf1_dd6de19c-bcce-40d3-b4ce-522a735e4fee, S_RC_MIL_GuardWolf2_c55778a5-fa1f-484d-86d2-dc625d51ca59);
+Proc_StartDialog(1, "RC_MIL_AD_IfanComingThrough", S_RC_MIL_GuardWolf1_dd6de19c-bcce-40d3-b4ce-522a735e4fee, S_RC_MIL_GuardWolf2_c55778a5-fa1f-484d-86d2-dc625d51ca59);
+
+IF
+ObjectEnteredCombat((CHARACTERGUID)_Var1, _)
+AND
+DB_RC_MIL_TovahsElves(_Var1)
+THEN
+ProcLaunchAmbush(TRIGGERGUID_S_RC_MIL_AmbushTrigger_CampEntrance_6b5fb732-2445-4f82-ad44-5ab2c176bad7, NULL_00000000-0000-0000-0000-000000000000);
+
+IF
+AttackedByObject((CHARACTERGUID)_Var1, _, (GUIDSTRING)_Var3, _, _)
+AND
+_Var1 != _Var3
+AND
+DB_RC_MIL_TovahsElves(_Var1)
+THEN
+ProcLaunchAmbush(TRIGGERGUID_S_RC_MIL_AmbushTrigger_CampEntrance_6b5fb732-2445-4f82-ad44-5ab2c176bad7, NULL_00000000-0000-0000-0000-000000000000);
+
+PROC
+ProcLaunchAmbush(TRIGGERGUID_S_RC_MIL_AmbushTrigger_CampEntrance_6b5fb732-2445-4f82-ad44-5ab2c176bad7, _)
+AND NOT
+DB_OnlyOnce("RC_MIL_ActivateElvenCheckpoint")
+THEN
+TimerLaunch("RC_MIL_ActivateElvenCheckpoint", 1000);
+
+IF
+TimerFinished("RC_MIL_ActivateElvenCheckpoint")
+THEN
+ProcRemoveDBTrespassTrigger(TRIGGERGUID_S_RC_MIL_CampEnterTrigger3_99eafee0-9fe4-4d21-93eb-107123a61925, NULL_00000000-0000-0000-0000-000000000000);
+DB_CheckPoint(CHARACTERGUID_S_RC_MIL_ElvenRangerM_c1b8a0ea-7df4-4970-8c2a-17a26245d4d9, CHARACTERGUID_S_RC_MIL_ElvenRangerF_58613267-ab70-408e-8564-9825d9b5383e, TRIGGERGUID_S_RC_MIL_CampEnterTrigger1_5c35a415-fb69-45a8-9458-7c6c28fa33ef, TRIGGERGUID_S_RC_MIL_CampEnterTrigger2_b77c6d80-a371-4105-9ad9-35f6d96d0746, TRIGGERGUID_S_RC_MIL_CampEnterTrigger4_99eafee0-9fe4-4d21-93eb-107123a61925, "RC_MIL_AllowedInCamp");
+
+PROC
+ProcLaunchAmbush(TRIGGERGUID_S_RC_MIL_AmbushTrigger_CampEntrance_6b5fb732-2445-4f82-ad44-5ab2c176bad7, _)
+AND NOT
+DB_OnlyOnce("RC_MIL_ActivateElvenCheckpoint")
+AND
+DB_RC_MIL_ElfCheckpoint(_Var2, _, _)
+THEN
+Foop(_Var2);
+
+PROC
+ProcLaunchAmbush(TRIGGERGUID_S_RC_MIL_AmbushTrigger_CampEntrance_6b5fb732-2445-4f82-ad44-5ab2c176bad7, _)
+THEN
+DB_OnlyOnce("RC_MIL_ActivateElvenCheckpoint");
+
+IF
+CharacterWentOnStage((CHARACTERGUID)_Var1, 1)
+AND
+DB_RC_MIL_ElfCheckpoint(_Var1, _Var2, _Var3)
+AND
+QueryOnlyOnce(_Var3)
+THEN
+ProcCharacterMoveTo(_Var1, _Var2, 0, "RC_MIL_ArrivedPost");
+
+IF
+StoryEvent((CHARACTERGUID)_Var1, "RC_MIL_ArrivedPost")
+AND
+DB_RC_MIL_ElfCheckpoint(_Var1, _Var2, _)
+THEN
+CharacterLookFromTrigger(_Var1, _Var2, 0);
+
+PROC
+ProcOneShotTriggerEntered((CHARACTERGUID)_Var1, S_RC_MIL_VB_MillApproach1_82ad6895-46ef-4d42-a287-d4f0beb57918)
+THEN
+StartVoiceBark("RC_MIL_MillApproach1", _Var1);
+
+PROC
+ProcOneShotTriggerEntered((CHARACTERGUID)_Var1, S_RC_MIL_VB_MillApproach2_730846a0-f7ea-448f-b151-9e4093b80627)
+THEN
+StartVoiceBark("RC_MIL_MillApproach2", _Var1);
+
+IF
+CharacterEnteredTrigger((CHARACTERGUID)_Var1, S_RC_MIL_MillEnterTrigger3_83f23314-c2ab-4aed-8682-7dcef5b630d0)
+THEN
+ProcTriggerUnregisterForPlayers(S_RC_MIL_VB_MillApproach1_82ad6895-46ef-4d42-a287-d4f0beb57918);
+ProcTriggerUnregisterForPlayers(S_RC_MIL_VB_MillApproach2_730846a0-f7ea-448f-b151-9e4093b80627);
+
+IF
+ObjectFlagSet("RC_MIL_AllowedInMill", _, _)
+AND
+QueryOnlyOnce("RC_MIL_AddGuardADs")
+THEN
+SetVarString(CHARACTERGUID_S_RC_MIL_GuardWolf1_dd6de19c-bcce-40d3-b4ce-522a735e4fee, "GuardDialog", "RC_MIL_AD_Guard12");
+
+IF
+VoiceBarkEnded("RC_MIL_MillApproach1", (INTEGER)_Var1)
+AND
+DialogGetInvolvedPlayer(_Var1, 1, _Var2)
+AND
+CharacterCanSee(CHARACTERGUID_S_RC_MIL_GuardWolf1_dd6de19c-bcce-40d3-b4ce-522a735e4fee, _Var2, 1)
+AND
+ObjectGetFlag(_Var2, "RC_MIL_AllowedInMill", 0)
+AND
+_Var2 != CHARACTERGUID_S_Player_Ifan_ad9a3327-4456-42a7-9bf4-7ad60cc9e54f
+AND
+QueryOnlyOnce("RC_MIL_AD_Guard21")
+THEN
+Proc_StartDialog(1, "RC_MIL_AD_Guard21", CHARACTERGUID_S_RC_MIL_GuardWolf2_c55778a5-fa1f-484d-86d2-dc625d51ca59, CHARACTERGUID_S_RC_MIL_GuardWolf1_dd6de19c-bcce-40d3-b4ce-522a735e4fee);
+
+IF
+CharacterSawCharacter(CHARACTERGUID_S_RC_MIL_GuardWolf1_dd6de19c-bcce-40d3-b4ce-522a735e4fee, (CHARACTERGUID)_Var1)
+AND
+DB_IsPlayer(_Var1)
+AND NOT
+DB_OneShotPlayerTrigger(S_RC_MIL_VB_MillApproach1_82ad6895-46ef-4d42-a287-d4f0beb57918)
+AND
+ObjectGetFlag(_Var1, "RC_MIL_AllowedInMill", 0)
+AND
+_Var1 != CHARACTERGUID_S_Player_Ifan_ad9a3327-4456-42a7-9bf4-7ad60cc9e54f
+AND
+QueryOnlyOnce("RC_MIL_AD_Guard21")
+THEN
+Proc_StartDialog(1, "RC_MIL_AD_Guard21", CHARACTERGUID_S_RC_MIL_GuardWolf2_c55778a5-fa1f-484d-86d2-dc625d51ca59, CHARACTERGUID_S_RC_MIL_GuardWolf1_dd6de19c-bcce-40d3-b4ce-522a735e4fee);
+
+
+EXITSECTION
+ENDEXITSECTION
+
+ParentTargetEdge "ReapersCoast"

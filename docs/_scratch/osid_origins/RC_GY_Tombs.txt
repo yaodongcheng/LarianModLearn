@@ -1,0 +1,117 @@
+Version 1
+SubGoalCombiner SGC_AND
+
+INITSECTION
+DB_Ghosts(CHARACTERGUID_S_RC_GY_SinnerGhost_01_505b8d72-1223-451d-917b-6790f9611544, "RC_GY_Sinner01");
+DB_Ghosts(CHARACTERGUID_S_RC_GY_Humans_Ghost_2_0750d3c7-3a51-474f-acda-083f382b4c13, "RC_GY_Humans_Ghost_2");
+DB_Ghosts(CHARACTERGUID_S_RC_GY_Elves_Ghost_1_0fda9638-3893-484a-9a33-77c808d2d02f, "RC_GY_Elves_Ghost_1");
+DB_Ghosts(CHARACTERGUID_S_RC_GY_Elves_Ghost_2_164de383-77c3-4110-8bf5-78bf236d1de8, "RC_GY_Elves_Ghost_2");
+DB_Ghosts(CHARACTERGUID_S_RC_GY_Elves_Ghost_3_7c48f986-e2ea-4bd0-b5c1-a5b2059a07f0, "RC_GY_Elves_Ghost_3");
+DB_Ghosts(CHARACTERGUID_S_RC_GY_Dwarves_Body_1_74a25a8a-2e33-43f8-9a7c-bff35eefcb86, CHARACTERGUID_S_RC_GY_Dwarves_Ghost_1_59732d26-e7ad-496a-8b8d-0ef68c19b715, "RC_GY_Dwarves_Ghost_1");
+DB_Ghosts(CHARACTERGUID_S_RC_GY_Dwarves_Body_2_d2fa14d4-5a8c-47f4-befc-df2c91608732, CHARACTERGUID_S_RC_GY_Dwarves_Ghost_2_7b4d8efb-01a7-499f-bcbe-8283a4fe99fd, "RC_GY_Dwarves_Ghost_2");
+DB_RC_GY_TombAreas(TRIGGERGUID_S_RC_GY_VB_Humans_7b790946-b7a9-4d66-8ae6-edd059f57d7f, "RC_GY_VB_Humans");
+DB_RC_GY_TombAreas(TRIGGERGUID_S_RC_GY_VB_Elves_3684b769-0711-479a-a7a8-9fa76d9f87dd, "RC_GY_VB_Elves");
+DB_RC_GY_TombAreas(TRIGGERGUID_S_RC_GY_VB_Dwarves_55af00ad-e384-4361-b042-051cabbd0512, "RC_GY_VB_Dwarves");
+DB_RC_GY_TombAreas(TRIGGERGUID_S_RC_GY_VB_Lizards_7caac7a3-710e-4634-9cea-730049bcbcb2, "RC_GY_VB_Lizards");
+DB_Ghosts(CHARACTERGUID_S_RC_GY_DwarfBrotherGhost_9ae2d561-fdbf-4a12-a99e-0dd76690a6cb, "");
+DB_Ghosts(CHARACTERGUID_S_RC_GY_DwarfSisterGhost_b43eae88-66b6-45fb-9765-3a5e0bf509eb, "");
+
+KBSECTION
+IF
+DB_RC_GY_TombAreas(_Var1, _)
+THEN
+ProcTriggerRegisterForPlayers(_Var1);
+
+IF
+CharacterEnteredTrigger((CHARACTERGUID)_Var1, (TRIGGERGUID)_Var2)
+AND
+DB_RC_GY_TombAreas(_Var2, _Var3)
+AND
+UserGetFlag(_Var1, _Var3, 0)
+THEN
+ObjectSetFlag(_Var1, _Var3);
+StartVoiceBark(_Var3, _Var1);
+
+IF
+CharacterUsedSkill((CHARACTERGUID)_Var1, "Shout_SpiritVision", _, _)
+AND
+DB_InRegion(_Var1, TRIGGERGUID_S_RC_GY_SUB_Graveyard_59ac9cef-edf4-492f-906c-fbde552e68d3)
+AND NOT
+DB_InRegion(_Var1, TRIGGERGUID_S_RC_GY_SUB_RykerHouse_GroundFloor_f685aad8-a811-4d5c-9e90-81e5a66456cc)
+AND
+UserGetFlag(_Var1, "RC_GY_EmptyCemeteryComment", 0)
+THEN
+UserSetFlag(_Var1, "RC_GY_EmptyCemeteryComment");
+StartVoiceBark("RC_GY_VB_EmptyGraveyards", _Var1);
+
+IF
+ObjectFlagSet("RC_GY_HumanGhost2_Barter", (CHARACTERGUID)_Var1, _)
+AND
+CharacterGetMaxSourcePoints(_Var1, _Var3)
+AND
+CharacterGetSourcePoints(_Var1, _Var3)
+THEN
+ItemTemplateAddTo("CON_Potion_Source_A_23cdecb1-06a4-4290-bb2c-de300cba5dd0", _Var1, _Var3);
+
+IF
+ObjectFlagSet("RC_GY_HumanGhost2_Barter", (CHARACTERGUID)_Var1, _)
+AND
+CharacterGetMaxSourcePoints(_Var1, _Var3)
+AND
+CharacterGetSourcePoints(_Var1, _Var4)
+AND
+_Var4 != _Var3
+THEN
+CharacterAddSourcePoints(_Var1, _Var3);
+
+IF
+RegionEnded("RC_Main")
+AND
+DB_RC_GY_TombAreas(_Var1, _Var2)
+THEN
+NOT DB_RC_GY_TombAreas(_Var1, _Var2);
+ProcTriggerUnregisterForPlayers(_Var1);
+
+PROC
+PROC_GLOBAL_DialogStartRequested(CHARACTERGUID_S_RC_GY_DwarfBrotherGhost_9ae2d561-fdbf-4a12-a99e-0dd76690a6cb, (GUIDSTRING)_Var1)
+AND NOT
+DB_GoneGhosts(CHARACTERGUID_S_RC_GY_DwarfSisterGhost_b43eae88-66b6-45fb-9765-3a5e0bf509eb)
+THEN
+Proc_StartDialog(0, "RC_GY_DwarfSiblingGhosts", CHARACTERGUID_S_RC_GY_DwarfBrotherGhost_9ae2d561-fdbf-4a12-a99e-0dd76690a6cb, CHARACTERGUID_S_RC_GY_DwarfSisterGhost_b43eae88-66b6-45fb-9765-3a5e0bf509eb, _Var1);
+
+PROC
+PROC_GLOBAL_DialogStartRequested(CHARACTERGUID_S_RC_GY_DwarfSisterGhost_b43eae88-66b6-45fb-9765-3a5e0bf509eb, (GUIDSTRING)_Var1)
+AND NOT
+DB_GoneGhosts(CHARACTERGUID_S_RC_GY_DwarfBrotherGhost_9ae2d561-fdbf-4a12-a99e-0dd76690a6cb)
+THEN
+Proc_StartDialog(0, "RC_GY_DwarfSiblingGhosts", CHARACTERGUID_S_RC_GY_DwarfBrotherGhost_9ae2d561-fdbf-4a12-a99e-0dd76690a6cb, CHARACTERGUID_S_RC_GY_DwarfSisterGhost_b43eae88-66b6-45fb-9765-3a5e0bf509eb, _Var1);
+
+IF
+DialogEnded("RC_GY_DwarfSiblingGhosts", (INTEGER)_Var1)
+AND
+DB_GlobalFlag("RC_GY_PlayerConsumeGhostSiblings")
+AND
+DialogGetInvolvedPlayer(_Var1, 1, _Var2)
+THEN
+CharacterUseSkill(_Var2, "Target_SourceVampirism", CHARACTERGUID_S_RC_GY_DwarfSisterGhost_b43eae88-66b6-45fb-9765-3a5e0bf509eb, 1, 1, 1);
+CharacterUseSkill(_Var2, "Target_SourceVampirism", CHARACTERGUID_S_RC_GY_DwarfBrotherGhost_9ae2d561-fdbf-4a12-a99e-0dd76690a6cb, 1, 1, 1);
+
+IF
+CharacterGhostDestroyed(_, CHARACTERGUID_S_RC_GY_DwarfBrotherGhost_9ae2d561-fdbf-4a12-a99e-0dd76690a6cb)
+THEN
+DB_DoNotFace(CHARACTERGUID_S_RC_GY_DwarfSisterGhost_b43eae88-66b6-45fb-9765-3a5e0bf509eb);
+ProcRemoveAllDialogEntriesForSpeaker(CHARACTERGUID_S_RC_GY_DwarfSisterGhost_b43eae88-66b6-45fb-9765-3a5e0bf509eb);
+DB_Dialogs(CHARACTERGUID_S_RC_GY_DwarfSisterGhost_b43eae88-66b6-45fb-9765-3a5e0bf509eb, "RC_GY_DwarfSisterGhostAlone");
+
+IF
+CharacterGhostDestroyed(_, CHARACTERGUID_S_RC_GY_DwarfSisterGhost_b43eae88-66b6-45fb-9765-3a5e0bf509eb)
+THEN
+DB_DoNotFace(CHARACTERGUID_S_RC_GY_DwarfBrotherGhost_9ae2d561-fdbf-4a12-a99e-0dd76690a6cb);
+ProcRemoveAllDialogEntriesForSpeaker(CHARACTERGUID_S_RC_GY_DwarfBrotherGhost_9ae2d561-fdbf-4a12-a99e-0dd76690a6cb);
+DB_Dialogs(CHARACTERGUID_S_RC_GY_DwarfBrotherGhost_9ae2d561-fdbf-4a12-a99e-0dd76690a6cb, "RC_GY_DwarfBrotherGhostAlone");
+
+
+EXITSECTION
+ENDEXITSECTION
+
+ParentTargetEdge "ReapersCoast"

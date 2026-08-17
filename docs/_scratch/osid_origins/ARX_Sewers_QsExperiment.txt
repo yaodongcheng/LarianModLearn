@@ -1,0 +1,585 @@
+Version 1
+SubGoalCombiner SGC_AND
+
+INITSECTION
+ItemToInventory(ITEMGUID_S_ARX_Sewers_QsResearchJournal_Godwoken_33551be5-3d2f-41fb-9ab0-5a47de78931a, CHARACTERGUID_S_ARX_Sewers_Q_52f20922-7b22-4d47-90f7-83172f21fe3b);
+ItemToInventory(ITEMGUID_S_ARX_Sewers_QsResearchJournal_447f5803-4d3d-49bc-b59a-e2dc25b11a15, CHARACTERGUID_S_ARX_Sewers_Q_52f20922-7b22-4d47-90f7-83172f21fe3b);
+SetOnStage(ITEMGUID_S_ARX_Sewers_QsResearchJournal_Godwoken_33551be5-3d2f-41fb-9ab0-5a47de78931a, 0);
+DB_QsExperiment_StatusPerPhase(1, "DISEASED");
+DB_QsExperiment_StatusPerPhase(2, "NULL");
+DB_QsExperiment_StatusPerPhase(3, "POISONED");
+ProcTriggerRegisterForPlayers(TRIGGERGUID_S_ARX_Sewers_QsLab_GasChamber_05_1b33f970-6b68-48df-8658-c3cd1630e8ad);
+DB_QsExperiment_GasChamber_Triggers(TRIGGERGUID_S_ARX_Sewers_QsLaboratory_GasChamber_Trig_01_b8c15ad6-c7ec-4fcb-a415-1e2369a804d5);
+DB_QsExperiment_GasChamber_Triggers(TRIGGERGUID_S_ARX_Sewers_QsLaboratory_GasChamber_Trig_02_6b47f0dc-e1db-46d0-8dbe-171b5e310012);
+DB_QsExperiment_GasChamber_Triggers(TRIGGERGUID_S_ARX_Sewers_QsLaboratory_GasChamber_Trig_03_2a00823a-c5f6-432c-ab38-8d116ae7d831);
+DB_QsExperiment_GasChamber_Triggers(TRIGGERGUID_S_ARX_Sewers_QsLaboratory_GasChamber_Trig_04_5fa8b3df-e1d5-4c6a-ac4c-cabe891b0f86);
+
+KBSECTION
+IF
+TextEventSet("qevent")
+THEN
+GlobalSetFlag("qevent");
+
+IF
+GlobalFlagSet("qevent")
+AND
+DB_IsPlayer(_Var1)
+THEN
+DB_InRegion(_Var1, TRIGGERGUID_S_ARX_Sewers_EmpressRoom_b6c8bef5-7f68-40b5-8922-813df2090a27);
+
+IF
+GlobalFlagSet("qevent")
+THEN
+GlobalSetFlag("ARX_Sewers_QueenAndQ_InitiatePurging");
+Proc_ARX_Sewers_QueenAndQ_InitiatePurging_Cast();
+GlobalClearFlag("qevent");
+
+IF
+GlobalFlagSet("ARX_Sewers_QueenAndQ_InitiatePurging")
+THEN
+CharacterSetFightMode(CHARACTERGUID_S_ARX_Sewers_Q_52f20922-7b22-4d47-90f7-83172f21fe3b, 1, 0);
+
+IF
+DialogEnded("ARX_Sewers_QueenAndQ_FirstEncounter_COM_Beast", _)
+AND
+GlobalGetFlag("ARX_Sewers_QueenAndQ_InitiatePurging", 1)
+AND
+QueryOnlyOnce("ARX_Sewers_QueenAndQ_InitiatePurging_Cast")
+THEN
+Proc_ARX_Sewers_QueenAndQ_InitiatePurging_Cast();
+
+IF
+DialogEnded("ARX_Sewers_QueenAndQ_FirstEncounter", _)
+AND
+GlobalGetFlag("ARX_Sewers_QueenAndQ_InitiatePurging", 1)
+AND
+QueryOnlyOnce("ARX_Sewers_QueenAndQ_InitiatePurging_Cast")
+THEN
+Proc_ARX_Sewers_QueenAndQ_InitiatePurging_Cast();
+
+PROC
+Proc_ARX_Sewers_QueenAndQ_InitiatePurging_Cast()
+AND
+QueryOnlyOnce("ARX_Sewers_QueenAndQ_InitiatePurging_CastTimerLaunch")
+THEN
+TimerLaunch("ARX_Sewers_QueenAndQ_InitiatePurging_Cast", 3850);
+CharacterUseSkill(CHARACTERGUID_S_ARX_Sewers_Q_52f20922-7b22-4d47-90f7-83172f21fe3b, "Shout_Quest_LureTheKraken", CHARACTERGUID_S_ARX_Sewers_Q_52f20922-7b22-4d47-90f7-83172f21fe3b, 1, 1, 1);
+PlaySound(CHARACTERGUID_S_ARX_Sewers_Q_52f20922-7b22-4d47-90f7-83172f21fe3b, "SE_ARX_Isbeil_FullSequence_01");
+Proc_ShakeCameraForTime(CHARACTERGUID_S_ARX_Sewers_Q_52f20922-7b22-4d47-90f7-83172f21fe3b, 7000);
+
+PROC
+Proc_ARX_Sewers_QueenAndQ_InitiatePurging_Cast()
+AND
+DB_IsPlayer(_Var1)
+AND
+DB_InRegion(_Var1, TRIGGERGUID_S_ARX_Sewers_EmpressRoom_b6c8bef5-7f68-40b5-8922-813df2090a27)
+THEN
+CharacterFreeze(_Var1);
+
+IF
+TimerFinished("ARX_Sewers_QueenAndQ_InitiatePurging_Cast")
+THEN
+Proc_ARX_Sewers_QueenAndQ_InitiatePurging();
+
+PROC
+Proc_ARX_Sewers_QueenAndQ_InitiatePurging()
+AND
+GlobalGetFlag("ARX_Sewers_QueenAndQ_InitiatePurging", 1)
+THEN
+PlayEffect(CHARACTERGUID_S_ARX_Sewers_TheEmpress_78c95ad2-2d1a-4358-9c9c-77ff9a5fc3c9, "RS3_FX_Skills_Soul_Impact_Soul_Touch_Hand_01");
+ApplyStatus(CHARACTERGUID_S_ARX_Sewers_TheEmpress_78c95ad2-2d1a-4358-9c9c-77ff9a5fc3c9, "STUNNED", -1, 1);
+ApplyStatus(CHARACTERGUID_S_ARX_Sewers_TheEmpress_78c95ad2-2d1a-4358-9c9c-77ff9a5fc3c9, "UNCONSCIOUS", -1, 1);
+
+PROC
+Proc_ARX_Sewers_QueenAndQ_InitiatePurging()
+AND
+DB_IsPlayer(_Var1)
+AND
+DB_InRegion(_Var1, TRIGGERGUID_S_ARX_Sewers_EmpressRoom_b6c8bef5-7f68-40b5-8922-813df2090a27)
+THEN
+CharacterUnfreeze(_Var1);
+PlayEffect(_Var1, "RS3_FX_Skills_Soul_Impact_Soul_Touch_Hand_01");
+ApplyStatus(_Var1, "STUNNED", -1, 1);
+ApplyStatus(_Var1, "UNCONSCIOUS", -1, 1);
+DB_DoNotFace(_Var1);
+FadeToBlack(_Var1, 4, 0, "Arx_Sewers_QueenAndQ_InitiatePurging_Fade");
+DB_ARX_Sewers_StunnedCharacter(_Var1);
+
+PROC
+Proc_ARX_Sewers_QueenAndQ_InitiatePurging()
+THEN
+ProcCharacterDisableCrime(CHARACTERGUID_S_ARX_Sewers_TheEmpress_78c95ad2-2d1a-4358-9c9c-77ff9a5fc3c9, "Assault");
+ProcCharacterDisableCrime(CHARACTERGUID_S_ARX_Sewers_Q_52f20922-7b22-4d47-90f7-83172f21fe3b, "Assault");
+
+IF
+FadeOutDone(_, "Arx_Sewers_QueenAndQ_InitiatePurging_Fade")
+AND
+QueryOnlyOnce("Proc_Arx_Sewers_InitiateArrest")
+THEN
+Proc_Arx_Sewers_InitiateArrest();
+Proc_Arx_Sewers_InitiateArrest_SetUpQ();
+
+PROC
+Proc_Arx_Sewers_InitiateArrest()
+THEN
+GlobalSetFlag("RC_ARX_Sewers_Q_PlayersArrested");
+
+PROC
+Proc_Arx_Sewers_InitiateArrest()
+AND
+GlobalGetFlag("ARX_Sewers_QueenAndQ_InitiatePurging", 1)
+THEN
+TeleportTo(CHARACTERGUID_S_ARX_Sewers_TheEmpress_78c95ad2-2d1a-4358-9c9c-77ff9a5fc3c9, TRIGGERGUID_S_ARX_Sewers_QsLab_QueenPrison_8a7de101-abd7-471e-8191-ded25214c82e);
+GlobalSetFlag("ARX_TheQueen_ImprisonedByQ");
+RemoveStatus(CHARACTERGUID_S_ARX_Sewers_TheEmpress_78c95ad2-2d1a-4358-9c9c-77ff9a5fc3c9, "STUNNED");
+RemoveStatus(CHARACTERGUID_S_ARX_Sewers_TheEmpress_78c95ad2-2d1a-4358-9c9c-77ff9a5fc3c9, "UNCONSCIOUS");
+
+PROC
+Proc_Arx_Sewers_InitiateArrest()
+AND
+DB_ARX_Sewers_QsUnmaskedGuards(_Var1, _Var2)
+AND
+CharacterIsDead(_Var1, 0)
+THEN
+ProcForceStopDialog(_Var1);
+SetOnStage(_Var2, 1);
+SetOnStage(_Var1, 0);
+
+PROC
+Proc_Arx_Sewers_InitiateArrest()
+THEN
+SetOnStage(CHARACTERGUID_S_ARX_Sewers_EliteImperialGuard_03_b6d45e54-cee9-4e69-9a42-9e383ce803f4, 0);
+SetOnStage(CHARACTERGUID_S_ARX_Sewers_EliteImperialGuard_05_92e4175a-6419-4afb-86f0-88915c288e4b, 0);
+
+PROC
+Proc_Arx_Sewers_InitiateArrest()
+AND
+DB_IsPlayer(_Var1)
+AND
+DB_InRegion(_Var1, TRIGGERGUID_S_ARX_Sewers_EmpressRoom_b6c8bef5-7f68-40b5-8922-813df2090a27)
+THEN
+ObjectSetFlag(_Var1, "RC_ARX_Sewers_Q_PlayerArrested");
+ProcForceStopDialog(_Var1);
+FadeToBlack(_Var1, 4, 1, "Arx_Sewers_InitiateArrest_FadeIn");
+Proc_Arx_Sewers_InitiateArrest_Teleport(_Var1);
+
+PROC
+Proc_Arx_Sewers_InitiateArrest_Teleport((CHARACTERGUID)_Var1)
+AND
+DB_QsExperiment_GasChamber_Triggers(_Var2)
+AND NOT
+DB_QsExperiment_GasChamber_Teleported(_Var1)
+THEN
+NOT DB_QsExperiment_GasChamber_Triggers(_Var2);
+DB_QsExperiment_GasChamber_Teleported(_Var1);
+TeleportTo(_Var1, _Var2);
+
+IF
+FadeInDone(_, "Arx_Sewers_InitiateArrest_FadeIn")
+THEN
+GlobalSetFlag("Arx_Sewers_Q_PlayerArrested_QueueGenocide");
+
+PROC
+Proc_Arx_Sewers_InitiateArrest_SetUpQ()
+THEN
+ItemCloseAndLock(ITEMGUID_S_ARX_Sewers_ToQsLab_DoorSecond_e45a1d68-c025-4dd8-a5f0-81ad18f44b5b, "ARX_Sewers_QsHiddenDoor");
+
+PROC
+Proc_Arx_Sewers_InitiateArrest_SetUpQ()
+THEN
+CharacterPurgeQueue(CHARACTERGUID_S_ARX_Sewers_Q_52f20922-7b22-4d47-90f7-83172f21fe3b);
+CharacterSetFightMode(CHARACTERGUID_S_ARX_Sewers_Q_52f20922-7b22-4d47-90f7-83172f21fe3b, 0, 1);
+TeleportTo(CHARACTERGUID_S_ARX_Sewers_Q_52f20922-7b22-4d47-90f7-83172f21fe3b, TRIGGERGUID_S_ARX_Sewers_QsPosEmpressDialog_02309147-69da-42d3-af1b-300f1846e12e);
+CharacterLookAt(CHARACTERGUID_S_ARX_Sewers_Q_52f20922-7b22-4d47-90f7-83172f21fe3b, TRIGGERGUID_S_ARX_Sewers_QsLaboratory_ArrestChamber_56eac1de-2f37-417a-b763-8f3c66681600);
+SetHasDialog(CHARACTERGUID_S_ARX_Sewers_Q_52f20922-7b22-4d47-90f7-83172f21fe3b, 0);
+
+IF
+DialogStarted("RC_ARX_Sewers_Q", _)
+AND
+GlobalGetFlag("RC_ARX_Sewers_Q_ArrestDialog", 1)
+THEN
+CharacterLookAt(CHARACTERGUID_S_ARX_Sewers_Q_52f20922-7b22-4d47-90f7-83172f21fe3b, TRIGGERGUID_S_ARX_Sewers_QsLaboratory_ArrestChamber_56eac1de-2f37-417a-b763-8f3c66681600);
+
+IF
+DialogStarted("RC_ARX_Sewers_Q_Experiment", _)
+THEN
+CharacterLookAt(CHARACTERGUID_S_ARX_Sewers_Q_52f20922-7b22-4d47-90f7-83172f21fe3b, TRIGGERGUID_S_ARX_Sewers_QsLaboratory_ArrestChamber_56eac1de-2f37-417a-b763-8f3c66681600);
+
+IF
+ObjectFlagSet("RC_ARX_Sewers_Q_PlayerArrestedExperiment", _, _)
+AND
+ItemIsInCharacterInventory(ITEMGUID_S_ARX_Sewers_QsResearchJournal_447f5803-4d3d-49bc-b59a-e2dc25b11a15, CHARACTERGUID_S_ARX_Sewers_Q_52f20922-7b22-4d47-90f7-83172f21fe3b, 1)
+AND
+QueryOnlyOnce("RC_ARX_Sewers_Q_PlayerArrested_Item")
+THEN
+SetOnStage(ITEMGUID_S_ARX_Sewers_QsResearchJournal_447f5803-4d3d-49bc-b59a-e2dc25b11a15, 0);
+SetOnStage(ITEMGUID_S_ARX_Sewers_QsResearchJournal_Godwoken_33551be5-3d2f-41fb-9ab0-5a47de78931a, 1);
+
+IF
+ObjectFlagSet("RC_ARX_Sewers_Q_PlayerArrested", _, _)
+AND
+ItemIsInCharacterInventory(ITEMGUID_S_ARX_Sewers_QsResearchJournal_447f5803-4d3d-49bc-b59a-e2dc25b11a15, CHARACTERGUID_S_ARX_Sewers_Q_52f20922-7b22-4d47-90f7-83172f21fe3b, 1)
+AND
+QueryOnlyOnce("RC_ARX_Sewers_Q_PlayerArrested_Item")
+THEN
+SetOnStage(ITEMGUID_S_ARX_Sewers_QsResearchJournal_447f5803-4d3d-49bc-b59a-e2dc25b11a15, 0);
+SetOnStage(ITEMGUID_S_ARX_Sewers_QsResearchJournal_Godwoken_33551be5-3d2f-41fb-9ab0-5a47de78931a, 1);
+
+IF
+ObjectFlagSet("RC_ARX_Sewers_Q_PlayerArrested", (GUIDSTRING)_Var1, _)
+THEN
+DB_ARX_Sewers_Q_PlayerArrested(_Var1);
+ObjectSetFlag(_Var1, "QuestUpdate_RC_ARX_TheImperialDwarves_Sewers_Arrested");
+
+IF
+ObjectFlagSet("RC_ARX_Sewers_Q_PlayerArrested", (GUIDSTRING)_Var1, _)
+AND
+QRY_SpeakerIsAvailable(CHARACTERGUID_S_ARX_Sewers_Q_52f20922-7b22-4d47-90f7-83172f21fe3b)
+AND
+QueryOnlyOnce("RC_ARX_Sewers_Q_PlayerArrested_MoveTo")
+THEN
+CharacterFlushQueue(CHARACTERGUID_S_ARX_Sewers_Q_52f20922-7b22-4d47-90f7-83172f21fe3b);
+SetStoryEvent(CHARACTERGUID_S_ARX_Sewers_Q_52f20922-7b22-4d47-90f7-83172f21fe3b, "RC_ARX_Sewers_Q_PlayerArrested_InitiateDialog");
+
+IF
+StoryEvent(_, "RC_ARX_Sewers_Q_PlayerArrested_InitiateDialog")
+THEN
+Proc_ARX_Sewers_Q_PlayerArrested_InitiateDialog_1();
+
+PROC
+Proc_ARX_Sewers_Q_PlayerArrested_InitiateDialog_1()
+THEN
+DB_ARX_Sewers_Q_PlayerArrested_InitiateDialog_Count(1);
+
+PROC
+Proc_ARX_Sewers_Q_PlayerArrested_InitiateDialog_1()
+THEN
+DB_ARX_Sewers_Q_PlayerArrested_InitiateDialog_Speaker(2, NULL_00000000-0000-0000-0000-000000000000);
+DB_ARX_Sewers_Q_PlayerArrested_InitiateDialog_Speaker(3, NULL_00000000-0000-0000-0000-000000000000);
+DB_ARX_Sewers_Q_PlayerArrested_InitiateDialog_Speaker(4, NULL_00000000-0000-0000-0000-000000000000);
+DB_ARX_Sewers_Q_PlayerArrested_InitiateDialog_Speaker(5, NULL_00000000-0000-0000-0000-000000000000);
+
+PROC
+Proc_ARX_Sewers_Q_PlayerArrested_InitiateDialog_1()
+AND
+DB_ARX_Sewers_Q_PlayerArrested(_Var1)
+AND
+DB_ARX_Sewers_Q_PlayerArrested_InitiateDialog_Count(_Var2)
+AND
+IntegerSum(_Var2, 1, _Var3)
+THEN
+DB_ARX_Sewers_Q_PlayerArrested_InitiateDialog_Speaker(_Var3, _Var1);
+NOT DB_ARX_Sewers_Q_PlayerArrested_InitiateDialog_Speaker(_Var3, NULL_00000000-0000-0000-0000-000000000000);
+NOT DB_ARX_Sewers_Q_PlayerArrested_InitiateDialog_Count(_Var2);
+DB_ARX_Sewers_Q_PlayerArrested_InitiateDialog_Count(_Var3);
+
+PROC
+Proc_ARX_Sewers_Q_PlayerArrested_InitiateDialog_1()
+AND
+DB_ARX_Sewers_Q_PlayerArrested_InitiateDialog_Speaker(2, _Var1)
+AND
+DB_ARX_Sewers_Q_PlayerArrested_InitiateDialog_Speaker(3, _Var2)
+AND
+DB_ARX_Sewers_Q_PlayerArrested_InitiateDialog_Speaker(4, _Var3)
+AND
+DB_ARX_Sewers_Q_PlayerArrested_InitiateDialog_Speaker(5, _Var4)
+THEN
+GlobalSetFlag("RC_ARX_Sewers_Q_ArrestDialog");
+Proc_StartDialog(0, "RC_ARX_Sewers_Q", CHARACTERGUID_S_ARX_Sewers_Q_52f20922-7b22-4d47-90f7-83172f21fe3b, _Var1, _Var2, _Var3, _Var4);
+
+IF
+CharacterLeftTrigger((CHARACTERGUID)_Var1, (TRIGGERGUID)_Var2)
+AND
+DB_QsLab_GasChamber(_Var2, _)
+AND
+GlobalGetFlag("RC_ARX_Sewers_Q_InitiatedExperiment", 1)
+AND
+QRY_AnyRegionActive()
+THEN
+ProcForceStopDialog(CHARACTERGUID_S_ARX_Sewers_Q_52f20922-7b22-4d47-90f7-83172f21fe3b);
+
+IF
+GlobalFlagSet("RC_ARX_Sewers_Q_InitiateExperiment")
+AND
+GlobalGetFlag("RC_ARX_Sewers_Q_InitiatedExperiment", 0)
+THEN
+GlobalSetFlag("RC_ARX_Sewers_Q_InitiatedExperiment");
+SetStoryEvent(CHARACTERGUID_S_ARX_Sewers_Q_52f20922-7b22-4d47-90f7-83172f21fe3b, "RC_ARX_Sewers_Q_InitiateExperimentDialog");
+
+IF
+CharacterUsedItem(CHARACTERGUID_S_ARX_Sewers_Q_52f20922-7b22-4d47-90f7-83172f21fe3b, ITEMGUID_S_ARX_Sewers_QsLaboratory_Lever_05_303cb282-6a51-4a68-8134-dcc6b2a50a12)
+AND
+GlobalGetFlag("RC_ARX_Sewers_Q_InitiatedExperiment", 1)
+THEN
+Proc_ARX_Sewers_Q_SetExperimentDB();
+
+PROC
+Proc_ARX_Sewers_Q_SetExperimentDB()
+THEN
+TimerLaunch("RC_ARX_Sewers_Q_ExperimentCheckImmunities", 5000);
+
+PROC
+Proc_ARX_Sewers_Q_SetExperimentDB()
+AND
+DB_IsPlayer(_Var1)
+AND
+DB_InRegion(_Var1, TRIGGERGUID_S_ARX_Sewers_QsLab_GasChamber_05_1b33f970-6b68-48df-8658-c3cd1630e8ad)
+AND
+GetVarInteger(CHARACTERGUID_S_ARX_Sewers_Q_52f20922-7b22-4d47-90f7-83172f21fe3b, "experimentPhase", _Var2)
+THEN
+DB_ARX_Sewers_Q_ExperimentParticipant(_Var1, _Var2);
+
+IF
+TimerFinished("RC_ARX_Sewers_Q_ExperimentCheckImmunities")
+THEN
+Proc_ARX_Sewers_Q_CheckExperiment();
+
+PROC
+Proc_ARX_Sewers_Q_CheckExperiment()
+THEN
+NOT DB_ARX_Sewers_Q_ExperimentParticipant_AliveCharacters(1);
+
+PROC
+Proc_ARX_Sewers_Q_CheckExperiment()
+AND
+DB_ARX_Sewers_Q_ExperimentParticipant(_Var1, _)
+AND
+CharacterIsDead(_Var1, 0)
+THEN
+DB_ARX_Sewers_Q_ExperimentParticipant_AliveCharacters(1);
+
+PROC
+Proc_ARX_Sewers_Q_CheckExperiment()
+AND
+DB_ARX_Sewers_Q_ExperimentParticipant(_Var1, _Var2)
+THEN
+NOT DB_ARX_Sewers_Q_ExperimentParticipant(_Var1, _Var2);
+
+PROC
+Proc_ARX_Sewers_Q_CheckExperiment()
+AND NOT
+DB_ARX_Sewers_Q_ExperimentParticipant_AliveCharacters(1)
+THEN
+GlobalSetFlag("ARX_Sewers_Q_InitiatedExperiment_Dead");
+Proc_StartDialog(1, "ARX_Sewers_AD_Q_Experiment", CHARACTERGUID_S_ARX_Sewers_Q_52f20922-7b22-4d47-90f7-83172f21fe3b);
+GlobalClearFlag("RC_ARX_Sewers_Q_InitiatedExperiment");
+
+PROC
+Proc_ARX_Sewers_Q_CheckExperiment()
+AND
+DB_ARX_Sewers_Q_ExperimentParticipant_AliveCharacters(1)
+THEN
+SetStoryEvent(CHARACTERGUID_S_ARX_Sewers_Q_52f20922-7b22-4d47-90f7-83172f21fe3b, "RC_ARX_Sewers_Q_InitiateExperimentDialog");
+
+IF
+StoryEvent(_, "ARX_Sewers_AD_Q_Experiment_StartDialog")
+THEN
+Proc_ARX_Sewers_Q_InitiateExperimentDialog();
+
+PROC
+Proc_ARX_Sewers_Q_InitiateExperimentDialog()
+THEN
+DB_ARX_Sewers_Q_InitiateExperimentDialog_Count(1);
+
+PROC
+Proc_ARX_Sewers_Q_InitiateExperimentDialog()
+THEN
+DB_ARX_Sewers_Q_InitiateExperimentDialog_Speaker(2, NULL_00000000-0000-0000-0000-000000000000);
+DB_ARX_Sewers_Q_InitiateExperimentDialog_Speaker(3, NULL_00000000-0000-0000-0000-000000000000);
+DB_ARX_Sewers_Q_InitiateExperimentDialog_Speaker(4, NULL_00000000-0000-0000-0000-000000000000);
+DB_ARX_Sewers_Q_InitiateExperimentDialog_Speaker(5, NULL_00000000-0000-0000-0000-000000000000);
+
+PROC
+Proc_ARX_Sewers_Q_InitiateExperimentDialog()
+AND
+DB_IsPlayer(_Var1)
+AND
+CharacterIsDead(_Var1, 0)
+AND
+DB_InRegion(_Var1, TRIGGERGUID_S_ARX_Sewers_QsLab_GasChamber_05_1b33f970-6b68-48df-8658-c3cd1630e8ad)
+AND
+DB_ARX_Sewers_Q_InitiateExperimentDialog_Count(_Var2)
+AND
+IntegerSum(_Var2, 1, _Var3)
+AND NOT
+DB_ARX_Sewers_Q_InitiateExperimentDialog_Speaker(_, _Var1)
+THEN
+DB_ARX_Sewers_Q_InitiateExperimentDialog_Speaker(_Var3, _Var1);
+NOT DB_ARX_Sewers_Q_InitiateExperimentDialog_Speaker(_Var3, NULL_00000000-0000-0000-0000-000000000000);
+NOT DB_ARX_Sewers_Q_InitiateExperimentDialog_Count(_Var2);
+DB_ARX_Sewers_Q_InitiateExperimentDialog_Count(_Var3);
+
+PROC
+Proc_ARX_Sewers_Q_InitiateExperimentDialog()
+AND
+DB_ARX_Sewers_Q_InitiateExperimentDialog_Speaker(2, _Var1)
+AND
+DB_ARX_Sewers_Q_InitiateExperimentDialog_Speaker(3, _Var2)
+AND
+DB_ARX_Sewers_Q_InitiateExperimentDialog_Speaker(4, _Var3)
+AND
+DB_ARX_Sewers_Q_InitiateExperimentDialog_Speaker(5, _Var4)
+THEN
+Proc_StartDialog(0, "RC_ARX_Sewers_Q_Experiment", CHARACTERGUID_S_ARX_Sewers_Q_52f20922-7b22-4d47-90f7-83172f21fe3b, _Var1, _Var2, _Var3, _Var4);
+
+IF
+GlobalFlagSet("ARX_Sewers_Q_ExperimentPhase_Final")
+THEN
+Proc_Arx_Sewers_ExperimentPhase_RemoveImmobilize();
+
+IF
+DialogEnded("RC_ARX_Sewers_Q_Experiment", _)
+AND
+GlobalGetFlag("ARX_Sewers_Q_ExperimentPhase_Final", 1)
+THEN
+Proc_ARX_Sewers_Q_SetHostility();
+
+PROC
+Proc_Arx_Sewers_ExperimentPhase_RemoveImmobilize()
+AND
+DB_ARX_Sewers_StunnedCharacter(_Var1)
+THEN
+RemoveStatus(_Var1, "STUNNED");
+RemoveStatus(_Var1, "UNCONSCIOUS");
+NOT DB_DoNotFace(_Var1);
+
+IF
+GlobalFlagSet("ARX_Sewers_Q_RemoveMask")
+THEN
+PlayAnimation(CHARACTERGUID_S_ARX_Sewers_Q_52f20922-7b22-4d47-90f7-83172f21fe3b, "cast_shout_cast", "");
+PlayEffect(CHARACTERGUID_S_ARX_Sewers_Q_52f20922-7b22-4d47-90f7-83172f21fe3b, "RS3_FX_Skills_Polymorph_Soul_TurnInto_Cast_Root_01");
+PlayEffect(CHARACTERGUID_S_ARX_Sewers_Q_52f20922-7b22-4d47-90f7-83172f21fe3b, "RS3_FX_Skills_Polymorph_Soul_TurnInto_Cast_Overlay_01");
+PlayEffect(CHARACTERGUID_S_ARX_Sewers_Q_52f20922-7b22-4d47-90f7-83172f21fe3b, "RS3_FX_Skills_Polymorph_Soul_TurnInto_Dwarf_Cast_Root_01");
+Transform(CHARACTERGUID_S_ARX_Sewers_Q_52f20922-7b22-4d47-90f7-83172f21fe3b, "ARX_Sewers_Q_Unmasked_3489d5b8-921b-449b-87de-940f427e35c0", 0);
+SetTag(CHARACTERGUID_S_ARX_Sewers_Q_52f20922-7b22-4d47-90f7-83172f21fe3b, "UNDEAD");
+
+IF
+CharacterEnteredTrigger((CHARACTERGUID)_Var1, TRIGGERGUID_S_ARX_Sewers_QsLaboratory_CheckRegion_f6ffb641-af9d-453b-a422-379b19eac3e6)
+AND
+GlobalGetFlag("RC_ARX_Sewers_Q_IsAtLab", 1)
+AND
+GlobalGetFlag("ARX_Sewers_Q_IsHostile", 0)
+THEN
+Proc_ARX_Sewers_Q_ExperimentInrerrupted(_Var1);
+
+IF
+AttackedByObject((CHARACTERGUID)_Var1, (CHARACTERGUID)_Var2, (GUIDSTRING)_Var3, _, _)
+AND
+_Var1 != _Var3
+AND
+DB_ARX_Sewers_QsUnmaskedGuards(_, _Var1)
+AND
+GlobalGetFlag("RC_ARX_Sewers_Q_IsAtLab", 1)
+AND
+GlobalGetFlag("ARX_Sewers_Q_IsHostile", 0)
+THEN
+Proc_ARX_Sewers_Q_ExperimentInrerrupted(_Var2);
+
+IF
+AttackedByObject(CHARACTERGUID_S_ARX_Sewers_Q_52f20922-7b22-4d47-90f7-83172f21fe3b, (CHARACTERGUID)_Var1, (GUIDSTRING)_Var2, _, _)
+AND
+CHARACTERGUID_S_ARX_Sewers_Q_52f20922-7b22-4d47-90f7-83172f21fe3b != _Var2
+AND
+GlobalGetFlag("RC_ARX_Sewers_Q_IsAtLab", 1)
+AND
+GlobalGetFlag("ARX_Sewers_Q_IsHostile", 0)
+THEN
+Proc_ARX_Sewers_Q_ExperimentInrerrupted(_Var1);
+
+PROC
+Proc_ARX_Sewers_Q_ExperimentInrerrupted((CHARACTERGUID)_Var1)
+THEN
+ProcForceStopDialog(CHARACTERGUID_S_ARX_Sewers_Q_52f20922-7b22-4d47-90f7-83172f21fe3b);
+GlobalSetFlag("ARX_Sewers_Q_ExperimentPhase_Final");
+GlobalClearFlag("RC_ARX_Sewers_Q_InitiatedExperiment");
+Proc_StartDialog(1, "ARX_Sewers_AD_Q", CHARACTERGUID_S_ARX_Sewers_Q_52f20922-7b22-4d47-90f7-83172f21fe3b);
+Proc_ARX_Sewers_Q_SetHostility();
+
+IF
+GlobalFlagSet("ARX_Sewers_Q_InitiatedExperiment_Dead")
+THEN
+ProcCharacterMoveTo(CHARACTERGUID_S_ARX_Sewers_Q_52f20922-7b22-4d47-90f7-83172f21fe3b, S_ARX_Sewers_QsLab_QsPostExperimentPos_edf65d8e-675b-46ca-9e7b-c238d179be5d, 0, "RC_ARX_Sewers_Q_QsPostExperimentPos_ReachedPos");
+Proc_Arx_Sewers_ExperimentPhase_RemoveImmobilize();
+Proc_ARX_Sewers_Q_SetHostility();
+
+IF
+GlobalFlagSet("RC_ARX_Sewers_Q_QsPostExperimentPos")
+THEN
+ProcCharacterMoveTo(CHARACTERGUID_S_ARX_Sewers_Q_52f20922-7b22-4d47-90f7-83172f21fe3b, S_ARX_Sewers_QsLab_QsPostExperimentPos_edf65d8e-675b-46ca-9e7b-c238d179be5d, 0, "RC_ARX_Sewers_Q_QsPostExperimentPos_ReachedPos");
+GlobalSetFlag("ARX_Sewers_Q_IsHostile");
+
+IF
+DialogEnded("RC_ARX_Sewers_Q", _)
+AND
+GlobalGetFlag("ARX_Sewers_Q_IsHostile", 1)
+THEN
+Proc_ARX_Sewers_Q_SetHostility();
+
+PROC
+Proc_ARX_Sewers_Q_SetHostility()
+THEN
+GlobalSetFlag("ARX_Sewers_Q_IsHostile");
+SetRelationFactionToPlayers("ARX_Sewers_Q", 0);
+CharacterSetRelationFactionToFaction("ARX_Sewers_Q", "RC_ARX_Sewers_ImperialGuards", 0);
+CharacterSetRelationFactionToFaction("RC_ARX_Sewers_ImperialGuards", "ARX_Sewers_Q", 0);
+
+PROC
+Proc_ARX_Sewers_Q_SetHostility()
+THEN
+Proc_Arx_Sewers_ExperimentPhase_RemoveImmobilize();
+
+IF
+DialogEnded("RC_ARX_Sewers_Q", _)
+AND
+DB_IsPlayer(_Var2)
+AND
+ObjectGetFlag(_Var2, "RC_ARX_Sewers_Q_InitiateCombat", 1)
+THEN
+Proc_ARX_Sewers_Q_SetHostility();
+
+PROC
+Proc_ARX_Sewers_Q_SetHostility()
+THEN
+SetCombatGroupID(CHARACTERGUID_S_ARX_Sewers_Q_52f20922-7b22-4d47-90f7-83172f21fe3b, "96dffd7b-9f0b-480b-8981-055dceec7621");
+
+IF
+CharacterLeftTrigger((CHARACTERGUID)_Var1, (TRIGGERGUID)_Var2)
+AND
+DB_QsLab_GasChamber(_Var2, _)
+AND
+GlobalGetFlag("ARX_Sewers_Q_IsHostile", 0)
+AND
+GlobalGetFlag("RC_ARX_Sewers_Q_InitiatedExperiment", 1)
+AND
+GlobalGetFlag("RC_ARX_Sewers_Q_PlayersArrested", 1)
+AND
+QRY_AnyRegionActive()
+THEN
+Proc_ARX_Sewers_Q_ExperimentInrerrupted(_Var1);
+Proc_Arx_Sewers_ExperimentPhase_RemoveImmobilize();
+
+IF
+GlobalFlagSet("ARX_Sewers_Q_Malfunction")
+THEN
+PlayAnimation(CHARACTERGUID_S_ARX_Sewers_Q_52f20922-7b22-4d47-90f7-83172f21fe3b, "use_activate");
+PlayAnimation(ITEMGUID_S_ARX_Sewers_QsLaboratory_Lever_05_303cb282-6a51-4a68-8134-dcc6b2a50a12, "Lever");
+ItemSetCanInteract(ITEMGUID_S_ARX_Sewers_QsLaboratory_Lever_05_303cb282-6a51-4a68-8134-dcc6b2a50a12, 0);
+TimerLaunch("ARX_Sewers_Q_MalfunctionTimer", 200);
+TimerLaunch("ARX_Sewers_Q_MalfunctionTimer2", 400);
+
+IF
+TimerFinished("ARX_Sewers_Q_MalfunctionTimer")
+THEN
+PlayEffect(ITEMGUID_S_ARX_Sewers_QsLaboratory_Lever_05_303cb282-6a51-4a68-8134-dcc6b2a50a12, "RS3_FX_GP_Combat_Hit_Sparks_01");
+
+IF
+TimerFinished("ARX_Sewers_Q_MalfunctionTimer2")
+THEN
+PlayEffect(ITEMGUID_S_ARX_Sewers_QsLaboratory_Lever_05_303cb282-6a51-4a68-8134-dcc6b2a50a12, "RS3_FX_GP_Combat_Hit_Sparks_01");
+GlobalSetFlag("ARX_Sewers_Q_Malfunction_Stop");
+
+
+EXITSECTION
+ENDEXITSECTION
+
+ParentTargetEdge "ARX"

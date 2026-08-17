@@ -1,0 +1,33 @@
+Version 1
+SubGoalCombiner SGC_AND
+
+INITSECTION
+DB_Ghosts(CHARACTERGUID_S_RC_OIL_SecondHouse_DeadCommoner1_1b6e2702-98ec-409c-a78a-93c6763cb536, CHARACTERGUID_S_RC_OIL_SecondHouse_Commoner_5bdec172-8d45-43e3-982d-5757235eb365, "RC_OIL_SecondHouse_Commoner");
+ProcTriggerRegisterForPlayers(TRIGGERGUID_S_RC_OIL_SecondHouse_VB_42564a39-d44f-4b15-b295-bc9079ff0791);
+
+KBSECTION
+IF
+CharacterEnteredTrigger((CHARACTERGUID)_Var1, TRIGGERGUID_S_RC_OIL_SecondHouse_VB_42564a39-d44f-4b15-b295-bc9079ff0791)
+AND
+UserGetFlag(_Var1, "RC_OIL_SecondHouseVB", 0)
+THEN
+UserSetFlag(_Var1, "RC_OIL_SecondHouseVB");
+StartVoiceBark("RC_OIL_VB_SecondHouse", _Var1);
+
+IF
+DialogEnded("RC_OIL_SecondHouse_Commoner", (INTEGER)_Var1)
+AND
+DB_DialogPlayers(_Var1, _Var2, 1)
+AND
+ObjectGetFlag(_Var2, "RC_OIL_SecondHouse_Commoner_WhatHappened", 1)
+AND
+PartyGetFlag(_Var2, "RC_OIL_CORE_RD_MaybeTheMagistersAreRight", 0)
+THEN
+PartySetFlag(_Var2, "RC_OIL_CORE_RD_MaybeTheMagistersAreRight");
+ProcDefineReflectionDialog("RC_OIL_CORE_RD_MaybeTheMagistersAreRight", _Var2);
+
+
+EXITSECTION
+ENDEXITSECTION
+
+ParentTargetEdge "ReapersCoast"

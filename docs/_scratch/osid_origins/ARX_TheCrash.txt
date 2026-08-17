@@ -1,0 +1,419 @@
+Version 1
+SubGoalCombiner SGC_AND
+
+INITSECTION
+ProcTriggerRegisterForPlayers(TRIGGERGUID_S_ARX_TheCrash_LeftRegion_6f91c61d-0fe4-42ad-8ca8-f856263c4f1b);
+ProcTriggerRegisterForPlayers(TRIGGERGUID_S_ARX_TheCrash_CrashSite_e8316fd4-b022-4332-8c7f-bf82b0001521);
+DB_OneShotPlayerTrigger(TRIGGERGUID_S_ARX_Outskirts_PilgrimCamp_AD_Jahan_5ec2a4f4-29c7-4ed5-b2ef-475620f99f49);
+SetVisible(ITEMGUID_S_ARX_LV_Tarquin_InvisChair_f4cb30f9-ce26-4703-a0c6-780aae1712ca, 0);
+DB_ARX_MaladyWanderTriggers(TRIGGERGUID_S_ARX_Malady_WanderTrigger_TheCrash_017cff53-73e7-44ab-b091-d6b1940c6d76);
+DB_ARX_MaladyWanderTriggers(TRIGGERGUID_S_ARX_Malady_WanderTrigger_DoctorsHouse_e8ab4d02-b2ac-4a7f-80db-808d25cf1bde);
+DB_ARX_MaladyWanderTriggers(TRIGGERGUID_S_ARX_Malady_WanderTrigger_TheWeakening_CandleA_e8b952d1-5fed-4a9a-9610-ed04bad57da8);
+DB_ARX_MaladyWanderTriggers(TRIGGERGUID_S_ARX_Malady_WanderTrigger_TheWeakening_Bridge_9ab2ce52-83bb-4503-9334-9dcae0bd8c3a);
+DB_ARX_MaladyWanderTriggers(TRIGGERGUID_S_ARX_Malady_WanderTrigger_TheWeakening_CandleB_152d31c1-ebdb-4538-aa52-a5ebfc0f72ab);
+DB_ARX_MaladyWanderTriggers(TRIGGERGUID_S_ARX_Malady_WanderTrigger_LadyVengeance_76af54fa-33f1-4f18-a6ca-f74ecdb11846);
+
+KBSECTION
+IF
+TextEventSet("crash")
+THEN
+GlobalSetFlag("RC_DW_River_CoSFallbackTriggered");
+SetOnStage(CHARACTERGUID_S_ARX_DoctorsHouse_Prison_Jahan_6cb996a6-44f4-4a27-ab09-a45dde64051c, 1);
+PROC_Helper_SafeTeleportTo(CHARACTERGUID_S_GLO_Jahan_4d222cfd-49c8-41d3-8cb7-2a2b56232633, TRIGGERGUID_S_ARX_Outskirts_JahanPoint_17f36965-5a01-4190-9d96-6ce42c435102);
+SetVarFixedString(CHARACTERGUID_S_GLO_Jahan_4d222cfd-49c8-41d3-8cb7-2a2b56232633, "currentState", "State_ARX_LV");
+PROC_RemoveDialogFromCharacter(CHARACTERGUID_S_GLO_Jahan_4d222cfd-49c8-41d3-8cb7-2a2b56232633);
+DB_Dialogs(CHARACTERGUID_S_GLO_Jahan_4d222cfd-49c8-41d3-8cb7-2a2b56232633, "ARX_LV_Jahan");
+PROC_GLO_LevelTravelAgency_Arrived(CHARACTERGUID_S_GLO_Jahan_4d222cfd-49c8-41d3-8cb7-2a2b56232633, "ARX_Main");
+
+IF
+CharacterEnteredTrigger((CHARACTERGUID)_Var1, TRIGGERGUID_S_ARX_TheCrash_CrashSite_e8316fd4-b022-4332-8c7f-bf82b0001521)
+AND
+DB_IsPlayer(_Var1)
+AND NOT
+DB_ARX_TheCrash_KnockedChar(_Var1)
+AND
+GlobalGetFlag("ARX_LV_River_CanWander", 0)
+THEN
+ApplyStatus(_Var1, "KNOCKED_DOWN", 3, 1);
+DB_ARX_TheCrash_KnockedChar(_Var1);
+
+IF
+DB_ARX_TheCrash_KnockedChar(_Var1)
+AND
+IsTagged(_Var1, "AVATAR", 1)
+AND
+CharacterCanSee(CHARACTERGUID_S_GLO_River_f4931ebe-10b0-43c4-9182-640cf052717e, _Var1, 1)
+AND
+QueryOnlyOnce("ARX_LV_River_LookAt")
+THEN
+CharacterLookAt(CHARACTERGUID_S_GLO_River_f4931ebe-10b0-43c4-9182-640cf052717e, _Var1);
+
+IF
+CharacterStatusRemoved((CHARACTERGUID)_Var1, "KNOCKED_DOWN", _)
+AND
+DB_ARX_TheCrash_KnockedChar(_Var1)
+AND
+IsTagged(_Var1, "AVATAR", 1)
+AND
+CharacterCanSee(CHARACTERGUID_S_GLO_River_f4931ebe-10b0-43c4-9182-640cf052717e, _Var1, 1)
+AND
+QueryOnlyOnce("ARX_LV_River_StartGameDialog")
+THEN
+Proc_StartDialog(0, "ARX_LV_River", CHARACTERGUID_S_GLO_River_f4931ebe-10b0-43c4-9182-640cf052717e, _Var1);
+GlobalSetFlag("ARX_LV_River_CanWander");
+
+IF
+CharacterStatusRemoved((CHARACTERGUID)_Var1, "KNOCKED_DOWN", _)
+AND
+DB_ARX_TheCrash_KnockedChar(_Var1)
+AND
+CharacterCanSee(_Var1, CHARACTERGUID_S_GLO_River_f4931ebe-10b0-43c4-9182-640cf052717e, 1)
+AND
+QRY_SpeakerIsAvailable(_Var1)
+THEN
+CharacterLookAt(_Var1, CHARACTERGUID_S_GLO_River_f4931ebe-10b0-43c4-9182-640cf052717e);
+
+IF
+DialogEnded("ARX_LV_River", _)
+AND
+GlobalGetFlag("ARX_LV_River_ShowPain", 1)
+AND
+GlobalGetFlag("ARX_LV_River_DropToFloor", 0)
+THEN
+CharacterSetAnimationOverride(CHARACTERGUID_S_GLO_River_f4931ebe-10b0-43c4-9182-640cf052717e, "");
+
+IF
+GlobalFlagSet("ARX_LV_River_ShowPain")
+THEN
+CharacterSetAnimationOverride(CHARACTERGUID_S_GLO_River_f4931ebe-10b0-43c4-9182-640cf052717e, "stillcrippled");
+
+IF
+GlobalFlagCleared("ARX_LV_River_ShowPain")
+THEN
+CharacterSetAnimationOverride(CHARACTERGUID_S_GLO_River_f4931ebe-10b0-43c4-9182-640cf052717e, "");
+
+IF
+GlobalFlagSet("ARX_LV_River_DropToFloor")
+THEN
+CharacterSetAnimationOverride(CHARACTERGUID_S_GLO_River_f4931ebe-10b0-43c4-9182-640cf052717e, "Lie_Wounded_02_Loop");
+ApplyStatus(CHARACTERGUID_S_GLO_River_f4931ebe-10b0-43c4-9182-640cf052717e, "LYING", -1);
+
+IF
+DialogEnded("ARX_LV_River", _)
+AND
+GlobalGetFlag("ARX_LV_River_DropToFloor", 1)
+THEN
+Proc_ARX_LV_River_DeathEvent();
+
+PROC
+Proc_ARX_LV_River_DeathEvent()
+AND
+GetClosestAlivePlayer(CHARACTERGUID_S_GLO_River_f4931ebe-10b0-43c4-9182-640cf052717e, _Var1, _)
+THEN
+DB_ARX_LV_River_DeathEvent(_Var1);
+
+PROC
+Proc_ARX_LV_River_DeathEvent()
+THEN
+CharacterSetImmortal(CHARACTERGUID_S_GLO_River_f4931ebe-10b0-43c4-9182-640cf052717e, 0);
+CharacterDie(CHARACTERGUID_S_GLO_River_f4931ebe-10b0-43c4-9182-640cf052717e, 1, "DOT");
+CharacterSetAnimationOverride(CHARACTERGUID_S_GLO_River_f4931ebe-10b0-43c4-9182-640cf052717e, "");
+GlobalSetFlag("ARX_LV_River_Died");
+
+PROC
+Proc_ARX_LV_River_DeathEvent()
+AND
+DB_ARX_LV_River_DeathEvent(_Var1)
+THEN
+ProcDefineReflectionDialog("ARX_RD_MaladyDeathEvent", _Var1);
+
+PROC
+Proc_ARX_TheCrash_NPCLeave()
+THEN
+GlobalSetFlag("ARX_LV_River_CanWander");
+
+PROC
+Proc_ARX_TheCrash_NPCLeave()
+AND
+CharacterIsDead(CHARACTERGUID_S_GLO_River_f4931ebe-10b0-43c4-9182-640cf052717e, 0)
+AND
+GlobalGetFlag("LohseIsAvailable", 1)
+AND
+DB_IsPlayer(_Var1)
+AND
+PartyGetFlag(_Var1, "QuestUpdate_RC_BI_TheTruth_FoundOutDemonsName", 1)
+AND
+QueryOnlyOnce("ARX_TheWeakening_LohseIsAvailable_MaladyDisappear")
+THEN
+GlobalSetFlag("ARX_LV_River_ShowPain_Once");
+GlobalSetFlag("ARX_TheWeakening_LohseIsAvailable_MaladyDisappear");
+ProcForceStopDialog(CHARACTERGUID_S_GLO_River_f4931ebe-10b0-43c4-9182-640cf052717e);
+SetHasDialog(CHARACTERGUID_S_GLO_River_f4931ebe-10b0-43c4-9182-640cf052717e, 0);
+ProcCharacterDisappearOutOfSight(CHARACTERGUID_S_GLO_River_f4931ebe-10b0-43c4-9182-640cf052717e, 180, 0, "ARX_TheWeakening_LohseIsAvailable_MaladyDisappear", 0);
+
+PROC
+Proc_ARX_TheCrash_NPCLeave()
+AND
+CharacterIsDead(CHARACTERGUID_S_GLO_River_f4931ebe-10b0-43c4-9182-640cf052717e, 0)
+AND
+GlobalGetFlag("LohseIsAvailable", 1)
+AND
+DB_IsPlayer(_Var1)
+AND
+PartyGetFlag(_Var1, "GLO_Lohse_KnowDemonName", 1)
+AND
+QueryOnlyOnce("ARX_TheWeakening_LohseIsAvailable_MaladyDisappear")
+THEN
+GlobalSetFlag("ARX_TheWeakening_LohseIsAvailable_MaladyDisappear");
+GlobalSetFlag("ARX_LV_River_ShowPain_Once");
+ProcForceStopDialog(CHARACTERGUID_S_GLO_River_f4931ebe-10b0-43c4-9182-640cf052717e);
+SetHasDialog(CHARACTERGUID_S_GLO_River_f4931ebe-10b0-43c4-9182-640cf052717e, 0);
+ProcCharacterDisappearOutOfSight(CHARACTERGUID_S_GLO_River_f4931ebe-10b0-43c4-9182-640cf052717e, 180, 0, "ARX_TheWeakening_LohseIsAvailable_MaladyDisappear", 0);
+
+PROC
+Proc_ARX_TheCrash_NPCLeave()
+AND
+CharacterIsDead(CHARACTERGUID_S_GLO_River_f4931ebe-10b0-43c4-9182-640cf052717e, 0)
+AND
+GlobalGetFlag("ARX_TheWeakening_LohseIsAvailable_MaladyDisappear", 0)
+THEN
+GlobalSetFlag("ARX_LV_River_ShowPain_Once");
+TeleportTo(CHARACTERGUID_S_GLO_River_f4931ebe-10b0-43c4-9182-640cf052717e, TRIGGERGUID_S_ARX_LV_Malady_PostCrash_59b1b9d1-047c-4bed-aa67-242e1ccc4822);
+
+IF
+DB_ARX_MaladyWanderTriggers(_Var1)
+THEN
+TriggerRegisterForCharacter(_Var1, CHARACTERGUID_S_GLO_River_f4931ebe-10b0-43c4-9182-640cf052717e);
+SetVarObject(CHARACTERGUID_S_GLO_River_f4931ebe-10b0-43c4-9182-640cf052717e, "ARX_WanderTrigger", TRIGGERGUID_S_ARX_Malady_WanderTrigger_TheCrash_017cff53-73e7-44ab-b091-d6b1940c6d76);
+
+IF
+CharacterEnteredTrigger(CHARACTERGUID_S_GLO_River_f4931ebe-10b0-43c4-9182-640cf052717e, (TRIGGERGUID)_Var1)
+AND
+DB_ARX_MaladyWanderTriggers(_Var1)
+THEN
+SetVarObject(CHARACTERGUID_S_GLO_River_f4931ebe-10b0-43c4-9182-640cf052717e, "ARX_WanderTrigger", _Var1);
+SetStoryEvent(CHARACTERGUID_S_GLO_River_f4931ebe-10b0-43c4-9182-640cf052717e, "ARX_WanderTrigger_Interrupt");
+
+IF
+StoryEvent(CHARACTERGUID_S_GLO_River_f4931ebe-10b0-43c4-9182-640cf052717e, "ARX_Malady_ClearWanderTrigger")
+THEN
+ClearVarObject(CHARACTERGUID_S_GLO_River_f4931ebe-10b0-43c4-9182-640cf052717e, "ARX_WanderTrigger");
+SetStoryEvent(CHARACTERGUID_S_GLO_River_f4931ebe-10b0-43c4-9182-640cf052717e, "ARX_WanderTrigger_Interrupt");
+
+IF
+CharacterEnteredTrigger((CHARACTERGUID)_Var1, TRIGGERGUID_S_ARX_ClanWarAndStatue_ActivationTrigger_67932552-0fa1-480e-99ed-287cb8751b28)
+AND NOT
+DB_InRegion(_, TRIGGERGUID_S_ARX_TheCrash_LeftRegion_6f91c61d-0fe4-42ad-8ca8-f856263c4f1b)
+AND
+QueryOnlyOnce("ARX_TheCrash_NPCLeave")
+THEN
+Proc_ARX_TheCrash_NPCLeave();
+
+IF
+CharacterEnteredTrigger((CHARACTERGUID)_Var1, TRIGGERGUID_S_SUB_Arx_cb6e79c8-f5f8-49d7-8d46-133e2d13349d)
+AND
+QueryOnlyOnce("ARX_TheCrash_NPCLeave")
+THEN
+Proc_ARX_TheCrash_NPCLeave();
+
+PROC
+Proc_ARX_TheCrash_NPCLeave()
+AND
+CharacterIsDead(CHARACTERGUID_S_GLO_Jahan_4d222cfd-49c8-41d3-8cb7-2a2b56232633, 0)
+AND
+GlobalGetFlag("ARX_TheCrash_Jahan_DisappearOutOfSight", 0)
+AND
+GlobalGetFlag("ARX_LV_Jahan_InArx", 1)
+THEN
+GlobalSetFlag("ARX_TheCrash_Jahan_DisappearOutOfSight");
+ProcForceStopDialog(CHARACTERGUID_S_GLO_Jahan_4d222cfd-49c8-41d3-8cb7-2a2b56232633);
+SetHasDialog(CHARACTERGUID_S_GLO_Jahan_4d222cfd-49c8-41d3-8cb7-2a2b56232633, 0);
+Proc_StartDialog(1, "ARX_LV_AD_Jahan_Leaves", CHARACTERGUID_S_GLO_Jahan_4d222cfd-49c8-41d3-8cb7-2a2b56232633);
+ProcCharacterDisappearOutOfSightToObject(CHARACTERGUID_S_GLO_Jahan_4d222cfd-49c8-41d3-8cb7-2a2b56232633, TRIGGERGUID_S_RC_DW_ClanWar_Paladins_Caster_01_Trig_c8094ee2-0e7d-439a-9d95-f45530f84d8b, 0, "ARX_TheCrash_Jahan_DisappearOutOfSight_Event", 0);
+
+PROC
+Proc_ARX_TheCrash_NPCLeave()
+THEN
+SetVarFixedString(CHARACTERGUID_S_ARX_Outskirts_PilgrimCamp_Pilgrim_02_94aabc2a-f496-4c20-973f-44e727108167, "currentState", "State_Default");
+
+IF
+DialogEnded("ARX_LV_Jahan", _)
+AND
+GlobalGetFlag("ARX_TheCrash_Jahan_DisappearOutOfSight", 0)
+THEN
+GlobalSetFlag("ARX_TheCrash_Jahan_DisappearOutOfSight");
+ProcForceStopDialog(CHARACTERGUID_S_GLO_Jahan_4d222cfd-49c8-41d3-8cb7-2a2b56232633);
+SetHasDialog(CHARACTERGUID_S_GLO_Jahan_4d222cfd-49c8-41d3-8cb7-2a2b56232633, 0);
+Proc_StartDialog(1, "ARX_LV_AD_Jahan_Leaves", CHARACTERGUID_S_GLO_Jahan_4d222cfd-49c8-41d3-8cb7-2a2b56232633);
+ProcCharacterDisappearOutOfSightToObject(CHARACTERGUID_S_GLO_Jahan_4d222cfd-49c8-41d3-8cb7-2a2b56232633, TRIGGERGUID_S_RC_DW_ClanWar_Paladins_Caster_01_Trig_c8094ee2-0e7d-439a-9d95-f45530f84d8b, 0, "ARX_TheCrash_Jahan_DisappearOutOfSight_Event", 0);
+
+IF
+AutomatedDialogEnded("ARX_LV_AD_Jahan_Leaves", _)
+THEN
+ApplyStatus(CHARACTERGUID_S_GLO_Jahan_4d222cfd-49c8-41d3-8cb7-2a2b56232633, "INVISIBLE", -1, 1, CHARACTERGUID_S_GLO_Jahan_4d222cfd-49c8-41d3-8cb7-2a2b56232633);
+TimerLaunch("ARX_LV_AD_Jahan_Leaves_Poof", 10000);
+
+IF
+TimerFinished("ARX_LV_AD_Jahan_Leaves_Poof")
+THEN
+SetOnStage(CHARACTERGUID_S_GLO_Jahan_4d222cfd-49c8-41d3-8cb7-2a2b56232633, 0);
+
+IF
+StoryEvent(CHARACTERGUID_S_GLO_Jahan_4d222cfd-49c8-41d3-8cb7-2a2b56232633, "ARX_TheCrash_Jahan_DisappearOutOfSight_Event")
+THEN
+TimerCancel("ARX_LV_AD_Jahan_Leaves_Poof");
+RemoveStatus(CHARACTERGUID_S_GLO_Jahan_4d222cfd-49c8-41d3-8cb7-2a2b56232633, "INVISIBLE");
+ClearVarObject(CHARACTERGUID_S_GLO_Jahan_4d222cfd-49c8-41d3-8cb7-2a2b56232633, "WanderArea");
+
+PROC
+ProcOneShotTriggerEntered(_, TRIGGERGUID_S_ARX_Outskirts_PilgrimCamp_AD_Jahan_5ec2a4f4-29c7-4ed5-b2ef-475620f99f49)
+AND
+GlobalGetFlag("ARX_LV_Jahan_InArx", 1)
+AND
+GlobalGetFlag("ARX_TheCrash_Jahan_DisappearOutOfSight", 0)
+THEN
+Proc_ARX_LV_Jahan_AD_PilgrimCamp();
+
+PROC
+Proc_ARX_LV_Jahan_AD_PilgrimCamp()
+AND
+QRY_SpeakerIsAvailable(CHARACTERGUID_S_GLO_Jahan_4d222cfd-49c8-41d3-8cb7-2a2b56232633)
+AND
+QRY_SpeakerIsAvailable(CHARACTERGUID_S_ARX_Outskirts_PilgrimCamp_Pilgrim_02_94aabc2a-f496-4c20-973f-44e727108167)
+THEN
+GlobalSetFlag("ARX_LV_Jahan_AD_PilgrimCamp_Started");
+Proc_StartDialog(1, "ARX_LV_Jahan_AD_PilgrimCamp", CHARACTERGUID_S_GLO_Jahan_4d222cfd-49c8-41d3-8cb7-2a2b56232633, CHARACTERGUID_S_ARX_Outskirts_PilgrimCamp_Pilgrim_02_94aabc2a-f496-4c20-973f-44e727108167);
+
+PROC
+Proc_ARX_LV_Jahan_AD_PilgrimCamp()
+AND
+GlobalGetFlag("ARX_LV_Jahan_AD_PilgrimCamp_Started", 0)
+THEN
+SetVarFixedString(CHARACTERGUID_S_ARX_Outskirts_PilgrimCamp_Pilgrim_02_94aabc2a-f496-4c20-973f-44e727108167, "currentState", "State_Default");
+SetVarObject(CHARACTERGUID_S_GLO_Jahan_4d222cfd-49c8-41d3-8cb7-2a2b56232633, "WanderArea", TRIGGERGUID_S_ARX_Outskirts_PilgrimCamp_Pilgrim_Box_06_fc5cf209-5007-4bce-b0c4-7b62a4b8223a);
+
+IF
+AutomatedDialogEnded("ARX_LV_Jahan_AD_PilgrimCamp", _)
+THEN
+SetVarFixedString(CHARACTERGUID_S_ARX_Outskirts_PilgrimCamp_Pilgrim_02_94aabc2a-f496-4c20-973f-44e727108167, "currentState", "State_Default");
+SetVarObject(CHARACTERGUID_S_GLO_Jahan_4d222cfd-49c8-41d3-8cb7-2a2b56232633, "WanderArea", TRIGGERGUID_S_ARX_Outskirts_PilgrimCamp_Pilgrim_Box_06_fc5cf209-5007-4bce-b0c4-7b62a4b8223a);
+
+IF
+CharacterStatusRemoved(CHARACTERGUID_S_FTJ_SW_Warrior_SeekerCaptain_1329f018-23e4-4717-9bc8-074b28d04c54, "KNOCKED_DOWN", _)
+THEN
+GlobalSetFlag("ARX_LV_Gareth_StandUp");
+SetVarObject(CHARACTERGUID_S_FTJ_SW_Warrior_SeekerCaptain_1329f018-23e4-4717-9bc8-074b28d04c54, "ARX_WanderTrigger", TRIGGERGUID_S_ARX_Gareth_WanderTrigger_TheCrash_f7bde80a-c9d6-4a81-a3d8-70261866a5d6);
+
+IF
+AttackedByObject(CHARACTERGUID_S_FTJ_SW_Warrior_SeekerCaptain_1329f018-23e4-4717-9bc8-074b28d04c54, _, (GUIDSTRING)_Var2, _, _)
+AND
+CHARACTERGUID_S_FTJ_SW_Warrior_SeekerCaptain_1329f018-23e4-4717-9bc8-074b28d04c54 != _Var2
+THEN
+GlobalSetFlag("ARX_LV_Gareth_StandUp");
+
+IF
+GlobalFlagSet("ARX_LV_Gareth_StandUp")
+AND
+HasActiveStatus(CHARACTERGUID_S_FTJ_SW_Warrior_SeekerCaptain_1329f018-23e4-4717-9bc8-074b28d04c54, "KNOCKED_DOWN", 1)
+THEN
+RemoveStatus(CHARACTERGUID_S_FTJ_SW_Warrior_SeekerCaptain_1329f018-23e4-4717-9bc8-074b28d04c54, "KNOCKED_DOWN");
+
+IF
+ObjectFlagSet("ARX_LV_Gareth_GiveSkillbook", (CHARACTERGUID)_Var1, _)
+THEN
+ItemTemplateAddTo("BOOK_Skill_Warrior_GuardianAngel_84eb7f03-e386-4d8b-bb3c-431573e4ea2a", _Var1, 1);
+
+PROC
+Proc_ARX_TheCrash_NPCLeave()
+AND
+CharacterIsDead(CHARACTERGUID_S_FTJ_SW_Warrior_SeekerCaptain_1329f018-23e4-4717-9bc8-074b28d04c54, 0)
+AND
+GlobalGetFlag("ARX_LV_Gareth_InArx", 1)
+THEN
+SetVarObject(CHARACTERGUID_S_FTJ_SW_Warrior_SeekerCaptain_1329f018-23e4-4717-9bc8-074b28d04c54, "ARX_WanderTrigger", TRIGGERGUID_S_ARX_Gareth_WanderTrigger_LadyVangeance_9c1ff679-e1ec-4366-a884-893e0a1d03ed);
+SetStoryEvent(CHARACTERGUID_S_FTJ_SW_Warrior_SeekerCaptain_1329f018-23e4-4717-9bc8-074b28d04c54, "ARX_WanderTrigger_Interrupt");
+GlobalSetFlag("ARX_LV_Gareth_StandUp");
+GlobalSetFlag("ARX_LV_Gareth_InLadyVengeance");
+TeleportTo(CHARACTERGUID_S_FTJ_SW_Warrior_SeekerCaptain_1329f018-23e4-4717-9bc8-074b28d04c54, TRIGGERGUID_S_ARX_LV_Gareth_PostCrash_c38c0a80-03f8-4479-90ff-71287e3f4e85);
+
+PROC
+Proc_ARX_TheCrash_NPCLeave()
+AND
+CharacterIsDead(CHARACTERGUID_S_GLO_Tarquin_a3d0cdcc-d0b0-464d-9ad7-43b38baed620, 0)
+AND
+GlobalGetFlag("ARX_LV_Tarquin_InArx", 1)
+THEN
+ClearVarObject(CHARACTERGUID_S_GLO_Tarquin_a3d0cdcc-d0b0-464d-9ad7-43b38baed620, "Seat");
+GlobalSetFlag("ARX_LV_Tarquin_InHoE");
+TeleportTo(CHARACTERGUID_S_GLO_Tarquin_a3d0cdcc-d0b0-464d-9ad7-43b38baed620, TRIGGERGUID_S_ARX_LV_Tarquin_PostCrash_0c7f6c55-bdb9-49a5-b08d-8d5bf64563bd);
+
+IF
+GlobalFlagSet("ARX_LV_River_Died")
+THEN
+Proc_ARX_LV_RiverDead();
+
+PROC
+Proc_ARX_LV_RiverDead()
+AND
+GlobalGetFlag("ARX_LV_Gareth_InArx", 1)
+AND
+CharacterIsDead(CHARACTERGUID_S_FTJ_SW_Warrior_SeekerCaptain_1329f018-23e4-4717-9bc8-074b28d04c54, 0)
+AND
+HasActiveStatus(CHARACTERGUID_S_FTJ_SW_Warrior_SeekerCaptain_1329f018-23e4-4717-9bc8-074b28d04c54, "KNOCKED_DOWN", 0)
+AND
+QRY_SpeakerIsAvailable(CHARACTERGUID_S_FTJ_SW_Warrior_SeekerCaptain_1329f018-23e4-4717-9bc8-074b28d04c54)
+THEN
+SetStoryEvent(CHARACTERGUID_S_FTJ_SW_Warrior_SeekerCaptain_1329f018-23e4-4717-9bc8-074b28d04c54, "ARX_WanderTrigger_Interrupt");
+CharacterMoveTo(CHARACTERGUID_S_FTJ_SW_Warrior_SeekerCaptain_1329f018-23e4-4717-9bc8-074b28d04c54, CHARACTERGUID_S_GLO_River_f4931ebe-10b0-43c4-9182-640cf052717e, 1, "", 0);
+DebugText(CHARACTERGUID_S_FTJ_SW_Warrior_SeekerCaptain_1329f018-23e4-4717-9bc8-074b28d04c54, "oh no!");
+Proc_StartDialog(1, "ARX_LV_AD_Gareth_MaladyDeath", CHARACTERGUID_S_FTJ_SW_Warrior_SeekerCaptain_1329f018-23e4-4717-9bc8-074b28d04c54);
+
+PROC
+Proc_ARX_LV_RiverDead()
+AND
+CharacterIsDead(CHARACTERGUID_S_GLO_Tarquin_a3d0cdcc-d0b0-464d-9ad7-43b38baed620, 0)
+AND
+GlobalGetFlag("ARX_LV_Tarquin_InArx", 1)
+AND
+GlobalGetFlag("ARX_LV_Tarquin_InHoE", 0)
+AND
+QRY_SpeakerIsAvailable(CHARACTERGUID_S_GLO_Tarquin_a3d0cdcc-d0b0-464d-9ad7-43b38baed620)
+THEN
+ClearVarObject(CHARACTERGUID_S_GLO_Tarquin_a3d0cdcc-d0b0-464d-9ad7-43b38baed620, "Seat");
+CharacterMoveTo(CHARACTERGUID_S_GLO_Tarquin_a3d0cdcc-d0b0-464d-9ad7-43b38baed620, CHARACTERGUID_S_GLO_River_f4931ebe-10b0-43c4-9182-640cf052717e, 1, "ARX_LV_MaladyDeath_Reached", 0);
+
+IF
+StoryEvent(CHARACTERGUID_S_GLO_Tarquin_a3d0cdcc-d0b0-464d-9ad7-43b38baed620, "ARX_LV_MaladyDeath_Reached")
+THEN
+TimerLaunch("ARX_LV_MaladyDeath_Back_Taquin_01", 500);
+
+IF
+TimerFinished("ARX_LV_MaladyDeath_Back_Taquin_01")
+THEN
+Proc_StartDialog(1, "ARX_LV_AD_Tarquin_MaladyDeath", CHARACTERGUID_S_GLO_Tarquin_a3d0cdcc-d0b0-464d-9ad7-43b38baed620);
+
+IF
+AutomatedDialogEnded("ARX_LV_AD_Tarquin_MaladyDeath", _)
+THEN
+TimerLaunch("ARX_LV_MaladyDeath_Back_Taquin_02", 500);
+
+IF
+TimerFinished("ARX_LV_MaladyDeath_Back_Taquin_02")
+THEN
+SetVarObject(CHARACTERGUID_S_GLO_Tarquin_a3d0cdcc-d0b0-464d-9ad7-43b38baed620, "Seat", ITEMGUID_S_ARX_LV_Tarquin_InvisChair_f4cb30f9-ce26-4703-a0c6-780aae1712ca);
+
+IF
+RegionStarted("ARX_Main")
+THEN
+PROC_UnlockWaypointForAll("WAYP_ARX_TheCrash");
+
+PROC
+ProcRegionEnded("ARX_Main")
+THEN
+GoalCompleted;
+
+
+EXITSECTION
+ENDEXITSECTION
+
+ParentTargetEdge "ARX"

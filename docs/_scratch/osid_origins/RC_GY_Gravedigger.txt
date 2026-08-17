@@ -1,0 +1,33 @@
+Version 1
+SubGoalCombiner SGC_AND
+
+INITSECTION
+DB_Dialogs(CHARACTERGUID_S_RC_GY_Gravedigger_f42c910a-e8ea-4750-9cbc-0d53765c8c7b, "RC_GY_Gravedigger");
+
+KBSECTION
+IF
+DialogStarted("RC_GY_Ryker", (INTEGER)_Var1)
+AND
+DialogGetInvolvedPlayer(_Var1, 1, _Var2)
+THEN
+PartySetFlag(_Var2, "RC_GY_SourceVision");
+
+IF
+CharacterDied(CHARACTERGUID_S_RC_GY_Gravedigger_f42c910a-e8ea-4750-9cbc-0d53765c8c7b)
+AND
+DB_IsPlayer(_Var1)
+THEN
+ObjectSetFlag(_Var1, "QuestUpdate_RC_GY_KillRyker_Died");
+
+IF
+CharacterDied(CHARACTERGUID_S_RC_GY_Ryker_522b8095-b539-4a82-84f3-bf8e5a74dfe4)
+AND
+DB_IsPlayer(_Var1)
+THEN
+ObjectSetFlag(_Var1, "QuestUpdate_RC_GY_KillRyker_Killed");
+
+
+EXITSECTION
+ENDEXITSECTION
+
+ParentTargetEdge "ReapersCoast"

@@ -1,0 +1,70 @@
+Version 1
+SubGoalCombiner SGC_AND
+
+INITSECTION
+
+KBSECTION
+IF
+ObjectFlagSet("ARX_CreepyShop_SourcePuppet_IsOn", (CHARACTERGUID)_Var1, (INTEGER)_Var2)
+AND
+HasActiveStatus(_Var1, "SITTING", 0)
+AND NOT
+DB_Dead(_Var1)
+THEN
+PlayAnimation(_Var1, "Custom_Activate_01");
+
+IF
+ObjectFlagSet("ARX_CreepyShop_SourcePuppet_IsOn", (CHARACTERGUID)_Var1, (INTEGER)_Var2)
+AND
+HasActiveStatus(_Var1, "SITTING", 1)
+AND NOT
+DB_Dead(_Var1)
+THEN
+PlayAnimation(_Var1, "Custom_Sit_Activate_01");
+
+IF
+ObjectFlagSet("ARX_CreepyShop_SourcePuppet_IsOn", (CHARACTERGUID)_Var1, (INTEGER)_Var2)
+AND
+DB_DoNotFace(_Var1)
+AND NOT
+DB_Dead(_Var1)
+THEN
+NOT DB_DoNotFace(_Var1);
+
+IF
+ObjectFlagCleared("ARX_CreepyShop_SourcePuppet_IsOn", (CHARACTERGUID)_Var1, (INTEGER)_Var2)
+AND
+HasActiveStatus(_Var1, "SITTING", 0)
+AND NOT
+DB_Dead(_Var1)
+THEN
+PlayAnimation(_Var1, "Custom_Deactivate_01");
+DB_DoNotFace(_Var1);
+
+IF
+ObjectFlagCleared("ARX_CreepyShop_SourcePuppet_IsOn", (CHARACTERGUID)_Var1, (INTEGER)_Var2)
+AND
+HasActiveStatus(_Var1, "SITTING", 1)
+AND NOT
+DB_Dead(_Var1)
+THEN
+PlayAnimation(_Var1, "Custom_Sit_Deactivate_01");
+DB_DoNotFace(_Var1);
+
+IF
+CharacterDying((CHARACTERGUID)_Var1)
+AND
+IsTagged(_Var1, "SOURCE_PUPPET", 1)
+AND
+ObjectGetFlag(_Var1, "ARX_CreepyShop_SourcePuppet_IsOn", 1)
+AND
+GetPosition(_Var1, _Var2, _Var3, _Var4)
+THEN
+ItemTemplateAddTo("POTION_SourceOrb_c47ac2cc-16e9-46a9-a49a-55b7412f9dd5", _Var1, 1);
+CreateExplosionAtPosition(_Var2, _Var3, _Var4, "Projectile_EnemyLightningBolt", 20);
+
+
+EXITSECTION
+ENDEXITSECTION
+
+ParentTargetEdge "ARX"

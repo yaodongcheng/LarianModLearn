@@ -1,0 +1,90 @@
+Version 1
+SubGoalCombiner SGC_AND
+
+INITSECTION
+DB_Dialogs(ITEMGUID_S_RC_GY_Trophy_Posessed_Deer_689fecea-7c1a-4efa-bb86-76602d6e0f25, "RC_GY_Trophy_Possessed");
+DB_Ghosts(CHARACTERGUID_S_RC_GY_DeerKiller_Ghost_f22b676c-0921-4ae7-872e-20fdb5290457, "RC_GY_DeerKiller_Ghost");
+DB_Ghosts(CHARACTERGUID_S_RC_GY_Deer_Ghost_2c5ddb84-d1b5-409b-a278-d3dbb9e63ad4, "RC_GY_Deer_Ghost");
+SetOnStage(CHARACTERGUID_S_RC_GY_Deer_Ghost_2c5ddb84-d1b5-409b-a278-d3dbb9e63ad4, 0);
+CharacterSetForceSynch(CHARACTERGUID_S_RC_GY_DeerKiller_10816d4b-354c-47a1-958c-dec54b124d5d, 1);
+CharacterSetForceSynch(CHARACTERGUID_S_RC_GY_DeerBody_4ad491d8-2f2d-4508-a060-e5983b26995c, 1);
+DB_Ghosts(CHARACTERGUID_S_RC_GY_PianoGhost_82a4e393-2e25-402b-9425-27b8fef6ba47, "RC_GY_Ghost_Piano");
+DB_ShovelArea(TRIGGERGUID_S_RC_GY_DeerChest_Area_de86eddc-011e-4503-ae93-205c3b09e4c4, "RC_GY_DeerChest_Pile", S_RC_GY_DeerChest_Dirtpile_d9b25142-aca6-46fb-a8a4-e9ed07af14b0);
+DB_ShovelRewardItemAppear("RC_GY_DeerChest_Pile", S_RC_GY_DeerKiller_10816d4b-354c-47a1-958c-dec54b124d5d, TRIGGERGUID_S_RC_GY_DeerChest_Trig1_32a91040-f596-4ffc-b194-3d92ee71cbec);
+DB_ShovelRewardItemAppear("RC_GY_DeerChest_Pile", S_RC_GY_DeerBody_4ad491d8-2f2d-4508-a060-e5983b26995c, TRIGGERGUID_S_RC_GY_DeerChest_Trig2_af4c846f-90d4-4e47-ac1d-3a3a861251c3);
+DB_RC_GY_PianoMusic("RC_GY_Music_GhostPianist_Option1", "RC_Scripted_GhostPianist_Option1");
+DB_RC_GY_PianoMusic("RC_GY_Music_GhostPianist_Option2", "RC_Scripted_GhostPianist_Option2");
+DB_RC_GY_PianoMusic("RC_GY_Music_GhostPianist_Option3", "RC_Scripted_GhostPianist_Option3");
+DB_RC_GY_PianoMusic("RC_GY_Music_GhostPianist_StopMusic", "RC_Scripted_GhostPianist_StopAll");
+SetVisible(ITEMGUID_S_RC_GY_GhostChair_0634aae2-11ab-427e-9f5b-4dc92ae89f04, 0);
+ProcTriggerRegisterForPlayers(TRIGGERGUID_S_RC_GY_DeerChest_QuestArea_36fde07f-7f28-4b4e-a519-19fda36c7bcc);
+
+KBSECTION
+IF
+CharacterEnteredTrigger((CHARACTERGUID)_Var1, TRIGGERGUID_S_RC_GY_DeerChest_QuestArea_36fde07f-7f28-4b4e-a519-19fda36c7bcc)
+AND
+ObjectGetFlag(_Var1, "QuestUpdate_RC_GY_DeerGhost_DeerRiddle", 1)
+AND
+ObjectGetFlag(_Var1, "QuestUpdate_RC_GY_DeerGhost_DeerTreasure", 0)
+THEN
+ObjectSetFlag(_Var1, "QuestUpdate_RC_GY_DeerGhost_DeerTreasure");
+
+IF
+CharacterGhostDestroyed(_, CHARACTERGUID_S_RC_GY_DeerBody_4ad491d8-2f2d-4508-a060-e5983b26995c)
+AND
+ObjectIsOnStage(CHARACTERGUID_S_RC_GY_DeerBody_4ad491d8-2f2d-4508-a060-e5983b26995c, 0)
+THEN
+CharacterDie(CHARACTERGUID_S_RC_GY_DeerBody_4ad491d8-2f2d-4508-a060-e5983b26995c, 1, "Explode");
+
+IF
+CharacterWentOnStage(CHARACTERGUID_S_RC_GY_DeerBody_4ad491d8-2f2d-4508-a060-e5983b26995c, 1)
+THEN
+CharacterLinkGhost(CHARACTERGUID_S_RC_GY_DeerBody_4ad491d8-2f2d-4508-a060-e5983b26995c, CHARACTERGUID_S_RC_GY_Deer_Ghost_2c5ddb84-d1b5-409b-a278-d3dbb9e63ad4);
+
+IF
+CharacterGhostDestroyed(_, CHARACTERGUID_S_RC_GY_DeerKiller_Ghost_f22b676c-0921-4ae7-872e-20fdb5290457)
+AND
+ObjectIsOnStage(CHARACTERGUID_S_RC_GY_DeerKiller_10816d4b-354c-47a1-958c-dec54b124d5d, 0)
+THEN
+CharacterDie(CHARACTERGUID_S_RC_GY_DeerKiller_10816d4b-354c-47a1-958c-dec54b124d5d, 1, "Explode");
+
+IF
+CharacterWentOnStage(CHARACTERGUID_S_RC_GY_DeerKiller_10816d4b-354c-47a1-958c-dec54b124d5d, 1)
+THEN
+CharacterLinkGhost(CHARACTERGUID_S_RC_GY_DeerKiller_10816d4b-354c-47a1-958c-dec54b124d5d, CHARACTERGUID_S_RC_GY_DeerKiller_Ghost_f22b676c-0921-4ae7-872e-20fdb5290457);
+
+IF
+GlobalFlagSet("RC_GY_SpawnDeerGhost")
+THEN
+SetOnStage(CHARACTERGUID_S_RC_GY_Deer_Ghost_2c5ddb84-d1b5-409b-a278-d3dbb9e63ad4, 1);
+PlayEffect(ITEMGUID_S_RC_GY_Trophy_Posessed_Deer_689fecea-7c1a-4efa-bb86-76602d6e0f25, "RS3_FX_Skills_Soul_Cast_SpiritVision_Overlay_01");
+RemoveStatus(ITEMGUID_S_RC_GY_Trophy_Posessed_Deer_689fecea-7c1a-4efa-bb86-76602d6e0f25, "POSSESSED");
+SetOnStage(ITEMGUID_S_RC_GY_Trophy_Posessed_Deer_Aura_fdaa1fcb-a900-44c7-9605-ae9041f9ef69, 0);
+
+IF
+GlobalFlagSet((STRING)_Var1)
+AND
+DB_RC_GY_PianoMusic(_Var1, _Var2)
+AND
+CharacterIsDead(CHARACTERGUID_S_RC_GY_PianoGhost_82a4e393-2e25-402b-9425-27b8fef6ba47, 0)
+THEN
+GlobalClearFlag(_Var1);
+PlaySound(ITEMGUID_S_RC_GY_RykersPiano_064f5d62-6b8d-43ac-8212-722eb190537d, _Var2);
+
+IF
+CharacterStatusApplied(S_RC_OIL_Caves_DeadMagister_Ghost_9f85da22-1635-492f-9d4a-1c6fcc064857, "DRAIN", _)
+THEN
+PlaySound(ITEMGUID_S_RC_GY_RykersPiano_064f5d62-6b8d-43ac-8212-722eb190537d, "RC_Scripted_GhostPianist_StopAll");
+
+IF
+CharacterUsedSkill((CHARACTERGUID)_Var1, "Shout_SpiritVision", _, _)
+AND
+DB_InRegion(_Var1, TRIGGERGUID_S_RC_GY_SUB_RykerHouse_GroundFloor_f685aad8-a811-4d5c-9e90-81e5a66456cc)
+THEN
+SetVisible(ITEMGUID_S_RC_GY_GhostChair_0634aae2-11ab-427e-9f5b-4dc92ae89f04, 1);
+
+
+EXITSECTION
+ENDEXITSECTION
+
+ParentTargetEdge "ReapersCoast"

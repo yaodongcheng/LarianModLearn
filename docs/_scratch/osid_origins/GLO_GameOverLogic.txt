@@ -1,0 +1,130 @@
+Version 1
+SubGoalCombiner SGC_AND
+
+INITSECTION
+
+KBSECTION
+IF
+DB_IsPlayer(_Var1)
+THEN
+DB_CheckPartyForPlayer(_Var1);
+
+IF
+DB_CheckPartyForPlayer(_Var1)
+AND NOT
+DB_IsPlayer(_Var1)
+THEN
+NOT DB_CheckPartyForPlayer(_Var1);
+ProcCheckGameOver();
+
+IF
+CharacterDied((CHARACTERGUID)_Var1)
+AND
+DB_IsPlayer(_Var1)
+AND NOT
+DB_GLO_HoERespawnPoint(_, _)
+AND NOT
+DB_GLO_DeadOrder_EligibleDeadOrder(_, _, _)
+AND
+ItemTemplateIsInCharacterInventory(_Var1, "Quest_Resurrection_Idol_6b70e6e1-855e-4295-b79b-d87ebd6bd4af", 0)
+THEN
+ProcCheckGameOver();
+
+PROC
+ProcCheckGameOver()
+AND
+DB_IsPlayer(_Var1)
+AND NOT
+DB_ARX_Frozen_PermanentlyFrozen(_Var1)
+AND
+CharacterIsDead(_Var1, 0)
+THEN
+DB_PlayerAlive(1);
+
+PROC
+ProcCheckGameOver()
+AND
+DB_IsPlayer(_Var1)
+AND
+QRY_CheckRessurectionIdol(_Var1)
+THEN
+DB_PlayerAlive(1);
+
+QRY
+QRY_CheckRessurectionIdol((CHARACTERGUID)_Var1)
+AND
+DB_ResurrectionIdol_Timer(_Var1)
+THEN
+DB_NOOP(1);
+
+QRY
+QRY_CheckRessurectionIdol((CHARACTERGUID)_Var1)
+AND NOT
+DB_ResurrectionIdol_Timer(_Var1)
+AND
+QRY_CharIsAboutToResurrect(_Var1)
+THEN
+DB_NOOP(1);
+
+PROC
+ProcCheckGameOver()
+AND
+SysCount("DB_IsPlayer", 1, 0)
+THEN
+DB_PlayerAlive(1);
+
+PROC
+ProcCheckGameOver()
+AND
+DB_IsPlayer(_Var1)
+AND
+DB_Arena_PlayerParticipants(_Var2, _, _Var1, _)
+AND NOT
+DB_Arena_FightToTheDeath(_Var2)
+THEN
+DB_PlayerAlive(1);
+
+PROC
+ProcCheckGameOver()
+AND
+DB_EG_ResurrectingEpiloguePlayer(_)
+THEN
+DB_PlayerAlive(1);
+
+PROC
+ProcCheckGameOver()
+AND
+DB_IsPlayer(_Var1)
+AND
+DB_EG_DemonDealer(_Var1)
+AND
+ObjectGetFlag(_Var1, "EG_SidedAgainstDoctor", 0)
+AND NOT
+DB_Dead(CHARACTERGUID_S_ARX_DoctorsHouse_TheDoctor_83083470-c543-45b3-ac8a-108df0daca8d)
+THEN
+DB_PlayerAlive(1);
+
+PROC
+ProcCheckGameOver()
+AND NOT
+DB_PlayerAlive(1)
+THEN
+MusicPlayGeneral("Music_Game_Over");
+ShowGameOverMenu();
+
+PROC
+ProcCheckGameOver()
+THEN
+NOT DB_PlayerAlive(1);
+
+IF
+GlobalFlagSet("GLO_GameOver")
+THEN
+MusicPlayGeneral("Music_Game_Over");
+ShowGameOverMenu();
+
+
+EXITSECTION
+ENDEXITSECTION
+
+ParentTargetEdge "DOS2ModWrapper"

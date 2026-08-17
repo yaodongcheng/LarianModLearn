@@ -1,0 +1,137 @@
+Version 1
+SubGoalCombiner SGC_AND
+
+INITSECTION
+DB_Ghosts(CHARACTERGUID_S_LV_HoE_Curator_96b950ec-bd65-42c9-9f63-aae406f0ee14, "CoS_Academy_Curator");
+CharacterLinkGhost(CHARACTERGUID_S_CoS_Academy_Curator_Skeleton_c3711bbf-df57-4c75-bc75-095d16bda782, CHARACTERGUID_S_CoS_Academy_Curator_96b950ec-bd65-42c9-9f63-aae406f0ee14);
+DB_CoS_Academy_LibrarySequence(ITEMGUID_S_CoS_Academy_LibraryLever_001_1de1fc71-1582-4d2a-8758-5f308d47cac6, 0);
+DB_CoS_Academy_LibrarySequence(ITEMGUID_S_CoS_Academy_LibraryLever_002_c2707b40-6709-4dfe-822e-5ad475bc6827, 1);
+DB_CoS_Academy_LibrarySequence(ITEMGUID_S_CoS_Academy_LibraryLever_003_1be97faf-9285-4cd7-a2e7-667a39225ebb, 2);
+DB_CoS_Academy_LibrarySequence(ITEMGUID_S_CoS_Academy_LibraryLever_004_61358eca-f8b9-4e49-ad6e-d90d51ed8c90, 3);
+DB_CoS_Academy_LibrarySequence(ITEMGUID_S_CoS_Academy_LibraryLever_005_4bee04aa-294f-45e0-8ac9-1df047952609, -1);
+ProcDeclareCounter("CoS_Academy_LibrarySequence");
+
+KBSECTION
+IF
+GameBookInterfaceClosed(ITEMGUID_S_CoS_Academy_Skillbook_SV_aa594b98-8148-4aee-80b2-b5aa12977d94, (CHARACTERGUID)_Var1)
+AND
+CharacterHasSkill(_Var1, "Target_SourceVampirism", 0)
+THEN
+CharacterAddSkill(_Var1, "Target_SourceVampirism");
+PlayEffect(_Var1, "RS3_FX_GP_ScriptedEvent_HOE_Summoning_01");
+
+IF
+GameBookInterfaceClosed(ITEMGUID_S_CoS_Academy_Skillbook_SpiritVision_b664b3fe-8766-41d0-8ccc-a99bb7cf558d, (CHARACTERGUID)_Var1)
+AND
+CharacterHasSkill(_Var1, "Shout_SpiritVision", 0)
+THEN
+CharacterAddSkill(_Var1, "Shout_SpiritVision");
+PlayEffect(_Var1, "RS3_FX_GP_ScriptedEvent_HOE_Summoning_01");
+
+IF
+ObjectFlagSet("QuestUpdate_CoS_MissingStudent_FriendInfo", (CHARACTERGUID)_Var1, _)
+THEN
+ShowMapMarker(_Var1, "CoS_ForbiddenLibrary", 1);
+
+IF
+CharacterUsedItem((CHARACTERGUID)_Var1, (ITEMGUID)_Var2)
+AND
+DB_CoS_Academy_LibrarySequence(_Var2, _)
+THEN
+PlayAnimation(_Var1, "use_activate");
+CharacterItemSetEvent(_Var1, _Var2, "CoS_Academy_LibrarySequence_Activate");
+
+IF
+CharacterItemEvent((CHARACTERGUID)_Var1, (ITEMGUID)_Var2, "CoS_Academy_LibrarySequence_Activate")
+AND
+DB_CoS_Academy_LibrarySequence(_Var2, _Var3)
+AND
+DB_GlobalCounter("CoS_Academy_LibrarySequence", _Var4)
+AND
+_Var3 != _Var4
+THEN
+ProcRemoveCounter("CoS_Academy_LibrarySequence");
+SetStoryEvent(_Var1, "CoS_Academy_LibrarySequence_ApplyDamage");
+
+IF
+StoryEvent((CHARACTERGUID)_Var1, "CoS_Academy_LibrarySequence_ApplyDamage")
+THEN
+PlayEffect(_Var1, "RS3_FX_Char_Creatures_Shriker_LightningBolt_Impact_01");
+ApplyDamage(_Var1, 200, "Air");
+CharacterPurgeQueue(_Var1);
+ApplyStatus(_Var1, "STUNNED", 3, 1);
+ProcObjectTimer(_Var1, "CoS_Academy_VB_FailedLibraryPuzzle_Timer", 3100);
+
+PROC
+ProcObjectTimerFinished((CHARACTERGUID)_Var1, "CoS_Academy_VB_FailedLibraryPuzzle_Timer")
+AND
+QRY_SpeakerIsAvailable(_Var1)
+THEN
+Proc_StartDialog(1, "CoS_Academy_VB_FailedLibraryPuzzle", _Var1);
+
+IF
+CharacterItemEvent((CHARACTERGUID)_Var1, (ITEMGUID)_Var2, "CoS_Academy_LibrarySequence_Activate")
+AND
+DB_CoS_Academy_LibrarySequence(_Var2, _Var3)
+AND
+DB_GlobalCounter("CoS_Academy_LibrarySequence", _Var4)
+AND
+_Var3 == _Var4
+THEN
+ProcIncreaseCounter("CoS_Academy_LibrarySequence", 1);
+
+IF
+CharacterItemEvent(_, (ITEMGUID)_Var2, "CoS_Academy_LibrarySequence_Activate")
+AND
+DB_CoS_Academy_LibrarySequence(_Var2, _)
+AND NOT
+DB_GlobalCounter("CoS_Academy_LibrarySequence", _)
+THEN
+ProcDeclareCounter("CoS_Academy_LibrarySequence");
+
+IF
+DB_GlobalCounter("CoS_Academy_LibrarySequence", 4)
+THEN
+ItemUnLock(ITEMGUID_S_CoS_Academy_DoorToForbiddenLibrary_94e2ebf7-b7f4-4439-bcca-6827531f9c13);
+ItemOpen(ITEMGUID_S_CoS_Academy_DoorToForbiddenLibrary_94e2ebf7-b7f4-4439-bcca-6827531f9c13);
+
+IF
+ItemOpened(ITEMGUID_S_CoS_Academy_DoorToForbiddenLibrary_94e2ebf7-b7f4-4439-bcca-6827531f9c13)
+THEN
+GlobalSetFlag("CoS_ForbiddenLibrary_Open");
+Proc_CoS_Academy_ConductorPuzzle_LightsOn("CoS_Academy_DoorToForbiddenLibrary");
+
+IF
+ItemOpened(ITEMGUID_S_CoS_Academy_DoorToForbiddenLibrary_94e2ebf7-b7f4-4439-bcca-6827531f9c13)
+AND
+DB_CoS_Academy_LibrarySequence(_Var1, _Var2)
+THEN
+NOT DB_CoS_Academy_LibrarySequence(_Var1, _Var2);
+ProcRemoveCounter("CoS_Academy_LibrarySequence");
+
+IF
+GlobalFlagSet("CoS_ForbiddenLibrary_Open")
+AND
+DB_IsPlayer(_Var1)
+THEN
+ObjectSetFlag(_Var1, "QuestUpdate_CoS_MissingStudent_OpenDoor");
+
+IF
+CharacterUsedItem((CHARACTERGUID)_Var1, ITEMGUID_S_CoS_Academy_LibraryLever_003_1be97faf-9285-4cd7-a2e7-667a39225ebb)
+THEN
+ItemRotateY(ITEMGUID_S_CoS_Academy_LibraryLever_003_1be97faf-9285-4cd7-a2e7-667a39225ebb, 360, 100);
+PlaySound(ITEMGUID_S_CoS_Academy_LibraryLever_003_1be97faf-9285-4cd7-a2e7-667a39225ebb, "Items_Puzzles_MovingObjects_STONE_Start");
+TimerLaunch("CoS_Academy_LibraryLever_003_Reset", 3500);
+ItemSetCanInteract(ITEMGUID_S_CoS_Academy_LibraryLever_003_1be97faf-9285-4cd7-a2e7-667a39225ebb, 0);
+
+IF
+TimerFinished("CoS_Academy_LibraryLever_003_Reset")
+THEN
+PlaySound(ITEMGUID_S_CoS_Academy_LibraryLever_003_1be97faf-9285-4cd7-a2e7-667a39225ebb, "Items_Puzzles_MovingObjects_STONE_Stop");
+ItemSetCanInteract(ITEMGUID_S_CoS_Academy_LibraryLever_003_1be97faf-9285-4cd7-a2e7-667a39225ebb, 1);
+
+
+EXITSECTION
+ENDEXITSECTION
+
+ParentTargetEdge "CoS_Academy"

@@ -1,0 +1,372 @@
+Version 1
+SubGoalCombiner SGC_AND
+
+INITSECTION
+SetOnStage(CHARACTERGUID_S_CoS_Delorus_ab4a9043-f15a-4500-90cf-aa0d520b9327, 0);
+SetOnStage(CHARACTERGUID_S_CoS_Delorus_Warg_549d3a12-e98b-4bf8-949b-e2c144119aee, 0);
+DB_Dialogs(CHARACTERGUID_S_CoS_Delorus_ab4a9043-f15a-4500-90cf-aa0d520b9327, "CoS_Delorus");
+DB_Ghosts(CHARACTERGUID_S_CoS_Delorus_ab4a9043-f15a-4500-90cf-aa0d520b9327, CHARACTERGUID_S_CoS_Delorus_Ghost_a77abaa3-404b-4032-8683-7945cb7a1037, "CoS_Delorus_Ghost");
+DB_CoS_MagisterAlignments("CoS_Magister");
+DB_CoS_MagisterAlignments("CoS_Magister_Delorus");
+DB_CoS_MagisterAlignments("CoS_Magister_Human");
+DB_CoS_Temples_DelorusLastStand_BR(CHARACTERGUID_S_CoS_Temples_DelorusLastStand_BR_001_01588951-9c0d-445f-b205-dbd92c71c058);
+DB_CoS_Temples_DelorusLastStand_BR(CHARACTERGUID_S_CoS_Temples_DelorusLastStand_BR_002_772d7656-5b72-4980-ab77-fca802a61e96);
+DB_CoS_Temples_DelorusLastStand_BR(CHARACTERGUID_S_CoS_Temples_DelorusLastStand_BR_003_1e82cd8b-e835-443f-8662-c65a45264c88);
+DB_SeenDeadNPCPartyFlag(CHARACTERGUID_S_CoS_Delorus_ab4a9043-f15a-4500-90cf-aa0d520b9327, "CoS_Delorus_Dead");
+Proc_CoS_Temples_Delorus_Init();
+
+KBSECTION
+PROC
+Proc_CoS_Temples_Delorus_Init()
+AND
+GlobalGetFlag("FTJ_InjuredMagisterSaved", 1)
+AND
+GlobalGetFlag("FTJ_DelorusIsDead", 0)
+THEN
+SetOnStage(CHARACTERGUID_S_CoS_Delorus_ab4a9043-f15a-4500-90cf-aa0d520b9327, 1);
+CharacterDisableCrime(CHARACTERGUID_S_CoS_Delorus_ab4a9043-f15a-4500-90cf-aa0d520b9327, "SourceMagic");
+CharacterDisableCrime(CHARACTERGUID_S_CoS_Delorus_ab4a9043-f15a-4500-90cf-aa0d520b9327, "ActiveUndead");
+
+IF
+DB_CoS_Temples_DelorusLastStand_BR(_Var1)
+THEN
+SetOnStage(_Var1, 0);
+
+IF
+CharacterResurrected(CHARACTERGUID_S_CoS_Delorus_ab4a9043-f15a-4500-90cf-aa0d520b9327)
+THEN
+NOT DB_Dead(CHARACTERGUID_S_CoS_Delorus_ab4a9043-f15a-4500-90cf-aa0d520b9327);
+DB_Dialogs(CHARACTERGUID_S_CoS_Delorus_ab4a9043-f15a-4500-90cf-aa0d520b9327, "CoS_Delorus");
+
+IF
+StoryEvent((CHARACTERGUID)_Var1, "CoS_Delorus_StartDialog")
+AND
+QueryOnlyOnce("CoS_Delorus_StartDialog_Once")
+THEN
+Proc_StartDialog(0, "CoS_Delorus", CHARACTERGUID_S_CoS_Delorus_ab4a9043-f15a-4500-90cf-aa0d520b9327, _Var1);
+
+IF
+ObjectFlagSet("CoS_Delorus_FollowPlayer", (CHARACTERGUID)_Var1, _)
+THEN
+CharacterAddToPlayerCharacter(CHARACTERGUID_S_CoS_Delorus_ab4a9043-f15a-4500-90cf-aa0d520b9327, _Var1);
+ProcCharacterMoveTo(CHARACTERGUID_S_CoS_Delorus_ab4a9043-f15a-4500-90cf-aa0d520b9327, _Var1, 0, "");
+
+IF
+ObjectFlagCleared("CoS_Delorus_FollowPlayer", (CHARACTERGUID)_Var1, _)
+THEN
+CharacterRemoveFromPlayerCharacter(CHARACTERGUID_S_CoS_Delorus_ab4a9043-f15a-4500-90cf-aa0d520b9327, _Var1);
+
+IF
+CharacterDied(CHARACTERGUID_S_CoS_Delorus_ab4a9043-f15a-4500-90cf-aa0d520b9327)
+AND
+DB_IsPlayer(_Var1)
+THEN
+CharacterRemoveFromPlayerCharacter(CHARACTERGUID_S_CoS_Delorus_ab4a9043-f15a-4500-90cf-aa0d520b9327, _Var1);
+
+IF
+DialogStarted("CoS_Delorus", _)
+AND NOT
+DB_OnlyOnce("CoS_Delorus_StartDialog_Once")
+THEN
+DB_OnlyOnce("CoS_Delorus_StartDialog_Once");
+
+IF
+StoryEvent((GUIDSTRING)_Var1, "CoS_Delorus_DeadFriend_DialogStart")
+THEN
+Proc_StartDialog(0, "CoS_Delorus_DeadFriend", CHARACTERGUID_S_CoS_Delorus_ab4a9043-f15a-4500-90cf-aa0d520b9327, _Var1);
+
+IF
+ObjectFlagSet("CoS_DelorusMoveToDeadFriend", CHARACTERGUID_S_CoS_Delorus_ab4a9043-f15a-4500-90cf-aa0d520b9327, _)
+THEN
+CharacterPurgeQueue(CHARACTERGUID_S_CoS_Delorus_ab4a9043-f15a-4500-90cf-aa0d520b9327);
+CharacterMoveTo(CHARACTERGUID_S_CoS_Delorus_ab4a9043-f15a-4500-90cf-aa0d520b9327, CHARACTERGUID_S_CoS_Temples_DeadDelorusFriend_a79145e8-ecf6-485e-bbcc-3b10fc2b527c, 1, "Mourning_Animation", 0);
+
+IF
+StoryEvent(CHARACTERGUID_S_CoS_Delorus_ab4a9043-f15a-4500-90cf-aa0d520b9327, "Mourning_Animation")
+THEN
+PlayAnimation(CHARACTERGUID_S_CoS_Delorus_ab4a9043-f15a-4500-90cf-aa0d520b9327, "Kneel_02");
+
+IF
+DialogEnded(_, (INTEGER)_Var2)
+AND
+ObjectGetFlag(CHARACTERGUID_S_CoS_Delorus_ab4a9043-f15a-4500-90cf-aa0d520b9327, "CoS_Delorus_HostileToPlayers", 1)
+THEN
+CharacterSetRelationFactionToFaction("CoS_Magister_Delorus", "Hero", 0);
+CharacterSetRelationFactionToFaction("Hero", "CoS_Magister_Delorus", 0);
+
+IF
+CharacterUsedSkillOnTarget((CHARACTERGUID)_Var1, CHARACTERGUID_S_CoS_Temples_DeadDelorusFriend_a79145e8-ecf6-485e-bbcc-3b10fc2b527c, (STRING)_Var2, _, _)
+AND
+DB_SourceVampirism_Skills(_Var2)
+AND
+CharacterCanSee(CHARACTERGUID_S_CoS_Delorus_ab4a9043-f15a-4500-90cf-aa0d520b9327, CHARACTERGUID_S_CoS_Temples_DeadDelorusFriend_a79145e8-ecf6-485e-bbcc-3b10fc2b527c, 1)
+AND
+CharacterCanSee(CHARACTERGUID_S_CoS_Delorus_ab4a9043-f15a-4500-90cf-aa0d520b9327, _Var1, 1)
+THEN
+Proc_CoS_DelorusGoHostileToPlayers();
+
+IF
+CharacterUsedSkillOnTarget((CHARACTERGUID)_Var1, CHARACTERGUID_S_CoS_Temples_DeadMagister_001_26506f1a-b421-47b5-9e3c-9f0c65876d29, (STRING)_Var2, _, _)
+AND
+DB_SourceVampirism_Skills(_Var2)
+AND
+CharacterCanSee(CHARACTERGUID_S_CoS_Delorus_ab4a9043-f15a-4500-90cf-aa0d520b9327, CHARACTERGUID_S_CoS_Temples_DeadMagister_001_26506f1a-b421-47b5-9e3c-9f0c65876d29, 1)
+AND
+CharacterCanSee(CHARACTERGUID_S_CoS_Delorus_ab4a9043-f15a-4500-90cf-aa0d520b9327, _Var1, 1)
+THEN
+Proc_CoS_DelorusGoHostileToPlayers();
+
+PROC
+Proc_CoS_DelorusGoHostileToPlayers()
+AND
+DB_IsPlayer(_Var1)
+AND
+ObjectGetFlag(_Var1, "CoS_Delorus_FollowPlayer", 1)
+THEN
+ObjectClearFlag(_Var1, "CoS_Delorus_FollowPlayer");
+
+PROC
+Proc_CoS_DelorusGoHostileToPlayers()
+THEN
+CharacterSetRelationFactionToFaction("CoS_Magister_Delorus", "Hero", 0);
+CharacterSetRelationFactionToFaction("Hero", "CoS_Magister_Delorus", 0);
+JumpToTurn(CHARACTERGUID_S_CoS_Delorus_ab4a9043-f15a-4500-90cf-aa0d520b9327);
+
+PROC
+Proc_CoS_DelorusGoHostileToPlayers()
+AND
+CharacterCanSee(CHARACTERGUID_S_CoS_Delorus_ab4a9043-f15a-4500-90cf-aa0d520b9327, CHARACTERGUID_S_CoS_Temples_DeadMagister_001_26506f1a-b421-47b5-9e3c-9f0c65876d29, 1)
+THEN
+Proc_StartDialog(1, "CoS_Delorus_AD_DeadFriendPurged", CHARACTERGUID_S_CoS_Delorus_ab4a9043-f15a-4500-90cf-aa0d520b9327);
+
+IF
+DialogEnded("CoS_Delorus_DeadFriend", (INTEGER)_Var1)
+AND
+ObjectGetFlag(CHARACTERGUID_S_CoS_Delorus_ab4a9043-f15a-4500-90cf-aa0d520b9327, "CoS_Delorus_LeavesParty", 1)
+AND
+DialogGetInvolvedPlayer(_Var1, 1, _Var2)
+THEN
+ObjectSetFlag(_Var2, "QuestUpdate_CoS_Delorus_Fail_LeftParty");
+SetHasDialog(CHARACTERGUID_S_CoS_Delorus_ab4a9043-f15a-4500-90cf-aa0d520b9327, 0);
+ProcCharacterDisappearOutOfSight(CHARACTERGUID_S_CoS_Delorus_ab4a9043-f15a-4500-90cf-aa0d520b9327, 0, 0, "CoS_ToDeathPoint", 0);
+
+IF
+ObjectFlagSet("QuestUpdate_CoS_Delorus_Fail_LeftParty", _, _)
+AND
+DB_IsPlayer(_Var3)
+THEN
+ObjectClearFlag(_Var3, "CoS_Delorus_FollowPlayer", 0);
+
+IF
+StoryEvent(CHARACTERGUID_S_CoS_Delorus_ab4a9043-f15a-4500-90cf-aa0d520b9327, "CoS_ToDeathPoint")
+THEN
+SetOnStage(CHARACTERGUID_S_CoS_Delorus_ab4a9043-f15a-4500-90cf-aa0d520b9327, 1);
+TeleportTo(CHARACTERGUID_S_CoS_Delorus_ab4a9043-f15a-4500-90cf-aa0d520b9327, TRIGGERGUID_S_CoS_DelorusDeath_Point_2d1a372a-dbcc-4f27-b002-03202afb9119);
+CharacterDieImmediate(CHARACTERGUID_S_CoS_Delorus_ab4a9043-f15a-4500-90cf-aa0d520b9327, 1, "DoT");
+CreateSurface(TRIGGERGUID_S_CoS_DelorusDeath_Point_2d1a372a-dbcc-4f27-b002-03202afb9119, "SurfaceBlood", 2.5, -1);
+SetOnStage(CHARACTERGUID_S_CoS_Delorus_Warg_549d3a12-e98b-4bf8-949b-e2c144119aee, 1);
+
+IF
+CharacterLootedCharacterCorpse((CHARACTERGUID)_Var1, CHARACTERGUID_S_CoS_Delorus_ab4a9043-f15a-4500-90cf-aa0d520b9327)
+AND
+ObjectGetFlag(_Var1, "QuestUpdate_CoS_Delorus_Fail_LeftParty", 1)
+AND
+QueryOnlyOnce("CoS_RD_Delorus_FoundCorpse_Once")
+THEN
+ProcDefineReflectionDialog("CoS_RD_Delorus_FoundCorpse", _Var1);
+
+IF
+StoryEvent((GUIDSTRING)_Var1, "CoS_Delorus_QuestCompleteDoDialog")
+THEN
+Proc_StartDialog(0, "CoS_Delorus", CHARACTERGUID_S_CoS_Delorus_ab4a9043-f15a-4500-90cf-aa0d520b9327, _Var1);
+
+IF
+ObjectFlagSet("CoS_Delorus_FollowPlayer", (CHARACTERGUID)_Var1, _)
+THEN
+PartySetFlag(_Var1, "QuestUpdate_CoS_Delorus_Start");
+TriggerRegisterForCharacter(TRIGGERGUID_S_CoS_SUB_Temples_Elf_b3f134d0-e320-4bec-802c-6a093d291363, CHARACTERGUID_S_CoS_Delorus_ab4a9043-f15a-4500-90cf-aa0d520b9327);
+
+IF
+CharacterDied(CHARACTERGUID_S_CoS_Delorus_ab4a9043-f15a-4500-90cf-aa0d520b9327)
+AND
+DB_IsPlayer(_Var1)
+AND
+ObjectGetFlag(_Var1, "QuestUpdate_CoS_Delorus_Start", 1)
+THEN
+PartySetFlag(_Var1, "QuestUpdate_CoS_Delorus_Fail_Dead");
+
+IF
+CharacterEnteredTrigger(CHARACTERGUID_S_CoS_Delorus_ab4a9043-f15a-4500-90cf-aa0d520b9327, TRIGGERGUID_S_CoS_SUB_Temples_Elf_b3f134d0-e320-4bec-802c-6a093d291363)
+AND
+DB_IsPlayer(_Var1)
+AND
+ObjectGetFlag(_Var1, "QuestUpdate_CoS_Delorus_Start", 1)
+AND
+ObjectGetFlag(_Var1, "QuestUpdate_CoS_Delorus_Fail_Dead", 0)
+THEN
+TriggerUnregisterForCharacter(TRIGGERGUID_S_CoS_SUB_Temples_Elf_b3f134d0-e320-4bec-802c-6a093d291363, CHARACTERGUID_S_CoS_Delorus_ab4a9043-f15a-4500-90cf-aa0d520b9327);
+PartySetFlag(_Var1, "QuestUpdate_CoS_Delorus_EnteredTemple");
+
+IF
+ObjectFlagSet("CoS_Delorus_QuestEnd", (CHARACTERGUID)_Var1, _)
+THEN
+PartySetFlag(_Var1, "QuestUpdate_CoS_Delorus_Complete");
+DB_Temples_AlexandarsBattalion(CHARACTERGUID_S_CoS_Delorus_ab4a9043-f15a-4500-90cf-aa0d520b9327);
+CharacterGiveReward(_Var1, "COS_DelorusBow");
+GlobalSetFlag("CoS_DelorusQuestComplete");
+
+IF
+ObjectFlagSet("CoS_Delorus_QuestEnd", _, _)
+AND
+DB_IsPlayer(_Var3)
+THEN
+ObjectClearFlag(_Var3, "CoS_Delorus_FollowPlayer", 0);
+
+IF
+CharacterEnteredTrigger((CHARACTERGUID)_Var1, TRIGGERGUID_S_CoS_SUB_Academy_51ddb828-18a6-4b6e-9f5a-e2b2883862e1)
+AND
+ObjectGetFlag(_Var1, "CoS_Delorus_FollowPlayer", 1)
+THEN
+TeleportTo(CHARACTERGUID_S_CoS_Delorus_ab4a9043-f15a-4500-90cf-aa0d520b9327, CHARACTERGUID_S_CoS_Temples_DeadMagister_001_26506f1a-b421-47b5-9e3c-9f0c65876d29);
+ObjectClearFlag(_Var1, "CoS_Delorus_FollowPlayer", 0);
+
+IF
+ObjectFlagSet("FactionHostileToIndivPlayerAfterDialog", (CHARACTERGUID)_Var1, (INTEGER)_Var2)
+AND
+DialogGetInvolvedNPC(_Var2, 1, CHARACTERGUID_S_GLO_Alexandar_03e6345f-1bd3-403c-80e2-a443a74f6349)
+AND
+GetDistanceTo(CHARACTERGUID_S_CoS_Delorus_ab4a9043-f15a-4500-90cf-aa0d520b9327, CHARACTERGUID_S_GLO_Alexandar_03e6345f-1bd3-403c-80e2-a443a74f6349, _Var3)
+AND
+_Var3 < 13
+THEN
+DB_CoS_DelorusTryAlexandarCombatInterject(_Var1);
+
+IF
+ObjectEnteredCombat(CHARACTERGUID_S_CoS_Delorus_ab4a9043-f15a-4500-90cf-aa0d520b9327, _)
+AND
+GlobalGetFlag("CoS_DelorusQuestComplete", 1)
+AND
+GlobalGetFlag("CoS_GarethRevenge_Resolution_HostileToAlexandar", 0)
+THEN
+ProcObjectTimer(CHARACTERGUID_S_CoS_Delorus_ab4a9043-f15a-4500-90cf-aa0d520b9327, "CoS_DelorusInterjectInAlexandarCombat_Timer", 1000);
+
+PROC
+ProcObjectTimerFinished(CHARACTERGUID_S_CoS_Delorus_ab4a9043-f15a-4500-90cf-aa0d520b9327, "CoS_DelorusInterjectInAlexandarCombat_Timer")
+THEN
+Proc_CoS_DelorusInterjectInAlexandarCombat();
+
+PROC
+Proc_CoS_DelorusInterjectInAlexandarCombat()
+AND
+DB_CombatCharacters(CHARACTERGUID_S_CoS_Delorus_ab4a9043-f15a-4500-90cf-aa0d520b9327, _Var1)
+AND
+DB_CoS_DelorusTryAlexandarCombatInterject(_Var2)
+AND
+DB_CombatCharacters(_Var2, _Var3)
+AND
+_Var3 == _Var1
+AND
+DB_CombatCharacters(CHARACTERGUID_S_GLO_Alexandar_03e6345f-1bd3-403c-80e2-a443a74f6349, _Var4)
+AND
+_Var1 == _Var4
+THEN
+ObjectSetFlag(CHARACTERGUID_S_CoS_Delorus_ab4a9043-f15a-4500-90cf-aa0d520b9327, "CoS_DelorusInterjectInAlexandarCombat");
+
+PROC
+Proc_CoS_DelorusInterjectInAlexandarCombat()
+AND NOT
+DB_CoS_DelorusTryAlexandarCombatInterject(_)
+AND
+DB_CombatCharacters(CHARACTERGUID_S_CoS_Delorus_ab4a9043-f15a-4500-90cf-aa0d520b9327, _Var2)
+AND
+GetClosestAlivePlayer(CHARACTERGUID_S_CoS_Delorus_ab4a9043-f15a-4500-90cf-aa0d520b9327, _Var3, _)
+AND
+DB_CombatCharacters(_Var3, _Var5)
+AND
+_Var5 == _Var2
+AND
+DB_CombatCharacters(CHARACTERGUID_S_GLO_Alexandar_03e6345f-1bd3-403c-80e2-a443a74f6349, _Var6)
+AND
+_Var2 == _Var6
+AND
+CharacterGetRelationToCharacter(_Var3, CHARACTERGUID_S_GLO_Alexandar_03e6345f-1bd3-403c-80e2-a443a74f6349, _Var7)
+AND
+_Var7 == 0
+THEN
+DB_CoS_DelorusTryAlexandarCombatInterject(_Var3);
+ObjectSetFlag(CHARACTERGUID_S_CoS_Delorus_ab4a9043-f15a-4500-90cf-aa0d520b9327, "CoS_DelorusInterjectInAlexandarCombat");
+
+IF
+ObjectFlagSet("CoS_DelorusInterjectInAlexandarCombat", CHARACTERGUID_S_CoS_Delorus_ab4a9043-f15a-4500-90cf-aa0d520b9327, _)
+AND
+DB_CoS_DelorusTryAlexandarCombatInterject(_Var2)
+AND
+QueryOnlyOnce("CoS_DelorusInterjectInAlexandarCombat_Once")
+AND
+StartDialog_Internal("CoS_Temples_DelorusInterjectInAlexandarCombat", 1, CHARACTERGUID_S_CoS_Delorus_ab4a9043-f15a-4500-90cf-aa0d520b9327, _Var2, NULL_00000000-0000-0000-0000-000000000000, NULL_00000000-0000-0000-0000-000000000000, NULL_00000000-0000-0000-0000-000000000000, NULL_00000000-0000-0000-0000-000000000000, 1)
+THEN
+JumpToTurn(CHARACTERGUID_S_CoS_Delorus_ab4a9043-f15a-4500-90cf-aa0d520b9327);
+
+IF
+ObjectFlagSet("CoS_Temples_DelorusInterject_Peace", (GUIDSTRING)_Var1, _)
+AND
+GetFaction(_Var1, _Var3)
+AND
+GetFaction(CHARACTERGUID_S_GLO_Alexandar_03e6345f-1bd3-403c-80e2-a443a74f6349, _Var4)
+THEN
+CharacterSetRelationFactionToFaction(_Var4, _Var3, 50);
+CharacterSetRelationFactionToFaction(_Var3, _Var4, 50);
+
+IF
+ObjectFlagSet("CoS_Temples_DelorusInterject_Peace", (CHARACTERGUID)_Var1, _)
+AND
+DB_CombatCharacters(_Var1, _Var3)
+THEN
+EndCombat(_Var3);
+
+IF
+DialogStarted("CoS_DelorusInterjectInAlexandarCombat", _)
+THEN
+DB_CombatCutscene_PrioritizedObject(CHARACTERGUID_S_CoS_Delorus_ab4a9043-f15a-4500-90cf-aa0d520b9327);
+
+IF
+DialogEnded("CoS_DelorusInterjectInAlexandarCombat", _)
+THEN
+NOT DB_CombatCutscene_PrioritizedObject(CHARACTERGUID_S_CoS_Delorus_ab4a9043-f15a-4500-90cf-aa0d520b9327);
+
+IF
+DialogEnded("CoS_DelorusInterjectInAlexandarCombat", _)
+AND
+DB_CoS_DelorusTryAlexandarCombatInterject(_Var2)
+THEN
+NOT DB_CoS_DelorusTryAlexandarCombatInterject(_Var2);
+
+IF
+StoryEvent(CHARACTERGUID_S_CoS_Delorus_ab4a9043-f15a-4500-90cf-aa0d520b9327, "CoS_DelorusGoHostileToPlayers")
+THEN
+Proc_CoS_DelorusGoHostileToPlayers();
+
+IF
+StoryEvent(CHARACTERGUID_S_CoS_Delorus_ab4a9043-f15a-4500-90cf-aa0d520b9327, "CoS_LastStandCheck")
+AND
+DB_CoS_Temples_DelorusLastStand_BR(_Var1)
+THEN
+SetOnStage(_Var1, 1);
+
+IF
+StoryEvent(CHARACTERGUID_S_CoS_Delorus_ab4a9043-f15a-4500-90cf-aa0d520b9327, "CoS_LastStandCheck")
+THEN
+TeleportTo(CHARACTERGUID_S_CoS_Delorus_ab4a9043-f15a-4500-90cf-aa0d520b9327, TRIGGERGUID_S_CoS_Temples_DelorusLastStand_Point_477ca66f-f992-4cd4-9c2d-67955012de5e);
+SetOnStage(CHARACTERGUID_S_CoS_Delorus_ab4a9043-f15a-4500-90cf-aa0d520b9327, 1);
+CharacterDie(CHARACTERGUID_S_CoS_Delorus_ab4a9043-f15a-4500-90cf-aa0d520b9327, 1, "DoT");
+
+PROC
+ProcRegionEnded("CoS_Main")
+THEN
+GoalCompleted;
+
+
+EXITSECTION
+ENDEXITSECTION
+
+ParentTargetEdge "CoS_Temples"

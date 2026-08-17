@@ -1,0 +1,448 @@
+Version 1
+SubGoalCombiner SGC_AND
+
+INITSECTION
+DB_KilledEvent(CHARACTERGUID_S_ARX_EG_Lucian_62d0ca66-b6db-4a10-a457-effe0b64aca0, "QuestUpdate_FTJ_Ifan_DarkFaction_KilledLucianCrypt");
+DB_CompanionCryptDenied(CHARACTERGUID_S_Player_Ifan_ad9a3327-4456-42a7-9bf4-7ad60cc9e54f, "QuestUpdate_FTJ_COM_Ifan_Crypt_Denied");
+DB_CompanionCryptDenied(CHARACTERGUID_S_Player_Beast_f25ca124-a4d2-427b-af62-df66df41a978, "QuestUpdate_FTJ_COM_Beast_Crypt_Denied");
+DB_CompanionCryptDenied(CHARACTERGUID_S_Player_Lohse_bb932b13-8ebf-4ab4-aac0-83e6924e4295, "QuestUpdate_FTJ_COM_Lohse_Crypt_Denied");
+DB_CompanionCryptDenied(CHARACTERGUID_S_Player_RedPrince_a26a1efb-cdc8-4cf3-a7b2-b2f9544add6f, "QuestUpdate_FTJ_COM_RedPrince_Crypt_Denied");
+DB_CompanionCryptDenied(CHARACTERGUID_S_Player_Sebille_c8d55eaf-e4eb-466a-8f0d-6a9447b5b24c, "QuestUpdate_FTJ_COM_Sebille_Crypt_Denied");
+DB_CompanionCryptDenied(CHARACTERGUID_S_Player_Fane_02a77f1f-872b-49ca-91ab-32098c443beb, "QuestUpdate_FTJ_COM_Fane_Crypt_Denied");
+DB_CompanionCryptAllowed(CHARACTERGUID_S_Player_Ifan_ad9a3327-4456-42a7-9bf4-7ad60cc9e54f, "QuestUpdate_FTJ_COM_Ifan_Crypt_Allowed");
+DB_CompanionCryptAllowed(CHARACTERGUID_S_Player_Beast_f25ca124-a4d2-427b-af62-df66df41a978, "QuestUpdate_FTJ_COM_Beast_Crypt_Allowed");
+DB_CompanionCryptAllowed(CHARACTERGUID_S_Player_Lohse_bb932b13-8ebf-4ab4-aac0-83e6924e4295, "QuestUpdate_FTJ_COM_Lohse_Crypt_Allowed");
+DB_CompanionCryptAllowed(CHARACTERGUID_S_Player_RedPrince_a26a1efb-cdc8-4cf3-a7b2-b2f9544add6f, "QuestUpdate_FTJ_COM_RedPrince_Crypt_Allowed");
+DB_CompanionCryptAllowed(CHARACTERGUID_S_Player_Sebille_c8d55eaf-e4eb-466a-8f0d-6a9447b5b24c, "QuestUpdate_FTJ_COM_Sebille_Crypt_Allowed");
+DB_CompanionCryptAllowed(CHARACTERGUID_S_Player_Fane_02a77f1f-872b-49ca-91ab-32098c443beb, "QuestUpdate_FTJ_COM_Fane_Crypt_Allowed");
+DB_EG_GlobalFlagEndingUpdate("EG_Ending1_NewDivine", "QuestUpdate_EG_Ending1", "QuestUpdate_FTJ_Godwoken_DivinityAccept_End1");
+DB_EG_GlobalFlagEndingUpdate("EG_Ending2_SourceForAll", "QuestUpdate_EG_Ending2", "QuestUpdate_FTJ_Godwoken_DivinityAccept_End2");
+DB_EG_GlobalFlagEndingUpdate("EG_Ending4_GodKing", "QuestUpdate_EG_Ending4", "QuestUpdate_FTJ_Godwoken_DivinityAccept_End4");
+DB_EG_GlobalFlagEndingUpdate("EG_Ending_5_Demon", "QuestUpdate_EG_Ending5", "QuestUpdate_FTJ_Godwoken_DivinityAccept_End5");
+DB_EG_GlobalFlagEndingThreeUpdate(0, "QuestUpdate_EG_Ending3_NoLucian", "QuestUpdate_FTJ_Godwoken_DivinityAccept_End3_NoLucian");
+DB_EG_GlobalFlagEndingThreeUpdate(1, "QuestUpdate_EG_Ending3", "QuestUpdate_FTJ_Godwoken_DivinityAccept_End3");
+DB_EG_EndingNoDivinity(CHARACTERGUID_S_Player_Ifan_ad9a3327-4456-42a7-9bf4-7ad60cc9e54f, "");
+DB_EG_EndingNoDivinity(CHARACTERGUID_S_Player_Beast_f25ca124-a4d2-427b-af62-df66df41a978, "");
+DB_EG_EndingNoDivinity(CHARACTERGUID_S_Player_Lohse_bb932b13-8ebf-4ab4-aac0-83e6924e4295, "");
+DB_EG_EndingNoDivinity(CHARACTERGUID_S_Player_RedPrince_a26a1efb-cdc8-4cf3-a7b2-b2f9544add6f, "");
+DB_EG_EndingNoDivinity(CHARACTERGUID_S_Player_Sebille_c8d55eaf-e4eb-466a-8f0d-6a9447b5b24c, "");
+DB_EG_EndingNoDivinity(CHARACTERGUID_S_Player_Fane_02a77f1f-872b-49ca-91ab-32098c443beb, "");
+DB_EG_AvatarUpdateEndingAppend("EG_Ending1_NewDivine_ObjFlag", "_ChoseToAscend");
+DB_EG_AvatarUpdateEndingAppend("EG_Ending2_SourceForAll_ObjFlag", "_ChoseSource4All");
+DB_EG_AvatarUpdateEndingAppend("EG_Ending3_Purge_ObjFlag", "_ChoseLucian");
+DB_EG_AvatarUpdateEndingAppend("EG_Ending4_GodKing_ObjFlag", "_ChoseGodKing");
+DB_EG_AvatarUpdateEndingAppend("EG_Ending_5_Demon_ObjFlag", "_ChoseDemon");
+DB_EG_AvatarUpdateEndingAppend("EG_SidedWithDoctor", "_ChoseDemon");
+DB_EG_AvatarQuest(CHARACTERGUID_S_Player_Ifan_ad9a3327-4456-42a7-9bf4-7ad60cc9e54f, "QuestUpdate_FTJ_Ifan_DarkFaction");
+DB_EG_AvatarQuest(CHARACTERGUID_S_Player_Beast_f25ca124-a4d2-427b-af62-df66df41a978, "QuestUpdate_FTJ_OriginBeast");
+DB_EG_AvatarQuest(CHARACTERGUID_S_Player_Sebille_c8d55eaf-e4eb-466a-8f0d-6a9447b5b24c, "QuestUpdate_FTJ_OriginSebille");
+DB_EG_AvatarQuest(CHARACTERGUID_S_Player_RedPrince_a26a1efb-cdc8-4cf3-a7b2-b2f9544add6f, "QuestUpdate_FTJ_OriginRedPrince");
+DB_EG_AvatarQuest(CHARACTERGUID_S_Player_Fane_02a77f1f-872b-49ca-91ab-32098c443beb, "QuestUpdate_FTJ_OriginFane");
+DB_EG_AvatarQuest(CHARACTERGUID_S_Player_Lohse_bb932b13-8ebf-4ab4-aac0-83e6924e4295, "QuestUpdate_FTJ_OriginLohse");
+DB_EG_PurgeEndingCOREQuestUpdates(0, "QuestUpdate_CORE_Epilogue_Endgame3_User_NoLucian", "QuestUpdate_CORE_Epilogue_Endgame3_Companion_NoLucian");
+DB_EG_PurgeEndingCOREQuestUpdates(1, "QuestUpdate_CORE_Epilogue_Endgame3_User", "QuestUpdate_CORE_Epilogue_Endgame3_Companion");
+
+KBSECTION
+PROC
+PROC_EG_LaunchFinalArena()
+AND
+DB_EG_DivinityCompetitor(_Var1)
+AND
+DB_CompanionCryptDenied(_Var1, _Var2)
+AND
+DB_IsPlayer(_Var3)
+AND
+DB_EG_DivinityCompetitor(_Var3)
+THEN
+UserSetFlag(_Var3, _Var2);
+
+IF
+ObjectFlagSet("EG_Companion_Crypt_Allowed", (CHARACTERGUID)_Var1, _)
+AND
+DB_CompanionCryptAllowed(_Var1, _Var3)
+THEN
+UserSetFlag(_Var1, _Var3);
+
+PROC
+ProcRegionStarted("ARX_EndGame")
+AND
+DB_IsPlayer(_Var1)
+THEN
+PartySetFlag(_Var1, "QuestUpdate_EG_EnterTomb");
+
+IF
+ObjectFlagSet("ARX_PDD_EndGame_SideLucian_No", (GUIDSTRING)_Var1, _)
+AND
+DB_IsPlayer(_Var3)
+THEN
+PartySetFlag(_Var3, "QuestUpdate_EG_RefusePurge");
+
+IF
+ObjectFlagSet("ARX_PDD_EndGame_SideLucian_Yes", (GUIDSTRING)_Var1, _)
+AND
+DB_IsPlayer(_Var3)
+THEN
+PartySetFlag(_Var3, "QuestUpdate_EG_AcceptPurge");
+
+IF
+DialogStarted("EG_PrisonersDilemma", (INTEGER)_Var1)
+AND
+DB_DialogPlayers(_Var1, _Var2, _)
+THEN
+PartySetFlag(_Var2, "QuestUpdate_EG_DivineElection");
+
+IF
+GlobalFlagSet("EG_PromisedFight")
+AND
+DB_IsPlayer(_Var1)
+THEN
+PartySetFlag(_Var1, "QuestUpdate_EG_SwornAttack");
+
+IF
+GlobalFlagSet("EG_ConvincedBraccus")
+AND
+DB_IsPlayer(_Var1)
+THEN
+PartySetFlag(_Var1, "QuestUpdate_EG_BraccusPersuaded");
+
+IF
+GlobalFlagSet("EndFight_BraccusTransform")
+AND
+DB_DialogPlayers(_Var1, _Var2, _)
+AND
+PartyGetFlag(_Var2, "QuestUpdate_EG_RefusePurge", 0)
+THEN
+PartySetFlag(_Var2, "QuestUpdate_EG_BraccusBetrayal_Purge");
+
+IF
+GlobalFlagSet("EndFight_BraccusTransform")
+AND
+DB_DialogPlayers(_Var1, _Var2, _)
+AND
+PartyGetFlag(_Var2, "QuestUpdate_EG_RefusePurge", 1)
+THEN
+PartySetFlag(_Var2, "QuestUpdate_EG_BraccusBetrayal");
+
+PROC
+PROC_EG_GiveFinalJournalUpdates()
+AND
+DB_EG_GlobalFlagEndingUpdate(_Var1, _Var2, _)
+AND
+GlobalGetFlag(_Var1, 1)
+AND
+DB_IsPlayer(_Var4)
+THEN
+PartySetFlag(_Var4, _Var2);
+
+PROC
+PROC_EG_GiveFinalJournalUpdates()
+AND
+GlobalGetFlag("EG_Ending3_Purge", 1)
+AND
+DB_IsPlayer(_Var1)
+AND
+PartyGetFlag(_Var1, "QuestUpdate_EG_AcceptPurge", _Var2)
+AND
+DB_EG_GlobalFlagEndingThreeUpdate(_Var2, _Var3, _)
+AND
+DB_IsPlayer(_Var1)
+THEN
+PartySetFlag(_Var1, _Var3);
+
+IF
+DialogStarted("EG_LucianDallisBraccus", (INTEGER)_Var1)
+AND
+DB_DialogPlayers(_Var1, _Var2, _)
+THEN
+ObjectSetFlag(_Var2, "QuestUpdate_FTJ_Godwoken_DallisCrypt");
+
+PROC
+PROC_EG_GiveFinalJournalUpdates()
+AND
+DB_IsPlayer(_Var1)
+AND
+IsTagged(_Var1, "AVATAR", 1)
+AND
+ObjectGetFlag(_Var1, "EG_TheChoice_MadeIt", 0)
+AND
+ObjectGetFlag(_Var1, "EG_Ending4_GodKing_ObjFlag", 0)
+AND
+DB_EG_GlobalFlagEndingUpdate(_Var2, _, _)
+AND
+GlobalGetFlag(_Var2, 1)
+THEN
+ObjectSetFlag(_Var1, "FTJ_Godwoken_DivinityFail");
+
+PROC
+PROC_EG_GiveFinalJournalUpdates()
+AND
+DB_EG_Decider(_Var1)
+AND
+IsTagged(_Var1, "AVATAR", 1)
+AND
+DB_EG_GlobalFlagEndingUpdate(_Var2, _, _Var4)
+AND
+GlobalGetFlag(_Var2, 1)
+AND NOT
+Qry_EG_Ending4_GodKing_AvatarFaneChose()
+THEN
+ObjectSetFlag(_Var1, _Var4);
+
+PROC
+PROC_EG_GiveFinalJournalUpdates()
+AND
+DB_EG_Decider(_Var1)
+AND
+IsTagged(_Var1, "AVATAR", 1)
+AND
+GlobalGetFlag("EG_Ending3_Purge", 1)
+AND
+PartyGetFlag(_Var1, "QuestUpdate_EG_AcceptPurge", _Var2)
+AND
+DB_EG_GlobalFlagEndingThreeUpdate(_Var2, _, _Var4)
+THEN
+ObjectSetFlag(_Var1, _Var4);
+
+QRY
+Qry_EG_Ending4_GodKing_AvatarFaneChose()
+AND
+DB_GlobalFlag("EG_Ending4_GodKing")
+AND
+ObjectGetFlag(CHARACTERGUID_S_Player_Fane_02a77f1f-872b-49ca-91ab-32098c443beb, "EG_Ending4_GodKing_ObjFlag", 1)
+AND
+IsTagged(CHARACTERGUID_S_Player_Fane_02a77f1f-872b-49ca-91ab-32098c443beb, "AVATAR", 1)
+THEN
+DB_NOOP(1);
+
+QRY
+QRY_EG_OriginFinalJournalUpdateAppend((CHARACTERGUID)_Var1, (STRING)_Var2, (STRING)_Var3)
+AND
+DB_EG_OriginFinalJournalUpdateAppend(_Var3)
+THEN
+NOT DB_EG_OriginFinalJournalUpdateAppend(_Var3);
+
+QRY
+QRY_EG_OriginFinalJournalUpdateAppend(CHARACTERGUID_S_Player_Fane_02a77f1f-872b-49ca-91ab-32098c443beb, "EG_Ending1_NewDivine_ObjFlag", (STRING)_Var1)
+AND
+GlobalGetFlag("EG_Ending1A_EternalsReturn", 1)
+THEN
+DB_EG_OriginFinalJournalUpdateAppend("_ChoseToAscend_Fane");
+
+QRY
+QRY_EG_OriginFinalJournalUpdateAppend((CHARACTERGUID)_Var1, (STRING)_Var2, (STRING)_Var3)
+AND NOT
+DB_EG_OriginFinalJournalUpdateAppend(_)
+THEN
+DB_EG_OriginFinalJournalUpdateAppend(_Var3);
+
+PROC
+PROC_EG_GiveFinalJournalUpdates()
+AND NOT
+DB_GlobalFlag("EG_Ending4_GodKing")
+AND
+DB_EG_Decider(_Var1)
+AND
+IsTagged(_Var1, "AVATAR", 1)
+AND
+DB_EG_AvatarQuest(_Var1, _Var2)
+AND
+DB_EG_AvatarUpdateEndingAppend(_Var3, _Var4)
+AND
+ObjectGetFlag(_Var1, _Var3, 1)
+AND
+QRY_EG_OriginFinalJournalUpdateAppend(_Var1, _Var3, _Var4)
+AND
+DB_EG_OriginFinalJournalUpdateAppend(_Var5)
+AND
+StringConcatenate(_Var2, _Var5, _Var6)
+THEN
+ObjectSetFlag(_Var1, _Var6);
+
+PROC
+PROC_EG_GiveFinalJournalUpdates()
+AND
+DB_GlobalFlag("EG_Ending4_GodKing")
+AND
+DB_IsPlayer(_Var1)
+AND
+_Var1 != CHARACTERGUID_S_Player_Fane_02a77f1f-872b-49ca-91ab-32098c443beb
+AND
+IsTagged(_Var1, "AVATAR", 1)
+AND
+ObjectGetFlag(_Var1, "EG_PlayerChoseNoDivinity", 1)
+AND
+ObjectGetFlag(_Var1, "EG_Ending4_GodKing_ObjFlag", 0)
+AND
+DB_EG_AvatarQuest(_Var1, _Var2)
+AND
+DB_EG_AvatarUpdateEndingAppend("EG_Ending4_GodKing_ObjFlag", _Var3)
+AND
+StringConcatenate(_Var2, _Var3, _Var4)
+THEN
+ObjectSetFlag(_Var1, _Var4);
+
+PROC
+PROC_EG_GiveFinalJournalUpdates()
+AND
+DB_IsPlayer(_Var1)
+AND
+DB_EG_FirstFightKickedPromisePlayer(_Var1)
+AND NOT
+DB_Dead(_Var1)
+AND
+DB_GlobalFlag("EG_Ending4_GodKing")
+AND
+DB_EG_AvatarQuest(_Var1, _Var2)
+AND
+StringConcatenate(_Var2, "_ChoseGodKing", _Var3)
+THEN
+ObjectSetFlag(_Var1, _Var3);
+
+PROC
+PROC_EG_GiveFinalJournalUpdates()
+AND
+DB_IsPlayer(_Var1)
+AND
+DB_EG_DemonDealer(_Var1)
+AND
+DB_GlobalFlag("EG_Ending_5_Demon")
+AND
+DB_EG_AvatarQuest(_Var1, _Var2)
+AND
+StringConcatenate(_Var2, "_ChoseDemon", _Var3)
+THEN
+ObjectSetFlag(_Var1, _Var3);
+
+PROC
+PROC_EG_GiveFinalJournalUpdates()
+AND
+Qry_EG_Ending4_GodKing_AvatarFaneChose()
+THEN
+ObjectSetFlag(CHARACTERGUID_S_Player_Fane_02a77f1f-872b-49ca-91ab-32098c443beb, "QuestUpdate_FTJ_OriginFane_ChoseGodKing");
+ObjectSetFlag(CHARACTERGUID_S_Player_Fane_02a77f1f-872b-49ca-91ab-32098c443beb, "QuestUpdate_FTJ_Godwoken_DivinityAccept_End4");
+
+PROC
+PROC_EG_GiveFinalJournalUpdates()
+AND
+DB_GlobalFlag("EG_PromisedFight")
+AND
+DB_OnlyOnce("The Promised won. The Eighth takes over. The End.")
+AND
+DB_IsPlayer(_Var1)
+AND
+ObjectGetFlag(_Var1, "EG_PromisedFight_ObjFlag", 1)
+THEN
+UserSetFlag(_Var1, "Quest_Update_CORE_Chapter7_CRYPT_End_TakeSwornWon");
+
+PROC
+PROC_EG_GiveFinalJournalUpdates()
+AND
+DB_GlobalFlag("EG_PromisedFight")
+AND
+DB_EG_FirstFightKickedPromisePlayer(_Var1)
+THEN
+UserSetFlag(_Var1, "CORE_Chapter7_CRYPT_End_TakeSwornFail");
+
+PROC
+PROC_EG_GiveFinalJournalUpdates()
+AND
+DB_GlobalFlag("EG_KillThePromised")
+AND
+DB_IsPlayer(_Var1)
+AND
+ObjectGetFlag(_Var1, "EG_KillPromised_ObjFlag", 1)
+THEN
+UserSetFlag(_Var1, "Quest_Update_CORE_Chapter7_CRYPT_End_TakeSwornRefused");
+
+IF
+ObjectFlagSet("EG_Ending1_NewDivine_ObjFlag", (CHARACTERGUID)_Var1, _)
+AND
+GlobalGetFlag("EG_Ending1A_EternalsReturn", 0)
+THEN
+UserSetFlag(_Var1, "QuestUpdate_CORE_Epilogue_Endgame1_User");
+Proc_EG_CORE_Epilogue_GiveOtherUserUpdate(_Var1, "QuestUpdate_CORE_Epilogue_Endgame1_Companion");
+
+IF
+ObjectFlagSet("EG_Ending1_NewDivine_ObjFlag", (CHARACTERGUID)_Var1, _)
+AND
+GlobalGetFlag("EG_Ending1A_EternalsReturn", 1)
+THEN
+UserSetFlag(_Var1, "QuestUpdate_CORE_Epilogue_Endgame1_Fane");
+Proc_EG_CORE_Epilogue_GiveOtherUserUpdate(_Var1, "QuestUpdate_CORE_Epilogue_Endgame1_Companion");
+
+IF
+ObjectFlagSet("EG_Ending2_SourceForAll_ObjFlag", (CHARACTERGUID)_Var1, _)
+THEN
+UserSetFlag(_Var1, "QuestUpdate_CORE_Epilogue_Endgame2_User");
+Proc_EG_CORE_Epilogue_GiveOtherUserUpdate(_Var1, "");
+
+IF
+ObjectFlagSet("EG_Ending3_Purge_ObjFlag", (CHARACTERGUID)_Var1, _)
+AND
+PartyGetFlag(_Var1, "QuestUpdate_EG_AcceptPurge", _Var3)
+AND
+DB_EG_PurgeEndingCOREQuestUpdates(_Var3, _Var4, _Var5)
+THEN
+UserSetFlag(_Var1, _Var4);
+Proc_EG_CORE_Epilogue_GiveOtherUserUpdate(_Var1, _Var5);
+
+PROC
+Proc_EG_CORE_Epilogue_GiveOtherUserUpdate((CHARACTERGUID)_Var1, (STRING)_Var2)
+AND
+CharacterGetReservedUserID(_Var1, _Var3)
+AND
+DB_IsPlayer(_Var4)
+AND
+_Var1 != _Var4
+AND
+CharacterGetReservedUserID(_Var4, _Var5)
+AND
+_Var3 != _Var5
+THEN
+UserSetFlag(_Var4, _Var2);
+
+IF
+GlobalFlagSet("EG_Ending4_GodKing")
+AND
+DB_IsPlayer(_Var1)
+AND
+IsTagged(_Var1, "PROMISED", 1)
+THEN
+UserSetFlag(_Var1, "QuestUpdate_CORE_Epilogue_Endgame4_Sworn");
+
+IF
+GlobalFlagSet("EG_Ending4_GodKing")
+AND
+DB_IsPlayer(_Var1)
+AND
+IsTagged(_Var1, "PROMISED", 0)
+AND
+UserGetFlag(_Var1, "QuestUpdate_CORE_Epilogue_Endgame4_Sworn", 0)
+THEN
+UserSetFlag(_Var1, "QuestUpdate_CORE_Epilogue_Endgame4_NotSworn");
+
+IF
+GlobalFlagSet("EG_Ending_5_Demon")
+AND
+DB_IsPlayer(_Var1)
+AND
+ObjectGetFlag(_Var1, "EG_SidedWithDoctor", 1)
+THEN
+UserSetFlag(_Var1, "QuestUpdate_CORE_Epilogue_Endgame5_User");
+
+IF
+GlobalFlagSet("EG_Ending_5_Demon")
+AND
+DB_IsPlayer(_Var1)
+AND
+ObjectGetFlag(_Var1, "EG_SidedWithDoctor", 1)
+AND
+UserGetFlag(_Var1, "QuestUpdate_CORE_Epilogue_Endgame5_User", 0)
+THEN
+UserSetFlag(_Var1, "QuestUpdate_CORE_Epilogue_Endgame5_Companion");
+
+
+EXITSECTION
+ENDEXITSECTION
+
+ParentTargetEdge "EndGame"

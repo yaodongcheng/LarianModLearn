@@ -1,0 +1,464 @@
+Version 1
+SubGoalCombiner SGC_AND
+
+INITSECTION
+DB_TUT_LowerDeck_StartingTriggers(StartPoint_001__000_06873976-bf3c-8249-2074-1733c88957ff, S_TUT_CargoDeck_FUR_Humans_Med_OperatingTable_A_002_0bcc7176-896d-48de-a87d-5f7281e2cb64);
+DB_TUT_LowerDeck_StartingTriggers(StartPoint_003__000_b97d317e-fb2b-815f-34d8-74786df2cdae, S_TUT_CargoDeck_FUR_Humans_Med_OperatingTable_A_001_c1bbef56-afa3-4a05-86ff-2d33253bec45);
+DB_TUT_LowerDeck_StartingTriggers(StartPoint_000__000_fe2995bf-aa16-8ce7-33a2-8cb8cf228152, S_TUT_CargoDeck_FUR_Humans_Med_OperatingTable_A_000_b67b5777-e56a-4419-bb06-9797224dc25e);
+DB_TUT_LowerDeck_StartingTriggers(StartPoint_002__000_c195287d-e87d-8982-2ff6-2b159d38a966, S_TUT_CargoDeck_FUR_Humans_Med_OperatingTable_A_003_3ceca2b9-bcc4-4e9d-aa1e-f8409b8aa447);
+DB_TUT_LowerDeck_MurderSceneGuard(CHARACTERGUID_S_TUT_LowerDeck_MagisterMurderSceneGuard_000_a48a580b-6ba5-4b65-ad71-cc422ccff47b, TRIGGERGUID_S_TUT_LowerDeck_MagisterMurderSceneGuard_000_Point_2f15fbdd-8e7e-4adc-b0f8-400c29dc986d);
+DB_TUT_LowerDeck_MurderSceneGuard(CHARACTERGUID_S_TUT_LowerDeck_MagisterMurderSceneGuard_001_86f1a553-b197-4777-a716-2f5853767730, TRIGGERGUID_S_TUT_LowerDeck_MagisterMurderSceneGuard_001_Point_2298f882-b4fb-4c13-8801-b64137283707);
+DB_TUT_LowerDeck_WakeUpDelay1(0, 1000);
+DB_TUT_LowerDeck_WakeUpDelay1(1, 1000);
+DB_TUT_LowerDeck_WakeUpDelay2(0, 1000);
+DB_TUT_LowerDeck_WakeUpDelay2(1, 0);
+DB_TUT_CargoDeck_StartDialogPlayerSpeakers(0, NULL_00000000-0000-0000-0000-000000000000);
+DB_TUT_CargoDeck_StartDialogPlayerSpeakers(1, NULL_00000000-0000-0000-0000-000000000000);
+DB_TUT_CargoDeck_StartDialogPlayerSpeakers(2, NULL_00000000-0000-0000-0000-000000000000);
+DB_TUT_CargoDeck_StartDialogPlayerSpeakers(3, NULL_00000000-0000-0000-0000-000000000000);
+CharacterSetCanTrade(CHARACTERGUID_S_TUT_Humans_Female_Magister_Priest_000_9d17cf06-6fad-49a8-82de-54518a9bf5df, 0);
+ProcTriggerRegisterForPlayers(TRIGGERGUID_S_TUT_GiveQuests_7d576c25-90ef-47e2-85fa-59251a34be55);
+ItemSetCanInteract(ITEMGUID_S_TUT_CargoDeck_LadderToLowerDeck_Climbable_2437feb1-d09c-4418-9930-e1793b140e64, 0);
+
+KBSECTION
+IF
+GameStarted("TUT_Tutorial_A", (INTEGER)_Var1)
+AND
+QueryOnlyOnce("TUT_LowerDeck_Start")
+THEN
+Proc_TUT_StartAlarm(_Var1);
+DB_TUT_IsEditor(_Var1);
+ProcDeclareCounter("TUT_PlayersWokenUp");
+ProcDeclareCounter("TUT_CargoDeck_PlayerSpeakerIndex");
+
+PROC
+Proc_TUT_StartAlarm(0)
+AND
+DB_IsPlayer(_Var1)
+THEN
+FadeToBlack(_Var1, 0, 0, "");
+FadeToBlack(_Var1, 1000, 1, "TutorialStart");
+
+PROC
+Proc_TUT_StartAlarm(_)
+THEN
+TimerLaunch("TUT_LowerDeck_StartAlarm", 500);
+
+IF
+TimerFinished("TUT_LowerDeck_StartAlarm")
+THEN
+Proc_StartDialog(1, "TUT_AD_LowerDeck_InvestigatingMagister_Alarm", CHARACTERGUID_S_TUT_LowerDeck_Magister_Grunt_Investigator_000_47ab7059-829c-4523-adf2-6cf91fa3b29f);
+ProcCharacterMoveTo(CHARACTERGUID_S_TUT_LowerDeck_Magister_Grunt_Investigator_000_47ab7059-829c-4523-adf2-6cf91fa3b29f, S_TUT_LowerDeck_Magister_Grunt_Investigator_000_Point_e6715d32-b4f3-49ce-ba8c-2915847ca7b8, 1, "");
+Proc_TUT_StartGame();
+
+IF
+TimerFinished("TUT_LowerDeck_StartAlarm")
+AND
+DB_TUT_LowerDeck_MurderSceneGuard(_Var1, _Var2)
+THEN
+ProcCharacterMoveTo(_Var1, _Var2, 1, "TUT_LowerDeck_MurderSceneArrived");
+
+IF
+StoryEvent((CHARACTERGUID)_Var1, "TUT_LowerDeck_MurderSceneArrived")
+AND
+DB_TUT_LowerDeck_MurderSceneGuard(_Var1, _Var2)
+THEN
+CharacterLookFromTrigger(_Var1, _Var2, 0);
+
+PROC
+Proc_TUT_StartGame()
+THEN
+ProcDeclareCounter("TUT_PlayersStartTeleporting");
+
+PROC
+Proc_TUT_StartGame()
+AND
+DB_IsPlayer(_Var1)
+AND
+DB_TUT_LowerDeck_StartingTriggers(_Var2, _)
+AND NOT
+DB_TUT_LowerDeck_StartingTriggers_Used(_Var2, _)
+AND NOT
+DB_TUT_LowerDeck_StartingTriggers_Used(_, _Var1)
+THEN
+DB_TUT_LowerDeck_StartingTriggers_Used(_Var2, _Var1);
+TeleportTo(_Var1, _Var2, "TUT_LowerDeck_TeleportedToTable", 0);
+
+IF
+StoryEvent((CHARACTERGUID)_Var1, "TUT_LowerDeck_TeleportedToTable")
+AND
+DB_TUT_LowerDeck_StartingTriggers_Used(_Var2, _Var1)
+AND
+DB_TUT_LowerDeck_StartingTriggers(_Var2, _Var3)
+THEN
+NOT DB_TUT_LowerDeck_StartingTriggers_Used(_Var2, _Var1);
+CharacterUseItem(_Var1, _Var3, "TUT_LowerDeck_PlayerSleeping");
+DB_TUT_StartPlayerBed(_Var1, _Var3);
+
+IF
+StoryEvent((CHARACTERGUID)_Var1, "TUT_LowerDeck_PlayerSleeping")
+THEN
+CharacterSetAnimationOverride(_Var1, "Lie_Tied_Up_01_Loop");
+CharacterFreeze(_Var1);
+ProcObjectTimer(_Var1, "TUT_GameStart_FadeIn", 1500);
+
+PROC
+ProcObjectTimerFinished((CHARACTERGUID)_Var1, "TUT_GameStart_FadeIn")
+AND
+DB_TUT_IsEditor(0)
+THEN
+FadeToBlack(_Var1, 2.6, 1, "TutorialStart");
+
+PROC
+ProcObjectTimerFinished((CHARACTERGUID)_Var1, "TUT_GameStart_FadeIn")
+AND
+DB_GlobalCounter("TUT_CargoDeck_PlayerSpeakerIndex", _Var2)
+THEN
+NOT DB_TUT_CargoDeck_StartDialogPlayerSpeakers(_Var2, NULL_00000000-0000-0000-0000-000000000000);
+DB_TUT_CargoDeck_StartDialogPlayerSpeakers(_Var2, _Var1);
+ProcIncreaseCounter("TUT_CargoDeck_PlayerSpeakerIndex");
+
+PROC
+ProcObjectTimerFinished((CHARACTERGUID)_Var1, "TUT_GameStart_FadeIn")
+THEN
+CharacterMoveTo(CHARACTERGUID_S_TUT_Humans_Female_Magister_Priest_000_9d17cf06-6fad-49a8-82de-54518a9bf5df, TRIGGERGUID_S_TUT_CargoDeck_CollaringRoom_SiwanMove_38ceebcd-70cd-477e-a936-cb6b40d33a64, 0, "TUT_CargoDeck_CollaringRoom_SiwanApproachPlayer", 0);
+
+IF
+StoryEvent(CHARACTERGUID_S_TUT_Humans_Female_Magister_Priest_000_9d17cf06-6fad-49a8-82de-54518a9bf5df, "TUT_CargoDeck_CollaringRoom_SiwanApproachPlayer")
+AND
+DB_TUT_CargoDeck_StartDialogPlayerSpeakers(0, _Var1)
+AND
+DB_TUT_CargoDeck_StartDialogPlayerSpeakers(1, _Var2)
+AND
+DB_TUT_CargoDeck_StartDialogPlayerSpeakers(2, _Var3)
+AND
+DB_TUT_CargoDeck_StartDialogPlayerSpeakers(3, _Var4)
+THEN
+Proc_StartDialog(0, "TUT_CargoDeck_Siwan", CHARACTERGUID_S_TUT_Humans_Female_Magister_Priest_000_9d17cf06-6fad-49a8-82de-54518a9bf5df, _Var1, _Var2, _Var3, _Var4);
+NOT DB_TUT_CargoDeck_StartDialogPlayerSpeakers(0, _Var1);
+NOT DB_TUT_CargoDeck_StartDialogPlayerSpeakers(1, _Var2);
+NOT DB_TUT_CargoDeck_StartDialogPlayerSpeakers(2, _Var3);
+NOT DB_TUT_CargoDeck_StartDialogPlayerSpeakers(3, _Var4);
+
+IF
+DialogEnded("TUT_CargoDeck_Siwan", _)
+THEN
+ObjectSetFlag(CHARACTERGUID_S_TUT_Humans_Female_Magister_Priest_000_9d17cf06-6fad-49a8-82de-54518a9bf5df, "TUT_CargoDeck_CollaringRoom_ReleasePlayers");
+
+IF
+ObjectFlagSet("TUT_CargoDeck_CollaringRoom_ReleasePlayers", CHARACTERGUID_S_TUT_Humans_Female_Magister_Priest_000_9d17cf06-6fad-49a8-82de-54518a9bf5df, _)
+THEN
+CharacterUseItem(CHARACTERGUID_S_TUT_Humans_Female_Magister_Priest_000_9d17cf06-6fad-49a8-82de-54518a9bf5df, ITEMGUID_S_TUT_CargoDeck_CollaringRoom_TableLever_9f853b0c-1971-41a4-83ef-acfacbc53a0b, "TUT_CargoDeck_CollaringRoom_SiwanReleasePlayer");
+
+IF
+CharacterUsedItem(CHARACTERGUID_S_TUT_Humans_Female_Magister_Priest_000_9d17cf06-6fad-49a8-82de-54518a9bf5df, ITEMGUID_S_TUT_CargoDeck_CollaringRoom_TableLever_9f853b0c-1971-41a4-83ef-acfacbc53a0b)
+THEN
+PlayAnimation(CHARACTERGUID_S_TUT_Humans_Female_Magister_Priest_000_9d17cf06-6fad-49a8-82de-54518a9bf5df, "Fidget_Forward_01", "TUT_SiwanPulledLever");
+
+IF
+StoryEvent(CHARACTERGUID_S_TUT_Humans_Female_Magister_Priest_000_9d17cf06-6fad-49a8-82de-54518a9bf5df, "TUT_SiwanPulledLever")
+AND
+DB_DialogName("TUT_CargoDeck_Siwan", _)
+THEN
+CharacterLookAt(CHARACTERGUID_S_TUT_Humans_Female_Magister_Priest_000_9d17cf06-6fad-49a8-82de-54518a9bf5df, TRIGGERGUID_StartPoint_001__000_06873976-bf3c-8249-2074-1733c88957ff);
+
+IF
+DialogEnded("TUT_CargoDeck_Siwan", _)
+THEN
+DB_TUT_SiwanReadyToLeaveCargo(2);
+
+IF
+DialogEnded("TUT_CargoDeck_Siwan", _)
+THEN
+PROC_TUT_LowerDeck_TryUndeadDialog();
+
+PROC
+PROC_TUT_LowerDeck_TryUndeadDialog()
+AND
+SysCount("DB_IsPlayer", 1, _Var1)
+AND
+DB_GlobalCounter("TUT_PlayersWokenUp", _Var2)
+AND
+_Var2 == _Var1
+THEN
+DB_TUT_LowerDeck_UndeadStartDialogPlayerSpeakers(0, NULL_00000000-0000-0000-0000-000000000000);
+DB_TUT_LowerDeck_UndeadStartDialogPlayerSpeakers(1, NULL_00000000-0000-0000-0000-000000000000);
+DB_TUT_LowerDeck_UndeadStartDialogPlayerSpeakers(2, NULL_00000000-0000-0000-0000-000000000000);
+DB_TUT_LowerDeck_UndeadStartDialogPlayerSpeakers(3, NULL_00000000-0000-0000-0000-000000000000);
+ProcDeclareCounter("TUT_LowerDeck_UndeadPlayerSpeakerIndex");
+Proc_TUT_LowerDeck_StartGetUpDialogsForAllPlayers();
+Proc_TUT_LowerDeck_StartUndeadDialog();
+
+IF
+StoryEvent(CHARACTERGUID_S_TUT_Humans_Female_Magister_Priest_000_9d17cf06-6fad-49a8-82de-54518a9bf5df, "TUT_SiwanPulledLever")
+THEN
+DB_TUT_SiwanReadyToLeaveCargo(1);
+
+IF
+DB_TUT_SiwanReadyToLeaveCargo(2)
+AND
+DB_TUT_SiwanReadyToLeaveCargo(1)
+THEN
+SetHasDialog(CHARACTERGUID_S_TUT_Humans_Female_Magister_Priest_000_9d17cf06-6fad-49a8-82de-54518a9bf5df, 0);
+CharacterMoveTo(CHARACTERGUID_S_TUT_Humans_Female_Magister_Priest_000_9d17cf06-6fad-49a8-82de-54518a9bf5df, ITEMGUID_S_TUT_CargoDeck_LadderToLowerDeck_Climbable_2437feb1-d09c-4418-9930-e1793b140e64, 0, "TUT_CargoDeck_MagisterAtLadder", 0);
+
+IF
+StoryEvent(CHARACTERGUID_S_TUT_Humans_Female_Magister_Priest_000_9d17cf06-6fad-49a8-82de-54518a9bf5df, "TUT_CargoDeck_MagisterAtLadder")
+THEN
+ItemSetCanInteract(ITEMGUID_S_TUT_CargoDeck_LadderToLowerDeck_Climbable_2437feb1-d09c-4418-9930-e1793b140e64, 1);
+TriggerRegisterForCharacter(TRIGGERGUID_S_TUT_CargoDeck_LadderTeleport_ba7adb29-1cbc-4f11-bfb7-8c4ab905f92b, CHARACTERGUID_S_TUT_Humans_Female_Magister_Priest_000_9d17cf06-6fad-49a8-82de-54518a9bf5df);
+CharacterUseItem(CHARACTERGUID_S_TUT_Humans_Female_Magister_Priest_000_9d17cf06-6fad-49a8-82de-54518a9bf5df, ITEMGUID_S_TUT_CargoDeck_LadderToLowerDeck_Climbable_2437feb1-d09c-4418-9930-e1793b140e64, "TUT_CargoDeck_MagisterUsedLadder");
+
+IF
+StoryEvent(CHARACTERGUID_S_TUT_Humans_Female_Magister_Priest_000_9d17cf06-6fad-49a8-82de-54518a9bf5df, "TUT_CargoDeck_MagisterUsedLadder")
+THEN
+ItemSetCanInteract(ITEMGUID_S_TUT_CargoDeck_LadderToLowerDeck_Climbable_2437feb1-d09c-4418-9930-e1793b140e64, 0);
+
+IF
+CharacterEnteredTrigger(CHARACTERGUID_S_TUT_Humans_Female_Magister_Priest_000_9d17cf06-6fad-49a8-82de-54518a9bf5df, TRIGGERGUID_S_TUT_CargoDeck_LadderTeleport_ba7adb29-1cbc-4f11-bfb7-8c4ab905f92b)
+THEN
+TeleportTo(CHARACTERGUID_S_TUT_Humans_Female_Magister_Priest_000_9d17cf06-6fad-49a8-82de-54518a9bf5df, TRIGGERGUID_TeleportTrigger_002_fa121d4f-91b8-40b1-bc14-11360a98c566, "TUT_CollaringMagisterArrivedLowerDeck", 0);
+SetOnStage(ITEMGUID_S_TUT_CargoDeck_LadderToLowerDeck_Climbable_2437feb1-d09c-4418-9930-e1793b140e64, 0);
+TriggerUnregisterForCharacter(TRIGGERGUID_S_TUT_CargoDeck_LadderTeleport_ba7adb29-1cbc-4f11-bfb7-8c4ab905f92b, CHARACTERGUID_S_TUT_Humans_Female_Magister_Priest_000_9d17cf06-6fad-49a8-82de-54518a9bf5df);
+
+IF
+StoryEvent(CHARACTERGUID_S_TUT_Humans_Female_Magister_Priest_000_9d17cf06-6fad-49a8-82de-54518a9bf5df, "TUT_CollaringMagisterArrivedLowerDeck")
+THEN
+CharacterMoveTo(CHARACTERGUID_S_TUT_Humans_Female_Magister_Priest_000_9d17cf06-6fad-49a8-82de-54518a9bf5df, TRIGGERGUID_S_TUT_LowerDeck_StartArea_SiwanMove_e3b98f9c-84f0-4834-8c19-5e19b91ce7bd, 0, "TUT_CargoDeck_CollaringRoom_SiwanLeavesPlayer", 0);
+CharacterSetCanTrade(CHARACTERGUID_S_TUT_Humans_Female_Magister_Priest_000_9d17cf06-6fad-49a8-82de-54518a9bf5df, 1);
+SetHasDialog(CHARACTERGUID_S_TUT_Humans_Female_Magister_Priest_000_9d17cf06-6fad-49a8-82de-54518a9bf5df, 1);
+
+IF
+StoryEvent(CHARACTERGUID_S_TUT_Humans_Female_Magister_Priest_000_9d17cf06-6fad-49a8-82de-54518a9bf5df, "TUT_CargoDeck_CollaringRoom_SiwanReleasePlayer")
+AND
+DB_IsPlayer(_Var1)
+AND
+DB_TUT_IsEditor(_Var2)
+AND
+DB_TUT_LowerDeck_WakeUpDelay1(_Var2, _Var3)
+AND
+DB_TUT_LowerDeck_WakeUpDelay2(_Var2, _Var4)
+AND
+Random(_Var3, _Var5)
+AND
+IntegerSum(_Var4, _Var5, _Var6)
+THEN
+ProcObjectTimer(_Var1, "TUT_WakeUpTimer", _Var6);
+
+PROC
+ProcObjectTimerFinished((CHARACTERGUID)_Var1, "TUT_WakeUpTimer")
+AND
+DB_TUT_StartPlayerBed(_Var1, _Var2)
+THEN
+PlayAnimation(_Var2, "Tutorial_Start_01", "");
+ProcObjectTimer(_Var2, "TUT_TableAnimationFinished", 4500);
+
+PROC
+ProcObjectTimerFinished((ITEMGUID)_Var1, "TUT_TableAnimationFinished")
+AND
+DB_TUT_StartPlayerBed(_Var2, _Var1)
+THEN
+CharacterSetAnimationOverride(_Var2, "");
+ApplyStatus(_Var2, "TUTORIAL_BED", -1, 1);
+
+IF
+CharacterStatusRemoved((CHARACTERGUID)_Var1, "TUTORIAL_BED", _)
+AND
+DB_TUT_StartPlayerBed(_Var1, _Var3)
+AND
+DB_TUT_LowerDeck_StartingTriggers(_Var4, _Var3)
+THEN
+NOT DB_TUT_StartPlayerBed(_Var1, _Var3);
+ProcIncreaseCounter("TUT_PlayersWokenUp");
+Proc_TUT_CheckPlayersWokenUp(_Var1);
+
+PROC
+Proc_TUT_CheckPlayersWokenUp((CHARACTERGUID)_Var1)
+AND
+DB_IsPlayer(_Var1)
+AND
+GetPosition(_Var1, _Var2, _Var3, _Var4)
+THEN
+DB_GLO_Tutorial_Movement_LocationTracking(_Var1, _Var2, _Var4);
+
+PROC
+Proc_TUT_CheckPlayersWokenUp((CHARACTERGUID)_Var1)
+AND
+SysCount("DB_IsPlayer", 1, _Var2)
+AND
+DB_GlobalCounter("TUT_PlayersWokenUp", _Var3)
+AND
+_Var3 == _Var2
+THEN
+Proc_TUT_UnfreezePlayers();
+
+PROC
+Proc_TUT_CheckPlayersWokenUp((CHARACTERGUID)_Var1)
+AND NOT
+DB_DialogName("TUT_CargoDeck_Siwan", _)
+THEN
+PROC_TUT_LowerDeck_TryUndeadDialog();
+
+PROC
+Proc_TUT_LowerDeck_StartGetUpDialogsForAllPlayers()
+AND
+DB_IsPlayer(_Var1)
+AND
+IsTagged(_Var1, "FANE", 1)
+THEN
+Proc_TUT_LowerDeck_StartGetUpDialog(_Var1);
+
+PROC
+Proc_TUT_LowerDeck_StartGetUpDialogsForAllPlayers()
+AND
+DB_IsPlayer(_Var1)
+AND
+IsTagged(_Var1, "FANE", 0)
+THEN
+Proc_TUT_LowerDeck_StartGetUpDialog(_Var1);
+
+PROC
+Proc_TUT_LowerDeck_StartGetUpDialog((CHARACTERGUID)_Var1)
+AND
+IsTagged(_Var1, "UNDEAD", 0)
+AND
+QueryOnlyOnce("TUT_GetUp_StandardVoiceBark")
+THEN
+StartVoiceBark("TUT_VB_LowerDeck_WakeUpAtStart1234", _Var1);
+
+PROC
+Proc_TUT_LowerDeck_StartGetUpDialog((CHARACTERGUID)_Var1)
+AND
+IsTagged(_Var1, "FANE", 1)
+AND
+DB_GlobalCounter("TUT_LowerDeck_UndeadPlayerSpeakerIndex", _Var2)
+THEN
+Proc_TUT_LowerDeck_AssignUndeadSpeaker(_Var1, _Var2);
+
+PROC
+Proc_TUT_LowerDeck_StartGetUpDialog((CHARACTERGUID)_Var1)
+AND
+IsTagged(_Var1, "UNDEAD", 1)
+AND
+IsTagged(_Var1, "FANE", 0)
+AND
+DB_GlobalCounter("TUT_LowerDeck_UndeadPlayerSpeakerIndex", _Var2)
+THEN
+Proc_TUT_LowerDeck_AssignUndeadSpeaker(_Var1, _Var2);
+
+PROC
+Proc_TUT_LowerDeck_AssignUndeadSpeaker((CHARACTERGUID)_Var1, (INTEGER)_Var2)
+THEN
+NOT DB_TUT_LowerDeck_UndeadStartDialogPlayerSpeakers(_Var2, NULL_00000000-0000-0000-0000-000000000000);
+DB_TUT_LowerDeck_UndeadStartDialogPlayerSpeakers(_Var2, _Var1);
+ProcIncreaseCounter("TUT_LowerDeck_UndeadPlayerSpeakerIndex");
+
+PROC
+Proc_TUT_LowerDeck_StartUndeadDialog()
+AND NOT
+DB_GlobalCounter("TUT_LowerDeck_UndeadPlayerSpeakerIndex", 0)
+AND
+DB_TUT_LowerDeck_UndeadStartDialogPlayerSpeakers(0, _Var1)
+AND
+DB_TUT_LowerDeck_UndeadStartDialogPlayerSpeakers(1, _Var2)
+AND
+DB_TUT_LowerDeck_UndeadStartDialogPlayerSpeakers(2, _Var3)
+AND
+DB_TUT_LowerDeck_UndeadStartDialogPlayerSpeakers(3, _Var4)
+THEN
+Proc_StartDialog(0, "TUT_LowerDeck_MorticiaGetUpDialog", ITEMGUID_S_TUT_LowerDeck_Morticia_2cc84796-b4f8-4686-b84f-38cf0d86877b, _Var1, _Var2, _Var3, _Var4);
+NOT DB_TUT_LowerDeck_UndeadStartDialogPlayerSpeakers(0, _Var1);
+NOT DB_TUT_LowerDeck_UndeadStartDialogPlayerSpeakers(1, _Var2);
+NOT DB_TUT_LowerDeck_UndeadStartDialogPlayerSpeakers(2, _Var3);
+NOT DB_TUT_LowerDeck_UndeadStartDialogPlayerSpeakers(3, _Var4);
+
+IF
+DialogStarted("TUT_LowerDeck_MorticiaGetUpDialog", (INTEGER)_Var1)
+AND
+DB_DialogPlayers(_Var1, _Var2, _)
+AND
+DB_IsPlayer(_Var2)
+THEN
+CharacterLookAt(_Var2, ITEMGUID_S_TUT_LowerDeck_Morticia_2cc84796-b4f8-4686-b84f-38cf0d86877b);
+
+PROC
+Proc_TUT_UnfreezePlayers()
+AND
+DB_IsPlayer(_Var1)
+THEN
+CharacterUnfreeze(_Var1);
+
+IF
+VoiceBarkFailed("TUT_VB_LowerDeck_WakeUpAtStart1234")
+THEN
+DB_GLO_Tutorial_StartMovementTutorial(1);
+
+IF
+VoiceBarkEnded("TUT_VB_LowerDeck_WakeUpAtStart1234", _)
+THEN
+DB_GLO_Tutorial_StartMovementTutorial(1);
+
+IF
+DialogEnded("TUT_LowerDeck_MorticiaGetUpDialog", _)
+AND
+SysCount("DB_IsPlayer", 1, _Var2)
+AND
+DB_GlobalCounter("TUT_LowerDeck_UndeadPlayerSpeakerIndex", _Var2)
+THEN
+DB_GLO_Tutorial_StartMovementTutorial(1);
+
+IF
+CharacterEnteredTrigger((CHARACTERGUID)_Var1, TRIGGERGUID_S_TUT_GiveQuests_7d576c25-90ef-47e2-85fa-59251a34be55)
+AND
+DB_IsPlayer(_Var1)
+THEN
+Proc_TUT_GiveQuests(_Var1);
+
+IF
+VoiceBarkStarted("TUT_VB_LowerDeck_WakeUpAtStart1234", _)
+THEN
+PROC_TUT_SendSonyRealtimeMultiplayerStart(0);
+
+IF
+VoiceBarkFailed("TUT_VB_LowerDeck_WakeUpAtStart1234")
+THEN
+PROC_TUT_SendSonyRealtimeMultiplayerStart(0);
+
+IF
+DialogEnded("TUT_LowerDeck_MorticiaGetUpDialog", _)
+THEN
+PROC_TUT_SendSonyRealtimeMultiplayerStart(1);
+
+IF
+DialogRequestFailed("TUT_LowerDeck_MorticiaGetUpDialog", _)
+THEN
+PROC_TUT_SendSonyRealtimeMultiplayerStart(1);
+
+PROC
+PROC_TUT_SendSonyRealtimeMultiplayerStart((INTEGER)_Var1)
+AND
+DB_IsPlayer(_Var2)
+AND
+IsTagged(_Var2, "UNDEAD", _Var1)
+AND NOT
+DB_SonyRealtimeMultiplayerStartSent(_Var2)
+THEN
+SonyRealtimeMultiplayerEvent(_Var2, "UNBLOCK");
+DB_SonyRealtimeMultiplayerStartSent(_Var2);
+
+PROC
+ProcRegionEnded("TUT_Tutorial_A")
+THEN
+GoalCompleted;
+
+
+EXITSECTION
+NOT DB_TUT_LowerDeck_StartingTriggers(StartPoint_001__000_06873976-bf3c-8249-2074-1733c88957ff, S_TUT_LowerDeck_Mattress_001_e5a26c74-3018-4bc3-9eea-2f43da9673e6);
+NOT DB_TUT_LowerDeck_StartingTriggers(StartPoint_003__000_b97d317e-fb2b-815f-34d8-74786df2cdae, S_TUT_LowerDeck_Mattress_003_d12bfea1-52b7-4b2b-afe7-1d9c6cc64f6a);
+NOT DB_TUT_LowerDeck_StartingTriggers(StartPoint_000__000_fe2995bf-aa16-8ce7-33a2-8cb8cf228152, S_TUT_LowerDeck_Mattress_000_4bf7b8a1-ff7f-46b5-ac23-7b28cba0f73f);
+NOT DB_TUT_LowerDeck_StartingTriggers(StartPoint_002__000_c195287d-e87d-8982-2ff6-2b159d38a966, S_TUT_LowerDeck_Mattress_002_43a660a5-6ee4-4330-ba7b-025ea1a093cc);
+NOT DB_TUT_LowerDeck_MurderSceneGuard(CHARACTERGUID_S_TUT_LowerDeck_MagisterMurderSceneGuard_000_a48a580b-6ba5-4b65-ad71-cc422ccff47b, TRIGGERGUID_S_TUT_LowerDeck_MagisterMurderSceneGuard_000_Point_2f15fbdd-8e7e-4adc-b0f8-400c29dc986d);
+NOT DB_TUT_LowerDeck_MurderSceneGuard(CHARACTERGUID_S_TUT_LowerDeck_MagisterMurderSceneGuard_001_86f1a553-b197-4777-a716-2f5853767730, TRIGGERGUID_S_TUT_LowerDeck_MagisterMurderSceneGuard_001_Point_2298f882-b4fb-4c13-8801-b64137283707);
+ENDEXITSECTION
+
+ParentTargetEdge "Tutorial_PrisonShip"

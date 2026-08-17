@@ -1,0 +1,666 @@
+Version 1
+SubGoalCombiner SGC_AND
+
+INITSECTION
+DB_Dialogs(ITEMGUID_S_ARX_WAYP_CitySquare_WayPoint_9a67c335-79bb-4fe5-956c-3607f59bd773, "ARX_Waypoints");
+DB_Dialogs(ITEMGUID_S_ARX_WAYP_Crypt_WayPoint_3b78115b-fc41-468f-88ac-9fb8699b031a, "ARX_Waypoints");
+DB_Dialogs(ITEMGUID_S_ARX_WAYP_KemmGarden_WayPoint_4a0d84a6-e140-4a1e-b9c1-2a303746e46c, "ARX_Waypoints");
+DB_Dialogs(ITEMGUID_S_ARX_WAYP_Outskirt_WayPoint_75d246d4-d03d-4f82-af96-606f09e65a83, "ARX_Waypoints");
+DB_Dialogs(ITEMGUID_S_ARX_WAYP_Sewer_WayPoint_b0d33e8c-2083-4d08-b6b1-3b4c1818c693, "ARX_Waypoints");
+DB_Dialogs(ITEMGUID_S_ARX_WAYP_TheCrash_WayPoint_1f8b6c3f-c88d-4480-9afb-b67335c53ac6, "ARX_Waypoints");
+DB_Ghosts(CHARACTERGUID_S_ARX_PS_DeadSourceHound_Corpse_e1e3965b-4958-4922-b315-acf8c955af14, S_ARX_PS_DeadSourceHound_Ghost_c0b58dda-f86f-4f3b-a3c1-16ab30141cf9, "ARX_PS_DeadSourceHound_Ghost");
+DB_Dialogs(CHARACTERGUID_S_ARX_KemmMansion_Cook_900b32b6-fbb6-4dc5-b02c-83c30556e1a0, "ARX_KemmMansion_Cook");
+DB_Dialogs(CHARACTERGUID_S_ARX_KemmMansion_ServingGirl_1987b300-9212-45a8-9750-335ca7313785, "ARX_KemmMansion_ServingGirl");
+DB_HasStoryEvent(S_ARX_CS_RedPainting_c05abd86-d5dc-4e5e-8d11-c0389c3cf046, "ARX_CS_Painter_HasPainting");
+DB_GiveItemToEventWithClear(S_ARX_CS_RedPainting_c05abd86-d5dc-4e5e-8d11-c0389c3cf046, "ARX_CS_Painter_GavePaintingBack");
+TriggerRegisterForCharacter(S_ARX_CS_Trader_Painting_InFrontOfPainting_5c1818da-1164-4722-a16d-7a6f2b373166, S_ARX_CS_Trader_Painting_01_fc339e1e-f87f-41f1-ac62-f67e38dc0c32);
+DB_Ghosts(S_ARX_PaintersFather_Ghost_18192371-bd27-4ffc-b997-1647cb0993e8, "ARX_PaintersFather_Ghost");
+DB_Ghosts(CHARACTERGUID_S_ARX_PS_DeadSourceHound_Corpse_e1e3965b-4958-4922-b315-acf8c955af14, S_ARX_PS_DeadSourceHound_Ghost_c0b58dda-f86f-4f3b-a3c1-16ab30141cf9, "ARX_PS_DeadSourceHound_Ghost");
+DB_OneShotPlayerTrigger(TRIGGERGUID_S_ARX_Bridge_VoiceBarkTrig_82385948-9cbc-4ed1-ae0d-65ce7ca66693);
+DB_Ghosts(CHARACTERGUID_ARX_Bridge_DeadMagister_000_f1d9880e-8c54-44a2-9b89-b6c852732cbf, CHARACTERGUID_S_ARX_Bridge_DeadMagister_000_Ghost_cedb5be6-1c7c-4357-bfe1-4f0a63531801, "ARX_Bridge_DeadMagister_000_Ghost");
+DB_Ghosts(CHARACTERGUID_ARX_Bridge_DeadMagister_005_acf483d9-8ae8-4452-a2b5-756066411807, CHARACTERGUID_S_ARX_Bridge_DeadMagister_005_Ghost_46e9967d-bc6a-452a-9b3b-6e6d1de4c721, "ARX_Bridge_DeadMagister_005_Ghost");
+DB_Ghosts(CHARACTERGUID_ARX_Bridge_DeadMagister_006_2502af47-2ab2-4cd9-81c5-ddeda9573ec7, CHARACTERGUID_S_ARX_Bridge_DeadMagister_006_Ghost_ae7db9c2-dd90-4dc7-9f45-d793b2dd69ce, "ARX_Bridge_DeadMagister_006_Ghost");
+DB_Dialogs(CHARACTERGUID_S_ARX_Bridge_GateGuard_01_a8e0e254-48af-416f-9ab6-fae6a306a4a8, "ARX_Bridge_GateGuard_01");
+DB_Dialogs(CHARACTERGUID_S_ARX_Bridge_GateGuard_02_4e0bcdd3-0df6-4eb5-906b-136ba68f8b1b, "ARX_Bridge_GateGuard_02");
+DB_Dialogs(CHARACTERGUID_S_ARX_Bridge_GateGuard_03_a1d619cc-ed6b-42e2-ac76-ebe6372617c7, "ARX_Bridge_GateGuard_03");
+DB_Dialogs(CHARACTERGUID_S_ARX_Bridge_GateGuard_04_642867f5-2db9-4780-8db2-4f84b42cf480, "ARX_Bridge_GateGuard_04");
+DB_AD_Dialog(ITEMGUID_S_RC_ARX_CitySign_545d5a88-6761-4b44-b2c9-1ad563ea1720, "ARX_AD_CitySign");
+DB_AD_Dialog(ITEMGUID_S_ARX_CitySquare_Market_Bartender_Sign_203faa69-6b53-85d2-5bb1-cff61acba5b6, "ARX_CitySquare_Market_AD_Bartender_Sign");
+DB_AD_Dialog(ITEMGUID_S_ARX_CitySquare_Market_Bartender_Sign_01_9ceb5c7b-fc17-450a-82e3-89c487a84259, "ARX_CitySquare_Market_AD_Bartender_Sign");
+DB_AD_Dialog(ITEMGUID_S_ARX_CitySquare_Market_Fletcher_Sign_45dc8532-252d-443b-91c2-2b8a8c6a4696, "ARX_CitySquare_Market_AD_Fletcher_Sign");
+DB_AD_Dialog(ITEMGUID_S_ARX_CitySquare_Market_Bartender_Sign_02_693b6582-d9e0-4077-b7a7-6490a4fb944a, "ARX_CitySquare_Market_AD_Bartende_02_Sign");
+DB_AD_Dialog(ITEMGUID_S_ARX_CitySquare_Market_Alchemist_Sign_a305a133-06e6-80f4-47ae-3e55e4e29dae, "ARX_CitySquare_Market_AD_Alchemist_Sign");
+DB_AD_Dialog(ITEMGUID_S_ARX_CitySquare_Market_Generalist_Sign_4d47b968-3730-434a-8e77-045f4e74fc37, "ARX_CitySquare_Market_AD_Generalist_Sign");
+DB_AD_Dialog(ITEMGUID_S_ARX_CitySquare_Market_Closed_Sign_01_75d3b227-1e33-4cbe-b880-e9501092b934, "ARX_CitySquare_Market_AD_Closed_01_Sign");
+DB_AD_Dialog(ITEMGUID_S_ARX_CitySquare_Market_Shady_Sign_c877f923-bef5-440a-8e9e-8c4d1dcd6155, "ARX_CitySquare_Market_AD_Shady_Sign");
+DB_AD_Dialog(ITEMGUID_S_ARX_CitySquare_Market_Shady_Sign_02_1aaf8b3c-7a8e-4435-8a66-48e3aad8f624, "ARX_CitySquare_Market_AD_Shady_Sign");
+DB_AD_Dialog(ITEMGUID_S_ARX_CitySquare_Market_Shady_Sign_03_bd0ba59b-89f7-4b1f-a1a1-868ebb6da1f2, "ARX_CitySquare_Market_AD_Shady_Sign");
+DB_AD_Dialog(ITEMGUID_S_ARX_CitySquare_Market_Shady_Sign_04_30210a1e-f74b-4e27-b688-e55914a77c54, "ARX_CitySquare_Market_AD_Shady_Sign");
+DB_AD_Dialog(ITEMGUID_S_ARX_CitySquare_Market_Blacksmith_Sign_c79a21b9-ba29-4ade-bfc1-85b1e2ced9ee, "ARX_CitySquare_Market_AD_Blacksmith_Sign");
+DB_AD_Dialog(ITEMGUID_S_ARX_KM_Trader_Antique_02_Sign_e9c678d5-0f47-47a7-b15e-495d862475d3, "ARX_KM_Trader_AD_Antique_02_Sign");
+DB_AD_Dialog(ITEMGUID_S_ARX_KM_Trader_Antique_01_Sign_a3264af5-5499-42f5-beb8-74f67f33597a, "ARX_KM_Trader_AD_Antique_01_Sign");
+DB_AD_Dialog(ITEMGUID_S_ARX_MerchantEstate_Sign_2c78500e-634b-81b9-5ee4-4b6613ee7efa, "ARX_MerchantEstate_AD_Sign");
+DB_AD_Dialog(ITEMGUID_S_ARX_SignRoad_01_083dfe60-15a3-44be-9ac5-84789ed6dcf4, "ARX_AD_SignRoad_01");
+DB_AD_Dialog(ITEMGUID_S_ARX_SignRoad_02_a3c298cf-37bf-4f2f-b0a4-de77d7e5548c, "ARX_AD_SignRoad_02");
+DB_AD_Dialog(ITEMGUID_S_ARX_SignRoad_03_48f94f7f-96e5-4a07-a983-2b103f89464a, "ARX_AD_SignRoad_03");
+DB_AD_Dialog(ITEMGUID_S_ARX_SignRoad_04_325d6b2d-99b6-49f5-946f-9f4485f8f3b7, "ARX_AD_SignRoad_04");
+DB_AD_Dialog(ITEMGUID_S_ARX_SignRoad_05_e22b9dd8-bfbf-46e5-a25f-69192738c3ba, "ARX_AD_SignRoad_05");
+DB_AD_Dialog(ITEMGUID_S_ARX_SignRoad_06_16a9332a-700e-48c4-93d3-d8bfa0534956, "ARX_AD_SignRoad_06");
+DB_AD_Dialog(ITEMGUID_S_ARX_SignRoad_07_8e2c0fa0-41b5-497b-8a13-55d268d320a7, "ARX_AD_SignRoad_07");
+DB_ARX_IgnoredByTraders(S_ARX_CS_SmithWorker_c886723e-2045-46da-8ed9-b381fe43b508);
+DB_Dialogs(S_ARX_CS_Trader_Smith_01_0d2b58bc-992e-4ab2-a434-26ed2a8f0bbb, "ARX_CS_Trader_Smith_01");
+DB_Dialogs(S_ARX_CS_Trader_Painting_01_fc339e1e-f87f-41f1-ac62-f67e38dc0c32, "ARX_CS_Trader_Painting_01");
+DB_Dialogs(S_ARX_CS_Trader_Generalist_01_66e33e9e-4a1d-4be0-8c84-a09768ace234, "ARX_CS_Trader_Generalist_01");
+DB_Dialogs(S_ARX_CS_Trader_Fletcher_01_4ee718f0-fd2b-4213-b786-77e21dbf6d11, "ARX_CS_Trader_Fletcher_01");
+DB_Dialogs(S_ARX_CS_Trader_Alchemist_01_462fb244-931c-4886-a072-c31a602363da, "ARX_CS_Trader_Alchemist_01");
+DB_Dialogs(CHARACTERGUID_S_ARX_CitySquare_Market_Bartender_d2d7d9ff-e5e7-4684-89dd-bf3a07392574, "ARX_CitySquare_Market_Bartender");
+DB_Dialogs(S_ARX_CS_ShadyMerchant_ff4ef85b-d479-415e-8d64-56f144e04649, "ARX_CS_ShadyMerchant");
+DB_Dialogs(S_ARX_CS_SmithWorker_c886723e-2045-46da-8ed9-b381fe43b508, "ARX_CS_SmithWorker");
+DB_Dialogs(CHARACTERGUID_S_ARX_CitySquare_TownCrier_aec02305-c86a-4358-a7e0-efb04f389fec, "ARX_CitySquare_TownCrier");
+DB_Children(CHARACTERGUID_S_ARX_CitySquare_TownCrier_aec02305-c86a-4358-a7e0-efb04f389fec);
+DB_Dialogs(CHARACTERGUID_S_ARX_CitySquare_WagonWolf_39bd8bcb-9c6c-484f-abdd-40f5275fb932, "ARX_CitySquare_WagonWolf");
+TriggerRegisterForCharacter(TRIGGERGUID_S_ARX_CitySquare_WagonWolf_BoxTrig_2aaeeb2c-3183-4199-9155-fb3a2497aa5e, CHARACTERGUID_S_ARX_CitySquare_WagonWolf_39bd8bcb-9c6c-484f-abdd-40f5275fb932);
+DB_DoNotFace(CHARACTERGUID_S_ARX_CitySquare_WagonWolf_39bd8bcb-9c6c-484f-abdd-40f5275fb932);
+SetVisible(ITEMGUID_S_ARX_CitySquare_Pleb_Market_04_Bed_93f29ad1-b1b7-4975-b8ec-b6a5cf61889b, 0);
+DB_Dialogs(CHARACTERGUID_S_ARX_CathedralDistrict_TraderMagic_02_ac79ade7-eca6-4b3b-8b1b-b02652b04c0e, "ARX_CathedralDistrict_TraderMagic_02");
+DB_Dialogs(CHARACTERGUID_S_ARX_CathedralDistrict_TraderMagic_01_dbd31364-ae9c-4865-8877-2a11f6104d7c, "ARX_CathedralDistrict_TraderMagic_01");
+DB_Dialogs(S_ARX_CD_Bard_e0e3eca9-bfbd-49a9-b2e7-80d57df51ddd, "ARX_CD_Bard");
+DB_DialogMoneyTransfer(1, "ARX_CD_Bard", 100);
+DB_DialogMoneyTransfer(2, "ARX_CD_Bard", 75);
+DB_ARX_Traders(S_ARX_KM_Trader_Antique_01_ee8eebd2-cb85-41f6-87a6-f540017e8821);
+DB_ARX_Traders(S_ARX_KM_Trader_Antique_02_b4a87795-0d90-47c0-a77e-7193a368bd72);
+DB_ARX_Traders(CHARACTERGUID_S_ARX_KM_Trader_Antique_03_9f3b3fb5-dfac-4565-a584-93c665be6671);
+DB_BardGiveGold("ARX_Bard_CheckGold_full", "ARX_Bard_HasGold_full", "ARX_Bard_GiveGold_full", 100);
+DB_BardGiveGold("ARX_Bard_CheckGold_discount", "ARX_Bard_HasGold_discount", "ARX_Bard_GiveGold_discount", 75);
+DB_ARX_BardListenPleb(S_ARX_KM_Pleb_15_13dad574-c7da-4a4b-9476-5799a2029598);
+DB_ARX_BardListenPleb(S_ARX_KM_Pleb_16_3a9bdb18-973a-46ff-b1d6-d29a8822d856);
+DB_ARX_BardListenPleb(S_ARX_KM_Pleb_17_50e84a61-0160-4cc7-8340-878b61f54a3a);
+DB_ARX_BardListenPleb(S_ARX_KM_Pleb_18_c025c722-e2a7-4fa9-af7f-512c334234ee);
+DB_ARX_BardListenPleb(S_ARX_KM_Pleb_19_5ff09251-e7ef-42de-8af0-414d3588033a);
+DB_ARX_BardListenPleb(S_ARX_KM_Pleb_22_15aba34d-0b54-430a-9d1f-45f0dcb620ca);
+DB_Dialogs(CHARACTERGUID_S_ARX_CitySquare_StrayDog_377ef2b9-3f60-450a-adb1-f382eca2e3fd, "ARX_CitySquare_StrayDog");
+DB_Dialogs(CHARACTERGUID_S_ARX_CitySquare_Pleb_Market_03_8cbd18f3-3f3f-4b81-9aa7-8a2aede341c7, "ARX_CitySquare_Pleb_Market_03");
+DB_Dialogs(CHARACTERGUID_S_ARX_CitySquare_Pleb_Burners_01_836d1977-8ccb-4af7-9786-4bb398fe568f, "ARX_CitySquare_Pleb_Burners_01");
+DB_Dialogs(CHARACTERGUID_S_ARX_CitySquare_Pleb_Tavern_01_4349bbb7-c491-420b-bcc4-5625a2326293, "ARX_CitySquare_Pleb_Tavern_01");
+DB_Dialogs(CHARACTERGUID_S_ARX_CitySquare_Pleb_Market_01_9aec37e2-cd44-41a6-be44-9eb34aee8de7, "ARX_CitySquare_Pleb_Market_01");
+DB_Dialogs(CHARACTERGUID_S_ARX_CitySquare_Pleb_Market_02_4e08fa9d-eb24-48fd-8f21-b25bf6e7f681, "ARX_CitySquare_Pleb_Market_02");
+DB_Dialogs(CHARACTERGUID_S_ARX_CitySquare_Pleb_Burners_02_3f002b5e-a7cb-4696-bad2-aa827f8d3d87, "ARX_CitySquare_Pleb_Burners_02");
+DB_Dialogs(CHARACTERGUID_S_ARX_CitySquare_Pleb_Tavern_02_f9fcb8be-86e7-499c-af89-ef0f543d9bc3, "ARX_CitySquare_Pleb_Tavern_02");
+DB_Dialogs(CHARACTERGUID_S_ARX_CitySquare_Pleb_Market_04_ab97a640-7e56-4c85-a736-47340c04a19b, "ARX_CitySquare_Pleb_Market_04");
+DB_Dialogs(CHARACTERGUID_S_ARX_CitySquare_Pleb_Market_05_d508ef2c-ca83-4ba1-b003-b8b243eb3020, "ARX_CitySquare_Pleb_Market_05");
+ProcTriggerRegisterForPlayers(TRIGGERGUID_S_ARX_CitySquare_AD_Pleb_Market_GroupDialog_d8104a7a-7615-4319-adab-da39906f0f78);
+DB_Dialogs(CHARACTERGUID_S_ARX_CitySquare_Guard_01_6d197198-b9bc-4412-a21c-f8a380e1f0f9, "ARX_CitySquare_Guard_01");
+DB_Dialogs(CHARACTERGUID_S_ARX_CitySquare_Guard_03_33517c01-c423-432a-83bc-6bdc9bb5121e, "ARX_CitySquare_Guard_03");
+DB_Dialogs(S_ARX_KemmMansion_Pleb_Lover1_13dad574-c7da-4a4b-9476-5799a2029598, S_ARX_KemmMansion_Pleb_Lover2_3a9bdb18-973a-46ff-b1d6-d29a8822d856, "ARX_KemmMansion_Pleb_Lovers");
+DB_Dialogs(S_ARX_KemmMansion_Pleb_Shopper1_50e84a61-0160-4cc7-8340-878b61f54a3a, "ARX_KemmMansion_Pleb_Shopper1");
+DB_Dialogs(S_ARX_KemmMansion_Pleb_Shopper2_c025c722-e2a7-4fa9-af7f-512c334234ee, "ARX_KemmMansion_Pleb_Shopper2");
+DB_Dialogs(S_ARX_KemmMansion_Pleb_Shopper3_5ff09251-e7ef-42de-8af0-414d3588033a, "ARX_KemmMansion_Pleb_Shopper3");
+DB_Dialogs(S_ARX_KemmMansion_Pleb_Shopper4_15aba34d-0b54-430a-9d1f-45f0dcb620ca, "ARX_KemmMansion_Pleb_Shopper4");
+DB_Dialogs(CHARACTERGUID_S_ARX_MainRoad_DeadGiantVoidwoken_Pleb_01_7407b25b-5998-4080-91d2-2dcefb46d89b, "ARX_MainRoad_DeadGiantVoidwoken_Pleb_01");
+DB_Dialogs(CHARACTERGUID_S_ARX_MainRoad_DeadGiantVoidwoken_Pleb_02_5c3b5836-42af-44b1-bc58-37565833ea95, "ARX_MainRoad_DeadGiantVoidwoken_Pleb_02");
+DB_Dialogs(CHARACTERGUID_S_ARX_MainRoad_DeadGiantVoidwoken_Pleb_03_87965f5c-40d5-479d-ad9f-cd560f4a5031, "ARX_MainRoad_DeadGiantVoidwoken_Pleb_03");
+DB_Dialogs(CHARACTERGUID_S_ARX_Canals_Rat_01_6a6a48bc-07cb-4957-a381-520030768e24, "ARX_Canals_Rat_01");
+DB_Dialogs(CHARACTERGUID_S_ARX_BridgeCathedral_Guard_00_367c1fe2-a421-4a13-805a-0a1b57199f27, "ARX_BridgeCathedral_Guard_00");
+DB_Dialogs(CHARACTERGUID_S_ARX_BridgeCathedral_Guard_01_362d6415-c2ba-48e6-adfc-382dcf9e4773, "ARX_BridgeCathedral_Guard_01");
+DB_Dialogs(CHARACTERGUID_S_ARX_BridgeCathedral_Guard_02_cd992c8a-cfb7-4894-8e9a-fbe8872c17ce, "ARX_BridgeCathedral_Guard_02");
+DB_Dialogs(CHARACTERGUID_S_ARX_BridgeCathedral_Guard_03_0d92e4ad-76eb-4919-a28a-747da0a9da6e, "ARX_BridgeCathedral_Guard_03");
+DB_Dialogs(CHARACTERGUID_S_ARX_BridgeCathedral_Guard_04_b744812e-f595-4d87-b7b3-951c75b2ec7f, "ARX_BridgeCathedral_Guard_04");
+DB_Dialogs(CHARACTERGUID_S_ARX_BridgeCathedral_Guard_05_5ef22df4-aa5e-426c-a4f7-0114d4514ac1, "ARX_BridgeCathedral_Guard_05");
+DB_Dialogs(CHARACTERGUID_S_ARX_BridgeCathedral_Guard_06_fa9d4495-433c-4e21-87e7-f541ca3a18f6, "ARX_BridgeCathedral_Guard_06");
+DB_Dialogs(CHARACTERGUID_S_ARX_BridgeCathedral_Guard_07_744510f5-d178-4dde-b395-3765f537fa3c, "ARX_BridgeCathedral_Guard_07");
+DB_Dialogs(CHARACTERGUID_S_ARX_BridgeCathedral_Guard_08_d29d8366-2473-4217-a34a-36212d8bfaa1, "ARX_BridgeCathedral_Guard_08");
+DB_DoNotFace(CHARACTERGUID_S_ARX_BridgeCathedral_Guard_01_362d6415-c2ba-48e6-adfc-382dcf9e4773);
+DB_DoNotFace(CHARACTERGUID_S_ARX_BridgeCathedral_Guard_02_cd992c8a-cfb7-4894-8e9a-fbe8872c17ce);
+DB_DoNotFace(CHARACTERGUID_S_ARX_BridgeCathedral_Guard_03_0d92e4ad-76eb-4919-a28a-747da0a9da6e);
+DB_DoNotFace(CHARACTERGUID_S_ARX_BridgeCathedral_Guard_04_b744812e-f595-4d87-b7b3-951c75b2ec7f);
+DB_DoNotFace(CHARACTERGUID_S_ARX_BridgeCathedral_Guard_05_5ef22df4-aa5e-426c-a4f7-0114d4514ac1);
+DB_DoNotFace(CHARACTERGUID_S_ARX_BridgeCathedral_Guard_06_fa9d4495-433c-4e21-87e7-f541ca3a18f6);
+DB_DoNotFace(CHARACTERGUID_S_ARX_BridgeCathedral_Guard_07_744510f5-d178-4dde-b395-3765f537fa3c);
+DB_DoNotFace(CHARACTERGUID_S_ARX_BridgeCathedral_Guard_08_d29d8366-2473-4217-a34a-36212d8bfaa1);
+ProcCharacterDisableCrime(CHARACTERGUID_S_ARX_BridgeCathedral_Guard_01_362d6415-c2ba-48e6-adfc-382dcf9e4773, "TeleportPlayerDialog");
+ProcCharacterDisableCrime(CHARACTERGUID_S_ARX_BridgeCathedral_Guard_02_cd992c8a-cfb7-4894-8e9a-fbe8872c17ce, "TeleportPlayerDialog");
+ProcCharacterDisableCrime(CHARACTERGUID_S_ARX_BridgeCathedral_Guard_03_0d92e4ad-76eb-4919-a28a-747da0a9da6e, "TeleportPlayerDialog");
+ProcCharacterDisableCrime(CHARACTERGUID_S_ARX_BridgeCathedral_Guard_04_b744812e-f595-4d87-b7b3-951c75b2ec7f, "TeleportPlayerDialog");
+ProcCharacterDisableCrime(CHARACTERGUID_S_ARX_BridgeCathedral_Guard_05_5ef22df4-aa5e-426c-a4f7-0114d4514ac1, "TeleportPlayerDialog");
+ProcCharacterDisableCrime(CHARACTERGUID_S_ARX_BridgeCathedral_Guard_06_fa9d4495-433c-4e21-87e7-f541ca3a18f6, "TeleportPlayerDialog");
+ProcCharacterDisableCrime(CHARACTERGUID_S_ARX_BridgeCathedral_Guard_07_744510f5-d178-4dde-b395-3765f537fa3c, "TeleportPlayerDialog");
+ProcCharacterDisableCrime(CHARACTERGUID_S_ARX_BridgeCathedral_Guard_08_d29d8366-2473-4217-a34a-36212d8bfaa1, "TeleportPlayerDialog");
+DB_Ghosts(CHARACTERGUID_S_ARX_UndeadTrader_Ghost_dc1f1234-92f3-4b82-b8c7-c2dfad2ded67, "RC_ARX_UndeadTrader_Ghost");
+Proc_ARX_UndeadTrader_SetUpGhost();
+Proc_ARX_FishBarrel();
+DB_ShovelArea(TRIGGERGUID_S_ARX_MerchantEstate_Garden_Mound_BoxTrig_0dd5227b-cc7f-4671-b5f5-d63268ce468a, "ARX_MerchantEstate_Garden_Mound", ITEMGUID_S_ARX_MerchantEstate_Garden_Mound_05550a5e-8360-4872-989e-d47488bcbff0);
+DB_ShovelRewardItemAppear("ARX_MerchantEstate_Garden_Mound", ITEMGUID_S_ARX_MerchantEstate_Garden_Treasure_0c6d41fd-1b6c-4fa1-86a0-45ba32b811b5, TRIGGERGUID_S_ARX_MerchantEstate_Garden_Mound_PointTrig_e241430a-b69a-4646-8f41-810f2b83b3a5);
+DB_ShovelArea(TRIGGERGUID_S_ARX_ClanWar_Keep_Mound_Box_a91fa653-1004-4934-a39c-6b299609bb61, "ARX_ClanWar_Keep_Mound", ITEMGUID_S_ARX_ClanWar_Keep_Mound_9e453667-862f-4741-9208-6cdf948de3ec);
+DB_ShovelRewardItemAppear("ARX_ClanWar_Keep_Mound", ITEMGUID_S_ARX_ClanWar_Keep_Treasure_ef05e380-9c0b-4f47-9d5e-86352e5241a6, TRIGGERGUID_S_ARX_ClanWar_Keep_Mound_Point_f7a575d9-8e8e-42b5-ab93-ac7cc6f42cfe);
+DB_ShovelArea(TRIGGERGUID_S_ARX_CitySquare_Fisherman_Mound_BoxTrig_03a185a3-f59d-4b74-83b3-2320292ef8de, "ARX_CitySquare_Fisherman_Mound", ITEMGUID_S_ARX_CitySquare_Fisherman_Mound_43e5f82e-1cd5-4ec4-a845-d2a05a72b038);
+DB_ShovelRewardItemAppear("ARX_CitySquare_Fisherman_Mound", ITEMGUID_S_ARX_CitySquare_Fisherman_Treasure_aa31748e-53da-4ed5-959a-67f8dbc2d034, TRIGGERGUID_S_ARX_CitySquare_Fisherman_Mound_Trig_0d8198ce-b853-44ca-9eb5-b4566dc137de);
+Proc_ARX_SetUpButter();
+DB_Origin_BlockLeavingWarningsDialogs(1);
+Transform(ITEMGUID_WPN_Tool_Lute_A_000_149a240a-5b96-4bbc-8ed0-117dc2433251, "ITEMGUID_LOOT_Guitar_Lute_A_58d19c4b-87a5-47f1-8335-f48dd1af3a36", 0);
+DB_ShadyTraderAds(ITEMGUID_S_BOOK_ARX_Letter_B_ShadyTraderAd_000_27bf0714-2a99-48f9-8f00-f7cf2d8202c8);
+DB_ShadyTraderAds(ITEMGUID_S_BOOK_ARX_Letter_B_ShadyTraderAd_001_13d75fe4-83d6-43fe-9c5b-09063e7d9db4);
+DB_ShadyTraderAds(ITEMGUID_S_BOOK_ARX_Letter_B_ShadyTraderAd_002_82b9188b-db06-4135-972a-7bbe8eecf536);
+DB_ShadyTraderAds(ITEMGUID_S_BOOK_ARX_Letter_B_ShadyTraderAd_003_0f0e1bdc-bef3-4973-a41c-d329fb1ce37b);
+DB_ShadyTraderAds(ITEMGUID_S_BOOK_ARX_Letter_B_ShadyTraderAd_004_278c986b-9828-429f-b4fd-6b3ed6174ec2);
+DB_ShadyTraderAds(ITEMGUID_S_BOOK_ARX_Letter_B_ShadyTraderAd_005_53c1168c-82ff-4131-b1dc-624cfe0baff8);
+
+KBSECTION
+IF
+DB_ARX_IgnoredByTraders(_Var1)
+THEN
+ObjectSetFlag(_Var1, "ARX_IsIgnoredByTraders");
+
+IF
+DB_ARX_Fleeables(_Var1)
+AND
+CharacterIsDead(_Var1, 0)
+THEN
+GlobalSetFlag("ARX_PlebsFleeStart");
+GlobalClearFlag("ARX_PlebsFleeStop");
+
+IF
+CharacterDied((CHARACTERGUID)_Var1)
+AND
+DB_ARX_Fleeables(_Var1)
+AND NOT
+QRY_ARX_FleeablesAlive()
+THEN
+GlobalClearFlag("ARX_PlebsFleeStart");
+GlobalSetFlag("ARX_PlebsFleeStop");
+
+QRY
+QRY_ARX_FleeablesAlive()
+AND
+DB_ARX_Fleeables(_Var1)
+AND
+CharacterIsDead(_Var1, 0)
+THEN
+GlobalSetFlag("ARX_PlebsFleeStart");
+GlobalClearFlag("ARX_PlebsFleeStop");
+
+IF
+DB_Dead(S_ARX_CS_Trader_Smith_01_0d2b58bc-992e-4ab2-a434-26ed2a8f0bbb)
+AND
+CharacterIsDead(S_ARX_CS_SmithWorker_c886723e-2045-46da-8ed9-b381fe43b508, 0)
+THEN
+ObjectSetFlag(S_ARX_CS_SmithWorker_c886723e-2045-46da-8ed9-b381fe43b508, "ARX_CS_SmithTraderDied");
+
+IF
+DB_Dead(S_ARX_CS_SmithWorker_c886723e-2045-46da-8ed9-b381fe43b508)
+AND
+CharacterIsDead(S_ARX_CS_Trader_Smith_01_0d2b58bc-992e-4ab2-a434-26ed2a8f0bbb, 0)
+THEN
+ObjectSetFlag(S_ARX_CS_Trader_Smith_01_0d2b58bc-992e-4ab2-a434-26ed2a8f0bbb, "ARX_CS_SmithWorkerDied");
+
+IF
+CharacterEnteredTrigger((CHARACTERGUID)_Var1, TRIGGERGUID_S_ARX_CitySquare_AD_Pleb_Market_GroupDialog_d8104a7a-7615-4319-adab-da39906f0f78)
+AND
+DB_IsPlayer(_Var1)
+AND
+QueryOnlyOnce("ARX_CitySquare_AD_Pleb_Market_GroupDialog")
+THEN
+ProcFaceEachother(CHARACTERGUID_S_ARX_CitySquare_Pleb_Market_01_9aec37e2-cd44-41a6-be44-9eb34aee8de7, CHARACTERGUID_S_ARX_CitySquare_Pleb_Market_02_4e08fa9d-eb24-48fd-8f21-b25bf6e7f681);
+Proc_StartDialog(1, "ARX_CitySquare_AD_Pleb_Market_GroupDialog", CHARACTERGUID_S_ARX_CitySquare_Pleb_Market_01_9aec37e2-cd44-41a6-be44-9eb34aee8de7, CHARACTERGUID_S_ARX_CitySquare_Pleb_Market_02_4e08fa9d-eb24-48fd-8f21-b25bf6e7f681);
+
+IF
+AutomatedDialogEnded("ARX_CitySquare_AD_Pleb_Market_GroupDialog", _)
+THEN
+SetVarObject(CHARACTERGUID_S_ARX_CitySquare_Pleb_Market_01_9aec37e2-cd44-41a6-be44-9eb34aee8de7, "SplineGUID", S_ARX_CitySquare_Pleb_Market_01_Spline_6a0a27b2-9506-4e2a-a5a6-fb345c97db9f);
+SetVarObject(CHARACTERGUID_S_ARX_CitySquare_Pleb_Market_02_4e08fa9d-eb24-48fd-8f21-b25bf6e7f681, "SplineGUID", S_ARX_CitySquare_Pleb_Tavern_02_Spline_3ea46e36-cf60-4dde-8572-a49c29bd92dc);
+
+IF
+TextEventSet("pleb")
+THEN
+SetVarObject(CHARACTERGUID_S_ARX_CitySquare_Pleb_Market_01_9aec37e2-cd44-41a6-be44-9eb34aee8de7, "SplineGUID", S_ARX_CitySquare_Pleb_Market_01_Spline_6a0a27b2-9506-4e2a-a5a6-fb345c97db9f);
+SetVarObject(CHARACTERGUID_S_ARX_CitySquare_Pleb_Market_02_4e08fa9d-eb24-48fd-8f21-b25bf6e7f681, "SplineGUID", S_ARX_CitySquare_Pleb_Tavern_02_Spline_3ea46e36-cf60-4dde-8572-a49c29bd92dc);
+
+IF
+StoryEvent((ITEMGUID)_Var1, "rotatePainting")
+THEN
+ItemRotateToAngleY(_Var1, 169.68, 1);
+
+IF
+ItemAddedToCharacter(ITEMGUID_S_ARX_CS_RedPainting_c05abd86-d5dc-4e5e-8d11-c0389c3cf046, (CHARACTERGUID)_Var1)
+THEN
+SetStoryEvent(_Var1, "ARX_CS_Trader_Painting_01_PaintingAddedToInv");
+
+IF
+CharacterMovedItem((CHARACTERGUID)_Var1, S_ARX_CS_RedPainting_c05abd86-d5dc-4e5e-8d11-c0389c3cf046)
+AND
+_Var1 != S_ARX_CS_Trader_Painting_01_fc339e1e-f87f-41f1-ac62-f67e38dc0c32
+THEN
+SetStoryEvent(S_ARX_CS_Trader_Painting_01_fc339e1e-f87f-41f1-ac62-f67e38dc0c32, "ARX_CS_Painter_PaintingWasMoved");
+
+IF
+CharacterMovedItem((CHARACTERGUID)_Var1, S_ARX_CS_RedPainting_c05abd86-d5dc-4e5e-8d11-c0389c3cf046)
+AND
+DB_IsPlayer(_Var1)
+THEN
+ObjectSetFlag(_Var1, "ARX_CS_Painter_PlayerMovedPainting", 0);
+
+IF
+StoryEvent((ITEMGUID)_Var1, "ARX_CS_Painter_PlacePaintingBack")
+AND
+GetVarFloat3(S_ARX_CS_Trader_Painting_01_fc339e1e-f87f-41f1-ac62-f67e38dc0c32, "PaintingStartPosition", _Var2, _Var3, _Var4)
+THEN
+TeleportToPosition(_Var1, _Var2, _Var3, _Var4, "", 0);
+
+IF
+CharacterEnteredTrigger(S_ARX_CS_Trader_Painting_01_fc339e1e-f87f-41f1-ac62-f67e38dc0c32, S_ARX_CS_Trader_Painting_InFrontOfPainting_5c1818da-1164-4722-a16d-7a6f2b373166)
+THEN
+ObjectSetFlag(S_ARX_CS_Trader_Painting_01_fc339e1e-f87f-41f1-ac62-f67e38dc0c32, "ARX_CS_Trader_Painting_InFrontOfPainting");
+
+IF
+CharacterLeftTrigger(S_ARX_CS_Trader_Painting_01_fc339e1e-f87f-41f1-ac62-f67e38dc0c32, S_ARX_CS_Trader_Painting_InFrontOfPainting_5c1818da-1164-4722-a16d-7a6f2b373166)
+THEN
+ObjectClearFlag(S_ARX_CS_Trader_Painting_01_fc339e1e-f87f-41f1-ac62-f67e38dc0c32, "ARX_CS_Trader_Painting_InFrontOfPainting", 0);
+
+IF
+ItemDestroying(ITEMGUID_S_ARX_CS_RedPainting_c05abd86-d5dc-4e5e-8d11-c0389c3cf046)
+AND
+CharacterCanSee(CHARACTERGUID_S_ARX_CS_Trader_Painting_01_fc339e1e-f87f-41f1-ac62-f67e38dc0c32, ITEMGUID_S_ARX_CS_RedPainting_c05abd86-d5dc-4e5e-8d11-c0389c3cf046, 1)
+THEN
+GlobalSetFlag("ARX_CS_Trader_Painting_01_SawPaintingBeingDestroyed");
+
+IF
+ObjectFlagSet((STRING)_Var1, (CHARACTERGUID)_Var2, _)
+AND
+DB_BardGiveGold(_Var1, _Var4, _, _Var6)
+THEN
+ObjectClearFlag(_Var2, _Var1, 0);
+ObjectClearFlag(_Var2, _Var4, 0);
+ProcEvaluateMagicPocketGold(_Var2, ">=", _Var6, _Var4);
+
+IF
+ObjectFlagSet((STRING)_Var1, (CHARACTERGUID)_Var2, _)
+AND
+DB_BardGiveGold(_, _, _Var1, _Var6)
+AND
+QryEvaluateMagicPocketGold(_Var2, ">=", _Var6)
+AND
+IntegerSubtract(0, _Var6, _Var7)
+THEN
+ProcAddGoldToMagicPockets(_Var2, _Var7);
+CharacterAddGold(S_ARX_CD_Bard_e0e3eca9-bfbd-49a9-b2e7-80d57df51ddd, _Var6);
+ObjectSetFlag(S_ARX_CD_Bard_e0e3eca9-bfbd-49a9-b2e7-80d57df51ddd, "ARX_Bard_GaveEnoughGold");
+ObjectClearFlag(_Var2, _Var1);
+
+IF
+SavegameLoaded((INTEGER)_Var1, (INTEGER)_Var2, (INTEGER)_Var3, (INTEGER)_Var4)
+AND
+QRY_VersionIsOlderThan(_Var1, _Var2, _Var3, _Var4, 3, 6, 2, 0)
+AND
+DB_IsPlayer(_Var5)
+AND
+DB_BardGiveGold(_, _, _Var8, _)
+AND
+ObjectGetFlag(_Var5, _Var8, 1)
+THEN
+ObjectClearFlag(_Var5, _Var8);
+
+IF
+DialogEnded("ARX_CD_Bard", _)
+AND
+ObjectGetFlag(S_ARX_CD_Bard_e0e3eca9-bfbd-49a9-b2e7-80d57df51ddd, "ARX_Bard_GaveEnoughGold", 1)
+AND
+QueryOnlyOnce("ARX_Bard_BardStartInitSinging")
+THEN
+ObjectSetFlag(S_ARX_CD_Bard_e0e3eca9-bfbd-49a9-b2e7-80d57df51ddd, "ARX_CD_BardStartsSinging");
+SetStoryEvent(S_ARX_CD_Bard_e0e3eca9-bfbd-49a9-b2e7-80d57df51ddd, "ARX_Bard_InitSinging");
+
+IF
+ObjectFlagSet("ARX_CD_BardStartsSinging", S_ARX_CD_Bard_e0e3eca9-bfbd-49a9-b2e7-80d57df51ddd, _)
+AND
+DB_IsPlayer(_Var2)
+AND NOT
+DB_ARX_CD_Bard_MusicChanged_ReturnMusic(_Var2, _)
+AND
+DB_InRegion(_Var2, S_RC_ARX_CrimeAreaTrigger_KemmsMansion_Front_9fcbe473-ae06-458e-968f-cd5f0242fa3f)
+THEN
+proc_ARX_CD_Bard_ChangeMusicForPlayers();
+
+PROC
+proc_ARX_CD_Bard_ChangeMusicForPlayers()
+AND
+DB_IsPlayer(_Var1)
+AND
+DB_InRegion(_Var1, S_RC_ARX_CrimeAreaTrigger_KemmsMansion_Front_9fcbe473-ae06-458e-968f-cd5f0242fa3f)
+THEN
+MusicPlayForPeer(_Var1, "Explo_Theme_12_street");
+DB_ARX_CD_Bard_MusicChanged_ReturnMusic(_Var1, "Arx_Explo_list_A");
+
+IF
+CharacterLeftTrigger((CHARACTERGUID)_Var1, S_RC_ARX_CrimeAreaTrigger_KemmsMansion_Front_9fcbe473-ae06-458e-968f-cd5f0242fa3f)
+AND
+DB_ARX_CD_Bard_MusicChanged_ReturnMusic(_Var1, _Var2)
+AND NOT
+DB_InRegion(_Var1, TRIGGERGUID_S_RC_ARX_CrimeAreaTrigger_KemmsMansion_a20348ff-579a-4af4-a14e-557ca3163737)
+THEN
+MusicPlayForPeer(_Var1, _Var2);
+
+IF
+CharacterLeftTrigger((CHARACTERGUID)_Var1, S_RC_ARX_CrimeAreaTrigger_KemmsMansion_Front_9fcbe473-ae06-458e-968f-cd5f0242fa3f)
+AND
+DB_ARX_CD_Bard_MusicChanged_ReturnMusic(_Var1, _Var2)
+THEN
+NOT DB_ARX_CD_Bard_MusicChanged_ReturnMusic(_Var1, _Var2);
+
+IF
+AutomatedDialogStarted("ARX_CD_AD_BardsSong", _)
+AND
+GlobalGetFlag("ARX_CD_BardSingsSong", 1)
+THEN
+SetHasDialog(S_ARX_CD_Bard_e0e3eca9-bfbd-49a9-b2e7-80d57df51ddd, 0);
+Proc_ARX_Bard_ChangePriceForNewPlayers();
+
+IF
+AutomatedDialogStarted("ARX_CD_AD_BardsSong", _)
+AND
+GlobalGetFlag("ARX_CD_BardSingsSong", 0)
+THEN
+GlobalSetFlag("ARX_CD_BardSingsSong");
+
+IF
+AutomatedDialogEnded("ARX_CD_AD_BardsSong", _)
+THEN
+SetHasDialog(S_ARX_CD_Bard_e0e3eca9-bfbd-49a9-b2e7-80d57df51ddd, 1);
+
+IF
+GlobalFlagSet("ARX_CD_BardSingsSong")
+AND
+GlobalGetFlag("ARX_CD_BardSingsOrigianlSong", 0)
+AND
+GlobalGetFlag("RC_DW_BardSong_SongCreated", 1)
+AND
+DB_IsPlayer(_Var1)
+AND
+ObjectGetFlag(_Var1, "ARX_Bard_TraderAttitudeChanged", 0)
+AND
+DB_ARX_Traders(_Var2)
+AND
+CharacterIsDead(_Var2, 0)
+THEN
+ObjectSetFlag(_Var1, "ARX_Bard_TraderAttitudeChanged");
+PartySetShopPriceModifier(_Var2, _Var1, 65);
+
+IF
+GlobalFlagSet("ARX_CD_BardSingsSong")
+AND
+GlobalGetFlag("ARX_CD_BardSingsOrigianlSong", 1)
+AND
+DB_IsPlayer(_Var1)
+AND
+ObjectGetFlag(_Var1, "ARX_Bard_TraderAttitudeChanged", 0)
+AND
+DB_ARX_Traders(_Var2)
+AND
+CharacterIsDead(_Var2, 0)
+THEN
+ObjectSetFlag(_Var1, "ARX_Bard_TraderAttitudeChanged");
+PartySetShopPriceModifier(_Var2, _Var1, 75);
+
+PROC
+Proc_ARX_Bard_ChangePriceForNewPlayers()
+AND
+DB_IsPlayer(_Var1)
+AND
+ObjectGetFlag(_Var1, "ARX_Bard_TraderAttitudeChanged", 0)
+AND
+GlobalGetFlag("ARX_CD_BardSingsOrigianlSong", 1)
+AND
+DB_ARX_Traders(_Var2)
+AND
+CharacterIsDead(_Var2, 0)
+THEN
+ObjectSetFlag(_Var1, "ARX_Bard_TraderAttitudeChanged");
+PartySetShopPriceModifier(_Var2, _Var1, 75);
+
+PROC
+Proc_ARX_Bard_ChangePriceForNewPlayers()
+AND
+DB_IsPlayer(_Var1)
+AND
+ObjectGetFlag(_Var1, "ARX_Bard_TraderAttitudeChanged", 0)
+AND
+GlobalGetFlag("ARX_CD_BardSingsOrigianlSong", 0)
+AND
+DB_ARX_Traders(_Var2)
+AND
+CharacterIsDead(_Var2, 0)
+THEN
+ObjectSetFlag(_Var1, "ARX_Bard_TraderAttitudeChanged");
+PartySetShopPriceModifier(_Var2, _Var1, 65);
+
+IF
+GlobalFlagSet("ARX_CD_BardSingsSong")
+THEN
+Proc_ARX_CS_PlebsReactOnBard();
+
+IF
+GlobalFlagCleared("ARX_CD_BardSingsSong")
+AND
+DB_ARX_Traders(_Var1)
+AND
+CharacterIsDead(_Var1, 0)
+AND
+DB_IsPlayer(_Var2)
+AND
+ObjectGetFlag(_Var2, "ARX_Bard_TraderAttitudeChanged", 1)
+THEN
+DebugText(_Var1, "Back To normal");
+PartySetShopPriceModifier(_Var1, _Var2, 100);
+
+IF
+GlobalFlagCleared("ARX_CD_BardSingsSong")
+AND
+DB_IsPlayer(_Var1)
+AND
+ObjectGetFlag(_Var1, "ARX_Bard_TraderAttitudeChanged", 1)
+THEN
+ObjectClearFlag(_Var1, "ARX_Bard_TraderAttitudeChanged", 0);
+
+IF
+GlobalFlagCleared("ARX_CD_BardSingsSong")
+THEN
+Proc_ARX_CS_PlebsReactOnBard();
+
+IF
+DB_Dead(S_ARX_CD_Bard_e0e3eca9-bfbd-49a9-b2e7-80d57df51ddd)
+THEN
+GlobalClearFlag("ARX_CD_BardSingsSong");
+
+PROC
+Proc_ARX_CS_PlebsReactOnBard()
+AND
+GlobalGetFlag("ARX_CD_BardSingsSong", 1)
+AND
+DB_ARX_BardListenPleb(_Var1)
+AND
+CharacterIsDead(_Var1, 0)
+THEN
+SetVarInteger(_Var1, "SpecialSightSeeingWeight", 2);
+
+PROC
+Proc_ARX_CS_PlebsReactOnBard()
+AND
+GlobalGetFlag("ARX_CD_BardSingsSong", 0)
+AND
+DB_ARX_BardListenPleb(_Var1)
+AND
+CharacterIsDead(_Var1, 0)
+THEN
+SetVarInteger(_Var1, "SpecialSightSeeingWeight", 0);
+
+PROC
+PROC_GLOBAL_DialogStartRequested(S_ARX_CD_Bard_e0e3eca9-bfbd-49a9-b2e7-80d57df51ddd, (GUIDSTRING)_Var1)
+THEN
+SetStoryEvent(S_ARX_CD_Bard_e0e3eca9-bfbd-49a9-b2e7-80d57df51ddd, "ARX_Bard_StopPreforming");
+
+IF
+AttackedByObject(S_ARX_CD_Bard_e0e3eca9-bfbd-49a9-b2e7-80d57df51ddd, (GUIDSTRING)_Var1, (GUIDSTRING)_Var2, _, _)
+AND
+S_ARX_CD_Bard_e0e3eca9-bfbd-49a9-b2e7-80d57df51ddd != _Var2
+THEN
+SetStoryEvent(S_ARX_CD_Bard_e0e3eca9-bfbd-49a9-b2e7-80d57df51ddd, "ARX_Bard_StopPreforming");
+
+PROC
+ProcOneShotTriggerEntered((CHARACTERGUID)_Var1, TRIGGERGUID_S_ARX_Bridge_VoiceBarkTrig_82385948-9cbc-4ed1-ae0d-65ce7ca66693)
+THEN
+StartVoiceBark("ARX_Bridge_VB_SlaughterRemark", _Var1);
+
+IF
+TextEventSet("KillEithne")
+THEN
+GlobalSetFlag("RC_DF_UndeadTrader_Died");
+SetOnStage(CHARACTERGUID_S_ARX_UndeadTrader_Ghost_dc1f1234-92f3-4b82-b8c7-c2dfad2ded67, 1);
+
+PROC
+Proc_ARX_UndeadTrader_SetUpGhost()
+AND
+GlobalGetFlag("RC_DF_UndeadTrader_Died", 0)
+THEN
+SetOnStage(CHARACTERGUID_S_ARX_UndeadTrader_Ghost_dc1f1234-92f3-4b82-b8c7-c2dfad2ded67, 0);
+
+IF
+GlobalFlagSet("Debug_HigbaInArx")
+THEN
+GlobalSetFlag("RC_DW_FishBarrel_Escaped");
+Proc_ARX_FishBarrel();
+
+PROC
+Proc_ARX_FishBarrel()
+AND
+GlobalGetFlag("RC_DW_FishBarrel_IsDead", 0)
+AND
+GlobalGetFlag("RC_DW_FishBarrel_Escaped", 1)
+THEN
+ProcRemoveAllDialogEntriesForSpeaker(CHARACTERGUID_S_RC_DW_FishBarrel_c262ed6e-3edc-48f0-9e5d-35551b47cdbc);
+TeleportTo(CHARACTERGUID_S_RC_DW_FishBarrel_c262ed6e-3edc-48f0-9e5d-35551b47cdbc, TRIGGERGUID_S_ARX_FishBarrel_Pos_a5cc9929-20e8-43d4-82b6-0afaa3990b11);
+TeleportTo(CHARACTERGUID_S_RC_DW_FishBarrelGhost_c4ea7978-1134-4725-abfa-7c072f085e4f, TRIGGERGUID_S_ARX_FishBarrel_Pos_a5cc9929-20e8-43d4-82b6-0afaa3990b11);
+CharacterSetCustomTradeTreasure(CHARACTERGUID_S_RC_DW_FishBarrel_c262ed6e-3edc-48f0-9e5d-35551b47cdbc, "ARX_FishBarrel");
+CharacterSetCanTrade(CHARACTERGUID_S_RC_DW_FishBarrel_c262ed6e-3edc-48f0-9e5d-35551b47cdbc, 1);
+DB_Dialogs(CHARACTERGUID_S_RC_DW_FishBarrel_c262ed6e-3edc-48f0-9e5d-35551b47cdbc, "ARX_FishBarrel");
+
+IF
+ObjectFlagSet("ARX_Neighborhood_Street_TraderBaker_UnlockedVIPTrade", (CHARACTERGUID)_Var1, _)
+AND
+QueryOnlyOnce("ARX_Neighborhood_Street_TraderBaker_UnlockedVIPTrade")
+THEN
+CharacterSetCustomTradeTreasure(CHARACTERGUID_S_ARX_Neighborhood_TraderBaker_1acfb572-b892-4020-a9a3-b5ebc4ffb15b, "ARX_Trader_Cheese_VIP");
+GenerateItems(_Var1, CHARACTERGUID_S_ARX_Neighborhood_TraderBaker_1acfb572-b892-4020-a9a3-b5ebc4ffb15b);
+
+IF
+CharacterDied(S_ARX_KemmMansion_Pleb_Lover2_3a9bdb18-973a-46ff-b1d6-d29a8822d856)
+THEN
+NOT DB_Dialogs(S_ARX_KemmMansion_Pleb_Lover1_13dad574-c7da-4a4b-9476-5799a2029598, S_ARX_KemmMansion_Pleb_Lover2_3a9bdb18-973a-46ff-b1d6-d29a8822d856, "ARX_KemmMansion_Pleb_Lovers");
+DB_Dialogs(S_ARX_KemmMansion_Pleb_Lover1_13dad574-c7da-4a4b-9476-5799a2029598, "ARX_KemmMansion_Pleb_Lover1");
+
+IF
+CharacterDied(S_ARX_KemmMansion_Pleb_Lover1_13dad574-c7da-4a4b-9476-5799a2029598)
+THEN
+NOT DB_Dialogs(S_ARX_KemmMansion_Pleb_Lover1_13dad574-c7da-4a4b-9476-5799a2029598, S_ARX_KemmMansion_Pleb_Lover2_3a9bdb18-973a-46ff-b1d6-d29a8822d856, "ARX_KemmMansion_Pleb_Lovers");
+DB_Dialogs(S_ARX_KemmMansion_Pleb_Lover2_3a9bdb18-973a-46ff-b1d6-d29a8822d856, "ARX_KemmMansion_Pleb_Lover2");
+
+IF
+TextEventSet("ARX_Bard_SetAnimation")
+THEN
+CharacterSetAnimationOverride(CHARACTERGUID_S_ARX_CD_Bard_e0e3eca9-bfbd-49a9-b2e7-80d57df51ddd, "emotion_happy_cheerful_looping1");
+
+IF
+TextEventSet("ARX_Bard_ClearAnimation")
+THEN
+CharacterSetAnimationOverride(CHARACTERGUID_S_ARX_CD_Bard_e0e3eca9-bfbd-49a9-b2e7-80d57df51ddd, "");
+
+PROC
+Proc_ARX_SetUpButter()
+AND NOT
+DB_Dead(CHARACTERGUID_S_FTJ_OlgoGuard_004_eab494d8-4c9e-47f1-afb4-30815e1ea68c)
+AND
+DB_GlobalFlag("ARX_ButterIsWaiting")
+THEN
+ItemToInventory(ITEMGUID_S_ARX_Butter_Diary_ffa1a4f1-5921-4b6c-9f1c-6176c8c77567, CHARACTERGUID_S_FTJ_OlgoGuard_004_eab494d8-4c9e-47f1-afb4-30815e1ea68c);
+TeleportTo(CHARACTERGUID_S_FTJ_OlgoGuard_004_eab494d8-4c9e-47f1-afb4-30815e1ea68c, TRIGGERGUID_S_ARX_Butter_Point_489aa3bc-992b-46e5-8270-b3114a8d82d7, "ARX_Bridge_ButterTeleported", 0);
+
+IF
+StoryEvent(CHARACTERGUID_S_FTJ_OlgoGuard_004_eab494d8-4c9e-47f1-afb4-30815e1ea68c, "ARX_Bridge_ButterTeleported")
+THEN
+CharacterDie(CHARACTERGUID_S_FTJ_OlgoGuard_004_eab494d8-4c9e-47f1-afb4-30815e1ea68c, 1, "PHYSICAL");
+
+PROC
+Proc_ARX_SetUpButter()
+AND
+DB_Dead(CHARACTERGUID_S_FTJ_OlgoGuard_004_eab494d8-4c9e-47f1-afb4-30815e1ea68c)
+THEN
+SetOnStage(ITEMGUID_S_ARX_Butter_Diary_ffa1a4f1-5921-4b6c-9f1c-6176c8c77567, 0);
+SetOnStage(CHARACTERGUID_S_ARX_Butter_Voidwoken_c7a21cd2-198c-458f-b6bc-09ee53b06e0a, 0);
+
+PROC
+Proc_ARX_SetUpButter()
+AND NOT
+DB_GlobalFlag("ARX_ButterIsWaiting")
+THEN
+SetOnStage(ITEMGUID_S_ARX_Butter_Diary_ffa1a4f1-5921-4b6c-9f1c-6176c8c77567, 0);
+SetOnStage(CHARACTERGUID_S_ARX_Butter_Voidwoken_c7a21cd2-198c-458f-b6bc-09ee53b06e0a, 0);
+
+IF
+CharacterSawCharacter((CHARACTERGUID)_Var1, CHARACTERGUID_S_FTJ_OlgoGuard_004_eab494d8-4c9e-47f1-afb4-30815e1ea68c)
+AND
+DB_IsPlayer(_Var1)
+AND
+ObjectGetFlag(_Var1, "FTJ_SeducedButter", 1)
+AND
+QRY_SpeakerIsAvailable(_Var1)
+AND
+QueryOnlyOnce("ARX_AD_NoticeDeadButter")
+THEN
+Proc_StartDialog(1, "ARX_AD_NoticeDeadButter", _Var1);
+
+IF
+TextEventSet("ARXButter")
+THEN
+SetOnStage(ITEMGUID_S_ARX_Butter_Diary_ffa1a4f1-5921-4b6c-9f1c-6176c8c77567, 1);
+SetOnStage(CHARACTERGUID_S_ARX_Butter_Voidwoken_c7a21cd2-198c-458f-b6bc-09ee53b06e0a, 1);
+ItemToInventory(ITEMGUID_S_ARX_Butter_Diary_ffa1a4f1-5921-4b6c-9f1c-6176c8c77567, CHARACTERGUID_S_FTJ_OlgoGuard_004_eab494d8-4c9e-47f1-afb4-30815e1ea68c);
+TeleportTo(CHARACTERGUID_S_FTJ_OlgoGuard_004_eab494d8-4c9e-47f1-afb4-30815e1ea68c, TRIGGERGUID_S_ARX_Butter_Point_489aa3bc-992b-46e5-8270-b3114a8d82d7, "ARX_Bridge_ButterTeleported", 0);
+
+IF
+TextEventSet("ARXButter")
+AND
+DB_IsPlayer(_Var1)
+THEN
+ObjectSetFlag(_Var1, "FTJ_SeducedButter");
+
+IF
+GameBookInterfaceClosed((ITEMGUID)_Var1, (CHARACTERGUID)_Var2)
+AND
+DB_ShadyTraderAds(_Var1)
+AND
+PartyGetFlag(_Var2, "ARX_ShadyTrader_SetMarker", 0)
+THEN
+ProcShowMarker(_Var2, "ARX_ShadryMerchant_Marker");
+PartySetFlag(_Var2, "ARX_ShadyTrader_SetMarker");
+
+IF
+AttackedByObject(CHARACTERGUID_S_ARX_CitySquare_TownCrier_aec02305-c86a-4358-a7e0-efb04f389fec, _, (GUIDSTRING)_Var2, _, _)
+AND
+CHARACTERGUID_S_ARX_CitySquare_TownCrier_aec02305-c86a-4358-a7e0-efb04f389fec != _Var2
+AND
+ObjectGetFlag(CHARACTERGUID_S_ARX_CitySquare_TownCrier_aec02305-c86a-4358-a7e0-efb04f389fec, "GEB_FleeOutOfSight", 0)
+THEN
+Proc_StartDialog(1, "GEB_AD_CallForHelp", CHARACTERGUID_S_ARX_CitySquare_TownCrier_aec02305-c86a-4358-a7e0-efb04f389fec);
+
+IF
+CharacterLeftTrigger(CHARACTERGUID_S_ARX_CitySquare_WagonWolf_39bd8bcb-9c6c-484f-abdd-40f5275fb932, TRIGGERGUID_S_ARX_CitySquare_WagonWolf_BoxTrig_2aaeeb2c-3183-4199-9155-fb3a2497aa5e)
+THEN
+NOT DB_DoNotFace(CHARACTERGUID_S_ARX_CitySquare_WagonWolf_39bd8bcb-9c6c-484f-abdd-40f5275fb932);
+
+IF
+CharacterEnteredTrigger(CHARACTERGUID_S_ARX_CitySquare_WagonWolf_39bd8bcb-9c6c-484f-abdd-40f5275fb932, TRIGGERGUID_S_ARX_CitySquare_WagonWolf_BoxTrig_2aaeeb2c-3183-4199-9155-fb3a2497aa5e)
+THEN
+DB_DoNotFace(CHARACTERGUID_S_ARX_CitySquare_WagonWolf_39bd8bcb-9c6c-484f-abdd-40f5275fb932);
+
+
+EXITSECTION
+ENDEXITSECTION
+
+ParentTargetEdge "ARX"

@@ -1,0 +1,330 @@
+Version 1
+SubGoalCombiner SGC_AND
+
+INITSECTION
+
+KBSECTION
+IF
+DB_OneShot_PlayerOnlyDialogTrigger(_Var1, _Var2, _Var3)
+THEN
+DB_OneShotPlayerOnlyTrigger(_Var1);
+DB_OneShot_DialogSpeakerCount(_Var1, _Var2, 1);
+DB_OneShot_DialogSpeakers(_Var1, _Var3, 1);
+
+IF
+DB_OneShot_DialogTrigger(_Var1, _Var2, _Var3)
+THEN
+DB_OneShotPlayerTrigger(_Var1);
+DB_OneShot_DialogSpeakerCount(_Var1, _Var2, 1);
+DB_OneShot_DialogSpeakers(_Var1, _Var3, 1);
+
+IF
+DB_OneShot_DialogTrigger(_Var1, _Var2, _Var3, _Var4)
+THEN
+DB_OneShotPlayerTrigger(_Var1);
+DB_OneShot_DialogSpeakerCount(_Var1, _Var2, 2);
+DB_OneShot_DialogSpeakers(_Var1, _Var3, 1);
+DB_OneShot_DialogSpeakers(_Var1, _Var4, 2);
+
+IF
+DB_OneShot_DialogTrigger(_Var1, _Var2, _Var3, _Var4, _Var5)
+THEN
+DB_OneShotPlayerTrigger(_Var1);
+DB_OneShot_DialogSpeakerCount(_Var1, _Var2, 3);
+DB_OneShot_DialogSpeakers(_Var1, _Var3, 1);
+DB_OneShot_DialogSpeakers(_Var1, _Var4, 2);
+DB_OneShot_DialogSpeakers(_Var1, _Var5, 3);
+
+IF
+DB_OneShot_DialogTrigger(_Var1, _Var2, _Var3, _Var4, _Var5, _Var6)
+THEN
+DB_OneShotPlayerTrigger(_Var1);
+DB_OneShot_DialogSpeakerCount(_Var1, _Var2, 4);
+DB_OneShot_DialogSpeakers(_Var1, _Var3, 1);
+DB_OneShot_DialogSpeakers(_Var1, _Var4, 2);
+DB_OneShot_DialogSpeakers(_Var1, _Var5, 3);
+DB_OneShot_DialogSpeakers(_Var1, _Var6, 4);
+
+PROC
+ProcCheckIfNPCsBusy((TRIGGERGUID)_Var1)
+AND
+DB_OneShot_DialogSpeakers(_Var1, _Var2, _)
+AND NOT
+QRY_SpeakerIsAvailable(_Var2, 1)
+THEN
+DB_OneShot_BusyNPC(_Var1);
+
+PROC
+ProcDoStartOneShotDialog((CHARACTERGUID)_Var1, (TRIGGERGUID)_Var2)
+AND
+DB_OneShot_DialogSpeakerCount(_Var2, _Var3, 1)
+AND
+DB_OneShot_DialogSpeakers(_Var2, _Var4, 1)
+THEN
+Proc_StartDialog(0, _Var3, _Var4, _Var1);
+
+PROC
+ProcDoStartOneShotDialog((CHARACTERGUID)_Var1, (TRIGGERGUID)_Var2)
+AND
+DB_OneShot_DialogSpeakerCount(_Var2, _Var3, 2)
+AND
+DB_OneShot_DialogSpeakers(_Var2, _Var4, 1)
+AND
+DB_OneShot_DialogSpeakers(_Var2, _Var5, 2)
+THEN
+Proc_StartDialog(0, _Var3, _Var4, _Var5, _Var1);
+
+PROC
+ProcDoStartOneShotDialog((CHARACTERGUID)_Var1, (TRIGGERGUID)_Var2)
+AND
+DB_OneShot_DialogSpeakerCount(_Var2, _Var3, 3)
+AND
+DB_OneShot_DialogSpeakers(_Var2, _Var4, 1)
+AND
+DB_OneShot_DialogSpeakers(_Var2, _Var5, 2)
+AND
+DB_OneShot_DialogSpeakers(_Var2, _Var6, 3)
+THEN
+Proc_StartDialog(0, _Var3, _Var4, _Var5, _Var6, _Var1);
+
+PROC
+ProcStartOneShotDialog((CHARACTERGUID)_Var1, (TRIGGERGUID)_Var2)
+AND NOT
+DB_OneShot_BusyNPC(_Var2)
+THEN
+ProcDoStartOneShotDialog(_Var1, _Var2);
+
+PROC
+ProcClearOneShotCount((TRIGGERGUID)_Var1)
+AND
+DB_OneShot_DialogSpeakerCount(_Var1, _Var2, 1)
+AND
+DB_OneShot_DialogTrigger(_Var1, _Var2, _Var3)
+THEN
+NOT DB_OneShot_DialogTrigger(_Var1, _Var2, _Var3);
+
+PROC
+ProcClearOneShotCount((TRIGGERGUID)_Var1)
+AND
+DB_OneShot_DialogSpeakerCount(_Var1, _Var2, 2)
+AND
+DB_OneShot_DialogTrigger(_Var1, _Var2, _Var3, _Var4)
+THEN
+NOT DB_OneShot_DialogTrigger(_Var1, _Var2, _Var3, _Var4);
+
+PROC
+ProcClearOneShotCount((TRIGGERGUID)_Var1)
+AND
+DB_OneShot_DialogSpeakerCount(_Var1, _Var2, 3)
+AND
+DB_OneShot_DialogTrigger(_Var1, _Var2, _Var3, _Var4, _Var5)
+THEN
+NOT DB_OneShot_DialogTrigger(_Var1, _Var2, _Var3, _Var4, _Var5);
+
+PROC
+ProcClearOneShotCount((TRIGGERGUID)_Var1)
+AND
+DB_OneShot_DialogSpeakerCount(_Var1, _Var2, 4)
+AND
+DB_OneShot_DialogTrigger(_Var1, _Var2, _Var3, _Var4, _Var5, _Var6)
+THEN
+NOT DB_OneShot_DialogTrigger(_Var1, _Var2, _Var3, _Var4, _Var5, _Var6);
+
+PROC
+ProcClearOneShotCount((TRIGGERGUID)_Var1)
+AND
+DB_OneShot_DialogSpeakerCount(_Var1, _Var2, _Var3)
+THEN
+NOT DB_OneShot_DialogSpeakerCount(_Var1, _Var2, _Var3);
+
+PROC
+ProcClearOneShotSpeakers((TRIGGERGUID)_Var1)
+AND
+DB_OneShot_DialogSpeakers(_Var1, _Var2, _Var3)
+THEN
+NOT DB_OneShot_DialogSpeakers(_Var1, _Var2, _Var3);
+
+PROC
+ProcOneShotDialogCleanup((TRIGGERGUID)_Var1)
+THEN
+ProcClearOneShotCount(_Var1);
+ProcClearOneShotSpeakers(_Var1);
+
+PROC
+RemoveOneShotDialog((TRIGGERGUID)_Var1)
+THEN
+ProcOneShotDialogCleanup(_Var1);
+ProcTriggerUnregisterForPlayers(_Var1);
+NOT DB_OneShotPlayerTrigger(_Var1);
+
+IF
+DB_Dead(_Var1)
+AND
+DB_OneShot_DialogSpeakers(_Var2, _Var1, _)
+THEN
+RemoveOneShotDialog(_Var2);
+
+PROC
+ProcOneShotTriggerEntered((CHARACTERGUID)_Var1, (TRIGGERGUID)_Var2)
+AND
+DB_OneShot_DialogSpeakerCount(_Var2, _, _)
+AND
+QRY_SpeakerIsAvailable(_Var1)
+THEN
+ProcCheckIfNPCsBusy(_Var2);
+ProcStartOneShotDialog(_Var1, _Var2);
+
+PROC
+ProcStartOneShotDialog(_, (TRIGGERGUID)_Var2)
+THEN
+NOT DB_OneShot_BusyNPC(_Var2);
+
+PROC
+ProcStartOneShotDialog(_, (TRIGGERGUID)_Var2)
+THEN
+ProcOneShotDialogCleanup(_Var2);
+
+IF
+DialogStarted((STRING)_Var1, _)
+AND
+DB_OneShot_DialogSpeakerCount(_Var3, _Var1, _Var4)
+THEN
+ProcOneShotDialogCleanup(_Var3);
+ProcTriggerUnregisterForPlayers(_Var3);
+NOT DB_OneShotPlayerTrigger(_Var3);
+
+IF
+DB_OneShot_ADTrigger(_Var1, _Var2, _Var3)
+THEN
+DB_OneShotPlayerTrigger(_Var1);
+DB_OneShot_ADSpeakerCount(_Var1, _Var2, 1);
+DB_OneShot_ADSpeakers(_Var1, _Var3, 1);
+
+IF
+DB_OneShot_ADTrigger(_Var1, _Var2, _Var3, _Var4)
+THEN
+DB_OneShotPlayerTrigger(_Var1);
+DB_OneShot_ADSpeakerCount(_Var1, _Var2, 2);
+DB_OneShot_ADSpeakers(_Var1, _Var3, 1);
+DB_OneShot_ADSpeakers(_Var1, _Var4, 2);
+
+PROC
+ProcDoStartOneShotAD((CHARACTERGUID)_Var1, (TRIGGERGUID)_Var2)
+AND
+DB_OneShot_ADSpeakerCount(_Var2, _Var3, 1)
+AND
+DB_OneShot_ADSpeakers(_Var2, _Var4, 1)
+THEN
+Proc_StartDialog(1, _Var3, _Var4);
+
+PROC
+ProcDoStartOneShotAD((CHARACTERGUID)_Var1, (TRIGGERGUID)_Var2)
+AND
+DB_OneShot_ADSpeakerCount(_Var2, _Var3, 2)
+AND
+DB_OneShot_ADSpeakers(_Var2, _Var4, 1)
+AND
+DB_OneShot_ADSpeakers(_Var2, _Var5, 2)
+THEN
+Proc_StartDialog(1, _Var3, _Var4, _Var5);
+
+PROC
+ProcClearOneShotADCount((TRIGGERGUID)_Var1)
+AND
+DB_OneShot_ADSpeakerCount(_Var1, _Var2, 1)
+AND
+DB_OneShot_ADTrigger(_Var1, _Var2, _Var3)
+THEN
+NOT DB_OneShot_ADTrigger(_Var1, _Var2, _Var3);
+
+PROC
+ProcClearOneShotADCount((TRIGGERGUID)_Var1)
+AND
+DB_OneShot_ADSpeakerCount(_Var1, _Var2, 2)
+AND
+DB_OneShot_ADTrigger(_Var1, _Var2, _Var3, _Var4)
+THEN
+NOT DB_OneShot_ADTrigger(_Var1, _Var2, _Var3, _Var4);
+
+PROC
+ProcClearOneShotADSpeakers((TRIGGERGUID)_Var1)
+AND
+DB_OneShot_ADSpeakers(_Var1, _Var2, _Var3)
+THEN
+NOT DB_OneShot_ADSpeakers(_Var1, _Var2, _Var3);
+
+PROC
+ProcOneShotADCleanup((TRIGGERGUID)_Var1)
+THEN
+ProcClearOneShotADCount(_Var1);
+ProcClearOneShotADSpeakers(_Var1);
+
+PROC
+RemoveOneShotAD((TRIGGERGUID)_Var1)
+THEN
+ProcOneShotADCleanup(_Var1);
+ProcTriggerUnregisterForPlayers(_Var1);
+NOT DB_OneShotPlayerTrigger(_Var1);
+
+IF
+DB_Dead(_Var1)
+AND
+DB_OneShot_ADSpeakers(_Var2, _Var1, _)
+THEN
+RemoveOneShotAD(_Var2);
+
+PROC
+ProcOneShotTriggerEntered((CHARACTERGUID)_Var1, (TRIGGERGUID)_Var2)
+AND
+DB_OneShot_ADSpeakerCount(_Var2, _, _)
+AND
+DB_OneShot_ADSpeakers(_Var2, _Var5, 1)
+AND
+QRY_SpeakerIsAvailable(_Var1)
+AND
+QRY_SpeakerIsAvailable(_Var5)
+THEN
+ProcDoStartOneShotAD(_Var1, _Var2);
+ProcOneShotADCleanup(_Var2);
+
+IF
+AutomatedDialogStarted((STRING)_Var1, _)
+AND
+DB_OneShot_ADSpeakerCount(_Var3, _Var1, _Var4)
+THEN
+ProcOneShotADCleanup(_Var3);
+ProcTriggerUnregisterForPlayers(_Var3);
+
+IF
+DB_OneShot_VoiceBarkTrigger(_Var1, _Var2)
+THEN
+DB_OneShotPlayerTrigger(_Var1);
+
+PROC
+ProcOneShotTriggerEntered((CHARACTERGUID)_Var1, (TRIGGERGUID)_Var2)
+AND
+DB_OneShot_VoiceBarkTrigger(_Var2, _Var3)
+AND
+QRY_SpeakerIsAvailable(_Var1)
+THEN
+StartVoiceBark(_Var3, _Var1);
+
+IF
+VoiceBarkStarted((STRING)_Var1, _)
+AND
+DB_OneShot_VoiceBarkTrigger(_Var3, _Var1)
+THEN
+NOT DB_OneShot_VoiceBarkTrigger(_Var3, _Var1);
+
+IF
+VoiceBarkFailed((STRING)_Var1)
+AND
+DB_OneShot_VoiceBarkTrigger(_Var2, _Var1)
+THEN
+NOT DB_OneShot_VoiceBarkTrigger(_Var2, _Var1);
+
+
+EXITSECTION
+ENDEXITSECTION
+
+ParentTargetEdge "__Start"

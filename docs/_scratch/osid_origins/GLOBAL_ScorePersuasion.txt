@@ -1,0 +1,222 @@
+Version 1
+SubGoalCombiner SGC_AND
+
+INITSECTION
+
+KBSECTION
+IF
+DB_ScorePersuasion_Dialog(_Var1, _)
+AND NOT
+DB_ScorePersuasion_DialogFlags(_Var1, _, _)
+THEN
+DB_ScorePersuasion_DialogFlags(_Var1, "Option_Plus_2", 2);
+DB_ScorePersuasion_DialogFlags(_Var1, "Option_Plus_1", 1);
+DB_ScorePersuasion_DialogFlags(_Var1, "Option_Plus_0", 0);
+
+IF
+DB_ScorePersuasion_Dialog(_Var1, 3)
+AND NOT
+DB_ScorePersuasion_DialogResolution_3(_Var1, _, _, _)
+THEN
+DB_ScorePersuasion_DialogResolution_3(_Var1, "Resolution_High", "Resolution_Mid", "Resolution_Low");
+
+IF
+DB_ScorePersuasion_Dialog(_Var1, 5)
+AND NOT
+DB_ScorePersuasion_DialogResolution_5(_Var1, _, _, _, _, _)
+THEN
+DB_ScorePersuasion_DialogResolution_5(_Var1, "Resolution_High", "Resolution_MidHigh", "Resolution_Mid", "Resolution_MidLow", "Resolution_Low");
+
+IF
+DialogStarted((STRING)_Var1, (INTEGER)_Var2)
+AND
+DB_ScorePersuasion_Dialog(_Var1, _)
+THEN
+DB_ScorePersuasion_DialogId(_Var1, _Var2);
+
+IF
+ObjectFlagSet((STRING)_Var1, (GUIDSTRING)_Var2, (INTEGER)_Var3)
+AND
+DB_ScorePersuasion_DialogId(_Var4, _Var3)
+AND
+DB_ScorePersuasion_DialogFlags(_Var4, _Var1, _Var5)
+THEN
+Proc_ScorePersuasion_SetScore(_Var4, _Var3, _Var2, _Var5);
+ObjectClearFlag(_Var2, _Var1, _Var3);
+
+PROC
+Proc_ScorePersuasion_SetScore((STRING)_Var1, (INTEGER)_Var2, (GUIDSTRING)_Var3, (INTEGER)_Var4)
+AND
+DB_ScorePersuasion_CurrentScore(_Var2, _Var3, _Var5)
+AND
+IntegerSum(_Var5, _Var4, _Var6)
+THEN
+NOT DB_ScorePersuasion_CurrentScore(_Var2, _Var3, _Var5);
+DB_ScorePersuasion_CurrentScore(_Var2, _Var3, _Var6);
+
+PROC
+Proc_ScorePersuasion_SetScore((STRING)_Var1, (INTEGER)_Var2, (GUIDSTRING)_Var3, (INTEGER)_Var4)
+AND NOT
+DB_ScorePersuasion_CurrentScore(_Var2, _Var3, _)
+THEN
+DB_ScorePersuasion_CurrentScore(_Var2, _Var3, _Var4);
+
+PROC
+Proc_ScorePersuasion_SetScore((STRING)_Var1, (INTEGER)_Var2, (GUIDSTRING)_Var3, (INTEGER)_Var4)
+THEN
+Proc_ScorePersuasion_UpdateResolution(_Var1, _Var2);
+
+PROC
+Proc_ScorePersuasion_UpdateResolution((STRING)_Var1, (INTEGER)_Var2)
+AND
+DB_ScorePersuasion_CurrentResolution(_Var2, _Var3, _Var4)
+THEN
+NOT DB_ScorePersuasion_CurrentResolution(_Var2, _Var3, _Var4);
+ObjectClearFlag(_Var3, _Var4, _Var2);
+
+PROC
+Proc_ScorePersuasion_UpdateResolution((STRING)_Var1, (INTEGER)_Var2)
+AND
+DB_ScorePersuasion_DialogResolution_3(_Var1, _, _, _)
+THEN
+Proc_ScorePersuasion_UpdateResolution_3(_Var1, _Var2);
+
+PROC
+Proc_ScorePersuasion_UpdateResolution((STRING)_Var1, (INTEGER)_Var2)
+AND
+DB_ScorePersuasion_DialogResolution_5(_Var1, _, _, _, _, _)
+THEN
+Proc_ScorePersuasion_UpdateResolution_5(_Var1, _Var2);
+
+IF
+DB_ScorePersuasion_CurrentResolution(_Var1, _Var2, _Var3)
+THEN
+ObjectSetFlag(_Var2, _Var3, _Var1);
+
+PROC
+Proc_ScorePersuasion_UpdateResolution_3((STRING)_Var1, (INTEGER)_Var2)
+AND
+DB_ScorePersuasion_CurrentScore(_Var2, _Var3, _Var4)
+AND
+_Var4 >= 5
+AND
+DB_ScorePersuasion_DialogResolution_3(_Var1, _Var5, _, _)
+THEN
+DB_ScorePersuasion_CurrentResolution(_Var2, _Var3, _Var5);
+
+PROC
+Proc_ScorePersuasion_UpdateResolution_3((STRING)_Var1, (INTEGER)_Var2)
+AND NOT
+DB_ScorePersuasion_CurrentResolution(_Var2, _, _)
+AND
+DB_ScorePersuasion_CurrentScore(_Var2, _Var5, _Var6)
+AND
+_Var6 >= 2
+AND
+DB_ScorePersuasion_DialogResolution_3(_Var1, _, _Var8, _)
+THEN
+DB_ScorePersuasion_CurrentResolution(_Var2, _Var5, _Var8);
+
+PROC
+Proc_ScorePersuasion_UpdateResolution_3((STRING)_Var1, (INTEGER)_Var2)
+AND NOT
+DB_ScorePersuasion_CurrentResolution(_Var2, _, _)
+AND
+DB_ScorePersuasion_CurrentScore(_Var2, _Var5, _Var6)
+AND
+_Var6 >= 0
+AND
+DB_ScorePersuasion_DialogResolution_3(_Var1, _, _, _Var9)
+THEN
+DB_ScorePersuasion_CurrentResolution(_Var2, _Var5, _Var9);
+
+PROC
+Proc_ScorePersuasion_UpdateResolution_5((STRING)_Var1, (INTEGER)_Var2)
+AND
+DB_ScorePersuasion_CurrentScore(_Var2, _Var3, _Var4)
+AND
+_Var4 >= 6
+AND
+DB_ScorePersuasion_DialogResolution_5(_Var1, _Var5, _, _, _, _)
+THEN
+DB_ScorePersuasion_CurrentResolution(_Var2, _Var3, _Var5);
+
+PROC
+Proc_ScorePersuasion_UpdateResolution_5((STRING)_Var1, (INTEGER)_Var2)
+AND NOT
+DB_ScorePersuasion_CurrentResolution(_Var2, _, _)
+AND
+DB_ScorePersuasion_CurrentScore(_Var2, _Var5, _Var6)
+AND
+_Var6 >= 4
+AND
+DB_ScorePersuasion_DialogResolution_5(_Var1, _, _Var8, _, _, _)
+THEN
+DB_ScorePersuasion_CurrentResolution(_Var2, _Var5, _Var8);
+
+PROC
+Proc_ScorePersuasion_UpdateResolution_5((STRING)_Var1, (INTEGER)_Var2)
+AND NOT
+DB_ScorePersuasion_CurrentResolution(_Var2, _, _)
+AND
+DB_ScorePersuasion_CurrentScore(_Var2, _Var5, _Var6)
+AND
+_Var6 >= 3
+AND
+DB_ScorePersuasion_DialogResolution_5(_Var1, _, _, _Var9, _, _)
+THEN
+DB_ScorePersuasion_CurrentResolution(_Var2, _Var5, _Var9);
+
+PROC
+Proc_ScorePersuasion_UpdateResolution_5((STRING)_Var1, (INTEGER)_Var2)
+AND NOT
+DB_ScorePersuasion_CurrentResolution(_Var2, _, _)
+AND
+DB_ScorePersuasion_CurrentScore(_Var2, _Var5, _Var6)
+AND
+_Var6 >= 1
+AND
+DB_ScorePersuasion_DialogResolution_5(_Var1, _, _, _, _Var10, _)
+THEN
+DB_ScorePersuasion_CurrentResolution(_Var2, _Var5, _Var10);
+
+PROC
+Proc_ScorePersuasion_UpdateResolution_5((STRING)_Var1, (INTEGER)_Var2)
+AND NOT
+DB_ScorePersuasion_CurrentResolution(_Var2, _, _)
+AND
+DB_ScorePersuasion_CurrentScore(_Var2, _Var5, _Var6)
+AND
+_Var6 >= 0
+AND
+DB_ScorePersuasion_DialogResolution_5(_Var1, _, _, _, _, _Var11)
+THEN
+DB_ScorePersuasion_CurrentResolution(_Var2, _Var5, _Var11);
+
+IF
+DialogEnded((STRING)_Var1, (INTEGER)_Var2)
+AND
+DB_ScorePersuasion_Dialog(_Var1, _)
+THEN
+Proc_ScorePesuasion_Clear(_Var1, _Var2);
+
+PROC
+Proc_ScorePesuasion_Clear((STRING)_Var1, (INTEGER)_Var2)
+AND
+DB_ScorePersuasion_CurrentResolution(_Var2, _Var3, _Var4)
+THEN
+NOT DB_ScorePersuasion_CurrentResolution(_Var2, _Var3, _Var4);
+ObjectClearFlag(_Var3, _Var4, _Var2);
+
+PROC
+Proc_ScorePesuasion_Clear((STRING)_Var1, (INTEGER)_Var2)
+AND
+DB_ScorePersuasion_CurrentScore(_Var2, _Var3, _Var4)
+THEN
+NOT DB_ScorePersuasion_CurrentScore(_Var2, _Var3, _Var4);
+
+
+EXITSECTION
+ENDEXITSECTION
+
+ParentTargetEdge "DOS2ModWrapper"

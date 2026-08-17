@@ -1,0 +1,37 @@
+Version 1
+SubGoalCombiner SGC_AND
+
+INITSECTION
+ProcTriggerRegisterForPlayers(S_TUT_LowerDeck_MurderSeenTriggerBox_a0127e1f-6e5f-4990-9a32-7e529af3934e);
+CreatePuddle(S_TUT_LowerDeck_FinnCorpse_580f325b-a632-4410-9d69-11f26d142da5, "SurfaceBlood", 5, 25, 5, 10, 0.02);
+
+KBSECTION
+IF
+GameStarted("TUT_Tutorial_A", _)
+THEN
+PROC_LoopEffect("RS3_FX_GP_ScriptedEvent_SourceGlow_Overlay_01", S_TUT_LowerDeck_FinnCorpse_580f325b-a632-4410-9d69-11f26d142da5, "TUT_MurderScene_GlowingBody", "TUT_Tutorial_A", "");
+
+IF
+CharacterEnteredTrigger((CHARACTERGUID)_Var1, S_TUT_LowerDeck_MurderSeenTriggerBox_a0127e1f-6e5f-4990-9a32-7e529af3934e)
+AND
+DB_IsPlayer(_Var1)
+THEN
+PROC_TUT_LowerDeck_MurderScene(_Var1);
+
+PROC
+PROC_TUT_LowerDeck_MurderScene((CHARACTERGUID)_Var1)
+AND
+QueryOnlyOnce("TUT_LowerDeckSeeBlood")
+THEN
+StartVoiceBark("TUT_VB_LowerDeck_PlayersSeeMurderScene", _Var1);
+
+PROC
+ProcRegionEnded("TUT_Tutorial_A")
+THEN
+GoalCompleted;
+
+
+EXITSECTION
+ENDEXITSECTION
+
+ParentTargetEdge "TUT_LowerDeck"

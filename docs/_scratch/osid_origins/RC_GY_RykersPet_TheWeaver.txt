@@ -1,0 +1,426 @@
+Version 1
+SubGoalCombiner SGC_AND
+
+INITSECTION
+DB_Dialogs(CHARACTERGUID_S_RC_GY_RykersSpider_bdc57d81-43fb-4592-8387-efd757a9b3be, "RC_GY_RykersPet_Spider");
+DB_RC_GY_RykerHouse_Spider_Doors(ITEMGUID_S_RC1_GY_RykerHouse_Stairs_ToSpider_1_2cd835f0-e601-415a-a398-b354377feb3c, 1, TRIGGERGUID_S_RC_GY_TP_RykerHouse_ToSpider_1_ea284e39-88a8-4298-91f5-5ab1095e494b, "RC_GY_RykerHouse_SpiderRoom_Blocked");
+DB_RC_GY_RykerHouse_Spider_Doors(ITEMGUID_S_RC_GY_RykerHouse_Stairs_ToSpider_2_0c6172ec-9b11-424c-befc-9d5fbfcc231a, 2, TRIGGERGUID_S_RC_GY_TP_RykerHouse_ToSpider_2_60c3a08a-d98e-4353-8049-98f2cfaabdcd, "RC_GY_RykerHouse_SpiderRoom_Blocked_Hard");
+DB_RC_GY_RykerHouse_Spider_Doors(ITEMGUID_S_RC_GY_RykerHouse_Stairs_ToSpider_3_73991f0b-f29d-46e2-94bb-60db7ea3e610, 3, TRIGGERGUID_S_RC_GY_TP_RykerHouse_ToSpider_3_2bcafc4b-adeb-48a1-a63e-3bb7f1f2c28d, "RC_GY_RykerHouse_SpiderRoom_Blocked_Hard");
+DB_RC_GY_RykerHouse_Spider_Doors(ITEMGUID_S_RC_GY_RykerHouse_Hatch_FromSpider_1_a4bb562f-59e9-4fdd-96de-365433f68c3e, 1, TRIGGERGUID_S_RC_GY_TP_RykerHouse_FromSpider_1_7fd80de0-ac96-4f77-bf23-e9f3d6da1433, "RC_GY_RykerHouse_SpiderRoom_Blocked");
+DB_RC_GY_RykerHouse_Spider_Doors(ITEMGUID_S_RC_GY_RykerHouse_Hatch_FromSpider_2_d6a1a523-5b30-4fc4-b132-ce1297b85264, 2, TRIGGERGUID_S_RC_GY_TP_RykerHouse_FromSpider_2_5c45d1a9-856b-41fd-b622-49bc1e89033f, "RC_GY_RykerHouse_SpiderRoom_Blocked_Hard");
+DB_RC_GY_RykerHouse_Spider_Doors(ITEMGUID_S_RC_GY_RykerHouse_Hatch_FromSpider_3_5f015a44-dc4c-4158-ba5f-65590352c670, 3, TRIGGERGUID_S_RC_GY_TP_RykerHouse_FromSpider_3_2d34b930-afa5-4328-9272-1fcc2d93e144, "RC_GY_RykerHouse_SpiderRoom_Blocked_Hard");
+DB_RC_GY_RykerHouse_Spider_OpenOnTeleport(1, ITEMGUID_S_RC_GY_RykerHouse_Door_ToSpider_1_4ec62b9c-42f4-4db9-818a-08750cd252da);
+DB_RC_GY_RykerHouse_Spider_OpenOnTeleport(1, ITEMGUID_S_RC_GY_RykerHouse_Door_FromSpider_1_2dd04f44-7269-4401-886a-8f504ad30d86);
+DB_RC_GY_RykerHouse_Spider_OpenOnTeleport(2, ITEMGUID_S_RC_GY_RykerHouse_Door_ToSpider_2_5b69e1f9-b834-4291-a979-73419de5a27e);
+DB_RC_GY_RykerHouse_Spider_OpenOnTeleport(2, ITEMGUID_S_RC_GY_RykerHouse_Door_FromSpider_2_13112f85-6849-4c19-944c-d9df428e8d63);
+DB_RC_GY_RykerHouse_Spider_OpenOnTeleport(3, ITEMGUID_S_RC_GY_RykerHouse_Door_ToSpider_3_38fcb987-9b6f-4479-ba9f-464864e953f6);
+DB_RC_GY_RykerHouse_Spider_OpenOnTeleport(3, ITEMGUID_S_RC_GY_RykerHouse_Door_FromSpider_3_3a98a8ce-e0ef-4ff1-9ea7-9d5a137559e6);
+ObjectSetFlag(ITEMGUID_S_RC_GY_RykerHouse_Stairs_ToSpider_1_2cd835f0-e601-415a-a398-b354377feb3c, "RC_GY_RykerHouse_SpiderRoom_Entrance");
+ObjectSetFlag(ITEMGUID_S_RC_GY_RykerHouse_Stairs_ToSpider_2_0c6172ec-9b11-424c-befc-9d5fbfcc231a, "RC_GY_RykerHouse_SpiderRoom_Entrance");
+ObjectSetFlag(ITEMGUID_S_RC_GY_RykerHouse_Stairs_ToSpider_3_73991f0b-f29d-46e2-94bb-60db7ea3e610, "RC_GY_RykerHouse_SpiderRoom_Entrance");
+DB_RC_GY_RykerHouse_Spider_BlockedDoors(1);
+DB_RC_GY_RykerHouse_Spider_BlockedDoors(2);
+DB_RC_GY_RykerHouse_Spider_BlockedDoors(3);
+DB_GLO_Attribute_Check_AgainstLevel("RC_GY_RykerHouse_SpiderRoom_Blocked", 1, "Strength", "Normal", 2, 11);
+DB_GLO_Attribute_Check_AgainstLevel("RC_GY_RykerHouse_SpiderRoom_Blocked_Hard", 1, "Strength", "Hard", 2, 11);
+DB_RC_GY_RykerHouse_SpiderEggs(ITEMGUID_S_RC_GY_SpiderEgg_000_d697fe39-a3f4-4294-a559-9d00eb475727);
+DB_RC_GY_RykerHouse_SpiderEggs(ITEMGUID_S_RC_GY_SpiderEgg_001_9166bb6a-6409-4e9a-927f-e273890b8952);
+DB_RC_GY_RykerHouse_SpiderEggs(ITEMGUID_S_RC_GY_SpiderEgg_002_a8053e00-170a-4176-8fc2-ad64920f3204);
+DB_RC_GY_RykerHouse_SpiderEggs(ITEMGUID_S_RC_GY_SpiderEgg_003_60c4e93d-396e-4ee0-8857-a2502a3d45c3);
+DB_RC_GY_RykerHouse_SpiderEggs(ITEMGUID_S_RC_GY_SpiderEgg_004_0b2be0ef-df27-4e65-8abd-a0fde5e674c9);
+DB_RC_GY_RykerHouse_SpiderEggs(ITEMGUID_S_RC_GY_SpiderEgg_005_65af8bfc-e8ea-4781-8845-04eac191a6f8);
+DB_RC_GY_RykerHouse_SpiderEggs(ITEMGUID_S_RC_GY_SpiderEgg_006_d299db4c-0f11-42ca-9f56-22ae2ca29d69);
+DB_RC_GY_RykerHouse_SpiderEggs(ITEMGUID_S_RC_GY_SpiderEgg_007_68142a87-1dd3-4119-9eda-eb09b070f108);
+SetOnStage(CHARACTERGUID_S_RC_GY_RykersSpider_bdc57d81-43fb-4592-8387-efd757a9b3be, 0);
+ProcTriggerRegisterForPlayers(TRIGGERGUID_S_RC_GY_RykerHouse_SpiderRoom_b650d3eb-7a69-412f-9634-3c56cd60adb3);
+ProcTriggerRegisterForPlayers(TRIGGERGUID_S_RC_GY_RykerHouse_SpiderRoom_000_e0a4191d-3284-4ef2-96c9-ccc4775e20b0);
+ProcTriggerRegisterForPlayers(TRIGGERGUID_S_RC_GY_RykerHouse_SpiderRoom_001_d5573c3d-c2c5-4490-a666-56b5e7f6010d);
+DB_Ghosts(CHARACTERGUID_S_RC_GY_RykerHouse_SpiderRoom_Ghost_5fe8bc92-3c67-464a-ad18-b2a5ab4b9bb4, "RC_GY_RykerHouse_SpiderRoom_Ghost");
+DB_HasStoryEvent(ITEMGUID_S_RC_GY_RykersHouse_SpiderRoom_Bodypart_62e5400a-cb82-4b34-b128-60211179f0b7, "RC_GY_RykerHouse_SpiderRoom_HasBodypart");
+
+KBSECTION
+IF
+TextEventSet("rcgyweavertal")
+AND
+CharacterGetHostCharacter(_Var1)
+THEN
+CharacterAddTalent(_Var1, "Quest_SpidersKiss_Str");
+
+IF
+TextEventSet("playsoundspidertrigger")
+AND
+GetTextEventParamString(1, _Var1)
+THEN
+PlaySound(TRIGGERGUID_S_RC_GY_RykersSpider_Spot_3b5bea69-4ae4-4dbf-8154-4c3a135e1178, _Var1);
+
+IF
+TextEventSet("playsoundspider")
+AND
+GetTextEventParamString(1, _Var1)
+THEN
+PlaySound(CHARACTERGUID_S_RC_GY_RykersSpider_bdc57d81-43fb-4592-8387-efd757a9b3be, _Var1);
+
+IF
+TextEventSet("playsoundcouch")
+AND
+GetTextEventParamString(1, _Var1)
+THEN
+PlaySound(ITEMGUID_FUR_Rich_Couch_B_007_7f63b465-0555-4f0e-bbc4-0aea6f5d15a3, _Var1);
+
+IF
+TextEventSet("playsoundhelper")
+AND
+GetTextEventParamString(1, _Var1)
+THEN
+PlaySound(ITEMGUID_S_RC_GY_Ryker_WeaverSoiundHelper_fb41a2f4-0e87-4a11-961c-7f2fe676055e, _Var1);
+
+PROC
+ProcBlockUseOfItem((CHARACTERGUID)_Var1, (ITEMGUID)_Var2)
+AND
+DB_RC_GY_RykerHouse_Spider_Doors(_Var2, _Var3, _, _Var5)
+AND
+DB_RC_GY_RykerHouse_Spider_BlockedDoors(_Var3)
+AND
+DB_IsPlayer(_Var1)
+THEN
+DB_CustomUseItemResponse(_Var1, _Var2, 0);
+Proc_StartDialog(0, _Var5, _Var2, _Var1);
+
+IF
+DialogEnded((STRING)_Var1, (INTEGER)_Var2)
+AND
+DB_RC_GY_RykerHouse_Spider_Doors(_, _, _, _Var1)
+AND
+DialogGetInvolvedNPC(_Var2, 1, _Var6)
+AND
+ObjectGetFlag(_Var6, "RC_GY_RykerHouse_SpiderRoom_Opened", 1)
+AND
+DialogGetInvolvedPlayer(_Var2, 1, _Var7)
+AND
+DB_RC_GY_RykerHouse_Spider_Doors(_Var6, _Var8, _Var9, _)
+THEN
+ObjectClearFlag(_Var6, "RC_GY_RykerHouse_SpiderRoom_Opened", 0);
+NOT DB_RC_GY_RykerHouse_Spider_BlockedDoors(_Var8);
+Proc_RC_GY_RykerHouse_Spider_OpenDoors(_Var8);
+TeleportTo(_Var7, _Var9);
+
+PROC
+ProcBlockUseOfItem((CHARACTERGUID)_Var1, (ITEMGUID)_Var2)
+AND
+DB_RC_GY_RykerHouse_Spider_Doors(_Var2, _Var3, _, _)
+AND NOT
+DB_RC_GY_RykerHouse_Spider_BlockedDoors(_Var3)
+AND
+DB_IsPlayer(_Var1)
+THEN
+Proc_RC_GY_RykerHouse_Spider_OpenDoors(_Var3);
+
+PROC
+Proc_RC_GY_RykerHouse_Spider_OpenDoors((INTEGER)_Var1)
+AND
+DB_RC_GY_RykerHouse_Spider_OpenOnTeleport(_Var1, _Var2)
+THEN
+ItemOpen(_Var2);
+
+PROC
+ProcBlockUseOfItem((CHARACTERGUID)_Var1, ITEMGUID_S_RC_GY_RykerHouse_Door_ToSpider_0_ff408a81-7b73-42df-bd54-163db8a88d7b)
+AND
+DB_IsPlayer(_Var1)
+AND
+ItemIsLocked(ITEMGUID_S_RC_GY_RykerHouse_Door_ToSpider_0_ff408a81-7b73-42df-bd54-163db8a88d7b, 1)
+AND NOT
+DB_InRegion(_Var1, TRIGGERGUID_S_RC_GY_RykerHouse_SpiderRoom_000_e0a4191d-3284-4ef2-96c9-ccc4775e20b0)
+THEN
+DB_CustomUseItemResponse(_Var1, ITEMGUID_S_RC_GY_RykerHouse_Door_ToSpider_0_ff408a81-7b73-42df-bd54-163db8a88d7b, 0);
+Proc_StartDialog(0, "RC_GY_RykerHouse_SpiderRoom_Locked", ITEMGUID_S_RC_GY_RykerHouse_Door_ToSpider_0_ff408a81-7b73-42df-bd54-163db8a88d7b, _Var1);
+
+PROC
+Proc_RC_GY_RykersSpider_Appear()
+AND NOT
+DB_GlobalFlag("RC_GY_RykersSpider_Appeared")
+THEN
+CharacterSetAnimationSetOverride(CHARACTERGUID_S_RC_GY_RykersSpider_bdc57d81-43fb-4592-8387-efd757a9b3be, "Spawn_02");
+CharacterAppear(CHARACTERGUID_S_RC_GY_RykersSpider_bdc57d81-43fb-4592-8387-efd757a9b3be, 1, "RC_GY_RykersSpider_Appear");
+PlaySound(ITEMGUID_S_RC_GY_Ryker_WeaverSoiundHelper_fb41a2f4-0e87-4a11-961c-7f2fe676055e, "RC_Scripted_GiantSpider_Appear");
+
+IF
+StoryEvent(CHARACTERGUID_S_RC_GY_RykersSpider_bdc57d81-43fb-4592-8387-efd757a9b3be, "RC_GY_RykersSpider_Appear")
+THEN
+CharacterSetAnimationSetOverride(CHARACTERGUID_S_RC_GY_RykersSpider_bdc57d81-43fb-4592-8387-efd757a9b3be, "");
+GlobalSetFlag("RC_GY_RykersSpider_Appeared");
+Proc_RC_GY_RykersSpider_Appeared();
+
+PROC
+Proc_RC_GY_RykersSpider_Appeared()
+THEN
+DB_NOOP(1);
+
+IF
+CharacterEnteredTrigger((CHARACTERGUID)_Var1, TRIGGERGUID_S_RC_GY_RykerHouse_SpiderRoom_b650d3eb-7a69-412f-9634-3c56cd60adb3)
+AND
+DB_IsPlayer(_Var1)
+AND
+PartyGetFlag(_Var1, "RC_GY_RykersSpider_Knows", 0)
+THEN
+Proc_RC_GY_RykersSpider_Intruder();
+
+PROC
+Proc_RC_GY_RykersSpider_Intruder()
+AND
+DB_GlobalFlag("RC_GY_RykersSpider_Appeared")
+THEN
+Proc_RC_GY_RykersSpider_Appeared();
+
+PROC
+Proc_RC_GY_RykersSpider_Intruder()
+AND NOT
+DB_GlobalFlag("RC_GY_RykersSpider_Appeared")
+THEN
+Proc_RC_GY_RykersSpider_Appear();
+
+PROC
+Proc_RC_GY_RykersSpider_Appeared()
+AND
+DB_InRegion(_Var1, TRIGGERGUID_S_RC_GY_RykerHouse_SpiderRoom_b650d3eb-7a69-412f-9634-3c56cd60adb3)
+AND
+DB_IsPlayer(_Var1)
+AND
+CharacterIsEnemy(CHARACTERGUID_S_RC_GY_RykersSpider_bdc57d81-43fb-4592-8387-efd757a9b3be, _Var1, 0)
+AND
+QRY_SpeakerIsAvailable(CHARACTERGUID_S_RC_GY_RykersSpider_bdc57d81-43fb-4592-8387-efd757a9b3be, 1)
+THEN
+DB_RC_GY_RykersPet_SpiderDialogRequestedFor(_Var1);
+Proc_StartDialog(0, "RC_GY_RykersPet_Spider", CHARACTERGUID_S_RC_GY_RykersSpider_bdc57d81-43fb-4592-8387-efd757a9b3be, _Var1);
+
+PROC
+Proc_RC_GY_RykersSpider_Appeared()
+AND
+DB_InRegion(_Var1, TRIGGERGUID_S_RC_GY_RykerHouse_SpiderRoom_001_d5573c3d-c2c5-4490-a666-56b5e7f6010d)
+AND
+DB_IsPlayer(_Var1)
+AND
+CharacterIsEnemy(CHARACTERGUID_S_RC_GY_RykersSpider_bdc57d81-43fb-4592-8387-efd757a9b3be, _Var1, 0)
+AND
+QRY_SpeakerIsAvailable(CHARACTERGUID_S_RC_GY_RykersSpider_bdc57d81-43fb-4592-8387-efd757a9b3be, 1)
+THEN
+DB_RC_GY_RykersPet_SpiderDialogRequestedFor(_Var1);
+Proc_StartDialog(0, "RC_GY_RykersPet_Spider", CHARACTERGUID_S_RC_GY_RykersSpider_bdc57d81-43fb-4592-8387-efd757a9b3be, _Var1);
+
+PROC
+Proc_RC_GY_RykersSpider_Appeared()
+AND
+DB_InRegion(_Var1, TRIGGERGUID_S_RC_GY_RykerHouse_SpiderRoom_001_d5573c3d-c2c5-4490-a666-56b5e7f6010d)
+AND
+DB_IsPlayer(_Var1)
+AND
+CharacterIsEnemy(CHARACTERGUID_S_RC_GY_RykersSpider_bdc57d81-43fb-4592-8387-efd757a9b3be, _Var1, 1)
+THEN
+EnterCombat(CHARACTERGUID_S_RC_GY_RykersSpider_bdc57d81-43fb-4592-8387-efd757a9b3be, _Var1);
+
+IF
+CharacterLeftTrigger((CHARACTERGUID)_Var1, TRIGGERGUID_S_RC_GY_RykerHouse_SpiderRoom_001_d5573c3d-c2c5-4490-a666-56b5e7f6010d)
+AND
+DB_RC_GY_RykersPet_SpiderDialogRequestedFor(_Var1)
+THEN
+ProcForceStopDialog(_Var1);
+
+IF
+DialogRequestFailed("RC_GY_RykersPet_Spider", _)
+THEN
+SysClear("DB_RC_GY_RykersPet_SpiderDialogRequestedFor", 1);
+
+IF
+DialogEnded("RC_GY_RykersPet_Spider", _)
+THEN
+SysClear("DB_RC_GY_RykersPet_SpiderDialogRequestedFor", 1);
+
+IF
+DialogEnded("RC_GY_RykersPet_Spider", (INTEGER)_Var1)
+AND
+DB_DialogPlayers(_Var1, _Var2, 1)
+AND
+DB_IsPlayer(_Var2)
+THEN
+PartySetFlag(_Var2, "RC_GY_RykersSpider_Knows");
+
+IF
+DialogEnded("RC_GY_RykersPet_Spider", (INTEGER)_Var1)
+AND
+Query_CharacterIsAliveAndNotInCombat(CHARACTERGUID_S_RC_GY_RykersSpider_bdc57d81-43fb-4592-8387-efd757a9b3be)
+THEN
+ProcCharacterMoveTo(CHARACTERGUID_S_RC_GY_RykersSpider_bdc57d81-43fb-4592-8387-efd757a9b3be, TRIGGERGUID_S_RC_GY_RykersSpider_Spot_3b5bea69-4ae4-4dbf-8154-4c3a135e1178, 0, "RC_GY_RykersSpider_Spot");
+
+IF
+StoryEvent(CHARACTERGUID_S_RC_GY_RykersSpider_bdc57d81-43fb-4592-8387-efd757a9b3be, "RC_GY_RykersSpider_Spot")
+THEN
+CharacterLookFromTrigger(CHARACTERGUID_S_RC_GY_RykersSpider_bdc57d81-43fb-4592-8387-efd757a9b3be, TRIGGERGUID_S_RC_GY_RykersSpider_Spot_3b5bea69-4ae4-4dbf-8154-4c3a135e1178, 0);
+
+IF
+StoryEvent((ITEMGUID)_Var1, "RC_GY_RykersSpider_ItemIter")
+AND
+ObjectIsOnStage(_Var1, 1)
+AND
+ItemGetAmount(_Var1, _Var2)
+THEN
+ProcIncreaseCounter("RC_GY_RykersSpider_LimbCounter", _Var2);
+DB_RC_GY_RykersSpider_Bodyparts(_Var1);
+
+IF
+TradeEnds((CHARACTERGUID)_Var1, CHARACTERGUID_S_RC_GY_RykersSpider_bdc57d81-43fb-4592-8387-efd757a9b3be)
+AND
+ObjectGetFlag(_Var1, "RC_GY_RykersSpider_1stTrade", 1)
+THEN
+DB_RC_GY_RykersSpider_LimbGiver(_Var1);
+ProcDeclareCounter("RC_GY_RykersSpider_LimbCounter");
+InventoryLaunchTagIterator(CHARACTERGUID_S_RC_GY_RykersSpider_bdc57d81-43fb-4592-8387-efd757a9b3be, "BODYPART", "", "RC_GY_RykersSpider_ItemIter", "RC_GY_RykersSpider_ItemIter1stComplete");
+
+IF
+GlobalFlagSet("RC_GY_RykersSpider_ItemIter1stComplete")
+THEN
+Proc_RC_GY_RykersSpider_CheckLimbCount1st();
+
+PROC
+Proc_RC_GY_RykersSpider_CheckLimbCount1st()
+THEN
+GlobalClearFlag("RC_GY_RykersSpider_ItemIter1stComplete");
+
+PROC
+Proc_RC_GY_RykersSpider_CheckLimbCount1st()
+AND
+DB_GlobalCounter("RC_GY_RykersSpider_LimbCounter", _Var1)
+AND
+_Var1 >= 1
+AND
+DB_RC_GY_RykersSpider_LimbGiver(_Var2)
+THEN
+ObjectSetFlag(_Var2, "RC_GY_RykersSpider_GaveFood");
+CharacterSetRelationIndivFactionToIndivFaction(CHARACTERGUID_S_RC_GY_RykersSpider_bdc57d81-43fb-4592-8387-efd757a9b3be, _Var2, 100);
+CharacterSetRelationIndivFactionToIndivFaction(_Var2, CHARACTERGUID_S_RC_GY_RykersSpider_bdc57d81-43fb-4592-8387-efd757a9b3be, 100);
+
+PROC
+Proc_RC_GY_RykersSpider_CheckLimbCount1st()
+AND
+DB_RC_GY_RykersSpider_Bodyparts(_Var1)
+THEN
+NOT DB_RC_GY_RykersSpider_Bodyparts(_Var1);
+SetOnStage(_Var1, 0);
+
+IF
+TradeEnds((CHARACTERGUID)_Var1, CHARACTERGUID_S_RC_GY_RykersSpider_bdc57d81-43fb-4592-8387-efd757a9b3be)
+AND
+ObjectGetFlag(_Var1, "RC_GY_RykersSpider_2ndTrade", 1)
+THEN
+DB_RC_GY_RykersSpider_LimbGiver(_Var1);
+ProcDeclareCounter("RC_GY_RykersSpider_LimbCounter");
+InventoryLaunchTagIterator(CHARACTERGUID_S_RC_GY_RykersSpider_bdc57d81-43fb-4592-8387-efd757a9b3be, "BODYPART", "", "RC_GY_RykersSpider_ItemIter", "RC_GY_RykersSpider_ItemIter2ndComplete");
+
+IF
+GlobalFlagSet("RC_GY_RykersSpider_ItemIter2ndComplete")
+THEN
+GlobalClearFlag("RC_GY_RykersSpider_ItemIter2ndComplete");
+Proc_RC_GY_RykersSpider_CheckLimbCount2nd();
+
+PROC
+Proc_RC_GY_RykersSpider_CheckLimbCount2nd()
+AND
+DB_GlobalCounter("RC_GY_RykersSpider_LimbCounter", _Var1)
+AND
+_Var1 >= 3
+AND
+DB_RC_GY_RykersSpider_LimbGiver(_Var2)
+THEN
+NOT DB_RC_GY_RykersSpider_LimbGiver(_Var2);
+ObjectSetFlag(_Var2, "RC_GY_RykersSpider_GaveMoreFood");
+
+PROC
+Proc_RC_GY_RykersSpider_CheckLimbCount2nd()
+AND
+DB_RC_GY_RykersSpider_Bodyparts(_Var1)
+THEN
+NOT DB_RC_GY_RykersSpider_Bodyparts(_Var1);
+SetOnStage(_Var1, 0);
+
+PROC
+Proc_RC_GY_RykersSpider_CheckLimbCount2nd()
+THEN
+ProcRemoveCounter("RC_GY_RykersSpider_LimbCounter");
+SysClear("DB_RC_GY_RykersSpider_Bodyparts", 1);
+SysClear("DB_RC_GY_RykersSpider_LimbGiver", 1);
+
+IF
+TradeEnds((CHARACTERGUID)_Var1, CHARACTERGUID_S_RC_GY_RykersSpider_bdc57d81-43fb-4592-8387-efd757a9b3be)
+THEN
+ObjectClearFlag(_Var1, "RC_GY_RykersSpider_1stTrade");
+ObjectClearFlag(_Var1, "RC_GY_RykersSpider_2ndTrade");
+
+IF
+ObjectFlagSet("QuestUpdate_RC_GY_RykersSpider_RecievedGift", (CHARACTERGUID)_Var1, (INTEGER)_Var2)
+AND
+ObjectIsCharacter(_Var1, 1)
+THEN
+CharacterGiveReward(_Var1, "RC_GY_RykersSpider_Reward");
+
+IF
+ObjectFlagSet("QuestUpdate_RC_GY_RykersSpider_RecievedGift", (GUIDSTRING)_Var1, (INTEGER)_Var2)
+AND
+ObjectIsCharacter(_Var1, 1)
+THEN
+ObjectSetFlag(_Var1, "RC_GY_RykersSpider_QuestComplete");
+
+IF
+ObjectFlagSet("QuestUpdate_RC_GY_RykersSpider_NoGift", (GUIDSTRING)_Var1, (INTEGER)_Var2)
+AND
+ObjectIsCharacter(_Var1, 1)
+THEN
+ObjectSetFlag(_Var1, "RC_GY_RykersSpider_QuestComplete");
+
+IF
+ObjectFlagSet("QuestUpdate_RC_GY_RykersSpider_FooledSpider", (GUIDSTRING)_Var1, (INTEGER)_Var2)
+AND
+ObjectIsCharacter(_Var1, 1)
+THEN
+ObjectSetFlag(_Var1, "RC_GY_RykersSpider_QuestComplete");
+
+IF
+AttackedByObject((ITEMGUID)_Var1, (CHARACTERGUID)_Var2, (GUIDSTRING)_Var3, _, _)
+AND
+ObjectIsCharacter(_Var1, 1)
+AND
+DB_RC_GY_RykerHouse_SpiderEggs(_Var1)
+AND
+DB_IsPlayer(_Var2)
+THEN
+ProcSetFactionHostileToIndivPlayer("RC_GY_RykersSpider", _Var2);
+Proc_RC_GY_RykersSpider_Appear();
+
+IF
+StoryEvent((CHARACTERGUID)_Var1, "RC_GY_RykersSpider_HelpMotherSpider")
+AND
+CharacterIsInCombat(CHARACTERGUID_S_RC_GY_RykersSpider_bdc57d81-43fb-4592-8387-efd757a9b3be, 1)
+AND
+CombatGetIDForCharacter(CHARACTERGUID_S_RC_GY_RykersSpider_bdc57d81-43fb-4592-8387-efd757a9b3be, _Var2)
+AND
+CombatGetInvolvedPlayer(_Var2, 1, _Var3)
+THEN
+EnterCombat(_Var1, _Var3);
+
+IF
+CharacterDied(CHARACTERGUID_S_RC_GY_RykersSpider_bdc57d81-43fb-4592-8387-efd757a9b3be)
+THEN
+SetRelationFactionToPlayers("RC_GY_RykersSpider", 0);
+
+IF
+ObjectFlagSet("RC_GY_RykerHouse_SpiderRoom_Chill", (GUIDSTRING)_Var1, _)
+THEN
+ObjectClearFlag(_Var1, "RC_GY_RykerHouse_SpiderRoom_Chill");
+ApplyStatus(_Var1, "CHILLED", 60, 1);
+
+
+EXITSECTION
+SysClear("DB_RC_GY_RykerHouse_Spider_Doors", 3);
+SysClear("DB_RC_GY_RykerHouse_Spider_OpenOnTeleport", 2);
+SysClear("DB_RC_GY_RykerHouse_Spider_BlockedDoors", 1);
+SysClear("DB_RC_GY_RykerHouse_SpiderEggs", 1);
+ENDEXITSECTION
+
+ParentTargetEdge "ReapersCoast"

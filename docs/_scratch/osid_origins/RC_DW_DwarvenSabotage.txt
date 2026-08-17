@@ -1,0 +1,74 @@
+Version 1
+SubGoalCombiner SGC_AND
+
+INITSECTION
+DB_HasStoryEvent(RC_WC_EmpressLetter_ffaa5485-ccc8-4e66-a69b-52316fdc7c82, "RC_WC_HasEmpressLetter");
+DB_RC_DW_DwarvenSabotage_EmpressLetterNPCQuestUpdate(CHARACTERGUID_S_RC_DW_Julian_356538aa-90b6-4cc0-89e9-53dc3633e12d, "QuestUpdate_RC_DW_DwarvenSabotage_GaveLetterToMagister");
+DB_RC_DW_DwarvenSabotage_EmpressLetterNPCQuestUpdate(CHARACTERGUID_S_RC_DW_UnderTavern_DwarfBoss_8e58abc6-1010-4e67-97b2-b9686586e784, "QuestUpdate_RC_DW_DwarvenSabotage_GaveLetterToLilian");
+
+KBSECTION
+IF
+ObjectFlagSet("RC_WC_HasEmpressLetter", (CHARACTERGUID)_Var1, _)
+AND
+DB_IsPlayer(_Var1)
+AND
+QueryOnlyOnce("RC_DW_WC_PickUpEmpressLetter")
+THEN
+StartVoiceBark("RC_DW_WC_VB_PickedUpEmpressLetter", _Var1);
+
+IF
+ObjectFlagSet("RC_WC_HasEmpressLetter", (CHARACTERGUID)_Var1, _)
+AND
+DB_IsPlayer(_Var1)
+THEN
+PartySetFlag(_Var1, "QuestUpdate_RC_DW_DwarvenSabotage_FoundEmpressLetter");
+
+IF
+ObjectFlagSet("RC_DW_GiveEmpressLetter", (CHARACTERGUID)_Var1, (INTEGER)_Var2)
+AND
+DialogGetInvolvedPlayer(_Var2, 1, _Var3)
+AND
+QryTakeItemFromMagicPockets(_Var3, ITEMGUID_RC_WC_EmpressLetter_ffaa5485-ccc8-4e66-a69b-52316fdc7c82, _Var1)
+AND
+DB_RC_DW_DwarvenSabotage_EmpressLetterNPCQuestUpdate(_Var1, _Var4)
+THEN
+PartySetFlag(_Var3, _Var4);
+PROC_RC_DW_DwarvenSabotage_MaybeDwarfEnemy(_Var3, _Var1);
+
+IF
+ObjectFlagSet("QuestUpdate_RC_DW_DwarvenSabotage_GaveLetterToMagister", (GUIDSTRING)_Var1, (INTEGER)_Var2)
+AND
+GlobalGetFlag("RC_DW_DwarvenSabotage_GaveLetterToMagister", 0)
+THEN
+GlobalSetFlag("RC_DW_DwarvenSabotage_GaveLetterToMagister");
+
+PROC
+PROC_RC_DW_DwarvenSabotage_MaybeDwarfEnemy((CHARACTERGUID)_Var1, (CHARACTERGUID)_Var2)
+AND
+_Var2 == CHARACTERGUID_S_RC_DW_Julian_356538aa-90b6-4cc0-89e9-53dc3633e12d
+THEN
+PartySetFlag(_Var1, "GLO_SetTag_DWARF-ENEMY");
+
+IF
+CharacterDied(S_RC_DW_UnderTavern_DwarfBoss_8e58abc6-1010-4e67-97b2-b9686586e784)
+AND
+DB_IsPlayer(_Var1)
+THEN
+PartySetFlag(_Var1, "QuestUpdate_RC_DW_DwarvenSabotage_KilledLohar");
+
+IF
+TextEventSet("GiveLetterToJulien")
+THEN
+ItemToInventory(S_RC_DW_WC_EmpressLetter_ffaa5485-ccc8-4e66-a69b-52316fdc7c82, S_RC_DW_Julian_356538aa-90b6-4cc0-89e9-53dc3633e12d);
+GlobalSetFlag("RC_DW_DwarvenSabotage_GaveLetterToMagister");
+
+IF
+GlobalFlagSet("RC_DW_EmpressLetterGiven")
+THEN
+ItemClearOwner(S_RC_DW_WhiteMagisterReward_533f9427-4d61-4d60-9edb-8c10c79b24da);
+
+
+EXITSECTION
+ENDEXITSECTION
+
+ParentTargetEdge "ReapersCoast"

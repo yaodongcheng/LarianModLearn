@@ -1,0 +1,24 @@
+Version 1
+SubGoalCombiner SGC_AND
+
+INITSECTION
+DB_CheckLevelStart("ARX_EndGame");
+
+KBSECTION
+IF
+RegionStarted("ARX_EndGame")
+THEN
+GoalCompleted;
+
+IF
+DB_CheckLevelStart("ARX_EndGame")
+AND
+DB_CurrentLevel("ARX_EndGame")
+THEN
+GoalCompleted;
+
+
+EXITSECTION
+ENDEXITSECTION
+
+ParentTargetEdge "Start"

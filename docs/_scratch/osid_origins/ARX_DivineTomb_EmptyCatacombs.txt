@@ -1,0 +1,66 @@
+Version 1
+SubGoalCombiner SGC_AND
+
+INITSECTION
+ItemSetCanInteract(ITEMGUID_S_ARX_DivineTomb_EmptyCatacombs_Hatch_2163c73e-dfc8-4c84-954f-78b342099a53, 0);
+ProcTriggerRegisterForPlayers(TRIGGERGUID_S_ARX_Pipes_CameraToPoint_35f4bb2a-3f9d-4daf-a1c4-48973413d599);
+
+KBSECTION
+IF
+TextEventSet("PassEmptyCatacombs")
+THEN
+PROC_ARX_Pipes_Finished();
+
+PROC
+PROC_ARX_Pipes_Finished()
+AND
+DB_InRegion(_Var1, TRIGGERGUID_S_ARX_Pipes_CameraToPoint_35f4bb2a-3f9d-4daf-a1c4-48973413d599)
+THEN
+CameraActivate(_Var1, "S_ARX_Pipes_SpectatorCameraTrigger_LucianTomb", 7, 1, 0, 1);
+
+PROC
+PROC_ARX_Pipes_Finished()
+THEN
+ItemSetForceSynch(ITEMGUID_S_ARX_DivineTomb_EmptyCatacombs_PassageTomb_ae0d9ff0-b51c-4289-9eec-034092f110dd, 1);
+ItemSetForceSynch(ITEMGUID_S_ARX_DivineTomb_EmptyCatacombs_Hatch_2163c73e-dfc8-4c84-954f-78b342099a53, 1);
+TimerLaunch("ARX_DivineTomb_EmptyCatacombs_PassageTomb", 100);
+PROC_LoopEffect("RS3_FX_Environment_Smoke_Small_02", ITEMGUID_S_ARX_DivineTomb_EmptyCatacombs_PassageTomb_ae0d9ff0-b51c-4289-9eec-034092f110dd, "ARX_DivineTomb_EmptyCatacombs_MovingTomb", "ARX_Main", "Dummy_FX");
+
+IF
+TimerFinished("ARX_DivineTomb_EmptyCatacombs_PassageTomb")
+THEN
+proc_ItemMoveToTrigger(ITEMGUID_S_ARX_DivineTomb_EmptyCatacombs_PassageTomb_ae0d9ff0-b51c-4289-9eec-034092f110dd, TRIGGERGUID_S_ARX_DivineTomb_EmptyCatacombs_PassageTomb_SlidePoint_5b4e8ed0-9ab8-4b0d-96e1-5e94b866d319, 1, 0, 0);
+
+PROC
+PROC_ARX_Pipes_Finished()
+AND
+DB_IsPlayer(_Var1)
+AND
+DB_InRegion(_Var1, TRIGGERGUID_S_ARX_DivineTomb_EmptyCatacombs_SubregionBox_487af5bb-537d-4367-8e50-e3815fc32012)
+THEN
+PartySetFlag(_Var1, "QuestUpdate_ARX_HuntingForDallis_PuzzlePassed");
+
+IF
+ItemMoved(ITEMGUID_S_ARX_DivineTomb_EmptyCatacombs_PassageTomb_ae0d9ff0-b51c-4289-9eec-034092f110dd)
+THEN
+ItemSetCanInteract(ITEMGUID_S_ARX_DivineTomb_EmptyCatacombs_Hatch_2163c73e-dfc8-4c84-954f-78b342099a53, 1);
+PlayEffect(ITEMGUID_S_ARX_DivineTomb_EmptyCatacombs_Hatch_2163c73e-dfc8-4c84-954f-78b342099a53, "RS3_FX_UI_PerceptionReveal_GroundLarge_01");
+PROC_StopLoopEffect(ITEMGUID_S_ARX_DivineTomb_EmptyCatacombs_PassageTomb_ae0d9ff0-b51c-4289-9eec-034092f110dd, "ARX_DivineTomb_EmptyCatacombs_MovingTomb");
+ItemSetForceSynch(ITEMGUID_S_ARX_DivineTomb_EmptyCatacombs_PassageTomb_ae0d9ff0-b51c-4289-9eec-034092f110dd, 0);
+ItemSetForceSynch(ITEMGUID_S_ARX_DivineTomb_EmptyCatacombs_Hatch_2163c73e-dfc8-4c84-954f-78b342099a53, 0);
+
+IF
+CharacterUsedItem((CHARACTERGUID)_Var1, ITEMGUID_S_ARX_DivineTomb_EmptyCatacombs_PassageTomb_ae0d9ff0-b51c-4289-9eec-034092f110dd)
+THEN
+Proc_StartDialog(1, "ARX_AD_DivineTomb_EmptyTomb", _Var1);
+
+IF
+CharacterEnteredTrigger((CHARACTERGUID)_Var1, TRIGGERGUID_S_ARX_DivineTomb_EmptyCatacombs_SubregionBox_487af5bb-537d-4367-8e50-e3815fc32012)
+THEN
+PartySetFlag(_Var1, "QuestUpdate_ARX_HuntingForDallis_DallisMissing");
+
+
+EXITSECTION
+ENDEXITSECTION
+
+ParentTargetEdge "ARX"

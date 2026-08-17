@@ -1,0 +1,91 @@
+Version 1
+SubGoalCombiner SGC_AND
+
+INITSECTION
+DB_RC_GY_AngelPuzzleCurrentPos(1);
+DB_Dialogs(ITEMGUID_S_RC_GY_AngelStatue_c71dbd6c-8ce9-46b6-8571-ef126634019b, "RC_GY_AngelStatue");
+DB_Dialogs(ITEMGUID_S_RC_GY_BrokenAngel_ccae6f79-a122-40ea-b23e-ae8c1e92cb28, "RC_GY_AngelStatueBroken");
+
+KBSECTION
+IF
+ObjectFlagSet("RC_GY_RotateAngel", ITEMGUID_S_RC_GY_AngelStatue_c71dbd6c-8ce9-46b6-8571-ef126634019b, (INTEGER)_Var1)
+THEN
+ObjectClearFlag(ITEMGUID_S_RC_GY_AngelStatue_c71dbd6c-8ce9-46b6-8571-ef126634019b, "RC_GY_RotateAngel", _Var1);
+PlaySound(ITEMGUID_S_RC_GY_AngelStatue_c71dbd6c-8ce9-46b6-8571-ef126634019b, "Items_Puzzles_MovingObjects_STONE_Stop");
+ItemRotateY(ITEMGUID_S_RC_GY_AngelStatue_c71dbd6c-8ce9-46b6-8571-ef126634019b, 45, 90);
+Proc_RC_GY_AngelRotateStatue();
+
+PROC
+Proc_RC_GY_AngelRotateStatue()
+AND
+DB_RC_GY_AngelPuzzleCurrentPos(_Var1)
+AND
+IntegerSum(_Var1, 1, _Var2)
+AND
+IntegertoString(_Var2, _Var3)
+THEN
+NOT DB_RC_GY_AngelPuzzleCurrentPos(_Var1);
+DB_RC_GY_AngelPuzzleCurrentPos(_Var2);
+DebugText(ITEMGUID_S_RC_GY_AngelStatue_c71dbd6c-8ce9-46b6-8571-ef126634019b, _Var3);
+
+IF
+DB_RC_GY_AngelPuzzleCurrentPos(_Var1)
+AND
+_Var1 > 8
+THEN
+NOT DB_RC_GY_AngelPuzzleCurrentPos(_Var1);
+DB_RC_GY_AngelPuzzleCurrentPos(1);
+DebugText(ITEMGUID_S_RC_GY_AngelStatue_c71dbd6c-8ce9-46b6-8571-ef126634019b, "1");
+
+IF
+DB_RC_GY_AngelPuzzleCurrentPos(5)
+AND
+GlobalGetFlag("RC_GY_AngelStatueRepaired", 1)
+AND
+QueryOnlyOnce("RC_GY_OpenAngelCrypt")
+THEN
+Proc_RC_GY_Statue_End();
+
+IF
+GlobalFlagSet("RC_GY_AngelStatueRepaired")
+AND
+DB_RC_GY_AngelPuzzleCurrentPos(5)
+AND
+QueryOnlyOnce("RC_GY_OpenAngelCrypt")
+THEN
+Proc_RC_GY_Statue_End();
+
+PROC
+Proc_RC_GY_Statue_End()
+THEN
+DialogRequestStop(ITEMGUID_S_RC_GY_AngelStatue_c71dbd6c-8ce9-46b6-8571-ef126634019b);
+PlayEffect(ITEMGUID_S_Statue_A_c71dbd6c-8ce9-46b6-8571-ef126634019b, "RS3_FX_GP_ScriptedEvent_Teleport_GenericSmoke_01");
+PlayEffect(ITEMGUID_S_RC_GY_BrokenAngel_ccae6f79-a122-40ea-b23e-ae8c1e92cb28, "RS3_FX_GP_ScriptedEvent_Teleport_GenericSmoke_01");
+ItemUnlockAndOpen(ITEMGUID_S_RC_GY_StatueCrypt_71c98b07-ed12-40c1-a4d6-52cec970536a);
+ItemSetCanInteract(ITEMGUID_S_RC_GY_AngelStatue_c71dbd6c-8ce9-46b6-8571-ef126634019b, 0);
+GlobalSetFlag("RC_GY_AngelCryptEnd");
+
+IF
+ItemTemplateCombinedWithItemTemplate("PUZ_Statue_Angel_Head_5a14a31c-992c-47ae-98c7-aa3b96f720fd", "PUZ_Statue_Angel_Broken_5582e3ea-d186-4718-8406-22ffabc1c9eb", _, _, _, _, _)
+THEN
+Transform(ITEMGUID_S_RC_GY_BrokenAngel_ccae6f79-a122-40ea-b23e-ae8c1e92cb28, "PUZ_Statue_Angel_afed1daa-4ddf-471f-9f9e-1084e4fdf7fd", 0);
+PlaySound(ITEMGUID_S_RC_GY_BrokenAngel_ccae6f79-a122-40ea-b23e-ae8c1e92cb28, "Items_Puzzles_MovingObjects_STONE_Stop");
+GlobalSetFlag("RC_GY_AngelStatueRepaired");
+ItemDestroy(ITEMGUID_S_RC_GY_Angel_Head_e0d73283-f2ee-469c-b075-6899a4a4c7b5);
+
+IF
+ObjectFlagSet("RC_GY_BrokenStatueRepair", (CHARACTERGUID)_Var1, _)
+THEN
+ObjectClearFlag(_Var1, "RC_GY_BrokenStatueRepair", 0);
+OpenCraftUI(_Var1, ITEMGUID_S_RC_GY_BrokenAngel_ccae6f79-a122-40ea-b23e-ae8c1e92cb28);
+
+IF
+ObjectFlagSet("RC_GY_BrokenStatue_AttemptRotate", (GUIDSTRING)_Var1, _)
+THEN
+PlaySound(_Var1, "SE_Angelic_statue_blocked_rotation");
+
+
+EXITSECTION
+ENDEXITSECTION
+
+ParentTargetEdge "ReapersCoast"

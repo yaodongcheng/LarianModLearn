@@ -1,0 +1,555 @@
+Version 1
+SubGoalCombiner SGC_AND
+
+INITSECTION
+DB_RC_QuestDef_DeadCharacterUpdates(CHARACTERGUID_S_RC_DW_Julian_356538aa-90b6-4cc0-89e9-53dc3633e12d, "QuestUpdate_RC_DW_DwarvenCriminals_KilledJulian");
+DB_RC_QuestDef_DeadCharacterUpdates(CHARACTERGUID_S_RC_DF_Paladin_1_e732339e-28b6-4736-bbad-a6fdcceca684, "QuestUpdate_RC_DF_PaladinCheckpoint_PaladinDead");
+DB_RC_QuestDef_DeadCharacterUpdates(CHARACTERGUID_S_RC_MIL_Roost_6fffadfe-b2a8-4e12-a664-ba84c0b0a3a3, "QuestUpdate_RC_MIL_AvengingSaheila_RoostDead");
+DB_RC_QuestDef_DeadCharacterUpdates(CHARACTERGUID_S_GLO_Tovah_69c31947-b004-44aa-b856-2a9a96ff218a, "QuestUpdate_RC_MIL_AvengingSaheila_TovahDead");
+DB_RC_QuestDef_DeadCharacterUpdates(CHARACTERGUID_S_GLO_Tovah_69c31947-b004-44aa-b856-2a9a96ff218a, "QuestUpdate_RC_MIL_RescuingSaheila_TovahDead");
+DB_RC_QuestDef_DeadCharacterUpdates(CHARACTERGUID_S_RC_GY_WronglyBuried_Skelly_c22432fd-e272-4f16-b09a-1afd09d01ad8, "QuestUpdate_RC_GY_WronglyBuried_SkeletonDead");
+DB_RC_QuestDef_DeadCharacterUpdates(CHARACTERGUID_S_GLO_Tarquin_a3d0cdcc-d0b0-464d-9ad7-43b38baed620, "QuestUpdate_RC_GY_Godslayer_TarquinDead");
+DB_RC_QuestDef_DeadCharacterUpdates(CHARACTERGUID_S_RC_MIL_LoneWolf1_e6a57615-aee7-46b2-927a-a089ccbfdc22, "QuestUpdate_RC_MIL_SavingCorbin_CorbinDead");
+DB_KilledEvent(CHARACTERGUID_S_RC_GY_RykersSpider_bdc57d81-43fb-4592-8387-efd757a9b3be, "QuestUpdate_RC_GY_RykersSpider_SpiderDead");
+DB_KilledEvent(CHARACTERGUID_S_FTJ_SW_Warrior_SeekerCaptain_1329f018-23e4-4717-9bc8-074b28d04c54, "QuestUpdate_RC_FL_GarethFarm_GarethDead");
+DB_KilledEvent(CHARACTERGUID_S_RC_DW_WhiteMagister_b1bdd004-a286-4ad5-9826-a763d672b2a7, "QuestUpdate_CORE_Chapter4_RC_Reimond_Killed");
+DB_RC_FL_Garethparents(CHARACTERGUID_S_RC_FL_GarethMother_4baf3c5c-6604-43b1-aef6-6b39afceceaf);
+DB_RC_FL_Garethparents(CHARACTERGUID_S_RC_FL_GarethFather_c96cd4d8-3e1f-4bcb-a637-a48ce9b284b7);
+DB_RC_FTJ_Godwoken_MetGodUpdates("QuestUpdate_FTJ_Godwoken_MetGodRC2Start", 0, "GLO_Has2MaxMP");
+DB_RC_FTJ_Godwoken_MetGodUpdates("QuestUpdate_FTJ_Godwoken_MetGodRC2", 1, "GLO_Has2MaxMP");
+DB_RC_FTJ_Godwoken_MetGodUpdates("QuestUpdate_FTJ_Godwoken_MetGodRC3Start", 0, "GLO_Has3MaxMP");
+DB_RC_FTJ_Godwoken_MetGodUpdates("QuestUpdate_FTJ_Godwoken_MetGodRC3", 1, "GLO_Has3MaxMP");
+DB_RC_DW_DwarvenCriminals_FoundWrongLetters(ITEMGUID_S_RC_WC_BombScientist_LetterToHannag_0f80a878-3e67-46bc-8aa1-7dadcd88f7fa);
+DB_RC_DW_DwarvenCriminals_FoundWrongLetters(ITEMGUID_S_RC_WC_BombScientist_Book1_4b75324a-a301-44f0-86c4-6ac4944b2f83);
+DB_RC_DW_DwarvenCriminals_FoundWrongLetters(ITEMGUID_S_RC_WC_BombScientist_Book2_e60b3e67-9d3d-4afc-bc44-6146a75abbd0);
+DB_RC_DW_DwarvenCriminals_FoundWrongLetters(ITEMGUID_S_RC_DW_WC_PeacekeeperManifesto_1d25feb1-d456-4609-a263-9be77b5dd0f2);
+DB_RC_DeclinedOrAcceptedSP_Update("QuestUpdate_RC_BF_ThePresence_AcceptedSP", "RC_DW_Meistr_SourceKnowledge_Jahan");
+DB_RC_DeclinedOrAcceptedSP_Update("QuestUpdate_RC_BF_ThePresence_DeclinedSP", "RC_BF_DemonHunter_DeclinedSP");
+DB_RC_DeclinedOrAcceptedSP_Update("QuestUpdate_RC_BI_ThePresence_AcceptedSP", "RC_BI_ThePresence_GotSourceReward");
+DB_RC_DeclinedOrAcceptedSP_Update("QuestUpdate_RC_BI_ThePresence_DeclinedSP", "RC_BI_LizardDemon_DeclinedSP");
+DB_RC_DeclinedOrAcceptedSP_Update("QuestUpdate_RC_BF_CorneredSourcerer_AcceptedSP", "RC_DW_Meistr_SourceKnowledge_Hannag");
+DB_RC_DeclinedOrAcceptedSP_Update("QuestUpdate_RC_BF_CorneredSourcerer_DeclinedSP", "RC_BF_CorneredSourcerer_RefusedPoint");
+DB_RC_DeclinedOrAcceptedSP_Update("QuestUpdate_RC_GY_RykersContract_AcceptedSP", "RC_DW_Meistr_SourceKnowledge_Ryker");
+DB_RC_DeclinedOrAcceptedSP_Update("QuestUpdate_RC_GY_RykersContract_DeclinedSP", "RC_GY_Ryker_DeclinedSP");
+DB_RC_DeclinedOrAcceptedSP_Update("QuestUpdate_RC_MIL_RescuingSaheila_AcceptedSP", "RC_DW_Meistr_SourceKnowledge_Saheila");
+DB_RC_DeclinedOrAcceptedSP_Update("QuestUpdate_RC_MIL_RescuingSaheila_DeclinedSP", "RC_MIL_Saheila_DeclinedSP");
+DB_RC_DW_Meistr_Teacher_Dead(S_RC_DW_WC_BossFight_Skeleton_Mordus_d46ade3f-f786-4fcc-975c-361a106f2853, "QuestUpdate_RC_DW_Meistr_MordusDead");
+DB_RC_DW_Meistr_Teacher_Dead(CHARACTERGUID_S_RC_GY_Ryker_522b8095-b539-4a82-84f3-bf8e5a74dfe4, "QuestUpdate_RC_DW_Meistr_RykerDead");
+DB_RC_DW_Meistr_Teacher_Dead(CHARACTERGUID_S_GLO_Jahan_4d222cfd-49c8-41d3-8cb7-2a2b56232633, "QuestUpdate_RC_DW_Meistr_JahanDead");
+DB_RC_DW_Meistr_Teacher_Dead(CHARACTERGUID_S_RC_BF_CorneredSourcerer_Sourcerer_b201a72c-8ead-4bbf-8612-fcd8c0944e52, "QuestUpdate_RC_DW_Meistr_HannagDead");
+DB_RC_DW_Meistr_Teacher_Dead(CHARACTERGUID_S_RC_BF_CorneredSourcerer_Sourcerer_Promised_48ee51f8-8691-4838-b1e6-ac7c1cec4aa4, "QuestUpdate_RC_DW_Meistr_HannagDead");
+DB_RC_DW_Meistr_Teacher_Dead(CHARACTERGUID_S_GLO_Advocate_bfa3e903-78ab-46aa-9a95-54fb956eb2b3, "QuestUpdate_RC_DW_Meistr_DemonDead");
+DB_RC_DW_Meistr_Teacher_Dead(CHARACTERGUID_S_GLO_Saheila_fcacdf08-b05f-4333-b0e0-ddf29c13d8e0, "QuestUpdate_RC_DW_Meistr_SaheilaDead");
+DB_RC_DW_Meistr_Teacher_Dead(CHARACTERGUID_S_GLO_Almira_49b466a9-e67f-4e3c-8f66-3636ba7dd54f, "QuestUpdate_RC_DW_Meistr_AlmiraDead");
+DB_RC_DW_Meistr_Teacher_Met("QuestUpdate_RC_DW_ShadowOverDriftwood_FoundMordus", "QuestUpdate_RC_DW_Meistr_MordusTeacher", "QuestUpdate_RC_DW_Meistr_MordusMet");
+DB_QuestDef_UpdateEvent("RC_DW_Meistr", "RykerMet", "QuestUpdate_RC_GY_RykersContract_GotRykersQuest");
+DB_QuestDef_UpdateEvent("RC_DW_Meistr", "JahanTeacher", "QuestUpdate_RC_BF_ThePresence_FoundDemonHunter");
+DB_QuestDef_UpdateEvent("RC_DW_Meistr", "JahanMet", "QuestUpdate_RC_BF_ThePresence_FoundDemonHunter");
+DB_QuestDef_UpdateEvent("RC_DW_Meistr", "HannagMet", "QuestUpdate_RC_BF_CorneredSourcerer_LearnApprentice");
+DB_QuestDef_UpdateEvent("RC_DW_Meistr", "SaheilaTeacher", "QuestUpdate_RC_MIL_RescuingSaheila_LearnedRescueSaheila");
+DB_QuestDef_UpdateEvent("RC_DW_Meistr", "SaheilaMet", "QuestUpdate_RC_MIL_RescuingSaheila_LearnedRescueSaheila");
+DB_QuestDef_UpdateEvent("RC_DW_Meistr", "AlmiraTeacher", "QuestUpdate_RC_FL_BrokenPromises_MetAlmira");
+DB_QuestDef_UpdateEvent("RC_DW_Meistr", "AlmiraMet", "QuestUpdate_RC_FL_BrokenPromises_MetAlmira");
+DB_RC_BookUpdates(ITEMGUID_S_RC_OIL_Caves_AtaraxianHint_Note_4b0e0db3-bcae-4bb7-b717-8f2d9a73ac77, "QuestUpdate_RC_OIL_Main_HurryDallis");
+DB_RC_BookUpdates(ITEMGUID_S_RC_OIL_Cave_ExcavationJournal_8f8c8efc-566f-4268-954c-a6d13b533e2e, "QuestUpdate_RC_OIL_Main_DivineStaff");
+DB_RC_BookUpdates(ITEMGUID_S_RC_OIL_Puzzle_Diary_97710657-e96b-42b8-ab78-91ad8dc91fe8, "QuestUpdate_RC_OIL_Main_PuzzleHint");
+DB_RC_BookUpdates(ITEMGUID_S_RC_OIL_Caves_AtaraxianHint_Journal_34b60ff6-c74c-4f36-a890-3030180fc936, "QuestUpdate_RC_OIL_Main_AtaraxianJournal");
+DB_RC_BookUpdates(ITEMGUID_S_RC_BI_Vault_001_Diary_1_268699ce-2b89-4721-9db4-0ddb90d7c643, "QuestUpdate_RC_BI_TheVaults_Diary01");
+DB_RC_BookUpdates(ITEMGUID_S_RC_BI_Vault_001_Diary_2_2afff879-b766-4b2e-938a-66a16593fc0c, "QuestUpdate_RC_BI_TheVaults_Diary02");
+DB_RC_BookUpdates(ITEMGUID_S_RC_BI_Vault_001_Diary_3_80d75b39-aea0-4ecc-a2f3-137d292f4827, "QuestUpdate_RC_BI_TheVaults_Diary03");
+DB_RC_BookUpdates(ITEMGUID_S_RC_BI_Archive_Document_Vault_003_bb47a298-9abf-40c2-ab01-92c4883c6aee, "QuestUpdate_RC_BI_TheVaultGodwoken_BookGodwoken");
+DB_RC_BookUpdates(ITEMGUID_S_RC_BI_Archive_Document_Vault_002_c81c2e3a-e90d-4f82-9b87-6f1aee7392f0, "QuestUpdate_RC_BI_TheVaultKid_BookKid");
+DB_RC_BookUpdates(ITEMGUID_S_RC_BI_Archive_Document_Vault_001_cf094a5e-2f65-462b-beac-6d474f6baef9, "QuestUpdate_RC_BI_TheVaultAdventurer_BookAdventurer");
+DB_RC_BookUpdates(ITEMGUID_S_RC_MIL_DOContract_e0571cdc-625b-4f41-880b-7990d034721e, "QuestUpdate_FTJ_Hunted_LearnDivineOrder");
+DB_RC_BookUpdates(ITEMGUID_S_RC_WC_BombScientist_LetterToHannag_0f80a878-3e67-46bc-8aa1-7dadcd88f7fa, "QuestUpdate_RC_DW_ShadowOverDriftwood_HannagLetter");
+DB_RC_BookUpdates(ITEMGUID_S_RC_GY_RykerPetLedger_59826170-2b4f-4971-9bcd-98a0374c38a6, "QuestUpdate_CORE_Covenant_Ryker_Book");
+DB_RC_BookUpdates(ITEMGUID_S_RC_DW_WC_EmpressLetter_ffaa5485-ccc8-4e66-a69b-52316fdc7c82, "QuestUpdate_CORE_Chapter4_RC_Queen_LearnedPlanDWWC");
+DB_RC_DialogStartedUpdate("RC_DW_SourceLich", "QuestUpdate_FTJ_OriginFane_LeftLich");
+DB_RC_DialogStartedUpdate("RC_OIL_EternalArtefact1", "QuestUpdate_FTJ_OriginFane_FoundEternalRelics");
+DB_RC_DialogStartedUpdate("RC_OIL_EternalArtefact2", "QuestUpdate_FTJ_OriginFane_FoundEternalRelics");
+DB_RC_DialogStartedUpdate("RC_OIL_EternalArtefact1", "QuestUpdate_FTJ_COM_Fane_FoundEternalRelics");
+DB_RC_DialogStartedUpdate("RC_OIL_EternalArtefact2", "QuestUpdate_FTJ_COM_Fane_FoundEternalRelics");
+ProcTriggerRegisterForPlayers(TRIGGERGUID_S_RC_OIL_CaveEntry_BoxTrigger_47798a16-fafd-4aed-910d-f8f368e49582);
+DB_RC_OIL_Main_SpeakAeteranDallis_Conditions("QuestUpdate_RC_OIL_Main_DivineStaff");
+DB_RC_OIL_Main_SpeakAeteranDallis_Conditions("QuestUpdate_RC_OIL_Main_MagisterGhost");
+DB_RC_OIL_Main_SpeakAeteranDallis_Conditions("QuestUpdate_RC_OIL_Main_BlackRingReveal");
+DB_RC_DW_ShadowOverDriftwood_GiveDropUpdate("RC_DW_ShadowOverDriftwood_MordusGiveProof", "QuestUpdate_RC_DW_ShadowOverDriftwood_MordusGiveProof");
+DB_RC_DW_ShadowOverDriftwood_GiveDropUpdate("RC_DW_ShadowOverDriftwood_MordusDropProof", "QuestUpdate_RC_DW_ShadowOverDriftwood_MordusDropProof");
+
+KBSECTION
+IF
+CharacterSawCharacter((CHARACTERGUID)_Var1, (CHARACTERGUID)_Var2)
+AND
+DB_RC_QuestDef_DeadCharacterUpdates(_Var2, _Var3)
+AND
+DB_IsPlayer(_Var1)
+AND
+DB_Dead(_Var2)
+THEN
+ObjectSetFlag(_Var1, _Var3);
+
+IF
+CharacterDied((CHARACTERGUID)_Var1)
+AND
+DB_RC_QuestDef_DeadCharacterUpdates(_Var1, _Var2)
+AND
+DB_IsPlayer(_Var3)
+AND
+CharacterCanSee(_Var3, _Var1, 1)
+THEN
+ObjectSetFlag(_Var3, _Var2);
+
+IF
+CharacterSawCharacter((CHARACTERGUID)_Var1, (CHARACTERGUID)_Var2)
+AND
+DB_RC_FL_Garethparents(_Var2)
+AND NOT
+Qry_RC_FL_Garethparents_Alive()
+AND
+DB_IsPlayer(_Var1)
+THEN
+ObjectSetFlag(_Var1, "QuestUpdate_RC_FL_Garethparents_BothDead");
+
+IF
+CharacterDied((CHARACTERGUID)_Var1)
+AND
+DB_RC_FL_Garethparents(_Var1)
+AND NOT
+Qry_RC_FL_Garethparents_Alive()
+AND
+DB_IsPlayer(_Var2)
+AND
+CharacterCanSee(_Var2, _Var1, 1)
+THEN
+ObjectSetFlag(_Var2, "QuestUpdate_RC_FL_Garethparents_BothDead");
+
+QRY
+Qry_RC_FL_Garethparents_Alive()
+AND
+DB_RC_FL_Garethparents(_Var1)
+AND NOT
+DB_Dead(_Var1)
+THEN
+DB_NOOP(1);
+
+IF
+DB_Dead(CHARACTERGUID_S_GLO_Advocate_bfa3e903-78ab-46aa-9a95-54fb956eb2b3)
+AND
+DB_Sees(_Var1, CHARACTERGUID_S_GLO_Advocate_bfa3e903-78ab-46aa-9a95-54fb956eb2b3)
+AND
+DB_IsPlayer(_Var1)
+AND
+UserGetFlag(_Var1, "QuestUpdate_RC_BI_ThePresence_Reported", 0)
+AND
+UserGetFlag(_Var1, "QuestUpdate_RC_BI_ThePresence_UnexpectedCompletion", 0)
+THEN
+UserSetFlag(_Var1, "QuestUpdate_CORE_Chapter4_RC_Advocate_Choice_Killed");
+
+IF
+ObjectFlagSet((STRING)_Var1, (GUIDSTRING)_Var2, _)
+AND
+DB_RC_DW_ShadowOverDriftwood_GiveDropUpdate(_Var1, _Var4)
+AND
+QRY_RC_DW_TaskedByLohar(_Var2)
+THEN
+ObjectSetFlag(_Var2, _Var4);
+
+IF
+ObjectFlagSet((STRING)_Var1, (GUIDSTRING)_Var2, _)
+AND
+DB_RC_DW_ShadowOverDriftwood_GiveDropUpdate(_Var1, _)
+AND NOT
+QRY_RC_DW_TaskedByLohar(_Var2)
+THEN
+ObjectSetFlag(_Var2, "QuestUpdate_RC_DW_ShadowOverDriftwood_ReturnToDW");
+
+QRY
+QRY_RC_DW_TaskedByLohar((CHARACTERGUID)_Var1)
+AND
+ObjectGetFlag(_Var1, "QuestUpdate_RC_DW_CoverTheTracks_AbandonedHouse_Start", 1)
+THEN
+DB_NOOP(1);
+
+QRY
+QRY_RC_DW_TaskedByLohar((CHARACTERGUID)_Var1)
+AND
+ObjectGetFlag(_Var1, "RC_DW_GotDwarfBossJob", 1)
+THEN
+DB_NOOP(1);
+
+IF
+SavegameLoaded((INTEGER)_Var1, (INTEGER)_Var2, (INTEGER)_Var3, (INTEGER)_Var4)
+AND
+QRY_VersionIsOlderThan(_Var1, _Var2, _Var3, _Var4, 3, 6, 2, 0)
+THEN
+DB_RC_DW_Meistr_Teacher_Dead(CHARACTERGUID_S_RC_BF_CorneredSourcerer_Sourcerer_Promised_48ee51f8-8691-4838-b1e6-ac7c1cec4aa4, "QuestUpdate_RC_DW_Meistr_HannagDead");
+
+IF
+SavegameLoaded((INTEGER)_Var1, (INTEGER)_Var2, (INTEGER)_Var3, (INTEGER)_Var4)
+AND
+QRY_VersionIsOlderThan(_Var1, _Var2, _Var3, _Var4, 3, 6, 2, 0)
+AND
+DB_RC_DW_Meistr_Teacher_Dead(_Var5, _Var6)
+THEN
+DB_SeenDeadNPCPartyFlag(_Var5, _Var6);
+
+IF
+DB_RC_DW_Meistr_Teacher_Dead(_Var1, _Var2)
+THEN
+DB_SeenDeadNPCPartyFlag(_Var1, _Var2);
+
+IF
+ObjectFlagSet((STRING)_Var1, (CHARACTERGUID)_Var2, _)
+AND
+DB_IsPlayer(_Var2)
+AND
+DB_RC_DW_Meistr_Teacher_Met(_Var1, _Var4, _Var5)
+AND
+PartyGetFlag(_Var2, _Var4, 1)
+THEN
+PartySetFlag(_Var2, _Var5);
+
+IF
+GlobalFlagSet("RC_DW_WC_BossFight_BossFlee")
+AND
+DB_IsPlayer(_Var1)
+THEN
+PartySetFlag(_Var1, "QuestUpdate_RC_DW_Meistr_MordusEscape");
+
+IF
+ObjectFlagSet("QuestUpdate_RC_BF_CorneredSourcerer_LearnApprentice", (CHARACTERGUID)_Var1, _)
+AND
+ObjectGetFlag(_Var1, "QuestUpdate_RC_DW_Meistr_HannagTeacher", 0)
+AND
+ObjectGetFlag(_Var1, "QuestUpdate_RC_DW_Meistr_Heist_Meistr", 0)
+THEN
+PartySetFlag(_Var1, "QuestUpdate_RC_DW_Meistr_HannagTeacher_Parents");
+
+IF
+ObjectFlagShared("QuestUpdate_RC_BF_CorneredSourcerer_LearnApprentice", (CHARACTERGUID)_Var1, _)
+AND
+ObjectGetFlag(_Var1, "QuestUpdate_RC_DW_Meistr_HannagTeacher", 0)
+AND
+ObjectGetFlag(_Var1, "QuestUpdate_RC_DW_Meistr_Heist_Meistr", 0)
+THEN
+PartySetFlag(_Var1, "QuestUpdate_RC_DW_Meistr_HannagTeacher_Parents");
+
+IF
+CharacterUsedItem((CHARACTERGUID)_Var1, ITEMGUID_S_RC_DW_SurpriseDate_ThiefBag_3b676562-61d0-439c-84a6-e7f583084579)
+AND
+DB_IsPlayer(_Var1)
+AND
+PartyGetFlag(_Var1, "QuestUpdate_RC_DW_SurpriseDate_Thugs_GaveLoot", 1)
+THEN
+InventoryLaunchIterator(ITEMGUID_S_RC_DW_SurpriseDate_ThiefBag_3b676562-61d0-439c-84a6-e7f583084579, "RC_DW_MissingEquipment_ItemInBag", "RC_DW_MissingEquipment_IterEnd");
+DB_RC_DW_SurpriseDate_PlayerUsedBag(_Var1);
+
+IF
+StoryEvent((GUIDSTRING)_Var1, "RC_DW_MissingEquipment_ItemInBag")
+THEN
+DB_RC_DW_SurpriseDate_ItemInBag(1);
+
+IF
+GlobalFlagSet("RC_DW_MissingEquipment_IterEnd")
+AND NOT
+DB_RC_DW_SurpriseDate_ItemInBag(1)
+AND
+DB_RC_DW_SurpriseDate_PlayerUsedBag(_Var1)
+THEN
+PartySetFlag(_Var1, "QuestUpdate_RC_DW_MissingEquipment_LostItem");
+NOT DB_RC_DW_SurpriseDate_PlayerUsedBag(_Var1);
+
+IF
+GlobalFlagSet("RC_DW_MissingEquipment_IterEnd")
+AND
+DB_RC_DW_SurpriseDate_ItemInBag(1)
+AND
+DB_RC_DW_SurpriseDate_PlayerUsedBag(_Var1)
+THEN
+PartySetFlag(_Var1, "QuestUpdate_RC_DW_MissingEquipment_FoundItem");
+NOT DB_RC_DW_SurpriseDate_ItemInBag(1);
+NOT DB_RC_DW_SurpriseDate_PlayerUsedBag(_Var1);
+
+IF
+DialogStarted((STRING)_Var1, (INTEGER)_Var2)
+AND
+DB_RC_DialogStartedUpdate(_Var1, _Var3)
+AND
+DB_DialogPlayers(_Var2, _Var4, _)
+THEN
+ObjectSetFlag(_Var4, _Var3);
+
+IF
+CharacterUsedItemTemplate((CHARACTERGUID)_Var1, "PLANT_Blackroot_2ddf7fc1-4602-40f7-b6e0-781c9ff7472a", _)
+AND
+DB_IsPlayer(_Var1)
+THEN
+PartySetFlag(_Var1, "QuestUpdate_RC_DW_Meistr_FoundRoots");
+
+IF
+ObjectFlagSet("RC_DW_Meistr_OpenedPortal", (CHARACTERGUID)_Var1, _)
+AND
+ObjectGetFlag(_Var1, "GLO_Has2MaxMP", 0)
+AND
+ObjectGetFlag(_Var1, "GLO_Has3MaxMP", 0)
+THEN
+Proc_RC_FTJ_Godwoken_SetUpdate(_Var1, "QuestUpdate_FTJ_Godwoken_MetGodRC1");
+
+IF
+ObjectFlagSet("RC_DW_Meistr_OpenedPortal", (CHARACTERGUID)_Var1, _)
+AND
+DB_RC_FTJ_Godwoken_MetGodUpdates(_Var3, _Var4, _Var5)
+AND
+ObjectGetFlag(_Var1, _Var5, 1)
+AND
+ObjectGetFlag(_Var1, "RC_DW_Meistr_Dream_Visit1", _Var4)
+THEN
+Proc_RC_FTJ_Godwoken_SetUpdate(_Var1, _Var3);
+
+PROC
+Proc_RC_FTJ_Godwoken_SetUpdate((CHARACTERGUID)_Var1, (STRING)_Var2)
+AND
+_Var1 != CHARACTERGUID_S_Player_Lohse_bb932b13-8ebf-4ab4-aac0-83e6924e4295
+THEN
+ObjectSetFlag(_Var1, _Var2);
+
+PROC
+Proc_RC_FTJ_Godwoken_SetUpdate(CHARACTERGUID_S_Player_Lohse_bb932b13-8ebf-4ab4-aac0-83e6924e4295, (STRING)_Var1)
+AND
+StringConcatenate(_Var1, "_Lohse", _Var2)
+THEN
+ObjectSetFlag(CHARACTERGUID_S_Player_Lohse_bb932b13-8ebf-4ab4-aac0-83e6924e4295, _Var2);
+
+PROC
+ProcRegionStarted("RC_Main")
+AND
+DB_IsPlayer(_Var1)
+THEN
+PartySetFlag(_Var1, "QuestUpdate_FTJ_SaheilaFate_RCStart");
+
+IF
+GameBookInterfaceClosed(ITEMGUID_S_RC_FL_Lowlands_ElvenNote_78b36edc-5fc8-4e92-88e6-835be4c455d8, (CHARACTERGUID)_Var1)
+THEN
+PartySetFlag(_Var1, "QuestUpdate_FTJ_SaheilaFate_HintElf");
+
+IF
+CharacterEnteredTrigger((CHARACTERGUID)_Var1, TRIGGERGUID_S_RC_MIL_CampEnterTrigger1_5c35a415-fb69-45a8-9458-7c6c28fa33ef)
+THEN
+PartySetFlag(_Var1, "QuestUpdate_FTJ_SaheilaFate_FoundElf");
+
+IF
+CharacterEnteredTrigger((CHARACTERGUID)_Var1, TRIGGERGUID_S_RC_MIL_CampEnterTrigger3_99eafee0-9fe4-4d21-93eb-107123a61925)
+THEN
+PartySetFlag(_Var1, "QuestUpdate_FTJ_SaheilaFate_FoundElf");
+
+IF
+ObjectFlagSet("RC_BI_ThePresence_KnowCoS", (CHARACTERGUID)_Var1, _)
+THEN
+PartySetFlag(_Var1, "QuestUpdate_RC_DW_Meistr_Location");
+
+IF
+ObjectFlagSet("QuestUpdate_RC_GY_RykersSpider_KnowsRykerSecret", (GUIDSTRING)_Var1, _)
+THEN
+ObjectSetFlag(_Var1, "QuestUpdate_RC_GY_RykersContract_KnowsRykerSecret");
+
+IF
+CharacterEnteredTrigger((CHARACTERGUID)_Var1, TRIGGERGUID_S_RC_OIL_PuzzleRoom_eac67aec-2f41-4519-a94e-66fe1d3dfa6a)
+AND
+DB_IsPlayer(_Var1)
+THEN
+PartySetFlag(_Var1, "QuestUpdate_RC_OIL_Main_PuzzleFind");
+
+IF
+CharacterEnteredTrigger((CHARACTERGUID)_Var1, TRIGGERGUID_S_RC_OIL_CaveEntry_BoxTrigger_47798a16-fafd-4aed-910d-f8f368e49582)
+AND
+DB_IsPlayer(_Var1)
+THEN
+PartySetFlag(_Var1, "QuestUpdate_RC_OIL_Main_Cave");
+
+IF
+CharacterEnteredTrigger((CHARACTERGUID)_Var1, TRIGGERGUID_S_RC_OIL_SUB_Workshop_0bc5f160-7494-4f42-8ac5-993b7b8fb229)
+AND
+DB_IsPlayer(_Var1)
+THEN
+PartySetFlag(_Var1, "QuestUpdate_RC_OIL_Main_Workshop");
+
+IF
+CharacterEnteredTrigger((CHARACTERGUID)_Var1, TRIGGERGUID_S_RC_OIL_SUB_RaanaarTemple_2cfa254a-7f85-4cb7-94d0-ff3ced73ab8a)
+AND
+DB_IsPlayer(_Var1)
+THEN
+PartySetFlag(_Var1, "QuestUpdate_RC_OIL_Main_Temple");
+
+IF
+CharacterUsedItem((CHARACTERGUID)_Var1, ITEMGUID_S_RC_OIL_Cave_EternalsBook1_d435c3a1-81ee-4e25-a52f-fa4df82612a6)
+THEN
+PartySetFlag(_Var1, "QuestUpdate_RC_GY_RykersContract_FoundWrongTablets");
+
+IF
+CharacterUsedItem((CHARACTERGUID)_Var1, ITEMGUID_S_RC_OIL_Cave_EternalsBook2_8966d247-d2a7-48da-a67c-6d0da2353d25)
+THEN
+PartySetFlag(_Var1, "QuestUpdate_RC_GY_RykersContract_FoundWrongTablets");
+
+IF
+ItemAddedToCharacter(ITEMGUID_S_RC_OIL_AtaraxianArtefact_f7f7f0ca-772c-4679-a12a-e06d034eadc9, (CHARACTERGUID)_Var1)
+AND
+DB_IsPlayer(_Var1)
+THEN
+PartySetFlag(_Var1, "QuestUpdate_RC_OIL_Main_Tablet");
+
+IF
+ObjectFlagSet("RC_OIL_Main_SpeakAeteran_SetUpdate", (CHARACTERGUID)_Var1, _)
+AND
+DB_RC_OIL_Main_SpeakAeteranDallis_Conditions(_Var3)
+AND
+PartyGetFlag(_Var1, _Var3, 1)
+THEN
+PartySetFlag(_Var1, "QuestUpdate_RC_OIL_Main_SpeakAeteranDallis");
+
+IF
+ObjectFlagSet("RC_OIL_Main_SpeakAeteran_SetUpdate", (CHARACTERGUID)_Var1, _)
+AND
+PartyGetFlag(_Var1, "QuestUpdate_RC_OIL_Main_SpeakAeteranDallis", 0)
+THEN
+PartySetFlag(_Var1, "QuestUpdate_RC_OIL_Main_SpeakAeteran");
+
+IF
+ObjectFlagSet("RC_OIL_BR3_HeardRelics", (CHARACTERGUID)_Var1, _)
+THEN
+PartySetFlag(_Var1, "QuestUpdate_RC_OIL_Main_BlackRingReveal");
+
+IF
+ObjectFlagSet("RC_OIL_BR2_HeardRelics", (CHARACTERGUID)_Var1, _)
+THEN
+PartySetFlag(_Var1, "QuestUpdate_RC_OIL_Main_BlackRingHint");
+
+IF
+DialogEnded("RC_DW_WC_BossFight_Mordus", (INTEGER)_Var1)
+AND
+DB_DialogPlayers(_Var1, _Var2, _)
+AND
+PartyGetFlag(_Var2, "RC_DW_WC_RefusedToEatVoidwokenHeart", 1)
+THEN
+PartySetFlag(_Var2, "QuestUpdate_RC_DW_ShadowOverDriftwood_DeclinedSP");
+
+IF
+ObjectFlagSet((STRING)_Var1, (GUIDSTRING)_Var2, _)
+AND
+DB_RC_DeclinedOrAcceptedSP_Update(_Var4, _Var1)
+THEN
+ObjectSetFlag(_Var2, _Var4);
+
+IF
+ObjectFlagSet("RC_BI_TreeToldDemonName", CHARACTERGUID_S_Player_Lohse_bb932b13-8ebf-4ab4-aac0-83e6924e4295, _)
+AND
+IsTagged(CHARACTERGUID_S_Player_Lohse_bb932b13-8ebf-4ab4-aac0-83e6924e4295, "AVATAR", 1)
+THEN
+ObjectSetFlag(CHARACTERGUID_S_Player_Lohse_bb932b13-8ebf-4ab4-aac0-83e6924e4295, "QuestUpdate_FTJ_OriginLohse_LearnedDemonName");
+
+IF
+ObjectFlagSet("RC_BI_TreeToldDemonName", (CHARACTERGUID)_Var1, _)
+AND
+DB_CompanionAvatarBond(CHARACTERGUID_S_Player_Lohse_bb932b13-8ebf-4ab4-aac0-83e6924e4295, _Var1)
+THEN
+UserSetFlag(_Var1, "QuestUpdate_FTJ_COM_Lohse_LearnedDemonName");
+
+PROC
+ProcRegionStarted("RC_Main")
+AND
+DB_IsPlayer(CHARACTERGUID_S_Player_RedPrince_a26a1efb-cdc8-4cf3-a7b2-b2f9544add6f)
+AND
+ObjectGetFlag(CHARACTERGUID_S_Player_RedPrince_a26a1efb-cdc8-4cf3-a7b2-b2f9544add6f, "QuestUpdate_FTJ_OriginRedPrince_BaharaInfo", 0)
+THEN
+ObjectSetFlag(CHARACTERGUID_S_Player_RedPrince_a26a1efb-cdc8-4cf3-a7b2-b2f9544add6f, "QuestUpdate_FTJ_OriginRedPrince_Act2Start");
+
+PROC
+ProcRegionStarted("RC_Main")
+AND
+DB_IsPlayer(CHARACTERGUID_S_Player_RedPrince_a26a1efb-cdc8-4cf3-a7b2-b2f9544add6f)
+AND
+ObjectGetFlag(CHARACTERGUID_S_Player_RedPrince_a26a1efb-cdc8-4cf3-a7b2-b2f9544add6f, "QuestUpdate_FTJ_OriginRedPrince_BaharaInfo", 1)
+THEN
+ObjectSetFlag(CHARACTERGUID_S_Player_RedPrince_a26a1efb-cdc8-4cf3-a7b2-b2f9544add6f, "QuestUpdate_FTJ_OriginRedPrince_Act2Start_NoDreamer");
+
+PROC
+ProcRegionStarted("RC_Main")
+AND
+DB_CompanionAvatarBond(CHARACTERGUID_S_Player_RedPrince_a26a1efb-cdc8-4cf3-a7b2-b2f9544add6f, _Var1)
+AND
+UserGetFlag(_Var1, "QuestUpdate_FTJ_COM_RedPrince_Bahara", 1)
+THEN
+UserSetFlag(_Var1, "QuestUpdate_FTJ_COM_RedPrince_Act2Start");
+
+PROC
+ProcRegionStarted("RC_Main")
+AND
+DB_CompanionAvatarBond(CHARACTERGUID_S_Player_RedPrince_a26a1efb-cdc8-4cf3-a7b2-b2f9544add6f, _Var1)
+AND
+UserGetFlag(_Var1, "QuestUpdate_FTJ_COM_RedPrince_Start_AfterBahara", 1)
+THEN
+UserSetFlag(_Var1, "QuestUpdate_FTJ_COM_RedPrince_Act2Start");
+
+PROC
+ProcRegionStarted("RC_Main")
+AND
+DB_CompanionAvatarBond(CHARACTERGUID_S_Player_RedPrince_a26a1efb-cdc8-4cf3-a7b2-b2f9544add6f, _Var1)
+AND
+UserGetFlag(_Var1, "QuestUpdate_FTJ_COM_RedPrince_Bahara", 0)
+AND
+UserGetFlag(_Var1, "QuestUpdate_FTJ_COM_RedPrince_Start_AfterBahara", 0)
+THEN
+UserSetFlag(_Var1, "QuestUpdate_FTJ_COM_RedPrince_Act2Start_Dreamer");
+
+IF
+ObjectFlagSet("QuestUpdate_FTJ_Hunted_LearnedSallowMan", (CHARACTERGUID)_Var1, _)
+AND
+UserGetFlag(_Var1, "QuestUpdate_FTJ_Hunted_LearnDivineOrder", 1)
+THEN
+UserSetFlag(_Var1, "QuestUpdate_FTJ_Hunted_LearnDOBR");
+
+IF
+ObjectFlagSet("QuestUpdate_FTJ_Hunted_LearnDivineOrder", (CHARACTERGUID)_Var1, _)
+AND
+UserGetFlag(_Var1, "QuestUpdate_FTJ_Hunted_LearnedSallowMan", 1)
+THEN
+UserSetFlag(_Var1, "QuestUpdate_FTJ_Hunted_LearnDOBR");
+
+IF
+GameBookInterfaceClosed((ITEMGUID)_Var1, (CHARACTERGUID)_Var2)
+AND
+DB_RC_BookUpdates(_Var1, _Var3)
+THEN
+ObjectSetFlag(_Var2, _Var3);
+
+IF
+DialogStarted("RC_DW_WantedPoster2", (INTEGER)_Var1)
+AND
+DB_DialogPlayers(_Var1, _Var2, _)
+THEN
+UserSetFlag(_Var2, "QuestUpdate_CORE_Magisters_DallisLeader");
+
+IF
+GameBookInterfaceClosed(ITEMGUID_S_RC_OIL_Cave_ExcavationJournal_8f8c8efc-566f-4268-954c-a6d13b533e2e, (CHARACTERGUID)_Var1)
+THEN
+UserSetFlag(_Var1, "RC_OIL_Know_Aeteran");
+UserSetFlag(_Var1, "QuestUpdate_CORE_Aeteran_Oilcave_Dig");
+
+PROC
+ProcRegionEnded("RC_Main")
+AND
+DB_IsPlayer(_Var1)
+THEN
+ObjectSetFlag(_Var1, "QuestUpdate_FTJ_Godwoken_HeadingCOS");
+
+PROC
+ProcRegionEnded("RC_Main")
+THEN
+GoalCompleted;
+
+
+EXITSECTION
+NOT DB_KilledEvent(CHARACTERGUID_S_RC_GY_RykersSpider_bdc57d81-43fb-4592-8387-efd757a9b3be, "QuestUpdate_RC_GY_RykersSpider_SpiderDead");
+NOT DB_KilledEvent(CHARACTERGUID_S_FTJ_SW_Warrior_SeekerCaptain_1329f018-23e4-4717-9bc8-074b28d04c54, "QuestUpdate_RC_FL_GarethFarm_GarethDead");
+ENDEXITSECTION
+
+ParentTargetEdge "ReapersCoast"

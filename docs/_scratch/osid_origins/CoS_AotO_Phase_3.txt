@@ -1,0 +1,312 @@
+Version 1
+SubGoalCombiner SGC_AND
+
+INITSECTION
+SetVisible(CHARACTERGUID_S_CoS_AotO_SourceTitan_d230a9d9-e44d-493e-8c69-9570f2fa065f, 0);
+CharacterSetArmorPercentage(CHARACTERGUID_S_CoS_AotO_SourceTitan_d230a9d9-e44d-493e-8c69-9570f2fa065f, 100);
+CharacterSetMagicArmorPercentage(CHARACTERGUID_S_CoS_AotO_SourceTitan_d230a9d9-e44d-493e-8c69-9570f2fa065f, 100);
+CharacterSetHitpointsPercentage(CHARACTERGUID_S_CoS_AotO_SourceTitan_d230a9d9-e44d-493e-8c69-9570f2fa065f, 50);
+DB_CoS_AotO_SourceTitan(CHARACTERGUID_S_CoS_AotO_SourceTitan_d230a9d9-e44d-493e-8c69-9570f2fa065f);
+CharacterSetImmortal(CHARACTERGUID_S_CoS_AotO_SourceTitan_d230a9d9-e44d-493e-8c69-9570f2fa065f, 1);
+SetOnStage(ITEMGUID_S_CoS_AotO_LvBeacon_7704541a-bf3b-44d1-aae4-c49a47b20add, 0);
+SetOnStage(ITEMGUID_S_CoS_AotO_LvBeacon_Helper_eb805737-302b-4dea-9027-97a9cb7633a7, 0);
+SetOnStage(CHARACTERGUID_S_CoS_AotO_CaveInLocation_P3_005_b395a4dc-1c59-4467-a1a1-18c34c9c43de, 0);
+
+KBSECTION
+PROC
+Proc_CoS_AotO_PhaseThreeInit()
+THEN
+GlobalSetFlag("CoS_AotO_Phase_3_Started");
+
+PROC
+Proc_CoS_AotO_PhaseThreeInit()
+AND
+DB_CoS_AotO_LastNemesis(_Var1)
+THEN
+PlayEffect(_Var1, "RS3_FX_GP_ScriptedEvent_CoS_TitanTransform_01_Overlay");
+CharacterSetReactionPriority(_Var1, "Sleep_InCombat", 10000);
+DB_CombatCutscene_PrioritizedObject(_Var1);
+CharacterSetAnimationOverride(_Var1, "skill_cast_shout_01_cast");
+ProcObjectTimer(_Var1, "CoS_AotO_SourceTitanTransformation_Timer", 1100);
+TeleportTo(CHARACTERGUID_S_CoS_AotO_SourceTitan_d230a9d9-e44d-493e-8c69-9570f2fa065f, _Var1);
+TimerLaunch("CoS_AotO_SourceTitanTransformation_CamShake", 600);
+
+IF
+TimerFinished("CoS_AotO_SourceTitanTransformation_CamShake")
+AND
+DB_IsPlayer(_Var1)
+AND
+CharacterIsDead(_Var1, 0)
+THEN
+Proc_ShakeCameraForTime(_Var1, 2000);
+
+PROC
+ProcObjectTimerFinished((CHARACTERGUID)_Var1, "CoS_AotO_SourceTitanTransformation_Timer")
+AND
+GetPosition(_Var1, _Var2, _Var3, _Var4)
+THEN
+Proc_CoS_AotO_CreateSourceTitan();
+
+PROC
+Proc_CoS_AotO_CreateSourceTitan()
+AND
+DB_CoS_AotO_LastNemesis(_Var1)
+THEN
+PlayEffect(CHARACTERGUID_S_CoS_AotO_SourceTitan_d230a9d9-e44d-493e-8c69-9570f2fa065f, "RS3_FX_GP_ScriptedEvent_CoS_TitanTransform_01_Titan");
+CharacterSetReactionPriority(CHARACTERGUID_S_CoS_AotO_SourceTitan_d230a9d9-e44d-493e-8c69-9570f2fa065f, "Sleep_InCombat", 10000);
+SetOnStage(_Var1, 0);
+TeleportTo(CHARACTERGUID_S_CoS_AotO_SourceTitan_d230a9d9-e44d-493e-8c69-9570f2fa065f, _Var1);
+CharacterSetArmorPercentage(CHARACTERGUID_S_CoS_AotO_SourceTitan_d230a9d9-e44d-493e-8c69-9570f2fa065f, 100);
+CharacterSetMagicArmorPercentage(CHARACTERGUID_S_CoS_AotO_SourceTitan_d230a9d9-e44d-493e-8c69-9570f2fa065f, 100);
+CharacterSetHitpointsPercentage(CHARACTERGUID_S_CoS_AotO_SourceTitan_d230a9d9-e44d-493e-8c69-9570f2fa065f, 50);
+CharacterFlushQueue(CHARACTERGUID_S_CoS_AotO_SourceTitan_d230a9d9-e44d-493e-8c69-9570f2fa065f);
+DB_CombatCutscene_PrioritizedObject(CHARACTERGUID_S_CoS_AotO_SourceTitan_d230a9d9-e44d-493e-8c69-9570f2fa065f);
+CharacterSetAnimationOverride(CHARACTERGUID_S_CoS_AotO_SourceTitan_d230a9d9-e44d-493e-8c69-9570f2fa065f, "resurrect");
+TimerLaunch("CoS_AotO_SourceTitan_Spawned", 2500);
+TimerLaunch("CoS_AotO_SourceTitan_Spawned_Visiblity", 10);
+
+PROC
+Proc_CoS_AotO_CreateSourceTitan()
+AND
+DB_IsPlayer(_Var1)
+AND
+CharacterIsDead(_Var1, 0)
+THEN
+CharacterLookAt(_Var1, CHARACTERGUID_S_CoS_AotO_SourceTitan_d230a9d9-e44d-493e-8c69-9570f2fa065f);
+SetStoryEvent(_Var1, "GEN_FallAndGetUp");
+
+IF
+TimerFinished("CoS_AotO_SourceTitan_Spawned_Visiblity")
+THEN
+SetVisible(CHARACTERGUID_S_CoS_AotO_SourceTitan_d230a9d9-e44d-493e-8c69-9570f2fa065f, 1);
+
+IF
+TimerFinished("CoS_AotO_SourceTitan_Spawned")
+AND
+DB_CoS_AotO_SourceTitan(_Var1)
+AND
+GetClosestAlivePlayer(_Var1, _Var2, _)
+AND
+QueryOnlyOnce("CoS_AotO_CheckFirstTimeSourceTitan_Once")
+AND
+StartDialog_Internal("CoS_AotO_Phase2_SourceTitanTransformation", 1, _Var1, _Var2, NULL_00000000-0000-0000-0000-000000000000, NULL_00000000-0000-0000-0000-000000000000, NULL_00000000-0000-0000-0000-000000000000, NULL_00000000-0000-0000-0000-000000000000, 1)
+THEN
+CharacterSetAnimationOverride(CHARACTERGUID_S_CoS_AotO_SourceTitan_d230a9d9-e44d-493e-8c69-9570f2fa065f, "");
+
+IF
+DialogEnded("CoS_AotO_Phase2_SourceTitanTransformation", (INTEGER)_Var1)
+AND
+DialogGetInvolvedPlayer(_Var1, 1, _Var2)
+AND
+DB_CoS_AotO_SourceTitan(_Var3)
+THEN
+CharacterSetImmortal(CHARACTERGUID_S_CoS_AotO_SourceTitan_d230a9d9-e44d-493e-8c69-9570f2fa065f, 0);
+CharacterSetReactionPriority(_Var3, "Sleep_InCombat", 0);
+Proc_CombatCutscene_PrioritizedObject_Purge();
+JumpToTurn(_Var2);
+
+IF
+CharacterKilledBy((CHARACTERGUID)_Var1, (CHARACTERGUID)_Var2, _)
+AND
+DB_CoS_AotO_SourceTitan(_Var1)
+AND
+DB_IsPlayer(_Var2)
+THEN
+SetTag(_Var2, "GODSLAYER");
+
+IF
+CharacterDying(CHARACTERGUID_S_CoS_AotO_SourceTitan_d230a9d9-e44d-493e-8c69-9570f2fa065f)
+AND
+DB_CoS_AotO_CaveIns_Phase2(_Var1)
+THEN
+SetStoryEvent(_Var1, "TryEnterCombat");
+SetOnStage(CHARACTERGUID_S_CoS_AotO_CaveInLocation_P3_005_b395a4dc-1c59-4467-a1a1-18c34c9c43de, 1);
+SetStoryEvent(CHARACTERGUID_S_CoS_AotO_CaveInLocation_P3_005_b395a4dc-1c59-4467-a1a1-18c34c9c43de, "TryEnterCombat");
+
+IF
+CharacterDied(CHARACTERGUID_S_CoS_AotO_SourceTitan_d230a9d9-e44d-493e-8c69-9570f2fa065f)
+AND
+GetPosition(ITEMGUID_S_CoS_AotO_LvBeacon_Helper_eb805737-302b-4dea-9027-97a9cb7633a7, _Var1, _Var2, _Var3)
+THEN
+CreateSurface(CHARACTERGUID_S_CoS_AotO_SourceTitan_d230a9d9-e44d-493e-8c69-9570f2fa065f, "SurfaceNone", 3, 1);
+CreateSurface(ITEMGUID_S_CoS_AotO_LvBeacon_Helper_eb805737-302b-4dea-9027-97a9cb7633a7, "SurfaceNone", 3, 1);
+PlayEffectAtPosition("RS3_FX_GP_ScriptedEvent_HOE_Summoning_01", _Var1, _Var2, _Var3);
+SetOnStage(ITEMGUID_S_CoS_AotO_LvBeacon_7704541a-bf3b-44d1-aae4-c49a47b20add, 1);
+ItemSetForceSynch(ITEMGUID_S_CoS_AotO_LvBeacon_7704541a-bf3b-44d1-aae4-c49a47b20add, 1);
+SetOnStage(ITEMGUID_S_CoS_AotO_LvBeacon_Helper_eb805737-302b-4dea-9027-97a9cb7633a7, 1);
+ItemSetForceSynch(ITEMGUID_S_CoS_AotO_LvBeacon_Helper_eb805737-302b-4dea-9027-97a9cb7633a7, 1);
+DB_CoS_AotO_CaveIns_Phase2(CHARACTERGUID_S_CoS_AotO_CaveInLocation_P3_005_b395a4dc-1c59-4467-a1a1-18c34c9c43de);
+
+IF
+CharacterDied(CHARACTERGUID_S_CoS_AotO_SourceTitan_d230a9d9-e44d-493e-8c69-9570f2fa065f)
+AND
+DB_IsPlayer(_Var1)
+THEN
+SetInArena(_Var1, 1);
+
+IF
+CharacterDied(CHARACTERGUID_S_CoS_AotO_SourceTitan_d230a9d9-e44d-493e-8c69-9570f2fa065f)
+AND
+DB_CoS_AotO_CaveIns_Phase2(_Var1)
+THEN
+SetInArena(_Var1, 1);
+
+PROC
+Proc_CoS_AotO_End()
+AND
+DB_CoS_AotO_CaveIns_Phase2(_Var1)
+THEN
+SetInArena(_Var1, 0);
+
+PROC
+Proc_CoS_AotO_End()
+AND
+DB_IsPlayer(_Var1)
+THEN
+CharacterRemoveSummons(_Var1, 0);
+SetInArena(_Var1, 0);
+
+PROC
+Proc_CoS_AotO_End()
+AND
+DB_CoS_AotO_Competitors(_Var1)
+THEN
+SetInArena(_Var1, 0);
+
+IF
+CharacterDied(CHARACTERGUID_S_CoS_AotO_SourceTitan_d230a9d9-e44d-493e-8c69-9570f2fa065f)
+AND
+GetClosestAlivePlayer(CHARACTERGUID_S_CoS_AotO_SourceTitan_d230a9d9-e44d-493e-8c69-9570f2fa065f, _Var1, _)
+AND
+StartDialog_Internal("CoS_AotO_Phase3_MaladyTelepathy", 1, _Var1, NULL_00000000-0000-0000-0000-000000000000, NULL_00000000-0000-0000-0000-000000000000, NULL_00000000-0000-0000-0000-000000000000, NULL_00000000-0000-0000-0000-000000000000, NULL_00000000-0000-0000-0000-000000000000, 1)
+THEN
+DB_CombatCutscene_PrioritizedObject(_Var1);
+
+IF
+DialogEnded("CoS_AotO_Phase3_MaladyTelepathy", _)
+THEN
+Proc_CombatCutscene_PrioritizedObject_Purge();
+
+IF
+DialogEnded("CoS_AotO_Phase3_MaladyTelepathy", _)
+AND
+DB_IsPlayer(_Var2)
+THEN
+ObjectSetFlag(_Var2, "QuestUpdate_CoS_ArenaOfTheOne_Phase_3_Beacon");
+
+IF
+CharacterUsedItem(_, ITEMGUID_S_CoS_AotO_LvBeacon_7704541a-bf3b-44d1-aae4-c49a47b20add)
+AND
+QueryOnlyOnce("CoS_AotO_BeaconUsed")
+THEN
+Proc_CoS_AotO_End();
+
+PROC
+Proc_CoS_AotO_End()
+AND
+DB_IsPlayer(_Var1)
+THEN
+CharacterPurgeQueue(_Var1);
+SetCanFight(_Var1, 0);
+SetCanJoinCombat(_Var1, 0);
+ProcSetInvulnerable(_Var1, 1);
+CharacterSetImmortal(_Var1, 1);
+CharacterFreeze(_Var1);
+LeaveCombat(_Var1);
+Proc_ShakeCameraForTime(_Var1, 5000);
+
+PROC
+Proc_CoS_AotO_End()
+THEN
+GlobalSetFlag("CoS_AotO_End_LavaCaveIn");
+TimerLaunch("CoS_AotO_LadyVengeanceReturn_FadeOut_Timer", 1500);
+
+PROC
+Proc_CoS_AotO_End()
+AND
+DB_IsPlayer(_Var1)
+THEN
+FadeToBlack(_Var1, 1, 0, "CoS_AotO_LadyVengeanceReturn_Cutscene_FadeOut");
+
+IF
+FadeOutDone(_, "CoS_AotO_LadyVengeanceReturn_Cutscene_FadeOut")
+AND
+QueryOnlyOnce("CoS_AotO_LadyVengeanceReturn_Cutscene_FadeOut_Once")
+AND
+DB_IsPlayer(_Var2)
+THEN
+CreateSurface(_Var2, "SurfaceNone", 2, 1);
+FadeToBlack(_Var2, 0, 1, "Placeholder");
+Proc_CharacterFullRestore(_Var2);
+CharacterSetAnimationOverride(_Var2, "");
+
+IF
+FadeOutDone(_, "CoS_AotO_LadyVengeanceReturn_Cutscene_FadeOut")
+AND
+QueryOnlyOnce("CoS_AotO_LadyVengeanceReturn_PlayMovie")
+THEN
+Proc_CoS_AotO_LoadReturnToLV();
+
+PROC
+Proc_CoS_AotO_LoadReturnToLV()
+THEN
+GlobalClearFlag("CoS_AotO_Active");
+GlobalSetFlag("CoS_AfterArenaOfTheOne");
+
+PROC
+Proc_CoS_AotO_LoadReturnToLV()
+THEN
+ProcStartMovie("CS_Rescue");
+TimerLaunch("CS_Do_RescueMovieTeleport", 0);
+
+IF
+TimerFinished("CS_Do_RescueMovieTeleport")
+AND
+DB_IsPlayer(_Var1)
+AND
+CharacterIsInCombat(_Var1, 1)
+THEN
+LeaveCombat(_Var1);
+
+IF
+TimerFinished("CS_Do_RescueMovieTeleport")
+THEN
+CharacterTeleportPartiesToTrigger(TRIGGERGUID_S_CoS_LV_HoE_RegionStart_fda0f33f-8438-4057-bdff-5b3c945bdb20, "");
+
+PROC
+Proc_CoS_AotO_LoadReturnToLV()
+AND
+DB_IsPlayer(_Var1)
+THEN
+CharacterPurgeQueue(_Var1);
+FadeToBlack(_Var1, 0, 0, "Placeholder");
+FadeToBlack(_Var1, 1.25, 1, "Placeholder");
+SetCanFight(_Var1, 1);
+SetCanJoinCombat(_Var1, 1);
+ProcSetInvulnerable(_Var1, 0);
+CharacterSetImmortal(_Var1, 0);
+CharacterUnfreeze(_Var1);
+PartySetFlag(_Var1, "QuestUpdate_CoS_ArenaOfTheOne_End");
+
+IF
+TextEventSet("aoto_phase3end")
+THEN
+Proc_CoS_AotO_End();
+
+IF
+TextEventSet("aoto_cinematic")
+THEN
+ProcStartMovie("CS_Rescue");
+
+IF
+TextEventSet("aoto_cinematic_1")
+THEN
+CharacterTeleportPartiesToTriggerWithMovie(TRIGGERGUID_S_CoS_LV_HoE_RegionStart_fda0f33f-8438-4057-bdff-5b3c945bdb20, "", "CS_Rescue");
+
+
+EXITSECTION
+ItemSetForceSynch(ITEMGUID_S_CoS_AotO_LvBeacon_7704541a-bf3b-44d1-aae4-c49a47b20add, 0);
+ItemSetForceSynch(ITEMGUID_S_CoS_AotO_LvBeacon_Helper_eb805737-302b-4dea-9027-97a9cb7633a7, 0);
+ENDEXITSECTION
+
+ParentTargetEdge "CoS_ArenaOfTheOne"

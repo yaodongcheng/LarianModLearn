@@ -1,0 +1,387 @@
+Version 1
+SubGoalCombiner SGC_AND
+
+INITSECTION
+DB_Dialogs(S_FTJ_DoubtingPriest_a449c179-1c96-4180-91d6-cb5d6c4cb9a7, "FTJ_DoubtingPriest");
+DB_Dialogs(S_FTJ_StockholmSyndromeHuman_279defb4-e957-47bc-a441-1c221b271861, "FTJ_DOSupporter");
+DB_Dialogs(S_FTJ_Rat_001_d0b5d279-5c21-4f0f-8a5a-70e499cf2a8a, "FTJ_Rat_001");
+DB_Dialogs(CHARACTERGUID_S_FTJ_Rat_002_2ba05c7f-7099-4889-af9a-8a70ef0fe3f4, "FTJ_Rat_002");
+DB_Dialogs(S_FTJ_Scavenger_5e1d150e-af80-4c21-a8b3-0e787a6ee205, "FTJ_Scavenger");
+DB_Dialogs(S_FTJ_ShakedownElf_c854185f-ce11-416f-b327-d692a5e3a789, S_RC_FTJ_ShakedownDwarf_0991b582-8305-4259-8280-a55bbe32a1b6, S_RC_FTJ_OlgoGuard_002_6d445f10-dec4-4026-9d9f-5b1c3fcd3e94, "FTJ_ShakedownEvent");
+DB_Dialogs(S_FTJ_FalseSourcerer_d9578eb3-16fc-448c-ab38-577bd02065b3, "FTJ_GhettoNPC_Human_006");
+DB_Dialogs(S_FTJ_GhettoNPC_Human_001_c36d342e-acc1-4d84-a33f-4af1f9f559a7, "FTJ_GhettoNPC_Human_001");
+DB_Dialogs(S_FTJ_GhettoNPC_Human_002_4c6af17b-a321-4cd0-b83e-ddeef7a49350, "FTJ_GhettoNPC_Human_002");
+DB_Dialogs(S_FTJ_GhettoNPC_Human_003_8e83098f-6dd8-445d-a37b-d22be064d334, "FTJ_GhettoNPC_Human_003");
+DB_Dialogs(S_FTJ_GhettoNPC_Dwarf_001_579f0f98-e1a2-40b3-9851-b18c86945685, "FTJ_GhettoDwarf_001");
+DB_Dialogs(S_FTJ_Skeptic_Human_001_86eac720-88eb-4612-af03-3b2813454aa1, "FTJ_Margo");
+DB_GLO_CheckSpeakerNumber(S_FTJ_Skeptic_Human_001_86eac720-88eb-4612-af03-3b2813454aa1, -1);
+DB_Dialogs(S_FTJ_GhettoBlacksmith_175b32ec-f6a1-4aa1-9028-d02d593f092c, "FTJ_GhettoBlacksmith");
+DB_Dialogs(CHARACTERGUID_S_FTJ_GhettoNPC_Human_004_801c004b-5b7d-47d6-b389-1295905c4c2a, CHARACTERGUID_S_FTJ_GhettoNPC_Human_005_cf83f2df-facb-40a6-9948-071f9b729d84, "FTJ_MurderArgument");
+DB_Dialogs(ITEMGUID_S_FTJ_SW_GateShrine_487f7035-69a4-45f7-82e3-0e33a3fd00b8, "FTJ_SW_GateShrine");
+DB_ShovelArea(FTJ_DirtPile_Box_001_f0f05fc3-f7c6-4572-8ea4-04dc799f68f6, "FTJ_BuriedRing", RC_FTJ_DirtPile_001_9d81796a-53bb-4dbc-b8c2-793e441e7f24);
+DB_ShovelRewardItemAppear("FTJ_BuriedRing", RC_FTJ_BuriedGold_5ea546f5-832c-417d-8ca9-6ee8c7319a21, TRIGGERGUID_S_FTJ_DirtPile_Box_001_f0f05fc3-f7c6-4572-8ea4-04dc799f68f6);
+DB_ShovelArea(FTJ_DirtPile_Box_002_5c3720b5-ebb2-4e07-a650-447135610c10, "FTJ_BuriedDiary", ITEMGUID_S_FTJ_DirtMound_002_d466aa00-0476-4486-a0d9-582d00726553);
+DB_ShovelRewardItemAppear("FTJ_BuriedDiary", RC_FTJ_DirtMound_002_Treasure_1863d288-b30d-4086-8072-2ca9602106fe, FTJ_DirtPile_Box_002_5c3720b5-ebb2-4e07-a650-447135610c10);
+DB_ShovelArea(FTJ_DirtPile_Box_003_ee83dc24-89aa-4ae6-8646-99c19d11040a, "FTJ_UndergroundChest", ITEMGUID_S_FTJ_DirtPile_003_4212a2a4-f380-4838-97d5-ac90bf42e866);
+DB_ShovelRewardItemAppear("FTJ_UndergroundChest", S_RC_FTJ_UndergroundChest_74457456-65a3-4eed-876a-af702fe98614, FTJ_DirtPile_Box_003_ee83dc24-89aa-4ae6-8646-99c19d11040a);
+DB_ShovelArea(FTJ_DirtPile_004_Box_50bb4b1d-4d5b-40f3-a20e-1b1d4539a1e6, "FTJ_PirateTreasure", RC_FTJ_DirtPile_004_a6f77973-9ea7-4d09-b369-7bbb8ec78df3);
+DB_ShovelRewardItemAppear("FTJ_PirateTreasure", S_FTJ_Pirate_Treasure_f2326880-c66e-4cf8-ba03-dfe3c6542deb, FTJ_DirtPile_004_a6f77973-9ea7-4d09-b369-7bbb8ec78df3);
+DB_ShovelArea(TRIGGERGUID_S_FTJ_Dirtpile_009_Box_30fd565b-7a86-4d8f-bfa4-8e3d414bf57e, "FTJ_DirtPile_009", ITEMGUID_S_FTJ_DirtPile_009_8a508c4f-27f4-4f3d-a171-8cbc2ee40f16);
+DB_ShovelRewardItemAppear("FTJ_DirtPile_009", ITEMGUID_S_FTJ_DirtPile_009_Treasure_ea68a994-b741-41fc-953a-35534dd9261e, TRIGGERGUID_S_FTJ_Dirtpile_009_Box_30fd565b-7a86-4d8f-bfa4-8e3d414bf57e);
+DB_ShovelArea(RC_FTJ_DirtMound_006_Box_ae21fa9e-7528-497d-aaec-8e58c6d93e15, "FTJ_DirtMound_006_Treasure", RC_FTJ_DirtMound_006_65344c6f-6126-4195-913c-cc044723e58a);
+DB_ShovelRewardItemAppear("FTJ_DirtMound_006_Treasure", RC_FTJ_DirtMound_006_Treasure_edcb655d-f3d4-4dd1-8ee1-25ad54da9299, RC_FTJ_DirtMound_006_Box_ae21fa9e-7528-497d-aaec-8e58c6d93e15);
+DB_ShovelArea(RC_FTJ_DogKey_Point_53240ac4-d6a9-410d-bb5b-dd072f680c30, "FTJ_DirtMound_007_Treasure", RC_FTJ_DirtMound_007_c10b0200-9375-4f75-9dd2-93d8af0553f7);
+DB_ShovelRewardItemAppear("FTJ_DirtMound_007_Treasure", FTJ_DogKey_74c755d0-801d-4c04-874e-5e901e938703, RC_FTJ_DogKeyDrag_Point_55fc7f60-8358-42c1-923b-1fcc1e5eb283);
+DB_HasStoryEvent(RC_FTJ_FarasDoll_cbaf7f74-24f1-4a57-b665-dee66167063d, "FTJ_HasFarasDoll");
+DB_GiveItemToEvent(RC_FTJ_FarasDoll_cbaf7f74-24f1-4a57-b665-dee66167063d, "FTJ_FarasDollGive");
+ItemToInventory(ITEMGUID_S_FTJ_SuicideNote_1e5c1b12-1bab-47c8-9cf6-bea68590c798, CHARACTERGUID_S_FTJ_DeadTeleporterElf_3d4c8c64-9c94-4cf4-8d7c-2ce70f1d06ff);
+ItemToInventory(RC_FTJ_FarasDoll_cbaf7f74-24f1-4a57-b665-dee66167063d, RC_FTJ_GhettoNPC_Human_002_4c6af17b-a321-4cd0-b83e-ddeef7a49350);
+CharacterSetCanTrade(CHARACTERGUID_S_FTJ_GhettoNPC_Human_004_801c004b-5b7d-47d6-b389-1295905c4c2a, 0);
+CharacterSetCanTrade(CHARACTERGUID_S_FTJ_GhettoNPC_Human_005_cf83f2df-facb-40a6-9948-071f9b729d84, 0);
+DB_NoLowAttitudeDialog(CHARACTERGUID_S_FTJ_FalseSourcerer_d9578eb3-16fc-448c-ab38-577bd02065b3);
+DB_WaypointInfo(ITEMGUID_S_FTJ_BeachStatue_465c7929-cc0f-4f58-8c2c-24d3e65e2fb0, TRIGGERGUID_S_FTJ_BeachStatue_Point_c75522f4-7b83-445d-8ccd-8f908eb3673d, "WAYP_FTJ_BeachStatue");
+DB_WaypointInfo(ITEMGUID_S_FTJ_ShrineToTheSeven_a7c71478-416b-4b7a-bd97-446f03708443, TRIGGERGUID_S_FTJ_OlgoHatchUp_Point_25f36d64-1291-497e-8686-063e1aec04f8, "WAYP_FTJ_ShrineToTheSeven");
+DB_WaypointInfo(ITEMGUID_S_FTJ_UnderGroundShrine_fceee19d-145c-8a40-28fb-536fab281adc, TRIGGERGUID_S_FTJ_UndergroundShrine_Point_6985ff34-4bc6-4525-9611-afbe99b99557, "WAYP_FTJ_UndergroundShrine");
+DB_WaypointInfo(ITEMGUID_S_FTJ_SW_ShelterShrine_e362cc61-ec69-4a5f-b505-bcbae32d3650, TRIGGERGUID_S_FTJ_SW_ShelterShrine_Destination_8f4cbb87-b689-4792-a491-d320cdad8495, "WAYP_FTJ_SW_ShelterShrine");
+DB_WaypointInfo(ITEMGUID_S_FTJ_SW_GateShrine_487f7035-69a4-45f7-82e3-0e33a3fd00b8, TRIGGERGUID_S_FTJ_SW_GateShrine_Point_d708e577-f258-46cf-b0d4-e887e0d262c2, "WAYP_FTJ_SW_GateShrine");
+DB_WaypointInfo(ITEMGUID_S_WAYP_FTJ_SW_Armory_bdfe2897-def1-437f-960c-042daab1f967, TRIGGERGUID_S_WAYP_FTJ_SW_Armory_Trigger_a048888a-efa3-4f4c-b627-e82b5f51b601, "WAYP_FTJ_SW_Armory");
+DB_WaypointInfo(ITEMGUID_S_WAYP_FTJ_SW_FinalBattle_a9573466-3109-4be8-8fd0-a08db0993387, TRIGGERGUID_S_WAYP_FTJ_SW_FinalBattle_Trigger_030a12f7-ff8f-400e-bc54-dcad3c787885, "WAYP_FTJ_SW_FinalBattle");
+DB_WaypointInfo(ITEMGUID_S_WAYP_FTJ_SW_FrozenBeach_ff4aebd1-952f-4513-8231-f30eb2663d03, TRIGGERGUID_S_WAYP_FTJ_SW_FrozenBeach_Trigger_838eb43f-19ed-4966-ba1a-e247e0a61218, "WAYP_FTJ_SW_FrozenBeach");
+DB_WaypointBlockUI(ITEMGUID_S_FTJ_BeachStatue_465c7929-cc0f-4f58-8c2c-24d3e65e2fb0);
+DB_WaypointBlockUI(ITEMGUID_S_FTJ_ShrineToTheSeven_a7c71478-416b-4b7a-bd97-446f03708443);
+DB_WaypointBlockUI(ITEMGUID_S_FTJ_UnderGroundShrine_fceee19d-145c-8a40-28fb-536fab281adc);
+DB_WaypointBlockUI(ITEMGUID_S_FTJ_SW_ShelterShrine_e362cc61-ec69-4a5f-b505-bcbae32d3650);
+DB_WaypointBlockUI(ITEMGUID_S_FTJ_SW_GateShrine_487f7035-69a4-45f7-82e3-0e33a3fd00b8);
+ItemToInventory(ITEMGUID_S_FTJ_TreasureTheifJournal_4dd795f5-f3a3-4a71-9173-ca408f96f42d, CHARACTERGUID_S_FTJ_TreasureThief_ee283d65-0984-4cdf-9fad-a9fdd41c2f8e);
+DB_GLO_Attribute_Check_AgainstSpeaker("FTJ_GhettoDwarf_001", 1, "Memory", "Hard", 2, 1);
+DB_Dialogs(CHARACTERGUID_S_FTJ_HarbourSilentMonk_001_f7bd3244-e1e7-4079-ac95-fef6145a236e, "FTJ_HarbourSilentMonk_001");
+DB_Dialogs(CHARACTERGUID_S_FTJ_HarbourSilentMonk_002_54b9a81b-7926-46b1-ad0d-6213c0d77749, "FTJ_HarbourSilentMonk_002");
+DB_Dialogs(CHARACTERGUID_S_FTJ_HarbourSilentMonk_003_61bf204e-ba2e-412f-ac86-e132a3930105, "FTJ_HarbourSilentMonk_003");
+DB_Dialogs(CHARACTERGUID_S_FTJ_HarbourSilentMonk_004_753d80ce-a515-43e3-8085-8ceacb3ceb4f, "FTJ_HarbourSilentMonk_004");
+DB_Dialogs(CHARACTERGUID_S_FTJ_HarbourSilentMonk_005_4149080d-9cc5-424d-a8fc-c52222bb463a, "FTJ_HarbourSilentMonk_005");
+DB_HasStoryEvent(ITEMGUID_S_FTJ_LaslorLute_6e70de6f-8bb8-4ae6-b779-09312c4472b4, "FTJ_HasLaslorLute");
+DB_GiveItemToEvent(ITEMGUID_S_FTJ_LaslorLute_6e70de6f-8bb8-4ae6-b779-09312c4472b4, "FTJ_GiveLaslorLute");
+ItemToInventory(ITEMGUID_S_FTJ_LaslorLute_6e70de6f-8bb8-4ae6-b779-09312c4472b4, CHARACTERGUID_S_FTJ_GhettoNPC_Dwarf_001_579f0f98-e1a2-40b3-9851-b18c86945685);
+ItemSetCanInteract(ITEMGUID_S_FTJ_LaslorLute_6e70de6f-8bb8-4ae6-b779-09312c4472b4, 1);
+ItemToInventory(ITEMGUID_FTJ_HarbourChest_Key_9c4dce1a-afc7-4eb5-ae18-0bba495ca499, CHARACTERGUID_S_FTJ_HarbourMagister_004_97492757-bbe8-42d8-af6d-35ca0ae96d36);
+CharacterDisableCrime(S_FTJ_GhettoBlacksmith_175b32ec-f6a1-4aa1-9028-d02d593f092c, "FTJCollarlessADs");
+ItemToInventory(S_FTJ_SW_Rat_001_Lockpicks_e90cc5ed-7ff3-4d2b-bf15-266faeefd98f, CHARACTERGUID_S_FTJ_Rat_001_d0b5d279-5c21-4f0f-8a5a-70e499cf2a8a);
+SetOnStage(ITEMGUID_S_FTJ_KickLadder_002_2602ec95-48d1-411a-ad9d-8af97988e382, 0);
+
+KBSECTION
+IF
+DialogStarted("FTJ_Rat_002", _)
+AND
+GetDistanceTo(S_FTJ_Rat_002_2ba05c7f-7099-4889-af9a-8a70ef0fe3f4, S_FTJ_BlackCat_4bff6ccc-5889-4c90-bcb1-572f1c29d830, _Var2)
+AND
+_Var2 < 6
+THEN
+ObjectSetFlag(CHARACTERGUID_S_FTJ_ScentlessDog_086dbd6e-d911-4996-a23d-06d2ac1344ca, "FTJ_ReactToBlackCat");
+
+IF
+DialogEnded("FTJ_Rat_002", _)
+THEN
+ObjectClearFlag(CHARACTERGUID_S_FTJ_ScentlessDog_086dbd6e-d911-4996-a23d-06d2ac1344ca, "FTJ_ReactToBlackCat", 0);
+
+IF
+ObjectFlagSet("FTJ_Rat1LockPick", (GUIDSTRING)_Var1, _)
+THEN
+ItemToInventory(ITEMGUID_S_FTJ_SW_Rat_001_Lockpicks_e90cc5ed-7ff3-4d2b-bf15-266faeefd98f, _Var1);
+
+IF
+ItemRemovedFromCharacter(ITEMGUID_S_FTJ_SW_Rat_001_Lockpicks_e90cc5ed-7ff3-4d2b-bf15-266faeefd98f, CHARACTERGUID_S_FTJ_Rat_001_d0b5d279-5c21-4f0f-8a5a-70e499cf2a8a)
+THEN
+ObjectSetFlag(CHARACTERGUID_S_FTJ_Rat_001_d0b5d279-5c21-4f0f-8a5a-70e499cf2a8a, "FTJ_LostLockpick", 0);
+
+IF
+StoryEvent((CHARACTERGUID)_Var1, "FTJ_MyraSpotIfan")
+THEN
+Proc_StartDialog(0, "FTJ_GhettoNPC_Human_006", CHARACTERGUID_S_FTJ_FalseSourcerer_d9578eb3-16fc-448c-ab38-577bd02065b3, _Var1);
+
+IF
+CharacterEnteredTrigger((CHARACTERGUID)_Var1, TRIGGERGUID_S_FTJ_SUB_GhettoKitchen_bd5dbf2c-a490-4240-8ecc-fafa91eb11a5)
+AND
+QRY_SpeakerIsAvailable(_Var1)
+AND
+QueryOnlyOnce("RC_FTJ_VB_EnterGhetto")
+THEN
+StartVoiceBark("FTJ_VB_EnterGhetto", _Var1);
+
+IF
+ObjectFlagSet("FTJ_Laslor_ApplyInspire", (CHARACTERGUID)_Var1, _)
+AND
+DB_IsPlayer(_Var3)
+AND
+CharacterIsInPartyWith(_Var3, _Var1, 1)
+THEN
+ApplyStatus(_Var3, "ENCOURAGED", 200);
+
+IF
+ObjectFlagSet("FTJ_Laslor_ApplyInspire", (CHARACTERGUID)_Var1, _)
+THEN
+ApplyStatus(CHARACTERGUID_S_FTJ_GhettoNPC_Dwarf_001_579f0f98-e1a2-40b3-9851-b18c86945685, "ENCOURAGED", 200);
+
+IF
+ObjectFlagSet("FTJ_Lastor_Only_Lohse_Sings", CHARACTERGUID_S_Player_Lohse_bb932b13-8ebf-4ab4-aac0-83e6924e4295, (INTEGER)_Var1)
+THEN
+RemoveStatus(CHARACTERGUID_S_FTJ_GhettoNPC_Dwarf_001_579f0f98-e1a2-40b3-9851-b18c86945685, "SITTING");
+PlaySound(CHARACTERGUID_S_Player_Lohse_bb932b13-8ebf-4ab4-aac0-83e6924e4295, "SE_FTJ_Lastor_Lohse_VO_Only_Music");
+CharacterLookAt(CHARACTERGUID_S_Player_Lohse_bb932b13-8ebf-4ab4-aac0-83e6924e4295, CHARACTERGUID_S_FTJ_GhettoNPC_Dwarf_001_579f0f98-e1a2-40b3-9851-b18c86945685);
+CharacterLookAt(CHARACTERGUID_S_FTJ_GhettoNPC_Dwarf_001_579f0f98-e1a2-40b3-9851-b18c86945685, CHARACTERGUID_S_Player_Lohse_bb932b13-8ebf-4ab4-aac0-83e6924e4295);
+CharacterSetAnimationOverride(CHARACTERGUID_S_Player_Lohse_bb932b13-8ebf-4ab4-aac0-83e6924e4295, "Sing_01_Loop");
+CharacterSetAnimationOverride(CHARACTERGUID_S_FTJ_GhettoNPC_Dwarf_001_579f0f98-e1a2-40b3-9851-b18c86945685, "emotion_thankful_looping1");
+TimerLaunch("FTJ_Lastor_Lohse_Sings_End", 12500);
+
+IF
+ObjectFlagSet("FTJ_Lastor_Lohse_Lastor_Sing", CHARACTERGUID_S_Player_Lohse_bb932b13-8ebf-4ab4-aac0-83e6924e4295, (INTEGER)_Var1)
+AND
+HasActiveStatus(CHARACTERGUID_S_FTJ_GhettoNPC_Dwarf_001_579f0f98-e1a2-40b3-9851-b18c86945685, "SITTING", 1)
+THEN
+RemoveStatus(CHARACTERGUID_S_FTJ_GhettoNPC_Dwarf_001_579f0f98-e1a2-40b3-9851-b18c86945685, "SITTING");
+
+IF
+ObjectFlagSet("FTJ_Lastor_Lohse_Lastor_Sing", CHARACTERGUID_S_Player_Lohse_bb932b13-8ebf-4ab4-aac0-83e6924e4295, (INTEGER)_Var1)
+THEN
+PlaySound(CHARACTERGUID_S_Player_Lohse_bb932b13-8ebf-4ab4-aac0-83e6924e4295, "SE_FTJ_Lastor_Lohse_Music");
+CharacterLookAt(CHARACTERGUID_S_Player_Lohse_bb932b13-8ebf-4ab4-aac0-83e6924e4295, CHARACTERGUID_S_FTJ_GhettoNPC_Dwarf_001_579f0f98-e1a2-40b3-9851-b18c86945685);
+CharacterLookAt(CHARACTERGUID_S_FTJ_GhettoNPC_Dwarf_001_579f0f98-e1a2-40b3-9851-b18c86945685, CHARACTERGUID_S_Player_Lohse_bb932b13-8ebf-4ab4-aac0-83e6924e4295);
+CharacterSetAnimationOverride(CHARACTERGUID_S_FTJ_GhettoNPC_Dwarf_001_579f0f98-e1a2-40b3-9851-b18c86945685, "Play_Lute_02_Loop");
+TimerLaunch("FTJ_Lastor_Only_Lohse_Sings_LohseJoin", 10000);
+TimerLaunch("FTJ_Lastor_Lohse_Sings_End", 24500);
+
+IF
+TimerFinished("FTJ_Lastor_Only_Lohse_Sings_LohseJoin")
+THEN
+CharacterSetAnimationOverride(CHARACTERGUID_S_Player_Lohse_bb932b13-8ebf-4ab4-aac0-83e6924e4295, "Sing_01_Loop");
+
+IF
+TimerFinished("FTJ_Lastor_Lohse_Sings_End")
+THEN
+GlobalSetFlag("SE_FTJ_Lastor_Lohse_StoppedByTimer");
+proc_FTJ_Lastor_Lohse_Sings_End(CHARACTERGUID_S_Player_Lohse_bb932b13-8ebf-4ab4-aac0-83e6924e4295);
+
+IF
+ObjectFlagSet("FTJ_Lastor_Lohse_Lastor_Sing_Stop", CHARACTERGUID_S_Player_Lohse_bb932b13-8ebf-4ab4-aac0-83e6924e4295, (INTEGER)_Var1)
+AND
+GlobalGetFlag("SE_FTJ_Lastor_Lohse_StoppedByTimer", 0)
+THEN
+proc_FTJ_Lastor_Lohse_Sings_End(CHARACTERGUID_S_Player_Lohse_bb932b13-8ebf-4ab4-aac0-83e6924e4295);
+
+IF
+DialogEnded("FTJ_GhettoDwarf_001", _)
+AND
+ObjectGetFlag(CHARACTERGUID_S_Player_Lohse_bb932b13-8ebf-4ab4-aac0-83e6924e4295, "FTJ_Lastor_Lohse_Lastor_Sing_Stop", 0)
+THEN
+proc_FTJ_Lastor_Lohse_Sings_End(CHARACTERGUID_S_Player_Lohse_bb932b13-8ebf-4ab4-aac0-83e6924e4295);
+
+PROC
+proc_FTJ_Lastor_Lohse_Sings_End((CHARACTERGUID)_Var1)
+THEN
+PlaySound(CHARACTERGUID_S_Player_Lohse_bb932b13-8ebf-4ab4-aac0-83e6924e4295, "SE_FTJ_Lastor_Lohse_Stop");
+
+PROC
+proc_FTJ_Lastor_Lohse_Sings_End((CHARACTERGUID)_Var1)
+THEN
+CharacterSetAnimationOverride(_Var1, "");
+
+PROC
+proc_FTJ_Lastor_Lohse_Sings_End((CHARACTERGUID)_Var1)
+THEN
+CharacterSetAnimationOverride(_Var1, "");
+CharacterSetAnimationOverride(CHARACTERGUID_S_FTJ_GhettoNPC_Dwarf_001_579f0f98-e1a2-40b3-9851-b18c86945685, "");
+
+IF
+TextEventSet("TestOverride")
+THEN
+CharacterSetAnimationOverride(CHARACTERGUID_S_FTJ_GhettoNPC_Dwarf_001_579f0f98-e1a2-40b3-9851-b18c86945685, "");
+CharacterSetAnimationOverride(CHARACTERGUID_S_Player_Lohse_bb932b13-8ebf-4ab4-aac0-83e6924e4295, "");
+
+IF
+TextEventSet("TestLohseSong")
+THEN
+PlaySound(CHARACTERGUID_S_Player_Lohse_bb932b13-8ebf-4ab4-aac0-83e6924e4295, "SE_FTJ_Lastor_Lohse_Music");
+
+IF
+DialogEnded("FTJ_BeachCrab", (INTEGER)_Var1)
+AND
+DB_DialogPlayers(_Var1, _Var2, 1)
+AND
+IsTagged(_Var2, "PETPAL", 1)
+THEN
+ObjectSetFlag(_Var2, "FTJ_PetPalPlayerTalkedToSeptaTheCrab");
+
+IF
+CharacterKilledBy(CHARACTERGUID_S_FTJ_BeachCrab_ba6d2b58-c978-4ce9-a99b-3aef542dd2e7, (CHARACTERGUID)_Var1, (CHARACTERGUID)_Var2)
+AND
+DB_IsPlayer(_Var1)
+AND
+DB_IsPlayer(_Var3)
+AND
+CharacterCanSee(_Var3, CHARACTERGUID_S_FTJ_BeachCrab_ba6d2b58-c978-4ce9-a99b-3aef542dd2e7, 1)
+AND
+_Var1 != _Var3
+AND
+ObjectGetFlag(_Var3, "FTJ_PetPalPlayerTalkedToSeptaTheCrab", 1)
+AND
+QueryOnlyOnce("FTJ_VB_KilledBeachCrabSepta")
+THEN
+StartVoiceBark("FTJ_VB_KilledBeachCrabSepta", _Var3);
+
+IF
+CharacterDied(CHARACTERGUID_S_FTJ_BeachCrab_ba6d2b58-c978-4ce9-a99b-3aef542dd2e7)
+THEN
+ItemTemplateAddTo("LOOT_Claw_Crab_A_f7b21e6b-723f-496c-83cb-3a94a4ec6174", CHARACTERGUID_S_FTJ_BeachCrab_ba6d2b58-c978-4ce9-a99b-3aef542dd2e7, 1);
+
+IF
+SavegameLoaded((INTEGER)_Var1, (INTEGER)_Var2, (INTEGER)_Var3, (INTEGER)_Var4)
+AND
+QRY_VersionIsOlderThan(_Var1, _Var2, _Var3, _Var4, 3, 5, 1, 0)
+THEN
+Transform(CHARACTERGUID_S_FTJ_BeachCrab_ba6d2b58-c978-4ce9-a99b-3aef542dd2e7, "Animals_Crab_A_Small_27abe298-4fe9-48b5-a5ed-7ec6c4f49358");
+
+IF
+ObjectFlagSet("RC_FTJ_ScavengerGaveRope", (CHARACTERGUID)_Var1, _)
+THEN
+CharacterGiveReward(_Var1, "FTJ_Scavenger_Present_Rope");
+
+IF
+ObjectFlagSet("RC_FTJ_ScavengerGaveBell", (CHARACTERGUID)_Var1, _)
+THEN
+CharacterGiveReward(_Var1, "FTJ_Scavenger_Present_Bell");
+
+IF
+ObjectFlagSet("RC_FTJ_ScavengerGaveSeeds", (CHARACTERGUID)_Var1, _)
+THEN
+CharacterGiveReward(_Var1, "FTJ_Scavenger_Present_Seed");
+
+IF
+AutomatedDialogStarted("FTJ_AD_Murder_NPCs_Argue", _)
+THEN
+ProcFaceEachother(CHARACTERGUID_S_FTJ_GhettoNPC_Human_004_801c004b-5b7d-47d6-b389-1295905c4c2a, CHARACTERGUID_S_FTJ_GhettoNPC_Human_005_cf83f2df-facb-40a6-9948-071f9b729d84);
+
+IF
+AttackedByObject(RC_FTJ_GhettoNPC_Human_004_801c004b-5b7d-47d6-b389-1295905c4c2a, RC_FTJ_GhettoNPC_Human_005_cf83f2df-facb-40a6-9948-071f9b729d84, _, _, _)
+THEN
+CharacterDie(RC_FTJ_GhettoNPC_Human_004_801c004b-5b7d-47d6-b389-1295905c4c2a, 1, "DoT");
+CreateSurface(RC_FTJ_GhettoNPC_Human_004_801c004b-5b7d-47d6-b389-1295905c4c2a, "SurfaceBlood", 1, -1);
+
+IF
+CharacterDied(RC_FTJ_GhettoNPC_Human_004_801c004b-5b7d-47d6-b389-1295905c4c2a)
+THEN
+ProcRemoveAllDialogEntriesForSpeaker(S_FTJ_GhettoNPC_Human_005_cf83f2df-facb-40a6-9948-071f9b729d84);
+DB_Dialogs(RC_FTJ_GhettoNPC_Human_005_cf83f2df-facb-40a6-9948-071f9b729d84, "FTJ_GhettoNPC_Human_005");
+SetVarFixedString(RC_FTJ_GhettoNPC_Human_005_cf83f2df-facb-40a6-9948-071f9b729d84, "currentState", "State_Default");
+CharacterSetCanTrade(CHARACTERGUID_S_FTJ_GhettoNPC_Human_005_cf83f2df-facb-40a6-9948-071f9b729d84, 1);
+
+IF
+ObjectFlagSet("FactionHostileToIndivPlayerAfterDialog", (CHARACTERGUID)_Var1, (INTEGER)_Var2)
+AND
+DialogGetInvolvedNPC(_Var2, 1, CHARACTERGUID_S_FTJ_GhettoNPC_Human_005_cf83f2df-facb-40a6-9948-071f9b729d84)
+THEN
+CharacterSetRelationFactionToFaction("FTJ_Prisoners_Baladir", "Neutral", 50);
+CharacterSetRelationFactionToFaction("Neutral", "FTJ_Prisoners_Baladir", 50);
+CharacterSetRelationFactionToFaction("FTJ_Prisoners_Baladir", "FTJ_Prisoners", 50);
+CharacterSetRelationFactionToFaction("FTJ_Prisoners", "FTJ_Prisoners_Baladir", 50);
+
+IF
+CharacterDied(CHARACTERGUID_S_FTJ_GhettoNPC_Human_005_cf83f2df-facb-40a6-9948-071f9b729d84)
+AND
+QRY_SpeakerIsAvailable(CHARACTERGUID_S_FTJ_GhettoNPC_Human_004_801c004b-5b7d-47d6-b389-1295905c4c2a, 0)
+THEN
+ProcCharacterDisappearOutOfSight(CHARACTERGUID_S_FTJ_GhettoNPC_Human_004_801c004b-5b7d-47d6-b389-1295905c4c2a, 1, 1, "", 1);
+
+IF
+CharacterDied(CHARACTERGUID_S_FTJ_GhettoNPC_Human_005_cf83f2df-facb-40a6-9948-071f9b729d84)
+THEN
+SetHasDialog(CHARACTERGUID_S_FTJ_GhettoNPC_Human_004_801c004b-5b7d-47d6-b389-1295905c4c2a, 0);
+
+IF
+DialogEnded(_, (INTEGER)_Var2)
+AND
+DialogGetInvolvedNPC(_Var2, 1, CHARACTERGUID_S_FTJ_GhettoNPC_Human_004_801c004b-5b7d-47d6-b389-1295905c4c2a)
+AND
+CharacterIsDead(CHARACTERGUID_S_FTJ_GhettoNPC_Human_005_cf83f2df-facb-40a6-9948-071f9b729d84, 1)
+AND
+CharacterIsDead(CHARACTERGUID_S_FTJ_GhettoNPC_Human_004_801c004b-5b7d-47d6-b389-1295905c4c2a, 0)
+THEN
+ProcCharacterDisappearOutOfSight(CHARACTERGUID_S_FTJ_GhettoNPC_Human_004_801c004b-5b7d-47d6-b389-1295905c4c2a, 1, 1, "", 1);
+
+IF
+ObjectLeftCombat(S_FTJ_GhettoNPC_Human_004_801c004b-5b7d-47d6-b389-1295905c4c2a, _)
+AND
+CharacterIsDead(CHARACTERGUID_S_FTJ_GhettoNPC_Human_005_cf83f2df-facb-40a6-9948-071f9b729d84, 1)
+AND
+CharacterIsDead(CHARACTERGUID_S_FTJ_GhettoNPC_Human_004_801c004b-5b7d-47d6-b389-1295905c4c2a, 0)
+THEN
+ProcCharacterDisappearOutOfSight(CHARACTERGUID_S_FTJ_GhettoNPC_Human_004_801c004b-5b7d-47d6-b389-1295905c4c2a, 1, 1, "", 1);
+
+IF
+ObjectFlagSet("FTJ_MargoGiveScroll", (GUIDSTRING)_Var1, _)
+THEN
+ItemTemplateAddTo("Scroll_Skill_Water_RegenerateStart_b852456a-1230-4933-92ef-ad7c65611ab5", _Var1, 1);
+
+IF
+CharacterUsedItem((CHARACTERGUID)_Var1, ITEMGUID_S_FTJ_KickLadderCosmetic_001_02c03846-e7e2-4048-a5c3-3d8186ccbb0b)
+AND
+GetPosition(TRIGGERGUID_S_FTJ_KickDownLadder001_Point_0c66faf4-7a7d-467a-b01e-44189c5000fd, _Var2, _Var3, _Var4)
+THEN
+PlayAnimation(_Var1, "use_activate");
+Proc_ItemMoveToPosition(ITEMGUID_S_FTJ_KickLadder_001_02c03846-e7e2-4048-a5c3-3d8186ccbb0b, _Var2, _Var3, _Var4, 3, 9.5);
+ItemSetCanInteract(ITEMGUID_S_FTJ_KickLadder_001_02c03846-e7e2-4048-a5c3-3d8186ccbb0b, 0);
+TimerLaunch("S_FTJ_KickLadder_001_OnStage", 1500);
+
+IF
+TimerFinished("S_FTJ_KickLadder_001_OnStage")
+THEN
+SetOnStage(ITEMGUID_S_FTJ_KickLadder_001_02c03846-e7e2-4048-a5c3-3d8186ccbb0b, 0);
+TeleportTo(ITEMGUID_S_FTJ_KickLadder_002_2602ec95-48d1-411a-ad9d-8af97988e382, ITEMGUID_S_FTJ_KickLadder_001_02c03846-e7e2-4048-a5c3-3d8186ccbb0b);
+SetOnStage(ITEMGUID_S_FTJ_KickLadder_002_2602ec95-48d1-411a-ad9d-8af97988e382, 1);
+
+IF
+CharacterUsedItem((CHARACTERGUID)_Var1, ITEMGUID_S_FTJ_TreasureTheifJournal_4dd795f5-f3a3-4a71-9173-ca408f96f42d)
+THEN
+ObjectSetFlag(_Var1, "FTJ_KnowsTreasureTheifSentByGawin");
+ObjectSetFlag(_Var1, "FTJ_SW_ShowIllusionistHint", 0);
+ObjectSetFlag(_Var1, "QuestAdd_FTJ_SW_Illusionist");
+ObjectSetFlag(_Var1, "QuestUpdate_FTJ_SW_Illusionist_Start_Letter");
+
+IF
+CharacterEnteredTrigger((CHARACTERGUID)_Var1, RC_FTJ_SUB_Ghetto_19107918-c6d6-4c93-a377-e8a76c8d0f27)
+AND
+UserGetFlag(_Var1, "QuestUpdate_FTJ_Escape_ArriveGhetto", 0)
+THEN
+UserSetFlag(_Var1, "QuestUpdate_FTJ_Escape_ArriveGhetto");
+UserSetFlag(_Var1, "QuestUpdate_FTJ_Escape_Escape_Own");
+
+IF
+TextEventSet("partyquest")
+AND
+DB_IsPlayer(_Var1)
+THEN
+ObjectSetFlag(_Var1, "QuestAdd_RC_DU_Storm");
+ObjectSetFlag(_Var1, "QuestUpdate_RC_DU_Storm_Elf_Start");
+
+IF
+TextEventSet("userquest")
+AND
+DB_IsPlayer(_Var1)
+THEN
+ObjectSetFlag(_Var1, "QuestAdd_RC_FTJ_OlgoSaheila");
+ObjectSetFlag(_Var1, "QuestUpdate_RC_FTJ_OlgoSaheila_OlgoAgreeToHelp");
+
+IF
+TextEventSet("characterquest")
+THEN
+ObjectSetFlag(CHARACTERGUID_Player_Ifan_ad9a3327-4456-42a7-9bf4-7ad60cc9e54f, "QuestAdd_Test_CharacterQuest");
+ObjectSetFlag(CHARACTERGUID_Player_Ifan_ad9a3327-4456-42a7-9bf4-7ad60cc9e54f, "QuestUpdate_Test_CharacterQuest_Start");
+
+IF
+GameBookInterfaceClosed(ITEMGUID_S_RC_FTJ_ResurrectionIdolRechargeHint_86178627-949b-4277-b974-d4fc776b624b, (CHARACTERGUID)_Var1)
+THEN
+CharacterUnlockRecipe(_Var1, "SCROLL_Resurrect_QUEST_Resurrection_Idol_Inert", 1);
+
+
+EXITSECTION
+ENDEXITSECTION
+
+ParentTargetEdge "FortJoy"

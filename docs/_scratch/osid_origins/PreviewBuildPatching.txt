@@ -1,0 +1,45 @@
+Version 1
+SubGoalCombiner SGC_AND
+
+INITSECTION
+
+KBSECTION
+IF
+SavegameLoaded((INTEGER)_Var1, (INTEGER)_Var2, (INTEGER)_Var3, (INTEGER)_Var4)
+AND
+QRY_VersionIsOlderThan(_Var1, _Var2, _Var3, _Var4, 3, 6, 0, 0)
+THEN
+PROC_PatchBilly();
+PROC_PatchEnding();
+GoalCompleted;
+
+PROC
+PROC_PatchBilly()
+AND
+DB_GLO_ExperienceAgent(_Var1)
+THEN
+DialogRequestStop(_Var1);
+LeaveCombat(_Var1);
+SetOnStage(_Var1, 0);
+
+PROC
+PROC_PatchBilly()
+THEN
+SysCompleteGoal("GLO_Feedback");
+
+PROC
+PROC_PatchEnding()
+AND
+DB_GlobalFlag("FTJ_FinalBattleOver")
+THEN
+ReactOnKillCounter("FTJ_FinalBattle");
+
+PROC
+PROC_PatchEnding()
+THEN
+SysCompleteGoal("PreviewEndgame");
+
+
+EXITSECTION
+ENDEXITSECTION
+

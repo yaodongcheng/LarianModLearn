@@ -1,0 +1,39 @@
+Version 1
+SubGoalCombiner SGC_AND
+
+INITSECTION
+
+KBSECTION
+IF
+AttackedByObject((CHARACTERGUID)_Var1, (CHARACTERGUID)_Var2, _, _, _)
+AND
+DB_TUT_LowerDeck_Child(_Var1)
+AND
+DB_IsPlayer(_Var2)
+THEN
+ProcForceStopDialog(_Var1);
+ObjectSetFlag(_Var1, "GEB_FleeOutOfSight");
+PROC_TUT_AbortOngoingKick();
+
+IF
+GlobalFlagSet("TUT_LowerDeck_WindegoHasCastSpell")
+AND
+DB_TUT_LowerDeck_Child(_Var1)
+THEN
+ObjectSetFlag(_Var1, "GEB_DontAppearAfter");
+
+IF
+GlobalFlagSet("TUT_LowerDeck_WindegoHasCastSpell")
+THEN
+GoalCompleted;
+
+PROC
+ProcRegionEnded("TUT_Tutorial_A")
+THEN
+GoalCompleted;
+
+
+EXITSECTION
+ENDEXITSECTION
+
+ParentTargetEdge "TUT_LowerDeck"

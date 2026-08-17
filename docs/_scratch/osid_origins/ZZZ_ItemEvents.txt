@@ -1,0 +1,21 @@
+Version 1
+SubGoalCombiner SGC_AND
+
+INITSECTION
+
+KBSECTION
+IF
+RegionStarted(_)
+THEN
+Proc_ItemEventCheck();
+
+PROC
+ProcRemoveOtherOrigins()
+THEN
+Proc_ItemEventCheck();
+
+
+EXITSECTION
+ENDEXITSECTION
+
+ParentTargetEdge "DOS2ModWrapper"

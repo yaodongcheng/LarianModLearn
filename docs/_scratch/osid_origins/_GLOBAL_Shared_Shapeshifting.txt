@@ -1,0 +1,294 @@
+Version 1
+SubGoalCombiner SGC_AND
+
+INITSECTION
+DB_Shapeshifting_OriginalRaces("Undead_Dwarf", "REALLY_DWARF");
+DB_Shapeshifting_OriginalRaces("Undead_Human", "REALLY_HUMAN");
+DB_Shapeshifting_OriginalRaces("Undead_Elf", "REALLY_ELF");
+DB_Shapeshifting_OriginalRaces("Undead_Lizard", "REALLY_LIZARD");
+DB_Shapeshifting_OriginalRaces("Dwarf", "REALLY_DWARF");
+DB_Shapeshifting_OriginalRaces("Human", "REALLY_HUMAN");
+DB_Shapeshifting_OriginalRaces("Elf", "REALLY_ELF");
+DB_Shapeshifting_OriginalRaces("Lizard", "REALLY_LIZARD");
+
+KBSECTION
+PROC
+ProcRemovePolymorphs((CHARACTERGUID)_Var1)
+THEN
+RemoveStatus(_Var1, "POLYMORPHED");
+
+PROC
+ProcRemovePolymorphs((CHARACTERGUID)_Var1)
+AND
+DB_CharacterPolymorphedInto(_Var1, _Var2)
+AND
+DB_PolymorphStatuses(_Var2, _Var3)
+THEN
+RemoveStatus(_Var1, _Var3);
+
+IF
+CharacterPolymorphedInto((CHARACTERGUID)_Var1, (STRING)_Var2)
+THEN
+DB_CharacterPolymorphedInto(_Var1, _Var2);
+ObjectSetFlag(_Var1, "GLO_Polymorphed");
+
+IF
+CharacterPolymorphedInto((CHARACTERGUID)_Var1, _)
+AND
+DB_PolymorphTags(_Var1, _Var3)
+THEN
+SetTag(_Var1, _Var3);
+
+IF
+CharacterPolymorphedInto((CHARACTERGUID)_Var1, _)
+AND NOT
+DB_PolymorphTags(_Var1, _)
+THEN
+SetTag(_Var1, "SHAPESHIFT_GENERIC");
+
+IF
+CharacterPolymorphedInto((CHARACTERGUID)_Var1, _)
+THEN
+SetTag(_Var1, "GENERIC");
+
+IF
+CharacterStoppedPolymorph((CHARACTERGUID)_Var1)
+AND
+DB_PolymorphTags(_Var1, _Var2)
+AND
+_Var2 != "MASKED_UNDEAD"
+THEN
+ClearTag(_Var1, "GENERIC");
+
+IF
+CharacterStoppedPolymorph((CHARACTERGUID)_Var1)
+AND
+DB_PolymorphTags(_Var1, _Var2)
+THEN
+ClearTag(_Var1, _Var2);
+
+IF
+CharacterStoppedPolymorph((CHARACTERGUID)_Var1)
+THEN
+ClearTag(_Var1, "SHAPESHIFT_GENERIC");
+ObjectClearFlag(_Var1, "GLO_Polymorphed");
+
+IF
+CharacterStoppedPolymorph((CHARACTERGUID)_Var1)
+AND
+DB_CharacterPolymorphedInto(_Var1, _Var2)
+THEN
+NOT DB_CharacterPolymorphedInto(_Var1, _Var2);
+
+PROC
+Proc_DialogFlagSetup((STRING)_Var1, (GUIDSTRING)_Var2)
+AND
+DB_BlockPolymorphDialog(_Var1)
+THEN
+ProcRemovePolymorphsFromPlayer(_Var2);
+
+PROC
+Proc_DialogFlagSetup((STRING)_Var1, (GUIDSTRING)_Var2, (GUIDSTRING)_Var3)
+AND
+DB_BlockPolymorphDialog(_Var1)
+THEN
+ProcRemovePolymorphsFromPlayer(_Var2);
+ProcRemovePolymorphsFromPlayer(_Var3);
+
+PROC
+Proc_DialogFlagSetup((STRING)_Var1, (GUIDSTRING)_Var2, (GUIDSTRING)_Var3, (GUIDSTRING)_Var4)
+AND
+DB_BlockPolymorphDialog(_Var1)
+THEN
+ProcRemovePolymorphsFromPlayer(_Var2);
+ProcRemovePolymorphsFromPlayer(_Var3);
+ProcRemovePolymorphsFromPlayer(_Var4);
+
+PROC
+Proc_DialogFlagSetup((STRING)_Var1, (GUIDSTRING)_Var2, (GUIDSTRING)_Var3, (GUIDSTRING)_Var4, (GUIDSTRING)_Var5)
+AND
+DB_BlockPolymorphDialog(_Var1)
+THEN
+ProcRemovePolymorphsFromPlayer(_Var2);
+ProcRemovePolymorphsFromPlayer(_Var3);
+ProcRemovePolymorphsFromPlayer(_Var4);
+ProcRemovePolymorphsFromPlayer(_Var5);
+
+PROC
+Proc_DialogFlagSetup((STRING)_Var1, (GUIDSTRING)_Var2, (GUIDSTRING)_Var3, (GUIDSTRING)_Var4, (GUIDSTRING)_Var5, (GUIDSTRING)_Var6)
+AND
+DB_BlockPolymorphDialog(_Var1)
+THEN
+ProcRemovePolymorphsFromPlayer(_Var2);
+ProcRemovePolymorphsFromPlayer(_Var3);
+ProcRemovePolymorphsFromPlayer(_Var4);
+ProcRemovePolymorphsFromPlayer(_Var5);
+ProcRemovePolymorphsFromPlayer(_Var6);
+
+PROC
+Proc_DialogFlagSetup((STRING)_Var1, (GUIDSTRING)_Var2, (GUIDSTRING)_Var3, (GUIDSTRING)_Var4, (GUIDSTRING)_Var5, (GUIDSTRING)_Var6, (GUIDSTRING)_Var7)
+AND
+DB_BlockPolymorphDialog(_Var1)
+THEN
+ProcRemovePolymorphsFromPlayer(_Var2);
+ProcRemovePolymorphsFromPlayer(_Var3);
+ProcRemovePolymorphsFromPlayer(_Var4);
+ProcRemovePolymorphsFromPlayer(_Var5);
+ProcRemovePolymorphsFromPlayer(_Var6);
+ProcRemovePolymorphsFromPlayer(_Var7);
+
+PROC
+ProcRemovePolymorphsFromPlayer((CHARACTERGUID)_Var1)
+AND
+DB_IsPlayer(_Var1)
+THEN
+ProcRemovePolymorphs(_Var1);
+
+IF
+TextEventSet("addpolyflag")
+AND
+CharacterGetHostCharacter(_Var1)
+THEN
+ObjectSetFlag(_Var1, "GLO_Polymorphed");
+
+IF
+ObjectFlagSet("GLO_RemovePolymorph", (CHARACTERGUID)_Var1, _)
+THEN
+ProcRemovePolymorphs(_Var1);
+ObjectClearFlag(_Var1, "GLO_RemovePolymorph");
+
+PROC
+ProcReservePolymorphShapes((CHARACTERGUID)_Var1)
+AND
+DB_PolymorphStatuses(_Var2, _)
+THEN
+CharacterReservePolymorphShape(_Var1, _Var2);
+
+IF
+DB_IsPlayer(_Var1)
+THEN
+ProcReservePolymorphShapes(_Var1);
+ProcMarkUndeadOrigin(_Var1);
+
+PROC
+ProcCheckRemoveOtherOrigins()
+AND
+DB_InCharacterCreation(0)
+AND
+DB_IsPlayer(_Var1)
+THEN
+ProcReservePolymorphShapes(_Var1);
+ProcMarkUndeadOrigin(_Var1);
+
+IF
+CharacterCreationFinished(NULL_00000000-0000-0000-0000-000000000000)
+AND
+DB_IsPlayer(_Var1)
+THEN
+ProcReservePolymorphShapes(_Var1);
+ProcMarkUndeadOrigin(_Var1);
+
+PROC
+ProcMarkUndeadOrigin((CHARACTERGUID)_Var1)
+AND
+IsTagged(_Var1, "UNDEAD", 1)
+THEN
+DB_UndeadCharacter(_Var1);
+
+QRY
+QRY_GLOBAL_Shapeshifting_GetPolymorphStatus((CHARACTERGUID)_Var1)
+AND
+DB_GLOBAL_Shapeshifting_PolymorphStatus(_Var2)
+THEN
+NOT DB_GLOBAL_Shapeshifting_PolymorphStatus(_Var2);
+
+QRY
+QRY_GLOBAL_Shapeshifting_GetPolymorphStatus((CHARACTERGUID)_Var1)
+AND
+DB_CharacterPolymorphedInto(_Var1, _Var2)
+THEN
+DB_GLOBAL_Shapeshifting_PolymorphStatus(_Var2);
+
+QRY
+QRY_GLOBAL_Shapeshifting_GetPolymorphStatus((CHARACTERGUID)_Var1)
+AND NOT
+DB_CharacterPolymorphedInto(_Var1, _)
+THEN
+DB_GLOBAL_Shapeshifting_PolymorphStatus("");
+
+QRY
+QRY_IsTrueRace((CHARACTERGUID)_Var1, (STRING)_Var2)
+AND
+CharacterGetRace(_Var1, 0, _Var2)
+THEN
+DB_NOOP(1);
+
+QRY
+QRY_IsTrueUndead((CHARACTERGUID)_Var1)
+AND
+CharacterGetRace(_Var1, 0, _Var2)
+AND
+DB_UndeadRacePresets(_, _Var2)
+THEN
+DB_NOOP(1);
+
+IF
+TextEventSet("getrace")
+AND
+CharacterGetHostCharacter(_Var1)
+AND
+CharacterGetRace(_Var1, 0, _Var2)
+THEN
+DebugText(_Var1, _Var2);
+
+IF
+DB_IsPlayer(_Var1)
+THEN
+PROC_GLO_SetOriginalRaceTag(_Var1);
+
+PROC
+PROC_GLO_SetOriginalRaceTag((CHARACTERGUID)_Var1)
+AND
+CharacterGetRace(_Var1, 0, _Var2)
+AND
+DB_Shapeshifting_OriginalRaces(_Var2, _Var3)
+THEN
+SetTag(_Var1, _Var3);
+
+IF
+SavegameLoaded((INTEGER)_Var1, (INTEGER)_Var2, (INTEGER)_Var3, (INTEGER)_Var4)
+AND
+QRY_VersionIsOlderThan(_Var1, _Var2, _Var3, _Var4, 3, 6, 1, 0)
+THEN
+DB_Shapeshifting_OriginalRaces("Dwarf", "REALLY_DWARF");
+DB_Shapeshifting_OriginalRaces("Human", "REALLY_HUMAN");
+DB_Shapeshifting_OriginalRaces("Elf", "REALLY_ELF");
+DB_Shapeshifting_OriginalRaces("Lizard", "REALLY_LIZARD");
+
+IF
+SavegameLoaded((INTEGER)_Var1, (INTEGER)_Var2, (INTEGER)_Var3, (INTEGER)_Var4)
+AND
+QRY_VersionIsOlderThan(_Var1, _Var2, _Var3, _Var4, 3, 6, 1, 0)
+AND
+DB_IsPlayer(_Var5)
+THEN
+PROC_GLO_SetOriginalRaceTag(_Var5);
+
+IF
+SavegameLoaded((INTEGER)_Var1, (INTEGER)_Var2, (INTEGER)_Var3, (INTEGER)_Var4)
+AND
+QRY_VersionIsOlderThan(_Var1, _Var2, _Var3, _Var4, 3, 6, 1, 0)
+AND
+DB_PolymorphTags(_Var5, "MASKED_UNDEAD")
+AND
+_Var5 != S_Player_Fane_02a77f1f-872b-49ca-91ab-32098c443beb
+AND NOT
+DB_CharacterPolymorphedInto(_Var5, _)
+THEN
+SetTag(_Var5, "GENERIC");
+
+
+EXITSECTION
+ENDEXITSECTION
+
+ParentTargetEdge "__Shared_Campaign"

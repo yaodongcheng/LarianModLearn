@@ -1,0 +1,218 @@
+Version 1
+SubGoalCombiner SGC_AND
+
+INITSECTION
+DB_Dialogs(CHARACTERGUID_S_RC_DW_FishFactory_Worker_02_c94b562c-2ad5-4534-894a-23eac838fd68, "RC_DW_FishFactory_Worker_02");
+SetHasDialog(CHARACTERGUID_S_RC_DW_FishFactory_Owner_74284ca3-3f7d-4a2a-8099-49aa3117ab0d, 1);
+ItemToInventory(ITEMGUID_S_RC_DW_FishFactorySkeletonKey_ab3594bc-f64a-41a4-996b-28d80c04b7e9, CHARACTERGUID_S_RC_DW_FishFactory_Owner_74284ca3-3f7d-4a2a-8099-49aa3117ab0d);
+ItemToInventory(ITEMGUID_S_RC_DW_FishFactoryHatchKey_31fbd9ab-c4d0-4618-af12-741ada632f71, CHARACTERGUID_S_RC_DW_FishFactory_Owner_74284ca3-3f7d-4a2a-8099-49aa3117ab0d);
+ItemToInventory(ITEMGUID_S_RC_DW_FishFactory_LockerKey1_71479f75-255a-4367-8c75-2bcdb189fda4, CHARACTERGUID_S_RC_DW_FishFactory_Worker_01_9f5cfac1-772c-4301-a4b8-0c214682259c);
+ItemToInventory(ITEMGUID_S_RC_DW_FishFactory_LockerKey2_8fbca983-c482-465e-8435-6b75a82f36d3, CHARACTERGUID_S_RC_DW_FishFactory_Worker_02_c94b562c-2ad5-4534-894a-23eac838fd68);
+ItemToInventory(ITEMGUID_S_RC_DW_FishFactory_LockerKey5_aee5754f-e678-4cad-959b-4df4aa63a47c, CHARACTERGUID_S_RC_DW_FishFactory_Worker_04_864b0421-7c39-4861-8799-04c23d28466f);
+ObjectSetFlag(CHARACTERGUID_S_RC_DW_TraderFish_81f4cd7e-0c93-4fcb-9aa6-23500e3d2c4d, "RC_DW_TraderFish");
+ObjectSetFlag(CHARACTERGUID_S_RC_DW_TraderSkill_b22c2335-d5b2-46ca-aaaf-2787c4dbc172, "RC_DW_TraderSkill");
+ObjectSetFlag(CHARACTERGUID_S_RC_DW_TraderGeneral_29ca04c1-430a-4ec4-a80d-c4c2af122d2c, "RC_DW_TraderGeneral");
+ObjectSetFlag(CHARACTERGUID_S_RC_DW_TraderHunter_88ea209d-d5e6-465d-bebe-2f10b1fd2861, "RC_DW_TraderHunter");
+DB_RC_DW_FishFactoryIntroSceneNPCs(CHARACTERGUID_S_RC_DW_FishFactory_Guard1_4e149364-2780-45ac-b0f7-19f3f8b9e1be);
+DB_RC_DW_FishFactoryIntroSceneNPCs(CHARACTERGUID_S_RC_DW_FishFactory_Guard2_eec5c3cf-f6e2-4374-9814-39794ddb0b7a);
+DB_RC_DW_FishFactoryIntroSceneNPCs(CHARACTERGUID_S_RC_DW_FishFactory_Owner_74284ca3-3f7d-4a2a-8099-49aa3117ab0d);
+SetHasDialog(CHARACTERGUID_S_RC_DW_FishFactory_Guard1_4e149364-2780-45ac-b0f7-19f3f8b9e1be, 1);
+SetHasDialog(CHARACTERGUID_S_RC_DW_FishFactory_Guard2_eec5c3cf-f6e2-4374-9814-39794ddb0b7a, 1);
+DB_Dialogs(CHARACTERGUID_S_RC_DW_FishFactory_Guard3_8d257d1e-2887-40cf-bc3a-e07ef4651d5b, "RC_DW_FishFactory_Magister3");
+TeleportTo(CHARACTERGUID_S_RC_DW_FishFactory_Guard1_4e149364-2780-45ac-b0f7-19f3f8b9e1be, TRIGGERGUID_S_RC_DW_Point_FishFactory_Guard1_f858288c-44d4-4a49-a943-ba5742282598);
+TeleportTo(CHARACTERGUID_S_RC_DW_FishFactory_Guard2_eec5c3cf-f6e2-4374-9814-39794ddb0b7a, TRIGGERGUID_S_RC_DW_Point_FishFactory_Guard2_378ed7b4-809c-4fd8-8502-ef3a4073f815);
+DB_SneakTriggerSpotter(TRIGGERGUID_S_RC_DW_FishFactory_4a29517d-6369-47be-97d3-bc34e2547bca, CHARACTERGUID_S_RC_DW_FishFactory_Guard3_8d257d1e-2887-40cf-bc3a-e07ef4651d5b);
+DB_OneShotPlayerTrigger(TRIGGERGUID_S_RC_DW_OneShot_FishFactoryScene_7caf9d16-fd06-4af1-94ed-16e265dbbaff);
+DB_Dialogs(CHARACTERGUID_S_RC_DW_FishFactoryDog_ff565326-3b3f-4771-89f4-8cbe51101b74, "RC_DW_FishFactoryDog");
+DB_Dialogs(CHARACTERGUID_S_RC_DW_FishFactoryDog2_876da9ff-b52d-466b-8061-20ceaf4cebb6, "RC_DW_FishFactoryDog2");
+DB_IsSign(ITEMGUID_S_RC_DW_Sign_FishFactory_dbcbe1da-0818-4a05-9b7c-7f1c571a7bbd, "RC_DW_Signs", "RC_DW_Signs_FishFactory");
+DB_IsSign(ITEMGUID_S_RC_DW_Sign_FishFactory2_3c07a13c-7e8c-48ef-92cb-3e778a8545e8, "RC_DW_Signs", "RC_DW_Signs_FishFactory");
+DB_DialogMoneyTransfer(1, "RC_DW_FishFactoryOwner", 100);
+DB_DialogMoneyTransfer(1, "RC_DW_FishFactory_Worker_02", 40);
+
+KBSECTION
+PROC
+ProcCharInTriggerSpottedByChar((CHARACTERGUID)_Var1, TRIGGERGUID_S_RC_DW_FishFactory_4a29517d-6369-47be-97d3-bc34e2547bca, (CHARACTERGUID)_Var2)
+AND
+DB_RC_DW_FishBarrel_Patrolmen(_Var2, _Var3)
+AND
+_Var1 != CHARACTERGUID_S_RC_DW_FishBarrel_c262ed6e-3edc-48f0-9e5d-35551b47cdbc
+AND
+UserGetFlag(_Var1, "RC_DW_FishFactoryPatrolman", 0)
+THEN
+SetVarObject(_Var2, "Player", _Var1);
+DB_RC_DW_FishFactoryGuard_Inspecting(_Var2, _Var1);
+CharacterSetReactionPriority(_Var2, "GuardStartInvestigationDialogue", 1000);
+
+IF
+ObjectFlagSet("RC_DW_FishFactoryInvestigationDialog", (CHARACTERGUID)_Var1, _)
+AND
+DB_RC_DW_FishBarrel_Patrolmen(_Var1, _Var3)
+AND
+GetVarObject(_Var1, "Player", _Var4)
+AND
+_Var4 != NULL_00000000-0000-0000-0000-000000000000
+THEN
+Proc_StartDialog(0, _Var3, _Var1, _Var4);
+ObjectClearFlag(_Var1, "RC_DW_FishFactoryInvestigationDialog", 0);
+NOT DB_RC_DW_FishFactoryGuard_Inspecting(_Var1, _Var4);
+
+IF
+CharacterLeftTrigger((CHARACTERGUID)_Var1, TRIGGERGUID_S_RC_DW_FishFactory_4a29517d-6369-47be-97d3-bc34e2547bca)
+AND
+QRY_AnyRegionActive()
+AND
+DB_RC_DW_FishFactoryGuard_Inspecting(_Var2, _Var1)
+THEN
+ObjectClearFlag(_Var2, "RC_DW_FishFactoryInvestigationDialog", 0);
+NOT DB_RC_DW_FishFactoryGuard_Inspecting(_Var2, _Var1);
+
+IF
+DialogStarted((STRING)_Var1, (INTEGER)_Var2)
+AND
+DB_RC_DW_FishFactoryGuard_Inspecting(_Var3, _Var4)
+AND
+DB_DialogPlayers(_Var2, _Var4, 1)
+THEN
+ClearVarObject(_Var3, "Player");
+CharacterSetReactionPriority(_Var3, "GuardStartInvestigationDialogue", 0);
+NOT DB_RC_DW_FishFactoryGuard_Inspecting(_Var3, _Var4);
+
+PROC
+ProcOneShotTriggerEntered((CHARACTERGUID)_Var1, TRIGGERGUID_S_RC_DW_OneShot_FishFactoryScene_7caf9d16-fd06-4af1-94ed-16e265dbbaff)
+THEN
+Proc_RC_DW_FishFactoryIntroAD();
+
+PROC
+Proc_RC_DW_FishFactoryIntroAD()
+THEN
+GlobalSetFlag("RC_DW_FishFactory_Intro");
+DB_RC_DW_FishFactoryIntro(1);
+Proc_StartDialog(1, "RC_DW_AD_FishFactoryScene1", CHARACTERGUID_S_RC_DW_FishFactory_Guard1_4e149364-2780-45ac-b0f7-19f3f8b9e1be, CHARACTERGUID_S_RC_DW_FishFactory_Owner_74284ca3-3f7d-4a2a-8099-49aa3117ab0d, CHARACTERGUID_S_RC_DW_FishFactory_Guard2_eec5c3cf-f6e2-4374-9814-39794ddb0b7a);
+
+IF
+AutomatedDialogRequestFailed("RC_DW_AD_FishFactoryScene1", _)
+THEN
+TimerLaunch("Timer_RC_DW_FishFactoryInvestigation", 1000);
+
+IF
+AutomatedDialogEnded("RC_DW_AD_FishFactoryScene1", _)
+THEN
+TimerLaunch("Timer_RC_DW_FishFactoryInvestigation", 1000);
+
+PROC
+PROC_GLOBAL_DialogStartRequested((CHARACTERGUID)_Var1, (GUIDSTRING)_Var2)
+AND
+DB_GlobalFlag("RC_DW_FishFactory_Intro")
+AND
+DB_RC_DW_FishFactoryIntroSceneNPCs(_Var1)
+AND
+DB_RC_DW_FishBarrel_Patrolmen(_Var1, _Var3)
+AND
+QRY_SpeakerIsAvailable(_Var1)
+AND
+QueryOnlyOnce("RC_DW_FishFactory_Intro")
+THEN
+Proc_StartDialog(0, _Var3, _Var1, _Var2);
+
+PROC
+PROC_GLOBAL_DialogStartRequested(CHARACTERGUID_S_RC_DW_FishFactory_Owner_74284ca3-3f7d-4a2a-8099-49aa3117ab0d, (CHARACTERGUID)_Var1)
+AND
+GlobalGetFlag("RC_DW_FishFactory_Intro", 1)
+AND
+DB_RC_DW_FishFactoryIntroSceneNPCs(_Var2)
+AND
+DB_RC_DW_FishBarrel_Patrolmen(_Var2, _Var3)
+AND
+QRY_SpeakerIsAvailable(_Var2)
+AND
+QueryOnlyOnce("RC_DW_FishFactory_Intro")
+THEN
+Proc_RC_DW_FishFactoryIntroInterrupt(_Var2, _Var1, _Var3);
+
+PROC
+Proc_RC_DW_FishFactoryIntroInterrupt((CHARACTERGUID)_Var1, (CHARACTERGUID)_Var2, (STRING)_Var3)
+THEN
+Proc_StartDialog(0, _Var3, _Var1, _Var2);
+ProcFaceEachother(_Var1, CHARACTERGUID_S_RC_DW_FishFactory_Owner_74284ca3-3f7d-4a2a-8099-49aa3117ab0d);
+
+IF
+TimerFinished("Timer_RC_DW_FishFactoryInvestigation")
+THEN
+Proc_RC_DW_SetupFishFactoryNPCAfterIntro();
+
+PROC
+Proc_RC_DW_SetupFishFactoryNPCAfterIntro()
+AND
+QueryOnlyOnce("RC_DW_SetupFishFactoryNPCAfterIntro")
+THEN
+NOT DB_OneShotPlayerTrigger(TRIGGERGUID_S_RC_DW_OneShot_FishFactoryScene_7caf9d16-fd06-4af1-94ed-16e265dbbaff);
+ProcTriggerUnregisterForPlayers(TRIGGERGUID_S_RC_DW_OneShot_FishFactoryScene_7caf9d16-fd06-4af1-94ed-16e265dbbaff);
+GlobalClearFlag("RC_DW_FishFactory_Intro");
+CharacterSetReactionPriority(CHARACTERGUID_S_RC_DW_FishFactory_Guard1_4e149364-2780-45ac-b0f7-19f3f8b9e1be, "Patrol", 500);
+CharacterSetReactionPriority(CHARACTERGUID_S_RC_DW_FishFactory_Guard2_eec5c3cf-f6e2-4374-9814-39794ddb0b7a, "Patrol", 500);
+CharacterSetReactionPriority(CHARACTERGUID_S_RC_DW_FishFactory_Owner_74284ca3-3f7d-4a2a-8099-49aa3117ab0d, "Action_OwnerWander", 900);
+DB_Dialogs(CHARACTERGUID_S_RC_DW_FishFactory_Guard1_4e149364-2780-45ac-b0f7-19f3f8b9e1be, "RC_DW_FishFactory_Magister1");
+DB_Dialogs(CHARACTERGUID_S_RC_DW_FishFactory_Guard2_eec5c3cf-f6e2-4374-9814-39794ddb0b7a, "RC_DW_FishFactory_Magister2");
+DB_Dialogs(CHARACTERGUID_S_RC_DW_FishFactory_Owner_74284ca3-3f7d-4a2a-8099-49aa3117ab0d, "RC_DW_FishFactoryOwner");
+
+PROC
+Proc_RC_DW_SetupFishFactoryNPCAfterIntro()
+AND NOT
+DB_OnlyOnce("RC_DW_FishBarrel_ClearIntro")
+AND
+DB_RC_DW_FishBarrel_Patrolmen(_Var1, _)
+THEN
+DB_SneakTriggerSpotter(TRIGGERGUID_S_RC_DW_FishFactory_4a29517d-6369-47be-97d3-bc34e2547bca, _Var1);
+
+IF
+DialogStarted(_, (INTEGER)_Var2)
+AND
+DB_DialogNPCs(_Var2, CHARACTERGUID_S_RC_DW_FishFactory_Owner_74284ca3-3f7d-4a2a-8099-49aa3117ab0d, 1)
+AND NOT
+DB_RC_DW_FishFactoryIntro(1)
+THEN
+DB_RC_DW_FishFactoryIntro(1);
+TimerLaunch("Timer_RC_DW_FishFactoryInvestigation", 1000);
+
+IF
+ObjectFlagSet("RC_DW_FishFactory_Worker_02_Punch", (CHARACTERGUID)_Var1, _)
+THEN
+CharacterAttack(_Var1, S_RC_DW_FishFactory_Worker_02_c94b562c-2ad5-4534-894a-23eac838fd68);
+
+IF
+ObjectFlagSet("RC_DW_FishFactory_Worker_02_Sourcerer", (CHARACTERGUID)_Var1, _)
+THEN
+ProcShowMarker(_Var1, "RC_DW_Tinker");
+
+IF
+DialogStarted("RC_DW_FishBarrel", (INTEGER)_Var1)
+AND
+DB_DialogPlayers(_Var1, _Var2, 1)
+THEN
+ProcHideMarker(_Var2, "RC_DW_Tinker");
+
+IF
+ObjectFlagSet("RC_DW_FishFactory_Worker_02_Extorted", (CHARACTERGUID)_Var1, _)
+AND
+DB_DialogMoneyTransfer(1, "RC_DW_FishFactory_Worker_02", _Var3)
+AND
+IntegerProduct(_Var3, -1, _Var4)
+THEN
+ProcAddGoldToMagicPockets(_Var1, _Var3);
+CharacterAddGold(CHARACTERGUID_S_RC_DW_FishFactory_Worker_02_c94b562c-2ad5-4534-894a-23eac838fd68, _Var4);
+
+IF
+DialogStarted(_, (INTEGER)_Var2)
+AND
+DB_DialogNPCs(_Var2, CHARACTERGUID_S_RC_DW_UnderTavern_DwarfBoss_8e58abc6-1010-4e67-97b2-b9686586e784, _)
+AND
+DB_DialogPlayers(_Var2, _Var4, _)
+THEN
+PartySetFlag(_Var4, "RC_DW_HasMet_Lilian");
+
+
+EXITSECTION
+ENDEXITSECTION
+
+ParentTargetEdge "ReapersCoast"

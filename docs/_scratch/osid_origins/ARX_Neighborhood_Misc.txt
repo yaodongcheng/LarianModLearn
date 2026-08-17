@@ -1,0 +1,32 @@
+Version 1
+SubGoalCombiner SGC_AND
+
+INITSECTION
+DB_Dialogs(CHARACTERGUID_S_ARX_Neighborhood_TraderBaker_1acfb572-b892-4020-a9a3-b5ebc4ffb15b, "ARX_Neighborhood_Street_TraderBaker");
+DB_Dialogs(CHARACTERGUID_S_ARX_Neighborhood_PatrollingGuard_02_bb628d91-eb12-4f85-ba75-9bd8134f0aef, "ARX_Neighborhood_PatrollingGuard_02");
+DB_Dialogs(CHARACTERGUID_S_ARX_Neighborhood_PatrollingGuard_01_67b5ff48-a63b-4878-bb42-82cfe9abafef, "ARX_Neighborhood_PatrollingGuard_01");
+DB_Dialogs(CHARACTERGUID_S_ARX_Neighborhood_Pleb_Backstreet_01_4ac78cb1-8ad2-4372-89ee-0eb202c56ad0, "ARX_Neighborhood_Pleb_Backstreet_01");
+DB_Dialogs(CHARACTERGUID_S_ARX_Neighborhood_Pleb_MainStreet_01_2af6cc38-f1a6-45d7-94bc-e6603cbba3de, "ARX_Neighborhood_Pleb_MainStreet_01");
+DB_Dialogs(CHARACTERGUID_S_ARX_Neighborhood_Pleb_MainStreet_02_33b4389d-79c5-4263-8872-fb58fb521a73, "ARX_Neighborhood_Pleb_MainStreet_02");
+DB_Dialogs(CHARACTERGUID_S_ARX_Neighborhood_Pleb_MainStreet_03_78da04ae-980d-4134-bcaa-b5ab2f1d1788, "ARX_Neighborhood_Pleb_MainStreet_03");
+DB_Dialogs(CHARACTERGUID_S_ARX_Neighborhood_Pleb_Construction_01_c3093aba-3648-470a-8391-e9acaf0353f3, "ARX_Neighborhood_Pleb_Construction_01");
+DB_Dialogs(CHARACTERGUID_S_ARX_Neighborhood_Pleb_Construction_02_29efea16-bf9a-4808-89f1-558399259743, "ARX_Neighborhood_Pleb_Construction_02");
+DB_Dialogs(CHARACTERGUID_S_ARX_Neighborhood_Pleb_Construction_03_78780aa6-34f9-4955-b330-e163b3bd8e9f, "ARX_Neighborhood_Pleb_Construction_03");
+DB_Dialogs(CHARACTERGUID_S_ARX_Neighborhood_GardenCat_23b35fa0-d596-4c3a-84a7-e1d0da16ffd7, "ARX_Neighborhood_GardenCat");
+DB_AD_Dialog(ITEMGUID_S_ARX_Neighborhood_Street_TraderBaker_Sign_087f1127-82d3-4887-938a-8424cae820db, "ARX_Neighborhood_Street_AD_TraderBaker_Sign");
+DB_AD_Dialog(ITEMGUID_S_ARX_Neighborhood_HouseSchool_Sign_2b335832-ddfb-4132-85af-146fdc62bcf1, "ARX_Neighborhood_HouseSchool_AD_Sign");
+DB_AD_Dialog(ITEMGUID_S_ARX_Neighborhood_TheFence_Sign_4211dc8b-6775-4d57-83d9-2b46637a6dc6, "ARX_Neighborhood_TheFence_AD_Sign");
+DB_AD_Dialog(ITEMGUID_S_ARX_Neighborhood_HouseAlchemist_Sign_1c55ab0f-fc70-4413-ada8-b849df9bfaaa, "ARX_Neighborhood_HouseAlchemist_AD_Sign");
+DB_OneShotPlayerTrigger(TRIGGERGUID_S_ARX_Neighborhood_VB_SewersTrigger_985ec5ed-5476-40ea-a448-3694c460606a);
+
+KBSECTION
+PROC
+ProcOneShotTriggerEntered((CHARACTERGUID)_Var1, TRIGGERGUID_S_ARX_Neighborhood_VB_SewersTrigger_985ec5ed-5476-40ea-a448-3694c460606a)
+THEN
+StartVoiceBark("ARX_Neighborhood_VB_Sewers", _Var1);
+
+
+EXITSECTION
+ENDEXITSECTION
+
+ParentTargetEdge "ARX"

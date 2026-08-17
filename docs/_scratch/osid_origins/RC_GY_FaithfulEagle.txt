@@ -1,0 +1,90 @@
+Version 1
+SubGoalCombiner SGC_AND
+
+INITSECTION
+DB_Dialogs(CHARACTERGUID_S_RC_GY_FaithfulEagle_bb85af78-d16a-4c3e-89cc-137d40def9f0, "RC_GY_FaithfulEagle");
+DB_Ghosts(CHARACTERGUID_S_RC_GY_FaithfulEagle_MasterCorpse_659d6c49-a873-4753-aa7a-1fb509db9014, CHARACTERGUID_S_RC_GY_FaithfulEagle_Master_0db9e762-9d1e-4047-8091-63cf07374e6c, "RC_GY_FaithfulEagle_Master");
+TriggerRegisterForCharacter(TRIGGERGUID_S_RC_GY_FaithfulEagle_BoxTrigger_66886fe0-5cce-406f-b0ea-42b87b3c10d7, CHARACTERGUID_S_RC_GY_FaithfulEagle_bb85af78-d16a-4c3e-89cc-137d40def9f0);
+TriggerRegisterForCharacter(TRIGGERGUID_S_RC_GY_FaithfulEagle_BoxTrigger_66886fe0-5cce-406f-b0ea-42b87b3c10d7, CHARACTERGUID_S_RC_GY_FaithfulEagle_MasterCorpse_659d6c49-a873-4753-aa7a-1fb509db9014);
+
+KBSECTION
+IF
+DialogEnded("RC_GY_FaithfulEagle", (INTEGER)_Var1)
+AND
+DialogGetInvolvedPlayer(_Var1, 1, _Var2)
+AND
+ObjectGetFlag(_Var2, "RC_GY_FaithfulEagle_JoinedPlayer", 1)
+AND
+GlobalGetFlag("DB_RC_GY_FaithfulEagleGone", 0)
+THEN
+Poof(CHARACTERGUID_S_RC_GY_FaithfulEagle_bb85af78-d16a-4c3e-89cc-137d40def9f0);
+CharacterAddSkill(_Var2, "Summon_Condor");
+
+IF
+CharacterLeftTrigger(CHARACTERGUID_S_RC_GY_FaithfulEagle_bb85af78-d16a-4c3e-89cc-137d40def9f0, TRIGGERGUID_S_RC_GY_FaithfulEagle_BoxTrigger_66886fe0-5cce-406f-b0ea-42b87b3c10d7)
+THEN
+GlobalSetFlag("DB_RC_GY_FaithfulEagleGone");
+TriggerUnregisterForCharacter(TRIGGERGUID_S_RC_GY_FaithfulEagle_BoxTrigger_66886fe0-5cce-406f-b0ea-42b87b3c10d7, CHARACTERGUID_S_RC_GY_FaithfulEagle_bb85af78-d16a-4c3e-89cc-137d40def9f0);
+
+IF
+ItemAddedToCharacter(ITEMGUID_S_RC_GY_FaithfulEagle_BodyPart_22a1aa11-9e8b-4169-8e2e-c9bd8ebc97c4, (CHARACTERGUID)_Var1)
+AND
+DB_IsPlayer(_Var1)
+THEN
+Proc_RC_GY_FaithfulEagle_TochedBodyPart(_Var1);
+
+IF
+CharacterUsedItem((CHARACTERGUID)_Var1, ITEMGUID_S_RC_GY_FaithfulEagle_BodyPart_22a1aa11-9e8b-4169-8e2e-c9bd8ebc97c4)
+THEN
+Proc_RC_GY_FaithfulEagle_TochedBodyPart(_Var1);
+Poof(CHARACTERGUID_S_RC_GY_FaithfulEagle_Master_0db9e762-9d1e-4047-8091-63cf07374e6c);
+
+IF
+CharacterMovedItem((CHARACTERGUID)_Var1, ITEMGUID_S_RC_GY_FaithfulEagle_BodyPart_22a1aa11-9e8b-4169-8e2e-c9bd8ebc97c4)
+THEN
+Proc_RC_GY_FaithfulEagle_TochedBodyPart(_Var1);
+
+PROC
+Proc_RC_GY_FaithfulEagle_TochedBodyPart((CHARACTERGUID)_Var1)
+AND
+DB_IsPlayer(_Var1)
+AND
+GlobalGetFlag("DB_RC_GY_FaithfulEagleGone", 0)
+AND
+QRY_SpeakerIsAvailableAndInDialogRange(_Var1, CHARACTERGUID_S_RC_GY_FaithfulEagle_bb85af78-d16a-4c3e-89cc-137d40def9f0)
+THEN
+ObjectSetFlag(_Var1, "RC_GY_FaithfulEagle_AteMaster");
+Proc_StartDialog(0, "RC_GY_FaithfulEagle", CHARACTERGUID_S_RC_GY_FaithfulEagle_bb85af78-d16a-4c3e-89cc-137d40def9f0, _Var1);
+
+IF
+CharacterLeftTrigger(CHARACTERGUID_S_RC_GY_FaithfulEagle_MasterCorpse_659d6c49-a873-4753-aa7a-1fb509db9014, TRIGGERGUID_S_RC_GY_FaithfulEagle_BoxTrigger_66886fe0-5cce-406f-b0ea-42b87b3c10d7)
+THEN
+TriggerUnregisterForCharacter(TRIGGERGUID_S_RC_GY_FaithfulEagle_BoxTrigger_66886fe0-5cce-406f-b0ea-42b87b3c10d7, CHARACTERGUID_S_RC_GY_FaithfulEagle_MasterCorpse_659d6c49-a873-4753-aa7a-1fb509db9014);
+Proc_StartDialog(1, "RC_GY_AD_FaithfulEagle_Attacked", CHARACTERGUID_S_RC_GY_FaithfulEagle_bb85af78-d16a-4c3e-89cc-137d40def9f0);
+ProcObjectTimer(CHARACTERGUID_S_RC_GY_FaithfulEagle_bb85af78-d16a-4c3e-89cc-137d40def9f0, "RC_GY_FaithfulEagle_Leave", 700);
+Poof(CHARACTERGUID_S_RC_GY_FaithfulEagle_Master_0db9e762-9d1e-4047-8091-63cf07374e6c);
+
+IF
+CharacterStatusApplied(CHARACTERGUID_S_RC_GY_FaithfulEagle_MasterCorpse_659d6c49-a873-4753-aa7a-1fb509db9014, "Explode", _)
+THEN
+Proc_StartDialog(1, "RC_GY_AD_FaithfulEagle_Attacked", CHARACTERGUID_S_RC_GY_FaithfulEagle_bb85af78-d16a-4c3e-89cc-137d40def9f0);
+ProcObjectTimer(CHARACTERGUID_S_RC_GY_FaithfulEagle_bb85af78-d16a-4c3e-89cc-137d40def9f0, "RC_GY_FaithfulEagle_Leave", 700);
+
+IF
+AttackedByObject(CHARACTERGUID_S_RC_GY_FaithfulEagle_bb85af78-d16a-4c3e-89cc-137d40def9f0, _, (GUIDSTRING)_Var2, _, _)
+AND
+CHARACTERGUID_S_RC_GY_FaithfulEagle_bb85af78-d16a-4c3e-89cc-137d40def9f0 != _Var2
+THEN
+Proc_StartDialog(1, "RC_GY_AD_FaithfulEagle_Attacked", CHARACTERGUID_S_RC_GY_FaithfulEagle_bb85af78-d16a-4c3e-89cc-137d40def9f0);
+ProcObjectTimer(CHARACTERGUID_S_RC_GY_FaithfulEagle_bb85af78-d16a-4c3e-89cc-137d40def9f0, "RC_GY_FaithfulEagle_Leave", 700);
+
+PROC
+ProcObjectTimerFinished(CHARACTERGUID_S_RC_GY_FaithfulEagle_bb85af78-d16a-4c3e-89cc-137d40def9f0, "RC_GY_FaithfulEagle_Leave")
+THEN
+Poof(CHARACTERGUID_S_RC_GY_FaithfulEagle_bb85af78-d16a-4c3e-89cc-137d40def9f0);
+
+
+EXITSECTION
+ENDEXITSECTION
+
+ParentTargetEdge "ReapersCoast"

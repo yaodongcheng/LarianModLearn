@@ -1,0 +1,29 @@
+Version 1
+SubGoalCombiner SGC_AND
+
+INITSECTION
+ProcTriggerRegisterForPlayers(S_RC_DW_WC_MordusOffice_Box_a4018fd0-bed4-494c-9da6-3cc425f426e3);
+
+KBSECTION
+IF
+CharacterEnteredTrigger((CHARACTERGUID)_Var1, TRIGGERGUID_S_RC_DW_WreckersCave_Box_759f16fa-f59d-4686-b052-b598f2f2410a)
+THEN
+PROC_RC_WC_InitWreckersCave(_Var1);
+
+IF
+CharacterEnteredTrigger((CHARACTERGUID)_Var1, S_RC_DW_WC_MordusOffice_Box_a4018fd0-bed4-494c-9da6-3cc425f426e3)
+THEN
+PROC_RC_WC_InitWreckersCave(_Var1);
+
+PROC
+PROC_RC_WC_InitWreckersCave((CHARACTERGUID)_Var1)
+THEN
+AutoSave();
+ObjectSetFlag(_Var1, "QuestUpdate_RC_DW_WC_AtaraxianLair_EnteredWreckersCave");
+GoalCompleted;
+
+
+EXITSECTION
+ENDEXITSECTION
+
+ParentTargetEdge "ReapersCoast"

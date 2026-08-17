@@ -1,0 +1,358 @@
+Version 1
+SubGoalCombiner SGC_AND
+
+INITSECTION
+DB_Dialogs(CHARACTERGUID_S_RC_DF_Paladin_1_e732339e-28b6-4736-bbad-a6fdcceca684, "RC_DF_PaladinCheckpoint_1");
+DB_Dialogs(CHARACTERGUID_S_RC_DF_Paladin_2_cee8939a-0c80-4835-bbe2-37c750af027f, "RC_DF_PaladinCheckpoint_2");
+DB_Dialogs(CHARACTERGUID_S_RC_DF_Paladin_3_bed6ebf1-3ac6-4473-917a-ae07ac56f840, "RC_DF_PaladinCheckpoint_3");
+DB_Dialogs(CHARACTERGUID_S_RC_DF_Paladin_4_d8b2c876-11a2-46a5-a797-865583e6908f, "RC_DF_PaladinCheckpoint_4");
+DB_Dialogs(CHARACTERGUID_S_RC_DF_Paladin_5_3208763b-c14c-4ec0-b7a4-6196dcd60433, "RC_DF_PaladinCheckpoint_5");
+DB_Dialogs(CHARACTERGUID_S_RC_DF_Paladin_6_dbc6292f-ed94-4d3e-89f9-fa4cf3002522, "RC_DF_PaladinCheckpoint_6");
+DB_Dialogs(CHARACTERGUID_S_RC_DF_Paladin_7_08b8dcfc-0eed-43a6-956b-13e3c51854fc, "RC_DF_PaladinCheckpoint_7");
+DB_Dialogs(CHARACTERGUID_S_RC_DF_Refuge_aacb840d-c91b-48f8-b490-7286ebc9e7d5, "RC_DF_Refuge");
+DB_Dialogs(CHARACTERGUID_S_RC_DF_PaladinCheckpoint_Worker_377146c4-29e3-4496-852b-29898e963abb, "RC_DF_PaladinCheckpoint_Worker");
+Proc_RC_DF_PaladinCheckpoint_Emissary();
+DB_RC_DF_PaladinCheckpointAttack(CHARACTERGUID_S_RC_DF_PaladinAttack_Undead_Warrior_63d19461-87fc-4117-9fa8-8ee938f8c14f, CHARACTERGUID_S_RC_DF_Paladin_7_08b8dcfc-0eed-43a6-956b-13e3c51854fc, "RS3_FX_Skills_Rogue_CloakDagger_Land_01");
+DB_RC_DF_PaladinCheckpointAttack(CHARACTERGUID_S_RC_DF_PaladinAttack_Undead_Rogue_1_c0e247d0-0664-470b-8aaf-91cb1f9abdc0, NULL_00000000-0000-0000-0000-000000000000, "RS3_FX_Skills_Rogue_CloakDagger_Land_01");
+DB_RC_DF_PaladinCheckpointAttack(CHARACTERGUID_S_RC_DF_PaladinAttack_Undead_Ranger_1_122afb13-2502-48e0-ad94-490712a818b6, CHARACTERGUID_S_RC_DF_Paladin_2_cee8939a-0c80-4835-bbe2-37c750af027f, "RS3_FX_Skills_Air_Wind_Landing_01");
+DB_RC_DF_PaladinCheckpointAttack(CHARACTERGUID_S_RC_DF_PaladinAttack_Undead_Ranger_2_8109e13d-90b4-400e-896d-d36bebf720ef, CHARACTERGUID_S_RC_DF_Paladin_4_d8b2c876-11a2-46a5-a797-865583e6908f, "RS3_FX_Skills_Air_Wind_Landing_01");
+DB_RC_DF_PaladinCheckpointAttack(CHARACTERGUID_S_RC_DF_PaladinAttack_Undead_Caster_1_e16b848c-9b2e-4e66-9dca-d4cc406b6df8, NULL_00000000-0000-0000-0000-000000000000, "RS3_FX_Skills_Void_Netherswap_Reappear_01");
+DB_RC_DF_PaladinCheckpointAttack(CHARACTERGUID_S_RC_DF_PaladinAttack_Undead_Caster_2_525996fb-0242-4896-9f55-ff848b5a22ab, CHARACTERGUID_S_RC_DF_Paladin_6_dbc6292f-ed94-4d3e-89f9-fa4cf3002522, "RS3_FX_Skills_Void_Netherswap_Reappear_01");
+ProcTriggerRegisterForPlayers(TRIGGERGUID_S_RC_DF_CheckpointAttack_8113c013-a266-4bcc-8095-7ddbf5b4e014);
+ProcTriggerRegisterForPlayers(TRIGGERGUID_S_RC_DF_PaladinCheckpoint_AD_57ab7bc7-a514-447c-932b-f8223142e65b);
+DB_OneShotUser_VoicebarkTrigger(S_RC_DF_PaladinCheckpoint_DeadVoidwokenTrig_78fa2b2f-a36d-4258-b039-61d502f4f082, "RC_DF_PaladinCheckpoint_VB_DeadVoidwoken");
+DB_OneShotUser_VoicebarkTrigger(TRIGGERGUID_S_RC_DF_PaldinCheckpoint_VB_a3bdaa94-5c13-47d9-bb96-3c332625525c, "RC_DF_VB_PaladinCheckpoint");
+ProcTriggerRegisterForPlayers(TRIGGERGUID_S_RC_DF_Paladin3_AD_689678b1-9025-4649-8bd8-af8d56226003);
+DB_Ghosts(CHARACTERGUID_S_RC_DF_FallenPaladin1_762e58f6-1357-46fe-a63c-d8c36e0c481f, CHARACTERGUID_S_RC_DF_FallenPaladin_Ghost_167b68c3-06e2-44f5-ab24-e0b3ba8469e8, "RC_DF_FallenPaladinGhost");
+DB_Ghosts(CHARACTERGUID_S_RC_DF_VoidwokenPaladinGhost_19663698-4e6c-441d-b082-a3f5e288796c, "RC_DF_VoidwokenPaladin");
+DB_ItemOwnerShipClearItem("RC_Main", ITEMGUID_S_RC_DF_PaladinCheckpoint_Map_bbfd7d79-c0b4-4bc3-b554-d9ae192d8555);
+DB_RC_DF_PaladinCheckpointReward("RC_GY_PaladinCheckpoint_1000", 1000);
+DB_RC_DF_PaladinCheckpointReward("RC_GY_PaladinCheckpoint_500", 500);
+DB_RC_DF_PaladinCheckpointReward("RC_GY_PaladinCheckpoint_300", 300);
+DB_RC_DF_PaladinCheckpointReward("RC_GY_PaladinCheckpoint_100", 100);
+DB_DialogMoneyTransfer(1, "RC_DF_PaladinCheckpoint_1", 100);
+DB_DialogMoneyTransfer(2, "RC_DF_PaladinCheckpoint_1", 300);
+DB_DialogMoneyTransfer(3, "RC_DF_PaladinCheckpoint_1", 1000);
+DB_DialogMoneyTransfer(4, "RC_DF_PaladinCheckpoint_1", 500);
+DB_RC_DF_PaladinCheckpoint_MetJonathanUpdate_WhiteMagister(CHARACTERGUID_S_RC_OIL_InnerField_Magister_5_a8ca9245-b132-4e9e-b73a-81b41a6a297b);
+DB_RC_DF_PaladinCheckpoint_MetJonathanUpdate_WhiteMagister(CHARACTERGUID_S_GLO_GarethFriend_9372d7fb-dc95-4acf-b455-8a36d610e203);
+
+KBSECTION
+IF
+TextEventSet("patm")
+THEN
+TriggerSetAtmosphere(TRIGGERGUID_S_AtmosphereTrigger_FTJ_FinalBattleBeach_d4987042-6d48-4c3d-8ac5-763d0c400902, "5b55990f-7abf-48c3-ac2d-615f4d14c022");
+
+IF
+TextEventSet("pcheck")
+AND
+DB_IsPlayer(_Var1)
+THEN
+ObjectSetFlag(_Var1, "QuestUpdate_RC_DF_PaladinCheckpoint_WhiteMagister");
+
+IF
+TextEventSet("helpedlohar")
+AND
+DB_IsPlayer(_Var1)
+THEN
+ObjectSetFlag(_Var1, "QuestUpdate_RC_DW_CoverTheTracks_ShowedMordusAmuletToLohar");
+
+IF
+TextEventSet("pbridge")
+THEN
+Proc_RC_DF_StartCheckpointAttack();
+
+IF
+ObjectFlagSet("QuestUpdate_RC_DF_PaladinCheckpoint_PaladinStart", (CHARACTERGUID)_Var1, _)
+THEN
+ProcShowMarker(_Var1, "RC_OIL_Oilfields");
+
+IF
+ObjectFlagSet("RC_DF_PaladinCheckpoint_WarOwl", (GUIDSTRING)_Var1, _)
+THEN
+ItemTemplateAddTo("QUEST_RC_War_Owl_Whistle_8518ab1f-e6ce-4846-9785-d3ba73c998dc", _Var1, 1);
+
+IF
+CharacterUsedItemTemplate((CHARACTERGUID)_Var1, "QUEST_RC_War_Owl_Whistle_8518ab1f-e6ce-4846-9785-d3ba73c998dc", (ITEMGUID)_Var2)
+THEN
+Proc_StartDialog(0, "RC_DF_WarOwlWhistle", _Var2, _Var1);
+
+IF
+DialogEnded("RC_DF_WarOwlWhistle", (INTEGER)_Var1)
+AND
+DialogGetInvolvedPlayer(_Var1, 1, _Var2)
+AND
+ObjectGetFlag(_Var2, "QuestUpdate_RC_DF_PaladinCheckpoint_SentWarOwl", 1)
+AND
+UserGetFlag(_Var2, "RC_OIL_SentWarOwl", 0)
+THEN
+UserSetFlag(_Var2, "RC_OIL_SentWarOwl");
+PlayEffect(_Var2, "RS3_FX_Projectiles_Animated_MagicOwl_01", "Dummy_OverheadFX");
+
+IF
+ObjectFlagSet("QuestUpdate_RC_DF_PaladinCheckpoint_ToldPaladin", (GUIDSTRING)_Var1, _)
+THEN
+ObjectSetFlag(_Var1, "QuestUpdate_RC_DF_PaladinCheckpoint_Finished");
+GlobalSetFlag("RC_DF_PaladinCheckpoint_Finished");
+
+IF
+ObjectFlagSet("RC_DF_PaladinCheckpoint_Reward", (CHARACTERGUID)_Var1, _)
+AND
+DB_RC_DF_PaladinCheckpointReward(_Var3, _Var4)
+AND
+UserGetFlag(_Var1, _Var3, 1)
+AND
+QueryOnlyOnce("RC_DF_PaladinCheckpoint_Reward")
+AND
+IntegerProduct(_Var4, -1, _Var5)
+THEN
+CharacterAddGold(_Var1, _Var4);
+CharacterAddGold(CHARACTERGUID_S_RC_DF_Paladin_1_e732339e-28b6-4736-bbad-a6fdcceca684, _Var5);
+
+IF
+CharacterEnteredTrigger((CHARACTERGUID)_Var1, TRIGGERGUID_S_RC_DF_Paladin3_AD_689678b1-9025-4649-8bd8-af8d56226003)
+AND
+UserGetFlag(_Var1, "RC_DF_PaladinProtector_AD", 0)
+THEN
+UserSetFlag(_Var1, "RC_DF_PaladinProtector_AD");
+CharacterLookAt(CHARACTERGUID_S_RC_DF_Paladin_3_bed6ebf1-3ac6-4473-917a-ae07ac56f840, _Var1);
+Proc_StartDialog(1, "RC_AD_Paladin_Protector", CHARACTERGUID_S_RC_DF_Paladin_3_bed6ebf1-3ac6-4473-917a-ae07ac56f840);
+
+IF
+CharacterEnteredTrigger((CHARACTERGUID)_Var1, TRIGGERGUID_S_RC_DF_PaladinCheckpoint_AD_57ab7bc7-a514-447c-932b-f8223142e65b)
+AND
+UserGetFlag(_Var1, "RC_DF_PaladinMourner_AD", 0)
+THEN
+UserSetFlag(_Var1, "RC_DF_PaladinMourner_AD");
+Proc_StartDialog(1, "RC_DF_AD_Paladin_Mourn", CHARACTERGUID_S_RC_DF_Paladin_7_08b8dcfc-0eed-43a6-956b-13e3c51854fc);
+
+IF
+DB_GoneGhosts(CHARACTERGUID_S_RC_DF_FallenPaladin_Ghost_167b68c3-06e2-44f5-ab24-e0b3ba8469e8)
+THEN
+CharacterLookAt(CHARACTERGUID_S_RC_DF_Paladin_7_08b8dcfc-0eed-43a6-956b-13e3c51854fc, CHARACTERGUID_S_RC_DF_FallenPaladin1_762e58f6-1357-46fe-a63c-d8c36e0c481f);
+Proc_StartDialog(1, "RC_DF_AD_Paladin7_CorpseComment", CHARACTERGUID_S_RC_DF_Paladin_7_08b8dcfc-0eed-43a6-956b-13e3c51854fc);
+
+PROC
+Proc_RC_DF_PaladinCheckpoint_Emissary()
+AND
+CharacterIsDead(CHARACTERGUID_S_GLO_PaladinEmissary_c01e16ca-ce9a-48c8-ac36-90ef7de12404, 0)
+THEN
+SetOnStage(CHARACTERGUID_S_GLO_PaladinEmissary_c01e16ca-ce9a-48c8-ac36-90ef7de12404, 1);
+CharacterLevelUpTo(CHARACTERGUID_S_GLO_PaladinEmissary_c01e16ca-ce9a-48c8-ac36-90ef7de12404, 12);
+TeleportTo(CHARACTERGUID_S_GLO_PaladinEmissary_c01e16ca-ce9a-48c8-ac36-90ef7de12404, TRIGGERGUID_S_RC_DF_PaladinCork_59b40348-cfd3-445a-87f5-c62210df0cc6);
+CharacterSetReactionPriority(CHARACTERGUID_S_GLO_PaladinEmissary_c01e16ca-ce9a-48c8-ac36-90ef7de12404, "Action_PaladinCheckpoint", 900);
+ProcRemoveAllDialogEntriesForSpeaker(CHARACTERGUID_S_GLO_PaladinEmissary_c01e16ca-ce9a-48c8-ac36-90ef7de12404);
+DB_Dialogs(CHARACTERGUID_S_GLO_PaladinEmissary_c01e16ca-ce9a-48c8-ac36-90ef7de12404, "RC_DF_PaladinEmissary");
+
+IF
+DB_RC_DF_PaladinCheckpointAttack(_Var1, _, _)
+THEN
+SetOnStage(_Var1, 0);
+
+IF
+CharacterEnteredTrigger((CHARACTERGUID)_Var1, TRIGGERGUID_S_RC_DF_CheckpointAttack_8113c013-a266-4bcc-8095-7ddbf5b4e014)
+AND
+ObjectGetFlag(_Var1, "QuestUpdate_RC_DF_PaladinCheckpoint_WhiteMagister", 1)
+AND
+QueryOnlyOnce("RC_DF_PaladinCheckpointAttack")
+THEN
+ProcTriggerUnregisterForPlayers(TRIGGERGUID_S_RC_DF_CheckpointAttack_8113c013-a266-4bcc-8095-7ddbf5b4e014);
+Proc_RC_DF_StartCheckpointAttack();
+GlobalSetFlag("RC_DF_CheckpointAttackHappened");
+PartySetFlag(_Var1, "QuestUpdate_RC_DF_PaladinCheckpoint_PaladinAttack");
+
+PROC
+Proc_RC_DF_StartCheckpointAttack()
+THEN
+TriggerSetAtmosphere(TRIGGERGUID_ATM_RC_DF_PaladinCheckpoint_11d16082-5a91-4997-8551-8650cc7600af, "09edc0f3-c27e-414a-a053-a4c1d2d1271a");
+
+PROC
+Proc_RC_DF_StartCheckpointAttack()
+AND
+DB_RC_DF_PaladinCheckpointAttack(_Var1, _, _)
+AND
+Random(3500, _Var4)
+THEN
+ProcObjectTimer(_Var1, "Timer_RC_DF_CheckpointAttackSpawn", _Var4);
+
+PROC
+ProcObjectTimerFinished((CHARACTERGUID)_Var1, "Timer_RC_DF_CheckpointAttackSpawn")
+AND
+DB_RC_DF_PaladinCheckpointAttack(_Var1, _Var2, _Var3)
+AND
+_Var2 != NULL_00000000-0000-0000-0000-000000000000
+AND NOT
+DB_Dead(_Var2)
+THEN
+CharacterAppearAt(_Var1, _Var2, 1, "RC_DF_UndeadAttack");
+PlayEffect(_Var1, _Var3);
+
+PROC
+ProcObjectTimerFinished((CHARACTERGUID)_Var1, "Timer_RC_DF_CheckpointAttackSpawn")
+AND
+DB_RC_DF_PaladinCheckpointAttack(_Var1, _Var2, _Var3)
+AND
+_Var2 == NULL_00000000-0000-0000-0000-000000000000
+THEN
+CharacterAppear(_Var1, 1, "RC_DF_UndeadAttack");
+PlayEffect(_Var1, _Var3);
+
+PROC
+ProcObjectTimerFinished((CHARACTERGUID)_Var1, "Timer_RC_DF_CheckpointAttackSpawn")
+AND
+DB_RC_DF_PaladinCheckpointAttack(_Var1, _Var2, _Var3)
+AND
+_Var2 != NULL_00000000-0000-0000-0000-000000000000
+AND
+DB_Dead(_Var2)
+THEN
+CharacterAppear(_Var1, 1, "RC_DF_UndeadAttack");
+PlayEffect(_Var1, _Var3);
+
+IF
+StoryEvent((CHARACTERGUID)_Var1, "RC_DF_UndeadAttack")
+AND
+DB_RC_DF_PaladinCheckpointAttack(_Var1, _Var2, _Var3)
+AND
+_Var2 != NULL_00000000-0000-0000-0000-000000000000
+AND NOT
+DB_Dead(_Var2)
+THEN
+CharacterAttack(_Var1, _Var2);
+
+IF
+StoryEvent((CHARACTERGUID)_Var1, "RC_DF_UndeadAttack")
+THEN
+DB_RC_DF_PaladinAttackSoldier(_Var1);
+
+IF
+CharacterDied((CHARACTERGUID)_Var1)
+AND
+DB_RC_DF_PaladinAttackSoldier(_Var1)
+THEN
+NOT DB_RC_DF_PaladinAttackSoldier(_Var1);
+Proc_RC_DF_PaladinCheckpoint_PaladinWon_CheckSetUpdate(_Var1);
+
+IF
+DB_RC_DF_PaladinAttackSoldier(_Var1)
+AND NOT
+DB_RC_DF_PaladinAttackSoldier(_)
+THEN
+TriggerResetAtmosphere(TRIGGERGUID_ATM_RC_DF_PaladinCheckpoint_11d16082-5a91-4997-8551-8650cc7600af);
+
+IF
+AttackedByObject((CHARACTERGUID)_Var1, (CHARACTERGUID)_Var2, _, _, _)
+AND
+DB_RC_DF_PaladinCheckpointAttack(_Var2, _Var1, _Var6)
+THEN
+NOT DB_RC_DF_PaladinCheckpointAttack(_Var2, _Var1, _Var6);
+CharacterDie(_Var1, 1, "DoT");
+
+IF
+StoryEvent(CHARACTERGUID_S_RC_DF_PaladinAttack_Undead_Caster_1_e16b848c-9b2e-4e66-9dca-d4cc406b6df8, "RC_DF_UndeadAttack")
+THEN
+CharacterDie(CHARACTERGUID_S_RC_DF_Paladin_5_3208763b-c14c-4ec0-b7a4-6196dcd60433, 1, "DoT");
+
+IF
+GameBookInterfaceClosed(ITEMGUID_S_RC_DF_PaladinCheckpoint_Map_bbfd7d79-c0b4-4bc3-b554-d9ae192d8555, (CHARACTERGUID)_Var1)
+THEN
+ProcShowMarker(_Var1, "RC_OIL_Oilfields");
+ProcShowMarker(_Var1, "RC_GY_Graveyard");
+ProcShowMarker(_Var1, "RC_FL_Farmlands");
+
+IF
+ObjectFlagSet("GEN_StopFakeAttack", CHARACTERGUID_S_RC_DF_Paladin_6_dbc6292f-ed94-4d3e-89f9-fa4cf3002522, _)
+THEN
+SetStoryEvent(CHARACTERGUID_S_RC_DF_Paladin_6_dbc6292f-ed94-4d3e-89f9-fa4cf3002522, "GEN_StopFakeAttack");
+
+IF
+ObjectEnteredCombat(CHARACTERGUID_S_RC_DF_Paladin_6_dbc6292f-ed94-4d3e-89f9-fa4cf3002522, _)
+AND
+ObjectGetFlag(CHARACTERGUID_S_RC_DF_Paladin_6_dbc6292f-ed94-4d3e-89f9-fa4cf3002522, "GEN_StopFakeAttack", 0)
+THEN
+SetStoryEvent(CHARACTERGUID_S_RC_DF_Paladin_6_dbc6292f-ed94-4d3e-89f9-fa4cf3002522, "GEN_StopFakeAttack");
+
+IF
+ObjectLeftCombat(CHARACTERGUID_S_RC_DF_Paladin_6_dbc6292f-ed94-4d3e-89f9-fa4cf3002522, _)
+AND
+ObjectGetFlag(CHARACTERGUID_S_RC_DF_Paladin_6_dbc6292f-ed94-4d3e-89f9-fa4cf3002522, "GEN_StopFakeAttack", 0)
+THEN
+CharacterSetReactionPriority(CHARACTERGUID_S_RC_DF_Paladin_6_dbc6292f-ed94-4d3e-89f9-fa4cf3002522, "FakeAttack", 900);
+
+IF
+CharacterEnteredTrigger((CHARACTERGUID)_Var1, TRIGGERGUID_S_RC_OIL_SUB_Oilfields_bdbc337d-ee81-4b3d-96f7-d291fc5b271f)
+THEN
+PartySetFlag(_Var1, "QuestUpdate_RC_DF_PaladinCheckpoint_EnterBlackPits");
+
+IF
+CharacterEnteredTrigger((CHARACTERGUID)_Var1, TRIGGERGUID_S_RC_OIL_Docks_VoicebarkTrig_20f78808-991c-4c5d-a491-ad62b40a9d0e)
+THEN
+PartySetFlag(_Var1, "QuestUpdate_RC_DF_PaladinCheckpoint_EnterDocks");
+
+IF
+CharacterEnteredTrigger((CHARACTERGUID)_Var1, TRIGGERGUID_S_RC_OIL_GateGuardArea_03_b899cf7a-80cb-4eee-aeda-abf7af319576)
+THEN
+PartySetFlag(_Var1, "QuestUpdate_RC_DF_PaladinCheckpoint_EnterOilrig");
+
+IF
+AutomatedDialogStarted("RC_OIL_Docks_AD_BeforeExecution", _)
+AND
+DB_IsPlayer(_Var2)
+AND
+GetDistanceTo(_Var2, CHARACTERGUID_S_RC_OIL_Docks_WhiteMagister_01_f1e8c0fd-a1e8-4576-b3cf-59cfe01499f4, _Var3)
+AND
+_Var3 <= 15
+THEN
+PartySetFlag(_Var2, "QuestUpdate_RC_DF_PaladinCheckpoint_MagistersTalking");
+
+PROC
+Proc_RC_DF_PaladinCheckpoint_PaladinWon_CheckSetUpdate((CHARACTERGUID)_Var1)
+AND NOT
+DB_RC_DF_PaladinAttackSoldier(_)
+AND
+DB_IsPlayer(_Var3)
+AND
+CharacterCanSee(_Var3, _Var1, 1)
+THEN
+PartySetFlag(_Var3, "QuestUpdate_RC_DF_PaladinCheckpoint_PaladinWon");
+
+PROC
+Proc_ObjectLeftCombat((CHARACTERGUID)_Var1, (INTEGER)_Var2)
+AND
+DB_RC_DF_PaladinCheckpoint_MetJonathanUpdate_WhiteMagister(_Var1)
+AND
+DB_Dead(_Var1)
+AND
+DB_IsPlayer(_Var3)
+AND
+DB_WasInCombat(_Var3, _Var2)
+THEN
+UserSetFlag(_Var3, "QuestUpdate_RC_DF_PaladinCheckpoint_MetJonathan");
+
+PROC
+Proc_ObjectLeftCombat((CHARACTERGUID)_Var1, (INTEGER)_Var2)
+AND
+DB_RC_DF_PaladinCheckpoint_MetJonathanUpdate_WhiteMagister(_Var1)
+AND
+DB_Dead(_Var1)
+AND
+DB_IsPlayer(_Var3)
+AND
+DB_CombatCharacters(_Var3, _Var2)
+THEN
+UserSetFlag(_Var3, "QuestUpdate_RC_DF_PaladinCheckpoint_MetJonathan");
+
+IF
+CharacterKilledBy((CHARACTERGUID)_Var1, (CHARACTERGUID)_Var2, _)
+AND
+DB_RC_DF_PaladinCheckpoint_MetJonathanUpdate_WhiteMagister(_Var1)
+AND
+DB_IsPlayer(_Var2)
+THEN
+UserSetFlag(_Var2, "QuestUpdate_RC_DF_PaladinCheckpoint_MetJonathan");
+
+
+EXITSECTION
+ENDEXITSECTION
+
+ParentTargetEdge "ReapersCoast"

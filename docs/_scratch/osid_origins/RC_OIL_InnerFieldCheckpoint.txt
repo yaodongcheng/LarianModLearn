@@ -1,0 +1,122 @@
+Version 1
+SubGoalCombiner SGC_AND
+
+INITSECTION
+DB_CheckPoint(CHARACTERGUID_S_RC_OIL_InnerField_Magister_1_f4d44f84-fb56-40b3-91f9-3be60584eab3, CHARACTERGUID_S_RC_OIL_InnerField_Magister_2_0d0b738a-6db2-47e3-9d71-c79d9fba7c1f, TRIGGERGUID_S_RC_OIL_GateGuardArea_01_f3a9526a-089b-4a06-b75f-277d90436fb5, TRIGGERGUID_S_RC_OIL_GateGuardArea_02_7dee8949-4bdc-4539-a707-6fd6ede4be58, TRIGGERGUID_S_RC_OIL_GateGuardArea_03_b899cf7a-80cb-4eee-aeda-abf7af319576, "RC_OIL_AllowedInOilfields", "RC_OIL_OilfieldTrespassing");
+DB_Dialogs(CHARACTERGUID_S_RC_OIL_InnerField_Magister_1_f4d44f84-fb56-40b3-91f9-3be60584eab3, "RC_OIL_InnerField_Magister_1");
+DB_Dialogs(CHARACTERGUID_S_RC_OIL_InnerField_Magister_2_0d0b738a-6db2-47e3-9d71-c79d9fba7c1f, "RC_OIL_InnerField_Magister_2");
+DB_Dialogs(CHARACTERGUID_S_RC_OIL_InnerField_Magister_7_6e8f0ecb-22e3-4add-8a64-d91955410d87, "RC_OIL_InnerField_Magister_7");
+CharacterSetFightMode(CHARACTERGUID_S_RC_OIL_InnerField_Magister_1_f4d44f84-fb56-40b3-91f9-3be60584eab3, 1, 0);
+CharacterSetFightMode(CHARACTERGUID_S_RC_OIL_InnerField_Magister_2_0d0b738a-6db2-47e3-9d71-c79d9fba7c1f, 1, 0);
+CharacterSetFightMode(CHARACTERGUID_S_RC_OIL_InnerField_Magister_7_6e8f0ecb-22e3-4add-8a64-d91955410d87, 1, 0);
+
+KBSECTION
+PROC
+PROC_CheckPointDialogue((CHARACTERGUID)_Var1, CHARACTERGUID_S_RC_OIL_InnerField_Magister_1_f4d44f84-fb56-40b3-91f9-3be60584eab3)
+THEN
+Proc_StartDialog(0, "RC_OIL_InnerField_Magister_1", CHARACTERGUID_S_RC_OIL_InnerField_Magister_1_f4d44f84-fb56-40b3-91f9-3be60584eab3, _Var1);
+
+PROC
+PROC_CheckPointDialogue((CHARACTERGUID)_Var1, CHARACTERGUID_S_RC_OIL_InnerField_Magister_2_0d0b738a-6db2-47e3-9d71-c79d9fba7c1f)
+THEN
+Proc_StartDialog(0, "RC_OIL_GateWarning", CHARACTERGUID_S_RC_OIL_InnerField_Magister_2_0d0b738a-6db2-47e3-9d71-c79d9fba7c1f, _Var1);
+
+IF
+ObjectFlagSet("RC_OIL_AllowedInOilfields", (GUIDSTRING)_Var1, _)
+AND
+QueryOnlyOnce("RC_OIL_UnlockGate")
+THEN
+ItemClearOwner(ITEMGUID_S_RC_OIL_InnerField_Gates_036d2b71-663a-4353-b611-4aee276a4035);
+
+PROC
+Proc_ObjectLeftCombat(CHARACTERGUID_S_RC_OIL_InnerField_Magister_1_f4d44f84-fb56-40b3-91f9-3be60584eab3, _)
+AND
+CharacterIsDead(CHARACTERGUID_S_RC_OIL_InnerField_Magister_1_f4d44f84-fb56-40b3-91f9-3be60584eab3, 0)
+THEN
+CharacterSetFightMode(CHARACTERGUID_S_RC_OIL_InnerField_Magister_1_f4d44f84-fb56-40b3-91f9-3be60584eab3, 1, 0);
+
+PROC
+Proc_ObjectLeftCombat(CHARACTERGUID_S_RC_OIL_InnerField_Magister_2_0d0b738a-6db2-47e3-9d71-c79d9fba7c1f, _)
+AND
+CharacterIsDead(CHARACTERGUID_S_RC_OIL_InnerField_Magister_2_0d0b738a-6db2-47e3-9d71-c79d9fba7c1f, 0)
+THEN
+CharacterSetFightMode(CHARACTERGUID_S_RC_OIL_InnerField_Magister_2_0d0b738a-6db2-47e3-9d71-c79d9fba7c1f, 1, 0);
+
+IF
+ObjectFlagSet("RC_OIL_DoSalute", (GUIDSTRING)_Var1, (INTEGER)_Var2)
+THEN
+ObjectClearFlag(_Var1, "RC_OIL_DoSalute", _Var2);
+PlayAnimation(_Var1, "Salute_01");
+
+IF
+ItemOpened(S_RC_OIL_InnerField_Gates_036d2b71-663a-4353-b611-4aee276a4035)
+THEN
+GlobalSetFlag("RC_OIL_OilfieldGateOpen");
+ObjectClearFlag(ITEMGUID_S_RC_OIL_InnerField_Gates_036d2b71-663a-4353-b611-4aee276a4035, "RC_OIL_CheckpointGatesOpening");
+ItemSetCanInteract(ITEMGUID_S_RC_OIL_InnerField_Gates_036d2b71-663a-4353-b611-4aee276a4035, 1);
+
+IF
+ItemClosed(S_RC_OIL_InnerField_Gates_036d2b71-663a-4353-b611-4aee276a4035)
+THEN
+GlobalClearFlag("RC_OIL_OilfieldGateOpen");
+ItemSetCanInteract(ITEMGUID_S_RC_OIL_InnerField_Gates_036d2b71-663a-4353-b611-4aee276a4035, 1);
+
+IF
+GlobalFlagSet("RC_OIL_OpenOilfieldGate")
+THEN
+GlobalClearFlag("RC_OIL_OpenOilfieldGate");
+
+IF
+GlobalFlagSet("RC_OIL_OpenOilfieldGate")
+AND
+CharacterIsDead(CHARACTERGUID_S_RC_OIL_InnerField_Magister_2_0d0b738a-6db2-47e3-9d71-c79d9fba7c1f, 0)
+AND
+CharacterIsInCombat(CHARACTERGUID_S_RC_OIL_InnerField_Magister_2_0d0b738a-6db2-47e3-9d71-c79d9fba7c1f, 0)
+AND
+IsSpeakerReserved(CHARACTERGUID_S_RC_OIL_InnerField_Magister_2_0d0b738a-6db2-47e3-9d71-c79d9fba7c1f, 0)
+AND
+ItemIsClosed(S_RC_OIL_InnerField_Gates_036d2b71-663a-4353-b611-4aee276a4035, 1)
+AND
+ObjectGetFlag(ITEMGUID_S_RC_OIL_InnerField_Gates_036d2b71-663a-4353-b611-4aee276a4035, "RC_OIL_CheckpointGatesOpening", 0)
+THEN
+CharacterUseItem(CHARACTERGUID_S_RC_OIL_InnerField_Magister_2_0d0b738a-6db2-47e3-9d71-c79d9fba7c1f, ITEMGUID_S_RC_OIL_InnerField_Gates_036d2b71-663a-4353-b611-4aee276a4035, "");
+
+IF
+CharacterUsedItem(_, ITEMGUID_S_RC_OIL_InnerField_Gates_036d2b71-663a-4353-b611-4aee276a4035)
+THEN
+ItemSetCanInteract(ITEMGUID_S_RC_OIL_InnerField_Gates_036d2b71-663a-4353-b611-4aee276a4035, 0);
+ObjectSetFlag(ITEMGUID_S_RC_OIL_InnerField_Gates_036d2b71-663a-4353-b611-4aee276a4035, "RC_OIL_CheckpointGatesOpening");
+
+IF
+ObjectFlagSet("RC_OIL_AllowedInOilfields", (CHARACTERGUID)_Var1, _)
+THEN
+TriggerRegisterForCharacter(S_RC_OIL_NearGate_c8e5c5b9-04df-4214-812f-4b7d2237a29b, _Var1);
+
+IF
+CharacterLeftTrigger((CHARACTERGUID)_Var1, S_RC_OIL_NearGate_c8e5c5b9-04df-4214-812f-4b7d2237a29b)
+AND
+QRY_AnyRegionActive()
+AND NOT
+DB_InRegion(S_RC_OIL_NearGate_c8e5c5b9-04df-4214-812f-4b7d2237a29b, _)
+AND
+CharacterIsDead(CHARACTERGUID_S_RC_OIL_InnerField_Magister_2_0d0b738a-6db2-47e3-9d71-c79d9fba7c1f, 0)
+AND
+CharacterIsInCombat(CHARACTERGUID_S_RC_OIL_InnerField_Magister_2_0d0b738a-6db2-47e3-9d71-c79d9fba7c1f, 0)
+AND
+IsSpeakerReserved(CHARACTERGUID_S_RC_OIL_InnerField_Magister_2_0d0b738a-6db2-47e3-9d71-c79d9fba7c1f, 0)
+AND
+ItemIsClosed(S_RC_OIL_InnerField_Gates_036d2b71-663a-4353-b611-4aee276a4035, 0)
+THEN
+CharacterUseItem(CHARACTERGUID_S_RC_OIL_InnerField_Magister_2_0d0b738a-6db2-47e3-9d71-c79d9fba7c1f, ITEMGUID_S_RC_OIL_InnerField_Gates_036d2b71-663a-4353-b611-4aee276a4035, "");
+
+IF
+ObjectFlagSet("RC_OIL_Checkpoint_StealPurse", (CHARACTERGUID)_Var1, _)
+THEN
+CharacterGiveReward(_Var1, "Specific_SmallGold");
+ObjectClearFlag(_Var1, "RC_OIL_Checkpoint_StealPurse", 0);
+
+
+EXITSECTION
+ENDEXITSECTION
+
+ParentTargetEdge "ReapersCoast"

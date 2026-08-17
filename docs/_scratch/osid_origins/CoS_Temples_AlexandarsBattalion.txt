@@ -1,0 +1,302 @@
+Version 1
+SubGoalCombiner SGC_AND
+
+INITSECTION
+DB_Dialogs(CHARACTERGUID_S_CoS_Temples_MagisterBodyguard_001_e066f9e4-122b-4ba2-bdb6-6ba7a79dfde4, "CoS_Temples_MagisterBodyguard_001");
+DB_Dialogs(CHARACTERGUID_S_CoS_Temples_MagisterBodyguard_002_76ff28ba-2dcd-46aa-8212-980886280795, "CoS_Temples_MagisterBodyguard_002");
+DB_Dialogs(CHARACTERGUID_S_CoS_Temples_MagisterBodyguard_003_34e18de0-f377-4830-bfce-229ff479ee80, "CoS_Temples_MagisterBodyguard_003");
+DB_Dialogs(CHARACTERGUID_S_CoS_Temples_MagisterBodyguard_004_f1f0f480-4158-49d0-9d33-7486ac50de2d, "CoS_Temples_MagisterBodyguard_004");
+DB_Dialogs(CHARACTERGUID_S_CoS_Temples_MagisterBodyguard_005_c3891e16-21be-46ec-a758-68ca373bbf79, "CoS_Temples_MagisterBodyguard_005");
+DB_Temples_AlexandarsBattalion(CHARACTERGUID_S_GLO_Alexandar_03e6345f-1bd3-403c-80e2-a443a74f6349);
+DB_Temples_AlexandarsBattalion(CHARACTERGUID_S_CoS_Temples_MagisterBodyguard_001_e066f9e4-122b-4ba2-bdb6-6ba7a79dfde4);
+DB_Temples_AlexandarsBattalion(CHARACTERGUID_S_CoS_Temples_MagisterBodyguard_002_76ff28ba-2dcd-46aa-8212-980886280795);
+DB_Temples_AlexandarsBattalion(CHARACTERGUID_S_CoS_Temples_MagisterBodyguard_003_34e18de0-f377-4830-bfce-229ff479ee80);
+DB_Temples_AlexandarsBattalion(CHARACTERGUID_S_CoS_Temples_MagisterBodyguard_004_f1f0f480-4158-49d0-9d33-7486ac50de2d);
+DB_Temples_AlexandarsBattalion(CHARACTERGUID_S_CoS_Temples_MagisterBodyguard_005_c3891e16-21be-46ec-a758-68ca373bbf79);
+DB_KillCounter_Internal(CHARACTERGUID_S_GLO_Alexandar_03e6345f-1bd3-403c-80e2-a443a74f6349, "CoS_AlexandarsBattalion");
+DB_KillCounter_Internal(CHARACTERGUID_S_CoS_Temples_MagisterBodyguard_001_e066f9e4-122b-4ba2-bdb6-6ba7a79dfde4, "CoS_AlexandarsBattalion");
+DB_KillCounter_Internal(CHARACTERGUID_S_CoS_Temples_MagisterBodyguard_002_76ff28ba-2dcd-46aa-8212-980886280795, "CoS_AlexandarsBattalion");
+DB_KillCounter_Internal(CHARACTERGUID_S_CoS_Temples_MagisterBodyguard_003_34e18de0-f377-4830-bfce-229ff479ee80, "CoS_AlexandarsBattalion");
+DB_KillCounter_Internal(CHARACTERGUID_S_CoS_Temples_MagisterBodyguard_004_f1f0f480-4158-49d0-9d33-7486ac50de2d, "CoS_AlexandarsBattalion");
+DB_KillCounter_Internal(CHARACTERGUID_S_CoS_Temples_MagisterBodyguard_005_c3891e16-21be-46ec-a758-68ca373bbf79, "CoS_AlexandarsBattalion");
+DB_KillCounter("CoS_AlexandarsBattalion", 6);
+DB_HasStoryEvent(ITEMGUID_S_CoS_Temples_AlexandarsHead_e7097370-d786-47e8-8ab4-76528939a1c0, "CoS_HasAlexandarsHead");
+DB_KnowsAlexandarIsAlive_Flags("QuestUpdate_CoS_HelpingAlexandar_Start_SavedMagisters");
+DB_KnowsAlexandarIsAlive_Flags("QuestUpdate_CoS_HelpingTheSallowMan_Start_Mirror");
+DB_CoS_AlexandarSallowManQuests("CoS_HelpingTheSallowMan");
+DB_CoS_AlexandarSallowManQuests("CoS_HelpingAlexandar");
+
+KBSECTION
+IF
+GameStarted("CoS_Main", _)
+AND NOT
+GetFaction(CHARACTERGUID_S_GLO_Alexandar_03e6345f-1bd3-403c-80e2-a443a74f6349, "CoS_Magister")
+THEN
+SetOnStage(CHARACTERGUID_S_GLO_Alexandar_03e6345f-1bd3-403c-80e2-a443a74f6349, 1);
+TeleportTo(CHARACTERGUID_S_GLO_Alexandar_03e6345f-1bd3-403c-80e2-a443a74f6349, TRIGGERGUID_S_CoS_Temples_AlexandarDefault_Point_4337807e-7e2a-4198-a0a6-9098a3e76d90);
+Proc_CoS_Temples_AlexandarsBattalion_Init();
+
+PROC
+Proc_CoS_Temples_AlexandarsBattalion_Init()
+AND NOT
+DB_Dead(CHARACTERGUID_S_GLO_Alexandar_03e6345f-1bd3-403c-80e2-a443a74f6349)
+THEN
+DB_CoS_Temples_AlexandarsBattalion_AlexandarAlive(1);
+
+PROC
+Proc_CoS_Temples_AlexandarsBattalion_Init()
+AND
+DB_Dead(CHARACTERGUID_S_GLO_Alexandar_03e6345f-1bd3-403c-80e2-a443a74f6349)
+THEN
+DB_CoS_Temples_AlexandarsBattalion_InitResurrecting(1);
+CharacterResurrect(CHARACTERGUID_S_GLO_Alexandar_03e6345f-1bd3-403c-80e2-a443a74f6349);
+
+IF
+CharacterResurrected(CHARACTERGUID_S_GLO_Alexandar_03e6345f-1bd3-403c-80e2-a443a74f6349)
+AND
+DB_CoS_Temples_AlexandarsBattalion_InitResurrecting(1)
+THEN
+NOT DB_CoS_Temples_AlexandarsBattalion_InitResurrecting(1);
+DB_CoS_Temples_AlexandarsBattalion_AlexandarAlive(1);
+
+IF
+DB_CoS_Temples_AlexandarsBattalion_AlexandarAlive(1)
+THEN
+NOT DB_CoS_Temples_AlexandarsBattalion_AlexandarAlive(1);
+CharacterSetHitpointsPercentage(CHARACTERGUID_S_GLO_Alexandar_03e6345f-1bd3-403c-80e2-a443a74f6349, 100);
+CharacterSetArmorPercentage(CHARACTERGUID_S_GLO_Alexandar_03e6345f-1bd3-403c-80e2-a443a74f6349, 100);
+CharacterSetMagicArmorPercentage(CHARACTERGUID_S_GLO_Alexandar_03e6345f-1bd3-403c-80e2-a443a74f6349, 100);
+Transform(CHARACTERGUID_S_GLO_Alexandar_03e6345f-1bd3-403c-80e2-a443a74f6349, "289e11eb-246c-4c89-8acb-b28c08a00a77", 0, 0, 1);
+SetFaction(CHARACTERGUID_S_GLO_Alexandar_03e6345f-1bd3-403c-80e2-a443a74f6349, "CoS_Magister");
+SetCanFight(CHARACTERGUID_S_GLO_Alexandar_03e6345f-1bd3-403c-80e2-a443a74f6349, 1);
+SetCanJoinCombat(CHARACTERGUID_S_GLO_Alexandar_03e6345f-1bd3-403c-80e2-a443a74f6349, 1);
+ProcCharacterEnableAllCrimes(CHARACTERGUID_S_GLO_Alexandar_03e6345f-1bd3-403c-80e2-a443a74f6349);
+CharacterSetCanSpotSneakers(CHARACTERGUID_S_GLO_Alexandar_03e6345f-1bd3-403c-80e2-a443a74f6349, 1);
+SetVarFixedString(CHARACTERGUID_S_GLO_Alexandar_03e6345f-1bd3-403c-80e2-a443a74f6349, "currentState", "State_CoS_AtElfTemple");
+ClearVarObject(CHARACTERGUID_S_GLO_Alexandar_03e6345f-1bd3-403c-80e2-a443a74f6349, "SpotTrigger");
+DB_NoLowAttitudeDialog(CHARACTERGUID_S_GLO_Alexandar_03e6345f-1bd3-403c-80e2-a443a74f6349);
+CharacterSetImmortal(S_GLO_Alexandar_03e6345f-1bd3-403c-80e2-a443a74f6349, 0);
+PROC_RemoveDialogFromCharacter(CHARACTERGUID_S_GLO_Alexandar_03e6345f-1bd3-403c-80e2-a443a74f6349);
+NOT DB_Dead(CHARACTERGUID_S_GLO_Alexandar_03e6345f-1bd3-403c-80e2-a443a74f6349);
+DB_Dialogs(CHARACTERGUID_S_GLO_Alexandar_03e6345f-1bd3-403c-80e2-a443a74f6349, "CoS_Temples_Alexandar");
+CharacterLevelUpTo(CHARACTERGUID_S_GLO_Alexandar_03e6345f-1bd3-403c-80e2-a443a74f6349, 16);
+RemoveStatus(CHARACTERGUID_S_GLO_Alexandar_03e6345f-1bd3-403c-80e2-a443a74f6349, "SOURCE_MUTED");
+RemoveStatus(CHARACTERGUID_S_GLO_Alexandar_03e6345f-1bd3-403c-80e2-a443a74f6349, "SLEEPING");
+RemoveStatus(CHARACTERGUID_S_GLO_Alexandar_03e6345f-1bd3-403c-80e2-a443a74f6349, "HALL_OF_ECHOES");
+CharacterDisableCrime(CHARACTERGUID_S_GLO_Alexandar_03e6345f-1bd3-403c-80e2-a443a74f6349, "SourceMagic");
+RemoveStatus(CHARACTERGUID_S_GLO_Alexandar_03e6345f-1bd3-403c-80e2-a443a74f6349, "HALL_OF_ECHOES");
+ApplyStatus(CHARACTERGUID_S_GLO_Alexandar_03e6345f-1bd3-403c-80e2-a443a74f6349, "QUEST_FAITH_AURA", -1, 1);
+CharacterRemoveSkill(CHARACTERGUID_S_GLO_Alexandar_03e6345f-1bd3-403c-80e2-a443a74f6349, "Shout_EnemyInspire");
+CharacterRemoveSkill(CHARACTERGUID_S_GLO_Alexandar_03e6345f-1bd3-403c-80e2-a443a74f6349, "Shout_EnemyElectricFence");
+CharacterRemoveSkill(CHARACTERGUID_S_GLO_Alexandar_03e6345f-1bd3-403c-80e2-a443a74f6349, "Shout_EnemyBlindingRadiance");
+CharacterRemoveSkill(CHARACTERGUID_S_GLO_Alexandar_03e6345f-1bd3-403c-80e2-a443a74f6349, "ProjectileStrike_EnemyDazingBolt");
+CharacterRemoveSkill(CHARACTERGUID_S_GLO_Alexandar_03e6345f-1bd3-403c-80e2-a443a74f6349, "Teleportation_EnemyNetherswap");
+CharacterAddSkill(CHARACTERGUID_S_GLO_Alexandar_03e6345f-1bd3-403c-80e2-a443a74f6349, "Rain_EnemyWater");
+CharacterAddSkill(CHARACTERGUID_S_GLO_Alexandar_03e6345f-1bd3-403c-80e2-a443a74f6349, "Cone_EnemySteamLance");
+CharacterAddSkill(CHARACTERGUID_S_GLO_Alexandar_03e6345f-1bd3-403c-80e2-a443a74f6349, "Target_EnemyBless_Alexandar");
+CharacterAddSkill(CHARACTERGUID_S_GLO_Alexandar_03e6345f-1bd3-403c-80e2-a443a74f6349, "Teleportation_EnemyResurrect_Alexandar");
+CharacterAddSkill(CHARACTERGUID_S_GLO_Alexandar_03e6345f-1bd3-403c-80e2-a443a74f6349, "Target_EnemyRestoration");
+CharacterAddSkill(CHARACTERGUID_S_GLO_Alexandar_03e6345f-1bd3-403c-80e2-a443a74f6349, "Projectile_EnemyChainHeal");
+CharacterAddSkill(CHARACTERGUID_S_GLO_Alexandar_03e6345f-1bd3-403c-80e2-a443a74f6349, "Target_EnemyFortify");
+CharacterAddSkill(CHARACTERGUID_S_GLO_Alexandar_03e6345f-1bd3-403c-80e2-a443a74f6349, "Target_EnemyFrostyShell");
+CharacterAddSkill(CHARACTERGUID_S_GLO_Alexandar_03e6345f-1bd3-403c-80e2-a443a74f6349, "Shout_EnemyWings");
+ItemTemplateAddTo("f7ecad76-b074-4164-a99f-9262d3cd66db", CHARACTERGUID_S_GLO_Alexandar_03e6345f-1bd3-403c-80e2-a443a74f6349, 3);
+ItemTemplateAddTo("60180909-ee47-4d1c-b81c-e43bd8fdce1e", CHARACTERGUID_S_FTJ_SW_Warrior_SeekerCaptain_1329f018-23e4-4717-9bc8-074b28d04c54, 1);
+SetTag(CHARACTERGUID_S_GLO_Alexandar_03e6345f-1bd3-403c-80e2-a443a74f6349, "AI_PREFERRED_TARGET");
+DB_Ghosts(CHARACTERGUID_S_GLO_Alexandar_03e6345f-1bd3-403c-80e2-a443a74f6349, CHARACTERGUID_S_CoS_Temples_Alexandar_Ghost_997e2611-fbdc-415f-9d42-f2c9926d91f6, "CoS_Temples_Alexandar_Ghost");
+TimerLaunch("CoS_RestoreAlexandarGhostDialog", 2000);
+
+IF
+TimerFinished("CoS_RestoreAlexandarGhostDialog")
+AND
+DB_GoneGhosts(CHARACTERGUID_S_CoS_Temples_Alexandar_Ghost_997e2611-fbdc-415f-9d42-f2c9926d91f6)
+THEN
+NOT DB_GoneGhosts(CHARACTERGUID_S_CoS_Temples_Alexandar_Ghost_997e2611-fbdc-415f-9d42-f2c9926d91f6);
+DB_Dialogs(CHARACTERGUID_S_CoS_Temples_Alexandar_Ghost_997e2611-fbdc-415f-9d42-f2c9926d91f6, "CoS_Temples_Alexandar_Ghost");
+
+IF
+DB_Temples_AlexandarsBattalion(_Var1)
+THEN
+CharacterDisableCrime(_Var1, "SourceMagic");
+CharacterDisableCrime(_Var1, "ActiveUndead");
+
+IF
+CharacterDying(CHARACTERGUID_S_GLO_Alexandar_03e6345f-1bd3-403c-80e2-a443a74f6349)
+AND
+CharacterGetLevel(CHARACTERGUID_S_GLO_Alexandar_03e6345f-1bd3-403c-80e2-a443a74f6349, _Var1)
+THEN
+GenerateTreasure(ITEMGUID_S_CoS_HelperChest_d4a2dbc7-7734-4605-be18-ef79716f641f, "COS_AlexandarStaff", _Var1, CHARACTERGUID_S_GLO_Alexandar_03e6345f-1bd3-403c-80e2-a443a74f6349);
+GenerateTreasure(ITEMGUID_S_CoS_HelperChest_d4a2dbc7-7734-4605-be18-ef79716f641f, "COS_DispelCowl", _Var1, CHARACTERGUID_S_GLO_Alexandar_03e6345f-1bd3-403c-80e2-a443a74f6349);
+MoveAllItemsTo(ITEMGUID_S_CoS_HelperChest_d4a2dbc7-7734-4605-be18-ef79716f641f, CHARACTERGUID_S_GLO_Alexandar_03e6345f-1bd3-403c-80e2-a443a74f6349);
+ProcCancelReflectionDialog("CoS_Temples_Elf_CORE_RD_ShouldAlexandarBeDivine");
+ProcCancelReflectionDialog("CoS_Temples_RD_AlexandarIsAlive");
+
+IF
+CharacterKilledBy(CHARACTERGUID_S_GLO_Alexandar_03e6345f-1bd3-403c-80e2-a443a74f6349, (CHARACTERGUID)_Var1, (CHARACTERGUID)_Var2)
+AND
+DB_IsPlayer(_Var1)
+THEN
+ObjectSetFlag(_Var1, "CoS_Temples_KilledAlexandar");
+
+IF
+ObjectFlagSet((STRING)_Var1, (GUIDSTRING)_Var2, _)
+AND
+DB_KnowsAlexandarIsAlive_Flags(_Var1)
+THEN
+ObjectSetFlag(_Var2, "CoS_Temples_KnowsAlexandarIsAlive");
+
+IF
+ObjectFlagSet("CoS_Temples_KnowsAlexandarIsAlive", (CHARACTERGUID)_Var1, (INTEGER)_Var2)
+AND
+GlobalGetFlag("CoS_AlexandarDead", 0)
+THEN
+ProcDefineReflectionDialog("CoS_Temples_RD_AlexandarIsAlive", _Var1);
+
+IF
+DialogEnded("CoS_Temples_Alexandar", (INTEGER)_Var1)
+AND
+DialogGetInvolvedPlayer(_Var1, 1, _Var2)
+AND
+QueryOnlyOnce("CoS_Temples_Elf_CORE_RD_ShouldAlexandarBeDivine")
+THEN
+ProcDefineReflectionDialog("CoS_Temples_Elf_CORE_RD_ShouldAlexandarBeDivine", _Var2);
+
+IF
+StoryEvent((GUIDSTRING)_Var1, "CoS_Temples_ApprochAlexandarDialog_Start")
+AND
+GlobalGetFlag("CoS_GarethRevenge_SceneActive", 0)
+AND
+QRY_SpeakerIsAvailable(CHARACTERGUID_S_GLO_Alexandar_03e6345f-1bd3-403c-80e2-a443a74f6349)
+THEN
+Proc_StartDialog(0, "CoS_Temples_ApproachedAlexandar", CHARACTERGUID_S_CoS_Temples_MagisterBodyguard_003_34e18de0-f377-4830-bfce-229ff479ee80, CHARACTERGUID_S_GLO_Alexandar_03e6345f-1bd3-403c-80e2-a443a74f6349, _Var1);
+
+IF
+ObjectFlagSet("S_CoS_Temples_MagisterBodyguard_003_MoveToPlayer", (GUIDSTRING)_Var1, _)
+THEN
+ProcCharacterMoveTo(CHARACTERGUID_S_CoS_Temples_MagisterBodyguard_003_34e18de0-f377-4830-bfce-229ff479ee80, _Var1, 0, "");
+ObjectClearFlag(_Var1, "S_CoS_Temples_MagisterBodyguard_003_MoveToPlayer", 0);
+
+IF
+CharacterDied(CHARACTERGUID_S_GLO_Alexandar_03e6345f-1bd3-403c-80e2-a443a74f6349)
+AND
+GetRegion(CHARACTERGUID_S_GLO_Alexandar_03e6345f-1bd3-403c-80e2-a443a74f6349, _Var1)
+AND
+_Var1 == "CoS_Main"
+THEN
+SetOnStage(ITEMGUID_S_CoS_Temples_AlexandarsHead_e7097370-d786-47e8-8ab4-76528939a1c0, 1);
+ItemToInventory(ITEMGUID_S_CoS_Temples_AlexandarsHead_e7097370-d786-47e8-8ab4-76528939a1c0, CHARACTERGUID_S_GLO_Alexandar_03e6345f-1bd3-403c-80e2-a443a74f6349);
+
+IF
+CharacterDied(CHARACTERGUID_S_GLO_Alexandar_03e6345f-1bd3-403c-80e2-a443a74f6349)
+AND
+GetRegion(CHARACTERGUID_S_GLO_Alexandar_03e6345f-1bd3-403c-80e2-a443a74f6349, _Var1)
+AND
+_Var1 == "CoS_Main"
+THEN
+GlobalSetFlag("CoS_AlexandarDead");
+
+IF
+ObjectFlagSet("QuestUpdate_CoS_HelpingAlexandar_Start", (GUIDSTRING)_Var1, _)
+THEN
+ObjectSetFlag(_Var1, "QuestUpdate_CoS_Temples_Alexandar");
+
+IF
+GlobalFlagSet("CoS_AlexandarDead")
+AND
+DB_IsPlayer(_Var1)
+AND
+DB_CoS_AlexandarSallowManQuests(_Var2)
+AND
+QuestAccepted(_Var1, _Var2, 1)
+THEN
+ObjectSetFlag(_Var1, "CoS_AlexandarIsDeadQuestUpdater");
+ProcHideMarker(_Var1, "CoS_Alexandar");
+
+IF
+ObjectFlagSet("CoS_GiveDispellIllusionItem", (CHARACTERGUID)_Var1, _)
+THEN
+CharacterGiveReward(_Var1, "COS_DispelCowl");
+ObjectClearFlag(_Var1, "CoS_GiveDispellIllusionItem", 0);
+
+IF
+CharacterItemEvent((CHARACTERGUID)_Var1, ITEMGUID_S_CoS_Temples_AlexandarsHead_e7097370-d786-47e8-8ab4-76528939a1c0, "GLO_AteBodyPart")
+THEN
+Proc_StartDialog(0, "CoS_Temples_Alexandar_Limb", _Var1);
+
+IF
+CharacterUsedItem((CHARACTERGUID)_Var1, ITEMGUID_S_CoS_Temples_AlexandarsHead_e7097370-d786-47e8-8ab4-76528939a1c0)
+THEN
+ObjectSetFlag(_Var1, "QuestUpdate_CoS_HelpingTheSallowMan_AteAlexandarHead");
+
+IF
+CharacterEnteredTrigger((CHARACTERGUID)_Var1, TRIGGERGUID_S_CoS_SUB_Academy_51ddb828-18a6-4b6e-9f5a-e2b2883862e1)
+AND
+DB_IsPlayer(_Var1)
+AND
+GlobalGetFlag("CoS_Temples_AlexandarLeaveToAcademy", 0)
+THEN
+GlobalSetFlag("CoS_Temples_AlexandarLeaveToAcademy");
+
+IF
+GlobalFlagSet("CoS_Temples_AlexandarLeaveToAcademy")
+AND
+DB_Temples_AlexandarsBattalion(_Var1)
+AND
+_Var1 != CHARACTERGUID_S_GLO_Alexandar_03e6345f-1bd3-403c-80e2-a443a74f6349
+AND
+CharacterIsDead(_Var1, 0)
+THEN
+SetHasDialog(_Var1, 0);
+ProcCharacterDisappearOutOfSight(_Var1, 90, 0, "CoS_LastStandCheck", 0);
+
+IF
+GlobalFlagSet("CoS_Temples_AlexandarLeaveToAcademy")
+AND
+QueryOnlyOnce("CoS_Temples_AlexandarLeaveToAcademy_Once")
+THEN
+ProcForceStopDialog(CHARACTERGUID_S_GLO_Alexandar_03e6345f-1bd3-403c-80e2-a443a74f6349);
+PROC_RemoveDialogFromCharacter(CHARACTERGUID_S_GLO_Alexandar_03e6345f-1bd3-403c-80e2-a443a74f6349);
+ProcCharacterDisappearOutOfSight(CHARACTERGUID_S_GLO_Alexandar_03e6345f-1bd3-403c-80e2-a443a74f6349, 90, 0, "CoS_AlexandarAppearInTemple", 0);
+
+IF
+GlobalFlagSet("CoS_Temples_AlexandarLeaveToAcademy")
+AND
+DB_IsPlayer(_Var1)
+THEN
+ObjectSetFlag(_Var1, "QuestUpdate_CoS_HelpingAlexandar_Leave");
+
+IF
+ObjectFlagSet("QuestUpdate_CoS_HelpingAlexandar_Leave", (CHARACTERGUID)_Var1, (INTEGER)_Var2)
+AND
+PartyGetFlag(_Var1, "QuestUpdate_CoS_HelpingAlexandar_End", 1)
+THEN
+ObjectSetFlag(_Var1, "CoS_AlexandarQuestClose");
+
+IF
+ObjectFlagSet("QuestUpdate_CoS_HelpingAlexandar_End", (CHARACTERGUID)_Var1, (INTEGER)_Var2)
+AND NOT
+DB_QuestDef_CloseEvent("CoS_HelpingAlexandar", "QuestUpdate_CoS_HelpingAlexandar_End")
+THEN
+DB_QuestDef_CloseEvent("CoS_HelpingAlexandar", "QuestUpdate_CoS_HelpingAlexandar_End");
+
+PROC
+ReactOnKillCounter("CoS_AlexandarsBattalion")
+THEN
+TriggerSetAtmosphere(TRIGGERGUID_AtmosphereTrigger_CoS_AlexandarsBatallion_10ae0a87-4bb7-481d-9f0c-dd632152bc82, "cd788e05-f2c8-41f0-ab53-be5c19a217a0");
+TimerLaunch("CoS_AlexandarsBattalion_RainResetTimer", 300000);
+
+IF
+TimerFinished("CoS_AlexandarsBattalion_RainResetTimer")
+THEN
+TriggerSetAtmosphere(TRIGGERGUID_AtmosphereTrigger_CoS_AlexandarsBatallion_10ae0a87-4bb7-481d-9f0c-dd632152bc82, "6b647fc9-1f97-4f53-840e-656506d8d19f");
+
+PROC
+ProcRegionEnded("CoS_Main")
+THEN
+GoalCompleted;
+
+
+EXITSECTION
+ENDEXITSECTION
+
+ParentTargetEdge "CoS_Temples"

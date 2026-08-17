@@ -1,0 +1,695 @@
+Version 1
+SubGoalCombiner SGC_AND
+
+INITSECTION
+DB_RC_OIL_ThirdHouseFamilyMember(CHARACTERGUID_S_RC_OIL_ThirdHouse_Father_d4300187-0d5a-4b17-854a-50f568d632e8, "RC_OIL_ThirdHouse_KillFather");
+DB_RC_OIL_ThirdHouseFamilyMember(CHARACTERGUID_S_RC_OIL_ThirdHouse_Mother_0d876334-1776-4f06-aab1-6cfc56a1dbc4, "RC_OIL_ThirdHouse_KillMother");
+DB_RC_OIL_ThirdHouseFamilyMember(CHARACTERGUID_S_RC_OIL_ThirdHouse_Son_65589fd4-cc15-42df-a4dd-b2e82eba2225, "RC_OIL_ThirdHouse_KillSon");
+DB_RC_OIL_ThirdHouseFamilyMember(CHARACTERGUID_S_RC_OIL_ThirdHouse_Daughter_b2a93804-f494-4d65-a342-ca4a6d2dc15f, "RC_OIL_ThirdHouse_KillDaughter");
+DB_Ghosts(CHARACTERGUID_S_RC_OIL_ThirdHouse_Daughter_b2a93804-f494-4d65-a342-ca4a6d2dc15f, CHARACTERGUID_S_RC_OIL_ThirdHouse_Daughter_Ghost_6d7c56b0-88b0-4bb9-a13d-f9115cfd062d, "RC_OIL_ThirdHouse_Daughter_Ghost");
+DB_Ghosts(CHARACTERGUID_S_RC_OIL_ThirdHouse_Magister2_55a6a526-7d4b-4445-b96e-bfcd0ed71776, CHARACTERGUID_S_RC_OIL_ThirdHouse_Magister2_Ghost_dc8567f3-4090-4d4e-97a5-cc39f48350c0, "RC_OIL_ThirdHouse_Magister2_Ghost");
+DB_RC_OIL_ThirdHouse_ExecutionReactions("RC_OIL_ThirdHouse_KillDaughter", CHARACTERGUID_S_RC_OIL_ThirdHouse_Father_d4300187-0d5a-4b17-854a-50f568d632e8, "RC_OIL_AD_DaughterExecuteReaction");
+DB_RC_OIL_ThirdHouse_ExecutionReactions("RC_OIL_ThirdHouse_KillSon", CHARACTERGUID_S_RC_OIL_ThirdHouse_Mother_0d876334-1776-4f06-aab1-6cfc56a1dbc4, "RC_OIL_AD_SonExecuteReaction");
+DB_RC_OIL_ThirdHouse_ExecutionReactions("RC_OIL_ThirdHouse_KillMother", CHARACTERGUID_S_RC_OIL_ThirdHouse_Father_d4300187-0d5a-4b17-854a-50f568d632e8, "RC_OIL_AD_MotherExecuteReaction");
+DB_RC_OIL_ThirdHouse_ExecutionReactions("RC_OIL_ThirdHouse_KillFather", CHARACTERGUID_S_RC_OIL_ThirdHouse_Father_d4300187-0d5a-4b17-854a-50f568d632e8, "RC_OIL_AD_FatherExecuteReaction");
+DB_RC_OIL_ThirdHouseMagister(CHARACTERGUID_S_RC_OIL_ThirdHouse_Magister1_5d2a2f6a-6cbf-45cc-8c74-3a1617778ba3);
+DB_RC_OIL_ThirdHouseMagister(CHARACTERGUID_S_RC_OIL_ThirdHouse_Magister2_55a6a526-7d4b-4445-b96e-bfcd0ed71776);
+DB_RC_OIL_ThirdHouseMagister(CHARACTERGUID_S_RC_OIL_SilentWatcher_Ranger_1adcb57b-4eaa-415e-80cd-0750e1b00120);
+DB_RC_OIL_ThirdHouseMagister(CHARACTERGUID_S_RC_OIL_SilentWatcher_Mage_c2600226-7154-4033-889a-2d1509b2654a);
+DB_RC_OIL_ThirdHouseMagister(CHARACTERGUID_S_RC_OIL_House1_5_Magister_98eefb60-6d64-4d41-9923-e2e27cd55235);
+DB_RC_OIL_ThirdHouseLeaveFlag("RC_OIL_ThirdHouseExecutionEnded");
+DB_RC_OIL_ThirdHouseLeaveFlag("RC_OIL_ThirdHouseSpare");
+DB_Dialogs(CHARACTERGUID_S_RC_OIL_ThirdHouse_Magister2_55a6a526-7d4b-4445-b96e-bfcd0ed71776, "RC_OIL_ThirdHouseExecution");
+DB_AD_Dialog(CHARACTERGUID_S_RC_OIL_ThirdHouse_Magister1_5d2a2f6a-6cbf-45cc-8c74-3a1617778ba3, "RC_OIL_AD_ThirdHouseExecutioner");
+DB_SneakTriggerSpotter(TRIGGERGUID_S_RC_OIL_OneShot_ThirdHouse_7f962e6d-9793-4886-a25e-afb8f41b90a5, CHARACTERGUID_S_RC_OIL_ThirdHouse_Magister2_55a6a526-7d4b-4445-b96e-bfcd0ed71776);
+DB_DeadEvent(CHARACTERGUID_S_RC_OIL_ThirdHouse_Mother_0d876334-1776-4f06-aab1-6cfc56a1dbc4, "RC_OIL_ThirdHouse_MotherDead");
+DB_DeadEvent(CHARACTERGUID_S_RC_OIL_ThirdHouse_Father_d4300187-0d5a-4b17-854a-50f568d632e8, "RC_OIL_ThirdHouse_FatherDead");
+DB_DeadEvent(CHARACTERGUID_S_RC_OIL_ThirdHouse_Son_65589fd4-cc15-42df-a4dd-b2e82eba2225, "RC_OIL_ThirdHouse_SonDead");
+DB_DeadEvent(CHARACTERGUID_S_RC_OIL_ThirdHouse_Daughter_b2a93804-f494-4d65-a342-ca4a6d2dc15f, "RC_OIL_ThirdHouse_DaughterDead");
+DB_Ghosts(CHARACTERGUID_S_RC_OIL_ThirdHouse_Mother_0d876334-1776-4f06-aab1-6cfc56a1dbc4, CHARACTERGUID_S_RC_OIL_ThirdHouse_Mother_Ghost_f125ae9f-8f78-43ed-a700-d01e770291d3, "RC_OIL_ThirdHouse_Mother_Ghost");
+DB_DoNotFace(CHARACTERGUID_S_RC_OIL_ThirdHouse_Magister2_55a6a526-7d4b-4445-b96e-bfcd0ed71776);
+DB_AD_Dialog(CHARACTERGUID_S_RC_OIL_ThirdHouse_Mother_0d876334-1776-4f06-aab1-6cfc56a1dbc4, "RC_OIL_AD_ThirdHouse_Tied_Mother");
+DB_AD_Dialog(CHARACTERGUID_S_RC_OIL_ThirdHouse_Father_d4300187-0d5a-4b17-854a-50f568d632e8, "RC_OIL_AD_ThirdHouse_Tied_Father");
+DB_AD_Dialog(CHARACTERGUID_S_RC_OIL_ThirdHouse_Son_65589fd4-cc15-42df-a4dd-b2e82eba2225, "RC_OIL_AD_ThirdHouse_Tied_Son");
+DB_AD_Dialog(CHARACTERGUID_S_RC_OIL_ThirdHouse_Daughter_b2a93804-f494-4d65-a342-ca4a6d2dc15f, "RC_OIL_AD_ThirdHouse_Tied_Daughter");
+DB_Dialogs(CHARACTERGUID_S_RC_OIL_SilentWatcher_Mage_c2600226-7154-4033-889a-2d1509b2654a, "RC_OIL_SilentWatcher_Mage");
+DB_Dialogs(CHARACTERGUID_S_RC_OIL_SilentWatcher_Ranger_1adcb57b-4eaa-415e-80cd-0750e1b00120, "RC_OIL_SilentWatcher_Ranger");
+DB_HasStoryEvent(ITEMGUID_S_RC_OIL_InnerField_SourcererReward_b5d0ba5a-f13a-4e14-a007-a5e9ce4f2270, "RC_OIL_InnerField_HasSourcererReward");
+DB_GiveItemToEventWithClear(ITEMGUID_S_RC_OIL_InnerField_SourcererReward_b5d0ba5a-f13a-4e14-a007-a5e9ce4f2270, "RC_OIL_ThirdHouse_SourcererReward");
+
+KBSECTION
+IF
+DB_RC_OIL_ThirdHouseFamilyMember(_Var1, _)
+THEN
+SetHasDialog(_Var1, 1);
+CharacterSetAnimationOverride(_Var1, "Execution_01_Loop");
+SetCanFight(_Var1, 0);
+ProcCharacterDisableAllCrimes(_Var1);
+DB_RC_OIL_OriginalThirdHouseFamilyMember(_Var1);
+ApplyStatus(_Var1, "QUEST_TIEDUP", -1, 1);
+
+IF
+DB_RC_OIL_ThirdHouseFamilyMember(_Var1, _)
+AND
+DB_RC_OIL_ThirdHouseFamilyMember(_Var3, _)
+AND
+_Var1 != _Var3
+THEN
+DB_MurderIgnoreFor(_Var1, _Var3);
+DB_MurderIgnoreFor(_Var3, _Var1);
+
+IF
+GlobalFlagSet((STRING)_Var1)
+AND
+DB_RC_OIL_ThirdHouseFamilyMember(_Var2, _Var1)
+THEN
+CharacterAttack(CHARACTERGUID_S_RC_OIL_ThirdHouse_Magister1_5d2a2f6a-6cbf-45cc-8c74-3a1617778ba3, _Var2);
+
+IF
+AttackedByObject((CHARACTERGUID)_Var1, CHARACTERGUID_S_RC_OIL_ThirdHouse_Magister1_5d2a2f6a-6cbf-45cc-8c74-3a1617778ba3, _, _, _)
+AND
+DB_RC_OIL_ThirdHouseFamilyMember(_Var1, _)
+THEN
+CharacterDie(_Var1, 1, "Physical");
+
+IF
+CharacterDied((CHARACTERGUID)_Var1)
+AND
+DB_RC_OIL_ThirdHouseFamilyMember(_Var1, _Var2)
+THEN
+NOT DB_RC_OIL_ThirdHouseFamilyMember(_Var1, _Var2);
+PROC_RC_OIL_CheckThirdHouseFamilyMemberAlive();
+
+PROC
+PROC_RC_OIL_CheckThirdHouseFamilyMemberAlive()
+AND NOT
+DB_RC_OIL_ThirdHouseFamilyMember(_, _)
+THEN
+GlobalSetFlag("RC_OIL_ThirdHouseExecutionEnded");
+
+IF
+DB_CombatCharacters(_Var1, _Var2)
+AND
+DB_RC_OIL_ThirdHouseMagister(_Var1)
+AND
+DB_CombatCharacters(_Var3, _Var2)
+AND
+DB_IsPlayer(_Var3)
+THEN
+GlobalSetFlag("RC_OIL_ThirdHouse_Hostile");
+
+IF
+GlobalFlagSet("RC_OIL_ThirdHouse_Hostile")
+AND
+DB_RC_OIL_ThirdHouseMagister(_Var1)
+THEN
+SetFaction(_Var1, "RC_OIL_CampMagistersHostile");
+PROC_RemoveDialogFromCharacter(_Var1);
+
+IF
+ObjectFlagSet("RC_OIL_ThirdHouse_ReleaseFamilyMember", (CHARACTERGUID)_Var1, _)
+AND
+DB_RC_OIL_ThirdHouseFamilyMember(_Var1, _)
+THEN
+CharacterSetReactionPriority(_Var1, "Sit_TiedUp", 0);
+CharacterSetAnimationOverride(_Var1, "");
+SetCanFight(_Var1, 1);
+ProcCharacterEnableAllCrimes(_Var1);
+CharacterSetReactionPriority(_Var1, "CryChild", 100);
+SetVarInteger(_Var1, "bool_CanCower", 1);
+SetVarInteger(_Var1, "bool_CanFleeWhileCowering", 1);
+SetVarInteger(_Var1, "bool_FleeFromDangerousSurface", 1);
+SetFaction(_Var1, "RC_OIL_ThirdHouse_Family");
+RemoveStatus(_Var1, "QUEST_TIEDUP");
+PROC_RC_OIL_ThirdHouse_CheckAllFree();
+
+IF
+ObjectFlagSet("RC_OIL_ThirdHouse_ReleaseFamilyMember", (CHARACTERGUID)_Var1, _)
+AND
+DB_RC_OIL_ThirdHouseFamilyMember(_Var1, _)
+AND NOT
+DB_Dead(_Var1)
+AND
+DB_RC_OIL_ThirdHouseFamilyMember(_Var4, _)
+AND NOT
+DB_Dead(_Var4)
+THEN
+NOT DB_MurderIgnoreFor(_Var1, _Var4);
+
+IF
+CharacterDied((CHARACTERGUID)_Var1)
+AND
+DB_RC_OIL_ThirdHouseFamilyMember(_Var1, _)
+THEN
+ObjectSetFlag(_Var1, "RC_OIL_ThirdHouse_ReleaseFamilyMember", 0);
+
+PROC
+PROC_RC_OIL_ThirdHouse_CheckAllFree()
+AND NOT
+QRY_RC_OIL_ThirdHouse_NotAllFree()
+THEN
+GlobalSetFlag("RC_OIL_ThirdHouse_ReleaseFamily");
+
+QRY
+QRY_RC_OIL_ThirdHouse_NotAllFree()
+AND
+DB_RC_OIL_ThirdHouseFamilyMember(_Var1, _)
+AND
+ObjectGetFlag(_Var1, "RC_OIL_ThirdHouse_ReleaseFamilyMember", 0)
+THEN
+DB_NOOP(1);
+
+IF
+GlobalFlagSet("RC_OIL_ThirdHouseExecute")
+THEN
+CharacterSetReactionPriority(CHARACTERGUID_S_RC_OIL_ThirdHouse_Magister1_5d2a2f6a-6cbf-45cc-8c74-3a1617778ba3, "Action_MagisterExecute", 1000);
+
+IF
+GlobalFlagSet((STRING)_Var1)
+AND
+DB_RC_OIL_ThirdHouse_ExecutionReactions(_Var1, _Var2, _Var3)
+THEN
+Proc_StartDialog(1, _Var3, _Var2);
+
+PROC
+ProcCharInTriggerSpotted((CHARACTERGUID)_Var1, TRIGGERGUID_S_RC_OIL_OneShot_ThirdHouse_7f962e6d-9793-4886-a25e-afb8f41b90a5)
+THEN
+Proc_StartDialog(0, "RC_OIL_ThirdHouseExecution", CHARACTERGUID_S_RC_OIL_ThirdHouse_Magister2_55a6a526-7d4b-4445-b96e-bfcd0ed71776, _Var1);
+
+IF
+GlobalFlagSet("RC_OIL_InnerField_Sourcerer_GotHome")
+THEN
+DB_OneShotPlayerTrigger(S_RC_OIL_ThirdHouse_HomeComingEffect_e031a009-26d4-4eb8-8db1-926625a91cd4);
+
+PROC
+ProcOneShotTriggerEntered(_, S_RC_OIL_ThirdHouse_HomeComingEffect_e031a009-26d4-4eb8-8db1-926625a91cd4)
+AND
+CharacterIsDead(CHARACTERGUID_S_RC_OIL_InnerField_Sourcerer_632e47f2-22c3-4342-b3f7-152dd3534f3b, 0)
+THEN
+CharacterSetRelationFactionToFaction("RC_OIL_BoundSourcerer", "DW_Magister", 0);
+CharacterSetRelationFactionToFaction("DW_Magister", "RC_OIL_BoundSourcerer", 0);
+GlobalSetFlag("RC_OIL_ThirdHouse_Hostile");
+
+IF
+ObjectTurnStarted(CHARACTERGUID_S_RC_OIL_ThirdHouse_Magister2_55a6a526-7d4b-4445-b96e-bfcd0ed71776)
+AND
+DB_CombatCharacters(CHARACTERGUID_S_RC_OIL_ThirdHouse_Magister2_55a6a526-7d4b-4445-b96e-bfcd0ed71776, _Var1)
+AND
+DB_CombatCharacters(CHARACTERGUID_S_RC_OIL_InnerField_Sourcerer_632e47f2-22c3-4342-b3f7-152dd3534f3b, _Var1)
+AND
+DB_CombatCharacters(_Var2, _Var1)
+AND
+DB_IsPlayer(_Var2)
+AND
+QueryOnlyOnce("RC_OIL_AD_Magister2_SourcererBack")
+THEN
+Proc_StartDialog(1, "RC_OIL_AD_Magister2_SourcererBack", CHARACTERGUID_S_RC_OIL_ThirdHouse_Magister2_55a6a526-7d4b-4445-b96e-bfcd0ed71776);
+
+PROC
+ProcOneShotTriggerEntered(_, S_RC_OIL_ThirdHouse_HomeComingEffect_e031a009-26d4-4eb8-8db1-926625a91cd4)
+AND
+CharacterIsDead(CHARACTERGUID_S_RC_OIL_InnerField_Sourcerer_632e47f2-22c3-4342-b3f7-152dd3534f3b, 0)
+THEN
+Proc_StartDialog(1, "RC_OIL_AD_InnerField_Sourcerer_Homecoming", CHARACTERGUID_S_RC_OIL_InnerField_Sourcerer_632e47f2-22c3-4342-b3f7-152dd3534f3b);
+
+PROC
+ProcOneShotTriggerEntered(_, S_RC_OIL_ThirdHouse_HomeComingEffect_e031a009-26d4-4eb8-8db1-926625a91cd4)
+AND
+CharacterIsDead(CHARACTERGUID_S_RC_OIL_ThirdHouse_Magister2_55a6a526-7d4b-4445-b96e-bfcd0ed71776, 0)
+AND
+CharacterCanSee(CHARACTERGUID_S_RC_OIL_InnerField_Sourcerer_632e47f2-22c3-4342-b3f7-152dd3534f3b, CHARACTERGUID_S_RC_OIL_ThirdHouse_Magister2_55a6a526-7d4b-4445-b96e-bfcd0ed71776, 1)
+AND
+CharacterIsDead(CHARACTERGUID_S_RC_OIL_InnerField_Sourcerer_632e47f2-22c3-4342-b3f7-152dd3534f3b, 0)
+THEN
+CharacterUseSkill(CHARACTERGUID_S_RC_OIL_InnerField_Sourcerer_632e47f2-22c3-4342-b3f7-152dd3534f3b, "ProjectileStrike_EnemyShockingTouch", CHARACTERGUID_S_RC_OIL_ThirdHouse_Magister2_55a6a526-7d4b-4445-b96e-bfcd0ed71776, 1, 1, 1);
+
+IF
+AutomatedDialogEnded("RC_OIL_AD_InnerField_Sourcerer_Homecoming", _)
+THEN
+DB_RC_OIL_ThirdHouse_SourcererADDone(1);
+
+IF
+GlobalFlagSet((STRING)_Var1)
+AND
+DB_RC_OIL_ThirdHouseLeaveFlag(_Var1)
+THEN
+PROC_RC_OIL_ThirdHouse_MagistersLeave();
+
+IF
+DialogEnded(_, (INTEGER)_Var2)
+AND
+DB_DialogNPCs(_Var2, _Var3, _)
+AND
+DB_RC_OIL_ThirdHouseMagister(_Var3)
+AND
+QRY_RC_OIL_ThirdHouse_MagistersCanLeave()
+THEN
+PROC_RC_OIL_ThirdHouse_MagistersLeave();
+
+PROC
+Proc_ObjectLeftCombat((CHARACTERGUID)_Var1, _)
+AND
+DB_RC_OIL_ThirdHouseMagister(_Var1)
+AND
+QRY_RC_OIL_ThirdHouse_MagistersCanLeave()
+THEN
+PROC_RC_OIL_ThirdHouse_MagistersLeave();
+
+IF
+AutomatedDialogEnded("RC_OIL_AD_ThirdHouse_MagisterLeaving", _)
+THEN
+PROC_RC_OIL_ThirdHouse_MagistersLeave();
+
+PROC
+PROC_RC_OIL_ThirdHouse_MagistersLeave()
+AND NOT
+QRY_RC_OIL_ThirdHouse_MagistersLeaveAD()
+AND
+DB_RC_OIL_ThirdHouseMagister(_Var1)
+AND
+CharacterIsDead(_Var1, 0)
+AND
+CharacterIsInCombat(_Var1, 0)
+AND
+IsSpeakerReserved(_Var1, 0)
+THEN
+SetHasDialog(_Var1, 0);
+ProcCharacterDisappearOutOfSight(_Var1, 0, 0, "RC_OIL_ThirdHouse_MagisterLeft", 0);
+
+IF
+DB_StoppedOutOfSight(_Var1)
+AND
+DB_RC_OIL_ThirdHouseMagister(_Var1)
+AND
+DB_RC_OIL_ThirdHouseMagister(_Var2)
+AND
+_Var2 != _Var1
+THEN
+DB_StoppedOutOfSight(_Var2);
+CharacterPurgeQueue(_Var2);
+
+IF
+CharacterSetTemporaryRelationsFailed((CHARACTERGUID)_Var1, (CHARACTERGUID)_Var2)
+AND
+DB_OnlyOnce("RC_OIL_AD_ThirdHouse_MagistersLeaving")
+AND
+DB_RC_OIL_ThirdHouseMagister(_Var1)
+AND
+DB_IsPlayer(_Var2)
+AND
+DB_RC_OIL_ThirdHouseMagister(_Var3)
+THEN
+CharacterSetTemporaryHostileRelation(_Var3, _Var2);
+
+QRY
+QRY_RC_OIL_ThirdHouse_MagistersLeaveAD()
+AND
+CharacterIsDead(CHARACTERGUID_S_RC_OIL_ThirdHouse_Magister2_55a6a526-7d4b-4445-b96e-bfcd0ed71776, 0)
+AND
+QueryOnlyOnce("RC_OIL_AD_ThirdHouse_MagistersLeaving")
+THEN
+Proc_StartDialog(1, "RC_OIL_AD_ThirdHouse_MagisterLeaving", CHARACTERGUID_S_RC_OIL_ThirdHouse_Magister2_55a6a526-7d4b-4445-b96e-bfcd0ed71776);
+
+QRY
+QRY_RC_OIL_ThirdHouse_MagistersCanLeave()
+AND
+DB_RC_OIL_ThirdHouseLeaveFlag(_Var1)
+AND
+GlobalGetFlag(_Var1, 1)
+AND NOT
+QRY_RC_OIL_ThirdHouse_MagisterGoInCombat()
+THEN
+DB_NOOP(0);
+
+QRY
+QRY_RC_OIL_ThirdHouse_MagisterGoInCombat()
+AND
+GlobalGetFlag("RC_OIL_ThirdHouse_Hostile", 1)
+AND
+DB_RC_OIL_ThirdHouseMagister(_Var1)
+AND
+DB_IsPlayer(_Var2)
+AND
+CharacterCanSee(_Var1, _Var2, 1)
+THEN
+DB_NOOP(0);
+
+IF
+DB_Dead(_Var1)
+AND
+DB_RC_OIL_ThirdHouseMagister(_Var1)
+THEN
+SetStoryEvent(_Var1, "RC_OIL_ThirdHouse_MagisterLeft");
+
+IF
+StoryEvent((CHARACTERGUID)_Var1, "RC_OIL_ThirdHouse_MagisterLeft")
+THEN
+NOT DB_RC_OIL_ThirdHouseMagister(_Var1);
+
+IF
+StoryEvent(_, "RC_OIL_ThirdHouse_MagisterLeft")
+AND NOT
+DB_RC_OIL_ThirdHouseMagister(_)
+THEN
+GlobalSetFlag("RC_OIL_ThirdHouse_MagistersGone");
+
+PROC
+PROC_RC_OIL_ThirdHouse_MagistersLeave()
+AND
+DB_RC_OIL_ThirdHouseFamilyMember(_Var1, _)
+AND
+DB_AD_Dialog(_Var1, _)
+THEN
+ProcRemoveNPCADs(_Var1);
+SetHasDialog(_Var1, 0);
+
+PROC
+PROC_RC_OIL_ThirdHouse_MagistersLeave()
+THEN
+DB_Dialogs(CHARACTERGUID_S_RC_OIL_ThirdHouse_Father_d4300187-0d5a-4b17-854a-50f568d632e8, "RC_OIL_ThirdHouse_Father");
+DB_Dialogs(CHARACTERGUID_S_RC_OIL_ThirdHouse_Mother_0d876334-1776-4f06-aab1-6cfc56a1dbc4, "RC_OIL_ThirdHouse_Mother");
+DB_Dialogs(CHARACTERGUID_S_RC_OIL_ThirdHouse_Son_65589fd4-cc15-42df-a4dd-b2e82eba2225, "RC_OIL_ThirdHouse_Son");
+DB_Dialogs(CHARACTERGUID_S_RC_OIL_ThirdHouse_Daughter_b2a93804-f494-4d65-a342-ca4a6d2dc15f, "RC_OIL_ThirdHouse_Daughter");
+
+IF
+GlobalFlagSet("RC_OIL_ThirdHouse_MagistersGone")
+AND
+DB_RC_OIL_ThirdHouseFamilyMember(_Var1, _)
+AND
+DB_AD_Dialog(_Var1, _)
+THEN
+ProcRemoveNPCADs(_Var1);
+SetHasDialog(_Var1, 0);
+
+IF
+GlobalFlagSet("RC_OIL_ThirdHouse_MagistersGone")
+THEN
+DB_Dialogs(CHARACTERGUID_S_RC_OIL_ThirdHouse_Father_d4300187-0d5a-4b17-854a-50f568d632e8, "RC_OIL_ThirdHouse_Father");
+DB_Dialogs(CHARACTERGUID_S_RC_OIL_ThirdHouse_Mother_0d876334-1776-4f06-aab1-6cfc56a1dbc4, "RC_OIL_ThirdHouse_Mother");
+DB_Dialogs(CHARACTERGUID_S_RC_OIL_ThirdHouse_Son_65589fd4-cc15-42df-a4dd-b2e82eba2225, "RC_OIL_ThirdHouse_Son");
+DB_Dialogs(CHARACTERGUID_S_RC_OIL_ThirdHouse_Daughter_b2a93804-f494-4d65-a342-ca4a6d2dc15f, "RC_OIL_ThirdHouse_Daughter");
+
+IF
+DB_GlobalFlag("RC_OIL_ThirdHouse_MagistersGone")
+AND
+DB_GlobalFlag("RC_OIL_InnerField_Sourcerer_GotHome")
+AND
+DB_GlobalFlag("RC_OIL_ThirdHouse_ReleaseFamily")
+AND
+DB_RC_OIL_ThirdHouse_SourcererADDone(1)
+AND
+QueryOnlyOnce("RC_OIL_InnerField_Sourcerer_GotHome_RestartSpot")
+THEN
+ObjectSetFlag(CHARACTERGUID_S_RC_OIL_InnerField_Sourcerer_632e47f2-22c3-4342-b3f7-152dd3534f3b, "RC_OIL_StartSpot", 0);
+
+IF
+DB_GlobalFlag("RC_OIL_ThirdHouseExecutionEnded")
+AND
+DB_GlobalFlag("RC_OIL_InnerField_Sourcerer_GotHome")
+AND
+DB_RC_OIL_ThirdHouse_SourcererADDone(1)
+AND
+QueryOnlyOnce("RC_OIL_InnerField_Sourcerer_GotHome_RestartSpot")
+THEN
+ObjectSetFlag(CHARACTERGUID_S_RC_OIL_InnerField_Sourcerer_632e47f2-22c3-4342-b3f7-152dd3534f3b, "RC_OIL_StartSpot", 0);
+
+IF
+StoryEvent((GUIDSTRING)_Var1, "RC_OIL_InnerField_SourcererThank")
+AND
+GlobalGetFlag("RC_OIL_Innerfield_SourcererRescued", 1)
+AND
+GlobalGetFlag("RC_OIL_InnerField_Sourcerer_GotHome", 1)
+AND
+GlobalGetFlag("RC_OIL_ThirdHouse_ReleaseFamily", 1)
+THEN
+Proc_StartDialog(0, "RC_OIL_InnerField_SourcererHome", CHARACTERGUID_S_RC_OIL_InnerField_Sourcerer_632e47f2-22c3-4342-b3f7-152dd3534f3b, _Var1);
+
+IF
+StoryEvent((GUIDSTRING)_Var1, "RC_OIL_InnerField_SourcererThank")
+AND
+GlobalGetFlag("RC_OIL_Innerfield_SourcererRescued", 1)
+AND
+GlobalGetFlag("RC_OIL_InnerField_Sourcerer_GotHome", 1)
+AND
+GlobalGetFlag("RC_OIL_ThirdHouseExecutionEnded", 1)
+THEN
+Proc_StartDialog(0, "RC_OIL_InnerField_SourcererHome", CHARACTERGUID_S_RC_OIL_InnerField_Sourcerer_632e47f2-22c3-4342-b3f7-152dd3534f3b, _Var1);
+
+IF
+DialogEnded("RC_OIL_InnerField_SourcererHome", _)
+THEN
+PROC_RemoveDialogFromCharacter(CHARACTERGUID_S_RC_OIL_InnerField_Sourcerer_632e47f2-22c3-4342-b3f7-152dd3534f3b);
+CharacterSetReactionPriority(CHARACTERGUID_S_RC_OIL_InnerField_Sourcerer_632e47f2-22c3-4342-b3f7-152dd3534f3b, "Flee_Oilfields", 1000);
+
+IF
+DialogEnded("RC_OIL_InnerField_SourcererHome", _)
+AND
+CharacterIsDead(S_RC_OIL_ThirdHouse_Mother_0d876334-1776-4f06-aab1-6cfc56a1dbc4, 1)
+AND
+DB_RC_OIL_ThirdHouseFamilyMember(_Var2, _)
+THEN
+PROC_RemoveDialogFromCharacter(_Var2);
+CharacterSetReactionPriority(_Var2, "Flee_Oilfields", 1000);
+
+IF
+DialogEnded("RC_OIL_InnerField_SourcererHome", _)
+AND
+CharacterIsDead(S_RC_OIL_ThirdHouse_Mother_0d876334-1776-4f06-aab1-6cfc56a1dbc4, 0)
+THEN
+Proc_StartDialog(1, "RC_OIL_AD_ThirdHouse_MotherSourcerer", CHARACTERGUID_S_RC_OIL_ThirdHouse_Mother_0d876334-1776-4f06-aab1-6cfc56a1dbc4, CHARACTERGUID_S_RC_OIL_InnerField_Sourcerer_632e47f2-22c3-4342-b3f7-152dd3534f3b);
+
+IF
+AutomatedDialogEnded("RC_OIL_AD_ThirdHouse_MotherSourcerer", _)
+AND
+DB_RC_OIL_ThirdHouseFamilyMember(_Var2, _)
+THEN
+PROC_RemoveDialogFromCharacter(_Var2);
+CharacterSetReactionPriority(_Var2, "Flee_Oilfields", 1000);
+
+IF
+DB_GlobalFlag("RC_OIL_Innerfield_SourcererRescued")
+AND
+DB_GlobalFlag("RC_OIL_InnerField_Sourcerer_GotHome")
+AND
+DB_GlobalFlag("RC_OIL_ThirdHouse_ReleaseFamily")
+AND NOT
+QRY_RC_OIL_AnyPlayersHelpedGwydian()
+AND NOT
+DB_Dead(CHARACTERGUID_S_RC_OIL_InnerField_Sourcerer_632e47f2-22c3-4342-b3f7-152dd3534f3b)
+THEN
+PROC_RC_OIL_NoPlayersHelpedGwydian();
+
+PROC
+PROC_RC_OIL_NoPlayersHelpedGwydian()
+AND NOT
+DB_Dead(S_RC_OIL_ThirdHouse_Mother_0d876334-1776-4f06-aab1-6cfc56a1dbc4)
+THEN
+Proc_StartDialog(1, "RC_OIL_AD_ThirdHouse_MotherSourcerer", CHARACTERGUID_S_RC_OIL_ThirdHouse_Mother_0d876334-1776-4f06-aab1-6cfc56a1dbc4, CHARACTERGUID_S_RC_OIL_InnerField_Sourcerer_632e47f2-22c3-4342-b3f7-152dd3534f3b);
+PROC_RemoveDialogFromCharacter(CHARACTERGUID_S_RC_OIL_InnerField_Sourcerer_632e47f2-22c3-4342-b3f7-152dd3534f3b);
+CharacterSetReactionPriority(CHARACTERGUID_S_RC_OIL_InnerField_Sourcerer_632e47f2-22c3-4342-b3f7-152dd3534f3b, "Flee_Oilfields", 1000);
+
+PROC
+PROC_RC_OIL_NoPlayersHelpedGwydian()
+AND
+DB_Dead(S_RC_OIL_ThirdHouse_Mother_0d876334-1776-4f06-aab1-6cfc56a1dbc4)
+AND
+DB_RC_OIL_ThirdHouseFamilyMember(_Var1, _)
+THEN
+PROC_RemoveDialogFromCharacter(_Var1);
+CharacterSetReactionPriority(_Var1, "Flee_Oilfields", 1000);
+
+PROC
+PROC_RC_OIL_NoPlayersHelpedGwydian()
+AND
+DB_Dead(S_RC_OIL_ThirdHouse_Mother_0d876334-1776-4f06-aab1-6cfc56a1dbc4)
+THEN
+PROC_RemoveDialogFromCharacter(CHARACTERGUID_S_RC_OIL_InnerField_Sourcerer_632e47f2-22c3-4342-b3f7-152dd3534f3b);
+CharacterSetReactionPriority(CHARACTERGUID_S_RC_OIL_InnerField_Sourcerer_632e47f2-22c3-4342-b3f7-152dd3534f3b, "Flee_Oilfields", 1000);
+
+QRY
+QRY_RC_OIL_AnyPlayersHelpedGwydian()
+AND
+DB_IsPlayer(_Var1)
+AND
+PartyGetFlag(_Var1, "RC_OIL_InnerField_HelpedSourcererEscape", 1)
+THEN
+DB_NOOP(0);
+
+IF
+CharacterSawCharacter((CHARACTERGUID)_Var1, (CHARACTERGUID)_Var2)
+AND
+DB_RC_OIL_OriginalThirdHouseFamilyMember(_Var2)
+AND
+CharacterIsDead(_Var2, 1)
+THEN
+UserSetFlag(_Var1, "RC_OIL_ThirdHouse_FoundDeadFamilyMember");
+
+IF
+CharacterDying((CHARACTERGUID)_Var1)
+AND
+DB_RC_OIL_OriginalThirdHouseFamilyMember(_Var1)
+AND
+DB_IsPlayer(_Var2)
+AND
+CharacterCanSee(_Var2, _Var1, 1)
+THEN
+UserSetFlag(_Var2, "RC_OIL_ThirdHouse_FoundDeadFamilyMember");
+
+IF
+DialogEnded(_, (INTEGER)_Var2)
+AND
+DialogGetInvolvedNPC(_Var2, 1, _Var3)
+AND
+DB_RC_OIL_ThirdHouseFamilyMember(_Var3, _)
+AND
+ObjectGetFlag(_Var3, "RC_OIL_ThirdHouse_FamilyLeave", 1)
+AND
+DB_RC_OIL_ThirdHouseFamilyMember(_Var5, _)
+THEN
+PROC_RemoveDialogFromCharacter(_Var5);
+CharacterSetReactionPriority(_Var5, "Flee_Oilfields", 1000);
+
+IF
+CharacterCharacterEvent(CHARACTERGUID_S_RC_OIL_ThirdHouse_Father_d4300187-0d5a-4b17-854a-50f568d632e8, CHARACTERGUID_S_RC_OIL_ThirdHouse_Child_ad56e64d-ca11-4836-b5cb-664ca683feee, "Is_PickedUp")
+THEN
+SetOnStage(CHARACTERGUID_S_RC_OIL_ThirdHouse_Child_ad56e64d-ca11-4836-b5cb-664ca683feee, 0);
+PROC_LoopEffect("RS3_FX_Items_Animated_Child_Carry_Attachment_01", CHARACTERGUID_S_RC_OIL_ThirdHouse_Father_d4300187-0d5a-4b17-854a-50f568d632e8, "RC_OIL_Child", "RC_Main", "Dummy_Custom_Anim");
+
+IF
+CharacterDied(CHARACTERGUID_S_RC_OIL_InnerField_Sourcerer_632e47f2-22c3-4342-b3f7-152dd3534f3b)
+AND
+GlobalGetFlag("RC_OIL_InnerField_Sourcerer_GotHome", 1)
+THEN
+GlobalSetFlag("RC_OIL_ThirdHouse_FamilyKnowSourcererDead");
+
+IF
+ObjectFlagSet("RC_OIL_ThirdHouse_ReleaseFamilyMember", (GUIDSTRING)_Var1, _)
+AND
+DB_GlobalFlag("RC_OIL_InnerField_Sourcerer_GotHome")
+THEN
+SetHasDialog(_Var1, 0);
+
+IF
+GlobalFlagSet("RC_OIL_InnerField_Sourcerer_GotHome")
+AND
+DB_RC_OIL_ThirdHouseFamilyMember(_Var1, _)
+AND
+ObjectGetFlag(_Var1, "RC_OIL_ThirdHouse_ReleaseFamilyMember", 1)
+THEN
+SetHasDialog(_Var1, 0);
+
+IF
+DB_CombatCharacters(_Var1, _Var2)
+AND
+DB_RC_OIL_ThirdHouseMagister(_Var1)
+AND
+DB_CombatCharacters(_Var3, _Var2)
+AND
+DB_IsPlayer(_Var3)
+AND
+GlobalGetFlag("RC_OIL_ThirdHouseExecutionEnded", 0)
+THEN
+UserSetFlag(_Var3, "RC_OIL_ThirdHouse_Rescued", 0);
+
+IF
+ObjectFlagSet("RC_OIL_FacePrisoners", CHARACTERGUID_S_RC_OIL_ThirdHouse_Magister2_55a6a526-7d4b-4445-b96e-bfcd0ed71776, _)
+THEN
+ObjectClearFlag(CHARACTERGUID_S_RC_OIL_ThirdHouse_Magister2_55a6a526-7d4b-4445-b96e-bfcd0ed71776, "RC_OIL_FacePrisoners", 0);
+CharacterLookAt(CHARACTERGUID_S_RC_OIL_ThirdHouse_Magister2_55a6a526-7d4b-4445-b96e-bfcd0ed71776, CHARACTERGUID_S_RC_OIL_ThirdHouse_Mother_0d876334-1776-4f06-aab1-6cfc56a1dbc4);
+
+IF
+StoryEvent((GUIDSTRING)_Var1, "RC_OIL_AttackedRelative")
+THEN
+Proc_StartDialog(1, "RC_OIL_AD_ThirdHouse_AttackedRelative", _Var1);
+
+IF
+StoryEvent((GUIDSTRING)_Var1, "RC_OIL_KilledRelative")
+THEN
+Proc_StartDialog(1, "RC_OIL_AD_ThirdHouse_KilledRelative", _Var1);
+
+IF
+ObjectFlagSet("RC_OIL_ThirdHouse_Rescued", (GUIDSTRING)_Var1, _)
+AND NOT
+QRY_RC_OIL_AnyThirdHouseMembersDead()
+THEN
+ObjectSetFlag(_Var1, "GLO_SetTag_HERO", 0);
+
+QRY
+QRY_RC_OIL_AnyThirdHouseMembersDead()
+AND
+DB_RC_OIL_OriginalThirdHouseFamilyMember(_Var1)
+AND
+CharacterIsDead(_Var1, 1)
+THEN
+DB_NOOP(0);
+
+QRY
+QRY_RC_OIL_AnyThirdHouseMembersDead()
+AND
+DB_RC_OIL_OriginalThirdHouseFamilyMember(_Var1)
+AND
+HasActiveStatus(_Var1, "DYING", 1)
+THEN
+DB_NOOP(0);
+
+PROC
+ProcAddToCharacterCombatList((CHARACTERGUID)_Var1, (INTEGER)_Var2)
+AND
+DB_IsPlayer(_Var1)
+AND NOT
+DB_GlobalFlag("RC_OIL_ThirdHouseExecutionEnded")
+AND NOT
+DB_GlobalFlag("RC_OIL_ThirdHouse_ReleaseFamily")
+AND
+DB_CombatCharacters(_Var3, _Var2)
+AND
+DB_RC_OIL_ThirdHouseMagister(_Var3)
+THEN
+ObjectSetFlag(_Var1, "RC_OIL_ThirdHouse_Rescued", 0);
+
+PROC
+ProcAddToCharacterCombatList((CHARACTERGUID)_Var1, (INTEGER)_Var2)
+AND
+DB_RC_OIL_ThirdHouseMagister(_Var1)
+AND NOT
+DB_GlobalFlag("RC_OIL_ThirdHouseExecutionEnded")
+AND NOT
+DB_GlobalFlag("RC_OIL_ThirdHouse_ReleaseFamily")
+AND
+DB_IsPlayer(_Var3)
+AND
+DB_CombatCharacters(_Var3, _Var2)
+THEN
+ObjectSetFlag(_Var3, "RC_OIL_ThirdHouse_Rescued", 0);
+
+IF
+RegionStarted("CoS_Main")
+AND
+DB_IsPlayer(_Var1)
+THEN
+ObjectSetFlag(_Var1, "QuestClose_RC_OIL_ThirdHouse", 0);
+
+IF
+CharacterWentOnStage(CHARACTERGUID_S_RC_OIL_InnerField_Sourcerer_632e47f2-22c3-4342-b3f7-152dd3534f3b, 0)
+THEN
+ProcTriggerRegisterForPlayers(TRIGGERGUID_S_RC_OIL_VoidwokenAttack_Setup_0aa8f162-e5f8-473d-8955-09ee1bc244d1);
+
+IF
+CharacterEnteredTrigger((CHARACTERGUID)_Var1, TRIGGERGUID_S_RC_OIL_VoidwokenAttack_Setup_0aa8f162-e5f8-473d-8955-09ee1bc244d1)
+AND
+ObjectIsOnStage(CHARACTERGUID_S_RC_OIL_InnerField_Sourcerer_632e47f2-22c3-4342-b3f7-152dd3534f3b, 0)
+AND
+ObjectGetFlag(_Var1, "RC_OIL_InnerField_HelpedSourcererEscape", 0)
+THEN
+ObjectSetFlag(_Var1, "QuestUpdate_RC_OIL_ThirdHouse_GwydianEscapedOther", 0);
+
+IF
+RegionStarted("CoS_Main")
+THEN
+GoalCompleted;
+
+
+EXITSECTION
+ENDEXITSECTION
+
+ParentTargetEdge "ReapersCoast"

@@ -1,0 +1,959 @@
+Version 1
+SubGoalCombiner SGC_AND
+
+INITSECTION
+DB_Origins_MaxPartySize(4);
+
+KBSECTION
+IF
+DialogStarted(_, (INTEGER)_Var2)
+AND
+DB_DialogNPCs(_Var2, _Var3, _)
+AND
+DB_Origins_InitialRegion(_Var5)
+AND
+DB_OriginRecruitmentLocation_Region(_Var5, _Var3, _, _)
+THEN
+DB_GLO_AllDialogObjectFlagsShared(_Var2);
+
+IF
+DialogStarted(_, (INTEGER)_Var2)
+AND
+DB_DialogNumPlayers(_Var2, _Var3)
+AND
+_Var3 > 1
+THEN
+DB_GLO_AllDialogObjectFlagsShared(_Var2);
+
+IF
+DialogEnded(_, (INTEGER)_Var2)
+AND
+DB_GLO_AllDialogObjectFlagsShared(_Var2)
+THEN
+NOT DB_GLO_AllDialogObjectFlagsShared(_Var2);
+
+IF
+DB_OriginNPCAlignment(_Var1, _Var2)
+THEN
+DB_GLO_PartyMembers_OriginalAlignment(_Var1, _Var2);
+
+QRY
+QRY_GLO_PartyMembers_GetInPartyDialog((CHARACTERGUID)_Var1)
+AND
+DB_OriginInPartyDialog(_Var1, _Var2)
+THEN
+DB_GLO_PartyMembers_InPartyDialog(_Var1, _Var2);
+
+IF
+RegionStarted((STRING)_Var1)
+AND
+StringConcatenate("GLO_Origins_OriginNPCInitForRegion_", _Var1, _Var2)
+AND
+QueryOnlyOnce(_Var2)
+THEN
+PROC_GLO_OriginNPCInitForRegion(_Var1);
+
+PROC
+PROC_GLO_OriginNPCInitForRegion((STRING)_Var1)
+AND
+DB_OriginRecruitmentLocation(_Var2, _Var3)
+THEN
+NOT DB_OriginRecruitmentLocation(_Var2, _Var3);
+
+PROC
+PROC_GLO_OriginNPCInitForRegion((STRING)_Var1)
+AND
+DB_OriginRecruitmentLocation_Region(_Var1, _Var2, _Var3, _Var4)
+THEN
+DB_OriginRecruitmentLocation(_Var2, _Var3);
+SetVarFixedString(_Var2, "currentState", _Var4);
+
+PROC
+PROC_GLO_OriginNPCInitForRegion((STRING)_Var1)
+AND
+DB_OriginRecruitmentLocation(_Var2, _Var3)
+AND NOT
+DB_IsPlayer(_Var2)
+AND
+CharacterIsDead(_Var2, 0)
+THEN
+PROC_Helper_SafeTeleportTo(_Var2, _Var3);
+
+PROC
+PROC_GLO_Origins_SetNewRegionDialog((CHARACTERGUID)_Var1)
+AND
+QRY_Origin_GetRecruitmentDialog(_Var1)
+AND
+DB_NewOriginRecruitmentDialog(_Var1, _Var2)
+THEN
+NOT DB_NewOriginRecruitmentDialog(_Var1, _Var2);
+ProcRemoveAllDialogEntriesForSpeaker(_Var1);
+Proc_GLO_Origins_MaybeSetDefaultDialog(_Var1, _Var2);
+
+PROC
+PROC_GLO_OriginNPCInitForRegion((STRING)_Var1)
+AND
+IsGameLevel(_Var1, 1)
+AND
+DB_OriginRecruitmentDialog(_Var2, _)
+AND NOT
+DB_IsPlayer(_Var2)
+AND
+CharacterIsDead(_Var2, 0)
+THEN
+PROC_GLO_Origins_SetNewRegionDialog(_Var2);
+
+IF
+CharacterResurrected((CHARACTERGUID)_Var1)
+AND
+DB_OriginRecruitmentDialog(_Var1, _)
+AND NOT
+DB_IsPlayer(_Var1)
+THEN
+PROC_GLO_Origins_SetNewRegionDialog(_Var1);
+
+QRY
+QRY_Origin_GetRecruitmentDialog((CHARACTERGUID)_Var1)
+AND
+DB_GLO_PartyMembers_BlockRecruitmentDialog(_Var1)
+THEN
+DB_NewOriginRecruitmentDialog(_Var1, "");
+
+QRY
+QRY_Origin_GetRecruitmentDialog((CHARACTERGUID)_Var1)
+AND NOT
+DB_NewOriginRecruitmentDialog(_Var1, _)
+AND
+DB_CurrentLevel(_Var3)
+AND
+DB_OriginRecruitmentDialog_Region(_Var3, _Var1, _Var4)
+THEN
+DB_NewOriginRecruitmentDialog(_Var1, _Var4);
+
+QRY
+QRY_Origin_GetRecruitmentDialog((CHARACTERGUID)_Var1)
+AND NOT
+DB_NewOriginRecruitmentDialog(_Var1, _)
+AND
+DB_OriginRecruitmentDialog(_Var1, _Var3)
+THEN
+DB_NewOriginRecruitmentDialog(_Var1, _Var3);
+
+IF
+ObjectFlagSet("OriginAddToParty", (CHARACTERGUID)_Var1, (INTEGER)_Var2)
+AND
+DialogGetInvolvedPlayer(_Var2, 1, _Var3)
+THEN
+DB_GLO_PartyMembers_RecruitAfterDialog(_Var2, _Var1, _Var3);
+ObjectClearFlag(_Var1, "OriginAddToParty", 0);
+
+IF
+ObjectFlagSet("OriginRemoveFromPartyAfterDialog", (CHARACTERGUID)_Var1, (INTEGER)_Var2)
+THEN
+ObjectClearFlag(_Var1, "OriginRemoveFromPartyAfterDialog", 0);
+DB_GLO_PartyMembers_DismissAfterDialog(_Var2, _Var1);
+
+PROC
+PROC_GLO_PartyMembers_MakeNPCHook((CHARACTERGUID)_Var1)
+AND
+DB_OriginNPCAlignment(_Var1, _)
+AND
+QRY_Origin_GetRecruitmentDialog(_Var1)
+AND
+DB_NewOriginRecruitmentDialog(_Var1, _Var3)
+AND
+GetFaction(_Var1, _Var4)
+AND
+DB_OriginNPCAlignment(_Var1, _Var5)
+THEN
+NOT DB_NewOriginRecruitmentDialog(_Var1, _Var3);
+ProcCancelAllRelationshipDialogs(_Var1);
+Proc_ReflectionDialog_CancelForPlayer(_Var1);
+ProcRemoveAllDialogEntriesForSpeaker(_Var1);
+Proc_GLO_Origins_MaybeSetDefaultDialog(_Var1, _Var3);
+SetHasDialog(_Var1, 0);
+
+PROC
+Proc_GLO_Origins_MaybeSetDefaultDialog((CHARACTERGUID)_Var1, (STRING)_Var2)
+AND NOT
+DB_Avatars(_Var1)
+AND
+_Var2 != ""
+THEN
+DB_Dialogs(_Var1, _Var2);
+
+PROC
+PROC_GLO_PartyMembers_MakeNPCHook((CHARACTERGUID)_Var1)
+AND
+DB_CompanionAvatarBond(_Var1, _Var2)
+THEN
+NOT DB_CompanionAvatarBond(_Var1, _Var2);
+Proc_CompanionLeftParty(_Var1, _Var2);
+
+PROC
+Proc_GLO_Origins_RemoveRecruitmentDialogs((CHARACTERGUID)_Var1)
+AND
+DB_OriginRecruitmentDialog_Region(_Var2, _Var1, _Var3)
+THEN
+NOT DB_OriginRecruitmentDialog_Region(_Var2, _Var1, _Var3);
+
+PROC
+Proc_GLO_Origins_RemoveRecruitmentDialogs((CHARACTERGUID)_Var1)
+AND
+DB_OriginRecruitmentDialog(_Var1, _Var2)
+THEN
+NOT DB_OriginRecruitmentDialog(_Var1, _Var2);
+
+PROC
+PROC_GLO_PartyMembers_MakeNPCHook((CHARACTERGUID)_Var1)
+AND
+DB_OriginNPCAlignment(_Var1, _)
+AND NOT
+DB_GLO_PartyMembers_BlockReturnToRecruitmentPosition(_Var1)
+THEN
+ProcOriginReturnToRecruitmentPos(_Var1);
+
+PROC
+ProcOriginReturnToRecruitmentPos((CHARACTERGUID)_Var1)
+AND
+DB_OriginRecruitmentLocation(_Var1, _Var2)
+AND
+GetDistanceTo(_Var1, _Var2, _Var3)
+AND
+_Var3 > 18
+THEN
+ProcCharacterDisappearOutOfSight(_Var1, 0, 0, "Origin_RestoreDialog", 0);
+
+PROC
+ProcOriginReturnToRecruitmentPos((CHARACTERGUID)_Var1)
+AND
+DB_OriginRecruitmentLocation(_Var1, _Var2)
+AND
+GetDistanceTo(_Var1, _Var2, _Var3)
+AND
+_Var3 <= 18
+THEN
+ProcCharacterMoveTo(_Var1, _Var2, 0, "Origin_RestoreDialog");
+
+PROC
+ProcOriginReturnToRecruitmentPos((CHARACTERGUID)_Var1)
+AND NOT
+DB_OriginRecruitmentLocation(_Var1, _)
+AND
+DB_Origins_InitialRegion(_Var3)
+AND
+DB_OriginRecruitmentLocation_Region(_Var3, _Var1, _Var4, _)
+THEN
+TeleportTo(_Var1, _Var4);
+SetStoryEvent(_Var1, "Origin_RestoreDialog");
+
+IF
+StoryEvent((CHARACTERGUID)_Var1, "Origin_RestoreDialog")
+AND
+DB_OriginRecruitmentLocation(_Var1, _Var2)
+THEN
+TeleportTo(_Var1, _Var2);
+
+IF
+StoryEvent((CHARACTERGUID)_Var1, "Origin_RestoreDialog")
+AND NOT
+DB_OriginRecruitmentLocation(_Var1, _)
+AND
+DB_Origins_InitialRegion(_Var3)
+AND
+DB_OriginRecruitmentLocation_Region(_Var3, _Var1, _Var4, _)
+THEN
+TeleportTo(_Var1, _Var4);
+
+IF
+StoryEvent((CHARACTERGUID)_Var1, "Origin_RestoreDialog")
+THEN
+SetOnStage(_Var1, 1);
+SetHasDialog(_Var1, 1);
+
+PROC
+PROC_GLO_PartyMembers_RecruiteeAvatarBond((CHARACTERGUID)_Var1, (CHARACTERGUID)_Var2)
+AND
+DB_OriginNPCAlignment(_Var1, _)
+THEN
+DB_CompanionAvatarBond(_Var1, _Var2);
+
+PROC
+PROC_GLO_PartyMembers_ClearRecruiteeBonds((CHARACTERGUID)_Var1)
+AND
+DB_CompanionAvatarBond(_Var1, _Var2)
+THEN
+NOT DB_CompanionAvatarBond(_Var1, _Var2);
+
+PROC
+Proc_BondedAvatarTutorial((CHARACTERGUID)_Var1)
+AND
+SysCount("DB_Avatars", 1, _Var2)
+AND
+_Var2 > 1
+AND
+DB_InitialTutorialsShown(1)
+AND
+DB_IsPlayer(_Var3)
+AND
+CharacterIsInPartyWith(_Var1, _Var3, 1)
+THEN
+Proc_CheckPlayTut(_Var3, "TUT_BondedAvatar");
+
+PROC
+ProcAssignCharacterToPlayer((CHARACTERGUID)_Var1, (CHARACTERGUID)_Var2)
+AND
+CharacterGetReservedUserID(_Var2, _Var3)
+THEN
+CharacterAssignToUser(_Var3, _Var1);
+
+PROC
+Proc_CheckPartyFull()
+AND
+SysCount("DB_IsPlayer", 1, _Var1)
+AND
+_Var1 == 1
+THEN
+GlobalSetFlag("GEN_SoloPlayer");
+
+PROC
+Proc_CheckPartyFull()
+AND
+SysCount("DB_IsPlayer", 1, _Var1)
+AND
+_Var1 != 1
+THEN
+GlobalClearFlag("GEN_SoloPlayer");
+
+PROC
+Proc_CheckPartyFull()
+AND
+SysCount("DB_IsPlayer", 1, _Var1)
+AND
+DB_Origins_MaxPartySize(_Var2)
+AND
+_Var1 == _Var2
+THEN
+GlobalSetFlag("GEN_MaxPlayerCountReached");
+
+PROC
+Proc_CheckPartyFull()
+AND
+SysCount("DB_IsPlayer", 1, _Var1)
+AND
+DB_Origins_MaxPartySize(_Var2)
+AND
+_Var1 < _Var2
+THEN
+GlobalClearFlag("GEN_MaxPlayerCountReached");
+
+PROC
+PROC_GLOBAL_DialogStartRequested((CHARACTERGUID)_Var1, (CHARACTERGUID)_Var2)
+AND
+DB_IsPlayer(_Var1)
+AND
+DB_IsPlayer(_Var2)
+AND
+CharacterGetReservedUserID(_Var1, _Var3)
+AND
+CharacterGetReservedUserID(_Var2, _Var4)
+AND
+_Var3 == _Var4
+THEN
+ObjectSetFlag(_Var2, "UserOwnedPlayerCharacter");
+
+IF
+DialogEnded(_, (INTEGER)_Var2)
+AND
+DialogGetInvolvedPlayer(_Var2, 1, _Var3)
+AND
+ObjectGetFlag(_Var3, "UserOwnedPlayerCharacter", 1)
+THEN
+ObjectClearFlag(_Var3, "UserOwnedPlayerCharacter", 0);
+
+IF
+ObjectFlagSet("SetOriginHostileAfterDialog", (GUIDSTRING)_Var1, _)
+THEN
+DB_SetOriginHostileAfterDialog(_Var1);
+ObjectClearFlag(_Var1, "SetOriginHostileToOtherOrigins", 0);
+
+IF
+DialogEnded(_, (INTEGER)_Var2)
+AND
+DB_SetOriginHostileAfterDialog(_Var3)
+AND
+DialogGetInvolvedNPC(_Var2, 1, _Var3)
+AND
+GetFaction(_Var3, _Var4)
+THEN
+NOT DB_SetOriginHostileAfterDialog(_Var3);
+ProcSetRelationToPlayers(_Var3, 0);
+DB_ResetOriginAlignmentAfterCombat(_Var3, _Var4);
+
+IF
+ObjectLeftCombat((CHARACTERGUID)_Var1, _)
+AND
+DB_ResetOriginAlignmentAfterCombat(_Var1, _Var3)
+THEN
+SetFaction(_Var1, _Var3);
+NOT DB_ResetOriginAlignmentAfterCombat(_Var1, _Var3);
+
+IF
+ObjectWasTagged((CHARACTERGUID)_Var1, "AVATAR")
+AND NOT
+DB_Avatars(_Var1)
+THEN
+DB_Avatars(_Var1);
+
+IF
+DB_IsPlayer(_Var1)
+AND
+IsTagged(_Var1, "AVATAR", 1)
+AND NOT
+DB_Avatars(_Var1)
+THEN
+DB_Avatars(_Var1);
+
+IF
+ObjectLostTag((CHARACTERGUID)_Var1, "AVATAR")
+AND
+DB_Avatars(_Var1)
+THEN
+NOT DB_Avatars(_Var1);
+
+IF
+CharacterUsedSkillOnTarget(_, (CHARACTERGUID)_Var2, "Target_AntiResurrection", _, _)
+THEN
+SetTag(_Var2, "BLOCK_RESURRECTION");
+
+IF
+CharacterUsedSkillOnTarget(_, (CHARACTERGUID)_Var2, "Target_AntiResurrection", _, _)
+AND
+IsTagged(_Var2, "AVATAR", 0)
+THEN
+DB_GLO_PartyMembers_BlockReturnToRecruitmentPosition(_Var2);
+PROC_GLO_PartyMembers_Remove(_Var2, NULL_00000000-0000-0000-0000-000000000000, 0);
+CharacterPurgeQueue(_Var2);
+
+IF
+ObjectFlagSet((STRING)_Var1, (CHARACTERGUID)_Var2, (INTEGER)_Var3)
+AND
+DB_OriginRelationChangeEvent(_Var1, _Var4)
+AND
+DB_CompanionAvatarBond(_Var2, _Var5)
+AND
+CharacterGetAttitudeTowardsPlayer(_Var2, _Var5, _Var6)
+AND
+QRY_OriginRelationModify(_Var2, _Var4)
+AND
+DB_OriginRelationModifiedAmount(_Var7)
+AND
+IntegerSum(_Var6, _Var7, _Var8)
+THEN
+PROC_OriginWarningBlockRemoval(_Var2, _Var7);
+ObjectClearFlag(_Var2, _Var1);
+PROC_CheckPlayTut(_Var5, "TUT_Relationship_Examine");
+DB_SetCompanionAttitude(_Var2, _Var5, _Var8);
+
+IF
+ObjectFlagSet((STRING)_Var1, (CHARACTERGUID)_Var2, (INTEGER)_Var3)
+AND
+DB_OriginRelationChangeEvent(_Var1, _Var4)
+AND NOT
+DB_CompanionAvatarBond(_Var2, _)
+AND
+DB_DialogPlayers(_Var3, _Var6, _)
+AND
+_Var6 != _Var2
+AND
+CharacterGetAttitudeTowardsPlayer(_Var2, _Var6, _Var8)
+AND
+QRY_OriginRelationModify(_Var2, _Var4)
+AND
+DB_OriginRelationModifiedAmount(_Var9)
+AND
+IntegerSum(_Var8, _Var9, _Var10)
+THEN
+PROC_OriginWarningBlockRemoval(_Var2, _Var9);
+ObjectClearFlag(_Var2, _Var1);
+DB_SetCompanionAttitude(_Var2, _Var6, _Var10);
+
+QRY
+QRY_OriginRelationModify((CHARACTERGUID)_Var1, (INTEGER)_Var2)
+AND
+QRY_OriginRelationModify_Reset()
+AND
+DB_OriginRelationModifiers(_Var1, _Var3, _Var4)
+AND
+IntegerProduct(_Var2, _Var3, _Var5)
+AND
+IntegerDivide(_Var5, _Var4, _Var6)
+THEN
+DB_OriginRelationModifiedAmount(_Var6);
+
+QRY
+QRY_OriginRelationModify((CHARACTERGUID)_Var1, (INTEGER)_Var2)
+AND NOT
+DB_OriginRelationModifiedAmount(_)
+THEN
+DB_OriginRelationModifiedAmount(_Var2);
+
+QRY
+QRY_OriginRelationModify_Reset()
+AND
+DB_OriginRelationModifiedAmount(_Var1)
+THEN
+NOT DB_OriginRelationModifiedAmount(_Var1);
+
+QRY
+QRY_OriginRelationModify_Reset()
+THEN
+DB_NoOp(1);
+
+PROC
+PROC_OriginWarningBlockRemoval((CHARACTERGUID)_Var1, (INTEGER)_Var2)
+AND
+_Var2 < 0
+THEN
+NOT DB_OriginWarningBlock(_Var1);
+
+IF
+DB_SetCompanionAttitude(_Var1, _Var2, _Var3)
+AND
+_Var3 > 100
+THEN
+NOT DB_SetCompanionAttitude(_Var1, _Var2, _Var3);
+DB_SetCompanionAttitude(_Var1, _Var2, 100);
+
+IF
+DB_SetCompanionAttitude(_Var1, _Var2, _Var3)
+AND
+_Var3 < -50
+THEN
+NOT DB_SetCompanionAttitude(_Var1, _Var2, _Var3);
+DB_SetCompanionAttitude(_Var1, _Var2, -50);
+
+IF
+DB_SetCompanionAttitude(_Var1, _Var2, _Var3)
+AND
+_Var3 <= 100
+AND
+_Var3 >= -50
+AND
+CharacterGetAttitudeTowardsPlayer(_Var1, _Var2, _Var4)
+AND
+IntegerSubtract(_Var3, _Var4, _Var5)
+THEN
+CharacterAddAttitudeTowardsPlayer(_Var1, _Var2, _Var5);
+NOT DB_SetCompanionAttitude(_Var1, _Var2, _Var3);
+
+IF
+DB_OriginInPartyDialog(_Var1, _Var2)
+THEN
+DB_OriginDialog(_Var1, _Var2);
+
+PROC
+Proc_RelationshipDialog((CHARACTERGUID)_Var1, (STRING)_Var2, (CHARACTERGUID)_Var3)
+THEN
+DB_OriginDialog(_Var1, _Var2);
+
+IF
+DialogEnded((STRING)_Var1, (INTEGER)_Var2)
+AND NOT
+DB_Origin_BlockLeavingWarningsDialogs(1)
+AND
+DB_OriginDialog(_Var3, _Var1)
+AND
+DB_DialogPlayers(_Var2, _Var3, _)
+AND NOT
+DB_GLO_PartyMembers_DismissAfterDialog(_Var2, _Var3)
+AND
+DB_CompanionAvatarBond(_Var3, _Var5)
+AND
+DB_DialogPlayers(_Var2, _Var5, _)
+AND
+DB_OriginWarning1Dialog(_Var3, _Var7)
+AND
+CharacterGetAttitudeTowardsPlayer(_Var3, _Var5, _Var8)
+AND
+_Var8 <= -20
+AND
+QRY_StartDialog(0, _Var7, _Var3, _Var5)
+THEN
+NOT DB_OriginWarning1Dialog(_Var3, _Var7);
+DB_OriginWarningBlock(_Var3);
+
+IF
+DialogEnded((STRING)_Var1, (INTEGER)_Var2)
+AND NOT
+DB_Origin_BlockLeavingWarningsDialogs(1)
+AND
+DB_OriginDialog(_Var3, _Var1)
+AND NOT
+DB_OriginWarningBlock(_Var3)
+AND NOT
+DB_GLO_PartyMembers_DismissAfterDialog(_Var2, _Var3)
+AND
+DB_DialogPlayers(_Var2, _Var3, _)
+AND
+DB_CompanionAvatarBond(_Var3, _Var5)
+AND
+DB_DialogPlayers(_Var2, _Var5, _)
+AND
+DB_OriginWarning2Dialog(_Var3, _Var7)
+AND
+CharacterGetAttitudeTowardsPlayer(_Var3, _Var5, _Var8)
+AND
+_Var8 <= -40
+AND
+QRY_StartDialog(0, _Var7, _Var3, _Var5)
+THEN
+NOT DB_OriginWarning2Dialog(_Var3, _Var7);
+DB_OriginWarningBlock(_Var3);
+
+IF
+DialogEnded((STRING)_Var1, (INTEGER)_Var2)
+AND NOT
+DB_Origin_BlockLeavingWarningsDialogs(1)
+AND
+DB_OriginDialog(_Var3, _Var1)
+AND NOT
+DB_OriginWarningBlock(_Var3)
+AND NOT
+DB_GLO_PartyMembers_DismissAfterDialog(_Var2, _Var3)
+AND
+DB_DialogPlayers(_Var2, _Var3, _)
+AND
+DB_CompanionAvatarBond(_Var3, _Var5)
+AND
+DB_DialogPlayers(_Var2, _Var5, _)
+AND NOT
+DB_CompanionLeaving(_Var3, _)
+AND
+CharacterGetAttitudeTowardsPlayer(_Var3, _Var5, _Var8)
+AND
+_Var8 <= -50
+AND
+DB_OriginLeavingDialog(_Var3, _Var9)
+THEN
+Proc_StartDialog(0, _Var9, _Var3, _Var5);
+
+IF
+DialogEnded((STRING)_Var1, (INTEGER)_Var2)
+AND
+DB_OriginDialog(_Var3, _Var1)
+THEN
+NOT DB_OriginDialog(_Var3, _Var1);
+
+PROC
+PROC_Origins_CompanionLeavePermanently((CHARACTERGUID)_Var1)
+AND
+DB_CompanionAvatarBond(_Var1, _Var2)
+THEN
+CharacterSetCorpseLootable(_Var1, 1);
+DB_GLO_PartyMembers_BlockReturnToRecruitmentPosition(_Var1);
+Proc_GLO_Origins_RemoveRecruitmentDialogs(_Var1);
+PROC_GLO_PartyMembers_MakeNPC(_Var1);
+NOT DB_NoLowAttitudeDialog(_Var1);
+NOT DB_GLO_PartyMembers_BlockReturnToRecruitmentPosition(_Var1);
+NOT DB_CompanionAvatarBond(_Var1, _Var2);
+Proc_CompanionLeftParty(_Var1, _Var2);
+Proc_OriginLeft(_Var1, "");
+
+PROC
+PROC_Origins_CompanionLeavePermanently((CHARACTERGUID)_Var1)
+AND
+DB_OriginInPartyDialog(_Var1, _Var2)
+THEN
+NOT DB_OriginInPartyDialog(_Var1, _Var2);
+
+PROC
+PROC_Origins_CompanionLeavePermanently((CHARACTERGUID)_Var1)
+AND
+DB_OriginRecruitmentLocation(_Var1, _Var2)
+THEN
+NOT DB_OriginRecruitmentLocation(_Var1, _Var2);
+
+IF
+DialogEnded((STRING)_Var1, (INTEGER)_Var2)
+AND
+DB_OriginLeavingDialog(_Var3, _Var1)
+AND
+ObjectGetFlag(_Var3, "GLO_Companion_Leave", 1)
+AND
+DB_CompanionAvatarBond(_Var3, _Var4)
+THEN
+PROC_Origins_CompanionLeavePermanently(_Var3);
+NOT DB_OriginLeavingDialog(_Var3, _Var1);
+DB_CompanionLeaving(_Var3, _Var4);
+CharacterMakeStoryNpc(_Var3, 1);
+ProcCharacterDisappearOutOfSight(_Var3, 0, 1, "GLO_CompanionLeaves_LowRelation", 1);
+Proc_OriginLeft(_Var3, "_LowRelation");
+
+IF
+DialogEnded((STRING)_Var1, (INTEGER)_Var2)
+AND
+DB_OriginLeavingDialog(_Var3, _Var1)
+AND
+ObjectGetFlag(_Var3, "GLO_Companion_Murder", 1)
+AND
+DB_CompanionAvatarBond(_Var3, _Var4)
+AND
+DB_OriginRecruitmentLocation(_Var3, _Var5)
+THEN
+NOT DB_OriginLeavingDialog(_Var3, _Var1);
+CharacterMakeNPC(_Var3);
+NOT DB_OriginRecruitmentLocation(_Var3, _Var5);
+CharacterDie(_Var3, 1, "DoT");
+NOT DB_IsPlayer(_Var3);
+NOT DB_CompanionAvatarBond(_Var3, _Var4);
+Proc_CompanionLeftParty(_Var3, _Var4);
+Proc_CheckPartyFull();
+
+IF
+DialogEnded((STRING)_Var1, (INTEGER)_Var2)
+AND
+DB_OriginLeavingDialog(_Var3, _Var1)
+AND
+ObjectGetFlag(_Var3, "GLO_Companion_Combat", 1)
+AND
+DB_CompanionAvatarBond(_Var3, _Var4)
+AND
+DB_OriginRecruitmentLocation(_Var3, _Var5)
+THEN
+PROC_Origins_CompanionLeavePermanently(_Var3);
+NOT DB_OriginLeavingDialog(_Var3, _Var1);
+SetVarFixedString(_Var3, "currentState", "");
+SetRelationIndivFactionToPlayers(_Var3, 0);
+Proc_OriginLeft(_Var3, "_LowRelation");
+
+IF
+StoryEvent((CHARACTERGUID)_Var1, "GLO_CompanionLeaves_LowRelation")
+AND
+DB_CompanionLeaving(_Var1, _Var2)
+THEN
+NOT DB_CompanionLeaving(_Var1, _Var2);
+PROC_GLO_PartyMembers_TransferInventoryToPlayer(_Var1, _Var2);
+
+IF
+ItemAddedToContainer((ITEMGUID)_Var1, (ITEMGUID)_Var2)
+AND
+DB_CompanionLeavingBackPack(_Var3, _Var4, _Var2)
+AND
+ItemGetOriginalOwner(_Var1, _Var3)
+THEN
+ItemSetOriginalOwner(_Var1, _Var4);
+
+IF
+DB_CompanionAvatarBond(_Var1, _Var2)
+AND
+CharacterGetAttitudeTowardsPlayer(_Var1, _Var2, _Var3)
+AND
+DB_OriginRelationThresholdEvents(_Var4, _Var5)
+AND
+_Var3 >= _Var5
+THEN
+ObjectSetFlag(_Var1, _Var4);
+
+IF
+DB_CompanionAvatarBond(_Var1, _Var2)
+AND
+CharacterGetAttitudeTowardsPlayer(_Var1, _Var2, _Var3)
+AND
+DB_OriginRelationThresholdEvents(_Var4, _Var5)
+AND
+_Var3 < _Var5
+THEN
+ObjectClearFlag(_Var1, _Var4);
+
+IF
+CharacterAttitudeTowardsPlayerChanged((CHARACTERGUID)_Var1, (CHARACTERGUID)_Var2, (INTEGER)_Var3)
+AND
+DB_CompanionAvatarBond(_Var1, _Var2)
+AND
+DB_OriginRelationThresholdEvents(_Var4, _Var5)
+AND
+_Var3 >= _Var5
+THEN
+ObjectSetFlag(_Var1, _Var4);
+
+IF
+CharacterAttitudeTowardsPlayerChanged((CHARACTERGUID)_Var1, (CHARACTERGUID)_Var2, (INTEGER)_Var3)
+AND
+DB_CompanionAvatarBond(_Var1, _Var2)
+AND
+DB_OriginRelationThresholdEvents(_Var4, _Var5)
+AND
+_Var3 < _Var5
+THEN
+ObjectClearFlag(_Var1, _Var4);
+
+PROC
+Proc_DialogFlagSetup((STRING)_Var1, (CHARACTERGUID)_Var2, (CHARACTERGUID)_Var3)
+AND
+DB_OriginRecruitmentDialog(_Var2, _Var1)
+AND
+CharacterGetAttitudeTowardsPlayer(_Var2, _Var3, _Var4)
+AND
+DB_OriginRelationThresholdEvents(_Var5, _Var6)
+AND
+_Var4 >= _Var6
+THEN
+ObjectSetFlag(_Var2, _Var5);
+
+PROC
+Proc_DialogFlagSetup((STRING)_Var1, (CHARACTERGUID)_Var2, (CHARACTERGUID)_Var3)
+AND
+DB_OriginRecruitmentDialog(_Var2, _Var1)
+AND
+CharacterGetAttitudeTowardsPlayer(_Var2, _Var3, _Var4)
+AND
+DB_OriginRelationThresholdEvents(_Var5, _Var6)
+AND
+_Var4 < _Var6
+THEN
+ObjectClearFlag(_Var2, _Var5);
+
+PROC
+Proc_StartDialog(0, (STRING)_Var1, (CHARACTERGUID)_Var2, (CHARACTERGUID)_Var3)
+AND
+DB_OriginRecruitmentDialog(_Var2, _Var1)
+AND NOT
+DB_Avatars(_Var3)
+AND
+DB_CompanionAvatarBond(_Var3, _Var4)
+AND
+QRY_SpeakerIsAvailableAndInDialogRange(_Var4, _Var3)
+AND
+CharacterIsControlled(_Var4, 0)
+AND
+QRY_StartDialog(0, _Var1, _Var2, _Var4)
+THEN
+PROC_CheckPlayTut(_Var4, "TUT_Comp_Talking_To_Comp");
+MakePlayerActive(_Var4);
+
+PROC
+Proc_StartDialog(0, (STRING)_Var1, (CHARACTERGUID)_Var2, (GUIDSTRING)_Var3)
+AND
+DB_OriginRecruitmentDialog(_Var2, _Var1)
+AND
+QRY_StartDialog(0, _Var1, _Var2, _Var3)
+THEN
+DB_NoOp(1);
+
+IF
+DialogStarted((STRING)_Var1, (INTEGER)_Var2)
+AND
+DB_OriginRecruitmentDialog(_Var3, _Var1)
+AND
+DB_DialogPlayers(_Var2, _Var4, 1)
+AND NOT
+DB_Avatars(_Var4)
+THEN
+PROC_CheckPlayTut(_Var4, "TUT_Comp_Talking_To_Comp");
+
+IF
+DB_OriginProfessionTags(_Var1, _Var2)
+THEN
+SetTag(_Var1, _Var2);
+
+IF
+ObjectWasTagged((CHARACTERGUID)_Var1, "BLOCK_RESURRECTION")
+AND
+DB_FormerCompanionDeath_QuestUpdate(_Var1, _Var2)
+AND
+CharacterIsDead(_Var1, 1)
+THEN
+PROC_FormerCompanionDeath_QuestUpdate(_Var1, _Var2);
+
+IF
+CharacterDied((CHARACTERGUID)_Var1)
+AND
+DB_FormerCompanionDeath_QuestUpdate(_Var1, _Var2)
+AND NOT
+DB_IsPlayer(_Var1)
+THEN
+PROC_FormerCompanionDeath_QuestUpdate(_Var1, _Var2);
+
+IF
+CharacterDied((CHARACTERGUID)_Var1)
+AND
+DB_FormerCompanionDeath_QuestUpdate(_Var1, _Var2)
+AND
+IsTagged(_Var1, "BLOCK_RESURRECTION", 1)
+THEN
+PROC_FormerCompanionDeath_QuestUpdate(_Var1, _Var2);
+
+PROC
+PROC_FormerCompanionDeath_QuestUpdate((CHARACTERGUID)_Var1, (STRING)_Var2)
+AND
+GetRegion(_Var1, _Var3)
+AND
+_Var3 != "TUT_Tutorial_A"
+AND
+DB_Avatars(_Var4)
+THEN
+ObjectSetFlag(_Var4, _Var2);
+
+IF
+CharacterStartOriginIntroduction((CHARACTERGUID)_Var1, _, (STRING)_Var3)
+AND
+CharacterGetReservedUserID(_Var1, _Var4)
+THEN
+ProcStartOriginIntroduction(_Var1, _Var4, _Var3);
+
+IF
+CharacterStopOriginIntroduction((CHARACTERGUID)_Var1, _)
+AND
+CharacterGetReservedUserID(_Var1, _Var3)
+THEN
+ProcStopOriginIntroduction(_Var1, _Var3);
+
+IF
+StoryEvent((CHARACTERGUID)_Var1, "OriginIntroductionFinished")
+THEN
+CharacterOriginIntroStopped(_Var1);
+
+PROC
+ProcStartOriginIntroduction((CHARACTERGUID)_Var1, (INTEGER)_Var2, (STRING)_Var3)
+AND
+DB_InOriginIntroduction(_Var2)
+THEN
+ProcStopOriginIntroduction(_Var1, _Var2);
+
+PROC
+ProcStartOriginIntroduction((CHARACTERGUID)_Var1, (INTEGER)_Var2, (STRING)_Var3)
+AND
+DB_OriginIntroductions(_Var3, _Var4, _Var5, _Var6)
+THEN
+DB_InOriginIntroduction(_Var2);
+MusicPlayForPeer(_Var1, _Var6);
+MusicPlayForPeer(_Var1, _Var5);
+SetVarFixedString(_Var1, "CCIntroductionAnim", _Var4);
+SetStoryEvent(_Var1, "GLO_StartOriginIntroduction");
+
+PROC
+ProcStopOriginIntroduction((CHARACTERGUID)_Var1, (INTEGER)_Var2)
+AND
+DB_InOriginIntroduction(_Var2)
+THEN
+NOT DB_InOriginIntroduction(_Var2);
+MusicPlayForPeer(_Var1, "Presentation_Stop");
+SetStoryEvent(_Var1, "GLO_StopOriginIntroduction");
+PlaySound(_Var1, "Origin_Presentation_Stop");
+
+IF
+ObjectFlagSet((STRING)_Var1, (CHARACTERGUID)_Var2, _)
+AND
+DB_OrphanFlagForwarding(_Var1)
+AND
+DB_CompanionAvatarBond(_Var2, _Var4)
+THEN
+ObjectClearFlag(_Var2, _Var1);
+ObjectSetFlag(_Var4, _Var1);
+
+
+EXITSECTION
+ENDEXITSECTION
+
+ParentTargetEdge "__Shared_Campaign"

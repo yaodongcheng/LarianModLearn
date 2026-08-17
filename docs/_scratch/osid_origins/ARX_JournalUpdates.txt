@@ -1,0 +1,631 @@
+Version 1
+SubGoalCombiner SGC_AND
+
+INITSECTION
+DB_ARX_BookUpdates(ITEMGUID_S_ARX_Barracks_WhiteMagisterVault_Evidence3_9225011f-3bf0-4948-a947-f0059980577d, "QuestUpdate_ARX_Barracks_HintGrandDesign");
+DB_ARX_BookUpdates(ITEMGUID_S_ARX_Barracks_Archives_DallisReport1_2c62904c-58eb-499c-819e-6ee14ca8aae5, "QuestUpdate_RC_ARX_TheImperialDwarves_Know_DeathfogArx_PreStrike");
+DB_ARX_BookUpdates(ITEMGUID_S_ARX_KemmMansion_Attic_DalisLetter_522f0bc1-02b4-4c33-a90a-b89b4eb201d0, "QuestUpdate_ARX_HuntingForDallis_KemmLetterDallis");
+DB_ARX_BookUpdates(ITEMGUID_S_ARX_Cathedral_DisapArhu_Book_JournalAboutLucian_ff887b1d-d713-431f-91d2-4af4b2f39f94, "QuestUpdate_ARX_HuntingForDallis_ArhuJournalLucian");
+DB_ARX_BookUpdates(ITEMGUID_S_ARX_Cathedral_DisapArhu_Journal_794e8f40-6aa5-411f-b4f2-2cbede844908, "QuestUpdate_ARX_DisappearanceOfArhu_ArhuLetterDivineOrder");
+DB_ARX_QuestDef_DeadCharacterUpdates(CHARACTERGUID_S_GLO_Tarquin_a3d0cdcc-d0b0-464d-9ad7-43b38baed620, "QuestUpdate_ARX_LV_Godslayer_TarquinDead");
+DB_ARX_QuestDef_DeadCharacterUpdates(CHARACTERGUID_S_ARX_Prison_TheMistake_5136657b-5d75-409f-814c-0eee4ff3913d, "QuestUpdate_ARX_Prison_TheMistake_MistakeIsdead");
+DB_ARX_QuestDef_DeadCharacterUpdates(CHARACTERGUID_S_ARX_CreepyShop_CreepyCraftsman_63af3c4c-b4d6-4f97-9c49-50d80c41d394, "QuestUpdate_ARX_CreepyCraftsman_CreepIsDead");
+DB_KilledEvent(CHARACTERGUID_S_RC_DW_WhiteMagister_b1bdd004-a286-4ad5-9826-a763d672b2a7, "QuestUpdate_ARX_Barracks_ReimondKilled");
+DB_KilledEvent(CHARACTERGUID_S_ARX_Kemm_3e6ead7d-dd35-4f9d-985e-af2de0d76d28, "QuestUpdate_ARX_DisappearanceOfArhu_ArhuPrison_KemmDead");
+DB_KilledEvent(CHARACTERGUID_S_ARX_DoctorsHouse_TheDoctor_83083470-c543-45b3-ac8a-108df0daca8d, "QuestUpdate_RC_BI_TheTruth_KilledDoctor");
+DB_ARX_DialogStartedUpdate("ARX_Prison_Windego", "QuestUpdate_ARX_Prison_Windego_TalkedToWindego");
+DB_ARX_DialogStartedUpdate("ARX_Prison_TheMistake_SeekerGuard1", "ARX_Prison_TheMistake_SourceVisionSeekers_SetUpdate");
+DB_ARX_DialogStartedUpdate("ARX_Prison_TheMistake_SeekerGuard2", "ARX_Prison_TheMistake_SourceVisionSeekers_SetUpdate");
+DB_ARX_DialogStartedUpdate("ARX_Prison_TheMistake_SeekerGuard3", "ARX_Prison_TheMistake_SourceVisionSeekers_SetUpdate");
+DB_ARX_DialogStartedUpdate("ARX_Prison_TheMistake_SeekerGuard4", "ARX_Prison_TheMistake_SourceVisionSeekers_SetUpdate");
+DB_ARX_DialogStartedUpdate("ARX_Prison_TheMistake_SeekerGuard5", "ARX_Prison_TheMistake_SourceVisionSeekers_SetUpdate");
+DB_ARX_DialogStartedUpdate("ARX_Prison_TheMistake_SeekerGuard1", "ARX_Prison_TheMistake_MistakeIsGone_HasMetSeeker");
+DB_ARX_DialogStartedUpdate("ARX_Prison_TheMistake_SeekerGuard2", "ARX_Prison_TheMistake_MistakeIsGone_HasMetSeeker");
+DB_ARX_DialogStartedUpdate("ARX_Prison_TheMistake_SeekerGuard3", "ARX_Prison_TheMistake_MistakeIsGone_HasMetSeeker");
+DB_ARX_DialogStartedUpdate("ARX_Prison_TheMistake_SeekerGuard4", "ARX_Prison_TheMistake_MistakeIsGone_HasMetSeeker");
+DB_ARX_DialogStartedUpdate("ARX_Prison_TheMistake_SeekerGuard5", "ARX_Prison_TheMistake_MistakeIsGone_HasMetSeeker");
+DB_HuntingForDallis_ItemTrick(S_ARX_CreepyCraftsman_SourceAmulet_f9c139b9-bb0f-4027-b8a4-806df5336fd2);
+DB_HuntingForDallis_ItemTrick(S_ARX_CreepyCraftsman_ScrollOfAtonment_b5a89b75-bbef-44f1-b22f-148a1b9d13ab);
+DB_HuntingForDallis_ArhuQuestState("QuestUpdate_ARX_HuntingForDallis_LearnedFromArhu");
+DB_HuntingForDallis_ArhuQuestState("QuestUpdate_ARX_HuntingForDallis_LearnedFromArhusGhost");
+DB_HuntingForDallis_ItemInstructions("ARX_JournalDelay_GotBothItemsGotTrick", "QuestUpdate_ARX_HuntingForDallis_GotBothItemsGotTrick");
+DB_HuntingForDallis_ItemInstructions("ARX_JournalDelay_ItemsInstructionsDelay", "QuestUpdate_ARX_HuntingForDallis_ItemsInstructionsDelay");
+DB_ARX_PoB_LearnTrickScroll("ARX_CreepyCraftsman_AllowAccess");
+DB_ARX_PoB_LearnTrickScroll("QuestUpdate_ARX_HuntingForDallis_LearnedFromArhu");
+DB_ARX_PoB_LearnTrickScroll("QuestUpdate_ARX_HuntingForDallis_LearnedFromArhusGhost");
+DB_HasStoryEvent(ITEMGUID_S_ARX_Neighborhood_HouseSchool_SourcePuppet_ScrapMetal_8a3d6a61-ac86-4d2a-8a4f-111481f1ec47, "QuestUpdate_ARX_HuntingForDallis_LearnedFromScrapMetal");
+DB_CORE_Covenant_Kemm("Set_CORE_Covenant_Kemm", 0);
+DB_CORE_Covenant_Kemm("QuestUpdate_CORE_Covenant_Kemm_Know", 1);
+DB_CORE_Covenant_Isbeil("Set_CORE_Covenant_Isbeil", 0);
+DB_CORE_Covenant_Isbeil("QuestUpdate_CORE_Covenant_Isbeil_Know", 1);
+ProcTriggerRegisterForPlayers(TRIGGERGUID_S_ARX_MerchantEstate_Garden_013a6e6d-b673-43ce-971d-605899d78691);
+DB_ARX_JournalEntry_Condition("ARX_HuntingForDallis_OwnBothItems", "QuestUpdate_ARX_HuntingForDallis_GotTrickFromCraftsman", "ARX_JournalDelay_GotBothItemsGotTrick");
+DB_ARX_JournalEntry_Condition("ARX_HuntingForDallis_OwnBothItems", "QuestUpdate_ARX_HuntingForDallis_ItemsInstructions", "ARX_JournalDelay_ItemsInstructionsDelay");
+DB_ARX_JournalEntry_Condition("QuestUpdate_ARX_HuntingForDallis_ItemsInstructions", "ARX_HuntingForDallis_OwnBothItems", "ARX_JournalDelay_ItemsInstructionsDelay");
+DB_ARX_JournalEntry_Condition("QuestUpdate_ARX_HuntingForDallis_ArhuIsCathedralKeeper", "QuestUpdate_ARX_HuntingForDallis_DefeatedReimond", "QuestUpdate_ARX_HuntingForDallis_ArhuIsCathedralKeeperDelay");
+DB_ARX_JournalEntry_Condition("QuestUpdate_ARX_HuntingForDallis_DefeatedReimond", "QuestUpdate_ARX_HuntingForDallis_ArhuIsCathedralKeeper", "QuestUpdate_ARX_HuntingForDallis_ArhuIsCathedralKeeperDelay");
+DB_ARX_JournalEntry_Condition("QuestUpdate_ARX_HuntingForDallis_ArhuReport", "QuestUpdate_ARX_HuntingForDallis_DefeatedReimond", "QuestUpdate_ARX_HuntingForDallis_ArhuReportDelay");
+DB_ARX_JournalEntry_Condition("QuestUpdate_ARX_HuntingForDallis_DefeatedReimond", "QuestUpdate_ARX_HuntingForDallis_ArhuReport", "QuestUpdate_ARX_HuntingForDallis_ArhuReportDelay");
+DB_ARX_JournalEntry_Condition("QuestUpdate_ARX_HuntingForDallis_LearnedAboutPoB", "QuestUpdate_ARX_HuntingForDallis_DefeatedReimond", "QuestUpdate_ARX_HuntingForDallis_LearnedAboutPoBDelay");
+DB_ARX_JournalEntry_Condition("QuestUpdate_ARX_HuntingForDallis_DefeatedReimond", "QuestUpdate_ARX_HuntingForDallis_LearnedAboutPoB", "QuestUpdate_ARX_HuntingForDallis_LearnedAboutPoBDelay");
+DB_ARX_JournalEntry_Condition("QuestUpdate_ARX_CreepyCraftsman_KnowAboutCathedral", "QuestUpdate_ARX_HuntingForDallis_DefeatedReimond", "QuestUpdate_ARX_HuntingForDallis_SandersReportDelay");
+DB_ARX_JournalEntry_Condition("QuestUpdate_ARX_HuntingForDallis_DefeatedReimond", "QuestUpdate_ARX_CreepyCraftsman_KnowAboutCathedral", "QuestUpdate_ARX_HuntingForDallis_SandersReportDelay");
+DB_ARX_JournalEntry_Condition("QuestUpdate_ARX_HuntingForDallis_DeathRoomStarted", "QuestUpdate_ARX_HuntingForDallis_DeathRoomWarning", "QuestUpdate_ARX_HuntingForDallis_DeathRoomWarningDelay");
+DB_ARX_JournalEntry_Condition("QuestUpdate_ARX_HuntingForDallis_DeathRoomWarning", "QuestUpdate_ARX_HuntingForDallis_DeathRoomStarted", "QuestUpdate_ARX_HuntingForDallis_DeathRoomWarningDelay");
+DB_ARX_JournalEntry_Condition("ARX_Arhu_CatHint", "QuestUpdate_ARX_DisappearanceOfArhu_ArhuIsMissing", "QuestUpdate_ARX_DisappearanceOfArhu_ArhuCat");
+DB_ARX_JournalEntry_Condition("QuestUpdate_ARX_DisappearanceOfArhu_ArhuIsMissing", "ARX_Arhu_CatHint", "QuestUpdate_ARX_DisappearanceOfArhu_ArhuCat");
+DB_ARX_JournalEntry_Condition("QuestUpdate_ARX_DisappearanceOfArhu_HintAboutKemm", "QuestUpdate_ARX_DisappearanceOfArhu_ArhuIsMissing", "QuestUpdate_ARX_DisappearanceOfArhu_HintAboutKemmDelay");
+DB_ARX_JournalEntry_Condition("QuestUpdate_ARX_DisappearanceOfArhu_ArhuIsMissing", "QuestUpdate_ARX_DisappearanceOfArhu_HintAboutKemm", "QuestUpdate_ARX_DisappearanceOfArhu_HintAboutKemmDelay");
+DB_ARX_JournalEntry_Condition("QuestUpdate_ARX_DisappearanceOfArhu_KidSawCat", "QuestUpdate_ARX_DisappearanceOfArhu_ArhuCat", "QuestUpdate_ARX_DisappearanceOfArhu_ConfirmCatCapture");
+DB_ARX_JournalEntry_Condition("QuestUpdate_ARX_DisappearanceOfArhu_ArhuCat", "QuestUpdate_ARX_DisappearanceOfArhu_KidSawCat", "QuestUpdate_ARX_DisappearanceOfArhu_ConfirmCatCapture");
+DB_ARX_JournalEntry_Condition("QuestUpdate_ARX_DisappearanceOfArhu_KemmWithCat", "QuestUpdate_ARX_DisappearanceOfArhu_ArhuCat", "QuestUpdate_ARX_DisappearanceOfArhu_ConfirmCatCapture");
+DB_ARX_JournalEntry_Condition("QuestUpdate_ARX_DisappearanceOfArhu_ArhuCat", "QuestUpdate_ARX_DisappearanceOfArhu_KemmWithCat ", "QuestUpdate_ARX_DisappearanceOfArhu_ConfirmCatCapture");
+DB_ARX_JournalEntry_Condition("QuestUpdate_ARX_KemmVault_KemmVault_EnteredTheVault", "QuestUpdate_ARX_DisappearanceOfArhu_ConfirmCatCapture", "QuestUpdate_ARX_DisappearanceOfArhu_FoundVault");
+DB_ARX_JournalEntry_Condition("QuestUpdate_ARX_DisappearanceOfArhu_ConfirmCatCapture", "QuestUpdate_ARX_KemmVault_KemmVault_EnteredTheVault", "QuestUpdate_ARX_DisappearanceOfArhu_FoundVault");
+
+KBSECTION
+PROC
+ProcQuestCategorySet("RC_BI_TheTruth", "QCA_Chapter_06", (CHARACTERGUID)_Var1)
+THEN
+PartySetFlag(_Var1, "QuestUpdate_RC_BI_TheTruth_StartArx");
+
+PROC
+ProcQuestCategorySet("CoS_BreakerForAlmira", "QCA_Chapter_06", (CHARACTERGUID)_Var1)
+THEN
+PartySetFlag(_Var1, "QuestUpdate_CoS_BreakerForAlmira_MoveToNextCategory");
+MapMarkerChangeLevel("CoS_Almira", "ARX_Main");
+
+IF
+DB_Dead(_Var1)
+AND
+DB_ARX_QuestDef_DeadCharacterUpdates(_Var1, _Var2)
+AND
+DB_Sees(_Var3, _Var1)
+AND
+DB_IsPlayer(_Var3)
+THEN
+ObjectSetFlag(_Var3, _Var2);
+
+IF
+DialogStarted((STRING)_Var1, (INTEGER)_Var2)
+AND
+DB_ARX_DialogStartedUpdate(_Var1, _Var3)
+AND
+DB_DialogPlayers(_Var2, _Var4, _)
+THEN
+ObjectSetFlag(_Var4, _Var3);
+
+PROC
+ProcReplenishedAmulet((CHARACTERGUID)_Var1)
+AND
+DB_IsPlayer(_Var1)
+THEN
+ProcReplenishedAmulet_JournalUpdates(_Var1);
+
+PROC
+ProcReplenishedAmulet_JournalUpdates((CHARACTERGUID)_Var1)
+AND NOT
+DB_Dead(CHARACTERGUID_S_ARX_CreepyShop_CreepyCraftsman_63af3c4c-b4d6-4f97-9c49-50d80c41d394)
+AND
+PartyGetFlag(_Var1, "QuestUpdate_ARX_HuntingForDallis_SeekSanders", 1)
+AND
+PartyGetFlag(_Var1, "ARX_CreepyCraftsman_AgreedToFillSourceAmulet", 1)
+THEN
+PartySetFlag(_Var1, "QuestUpdate_ARX_HuntingForDallis_AmuletFullArhu");
+
+PROC
+ProcReplenishedAmulet_JournalUpdates((CHARACTERGUID)_Var1)
+AND
+DB_Dead(CHARACTERGUID_S_ARX_CreepyShop_CreepyCraftsman_63af3c4c-b4d6-4f97-9c49-50d80c41d394)
+AND
+DB_ARX_PoB_LearnTrickScroll(_Var2)
+AND
+ObjectGetFlag(_Var1, _Var2, 1)
+THEN
+PartySetFlag(_Var1, "QuestUpdate_ARX_HuntingForDallis_GetScrollArhu");
+
+IF
+ItemAddedToCharacter((ITEMGUID)_Var1, (CHARACTERGUID)_Var2)
+AND
+DB_IsPlayer(_Var2)
+AND
+DB_HuntingForDallis_ItemTrick(_Var1)
+AND
+DB_HuntingForDallis_ItemTrick(_Var3)
+AND
+_Var3 != _Var1
+AND
+ItemIsInPartyInventory(_Var3, _Var2, 0, 1)
+AND
+DB_HuntingForDallis_ArhuQuestState(_Var4)
+AND
+PartyGetFlag(_Var2, _Var4, 1)
+THEN
+PartySetFlag(_Var2, "ARX_HuntingForDallis_OwnBothItems");
+
+IF
+ObjectFlagSet((STRING)_Var1, (CHARACTERGUID)_Var2, _)
+AND
+DB_IsPlayer(_Var2)
+AND
+DB_HuntingForDallis_ArhuQuestState(_Var1)
+AND
+ItemIsInPartyInventory(ITEMGUID_S_ARX_CreepyCraftsman_SourceAmulet_f9c139b9-bb0f-4027-b8a4-806df5336fd2, _Var2, 0, 1)
+AND
+ItemIsInPartyInventory(ITEMGUID_S_ARX_CreepyCraftsman_ScrollOfAtonment_b5a89b75-bbef-44f1-b22f-148a1b9d13ab, _Var2, 0, 1)
+THEN
+PartySetFlag(_Var2, "ARX_HuntingForDallis_OwnBothItems");
+
+IF
+ObjectFlagSet("ARX_HuntingForDallis_OwnBothItems", (CHARACTERGUID)_Var1, _)
+AND
+DB_IsPlayer(_Var1)
+AND NOT
+DB_Dead(CHARACTERGUID_S_ARX_KemmVault_Arhu_7befbac9-04f4-4861-81a9-8d2eeb21df5b)
+THEN
+PartySetFlag(_Var1, "QuestUpdate_ARX_HuntingForDallis_GotBothItems");
+
+IF
+ObjectFlagSet((STRING)_Var1, (CHARACTERGUID)_Var2, _)
+AND
+DB_IsPlayer(_Var2)
+AND
+DB_ARX_PoB_LearnTrickScroll(_Var1)
+AND
+UserGetFlag(_Var2, "ARX_CreepyCraftsman_PlayerKnowsPassword", 1)
+THEN
+PartySetFlag(_Var2, "QuestUpdate_ARX_HuntingForDallis_GetScroll");
+
+IF
+ItemAddedToCharacter(ITEMGUID_S_ARX_CreepyCraftsman_ScrollOfAtonment_b5a89b75-bbef-44f1-b22f-148a1b9d13ab, (CHARACTERGUID)_Var1)
+AND
+DB_IsPlayer(_Var1)
+AND
+DB_ARX_PoB_LearnTrickScroll(_Var2)
+AND
+PartyGetFlag(_Var1, _Var2, 1)
+THEN
+PartySetFlag(_Var1, "QuestUpdate_ARX_HuntingForDallis_FoundScroll");
+
+IF
+ObjectFlagSet((STRING)_Var1, (CHARACTERGUID)_Var2, _)
+AND
+DB_IsPlayer(_Var2)
+AND
+DB_ARX_PoB_LearnTrickScroll(_Var1)
+AND
+ObjectGetFlag(_Var2, _Var1, 1)
+AND
+ItemIsInPartyInventory(ITEMGUID_S_ARX_CreepyCraftsman_ScrollOfAtonment_b5a89b75-bbef-44f1-b22f-148a1b9d13ab, _Var2, 0, 1)
+THEN
+PartySetFlag(_Var2, "QuestUpdate_ARX_HuntingForDallis_FoundScroll");
+
+IF
+ObjectFlagSet((STRING)_Var1, (CHARACTERGUID)_Var2, _)
+AND
+DB_HuntingForDallis_ItemInstructions(_Var1, _Var4)
+AND
+DB_HuntingForDallis_ItemInstructions(_Var5, _Var6)
+AND
+_Var1 != _Var5
+AND
+PartyGetFlag(_Var2, _Var6, 0)
+THEN
+PartySetFlag(_Var2, _Var4);
+
+IF
+CharacterEnteredTrigger((CHARACTERGUID)_Var1, TRIGGERGUID_S_ARX_Sewers_DwarvenEntrance_700e9c65-2ae6-40dc-a675-37ab7424d710)
+AND
+DB_IsPlayer(_Var1)
+AND
+PartyGetFlag(_Var1, "QuestUpdate_RC_ARX_TheImperialDwarves_Ros_PathToQueen", 1)
+THEN
+PartySetFlag(_Var1, "QuestUpdate_RC_ARX_TheImperialDwarves_Ros_EnteredSewers");
+
+IF
+ObjectFlagSet("ARX_MerchantEstate_MerchantWill_HasItem", (CHARACTERGUID)_Var1, _)
+AND
+DB_IsPlayer(_Var1)
+THEN
+PartySetFlag(_Var1, "QuestUpdate_ARX_MerchantEstate_Wetwork_TookWill");
+
+IF
+ObjectFlagSet((STRING)_Var1, (CHARACTERGUID)_Var2, _)
+AND
+DB_IsPlayer(_Var2)
+AND
+DB_ARX_JournalEntry_Condition(_Var1, _Var4, _Var5)
+AND
+PartyGetFlag(_Var2, _Var4, 1)
+THEN
+PartySetFlag(_Var2, _Var5);
+
+IF
+ObjectFlagShared((STRING)_Var1, (CHARACTERGUID)_Var2, 1)
+AND
+DB_IsPlayer(_Var2)
+AND
+DB_ARX_JournalEntry_Condition(_Var1, _Var3, _Var4)
+AND
+PartyGetFlag(_Var2, _Var3, 1)
+THEN
+PartySetFlag(_Var2, _Var4);
+
+PROC
+ProcRegionStarted("ARX_Main")
+AND
+DB_IsPlayer(CHARACTERGUID_S_Player_Beast_f25ca124-a4d2-427b-af62-df66df41a978)
+AND
+Qry_Beast_Act3Start_HasUpdate()
+THEN
+ObjectSetFlag(CHARACTERGUID_S_Player_Beast_f25ca124-a4d2-427b-af62-df66df41a978, "QuestUpdate_FTJ_OriginBeast_Act3Start");
+ObjectSetFlag(CHARACTERGUID_S_Player_Beast_f25ca124-a4d2-427b-af62-df66df41a978, "QuestUpdate_FTJ_COM_Beast_Act3Start");
+
+PROC
+ProcRegionStarted("ARX_Main")
+AND
+DB_IsPlayer(CHARACTERGUID_S_Player_Beast_f25ca124-a4d2-427b-af62-df66df41a978)
+AND NOT
+Qry_Beast_Act3Start_HasUpdate()
+THEN
+ObjectSetFlag(CHARACTERGUID_S_Player_Beast_f25ca124-a4d2-427b-af62-df66df41a978, "QuestUpdate_FTJ_OriginBeast_Act3StartLoharUnfinished");
+ObjectSetFlag(CHARACTERGUID_S_Player_Beast_f25ca124-a4d2-427b-af62-df66df41a978, "QuestUpdate_FTJ_COM_Beast_Act3StartLoharUnfinished");
+
+QRY
+Qry_Beast_Act3Start_HasUpdate()
+AND
+UserGetFlag(CHARACTERGUID_S_Player_Beast_f25ca124-a4d2-427b-af62-df66df41a978, "QuestUpdate_FTJ_COM_Beast_ToArx_2", 1)
+THEN
+DB_NOOP(1);
+
+QRY
+Qry_Beast_Act3Start_HasUpdate()
+AND
+UserGetFlag(CHARACTERGUID_S_Player_Beast_f25ca124-a4d2-427b-af62-df66df41a978, "QuestUpdate_FTJ_COM_Beast_ToArx_1", 1)
+THEN
+DB_NOOP(1);
+
+QRY
+Qry_Beast_Act3Start_HasUpdate()
+AND
+UserGetFlag(CHARACTERGUID_S_Player_Beast_f25ca124-a4d2-427b-af62-df66df41a978, "QuestUpdate_FTJ_COM_Beast_COSDeathfogLetter", 1)
+THEN
+DB_NOOP(1);
+
+QRY
+Qry_Beast_Act3Start_HasUpdate()
+AND
+ObjectGetFlag(CHARACTERGUID_S_Player_Beast_f25ca124-a4d2-427b-af62-df66df41a978, "QuestUpdate_FTJ_OriginBeast_ToArx_1", 1)
+THEN
+DB_NOOP(1);
+
+QRY
+Qry_Beast_Act3Start_HasUpdate()
+AND
+ObjectGetFlag(CHARACTERGUID_S_Player_Beast_f25ca124-a4d2-427b-af62-df66df41a978, "QuestUpdate_FTJ_OriginBeast_ToArx_2", 1)
+THEN
+DB_NOOP(1);
+
+QRY
+Qry_Beast_Act3Start_HasUpdate()
+AND
+ObjectGetFlag(CHARACTERGUID_S_Player_Beast_f25ca124-a4d2-427b-af62-df66df41a978, "QuestUpdate_FTJ_OriginBeast_COSDeathfogLetter", 1)
+THEN
+DB_NOOP(1);
+
+PROC
+ProcRegionStarted("ARX_Main")
+AND
+DB_IsPlayer(CHARACTERGUID_S_Player_RedPrince_a26a1efb-cdc8-4cf3-a7b2-b2f9544add6f)
+AND
+IsTagged(CHARACTERGUID_S_Player_RedPrince_a26a1efb-cdc8-4cf3-a7b2-b2f9544add6f, "AVATAR", 1)
+AND
+DB_GlobalFlag("CoS_RedPrince_SawRedPrincess")
+THEN
+ObjectSetFlag(CHARACTERGUID_S_Player_RedPrince_a26a1efb-cdc8-4cf3-a7b2-b2f9544add6f, "QuestUpdate_FTJ_OriginRedPrince_Act3Start");
+
+PROC
+ProcRegionStarted("ARX_Main")
+AND
+DB_IsPlayer(CHARACTERGUID_S_Player_RedPrince_a26a1efb-cdc8-4cf3-a7b2-b2f9544add6f)
+AND
+IsTagged(CHARACTERGUID_S_Player_RedPrince_a26a1efb-cdc8-4cf3-a7b2-b2f9544add6f, "AVATAR", 1)
+AND NOT
+DB_GlobalFlag("CoS_RedPrince_SawRedPrincess")
+AND
+QRY_RC_RCEnd_Avatar_RedPrinceKnowsOfRedPrincessPlot()
+THEN
+ObjectSetFlag(CHARACTERGUID_S_Player_RedPrince_a26a1efb-cdc8-4cf3-a7b2-b2f9544add6f, "QuestUpdate_FTJ_OriginRedPrince_Act3Start_NoSpymaster");
+
+PROC
+ProcRegionStarted("ARX_Main")
+AND
+DB_IsPlayer(CHARACTERGUID_S_Player_RedPrince_a26a1efb-cdc8-4cf3-a7b2-b2f9544add6f)
+AND
+IsTagged(CHARACTERGUID_S_Player_RedPrince_a26a1efb-cdc8-4cf3-a7b2-b2f9544add6f, "AVATAR", 1)
+AND NOT
+DB_GlobalFlag("CoS_RedPrince_SawRedPrincess")
+AND
+UserGetFlag(CHARACTERGUID_S_Player_RedPrince_a26a1efb-cdc8-4cf3-a7b2-b2f9544add6f, "QuestUpdate_FTJ_OriginRedPrince_ToSallowMan", 1)
+THEN
+ObjectSetFlag(CHARACTERGUID_S_Player_RedPrince_a26a1efb-cdc8-4cf3-a7b2-b2f9544add6f, "QuestUpdate_FTJ_OriginRedPrince_Act3Start_NoSpymaster");
+
+PROC
+ProcRegionStarted("ARX_Main")
+AND
+DB_IsPlayer(CHARACTERGUID_S_Player_RedPrince_a26a1efb-cdc8-4cf3-a7b2-b2f9544add6f)
+AND
+IsTagged(CHARACTERGUID_S_Player_RedPrince_a26a1efb-cdc8-4cf3-a7b2-b2f9544add6f, "AVATAR", 1)
+AND NOT
+DB_GlobalFlag("CoS_RedPrince_SawRedPrincess")
+AND NOT
+QRY_RC_RCEnd_Avatar_RedPrinceKnowsOfRedPrincessPlot()
+AND
+UserGetFlag(CHARACTERGUID_S_Player_RedPrince_a26a1efb-cdc8-4cf3-a7b2-b2f9544add6f, "QuestUpdate_FTJ_OriginRedPrince_ToSallowMan", 0)
+THEN
+UserSetFlag(CHARACTERGUID_S_Player_RedPrince_a26a1efb-cdc8-4cf3-a7b2-b2f9544add6f, "QuestUpdate_FTJ_OriginRedPrince_Act3Start_NoSadha");
+
+PROC
+ProcRegionStarted("ARX_Main")
+AND
+DB_IsPlayer(CHARACTERGUID_S_Player_RedPrince_a26a1efb-cdc8-4cf3-a7b2-b2f9544add6f)
+AND
+IsTagged(CHARACTERGUID_S_Player_RedPrince_a26a1efb-cdc8-4cf3-a7b2-b2f9544add6f, "AVATAR", 0)
+AND
+DB_GlobalFlag("CoS_RedPrince_SawRedPrincess")
+THEN
+UserSetFlag(CHARACTERGUID_S_Player_RedPrince_a26a1efb-cdc8-4cf3-a7b2-b2f9544add6f, "QuestUpdate_FTJ_COM_RedPrince_Act3Start");
+
+PROC
+ProcRegionStarted("ARX_Main")
+AND
+DB_IsPlayer(CHARACTERGUID_S_Player_RedPrince_a26a1efb-cdc8-4cf3-a7b2-b2f9544add6f)
+AND
+IsTagged(CHARACTERGUID_S_Player_RedPrince_a26a1efb-cdc8-4cf3-a7b2-b2f9544add6f, "AVATAR", 0)
+AND NOT
+DB_GlobalFlag("CoS_RedPrince_SawRedPrincess")
+AND
+QRY_RC_RCEnd_COM_RedPrinceKnowsOfRedPrincessPlot()
+THEN
+UserSetFlag(CHARACTERGUID_S_Player_RedPrince_a26a1efb-cdc8-4cf3-a7b2-b2f9544add6f, "QuestUpdate_FTJ_COM_RedPrince_Act3Start_NoConsulate");
+
+PROC
+ProcRegionStarted("ARX_Main")
+AND
+DB_IsPlayer(CHARACTERGUID_S_Player_RedPrince_a26a1efb-cdc8-4cf3-a7b2-b2f9544add6f)
+AND
+IsTagged(CHARACTERGUID_S_Player_RedPrince_a26a1efb-cdc8-4cf3-a7b2-b2f9544add6f, "AVATAR", 0)
+AND NOT
+DB_GlobalFlag("CoS_RedPrince_SawRedPrincess")
+AND
+UserGetFlag(CHARACTERGUID_S_Player_RedPrince_a26a1efb-cdc8-4cf3-a7b2-b2f9544add6f, "QuestUpdate_FTJ_COM_RedPrince_ToSallowMan", 1)
+THEN
+UserSetFlag(CHARACTERGUID_S_Player_RedPrince_a26a1efb-cdc8-4cf3-a7b2-b2f9544add6f, "QuestUpdate_FTJ_COM_RedPrince_Act3Start_NoConsulate");
+
+PROC
+ProcRegionStarted("ARX_Main")
+AND
+DB_IsPlayer(CHARACTERGUID_S_Player_RedPrince_a26a1efb-cdc8-4cf3-a7b2-b2f9544add6f)
+AND
+IsTagged(CHARACTERGUID_S_Player_RedPrince_a26a1efb-cdc8-4cf3-a7b2-b2f9544add6f, "AVATAR", 0)
+AND NOT
+DB_GlobalFlag("CoS_RedPrince_SawRedPrincess")
+AND NOT
+QRY_RC_RCEnd_COM_RedPrinceKnowsOfRedPrincessPlot()
+AND
+UserGetFlag(CHARACTERGUID_S_Player_RedPrince_a26a1efb-cdc8-4cf3-a7b2-b2f9544add6f, "QuestUpdate_FTJ_COM_RedPrince_ToSallowMan", 0)
+THEN
+UserSetFlag(CHARACTERGUID_S_Player_RedPrince_a26a1efb-cdc8-4cf3-a7b2-b2f9544add6f, "QuestUpdate_FTJ_COM_RedPrince_Act3Start_NoSadha");
+
+IF
+ObjectFlagSet("QuestUpdate_ARX_HuntingForDallis_DefeatedReimond", (CHARACTERGUID)_Var1, _)
+THEN
+Proc_JournalCoreStory_Promised(_Var1, "QuestUpdate_CORE_Chapter6_ARX_Magister", "QuestUpdate_CORE_Chapter6_ARX_Magister_Sworn");
+
+IF
+GameBookInterfaceClosed(ITEMGUID_S_ARX_Cathedral_DisapArhu_Journal_794e8f40-6aa5-411f-b4f2-2cbede844908, (CHARACTERGUID)_Var1)
+THEN
+UserSetFlag(_Var1, "CORE_Covenant_Kemm_Know_ReadArhusJournal");
+
+IF
+GameBookInterfaceClosed(ITEMGUID_S_ARX_Barracks_Archives_DallisReport1_2c62904c-58eb-499c-819e-6ee14ca8aae5, (CHARACTERGUID)_Var1)
+THEN
+UserSetFlag(_Var1, "CORE_Covenant_Isbeil_Know_ReadDallisReport2");
+
+IF
+ObjectFlagSet("QuestUpdate_CORE_Covenant_Kemm", (CHARACTERGUID)_Var1, _)
+AND
+DB_CORE_Covenant_Kemm(_Var3, _Var4)
+AND
+UserGetFlag(_Var1, "CORE_Covenant_Kemm_Know_ReadArhusJournal", _Var4)
+THEN
+UserSetFlag(_Var1, _Var3);
+
+IF
+ObjectFlagSet("QuestUpdate_CORE_Covenant_Isbeil", (CHARACTERGUID)_Var1, _)
+AND
+DB_CORE_Covenant_Isbeil(_Var3, _Var4)
+AND
+UserGetFlag(_Var1, "CORE_Covenant_Isbeil_Know_ReadDallisReport2", _Var4)
+THEN
+UserSetFlag(_Var1, _Var3);
+
+IF
+TextEventSet("truth")
+AND
+DB_IsPlayer(_Var1)
+THEN
+PartySetFlag(_Var1, "QuestUpdate_RC_BI_TheTruth_ArchiveKnown");
+
+IF
+CharacterSawCharacter((CHARACTERGUID)_Var1, CHARACTERGUID_S_ARX_DoctorsHouse_TheDoctor_83083470-c543-45b3-ac8a-108df0daca8d)
+AND
+DB_IsPlayer(_Var1)
+AND
+PartyGetFlag(_Var1, "QuestUpdate_RC_BI_TheTruth_FoundDoctor", 0)
+AND
+PartyGetFlag(_Var1, "QuestUpdate_RC_BI_TheTruth_FoundOutDemonsName", 1)
+AND NOT
+DB_Dead(CHARACTERGUID_S_ARX_DoctorsHouse_TheDoctor_83083470-c543-45b3-ac8a-108df0daca8d)
+THEN
+PartySetFlag(_Var1, "QuestUpdate_RC_BI_TheTruth_FoundDoctor");
+
+IF
+CharacterSawCharacter((CHARACTERGUID)_Var1, CHARACTERGUID_S_ARX_DoctorsHouse_TheDoctor_83083470-c543-45b3-ac8a-108df0daca8d)
+AND
+DB_IsPlayer(_Var1)
+AND
+PartyGetFlag(_Var1, "QuestUpdate_RC_BI_TheTruth_FoundDoctor", 0)
+AND
+PartyGetFlag(_Var1, "QuestUpdate_RC_BI_TheTruth_FoundOutDemonsName", 0)
+AND
+GlobalGetFlag("ARX_DoctorsHouse_TheDoctor_Transformed", 1)
+AND NOT
+DB_Dead(CHARACTERGUID_S_ARX_DoctorsHouse_TheDoctor_83083470-c543-45b3-ac8a-108df0daca8d)
+THEN
+PartySetFlag(_Var1, "QuestUpdate_RC_BI_TheTruth_FoundDoctor");
+
+IF
+GlobalFlagSet("ARX_DoctorsHouse_TheDoctor_Transformed")
+AND
+DB_IsPlayer(_Var1)
+AND
+PartyGetFlag(_Var1, "QuestUpdate_RC_BI_TheTruth_FoundDoctor", 0)
+AND
+CharacterCanSee(_Var1, CHARACTERGUID_S_ARX_DoctorsHouse_TheDoctor_83083470-c543-45b3-ac8a-108df0daca8d, 1)
+THEN
+PartySetFlag(_Var1, "QuestUpdate_RC_BI_TheTruth_FoundDoctor");
+
+IF
+CharacterEnteredTrigger((CHARACTERGUID)_Var1, TRIGGERGUID_S_ARX_MerchantEstate_Garden_013a6e6d-b673-43ce-971d-605899d78691)
+AND NOT
+DB_DestroyedItems(ITEMGUID_S_ARX_MerchantEstate_Garden_VoidwokenObject_Cake_b27ecb29-a133-4ef6-9123-c51c5ec9dd74)
+THEN
+PartySetFlag(_Var1, "QuestUpdate_RC_ARX_TheImperialDwarves_DwarvenWedding_Found");
+
+PROC
+ProcReplenishedAmulet((CHARACTERGUID)_Var1)
+AND
+DB_IsPlayer(_Var1)
+THEN
+PartySetFlag(_Var1, "QuestUpdate_ARX_CreepyCraftsman_AmuletFilled");
+
+PROC
+Proc_TheWeakening_TeleportOut()
+AND
+GlobalGetFlag("ARX_TheWeakening_Completed", 0)
+AND
+IsTagged(CHARACTERGUID_S_Player_Lohse_bb932b13-8ebf-4ab4-aac0-83e6924e4295, "AVATAR", 1)
+THEN
+ObjectSetFlag(CHARACTERGUID_S_Player_Lohse_bb932b13-8ebf-4ab4-aac0-83e6924e4295, "QuestUpdate_FTJ_OriginLohse_WeakeningLeft");
+
+PROC
+Proc_TheWeakening_TeleportOut()
+AND
+GlobalGetFlag("ARX_TheWeakening_Completed", 0)
+AND
+IsTagged(CHARACTERGUID_S_Player_Lohse_bb932b13-8ebf-4ab4-aac0-83e6924e4295, "AVATAR", 0)
+THEN
+UserSetFlag(CHARACTERGUID_S_Player_Lohse_bb932b13-8ebf-4ab4-aac0-83e6924e4295, "QuestUpdate_FTJ_COM_Lohse_WeakeningLeft");
+
+IF
+GameBookInterfaceClosed((ITEMGUID)_Var1, (CHARACTERGUID)_Var2)
+AND
+DB_ARX_BookUpdates(_Var1, _Var3)
+THEN
+ObjectSetFlag(_Var2, _Var3);
+
+IF
+GameBookInterfaceClosed(ITEMGUID_S_ARX_Barracks_Archives_Encrypted_DallisReport_New_aed112ae-1467-447e-a0a8-e249eb4a886c, (CHARACTERGUID)_Var1)
+AND
+Qry_Check_ARX_HuntingForDallis_KnowsAboutCrypt(_Var1)
+THEN
+ObjectSetFlag(_Var1, "QuestUpdate_ARX_HuntingForDallis_ArhuReport");
+
+IF
+GameBookInterfaceClosed(ITEMGUID_S_ARX_Barracks_Archives_Encrypted_DallisReport_New_aed112ae-1467-447e-a0a8-e249eb4a886c, (CHARACTERGUID)_Var1)
+AND NOT
+Qry_Check_ARX_HuntingForDallis_KnowsAboutCrypt(_Var1)
+THEN
+ObjectSetFlag(_Var1, "QuestUpdate_ARX_HuntingForDallis_ArhuReport_WaitForKnowledge_AboutTheCathedral");
+
+QRY
+qry_Check_ARX_HuntingForDallis_KnowsAboutCrypt((CHARACTERGUID)_Var1)
+AND
+ObjectGetFlag(_Var1, "QuestUpdate_ARX_HuntingForDallis_DefeatedReimond", 1)
+THEN
+DB_Noop(1);
+
+IF
+ObjectFlagSet("QuestUpdate_ARX_HuntingForDallis_DefeatedReimond", (GUIDSTRING)_Var1, _)
+AND
+ObjectGetFlag(_Var1, "QuestUpdate_ARX_HuntingForDallis_ArhuReport_WaitForKnowledge_AboutTheCathedral", 1)
+THEN
+ObjectSetFlag(_Var1, "QuestUpdate_ARX_HuntingForDallis_ArhuReport");
+
+IF
+GameBookInterfaceClosed(ITEMGUID_S_ARX_Harbour_HuntingForDallis_LordDreadLetter_c647e449-3658-4de9-9930-55259f2ef3e6, (CHARACTERGUID)_Var1)
+AND NOT
+Qry_Check_ARX_HuntingForDallis_KnowsAboutCrypt(_Var1)
+THEN
+PartySetFlag(_Var1, "QuestUpdate_ARX_HuntingForDallis_LordDreadLetter");
+
+PROC
+ProcRegionEnded("ARX_Main")
+AND
+DB_IsPlayer(_Var1)
+AND
+PartyGetFlag(_Var1, "RC_BI_TheTruth_TreeThanks", 0)
+AND
+PartyGetFlag(_Var1, "RC_BI_TheTruth_KilledDoctor", 1)
+THEN
+PartySetFlag(_Var1, "QuestUpdate_RC_BI_TheTruth_CloseLeftArxTreeThanks");
+
+PROC
+ProcRegionEnded("ARX_Main")
+AND
+DB_IsPlayer(_Var1)
+AND
+CharacterIsInPartyWith(_Var1, CHARACTERGUID_S_Player_Lohse_bb932b13-8ebf-4ab4-aac0-83e6924e4295, 0)
+AND
+UserGetFlag(_Var1, "QuestUpdate_ARX_TheDoctor_Pact_Accepted", 0)
+THEN
+UserSetFlag(_Var1, "QuestUpdate_ARX_TheDoctor_CloseLeftARXDoor");
+QuestArchive(_Var1, "ARX_TheDoctor", 1);
+
+PROC
+ProcRegionEnded("ARX_Main")
+AND
+DB_IsPlayer(_Var1)
+AND
+UserGetFlag(_Var1, "QuestUpdate_ARX_TheDoctor_Pact_Accepted", 1)
+THEN
+UserSetFlag(_Var1, "QuestUpdate_ARX_TheDoctor_MoveToNextCategory");
+QuestSetCategory("ARX_TheDoctor", "QCA_Chapter_07");
+
+PROC
+ProcRegionEnded("ARX_Main")
+AND
+DB_IsPlayer(_Var1)
+AND
+CharacterIsInPartyWith(_Var1, CHARACTERGUID_S_Player_Lohse_bb932b13-8ebf-4ab4-aac0-83e6924e4295, 1)
+AND NOT
+DB_Dead(CHARACTERGUID_S_ARX_DoctorsHouse_TheDoctor_83083470-c543-45b3-ac8a-108df0daca8d)
+THEN
+UserSetFlag(_Var1, "QuestUpdate_ARX_TheDoctor_MoveToNextCategory");
+QuestSetCategory("ARX_TheDoctor", "QCA_Chapter_07");
+
+PROC
+ProcRegionEnded("ARX_Main")
+THEN
+GoalCompleted;
+
+
+EXITSECTION
+NOT DB_KilledEvent(CHARACTERGUID_S_RC_DW_WhiteMagister_b1bdd004-a286-4ad5-9826-a763d672b2a7, "QuestUpdate_ARX_Barracks_ReimondKilled");
+NOT DB_KilledEvent(CHARACTERGUID_S_ARX_Sewers_TheEmpress_78c95ad2-2d1a-4358-9c9c-77ff9a5fc3c9, "QuestUpdate_RC_ARX_TheImperialDwarves_Queen_Assassinate");
+NOT DB_KilledEvent(CHARACTERGUID_S_ARX_Kemm_3e6ead7d-dd35-4f9d-985e-af2de0d76d28, "QuestUpdate_ARX_DisappearanceOfArhu_ArhuPrison_KemmDead");
+NOT DB_KilledEvent(CHARACTERGUID_S_ARX_DoctorsHouse_TheDoctor_83083470-c543-45b3-ac8a-108df0daca8d, "QuestUpdate_RC_BI_TheTruth_KilledDoctor");
+ENDEXITSECTION
+
+ParentTargetEdge "ARX"

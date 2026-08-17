@@ -1,0 +1,22 @@
+Version 1
+SubGoalCombiner SGC_AND
+
+INITSECTION
+ItemToInventory(ITEMGUID_S_GLO_BST_OperationDownfall_3757c500-ea7f-4d28-b104-0d200d5fdc74, CHARACTERGUID_S_Player_Beast_f25ca124-a4d2-427b-af62-df66df41a978, -1, 0);
+ItemToInventory(ITEMGUID_S_GLO_BST_Bicorne_83a05248-597a-4c05-a87c-b2529b21ea7b, CHARACTERGUID_S_Player_Beast_f25ca124-a4d2-427b-af62-df66df41a978, -1, 0);
+CharacterEquipItem(CHARACTERGUID_S_Player_Beast_f25ca124-a4d2-427b-af62-df66df41a978, ITEMGUID_S_GLO_BST_Bicorne_83a05248-597a-4c05-a87c-b2529b21ea7b);
+DB_GiveItemToEventWithClear(ITEMGUID_S_GLO_BST_OperationDownfall_3757c500-ea7f-4d28-b104-0d200d5fdc74, "GLO_BST_GiveOperationDownfall");
+
+KBSECTION
+PROC
+ProcRegionEnded("TUT_Tutorial_A")
+AND
+ItemIsInCharacterInventory(ITEMGUID_S_GLO_BST_Bicorne_83a05248-597a-4c05-a87c-b2529b21ea7b, CHARACTERGUID_S_Player_Beast_f25ca124-a4d2-427b-af62-df66df41a978, 1)
+THEN
+GlobalSetFlag("FTJ_BST_BeastEndedTutWithHat");
+
+
+EXITSECTION
+ENDEXITSECTION
+
+ParentTargetEdge "Tutorial_PrisonShip"

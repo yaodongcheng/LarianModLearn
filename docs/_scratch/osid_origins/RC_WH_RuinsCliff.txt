@@ -1,0 +1,292 @@
+Version 1
+SubGoalCombiner SGC_AND
+
+INITSECTION
+DB_Dialogs(CHARACTERGUID_RC_WH_RuinsCliff_DwarfRanger_01_39a11236-cfc6-493d-98a6-b1f3dc42fd18, "RC_WH_RuinsCliff_DwarfCaster");
+DB_Dialogs(CHARACTERGUID_RC_WH_RuinsCliff_DwarfRanger_02_4a7b6122-3e3d-4cd8-ac46-e4551c2d1dfe, "RC_WH_RuinsCliff_DwarfRanger");
+DB_Dialogs(CHARACTERGUID_RC_WH_RuinsCliff_DwarfHealer_a6a8dab1-70a3-41b5-b982-f9da92003bac, "RC_WH_RuinsCliff_DwarfHealer");
+DB_Dialogs(CHARACTERGUID_RC_WH_RuinsCliff_DwarfBattleMage_16e9c979-5936-49f4-9dcd-b68ba562c968, "RC_WH_RuinsCliff_DwarfBM");
+DB_Dialogs(CHARACTERGUID_RC_WH_RuinsCliff_DwarfWarrior_c66d98b2-c033-4e78-9414-536e323f1b03, "RC_WH_RuinsCliff_DwarfWarrior");
+DB_Ghosts(CHARACTERGUID_RC_WH_RuinsCliff_DwarfBattleMage_16e9c979-5936-49f4-9dcd-b68ba562c968, CHARACTERGUID_RC_WH_RuinsCliff_DwarfBattleMage_Ghost_62c07c9a-cc1e-4a8c-a6d4-d02800164ad3, "RC_WH_RuinsCliff_DwarfBM_Ghost");
+DB_Ghosts(CHARACTERGUID_RC_WH_RuinsCliff_DeadSourcerer_19fed8da-a23e-4989-8456-c06f7a83efb6, CHARACTERGUID_RC_WH_RuinsCliff_DeadSourcerer_Ghost_ea45274f-e762-46f3-97ac-aba67e18f8eb, "RC_WH_RuinsCliff_DeadSourcererGhost");
+DB_RC_WH_CollaredCorpse_Ruins(CHARACTERGUID_RC_WH_RuinsCliff_CorpseDwarf01_f1f3ee37-76bb-4575-9712-5d8187620b92);
+DB_RC_WH_CollaredCorpse_Ruins(CHARACTERGUID_RC_WH_RuinsCliff_CorpseDwarf02_ff9a5bec-4b03-4521-af21-3ed79b088883);
+DB_RC_WH_CollaredCorpse_Ruins(CHARACTERGUID_RC_WH_RuinsCliff_CorpseDwarf03_7b9c06aa-7726-4527-a9e7-399e94e5f142);
+DB_RC_WH_CollaredCorpse_Ruins(CHARACTERGUID_RC_WH_RuinsCliff_CorpseHuman01_84ce3de3-9f12-48d7-af57-078d04a80ca6);
+DB_RC_WH_CollaredCorpse_Ruins(CHARACTERGUID_RC_WH_RuinsCliff_DeadSourcerer_19fed8da-a23e-4989-8456-c06f7a83efb6);
+DB_RC_WH_CollaredCorpse_Ruins(CHARACTERGUID_RC_WH_RuinsCliff_SourcererCorpse_eb61f34b-2731-4de2-8309-c5693d113fd9);
+DB_ShovelArea(TRIGGERGUID_S_RC_WH_RuinsCliff_DirtPileTrigger_1e0c9de6-e407-4371-b9f7-62bcc292a015, "RC_WH_RuinsCliff_RewardPile", ITEMGUID_S_RC_WH_RuinsCliff_DirtPile_df625642-0b3a-4286-947c-bb84162ad306);
+DB_ShovelRewardItemScatter("RC_WH_RuinsCliff_RewardPile", ITEMGUID_S_RC_WH_RuinsCliff_Bag_82726da4-199d-42fb-b7d2-48cb094efc36);
+DB_RC_WH_RuinsCliff_Dwarves(CHARACTERGUID_RC_WH_RuinsCliff_DwarfRanger_01_39a11236-cfc6-493d-98a6-b1f3dc42fd18);
+DB_RC_WH_RuinsCliff_Dwarves(CHARACTERGUID_RC_WH_RuinsCliff_DwarfHealer_a6a8dab1-70a3-41b5-b982-f9da92003bac);
+DB_RC_WH_RuinsCliff_Dwarves(CHARACTERGUID_RC_WH_RuinsCliff_DwarfRanger_02_4a7b6122-3e3d-4cd8-ac46-e4551c2d1dfe);
+DB_RC_WH_RuinsCliff_Dwarves(CHARACTERGUID_RC_WH_RuinsCliff_DwarfBattleMage_16e9c979-5936-49f4-9dcd-b68ba562c968);
+DB_RC_WH_RuinsCliff_Dwarves(CHARACTERGUID_RC_WH_RuinsCliff_DwarfWarrior_c66d98b2-c033-4e78-9414-536e323f1b03);
+ProcTriggerRegisterForPlayers(TRIGGERGUID_RC_WH_RuinsCliff_GarrisonApproach_b13f5897-90fe-4f22-87bb-650c0c9f54e2);
+ProcTriggerRegisterForPlayers(TRIGGERGUID_RC_WH_RuinsCliff_VWArriveAtYard_c82b3c84-83ca-4c93-9ab0-3e41cf3da58e);
+SetOnStage(CHARACTERGUID_RC_WH_RuinsCliff_SourcererCorpse_eb61f34b-2731-4de2-8309-c5693d113fd9, 0);
+SetOnStage(CHARACTERGUID_RC_WH_RuinsCliff_Voidwoken_91852d6c-07ca-4244-b2b4-6001de35054c, 0);
+
+KBSECTION
+IF
+TextEventSet("wcKill")
+THEN
+GlobalSetFlag("RC_DW_WC_BossElderIsDead");
+
+IF
+DB_RC_WH_RuinsCliff_Dwarves(_Var1)
+THEN
+ApplyStatus(_Var1, "POSSESSED", -1);
+SetHasDialog(_Var1, 0);
+
+IF
+GameStarted("RC_Main", _)
+AND
+DB_RC_WH_CollaredCorpse_Ruins(_Var2)
+AND NOT
+DB_RC_WH_CollaredCorpse_OncePerCorpse(_Var2)
+THEN
+DB_RC_WH_CollaredCorpse_OncePerCorpse(_Var2);
+PROC_LoopEffect("RS3_FX_GP_Status_HoECollar_01", _Var2, "RC_DW_WC_SourceCollar", "RC_Main", "Dummy_NeckFX");
+
+IF
+CharacterDied((CHARACTERGUID)_Var1)
+AND
+DB_RC_WH_RuinsCliff_Dwarves(_Var1)
+THEN
+NOT DB_RC_WH_RuinsCliff_Dwarves(_Var1);
+Proc_RC_WH_RuinsCliff_CheckAllRuinsCliffDwarvesDead();
+
+IF
+CharacterDied(CHARACTERGUID_RC_WH_RuinsCliff_Voidwoken_91852d6c-07ca-4244-b2b4-6001de35054c)
+THEN
+Proc_RC_WH_RuinsCliff_CheckAllRuinsCliffDwarvesDead();
+
+PROC
+Proc_RC_WH_RuinsCliff_CheckAllRuinsCliffDwarvesDead()
+AND
+CharacterIsInCombat(CHARACTERGUID_RC_WH_RuinsCliff_Voidwoken_91852d6c-07ca-4244-b2b4-6001de35054c, 0)
+AND NOT
+DB_RC_WH_RuinsCliff_Dwarves(_)
+THEN
+GlobalSetFlag("RC_WH_WreckerCaveEntranceDwarvesDead");
+
+IF
+StoryEvent(ITEMGUID_RC_WH_RuinsCliff_Totem_e607062b-d56e-4832-b414-b2a6899d60fe, "ApplyAura")
+AND
+DB_RC_WH_RuinsCliff_Dwarves(_Var1)
+THEN
+ItemSetOwner(ITEMGUID_RC_WH_RuinsCliff_Totem_e607062b-d56e-4832-b414-b2a6899d60fe, _Var1);
+ApplyStatus(ITEMGUID_RC_WH_RuinsCliff_Totem_e607062b-d56e-4832-b414-b2a6899d60fe, "DWARF_STATUE_AURA", 1);
+
+IF
+StoryEvent(ITEMGUID_RC_WH_RuinsCliff_Totem_e607062b-d56e-4832-b414-b2a6899d60fe, "ApplyAura")
+AND
+CharacterIsInCombat(CHARACTERGUID_RC_WH_RuinsCliff_Voidwoken_91852d6c-07ca-4244-b2b4-6001de35054c, 1)
+THEN
+ApplyStatus(ITEMGUID_RC_WH_RuinsCliff_Totem_e607062b-d56e-4832-b414-b2a6899d60fe, "DWARF_STATUE_AURA", 1);
+
+IF
+GlobalFlagSet("RC_WH_WreckerCaveEntranceDwarvesDead")
+THEN
+SetCanFight(ITEMGUID_RC_WH_RuinsCliff_Totem_e607062b-d56e-4832-b414-b2a6899d60fe, 0);
+
+IF
+CharacterUsedItem((CHARACTERGUID)_Var1, ITEMGUID_RC_WH_RuinsCliff_Totem_e607062b-d56e-4832-b414-b2a6899d60fe)
+THEN
+Proc_RC_WH_RuinsCliff_TotemVB(_Var1);
+
+PROC
+Proc_RC_WH_RuinsCliff_TotemVB((CHARACTERGUID)_Var1)
+AND
+GlobalGetFlag("RC_DW_WC_BossElderIsDead", 0)
+AND
+CharacterIsInCombat(_Var1, 1)
+AND
+DB_CombatObjects(ITEMGUID_RC_WH_RuinsCliff_Totem_e607062b-d56e-4832-b414-b2a6899d60fe, _Var2)
+AND
+CombatGetIDForCharacter(_Var1, _Var2)
+THEN
+StartVoiceBark("RC_WH_VB_RuinsCliff_CursedStatueCombat", _Var1);
+
+PROC
+Proc_RC_WH_RuinsCliff_TotemVB((CHARACTERGUID)_Var1)
+AND
+GlobalGetFlag("RC_DW_WC_BossElderIsDead", 0)
+AND
+CharacterIsInCombat(_Var1, 0)
+THEN
+StartVoiceBark("RC_WH_VB_RuinsCliff_CursedStatue", _Var1);
+
+PROC
+Proc_RC_WH_RuinsCliff_TotemVB((CHARACTERGUID)_Var1)
+AND
+GlobalGetFlag("RC_DW_WC_BossElderIsDead", 1)
+AND
+CharacterIsInCombat(_Var1, 0)
+THEN
+StartVoiceBark("RC_WH_VB_RuinsCliff_RestoredStatue", _Var1);
+
+IF
+CharacterEnteredTrigger((CHARACTERGUID)_Var1, TRIGGERGUID_RC_WH_RuinsCliff_VWArriveAtYard_c82b3c84-83ca-4c93-9ab0-3e41cf3da58e)
+AND
+CharacterIsInCombat(_Var1, 0)
+AND
+CharacterCanSee(_Var1, CHARACTERGUID_RC_WH_RuinsCliff_SourcererCorpse_eb61f34b-2731-4de2-8309-c5693d113fd9, 1)
+THEN
+StartVoiceBark("RC_WH_VB_RuinsCliff_SeenCorpse", _Var1);
+ProcTriggerUnregisterForPlayers(TRIGGERGUID_RC_WH_RuinsCliff_VWArriveAtYard_c82b3c84-83ca-4c93-9ab0-3e41cf3da58e);
+
+IF
+TimerFinished("RC_WH_RuinsCliff_VWaway")
+THEN
+SetOnStage(CHARACTERGUID_RC_WH_RuinsCliff_Voidwoken_91852d6c-07ca-4244-b2b4-6001de35054c, 0);
+
+IF
+ObjectEnteredCombat((CHARACTERGUID)_Var1, (INTEGER)_Var2)
+AND
+DB_RC_WH_RuinsCliff_Dwarves(_Var1)
+AND
+DB_IsPlayer(_Var3)
+AND
+CombatGetIDForCharacter(_Var3, _Var2)
+AND
+QueryOnlyOnce("RC_WH_RuinsCliff_PlayBarkOnCombatStart")
+THEN
+StartVoiceBark("RC_WH_VB_RuinsCliff_CombatEngaged", _Var3);
+
+IF
+ObjectEnteredCombat((CHARACTERGUID)_Var1, _)
+AND
+DB_RC_WH_RuinsCliff_Dwarves(_Var1)
+THEN
+DialogRequestStop(CHARACTERGUID_RC_WH_RuinsCliff_DwarfHealer_a6a8dab1-70a3-41b5-b982-f9da92003bac);
+DialogRequestStop(CHARACTERGUID_RC_WH_RuinsCliff_Voidwoken_91852d6c-07ca-4244-b2b4-6001de35054c);
+
+IF
+ObjectEnteredCombat(CHARACTERGUID_RC_WH_RuinsCliff_Voidwoken_91852d6c-07ca-4244-b2b4-6001de35054c, _)
+THEN
+DialogRequestStop(CHARACTERGUID_RC_WH_RuinsCliff_DwarfHealer_a6a8dab1-70a3-41b5-b982-f9da92003bac);
+DialogRequestStop(CHARACTERGUID_RC_WH_RuinsCliff_Voidwoken_91852d6c-07ca-4244-b2b4-6001de35054c);
+Proc_StartDialog(1, "RC_WH_AD_RuinsCliff_VoidCombatStart", CHARACTERGUID_RC_WH_RuinsCliff_Voidwoken_91852d6c-07ca-4244-b2b4-6001de35054c);
+ProcTriggerUnregisterForPlayers(TRIGGERGUID_RC_WH_RuinsCliff_GarrisonApproach_b13f5897-90fe-4f22-87bb-650c0c9f54e2);
+
+IF
+ObjectEnteredCombat(CHARACTERGUID_RC_WH_RuinsCliff_DwarfBattleMage_16e9c979-5936-49f4-9dcd-b68ba562c968, _)
+AND
+CharacterIsInCombat(CHARACTERGUID_RC_WH_RuinsCliff_Voidwoken_91852d6c-07ca-4244-b2b4-6001de35054c, 0)
+AND
+GlobalGetFlag("RC_DW_WC_BossElderIsDead", 0)
+THEN
+Proc_StartDialog(1, "RC_WH_AD_RuinsCliff_DwarfBMCombatStart", CHARACTERGUID_RC_WH_RuinsCliff_DwarfBattleMage_16e9c979-5936-49f4-9dcd-b68ba562c968);
+
+IF
+CharacterEnteredTrigger((CHARACTERGUID)_Var1, TRIGGERGUID_RC_WH_RuinsCliff_GarrisonApproach_b13f5897-90fe-4f22-87bb-650c0c9f54e2)
+AND
+GlobalGetFlag("RC_DW_WC_BossElderIsDead", 0)
+AND
+QueryOnlyOnce("RC_WH_RuinsCliff_StartVWScene")
+THEN
+Proc_StartDialog(1, "RC_WH_VB_RuinsCliff_VWApproach", _Var1);
+SetOnStage(CHARACTERGUID_RC_WH_RuinsCliff_SourcererCorpse_eb61f34b-2731-4de2-8309-c5693d113fd9, 1);
+TeleportTo(CHARACTERGUID_RC_WH_RuinsCliff_SourcererCorpse_eb61f34b-2731-4de2-8309-c5693d113fd9, TRIGGERGUID_RC_WH_RuinsCliff_CorpseDropYard_6e9e9b0d-73bd-4811-b999-a6909347e765);
+SetStoryEvent(CHARACTERGUID_RC_WH_RuinsCliff_Voidwoken_91852d6c-07ca-4244-b2b4-6001de35054c, "VoidwokenDAppear");
+CharacterAppearCustom(CHARACTERGUID_RC_WH_RuinsCliff_Voidwoken_91852d6c-07ca-4244-b2b4-6001de35054c, "Drop", "RC_WH_RuinsCliff_VWSpawned");
+
+IF
+StoryEvent(CHARACTERGUID_RC_WH_RuinsCliff_Voidwoken_91852d6c-07ca-4244-b2b4-6001de35054c, "RC_WH_RuinsCliff_VWSpawned")
+THEN
+ProcCharacterMoveTo(CHARACTERGUID_RC_WH_RuinsCliff_DwarfHealer_a6a8dab1-70a3-41b5-b982-f9da92003bac, TRIGGERGUID_RC_WH_RuinsCliff_HealerArrivePoint_3bb8c359-797b-453d-8bb3-17d8dddb0639, 1, "RC_WH_RuinsCliff_HealerArrived");
+
+IF
+StoryEvent(CHARACTERGUID_RC_WH_RuinsCliff_DwarfHealer_a6a8dab1-70a3-41b5-b982-f9da92003bac, "RC_WH_RuinsCliff_HealerArrived")
+AND
+CharacterIsDead(CHARACTERGUID_RC_WH_RuinsCliff_Voidwoken_91852d6c-07ca-4244-b2b4-6001de35054c, 0)
+AND
+CharacterIsDead(CHARACTERGUID_RC_WH_RuinsCliff_DwarfHealer_a6a8dab1-70a3-41b5-b982-f9da92003bac, 0)
+THEN
+ProcFaceEachother(CHARACTERGUID_RC_WH_RuinsCliff_Voidwoken_91852d6c-07ca-4244-b2b4-6001de35054c, CHARACTERGUID_RC_WH_RuinsCliff_DwarfHealer_a6a8dab1-70a3-41b5-b982-f9da92003bac);
+Proc_StartDialog(1, "RC_WH_AD_RuinsCliff_VoidAndDwarf", CHARACTERGUID_RC_WH_RuinsCliff_Voidwoken_91852d6c-07ca-4244-b2b4-6001de35054c, CHARACTERGUID_RC_WH_RuinsCliff_DwarfHealer_a6a8dab1-70a3-41b5-b982-f9da92003bac);
+
+IF
+AutomatedDialogEnded("RC_WH_AD_RuinsCliff_VoidAndDwarf", _)
+AND
+CharacterIsInCombat(CHARACTERGUID_RC_WH_RuinsCliff_DwarfHealer_a6a8dab1-70a3-41b5-b982-f9da92003bac, 0)
+AND
+CharacterIsInCombat(CHARACTERGUID_RC_WH_RuinsCliff_Voidwoken_91852d6c-07ca-4244-b2b4-6001de35054c, 0)
+AND
+CharacterIsDead(CHARACTERGUID_RC_WH_RuinsCliff_Voidwoken_91852d6c-07ca-4244-b2b4-6001de35054c, 0)
+AND
+CharacterIsDead(CHARACTERGUID_RC_WH_RuinsCliff_DwarfHealer_a6a8dab1-70a3-41b5-b982-f9da92003bac, 0)
+THEN
+ProcCharacterMoveTo(CHARACTERGUID_RC_WH_RuinsCliff_DwarfHealer_a6a8dab1-70a3-41b5-b982-f9da92003bac, TRIGGERGUID_S_RC_WH_RuinsCliff_Ramp_db622f00-42f0-4553-87ab-b3590af5d739, 0, "");
+PlayAnimation(CHARACTERGUID_RC_WH_RuinsCliff_Voidwoken_91852d6c-07ca-4244-b2b4-6001de35054c, "TakeOff");
+TimerLaunch("RC_WH_RuinsCliff_VWaway", 2000);
+
+IF
+AutomatedDialogEnded("RC_WH_AD_RuinsCliff_VoidAndDwarf", _)
+AND
+DB_InRegion(_Var2, TRIGGERGUID_RC_WH_RuinsCliff_GarrisonApproach_b13f5897-90fe-4f22-87bb-650c0c9f54e2)
+AND
+CharacterIsInCombat(_Var2, 0)
+AND
+QueryOnlyOnce("RC_WH_RuinsCliff_SeenVWScene")
+THEN
+ProcTriggerUnregisterForPlayers(TRIGGERGUID_RC_WH_RuinsCliff_GarrisonApproach_b13f5897-90fe-4f22-87bb-650c0c9f54e2);
+StartVoiceBark("RC_WH_VB_RuinsCliff_SeenVWScene", _Var2);
+
+IF
+GlobalFlagSet("RC_DW_WC_BossElderIsDead")
+AND
+DB_RC_WH_RuinsCliff_Dwarves(_Var1)
+THEN
+SetOnStage(CHARACTERGUID_RC_WH_RuinsCliff_Voidwoken_91852d6c-07ca-4244-b2b4-6001de35054c, 0);
+RemoveStatus(_Var1, "POSSESSED");
+SetFaction(_Var1, "Good");
+LeaveCombat(_Var1);
+SetHasDialog(_Var1, 1);
+
+IF
+GlobalFlagSet("RC_DW_WC_BossElderIsDead")
+THEN
+SetFaction(ITEMGUID_RC_WH_RuinsCliff_Totem_e607062b-d56e-4832-b414-b2a6899d60fe, "Neutral");
+SetCanFight(ITEMGUID_RC_WH_RuinsCliff_Totem_e607062b-d56e-4832-b414-b2a6899d60fe, 0);
+
+IF
+GlobalFlagSet("RC_DW_WC_BossElderIsDead")
+AND
+DB_IsPlayer(_Var1)
+AND
+DB_RC_WH_RuinsCliff_Dwarves(_Var2)
+THEN
+ChangeAttitude(_Var2, _Var1, 0);
+
+IF
+CharacterLeftTrigger((CHARACTERGUID)_Var1, TRIGGERGUID_S_RC_WreckerHillsRegion_cbd7495a-6bcd-4c2a-9026-3dc05dad4dc5)
+AND
+QRY_AnyRegionActive()
+AND NOT
+DB_InRegion(_, TRIGGERGUID_S_RC_WreckerHillsRegion_cbd7495a-6bcd-4c2a-9026-3dc05dad4dc5)
+AND
+GlobalGetFlag("RC_DW_WC_BossElderIsDead", 1)
+AND
+DB_RC_WH_RuinsCliff_Dwarves(_Var3)
+THEN
+NOT DB_RC_WH_RuinsCliff_Dwarves(_Var3);
+CharacterDisappearOutOfSight(_Var3, 180, 0, "", 0);
+
+
+EXITSECTION
+NOT DB_Dialogs(CHARACTERGUID_RC_WH_RuinsCliff_DwarfRanger_01_39a11236-cfc6-493d-98a6-b1f3dc42fd18, "RC_WH_RuinsCliff_DwarfCaster");
+NOT DB_Dialogs(CHARACTERGUID_RC_WH_RuinsCliff_DwarfHealer_a6a8dab1-70a3-41b5-b982-f9da92003bac, "RC_WH_RuinsCliff_DwarfHealer");
+NOT DB_Dialogs(CHARACTERGUID_RC_WH_RuinsCliff_DwarfRanger_02_4a7b6122-3e3d-4cd8-ac46-e4551c2d1dfe, "RC_WH_RuinsCliff_DwarfRanger");
+NOT DB_Dialogs(CHARACTERGUID_RC_WH_RuinsCliff_DwarfBattleMage_16e9c979-5936-49f4-9dcd-b68ba562c968, "RC_WH_RuinsCliff_DwarfBM");
+NOT DB_Dialogs(CHARACTERGUID_RC_WH_RuinsCliff_DwarfWarrior_c66d98b2-c033-4e78-9414-536e323f1b03, "RC_WH_RuinsCliff_DwarfWarrior");
+NOT DB_RC_WH_RuinsCliff_Dwarves(CHARACTERGUID_RC_WH_RuinsCliff_DwarfRanger_01_39a11236-cfc6-493d-98a6-b1f3dc42fd18);
+NOT DB_RC_WH_RuinsCliff_Dwarves(CHARACTERGUID_RC_WH_RuinsCliff_DwarfHealer_a6a8dab1-70a3-41b5-b982-f9da92003bac);
+NOT DB_RC_WH_RuinsCliff_Dwarves(CHARACTERGUID_RC_WH_RuinsCliff_DwarfRanger_02_4a7b6122-3e3d-4cd8-ac46-e4551c2d1dfe);
+NOT DB_RC_WH_RuinsCliff_Dwarves(CHARACTERGUID_RC_WH_RuinsCliff_DwarfBattleMage_16e9c979-5936-49f4-9dcd-b68ba562c968);
+NOT DB_RC_WH_RuinsCliff_Dwarves(CHARACTERGUID_RC_WH_RuinsCliff_DwarfWarrior_c66d98b2-c033-4e78-9414-536e323f1b03);
+ENDEXITSECTION
+
+ParentTargetEdge "ReapersCoast"

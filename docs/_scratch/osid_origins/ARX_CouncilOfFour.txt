@@ -1,0 +1,139 @@
+Version 1
+SubGoalCombiner SGC_AND
+
+INITSECTION
+DB_Dialogs(CHARACTERGUID_S_ARX_KemmMansion_Lady_6437df25-3c12-4a69-96b2-0188afb59255, "ARX_KemmMansion_Lady");
+DB_Dialogs(CHARACTERGUID_S_ARX_KemmMansion_Pleb1_47abbff7-3be8-4ab3-873e-b17f2477b736, "ARX_KemmMansion_Pleb1");
+DB_Dialogs(CHARACTERGUID_S_ARX_KemmMansion_Pleb2_dd9313c4-32b6-4e05-94b5-a39b1fe289fc, "ARX_KemmMansion_Pleb2");
+DB_ARX_KemmMansion_LadyTea("ARX_KemmMansion_LadyTea_A", "Quest_Tea_Brand_A_28c858bc-ed95-43eb-85a7-7aadaa53f3de");
+DB_ARX_KemmMansion_LadyTea("ARX_KemmMansion_LadyTea_B", "Quest_Tea_Brand_B_8075aed3-8e8b-4fb8-aa0f-cc1f22d50555");
+DB_ARX_KemmMansion_LadyTea("ARX_KemmMansion_LadyTea_C", "Quest_Tea_Brand_C_440b1a0c-508b-4f48-92ae-339af81ad84a");
+DB_ARX_KemmMansion_LadyNormalTea("ARX_KemmMansion_LadyTeaSort_A", "Quest_Tea_Cup_Brand_A_d01218dd-f4bb-47fd-9847-2012fb7bde3b");
+DB_ARX_KemmMansion_LadyNormalTea("ARX_KemmMansion_LadyTeaSort_B", "Quest_Tea_Cup_Brand_B_2af8d8ce-ce4a-4fd5-9de7-79dd9a1ea9c4");
+DB_ARX_KemmMansion_LadyNormalTea("ARX_KemmMansion_LadyTeaSort_C", "Quest_Tea_Cup_Brand_C_3172d889-30ed-405d-a295-e01922a6e77b");
+ProcTriggerRegisterForPlayers(TRIGGERGUID_S_ARX_KemmMansion_LadyRoom_aba447c1-df1d-4e70-825c-0c97527b9ab9);
+DB_HasStoryEvent(ITEMGUID_S_ARX_KemmVault_WeddingRing_Wife_549aaea3-c37d-4bb4-b662-b9185e1d36db, "ARX_KemmMansion_Lady_HasWeddingRing");
+DB_GiveItemToEvent(ITEMGUID_S_ARX_KemmVault_WeddingRing_Wife_549aaea3-c37d-4bb4-b662-b9185e1d36db, "ARX_KemmMansion_Lady_ReceiveWeddingRing");
+
+KBSECTION
+IF
+CharacterEnteredTrigger(_, TRIGGERGUID_S_ARX_KemmMansion_LadyRoom_aba447c1-df1d-4e70-825c-0c97527b9ab9)
+AND
+QueryOnlyOnce("ARX_KemmMansion_LadyRoomEntered")
+THEN
+GlobalSetFlag("ARX_KemmMansion_LadyRoomEntered");
+
+IF
+CharacterUsedItem((CHARACTERGUID)_Var1, ITEMGUID_S_ARX_KemmMansion_CouncilPainting_d95d8711-757e-44a9-930d-66899b60c1d8)
+AND
+ObjectGetFlag(_Var1, "ARX_KemmMansion_CouncilResolved", 0)
+AND NOT
+DB_ARX_CouncilOfFour_VB(1)
+THEN
+DB_ARX_CouncilOfFour_VB(1);
+StartVoiceBark("ARX_VB_CouncilOfFour", _Var1);
+
+IF
+CharacterUsedItem((CHARACTERGUID)_Var1, ITEMGUID_S_ARX_KemmMansion_CouncilPainting_d95d8711-757e-44a9-930d-66899b60c1d8)
+AND
+ObjectGetFlag(_Var1, "ARX_KemmMansion_CouncilResolved", 1)
+THEN
+StartVoiceBark("ARX_VB_CouncilOfFour_Resolved", _Var1);
+
+IF
+VoiceBarkEnded("ARX_VB_CouncilOfFour", _)
+THEN
+NOT DB_ARX_CouncilOfFour_VB(1);
+
+IF
+VoiceBarkFailed("ARX_VB_CouncilOfFour")
+THEN
+NOT DB_ARX_CouncilOfFour_VB(1);
+
+IF
+VoiceBarkEnded("ARX_VB_CouncilOfFour", (INTEGER)_Var1)
+AND
+DialogGetInvolvedPlayer(_Var1, 1, _Var2)
+AND
+DB_InRegion(_Var2, TRIGGERGUID_S_ARX_KemmMansion_LadyRoom_aba447c1-df1d-4e70-825c-0c97527b9ab9)
+AND
+CharacterCanSee(CHARACTERGUID_S_RC_ARX_KemmMansion_Lady_6437df25-3c12-4a69-96b2-0188afb59255, _Var2, 1)
+THEN
+Proc_StartDialog(0, "ARX_KemmMansion_CouncilOfFour", CHARACTERGUID_S_RC_ARX_KemmMansion_Lady_6437df25-3c12-4a69-96b2-0188afb59255, _Var2);
+
+IF
+VoiceBarkEnded("ARX_VB_CouncilOfFour", (INTEGER)_Var1)
+AND
+DialogGetInvolvedPlayer(_Var1, 1, _Var2)
+AND
+DB_InRegion(_Var2, TRIGGERGUID_S_ARX_KemmMansion_LadyRoom_aba447c1-df1d-4e70-825c-0c97527b9ab9)
+AND
+CharacterCanSee(CHARACTERGUID_S_RC_ARX_KemmMansion_Lady_6437df25-3c12-4a69-96b2-0188afb59255, _Var2, 1)
+AND
+QRY_SpeakerIsAvailable(CHARACTERGUID_S_RC_ARX_KemmMansion_Lady_6437df25-3c12-4a69-96b2-0188afb59255)
+THEN
+Proc_StartDialog(1, "ARX_AD_KemmMansion_CouncilOfFourBlocked", CHARACTERGUID_S_RC_ARX_KemmMansion_Lady_6437df25-3c12-4a69-96b2-0188afb59255);
+
+IF
+ObjectFlagSet((STRING)_Var1, (GUIDSTRING)_Var2, _)
+AND
+DB_ARX_KemmMansion_LadyTea(_Var1, _Var4)
+THEN
+ItemTemplateAddTo(_Var4, _Var2, 1);
+ObjectClearFlag(_Var2, _Var1, 0);
+
+IF
+ObjectFlagSet((STRING)_Var1, (GUIDSTRING)_Var2, _)
+AND
+DB_ARX_KemmMansion_LadyNormalTea(_Var1, _Var4)
+THEN
+ItemTemplateAddTo(_Var4, _Var2, 1);
+ObjectClearFlag(_Var2, _Var1, 0);
+
+IF
+CharacterDied(CHARACTERGUID_S_ARX_KemmMansion_Lady_6437df25-3c12-4a69-96b2-0188afb59255)
+THEN
+GlobalSetFlag("ARX_KemmMansion_LadyDead");
+DialogRequestStop(CHARACTERGUID_S_ARX_KemmMansion_Pleb1_47abbff7-3be8-4ab3-873e-b17f2477b736);
+DialogRequestStop(CHARACTERGUID_S_ARX_KemmMansion_Pleb2_dd9313c4-32b6-4e05-94b5-a39b1fe289fc);
+SetHasDialog(CHARACTERGUID_S_ARX_KemmMansion_Pleb1_47abbff7-3be8-4ab3-873e-b17f2477b736, 0);
+SetHasDialog(CHARACTERGUID_S_ARX_KemmMansion_Pleb2_dd9313c4-32b6-4e05-94b5-a39b1fe289fc, 0);
+ProcCharacterDisappearOutOfSight(CHARACTERGUID_S_ARX_KemmMansion_Pleb1_47abbff7-3be8-4ab3-873e-b17f2477b736, 0, 0, "", 0);
+ProcCharacterDisappearOutOfSight(CHARACTERGUID_S_ARX_KemmMansion_Pleb2_dd9313c4-32b6-4e05-94b5-a39b1fe289fc, 0, 0, "", 0);
+
+IF
+TextEventSet("SetKemmDeadFlags")
+AND
+DB_IsPlayer(_Var1)
+THEN
+ObjectSetFlag(_Var1, "ARX_Kemm_SawDeadKemm");
+
+IF
+TextEventSet("SetArhuMissingFlags")
+AND
+DB_IsPlayer(_Var1)
+THEN
+ObjectSetFlag(_Var1, "ARX_Kemm_Knows_KemmInvitingArhu");
+ObjectSetFlag(_Var1, "QuestUpdate_ARX_DisappearanceOfArhu_ArhuIsMissing");
+
+IF
+TextEventSet("SetArhuRescuedFlags")
+AND
+DB_IsPlayer(_Var1)
+THEN
+GlobalSetFlag("ARX_KemmVault_Arhu_InCathedral");
+ObjectSetFlag(_Var1, "ARX_Kemm_SawDeadKemm");
+ObjectSetFlag(_Var1, "ARX_KemmVault_SawArhu");
+
+IF
+DialogEnded("ARX_KemmMansion_Lady", _)
+THEN
+GlobalClearFlag("ARX_KemmMansion_Lady_DialogFlow_ToldBadNews");
+GlobalClearFlag("ARX_KemmMansion_Lady_DialogFlow_AddressedKemmTopic");
+GlobalClearFlag("ARX_KemmMansion_Lady_DialogFlow_BlockTeaQuestion");
+
+
+EXITSECTION
+ENDEXITSECTION
+
+ParentTargetEdge "ARX"

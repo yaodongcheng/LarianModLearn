@@ -1,0 +1,371 @@
+Version 1
+SubGoalCombiner SGC_AND
+
+INITSECTION
+DB_RC_WH_DwarvenCamp_Dwarves(S_RC_WH_DwarvenCamp_Warron_3be7c843-8d73-4d0e-be57-637c97a8b3bd);
+DB_RC_WH_DwarvenCamp_Dwarves(S_RC_WH_DwarvenCamp_Valine_d3e3ee57-00f3-4ca6-9018-58f4e4e0c436);
+CharacterSetCanTrade(CHARACTERGUID_S_RC_WH_DwarvenCamp_Warron_3be7c843-8d73-4d0e-be57-637c97a8b3bd, 0);
+DB_RC_WH_DwarvenCamp_DialogUnluckyFlags("RC_WH_DwarvenCamp_DialogFail");
+DB_RC_WH_DwarvenCamp_DialogUnluckyFlags("RC_WH_DwarvenCamp_DwarvesNotConvinced");
+DB_RC_WH_DwarvenCamp_MoveToLoharStools(CHARACTERGUID_S_RC_WH_DwarvenCamp_Warron_3be7c843-8d73-4d0e-be57-637c97a8b3bd, ITEMGUID_S_RC_DW_Warron_Stool_e830756c-71ed-46b5-9595-fbeeba10f8db);
+DB_RC_WH_DwarvenCamp_MoveToLoharStools(CHARACTERGUID_S_RC_WH_DwarvenCamp_Valine_d3e3ee57-00f3-4ca6-9018-58f4e4e0c436, ITEMGUID_S_RC_DW_Valine_Stool_fecdd630-5db6-4176-85de-4ff960fc4d44);
+ProcDeclareCounter("RC_WH_DwarvenCamp_MovedToLohar");
+DB_RC_WH_DwarvenCamp_SeeYouDialogs(CHARACTERGUID_S_RC_WH_DwarvenCamp_Warron_3be7c843-8d73-4d0e-be57-637c97a8b3bd, "RC_WH_DwarvenCamp_WarronSeeYouAtLohar");
+DB_RC_WH_DwarvenCamp_SeeYouDialogs(CHARACTERGUID_S_RC_WH_DwarvenCamp_Valine_d3e3ee57-00f3-4ca6-9018-58f4e4e0c436, "RC_WH_DwarvenCamp_ValineSeeYouAtLohar");
+DB_RC_WH_DwarvenCamp_SeeYouADDialogs(CHARACTERGUID_S_RC_WH_DwarvenCamp_Warron_3be7c843-8d73-4d0e-be57-637c97a8b3bd, "RC_WH_AD_DwarvenCamp_WarronSeeYouAtLohar");
+DB_RC_WH_DwarvenCamp_SeeYouADDialogs(CHARACTERGUID_S_RC_WH_DwarvenCamp_Valine_d3e3ee57-00f3-4ca6-9018-58f4e4e0c436, "RC_WH_AD_DwarvenCamp_ValineSeeYouAtLohar");
+DB_RC_WH_DwarvenCamp_UndertavernDialogs(CHARACTERGUID_S_RC_WH_DwarvenCamp_Warron_3be7c843-8d73-4d0e-be57-637c97a8b3bd, "RC_DW_Undertavern_Warron");
+DB_RC_WH_DwarvenCamp_UndertavernDialogs(CHARACTERGUID_S_RC_WH_DwarvenCamp_Valine_d3e3ee57-00f3-4ca6-9018-58f4e4e0c436, "RC_DW_Undertavern_Valine");
+SetOnStage(ITEMGUID_S_RC_WH_DwarvenCamp_DwarvesSneakPath_640d856d-09e1-412d-945d-37a4f3957a90, 0);
+SetOnStage(CHARACTERGUID_S_RC_WH_DwarvenCamp_DeadSneaker_76867382-7d9f-4b5a-bb8d-0117f3705acb, 0);
+DB_RC_WH_DwarvenCamp_PerceptionValue(15);
+ProcTriggerRegisterForPlayers(TRIGGERGUID_S_RC_WH_DwarvenCamp_PerceptionVBTrigger_41c100e7-c1fa-47cf-8b08-d4644c8d905c);
+ProcTriggerRegisterForPlayers(TRIGGERGUID_S_RC_WH_DwarvenCamp_PerceptionADTrigger_8253cb7e-ab87-4a40-bb4f-e77c81091994);
+DB_Ghosts(CHARACTERGUID_S_RC_WH_DwarvenCamp_DeadDwarf_1_290de482-005c-4def-a3ee-9454a49f6fb9, CHARACTERGUID_S_RC_WH_DwarvenCamp_DeadDwarf_1_Ghost_08514449-a1d8-4759-a928-d083cd28a458, "RC_WH_DwarvenCamp_DeadDwarfGhost");
+
+KBSECTION
+IF
+DB_RC_WH_DwarvenCamp_Dwarves(_Var1)
+THEN
+SetVisible(_Var1, 0);
+ProcSetInvulnerable(_Var1, 1);
+ProcCharacterDisableAllCrimes(_Var1);
+
+IF
+CharacterDied((CHARACTERGUID)_Var1)
+AND
+DB_RC_WH_DwarvenCamp_Dwarves(_Var1)
+THEN
+NOT DB_RC_WH_DwarvenCamp_Dwarves(_Var1);
+Proc_RC_WH_DwarvenCamp_CheckDead();
+
+PROC
+Proc_RC_WH_DwarvenCamp_CheckDead()
+AND
+SysCount("DB_RC_WH_DwarvenCamp_Dwarves", 1, 0)
+THEN
+GoalCompleted;
+
+IF
+CharacterEnteredTrigger((CHARACTERGUID)_Var1, TRIGGERGUID_S_RC_WH_DwarvenCamp_PerceptionVBTrigger_41c100e7-c1fa-47cf-8b08-d4644c8d905c)
+AND
+ObjectGetFlag(CHARACTERGUID_S_RC_WH_DwarvenCamp_Warron_3be7c843-8d73-4d0e-be57-637c97a8b3bd, "RC_WH_DwarvenCamp_Left", 0)
+AND
+DB_RC_WH_DwarvenCamp_PerceptionValue(_Var2)
+AND
+QRY_CheckPlayerStat(_Var1, "Wits", _Var2)
+THEN
+StartVoiceBark("RC_WH_VB_DwarvenCamp_NoticeDen", _Var1);
+ProcUnregisterForUser(TRIGGERGUID_S_RC_WH_DwarvenCamp_PerceptionVBTrigger_41c100e7-c1fa-47cf-8b08-d4644c8d905c, _Var1);
+
+IF
+CharacterEnteredTrigger((CHARACTERGUID)_Var1, TRIGGERGUID_S_RC_WH_DwarvenCamp_PerceptionADTrigger_8253cb7e-ab87-4a40-bb4f-e77c81091994)
+AND
+ObjectGetFlag(CHARACTERGUID_S_RC_WH_DwarvenCamp_Warron_3be7c843-8d73-4d0e-be57-637c97a8b3bd, "RC_WH_DwarvenCamp_Left", 0)
+AND
+DB_RC_WH_DwarvenCamp_PerceptionValue(_Var2)
+AND
+QRY_CheckPlayerStat(_Var1, "Wits", _Var2)
+THEN
+DB_RC_WH_DwarvenCamp_NoticedDen(_Var1);
+ObjectSetFlag(ITEMGUID_S_RC_WH_DwarvenCamp_Den_5f34496f-9d7f-4cd3-85d3-cba62061b41a, "Revealed");
+
+IF
+CharacterLeftTrigger((CHARACTERGUID)_Var1, TRIGGERGUID_S_RC_WH_DwarvenCamp_PerceptionADTrigger_8253cb7e-ab87-4a40-bb4f-e77c81091994)
+THEN
+NOT DB_RC_WH_DwarvenCamp_NoticedDen(_Var1);
+Proc_RC_WH_DwarvenCamp_CheckNoticed();
+
+PROC
+Proc_RC_WH_DwarvenCamp_CheckNoticed()
+AND
+QRY_IsEmptyDB("DB_RC_WH_DwarvenCamp_NoticedDen", 1)
+THEN
+ObjectClearFlag(ITEMGUID_S_RC_WH_DwarvenCamp_Den_5f34496f-9d7f-4cd3-85d3-cba62061b41a, "Revealed", 0);
+
+IF
+DialogStarted("RC_WH_DwarvenCamp_HidingDwarves", _)
+THEN
+ProcTriggerUnregisterForPlayers(TRIGGERGUID_S_RC_WH_DwarvenCamp_PerceptionADTrigger_8253cb7e-ab87-4a40-bb4f-e77c81091994);
+ObjectClearFlag(ITEMGUID_S_RC_WH_DwarvenCamp_Den_5f34496f-9d7f-4cd3-85d3-cba62061b41a, "Revealed", 0);
+
+IF
+DialogStarted("RC_WH_AD_DwarvenCamp_Rude", _)
+THEN
+ProcTriggerUnregisterForPlayers(TRIGGERGUID_S_RC_WH_DwarvenCamp_PerceptionADTrigger_8253cb7e-ab87-4a40-bb4f-e77c81091994);
+ObjectClearFlag(ITEMGUID_S_RC_WH_DwarvenCamp_Den_5f34496f-9d7f-4cd3-85d3-cba62061b41a, "Revealed", 0);
+
+IF
+CharacterUsedItem((CHARACTERGUID)_Var1, ITEMGUID_S_RC_WH_DwarvenCamp_Den_5f34496f-9d7f-4cd3-85d3-cba62061b41a)
+AND
+QRY_RC_WH_DwarvenCamp_Rude_Agreed_Check(1, 1)
+THEN
+Proc_RC_WH_DwarvenCamp_ReplicasDialog(_Var1);
+
+IF
+CharacterUsedItem((CHARACTERGUID)_Var1, ITEMGUID_S_RC_WH_DwarvenCamp_Den_5f34496f-9d7f-4cd3-85d3-cba62061b41a)
+AND
+QRY_RC_WH_DwarvenCamp_Rude_Agreed_Check(1, 0)
+AND NOT
+QRY_RC_WH_DwarvenCamp_DialogUnlucky(_Var1)
+THEN
+Proc_RC_WH_DwarvenCamp_DefaultDialog(_Var1);
+
+IF
+CharacterUsedItem((CHARACTERGUID)_Var1, ITEMGUID_S_RC_WH_DwarvenCamp_Den_5f34496f-9d7f-4cd3-85d3-cba62061b41a)
+AND
+QRY_RC_WH_DwarvenCamp_Rude_Agreed_Check(1, 0)
+AND
+QRY_RC_WH_DwarvenCamp_DialogUnlucky(_Var1)
+THEN
+Proc_RC_WH_DwarvenCamp_ReplicasDialog(_Var1);
+
+IF
+CharacterUsedItem((CHARACTERGUID)_Var1, ITEMGUID_S_RC_WH_DwarvenCamp_Den_5f34496f-9d7f-4cd3-85d3-cba62061b41a)
+AND
+ObjectGetFlag(ITEMGUID_S_RC_WH_DwarvenCamp_HidingSpeaker_Warron_d9feb166-e3b7-4064-a405-82ea19d52e4d, "RC_WH_DwarvenCamp_RudeCommentsSaid", 0)
+THEN
+Proc_StartDialog(1, "RC_WH_AD_DwarvenCamp_Rude", ITEMGUID_S_RC_WH_DwarvenCamp_HidingSpeaker_Warron_d9feb166-e3b7-4064-a405-82ea19d52e4d);
+
+IF
+ObjectFlagSet("RC_WH_DwarvenCamp_DwarvesConvinced", (CHARACTERGUID)_Var1, _)
+THEN
+DB_RC_WH_DwarvenCamp_HelpFightCharacters(_Var1);
+
+QRY
+QRY_RC_WH_DwarvenCamp_Rude_Agreed_Check((INTEGER)_Var1, (INTEGER)_Var2)
+AND
+ObjectGetFlag(ITEMGUID_S_RC_WH_DwarvenCamp_HidingSpeaker_Warron_d9feb166-e3b7-4064-a405-82ea19d52e4d, "RC_WH_DwarvenCamp_RudeCommentsSaid", _Var1)
+AND
+GlobalGetFlag("RC_WH_DwarvenCamp_AgreedToHelp", _Var2)
+THEN
+DB_NOOP(1);
+
+QRY
+QRY_RC_WH_DwarvenCamp_DialogUnlucky((CHARACTERGUID)_Var1)
+AND
+DB_RC_WH_DwarvenCamp_DialogUnluckyFlags(_Var2)
+AND
+ObjectGetDialogFlag(_Var1, _Var2, 1)
+THEN
+DB_NOOP(1);
+
+PROC
+Proc_RC_WH_DwarvenCamp_ReplicasDialog((CHARACTERGUID)_Var1)
+THEN
+Proc_StartDialog(1, "RC_WH_AD_DwarvenCamp_Replicas", ITEMGUID_S_RC_WH_DwarvenCamp_HidingSpeaker_Warron_d9feb166-e3b7-4064-a405-82ea19d52e4d, _Var1);
+
+PROC
+Proc_RC_WH_DwarvenCamp_DefaultDialog((CHARACTERGUID)_Var1)
+THEN
+Proc_StartDialog(0, "RC_WH_DwarvenCamp_HidingDwarves", ITEMGUID_S_RC_WH_DwarvenCamp_HidingSpeaker_Warron_d9feb166-e3b7-4064-a405-82ea19d52e4d, CHARACTERGUID_S_RC_WH_DwarvenCamp_Warron_3be7c843-8d73-4d0e-be57-637c97a8b3bd, _Var1);
+
+IF
+ObjectEnteredCombat((CHARACTERGUID)_Var1, (INTEGER)_Var2)
+AND
+DB_RC_WH_DwarvenCamp_Dwarves(_Var1)
+AND
+ObjectGetFlag(_Var1, "RC_WH_DwarvenCamp_Left", 0)
+THEN
+TeleportTo(_Var1, TRIGGERGUID_S_RC_WH_DwarvenCamp_PerceptionVBTrigger_41c100e7-c1fa-47cf-8b08-d4644c8d905c);
+Proc_RC_WH_DwarvenCamp_LeaveCamp(_Var1);
+Foop(_Var1);
+
+IF
+ObjectEnteredCombat((CHARACTERGUID)_Var1, (INTEGER)_Var2)
+AND
+DB_RC_WH_RuinsCliff_Dwarves(_Var1)
+AND
+DB_RC_WH_DwarvenCamp_HelpFightCharacters(_Var3)
+AND
+CharacterIsInCombat(_Var3, 1)
+AND
+CombatGetIDForCharacter(_Var3, _Var2)
+AND
+QueryOnlyOnce("RC_WH_DwarvenCamp_JoinFight")
+AND
+DB_RC_WH_DwarvenCamp_Dwarves(_Var4)
+THEN
+Proc_RC_WH_DwarvenCamp_LeaveCamp(_Var4);
+TeleportTo(_Var4, TRIGGERGUID_S_RC_WH_WarronValine_CombatAppearTrigger_048f5d1c-dc9c-4887-a6b9-5f1e54a55924);
+PlayEffect(_Var4, "RS3_FX_GP_ScriptedEvent_Teleport_GenericSmoke_01");
+SetOnStage(ITEMGUID_S_RC_WH_DwarvenCamp_DwarvesSneakPath_640d856d-09e1-412d-945d-37a4f3957a90, 1);
+SetOnStage(CHARACTERGUID_S_RC_WH_DwarvenCamp_DeadSneaker_76867382-7d9f-4b5a-bb8d-0117f3705acb, 1);
+CharacterSetRelationIndivFactionToIndivFaction(_Var4, _Var3, 100);
+CharacterSetRelationIndivFactionToIndivFaction(_Var3, _Var4, 100);
+EnterCombat(_Var4, _Var3);
+
+IF
+GlobalFlagSet("RC_WH_WreckerCaveEntranceDwarvesDead")
+AND
+DB_RC_WH_DwarvenCamp_Dwarves(_Var1)
+AND
+Query_CharacterIsAliveAndNotInCombat(_Var1)
+AND
+ObjectGetFlag(_Var1, "RC_WH_DwarvenCamp_Left", 1)
+THEN
+Proc_RC_WH_DwarvenCamp_MoveToLoharFromCombat(_Var1);
+
+IF
+GlobalFlagSet("RC_WH_WreckerCaveEntranceDwarvesDead")
+AND
+DB_RC_WH_DwarvenCamp_Dwarves(_Var1)
+AND
+Query_CharacterIsAliveAndNotInCombat(_Var1)
+AND NOT
+DB_DialogNPCs(_, CHARACTERGUID_S_RC_WH_DwarvenCamp_Warron_3be7c843-8d73-4d0e-be57-637c97a8b3bd, _)
+AND
+ObjectGetFlag(_Var1, "RC_WH_DwarvenCamp_Left", 0)
+THEN
+Proc_RC_WH_DwarvenCamp_MoveToLoharFromDen(_Var1);
+
+PROC
+Proc_ObjectLeftCombat((CHARACTERGUID)_Var1, _)
+AND
+DB_RC_WH_DwarvenCamp_Dwarves(_Var1)
+AND
+ObjectGetFlag(_Var1, "RC_WH_DwarvenCamp_Left", 1)
+AND
+GlobalGetFlag("RC_WH_WreckerCaveEntranceDwarvesDead", 1)
+THEN
+Proc_RC_WH_DwarvenCamp_MoveToLoharFromCombat(_Var1);
+
+IF
+DialogEnded("RC_WH_DwarvenCamp_HidingDwarves", _)
+AND
+GlobalGetFlag("RC_WH_WreckerCaveEntranceDwarvesDead", 1)
+AND
+DB_RC_WH_DwarvenCamp_Dwarves(_Var2)
+THEN
+Proc_RC_WH_DwarvenCamp_MoveToLoharFromDen(_Var2);
+
+IF
+GlobalFlagSet("RC_DW_WC_BossElderIsDead")
+AND
+DB_RC_WH_DwarvenCamp_Dwarves(_Var1)
+AND
+Query_CharacterIsAliveAndNotInCombat(_Var1)
+AND NOT
+DB_DialogNPCs(_, _Var1, _)
+THEN
+Proc_RC_WH_DwarvenCamp_MoveToLoharFromDen(_Var1);
+
+IF
+DialogEnded("RC_WH_DwarvenCamp_HidingDwarves", _)
+AND
+GlobalGetFlag("RC_DW_WC_BossElderIsDead", 1)
+AND
+DB_RC_WH_DwarvenCamp_Dwarves(_Var2)
+THEN
+Proc_RC_WH_DwarvenCamp_MoveToLoharFromDen(_Var2);
+
+PROC
+Proc_RC_WH_DwarvenCamp_MoveToLoharFromCombat((CHARACTERGUID)_Var1)
+THEN
+Proc_RC_WH_DwarvenCamp_FindCharToFarewell();
+
+PROC
+Proc_RC_WH_DwarvenCamp_MoveToLoharFromCombat((CHARACTERGUID)_Var1)
+AND
+DB_RC_WH_DwarvenCamp_CharToFarewell(_Var1, _Var2)
+AND
+DB_RC_WH_DwarvenCamp_SeeYouDialogs(_Var1, _Var3)
+THEN
+Proc_StartDialog(0, _Var3, _Var1, _Var2);
+
+PROC
+Proc_RC_WH_DwarvenCamp_MoveToLoharFromCombat((CHARACTERGUID)_Var1)
+AND NOT
+DB_RC_WH_DwarvenCamp_CharToFarewell(_Var1, _)
+AND
+DB_RC_WH_DwarvenCamp_SeeYouADDialogs(_Var1, _Var3)
+THEN
+Proc_StartDialog(1, _Var3, _Var1);
+CharacterDisappearOutOfSight(_Var1, 0, 0, "RC_WH_WarronValine_TeleportToUndertavern", 1);
+
+IF
+DialogEnded((STRING)_Var1, _)
+AND
+DB_RC_WH_DwarvenCamp_SeeYouDialogs(_, _Var1)
+AND
+DB_RC_WH_DwarvenCamp_Dwarves(_Var4)
+THEN
+CharacterDisappearOutOfSight(_Var4, 0, 0, "RC_WH_WarronValine_TeleportToUndertavern", 1);
+
+PROC
+Proc_RC_WH_DwarvenCamp_FindCharToFarewell()
+AND
+QRY_IsEmptyDB("DB_RC_WH_DwarvenCamp_CharToFarewell", 2)
+AND
+DB_RC_WH_DwarvenCamp_Dwarves(_Var1)
+AND
+DB_RC_WH_DwarvenCamp_HelpFightCharacters(_Var2)
+AND
+QRY_SpeakerIsAvailableAndInDialogRange(_Var2, _Var1)
+THEN
+DB_RC_WH_DwarvenCamp_CharToFarewell(_Var1, _Var2);
+
+PROC
+Proc_RC_WH_DwarvenCamp_MoveToLoharFromDen((CHARACTERGUID)_Var1)
+THEN
+Proc_RC_WH_DwarvenCamp_LeaveCamp(_Var1);
+SetStoryEvent(_Var1, "RC_WH_WarronValine_TeleportToUndertavern");
+
+IF
+StoryEvent((CHARACTERGUID)_Var1, "RC_WH_WarronValine_TeleportToUndertavern")
+AND
+DB_RC_WH_DwarvenCamp_MoveToLoharStools(_Var1, _Var2)
+THEN
+SetFaction(_Var1, "RC_DW_Undertavern");
+TeleportTo(_Var1, TRIGGERGUID_S_RC_DW_Tavern_Hideout_Ent_3c484eae-b27c-42a9-9407-09dcdf52ae4b);
+SetOnStage(_Var1, 1);
+SetVisible(_Var1, 1);
+ProcSetInvulnerable(_Var1, 0);
+CharacterSetCanTrade(_Var1, 1);
+ProcCharacterMoveTo(_Var1, _Var2, 0, "RC_WH_WarronValine_MoveToLohar");
+
+IF
+StoryEvent((CHARACTERGUID)_Var1, "RC_WH_WarronValine_MoveToLohar")
+AND
+DB_RC_WH_DwarvenCamp_MoveToLoharStools(_Var1, _Var2)
+AND
+DB_RC_WH_DwarvenCamp_UndertavernDialogs(_Var1, _Var3)
+THEN
+DB_Dialogs(_Var1, _Var3);
+CharacterUseItem(_Var1, _Var2, "");
+ProcIncreaseCounter("RC_WH_DwarvenCamp_MovedToLohar");
+
+IF
+StoryEvent((CHARACTERGUID)_Var1, "RC_WH_WarronValine_MoveToLohar")
+AND
+SysCount("DB_RC_WH_DwarvenCamp_Dwarves", 1, _Var2)
+AND
+DB_GlobalCounter("RC_WH_DwarvenCamp_MovedToLohar", _Var2)
+THEN
+GoalCompleted;
+
+PROC
+Proc_RC_WH_DwarvenCamp_LeaveCamp((CHARACTERGUID)_Var1)
+THEN
+ObjectSetFlag(_Var1, "RC_WH_DwarvenCamp_Left");
+SetVisible(_Var1, 1);
+ProcSetInvulnerable(_Var1, 0);
+ProcCharacterEnableAllCrimes(_Var1);
+
+
+EXITSECTION
+SysClear("DB_RC_WH_DwarvenCamp_DialogUnluckyFlags", 1);
+SysClear("DB_RC_WH_DwarvenCamp_Dwarves", 1);
+SysClear("DB_RC_WH_DwarvenCamp_SeeYouDialogs", 2);
+SysClear("DB_RC_WH_DwarvenCamp_SeeYouADDialogs", 2);
+SysClear("DB_RC_WH_DwarvenCamp_MoveToLoharStools", 2);
+SysClear("DB_RC_WH_DwarvenCamp_UndertavernDialogs", 2);
+SysClear("DB_RC_WH_DwarvenCamp_HelpFightCharacters", 1);
+SysClear("DB_RC_WH_DwarvenCamp_CharToFarewell", 2);
+SysClear("DB_RC_WH_DwarvenCamp_NoticedDen", 1);
+ProcRemoveCounter("RC_WH_DwarvenCamp_MovedToLohar");
+ProcTriggerUnregisterForPlayers(TRIGGERGUID_S_RC_WH_DwarvenCamp_PerceptionVBTrigger_41c100e7-c1fa-47cf-8b08-d4644c8d905c);
+ProcTriggerUnregisterForPlayers(TRIGGERGUID_S_RC_WH_DwarvenCamp_PerceptionADTrigger_8253cb7e-ab87-4a40-bb4f-e77c81091994);
+ENDEXITSECTION
+
+ParentTargetEdge "ReapersCoast"

@@ -1,0 +1,147 @@
+Version 1
+SubGoalCombiner SGC_AND
+
+INITSECTION
+DB_Dialogs(CHARACTERGUID_S_RC_ARX_KemmMansion_Butler_ba832cba-8655-454b-945c-a63b13b44450, "RC_ARX_KemmMansion_Butler");
+ProcTriggerRegisterForPlayers(TRIGGERGUID_S_RC_ARX_Poly_KemmMansion_acdea045-261a-4661-a7b9-f19bec559138);
+DB_Dialogs(CHARACTERGUID_S_ARX_KemmMansion_Guard_Noble_02_1313982c-a95e-41c8-8a9e-ec157894cace, "ARX_KemmMansion_Guard_Noble2");
+DB_Dialogs(CHARACTERGUID_S_ARX_KemmMansion_Guard_Noble_03_0dedad1e-887d-46d7-9906-12750dbb0c71, "ARX_KemmMansion_Guard_Noble3");
+DB_ARX_KemmMansion_OwnershipIgnore(ITEMGUID_S_RC_ARX_KemmMansion_Door1_e35c7e17-5729-4f7c-b1e6-45992bfb6c41);
+DB_ARX_KemmMansion_OwnershipIgnore(ITEMGUID_S_RC_ARX_KemmMansion_Door2_d6e03eb7-fd23-4484-b2cc-751395361d1c);
+DB_ARX_KemmMansion_OwnershipIgnore(ITEMGUID_S_RC_ARX_KemmMansion_Door3_cca95bfa-f9bc-47a8-90ac-21149d052dba);
+DB_ARX_KemmMansion_OwnershipIgnore(ITEMGUID_S_RC_ARX_KemmMansion_Door4_ab0bb064-6ff2-46fc-b73d-0bd7c400af29);
+DB_ARX_KemmMansion_OwnershipIgnore(ITEMGUID_S_RC_ARX_KemmMansion_Door7_352290c8-d566-4a38-bf07-5207c5a96442);
+DB_ARX_KemmMansion_OwnershipIgnore(ITEMGUID_S_RC_ARX_KemmMansion_Door8_5fea8e53-14e0-4889-a7dd-1293d6adad9c);
+DB_ARX_KemmMansion_OwnershipIgnore(ITEMGUID_S_ARX_KemmMansion_CouncilPainting_d95d8711-757e-44a9-930d-66899b60c1d8);
+DB_ARX_KemmMansion_OwnershipIgnore(ITEMGUID_S_ARX_KemmMansion_Teapot_8d3a7d35-8093-4bf1-8f59-e5b10c89ee29);
+DB_ARX_KemmMansion_OwnershipIgnore(ITEMGUID_S_RC_ARX_KemmMansion_ToCellar_1fadfb1c-d526-4ea5-8f97-7e4c777ca2ad);
+DB_ARX_KemmMansion_OwnershipIgnore(ITEMGUID_S_RC_ARX_KemmStairs_01_53bbb10f-3f75-43fe-9673-e0856623aab9);
+DB_ARX_KemmMansion_OwnershipIgnore(ITEMGUID_S_RC_ARX_KemmStairs_02_f0fe6786-2aab-4660-bc84-0d9cde122d88);
+DB_Dialogs(CHARACTERGUID_S_ARX_KemmMansion_Guard_Noble_01_b9fd3022-7a27-4a78-b63a-1440c194f9e2, "ARX_KemmMansion_Guard_Noble1");
+DB_Dialogs(S_ARX_KemmsMansion_KemmsDog_eb5cdc23-188b-4fdf-809f-d4dd074c5ab6, "ARX_KemmsMansion_KemmsDog");
+DB_TrespassTrigger(S_ARX_KemmMansion_LadyKemmOnwerShipTrigger_652ce532-c433-4754-bab1-adf1c9f392a3, S_ARX_KemmMansion_2ndFloorTresspassingOutTrigger_f6a17bf9-a3c1-4b35-8f79-003b3025257c, "Trespassing", S_ARX_KemmMansion_Guard_Noble_01_b9fd3022-7a27-4a78-b63a-1440c194f9e2);
+DB_TrespassTrigger(S_ARX_KemmMansion_2ndFloor_LordKemmOnwerShipTrigger_5bdde2be-c371-4426-baef-c13f1d972758, S_ARX_KemmMansion_2ndFloor_TresspassingOutTrigger_f6a17bf9-a3c1-4b35-8f79-003b3025257c, "Trespassing", S_ARX_KemmMansion_Guard_Noble_01_b9fd3022-7a27-4a78-b63a-1440c194f9e2);
+DB_ItemOwnerShipTriggers("ARX_Main", TRIGGERGUID_S_ARX_KemmMansion_2ndFloor_LadyKemmOwnerShipTrigger_02_b9dbfba8-4808-471e-ab4e-1f6c1b991186, S_ARX_KemmMansion_Lady_6437df25-3c12-4a69-96b2-0188afb59255);
+DB_ARX_KemmMansion_OwnershipIgnore(ITEMGUID_1m_CityHouse_A_Door_A_007_f9c8b6b2-88c5-414c-b9dc-daa66ac64cbb);
+DB_ARX_KemmMansion_OwnershipIgnore(ITEMGUID_S_RC_DW_KemmSecondFloor_Stairs_Ent_01_4675ce9b-1ccd-4441-a5ac-5104f1b90384);
+DB_ARX_KemmMansion_OwnershipIgnore(ITEMGUID_S_RC_DW_KemmSecondFloor_Stairs_Ent_02_a9b0a1d1-abeb-4ca6-bc0a-97d39223b2b6);
+DB_ItemOwnerShipTriggers("ARX_Main", S_ARX_KemmMansion_LadyKemmOnwerShipTrigger_652ce532-c433-4754-bab1-adf1c9f392a3, S_ARX_KemmMansion_Lady_6437df25-3c12-4a69-96b2-0188afb59255);
+DB_ItemOwnerShipTriggers("ARX_Main", S_ARX_KemmMansion_2ndFloor_LordKemmOnwerShipTrigger_5bdde2be-c371-4426-baef-c13f1d972758, S_ARX_Kemm_3e6ead7d-dd35-4f9d-985e-af2de0d76d28);
+
+KBSECTION
+IF
+DB_ARX_KemmMansion_OwnershipIgnore(_Var1)
+THEN
+ItemClearOwner(_Var1);
+
+IF
+StoryEvent((CHARACTERGUID)_Var1, "RC_ARX_KemmButler_StartDialog")
+AND
+UserGetFlag(_Var1, "RC_ARX_KemmButler_HasMet", 0)
+AND
+GlobalGetFlag("ARX_KemmMansion_LadyDead", 0)
+AND NOT
+DB_RC_ARX_KemmMansion_Butler_StartDialog(_)
+THEN
+DB_RC_ARX_KemmMansion_Butler_StartDialog(_Var1);
+CharacterLookAt(CHARACTERGUID_S_RC_ARX_KemmMansion_Butler_ba832cba-8655-454b-945c-a63b13b44450, _Var1);
+Proc_ARX_EnteringTheMansion_ButlerGreeting(_Var1);
+Proc_StartDialog(1, "ARX_AD_KemmMansion_ButlerGreeting", CHARACTERGUID_S_RC_ARX_KemmMansion_Butler_ba832cba-8655-454b-945c-a63b13b44450);
+ProcCharacterMoveToAndTalk(CHARACTERGUID_S_RC_ARX_KemmMansion_Butler_ba832cba-8655-454b-945c-a63b13b44450, _Var1, "RC_ARX_KemmMansion_Butler", 0, "RC_ARX_KemmMansion_ButlerRestart", 0, 50);
+TimerCancel("Timer_ARX_KemmMansion_Butler_Greeting2");
+TimerLaunch("Timer_ARX_KemmMansion_Butler_Greeting2", 5000);
+
+IF
+TimerFinished("Timer_ARX_KemmMansion_Butler_Greeting2")
+AND
+DB_CharacterMoveToAndTalk_CharacerIsMoving(CHARACTERGUID_S_RC_ARX_KemmMansion_Butler_ba832cba-8655-454b-945c-a63b13b44450, _Var1, "RC_ARX_KemmMansion_Butler", _Var2)
+THEN
+Proc_ARX_EnteringTheMansion_ButlerGreeting(_Var1);
+Proc_StartDialog(1, "ARX_AD_KemmMansion_ButlerGreeting2", CHARACTERGUID_S_RC_ARX_KemmMansion_Butler_ba832cba-8655-454b-945c-a63b13b44450);
+TimerCancel("Timer_ARX_KemmMansion_Butler_Greeting2");
+TimerLaunch("Timer_ARX_KemmMansion_Butler_Greeting2", 7000);
+
+PROC
+Proc_ARX_EnteringTheMansion_ButlerGreeting((CHARACTERGUID)_Var1)
+AND
+IsTagged(_Var1, "MALE", 1)
+THEN
+ObjectSetFlag(CHARACTERGUID_S_RC_ARX_KemmMansion_Butler_ba832cba-8655-454b-945c-a63b13b44450, "MALE_NPC");
+
+PROC
+Proc_ARX_EnteringTheMansion_ButlerGreeting((CHARACTERGUID)_Var1)
+AND
+IsTagged(_Var1, "FEMALE", 1)
+THEN
+ObjectSetFlag(CHARACTERGUID_S_RC_ARX_KemmMansion_Butler_ba832cba-8655-454b-945c-a63b13b44450, "FEMALE_NPC");
+
+IF
+CharacterLeftTrigger((CHARACTERGUID)_Var1, TRIGGERGUID_S_RC_ARX_Poly_KemmMansion_acdea045-261a-4661-a7b9-f19bec559138)
+AND
+QRY_AnyRegionActive()
+AND
+DB_CharacterMoveToAndTalk_CharacerIsMoving(CHARACTERGUID_S_RC_ARX_KemmMansion_Butler_ba832cba-8655-454b-945c-a63b13b44450, _Var1, "RC_ARX_KemmMansion_Butler", _Var2)
+THEN
+NOT DB_CharacterMoveToAndTalk_CharacerIsMoving(CHARACTERGUID_S_RC_ARX_KemmMansion_Butler_ba832cba-8655-454b-945c-a63b13b44450, _Var1, "RC_ARX_KemmMansion_Butler", _Var2);
+CharacterFlushQueue(CHARACTERGUID_S_RC_ARX_KemmMansion_Butler_ba832cba-8655-454b-945c-a63b13b44450);
+CharacterMoveToAndTalkRequestDialogFailed(S_RC_ARX_KemmMansion_Butler_ba832cba-8655-454b-945c-a63b13b44450, _Var1, _Var2);
+
+IF
+CharacterMoveToAndTalkFailed(CHARACTERGUID_S_RC_ARX_KemmMansion_Butler_ba832cba-8655-454b-945c-a63b13b44450, (CHARACTERGUID)_Var1, "RC_ARX_KemmMansion_ButlerRestart")
+AND
+DB_RC_ARX_KemmMansion_Butler_StartDialog(_Var1)
+THEN
+NOT DB_RC_ARX_KemmMansion_Butler_StartDialog(_Var1);
+
+IF
+CharacterMoveToAndTalkRequestDialogFailedEvent(CHARACTERGUID_S_RC_ARX_KemmMansion_Butler_ba832cba-8655-454b-945c-a63b13b44450, (CHARACTERGUID)_Var1, (STRING)_Var2)
+AND
+DB_RC_ARX_KemmMansion_Butler_StartDialog(_Var1)
+THEN
+NOT DB_RC_ARX_KemmMansion_Butler_StartDialog(_Var1);
+
+IF
+DialogEnded("RC_ARX_KemmMansion_Butler", (INTEGER)_Var1)
+AND
+DialogGetInvolvedPlayer(_Var1, 1, _Var2)
+AND
+DB_RC_ARX_KemmMansion_Butler_StartDialog(_Var2)
+THEN
+NOT DB_RC_ARX_KemmMansion_Butler_StartDialog(_Var2);
+
+IF
+ObjectFlagSet("StopInvestigation", CHARACTERGUID_S_RC_ARX_KemmMansion_Butler_ba832cba-8655-454b-945c-a63b13b44450, _)
+THEN
+ObjectClearFlag(CHARACTERGUID_S_RC_ARX_KemmMansion_Butler_ba832cba-8655-454b-945c-a63b13b44450, "StopInvestigation", 0);
+
+IF
+CharacterDied(CHARACTERGUID_S_ARX_KemmMansion_Lady_6437df25-3c12-4a69-96b2-0188afb59255)
+AND
+DB_ARX_KemmMansion_OwnershipIgnore(_Var1)
+THEN
+DB_ItemOwnerShipClearItem("ARX_Main", _Var1);
+
+IF
+CharacterDied(CHARACTERGUID_S_ARX_KemmMansion_Lady_6437df25-3c12-4a69-96b2-0188afb59255)
+THEN
+ObjectSetFlag(CHARACTERGUID_S_RC_ARX_KemmMansion_Butler_ba832cba-8655-454b-945c-a63b13b44450, "StopInvestigation");
+CharacterSetReactionPriority(CHARACTERGUID_S_RC_ARX_KemmMansion_Butler_ba832cba-8655-454b-945c-a63b13b44450, "Butler_Idle", 1000);
+DB_ItemOwnershipTriggers("ARX_Main", TRIGGERGUID_S_RC_ARX_Ownership_KemmMansion_Ground_59031573-10a4-4f31-b92c-0eccbe0a87da, CHARACTERGUID_S_ARX_KemmMansion_Guard_Noble_01_b9fd3022-7a27-4a78-b63a-1440c194f9e2);
+
+IF
+ObjectFlagSet("ARX_KemmMansion_Butler_Show_Barracks_MapMarker", (CHARACTERGUID)_Var1, _)
+THEN
+ProcShowMarker(_Var1, "ARX_Barracks");
+
+IF
+SavegameLoaded((INTEGER)_Var1, (INTEGER)_Var2, (INTEGER)_Var3, (INTEGER)_Var4)
+AND
+QRY_VersionIsOlderThan(_Var1, _Var2, _Var3, _Var4, 3, 6, 1, 0)
+THEN
+ProcTriggerRegisterForPlayers(TRIGGERGUID_S_RC_ARX_Poly_KemmMansion_acdea045-261a-4661-a7b9-f19bec559138);
+
+
+EXITSECTION
+ENDEXITSECTION
+
+ParentTargetEdge "ARX"

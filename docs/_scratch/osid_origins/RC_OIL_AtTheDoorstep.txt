@@ -1,0 +1,275 @@
+Version 1
+SubGoalCombiner SGC_AND
+
+INITSECTION
+DB_OneShotPlayerTrigger(TRIGGERGUID_S_RC_OIL_Wall_Balcony_5ddd7bee-f5ae-457d-a116-9b884602263b);
+DB_Dialogs(CHARACTERGUID_S_RC_OIL_Wall_Boss_61df0b93-6498-414d-8c43-d08df9f40785, "RC_OIL_Cave_WallBoss");
+DB_Dialogs(CHARACTERGUID_S_RC_OIL_Wall_EnslavedBR_01_05e270f5-a5a7-44f1-8ec8-de2086a63d88, "RC_OIL_Cave_PossessedBlackRing1");
+DB_Dialogs(CHARACTERGUID_S_RC_OIL_Wall_EnslavedBR_02_0d1584eb-bded-4b11-8a67-e26f5e53dd76, "RC_OIL_Cave_PossessedBlackRing2");
+DB_Dialogs(CHARACTERGUID_S_RC_OIL_Wall_Magister1_0592c117-c506-4241-8439-1ca498045576, "RC_OIL_Cave_Wall_Magister1");
+DB_Dialogs(CHARACTERGUID_S_RC_OIL_Wall_Magister2_e220513f-8df4-4a42-bfcf-676847cdc45c, "RC_OIL_Cave_Wall_Magister2");
+DB_Dialogs(CHARACTERGUID_S_RC_OIL_Wall_Monk1_87bf9286-f494-40d3-9a7c-69b0634f23f8, "RC_OIL_Cave_Wall_Monk1");
+DB_Dialogs(CHARACTERGUID_S_RC_OIL_Wall_Monk2_63e4bba1-264c-4068-97bb-d441e31f3fa5, "RC_OIL_Cave_Wall_Monk2");
+DB_Ghosts(CHARACTERGUID_S_RC_OIL_Wall_Boss_61df0b93-6498-414d-8c43-d08df9f40785, CHARACTERGUID_S_RC_OIL_Wall_Boss_Ghost_837b5e4b-99a9-4ebe-8113-71743de58cc3, "RC_OIL_Cave_WallBossGhost");
+DB_RC_OIL_Cave_WallMagisters(CHARACTERGUID_S_RC_OIL_Wall_Boss_61df0b93-6498-414d-8c43-d08df9f40785);
+DB_RC_OIL_Cave_WallMagisters(CHARACTERGUID_S_RC_OIL_Wall_Magister1_0592c117-c506-4241-8439-1ca498045576);
+DB_RC_OIL_Cave_WallMagisters(CHARACTERGUID_S_RC_OIL_Wall_Magister2_e220513f-8df4-4a42-bfcf-676847cdc45c);
+DB_RC_OIL_Cave_WallMagisters(CHARACTERGUID_S_RC_OIL_Wall_Monk1_87bf9286-f494-40d3-9a7c-69b0634f23f8);
+DB_RC_OIL_Cave_WallMagisters(CHARACTERGUID_S_RC_OIL_Wall_Monk2_63e4bba1-264c-4068-97bb-d441e31f3fa5);
+DB_RC_OIL_Cave_OilMachineCombination("RC_OIL_FourthHouse_2");
+DB_RC_OIL_Cave_OilMachineCombination("RC_OIL_FourthHouse_1");
+DB_RC_OIL_Cave_OilMachineCombination("RC_OIL_FourthHouse_4");
+DB_Dialogs(ITEMGUID_S_RC_OIL_Cave_OilMachine_5c41bb49-8b62-47d6-a71e-9b3aa744cbcb, "RC_OIL_Cave_OilMachine");
+DB_OneShotUser_VoicebarkTrigger(TRIGGERGUID_S_RC_OIL_Cave_VB_Machine_7b8dc41f-e0d3-4356-afb7-47c7af16d887, "RC_OIL_VB_OilMachine");
+DB_OneShotPlayerTrigger(TRIGGERGUID_S_RC_OIL_Cave_WallOfBarrels_9245511c-8153-489c-af5e-3693631c3d55);
+DB_RC_OIL_Cave_BlackRing(CHARACTERGUID_S_RC_OIL_Wall_EnslavedBR_01_05e270f5-a5a7-44f1-8ec8-de2086a63d88);
+DB_RC_OIL_Cave_BlackRing(CHARACTERGUID_S_RC_OIL_Wall_EnslavedBR_02_0d1584eb-bded-4b11-8a67-e26f5e53dd76);
+
+KBSECTION
+IF
+DB_RC_OIL_Cave_BlackRing(_Var1)
+THEN
+ApplyStatus(_Var1, "POSSESSED", -1);
+ProcCharacterDisableAllCrimes(_Var1);
+
+IF
+CharacterDied(CHARACTERGUID_S_RC_OIL_Wall_Boss_61df0b93-6498-414d-8c43-d08df9f40785)
+THEN
+CharacterSetRelationFactionToFaction("RC_OIL_Temple_BlackRing", "RC_OIL_CaveCombatHostile", 0);
+CharacterSetRelationFactionToFaction("RC_OIL_CaveCombatHostile", "RC_OIL_Temple_BlackRing", 0);
+CharacterSetRelationFactionToFaction("RC_OIL_Temple_BlackRing", "Hero", 0);
+CharacterSetRelationFactionToFaction("Hero", "RC_OIL_Temple_BlackRing", 0);
+
+IF
+CharacterDied(CHARACTERGUID_S_RC_OIL_Wall_Boss_61df0b93-6498-414d-8c43-d08df9f40785)
+AND
+DB_RC_OIL_Cave_BlackRing(_Var1)
+THEN
+RemoveStatus(_Var1, "POSSESSED");
+ProcCharacterEnableAllCrimes(_Var1);
+CharacterSetCustomName(_Var1, "RC_OIL_BlackRingReaver");
+PlayEffect(_Var1, "RS3_FX_Skills_Voodoo_DominateMind_Impact_StatusFx_01");
+
+IF
+CharacterDied((CHARACTERGUID)_Var1)
+AND
+DB_RC_OIL_Cave_BlackRing(_Var1)
+THEN
+RemoveStatus(_Var1, "POSSESSED");
+CharacterSetCustomName(_Var1, "RC_OIL_BlackRingReaver");
+PlayEffect(_Var1, "RS3_FX_Skills_Voodoo_DominateMind_Impact_StatusFx_01");
+
+PROC
+ProcOneShotTriggerEntered((CHARACTERGUID)_Var1, TRIGGERGUID_S_RC_OIL_Wall_Balcony_5ddd7bee-f5ae-457d-a116-9b884602263b)
+THEN
+CharacterSetReactionPriority(CHARACTERGUID_S_RC_OIL_Wall_Boss_61df0b93-6498-414d-8c43-d08df9f40785, "Action_MagisterBossWander", 900);
+Proc_StartDialog(1, "RC_OIL_AD_Cave_Wall", _Var1);
+
+IF
+StoryEvent((CHARACTERGUID)_Var1, "RC_OIL_Wall_BossDialog")
+THEN
+Proc_StartDialog(0, "RC_OIL_Cave_WallBoss", CHARACTERGUID_S_RC_OIL_Wall_Boss_61df0b93-6498-414d-8c43-d08df9f40785, _Var1);
+
+IF
+DialogRequestFailed("RC_OIL_Cave_WallBoss", _)
+THEN
+ObjectSetFlag(CHARACTERGUID_S_RC_OIL_Wall_Boss_61df0b93-6498-414d-8c43-d08df9f40785, "RC_OIL_Wall_BossDialog_Restart");
+
+IF
+DialogEnded("RC_OIL_Cave_WallBoss", _)
+AND
+DB_GlobalFlag("RC_OIL_Cave_WallBossHostile")
+THEN
+Proc_StartDialog(1, "RC_OIL_AD_WallBossCombat", CHARACTERGUID_S_RC_OIL_Wall_Boss_61df0b93-6498-414d-8c43-d08df9f40785);
+Proc_RC_OIL_AtTheDoorstepHostile();
+
+IF
+AttackedByObject((CHARACTERGUID)_Var1, _, (GUIDSTRING)_Var3, _, _)
+AND
+_Var1 != _Var3
+AND
+DB_RC_OIL_Cave_WallMagisters(_Var1)
+AND
+GetFaction(CHARACTERGUID_S_RC_OIL_Wall_Boss_61df0b93-6498-414d-8c43-d08df9f40785, "RC_OIL_Cave_Temple")
+THEN
+Proc_StartDialog(1, "RC_OIL_AD_WallBossCombat", CHARACTERGUID_S_RC_OIL_Wall_Boss_61df0b93-6498-414d-8c43-d08df9f40785);
+Proc_RC_OIL_AtTheDoorstepHostile();
+
+IF
+AttackedByObject((CHARACTERGUID)_Var1, _, (GUIDSTRING)_Var3, _, _)
+AND
+_Var1 != _Var3
+AND
+DB_RC_OIL_Cave_BlackRing(_Var1)
+AND
+GetFaction(CHARACTERGUID_S_RC_OIL_Wall_Boss_61df0b93-6498-414d-8c43-d08df9f40785, "RC_OIL_Cave_Temple")
+THEN
+Proc_StartDialog(1, "RC_OIL_AD_WallBossCombat", CHARACTERGUID_S_RC_OIL_Wall_Boss_61df0b93-6498-414d-8c43-d08df9f40785);
+Proc_RC_OIL_AtTheDoorstepHostile();
+
+IF
+ItemReceivedDamage(ITEMGUID_S_RC_OIL_Wall_3239ba5e-5e4c-4c3e-8cd6-d8479927a391)
+AND
+GetFaction(CHARACTERGUID_S_RC_OIL_Wall_Boss_61df0b93-6498-414d-8c43-d08df9f40785, "RC_OIL_Cave_Temple")
+THEN
+Proc_StartDialog(1, "RC_OIL_AD_WallBossPanic", CHARACTERGUID_S_RC_OIL_Wall_Boss_61df0b93-6498-414d-8c43-d08df9f40785);
+Proc_RC_OIL_AtTheDoorstepHostile();
+
+IF
+CharacterReceivedDamage(CHARACTERGUID_S_RC_OIL_Wall_Boss_61df0b93-6498-414d-8c43-d08df9f40785, _, _)
+AND
+GetFaction(CHARACTERGUID_S_RC_OIL_Wall_Boss_61df0b93-6498-414d-8c43-d08df9f40785, "RC_OIL_Cave_Temple")
+THEN
+Proc_StartDialog(1, "RC_OIL_AD_WallBossPanic", CHARACTERGUID_S_RC_OIL_Wall_Boss_61df0b93-6498-414d-8c43-d08df9f40785);
+Proc_RC_OIL_AtTheDoorstepHostile();
+
+PROC
+Proc_RC_OIL_AtTheDoorstepHostile()
+AND
+QueryOnlyOnce("RC_OIL_TempleExcavationHostile")
+AND
+DB_RC_OIL_Cave_WallMagisters(_Var1)
+THEN
+SetFaction(_Var1, "RC_OIL_CaveCombatHostile");
+
+IF
+ObjectFlagSet("SE_RC_Oil_Machine_Start", ITEMGUID_S_RC_OIL_Cave_OilMachine_5c41bb49-8b62-47d6-a71e-9b3aa744cbcb, _)
+THEN
+ObjectClearFlag(ITEMGUID_S_RC_OIL_Cave_OilMachine_5c41bb49-8b62-47d6-a71e-9b3aa744cbcb, "SE_RC_Oil_Machine_Start");
+PlaySound(ITEMGUID_S_RC_OIL_Cave_OilMachine_5c41bb49-8b62-47d6-a71e-9b3aa744cbcb, "SE_RC_Oil_Machine_Start");
+
+IF
+GlobalFlagSet((STRING)_Var1)
+AND
+DB_RC_OIL_Cave_OilMachineCombination(_Var1)
+AND
+DB_DialogNPCs(_Var2, ITEMGUID_S_RC_OIL_Cave_OilMachine_5c41bb49-8b62-47d6-a71e-9b3aa744cbcb, 1)
+AND
+DB_DialogPlayers(_Var2, _Var3, 1)
+AND
+GetPosition(ITEMGUID_S_RC_OIL_Cave_OilMachine_5c41bb49-8b62-47d6-a71e-9b3aa744cbcb, _Var4, _Var5, _Var6)
+THEN
+PlaySound(ITEMGUID_S_RC_OIL_Cave_OilMachine_5c41bb49-8b62-47d6-a71e-9b3aa744cbcb, "SE_RC_Oil_Machine_Lever_01");
+Proc_ShakeCameraForTime(_Var3, 1000);
+PlayScaledEffectAtPosition("RS3_FX_GP_ScriptedEvent_RC_Oil_Machine_Failure_01", 2.5, _Var4, _Var5, _Var6);
+
+IF
+GlobalFlagSet((STRING)_Var1)
+AND
+DB_RC_OIL_Cave_OilMachineCombination(_Var1)
+AND
+DB_RC_OIL_OilMachine_SequenceCount(_Var2)
+AND
+IntegerSum(_Var2, 1, _Var3)
+AND
+IntegertoString(_Var3, _Var4)
+THEN
+NOT DB_RC_OIL_OilMachine_SequenceCount(_Var2);
+DB_RC_OIL_OilMachine_SequenceCount(_Var3);
+DB_RC_OIL_OilMachine_Sequence(_Var3, _Var1);
+
+IF
+GlobalFlagSet((STRING)_Var1)
+AND
+DB_RC_OIL_Cave_OilMachineCombination(_Var1)
+AND NOT
+DB_RC_OIL_OilMachine_SequenceCount(_)
+THEN
+DB_RC_OIL_OilMachine_SequenceCount(1);
+DB_RC_OIL_OilMachine_Sequence(1, _Var1);
+
+IF
+DB_RC_OIL_OilMachine_Sequence(_Var1, _Var2)
+AND
+SysCount("DB_RC_OIL_OilMachine_Sequence", 2, 3)
+THEN
+Proc_RC_OIL_FourthHouse_CheckLevers();
+
+PROC
+Proc_RC_OIL_FourthHouse_CheckLevers()
+AND
+DB_RC_OIL_OilMachine_Sequence(1, "RC_OIL_FourthHouse_2")
+AND
+DB_RC_OIL_OilMachine_Sequence(2, "RC_OIL_FourthHouse_4")
+AND
+DB_RC_OIL_OilMachine_Sequence(3, "RC_OIL_FourthHouse_1")
+THEN
+ProcRemoveAllDialogEntriesForSpeaker(ITEMGUID_S_RC_OIL_Cave_OilMachine_5c41bb49-8b62-47d6-a71e-9b3aa744cbcb);
+Transform(ITEMGUID_S_RC_OIL_Cave_OilMachine_5c41bb49-8b62-47d6-a71e-9b3aa744cbcb, "debfc181-2d37-40d9-ac08-47871569fd10", 1);
+GlobalSetFlag("RC_OIL_FouthHouse_DisablePump");
+PROC_StopLoopEffect(ITEMGUID_S_RC_OIL_Cave_OilMachine_5c41bb49-8b62-47d6-a71e-9b3aa744cbcb, "RC_OIL_Cave_OilMachineSpark");
+
+IF
+GlobalFlagCleared((STRING)_Var1)
+AND
+DB_RC_OIL_OilMachine_Sequence(_, _Var1)
+AND
+DB_RC_OIL_OilMachine_SequenceCount(_Var3)
+THEN
+NOT DB_RC_OIL_OilMachine_SequenceCount(_Var3);
+
+IF
+GlobalFlagCleared((STRING)_Var1)
+AND
+DB_RC_OIL_OilMachine_Sequence(_Var2, _Var1)
+THEN
+NOT DB_RC_OIL_OilMachine_Sequence(_Var2, _Var1);
+
+IF
+DialogEnded("RC_OIL_Cave_OilMachine", (INTEGER)_Var1)
+AND
+DialogGetInvolvedPlayer(_Var1, 1, _Var2)
+AND
+ObjectGetFlag(_Var2, "RC_OIL_FourthHouse_PumpVB", 1)
+THEN
+Proc_StartDialog(1, "RC_OIL_VB_OilMachine_WrongSequence", _Var2);
+ObjectClearFlag(_Var2, "RC_OIL_FourthHouse_PumpVB");
+
+IF
+DialogEnded("RC_OIL_Cave_OilMachine", (INTEGER)_Var1)
+AND
+GlobalGetFlag("RC_OIL_FouthHouse_DisablePump", 1)
+AND
+DialogGetInvolvedPlayer(_Var1, 1, _Var2)
+THEN
+Proc_StartDialog(1, "RC_OIL_VB_OilMachine_Repaired", _Var2);
+
+IF
+GlobalFlagSet("RC_OIL_FourthHouse_Purge")
+AND
+GetPosition(ITEMGUID_S_RC_OIL_Cave_OilMachine_5c41bb49-8b62-47d6-a71e-9b3aa744cbcb, _Var1, _Var2, _Var3)
+THEN
+PlaySound(ITEMGUID_S_RC_OIL_Cave_OilMachine_5c41bb49-8b62-47d6-a71e-9b3aa744cbcb, "SE_RC_Oil_Machine_Explode");
+ItemSetCanInteract(ITEMGUID_S_RC_OIL_Cave_OilMachine_5c41bb49-8b62-47d6-a71e-9b3aa744cbcb, 0);
+PlayScaledEffectAtPosition("RS3_FX_GP_Impacts_ArrowFire_01", 2, _Var1, _Var2, _Var3);
+PlayScaledEffectAtPosition("RS3_FX_GP_ScriptedEvent_RC_Oil_Machine_Failure_01", 2, _Var1, _Var2, _Var3);
+PROC_LoopEffect("RS3_FX_Environment_Smoke_Chimney_01", ITEMGUID_S_RC_OIL_Cave_OilMachine_5c41bb49-8b62-47d6-a71e-9b3aa744cbcb, "RC_OIL_Cave_OilMachineSmoke", "RC_Main", "");
+
+IF
+ItemTemplateCombinedWithItemTemplate("PUZ_OIL_Machines_A_debfc181-2d37-40d9-ac08-47871569fd10", _, _, _, _, (CHARACTERGUID)_Var5, (ITEMGUID)_Var6)
+AND
+GetTemplate(_Var6, "CONT_Barrel_Oil_A_1b34b32c-e96c-404e-90cc-054cb549c558")
+AND
+GetPosition(ITEMGUID_S_RC_OIL_Cave_OilMachine_5c41bb49-8b62-47d6-a71e-9b3aa744cbcb, _Var7, _Var8, _Var9)
+THEN
+PlayScaledEffectAtPosition("RS3_FX_GP_ScriptedEvent_RC_Oil_Machine_Failure_01", 2.5, _Var7, _Var8, _Var9);
+Proc_ShakeCameraForTime(_Var5, 1000);
+
+IF
+GameBookInterfaceClosed(ITEMGUID_S_RC_OIL_Cave_ScholarBook_525bdb32-bb57-4b26-adbf-c2e20d356943, (CHARACTERGUID)_Var1)
+AND
+UserGetFlag(_Var1, "RC_OIL_Cave_MachineBook", 0)
+THEN
+UserSetFlag(_Var1, "RC_OIL_Cave_MachineBook");
+Proc_StartDialog(1, "RC_OIL_VB_CaveOilMachineInfo", _Var1);
+
+PROC
+ProcOneShotTriggerEntered((CHARACTERGUID)_Var1, TRIGGERGUID_S_RC_OIL_Cave_WallOfBarrels_9245511c-8153-489c-af5e-3693631c3d55)
+THEN
+Proc_StartDialog(1, "RC_OIL_VB_WallOfBarrels", _Var1);
+
+
+EXITSECTION
+ENDEXITSECTION
+
+ParentTargetEdge "ReapersCoast"

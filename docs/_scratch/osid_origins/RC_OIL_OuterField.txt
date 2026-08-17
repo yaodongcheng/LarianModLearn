@@ -1,0 +1,34 @@
+Version 1
+SubGoalCombiner SGC_AND
+
+INITSECTION
+DB_Dialogs(CHARACTERGUID_S_RC_OIL_OuterField_Magister_1_67a46b4f-81c3-46fb-be58-bbd682518509, "RC_OIL_OuterField_Magister_1");
+DB_Dialogs(CHARACTERGUID_S_RC_OIL_Citizen_1_f8b176eb-5fd4-4fb3-a6d0-672274c6f562, "RC_OIL_Citizen_1");
+DB_OneShotPlayerTrigger(TRIGGERGUID_S_RC_OIL_OneShot_House_1_5_VB_5a4171ec-1ad3-4290-849b-90ed3a8a3027);
+DB_Dialogs(CHARACTERGUID_S_RC_OIL_House1_5_Magister_98eefb60-6d64-4d41-9923-e2e27cd55235, "RC_OIL_House_1_5_Magister");
+
+KBSECTION
+IF
+DialogEnded("RC_OIL_Citizen_1", _)
+AND
+ObjectGetFlag(CHARACTERGUID_S_RC_OIL_Citizen_1_f8b176eb-5fd4-4fb3-a6d0-672274c6f562, "RC_OIL_Citizen1_Terrified", 1)
+THEN
+Proc_StartDialog(1, "RC_OIL_AD_Citizen1_Terrified", CHARACTERGUID_S_RC_OIL_Citizen_1_f8b176eb-5fd4-4fb3-a6d0-672274c6f562);
+
+IF
+DialogEnded("RC_OIL_Citizen_1", _)
+AND
+ObjectGetFlag(CHARACTERGUID_S_RC_OIL_Citizen_1_f8b176eb-5fd4-4fb3-a6d0-672274c6f562, "RC_OIL_Citizen1_Calmed", 1)
+THEN
+Proc_StartDialog(1, "RC_OIL_AD_Citizen1_Calmed", CHARACTERGUID_S_RC_OIL_Citizen_1_f8b176eb-5fd4-4fb3-a6d0-672274c6f562);
+
+PROC
+ProcOneShotTriggerEntered((CHARACTERGUID)_Var1, TRIGGERGUID_S_RC_OIL_OneShot_House_1_5_VB_5a4171ec-1ad3-4290-849b-90ed3a8a3027)
+THEN
+Proc_StartDialog(1, "RC_OIL_AD_ExecutedCivilians", _Var1);
+
+
+EXITSECTION
+ENDEXITSECTION
+
+ParentTargetEdge "ReapersCoast"

@@ -1,0 +1,128 @@
+Version 1
+SubGoalCombiner SGC_AND
+
+INITSECTION
+
+KBSECTION
+PROC
+PROC_GLO_LVDismissCompanionsAfterDialog((STRING)_Var1, (INTEGER)_Var2, (INTEGER)_Var3)
+THEN
+DB_GLO_LVDismissCompanionsAfterDialog(_Var1, _Var2, _Var3);
+
+PROC
+PROC_GLO_LVDismissCompanionsAfterDialog((STRING)_Var1, (INTEGER)_Var2, (INTEGER)_Var3)
+THEN
+TimerLaunch("GLO_LVDismissCompanionsAfterRD_DismissCompanions", 2500);
+
+PROC
+PROC_GLO_LVDismissCompanionsAfterDialog((STRING)_Var1, (INTEGER)_Var2, (INTEGER)_Var3)
+AND
+DB_IsPlayer(_Var4)
+THEN
+CharacterFreeze(_Var4);
+
+PROC
+PROC_GLO_LVDismissCompanionsAfterDialog((STRING)_Var1, (INTEGER)_Var2, (INTEGER)_Var3)
+AND
+DB_CompanionAvatarBond(_Var4, _Var5)
+THEN
+SetHasDialog(_Var4, 0);
+
+IF
+TimerFinished("GLO_LVDismissCompanionsAfterRD_DismissCompanions")
+AND
+DB_IsPlayer(_Var1)
+THEN
+CharacterUnfreeze(_Var1);
+
+IF
+TimerFinished("GLO_LVDismissCompanionsAfterRD_DismissCompanions")
+AND
+SysCount("DB_IsPlayer", 1, _Var1)
+AND
+_Var1 > 1
+AND
+DB_Avatars(_Var2)
+AND
+ObjectIsCharacter(_Var2, 1)
+AND
+DB_GLO_LVDismissCompanionsAfterDialog(_Var3, _Var4, _Var5)
+AND
+StringConcatenate("GLO_LVDismissCompanionsAfterRD_CompanionDismissal_Start_Once_", _Var3, _Var6)
+AND
+QueryOnlyOnce(_Var6)
+THEN
+RemoveStatus(_Var2, "SNEAKING");
+PROC_GLO_LVDismissCompanionsAfterDialog_StartDialog(_Var2, _Var3, _Var4, _Var5);
+
+PROC
+PROC_GLO_LVDismissCompanionsAfterDialog_StartDialog((CHARACTERGUID)_Var1, (STRING)_Var2, 0, 1)
+THEN
+ProcDefineReflectionDialog(_Var2, _Var1);
+ProcStartReflectionDialog(_Var1, _Var2);
+
+IF
+DB_ReflectionDialog_Finished(_Var1)
+AND
+DB_GLO_LVDismissCompanionsAfterDialog(_Var1, 0, 1)
+AND
+StringConcatenate("GLO_LVDismissCompanionsAfterRD_Finished_", _Var1, _Var2)
+AND
+QueryOnlyOnce(_Var2)
+THEN
+PROC_LVDismissCompanions_DismissAll();
+
+IF
+DB_ReflectionDialog_Finished(_Var1)
+AND
+DB_GLO_LVDismissCompanionsAfterDialog(_Var1, 0, 1)
+THEN
+NOT DB_GLO_LVDismissCompanionsAfterDialog(_Var1, 0, 1);
+
+PROC
+PROC_GLO_LVDismissCompanionsAfterDialog_StartDialog((CHARACTERGUID)_Var1, (STRING)_Var2, 1, 0)
+THEN
+Proc_StartDialog(1, _Var2, _Var1);
+TimerLaunch(_Var2, 1000);
+
+IF
+TimerFinished((STRING)_Var1)
+AND
+DB_GLO_LVDismissCompanionsAfterDialog(_Var1, 1, 0)
+THEN
+PROC_LVDismissCompanions_DismissAll();
+
+IF
+AutomatedDialogEnded((STRING)_Var1, _)
+AND
+DB_GLO_LVDismissCompanionsAfterDialog(_Var1, 1, 0)
+THEN
+NOT DB_GLO_LVDismissCompanionsAfterDialog(_Var1, 1, 0);
+
+IF
+AutomatedDialogRequestFailed((STRING)_Var1, _)
+AND
+DB_GLO_LVDismissCompanionsAfterDialog(_Var1, 1, 0)
+THEN
+NOT DB_GLO_LVDismissCompanionsAfterDialog(_Var1, 1, 0);
+
+PROC
+PROC_LVDismissCompanions_DismissAll()
+THEN
+PROC_GLO_PartyMembers_CollectDismissAll();
+
+PROC
+PROC_LVDismissCompanions_DismissAll()
+AND
+DB_IsPlayer(_Var1)
+AND NOT
+DB_GLO_PartyMembers_CollectDismissAll_Keep(_Var1)
+THEN
+PROC_GLO_PartyMembers_Remove(_Var1, NULL_00000000-0000-0000-0000-000000000000, 0);
+SetHasDialog(_Var1, 0);
+
+
+EXITSECTION
+ENDEXITSECTION
+
+ParentTargetEdge "DOS2ModWrapper"

@@ -1,0 +1,326 @@
+Version 1
+SubGoalCombiner SGC_AND
+
+INITSECTION
+ProcTriggerRegisterForPlayers(S_RC_DW_CheckpointTrespass_750e5f8a-aaca-4994-b748-d5ea6f55f035);
+ProcTriggerRegisterForPlayers(S_RC_DW_CheckpointPassed_6d26d935-4dc3-4aa7-a605-a6e8f196e9ce);
+ProcTriggerRegisterForPlayers(S_RC_DW_CheckpointUnpassed_6d06f576-eb5d-4b6a-a1b6-526dc56b558a);
+DB_RC_DW_BridgeGuards(CHARACTERGUID_S_RC_DW_Checkpoint_Magister_1_3137b5cc-f568-4f0b-9239-23accfdf8a5c, "RC_DW_SeenCheckpointMagister_1", "RC_DW_Checkpoint_Magister_1");
+DB_RC_DW_BridgeGuards(CHARACTERGUID_S_RC_DW_Checkpoint_Magister_2_87a2ef8c-979e-4a64-aaef-46d319beb384, "RC_DW_SeenCheckpointMagister_2", "RC_DW_Checkpoint_Magister_2");
+DB_RC_DW_BridgeMonks(CHARACTERGUID_RC_DW_CheckpointMonk1_56e943fb-f5c6-4ff2-8069-d564205a6c37);
+DB_RC_DW_BridgeMonks(CHARACTERGUID_RC_DW_CheckpointMonk2_39ed47a5-28a7-4ae4-afca-22b25a26b8dd);
+DB_Dialogs(CHARACTERGUID_S_RC_DW_IdlingMagister_1_8bd90c2c-80ae-457c-b97c-8b5a3f38bdab, "RC_DW_IdlingMagister_1");
+DB_Dialogs(CHARACTERGUID_S_RC_DW_IdlingMagister_2_1c43bb96-658e-4c7a-8224-82cafce97458, "RC_DW_IdlingMagister_2");
+DB_DontCreateMurder(CHARACTERGUID_S_RC_DW_Checkpoint_Magister_1_3137b5cc-f568-4f0b-9239-23accfdf8a5c);
+DB_DontCreateMurder(CHARACTERGUID_S_RC_DW_Checkpoint_Magister_2_87a2ef8c-979e-4a64-aaef-46d319beb384);
+ProcTriggerRegisterForPlayers(TRIGGERGUID_S_RC_DW_CheckpointSpotTrigger_65025baf-5c76-49e1-9ae1-b5f85e571a73);
+DB_OneShotPlayerTrigger(S_RC_DW_DriftwoodArriveAD_c1f658f8-f0fb-435f-98fa-66753ab2dd02);
+DB_RC_DW_CareAboutWrit3Sp("RC_DW_CheckpointGuards");
+DB_Dialogs(CHARACTERGUID_S_RC_DW_CheckpointMonk1_56e943fb-f5c6-4ff2-8069-d564205a6c37, "RC_DW_CheckPointMonk_01");
+DB_Dialogs(CHARACTERGUID_S_RC_DW_CheckpointMonk2_39ed47a5-28a7-4ae4-afca-22b25a26b8dd, "RC_DW_CheckPointMonk_02");
+
+KBSECTION
+QRY
+QRY_RC_DW_AllowedInVillage((CHARACTERGUID)_Var1)
+AND
+PartyGetFlag(_Var1, "RC_DW_CheckpointPassed", 1)
+THEN
+DB_NOOP(1);
+
+QRY
+QRY_RC_DW_AllowedInVillage((CHARACTERGUID)_Var1)
+AND
+ObjectGetFlag(_Var1, "RC_DW_CheckpointCrossed", 1)
+AND
+ObjectGetFlag(_Var1, "RC_DW_CheckPointGuards_NoPassage", 0)
+THEN
+DB_NOOP(1);
+
+IF
+CharacterEnteredTrigger((CHARACTERGUID)_Var1, S_RC_DW_CheckpointTrespass_750e5f8a-aaca-4994-b748-d5ea6f55f035)
+AND
+ObjectGetFlag(_Var1, "RC_DW_CheckpointCrossed", 1)
+AND
+ObjectGetFlag(_Var1, "RC_DW_CheckPointGuards_NoPassage", 0)
+THEN
+DB_RC_DW_SnuckIntoDriftwood(_Var1);
+
+IF
+ObjectFlagSet("RC_DW_CheckpointPassed", (CHARACTERGUID)_Var1, _)
+THEN
+TriggerUnregisterForCharacter(TRIGGERGUID_S_RC_DW_CheckpointTrespass_750e5f8a-aaca-4994-b748-d5ea6f55f035, _Var1);
+
+IF
+CharacterEnteredTrigger((CHARACTERGUID)_Var1, S_RC_DW_CheckpointPassed_6d26d935-4dc3-4aa7-a605-a6e8f196e9ce)
+THEN
+ObjectSetFlag(_Var1, "RC_DW_CheckpointCrossed");
+
+IF
+CharacterEnteredTrigger((CHARACTERGUID)_Var1, S_RC_DW_CheckpointPassed_6d26d935-4dc3-4aa7-a605-a6e8f196e9ce)
+AND
+PartyGetFlag(_Var1, "RC_DW_CheckpointPassed", 1)
+THEN
+PartySetFlag(_Var1, "RC_DW_CheckpointPassed", 0);
+
+IF
+CharacterEnteredTrigger((CHARACTERGUID)_Var1, TRIGGERGUID_S_RC_DW_CheckpointTrespass_750e5f8a-aaca-4994-b748-d5ea6f55f035)
+AND
+PartyGetFlag(_Var1, "RC_DW_CheckpointPassed", 1)
+THEN
+PartySetFlag(_Var1, "RC_DW_CheckpointPassed", 0);
+
+IF
+CharacterLeftTrigger((CHARACTERGUID)_Var1, S_RC_DW_CheckpointUnpassed_6d06f576-eb5d-4b6a-a1b6-526dc56b558a)
+AND
+QRY_AnyRegionActive()
+AND NOT
+DB_RC_DW_SnuckIntoDriftwood(_Var1)
+THEN
+ObjectClearFlag(_Var1, "RC_DW_CheckpointCrossed", 0);
+
+IF
+DB_RC_DW_BridgeGuards(_Var1, _, _Var3)
+THEN
+SetHasDialog(_Var1, 1);
+DB_RC_DW_CareAboutWrit2Sp(_Var3);
+
+IF
+StoryEvent((CHARACTERGUID)_Var1, (STRING)_Var2)
+AND
+DB_RC_DW_BridgeGuards(_Var3, _Var2, _)
+AND
+PartyGetFlag(_Var1, "RC_DW_CheckpointPassed", 0)
+AND
+PartyGetFlag(_Var1, "RC_DW_CheckpointCrossed", 0)
+AND
+ObjectGetFlag(_Var1, "RC_DW_MetCheckpointGuards", 0)
+THEN
+PROC_RC_DW_CheckpointDialog(_Var1, _Var3);
+
+PROC
+PROC_GLOBAL_DialogStartRequested((CHARACTERGUID)_Var1, (CHARACTERGUID)_Var2)
+AND
+DB_RC_DW_BridgeGuards(_Var1, _, _)
+THEN
+PROC_RC_DW_CheckpointDialog(_Var2, _Var1);
+
+PROC
+PROC_RC_DW_CheckpointDialog((CHARACTERGUID)_Var1, (CHARACTERGUID)_Var2)
+AND
+DB_RC_DW_BridgeGuards(_Var3, _, _)
+AND
+_Var2 != _Var3
+AND
+QRY_SpeakerIsAvailableAndInDialogRange(_Var3, _Var2)
+AND NOT
+QRY_RC_DW_AllowedInVillage(_Var1)
+AND
+ObjectGetFlag(_Var1, "RC_DW_MetCheckpointGuards", 0)
+THEN
+Proc_StartDialog(0, "RC_DW_CheckpointGuards", CHARACTERGUID_S_RC_DW_Checkpoint_Magister_2_87a2ef8c-979e-4a64-aaef-46d319beb384, CHARACTERGUID_S_RC_DW_Checkpoint_Magister_1_3137b5cc-f568-4f0b-9239-23accfdf8a5c, _Var1);
+
+PROC
+PROC_RC_DW_CheckpointDialog((CHARACTERGUID)_Var1, (CHARACTERGUID)_Var2)
+AND
+DB_RC_DW_BridgeGuards(_Var3, _, _)
+AND
+_Var2 != _Var3
+AND NOT
+QRY_SpeakerIsAvailableAndInDialogRange(_Var3, _Var2)
+AND
+DB_RC_DW_BridgeGuards(_Var2, _, _Var7)
+THEN
+Proc_StartDialog(0, _Var7, _Var2, _Var1);
+
+PROC
+PROC_RC_DW_CheckpointDialog((CHARACTERGUID)_Var1, (CHARACTERGUID)_Var2)
+AND
+DB_RC_DW_BridgeGuards(_Var3, _, _)
+AND
+_Var2 != _Var3
+AND
+QRY_SpeakerIsAvailableAndInDialogRange(_Var3, _Var2)
+AND
+QRY_RC_DW_AllowedInVillage(_Var1)
+AND
+DB_RC_DW_BridgeGuards(_Var2, _, _Var7)
+THEN
+Proc_StartDialog(0, _Var7, _Var2, _Var1);
+
+PROC
+PROC_RC_DW_CheckpointDialog((CHARACTERGUID)_Var1, (CHARACTERGUID)_Var2)
+AND
+DB_RC_DW_BridgeGuards(_Var3, _, _)
+AND
+_Var2 != _Var3
+AND
+QRY_SpeakerIsAvailableAndInDialogRange(_Var3, _Var2)
+AND NOT
+QRY_RC_DW_AllowedInVillage(_Var1)
+AND
+ObjectGetFlag(_Var1, "RC_DW_MetCheckpointGuards", 1)
+AND
+DB_RC_DW_BridgeGuards(_Var2, _, _Var7)
+THEN
+Proc_StartDialog(0, _Var7, _Var2, _Var1);
+
+IF
+CharacterLeftTrigger(_, TRIGGERGUID_S_RC_DW_CheckpointSpotTrigger_65025baf-5c76-49e1-9ae1-b5f85e571a73)
+AND
+QRY_AnyRegionActive()
+AND NOT
+DB_InRegion(_, TRIGGERGUID_S_RC_DW_CheckpointSpotTrigger_65025baf-5c76-49e1-9ae1-b5f85e571a73)
+THEN
+GlobalSetFlag("RC_DW_CheckpointMagister_RestartSpotting");
+
+IF
+ObjectFlagSet("RC_DW_CheckpointPassed", (CHARACTERGUID)_Var1, _)
+THEN
+TriggerUnregisterForCharacter(TRIGGERGUID_S_RC_DW_CheckpointSpotTrigger_65025baf-5c76-49e1-9ae1-b5f85e571a73, _Var1);
+
+IF
+DB_Dead(_Var1)
+AND
+DB_RC_DW_BridgeGuards(_Var1, _, _)
+THEN
+PROC_FTJ_SW_TrySendIdlingMagisters();
+
+IF
+DB_Dead(_Var1)
+AND
+DB_RC_DW_BridgeMonks(_Var1)
+THEN
+PROC_FTJ_SW_TrySendIdlingMagisters();
+
+PROC
+Proc_ObjectLeftCombat((GUIDSTRING)_Var1, _)
+AND
+DB_RC_DW_BridgeMonks(_Var1)
+THEN
+PROC_FTJ_SW_TrySendIdlingMagisters();
+
+PROC
+PROC_FTJ_SW_TrySendIdlingMagisters()
+AND NOT
+DB_CombatCharacters(CHARACTERGUID_RC_DW_CheckpointMonk1_56e943fb-f5c6-4ff2-8069-d564205a6c37, _)
+AND NOT
+DB_CombatCharacters(CHARACTERGUID_RC_DW_CheckpointMonk2_39ed47a5-28a7-4ae4-afca-22b25a26b8dd, _)
+AND
+DB_Dead(CHARACTERGUID_S_RC_DW_Checkpoint_Magister_1_3137b5cc-f568-4f0b-9239-23accfdf8a5c)
+AND
+DB_Dead(CHARACTERGUID_S_RC_DW_Checkpoint_Magister_2_87a2ef8c-979e-4a64-aaef-46d319beb384)
+AND
+QueryOnlyOnce("RC_DW_CheckpointMagistersDead")
+THEN
+SetVarFixedString(CHARACTERGUID_S_RC_DW_IdlingMagister_1_8bd90c2c-80ae-457c-b97c-8b5a3f38bdab, "currentState", "State_GoToCheckPoint");
+SetVarFixedString(CHARACTERGUID_S_RC_DW_IdlingMagister_2_1c43bb96-658e-4c7a-8224-82cafce97458, "currentState", "State_GoToCheckPoint");
+TriggerRegisterForCharacter(TRIGGERGUID_S_RC_DW_IdlingMagistersOutsideBridge_ee1dffba-e9ba-4d15-b454-d8033c121e9d, CHARACTERGUID_S_RC_DW_IdlingMagister_1_8bd90c2c-80ae-457c-b97c-8b5a3f38bdab);
+TriggerRegisterForCharacter(TRIGGERGUID_S_RC_DW_IdlingMagistersOutsideBridge_ee1dffba-e9ba-4d15-b454-d8033c121e9d, CHARACTERGUID_S_RC_DW_IdlingMagister_2_1c43bb96-658e-4c7a-8224-82cafce97458);
+
+IF
+StoryEvent((CHARACTERGUID)_Var1, "RC_DW_IdlingMagisters_Pop")
+THEN
+SetOnStage(_Var1, 0);
+CharacterAppearOutOfSightToObject(_Var1, S_RC_DW_IdlingMagisters_Waypoint2_05387386-fa98-4c0e-8aaf-f719d2252205, S_RC_DW_IdlingMagisters_Waypoint_47117d24-5a05-4fa7-8947-01fa24ee99d4, 0, "");
+
+IF
+CharacterEnteredTrigger((CHARACTERGUID)_Var1, TRIGGERGUID_S_RC_DW_IdlingMagistersOutsideBridge_ee1dffba-e9ba-4d15-b454-d8033c121e9d)
+THEN
+CharacterSetReactionPriority(_Var1, "Opening_Bridge", 0);
+TriggerUnregisterForCharacter(TRIGGERGUID_S_RC_DW_IdlingMagistersOutsideBridge_ee1dffba-e9ba-4d15-b454-d8033c121e9d, _Var1);
+
+IF
+AutomatedDialogEnded("RC_DW_AD_IdlingMagisters_DeadCheckpoint_Alone", _)
+THEN
+PROC_RC_DW_IdlingMagisterCheckpointADOver();
+
+IF
+AutomatedDialogEnded("RC_DW_AD_IdlingMagisters_DeadCheckpoint", _)
+THEN
+PROC_RC_DW_IdlingMagisterCheckpointADOver();
+
+IF
+StoryEvent(_, "RC_DW_IdlingMagistersLostCheckpointMagisters")
+THEN
+PROC_RC_DW_IdlingMagisterCheckpointADOver();
+
+PROC
+PROC_RC_DW_IdlingMagisterCheckpointADOver()
+THEN
+TriggerRegisterForCharacter(TRIGGERGUID_S_RC_DW_IdlingMagistersInsideBridge_700c177b-c5b6-415c-a6fc-9428532de82f, CHARACTERGUID_S_RC_DW_IdlingMagister_1_8bd90c2c-80ae-457c-b97c-8b5a3f38bdab);
+TriggerRegisterForCharacter(TRIGGERGUID_S_RC_DW_IdlingMagistersInsideBridge_700c177b-c5b6-415c-a6fc-9428532de82f, CHARACTERGUID_S_RC_DW_IdlingMagister_2_1c43bb96-658e-4c7a-8224-82cafce97458);
+SetVarObject(CHARACTERGUID_S_RC_DW_CheckpointMonk1_56e943fb-f5c6-4ff2-8069-d564205a6c37, "Trigger", TRIGGERGUID_S_RC_DW_MonkTrigger1B_dc694eb7-3c1b-42c4-90c5-2281038c5f12);
+SetVarObject(CHARACTERGUID_S_RC_DW_CheckpointMonk2_39ed47a5-28a7-4ae4-afca-22b25a26b8dd, "Trigger", TRIGGERGUID_S_RC_DW_MonkTrigger2B_540bfffb-8bcd-408d-a308-d9566d9b77ef);
+
+IF
+CharacterEnteredTrigger((CHARACTERGUID)_Var1, TRIGGERGUID_S_RC_DW_IdlingMagistersInsideBridge_700c177b-c5b6-415c-a6fc-9428532de82f)
+THEN
+CharacterSetReactionPriority(_Var1, "Close_Bridge", 1600);
+TriggerUnregisterForCharacter(TRIGGERGUID_S_RC_DW_IdlingMagistersInsideBridge_700c177b-c5b6-415c-a6fc-9428532de82f, _Var1);
+
+IF
+DialogEnded("RC_DW_IdlingMagister_1", (INTEGER)_Var1)
+AND
+ObjectGetFlag(CHARACTERGUID_S_RC_DW_IdlingMagister_1_8bd90c2c-80ae-457c-b97c-8b5a3f38bdab, "RC_DW_IdlingMagisters_Hostile", 1)
+AND
+DialogGetInvolvedPlayer(_Var1, 1, _Var2)
+THEN
+ObjectClearFlag(CHARACTERGUID_S_RC_DW_IdlingMagister_1_8bd90c2c-80ae-457c-b97c-8b5a3f38bdab, "RC_DW_IdlingMagisters_Hostile", 0);
+SetFaction(CHARACTERGUID_S_RC_DW_IdlingMagister_1_8bd90c2c-80ae-457c-b97c-8b5a3f38bdab, "RC_DW_HostileIdlingMagisters");
+SetFaction(CHARACTERGUID_S_RC_DW_IdlingMagister_2_1c43bb96-658e-4c7a-8224-82cafce97458, "RC_DW_HostileIdlingMagisters");
+PartySetFlag(_Var2, "RC_DW_HostileIdlingMagisters", 0);
+
+IF
+ObjectFlagSet("RC_DW_HostileIdlingMagisters", (CHARACTERGUID)_Var1, _)
+THEN
+ObjectClearFlag(_Var1, "RC_DW_HostileIdlingMagisters", 0);
+CharacterSetRelationFactionToIndivFaction("RC_DW_HostileIdlingMagisters", _Var1, 0);
+CharacterSetRelationIndivFactionToFaction(_Var1, "RC_DW_HostileIdlingMagisters", 0);
+
+IF
+AttackedByObject((CHARACTERGUID)_Var1, (CHARACTERGUID)_Var2, (CHARACTERGUID)_Var3, _, _)
+AND
+_Var1 != _Var3
+AND
+DB_RC_DW_BridgeGuards(_Var1, _, _)
+AND
+CharacterIsInCombat(_Var3, 0)
+AND
+CharacterIsInCombat(_Var1, 0)
+THEN
+CharacterSetRelationFactionToIndivFaction("RC_DW_CheckpointMagisters", _Var3, 0);
+CharacterSetRelationIndivFactionToFaction(_Var3, "RC_DW_CheckpointMagisters", 0);
+
+IF
+GlobalFlagSet("RC_DW_IdlingMagistersBridgeComment")
+THEN
+TimerLaunch("RC_DW_IdlingMagistersBridgeComment", 10000);
+
+IF
+TimerFinished("RC_DW_IdlingMagistersBridgeComment")
+THEN
+GlobalClearFlag("RC_DW_IdlingMagistersBridgeComment");
+
+PROC
+ProcOneShotTriggerEntered((CHARACTERGUID)_Var1, TRIGGERGUID_S_RC_DW_DriftwoodArriveAD_c1f658f8-f0fb-435f-98fa-66753ab2dd02)
+THEN
+StartVoiceBark("RC_DW_VB_DriftwoodArrive", _Var1);
+DB_OnlyOnce("RC_DW_RD_CheckPoint");
+
+IF
+CharacterDying(CHARACTERGUID_S_RC_DW_Checkpoint_Magister_2_87a2ef8c-979e-4a64-aaef-46d319beb384)
+AND
+DB_CombatCharacters(CHARACTERGUID_S_RC_DW_Checkpoint_Magister_1_3137b5cc-f568-4f0b-9239-23accfdf8a5c, _Var1)
+AND
+DB_CombatCharacters(CHARACTERGUID_S_RC_DW_Checkpoint_Magister_2_87a2ef8c-979e-4a64-aaef-46d319beb384, _Var1)
+AND
+QueryOnlyOnce("RC_DW_AD_CheckpointMagisterPanic")
+THEN
+CharacterSetReactionPriority(CHARACTERGUID_S_RC_DW_Checkpoint_Magister_1_3137b5cc-f568-4f0b-9239-23accfdf8a5c, "FedorPanic", 100002);
+CharacterSetReactionPriority(CHARACTERGUID_S_RC_DW_Checkpoint_Magister_1_3137b5cc-f568-4f0b-9239-23accfdf8a5c, "FedorPanicInDialogue", 100003);
+
+
+EXITSECTION
+ENDEXITSECTION
+
+ParentTargetEdge "ReapersCoast"

@@ -1,0 +1,106 @@
+Version 1
+SubGoalCombiner SGC_AND
+
+INITSECTION
+
+KBSECTION
+PROC
+PROC_HandleMagicMirrorResult((CHARACTERGUID)_Var1, 0)
+AND
+DB_Illusionist(_Var1, _Var2)
+THEN
+NOT DB_Illusionist(_Var1, _Var2);
+
+IF
+CharacterUsedItem((CHARACTERGUID)_Var1, (ITEMGUID)_Var2)
+AND
+DB_Illusionist(_Var1, _Var2)
+AND
+CharacterAddToCharacterCreation(_Var1, 2, _Var3)
+THEN
+PROC_HandleMagicMirrorResult(_Var1, _Var3);
+
+IF
+CharacterItemEvent((CHARACTERGUID)_Var1, (ITEMGUID)_Var2, "GEN_Homestead_CharCreationMirror")
+AND
+HasActiveStatus(_Var1, "PLAY_DEAD", 1)
+THEN
+RemoveStatus(_Var1, "PLAY_DEAD");
+
+IF
+SavegameLoaded(_, _, _, _)
+AND
+DB_Illusionist(_Var5, _Var6)
+AND
+CharacterAddToCharacterCreation(_Var5, 2, 0)
+THEN
+DebugBreak("Failed to re-add player to character creation after reload");
+
+IF
+DB_Illusionist(_Var1, _)
+AND
+DB_TeleporterPyramid(_Var3)
+AND
+ItemIsInCharacterInventory(_Var3, _Var1, 1)
+THEN
+Proc_PyramidCustomBlockAdd(_Var3, "LV_Mirror");
+
+IF
+ItemAddedToCharacter((ITEMGUID)_Var1, (CHARACTERGUID)_Var2)
+AND
+DB_TeleporterPyramid(_Var1)
+AND
+DB_Illusionist(_Var2, _Var3)
+THEN
+Proc_PyramidCustomBlockAdd(_Var1, "LV_Mirror");
+
+IF
+ItemRemovedFromCharacter((ITEMGUID)_Var1, (CHARACTERGUID)_Var2)
+AND
+DB_TeleporterPyramid(_Var1)
+AND
+DB_Illusionist(_Var2, _Var3)
+THEN
+Proc_PyramidCustomBlockRemove(_Var1, "LV_Mirror");
+
+IF
+CharacterCreationFinished((CHARACTERGUID)_Var1)
+AND
+DB_Illusionist(_Var1, _Var2)
+AND
+DB_TeleporterPyramid(_Var3)
+AND
+ItemIsInCharacterInventory(_Var3, _Var1, 1)
+THEN
+Proc_PyramidCustomBlockRemove(_Var3, "LV_Mirror");
+
+PROC
+Proc_HomesteadTeleportAfterMirror((CHARACTERGUID)_Var1, (ITEMGUID)_Var2, (TRIGGERGUID)_Var3)
+AND
+_Var3 != NULL_00000000-0000-0000-0000-000000000000
+THEN
+TeleportTo(_Var1, _Var3, "", 0);
+
+PROC
+Proc_HomesteadTeleportAfterMirror((CHARACTERGUID)_Var1, (ITEMGUID)_Var2, (TRIGGERGUID)_Var3)
+AND
+_Var3 == NULL_00000000-0000-0000-0000-000000000000
+THEN
+TeleportTo(_Var1, _Var2, "", 0);
+
+IF
+CharacterCreationFinished((CHARACTERGUID)_Var1)
+AND
+DB_Illusionist(_Var1, _Var2)
+AND
+GetVarObject(_Var2, "PlayerPositionAfterCreation", _Var3)
+THEN
+NOT DB_Illusionist(_Var1, _Var2);
+TimerLaunch("CharacterCreation", 1000);
+ItemSetCanInteract(ITEMGUID_S_LV_Mirror_6ca9a17e-6c68-4232-b4f2-8ef60f5085ee, 0);
+Proc_HomesteadTeleportAfterMirror(_Var1, _Var2, _Var3);
+
+
+EXITSECTION
+ENDEXITSECTION
+

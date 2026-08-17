@@ -1,0 +1,259 @@
+Version 1
+SubGoalCombiner SGC_AND
+
+INITSECTION
+DB_RC_OIL_CaveEvents_CombatMagister(CHARACTERGUID_S_RC_OIL_Cave_Magister_01_3421edf4-9183-4c04-984c-1a92a1edd00c);
+DB_RC_OIL_CaveEvents_CombatMagister(CHARACTERGUID_S_RC_OIL_Cave_Magister_02_930f1222-445f-457d-8bfb-d01b91ba6b24);
+DB_RC_OIL_CaveEvents_CombatMagister(CHARACTERGUID_S_RC_OIL_Cave_Magister_03_e731333c-c1f8-4704-9684-e7047d522085);
+DB_RC_OIL_CaveEvents_CombatMagister(CHARACTERGUID_S_RC_OIL_Cave_MagisterCombatLeader_e0c0e47e-84d1-4e71-8da4-9bae87c1f553);
+DB_Dialogs(CHARACTERGUID_S_RC_OIL_Cave_Magister_01_3421edf4-9183-4c04-984c-1a92a1edd00c, "RC_OIL_Cave_SilentMonk1");
+DB_Dialogs(CHARACTERGUID_S_RC_OIL_Cave_Magister_02_930f1222-445f-457d-8bfb-d01b91ba6b24, "RC_OIL_Cave_SilentMonk2");
+DB_Dialogs(CHARACTERGUID_S_RC_OIL_Cave_Magister_03_e731333c-c1f8-4704-9684-e7047d522085, "RC_OIL_Cave_SilentMonk3");
+DB_Dialogs(CHARACTERGUID_S_RC_OIL_Cave_MagisterCombatLeader_e0c0e47e-84d1-4e71-8da4-9bae87c1f553, "RC_OIL_CaveCombatDialog");
+DB_Ghosts(CHARACTERGUID_S_RC_OIL_Cave_MagisterCombatLeader_e0c0e47e-84d1-4e71-8da4-9bae87c1f553, CHARACTERGUID_S_RC_OIL_Cave_MagisterCombatLeader_Ghost_b33135a7-6a8f-4530-b937-07f4fdab55cf, "RC_OIL_Cave_ExcavationGhost");
+DB_Ghosts(CHARACTERGUID_S_RC_OIL_ExcavationBlackRing_9f001767-e126-4623-bc18-1ed2d6c8b98a, "RC_OIL_ExcavationBlackRing");
+DB_RC_OIL_CaveEvents_CombatNPC(CHARACTERGUID_S_RC_OIL_Cave_Magister_01_3421edf4-9183-4c04-984c-1a92a1edd00c);
+DB_RC_OIL_CaveEvents_CombatNPC(CHARACTERGUID_S_RC_OIL_Cave_Magister_02_930f1222-445f-457d-8bfb-d01b91ba6b24);
+DB_RC_OIL_CaveEvents_CombatNPC(CHARACTERGUID_S_RC_OIL_Cave_Magister_03_e731333c-c1f8-4704-9684-e7047d522085);
+DB_RC_OIL_CaveEvents_CombatNPC(CHARACTERGUID_S_RC_OIL_Cave_MagisterCombatLeader_e0c0e47e-84d1-4e71-8da4-9bae87c1f553);
+DB_RC_OIL_CaveEvents_CombatNPC(CHARACTERGUID_S_RC_OIL_Cave_MagisterFight_Spitter_01_f52018a8-6bb3-4253-9e99-d6c9214d4bfb);
+DB_RC_OIL_CaveEvents_CombatNPC(CHARACTERGUID_S_RC_OIL_Cave_MagisterFight_Spitter_02_9e94bad2-1e19-48f9-8bf1-47006fd69228);
+DB_RC_OIL_CaveEvents_CombatNPC(CHARACTERGUID_S_RC_OIL_Cave_MagisterFight_Spitter_03_f2794f9b-de1e-44aa-885b-64d828b42831);
+DB_RC_OIL_CaveEvents_CombatNPC(CHARACTERGUID_S_RC_OIL_Cave_MagisterFight_Spitter_04_c4b282a3-ca84-4bbb-ae9b-017029388e2c);
+DB_RC_OIL_CaveEvents_CombatNPC(CHARACTERGUID_S_RC_OIL_Cave_MagisterFight_VampireBat1_f9e3de44-8833-4caa-9973-f2dbbce1f7ec);
+DB_RC_OIL_CaveEvents_CombatNPC(CHARACTERGUID_S_RC_OIL_Cave_MagisterFight_VampireBat2_5e45efb6-88a2-4e5b-bb41-3a7a9026a513);
+SetOnStage(CHARACTERGUID_S_RC_OIL_Cave_MagisterFight_Spitter_02_9e94bad2-1e19-48f9-8bf1-47006fd69228, 0);
+SetOnStage(CHARACTERGUID_S_RC_OIL_Cave_MagisterFight_Spitter_03_f2794f9b-de1e-44aa-885b-64d828b42831, 0);
+DB_Dialogs(ITEMGUID_S_RC_OIL_Cave_EternalsBook1_d435c3a1-81ee-4e25-a52f-fa4df82612a6, "RC_OIL_Cave_EternalsBook1");
+DB_Dialogs(ITEMGUID_S_RC_OIL_Cave_EternalsBook2_8966d247-d2a7-48da-a67c-6d0da2353d25, "RC_OIL_Cave_EternalsBook2");
+DB_RC_OIL_Cave_EternalsVisions("RC_OIL_Cave_EternalsBook1");
+DB_RC_OIL_Cave_EternalsVisions("RC_OIL_Cave_EternalsBook2");
+DB_RC_OIL_EternalsArtefacts(ITEMGUID_S_RC_OIL_EternalArtefact1_d84d7c8c-821d-4290-9252-41dcd2912fc5, "RC_OIL_EternalArtefact1", "RC_OIL_Cave_Recipe1");
+DB_RC_OIL_EternalsArtefacts(ITEMGUID_S_RC_OIL_EternalArtefact2_e54b723b-1ede-40a1-9ea4-e8fb3a9cbc2a, "RC_OIL_EternalArtefact2", "RC_OIL_Cave_Recipe2");
+DB_OneShot_VoiceBarkTrigger(TRIGGERGUID_S_RC_OIL_VB_EternalStone_1_805a5169-1519-46e4-bd57-0bb29d7a3f84, "RC_OIL_VB_EtenalStone1");
+DB_OneShot_VoiceBarkTrigger(TRIGGERGUID_S_RC_OIL_VB_EternalStone_2_4a2cecb8-0916-40b6-9b5d-fc8e9d1318ef, "RC_OIL_VB_EtenalStone2");
+DB_RC_OIL_EternalsRecipes("RC_OIL_Cave_Recipe1", "ARM_UniversalShapeshiftingMask", "RC_OIL_VB_UnlockedRecipe1");
+DB_RC_OIL_EternalsRecipes("RC_OIL_Cave_Recipe2", "Quest_Eternals_Armor", "RC_OIL_VB_UnlockedRecipe2");
+DB_Dialogs(ITEMGUID_S_RC_OIL_Cave_RuinLamp_3dffefeb-0f1b-4179-a9c6-055f00e711d5, "RC_OIL_EternalsTechLamp");
+DB_Dialogs(ITEMGUID_S_RC_OIL_Cave_Pedestal_a6b1c097-ad46-40aa-8dc2-7cda20b27602, "RC_OIL_AeteranPedestal");
+PROC_LoopEffect("RS3_FX_GP_ScriptedEvent_ChanelledSource_01", TRIGGERGUID_S_RC_OIL_Excavation_PedestalFX_67b8b961-faa9-4e75-97e4-eec623379bb4, "RC_OIL_PedestalVFX", "RC_Main", "");
+PROC_LoopEffect("RS3_FX_GP_ScriptedEvent_HoECharacterGlow_01", TRIGGERGUID_S_RC_OIL_Excavation_PedestalFX_2_402729e0-5842-492c-874c-d8382ca0857f, "RC_OIL_PedestalVFX", "RC_Main", "");
+
+KBSECTION
+IF
+DB_RC_OIL_CaveEvents_CombatNPC(_Var1)
+THEN
+ProcSetInvulnerable(_Var1, 1);
+
+IF
+CharacterSawCharacter((CHARACTERGUID)_Var1, (CHARACTERGUID)_Var2)
+AND
+DB_IsPlayer(_Var1)
+AND
+DB_RC_OIL_CaveEvents_CombatNPC(_Var2)
+AND
+QueryOnlyOnce("RC_OIL_CaveCombatStart")
+THEN
+Proc_RC_OIL_CaveEvents_SetVulnerable();
+StartVoiceBark("RC_OIL_VB_CaveCombatHelpOut", _Var1);
+
+PROC
+Proc_RC_OIL_CaveEvents_SetVulnerable()
+AND
+DB_RC_OIL_CaveEvents_CombatNPC(_Var1)
+THEN
+ProcSetInvulnerable(_Var1, 0);
+NOT DB_RC_OIL_CaveEvents_CombatNPC(_Var1);
+
+IF
+DialogEnded("RC_OIL_CaveCombatDialog", _)
+AND
+GlobalGetFlag("RC_OIL_Cave_ExcavationHostile", 1)
+THEN
+Proc_RC_OIL_CaveEvents_MakeMagistersHostile();
+
+PROC
+Proc_RC_OIL_CaveEvents_SetVulnerable()
+AND
+QueryOnlyOnce("RC_OIL_CaveCombatSpawnBombers")
+THEN
+CharacterAppear(RC_OIL_Cave_MagisterFight_Spitter_02_9e94bad2-1e19-48f9-8bf1-47006fd69228, 1, "");
+CharacterAppear(RC_OIL_Cave_MagisterFight_Spitter_03_f2794f9b-de1e-44aa-885b-64d828b42831, 1, "");
+
+PROC
+Proc_RC_OIL_CaveEvents_MakeMagistersHostile()
+THEN
+CharacterSetRelationFactionToFaction("RC_OIL_Cave_Excavation", "Hero", 0);
+CharacterSetRelationFactionToFaction("Hero", "RC_OIL_Cave_Excavation", 0);
+
+IF
+CharacterDied(S_RC_OIL_Cave_MagisterCombatLeader_e0c0e47e-84d1-4e71-8da4-9bae87c1f553)
+THEN
+Proc_RC_OIL_CaveEvents_MakeMagistersHostile();
+
+PROC
+Proc_ObjectLeftCombat((CHARACTERGUID)_Var1, (INTEGER)_Var2)
+AND
+DB_RC_OIL_CaveEvents_CombatMagister(_Var1)
+AND
+DB_WasInCombat(_Var3, _Var2)
+THEN
+ObjectSetFlag(_Var3, "RC_OIL_Cave_CombatBonus", 0);
+
+PROC
+Proc_ObjectLeftCombat(CHARACTERGUID_S_RC_OIL_Cave_MagisterCombatLeader_e0c0e47e-84d1-4e71-8da4-9bae87c1f553, _)
+THEN
+ObjectSetFlag(CHARACTERGUID_S_RC_OIL_Cave_MagisterCombatLeader_e0c0e47e-84d1-4e71-8da4-9bae87c1f553, "RC_OIL_Cave_ExcavationRestartSpot");
+
+IF
+StoryEvent((CHARACTERGUID)_Var1, "RC_OIL_Cave_ExcavationSpot")
+AND
+QRY_IsInRange(_Var1, CHARACTERGUID_S_RC_OIL_Cave_MagisterCombatLeader_e0c0e47e-84d1-4e71-8da4-9bae87c1f553, 10)
+THEN
+Proc_StartDialog(0, "RC_OIL_CaveCombatDialog", CHARACTERGUID_S_RC_OIL_Cave_MagisterCombatLeader_e0c0e47e-84d1-4e71-8da4-9bae87c1f553, _Var1);
+
+IF
+StoryEvent((CHARACTERGUID)_Var1, "RC_OIL_Cave_ExcavationSpot")
+AND NOT
+QRY_IsInRange(_Var1, CHARACTERGUID_S_RC_OIL_Cave_MagisterCombatLeader_e0c0e47e-84d1-4e71-8da4-9bae87c1f553, 10)
+AND
+GetPosition(_Var1, _Var2, _Var3, _Var4)
+AND
+RealSubtract(_Var3, 2, _Var5)
+THEN
+CharacterUseSkillAtPosition(CHARACTERGUID_S_RC_OIL_Cave_MagisterCombatLeader_e0c0e47e-84d1-4e71-8da4-9bae87c1f553, "Jump_EnemyPhoenixDive", _Var2, _Var5, _Var4, 1, 1);
+ProcFaceEachother(CHARACTERGUID_S_RC_OIL_Cave_MagisterCombatLeader_e0c0e47e-84d1-4e71-8da4-9bae87c1f553, _Var1);
+Proc_StartDialog(0, "RC_OIL_CaveCombatDialog", CHARACTERGUID_S_RC_OIL_Cave_MagisterCombatLeader_e0c0e47e-84d1-4e71-8da4-9bae87c1f553, _Var1);
+
+IF
+DialogEnded("RC_OIL_AeteranPedestal", (INTEGER)_Var1)
+AND
+DB_DialogPlayers(_Var1, _Var2, _)
+AND
+QueryOnlyOnce("RC_OIL_VB_StaffOfDivinityPedestal")
+THEN
+StartVoiceBark("RC_OIL_VB_StaffOfDivinityPedestal_Generic", _Var2);
+
+IF
+DialogEnded((STRING)_Var1, (INTEGER)_Var2)
+AND
+DB_RC_OIL_Cave_EternalsVisions(_Var1)
+AND
+DB_DialogPlayers(_Var2, _Var3, 1)
+AND
+UserGetFlag(_Var3, "RC_OIL_Cave_EternalsCulture", 0)
+THEN
+UserSetFlag(_Var3, "RC_OIL_Cave_EternalsCulture");
+Proc_StartDialog(1, "RC_OIL_VB_EternalsCulture", _Var3);
+
+IF
+GameBookInterfaceClosed(ITEMGUID_S_RC_OIL_Cave_ExcavationJournal_8f8c8efc-566f-4268-954c-a6d13b533e2e, (CHARACTERGUID)_Var1)
+AND
+UserGetFlag(_Var1, "RC_OIL_Cave_StaffOfDivinity", 0)
+THEN
+UserSetFlag(_Var1, "RC_OIL_Cave_StaffOfDivinity");
+Proc_StartDialog(1, "RC_OIL_VB_StaffOfDivinity", _Var1);
+
+IF
+DialogEnded("RC_OIL_ExcavationBlackRing", (INTEGER)_Var1)
+AND
+DB_DialogPlayers(_Var1, _Var2, 1)
+AND
+UserGetFlag(_Var2, "RC_OIL_Cave_StaffOfDivinity", 0)
+THEN
+UserSetFlag(_Var2, "RC_OIL_Cave_StaffOfDivinity");
+Proc_StartDialog(1, "RC_OIL_VB_StaffOfDivinity", _Var2);
+
+IF
+CharacterUsedItem(_, (ITEMGUID)_Var2)
+AND
+DB_RC_OIL_EternalsArtefacts(_Var2, _, _)
+AND
+String(_Var2, _Var5)
+AND
+StringConcatenate("RC_OIL_Cave_EternalPiece", _Var5, _Var6)
+AND
+QueryOnlyOnce(_Var6)
+THEN
+PROC_LoopEffect("RS3_FX_GP_ScriptedEvent_SourcePillar_01", _Var2, "RC_OIL_Cave_EternalArtefact", "RC_Main", "");
+
+IF
+DB_RC_OIL_EternalsArtefacts(_Var1, _Var2, _)
+THEN
+DB_Dialogs(_Var1, _Var2);
+
+IF
+DialogStarted((STRING)_Var1, (INTEGER)_Var2)
+AND
+DB_RC_OIL_EternalsArtefacts(_, _Var1, _)
+AND
+DB_DialogPlayers(_Var2, _Var5, _)
+AND
+CharacterGetSourcePoints(_Var5, _Var7)
+AND
+_Var7 > 0
+THEN
+ObjectSetFlag(_Var5, "RC_OIL_CanUseEternalStone");
+
+IF
+DialogEnded((STRING)_Var1, (INTEGER)_Var2)
+AND
+DB_RC_OIL_EternalsArtefacts(_, _Var1, _)
+AND
+DB_DialogPlayers(_Var2, _Var5, _)
+THEN
+ObjectClearFlag(_Var5, "RC_OIL_CanUseEternalStone");
+
+IF
+DialogEnded((STRING)_Var1, (INTEGER)_Var2)
+AND
+DB_RC_OIL_EternalsArtefacts(_, _Var1, _Var4)
+AND
+DB_DialogPlayers(_Var2, _Var5, _)
+AND
+ObjectGetFlag(_Var5, "RC_OIL_EternalStone_CantUse", 1)
+AND
+ObjectGetFlag(_Var5, _Var4, 0)
+THEN
+ObjectClearFlag(_Var5, "RC_OIL_EternalStone_CantUse");
+StartVoiceBark("RC_OIL_VB_RuinPillar", _Var5);
+
+IF
+ObjectFlagSet((STRING)_Var1, (CHARACTERGUID)_Var2, _)
+AND
+DB_RC_OIL_EternalsRecipes(_Var1, _Var4, _)
+THEN
+CharacterUnlockRecipe(_Var2, _Var4, 1);
+
+IF
+DialogEnded((STRING)_Var1, (INTEGER)_Var2)
+AND
+DB_RC_OIL_EternalsArtefacts(_, _Var1, _Var4)
+AND
+DB_DialogPlayers(_Var2, _Var5, _)
+AND
+ObjectGetFlag(_Var5, "RC_OIL_EternalStone_CantUse", 0)
+AND
+ObjectGetFlag(_Var5, _Var4, 1)
+AND
+DB_RC_OIL_EternalsRecipes(_Var4, _, _Var8)
+AND NOT
+DB_RC_OIL_EternalRecipeCommented(_Var4)
+THEN
+DB_RC_OIL_EternalRecipeCommented(_Var4);
+StartVoiceBark(_Var8, _Var5);
+
+IF
+ObjectFlagSet("RemoveOneSourcePoint", (GUIDSTRING)_Var1, (INTEGER)_Var2)
+AND
+DB_DialogName(_Var3, _Var2)
+AND
+DB_RC_OIL_EternalsArtefacts(_Var4, _Var3, _)
+THEN
+PlayEffect(_Var4, "RS3_FX_GP_ScriptedEvent_Replenish_SourcePoint_01");
+
+
+EXITSECTION
+ENDEXITSECTION
+
+ParentTargetEdge "ReapersCoast"

@@ -1,0 +1,70 @@
+Version 1
+SubGoalCombiner SGC_AND
+
+INITSECTION
+DB_ItemOwnerShipIgnoreTemplates("LTS_Campfire_A_6fee7bbb-4adc-4222-a5b1-82fcfb8d1230");
+DB_ItemOwnerShipIgnoreTemplates("LTS_Campfire_B_130692f2-a065-4168-be66-27cf4df2fff0");
+DB_ItemOwnerShipIgnoreTemplates("LTS_Campfire_C_1086cce2-9164-4746-b3c3-2f8c943cb8fc");
+DB_ItemOwnerShipIgnoreTemplates("FUR_Humans_Camping_Sleepingbag_A_d76d0118-23cd-42af-b693-449c96c71d6d");
+DB_ItemOwnerShipIgnoreTemplates("FUR_Humans_Citz_Mattress_A_DarkBrown_eae64571-4e99-4036-b3e2-1dcc6da78c89");
+DB_ItemOwnerShipIgnoreTemplates("LTS_Candle_A_f21393ff-31bc-46ff-a024-985e72cd83f5");
+DB_ItemOwnerShipIgnoreTemplates("LTS_Candle_B_d5e83188-69f5-428f-8bca-64f00b441aef");
+DB_ItemOwnerShipIgnoreTemplates("LTS_Candle_C_b98b4f53-5cf3-46b1-8ecd-278f178a9816");
+DB_ItemOwnerShipIgnoreTemplates("LTS_Candle_D_511c5c17-2ed0-4b2e-a4b5-425621cb61ac");
+DB_ItemOwnerShipIgnoreTemplates("LTS_Candle_E_f497d3af-8837-4183-9bf4-aef2ef1145d1");
+DB_ItemOwnerShipIgnoreTemplates("LTS_Candle_F_0121d78b-8831-4607-9c2f-db63edcdfbb6");
+DB_ItemOwnerShipIgnoreTemplates("LTS_Candle_G_83e373a2-ca7b-4c35-8761-d04605aaabca");
+DB_ItemOwnerShipIgnoreTemplates("LTS_Candle_H_49acf8f4-946e-4f62-a12e-e85d332f3d96");
+DB_ItemOwnerShipIgnoreTemplates("LTS_Candle_I_728b84a6-3929-48eb-9368-631a0614e38d");
+DB_ItemOwnerShipIgnoreTemplates("LTS_Candle_J_b8b63ed1-7c28-4c68-90b2-e83db433467b");
+DB_ItemOwnerShipIgnoreTemplates("LTS_Candle_K_ef4d1dd9-8d2a-4677-98c3-bb9dd52c0865");
+DB_ItemOwnerShipIgnoreTemplates("BLD_Humans_Dungeon_Stairs_A_5H_4L_B_Dynamic_0b674c38-44c6-4d69-84fe-b88c1df30fa4");
+
+KBSECTION
+PROC
+PROC_Init_SetItemOwners((STRING)_Var1)
+AND
+DB_ItemOwnerShipTriggers(_Var1, _Var2, _Var3)
+THEN
+TriggerSetItemOwner(_Var2, _Var3);
+ProcTriggerRegisterForPlayers(_Var2);
+NOT DB_ItemOwnerShipTriggers(_Var1, _Var2, _Var3);
+DB_TempItemOwnerShipTrigger(_Var1, _Var2);
+DB_OwnershipTrigger(_Var2);
+
+PROC
+PROC_Init_ClearItemOwners((STRING)_Var1)
+AND
+DB_ItemOwnerShipClearItem(_Var1, _Var2)
+THEN
+ItemClearOwner(_Var2);
+NOT DB_ItemOwnerShipClearItem(_Var1, _Var2);
+
+PROC
+PROC_Init_ClearItemOwners((STRING)_Var1)
+AND
+DB_TempItemOwnerShipTrigger(_Var1, _Var2)
+AND
+DB_ItemOwnerShipIgnoreTemplates(_Var3)
+THEN
+NOT DB_TempItemOwnerShipTrigger(_Var1, _Var2);
+TriggerClearItemTemplateOwners(_Var2, _Var3);
+
+IF
+DB_ItemOwnerShipTriggers(_Var1, _Var2, _Var3)
+AND
+DB_CurrentLevel(_Var1)
+THEN
+PROC_Init_SetItemOwners(_Var1);
+PROC_Init_ClearItemOwners(_Var1);
+
+IF
+RegionStarted((STRING)_Var1)
+THEN
+PROC_Init_SetItemOwners(_Var1);
+PROC_Init_ClearItemOwners(_Var1);
+
+
+EXITSECTION
+ENDEXITSECTION
+

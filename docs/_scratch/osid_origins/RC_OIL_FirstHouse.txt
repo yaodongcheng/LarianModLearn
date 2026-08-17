@@ -1,0 +1,234 @@
+Version 1
+SubGoalCombiner SGC_AND
+
+INITSECTION
+DB_Dialogs(CHARACTERGUID_S_RC_OIL_FirstHouse_Magister_1_4ff391b4-d899-47d5-b794-3cbfd8d6dd6c, "RC_OIL_FirstHouse_Magister_1");
+DB_Dialogs(CHARACTERGUID_S_RC_OIL_FirstHouse_Magister_2_4c8b850c-f7d5-43c1-a0e3-1eaaec83316f, "RC_OIL_FirstHouse_Magister_2");
+CharacterSetFightMode(CHARACTERGUID_S_RC_OIL_FirstHouse_Magister_1_4ff391b4-d899-47d5-b794-3cbfd8d6dd6c, 1, 1);
+CharacterSetFightMode(CHARACTERGUID_S_RC_OIL_FirstHouse_Magister_2_4c8b850c-f7d5-43c1-a0e3-1eaaec83316f, 1, 1);
+CharacterSetFightMode(CHARACTERGUID_S_RC_OIL_FirstHouse_DeadMagister_Ghost_144d96cc-2336-4249-81e3-b7a2a9c01aa6, 1, 1);
+DB_Ghosts(CHARACTERGUID_S_RC_OIL_FirstHouse_Woman_641ceb87-0b5b-4716-930d-05e3f5c8ac9c, CHARACTERGUID_S_RC_OIL_FirstHouse_Ghost_300b6c9b-6191-4343-8d42-415eded29c44, "RC_OIL_FirstHouse_Ghost");
+DB_Ghosts(CHARACTERGUID_S_RC_OIL_FirstHouse_DeadMagister_A_44fdd056-bc94-4e94-b84f-1bc99ed2fcb2, CHARACTERGUID_S_RC_OIL_FirstHouse_DeadMagister_Ghost_144d96cc-2336-4249-81e3-b7a2a9c01aa6, "RC_OIL_FirstHouse_DeadMagister_Ghost");
+DB_Ghosts(CHARACTERGUID_S_RC_OIL_FirstHouse_DeadWorker_2_097d1bb5-ad13-4ee3-bcea-cc5ee3c51f93, CHARACTERGUID_S_RC_OIL_FirstHouse_DeadWorker_2_Ghost_017bf587-2e93-4dd8-a017-004092fb1e4d, "RC_OIL_FirstHouse_Worker2_Ghost");
+ProcTriggerRegisterForPlayers(TRIGGERGUID_S_RC_OIL_FirstHouseArea_dbe908b8-6602-446c-a5a8-b3ccab5864d3);
+DB_OneShotUser_VoicebarkTrigger(TRIGGERGUID_S_RC_OIL_FirstHouse_DeadMagister_f92f3984-ef80-4da9-95d5-da4385ac7e43, "RC_OIL_VB_FirstHouse_DeadMagister");
+DB_OneShotUser_VoicebarkTrigger(TRIGGERGUID_S_RC_OIL_VB_FirstHouse_Dead_48a6018e-4f6c-49d5-ac80-9888872c2b78, "RC_OIL_VB_FirstHouse_DeadBodies");
+DB_OneShotPlayerTrigger(TRIGGERGUID_S_RC_OIL_VB_Battle_82dca74a-7441-4325-ad4c-97fc186309ec);
+DB_RC_OIL_FirstHouseEntity(CHARACTERGUID_S_RC_OIL_FirstHouse_Magister_1_4ff391b4-d899-47d5-b794-3cbfd8d6dd6c);
+DB_RC_OIL_FirstHouseEntity(CHARACTERGUID_S_RC_OIL_FirstHouse_Magister_2_4c8b850c-f7d5-43c1-a0e3-1eaaec83316f);
+DB_RC_OIL_FirstHouseEntity(CHARACTERGUID_S_RC_OIL_FirstHouse_Creep_1_63228783-4d87-4cee-a5cf-c26ea92d0e96);
+DB_RC_OIL_FirstHouseEntity(CHARACTERGUID_S_RC_OIL_FirstHouse_Creep_2_ec9c8959-1e51-4121-bcc1-464cc57a3346);
+DB_RC_OIL_FirstHouseEntity(CHARACTERGUID_S_RC_OIL_FirstHouse_Creep_3_d960b7d7-08ee-4c44-aff1-fae865bb229b);
+DB_RC_OIL_FirstHouseEntity(CHARACTERGUID_S_RC_OIL_FirstHouse_Creep_3_d960b7d7-08ee-4c44-aff1-fae865bb229b);
+DB_RC_OIL_FirstHouseEntity(CHARACTERGUID_S_RC_OIL_FirstHouse_Creep_4_5d111bc8-988e-4018-a654-14462773db2d);
+DB_RC_OIL_FirstHouseVoidwoken(CHARACTERGUID_S_RC_OIL_FirstHouse_Creep_1_63228783-4d87-4cee-a5cf-c26ea92d0e96);
+DB_RC_OIL_FirstHouseVoidwoken(CHARACTERGUID_S_RC_OIL_FirstHouse_Creep_2_ec9c8959-1e51-4121-bcc1-464cc57a3346);
+DB_RC_OIL_FirstHouseVoidwoken(CHARACTERGUID_S_RC_OIL_FirstHouse_Creep_3_d960b7d7-08ee-4c44-aff1-fae865bb229b);
+DB_RC_OIL_FirstHouseVoidwoken(CHARACTERGUID_S_RC_OIL_FirstHouse_Creep_4_5d111bc8-988e-4018-a654-14462773db2d);
+
+KBSECTION
+IF
+GlobalFlagSet("RC_OIL_FirstHouse_MagisterShield")
+AND
+CharacterGetEquippedShield(CHARACTERGUID_S_RC_OIL_FirstHouse_DeadMagister_Ghost_144d96cc-2336-4249-81e3-b7a2a9c01aa6, _Var1)
+THEN
+CharacterUnequipItem(CHARACTERGUID_S_RC_OIL_FirstHouse_DeadMagister_Ghost_144d96cc-2336-4249-81e3-b7a2a9c01aa6, _Var1);
+
+IF
+DB_RC_OIL_FirstHouseEntity(_Var1)
+THEN
+ProcSetInvulnerable(_Var1, 1);
+
+IF
+CharacterEnteredTrigger((CHARACTERGUID)_Var1, TRIGGERGUID_S_RC_OIL_FirstHouseArea_dbe908b8-6602-446c-a5a8-b3ccab5864d3)
+AND
+QueryOnlyOnce("RC_OIL_FirstHouseCombat")
+THEN
+DB_NOOP(1);
+
+IF
+ObjectEnteredCombat((CHARACTERGUID)_Var1, (INTEGER)_Var2)
+AND
+DB_IsPlayer(_Var1)
+AND
+DB_RC_OIL_FirstHouseEntity(_Var3)
+AND
+DB_CombatCharacters(_Var3, _Var2)
+AND
+QueryOnlyOnce("RC_OIL_FirstHouseCombat")
+THEN
+DB_NOOP(1);
+
+IF
+DB_OnlyOnce("RC_OIL_FirstHouseCombat")
+AND
+DB_RC_OIL_FirstHouseEntity(_Var1)
+THEN
+ProcSetInvulnerable(_Var1, 0);
+
+IF
+DB_OnlyOnce("RC_OIL_FirstHouseCombat")
+THEN
+CharacterRemoveSkill(CHARACTERGUID_S_RC_OIL_FirstHouse_Creep_4_5d111bc8-988e-4018-a654-14462773db2d, "Projectile_Quest_EnemyVWPoisonBall_Fake");
+CharacterRemoveSkill(CHARACTERGUID_S_RC_OIL_FirstHouse_Creep_2_ec9c8959-1e51-4121-bcc1-464cc57a3346, "Projectile_Quest_EnemyVWPoisonBall_Fake");
+CharacterAddSkill(CHARACTERGUID_S_RC_OIL_FirstHouse_Creep_4_5d111bc8-988e-4018-a654-14462773db2d, "Projectile_EnemyVWPoisonBall");
+CharacterAddSkill(CHARACTERGUID_S_RC_OIL_FirstHouse_Creep_2_ec9c8959-1e51-4121-bcc1-464cc57a3346, "Projectile_EnemyVWPoisonBall");
+
+PROC
+ProcOneShotTriggerEntered((CHARACTERGUID)_Var1, TRIGGERGUID_S_RC_OIL_VB_Battle_82dca74a-7441-4325-ad4c-97fc186309ec)
+THEN
+Proc_StartDialog(1, "RC_OIL_VB_SeeBattle", _Var1);
+
+IF
+DB_OnlyOnce("RC_OIL_FirstHouseCombat")
+THEN
+ProcTriggerUnregisterForPlayers(TRIGGERGUID_S_RC_OIL_VB_Battle_82dca74a-7441-4325-ad4c-97fc186309ec);
+NOT DB_OneShotPlayerTrigger(TRIGGERGUID_S_RC_OIL_VB_Battle_82dca74a-7441-4325-ad4c-97fc186309ec);
+SetStoryEvent(CHARACTERGUID_S_RC_OIL_FirstHouse_Magister_1_4ff391b4-d899-47d5-b794-3cbfd8d6dd6c, "GEN_StopFakeAttack");
+SetStoryEvent(CHARACTERGUID_S_RC_OIL_FirstHouse_Magister_2_4c8b850c-f7d5-43c1-a0e3-1eaaec83316f, "GEN_StopFakeAttack");
+SetStoryEvent(CHARACTERGUID_S_RC_OIL_FirstHouse_Creep_3_d960b7d7-08ee-4c44-aff1-fae865bb229b, "GEN_StopFakeAttack");
+
+IF
+ObjectEnteredCombat((CHARACTERGUID)_Var1, (INTEGER)_Var2)
+AND
+DB_IsPlayer(_Var1)
+AND
+DB_RC_OIL_FirstHouseVoidwoken(_Var3)
+AND
+DB_CombatCharacters(_Var3, _Var2)
+AND
+QueryOnlyOnce("RC_OIL_FirstHouseCombatVB")
+THEN
+StartVoiceBark("RC_OIL_VB_FirstHouseCombat", _Var1);
+
+IF
+ObjectEnteredCombat((CHARACTERGUID)_Var1, (INTEGER)_Var2)
+AND
+DB_RC_OIL_FirstHouseVoidwoken(_Var3)
+AND
+DB_CombatCharacters(_Var3, _Var2)
+AND
+ObjectGetFlag(_Var1, "RC_OIL_FirstHouse_HelpedMagister", 0)
+THEN
+ObjectSetFlag(_Var1, "RC_OIL_FirstHouse_HelpedMagister");
+
+PROC
+Proc_ObjectLeftCombat(CHARACTERGUID_S_RC_OIL_FirstHouse_Magister_2_4c8b850c-f7d5-43c1-a0e3-1eaaec83316f, (INTEGER)_Var1)
+AND
+DB_RC_OIL_FirstHouseVoidwoken(_Var2)
+AND
+DB_WasInCombat(_Var2, _Var1)
+AND
+DB_IsPlayer(_Var3)
+AND
+QRY_IsInRange(CHARACTERGUID_S_RC_OIL_FirstHouse_Magister_2_4c8b850c-f7d5-43c1-a0e3-1eaaec83316f, _Var3, 15)
+AND
+QueryOnlyOnce("RC_OIL_FirstHouse_Magister2Dialog")
+THEN
+Proc_StartDialog(0, "RC_OIL_FirstHouse_Magister_2", CHARACTERGUID_S_RC_OIL_FirstHouse_Magister_2_4c8b850c-f7d5-43c1-a0e3-1eaaec83316f, _Var3);
+
+IF
+DialogEnded("RC_OIL_FirstHouse_Magister_2", (INTEGER)_Var1)
+AND
+DialogGetInvolvedPlayer(_Var1, 1, _Var2)
+AND
+ObjectGetFlag(_Var2, "RC_OIL_FirstHouse_Hostile", 1)
+THEN
+ProcMakeNPCHostile(CHARACTERGUID_S_RC_OIL_FirstHouse_Magister_2_4c8b850c-f7d5-43c1-a0e3-1eaaec83316f, _Var2);
+
+IF
+DialogEnded("RC_OIL_FirstHouse_Magister_2", (INTEGER)_Var1)
+AND
+DB_DialogPlayers(_Var1, _Var2, 1)
+AND
+ObjectGetFlag(_Var2, "RC_OIL_FirstHouse_Hostile", 0)
+AND
+PartyGetFlag(_Var2, "RC_OIL_CORE_RD_MaybeTheMagistersAreRight", 0)
+THEN
+PartySetFlag(_Var2, "RC_OIL_CORE_RD_MaybeTheMagistersAreRight");
+ProcDefineReflectionDialog("RC_OIL_CORE_RD_MaybeTheMagistersAreRight", _Var2);
+
+IF
+CharacterLeftTrigger((CHARACTERGUID)_Var1, TRIGGERGUID_S_RC_OIL_FirstHouseArea_dbe908b8-6602-446c-a5a8-b3ccab5864d3)
+AND
+QRY_AnyRegionActive()
+AND NOT
+DB_InRegion(_, TRIGGERGUID_S_RC_OIL_FirstHouseArea_dbe908b8-6602-446c-a5a8-b3ccab5864d3)
+AND
+CharacterIsDead(CHARACTERGUID_S_RC_OIL_FirstHouse_Creep_1_63228783-4d87-4cee-a5cf-c26ea92d0e96, 1)
+AND
+CharacterIsDead(CHARACTERGUID_S_RC_OIL_FirstHouse_Creep_2_ec9c8959-1e51-4121-bcc1-464cc57a3346, 1)
+AND
+CharacterIsDead(CHARACTERGUID_S_RC_OIL_FirstHouse_Creep_3_d960b7d7-08ee-4c44-aff1-fae865bb229b, 1)
+AND
+CharacterIsDead(CHARACTERGUID_S_RC_OIL_FirstHouse_Creep_4_5d111bc8-988e-4018-a654-14462773db2d, 1)
+AND
+QueryOnlyOnce("RC_OIL_FirstHouseLeave")
+THEN
+SetHasDialog(CHARACTERGUID_S_RC_OIL_FirstHouse_Magister_2_4c8b850c-f7d5-43c1-a0e3-1eaaec83316f, 0);
+ProcCharacterMoveTo(CHARACTERGUID_S_RC_OIL_FirstHouse_Magister_2_4c8b850c-f7d5-43c1-a0e3-1eaaec83316f, TRIGGERGUID_S_RC_OIL_FirstHouse_Leave_7e2c8567-1377-4ed6-98b0-5feed5d4e425, 0, "RC_OIL_FirstHouse_Poof");
+SetHasDialog(CHARACTERGUID_S_RC_OIL_FirstHouse_Magister_1_4ff391b4-d899-47d5-b794-3cbfd8d6dd6c, 0);
+ProcCharacterMoveTo(CHARACTERGUID_S_RC_OIL_FirstHouse_Magister_1_4ff391b4-d899-47d5-b794-3cbfd8d6dd6c, TRIGGERGUID_S_RC_OIL_FirstHouse_Leave_7e2c8567-1377-4ed6-98b0-5feed5d4e425, 0, "RC_OIL_FirstHouse_Poof");
+ProcTriggerUnregisterForPlayers(TRIGGERGUID_S_RC_OIL_FirstHouseArea_dbe908b8-6602-446c-a5a8-b3ccab5864d3);
+
+IF
+DB_OnlyOnce("RC_OIL_FirstHouseLeave")
+AND
+DB_RC_OIL_FirstHouseEntity(_Var1)
+THEN
+NOT DB_RC_OIL_FirstHouseEntity(_Var1);
+
+IF
+DB_OnlyOnce("RC_OIL_FirstHouseLeave")
+AND
+DB_RC_OIL_FirstHouseVoidwoken(_Var1)
+THEN
+NOT DB_RC_OIL_FirstHouseVoidwoken(_Var1);
+
+IF
+StoryEvent((CHARACTERGUID)_Var1, "RC_OIL_FirstHouse_Poof")
+THEN
+CharacterDisappearOutOfSight(_Var1, 0, 0, "", 0);
+
+IF
+DialogEnded("RC_OIL_FirstHouse_Worker2_Ghost", (INTEGER)_Var1)
+AND
+DB_DialogPlayers(_Var1, _Var2, 1)
+AND
+ObjectGetFlag(_Var2, "RC_OIL_FirstHouse_Worker2Ghost_DeathWitnessed", 1)
+THEN
+PlayAnimation(CHARACTERGUID_S_RC_OIL_FirstHouse_DeadWorker_2_Ghost_017bf587-2e93-4dd8-a017-004092fb1e4d, "knockdown_fall", "RC_OIL_CookKnockDown");
+
+IF
+StoryEvent(CHARACTERGUID_S_RC_OIL_FirstHouse_DeadWorker_2_Ghost_017bf587-2e93-4dd8-a017-004092fb1e4d, "RC_OIL_CookKnockDown")
+THEN
+CharacterSetAnimationOverride(CHARACTERGUID_S_RC_OIL_FirstHouse_DeadWorker_2_Ghost_017bf587-2e93-4dd8-a017-004092fb1e4d, "knockdown_loop");
+
+IF
+RegionEnded("RC_Main")
+AND
+DB_RC_OIL_FirstHouseEntity(_Var1)
+THEN
+NOT DB_RC_OIL_FirstHouseEntity(_Var1);
+
+IF
+RegionEnded("RC_Main")
+AND
+DB_RC_OIL_FirstHouseVoidwoken(_Var1)
+THEN
+NOT DB_RC_OIL_FirstHouseVoidwoken(_Var1);
+
+IF
+RegionEnded("RC_Main")
+THEN
+GoalCompleted;
+
+
+EXITSECTION
+ProcTriggerUnregisterForPlayers(TRIGGERGUID_S_RC_OIL_FirstHouseArea_dbe908b8-6602-446c-a5a8-b3ccab5864d3);
+ProcTriggerUnregisterForPlayers(TRIGGERGUID_S_RC_OIL_FirstHouse_DeadMagister_f92f3984-ef80-4da9-95d5-da4385ac7e43);
+ProcTriggerUnregisterForPlayers(TRIGGERGUID_S_RC_OIL_VB_FirstHouse_Dead_48a6018e-4f6c-49d5-ac80-9888872c2b78);
+ProcTriggerUnregisterForPlayers(TRIGGERGUID_S_RC_OIL_VB_Battle_82dca74a-7441-4325-ad4c-97fc186309ec);
+ENDEXITSECTION
+
+ParentTargetEdge "ReapersCoast"

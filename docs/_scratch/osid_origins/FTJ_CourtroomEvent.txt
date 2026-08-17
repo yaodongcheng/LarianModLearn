@@ -1,0 +1,160 @@
+Version 1
+SubGoalCombiner SGC_AND
+
+INITSECTION
+DB_CrimeReaction_DoNotInterrogate(RC_FTJ_HighPriest_2a09f30c-0a3b-495f-8386-5390a6c4c08d);
+CharacterSetCanTrade(CHARACTERGUID_S_FTJ_HighPriest_2a09f30c-0a3b-495f-8386-5390a6c4c08d, 0);
+
+KBSECTION
+IF
+StoryEvent((GUIDSTRING)_Var1, "StartCourtroomDialog")
+AND
+CharacterIsDead(CHARACTERGUID_S_FTJ_CourtRoomPrisoner_44d58ae4-66ab-4dfb-9f1d-0dcd59a48487, 0)
+AND
+GlobalGetFlag("FTJ_CourtroomTransformPrisoner", 0)
+AND
+QueryOnlyOnce("RC_FTJ_CourtRoomEventOneShot")
+THEN
+ProcForceStopDialog(CHARACTERGUID_S_FTJ_HighPriest_2a09f30c-0a3b-495f-8386-5390a6c4c08d);
+Proc_StartDialog(0, "FTJ_CourtRoomEvent", RC_FTJ_HighPriest_2a09f30c-0a3b-495f-8386-5390a6c4c08d, RC_FTJ_CourtRoomPrisoner_44d58ae4-66ab-4dfb-9f1d-0dcd59a48487, RC_FTJ_CourtRoomGuard_001_c51d581d-9245-431f-a1eb-88adc8149827, _Var1);
+
+IF
+StoryEvent((GUIDSTRING)_Var1, "StartCourtroomDialog")
+AND
+QueryOnlyOnce("RC_FTJ_CourtRoomEventOneShot")
+THEN
+ProcForceStopDialog(CHARACTERGUID_S_FTJ_HighPriest_2a09f30c-0a3b-495f-8386-5390a6c4c08d);
+CharacterSetRelationFactionToFaction("Hero", "RC_FTJ_ChapelMagister", 0);
+CharacterSetRelationFactionToFaction("RC_FTJ_ChapelMagister", "Hero", 0);
+
+IF
+AttackedByObject((CHARACTERGUID)_Var1, (CHARACTERGUID)_Var2, _, _, _)
+AND
+DB_IsPlayer(_Var2)
+AND
+DB_FTJ_ChapelMagisters(_Var1)
+AND NOT
+DB_CourtroomMagistersGoHostile(_Var1)
+AND
+QueryOnlyOnce("FTJ_PurgeCourtroomPrisoner")
+THEN
+Proc_FTJ_CourtRoomMagisters_HostileBeforeSceneEnds();
+
+PROC
+Proc_FTJ_CourtRoomMagisters_HostileBeforeSceneEnds()
+AND
+DB_FTJ_ChapelMagisters(_Var1)
+THEN
+DB_CourtroomMagistersGoHostile(_Var1);
+ProcForceStopDialog(_Var1);
+
+PROC
+Proc_FTJ_CourtRoomMagisters_HostileBeforeSceneEnds()
+THEN
+CharacterSetRelationFactionToFaction("Hero", "RC_FTJ_ChapelMagister", 0);
+CharacterSetRelationFactionToFaction("RC_FTJ_ChapelMagister", "Hero", 0);
+GlobalSetFlag("FTJ_CourtroomTransformPrisoner");
+
+IF
+DialogEnded("FTJ_CourtRoomEvent", _)
+THEN
+CharacterSetRelationFactionToFaction("Hero", "RC_FTJ_ChapelMagister", 0);
+CharacterSetRelationFactionToFaction("RC_FTJ_ChapelMagister", "Hero", 0);
+Proc_SceneOver("FTJ_CourtRoomEvent");
+
+IF
+GlobalFlagSet("FTJ_CourtroomTransformPrisoner")
+AND
+GetPosition(CHARACTERGUID_S_FTJ_CourtRoomPrisoner_44d58ae4-66ab-4dfb-9f1d-0dcd59a48487, _Var1, _Var2, _Var3)
+THEN
+CharacterLookAt(CHARACTERGUID_S_FTJ_HighPriest_2a09f30c-0a3b-495f-8386-5390a6c4c08d, CHARACTERGUID_S_FTJ_CourtRoomPrisoner_44d58ae4-66ab-4dfb-9f1d-0dcd59a48487);
+CharacterAddSkill(CHARACTERGUID_S_FTJ_HighPriest_2a09f30c-0a3b-495f-8386-5390a6c4c08d, "Target_Quest_PurgeCharacter");
+CharacterUseSkill(CHARACTERGUID_S_FTJ_HighPriest_2a09f30c-0a3b-495f-8386-5390a6c4c08d, "Target_Quest_PurgeCharacter", CHARACTERGUID_S_FTJ_CourtRoomPrisoner_44d58ae4-66ab-4dfb-9f1d-0dcd59a48487, 0);
+PlayEffectAtPosition("RS3_FX_Skills_Source_Resurrect_Target_Cast", _Var1, _Var2, _Var3);
+TimerLaunch("FTJ_TransformPrisoner", 4250);
+CharacterSetAnimationOverride(CHARACTERGUID_S_FTJ_CourtRoomPrisoner_44d58ae4-66ab-4dfb-9f1d-0dcd59a48487, "cower");
+
+IF
+TextEventSet("tCR")
+THEN
+GlobalSetFlag("FTJ_CourtroomTransformPrisoner");
+
+IF
+TimerFinished("FTJ_TransformPrisoner")
+AND
+GetPosition(CHARACTERGUID_S_FTJ_CourtRoomPrisoner_44d58ae4-66ab-4dfb-9f1d-0dcd59a48487, _Var1, _Var2, _Var3)
+THEN
+CharacterSetAnimationOverride(CHARACTERGUID_S_FTJ_CourtRoomPrisoner_44d58ae4-66ab-4dfb-9f1d-0dcd59a48487, "");
+Transform(CHARACTERGUID_S_FTJ_CourtRoomPrisoner_44d58ae4-66ab-4dfb-9f1d-0dcd59a48487, "QUEST_FTJ_Courtroom_SilentMonk_b0556648-ec3b-42e5-894f-838953f77dbd", 0);
+ApplyStatus(CHARACTERGUID_S_FTJ_CourtRoomPrisoner_44d58ae4-66ab-4dfb-9f1d-0dcd59a48487, "KNOCKED_DOWN", 1.5, 1);
+SetCanFight(CHARACTERGUID_S_FTJ_CourtRoomPrisoner_44d58ae4-66ab-4dfb-9f1d-0dcd59a48487, 1);
+CharacterAddSkill(CHARACTERGUID_S_FTJ_CourtRoomPrisoner_44d58ae4-66ab-4dfb-9f1d-0dcd59a48487, "Jump_EnemyTacticalRetreat");
+SetFaction(CHARACTERGUID_S_FTJ_CourtRoomPrisoner_44d58ae4-66ab-4dfb-9f1d-0dcd59a48487, "GLO_SilentMonks");
+CharacterSetImmortal(CHARACTERGUID_S_FTJ_HighPriest_2a09f30c-0a3b-495f-8386-5390a6c4c08d, 0);
+
+IF
+TimerFinished("FTJ_TransformPrisoner")
+AND
+DB_IsPlayer(_Var1)
+THEN
+ObjectSetFlag(_Var1, "QuestUpdate_FTJ_Escape_Purging");
+CharacterAddAttitudeTowardsPlayer(CHARACTERGUID_S_FTJ_CourtRoomPrisoner_44d58ae4-66ab-4dfb-9f1d-0dcd59a48487, _Var1, -100);
+
+IF
+ObjectTurnStarted(CHARACTERGUID_S_FTJ_HighPriest_2a09f30c-0a3b-495f-8386-5390a6c4c08d)
+AND
+GlobalGetFlag("FTJ_CourtroomTransformPrisoner", 0)
+AND
+CharacterIsDead(CHARACTERGUID_S_FTJ_CourtRoomPrisoner_44d58ae4-66ab-4dfb-9f1d-0dcd59a48487, 0)
+THEN
+GlobalSetFlag("FTJ_CourtroomTransformPrisoner");
+
+IF
+DB_FTJ_ChapelMagisters(_Var1)
+THEN
+DB_SceneManager(_Var1, "FTJ_CourtRoomEvent");
+DB_CrimeReaction_DoNotInterrogate(_Var1);
+ProcCharacterEnableCrime(_Var1, "Assault");
+ProcCharacterEnableCrime(_Var1, "Murder");
+
+PROC
+Proc_SceneInterrupted((GUIDSTRING)_Var1, (CHARACTERGUID)_Var2, "FTJ_CourtRoomEvent", "Attacked")
+THEN
+GlobalSetFlag("FTJ_CourtroomTransformPrisoner");
+ProcForceStopDialog(_Var1);
+
+PROC
+Proc_SceneInterrupted((GUIDSTRING)_Var1, (CHARACTERGUID)_Var2, "FTJ_CourtRoomEvent", "PlayerTeleportInDialog")
+THEN
+GlobalSetFlag("FTJ_CourtroomTransformPrisoner");
+ProcForceStopDialog(_Var1);
+
+IF
+CharacterEnteredTrigger((CHARACTERGUID)_Var1, TRIGGERGUID_S_FTJ_XP_CourtRoomQuarters_87e27e73-69ce-4a41-ad6f-6c04decc34e6)
+AND
+QRY_SpeakerIsAvailable(_Var1)
+AND
+QueryOnlyOnce("FTJ_CourtRoomQuartersVB")
+THEN
+StartVoiceBark("FTJ_VB_CourtRoomQuarters", _Var1);
+
+IF
+CharacterDying(S_FTJ_CourtRoomPrisoner_44d58ae4-66ab-4dfb-9f1d-0dcd59a48487)
+THEN
+ItemTemplateAddTo("LOOT_Bodyparts_C_a3c85ced-1b60-4e91-930b-2d76109791b5", S_FTJ_CourtRoomPrisoner_44d58ae4-66ab-4dfb-9f1d-0dcd59a48487, 1);
+
+IF
+CharacterDying(S_FTJ_HighPriest_2a09f30c-0a3b-495f-8386-5390a6c4c08d)
+THEN
+ItemTemplateAddTo("LOOT_Bodyparts_G_982bdb9f-0843-4e5f-a471-e1b0e9e0c7a5", S_FTJ_HighPriest_2a09f30c-0a3b-495f-8386-5390a6c4c08d, 1);
+
+PROC
+ProcRegionEnded("FJ_FortJoy_Main")
+THEN
+GoalCompleted;
+
+
+EXITSECTION
+ENDEXITSECTION
+
+ParentTargetEdge "FortJoy"

@@ -1,0 +1,232 @@
+Version 1
+SubGoalCombiner SGC_AND
+
+INITSECTION
+DB_Dialogs(RC_FTJ_GheistDaughter_7511c722-d6fa-4236-ab56-e68018362861, "FTJ_GheistDaughter");
+DB_Dialogs(CHARACTERGUID_S_FTJ_BeachGheist_47263b13-ace6-4950-99b6-4f2b6ae8cc6c, "FTJ_BeachGheist");
+DB_HasStoryEvent(RC_FTJ_GheistDaughterRing_3a52e9c1-5acf-487b-9533-3519993d34a2, "RC_FTJ_HasGheistRing");
+DB_GiveItemToEvent(RC_FTJ_GheistDaughterRing_3a52e9c1-5acf-487b-9533-3519993d34a2, "RC_FTJ_GheistRingTo");
+ItemToInventory(ITEMGUID_S_FTJ_ChapelUpperFloorDoorKey_da06411f-48f8-4a1a-a576-635fc56ec2a8, CHARACTERGUID_S_FTJ_GheistDaughter_7511c722-d6fa-4236-ab56-e68018362861);
+DB_GiveItemToEvent(ITEMGUID_S_FTJ_ChapelUpperFloorDoorKey_da06411f-48f8-4a1a-a576-635fc56ec2a8, "FTJ_CourtRoomKeyTo");
+DB_HasStoryEvent(ITEMGUID_S_FTJ_ChapelUpperFloorDoorKey_da06411f-48f8-4a1a-a576-635fc56ec2a8, "FTJ_HasCourtRoomKey");
+CharacterSetCanTrade(CHARACTERGUID_S_FTJ_BeachGheist_47263b13-ace6-4950-99b6-4f2b6ae8cc6c, 0);
+ItemToInventory(RC_FTJ_GheistDaughterRing_3a52e9c1-5acf-487b-9533-3519993d34a2, RC_FTJ_BeachGheist_47263b13-ace6-4950-99b6-4f2b6ae8cc6c, -1);
+DB_IsNotMessingAround(CHARACTERGUID_S_FTJ_BeachGheist_47263b13-ace6-4950-99b6-4f2b6ae8cc6c);
+DB_DialogMoneyTransfer(1, "FTJ_YarrowReunitedWithFather", 1);
+DB_DialogMoneyTransfer(2, "FTJ_YarrowReunitedWithFather", 50);
+DB_KilledEvent(RC_FTJ_BeachGheist_47263b13-ace6-4950-99b6-4f2b6ae8cc6c, "FTJ_PlayerKilledMigo");
+
+KBSECTION
+IF
+DB_Dead(CHARACTERGUID_S_FTJ_GheistDaughter_7511c722-d6fa-4236-ab56-e68018362861)
+AND
+DB_IsPlayer(_Var1)
+AND
+DB_Sees(_Var1, CHARACTERGUID_S_FTJ_GheistDaughter_7511c722-d6fa-4236-ab56-e68018362861)
+AND
+PartyGetFlag(_Var1, "QuestUpdate_RC_FTJ_MurderousGheist_InfoGheist", 1)
+THEN
+PartySetFlag(_Var1, "QuestUpdate_RC_FTJ_MurderousGheist_YarrowDead");
+
+IF
+CharacterSawCharacter((CHARACTERGUID)_Var1, RC_FTJ_BeachGheist_47263b13-ace6-4950-99b6-4f2b6ae8cc6c)
+AND
+DB_IsPlayer(_Var1)
+AND
+QRY_SpeakerIsAvailable(_Var1)
+AND
+CharacterIsDead(CHARACTERGUID_S_FTJ_BeachGheist_47263b13-ace6-4950-99b6-4f2b6ae8cc6c, 0)
+AND
+QueryOnlyOnce("FTJ_SawGheistEatingAD")
+THEN
+Proc_StartDialog(1, "FTJ_VB_GheistFight", _Var1);
+
+IF
+CharacterSawCharacter((CHARACTERGUID)_Var1, RC_FTJ_BeachGheist_47263b13-ace6-4950-99b6-4f2b6ae8cc6c)
+AND NOT
+DB_Dead(CHARACTERGUID_S_FTJ_BeachGheist_47263b13-ace6-4950-99b6-4f2b6ae8cc6c)
+AND
+DB_IsPlayer(_Var1)
+THEN
+UserSetFlag(_Var1, "QuestUpdate_RC_FTJ_MurderousGheist_MigoSpot");
+
+IF
+DialogEnded("FTJ_BeachGheist", (INTEGER)_Var1)
+AND
+GlobalGetFlag("FTJ_GheistHostile", 1)
+AND
+DB_DialogPlayers(_Var1, _Var2, 1)
+THEN
+ProcSetRelationToPlayers(RC_FTJ_BeachGheist_47263b13-ace6-4950-99b6-4f2b6ae8cc6c, 0);
+DB_RC_FTJ_BeachGheistDialogStarted(_Var2);
+
+IF
+CharacterLootedCharacterCorpse((CHARACTERGUID)_Var1, (CHARACTERGUID)_Var2)
+AND
+CharacterCanSee(CHARACTERGUID_S_FTJ_BeachGheist_47263b13-ace6-4950-99b6-4f2b6ae8cc6c, _Var1, 1)
+AND
+GlobalGetFlag("FTJ_GheistPacified", 0)
+AND
+QueryOnlyOnce("FTJ_BeachGheistReactToUsingCorpse")
+THEN
+Proc_StartDialog(0, "FTJ_BeachGheist", CHARACTERGUID_S_FTJ_BeachGheist_47263b13-ace6-4950-99b6-4f2b6ae8cc6c, _Var1);
+
+IF
+CharacterUsedItem((CHARACTERGUID)_Var1, ITEMGUID_S_FTJ_BeachGheistVictimLimb_002_3a0f4775-972f-4f96-b3d9-7c155e1fb517)
+AND
+CharacterCanSee(CHARACTERGUID_S_FTJ_BeachGheist_47263b13-ace6-4950-99b6-4f2b6ae8cc6c, _Var1, 1)
+AND
+GlobalGetFlag("FTJ_GheistPacified", 0)
+AND
+QueryOnlyOnce("FTJ_BeachGheistReactToUsingCorpse")
+AND
+QueryOnlyOnce("FTJ_PlayerPacifedGheist_Once")
+THEN
+Proc_StartDialog(0, "FTJ_BeachGheist", CHARACTERGUID_S_FTJ_BeachGheist_47263b13-ace6-4950-99b6-4f2b6ae8cc6c, _Var1);
+
+IF
+DialogEnded("FTJ_BeachGheist", (INTEGER)_Var1)
+AND
+GlobalGetFlag("FTJ_GheistPacified", 1)
+AND
+DialogGetInvolvedPlayer(_Var1, 1, _Var2)
+AND
+QueryOnlyOnce("FTJ_PlayerPacifedGheist_Once")
+THEN
+UserSetFlag(_Var2, "QuestAdd_RC_FTJ_MurderousGheist");
+UserSetFlag(_Var2, "QuestUpdate_RC_FTJ_MurderousGheist_PacifiedGheist");
+
+IF
+ObjectFlagSet("RC_FTJ_GheistRingTo", (CHARACTERGUID)_Var1, _)
+THEN
+UserSetFlag(_Var1, "QuestUpdate_RC_FTJ_MurderousGheist_GheistGaveRing");
+
+IF
+CharacterDied(RC_FTJ_BeachGheist_47263b13-ace6-4950-99b6-4f2b6ae8cc6c)
+THEN
+GlobalSetFlag("RC_FTJ_BeachGheistDead");
+
+IF
+CharacterDied(RC_FTJ_BeachGheist_47263b13-ace6-4950-99b6-4f2b6ae8cc6c)
+AND
+DB_RC_FTJ_BeachGheistDialogStarted(_Var1)
+THEN
+ProcDefineReflectionDialog("FTJ_RD_BeachGheist", _Var1);
+
+IF
+ObjectFlagSet("FTJ_PlayerKilledMigo", (GUIDSTRING)_Var1, _)
+THEN
+ObjectSetFlag(_Var1, "QuestAdd_RC_FTJ_MurderousGheist");
+ObjectSetFlag(_Var1, "QuestUpdate_RC_FTJ_MurderousGheist_StartGheist");
+
+IF
+CharacterLootedCharacterCorpse((CHARACTERGUID)_Var1, RC_FTJ_BeachGheist_47263b13-ace6-4950-99b6-4f2b6ae8cc6c)
+AND
+ObjectGetFlag(_Var1, "QuestUpdate_RC_FTJ_MurderousGheist_StartGheist", 0)
+THEN
+ObjectSetFlag(_Var1, "QuestUpdate_RC_FTJ_MurderousGheist_StartGheist");
+
+IF
+ObjectFlagSet("FTJ_GheistQuestInfo", (CHARACTERGUID)_Var1, _)
+THEN
+ObjectSetFlag(_Var1, "QuestAdd_RC_FTJ_MurderousGheist");
+ObjectSetFlag(_Var1, "QuestUpdate_RC_FTJ_MurderousGheist_InfoGheist");
+
+IF
+GlobalFlagSet("RC_FTJ_GheistDaughterRingReturned")
+THEN
+ItemToInventory(RC_FTJ_GheistDaughterRing_3a52e9c1-5acf-487b-9533-3519993d34a2, RC_FTJ_GheistDaughter_7511c722-d6fa-4236-ab56-e68018362861, -1);
+ProcCharacterDisableCrime(CHARACTERGUID_S_FTJ_GheistDaughter_7511c722-d6fa-4236-ab56-e68018362861, "FTJCollarless");
+
+IF
+ObjectFlagSet("FTJ_YarrowFlowerTo", CHARACTERGUID_S_FTJ_BeachGheist_47263b13-ace6-4950-99b6-4f2b6ae8cc6c, (INTEGER)_Var1)
+AND
+DialogGetInvolvedPlayer(_Var1, 1, _Var2)
+AND
+QryRemoveItemTemplateFromMagicPockets(_Var2, "FTJ_YarrowFlower_cc1bb8f1-3a4e-46d7-9268-c420bece54a3", 1)
+THEN
+ItemTemplateAddTo("FTJ_YarrowFlower_cc1bb8f1-3a4e-46d7-9268-c420bece54a3", CHARACTERGUID_S_FTJ_BeachGheist_47263b13-ace6-4950-99b6-4f2b6ae8cc6c, 1);
+
+IF
+ItemTemplateAddedToCharacter(CON_Herb_YarrowFlower_cc1bb8f1-3a4e-46d7-9268-c420bece54a3, _, CHARACTERGUID_S_FTJ_BeachGheist_47263b13-ace6-4950-99b6-4f2b6ae8cc6c)
+THEN
+GlobalSetFlag("FTJ_GheistHasYarrowPlant");
+
+IF
+ItemTemplateRemovedFromCharacter("CON_Herb_YarrowFlower_cc1bb8f1-3a4e-46d7-9268-c420bece54a3", _, CHARACTERGUID_S_FTJ_BeachGheist_47263b13-ace6-4950-99b6-4f2b6ae8cc6c)
+AND
+CharacterGetItemTemplateCount(CHARACTERGUID_S_FTJ_BeachGheist_47263b13-ace6-4950-99b6-4f2b6ae8cc6c, "FTJ_YarrowFlower_cc1bb8f1-3a4e-46d7-9268-c420bece54a3", _Var2)
+AND
+_Var2 == 0
+THEN
+GlobalClearFlag("FTJ_GheistHasYarrowPlant");
+
+IF
+ObjectFlagSet("FTJ_CourtRoomKeyTo", (CHARACTERGUID)_Var1, _)
+AND
+UserGetFlag(_Var1, "QuestUpdate_FTJ_Escape_YarrowReward", 0)
+THEN
+UserSetFlag(_Var1, "QuestUpdate_FTJ_Escape_YarrowReward");
+
+IF
+TextEventSet("yarrowmarker")
+AND
+DB_IsPlayer(_Var1)
+THEN
+ProcShowMarker(_Var1, "FTJ_DoorToMagisterQuarters");
+
+IF
+ObjectFlagSet("FTJ_MapMarkerToMagisterQuarters", (CHARACTERGUID)_Var1, _)
+THEN
+ProcShowMarker(_Var1, "FTJ_DoorToMagisterQuarters");
+
+IF
+ItemUnlocked(ITEMGUID_S_FTJ_DoorToMagisterQuarters_5d5f9fda-55c3-429e-ace3-ba41bd3a59be, (CHARACTERGUID)_Var1, ITEMGUID_S_FTJ_ChapelUpperFloorDoorKey_da06411f-48f8-4a1a-a576-635fc56ec2a8)
+AND
+DB_IsPlayer(_Var1)
+AND
+UserGetFlag(_Var1, "QuestUpdate_FTJ_Escape_YarrowReward", 1)
+THEN
+UserSetFlag(_Var1, "QuestUpdate_FTJ_Escape_Yarrow_KeyUsed");
+
+IF
+GlobalFlagSet("FTJ_YarrowReunited")
+THEN
+PROC_RemoveDialogFromCharacter(CHARACTERGUID_S_FTJ_GheistDaughter_7511c722-d6fa-4236-ab56-e68018362861);
+PROC_RemoveDialogFromCharacter(CHARACTERGUID_S_FTJ_BeachGheist_47263b13-ace6-4950-99b6-4f2b6ae8cc6c);
+DB_Dialogs(CHARACTERGUID_S_FTJ_BeachGheist_47263b13-ace6-4950-99b6-4f2b6ae8cc6c, CHARACTERGUID_S_FTJ_GheistDaughter_7511c722-d6fa-4236-ab56-e68018362861, "FTJ_YarrowReunitedWithFather");
+
+IF
+CharacterDied(CHARACTERGUID_S_FTJ_GheistDaughter_7511c722-d6fa-4236-ab56-e68018362861)
+AND
+GlobalGetFlag("FTJ_YarrowReunited", 1)
+THEN
+SetFaction(RC_FTJ_BeachGheist_47263b13-ace6-4950-99b6-4f2b6ae8cc6c, "Evil NPC");
+
+IF
+CharacterDied(CHARACTERGUID_S_FTJ_BeachGheist_47263b13-ace6-4950-99b6-4f2b6ae8cc6c)
+AND
+GlobalGetFlag("FTJ_YarrowReunited", 1)
+THEN
+PROC_RemoveDialogFromCharacter(CHARACTERGUID_S_FTJ_GheistDaughter_7511c722-d6fa-4236-ab56-e68018362861);
+DB_Dialogs(RC_FTJ_GheistDaughter_7511c722-d6fa-4236-ab56-e68018362861, "FTJ_GheistDaughter");
+
+IF
+AttackedByObject(CHARACTERGUID_S_FTJ_BeachGheist_47263b13-ace6-4950-99b6-4f2b6ae8cc6c, (CHARACTERGUID)_Var1, _, _, _)
+AND
+DB_IsPlayer(_Var1)
+AND
+CharacterCanSee(CHARACTERGUID_S_FTJ_GheistDaughter_7511c722-d6fa-4236-ab56-e68018362861, _Var1, 1)
+THEN
+CharacterAddAttitudeTowardsPlayer(CHARACTERGUID_S_FTJ_GheistDaughter_7511c722-d6fa-4236-ab56-e68018362861, _Var1, -100);
+
+PROC
+ProcRegionEnded("FJ_FortJoy_Main")
+THEN
+GoalCompleted;
+
+
+EXITSECTION
+ENDEXITSECTION
+
+ParentTargetEdge "FortJoy"

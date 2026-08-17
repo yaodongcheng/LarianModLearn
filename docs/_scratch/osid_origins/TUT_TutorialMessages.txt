@@ -1,0 +1,17 @@
+Version 1
+SubGoalCombiner SGC_AND
+
+INITSECTION
+DB_Tutorial_PlayerMovementDetectionTrigger(TRIGGERGUID_S_TUT_LowerDeck_MovementDetectionBox_e4bd2fcf-8426-4e0b-bb70-c199af559d63);
+
+KBSECTION
+PROC
+ProcRegionEnded("TUT_Tutorial_A")
+THEN
+GoalCompleted;
+
+
+EXITSECTION
+ENDEXITSECTION
+
+ParentTargetEdge "Tutorial_PrisonShip"

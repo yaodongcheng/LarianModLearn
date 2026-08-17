@@ -1,0 +1,121 @@
+Version 1
+SubGoalCombiner SGC_AND
+
+INITSECTION
+DB_Dialogs(RC_FTJ_ShrineToTheSeven_a7c71478-416b-4b7a-bd97-446f03708443, "FTJ_ShrineToTheSeven");
+DB_Dialogs(RC_FTJ_ShrineWorshipper_bd8a4344-814a-4904-8399-326a5a3f88d1, "FTJ_ShrineWorshipper");
+DB_GLO_Attribute_Check_AgainstLevel("FTJ_ShrineToTheSeven", 1, "Wits", "Hard", 2, 2);
+SetOnStage(RC_FTJ_HatchToCellar_64188e1e-3160-48b1-8bb5-77edabf907c5, 0);
+ItemClearOwner(ITEMGUID_S_FTJ_LucianShrinePainting_fe1ef6ab-a059-40ab-8320-086f17067890);
+ItemClearOwner(ITEMGUID_S_FTJ_HatchToCellar_64188e1e-3160-48b1-8bb5-77edabf907c5);
+
+KBSECTION
+IF
+DialogEnded("FTJ_ShrineToTheSeven", (INTEGER)_Var1)
+AND
+DialogGetInvolvedPlayer(_Var1, 1, _Var2)
+AND
+QueryOnlyOnce("FTJ_ShrineVB")
+THEN
+StartVoiceBark("FTJ_VB_Shrine", _Var2);
+
+IF
+DialogEnded("FTJ_ShrineToTheSeven", (INTEGER)_Var1)
+AND
+DialogGetInvolvedPlayer(_Var1, 1, _Var2)
+AND
+GlobalGetFlag("RC_FTJ_ShrineHatchAppear", 1)
+AND
+GetDistanceTo(CHARACTERGUID_S_FTJ_ShrineWorshipper_bd8a4344-814a-4904-8399-326a5a3f88d1, _Var2, _Var3)
+AND
+_Var3 < 12
+AND
+QRY_SpeakerIsAvailable(CHARACTERGUID_S_FTJ_ShrineWorshipper_bd8a4344-814a-4904-8399-326a5a3f88d1)
+AND
+QueryOnlyOnce("FTJ_WorsipperSawShrineAppear")
+THEN
+CharacterLookAt(CHARACTERGUID_S_FTJ_ShrineWorshipper_bd8a4344-814a-4904-8399-326a5a3f88d1, ITEMGUID_S_FTJ_HatchToCellar_64188e1e-3160-48b1-8bb5-77edabf907c5);
+Proc_StartDialog(1, "FTJ_AD_WorshipperSawShrineOpen", CHARACTERGUID_S_FTJ_ShrineWorshipper_bd8a4344-814a-4904-8399-326a5a3f88d1);
+
+IF
+ObjectFlagSet("FTJ_SoulJar_Accepted", (CHARACTERGUID)_Var1, _)
+THEN
+ObjectSetFlag(_Var1, "FTJ_ToldAboutShrineButton", 1);
+UserSetFlag(_Var1, "QuestUpdate_FTJ_Escape_WithermooreDeal");
+
+IF
+ObjectFlagShared("FTJ_SoulJar_Accepted", (GUIDSTRING)_Var1, 1)
+THEN
+ObjectShareFlag(_Var1, "FTJ_ToldAboutShrineButton");
+
+IF
+ObjectFlagSet("FTJ_Escape_ActivateHatch", (CHARACTERGUID)_Var1, _)
+AND
+ObjectGetFlag(_Var1, "QuestUpdate_FTJ_Escape_WithermooreDeal", 1)
+THEN
+UserSetFlag(_Var1, "QuestUpdate_FTJ_Escape_DivineStatueInfo");
+
+IF
+CharacterUsedItem((CHARACTERGUID)_Var1, ITEMGUID_S_FTJ_HatchToCellar_64188e1e-3160-48b1-8bb5-77edabf907c5)
+AND
+DB_IsPlayer(_Var1)
+AND
+ObjectGetFlag(_Var1, "QuestUpdate_FTJ_Escape_WithermooreDeal", 1)
+THEN
+UserSetFlag(_Var1, "QuestUpdate_FTJ_Escape_DivineStatue_Passage");
+
+IF
+CharacterUsedItem((CHARACTERGUID)_Var1, ITEMGUID_S_FTJ_HatchToCellar_64188e1e-3160-48b1-8bb5-77edabf907c5)
+AND
+DB_IsPlayer(_Var1)
+AND
+ObjectGetFlag(_Var1, "QuestUpdate_FTJ_Escape_Free_Own", 0)
+AND
+ObjectGetFlag(_Var1, "QuestUpdate_FTJ_Escape_WithermooreDeal", 0)
+AND
+ObjectGetFlag(_Var1, "QuestUpdate_FTJ_Escape_EnterUnderground", 0)
+AND
+ObjectGetFlag(_Var1, "QuestUpdate_FTJ_Escape_Yarrow_KeyUsed", 0)
+AND
+ObjectGetFlag(_Var1, "IsInPrison", 0)
+THEN
+UserSetFlag(_Var1, "QuestUpdate_FTJ_Escape_Free_Own");
+
+IF
+GlobalFlagSet("RC_FTJ_ShrineHatchAppear")
+THEN
+SetOnStage(RC_FTJ_HatchToCellar_64188e1e-3160-48b1-8bb5-77edabf907c5, 1);
+PlayEffect(RC_FTJ_HatchToCellar_64188e1e-3160-48b1-8bb5-77edabf907c5, "RS3_FX_Skills_Earth_Cast_Ground_Earth_Root_01");
+
+PROC
+ProcBlockUseOfItem((CHARACTERGUID)_Var1, ITEMGUID_S_FTJ_LadderToOlgo_b3eb4099-662f-4ff9-a133-7bf1ff500649)
+AND
+DB_IsPlayer(_Var1)
+AND
+GlobalGetFlag("RC_FTJ_ShrineHatchAppear", 0)
+THEN
+StartVoiceBark("FTJ_VB_ShrineLadderCannotUse", _Var1);
+DB_CustomUseItemResponse(_Var1, ITEMGUID_S_FTJ_LadderToOlgo_b3eb4099-662f-4ff9-a133-7bf1ff500649, 0);
+
+IF
+CharacterUsedItem(_, RC_FTJ_UndergroundShrineDoorLever_f45d3339-1afc-4a4e-b9b6-a9b2e84c3cad)
+THEN
+ItemOpen(RC_FTJ_DoorToShrineUnderground_38bd937c-d73f-470b-91df-880d5142b550);
+ItemUnLock(ITEMGUID_S_FTJ_DoorToShrineUnderground_38bd937c-d73f-470b-91df-880d5142b550);
+
+IF
+ObjectFlagSet("FTJ_PrayedToShrineOfSeven", (CHARACTERGUID)_Var1, _)
+THEN
+ObjectClearFlag(_Var1, "FTJ_PrayedToShrineOfSeven", 0);
+PlayAnimation(_Var1, "Kneel_02");
+
+PROC
+ProcRegionEnded("FJ_FortJoy_Main")
+THEN
+GoalCompleted;
+
+
+EXITSECTION
+ENDEXITSECTION
+
+ParentTargetEdge "FortJoy"

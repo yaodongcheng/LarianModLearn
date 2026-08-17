@@ -1,0 +1,582 @@
+Version 1
+SubGoalCombiner SGC_AND
+
+INITSECTION
+DB_ARX_Sewers_QsLab_QueensPrison_DeadGuard(CHARACTERGUID_S_ARX_Sewers_QsLab_QueensPrison_DeadGuard_000_88c77184-6dad-4c76-95e1-8cda4897892c);
+DB_ARX_Sewers_QsLab_QueensPrison_DeadGuard(CHARACTERGUID_S_ARX_Sewers_QsLab_QueensPrison_DeadGuard_001_0d58cf08-ea21-48b6-be04-43a3e0f27dc2);
+DB_ARX_Sewers_QsLab_QueensPrison_DeadGuard(CHARACTERGUID_S_ARX_Sewers_QsLab_QueensPrison_DeadGuard_002_cdab68f3-03f1-4fa3-a36e-7792c511dabe);
+DB_ARX_Sewers_QsLab_QueensPrison_DeadGuard(CHARACTERGUID_S_ARX_Sewers_QsLab_QueensPrison_DeadGuard_003_44a7cbdd-457f-4521-aed5-ff5d38450588);
+DB_ARX_Sewers_QsLab_QueensPrison_DeadGuard(CHARACTERGUID_S_ARX_Sewers_QsLab_QueensPrison_DeadGuard_004_daa672bd-788e-4fd9-99d8-d47050eac19b);
+DB_ARX_Sewers_QsLab_QueensPrison_DeadGuard(CHARACTERGUID_S_ARX_Sewers_QsLab_QueensPrison_DeadGuard_005_fab907ee-8688-4dbb-84d6-c1c4e8409802);
+DB_ARX_Sewers_QsLab_QueensPrison_DeadGuard(CHARACTERGUID_S_ARX_Sewers_QsLab_QueensPrison_DeadGuard_006_cf396596-95b4-4a59-bb1f-475b9bd0f705);
+DB_ARX_Sewers_QsLab_QueensPrison_DeadGuard(CHARACTERGUID_S_ARX_Sewers_QsLab_QueensPrison_DeadGuard_007_0e44ef77-e72c-4a65-874e-922da67b5ce4);
+DB_ARX_Sewers_QsLab_QueensPrison_DeadGuard(CHARACTERGUID_S_ARX_Sewers_QsLab_QueensPrison_DeadGuard_008_82fca1e7-160b-430e-aab6-a9ff2d26b38c);
+ProcTriggerRegisterForPlayers(TRIGGERGUID_S_ARX_Sewers_QsLab_QueenPrison_ExplodingDoorTrig_5f28b5f4-577f-41f6-86df-8497d7a85042);
+ProcTriggerRegisterForPlayers(TRIGGERGUID_S_ARX_Sewers_QsLab_QueenPrison_VB_af1c05cc-04e7-4842-8c76-9d686fc1f19f);
+ProcTriggerRegisterForPlayers(TRIGGERGUID_S_ARX_Sewers_QsLab_QueenPrison_ScreenShake_7b71a266-eb07-4f55-8048-990a8650cbb5);
+ProcTriggerRegisterForPlayers(TRIGGERGUID_S_ARX_Sewers_QsLab_QueenPrison_ExplodingDoor_KnockedDown_49ddeaa8-7e14-4cc9-9eab-ef64f9f0212f);
+
+KBSECTION
+IF
+DB_ARX_Sewers_QsLab_QueensPrison_DeadGuard(_Var1)
+THEN
+SetOnStage(_Var1, 0);
+
+IF
+CharacterEnteredTrigger((CHARACTERGUID)_Var1, TRIGGERGUID_S_ARX_Sewers_QsLab_QueenPrison_ScreenShake_7b71a266-eb07-4f55-8048-990a8650cbb5)
+AND NOT
+DB_Dead(CHARACTERGUID_S_ARX_Sewers_TheEmpress_78c95ad2-2d1a-4358-9c9c-77ff9a5fc3c9)
+AND
+GlobalGetFlag("ARX_TheQueen_ImprisonedByQ", 1)
+AND
+GlobalGetFlag("ARX_Sewers_TheQueen_KickDoor", 0)
+AND
+GlobalGetFlag("ARX_Sewers_TheQueen_DestroyedEventDone", 0)
+THEN
+PlayEffect(CHARACTERGUID_S_ARX_Sewers_QsLab_QueensPrison_DeadGuard_007_0e44ef77-e72c-4a65-874e-922da67b5ce4, "RS3_FX_GP_Impacts_Grenade_Tremor_01");
+ProcTriggerUnregisterForPlayers(TRIGGERGUID_S_ARX_Sewers_QsLab_QueenPrison_ScreenShake_7b71a266-eb07-4f55-8048-990a8650cbb5);
+DB_ARX_Sewers_QsLab_QueenPrison_ScreenShake_Queue(_Var1);
+Proc_ShakeCameraForTime(_Var1, 800);
+TimerLaunch("ARX_Sewers_QsLab_QueenPrison_ScreenShake_Timer", 850);
+
+IF
+TimerFinished("ARX_Sewers_QsLab_QueenPrison_ScreenShake_Timer")
+AND
+DB_ARX_Sewers_QsLab_QueenPrison_ScreenShake_Queue(_Var1)
+THEN
+StartVoiceBark("ARX_Sewers_QsLab_VB_QueenPrison_ScreenShake", _Var1);
+NOT DB_ARX_Sewers_QsLab_QueenPrison_ScreenShake_Queue(_Var1);
+
+IF
+GlobalFlagSet("ARX_TheQueen_ImprisonedByQ")
+AND
+DB_ARX_Sewers_QsLab_QueensPrison_DeadGuard(_Var1)
+THEN
+SetOnStage(_Var1, 1);
+
+IF
+SavegameLoaded((INTEGER)_Var1, (INTEGER)_Var2, (INTEGER)_Var3, (INTEGER)_Var4)
+AND
+QRY_VersionIsOlderThan(_Var1, _Var2, _Var3, _Var4, 3, 6, 3, 0)
+AND
+CharacterIsDead(CHARACTERGUID_S_ARX_Sewers_TheEmpress_78c95ad2-2d1a-4358-9c9c-77ff9a5fc3c9, 1)
+AND
+GlobalGetFlag("ARX_TheQueen_ImprisonedByQ", 1)
+AND
+ItemIsDestroyed(ITEMGUID_S_ARX_Sewers_QsLab_QueensPrison_ExplodingDoor_00bc700c-dfc6-49e9-b61d-8bc88cab40f3, 0)
+AND
+QueryOnlyOnce("ARX_Sewers_TheQueen_KickDoor")
+THEN
+ItemUnLock(ITEMGUID_S_ARX_Sewers_QsLab_QueensPrison_ExplodingDoor_00bc700c-dfc6-49e9-b61d-8bc88cab40f3);
+GlobalSetFlag("ARX_Sewers_TheQueen_DestroyedEventDone");
+
+IF
+CharacterDied(CHARACTERGUID_S_ARX_Sewers_TheEmpress_78c95ad2-2d1a-4358-9c9c-77ff9a5fc3c9)
+AND
+GlobalGetFlag("ARX_TheQueen_ImprisonedByQ", 1)
+AND
+ItemIsDestroyed(ITEMGUID_S_ARX_Sewers_QsLab_QueensPrison_ExplodingDoor_00bc700c-dfc6-49e9-b61d-8bc88cab40f3, 0)
+AND
+QueryOnlyOnce("ARX_Sewers_TheQueen_KickDoor")
+THEN
+ItemUnLock(ITEMGUID_S_ARX_Sewers_QsLab_QueensPrison_ExplodingDoor_00bc700c-dfc6-49e9-b61d-8bc88cab40f3);
+GlobalSetFlag("ARX_Sewers_TheQueen_DestroyedEventDone");
+
+IF
+CharacterEnteredTrigger((CHARACTERGUID)_Var1, TRIGGERGUID_S_ARX_Sewers_QsLab_QueenPrison_ExplodingDoorTrig_5f28b5f4-577f-41f6-86df-8497d7a85042)
+AND
+GlobalGetFlag("ARX_TheQueen_ImprisonedByQ", 1)
+AND
+CharacterIsDead(CHARACTERGUID_S_ARX_Sewers_TheEmpress_78c95ad2-2d1a-4358-9c9c-77ff9a5fc3c9, 0)
+AND
+GlobalGetFlag("ARX_Sewers_TheQueen_DestroyedEventDone", 0)
+AND
+QueryOnlyOnce("ARX_Sewers_TheQueen_KickDoor")
+THEN
+GlobalSetFlag("ARX_Sewers_TheQueen_KickDoor");
+CharacterAttack(CHARACTERGUID_S_ARX_Sewers_TheEmpress_78c95ad2-2d1a-4358-9c9c-77ff9a5fc3c9, ITEMGUID_S_ARX_Sewers_QsLab_QueensPrison_ExplodingDoor_00bc700c-dfc6-49e9-b61d-8bc88cab40f3);
+ApplyStatus(CHARACTERGUID_S_ARX_Sewers_TheEmpress_78c95ad2-2d1a-4358-9c9c-77ff9a5fc3c9, "ENRAGED", -1);
+
+IF
+AttackedByObject(ITEMGUID_S_ARX_Sewers_QsLab_QueensPrison_ExplodingDoor_00bc700c-dfc6-49e9-b61d-8bc88cab40f3, CHARACTERGUID_S_ARX_Sewers_TheEmpress_78c95ad2-2d1a-4358-9c9c-77ff9a5fc3c9, _, _, _)
+AND
+GetPosition(ITEMGUID_S_ARX_Sewers_QsLab_QueensPrison_ExplodingDoor_00bc700c-dfc6-49e9-b61d-8bc88cab40f3, _Var4, _Var5, _Var6)
+THEN
+CharacterSetFightMode(CHARACTERGUID_S_ARX_Sewers_TheEmpress_78c95ad2-2d1a-4358-9c9c-77ff9a5fc3c9, 1, 1);
+PlayEffectAtPosition("RS3_FX_GP_Impacts_Grenade_Tremor_01", _Var4, _Var5, _Var6);
+PlayEffectAtPosition("RS3_FX_GP_Combat_CorpseExplosion_Wood_01_Medium", _Var4, _Var5, _Var6);
+ItemDestroy(ITEMGUID_S_ARX_Sewers_QsLab_QueensPrison_ExplodingDoor_00bc700c-dfc6-49e9-b61d-8bc88cab40f3);
+Proc_ARX_Sewers_QsLab_QueenPrison_ExplodingDoor_KnockedDown();
+
+PROC
+Proc_ARX_Sewers_QsLab_QueenPrison_ExplodingDoor_KnockedDown()
+AND
+DB_InRegion(_Var1, TRIGGERGUID_S_ARX_Sewers_QsLab_QueenPrison_ExplodingDoor_KnockedDown_49ddeaa8-7e14-4cc9-9eab-ef64f9f0212f)
+AND
+_Var1 != CHARACTERGUID_S_ARX_Sewers_TheEmpress_78c95ad2-2d1a-4358-9c9c-77ff9a5fc3c9
+THEN
+ApplyStatus(_Var1, "KNOCKED_DOWN", 1);
+
+IF
+ItemOpened(ITEMGUID_S_ARX_Sewers_QsLab_QueensPrison_ExplodingDoor_00bc700c-dfc6-49e9-b61d-8bc88cab40f3)
+AND
+CharacterIsDead(CHARACTERGUID_S_ARX_Sewers_TheEmpress_78c95ad2-2d1a-4358-9c9c-77ff9a5fc3c9, 0)
+THEN
+GlobalSetFlag("ARX_Sewers_TheQueen_DestroyedEventDone");
+Proc_StartDialog(1, "ARX_Sewers_AD_TheQueen", CHARACTERGUID_S_ARX_Sewers_TheEmpress_78c95ad2-2d1a-4358-9c9c-77ff9a5fc3c9);
+CharacterMoveTo(CHARACTERGUID_S_ARX_Sewers_TheEmpress_78c95ad2-2d1a-4358-9c9c-77ff9a5fc3c9, TRIGGERGUID_S_ARX_Sewers_QsLab_QueenPrison_ExplodingDoorTrig_5f28b5f4-577f-41f6-86df-8497d7a85042, 0, "ARX_Sewers_QsLab_QueensPrison_MoveOut", 0);
+TimerLaunch("ARX_TheQueen_Prison_InitiateSpotter_Timer", 2000);
+
+IF
+ItemDestroying(ITEMGUID_S_ARX_Sewers_QsLab_QueensPrison_ExplodingDoor_00bc700c-dfc6-49e9-b61d-8bc88cab40f3)
+AND
+CharacterIsDead(CHARACTERGUID_S_ARX_Sewers_TheEmpress_78c95ad2-2d1a-4358-9c9c-77ff9a5fc3c9, 0)
+THEN
+GlobalSetFlag("ARX_Sewers_TheQueen_DestroyedEventDone");
+Proc_StartDialog(1, "ARX_Sewers_AD_TheQueen", CHARACTERGUID_S_ARX_Sewers_TheEmpress_78c95ad2-2d1a-4358-9c9c-77ff9a5fc3c9);
+CharacterMoveTo(CHARACTERGUID_S_ARX_Sewers_TheEmpress_78c95ad2-2d1a-4358-9c9c-77ff9a5fc3c9, TRIGGERGUID_S_ARX_Sewers_QsLab_QueenPrison_ExplodingDoorTrig_5f28b5f4-577f-41f6-86df-8497d7a85042, 0, "ARX_Sewers_QsLab_QueensPrison_MoveOut", 0);
+TimerLaunch("ARX_TheQueen_Prison_InitiateSpotter_Timer", 2000);
+
+IF
+GlobalFlagSet("ARX_Sewers_TheQueen_DestroyedEventDone")
+AND
+HasActiveStatus(CHARACTERGUID_S_ARX_Sewers_TheEmpress_78c95ad2-2d1a-4358-9c9c-77ff9a5fc3c9, "ENRAGED", 0)
+THEN
+ApplyStatus(CHARACTERGUID_S_ARX_Sewers_TheEmpress_78c95ad2-2d1a-4358-9c9c-77ff9a5fc3c9, "ENRAGED", -1);
+
+IF
+TimerFinished("ARX_TheQueen_Prison_InitiateSpotter_Timer")
+THEN
+GlobalSetFlag("ARX_TheQueen_Prison_InitiateSpotter");
+
+IF
+StoryEvent(CHARACTERGUID_S_ARX_Sewers_TheEmpress_78c95ad2-2d1a-4358-9c9c-77ff9a5fc3c9, "ARX_Sewers_QsLab_QueensPrison_MoveOut")
+THEN
+Proc_ARX_Sewers_QsLab_QueensPrison_MoveOut();
+
+PROC
+Proc_ARX_Sewers_QsLab_QueensPrison_MoveOut()
+AND NOT
+DB_DialogNPCs(_, CHARACTERGUID_S_ARX_Sewers_TheEmpress_78c95ad2-2d1a-4358-9c9c-77ff9a5fc3c9, _)
+THEN
+CharacterLookAt(CHARACTERGUID_S_ARX_Sewers_TheEmpress_78c95ad2-2d1a-4358-9c9c-77ff9a5fc3c9, ITEMGUID_S_ARX_Sewers_QsLab_FalseDoor_01_4b183bd4-aad0-4c3f-b98f-ee1eb3e22773);
+GlobalSetFlag("ARX_TheQueen_Prison_InitiateSpotter");
+
+PROC
+Proc_ARX_Sewers_QsLab_QueensPrison_MoveOut()
+AND
+DB_DialogNPCs(_Var1, CHARACTERGUID_S_ARX_Sewers_TheEmpress_78c95ad2-2d1a-4358-9c9c-77ff9a5fc3c9, _)
+AND
+DB_DialogPlayers(_Var1, _Var3, _)
+THEN
+CharacterLookAt(CHARACTERGUID_S_ARX_Sewers_TheEmpress_78c95ad2-2d1a-4358-9c9c-77ff9a5fc3c9, _Var3);
+DB_ARX_Sewers_QsLab_QueensPrison_MoveOut_LookAt(_Var3);
+
+PROC
+Proc_ARX_Sewers_QsLab_QueensPrison_MoveOut()
+AND
+DB_DialogNPCs(_, CHARACTERGUID_S_ARX_Sewers_TheEmpress_78c95ad2-2d1a-4358-9c9c-77ff9a5fc3c9, _)
+AND NOT
+DB_ARX_Sewers_QsLab_QueensPrison_MoveOut_LookAt(_)
+THEN
+CharacterLookAt(CHARACTERGUID_S_ARX_Sewers_TheEmpress_78c95ad2-2d1a-4358-9c9c-77ff9a5fc3c9, ITEMGUID_S_ARX_Sewers_QsLab_FalseDoor_01_4b183bd4-aad0-4c3f-b98f-ee1eb3e22773);
+GlobalSetFlag("ARX_TheQueen_Prison_InitiateSpotter");
+
+PROC
+Proc_ARX_Sewers_QsLab_QueensPrison_MoveOut()
+AND
+GetClosestAlivePlayer(CHARACTERGUID_S_ARX_Sewers_TheEmpress_78c95ad2-2d1a-4358-9c9c-77ff9a5fc3c9, _Var1, _)
+AND
+CharacterCanSee(CHARACTERGUID_S_ARX_Sewers_TheEmpress_78c95ad2-2d1a-4358-9c9c-77ff9a5fc3c9, _Var1, 1)
+AND
+CharacterIsInCombat(_Var1, 1)
+AND
+CombatGetIDForCharacter(_Var1, _Var3)
+AND
+DB_KillCounter_Internal(_Var4, "ARX_Sewers_QUnamsked")
+AND
+CombatGetIDForCharacter(_Var4, _Var3)
+THEN
+EnterCombat(CHARACTERGUID_S_ARX_Sewers_TheEmpress_78c95ad2-2d1a-4358-9c9c-77ff9a5fc3c9, _Var1);
+
+IF
+StoryEvent((GUIDSTRING)_Var1, "ARX_TheQueen_Prison_SpottedChar")
+AND
+GlobalGetFlag("ARX_TheQueen_Prison_StopSpotter_DialogInitiated", 0)
+THEN
+Proc_StartDialog(0, "ARX_Sewers_TheQueen", CHARACTERGUID_S_ARX_Sewers_TheEmpress_78c95ad2-2d1a-4358-9c9c-77ff9a5fc3c9, _Var1);
+
+IF
+DialogStarted("ARX_Sewers_TheQueen", _)
+THEN
+GlobalSetFlag("ARX_TheQueen_Prison_StopSpotter_DialogInitiated");
+
+IF
+ObjectEnteredCombat(CHARACTERGUID_S_ARX_Sewers_TheEmpress_78c95ad2-2d1a-4358-9c9c-77ff9a5fc3c9, (INTEGER)_Var1)
+AND
+CharacterIsDead(CHARACTERGUID_S_ARX_Sewers_Q_52f20922-7b22-4d47-90f7-83172f21fe3b, 0)
+AND
+CombatGetIDForCharacter(CHARACTERGUID_S_ARX_Sewers_Q_52f20922-7b22-4d47-90f7-83172f21fe3b, _Var1)
+THEN
+GlobalSetFlag("ARX_TheQueen_FightingQ");
+
+IF
+ObjectTurnStarted(CHARACTERGUID_S_ARX_Sewers_TheEmpress_78c95ad2-2d1a-4358-9c9c-77ff9a5fc3c9)
+AND
+GlobalGetFlag("ARX_TheQueen_FightingQ", 1)
+AND
+CharacterIsDead(CHARACTERGUID_S_ARX_Sewers_Q_52f20922-7b22-4d47-90f7-83172f21fe3b, 1)
+AND
+QueryOnlyOnce("ARX_Sewers_TheQueen_CalmDown")
+THEN
+RemoveStatus(CHARACTERGUID_S_ARX_Sewers_TheEmpress_78c95ad2-2d1a-4358-9c9c-77ff9a5fc3c9, "ENRAGED");
+
+IF
+GlobalFlagSet("ARX_Sewers_TheQueen_CalmDown")
+AND
+QueryOnlyOnce("ARX_Sewers_TheQueen_CalmDown")
+THEN
+CharacterSetFightMode(CHARACTERGUID_S_ARX_Sewers_TheEmpress_78c95ad2-2d1a-4358-9c9c-77ff9a5fc3c9, 0, 0);
+RemoveStatus(CHARACTERGUID_S_ARX_Sewers_TheEmpress_78c95ad2-2d1a-4358-9c9c-77ff9a5fc3c9, "ENRAGED");
+
+IF
+AttackedByObject(CHARACTERGUID_S_ARX_Sewers_TheEmpress_78c95ad2-2d1a-4358-9c9c-77ff9a5fc3c9, (CHARACTERGUID)_Var1, _, _, _)
+AND
+GlobalGetFlag("ARX_TheQueen_ImprisonedByQ", 1)
+AND NOT
+DB_DialogNPCs(_, CHARACTERGUID_S_ARX_Sewers_TheEmpress_78c95ad2-2d1a-4358-9c9c-77ff9a5fc3c9, _)
+AND
+DB_IsPlayer(_Var1)
+THEN
+CharacterPurgeQueue(CHARACTERGUID_S_ARX_Sewers_TheEmpress_78c95ad2-2d1a-4358-9c9c-77ff9a5fc3c9);
+GlobalSetFlag("ARX_TheQueen_Prison_StopSpotter_DialogInitiated");
+ObjectSetFlag(_Var1, "ARX_Sewers_TheQueen_AssassinationAttempt", 0);
+DB_ARX_Sewers_TheQueen_AssassinationAttemp(_Var1, 0);
+SetRelationIndivFactionToPlayers(CHARACTERGUID_S_ARX_Sewers_TheEmpress_78c95ad2-2d1a-4358-9c9c-77ff9a5fc3c9, -100);
+
+IF
+AttackedByObject(CHARACTERGUID_S_ARX_Sewers_TheEmpress_78c95ad2-2d1a-4358-9c9c-77ff9a5fc3c9, (CHARACTERGUID)_Var1, _, _, _)
+AND
+GlobalGetFlag("ARX_TheQueen_ImprisonedByQ", 1)
+AND
+DB_DialogNPCs(_Var5, CHARACTERGUID_S_ARX_Sewers_TheEmpress_78c95ad2-2d1a-4358-9c9c-77ff9a5fc3c9, _)
+AND
+DB_IsPlayer(_Var1)
+THEN
+CharacterPurgeQueue(CHARACTERGUID_S_ARX_Sewers_TheEmpress_78c95ad2-2d1a-4358-9c9c-77ff9a5fc3c9);
+GlobalSetFlag("ARX_TheQueen_Prison_StopSpotter_DialogInitiated");
+ObjectSetFlag(_Var1, "ARX_Sewers_TheQueen_AssassinationAttempt", _Var5);
+DB_ARX_Sewers_TheQueen_AssassinationAttemp(_Var1, _Var5);
+SetRelationIndivFactionToPlayers(CHARACTERGUID_S_ARX_Sewers_TheEmpress_78c95ad2-2d1a-4358-9c9c-77ff9a5fc3c9, -100);
+ProcForceStopDialog(CHARACTERGUID_S_ARX_Sewers_TheEmpress_78c95ad2-2d1a-4358-9c9c-77ff9a5fc3c9);
+
+IF
+ObjectFlagSet("ARX_Sewers_TheQueen_AssassinationAttempt", (CHARACTERGUID)_Var1, (INTEGER)_Var2)
+AND NOT
+DB_ARX_Sewers_TheQueen_AssassinationAttemp(_Var1, _Var2)
+THEN
+DB_ARX_Sewers_TheQueen_AssassinationAttemp(_Var1, _Var2);
+
+IF
+DialogEnded(_, (INTEGER)_Var2)
+AND
+DB_ARX_Sewers_TheQueen_AssassinationAttemp(_Var3, _Var2)
+AND
+ObjectGetFlag(CHARACTERGUID_S_Player_Beast_f25ca124-a4d2-427b-af62-df66df41a978, "QuestUpdate_FTJ_COM_Beast_TurnedAssassinationQueen", 0)
+THEN
+SetRelationIndivFactionToPlayers(CHARACTERGUID_S_ARX_Sewers_TheEmpress_78c95ad2-2d1a-4358-9c9c-77ff9a5fc3c9, -100);
+
+IF
+DialogEnded(_, (INTEGER)_Var2)
+AND
+DB_ARX_Sewers_TheQueen_AssassinationAttemp(_Var3, _Var2)
+AND
+ObjectGetFlag(CHARACTERGUID_S_Player_Beast_f25ca124-a4d2-427b-af62-df66df41a978, "QuestUpdate_FTJ_COM_Beast_TurnedAssassinationQueen", 1)
+THEN
+ProcSetHostileToIndivPlayer(CHARACTERGUID_S_ARX_Sewers_TheEmpress_78c95ad2-2d1a-4358-9c9c-77ff9a5fc3c9, _Var3);
+
+IF
+CombatStarted((INTEGER)_Var1)
+AND
+DB_ARX_Sewers_TheQueen_AssassinationAttemp(_Var2, _)
+AND
+DB_CombatCharacters(_Var2, _Var1)
+AND NOT
+DB_CombatCharacters(CHARACTERGUID_S_ARX_Sewers_TheEmpress_78c95ad2-2d1a-4358-9c9c-77ff9a5fc3c9, _)
+AND
+GlobalGetFlag("ARX_Sewers_TheQueen_InKemmsMansion", 0)
+AND NOT
+DB_ARX_Sewers_TheQueen_Assassination_MovedIntoCombat(_)
+THEN
+DB_ARX_Sewers_TheQueen_Assassination_MovedIntoCombat(CHARACTERGUID_S_ARX_Sewers_TheEmpress_78c95ad2-2d1a-4358-9c9c-77ff9a5fc3c9);
+ProcCharacterMoveTo(CHARACTERGUID_S_ARX_Sewers_TheEmpress_78c95ad2-2d1a-4358-9c9c-77ff9a5fc3c9, _Var2, 1, "ARX_Sewers_TheQueen_Assassination_MovedIntoCombat");
+
+IF
+ObjectEnteredCombat((CHARACTERGUID)_Var1, (INTEGER)_Var2)
+AND
+DB_ARX_Sewers_TheQueen_Assassination_MovedIntoCombat(_Var1)
+THEN
+NOT DB_ARX_Sewers_TheQueen_Assassination_MovedIntoCombat(_Var1);
+ProcClearStoryMove(_Var1);
+
+IF
+StoryEvent((GUIDSTRING)_Var1, "ARX_Sewers_TheQueen_Assassination_MovedIntoCombat")
+AND
+DB_ARX_Sewers_TheQueen_Assassination_MovedIntoCombat(_Var1)
+THEN
+NOT DB_ARX_Sewers_TheQueen_Assassination_MovedIntoCombat(_Var1);
+
+IF
+DialogEnded("ARX_Sewers_TheQueen", _)
+AND
+GlobalGetFlag("ARX_Sewers_TheQueen_InKemmsMansion", 0)
+AND NOT
+DB_ARX_Sewers_TheQueen_AssassinationAttemp(_, _)
+AND
+CharacterIsDead(CHARACTERGUID_S_ARX_Sewers_Q_52f20922-7b22-4d47-90f7-83172f21fe3b, 0)
+THEN
+ProcCharacterMoveTo(CHARACTERGUID_S_ARX_Sewers_TheEmpress_78c95ad2-2d1a-4358-9c9c-77ff9a5fc3c9, CHARACTERGUID_S_ARX_Sewers_Q_52f20922-7b22-4d47-90f7-83172f21fe3b, 1, "");
+
+IF
+DialogEnded("ARX_Sewers_TheQueen", _)
+AND
+GlobalGetFlag("ARX_Sewers_TheQueen_InKemmsMansion", 0)
+AND NOT
+DB_ARX_Sewers_TheQueen_AssassinationAttemp(_, _)
+AND
+CharacterIsDead(CHARACTERGUID_S_ARX_Sewers_Q_52f20922-7b22-4d47-90f7-83172f21fe3b, 1)
+THEN
+Proc_ARX_Sewers_TheQueen_TeleportToKemmsMansion();
+
+PROC
+Proc_ARX_Sewers_TheQueen_TeleportToKemmsMansion()
+AND NOT
+DB_Dead(CHARACTERGUID_S_ARX_Sewers_TheEmpress_78c95ad2-2d1a-4358-9c9c-77ff9a5fc3c9)
+AND
+GlobalGetFlag("ARX_InitiateGenocide_Destroy", 0)
+THEN
+SetHasDialog(CHARACTERGUID_S_ARX_Sewers_TheEmpress_78c95ad2-2d1a-4358-9c9c-77ff9a5fc3c9, 0);
+ProcCharacterDisappearOutOfSightToObject(CHARACTERGUID_S_ARX_Sewers_TheEmpress_78c95ad2-2d1a-4358-9c9c-77ff9a5fc3c9, TRIGGERGUID_S_ARX_Sewers_QsLab_StairsPoint_1a7b3886-b99b-4e46-9dd2-a8e150b17545, 1, "ARX_Sewers_TheQueen_TeleportToKemmsMansion", 1);
+
+PROC
+Proc_ARX_Sewers_TheQueen_TeleportToKemmsMansion()
+AND NOT
+DB_Dead(CHARACTERGUID_S_ARX_Sewers_TheEmpress_78c95ad2-2d1a-4358-9c9c-77ff9a5fc3c9)
+AND
+GlobalGetFlag("ARX_InitiateGenocide_Destroy", 1)
+THEN
+Poof(CHARACTERGUID_S_ARX_Sewers_TheEmpress_78c95ad2-2d1a-4358-9c9c-77ff9a5fc3c9);
+TimerLaunch("ARX_Sewers_TheQueen_TeleportToKemmsMansion_Poof", 1000);
+
+IF
+TimerFinished("ARX_Sewers_TheQueen_TeleportToKemmsMansion_Poof")
+THEN
+SetStoryEvent(CHARACTERGUID_S_ARX_Sewers_TheEmpress_78c95ad2-2d1a-4358-9c9c-77ff9a5fc3c9, "ARX_Sewers_TheQueen_TeleportToKemmsMansion");
+
+IF
+StoryEvent(_, "ARX_Sewers_TheQueen_TeleportToKemmsMansion")
+AND
+GlobalGetFlag("ARX_InitiateGenocide", 0)
+THEN
+ItemUnlockAndOpen(ITEMGUID_S_ARX_KemmMansion_SecondFloor_WifeDoor_71cb4332-b5d7-4443-a456-2f9208199ed1);
+RemoveStatus(CHARACTERGUID_S_ARX_Sewers_TheEmpress_78c95ad2-2d1a-4358-9c9c-77ff9a5fc3c9, "ENRAGED");
+CharacterSetFightMode(CHARACTERGUID_S_ARX_Sewers_TheEmpress_78c95ad2-2d1a-4358-9c9c-77ff9a5fc3c9, 0, 1);
+GlobalSetFlag("ARX_TheQueen_Prison_StopSpotter");
+CharacterAppearOutOfSightTo(CHARACTERGUID_S_ARX_Sewers_TheEmpress_78c95ad2-2d1a-4358-9c9c-77ff9a5fc3c9, TRIGGERGUID_S_ARX_Sewers_TheQueen_KemmsMansionPos_d634baf8-9776-4844-89d8-c77401e81622, 0, 0, "");
+GlobalSetFlag("ARX_Sewers_TheQueen_InKemmsMansion");
+SetHasDialog(CHARACTERGUID_S_ARX_Sewers_TheEmpress_78c95ad2-2d1a-4358-9c9c-77ff9a5fc3c9, 1);
+SetVarObject(CHARACTERGUID_S_ARX_Sewers_TheEmpress_78c95ad2-2d1a-4358-9c9c-77ff9a5fc3c9, "SplineGUID", SPLINEGUID_S_ARX_Sewers_TheQueen_KemmsMansionSpline_e80672c1-8893-4019-980a-0ef7854b3b49);
+
+IF
+CharacterLeftTrigger(_, TRIGGERGUID_S_ARX_Sewers_QueensFloor_c2ac0f3b-cea2-4c74-a3bf-2b4e82a54b85)
+AND NOT
+DB_InRegion(_, TRIGGERGUID_S_ARX_Sewers_QueensFloor_c2ac0f3b-cea2-4c74-a3bf-2b4e82a54b85)
+AND
+QRY_AnyRegionActive()
+AND
+CharacterIsDead(CHARACTERGUID_S_ARX_Sewers_TheEmpress_78c95ad2-2d1a-4358-9c9c-77ff9a5fc3c9, 0)
+AND
+GlobalGetFlag("ARX_Sewers_TheQueen_InKemmsMansion", 0)
+THEN
+Proc_ARX_Sewers_TheQueen_PostQ();
+
+IF
+TextEventSet("qkemm")
+THEN
+CharacterDie(CHARACTERGUID_S_ARX_Sewers_Q_52f20922-7b22-4d47-90f7-83172f21fe3b, 1, "DoT");
+GlobalSetFlag("ARX_TheQueen_ImprisonedByQ");
+Proc_ARX_Sewers_TheQueen_TeleportToKemmsMansion();
+
+PROC
+Proc_ARX_Sewers_TheQueen_PostQ()
+AND
+CharacterIsDead(CHARACTERGUID_S_ARX_Sewers_Q_52f20922-7b22-4d47-90f7-83172f21fe3b, 0)
+AND
+GlobalGetFlag("ARX_Sewers_TheQueen_InKemmsMansion", 0)
+AND
+GlobalGetFlag("ARX_TheQueen_ImprisonedByQ", 1)
+THEN
+CharacterDie(CHARACTERGUID_S_ARX_Sewers_TheEmpress_78c95ad2-2d1a-4358-9c9c-77ff9a5fc3c9, 0, "DoT");
+
+PROC
+Proc_ARX_Sewers_TheQueen_PostQ()
+AND
+CharacterIsDead(CHARACTERGUID_S_ARX_Sewers_Q_52f20922-7b22-4d47-90f7-83172f21fe3b, 1)
+AND
+CharacterIsDead(CHARACTERGUID_S_ARX_Sewers_TheEmpress_78c95ad2-2d1a-4358-9c9c-77ff9a5fc3c9, 0)
+AND
+GlobalGetFlag("ARX_Sewers_TheQueen_InKemmsMansion", 0)
+AND
+GlobalGetFlag("ARX_TheQueen_ImprisonedByQ", 1)
+THEN
+ItemDestroy(ITEMGUID_S_ARX_Sewers_QsLab_QueensPrison_ExplodingDoor_00bc700c-dfc6-49e9-b61d-8bc88cab40f3);
+Proc_ARX_Sewers_TheQueen_TeleportToKemmsMansion();
+
+IF
+ObjectLeftCombat(CHARACTERGUID_S_ARX_Sewers_TheEmpress_78c95ad2-2d1a-4358-9c9c-77ff9a5fc3c9, _)
+AND
+GlobalGetFlag("ARX_Sewers_TheQueen_InKemmsMansion", 0)
+AND NOT
+DB_ARX_Sewers_TheQueen_AssassinationAttemp(CHARACTERGUID_S_Player_Beast_f25ca124-a4d2-427b-af62-df66df41a978, _)
+AND
+GlobalGetFlag("ARX_TheQueen_Prison_StopSpotter_DialogInitiated", 0)
+THEN
+GlobalSetFlag("ARX_TheQueen_Prison_InitiateSpotter");
+
+IF
+ObjectLeftCombat(CHARACTERGUID_S_ARX_Sewers_TheEmpress_78c95ad2-2d1a-4358-9c9c-77ff9a5fc3c9, _)
+AND
+GlobalGetFlag("ARX_Sewers_TheQueen_InKemmsMansion", 0)
+AND NOT
+DB_ARX_Sewers_TheQueen_AssassinationAttemp(CHARACTERGUID_S_Player_Beast_f25ca124-a4d2-427b-af62-df66df41a978, _)
+AND
+GlobalGetFlag("ARX_TheQueen_Prison_StopSpotter_DialogInitiated", 1)
+THEN
+GlobalClearFlag("ARX_TheQueen_Prison_StopSpotter_DialogInitiated");
+GlobalSetFlag("ARX_TheQueen_Prison_InitiateSpotter");
+
+IF
+ObjectLeftCombat(CHARACTERGUID_S_ARX_Sewers_TheEmpress_78c95ad2-2d1a-4358-9c9c-77ff9a5fc3c9, _)
+AND NOT
+DB_Dead(CHARACTERGUID_S_ARX_Sewers_TheEmpress_78c95ad2-2d1a-4358-9c9c-77ff9a5fc3c9)
+AND
+GlobalGetFlag("ARX_Sewers_TheQueen_InKemmsMansion", 0)
+AND
+DB_ARX_Sewers_TheQueen_AssassinationAttemp(CHARACTERGUID_S_Player_Beast_f25ca124-a4d2-427b-af62-df66df41a978, _)
+AND NOT
+DB_ARX_BST_BeastAvatarAtAssassination(_)
+THEN
+Proc_ARX_Sewers_TheQueen_TeleportToKemmsMansion();
+
+IF
+ObjectLeftCombat(CHARACTERGUID_S_ARX_Sewers_TheEmpress_78c95ad2-2d1a-4358-9c9c-77ff9a5fc3c9, _)
+AND NOT
+DB_Dead(CHARACTERGUID_S_ARX_Sewers_TheEmpress_78c95ad2-2d1a-4358-9c9c-77ff9a5fc3c9)
+AND
+GlobalGetFlag("ARX_Sewers_TheQueen_InKemmsMansion", 0)
+AND
+DB_ARX_Sewers_TheQueen_AssassinationAttemp(CHARACTERGUID_S_Player_Beast_f25ca124-a4d2-427b-af62-df66df41a978, _)
+AND
+DB_ARX_BST_BeastAvatarAtAssassination(_Var3)
+THEN
+SetHasDialog(CHARACTERGUID_S_ARX_Sewers_TheEmpress_78c95ad2-2d1a-4358-9c9c-77ff9a5fc3c9, 0);
+TimerLaunch("ARX_BST_TheQueen_WaitAfterBeastAssassination", 500);
+
+IF
+TimerFinished("ARX_BST_TheQueen_WaitAfterBeastAssassination")
+AND
+DB_ARX_BST_BeastAvatarAtAssassination(_Var1)
+AND NOT
+QRY_StartDialog(0, "ARX_BST_AfterBeastAssassination", CHARACTERGUID_S_ARX_Sewers_TheEmpress_78c95ad2-2d1a-4358-9c9c-77ff9a5fc3c9, _Var1)
+THEN
+Proc_ARX_Sewers_TheQueen_TeleportToKemmsMansion();
+
+IF
+DialogEnded("ARX_BST_AfterBeastAssassination", (INTEGER)_Var1)
+AND NOT
+DB_ARX_Sewers_TheQueen_AssassinationAttemp(_, _Var1)
+THEN
+Proc_ARX_Sewers_TheQueen_TeleportToKemmsMansion();
+
+IF
+ObjectEnteredCombat((CHARACTERGUID)_Var1, (INTEGER)_Var2)
+AND
+DB_IsPlayer(_Var1)
+AND
+CombatGetIDForCharacter(CHARACTERGUID_S_ARX_Sewers_Q_52f20922-7b22-4d47-90f7-83172f21fe3b, _Var2)
+AND
+GlobalGetFlag("RC_ARX_Sewers_Q_PlayersArrested", 1)
+AND NOT
+DB_ARX_Sewers_Q_WasInCombat(_Var1)
+THEN
+DB_ARX_Sewers_Q_WasInCombat(_Var1);
+
+IF
+ObjectEnteredCombat(CHARACTERGUID_S_ARX_Sewers_Q_52f20922-7b22-4d47-90f7-83172f21fe3b, (INTEGER)_Var1)
+AND
+DB_IsPlayer(_Var2)
+AND
+CombatGetIDForCharacter(_Var2, _Var1)
+AND
+GlobalGetFlag("RC_ARX_Sewers_Q_PlayersArrested", 1)
+AND NOT
+DB_ARX_Sewers_Q_WasInCombat(_Var2)
+THEN
+DB_ARX_Sewers_Q_WasInCombat(_Var2);
+
+IF
+ObjectLeftCombat((CHARACTERGUID)_Var1, _)
+AND
+CharacterIsDead(_Var1, 0)
+AND
+DB_ARX_Sewers_Q_WasInCombat(_Var1)
+AND
+QueryOnlyOnce("ARX_MerchantEstate_CORE_RD_QueenDeathfog")
+THEN
+ProcDefineReflectionDialog("ARX_MerchantEstate_CORE_RD_QueenDeathfog", _Var1);
+
+IF
+CharacterEnteredTrigger((CHARACTERGUID)_Var1, TRIGGERGUID_S_ARX_Sewers_QsLab_QueenPrison_VB_af1c05cc-04e7-4842-8c76-9d686fc1f19f)
+AND
+GlobalGetFlag("ARX_TheQueen_ImprisonedByQ", 1)
+AND NOT
+DB_Dead(CHARACTERGUID_S_ARX_Sewers_TheEmpress_78c95ad2-2d1a-4358-9c9c-77ff9a5fc3c9)
+AND
+QueryOnlyOnce("ARX_Sewers_VB_QueenPrison")
+THEN
+StartVoiceBark("ARX_Sewers_VB_QueenPrison", _Var1);
+ProcTriggerUnregisterForPlayers(TRIGGERGUID_S_ARX_Sewers_QsLab_QueenPrison_VB_af1c05cc-04e7-4842-8c76-9d686fc1f19f);
+
+IF
+GlobalFlagSet("ARX_Sewers_TheQueen_InKemmsMansion")
+THEN
+ProcCharacterEnableAllCrimes(CHARACTERGUID_S_ARX_Sewers_TheEmpress_78c95ad2-2d1a-4358-9c9c-77ff9a5fc3c9);
+ProcRemoveDBTrespassTrigger(TRIGGERGUID_S_ARX_KemmMansion_2ndFloor_LadyKemmOwnerShipTrigger_652ce532-c433-4754-bab1-adf1c9f392a3, TRIGGERGUID_S_ARX_KemmMansion_2ndFloor_TresspassingOutTrigger_f6a17bf9-a3c1-4b35-8f79-003b3025257c, CHARACTERGUID_S_ARX_KemmMansion_Guard_Noble_01_b9fd3022-7a27-4a78-b63a-1440c194f9e2);
+ItemClearOwner(ITEMGUID_S_ARX_KemmMansion_SecondFloor_WifeDoor_71cb4332-b5d7-4443-a456-2f9208199ed1);
+
+IF
+GlobalFlagSet("ARX_Sewers_TheQueen_InKemmsMansion")
+AND
+DB_IsPlayer(_Var1)
+THEN
+UserSetFlag(_Var1, "QuestUpdate_CORE_DwarfStory_QueenAlive");
+
+IF
+DialogStarted("ARX_Sewers_TheQueen", _)
+AND
+DB_ARX_Sewers_TheQueen_AssassinationAttemp(_Var2, _Var3)
+THEN
+NOT DB_ARX_Sewers_TheQueen_AssassinationAttemp(_Var2, _Var3);
+
+IF
+DialogStarted("ARX_Sewers_TheQueen_COM_Beast", _)
+AND
+DB_ARX_Sewers_TheQueen_AssassinationAttemp(_Var2, _Var3)
+THEN
+NOT DB_ARX_Sewers_TheQueen_AssassinationAttemp(_Var2, _Var3);
+
+
+EXITSECTION
+ENDEXITSECTION
+
+ParentTargetEdge "ARX"

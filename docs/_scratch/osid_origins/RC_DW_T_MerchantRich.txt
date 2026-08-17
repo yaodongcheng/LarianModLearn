@@ -1,0 +1,202 @@
+Version 1
+SubGoalCombiner SGC_AND
+
+INITSECTION
+DB_RC_DW_RichMerchantGuards(S_RC_DW_Tavern_MerchantGuard_001_e66da9c3-201a-4bd6-8a4d-bd478cbedad1, 0);
+DB_RC_DW_RichMerchantGuards(S_RC_DW_Tavern_MerchantGuard_002_7c681b24-6ba9-4bae-977c-4a3f28d0a0c4, 0);
+ItemToInventory(ITEMGUID_S_RC_MIL_LoneWolfMark_5cbae844-93c7-40fe-bf58-547ac6610248, CHARACTERGUID_S_GLO_MerchantRich_1e1cec76-eab1-4af3-b5f3-b9b18002b8f5);
+DB_DeadEvent(CHARACTERGUID_S_GLO_MerchantGuard_002_7c681b24-6ba9-4bae-977c-4a3f28d0a0c4, "RC_DW_T_MerchantRichGuardDies");
+DB_DeadEvent(CHARACTERGUID_S_GLO_MerchantRich_1e1cec76-eab1-4af3-b5f3-b9b18002b8f5, "RC_DW_T_MerchantRichDies");
+DB_Ghosts(CHARACTERGUID_S_RC_DW_T_BardanGhost_0a95fdeb-110f-442d-a20d-514afd067b0c, "RC_DW_T_BardanGhost");
+ItemToInventory(ITEMGUID_S_RC_DW_KeyMerchantRich2_c64399c8-efd7-422c-985b-765b7feb64f2, CHARACTERGUID_S_GLO_MerchantRich_1e1cec76-eab1-4af3-b5f3-b9b18002b8f5);
+ItemToInventory(ITEMGUID_S_RC_DW_RichMerchant_Orders_63caa9e2-e334-430f-ac0d-c73b657b16b6, CHARACTERGUID_S_GLO_MerchantRich_1e1cec76-eab1-4af3-b5f3-b9b18002b8f5);
+DB_QuestDef_State("RC_DW_RichMerchant", "Start", 1);
+DB_QuestDef_State("RC_DW_RichMerchant", "Start_Over", 1);
+DB_QuestDef_State("RC_DW_RichMerchant", "End", -1);
+DB_QuestDef_State("RC_DW_RichMerchant", "ConsumedGhost", -1);
+DB_QuestDef_State("RC_DW_RichMerchant", "End_RC", -1);
+DB_QuestDef_UpdateEvent("RC_DW_RichMerchant", "KilledBaran", "RC_DW_KilledMerchantRich");
+DB_QuestDef_CloseEvent("RC_DW_RichMerchant", "QuestClose_RC_DW_RichMerchant");
+
+KBSECTION
+IF
+GlobalFlagSet("RC_DW_T_MerchantRichStartsPraying")
+THEN
+ProcCharacterMoveTo(CHARACTERGUID_S_RC_DW_Tavern_MerchantGuard_002_7c681b24-6ba9-4bae-977c-4a3f28d0a0c4, S_RC_DW_T_MerchantRichGuard1Point2_9c5f324a-d6e4-4707-87e0-e19b08ffe467, 0, "RC_DW_T_RichMerchant_GuardReachedADTrigger");
+GlobalClearFlag("RC_DW_T_MerchantRichStartsPraying");
+
+IF
+StoryEvent((GUIDSTRING)_Var1, "RC_DW_T_RichMerchant_GuardReachedADTrigger")
+THEN
+GlobalSetFlag("RC_DW_T_MerchantRichGuardReachedPoint");
+
+IF
+GlobalFlagSet("RC_DW_T_MerchantRichStartAD")
+THEN
+CharacterLookAt(CHARACTERGUID_S_RC_DW_Tavern_MerchantGuard_002_7c681b24-6ba9-4bae-977c-4a3f28d0a0c4, CHARACTERGUID_S_GLO_MerchantRich_1e1cec76-eab1-4af3-b5f3-b9b18002b8f5);
+Proc_StartDialog(1, "RC_DW_AD_RishMerchantTalkToGuard", CHARACTERGUID_S_GLO_MerchantRich_1e1cec76-eab1-4af3-b5f3-b9b18002b8f5, CHARACTERGUID_S_RC_DW_Tavern_MerchantGuard_002_7c681b24-6ba9-4bae-977c-4a3f28d0a0c4);
+
+IF
+ObjectFlagSet("RC_DW_T_MerchantRich_LookAt", (CHARACTERGUID)_Var1, _)
+THEN
+ProcFaceEachother(_Var1, CHARACTERGUID_S_RC_DW_Tavern_MerchantGuard_002_7c681b24-6ba9-4bae-977c-4a3f28d0a0c4);
+ObjectClearFlag(_Var1, "RC_DW_T_MerchantRich_LookAt", 0);
+
+IF
+AutomatedDialogEnded("RC_DW_AD_RishMerchantTalkToGuard", _)
+THEN
+ObjectClearFlag(CHARACTERGUID_S_GLO_MerchantRich_1e1cec76-eab1-4af3-b5f3-b9b18002b8f5, "RC_DW_AD_RishMerchantTalkToGuard", 0);
+GlobalClearFlag("RC_DW_T_MerchantRichStartAD");
+
+IF
+DB_Dead(S_RC_DW_Tavern_MerchantRich_1e1cec76-eab1-4af3-b5f3-b9b18002b8f5)
+THEN
+Proc_RC_DW_SetNewOwnerShip();
+
+IF
+DB_Dead(S_RC_DW_Tavern_MerchantGuard_001_e66da9c3-201a-4bd6-8a4d-bd478cbedad1)
+AND
+DB_RC_DW_RichMerchantGuards(S_RC_DW_Tavern_MerchantGuard_001_e66da9c3-201a-4bd6-8a4d-bd478cbedad1, 1)
+THEN
+Proc_RC_DW_SetNewOwnerShip();
+
+IF
+DB_Dead(S_RC_DW_Tavern_MerchantGuard_002_7c681b24-6ba9-4bae-977c-4a3f28d0a0c4)
+AND
+DB_RC_DW_RichMerchantGuards(S_RC_DW_Tavern_MerchantGuard_002_7c681b24-6ba9-4bae-977c-4a3f28d0a0c4, 1)
+THEN
+Proc_RC_DW_SetNewOwnerShip();
+
+PROC
+Proc_RC_DW_SetNewOwnerShip()
+AND
+DB_RC_DW_RichMerchantGuards(_Var1, 0)
+AND
+CharacterIsDead(_Var1, 0)
+AND NOT
+DB_RC_DW_RichMerchant_CheckIfAlreadyDone(1)
+THEN
+NOT DB_RC_DW_RichMerchantGuards(_Var1, 0);
+DB_RC_DW_RichMerchantGuards(_Var1, 1);
+DB_RC_DW_RichMerchant_CheckIfAlreadyDone(1);
+DB_ItemOwnerShipTriggers("RC_Main", S_RC_DW_OwnerTriggerRichTrader_9e3bef60-deaa-4c82-8a90-96f815e27b19, _Var1);
+
+PROC
+Proc_RC_DW_SetNewOwnerShip()
+THEN
+NOT DB_RC_DW_RichMerchant_CheckIfAlreadyDone(1);
+
+IF
+CharacterKilledBy(CHARACTERGUID_S_GLO_MerchantRich_1e1cec76-eab1-4af3-b5f3-b9b18002b8f5, (CHARACTERGUID)_Var1, (CHARACTERGUID)_Var2)
+AND
+DB_IsPlayer(_Var1)
+THEN
+UserSetFlag(_Var1, "RC_DW_KilledMerchantRich", 0);
+
+IF
+CharacterDying(CHARACTERGUID_S_GLO_MerchantRich_1e1cec76-eab1-4af3-b5f3-b9b18002b8f5)
+AND
+DB_CombatCharacters(CHARACTERGUID_S_GLO_MerchantRich_1e1cec76-eab1-4af3-b5f3-b9b18002b8f5, _Var1)
+AND
+DB_CombatCharacters(_Var2, _Var1)
+AND
+DB_IsPlayer(_Var2)
+AND
+CharacterIsEnemy(_Var2, CHARACTERGUID_S_GLO_MerchantRich_1e1cec76-eab1-4af3-b5f3-b9b18002b8f5, 1)
+THEN
+UserSetFlag(_Var2, "RC_DW_KilledMerchantRich", 0);
+
+IF
+ObjectFlagSet("RC_MIL_ShowSawmillMarker", (CHARACTERGUID)_Var1, _)
+THEN
+ProcShowMarker(_Var1, "RC_MIL_Sawmill");
+
+IF
+ObjectFlagSet("RC_DW_BaranKneels", (GUIDSTRING)_Var1, _)
+THEN
+PlayAnimation(_Var1, "Kneel_01");
+
+IF
+ObjectEnteredCombat((CHARACTERGUID)_Var1, _)
+AND
+DB_RC_DW_RichMerchantGuards(_Var1, _)
+THEN
+PROC_RC_DW_StopRichMerchandDialogs();
+
+IF
+ObjectEnteredCombat(CHARACTERGUID_S_GLO_MerchantRich_1e1cec76-eab1-4af3-b5f3-b9b18002b8f5, _)
+THEN
+PROC_RC_DW_StopRichMerchandDialogs();
+
+PROC
+PROC_RC_DW_StopRichMerchandDialogs()
+AND
+DB_RC_DW_RichMerchantGuards(_Var1, _)
+AND
+IsSpeakerReserved(_Var1, 1)
+THEN
+ProcForceStopDialog(_Var1);
+
+PROC
+PROC_RC_DW_StopRichMerchandDialogs()
+AND
+IsSpeakerReserved(CHARACTERGUID_S_GLO_MerchantRich_1e1cec76-eab1-4af3-b5f3-b9b18002b8f5, 1)
+THEN
+ProcForceStopDialog(CHARACTERGUID_S_GLO_MerchantRich_1e1cec76-eab1-4af3-b5f3-b9b18002b8f5);
+
+IF
+GlobalFlagSet("RC_DW_RichMerchantHostile")
+THEN
+CharacterSetRelationFactionToFaction("RC_DW_Tavern_RichTrader", "DW_Magister", 50);
+CharacterSetRelationFactionToFaction("DW_Magister", "RC_DW_Tavern_RichTrader", 50);
+CharacterSetRelationFactionToFaction("RC_DW_Tavern_RichTrader", "RC_DW_Civilian", 50);
+CharacterSetRelationFactionToFaction("RC_DW_Civilian", "RC_DW_Tavern_RichTrader", 50);
+
+IF
+CharacterUsedSkillOnTarget((CHARACTERGUID)_Var1, CHARACTERGUID_S_RC_DW_T_BardanGhost_0a95fdeb-110f-442d-a20d-514afd067b0c, (STRING)_Var2, _, _)
+AND
+DB_SourceVampirism_Skills(_Var2)
+THEN
+PartySetFlag(_Var1, "QuestUpdate_RC_DW_RichMerchant_ConsumedGhost", 0);
+
+IF
+CharacterGhostDestroyed(_, CHARACTERGUID_S_RC_DW_T_BardanGhost_0a95fdeb-110f-442d-a20d-514afd067b0c)
+AND
+DB_IsPlayer(_Var2)
+THEN
+PartySetFlag(_Var2, "QuestClose_RC_DW_RichMerchant", 0);
+
+PROC
+ProcRegionEnded("RC_Main")
+AND NOT
+DB_Dead(CHARACTERGUID_S_GLO_MerchantRich_1e1cec76-eab1-4af3-b5f3-b9b18002b8f5)
+AND
+DB_IsPlayer(_Var1)
+THEN
+PartySetFlag(_Var1, "QuestUpdate_RC_DW_RichMerchant_End_RC", 0);
+
+PROC
+ProcRegionEnded("RC_Main")
+AND
+DB_IsPlayer(_Var1)
+THEN
+PartySetFlag(_Var1, "QuestClose_RC_DW_RichMerchant", 0);
+
+IF
+ObjectFlagSet("QuestUpdate_RC_DW_RichMerchant_ImmediateEnd", (CHARACTERGUID)_Var1, (INTEGER)_Var2)
+THEN
+PartySetFlag(_Var1, "QuestUpdate_RC_DW_RichMerchant_Start_Over", _Var2);
+PartySetFlag(_Var1, "QuestUpdate_RC_DW_RichMerchant_End", _Var2);
+
+IF
+CharacterWentOnStage(CHARACTERGUID_S_RC_DW_T_BardanGhost_0a95fdeb-110f-442d-a20d-514afd067b0c, 0)
+AND
+DB_IsPlayer(_Var1)
+THEN
+PartySetFlag(_Var1, "QuestClose_RC_DW_RichMerchant", 0);
+
+
+EXITSECTION
+ENDEXITSECTION
+
+ParentTargetEdge "ReapersCoast"

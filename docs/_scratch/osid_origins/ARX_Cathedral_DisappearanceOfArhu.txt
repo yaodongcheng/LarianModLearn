@@ -1,0 +1,742 @@
+Version 1
+SubGoalCombiner SGC_AND
+
+INITSECTION
+DB_Dialogs(CHARACTERGUID_S_ARX_Cathedral_DisapArhu_Paladin_Tank_000_1d842a02-9a45-4bad-ab7c-feeeb706a973, "ARX_Cathedral_DisapArhu_Paladin_000");
+DB_Dialogs(CHARACTERGUID_S_ARX_Cathedral_DisapArhu_Paladin_Tank_001_59cd4273-7285-4992-a2ce-54299c92333d, "ARX_Cathedral_DisapArhu_Paladin_001");
+DB_Dialogs(CHARACTERGUID_S_ARX_Cathedral_DisapArhu_Paladin_Ranger_002_c0f68387-ccc7-48cd-b175-c41b00f1cf81, "ARX_Cathedral_DisapArhu_Paladin_002");
+DB_Dialogs(CHARACTERGUID_S_ARX_Cathedral_DisapArhu_Priest_b604b9f7-6d7f-4aa8-9f14-1305f0d74fde, "ARX_Cathedral_DisapArhu_Priest");
+DB_TrespassTrigger(TRIGGERGUID_S_ARX_Cathedral_DisapArhu_TrespassPoly_35235753-3891-4aa7-9446-0f77f5d542d2, TRIGGERGUID_S_ARX_Cathedral_DisapArhu_OutPoint_acbbd023-9c2b-4131-9658-3396c4598f4f, "ARX_Cathedral_DisapArhu_Trespass");
+DB_ARX_Cathedral_DisapArhu_PaladinGuards(CHARACTERGUID_S_ARX_Cathedral_DisapArhu_Paladin_Tank_000_1d842a02-9a45-4bad-ab7c-feeeb706a973, TRIGGERGUID_S_ARX_Cathedral_DisapArhu_Paladin_Point_000_e7ac2737-80fa-4c2d-be1b-b2630e940ca7, TRIGGERGUID_S_ARX_Cathedral_DisapArhu_Investigation_Point_000_f5513a1d-66e9-4b33-8892-0b7932e116b4);
+DB_ARX_Cathedral_DisapArhu_PaladinGuards(CHARACTERGUID_S_ARX_Cathedral_DisapArhu_Paladin_Tank_001_59cd4273-7285-4992-a2ce-54299c92333d, TRIGGERGUID_S_ARX_Cathedral_DisapArhu_Paladin_Point_001_fb05b515-d77b-4fb7-b4ee-e801369eccb2, TRIGGERGUID_S_ARX_Cathedral_DisapArhu_Investigation_Point_001_3472d046-f054-4f41-8796-8351699e8895);
+DB_ARX_Cathedral_DisapArhu_PaladinGuards(CHARACTERGUID_S_ARX_Cathedral_DisapArhu_Paladin_Ranger_002_c0f68387-ccc7-48cd-b175-c41b00f1cf81, TRIGGERGUID_S_ARX_Cathedral_DisapArhu_Paladin_Point_002_ebc355b0-1a8f-4ec1-9f29-01c4172b15b8, TRIGGERGUID_S_ARX_Cathedral_DisapArhu_Investigation_Point_002_96493337-8d9a-4364-af50-904c772227e3);
+DB_ARX_Cathedral_DisapArhu_PaladinInvestigates(CHARACTERGUID_S_ARX_Cathedral_DisapArhu_Paladin_Tank_000_1d842a02-9a45-4bad-ab7c-feeeb706a973, TRIGGERGUID_S_ARX_Cathedral_DisapArhu_Apartment_Point_01_d13d49be-5e67-46e0-b02d-5c98b12346ef);
+DB_ARX_Cathedral_DisapArhu_PaladinInvestigates(CHARACTERGUID_S_ARX_Cathedral_DisapArhu_Paladin_Tank_001_59cd4273-7285-4992-a2ce-54299c92333d, TRIGGERGUID_S_ARX_Cathedral_DisapArhu_Apartment_Point_02_40f28947-e875-4c47-aad8-52520a32d5bc);
+DB_ARX_Cathedral_DisapArhu_PaladinInvestigates(CHARACTERGUID_S_ARX_Cathedral_DisapArhu_Paladin_Ranger_002_c0f68387-ccc7-48cd-b175-c41b00f1cf81, TRIGGERGUID_S_ARX_Cathedral_DisapArhu_Apartment_Point_03_d67bcc34-eee1-4664-b2dd-43c1e9a0b3aa);
+DB_ARX_Cathedral_DisapArhu_PaladinInvestigates_Splines(CHARACTERGUID_S_ARX_Cathedral_DisapArhu_Paladin_Tank_000_1d842a02-9a45-4bad-ab7c-feeeb706a973, SPLINEGUID_S_ARX_Cathedral_DisapArhu_Paladin_InvestigatingSpline_00_1e3cfc32-4d4d-49e0-a9a2-714b49814689);
+DB_ARX_Cathedral_DisapArhu_PaladinInvestigates_Splines(CHARACTERGUID_S_ARX_Cathedral_DisapArhu_Paladin_Tank_001_59cd4273-7285-4992-a2ce-54299c92333d, SPLINEGUID_S_ARX_Cathedral_DisapArhu_Paladin_InvestigatingSpline_01_adb4c3d4-2365-42fb-a687-6f3a64e0c8bc);
+DB_ARX_Cathedral_DisapArhu_PaladinInvestigates_Splines(CHARACTERGUID_S_ARX_Cathedral_DisapArhu_Paladin_Ranger_002_c0f68387-ccc7-48cd-b175-c41b00f1cf81, SPLINEGUID_S_ARX_Cathedral_DisapArhu_Paladin_InvestigatingSpline_02_0a4f3a3d-484d-40c5-bcb1-330431b2fa80);
+DB_CrimeWarningIsAD("ARX_AD_Cathedral_DisapArhu_PriestTrespassNotice");
+DB_HasStoryEvent(ITEMGUID_S_ARX_Cathedral_DisapArhu_Key_000_b6549eb1-854c-46e5-a8a6-83a600bc7ae6, "ARX_Cathedral_DisapArhu_HasKey");
+DB_HasStoryEvent(ITEMGUID_S_ARX_Cathedral_DisapArhu_Key_003_6906b26d-3a29-49ac-aa9e-1861a1419a39, "ARX_Cathedral_DisapArhu_HasKey");
+DB_GiveItemToEvent(ITEMGUID_S_ARX_Cathedral_DisapArhu_Key_000_b6549eb1-854c-46e5-a8a6-83a600bc7ae6, "ARX_Cathedral_DisapArhu_ReceivedKey");
+ItemToInventory(ITEMGUID_S_ARX_Cathedral_DisapArhu_Journal_794e8f40-6aa5-411f-b4f2-2cbede844908, ITEMGUID_S_ARX_Cathedral_DisapArhu_BedroomChest_c27736c6-8c89-4b0e-a89b-d9b8511d4720);
+
+KBSECTION
+IF
+TextEventSet("FreeArhu")
+THEN
+Proc_ARX_KemmVault_ArhusPrison_PostKemm();
+
+IF
+TextEventSet("FreeArhu")
+THEN
+Proc_ARX_KemmVault_ArhusPrison_PostKemm();
+GlobalSetFlag("ARX_KemmVault_Arhu_Freed_OnceCongrats");
+GlobalClearFlag("ARX_KemmVault_Arhu_Fainted");
+NOT DB_Queue("ARX_KemmVault_ArhusPrison_Dialog");
+GlobalSetFlag("ARX_KemmVault_ArhusPrison_PrisonBroken");
+RemoveStatus(CHARACTERGUID_S_ARX_KemmVault_Arhu_7befbac9-04f4-4861-81a9-8d2eeb21df5b, "GROUNDED");
+ClearTag(CHARACTERGUID_S_ARX_KemmVault_Arhu_7befbac9-04f4-4861-81a9-8d2eeb21df5b, "CHICKENTOUCH_IMMUNE");
+PROC_StopLoopEffect(CHARACTERGUID_S_ARX_KemmVault_Arhu_7befbac9-04f4-4861-81a9-8d2eeb21df5b, "RS3_FX_GP_ScriptedEvent_Arhu_Binding_01");
+NOT DB_DoNotFace(CHARACTERGUID_S_ARX_KemmVault_Arhu_7befbac9-04f4-4861-81a9-8d2eeb21df5b);
+PROC_StopLoopBeamEffect(CHARACTERGUID_S_ARX_KemmVault_ArhusPrison_Source_01_e9fcdbbc-d4c1-41cd-a3f4-fa79104e9f3c, "ARX_KemmVault_ArhusPrison_Source_01");
+PROC_StopLoopBeamEffect(CHARACTERGUID_S_ARX_KemmVault_ArhusPrison_Source_02_4cd4055b-bf94-43c4-93b5-c0c2fac5e767, "ARX_KemmVault_ArhusPrison_Source_02");
+PROC_StopLoopBeamEffect(CHARACTERGUID_S_ARX_KemmVault_ArhusPrison_Source_03_3f2200a1-88b2-4311-97c0-23ba089d4cfe, "ARX_KemmVault_ArhusPrison_Source_03");
+
+IF
+TextEventSet("FreeArhu")
+THEN
+GlobalClearFlag("ARX_KemmVault_Arhu_ToTheCathedral");
+CharacterDisappearOutOfSightToObject(CHARACTERGUID_S_ARX_KemmVault_Arhu_7befbac9-04f4-4861-81a9-8d2eeb21df5b, ITEMGUID_S_ARX_KemmVault_FinalFloor_Ext_305e609e-b8c5-4631-a956-c245e7cfdbfe, 0, "ARX_KemmVault_Arhu_Disappeared", 0);
+
+IF
+ObjectFlagSet("QuestUpdate_ARX_HuntingForDallis_ArhuIsCathedralKeeper", (CHARACTERGUID)_Var1, _)
+AND
+PartyGetFlag(_Var1, "QuestUpdate_ARX_DisappearanceOfArhu_ArhuIsMissing", 0)
+AND
+PartyGetFlag(_Var1, "QuestUpdate_ARX_HuntingForDallis_DefeatedReimond", 1)
+THEN
+PartySetFlag(_Var1, "QuestUpdate_ARX_DisappearanceOfArhu_FindArhuInCathedral");
+
+IF
+ObjectFlagSet("QuestUpdate_ARX_HuntingForDallis_DefeatedReimond", (CHARACTERGUID)_Var1, _)
+AND
+PartyGetFlag(_Var1, "QuestUpdate_ARX_DisappearanceOfArhu_ArhuIsMissing", 0)
+AND
+PartyGetFlag(_Var1, "QuestUpdate_ARX_HuntingForDallis_ArhuIsCathedralKeeper", 1)
+THEN
+PartySetFlag(_Var1, "QuestUpdate_ARX_DisappearanceOfArhu_FindArhuInCathedral");
+
+IF
+ObjectFlagSet("QuestUpdate_ARX_CreepyCraftsman_GoGetArhu", (CHARACTERGUID)_Var1, _)
+AND
+PartyGetFlag(_Var1, "QuestUpdate_ARX_DisappearanceOfArhu_ArhuIsMissing", 0)
+THEN
+PartySetFlag(_Var1, "QuestUpdate_ARX_DisappearanceOfArhu_FindArhuInCathedral");
+
+IF
+CharacterEnteredTrigger((CHARACTERGUID)_Var1, TRIGGERGUID_S_ARX_Cathedral_DisapArhu_Apartment_SubregionPoly_39f541dd-408b-4deb-89bb-939abd732604)
+AND
+DB_IsPlayer(_Var1)
+AND NOT
+DB_GlobalFlag("ARX_KemmVault_Arhu_InCathedral")
+THEN
+PartySetFlag(_Var1, "QuestUpdate_ARX_DisappearanceOfArhu_ArhuIsMissing");
+UserSetFlag(_Var1, "QuestUpdate_CORE_Chapter6_ARX_ArhuMissing");
+
+IF
+GameBookInterfaceClosed(ITEMGUID_S_ARX_Cathedral_DisappearanceOfArhu_KemmRequest_3bf778f9-1e30-4bc1-83d5-0babbf46f2b9, (CHARACTERGUID)_Var1)
+THEN
+ObjectSetFlag(_Var1, "QuestUpdate_ARX_DisappearanceOfArhu_KemmRequest");
+
+IF
+ObjectFlagSet("ARX_KemmMansion_SetMapMarker", (CHARACTERGUID)_Var1, _)
+THEN
+ProcShowMarker(_Var1, "ARX_KemmMansion");
+
+IF
+ObjectFlagSet("ARX_Cathedral_DisapArhu_ReceivedKey", (CHARACTERGUID)_Var1, _)
+AND
+DB_IsPlayer(_Var1)
+THEN
+PartySetFlag(_Var1, "ARX_Cathedral_DisapArhu_GotKeyFromPriest");
+
+IF
+DialogStarted("ARX_KemmsKid_1", (INTEGER)_Var1)
+AND
+DB_DialogPlayers(_Var1, _Var2, _)
+AND
+UserGetFlag(_Var2, "QuestUpdate_ARX_DisappearanceOfArhu_KidSawCat", 0)
+THEN
+UserSetFlag(_Var2, "QuestUpdate_ARX_DisappearanceOfArhu_KidSawCat");
+
+IF
+CharacterUsedItem((CHARACTERGUID)_Var1, ITEMGUID_S_ARX_Cathedral_PetToy_ScratchPole_a9ba9f06-ab80-4889-8657-1f25a1109580)
+AND
+DB_IsPlayer(_Var1)
+THEN
+UserSetFlag(_Var1, "ARX_Arhu_CatHint");
+Proc_StartDialog(1, "ARX_AD_Cathedral_DisapArhu_CatStuff", _Var1);
+
+IF
+ItemTemplateAddedToCharacter(UNIQUE_ARX_ArhuHair_5466f0fc-f27d-4c32-92c0-b3798003a301, _, (CHARACTERGUID)_Var2)
+AND
+DB_IsPlayer(_Var2)
+AND NOT
+DB_GlobalFlag("ARX_KemmVault_Arhu_InCathedral")
+AND NOT
+DB_GlobalFlag("ARX_KemmVault_Arhu_IsDead")
+THEN
+Proc_ARX_Cathedral_DisapArhu_PickedUpFur(_Var2);
+
+PROC
+Proc_ARX_Cathedral_DisapArhu_PickedUpFur((CHARACTERGUID)_Var1)
+AND
+DB_InRegion(_Var1, TRIGGERGUID_S_ARX_Cathedral_DisapArhu_Apartment_SubregionPoly_39f541dd-408b-4deb-89bb-939abd732604)
+THEN
+UserSetFlag(_Var1, "ARX_Arhu_CatHint");
+
+PROC
+Proc_ARX_Cathedral_DisapArhu_PickedUpFur((CHARACTERGUID)_Var1)
+AND NOT
+DB_InRegion(_Var1, TRIGGERGUID_S_ARX_Cathedral_DisapArhu_Apartment_SubregionPoly_39f541dd-408b-4deb-89bb-939abd732604)
+AND
+PartyGetFlag(_Var1, "QuestUpdate_ARX_DisappearanceOfArhu_ArhuIsMissing", 1)
+AND
+UserGetFlag(_Var1, "ARX_KemmVault_SawArhu", 0)
+AND
+QueryOnlyOnce("ARX_ArhuFur_VB_PickedUp")
+THEN
+StartVoiceBark("ARX_ArhuFur_VB_PickedUp", _Var1);
+
+IF
+ObjectFlagSet("ARX_Cathedral_DisapArhu_Paladin_001_SucceededPersuasion", (CHARACTERGUID)_Var1, _)
+THEN
+ItemClearOwner(ITEMGUID_S_ARX_Cathedral_DisapArhu_ApartDoor_5542b495-b9c6-4e6c-a27b-628906da4fb8);
+ItemClearOwner(ITEMGUID_S_ARX_Cathedral_DisapArhu_ApartDoor_Garden_4195b7e3-af28-41fc-8f43-427dc90c419b);
+Proc_ARX_Cathedral_DisapArhu_DisableTrespassingForPlayer(_Var1);
+
+IF
+StoryEvent(CHARACTERGUID_S_ARX_Kemm_3e6ead7d-dd35-4f9d-985e-af2de0d76d28, "ARX_Kemm_AppearAt_ArhusRoom")
+AND
+DB_IsPlayer(_Var1)
+THEN
+Proc_ARX_Cathedral_DisapArhu_DisableTrespassingForPlayer(_Var1);
+
+PROC
+Proc_ARX_Cathedral_DisapArhu_DisableTrespassingForPlayer((CHARACTERGUID)_Var1)
+THEN
+ProcCharacterDisableCrime(_Var1, "ARX_Cathedral_DisapArhu_Trespass");
+CharacterStopCrime(_Var1, "ARX_Cathedral_DisapArhu_Trespass", TRIGGERGUID_S_ARX_Cathedral_DisapArhu_TrespassPoly_35235753-3891-4aa7-9446-0f77f5d542d2);
+NOT DB_PlayerTrespassing(_Var1, TRIGGERGUID_S_ARX_Cathedral_DisapArhu_TrespassPoly_35235753-3891-4aa7-9446-0f77f5d542d2);
+
+IF
+CrimeIsRegistered((CHARACTERGUID)_Var1, _, (INTEGER)_Var3, _, (CHARACTERGUID)_Var5, (CHARACTERGUID)_Var6, (CHARACTERGUID)_Var7, (CHARACTERGUID)_Var8)
+AND
+DB_InRegion(_Var5, TRIGGERGUID_S_ARX_Cathedral_DisapArhu_Apartment_SubregionPoly_39f541dd-408b-4deb-89bb-939abd732604)
+AND NOT
+DB_Dead(CHARACTERGUID_S_ARX_Kemm_3e6ead7d-dd35-4f9d-985e-af2de0d76d28)
+AND NOT
+DB_GlobalFlag("ARX_Cathedral_DisapArhu_KemmAppeared")
+THEN
+DB_ARX_Cathedral_DisapArhu_ActiveCrime(_Var1, _Var3, _Var5, _Var6, _Var7, _Var8);
+
+IF
+OnCrimeResolved((INTEGER)_Var1, (CHARACTERGUID)_Var2, (CHARACTERGUID)_Var3, (CHARACTERGUID)_Var4, (CHARACTERGUID)_Var5, (CHARACTERGUID)_Var6)
+AND
+DB_ARX_Cathedral_DisapArhu_ActiveCrime(_Var2, _Var1, _Var3, _Var4, _Var5, _Var6)
+THEN
+NOT DB_ARX_Cathedral_DisapArhu_ActiveCrime(_Var2, _Var1, _Var3, _Var4, _Var5, _Var6);
+
+IF
+OnCrimeRemoved((INTEGER)_Var1, (CHARACTERGUID)_Var2, (CHARACTERGUID)_Var3, (CHARACTERGUID)_Var4, (CHARACTERGUID)_Var5, (CHARACTERGUID)_Var6)
+AND
+DB_ARX_Cathedral_DisapArhu_ActiveCrime(_Var2, _Var1, _Var3, _Var4, _Var5, _Var6)
+THEN
+NOT DB_ARX_Cathedral_DisapArhu_ActiveCrime(_Var2, _Var1, _Var3, _Var4, _Var5, _Var6);
+
+IF
+OnCrimeMergedWith((INTEGER)_Var1, (INTEGER)_Var2)
+AND
+DB_ARX_Cathedral_DisapArhu_ActiveCrime(_Var3, _Var1, _Var4, _Var5, _Var6, _Var7)
+THEN
+NOT DB_ARX_Cathedral_DisapArhu_ActiveCrime(_Var3, _Var1, _Var4, _Var5, _Var6, _Var7);
+DB_ARX_Cathedral_DisapArhu_ActiveCrime(_Var3, _Var2, _Var4, _Var5, _Var6, _Var7);
+
+PROC
+Proc_ARX_Kemm_MoveToNextLocation("ArhusRoom")
+THEN
+Proc_ARX_Cathedral_DisapArhu_CancelInterrogation();
+
+PROC
+Proc_ARX_Cathedral_DisapArhu_StopAllCrimes()
+THEN
+DB_Crime_DoNotStopDialog("ARX_Kemm");
+
+PROC
+Proc_ARX_Cathedral_DisapArhu_StopAllCrimes()
+THEN
+Proc_ARX_Cathedral_DisapArhu_CancelInterrogation();
+
+PROC
+Proc_ARX_Cathedral_DisapArhu_CancelInterrogation()
+AND
+DB_ARX_Cathedral_DisapArhu_ActiveCrime(_Var1, _Var2, _Var3, _Var4, _Var5, _Var6)
+AND
+DB_InterrogationRequested(_Var7, _Var2, _Var8, _Var9, _Var4, _Var5, _Var6, _Var10)
+THEN
+PROC_CancelInterrogation(_Var8, _Var2, 1, _Var9, _Var4, _Var5, _Var6);
+
+PROC
+Proc_ARX_Cathedral_DisapArhu_StopAllCrimes()
+AND
+DB_ARX_Cathedral_DisapArhu_ActiveCrime(_Var1, _Var2, _Var3, _Var4, _Var5, _Var6)
+THEN
+NOT DB_ARX_Cathedral_DisapArhu_ActiveCrime(_Var1, _Var2, _Var3, _Var4, _Var5, _Var6);
+Proc_ARX_Cathedral_DisapArhu_StopAllCrimes_Part2(_Var3, _Var2);
+Proc_ARX_Cathedral_DisapArhu_StopAllCrimes_Part2(_Var4, _Var2);
+Proc_ARX_Cathedral_DisapArhu_StopAllCrimes_Part2(_Var5, _Var2);
+Proc_ARX_Cathedral_DisapArhu_StopAllCrimes_Part2(_Var6, _Var2);
+
+PROC
+Proc_ARX_Cathedral_DisapArhu_StopAllCrimes_Part2((CHARACTERGUID)_Var1, (INTEGER)_Var2)
+AND NOT
+QRY_CharacterIsNull(_Var1)
+THEN
+CharacterStopCrimeWithID(_Var1, _Var2);
+
+IF
+DialogEnded("ARX_Kemm", _)
+AND
+DB_Crime_DoNotStopDialog("ARX_Kemm")
+THEN
+NOT DB_Crime_DoNotStopDialog("ARX_Kemm");
+
+PROC
+Proc_ARX_Kemm_MoveToNextLocation("ArhusRoom")
+THEN
+GlobalSetFlag("ARX_Cathedral_DisapArhu_KemmMoving");
+
+IF
+ObjectFlagSet("Start_Arrest_AfterDialog", (CHARACTERGUID)_Var1, (INTEGER)_Var2)
+AND
+DB_DialogName("ARX_Cathedral_DisapArhu_PaladinArrest", _Var2)
+AND
+Qry_ARX_Cathedral_DisapArhu_KemmInArhusRoom()
+THEN
+ObjectClearFlag(_Var1, "Start_Arrest_AfterDialog", 0);
+NOT DB_ArrestAfterDialog(_Var1, _Var2);
+Proc_ARX_Cathedral_DisapArhu_ReactToKemm();
+
+PROC
+ProcCrimeTrespassingBlockHostileFallback((INTEGER)_Var1, (CHARACTERGUID)_Var2)
+AND
+IsTagged(_Var2, "ARX_PRIEST", 1)
+THEN
+DB_CrimeTrespassingBlockHostile(_Var1, _Var2);
+
+IF
+DialogStarted("ARX_Cathedral_DisapArhu_PaladinArrest", (INTEGER)_Var1)
+AND NOT
+DB_ARX_Cathedral_DisapArhu_PaladinSawApartment(_)
+AND
+DB_ARX_Cathedral_DisapArhu_PaladinGuards(_Var3, _, _)
+THEN
+Proc_ARX_Cathedral_DisapArhu_PaladinSeeApartment(_Var3);
+
+QRY
+Qry_ARX_Cathedral_DisapArhu_KemmInArhusRoom()
+AND
+DB_GlobalFlag("ARX_Cathedral_DisapArhu_KemmMoving")
+THEN
+DB_NOOP(1);
+
+QRY
+Qry_ARX_Cathedral_DisapArhu_KemmInArhusRoom()
+AND
+DB_GlobalFlag("ARX_Cathedral_DisapArhu_KemmAppeared")
+THEN
+DB_NOOP(1);
+
+IF
+GlobalFlagSet("ARX_Cathedral_DisapArhu_KemmAppeared")
+THEN
+GlobalClearFlag("ARX_Cathedral_DisapArhu_KemmMoving");
+
+IF
+StoryEvent(CHARACTERGUID_S_ARX_Kemm_3e6ead7d-dd35-4f9d-985e-af2de0d76d28, "ARX_Cathedral_DisapArhu_PaladinAppeared")
+THEN
+Proc_ARX_Cathedral_DisapArhu_ReactToKemm();
+
+PROC
+Proc_ARX_Cathedral_DisapArhu_ReactToKemm()
+AND NOT
+DB_OnlyOnce("ARX_Cathedral_DisapArhu_ReactToKemm")
+AND NOT
+DB_Dead(CHARACTERGUID_S_ARX_Kemm_3e6ead7d-dd35-4f9d-985e-af2de0d76d28)
+AND
+DB_ARX_Cathedral_DisapArhu_PaladinGuards(_Var1, _, _)
+AND NOT
+DB_Dead(_Var1)
+THEN
+DB_OnlyOnce("ARX_Cathedral_DisapArhu_ReactToKemm");
+Proc_ARX_Cathedral_DisapArhu_ReactToKemm_Part2(_Var1);
+
+PROC
+Proc_ARX_Cathedral_DisapArhu_ReactToKemm_Part2((CHARACTERGUID)_Var1)
+AND
+DB_DialogNPCs(_, _Var1, _)
+THEN
+ProcForceStopDialog(_Var1);
+
+PROC
+Proc_ARX_Cathedral_DisapArhu_ReactToKemm_Part2((CHARACTERGUID)_Var1)
+AND
+ObjectIsOnStage(CHARACTERGUID_S_ARX_Kemm_3e6ead7d-dd35-4f9d-985e-af2de0d76d28, 1)
+THEN
+CharacterLookAt(_Var1, CHARACTERGUID_S_ARX_Kemm_3e6ead7d-dd35-4f9d-985e-af2de0d76d28);
+
+PROC
+Proc_ARX_Cathedral_DisapArhu_ReactToKemm_Part2((CHARACTERGUID)_Var1)
+THEN
+PlayAnimation(_Var1, "Salute_01");
+
+PROC
+Proc_ARX_Cathedral_DisapArhu_ReactToKemm_Part2(CHARACTERGUID_S_ARX_Cathedral_DisapArhu_Paladin_Tank_001_59cd4273-7285-4992-a2ce-54299c92333d)
+AND
+QRY_SpeakerIsAvailable(CHARACTERGUID_S_ARX_Cathedral_DisapArhu_Paladin_Tank_001_59cd4273-7285-4992-a2ce-54299c92333d)
+THEN
+Proc_StartDialog(1, "ARX_Cathedral_DisapArhu_AD_PaladinsSaluteKemm", CHARACTERGUID_S_ARX_Cathedral_DisapArhu_Paladin_Tank_001_59cd4273-7285-4992-a2ce-54299c92333d);
+
+PROC
+Proc_ARX_Cathedral_DisapArhu_PaladinSeeApartment((CHARACTERGUID)_Var1)
+AND NOT
+DB_ARX_Cathedral_DisapArhu_PaladinSawApartment(_Var1)
+AND
+Qry_ARX_Cathedral_DisapArhu_DoorIsOpened()
+THEN
+DB_ARX_Cathedral_DisapArhu_PaladinSawApartment(_Var1);
+ObjectSetFlag(_Var1, "ARX_Cathedral_DisapArhu_PaladinSawApartment");
+ProcObjectTimer(_Var1, "ARX_Cathedral_DisapArhu_PaladinSawApartAD", 600);
+
+PROC
+ProcObjectTimerFinished(CHARACTERGUID_S_ARX_Cathedral_DisapArhu_Paladin_Tank_001_59cd4273-7285-4992-a2ce-54299c92333d, "ARX_Cathedral_DisapArhu_PaladinSawApartAD")
+THEN
+Proc_StartDialog(1, "ARX_AD_Cathedral_DisapArhu_PaladinSawTrashedApart", CHARACTERGUID_S_ARX_Cathedral_DisapArhu_Paladin_Tank_001_59cd4273-7285-4992-a2ce-54299c92333d);
+
+PROC
+ProcObjectTimerFinished((CHARACTERGUID)_Var1, "ARX_Cathedral_DisapArhu_PaladinSawApartAD")
+THEN
+CharacterLookAt(_Var1, TRIGGERGUID_S_ARX_Cathedral_DisapArhu_Apartment_Point_d13d49be-5e67-46e0-b02d-5c98b12346ef);
+Proc_ARX_Cathedral_DisapArhu_InitiateMoveToCrimeScene();
+
+IF
+StoryEvent(_, "ARX_Cathedral_DisapArhu_MovedToDoor")
+AND
+QueryOnlyOnce("ARX_Cathedral_DisapArhu_PaladinSawApartmentAfterMoving")
+AND
+DB_ARX_Cathedral_DisapArhu_PaladinGuards(_Var2, _, _)
+THEN
+Proc_ARX_Cathedral_DisapArhu_PaladinSeeApartment(_Var2);
+
+IF
+ItemOpened(ITEMGUID_S_ARX_Cathedral_DisapArhu_ApartDoor_5542b495-b9c6-4e6c-a27b-628906da4fb8)
+AND
+DB_ARX_Cathedral_DisapArhu_PaladinGuards(_Var1, _, _)
+AND NOT
+DB_ARX_Cathedral_DisapArhu_PaladinSawApartment(_Var1)
+THEN
+Proc_ARX_Cathedral_DisapArhu_PaladinSeeApartment(_Var1);
+
+IF
+ItemDestroying(ITEMGUID_S_ARX_Cathedral_DisapArhu_ApartDoor_5542b495-b9c6-4e6c-a27b-628906da4fb8)
+AND
+DB_ARX_Cathedral_DisapArhu_PaladinGuards(_Var1, _, _)
+AND NOT
+DB_ARX_Cathedral_DisapArhu_PaladinSawApartment(_Var1)
+THEN
+DB_ARX_Cathedral_DisapArhu_PaladinSawApartment(_Var1);
+ObjectSetFlag(_Var1, "ARX_Cathedral_DisapArhu_PaladinSawApartment");
+ProcObjectTimer(_Var1, "ARX_Cathedral_DisapArhu_PaladinSawApartAD", 600);
+
+QRY
+Qry_ARX_Cathedral_DisapArhu_DoorIsOpened()
+AND
+ItemIsOpened(ITEMGUID_S_ARX_Cathedral_DisapArhu_ApartDoor_5542b495-b9c6-4e6c-a27b-628906da4fb8, 1)
+THEN
+DB_NOOP(1);
+
+QRY
+Qry_ARX_Cathedral_DisapArhu_DoorIsOpened()
+AND
+DB_DestroyedItems(ITEMGUID_S_ARX_Cathedral_DisapArhu_ApartDoor_5542b495-b9c6-4e6c-a27b-628906da4fb8)
+THEN
+DB_NOOP(1);
+
+IF
+CharacterEnteredTrigger((CHARACTERGUID)_Var1, TRIGGERGUID_S_ARX_Cathedral_DisapArhu_Apartment_SubregionPoly_39f541dd-408b-4deb-89bb-939abd732604)
+AND
+DB_IsPlayer(_Var1)
+AND NOT
+DB_GlobalFlag("ARX_KemmVault_Arhu_InCathedral")
+AND
+UserGetFlag(_Var1, "ARX_Cathedral_DisapArhu_SawTrashedApart", 0)
+THEN
+UserSetFlag(_Var1, "ARX_Cathedral_DisapArhu_SawTrashedApart");
+Proc_StartDialog(1, "ARX_AD_Cathedral_DisapArhu_SawTrashedApart", _Var1);
+
+PROC
+Proc_ARX_Cathedral_DisapArhu_InitiateMovePaladinsToDoor((INTEGER)_Var1)
+AND
+DB_ARX_Cathedral_DisapArhu_PaladinInvestigates_Splines(_Var2, _)
+THEN
+SetStoryEvent(_Var2, "StopPatrol");
+SetStoryEvent(_Var2, "InterruptPatrol");
+DB_ARX_Cathedral_DisapArhu_PaladinGoingToMove(_Var2);
+ProcObjectTimer(_Var2, "ARX_Cathedral_DisapArhu_MoveToDoor", _Var1);
+
+PROC
+ProcObjectTimerFinished((CHARACTERGUID)_Var1, "ARX_Cathedral_DisapArhu_MoveToDoor")
+THEN
+NOT DB_ARX_Cathedral_DisapArhu_PaladinGoingToMove(_Var1);
+
+PROC
+ProcObjectTimerFinished((CHARACTERGUID)_Var1, "ARX_Cathedral_DisapArhu_MoveToDoor")
+AND
+DB_ARX_Cathedral_DisapArhu_PaladinGuards(_Var1, _Var2, _)
+THEN
+Proc_ARX_Cathedral_DisapArhu_MovePaladinsToDoor(_Var1, _Var2);
+
+PROC
+Proc_ARX_Cathedral_DisapArhu_MovePaladinsToDoor((CHARACTERGUID)_Var1, (TRIGGERGUID)_Var2)
+AND
+IsSpeakerReserved(_Var1, 0)
+AND NOT
+DB_CombatCharacters(_Var1, _)
+AND NOT
+DB_Dead(_Var1)
+THEN
+ProcCharacterMoveTo(_Var1, _Var2, 0, "ARX_Cathedral_DisapArhu_MovedToDoor");
+
+PROC
+Proc_ARX_Cathedral_DisapArhu_MovePaladinsToDoor((CHARACTERGUID)_Var1, (TRIGGERGUID)_Var2)
+AND
+DB_ARX_Cathedral_DisapArhu_PaladinGuards(_Var1, _Var2, _)
+AND
+IsSpeakerReserved(_Var1, 1)
+AND
+DB_DialogNPCs(_Var4, _Var1, _)
+THEN
+DB_ARX_Cathedral_DisapArhu_MoveToAfterDialog(_Var1, _Var4, _Var2);
+
+IF
+DialogEnded(_, (INTEGER)_Var2)
+AND
+DB_ARX_Cathedral_DisapArhu_MoveToAfterDialog(_Var3, _Var2, _Var4)
+THEN
+NOT DB_ARX_Cathedral_DisapArhu_MoveToAfterDialog(_Var3, _Var2, _Var4);
+Proc_ARX_Cathedral_DisapArhu_MovePaladinsToDoor(_Var3, _Var4);
+
+PROC
+Proc_ARX_Cathedral_DisapArhu_MovePaladinsToDoor((CHARACTERGUID)_Var1, (TRIGGERGUID)_Var2)
+AND
+DB_ARX_Cathedral_DisapArhu_PaladinGuards(_Var1, _Var2, _)
+AND
+DB_CombatCharacters(_Var1, _Var4)
+THEN
+DB_ARX_Cathedral_DisapArhu_MoveToAfterCombat(_Var1, _Var4, _Var2);
+
+IF
+CombatEnded((INTEGER)_Var1)
+AND
+DB_ARX_Cathedral_DisapArhu_MoveToAfterCombat(_Var2, _Var1, _Var3)
+THEN
+NOT DB_ARX_Cathedral_DisapArhu_MoveToAfterCombat(_Var2, _Var1, _Var3);
+Proc_ARX_Cathedral_DisapArhu_MovePaladinsToDoor(_Var2, _Var3);
+
+IF
+StoryEvent((CHARACTERGUID)_Var1, "ARX_Cathedral_DisapArhu_MovedToDoor")
+AND
+DB_ARX_Cathedral_DisapArhu_PaladinGuards(_Var1, _Var2, _)
+AND
+GetPosition(_Var2, _Var4, _Var5, _Var6)
+THEN
+SetVarFloat3(_Var1, "NPCOrgPos", _Var4, _Var5, _Var6);
+SetVarFloat3(_Var1, "DefaultPoint", _Var4, _Var5, _Var6);
+SetVarObject(_Var1, "lookAtTrig", S_ARX_Cathedral_Scribe_Ownership_Box_000_2d368ad5-0bac-4e00-80f2-fecd6370b48f);
+
+IF
+DB_Crime_Vandalise(_Var1, ITEMGUID_S_ARX_Cathedral_DisapArhu_ApartDoor_5542b495-b9c6-4e6c-a27b-628906da4fb8, _)
+AND
+DB_InRegion(_Var1, TRIGGERGUID_S_ARX_Cathedral_DisapArhu_Apartment_SubregionPoly_39f541dd-408b-4deb-89bb-939abd732604)
+AND NOT
+Qry_ARX_Cathedral_DisapArhu_DoorIsOpened()
+AND
+QueryOnlyOnce("ARX_Cathedral_DisapArhu_OpenDoorBecauseOfCrime")
+THEN
+TimerLaunch("ARX_Cathedral_DisapArhu_OpenDoorBecauseOfCrime_Delay", 1200);
+
+IF
+TimerFinished("ARX_Cathedral_DisapArhu_OpenDoorBecauseOfCrime_Delay")
+THEN
+Proc_ARX_Cathedral_DisapArhu_InitiateMoveToCrimeScene();
+
+PROC
+Proc_ARX_Cathedral_DisapArhu_InitiateMoveToCrimeScene()
+AND NOT
+DB_GlobalFlag("ARX_KemmVault_Arhu_InCathedral")
+AND
+QueryOnlyOnce("ARX_Cathedral_DisapArhu_MovePaladinsInApart")
+THEN
+Proc_ARX_Cathedral_DisapArhu_SetSawApartment();
+Proc_ARX_Cathedral_DisapArhu_PrepMoveToCrimeScene();
+GlobalSetFlag("ARX_Cathedral_DisapArhu_PaladinInvestigates");
+
+PROC
+Proc_ARX_Cathedral_DisapArhu_SetSawApartment()
+AND
+DB_ARX_Cathedral_DisapArhu_PaladinGuards(_Var1, _, _)
+THEN
+DB_ARX_Cathedral_DisapArhu_PaladinSawApartment(_Var1);
+ObjectSetFlag(_Var1, "ARX_Cathedral_DisapArhu_PaladinSawApartment");
+
+PROC
+Proc_ARX_Cathedral_DisapArhu_PrepMoveToCrimeScene()
+AND NOT
+DB_DestroyedItems(ITEMGUID_S_ARX_Cathedral_DisapArhu_ApartDoor_5542b495-b9c6-4e6c-a27b-628906da4fb8)
+AND
+ItemIsOpened(ITEMGUID_S_ARX_Cathedral_DisapArhu_ApartDoor_5542b495-b9c6-4e6c-a27b-628906da4fb8, 0)
+THEN
+ItemUnlockAndOpen(ITEMGUID_S_ARX_Cathedral_DisapArhu_ApartDoor_5542b495-b9c6-4e6c-a27b-628906da4fb8);
+
+IF
+GlobalFlagSet("ARX_Cathedral_DisapArhu_PaladinInvestigates")
+AND
+DB_ARX_Cathedral_DisapArhu_PaladinGuards(_Var1, _, _)
+AND
+DB_ARX_Cathedral_DisapArhu_PaladinInvestigates(_Var1, _Var4)
+THEN
+ProcCharacterMoveTo(_Var1, _Var4, 1, "ARX_Cathedral_DisapArhu_MovedToScene");
+
+IF
+StoryEvent((CHARACTERGUID)_Var1, "ARX_Cathedral_DisapArhu_MovedToScene")
+AND
+DB_ARX_Cathedral_DisapArhu_PaladinInvestigates_Splines(_Var1, _Var2)
+THEN
+SetVarObject(_Var1, "SplineGUID", _Var2);
+SetStoryEvent(_Var1, "InterruptPatrol");
+SetStoryEvent(_Var1, "InitiateSplinePatrol");
+ClearVarObject(_Var1, "previousPos");
+CharacterSetReactionPriority(_Var1, "Patrol", 5);
+
+IF
+StoryEvent(CHARACTERGUID_S_ARX_Cathedral_DisapArhu_Paladin_Ranger_002_c0f68387-ccc7-48cd-b175-c41b00f1cf81, "ARX_Cathedral_DisapArhu_MovedToScene")
+THEN
+SetVarString(CHARACTERGUID_S_ARX_Cathedral_DisapArhu_Paladin_Ranger_002_c0f68387-ccc7-48cd-b175-c41b00f1cf81, "splineAD", "ARX_AD_Cathedral_DisapArhu_PaladinsSearchApart");
+SetVarFixedString(CHARACTERGUID_S_ARX_Cathedral_DisapArhu_Paladin_Ranger_002_c0f68387-ccc7-48cd-b175-c41b00f1cf81, "NodeAnimation1", "Look_Down_Long_01");
+SetVarFixedString(CHARACTERGUID_S_ARX_Cathedral_DisapArhu_Paladin_Ranger_002_c0f68387-ccc7-48cd-b175-c41b00f1cf81, "NodeAnimation2", "Look_Down_Short_01");
+SetVarFixedString(CHARACTERGUID_S_ARX_Cathedral_DisapArhu_Paladin_Ranger_002_c0f68387-ccc7-48cd-b175-c41b00f1cf81, "NodeAnimation", "PickCoin_01");
+
+IF
+StoryEvent((CHARACTERGUID)_Var1, "ARX_Cathedral_DisapArhu_MovedToScene")
+AND
+DB_ARX_Cathedral_DisapArhu_PaladinGuards(_Var1, _, _Var3)
+AND
+GetPosition(_Var3, _Var4, _Var5, _Var6)
+THEN
+SetVarFloat3(_Var1, "NPCOrgPos", _Var4, _Var5, _Var6);
+SetVarFloat3(_Var1, "DefaultPoint", _Var4, _Var5, _Var6);
+
+IF
+StoryEvent(CHARACTERGUID_S_ARX_Cathedral_DisapArhu_Paladin_Tank_000_1d842a02-9a45-4bad-ab7c-feeeb706a973, "ARX_Cathedral_DisapArhu_MovedToScene")
+THEN
+CharacterSetReactionPriority(CHARACTERGUID_S_ARX_Cathedral_DisapArhu_Paladin_Tank_000_1d842a02-9a45-4bad-ab7c-feeeb706a973, "StartDialogAgainDelay", 0);
+CharacterSetReactionPriority(CHARACTERGUID_S_ARX_Cathedral_DisapArhu_Paladin_Tank_000_1d842a02-9a45-4bad-ab7c-feeeb706a973, "TalkTo", 0);
+
+IF
+CharacterDied((CHARACTERGUID)_Var1)
+AND
+DB_ARX_Cathedral_DisapArhu_PaladinGuards(_Var1, _Var2, _Var3)
+THEN
+NOT DB_ARX_Cathedral_DisapArhu_PaladinGuards(_Var1, _Var2, _Var3);
+
+IF
+GlobalFlagSet("ARX_KemmVault_Arhu_InCathedral")
+AND NOT
+DB_GlobalFlag("ARX_Cathedral_DisapArhu_PaladinInvestigates")
+THEN
+Proc_ARX_Cathedral_DisapArhu_SetSawApartment();
+
+IF
+GlobalFlagSet("ARX_KemmVault_Arhu_InCathedral")
+AND
+DB_GlobalFlag("ARX_Cathedral_DisapArhu_PaladinInvestigates")
+THEN
+Proc_ARX_Cathedral_DisapArhu_StopInvestigation();
+GlobalClearFlag("ARX_Cathedral_DisapArhu_PaladinInvestigates");
+Proc_ARX_Cathedral_DisapArhu_InitiateMovePaladinsToDoor(2000);
+
+PROC
+Proc_ARX_Cathedral_DisapArhu_StopInvestigation()
+AND
+DB_ARX_Cathedral_DisapArhu_PaladinInvestigates_Splines(_Var1, _)
+THEN
+SetVarObject(_Var1, "lookAtTrig", S_ARX_Cathedral_Scribe_Ownership_Box_000_2d368ad5-0bac-4e00-80f2-fecd6370b48f);
+
+IF
+GlobalFlagSet("ARX_KemmVault_Arhu_InCathedral")
+THEN
+ProcRemoveDBTrespassTrigger(TRIGGERGUID_S_ARX_Cathedral_DisapArhu_TrespassPoly_35235753-3891-4aa7-9446-0f77f5d542d2, TRIGGERGUID_S_ARX_Cathedral_DisapArhu_OutPoint_acbbd023-9c2b-4131-9658-3396c4598f4f);
+TriggerSetItemOwner(TRIGGERGUID_S_ARX_Cathedral_DisapArhu_Apartment_SubregionPoly_39f541dd-408b-4deb-89bb-939abd732604, CHARACTERGUID_S_ARX_KemmVault_Arhu_7befbac9-04f4-4861-81a9-8d2eeb21df5b);
+
+IF
+GlobalFlagSet("ARX_KemmVault_Arhu_InCathedral")
+AND NOT
+DB_DestroyedItems(ITEMGUID_S_ARX_Cathedral_DisapArhu_ApartDoor_5542b495-b9c6-4e6c-a27b-628906da4fb8)
+THEN
+ItemClearOwner(ITEMGUID_S_ARX_Cathedral_DisapArhu_ApartDoor_5542b495-b9c6-4e6c-a27b-628906da4fb8);
+ItemUnLock(ITEMGUID_S_ARX_Cathedral_DisapArhu_ApartDoor_5542b495-b9c6-4e6c-a27b-628906da4fb8);
+
+IF
+GlobalFlagSet("ARX_KemmVault_Arhu_InCathedral")
+AND NOT
+DB_DestroyedItems(ITEMGUID_S_ARX_Cathedral_DisapArhu_ApartDoor_Garden_4195b7e3-af28-41fc-8f43-427dc90c419b)
+THEN
+ItemClearOwner(ITEMGUID_S_ARX_Cathedral_DisapArhu_ApartDoor_Garden_4195b7e3-af28-41fc-8f43-427dc90c419b);
+ItemUnLock(ITEMGUID_S_ARX_Cathedral_DisapArhu_ApartDoor_Garden_4195b7e3-af28-41fc-8f43-427dc90c419b);
+
+IF
+StoryEvent(CHARACTERGUID_S_ARX_KemmVault_Arhu_7befbac9-04f4-4861-81a9-8d2eeb21df5b, "ARX_Arhu_ArrivedInCathedral")
+THEN
+NOT DB_DoNotFace(CHARACTERGUID_S_ARX_KemmVault_Arhu_7befbac9-04f4-4861-81a9-8d2eeb21df5b);
+SetHasDialog(CHARACTERGUID_S_ARX_KemmVault_Arhu_7befbac9-04f4-4861-81a9-8d2eeb21df5b, 1);
+CharacterSetCanTrade(CHARACTERGUID_S_ARX_KemmVault_Arhu_7befbac9-04f4-4861-81a9-8d2eeb21df5b, 1);
+ProcCharacterEnableAllCrimes(CHARACTERGUID_S_ARX_KemmVault_Arhu_7befbac9-04f4-4861-81a9-8d2eeb21df5b);
+CharacterSetReactionPriority(CHARACTERGUID_S_ARX_KemmVault_Arhu_7befbac9-04f4-4861-81a9-8d2eeb21df5b, "inPrisonReaction", 0);
+SetVarString(CHARACTERGUID_S_ARX_KemmVault_Arhu_7befbac9-04f4-4861-81a9-8d2eeb21df5b, "currentState", "State_Default");
+SetVarInteger(CHARACTERGUID_S_ARX_KemmVault_Arhu_7befbac9-04f4-4861-81a9-8d2eeb21df5b, "ClearInternalStatePriority", 1);
+CharacterSetReactionPriority(CHARACTERGUID_S_ARX_KemmVault_Arhu_7befbac9-04f4-4861-81a9-8d2eeb21df5b, "State_Default", 1000);
+
+IF
+GlobalFlagSet("ARX_KemmVault_Arhu_InCathedral")
+AND NOT
+DB_Dead(CHARACTERGUID_S_ARX_Cathedral_Pilgrim_000_11441aa0-b063-427f-86b8-f606bf1a6ddd)
+THEN
+ClearVarObject(CHARACTERGUID_S_ARX_Cathedral_Pilgrim_000_11441aa0-b063-427f-86b8-f606bf1a6ddd, "CharMoveTo");
+ClearVarObject(CHARACTERGUID_S_ARX_Cathedral_Pilgrim_000_11441aa0-b063-427f-86b8-f606bf1a6ddd, "CharMoveTo_AD");
+
+IF
+GlobalFlagSet("ARX_KemmVault_Arhu_InCathedral")
+AND NOT
+DB_Dead(CHARACTERGUID_S_ARX_Cathedral_Dog_b9627fb3-f0ad-425c-a0dd-3ede0d222416)
+THEN
+SetVarInteger(CHARACTERGUID_S_ARX_Cathedral_Dog_b9627fb3-f0ad-425c-a0dd-3ede0d222416, "ReturnToDefaultPosition", 0);
+
+IF
+CharacterSawCharacter((CHARACTERGUID)_Var1, CHARACTERGUID_S_ARX_KemmVault_Arhu_7befbac9-04f4-4861-81a9-8d2eeb21df5b)
+AND NOT
+DB_Dead(CHARACTERGUID_S_ARX_KemmVault_Arhu_7befbac9-04f4-4861-81a9-8d2eeb21df5b)
+AND
+DB_IsPlayer(_Var1)
+AND
+DB_GlobalFlag("ARX_KemmVault_Arhu_InCathedral")
+THEN
+UserSetFlag(_Var1, "QuestUpdate_ARX_DisappearanceOfArhu_ArhuPrison_FreedArhu");
+
+IF
+GlobalFlagSet("ARX_DisapArhu_ArhuDead_PaladinsKnow")
+AND
+DB_GlobalFlag("ARX_Cathedral_DisapArhu_PaladinInvestigates")
+THEN
+Proc_ARX_Cathedral_DisapArhu_StopInvestigation();
+
+PROC
+ProcRegionStarted("ARX_Main")
+AND
+GetPosition(ITEMGUID_FUR_Humans_PetToy_SleepingBasket_001_0246c9a7-68df-4515-8093-8768af42d476, _Var1, _Var2, _Var3)
+THEN
+DB_ARX_UNIQUE_DaggerOfCruelty_ScatterPosition(_Var1, _Var2, _Var3);
+SetOnStage(ITEMGUID_S_ARX_UNIQUE_DaggerOfCruelty_dd34e069-1f61-4f47-9efd-6b0775783044, 0);
+
+IF
+ItemMoved(ITEMGUID_FUR_Humans_PetToy_SleepingBasket_001_0246c9a7-68df-4515-8093-8768af42d476)
+AND
+ObjectIsOnStage(ITEMGUID_S_ARX_UNIQUE_DaggerOfCruelty_dd34e069-1f61-4f47-9efd-6b0775783044, 0)
+THEN
+Proc_Scatter_S_ARX_UNIQUE_DaggerOfCruelty();
+
+IF
+ItemDestroying(ITEMGUID_FUR_Humans_PetToy_SleepingBasket_001_0246c9a7-68df-4515-8093-8768af42d476)
+AND
+ObjectIsOnStage(ITEMGUID_S_ARX_UNIQUE_DaggerOfCruelty_dd34e069-1f61-4f47-9efd-6b0775783044, 0)
+THEN
+Proc_Scatter_S_ARX_UNIQUE_DaggerOfCruelty();
+
+IF
+ItemAddedToCharacter(ITEMGUID_FUR_Humans_PetToy_SleepingBasket_001_0246c9a7-68df-4515-8093-8768af42d476, (CHARACTERGUID)_Var1)
+AND
+ObjectIsOnStage(ITEMGUID_S_ARX_UNIQUE_DaggerOfCruelty_dd34e069-1f61-4f47-9efd-6b0775783044, 0)
+THEN
+Proc_Scatter_S_ARX_UNIQUE_DaggerOfCruelty();
+
+IF
+ItemAddedToContainer(ITEMGUID_FUR_Humans_PetToy_SleepingBasket_001_0246c9a7-68df-4515-8093-8768af42d476, (ITEMGUID)_Var1)
+AND
+ObjectIsOnStage(ITEMGUID_S_ARX_UNIQUE_DaggerOfCruelty_dd34e069-1f61-4f47-9efd-6b0775783044, 0)
+THEN
+Proc_Scatter_S_ARX_UNIQUE_DaggerOfCruelty();
+
+PROC
+Proc_Scatter_S_ARX_UNIQUE_DaggerOfCruelty()
+AND
+DB_ARX_UNIQUE_DaggerOfCruelty_ScatterPosition(_Var1, _Var2, _Var3)
+THEN
+SetOnStage(ITEMGUID_S_ARX_UNIQUE_DaggerOfCruelty_dd34e069-1f61-4f47-9efd-6b0775783044, 1);
+ItemScatterAt(ITEMGUID_S_ARX_UNIQUE_DaggerOfCruelty_dd34e069-1f61-4f47-9efd-6b0775783044, _Var1, _Var2, _Var3);
+
+
+EXITSECTION
+ENDEXITSECTION
+
+ParentTargetEdge "ARX"

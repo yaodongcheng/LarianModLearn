@@ -1,0 +1,217 @@
+Version 1
+SubGoalCombiner SGC_AND
+
+INITSECTION
+DB_ARX_JahansDemonsVictims(CHARACTERGUID_S_ARX_Demons_Freed_Mhordkan_863f2fd0-2ebc-49cc-acea-c97c60e1b243, CHARACTERGUID_S_ARX_Mhordkan_Victim_f1dfe5fe-8989-42e4-9a44-04e021174cc1);
+DB_ARX_JahansDemonsVictims(CHARACTERGUID_S_ARX_Demons_Freed_ShainHound_503a9995-9033-4d4f-a190-f8af5d17dcfa, CHARACTERGUID_S_ARX_Shain_Victim_5fcc6e2b-dafa-4e48-98e8-29544f619f04);
+DB_ARX_SoulMates(CHARACTERGUID_S_ARX_JahansDemons_Fallback_01_185efcd7-4aa8-4091-b65e-2c62ff4199a3, CHARACTERGUID_S_ARX_JahansDemons_Fallback_06_126a13cd-5931-4a25-b568-db5c609082b0);
+DB_ARX_SoulMates(CHARACTERGUID_S_ARX_JahansDemons_Fallback_04_adeb719d-86a5-46c2-b7a9-1b82b5f24544, CHARACTERGUID_S_ARX_JahansDemons_Fallback_05_441c0c36-39bb-4563-a885-b06d6374af02);
+DB_ARX_SoulMates(CHARACTERGUID_S_ARX_JahansDemons_Fallback_03_cfef563e-2391-43a3-b291-acc6ba6a6692, CHARACTERGUID_S_ARX_JahansDemons_Fallback_02_7f8d502d-cc64-475e-a0aa-18a4a0a98814);
+DB_ARX_SoulMates_StatusOutsidecombat(CHARACTERGUID_S_ARX_JahansDemons_Fallback_Warrior_01_Animal_441c0c36-39bb-4563-a885-b06d6374af02, "SLEEPING");
+DB_ARX_SoulMates_CompanionDied(CHARACTERGUID_S_ARX_JahansDemons_Fallback_01_185efcd7-4aa8-4091-b65e-2c62ff4199a3, "CLEAR_MINDED", "ARX_JahansDemons_AD_Fallback_01");
+DB_ARX_SoulMates_CompanionDied(CHARACTERGUID_S_ARX_JahansDemons_Fallback_04_adeb719d-86a5-46c2-b7a9-1b82b5f24544, "ENRAGED", "ARX_JahansDemons_AD_Fallback_04");
+DB_ARX_SoulMates_CompanionDied(CHARACTERGUID_S_ARX_JahansDemons_Fallback_03_cfef563e-2391-43a3-b291-acc6ba6a6692, "FORTIFIED", "ARX_JahansDemons_AD_Fallback_03");
+DB_ARX_SoulMates_CompanionDied(CHARACTERGUID_S_ARX_JahansDemons_Fallback_06_126a13cd-5931-4a25-b568-db5c609082b0, "STEEL_SKIN", "GEB_AD_Noticed_AnimalAttackedAnimal");
+DB_ARX_SoulMates_CompanionDied(CHARACTERGUID_S_ARX_JahansDemons_Fallback_05_441c0c36-39bb-4563-a885-b06d6374af02, "ENRAGED", "GEB_AD_Noticed_AnimalAttackedAnimal");
+DB_ARX_SoulMates_CompanionDied(CHARACTERGUID_S_ARX_JahansDemons_Fallback_02_7f8d502d-cc64-475e-a0aa-18a4a0a98814, "HASTED", "GEB_AD_Noticed_AnimalAttackedAnimal");
+Proc_ARX_JahansDemons_SetUp();
+
+KBSECTION
+IF
+TextEventSet("arx_jahdem_tp")
+THEN
+Proc_ARX_JahansDemons_SetUp(CHARACTERGUID_S_ARX_Demons_Freed_Mhordkan_863f2fd0-2ebc-49cc-acea-c97c60e1b243);
+Proc_ARX_JahansDemons_SetUp(CHARACTERGUID_S_ARX_Demons_Freed_ShainHound_503a9995-9033-4d4f-a190-f8af5d17dcfa);
+
+IF
+TextEventSet("soul")
+AND
+DB_ARX_SoulMates(_Var1, _Var2)
+THEN
+CharacterUseSkill(_Var1, "Target_Quest_PermanentSoulMate", _Var2, 1, 1);
+
+PROC
+Proc_ARX_JahansDemons_SetUp()
+THEN
+SetOnStage(CHARACTERGUID_S_ARX_Mhordkan_Victim_f1dfe5fe-8989-42e4-9a44-04e021174cc1, 0);
+SetOnStage(CHARACTERGUID_S_ARX_Shain_Victim_5fcc6e2b-dafa-4e48-98e8-29544f619f04, 0);
+SetOnStage(CHARACTERGUID_S_ARX_Demons_Freed_Mhordkan_863f2fd0-2ebc-49cc-acea-c97c60e1b243, 0);
+SetOnStage(CHARACTERGUID_S_ARX_Demons_Freed_ShainHound_503a9995-9033-4d4f-a190-f8af5d17dcfa, 0);
+
+PROC
+Proc_ARX_JahansDemons_SetUp()
+AND
+GlobalGetFlag("RC_BF_Mhordkan_Free", 1)
+THEN
+Proc_ARX_JahansDemons_SetUp(CHARACTERGUID_S_ARX_Demons_Freed_Mhordkan_863f2fd0-2ebc-49cc-acea-c97c60e1b243);
+
+PROC
+Proc_ARX_JahansDemons_SetUp()
+AND
+GlobalGetFlag("RC_BF_Shain_Free", 1)
+THEN
+Proc_ARX_JahansDemons_SetUp(CHARACTERGUID_S_ARX_Demons_Freed_ShainHound_503a9995-9033-4d4f-a190-f8af5d17dcfa);
+
+PROC
+Proc_ARX_JahansDemons_SetUp((CHARACTERGUID)_Var1)
+AND
+DB_ARX_JahansDemonsVictims(_Var1, _Var2)
+THEN
+SetOnStage(_Var2, 1);
+CreatePuddle(_Var2, "SurfaceBlood", 4, 8, 1, 2, 1);
+SetOnStage(_Var1, 1);
+SetVarObject(_Var1, "Victim", _Var2);
+CharacterSetReactionPriority(_Var1, "Reaction_Feast", 1500);
+ProcCharacterMoveTo(_Var1, _Var2, 0, "ARX_AtVictim");
+Proc_ARX_JahansDemons_SetUp_KillFallback();
+
+PROC
+Proc_ARX_JahansDemons_SetUp()
+AND
+GlobalGetFlag("RC_BF_Mhordkan_Free", 0)
+AND
+GlobalGetFlag("RC_BF_Shain_Free", 0)
+AND
+DB_ARX_SoulMates(_Var1, _Var2)
+THEN
+CharacterSetForceUpdate(_Var1, 1);
+CharacterSetForceUpdate(_Var2, 1);
+CharacterUseSkill(_Var1, "Target_Quest_PermanentSoulMate", _Var2, 1, 1);
+
+PROC
+Proc_ARX_JahansDemons_SetUp()
+THEN
+ProcTriggerRegisterForPlayers(TRIGGERGUID_S_ARX_JahansDemons_FeastTrigger_a789a9cd-4641-4b16-ac1c-e1a1063a9f13);
+
+PROC
+Proc_ARX_JahansDemons_SetUp_KillFallback()
+AND
+QueryOnlyOnce("ARX_JahansDemons_SetUp_KillFallback")
+AND
+DB_ARX_SoulMates(_Var1, _Var2)
+THEN
+CharacterDie(_Var1, 0, "DoT");
+SetOnStage(_Var2, 0);
+NOT DB_ARX_SoulMates(_Var1, _Var2);
+
+IF
+CharacterDied((CHARACTERGUID)_Var1)
+AND
+DB_ARX_SoulMates(_Var2, _Var1)
+THEN
+CharacterSetForceUpdate(_Var2, 0);
+CharacterSetForceUpdate(_Var1, 0);
+
+IF
+CharacterDied((CHARACTERGUID)_Var1)
+AND
+DB_ARX_SoulMates_CompanionDied(_Var1, _, _)
+THEN
+Proc_ARX_SoulMates_CompanionDied(_Var1);
+
+PROC
+Proc_ARX_SoulMates_CompanionDied((CHARACTERGUID)_Var1)
+AND
+DB_ARX_SoulMates(_Var1, _Var2)
+AND
+DB_ARX_SoulMates_CompanionDied(_Var2, _Var3, _Var4)
+AND NOT
+DB_Dead(_Var2)
+THEN
+Proc_StartDialog(1, _Var4, _Var2);
+PlayEffect(_Var2, "RS3_FX_Skills_Water_Restoration_Impact_01");
+ApplyStatus(_Var2, _Var3, -1, 1);
+
+PROC
+Proc_ARX_SoulMates_CompanionDied((CHARACTERGUID)_Var1)
+AND
+DB_ARX_SoulMates(_Var2, _Var1)
+AND
+DB_ARX_SoulMates_CompanionDied(_Var2, _Var3, _Var4)
+AND NOT
+DB_Dead(_Var2)
+THEN
+ApplyStatus(_Var2, _Var3, -1, 1);
+Proc_StartDialog(1, _Var4, _Var2);
+
+IF
+CharacterEnteredTrigger((CHARACTERGUID)_Var1, TRIGGERGUID_S_ARX_JahansDemons_FeastTrigger_a789a9cd-4641-4b16-ac1c-e1a1063a9f13)
+AND
+ObjectIsOnStage(CHARACTERGUID_S_ARX_Demons_Freed_Mhordkan_863f2fd0-2ebc-49cc-acea-c97c60e1b243, 1)
+AND
+CharacterIsDead(CHARACTERGUID_S_ARX_Demons_Freed_Mhordkan_863f2fd0-2ebc-49cc-acea-c97c60e1b243, 0)
+THEN
+Proc_StartDialog(0, "ARX_Outskirts_MhordkanAttack", CHARACTERGUID_S_ARX_Demons_Freed_Mhordkan_863f2fd0-2ebc-49cc-acea-c97c60e1b243, _Var1);
+
+IF
+DialogEnded("ARX_Outskirts_MhordkanAttack", _)
+AND
+DB_ARX_JahansDemonsVictims(_Var2, _)
+THEN
+SetFaction(_Var2, "Evil NPC");
+
+IF
+CharacterEnteredTrigger((CHARACTERGUID)_Var1, TRIGGERGUID_S_ARX_JahansDemons_FeastTrigger_a789a9cd-4641-4b16-ac1c-e1a1063a9f13)
+AND
+ObjectIsOnStage(CHARACTERGUID_S_ARX_Demons_Freed_Mhordkan_863f2fd0-2ebc-49cc-acea-c97c60e1b243, 1)
+AND
+CharacterIsDead(CHARACTERGUID_S_ARX_Demons_Freed_Mhordkan_863f2fd0-2ebc-49cc-acea-c97c60e1b243, 1)
+AND
+DB_ARX_JahansDemonsVictims(_Var2, _)
+THEN
+SetFaction(_Var2, "Evil NPC");
+
+IF
+CharacterEnteredTrigger((CHARACTERGUID)_Var1, TRIGGERGUID_S_ARX_JahansDemons_FeastTrigger_a789a9cd-4641-4b16-ac1c-e1a1063a9f13)
+AND
+ObjectIsOnStage(CHARACTERGUID_S_ARX_Demons_Freed_Mhordkan_863f2fd0-2ebc-49cc-acea-c97c60e1b243, 0)
+AND
+DB_ARX_JahansDemonsVictims(_Var2, _)
+THEN
+SetFaction(_Var2, "Evil NPC");
+
+IF
+CharacterDied((CHARACTERGUID)_Var1)
+AND
+DB_ARX_JahansDemonsVictims(_Var1, _Var2)
+THEN
+NOT DB_ARX_JahansDemonsVictims(_Var1, _Var2);
+Proc_ARX_JahansDemons_CheckDead();
+
+PROC
+Proc_ARX_JahansDemons_CheckDead()
+AND
+SysCount("DB_ARX_JahansDemonsVictims", 2, 0)
+THEN
+GoalCompleted;
+
+IF
+DB_ARX_SoulMates_StatusOutsidecombat(_Var1, _Var2)
+THEN
+ApplyStatus(_Var1, _Var2, -1, 1);
+
+IF
+ObjectLeftCombat((CHARACTERGUID)_Var1, _)
+AND
+DB_ARX_SoulMates_StatusOutsidecombat(_Var1, _Var3)
+AND NOT
+DB_Dead(_Var1)
+THEN
+ApplyStatus(_Var1, _Var3, -1, 1);
+
+IF
+ObjectEnteredCombat((GUIDSTRING)_Var1, _)
+AND
+DB_ARX_SoulMates_StatusOutsidecombat(_Var1, _Var3)
+AND
+HasActiveStatus(_Var1, _Var3, 1)
+THEN
+RemoveStatus(_Var1, _Var3);
+
+
+EXITSECTION
+SysClear("DB_ARX_JahansDemonsVictims", 2);
+ProcTriggerUnregisterForPlayers(TRIGGERGUID_S_ARX_JahansDemons_FeastTrigger_a789a9cd-4641-4b16-ac1c-e1a1063a9f13);
+ENDEXITSECTION
+
+ParentTargetEdge "ARX"

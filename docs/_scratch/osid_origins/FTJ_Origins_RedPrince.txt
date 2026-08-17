@@ -1,0 +1,732 @@
+Version 1
+SubGoalCombiner SGC_AND
+
+INITSECTION
+DB_DoNotFace(CHARACTERGUID_S_Player_RedPrince_a26a1efb-cdc8-4cf3-a7b2-b2f9544add6f);
+ItemToInventory(ITEMGUID_S_FTJ_RPAssassinLetter_1e954a73-e708-4487-b66f-7cdcf0f38d24, CHARACTERGUID_S_FTJ_RPAssassin_8d73b9c9-0d7e-4e5c-8cfb-6a13121cd440);
+DB_Dialogs(CHARACTERGUID_S_FTJ_RPAssassin_8d73b9c9-0d7e-4e5c-8cfb-6a13121cd440, "FTJ_RedPrinceAssassin");
+DB_TriggerSendsSpotEvents(S_FTJ_RPAssassin_Area_1f725eb1-3696-481c-8baa-df083aab634e);
+TriggerRegisterForCharacter(S_FTJ_RPAssassin_Area_1f725eb1-3696-481c-8baa-df083aab634e, CHARACTERGUID_S_FTJ_RPAssassin_8d73b9c9-0d7e-4e5c-8cfb-6a13121cd440);
+TeleportTo(CHARACTERGUID_S_GLO_Brahmos_d4064352-33f9-49df-b208-09fd822d2270, TRIGGERGUID_S_FTJ_SW_RedPrince_BrahmosDreamPoint_8fd01b29-1674-44cb-ac3c-e03495a51b9f);
+CharacterLookFromTrigger(CHARACTERGUID_S_GLO_Brahmos_d4064352-33f9-49df-b208-09fd822d2270, TRIGGERGUID_S_FTJ_SW_RedPrince_BrahmosDreamPoint_8fd01b29-1674-44cb-ac3c-e03495a51b9f, 1);
+Proc_FTJ_Origins_RedPrince_Start();
+SetOnStage(CHARACTERGUID_S_FTJ_SW_DreamRedPrincess_a54d0f54-e710-49e5-89cb-53ff9613e690, 0);
+DB_FTJ_SW_Origins_RedPrince_BaharaTriggers(S_FTJ_SW_BaharaUpTrigger1_aea57e1d-016e-4e62-a2da-8c345d5f63b0, S_FTJ_SW_RedPrinceBaharaUp1COM_Point_e5d8127c-8094-4375-9d44-0a71e2c88720);
+DB_FTJ_SW_Origins_RedPrince_BaharaTriggers(TRIGGERGUID_S_FTJ_SW_BaharaUpTrigger2_fc2f5257-dddd-4185-8c36-d025b68ab1ef, TRIGGERGUID_S_FTJ_SW_RedPrinceBaharaUp2COM_Point_f0f9f802-50fc-4a1b-bf67-5883f5ae0e18);
+DB_FTJ_SW_CheckpointSourcererDialogs("FTJ_SW_CheckpointSourcerer");
+DB_FTJ_SW_CheckpointSourcererDialogs("FTJ_SW_CheckpointSourcerer_COM_RedPrince");
+CharacterAddPreferredAiTargetTag(CHARACTERGUID_S_FTJ_RPAssassin_8d73b9c9-0d7e-4e5c-8cfb-6a13121cd440, "RED PRINCE");
+
+KBSECTION
+IF
+ObjectFlagSet("FTJ_ORI_RedPrinceAttack", (CHARACTERGUID)_Var1, _)
+THEN
+ApplyStatus(_Var1, "KNOCKED_DOWN", 1, 1);
+CharacterLookAt(CHARACTERGUID_S_Player_RedPrince_a26a1efb-cdc8-4cf3-a7b2-b2f9544add6f, _Var1, 1);
+PlayAnimation(CHARACTERGUID_S_Player_RedPrince_a26a1efb-cdc8-4cf3-a7b2-b2f9544add6f, "attack3");
+PlayEffect(_Var1, "RS3_FX_GP_Combat_Hit_Blood_01_Large");
+ApplyDamage(_Var1, 2, "Physical");
+SetStoryEvent(_Var1, "Play_Anim_knockdown_getup");
+ProcObjectTimer(_Var1, "FTJ_ORI_RedPrinceAttack", 400);
+
+PROC
+ProcObjectTimerFinished((GUIDSTRING)_Var1, "FTJ_ORI_RedPrinceAttack")
+THEN
+CreateSurface(_Var1, "SurfaceBlood", 0.1, -1);
+
+PROC
+Proc_FTJ_Origins_RedPrince_Start()
+AND
+IsTagged(CHARACTERGUID_S_Player_RedPrince_a26a1efb-cdc8-4cf3-a7b2-b2f9544add6f, "AVATAR", 1)
+THEN
+ObjectSetFlag(CHARACTERGUID_S_Player_RedPrince_a26a1efb-cdc8-4cf3-a7b2-b2f9544add6f, "QuestUpdate_FTJ_OriginRedPrince_RPWashedAshore");
+
+PROC
+Proc_COMFinished("FTJ_LizardDreamer_COM_RedPrince", (CHARACTERGUID)_Var1)
+THEN
+UserSetFlag(_Var1, "QuestUpdate_FTJ_COM_RedPrince_Stingtail");
+
+PROC
+Proc_COMFinished("FTJ_SW_CheckpointSourcerer_COM_RedPrince", (CHARACTERGUID)_Var1)
+THEN
+UserSetFlag(_Var1, "QuestUpdate_FTJ_COM_RedPrince_Bahara");
+GlobalSetFlag("GLO_RedPrince_BaharaFinished");
+
+IF
+GlobalFlagSet("FTJ_SW_ShelterAccessible")
+THEN
+DB_OriginMomentTag("FTJ_SW_CheckpointSourcerer", "RED PRINCE", "FTJ_SW_CheckpointSourcerer_COM_RedPrince");
+
+IF
+ItemTemplateAddedToCharacter((GUIDSTRING)_Var1, (ITEMGUID)_Var2, (CHARACTERGUID)_Var3)
+AND
+DB_CurrentLevel("FJ_FortJoy_Main")
+AND
+String(_Var1, _Var4)
+AND
+DB_DrudenaeTemplates(_Var4)
+AND
+_Var2 != ITEMGUID_S_FTJ_OlgoDrugs_7a4769d5-c45b-49c1-a22b-5121073c6096
+THEN
+ProcSetMagicPocketsOwnershipFlag(_Var3, "FTJ_HasDrudenae");
+
+IF
+ItemTemplateRemovedFromCharacter((STRING)_Var1, (ITEMGUID)_Var2, (CHARACTERGUID)_Var3)
+AND
+DB_CurrentLevel("FJ_FortJoy_Main")
+AND
+_Var2 != ITEMGUID_S_FTJ_OlgoDrugs_7a4769d5-c45b-49c1-a22b-5121073c6096
+AND
+DB_DrudenaeTemplates(_Var1)
+THEN
+ProcCheckForFTJDrudenaeFlag(_Var3);
+
+IF
+ItemRemovedFromCharacter(ITEMGUID_S_FTJ_OlgoDrugs_7a4769d5-c45b-49c1-a22b-5121073c6096, CHARACTERGUID_S_FTJ_LizardDreamer_ffb80725-25ff-4174-98cb-60a11612e5c4)
+THEN
+DB_HasStoryEvent(ITEMGUID_S_FTJ_OlgoDrugs_7a4769d5-c45b-49c1-a22b-5121073c6096, "FTJ_HasDrudenae");
+
+PROC
+Proc_ItemEventCheck()
+AND
+DB_CurrentLevel("FJ_FortJoy_Main")
+AND
+DB_IsPlayer(_Var1)
+THEN
+ProcCheckForFTJDrudenaeFlag(_Var1);
+
+PROC
+ProcCheckForFTJDrudenaeFlag((CHARACTERGUID)_Var1)
+AND
+DB_DrudenaeTemplates(_Var2)
+AND
+GetTemplate(ITEMGUID_S_FTJ_OlgoDrugs_7a4769d5-c45b-49c1-a22b-5121073c6096, _Var3)
+THEN
+ProcCheckForFTJDrudenaeInMagicPockets(_Var1, _Var2, _Var3);
+
+PROC
+ProcCheckForFTJDrudenaeInMagicPockets((CHARACTERGUID)_Var1, (STRING)_Var2, (STRING)_Var3)
+AND
+_Var3 != _Var2
+AND
+QryItemTemplateInMagicPockets(_Var1, _Var2)
+THEN
+DB_FTJHasDrudenae(1);
+
+PROC
+ProcCheckForFTJDrudenaeInMagicPockets((CHARACTERGUID)_Var1, (STRING)_Var2, (STRING)_Var3)
+AND
+_Var3 == _Var2
+AND
+QryItemTemplateInMagicPocketsCount(_Var1, _Var2)
+AND
+DB_MagicPocketsItemTemplateCount(_Var1, _Var2, _Var4)
+AND
+_Var4 > 1
+THEN
+DB_FTJHasDrudenae(1);
+
+PROC
+ProcCheckForFTJDrudenaeFlag((CHARACTERGUID)_Var1)
+AND NOT
+DB_FTJHasDrudenae(1)
+THEN
+ProcClearMagicPocketsOwnershipFlag(_Var1, "FTJ_HasDrudenae");
+
+PROC
+ProcCheckForFTJDrudenaeFlag((CHARACTERGUID)_Var1)
+AND
+DB_FTJHasDrudenae(1)
+THEN
+ProcSetMagicPocketsOwnershipFlag(_Var1, "FTJ_HasDrudenae");
+
+PROC
+ProcCheckForFTJDrudenaeFlag((CHARACTERGUID)_Var1)
+THEN
+NOT DB_FTJHasDrudenae(1);
+
+IF
+ObjectFlagSet("FTJ_GiveStingTailDrudenae", (CHARACTERGUID)_Var1, _)
+AND
+DB_IsPlayer(_Var1)
+AND
+ObjectGetFlag(_Var1, "FTJ_HasDrudenae", 1)
+AND
+DB_DrudenaeTemplates(_Var3)
+AND NOT
+DB_GaveStingTailDrudenae(1)
+THEN
+DB_FTJCheckStingTailTemplate(_Var3);
+ProcLaunchMagicPocketIterator(_Var1, "checkForDrudenae", "");
+ProcLaunchMagicPocketIterator(_Var1, "checkForDrudenae_Griff", "");
+SetStoryEvent(_Var1, "checkForDrudenae_Griff");
+FireOsirisEvents();
+NOT DB_FTJCheckStingTailTemplate(_Var3);
+
+IF
+StoryEvent((ITEMGUID)_Var1, "checkForDrudenae")
+AND
+_Var1 != ITEMGUID_S_FTJ_OlgoDrugs_7a4769d5-c45b-49c1-a22b-5121073c6096
+AND
+DB_FTJCheckStingTailTemplate(_Var2)
+AND
+GetTemplate(_Var1, _Var2)
+AND NOT
+DB_GaveStingTailDrudenae(1)
+THEN
+ItemToInventory(_Var1, CHARACTERGUID_S_FTJ_LizardDreamer_ffb80725-25ff-4174-98cb-60a11612e5c4);
+CharacterUseItem(CHARACTERGUID_S_FTJ_LizardDreamer_ffb80725-25ff-4174-98cb-60a11612e5c4, _Var1, "");
+DB_GaveStingTailDrudenae(1);
+
+IF
+StoryEvent((ITEMGUID)_Var1, "checkForDrudenae_Griff")
+AND
+_Var1 == ITEMGUID_S_FTJ_OlgoDrugs_7a4769d5-c45b-49c1-a22b-5121073c6096
+AND NOT
+DB_GaveStingTailDrudenae(1)
+THEN
+ItemToInventory(_Var1, CHARACTERGUID_S_FTJ_LizardDreamer_ffb80725-25ff-4174-98cb-60a11612e5c4);
+CharacterUseItem(CHARACTERGUID_S_FTJ_LizardDreamer_ffb80725-25ff-4174-98cb-60a11612e5c4, _Var1, "");
+DB_GaveStingTailDrudenae(1);
+
+IF
+StoryEvent((CHARACTERGUID)_Var1, "checkForDrudenae_Griff")
+AND
+ItemIsInPartyInventory(ITEMGUID_S_FTJ_OlgoDrugs_7a4769d5-c45b-49c1-a22b-5121073c6096, _Var1, 1, 1)
+AND NOT
+DB_GaveStingTailDrudenae(1)
+THEN
+ItemToInventory(ITEMGUID_S_FTJ_OlgoDrugs_7a4769d5-c45b-49c1-a22b-5121073c6096, CHARACTERGUID_S_FTJ_LizardDreamer_ffb80725-25ff-4174-98cb-60a11612e5c4);
+CharacterUseItem(CHARACTERGUID_S_FTJ_LizardDreamer_ffb80725-25ff-4174-98cb-60a11612e5c4, ITEMGUID_S_FTJ_OlgoDrugs_7a4769d5-c45b-49c1-a22b-5121073c6096, "");
+DB_GaveStingTailDrudenae(1);
+
+IF
+GlobalFlagSet("FTJ_StingtailEatStolenDrud")
+THEN
+ItemRemove(ITEMGUID_S_FTJ_OlgoDrugs_7a4769d5-c45b-49c1-a22b-5121073c6096);
+
+IF
+GlobalFlagSet("FTJ_Origin_RedPrince_StingtailGaveInfo")
+THEN
+ObjectSetFlag(CHARACTERGUID_S_Player_RedPrince_a26a1efb-cdc8-4cf3-a7b2-b2f9544add6f, "QuestUpdate_FTJ_OriginRedPrince_StingtailGaveInfo");
+ObjectSetFlag(CHARACTERGUID_S_Player_RedPrince_a26a1efb-cdc8-4cf3-a7b2-b2f9544add6f, "FTJ_Origin_RedPrince_HasTolemyInfo");
+
+IF
+DialogEnded("FTJ_LizardDreamer", _)
+AND
+DB_GlobalFlag("FTJ_Origin_RedPrince_StingtailGaveInfo")
+AND
+QueryOnlyOnce("FTJ_VB_OM_RedPrince-StingTail")
+THEN
+StartVoiceBark("FTJ_VB_OM_RedPrince-StingTail", CHARACTERGUID_S_Player_RedPrince_a26a1efb-cdc8-4cf3-a7b2-b2f9544add6f);
+
+IF
+DialogEnded("FTJ_LizardDreamer_COM_RedPrince", _)
+AND
+ObjectGetFlag(CHARACTERGUID_S_Player_RedPrince_a26a1efb-cdc8-4cf3-a7b2-b2f9544add6f, "FTJ_VB_OM_RedPrince-StingTail", 1)
+AND
+QueryOnlyOnce("FTJ_VB_OM_RedPrince-StingTail")
+THEN
+StartVoiceBark("FTJ_VB_OM_RedPrince-StingTail", CHARACTERGUID_S_Player_RedPrince_a26a1efb-cdc8-4cf3-a7b2-b2f9544add6f);
+GlobalSetFlag("GLO_RedPrince_TalkedToStingtail");
+
+IF
+CharacterLeftTrigger(CHARACTERGUID_S_FTJ_RPAssassin_8d73b9c9-0d7e-4e5c-8cfb-6a13121cd440, S_FTJ_RPAssassin_Area_1f725eb1-3696-481c-8baa-df083aab634e)
+THEN
+TeleportTo(S_FTJ_RPAssassin_Area_1f725eb1-3696-481c-8baa-df083aab634e, CHARACTERGUID_S_FTJ_RPAssassin_8d73b9c9-0d7e-4e5c-8cfb-6a13121cd440);
+
+IF
+DB_Event_CharacterAppearedInSpotTrigger(CHARACTERGUID_S_Player_RedPrince_a26a1efb-cdc8-4cf3-a7b2-b2f9544add6f, S_FTJ_RPAssassin_Area_1f725eb1-3696-481c-8baa-df083aab634e)
+AND
+IsTagged(CHARACTERGUID_S_Player_RedPrince_a26a1efb-cdc8-4cf3-a7b2-b2f9544add6f, "RED PRINCE", 1)
+THEN
+DialogRequestStop(CHARACTERGUID_S_FTJ_RPAssassin_8d73b9c9-0d7e-4e5c-8cfb-6a13121cd440);
+
+IF
+DB_Event_CharacterAppearedInSpotTrigger(CHARACTERGUID_S_Player_RedPrince_a26a1efb-cdc8-4cf3-a7b2-b2f9544add6f, S_FTJ_RPAssassin_Area_1f725eb1-3696-481c-8baa-df083aab634e)
+AND
+IsTagged(CHARACTERGUID_S_Player_RedPrince_a26a1efb-cdc8-4cf3-a7b2-b2f9544add6f, "RED PRINCE", 1)
+AND
+QRY_SpeakerIsAvailable(CHARACTERGUID_S_FTJ_RPAssassin_8d73b9c9-0d7e-4e5c-8cfb-6a13121cd440)
+THEN
+CharacterSetCanTrade(CHARACTERGUID_S_FTJ_RPAssassin_8d73b9c9-0d7e-4e5c-8cfb-6a13121cd440, 0);
+ProcCharacterMoveToAndTalk(CHARACTERGUID_S_FTJ_RPAssassin_8d73b9c9-0d7e-4e5c-8cfb-6a13121cd440, S_Player_RedPrince_a26a1efb-cdc8-4cf3-a7b2-b2f9544add6f, "FTJ_RedPrinceAssassin", 0, "FTJ_RedPrinceAssassin", 1, 10, 0, 0);
+
+IF
+CharacterMoveToAndTalkRequestDialogFailedEvent(CHARACTERGUID_S_FTJ_RPAssassin_8d73b9c9-0d7e-4e5c-8cfb-6a13121cd440, _, "FTJ_RedPrinceAssassin")
+THEN
+DB_FTJ_RPAssassinWaitsForRPToBeAvailable(1);
+
+IF
+DialogEnded(_, (INTEGER)_Var2)
+AND
+DB_FTJ_RPAssassinWaitsForRPToBeAvailable(1)
+AND
+DB_DialogPlayers(_Var2, CHARACTERGUID_S_Player_RedPrince_a26a1efb-cdc8-4cf3-a7b2-b2f9544add6f, _)
+AND
+IsTagged(CHARACTERGUID_S_Player_RedPrince_a26a1efb-cdc8-4cf3-a7b2-b2f9544add6f, "RED PRINCE", 1)
+AND
+GetDistanceTo(CHARACTERGUID_S_Player_RedPrince_a26a1efb-cdc8-4cf3-a7b2-b2f9544add6f, CHARACTERGUID_S_FTJ_RPAssassin_8d73b9c9-0d7e-4e5c-8cfb-6a13121cd440, _Var4)
+AND
+_Var4 <= 10
+THEN
+DialogRequestStop(CHARACTERGUID_S_FTJ_RPAssassin_8d73b9c9-0d7e-4e5c-8cfb-6a13121cd440);
+ProcCharacterMoveToAndTalk(CHARACTERGUID_S_FTJ_RPAssassin_8d73b9c9-0d7e-4e5c-8cfb-6a13121cd440, S_Player_RedPrince_a26a1efb-cdc8-4cf3-a7b2-b2f9544add6f, "FTJ_RedPrinceAssassin", 0, "FTJ_RedPrinceAssassin", 1, 10, 0, 0);
+
+IF
+DialogEnded(_, (INTEGER)_Var2)
+AND
+DB_FTJ_RPAssassinWaitsForRPToBeAvailable(1)
+AND
+DB_DialogPlayers(_Var2, CHARACTERGUID_S_Player_RedPrince_a26a1efb-cdc8-4cf3-a7b2-b2f9544add6f, _)
+THEN
+NOT DB_FTJ_RPAssassinWaitsForRPToBeAvailable(1);
+
+IF
+DialogEnded(_, (INTEGER)_Var2)
+AND
+DB_FTJ_RPAssassinWaitsForRPToBeAvailable(1)
+AND
+DB_DialogNPCs(_Var2, CHARACTERGUID_S_FTJ_RPAssassin_8d73b9c9-0d7e-4e5c-8cfb-6a13121cd440, _)
+AND
+QRY_SpeakerIsAvailable(CHARACTERGUID_S_Player_RedPrince_a26a1efb-cdc8-4cf3-a7b2-b2f9544add6f)
+AND
+IsTagged(CHARACTERGUID_S_Player_RedPrince_a26a1efb-cdc8-4cf3-a7b2-b2f9544add6f, "RED PRINCE", 1)
+THEN
+ProcCharacterMoveToAndTalk(CHARACTERGUID_S_FTJ_RPAssassin_8d73b9c9-0d7e-4e5c-8cfb-6a13121cd440, S_Player_RedPrince_a26a1efb-cdc8-4cf3-a7b2-b2f9544add6f, "FTJ_RedPrinceAssassin", 0, "FTJ_RedPrinceAssassin", 1, 10, 0, 0);
+
+IF
+DialogEnded(_, (INTEGER)_Var2)
+AND
+DB_FTJ_RPAssassinWaitsForRPToBeAvailable(1)
+AND
+DB_DialogNPCs(_Var2, CHARACTERGUID_S_FTJ_RPAssassin_8d73b9c9-0d7e-4e5c-8cfb-6a13121cd440, _)
+AND
+QRY_SpeakerIsAvailable(CHARACTERGUID_S_Player_RedPrince_a26a1efb-cdc8-4cf3-a7b2-b2f9544add6f)
+THEN
+NOT DB_FTJ_RPAssassinWaitsForRPToBeAvailable(1);
+
+PROC
+PROC_CRIME_CrimeTriggers_GetSilentWitnessesForCrime(_, CHARACTERGUID_S_Player_RedPrince_a26a1efb-cdc8-4cf3-a7b2-b2f9544add6f, "Assault", _, CHARACTERGUID_S_FTJ_RPAssassin_8d73b9c9-0d7e-4e5c-8cfb-6a13121cd440)
+AND
+CharacterCanSee(CHARACTERGUID_S_FTJ_RPAssassin_8d73b9c9-0d7e-4e5c-8cfb-6a13121cd440, CHARACTERGUID_S_Player_RedPrince_a26a1efb-cdc8-4cf3-a7b2-b2f9544add6f, 1)
+AND
+IsTagged(CHARACTERGUID_S_Player_RedPrince_a26a1efb-cdc8-4cf3-a7b2-b2f9544add6f, "RED PRINCE", 1)
+THEN
+DB_CRIME_CrimeTriggers_SilentWitnessesForCrime(CHARACTERGUID_S_FTJ_RPAssassin_8d73b9c9-0d7e-4e5c-8cfb-6a13121cd440);
+CharacterSetCanTrade(CHARACTERGUID_S_FTJ_RPAssassin_8d73b9c9-0d7e-4e5c-8cfb-6a13121cd440, 0);
+ProcCharacterMoveToAndTalk(CHARACTERGUID_S_FTJ_RPAssassin_8d73b9c9-0d7e-4e5c-8cfb-6a13121cd440, S_Player_RedPrince_a26a1efb-cdc8-4cf3-a7b2-b2f9544add6f, "FTJ_RedPrinceAssassin", 0, "FTJ_RedPrinceAssassin", 1, 10, 0, 0);
+
+IF
+ObjectTurnStarted(CHARACTERGUID_S_FTJ_RPAssassin_8d73b9c9-0d7e-4e5c-8cfb-6a13121cd440)
+AND
+DB_CombatCharacters(CHARACTERGUID_S_FTJ_RPAssassin_8d73b9c9-0d7e-4e5c-8cfb-6a13121cd440, _Var1)
+AND
+DB_CombatCharacters(CHARACTERGUID_S_Player_RedPrince_a26a1efb-cdc8-4cf3-a7b2-b2f9544add6f, _Var1)
+AND
+QueryOnlyOnce("FTJ_RPAssassin_AD_Once")
+THEN
+Proc_StartDialog(1, "FTJ_AD_RedPrinceAssassin", CHARACTERGUID_S_FTJ_RPAssassin_8d73b9c9-0d7e-4e5c-8cfb-6a13121cd440);
+
+IF
+DB_OnlyOnce("FTJ_RPAssassin_AD_Once")
+THEN
+GlobalSetFlag("FTJ_Origin_RedPrince_AssassinRecognisedRedPrince");
+
+IF
+CharacterDying(CHARACTERGUID_S_Player_RedPrince_a26a1efb-cdc8-4cf3-a7b2-b2f9544add6f)
+AND
+DB_CombatCharacters(CHARACTERGUID_S_Player_RedPrince_a26a1efb-cdc8-4cf3-a7b2-b2f9544add6f, _Var1)
+AND
+DB_CombatCharacters(CHARACTERGUID_S_FTJ_RPAssassin_8d73b9c9-0d7e-4e5c-8cfb-6a13121cd440, _Var1)
+THEN
+ObjectSetFlag(CHARACTERGUID_S_FTJ_RPAssassin_8d73b9c9-0d7e-4e5c-8cfb-6a13121cd440, "GEN_DisappearOutOfSightWhenAvailable");
+SetHasDialog(CHARACTERGUID_S_FTJ_RPAssassin_8d73b9c9-0d7e-4e5c-8cfb-6a13121cd440, 0);
+
+IF
+CharacterDying(CHARACTERGUID_S_FTJ_RPAssassin_8d73b9c9-0d7e-4e5c-8cfb-6a13121cd440)
+AND
+DB_CombatCharacters(CHARACTERGUID_S_Player_RedPrince_a26a1efb-cdc8-4cf3-a7b2-b2f9544add6f, _Var1)
+AND
+DB_CombatCharacters(CHARACTERGUID_S_FTJ_RPAssassin_8d73b9c9-0d7e-4e5c-8cfb-6a13121cd440, _Var1)
+AND
+DB_GlobalFlag("FTJ_Origin_RedPrince_AssassinRecognisedRedPrince")
+THEN
+GlobalSetFlag("FTJ_RedPrince_AssassinDead");
+Proc_StartDialog(1, "FTJ_AD_AfterRPAssassin", CHARACTERGUID_S_Player_RedPrince_a26a1efb-cdc8-4cf3-a7b2-b2f9544add6f);
+Proc_RelationshipDialog(CHARACTERGUID_S_Player_RedPrince_a26a1efb-cdc8-4cf3-a7b2-b2f9544add6f, "FTJ_RedPrinceAssassin_CRD_RedPrince", CHARACTERGUID_S_FTJ_RPAssassin_8d73b9c9-0d7e-4e5c-8cfb-6a13121cd440);
+Proc_FTJ_COM_RedPrince_CheckGiveAssassinKilled();
+
+IF
+CharacterDying(CHARACTERGUID_S_FTJ_RPAssassin_8d73b9c9-0d7e-4e5c-8cfb-6a13121cd440)
+AND
+DB_WasInCombat(CHARACTERGUID_S_Player_RedPrince_a26a1efb-cdc8-4cf3-a7b2-b2f9544add6f, _Var1)
+AND
+DB_CombatCharacters(CHARACTERGUID_S_FTJ_RPAssassin_8d73b9c9-0d7e-4e5c-8cfb-6a13121cd440, _Var1)
+AND
+DB_GlobalFlag("FTJ_Origin_RedPrince_AssassinRecognisedRedPrince")
+THEN
+GlobalSetFlag("FTJ_RedPrince_AssassinDead");
+Proc_StartDialog(1, "FTJ_AD_AfterRPAssassin", CHARACTERGUID_S_Player_RedPrince_a26a1efb-cdc8-4cf3-a7b2-b2f9544add6f);
+Proc_RelationshipDialog(CHARACTERGUID_S_Player_RedPrince_a26a1efb-cdc8-4cf3-a7b2-b2f9544add6f, "FTJ_RedPrinceAssassin_CRD_RedPrince", CHARACTERGUID_S_FTJ_RPAssassin_8d73b9c9-0d7e-4e5c-8cfb-6a13121cd440);
+Proc_FTJ_COM_RedPrince_CheckGiveAssassinKilled();
+
+IF
+CharacterUsedItem(CHARACTERGUID_S_Player_RedPrince_a26a1efb-cdc8-4cf3-a7b2-b2f9544add6f, ITEMGUID_S_FTJ_RPAssassinLetter_1e954a73-e708-4487-b66f-7cdcf0f38d24)
+AND
+IsTagged(CHARACTERGUID_S_Player_RedPrince_a26a1efb-cdc8-4cf3-a7b2-b2f9544add6f, "AVATAR", 1)
+AND
+ObjectGetFlag(CHARACTERGUID_S_Player_RedPrince_a26a1efb-cdc8-4cf3-a7b2-b2f9544add6f, "QuestUpdate_FTJ_OriginRedPrince_StingtailGaveInfo", 0)
+THEN
+ObjectSetFlag(CHARACTERGUID_S_Player_RedPrince_a26a1efb-cdc8-4cf3-a7b2-b2f9544add6f, "QuestUpdate_FTJ_OriginRedPrince_AssassinKilled");
+
+IF
+CharacterUsedItem(CHARACTERGUID_S_Player_RedPrince_a26a1efb-cdc8-4cf3-a7b2-b2f9544add6f, ITEMGUID_S_FTJ_RPAssassinLetter_1e954a73-e708-4487-b66f-7cdcf0f38d24)
+AND
+IsTagged(CHARACTERGUID_S_Player_RedPrince_a26a1efb-cdc8-4cf3-a7b2-b2f9544add6f, "AVATAR", 1)
+AND
+ObjectGetFlag(CHARACTERGUID_S_Player_RedPrince_a26a1efb-cdc8-4cf3-a7b2-b2f9544add6f, "QuestUpdate_FTJ_OriginRedPrince_StingtailGaveInfo", 1)
+AND
+ObjectGetFlag(CHARACTERGUID_S_Player_RedPrince_a26a1efb-cdc8-4cf3-a7b2-b2f9544add6f, "QuestUpdate_FTJ_OriginRedPrince_AssassinKilled", 0)
+THEN
+ObjectSetFlag(CHARACTERGUID_S_Player_RedPrince_a26a1efb-cdc8-4cf3-a7b2-b2f9544add6f, "QuestUpdate_FTJ_OriginRedPrince_AssassinKilledKnown");
+
+IF
+CharacterUsedItem((CHARACTERGUID)_Var1, ITEMGUID_S_FTJ_RPAssassinLetter_1e954a73-e708-4487-b66f-7cdcf0f38d24)
+AND
+IsTagged(CHARACTERGUID_S_Player_RedPrince_a26a1efb-cdc8-4cf3-a7b2-b2f9544add6f, "AVATAR", 0)
+AND
+QRY_SameUser(_Var1, CHARACTERGUID_S_Player_RedPrince_a26a1efb-cdc8-4cf3-a7b2-b2f9544add6f)
+AND
+UserGetFlag(CHARACTERGUID_S_Player_RedPrince_a26a1efb-cdc8-4cf3-a7b2-b2f9544add6f, "QuestUpdate_FTJ_COM_RedPrince_AssassinKilledShadow", 0)
+AND
+UserGetFlag(CHARACTERGUID_S_Player_RedPrince_a26a1efb-cdc8-4cf3-a7b2-b2f9544add6f, "QuestUpdate_FTJ_COM_RedPrince_AssassinKilled", 0)
+THEN
+GlobalSetFlag("FTJ_RedPrince_AssassinDead");
+UserSetFlag(CHARACTERGUID_S_Player_RedPrince_a26a1efb-cdc8-4cf3-a7b2-b2f9544add6f, "QuestUpdate_FTJ_COM_RedPrince_AssassinLetterRead");
+
+PROC
+Proc_FTJ_COM_RedPrince_CheckGiveAssassinKilled()
+AND
+IsTagged(CHARACTERGUID_S_Player_RedPrince_a26a1efb-cdc8-4cf3-a7b2-b2f9544add6f, "AVATAR", 0)
+AND
+ObjectGetFlag(CHARACTERGUID_S_Player_RedPrince_a26a1efb-cdc8-4cf3-a7b2-b2f9544add6f, "QuestUpdate_FTJ_COM_RedPrince_Stingtail", 0)
+THEN
+UserSetFlag(CHARACTERGUID_S_Player_RedPrince_a26a1efb-cdc8-4cf3-a7b2-b2f9544add6f, "QuestUpdate_FTJ_COM_RedPrince_AssassinKilled");
+
+PROC
+Proc_FTJ_COM_RedPrince_CheckGiveAssassinKilled()
+AND
+IsTagged(CHARACTERGUID_S_Player_RedPrince_a26a1efb-cdc8-4cf3-a7b2-b2f9544add6f, "AVATAR", 0)
+AND
+ObjectGetFlag(CHARACTERGUID_S_Player_RedPrince_a26a1efb-cdc8-4cf3-a7b2-b2f9544add6f, "QuestUpdate_FTJ_COM_RedPrince_Stingtail", 1)
+THEN
+UserSetFlag(CHARACTERGUID_S_Player_RedPrince_a26a1efb-cdc8-4cf3-a7b2-b2f9544add6f, "QuestUpdate_FTJ_COM_RedPrince_AssassinKilledShadow");
+
+IF
+SavegameLoaded((INTEGER)_Var1, (INTEGER)_Var2, (INTEGER)_Var3, (INTEGER)_Var4)
+AND
+QRY_VersionIsOlderThan(_Var1, _Var2, _Var3, _Var4, 3, 6, 0, 1)
+THEN
+TriggerRegisterForCharacter(S_FTJ_RPAssassin_Area_1f725eb1-3696-481c-8baa-df083aab634e, CHARACTERGUID_S_FTJ_RPAssassin_8d73b9c9-0d7e-4e5c-8cfb-6a13121cd440);
+
+IF
+ObjectFlagSet("FTJ_SW_CheckpointSourcerer_RedPrince_StartBrahmos", CHARACTERGUID_S_Player_RedPrince_a26a1efb-cdc8-4cf3-a7b2-b2f9544add6f, (INTEGER)_Var1)
+THEN
+TeleportTo(ITEMGUID_S_FTJ_SW_Brahmos_Invisible_Helper_e69ae7c8-2fc0-4f56-b0d4-ffd7565c1d7c, CHARACTERGUID_S_FTJ_SW_CheckpointSourcerer_02f6e4f7-587c-41d0-9ac6-89104f9d16ad);
+DB_FTJ_SW_RedPrinceOrigin_StartBrahmos(_Var1);
+
+IF
+DialogEnded("FTJ_SW_CheckpointSourcerer", (INTEGER)_Var1)
+AND
+DB_FTJ_SW_RedPrinceOrigin_StartBrahmos(_Var1)
+AND
+GetPosition(CHARACTERGUID_S_Player_RedPrince_a26a1efb-cdc8-4cf3-a7b2-b2f9544add6f, _Var2, _Var3, _Var4)
+THEN
+NOT DB_FTJ_SW_RedPrinceOrigin_StartBrahmos(_Var1);
+DB_FTJ_SW_RedPrince_BrahmosDreamPosition(_Var2, _Var3, _Var4);
+PROC_StopLoopEffect(CHARACTERGUID_S_Player_RedPrince_a26a1efb-cdc8-4cf3-a7b2-b2f9544add6f, "FJ_RedPrinceO_DreamerStatus_01");
+TeleportTo(CHARACTERGUID_S_Player_RedPrince_a26a1efb-cdc8-4cf3-a7b2-b2f9544add6f, TRIGGERGUID_S_FTJ_SW_RedPrince_PrinceDreamPoint_b4b44a98-80ec-4f71-bf16-16083a93af86, "", 0);
+Proc_StartDialog(0, "FTJ_SW_CheckpointSourcerer_Brahmos", CHARACTERGUID_S_GLO_Brahmos_d4064352-33f9-49df-b208-09fd822d2270, CHARACTERGUID_S_Player_RedPrince_a26a1efb-cdc8-4cf3-a7b2-b2f9544add6f);
+CharacterSetAnimationOverride(CHARACTERGUID_S_Player_RedPrince_a26a1efb-cdc8-4cf3-a7b2-b2f9544add6f, "");
+PlayEffectAtPosition("RS3_FX_GP_ScriptedEvent_Teleport_GenericSmoke_01", _Var2, _Var3, _Var4);
+PlayEffect(CHARACTERGUID_S_Player_RedPrince_a26a1efb-cdc8-4cf3-a7b2-b2f9544add6f, "RS3_FX_GP_ScriptedEvent_FJ_RedPrinceO_DarknessFadeOut_01");
+
+IF
+DialogEnded((STRING)_Var1, (INTEGER)_Var2)
+AND
+DB_FTJ_SW_CheckpointSourcererDialogs(_Var1)
+AND
+DB_LoopEffect(CHARACTERGUID_S_Player_RedPrince_a26a1efb-cdc8-4cf3-a7b2-b2f9544add6f, _Var3, "FJ_RedPrinceO_DarknessFadeIn", _Var4, _Var5, _Var6)
+THEN
+PROC_StopLoopEffect(CHARACTERGUID_S_Player_RedPrince_a26a1efb-cdc8-4cf3-a7b2-b2f9544add6f, "FJ_RedPrinceO_DarknessFadeIn");
+CharacterSetAnimationOverride(CHARACTERGUID_S_Player_RedPrince_a26a1efb-cdc8-4cf3-a7b2-b2f9544add6f, "");
+
+IF
+ObjectFlagSet("FTJ_SW_CheckpointSourcerer_RedPrince_Wakeup", CHARACTERGUID_S_Player_RedPrince_a26a1efb-cdc8-4cf3-a7b2-b2f9544add6f, _)
+THEN
+PROC_FTJ_SW_RedPrinceOrigin_DreamCleanUp();
+PROC_StopLoopEffect(CHARACTERGUID_S_Player_RedPrince_a26a1efb-cdc8-4cf3-a7b2-b2f9544add6f, "FJ_RedPrinceO_DarknessFadeIn");
+CharacterSetAnimationOverride(CHARACTERGUID_S_Player_RedPrince_a26a1efb-cdc8-4cf3-a7b2-b2f9544add6f, "");
+
+IF
+ObjectFlagSet("FTJ_SW_CheckpointSourcerer_RedPrince_BaharaDead", CHARACTERGUID_S_Player_RedPrince_a26a1efb-cdc8-4cf3-a7b2-b2f9544add6f, _)
+THEN
+CharacterDie(CHARACTERGUID_S_FTJ_SW_CheckpointSourcerer_02f6e4f7-587c-41d0-9ac6-89104f9d16ad, 1, "DoT");
+
+IF
+ObjectFlagSet("FTJ_SW_CheckpointSourcerer_RedPrince_BaharaStartDreamForced", CHARACTERGUID_S_Player_RedPrince_a26a1efb-cdc8-4cf3-a7b2-b2f9544add6f, _)
+THEN
+PROC_FTJ_SW_RedPrinceOrigin_DreamGoToBahara("FTJ_SW_RedPrinceOrigin_MovedToBaharaAndFall");
+PROC_LoopEffect("RS3_FX_GP_ScriptedEvent_FJ_RedPrinceO_DarknessFadeIn_Looping_01", CHARACTERGUID_S_Player_RedPrince_a26a1efb-cdc8-4cf3-a7b2-b2f9544add6f, "FJ_RedPrinceO_DarknessFadeIn", "FJ_FortJoy_Main", "");
+
+IF
+ObjectFlagSet("FTJ_SW_CheckpointSourcerer_RedPrince_BaharaStartDream", CHARACTERGUID_S_Player_RedPrince_a26a1efb-cdc8-4cf3-a7b2-b2f9544add6f, _)
+THEN
+PROC_FTJ_SW_RedPrinceOrigin_DreamGoToBahara("FTJ_SW_RedPrinceOrigin_MovedToBahara");
+PROC_LoopEffect("RS3_FX_GP_ScriptedEvent_FJ_RedPrinceO_DarknessFadeIn_Looping_01", CHARACTERGUID_S_Player_RedPrince_a26a1efb-cdc8-4cf3-a7b2-b2f9544add6f, "FJ_RedPrinceO_DarknessFadeIn", "FJ_FortJoy_Main", "");
+
+PROC
+PROC_FTJ_SW_RedPrinceOrigin_DreamGoToBahara((STRING)_Var1)
+AND NOT
+DB_FTJ_SW_RedPrinceOrigin_DreamSleapingAbort(1)
+AND
+DB_FTJ_SW_Origins_RedPrince_BaharaTriggers(_Var2, _Var3)
+AND
+ObjectIsInTrigger(CHARACTERGUID_S_FTJ_SW_CheckpointSourcerer_02f6e4f7-587c-41d0-9ac6-89104f9d16ad, _Var2, 1)
+AND
+ObjectIsInTrigger(CHARACTERGUID_S_Player_RedPrince_a26a1efb-cdc8-4cf3-a7b2-b2f9544add6f, _Var2, 0)
+THEN
+DB_FTJ_SW_Origins_RedPrince_MovingToBahara(1);
+CharacterMoveTo(CHARACTERGUID_S_Player_RedPrince_a26a1efb-cdc8-4cf3-a7b2-b2f9544add6f, _Var3, 1, _Var1, 0);
+
+PROC
+PROC_FTJ_SW_RedPrinceOrigin_DreamGoToBahara((STRING)_Var1)
+AND NOT
+DB_FTJ_SW_RedPrinceOrigin_DreamSleapingAbort(1)
+AND NOT
+DB_FTJ_SW_Origins_RedPrince_MovingToBahara(1)
+THEN
+CharacterMoveTo(CHARACTERGUID_S_Player_RedPrince_a26a1efb-cdc8-4cf3-a7b2-b2f9544add6f, CHARACTERGUID_S_FTJ_SW_CheckpointSourcerer_02f6e4f7-587c-41d0-9ac6-89104f9d16ad, 1, _Var1, 0);
+
+PROC
+PROC_FTJ_SW_RedPrinceOrigin_DreamGoToBahara((STRING)_Var1)
+THEN
+NOT DB_FTJ_SW_Origins_RedPrince_MovingToBahara(1);
+
+IF
+StoryEvent(CHARACTERGUID_S_Player_RedPrince_a26a1efb-cdc8-4cf3-a7b2-b2f9544add6f, "FTJ_SW_RedPrinceOrigin_MovedToBaharaAndFall")
+AND NOT
+DB_FTJ_SW_RedPrinceOrigin_DreamSleapingAbort(1)
+THEN
+ProcFaceEachother(CHARACTERGUID_S_FTJ_SW_CheckpointSourcerer_02f6e4f7-587c-41d0-9ac6-89104f9d16ad, CHARACTERGUID_S_Player_RedPrince_a26a1efb-cdc8-4cf3-a7b2-b2f9544add6f);
+DB_FTJ_SW_CheckpointSourcerer_RedPrince_Forced(CHARACTERGUID_S_Player_RedPrince_a26a1efb-cdc8-4cf3-a7b2-b2f9544add6f);
+CharacterSetAnimationOverride(CHARACTERGUID_S_Player_RedPrince_a26a1efb-cdc8-4cf3-a7b2-b2f9544add6f, "knockdown_loop");
+DB_FTJ_SW_RedPrinceOrigin_DreamFrozen(S_Player_RedPrince_a26a1efb-cdc8-4cf3-a7b2-b2f9544add6f);
+CharacterFreeze(S_Player_RedPrince_a26a1efb-cdc8-4cf3-a7b2-b2f9544add6f);
+SetStoryEvent(CHARACTERGUID_S_Player_RedPrince_a26a1efb-cdc8-4cf3-a7b2-b2f9544add6f, "FTJ_SW_RedPrinceOrigin_MovedToBahara");
+
+IF
+StoryEvent(CHARACTERGUID_S_Player_RedPrince_a26a1efb-cdc8-4cf3-a7b2-b2f9544add6f, "FTJ_SW_RedPrinceOrigin_MovedToBahara")
+AND NOT
+DB_FTJ_SW_RedPrinceOrigin_DreamFrozen(S_Player_RedPrince_a26a1efb-cdc8-4cf3-a7b2-b2f9544add6f)
+THEN
+ProcFaceEachother(CHARACTERGUID_S_FTJ_SW_CheckpointSourcerer_02f6e4f7-587c-41d0-9ac6-89104f9d16ad, CHARACTERGUID_S_Player_RedPrince_a26a1efb-cdc8-4cf3-a7b2-b2f9544add6f);
+
+IF
+StoryEvent(CHARACTERGUID_S_Player_RedPrince_a26a1efb-cdc8-4cf3-a7b2-b2f9544add6f, "FTJ_SW_RedPrinceOrigin_MovedToBahara")
+THEN
+SetStoryEvent(CHARACTERGUID_S_FTJ_SW_CheckpointSourcerer_02f6e4f7-587c-41d0-9ac6-89104f9d16ad, "FTJ_SW_RedPrinceOrigin_MovedToBahara");
+
+IF
+StoryEvent((CHARACTERGUID)_Var1, "FTJ_SW_RedPrinceOrigin_MovedToBahara")
+AND
+DB_Avatars(CHARACTERGUID_S_Player_RedPrince_a26a1efb-cdc8-4cf3-a7b2-b2f9544add6f)
+AND NOT
+DB_FTJ_SW_RedPrinceOrigin_DreamFrozen(_Var1)
+AND NOT
+DB_FTJ_SW_RedPrinceOrigin_DreamSleapingAbort(1)
+THEN
+DB_FTJ_SW_RedPrinceOrigin_DreamFrozen(_Var1);
+CharacterFreeze(_Var1);
+
+IF
+StoryEvent((CHARACTERGUID)_Var1, "FTJ_SW_RedPrinceOrigin_MovedToBahara")
+AND NOT
+DB_FTJ_SW_RedPrinceOrigin_DreamSleapingAbort(1)
+THEN
+ApplyStatus(_Var1, "SLEEPING", -1, 1);
+DB_FTJ_SW_RedPrinceOrigin_DreamSleeping(_Var1);
+PROC_LoopEffect("RS3_FX_GP_ScriptedEvent_FJ_RedPrinceO_DreamerStatus_01", _Var1, "FJ_RedPrinceO_DreamerStatus_01", "FJ_FortJoy_Main", "Dummy_BodyFX");
+
+IF
+DialogStarted("FTJ_SW_CheckpointSourcerer_Brahmos", _)
+THEN
+RemoveStatus(CHARACTERGUID_S_Player_RedPrince_a26a1efb-cdc8-4cf3-a7b2-b2f9544add6f, "SLEEPING");
+GlobalSetFlag("GLO_RedPrince_BaharaFinished");
+
+IF
+DialogEnded("FTJ_SW_CheckpointSourcerer_Brahmos", (INTEGER)_Var1)
+THEN
+PROC_FTJ_SW_RedPrinceOrigin_DreamCleanUp();
+
+IF
+DialogRequestFailed("FTJ_SW_CheckpointSourcerer_Brahmos", _)
+THEN
+PROC_FTJ_SW_RedPrinceOrigin_DreamCleanUp();
+
+PROC
+PROC_FTJ_SW_RedPrinceOrigin_DreamCleanUp()
+AND NOT
+DB_FTJ_SW_RedPrince_BrahmosDreamPosition(_, _, _)
+AND
+ObjectGetFlag(CHARACTERGUID_S_Player_RedPrince_a26a1efb-cdc8-4cf3-a7b2-b2f9544add6f, "FTJ_SW_CheckpointSourcerer_RedPrince_StartBrahmos", 1)
+THEN
+TeleportTo(CHARACTERGUID_S_Player_RedPrince_a26a1efb-cdc8-4cf3-a7b2-b2f9544add6f, CHARACTERGUID_S_FTJ_SW_CheckpointSourcerer_02f6e4f7-587c-41d0-9ac6-89104f9d16ad);
+
+PROC
+PROC_FTJ_SW_RedPrinceOrigin_DreamCleanUp()
+AND
+DB_FTJ_SW_RedPrince_BrahmosDreamPosition(_Var1, _Var2, _Var3)
+THEN
+PlayEffectAtPosition("RS3_FX_GP_ScriptedEvent_Teleport_GenericSmoke_01", _Var1, _Var2, _Var3);
+TeleportToPosition(CHARACTERGUID_S_Player_RedPrince_a26a1efb-cdc8-4cf3-a7b2-b2f9544add6f, _Var1, _Var2, _Var3, "", 0);
+CharacterLookAt(CHARACTERGUID_S_Player_RedPrince_a26a1efb-cdc8-4cf3-a7b2-b2f9544add6f, CHARACTERGUID_S_FTJ_SW_CheckpointSourcerer_02f6e4f7-587c-41d0-9ac6-89104f9d16ad);
+NOT DB_FTJ_SW_RedPrince_BrahmosDreamPosition(_Var1, _Var2, _Var3);
+
+PROC
+PROC_FTJ_SW_RedPrinceOrigin_DreamCleanUp()
+AND
+ObjectGetFlag(CHARACTERGUID_S_Player_RedPrince_a26a1efb-cdc8-4cf3-a7b2-b2f9544add6f, "FTJ_SW_CheckpointSourcerer_RedPrince_StartBrahmos", 1)
+THEN
+PlayEffect(CHARACTERGUID_S_Player_RedPrince_a26a1efb-cdc8-4cf3-a7b2-b2f9544add6f, "RS3_FX_GP_ScriptedEvent_FJ_RedPrinceO_DarknessFadeOut_01");
+
+PROC
+PROC_FTJ_SW_RedPrinceOrigin_DreamCleanUp()
+THEN
+DB_FTJ_SW_RedPrinceOrigin_DreamSleapingAbort(1);
+
+PROC
+PROC_FTJ_SW_RedPrinceOrigin_DreamCleanUp()
+AND
+DB_FTJ_SW_RedPrinceOrigin_DreamSleeping(_Var1)
+THEN
+NOT DB_FTJ_SW_RedPrinceOrigin_DreamSleeping(_Var1);
+PROC_StopLoopEffect(_Var1, "FJ_RedPrinceO_DreamerStatus_01");
+RemoveStatus(_Var1, "SLEEPING");
+RemoveStatus(_Var1, "LYING");
+
+PROC
+PROC_FTJ_SW_RedPrinceOrigin_DreamCleanUp()
+AND
+DB_FTJ_SW_RedPrinceOrigin_DreamFrozen(_Var1)
+THEN
+NOT DB_FTJ_SW_RedPrinceOrigin_DreamFrozen(_Var1);
+CharacterUnfreeze(_Var1);
+
+PROC
+PROC_FTJ_SW_RedPrinceOrigin_DreamCleanUp()
+AND
+DB_FTJ_SW_CheckpointSourcerer_RedPrince_Forced(CHARACTERGUID_S_Player_RedPrince_a26a1efb-cdc8-4cf3-a7b2-b2f9544add6f)
+THEN
+NOT DB_FTJ_SW_CheckpointSourcerer_RedPrince_Forced(CHARACTERGUID_S_Player_RedPrince_a26a1efb-cdc8-4cf3-a7b2-b2f9544add6f);
+CharacterSetAnimationOverride(CHARACTERGUID_S_Player_RedPrince_a26a1efb-cdc8-4cf3-a7b2-b2f9544add6f, "");
+PlayAnimation(CHARACTERGUID_S_Player_RedPrince_a26a1efb-cdc8-4cf3-a7b2-b2f9544add6f, "knockdown_getup");
+
+IF
+TextEventSet("baharasleep")
+THEN
+NOT DB_FTJ_SW_RedPrinceOrigin_DreamSleapingAbort(1);
+PROC_FTJ_SW_RedPrinceOrigin_DreamGoToBahara("FTJ_SW_RedPrinceOrigin_MovedToBahara");
+
+IF
+TextEventSet("baharaforcesleep")
+THEN
+NOT DB_FTJ_SW_RedPrinceOrigin_DreamSleapingAbort(1);
+PROC_FTJ_SW_RedPrinceOrigin_DreamGoToBahara("FTJ_SW_RedPrinceOrigin_MovedToBaharaAndFall");
+
+IF
+TextEventSet("baharawakeup")
+THEN
+PROC_FTJ_SW_RedPrinceOrigin_DreamCleanUp();
+NOT DB_FTJ_SW_RedPrinceOrigin_DreamSleapingAbort(1);
+
+PROC
+PROC_GLO_PartyMembers_MakeNPC(CHARACTERGUID_S_Player_RedPrince_a26a1efb-cdc8-4cf3-a7b2-b2f9544add6f)
+AND
+ObjectGetFlag(CHARACTERGUID_S_Player_RedPrince_a26a1efb-cdc8-4cf3-a7b2-b2f9544add6f, "FTJ_SW_InShelter", 1)
+AND NOT
+DB_Dead(CHARACTERGUID_S_FTJ_SW_CheckpointSourcerer_02f6e4f7-587c-41d0-9ac6-89104f9d16ad)
+THEN
+GlobalSetFlag("GLO_RedPrince_BaharaFinished");
+
+PROC
+PROC_GLO_PartyMembers_MakeNPC(CHARACTERGUID_S_Player_RedPrince_a26a1efb-cdc8-4cf3-a7b2-b2f9544add6f)
+AND
+ObjectGetFlag(CHARACTERGUID_S_Player_RedPrince_a26a1efb-cdc8-4cf3-a7b2-b2f9544add6f, "FTJ_SW_InShelter", 1)
+AND
+DB_Dead(CHARACTERGUID_S_FTJ_SW_CheckpointSourcerer_02f6e4f7-587c-41d0-9ac6-89104f9d16ad)
+THEN
+ObjectSetFlag(CHARACTERGUID_S_Player_RedPrince_a26a1efb-cdc8-4cf3-a7b2-b2f9544add6f, "FTJ_RedPrinceOrigin_BaharaDead", 0);
+
+IF
+GlobalFlagSet("FTJ_SW_Brahmos_AppearRedPrincess")
+THEN
+SetOnStage(CHARACTERGUID_S_FTJ_SW_DreamRedPrincess_a54d0f54-e710-49e5-89cb-53ff9613e690, 1);
+PlayEffect(CHARACTERGUID_S_FTJ_SW_DreamRedPrincess_a54d0f54-e710-49e5-89cb-53ff9613e690, "RS3_FX_GP_ScriptedEvent_FJ_RedPrinceO_PrincessSpawn_01");
+
+IF
+CharacterWentOnStage(CHARACTERGUID_S_FTJ_SW_DreamRedPrincess_a54d0f54-e710-49e5-89cb-53ff9613e690, 1)
+THEN
+CharacterLookAt(CHARACTERGUID_S_FTJ_SW_DreamRedPrincess_a54d0f54-e710-49e5-89cb-53ff9613e690, CHARACTERGUID_S_Player_RedPrince_a26a1efb-cdc8-4cf3-a7b2-b2f9544add6f);
+TimerLaunch("FTJ_SW_DreamPrincessKissyHand", 1200);
+
+IF
+TimerFinished("FTJ_SW_DreamPrincessKissyHand")
+THEN
+PlayAnimation(CHARACTERGUID_S_FTJ_SW_DreamRedPrincess_a54d0f54-e710-49e5-89cb-53ff9613e690, "Kiss_01");
+
+IF
+ObjectFlagSet("FTJ_RedPrince_Sleep", CHARACTERGUID_S_Player_RedPrince_a26a1efb-cdc8-4cf3-a7b2-b2f9544add6f, (INTEGER)_Var1)
+THEN
+ApplyStatus(CHARACTERGUID_S_Player_RedPrince_a26a1efb-cdc8-4cf3-a7b2-b2f9544add6f, "SLEEPING", -1, 1);
+ApplyStatus(CHARACTERGUID_S_FTJ_LizardDreamer_ffb80725-25ff-4174-98cb-60a11612e5c4, "SLEEPING", -1, 1);
+PROC_LoopEffect("RS3_FX_GP_ScriptedEvent_FJ_RedPrinceO_DarknessFadeIn_Looping_01", CHARACTERGUID_S_Player_RedPrince_a26a1efb-cdc8-4cf3-a7b2-b2f9544add6f, "FJ_RedPrinceO_DarknessFadeIn_StingTail", "FJ_FortJoy_Main", "");
+PROC_LoopEffect("RS3_FX_GP_ScriptedEvent_FJ_RedPrinceO_DreamerStatus_01", CHARACTERGUID_S_Player_RedPrince_a26a1efb-cdc8-4cf3-a7b2-b2f9544add6f, "FJ_RedPrinceO_DarknessFadeIn_Status1", "FJ_FortJoy_Main", "Dummy_BodyFX");
+PROC_LoopEffect("RS3_FX_GP_ScriptedEvent_FJ_RedPrinceO_DreamerStatus_01", CHARACTERGUID_S_FTJ_LizardDreamer_ffb80725-25ff-4174-98cb-60a11612e5c4, "FJ_RedPrinceO_DarknessFadeIn_Status2", "FJ_FortJoy_Main", "Dummy_BodyFX");
+DB_FTJ_RedPrinceSleepingDialogue(_Var1);
+
+IF
+ObjectFlagCleared("FTJ_RedPrince_Sleep", CHARACTERGUID_S_Player_RedPrince_a26a1efb-cdc8-4cf3-a7b2-b2f9544add6f, _)
+AND
+DB_FTJ_RedPrinceSleepingDialogue(_Var2)
+THEN
+NOT DB_FTJ_RedPrinceSleepingDialogue(_Var2);
+
+IF
+ObjectFlagCleared("FTJ_RedPrince_Sleep", CHARACTERGUID_S_Player_RedPrince_a26a1efb-cdc8-4cf3-a7b2-b2f9544add6f, _)
+THEN
+RemoveStatus(CHARACTERGUID_S_Player_RedPrince_a26a1efb-cdc8-4cf3-a7b2-b2f9544add6f, "SLEEPING");
+RemoveStatus(CHARACTERGUID_S_FTJ_LizardDreamer_ffb80725-25ff-4174-98cb-60a11612e5c4, "SLEEPING");
+PROC_StopLoopEffect(CHARACTERGUID_S_Player_RedPrince_a26a1efb-cdc8-4cf3-a7b2-b2f9544add6f, "FJ_RedPrinceO_DarknessFadeIn_StingTail");
+PROC_StopLoopEffect(CHARACTERGUID_S_Player_RedPrince_a26a1efb-cdc8-4cf3-a7b2-b2f9544add6f, "FJ_RedPrinceO_DarknessFadeIn_Status1");
+PROC_StopLoopEffect(CHARACTERGUID_S_FTJ_LizardDreamer_ffb80725-25ff-4174-98cb-60a11612e5c4, "FJ_RedPrinceO_DarknessFadeIn_Status2");
+
+IF
+DialogEnded(_, (INTEGER)_Var2)
+AND
+DB_FTJ_RedPrinceSleepingDialogue(_Var2)
+THEN
+NOT DB_FTJ_RedPrinceSleepingDialogue(_Var2);
+ObjectClearFlag(CHARACTERGUID_S_Player_RedPrince_a26a1efb-cdc8-4cf3-a7b2-b2f9544add6f, "FTJ_RedPrince_Sleep", 0);
+
+IF
+RegionStarted("RC_Main")
+THEN
+GoalCompleted;
+
+
+EXITSECTION
+ENDEXITSECTION
+
+ParentTargetEdge "FortJoy"

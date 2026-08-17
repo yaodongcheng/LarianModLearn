@@ -1,0 +1,75 @@
+Version 1
+SubGoalCombiner SGC_AND
+
+INITSECTION
+DB_RC_LV_Coordinators(S_GLO_River_f4931ebe-10b0-43c4-9182-640cf052717e);
+DB_RC_LV_Coordinators(ITEMGUID_S_RC_DW_LV_ShipHead_313e5b21-283a-4d8f-a3b1-0aa23a6cd5f8);
+PROC_RC_LV_SetCoordinator();
+
+KBSECTION
+IF
+TextEventSet("rc_fetchmaladyforcos")
+THEN
+PROC_RC_LV_FetchByWarowl(CHARACTERGUID_S_GLO_River_f4931ebe-10b0-43c4-9182-640cf052717e, TRIGGERGUID_RC_LV_Entrance_5d830273-0215-4be4-96ce-8a1122f01bb0, "RC_LV_RiverBackOnLV");
+
+IF
+DialogEnded("RC_LV_ShipHead", _)
+AND
+ObjectGetFlag(ITEMGUID_S_RC_DW_LV_ShipHead_313e5b21-283a-4d8f-a3b1-0aa23a6cd5f8, "RC_LV_ShipHeadFetchMalady", 1)
+THEN
+ObjectClearFlag(ITEMGUID_S_RC_DW_LV_ShipHead_313e5b21-283a-4d8f-a3b1-0aa23a6cd5f8, "RC_LV_ShipHeadFetchMalady");
+PROC_RC_LV_FetchByWarowl(CHARACTERGUID_S_GLO_River_f4931ebe-10b0-43c4-9182-640cf052717e, TRIGGERGUID_S_RC_LV_MaladySummonedByShipheadPoint_9f57fd9c-e87a-4f4e-a9a2-86e1cf6cf1db, "RC_LV_RiverBackOnLV");
+
+IF
+StoryEvent(CHARACTERGUID_S_GLO_River_f4931ebe-10b0-43c4-9182-640cf052717e, "RC_LV_RiverBackOnLV")
+THEN
+DB_RC_LV_GoingToCoS(CHARACTERGUID_S_GLO_River_f4931ebe-10b0-43c4-9182-640cf052717e);
+Foop(CHARACTERGUID_S_GLO_River_f4931ebe-10b0-43c4-9182-640cf052717e);
+
+IF
+CharacterEnteredTrigger((GUIDSTRING)_Var1, S_RC_LV_OnBoard_3d5b3e43-2126-464e-81d1-3c0b60841276)
+AND
+DB_RC_LV_Coordinators(_Var1)
+THEN
+PROC_RC_LV_SetCoordinator();
+
+IF
+CharacterLeftTrigger((GUIDSTRING)_Var1, S_RC_LV_OnBoard_3d5b3e43-2126-464e-81d1-3c0b60841276)
+AND
+DB_RC_LV_Coordinator(_Var1)
+THEN
+PROC_RC_LV_SetCoordinator();
+
+PROC
+PROC_RC_LV_SetCoordinator()
+AND
+DB_RC_LV_Coordinator(_Var1)
+THEN
+ObjectClearFlag(_Var1, "RC_LV_Coordinator");
+NOT DB_RC_LV_Coordinator(_Var1);
+
+PROC
+PROC_RC_LV_SetCoordinator()
+AND
+DB_RC_LV_Coordinators(_Var1)
+AND NOT
+DB_RC_LV_Coordinator(_)
+AND
+ObjectIsOnStage(_Var1, 1)
+AND
+ObjectIsInTrigger(_Var1, S_RC_LV_OnBoard_3d5b3e43-2126-464e-81d1-3c0b60841276, 1)
+THEN
+ObjectSetFlag(_Var1, "RC_LV_Coordinator");
+DB_RC_LV_Coordinator(_Var1);
+
+PROC
+ProcRegionEnded("RC_Main")
+THEN
+TriggerUnregisterForCharacter(S_RC_LV_OnBoard_3d5b3e43-2126-464e-81d1-3c0b60841276, CHARACTERGUID_S_GLO_River_f4931ebe-10b0-43c4-9182-640cf052717e);
+GoalCompleted;
+
+
+EXITSECTION
+ENDEXITSECTION
+
+ParentTargetEdge "RC_LadyVengeanceToCoS"

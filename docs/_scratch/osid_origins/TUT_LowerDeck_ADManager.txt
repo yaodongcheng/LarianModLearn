@@ -1,0 +1,109 @@
+Version 1
+SubGoalCombiner SGC_AND
+
+INITSECTION
+DB_TUT_LowerDeckADs("TUT_AD_BeastShipConstruction", "TUT_AD_BeastShipConstruction_Block");
+DB_TUT_LowerDeckADs("TUT_AD_LohsePleaseTellStory", "TUT_AD_LohsePleaseTellStory_Block");
+DB_TUT_LowerDeckADs("TUT_AD_RedPrinceGruel", "TUT_AD_RedPrinceGruel_Block");
+DB_TUT_LowerDeckADs("TUT_AD_IfanPrayingMagister", "TUT_AD_IfanPrayingMagister_Block");
+DB_TUT_LowerDeckADs("TUT_AD_LowerDeck_InvestigatingMagister_DwarvenCarpenter", "TUT_AD_LowerDeck_InvestigatingMagister_Block");
+DB_TUT_LowerDeckADs("TUT_AD_LowerDeck_InvestigatingMagister_Gruella", "TUT_AD_LowerDeck_InvestigatingMagister_Block");
+DB_TUT_LowerDeckADs("TUT_AD_LowerDeck_InvestigatingMagister_LohseBoy2", "TUT_AD_LowerDeck_InvestigatingMagister_Block");
+GlobalSetFlag("TUT_BlockLowerDeckADs");
+
+KBSECTION
+IF
+AutomatedDialogStarted((STRING)_Var1, (INTEGER)_Var2)
+AND
+DB_TUT_LowerDeckADs(_Var1, _)
+THEN
+DB_TUT_LowerDeckActiveAD(_Var1);
+GlobalSetFlag("TUT_BlockLowerDeckADs");
+
+IF
+AutomatedDialogEnded((STRING)_Var1, (INTEGER)_Var2)
+AND
+DB_TUT_LowerDeckActiveAD(_Var1)
+THEN
+NOT DB_TUT_LowerDeckActiveAD(_Var1);
+PROC_TUT_CheckADsOver();
+
+PROC
+PROC_TUT_CheckADsOver()
+AND NOT
+DB_TUT_LowerDeckActiveAD(_)
+AND
+Random(3000, _Var2)
+AND
+IntegerSum(1000, _Var2, _Var3)
+THEN
+TimerLaunch("TUT_ADBlockerTimer", _Var3);
+
+IF
+TimerFinished("TUT_ADBlockerTimer")
+THEN
+GlobalClearFlag("TUT_BlockLowerDeckADs");
+
+IF
+AutomatedDialogStarted((STRING)_Var1, _)
+AND
+DB_TUT_LowerDeckADs(_Var1, _)
+AND
+DB_TUT_LowerDeckADs(_Var4, _Var5)
+THEN
+GlobalClearFlag(_Var5);
+
+IF
+AutomatedDialogStarted((STRING)_Var1, _)
+AND
+DB_TUT_LowerDeckADs(_Var1, _Var3)
+THEN
+GlobalSetFlag(_Var3);
+
+IF
+ItemOpened(ITEMGUID_S_TUT_LowerDeck_DoorToStairs_008_2a1b856c-757c-4d5d-9b1b-1114d5aad384)
+AND NOT
+DB_GlobalFlag("TUT_LowerDeckdoorOpen")
+THEN
+GlobalClearFlag("TUT_BlockLowerDeckADs");
+
+IF
+ItemOpened(ITEMGUID_S_TUT_LowerDeck_DoorToStairs_008_2a1b856c-757c-4d5d-9b1b-1114d5aad384)
+AND NOT
+DB_GlobalFlag("TUT_LowerDeckdoorOpen")
+AND
+IsTagged(CHARACTERGUID_S_Player_Lohse_bb932b13-8ebf-4ab4-aac0-83e6924e4295, "AVATAR", 0)
+THEN
+Proc_StartDialog(1, "TUT_AD_LohsePleaseTellStory", CHARACTERGUID_S_Player_Lohse_bb932b13-8ebf-4ab4-aac0-83e6924e4295, CHARACTERGUID_S_TUT_LowerDeck_LohseSongGirl1_a681c125-8493-4046-ab1f-6c2201336a22);
+
+IF
+ItemOpened(ITEMGUID_S_TUT_LowerDeck_DoorToStairs_008_2a1b856c-757c-4d5d-9b1b-1114d5aad384)
+THEN
+GlobalSetFlag("TUT_LowerDeckdoorOpen");
+
+IF
+ItemDestroyed(ITEMGUID_S_TUT_LowerDeck_DoorToStairs_008_2a1b856c-757c-4d5d-9b1b-1114d5aad384)
+AND NOT
+DB_GlobalFlag("TUT_LowerDeckdoorOpen")
+THEN
+GlobalClearFlag("TUT_BlockLowerDeckADs");
+
+IF
+ItemDestroyed(ITEMGUID_S_TUT_LowerDeck_DoorToStairs_008_2a1b856c-757c-4d5d-9b1b-1114d5aad384)
+AND NOT
+DB_GlobalFlag("TUT_LowerDeckdoorOpen")
+AND
+IsTagged(CHARACTERGUID_S_Player_Lohse_bb932b13-8ebf-4ab4-aac0-83e6924e4295, "AVATAR", 0)
+THEN
+Proc_StartDialog(1, "TUT_AD_LohsePleaseTellStory", CHARACTERGUID_S_Player_Lohse_bb932b13-8ebf-4ab4-aac0-83e6924e4295, CHARACTERGUID_S_TUT_LowerDeck_LohseSongGirl1_a681c125-8493-4046-ab1f-6c2201336a22);
+
+IF
+ItemDestroyed(ITEMGUID_S_TUT_LowerDeck_DoorToStairs_008_2a1b856c-757c-4d5d-9b1b-1114d5aad384)
+THEN
+GlobalSetFlag("TUT_LowerDeckdoorOpen");
+
+
+EXITSECTION
+ENDEXITSECTION
+
+ParentTargetEdge "Tutorial_PrisonShip"

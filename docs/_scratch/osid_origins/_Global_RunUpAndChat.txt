@@ -1,0 +1,209 @@
+Version 1
+SubGoalCombiner SGC_AND
+
+INITSECTION
+
+KBSECTION
+PROC
+ProcCharacterMoveToAndTalk((CHARACTERGUID)_Var1, (GUIDSTRING)_Var2, (STRING)_Var3, (INTEGER)_Var4, (STRING)_Var5, (INTEGER)_Var6, (REAL)_Var7)
+THEN
+ProcCharacterMoveToAndTalk(_Var1, _Var2, _Var3, _Var4, _Var5, _Var6, _Var7, 0, 0);
+
+PROC
+ProcCharacterMoveToAndTalk((CHARACTERGUID)_Var1, (GUIDSTRING)_Var2, (STRING)_Var3, (INTEGER)_Var4, (STRING)_Var5, (INTEGER)_Var6, (REAL)_Var7, (INTEGER)_Var8, (INTEGER)_Var9)
+AND
+DB_CharacterMoveToAndTalk_CharacerIsMoving(_Var1, _Var2, _Var3, _Var5)
+THEN
+NOT DB_CharacterMoveToAndTalk_CharacerIsMoving(_Var1, _Var2, _Var3, _Var5);
+
+PROC
+ProcCharacterMoveToAndTalk((CHARACTERGUID)_Var1, (GUIDSTRING)_Var2, (STRING)_Var3, (INTEGER)_Var4, (STRING)_Var5, (INTEGER)_Var6, (REAL)_Var7, (INTEGER)_Var8, (INTEGER)_Var9)
+AND
+DB_CharacterMoveToAndTalk_CheckForFallBackCharacters(_Var1, _Var2, _Var3, _Var8, _Var10)
+THEN
+NOT DB_CharacterMoveToAndTalk_CheckForFallBackCharacters(_Var1, _Var2, _Var3, _Var8, _Var10);
+
+PROC
+ProcCharacterMoveToAndTalk((CHARACTERGUID)_Var1, (GUIDSTRING)_Var2, (STRING)_Var3, (INTEGER)_Var4, (STRING)_Var5, (INTEGER)_Var6, (REAL)_Var7, (INTEGER)_Var8, (INTEGER)_Var9)
+THEN
+CharacterMoveToAndTalk(_Var1, _Var2, _Var3, _Var4, _Var5, _Var6, _Var7);
+DB_CharacterMoveToAndTalk_CharacerIsMoving(_Var1, _Var2, _Var3, _Var5);
+DB_CharacterMoveToAndTalk_CheckForFallBackCharacters(_Var1, _Var2, _Var3, _Var8, _Var9);
+
+IF
+CharacterMoveToAndTalkFailed((CHARACTERGUID)_Var1, (GUIDSTRING)_Var2, (STRING)_Var3)
+AND
+DB_CharacterMoveToAndTalk_CharacerIsMoving(_Var1, _Var2, _Var4, _Var3)
+THEN
+NOT DB_CharacterMoveToAndTalk_CharacerIsMoving(_Var1, _Var2, _Var4, _Var3);
+
+IF
+AttackedByObject((CHARACTERGUID)_Var1, (GUIDSTRING)_Var2, (GUIDSTRING)_Var3, (STRING)_Var4, _)
+AND
+DB_CharacterMoveToAndTalk_CharacerIsMoving(_Var1, _Var6, _Var7, _Var8)
+THEN
+CharacterMoveToAndTalkRequestDialogFailed(_Var1, _Var6, _Var8);
+
+IF
+RegionEnded(_)
+AND
+DB_CharacterMoveToAndTalk_CharacerIsMoving(_Var2, _Var3, _Var4, _Var5)
+THEN
+CharacterMoveToAndTalkRequestDialogFailed(_Var2, _Var3, _Var5);
+
+IF
+CharacterLeftRegion((CHARACTERGUID)_Var1, (STRING)_Var2)
+AND
+DB_CurrentLevel(_Var2)
+AND
+DB_CharacterMoveToAndTalk_CharacerIsMoving(_Var3, _Var4, _Var5, _Var6)
+THEN
+CharacterMoveToAndTalkRequestDialogFailed(_Var3, _Var4, _Var6);
+
+IF
+CharacterLeftRegion((CHARACTERGUID)_Var1, (STRING)_Var2)
+AND
+DB_CurrentLevel(_Var2)
+AND
+DB_CharacterMoveToAndTalk_CharacerIsMoving(_Var3, _Var1, _Var4, _Var5)
+THEN
+CharacterMoveToAndTalkRequestDialogFailed(_Var3, _Var1, _Var5);
+
+IF
+CharacterDied((CHARACTERGUID)_Var1)
+AND
+DB_CharacterMoveToAndTalk_CharacerIsMoving(_Var2, _Var1, _Var3, _Var4)
+THEN
+CharacterMoveToAndTalkRequestDialogFailed(_Var2, _Var1, _Var4);
+
+IF
+CharacterDied((CHARACTERGUID)_Var1)
+AND
+DB_CharacterMoveToAndTalk_CharacerIsMoving(_Var1, _Var2, _Var3, _Var4)
+THEN
+CharacterMoveToAndTalkRequestDialogFailed(_Var1, _Var2, _Var4);
+
+IF
+DialogStarted(_, (INTEGER)_Var2)
+AND
+DB_DialogNPCs(_Var2, _Var3, _)
+AND
+DB_CharacterMoveToAndTalk_CharacerIsMoving(_Var3, _Var5, _Var6, _Var7)
+THEN
+CharacterMoveToAndTalkRequestDialogFailed(_Var3, _Var5, _Var7);
+
+IF
+CombatStarted((INTEGER)_Var1)
+AND
+DB_CombatCharacters(_Var2, _Var1)
+AND
+DB_CharacterMoveToAndTalk_CharacerIsMoving(_Var2, _Var3, _Var4, _Var5)
+THEN
+CharacterMoveToAndTalkRequestDialogFailed(_Var2, _Var3, _Var5);
+
+IF
+CharacterMoveToAndTalkRequestDialog((CHARACTERGUID)_Var1, (GUIDSTRING)_Var2, (STRING)_Var3, (INTEGER)_Var4, (STRING)_Var5)
+AND
+DB_CharacterMoveToAndTalk_CharacerIsMoving(_Var1, _Var2, _Var3, _Var5)
+THEN
+NOT DB_CharacterMoveToAndTalk_CharacerIsMoving(_Var1, _Var2, _Var3, _Var5);
+
+IF
+CharacterMoveToAndTalkRequestDialog((CHARACTERGUID)_Var1, (GUIDSTRING)_Var2, (STRING)_Var3, (INTEGER)_Var4, (STRING)_Var5)
+THEN
+SetStoryEvent(_Var1, _Var5);
+
+IF
+CharacterMoveToAndTalkRequestDialog((CHARACTERGUID)_Var1, (GUIDSTRING)_Var2, (STRING)_Var3, (INTEGER)_Var4, (STRING)_Var5)
+AND NOT
+QRY_SpeakerIsAvailable(_Var2)
+AND
+DB_CharacterMoveToAndTalk_CheckForFallBackCharacters(_Var1, _Var2, _Var3, 0, _Var6)
+THEN
+CharacterMoveToAndTalkRequestDialogFailed(_Var1, _Var2, _Var5);
+
+IF
+CharacterMoveToAndTalkRequestDialog((CHARACTERGUID)_Var1, (CHARACTERGUID)_Var2, (STRING)_Var3, (INTEGER)_Var4, (STRING)_Var5)
+AND NOT
+QRY_SpeakerIsAvailable(_Var2)
+AND
+DB_CharacterMoveToAndTalk_CheckForFallBackCharacters(_Var1, _Var2, _Var3, 1, 0)
+AND
+DB_IsPlayer(_Var2)
+AND
+QRY_GetClosestAvailableCharacterTo(_Var2, 1)
+AND NOT
+DB_MoveToAndTalk_FoundNewAvailablePlayer(1)
+THEN
+DB_MoveToAndTalk_FoundNewAvailablePlayer(1);
+PROC_CharacterMoveToAndTalkRequestDialog_Closest(_Var1, _Var2, _Var3, _Var4, _Var5);
+
+IF
+CharacterMoveToAndTalkRequestDialog((CHARACTERGUID)_Var1, (CHARACTERGUID)_Var2, (STRING)_Var3, (INTEGER)_Var4, (STRING)_Var5)
+AND NOT
+QRY_SpeakerIsAvailable(_Var2)
+AND
+DB_CharacterMoveToAndTalk_CheckForFallBackCharacters(_Var1, _Var2, _Var3, 1, 1)
+AND
+DB_IsPlayer(_Var2)
+AND
+QRY_GetClosestAvailableCharacterTo(_Var2, 1, 1, _Var2)
+AND NOT
+DB_MoveToAndTalk_FoundNewAvailablePlayer(1)
+THEN
+DB_MoveToAndTalk_FoundNewAvailablePlayer(1);
+PROC_CharacterMoveToAndTalkRequestDialog_Closest(_Var1, _Var2, _Var3, _Var4, _Var5);
+
+IF
+CharacterMoveToAndTalkRequestDialog((CHARACTERGUID)_Var1, (CHARACTERGUID)_Var2, (STRING)_Var3, (INTEGER)_Var4, (STRING)_Var5)
+AND NOT
+QRY_SpeakerIsAvailable(_Var2)
+AND
+DB_CharacterMoveToAndTalk_CheckForFallBackCharacters(_Var1, _Var2, _Var3, 1, _)
+AND
+DB_IsPlayer(_Var2)
+AND NOT
+QRY_GetClosestAvailableCharacterTo(_Var2, 1)
+AND NOT
+DB_MoveToAndTalk_FoundNewAvailablePlayer(1)
+THEN
+CharacterMoveToAndTalkRequestDialogFailed(_Var1, _Var2, _Var5);
+
+IF
+CharacterMoveToAndTalkRequestDialog((CHARACTERGUID)_Var1, (GUIDSTRING)_Var2, (STRING)_Var3, (INTEGER)_Var4, (STRING)_Var5)
+AND
+DB_MoveToAndTalk_FoundNewAvailablePlayer(1)
+THEN
+NOT DB_MoveToAndTalk_FoundNewAvailablePlayer(1);
+
+IF
+CharacterMoveToAndTalkRequestDialog((CHARACTERGUID)_Var1, (GUIDSTRING)_Var2, (STRING)_Var3, (INTEGER)_Var4, (STRING)_Var5)
+AND
+_Var3 != ""
+AND
+QRY_SpeakerIsAvailable(_Var2)
+THEN
+Proc_StartDialog(_Var4, _Var3, _Var1, _Var2);
+
+PROC
+PROC_CharacterMoveToAndTalkRequestDialog_Closest((CHARACTERGUID)_Var1, (CHARACTERGUID)_Var2, (STRING)_Var3, (INTEGER)_Var4, (STRING)_Var5)
+AND NOT
+QRY_SpeakerIsAvailable(_Var2)
+AND
+DB_ClosestAvailableCharacterTo(_Var6, _Var2, _)
+THEN
+Proc_StartDialog(_Var4, _Var3, _Var1, _Var6);
+
+PROC
+PROC_CharacterMoveToAndTalkRequestDialog_Closest((CHARACTERGUID)_Var1, (CHARACTERGUID)_Var2, (STRING)_Var3, (INTEGER)_Var4, (STRING)_Var5)
+AND NOT
+QRY_SpeakerIsAvailable(_Var2)
+AND NOT
+DB_ClosestAvailableCharacterTo(_, _Var2, _)
+THEN
+CharacterMoveToAndTalkRequestDialogFailed(_Var1, _Var2, _Var5);
+
+
+EXITSECTION
+ENDEXITSECTION
+

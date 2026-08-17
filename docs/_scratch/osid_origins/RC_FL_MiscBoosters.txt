@@ -1,0 +1,66 @@
+Version 1
+SubGoalCombiner SGC_AND
+
+INITSECTION
+DB_Dialogs(CHARACTERGUID_S_RC_FL_ShockedCow_4cb529ee-af3d-4a7c-99a2-983dfad96e0e, "RC_FL_ShockedCow");
+DB_Dialogs(CHARACTERGUID_S_RC_FL_ShockedSheep_f8aba38a-0b2c-4acb-8ffd-ab1f37f880a2, "RC_FL_ShockedSheep");
+DB_RC_FL_CameraShakeTriggers(TRIGGERGUID_S_RC_FL_CameraShakeTrigger_01_25478164-0582-4ec1-b402-dc7d58b2ced7);
+DB_RC_FL_CameraShakeTriggers(TRIGGERGUID_S_RC_FL_CameraShakeTrigger_02_a26ecb4a-0d1b-4819-834e-40e46869abeb);
+DB_RC_FL_CameraShakeTriggers(TRIGGERGUID_S_RC_FL_CameraShakeTrigger_03_bb859a4d-2e9c-4c52-a438-456e2efa6969);
+DB_RC_FL_CameraShakeTriggers(TRIGGERGUID_S_RC_FL_CameraShakeTrigger_04_c2fb1b28-6e93-4a48-895b-3a9ab8dc3e0a);
+DB_RC_FL_CameraShakeTriggers(TRIGGERGUID_S_RC_FL_CameraShakeTrigger_05_261ebbfe-4ced-4902-93ff-88661751ab3b);
+DB_RC_FL_CameraShakeTriggers(TRIGGERGUID_S_RC_FL_CameraShakeTrigger_06_47c05bf8-3b86-4232-8d9d-d4237981886b);
+DB_RC_FL_CameraShakeTriggers(TRIGGERGUID_S_RC_FL_CameraShakeTrigger_07_b3fa7add-3ff7-4c3f-bc5f-0f74e2e9ee72);
+DB_RC_FL_CameraShakeTriggers(TRIGGERGUID_S_RC_FL_CameraShakeTrigger_08_6e685018-321e-4364-a770-90ce337cfacf);
+DB_RC_FL_CameraShakeTriggers(TRIGGERGUID_S_RC_FL_CameraShakeTrigger_09_5684c793-3489-45ce-b318-6f8990fb15f1);
+DB_RC_FL_CameraShakeTriggers(TRIGGERGUID_S_RC_FL_CameraShakeTrigger_10_a97f1ada-6616-4390-a656-1d45e832b55a);
+DB_RC_FL_CameraShakeTriggers(TRIGGERGUID_S_RC_FL_CameraShakeTrigger_11_2553c903-b398-46e5-9924-488816707693);
+DB_RC_FL_CameraShakeTriggers(TRIGGERGUID_S_RC_FL_CameraShakeTrigger_12_12477671-a4c0-44bd-a653-da00de0dbd0a);
+DB_OneShot_VoiceBarkTrigger(TRIGGERGUID_S_RC_FL_MiddleFarmlandsVB_434f5c80-f5d8-45dd-a116-18b112c001eb, "RC_FL_VB_EvenMoreDestroyedFarmlands");
+DB_OneShot_VoiceBarkTrigger(TRIGGERGUID_S_RC_FL_AlanAura_d07244f9-2e65-4c06-b811-c647fd5886c0, "RC_FL_VB_DecayingStatusOnPlayer");
+
+KBSECTION
+IF
+DB_RC_FL_CameraShakeTriggers(_Var1)
+THEN
+DB_OneShotPlayerTrigger(_Var1);
+
+PROC
+ProcOneShotTriggerEntered((CHARACTERGUID)_Var1, (TRIGGERGUID)_Var2)
+AND
+DB_RC_FL_CameraShakeTriggers(_Var2)
+THEN
+Proc_ShakeCameraForTime(_Var1, 3500);
+
+IF
+GlobalFlagSet("RC_FL_AlanBossDead")
+AND
+DB_RC_FL_CameraShakeTriggers(_Var1)
+AND
+DB_OneShotPlayerTrigger(_Var1)
+THEN
+NOT DB_OneShotPlayerTrigger(_Var1);
+
+PROC
+ProcOneShotTriggerEntered((CHARACTERGUID)_Var1, (TRIGGERGUID)_Var2)
+AND
+DB_RC_FL_CameraShakeTriggers(_Var2)
+AND
+QueryOnlyOnce("RC_FL_VoiceBark_ShakingGrounds")
+THEN
+StartVoiceBark("RC_FL_VB_ShakingGrounds", _Var1);
+
+IF
+CharacterEnteredTrigger((CHARACTERGUID)_Var1, TRIGGERGUID_S_RC_FL_SUB_Farmlands_82212126-5d3e-4a63-ad1f-3f3233650ef7)
+AND
+DB_IsPlayer(_Var1)
+AND
+QueryOnlyOnce("RC_FL_Voicebark_DestroyedFarmlands")
+THEN
+StartVoiceBark("RC_FL_VB_DestroyedFarmlands", _Var1);
+
+
+EXITSECTION
+ENDEXITSECTION
+
+ParentTargetEdge "ReapersCoast"

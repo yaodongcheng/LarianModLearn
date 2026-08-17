@@ -1,0 +1,198 @@
+Version 1
+SubGoalCombiner SGC_AND
+
+INITSECTION
+DB_TUT_LoseWeapons_WeaponSlots("Weapon");
+DB_TUT_LoseWeapons_WeaponSlots("Shield");
+DB_TUT_LoseWeapons_RegainAfterTutorial(CHARACTERGUID_S_GLO_Windego_d783285f-d3be-4cba-8333-db8976cef182);
+
+KBSECTION
+PROC
+Proc_TUT_PlayerWeaponRecipesRecorded()
+THEN
+PROC_TUT_InitLoseWeapons();
+
+PROC
+PROC_TUT_InitLoseWeapons()
+AND
+DB_GLO_SourceCollars_PrisonersWithCollars(_Var1)
+THEN
+DB_TUT_LoseWeapons_LostWeapons(_Var1);
+
+PROC
+PROC_TUT_InitLoseWeapons()
+AND
+DB_IsPlayer(_Var1)
+THEN
+DB_TUT_LoseWeapons_LostWeapons(_Var1);
+
+PROC
+PROC_TUT_InitLoseWeapons()
+AND
+DB_OriginRecruitmentLocation_Region("TUT_Tutorial_A", _Var1, _Var2, _Var3)
+AND NOT
+DB_IsPlayer(_Var1)
+THEN
+DB_TUT_LoseWeapons_RegainAfterTutorial(_Var1);
+DB_TUT_LoseWeapons_LostWeapons(_Var1);
+
+PROC
+PROC_TUT_InitLoseWeapons()
+AND
+DB_OriginRecruitmentLocation_Region("TUT_Tutorial_A", _Var1, _Var2, _Var3)
+AND NOT
+DB_IsPlayer(_Var1)
+AND
+CharacterHasSkill(_Var1, "Rain_Water", 1)
+THEN
+DB_TUT_LoseSkill(_Var1, "Rain_Water");
+
+IF
+CharacterMadePlayer((CHARACTERGUID)_Var1)
+AND
+DB_TUT_LoseSkill(_Var1, _Var2)
+THEN
+CharacterAddSkill(_Var1, _Var2);
+NOT DB_TUT_LoseSkill(_Var1, _Var2);
+
+IF
+DB_TUT_LoseWeapons_LostWeapons(_Var1)
+AND
+DB_TUT_LoseWeapons_WeaponSlots(_Var2)
+AND
+CharacterGetEquippedItem(_Var1, _Var2, _Var3)
+THEN
+CharacterUnequipItem(_Var1, _Var3);
+PROC_TUT_LoseWeapons_LostWeapon(_Var1, _Var2, _Var3);
+
+PROC
+PROC_TUT_LoseWeapons_LostWeapon((CHARACTERGUID)_Var1, (STRING)_Var2, (ITEMGUID)_Var3)
+THEN
+DB_TUT_LostWeapon(_Var1, _Var2, _Var3);
+
+PROC
+PROC_TUT_LoseWeapons_LostWeapon((CHARACTERGUID)_Var1, (STRING)_Var2, (ITEMGUID)_Var3)
+AND
+DB_IsPlayer(_Var1)
+THEN
+ItemToInventory(_Var3, ITEMGUID_S_TUT_MiddleDeck_ConfiscationChest_aabf4b72-c5f7-4637-9606-fc612be92ff7);
+
+PROC
+PROC_TUT_LoseWeapons_LostWeapon((CHARACTERGUID)_Var1, (STRING)_Var2, (ITEMGUID)_Var3)
+AND NOT
+DB_IsPlayer(_Var1)
+AND NOT
+DB_TUT_LoseWeapons_RegainAfterTutorial(_Var1)
+THEN
+ItemDestroy(_Var3);
+
+PROC
+PROC_TUT_LoseWeapons_LostWeapon((CHARACTERGUID)_Var1, (STRING)_Var2, (ITEMGUID)_Var3)
+AND
+DB_TUT_LoseWeapons_RegainAfterTutorial(_Var1)
+THEN
+ItemDrop(_Var3);
+SetOnStage(_Var3, 0);
+
+IF
+DB_TUT_LoseSkill(_Var1, _Var2)
+THEN
+CharacterRemoveSkill(_Var1, _Var2);
+
+PROC
+PROC_TUT_LoseWeapons_LostWeapon((CHARACTERGUID)_Var1, (STRING)_Var2, (ITEMGUID)_Var3)
+AND NOT
+DB_TUT_LoseWeapons_GotShiv(_Var1)
+AND NOT
+DB_IsPlayer(_Var1)
+AND
+GetPosition(_Var1, _Var4, _Var5, _Var6)
+AND
+CreateItemTemplateAtPosition("WPN_Common_Dagger_1H_A f1e0f3fc-c94b-48b6-a843-7d8072f87e9e", _Var4, _Var5, _Var6, _Var7)
+THEN
+DB_TUT_LoseWeapons_GotShiv(_Var1);
+ItemToInventory(_Var7, _Var1);
+CharacterEquipItem(_Var1, _Var7);
+
+PROC
+ProcRegionEnded("TUT_Tutorial_A")
+AND
+DB_TUT_LoseWeapons_GotShiv(_Var1)
+AND
+CharacterGetEquippedItem(_Var1, "Weapon", _Var2)
+THEN
+NOT DB_TUT_LoseWeapons_GotShiv(_Var1);
+CharacterUnequipItem(_Var1, _Var2);
+ItemDestroy(_Var2);
+
+PROC
+ProcRegionEnded("TUT_Tutorial_A")
+AND
+DB_TUT_LoseSkill(_Var1, _Var2)
+THEN
+NOT DB_TUT_LoseSkill(_Var1, _Var2);
+CharacterAddSkill(_Var1, _Var2);
+
+PROC
+ProcRegionEnded("TUT_Tutorial_A")
+AND
+DB_TUT_LoseWeapons_RegainAfterTutorial(_Var1)
+AND
+DB_TUT_LostWeapon(_Var1, _Var2, _Var3)
+THEN
+NOT DB_TUT_LoseWeapons_RegainAfterTutorial(_Var1);
+SetOnStage(_Var3, 1);
+ItemToInventory(_Var3, _Var1);
+CharacterEquipItem(_Var1, _Var3);
+
+PROC
+ProcRegionEnded("TUT_Tutorial_A")
+AND
+DB_TUT_LoseWeapons_LostWeapons(_Var1)
+THEN
+NOT DB_TUT_LoseWeapons_LostWeapons(_Var1);
+
+PROC
+ProcRegionEnded("TUT_Tutorial_A")
+AND
+DB_TUT_LostWeapon(_Var1, _Var2, _Var3)
+THEN
+NOT DB_TUT_LostWeapon(_Var1, _Var2, _Var3);
+
+PROC
+ProcRegionEnded("TUT_Tutorial_A")
+THEN
+GoalCompleted;
+
+IF
+CharacterUsedItem((CHARACTERGUID)_Var1, ITEMGUID_S_TUT_MiddleDeck_ConfiscationChest_aabf4b72-c5f7-4637-9606-fc612be92ff7)
+THEN
+SysClear("DB_TUT_SearchingConfiscationChest", 1);
+DB_TUT_SearchingConfiscationChest(_Var1);
+InventoryLaunchIterator(ITEMGUID_S_TUT_MiddleDeck_ConfiscationChest_aabf4b72-c5f7-4637-9606-fc612be92ff7, "DB_TUT_CheckAnythingInConsfiscationChest", "");
+
+IF
+StoryEvent(_, "DB_TUT_CheckAnythingInConsfiscationChest")
+AND
+DB_TUT_SearchingConfiscationChest(_Var2)
+THEN
+PartySetFlag(_Var2, "QuestUpdate_TUT_ShipMurder_Weapons_Found");
+
+IF
+ItemTemplateCombinedWithItemTemplate(_, _, _, _, _, (CHARACTERGUID)_Var6, (ITEMGUID)_Var7)
+AND
+DB_IsPlayer(_Var6)
+AND
+DB_TUT_LoseWeapons_LostWeapons(_Var6)
+AND
+GetStatString(_Var7, _Var8)
+AND
+DB_Tutorial_WeaponRecipe(_Var8, _, _)
+THEN
+PartySetFlag(_Var6, "QuestUpdate_TUT_ShipMurder_Weapons_Made");
+
+
+EXITSECTION
+ENDEXITSECTION
+
+ParentTargetEdge "Tutorial_PrisonShip"

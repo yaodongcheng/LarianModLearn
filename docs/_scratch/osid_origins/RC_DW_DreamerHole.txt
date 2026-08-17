@@ -1,0 +1,249 @@
+Version 1
+SubGoalCombiner SGC_AND
+
+INITSECTION
+CharacterSetAnimationSetOverride(CHARACTERGUID_S_RC_DW_UnderTavern_Bartender_cb016e2c-2e96-4dd7-bf78-aa1fdefb5424, "StandOnStool");
+ItemToInventory(S_RC_DW_UT_Effies_Notes_ca656244-9d55-47c2-b627-d95437134e19, CHARACTERGUID_S_RC_DW_UnderTavern_Bartender_cb016e2c-2e96-4dd7-bf78-aa1fdefb5424);
+DB_RC_DW_Herbmix("RC_DW_UT_HerbmixSelected_Alertness", "Quest_Herbmix_Alertness_ff4adb8c-c79c-4976-9a3a-cef0d901ccee", "HERBMIX_ALERTNESS");
+DB_RC_DW_Herbmix("RC_DW_UT_HerbmixSelected_Courage", "Quest_Herbmix_Courage_2a160ee8-3abd-4e28-a533-2efcaefd0b53", "HERBMIX_COURAGE");
+DB_RC_DW_Herbmix("RC_DW_UT_HerbmixSelected_Ferocity", "Quest_Herbmix_Ferocity_ff74d2bf-8a91-452f-9ea8-f6756bb0d700", "HERBMIX_FEROCITY");
+DB_RC_DW_Herbmix("RC_DW_UT_HerbmixSelected_Enlightenment", "Quest_Herbmix_Enlightenment_ff07e9ef-d489-4eb8-af72-548b183f87bc", "HERBMIX_ENLIGHTENMENT");
+DB_RC_DW_Herbmix_Potent("Quest_Herbmix_Alertness_Potent_656ef42a-58ab-4705-8b71-c37a60d7205a", "HERBMIX_ALERTNESS");
+DB_RC_DW_Herbmix_Potent("Quest_Herbmix_Enlightenment_Potent_e87fdd7d-6e23-4095-8aa1-b0f8d447cead", "HERBMIX_ENLIGHTENMENT");
+DB_RC_DW_Herbmix_Potent("Quest_Herbmix_Ferocity_Potent_e241285b-c449-43f1-9048-898cdb9372ca", "HERBMIX_FEROCITY");
+DB_DialogMoneyTransfer(1, "RC_DW_UnderTavern_Bartender", 150);
+
+KBSECTION
+IF
+ObjectFlagSet((STRING)_Var1, (GUIDSTRING)_Var2, (INTEGER)_Var3)
+AND
+DB_RC_DW_Herbmix(_Var1, _Var4, _)
+AND
+DB_RC_DW_Herbmix_Selected(_Var2, _Var6)
+THEN
+NOT DB_RC_DW_Herbmix_Selected(_Var2, _Var6);
+
+IF
+ObjectFlagSet((STRING)_Var1, (GUIDSTRING)_Var2, (INTEGER)_Var3)
+AND
+DB_RC_DW_Herbmix(_Var1, _Var4, _)
+THEN
+ObjectClearFlag(_Var2, _Var1, _Var3);
+DB_RC_DW_Herbmix_Selected(_Var2, _Var4);
+
+IF
+ObjectFlagSet("RC_DW_UnderTavern_RegularHerbMix_Received", (CHARACTERGUID)_Var1, (INTEGER)_Var2)
+AND
+DB_RC_DW_Herbmix_Selected(_Var1, _Var3)
+AND
+DB_DialogMoneyTransfer(1, "RC_DW_UnderTavern_Bartender", _Var4)
+AND
+IntegerSubtract(0, _Var4, _Var5)
+THEN
+NOT DB_RC_DW_Herbmix_Selected(_Var1, _Var3);
+ProcAddGoldToMagicPockets(_Var1, _Var5);
+CharacterAddGold(CHARACTERGUID_S_RC_DW_UnderTavern_Bartender_cb016e2c-2e96-4dd7-bf78-aa1fdefb5424, _Var4);
+ItemTemplateAddTo(_Var3, _Var1, 1);
+
+IF
+ObjectFlagSet("RC_DW_UnderTavern_RegularHerbMix_Received", (CHARACTERGUID)_Var1, (INTEGER)_Var2)
+THEN
+ObjectClearFlag(_Var1, "RC_DW_UnderTavern_RegularHerbMix_Received", _Var2);
+PartySetFlag(_Var1, "RC_DW_UnderTavern_RegularHerbMix_Received_ShowMarker");
+
+IF
+ObjectFlagSet("RC_DW_UnderTavern_RegularHerbMix_Received_ShowMarker", (CHARACTERGUID)_Var1, _)
+THEN
+ProcShowMarker(_Var1, "RC_DW_Undertavern_DreamerPipe");
+
+IF
+CharacterUsedItem((CHARACTERGUID)_Var1, ITEMGUID_S_RC_DW_UnderTavern_DreamPipe_48858acc-7d5a-47ff-97b0-3c8312e08967)
+THEN
+ObjectClearFlag(_Var1, "RC_DW_UT_HasDrudanae", 0);
+ObjectClearFlag(_Var1, "RC_DW_UT_HasHerbmix", 0);
+ObjectClearFlag(_Var1, "RC_DW_UT_EffieAtDesk", 0);
+
+IF
+CharacterUsedItem((CHARACTERGUID)_Var1, ITEMGUID_S_RC_DW_UnderTavern_DreamPipe_48858acc-7d5a-47ff-97b0-3c8312e08967)
+AND
+CharacterIsDead(CHARACTERGUID_S_RC_DW_UnderTavern_Bartender_cb016e2c-2e96-4dd7-bf78-aa1fdefb5424, 0)
+AND
+GetDistanceTo(CHARACTERGUID_S_RC_DW_UnderTavern_Bartender_cb016e2c-2e96-4dd7-bf78-aa1fdefb5424, ITEMGUID_S_RC_DW_UnderTavern_DreamPipe_48858acc-7d5a-47ff-97b0-3c8312e08967, _Var2)
+AND
+_Var2 < 5
+THEN
+ObjectSetFlag(_Var1, "RC_DW_UT_EffieAtDesk");
+
+IF
+CharacterUsedItem((CHARACTERGUID)_Var1, ITEMGUID_S_RC_DW_UnderTavern_DreamPipe_48858acc-7d5a-47ff-97b0-3c8312e08967)
+AND
+DB_DrudenaeTemplates(_Var2)
+AND
+QryItemTemplateInMagicPockets(_Var1, _Var2)
+THEN
+ObjectSetFlag(_Var1, "RC_DW_UT_HasDrudanae");
+
+IF
+CharacterUsedItem((CHARACTERGUID)_Var1, ITEMGUID_S_RC_DW_UnderTavern_DreamPipe_48858acc-7d5a-47ff-97b0-3c8312e08967)
+AND
+DB_RC_DW_Herbmix(_, _Var3, _)
+AND
+QryItemTemplateInMagicPockets(_Var1, _Var3)
+THEN
+ObjectSetFlag(_Var1, "RC_DW_UT_HasHerbmix");
+
+IF
+CharacterUsedItem((CHARACTERGUID)_Var1, ITEMGUID_S_RC_DW_UnderTavern_DreamPipe_48858acc-7d5a-47ff-97b0-3c8312e08967)
+AND
+DB_RC_DW_Herbmix_Potent(_Var2, _)
+AND
+QryItemTemplateInMagicPockets(_Var1, _Var2)
+THEN
+ObjectSetFlag(_Var1, "RC_DW_UT_HasHerbmix");
+
+IF
+CharacterUsedItem((CHARACTERGUID)_Var1, ITEMGUID_S_RC_DW_UnderTavern_DreamPipe_48858acc-7d5a-47ff-97b0-3c8312e08967)
+THEN
+Proc_StartDialog(0, "RC_DW_UnderTavern_DreamerPipe", _Var1);
+
+IF
+ObjectFlagSet("RC_DW_UT_DreampipeIntroduction", (GUIDSTRING)_Var1, _)
+THEN
+DB_RC_DW_DreamerHole_PlayerWantsDreamerPipeIntro(_Var1);
+ObjectClearFlag(_Var1, "RC_DW_UT_DreampipeIntroduction", 0);
+
+IF
+DialogEnded("RC_DW_UnderTavern_DreamerPipe", (INTEGER)_Var1)
+AND
+DB_DialogPlayers(_Var1, _Var2, 1)
+AND
+DB_RC_DW_DreamerHole_PlayerWantsDreamerPipeIntro(_Var2)
+AND
+QRY_SpeakerIsAvailable(CHARACTERGUID_S_RC_DW_UnderTavern_Bartender_cb016e2c-2e96-4dd7-bf78-aa1fdefb5424)
+AND
+GetDistanceTo(_Var2, CHARACTERGUID_S_RC_DW_UnderTavern_Bartender_cb016e2c-2e96-4dd7-bf78-aa1fdefb5424, _Var3)
+AND
+_Var3 < 10
+THEN
+NOT DB_RC_DW_DreamerHole_PlayerWantsDreamerPipeIntro(_Var2);
+Proc_StartDialog(0, "RC_DW_UnderTavern_DreamerPipe_EffieIntro", CHARACTERGUID_S_RC_DW_UnderTavern_Bartender_cb016e2c-2e96-4dd7-bf78-aa1fdefb5424, _Var2);
+CharacterMoveTo(CHARACTERGUID_S_RC_DW_UnderTavern_Bartender_cb016e2c-2e96-4dd7-bf78-aa1fdefb5424, TRIGGERGUID_S_RC_DW_UT_Effie_Intro_f49ad071-2bb1-4643-9889-0be79b29e868, 0, "RC_DW_UT_EffieAtIntroPoint", 0);
+
+IF
+ObjectFlagSet("RC_DW_UT_OpenCraft", (GUIDSTRING)_Var1, _)
+THEN
+DB_RC_DW_DreamerHole_OpenCraft(_Var1);
+ObjectClearFlag(_Var1, "RC_DW_UT_OpenCraft", 0);
+
+IF
+DialogEnded("RC_DW_UnderTavern_DreamerPipe", (INTEGER)_Var1)
+AND
+DB_DialogPlayers(_Var1, _Var2, 1)
+AND
+DB_RC_DW_DreamerHole_OpenCraft(_Var2)
+THEN
+NOT DB_RC_DW_DreamerHole_OpenCraft(_Var2);
+OpenCraftUI(_Var2, ITEMGUID_S_RC_DW_UnderTavern_DreamPipe_48858acc-7d5a-47ff-97b0-3c8312e08967);
+
+IF
+StoryEvent(CHARACTERGUID_S_RC_DW_UnderTavern_Bartender_cb016e2c-2e96-4dd7-bf78-aa1fdefb5424, "RC_DW_UT_EffieAtIntroPoint")
+THEN
+CharacterLookFromTrigger(CHARACTERGUID_S_RC_DW_UnderTavern_Bartender_cb016e2c-2e96-4dd7-bf78-aa1fdefb5424, TRIGGERGUID_S_RC_DW_UT_Effie_Intro_f49ad071-2bb1-4643-9889-0be79b29e868, 0);
+
+IF
+DialogEnded("RC_DW_UnderTavern_DreamerPipe", (INTEGER)_Var1)
+AND
+DB_DialogPlayers(_Var1, _Var2, 1)
+AND
+DB_RC_DW_DreamerHole_PlayerWantsDreamerPipeIntro(_Var2)
+THEN
+NOT DB_RC_DW_DreamerHole_PlayerWantsDreamerPipeIntro(_Var2);
+Proc_StartDialog(0, "RC_DW_UnderTavern_DreamerPipe_EffieBusy", _Var2);
+
+IF
+ObjectFlagSet("RC_DW_UT_SmokeDrudanae", (CHARACTERGUID)_Var1, _)
+AND
+DB_DrudenaeTemplates(_Var3)
+AND NOT
+DB_RC_DW_DreamerHole_FoundASmoke(1)
+AND
+QryRemoveItemTemplateFromMagicPockets(_Var1, _Var3, 1)
+AND
+CharacterConsume(_Var1, "CON_Herb_Drudanae", _)
+THEN
+DB_RC_DW_DreamerHole_FoundASmoke(1);
+ObjectClearFlag(_Var1, "RC_DW_UT_SmokeDrudanae", 0);
+
+IF
+ObjectFlagSet("RC_DW_UT_SmokeDrudanae", (GUIDSTRING)_Var1, _)
+THEN
+NOT DB_RC_DW_DreamerHole_FoundASmoke(1);
+
+IF
+ItemTemplateCombinedWithItemTemplate((STRING)_Var1, "Quest_DreamerPipe_b43347a7-a763-4791-92e8-0fb623552ade", _, _, _, (CHARACTERGUID)_Var5, _)
+AND
+DB_DrudenaeTemplates(_Var1)
+AND
+CharacterConsume(_Var5, "CON_Herb_Drudanae", _)
+THEN
+DB_NOOP(1);
+
+IF
+ItemTemplateCombinedWithItemTemplate((STRING)_Var1, "Quest_DreamerPipe_b43347a7-a763-4791-92e8-0fb623552ade", _, _, _, (CHARACTERGUID)_Var5, _)
+AND
+DB_RC_DW_Herbmix(_, _Var1, _Var8)
+THEN
+PROC_Herbmix_Effect(_Var5, _Var8, 1);
+
+IF
+ItemTemplateCombinedWithItemTemplate((STRING)_Var1, "Quest_DreamerPipe_b43347a7-a763-4791-92e8-0fb623552ade", _, _, _, (CHARACTERGUID)_Var5, _)
+AND
+DB_RC_DW_Herbmix_Potent(_Var1, _Var7)
+THEN
+PROC_Herbmix_Effect(_Var5, _Var7, 2);
+
+PROC
+PROC_Herbmix_Effect((CHARACTERGUID)_Var1, (STRING)_Var2, (REAL)_Var3)
+AND
+RealProduct(300, _Var3, _Var4)
+THEN
+ApplyStatus(_Var1, _Var2, _Var4);
+CloseUI(_Var1, "Crafting");
+CharacterLookAt(_Var1, ITEMGUID_S_RC_DW_UnderTavern_DreamPipe_48858acc-7d5a-47ff-97b0-3c8312e08967);
+PlayAnimation(_Var1, "Fidget_Forward_01");
+Proc_StartDialog(1, "RC_DW_AD_DreamerHole_SmokedRegular", _Var1);
+
+IF
+DialogStarted("RC_DW_UnderTavern_Bartender", _)
+AND
+DB_GlobalFlag("Arena_Driftwood_TrialInitiated")
+AND
+DB_GlobalFlag("RC_DW_Murga_IsDead")
+THEN
+GlobalSetFlag("RC_DW_UT_DreamerHole_DebuffBlocked");
+
+IF
+DialogStarted("RC_DW_UnderTavern_Bartender", _)
+AND
+DB_GlobalFlag("Arena_Driftwood_TrialInitiated")
+AND
+DB_GlobalFlag("Arena_Driftwood_ChampionInitiated")
+THEN
+GlobalSetFlag("RC_DW_UT_DreamerHole_DebuffBlocked");
+
+IF
+GameBookInterfaceClosed(S_RC_DW_UT_Effies_Notes_ca656244-9d55-47c2-b627-d95437134e19, (CHARACTERGUID)_Var1)
+THEN
+CharacterUnlockRecipe(_Var1, "CON_Herb_Drudanae_CON_Herb_Farhangite_A", 1);
+CharacterUnlockRecipe(_Var1, "CON_Herb_Drudanae_CON_Herb_Augmentor_A", 0);
+CharacterUnlockRecipe(_Var1, "CON_Herb_Drudanae_CON_Nature_Mushroom_Puffball_A", 0);
+CharacterUnlockRecipe(_Var1, "CON_Herb_Drudanae_CON_Nature_Mushroom_Calocera_A", 0);
+CharacterUnlockRecipe(_Var1, "QUEST_Herbmix_Alertness_FOOD_FishA_Voidwoken", 0);
+CharacterUnlockRecipe(_Var1, "QUEST_Herbmix_Ferocity_FOOD_FishB_Voidwoken", 0);
+CharacterUnlockRecipe(_Var1, "QUEST_Herbmix_Enlightenment_FOOD_FishC_Voidwoken", 0);
+
+
+EXITSECTION
+ENDEXITSECTION
+
+ParentTargetEdge "ReapersCoast"

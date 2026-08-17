@@ -1,0 +1,542 @@
+Version 1
+SubGoalCombiner SGC_AND
+
+INITSECTION
+DB_Dialogs(CHARACTERGUID_S_CoS_Temples_SallowMan_d07e0f6b-c473-47f2-9d1c-e1f6f0ef61af, "CoS_Temples_SallowMan");
+DB_Dialogs(CHARACTERGUID_S_CoS_Temples_SallowManMinion_001_a092534c-ec79-46db-af07-d852313eb1d6, "CoS_Temples_SallowManMinion_001");
+DB_Dialogs(CHARACTERGUID_S_CoS_Temples_SallowManMinion_002_f5307c31-f32a-44ee-85fa-7b413c2957f3, "CoS_Temples_SallowManMinion_002");
+DB_Dialogs(CHARACTERGUID_S_CoS_Temples_SallowManMinion_003_7c282499-a74d-4ae6-aee7-0e210a6695b4, "CoS_Temples_SallowManMinion_003");
+DB_Ghosts(CHARACTERGUID_S_CoS_Temples_SallowMan_MagisterGhost_001_b7d06753-1718-4396-bedc-e769024c36e2, "CoS_Temples_SallowMan_MagisterGhost_001");
+DB_Ghosts(CHARACTERGUID_S_CoS_Temples_SallowMan_MagisterGhost_002_d0f8a877-1810-409c-8edc-5d294817bbb1, "CoS_Temples_SallowMan_MagisterGhost_002");
+DB_DeadEvent(CHARACTERGUID_S_CoS_Temples_SallowMan_d07e0f6b-c473-47f2-9d1c-e1f6f0ef61af, "QuestUpdate_FTJ_Hunted_KillSallowMan");
+DB_KilledEvent(CHARACTERGUID_S_CoS_Temples_SallowMan_d07e0f6b-c473-47f2-9d1c-e1f6f0ef61af, "QuestUpdate_FTJ_Hunted_KillSallowMan");
+DB_Dialogs(ITEMGUID_S_CoS_Temples_SallowManMirror_001_3d324483-7bbf-8fc6-5d9a-6fdcda72bc98, "CoS_Temples_SallowManMirror_001");
+DB_Dialogs(ITEMGUID_S_CoS_Temples_SallowManMirror_002_2806e431-ae8c-83a8-5568-222a576e677c, "CoS_Temples_SallowManMirror_002");
+DB_Dialogs(ITEMGUID_S_CoS_Temples_SallowManMirror_003_89a3d489-4c4b-8ca1-3fc2-41b34dabdc7e, "CoS_Temples_SallowManMirror_003");
+DB_Dialogs(ITEMGUID_S_CoS_Temples_SallowManMirror_004_caad1808-b39e-4469-8472-89d27cac6cf0, "CoS_Temples_SallowManMirror_004");
+DB_Dialogs(ITEMGUID_S_CoS_Temples_SallowManMirror_005_a9694bd6-97f0-497f-ac2d-9378c4decc39, "CoS_Temples_SallowManMirror_005");
+DB_HasStoryEvent(ITEMGUID_S_CoS_Temples_Capacitor_001_7dde44fb-f35e-4c13-afd6-8ab23654d797, "CoS_HasSallowManCapacitor");
+DB_GiveItemToEvent(ITEMGUID_S_CoS_Temples_Capacitor_001_7dde44fb-f35e-4c13-afd6-8ab23654d797, "CoS_SallowManCapacitorTo");
+DB_IsNotMessingAround(CHARACTERGUID_S_CoS_Temples_SallowMan_d07e0f6b-c473-47f2-9d1c-e1f6f0ef61af);
+DB_Dialogs(ITEMGUID_S_CoS_Temples_SallowManAltar_5ef271db-b53c-4607-91cd-8145699ab648, "CoS_Temples_SallowManAltar");
+SetOnStage(ITEMGUID_S_CoS_Temples_SallowMan_Limb_cdc447f5-ef16-4deb-9f79-177f1de1837d, 0);
+ProcTriggerRegisterForPlayers(TRIGGERGUID_S_CoS_Temples_BloodAltarVB_Box_5e3420cf-c6a3-47e3-9bf0-63069e8139f8);
+DB_CoS_SallowManIllusions(ITEMGUID_S_CoS_Temples_BlackRingIllusion_001_50e4f4e5-3e1b-4394-b1c9-1fa3a68f9189);
+DB_CoS_SallowManIllusions(ITEMGUID_S_CoS_Temples_BlackRingIllusion_002_a40deb28-5795-4ee0-bd30-64a8c7cda3b7);
+DB_CoS_SallowManIllusions(ITEMGUID_S_CoS_Temples_BlackRingIllusion_003_e4102122-8cc3-4bcd-b259-20bec7dec77a);
+DB_CoS_BlackRingFactions("CoS_BlackRing");
+DB_CoS_BlackRingFactions("CoS_BRCamp");
+DB_CoS_BlackRingFactions("CoS_BlackRing_ElfTemple");
+DB_CoS_BlackRingFactions("CoS_BlackRing_HumanCamp");
+DB_CoS_BlackRingFactions("CoS_BlackRing_LizardCamp");
+DB_CoS_BlackRingFactions("CoS_BlackRing_OrcCamp");
+DB_CoS_BlackRingFactions("CoS_Temples_BlackRingHub");
+DB_CoS_BlackRingFactions("CoS_BlackRing_OrcTempleEntrance");
+DB_CoS_BlackRingFactions("CoS_Temples_BlackRingHub_HighPriest");
+DB_CoS_BlackRingFactions("CoS_Temples_BlackRingHub_Troll");
+DB_Ghosts(CHARACTERGUID_S_CoS_Temples_SallowMan_d07e0f6b-c473-47f2-9d1c-e1f6f0ef61af, CHARACTERGUID_S_CoS_Temples_SallowMan_Ghost_5d8e25b9-65c0-41b1-aed7-58e933927bbf, "CoS_Temples_SallowMan_Ghost");
+DB_NoLowAttitudeDialog(CHARACTERGUID_S_CoS_Temples_SallowMan_d07e0f6b-c473-47f2-9d1c-e1f6f0ef61af);
+CharacterSetImmortal(CHARACTERGUID_S_CoS_Temples_SallowMan_d07e0f6b-c473-47f2-9d1c-e1f6f0ef61af, 1);
+SetOnStage(ITEMGUID_S_CoS_Temples_BlackRingIllusion_003_Treasure_fda3843c-0ae4-4cee-936e-4a2080753b85, 0);
+DB_CoS_SallowManCombatants(CHARACTERGUID_S_CoS_Temples_SallowMan_d07e0f6b-c473-47f2-9d1c-e1f6f0ef61af);
+DB_CoS_SallowManCombatants(CHARACTERGUID_S_CoS_Temples_SallowManMinion_001_a092534c-ec79-46db-af07-d852313eb1d6);
+DB_CoS_SallowManCombatants(CHARACTERGUID_S_CoS_Temples_SallowManMinion_002_f5307c31-f32a-44ee-85fa-7b413c2957f3);
+DB_CoS_SallowManCombatants(CHARACTERGUID_S_CoS_Temples_SallowManMinion_003_7c282499-a74d-4ae6-aee7-0e210a6695b4);
+Proc_JDF_CreateCustomFlagsDependency("QuestUpdate_CoS_HelpingTheSallowMan_Start_Mirror", "CoS_HasAlexandarsHead", "QuestUpdate_CoS_Temples_GotHead");
+Proc_JDF_CreateCustomFlagsDependency("QuestUpdate_CoS_HelpingTheSallowMan_Start_Mirror", "QuestUpdate_CoS_HelpingTheSallowMan_AteAlexandarHead", "QuestUpdate_CoS_Temples_AteHead");
+
+KBSECTION
+IF
+GlobalFlagSet("CoS_SallowMan_IsDead")
+AND
+DB_IsPlayer(_Var1)
+THEN
+ObjectSetFlag(_Var1, "CoS_SallowManIsDeadQuestUpdater");
+SetOnStage(ITEMGUID_S_CoS_Temples_SallowMan_Limb_cdc447f5-ef16-4deb-9f79-177f1de1837d, 1);
+ItemToInventory(ITEMGUID_S_CoS_Temples_SallowMan_Limb_cdc447f5-ef16-4deb-9f79-177f1de1837d, CHARACTERGUID_S_CoS_Temples_SallowMan_d07e0f6b-c473-47f2-9d1c-e1f6f0ef61af);
+
+IF
+DB_Dead(CHARACTERGUID_S_CoS_Temples_SallowMan_d07e0f6b-c473-47f2-9d1c-e1f6f0ef61af)
+AND
+DB_Sees(_Var1, CHARACTERGUID_S_CoS_Temples_SallowMan_d07e0f6b-c473-47f2-9d1c-e1f6f0ef61af)
+AND
+DB_IsPlayer(_Var1)
+AND
+QuestAccepted(_Var1, "CoS_HelpingTheSallowMan", 1)
+THEN
+PartySetFlag(_Var1, "QuestUpdate_CoS_HelpingTheSallowMan_Fail_SallowManDead");
+
+IF
+ObjectFlagSet("QuestUpdate_CoS_HelpingTheSallowMan_Start_Mirror", (GUIDSTRING)_Var1, _)
+THEN
+ObjectSetFlag(_Var1, "QuestUpdate_CoS_BlackRing_SallowMan");
+
+IF
+ObjectFlagSet("CoS_Temples_SallowMan_HasMet", (CHARACTERGUID)_Var1, _)
+AND
+UserGetFlag(_Var1, "QuestUpdate_FTJ_Hunted_LearnedSallowMan", 1)
+THEN
+UserSetFlag(_Var1, "QuestUpdate_FTJ_Hunted_MetSallowMan");
+
+IF
+CharacterUsedItemTemplate((CHARACTERGUID)_Var1, "QUEST_DarkMirror_BlackRing_a3da854d-5b28-47cc-b7da-e7075d0f97f3", (ITEMGUID)_Var2)
+AND
+ItemIsInCharacterInventory(_Var2, _Var1, 0)
+THEN
+ItemToInventory(_Var2, _Var1, 1, 0);
+
+IF
+CharacterUsedItemTemplate((CHARACTERGUID)_Var1, "QUEST_DarkMirror_BlackRing_a3da854d-5b28-47cc-b7da-e7075d0f97f3", (ITEMGUID)_Var2)
+THEN
+Proc_StartDialog(0, "CoS_Temples_BlackRingMirror", _Var2, _Var1);
+
+IF
+ObjectFlagSet("CoS_Temples_Altar_ChilledStatus", (CHARACTERGUID)_Var1, _)
+THEN
+ApplyStatus(_Var1, "CHILLED", 30);
+ObjectClearFlag(_Var1, "CoS_Temples_Altar_ChilledStatus");
+
+IF
+ObjectFlagSet("CoS_Temples_AllBlackRingHostileTo", (GUIDSTRING)_Var1, _)
+THEN
+DB_CoS_Temples_AllBlackRingHostileTo_AfterDialog(_Var1);
+
+IF
+DialogEnded("CoS_Temples_BlackRingMirror", (INTEGER)_Var1)
+AND
+DB_CoS_Temples_AllBlackRingHostileTo_AfterDialog(_Var2)
+AND
+GetFaction(_Var2, _Var3)
+AND
+DB_CoS_BlackRingFactions(_Var4)
+THEN
+CharacterSetRelationFactionToFaction(_Var4, _Var3, 0);
+CharacterSetRelationFactionToFaction(_Var3, _Var4, 0);
+NOT DB_CoS_Temples_AllBlackRingHostileTo_AfterDialog(_Var2);
+
+IF
+DB_CoS_Temples_AllBlackRingHostileTo_AfterDialog(_Var1)
+THEN
+GlobalSetFlag("CoS_Temples_SallowManOrderedPlayersDeath");
+
+IF
+CharacterEnteredTrigger((CHARACTERGUID)_Var1, TRIGGERGUID_S_CoS_SUB_Temples_BlackRingEncampment_3e419709-30ca-4c37-af1b-2b9bbedd0a33)
+THEN
+ObjectSetFlag(_Var1, "CoS_Temples_EnteredTheSallowMansCamp");
+
+IF
+CharacterEnteredTrigger((CHARACTERGUID)_Var1, TRIGGERGUID_S_CoS_Temples_BloodAltarVB_Box_5e3420cf-c6a3-47e3-9bf0-63069e8139f8)
+AND
+QueryOnlyOnce("CoS_Temples_BloodAltarVB_Once")
+THEN
+StartVoiceBark("CoS_Temples_VB_BloodAltar", _Var1);
+ProcTriggerUnregisterForPlayers(TRIGGERGUID_S_CoS_Temples_BloodAltarVB_Box_5e3420cf-c6a3-47e3-9bf0-63069e8139f8);
+
+IF
+TextEventSet("brdispel")
+AND
+CharacterGetHostCharacter(_Var1)
+THEN
+CharacterAddSkill(_Var1, "Cone_Quest_DispelIllusion");
+
+IF
+ObjectFlagSet("CoS_Temples_SallowManAltar_PlaceHead", (GUIDSTRING)_Var1, _)
+THEN
+TeleportTo(ITEMGUID_S_CoS_Temples_AlexandarsHead_e7097370-d786-47e8-8ab4-76528939a1c0, TRIGGERGUID_S_CoS_Temples_SallowManAltar_HeadPoint_77364145-5667-4fd7-9745-99240601f671, "", 0);
+ItemSetCanInteract(ITEMGUID_S_CoS_Temples_AlexandarsHead_e7097370-d786-47e8-8ab4-76528939a1c0, 0);
+
+IF
+DialogEnded("CoS_Temples_SallowManAltar", (INTEGER)_Var1)
+AND
+DB_DialogPlayers(_Var1, _Var2, _)
+AND
+ObjectGetFlag(_Var2, "CoS_Temples_SallowManAltar_PlaceHead", 1)
+THEN
+ItemToInventory(ITEMGUID_S_CoS_Temples_AlexandarsHead_e7097370-d786-47e8-8ab4-76528939a1c0, _Var2);
+ItemSetCanInteract(ITEMGUID_S_CoS_Temples_AlexandarsHead_e7097370-d786-47e8-8ab4-76528939a1c0, 1);
+ObjectClearFlag(_Var2, "CoS_Temples_SallowManAltar_PlaceHead");
+
+IF
+CharacterUsedSkillOnZoneWithTarget((CHARACTERGUID)_Var1, (GUIDSTRING)_Var2, "Cone_Quest_DispelIllusion", _, _)
+AND
+DB_CoS_SallowManIllusions(_Var2)
+THEN
+Proc_CoS_Temples_RemoveBRIllusion(_Var2, _Var1);
+
+PROC
+Proc_CoS_Temples_RemoveBRIllusion(ITEMGUID_S_CoS_Temples_BlackRingIllusion_001_50e4f4e5-3e1b-4394-b1c9-1fa3a68f9189)
+THEN
+GlobalSetFlag("CoS_Temples_CampEntranceIllusionDispelled");
+
+IF
+GlobalFlagSet("CoS_Temples_CampEntranceIllusionDispelled")
+THEN
+AutoSave();
+UnlockSecretRegion(TRIGGERGUID_S_CoS_SallowManCave_SecretRegionTrigger_f083ec99-3f87-49b3-a432-caeea4a0c680);
+Proc_CoS_Temples_RemoveBRIllusion(ITEMGUID_S_CoS_Temples_BlackRingIllusion_001_50e4f4e5-3e1b-4394-b1c9-1fa3a68f9189);
+
+PROC
+Proc_CoS_Temples_RemoveBRIllusion((ITEMGUID)_Var1, (CHARACTERGUID)_Var2)
+AND
+DB_CoS_SallowManIllusions(_Var1)
+THEN
+Proc_CoS_Temples_RemoveBRIllusion(_Var1);
+
+PROC
+Proc_CoS_Temples_RemoveBRIllusion((GUIDSTRING)_Var1)
+AND
+DB_CoS_SallowManIllusions(_Var1)
+THEN
+ProcObjectTimer(_Var1, "SallowManIllusion_Remove", 1600);
+
+PROC
+ProcObjectTimerFinished((ITEMGUID)_Var1, "SallowManIllusion_Remove")
+AND
+DB_CoS_SallowManIllusions(_Var1)
+THEN
+PlayEffect(_Var1, "RS3_FX_GP_ScriptedEvent_BlackRingIllusion_01");
+ProcObjectTimer(_Var1, "SallowManIllusion_Remove_1", 1800);
+
+PROC
+ProcObjectTimerFinished((ITEMGUID)_Var1, "SallowManIllusion_Remove_1")
+AND
+DB_CoS_SallowManIllusions(_Var1)
+THEN
+NOT DB_CoS_SallowManIllusions(_Var1);
+ItemDestroy(_Var1);
+
+PROC
+Proc_CoS_Temples_RemoveBRIllusion((GUIDSTRING)_Var1, (CHARACTERGUID)_Var2)
+AND
+CharacterCanSee(CHARACTERGUID_S_CoS_Temples_SallowMan_d07e0f6b-c473-47f2-9d1c-e1f6f0ef61af, _Var2, 1)
+THEN
+CharacterSetRelationIndivFactionToIndivFaction(_Var2, CHARACTERGUID_S_CoS_Temples_SallowMan_d07e0f6b-c473-47f2-9d1c-e1f6f0ef61af, 0);
+CharacterSetRelationIndivFactionToIndivFaction(CHARACTERGUID_S_CoS_Temples_SallowMan_d07e0f6b-c473-47f2-9d1c-e1f6f0ef61af, _Var2, 0);
+
+PROC
+Proc_CoS_Temples_RemoveBRIllusion(ITEMGUID_S_CoS_Temples_BlackRingIllusion_003_e4102122-8cc3-4bcd-b259-20bec7dec77a, _)
+THEN
+SetOnStage(ITEMGUID_S_CoS_Temples_BlackRingIllusion_003_Treasure_fda3843c-0ae4-4cee-936e-4a2080753b85, 1);
+
+IF
+StoryEvent((CHARACTERGUID)_Var1, "CoS_SallowMan_DialogStart")
+AND NOT
+QRY_CoS_Temples_Sallowman_TryLohse(_Var1)
+THEN
+Proc_StartDialog(0, "CoS_Temples_SallowMan", CHARACTERGUID_S_CoS_Temples_SallowMan_d07e0f6b-c473-47f2-9d1c-e1f6f0ef61af, _Var1);
+SetVarFixedString(CHARACTERGUID_S_CoS_Temples_SallowMan_d07e0f6b-c473-47f2-9d1c-e1f6f0ef61af, "currentState", "State_Default");
+
+QRY
+QRY_CoS_Temples_Sallowman_TryLohse((CHARACTERGUID)_Var1)
+AND
+QRY_SpeakerIsAvailableAndInDialogRange(CHARACTERGUID_S_Player_Lohse_bb932b13-8ebf-4ab4-aac0-83e6924e4295, _Var1)
+AND
+QRY_StartDialog(0, "CoS_Temples_SallowMan_OM_Lohse", CHARACTERGUID_S_CoS_Temples_SallowMan_d07e0f6b-c473-47f2-9d1c-e1f6f0ef61af, CHARACTERGUID_S_Player_Lohse_bb932b13-8ebf-4ab4-aac0-83e6924e4295)
+THEN
+DB_NOOP(1);
+
+PROC
+PROC_GLOBAL_DialogStartRequested(S_CoS_Temples_SallowMan_d07e0f6b-c473-47f2-9d1c-e1f6f0ef61af, (CHARACTERGUID)_Var1)
+AND
+QRY_CoS_Temples_Sallowman_TryLohse(_Var1)
+THEN
+DB_NOOP(1);
+
+IF
+DialogEnded("CoS_Temples_SallowMan_OM_Lohse", _)
+THEN
+EnterCombat(CHARACTERGUID_S_CoS_Temples_SallowMan_d07e0f6b-c473-47f2-9d1c-e1f6f0ef61af, CHARACTERGUID_S_Player_Lohse_bb932b13-8ebf-4ab4-aac0-83e6924e4295);
+
+IF
+CharacterItemEvent((CHARACTERGUID)_Var1, ITEMGUID_S_CoS_Temples_SallowMan_Limb_cdc447f5-ef16-4deb-9f79-177f1de1837d, "GLO_AteBodyPart")
+THEN
+Proc_StartDialog(0, "CoS_Temples_Sallowman_Limb", _Var1);
+
+IF
+DialogEnded("CoS_Temples_Sallowman_Limb", (INTEGER)_Var1)
+AND
+DialogGetInvolvedPlayer(_Var1, 1, _Var2)
+THEN
+ApplyStatus(_Var2, "INFECTIOUS_DISEASED", 120, 1);
+
+IF
+ObjectFlagSet("CoS_Temples_GaveSallowManAlexandarsHead", (CHARACTERGUID)_Var1, _)
+AND
+QueryOnlyOnce("SallowManEatsAlexandarHead_Once")
+THEN
+ItemRemove(ITEMGUID_S_CoS_Temples_AlexandarsHead_e7097370-d786-47e8-8ab4-76528939a1c0);
+CreateSurface(CHARACTERGUID_S_CoS_Temples_SallowMan_d07e0f6b-c473-47f2-9d1c-e1f6f0ef61af, "SurfaceBlood", 1, -1);
+PlayEffect(CHARACTERGUID_S_CoS_Temples_SallowMan_d07e0f6b-c473-47f2-9d1c-e1f6f0ef61af, "RS3_FX_GP_Combat_Hit_Blood_01_Large");
+ObjectSetFlag(_Var1, "QuestUpdate_CoS_HelpingTheSallowMan_ReturnAlexandarHead");
+
+IF
+DialogEnded("CoS_Temples_SallowMan", _)
+AND
+DB_IsPlayer(_Var2)
+AND
+ObjectGetFlag(_Var2, "CoS_Temples_GaveSallowManAlexandarsHead", 1)
+AND
+QueryOnlyOnce("SallowMan_SwapDialogAfterAlexadnarKillQuest_Once")
+THEN
+PROC_RemoveDialogFromCharacter(CHARACTERGUID_S_CoS_Temples_SallowMan_d07e0f6b-c473-47f2-9d1c-e1f6f0ef61af);
+DB_Dialogs(CHARACTERGUID_S_CoS_Temples_SallowMan_d07e0f6b-c473-47f2-9d1c-e1f6f0ef61af, "CoS_Temples_SallowMan_CompanionKiller");
+
+IF
+DialogEnded("CoS_Temples_SallowMan_CompanionKiller", _)
+AND
+DB_IsPlayer(_Var2)
+AND
+ObjectGetFlag(_Var2, "CoS_PlayerRenounceParty", 1)
+AND NOT
+DB_CoS_PlayerRenounceParty(_Var2)
+THEN
+Proc_CoS_PlayerRenounceParty(_Var2);
+DB_CoS_PlayerRenounceParty(_Var2);
+
+PROC
+Proc_CoS_PlayerRenounceParty((CHARACTERGUID)_Var1)
+THEN
+CharacterSetRelationIndivFactionToIndivFaction(_Var1, CHARACTERGUID_S_CoS_Temples_SallowMan_d07e0f6b-c473-47f2-9d1c-e1f6f0ef61af, 100);
+CharacterSetRelationIndivFactionToIndivFaction(CHARACTERGUID_S_CoS_Temples_SallowMan_d07e0f6b-c473-47f2-9d1c-e1f6f0ef61af, _Var1, 100);
+
+PROC
+Proc_CoS_PlayerRenounceParty((CHARACTERGUID)_Var1)
+AND
+DB_GLO_PartyMembers_RecruiteeAvatarBond(_Var2, _Var1)
+AND
+IsTagged(_Var2, "HENCHMAN", 0)
+THEN
+PROC_Origins_CompanionLeavePermanently(_Var2);
+CharacterSetCorpseLootable(_Var2, 1);
+CharacterSetRelationIndivFactionToIndivFaction(_Var2, _Var1, 0);
+CharacterSetRelationIndivFactionToIndivFaction(_Var1, _Var2, 0);
+
+PROC
+Proc_CoS_PlayerRenounceParty((CHARACTERGUID)_Var1)
+AND
+CharacterGetReservedUserID(_Var1, _Var2)
+AND
+DB_Avatars(_Var3)
+AND
+_Var1 != _Var3
+AND
+CharacterGetReservedUserID(_Var3, _Var2)
+THEN
+DB_GLO_PartyMembers_BlockReturnToRecruitmentPosition(_Var3);
+PROC_GLO_PartyMembers_MakeNPC(_Var3);
+ClearTag(_Var3, "AVATAR");
+CharacterSetCorpseLootable(_Var3, 1);
+CharacterSetRelationIndivFactionToIndivFaction(_Var3, _Var1, 0);
+CharacterSetRelationIndivFactionToIndivFaction(_Var1, _Var3, 0);
+
+PROC
+Proc_CoS_PlayerRenounceParty((CHARACTERGUID)_Var1)
+AND
+CharacterGetReservedUserID(_Var1, _Var2)
+THEN
+LeaveParty(_Var2);
+
+PROC
+Proc_CoS_PlayerRenounceParty((CHARACTERGUID)_Var1)
+AND
+DB_Avatars(_Var1)
+AND
+DB_Avatars(_Var2)
+AND
+_Var1 != _Var2
+THEN
+MakeWar(_Var1, _Var2, 1);
+
+PROC
+Proc_CoS_PlayerRenounceParty((CHARACTERGUID)_Var1)
+AND
+DB_OriginNPCAlignment(_Var2, _)
+AND
+ObjectGetFlag(_Var2, "CoS_PlayerRenounceParty", 0)
+THEN
+ProcSetHostileToIndivPlayer(CHARACTERGUID_S_CoS_Temples_SallowMan_d07e0f6b-c473-47f2-9d1c-e1f6f0ef61af, _Var2);
+
+IF
+ObjectFlagSet("QuestUpdate_CoS_CompanionCulling_PurgingRod", (CHARACTERGUID)_Var1, _)
+THEN
+CharacterGiveReward(_Var1, "COS_ResurrectionPreventionStaff");
+
+IF
+TextEventSet("rod")
+AND
+CharacterGetHostCharacter(_Var1)
+THEN
+ObjectSetFlag(_Var1, "QuestUpdate_CoS_CompanionCulling_PurgingRod");
+
+IF
+ObjectWasTagged((CHARACTERGUID)_Var1, "BLOCK_RESURRECTION")
+AND
+DB_IsPlayer(_Var2)
+AND
+_Var1 != _Var2
+AND
+ObjectGetFlag(_Var2, "QuestUpdate_CoS_CompanionCulling_Start", 1)
+THEN
+Proc_CoS_CheckCulledPlayers(_Var2);
+
+IF
+ObjectWasTagged((CHARACTERGUID)_Var1, "PROMISED")
+AND
+DB_IsPlayer(_Var2)
+AND
+_Var1 != _Var2
+AND
+ObjectGetFlag(_Var2, "QuestUpdate_CoS_CompanionCulling_Start", 1)
+THEN
+Proc_CoS_CheckCulledPlayers(_Var2);
+
+IF
+DialogStarted("CoS_Temples_SallowMan_CompanionKiller", (INTEGER)_Var1)
+AND
+DialogGetInvolvedPlayer(_Var1, 1, _Var2)
+THEN
+Proc_CoS_CheckCulledPlayers(_Var2);
+
+PROC
+Proc_CoS_CheckCulledPlayers((CHARACTERGUID)_Var1)
+THEN
+ProcDeclareCounter("CoS_CulledPlayerCount");
+
+PROC
+Proc_CoS_CheckCulledPlayers((CHARACTERGUID)_Var1)
+AND
+DB_OriginNPCAlignment(_Var2, _)
+AND
+_Var2 != _Var1
+AND
+GetRegion(_Var2, _Var4)
+AND
+_Var4 == "CoS_Main"
+AND
+IsTagged(_Var2, "BLOCK_RESURRECTION", 0)
+AND
+IsTagged(_Var2, "PROMISED", 0)
+THEN
+ProcIncreaseCounter("CoS_CulledPlayerCount");
+
+PROC
+Proc_CoS_CheckCulledPlayers((CHARACTERGUID)_Var1)
+AND
+DB_GlobalCounter("CoS_CulledPlayerCount", _Var2)
+AND
+_Var2 == 0
+THEN
+ObjectSetFlag(_Var1, "QuestUpdate_CoS_CompanionCulling_CompanionsCulled");
+
+PROC
+Proc_CoS_CheckCulledPlayers((CHARACTERGUID)_Var1)
+THEN
+ProcRemoveCounter("CoS_CulledPlayerCount");
+
+IF
+ObjectFlagCleared("GLO_Promise_Relieved", (CHARACTERGUID)_Var1, (INTEGER)_Var2)
+AND
+DialogGetInvolvedPlayer(_Var2, 1, _Var1)
+AND
+DialogGetInvolvedNPC(_Var2, 1, _Var3)
+THEN
+DB_CoS_PromiseBreakerRemoveItemAfterDialog(1);
+
+IF
+CharacterItemEvent((CHARACTERGUID)_Var1, ITEMGUID_S_CoS_Temples_BRCave_Limb_001_7ec0c64c-8b7e-4193-8790-1fe13764258c, "GLO_AteBodyPart")
+THEN
+Proc_StartDialog(0, "CoS_Temples_BRCave_Limb_001", _Var1);
+
+IF
+CharacterItemEvent((CHARACTERGUID)_Var1, ITEMGUID_S_CoS_Temples_BRCave_Limb_002_e3ed2417-c793-4012-9f4f-db6797718cdf, "GLO_AteBodyPart")
+THEN
+Proc_StartDialog(0, "CoS_Temples_BRCave_Limb_002", _Var1);
+
+IF
+CharacterUsedItem((CHARACTERGUID)_Var1, ITEMGUID_S_CoS_Temples_SallowManMissive_001_2d9b04c1-dfb4-470f-9085-4da2ebf453bd)
+THEN
+ObjectSetFlag(_Var1, "CoS_Temples_ReadMissiveFromQ");
+
+IF
+CharacterDied(CHARACTERGUID_S_CoS_Temples_SallowMan_d07e0f6b-c473-47f2-9d1c-e1f6f0ef61af)
+THEN
+GlobalSetFlag("CoS_SallowMan_IsDead");
+
+IF
+AttackedByObject(CHARACTERGUID_S_CoS_Temples_SallowMan_d07e0f6b-c473-47f2-9d1c-e1f6f0ef61af, _, _, _, _)
+AND
+CharacterGetHitpointsPercentage(CHARACTERGUID_S_CoS_Temples_SallowMan_d07e0f6b-c473-47f2-9d1c-e1f6f0ef61af, _Var5)
+AND
+_Var5 < 1
+AND
+GlobalGetFlag("CoS_SallowMan_KilledOnce", 0)
+AND
+QueryOnlyOnce("CoS_SallowManDeadState_Once")
+THEN
+PlayAnimation(CHARACTERGUID_S_CoS_Temples_SallowMan_d07e0f6b-c473-47f2-9d1c-e1f6f0ef61af, "die_dot", "CoS_SallowManDeadState");
+SetHasDialog(CHARACTERGUID_S_CoS_Temples_SallowMan_d07e0f6b-c473-47f2-9d1c-e1f6f0ef61af, 0);
+
+IF
+StoryEvent(CHARACTERGUID_S_CoS_Temples_SallowMan_d07e0f6b-c473-47f2-9d1c-e1f6f0ef61af, "CoS_SallowManDeadState")
+THEN
+PROC_LoopEffect("RS3_FX_GP_ScriptedEvent_Resurrection_01", CHARACTERGUID_S_CoS_Temples_SallowMan_d07e0f6b-c473-47f2-9d1c-e1f6f0ef61af, "SallowManDeadFx", "CoS_Main", "");
+RemoveHarmfulStatuses(CHARACTERGUID_S_CoS_Temples_SallowMan_d07e0f6b-c473-47f2-9d1c-e1f6f0ef61af);
+ProcSetInvulnerable(CHARACTERGUID_S_CoS_Temples_SallowMan_d07e0f6b-c473-47f2-9d1c-e1f6f0ef61af, 1);
+CharacterSetAnimationOverride(CHARACTERGUID_S_CoS_Temples_SallowMan_d07e0f6b-c473-47f2-9d1c-e1f6f0ef61af, "die_dot");
+CharacterSetReactionPriority(CHARACTERGUID_S_CoS_Temples_SallowMan_d07e0f6b-c473-47f2-9d1c-e1f6f0ef61af, "Sleep_InCombat", 10000);
+CharacterSetArmorPercentage(CHARACTERGUID_S_CoS_Temples_SallowMan_d07e0f6b-c473-47f2-9d1c-e1f6f0ef61af, 0);
+CharacterSetMagicArmorPercentage(CHARACTERGUID_S_CoS_Temples_SallowMan_d07e0f6b-c473-47f2-9d1c-e1f6f0ef61af, 0);
+RemoveStatus(CHARACTERGUID_S_CoS_Temples_SallowMan_d07e0f6b-c473-47f2-9d1c-e1f6f0ef61af, "DEFLECTING");
+GlobalSetFlag("CoS_SallowMan_KilledOnce");
+ApplyStatus(CHARACTERGUID_S_CoS_Temples_SallowMan_d07e0f6b-c473-47f2-9d1c-e1f6f0ef61af, "UNCONSCIOUS", 1, 1);
+
+IF
+GlobalFlagSet("CoS_SallowMan_KilledOnce")
+AND
+DB_IsPlayer(_Var1)
+THEN
+CharacterSetRelationFactionToIndivFaction("CoS_BRCamp", _Var1, 0);
+CharacterSetRelationIndivFactionToFaction(_Var1, "CoS_BRCamp", 0);
+
+IF
+ObjectTurnStarted(CHARACTERGUID_S_CoS_Temples_SallowMan_d07e0f6b-c473-47f2-9d1c-e1f6f0ef61af)
+AND
+GlobalGetFlag("CoS_SallowMan_KilledOnce", 1)
+AND
+GetPosition(CHARACTERGUID_S_CoS_Temples_SallowMan_d07e0f6b-c473-47f2-9d1c-e1f6f0ef61af, _Var1, _Var2, _Var3)
+AND
+QueryOnlyOnce("CoS_SallowManResurrect_Resurrect_Once")
+THEN
+RemoveStatus(CHARACTERGUID_S_CoS_Temples_SallowMan_d07e0f6b-c473-47f2-9d1c-e1f6f0ef61af, "UNCONSCIOUS");
+PROC_StopLoopEffect(CHARACTERGUID_S_CoS_Temples_SallowMan_d07e0f6b-c473-47f2-9d1c-e1f6f0ef61af, "SallowManDeadFx");
+CharacterSetAnimationOverride(CHARACTERGUID_S_CoS_Temples_SallowMan_d07e0f6b-c473-47f2-9d1c-e1f6f0ef61af, "");
+SetTag(CHARACTERGUID_S_CoS_Temples_SallowMan_d07e0f6b-c473-47f2-9d1c-e1f6f0ef61af, "UNDEAD");
+CharacterAddTalent(CHARACTERGUID_S_CoS_Temples_SallowMan_d07e0f6b-c473-47f2-9d1c-e1f6f0ef61af, "Zombie");
+CharacterSetReactionPriority(CHARACTERGUID_S_CoS_Temples_SallowMan_d07e0f6b-c473-47f2-9d1c-e1f6f0ef61af, "Sleep_InCombat", 0);
+PlayEffectAtPosition("RS3_FX_GP_ScriptedEvent_Lightning_Vertical_01", _Var1, _Var2, _Var3);
+PlayEffectAtPosition("RS3_FX_Skills_Source_Resurrect_Target_Cast", _Var1, _Var2, _Var3);
+ProcSetInvulnerable(CHARACTERGUID_S_CoS_Temples_SallowMan_d07e0f6b-c473-47f2-9d1c-e1f6f0ef61af, 0);
+PlayAnimation(CHARACTERGUID_S_CoS_Temples_SallowMan_d07e0f6b-c473-47f2-9d1c-e1f6f0ef61af, "resurrect");
+CharacterSetHitpointsPercentage(CHARACTERGUID_S_CoS_Temples_SallowMan_d07e0f6b-c473-47f2-9d1c-e1f6f0ef61af, 50);
+CharacterSetArmorPercentage(CHARACTERGUID_S_CoS_Temples_SallowMan_d07e0f6b-c473-47f2-9d1c-e1f6f0ef61af, 50);
+CharacterSetMagicArmorPercentage(CHARACTERGUID_S_CoS_Temples_SallowMan_d07e0f6b-c473-47f2-9d1c-e1f6f0ef61af, 50);
+CharacterSetImmortal(CHARACTERGUID_S_CoS_Temples_SallowMan_d07e0f6b-c473-47f2-9d1c-e1f6f0ef61af, 0);
+ApplyStatus(CHARACTERGUID_S_CoS_Temples_SallowMan_d07e0f6b-c473-47f2-9d1c-e1f6f0ef61af, "HASTED", -1, 1);
+ApplyStatus(CHARACTERGUID_S_CoS_Temples_SallowMan_d07e0f6b-c473-47f2-9d1c-e1f6f0ef61af, "POISON_SKIN", -1, 1);
+ApplyStatus(CHARACTERGUID_S_CoS_Temples_SallowMan_d07e0f6b-c473-47f2-9d1c-e1f6f0ef61af, "ENRAGED", -1, 1);
+SetTag(CHARACTERGUID_S_CoS_Temples_SallowMan_d07e0f6b-c473-47f2-9d1c-e1f6f0ef61af, "AI_CANUSESKILL");
+
+IF
+CharacterKilledBy((CHARACTERGUID)_Var1, (CHARACTERGUID)_Var2, _)
+AND
+DB_CoS_SallowManCombatants(_Var2)
+AND
+ObjectGetFlag(_Var1, "CoS_QueueSallowManBetryalUpdate", 1)
+THEN
+ObjectSetFlag(_Var1, "QuestUpdate_CoS_BlackRing_Betrayal");
+
+
+EXITSECTION
+ENDEXITSECTION
+
+ParentTargetEdge "CoS_Temples"

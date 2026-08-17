@@ -1,0 +1,92 @@
+Version 1
+SubGoalCombiner SGC_AND
+
+INITSECTION
+
+KBSECTION
+PROC
+SetGameClock((INTEGER)_Var1)
+AND
+DB_Time(_Var2, _Var3, _)
+AND
+_Var1 > _Var3
+THEN
+UpdateTime(_Var2, _Var1);
+
+PROC
+SetGameClock((INTEGER)_Var1)
+AND
+DB_Time(_Var2, _Var3, _)
+AND
+_Var1 <= _Var3
+AND
+IntegerSum(_Var2, 1, _Var5)
+THEN
+UpdateTime(_Var5, _Var1);
+
+PROC
+ProcDisableFollow((CHARACTERGUID)_Var1)
+THEN
+CharacterDetachFromGroup(_Var1);
+
+IF
+CharacterUsedItemFailed((CHARACTERGUID)_Var1, (ITEMGUID)_Var2)
+AND
+DB_IsPlayer(_Var1)
+THEN
+ProcShowForbiddenItemText(_Var1, _Var2);
+
+PROC
+ProcShowForbiddenItemText((CHARACTERGUID)_Var1, (ITEMGUID)_Var2)
+AND
+ItemIsLocked(_Var2, 0)
+AND NOT
+DB_NoForbiddenText(_Var2)
+THEN
+Proc_StartDialog(1, "GLO_AD_ForbiddenItem", _Var1);
+
+PROC
+ProcShowForbiddenItemText((CHARACTERGUID)_Var1, (ITEMGUID)_Var2)
+AND
+ItemIsLocked(_Var2, 1)
+THEN
+CharacterItemSetEvent(_Var1, _Var2, "GLO_UsedLockedItem");
+
+PROC
+ProcShowMarker((CHARACTERGUID)_Var1, (STRING)_Var2)
+AND NOT
+DB_ActivePlayerMarker(_Var1, _Var2)
+THEN
+DB_ActivePlayerMarker(_Var1, _Var2);
+ShowMapMarker(_Var1, _Var2, 1);
+
+PROC
+ProcHideMarker((CHARACTERGUID)_Var1, (STRING)_Var2)
+AND
+DB_ActivePlayerMarker(_Var1, _Var2)
+THEN
+ShowMapMarker(_Var1, _Var2, 0);
+
+PROC
+ProcFreezePlayers()
+AND
+DB_IsPlayer(_Var1)
+THEN
+CharacterFreeze(_Var1);
+
+PROC
+ProcUnfreezePlayers()
+AND
+DB_IsPlayer(_Var1)
+THEN
+CharacterUnfreeze(_Var1);
+
+PROC
+MoveAllItemsTo((GUIDSTRING)_Var1, (GUIDSTRING)_Var2)
+THEN
+MoveAllItemsTo(_Var1, _Var2, 1, 1, 1);
+
+
+EXITSECTION
+ENDEXITSECTION
+

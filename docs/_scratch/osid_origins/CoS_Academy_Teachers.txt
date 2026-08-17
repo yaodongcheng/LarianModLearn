@@ -1,0 +1,101 @@
+Version 1
+SubGoalCombiner SGC_AND
+
+INITSECTION
+DB_CoS_Academy_Teachers(CHARACTERGUID_S_CoS_Academy_Teacher_Strength_0685b926-aea3-42b1-a2e2-cc65f8b92855, "Strength", "Wits");
+DB_CoS_Academy_Teachers(CHARACTERGUID_S_CoS_Academy_Teacher_Constitution_90a2dd60-7e08-43a8-8d38-f6a755ebcffc, "Constitution", "Intelligence");
+DB_CoS_Academy_Teachers(CHARACTERGUID_S_CoS_Academy_Teacher_Intelligence_e918b08a-23de-4178-9c62-ae75298ee542, "Intelligence", "Finesse");
+DB_CoS_Academy_Teachers(CHARACTERGUID_S_CoS_Academy_Teacher_Memory_b76a434a-51f2-4686-8f4c-6589915027fe, "Memory", "Strength");
+DB_CoS_Academy_Teachers(CHARACTERGUID_S_CoS_Academy_Teacher_Wits_23f3041b-e762-45c1-8904-ef2f566747e9, "Wits", "Constitution");
+DB_CoS_Academy_Teachers(CHARACTERGUID_S_CoS_Academy_Teacher_Finesse_b89f05e4-ec98-45e9-a027-dbdd4c2f70d6, "Finesse", "Memory");
+DB_Dialogs(CHARACTERGUID_S_CoS_Academy_Teacher_Strength_0685b926-aea3-42b1-a2e2-cc65f8b92855, "CoS_Academy_Teacher_Strength");
+CharacterLinkGhost(CHARACTERGUID_S_CoS_Academy_Teacher_Strength_Corpse_e50ee0f7-b630-4f48-8476-1a8e8d0eff58, CHARACTERGUID_S_CoS_Academy_Teacher_Strength_0685b926-aea3-42b1-a2e2-cc65f8b92855);
+DB_Dialogs(CHARACTERGUID_S_CoS_Academy_Teacher_Constitution_90a2dd60-7e08-43a8-8d38-f6a755ebcffc, "CoS_Academy_Teacher_Constitution");
+CharacterLinkGhost(CHARACTERGUID_S_CoS_Academy_Teacher_Constitution_Corpse_abf946fa-394f-41f7-8c70-de3b962c4841, CHARACTERGUID_S_CoS_Academy_Teacher_Constitution_90a2dd60-7e08-43a8-8d38-f6a755ebcffc);
+DB_Dialogs(CHARACTERGUID_S_CoS_Academy_Teacher_Intelligence_e918b08a-23de-4178-9c62-ae75298ee542, "CoS_Academy_Teacher_Intelligence");
+CharacterLinkGhost(CHARACTERGUID_S_CoS_Academy_Teacher_Intelligence_Corpse_41c9ccda-2c6f-4163-be17-2100caa1887c, CHARACTERGUID_S_CoS_Academy_Teacher_Intelligence_e918b08a-23de-4178-9c62-ae75298ee542);
+DB_Dialogs(CHARACTERGUID_S_CoS_Academy_Teacher_Memory_b76a434a-51f2-4686-8f4c-6589915027fe, "CoS_Academy_Teacher_Memory");
+CharacterLinkGhost(CHARACTERGUID_S_CoS_Academy_Teacher_Memory_Corpse_7a298c13-c64c-4fbe-9f32-466b53012711, CHARACTERGUID_S_CoS_Academy_Teacher_Memory_b76a434a-51f2-4686-8f4c-6589915027fe);
+DB_Dialogs(CHARACTERGUID_S_CoS_Academy_Teacher_Wits_23f3041b-e762-45c1-8904-ef2f566747e9, "CoS_Academy_Teacher_Wits");
+CharacterLinkGhost(CHARACTERGUID_S_CoS_Academy_Teacher_Wits_Corpse_a2300a4f-fdf5-4101-987f-d26fb7872aae, CHARACTERGUID_S_CoS_Academy_Teacher_Wits_23f3041b-e762-45c1-8904-ef2f566747e9);
+DB_Dialogs(CHARACTERGUID_S_CoS_Academy_Teacher_Finesse_b89f05e4-ec98-45e9-a027-dbdd4c2f70d6, "CoS_Academy_Teacher_Finesse");
+CharacterLinkGhost(CHARACTERGUID_S_CoS_Academy_Teacher_Finesse_Corpse_44f51f7f-47e1-47b5-bb2e-89524ea54898, CHARACTERGUID_S_CoS_Academy_Teacher_Finesse_b89f05e4-ec98-45e9-a027-dbdd4c2f70d6);
+DB_CoS_Academy_TeacherCorpses(CHARACTERGUID_S_CoS_Academy_Teacher_Strength_Corpse_e50ee0f7-b630-4f48-8476-1a8e8d0eff58);
+DB_CoS_Academy_TeacherCorpses(CHARACTERGUID_S_CoS_Academy_Teacher_Constitution_Corpse_abf946fa-394f-41f7-8c70-de3b962c4841);
+DB_CoS_Academy_TeacherCorpses(CHARACTERGUID_S_CoS_Academy_Teacher_Intelligence_Corpse_41c9ccda-2c6f-4163-be17-2100caa1887c);
+DB_CoS_Academy_TeacherCorpses(CHARACTERGUID_S_CoS_Academy_Teacher_Memory_Corpse_7a298c13-c64c-4fbe-9f32-466b53012711);
+DB_CoS_Academy_TeacherCorpses(CHARACTERGUID_S_CoS_Academy_Teacher_Wits_Corpse_a2300a4f-fdf5-4101-987f-d26fb7872aae);
+DB_CoS_Academy_TeacherCorpses(CHARACTERGUID_S_CoS_Academy_Teacher_Finesse_Corpse_44f51f7f-47e1-47b5-bb2e-89524ea54898);
+PROC_CoS_Academy_Teachers_Init();
+
+KBSECTION
+PROC
+PROC_CoS_Academy_Teachers_Init()
+AND
+DB_CoS_Academy_Teachers(_Var1, _Var2, _)
+AND
+DB_Dialogs(_Var1, _Var4)
+THEN
+DB_GLO_Attribute_Check_AgainstSpeaker(_Var4, 1, _Var2, "Hard", 2, 1);
+
+IF
+ObjectFlagSet("CoS_Academy_Teacher_GaveFinalLesson", (GUIDSTRING)_Var1, (INTEGER)_Var2)
+AND
+DB_CoS_Academy_Teachers(_Var1, _Var3, _Var4)
+AND
+DialogGetInvolvedPlayer(_Var2, 1, _Var5)
+THEN
+PlayAnimation(_Var1, "Sit_Praise_01");
+CharacterAddAttribute(_Var5, _Var3, 5);
+CharacterRemoveAttribute(_Var5, _Var4, 5);
+PlayEffect(_Var5, "RS3_FX_GP_Status_LevelUp_01");
+
+IF
+ObjectFlagSet("GLO_GhostSuck", (GUIDSTRING)_Var1, (INTEGER)_Var2)
+AND
+DialogGetInvolvedNPC(_Var2, 1, _Var3)
+AND
+DB_CoS_Academy_Teachers(_Var3, _, _)
+THEN
+ObjectSetFlag(_Var1, "CoS_Academy_UsedVampirismOnTeacher");
+
+IF
+CharacterUsedSkillOnTarget((CHARACTERGUID)_Var1, (CHARACTERGUID)_Var2, (STRING)_Var3, _, _)
+AND
+DB_SourceVampirism_Skills(_Var3)
+AND
+DB_CoS_Academy_Teachers(_Var2, _, _)
+THEN
+ObjectSetFlag(_Var1, "CoS_Academy_UsedVampirismOnTeacher");
+
+IF
+CharacterUsedSkillOnTarget((CHARACTERGUID)_Var1, (CHARACTERGUID)_Var2, (STRING)_Var3, _, _)
+AND
+DB_SourceVampirism_Skills(_Var3)
+AND
+DB_CoS_Academy_TeacherCorpses(_Var2)
+THEN
+ObjectSetFlag(_Var1, "CoS_Academy_UsedVampirismOnTeacher");
+
+IF
+ObjectFlagSet("CoS_Academy_KnowsFateOfTeachers", (CHARACTERGUID)_Var1, _)
+AND
+QueryOnlyOnce("CoS_Academy_RD_FateOfTheFaculty_Once")
+THEN
+ProcDefineReflectionDialog("CoS_Academy_RD_FateOfTheFaculty", _Var1);
+
+IF
+ObjectFlagSet("CoS_Academy_KnowsFateOfTeachers", (CHARACTERGUID)_Var1, _)
+THEN
+ObjectSetFlag(_Var1, "QuestUpdate_CoS_Academy_LucianMurders");
+
+PROC
+ProcRegionEnded("CoS_Main")
+THEN
+GoalCompleted;
+
+
+EXITSECTION
+ENDEXITSECTION
+
+ParentTargetEdge "CoS_Academy"

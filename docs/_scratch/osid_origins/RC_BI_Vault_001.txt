@@ -1,0 +1,588 @@
+Version 1
+SubGoalCombiner SGC_AND
+
+INITSECTION
+DB_Dialogs(S_RC_BI_Vault_PosessedPerson_001_f0d1f343-fc73-4c09-8d13-ed37bf51ae25, "RC_BI_Vault_Possessed_001_Demon");
+DB_BI_Vault_DamageDealt(0);
+DB_ShovelArea(TRIGGERGUID_S_RC_BI_AdventurersSecret_Area_fe96357e-d24a-4ab3-8100-cec235a6759a, "RC_BI_AdventurersSecret", ITEMGUID_S_RC_BI_AdventurersSecret_Pile_8ec45b7b-541c-4530-b146-4a9fd54f7d29);
+DB_ShovelRewardItemAppear("RC_BI_AdventurersSecret", ITEMGUID_S_RC_BI_AdventurersSecret_Loot_96bb9a6c-4c4a-4218-9083-694d6690017a, TRIGGERGUID_S_RC_BI_AdventurersSecret_Point_c7d4a56d-594b-4b03-9bc5-8638b4c453dc);
+SetOnStage(S_RC_BI_Vault_Demon_001_01c5d4d3-425f-42fd-8200-528b14aafec8, 0);
+DB_RC_BI_ParasiteHP(100);
+DB_RC_BI_Vault_Surfaces(TRIGGERGUID_S_RC_BI_Vault1_Surface1_3fd04a4f-d9c3-4e39-838a-f29adcfd9308);
+DB_RC_BI_Vault_Surfaces(TRIGGERGUID_S_RC_BI_Vault1_Surface2_1b4663b1-9553-4ac2-8793-c4861a14ba37);
+DB_RC_BI_Vault_Surfaces(TRIGGERGUID_S_RC_BI_Vault1_Surface3_4005a027-aeae-42e0-b1ca-1c8e57668515);
+DB_RC_BI_Vault_Surfaces(TRIGGERGUID_S_RC_BI_Vault1_Surface4_f7b301e4-23be-4909-aee2-4c0fa11eecc2);
+ApplyStatus(CHARACTERGUID_S_RC_BI_Vault_PosessedPerson_001_f0d1f343-fc73-4c09-8d13-ed37bf51ae25, "DEATH_RESIST", -1, 1);
+
+KBSECTION
+IF
+CharacterEnteredTrigger((CHARACTERGUID)_Var1, TRIGGERGUID_S_RC_BI_Vault_Prison_001_ed3c583a-2c8d-4022-8cc1-07e15849ad2b)
+AND
+CharacterIsDead(S_RC_BI_Vault_PosessedPerson_001_f0d1f343-fc73-4c09-8d13-ed37bf51ae25, 0)
+AND
+DB_Dialogs(S_RC_BI_Vault_PosessedPerson_001_f0d1f343-fc73-4c09-8d13-ed37bf51ae25, "RC_BI_Vault_Possessed_001_Demon")
+AND NOT
+DB_OnlyOnce("RC_BI_Vault_001_DemonSpoked")
+THEN
+Proc_StartDialog(0, "RC_BI_Vault_Possessed_001_Demon", S_RC_BI_Vault_PosessedPerson_001_f0d1f343-fc73-4c09-8d13-ed37bf51ae25, _Var1);
+DB_OnlyOnce("RC_BI_Vault_001_DemonSpoked");
+
+IF
+AttackedByObject(S_RC_BI_Vault_PosessedPerson_001_f0d1f343-fc73-4c09-8d13-ed37bf51ae25, (CHARACTERGUID)_Var1, _, _, _)
+AND
+ObjectGetFlag(S_RC_BI_Vault_PosessedPerson_001_f0d1f343-fc73-4c09-8d13-ed37bf51ae25, "RC_BI_Vault_ChainsDestroyed", 0)
+AND
+DB_IsPlayer(_Var1)
+AND
+ObjectGetFlag(_Var1, "RC_BI_AttackedDwarf", 0)
+THEN
+ObjectSetFlag(_Var1, "RC_BI_AttackedDwarf");
+Proc_StartDialog(0, "RC_BI_Vault_Possessed_001_Attacked", S_RC_BI_Vault_PosessedPerson_001_f0d1f343-fc73-4c09-8d13-ed37bf51ae25, _Var1);
+
+IF
+StoryEvent(S_RC_BI_Vault_Ghost_001_28a0a573-7f60-4516-b68e-537f57e5db84, "RC_BI_Vault_LeverUsed")
+THEN
+Proc_StartDialog(1, "RC_BI_AD_Vault_Ghost_001_Warning", S_RC_BI_Vault_Ghost_001_28a0a573-7f60-4516-b68e-537f57e5db84);
+
+IF
+DB_RC_BI_Vault_Pillars_Count(S_RC_BI_Vault_PosessedPerson_001_f0d1f343-fc73-4c09-8d13-ed37bf51ae25, 0, _)
+THEN
+ProcRemoveAllDialogEntriesForSpeaker(S_RC_BI_Vault_PosessedPerson_001_f0d1f343-fc73-4c09-8d13-ed37bf51ae25);
+DB_Dialogs(S_RC_BI_Vault_PosessedPerson_001_f0d1f343-fc73-4c09-8d13-ed37bf51ae25, "RC_BI_Vault_Possessed_001");
+CharacterSetReactionPriority(S_RC_BI_Vault_PosessedPerson_001_f0d1f343-fc73-4c09-8d13-ed37bf51ae25, "Talk", 0);
+SetFaction(S_RC_BI_Vault_PosessedPerson_001_f0d1f343-fc73-4c09-8d13-ed37bf51ae25, "Evil NPC");
+
+IF
+StoryEvent(S_RC_BI_Vault_PosessedPerson_001_f0d1f343-fc73-4c09-8d13-ed37bf51ae25, "RC_BI_Vault_001_Damaged")
+AND
+ObjectGetFlag(S_RC_BI_Vault_PosessedPerson_001_f0d1f343-fc73-4c09-8d13-ed37bf51ae25, "RC_BI_DemonReleased", 0)
+AND
+GetVarFloat(S_RC_BI_Vault_PosessedPerson_001_f0d1f343-fc73-4c09-8d13-ed37bf51ae25, "LastDamage", _Var1)
+AND
+DB_BI_Vault_DamageDealt(_Var2)
+AND
+RealSum(_Var2, _Var1, _Var3)
+THEN
+NOT DB_BI_Vault_DamageDealt(_Var2);
+DB_BI_Vault_DamageDealt(_Var3);
+
+IF
+DB_BI_Vault_DamageDealt(_Var1)
+AND
+_Var1 > 0.1
+AND
+_Var1 <= 0.4
+THEN
+Proc_RC_BI_Vault_001_Damage("RC_BI_DemonHurt_01");
+
+IF
+DB_BI_Vault_DamageDealt(_Var1)
+AND
+CharacterIsDead(S_RC_BI_Vault_PosessedPerson_001_f0d1f343-fc73-4c09-8d13-ed37bf51ae25, 0)
+AND
+_Var1 > 0.4
+AND
+_Var1 <= 0.7
+THEN
+Proc_RC_BI_Vault_001_Damage("RC_BI_DemonHurt_02");
+
+IF
+DB_BI_Vault_DamageDealt(_Var1)
+AND
+CharacterIsDead(S_RC_BI_Vault_PosessedPerson_001_f0d1f343-fc73-4c09-8d13-ed37bf51ae25, 0)
+AND
+_Var1 > 0.7
+AND
+_Var1 <= 1
+THEN
+Proc_RC_BI_Vault_001_Damage("RC_BI_DemonHurt_03");
+
+IF
+DB_BI_Vault_DamageDealt(_Var1)
+AND
+CharacterIsDead(S_RC_BI_Vault_PosessedPerson_001_f0d1f343-fc73-4c09-8d13-ed37bf51ae25, 0)
+AND
+_Var1 > 1
+AND
+_Var1 <= 1.3
+THEN
+Proc_RC_BI_Vault_001_RemoveDeathResist();
+CharacterSetHitpointsPercentage(CHARACTERGUID_S_RC_BI_Vault_PosessedPerson_001_f0d1f343-fc73-4c09-8d13-ed37bf51ae25, 100);
+Proc_RC_BI_Vault_001_Damage("RC_BI_DemonHurt_04");
+
+IF
+DB_BI_Vault_DamageDealt(_Var1)
+AND
+DB_RC_BI_Vault_001_DemonReady(1)
+AND
+ObjectGetFlag(S_RC_BI_Vault_PosessedPerson_001_f0d1f343-fc73-4c09-8d13-ed37bf51ae25, "RC_BI_Vault_ChainsDestroyed", 0)
+AND
+DB_RC_BI_Vault_Pillars(_Var2, _, _, _Var5, 1)
+AND
+GetPosition(_Var2, _Var6, _Var7, _Var8)
+THEN
+PlayEffectAtPosition("RS3_FX_GP_ScriptedEvent_Source_Absorb_01", _Var6, _Var7, _Var8);
+
+IF
+DB_BI_Vault_DamageDealt(_Var1)
+AND
+_Var1 > 1.3
+AND
+CharacterIsDead(S_RC_BI_Vault_PosessedPerson_001_f0d1f343-fc73-4c09-8d13-ed37bf51ae25, 0)
+AND
+ObjectGetFlag(S_RC_BI_Vault_PosessedPerson_001_f0d1f343-fc73-4c09-8d13-ed37bf51ae25, "RC_BI_DemonReleased", 0)
+AND
+ObjectGetFlag(S_RC_BI_Vault_PosessedPerson_001_f0d1f343-fc73-4c09-8d13-ed37bf51ae25, "RC_BI_Vault_ChainsDestroyed", 1)
+THEN
+Proc_RC_BI_Vault_001_Damage("RC_BI_DemonReleased");
+
+IF
+DB_BI_Vault_DamageDealt(_Var1)
+AND
+_Var1 > 1.3
+AND
+CharacterIsDead(S_RC_BI_Vault_PosessedPerson_001_f0d1f343-fc73-4c09-8d13-ed37bf51ae25, 0)
+AND
+ObjectGetFlag(S_RC_BI_Vault_PosessedPerson_001_f0d1f343-fc73-4c09-8d13-ed37bf51ae25, "RC_BI_DemonReleased", 0)
+AND
+ObjectGetFlag(S_RC_BI_Vault_PosessedPerson_001_f0d1f343-fc73-4c09-8d13-ed37bf51ae25, "RC_BI_Vault_ChainsDestroyed", 0)
+AND
+GetPosition(S_RC_BI_Vault_PosessedPerson_001_f0d1f343-fc73-4c09-8d13-ed37bf51ae25, _Var2, _Var3, _Var4)
+THEN
+SetStoryEvent(S_RC_BI_Vault_PosessedPerson_001_f0d1f343-fc73-4c09-8d13-ed37bf51ae25, "GEN_PeriodicSoloDialog_DelayDialog");
+PlayEffectAtPosition("RS3_FX_GP_ScriptedEvent_RC_BI_Vault_Parasite_01", _Var2, _Var3, _Var4);
+Proc_RC_BI_Vault_001_DemonReady();
+
+IF
+ObjectFlagSet("RC_BI_Vault_ChainsDestroyed", S_RC_BI_Vault_PosessedPerson_001_f0d1f343-fc73-4c09-8d13-ed37bf51ae25, _)
+AND
+DB_BI_Vault_DamageDealt(_Var2)
+AND
+_Var2 > 1.3
+THEN
+ObjectSetFlag(S_RC_BI_Vault_PosessedPerson_001_f0d1f343-fc73-4c09-8d13-ed37bf51ae25, "RC_BI_DemonReleased");
+
+PROC
+Proc_RC_BI_Vault_001_Damage((STRING)_Var1)
+AND
+CharacterIsDead(S_RC_BI_Vault_PosessedPerson_001_f0d1f343-fc73-4c09-8d13-ed37bf51ae25, 0)
+AND
+ObjectGetFlag(S_RC_BI_Vault_PosessedPerson_001_f0d1f343-fc73-4c09-8d13-ed37bf51ae25, _Var1, 0)
+THEN
+ObjectSetFlag(S_RC_BI_Vault_PosessedPerson_001_f0d1f343-fc73-4c09-8d13-ed37bf51ae25, _Var1);
+ApplyStatus(S_RC_BI_Vault_PosessedPerson_001_f0d1f343-fc73-4c09-8d13-ed37bf51ae25, "KNOCKED_DOWN", 1, 1);
+SetStoryEvent(S_RC_BI_Vault_PosessedPerson_001_f0d1f343-fc73-4c09-8d13-ed37bf51ae25, "GEN_PeriodicSoloDialog_DelayDialog");
+Proc_StartDialog(1, "RC_BI_AD_Vault_Possessed_001", S_RC_BI_Vault_PosessedPerson_001_f0d1f343-fc73-4c09-8d13-ed37bf51ae25);
+
+PROC
+Proc_RC_BI_Vault_001_DemonReady()
+AND NOT
+DB_RC_BI_Vault_001_DemonReady(1)
+AND NOT
+DB_Dead(S_RC_BI_Vault_PosessedPerson_001_f0d1f343-fc73-4c09-8d13-ed37bf51ae25)
+THEN
+DB_RC_BI_Vault_001_DemonReady(1);
+ApplyStatus(S_RC_BI_Vault_PosessedPerson_001_f0d1f343-fc73-4c09-8d13-ed37bf51ae25, "KNOCKED_DOWN", -1, 1);
+Proc_StartDialog(1, "RC_BI_AD_Vault_Possessed_001", S_RC_BI_Vault_PosessedPerson_001_f0d1f343-fc73-4c09-8d13-ed37bf51ae25);
+Proc_RC_BI_Vault_001_RemoveDeathResist();
+
+PROC
+Proc_RC_BI_Vault_001_RemoveDeathResist()
+AND
+HasActiveStatus(S_RC_BI_Vault_PosessedPerson_001_f0d1f343-fc73-4c09-8d13-ed37bf51ae25, "DEATH_RESIST", 1)
+THEN
+RemoveStatus(S_RC_BI_Vault_PosessedPerson_001_f0d1f343-fc73-4c09-8d13-ed37bf51ae25, "DEATH_RESIST");
+
+IF
+ObjectFlagSet("RC_BI_Vault_ChainsDestroyed", S_RC_BI_Vault_PosessedPerson_001_f0d1f343-fc73-4c09-8d13-ed37bf51ae25, _)
+THEN
+Proc_RC_BI_Vault_001_CleanUp();
+
+IF
+ObjectFlagSet("RC_BI_DemonReleased", S_RC_BI_Vault_PosessedPerson_001_f0d1f343-fc73-4c09-8d13-ed37bf51ae25, _)
+THEN
+Proc_RC_BI_Vault_001_CleanUp();
+
+PROC
+Proc_RC_BI_Vault_001_CleanUp()
+THEN
+Proc_RC_BI_Vault_001_RemoveDeathResist();
+
+PROC
+Proc_RC_BI_Vault_001_CleanUp()
+AND
+DB_BI_Vault_DamageDealt(_Var1)
+AND
+_Var1 > 1.3
+THEN
+NOT DB_BI_Vault_DamageDealt(_Var1);
+
+PROC
+Proc_RC_BI_Vault_001_CleanUp()
+AND
+DB_RC_BI_Vault_001_DemonReady(1)
+AND
+HasActiveStatus(S_RC_BI_Vault_PosessedPerson_001_f0d1f343-fc73-4c09-8d13-ed37bf51ae25, "KNOCKED_DOWN", 1)
+THEN
+RemoveStatus(S_RC_BI_Vault_PosessedPerson_001_f0d1f343-fc73-4c09-8d13-ed37bf51ae25, "KNOCKED_DOWN");
+
+PROC
+Proc_RC_BI_Vault_001_CleanUp()
+AND
+DB_RC_BI_Vault_001_DemonReady(1)
+THEN
+NOT DB_RC_BI_Vault_001_DemonReady(1);
+
+IF
+CharacterDied(CHARACTERGUID_S_RC_BI_Vault_PosessedPerson_001_f0d1f343-fc73-4c09-8d13-ed37bf51ae25)
+AND
+DB_IsPlayer(_Var1)
+THEN
+ObjectSetFlag(_Var1, "QuestUpdate_RC_BI_TheVaults_KilledAdventurer");
+
+IF
+CharacterDied(CHARACTERGUID_S_RC_BI_Vault_Demon_001_01c5d4d3-425f-42fd-8200-528b14aafec8)
+AND
+DB_IsPlayer(_Var1)
+AND
+CharacterIsDead(CHARACTERGUID_S_RC_BI_Vault_PosessedPerson_001_f0d1f343-fc73-4c09-8d13-ed37bf51ae25, 0)
+THEN
+ObjectSetFlag(_Var1, "QuestUpdate_RC_BI_TheVaults_SavedAdventurer");
+
+IF
+CharacterDied(CHARACTERGUID_S_RC_BI_Vault_Demon_001_01c5d4d3-425f-42fd-8200-528b14aafec8)
+AND
+CharacterIsDead(CHARACTERGUID_S_RC_BI_Vault_PosessedPerson_001_f0d1f343-fc73-4c09-8d13-ed37bf51ae25, 1)
+AND
+GetClosestAlivePlayer(CHARACTERGUID_S_RC_BI_Vault_Demon_001_01c5d4d3-425f-42fd-8200-528b14aafec8, _Var1, _Var2)
+AND
+_Var2 < 15
+THEN
+ProcDefineReflectionDialog("RC_BI_RD_Vault_Possessed_001", _Var1);
+
+IF
+CharacterDied(CHARACTERGUID_S_RC_BI_Vault_PosessedPerson_001_f0d1f343-fc73-4c09-8d13-ed37bf51ae25)
+AND
+ObjectGetFlag(S_RC_BI_Vault_PosessedPerson_001_f0d1f343-fc73-4c09-8d13-ed37bf51ae25, "RC_BI_DemonReleased", 0)
+AND
+GetClosestAlivePlayer(CHARACTERGUID_S_RC_BI_Vault_Demon_001_01c5d4d3-425f-42fd-8200-528b14aafec8, _Var1, _Var2)
+AND
+_Var2 < 15
+THEN
+ProcDefineReflectionDialog("RC_BI_RD_Vault_Possessed_001", _Var1);
+
+IF
+CharacterDying(CHARACTERGUID_S_RC_BI_Vault_Demon_001_01c5d4d3-425f-42fd-8200-528b14aafec8)
+AND
+DB_CombatCharacters(CHARACTERGUID_S_RC_BI_Vault_Demon_001_01c5d4d3-425f-42fd-8200-528b14aafec8, _Var1)
+AND
+DB_IsPlayer(_Var2)
+AND
+DB_CombatCharacters(_Var2, _Var1)
+THEN
+ObjectSetFlag(_Var2, "RC_BI_Vault_001_Savior");
+
+IF
+DialogStarted("RC_BI_Vault_Possessed_001", (INTEGER)_Var1)
+AND
+DialogGetInvolvedPlayer(_Var1, 1, _Var2)
+THEN
+PartySetFlag(_Var2, "QuestUpdate_RC_BI_TheVaultAdventurer_SavedAdventurer");
+
+IF
+DialogEnded("RC_BI_Vault_Possessed_001", (INTEGER)_Var1)
+AND
+DialogGetInvolvedPlayer(_Var1, 1, _Var2)
+AND
+ObjectGetFlag(_Var2, "RC_BI_Vault_AdventurersSecret", 1)
+THEN
+PlayEffect(S_RC_BI_Vault_PosessedPerson_001_f0d1f343-fc73-4c09-8d13-ed37bf51ae25, "RS3_FX_GP_ScriptedEvent_Teleport_GenericSmoke_01");
+SetOnStage(S_RC_BI_Vault_PosessedPerson_001_f0d1f343-fc73-4c09-8d13-ed37bf51ae25, 0);
+AddSecret(_Var2, "RC_BI_AdventurersSecret");
+
+IF
+ObjectTurnStarted(S_RC_BI_Vault_PosessedPerson_001_f0d1f343-fc73-4c09-8d13-ed37bf51ae25)
+AND
+HasActiveStatus(S_RC_BI_Vault_PosessedPerson_001_f0d1f343-fc73-4c09-8d13-ed37bf51ae25, "ADRENALINE", 0)
+THEN
+CharacterUseSkill(S_RC_BI_Vault_PosessedPerson_001_f0d1f343-fc73-4c09-8d13-ed37bf51ae25, "Shout_EnemyAdrenaline", S_RC_BI_Vault_PosessedPerson_001_f0d1f343-fc73-4c09-8d13-ed37bf51ae25, 1);
+
+IF
+CharacterWentOnStage(CHARACTERGUID_S_RC_BI_Vault_Demon_001_01c5d4d3-425f-42fd-8200-528b14aafec8, 1)
+AND
+QueryOnlyOnce("RC_BI_ParasiteOut")
+THEN
+PlayEffect(CHARACTERGUID_S_RC_BI_Vault_Demon_001_01c5d4d3-425f-42fd-8200-528b14aafec8, "RS3_FX_GP_ScriptedEvent_RC_BI_Vault_Parasite_01");
+GlobalSetFlag("RC_BI_ParasiteOut");
+
+IF
+DB_OnlyOnce("RC_BI_ParasiteOut")
+AND NOT
+DB_Dead(CHARACTERGUID_S_RC_BI_Vault_PosessedPerson_001_f0d1f343-fc73-4c09-8d13-ed37bf51ae25)
+THEN
+CharacterSetCustomName(CHARACTERGUID_S_RC_BI_Vault_PosessedPerson_001_f0d1f343-fc73-4c09-8d13-ed37bf51ae25, "RC_PossessedAdventurer");
+
+IF
+AttackedByObject(CHARACTERGUID_S_RC_BI_Vault_Demon_001_01c5d4d3-425f-42fd-8200-528b14aafec8, _, (GUIDSTRING)_Var2, _, _)
+AND
+CHARACTERGUID_S_RC_BI_Vault_Demon_001_01c5d4d3-425f-42fd-8200-528b14aafec8 != _Var2
+AND
+ObjectIsOnStage(CHARACTERGUID_S_RC_BI_Vault_Demon_001_01c5d4d3-425f-42fd-8200-528b14aafec8, 1)
+AND
+GlobalGetFlag("RC_BI_ParasiteOut", 1)
+AND
+DB_RC_BI_ParasiteAttackCount(3)
+THEN
+Proc_RC_BI_ParasiteMadness();
+
+IF
+AttackedByObject(CHARACTERGUID_S_RC_BI_Vault_Demon_001_01c5d4d3-425f-42fd-8200-528b14aafec8, _, (GUIDSTRING)_Var2, _, _)
+AND
+CHARACTERGUID_S_RC_BI_Vault_Demon_001_01c5d4d3-425f-42fd-8200-528b14aafec8 != _Var2
+AND
+ObjectIsOnStage(CHARACTERGUID_S_RC_BI_Vault_Demon_001_01c5d4d3-425f-42fd-8200-528b14aafec8, 1)
+AND
+GlobalGetFlag("RC_BI_ParasiteOut", 1)
+AND
+DB_RC_BI_ParasiteAttackCount(_Var5)
+AND
+_Var5 < 3
+AND
+IntegerSum(_Var5, 1, _Var6)
+THEN
+NOT DB_RC_BI_ParasiteAttackCount(_Var5);
+DB_RC_BI_ParasiteAttackCount(_Var6);
+
+PROC
+Proc_RC_BI_ParasiteMadness()
+AND
+GetClosestAlivePlayer(CHARACTERGUID_S_RC_BI_Vault_Demon_001_01c5d4d3-425f-42fd-8200-528b14aafec8, _Var1, _Var2)
+AND
+QRY_IsInRange(CHARACTERGUID_S_RC_BI_Vault_Demon_001_01c5d4d3-425f-42fd-8200-528b14aafec8, _Var1, 15)
+AND
+QRY_RC_BI_ParasiteTarget(_Var1)
+THEN
+RemoveStatus(_Var1, "CLEAR_MINDED");
+ApplyStatus(_Var1, "MADNESS", -1, 1);
+ApplyStatus(_Var1, "PARASITIC_HEART", -1, 1);
+DB_RC_BI_ParasitePlayer(_Var1);
+Proc_RC_BI_ParasiteIn();
+
+PROC
+Proc_RC_BI_ParasiteMadness()
+AND NOT
+DB_RC_BI_ParasitePlayer(_)
+AND
+GetClosestAlivePlayer(CHARACTERGUID_S_RC_BI_Vault_Demon_001_01c5d4d3-425f-42fd-8200-528b14aafec8, _Var2, _Var3)
+AND
+QRY_IsInRange(CHARACTERGUID_S_RC_BI_Vault_Demon_001_01c5d4d3-425f-42fd-8200-528b14aafec8, _Var2, 15)
+THEN
+RemoveStatus(_Var2, "CLEAR_MINDED");
+ApplyStatus(_Var2, "MADNESS", -1, 1);
+ApplyStatus(_Var2, "PARASITIC_HEART", -1, 1);
+DB_RC_BI_ParasitePlayer(_Var2);
+Proc_RC_BI_ParasiteIn();
+
+QRY
+QRY_RC_BI_ParasiteTarget((CHARACTERGUID)_Var1)
+AND
+HasActiveStatus(_Var1, "CHICKEN", 0)
+AND
+HasActiveStatus(_Var1, "PETRIFIED", 0)
+AND
+HasActiveStatus(_Var1, "KNOCKDOWN", 0)
+AND
+HasActiveStatus(_Var1, "STUNNED", 0)
+AND
+HasActiveStatus(_Var1, "FEAR", 0)
+AND
+HasActiveStatus(_Var1, "MADNESS", 0)
+THEN
+DB_NOOP(1);
+
+IF
+CharacterStatusRemoved((CHARACTERGUID)_Var1, "MADNESS", _)
+AND
+DB_RC_BI_ParasitePlayer(_Var1)
+THEN
+RemoveStatus(_Var1, "CLEAR_MINDED");
+ProcObjectTimer(_Var1, "Timer_RC_BI_Madness", 500);
+
+PROC
+ProcObjectTimerFinished((GUIDSTRING)_Var1, "Timer_RC_BI_Madness")
+THEN
+RemoveStatus(_Var1, "CLEAR_MINDED");
+ApplyStatus(_Var1, "MADNESS", -1, 1);
+
+PROC
+Proc_RC_BI_ParasiteIn()
+AND
+DB_RC_BI_ParasiteHP(_Var1)
+AND
+CharacterGetHitpointsPercentage(CHARACTERGUID_S_RC_BI_Vault_Demon_001_01c5d4d3-425f-42fd-8200-528b14aafec8, _Var2)
+THEN
+NOT DB_RC_BI_ParasiteHP(_Var1);
+DB_RC_BI_ParasiteHP(_Var2);
+Poof(CHARACTERGUID_S_RC_BI_Vault_Demon_001_01c5d4d3-425f-42fd-8200-528b14aafec8);
+GlobalClearFlag("RC_BI_ParasiteOut");
+
+PROC
+Proc_RC_BI_ParasiteIn()
+AND
+DB_RC_BI_ParasitePlayer(_Var1)
+AND NOT
+QRY_RC_BI_FindSanePlayer(_Var1)
+THEN
+NOT DB_RC_BI_ParasitePlayer(_Var1);
+Proc_RC_BI_ParasitePop(_Var1);
+
+QRY
+QRY_RC_BI_FindSanePlayer((CHARACTERGUID)_Var1)
+AND
+DB_IsPlayer(_Var2)
+AND
+_Var2 != _Var1
+AND
+CharacterIsDead(_Var2, 0)
+AND
+HasActiveStatus(_Var2, "MADNESS", 0)
+AND
+HasActiveStatus(_Var2, "FEAR", 0)
+AND
+HasActiveStatus(_Var2, "PARASITIC_HEART", 0)
+AND
+HasActiveStatus(_Var2, "CHARMED", 0)
+THEN
+DB_NOOP(1);
+
+IF
+CharacterDied((CHARACTERGUID)_Var1)
+AND
+DB_RC_BI_ParasitePlayer(_Var2)
+AND
+_Var1 != _Var2
+AND NOT
+QRY_RC_BI_FindSanePlayer(_Var2)
+THEN
+NOT DB_RC_BI_ParasitePlayer(_Var2);
+Proc_RC_BI_ParasitePop(_Var2);
+
+IF
+CharacterDied((CHARACTERGUID)_Var1)
+AND
+DB_RC_BI_ParasitePlayer(_Var1)
+THEN
+NOT DB_RC_BI_ParasitePlayer(_Var1);
+Proc_RC_BI_ParasitePop(_Var1);
+
+IF
+CharacterReceivedDamage((CHARACTERGUID)_Var1, _, _)
+AND
+DB_RC_BI_ParasitePlayer(_Var1)
+AND
+CharacterGetHitpointsPercentage(_Var1, _Var4)
+AND
+_Var4 <= 10
+THEN
+NOT DB_RC_BI_ParasitePlayer(_Var1);
+Proc_RC_BI_ParasitePop(_Var1);
+
+PROC
+Proc_RC_BI_ParasitePop((CHARACTERGUID)_Var1)
+AND NOT
+DB_Dead(CHARACTERGUID_S_RC_BI_Vault_PosessedPerson_001_f0d1f343-fc73-4c09-8d13-ed37bf51ae25)
+AND
+QRY_IsInRange(CHARACTERGUID_S_RC_BI_Vault_PosessedPerson_001_f0d1f343-fc73-4c09-8d13-ed37bf51ae25, CHARACTERGUID_S_RC_BI_Vault_Demon_001_01c5d4d3-425f-42fd-8200-528b14aafec8, 15)
+THEN
+TeleportTo(CHARACTERGUID_S_RC_BI_Vault_Demon_001_01c5d4d3-425f-42fd-8200-528b14aafec8, CHARACTERGUID_S_RC_BI_Vault_PosessedPerson_001_f0d1f343-fc73-4c09-8d13-ed37bf51ae25);
+
+PROC
+Proc_RC_BI_ParasitePop((CHARACTERGUID)_Var1)
+AND
+GetPosition(CHARACTERGUID_S_RC_BI_Vault_Demon_001_01c5d4d3-425f-42fd-8200-528b14aafec8, _Var2, _Var3, _Var4)
+THEN
+PlayEffect(_Var1, "RS3_FX_GP_ScriptedEvent_RC_BI_Vault_Parasite_01");
+PlayEffectAtPosition("RS3_FX_GP_ScriptedEvent_RC_BI_Vault_Parasite_01", _Var2, _Var3, _Var4);
+CharacterAppear(CHARACTERGUID_S_RC_BI_Vault_Demon_001_01c5d4d3-425f-42fd-8200-528b14aafec8, 1, "");
+RemoveStatus(_Var1, "MADNESS");
+RemoveStatus(_Var1, "PARASITIC_HEART");
+
+IF
+ObjectEnteredCombat(S_RC_BI_Vault_PosessedPerson_001_f0d1f343-fc73-4c09-8d13-ed37bf51ae25, _)
+AND
+QueryOnlyOnce("RC_BI_Vault1_Surface")
+THEN
+PlayEffect(S_RC_BI_Vault_PosessedPerson_001_f0d1f343-fc73-4c09-8d13-ed37bf51ae25, "RS3_FX_GP_ScriptedEvent_RC_BI_Vault_Dwarf_01");
+Proc_RC_BI_VaultCreateSurface();
+
+IF
+ObjectEnteredCombat(CHARACTERGUID_S_RC_BI_Vault_Demon_001_01c5d4d3-425f-42fd-8200-528b14aafec8, _)
+AND NOT
+DB_GlobalFlag("RC_BI_ParasiteOut")
+THEN
+ProcObjectTimer(CHARACTERGUID_S_RC_BI_Vault_Demon_001_01c5d4d3-425f-42fd-8200-528b14aafec8, "Timer_RC_BI_ParasiteHpDamage", 3100);
+
+PROC
+ProcObjectTimerFinished(CHARACTERGUID_S_RC_BI_Vault_Demon_001_01c5d4d3-425f-42fd-8200-528b14aafec8, "Timer_RC_BI_ParasiteHpDamage")
+AND
+DB_RC_BI_ParasiteHP(_Var1)
+AND
+RealSubtract(_Var1, 20, _Var2)
+THEN
+CharacterSetHitpointsPercentage(CHARACTERGUID_S_RC_BI_Vault_Demon_001_01c5d4d3-425f-42fd-8200-528b14aafec8, _Var2);
+PlayEffect(CHARACTERGUID_S_RC_BI_Vault_Demon_001_01c5d4d3-425f-42fd-8200-528b14aafec8, "RS3_FX_GP_ScriptedEvent_RC_BI_Vault_Parasite_02");
+GlobalSetFlag("RC_BI_ParasiteOut");
+
+IF
+GlobalFlagSet("RC_BI_ParasiteOut")
+AND
+DB_RC_BI_ParasiteAttackCount(_Var1)
+THEN
+NOT DB_RC_BI_ParasiteAttackCount(_Var1);
+DB_RC_BI_ParasiteAttackCount(0);
+
+IF
+GlobalFlagSet("RC_BI_ParasiteOut")
+AND NOT
+DB_RC_BI_ParasiteAttackCount(_)
+THEN
+DB_RC_BI_ParasiteAttackCount(0);
+
+IF
+TextEventSet("bipara")
+AND
+DB_IsPlayer(_Var1)
+THEN
+TeleportTo(_Var1, TRIGGERGUID_Debug_RC_BI_DemonVault1_62f7ebd5-6d8a-4087-8ee3-95fe98fb0cfd);
+
+IF
+TextEventSet("bipara")
+AND
+DB_RC_BI_Vault_Pillars(_Var1, _Var2, _Var3, _Var4, _Var5)
+THEN
+PROC_LoopBeamEffect("RS3_FX_GP_ScriptedEvent_ChainedDragon_Beam_01", _Var1, _Var2, "", "Dummy_NeckFX", _Var4, "RC_Main");
+PROC_LoopEffect("RS3_FX_GP_ScriptedEvent_SourceGlow_Overlay_01", _Var1, _Var4, "RC_Main", "");
+PROC_LoopEffect("RS3_FX_GP_ScriptedEvent_SourcePillar_01", _Var1, _Var4, "RC_Main", "");
+
+PROC
+Proc_RC_BI_VaultCreateSurface()
+AND
+DB_RC_BI_Vault_Surfaces(_Var1)
+AND
+Random(3000, _Var2)
+THEN
+ProcObjectTimer(_Var1, "Timer_RC_BI_Vault_Surface", _Var2);
+
+PROC
+ProcObjectTimerFinished((GUIDSTRING)_Var1, "Timer_RC_BI_Vault_Surface")
+AND
+GetPosition(_Var1, _Var2, _Var3, _Var4)
+THEN
+PlayEffectAtPosition("RS3_FX_GP_ScriptedEvent_RC_BI_Vault_Dwarf_01", _Var2, _Var3, _Var4);
+CreateSurface(_Var1, "SurfaceWaterFrozenCursed", 3.7, -1);
+
+
+EXITSECTION
+ENDEXITSECTION
+
+ParentTargetEdge "ReapersCoast"

@@ -1,0 +1,152 @@
+Version 1
+SubGoalCombiner SGC_AND
+
+INITSECTION
+
+KBSECTION
+IF
+CharacterUsedSourcePoint((CHARACTERGUID)_Var1)
+AND
+DB_IsPlayer(_Var1)
+AND
+CharacterGetEquippedItem(_Var1, "Amulet", _Var2)
+AND
+GetTemplate(_Var2, "QUEST_ARX_SourceAmulet_86c59384-3686-4594-b485-507caed669a5")
+AND
+ObjectGetFlag(_Var2, "GLO_SourceAmuletIsFull", 1)
+AND
+ItemGetCharges(_Var2, _Var3)
+AND
+_Var3 < 5
+THEN
+ObjectClearFlag(_Var2, "GLO_SourceAmuletIsFull", 0);
+
+IF
+ObjectSourcePointAddRequest((CHARACTERGUID)_Var1, (INTEGER)_Var2, (INTEGER)_Var3)
+AND
+DB_IsPlayer(_Var1)
+AND
+CharacterGetEquippedItem(_Var1, "Amulet", _Var4)
+AND
+GetTemplate(_Var4, "QUEST_ARX_SourceAmulet_86c59384-3686-4594-b485-507caed669a5")
+AND
+CharacterGetMaxSourcePoints(_Var1, _Var5)
+AND
+_Var5 == _Var3
+THEN
+Proc_HandleSourceAmulet(_Var1, _Var4, _Var2);
+
+PROC
+Proc_HandleSourceAmulet((CHARACTERGUID)_Var1, (ITEMGUID)_Var2, (INTEGER)_Var3)
+AND
+ObjectGetFlag(_Var2, "GLO_SourceAmuletIsFull", 1)
+THEN
+Proc_StartDialog(1, "GLO_AD_SourceAmulet_IsFull", _Var1);
+
+PROC
+Proc_HandleSourceAmulet((CHARACTERGUID)_Var1, (ITEMGUID)_Var2, (INTEGER)_Var3)
+AND
+ObjectGetFlag(_Var2, "GLO_SourceAmuletIsFull", 0)
+THEN
+proc_SourceAmulet_AddSource(_Var2, _Var3, _Var1);
+
+IF
+CharacterUsedSkill((CHARACTERGUID)_Var1, "Target_Item_ReplenishSource", _, _)
+AND
+DB_IsPlayer(_Var1)
+AND
+CharacterGetEquippedItem(_Var1, "Amulet", _Var4)
+AND
+GetTemplate(_Var4, "QUEST_ARX_SourceAmulet_86c59384-3686-4594-b485-507caed669a5")
+THEN
+procUsedCharge(_Var1, _Var4);
+
+PROC
+procUsedCharge((CHARACTERGUID)_Var1, (ITEMGUID)_Var2)
+THEN
+proc_SourceAmulet_AddSource(_Var2, 0, _Var1);
+
+PROC
+procUsedCharge((CHARACTERGUID)_Var1, (ITEMGUID)_Var2)
+AND
+QueryOnlyOnce("Target_Item_ReplenishSource_FirstTime")
+THEN
+Proc_StartDialog(1, "GLO_AD_SourceAmulet_UsedCharge", _Var1);
+
+PROC
+proc_SourceAmulet_AddSource((ITEMGUID)_Var1, (INTEGER)_Var2)
+THEN
+proc_SourceAmulet_AddSource(_Var1, _Var2, NULL_00000000-0000-0000-0000-000000000000);
+
+PROC
+proc_SourceAmulet_AddSource((ITEMGUID)_Var1, (INTEGER)_Var2, (CHARACTERGUID)_Var3)
+AND NOT
+DB_GLO_AD_SourceAmulet_AddedCharge_Feedback_OnlyOnce(_Var3)
+AND
+_Var2 > 0
+AND
+ItemGetCharges(_Var1, _Var4)
+AND
+_Var4 < 5
+THEN
+DB_GLO_AD_SourceAmulet_AddedCharge_Feedback_OnlyOnce(_Var3);
+Proc_StartDialog(1, "GLO_AD_SourceAmulet_AddedCharge", _Var3);
+
+PROC
+proc_SourceAmulet_AddSource((ITEMGUID)_Var1, (INTEGER)_Var2, (CHARACTERGUID)_Var3)
+AND
+_Var2 > 0
+AND
+ItemGetCharges(_Var1, 5)
+THEN
+ObjectSetFlag(_Var1, "GLO_SourceAmuletIsFull");
+Proc_StartDialog(1, "GLO_AD_SourceAmulet_IsFull", _Var3);
+ProcReplenishedAmulet(_Var3);
+
+PROC
+ProcReplenishedAmulet((CHARACTERGUID)_Var1)
+THEN
+DB_NOOP(1);
+
+PROC
+proc_SourceAmulet_AddSource((ITEMGUID)_Var1, (INTEGER)_Var2, _)
+AND
+ItemGetCharges(_Var1, _Var4)
+AND
+_Var4 < 5
+AND
+ObjectGetFlag(_Var1, "GLO_SourceAmuletIsFull", 1)
+THEN
+ObjectClearFlag(_Var1, "GLO_SourceAmuletIsFull", 0);
+
+IF
+TextEventSet("GLO_Show_DebugNumberOfCharges")
+AND
+DB_IsPlayer(_Var1)
+AND
+CharacterGetEquippedItem(_Var1, "Amulet", _Var2)
+AND
+GetTemplate(_Var2, "QUEST_ARX_SourceAmulet_86c59384-3686-4594-b485-507caed669a5")
+AND
+ItemGetCharges(_Var2, _Var3)
+AND
+IntegertoString(_Var3, _Var4)
+THEN
+DebugText(_Var1, _Var4);
+
+IF
+TextEventSet("GLO_AddSourcePoints")
+AND
+DB_IsPlayer(_Var1)
+AND
+CharacterGetEquippedItem(_Var1, "Amulet", _Var2)
+AND
+GetTemplate(_Var2, "QUEST_ARX_SourceAmulet_86c59384-3686-4594-b485-507caed669a5")
+THEN
+Proc_HandleSourceAmulet(_Var1, _Var2, 5);
+
+
+EXITSECTION
+ENDEXITSECTION
+
+ParentTargetEdge "ARX"

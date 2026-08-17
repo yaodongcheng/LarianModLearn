@@ -1,0 +1,764 @@
+Version 1
+SubGoalCombiner SGC_AND
+
+INITSECTION
+DB_FTJ_Seeker_DissidentMagisterUpdates("QuestUpdate_FTJ_Seeker_AtusaEvent");
+DB_FTJ_Seeker_DissidentMagisterUpdates("QuestUpdate_FTJ_Seeker_AtusaLimb");
+DB_FTJ_Seeker_DissidentMagisterUpdates("QuestUpdate_FTJ_Seeker_DelorusMet");
+DB_FTJ_Seeker_DissidentMagisterUpdates("QuestUpdate_FTJ_Seeker_UnnisMet");
+DB_FTJ_Seeker_DissidentMagisterUpdates("QuestUpdate_FTJ_Seeker_UnnisMetAtusa");
+DB_FTJ_Seeker_DissidentMagisterUpdates("QuestUpdate_FTJ_Seeker_VasnyaMetStart");
+DB_FTJ_Seeker_SeekerUpdates("QuestUpdate_FTJ_Seeker_MeetZaleskar");
+DB_FTJ_Seeker_SeekerUpdates("QuestUpdate_FTJ_Seeker_ZaleskarShip");
+DB_FTJ_Seeker_SeekerUpdates("QuestUpdate_FTJ_Seeker_BaharaMetToldSeeker");
+DB_FTJ_Seeker_SeekerUpdates("QuestUpdate_FTJ_Seeker_MissingLeaders");
+DB_FTJ_Seeker_SeekerUpdates("QuestUpdate_FTJ_Seeker_GarethMet");
+DB_FTJ_Seeker_SeekerUpdates("QuestUpdate_FTJ_Seeker_CrucifiedSeekerMet");
+DB_FTJ_Seeker_SeekerUpdates("QuestUpdate_FTJ_Seeker_SeekerEscape");
+DB_FTJ_Hunted_IntermediateUpdateFlag("FTJ_Hunted_GarethHunted", "QuestUpdate_FTJ_Hunted_GarethHunted");
+DB_FTJ_Hunted_IntermediateUpdateFlag("FTJ_Hunted_BaharaHunted", "QuestUpdate_FTJ_Hunted_BaharaHunted");
+DB_FTJ_Hunted_IntermediateUpdateFlag("FTJ_Hunted_AlexandarHunted", "QuestUpdate_FTJ_Hunted_AlexandarHunted");
+DB_FTJ_Hunted_IntermediateUpdateFlag("FTJ_Hunted_IfanHunted", "QuestUpdate_FTJ_Hunted_IfanHunted");
+DB_FTJ_SW_Tyrant_ItemUpdate(ITEMGUID_S_FTJ_SW_BraccusArmor_Arms_e21fb4cd-2b28-4eaa-a913-153be5f23bb9, "QuestUpdate_FTJ_SW_Tyrant_FoundArms");
+DB_FTJ_SW_Tyrant_ItemUpdate(ITEMGUID_S_FTJ_SW_BraccusArmor_Legs_0a4896d2-df6d-4c0c-bd79-60315fb77a96, "QuestUpdate_FTJ_SW_Tyrant_FoundLegs");
+DB_FTJ_SW_Tyrant_ItemUpdate(ITEMGUID_S_FTJ_SW_BraccusArmor_Lowerbody_3ef7e582-a813-40da-a0d4-17b49ee96712, "QuestUpdate_FTJ_SW_Tyrant_FoundLowerBody");
+DB_FTJ_SW_Tyrant_ItemUpdate(ITEMGUID_S_FTJ_SW_BraccusArmor_Upperbody_3da52544-453d-4bd4-aa95-a2968cf6f647, "QuestUpdate_FTJ_SW_Tyrant_FoundIUpperBody");
+DB_FTJ_SW_Tyrant_ItemUpdate(ITEMGUID_S_FTJ_ARM_BraccusHelm_Uncured_9e30ecd5-ce72-49d6-a798-c20c8235dd77, "QuestUpdate_FTJ_SW_Tyrant_FoundHelm");
+DB_FTJ_QuestDef_DeadCharacterUpdates(CHARACTERGUID_S_FTJ_TorturedSeeker_8d839534-a039-4b5c-bfa6-6b88da149eb2, "FTJ_Seeker_VerdasDead");
+DB_FTJ_DeadVerdasConditions("QuestUpdate_FTJ_Seeker_AtusaLimb");
+DB_FTJ_DeadVerdasConditions("QuestUpdate_FTJ_Seeker_HanMetStart");
+DB_FTJ_DeadVerdasConditions("QuestUpdate_FTJ_Seeker_VasnyaMetStart");
+DB_FTJ_DeadVerdasConditions("QuestUpdate_FTJ_Seeker_MetVerdas");
+DB_FTJ_BookUpdates(ITEMGUID_S_FTJ_BOOK_AlexandarJournal_000_5c2a4a0e-28bc-4dd1-855b-0fa7f95bb741, "QuestUpdate_CORE_Magisters_VredemanTutor");
+DB_FTJ_BookUpdates(ITEMGUID_S_FTJ_SW_CartMagister_LetterDallis_9353f715-5e93-41ef-8b72-721dbda356bb, "QuestUpdate_CORE_Magisters_DallisKnowledge");
+DB_FTJ_BookUpdates(ITEMGUID_BOOK_Paper_Sheet_A_000_81088c42-97b3-40de-a9a7-1dda37ba581d, "QuestUpdate_CORE_Magisters_DallisKnowledge");
+DB_FTJ_BookUpdates(ITEMGUID_BOOK_Bible_A_000_1ab533fc-02af-43c1-b4d1-0863285bb16b, "QuestUpdate_CORE_Magisters_DallisKnowledge");
+DB_FTJ_BookUpdates(ITEMGUID_S_FTJ_SW_CartMagister_LetterDallis_9353f715-5e93-41ef-8b72-721dbda356bb, "QuestUpdate_CORE_Magisters_MagisterBraccus");
+DB_FTJ_BookUpdates(ITEMGUID_BOOK_FTJ_TyrantReport_000_64e1bef3-7b8a-458b-832e-ed74874c27c5, "QuestUpdate_CORE_Magisters_MagisterBraccus");
+DB_KilledEvent(CHARACTERGUID_S_GLO_Alexandar_03e6345f-1bd3-403c-80e2-a443a74f6349, "QuestUpdate_CORE_Magisters_AlexandarDead");
+DB_FTJ_Escape_Free_Own_Region(TRIGGERGUID_S_FTJ_SUB_Chapel_29763898-0722-4f22-bed2-5ec94b837fd3);
+DB_FTJ_Escape_Free_Own_Region(TRIGGERGUID_S_FTJ_SUB_OldHarbour_d6f95039-d76a-48d0-abdf-b8f029cbfe10);
+DB_FTJ_Escape_Free_Own_Region(TRIGGERGUID_S_FTJ_SUB_PrisonGroundFloor_6c759383-8420-4354-ac44-b4fa5b2f7bb5);
+DB_FTJ_Escape_Free_Own_Region(TRIGGERGUID_S_FTJ_SUB_UndergroundTunnel_85d72589-4344-48f8-ab98-98d3926703ba);
+DB_FTJ_Escape_Free_Own_Region(TRIGGERGUID_S_FTJ_SUB_HoldingCells_2cf84586-d155-47be-95bc-372ccd034dc6);
+DB_FTJ_SW_Necromancers_JarsUpdate(ITEMGUID_S_FTJ_SW_SoulJar_GuardUndead1_46ccad9c-a2fe-4004-89ba-f422528b2860, TRIGGERGUID_S_FTJ_SW_BraccusVaultProper_2d8c84d5-0f88-47e8-b6ca-f70f43b7d331);
+DB_FTJ_SW_Necromancers_JarsUpdate(ITEMGUID_S_FTJ_SW_SoulJar_GuardUndead2_40aa483c-fa08-4a95-8d30-99539a0c7137, TRIGGERGUID_S_FTJ_SW_BraccusVaultProper_2d8c84d5-0f88-47e8-b6ca-f70f43b7d331);
+DB_HasStoryEvent(ITEMGUID_S_FTJ_SW_SoulJar_GuardUndead1_46ccad9c-a2fe-4004-89ba-f422528b2860, "QuestUpdate_FTJ_SW_Necromancers_DealSJ");
+DB_HasStoryEvent(ITEMGUID_S_FTJ_SW_SoulJar_GuardUndead2_40aa483c-fa08-4a95-8d30-99539a0c7137, "QuestUpdate_FTJ_SW_Necromancers_DealSJ");
+
+KBSECTION
+IF
+TextEventSet("FTJ_Hunted")
+AND
+DB_IsPlayer(_Var1)
+THEN
+ObjectSetFlag(_Var1, "QuestUpdate_FTJ_Hunted_AlexandarHunted");
+
+IF
+TextEventSet("InterFTJ_Hunted")
+AND
+DB_IsPlayer(_Var1)
+THEN
+ObjectSetFlag(_Var1, "FTJ_Hunted_AlexandarHunted");
+
+IF
+ObjectFlagSet("QuestUpdate_FTJ_Escape_EscapeHan", (CHARACTERGUID)_Var1, (INTEGER)_Var2)
+AND
+DB_IsPlayer(_Var1)
+AND
+ObjectGetFlag(_Var1, "QuestUpdate_FTJ_Escape_EnterDunes", 0)
+THEN
+ObjectSetFlag(_Var1, "QuestUpdate_FTJ_Escape_Island_EscapeFort");
+ObjectSetFlag(_Var1, "QuestUpdate_FTJ_Escape_Island_EscapeHan");
+
+IF
+ObjectFlagSet("QuestUpdate_FTJ_Escape_DallisWarning", (CHARACTERGUID)_Var1, (INTEGER)_Var2)
+AND
+DB_IsPlayer(_Var1)
+AND
+ObjectGetFlag(_Var1, "QuestUpdate_FTJ_Escape_EnterDunes", 0)
+THEN
+ObjectSetFlag(_Var1, "QuestUpdate_FTJ_Escape_Island_EscapeFort");
+ObjectSetFlag(_Var1, "QuestUpdate_FTJ_Escape_Island_DallisWarning");
+
+IF
+ObjectFlagSet("QuestUpdate_FTJ_Escape_VasnyaShelter", (CHARACTERGUID)_Var1, (INTEGER)_Var2)
+AND
+DB_IsPlayer(_Var1)
+AND
+ObjectGetFlag(_Var1, "QuestUpdate_FTJ_Escape_EnterDunes", 0)
+THEN
+ObjectSetFlag(_Var1, "QuestUpdate_FTJ_Escape_Island_EscapeFort");
+ObjectSetFlag(_Var1, "QuestUpdate_FTJ_Escape_Island_VasnyaShelter");
+
+IF
+ObjectFlagSet("QuestUpdate_FTJ_Escape_EscapeHan", (CHARACTERGUID)_Var1, (INTEGER)_Var2)
+AND
+DB_IsPlayer(_Var1)
+AND
+ObjectGetFlag(_Var1, "QuestUpdate_FTJ_Escape_EnterDunes", 1)
+THEN
+ObjectSetFlag(_Var1, "QuestUpdate_FTJ_Escape_Island_EscapeHan");
+
+IF
+ObjectFlagSet("QuestUpdate_FTJ_Escape_DallisWarning", (CHARACTERGUID)_Var1, (INTEGER)_Var2)
+AND
+DB_IsPlayer(_Var1)
+AND
+ObjectGetFlag(_Var1, "QuestUpdate_FTJ_Escape_EnterDunes", 1)
+THEN
+ObjectSetFlag(_Var1, "QuestUpdate_FTJ_Escape_Island_DallisWarning");
+
+IF
+ObjectFlagSet("QuestUpdate_FTJ_Escape_VasnyaShelter", (CHARACTERGUID)_Var1, (INTEGER)_Var2)
+AND
+DB_IsPlayer(_Var1)
+AND
+ObjectGetFlag(_Var1, "QuestUpdate_FTJ_Escape_EnterDunes", 1)
+THEN
+ObjectSetFlag(_Var1, "QuestUpdate_FTJ_Escape_Island_VasnyaShelter");
+
+IF
+DB_Dead(CHARACTERGUID_S_FTJ_GhettoBlacksmith_175b32ec-f6a1-4aa1-9028-d02d593f092c)
+AND
+DB_IsPlayer(_Var1)
+AND
+DB_Sees(_Var1, CHARACTERGUID_S_FTJ_GhettoBlacksmith_175b32ec-f6a1-4aa1-9028-d02d593f092c)
+AND
+ObjectGetFlag(_Var1, "QuestUpdate_RC_FTJ_SourceCollar_MetBlackSmith", 1)
+THEN
+PartySetFlag(_Var1, "QuestClose_RC_FTJ_SourceCollar_SUB");
+
+IF
+DB_Dead(CHARACTERGUID_S_FTJ_SW_CollarRemovingSeeker_437c00b3-6544-44dd-8396-a43848b19a1e)
+AND
+DB_IsPlayer(_Var1)
+AND
+DB_Sees(_Var1, CHARACTERGUID_S_FTJ_SW_CollarRemovingSeeker_437c00b3-6544-44dd-8396-a43848b19a1e)
+AND
+ObjectGetFlag(_Var1, "QuestUpdate_RC_FTJ_SourceCollar_MetCollarRemover", 1)
+THEN
+PartySetFlag(_Var1, "QuestClose_RC_FTJ_SourceCollar_SUB");
+
+IF
+CharacterEnteredTrigger((CHARACTERGUID)_Var1, TRIGGERGUID_S_FTJ_SUB_Courtroom_7b9ba26e-b60f-4a09-aba1-728d50b1e133)
+AND
+DB_IsPlayer(_Var1)
+THEN
+UserSetFlag(_Var1, "QuestUpdate_FTJ_Escape_EnterUpperArea");
+
+PROC
+Proc_FTJ_Escape_FoundWandUpdate((CHARACTERGUID)_Var1)
+AND
+QuestAccepted(_Var1, "FTJ_SW_Shriekers", 1)
+THEN
+UserSetFlag(_Var1, "QuestUpdate_FTJ_Escape_FindWand_Shrieker");
+
+IF
+ObjectFlagSet("FTJ_Seeker_SeekerTrueGoal_SetUpdates", (CHARACTERGUID)_Var1, _)
+AND
+ObjectGetFlag(_Var1, "QuestUpdate_FTJ_Escape_LucianEncounter", 0)
+THEN
+UserSetFlag(_Var1, "QuestUpdate_FTJ_Seeker_SeekerTrueGoal");
+
+IF
+ObjectFlagSet("FTJ_Seeker_SeekerTrueGoal_SetUpdates", (CHARACTERGUID)_Var1, _)
+AND
+ObjectGetFlag(_Var1, "QuestUpdate_FTJ_Escape_LucianEncounter", 1)
+THEN
+UserSetFlag(_Var1, "QuestUpdate_FTJ_Seeker_SeekerTrueGoalGod");
+
+IF
+ObjectFlagSet("FTJ_SW_LucienGaveBless", (CHARACTERGUID)_Var1, _)
+AND
+ObjectGetFlag(_Var1, "QuestUpdate_FTJ_Seeker_SeekerTrueGoal", 1)
+THEN
+UserSetFlag(_Var1, "QuestUpdate_FTJ_Seeker_SeekerTrueGoalAfterGod");
+
+IF
+ObjectFlagSet("FTJ_TorturedSeeker_HasMet", (CHARACTERGUID)_Var1, _)
+THEN
+UserSetFlag(_Var1, "QuestUpdate_FTJ_Seeker_VerdasMet");
+
+IF
+ObjectFlagSet("FTJ_Seeker_VerdasDead", (CHARACTERGUID)_Var1, _)
+AND
+QRY_FTJ_seeker_KnowOfVerdas(_Var1)
+THEN
+UserSetFlag(_Var1, "QuestUpdate_FTJ_Seeker_VerdasDead");
+
+QRY
+QRY_FTJ_seeker_KnowOfVerdas((CHARACTERGUID)_Var1)
+AND
+DB_FTJ_DeadVerdasConditions(_Var2)
+AND
+ObjectGetFlag(_Var1, _Var2, 1)
+THEN
+DB_NOOP(1);
+
+IF
+ObjectFlagSet("FTJ_Seeker_HanMet_SetUpdates", (CHARACTERGUID)_Var1, _)
+AND
+UserGetFlag(_Var1, "QuestUpdate_FTJ_Seeker_VerdasMet", 0)
+AND
+ObjectGetFlag(_Var1, "FTJ_Seeker_VerdasDead", 0)
+THEN
+UserSetFlag(_Var1, "QuestUpdate_FTJ_Seeker_HanMetStart");
+
+IF
+ObjectFlagSet("FTJ_Seeker_HanMet_SetUpdates", (CHARACTERGUID)_Var1, _)
+AND
+UserGetFlag(_Var1, "QuestUpdate_FTJ_Seeker_VasnyaMetStart", 1)
+AND
+UserGetFlag(_Var1, "QuestUpdate_FTJ_Seeker_VerdasMet", 0)
+AND
+ObjectGetFlag(_Var1, "FTJ_Seeker_VerdasDead", 0)
+THEN
+UserSetFlag(_Var1, "QuestUpdate_FTJ_Seeker_HanVasnyaVerdasMet");
+
+IF
+ObjectFlagSet("FTJ_Seeker_HanMet_SetUpdates", (CHARACTERGUID)_Var1, _)
+AND
+ObjectGetFlag(_Var1, "QuestUpdate_FTJ_Seeker_VerdasMet", 1)
+THEN
+UserSetFlag(_Var1, "QuestUpdate_FTJ_Seeker_HanVerdas");
+
+IF
+ObjectFlagSet("FTJ_Seeker_HanMet_SetUpdates", (CHARACTERGUID)_Var1, _)
+AND
+ObjectGetFlag(_Var1, "FTJ_Seeker_VerdasDead", 1)
+THEN
+UserSetFlag(_Var1, "QuestUpdate_FTJ_Seeker_HanVerdas");
+
+IF
+GameBookInterfaceClosed(S_FTJ_SW_MagisterOrders_1ea1d33a-368a-4a76-9da0-7c39e9899803, (CHARACTERGUID)_Var1)
+THEN
+UserSetFlag(_Var1, "QuestUpdate_FTJ_Seeker_MagsiterOrders");
+
+IF
+GameBookInterfaceClosed(ITEMGUID_S_FTJ_MessageFromDallis_20f60e2d-7a0a-4366-a20f-c17b7d98a171, (CHARACTERGUID)_Var1)
+THEN
+UserSetFlag(_Var1, "QuestUpdate_FTJ_Escape_DallisWarning");
+UserSetFlag(_Var1, "QuestUpdate_FTJ_Seeker_DallisWarning");
+
+IF
+ObjectFlagSet("FTJ_Seeker_VasnyaMet_SetUpdates", (CHARACTERGUID)_Var1, _)
+AND
+ObjectGetFlag(_Var1, "FTJ_Seeker_VerdasDead", 1)
+THEN
+UserSetFlag(_Var1, "QuestUpdate_FTJ_Seeker_VasnyaDeadVerdas");
+
+IF
+ObjectFlagSet("FTJ_Seeker_VasnyaMet_SetUpdates", (CHARACTERGUID)_Var1, _)
+AND
+ObjectGetFlag(_Var1, "FTJ_Seeker_VerdasDead", 0)
+AND
+UserGetFlag(_Var1, "QuestUpdate_FTJ_Seeker_VerdasMet", 1)
+THEN
+UserSetFlag(_Var1, "QuestUpdate_FTJ_Seeker_VasnyaVerdas");
+
+IF
+ObjectFlagSet("FTJ_Seeker_VasnyaMet_SetUpdates", (CHARACTERGUID)_Var1, _)
+AND
+ObjectGetFlag(_Var1, "FTJ_Seeker_VerdasDead", 0)
+AND
+UserGetFlag(_Var1, "QuestUpdate_FTJ_Seeker_VerdasMet", 0)
+THEN
+UserSetFlag(_Var1, "QuestUpdate_FTJ_Seeker_VasnyaMetStart");
+
+IF
+ObjectFlagSet((STRING)_Var1, (CHARACTERGUID)_Var2, _)
+AND
+DB_IsPlayer(_Var2)
+AND
+DB_FTJ_Seeker_SeekerUpdates(_Var1)
+AND
+QRY_FTJ_Seeker_KnowAboutDissident(_Var2)
+THEN
+UserSetFlag(_Var2, "QuestUpdate_FTJ_Seeker_DissidentSeekers");
+
+IF
+ObjectFlagSet((STRING)_Var1, (CHARACTERGUID)_Var2, _)
+AND
+DB_IsPlayer(_Var2)
+AND
+DB_FTJ_Seeker_DissidentMagisterUpdates(_Var1)
+AND
+QRY_FTJ_Seeker_KnowAboutSeeker(_Var2)
+THEN
+UserSetFlag(_Var2, "QuestUpdate_FTJ_Seeker_DissidentSeekers");
+
+QRY
+QRY_FTJ_Seeker_KnowAboutDissident((CHARACTERGUID)_Var1)
+AND
+DB_FTJ_Seeker_DissidentMagisterUpdates(_Var2)
+AND
+ObjectGetFlag(_Var1, _Var2, 1)
+THEN
+DB_NOOP(1);
+
+QRY
+QRY_FTJ_Seeker_KnowAboutSeeker((CHARACTERGUID)_Var1)
+AND
+DB_FTJ_Seeker_SeekerUpdates(_Var2)
+AND
+ObjectGetFlag(_Var1, _Var2, 1)
+THEN
+DB_NOOP(1);
+
+IF
+ObjectFlagSet((STRING)_Var1, (CHARACTERGUID)_Var2, _)
+AND
+DB_FTJ_Hunted_IntermediateUpdateFlag(_Var1, _Var4)
+AND
+QRY_FTJ_Hunted_HasQuestFTJ_Godwoken(_Var2)
+THEN
+UserSetFlag(_Var2, _Var4);
+
+IF
+ObjectFlagSet((STRING)_Var1, (CHARACTERGUID)_Var2, _)
+AND
+DB_FTJ_Hunted_IntermediateUpdateFlag(_Var1, _Var4)
+AND NOT
+QRY_FTJ_Hunted_HasQuestFTJ_Godwoken(_Var2)
+THEN
+DB_FTJ_Hunted_StoredUpdateFlag(_Var2, _Var4);
+
+QRY
+QRY_FTJ_Hunted_HasQuestFTJ_Godwoken((CHARACTERGUID)_Var1)
+AND
+DB_IsPlayer(_Var2)
+AND
+CharacterIsInPartyWith(_Var2, _Var1, 1)
+AND
+QuestAccepted(_Var2, "FTJ_Godwoken", 1)
+THEN
+DB_NOOP(1);
+
+IF
+ObjectFlagSet("FTJ_SW_LucienGaveBless", (CHARACTERGUID)_Var1, _)
+AND
+DB_FTJ_Hunted_StoredUpdateFlag(_Var1, _Var3)
+THEN
+UserSetFlag(_Var1, _Var3);
+
+IF
+ObjectFlagSet((STRING)_Var1, (CHARACTERGUID)_Var2, _)
+AND
+DB_FTJ_Hunted_StoredUpdateFlag(_Var2, _Var1)
+THEN
+NOT DB_FTJ_Hunted_StoredUpdateFlag(_Var2, _Var1);
+
+IF
+ObjectFlagSet("QuestUpdate_FTJ_Hunted_GarethHunted", CHARACTERGUID_S_Player_Ifan_ad9a3327-4456-42a7-9bf4-7ad60cc9e54f, _)
+AND
+IsTagged(CHARACTERGUID_S_Player_Ifan_ad9a3327-4456-42a7-9bf4-7ad60cc9e54f, "AVATAR", 1)
+THEN
+ObjectSetFlag(CHARACTERGUID_S_Player_Ifan_ad9a3327-4456-42a7-9bf4-7ad60cc9e54f, "QuestUpdate_FTJ_Ifan_DarkFaction_GarethInfo");
+
+IF
+ObjectFlagSet("QuestUpdate_FTJ_Hunted_BaharaHunted", CHARACTERGUID_S_Player_Ifan_ad9a3327-4456-42a7-9bf4-7ad60cc9e54f, _)
+AND
+IsTagged(CHARACTERGUID_S_Player_Ifan_ad9a3327-4456-42a7-9bf4-7ad60cc9e54f, "AVATAR", 1)
+THEN
+ObjectSetFlag(CHARACTERGUID_S_Player_Ifan_ad9a3327-4456-42a7-9bf4-7ad60cc9e54f, "QuestUpdate_FTJ_Ifan_DarkFaction_GarethInfo");
+
+IF
+ObjectFlagSet("QuestUpdate_FTJ_Hunted_AlexandarHunted", CHARACTERGUID_S_Player_Ifan_ad9a3327-4456-42a7-9bf4-7ad60cc9e54f, _)
+AND
+IsTagged(CHARACTERGUID_S_Player_Ifan_ad9a3327-4456-42a7-9bf4-7ad60cc9e54f, "AVATAR", 1)
+THEN
+ObjectSetFlag(CHARACTERGUID_S_Player_Ifan_ad9a3327-4456-42a7-9bf4-7ad60cc9e54f, "QuestUpdate_FTJ_Ifan_DarkFaction_GarethInfo");
+
+IF
+ObjectFlagSet("FTJ_IfanLoneWolf_SetUpdates", CHARACTERGUID_S_Player_Ifan_ad9a3327-4456-42a7-9bf4-7ad60cc9e54f, _)
+AND
+IsTagged(CHARACTERGUID_S_Player_Ifan_ad9a3327-4456-42a7-9bf4-7ad60cc9e54f, "AVATAR", 1)
+THEN
+ObjectSetFlag(CHARACTERGUID_S_Player_Ifan_ad9a3327-4456-42a7-9bf4-7ad60cc9e54f, "QuestUpdate_FTJ_Ifan_DarkFaction_GarethInfo");
+
+IF
+ObjectFlagSet("FTJ_IfanLoneWolf_SetUpdates", CHARACTERGUID_S_Player_Ifan_ad9a3327-4456-42a7-9bf4-7ad60cc9e54f, _)
+AND
+IsTagged(CHARACTERGUID_S_Player_Ifan_ad9a3327-4456-42a7-9bf4-7ad60cc9e54f, "AVATAR", 0)
+AND
+DB_CompanionAvatarBond(CHARACTERGUID_S_Player_Ifan_ad9a3327-4456-42a7-9bf4-7ad60cc9e54f, _Var2)
+THEN
+UserSetFlag(_Var2, "QuestUpdate_FTJ_COM_Ifan_GarethInfo");
+UserSetFlag(_Var2, "QuestUpdate_FTJ_Hunted_IfanHunted");
+
+PROC
+Proc_ObjectLeftCombat(CHARACTERGUID_S_GLO_Windego_d783285f-d3be-4cba-8333-db8976cef182, (INTEGER)_Var1)
+AND
+DB_Dead(CHARACTERGUID_S_GLO_Windego_d783285f-d3be-4cba-8333-db8976cef182)
+AND
+DB_IsPlayer(_Var2)
+AND
+DB_WasInCombat(_Var2, _Var1)
+THEN
+UserSetFlag(_Var2, "QuestUpdate_FTJ_Hunted_WindegoKill");
+
+PROC
+Proc_ObjectLeftCombat(CHARACTERGUID_S_GLO_Windego_d783285f-d3be-4cba-8333-db8976cef182, (INTEGER)_Var1)
+AND
+DB_Dead(CHARACTERGUID_S_GLO_Windego_d783285f-d3be-4cba-8333-db8976cef182)
+AND
+DB_IsPlayer(_Var2)
+AND
+DB_CombatCharacters(_Var2, _Var1)
+THEN
+UserSetFlag(_Var2, "QuestUpdate_FTJ_Hunted_WindegoKill");
+
+IF
+CharacterKilledBy(CHARACTERGUID_S_GLO_Windego_d783285f-d3be-4cba-8333-db8976cef182, (CHARACTERGUID)_Var1, _)
+AND
+DB_IsPlayer(_Var1)
+THEN
+UserSetFlag(_Var1, "QuestUpdate_FTJ_Hunted_WindegoKill");
+
+IF
+ObjectFlagSet((STRING)_Var1, (CHARACTERGUID)_Var2, _)
+AND
+DB_FTJ_Hunted_IntermediateUpdateFlag(_, _Var1)
+AND
+_Var1 != "QuestUpdate_FTJ_Hunted_AlexandarHunted"
+THEN
+UserSetFlag(_Var2, "QuestUpdate_FTJ_Hunted_TrackHunter");
+
+IF
+ObjectFlagSet("FTJ_SW_LucienGaveBless", (CHARACTERGUID)_Var1, _)
+THEN
+UserSetFlag(_Var1, "QuestUpdate_FTJ_Voice_GodMet");
+
+IF
+ObjectFlagSet("FTJ_SW_LucienGaveBless", (CHARACTERGUID)_Var1, _)
+AND
+_Var1 != CHARACTERGUID_S_Player_Lohse_bb932b13-8ebf-4ab4-aac0-83e6924e4295
+THEN
+ObjectSetFlag(_Var1, "QuestUpdate_FTJ_Godwoken_GodMission");
+
+IF
+ObjectFlagSet("FTJ_SW_LucienGaveBless", CHARACTERGUID_S_Player_Lohse_bb932b13-8ebf-4ab4-aac0-83e6924e4295, _)
+THEN
+ObjectSetFlag(CHARACTERGUID_S_Player_Lohse_bb932b13-8ebf-4ab4-aac0-83e6924e4295, "QuestUpdate_FTJ_Godwoken_GodMission_Lohse");
+
+IF
+ObjectFlagSet("RC_FTJ_OlgoSaheila_RatHint", (CHARACTERGUID)_Var1, _)
+AND
+UserGetFlag(_Var1, "QuestUpdate_RC_FTJ_OlgoSaheila_GriffHint", 1)
+THEN
+UserSetFlag(_Var1, "QuestUpdate_RC_FTJ_OlgoSaheila_RatHint");
+
+IF
+ItemAddedToCharacter(ITEMGUID_S_FTJ_SW_WitchPurgingWand_10c04dcc-ee41-4bb2-b6b5-fd9920119180, (CHARACTERGUID)_Var1)
+AND
+DB_IsPlayer(_Var1)
+THEN
+PartySetFlag(_Var1, "QuestUpdate_FTJ_SW_Shriekers_FoundWandRadeka");
+Proc_FTJ_Escape_FoundWandUpdate(_Var1);
+
+IF
+ItemAddedToCharacter(ITEMGUID_S_FTJ_SW_VaultPurgingWand_fb552404-f2a0-4f7f-80ed-d44bf62dba03, (CHARACTERGUID)_Var1)
+AND
+DB_IsPlayer(_Var1)
+THEN
+PartySetFlag(_Var1, "QuestUpdate_FTJ_SW_Shriekers_FoundWandVault");
+Proc_FTJ_Escape_FoundWandUpdate(_Var1);
+
+IF
+CharacterUsedSkillOnTarget((CHARACTERGUID)_Var1, (CHARACTERGUID)_Var2, "Target_SourceDisruption", _, _)
+AND
+DB_IsPlayer(_Var1)
+AND
+DB_FTJ_SW_SourceTotems(_Var2, _, _)
+THEN
+PartySetFlag(_Var1, "QuestUpdate_FTJ_SW_Shriekers_FirstKill_Shrieker");
+
+IF
+CharacterUsedSkillOnTarget((CHARACTERGUID)_Var1, (CHARACTERGUID)_Var2, (STRING)_Var3, _, _)
+AND
+DB_SourceVampirism_Skills(_Var3)
+AND
+DB_IsPlayer(_Var1)
+AND
+DB_FTJ_SW_SourceTotems(_Var2, _, _)
+THEN
+PartySetFlag(_Var1, "QuestUpdate_FTJ_SW_Shriekers_FirstKill_Shrieker");
+
+IF
+ObjectFlagSet("QuestUpdate_FTJ_SW_BatteredAndCornered_GarethAfterWeapons", (CHARACTERGUID)_Var1, _)
+AND
+DB_IsPlayer(_Var1)
+AND
+UserGetFlag(_Var1, "FTJ_SW_FoundDeadGareth", 0)
+THEN
+UserSetFlag(_Var1, "QuestUpdate_FTJ_Escape_Island_FindGareth");
+PartySetFlag(_Var1, "QuestUpdate_FTJ_SW_Shriekers_GarethHelp");
+
+IF
+GameBookInterfaceClosed(ITEMGUID_BOOK_FTJ_TyrantReport_000_64e1bef3-7b8a-458b-832e-ed74874c27c5, (CHARACTERGUID)_Var1)
+THEN
+PartySetFlag(_Var1, "QuestUpdate_FTJ_SW_Tyrant_FoundReport");
+
+IF
+ItemAddedToCharacter((ITEMGUID)_Var1, (CHARACTERGUID)_Var2)
+AND
+DB_IsPlayer(_Var2)
+AND
+DB_FTJ_SW_Tyrant_ItemUpdate(_Var1, _Var3)
+THEN
+PartySetFlag(_Var2, _Var3);
+PROC_FTJ_SW_Tyrant_CheckHasAllPieces(_Var2);
+
+IF
+ItemAddedToCharacter(ITEMGUID_S_FTJ_ARM_BraccusHelm_Cured_92a963b6-d4e0-4dc6-a49d-8b0847bfb7f5, (CHARACTERGUID)_Var1)
+AND
+DB_IsPlayer(_Var1)
+AND
+ObjectGetFlag(_Var1, "QuestUpdate_FTJ_SW_Tyrant_FoundHelm", 0)
+THEN
+PartySetFlag(_Var1, "QuestUpdate_FTJ_SW_Tyrant_FoundHelmCured");
+
+PROC
+PROC_FTJ_SW_Tyrant_CheckHasAllPieces((CHARACTERGUID)_Var1)
+AND NOT
+QRY_FTJ_SW_Tyrant_MissingPieces(_Var1)
+THEN
+PartySetFlag(_Var1, "QuestUpdate_FTJ_SW_Tyrant_FoundAll");
+
+QRY
+QRY_FTJ_SW_Tyrant_MissingPieces((CHARACTERGUID)_Var1)
+AND
+DB_FTJ_SW_Tyrant_ItemUpdate(_Var2, _)
+AND
+ItemIsInPartyInventory(_Var2, _Var1, 0, 0)
+THEN
+DB_NOOP(1);
+
+IF
+GlobalFlagSet("FTJ_BraccusAxeDemonSpawned")
+THEN
+NOT DB_FTJ_SW_Tyrant_ItemUpdate(ITEMGUID_S_FTJ_ARM_BraccusHelm_Uncured_9e30ecd5-ce72-49d6-a798-c20c8235dd77, "QuestUpdate_FTJ_SW_Tyrant_FoundHelm");
+DB_FTJ_SW_Tyrant_ItemUpdate(ITEMGUID_S_FTJ_ARM_BraccusHelm_Cured_92a963b6-d4e0-4dc6-a49d-8b0847bfb7f5, "");
+
+IF
+CharacterSawCharacter((CHARACTERGUID)_Var1, (CHARACTERGUID)_Var2)
+AND
+DB_FTJ_QuestDef_DeadCharacterUpdates(_Var2, _Var3)
+AND
+DB_IsPlayer(_Var1)
+AND
+DB_Dead(_Var2)
+THEN
+ObjectSetFlag(_Var1, _Var3);
+
+IF
+CharacterDied((CHARACTERGUID)_Var1)
+AND
+DB_FTJ_QuestDef_DeadCharacterUpdates(_Var1, _Var2)
+AND
+DB_IsPlayer(_Var3)
+AND
+CharacterCanSee(_Var3, _Var1, 1)
+THEN
+ObjectSetFlag(_Var3, _Var2);
+
+IF
+ObjectFlagSet("FTJ_SW_BraccusArmory_RatHint_SetUpdate", (CHARACTERGUID)_Var1, _)
+AND
+Qry_UserHasBless(_Var1)
+THEN
+UserSetFlag(_Var1, "QuestUpdate_FTJ_SW_BraccusArmory_RatHintGotBless");
+
+IF
+ObjectFlagSet("FTJ_SW_BraccusArmory_RatHint_SetUpdate", (CHARACTERGUID)_Var1, _)
+AND NOT
+Qry_UserHasBless(_Var1)
+THEN
+UserSetFlag(_Var1, "QuestUpdate_FTJ_SW_BraccusArmory_RatHintNoBless");
+
+IF
+SkillAdded((CHARACTERGUID)_Var1, "Target_Bless", _)
+AND
+UserGetFlag(_Var1, "QuestUpdate_FTJ_SW_BraccusArmory_RatHintNoBless", 1)
+THEN
+UserSetFlag(_Var1, "QuestUpdate_FTJ_SW_BraccusArmory_RatHintFoundBless");
+
+QRY
+Qry_UserHasBless((CHARACTERGUID)_Var1)
+AND
+CharacterGetReservedUserID(_Var1, _Var2)
+AND
+DB_IsPlayer(_Var3)
+AND
+CharacterGetReservedUserID(_Var3, _Var2)
+AND
+CharacterHasSkill(_Var3, "Target_Bless", 1)
+THEN
+DB_NOOP(1);
+
+IF
+CharacterEnteredTrigger((CHARACTERGUID)_Var1, (TRIGGERGUID)_Var2)
+AND
+DB_IsPlayer(_Var1)
+AND
+DB_FTJ_SW_Necromancers_JarsUpdate(_Var3, _Var2)
+AND
+CharacterCanSee(_Var1, _Var3, 1)
+THEN
+UserSetFlag(_Var1, "QuestUpdate_FTJ_SW_Necromancers_DealSJ");
+
+IF
+CharacterUsedItem((CHARACTERGUID)_Var1, (ITEMGUID)_Var2)
+AND
+DB_IsPlayer(_Var1)
+AND
+DB_FTJ_SW_Necromancers_JarsUpdate(_Var2, _)
+THEN
+UserSetFlag(_Var1, "QuestUpdate_FTJ_SW_Necromancers_DealSJ");
+
+IF
+ItemUnlocked(_, (CHARACTERGUID)_Var2, ITEMGUID_S_FTJ_ChapelUpperFloorDoorKey_2_144ece86-8427-466d-b87c-722ad238e268)
+AND
+Qry_FTJ_CarsonKey_BeastInParty(_Var2)
+THEN
+Proc_Beast_CarsonKey_GiveUpdate();
+
+QRY
+Qry_FTJ_CarsonKey_BeastInParty((CHARACTERGUID)_Var1)
+AND
+_Var1 == CHARACTERGUID_S_Player_Beast_f25ca124-a4d2-427b-af62-df66df41a978
+THEN
+DB_NOOP(1);
+
+QRY
+Qry_FTJ_CarsonKey_BeastInParty((CHARACTERGUID)_Var1)
+AND
+CharacterIsInPartyWith(_Var1, CHARACTERGUID_S_Player_Beast_f25ca124-a4d2-427b-af62-df66df41a978, 1)
+THEN
+DB_NOOP(1);
+
+PROC
+Proc_Beast_CarsonKey_GiveUpdate()
+AND
+DB_Avatars(CHARACTERGUID_S_Player_Beast_f25ca124-a4d2-427b-af62-df66df41a978)
+AND
+ObjectGetFlag(CHARACTERGUID_S_Player_Beast_f25ca124-a4d2-427b-af62-df66df41a978, "QuestUpdate_FTJ_OriginBeast_CarsonKeyUnused", 0)
+THEN
+ObjectSetFlag(CHARACTERGUID_S_Player_Beast_f25ca124-a4d2-427b-af62-df66df41a978, "QuestUpdate_FTJ_OriginBeast_CarsonKey");
+
+PROC
+Proc_Beast_CarsonKey_GiveUpdate()
+AND NOT
+DB_Avatars(CHARACTERGUID_S_Player_Beast_f25ca124-a4d2-427b-af62-df66df41a978)
+AND
+DB_IsPlayer(_Var1)
+AND
+DB_CompanionAvatarBond(CHARACTERGUID_S_Player_Beast_f25ca124-a4d2-427b-af62-df66df41a978, _Var1)
+AND
+ObjectGetFlag(_Var1, "QuestUpdate_FTJ_COM_Beast_CarsonKeyUnused", 0)
+THEN
+UserSetFlag(_Var1, "QuestUpdate_FTJ_COM_Beast_CarsonKey");
+
+PROC
+Proc_Beast_CarsonKey_GiveUpdate_NotUsed()
+AND NOT
+DB_Avatars(CHARACTERGUID_S_Player_Beast_f25ca124-a4d2-427b-af62-df66df41a978)
+AND
+DB_IsPlayer(_Var1)
+AND
+DB_CompanionAvatarBond(CHARACTERGUID_S_Player_Beast_f25ca124-a4d2-427b-af62-df66df41a978, _Var1)
+AND
+ObjectGetFlag(_Var1, "QuestUpdate_FTJ_COM_Beast_CarsonKey", 0)
+THEN
+UserSetFlag(_Var1, "QuestUpdate_FTJ_COM_Beast_CarsonKeyUnused");
+
+PROC
+Proc_Beast_CarsonKey_GiveUpdate_NotUsed()
+AND
+DB_Avatars(CHARACTERGUID_S_Player_Beast_f25ca124-a4d2-427b-af62-df66df41a978)
+AND
+ObjectGetFlag(CHARACTERGUID_S_Player_Beast_f25ca124-a4d2-427b-af62-df66df41a978, "QuestUpdate_FTJ_OriginBeast_CarsonKey", 0)
+THEN
+UserSetFlag(CHARACTERGUID_S_Player_Beast_f25ca124-a4d2-427b-af62-df66df41a978, "QuestUpdate_FTJ_OriginBeast_CarsonKeyUnused");
+
+IF
+ObjectFlagSet("QuestUpdate_FTJ_Escape_EnterDunes", CHARACTERGUID_S_Player_Beast_f25ca124-a4d2-427b-af62-df66df41a978, _)
+THEN
+Proc_Beast_CarsonKey_GiveUpdate_NotUsed();
+
+IF
+CharacterSawCharacter(CHARACTERGUID_S_Player_Sebille_c8d55eaf-e4eb-466a-8f0d-6a9447b5b24c, CHARACTERGUID_S_FTJ_LizardDreamer_ffb80725-25ff-4174-98cb-60a11612e5c4)
+AND
+IsTagged(CHARACTERGUID_S_Player_Sebille_c8d55eaf-e4eb-466a-8f0d-6a9447b5b24c, "AVATAR", 1)
+THEN
+ObjectSetFlag(CHARACTERGUID_S_Player_Sebille_c8d55eaf-e4eb-466a-8f0d-6a9447b5b24c, "QuestUpdate_FTJ_OriginSebille_DreamerFound");
+
+IF
+CharacterEnteredTrigger((CHARACTERGUID)_Var1, (TRIGGERGUID)_Var2)
+AND
+DB_IsPlayer(_Var1)
+AND
+DB_FTJ_Escape_Free_Own_Region(_Var2)
+AND
+ObjectGetFlag(_Var1, "QuestUpdate_FTJ_Escape_Free_Own", 0)
+AND
+ObjectGetFlag(_Var1, "QuestUpdate_FTJ_Escape_EnterUnderground", 0)
+AND
+ObjectGetFlag(_Var1, "QuestUpdate_FTJ_Escape_DivineStatue_Passage", 0)
+AND
+ObjectGetFlag(_Var1, "QuestUpdate_FTJ_Escape_Yarrow_KeyUsed", 0)
+AND
+ObjectGetFlag(_Var1, "IsInPrison", 0)
+THEN
+UserSetFlag(_Var1, "QuestUpdate_FTJ_Escape_Free_Own");
+
+PROC
+ProcCrimeTeleportCharacterToPrison((CHARACTERGUID)_Var1, _)
+AND
+DB_IsPlayer(_Var1)
+THEN
+UserSetFlag(_Var1, "QuestUpdate_FTJ_Escape_Arrested");
+
+IF
+ObjectFlagSet("FTJ_SW_HasPurgingWand", (CHARACTERGUID)_Var1, _)
+AND
+DB_IsPlayer(_Var1)
+AND
+UserGetFlag(_Var1, "QuestUpdate_FTJ_SW_CallToArms_SuggestPurging", 1)
+THEN
+UserSetFlag(_Var1, "QuestUpdate_FTJ_SW_CallToArms_FoundWand");
+
+IF
+GameBookInterfaceClosed(ITEMGUID_S_FTJ_SW_CartMagister_LetterDallis_9353f715-5e93-41ef-8b72-721dbda356bb, (CHARACTERGUID)_Var1)
+THEN
+UserSetFlag(_Var1, "QuestUpdate_FTJ_SW_BraccusArmory_FoundMagisterOrders");
+UserSetFlag(_Var1, "QuestUpdate_FTJ_SW_Shriekers_FoundMagisterOrders");
+
+IF
+GameBookInterfaceClosed((ITEMGUID)_Var1, (CHARACTERGUID)_Var2)
+AND
+DB_FTJ_BookUpdates(_Var1, _Var3)
+THEN
+ObjectSetFlag(_Var2, _Var3);
+
+PROC
+ProcRegionEnded("FJ_FortJoy_Main")
+AND
+DB_IsPlayer(_Var1)
+AND
+ObjectGetFlag(_Var1, "QuestUpdate_RC_FTJ_SoulJar_DestroyedSJ", 1)
+THEN
+QuestClose(_Var1, "RC_FTJ_SoulJar");
+
+PROC
+ProcRegionEnded("FJ_FortJoy_Main")
+THEN
+GoalCompleted;
+
+
+EXITSECTION
+NOT DB_KilledEvent(CHARACTERGUID_S_GLO_Alexandar_03e6345f-1bd3-403c-80e2-a443a74f6349, "QuestUpdate_CORE_Magisters_AlexandarDead");
+ENDEXITSECTION
+
+ParentTargetEdge "FortJoy"

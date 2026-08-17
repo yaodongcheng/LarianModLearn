@@ -1,0 +1,643 @@
+Version 1
+SubGoalCombiner SGC_AND
+
+INITSECTION
+DB_OneShotPlayerTrigger(S_RC_DW_WC_MordusOffice_Box_a4018fd0-bed4-494c-9da6-3cc425f426e3);
+DB_RC_WC_MordusOffice_FlyingShipComponent(S_RC_WC_MordusOffice_ShipWreck_Hull_75e08af2-f759-4f9e-9ef5-39d5082be41e);
+DB_RC_WC_MordusOffice_FlyingShipComponent(S_RC_WC_MordusOffice_ShipWreck_LeftDoor_ae3da0c1-135f-4fe4-8bff-9cd2e6838e8c);
+DB_RC_WC_MordusOffice_FlyingShipComponent(S_RC_WC_MordusOffice_ShipWreck_RightDoor_f4747286-0a21-4092-99d2-8ea79c10d2bd);
+DB_RC_WC_MordusOffice_FlyingShipComponent_Blocker(ITEMGUID_S_RC_WC_MordusOffice_ShipHullBlocker_000_4e75c58c-bf97-4ce5-a5e1-82aecd2643a4);
+DB_RC_WC_MordusOffice_FlyingShipComponent_Blocker(ITEMGUID_S_RC_WC_MordusOffice_ShipHullBlocker_001_7510d0f1-fcf1-4cb2-8dd9-c3c07668d108);
+DB_RC_WC_MordusOffice_FlyingShipComponent_Blocker(ITEMGUID_S_RC_WC_MordusOffice_ShipHullBlocker_002_85cd1d0f-e880-477f-87c6-e0ab3753578b);
+DB_RC_WC_MordusOffice_FlyingShipComponent_Blocker(ITEMGUID_S_RC_WC_MordusOffice_ShipHullBlocker_003_6dbc3575-7536-42d3-985c-3f02010f5e0e);
+DB_RC_WC_MordusOffice_FlyingShipComponent_Blocker(ITEMGUID_S_RC_WC_MordusOffice_ShipHullBlocker_004_e8b28111-414e-4e93-9be6-e86ada1c619a);
+DB_RC_WC_MordusOffice_FlyingShipComponent_Blocker(ITEMGUID_S_RC_WC_MordusOffice_ShipHullBlocker_005_d445c9db-a5ea-4d9b-bf20-3dd2689dd3f4);
+DB_RC_WC_MordusOffice_FlyingShipComponent_Blocker(ITEMGUID_S_RC_WC_MordusOffice_ShipHullBlocker_006_6f47a3e0-00b4-43f5-a74a-3164d0041150);
+DB_RC_WC_MordusOffice_FlyingShipComponent_Blocker(ITEMGUID_S_RC_WC_MordusOffice_ShipHullBlocker_007_1b3d72c2-7e75-4953-910f-c7b1fc5e1b43);
+DB_RC_WC_MordusOffice_FlyingShipComponent_Blocker(ITEMGUID_S_RC_WC_MordusOffice_ShipHullBlocker_008_f3d39bec-417d-4d70-8b2b-2f1fb9e88857);
+DB_RC_WC_MordusOffice_FlyingShipComponent_Blocker(ITEMGUID_S_RC_WC_MordusOffice_ShipHullBlocker_010_effd4365-3b0a-4cb1-a98f-3289435ae2ee);
+DB_RC_WC_MordusOffice_FlyingShipComponent_Blocker(ITEMGUID_S_RC_WC_MordusOffice_ShipHullBlocker_011_d4e8b0d0-ee9d-4768-909a-c81e8d107046);
+DB_RC_WC_MordusOffice_FlyingShipComponent_Blocker(ITEMGUID_S_RC_WC_MordusOffice_ShipHullBlocker_012_d618c2ac-40fb-409a-8429-5123890044a9);
+DB_RC_WC_MordusOffice_FlyingShipComponent_Main(S_RC_WC_MordusOffice_ShipWreck_Hull_75e08af2-f759-4f9e-9ef5-39d5082be41e);
+DB_RC_WC_MordusOffice_FlyingShipComponent_Main_FlyTrigger(S_RC_WC_MordusOffice_ShipwreckFlyTarget_3bc294f0-41eb-4e28-bbed-096c40e0795f);
+DB_RC_WC_MordusOffice_FlyingShipComponent_Main_LandTrigger(S_RC_WC_MordusOffice_ShipwreckFlyTargetGround_e05c7dce-91da-455b-a36c-73aa62d93b18);
+DB_RC_WC_MordusOffice_FlyingShip_ShipBorderTrigger("RC_WC_MordusOffice_ShipLanding_MoveCharacterToInside", S_RC_WC_MO_BoatPlayerMoveTrigger_LeftInside_8c9f81b3-4498-435a-a895-30b40ecc5944);
+DB_RC_WC_MordusOffice_FlyingShip_ShipBorderTrigger("RC_WC_MordusOffice_ShipLanding_MoveCharacterToInside", TRIGGERGUID_S_RC_WC_MO_BoatPlayerMoveTrigger_RightInside_c63c966d-d408-4427-8b95-4314c9cdcb3f);
+DB_RC_WC_MordusOffice_FlyingShip_ShipBorderTrigger("RC_WC_MordusOffice_ShipLanding_MoveCharacterToInside", TRIGGERGUID_S_RC_WC_MO_BoatPlayerMoveTrigger_ForwardInside_06525ecb-c73c-4d0b-a25e-2b4515f73a36);
+DB_RC_WC_MordusOffice_FlyingShip_ShipBorderTrigger("RC_WC_MordusOffice_ShipLanding_MoveCharacterToOutside", S_RC_WC_MO_BoatPlayerMoveTrigger_LeftOutside_b916a048-1b26-427b-91e2-fa6245ce2ef1);
+DB_RC_WC_MordusOffice_FlyingShip_ShipBorderTrigger("RC_WC_MordusOffice_ShipLanding_MoveCharacterToOutside", TRIGGERGUID_S_RC_WC_MO_BoatPlayerMoveTrigger_RightOutside_ce7f7e12-bc43-4d7c-a507-0f59dbf27a48);
+DB_RC_WC_MordusOffice_FlyingShip_ShipBorderTriggerFirstForCollection("RC_WC_MordusOffice_ShipLanding_MoveCharacterToInside", S_RC_WC_MordusOffice_InsideShip_000_c44372eb-585f-4ec4-b6ef-ee8825630a2e);
+DB_RC_WC_MordusOffice_FlyingShip_ShipSurrounding_DestinationTrigger("RC_WC_MordusOffice_ShipLanding_MoveCharacterToInside", S_RC_WC_MordusOffice_InsideShip_000_c44372eb-585f-4ec4-b6ef-ee8825630a2e);
+DB_RC_WC_MordusOffice_FlyingShip_ShipSurrounding_DestinationTrigger("RC_WC_MordusOffice_ShipLanding_MoveCharacterToInside", TRIGGERGUID_S_RC_WC_MordusOffice_InsideShip_001_49a116ba-1131-42f0-aee4-f094f0bc18af);
+DB_RC_WC_MordusOffice_FlyingShip_ShipSurrounding_DestinationTrigger("RC_WC_MordusOffice_ShipLanding_MoveCharacterToInside", TRIGGERGUID_S_RC_WC_MordusOffice_InsideShip_002_8910b119-d130-443a-849f-63629cbf66c3);
+DB_RC_WC_MordusOffice_FlyingShip_ShipSurrounding_DestinationTrigger("RC_WC_MordusOffice_ShipLanding_MoveCharacterToInside", TRIGGERGUID_S_RC_WC_MordusOffice_InsideShip_003_2f90e5d2-9ea0-458b-bda5-d2f38834ce0e);
+DB_RC_WC_MordusOffice_FlyingShip_ShipSurrounding_DestinationTrigger("RC_WC_MordusOffice_ShipLanding_MoveCharacterToInside", TRIGGERGUID_S_RC_WC_MordusOffice_InsideShip_004_039c6fb8-b4a5-4857-b957-b5dcb60c3d87);
+DB_RC_WC_MordusOffice_FlyingShip_ShipSurrounding_DestinationTrigger("RC_WC_MordusOffice_ShipLanding_MoveCharacterToInside", TRIGGERGUID_S_RC_WC_MordusOffice_InsideShip_005_f9a5db78-9103-4afd-b89f-d4314c8a06a2);
+DB_RC_WC_MordusOffice_FlyingShip_ShipSurrounding_DestinationTrigger("RC_WC_MordusOffice_ShipLanding_MoveCharacterToInside", TRIGGERGUID_S_RC_WC_MordusOffice_InsideShip_006_08c10047-a19f-465b-872b-735ac942fffd);
+DB_RC_WC_MordusOffice_FlyingShip_ShipSurrounding_DestinationTrigger("RC_WC_MordusOffice_ShipLanding_MoveCharacterToInside", TRIGGERGUID_S_RC_WC_MordusOffice_InsideShip_007_bd1e874b-098e-466f-9876-350ef32c249a);
+DB_RC_WC_MordusOffice_FlyingShip_ShipSurrounding_DestinationTrigger("RC_WC_MordusOffice_ShipLanding_MoveCharacterToInside", TRIGGERGUID_S_RC_WC_MordusOffice_InsideShip_008_ec830bbe-81a1-45b1-a40f-cf5a29c5e6d9);
+DB_RC_WC_MordusOffice_FlyingShip_ShipSurrounding_DestinationTrigger("RC_WC_MordusOffice_ShipLanding_MoveCharacterToInside", TRIGGERGUID_S_RC_WC_MordusOffice_InsideShip_009_aebd858c-9d38-4912-87b1-b69d0463f2ae);
+DB_RC_WC_MordusOffice_FlyingShip_ShipBorderTriggerFirstForCollection("RC_WC_MordusOffice_ShipLanding_MoveCharacterToOutside", S_RC_WC_MO_BoatPlayerMoveTrigger_LeftInside_8c9f81b3-4498-435a-a895-30b40ecc5944);
+DB_RC_WC_MordusOffice_FlyingShip_ShipSurrounding_DestinationTrigger("RC_WC_MordusOffice_ShipLanding_MoveCharacterToOutside", S_RC_WC_MordusOffice_OutsideShip_000_68cf14d8-d5de-4812-94d5-dc385780634f);
+DB_RC_WC_MordusOffice_FlyingShip_ShipSurrounding_DestinationTrigger("RC_WC_MordusOffice_ShipLanding_MoveCharacterToOutside", TRIGGERGUID_S_RC_WC_MordusOffice_OutsideShip_001_0ee25171-9c59-47df-ad21-b18cf010a1b4);
+DB_RC_WC_MordusOffice_FlyingShip_ShipSurrounding_DestinationTrigger("RC_WC_MordusOffice_ShipLanding_MoveCharacterToOutside", TRIGGERGUID_S_RC_WC_MordusOffice_OutsideShip_002_ac43c2e1-a7d6-463b-86ab-35e106eaa0a3);
+DB_RC_WC_MordusOffice_FlyingShip_ShipSurrounding_DestinationTrigger("RC_WC_MordusOffice_ShipLanding_MoveCharacterToOutside", TRIGGERGUID_S_RC_WC_MordusOffice_OutsideShip_003_7e7ca5e0-d10f-404f-8a2d-1a81d6fe2571);
+DB_RC_WC_MordusOffice_FlyingShip_ShipSurrounding_DestinationTrigger("RC_WC_MordusOffice_ShipLanding_MoveCharacterToOutside", TRIGGERGUID_S_RC_WC_MordusOffice_OutsideShip_004_9d2076f4-5076-4e06-9cf4-0ba3a4bf2d48);
+DB_RC_WC_MordusOffice_FlyingShip_ShipSurrounding_DestinationTrigger("RC_WC_MordusOffice_ShipLanding_MoveCharacterToOutside", TRIGGERGUID_S_RC_WC_MordusOffice_OutsideShip_005_83e317d6-2f11-4355-a1cf-4d5697ee7730);
+DB_RC_WC_MordusOffice_FlyingShip_ShipSurrounding_DestinationTrigger("RC_WC_MordusOffice_ShipLanding_MoveCharacterToOutside", TRIGGERGUID_S_RC_WC_MordusOffice_OutsideShip_006_59c156ff-c7be-4d61-b9a2-5cbab943dc4b);
+DB_RC_WC_MordusOffice_FlyingShip_ShipSurrounding_DestinationTrigger("RC_WC_MordusOffice_ShipLanding_MoveCharacterToOutside", TRIGGERGUID_S_RC_WC_MordusOffice_OutsideShip_007_5c818ecb-573b-49c6-95f6-e0447bf0c8a4);
+DB_RC_WC_MordusOffice_FlyingShip_ShipSurrounding_DestinationTrigger("RC_WC_MordusOffice_ShipLanding_MoveCharacterToOutside", TRIGGERGUID_S_RC_WC_MordusOffice_OutsideShip_008_3ba08a3f-02ae-4467-8f93-cb0ec92a13ee);
+DB_RC_WC_MordusOffice_FlyingShip_ShipSurrounding_DestinationTrigger("RC_WC_MordusOffice_ShipLanding_MoveCharacterToOutside", TRIGGERGUID_S_RC_WC_MordusOffice_OutsideShip_009_253e8eac-1683-4fc0-ba6b-91bfa98b9e5d);
+DB_RC_WC_MordusOffice_RockFace_WaterFallHelper(RC_WC_MordusOffice_WaterBreakThroughHelper_000_81c680ad-3d61-4b56-86a2-55f8392fa671, -70);
+DB_RC_WC_MordusOffice_RockFace_WaterFallHelper(RC_WC_MordusOffice_WaterBreakThroughHelper_001_e2f28342-ac9d-47aa-99d2-06b667677482, -80);
+DB_RC_WC_MordusOffice_RockFace_WaterFallHelper(RC_WC_MordusOffice_WaterBreakThroughHelper_002_9645819e-f306-457e-aaf9-870eb97e10c0, -90);
+DB_RC_WC_MordusOffice_RockFace_WaterFallHelper(RC_WC_MordusOffice_WaterBreakThroughHelper_003_9bda1737-6804-477f-9a17-4006d7548aa3, -110);
+DB_RC_WC_MordusOffice_RockFace_WaterFallHelper(RC_WC_MordusOffice_WaterBreakThroughHelper_004_aa645a64-7396-488d-9e45-cd45a127124e, -115);
+DB_RC_WC_MordusOffice_RockFace_WaterFallHelper(ITEMGUID_RC_WC_MordusOffice_WaterBreakThroughHelper_005_4a4861b7-48a4-4f30-adbb-5782fe3d164f);
+DB_RC_WC_MordusOffice_RockFace_WaterFallHelper(ITEMGUID_RC_WC_MordusOffice_WaterBreakThroughHelper_006_633a62c8-00f5-4b4a-944f-8ec3de8bdac8);
+DB_RC_WC_MordusOffice_RockFace_WaterFallHelper(ITEMGUID_RC_WC_MordusOffice_WaterBreakThroughHelper_007_e24fe2b3-dcfa-4a46-ae26-dec39e1c5a8c);
+DB_RC_WC_MordusOffice_RockFace_WaterFallHelper(ITEMGUID_RC_WC_MordusOffice_WaterBreakThroughHelper_008_23675015-8841-45b2-9984-8abe41516cf7);
+DB_RC_WC_MordusOffice_RockFace_WaterFallHelper(ITEMGUID_RC_WC_MordusOffice_WaterBreakThroughHelper_009_041f2f01-a7bc-45ba-82f2-b33ada487e83);
+DB_RC_WC_MordusOffice_RockFace_WaterFallBottomHelper(TRIGGERGUID_S_RC_WC_MordusOffice_RockFace_WaterFallBottomHelper_000_66c60e9b-8593-45e1-bcda-b3ab1063a74f);
+DB_RC_WC_MordusOffice_RockFace_WaterFallBottomHelper(TRIGGERGUID_S_RC_WC_MordusOffice_RockFace_WaterFallBottomHelper_001_eaf60445-b042-41d8-a6d9-8b3519ee9bbb);
+DB_RC_WC_MordusOffice_RockFace_WaterFallBottomHelper(TRIGGERGUID_S_RC_WC_MordusOffice_RockFace_WaterFallBottomHelper_002_04cb3764-981f-45d6-b3df-3740c20463bb);
+DB_RC_WC_MordusOffice_RockFace_WaterFallBottomHelper(TRIGGERGUID_S_RC_WC_MordusOffice_RockFace_WaterFallBottomHelper_003_3a32c9c6-3c87-40da-b457-4746c89cfe50);
+DB_RC_WC_MordusOffice_SplashesAroundShip(5, TRIGGERGUID_S_RC_WC_MordusOffice_ShipLandSplash_000_6344ed69-7326-4fe6-859c-e13d88df6b92);
+DB_RC_WC_MordusOffice_SplashesAroundShip(5, TRIGGERGUID_S_RC_WC_MordusOffice_ShipLandSplash_001_0d70c9d2-96a4-43ea-acb1-114743cf85f4);
+DB_RC_WC_MordusOffice_SplashesAroundShip(4, TRIGGERGUID_S_RC_WC_MordusOffice_ShipLandSplash_002_9e1ac5bf-a2da-4130-b2c8-f83d13dbc704);
+DB_RC_WC_MordusOffice_SplashesAroundShip(3, TRIGGERGUID_S_RC_WC_MordusOffice_ShipLandSplash_003_5c230ff7-27b6-4dc5-b458-2e1420ba1c2e);
+DB_RC_WC_MordusOffice_SplashesAroundShip(2, TRIGGERGUID_S_RC_WC_MordusOffice_ShipLandSplash_004_d21def6c-9fe9-47eb-adfc-f33f72e4c5ad);
+DB_RC_WC_MordusOffice_SplashesAroundShip(1, TRIGGERGUID_S_RC_WC_MordusOffice_ShipLandSplash_005_e3e754c5-6cbf-49c0-9b0a-d14be83945b6);
+DB_RC_WC_MordusOffice_SplashesAroundShip(0, TRIGGERGUID_S_RC_WC_MordusOffice_ShipLandSplash_006_40907e5a-d44a-4c17-ab85-9ac6dc6ea081);
+DB_RC_WC_MordusOffice_SplashesAroundShip(0, TRIGGERGUID_S_RC_WC_MordusOffice_ShipLandSplash_007_05e83609-7006-4600-876f-6fa708ec69b0);
+DB_RC_WC_MordusOffice_SplashesAroundShip(0, TRIGGERGUID_S_RC_WC_MordusOffice_ShipLandSplash_008_df457714-63cc-474e-a482-8ffaff4a1e37);
+DB_RC_WC_MordusOffice_SplashesAroundShip(0, TRIGGERGUID_S_RC_WC_MordusOffice_ShipLandSplash_009_212c0cc4-cb62-4f98-b03b-d63151ced2f2);
+DB_RC_WC_MordusOffice_SplashesAroundShip(0, TRIGGERGUID_S_RC_WC_MordusOffice_ShipLandSplash_010_954f81b4-8686-475b-b76e-5fcd62b6600f);
+DB_RC_WC_MordusOffice_SplashesAroundShip(1, TRIGGERGUID_S_RC_WC_MordusOffice_ShipLandSplash_011_69e264c3-24fe-4991-81f6-1f0ce12b8beb);
+DB_RC_WC_MordusOffice_SplashesAroundShip(2, TRIGGERGUID_S_RC_WC_MordusOffice_ShipLandSplash_012_378048d4-c8bc-4c23-95f1-4cf8f970ff62);
+DB_RC_WC_MordusOffice_SplashesAroundShip(2, TRIGGERGUID_S_RC_WC_MordusOffice_ShipLandSplash_013_b6690c59-36dc-4047-8368-8cbab6a90fab);
+DB_RC_WC_MordusOffice_SplashesAroundShip(3, TRIGGERGUID_S_RC_WC_MordusOffice_ShipLandSplash_014_d4564d46-e931-466c-8612-0daf62e889d8);
+DB_RC_WC_MordusOffice_SplashesAroundShip(5, TRIGGERGUID_S_RC_WC_MordusOffice_ShipLandSplash_015_a8d8472e-5357-4533-885f-a5bf67e8b51e);
+DB_RC_WC_MordusOffice_SplashesAroundShip(6, TRIGGERGUID_S_RC_WC_MordusOffice_ShipLandSplash_016_2b058507-ba6e-4910-9724-48ff9c23837c);
+DB_RC_WC_MordusOffice_SplashesAroundShip(6, TRIGGERGUID_S_RC_WC_MordusOffice_ShipLandSplash_017_a3669d90-fce5-4aca-b1f4-2cf68d34324c);
+DB_RC_WC_MordusOffice_SplashesAroundShip(6, TRIGGERGUID_S_RC_WC_MordusOffice_ShipLandSplash_018_88bb0277-eac7-4248-8830-05e50aaa97f9);
+DB_RC_WC_MordusOffice_SplashesAroundShip(6, TRIGGERGUID_S_RC_WC_MordusOffice_ShipLandSplash_019_cfdefe7f-a4f3-447a-a359-7b8601510cfa);
+DB_RC_WC_MordusOffice_WaterPlane(S_RC_WC_MordusOffice_NAT_WaterPlane_GM_Area_Cave_Generic_A_001_4a3a25e0-b465-44e3-a4bf-ebbb107d77bb);
+DB_RC_WC_MordusOffice_ShipFlySpeed(5, 20);
+DB_RC_WC_MordusOffice_CrashSoundDelay(500);
+PROC_RC_WC_MordusOffice_Init();
+
+KBSECTION
+IF
+TextEventSet("mordusofficevb")
+AND
+CharacterGetHostCharacter(_Var1)
+THEN
+StartVoiceBark("RC_DW_WC_VB_MordusOffice", _Var1);
+
+PROC
+ProcOneShotTriggerEntered((CHARACTERGUID)_Var1, S_RC_DW_WC_MordusOffice_Box_a4018fd0-bed4-494c-9da6-3cc425f426e3)
+THEN
+StartVoiceBark("RC_DW_WC_VB_MordusOffice", _Var1);
+
+PROC
+PROC_RC_WC_MordusOffice_Init()
+AND
+GetPosition(ITEMGUID_S_RC_WC_MO_ShipwreckWall_d6222b3b-ae23-4e1f-bea8-3c0b3cdf64a4, _Var1, _Var2, _Var3)
+THEN
+DB_RC_WC_MO_RockFace(S_RC_WC_MO_ShipwreckWall_d6222b3b-ae23-4e1f-bea8-3c0b3cdf64a4, _Var1, _Var2, _Var3);
+
+PROC
+PROC_RC_WC_MordusOffice_Init()
+AND
+DB_RC_WC_MordusOffice_WaterPlane(_Var1)
+AND
+GetPosition(_Var1, _Var2, _Var3, _Var4)
+THEN
+DB_RC_WC_MordusOffice_WaterPlane_InitialPos(_Var1, _Var2, _Var3, _Var4);
+
+PROC
+PROC_RC_WC_MordusOffice_Init()
+AND
+DB_RC_WC_MordusOffice_FlyingShipComponent_Blocker(_Var1)
+THEN
+SetVisible(_Var1, 0);
+SetOnStage(_Var1, 0);
+
+PROC
+PROC_RC_WC_MordusOffice_Init()
+THEN
+SetOnStage(S_RC_WC_MordusOffice_Shark_cd9732b8-f89a-4326-af93-d28d7a8435aa, 0);
+
+PROC
+PROC_RC_WC_MordusOffice_Init()
+AND
+DB_RC_WC_MordusOffice_FlyingShipComponent(_Var1)
+AND
+GetPosition(_Var1, _Var2, _Var3, _Var4)
+THEN
+DB_RC_WC_MordusOffice_FlyingShipComponent_InitialPos(_Var1, _Var2, _Var3, _Var4);
+
+PROC
+PROC_RC_WC_MordusOffice_Init()
+AND
+DB_RC_WC_MordusOffice_FlyingShipComponent(_Var1)
+AND
+GetPosition(_Var1, _Var2, _Var3, _Var4)
+THEN
+DB_RC_WC_MordusOffice_FlyingShipComponent_InitialPos(_Var1, _Var2, _Var3, _Var4);
+
+PROC
+PROC_RC_WC_MordusOffice_Init()
+AND
+DB_RC_WC_MordusOffice_RockFace_WaterFallHelper(_Var1, _Var2)
+AND
+RealSum(360, _Var2, _Var3)
+THEN
+ItemRotateToAngleY(_Var1, _Var3, 1000);
+
+IF
+TextEventSet("rc_wc_mo_makeblockersvisible")
+AND
+DB_RC_WC_MordusOffice_FlyingShipComponent_Blocker(_Var1)
+THEN
+SetVisible(_Var1, 1);
+
+IF
+TextEventSet("rc_wc_mo_reinit")
+THEN
+PROC_RC_WC_MordusOffice_Reinit();
+
+PROC
+PROC_RC_WC_MordusOffice_Reinit()
+AND
+DB_RC_WC_MordusOffice_FlyingShipComponent_Blocker(_Var1)
+THEN
+SetOnStage(_Var1, 0);
+
+PROC
+PROC_RC_WC_MordusOffice_Reinit()
+AND
+DB_RC_WC_MO_RockFace(_Var1, _Var2, _Var3, _Var4)
+AND
+CreateItemTemplateAtPosition("ITEMGUID_1m_RuinsWall_A_Explode_8d71e4dd-c7e9-40c3-8ce7-8ea301efd362", _Var2, _Var3, _Var4, _Var5)
+THEN
+SetOnStage(_Var1, 0);
+NOT DB_RC_WC_MO_RockFace(_Var1, _Var2, _Var3, _Var4);
+DB_RC_WC_MO_RockFace(_Var5, _Var2, _Var3, _Var4);
+
+PROC
+PROC_RC_WC_MordusOffice_Reinit()
+THEN
+SetOnStage(S_RC_WC_MordusOffice_Shark_cd9732b8-f89a-4326-af93-d28d7a8435aa, 0);
+
+PROC
+PROC_RC_WC_MordusOffice_Reinit()
+AND
+DB_RC_WC_MordusOffice_WaterPlane_InitialPos(_Var1, _Var2, _Var3, _Var4)
+THEN
+TeleportToPosition(_Var1, _Var2, _Var3, _Var4, "", 0);
+ItemMoveToPosition(_Var1, _Var2, _Var3, _Var4, 1000, 0);
+
+PROC
+PROC_RC_WC_MordusOffice_Reinit()
+AND
+DB_RC_WC_MordusOffice_RockFace_WaterFallHelper(_Var1, _)
+THEN
+PROC_StopLoopEffect(_Var1, "RC_WC_MordusOffice_RockFace_WaterFallHelper");
+PROC_StopLoopEffect(_Var1, "RC_WC_MordusOffice_RockFace_WaterSplashHelper");
+
+PROC
+PROC_RC_WC_MordusOffice_Reinit()
+AND
+DB_RC_WC_MordusOffice_RockFace_WaterFallBottomHelper(_Var1)
+THEN
+PROC_StopLoopEffect(_Var1, "RC_WC_MordusOffice_RockFace_WaterFallBottomHelper");
+
+PROC
+PROC_RC_WC_MordusOffice_Reinit()
+AND
+DB_RC_WC_MordusOffice_FlyingShipComponent_InitialPos(_Var1, _Var2, _Var3, _Var4)
+THEN
+TeleportToPosition(_Var1, _Var2, _Var3, _Var4, "", 0);
+ItemMoveToPosition(_Var1, _Var2, _Var3, _Var4, 1000, 0);
+
+IF
+TextEventSet("rc_wc_mo_resetship")
+AND
+DB_RC_WC_MordusOffice_FlyingShipComponent_InitialPos(_Var1, _Var2, _Var3, _Var4)
+THEN
+TeleportToPosition(_Var1, _Var2, _Var3, _Var4, "", 0);
+
+IF
+TextEventSet("rc_wc_mo_flyship")
+THEN
+PROC_RC_WC_MordusOffice_FlyShip(S_RC_WC_MordusOffice_ShipwreckFlyTarget_3bc294f0-41eb-4e28-bbed-096c40e0795f, "");
+
+IF
+TextEventSet("rc_wc_mo_flyship_and_land")
+THEN
+PROC_RC_WC_MordusOffice_FlyShip(S_RC_WC_MordusOffice_ShipwreckFlyTarget_3bc294f0-41eb-4e28-bbed-096c40e0795f, "RC_DW_WC_ShipArrivedInTheAir_Debug");
+
+PROC
+PROC_RC_WC_MordusOffice_ComponentToPosition((ITEMGUID)_Var1, (REAL)_Var2, (REAL)_Var3, (REAL)_Var4)
+AND
+GetPosition(_Var1, _Var5, _Var6, _Var7)
+AND
+DB_RC_WC_MordusOffice_ShipFlySpeed(_Var8, _Var9)
+THEN
+Proc_ItemMoveToPosition(_Var1, _Var2, _Var3, _Var4, _Var8, _Var9);
+
+PROC
+PROC_RC_WC_MordusOffice_FlyShip_MoveComponent((ITEMGUID)_Var1, (TRIGGERGUID)_Var2, (STRING)_Var3)
+AND
+DB_RC_WC_MordusOffice_FlyingShipComponent_Main(_Var4)
+AND
+_Var4 != _Var1
+AND
+GetPosition(_Var2, _Var5, _Var6, _Var7)
+AND
+GetPosition(_Var4, _Var8, _Var9, _Var10)
+AND
+GetPosition(_Var1, _Var11, _Var12, _Var13)
+AND
+RealSubtract(_Var8, _Var11, _Var14)
+AND
+RealSubtract(_Var9, _Var12, _Var15)
+AND
+RealSubtract(_Var10, _Var13, _Var16)
+AND
+RealSubtract(_Var5, _Var14, _Var17)
+AND
+RealSubtract(_Var6, _Var15, _Var18)
+AND
+RealSubtract(_Var7, _Var16, _Var19)
+THEN
+DB_RC_WC_MordusOffice_FlyShip_Moving(_Var1, _Var3);
+PROC_RC_WC_MordusOffice_ComponentToPosition(_Var1, _Var17, _Var18, _Var19);
+
+PROC
+PROC_RC_WC_MordusOffice_FlyShip_MoveComponent((ITEMGUID)_Var1, (TRIGGERGUID)_Var2, (STRING)_Var3)
+AND
+DB_RC_WC_MordusOffice_FlyingShipComponent_Main(_Var1)
+AND
+GetPosition(_Var2, _Var4, _Var5, _Var6)
+THEN
+DB_RC_WC_MordusOffice_FlyShip_Moving(_Var1, _Var3);
+DB_RC_WC_MordusOffice_FlyShip_Moving_MainComponent(_Var1, _Var3);
+PROC_RC_WC_MordusOffice_ComponentToPosition(_Var1, _Var4, _Var5, _Var6);
+
+IF
+ItemMoved((ITEMGUID)_Var1)
+AND
+DB_RC_WC_MordusOffice_FlyShip_Moving(_Var1, _Var2)
+AND
+GetPosition(_Var1, _Var3, _Var4, _Var5)
+THEN
+NOT DB_RC_WC_MordusOffice_FlyShip_Moving(_Var1, _Var2);
+PROC_RC_WC_MordusOffice_FlyShip_CheckFinished(_Var2);
+
+PROC
+PROC_RC_WC_MordusOffice_FlyShip_CheckFinished((STRING)_Var1)
+AND NOT
+DB_RC_WC_MordusOffice_FlyShip_Moving(_, _Var1)
+AND
+DB_RC_WC_MordusOffice_FlyShip_Moving_MainComponent(_Var3, _Var1)
+THEN
+NOT DB_RC_WC_MordusOffice_FlyShip_Moving_MainComponent(_Var3, _Var1);
+SetStoryEvent(_Var3, _Var1);
+
+IF
+TimerFinished("RC_WC_MordusOffice_Destroy_RockFace_LaunchShip")
+THEN
+PROC_RC_WC_MordusOffice_FlyShip(S_RC_WC_MordusOffice_ShipwreckFlyTarget_3bc294f0-41eb-4e28-bbed-096c40e0795f, "RC_WC_MordusOffice_ShipLanded");
+
+PROC
+PROC_RC_WC_MordusOffice_FlyShip((TRIGGERGUID)_Var1, (STRING)_Var2)
+AND
+DB_RC_WC_MordusOffice_FlyingShipComponent(_Var3)
+THEN
+PROC_RC_WC_MordusOffice_FlyShip_MoveComponent(_Var3, _Var1, _Var2);
+
+PROC
+PROC_RC_WC_MordusOffice_Destroy_RockFace()
+THEN
+TimerLaunch("RC_WC_MordusOffice_CharactersToSafety", 2500);
+
+IF
+TimerFinished("RC_WC_MordusOffice_CharactersToSafety")
+THEN
+PROC_RC_WC_MordusOffice_MoveCharactersToSafety();
+TimerLaunch("RC_WC_MordusOffice_KnockDownRemainingCharsInWreck", 100);
+
+PROC
+PROC_RC_WC_MordusOffice_MoveCharactersToSafety()
+AND
+DB_RC_WC_MordusOffice_FlyingShip_ShipBorderTrigger(_Var1, _Var2)
+THEN
+TriggerLaunchIterator(_Var2, _Var1);
+
+IF
+StoryEvent((CHARACTERGUID)_Var1, (STRING)_Var2)
+AND
+DB_RC_WC_MordusOffice_FlyingShip_ShipBorderTriggerFirstForCollection(_Var2, _Var3)
+AND
+GetDistanceTo(_Var1, _Var3, _Var4)
+THEN
+DB_RC_WC_MordusOffice_ClosestShipTriggerForChar(_Var1, _Var3, _Var4);
+PROC_RC_WC_MordusOffice_TeleportToClosestShipTriggerForChar(_Var2, _Var1);
+
+PROC
+PROC_RC_WC_MordusOffice_TeleportToClosestShipTriggerForChar((STRING)_Var1, (CHARACTERGUID)_Var2)
+AND
+DB_RC_WC_MordusOffice_FlyingShip_ShipSurrounding_DestinationTrigger(_Var1, _Var3)
+AND
+DB_RC_WC_MordusOffice_ClosestShipTriggerForChar(_Var2, _Var4, _Var5)
+AND
+GetDistanceTo(_Var2, _Var3, _Var6)
+AND
+_Var6 < _Var5
+THEN
+NOT DB_RC_WC_MordusOffice_ClosestShipTriggerForChar(_Var2, _Var4, _Var5);
+DB_RC_WC_MordusOffice_ClosestShipTriggerForChar(_Var2, _Var3, _Var6);
+
+PROC
+PROC_RC_WC_MordusOffice_TeleportToClosestShipTriggerForChar((STRING)_Var1, (CHARACTERGUID)_Var2)
+AND
+DB_RC_WC_MordusOffice_ClosestShipTriggerForChar(_Var2, _Var3, _Var4)
+THEN
+NOT DB_RC_WC_MordusOffice_ClosestShipTriggerForChar(_Var2, _Var3, _Var4);
+RemoveStatus(_Var2, "RESTED");
+ApplyStatus(_Var2, "KNOCKED_DOWN", 1.5, 1);
+TeleportTo(_Var2, _Var3);
+DB_RC_WC_MordusOffice_ShipKnockedDown(_Var2);
+
+IF
+TimerFinished("RC_WC_MordusOffice_KnockDownRemainingCharsInWreck")
+THEN
+TriggerLaunchIterator(TRIGGERGUID_S_RC_WC_MordusOffice_ShipWreckEnterTrigger_fcc7b294-4143-42c6-8fa5-1b6416d92261, "RC_WC_MordusOffice_KnockDownRemainingCharsInWreck");
+
+IF
+StoryEvent((CHARACTERGUID)_Var1, "RC_WC_MordusOffice_KnockDownRemainingCharsInWreck")
+AND NOT
+DB_RC_WC_MordusOffice_ShipKnockedDown(_Var1)
+THEN
+RemoveStatus(_Var1, "RESTED");
+ApplyStatus(_Var1, "KNOCKED_DOWN", 1.5, 1);
+DB_RC_WC_MordusOffice_ShipKnockedDown(_Var1);
+
+PROC
+PROC_RC_WC_MordusOffice_Destroy_RockFace()
+THEN
+TimerLaunch("RC_WC_MordusOffice_SetBlockers", 2600);
+
+IF
+TimerFinished("RC_WC_MordusOffice_SetBlockers")
+AND
+DB_RC_WC_MordusOffice_FlyingShipComponent_Blocker(_Var1)
+THEN
+SetOnStage(_Var1, 1);
+
+IF
+TextEventSet("rc_wc_mo_destroyrockface")
+THEN
+PROC_RC_WC_MordusOffice_Destroy_RockFace();
+
+PROC
+PROC_RC_WC_MordusOffice_Destroy_RockFace()
+AND
+DB_RC_WC_MordusOffice_FlyingShipComponent_Main(_Var1)
+THEN
+PROC_LoopEffect("RS3_FX_Environment_Smoke_Small_02", _Var1, "RC_WC_MordusOffice_Smoke", "RC_Main", "Dummy_FX");
+PROC_LoopEffect("RS3_FX_Environment_Smoke_Small_02", S_RC_WC_MordusOffice_RockFace_SmokeHelper_000_ad244865-e07b-4efb-8798-23df30ff2d5f, "RC_WC_MordusOffice_Smoke", "RC_Main", "Dummy_FX");
+PROC_LoopEffect("RS3_FX_Environment_Smoke_Big_02", ITEMGUID_S_RC_WC_MordusOffice_RockFace_SmokeHelper_001_a9eb232a-a130-4c6c-a71b-6b96a262a1d4, "RC_WC_MordusOffice_Smoke", "RC_Main", "Dummy_FX");
+TimerLaunch("RC_WC_MordusOffice_StopSmoke", 6000);
+
+IF
+TimerFinished("RC_WC_MordusOffice_StopSmoke")
+AND
+DB_RC_WC_MordusOffice_FlyingShipComponent_Main(_Var1)
+THEN
+PROC_StopLoopEffect(_Var1, "RC_WC_MordusOffice_Smoke");
+PROC_StopLoopEffect(S_RC_WC_MordusOffice_RockFace_SmokeHelper_000_ad244865-e07b-4efb-8798-23df30ff2d5f, "RC_WC_MordusOffice_Smoke");
+PROC_StopLoopEffect(ITEMGUID_S_RC_WC_MordusOffice_RockFace_SmokeHelper_001_a9eb232a-a130-4c6c-a71b-6b96a262a1d4, "RC_WC_MordusOffice_Smoke");
+
+PROC
+PROC_RC_WC_MordusOffice_Destroy_RockFace()
+AND
+DB_IsPlayer(_Var1)
+AND
+ObjectIsInTrigger(_Var1, S_RC_DW_WC_MordusOffice_Box_a4018fd0-bed4-494c-9da6-3cc425f426e3, 1)
+THEN
+Proc_ShakeCameraForTime(_Var1, 3000);
+
+PROC
+PROC_RC_WC_MordusOffice_Destroy_RockFace()
+AND
+DB_RC_WC_MordusOffice_RockFace_WaterFallHelper(_Var1, _)
+THEN
+PROC_LoopEffect("RS3_FX_Environment_Waterfall_Top_01", _Var1, "RC_WC_MordusOffice_RockFace_WaterFallHelper", "RC_Main", "Dummy_FX");
+PROC_LoopEffect("RS3_FX_Environment_Waterfall_Bottom_01", _Var1, "RC_WC_MordusOffice_RockFace_WaterSplashHelper", "RC_Main", "Dummy_FX");
+
+PROC
+PROC_RC_WC_MordusOffice_Destroy_RockFace()
+THEN
+TimerLaunch("RC_WC_MordusOffice_RockFace_WaterFallBottomHelper", 500);
+
+IF
+TimerFinished("RC_WC_MordusOffice_RockFace_WaterFallBottomHelper")
+AND
+DB_RC_WC_MordusOffice_RockFace_WaterFallBottomHelper(_Var1)
+THEN
+PROC_LoopEffect("RS3_FX_Environment_Waterfall_Bottom_01", _Var1, "RC_WC_MordusOffice_RockFace_WaterFallBottomHelper", "RC_Main", "Dummy_FX");
+
+PROC
+PROC_RC_WC_MordusOffice_Destroy_RockFace()
+THEN
+TimerLaunch("RC_WC_MordusOffice_RockFace_WaterFallHelper_Stop", 3000);
+
+IF
+TimerFinished("RC_WC_MordusOffice_RockFace_WaterFallHelper_Stop")
+AND
+DB_RC_WC_MordusOffice_RockFace_WaterFallHelper(_Var1, _Var2)
+THEN
+PROC_StopLoopEffect(_Var1, "RC_WC_MordusOffice_RockFace_WaterFallHelper");
+PROC_StopLoopEffect(_Var1, "RC_WC_MordusOffice_RockFace_WaterSplashHelper");
+
+IF
+TimerFinished("RC_WC_MordusOffice_RockFace_WaterFallHelper_Stop")
+THEN
+TimerLaunch("RC_WC_MordusOffice_RockFace_WaterFallBottomHelper_Stop", 100);
+
+IF
+TimerFinished("RC_WC_MordusOffice_RockFace_WaterFallBottomHelper_Stop")
+AND
+DB_RC_WC_MordusOffice_RockFace_WaterFallBottomHelper(_Var1)
+THEN
+PROC_StopLoopEffect(_Var1, "RC_WC_MordusOffice_RockFace_WaterFallBottomHelper");
+
+PROC
+PROC_RC_WC_MordusOffice_Destroy_RockFace()
+AND
+DB_RC_WC_MO_RockFace(_Var1, _Var2, _Var3, _Var4)
+THEN
+ItemDestroy(_Var1);
+TimerLaunch("RC_WC_MordusOffice_Destroy_RockFace_LaunchShip", 500);
+
+PROC
+PROC_RC_WC_MordusOffice_Destroy_RockFace()
+AND
+DB_RC_WC_MordusOffice_CrashSoundDelay(_Var1)
+THEN
+TimerLaunch("RC_WC_MordusOffice_CrashSound", _Var1);
+
+IF
+TimerFinished("RC_WC_MordusOffice_CrashSound")
+THEN
+PlaySound(ITEMGUID_S_RC_WC_MordusOffice_RockFace_SmokeHelper_000_ad244865-e07b-4efb-8798-23df30ff2d5f, "SE_RC_LairOfTheAtaraxian_ShipWreck_Crash");
+
+IF
+TextEventSet("rc_wc_mo_launchsounddelay")
+AND
+GetTextEventParamInteger(1, _Var1)
+AND
+DB_RC_WC_MordusOffice_CrashSoundDelay(_Var2)
+THEN
+NOT DB_RC_WC_MordusOffice_CrashSoundDelay(_Var2);
+DB_RC_WC_MordusOffice_CrashSoundDelay(_Var1);
+
+IF
+TextEventSet("rc_wc_mo_bouncewaterb")
+THEN
+PROC_RC_WC_MordusOffice_Destroy_RockFace_StartBounceWater_Behaviour();
+
+IF
+TextEventSet("rc_wc_mo_movewaterdown")
+AND
+DB_RC_WC_MordusOffice_WaterPlane(_Var1)
+AND
+GetPosition(_Var1, _Var2, _Var3, _Var4)
+AND
+RealSubtract(_Var3, 1, _Var5)
+THEN
+DB_RC_WC_MO__MoveWaterUp(1);
+TeleportToPosition(_Var1, _Var2, _Var3, _Var4, "", 0);
+ItemMoveToPosition(_Var1, _Var2, _Var5, _Var4, 0.5, -0.05);
+
+PROC
+PROC_RC_WC_MordusOffice_Destroy_RockFace()
+THEN
+TimerLaunch("RC_WC_MordusOffice_Destroy_RockFace_BounceWater", 1000);
+
+IF
+TimerFinished("RC_WC_MordusOffice_Destroy_RockFace_BounceWater")
+THEN
+PROC_RC_WC_MordusOffice_Destroy_RockFace_StartBounceWater_Behaviour();
+
+PROC
+PROC_RC_WC_MordusOffice_Destroy_RockFace_StartBounceWater_Behaviour()
+AND
+DB_RC_WC_MordusOffice_WaterPlane(_Var1)
+THEN
+SetStoryEvent(_Var1, "RC_WC_MordusOffice_StartBounce");
+
+PROC
+PROC_RC_WC_MordusOffice_Destroy_RockFace()
+THEN
+TimerLaunch("RC_WC_MordusOffice_Destroy_RockFace_SharkEnters", 1500);
+
+IF
+TimerFinished("RC_WC_MordusOffice_Destroy_RockFace_SharkEnters")
+THEN
+SetOnStage(S_RC_WC_MordusOffice_Shark_cd9732b8-f89a-4326-af93-d28d7a8435aa, 1);
+
+IF
+TimerFinished("RC_WC_MordusOffice_Destroy_RockFace_SharkEnters")
+AND
+DB_RC_WC_MO_Crab(_Var1)
+THEN
+CharacterAppear(_Var1, 1, "");
+
+IF
+ObjectLeftCombat((CHARACTERGUID)_Var1, _)
+AND
+DB_RC_WC_MO_Crab(_Var1)
+AND NOT
+DB_Dead(_Var1)
+THEN
+CharacterFleeOutOfSight(_Var1, "");
+
+PROC
+PROC_RC_WC_MordusOffice_Destroy_RockFace()
+THEN
+TimerLaunch("RC_WC_MordusOffice_Destroy_RockFace_ShipLandingEffects", 1700);
+
+IF
+TimerFinished("RC_WC_MordusOffice_Destroy_RockFace_ShipLandingEffects")
+THEN
+DB_RC_WC_MordusOffice_SplashesAroundShip_Order(0);
+
+IF
+DB_RC_WC_MordusOffice_SplashesAroundShip_Order(_Var1)
+THEN
+TimerLaunch("RC_WC_MordusOffice_SplashesAroundShip_NextOrder", 30);
+
+IF
+TimerFinished("RC_WC_MordusOffice_SplashesAroundShip_NextOrder")
+THEN
+PROC_RC_WC_MordusOffice_CreateSplashesAroundShip();
+
+PROC
+PROC_RC_WC_MordusOffice_CreateSplashesAroundShip()
+AND
+DB_RC_WC_MordusOffice_SplashesAroundShip_Order(_Var1)
+AND
+IntegertoString(_Var1, _Var2)
+AND
+StringConcatenate("RC_WC_MordusOfficeSplashesEvent_", _Var2, _Var3)
+THEN
+NOT DB_RC_WC_MordusOffice_SplashesAroundShip_Order(_Var1);
+PROC_RC_WC_MordusOffice_CreateSplashesAroundShip_Order(_Var1, _Var3);
+
+PROC
+PROC_RC_WC_MordusOffice_CreateSplashesAroundShip_Order((INTEGER)_Var1, (STRING)_Var2)
+AND
+DB_RC_WC_MordusOffice_SplashesAroundShip(_Var1, _Var3)
+THEN
+PROC_LoopEffect("RS3_FX_Environment_Water_Splash_River_01", _Var3, _Var2, "RC_Main", "Dummy_FX");
+
+PROC
+PROC_RC_WC_MordusOffice_CreateSplashesAroundShip_Order((INTEGER)_Var1, (STRING)_Var2)
+AND
+IntegerSum(_Var1, 1, _Var3)
+AND
+DB_RC_WC_MordusOffice_SplashesAroundShip(_Var3, _)
+THEN
+DB_RC_WC_MordusOffice_SplashesAroundShip_Order(_Var3);
+
+PROC
+PROC_RC_WC_MordusOffice_CreateSplashesAroundShip_Order((INTEGER)_Var1, (STRING)_Var2)
+THEN
+DB_RC_WC_MordusOffice_SplashesAroundShipTimer(_Var2, _Var1);
+TimerLaunch(_Var2, 400);
+
+IF
+TimerFinished((STRING)_Var1)
+AND
+DB_RC_WC_MordusOffice_SplashesAroundShipTimer(_Var1, _Var2)
+AND
+DB_RC_WC_MordusOffice_SplashesAroundShip(_Var2, _Var3)
+THEN
+NOT DB_RC_WC_MordusOffice_SplashesAroundShipTimer(_Var1, _Var2);
+PROC_StopLoopEffect(_Var3, _Var1);
+
+PROC
+ProcRegionEnded("RC_Main")
+THEN
+GoalCompleted;
+
+
+EXITSECTION
+ENDEXITSECTION
+
+ParentTargetEdge "RC_DW_WreckersCaveBase"

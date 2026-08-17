@@ -1,0 +1,182 @@
+Version 1
+SubGoalCombiner SGC_AND
+
+INITSECTION
+
+KBSECTION
+QRY
+QRY_RC_DW_WC_GetMordusCombatID()
+AND
+DB_WasInCombat(CHARACTERGUID_S_RC_DW_WC_BossFight_GiantInsect_Boss_5362d05e-1cb2-451f-9f5a-69078100a01b, _Var1)
+THEN
+DB_RC_DW_WC_MordusCombatID(_Var1);
+
+QRY
+QRY_RC_DW_WC_GetMordusCombatID()
+AND
+DB_CombatCharacters(CHARACTERGUID_S_RC_DW_WC_BossFight_Skeleton_Mordus_d46ade3f-f786-4fcc-975c-361a106f2853, _Var1)
+THEN
+DB_RC_DW_WC_MordusCombatID(_Var1);
+
+QRY
+QRY_RC_DW_WC_GetMordusCombatID()
+AND
+DB_WasInCombat(CHARACTERGUID_S_RC_DW_WC_BossFight_Skeleton_Mordus_d46ade3f-f786-4fcc-975c-361a106f2853, _Var1)
+THEN
+DB_RC_DW_WC_MordusCombatID(_Var1);
+
+IF
+CharacterEnteredTrigger((CHARACTERGUID)_Var1, TRIGGERGUID_S_RC_DW_WC_BossFight_Area_Box_ec8d525b-6b89-4737-a069-8067ec3ec14d)
+AND
+ObjectGetFlag(_Var1, "QuestUpdate_RC_DW_WC_AtaraxianLair_EnteredWreckersCave", 1)
+AND
+PartyGetFlag(_Var1, "QuestUpdate_RC_DW_WC_AtaraxianLair_KilledBoss", 0)
+THEN
+PartySetFlag(_Var1, "QuestUpdate_RC_DW_WC_AtaraxianLair_DidNotKillBoss");
+TriggerUnregisterForCharacter(TRIGGERGUID_S_RC_DW_WC_BossFight_Area_Box_ec8d525b-6b89-4737-a069-8067ec3ec14d, _Var1);
+
+PROC
+PROC_RC_DW_WC_BossFight_EndQuest()
+THEN
+DB_RC_DW_WC_MordusCombatFinished(1);
+CharacterSetHitpointsPercentage(CHARACTERGUID_S_RC_DW_WC_BossFight_Skeleton_Mordus_d46ade3f-f786-4fcc-975c-361a106f2853, 1);
+SetStoryEvent(CHARACTERGUID_S_RC_DW_WC_BossFight_Skeleton_Mordus_d46ade3f-f786-4fcc-975c-361a106f2853, "ClearPeaceReturn");
+
+PROC
+PROC_GLOBAL_DialogStartRequested(CHARACTERGUID_S_RC_DW_WC_BossFight_Skeleton_Mordus_d46ade3f-f786-4fcc-975c-361a106f2853, (GUIDSTRING)_Var1)
+AND
+DB_RC_DW_WC_MordusCombatFinished(1)
+THEN
+NOT DB_RC_DW_WC_MordusCombatFinished(1);
+RemoveStatus(CHARACTERGUID_S_RC_DW_WC_BossFight_Skeleton_Mordus_d46ade3f-f786-4fcc-975c-361a106f2853, "CHICKEN");
+Proc_StartDialog(0, "RC_DW_WC_BossFight_Mordus", CHARACTERGUID_S_RC_DW_WC_BossFight_Skeleton_Mordus_d46ade3f-f786-4fcc-975c-361a106f2853, _Var1);
+
+PROC
+ProcObjectTimerFinished(CHARACTERGUID_S_RC_DW_WC_BossFight_Skeleton_Mordus_d46ade3f-f786-4fcc-975c-361a106f2853, "RC_DW_WC_RealMordusSpawned")
+AND
+DB_RC_DW_WC_MordusCombatFinished(1)
+THEN
+SetStoryEvent(CHARACTERGUID_S_RC_DW_WC_BossFight_Skeleton_Mordus_d46ade3f-f786-4fcc-975c-361a106f2853, "RestartSpotting");
+
+PROC
+ProcObjectTimerFinished(CHARACTERGUID_S_RC_DW_WC_BossFight_Skeleton_Mordus_d46ade3f-f786-4fcc-975c-361a106f2853, "RC_DW_WC_RealMordusSpawned")
+THEN
+CharacterSetAnimationOverride(CHARACTERGUID_S_RC_DW_WC_BossFight_Skeleton_Mordus_d46ade3f-f786-4fcc-975c-361a106f2853, "cower");
+
+PROC
+ProcObjectTimerFinished(CHARACTERGUID_S_RC_DW_WC_BossFight_Skeleton_Mordus_d46ade3f-f786-4fcc-975c-361a106f2853, "RC_DW_WC_RealMordusSpawned")
+AND
+DB_RC_DW_WC_MordusCombatFinished(1)
+AND
+DB_IsPlayer(_Var1)
+AND
+QRY_SpeakerIsAvailableAndInDialogRange(_Var1, CHARACTERGUID_S_RC_DW_WC_BossFight_Skeleton_Mordus_d46ade3f-f786-4fcc-975c-361a106f2853)
+AND
+QueryOnlyOnce("RC_DW_WC_BossFight_Mordus")
+THEN
+NOT DB_RC_DW_WC_MordusCombatFinished(1);
+RemoveStatus(CHARACTERGUID_S_RC_DW_WC_BossFight_Skeleton_Mordus_d46ade3f-f786-4fcc-975c-361a106f2853, "CHICKEN");
+Proc_StartDialog(0, "RC_DW_WC_BossFight_Mordus", CHARACTERGUID_S_RC_DW_WC_BossFight_Skeleton_Mordus_d46ade3f-f786-4fcc-975c-361a106f2853, _Var1);
+
+IF
+StoryEvent(CHARACTERGUID_S_RC_DW_WC_BossFight_Skeleton_Mordus_d46ade3f-f786-4fcc-975c-361a106f2853, "GLO_SpotterSneaker")
+AND
+DB_RC_DW_WC_MordusCombatFinished(1)
+AND
+GetVarObject(CHARACTERGUID_S_RC_DW_WC_BossFight_Skeleton_Mordus_d46ade3f-f786-4fcc-975c-361a106f2853, "SpottedDude", _Var1)
+THEN
+NOT DB_RC_DW_WC_MordusCombatFinished(1);
+ProcForceStopDialog(_Var1);
+RemoveStatus(CHARACTERGUID_S_RC_DW_WC_BossFight_Skeleton_Mordus_d46ade3f-f786-4fcc-975c-361a106f2853, "CHICKEN");
+Proc_StartDialog(0, "RC_DW_WC_BossFight_Mordus", CHARACTERGUID_S_RC_DW_WC_BossFight_Skeleton_Mordus_d46ade3f-f786-4fcc-975c-361a106f2853, _Var1);
+
+IF
+ObjectFlagSet("RC_DW_WC_AteVoidwokenHeart", (CHARACTERGUID)_Var1, (INTEGER)_Var2)
+AND
+DB_DialogPlayers(_Var2, _Var1, _)
+AND
+IsTagged(_Var1, "UNDEAD", 1)
+AND
+CharacterConsume(_Var1, "CON_BodyPart_Dummy", _)
+THEN
+DB_NOOP(1);
+
+IF
+ObjectFlagSet("RC_DW_WC_AteVoidwokenHeart", (CHARACTERGUID)_Var1, (INTEGER)_Var2)
+AND
+DB_DialogPlayers(_Var2, _Var1, _)
+AND
+IsTagged(_Var1, "UNDEAD", 0)
+AND
+CharacterConsume(_Var1, "CON_BodyPart_Void", _)
+THEN
+ApplyStatus(_Var1, "DISEASED", 6, 1);
+
+IF
+DialogEnded("RC_DW_WC_BossFight_Mordus", (INTEGER)_Var1)
+AND
+DB_DialogPlayers(_Var1, _Var2, 1)
+AND
+PartyGetFlag(_Var2, "RC_DW_WC_MordusTaughtSource", 1)
+THEN
+PartySetFlag(_Var2, "RC_DW_Meistr_SourceKnowledge_Mordus");
+
+IF
+DialogEnded("RC_DW_WC_BossFight_Mordus", (INTEGER)_Var1)
+AND
+GlobalGetFlag("RC_DW_WC_BossFight_AttackBoss", 1)
+THEN
+CharacterSetImmortal(CHARACTERGUID_S_RC_DW_WC_BossFight_Skeleton_Mordus_d46ade3f-f786-4fcc-975c-361a106f2853, 0);
+CharacterDie(CHARACTERGUID_S_RC_DW_WC_BossFight_Skeleton_Mordus_d46ade3f-f786-4fcc-975c-361a106f2853, 1, "DoT");
+
+IF
+DialogEnded("RC_DW_WC_BossFight_Mordus", (INTEGER)_Var1)
+AND
+DB_GlobalFlag("RC_DW_WC_BossFight_AttackBoss")
+AND
+DB_DialogPlayers(_Var1, _Var2, _)
+THEN
+ObjectSetFlag(_Var2, "GLO_PathOfBlood_MurderedInnocent");
+
+IF
+DialogEnded("RC_DW_WC_BossFight_Mordus", (INTEGER)_Var1)
+AND
+ObjectGetFlag(CHARACTERGUID_S_RC_DW_WC_BossFight_Skeleton_Mordus_d46ade3f-f786-4fcc-975c-361a106f2853, "RC_DW_WC_MordusDieWithTreasure", 1)
+THEN
+CharacterSetImmortal(CHARACTERGUID_S_RC_DW_WC_BossFight_Skeleton_Mordus_d46ade3f-f786-4fcc-975c-361a106f2853, 0);
+CharacterDie(CHARACTERGUID_S_RC_DW_WC_BossFight_Skeleton_Mordus_d46ade3f-f786-4fcc-975c-361a106f2853, 1, "DoT");
+
+IF
+DialogEnded("RC_DW_WC_BossFight_Mordus", (INTEGER)_Var1)
+AND
+GlobalGetFlag("RC_DW_WC_BossFight_BossFlee", 1)
+THEN
+CharacterDisappearOutOfSight(CHARACTERGUID_S_RC_DW_WC_BossFight_Skeleton_Mordus_d46ade3f-f786-4fcc-975c-361a106f2853, 170, 1, "", 1);
+
+IF
+TextEventSet("mordusfled")
+AND
+CharacterGetHostCharacter(_Var1)
+THEN
+PartySetFlag(_Var1, "QuestUpdate_RC_DW_WC_AtaraxianLair_KilledBoss");
+GlobalSetFlag("RC_DW_WC_BossFight_BossFlee");
+
+IF
+TextEventSet("mordusdead")
+AND
+CharacterGetHostCharacter(_Var1)
+THEN
+PartySetFlag(_Var1, "QuestUpdate_RC_DW_WC_AtaraxianLair_KilledBoss");
+GlobalSetFlag("RC_DW_WC_BossFight_AttackBoss");
+
+PROC
+ProcRegionEnded("RC_Main")
+THEN
+TriggerUnregisterForPlayers(TRIGGERGUID_S_RC_DW_WC_BossFight_Area_Box_ec8d525b-6b89-4737-a069-8067ec3ec14d);
+GoalCompleted;
+
+
+EXITSECTION
+ENDEXITSECTION
+
+ParentTargetEdge "RC_DW_WreckersCaveBase"

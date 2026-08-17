@@ -1,0 +1,862 @@
+Version 1
+SubGoalCombiner SGC_AND
+
+INITSECTION
+DB_ProgressAchievement("DOS2_Quest40", 99);
+DB_ProgressAchievement("DOS2_Quest48", 7);
+DB_ProgressAchievement("DOS2_Quest81", 4);
+DB_FL_GarethAchievementFlag("RC_FL_KilledJonathanFields", "DOS2_Quest25");
+DB_FL_GarethAchievementFlag("QuestUpdate_RC_FL_GarethFarm_GaveRing", "DOS2_Quest25");
+DB_FL_GarethAchievementFlag("QuestUpdate_RC_FL_GarethFarm_Lied", "DOS2_Quest25");
+DB_FL_GarethAchievementFlag("RC_FL_Gareth_ConvincedGarethReturn", "DOS2_Quest26");
+DB_FL_GarethAchievementFlag("QuestUpdate_RC_FL_GarethFarm_ConvincedKillJonathan", "DOS2_Quest26");
+
+KBSECTION
+IF
+SavegameLoaded((INTEGER)_Var1, (INTEGER)_Var2, (INTEGER)_Var3, (INTEGER)_Var4)
+AND
+QRY_VersionIsOlderThan(_Var1, _Var2, _Var3, _Var4, 3, 5, 1, 0)
+AND
+DB_CurrentGameMode("Campaign")
+AND
+DB_IsPlayer(_Var5)
+AND
+GetRegion(_Var5, _Var6)
+AND
+_Var6 != "TUT_Tutorial_A"
+THEN
+UnlockAchievement("DOS2_Quest1", _Var5);
+
+IF
+SavegameLoaded((INTEGER)_Var1, (INTEGER)_Var2, (INTEGER)_Var3, (INTEGER)_Var4)
+AND
+QRY_VersionIsOlderThan(_Var1, _Var2, _Var3, _Var4, 3, 6, 0, 1)
+AND
+DB_IsPlayer(_Var5)
+AND
+Qry_Achievement_PatchCheckGive_DOS2_Quest4(_Var5)
+THEN
+UnlockAchievement("DOS2_Quest4", _Var5);
+
+QRY
+Qry_Achievement_PatchCheckGive_DOS2_Quest4((CHARACTERGUID)_Var1)
+AND
+GetRegion(_Var1, "FJ_FortJoy_Main")
+AND
+ObjectIsInTrigger(_Var1, TRIGGERGUID_S_FTJ_DallisEventAutoEnd_Poly_c66c0ceb-84d0-42f2-af77-854d178a58d5, 1)
+THEN
+DB_NOOP(1);
+
+QRY
+Qry_Achievement_PatchCheckGive_DOS2_Quest4((CHARACTERGUID)_Var1)
+AND
+GetRegion(_Var1, _Var2)
+AND
+_Var2 != "TUT_Tutorial_A"
+AND
+_Var2 != "FJ_FortJoy_Main"
+THEN
+DB_NOOP(1);
+
+IF
+SavegameLoaded((INTEGER)_Var1, (INTEGER)_Var2, (INTEGER)_Var3, (INTEGER)_Var4)
+AND
+QRY_VersionIsOlderThan(_Var1, _Var2, _Var3, _Var4, 3, 6, 2, 0)
+THEN
+Proc_CoS_Temples_Achievement_Patch2Fix();
+
+PROC
+Proc_CoS_Temples_Achievement_Patch2Fix()
+AND
+ObjectExists(ITEMGUID_S_CoS_Temples_Orc_Altar_67205e75-78e2-48c7-9b28-30fdb0e5650e, 1)
+AND
+ObjectGetFlag(ITEMGUID_S_CoS_Temples_Orc_Altar_67205e75-78e2-48c7-9b28-30fdb0e5650e, "CoS_Temples_AltarAchievement_Orc", 1)
+AND
+DB_IsPlayer(_Var1)
+THEN
+Proc_CoS_Temples_Achievement_Patch2Fix_Progress(_Var1, "CoS_Temples_AltarAchievement_Orc");
+
+PROC
+Proc_CoS_Temples_Achievement_Patch2Fix()
+AND
+ObjectExists(ITEMGUID_S_CoS_Temples_Human_Altar_ab5fc8e8-7861-4709-9fda-d5bb04b11ac0, 1)
+AND
+ObjectGetFlag(ITEMGUID_S_CoS_Temples_Human_Altar_ab5fc8e8-7861-4709-9fda-d5bb04b11ac0, "CoS_Temples_AltarAchievement_Human", 1)
+AND
+DB_IsPlayer(_Var1)
+THEN
+Proc_CoS_Temples_Achievement_Patch2Fix_Progress(_Var1, "CoS_Temples_AltarAchievement_Human");
+
+PROC
+Proc_CoS_Temples_Achievement_Patch2Fix()
+AND
+DB_CurrentLevel("CoS_Main_Ending")
+AND
+DB_IsPlayer(_Var1)
+AND
+UserGetFlag(_Var1, "QuestUpdate_CORE_Chapter5_COS_Altar_PrayedAll", 1)
+THEN
+Proc_CoS_Temples_Achievement_Patch2Fix_Progress(_Var1, "CoS_Temples_AltarAchievement_Orc");
+Proc_CoS_Temples_Achievement_Patch2Fix_Progress(_Var1, "CoS_Temples_AltarAchievement_Human");
+
+PROC
+Proc_CoS_Temples_Achievement_Patch2Fix()
+AND
+DB_CurrentLevel("ARX_Main")
+AND
+DB_IsPlayer(_Var1)
+AND
+UserGetFlag(_Var1, "QuestUpdate_CORE_Chapter5_COS_Altar_PrayedAll", 1)
+THEN
+Proc_CoS_Temples_Achievement_Patch2Fix_Progress(_Var1, "CoS_Temples_AltarAchievement_Orc");
+Proc_CoS_Temples_Achievement_Patch2Fix_Progress(_Var1, "CoS_Temples_AltarAchievement_Human");
+
+PROC
+Proc_CoS_Temples_Achievement_Patch2Fix_Progress((CHARACTERGUID)_Var1, (STRING)_Var2)
+THEN
+ObjectSetFlag(_Var1, _Var2);
+Proc_ProgressAchievement(_Var1, "DOS2_Quest48");
+
+IF
+SavegameLoaded((INTEGER)_Var1, (INTEGER)_Var2, (INTEGER)_Var3, (INTEGER)_Var4)
+AND
+QRY_VersionIsOlderThan(_Var1, _Var2, _Var3, _Var4, 3, 6, 6, 0)
+AND
+DB_GlobalFlag("FTJ_LV_StartHoELevel")
+AND NOT
+DB_OnlyOnce("LV_Assault_Magisters_Killed")
+THEN
+UnlockAchievement("DOS2_Quest16");
+
+PROC
+Proc_UnlockAchievement((STRING)_Var1)
+THEN
+UnlockAchievement(_Var1, NULL_00000000-0000-0000-0000-000000000000);
+
+PROC
+UnlockAchievement((STRING)_Var1)
+THEN
+Proc_UnlockAchievement(_Var1);
+
+PROC
+Proc_ProgressAchievement((CHARACTERGUID)_Var1, (STRING)_Var2)
+AND NOT
+DB_ProgressAchievement_AchievementCompleted(_Var1, _Var2)
+THEN
+Proc_IncrementProgressAchievement(_Var1, _Var2);
+
+PROC
+Proc_IncrementProgressAchievement((CHARACTERGUID)_Var1, (STRING)_Var2)
+AND NOT
+DB_ProgressAchievement_PlayerProgression(_Var1, _Var2, _)
+THEN
+DB_ProgressAchievement_PlayerProgression(_Var1, _Var2, 0);
+
+PROC
+Proc_IncrementProgressAchievement((CHARACTERGUID)_Var1, (STRING)_Var2)
+AND
+DB_ProgressAchievement_PlayerProgression(_Var1, _Var2, _Var3)
+AND
+IntegerSum(_Var3, 1, _Var4)
+THEN
+NOT DB_ProgressAchievement_PlayerProgression(_Var1, _Var2, _Var3);
+DB_ProgressAchievement_PlayerProgression(_Var1, _Var2, _Var4);
+
+PROC
+Proc_IncrementProgressAchievement((CHARACTERGUID)_Var1, (STRING)_Var2)
+AND
+_Var1 == NULL_00000000-0000-0000-0000-000000000000
+AND
+DB_ProgressAchievement_PlayerProgression(_Var1, _Var2, _Var3)
+THEN
+SetAchievementProgress(_Var2, _Var3);
+
+PROC
+Proc_IncrementProgressAchievement((CHARACTERGUID)_Var1, (STRING)_Var2)
+AND
+_Var1 != NULL_00000000-0000-0000-0000-000000000000
+AND
+DB_ProgressAchievement_PlayerProgression(_Var1, _Var2, _Var3)
+THEN
+SetAchievementProgress(_Var2, _Var3);
+
+PROC
+Proc_IncrementProgressAchievement((CHARACTERGUID)_Var1, (STRING)_Var2)
+AND
+DB_ProgressAchievement_PlayerProgression(_Var1, _Var2, _Var3)
+AND
+DB_ProgressAchievement(_Var2, _Var4)
+AND
+_Var4 <= _Var3
+THEN
+NOT DB_ProgressAchievement_AchievementCompleted(_Var1, _Var2);
+
+PROC
+Proc_FTJ_CheckPlayersWokenUp((CHARACTERGUID)_Var1)
+THEN
+UnlockAchievement("DOS2_Quest1", _Var1);
+
+PROC
+Proc_FTJ_CheckPlayersWokenUp((CHARACTERGUID)_Var1)
+THEN
+UnlockAchievement("DOS2_Quest2", _Var1);
+
+IF
+ObjectWasTagged((CHARACTERGUID)_Var1, "CHAMPION_FTJ")
+THEN
+UnlockAchievement("DOS2_Quest3", _Var1);
+
+IF
+CharacterEnteredTrigger((CHARACTERGUID)_Var1, TRIGGERGUID_S_FTJ_DallisEventAutoEnd_Poly_c66c0ceb-84d0-42f2-af77-854d178a58d5)
+THEN
+UnlockAchievement("DOS2_Quest4", _Var1);
+
+IF
+ObjectFlagSet("FTJ_RemoveSourceCollar", (CHARACTERGUID)_Var1, _)
+AND
+DB_IsPlayer(_Var1)
+THEN
+UnlockAchievement("DOS2_Quest5", _Var1);
+
+IF
+StoryEvent((CHARACTERGUID)_Var1, "FTJ_DoHoEReturnRD")
+THEN
+UnlockAchievement("DOS2_Quest6", _Var1);
+
+IF
+CharacterEnteredTrigger((CHARACTERGUID)_Var1, TRIGGERGUID_S_FTJ_SW_SUB_Shelter_51c3953f-c756-472d-a7ca-dc2a6232b386)
+AND
+DB_IsPlayer(_Var1)
+THEN
+UnlockAchievement("DOS2_Quest7", _Var1);
+
+IF
+ObjectFlagSet("FTJ_SW_FreedCorneredPaladin", (CHARACTERGUID)_Var1, _)
+THEN
+UnlockAchievement("DOS2_Quest8", _Var1);
+
+PROC
+Proc_ObjectLeftCombat(CHARACTERGUID_S_GLO_Alexandar_03e6345f-1bd3-403c-80e2-a443a74f6349, (INTEGER)_Var1)
+AND
+DB_Dead(CHARACTERGUID_S_GLO_Alexandar_03e6345f-1bd3-403c-80e2-a443a74f6349)
+AND
+GetRegion(CHARACTERGUID_S_GLO_Alexandar_03e6345f-1bd3-403c-80e2-a443a74f6349, "FJ_FortJoy_Main")
+AND
+DB_IsPlayer(_Var2)
+AND
+QRY_Achievements_CharacterIsOrWasInCombat(_Var2, _Var1)
+THEN
+UnlockAchievement("DOS2_Quest9", _Var2);
+
+IF
+CharacterKilledBy(CHARACTERGUID_S_GLO_Alexandar_03e6345f-1bd3-403c-80e2-a443a74f6349, (CHARACTERGUID)_Var1, _)
+AND
+DB_IsPlayer(_Var1)
+AND
+GetRegion(_Var1, "FJ_FortJoy_Main")
+THEN
+UnlockAchievement("DOS2_Quest9", _Var1);
+
+IF
+ObjectFlagSet("QuestUpdate_FTJ_Escape_BlackCat_Saved", (CHARACTERGUID)_Var1, _)
+THEN
+UnlockAchievement("DOS2_Quest10", _Var1);
+
+IF
+GlobalFlagSet("FTJ_DallisDefeatedInGhetto")
+THEN
+UnlockAchievement("DOS2_Quest11");
+
+PROC
+Proc_ObjectLeftCombat(CHARACTERGUID_S_FTJ_SW_PurgedDragon_c099caa6-1938-4b4f-9365-d0881c611e71, (INTEGER)_Var1)
+AND
+DB_Dead(CHARACTERGUID_S_FTJ_SW_PurgedDragon_c099caa6-1938-4b4f-9365-d0881c611e71)
+AND
+GetRegion(CHARACTERGUID_S_FTJ_SW_PurgedDragon_c099caa6-1938-4b4f-9365-d0881c611e71, "FJ_FortJoy_Main")
+AND
+DB_IsPlayer(_Var2)
+AND
+QRY_Achievements_CharacterIsOrWasInCombat(_Var2, _Var1)
+THEN
+UnlockAchievement("DOS2_Quest12", _Var2);
+
+IF
+CharacterKilledBy(CHARACTERGUID_S_FTJ_SW_PurgedDragon_c099caa6-1938-4b4f-9365-d0881c611e71, (CHARACTERGUID)_Var1, _)
+AND
+DB_IsPlayer(_Var1)
+AND
+GetRegion(_Var1, "FJ_FortJoy_Main")
+THEN
+UnlockAchievement("DOS2_Quest12", _Var1);
+
+PROC
+Proc_ObjectLeftCombat(CHARACTERGUID_S_FTJ_SW_Witch_4014aee0-56f1-47e0-a8eb-89c4b5a1da83, (INTEGER)_Var1)
+AND
+DB_Dead(CHARACTERGUID_S_FTJ_SW_Witch_4014aee0-56f1-47e0-a8eb-89c4b5a1da83)
+AND
+DB_IsPlayer(_Var2)
+AND
+QRY_Achievements_CharacterIsOrWasInCombat(_Var2, _Var1)
+THEN
+UnlockAchievement("DOS2_Quest13", _Var2);
+
+IF
+CharacterKilledBy(CHARACTERGUID_S_FTJ_SW_Witch_4014aee0-56f1-47e0-a8eb-89c4b5a1da83, (CHARACTERGUID)_Var1, _)
+AND
+DB_IsPlayer(_Var1)
+THEN
+UnlockAchievement("DOS2_Quest13", _Var1);
+
+IF
+GlobalFlagSet("FTJ_LV_RiverDoReadyCheck")
+THEN
+UnlockAchievement("DOS2_Quest14");
+
+IF
+ObjectFlagSet("LV_PDD_SeekerMerchant_Peace", (CHARACTERGUID)_Var1, _)
+THEN
+UnlockAchievement("DOS2_Quest15", _Var1);
+
+IF
+GlobalFlagSet("FTJ_LV_StartHoELevel")
+AND NOT
+DB_OnlyOnce("LV_Assault_Magisters_Killed")
+THEN
+UnlockAchievement("DOS2_Quest16");
+
+IF
+MovieFinished("CS_LV-Battle_to_HOE")
+THEN
+UnlockAchievement("DOS2_Quest17");
+
+PROC
+ProcKillCounterReached("LV_Assault_Magisters")
+THEN
+UnlockAchievement("DOS2_Quest18");
+DB_OnlyOnce("LV_Assault_Magisters_Killed");
+
+IF
+CharacterUsedItem((CHARACTERGUID)_Var1, ITEMGUID_S_RC_LV_TP_Beach_9128c91c-6302-4574-9d0e-0595ff211b6b)
+AND
+DB_IsPlayer(_Var1)
+THEN
+UnlockAchievement("DOS2_Quest19", _Var1);
+
+IF
+ObjectFlagSet("RC_DW_Meistr_Hasmet", (CHARACTERGUID)_Var1, _)
+THEN
+UnlockAchievement("DOS2_Quest20", _Var1);
+
+IF
+ObjectWasTagged((CHARACTERGUID)_Var1, "CHAMPION_DW")
+THEN
+UnlockAchievement("DOS2_Quest21", _Var1);
+
+IF
+CharacterUsedSkill((CHARACTERGUID)_Var1, (STRING)_Var2, _, _)
+AND
+DB_IsPlayer(_Var1)
+AND
+IsSourceSkill(_Var2, 1)
+THEN
+UnlockAchievement("DOS2_Quest22", _Var1);
+
+IF
+ObjectFlagSet("GLO_Has2MaxMP", (CHARACTERGUID)_Var1, _)
+THEN
+UnlockAchievement("DOS2_Quest23", _Var1);
+
+IF
+ObjectFlagSet("GLO_Has3MaxMP", (CHARACTERGUID)_Var1, _)
+THEN
+UnlockAchievement("DOS2_Quest24", _Var1);
+
+IF
+ObjectFlagSet((STRING)_Var1, (CHARACTERGUID)_Var2, _)
+AND
+DB_FL_GarethAchievementFlag(_Var1, _Var4)
+THEN
+UnlockAchievement(_Var4, _Var2);
+
+IF
+SavegameLoaded((INTEGER)_Var1, (INTEGER)_Var2, (INTEGER)_Var3, (INTEGER)_Var4)
+AND
+QRY_VersionIsOlderThan(_Var1, _Var2, _Var3, _Var4, 3, 6, 1, 0)
+THEN
+DB_FL_GarethAchievementFlag("RC_FL_KilledJonathanFields", "DOS2_Quest25");
+DB_FL_GarethAchievementFlag("QuestUpdate_RC_FL_GarethFarm_GaveRing", "DOS2_Quest25");
+DB_FL_GarethAchievementFlag("QuestUpdate_RC_FL_GarethFarm_Lied", "DOS2_Quest25");
+DB_FL_GarethAchievementFlag("RC_FL_Gareth_ConvincedGarethReturn", "DOS2_Quest26");
+DB_FL_GarethAchievementFlag("QuestUpdate_RC_FL_GarethFarm_ConvincedKillJonathan", "DOS2_Quest26");
+
+IF
+SavegameLoaded((INTEGER)_Var1, (INTEGER)_Var2, (INTEGER)_Var3, (INTEGER)_Var4)
+AND
+QRY_VersionIsOlderThan(_Var1, _Var2, _Var3, _Var4, 3, 6, 1, 0)
+AND
+DB_IsPlayer(_Var5)
+AND
+DB_FL_GarethAchievementFlag(_Var6, _Var7)
+AND
+ObjectGetFlag(_Var5, _Var6, 1)
+THEN
+UnlockAchievement(_Var7, _Var5);
+
+IF
+ObjectFlagSet("RC_DW_Meistr_KnowCoS", _, _)
+THEN
+UnlockAchievement("DOS2_Quest27");
+
+IF
+ObjectFlagSet("RC_DW_River_KnowCoS", _, _)
+THEN
+UnlockAchievement("DOS2_Quest28");
+
+IF
+ObjectFlagSet("RC_BI_ThePresence_KnowCoS", _, _)
+THEN
+UnlockAchievement("DOS2_Quest29");
+
+IF
+ObjectFlagSet("QuestUpdate_RC_BI_TheTruth_FoundOutDemonsName", (CHARACTERGUID)_Var1, _)
+THEN
+UnlockAchievement("DOS2_Quest30", _Var1);
+
+IF
+ObjectFlagSet("QuestUpdate_RC_GY_WronglyBuried_SkellyExploded", (CHARACTERGUID)_Var1, _)
+THEN
+UnlockAchievement("DOS2_Quest31", _Var1);
+
+IF
+ObjectFlagSet("ARX_LV_Tarquin_GiveGodslayer", (CHARACTERGUID)_Var1, _)
+THEN
+UnlockAchievement("DOS2_Quest33", _Var1);
+
+IF
+ObjectFlagSet("RC_MIL_RescuedSaheila", (CHARACTERGUID)_Var1, _)
+AND NOT
+DB_GlobalFlag("RC_MIL_Achievement_Sawmill_Failed")
+THEN
+UnlockAchievement("DOS2_Quest34", _Var1);
+
+PROC
+Proc_RC_BF_DeathBoat_Arrived()
+AND
+DB_RC_BF_DeathBoat_SailFromIsland(0)
+AND
+DB_RC_BF_DeathBoat_PlayersInTrip(_Var1)
+AND
+CharacterIsDead(_Var1, 0)
+AND
+IsTagged(_Var1, "UNDEAD", 1)
+THEN
+UnlockAchievement("DOS2_Quest35", _Var1);
+
+IF
+SkillAdded((CHARACTERGUID)_Var1, "Summon_Condor", _)
+AND
+DB_IsPlayer(_Var1)
+THEN
+UnlockAchievement("DOS2_Quest36", _Var1);
+
+IF
+ObjectFlagSet("RC_DU_RescuedHeroicWife", (CHARACTERGUID)_Var1, _)
+THEN
+UnlockAchievement("DOS2_Quest37", _Var1);
+
+PROC
+Proc_ObjectLeftCombat(CHARACTERGUID_S_RC_GY_LoyalDog_46e022c5-f2d4-465c-a5f0-db0e9760fcce, (INTEGER)_Var1)
+AND
+DB_Dead(CHARACTERGUID_S_RC_GY_LoyalDog_46e022c5-f2d4-465c-a5f0-db0e9760fcce)
+AND
+DB_IsPlayer(_Var2)
+AND
+QRY_Achievements_CharacterIsOrWasInCombat(_Var2, _Var1)
+THEN
+UnlockAchievement("DOS2_Quest38", _Var2);
+
+IF
+CharacterKilledBy(CHARACTERGUID_S_RC_GY_LoyalDog_46e022c5-f2d4-465c-a5f0-db0e9760fcce, (CHARACTERGUID)_Var1, _)
+AND
+DB_IsPlayer(_Var1)
+THEN
+UnlockAchievement("DOS2_Quest38", _Var1);
+
+IF
+ObjectFlagSet("QuestUpdate_RC_GY_PurgedDaughter_OperationSuccessful", (CHARACTERGUID)_Var1, _)
+THEN
+UnlockAchievement("DOS2_Quest39", _Var1);
+
+IF
+ObjectFlagSet("RC_ManagedToRemoveTaintedFunnyMeatStew", (CHARACTERGUID)_Var1, _)
+THEN
+UnlockAchievement("DOS2_Quest41", _Var1);
+
+IF
+ObjectFlagSet("QuestUpdate_RC_DW_SpidersKiss_Completed", (CHARACTERGUID)_Var1, _)
+THEN
+UnlockAchievement("DOS2_Quest42", _Var1);
+
+IF
+ObjectFlagSet("QuestUpdate_RC_DW_VoidwokenChicks_BecameMama", (CHARACTERGUID)_Var1, _)
+THEN
+UnlockAchievement("DOS2_Quest43", _Var1);
+
+IF
+CharacterUsedItem((CHARACTERGUID)_Var1, ITEMGUID_S_RC_LV_TP_Beach_000_1f46931a-4c58-4055-9b2d-cfdeaddb968e)
+AND
+DB_IsPlayer(_Var1)
+THEN
+UnlockAchievement("DOS2_Quest44", _Var1);
+
+PROC
+Proc_ObjectLeftCombat(CHARACTERGUID_S_CoS_Temples_SpyMaster_787c6c4a-6e5a-4044-9616-27e21e5a171e, (INTEGER)_Var1)
+AND
+DB_Dead(CHARACTERGUID_S_CoS_Temples_SpyMaster_787c6c4a-6e5a-4044-9616-27e21e5a171e)
+AND
+DB_IsPlayer(CHARACTERGUID_S_Player_Sebille_c8d55eaf-e4eb-466a-8f0d-6a9447b5b24c)
+AND
+QRY_Achievements_CharacterIsOrWasInCombat(CHARACTERGUID_S_Player_Sebille_c8d55eaf-e4eb-466a-8f0d-6a9447b5b24c, _Var1)
+THEN
+UnlockAchievement("DOS2_Quest100", CHARACTERGUID_S_Player_Sebille_c8d55eaf-e4eb-466a-8f0d-6a9447b5b24c);
+
+IF
+CharacterEnteredTrigger((CHARACTERGUID)_Var1, TRIGGERGUID_S_CoS_SUB_Academy_51ddb828-18a6-4b6e-9f5a-e2b2883862e1)
+AND
+DB_IsPlayer(_Var1)
+THEN
+UnlockAchievement("DOS2_Quest45", _Var1);
+
+IF
+CharacterEnteredTrigger((CHARACTERGUID)_Var1, TRIGGERGUID_S_CoS_AotO_SUB_Arena_46aab122-a2f8-42f2-a67b-25062e1a8847)
+AND
+DB_IsPlayer(_Var1)
+THEN
+UnlockAchievement("DOS2_Quest46", _Var1);
+
+IF
+ObjectWasTagged((CHARACTERGUID)_Var1, "GODSLAYER")
+THEN
+UnlockAchievement("DOS2_Quest47", _Var1);
+
+IF
+ObjectFlagSet("QuestUpdate_CoS_Academy_ConvincedAlexandar", (CHARACTERGUID)_Var1, _)
+THEN
+UnlockAchievement("DOS2_Quest49", _Var1);
+
+IF
+ObjectFlagSet("CoS_Temples_KnowsHowToEnterAcademy_BackEntrance", (CHARACTERGUID)_Var1, _)
+THEN
+UnlockAchievement("DOS2_Quest51", _Var1);
+
+IF
+ObjectWasTagged((CHARACTERGUID)_Var1, "THE_ONE")
+THEN
+UnlockAchievement("DOS2_Quest52", _Var1);
+
+IF
+ItemTemplateCombinedWithItemTemplate(_, _, _, _, _, (CHARACTERGUID)_Var6, (ITEMGUID)_Var7)
+AND
+DB_IsPlayer(_Var6)
+AND
+GetTemplate(_Var7, "WPN_Ataraxians_Scythe_2H_A_3b45c978-5a42-40b5-a7aa-183852616910")
+THEN
+UnlockAchievement("DOS2_Quest53", _Var6);
+
+IF
+ObjectFlagSet("GLO_Promise_AcceptedPromise", (CHARACTERGUID)_Var1, _)
+THEN
+UnlockAchievement("DOS2_Quest54", _Var1);
+
+IF
+CharacterEnteredTrigger((CHARACTERGUID)_Var1, TRIGGERGUID_S_ARX_TheCrash_CrashSite_e8316fd4-b022-4332-8c7f-bf82b0001521)
+AND
+DB_IsPlayer(_Var1)
+THEN
+UnlockAchievement("DOS2_Quest55", _Var1);
+
+IF
+ObjectFlagSet("QuestUpdate_ARX_HuntingForDallis_TrickedPoB", (CHARACTERGUID)_Var1, _)
+THEN
+UnlockAchievement("DOS2_Quest56", _Var1);
+
+IF
+ObjectFlagSet("ARX_Cathedral_DivineTomb_PoB_Accepted", (CHARACTERGUID)_Var1, _)
+THEN
+UnlockAchievement("DOS2_Quest57", _Var1);
+
+IF
+CharacterDied(CHARACTERGUID_S_EndGame_Kraken_ae15de17-4238-4ae0-af43-48cd0f72f8f5)
+THEN
+UnlockAchievement("DOS2_Quest58");
+
+IF
+GlobalFlagSet("EG_Ending1_NewDivine")
+THEN
+UnlockAchievement("DOS2_Quest59");
+
+IF
+GlobalFlagSet("EG_Ending2_SourceForAll")
+THEN
+UnlockAchievement("DOS2_Quest60");
+
+IF
+GlobalFlagSet("EG_Ending3_Purge")
+THEN
+UnlockAchievement("DOS2_Quest61");
+
+IF
+GlobalFlagSet("EG_Ending4_GodKing")
+THEN
+UnlockAchievement("DOS2_Quest62");
+
+IF
+GlobalFlagSet("EG_Ending_5_Demon")
+THEN
+UnlockAchievement("DOS2_Quest63");
+
+IF
+GlobalFlagSet("GLO_SebilleRooted")
+THEN
+UnlockAchievement("DOS2_Quest68", CHARACTERGUID_S_Player_Sebille_c8d55eaf-e4eb-466a-8f0d-6a9447b5b24c);
+
+IF
+ObjectFlagSet("QuestUpdate_FTJ_COM_Sebille_KilledMotherTree", _, _)
+THEN
+UnlockAchievement("DOS2_Quest69", CHARACTERGUID_S_Player_Sebille_c8d55eaf-e4eb-466a-8f0d-6a9447b5b24c);
+
+IF
+ObjectFlagSet("QuestUpdate_FTJ_OriginSebille_KilledMotherTree", CHARACTERGUID_S_Player_Sebille_c8d55eaf-e4eb-466a-8f0d-6a9447b5b24c, _)
+THEN
+UnlockAchievement("DOS2_Quest69", CHARACTERGUID_S_Player_Sebille_c8d55eaf-e4eb-466a-8f0d-6a9447b5b24c);
+
+IF
+ObjectFlagSet("QuestUpdate_FTJ_COM_Sebille_KilledMotherTree_DeathFog", CHARACTERGUID_S_Player_Sebille_c8d55eaf-e4eb-466a-8f0d-6a9447b5b24c, _)
+THEN
+UnlockAchievement("DOS2_Quest69", CHARACTERGUID_S_Player_Sebille_c8d55eaf-e4eb-466a-8f0d-6a9447b5b24c);
+
+IF
+SavegameLoaded((INTEGER)_Var1, (INTEGER)_Var2, (INTEGER)_Var3, (INTEGER)_Var4)
+AND
+QRY_VersionIsOlderThan(_Var1, _Var2, _Var3, _Var4, 3, 6, 4, 0)
+AND
+DB_Avatars(_Var5)
+AND
+UserGetFlag(_Var5, "QuestUpdate_FTJ_COM_Sebille_KilledMotherTree", 1)
+THEN
+UnlockAchievement("DOS2_Quest69", _Var5);
+
+IF
+GlobalFlagSet("EG_Ending1A_EternalsReturn")
+AND
+DB_IsPlayer(CHARACTERGUID_S_Player_Fane_02a77f1f-872b-49ca-91ab-32098c443beb)
+THEN
+UnlockAchievement("DOS2_Quest70", CHARACTERGUID_S_Player_Fane_02a77f1f-872b-49ca-91ab-32098c443beb);
+
+IF
+GlobalFlagSet("EG_Ending3_Purge")
+AND
+DB_Avatars(CHARACTERGUID_S_Player_Fane_02a77f1f-872b-49ca-91ab-32098c443beb)
+AND NOT
+DB_Dead(CHARACTERGUID_S_Player_Fane_02a77f1f-872b-49ca-91ab-32098c443beb)
+THEN
+UnlockAchievement("DOS2_Quest71", CHARACTERGUID_S_Player_Fane_02a77f1f-872b-49ca-91ab-32098c443beb);
+
+IF
+GlobalFlagSet("EG_Ending2_SourceForAll")
+AND
+DB_Avatars(CHARACTERGUID_S_Player_Fane_02a77f1f-872b-49ca-91ab-32098c443beb)
+AND NOT
+DB_Dead(CHARACTERGUID_S_Player_Fane_02a77f1f-872b-49ca-91ab-32098c443beb)
+THEN
+UnlockAchievement("DOS2_Quest71", CHARACTERGUID_S_Player_Fane_02a77f1f-872b-49ca-91ab-32098c443beb);
+
+IF
+ObjectFlagSet("QuestUpdate_FTJ_Ifan_DarkFaction_KilledLucianCrypt", CHARACTERGUID_S_Player_Ifan_ad9a3327-4456-42a7-9bf4-7ad60cc9e54f, _)
+THEN
+UnlockAchievement("DOS2_Quest72", CHARACTERGUID_S_Player_Ifan_ad9a3327-4456-42a7-9bf4-7ad60cc9e54f);
+
+IF
+ObjectFlagSet("QuestUpdate_FTJ_COM_Ifan_KilledLucianCrypt", (CHARACTERGUID)_Var1, _)
+THEN
+UnlockAchievement("DOS2_Quest72", _Var1);
+
+IF
+ObjectFlagSet("ARX_EndGame_ForgaveLucian", CHARACTERGUID_S_Player_Ifan_ad9a3327-4456-42a7-9bf4-7ad60cc9e54f, _)
+THEN
+UnlockAchievement("DOS2_Quest73", CHARACTERGUID_S_Player_Ifan_ad9a3327-4456-42a7-9bf4-7ad60cc9e54f);
+
+IF
+ObjectFlagSet("ARX_Sewers_TheQueen_AssassinationAttempt", CHARACTERGUID_S_Player_Beast_f25ca124-a4d2-427b-af62-df66df41a978, _)
+THEN
+UnlockAchievement("DOS2_Quest74", CHARACTERGUID_S_Player_Beast_f25ca124-a4d2-427b-af62-df66df41a978);
+
+IF
+ObjectFlagSet("QuestUpdate_FTJ_OriginBeast_Resolved", CHARACTERGUID_S_Player_Beast_f25ca124-a4d2-427b-af62-df66df41a978, _)
+THEN
+UnlockAchievement("DOS2_Quest75", CHARACTERGUID_S_Player_Beast_f25ca124-a4d2-427b-af62-df66df41a978);
+
+IF
+ObjectFlagSet("QuestUpdate_FTJ_COM_Beast_Resolved", (CHARACTERGUID)_Var1, _)
+THEN
+UnlockAchievement("DOS2_Quest75", _Var1);
+
+IF
+ObjectFlagSet("ARX_CreepyCraftsman_Give_SourceAmulet", (CHARACTERGUID)_Var1, _)
+AND
+DB_IsPlayer(_Var1)
+THEN
+UnlockAchievement("DOS2_Quest76", _Var1);
+
+IF
+CharacterEnteredTrigger((CHARACTERGUID)_Var1, TRIGGERGUID_S_ARX_Barracks_WhiteMagisterVault_RegionTrigger_c03d300b-0c04-425e-8af0-8644cb5a1c15)
+AND
+DB_IsPlayer(_Var1)
+THEN
+UnlockAchievement("DOS2_Quest77", _Var1);
+
+IF
+ObjectFlagSet("ARX_KemmVault_Arhu_PostKemmDialog", (CHARACTERGUID)_Var1, _)
+THEN
+UnlockAchievement("DOS2_Quest78", _Var1);
+
+PROC
+Proc_ObjectLeftCombat(CHARACTERGUID_S_ARX_DoctorsHouse_TheDoctor_83083470-c543-45b3-ac8a-108df0daca8d, (INTEGER)_Var1)
+AND
+DB_Dead(CHARACTERGUID_S_ARX_DoctorsHouse_TheDoctor_83083470-c543-45b3-ac8a-108df0daca8d)
+AND
+DB_IsPlayer(_Var2)
+AND
+QRY_Achievements_CharacterIsOrWasInCombat(_Var2, _Var1)
+THEN
+UnlockAchievement("DOS2_Quest79", _Var2);
+
+IF
+CharacterKilledBy(CHARACTERGUID_S_ARX_DoctorsHouse_TheDoctor_83083470-c543-45b3-ac8a-108df0daca8d, (CHARACTERGUID)_Var1, _)
+AND
+DB_IsPlayer(_Var1)
+THEN
+UnlockAchievement("DOS2_Quest79", _Var1);
+
+IF
+ObjectFlagSet("QuestUpdate_ARX_TheDoctor_Pact_Accepted", (CHARACTERGUID)_Var1, _)
+THEN
+UnlockAchievement("DOS2_Quest80", _Var1);
+
+IF
+ObjectFlagSet("ARX_HorrorSleep_Sunset_KilledPrincess", CHARACTERGUID_S_Player_RedPrince_a26a1efb-cdc8-4cf3-a7b2-b2f9544add6f, (INTEGER)_Var1)
+THEN
+UnlockAchievement("DOS2_Quest64", CHARACTERGUID_S_Player_RedPrince_a26a1efb-cdc8-4cf3-a7b2-b2f9544add6f);
+
+IF
+SkillAdded(CHARACTERGUID_S_Player_RedPrince_a26a1efb-cdc8-4cf3-a7b2-b2f9544add6f, "Summon_Quest_SummonNewt", (INTEGER)_Var1)
+THEN
+UnlockAchievement("DOS2_Quest65", CHARACTERGUID_S_Player_RedPrince_a26a1efb-cdc8-4cf3-a7b2-b2f9544add6f);
+
+IF
+GlobalFlagSet("ARX_HorrorSleep_Closed")
+AND NOT
+DB_Dead(CHARACTERGUID_S_ARX_HorrorSleep_Sunset_Newt_1f46750f-1d62-4676-aaa7-9ec226c96428)
+AND
+DB_IsPlayer(CHARACTERGUID_S_Player_RedPrince_a26a1efb-cdc8-4cf3-a7b2-b2f9544add6f)
+THEN
+UnlockAchievement("DOS2_Quest65", CHARACTERGUID_S_Player_RedPrince_a26a1efb-cdc8-4cf3-a7b2-b2f9544add6f);
+
+IF
+CharacterUsedSkillOnTarget(CHARACTERGUID_S_ARX_DoctorsHouse_TheDoctor_83083470-c543-45b3-ac8a-108df0daca8d, CHARACTERGUID_S_Player_Lohse_bb932b13-8ebf-4ab4-aac0-83e6924e4295, "Target_Quest_DemonicPossession_Kill", _, _)
+THEN
+UnlockAchievement("DOS2_Quest66", CHARACTERGUID_S_Player_Lohse_bb932b13-8ebf-4ab4-aac0-83e6924e4295);
+
+IF
+CharacterUsedSkillOnTarget(CHARACTERGUID_S_ARX_DoctorsHouse_TheDoctor_83083470-c543-45b3-ac8a-108df0daca8d, CHARACTERGUID_S_Player_Lohse_bb932b13-8ebf-4ab4-aac0-83e6924e4295, "Target_Quest_DemonicPossession", _, _)
+THEN
+UnlockAchievement("DOS2_Quest66", CHARACTERGUID_S_Player_Lohse_bb932b13-8ebf-4ab4-aac0-83e6924e4295);
+
+IF
+ObjectFlagSet("QuestUpdate_FTJ_COM_Lohse_DoctorDefeat", (CHARACTERGUID)_Var1, _)
+THEN
+UnlockAchievement("DOS2_Quest67", _Var1);
+
+IF
+ObjectFlagSet("QuestUpdate_FTJ_OriginLohse_DoctorDefeat", CHARACTERGUID_S_Player_Lohse_bb932b13-8ebf-4ab4-aac0-83e6924e4295, _)
+THEN
+UnlockAchievement("DOS2_Quest67", CHARACTERGUID_S_Player_Lohse_bb932b13-8ebf-4ab4-aac0-83e6924e4295);
+
+IF
+CharacterPolymorphedInto((CHARACTERGUID)_Var1, (STRING)_Var2)
+AND
+DB_IsPlayer(_Var1)
+AND NOT
+DB_GLO_Achievement_ShapeshiftedRace(_Var1, _Var2)
+THEN
+DB_GLO_Achievement_ShapeshiftedRace(_Var1, _Var2);
+Proc_ProgressAchievement(_Var1, "DOS2_Quest81");
+
+IF
+DialogStarted(_, (INTEGER)_Var2)
+AND
+DB_DialogNPCs(_Var2, _Var3, _)
+AND
+IsTagged(_Var3, "GHOST", 1)
+AND
+IsTagged(_Var3, "ANIMAL", 1)
+AND
+DB_DialogPlayers(_Var2, _Var5, _)
+THEN
+UnlockAchievement("DOS2_Quest89", _Var5);
+
+IF
+SkillCast((CHARACTERGUID)_Var1, "Target_Curse", _, _)
+AND
+DB_IsPlayer(_Var1)
+THEN
+UnlockAchievement("DOS2_Quest90", _Var1);
+
+IF
+ObjectWasTagged((CHARACTERGUID)_Var1, "HERO")
+THEN
+UnlockAchievement("DOS2_Quest91", _Var1);
+
+IF
+ObjectWasTagged((CHARACTERGUID)_Var1, "VILLAIN")
+THEN
+UnlockAchievement("DOS2_Quest92", _Var1);
+
+IF
+PersuasionResult((CHARACTERGUID)_Var1, 1, _)
+AND
+DB_IsPlayer(_Var1)
+THEN
+UnlockAchievement("DOS2_Quest93", _Var1);
+
+IF
+CharacterStoleItem((CHARACTERGUID)_Var1, _, _, _, _, _, _, _)
+AND
+DB_IsPlayer(_Var1)
+THEN
+UnlockAchievement("DOS2_Quest94", _Var1);
+
+PROC
+ProcCrimeTeleportCharacterToPrison((CHARACTERGUID)_Var1, _)
+THEN
+UnlockAchievement("DOS2_Quest96", _Var1);
+
+QRY
+QRY_Achievements_CharacterIsOrWasInCombat((CHARACTERGUID)_Var1, (INTEGER)_Var2)
+AND
+DB_CombatCharacters(_Var1, _Var2)
+THEN
+DB_NOOP(1);
+
+QRY
+QRY_Achievements_CharacterIsOrWasInCombat((CHARACTERGUID)_Var1, (INTEGER)_Var2)
+AND
+DB_WasInCombat(_Var1, _Var2)
+THEN
+DB_NOOP(1);
+
+
+EXITSECTION
+ENDEXITSECTION
+
+ParentTargetEdge "DOS2ModWrapper"

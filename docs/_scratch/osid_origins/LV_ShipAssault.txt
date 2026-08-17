@@ -1,0 +1,470 @@
+Version 1
+SubGoalCombiner SGC_AND
+
+INITSECTION
+DB_LV_ShipAssault_SeekerPoints(TRIGGERGUID_S_LV_ShipAssaultSeeker_Point_000_3640a335-9106-4a42-aa80-2ef9b0746611);
+DB_LV_ShipAssault_SeekerPoints(TRIGGERGUID_S_LV_ShipAssaultSeeker_Point_001_0e561a7f-7556-4e51-9615-681c5369551d);
+DB_LV_ShipAssault_SeekerPoints(TRIGGERGUID_S_LV_ShipAssaultSeeker_Point_002_449d43f4-1f46-4bef-b127-251302c655b5);
+DB_LV_ShipAssault_SeekerPoints(TRIGGERGUID_S_LV_ShipAssaultSeeker_Point_003_c06fe32d-900d-4683-8115-4167b8e54c86);
+DB_LV_ShipAssault_SeekerPoints(TRIGGERGUID_S_LV_ShipAssaultSeeker_Point_004_6e538b2f-08fc-42f5-b0f7-06ddef52565c);
+DB_LV_ShipAssault_SeekerPoints(TRIGGERGUID_S_LV_ShipAssaultSeeker_Point_005_b14e8caf-b455-4493-a0e0-ac5a3a55693c);
+DB_LV_ShipAssault_SeekerPoints(TRIGGERGUID_S_LV_ShipAssaultSeeker_Point_000_3640a335-9106-4a42-aa80-2ef9b0746611);
+DB_LV_ShipAssault_SeekerPoints(TRIGGERGUID_S_LV_ShipAssaultSeeker_Point_007_4ec573a8-9467-45eb-9bc7-869f8f3895c5);
+DB_LV_ShipAssault_PlayerPoints(TRIGGERGUID_S_LV_PlayerStart_Point_000_86aef7d6-eced-4347-b8d7-3c5f2de673df);
+DB_LV_ShipAssault_PlayerPoints(TRIGGERGUID_S_LV_PlayerStart_Point_001_1c6d4386-5fd4-401c-b6f2-79f61e12923e);
+DB_LV_ShipAssault_PlayerPoints(TRIGGERGUID_S_LV_PlayerStart_Point_002_c94ab48e-3162-4ff4-bad8-9c89da11f29d);
+DB_LV_ShipAssault_PlayerPoints(TRIGGERGUID_S_LV_PlayerStart_Point_34bebe2d-678a-4904-9a5d-79b9eaae10b5);
+DB_LV_ShipAssault_SeekerDeathReactions(CHARACTERGUID_S_FTJ_SW_Warrior_CollarRemoverFriend_01bd86e1-75ca-46a6-853e-b8dd64c2cd22, CHARACTERGUID_S_FTJ_SW_CollarRemovingSeeker_437c00b3-6544-44dd-8396-a43848b19a1e, "LV_AD_DugganReactToLeyaDeath");
+DB_LV_ShipAssault_SeekerDeathReactions(CHARACTERGUID_S_FTJ_SW_CollarRemovingSeeker_437c00b3-6544-44dd-8396-a43848b19a1e, CHARACTERGUID_S_FTJ_SW_Warrior_CollarRemoverFriend_01bd86e1-75ca-46a6-853e-b8dd64c2cd22, "LV_AD_LeyaReactToDugganDeath");
+DB_LV_ShipAssault_SeekerDeathReactions(CHARACTERGUID_S_FTJ_SW_Warrior_InjuredDoctor_2478f36b-f0e4-4508-8746-0ee2e42d2e32, CHARACTERGUID_S_FTJ_SW_Warrior_InjuredSeeker_001_b9d3bc65-c15a-45e5-a453-b1540a85e88d, "LV_AD_SimoneReactToJulesDeath");
+DB_LV_ShipAssault_SeekerDeathReactions(CHARACTERGUID_S_FTJ_SW_Warrior_InjuredSeeker_001_b9d3bc65-c15a-45e5-a453-b1540a85e88d, CHARACTERGUID_S_FTJ_SW_Warrior_InjuredDoctor_2478f36b-f0e4-4508-8746-0ee2e42d2e32, "LV_AD_JulesReactToSimoneDeath");
+DB_LV_ShipAssault_SeekerDeathReactions(CHARACTERGUID_S_FTJ_SW_Warrior_Squire_650e8e08-55a2-4ea6-a9f3-c027e4f8c494, CHARACTERGUID_S_FTJ_SW_Warrior_SeekerCaptain_1329f018-23e4-4717-9bc8-074b28d04c54, "LV_AD_ExterReactToGarethDeath");
+DB_LV_ShipAssault_SeekerDeathReactions(CHARACTERGUID_S_FTJ_SW_Warrior_SeekerCaptain_1329f018-23e4-4717-9bc8-074b28d04c54, CHARACTERGUID_S_FTJ_SW_Warrior_Squire_650e8e08-55a2-4ea6-a9f3-c027e4f8c494, "LV_AD_GarethReactToExterDeath");
+DB_KillCounter_Internal(CHARACTERGUID_S_LV_Magister_001_e18876cf-a782-4c94-929a-ba8893958e2f, "LV_Assault_Magisters");
+DB_KillCounter_Internal(CHARACTERGUID_S_LV_Magister_002_a3b15fdb-f98b-4e77-98d7-ba4ee99638d0, "LV_Assault_Magisters");
+DB_KillCounter_Internal(CHARACTERGUID_S_LV_Magister_003_84718360-b4e3-42fb-b6ff-6fa0efef9fd4, "LV_Assault_Magisters");
+DB_KillCounter_Internal(CHARACTERGUID_S_LV_Magister_004_e2dcb0c0-9923-4b84-bcf4-143be4ba12cd, "LV_Assault_Magisters");
+DB_KillCounter_Internal(CHARACTERGUID_S_LV_Magister_005_ee1ff2f6-df46-4724-87a2-12921c002b67, "LV_Assault_Magisters");
+DB_KillCounter_Internal(CHARACTERGUID_S_LV_Magister_006_7a8d44c7-11da-44c8-a195-ff39edb4af37, "LV_Assault_Magisters");
+DB_KillCounter_Internal(CHARACTERGUID_S_LV_Magister_007_daf568ae-5784-47d5-b4ff-0ae3bbd5de42, "LV_Assault_Magisters");
+DB_KillCounter("LV_Assault_Magisters", 7);
+DB_LV_Assault_GlobalDialogs("LV_DallisAssaultLV");
+DB_LV_Assault_GlobalDialogs("LV_ShipAssault_ShipheadTurn");
+DB_Subregion(TRIGGERGUID_S_LV_SUB_Assault_53da8e16-a89d-4b63-be70-fdf42d0a3ce2, "LV_SUB_Assault", 0);
+SetOnStage(CHARACTERGUID_S_LV_Assault_LadyVengeance_Helper_b9831aea-0286-4a14-a70b-44a5d468b0c3, 0);
+
+KBSECTION
+IF
+TextEventSet("FTJ_LV_BeginLVAssault")
+THEN
+CharacterDie(CHARACTERGUID_S_FTJ_Florence_c272a37a-85ea-438f-9871-1551ef45d338, 0, "DoT");
+CharacterSetRelationIndivFactionToFaction(CHARACTERGUID_S_GLO_River_f4931ebe-10b0-43c4-9182-640cf052717e, "RC_Magister", 0);
+CharacterSetRelationFactionToIndivFaction("RC_Magister", CHARACTERGUID_S_GLO_River_f4931ebe-10b0-43c4-9182-640cf052717e, 0);
+CharacterSetRelationIndivFactionToFaction(CHARACTERGUID_S_FTJ_SW_Warrior_SeekerCaptain_1329f018-23e4-4717-9bc8-074b28d04c54, "RC_Magister", 0);
+CharacterSetRelationFactionToIndivFaction("RC_Magister", CHARACTERGUID_S_FTJ_SW_Warrior_SeekerCaptain_1329f018-23e4-4717-9bc8-074b28d04c54, 0);
+GlobalSetFlag("FTJ_LV_BeginLVAssault");
+
+IF
+TextEventSet("FTJ_LV_BeginLVAssault")
+AND
+DB_IsPlayer(_Var1)
+THEN
+CharacterSetRelationFactionToFaction("Hero", "RC_Magister", 0);
+CharacterSetRelationFactionToFaction("RC_Magister", "Hero", 0);
+
+IF
+DialogStarted((STRING)_Var1, (INTEGER)_Var2)
+AND
+DB_LV_Assault_GlobalDialogs(_Var1)
+AND
+DialogGetInvolvedPlayer(_Var2, 1, _Var3)
+AND
+DB_IsPlayer(_Var4)
+AND
+_Var3 != _Var4
+AND
+CharacterIsDead(_Var4, 0)
+THEN
+DialogAddActor(_Var2, _Var4);
+
+PROC
+ProcStartMovie("CS_LVtoRC_Dallis")
+AND
+DB_IsPlayer(_Var1)
+AND
+CharacterIsDead(CHARACTERGUID_S_GLO_Tarquin_a3d0cdcc-d0b0-464d-9ad7-43b38baed620, 0)
+AND
+CharacterGetRelationToCharacter(CHARACTERGUID_S_GLO_Tarquin_a3d0cdcc-d0b0-464d-9ad7-43b38baed620, _Var1, _Var2)
+AND
+_Var2 == 0
+THEN
+CharacterDieImmediate(CHARACTERGUID_S_GLO_Tarquin_a3d0cdcc-d0b0-464d-9ad7-43b38baed620, 0, "DoT");
+SetOnStage(CHARACTERGUID_S_GLO_Tarquin_a3d0cdcc-d0b0-464d-9ad7-43b38baed620, 0);
+
+PROC
+ProcStartMovie("CS_LVtoRC_Dallis")
+AND
+DB_KillCounter_Internal(_Var1, "LV_Assault_Magisters")
+THEN
+SetCanFight(_Var1, 0);
+
+PROC
+ProcStartMovie("CS_LVtoRC_Dallis")
+THEN
+SetCanFight(CHARACTERGUID_S_GLO_Dallis_69b951dc-55a4-44b8-a2d5-5efedbd7d572, 0);
+SetCanFight(CHARACTERGUID_S_GLO_Braccus_358ba541-0710-43be-8263-87afe1a8d9b5, 0);
+
+IF
+MovieFinished("CS_LVtoRC_Dallis")
+AND
+DB_KillCounter_Internal(_Var1, "LV_Assault_Magisters")
+THEN
+SetCanFight(_Var1, 1);
+
+IF
+MovieFinished("CS_LVtoRC_Dallis")
+THEN
+SetCanFight(CHARACTERGUID_S_GLO_Dallis_69b951dc-55a4-44b8-a2d5-5efedbd7d572, 1);
+SetCanFight(CHARACTERGUID_S_GLO_Braccus_358ba541-0710-43be-8263-87afe1a8d9b5, 1);
+
+IF
+MovieFinished("CS_LVtoRC_Dallis")
+THEN
+CharacterSetRelationFactionToFaction("Hero", "RC_Magister", 0);
+CharacterSetRelationFactionToFaction("RC_Magister", "Hero", 0);
+CharacterSetRelationFactionToFaction("FTJ_SW_ShelterNPC", "RC_Magister", 0);
+CharacterSetRelationFactionToFaction("RC_Magister", "FTJ_SW_ShelterNPC", 0);
+SetScriptframe(CHARACTERGUID_S_GLO_Dallis_69b951dc-55a4-44b8-a2d5-5efedbd7d572, "AssaultLadyVengeance_Turn_1");
+
+IF
+StoryEvent((CHARACTERGUID)_Var1, "DialogStart_LV_DallisAssaultLV")
+AND
+GetClosestAlivePlayer(_Var1, _Var2, _)
+AND
+StartDialog_Internal("LV_DallisAssaultLV", 1, CHARACTERGUID_S_GLO_Dallis_69b951dc-55a4-44b8-a2d5-5efedbd7d572, CHARACTERGUID_S_GLO_River_f4931ebe-10b0-43c4-9182-640cf052717e, CHARACTERGUID_S_LV_CloakedFigure_358ba541-0710-43be-8263-87afe1a8d9b5, _Var2, NULL_00000000-0000-0000-0000-000000000000, NULL_00000000-0000-0000-0000-000000000000, 1)
+THEN
+Proc_DialogFlagSetup("LV_DallisAssaultLV", CHARACTERGUID_S_GLO_Dallis_69b951dc-55a4-44b8-a2d5-5efedbd7d572, CHARACTERGUID_S_GLO_River_f4931ebe-10b0-43c4-9182-640cf052717e, _Var2);
+CharacterSetReactionPriority(CHARACTERGUID_S_GLO_River_f4931ebe-10b0-43c4-9182-640cf052717e, "Sleep_InCombat", 0);
+
+IF
+GlobalFlagSet("FTJ_LV_BeginLVAssault")
+AND
+DB_IsPlayer(_Var1)
+AND
+DB_LV_ShipAssault_PlayerPoints(_Var2)
+AND NOT
+DB_LV_ShipAssault_PlayerPoints_Once(_Var1)
+THEN
+DB_LV_ShipAssault_PlayerPoints_Once(_Var1);
+NOT DB_LV_ShipAssault_PlayerPoints(_Var2);
+LeaveCombat(_Var1);
+CharacterDetachFromGroup(_Var1);
+DialogRequestStop(_Var1);
+TeleportTo(_Var1, _Var2);
+CharacterLookFromTrigger(_Var1, _Var2, 1);
+FadeToBlack(_Var1, 0, 0, "Placeholder");
+FadeToBlack(_Var1, 1.8, 1, "Placeholder");
+UserSetFlag(_Var1, "QuestUpdate_CORE_Chapter3_LV_Attack");
+
+IF
+GlobalFlagSet("FTJ_LV_BeginLVAssault")
+AND
+CharacterIsDead(CHARACTERGUID_S_FTJ_SW_Warrior_SeekerCaptain_1329f018-23e4-4717-9bc8-074b28d04c54, 0)
+THEN
+TeleportTo(CHARACTERGUID_S_FTJ_SW_Warrior_SeekerCaptain_1329f018-23e4-4717-9bc8-074b28d04c54, TRIGGERGUID_S_LV_GarethStart_Point_8dd2f63f-04aa-4b90-8ffc-513522a42145);
+SetVarFixedString(CHARACTERGUID_S_FTJ_SW_Warrior_SeekerCaptain_1329f018-23e4-4717-9bc8-074b28d04c54, "currentState", "");
+DB_LV_ShipAssault_SeekerPoints_Once(CHARACTERGUID_S_FTJ_SW_Warrior_SeekerCaptain_1329f018-23e4-4717-9bc8-074b28d04c54);
+
+IF
+GlobalFlagSet("FTJ_LV_BeginLVAssault")
+AND
+DB_LV_LivingSeekersFromAct1(_Var1, _, _)
+AND
+DB_LV_ShipAssault_SeekerPoints(_Var4)
+AND NOT
+DB_LV_ShipAssault_SeekerPoints_Once(_Var1)
+AND
+CharacterIsDead(_Var1, 0)
+THEN
+DB_LV_ShipAssault_SeekerPoints_Once(_Var1);
+NOT DB_LV_ShipAssault_SeekerPoints(_Var4);
+SetVarFixedString(_Var1, "currentState", "");
+TeleportTo(_Var1, _Var4);
+CharacterLookFromTrigger(_Var1, _Var4, 1);
+SetCanFight(_Var1, 1);
+SetCanJoinCombat(_Var1, 1);
+
+IF
+GlobalFlagSet("FTJ_LV_BeginLVAssault")
+AND
+DB_LV_DeadSeekersFromAct1(_Var1, _Var2)
+THEN
+SetTag(_Var1, "NO_LEVELTEMPLATE_TRANSFER");
+
+IF
+GlobalFlagSet("FTJ_LV_BeginLVAssault")
+THEN
+SetTag(CHARACTERGUID_S_FTJ_SW_SeekerNearSourceTotem_302a752b-d9fa-4e00-b214-f722dc4fa8d6, "NO_LEVELTEMPLATE_TRANSFER");
+SetTag(CHARACTERGUID_Animals_Dog_B_FTJ_SourceHound_002_5a0f8c32-2d0d-4dc0-8aac-a2c59efe9ccd, "NO_LEVELTEMPLATE_TRANSFER");
+
+IF
+GlobalFlagSet("FTJ_LV_BeginLVAssault")
+AND
+DB_LV_LivingSeekersFromAct1(_Var1, _Var2, _Var3)
+THEN
+SetTag(_Var1, "NO_LEVELTEMPLATE_TRANSFER");
+
+IF
+GlobalFlagSet("FTJ_LV_BeginLVAssault")
+THEN
+ActivatePersistentLevelTemplate(b1985437-03e3-4d40-bb22-44518943989b);
+ProcStartMovie("CS_LVtoRC_Dallis");
+ProcDisableShroud();
+CharacterSetReactionPriority(CHARACTERGUID_S_GLO_River_f4931ebe-10b0-43c4-9182-640cf052717e, "Sleep_InCombat", 10000);
+SetCanJoinCombat(CHARACTERGUID_S_GLO_River_f4931ebe-10b0-43c4-9182-640cf052717e, 1);
+SetCanFight(CHARACTERGUID_S_GLO_River_f4931ebe-10b0-43c4-9182-640cf052717e, 1);
+SetOnStage(CHARACTERGUID_S_GLO_River_f4931ebe-10b0-43c4-9182-640cf052717e, 1);
+SetOnStage(CHARACTERGUID_S_GLO_Dallis_69b951dc-55a4-44b8-a2d5-5efedbd7d572, 1);
+SetOnStage(CHARACTERGUID_S_LV_Seeker_001_03ddfad1-bfd7-4a8b-83c8-643e16616e65, 0);
+TeleportTo(CHARACTERGUID_S_GLO_River_f4931ebe-10b0-43c4-9182-640cf052717e, TRIGGERGUID_S_LV_RiverStart_Point_2f57858f-9556-4ab9-93c2-b774c00dc7a9);
+TeleportTo(CHARACTERGUID_S_GLO_Dallis_69b951dc-55a4-44b8-a2d5-5efedbd7d572, TRIGGERGUID_S_LV_DallisStart_Point_72a8b763-8201-44f5-b3c5-af773e267bf7);
+CharacterLookFromTrigger(CHARACTERGUID_S_GLO_Dallis_69b951dc-55a4-44b8-a2d5-5efedbd7d572, TRIGGERGUID_S_LV_DallisStart_Point_72a8b763-8201-44f5-b3c5-af773e267bf7, 1);
+SetCombatGroupID(CHARACTERGUID_S_GLO_Dallis_69b951dc-55a4-44b8-a2d5-5efedbd7d572, "");
+Proc_PyramidBlockerTriggerAdd(TRIGGERGUID_S_LV_HoE_SUB_LadyVengeance_TopDeck_b5863e2a-5ec8-410d-91c3-f5c9426a3525);
+
+IF
+GlobalFlagSet("FTJ_LV_BeginLVAssault")
+AND
+CharacterIsDead(CHARACTERGUID_S_FTJ_SW_SeekerNearSourceTotem_302a752b-d9fa-4e00-b214-f722dc4fa8d6, 0)
+AND
+GlobalGetFlag("FTJ_SW_ToldTarleneGarethAtShelter", 1)
+AND
+DB_LV_ShipAssault_SeekerPoints(_Var1)
+AND NOT
+DB_LV_ShipAssault_SeekerPoints_Once(CHARACTERGUID_S_FTJ_SW_SeekerNearSourceTotem_302a752b-d9fa-4e00-b214-f722dc4fa8d6)
+THEN
+DB_LV_ShipAssault_SeekerPoints_Once(CHARACTERGUID_S_FTJ_SW_SeekerNearSourceTotem_302a752b-d9fa-4e00-b214-f722dc4fa8d6);
+NOT DB_LV_ShipAssault_SeekerPoints(_Var1);
+TeleportTo(CHARACTERGUID_S_FTJ_SW_SeekerNearSourceTotem_302a752b-d9fa-4e00-b214-f722dc4fa8d6, _Var1);
+
+IF
+StoryEvent(CHARACTERGUID_S_GLO_River_f4931ebe-10b0-43c4-9182-640cf052717e, "LV_CastHoESpell")
+AND
+DB_IsPlayer(_Var1)
+THEN
+Proc_ShakeCameraForTime(_Var1, 6000);
+PartySetFlag(_Var1, "QuestUpdate_LV_Main_DallisAssault_End");
+
+IF
+StoryEvent(CHARACTERGUID_S_GLO_River_f4931ebe-10b0-43c4-9182-640cf052717e, "LV_CastHoESpell")
+THEN
+Proc_ShakeCameraForTime(CHARACTERGUID_S_GLO_River_f4931ebe-10b0-43c4-9182-640cf052717e, 6000);
+
+IF
+StoryEvent((CHARACTERGUID)_Var1, "LV_Assault_RiverSpell_Fadeout")
+AND
+DB_IsPlayer(_Var1)
+THEN
+FadeToBlack(_Var1, 2.8, 0, "Placeholder");
+
+IF
+TextEventSet("LV_ShipHeadCastBoon")
+THEN
+ObjectSetFlag(ITEMGUID_S_LV_ShipHead_Assault_df338db2-f47c-4575-9baa-90a27a6e75d2, "LV_ShipHeadCastBoon");
+
+IF
+ObjectFlagSet("LV_ShipHeadCastBoon", (GUIDSTRING)_Var1, _)
+THEN
+PlayEffect(_Var1, "RS3_FX_GP_ScriptedEvent_SoulShout_01");
+
+IF
+StoryEvent(CHARACTERGUID_S_GLO_River_f4931ebe-10b0-43c4-9182-640cf052717e, "LV_DoShipHeadDialog")
+AND
+GetClosestAlivePlayer(ITEMGUID_S_LV_ShipHead_Assault_df338db2-f47c-4575-9baa-90a27a6e75d2, _Var1, _)
+AND
+DB_InRegion(_Var1, TRIGGERGUID_S_LV_SUB_Assault_53da8e16-a89d-4b63-be70-fdf42d0a3ce2)
+AND
+QueryOnlyOnce("LV_ShipAssault_ShipheadTurn")
+AND
+StartDialog_Internal("LV_ShipAssault_ShipheadTurn", 1, ITEMGUID_S_LV_ShipHead_Assault_df338db2-f47c-4575-9baa-90a27a6e75d2, CHARACTERGUID_S_GLO_Dallis_69b951dc-55a4-44b8-a2d5-5efedbd7d572, CHARACTERGUID_S_GLO_River_f4931ebe-10b0-43c4-9182-640cf052717e, _Var1, NULL_00000000-0000-0000-0000-000000000000, NULL_00000000-0000-0000-0000-000000000000, 1)
+THEN
+Proc_DialogFlagSetup("LV_ShipAssault_ShipheadTurn", ITEMGUID_S_LV_ShipHead_Assault_df338db2-f47c-4575-9baa-90a27a6e75d2, CHARACTERGUID_S_GLO_Dallis_69b951dc-55a4-44b8-a2d5-5efedbd7d572, CHARACTERGUID_S_GLO_River_f4931ebe-10b0-43c4-9182-640cf052717e, _Var1);
+SetOnStage(CHARACTERGUID_S_LV_Assault_LadyVengeance_Helper_b9831aea-0286-4a14-a70b-44a5d468b0c3, 1);
+PlayAnimation(ITEMGUID_S_LV_ShipHead_Assault_df338db2-f47c-4575-9baa-90a27a6e75d2, "Skill_01");
+
+IF
+DialogStarted("LV_ShipAssault_ShipheadTurn", _)
+AND
+DB_IsPlayer(_Var2)
+THEN
+ItemSetForceSynch(ITEMGUID_S_LV_ShipHead_Assault_df338db2-f47c-4575-9baa-90a27a6e75d2, 1);
+Proc_ShakeCameraForTime(_Var2, 2000);
+
+IF
+DialogEnded("LV_ShipAssault_ShipheadTurn", _)
+THEN
+ItemSetForceSynch(ITEMGUID_S_LV_ShipHead_Assault_df338db2-f47c-4575-9baa-90a27a6e75d2, 0);
+ObjectSetFlag(CHARACTERGUID_S_LV_Assault_LadyVengeance_Helper_b9831aea-0286-4a14-a70b-44a5d468b0c3, "LV_Assault_CastBoonSpell");
+
+IF
+ObjectFlagSet("LV_RiverBeginChannelling", CHARACTERGUID_S_GLO_River_f4931ebe-10b0-43c4-9182-640cf052717e, _)
+THEN
+PlayAnimation(CHARACTERGUID_S_GLO_River_f4931ebe-10b0-43c4-9182-640cf052717e, "skill_prepare_soul_01_start", "LV_RiverBeginChannelling_LoopAnim");
+
+IF
+ObjectFlagSet("LV_RiverBeginChannelling", CHARACTERGUID_S_GLO_River_f4931ebe-10b0-43c4-9182-640cf052717e, (INTEGER)_Var1)
+AND
+DB_DialogPlayers(_Var1, _Var2, _)
+THEN
+PartySetFlag(_Var2, "QuestUpdate_LV_Main_DallisAssault_Start");
+
+IF
+StoryEvent(CHARACTERGUID_S_GLO_River_f4931ebe-10b0-43c4-9182-640cf052717e, "LV_RiverNextChannellingPhase_Anim")
+THEN
+CharacterSetAnimationOverride(CHARACTERGUID_S_GLO_River_f4931ebe-10b0-43c4-9182-640cf052717e, "");
+PlayAnimation(CHARACTERGUID_S_GLO_River_f4931ebe-10b0-43c4-9182-640cf052717e, "skill_prepare_soul_01_start", "LV_RiverBeginChannelling_LoopAnim");
+
+IF
+StoryEvent(CHARACTERGUID_S_GLO_River_f4931ebe-10b0-43c4-9182-640cf052717e, "LV_RiverBeginChannelling_LoopAnim")
+THEN
+CharacterSetAnimationOverride(CHARACTERGUID_S_GLO_River_f4931ebe-10b0-43c4-9182-640cf052717e, "skill_prepare_soul_01_loop");
+
+IF
+GlobalFlagSet("LV_HoE_LvAssaultActive")
+THEN
+SetCameraDistanceOverride(25);
+SetCombatGroupID(CHARACTERGUID_S_GLO_River_f4931ebe-10b0-43c4-9182-640cf052717e, "LV_AssaultCombatGroup");
+SetCombatGroupID(CHARACTERGUID_S_GLO_Dallis_69b951dc-55a4-44b8-a2d5-5efedbd7d572, "LV_AssaultCombatGroup");
+
+IF
+GlobalFlagCleared("LV_HoE_LvAssaultActive")
+THEN
+SetCameraDistanceOverride(19);
+SetCombatGroupID(CHARACTERGUID_S_GLO_River_f4931ebe-10b0-43c4-9182-640cf052717e, "");
+SetCombatGroupID(CHARACTERGUID_S_GLO_Dallis_69b951dc-55a4-44b8-a2d5-5efedbd7d572, "");
+
+IF
+AttackedByObject(CHARACTERGUID_S_GLO_River_f4931ebe-10b0-43c4-9182-640cf052717e, _, (GUIDSTRING)_Var2, _, _)
+AND
+CHARACTERGUID_S_GLO_River_f4931ebe-10b0-43c4-9182-640cf052717e != _Var2
+AND
+GlobalGetFlag("LV_HoE_LvAssaultActive", 1)
+AND
+GlobalGetFlag("LV_RiverAttackedADCooldown", 0)
+THEN
+Proc_StartDialog(1, "LV_AD_RiverAttacked", CHARACTERGUID_S_GLO_River_f4931ebe-10b0-43c4-9182-640cf052717e);
+GlobalSetFlag("LV_RiverAttackedADCooldown");
+TimerLaunch("LV_RiverAttackedADCooldown_Timer", 30000);
+
+IF
+TimerFinished("LV_RiverAttackedADCooldown_Timer")
+THEN
+GlobalClearFlag("LV_RiverAttackedADCooldown");
+
+IF
+GlobalFlagSet("FTJ_LV_StartHoELevel")
+THEN
+ProcEnableShroud();
+
+IF
+GlobalFlagSet("FTJ_LV_StartHoELevel")
+AND
+DB_IsPlayer(_Var1)
+THEN
+FadeToBlack(_Var1, 1, 1, "Placeholder");
+
+IF
+CharacterDying((CHARACTERGUID)_Var1)
+AND
+GlobalGetFlag("LV_HoE_LvAssaultActive", 1)
+AND
+DB_LV_ShipAssault_SeekerDeathReactions(_Var2, _Var1, _Var3)
+AND
+DB_CombatCharacters(_Var2, _Var4)
+AND
+DB_CombatCharacters(CHARACTERGUID_S_GLO_River_f4931ebe-10b0-43c4-9182-640cf052717e, _Var4)
+THEN
+Proc_StartDialog(1, _Var3, _Var2);
+
+IF
+CharacterUsedSkill(CHARACTERGUID_S_LV_Assault_LadyVengeance_Helper_b9831aea-0286-4a14-a70b-44a5d468b0c3, "Shout_Quest_LadyVengeanceBoon", _, _)
+AND
+DB_IsPlayer(_Var3)
+THEN
+Proc_ShakeCameraForTime(_Var3, 2500);
+
+IF
+CharacterReceivedDamage(CHARACTERGUID_S_GLO_Dallis_69b951dc-55a4-44b8-a2d5-5efedbd7d572, _, _)
+AND
+CharacterGetHitpointsPercentage(CHARACTERGUID_S_GLO_Dallis_69b951dc-55a4-44b8-a2d5-5efedbd7d572, _Var3)
+AND
+_Var3 < 25
+AND
+QueryOnlyOnce("AssaultLadyVengeance_EndEarly_Once")
+THEN
+JumpToTurn(CHARACTERGUID_S_GLO_Dallis_69b951dc-55a4-44b8-a2d5-5efedbd7d572);
+RemoveHarmfulStatuses(CHARACTERGUID_S_GLO_Dallis_69b951dc-55a4-44b8-a2d5-5efedbd7d572);
+SetScriptFrame(CHARACTERGUID_S_GLO_Dallis_69b951dc-55a4-44b8-a2d5-5efedbd7d572, "LV_DefeatedInAssault");
+
+IF
+CharacterReceivedDamage(CHARACTERGUID_S_LV_CloakedFigure_358ba541-0710-43be-8263-87afe1a8d9b5, _, _)
+AND
+CharacterGetHitpointsPercentage(CHARACTERGUID_S_LV_CloakedFigure_358ba541-0710-43be-8263-87afe1a8d9b5, _Var3)
+AND
+_Var3 < 25
+AND
+QueryOnlyOnce("AssaultLadyVengeance_EndEarly_Once")
+THEN
+JumpToTurn(CHARACTERGUID_S_GLO_Dallis_69b951dc-55a4-44b8-a2d5-5efedbd7d572);
+RemoveHarmfulStatuses(CHARACTERGUID_S_GLO_Dallis_69b951dc-55a4-44b8-a2d5-5efedbd7d572);
+SetScriptFrame(CHARACTERGUID_S_GLO_Dallis_69b951dc-55a4-44b8-a2d5-5efedbd7d572, "LV_DefeatedInAssault");
+
+PROC
+ProcKillCounterReached("LV_Assault_Magisters")
+THEN
+Proc_LV_FinishAssaultEarly();
+
+PROC
+Proc_LV_FinishAssaultEarly()
+AND
+QueryOnlyOnce("LV_FinishAssaultEarly_Once")
+THEN
+JumpToTurn(CHARACTERGUID_S_GLO_River_f4931ebe-10b0-43c4-9182-640cf052717e);
+SetScriptFrame(CHARACTERGUID_S_GLO_River_f4931ebe-10b0-43c4-9182-640cf052717e, "AssaultLadyVengeance_HoESpellCast");
+
+IF
+ObjectTurnStarted((CHARACTERGUID)_Var1)
+AND
+DB_IsPlayer(_Var1)
+AND
+HasActiveStatus(_Var1, "LIVING_BOMB", 1)
+AND
+CharacterIsSummon(_Var1, 0)
+AND NOT
+DB_LV_DidLivingBombAD(_Var1)
+THEN
+DB_LV_DidLivingBombAD(_Var1);
+Proc_StartDialog(1, "LV_AD_IsLivingBomb", _Var1);
+
+IF
+CharacterStatusRemoved((CHARACTERGUID)_Var1, "LIVING_BOMB", _)
+AND
+DB_LV_DidLivingBombAD(_Var1)
+THEN
+NOT DB_LV_DidLivingBombAD(_Var1);
+
+IF
+GlobalFlagSet("FTJ_LV_BeginLVAssault")
+AND
+ObjectIsInTrigger(ITEMGUID_S_GLO_TeleportPyramid_001_fd45268f-5953-47c4-ba2f-255a05e2ce0e, TRIGGERGUID_S_LV_HoE_SUB_LadyVengeance_TopDeck_b5863e2a-5ec8-410d-91c3-f5c9426a3525, 1)
+AND
+ItemIsInInventory(ITEMGUID_S_GLO_TeleportPyramid_001_fd45268f-5953-47c4-ba2f-255a05e2ce0e, 0)
+THEN
+TeleportTo(ITEMGUID_S_GLO_TeleportPyramid_001_fd45268f-5953-47c4-ba2f-255a05e2ce0e, TRIGGERGUID_S_LV_DallisMeteorCast_Point_a62f4b3f-e584-4c22-978f-23820ee3a770);
+
+IF
+GlobalFlagSet("FTJ_LV_BeginLVAssault")
+AND
+ObjectIsInTrigger(ITEMGUID_S_GLO_TeleportPyramid_002_34810bdd-1185-468b-a5af-3298d0a861cf, TRIGGERGUID_S_LV_HoE_SUB_LadyVengeance_TopDeck_b5863e2a-5ec8-410d-91c3-f5c9426a3525, 1)
+AND
+ItemIsInInventory(ITEMGUID_S_GLO_TeleportPyramid_002_34810bdd-1185-468b-a5af-3298d0a861cf, 0)
+THEN
+TeleportTo(ITEMGUID_S_GLO_TeleportPyramid_002_34810bdd-1185-468b-a5af-3298d0a861cf, TRIGGERGUID_S_LV_DallisMeteorCast_Point_a62f4b3f-e584-4c22-978f-23820ee3a770);
+
+IF
+TimerFinished("FTJ_LV_SendPlayersToHoE")
+AND
+DB_KillCounter_Internal(_Var1, "LV_Assault_Magisters")
+THEN
+SetOnStage(_Var1, 0);
+
+PROC
+ProcRegionEnded("LV_HoE_Main")
+THEN
+GoalCompleted;
+
+
+EXITSECTION
+ENDEXITSECTION
+
+ParentTargetEdge "LadyVengeance"

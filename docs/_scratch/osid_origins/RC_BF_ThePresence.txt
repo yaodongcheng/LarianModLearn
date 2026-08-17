@@ -1,0 +1,817 @@
+Version 1
+SubGoalCombiner SGC_AND
+
+INITSECTION
+DB_Dialogs(CHARACTERGUID_S_GLO_Jahan_4d222cfd-49c8-41d3-8cb7-2a2b56232633, "RC_BF_DemonHunter");
+DB_Ghosts(CHARACTERGUID_S_GLO_Jahan_4d222cfd-49c8-41d3-8cb7-2a2b56232633, CHARACTERGUID_S_GLO_Jahan_Ghost_839960cd-f8a1-46fc-b21b-c742bda27527, "RC_BF_DemonHunter_Ghost");
+DB_DeadEvent(CHARACTERGUID_S_GLO_Jahan_4d222cfd-49c8-41d3-8cb7-2a2b56232633, "RC_BF_DemonHunter_Dead");
+DB_KilledEvent(CHARACTERGUID_S_GLO_Jahan_4d222cfd-49c8-41d3-8cb7-2a2b56232633, "RC_BF_KilledDemonHunter");
+DB_OneShotUser_VoicebarkTrigger(TRIGGERGUID_S_RC_BF_CapturedDemonsVB_029c86b0-e7cd-42b5-8d46-7f5a94828d5f, "RC_BF_VB_CapturedDemons");
+DB_OneShot_DialogTrigger(TRIGGERGUID_S_GLO_Jahan_StartDialog_ea798d96-652b-49dc-b5ff-3f2a58fea686, "RC_BF_DemonHunter", CHARACTERGUID_S_GLO_Jahan_4d222cfd-49c8-41d3-8cb7-2a2b56232633);
+DB_Dialogs(CHARACTERGUID_S_RC_BF_Mhordkan_840032d5-63a7-44e3-909b-0338621340df, "RC_BF_CapturedDemon");
+DB_Dialogs(CHARACTERGUID_S_RC_BF_ShainHound_df7b5da9-70c7-44a4-88bd-a579bbcf46c0, "RC_BF_CapturedDemonHound");
+DB_RC_BF_CapturedDemons(CHARACTERGUID_S_RC_BF_Mhordkan_840032d5-63a7-44e3-909b-0338621340df);
+DB_RC_BF_CapturedDemons(CHARACTERGUID_S_RC_BF_ShainHound_df7b5da9-70c7-44a4-88bd-a579bbcf46c0);
+DB_RC_BF_CapturedDemonsDisappear(CHARACTERGUID_S_RC_BF_Mhordkan_840032d5-63a7-44e3-909b-0338621340df, "RC_BF_AD_CapturedDemonEscape", "RC_BF_CapturedDemonDisappeared");
+DB_RC_BF_CapturedDemonsDisappear(CHARACTERGUID_S_RC_BF_ShainHound_df7b5da9-70c7-44a4-88bd-a579bbcf46c0, "RC_BF_AD_CapturedDemonHoundEscape", "RC_BF_CapturedDemonHoundDisappeared");
+DB_RC_BF_CapturedDemons_NecroFirePoints(TRIGGERGUID_S_RC_BF_CapturedDemons_Necrofire_Point_000_bae76412-06bb-4420-b37e-09dd42817e02);
+DB_RC_BF_CapturedDemons_NecroFirePoints(TRIGGERGUID_S_RC_BF_CapturedDemons_Necrofire_Point_001_0771d648-28a6-4105-9ce7-82d0fe9a5d41);
+DB_RC_BF_CapturedDemons_NecroFirePoints(TRIGGERGUID_S_RC_BF_CapturedDemons_Necrofire_Point_002_38ee0418-46a1-4ea1-806f-c15cf4ebbb3c);
+DB_RC_BF_CapturedDemons_NecroFirePoints(TRIGGERGUID_S_RC_BF_CapturedDemons_Necrofire_Point_003_06b5f19e-d564-4b2b-9ef2-b963b532b6e3);
+DB_RC_BF_CapturedDemons_Cage(ITEMGUID_FUR_Pris_Cagegrate_A_062_4e82f574-0e0b-4af3-b298-c33107bfcde8);
+DB_RC_BF_CapturedDemons_Cage(ITEMGUID_FUR_Pris_Cagegrate_A_066_eeb5ad8e-ba7a-4958-9b44-e34893b01c90);
+DB_RC_BF_CapturedDemons_Cage(ITEMGUID_FUR_Pris_Cagegrate_A_069_f696a345-4fc3-4da9-811e-ce248b0e4f90);
+DB_RC_BF_CapturedDemons_Cage(ITEMGUID_FUR_Pris_Cagegrate_A_081_bc8d3473-a7ba-41b0-a99a-05a6cb649281);
+DB_RC_BF_CapturedDemons_Cage(ITEMGUID_FUR_Pris_Cagegrate_A_083_214494d5-124a-4d20-8975-b6047cf41316);
+DB_RC_BF_CapturedDemons_Cage(ITEMGUID_S_RC_BF_DemonCageDoor_9df8871f-8d00-4712-a7c7-663b6273571b);
+Proc_RC_BF_CapturedDemonsSetUp();
+DB_OneTimeEventFlag("RC_BF_DemonHunter_Ritual_0");
+DB_OneTimeEventFlag("RC_BF_DemonHunter_Ritual_1");
+DB_OneTimeEventFlag("RC_BF_DemonHunter_Ritual_Death");
+DB_OneTimeEventFlag("RC_BF_DemonHunter_Ritual_Stop");
+DB_OneTimeEventFlag("RC_BF_DemonHunter_Ritual_End");
+Proc_JDF_CreateDependency("RC_BF_ThePresence", "GotTaskKillLizardDemon", "FoundTheLizard");
+Proc_JDF_CreateDependency("RC_BF_ThePresence", "GotTaskKillLizardDemon", "KilledLizardDemon");
+Proc_JDF_CreateDependency("RC_BF_ThePresence", "GotTaskGetDemonsName", "FoundOutDemonsName");
+DB_OneTimeEventFlag("RC_BF_LohseMoveToAvatar");
+DB_OneTimeEventFlag("RC_BF_AvatarMoveToLohse");
+DB_RC_BF_DemonHunter_AssaultCrimes("Assault");
+DB_RC_BF_DemonHunter_AssaultCrimes("AttackAnimal");
+DB_RC_BF_DemonHunter_AssaultCrimes("SummonAssault");
+DB_RC_BF_DemonHunter_AssaultCrimes("SummonAttackAnimal");
+DB_RC_BF_DemonHunter_AssaultCrimes("IncapacitatedAssault");
+Proc_JDF_CreateCustomFlagsDependency("QuestUpdate_FTJ_OriginLohse_MetJahan", "QuestUpdate_FTJ_OriginLohse_KilledAdvocate", "JDFProxy_QuestUpdate_FTJ_OriginLohse_KilledAdvocate");
+Proc_JDF_CreateCustomFlagsDependency("QuestUpdate_FTJ_OriginLohse_JahanToldSameDemon", "QuestUpdate_FTJ_OriginLohse_LearnedDemonName", "JDFProxy_QuestUpdate_FTJ_OriginLohse_LearnedDemonName");
+Proc_JDF_CreateCustomFlagsDependency("QuestUpdate_FTJ_COM_Lohse_MetJahan", "QuestUpdate_FTJ_COM_Lohse_KilledAdvocate", "JDFProxy_QuestUpdate_FTJ_COM_Lohse_KilledAdvocate");
+Proc_JDF_CreateCustomFlagsDependency("QuestUpdate_FTJ_COM_Lohse_JahanToldSameDemon", "QuestUpdate_FTJ_COM_Lohse_LearnedDemonName", "JDFProxy_QuestUpdate_FTJ_COM_Lohse_LearnedDemonName");
+
+KBSECTION
+IF
+TextEventSet("rcbfcage")
+AND
+DB_RC_BF_CapturedDemons(_Var1)
+THEN
+ObjectClearFlag(_Var1, "RC_BF_CapturedDemon_Free");
+ObjectClearFlag(_Var1, "RC_BF_CapturedDemon_EscapeNoticed");
+GlobalClearFlag("RC_BF_Mhordkan_Free");
+GlobalClearFlag("RC_BF_Shain_Free");
+SetOnStage(_Var1, 1);
+TeleportTo(_Var1, TRIGGERGUID_S_RC_BF_CapturedDemonBox_054fccda-781d-4575-ad85-2ee019c26e8b);
+ClearVarObject(_Var1, "Rescuer");
+
+IF
+TextEventSet("rcbfcage")
+AND
+DB_IsPlayer(_Var1)
+THEN
+UserClearFlag(_Var1, "RC_BF_CapturedDemon_Rescuer", 0);
+
+IF
+TextEventSet("rcbfcage")
+THEN
+ItemCloseAndLock(ITEMGUID_S_RC_BF_DemonCageDoor_9df8871f-8d00-4712-a7c7-663b6273571b, "");
+
+IF
+TextEventSet("killallbutjahan")
+THEN
+CharacterDie(CHARACTERGUID_S_RC_GY_Ryker_522b8095-b539-4a82-84f3-bf8e5a74dfe4, 0, "DoT");
+CharacterDie(CHARACTERGUID_S_GLO_Almira_49b466a9-e67f-4e3c-8f66-3636ba7dd54f, 0, "DoT");
+CharacterDie(CHARACTERGUID_S_RC_DW_WC_BossFight_Skeleton_Mordus_d46ade3f-f786-4fcc-975c-361a106f2853, 0, "DoT");
+CharacterDie(CHARACTERGUID_S_RC_BF_CorneredSourcerer_Sourcerer_b201a72c-8ead-4bbf-8612-fcd8c0944e52, 0, "DoT");
+CharacterDie(CHARACTERGUID_S_GLO_Saheila_fcacdf08-b05f-4333-b0e0-ddf29c13d8e0, 0, "DoT");
+CharacterDie(CHARACTERGUID_S_GLO_Advocate_bfa3e903-78ab-46aa-9a95-54fb956eb2b3, 0, "DoT");
+
+IF
+DB_RC_BF_CapturedDemons(_Var1)
+THEN
+CharacterSetCanSpotSneakers(_Var1, 0);
+
+IF
+CharacterDied((CHARACTERGUID)_Var1)
+AND
+DB_RC_BF_CapturedDemons(_Var1)
+THEN
+NOT DB_RC_BF_CapturedDemons(_Var1);
+Proc_RC_BF_CapturedDemons_CheckAllDead();
+
+PROC
+Proc_RC_BF_CapturedDemons_CheckAllDead()
+AND
+QRY_IsEmptyDB("DB_RC_BF_CapturedDemons", 1)
+THEN
+GlobalSetFlag("RC_BF_DemonHunter_Ritual_Unavailable");
+
+PROC
+Proc_OneTimeEventFlag((GUIDSTRING)_Var1, "RC_BF_LohseMoveToAvatar")
+AND
+GetDistanceTo(_Var1, CHARACTERGUID_S_Player_Lohse_bb932b13-8ebf-4ab4-aac0-83e6924e4295, _Var2)
+AND
+_Var2 < 30
+THEN
+CharacterMoveTo(CHARACTERGUID_S_Player_Lohse_bb932b13-8ebf-4ab4-aac0-83e6924e4295, _Var1, 0, "", 0);
+
+PROC
+Proc_OneTimeEventFlag((CHARACTERGUID)_Var1, "RC_BF_AvatarMoveToLohse")
+AND
+DB_IsPlayer(_Var1)
+AND
+GetDistanceTo(_Var1, CHARACTERGUID_S_Player_Lohse_bb932b13-8ebf-4ab4-aac0-83e6924e4295, _Var2)
+AND
+_Var2 < 30
+THEN
+CharacterMoveTo(_Var1, CHARACTERGUID_S_Player_Lohse_bb932b13-8ebf-4ab4-aac0-83e6924e4295, 0, "", 0);
+
+QRY
+QRY_RC_BF_DemonHunterSees((GUIDSTRING)_Var1)
+AND NOT
+DB_Dead(CHARACTERGUID_S_GLO_Jahan_4d222cfd-49c8-41d3-8cb7-2a2b56232633)
+AND NOT
+DB_CombatCharacters(CHARACTERGUID_S_GLO_Jahan_4d222cfd-49c8-41d3-8cb7-2a2b56232633, _)
+AND
+QRY_IsInRange(CHARACTERGUID_S_GLO_Jahan_4d222cfd-49c8-41d3-8cb7-2a2b56232633, _Var1, 25)
+AND
+CharacterCanSee(CHARACTERGUID_S_GLO_Jahan_4d222cfd-49c8-41d3-8cb7-2a2b56232633, _Var1, 1)
+THEN
+DB_NOOP(1);
+
+QRY
+QRY_RC_BF_CapturedDemons_InCage()
+AND
+DB_RC_BF_CapturedDemons(_Var1)
+AND NOT
+DB_Dead(_Var1)
+AND
+ObjectGetFlag(_Var1, "RC_BF_CapturedDemon_Free", 0)
+THEN
+DB_NOOP(1);
+
+PROC
+Proc_RC_BF_CapturedDemonsSetUp()
+AND
+DB_RC_BF_CapturedDemons(_Var1)
+THEN
+TriggerRegisterForCharacter(TRIGGERGUID_S_RC_BF_CapturedDemonBox_054fccda-781d-4575-ad85-2ee019c26e8b, _Var1);
+SetTag(_Var1, "NO_ARMOR_REGEN");
+CharacterSetHitpointsPercentage(_Var1, 25);
+CharacterSetArmorPercentage(_Var1, 25);
+CharacterSetMagicArmorPercentage(_Var1, 25);
+SetCanFight(_Var1, 0);
+
+IF
+DialogEnded("RC_BF_DemonHunter", (INTEGER)_Var1)
+AND
+ObjectGetFlag(CHARACTERGUID_S_GLO_Jahan_4d222cfd-49c8-41d3-8cb7-2a2b56232633, "RC_BF_DemonHunter_FirstTalk", 0)
+THEN
+CharacterSetReactionPriority(CHARACTERGUID_S_GLO_Jahan_4d222cfd-49c8-41d3-8cb7-2a2b56232633, "TalkTo", 0);
+ObjectSetFlag(CHARACTERGUID_S_GLO_Jahan_4d222cfd-49c8-41d3-8cb7-2a2b56232633, "RC_BF_DemonHunter_FirstTalk");
+SetVarObject(CHARACTERGUID_S_GLO_Jahan_4d222cfd-49c8-41d3-8cb7-2a2b56232633, "WanderArea", TRIGGERGUID_S_RC_BF_DemonHunter_WanderTrigger_98f9ff8f-61f0-4630-a452-a9d02bb6bcf8);
+
+PROC
+PROC_GLOBAL_DialogStartRequested((CHARACTERGUID)_Var1, (CHARACTERGUID)_Var2)
+AND
+DB_IsPlayer(_Var2)
+AND
+DB_RC_BF_CapturedDemons(_Var1)
+AND
+UserGetFlag(_Var2, "RC_BF_DemonHunter_AllowedTalk", 0)
+AND
+ObjectGetFlag(_Var1, "RC_BF_DemonHunter_Ritual_Busy", 0)
+AND
+CharacterCanSee(CHARACTERGUID_S_GLO_Jahan_4d222cfd-49c8-41d3-8cb7-2a2b56232633, _Var2, 1)
+THEN
+Proc_RC_BF_DemonHunter_CapturedDialogReaction(_Var2);
+
+PROC
+Proc_RC_BF_DemonHunter_CapturedDialogReaction((CHARACTERGUID)_Var1)
+THEN
+ProcForceStopDialog(CHARACTERGUID_S_RC_BF_Mhordkan_840032d5-63a7-44e3-909b-0338621340df);
+ProcForceStopDialog(CHARACTERGUID_S_GLO_Jahan_4d222cfd-49c8-41d3-8cb7-2a2b56232633);
+Proc_StartDialog(0, "RC_BF_DemonHunter_WarningSpeak", CHARACTERGUID_S_GLO_Jahan_4d222cfd-49c8-41d3-8cb7-2a2b56232633, _Var1);
+
+PROC
+ProcBlockLockpickItem((CHARACTERGUID)_Var1, ITEMGUID_S_RC_BF_DemonCageDoor_9df8871f-8d00-4712-a7c7-663b6273571b)
+AND
+DB_IsPlayer(_Var1)
+AND
+CharacterCanSee(CHARACTERGUID_S_GLO_Jahan_4d222cfd-49c8-41d3-8cb7-2a2b56232633, _Var1, 1)
+AND
+QRY_RC_BF_CapturedDemons_InCage()
+THEN
+DB_CustomLockpickItemResponse(_Var1, ITEMGUID_S_RC_BF_DemonCageDoor_9df8871f-8d00-4712-a7c7-663b6273571b, 0);
+ObjectSetFlag(_Var1, "RC_BF_DemonHunter_WarningLockpick");
+Proc_StartDialog(0, "RC_BF_DemonHunter_WarningCrime", CHARACTERGUID_S_GLO_Jahan_4d222cfd-49c8-41d3-8cb7-2a2b56232633, _Var1);
+
+IF
+DialogEnded("RC_BF_CapturedDemon", (INTEGER)_Var1)
+AND
+QRY_SpeakerIsAvailableAndInDialogRange(CHARACTERGUID_S_RC_BF_Mhordkan_840032d5-63a7-44e3-909b-0338621340df, CHARACTERGUID_S_GLO_Jahan_4d222cfd-49c8-41d3-8cb7-2a2b56232633)
+THEN
+Proc_StartDialog(1, "RC_BF_AD_DemonHunterComment", CHARACTERGUID_S_GLO_Jahan_4d222cfd-49c8-41d3-8cb7-2a2b56232633);
+
+IF
+DB_RC_BF_DemonHunter_AssaultCrimes(_Var1)
+THEN
+DB_CrimeReaction_CustomWarning(CHARACTERGUID_S_GLO_Jahan_4d222cfd-49c8-41d3-8cb7-2a2b56232633, _Var1, "");
+ProcCrimeSetAllCustomSensibleAction(CHARACTERGUID_S_GLO_Jahan_4d222cfd-49c8-41d3-8cb7-2a2b56232633, _Var1, "");
+
+PROC
+ProcCrimeOnCustomSensibleAction(CHARACTERGUID_S_GLO_Jahan_4d222cfd-49c8-41d3-8cb7-2a2b56232633, (STRING)_Var1, (INTEGER)_Var2, _, _, (CHARACTERGUID)_Var5, _, _, _, _)
+AND
+QRY_RC_BF_DemonHunter_CheckAttackedCagedDemon(_Var2)
+AND
+DB_IsPlayer(_Var5)
+THEN
+Proc_RC_BF_DemonHunter_AttackedCagedDemons(_Var5);
+
+QRY
+QRY_RC_BF_DemonHunter_CheckAttackedCagedDemon((INTEGER)_Var1)
+AND
+CrimeGetVictim(_Var1, _Var2)
+AND
+DB_RC_BF_CapturedDemons(_Var2)
+AND
+CrimeGetType(_Var1, _Var3)
+AND
+DB_RC_BF_DemonHunter_AssaultCrimes(_Var3)
+THEN
+DB_NOOP(1);
+
+PROC
+Proc_RC_BF_DemonHunter_AttackedCagedDemons((CHARACTERGUID)_Var1)
+AND
+PartyGetFlag(_Var1, "RC_BF_AttackedCapturedDemonOnce", 0)
+THEN
+SetStoryEvent(CHARACTERGUID_S_GLO_Jahan_4d222cfd-49c8-41d3-8cb7-2a2b56232633, "Crime_CustomSensibleActionDone");
+PartySetFlag(_Var1, "RC_BF_AttackedCapturedDemonOnce");
+ObjectSetFlag(_Var1, "RC_BF_DemonHunter_WarningAttack");
+Proc_StartDialog(0, "RC_BF_DemonHunter_WarningCrime", CHARACTERGUID_S_GLO_Jahan_4d222cfd-49c8-41d3-8cb7-2a2b56232633, _Var1);
+
+PROC
+Proc_RC_BF_CapturedDemon_Rescuer((CHARACTERGUID)_Var1)
+AND
+DB_IsPlayer(_Var1)
+THEN
+DB_RC_BF_CapturedDemons_Rescuer(_Var1);
+UserSetFlag(_Var1, "RC_BF_CapturedDemon_Rescuer");
+SetVarObject(CHARACTERGUID_S_RC_BF_Mhordkan_840032d5-63a7-44e3-909b-0338621340df, "Rescuer", _Var1);
+
+IF
+ItemUnlocked(ITEMGUID_S_RC_BF_DemonCageDoor_9df8871f-8d00-4712-a7c7-663b6273571b, (CHARACTERGUID)_Var1, _)
+AND
+DB_IsPlayer(_Var1)
+AND
+DB_RC_BF_CapturedDemons(_Var3)
+AND
+ObjectGetFlag(_Var3, "RC_BF_CapturedDemon_Free", 0)
+THEN
+Proc_RC_BF_CapturedDemon_Rescuer(_Var1);
+Proc_RC_BF_CapturedDemonFree(_Var3);
+
+IF
+CharacterTeleported((CHARACTERGUID)_Var1, (CHARACTERGUID)_Var2, (REAL)_Var3, (REAL)_Var4, (REAL)_Var5, (REAL)_Var6, (REAL)_Var7, (REAL)_Var8, (STRING)_Var9)
+AND
+DB_RC_BF_CapturedDemons(_Var1)
+AND
+DB_IsPlayer(_Var2)
+AND
+PositionIsInTrigger(_Var3, _Var4, _Var5, TRIGGERGUID_S_RC_BF_CapturedDemonBox_054fccda-781d-4575-ad85-2ee019c26e8b, 1)
+AND
+PositionIsInTrigger(_Var6, _Var7, _Var8, TRIGGERGUID_S_RC_BF_CapturedDemonBox_054fccda-781d-4575-ad85-2ee019c26e8b, 0)
+THEN
+DB_IgnoreAssault(_Var1);
+Proc_RC_BF_CapturedDemon_Rescuer(_Var2);
+
+IF
+AttackedByObject((CHARACTERGUID)_Var1, (CHARACTERGUID)_Var2, _, _, _)
+AND
+DB_RC_BF_CapturedDemons(_Var1)
+AND
+DB_IsPlayer(_Var2)
+AND
+DB_IgnoreAssault(_Var1)
+THEN
+NOT DB_IgnoreAssault(_Var1);
+
+IF
+CharacterLeftTrigger((CHARACTERGUID)_Var1, TRIGGERGUID_S_RC_BF_CapturedDemonBox_054fccda-781d-4575-ad85-2ee019c26e8b)
+AND
+DB_RC_BF_CapturedDemons(_Var1)
+THEN
+Proc_RC_BF_CapturedDemonFree(_Var1);
+
+IF
+CharacterTeleported(CHARACTERGUID_S_GLO_Jahan_4d222cfd-49c8-41d3-8cb7-2a2b56232633, (CHARACTERGUID)_Var1, (REAL)_Var2, (REAL)_Var3, (REAL)_Var4, (REAL)_Var5, (REAL)_Var6, (REAL)_Var7, (STRING)_Var8)
+AND
+DB_IsPlayer(_Var1)
+AND
+PositionIsInTrigger(_Var5, _Var6, _Var7, TRIGGERGUID_S_RC_BF_CapturedDemonBox_054fccda-781d-4575-ad85-2ee019c26e8b, 1)
+AND
+ItemIsLocked(ITEMGUID_S_RC_BF_DemonCageDoor_9df8871f-8d00-4712-a7c7-663b6273571b, 1)
+THEN
+Proc_RC_BF_DemonHunter_TeleportedToCage();
+
+PROC
+Proc_RC_BF_DemonHunter_TeleportedToCage()
+THEN
+ProcSetRelationToPlayers(CHARACTERGUID_S_GLO_Jahan_4d222cfd-49c8-41d3-8cb7-2a2b56232633, 0);
+CharacterSetRelationIndivFactionToIndivFaction(CHARACTERGUID_S_GLO_Jahan_4d222cfd-49c8-41d3-8cb7-2a2b56232633, CHARACTERGUID_S_RC_BF_Mhordkan_840032d5-63a7-44e3-909b-0338621340df, 0);
+
+PROC
+Proc_RC_BF_DemonHunter_TeleportedToCage()
+AND
+ItemIsInCharacterInventory(ITEMGUID_S_RC_BF_DemonHunter_CageKey_07075cb9-bcc1-46b2-8b7b-6450bfe99e92, CHARACTERGUID_S_GLO_Jahan_4d222cfd-49c8-41d3-8cb7-2a2b56232633, 1)
+THEN
+ItemUnLock(ITEMGUID_S_RC_BF_DemonCageDoor_9df8871f-8d00-4712-a7c7-663b6273571b);
+
+PROC
+Proc_RC_BF_CapturedDemonFree((CHARACTERGUID)_Var1)
+THEN
+CharacterSetCanSpotSneakers(_Var1, 1);
+ClearTag(_Var1, "NO_ARMOR_REGEN");
+SetCanFight(_Var1, 1);
+ProcForceStopDialog(_Var1);
+ObjectSetFlag(_Var1, "RC_BF_CapturedDemon_Free");
+CharacterSetReactionPriority(CHARACTERGUID_S_GLO_Jahan_4d222cfd-49c8-41d3-8cb7-2a2b56232633, "TalkTo", 0);
+
+IF
+ObjectFlagSet("RC_BF_CapturedDemon_Free", CHARACTERGUID_S_RC_BF_Mhordkan_840032d5-63a7-44e3-909b-0338621340df, _)
+THEN
+GlobalSetFlag("RC_BF_Mhordkan_Free");
+
+IF
+ObjectFlagSet("RC_BF_CapturedDemon_Free", CHARACTERGUID_S_RC_BF_ShainHound_df7b5da9-70c7-44a4-88bd-a579bbcf46c0, _)
+THEN
+GlobalSetFlag("RC_BF_Shain_Free");
+
+PROC
+Proc_RC_BF_CapturedDemonFree(CHARACTERGUID_S_RC_BF_Mhordkan_840032d5-63a7-44e3-909b-0338621340df)
+THEN
+ProcRemoveAllDialogEntriesForSpeaker(CHARACTERGUID_S_RC_BF_Mhordkan_840032d5-63a7-44e3-909b-0338621340df);
+DB_Dialogs(CHARACTERGUID_S_RC_BF_Mhordkan_840032d5-63a7-44e3-909b-0338621340df, "RC_BF_CapturedDemon_Freed");
+
+PROC
+Proc_RC_BF_CapturedDemonFree(_)
+AND NOT
+DB_Dead(CHARACTERGUID_S_GLO_Jahan_4d222cfd-49c8-41d3-8cb7-2a2b56232633)
+AND NOT
+DB_GlobalFlag("RC_BF_JahanMovedToLV")
+THEN
+GlobalSetFlag("RC_BF_DemonHunter_Ritual_Stop");
+ProcForceStopDialog(CHARACTERGUID_S_GLO_Jahan_4d222cfd-49c8-41d3-8cb7-2a2b56232633);
+
+PROC
+Proc_RC_BF_CapturedDemonFree(CHARACTERGUID_S_RC_BF_ShainHound_df7b5da9-70c7-44a4-88bd-a579bbcf46c0)
+AND NOT
+DB_Dead(CHARACTERGUID_S_GLO_Jahan_4d222cfd-49c8-41d3-8cb7-2a2b56232633)
+AND NOT
+DB_GlobalFlag("RC_BF_JahanMovedToLV")
+THEN
+Proc_StartDialog(1, "RC_BF_AD_DemonHunterEscape", CHARACTERGUID_S_GLO_Jahan_4d222cfd-49c8-41d3-8cb7-2a2b56232633);
+
+PROC
+Proc_RC_BF_CapturedDemonFree(CHARACTERGUID_S_RC_BF_Mhordkan_840032d5-63a7-44e3-909b-0338621340df)
+AND NOT
+DB_Dead(CHARACTERGUID_S_GLO_Jahan_4d222cfd-49c8-41d3-8cb7-2a2b56232633)
+AND NOT
+DB_GlobalFlag("RC_BF_JahanMovedToLV")
+THEN
+Proc_RC_BF_DemonHunterSees();
+Proc_RC_BF_CapturedDemonFree_Demon();
+
+PROC
+Proc_RC_BF_DemonHunterSees()
+THEN
+SysClear("DB_RC_BF_DemonHunterSees", 1);
+
+PROC
+Proc_RC_BF_DemonHunterSees()
+AND
+QRY_RC_BF_DemonHunterSees(CHARACTERGUID_S_RC_BF_Mhordkan_840032d5-63a7-44e3-909b-0338621340df)
+THEN
+DB_RC_BF_DemonHunterSees("Demon");
+
+PROC
+Proc_RC_BF_DemonHunterSees()
+AND
+DB_RC_BF_CapturedDemons_Rescuer(_Var1)
+AND
+QRY_RC_BF_DemonHunterSees(_Var1)
+THEN
+DB_RC_BF_DemonHunterSees("Rescuer");
+
+PROC
+Proc_RC_BF_CapturedDemonFree_Demon()
+AND NOT
+DB_RC_BF_DemonHunterSees("Rescuer")
+THEN
+Proc_RC_BF_CapturedDemonFree_JahanAD();
+
+PROC
+Proc_RC_BF_CapturedDemonFree_Demon()
+AND
+DB_RC_BF_DemonHunterSees("Rescuer")
+THEN
+Proc_RC_BF_CapturedDemonFree_JahanTalk();
+
+PROC
+Proc_RC_BF_CapturedDemonFree_CleanUp()
+THEN
+SysClear("DB_RC_BF_DemonHunterSees", 1);
+
+PROC
+Proc_RC_BF_CapturedDemonFree_JahanTalk()
+AND
+DB_RC_BF_DemonHunterSees("Rescuer")
+AND
+DB_RC_BF_DemonHunterSees("Demon")
+AND
+DB_RC_BF_CapturedDemons_Rescuer(_Var1)
+THEN
+Proc_StartDialog(0, "RC_BF_DemonHunter_Escape", CHARACTERGUID_S_GLO_Jahan_4d222cfd-49c8-41d3-8cb7-2a2b56232633, CHARACTERGUID_S_RC_BF_Mhordkan_840032d5-63a7-44e3-909b-0338621340df, _Var1);
+
+PROC
+Proc_RC_BF_CapturedDemonFree_JahanTalk()
+AND
+DB_RC_BF_DemonHunterSees("Rescuer")
+AND NOT
+DB_RC_BF_DemonHunterSees("Demon")
+AND
+DB_RC_BF_CapturedDemons_Rescuer(_Var1)
+THEN
+Proc_StartDialog(0, "RC_BF_DemonHunter_Escape", CHARACTERGUID_S_GLO_Jahan_4d222cfd-49c8-41d3-8cb7-2a2b56232633, NULL_00000000-0000-0000-0000-000000000000, _Var1);
+
+IF
+DialogRequestFailed("RC_BF_DemonHunter_Escape", _)
+THEN
+Proc_RC_BF_CapturedDemonFree_JahanHostile();
+
+IF
+DialogEnded("RC_BF_DemonHunter_Escape", _)
+THEN
+Proc_RC_BF_CapturedDemonFree_JahanHostile();
+
+PROC
+Proc_RC_BF_CapturedDemonFree_JahanAD()
+AND NOT
+DB_RC_BF_DemonHunterSees("Rescuer")
+THEN
+Proc_StartDialog(1, "RC_BF_AD_DemonHunterEscape", CHARACTERGUID_S_GLO_Jahan_4d222cfd-49c8-41d3-8cb7-2a2b56232633);
+
+IF
+AutomatedDialogEnded("RC_BF_AD_DemonHunterEscape", _)
+THEN
+Proc_RC_BF_CapturedDemonFree_JahanHostile();
+
+IF
+AutomatedDialogRequestFailed("RC_BF_AD_DemonHunterEscape", _)
+THEN
+Proc_RC_BF_CapturedDemonFree_JahanHostile();
+
+PROC
+Proc_RC_BF_CapturedDemonFree_JahanHostile()
+THEN
+ProcSetRelationToPlayers(CHARACTERGUID_S_GLO_Jahan_4d222cfd-49c8-41d3-8cb7-2a2b56232633, 0);
+CharacterSetRelationIndivFactionToIndivFaction(CHARACTERGUID_S_GLO_Jahan_4d222cfd-49c8-41d3-8cb7-2a2b56232633, CHARACTERGUID_S_RC_BF_Mhordkan_840032d5-63a7-44e3-909b-0338621340df, 0);
+
+PROC
+Proc_RC_BF_CapturedDemonFree_JahanHostile()
+AND
+DB_RC_BF_DemonHunterSees("Demon")
+THEN
+EnterCombat(CHARACTERGUID_S_GLO_Jahan_4d222cfd-49c8-41d3-8cb7-2a2b56232633, CHARACTERGUID_S_RC_BF_Mhordkan_840032d5-63a7-44e3-909b-0338621340df);
+
+PROC
+Proc_RC_BF_CapturedDemonFree_JahanHostile()
+AND
+DB_RC_BF_DemonHunterSees("Rescuer")
+AND
+DB_RC_BF_CapturedDemons_Rescuer(_Var1)
+THEN
+EnterCombat(CHARACTERGUID_S_GLO_Jahan_4d222cfd-49c8-41d3-8cb7-2a2b56232633, _Var1);
+
+IF
+DialogStarted("RC_BF_CapturedDemon_Freed", _)
+THEN
+ClearVarObject(CHARACTERGUID_S_RC_BF_Mhordkan_840032d5-63a7-44e3-909b-0338621340df, "Rescuer");
+
+IF
+CharacterCharacterEvent(S_RC_BF_Mhordkan_840032d5-63a7-44e3-909b-0338621340df, (CHARACTERGUID)_Var1, "RC_BF_CapturedDemon_Freed")
+AND
+DB_IsPlayer(_Var1)
+THEN
+Proc_StartDialog(0, "RC_BF_CapturedDemon_Freed", S_RC_BF_Mhordkan_840032d5-63a7-44e3-909b-0338621340df, _Var1);
+
+IF
+CharacterSawCharacter((CHARACTERGUID)_Var1, CHARACTERGUID_S_GLO_Jahan_4d222cfd-49c8-41d3-8cb7-2a2b56232633)
+AND
+DB_IsPlayer(_Var1)
+THEN
+ObjectSetFlag(_Var1, "QuestUpdate_RC_BF_ThePresence_FoundDemonHunter");
+
+IF
+ObjectFlagSet("QuestUpdate_RC_BF_ThePresence_GotTaskKillLizardDemon", (CHARACTERGUID)_Var1, _)
+AND
+DB_IsPlayer(_Var1)
+THEN
+ProcShowMarker(_Var1, "RC_BI_IslandEntrance");
+
+IF
+CharacterEnteredTrigger((CHARACTERGUID)_Var1, TRIGGERGUID_S_RC_BI_BloodIslandRegion_9c0a84b1-314c-4262-b33b-26cfcdfc10ee)
+AND
+DB_IsPlayer(_Var1)
+AND
+ObjectGetFlag(_Var1, "RC_BI_IslandEntrance_MarkerHidden", 0)
+THEN
+ProcHideMarker(_Var1, "RC_BI_IslandEntrance");
+ObjectSetFlag(_Var1, "RC_BI_IslandEntrance_MarkerHidden");
+
+IF
+CharacterDied(CHARACTERGUID_S_GLO_Jahan_4d222cfd-49c8-41d3-8cb7-2a2b56232633)
+AND
+DB_IsPlayer(_Var1)
+THEN
+ObjectSetFlag(_Var1, "QuestUpdate_RC_BF_ThePresence_DemonHunterDead");
+
+IF
+ObjectFlagSet("QuestUpdate_RC_BF_ThePresence_KilledLizardDemon", (CHARACTERGUID)_Var1, _)
+AND
+DB_IsPlayer(_Var1)
+AND
+ObjectGetFlag(_Var1, "RC_BF_ThePresence_LetLizardLive_PissedOffJahan", 1)
+AND
+CharacterGetRelationToCharacter(CHARACTERGUID_S_GLO_Jahan_4d222cfd-49c8-41d3-8cb7-2a2b56232633, _Var1, _Var3)
+AND
+_Var3 < 50
+THEN
+CharacterSetRelationIndivFactionToIndivFaction(CHARACTERGUID_S_GLO_Jahan_4d222cfd-49c8-41d3-8cb7-2a2b56232633, _Var1, 50);
+CharacterSetRelationIndivFactionToIndivFaction(_Var1, CHARACTERGUID_S_GLO_Jahan_4d222cfd-49c8-41d3-8cb7-2a2b56232633, 50);
+
+IF
+ObjectFlagSet("QuestUpdate_RC_BF_ThePresence_KilledLizardDemon", (CHARACTERGUID)_Var1, _)
+AND
+DB_IsPlayer(_Var1)
+AND
+ObjectGetFlag(_Var1, "RC_BF_ThePresence_LetLizardLive_PissedOffJahan", 1)
+AND
+CharacterGetAttitudeTowardsPlayer(CHARACTERGUID_S_GLO_Jahan_4d222cfd-49c8-41d3-8cb7-2a2b56232633, _Var1, _Var3)
+AND
+_Var3 <= -45
+AND
+IntegerSubtract(0, _Var3, _Var4)
+THEN
+CharacterAddAttitudeTowardsPlayer(CHARACTERGUID_S_GLO_Jahan_4d222cfd-49c8-41d3-8cb7-2a2b56232633, _Var1, _Var4);
+
+IF
+ObjectFlagSet("QuestUpdate_RC_BF_ThePresence_KilledLizardDemon", (CHARACTERGUID)_Var1, _)
+AND
+DB_IsPlayer(_Var1)
+AND
+ObjectGetFlag(_Var1, "RC_BF_ThePresence_LetLizardLive_PissedOffJahan", 1)
+THEN
+ObjectClearFlag(_Var1, "RC_BF_ThePresence_LetLizardLive_PissedOffJahan");
+
+PROC
+Proc_OneTimeEventFlag("RC_BF_DemonHunter_Ritual_0")
+THEN
+CharacterSetAnimationOverride(CHARACTERGUID_S_GLO_Jahan_4d222cfd-49c8-41d3-8cb7-2a2b56232633, "skill_prepare_divine_01_loop");
+PROC_LoopEffect("RS3_FX_Skills_Source_Prepare_Ground_01", CHARACTERGUID_S_GLO_Jahan_4d222cfd-49c8-41d3-8cb7-2a2b56232633, "RC_BF_DemonHunter_RitualEffect", "RC_Main", "");
+
+PROC
+Proc_OneTimeEventFlag("RC_BF_DemonHunter_Ritual_0")
+AND
+DB_RC_BF_CapturedDemons(_Var1)
+THEN
+ObjectSetFlag(_Var1, "RC_BF_DemonHunter_Ritual_Busy");
+CharacterSetAnimationOverride(_Var1, "stillmental");
+PROC_LoopEffect("RS3_FX_GP_Status_Cursed_01", _Var1, "RC_BF_DemonHunter_RitualEffect", "RC_Main", "");
+
+PROC
+Proc_OneTimeEventFlag("RC_BF_DemonHunter_Ritual_0")
+AND
+DB_RC_BF_CapturedDemons_NecroFirePoints(_Var1)
+THEN
+PROC_LoopEffect("RS3_FX_GP_Status_Necrofire_Permanent_01", _Var1, "RC_BF_DemonHunter_RitualEffect", "RC_Main", "");
+
+PROC
+Proc_OneTimeEventFlag("RC_BF_DemonHunter_Ritual_1")
+AND NOT
+DB_Dead(CHARACTERGUID_S_RC_BF_Mhordkan_840032d5-63a7-44e3-909b-0338621340df)
+AND
+DB_DialogNPCs(_Var1, CHARACTERGUID_S_GLO_Jahan_4d222cfd-49c8-41d3-8cb7-2a2b56232633, 1)
+THEN
+DialogAddActor(_Var1, CHARACTERGUID_S_RC_BF_Mhordkan_840032d5-63a7-44e3-909b-0338621340df);
+
+PROC
+Proc_OneTimeEventFlag("RC_BF_DemonHunter_Ritual_1")
+AND
+DB_RC_BF_CapturedDemons_Cage(_Var1)
+THEN
+PROC_LoopEffect("RS3_FX_GP_Status_Item_Necrofire_01", _Var1, "RC_BF_DemonHunter_RitualEffect", "RC_Main", "");
+
+PROC
+Proc_OneTimeEventFlag("RC_BF_DemonHunter_Ritual_1")
+AND
+DB_DialogNPCs(_Var1, CHARACTERGUID_S_GLO_Jahan_4d222cfd-49c8-41d3-8cb7-2a2b56232633, 1)
+AND
+DB_DialogPlayers(_Var1, _Var2, 1)
+AND
+DB_IsPlayer(_Var2)
+THEN
+PROC_LoopEffect("RS3_FX_GP_Status_SourceInfused_01", _Var2, "RC_BF_DemonHunter_RitualEffect_Fire", "RC_Main", "");
+
+PROC
+Proc_OneTimeEventFlag("RC_BF_DemonHunter_Ritual_1")
+AND
+DB_DialogNPCs(_Var1, CHARACTERGUID_S_GLO_Jahan_4d222cfd-49c8-41d3-8cb7-2a2b56232633, 1)
+AND
+DB_DialogPlayers(_Var1, _Var2, 1)
+AND
+DB_IsPlayer(_Var2)
+AND
+DB_RC_BF_CapturedDemons(_Var3)
+AND
+String(_Var3, _Var4)
+AND
+StringConcatenate("RC_BF_DemonHunter_RitualBeam_", _Var4, _Var5)
+THEN
+PROC_LoopBeamEffect("RS3_FX_Skills_Soul_ShacklesOfPain_LinkBeam_01", _Var2, _Var3, "", "", _Var5, "RC_Main");
+
+PROC
+Proc_OneTimeEventFlag("RC_BF_DemonHunter_Ritual_1")
+AND
+DB_RC_BF_CapturedDemons(_Var1)
+THEN
+PROC_LoopEffect("RS3_FX_GP_ScriptedEvent_SourcePillar_01", _Var1, "RC_BF_DemonHunter_RitualEffect_Pillar", "RC_Main", "");
+
+PROC
+Proc_OneTimeEventFlag("RC_BF_DemonHunter_Ritual_Death")
+AND
+DB_RC_BF_CapturedDemons(_Var1)
+THEN
+Proc_RC_BF_DemonHunter_RitualCleanEffects_Demons();
+
+PROC
+Proc_OneTimeEventFlag("RC_BF_DemonHunter_Ritual_Death")
+AND NOT
+DB_Dead(CHARACTERGUID_S_RC_BF_ShainHound_df7b5da9-70c7-44a4-88bd-a579bbcf46c0)
+THEN
+CharacterDieImmediate(CHARACTERGUID_S_RC_BF_ShainHound_df7b5da9-70c7-44a4-88bd-a579bbcf46c0, 0, "Explode");
+
+PROC
+Proc_OneTimeEventFlag("RC_BF_DemonHunter_Ritual_Death")
+THEN
+CreateSurface(TRIGGERGUID_S_RC_BF_CapturedDemonBox_054fccda-781d-4575-ad85-2ee019c26e8b, "SurfaceBlood", 2, -1);
+CreateSurface(TRIGGERGUID_S_RC_BF_CapturedDemonBox_054fccda-781d-4575-ad85-2ee019c26e8b, "SurfaceBloodCloud", 1.4, -1);
+
+PROC
+Proc_OneTimeEventFlag("RC_BF_DemonHunter_Ritual_Death")
+AND
+DB_DialogNPCs(_Var1, CHARACTERGUID_S_RC_BF_Mhordkan_840032d5-63a7-44e3-909b-0338621340df, 2)
+AND
+DialogRemoveActorFromDialog(_Var1, CHARACTERGUID_S_RC_BF_Mhordkan_840032d5-63a7-44e3-909b-0338621340df, _Var2)
+THEN
+CharacterDieImmediate(CHARACTERGUID_S_RC_BF_Mhordkan_840032d5-63a7-44e3-909b-0338621340df, 0, "Explode");
+
+PROC
+Proc_OneTimeEventFlag("RC_BF_DemonHunter_Ritual_Stop")
+THEN
+Proc_RC_BF_DemonHunter_RitualCleanEffects();
+
+PROC
+Proc_OneTimeEventFlag("RC_BF_DemonHunter_Ritual_End")
+THEN
+Proc_RC_BF_DemonHunter_RitualCleanEffects();
+
+PROC
+Proc_RC_BF_DemonHunter_RitualCleanEffects()
+THEN
+CharacterSetAnimationOverride(CHARACTERGUID_S_GLO_Jahan_4d222cfd-49c8-41d3-8cb7-2a2b56232633, "");
+PROC_StopLoopEffect(CHARACTERGUID_S_GLO_Jahan_4d222cfd-49c8-41d3-8cb7-2a2b56232633, "RC_BF_DemonHunter_RitualEffect");
+
+PROC
+Proc_RC_BF_DemonHunter_RitualCleanEffects()
+AND
+DB_RC_BF_CapturedDemons_NecroFirePoints(_Var1)
+THEN
+PROC_StopLoopEffect(_Var1, "RC_BF_DemonHunter_RitualEffect");
+
+PROC
+Proc_RC_BF_DemonHunter_RitualCleanEffects()
+AND
+DB_IsPlayer(_Var1)
+THEN
+PROC_StopLoopEffect(_Var1, "RC_BF_DemonHunter_RitualEffect_Fire");
+
+PROC
+Proc_RC_BF_DemonHunter_RitualCleanEffects()
+THEN
+Proc_RC_BF_DemonHunter_RitualCleanEffects_Demons();
+
+PROC
+Proc_RC_BF_DemonHunter_RitualCleanEffects_Demons()
+AND
+DB_RC_BF_CapturedDemons(_Var1)
+THEN
+ObjectClearFlag(_Var1, "RC_BF_DemonHunter_Ritual_Busy");
+CharacterSetAnimationOverride(_Var1, "");
+PROC_StopLoopEffect(_Var1, "RC_BF_DemonHunter_RitualEffect");
+PROC_StopLoopEffect(_Var1, "RC_BF_DemonHunter_RitualEffect_Pillar");
+
+PROC
+Proc_RC_BF_DemonHunter_RitualCleanEffects_Demons()
+AND
+DB_IsPlayer(_Var1)
+AND
+DB_RC_BF_CapturedDemons(_Var2)
+AND
+String(_Var2, _Var3)
+AND
+StringConcatenate("RC_BF_DemonHunter_RitualBeam_", _Var3, _Var4)
+THEN
+PROC_StopLoopBeamEffect(_Var1, _Var4);
+
+PROC
+Proc_RC_BF_DemonHunter_RitualCleanEffects_Demons()
+AND
+DB_RC_BF_CapturedDemons_Cage(_Var1)
+THEN
+PROC_StopLoopEffect(_Var1, "RC_BF_DemonHunter_RitualEffect");
+
+IF
+DialogEnded("RC_BF_DemonHunter", _)
+THEN
+Proc_RC_BF_DemonHunter_RitualCleanEffects();
+
+IF
+DialogEnded("RC_BF_DemonHunter", _)
+AND
+DB_GlobalFlag("RC_BF_JahanMovedToLV")
+THEN
+ProcRemoveAllDialogEntriesForSpeaker(CHARACTERGUID_S_GLO_Jahan_4d222cfd-49c8-41d3-8cb7-2a2b56232633);
+SetHasDialog(CHARACTERGUID_S_GLO_Jahan_4d222cfd-49c8-41d3-8cb7-2a2b56232633, 0);
+ClearVarObject(CHARACTERGUID_S_GLO_Jahan_4d222cfd-49c8-41d3-8cb7-2a2b56232633, "CharToTalkTo");
+ClearVarObject(CHARACTERGUID_S_GLO_Jahan_4d222cfd-49c8-41d3-8cb7-2a2b56232633, "ADDialog");
+ProcCharacterDisappearOutOfSight(CHARACTERGUID_S_GLO_Jahan_4d222cfd-49c8-41d3-8cb7-2a2b56232633, 0, 0, "RC_BF_JahanToLV", 0);
+TriggerClearItemOwner(TRIGGERGUID_S_RC_BF_CrimeArea_DemonHunter_f9157fec-5dbe-43d0-b871-79f21b04bee9);
+
+IF
+DialogEnded("RC_BF_DemonHunter_Exorcism_CRD_Lohse", _)
+AND
+DB_GlobalFlag("RC_BF_JahanMovedToLV")
+THEN
+ProcRemoveAllDialogEntriesForSpeaker(CHARACTERGUID_S_GLO_Jahan_4d222cfd-49c8-41d3-8cb7-2a2b56232633);
+SetHasDialog(CHARACTERGUID_S_GLO_Jahan_4d222cfd-49c8-41d3-8cb7-2a2b56232633, 0);
+ClearVarObject(CHARACTERGUID_S_GLO_Jahan_4d222cfd-49c8-41d3-8cb7-2a2b56232633, "CharToTalkTo");
+ClearVarObject(CHARACTERGUID_S_GLO_Jahan_4d222cfd-49c8-41d3-8cb7-2a2b56232633, "ADDialog");
+ProcCharacterDisappearOutOfSight(CHARACTERGUID_S_GLO_Jahan_4d222cfd-49c8-41d3-8cb7-2a2b56232633, 0, 0, "RC_BF_JahanToLV", 0);
+TriggerClearItemOwner(TRIGGERGUID_S_RC_BF_CrimeArea_DemonHunter_f9157fec-5dbe-43d0-b871-79f21b04bee9);
+
+IF
+StoryEvent(CHARACTERGUID_S_GLO_Jahan_4d222cfd-49c8-41d3-8cb7-2a2b56232633, "RC_BF_JahanToLV")
+THEN
+CharacterAppearAt(CHARACTERGUID_S_GLO_Jahan_4d222cfd-49c8-41d3-8cb7-2a2b56232633, S_RC_LV_Entrance_5d830273-0215-4be4-96ce-8a1122f01bb0, 0, "RC_BF_JahanArrivedAtLV");
+
+IF
+StoryEvent(CHARACTERGUID_S_GLO_Jahan_4d222cfd-49c8-41d3-8cb7-2a2b56232633, "RC_BF_JahanArrivedAtLV")
+THEN
+ProcCharacterMoveTo(CHARACTERGUID_S_GLO_Jahan_4d222cfd-49c8-41d3-8cb7-2a2b56232633, TRIGGERGUID_S_GLO_LV_JahanDefault_8262f1eb-0047-4fc4-9ccd-2d23317c9794, 0, "RC_BF_JahanArrivedAtLV2");
+
+IF
+StoryEvent(CHARACTERGUID_S_GLO_Jahan_4d222cfd-49c8-41d3-8cb7-2a2b56232633, "RC_BF_JahanArrivedAtLV2")
+THEN
+CharacterLookFromTrigger(CHARACTERGUID_S_GLO_Jahan_4d222cfd-49c8-41d3-8cb7-2a2b56232633, TRIGGERGUID_S_GLO_LV_JahanDefault_8262f1eb-0047-4fc4-9ccd-2d23317c9794, 1);
+DB_Dialogs(CHARACTERGUID_S_GLO_Jahan_4d222cfd-49c8-41d3-8cb7-2a2b56232633, "RC_LV_Jahan");
+
+IF
+DB_HasMetCharactersToCheck(CHARACTERGUID_S_GLO_Jahan_4d222cfd-49c8-41d3-8cb7-2a2b56232633, _Var1)
+AND
+UserGetFlag(_Var1, "RC_BF_DemonHunter_HasMet", 0)
+THEN
+UserSetFlag(_Var1, "RC_BF_DemonHunter_HasMet");
+
+IF
+CharacterDied(CHARACTERGUID_S_GLO_Advocate_bfa3e903-78ab-46aa-9a95-54fb956eb2b3)
+AND
+IsTagged(CHARACTERGUID_S_Player_Lohse_bb932b13-8ebf-4ab4-aac0-83e6924e4295, "AVATAR", 1)
+THEN
+ObjectSetFlag(CHARACTERGUID_S_Player_Lohse_bb932b13-8ebf-4ab4-aac0-83e6924e4295, "QuestUpdate_FTJ_OriginLohse_KilledAdvocate");
+
+IF
+CharacterDied(CHARACTERGUID_S_GLO_Advocate_bfa3e903-78ab-46aa-9a95-54fb956eb2b3)
+AND
+DB_CompanionAvatarBond(CHARACTERGUID_S_Player_Lohse_bb932b13-8ebf-4ab4-aac0-83e6924e4295, _Var1)
+THEN
+ObjectSetFlag(_Var1, "QuestUpdate_FTJ_COM_Lohse_KilledAdvocate");
+
+
+EXITSECTION
+NOT DB_OneShotUser_VoicebarkTrigger(TRIGGERGUID_S_RC_BF_CapturedDemonsVB_029c86b0-e7cd-42b5-8d46-7f5a94828d5f, "RC_BF_VB_CapturedDemons");
+NOT DB_OneShot_DialogTrigger(TRIGGERGUID_S_GLO_Jahan_StartDialog_ea798d96-652b-49dc-b5ff-3f2a58fea686, "RC_BF_DemonHunter", CHARACTERGUID_S_GLO_Jahan_4d222cfd-49c8-41d3-8cb7-2a2b56232633);
+SysClear("DB_RC_BF_CapturedDemons", 1);
+SysClear("DB_RC_BF_CapturedDemonsDisappear", 1);
+SysClear("DB_RC_BF_CapturedDemons_NecroFirePoints", 1);
+SysClear("DB_RC_BF_CapturedDemons_Cage", 1);
+SysClear("DB_RC_BF_DemonHunter_AssaultCrimes", 1);
+ENDEXITSECTION
+
+ParentTargetEdge "ReapersCoast"

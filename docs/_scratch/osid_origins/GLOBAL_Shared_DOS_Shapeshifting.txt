@@ -1,0 +1,308 @@
+Version 1
+SubGoalCombiner SGC_AND
+
+INITSECTION
+DB_PolymorphStatuses("Dwarf", "SHAPESHIFT_DWARF");
+DB_PolymorphStatuses("Human", "SHAPESHIFT_HUMAN");
+DB_PolymorphStatuses("Elf", "SHAPESHIFT_ELF");
+DB_PolymorphStatuses("Lizard", "SHAPESHIFT_LIZARD");
+DB_Shapeshifting_FaceRipper_TagToFaceType("DWARF", "QUEST_Undead_Ripped_Face_Dwarves_A_bd054a14-1d53-45e8-9030-52e67e3f092c");
+DB_Shapeshifting_FaceRipper_TagToFaceType("ELF", "QUEST_Undead_Ripped_Face_Elves_A_01cbe976-0ab7-4c7a-bfd4-33273158b37e");
+DB_Shapeshifting_FaceRipper_TagToFaceType("HUMAN", "QUEST_Undead_Ripped_Face_Humans_A_defbdd34-9ff2-49bd-8b76-d026ba0fd4dc");
+DB_Shapeshifting_FaceRipper_TagToFaceType("LIZARD", "ITEMGUID_QUEST_Undead_Ripped_Face_Lizards_A_c567a4f0-568d-4a3e-8312-238d0e8bf8c7");
+DB_UndeadRacePresets(0, "Undead_Dwarf");
+DB_UndeadRacePresets(1, "Undead_Elf");
+DB_UndeadRacePresets(2, "Undead_Human");
+DB_UndeadRacePresets(3, "Undead_Lizard");
+DB_GLOBAL_Shapeshifting_MaskTemplates("EQ_Shapeshifter_Mask_A_01cdf746-dbb0-4db6-9232-7dbb68b81e52");
+DB_GLOBAL_Shapeshifting_MaskTemplates("EQ_Shapeshifter_Lizard_Mask_B_d06c9a71-439a-4a49-b796-0d4932fe9412");
+DB_GLOBAL_Shapeshifting_MaskTemplates("EQ_Shapeshifter_Human_Mask_B_7bb0eb59-ee99-4bf7-a9f9-51b5ba157718");
+DB_GLOBAL_Shapeshifting_MaskTemplates("EQ_Shapeshifter_Elf_Mask_B_6ce170c1-aa4c-4274-9199-849794f1728f");
+DB_GLOBAL_Shapeshifting_MaskTemplates("EQ_Shapeshifter_Dwarf_Mask_B_3f50792e-e18b-4fb8-a838-19ec37cf3465");
+
+KBSECTION
+IF
+CharacterStatusApplied((CHARACTERGUID)_Var1, (STRING)_Var2, (CHARACTERGUID)_Var1)
+AND
+DB_PolymorphStatuses(_, _Var2)
+AND
+DB_IsPlayer(_Var1)
+AND
+CharacterGetReservedUserID(_Var1, _Var4)
+AND
+GetUserProfileID(_Var4, _Var5)
+AND NOT
+DB_GLOBAL_Shapeshifting_UsedMask(_Var5)
+THEN
+DB_GLOBAL_Shapeshifting_UsedMask(_Var5);
+Proc_StartDialog(0, "GLO_FirstUseShapeshiftingMask", _Var1);
+
+IF
+ItemTemplateUnEquipped((STRING)_Var1, (CHARACTERGUID)_Var2)
+AND
+DB_GLOBAL_Shapeshifting_MaskTemplates(_Var1)
+AND
+DB_CharacterPolymorphedInto(_Var2, _)
+THEN
+CharacterUseSkill(_Var2, "Shout_CancelPolymorphism", _Var2, 1, 1, 1);
+
+IF
+CharacterUsedSkillOnTarget((CHARACTERGUID)_Var1, (GUIDSTRING)_Var2, "Target_FaceRipper", _, _)
+AND
+DB_Shapeshifting_FaceRipper_TagToFaceType(_Var5, _Var6)
+AND
+IsTagged(_Var2, _Var5, 1)
+THEN
+ItemTemplateAddTo(_Var6, _Var1, 1);
+SetAchievementProgress("DOS2_Spring2019_STAT", 1);
+
+PROC
+ProcMarkUndeadOrigin((CHARACTERGUID)_Var1)
+AND
+DB_UndeadCharacter(_Var1)
+AND
+DB_CurrentLevel(_Var2)
+AND
+IsGameLevel(_Var2, 1)
+THEN
+DB_RestartUndeadCrime(_Var1);
+
+IF
+RegionStarted(_)
+AND
+DB_UndeadCharacter(_Var2)
+THEN
+DB_RestartUndeadCrime(_Var2);
+
+PROC
+PROC_GLO_PartyMembers_MakeNPCHook((CHARACTERGUID)_Var1)
+AND
+DB_UndeadCharacter(_Var1)
+THEN
+NOT DB_UndeadCharacter(_Var1);
+NOT DB_RestartUndeadCrime(_Var1);
+CharacterStopCrime(_Var1, "ActiveUndead", NULL_00000000-0000-0000-0000-000000000000);
+
+IF
+RegionEnded(_)
+AND
+DB_UndeadCharacter(_Var2)
+THEN
+NOT DB_RestartUndeadCrime(_Var2);
+CharacterStopCrime(_Var2, "ActiveUndead", NULL_00000000-0000-0000-0000-000000000000);
+
+IF
+DB_UndeadCharacter(_Var1)
+THEN
+DB_PolymorphTags(_Var1, "MASKED_UNDEAD");
+
+IF
+DB_CharacterPolymorphedInto(_Var1, _)
+AND
+DB_UndeadCharacter(_Var1)
+THEN
+DB_RestartUndeadCrime(_Var1);
+SetTag(_Var1, "UNDEAD");
+ClearTag(_Var1, "VEILED_UNDEAD");
+CharacterStopCrime(_Var1, "ActiveUndead", NULL_00000000-0000-0000-0000-000000000000);
+
+IF
+DB_RestartUndeadCrime(_Var1)
+AND NOT
+DB_CharacterPolymorphedInto(_Var1, _)
+AND
+QRY_HasOpenArmourSlot(_Var1)
+AND NOT
+QryIsPolymorphing(_Var1)
+THEN
+CharacterRegisterCrime(_Var1, "ActiveUndead", NULL_00000000-0000-0000-0000-000000000000, NULL_00000000-0000-0000-0000-000000000000, 0);
+
+IF
+DB_RestartUndeadCrime(_Var1)
+AND NOT
+DB_CharacterPolymorphedInto(_Var1, _)
+AND NOT
+QRY_HasOpenArmourSlot(_Var1)
+AND NOT
+QryIsPolymorphing(_Var1)
+THEN
+SetTag(_Var1, "VEILED_UNDEAD");
+
+IF
+ItemTemplateEquipped(_, (CHARACTERGUID)_Var2)
+AND
+DB_UndeadCharacter(_Var2)
+AND NOT
+DB_InCharacterCreation(1)
+AND
+DB_CurrentLevel(_)
+AND
+DB_UndeadCharacter(_Var2)
+AND NOT
+DB_CharacterPolymorphedInto(_Var2, _)
+AND NOT
+QRY_HasOpenArmourSlot(_Var2)
+THEN
+SetTag(_Var2, "VEILED_UNDEAD");
+CharacterStopCrime(_Var2, "ActiveUndead", NULL_00000000-0000-0000-0000-000000000000);
+
+IF
+ItemTemplateEquipped(_, _)
+AND
+DB_OpenArmourSlot(_Var3)
+THEN
+NOT DB_OpenArmourSlot(_Var3);
+
+IF
+ItemTemplateUnEquipped(_, (CHARACTERGUID)_Var2)
+AND
+DB_UndeadCharacter(_Var2)
+AND NOT
+DB_InCharacterCreation(1)
+AND
+DB_CurrentLevel(_)
+AND NOT
+DB_CharacterPolymorphedInto(_Var2, _)
+AND
+QRY_HasOpenArmourSlot(_Var2)
+AND
+IsTagged(_Var2, "VEILED_UNDEAD", 1)
+THEN
+ClearTag(_Var2, "VEILED_UNDEAD");
+CharacterRegisterCrime(_Var2, "ActiveUndead", NULL_00000000-0000-0000-0000-000000000000, NULL_00000000-0000-0000-0000-000000000000, 0);
+
+PROC
+PROC_GLOBAL_DialogCustomOverride((CHARACTERGUID)_Var1, (CHARACTERGUID)_Var2)
+AND NOT
+DB_FoundDialog(_Var1, _Var2)
+AND
+DB_UndeadCharacter(_Var2)
+AND
+ObjectIsCharacter(_Var1, 1)
+AND
+IsTagged(_Var2, "VEILED_UNDEAD", 0)
+AND
+IsTagged(_Var2, "MASKED_UNDEAD", 0)
+AND
+CharacterIsCrimeEnabled(_Var1, "ActiveUndead", 1)
+AND NOT
+QRY_NPCIgnoresUndeadCrime(_Var1)
+THEN
+DB_FoundDialog(_Var1, _Var2);
+ProcStartUndeadAttackDialog(_Var1, _Var2);
+
+PROC
+ProcStartUndeadAttackDialog((CHARACTERGUID)_Var1, (CHARACTERGUID)_Var2)
+AND
+CharacterCanFight(_Var1, 1)
+THEN
+CharacterDisableCrime(_Var1, "ActiveUndead");
+DB_ReactingToUndead(_Var1);
+Proc_StartDialog(0, "GEB_Attack_Undead", _Var1, _Var2);
+
+IF
+DialogEnded("GEB_Attack_Undead", (INTEGER)_Var1)
+AND
+DB_DialogNPCs(_Var1, _Var2, 1)
+AND
+DB_ReactingToUndead(_Var2)
+THEN
+NOT DB_ReactingToUndead(_Var2);
+CharacterEnableCrime(_Var2, "ActiveUndead");
+
+QRY
+QRY_NPCIgnoresUndeadCrime((CHARACTERGUID)_Var1)
+AND
+CharacterCanReactToCrime(_Var1, "ActiveUndead", 0)
+THEN
+DB_NOOP(1);
+
+IF
+ItemTemplateUnEquipped(_, _)
+AND
+DB_OpenArmourSlot(_Var3)
+THEN
+NOT DB_OpenArmourSlot(_Var3);
+
+QRY
+QRY_HasOpenArmourSlot((CHARACTERGUID)_Var1)
+AND NOT
+CharacterGetEquippedItem(_Var1, "Helmet", _)
+THEN
+DB_OpenArmourSlot("Helmet");
+
+QRY
+QRY_HasOpenArmourSlot((CHARACTERGUID)_Var1)
+AND NOT
+CharacterGetEquippedItem(_Var1, "Breast", _)
+THEN
+DB_OpenArmourSlot("Breast");
+
+QRY
+QRY_HasOpenArmourSlot((CHARACTERGUID)_Var1)
+AND NOT
+CharacterGetEquippedItem(_Var1, "Leggings", _)
+THEN
+DB_OpenArmourSlot("Leggings");
+
+QRY
+QryIsPolymorphing((CHARACTERGUID)_Var1)
+AND
+DB_PolymorphStatuses(_, _Var3)
+AND
+HasAppliedStatus(_Var1, _Var3, 1)
+THEN
+DB_Noop(1);
+
+IF
+ObjectWasTagged((CHARACTERGUID)_Var1, "VEILED_UNDEAD")
+AND
+DB_IsPlayer(_Var1)
+THEN
+ApplyStatus(_Var1, "VEILED_UNDEAD", -1, 1);
+
+IF
+ObjectLostTag((CHARACTERGUID)_Var1, "VEILED_UNDEAD")
+AND
+DB_IsPlayer(_Var1)
+THEN
+RemoveStatus(_Var1, "VEILED_UNDEAD");
+
+IF
+CharacterResurrected((CHARACTERGUID)_Var1)
+AND
+DB_IsPlayer(_Var1)
+AND
+IsTagged(_Var1, "VEILED_UNDEAD", 1)
+THEN
+ApplyStatus(_Var1, "VEILED_UNDEAD", -1, 1);
+
+IF
+CharacterJoinedParty((CHARACTERGUID)_Var1)
+AND
+DB_IsPlayer(_Var1)
+AND
+IsTagged(_Var1, "VEILED_UNDEAD", 1)
+AND
+HasActiveStatus(_Var1, "VEILED_UNDEAD", 0)
+THEN
+ApplyStatus(_Var1, "VEILED_UNDEAD", -1, 1);
+
+IF
+SavegameLoaded((INTEGER)_Var1, (INTEGER)_Var2, (INTEGER)_Var3, (INTEGER)_Var4)
+AND
+QRY_VersionIsOlderThan(_Var1, _Var2, _Var3, _Var4, 3, 6, 2, 0)
+AND
+DB_IsPlayer(_Var5)
+AND
+IsTagged(_Var5, "VEILED_UNDEAD", 1)
+AND
+HasActiveStatus(_Var5, "VEILED_UNDEAD", 0)
+THEN
+ApplyStatus(_Var5, "VEILED_UNDEAD", -1, 1);
+
+
+EXITSECTION
+ENDEXITSECTION
+
+ParentTargetEdge "__Shared_Campaign"

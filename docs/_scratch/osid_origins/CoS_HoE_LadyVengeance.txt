@@ -1,0 +1,888 @@
+Version 1
+SubGoalCombiner SGC_AND
+
+INITSECTION
+TriggerRegisterForPlayers(TRIGGERGUID_S_CoS_SUB_Temples_LVTopDeck_HoE_46af229d-8bbb-4ff3-9e27-cf87cc51247e);
+DB_Dialogs(ITEMGUID_S_CoS_HoE_LV_ShipHead_a0f61554-fd78-49c2-b9dc-2c933685f026, "CoS_LV_HoE_ShipHead");
+DB_CoS_HoE_LadyVengeance_Companion_Ghosts(S_Player_RedPrince_a26a1efb-cdc8-4cf3-a7b2-b2f9544add6f, LV_RedPrince_Ghost_14a63143-b1a5-4d7d-8ed8-360f159e8d4d, S_CoS_LV_HoE_RedPrinceGhostPoint_e5b19673-9c8c-4f40-9205-22d4cebd58d3, "LV_RedPrince_Ghost");
+DB_CoS_HoE_LadyVengeance_Companion_Ghosts(CHARACTERGUID_S_Player_Ifan_ad9a3327-4456-42a7-9bf4-7ad60cc9e54f, CHARACTERGUID_LV_Ifan_Ghost_8623e194-02bb-4fc9-855c-6f0da8a1c87a, TRIGGERGUID_S_CoS_LV_HoE_IfanGhostPoint_0c2de478-3d41-4ce7-aea5-728d3faa8cb6, "LV_Ifan_Ghost");
+DB_CoS_HoE_LadyVengeance_Companion_Ghosts(CHARACTERGUID_S_Player_Sebille_c8d55eaf-e4eb-466a-8f0d-6a9447b5b24c, CHARACTERGUID_LV_Sebille_Ghost_fe763c4d-0687-40d8-ac0e-97a2e9b1d9b8, TRIGGERGUID_S_CoS_LV_HoE_SebilleGhostPoint_088c8940-9373-4426-aabc-7006385526e2, "LV_Sebille_Ghost");
+DB_CoS_HoE_LadyVengeance_Companion_Ghosts(CHARACTERGUID_S_Player_Lohse_bb932b13-8ebf-4ab4-aac0-83e6924e4295, CHARACTERGUID_LV_Lohse_Ghost_422c4340-f8aa-44f6-9a37-1868659bc2b7, TRIGGERGUID_S_CoS_LV_HoE_LohseGhostPoint_1d042a39-512f-42bd-97dd-5d55cbcdb6ee, "CoS_LV_HoE_Lohse_Ghost");
+DB_CoS_HoE_LadyVengeance_Companion_Ghosts(CHARACTERGUID_S_Player_Beast_f25ca124-a4d2-427b-af62-df66df41a978, CHARACTERGUID_LV_Beast_Ghost_0b6c190c-305f-4fc5-922c-99f0bb087d3a, TRIGGERGUID_S_CoS_LV_HoE_BeastGhostPoint_87b1f4f9-b72a-4f3c-9295-dcdcac339ed9, "LV_Beast_Ghost");
+DB_CoS_HoE_LadyVengeance_Companion_Ghosts(CHARACTERGUID_S_Player_Fane_02a77f1f-872b-49ca-91ab-32098c443beb, CHARACTERGUID_LV_Fane_Ghost_43619c0e-dea6-4d90-b1a7-127e7542a662, TRIGGERGUID_S_CoS_LV_HoE_FaneGhostPoint_c75164b2-db37-4bf2-b327-947d6ff89ae7, "LV_Fane_Ghost");
+DB_CoS_HoE_LadyVengeance_Companion_Dialogs(S_Player_RedPrince_a26a1efb-cdc8-4cf3-a7b2-b2f9544add6f, "RedPrince_CoSLVHoE");
+DB_CoS_HoE_LadyVengeance_Companion_Dialogs(CHARACTERGUID_S_Player_Ifan_ad9a3327-4456-42a7-9bf4-7ad60cc9e54f, "Ifan_CoSLVHoE");
+DB_CoS_HoE_LadyVengeance_Companion_Dialogs(CHARACTERGUID_S_Player_Sebille_c8d55eaf-e4eb-466a-8f0d-6a9447b5b24c, "Sebille_CoSLVHoE");
+DB_CoS_HoE_LadyVengeance_Companion_Dialogs(CHARACTERGUID_S_Player_Lohse_bb932b13-8ebf-4ab4-aac0-83e6924e4295, "Lohse_CoSLVHoE");
+DB_CoS_HoE_LadyVengeance_Companion_Dialogs(CHARACTERGUID_S_Player_Beast_f25ca124-a4d2-427b-af62-df66df41a978, "Beast_CoSLVHoE");
+DB_CoS_HoE_LadyVengeance_Companion_Dialogs(CHARACTERGUID_S_Player_Fane_02a77f1f-872b-49ca-91ab-32098c443beb, "Fane_CoSLVHoE");
+DB_CoS_HoE_LadyVengeance_DNotS_SelectionFlag(S_Player_RedPrince_a26a1efb-cdc8-4cf3-a7b2-b2f9544add6f, "CoS_DarkNightSoul_RedPrince");
+DB_CoS_HoE_LadyVengeance_DNotS_SelectionFlag(CHARACTERGUID_S_Player_Ifan_ad9a3327-4456-42a7-9bf4-7ad60cc9e54f, "CoS_DarkNightSoul_Ifan");
+DB_CoS_HoE_LadyVengeance_DNotS_SelectionFlag(CHARACTERGUID_S_Player_Sebille_c8d55eaf-e4eb-466a-8f0d-6a9447b5b24c, "CoS_DarkNightSoul_Sebille");
+DB_CoS_HoE_LadyVengeance_DNotS_SelectionFlag(CHARACTERGUID_S_Player_Lohse_bb932b13-8ebf-4ab4-aac0-83e6924e4295, "CoS_DarkNightSoul_Lohse");
+DB_CoS_HoE_LadyVengeance_DNotS_SelectionFlag(CHARACTERGUID_S_Player_Beast_f25ca124-a4d2-427b-af62-df66df41a978, "CoS_DarkNightSoul_Beast");
+DB_CoS_HoE_LadyVengeance_DNotS_SelectionFlag(CHARACTERGUID_S_Player_Fane_02a77f1f-872b-49ca-91ab-32098c443beb, "CoS_DarkNightSoul_Fane");
+DB_CoS_HoE_LadyVengeance_DNotS_SelectionFlag(NULL_00000000-0000-0000-0000-000000000000, "CoS_DarkNightSoul_Alone");
+DB_CoS_HoE_LadyVengeance_Companion_TriggerCluster(0, S_CoS_LV_HoE_Companion_1_Cluster_000_dd90e999-0087-4cc4-a032-950cbf448af8);
+DB_CoS_HoE_LadyVengeance_Companion_TriggerCluster(0, TRIGGERGUID_S_CoS_LV_HoE_Companion_2_Cluster_000_bc367418-ffe5-447f-894f-aafe633ddb14);
+DB_CoS_HoE_LadyVengeance_Companion_TriggerCluster(0, TRIGGERGUID_S_CoS_LV_HoE_Companion_3_Cluster_000_beca2b45-babc-4640-af58-0707fc90c6e2);
+DB_CoS_HoE_LadyVengeance_Companion_TriggerCluster(1, TRIGGERGUID_S_CoS_LV_HoE_Companion_2_Cluster_001_880bd708-d4fa-4e45-8ceb-2c9422987c50);
+DB_CoS_HoE_LadyVengeance_Companion_TriggerCluster(1, TRIGGERGUID_S_CoS_LV_HoE_Companion_1_Cluster_001_87f4d4e3-6901-4b90-8aa9-88e644fcff54);
+DB_CoS_HoE_LadyVengeance_Companion_TriggerCluster(1, TRIGGERGUID_S_CoS_LV_HoE_Companion_3_Cluster_001_783bd30c-ce73-437d-a5f9-f561aa980801);
+DB_CoS_HoE_LadyVengeance_DNotSDestination(0, TRIGGERGUID_S_CoS_DNotS_HoE_Room_1_Player_000_9023733a-5a55-40c9-8d73-4b100489805e, TRIGGERGUID_S_CoS_DNotS_HoE_Room_1_Player_001_656f218c-fcbf-4bcc-a925-eeed1b5b2ab6);
+DB_CoS_HoE_LadyVengeance_DNotSDestination(0, TRIGGERGUID_S_CoS_DNotS_HoE_Room_2_Player_000_77d9d800-6529-4a83-b1ff-1dd8331072cf, TRIGGERGUID_S_CoS_DNotS_HoE_Room_2_Player_001_8f0fb5d0-fee4-436f-ac5c-bbfae4e2aebc);
+DB_CoS_HoE_LadyVengeance_DNotSDestination(1, TRIGGERGUID_S_CoS_DNotS_HoE_Room_3_Player_000_cfeb4b32-3e29-4d57-874a-da6c4c528fe6, TRIGGERGUID_S_CoS_DNotS_HoE_Room_3_Player_001_80f1510b-bd3d-40c0-8b1b-5964553d9163);
+DB_CoS_HoE_LadyVengeance_DNotSDestination(1, TRIGGERGUID_S_CoS_DNotS_HoE_Room_4_Player_000_b7377b38-8d11-4f70-bb15-b22c6d9272f2, TRIGGERGUID_S_CoS_DNotS_HoE_Room_4_Player_001_256b462b-3079-4bc8-8e6b-23a7dc6935f5);
+DB_CoS_HoE_LadyVengeance_DNotSDestinationAttributes(TRIGGERGUID_S_CoS_DNotS_HoE_Room_1_Player_000_9023733a-5a55-40c9-8d73-4b100489805e, ITEMGUID_BLD_HOE_Platform_4m_B_000_f16a247c-aa62-4aa3-beb1-8e4a6537d844, SPLINEGUID_S_CameraSpline_Bed_01_8be07fd7-4ba1-4c07-b918-21dab9e6fbb5);
+DB_CoS_HoE_LadyVengeance_DNotSDestinationAttributes(TRIGGERGUID_S_CoS_DNotS_HoE_Room_2_Player_000_77d9d800-6529-4a83-b1ff-1dd8331072cf, ITEMGUID_BLD_HOE_Platform_4m_B_001_ef1f8906-0506-423c-913b-f1a7c7c64589, SPLINEGUID_S_CameraSpline_Bed_02_62859d9e-b6e1-454e-8b80-1c9719fe5884);
+DB_CoS_HoE_LadyVengeance_DNotSDestinationAttributes(TRIGGERGUID_S_CoS_DNotS_HoE_Room_3_Player_000_cfeb4b32-3e29-4d57-874a-da6c4c528fe6, ITEMGUID_S_CoS_DNotS_HoE_Room_3_Bed_6b479af8-901d-4844-b080-81bcc14d0bdd, SPLINEGUID_S_CameraSpline_Bed_04_7b21f677-069a-49a2-b435-4f6374178e2c);
+DB_CoS_HoE_LadyVengeance_DNotSDestinationAttributes(TRIGGERGUID_S_CoS_DNotS_HoE_Room_4_Player_000_b7377b38-8d11-4f70-bb15-b22c6d9272f2, ITEMGUID_S_CoS_DNotS_HoE_Room_4_Bed_1c5a9079-380b-4c66-a25a-64ffac1d7f46, SPLINEGUID_S_CameraSpline_Bed_03_47663405-5a2c-4ae3-9228-d09f3a32098c);
+Proc_PyramidBlockerTriggerAdd(TRIGGERGUID_S_CoS_DNotS_HoE_Room_1_Box_f5018523-9142-45fe-976d-46009fdf2f63);
+Proc_PyramidBlockerTriggerAdd(TRIGGERGUID_S_CoS_DNotS_HoE_Room_2_Box_8f5cf76c-36f7-4bde-81f9-3564b1fb1884);
+Proc_PyramidBlockerTriggerAdd(TRIGGERGUID_S_CoS_DNotS_HoE_Room_3_Box_0ab92ea1-5930-4d6e-b280-e1d224c34901);
+Proc_PyramidBlockerTriggerAdd(TRIGGERGUID_S_CoS_DNotS_HoE_Room_4_Box_facfe4e3-90b6-4ce9-98b2-4c1ae8206898);
+DB_DNOTS_SplineDelay(8000);
+DB_CoS_HoE_LV_DNotS_Effect("CoS_LV_Hoe_DNOTS_Fane_Romance_Start", "RS3_FX_GP_ScriptedEvent_Fane_Romance_01", 1);
+DB_CoS_HoE_LV_DNotS_Effect("CoS_LV_Hoe_DNOTS_Fane_Romance_Connection", "RS3_FX_GP_ScriptedEvent_Fane_Romance_01_Connection", 1);
+DB_CoS_HoE_LV_DNotS_Effect("CoS_LV_Hoe_DNOTS_Fane_Romance_BuildUp", "RS3_FX_GP_ScriptedEvent_Fane_Romance_01_BuildUp", 1);
+DB_CoS_HoE_LV_DNotS_Effect("CoS_LV_Hoe_DNOTS_Fane_Romance_Climax", "RS3_FX_GP_ScriptedEvent_Fane_Romance_01_Climax", 0);
+
+KBSECTION
+IF
+CharacterEnteredTrigger((CHARACTERGUID)_Var1, TRIGGERGUID_S_CoS_SUB_Temples_LVTopDeck_HoE_46af229d-8bbb-4ff3-9e27-cf87cc51247e)
+AND
+DB_CoS_AfterArenaOfTheOne(1)
+AND
+QueryOnlyOnce("Start_CoS_LV_HoE_AD_CompanionDismissal")
+THEN
+NOT DB_CoS_AfterArenaOfTheOne(1);
+PROC_CoS_HoE_LadyVengeanceInit();
+
+IF
+MovieFinished("CS_Rescue")
+AND
+QueryOnlyOnce("Start_CoS_LV_HoE_AD_CompanionDismissal")
+THEN
+NOT DB_CoS_AfterArenaOfTheOne(1);
+PROC_CoS_HoE_LadyVengeanceInit();
+
+PROC
+PROC_CoS_HoE_LadyVengeanceInit()
+THEN
+GlobalSetFlag("GLO_Region_CoS_Ending");
+
+PROC
+ProcRegionEnded("CoS_Main_Ending")
+THEN
+GlobalClearFlag("GLO_Region_CoS_Ending");
+
+PROC
+PROC_CoS_HoE_LadyVengeanceInit()
+AND
+DB_GLO_LVNPCsLeaving_NPC_ProximityTrigger("CoS_Main_Ending", _Var1, _Var2, _Var3, _Var4)
+THEN
+NOT DB_GLO_LVNPCsLeaving_NPC_ProximityTrigger("CoS_Main_Ending", _Var1, _Var2, _Var3, _Var4);
+
+PROC
+PROC_CoS_HoE_LadyVengeanceInit()
+AND
+DB_IsPlayer(_Var1)
+THEN
+Proc_CharacterFullRestore(_Var1);
+
+PROC
+PROC_CoS_HoE_LadyVengeanceInit()
+THEN
+DB_CoS_HoE_LadyVengeance_DismissingCompanions(1);
+PROC_CoS_HoE_LadyVengeance_RecordParties();
+PROC_CoS_HoE_LadyVengeanceInit_PartiesRecorded();
+
+PROC
+PROC_CoS_HoE_LadyVengeance_RecordParties()
+AND
+DB_OriginRecruitmentLocation_Region("CoS_Main", _Var1, _Var2, _Var3)
+AND
+DB_GLO_PartyMembers_RecruiteeAvatarBond(_Var1, _)
+THEN
+DB_GLO_PartyMembers_BlockReturnToRecruitmentPosition(_Var1);
+DB_GLO_PartyMembers_BlockRecruitmentDialog(_Var1);
+SetVarFixedString(_Var1, "currentState", "");
+
+PROC
+ProcRegionEnded("CoS_Main_Ending")
+AND
+DB_GLO_PartyMembers_BlockReturnToRecruitmentPosition(_Var1)
+THEN
+NOT DB_GLO_PartyMembers_BlockReturnToRecruitmentPosition(_Var1);
+NOT DB_GLO_PartyMembers_BlockRecruitmentDialog(_Var1);
+
+PROC
+ProcRegionEnded("CoS_Main_Ending")
+AND
+DB_GLO_PartyMembers_BlockReturnToRecruitmentPosition(_Var1)
+THEN
+NOT DB_GLO_PartyMembers_BlockReturnToRecruitmentPosition(_Var1);
+NOT DB_GLO_PartyMembers_BlockRecruitmentDialog(_Var1);
+
+PROC
+PROC_CoS_HoE_LadyVengeance_RestoreOriginalPartySetups()
+THEN
+PROC_GLO_PartyMembers_TempRestoreAll();
+
+PROC
+PROC_CoS_HoE_LadyVengeance_RestoreOriginalPartySetups()
+AND
+DB_IsPlayer(_Var1)
+THEN
+NOT DB_BlockStoryItemTransfer(_Var1);
+
+PROC
+PROC_CoS_HoE_LadyVengeanceInit_PartiesRecorded()
+AND
+DB_CoS_HoE_LadyVengeance_Companion_Ghosts(_Var1, _Var2, _Var3, _Var4)
+AND NOT
+DB_Ghosts(_Var1, _Var2, _)
+THEN
+DB_Ghosts(_Var1, _Var2, _Var4);
+
+PROC
+PROC_CoS_HoE_LadyVengeanceInit_PartiesRecorded()
+AND
+DB_CoS_HoE_LadyVengeance_Companion_Ghosts(_Var1, _Var2, _Var3, _Var4)
+THEN
+Proc_GhostHacks_EnableGlobalNPCGhostIfDisabled(_Var2);
+
+PROC
+ProcRegionEnded("CoS_Main_Ending")
+AND
+DB_CoS_HoE_LadyVengeance_Companion_Ghosts(_Var1, _Var2, _, _Var4)
+AND
+DB_Ghosts(_Var1, _Var2, _Var4)
+AND NOT
+DB_GoneGhosts(_Var2)
+THEN
+Proc_GhostHacks_DisableGlobalNPCGhost(_Var2);
+
+PROC
+PROC_CoS_HoE_LadyVengeanceInit_PartiesRecorded()
+AND
+DB_CoS_HoE_LadyVengeance_Companion_Ghosts(_Var1, _Var2, _Var3, _Var4)
+AND
+ObjectGetFlag(_Var1, "CoS_CompanionReJoinAvatar", 0)
+AND
+CharacterIsDead(_Var1, 1)
+AND
+DB_CoS_AotO_Competitors(_Var1)
+AND NOT
+DB_IsPlayer(_Var1)
+THEN
+CharacterSetForceSynch(_Var1, 1);
+Proc_GhostHacks_ChangeGhostDialog(_Var2, _Var4);
+TeleportTo(_Var2, _Var3);
+SetOnStage(_Var2, 1);
+
+PROC
+ProcRegionEnded("CoS_Main_Ending")
+AND
+DB_CoS_HoE_LadyVengeance_Companion_Ghosts(_Var1, _Var2, _Var3, _Var4)
+AND
+ObjectGetFlag(_Var1, "CoS_CompanionReJoinAvatar", 0)
+AND
+CharacterIsDead(_Var1, 1)
+AND
+DB_CoS_AotO_Competitors(_Var1)
+AND NOT
+DB_IsPlayer(_Var1)
+THEN
+CharacterSetForceSynch(_Var1, 0);
+
+PROC
+PROC_CoS_HoE_LadyVengeanceInit_PartiesRecorded()
+THEN
+ProcDeclareCounter("CoS_HoE_LadyVengeance_CompanionCluster");
+
+PROC
+PROC_CoS_HoE_LadyVengeance_AvatarCompanionSetClusterPoint((CHARACTERGUID)_Var1, (CHARACTERGUID)_Var2)
+AND NOT
+DB_CoS_HoE_LadyVengeance_CompanionClusterForAvatar(_Var1, _)
+AND
+DB_GlobalCounter("CoS_HoE_LadyVengeance_CompanionCluster", _Var4)
+THEN
+DB_CoS_HoE_LadyVengeance_CompanionClusterForAvatar(_Var1, _Var4);
+ProcIncreaseCounter("CoS_HoE_LadyVengeance_CompanionCluster");
+
+PROC
+PROC_CoS_HoE_LadyVengeance_AvatarCompanionSetClusterPoint((CHARACTERGUID)_Var1, (CHARACTERGUID)_Var2)
+AND
+DB_CoS_HoE_LadyVengeance_CompanionClusterForAvatar(_Var1, _Var3)
+AND
+DB_CoS_HoE_LadyVengeance_Companion_TriggerCluster(_Var3, _Var4)
+AND NOT
+DB_CoS_HoE_LadyVengeance_Companion_Trigger(_, _Var2, _)
+THEN
+NOT DB_CoS_HoE_LadyVengeance_Companion_TriggerCluster(_Var3, _Var4);
+DB_CoS_HoE_LadyVengeance_Companion_Trigger(_Var1, _Var2, _Var4);
+ProcRemoveAllDialogEntriesForSpeaker(_Var2);
+ProcCharacterMoveTo(_Var2, _Var4, 0, "CoS_HoE_LadyVengeance_OriginAtRomanceWaitingPoint");
+
+IF
+StoryEvent((CHARACTERGUID)_Var1, "CoS_HoE_LadyVengeance_OriginAtRomanceWaitingPoint")
+AND
+DB_CoS_HoE_LadyVengeance_Companion_Trigger(_Var2, _Var1, _Var3)
+THEN
+CharacterLookFromTrigger(_Var1, _Var3, 0);
+SetHasDialog(_Var1, 1);
+
+PROC
+Proc_DialogFlagSetup((STRING)_Var1, (CHARACTERGUID)_Var2, (CHARACTERGUID)_Var3)
+AND
+DB_CoS_HoE_LadyVengeance_Companion_Dialogs(_Var2, _Var1)
+AND NOT
+DB_CoS_HoE_LadyVengeance_Companion_Trigger(_Var3, _Var2, _)
+THEN
+DB_CoS_HoE_LadyVengeance_ClearNonBondedAvatarFlagAfterDialog(_Var3);
+ObjectSetFlag(_Var3, "CoS_HoE_LadyVengeance_NonBondedAvatar");
+
+PROC
+Proc_DialogFlagSetup("CoS_LV_HoE_DarkNightOfTheSoulInvitation", (CHARACTERGUID)_Var1, (GUIDSTRING)_Var2, (GUIDSTRING)_Var3, (CHARACTERGUID)_Var4)
+AND NOT
+DB_CoS_HoE_LadyVengeance_Companion_Trigger(_Var4, _Var1, _)
+THEN
+DB_CoS_HoE_LadyVengeance_ClearNonBondedAvatarFlagAfterDialog(_Var4);
+ObjectSetFlag(_Var4, "CoS_HoE_LadyVengeance_NonBondedAvatar");
+
+PROC
+PROC_GLOBAL_DialogStartRequested_AfterGenerics((CHARACTERGUID)_Var1, (CHARACTERGUID)_Var2)
+AND
+DB_GlobalFlag("CoS_AfterArenaOfTheOne")
+AND
+DB_OriginRecruitmentLocation_Region("CoS_Main", _Var1, _, _)
+AND NOT
+DB_Dialogs(_Var1, _)
+THEN
+PROC_CoS_HoE_LadyVengeance_StartDNotSDialog(_Var2, _Var1);
+
+PROC
+ProcBlockUseOfItem((CHARACTERGUID)_Var1, ITEMGUID_S_LV_DoorTo_1_001_c1ed9bac-0d35-40c0-bf83-bfc228070098)
+AND
+DB_GLO_PartyMembers_TempRemoved(_Var1, _Var2)
+AND NOT
+DB_Dialogs(_Var2, _)
+AND
+GetUUID(_Var1, _Var4)
+AND
+StringConcatenate("CoS_HoE_BlockGoingDownForPlayer_", _Var4, _Var5)
+AND
+QueryOnlyOnce(_Var5)
+THEN
+DB_CustomUseItemResponse(_Var1, ITEMGUID_S_LV_DoorTo_1_001_c1ed9bac-0d35-40c0-bf83-bfc228070098, 0);
+PROC_CoS_HoE_LadyVengeance_StartDNotSDialog(_Var1, _Var2);
+
+PROC
+PROC_CoS_HoE_LadyVengeance_StartDNotSDialog((CHARACTERGUID)_Var1, (CHARACTERGUID)_Var2)
+AND NOT
+DB_CoS_HoE_LadyVengeance_Companion_Trigger(_Var1, _Var2, _)
+THEN
+ProcFaceEachother(_Var1, _Var2);
+Proc_StartDialog(0, "CoS_LV_HoE_DarkNightOfTheSoulInvitation", _Var2, NULL_00000000-0000-0000-0000-000000000000, NULL_00000000-0000-0000-0000-000000000000, _Var1);
+
+PROC
+PROC_CoS_HoE_LadyVengeance_StartDNotSDialog((CHARACTERGUID)_Var1, (CHARACTERGUID)_Var2)
+AND
+DB_CoS_HoE_LadyVengeance_Companion_Trigger(_Var1, _Var2, _)
+AND
+DB_CoS_HoE_LadyVengeance_DialogSpeaker(_Var4, _Var5)
+THEN
+NOT DB_CoS_HoE_LadyVengeance_DialogSpeaker(_Var4, _Var5);
+
+PROC
+PROC_CoS_HoE_LadyVengeance_StartDNotSDialog((CHARACTERGUID)_Var1, (CHARACTERGUID)_Var2)
+AND
+DB_CoS_HoE_LadyVengeance_Companion_Trigger(_Var1, _Var2, _)
+THEN
+ProcDeclareCounter("CoS_HoE_LadyVengeance_StartDNotSDialog_ParticipantIndex");
+DB_CoS_HoE_LadyVengeance_DialogSpeaker(0, NULL_00000000-0000-0000-0000-000000000000);
+DB_CoS_HoE_LadyVengeance_DialogSpeaker(1, NULL_00000000-0000-0000-0000-000000000000);
+DB_CoS_HoE_LadyVengeance_DialogSpeaker(2, NULL_00000000-0000-0000-0000-000000000000);
+
+PROC
+PROC_CoS_HoE_LadyVengeance_StartDNotSDialog((CHARACTERGUID)_Var1, (CHARACTERGUID)_Var2)
+AND
+DB_CoS_HoE_LadyVengeance_Companion_Trigger(_Var1, _Var2, _)
+AND
+DB_CoS_HoE_LadyVengeance_Companion_Trigger(_Var1, _Var4, _)
+THEN
+PROC_CoS_HoE_LadyVengeance_StartDNotSDialog_DefineParticipant(_Var4);
+
+PROC
+PROC_CoS_HoE_LadyVengeance_StartDNotSDialog_DefineParticipant((CHARACTERGUID)_Var1)
+AND
+DB_GlobalCounter("CoS_HoE_LadyVengeance_StartDNotSDialog_ParticipantIndex", _Var2)
+THEN
+NOT DB_CoS_HoE_LadyVengeance_DialogSpeaker(_Var2, NULL_00000000-0000-0000-0000-000000000000);
+DB_CoS_HoE_LadyVengeance_DialogSpeaker(_Var2, _Var1);
+ProcIncreaseCounter("CoS_HoE_LadyVengeance_StartDNotSDialog_ParticipantIndex");
+
+PROC
+PROC_CoS_HoE_LadyVengeance_StartDNotSDialog((CHARACTERGUID)_Var1, (CHARACTERGUID)_Var2)
+AND
+DB_CoS_HoE_LadyVengeance_Companion_Trigger(_Var1, _Var2, _)
+AND
+DB_CoS_HoE_LadyVengeance_DialogSpeaker(0, _Var4)
+AND
+DB_CoS_HoE_LadyVengeance_DialogSpeaker(1, _Var5)
+AND
+DB_CoS_HoE_LadyVengeance_DialogSpeaker(2, _Var6)
+THEN
+ProcFaceEachother(_Var1, _Var4);
+Proc_StartDialog(0, "CoS_LV_HoE_DarkNightOfTheSoulInvitation", _Var4, _Var5, _Var6, _Var1);
+
+IF
+DialogEnded("CoS_LV_HoE_DarkNightOfTheSoulInvitation", (INTEGER)_Var1)
+AND
+DB_DialogPlayers(_Var1, _Var2, _)
+AND NOT
+DB_CoS_HoE_LadyVengeance_ClearNonBondedAvatarFlagAfterDialog(_Var2)
+THEN
+PROC_CoS_HoE_LadyVengeance_HaveDNoTS(_Var2);
+
+PROC
+PROC_CoS_HoE_LadyVengeance_HaveDNoTS((CHARACTERGUID)_Var1)
+AND
+DB_CoS_HoE_LadyVengeance_DNotS_SelectionFlag(_Var2, _Var3)
+AND
+ObjectGetFlag(_Var1, _Var3, 1)
+AND
+GlobalGetFlag("GLO_ShipFreed", _Var4)
+THEN
+PROC_CoS_HoE_LadyVengeance_HaveDNoTSWith(_Var1, _Var2, _Var4);
+
+PROC
+PROC_CoS_HoE_LadyVengeance_HaveDNoTSWith((CHARACTERGUID)_Var1, (CHARACTERGUID)_Var2, (INTEGER)_Var3)
+AND
+_Var2 != NULL_00000000-0000-0000-0000-000000000000
+AND
+DB_CoS_HoE_LadyVengeance_DNotSDestination(_Var3, _Var4, _Var5)
+AND NOT
+DB_CoS_HoE_LadyVengeance_DNotSDestinationForPlayerAndOrigin(_Var1, _, _, _)
+THEN
+DB_CoS_HoE_LadyVengeance_DNotSDestinationForPlayerAndOrigin(_Var1, _Var2, _Var4, _Var5);
+NOT DB_CoS_HoE_LadyVengeance_DNotSDestination(_Var3, _Var4, _Var5);
+TeleportTo(_Var1, _Var4, "CoS_HoE_LadyVengeance_DNotSRoom", 0);
+TeleportTo(_Var2, _Var5, "CoS_HoE_LadyVengeance_DNotSRoom", 0);
+
+IF
+StoryEvent((CHARACTERGUID)_Var1, "CoS_HoE_LadyVengeance_DNotSRoom")
+THEN
+DB_CoS_HoE_LadyVengeance_DNotSArrived(_Var1);
+PlayEffect(_Var1, "RS3_FX_GP_ScriptedEvent_HOE_Summoning_01");
+
+IF
+DB_CoS_HoE_LadyVengeance_DNotSDestinationForPlayerAndOrigin(_Var1, _Var2, _Var3, _Var4)
+AND
+DB_CoS_HoE_LadyVengeance_DNotSArrived(_Var1)
+AND
+DB_CoS_HoE_LadyVengeance_DNotSArrived(_Var2)
+AND
+DB_CoS_HoE_LadyVengeance_Companion_Dialogs(_Var2, _Var5)
+THEN
+NOT DB_CoS_HoE_LadyVengeance_DNotSArrived(_Var1);
+NOT DB_CoS_HoE_LadyVengeance_DNotSArrived(_Var2);
+ObjectSetFlag(_Var1, "CoS_DNotS_Ongoing");
+ProcFaceEachother(_Var2, _Var1);
+Proc_StartDialog(0, _Var5, _Var2, _Var1);
+
+IF
+DialogEnded((STRING)_Var1, (INTEGER)_Var2)
+AND
+DB_CoS_HoE_LadyVengeance_Companion_Dialogs(_, _Var1)
+AND
+DB_DialogPlayers(_Var2, _Var4, _)
+AND
+ObjectGetFlag(_Var4, "CoS_DNotS_FadeToBlack", 1)
+AND
+DB_CoS_HoE_LadyVengeance_DNotSDestinationForPlayerAndOrigin(_Var4, _Var6, _, _)
+AND
+GetUUID(_Var4, _Var9)
+AND
+StringConcatenate("CoS_HoE_LadyVengeance_DNotSFadeOut_", _Var9, _Var10)
+THEN
+ObjectClearFlag(_Var4, "CoS_DNotS_FadeToBlack");
+DB_CoS_HoE_LadyVengeance_DNotSFading(_Var4, _Var10);
+CharacterFreeze(_Var4);
+FadeToBlack(_Var4, 3.5, 0, _Var10);
+
+IF
+FadeOutDone(_, (STRING)_Var2)
+AND
+DB_CoS_HoE_LadyVengeance_DNotSFading(_Var3, _Var2)
+AND
+DB_CoS_HoE_LadyVengeance_DNotSDestinationForPlayerAndOrigin(_Var3, _Var4, _Var5, _Var6)
+AND
+DB_CoS_HoE_LadyVengeance_DNotSDestinationAttributes(_Var5, _Var7, _Var8)
+THEN
+NOT DB_CoS_HoE_LadyVengeance_DNotSFading(_Var3, _Var2);
+ProcObjectTimer(_Var3, "CoS_HoE_LadyVengeance_DNotSFadeIn", 6500);
+CharacterUseItem(_Var3, _Var7, "");
+CharacterUseItem(_Var4, _Var7, "");
+
+PROC
+ProcObjectTimerFinished((CHARACTERGUID)_Var1, "CoS_HoE_LadyVengeance_DNotSFadeIn")
+AND
+GetUUID(_Var1, _Var2)
+AND
+StringConcatenate("CoS_HoE_LadyVengeance_DNotSFadeIn_", _Var2, _Var3)
+AND
+DB_CoS_HoE_LadyVengeance_DNotSDestinationForPlayerAndOrigin(_Var1, _Var4, _Var5, _Var6)
+AND
+DB_CoS_HoE_LadyVengeance_DNotSDestinationAttributes(_Var5, _Var7, _Var8)
+AND
+DB_DNOTS_SplineDelay(_Var9)
+THEN
+DB_CoS_HoE_LadyVengeance_DNotSFadingIn(_Var1, _Var3);
+StartCameraSpline(_Var8, _Var1, 5, 1, 0, 0);
+ProcObjectTimer(_Var1, _Var3, _Var9);
+
+IF
+TextEventSet("dnots_spline")
+AND
+GetTextEventParamInteger(1, _Var1)
+AND
+DB_DNOTS_SplineDelay(_Var2)
+THEN
+NOT DB_DNOTS_SplineDelay(_Var2);
+DB_DNOTS_SplineDelay(_Var1);
+
+PROC
+ProcObjectTimerFinished((CHARACTERGUID)_Var1, (STRING)_Var2)
+AND
+DB_CoS_HoE_LadyVengeance_DNotSFadingIn(_Var1, _Var2)
+AND
+DB_CoS_HoE_LadyVengeance_DNotSDestinationForPlayerAndOrigin(_Var1, _Var3, _Var4, _Var5)
+AND
+DB_CoS_HoE_LadyVengeance_DNotSDestinationAttributes(_Var4, _Var6, _Var7)
+THEN
+NOT DB_CoS_HoE_LadyVengeance_DNotSFadingIn(_Var1, _Var2);
+StopCameraSpline(_Var7, _Var1);
+CharacterUnfreeze(_Var1);
+
+IF
+ObjectFlagSet("CoS_DNotS_Leave", (CHARACTERGUID)_Var1, (INTEGER)_Var2)
+THEN
+ObjectClearFlag(_Var1, "CoS_DNotS_Leave");
+DB_CoS_HoE_LadyVengeance_LeaveAfterDialog(_Var1, _Var2);
+
+IF
+DialogEnded(_, (INTEGER)_Var2)
+AND
+DB_CoS_HoE_LadyVengeance_LeaveAfterDialog(_Var3, _Var2)
+THEN
+NOT DB_CoS_HoE_LadyVengeance_LeaveAfterDialog(_Var3, _Var2);
+PROC_CoS_HoE_LadyVengeance_Return(_Var3);
+
+IF
+CharacterDied((CHARACTERGUID)_Var1)
+AND
+DB_CoS_HoE_LadyVengeance_DNotSDestinationForPlayerAndOrigin(_Var2, _Var1, _Var3, _Var4)
+THEN
+PROC_CoS_HoE_LadyVengeance_Return(_Var2);
+
+IF
+CharacterDied((CHARACTERGUID)_Var1)
+AND
+DB_CoS_HoE_LadyVengeance_DNotSDestinationForPlayerAndOrigin(_Var1, _Var2, _Var3, _Var4)
+THEN
+PROC_CoS_HoE_LadyVengeance_Return(_Var1);
+
+PROC
+PROC_CoS_HoE_LadyVengeance_Return((CHARACTERGUID)_Var1)
+AND
+DB_CoS_HoE_LadyVengeance_DNotSDestinationForPlayerAndOrigin(_Var1, _Var2, _Var3, _Var4)
+AND
+DB_CoS_HoE_LadyVengeance_Companion_Trigger(_Var1, _Var2, _Var5)
+THEN
+TeleportTo(_Var2, _Var5);
+PlayEffect(_Var2, "RS3_FX_GP_ScriptedEvent_HOE_Summoning_01");
+
+PROC
+PROC_CoS_HoE_LadyVengeance_Return((CHARACTERGUID)_Var1)
+AND
+DB_CoS_HoE_LadyVengeance_DNotSDestinationForPlayerAndOrigin(_Var1, _Var2, _Var3, _Var4)
+AND
+DB_CoS_HoE_LadyVengeance_Companion_Trigger(_Var1, _Var2, _Var5)
+AND
+CharacterIsDead(_Var2, 1)
+AND
+DB_CoS_HoE_LadyVengeance_Companion_Ghosts(_Var2, _Var6, _Var7, _Var8)
+THEN
+TeleportTo(_Var6, _Var7);
+PlayEffect(_Var6, "RS3_FX_GP_ScriptedEvent_HOE_Summoning_01");
+
+PROC
+PROC_CoS_HoE_LadyVengeance_Return((CHARACTERGUID)_Var1)
+AND
+DB_CoS_HoE_LadyVengeance_DNotSDestinationForPlayerAndOrigin(_Var1, _Var2, _Var3, _Var4)
+AND
+DB_CoS_HoE_LadyVengeance_Companion_Trigger(_Var1, _Var2, _Var5)
+AND
+GetPosition(_Var5, _Var6, _Var7, _Var8)
+AND
+RealSum(_Var6, 1.5, _Var9)
+THEN
+NOT DB_CoS_HoE_LadyVengeance_DNotSDestinationForPlayerAndOrigin(_Var1, _Var2, _Var3, _Var4);
+ObjectClearFlag(_Var1, "CoS_DNotS_Ongoing");
+ObjectSetFlag(_Var1, "CoS_HoE_DNotS_Finished");
+TeleportToPosition(_Var1, _Var9, _Var7, _Var8, "", 0);
+PlayEffect(_Var1, "RS3_FX_GP_ScriptedEvent_HOE_Summoning_01");
+
+QRY
+QRY_CoS_HoE_LadyVengeance_GetCompanionDialogAfterDNotSSelection((CHARACTERGUID)_Var1, (INTEGER)_Var2)
+AND
+DB_CoS_HoE_LadyVengeance_GetCompanionDialogAfterDNotSSelection(_Var3)
+THEN
+NOT DB_CoS_HoE_LadyVengeance_GetCompanionDialogAfterDNotSSelection(_Var3);
+
+QRY
+QRY_CoS_HoE_LadyVengeance_GetCompanionDialogAfterDNotSSelection((CHARACTERGUID)_Var1, (INTEGER)_Var2)
+AND
+_Var1 != CHARACTERGUID_S_Player_Lohse_bb932b13-8ebf-4ab4-aac0-83e6924e4295
+AND
+DB_CoS_HoE_LadyVengeance_Companion_Dialogs(_Var1, _Var3)
+THEN
+DB_CoS_HoE_LadyVengeance_GetCompanionDialogAfterDNotSSelection(_Var3);
+
+QRY
+QRY_CoS_HoE_LadyVengeance_GetCompanionDialogAfterDNotSSelection(CHARACTERGUID_S_Player_Lohse_bb932b13-8ebf-4ab4-aac0-83e6924e4295, (INTEGER)_Var1)
+AND
+DB_DialogPlayers(_Var1, _Var2, _)
+AND
+DB_CoS_HoE_LadyVengeance_DNotS_SelectionFlag(CHARACTERGUID_S_Player_Lohse_bb932b13-8ebf-4ab4-aac0-83e6924e4295, _Var4)
+AND
+ObjectGetFlag(_Var2, _Var4, 1)
+AND
+DB_CoS_HoE_LadyVengeance_Companion_Dialogs(CHARACTERGUID_S_Player_Lohse_bb932b13-8ebf-4ab4-aac0-83e6924e4295, _Var5)
+THEN
+DB_CoS_HoE_LadyVengeance_GetCompanionDialogAfterDNotSSelection(_Var5);
+
+QRY
+QRY_CoS_HoE_LadyVengeance_GetCompanionDialogAfterDNotSSelection(CHARACTERGUID_S_Player_Lohse_bb932b13-8ebf-4ab4-aac0-83e6924e4295, (INTEGER)_Var1)
+AND
+DB_DialogPlayers(_Var1, _Var2, _)
+AND
+DB_CoS_HoE_LadyVengeance_DNotS_SelectionFlag(CHARACTERGUID_S_Player_Lohse_bb932b13-8ebf-4ab4-aac0-83e6924e4295, _Var4)
+AND
+ObjectGetFlag(_Var2, _Var4, 0)
+THEN
+DB_CoS_HoE_LadyVengeance_GetCompanionDialogAfterDNotSSelection("Lohse2");
+
+IF
+DialogEnded("CoS_LV_HoE_DarkNightOfTheSoulInvitation", (INTEGER)_Var1)
+AND
+DB_DialogPlayers(_Var1, _Var2, _)
+AND NOT
+DB_CoS_HoE_LadyVengeance_ClearNonBondedAvatarFlagAfterDialog(_Var2)
+AND
+DB_DialogNPCs(_Var1, _Var4, _)
+AND
+QRY_CoS_HoE_LadyVengeance_GetCompanionDialogAfterDNotSSelection(_Var4, _Var1)
+AND
+DB_CoS_HoE_LadyVengeance_GetCompanionDialogAfterDNotSSelection(_Var6)
+THEN
+ProcRemoveAllDialogEntriesForSpeaker(_Var4);
+DB_Dialogs(_Var4, _Var6);
+
+IF
+DialogEnded(_, (INTEGER)_Var2)
+AND
+DB_DialogPlayers(_Var2, _Var3, _)
+AND
+DB_CoS_HoE_LadyVengeance_ClearNonBondedAvatarFlagAfterDialog(_Var3)
+THEN
+NOT DB_CoS_HoE_LadyVengeance_ClearNonBondedAvatarFlagAfterDialog(_Var3);
+ObjectClearFlag(_Var3, "CoS_HoE_LadyVengeance_NonBondedAvatar");
+
+IF
+DialogRequestFailed(_, (INTEGER)_Var2)
+AND
+DB_DialogPlayers(_Var2, _Var3, _)
+AND
+DB_CoS_HoE_LadyVengeance_ClearNonBondedAvatarFlagAfterDialog(_Var3)
+THEN
+NOT DB_CoS_HoE_LadyVengeance_ClearNonBondedAvatarFlagAfterDialog(_Var3);
+ObjectClearFlag(_Var3, "CoS_HoE_LadyVengeance_NonBondedAvatar");
+
+PROC
+PROC_CoS_HoE_LadyVengeanceInit_PartiesRecorded()
+THEN
+TriggerUnregisterForPlayers(TRIGGERGUID_S_CoS_LV_RegionStart_8c00afb8-43af-4de7-953a-a7456f996a4c);
+SetVarFixedString(CHARACTERGUID_S_GLO_River_f4931ebe-10b0-43c4-9182-640cf052717e, "GlobalEvent_InitiateSpotter", "CoS_Ending_EnableSpottingLogicRiver");
+SetVarFixedString(CHARACTERGUID_S_GLO_River_f4931ebe-10b0-43c4-9182-640cf052717e, "GlobalEvent_StopSpotter", "CoS_Ending_StopSpottingLogicRiver");
+SetVarString(CHARACTERGUID_S_GLO_River_f4931ebe-10b0-43c4-9182-640cf052717e, "SpotCharacterEvent", "CoS_Ending_StartRiverDialogue");
+SetVarFloat(CHARACTERGUID_S_GLO_River_f4931ebe-10b0-43c4-9182-640cf052717e, "CheckRadius", 8);
+GlobalSetFlag("CoS_Ending_EnableSpottingLogicRiver");
+
+IF
+StoryEvent((GUIDSTRING)_Var1, "CoS_Ending_StartRiverDialogue")
+THEN
+PROC_CoS_HoE_LadyVengeanceInit_MaladyDialog();
+
+PROC
+PROC_CoS_HoE_LadyVengeanceInit_MaladyDialog()
+THEN
+DB_CoS_HoE_LadyVengeance_DialogSpeaker(0, NULL_00000000-0000-0000-0000-000000000000);
+DB_CoS_HoE_LadyVengeance_DialogSpeaker(1, NULL_00000000-0000-0000-0000-000000000000);
+DB_CoS_HoE_LadyVengeance_DialogSpeaker(2, NULL_00000000-0000-0000-0000-000000000000);
+DB_CoS_HoE_LadyVengeance_DialogSpeaker(3, NULL_00000000-0000-0000-0000-000000000000);
+ProcDeclareCounter("CoS_LV_HoE_PlayerIndex");
+
+PROC
+PROC_CoS_HoE_LadyVengeanceInit_MaladyDialog()
+AND
+DB_IsPlayer(_Var1)
+THEN
+PROC_CoS_HoE_LadyVengeanceInit_MaladyDialog_AssignSpeaker(_Var1);
+
+PROC
+PROC_CoS_HoE_LadyVengeanceInit_MaladyDialog_AssignSpeaker((CHARACTERGUID)_Var1)
+AND
+DB_GlobalCounter("CoS_LV_HoE_PlayerIndex", _Var2)
+THEN
+NOT DB_CoS_HoE_LadyVengeance_DialogSpeaker(_Var2, NULL_00000000-0000-0000-0000-000000000000);
+DB_CoS_HoE_LadyVengeance_DialogSpeaker(_Var2, _Var1);
+ProcIncreaseCounter("CoS_LV_HoE_PlayerIndex");
+
+PROC
+PROC_CoS_HoE_LadyVengeanceInit_MaladyDialog()
+AND
+DB_CoS_HoE_LadyVengeance_DialogSpeaker(0, _Var1)
+AND
+DB_CoS_HoE_LadyVengeance_DialogSpeaker(1, _Var2)
+AND
+DB_CoS_HoE_LadyVengeance_DialogSpeaker(2, _Var3)
+AND
+DB_CoS_HoE_LadyVengeance_DialogSpeaker(3, _Var4)
+THEN
+ProcFaceEachother(CHARACTERGUID_S_GLO_River_f4931ebe-10b0-43c4-9182-640cf052717e, _Var1);
+Proc_StartDialog(0, "CoS_LV_HoE_Dismissal_River", CHARACTERGUID_S_GLO_River_f4931ebe-10b0-43c4-9182-640cf052717e, _Var1, _Var2, _Var3, _Var4);
+
+IF
+DialogEnded("CoS_LV_HoE_Dismissal_River", _)
+THEN
+PROC_CoS_HoE_LadyVengeance_MaladyInitDismissal();
+
+IF
+DialogRequestFailed("CoS_LV_HoE_Dismissal_River", _)
+THEN
+PROC_CoS_HoE_LadyVengeance_MaladyInitDismissal();
+
+PROC
+PROC_CoS_HoE_LadyVengeance_MaladyInitDismissal()
+AND
+DB_IsPlayer(_Var1)
+THEN
+ObjectSetFlag(_Var1, "QuestUpdate_CoS_ArenaOfTheOne_Malady");
+
+PROC
+PROC_CoS_HoE_LadyVengeance_MaladyInitDismissal()
+AND
+DB_IsPlayer(_Var1)
+THEN
+DB_BlockStoryItemTransfer(_Var1);
+
+PROC
+PROC_CoS_HoE_LadyVengeance_MaladyInitDismissal()
+THEN
+PROC_GLO_PartyMembers_TempRemoveAll(0);
+Poof(CHARACTERGUID_S_GLO_River_f4931ebe-10b0-43c4-9182-640cf052717e);
+
+PROC
+PROC_CoS_HoE_LadyVengeance_MaladyInitDismissal()
+AND
+DB_GLO_PartyMembers_TempRemoved(_Var1, _Var2)
+AND
+IsTagged(_Var2, "HENCHMAN", 0)
+THEN
+PROC_CoS_HoE_LadyVengeance_AvatarCompanionSetClusterPoint(_Var1, _Var2);
+
+PROC
+PROC_CoS_HoE_LadyVengeance_MaladyInitDismissal()
+AND
+DB_IsPlayer(_Var1)
+THEN
+ProcShowMarker(_Var1, "CoS_Ending_Shiphead");
+
+IF
+DialogEnded("CoS_LV_HoE_ShipHead", (INTEGER)_Var1)
+AND
+DB_DialogPlayers(_Var1, _Var2, _)
+AND
+ObjectGetFlag(_Var2, "CoS_HoE_LV_BringMaladyBack", 1)
+THEN
+ObjectClearFlag(_Var2, "CoS_HoE_LV_BringMaladyBack");
+TeleportTo(CHARACTERGUID_S_GLO_River_f4931ebe-10b0-43c4-9182-640cf052717e, _Var2);
+SetVarFixedString(CHARACTERGUID_S_GLO_River_f4931ebe-10b0-43c4-9182-640cf052717e, "currentState", "");
+Foop(CHARACTERGUID_S_GLO_River_f4931ebe-10b0-43c4-9182-640cf052717e);
+PROC_CoS_HoE_LadyVengeance_HideShipheadMarker();
+
+PROC
+PROC_CoS_HoE_LadyVengeance_HideShipheadMarker()
+AND
+DB_IsPlayer(_Var1)
+THEN
+ProcHideMarker(_Var1, "CoS_Ending_Shiphead");
+
+IF
+GlobalFlagSet("CoS_LV_HoE_GoToARX")
+AND
+DB_IsPlayer(_Var1)
+THEN
+ObjectSetFlag(_Var1, "QuestUpdate_CoS_ArenaOfTheOne_Arx");
+
+PROC
+PROC_CoS_LV_HoE_SetCompanionCountFlag((CHARACTERGUID)_Var1)
+AND
+DB_CoS_HoE_LadyVengeance_Companion_Trigger(_Var1, _Var2, _)
+THEN
+DB_CoS_LV_HoE_AtLeastOneCompanion(1);
+
+PROC
+PROC_CoS_LV_HoE_SetCompanionCountFlag((CHARACTERGUID)_Var1)
+AND NOT
+DB_CoS_LV_HoE_AtLeastOneCompanion(1)
+THEN
+ObjectSetFlag(_Var1, "GLO_PartyOf1");
+
+PROC
+PROC_CoS_LV_HoE_SetCompanionCountFlag((CHARACTERGUID)_Var1)
+THEN
+NOT DB_CoS_LV_HoE_AtLeastOneCompanion(1);
+
+PROC
+Proc_DialogFlagSetup("CoS_LV_HoE_River", CHARACTERGUID_S_GLO_River_f4931ebe-10b0-43c4-9182-640cf052717e, (CHARACTERGUID)_Var1)
+THEN
+PROC_CoS_LV_HoE_SetCompanionCountFlag(_Var1);
+
+IF
+DialogEnded("CoS_LV_HoE_River", (INTEGER)_Var1)
+AND
+DB_DialogPlayers(_Var1, _Var2, _)
+THEN
+ObjectClearFlag(_Var2, "GLO_PartyOf1");
+
+PROC
+PROC_CoS_HoE_LadyVengeanceInit_PartiesRecorded()
+AND
+DB_IsPlayer(_Var1)
+THEN
+ApplyStatus(_Var1, "SPIRIT_VISION", -1, 1);
+
+PROC
+ProcRegionEnded("CoS_Main_Ending")
+AND
+DB_IsPlayer(_Var1)
+THEN
+RemoveStatus(_Var1, "SPIRIT_VISION");
+
+IF
+DialogEnded("CoS_LV_Hoe_River", (INTEGER)_Var1)
+AND
+GlobalGetFlag("CoS_LV_HoE_GoToARX", 1)
+AND
+DB_DialogPlayers(_Var1, _Var2, _)
+THEN
+ReadyCheckStart(_Var2, "RC_LV_GoToCos");
+
+IF
+ReadyCheckPassed("RC_LV_GoToCos")
+THEN
+PROC_CoS_HoE_LadyVengeance_RestoreOriginalPartySetups();
+CharacterTeleportPartiesToTriggerWithMovie(TRIGGERGUID_StartPoint_000__001_ARX_Harbour_Dev_000_ARX_Main_Rework_000_fb573f96-d837-0033-4143-3bf31d88ae49, "", "CS_CrashingToArx");
+
+IF
+ReadyCheckFailed("RC_LV_GoToCos")
+THEN
+GlobalClearFlag("CoS_LV_HoE_GoToARX");
+
+IF
+ObjectFlagSet("GLO_Lohse_AllTheWay", (GUIDSTRING)_Var1, _)
+AND
+ObjectGetFlag(_Var1, "GLO_AvatarToldLohseLove", 1)
+THEN
+ObjectSetFlag(_Var1, "QuestUpdate_FTJ_COM_Lohse_DNOTSLove");
+
+IF
+ObjectFlagSet("GLO_Lohse_AllTheWay", (GUIDSTRING)_Var1, _)
+AND
+ObjectGetFlag(_Var1, "GLO_AvatarToldLohseLove", 0)
+THEN
+ObjectSetFlag(_Var1, "QuestUpdate_FTJ_COM_Lohse_DNOTSNotLove");
+
+IF
+ObjectFlagSet("QuestUpdate_FTJ_COM_Fane_DNOTSLove", (GUIDSTRING)_Var1, (INTEGER)_Var2)
+THEN
+DB_CoS_HoE_ClimaxOnDialogEnd(_Var2, _Var1);
+
+IF
+DialogEnded("Fane_CoSLVHoE", (INTEGER)_Var1)
+AND
+DB_CoS_HoE_ClimaxOnDialogEnd(_Var1, _Var2)
+THEN
+NOT DB_CoS_HoE_ClimaxOnDialogEnd(_Var1, _Var2);
+PlayEffect(_Var2, "RS3_FX_GP_ScriptedEvent_Fane_Romance_01_Climax");
+
+IF
+ObjectFlagSet((STRING)_Var1, (GUIDSTRING)_Var2, (INTEGER)_Var3)
+AND
+DB_CoS_HoE_LV_DNotS_Effect(_Var1, _Var4, 1)
+AND NOT
+DB_CoS_HoE_LV_StopLoopEffectAfterDialog(_Var2, _Var1, _Var3)
+THEN
+PROC_LoopEffect(_Var4, _Var2, _Var1, "CoS_Main_Ending", "");
+DB_CoS_HoE_LV_StopLoopEffectAfterDialog(_Var2, _Var1, _Var3);
+
+IF
+ObjectFlagSet((STRING)_Var1, (GUIDSTRING)_Var2, (INTEGER)_Var3)
+AND
+DB_CoS_HoE_LV_DNotS_Effect(_Var1, _Var4, 0)
+THEN
+PlayEffect(_Var2, _Var4);
+
+IF
+DialogEnded(_, (INTEGER)_Var2)
+AND
+DB_CoS_HoE_LV_StopLoopEffectAfterDialog(_Var3, _Var4, _Var2)
+THEN
+NOT DB_CoS_HoE_LV_StopLoopEffectAfterDialog(_Var3, _Var4, _Var2);
+PROC_StopLoopEffect(_Var3, _Var4);
+
+IF
+DB_CoS_HoE_LadyVengeance_DNotSDestinationForPlayerAndOrigin(_Var1, _Var2, _Var3, _Var4)
+THEN
+GlobalSetFlag("CoS_LV_HoE_PlayersInDNotS");
+
+IF
+ObjectFlagCleared("CoS_DNotS_Ongoing", (GUIDSTRING)_Var1, _)
+AND NOT
+DB_CoS_HoE_LadyVengeance_DNotSDestinationForPlayerAndOrigin(_, _, _, _)
+THEN
+GlobalClearFlag("CoS_LV_HoE_PlayersInDNotS");
+
+IF
+SavegameLoaded((INTEGER)_Var1, (INTEGER)_Var2, (INTEGER)_Var3, (INTEGER)_Var4)
+AND
+QRY_VersionIsOlderThan(_Var1, _Var2, _Var3, _Var4, 3, 6, 1, 0)
+AND
+DB_CoS_HoE_LadyVengeance_DNotSDestinationForPlayerAndOrigin(_, _, _, _)
+THEN
+GlobalSetFlag("CoS_LV_HoE_PlayersInDNotS");
+
+PROC
+ProcRegionEnded("CoS_Main_Ending")
+THEN
+GoalCompleted;
+
+
+EXITSECTION
+ENDEXITSECTION
+
+ParentTargetEdge "CoS_ArenaOfTheOne"

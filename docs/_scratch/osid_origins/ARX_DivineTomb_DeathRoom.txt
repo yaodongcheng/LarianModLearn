@@ -1,0 +1,1020 @@
+Version 1
+SubGoalCombiner SGC_AND
+
+INITSECTION
+DB_OneShot_VoiceBarkTrigger(TRIGGERGUID_S_ARX_DivineTomb_DeathRoom_LeavingVB_Box_389101e6-c327-4c93-9219-f5e4d9e73248, "ARX_VB_DivineTomb_DeathRoom_Leaving");
+DB_ARX_DT_DeathRoom_PuppetSpawner(TRIGGERGUID_S_ARX_DivineTomb_DeathRoom_PuppetSpawn_Point_000_9f25c7c8-8c36-461f-9c42-24924e482eb9);
+DB_ARX_DT_DeathRoom_PuppetSpawner(TRIGGERGUID_S_ARX_DivineTomb_DeathRoom_PuppetSpawn_Point_001_a1bd7561-8883-4ede-95e7-b336c6c4026a);
+DB_ARX_DT_DeathRoom_PuppetSpawner(TRIGGERGUID_S_ARX_DivineTomb_DeathRoom_PuppetSpawn_Point_002_dd12dea2-bb4f-4fa7-b301-ec9e46a15761);
+DB_ARX_DT_DeathRoom_PuppetSpawner(TRIGGERGUID_S_ARX_DivineTomb_DeathRoom_PuppetSpawn_Point_003_d1b82d83-5be4-4dc5-b074-e7e2117a2683);
+DB_ARX_DT_DeathRoom_PuppetTemplates("CHARACTERGUID_ARX_DivineTomb_DeathRoom_SourcePuppet_A_1a39d279-41d8-4b3c-a81a-b838b56b9383");
+DB_ARX_DT_DeathRoom_PuppetTemplates("CHARACTERGUID_ARX_DivineTomb_DeathRoom_SourcePuppet_B_be875c10-2503-419e-9bdf-8a8ba5131bfd");
+DB_ARX_DT_DeathRoom_PuppetTemplates("CHARACTERGUID_ARX_DivineTomb_DeathRoom_SourcePuppet_C_f494ff4e-3977-4786-b140-5fbef9ff47ea");
+DB_ARX_DT_DeathRoom_PuppetTemplates("CHARACTERGUID_ARX_DivineTomb_DeathRoom_SourcePuppet_D_ddf80628-38a6-4427-939a-59d982bc3a7f");
+DB_ARX_DT_DeathRoom_PuppetSpawnerExcess("ARX_DT_DeathRoom_Trap_MorePuppets_A", TRIGGERGUID_S_ARX_DivineTomb_DeathRoom_PuppetSpawn_Point_A_6091eb70-a1a2-4ffd-baed-fb840a87b65b, 1);
+DB_ARX_DT_DeathRoom_PuppetSpawnerExcess("ARX_DT_DeathRoom_Trap_MorePuppets_B", TRIGGERGUID_S_ARX_DivineTomb_DeathRoom_PuppetSpawn_Point_B_aefa0d88-2541-43ae-a4af-2ab7b7419db2, 2);
+DB_ARX_DT_DeathRoom_PuppetSpawnerExcess("ARX_DT_DeathRoom_Trap_MorePuppets_C", TRIGGERGUID_S_ARX_DivineTomb_DeathRoom_PuppetSpawn_Point_C_20b6e25a-a5e5-4bb9-9e2b-4ab6e50b345e, 3);
+DB_ARX_DT_DeathRoom_Lever(ITEMGUID_S_ARX_DivineTomb_DeathRoom_Lever_000_b8233c89-ca20-860d-2c88-be1392f7de38, "ARX_DT_DeathRoom_AssignedLever_000", "ARX_DT_DeathRoom_Trap_SwapPuppetPlayer");
+DB_ARX_DT_DeathRoom_Lever(ITEMGUID_S_ARX_DivineTomb_DeathRoom_Lever_001_92550b83-8c2e-8d0c-2c47-3dea821fdce2, "ARX_DT_DeathRoom_AssignedLever_001", "ARX_DT_DeathRoom_Trap_Barrels_B");
+DB_ARX_DT_DeathRoom_Lever(ITEMGUID_S_ARX_DivineTomb_DeathRoom_Lever_002_3dfa2878-e202-8160-4fea-b4984717dec4, "ARX_DT_DeathRoom_AssignedLever_002", "ARX_DT_DeathRoom_Trap_SwapPuppetPlayer");
+DB_ARX_DT_DeathRoom_Lever(ITEMGUID_S_ARX_DivineTomb_DeathRoom_Lever_003_21d53946-eae8-8e9d-2da7-f2d37a367250, "ARX_DT_DeathRoom_AssignedLever_003", "ARX_DT_DeathRoom_Trap_Turret_ON");
+DB_ARX_DT_DeathRoom_Lever(ITEMGUID_S_ARX_DivineTomb_DeathRoom_Lever_004_037122ad-acc5-8e42-42a3-ec8ccc42a06a, "ARX_DT_DeathRoom_AssignedLever_004", "ARX_DT_DeathRoom_Trap_Barrels_C");
+DB_ARX_DT_DeathRoom_Lever(ITEMGUID_S_ARX_DivineTomb_DeathRoom_Lever_005_cd0d0317-fd42-849e-278c-1e369135ad1e, "ARX_DT_DeathRoom_AssignedLever_005", "ARX_DT_DeathRoom_Trap_FallingStuff_ON");
+DB_ARX_DT_DeathRoom_Lever(ITEMGUID_S_ARX_DivineTomb_DeathRoom_Lever_006_bac7a10f-888a-8a58-201b-7409e77be916, "ARX_DT_DeathRoom_AssignedLever_006", "ARX_DT_DeathRoom_Trap_GasPits_A");
+DB_ARX_DT_DeathRoom_Lever(ITEMGUID_S_ARX_DivineTomb_DeathRoom_Lever_007_81c66c5b-6617-81ac-1f0c-1470d6a316c9, "ARX_DT_DeathRoom_AssignedLever_007", "ARX_DT_DeathRoom_Trap_SpikeFloors_A");
+DB_ARX_DT_DeathRoom_Lever(ITEMGUID_S_ARX_DivineTomb_DeathRoom_Lever_008_341f88e8-a733-8d1c-10d0-eff974816afc, "ARX_DT_DeathRoom_AssignedLever_008", "ARX_DT_DeathRoom_Trap_Turret_ON");
+DB_ARX_DT_DeathRoom_Lever(ITEMGUID_S_ARX_DivineTomb_DeathRoom_Lever_009_35aa19ba-3cbc-82f1-4db0-1c6aaada3201, "ARX_DT_DeathRoom_AssignedLever_009", "ARX_DT_DeathRoom_Trap_SwapPuppetPlayer");
+DB_ARX_DT_DeathRoom_Lever(ITEMGUID_S_ARX_DivineTomb_DeathRoom_Lever_010_b276ca5a-991c-85d6-1ccb-5fea69ca4075, "ARX_DT_DeathRoom_AssignedLever_010", "ARX_DT_DeathRoom_Trap_MorePuppets_B");
+DB_ARX_DT_DeathRoom_Lever(ITEMGUID_S_ARX_DivineTomb_DeathRoom_Lever_011_ad24622c-19e4-828a-3a10-c8597f4b9c38, "ARX_DT_DeathRoom_AssignedLever_011", "ARX_DT_DeathRoom_Trap_FallingStuff_ON");
+DB_ARX_DT_DeathRoom_Lever(ITEMGUID_S_ARX_DivineTomb_DeathRoom_Lever_012_6d62bb36-fcba-85d5-3d9d-bd5ba5114a62, "ARX_DT_DeathRoom_AssignedLever_012", "ARX_DT_DeathRoom_Trap_GasPits_B");
+DB_ARX_DT_DeathRoom_Lever(ITEMGUID_S_ARX_DivineTomb_DeathRoom_Lever_013_6a7f5e28-d5af-859c-18e0-4a1d5b065a22, "ARX_DT_DeathRoom_AssignedLever_013", "ARX_DT_DeathRoom_Trap_Barrels_A");
+DB_ARX_DT_DeathRoom_Lever(ITEMGUID_S_ARX_DivineTomb_DeathRoom_Lever_014_c1ac1031-0560-80e5-3684-165f4479d763, "ARX_DT_DeathRoom_AssignedLever_014", "ARX_DT_DeathRoom_Trap_GasPits_A");
+DB_ARX_DT_DeathRoom_Lever(ITEMGUID_S_ARX_DivineTomb_DeathRoom_Lever_015_15322e01-ed9a-8335-3ecc-9dbd863e7218, "ARX_DT_DeathRoom_AssignedLever_015", "ARX_DT_DeathRoom_Trap_FallingStuff_ON");
+DB_ARX_DT_DeathRoom_Lever(ITEMGUID_S_ARX_DivineTomb_DeathRoom_Lever_016_42e22ea2-d5fe-8faa-3b77-5ad195056676, "ARX_DT_DeathRoom_AssignedLever_016", "ARX_DT_DeathRoom_Trap_SpikeFloors_B");
+DB_ARX_DT_DeathRoom_Lever(ITEMGUID_S_ARX_DivineTomb_DeathRoom_Lever_017_5b4ed932-dda6-855f-1282-f7142260ee66, "ARX_DT_DeathRoom_AssignedLever_017", "ARX_DT_DeathRoom_Trap_Polymorph");
+DB_ARX_DT_DeathRoom_Lever(ITEMGUID_S_ARX_DivineTomb_DeathRoom_Lever_018_7d46827f-8e5d-8bde-3892-83f7adca96f4, "ARX_DT_DeathRoom_AssignedLever_018", "ARX_DT_DeathRoom_Trap_Turret_ON");
+DB_ARX_DT_DeathRoom_Lever(ITEMGUID_S_ARX_DivineTomb_DeathRoom_Lever_019_5f6a2706-07e0-8a7f-47b5-b3c77202386a, "ARX_DT_DeathRoom_AssignedLever_019", "ARX_DT_DeathRoom_Trap_MorePuppets_C");
+DB_ARX_DT_DeathRoom_Lever(ITEMGUID_S_ARX_DivineTomb_DeathRoom_Lever_020_cbbaa0d2-4374-888f-33f0-f336a0d2c0c0, "ARX_DT_DeathRoom_AssignedLever_020", "ARX_DT_DeathRoom_Trap_GasPits_B");
+DB_ARX_DT_DeathRoom_Lever(ITEMGUID_S_ARX_DivineTomb_DeathRoom_Lever_021_8ce3b2c1-a1f2-851f-39c5-fe66f264cc55, "ARX_DT_DeathRoom_AssignedLever_021", "ARX_DT_DeathRoom_Trap_SwapPuppetPlayer");
+DB_ARX_DT_DeathRoom_Lever(ITEMGUID_S_ARX_DivineTomb_DeathRoom_Lever_022_2840052a-5787-8767-48bf-88dd75c38952, "ARX_DT_DeathRoom_AssignedLever_022", "ARX_DT_DeathRoom_Trap_Turret_ON");
+DB_ARX_DT_DeathRoom_Lever(ITEMGUID_S_ARX_DivineTomb_DeathRoom_Lever_023_c1afc6f3-ed5a-8ba1-2c5f-67004cda7684, "ARX_DT_DeathRoom_AssignedLever_023", "ARX_DT_DeathRoom_Trap_SpikeFloors_B");
+DB_ARX_DT_DeathRoom_Lever(ITEMGUID_S_ARX_DivineTomb_DeathRoom_Lever_024_b577b408-ec4b-88d0-4cae-1e5cb9e7f85e, "ARX_DT_DeathRoom_AssignedLever_024", "ARX_DT_DeathRoom_Trap_MorePuppets_A");
+DB_ARX_DT_DeathRoom_Lever(ITEMGUID_S_ARX_DivineTomb_DeathRoom_Lever_025_638d07b2-66f8-8d16-3f77-1c331895dad6, "ARX_DT_DeathRoom_AssignedLever_025", "ARX_DT_DeathRoom_Trap_SpikeFloors_A");
+DB_ARX_DT_DeathRoom_Lever(ITEMGUID_S_ARX_DivineTomb_DeathRoom_Lever_026_c43cf844-0589-887f-3706-b9f23f819fdd, "ARX_DT_DeathRoom_AssignedLever_026", "ARX_DT_DeathRoom_Trap_FallingStuff_ON");
+DB_ARX_DT_DeathRoom_GoodLever(ITEMGUID_S_ARX_DivineTomb_DeathRoom_GoodLever_000_9877e4c2-c2bc-8aee-4ae4-795be4c4171d, "ARX_DT_DeathRoom_PulledGoodLever_000", 0);
+DB_ARX_DT_DeathRoom_GoodLever(ITEMGUID_S_ARX_DivineTomb_DeathRoom_GoodLever_001_bead5560-3e96-8a49-4c5f-9551e489969e, "ARX_DT_DeathRoom_PulledGoodLever_001", 0);
+DB_ARX_DT_DeathRoom_GoodLever(ITEMGUID_S_ARX_DivineTomb_DeathRoom_GoodLever_002_bcbe0bc6-b4e5-80e7-3652-de2bb379b2c6, "ARX_DT_DeathRoom_PulledGoodLever_002", 0);
+DB_ARX_DT_DeathRoom_GoodLever(ITEMGUID_S_ARX_DivineTomb_DeathRoom_GoodLever_003_dc445953-c559-854b-1d90-fee6a4198141, "ARX_DT_DeathRoom_PulledGoodLever_003", 0);
+DB_ARX_DT_DeathRoom_GoodLever(ITEMGUID_S_ARX_DivineTomb_DeathRoom_GoodLever_004_dd39cdad-ce8e-8707-43b0-493663d6cc4d, "ARX_DT_DeathRoom_PulledGoodLever_004", 0);
+DB_ARX_DT_DeathRoom_Events("ARX_DT_DeathRoom_Trap_GasPits_A", 2, "ARX_DT_DeathRoom_Trap_GasPits_A_ON", "ARX_DT_DeathRoom_Trap_GasPits_A_OFF");
+DB_ARX_DT_DeathRoom_Events("ARX_DT_DeathRoom_Trap_GasPits_B", 2, "ARX_DT_DeathRoom_Trap_GasPits_B_ON", "ARX_DT_DeathRoom_Trap_GasPits_B_OFF");
+DB_ARX_DT_DeathRoom_Events("ARX_DT_DeathRoom_Trap_SpikeFloors_A", 2, "ARX_DT_DeathRoom_Trap_SpikedFloor_A_ON", "ARX_DT_DeathRoom_Trap_SpikedFloor_A_OFF");
+DB_ARX_DT_DeathRoom_Events("ARX_DT_DeathRoom_Trap_SpikeFloors_B", 2, "ARX_DT_DeathRoom_Trap_SpikedFloor_B_ON", "ARX_DT_DeathRoom_Trap_SpikedFloor_B_OFF");
+DB_ARX_DT_DeathRoom_MagicWalls(ITEMGUID_S_ARX_DivineTomb_DeathRoom_MagicWall_000_3ac7d3e2-9969-4d08-878e-710a37a5db4c);
+DB_ARX_DT_DeathRoom_MagicWalls(ITEMGUID_S_ARX_DivineTomb_DeathRoom_MagicWall_001_a6fbedb7-6286-4a73-beeb-40f8150cba86);
+DB_ARX_DT_DeathRoom_NumLeversUsed(0);
+DB_ARX_DT_DeathRoom_MAXLeversUsed(8);
+DB_ARX_DT_DeathRoom_RequestNewAt(4);
+DB_ARX_DT_DeathRoom_ActualPuppets(0);
+DB_ARX_DT_DeathRoom_MAXPuppets(12);
+
+KBSECTION
+PROC
+Proc_ARX_DT_DeathRoom_InitLeversList()
+AND
+DB_ARX_DT_DeathRoom_Lever(_Var1, _Var2, _Var3)
+AND
+ObjectExists(_Var1, 0)
+THEN
+NOT DB_ARX_DT_DeathRoom_Lever(_Var1, _Var2, _Var3);
+
+PROC
+Proc_ARX_DT_DeathRoom_InitLeversList()
+AND
+DB_ARX_DT_DeathRoom_Lever(_Var1, _, _Var3)
+THEN
+SetVarString(_Var1, "Event", _Var3);
+Proc_ARX_DT_DeathRoom_AddLeverToList(_Var1);
+
+PROC
+Proc_ARX_DT_DeathRoom_AddLeverToList((ITEMGUID)_Var1)
+AND NOT
+DB_ARX_DT_DeathRoom_UsedLever(_Var1)
+THEN
+CharacterItemSetEvent(NULL_00000000-0000-0000-0000-000000000000, _Var1, "ARX_DivineTomb_DeathRoom_AddLever");
+
+IF
+CharacterEnteredTrigger((CHARACTERGUID)_Var1, TRIGGERGUID_S_ARX_DivineTomb_DeathRoom_SubregionBox_f1670d09-2646-451f-96bb-74dcbdf06f1d)
+AND
+DB_IsPlayer(_Var1)
+AND
+QueryOnlyOnce("ARX_VB_DivineTomb_EnteringDeathRoom")
+THEN
+StartVoiceBark("ARX_VB_DivineTomb_EnteringDeathRoom", _Var1);
+
+IF
+CharacterEnteredTrigger((CHARACTERGUID)_Var1, TRIGGERGUID_S_ARX_DivineTomb_DeathRoom_SubregionBox_f1670d09-2646-451f-96bb-74dcbdf06f1d)
+AND NOT
+DB_GlobalFlag("ARX_DT_DeathRoom_ChallengeCompleted")
+AND
+QueryOnlyOnce("ARX_DT_DeathRoom_PrepChallenge")
+THEN
+Proc_ARX_DT_DeathRoom_InitLeversList();
+ProcTriggerRegisterForPlayers(TRIGGERGUID_S_ARX_DivineTomb_DeathRoom_FightStart_Box_a6772a8f-8075-4102-a1e7-3eec6af5f657);
+
+IF
+CharacterLeftTrigger((CHARACTERGUID)_Var1, TRIGGERGUID_S_ARX_DivineTomb_DeathRoom_SubregionBox_f1670d09-2646-451f-96bb-74dcbdf06f1d)
+AND
+QRY_AnyRegionActive()
+AND NOT
+DB_CharacterPolymorphedInto(_Var1, _)
+AND NOT
+DB_GlobalFlag("ARX_DT_DeathRoom_ChallengeCompleted")
+AND NOT
+QRY_ARX_DT_DeathRoom_PlayerInRoom()
+THEN
+Proc_ARX_DT_DeathRoom_ResetChallenge();
+
+PROC
+Proc_ARX_DT_DeathRoom_ResetChallenge()
+THEN
+Proc_ARX_DT_DeathRoom_CleanLeverUsed();
+Proc_ARX_DT_DeathRoom_ClearTrapLogic();
+NOT DB_OnlyOnce("ARX_DT_DeathRoom_PrepChallenge");
+NOT DB_OnlyOnce("ARX_DT_DeathRoom_SpawnFirstPuppets");
+NOT DB_ARX_DT_DeathRoom_CommentOnPuppetSpawn(1);
+NOT DB_SpawnedPuppet(1);
+
+PROC
+Proc_ARX_DT_DeathRoom_ResetChallenge()
+AND
+DB_ARX_DT_CreatePuppetAt(_Var1, _Var2, _Var3)
+THEN
+NOT DB_ARX_DT_CreatePuppetAt(_Var1, _Var2, _Var3);
+
+PROC
+Proc_ARX_DT_DeathRoom_ResetChallenge()
+AND
+DB_ARX_DT_DeathRoom_Puppet(_Var1, _Var2, _Var3)
+THEN
+CharacterDie(_Var1, 0, "PHYSICAL");
+NOT DB_ARX_DT_DeathRoom_Puppet(_Var1, _Var2, _Var3);
+
+PROC
+Proc_ARX_DT_DeathRoom_ResetChallenge()
+AND
+DB_ARX_DT_DeathRoom_NumLeversUsed(_Var1)
+THEN
+NOT DB_ARX_DT_DeathRoom_NumLeversUsed(_Var1);
+DB_ARX_DT_DeathRoom_NumLeversUsed(0);
+
+PROC
+Proc_ARX_DT_DeathRoom_ResetChallenge()
+AND
+DB_ARX_DT_DeathRoom_PuppetLever(_Var1, _Var2)
+THEN
+NOT DB_ARX_DT_DeathRoom_PuppetLever(_Var1, _Var2);
+
+PROC
+Proc_ARX_DT_DeathRoom_ResetChallenge()
+AND
+DB_ARX_DT_DeathRoom_GoodLever(_Var1, _Var2, _Var3)
+THEN
+NOT DB_ARX_DT_DeathRoom_GoodLever(_Var1, _Var3);
+DB_ARX_DT_DeathRoom_GoodLever(_Var1, 0);
+
+QRY
+QRY_ARX_DT_DeathRoom_PlayerInRoom()
+AND
+DB_IsPlayer(_Var1)
+AND NOT
+DB_CharacterPolymorphedInto(_Var1, _)
+AND
+DB_InRegion(_Var1, TRIGGERGUID_S_ARX_DivineTomb_DeathRoom_SubregionBox_f1670d09-2646-451f-96bb-74dcbdf06f1d)
+THEN
+DB_NOOP(1);
+
+IF
+CharacterLeftTrigger((CHARACTERGUID)_Var1, TRIGGERGUID_S_ARX_DivineTomb_DeathRoom_FightStart_Box_a6772a8f-8075-4102-a1e7-3eec6af5f657)
+AND
+QRY_AnyRegionActive()
+AND
+QueryOnlyOnce("ARX_DT_DeathRoom_SpawnFirstPuppets")
+THEN
+PartySetFlag(_Var1, "QuestUpdate_ARX_HuntingForDallis_DeathRoomStarted");
+ProcTriggerUnregisterForPlayers(TRIGGERGUID_S_ARX_DivineTomb_DeathRoom_FightStart_Box_a6772a8f-8075-4102-a1e7-3eec6af5f657);
+Proc_ARX_DT_DeathRoom_SpawnNewPuppet(-1);
+
+PROC
+Proc_ARX_DT_DeathRoom_SpawnNewPuppet((INTEGER)_Var1)
+AND
+QRY_ARX_DT_DeathRoom_AvailableRoomForPuppet()
+AND
+DB_ARX_DT_DeathRoom_PuppetSpawner(_Var2)
+AND NOT
+DB_ARX_DT_DeathRoom_Puppet(_, _Var2, _Var1)
+THEN
+Proc_ARX_DT_DeathRoom_SelectRandomPuppetTemplate(_Var2, _Var1);
+
+PROC
+Proc_ARX_DT_DeathRoom_SpawnSelectedPuppet((TRIGGERGUID)_Var1, (STRING)_Var2, (INTEGER)_Var3)
+AND
+_Var3 != -1
+AND
+QRY_ARX_DT_DeathRoom_PlayerInRoom()
+AND
+QRY_ARX_DT_DeathRoom_AnyPlayerInDeathRoomFight()
+THEN
+DB_ARX_DT_CreatePuppetAt(_Var1, _Var2, _Var3);
+
+PROC
+Proc_ARX_DT_DeathRoom_SpawnSelectedPuppet((TRIGGERGUID)_Var1, (STRING)_Var2, (INTEGER)_Var3)
+AND
+_Var3 != -1
+AND
+QRY_ARX_DT_DeathRoom_PlayerInRoom()
+AND NOT
+QRY_ARX_DT_DeathRoom_AnyPlayerInDeathRoomFight()
+THEN
+Proc_ARX_DT_DeathRoom_SpawnPuppet(_Var1, _Var2);
+
+PROC
+Proc_ARX_DT_DeathRoom_SpawnSelectedPuppet((TRIGGERGUID)_Var1, (STRING)_Var2, -1)
+THEN
+Proc_ARX_DT_DeathRoom_SpawnPuppet(_Var1, _Var2);
+
+PROC
+Proc_ARX_DT_DeathRoom_SpawnPuppet((TRIGGERGUID)_Var1, (STRING)_Var2)
+AND
+GetPosition(_Var1, _Var3, _Var4, _Var5)
+AND
+TemporaryCharacterCreateAtPosition(_Var3, _Var4, _Var5, _Var2, 1, _Var6)
+AND
+DB_ARX_DT_DeathRoom_ActualPuppets(_Var7)
+AND
+IntegerSum(_Var7, 1, _Var8)
+THEN
+DB_ARX_DT_DeathRoom_Puppet(_Var6, _Var1, 0);
+NOT DB_ARX_DT_DeathRoom_ActualPuppets(_Var7);
+DB_ARX_DT_DeathRoom_ActualPuppets(_Var8);
+SetCombatGroupID(_Var6, "ARX_DivineTomb_DeathRoom_CombatGroupID");
+ApplyStatus(_Var6, "ETHEREAL_SOLES", -1, 1);
+
+IF
+ObjectTurnEnded((CHARACTERGUID)_Var1)
+AND
+DB_IsPlayer(_Var1)
+AND
+DB_CombatCharacters(_Var1, _Var2)
+AND
+DB_ARX_DT_PuppetCombatID(_Var2)
+THEN
+ProcARX_DT_CheckCombatSpawnPuppet();
+
+IF
+CombatEnded((INTEGER)_Var1)
+AND
+DB_ARX_DT_PuppetCombatID(_Var1)
+THEN
+ProcARX_DT_CheckCombatSpawnPuppet();
+
+PROC
+ProcARX_DT_CheckCombatSpawnPuppet()
+AND
+DB_ARX_DT_CreatePuppetAt(_Var1, _Var2, _Var3)
+AND NOT
+DB_SpawnedPuppet(1)
+AND
+GetPosition(_Var1, _Var4, _Var5, _Var6)
+AND
+TemporaryCharacterCreateAtPosition(_Var4, _Var5, _Var6, _Var2, 1, _Var7)
+AND
+DB_ARX_DT_DeathRoom_ActualPuppets(_Var8)
+AND
+IntegerSum(_Var8, 1, _Var9)
+THEN
+NOT DB_ARX_DT_CreatePuppetAt(_Var1, _Var2, _Var3);
+DB_ARX_DT_DeathRoom_Puppet(_Var7, _Var1, _Var3);
+NOT DB_ARX_DT_DeathRoom_ActualPuppets(_Var8);
+DB_ARX_DT_DeathRoom_ActualPuppets(_Var9);
+SetCombatGroupID(_Var7, "ARX_DivineTomb_DeathRoom_CombatGroupID");
+ApplyStatus(_Var7, "ETHEREAL_SOLES", -1, 1);
+DB_SpawnedPuppet(1);
+DB_ARX_DT_DeathRoom_CommentOnPuppetSpawn(_Var3);
+
+PROC
+ProcARX_DT_CheckCombatSpawnPuppet()
+THEN
+NOT DB_SpawnedPuppet(1);
+
+IF
+CharacterItemEvent((CHARACTERGUID)_Var1, (ITEMGUID)_Var2, "ARX_DivineTomb_DeathRoom_AssignLever")
+AND
+DB_ARX_DT_DeathRoom_Lever(_Var2, _Var3, _)
+THEN
+ObjectSetFlag(_Var1, _Var3);
+DB_ARX_DT_DeathRoom_PuppetLever(_Var1, _Var2);
+
+QRY
+QRY_ARX_DT_DeathRoom_AvailableRoomForPuppet()
+AND
+DB_ARX_DT_DeathRoom_ActualPuppets(_Var1)
+AND
+DB_ARX_DT_DeathRoom_MAXPuppets(_Var2)
+AND
+_Var1 < _Var2
+THEN
+DB_NOOP(1);
+
+IF
+ObjectTurnStarted((CHARACTERGUID)_Var1)
+AND
+DB_IsPlayer(_Var1)
+AND
+QRY_ARX_DT_DeathRoom_InDeathRoomFight(_Var1)
+AND
+DB_ARX_DT_DeathRoom_CommentOnPuppetSpawn(_Var2)
+THEN
+NOT DB_ARX_DT_DeathRoom_CommentOnPuppetSpawn(_Var2);
+Proc_ARX_DivineTomb_DeathRoom_AD_PuppetRespawned(_Var2, _Var1);
+
+PROC
+Proc_ARX_DivineTomb_DeathRoom_AD_PuppetRespawned(0, (CHARACTERGUID)_Var1)
+THEN
+Proc_StartDialog(1, "ARX_DivineTomb_DeathRoom_AD_PuppetRespawned", _Var1);
+
+IF
+CharacterUsedItem((CHARACTERGUID)_Var1, (ITEMGUID)_Var2)
+AND
+DB_ARX_DT_DeathRoom_Puppet(_Var1, _, _)
+AND
+DB_ARX_DT_DeathRoom_Lever(_Var2, _Var5, _)
+THEN
+Proc_ARX_DT_DeathRoom_ClearLeverFromPuppet(_Var1, _Var2);
+
+PROC
+Proc_ARX_DT_DeathRoom_ClearLeverFromPuppet((CHARACTERGUID)_Var1, (ITEMGUID)_Var2)
+THEN
+NOT DB_ARX_DT_DeathRoom_PuppetLever(_Var1, _Var2);
+
+PROC
+Proc_ARX_DT_DeathRoom_ClearLeverFromPuppet((CHARACTERGUID)_Var1, (ITEMGUID)_Var2)
+AND NOT
+DB_Dead(_Var1)
+AND
+DB_ARX_DT_DeathRoom_Lever(_Var2, _Var3, _)
+THEN
+CharacterItemSetEvent(_Var1, _Var2, "ARX_DivineTomb_DeathRoom_ClearLever");
+ObjectClearFlag(_Var1, _Var3);
+
+PROC
+Proc_ARX_DT_DeathRoom_ClearLeverFromPuppet(_, (ITEMGUID)_Var2)
+THEN
+Proc_ARX_DT_DeathRoom_IncrementLeverUsed(_Var2);
+
+PROC
+Proc_ARX_DT_DeathRoom_PuppetLeverAD((STRING)_Var1, (CHARACTERGUID)_Var2)
+AND NOT
+DB_IsPlayer(_Var2)
+THEN
+ObjectSetFlag(_Var2, _Var1);
+
+PROC
+Proc_ARX_DT_DeathRoom_PuppetLeverAD((STRING)_Var1, (CHARACTERGUID)_Var2)
+AND NOT
+DB_IsPlayer(_Var2)
+AND
+DB_ARX_DT_DeathRoom_TrapTurn(_Var3, _Var1)
+AND
+_Var3 != 0
+THEN
+ObjectSetFlag(_Var2, "ARX_DT_DeathRoom_TrapAlreadyActivated");
+
+PROC
+Proc_ARX_DT_DeathRoom_PuppetLeverAD((STRING)_Var1, (CHARACTERGUID)_Var2)
+AND NOT
+DB_IsPlayer(_Var2)
+THEN
+Proc_StartDialog(1, "ARX_AD_DivineTomb_DeathRoom_PulledLever", _Var2);
+
+IF
+ObjectSwitchedCombat((CHARACTERGUID)_Var1, (INTEGER)_Var2, (INTEGER)_Var3)
+AND
+DB_ARX_DT_DeathRoom_Puppet(_Var1, _, _)
+AND
+DB_ARX_DT_PuppetCombatID(_Var2)
+THEN
+ProcARX_DT_SetPuppetCombat(_Var3);
+
+IF
+ObjectTurnStarted((CHARACTERGUID)_Var1)
+AND
+DB_ARX_DT_DeathRoom_Puppet(_Var1, _, _)
+AND
+CombatGetIDForCharacter(_Var1, _Var4)
+THEN
+ProcARX_DT_SetPuppetCombat(_Var4);
+
+IF
+ObjectEnteredCombat((CHARACTERGUID)_Var1, (INTEGER)_Var2)
+AND
+DB_ARX_DT_DeathRoom_Puppet(_Var1, _, _)
+THEN
+ProcARX_DT_SetPuppetCombat(_Var2);
+
+PROC
+ProcARX_DT_SetPuppetCombat(_)
+AND
+DB_ARX_DT_PuppetCombatID(_Var2)
+THEN
+NOT DB_ARX_DT_PuppetCombatID(_Var2);
+
+PROC
+ProcARX_DT_SetPuppetCombat((INTEGER)_Var1)
+THEN
+DB_ARX_DT_PuppetCombatID(_Var1);
+
+IF
+CharacterDied((CHARACTERGUID)_Var1)
+AND
+DB_ARX_DT_DeathRoom_PuppetLever(_Var1, _Var2)
+THEN
+Proc_ARX_DT_DeathRoom_ClearLeverFromPuppet(_Var1, _Var2);
+
+IF
+ObjectLeftCombat((CHARACTERGUID)_Var1, (INTEGER)_Var2)
+AND
+DB_ARX_DT_DeathRoom_Puppet(_Var1, _Var3, _Var4)
+AND
+DB_Dead(_Var1)
+THEN
+NOT DB_ARX_DT_DeathRoom_Puppet(_Var1, _Var3, _Var4);
+Proc_ARX_DT_DeathRoom_CheckSpawnNewPuppet(_Var4);
+
+PROC
+Proc_ARX_DT_DeathRoom_CheckSpawnNewPuppet(0)
+AND
+DB_ARX_DT_DeathRoom_ActualPuppets(_Var1)
+AND
+IntegerSubtract(_Var1, 1, _Var2)
+THEN
+NOT DB_ARX_DT_DeathRoom_ActualPuppets(_Var1);
+DB_ARX_DT_DeathRoom_ActualPuppets(_Var2);
+
+PROC
+Proc_ARX_DT_DeathRoom_CheckSpawnNewPuppet(0)
+THEN
+Proc_ARX_DT_DeathRoom_SpawnNewPuppet(0);
+
+IF
+DB_ARX_DT_DeathRoom_PuppetLever(_Var1, _Var2)
+THEN
+DB_ARX_DT_DeathRoom_UsedLever(_Var2);
+
+PROC
+Proc_ARX_DT_DeathRoom_IncrementLeverUsed((ITEMGUID)_Var1)
+AND
+DB_ARX_DT_DeathRoom_UsedLever(_Var1)
+AND
+DB_ARX_DT_DeathRoom_NumLeversUsed(_Var2)
+AND
+IntegerSum(_Var2, 1, _Var3)
+THEN
+NOT DB_ARX_DT_DeathRoom_NumLeversUsed(_Var2);
+DB_ARX_DT_DeathRoom_NumLeversUsed(_Var3);
+
+PROC
+Proc_ARX_DT_DeathRoom_IncrementLeverUsed(_)
+AND
+DB_ARX_DT_DeathRoom_NumLeversUsed(_Var2)
+AND
+DB_ARX_DT_DeathRoom_RequestNewAt(_Var3)
+AND
+_Var2 == _Var3
+THEN
+Proc_ARX_DT_DeathRoom_RequestNewLevers();
+
+PROC
+Proc_ARX_DT_DeathRoom_IncrementLeverUsed(_)
+AND
+DB_ARX_DT_DeathRoom_NumLeversUsed(_Var2)
+AND
+DB_ARX_DT_DeathRoom_MAXLeversUsed(_Var3)
+AND
+_Var2 == _Var3
+THEN
+Proc_ARX_DT_DeathRoom_CleanLeverUsed();
+
+PROC
+Proc_ARX_DT_DeathRoom_CleanLeverUsed()
+AND
+DB_ARX_DT_DeathRoom_NumLeversUsed(_Var1)
+THEN
+NOT DB_ARX_DT_DeathRoom_NumLeversUsed(_Var1);
+DB_ARX_DT_DeathRoom_NumLeversUsed(0);
+
+PROC
+Proc_ARX_DT_DeathRoom_CleanLeverUsed()
+AND
+DB_ARX_DT_DeathRoom_UsedLever(_Var1)
+THEN
+NOT DB_ARX_DT_DeathRoom_UsedLever(_Var1);
+Proc_ARX_DT_DeathRoom_AddLeverToList(_Var1);
+
+PROC
+Proc_ARX_DT_DeathRoom_CleanLeverUsed()
+THEN
+Proc_ARX_DT_DeathRoom_RequestNewLevers();
+
+PROC
+Proc_ARX_DT_DeathRoom_RequestNewLevers()
+AND
+DB_ARX_DT_DeathRoom_Puppet(_Var1, _, _)
+AND NOT
+DB_ARX_DT_DeathRoom_PuppetLever(_Var1, _)
+THEN
+SetStoryEvent(_Var1, "ARX_DivineTomb_DeathRoom_RequestLever");
+
+PROC
+Proc_ARX_DT_DeathRoom_SelectRandomPuppetTemplate((TRIGGERGUID)_Var1, (INTEGER)_Var2)
+AND
+Random(4, _Var3)
+THEN
+DB_ARX_DT_DeathRoom_SelectedPuppetTemplate(_Var1, _Var3);
+
+PROC
+Proc_ARX_DT_DeathRoom_SelectRandomPuppetTemplate((TRIGGERGUID)_Var1, (INTEGER)_Var2)
+THEN
+DB_ARX_DT_DeathRoom_RandomPuppetTemplateCounter(_Var1, 0);
+
+PROC
+Proc_ARX_DT_DeathRoom_SelectRandomPuppetTemplate((TRIGGERGUID)_Var1, (INTEGER)_Var2)
+AND
+DB_ARX_DT_DeathRoom_SelectedPuppetTemplate(_Var1, _Var3)
+AND
+DB_ARX_DT_DeathRoom_PuppetTemplates(_Var4)
+AND
+DB_ARX_DT_DeathRoom_RandomPuppetTemplateCounter(_Var1, _Var5)
+THEN
+Proc_ARX_DT_DeathRoom_TrySpawnRandomPuppetTemplate(_Var5, _Var3, _Var1, _Var4, _Var2);
+
+PROC
+Proc_ARX_DT_DeathRoom_TrySpawnRandomPuppetTemplate((INTEGER)_Var1, (INTEGER)_Var2, (TRIGGERGUID)_Var3, (STRING)_Var4, (INTEGER)_Var5)
+AND
+_Var1 == _Var2
+THEN
+Proc_ARX_DT_DeathRoom_SpawnSelectedPuppet(_Var3, _Var4, _Var5);
+
+PROC
+Proc_ARX_DT_DeathRoom_TrySpawnRandomPuppetTemplate((INTEGER)_Var1, (INTEGER)_Var2, (TRIGGERGUID)_Var3, (STRING)_Var4, (INTEGER)_Var5)
+AND
+IntegerSum(1, _Var1, _Var6)
+AND
+DB_ARX_DT_DeathRoom_RandomPuppetTemplateCounter(_Var3, _Var7)
+THEN
+NOT DB_ARX_DT_DeathRoom_RandomPuppetTemplateCounter(_Var3, _Var7);
+DB_ARX_DT_DeathRoom_RandomPuppetTemplateCounter(_Var3, _Var6);
+
+PROC
+Proc_ARX_DT_DeathRoom_SelectRandomPuppetTemplate((TRIGGERGUID)_Var1, (INTEGER)_Var2)
+AND
+DB_ARX_DT_DeathRoom_RandomPuppetTemplateCounter(_Var1, _Var3)
+THEN
+NOT DB_ARX_DT_DeathRoom_RandomPuppetTemplateCounter(_Var1, _Var3);
+
+PROC
+Proc_ARX_DT_DeathRoom_SelectRandomPuppetTemplate((TRIGGERGUID)_Var1, (INTEGER)_Var2)
+AND
+DB_ARX_DT_DeathRoom_SelectedPuppetTemplate(_Var1, _Var3)
+THEN
+NOT DB_ARX_DT_DeathRoom_SelectedPuppetTemplate(_Var1, _Var3);
+
+IF
+CharacterUsedItem((CHARACTERGUID)_Var1, (ITEMGUID)_Var2)
+AND
+DB_IsPlayer(_Var1)
+AND
+DB_ARX_DT_DeathRoom_GoodLever(_Var2, _Var3, _Var4)
+THEN
+NOT DB_ARX_DT_DeathRoom_GoodLever(_Var2, _Var3, _Var4);
+DB_ARX_DT_DeathRoom_GoodLever(_Var2, _Var3, 1);
+Proc_ARX_DT_DeathRoom_CheckGoodLeverPulled(_Var1, _Var3, _Var4);
+
+PROC
+Proc_ARX_DT_DeathRoom_CheckGoodLeverPulled((CHARACTERGUID)_Var1, (STRING)_Var2, 0)
+THEN
+ObjectSetFlag(_Var1, _Var2);
+
+PROC
+Proc_ARX_DT_DeathRoom_CheckGoodLeverPulled((CHARACTERGUID)_Var1, _, _)
+AND NOT
+QRY_ARX_DT_DeathRoom_HasUntriggeredLever()
+THEN
+GlobalSetFlag("ARX_DT_DeathRoom_ChallengeCompleted");
+Proc_ARX_DT_DeathRoom_RemoveMagicWalls();
+Proc_ARX_DT_DeathRoom_UnassignRemainingPuppets();
+Proc_ARX_DT_DeathRoom_KillRemainingPuppets();
+PartySetFlag(_Var1, "QuestUpdate_ARX_HuntingForDallis_DeathRoomCompleted");
+
+PROC
+Proc_ARX_DT_DeathRoom_RemoveMagicWalls()
+AND
+DB_ARX_DT_DeathRoom_MagicWalls(_Var1)
+THEN
+SetOnStage(_Var1, 0);
+
+PROC
+Proc_ARX_DT_DeathRoom_CheckGoodLeverPulled((CHARACTERGUID)_Var1, _, 0)
+THEN
+Proc_StartDialog(1, "ARX_AD_DivineTomb_DeathRoom_PulledGoodLever", _Var1);
+
+QRY
+QRY_ARX_DT_DeathRoom_HasUntriggeredLever()
+AND
+DB_ARX_DT_DeathRoom_GoodLever(_Var1, _, 0)
+THEN
+DB_NOOP(1);
+
+PROC
+Proc_ARX_DT_DeathRoom_UnassignRemainingPuppets()
+AND
+DB_ARX_DT_DeathRoom_PuppetLever(_Var1, _Var2)
+THEN
+Proc_ARX_DT_DeathRoom_ClearLeverFromPuppet(_Var1, _Var2);
+
+PROC
+Proc_ARX_DT_DeathRoom_KillRemainingPuppets()
+AND
+DB_ARX_DT_CreatePuppetAt(_Var1, _Var2, _Var3)
+THEN
+NOT DB_ARX_DT_CreatePuppetAt(_Var1, _Var2, _Var3);
+
+PROC
+Proc_ARX_DT_DeathRoom_KillRemainingPuppets()
+AND
+DB_ARX_DT_DeathRoom_Puppet(_Var1, _Var2, _Var3)
+THEN
+NOT DB_ARX_DT_DeathRoom_Puppet(_Var1, _Var2, _Var3);
+SetStoryEvent(_Var1, "ARX_DivineTomb_DeathRoom_KillPuppet");
+
+PROC
+ProcBlockUseOfItem((CHARACTERGUID)_Var1, (ITEMGUID)_Var2)
+AND
+DB_ARX_DT_DeathRoom_Lever(_Var2, _, _)
+AND
+DB_GlobalFlag("ARX_DT_DeathRoom_ChallengeCompleted")
+THEN
+DB_CustomUseItemResponse(_Var1, _Var2, 0);
+
+PROC
+ProcBlockUseOfItem((CHARACTERGUID)_Var1, (ITEMGUID)_Var2)
+AND
+DB_ARX_DT_DeathRoom_GoodLever(_Var2, _, _)
+AND
+DB_GlobalFlag("ARX_DT_DeathRoom_ChallengeCompleted")
+THEN
+DB_CustomUseItemResponse(_Var1, _Var2, 0);
+
+IF
+CharacterUsedItem((CHARACTERGUID)_Var1, (ITEMGUID)_Var2)
+AND
+DB_IsPlayer(_Var1)
+AND
+DB_ARX_DT_DeathRoom_Lever(_Var2, _, _)
+AND NOT
+DB_GlobalFlag("ARX_DT_DeathRoom_ChallengeCompleted")
+THEN
+Proc_StartDialog(1, "ARX_AD_DivineTomb_DeathRoom_PulledWrongLever", _Var1);
+
+IF
+CharacterItemEvent((CHARACTERGUID)_Var1, _, (STRING)_Var3)
+AND
+DB_ARX_DT_DeathRoom_Events(_Var3, _, _, _)
+THEN
+Proc_ARX_DT_DeathRoom_CheckSetUpTrap(_Var3, _Var1);
+
+IF
+CharacterItemEvent((CHARACTERGUID)_Var1, (ITEMGUID)_Var2, "ARX_DT_DeathRoom_Trap_SwapPuppetPlayer")
+THEN
+Proc_ARX_DT_DeathRoom_SwapPos(_Var1);
+
+IF
+CharacterItemEvent((CHARACTERGUID)_Var1, (ITEMGUID)_Var2, "ARX_DT_DeathRoom_Trap_SwapPuppetPlayer")
+AND
+DB_ARX_DT_DeathRoom_Puppet(_Var1, _, _)
+THEN
+Proc_ARX_DT_DeathRoom_PuppetLeverAD("ARX_DT_DeathRoom_Trap_SwapPuppetPlayer", _Var1);
+
+IF
+CharacterItemEvent((CHARACTERGUID)_Var1, (ITEMGUID)_Var2, "ARX_DT_DeathRoom_Trap_Polymorph")
+AND
+DB_IsPlayer(_Var3)
+AND
+QRY_ARX_DT_DeathRoom_InDeathRoomFight(_Var3)
+THEN
+CharacterItemSetEvent(_Var3, NULL_00000000-0000-0000-0000-000000000000, "ARX_DT_DeathRoom_Trap_PolymorphPlayer");
+
+IF
+CharacterItemEvent((CHARACTERGUID)_Var1, (ITEMGUID)_Var2, "ARX_DT_DeathRoom_Trap_Polymorph")
+AND
+DB_ARX_DT_DeathRoom_Puppet(_Var1, _, _)
+THEN
+Proc_ARX_DT_DeathRoom_PuppetLeverAD("ARX_DT_DeathRoom_Trap_Polymorph", _Var1);
+
+IF
+CharacterItemEvent((CHARACTERGUID)_Var1, (ITEMGUID)_Var2, "ARX_DT_DeathRoom_Trap_Barrels_A")
+AND
+DB_ARX_DT_DeathRoom_Puppet(_Var1, _, _)
+THEN
+Proc_ARX_DT_DeathRoom_PuppetLeverAD("ARX_DT_DeathRoom_Trap_Barrels", _Var1);
+
+IF
+CharacterItemEvent((CHARACTERGUID)_Var1, (ITEMGUID)_Var2, "ARX_DT_DeathRoom_Trap_Barrels_B")
+AND
+DB_ARX_DT_DeathRoom_Puppet(_Var1, _, _)
+THEN
+Proc_ARX_DT_DeathRoom_PuppetLeverAD("ARX_DT_DeathRoom_Trap_Barrels", _Var1);
+
+IF
+CharacterItemEvent((CHARACTERGUID)_Var1, (ITEMGUID)_Var2, "ARX_DT_DeathRoom_Trap_Barrels_C")
+AND
+DB_ARX_DT_DeathRoom_Puppet(_Var1, _, _)
+THEN
+Proc_ARX_DT_DeathRoom_PuppetLeverAD("ARX_DT_DeathRoom_Trap_Barrels", _Var1);
+
+IF
+CharacterItemEvent((CHARACTERGUID)_Var1, _, (STRING)_Var3)
+AND
+DB_ARX_DT_DeathRoom_PuppetSpawnerExcess(_Var3, _Var4, _Var5)
+AND
+QRY_ARX_DT_DeathRoom_AvailableRoomForExcessPuppet()
+THEN
+Proc_ARX_DT_DeathRoom_SelectRandomPuppetTemplate(_Var4, _Var5);
+Proc_ARX_DT_DeathRoom_PuppetLeverAD("ARX_DT_DeathRoom_Trap_MorePuppets", _Var1);
+
+IF
+CharacterItemEvent((CHARACTERGUID)_Var1, _, (STRING)_Var3)
+AND
+DB_ARX_DT_DeathRoom_PuppetSpawnerExcess(_Var3, _Var4, _Var5)
+AND NOT
+QRY_ARX_DT_DeathRoom_AvailableRoomForExcessPuppet()
+THEN
+ObjectSetFlag(_Var1, "ARX_DT_DeathRoom_TrapAlreadyActivated");
+Proc_ARX_DT_DeathRoom_PuppetLeverAD("ARX_DT_DeathRoom_Trap_MorePuppets", _Var1);
+
+QRY
+QRY_ARX_DT_DeathRoom_AvailableRoomForExcessPuppet()
+AND
+DB_ARX_DT_DeathRoom_ActualPuppets(_Var1)
+AND
+DB_ARX_DT_DeathRoom_MAXPuppets(_Var2)
+AND
+DB_ARX_DT_DeathRoom_MAXLeversUsed(_Var3)
+AND
+IntegerSubtract(_Var2, _Var3, _Var4)
+AND
+_Var1 < _Var4
+THEN
+DB_NOOP(1);
+
+PROC
+Proc_ARX_DT_DeathRoom_CheckSetUpTrap((STRING)_Var1, _)
+AND
+QRY_ARX_DT_DeathRoom_PlayerInRoom()
+AND NOT
+QRY_ARX_DT_DeathRoom_AnyPlayerInDeathRoomFight()
+THEN
+Proc_ARX_DT_DeathRoom_DeactivateTrap(_Var1);
+
+PROC
+Proc_ARX_DT_DeathRoom_CheckSetUpTrap((STRING)_Var1, (CHARACTERGUID)_Var2)
+AND
+QRY_ARX_DT_DeathRoom_PlayerInRoom()
+AND
+QRY_ARX_DT_DeathRoom_AnyPlayerInDeathRoomFight()
+THEN
+Proc_ARX_DT_DeathRoom_SetUpTrap(_Var1, _Var2);
+
+PROC
+Proc_ARX_DT_DeathRoom_SetUpTrap((STRING)_Var1, _)
+AND NOT
+DB_ARX_DT_DeathRoom_TrapTurn(_, _Var1)
+THEN
+DB_ARX_DT_DeathRoom_TrapTurn(0, _Var1);
+
+PROC
+Proc_ARX_DT_DeathRoom_SetUpTrap((STRING)_Var1, _)
+AND NOT
+DB_ARX_DT_DeathRoom_RefPlayer(_, _Var1)
+AND
+DB_IsPlayer(_Var4)
+AND
+QRY_ARX_DT_DeathRoom_InDeathRoomFight(_Var4)
+THEN
+Proc_ARX_DT_DeathRoom_AssignPlayer(_Var4, _Var1);
+
+PROC
+Proc_ARX_DT_DeathRoom_AssignPlayer((CHARACTERGUID)_Var1, (STRING)_Var2)
+AND NOT
+DB_ARX_DT_DeathRoom_RefPlayer(_, _Var2)
+THEN
+DB_ARX_DT_DeathRoom_RefPlayer(_Var1, _Var2);
+
+PROC
+Proc_ARX_DT_DeathRoom_SetUpTrap((STRING)_Var1, _)
+AND
+DB_ARX_DT_DeathRoom_TrapTurn(0, _Var1)
+AND
+DB_ARX_DT_DeathRoom_RefPlayer(_Var3, _Var1)
+AND
+DB_ARX_DT_DeathRoom_Events(_Var1, _, _Var5, _)
+THEN
+CharacterItemSetEvent(NULL_00000000-0000-0000-0000-000000000000, NULL_00000000-0000-0000-0000-000000000000, _Var5);
+
+PROC
+Proc_ARX_DT_DeathRoom_SetUpTrap((STRING)_Var1, (CHARACTERGUID)_Var2)
+AND NOT
+DB_IsPlayer(_Var2)
+AND
+_Var2 != NULL_00000000-0000-0000-0000-000000000000
+THEN
+Proc_ARX_DT_DeathRoom_PuppetLeverAD(_Var1, _Var2);
+
+QRY
+QRY_ARX_DT_DeathRoom_InDeathRoomFight((CHARACTERGUID)_Var1)
+AND
+DB_CombatCharacters(_Var1, _Var2)
+AND
+DB_ARX_DT_DeathRoom_Puppet(_Var3, _, _)
+AND
+DB_CombatCharacters(_Var3, _Var6)
+AND
+_Var2 == _Var6
+THEN
+DB_NOOP(1);
+
+QRY
+QRY_ARX_DT_DeathRoom_AnyPlayerInDeathRoomFight()
+AND
+DB_IsPlayer(_Var1)
+AND
+DB_CombatCharacters(_Var1, _Var2)
+AND
+DB_ARX_DT_DeathRoom_Puppet(_Var3, _, _)
+AND
+DB_CombatCharacters(_Var3, _Var6)
+AND
+_Var2 == _Var6
+THEN
+DB_NOOP(1);
+
+IF
+ObjectTurnStarted((CHARACTERGUID)_Var1)
+AND
+DB_ARX_DT_DeathRoom_RefPlayer(_Var1, _Var2)
+AND
+DB_ARX_DT_DeathRoom_TrapTurn(_Var3, _Var2)
+AND
+IntegerSum(_Var3, 1, _Var4)
+THEN
+NOT DB_ARX_DT_DeathRoom_TrapTurn(_Var3, _Var2);
+DB_ARX_DT_DeathRoom_TrapTurn(_Var4, _Var2);
+Proc_ARX_DT_DeathRoom_CheckDeactivateTrap(_Var2);
+
+PROC
+Proc_ARX_DT_DeathRoom_CheckDeactivateTrap((STRING)_Var1)
+AND
+DB_ARX_DT_DeathRoom_TrapTurn(_Var2, _Var1)
+AND
+DB_ARX_DT_DeathRoom_Events(_Var1, _Var3, _, _)
+AND
+_Var2 >= _Var3
+THEN
+Proc_ARX_DT_DeathRoom_DeactivateTrap(_Var1);
+
+PROC
+Proc_ARX_DT_DeathRoom_DeactivateTrap((STRING)_Var1)
+AND
+DB_ARX_DT_DeathRoom_TrapTurn(_Var2, _Var1)
+THEN
+NOT DB_ARX_DT_DeathRoom_TrapTurn(_Var2, _Var1);
+
+PROC
+Proc_ARX_DT_DeathRoom_DeactivateTrap((STRING)_Var1)
+AND
+DB_ARX_DT_DeathRoom_Events(_Var1, _, _, _Var4)
+THEN
+CharacterItemSetEvent(NULL_00000000-0000-0000-0000-000000000000, NULL_00000000-0000-0000-0000-000000000000, _Var4);
+
+IF
+CharacterDied((CHARACTERGUID)_Var1)
+AND
+DB_ARX_DT_DeathRoom_RefPlayer(_Var1, _Var2)
+THEN
+NOT DB_ARX_DT_DeathRoom_RefPlayer(_Var1, _Var2);
+Proc_ARX_DT_DeathRoom_CheckSetUpTrap(_Var2, NULL_00000000-0000-0000-0000-000000000000);
+
+IF
+ObjectLeftCombat((CHARACTERGUID)_Var1, _)
+AND
+DB_ARX_DT_DeathRoom_RefPlayer(_Var1, _Var3)
+THEN
+NOT DB_ARX_DT_DeathRoom_RefPlayer(_Var1, _Var3);
+Proc_ARX_DT_DeathRoom_CheckSetUpTrap(_Var3, NULL_00000000-0000-0000-0000-000000000000);
+
+PROC
+Proc_ARX_DT_DeathRoom_ClearTrapLogic()
+AND
+DB_ARX_DT_DeathRoom_RefPlayer(_Var1, _Var2)
+AND
+DB_ARX_DT_DeathRoom_Events(_Var2, _, _, _Var5)
+THEN
+NOT DB_ARX_DT_DeathRoom_RefPlayer(_Var1, _Var2);
+CharacterItemSetEvent(NULL_00000000-0000-0000-0000-000000000000, NULL_00000000-0000-0000-0000-000000000000, _Var5);
+
+PROC
+Proc_ARX_DT_DeathRoom_ClearTrapLogic()
+AND
+DB_ARX_DT_DeathRoom_TrapTurn(_Var1, _Var2)
+THEN
+NOT DB_ARX_DT_DeathRoom_TrapTurn(_Var1, _Var2);
+
+PROC
+Proc_ARX_DT_DeathRoom_SwapPos((CHARACTERGUID)_Var1)
+AND
+GetPosition(_Var1, _Var2, _Var3, _Var4)
+THEN
+DB_ARX_DT_DeathRoom_CharPos(_Var1, _Var2, _Var3, _Var4);
+
+PROC
+Proc_ARX_DT_DeathRoom_SwapPos((CHARACTERGUID)_Var1)
+AND
+DB_IsPlayer(_Var1)
+AND
+DB_ARX_DT_DeathRoom_Puppet(_Var2, _, _)
+THEN
+Proc_ARX_DT_DeathRoom_GetDist(_Var1, _Var2);
+
+PROC
+Proc_ARX_DT_DeathRoom_SwapPos((CHARACTERGUID)_Var1)
+AND
+DB_ARX_DT_DeathRoom_Puppet(_Var1, _, _)
+AND
+DB_IsPlayer(_Var4)
+AND
+QRY_ARX_DT_DeathRoom_InDeathRoomFight(_Var4)
+THEN
+Proc_ARX_DT_DeathRoom_GetDist(_Var1, _Var4);
+
+PROC
+Proc_ARX_DT_DeathRoom_GetDist((CHARACTERGUID)_Var1, (CHARACTERGUID)_Var2)
+AND
+GetDistanceTo(_Var1, _Var2, _Var3)
+THEN
+DB_ARX_DT_DeathRoom_FartestTarget(_Var1, _Var2, _Var3);
+Proc_ARX_DT_DeathRoom_TakeGreatest(_Var1, _Var2, _Var3);
+
+PROC
+Proc_ARX_DT_DeathRoom_TakeGreatest((CHARACTERGUID)_Var1, (CHARACTERGUID)_Var2, (REAL)_Var3)
+AND
+DB_ARX_DT_DeathRoom_FartestTarget(_Var1, _Var4, _Var5)
+AND
+_Var2 != _Var4
+AND
+_Var3 > _Var5
+THEN
+NOT DB_ARX_DT_DeathRoom_FartestTarget(_Var1, _Var4, _Var5);
+
+PROC
+Proc_ARX_DT_DeathRoom_TakeGreatest((CHARACTERGUID)_Var1, (CHARACTERGUID)_Var2, (REAL)_Var3)
+AND
+DB_ARX_DT_DeathRoom_FartestTarget(_Var1, _Var4, _Var5)
+AND
+_Var2 != _Var4
+AND
+_Var3 < _Var5
+THEN
+NOT DB_ARX_DT_DeathRoom_FartestTarget(_Var1, _Var2, _Var3);
+
+PROC
+Proc_ARX_DT_DeathRoom_SwapPos((CHARACTERGUID)_Var1)
+AND
+DB_ARX_DT_DeathRoom_FartestTarget(_Var1, _Var2, _Var3)
+AND
+GetPosition(_Var2, _Var4, _Var5, _Var6)
+AND
+DB_ARX_DT_DeathRoom_CharPos(_Var1, _Var7, _Var8, _Var9)
+THEN
+TeleportToPosition(_Var1, _Var4, _Var5, _Var6, "", 0);
+TeleportToPosition(_Var2, _Var7, _Var8, _Var9, "", 0);
+PlayEffectAtPosition("RS3_FX_GP_ScriptedEvent_Teleport_GenericSmoke_01", _Var4, _Var5, _Var6);
+PlayEffectAtPosition("RS3_FX_GP_ScriptedEvent_Teleport_GenericSmoke_01", _Var7, _Var8, _Var9);
+Proc_ARX_DT_DeathRoom_SwapPosPlayAD(_Var1);
+Proc_ARX_DT_DeathRoom_SwapPosPlayAD(_Var2);
+
+PROC
+Proc_ARX_DT_DeathRoom_SwapPosPlayAD((CHARACTERGUID)_Var1)
+AND
+DB_IsPlayer(_Var1)
+THEN
+Proc_StartDialog(1, "ARX_AD_DivineTomb_DeathRoom_Teleported", _Var1);
+
+PROC
+Proc_ARX_DT_DeathRoom_SwapPos((CHARACTERGUID)_Var1)
+AND
+DB_ARX_DT_DeathRoom_FartestTarget(_Var1, _Var2, _Var3)
+THEN
+NOT DB_ARX_DT_DeathRoom_FartestTarget(_Var1, _Var2, _Var3);
+
+PROC
+Proc_ARX_DT_DeathRoom_SwapPos((CHARACTERGUID)_Var1)
+AND
+DB_ARX_DT_DeathRoom_CharPos(_Var1, _Var2, _Var3, _Var4)
+THEN
+NOT DB_ARX_DT_DeathRoom_CharPos(_Var1, _Var2, _Var3, _Var4);
+
+
+EXITSECTION
+ENDEXITSECTION
+
+ParentTargetEdge "ARX"

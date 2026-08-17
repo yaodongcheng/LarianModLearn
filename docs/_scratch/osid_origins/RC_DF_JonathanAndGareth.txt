@@ -1,0 +1,368 @@
+Version 1
+SubGoalCombiner SGC_AND
+
+INITSECTION
+DB_ShovelArea(TRIGGERGUID_S_RC_DF_GarethShack_DigBox_604573c2-41a4-4bc9-ad34-15fe2660e814, "RC_DF_GarethShack", ITEMGUID_S_RC_DF_GarethShack_DigPile_c766a192-93a9-4e08-8bf2-fe165d69a0d8);
+DB_ShovelRewardItemAppear("RC_DF_GarethShack", ITEMGUID_S_RC_DF_GarethShack_DigReward_2658575e-6a3a-497c-a8d0-6a108455e9eb, TRIGGERGUID_S_RC_DF_GarethShack_DigDest_2e61149e-467a-4ea0-ad00-a535c7d82ff6);
+SetOnStage(CHARACTERGUID_S_GLO_GarethFriend_9372d7fb-dc95-4acf-b455-8a36d610e203, 0);
+SetOnStage(CHARACTERGUID_S_RC_DF_JonathanSceneMonk_40a82bfc-4250-4cf1-b663-809721b26a91, 0);
+SetOnStage(CHARACTERGUID_S_RC_DF_JonathanSceneMonk_b2647af0-f701-40da-bacb-db70f9fa941d, 0);
+PROC_RC_BF_JonathanGareth_CleanBattleRemnants();
+DB_SeenDeadNPCPartyFlag(CHARACTERGUID_S_FTJ_SW_Warrior_SeekerCaptain_1329f018-23e4-4717-9bc8-074b28d04c54, "RC_FL_FoundGarethDead");
+
+KBSECTION
+PROC
+PROC_Setup_GarethAndJonathan()
+AND NOT
+DB_Dead(CHARACTERGUID_S_FTJ_SW_Warrior_SeekerCaptain_1329f018-23e4-4717-9bc8-074b28d04c54)
+AND
+ObjectIsOnStage(CHARACTERGUID_S_FTJ_SW_Warrior_SeekerCaptain_1329f018-23e4-4717-9bc8-074b28d04c54, 0)
+THEN
+SetOnStage(CHARACTERGUID_S_FTJ_SW_Warrior_SeekerCaptain_1329f018-23e4-4717-9bc8-074b28d04c54, 1);
+
+PROC
+PROC_Setup_GarethAndJonathan()
+AND NOT
+DB_OnlyOnce("RC_FL_GarethFarmSetup")
+AND
+CharacterIsDead(CHARACTERGUID_S_FTJ_SW_Warrior_SeekerCaptain_1329f018-23e4-4717-9bc8-074b28d04c54, 1)
+THEN
+GlobalSetFlag("RC_FL_GarethDiedBeforeFarm");
+
+PROC
+PROC_Setup_GarethAndJonathan()
+AND NOT
+DB_Dead(CHARACTERGUID_S_FTJ_SW_Warrior_SeekerCaptain_1329f018-23e4-4717-9bc8-074b28d04c54)
+THEN
+SetOnStage(CHARACTERGUID_S_GLO_GarethFriend_9372d7fb-dc95-4acf-b455-8a36d610e203, 1);
+CharacterSetAnimationOverride(CHARACTERGUID_S_GLO_GarethFriend_9372d7fb-dc95-4acf-b455-8a36d610e203, "knockdown_loop");
+ApplyStatus(CHARACTERGUID_S_GLO_GarethFriend_9372d7fb-dc95-4acf-b455-8a36d610e203, "UNCONSCIOUS", -1, 1);
+TeleportTo(CHARACTERGUID_S_FTJ_SW_Warrior_SeekerCaptain_1329f018-23e4-4717-9bc8-074b28d04c54, S_RC_DF_Gareth_JonathanSceneStart_4b3729a0-4994-48db-93f4-5704b48fae45, "", 0);
+PROC_RemoveDialogFromCharacter(CHARACTERGUID_S_FTJ_SW_Warrior_SeekerCaptain_1329f018-23e4-4717-9bc8-074b28d04c54);
+SetVarFixedString(CHARACTERGUID_S_FTJ_SW_Warrior_SeekerCaptain_1329f018-23e4-4717-9bc8-074b28d04c54, "currentState", "State_DriftwoodFields_JonathanScene");
+CharacterSetHitpointsPercentage(CHARACTERGUID_S_GLO_GarethFriend_9372d7fb-dc95-4acf-b455-8a36d610e203, 15);
+CharacterLevelUpTo(CHARACTERGUID_S_FTJ_SW_Warrior_SeekerCaptain_1329f018-23e4-4717-9bc8-074b28d04c54, 13);
+ProcCharacterDisableAllCrimes(CHARACTERGUID_S_GLO_GarethFriend_9372d7fb-dc95-4acf-b455-8a36d610e203);
+DB_DontCreateMurder(CHARACTERGUID_S_GLO_GarethFriend_9372d7fb-dc95-4acf-b455-8a36d610e203);
+DB_IgnoreAssault(CHARACTERGUID_S_GLO_GarethFriend_9372d7fb-dc95-4acf-b455-8a36d610e203);
+DB_Dialogs(CHARACTERGUID_S_FTJ_SW_Warrior_SeekerCaptain_1329f018-23e4-4717-9bc8-074b28d04c54, "RC_DF_GarethJonathanScene");
+
+IF
+CharacterDied(CHARACTERGUID_S_FTJ_SW_Warrior_SeekerCaptain_1329f018-23e4-4717-9bc8-074b28d04c54)
+AND NOT
+DB_OnlyOnce("RC_FL_GarethAndJonathanSetUp")
+THEN
+PROC_RC_BF_JonathanGareth_CleanBattleRemnants();
+
+PROC
+PROC_RC_BF_JonathanGareth_CleanBattleRemnants()
+AND
+DB_Dead(CHARACTERGUID_S_FTJ_SW_Warrior_SeekerCaptain_1329f018-23e4-4717-9bc8-074b28d04c54)
+THEN
+CreateSurface(TRIGGERGUID_S_RC_DF_JonathanGareth_SurfaceAnchor_73d58e37-2a8e-4506-941a-bbb9598a8935, "SurfaceNone", 10, 0);
+SetOnStage(CHARACTERGUID_S_RC_DF_JonathanSceneMonk_40a82bfc-4250-4cf1-b663-809721b26a91, 0);
+SetOnStage(CHARACTERGUID_S_RC_DF_JonathanSceneMonk_b2647af0-f701-40da-bacb-db70f9fa941d, 0);
+
+PROC
+PROC_RC_BF_JonathanGareth_CleanBattleRemnants()
+AND NOT
+DB_Dead(CHARACTERGUID_S_FTJ_SW_Warrior_SeekerCaptain_1329f018-23e4-4717-9bc8-074b28d04c54)
+THEN
+SetOnStage(CHARACTERGUID_S_RC_DF_JonathanSceneMonk_40a82bfc-4250-4cf1-b663-809721b26a91, 1);
+SetOnStage(CHARACTERGUID_S_RC_DF_JonathanSceneMonk_b2647af0-f701-40da-bacb-db70f9fa941d, 1);
+
+IF
+StoryEvent((CHARACTERGUID)_Var1, "RC_DF_GarethStartJonathanScene")
+AND
+DB_IsPlayer(_Var1)
+AND
+QRY_StartDialog(0, "RC_DF_GarethJonathanScene", CHARACTERGUID_S_FTJ_SW_Warrior_SeekerCaptain_1329f018-23e4-4717-9bc8-074b28d04c54, _Var1)
+THEN
+SetVarFixedString(CHARACTERGUID_S_FTJ_SW_Warrior_SeekerCaptain_1329f018-23e4-4717-9bc8-074b28d04c54, "currentState", "");
+
+IF
+DialogStarted("RC_DF_GarethJonathanScene", _)
+THEN
+ApplyStatus(CHARACTERGUID_S_GLO_GarethFriend_9372d7fb-dc95-4acf-b455-8a36d610e203, "UNCONSCIOUS", -1, 1);
+
+IF
+AttackedByObject(CHARACTERGUID_S_GLO_GarethFriend_9372d7fb-dc95-4acf-b455-8a36d610e203, (CHARACTERGUID)_Var1, _, _, _)
+AND NOT
+DB_GlobalFlag("RC_DF_Gareth_ConvincedKillJonathan")
+AND
+DB_IsPlayer(_Var1)
+THEN
+PartySetFlag(_Var1, "QuestUpdate_RC_DF_RC_FL_GarethFarm_KilledJonathanFields");
+CharacterDie(CHARACTERGUID_S_GLO_GarethFriend_9372d7fb-dc95-4acf-b455-8a36d610e203, 1, "DoT");
+
+IF
+AttackedByObject(CHARACTERGUID_S_GLO_GarethFriend_9372d7fb-dc95-4acf-b455-8a36d610e203, (CHARACTERGUID)_Var1, _, _, _)
+AND
+DB_GlobalFlag("RC_DF_Gareth_ConvincedKillJonathan")
+AND
+DB_IsPlayer(_Var1)
+THEN
+PartySetFlag(_Var1, "QuestUpdate_RC_DF_RC_FL_GarethFarm_ConvincedKillJonathan");
+CharacterDie(CHARACTERGUID_S_GLO_GarethFriend_9372d7fb-dc95-4acf-b455-8a36d610e203, 1, "DoT");
+
+IF
+AttackedByObject(CHARACTERGUID_S_GLO_GarethFriend_9372d7fb-dc95-4acf-b455-8a36d610e203, (CHARACTERGUID)_Var1, _, _, _)
+AND
+DB_IsPlayer(_Var1)
+AND NOT
+QRY_RC_DF_IsInDialogueWithGareth(_Var1)
+AND NOT
+DB_GlobalFlag("RC_FL_Gareth_DarkPathStarted")
+AND NOT
+DB_GlobalFlag("RC_DF_Gareth_ConvincedKillJonathan")
+THEN
+DialogRequestStop(CHARACTERGUID_S_FTJ_SW_Warrior_SeekerCaptain_1329f018-23e4-4717-9bc8-074b28d04c54);
+
+IF
+AttackedByObject(CHARACTERGUID_S_GLO_GarethFriend_9372d7fb-dc95-4acf-b455-8a36d610e203, (CHARACTERGUID)_Var1, _, _, _)
+AND
+DB_IsPlayer(_Var1)
+AND NOT
+QRY_RC_DF_IsInDialogueWithGareth(_Var1)
+AND NOT
+DB_GlobalFlag("RC_FL_Gareth_DarkPathStarted")
+AND NOT
+DB_GlobalFlag("RC_DF_Gareth_ConvincedKillJonathan")
+AND NOT
+QRY_StartDialog(0, "RC_DF_MurderedJonathan", CHARACTERGUID_S_FTJ_SW_Warrior_SeekerCaptain_1329f018-23e4-4717-9bc8-074b28d04c54, _Var1)
+THEN
+PartySetFlag(_Var1, "RC_FL_KilledJonathanFields");
+PROC_RC_DF_JonathanAndGareth_MurderedJonathanFallback();
+
+IF
+AttackedByObject(CHARACTERGUID_S_GLO_GarethFriend_9372d7fb-dc95-4acf-b455-8a36d610e203, (CHARACTERGUID)_Var1, (GUIDSTRING)_Var2, _, _)
+AND
+CHARACTERGUID_S_GLO_GarethFriend_9372d7fb-dc95-4acf-b455-8a36d610e203 != _Var2
+AND NOT
+DB_IsPlayer(_Var1)
+AND
+DB_IsPlayer(_Var5)
+AND
+GetDistanceTo(_Var5, CHARACTERGUID_S_GLO_GarethFriend_9372d7fb-dc95-4acf-b455-8a36d610e203, _Var6)
+AND
+_Var6 <= 10
+THEN
+PartySetFlag(_Var1, "RC_FL_KilledJonathanFields");
+
+IF
+AttackedByObject(CHARACTERGUID_S_GLO_GarethFriend_9372d7fb-dc95-4acf-b455-8a36d610e203, (CHARACTERGUID)_Var1, (GUIDSTRING)_Var2, _, _)
+AND
+CHARACTERGUID_S_GLO_GarethFriend_9372d7fb-dc95-4acf-b455-8a36d610e203 != _Var2
+AND NOT
+DB_IsPlayer(_Var1)
+THEN
+PROC_RC_DF_JonathanAndGareth_MurderedJonathanFallback();
+
+QRY
+QRY_RC_DF_IsInDialogueWithGareth((CHARACTERGUID)_Var1)
+AND
+DB_DialogPlayers(_Var2, _Var1, _)
+AND
+DB_DialogNPCs(_Var2, CHARACTERGUID_S_FTJ_SW_Warrior_SeekerCaptain_1329f018-23e4-4717-9bc8-074b28d04c54, _)
+THEN
+DB_NOOP(0);
+
+IF
+DialogEnded("RC_DF_MurderedJonathan", _)
+AND
+GlobalGetFlag("RC_FL_Gareth_DarkPathStarted", 1)
+THEN
+PROC_RemoveDialogFromCharacter(CHARACTERGUID_S_FTJ_SW_Warrior_SeekerCaptain_1329f018-23e4-4717-9bc8-074b28d04c54);
+DB_AD_Dialog(CHARACTERGUID_S_FTJ_SW_Warrior_SeekerCaptain_1329f018-23e4-4717-9bc8-074b28d04c54, "RC_AD_Gareth_DarkPathLeaving");
+ProcCharacterDisappearOutOfSight(CHARACTERGUID_S_FTJ_SW_Warrior_SeekerCaptain_1329f018-23e4-4717-9bc8-074b28d04c54, 0, 0, "RC_DF_SeekerCaptain_Left", 0);
+
+IF
+DialogEnded("RC_DF_MurderedJonathan", _)
+AND
+GlobalGetFlag("RC_DF_Gareth_ConvincedKillJonathan", 1)
+THEN
+DB_RC_DF_GarethAndJonathanDone(1);
+PROC_RemoveDialogFromCharacter(CHARACTERGUID_S_FTJ_SW_Warrior_SeekerCaptain_1329f018-23e4-4717-9bc8-074b28d04c54);
+DB_AD_Dialog(CHARACTERGUID_S_FTJ_SW_Warrior_SeekerCaptain_1329f018-23e4-4717-9bc8-074b28d04c54, "RC_AD_Gareth_ToLV");
+ProcCharacterDisappearOutOfSight(CHARACTERGUID_S_FTJ_SW_Warrior_SeekerCaptain_1329f018-23e4-4717-9bc8-074b28d04c54, 0, 0, "RC_FL_GarethVanishedToLV", 0);
+
+PROC
+PROC_RC_DF_JonathanAndGareth_MurderedJonathanFallback()
+THEN
+ProcRemoveAllDialogEntriesForSpeaker(CHARACTERGUID_S_FTJ_SW_Warrior_SeekerCaptain_1329f018-23e4-4717-9bc8-074b28d04c54);
+SetHasDialog(CHARACTERGUID_S_FTJ_SW_Warrior_SeekerCaptain_1329f018-23e4-4717-9bc8-074b28d04c54, 0);
+
+PROC
+PROC_RC_DF_JonathanAndGareth_MurderedJonathanFallback()
+AND
+CharacterIsPolymorphInteractionDisabled(CHARACTERGUID_S_FTJ_SW_Warrior_SeekerCaptain_1329f018-23e4-4717-9bc8-074b28d04c54, 0)
+THEN
+Proc_StartDialog(1, "RC_DF_AD_MurderedJonathan", CHARACTERGUID_S_FTJ_SW_Warrior_SeekerCaptain_1329f018-23e4-4717-9bc8-074b28d04c54);
+
+IF
+AutomatedDialogEnded("RC_DF_AD_MurderedJonathan", _)
+THEN
+DB_RC_DF_JonathanAndGareth_MurderedJonathan_GarethTryLeave(1);
+GlobalSetFlag("RC_FL_Gareth_DarkPathStarted");
+
+PROC
+PROC_RC_DF_JonathanAndGareth_MurderedJonathanFallback()
+AND
+CharacterIsPolymorphInteractionDisabled(CHARACTERGUID_S_FTJ_SW_Warrior_SeekerCaptain_1329f018-23e4-4717-9bc8-074b28d04c54, 1)
+THEN
+DB_RC_DF_JonathanAndGareth_MurderedJonathan_GarethTryLeave(1);
+GlobalSetFlag("RC_FL_Gareth_DarkPathStarted");
+
+IF
+DB_RC_DF_JonathanAndGareth_MurderedJonathan_GarethTryLeave(1)
+AND
+QRY_SpeakerIsAvailable(CHARACTERGUID_S_FTJ_SW_Warrior_SeekerCaptain_1329f018-23e4-4717-9bc8-074b28d04c54)
+THEN
+Proc_StartDialog(1, "RC_DF_AD_MurderedJonathan_Leave", CHARACTERGUID_S_FTJ_SW_Warrior_SeekerCaptain_1329f018-23e4-4717-9bc8-074b28d04c54);
+NOT DB_RC_DF_JonathanAndGareth_MurderedJonathan_GarethTryLeave(1);
+
+IF
+ObjectLeftCombat(CHARACTERGUID_S_FTJ_SW_Warrior_SeekerCaptain_1329f018-23e4-4717-9bc8-074b28d04c54, _)
+AND
+DB_RC_DF_JonathanAndGareth_MurderedJonathan_GarethTryLeave(1)
+AND
+QRY_SpeakerIsAvailable(CHARACTERGUID_S_FTJ_SW_Warrior_SeekerCaptain_1329f018-23e4-4717-9bc8-074b28d04c54)
+THEN
+Proc_StartDialog(1, "RC_DF_AD_MurderedJonathan_Leave", CHARACTERGUID_S_FTJ_SW_Warrior_SeekerCaptain_1329f018-23e4-4717-9bc8-074b28d04c54);
+NOT DB_RC_DF_JonathanAndGareth_MurderedJonathan_GarethTryLeave(1);
+
+IF
+CharacterStoppedPolymorph(CHARACTERGUID_S_FTJ_SW_Warrior_SeekerCaptain_1329f018-23e4-4717-9bc8-074b28d04c54)
+AND
+DB_RC_DF_JonathanAndGareth_MurderedJonathan_GarethTryLeave(1)
+AND
+QRY_SpeakerIsAvailable(CHARACTERGUID_S_FTJ_SW_Warrior_SeekerCaptain_1329f018-23e4-4717-9bc8-074b28d04c54)
+THEN
+Proc_StartDialog(1, "RC_DF_AD_MurderedJonathan_Leave", CHARACTERGUID_S_FTJ_SW_Warrior_SeekerCaptain_1329f018-23e4-4717-9bc8-074b28d04c54);
+NOT DB_RC_DF_JonathanAndGareth_MurderedJonathan_GarethTryLeave(1);
+
+IF
+DialogEnded(_, (INTEGER)_Var2)
+AND
+DB_RC_DF_JonathanAndGareth_MurderedJonathan_GarethTryLeave(1)
+AND
+DB_DialogNPCs(_Var2, CHARACTERGUID_S_FTJ_SW_Warrior_SeekerCaptain_1329f018-23e4-4717-9bc8-074b28d04c54, _)
+AND
+QRY_SpeakerIsAvailable(CHARACTERGUID_S_FTJ_SW_Warrior_SeekerCaptain_1329f018-23e4-4717-9bc8-074b28d04c54)
+THEN
+Proc_StartDialog(1, "RC_DF_AD_MurderedJonathan_Leave", CHARACTERGUID_S_FTJ_SW_Warrior_SeekerCaptain_1329f018-23e4-4717-9bc8-074b28d04c54);
+NOT DB_RC_DF_JonathanAndGareth_MurderedJonathan_GarethTryLeave(1);
+
+IF
+AutomatedDialogEnded("RC_DF_AD_MurderedJonathan_Leave", _)
+THEN
+DB_RC_DF_GarethAndJonathanDone(1);
+PROC_RemoveDialogFromCharacter(CHARACTERGUID_S_FTJ_SW_Warrior_SeekerCaptain_1329f018-23e4-4717-9bc8-074b28d04c54);
+DB_AD_Dialog(CHARACTERGUID_S_FTJ_SW_Warrior_SeekerCaptain_1329f018-23e4-4717-9bc8-074b28d04c54, "RC_AD_Gareth_DarkPathLeaving");
+ProcCharacterDisappearOutOfSight(CHARACTERGUID_S_FTJ_SW_Warrior_SeekerCaptain_1329f018-23e4-4717-9bc8-074b28d04c54, 0, 0, "RC_DF_SeekerCaptain_Left", 0);
+
+IF
+DialogEnded("RC_DF_GarethJonathanScene", _)
+AND
+GlobalGetFlag("RC_FL_Gareth_DarkPathStarted", 1)
+THEN
+DB_RC_DF_GarethAndJonathanDone(1);
+PROC_RemoveDialogFromCharacter(CHARACTERGUID_S_FTJ_SW_Warrior_SeekerCaptain_1329f018-23e4-4717-9bc8-074b28d04c54);
+DB_AD_Dialog(CHARACTERGUID_S_FTJ_SW_Warrior_SeekerCaptain_1329f018-23e4-4717-9bc8-074b28d04c54, "RC_AD_Gareth_DarkPathLeaving");
+ProcCharacterDisappearOutOfSight(CHARACTERGUID_S_FTJ_SW_Warrior_SeekerCaptain_1329f018-23e4-4717-9bc8-074b28d04c54, 0, 0, "RC_DF_SeekerCaptain_Left", 0);
+
+IF
+DialogEnded("RC_DF_GarethJonathanScene", _)
+AND
+GlobalGetFlag("RC_DF_Gareth_ConvincedKillJonathan", 1)
+THEN
+DB_RC_DF_GarethAndJonathanDone(1);
+PROC_RemoveDialogFromCharacter(CHARACTERGUID_S_FTJ_SW_Warrior_SeekerCaptain_1329f018-23e4-4717-9bc8-074b28d04c54);
+DB_AD_Dialog(CHARACTERGUID_S_FTJ_SW_Warrior_SeekerCaptain_1329f018-23e4-4717-9bc8-074b28d04c54, "RC_AD_Gareth_ToLV");
+ProcCharacterDisappearOutOfSight(CHARACTERGUID_S_FTJ_SW_Warrior_SeekerCaptain_1329f018-23e4-4717-9bc8-074b28d04c54, 0, 0, "RC_FL_GarethVanishedToLV", 0);
+
+IF
+ObjectFlagSet("RC_DF_KillJonathan", (CHARACTERGUID)_Var1, _)
+THEN
+CharacterAttack(_Var1, CHARACTERGUID_S_GLO_GarethFriend_9372d7fb-dc95-4acf-b455-8a36d610e203);
+ObjectSetFlag(_Var1, "GLO_PathOfBlood_MurderedInnocent");
+
+IF
+DialogEnded("RC_DF_GarethJonathanScene", _)
+AND
+ObjectGetFlag(CHARACTERGUID_S_FTJ_SW_Warrior_SeekerCaptain_1329f018-23e4-4717-9bc8-074b28d04c54, "RC_FL_LetJonathanGo", 1)
+AND NOT
+DB_Dead(CHARACTERGUID_S_GLO_GarethFriend_9372d7fb-dc95-4acf-b455-8a36d610e203)
+THEN
+DB_RC_DF_GarethAndJonathanDone(1);
+PROC_RemoveDialogFromCharacter(CHARACTERGUID_S_FTJ_SW_Warrior_SeekerCaptain_1329f018-23e4-4717-9bc8-074b28d04c54);
+PROC_RemoveDialogFromCharacter(CHARACTERGUID_S_GLO_GarethFriend_9372d7fb-dc95-4acf-b455-8a36d610e203);
+DB_AD_Dialog(CHARACTERGUID_S_FTJ_SW_Warrior_SeekerCaptain_1329f018-23e4-4717-9bc8-074b28d04c54, "RC_AD_Gareth_ToParentsLeaving");
+CharacterMoveTo(CHARACTERGUID_S_FTJ_SW_Warrior_SeekerCaptain_1329f018-23e4-4717-9bc8-074b28d04c54, CHARACTERGUID_S_GLO_GarethFriend_9372d7fb-dc95-4acf-b455-8a36d610e203, 0, "RC_DF_GarethPickupJonathan", 0);
+
+IF
+StoryEvent(CHARACTERGUID_S_FTJ_SW_Warrior_SeekerCaptain_1329f018-23e4-4717-9bc8-074b28d04c54, "RC_DF_GarethPickupJonathan")
+THEN
+PlayAnimation(CHARACTERGUID_S_FTJ_SW_Warrior_SeekerCaptain_1329f018-23e4-4717-9bc8-074b28d04c54, "use_loot", "RC_DF_JonathanOffStage");
+
+IF
+StoryEvent(CHARACTERGUID_S_FTJ_SW_Warrior_SeekerCaptain_1329f018-23e4-4717-9bc8-074b28d04c54, "RC_DF_GarethPickupJonathan")
+THEN
+SetOnStage(CHARACTERGUID_S_GLO_GarethFriend_9372d7fb-dc95-4acf-b455-8a36d610e203, 0);
+CharacterSetAnimationSetOverride(CHARACTERGUID_S_FTJ_SW_Warrior_SeekerCaptain_1329f018-23e4-4717-9bc8-074b28d04c54, "Carry");
+PROC_LoopEffect("RS3_FX_Items_Animated_Jonathan_Carry_Attachment_01", CHARACTERGUID_S_FTJ_SW_Warrior_SeekerCaptain_1329f018-23e4-4717-9bc8-074b28d04c54, "RC_JonathanOnShoulder", "RC_Main", "Dummy_Custom_Anim");
+ProcCharacterDisappearOutOfSight(CHARACTERGUID_S_FTJ_SW_Warrior_SeekerCaptain_1329f018-23e4-4717-9bc8-074b28d04c54, 0, 0, "RC_DF_SeekerCaptain_Left", 1);
+SetCanJoinCombat(CHARACTERGUID_S_FTJ_SW_Warrior_SeekerCaptain_1329f018-23e4-4717-9bc8-074b28d04c54, 0);
+SetCanFight(CHARACTERGUID_S_FTJ_SW_Warrior_SeekerCaptain_1329f018-23e4-4717-9bc8-074b28d04c54, 0);
+
+IF
+StoryEvent(CHARACTERGUID_S_FTJ_SW_Warrior_SeekerCaptain_1329f018-23e4-4717-9bc8-074b28d04c54, "RC_DF_SeekerCaptain_Left")
+THEN
+PROC_RC_DF_GarethAndJonathanSetupNextScene();
+
+PROC
+PROC_RC_DF_GarethAndJonathanSetupNextScene()
+AND
+QueryOnlyOnce("RC_DF_GarethAndJonathanSetupNextScene")
+THEN
+CharacterSetAnimationSetOverride(CHARACTERGUID_S_FTJ_SW_Warrior_SeekerCaptain_1329f018-23e4-4717-9bc8-074b28d04c54, "");
+PROC_StopLoopEffect(CHARACTERGUID_S_FTJ_SW_Warrior_SeekerCaptain_1329f018-23e4-4717-9bc8-074b28d04c54, "RC_JonathanOnShoulder");
+PROC_RC_FL_GarethFarmSetup();
+NOT DB_OneShotPlayerTrigger(TRIGGERGUID_S_RC_FL_GarethFarm_Setup_da4c6510-e2fb-4aa5-b978-bbc8797e6c32);
+ProcTriggerUnregisterForPlayers(TRIGGERGUID_S_RC_FL_GarethFarm_Setup_da4c6510-e2fb-4aa5-b978-bbc8797e6c32);
+NOT DB_OneShotPlayerTrigger(TRIGGERGUID_S_RC_FL_GarethFarm_Setup_2_bfa27265-ddc6-42c3-a6ee-33dbc7ec6e3b);
+ProcTriggerUnregisterForPlayers(TRIGGERGUID_S_RC_FL_GarethFarm_Setup_2_bfa27265-ddc6-42c3-a6ee-33dbc7ec6e3b);
+PROC_RC_OIL_VoidwokenAttackSetup();
+NOT DB_OneShotPlayerTrigger(TRIGGERGUID_S_RC_OIL_VoidwokenAttack_Setup_0aa8f162-e5f8-473d-8955-09ee1bc244d1);
+ProcTriggerUnregisterForPlayers(TRIGGERGUID_S_RC_OIL_VoidwokenAttack_Setup_0aa8f162-e5f8-473d-8955-09ee1bc244d1);
+NOT DB_OneShotPlayerTrigger(TRIGGERGUID_S_RC_OIL_VoidwokenAttack_Setup_2_c9277b74-ee9c-4db6-87b6-f6663726dc51);
+ProcTriggerUnregisterForPlayers(TRIGGERGUID_S_RC_OIL_VoidwokenAttack_Setup_2_c9277b74-ee9c-4db6-87b6-f6663726dc51);
+SetCanJoinCombat(CHARACTERGUID_S_FTJ_SW_Warrior_SeekerCaptain_1329f018-23e4-4717-9bc8-074b28d04c54, 1);
+SetCanFight(CHARACTERGUID_S_FTJ_SW_Warrior_SeekerCaptain_1329f018-23e4-4717-9bc8-074b28d04c54, 1);
+ProcCharacterDisableCrime(CHARACTERGUID_S_FTJ_SW_Warrior_SeekerCaptain_1329f018-23e4-4717-9bc8-074b28d04c54, "ActiveUndead");
+GoalCompleted;
+
+PROC
+PROC_RC_DF_EmergencyJonathanSceneStop()
+AND NOT
+DB_RC_DF_GarethAndJonathanDone(1)
+THEN
+DialogRequestStop(CHARACTERGUID_S_FTJ_SW_Warrior_SeekerCaptain_1329f018-23e4-4717-9bc8-074b28d04c54);
+Proc_StartDialog(1, "RC_DF_AD_GarethJonathanStop", CHARACTERGUID_S_FTJ_SW_Warrior_SeekerCaptain_1329f018-23e4-4717-9bc8-074b28d04c54);
+CharacterMoveTo(CHARACTERGUID_S_FTJ_SW_Warrior_SeekerCaptain_1329f018-23e4-4717-9bc8-074b28d04c54, CHARACTERGUID_S_GLO_GarethFriend_9372d7fb-dc95-4acf-b455-8a36d610e203, 0, "RC_DF_GarethPickupJonathan", 0);
+CharacterSetFightMode(CHARACTERGUID_S_FTJ_SW_Warrior_SeekerCaptain_1329f018-23e4-4717-9bc8-074b28d04c54, 0, 0);
+DB_RC_DF_GarethAndJonathanDone(1);
+NOT DB_OneShotPlayerTrigger(TRIGGERGUID_S_RC_OIL_VoidwokenAttack_Setup_0aa8f162-e5f8-473d-8955-09ee1bc244d1);
+ProcTriggerUnregisterForPlayers(TRIGGERGUID_S_RC_OIL_VoidwokenAttack_Setup_0aa8f162-e5f8-473d-8955-09ee1bc244d1);
+NOT DB_OneShotPlayerTrigger(TRIGGERGUID_S_RC_FL_GarethFarm_Setup_da4c6510-e2fb-4aa5-b978-bbc8797e6c32);
+ProcTriggerUnregisterForPlayers(TRIGGERGUID_S_RC_FL_GarethFarm_Setup_da4c6510-e2fb-4aa5-b978-bbc8797e6c32);
+CharacterSetAnimationSetOverride(CHARACTERGUID_S_FTJ_SW_Warrior_SeekerCaptain_1329f018-23e4-4717-9bc8-074b28d04c54, "");
+PROC_StopLoopEffect(CHARACTERGUID_S_FTJ_SW_Warrior_SeekerCaptain_1329f018-23e4-4717-9bc8-074b28d04c54, "RC_JonathanOnShoulder");
+ProcCharacterEnableAllCrimes(CHARACTERGUID_S_FTJ_SW_Warrior_SeekerCaptain_1329f018-23e4-4717-9bc8-074b28d04c54);
+ProcCharacterDisableCrime(CHARACTERGUID_S_FTJ_SW_Warrior_SeekerCaptain_1329f018-23e4-4717-9bc8-074b28d04c54, "ActiveUndead");
+
+
+EXITSECTION
+ENDEXITSECTION
+
+ParentTargetEdge "ReapersCoast"

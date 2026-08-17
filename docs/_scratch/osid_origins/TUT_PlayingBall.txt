@@ -1,0 +1,186 @@
+Version 1
+SubGoalCombiner SGC_AND
+
+INITSECTION
+ItemToInventory(S_TUT_ChildrenBall_04ba6013-fc72-47be-97b7-87a0d7fa8446, S_TUT_LohseSongBoy1_835a993e-1bf1-4e6f-8922-20dd8b99bca4);
+DB_GiveItemToEventWithClear(S_TUT_ChildrenBall_04ba6013-fc72-47be-97b7-87a0d7fa8446, "TUT_GiveBall");
+DB_HasStoryEvent(S_TUT_ChildrenBall_04ba6013-fc72-47be-97b7-87a0d7fa8446, "TUT_HaveBall");
+PROC_TUT_InitPlayingBall();
+
+KBSECTION
+IF
+TextEventSet("tut_giveball")
+THEN
+ItemToInventory(ITEMGUID_S_TUT_ChildrenBall_04ba6013-fc72-47be-97b7-87a0d7fa8446, S_TUT_LohseSongBoy1_835a993e-1bf1-4e6f-8922-20dd8b99bca4);
+
+IF
+TextEventSet("tut_getball")
+AND
+CharacterGetHostCharacter(_Var1)
+THEN
+ItemToInventory(ITEMGUID_S_TUT_ChildrenBall_04ba6013-fc72-47be-97b7-87a0d7fa8446, _Var1);
+
+PROC
+PROC_TUT_InitPlayingBall()
+AND
+DB_TUT_LowerDeck_Child(_Var1)
+THEN
+CharacterSetReactionPriority(_Var1, "GoHome", 1200);
+
+QRY
+QRY_TUT_LowerDeck_KidHasBall((CHARACTERGUID)_Var1)
+AND
+ItemIsInInventory(ITEMGUID_S_TUT_ChildrenBall_04ba6013-fc72-47be-97b7-87a0d7fa8446, 0)
+AND
+GetDistanceTo(_Var1, ITEMGUID_S_TUT_ChildrenBall_04ba6013-fc72-47be-97b7-87a0d7fa8446, _Var2)
+AND
+_Var2 < 0.3
+THEN
+DB_NOOP(1);
+
+IF
+CharacterCharacterEvent((CHARACTERGUID)_Var1, (CHARACTERGUID)_Var2, "TUT_KickBall")
+AND NOT
+QRY_TUT_LowerDeck_KidHasBall(_Var1)
+THEN
+PROC_TUT_BallMissing();
+
+IF
+CharacterCharacterEvent((CHARACTERGUID)_Var1, (CHARACTERGUID)_Var2, "TUT_KickBall")
+AND
+QRY_TUT_LowerDeck_KidHasBall(_Var1)
+AND
+GetPosition(_Var1, _Var3, _Var4, _Var5)
+THEN
+ObjectSetFlag(_Var1, "TUT_PlayingBall");
+ObjectSetFlag(_Var2, "TUT_PlayingBall");
+GlobalClearFlag("TUT_BallMissing");
+GlobalSetFlag("TUT_StoryBallKickHandling");
+CharacterLookAt(_Var2, _Var1);
+DB_TUT_Kickball(_Var1, _Var2);
+ProcObjectTimer(_Var1, "TUT_KickBall", 4300);
+
+IF
+DialogStarted(_, (INTEGER)_Var2)
+AND
+DB_TUT_Kickball(_Var3, _Var4)
+AND
+DB_DialogNPCs(_Var2, _Var3, _)
+THEN
+PROC_TUT_AbortOngoingKick();
+
+IF
+ItemMoved(ITEMGUID_S_TUT_ChildrenBall_04ba6013-fc72-47be-97b7-87a0d7fa8446)
+AND
+DB_TUT_Kickball(_Var1, _Var2)
+THEN
+PROC_TUT_BallMissing();
+
+PROC
+ProcObjectTimerFinished((CHARACTERGUID)_Var1, "TUT_KickBall")
+AND
+DB_TUT_Kickball(_Var1, _Var2)
+AND
+GetVarFloat3(_Var1, "BallTargetPos", _Var3, _Var4, _Var5)
+THEN
+NOT DB_TUT_Kickball(_Var1, _Var2);
+DB_TUT_BallKicked(_Var1, _Var2);
+PlaySound(ITEMGUID_S_TUT_ChildrenBall_04ba6013-fc72-47be-97b7-87a0d7fa8446, "TUT_Scripted_Kids_Ballplay_Kick");
+ItemMoveToPosition(ITEMGUID_S_TUT_ChildrenBall_04ba6013-fc72-47be-97b7-87a0d7fa8446, _Var3, _Var4, _Var5, 4.5, -1, "", 0);
+ObjectClearFlag(_Var1, "TUT_PlayingBall");
+
+PROC
+ProcObjectTimerFinished((CHARACTERGUID)_Var1, "TUT_KickBall")
+AND
+DB_TUT_Kickball(_Var1, _Var2)
+AND
+Random(4, _Var3)
+AND
+_Var3 == 0
+THEN
+Proc_StartDialog(1, "TUT_AD_LohseKidKickBall", _Var1);
+
+IF
+ItemMoved(ITEMGUID_S_TUT_ChildrenBall_04ba6013-fc72-47be-97b7-87a0d7fa8446)
+AND
+DB_TUT_BallKicked(_Var1, _Var2)
+THEN
+NOT DB_TUT_BallKicked(_Var1, _Var2);
+GlobalClearFlag("TUT_StoryBallKickHandling");
+PROC_TUT_CheckBallCaught(_Var2);
+
+PROC
+PROC_TUT_CheckBallCaught((CHARACTERGUID)_Var1)
+AND
+ItemIsInInventory(ITEMGUID_S_TUT_ChildrenBall_04ba6013-fc72-47be-97b7-87a0d7fa8446, 0)
+AND
+GetDistanceTo(ITEMGUID_S_TUT_ChildrenBall_04ba6013-fc72-47be-97b7-87a0d7fa8446, _Var1, _Var2)
+AND
+_Var2 < 0.5
+THEN
+PlaySound(ITEMGUID_S_TUT_ChildrenBall_04ba6013-fc72-47be-97b7-87a0d7fa8446, "TUT_Scripted_Kids_Ballplay_Catch");
+
+IF
+ItemAddedToCharacter(ITEMGUID_S_TUT_ChildrenBall_04ba6013-fc72-47be-97b7-87a0d7fa8446, (CHARACTERGUID)_Var1)
+AND
+DB_IsPlayer(_Var1)
+THEN
+PROC_TUT_BallMissing();
+
+PROC
+PROC_TUT_AbortOngoingKick()
+AND
+DB_TUT_Kickball(_Var1, _Var2)
+THEN
+ObjectClearFlag(_Var1, "TUT_PlayingBall");
+ObjectClearFlag(_Var2, "TUT_PlayingBall");
+ProcObjectTimerCancel(_Var1, "TUT_KickBall");
+NOT DB_TUT_Kickball(_Var1, _Var2);
+
+PROC
+PROC_TUT_AbortOngoingKick()
+AND
+DB_TUT_BallKicked(_Var1, _Var2)
+THEN
+NOT DB_TUT_BallKicked(_Var1, _Var2);
+
+PROC
+PROC_TUT_AbortOngoingKick()
+THEN
+GlobalClearFlag("TUT_StoryBallKickHandling");
+
+PROC
+PROC_TUT_BallMissing()
+THEN
+PROC_TUT_AbortOngoingKick();
+GlobalSetFlag("TUT_BallMissing");
+
+IF
+GlobalFlagSet("TUT_LowerDeck_WindegoHasCastSpell")
+THEN
+GlobalSetFlag("TUT_StoryBallKickHandling");
+ItemClearOwner(ITEMGUID_S_TUT_ChildrenBall_04ba6013-fc72-47be-97b7-87a0d7fa8446);
+GoalCompleted;
+
+IF
+GlobalFlagCleared("TUT_LowerDeck_WindegoHasCastSpell")
+THEN
+GlobalClearFlag("TUT_StoryBallKickHandling");
+
+PROC
+ProcRegionEnded("TUT_Tutorial_A")
+AND
+DB_TUT_LowerDeck_Child(_Var1)
+THEN
+CharacterSetReactionPriority(_Var1, "GoHome", 0);
+
+PROC
+ProcRegionEnded("TUT_Tutorial_A")
+THEN
+GoalCompleted;
+
+
+EXITSECTION
+ENDEXITSECTION
+
+ParentTargetEdge "TUT_LowerDeck"

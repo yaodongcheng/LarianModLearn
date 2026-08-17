@@ -1,0 +1,383 @@
+Version 1
+SubGoalCombiner SGC_AND
+
+INITSECTION
+DB_KillCounter_Internal(RC_FTJ_MagisterSlaver_001_1f5664fc-db5e-4428-a3ed-8719e5602d4a, "FTJ_Slavers");
+DB_KillCounter_Internal(RC_FTJ_MagisterSlaver_002_3dc0a0f4-07b6-4066-a99c-1706e33c98e3, "FTJ_Slavers");
+DB_KillCounter("FTJ_Slavers", 2);
+DB_SceneManager(CHARACTERGUID_S_FTJ_MagisterSlaver_001_1f5664fc-db5e-4428-a3ed-8719e5602d4a, "FTJ_Slavers");
+DB_SceneManager(CHARACTERGUID_S_FTJ_MagisterSlaver_002_3dc0a0f4-07b6-4066-a99c-1706e33c98e3, "FTJ_Slavers");
+DB_SceneManager(CHARACTERGUID_S_FTJ_CapturedChild_53d4aa5c-dd91-4e12-9ca8-d66879cc6ffb, "FTJ_Slavers");
+ProcCharacterEnableCrime(CHARACTERGUID_S_FTJ_MagisterSlaver_001_1f5664fc-db5e-4428-a3ed-8719e5602d4a, "ActiveUndead");
+ProcCharacterEnableCrime(CHARACTERGUID_S_FTJ_MagisterSlaver_002_3dc0a0f4-07b6-4066-a99c-1706e33c98e3, "ActiveUndead");
+ProcCharacterEnableCrime(CHARACTERGUID_S_FTJ_CapturedChild_53d4aa5c-dd91-4e12-9ca8-d66879cc6ffb, "ActiveUndead");
+DB_SceneTriggerManager("FTJ_Slavers", S_RC_DW_SceneTrigger_Slavers_906108724-e72a-4eaf-8b48-da6cfcb9527d, 0);
+CharacterSetCanTrade(CHARACTERGUID_S_FTJ_MagisterSlaver_001_1f5664fc-db5e-4428-a3ed-8719e5602d4a, 0);
+CharacterSetCanTrade(CHARACTERGUID_S_FTJ_MagisterSlaver_002_3dc0a0f4-07b6-4066-a99c-1706e33c98e3, 0);
+ProcTriggerRegisterForPlayers(RC_FTJ_SlaverEventStart_Box_b9c19d65-8726-4609-8951-4fa93f9d0d30);
+DB_OneShotPlayerTrigger(TRIGGERGUID_S_FTJ_SW_PlayerSwampArrived_9e3ed73e-ae5d-416e-b020-bf50dc55c462);
+DB_SneakTriggerSpotter(TRIGGERGUID_S_FTJ_SlaverMagistersAttack_5b8a39f0-f344-4c16-ab50-b46fcea60c73, CHARACTERGUID_S_FTJ_MagisterSlaver_001_1f5664fc-db5e-4428-a3ed-8719e5602d4a);
+DB_SneakTriggerSpotter(TRIGGERGUID_S_FTJ_SlaverMagistersAttack_5b8a39f0-f344-4c16-ab50-b46fcea60c73, CHARACTERGUID_S_FTJ_MagisterSlaver_002_3dc0a0f4-07b6-4066-a99c-1706e33c98e3);
+
+KBSECTION
+PROC
+Proc_SceneInterrupted((GUIDSTRING)_Var1, (CHARACTERGUID)_Var2, "FTJ_Slavers", _)
+AND
+IsSpeakerReserved(_Var1, 0)
+AND NOT
+DB_IsPlayer(_Var2)
+AND
+DB_IsPlayer(_Var4)
+THEN
+CharacterSetRelationFactionToIndivFaction("RC_FTJ_SlaverMagister", _Var4, 0);
+CharacterSetRelationIndivFactionToFaction(_Var4, "RC_FTJ_SlaverMagister", 0);
+SetVarFixedString(CHARACTERGUID_S_FTJ_CapturedChild_53d4aa5c-dd91-4e12-9ca8-d66879cc6ffb, "currentState", "State_WaitAtBoat");
+
+PROC
+Proc_SceneInterrupted((GUIDSTRING)_Var1, (CHARACTERGUID)_Var2, "FTJ_Slavers", _)
+AND
+IsSpeakerReserved(_Var1, 0)
+AND
+DB_IsPlayer(_Var2)
+THEN
+SetStoryEvent(_Var2, "FTJ_StartChildEvent");
+SetVarFixedString(CHARACTERGUID_S_FTJ_CapturedChild_53d4aa5c-dd91-4e12-9ca8-d66879cc6ffb, "currentState", "State_WaitAtBoat");
+
+IF
+StoryEvent((CHARACTERGUID)_Var1, "FTJ_StartChildEvent")
+AND NOT
+QRY_FTJ_MagisterSlaversTalk(_Var1)
+AND
+DB_IsPlayer(_Var1)
+THEN
+CharacterSetRelationFactionToIndivFaction("RC_FTJ_SlaverMagister", _Var1, 0);
+CharacterSetRelationIndivFactionToFaction(_Var1, "RC_FTJ_SlaverMagister", 0);
+
+IF
+StoryEvent((CHARACTERGUID)_Var1, "FTJ_StartChildEvent")
+AND
+QRY_FTJ_MagisterSlaversTalk(_Var1)
+THEN
+CharacterLookAt(RC_FTJ_MagisterSlaver_001_1f5664fc-db5e-4428-a3ed-8719e5602d4a, _Var1, 0);
+CharacterLookAt(RC_FTJ_MagisterSlaver_002_3dc0a0f4-07b6-4066-a99c-1706e33c98e3, _Var1, 0);
+Proc_StartDialog(0, "FTJ_Kidnappers", RC_FTJ_MagisterSlaver_001_1f5664fc-db5e-4428-a3ed-8719e5602d4a, _Var1, RC_FTJ_MagisterSlaver_002_3dc0a0f4-07b6-4066-a99c-1706e33c98e3, CHARACTERGUID_S_FTJ_CapturedChild_53d4aa5c-dd91-4e12-9ca8-d66879cc6ffb);
+DB_FTJ_SlaverChildEventOneShot(1);
+
+QRY
+QRY_FTJ_MagisterSlaversTalk((CHARACTERGUID)_Var1)
+AND
+CharacterIsInCombat(_Var1, 0)
+AND
+CharacterIsDead(RC_FTJ_MagisterSlaver_001_1f5664fc-db5e-4428-a3ed-8719e5602d4a, 0)
+AND
+CharacterIsDead(RC_FTJ_MagisterSlaver_002_3dc0a0f4-07b6-4066-a99c-1706e33c98e3, 0)
+AND
+CharacterIsDead(RC_FTJ_CapturedChild_53d4aa5c-dd91-4e12-9ca8-d66879cc6ffb, 0)
+AND NOT
+DB_FTJ_SlaverChildEventOneShot(1)
+THEN
+DB_NOOP(1);
+
+IF
+TextEventSet("Slavers")
+THEN
+GlobalSetFlag("FTJ_SlaverMagisterLeave");
+
+IF
+DialogEnded("FTJ_Kidnappers", _)
+AND
+DB_KillCounter_Internal(_Var2, "FTJ_Slavers")
+AND
+GlobalGetFlag("FTJ_SlaverMagisterLeave", 0)
+THEN
+CharacterSetRelationFactionToFaction("RC_FTJ_SlaverMagister", "Hero", 0);
+CharacterSetRelationFactionToFaction("Hero", "RC_FTJ_SlaverMagister", 0);
+
+IF
+DialogEnded("FTJ_Kidnappers", _)
+AND
+DB_KillCounter_Internal(_Var2, "FTJ_Slavers")
+AND
+GlobalGetFlag("FTJ_SlaverMagisterLeave", 1)
+THEN
+SetStoryEvent(_Var2, "GEN_CharacterDisableAllCrimesBeforeDisappear");
+Proc_SceneOver("FTJ_Slavers");
+ProcCharacterMoveTo(_Var2, S_FTJ_StairsToPrisonFloor_290b85aa-0be9-8096-4434-2facda63dbc5, 1, "GEN_GoOffStage");
+TimerLaunch("FTJ_DelaySlaverKidDialog", 1000);
+
+IF
+TimerFinished("FTJ_DelaySlaverKidDialog")
+THEN
+ReactOnKillCounter("FTJ_Slavers");
+
+PROC
+ReactOnKillCounter("FTJ_Slavers")
+THEN
+Proc_FTJ_ChildOneSaved();
+
+PROC
+Proc_FTJ_ChildOneSaved()
+THEN
+GlobalSetFlag("FTJ_DistressedChildSaved");
+DB_Dialogs(RC_FTJ_CapturedChild_53d4aa5c-dd91-4e12-9ca8-d66879cc6ffb, "FTJ_KidnappedChild");
+Proc_SceneOver("FTJ_Slavers");
+
+PROC
+Proc_FTJ_ChildOneSaved()
+AND
+DB_IsPlayer(_Var1)
+AND
+CharacterIsControlled(_Var1, 1)
+AND
+CharacterCanSee(RC_FTJ_CapturedChild_53d4aa5c-dd91-4e12-9ca8-d66879cc6ffb, _Var1, 1)
+AND
+QRY_SpeakerIsAvailable(_Var1)
+AND NOT
+DB_FTJ_ChildSavedOneShot(1)
+THEN
+Proc_StartDialog(0, "FTJ_KidnappedChild", RC_FTJ_CapturedChild_53d4aa5c-dd91-4e12-9ca8-d66879cc6ffb, _Var1);
+DB_FTJ_ChildSavedOneShot(1);
+
+IF
+DialogStarted("FTJ_KidnappedChild", (INTEGER)_Var1)
+AND
+DialogGetInvolvedPlayer(_Var1, 1, _Var2)
+AND
+QueryOnlyOnce("FTJ_ChildSavedDialog")
+THEN
+SetVarFixedString(CHARACTERGUID_S_FTJ_CapturedChild_53d4aa5c-dd91-4e12-9ca8-d66879cc6ffb, "currentState", "State_WaitAtBoat");
+ObjectSetFlag(_Var2, "QuestUpdate_FTJ_Child_StartChildSaved");
+GlobalSetFlag("FTJ_DistressedChildSaved");
+
+IF
+CharacterEnteredTrigger((CHARACTERGUID)_Var1, RC_FTJ_SlaverEventStart_Box_b9c19d65-8726-4609-8951-4fa93f9d0d30)
+AND
+DB_IsPlayer(_Var1)
+THEN
+DB_FTJ_RC_FTJ_SlaverEventStart(1);
+ProcTriggerUnregisterForPlayers(RC_FTJ_SlaverEventStart_Box_b9c19d65-8726-4609-8951-4fa93f9d0d30);
+
+IF
+CharacterLeftTrigger(_, TRIGGERGUID_S_FTJ_SUB_PrisonGroundFloor_6c759383-8420-4354-ac44-b4fa5b2f7bb5)
+AND
+DB_FTJ_RC_FTJ_SlaverEventStart(1)
+AND
+GlobalGetFlag("FTJ_DistressedChildSaved", 0)
+AND
+QRY_AnyRegionActive()
+AND
+CharacterIsDead(RC_FTJ_MagisterSlaver_001_1f5664fc-db5e-4428-a3ed-8719e5602d4a, 0)
+AND
+CharacterIsDead(RC_FTJ_MagisterSlaver_002_3dc0a0f4-07b6-4066-a99c-1706e33c98e3, 0)
+AND
+GetClosestPlayer(CHARACTERGUID_S_FTJ_CapturedChild_53d4aa5c-dd91-4e12-9ca8-d66879cc6ffb, _Var2, _Var3)
+AND
+CharacterCanSee(_Var2, CHARACTERGUID_S_FTJ_CapturedChild_53d4aa5c-dd91-4e12-9ca8-d66879cc6ffb, 0)
+AND
+_Var3 > 40
+THEN
+SetOnStage(RC_FTJ_CapturedChild_53d4aa5c-dd91-4e12-9ca8-d66879cc6ffb, 0);
+SetOnStage(RC_FTJ_MagisterSlaver_001_1f5664fc-db5e-4428-a3ed-8719e5602d4a, 0);
+SetOnStage(RC_FTJ_MagisterSlaver_002_3dc0a0f4-07b6-4066-a99c-1706e33c98e3, 0);
+DB_FTJ_SlaversLeftWithChild(1);
+Proc_SceneOver("FTJ_Slavers");
+
+IF
+CharacterLeftTrigger(_, TRIGGERGUID_S_FTJ_SUB_PrisonGroundFloor_6c759383-8420-4354-ac44-b4fa5b2f7bb5)
+AND
+DB_FTJ_RC_FTJ_SlaverEventStart(1)
+AND
+GlobalGetFlag("FTJ_DistressedChildSaved", 0)
+AND
+QRY_AnyRegionActive()
+AND
+CharacterIsDead(RC_FTJ_MagisterSlaver_001_1f5664fc-db5e-4428-a3ed-8719e5602d4a, 0)
+AND
+CharacterIsDead(RC_FTJ_MagisterSlaver_002_3dc0a0f4-07b6-4066-a99c-1706e33c98e3, 0)
+AND
+GetClosestPlayer(CHARACTERGUID_S_FTJ_CapturedChild_53d4aa5c-dd91-4e12-9ca8-d66879cc6ffb, _Var2, _Var3)
+AND
+CharacterCanSee(_Var2, CHARACTERGUID_S_FTJ_CapturedChild_53d4aa5c-dd91-4e12-9ca8-d66879cc6ffb, 0)
+AND
+GlobalGetFlag("FTJ_RaftToDunesUsed", 0)
+AND
+_Var3 > 40
+THEN
+SetOnStage(RC_FTJ_RaftToDunes_4fdd3e34-1988-4933-9413-9be7f063c9e5, 0);
+
+IF
+CharacterEnteredTrigger((CHARACTERGUID)_Var1, S_RC_FTJ_EscapeRaftVB_Poly_5365bd9a-b315-44fc-8c80-caa31b362a0a)
+AND
+QRY_SpeakerIsAvailable(_Var1)
+AND NOT
+DB_FTJ_SlaversLeftWithChild(1)
+AND
+GlobalGetFlag("FTJ_RaftToDunesUsed", 0)
+AND
+GlobalGetFlag("FTJ_SW_HanLeaveMagisters", 0)
+AND
+GlobalGetFlag("FTJ_RaftToDunesDestroyed", 0)
+AND
+QueryOnlyOnce("FTJ_EscapeRaftVB")
+THEN
+StartVoiceBark("FTJ_VB_EscapeRaft", _Var1);
+
+IF
+CharacterUsedItem((CHARACTERGUID)_Var1, RC_FTJ_RaftToDunes_4fdd3e34-1988-4933-9413-9be7f063c9e5)
+AND
+QRY_SpeakerIsAvailable(RC_FTJ_RaftToDunes_4fdd3e34-1988-4933-9413-9be7f063c9e5)
+THEN
+Proc_StartDialog(0, "FTJ_RaftToDunes", RC_FTJ_RaftToDunes_4fdd3e34-1988-4933-9413-9be7f063c9e5, _Var1);
+
+IF
+CharacterUsedItem((CHARACTERGUID)_Var1, RC_FTJ_RaftToDunes_4fdd3e34-1988-4933-9413-9be7f063c9e5)
+AND
+CharacterIsInCombat(_Var1, 1)
+THEN
+Proc_StartDialog(1, "GLO_AD_CannotUseNow", _Var1);
+
+IF
+ObjectFlagSet("FTJ_UseRaft", (CHARACTERGUID)_Var1, _)
+THEN
+DB_RC_FTJ_UsedRaft(_Var1);
+
+IF
+DialogEnded("FTJ_RaftToDunes", _)
+AND
+DB_RC_FTJ_UsedRaft(_Var2)
+THEN
+GlobalSetFlag("FTJ_RaftToDunesUsed");
+Proc_RC_FTJ_ClosePlayersUseRaft(_Var2);
+ItemSetCanInteract(RC_FTJ_RaftToDunes_4fdd3e34-1988-4933-9413-9be7f063c9e5, 0);
+
+PROC
+Proc_FTJ_CheckForChildInRaft((CHARACTERGUID)_Var1)
+AND
+GetDistanceTo(S_FTJ_CapturedChild_53d4aa5c-dd91-4e12-9ca8-d66879cc6ffb, _Var1, _Var2)
+AND
+_Var2 < 14
+AND
+CharacterIsDead(CHARACTERGUID_S_FTJ_CapturedChild_53d4aa5c-dd91-4e12-9ca8-d66879cc6ffb, 0)
+AND
+GlobalGetFlag("FTJ_DistressedChildSaved", 1)
+AND
+QueryOnlyOnce("Proc_FTJ_CheckForChildInRaft")
+THEN
+DialogRequestStop(CHARACTERGUID_S_FTJ_CapturedChild_53d4aa5c-dd91-4e12-9ca8-d66879cc6ffb);
+TeleportTo(CHARACTERGUID_S_FTJ_CapturedChild_53d4aa5c-dd91-4e12-9ca8-d66879cc6ffb, S_FTJ_CapturedChildOffRaft_Point_dc5ea4df-aa90-4f4b-850b-75c73104fafa, "RC_FTJ_TeleportToRaftExit", 1);
+ObjectSetFlag(CHARACTERGUID_S_FTJ_CapturedChild_53d4aa5c-dd91-4e12-9ca8-d66879cc6ffb, "FTJ_SW_ReachedSwamp", 0);
+ObjectSetFlag(_Var1, "QuestUpdate_FTJ_Escape_KidnappedKid", 0);
+
+PROC
+Proc_RC_FTJ_ClosePlayersUseRaft((CHARACTERGUID)_Var1)
+AND
+DB_IsPlayer(_Var2)
+AND
+GetDistanceTo(_Var2, ITEMGUID_S_FTJ_RaftToDunes_4fdd3e34-1988-4933-9413-9be7f063c9e5, _Var3)
+AND
+_Var3 < 10
+AND
+CharacterIsInPartyWith(_Var2, _Var1, 1)
+THEN
+FadeToBlack(_Var2, 0.8, 0, "FTJ_RaftToSwamps");
+DB_FTJ_RaftToSwampsTeleporting(_Var2);
+ProcObjectTimer(_Var1, "FTJ_DoUseBoatVB", 2000);
+
+IF
+FadeOutDone(_, "FTJ_RaftToSwamps")
+AND
+DB_FTJ_RaftToSwampsTeleporting(_Var2)
+THEN
+Proc_FTJ_CheckForChildInRaft(_Var2);
+FadeToBlack(_Var2, 0.7, 1, "FTJ_RaftToSwamps");
+NOT DB_FTJ_RaftToSwampsTeleporting(_Var2);
+TeleportTo(_Var2, RC_FTJ_RaftEscapeDropOff_Point_d3587a39-76d8-40f1-ac4a-8d86c4b85638, "RC_FTJ_TeleportToRaftExit", 1);
+
+IF
+FadeOutDone(_, "FTJ_RaftToSwamps")
+THEN
+TeleportTo(RC_FTJ_RaftToDunes_4fdd3e34-1988-4933-9413-9be7f063c9e5, RC_FTJ_RaftBeach_Point_cddba465-f616-40e9-9804-0e37af631606);
+
+PROC
+Proc_RC_FTJ_ClosePlayersUseRaft((CHARACTERGUID)_Var1)
+THEN
+ItemSetCanInteract(ITEMGUID_S_FTJ_RaftToDunes_4fdd3e34-1988-4933-9413-9be7f063c9e5, 0);
+
+IF
+StoryEvent((CHARACTERGUID)_Var1, "RC_FTJ_TeleportToRaftExit")
+AND
+GetDistanceTo(_Var1, CHARACTERGUID_S_FTJ_CapturedChild_53d4aa5c-dd91-4e12-9ca8-d66879cc6ffb, _Var2)
+AND
+_Var2 < 14
+THEN
+ObjectSetFlag(_Var1, "FTJ_SW_TookBoatWithHan");
+
+IF
+StoryEvent((CHARACTERGUID)_Var1, "FTJ_ChildStartShelterDialog")
+THEN
+Proc_StartDialog(0, "FTJ_ChildTellPlayerOfShelter", S_FTJ_CapturedChild_53d4aa5c-dd91-4e12-9ca8-d66879cc6ffb, _Var1);
+
+PROC
+ProcOneShotTriggerEntered(_, TRIGGERGUID_S_FTJ_SW_PlayerSwampArrived_9e3ed73e-ae5d-416e-b020-bf50dc55c462)
+THEN
+ObjectSetFlag(CHARACTERGUID_S_FTJ_CapturedChild_53d4aa5c-dd91-4e12-9ca8-d66879cc6ffb, "FTJ_SW_PlayersEnteredSwamp");
+
+IF
+GlobalFlagSet("FTJ_SW_HanLeaveMagisters")
+THEN
+GlobalSetFlag("FTJ_DistressedChildSaved");
+DB_OnlyOnce("FTJ_ChildSavedDialog");
+DB_Dialogs(RC_FTJ_CapturedChild_53d4aa5c-dd91-4e12-9ca8-d66879cc6ffb, "FTJ_KidnappedChild");
+Proc_SceneOver("FTJ_Slavers");
+
+IF
+GlobalFlagSet("FTJ_SW_HanLeaveMagisters")
+AND
+GlobalGetFlag("FTJ_RaftToDunesUsed", 0)
+THEN
+SetOnStage(CHARACTERGUID_S_FTJ_MagisterSlaver_001_1f5664fc-db5e-4428-a3ed-8719e5602d4a, 0);
+SetOnStage(CHARACTERGUID_S_FTJ_MagisterSlaver_002_3dc0a0f4-07b6-4066-a99c-1706e33c98e3, 0);
+SetOnStage(RC_FTJ_RaftToDunes_4fdd3e34-1988-4933-9413-9be7f063c9e5, 0);
+
+IF
+DB_CombatCharacters(_Var1, _)
+AND
+DB_KillCounter_Internal(_Var1, "FTJ_Slavers")
+AND
+GetVarFixedString(CHARACTERGUID_S_FTJ_CapturedChild_53d4aa5c-dd91-4e12-9ca8-d66879cc6ffb, "currentState", "State_NotSaved")
+THEN
+CharacterMoveTo(CHARACTERGUID_S_FTJ_CapturedChild_53d4aa5c-dd91-4e12-9ca8-d66879cc6ffb, TRIGGERGUID_S_FTJ_HanWatchFight_e2df71db-b306-4acb-8c8d-2fb05cfdbe7a, 1, "FTJ_ArrivedWatchFightSlavers", 0);
+
+IF
+StoryEvent(CHARACTERGUID_S_FTJ_CapturedChild_53d4aa5c-dd91-4e12-9ca8-d66879cc6ffb, "FTJ_ArrivedWatchFightSlavers")
+THEN
+CharacterLookFromTrigger(CHARACTERGUID_S_FTJ_CapturedChild_53d4aa5c-dd91-4e12-9ca8-d66879cc6ffb, TRIGGERGUID_S_FTJ_HanWatchFight_e2df71db-b306-4acb-8c8d-2fb05cfdbe7a, 1);
+
+PROC
+ProcCharInTriggerSpotted((CHARACTERGUID)_Var1, TRIGGERGUID_S_FTJ_SlaverMagistersAttack_5b8a39f0-f344-4c16-ab50-b46fcea60c73)
+AND
+DB_KillCounter_Internal(_Var2, "FTJ_Slavers")
+AND
+GlobalGetFlag("FTJ_SlaverMagisterLeave", 0)
+THEN
+DialogRequestStop(_Var2);
+ProcSetRelationToPlayers(_Var2, 0);
+
+IF
+ItemDestroyed(ITEMGUID_S_FTJ_RaftToDunes_4fdd3e34-1988-4933-9413-9be7f063c9e5)
+THEN
+GlobalSetFlag("FTJ_RaftToDunesDestroyed");
+
+IF
+DialogEnded("FTJ_KidnappedChild", _)
+AND
+ObjectGetFlag(CHARACTERGUID_S_FTJ_CapturedChild_53d4aa5c-dd91-4e12-9ca8-d66879cc6ffb, "FTJ_RunOffBrokenBoat", 1)
+THEN
+ObjectClearFlag(CHARACTERGUID_S_FTJ_CapturedChild_53d4aa5c-dd91-4e12-9ca8-d66879cc6ffb, "FTJ_RunOffBrokenBoat", 0);
+ProcCharacterDisappearOutOfSight(CHARACTERGUID_S_FTJ_CapturedChild_53d4aa5c-dd91-4e12-9ca8-d66879cc6ffb, 90, 1, "", 1);
+
+
+EXITSECTION
+ENDEXITSECTION
+
+ParentTargetEdge "FortJoy"

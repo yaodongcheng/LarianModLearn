@@ -1,0 +1,254 @@
+Version 1
+SubGoalCombiner SGC_AND
+
+INITSECTION
+DB_RC_TarquinDialog("RC_GY_Necromancer");
+DB_RC_TarquinDialog("RC_LV_Tarquin");
+DB_RC_GY_NecromancerDynamicEvent(TRIGGERGUID_S_RC_GY_NecromancerEvent1_20a3b413-f96d-41bf-9b12-b05886a78c35, TRIGGERGUID_S_RC_GY_NecromancerAppear1_93f63b10-7a2e-4610-b09f-10e7cc134047, TRIGGERGUID_S_RC_GY_NecromancerWander1_4eb6d143-fd94-46d2-b42e-9e26e7bb914a);
+DB_RC_GY_NecromancerDynamicEvent(TRIGGERGUID_S_RC_GY_NecromancerEvent2_4ddc9050-2784-45b6-8c00-ab038d8bf2fa, TRIGGERGUID_S_RC_GY_NecromancerAppear2_c0be0314-63db-444a-8234-2ec05e2a13a8, TRIGGERGUID_S_RC_GY_NecromancerWander2_99fe8138-9628-4646-ab0a-9d7f214993ea);
+DB_RC_GY_NecromancerDynamicEvent(TRIGGERGUID_S_RC_GY_NecromancerEvent3_84236908-da29-4763-89be-dd18494be6e6, TRIGGERGUID_S_RC_GY_NecromancerAppear3_2c4e3855-25d1-440a-a52a-7aff5cfae253, TRIGGERGUID_S_RC_GY_NecromancerWander3_a6221e6e-fe80-4bc7-8014-ba7c6fbb5438);
+DB_HasStoryEvent(ITEMGUID_S_RC_GY_Godslayer_Shard_9cbd4e21-7ae7-4c00-a970-4533dbec90c5, "RC_GY_Godslayer_HasShard");
+DB_HasStoryEvent(ITEMGUID_S_RC_GY_Godslayer_Shaft_d49ff3e6-cd11-4ea2-801a-c9057e14a7c3, "RC_GY_Godslayer_HasShaft");
+DB_GiveItemToEvent(ITEMGUID_S_RC_GY_Godslayer_Shard_9cbd4e21-7ae7-4c00-a970-4533dbec90c5, "RC_GY_Godslayer_GiveShard");
+DB_GiveItemToEvent(ITEMGUID_S_RC_GY_Godslayer_Shaft_d49ff3e6-cd11-4ea2-801a-c9057e14a7c3, "RC_GY_Godslayer_GiveShaft");
+DB_Dialogs(ITEMGUID_S_RC_GY_Godslayer_Shaft_d49ff3e6-cd11-4ea2-801a-c9057e14a7c3, "RC_GY_GodlayerShaft");
+DB_Dialogs(ITEMGUID_S_RC_GY_Godslayer_Shard_9cbd4e21-7ae7-4c00-a970-4533dbec90c5, "RC_GY_GodlayerShard");
+DB_RC_Godslayer_Parts(ITEMGUID_S_RC_GY_Godslayer_Shaft_d49ff3e6-cd11-4ea2-801a-c9057e14a7c3, "RC_GY_GodlayerShaft", 0);
+DB_RC_Godslayer_Parts(ITEMGUID_S_RC_GY_Godslayer_Shard_9cbd4e21-7ae7-4c00-a970-4533dbec90c5, "RC_GY_GodlayerShard", 0);
+CharacterSetRelationIndivFactionToIndivFaction(CHARACTERGUID_S_GLO_Tarquin_a3d0cdcc-d0b0-464d-9ad7-43b38baed620, CHARACTERGUID_S_RC_GY_RykersBodyguard_Gate_a4d2b334-2a9e-482b-84f3-98487f7f21d4, 50);
+CharacterSetRelationIndivFactionToIndivFaction(CHARACTERGUID_S_RC_GY_RykersBodyguard_Gate_a4d2b334-2a9e-482b-84f3-98487f7f21d4, CHARACTERGUID_S_GLO_Tarquin_a3d0cdcc-d0b0-464d-9ad7-43b38baed620, 50);
+Proc_JDF_CreateDependency("RC_GY_Godslayer", "ToldShaftMissing", "FoundShaft");
+Proc_JDF_CreateDependency("RC_GY_Godslayer", "ToldShaftMissing", "FoundRuins");
+Proc_JDF_CreateDependency("RC_GY_Godslayer", "ToldShaftMissing", "HaveBothParts");
+
+KBSECTION
+IF
+TextEventSet("godslayer")
+AND
+CharacterGetHostCharacter(_Var1)
+THEN
+Proc_RC_GY_Godslayer_DebugFinish(_Var1);
+
+PROC
+Proc_RC_GY_Godslayer_DebugFinish((CHARACTERGUID)_Var1)
+THEN
+PartySetFlag(_Var1, "QuestUpdate_RC_GY_Godslayer_Start");
+ObjectSetFlag(CHARACTERGUID_S_GLO_Tarquin_a3d0cdcc-d0b0-464d-9ad7-43b38baed620, "RC_GY_Godslayer_GiveShard");
+ObjectSetFlag(CHARACTERGUID_S_GLO_Tarquin_a3d0cdcc-d0b0-464d-9ad7-43b38baed620, "RC_GY_Godslayer_GiveShaft");
+PartySetFlag(_Var1, "QuestUpdate_RC_GY_Godslayer_GaveParts");
+
+IF
+DialogStarted((STRING)_Var1, (INTEGER)_Var2)
+AND
+DB_RC_TarquinDialog(_Var1)
+THEN
+DB_GLO_AllDialogObjectFlagsShared(_Var2);
+
+IF
+DB_RC_GY_NecromancerDynamicEvent(_Var1, _, _)
+THEN
+DB_OneShotPlayerTrigger(_Var1);
+
+IF
+DialogStarted((STRING)_Var1, (INTEGER)_Var2)
+AND
+DB_RC_Godslayer_Parts(_Var3, _Var1, 0)
+THEN
+NOT DB_RC_Godslayer_Parts(_Var3, _Var1, 0);
+DB_RC_Godslayer_Parts(_Var3, _Var1, 1);
+
+IF
+ItemAddedToCharacter((ITEMGUID)_Var1, (CHARACTERGUID)_Var2)
+AND
+DB_IsPlayer(_Var2)
+AND
+DB_RC_Godslayer_Parts(_Var1, _Var3, 0)
+THEN
+Proc_StartDialog(0, _Var3, _Var1, _Var2);
+
+IF
+ItemAddedToContainer((ITEMGUID)_Var1, (ITEMGUID)_Var2)
+AND
+DB_RC_Godslayer_Parts(_Var1, _, _)
+THEN
+SetHasDialog(_Var1, 0);
+
+IF
+ItemRemovedFromContainer((ITEMGUID)_Var1, (ITEMGUID)_Var2)
+AND
+DB_RC_Godslayer_Parts(_Var1, _, _)
+THEN
+SetHasDialog(_Var1, 1);
+
+IF
+CharacterEnteredTrigger((CHARACTERGUID)_Var1, TRIGGERGUID_S_RC_Archive_Area_4ddfdb27-9559-459e-93e9-4a28a789cd39)
+THEN
+PartySetFlag(_Var1, "JDF_RC_GY_Godslayer_FoundRuins");
+
+IF
+CharacterEnteredTrigger((CHARACTERGUID)_Var1, TRIGGERGUID_S_RC_GY_VengefulSpirits_Treasury_19cc53ef-72c1-4d01-b8af-a60cfe6af7ed)
+THEN
+PartySetFlag(_Var1, "QuestUpdate_RC_GY_Godslayer_FoundTomb");
+
+IF
+ItemAddedToCharacter(ITEMGUID_S_RC_GY_Godslayer_Shard_9cbd4e21-7ae7-4c00-a970-4533dbec90c5, (CHARACTERGUID)_Var1)
+AND
+DB_IsPlayer(_Var1)
+AND
+PartyGetFlag(_Var1, "QuestUpdate_RC_GY_Godslayer_FoundShard", 0)
+THEN
+StartVoiceBark("RC_GY_VB_Godslayer_ShardPickup", _Var1);
+PartySetFlag(_Var1, "QuestUpdate_RC_GY_Godslayer_FoundShard");
+
+IF
+ItemAddedToCharacter(ITEMGUID_S_RC_GY_Godslayer_Shaft_d49ff3e6-cd11-4ea2-801a-c9057e14a7c3, (CHARACTERGUID)_Var1)
+AND
+DB_IsPlayer(_Var1)
+AND
+PartyGetFlag(_Var1, "JDF_RC_GY_Godslayer_FoundShaft", 0)
+THEN
+StartVoiceBark("RC_GY_VB_Godslayer_ShaftPickup", _Var1);
+PartySetFlag(_Var1, "JDF_RC_GY_Godslayer_FoundShaft");
+
+IF
+ItemAddedToCharacter((ITEMGUID)_Var1, (CHARACTERGUID)_Var2)
+AND
+DB_IsPlayer(_Var2)
+AND
+DB_RC_Godslayer_Parts(_Var1, _, _)
+AND
+PartyGetFlag(_Var2, "JDF_RC_GY_Godslayer_HaveBothParts", 0)
+THEN
+Proc_RC_GY_Godslayer_CheckForParts(_Var2);
+
+PROC
+Proc_RC_GY_Godslayer_CheckForParts((CHARACTERGUID)_Var1)
+AND
+QryItemInMagicPockets(_Var1, ITEMGUID_S_RC_GY_Godslayer_Shard_9cbd4e21-7ae7-4c00-a970-4533dbec90c5)
+AND
+QryItemInMagicPockets(_Var1, ITEMGUID_S_RC_GY_Godslayer_Shaft_d49ff3e6-cd11-4ea2-801a-c9057e14a7c3)
+THEN
+PartySetFlag(_Var1, "JDF_RC_GY_Godslayer_HaveBothParts");
+
+IF
+CharacterUsedItem((CHARACTERGUID)_Var1, ITEMGUID_S_RC_GY_VengefulSpirits_TombDoor_97e7060e-fbc7-41c3-82c5-b581744ff4e4)
+AND
+PartyGetFlag(_Var1, "QuestUpdate_RC_GY_Godslayer_FoundShard", 1)
+AND
+QueryOnlyOnce("RC_GY_Godslayer_PostTombRD")
+THEN
+ProcDefineReflectionDialog("RC_GY_RD_Godslayer_PostTombDialog", _Var1);
+
+IF
+StoryEvent(ITEMGUID_S_RC_GY_LockedGate_1_e17eb154-cf27-41e0-8a8c-3a7507c2e8db, "unlocked")
+THEN
+CharacterSetRelationIndivFactionToIndivFaction(CHARACTERGUID_S_GLO_Tarquin_a3d0cdcc-d0b0-464d-9ad7-43b38baed620, CHARACTERGUID_S_RC_GY_RykersBodyguard_Gate_a4d2b334-2a9e-482b-84f3-98487f7f21d4, 0);
+CharacterSetRelationIndivFactionToIndivFaction(CHARACTERGUID_S_RC_GY_RykersBodyguard_Gate_a4d2b334-2a9e-482b-84f3-98487f7f21d4, CHARACTERGUID_S_GLO_Tarquin_a3d0cdcc-d0b0-464d-9ad7-43b38baed620, 0);
+
+PROC
+ProcOneShotTriggerEntered((CHARACTERGUID)_Var1, (TRIGGERGUID)_Var2)
+AND
+DB_RC_GY_NecromancerDynamicEvent(_Var2, _, _)
+THEN
+Proc_RC_GY_NecromancerSetup(_Var2);
+
+PROC
+Proc_RC_GY_NecromancerSetup((TRIGGERGUID)_Var1)
+AND
+DB_RC_GY_NecromancerDynamicEvent(_Var1, _Var2, _Var3)
+AND
+CharacterIsDead(CHARACTERGUID_S_GLO_Tarquin_a3d0cdcc-d0b0-464d-9ad7-43b38baed620, 0)
+THEN
+Proc_RC_GY_ClearNecromancerSetup();
+TeleportTo(CHARACTERGUID_S_GLO_Tarquin_a3d0cdcc-d0b0-464d-9ad7-43b38baed620, _Var2);
+CharacterLevelUpTo(CHARACTERGUID_S_GLO_Tarquin_a3d0cdcc-d0b0-464d-9ad7-43b38baed620, 12);
+SetOnStage(CHARACTERGUID_S_GLO_Tarquin_a3d0cdcc-d0b0-464d-9ad7-43b38baed620, 1);
+SetStoryEvent(CHARACTERGUID_S_GLO_Tarquin_a3d0cdcc-d0b0-464d-9ad7-43b38baed620, "RC_GY_NecromancerArrived");
+SetVarObject(CHARACTERGUID_S_GLO_Tarquin_a3d0cdcc-d0b0-464d-9ad7-43b38baed620, "GY_Wander", _Var3);
+SetVarInteger(CHARACTERGUID_S_GLO_Tarquin_a3d0cdcc-d0b0-464d-9ad7-43b38baed620, "SpottedPlayer", 0);
+SetVarInteger(CHARACTERGUID_S_GLO_Tarquin_a3d0cdcc-d0b0-464d-9ad7-43b38baed620, "StopSpotting", 0);
+SetVarString(CHARACTERGUID_S_GLO_Tarquin_a3d0cdcc-d0b0-464d-9ad7-43b38baed620, "SpotCharacterEvent", "RC_GY_NecromancerSpotPlayer");
+SetStoryEvent(CHARACTERGUID_S_GLO_Tarquin_a3d0cdcc-d0b0-464d-9ad7-43b38baed620, "StartEventOnSight_RestartSpotting");
+
+IF
+StoryEvent(CHARACTERGUID_S_GLO_Tarquin_a3d0cdcc-d0b0-464d-9ad7-43b38baed620, "RC_GY_NecromancerArrived")
+THEN
+ProcRemoveAllDialogEntriesForSpeaker(CHARACTERGUID_S_GLO_Tarquin_a3d0cdcc-d0b0-464d-9ad7-43b38baed620);
+DB_Dialogs(CHARACTERGUID_S_GLO_Tarquin_a3d0cdcc-d0b0-464d-9ad7-43b38baed620, "RC_GY_Necromancer");
+SetVarFixedString(CHARACTERGUID_S_GLO_Tarquin_a3d0cdcc-d0b0-464d-9ad7-43b38baed620, "currentState", "State_Graveyard");
+
+IF
+CharacterCharacterEvent(CHARACTERGUID_S_GLO_Tarquin_a3d0cdcc-d0b0-464d-9ad7-43b38baed620, (CHARACTERGUID)_Var1, "RC_GY_NecromancerSpotPlayer")
+AND
+DB_IsPlayer(_Var1)
+AND
+QueryOnlyOnce("Proc_RC_GY_NecromancerAD")
+THEN
+CharacterLookAt(CHARACTERGUID_S_GLO_Tarquin_a3d0cdcc-d0b0-464d-9ad7-43b38baed620, _Var1);
+Proc_StartDialog(1, "RC_GY_AD_NecromancerSpottedPlayer", CHARACTERGUID_S_GLO_Tarquin_a3d0cdcc-d0b0-464d-9ad7-43b38baed620);
+
+IF
+ObjectFlagSet("RC_GY_NecromancerGiveItem", (CHARACTERGUID)_Var1, _)
+THEN
+Proc_RC_GY_NecromancerGivesItem(_Var1);
+
+PROC
+Proc_RC_GY_NecromancerGivesItem((CHARACTERGUID)_Var1)
+AND
+CharacterGetInventoryGoldValue(CHARACTERGUID_S_GLO_Tarquin_a3d0cdcc-d0b0-464d-9ad7-43b38baed620, 0)
+THEN
+ObjectSetFlag(CHARACTERGUID_S_GLO_Tarquin_a3d0cdcc-d0b0-464d-9ad7-43b38baed620, "RC_GY_NecromancerHasNoItems");
+
+PROC
+Proc_RC_GY_NecromancerGivesItem((CHARACTERGUID)_Var1)
+AND
+ObjectGetFlag(CHARACTERGUID_S_GLO_Tarquin_a3d0cdcc-d0b0-464d-9ad7-43b38baed620, "RC_GY_NecromancerHasNoItems", 0)
+THEN
+ItemTemplateAddTo("BOOK_Skill_Necromancy_DeathsDoor_ac09144a-dd65-485a-9f62-810a5a731710", CHARACTERGUID_S_GLO_Tarquin_a3d0cdcc-d0b0-464d-9ad7-43b38baed620, 1);
+
+IF
+ItemTemplateAddedToCharacter(BOOK_Skill_Necromancy_DeathsDoor_ac09144a-dd65-485a-9f62-810a5a731710, (ITEMGUID)_Var1, CHARACTERGUID_S_GLO_Tarquin_a3d0cdcc-d0b0-464d-9ad7-43b38baed620)
+AND
+QueryOnlyOnce("RC_GY_SmallBonusFromTarquin")
+AND
+DB_IsPlayer(_Var2)
+AND
+ObjectGetFlag(_Var2, "RC_GY_NecromancerGiveItem", 1)
+THEN
+ItemToInventory(_Var1, _Var2);
+
+PROC
+Proc_RC_GY_ClearNecromancerSetup()
+AND
+DB_RC_GY_NecromancerDynamicEvent(_Var1, _, _)
+THEN
+NOT DB_OneShotPlayerTrigger(_Var1);
+ProcTriggerUnregisterForPlayers(_Var1);
+
+PROC
+Proc_RC_GY_ClearNecromancerSetup()
+AND
+DB_RC_GY_NecromancerDynamicEvent(_Var1, _Var2, _Var3)
+THEN
+NOT DB_RC_GY_NecromancerDynamicEvent(_Var1, _Var2, _Var3);
+
+PROC
+ProcRegionEnded("RC_Main")
+THEN
+Proc_RC_GY_ClearNecromancerSetup();
+
+PROC
+ProcRegionEnded("RC_Main")
+THEN
+GoalCompleted;
+
+IF
+StoryEvent(CHARACTERGUID_S_GLO_Tarquin_a3d0cdcc-d0b0-464d-9ad7-43b38baed620, "RC_GY_TarquinGoToLV")
+THEN
+CharacterDisappearOutOfSight(CHARACTERGUID_S_GLO_Tarquin_a3d0cdcc-d0b0-464d-9ad7-43b38baed620, 0, 0, "RC_LV_ReturnToLVAfterQuest", 0);
+
+
+EXITSECTION
+ENDEXITSECTION
+
+ParentTargetEdge "ReapersCoast"

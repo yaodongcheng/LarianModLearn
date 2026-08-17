@@ -1,0 +1,130 @@
+Version 1
+SubGoalCombiner SGC_AND
+
+INITSECTION
+DB_Dialogs(CHARACTERGUID_S_ARX_KemmsKid_1_ab5829b4-2f64-44b9-9ae6-cd7867caa7bf, "ARX_KemmsKid_1");
+DB_Dialogs(CHARACTERGUID_S_ARX_KemmsKid_2_15bd8b87-af46-499f-b719-fe11318420fc, "ARX_KemmsKid_2");
+DB_Children(CHARACTERGUID_S_ARX_KemmsKid_1_ab5829b4-2f64-44b9-9ae6-cd7867caa7bf);
+DB_Children(CHARACTERGUID_S_ARX_KemmsKid_2_15bd8b87-af46-499f-b719-fe11318420fc);
+
+KBSECTION
+PROC
+PROC_ARX_KemmsKidDisappear()
+THEN
+ProcClearStoryMove(CHARACTERGUID_S_ARX_KemmsKid_1_ab5829b4-2f64-44b9-9ae6-cd7867caa7bf);
+SetHasDialog(CHARACTERGUID_S_ARX_KemmsKid_1_ab5829b4-2f64-44b9-9ae6-cd7867caa7bf, 0);
+ProcCharacterDisappearOutOfSight(CHARACTERGUID_S_ARX_KemmsKid_1_ab5829b4-2f64-44b9-9ae6-cd7867caa7bf, 0, 0, "ARX_KemmsKidDisappeared", 0);
+
+IF
+CharacterWentOnStage(CHARACTERGUID_S_ARX_KemmsKid_1_ab5829b4-2f64-44b9-9ae6-cd7867caa7bf, 0)
+THEN
+DB_ARX_KemmsKidOffstage(1);
+
+IF
+CharacterWentOnStage(CHARACTERGUID_S_ARX_KemmsKid_1_ab5829b4-2f64-44b9-9ae6-cd7867caa7bf, 1)
+THEN
+NOT DB_ARX_KemmsKidOffstage(1);
+
+PROC
+PROC_ARX_KemmsKidReappear()
+THEN
+ObjectClearFlag(CHARACTERGUID_S_ARX_KemmsKid_1_ab5829b4-2f64-44b9-9ae6-cd7867caa7bf, "ARX_KemmsKid_FirstWhine", 0);
+
+PROC
+PROC_ARX_KemmsKidReappear()
+AND
+ObjectGetFlag(CHARACTERGUID_S_ARX_KemmsKid_1_ab5829b4-2f64-44b9-9ae6-cd7867caa7bf, "ARX_KemmsKid_ScaredOff", 0)
+AND
+ObjectGetFlag(CHARACTERGUID_S_ARX_KemmsKid_1_ab5829b4-2f64-44b9-9ae6-cd7867caa7bf, "GEB_FleeOutOfSight", 0)
+AND
+DB_ARX_KemmsKidOffstage(1)
+THEN
+SetHasDialog(CHARACTERGUID_S_ARX_KemmsKid_1_ab5829b4-2f64-44b9-9ae6-cd7867caa7bf, 1);
+CharacterAppear(CHARACTERGUID_S_ARX_KemmsKid_1_ab5829b4-2f64-44b9-9ae6-cd7867caa7bf, 0, "ARX_KemmsKid_Reappear");
+
+PROC
+PROC_ARX_KemmsKidReappear()
+AND
+ObjectGetFlag(CHARACTERGUID_S_ARX_KemmsKid_1_ab5829b4-2f64-44b9-9ae6-cd7867caa7bf, "ARX_KemmsKid_ScaredOff", 0)
+AND
+ObjectGetFlag(CHARACTERGUID_S_ARX_KemmsKid_1_ab5829b4-2f64-44b9-9ae6-cd7867caa7bf, "GEB_FleeOutOfSight", 0)
+AND NOT
+DB_ARX_KemmsKidOffstage(1)
+THEN
+SetHasDialog(CHARACTERGUID_S_ARX_KemmsKid_1_ab5829b4-2f64-44b9-9ae6-cd7867caa7bf, 1);
+ProcClearStoryMove(CHARACTERGUID_S_ARX_KemmsKid_1_ab5829b4-2f64-44b9-9ae6-cd7867caa7bf);
+ProcClearDisappearData(CHARACTERGUID_S_ARX_KemmsKid_1_ab5829b4-2f64-44b9-9ae6-cd7867caa7bf);
+
+IF
+DialogEnded("ARX_KemmsKid_1", _)
+AND
+ObjectGetFlag(CHARACTERGUID_S_ARX_KemmsKid_1_ab5829b4-2f64-44b9-9ae6-cd7867caa7bf, "ARX_KemmsKid_ScaredOff", 1)
+THEN
+PROC_ARX_KemmsKidDisappear();
+TimerLaunch("ARX_TheReturnOfKemmsKid", 25000);
+
+IF
+TimerFinished("ARX_TheReturnOfKemmsKid")
+THEN
+ObjectClearFlag(CHARACTERGUID_S_ARX_KemmsKid_1_ab5829b4-2f64-44b9-9ae6-cd7867caa7bf, "ARX_KemmsKid_ScaredOff", 0);
+PROC_ARX_KemmsKidReappear();
+
+IF
+ObjectFlagSet("GEB_FleeOutOfSight", CHARACTERGUID_S_ARX_KemmsKid_1_ab5829b4-2f64-44b9-9ae6-cd7867caa7bf, _)
+THEN
+ObjectSetFlag(CHARACTERGUID_S_ARX_KemmsKid_2_15bd8b87-af46-499f-b719-fe11318420fc, "GEB_FleeOutOfSight", 0);
+
+IF
+ObjectFlagSet("GEB_FleeOutOfSight", CHARACTERGUID_S_ARX_KemmsKid_2_15bd8b87-af46-499f-b719-fe11318420fc, _)
+THEN
+ObjectSetFlag(CHARACTERGUID_S_ARX_KemmsKid_1_ab5829b4-2f64-44b9-9ae6-cd7867caa7bf, "GEB_FleeOutOfSight", 0);
+
+IF
+StoryEvent(CHARACTERGUID_S_ARX_KemmsKid_1_ab5829b4-2f64-44b9-9ae6-cd7867caa7bf, "ARX_KemmsKid_DisappearedToFollow")
+THEN
+PROC_ARX_KemmsKidReappear();
+
+IF
+StoryEvent(CHARACTERGUID_S_ARX_KemmsKid_1_ab5829b4-2f64-44b9-9ae6-cd7867caa7bf, "ARX_KemmsKid_ReturnToMansion")
+THEN
+ProcCharacterDisappearOutOfSight(CHARACTERGUID_S_ARX_KemmsKid_1_ab5829b4-2f64-44b9-9ae6-cd7867caa7bf, 0, 1, "ARX_KemmsKid_ReappearInMansion", 1);
+
+IF
+StoryEvent(CHARACTERGUID_S_ARX_KemmsKid_1_ab5829b4-2f64-44b9-9ae6-cd7867caa7bf, "ARX_KemmsKid_ReappearInMansion")
+THEN
+CharacterAppearOutOfSightToObject(CHARACTERGUID_S_ARX_KemmsKid_1_ab5829b4-2f64-44b9-9ae6-cd7867caa7bf, S_ARX_KemmsMansion_ButlerAnchor_67367164-9305-4753-b6fe-5d07e1c823cd, S_ARX_KemmsMansion_ButlerAnchor_67367164-9305-4753-b6fe-5d07e1c823cd, 0, "");
+
+IF
+ObjectFlagCleared("ARX_KemmsKid_LostWand", S_ARX_KemmsKid_1_ab5829b4-2f64-44b9-9ae6-cd7867caa7bf, _)
+AND
+ObjectGetFlag(S_ARX_KemmsKid_1_ab5829b4-2f64-44b9-9ae6-cd7867caa7bf, "ARX_KemmsKid_Follow", 1)
+THEN
+ObjectClearFlag(S_ARX_KemmsKid_1_ab5829b4-2f64-44b9-9ae6-cd7867caa7bf, "ARX_KemmsKid_Follow");
+
+IF
+DialogEnded("ARX_KemmsKid_1", _)
+AND
+ObjectGetFlag(CHARACTERGUID_S_ARX_KemmsKid_1_ab5829b4-2f64-44b9-9ae6-cd7867caa7bf, "ARX_KemmsKid_ReturnToMansion_AfterDialog", 1)
+THEN
+ObjectClearFlag(S_ARX_KemmsKid_1_ab5829b4-2f64-44b9-9ae6-cd7867caa7bf, "ARX_KemmsKid_ReturnToMansion_AfterDialog");
+ProcCharacterDisappearOutOfSight(CHARACTERGUID_S_ARX_KemmsKid_1_ab5829b4-2f64-44b9-9ae6-cd7867caa7bf, 0, 1, "ARX_KemmsKid_ReappearInMansion", 1);
+
+IF
+GlobalFlagSet("ARX_InitiateGenocide")
+AND
+DB_Children(_Var1)
+AND
+_Var1 != CHARACTERGUID_S_FTJ_CapturedChild_53d4aa5c-dd91-4e12-9ca8-d66879cc6ffb
+AND
+ObjectExists(_Var1, 1)
+AND
+GetRegion(_Var1, "ARX_Main")
+THEN
+ProcForceStopDialog(_Var1);
+ProcCharacterDisappearOutOfSight(_Var1, 0, 1, "", 1);
+
+
+EXITSECTION
+ENDEXITSECTION
+
+ParentTargetEdge "ARX"

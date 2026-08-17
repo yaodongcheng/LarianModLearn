@@ -1,0 +1,112 @@
+Version 1
+SubGoalCombiner SGC_AND
+
+INITSECTION
+
+KBSECTION
+IF
+DB_GLO_HoERespawnPoint(_Var1, _)
+THEN
+ApplyStatus(_Var1, "SPIRIT_VISION", -1, 1);
+CharacterEnableWaypointUsage(_Var1, 0);
+
+IF
+CharacterStatusRemoved((CHARACTERGUID)_Var1, "SPIRIT_VISION", _)
+AND
+DB_GLO_HoERespawnPoint(_Var1, _)
+THEN
+ApplyStatus(_Var1, "SPIRIT_VISION", -1, 1);
+
+IF
+DB_GLO_HoERespawnPoint(_Var1, _Var2)
+AND
+DB_GLO_HoERespawnPoint(_Var1, _Var3)
+AND
+_Var2 != _Var3
+THEN
+NOT DB_GLO_HoERespawnPoint(_Var1, _Var3);
+
+IF
+CharacterDying((CHARACTERGUID)_Var1)
+AND
+DB_GLO_HoERespawnPoint(_Var1, _Var2)
+THEN
+CreateSurface(_Var2, "SurfaceNone", 6, 2);
+CharacterDetachFromGroup(_Var1);
+FadeToBlack(_Var1, 1.5, 0, "Placeholder");
+ProcObjectTimer(_Var1, "GLO_HoERespawn_FadeIn", 4500);
+
+IF
+CharacterDying((CHARACTERGUID)_Var1)
+AND
+DB_GLO_HoERespawnPoint(_Var1, _Var2)
+THEN
+ProcObjectTimer(_Var1, "GLO_HoERespawn_DoDialog", 7500);
+
+PROC
+ProcObjectTimerFinished((CHARACTERGUID)_Var1, "GLO_HoERespawn_FadeIn")
+AND
+DB_GLO_HoERespawnPoint(_Var1, _Var2)
+THEN
+TeleportTo(_Var1, _Var2);
+CharacterResurrect(_Var1);
+
+PROC
+ProcObjectTimerFinished((CHARACTERGUID)_Var1, "GLO_HoERespawn_DoDialog")
+THEN
+FadeToBlack(_Var1, 2.5, 1, "Placeholder");
+Proc_StartDialog(0, "LV_HoE_PlayerDied", _Var1);
+
+IF
+TextEventSet("hoedeath")
+AND
+CharacterGetHostCharacter(_Var1)
+THEN
+DB_GLO_HoERespawnPoint(_Var1, TRIGGERGUID_S_LV_HoE_DeathFromAbove_StartPoint_9055a2d2-3e27-48a4-8ddb-217c3d1c8f17);
+
+PROC
+PROC_GLO_LeaveHallOfEchoes((CHARACTERGUID)_Var1)
+AND
+DB_GLO_HoERespawnPoint(_Var1, _Var2)
+THEN
+NOT DB_GLO_HoERespawnPoint(_Var1, _Var2);
+
+PROC
+PROC_GLO_LeaveHallOfEchoes((CHARACTERGUID)_Var1)
+THEN
+RemoveStatus(_Var1, "SPIRIT_VISION");
+CharacterEnableWaypointUsage(_Var1, 1);
+
+IF
+CharacterResurrected((CHARACTERGUID)_Var1)
+AND
+DB_GLO_HoERespawnPoint(_Var1, _Var2)
+THEN
+NOT DB_GLO_HoERespawnPoint(_Var1, _Var2);
+DB_GLO_HoERespawnPoint(_Var1, _Var2);
+
+IF
+RegionStarted((STRING)_Var1)
+AND NOT
+DB_GLO_MapStartsInHoE(_Var1)
+AND
+StringConcatenate("RemoveHoEStateFromPlayers_", _Var1, _Var2)
+AND
+QueryOnlyOnce(_Var2)
+AND
+DB_GLO_HoERespawnPoint(_Var3, _)
+THEN
+PROC_GLO_LeaveHallOfEchoes(_Var3);
+
+IF
+TextEventSet("HoE_FxTest")
+AND
+CharacterGetHostCharacter(_Var1)
+THEN
+PlayEffect(_Var1, "RS3_FX_GP_ScriptedEvent_HOE_Summoning_01");
+
+
+EXITSECTION
+ENDEXITSECTION
+
+ParentTargetEdge "Start"

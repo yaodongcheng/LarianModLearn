@@ -1,0 +1,36 @@
+Version 1
+SubGoalCombiner SGC_AND
+
+INITSECTION
+
+KBSECTION
+IF
+ObjectFlagSet((STRING)_Var1, (GUIDSTRING)_Var2, (INTEGER)_Var3)
+AND
+DB_GLO_AllDialogObjectFlagsShared(_Var3)
+THEN
+DB_SharedObjectFlags(_Var1);
+ObjectSetFlag(_Var2, _Var1);
+
+IF
+ObjectFlagSet((STRING)_Var1, (CHARACTERGUID)_Var2, _)
+AND
+DB_IsPlayer(_Var2)
+AND
+DB_SharedObjectFlags(_Var1)
+THEN
+ObjectSetFlag(_Var2, _Var1);
+
+IF
+ObjectFlagCleared((STRING)_Var1, (CHARACTERGUID)_Var2, _)
+AND
+DB_IsPlayer(_Var2)
+AND
+DB_SharedObjectFlags(_Var1)
+THEN
+ObjectClearFlag(_Var2, _Var1);
+
+
+EXITSECTION
+ENDEXITSECTION
+

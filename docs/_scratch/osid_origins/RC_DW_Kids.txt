@@ -1,0 +1,169 @@
+Version 1
+SubGoalCombiner SGC_AND
+
+INITSECTION
+DB_Dialogs(CHARACTERGUID_S_RC_DW_Dock_Kid1_1730cca7-89ab-48b6-8f2c-41c62c3277cc, CHARACTERGUID_S_RC_DW_Dock_Kid2_1bd7d47c-dc88-4467-9733-15a1b1308ca3, "RC_DW_Dock_Kids");
+DB_Dialogs(CHARACTERGUID_S_RC_DU_BeachedShark_aac2552f-fa59-4f29-9a69-1e1858fcd716, "RC_DU_BeachedShark");
+DB_IgnoreAssault(CHARACTERGUID_S_RC_DU_BeachedShark_aac2552f-fa59-4f29-9a69-1e1858fcd716);
+DB_DontCreateMurder(CHARACTERGUID_S_RC_DU_BeachedShark_aac2552f-fa59-4f29-9a69-1e1858fcd716);
+ProcCharacterDisableAllCrimes(CHARACTERGUID_S_RC_DU_BeachedShark_aac2552f-fa59-4f29-9a69-1e1858fcd716);
+DB_DoNotFace(CHARACTERGUID_S_RC_DU_BeachedShark_aac2552f-fa59-4f29-9a69-1e1858fcd716);
+DB_Ghosts(CHARACTERGUID_S_RC_DU_BeachedShark_aac2552f-fa59-4f29-9a69-1e1858fcd716, CHARACTERGUID_S_RC_DU_BeachedSharkGhost_135d2ae5-84d0-407d-aff7-db1c9d2ea7bc, "RC_DU_BeachedSharkGhost");
+DB_RC_DW_Dock_Kids(CHARACTERGUID_S_RC_DW_Dock_Kid1_1730cca7-89ab-48b6-8f2c-41c62c3277cc);
+DB_RC_DW_Dock_Kids(CHARACTERGUID_S_RC_DW_Dock_Kid2_1bd7d47c-dc88-4467-9733-15a1b1308ca3);
+Proc_RegisterPartyDecisionDialogOutcomes_Fixed("RC_DW_PDD_DockKidsFriend", "RC_DW_Dock_Kids_Cry", "RC_DW_Dock_Kids_Leave", "", "", "");
+DB_Dialogs(CHARACTERGUID_S_RC_DW_FishFactory_Kid1_7cba80ca-741c-475a-9c95-106efd20a584, CHARACTERGUID_S_RC_DW_FishFactory_Kid2_172b3bc7-3a01-4075-bf5b-d8472fc30c7c, CHARACTERGUID_S_RC_DW_FishFactory_Kid3_7adb627e-9441-40ed-a15c-6b2df417cc07, "RC_DW_FishFactoryKids");
+DB_RC_DW_Factory_Kids(CHARACTERGUID_S_RC_DW_FishFactory_Kid1_7cba80ca-741c-475a-9c95-106efd20a584);
+DB_RC_DW_Factory_Kids(CHARACTERGUID_S_RC_DW_FishFactory_Kid2_172b3bc7-3a01-4075-bf5b-d8472fc30c7c);
+DB_RC_DW_Factory_Kids(CHARACTERGUID_S_RC_DW_FishFactory_Kid3_7adb627e-9441-40ed-a15c-6b2df417cc07);
+DB_RC_DW_Factory_Kids_LeaveAD(CHARACTERGUID_S_RC_DW_FishFactory_Kid1_7cba80ca-741c-475a-9c95-106efd20a584, "RC_DW_AD_FactoryKid1_Runaway");
+DB_RC_DW_Factory_Kids_LeaveAD(CHARACTERGUID_S_RC_DW_FishFactory_Kid2_172b3bc7-3a01-4075-bf5b-d8472fc30c7c, "RC_DW_AD_FactoryKid2_Runaway");
+DB_RC_DW_Factory_Kids_LeaveAD(CHARACTERGUID_S_RC_DW_FishFactory_Kid3_7adb627e-9441-40ed-a15c-6b2df417cc07, "RC_DW_AD_FactoryKid3_Runaway");
+CharacterSetAnimationSetOverride(CHARACTERGUID_S_RC_DU_BeachedShark_aac2552f-fa59-4f29-9a69-1e1858fcd716, "Shark_Dying");
+CharacterSetAnimationSetOverride(CHARACTERGUID_S_RC_DU_BeachedSharkGhost_135d2ae5-84d0-407d-aff7-db1c9d2ea7bc, "Ghost");
+DB_Children(CHARACTERGUID_S_RC_DW_Meistr_Kid_43e646a7-f18b-4738-92d5-c82bcd21d293);
+
+KBSECTION
+IF
+CharacterDying(CHARACTERGUID_S_RC_DU_BeachedShark_aac2552f-fa59-4f29-9a69-1e1858fcd716)
+THEN
+ItemToInventory(ITEMGUID_S_RC_DU_Limb_BeachedSharkLeg_c7c4b6de-8a95-491b-8f52-e43af98af25c, CHARACTERGUID_S_RC_DU_BeachedShark_aac2552f-fa59-4f29-9a69-1e1858fcd716);
+
+IF
+CharacterKilledBy(CHARACTERGUID_S_RC_DU_BeachedShark_aac2552f-fa59-4f29-9a69-1e1858fcd716, (CHARACTERGUID)_Var1, (CHARACTERGUID)_Var2)
+AND
+DB_IsPlayer(_Var1)
+THEN
+UserSetFlag(_Var1, "RC_DU_KilledBeachedShark");
+
+IF
+DB_RC_DW_Dock_Kids(_Var1)
+THEN
+DB_Children(_Var1);
+
+IF
+AttackedByObject((CHARACTERGUID)_Var1, (CHARACTERGUID)_Var2, _, _, _)
+AND
+DB_IsPlayer(_Var2)
+AND
+DB_RC_DW_Dock_Kids(_Var1)
+THEN
+Proc_RC_DW_KidRunAway();
+
+PROC
+Proc_RC_DW_KidRunAway()
+AND
+DB_RC_DW_Dock_Kids(_Var1)
+THEN
+DialogRequestStop(_Var1);
+Proc_StartDialog(1, "RC_DW_AD_DockKid_RunAway", _Var1);
+ProcCharacterDisappearOutOfSight(_Var1, 0, 1, "", 0);
+NOT DB_RC_DW_Dock_Kids(_Var1);
+
+PROC
+Proc_RC_DW_KidRunAway()
+AND
+DB_IsPlayer(_Var1)
+THEN
+ObjectSetFlag(_Var1, "QuestClose_RC_DW_Dock_Kids");
+
+IF
+CharacterLeftRegion((CHARACTERGUID)_Var1, "RC_Main")
+AND
+DB_IsPlayer(_Var1)
+THEN
+ObjectSetFlag(_Var1, "QuestClose_RC_DW_Dock_Kids");
+
+IF
+CharacterUsedItem((CHARACTERGUID)_Var1, ITEMGUID_S_RC_DU_Limb_BeachedSharkLeg_c7c4b6de-8a95-491b-8f52-e43af98af25c)
+AND
+IsTagged(_Var1, "ELF", 1)
+THEN
+ObjectSetFlag(_Var1, "QuestUpdate_RC_DW_Dock_Kids_FoundLimb");
+PartySetFlag(_Var1, "RC_DW_Dock_AteKidLimb");
+
+IF
+DialogEnded("RC_DW_Dock_Kids", _)
+AND
+GlobalGetFlag("RC_DW_Dock_Kids_SetOffstage", 1)
+AND
+DB_RC_DW_Dock_Kids(_Var2)
+AND
+Random(3000, _Var3)
+THEN
+SetHasDialog(_Var2, 0);
+ProcObjectTimer(_Var2, "RC_DW_DockKidSetOffstage", _Var3);
+
+PROC
+ProcObjectTimerFinished((CHARACTERGUID)_Var1, "RC_DW_DockKidSetOffstage")
+THEN
+CharacterDisappearOutOfSight(_Var1, 0, 1, "", 1);
+
+IF
+DB_RC_DW_Factory_Kids(_Var1)
+THEN
+DB_Children(_Var1);
+CharacterSetFightMode(_Var1, 1, 1);
+
+IF
+AttackedByObject((CHARACTERGUID)_Var1, (CHARACTERGUID)_Var2, _, _, _)
+AND
+DB_IsPlayer(_Var2)
+AND
+DB_RC_DW_Factory_Kids(_Var1)
+THEN
+Proc_RC_DW_FactoryKidRunAway();
+
+PROC
+Proc_RC_DW_FactoryKidRunAway()
+AND
+DB_RC_DW_Factory_Kids_LeaveAD(_Var1, _Var2)
+THEN
+DialogRequestStop(_Var1);
+Proc_StartDialog(1, _Var2, _Var1);
+ProcCharacterDisappearOutOfSight(_Var1, 0, 1, "", 0);
+NOT DB_RC_DW_Factory_Kids(_Var1);
+NOT DB_RC_DW_Factory_Kids_LeaveAD(_Var1, _Var2);
+
+IF
+ObjectFlagSet("RC_DW_FactoryKids_GiveCollar", (CHARACTERGUID)_Var1, _)
+AND
+QryRemoveItemTemplateFromMagicPockets(_Var1, "RC_FTJ_Amulet_BrokenSourceCollar_6a906795-b26f-47fd-90ab-ed1916f5b18f", 1)
+THEN
+ItemTemplateAddTo("RC_FTJ_Amulet_BrokenSourceCollar_6a906795-b26f-47fd-90ab-ed1916f5b18f", CHARACTERGUID_S_RC_DW_FishFactory_Kid3_7adb627e-9441-40ed-a15c-6b2df417cc07, 1);
+
+IF
+AttackedByObject(CHARACTERGUID_S_RC_DW_Meistr_Kid_43e646a7-f18b-4738-92d5-c82bcd21d293, (CHARACTERGUID)_Var1, _, _, _)
+AND
+DB_IsPlayer(_Var1)
+THEN
+DialogRequestStop(CHARACTERGUID_S_RC_DW_Meistr_Kid_43e646a7-f18b-4738-92d5-c82bcd21d293);
+ProcCharacterDisappearOutOfSight(CHARACTERGUID_S_RC_DW_Meistr_Kid_43e646a7-f18b-4738-92d5-c82bcd21d293, 0, 1, "", 0);
+
+IF
+SavegameLoaded((INTEGER)_Var1, (INTEGER)_Var2, (INTEGER)_Var3, (INTEGER)_Var4)
+AND
+QRY_VersionIsOlderThan(_Var1, _Var2, _Var3, _Var4, 3, 6, 2, 0)
+AND
+DB_RC_DW_Factory_Kids(_Var5)
+AND
+DB_ObjectStoryInvulnerable(_Var5)
+THEN
+ProcSetInvulnerable(_Var5, 0);
+
+IF
+SavegameLoaded((INTEGER)_Var1, (INTEGER)_Var2, (INTEGER)_Var3, (INTEGER)_Var4)
+AND
+QRY_VersionIsOlderThan(_Var1, _Var2, _Var3, _Var4, 3, 6, 2, 0)
+AND
+DB_RC_DW_Factory_Kids(_Var5)
+AND NOT
+DB_Children(_Var5)
+THEN
+DB_Children(_Var5);
+
+
+EXITSECTION
+ENDEXITSECTION
+
+ParentTargetEdge "ReapersCoast"

@@ -1,0 +1,23 @@
+Version 1
+SubGoalCombiner SGC_AND
+
+INITSECTION
+DB_Children(CHARACTERGUID_S_FTJ_AlcoveChild_001_fea5669a-682c-4c8c-a1b9-d173f2a8b55f);
+DB_Children(CHARACTERGUID_S_FTJ_SkepticChild_001_780631fb-3619-4ed1-b48b-f1ff847d4183);
+DB_Children(CHARACTERGUID_S_FTJ_SkepticChild_002_7f795cf2-db7f-46b6-aa9c-f9d5eefcc789);
+DB_Children(CHARACTERGUID_S_FTJ_CapturedChild_53d4aa5c-dd91-4e12-9ca8-d66879cc6ffb);
+DB_Children(CHARACTERGUID_S_FTJ_StartingAreaChild_39cbb883-7e80-445c-b5f8-0e42d2283d73);
+DB_ExitFTJChildren(1);
+
+KBSECTION
+IF
+DB_ExitFTJChildren(1)
+THEN
+GoalCompleted;
+
+
+EXITSECTION
+NOT DB_ExitFTJChildren(1);
+ENDEXITSECTION
+
+ParentTargetEdge "FortJoy"
