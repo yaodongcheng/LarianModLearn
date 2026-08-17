@@ -103,24 +103,32 @@ def gen_dos2_entry(j, shape):
 
 def gen_dos2():
     data = json.loads(SPEC.read_text(encoding="utf-8"))
-    out_dir = OUT / "DOS2" / "Public" / "NarutoJutsu"
-    stats_dir = out_dir / "Stats" / "Generated" / "Data"
+    stats_dir = OUT / "DOS2" / "Public" / "NarutoJutsu" / "Stats" / "Generated" / "Data"
     # DOS2 本地化：pak 根 Localization/English/english.xml（游戏原生即 XML，与 English.pak 同构）
     loca_dir = OUT / "DOS2" / "Localization" / "English"
     stats_dir.mkdir(parents=True, exist_ok=True)
     loca_dir.mkdir(parents=True, exist_ok=True)
 
-    entries = []
+    # 按形态分发到官方文件名（vanilla 多模组先例：GustavDev/Shared 同名文件共存按条目合并；
+    # 自定义文件名实测不被游戏加载——2026-08-17 GM 模式搜索不到）
+    shape_files = {}
     loca_entries = []
     for j in data["jutsus"]:
         shape = j["dos2"]["shape"]
-        entries.append(gen_dos2_entry(j, shape))
-        # loca: 键 = 显示名/描述文本（DOS2 loca 键为字符串，与 DisplayNameRef/DescriptionRef 一致）
+        shape_files.setdefault(shape, []).append(gen_dos2_entry(j, shape))
         loca_entries.append((j["nameEn"], 1, j["nameEn"]))
         loca_entries.append((j["descriptionEn"], 1, j["descriptionEn"]))
-    (stats_dir / "Skill_Naruto.txt").write_text("\n\n".join(entries) + "\n", encoding="utf-8")
+    # 清理旧命名文件（如果存在）
+    for old in stats_dir.glob("Skill_*.txt"):
+        if old.name not in {f"Skill_{s}.txt" for s in shape_files}:
+            old.unlink()
+    written = []
+    for shape, entries in shape_files.items():
+        fname = f"Skill_{shape}.txt"
+        (stats_dir / fname).write_text("\n\n".join(entries) + "\n", encoding="utf-8")
+        written.append(stats_dir / fname)
     (loca_dir / "english.xml").write_text(loca_xml(loca_entries, with_version=False), encoding="utf-8")
-    return stats_dir / "Skill_Naruto.txt", loca_dir / "english.xml"
+    return written, loca_dir / "english.xml"
 
 # ---------- BG3 条目生成 ----------
 
@@ -188,23 +196,30 @@ def gen_bg3_entry(j, shape):
 
 def gen_bg3():
     data = json.loads(SPEC.read_text(encoding="utf-8"))
-    out_dir = OUT / "BG3" / "Public" / "NarutoJutsu"
-    stats_dir = out_dir / "Stats" / "Generated" / "Data"
+    stats_dir = OUT / "BG3" / "Public" / "NarutoJutsu" / "Stats" / "Generated" / "Data"
     # BG3 本地化：pak 根 Localization/English/english.xml + .loca 二进制（BG3 游戏内为 .loca）
     loca_dir = OUT / "BG3" / "Localization" / "English"
     stats_dir.mkdir(parents=True, exist_ok=True)
     loca_dir.mkdir(parents=True, exist_ok=True)
 
-    entries = []
+    # 按形态分发到官方文件名（同 DOS2 理由）
+    shape_files = {}
     loca_entries = []
     for j in data["jutsus"]:
         shape = j["bg3"]["shape"]
         entry, disp, desc = gen_bg3_entry(j, shape)
-        entries.append(entry)
+        shape_files.setdefault(shape, []).append(entry)
         loca_entries.extend([disp, desc])
-    (stats_dir / "Spell_Naruto.txt").write_text("\n\n".join(entries) + "\n", encoding="utf-8")
+    for old in stats_dir.glob("Spell_*.txt"):
+        if old.name not in {f"Spell_{s}.txt" for s in shape_files}:
+            old.unlink()
+    written = []
+    for shape, entries in shape_files.items():
+        fname = f"Spell_{shape}.txt"
+        (stats_dir / fname).write_text("\n\n".join(entries) + "\n", encoding="utf-8")
+        written.append(stats_dir / fname)
     (loca_dir / "english.xml").write_text(loca_xml(loca_entries), encoding="utf-8")
-    return stats_dir / "Spell_Naruto.txt", loca_dir / "english.xml"
+    return written, loca_dir / "english.xml"
 
 # ---------- meta.lsx（两游戏格式不同，均已对照游戏本体 pak 内 meta.lsx 实测）----------
 
