@@ -7,4 +7,4 @@ $divine = 'F:\LarianModLearn\tools\ExportTool-v1.20.4\Packed\Tools\Divine.exe'
 & $divine -g bg3 --action create-package -s "F:\LarianModLearn\mods\NarutoJutsu\BG3" -d "F:\LarianModLearn\mods\NarutoJutsu\BG3.pak"
 # 3) 安装：复制 .pak 到 Mods 目录
 #   BG3:  %LocalAppData%\Larian Studios\Baldur's Gate 3\Mods\
-#   DOS2: %LocalAppData%\Larian Studios\Divinity Original Sin 2 Definitive Edition\Mods\
+#   DOS2: %USERPROFILE%\Documents\Larian Studios\Divinity Original Sin 2 Definitive Edition\Mods\（DOS2 用 Documents，不是 LocalAppData）

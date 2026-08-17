@@ -51,8 +51,9 @@ powershell -File mods/NarutoJutsu/build.ps1  # 转换 loca + 打包
 ## 安装与验证（需你在游戏里实测）
 
 1. 复制对应 .pak 到 Mods 目录：
-   - BG3：`%LocalAppData%\Larian Studios\Baldur's Gate 3\Mods\`，并在模组管理器或 `modsettings.lsx` 启用
-   - DOS2：`%LocalAppData%\Larian Studios\Divinity Original Sin 2 Definitive Edition\Mods\`，启动器里勾选
+   - BG3：`%LocalAppData%\Larian Studios\Baldur's Gate 3\Mods\`（官方模组管理器标准），并在模组管理器或 `modsettings.lsx` 启用
+   - DOS2：`%USERPROFILE%\Documents\Larian Studios\Divinity Original Sin 2 Definitive Edition\Mods\`（**DOS2 用 Documents，不是 LocalAppData**）；游戏也扫描 `DefEd\Data\Mods\`（本体战役文件夹同处）——两个位置当前均已放置，启动器里勾选
+2. **pak 结构要点**（对照游戏本体 pak 实测）：`Mods/<Folder>/meta.lsx`（Config/ModuleInfo 格式）+ `Public/<Folder>/...` + `Localization/English/...`——工程形态（Toolkit 的 Projects/Mods/Public/Editor 四目录）不是发布形态
 2. 验证清单：
    - [ ] 游戏正常启动、存档正常（无解析报错）
    - [ ] 技能/法术条目能否被游戏加载（**自定义文件名 Skill_Naruto.txt / Spell_Naruto.txt 是否被合并——若未加载，需改用官方同名文件**，这是本原型最大的未知项）

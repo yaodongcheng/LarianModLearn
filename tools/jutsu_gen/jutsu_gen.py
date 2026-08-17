@@ -206,41 +206,104 @@ def gen_bg3():
     (loca_dir / "english.xml").write_text(loca_xml(loca_entries), encoding="utf-8")
     return stats_dir / "Spell_Naruto.txt", loca_dir / "english.xml"
 
-# ---------- meta.lsx + 打包脚本 ----------
+# ---------- meta.lsx（两游戏格式不同，均已对照游戏本体 pak 内 meta.lsx 实测）----------
 
-def gen_meta_lsx(game: str, mod_uuid: str) -> str:
-    name = "NarutoJutsu"
+DOS2_MOD_UUID = "5d2e3f1a-8c4b-4e6d-9f0a-2b3c4d5e6f70"  # 随机生成，固定
+BG3_MOD_UUID = "7a1b2c3d-4e5f-4a6b-8c7d-9e0f1a2b3c4d"  # 随机生成，固定
+
+def gen_meta_lsx(game: str) -> str:
+    """pak 内路径必须为 Mods/<Folder>/meta.lsx（两游戏一致）"""
     if game == "dos2de":
-        return f'''<?xml version="1.0" encoding="utf-8"?>
+        # 对照 DefEd/Data/Shared.pak 内 Mods/Shared/meta.lsx（version 3.6）+ myFirstMod 工程格式
+        return '''<?xml version="1.0" encoding="UTF-8" ?>
 <save>
-  <version major="4" minor="0" revision="0" build="16" />
-  <region id="Module">
-    <node id="Module">
-      <attribute id="Folder" type="LSString" value="{name}" />
-      <attribute id="Name" type="LSString" value="{name}" />
-      <attribute id="UUID" type="guid" value="{mod_uuid}" />
-      <attribute id="Version" type="int32" value="1" />
-      <attribute id="Type" type="int32" value="2" />
-      <attribute id="Author" type="LSString" value="LarianModLearn" />
-      <attribute id="Description" type="LSString" value="Naruto jutsu prototype (DOS2)" />
-    </node>
-  </region>
+    <header version="2" />
+    <version major="3" minor="6" revision="0" build="3" />
+    <region id="Config">
+        <node id="root">
+            <children>
+                <node id="Dependencies">
+                    <children>
+                        <node id="ModuleShortDesc">
+                            <attribute id="Folder" value="DivinityOrigins_1301db3d-1f54-4e98-9be5-5094030916e4" type="30" />
+                            <attribute id="MD5" value="73d13f95607b70c953cc32e56d62b7d7" type="23" />
+                            <attribute id="Name" value="Divinity: Original Sin 2" type="22" />
+                            <attribute id="UUID" value="1301db3d-1f54-4e98-9be5-5094030916e4" type="22" />
+                            <attribute id="Version" value="373234071" type="4" />
+                        </node>
+                    </children>
+                </node>
+                <node id="ModuleInfo">
+                    <attribute id="Author" value="LarianModLearn" type="30" />
+                    <attribute id="CharacterCreationLevelName" value="" type="22" />
+                    <attribute id="Description" value="" type="30" />
+                    <attribute id="Folder" value="NarutoJutsu" type="30" />
+                    <attribute id="GMTemplate" value="" type="22" />
+                    <attribute id="LobbyLevelName" value="" type="22" />
+                    <attribute id="MD5" value="" type="23" />
+                    <attribute id="MenuLevelName" value="" type="22" />
+                    <attribute id="Name" value="NarutoJutsu" type="22" />
+                    <attribute id="NumPlayers" value="2" type="1" />
+                    <attribute id="PhotoBooth" value="" type="22" />
+                    <attribute id="StartupLevelName" value="" type="22" />
+                    <attribute id="Tags" value="" type="30" />
+                    <attribute id="Type" value="Add-on" type="22" />
+                    <attribute id="UUID" value="''' + DOS2_MOD_UUID + '''" type="22" />
+                    <attribute id="Version" value="268435456" type="4" />
+                    <children>
+                        <node id="PublishVersion">
+                            <attribute id="Version" value="909321303" type="4" />
+                        </node>
+                        <node id="Scripts" />
+                        <node id="TargetModes">
+                            <children>
+                                <node id="Target">
+                                    <attribute id="Object" value="Story" type="22" />
+                                </node>
+                            </children>
+                        </node>
+                    </children>
+                </node>
+            </children>
+        </node>
+    </region>
 </save>
 '''
-    return f'''<?xml version="1.0" encoding="utf-8"?>
+    # BG3：对照 Shared.pak 内 Mods/Shared/meta.lsx（version 4.8；Version64 为 int64 字段）
+    return '''<?xml version="1.0" encoding="UTF-8"?>
 <save>
-  <version major="4" minor="0" revision="0" build="16" />
-  <region id="Module">
-    <node id="Module">
-      <attribute id="Folder" type="LSString" value="{name}" />
-      <attribute id="Name" type="LSString" value="{name}" />
-      <attribute id="UUID" type="guid" value="{mod_uuid}" />
-      <attribute id="Version" type="int32" value="1" />
-      <attribute id="Type" type="int32" value="1" />
-      <attribute id="Author" type="LSString" value="LarianModLearn" />
-      <attribute id="Description" type="LSString" value="Naruto jutsu prototype (BG3)" />
-    </node>
-  </region>
+    <version major="4" minor="8" revision="0" build="500"/>
+    <region id="Config">
+        <node id="root">
+            <children>
+                <node id="Conflicts"/>
+                <node id="Dependencies"/>
+                <node id="ModuleInfo">
+                    <attribute id="Author" type="LSString" value="LarianModLearn"/>
+                    <attribute id="CharacterCreationLevelName" type="FixedString" value=""/>
+                    <attribute id="Description" type="LSString" value=""/>
+                    <attribute id="FileSize" type="uint64" value="0"/>
+                    <attribute id="Folder" type="LSString" value="NarutoJutsu"/>
+                    <attribute id="LobbyLevelName" type="FixedString" value=""/>
+                    <attribute id="MD5" type="LSString" value=""/>
+                    <attribute id="MenuLevelName" type="FixedString" value=""/>
+                    <attribute id="Name" type="LSString" value="NarutoJutsu"/>
+                    <attribute id="NumPlayers" type="uint8" value="4"/>
+                    <attribute id="PhotoBooth" type="FixedString" value=""/>
+                    <attribute id="PublishHandle" type="uint64" value="0"/>
+                    <attribute id="StartupLevelName" type="FixedString" value=""/>
+                    <attribute id="UUID" type="FixedString" value="''' + BG3_MOD_UUID + '''"/>
+                    <attribute id="Version64" type="int64" value="36028797018963968"/>
+                    <children>
+                        <node id="PublishVersion">
+                            <attribute id="Version64" type="int64" value="36028797018963968"/>
+                        </node>
+                        <node id="Scripts"/>
+                    </children>
+                </node>
+            </children>
+        </node>
+    </region>
 </save>
 '''
 
@@ -258,22 +321,28 @@ def gen_build_script(dos2_stats, dos2_loca, bg3_stats, bg3_loca):
         f'& $divine -g bg3 --action create-package -s "{bg3_root}" -d "{bg3_root}.pak"',
         "# 3) 安装：复制 .pak 到 Mods 目录",
         '#   BG3:  %LocalAppData%\\Larian Studios\\Baldur\'s Gate 3\\Mods\\',
-        '#   DOS2: %LocalAppData%\\Larian Studios\\Divinity Original Sin 2 Definitive Edition\\Mods\\',
+        '#   DOS2: %USERPROFILE%\\Documents\\Larian Studios\\Divinity Original Sin 2 Definitive Edition\\Mods\\（DOS2 用 Documents，不是 LocalAppData）',
     ]
     return "\n".join(lines) + "\n"
 
 def main():
     dos2_stats, dos2_loca = gen_dos2()
     bg3_stats, bg3_loca = gen_bg3()
-    # meta.lsx（两个固定 mod UUID）
-    (OUT / "DOS2" / "meta.lsx").write_text(gen_meta_lsx("dos2de", "11111111-1111-4111-8111-111111111111"), encoding="utf-8")
-    (OUT / "BG3" / "meta.lsx").write_text(gen_meta_lsx("bg3", "22222222-2222-4222-8222-222222222222"), encoding="utf-8")
+    # meta.lsx：pak 内路径必须为 Mods/<Folder>/meta.lsx（两游戏一致，对照游戏本体实测）
+    dos2_meta = OUT / "DOS2" / "Mods" / "NarutoJutsu" / "meta.lsx"
+    bg3_meta = OUT / "BG3" / "Mods" / "NarutoJutsu" / "meta.lsx"
+    dos2_meta.parent.mkdir(parents=True, exist_ok=True)
+    bg3_meta.parent.mkdir(parents=True, exist_ok=True)
+    dos2_meta.write_text(gen_meta_lsx("dos2de"), encoding="utf-8")
+    bg3_meta.write_text(gen_meta_lsx("bg3"), encoding="utf-8")
     (OUT / "build.ps1").write_text(gen_build_script(dos2_stats, dos2_loca, bg3_stats, bg3_loca), encoding="utf-8")
     print(f"[OK] DOS2: {dos2_stats}")
     print(f"[OK] DOS2 loca: {dos2_loca}")
+    print(f"[OK] DOS2 meta: {dos2_meta}")
     print(f"[OK] BG3: {bg3_stats}")
     print(f"[OK] BG3 loca: {bg3_loca}")
-    print(f"[OK] build.ps1 已生成（含 loca 转换与打包命令）")
+    print(f"[OK] BG3 meta: {bg3_meta}")
+    print("[OK] build.ps1 已生成（含 loca 转换与打包命令）")
 
 if __name__ == "__main__":
     main()
