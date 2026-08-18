@@ -60,7 +60,7 @@ Public/<Folder>/
   <attribute id="Selectors" type="LSString" value="AddSpells(<技能组UUID>);SelectPassives(<被动组UUID>,1,...);SelectSkills(...);SelectAbilityBonus(...)"/>
 </node>
 ```
-- `AddSpells(<UUID>)` 引用的 UUID = Content/[PAK]_<mod>/ 下的**技能组资源**（.lsf，UUID 命名）
+- `AddSpells(<UUID>)` 引用的 UUID = **Lists/SpellLists.lsx 里 SpellList 节点的 UUID**（见下节 4；⚠️ 不是 Content/ 下的文件！）
 - 引擎在角色达到 Level 时执行 Selectors → 技能进法术书
 - 多个 Progression 节点共用同一 TableUUID = 每级一条
 
@@ -80,6 +80,25 @@ Public/<Folder>/
 - `Target_Amaterasu`：`RequirementConditions "HasStatus('emsactive', context.Source) or ..."`（**状态需求**——写轮眼/万花筒解锁条件）、`UseCosts "ActionPoint:1;Chakra:4"`、`SpellProperties "GROUND:ApplyStatus(...);GROUND:Summon(<uuid>, 10,,true,...);DealDamage(10,Fire)"`
 - `SpellFlags "HasVerbalComponent;HasSomaticComponent;IsSpell;IsHarmful"`、`HitAnimationType "MagicalDamage_External"`
 - 图标：自定义名（`"shuriken"`、`"rasenshuriken"`）+ GUI/Assets 里对应 .DDS
+
+## 模组规模与 pak 库存（404 条清单实测，2026-08-18）
+
+| 区域 | 内容 | 说明 |
+|---|---|---|
+| `Mods/<Folder>/GUI/Assets/` | 图标 .DDS（ActionResources 查克拉/九尾、职业图标 Shinobi/IndraPath/AshuraPath、技能图标 shuriken/rasenshuriken 等） | GUI/AssetsLowRes 低清版 |
+| `Public/<mod>/Stats/Generated/Data/` | 6 个 Spell_<形态>.txt（Projectile/Rush/Shout/Target/Wall/Zone）+ Passive/Character/Interrupt + **4 个 Status_ 覆写文件**（BOOST/DOWNED/INCAPACITATED/INVISIBLE） | ~90 个技能，其中覆写了原版 EldritchBlast/FireBolt/MagicMissile/SneakAttack 等 |
+| `Lists/` | SpellLists.lsx（30 组）+ PassiveLists.lsx | **技能组真相所在** |
+| `Content/[PAK]_narutotest/` | 29 个 .lsf，全部是 **EffectBank 特效**（如 VFX_Status_amaBurning_RootFX） | 转换 .lsf→.lsx 可读 |
+| `RootTemplates/`、`MultiEffectInfos/` | 角色模板（须佐能乎等召唤物）、多段特效 | UUID 命名 .lsf |
+| `CharacterCreationPresets/` | AbilityDistributionPresets.lsx 建卡预设 | |
+| `DefaultValues/` | Abilities.lsx + Passives.lsx | 默认值 |
+| `Progressions/` | Progressions.lsx（主职业 1-20 + 子职业各 3-12）+ ProgressionDescriptions.lsx | **BG3 本体上限 12 级**，13-20 级是留给等级上限 mod 的 |
+
+## 作者留空/未完成项（实测，重要）
+
+- **空技能组**：`narutospells`（主职 1 级第二组）、`Ashura4`（L4）、`Ashura10`（L10）的 Spells 为空——升级到这些节点**不加技能**，是作者没填完
+- **未挂进成长表的旧技能组**：sasukespells（佐助全家桶 16 技能）、fenixflower、Chirodi、flower8/10/12——只能靠 SE 控制台 `AddSpell` 手动给
+- 覆写原版技能 = 同名替换，游戏内效果全局生效（装了就改原版手感）
 
 ## 对我们的启示
 

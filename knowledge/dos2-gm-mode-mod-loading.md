@@ -52,23 +52,28 @@ Divine.exe -g dos2de --action convert-resource -s meta.lsx -d "<campaign>/meta.l
 - 战役本身的 `MainGMMod`（GameMaster）保持不变。
 - 游戏内正确流程：GM 战役选择界面 → 右下角齿轮 → 插件页 → 勾选 add-on（此动作应写入上述 Dependencies；实测勾选后文件未见写入，改为手动法成功）。
 
-## 4. DOS2 本地化：GM 面板显示名必须"键名 + 竖线引用"配对
+## 4. DOS2 本地化：文本本体在 Stats.lsb（2026-08-18 重写，旧"竖线本地化"认知作废）
 
-stats 条目 + `Localization/English/english.xml` **三处必须配对**：
+> ⚠️ v0.1 时代"竖线引用 + pak 根 english.xml"记录为"显示正常"是**误判**（当时只验证了技能可见，名字一直显示原始键）。
+> 六次失败迭代后定型：**mod 的语言 xml 游戏不查，文本在 `Public/<Folder>/Localization/Stats/<Type>_<Field>.lsb` 的 value**。
+> 完整机制见 `knowledge/localization.md`。
+
+正确形态（生成器自动产出，人工只需改 `spec/jutsus.json`）：
 
 ```txt
-data "DisplayName" "NRT_katon_goukakyu_DisplayName"
-data "DisplayNameRef" "|NRT_katon_goukakyu_DisplayName|"   ← 竖线引用，本体格式
-data "Description" "NRT_katon_goukakyu_Description"
-data "DescriptionRef" "|NRT_katon_goukakyu_Description|"
+data "DisplayName" "NRT_katon_goukakyu_DisplayName"   ← UUID（与 Stats.lsb 的 UUID 一致）
+data "DisplayNameRef" "|Fireball Jutsu|"               ← 竖线引用英文（vanilla 同款格式）
 ```
 
 ```xml
-<content contentuid="NRT_katon_goukakyu_DisplayName">Fireball Jutsu</content>
+<!-- Stats/Projectile_DisplayName.lsb（lsx 转） -->
+<node id="TranslatedStringKey">
+    <attribute id="Content" type="28" handle="h<md5(英文)>" value="火遁·豪火球之术" />  ← 中文直写 value
+    <attribute id="UUID" type="22" value="NRT_katon_goukakyu_DisplayName" />
+</node>
 ```
 
-- ❌ 裸文本 `DisplayNameRef "Fireball Jutsu"`（无竖线）实测显示异常；✅ 竖线引用 `|键|` + contentuid 配对。
-- 技能面板无搜索框，只能按**学派（Ability）分类**翻，注意 **Tier 分组**（Novice/Adept/Master）——豪火球 Tier=Adept 在 Adept 分组下。
+- **技能面板无搜索框**，只能按**学派（Ability）分类**翻，注意 **Tier 分组**（Novice/Adept/Master）——豪火球 Tier=Adept 在 Adept 分组下。
 
 ## 5. 其他实测
 

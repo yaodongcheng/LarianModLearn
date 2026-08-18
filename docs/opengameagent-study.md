@@ -76,4 +76,4 @@ Agent 服务（DurableGameActionDispatcher + FileGameActionJournal）
 
 1. OpenGameAgent 是**引擎无关**运行时，Larian 场景走"独立 Agent 服务 + Remote game actions"官方模式，不碰 Godot/Unity 适配器。
 2. 其权威边界设计（游戏校验一切、durable receipts、Uncertain 不重写）与 Larian"Osiris 引擎权威"哲学天然一致。
-3. 主要待办：安装 .NET 8 SDK；跑通 Server + claim/receipt 链路（可在无游戏环境下用假 world 验证）。
+3. 主要待办：安装 .NET 8 SDK；跑通 Server + claim/receipt 链路（可在无游戏环境下用假 world 验证）

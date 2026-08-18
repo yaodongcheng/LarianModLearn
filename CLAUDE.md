@@ -60,6 +60,7 @@ StoryDecompiler.exe --input <story.div.osi> --output <osid目录>
 | `docs/capability-matrix-and-limits.md` | 能力矩阵与限制 |
 | `docs/integration-design.md` | 桥接架构 + 实施路线 S1-S6 |
 | `docs/verification-guide.md` | 实机验证步骤（DOS2 GM 模式 / BG3 SE 控制台） |
+| `docs/custom-voice-sfx-spike.md` | 技能名喊话 spike：自定义 .wem 音频链路待验证（不阻塞） |
 
 ## 6. 知识库（knowledge/，实测速查，动手前先看）
 
@@ -68,16 +69,17 @@ StoryDecompiler.exe --input <story.div.osi> --output <osid目录>
 | `knowledge/mod-install-and-loading.md` | 装/找 mod、目录放错排查（BG3=LocalAppData；DOS2=Data\Mods+Documents） |
 | `knowledge/pak-and-meta-lsx.md` | 打包新 mod：pak 结构 + meta.lsx（Config/ModuleInfo，两游戏字段不同） |
 | `knowledge/stat-file-conventions.md` | 配新技能/法术：**必须官方文件名分发** + 条目字段模板 |
-| `knowledge/localization.md` | 加文本：BG3 自造 handle + loca 转换；DOS2 字符串键 XML |
+| `knowledge/localization.md` | 加文本：**DOS2 文本本体在 Stats.lsb value（直写中文）；mod 语言 xml 游戏不查**；BG3 自造 handle + loca 转换 |
 | `knowledge/osiris-and-tools.md` | 解包/反编译/转换/打包命令与坑 |
 | `knowledge/bg3-save-format-v4.md` | 改存档前必看：v4.1.1 存档无 XP 字段（Osiris 管 XP），改档不可行→SE 控制台 |
 | `knowledge/bg3-console-commands.md` | 游戏内调试：`~` 控制台 SetLevel/AddSpell（参数顺序！） |
 | `knowledge/bg3-mod-architecture.md` | BG3 模组架构（查克拉/职业/成长表，参考 shinobi class mod） |
+| `knowledge/bg3-story-compile-pipeline.md` | 写 Osiris 规则：goal 源码格式 + story_header.div + StoryCompiler 编译（加经验/事件 mod 必看） |
 | `knowledge/dos2-gm-mode-mod-loading.md` | DOS2 GM 模式加载 mod：三层链路（pak/EditorProfile/战役 Dependencies）+ TargetModes 需含 GM + 竖线本地化 |
 
 ## 7. 待办与坑
 
-- 忍术原型：DOS2 GM 模式**技能已验证可加载**（2026-08-18：官方文件名 + TargetModes GM + 战役 Dependencies + 竖线本地化，四步后火焰学派 Adept 可见）；BG3 学习途径未配置（SpellSet 路线待验证）；BG3 验证需 SE（**已装 2026-08-18**，首次启动自动更新）
+- 忍术原型：DOS2 GM 模式**技能已验证可加载**（2026-08-18：官方文件名 + TargetModes GM + 战役 Dependencies + 竖线本地化，四步后火焰学派 Adept 可见）；**22 术全量已生成打包（v0.2.0）待 GM 实测**（五遁 14 + 瞳术 6 + 通用 2，含中文双语言与自定义状态，见 plans/plan-shinobi-to-dos2-migration.md）；BG3 学习途径未配置（SpellSet 路线待验证）；BG3 验证需 SE（**已装 2026-08-18**，首次启动自动更新）
 - DOS2 用户环境：GM 模式配置走 EditorProfile modsettings + **战役文件 Dependencies**（已确认，见 knowledge/dos2-gm-mode-mod-loading.md）
 - SE 与游戏版本强绑定；游戏更新会破坏
 - `ConverterApp.exe` 无 CLI；`Divine convert-resource` 输出扩展名必须 .lsx；StoryDecompiler 输出是目录
