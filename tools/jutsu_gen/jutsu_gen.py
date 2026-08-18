@@ -83,9 +83,9 @@ def gen_dos2_entry(j, shape):
         (lambda: f'data "Template" "{d["template"]}"', shape == "Projectile"),
         (lambda: f'data "Icon" "{d["icon"]}"', True),
         (lambda: f'data "DisplayName" "{aid}_DisplayName"', True),
-        (lambda: f'data "DisplayNameRef" "{j["nameEn"]}"', True),
+        (lambda: f'data "DisplayNameRef" "|{aid}_DisplayName|"', True),
         (lambda: f'data "Description" "{aid}_Description"', True),
-        (lambda: f'data "DescriptionRef" "{j["descriptionEn"]}"', True),
+        (lambda: f'data "DescriptionRef" "|{aid}_Description|"', True),
         (lambda: 'data "StatsDescriptionParams" "Damage"', shape in ("Projectile", "Zone")),
         (lambda: f'data "PrepareAnimationInit" "{d["animPrepareInit"]}"', "animPrepareInit" in d),
         (lambda: f'data "PrepareAnimationLoop" "{d["animPrepareLoop"]}"', "animPrepareLoop" in d),
@@ -115,9 +115,10 @@ def gen_dos2():
     loca_entries = []
     for j in data["jutsus"]:
         shape = j["dos2"]["shape"]
+        aid = f"NRT_{j['id']}"
         shape_files.setdefault(shape, []).append(gen_dos2_entry(j, shape))
-        loca_entries.append((j["nameEn"], 1, j["nameEn"]))
-        loca_entries.append((j["descriptionEn"], 1, j["descriptionEn"]))
+        loca_entries.append((f"{aid}_DisplayName", 1, j["nameEn"]))
+        loca_entries.append((f"{aid}_Description", 1, j["descriptionEn"]))
     # 清理旧命名文件（如果存在）
     for old in stats_dir.glob("Skill_*.txt"):
         if old.name not in {f"Skill_{s}.txt" for s in shape_files}:
@@ -274,6 +275,9 @@ def gen_meta_lsx(game: str) -> str:
                             <children>
                                 <node id="Target">
                                     <attribute id="Object" value="Story" type="22" />
+                                </node>
+                                <node id="Target">
+                                    <attribute id="Object" value="GM" type="22" />
                                 </node>
                             </children>
                         </node>

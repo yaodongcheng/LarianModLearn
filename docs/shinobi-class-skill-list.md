@@ -14,6 +14,55 @@ Osi.AddSpell(c, "技能名")       -- 直接给技能（角色在前、技能名
 
 函数已从 BG3 本体 Osiris 反编译核实：`SetLevel(char, level)`（35 处）、`AddSpell(char, spell)`（102 处）、`Proc_LevelUp(char)` = 升 1 级。
 
+## 每级解锁表（2026-08-18 实测 Progressions.lsx + Lists/SpellLists.lsx 交叉核对）
+
+### 主职业 Shinobi（所有玩家，1-20 级）
+| 级 | 拿到的技能 | 被动/特性 | 资源 |
+|---|---|---|---|
+| 1 | Projectile_Kunai、Target/Projectile_SneakAttack1 | FastMovement、UnarmoredDefense_Monk、SneakAttack_Unlock、MartialArts_DextrousUnarmedAttacks、ShinobiOrigin（起源被动） | 查克拉+3；轻甲/简易武器/手弩/长剑/细剑/短剑熟练；敏豁免 |
+| 2 | **Target_Flicker（瞬身术）** | MartialArts_BonusStrike_Passive、BonusUnarmedStrike、FastHands | 查克拉+3 |
+| 3 | （选子职业） | UnarmoredMovement_1 | 查克拉+3 |
+| 4 | — | 专长点（feat）、SlowFall | 查克拉+4 |
+| 5 | — | **ExtraAttack（额外攻击）** | 查克拉+4 |
+| 6 | — | Evasion | 查克拉+4 |
+| 7 | — | UnarmoredMovement_2 | 查克拉+4 |
+| 8 | — | 专长点 | 查克拉+4 |
+| 9 | — | UnarmoredMovement_DifficultTerrain | 查克拉+4 |
+| 10 | — | 专长点 | 查克拉+4 |
+| 11 | — | UnarmoredMovement_3、**sixpaths（六道）** | 查克拉+4 |
+| 12 | — | 专长点 | 查克拉+4 |
+| 13-20 | — | —（仅查克拉+4） | BG3 本体上限 12 |
+
+### 子职业 IndraPath（宇智波线，3 级二选一）
+| 级 | 技能 | 被动 |
+|---|---|---|
+| 3 | **Rush_Chidori（千鸟）**、Projectile_fireballjutsu（火球）、**Shout_sharingan_on（写轮眼）** | uchihablood（宇智波血统）；+魅力豁免/洞悉/调查/察觉 |
+| 4 | Projectile_fenixflower（凤仙火） | — |
+| 5 | Projectile_fireballjutsutwo（火球二式） | — |
+| 6 | 五选一：**Target_kamui（神威）/ Target_tsuku（月读）/ Target_Amaterasu（天照）/ Target_koto（别天神）/ Wall_AmaWall** | mspassive、amaoffpassive（万花筒） |
+| 7 | **Target_Kirin（麒麟）** | — |
+| 8 | Projectile_AmaFireball（天照火球） | — |
+| 9 | Shout_eternal（永恒） | **emspassive（永恒万花筒，替换 mspassive）** |
+| 10 | **Shout_rin_on（轮回眼）** | — |
+| 11 | **Shout_susarmor（须佐能乎）** | — |
+| 12 | **Zone_IndraArrow（因陀罗之矢）** | — |
+
+### 子职业 AshuraPath（鸣人线，3 级二选一）
+| 级 | 技能 | 被动/资源 |
+|---|---|---|
+| 3 | **Rush_Rasengan（螺旋丸）**、Target_RemUnsummon | uzamakiblood、Jin、sclone1；查克拉+3+**九尾+1** |
+| 4 | —（技能组为空！） | ntr1 |
+| 5 | **Zone_rshuri（螺旋手里剑）** | — |
+| 6 | **Target_MultiShadowClone（多重影分身）** | — |
+| 7 | Target_conele | sagemodetoggle（仙人模式开关） |
+| 8 | Target_invras（因陀罗之矢前置） | ntre（替换 ntr1）；九尾+5 |
+| 9 | **Target_FlyRai（雷遁飞行）** | — |
+| 10 | —（技能组为空！） | sclone2（替换 sclone1） |
+| 11 | **Shout_kcm（九尾查克拉模式）** | — |
+| 12 | **Projectile_tbb（尾兽玉）** | — |
+
+> 注：SpellLists.lsx 里 `narutospells`（主职 1 级第二组）、`Ashura4`、`Ashura10` 的 Spells 为空——作者留空未填。另有一批**未挂进成长表**的旧技能组（sasukespells/fenixflower/Chirodi/flower8/10/12）与大量覆写原版技能（Projectile_EldritchBlast/FireBolt/MagicMissile 等），只能靠 AddSpell 手动给。
+
 ## 技能（SpellData，按形态）
 
 ### Projectile（投射）

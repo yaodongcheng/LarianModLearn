@@ -12,7 +12,7 @@
 | DOS2 DE 安装 | `G:\SteamLibrary\steamapps\common\Divinity Original Sin 2`（主程序 `DefEd\bin\EoCApp.exe`） |
 | 官方 Toolkit | BG3 Toolkit / The Divinity Engine 2（均在 `G:\SteamLibrary\steamapps\common\`，用户已装，工程在游戏 Data 目录） |
 | LSLib | `tools\ExportTool-v1.20.4\Packed\`（Divine.exe / StoryDecompiler / ConverterApp[纯GUI] / StatParser） |
-| SE（未安装进游戏，需用户同意） | `tools\BG3SE-Updater-20260621\DWrite.dll`、`tools\DOS2SE-Updater-v5\dxgi.dll` |
+| SE（已安装 2026-08-18，DWrite.dll 已在游戏 bin\） | `tools\BG3SE-Updater-20260621\DWrite.dll`（升级器本体） |
 | 解包数据（不入库） | `extracted\BG3\`（87k 文件）、`extracted\DOS2\`（7k 文件），含反编译 Osiris goals（osid\） |
 | OpenGameAgent | `vendor\OpenGameAgent\`（0.3.0-alpha.2，C#，独立 .NET 服务模式接入） |
 | 忍术模组 | `mods\NarutoJutsu\`（生成器 `tools\jutsu_gen\jutsu_gen.py`，规格表 `spec\jutsus.json`） |
@@ -70,13 +70,15 @@ StoryDecompiler.exe --input <story.div.osi> --output <osid目录>
 | `knowledge/stat-file-conventions.md` | 配新技能/法术：**必须官方文件名分发** + 条目字段模板 |
 | `knowledge/localization.md` | 加文本：BG3 自造 handle + loca 转换；DOS2 字符串键 XML |
 | `knowledge/osiris-and-tools.md` | 解包/反编译/转换/打包命令与坑 |
+| `knowledge/bg3-save-format-v4.md` | 改存档前必看：v4.1.1 存档无 XP 字段（Osiris 管 XP），改档不可行→SE 控制台 |
 | `knowledge/bg3-console-commands.md` | 游戏内调试：`~` 控制台 SetLevel/AddSpell（参数顺序！） |
 | `knowledge/bg3-mod-architecture.md` | BG3 模组架构（查克拉/职业/成长表，参考 shinobi class mod） |
+| `knowledge/dos2-gm-mode-mod-loading.md` | DOS2 GM 模式加载 mod：三层链路（pak/EditorProfile/战役 Dependencies）+ TargetModes 需含 GM + 竖线本地化 |
 
 ## 7. 待办与坑
 
-- 忍术原型：DOS2 GM 模式验证中（技能加载已切官方文件名，待重测）；BG3 学习途径未配置（SpellSet 路线待验证）；BG3 验证需 SE（需用户同意装 DWrite.dll）
-- DOS2 用户环境：GM 模式（地下城与城主）配置走 EditorProfile modsettings（半确认）
+- 忍术原型：DOS2 GM 模式**技能已验证可加载**（2026-08-18：官方文件名 + TargetModes GM + 战役 Dependencies + 竖线本地化，四步后火焰学派 Adept 可见）；BG3 学习途径未配置（SpellSet 路线待验证）；BG3 验证需 SE（**已装 2026-08-18**，首次启动自动更新）
+- DOS2 用户环境：GM 模式配置走 EditorProfile modsettings + **战役文件 Dependencies**（已确认，见 knowledge/dos2-gm-mode-mod-loading.md）
 - SE 与游戏版本强绑定；游戏更新会破坏
 - `ConverterApp.exe` 无 CLI；`Divine convert-resource` 输出扩展名必须 .lsx；StoryDecompiler 输出是目录
 - git：大目录不入库（extracted/、vendor/、tools 二进制），`tools/jutsu_gen/` 与 `knowledge/` 保留

@@ -16,8 +16,9 @@ Public/<Folder>/
 ├── ActionResourceDefinitions/ActionResourceDefinitions.lsx   ← 自定义资源（查克拉）
 ├── ClassDescriptions/ClassDescriptions.lsx                    ← 职业（Shinobi + 子职业）
 ├── Progressions/Progressions.lsx                              ← 成长表（技能解锁）
+├── Lists/SpellLists.lsx + PassiveLists.lsx                    ← ★技能组/被动组资源（2026-08-18 实测纠正）
 ├── CharacterCreationPresets/AbilityDistributionPresets.lsx    ← 建卡预设
-└── Content/[PAK]_<mod>/*.lsf                                  ← UUID 资源（技能组/特效/召唤物）
+└── Content/[PAK]_<mod>/*.lsf                                  ← 特效 EffectBank 等（不是技能组！）
 ```
 
 ## 关键机制（抄作业要点）
@@ -63,8 +64,16 @@ Public/<Folder>/
 - 引擎在角色达到 Level 时执行 Selectors → 技能进法术书
 - 多个 Progression 节点共用同一 TableUUID = 每级一条
 
-### 4. 技能组资源（Content/[PAK]_<mod>/*.lsf）
-UUID 命名的 .lsf（Toolkit 生成，含"该组包含哪些 Spell 条目名"）。转换 .lsf→.lsx 可读（Divine convert-resource）。**纯 txt 路线替代**：`SpellSet.txt`（`new spellset "X"` + `add spell "..."`）——未经官方平台 mod 验证但为文本格式，可作为轻量替代（待验证 ⚠️）。
+### 4. 技能组资源（Lists/SpellLists.lsx —— 2026-08-18 实测纠正！）
+⚠️ 此前误记为 Content/[PAK]_<mod>/ 下的 UUID .lsf——实测那些是 **EffectBank 特效资源**。真正的技能组在 `Public/<mod>/Lists/SpellLists.lsx`：
+```xml
+<node id="SpellList">
+  <attribute id="Name" type="FixedString" value="Shinobi1"/>
+  <attribute id="Spells" type="LSString" value="Target_SneakAttack1;Projectile_SneakAttack1;Projectile_Kunai;"/>
+  <attribute id="UUID" type="guid" value="3445c8cb-6ed6-4db9-b676-b03bc315f361"/>  ← Progressions AddSpells(<此UUID>)
+</node>
+```
+被动组同理：`Lists/PassiveLists.lsx`（`SelectPassives(<UUID>,...`）。**纯 txt 路线替代**：`SpellSet.txt`（`new spellset "X"` + `add spell "..."`）——未经官方平台 mod 验证但为文本格式，可作为轻量替代（待验证 ⚠️）。
 
 ### 5. 技能定义要点（shinobi 实例）
 - `Projectile_Kunai`：`SpellRoll "Attack(AttackType.RangedUnarmedAttack)"`、`UseCosts "BonusActionPoint:1"`、`SpellSuccess "...;ApplyStatus(frseal,100,8)"`

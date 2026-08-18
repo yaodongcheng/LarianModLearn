@@ -596,7 +596,7 @@ def main():
 
     btn_width = 15
     btn_height = 2
-
+ 
     # 主要功能：提交并推送（一键完成）
     tk.Button(row1, text="📤 提交并推送", width=btn_width, height=btn_height,
               font=("Microsoft YaHei", 11, "bold"), bg="#2196F3", fg="white",

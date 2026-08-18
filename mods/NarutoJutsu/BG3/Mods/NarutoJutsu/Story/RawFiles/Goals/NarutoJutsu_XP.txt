@@ -1,0 +1,13 @@
+Version 1
+SubGoalCombiner SGC_AND
+INITSECTION
+KBSECTION
+//REGION NarutoJutsu XP boost: grant 200k XP once per playthrough
+IF
+DB_Players(_Player)
+AND
+NOT DB_NarutoJutsu_XPGranted(_Player)
+THEN
+AddExplorationExperience((CHARACTER)_Player, 200000);
+DB_NarutoJutsu_XPGranted((CHARACTER)_Player);
+//END_REGION

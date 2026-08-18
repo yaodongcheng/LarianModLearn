@@ -30,8 +30,8 @@ data "TargetRadius" "13" / "AreaRadius" "4" / "HitRadius" "1"(Rush)
 data "DeathType" "Incinerate"
 data "Template" "<投射物GUID>"          ← Projectile 形态必须有（复用现有投射物）
 data "Icon" "Skill_Fire_Fireball"      ← 复用现有图标占位
-data "DisplayName" "<id>_DisplayName" / "DisplayNameRef" "<loca键>"
-data "Description" "<id>_Description" / "DescriptionRef" "<loca键>"
+data "DisplayName" "<id>_DisplayName" / "DisplayNameRef" "|<id>_DisplayName|"  ← 竖线引用本地化键（裸文本实测显示异常，见 dos2-gm-mode-mod-loading.md）
+data "Description" "<id>_Description" / "DescriptionRef" "|<id>_Description|"
 data "PrepareAnimationInit"/"PrepareAnimationLoop"/"CastAnimation"/"CastTextEvent"/"CastEffect"  ← 结印动画
 data "Magic Cost" "0"
 ```
