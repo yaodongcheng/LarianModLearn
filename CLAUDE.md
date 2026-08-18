@@ -61,9 +61,22 @@ StoryDecompiler.exe --input <story.div.osi> --output <osid目录>
 | `docs/integration-design.md` | 桥接架构 + 实施路线 S1-S6 |
 | `docs/verification-guide.md` | 实机验证步骤（DOS2 GM 模式 / BG3 SE 控制台） |
 
-## 6. 待办与坑
+## 6. 知识库（knowledge/，实测速查，动手前先看）
 
-- 忍术原型：技能加载验证中（自定义文件名 → 官方文件名分发切换中）；学习途径未配置；BG3 验证需 SE（需用户同意装 DWrite.dll）
+| 文件 | 何时查 |
+|---|---|
+| `knowledge/mod-install-and-loading.md` | 装/找 mod、目录放错排查（BG3=LocalAppData；DOS2=Data\Mods+Documents） |
+| `knowledge/pak-and-meta-lsx.md` | 打包新 mod：pak 结构 + meta.lsx（Config/ModuleInfo，两游戏字段不同） |
+| `knowledge/stat-file-conventions.md` | 配新技能/法术：**必须官方文件名分发** + 条目字段模板 |
+| `knowledge/localization.md` | 加文本：BG3 自造 handle + loca 转换；DOS2 字符串键 XML |
+| `knowledge/osiris-and-tools.md` | 解包/反编译/转换/打包命令与坑 |
+| `knowledge/bg3-console-commands.md` | 游戏内调试：`~` 控制台 SetLevel/AddSpell（参数顺序！） |
+| `knowledge/bg3-mod-architecture.md` | BG3 模组架构（查克拉/职业/成长表，参考 shinobi class mod） |
+
+## 7. 待办与坑
+
+- 忍术原型：DOS2 GM 模式验证中（技能加载已切官方文件名，待重测）；BG3 学习途径未配置（SpellSet 路线待验证）；BG3 验证需 SE（需用户同意装 DWrite.dll）
+- DOS2 用户环境：GM 模式（地下城与城主）配置走 EditorProfile modsettings（半确认）
 - SE 与游戏版本强绑定；游戏更新会破坏
-- `ConverterApp.exe` 无 CLI；`Divine convert-resource` 输出扩展名必须 .lsx
-- git：大目录不入库（extracted/、vendor/、tools 二进制），`tools/jutsu_gen/` 保留
+- `ConverterApp.exe` 无 CLI；`Divine convert-resource` 输出扩展名必须 .lsx；StoryDecompiler 输出是目录
+- git：大目录不入库（extracted/、vendor/、tools 二进制），`tools/jutsu_gen/` 与 `knowledge/` 保留
